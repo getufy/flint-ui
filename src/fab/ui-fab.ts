@@ -12,7 +12,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
  */
 @customElement('ui-fab')
 export class UiFab extends LitElement {
-    static styles = css`
+  static styles = css`
     :host {
       --ui-fab-size: 56px;
       --ui-fab-background: var(--ui-primary-color, #3b82f6);
@@ -92,59 +92,60 @@ export class UiFab extends LitElement {
     }
   `;
 
-    @property({ type: Boolean, reflect: true })
-    extended = false;
+  @property({ type: Boolean, reflect: true })
+  extended = false;
 
-    @property({ type: Boolean, reflect: true })
-    disabled = false;
+  @property({ type: Boolean, reflect: true })
+  disabled = false;
 
-    /** Accessible label for icon-only (non-extended) FABs. */
-    @property({ type: String })
-    label = 'Action';
+  /** Accessible label for icon-only (non-extended) FABs. */
+  @property({ type: String })
+  label = 'Action';
 
-    @property({ type: String })
-    position: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left' | 'static' = 'bottom-right';
+  @property({ type: String })
+  position: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left' | 'static' = 'bottom-right';
 
-    updated(changed: PropertyValues) {
-        if (changed.has('position')) {
-            this._applyPositionToHost();
-        }
+  updated(changed: PropertyValues) {
+    if (changed.has('position')) {
+      this._applyPositionToHost();
+    }
+  }
+
+  private _applyPositionToHost() {
+    // Reset all sides so stale values don't conflict
+    this.style.top = '';
+    this.style.bottom = '';
+    this.style.left = '';
+    this.style.right = '';
+    this.style.position = '';
+
+    if (this.position === 'static') {
+      this.style.position = 'static';
+      return;
     }
 
-    private _applyPositionToHost() {
-        // Reset all sides so stale values don't conflict
-        this.style.top = '';
-        this.style.bottom = '';
-        this.style.left = '';
-        this.style.right = '';
+    const coords: Record<string, [string, string, string, string]> = {
+      'bottom-right': ['', '24px', '24px', ''],
+      'bottom-left': ['', '24px', '', '24px'],
+      'top-right': ['24px', '', '24px', ''],
+      'top-left': ['24px', '', '', '24px'],
+    };
 
-        if (this.position === 'static') {
-            this.style.position = 'static';
-            return;
-        }
+    const [top, bottom, right, left] = coords[this.position] ?? coords['bottom-right'];
+    this.style.position = 'fixed';
+    this.style.top = top;
+    this.style.bottom = bottom;
+    this.style.right = right;
+    this.style.left = left;
+  }
 
-        const coords: Record<string, [string, string, string, string]> = {
-            'bottom-right': ['', '24px', '24px', ''],
-            'bottom-left':  ['', '24px', '',     '24px'],
-            'top-right':    ['24px', '', '24px', ''],
-            'top-left':     ['24px', '', '',     '24px'],
-        };
+  render() {
+    const classes = {
+      fab: true,
+      extended: this.extended,
+    };
 
-        const [top, bottom, right, left] = coords[this.position] ?? coords['bottom-right'];
-        this.style.position = 'fixed';
-        this.style.top    = top;
-        this.style.bottom = bottom;
-        this.style.right  = right;
-        this.style.left   = left;
-    }
-
-    render() {
-        const classes = {
-            fab: true,
-            extended: this.extended,
-        };
-
-        return html`
+    return html`
       <button
         class="${classMap(classes)}"
         ?disabled="${this.disabled}"
@@ -157,11 +158,11 @@ export class UiFab extends LitElement {
         ${this.extended ? html`<span class="label-slot"><slot name="label"></slot></span>` : ''}
       </button>
     `;
-    }
+  }
 }
 
 declare global {
-    interface HTMLElementTagNameMap {
-        'ui-fab': UiFab;
-    }
+  interface HTMLElementTagNameMap {
+    'ui-fab': UiFab;
+  }
 }

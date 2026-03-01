@@ -3,17 +3,17 @@ import { html } from 'lit';
 import './ui-fab';
 
 const meta: Meta = {
-    title: 'Components/FAB',
-    component: 'ui-fab',
-    argTypes: {
-        extended: { control: 'boolean' },
-        disabled: { control: 'boolean' },
-        label: { control: 'text' },
-        position: {
-            control: { type: 'select' },
-            options: ['bottom-right', 'bottom-left', 'top-right', 'top-left', 'static'],
-        },
+  title: 'Components/FAB',
+  component: 'ui-fab',
+  argTypes: {
+    extended: { control: 'boolean' },
+    disabled: { control: 'boolean' },
+    label: { control: 'text' },
+    position: {
+      control: { type: 'select' },
+      options: ['bottom-right', 'bottom-left', 'top-right', 'top-left', 'static'],
     },
+  },
 };
 
 export default meta;
@@ -33,13 +33,13 @@ const editIcon = html`
 `;
 
 export const Regular: Story = {
-    args: {
-        extended: false,
-        disabled: false,
-        label: 'Add',
-        position: 'static',
-    },
-    render: (args) => html`
+  args: {
+    extended: false,
+    disabled: false,
+    label: 'Add',
+    position: 'static',
+  },
+  render: (args) => html`
     <ui-fab .extended=${args.extended} .disabled=${args.disabled} .label=${args.label} .position=${args.position}>
       ${plusIcon}
     </ui-fab>
@@ -47,12 +47,12 @@ export const Regular: Story = {
 };
 
 export const Extended: Story = {
-    args: {
-        extended: true,
-        disabled: false,
-        position: 'static',
-    },
-    render: (args) => html`
+  args: {
+    extended: true,
+    disabled: false,
+    position: 'static',
+  },
+  render: (args) => html`
     <ui-fab .extended=${args.extended} .disabled=${args.disabled} .position=${args.position}>
       ${editIcon}
       <span slot="label">Compose</span>
@@ -61,11 +61,11 @@ export const Extended: Story = {
 };
 
 export const Floating: Story = {
-    args: {
-        extended: false,
-        position: 'bottom-right',
-    },
-    render: (args) => html`
+  args: {
+    extended: false,
+    position: 'bottom-right',
+  },
+  render: (args) => html`
     <div style="height: 300px; border: 1px dashed #ccc; position: relative; padding: 20px; background: #f9fafb;">
       <p style="font-family: sans-serif; color: #6b7280; font-size: 14px;">
         The FAB is fixed to the viewport corner specified by the <code>position</code> prop.
@@ -79,7 +79,7 @@ export const Floating: Story = {
 };
 
 export const Positions: Story = {
-    render: () => html`
+  render: () => html`
     <div style="display: flex; gap: 24px; flex-wrap: wrap; padding: 16px; align-items: center;">
       ${(['bottom-right', 'bottom-left', 'top-right', 'top-left'] as const).map(pos => html`
         <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
@@ -98,7 +98,7 @@ export const Positions: Story = {
 };
 
 export const Disabled: Story = {
-    render: () => html`
+  render: () => html`
     <div style="display: flex; gap: 24px; align-items: center; padding: 16px;">
       <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
         <ui-fab position="static" label="Add">
@@ -124,7 +124,7 @@ export const Disabled: Story = {
 };
 
 export const CustomColors: Story = {
-    render: () => html`
+  render: () => html`
     <div style="display: flex; gap: 24px; flex-wrap: wrap; padding: 16px; align-items: center;">
       <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
         <ui-fab position="static" label="Add"
