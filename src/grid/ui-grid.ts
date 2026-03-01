@@ -19,7 +19,6 @@ export class UiGrid extends LitElement {
       display: block;
     }
 
-    /* FIX 1: When container, display must be flex — was overridden by display:block above */
     .grid-wrapper.container {
       display: flex;
       flex-wrap: wrap;
@@ -51,10 +50,20 @@ export class UiGrid extends LitElement {
     /** Total number of columns. Default is 12. */
     @property({ type: Number }) columns = 12;
 
-    /** Spacing between items. 1 unit = 8px. */
+    /**
+     * Spacing between items. 1 unit = 8px.
+     * Accepts a number, a string pixel value, or a responsive object.
+     */
     @property({ type: Object }) spacing: ResponsiveValue<number | string> = 0;
-    @property({ type: Object }) rowSpacing: ResponsiveValue<number | string> = 0;
-    @property({ type: Object }) columnSpacing: ResponsiveValue<number | string> = 0;
+
+    /**
+     * Row spacing override. When explicitly set to a non-undefined value it
+     * takes precedence over `spacing` for the row axis.
+     * FIX: previously `rowSpacing !== 0` was used as the guard, which meant
+     * an intentional `rowSpacing="0"` (remove row gap) was impossible.
+     */
+    @property({ type: Object }) rowSpacing?: ResponsiveValue<number | string>;
+    @property({ type: Object }) columnSpacing?: ResponsiveValue<number | string>;
 
     /** Breakpoint sizes */
     @property() xs?: GridSize;
@@ -63,26 +72,35 @@ export class UiGrid extends LitElement {
     @property() lg?: GridSize;
     @property() xl?: GridSize;
 
-    /** Offsets */
+    /** Offsets per breakpoint */
     @property({ type: Object }) offset?: Partial<Record<Breakpoint, number | 'auto'>>;
+
+    /**
+     * Flex order. Supports responsive values so items can be reordered at
+     * specific breakpoints (e.g. push a sidebar above content on mobile).
+     */
+    @property({ type: Object }) order?: ResponsiveValue<number>;
 
     @state() private _currentWidth = typeof window !== 'undefined' ? window.innerWidth : 1200;
 
-    // FIX 2: Use window resize listener instead of ResizeObserver on body
     private _onResize = () => {
         this._currentWidth = window.innerWidth;
     };
 
-    private static _breakPoints: Record<string, number> = {};
+    /**
+     * Breakpoint pixel cache. Scoped per-instance (not static) so that
+     * elements in different shadow roots / CSS scopes don't share stale values.
+     */
+    private _breakpointCache: Record<string, number> = {};
 
     private _getBreakpointValue(name: string, fallback: number): number {
-        if (UiGrid._breakPoints[name]) return UiGrid._breakPoints[name];
+        if (this._breakpointCache[name] !== undefined) return this._breakpointCache[name];
 
         if (typeof window !== 'undefined') {
             const val = getComputedStyle(document.documentElement).getPropertyValue(`--ui-breakpoint-${name}`);
             if (val && val.trim()) {
-                UiGrid._breakPoints[name] = parseInt(val, 10);
-                return UiGrid._breakPoints[name];
+                this._breakpointCache[name] = parseInt(val, 10);
+                return this._breakpointCache[name];
             }
         }
         return fallback;
@@ -90,7 +108,6 @@ export class UiGrid extends LitElement {
 
     connectedCallback() {
         super.connectedCallback();
-        // FIX 2: Listen to window resize for reliable viewport width tracking
         if (typeof window !== 'undefined') {
             window.addEventListener('resize', this._onResize);
             this._currentWidth = window.innerWidth;
@@ -99,7 +116,6 @@ export class UiGrid extends LitElement {
 
     disconnectedCallback() {
         super.disconnectedCallback();
-        // FIX 2: Clean up window listener
         if (typeof window !== 'undefined') {
             window.removeEventListener('resize', this._onResize);
         }
@@ -163,6 +179,19 @@ export class UiGrid extends LitElement {
         return val;
     }
 
+    private _resolveResponsiveOrder(val: ResponsiveValue<number>, bp: Breakpoint): number | undefined {
+        if (typeof val === 'object' && val !== null) {
+            const bps: Breakpoint[] = ['xs', 'sm', 'md', 'lg', 'xl'];
+            const idx = bps.indexOf(bp);
+            for (let i = idx; i >= 0; i--) {
+                const v = (val as Partial<Record<Breakpoint, number>>)[bps[i]];
+                if (v !== undefined) return v;
+            }
+            return undefined;
+        }
+        return val as number;
+    }
+
     private _toPx(v: number | string): string {
         return typeof v === 'number' ? `${v * 8}px` : v;
     }
@@ -171,17 +200,41 @@ export class UiGrid extends LitElement {
         if (!this.container) return {};
 
         const s = this._resolveResponsive(this.spacing, bp);
-        const rs = this.rowSpacing !== 0 ? this._resolveResponsive(this.rowSpacing, bp) : s;
-        const cs = this.columnSpacing !== 0 ? this._resolveResponsive(this.columnSpacing, bp) : s;
+
+        // FIX: Use undefined check so rowSpacing/columnSpacing = 0 works correctly.
+        const rs = this.rowSpacing !== undefined
+            ? this._resolveResponsive(this.rowSpacing, bp)
+            : s;
+        const cs = this.columnSpacing !== undefined
+            ? this._resolveResponsive(this.columnSpacing, bp)
+            : s;
 
         return {
             gap: `${this._toPx(rs)} ${this._toPx(cs)}`
         };
     }
 
+    private _getEffectiveColumns(): number {
+        // Read inherited column count from nearest ancestor container via CSS variable,
+        // but only if this element is NOT itself a container (containers define the column grid).
+        if (this.container) return this.columns;
+        const inherited = getComputedStyle(this).getPropertyValue('--ui-grid-columns').trim();
+        if (inherited && !isNaN(Number(inherited))) return Number(inherited);
+        return this.columns;
+    }
+
     private _getItemStyles(bp: Breakpoint): Record<string, string> {
+        // Perf guard: pure containers with no size props set don't need item styles.
+        const hasSize = this.xs !== undefined || this.sm !== undefined || this.md !== undefined
+            || this.lg !== undefined || this.xl !== undefined;
+        const hasOffset = !!this.offset;
+        const hasOrder = this.order !== undefined;
+
+        if (!hasSize && !hasOffset && !hasOrder) return {};
+
         const size = this._getEffectiveSize(bp);
         const offset = this._getEffectiveOffset(bp);
+        const columns = this._getEffectiveColumns();
 
         const styles: Record<string, string> = {};
 
@@ -195,20 +248,10 @@ export class UiGrid extends LitElement {
             styles['width'] = 'auto';
             styles['max-width'] = 'none';
         } else if (typeof size === 'number') {
-            const pct = (size / this.columns) * 100;
-
-            // FIX 3: Account for column gap in flex-basis so items don't overflow.
-            // We need to find the effective column spacing from the nearest ancestor container.
-            // We pass it via a CSS custom property set on the container, or fall back to 0.
-            // The container sets --ui-grid-column-gap on itself via styleMap (see render()).
+            const pct = (size / columns) * 100;
             styles['flex-grow'] = '0';
-            // Use calc to subtract the proportional share of the total column gap.
-            // For n columns, there are (n-1) gaps total. Each item of size k spans
-            // k columns and (k-1) internal gaps, so it "owns" k/columns of the total width
-            // minus (k-1) gaps it contains plus the gaps surrounding it absorbed by flexbox.
-            // The simplest correct approach: use calc(pct% - gap * (columns - size) / columns)
-            styles['flex-basis'] = `calc(${pct}% - var(--ui-grid-column-gap, 0px) * ${(this.columns - size) / this.columns})`;
-            styles['max-width'] = `calc(${pct}% - var(--ui-grid-column-gap, 0px) * ${(this.columns - size) / this.columns})`;
+            styles['flex-basis'] = `calc(${pct}% - var(--ui-grid-column-gap, 0px) * ${(columns - size) / columns})`;
+            styles['max-width'] = `calc(${pct}% - var(--ui-grid-column-gap, 0px) * ${(columns - size) / columns})`;
         } else if (!this.container) {
             styles['flex-grow'] = '0';
             styles['flex-basis'] = 'auto';
@@ -218,8 +261,15 @@ export class UiGrid extends LitElement {
         if (offset === 'auto') {
             styles['margin-left'] = 'auto';
         } else if (typeof offset === 'number') {
-            const pct = (offset / this.columns) * 100;
+            const pct = (offset / columns) * 100;
             styles['margin-left'] = `${pct}%`;
+        }
+
+        if (this.order !== undefined) {
+            const o = this._resolveResponsiveOrder(this.order, bp);
+            if (o !== undefined) {
+                styles['order'] = String(o);
+            }
         }
 
         return styles;
@@ -234,18 +284,18 @@ export class UiGrid extends LitElement {
         const bp = this._getBreakpoint();
         const itemStyles = this._getItemStyles(bp);
 
-        // Reset host styles that might have been set prevously
+        // Reset previously applied host styles
         this.style.flexGrow = '';
         this.style.flexBasis = '';
         this.style.maxWidth = '';
         this.style.width = '';
         this.style.marginLeft = '';
+        this.style.order = '';
 
         Object.entries(itemStyles).forEach(([prop, val]) => {
             this.style.setProperty(prop, val);
         });
 
-        // Set the column gap variable on the host if it's a container
         if (this.container) {
             const spacingStyles = this._getSpacingStyles(bp);
             if (spacingStyles['gap']) {
@@ -253,6 +303,9 @@ export class UiGrid extends LitElement {
                 const colGap = parts.length === 2 ? parts[1] : parts[0];
                 this.style.setProperty('--ui-grid-column-gap', colGap);
             }
+            // Propagate column count to children via CSS custom property so nested
+            // items without an explicit `columns` prop calculate percentages correctly.
+            this.style.setProperty('--ui-grid-columns', String(this.columns));
         }
     }
 
