@@ -224,6 +224,7 @@ export class UiDateRangeCalendar extends LitElement {
 
     private _handleCellClick(cell: RangeCalendarDay) {
         if (cell.isDisabled || this.disabled) return;
+        this._hoverIso = '';
         const [start, end] = this.value;
 
         let newRange: DateRange;

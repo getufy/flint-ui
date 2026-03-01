@@ -12,11 +12,14 @@ export function isoToDate(iso: string): Date | null {
     if (!iso) return null;
     const [y, m, d] = iso.split('-').map(Number);
     if (!y || !m || !d) return null;
-    return new Date(y, m - 1, d);
+    const date = new Date(y, m - 1, d);
+    // Reject overflowed dates (e.g. Feb 30 → Mar 2)
+    if (date.getFullYear() !== y || date.getMonth() !== m - 1 || date.getDate() !== d) return null;
+    return date;
 }
 
 export function dateToIso(d: Date): string {
-    const y = d.getFullYear();
+    const y = String(d.getFullYear()).padStart(4, '0');
     const m = String(d.getMonth() + 1).padStart(2, '0');
     const day = String(d.getDate()).padStart(2, '0');
     return `${y}-${m}-${day}`;

@@ -235,7 +235,7 @@ export class UiDateRangePicker extends LitElement {
     // ── Open / close ──────────────────────────────────────────────────────────
 
     private _openPicker() {
-        if (this.disabled || this._open) return;
+        if (this.disabled || this.readonly || this._open) return;
         this._pendingValue = [...this.value];
         this._open = true;
     }
@@ -299,7 +299,7 @@ export class UiDateRangePicker extends LitElement {
     }
 
     private _handleMobileOk() {
-        this._commit(this._pendingValue[0] || this._pendingValue[1]
+        this._commit(this._pendingValue[0] && this._pendingValue[1]
             ? this._pendingValue
             : this.value);
     }
