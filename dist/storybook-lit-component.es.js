@@ -9155,7 +9155,8 @@ let M = class extends c {
     const r = e.target.value.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
     if (r) {
       const o = `${r[3]}-${r[1]}-${r[2]}`;
-      isNaN(new Date(o).getTime()) || this._commit(o);
+      if (isNaN(new Date(o).getTime()) || this.min && o < this.min || this.max && o > this.max) return;
+      this._commit(o);
     }
   }
   // ── Field ───────────────────────────────────────────────────────────────

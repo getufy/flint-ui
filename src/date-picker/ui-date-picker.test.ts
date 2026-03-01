@@ -242,4 +242,90 @@ describe('ui-date-picker', () => {
         const event = await oneEvent(el, 'change') as CustomEvent;
         expect(event.detail.value).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     });
+
+    it('manual input of a valid date fires change', async () => {
+        const el = await fixture<UiDatePicker>(html`<ui-date-picker></ui-date-picker>`);
+        await el.updateComplete;
+        const input = el.shadowRoot!.querySelector<HTMLInputElement>('input')!;
+        input.value = '07/04/2028';
+        const spy = vi.fn();
+        el.addEventListener('change', spy);
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        expect(spy).toHaveBeenCalledOnce();
+        expect((spy.mock.calls[0][0] as CustomEvent).detail.value).toBe('2028-07-04');
+    });
+
+    it('manual input before min constraint is rejected', async () => {
+        const el = await fixture<UiDatePicker>(html`<ui-date-picker min="2025-06-01"></ui-date-picker>`);
+        await el.updateComplete;
+        const input = el.shadowRoot!.querySelector<HTMLInputElement>('input')!;
+        input.value = '01/01/2025'; // before min
+        const spy = vi.fn();
+        el.addEventListener('change', spy);
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('readonly picker opens popover on input focus', async () => {
+        const el = await fixture<UiDatePicker>(html`<ui-date-picker readonly></ui-date-picker>`);
+        await el.updateComplete;
+        const input = el.shadowRoot!.querySelector<HTMLInputElement>('input')!;
+        input.dispatchEvent(new Event('focus', { bubbles: true }));
+        await el.updateComplete;
+        const popover = el.shadowRoot!.querySelector('.popover');
+        expect(popover?.classList.contains('open')).toBe(true);
+    });
+});
+
+// ═══════════════════════════════════════════════════════════════════════
+// ui-date-picker-calendar — view transitions
+// ═══════════════════════════════════════════════════════════════════════
+describe('ui-date-picker-calendar view transitions', () => {
+
+    it('selecting a month in month view returns to day view', async () => {
+        const el = await fixture<UiDatePickerCalendar>(html`
+            <ui-date-picker-calendar value="2025-06-01"></ui-date-picker-calendar>
+        `);
+        await el.updateComplete;
+        // Open month view
+        (el.shadowRoot!.querySelector('.header-label') as HTMLElement).click();
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelectorAll('.month-btn').length).toBe(12);
+        // Click January (index 0)
+        (el.shadowRoot!.querySelector('.month-btn') as HTMLElement).click();
+        await el.updateComplete;
+        // Should be back to day view with 42 cells
+        expect(el.shadowRoot!.querySelectorAll('.day-cell').length).toBe(42);
+    });
+
+    it('clicking year label in month view opens year view', async () => {
+        const el = await fixture<UiDatePickerCalendar>(html`
+            <ui-date-picker-calendar value="2025-06-01"></ui-date-picker-calendar>
+        `);
+        await el.updateComplete;
+        // Go to month view first
+        (el.shadowRoot!.querySelector('.header-label') as HTMLElement).click();
+        await el.updateComplete;
+        // In month view, click the year label to open year view
+        (el.shadowRoot!.querySelector('.header-label') as HTMLElement).click();
+        await el.updateComplete;
+        const yearBtns = el.shadowRoot!.querySelectorAll('.year-btn');
+        expect(yearBtns.length).toBe(201);
+    });
+
+    it('selecting a year in year view returns to month view', async () => {
+        const el = await fixture<UiDatePickerCalendar>(html`
+            <ui-date-picker-calendar value="2025-06-01"></ui-date-picker-calendar>
+        `);
+        await el.updateComplete;
+        // Go to month view then year view
+        (el.shadowRoot!.querySelector('.header-label') as HTMLElement).click();
+        await el.updateComplete;
+        (el.shadowRoot!.querySelector('.header-label') as HTMLElement).click();
+        await el.updateComplete;
+        // Click the first year button
+        (el.shadowRoot!.querySelector('.year-btn') as HTMLElement).click();
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelectorAll('.month-btn').length).toBe(12);
+    });
 });

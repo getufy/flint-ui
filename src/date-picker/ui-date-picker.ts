@@ -651,9 +651,10 @@ export class UiDatePicker extends LitElement {
         const m = v.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
         if (m) {
             const iso = `${m[3]}-${m[1]}-${m[2]}`;
-            if (!isNaN(new Date(iso).getTime())) {
-                this._commit(iso);
-            }
+            if (isNaN(new Date(iso).getTime())) return;
+            if (this.min && iso < this.min) return;
+            if (this.max && iso > this.max) return;
+            this._commit(iso);
         }
     }
 

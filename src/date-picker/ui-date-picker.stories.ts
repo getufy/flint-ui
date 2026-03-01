@@ -25,6 +25,7 @@ const meta: Meta = {
         variant: 'desktop',
         label: 'Date',
         value: '',
+        placeholder: 'MM/DD/YYYY',
         disabled: false,
         readonly: false,
         error: false,
@@ -57,6 +58,7 @@ export const Desktop: Story = {
       .variant=${args.variant}
       .value=${args.value}
       .label=${args.label}
+      .placeholder=${args.placeholder ?? 'MM/DD/YYYY'}
       .min=${args.min ?? ''}
       .max=${args.max ?? ''}
       ?disabled=${args.disabled}
