@@ -1,0 +1,526 @@
+import { LitElement, html, css, nothing } from 'lit';
+import { customElement, property, state } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*  ui-speed-dial-action                                                */
+/* ─────────────────────────────────────────────────────────────────── */
+
+/**
+ * A single action item inside a `ui-speed-dial`.
+ *
+ * @slot - Icon content for the action button.
+ * @fires ui-speed-dial-action-click - Fired when the action button is clicked.
+ */
+@customElement('ui-speed-dial-action')
+export class UiSpeedDialAction extends LitElement {
+    static styles = css`
+        :host {
+            display: flex;
+            align-items: center;
+            position: relative;
+            --action-size: 40px;
+        }
+
+        /* ── Mini FAB ── */
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: var(--action-size);
+            height: var(--action-size);
+            border-radius: 50%;
+            background: var(--ui-surface-background, #fff);
+            color: var(--ui-text-color, #374151);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14);
+            transition: background 0.15s, box-shadow 0.15s, transform 0.15s;
+            flex-shrink: 0;
+            outline: none;
+            font-size: 1.25rem;
+        }
+        .action-btn:hover {
+            background: var(--ui-surface-background-flat, #f3f4f6);
+            box-shadow: 0 5px 8px -1px rgba(0,0,0,.25), 0 8px 12px 0 rgba(0,0,0,.16);
+            transform: scale(1.08);
+        }
+        .action-btn:focus-visible {
+            outline: 2px solid var(--ui-primary-color, #3b82f6);
+            outline-offset: 3px;
+        }
+        :host([disabled]) .action-btn {
+            opacity: 0.38;
+            pointer-events: none;
+        }
+
+        /* ── Tooltip ── */
+        .tooltip {
+            position: absolute;
+            background: rgba(30,41,59,.88);
+            color: #fff;
+            font-family: var(--ui-font-family, 'Inter', sans-serif);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: .02em;
+            padding: 4px 10px;
+            border-radius: 5px;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.15s;
+        }
+        .tooltip.visible { opacity: 1; }
+
+        :host([tooltip-placement="left"]) .tooltip {
+            right: calc(100% + 10px);
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        :host([tooltip-placement="right"]) .tooltip {
+            left: calc(100% + 10px);
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        :host([tooltip-placement="top"]) .tooltip {
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        :host([tooltip-placement="bottom"]) .tooltip {
+            top: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    `;
+
+    /** Tooltip text shown alongside the action and used as aria-label. */
+    @property({ type: String, attribute: 'tooltip-title' }) tooltipTitle = '';
+
+    /** Forces the tooltip to be visible regardless of hover state. */
+    @property({ type: Boolean, attribute: 'tooltip-open' }) tooltipOpen = false;
+
+    /** Tooltip placement relative to the action button. */
+    @property({ type: String, reflect: true, attribute: 'tooltip-placement' })
+    tooltipPlacement: 'left' | 'right' | 'top' | 'bottom' = 'left';
+
+    /** If true, the action button is disabled. */
+    @property({ type: Boolean, reflect: true }) disabled = false;
+
+    @state() private _hovered = false;
+
+    private _handleClick() {
+        if (this.disabled) return;
+        this.dispatchEvent(new CustomEvent('ui-speed-dial-action-click', {
+            bubbles: true,
+            composed: true,
+            detail: { tooltipTitle: this.tooltipTitle },
+        }));
+    }
+
+    private get _tooltipVisible() {
+        return this.tooltipOpen || this._hovered;
+    }
+
+    render() {
+        return html`
+            <button
+                class="action-btn"
+                role="menuitem"
+                aria-label=${this.tooltipTitle}
+                ?disabled=${this.disabled}
+                @click=${this._handleClick}
+                @mouseenter=${() => { this._hovered = true; }}
+                @mouseleave=${() => { this._hovered = false; }}
+                @focus=${() => { this._hovered = true; }}
+                @blur=${() => { this._hovered = false; }}
+            >
+                <slot></slot>
+            </button>
+            ${this.tooltipTitle ? html`
+                <div class="tooltip ${classMap({ visible: this._tooltipVisible })}">
+                    ${this.tooltipTitle}
+                </div>
+            ` : nothing}
+        `;
+    }
+}
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*  ui-speed-dial                                                       */
+/* ─────────────────────────────────────────────────────────────────── */
+
+/**
+ * Speed Dial — a FAB that reveals 3-6 related actions when pressed.
+ *
+ * ## Keyboard behaviour
+ * - **Focus on FAB** → opens the speed dial.
+ * - **Space / Enter** → toggle open/closed (or trigger focused action).
+ * - **Arrow keys** → navigate between actions (any direction works initially).
+ * - **Escape** → close the speed dial and return focus to the FAB.
+ *
+ * @slot           - `ui-speed-dial-action` elements.
+ * @slot icon      - Icon shown on the FAB when closed (default: + SVG).
+ * @slot open-icon - Icon shown on the FAB when open (default: ✕ SVG).
+ *
+ * @fires ui-speed-dial-open  - Fired when the dial opens.
+ * @fires ui-speed-dial-close - Fired when the dial closes.
+ */
+@customElement('ui-speed-dial')
+export class UiSpeedDial extends LitElement {
+    static styles = css`
+        :host {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            --fab-size: 56px;
+            --fab-bg: var(--ui-primary-color, #3b82f6);
+            --fab-color: #fff;
+            --action-gap: 12px;
+        }
+
+        /* ── Actions list ── */
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: var(--action-gap);
+        }
+
+        /* Direction layout */
+        :host([direction="up"])    .actions { flex-direction: column-reverse; margin-bottom: var(--action-gap); }
+        :host([direction="down"])  .actions { flex-direction: column;         margin-top:    var(--action-gap); }
+        :host([direction="left"])  .actions { flex-direction: row-reverse;    margin-right:  var(--action-gap); }
+        :host([direction="right"]) .actions { flex-direction: row;            margin-left:   var(--action-gap); }
+
+        /* Container direction */
+        :host([direction="up"]),
+        :host([direction="down"]) { flex-direction: column; align-items: center; }
+        :host([direction="left"]),
+        :host([direction="right"]) { flex-direction: row; align-items: center; }
+        :host([direction="up"]) { flex-direction: column-reverse; }
+
+        /* ── Main FAB ── */
+        .fab {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: var(--fab-size);
+            height: var(--fab-size);
+            border-radius: 50%;
+            background: var(--fab-bg);
+            color: var(--fab-color);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 10px -2px rgba(0,0,0,.25), 0 4px 5px 0 rgba(0,0,0,.14);
+            outline: none;
+            font-size: 1.5rem;
+            transition: box-shadow 0.2s, background 0.2s;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+        .fab:hover {
+            box-shadow: 0 8px 14px -2px rgba(0,0,0,.3), 0 6px 8px 0 rgba(0,0,0,.16);
+            background: var(--fab-bg-hover, var(--ui-primary-color-dark, #2563eb));
+        }
+        .fab:focus-visible {
+            outline: 3px solid var(--ui-primary-color, #3b82f6);
+            outline-offset: 3px;
+        }
+
+        /* ── Icon crossfade ── */
+        .fab-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.25s cubic-bezier(0.4,0,0.2,1), opacity 0.2s;
+        }
+        .fab-icon.close-icon {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: rotate(-45deg);
+        }
+        :host([open]) .fab-icon.open-icon  { opacity: 0; transform: rotate(45deg); }
+        :host([open]) .fab-icon.close-icon { opacity: 1; transform: rotate(0deg); }
+
+        /* ── Action entrance animation ── */
+        ::slotted(ui-speed-dial-action) {
+            opacity: 0;
+            transform: scale(0.6);
+            transition: opacity 0.18s ease, transform 0.18s cubic-bezier(0.4,0,0.2,1);
+            pointer-events: none;
+        }
+        :host([open]) ::slotted(ui-speed-dial-action) {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+
+        /* ── Backdrop ── */
+        .backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+        }
+        :host([open]) .backdrop { display: block; }
+
+        /* ── Hidden ── */
+        :host([hidden]) { display: none !important; }
+
+        svg { display: block; }
+    `;
+
+    /* ── Properties ──────────────────────────────────────────────── */
+
+    /** Whether the speed dial is open (controlled). */
+    @property({ type: Boolean, reflect: true }) open = false;
+
+    /** Direction in which actions expand from the FAB (default 'up'). */
+    @property({ type: String, reflect: true }) direction: 'up' | 'down' | 'left' | 'right' = 'up';
+
+    /** Hides the entire speed dial component. */
+    @property({ type: Boolean, reflect: true }) hidden = false;
+
+    /** When true, tooltips on all actions are always visible (good for touch/a11y). */
+    @property({ type: Boolean, attribute: 'persistent-tooltips' }) persistentTooltips = false;
+
+    /** Custom char/text rendered as the ✕ close icon on the FAB. Falls back to built-in SVG. */
+    @property({ type: String, attribute: 'close-icon' }) closeIcon = '';
+
+    /** ARIA label for the main FAB button. */
+    @property({ type: String, attribute: 'aria-label' }) ariaLabel = 'Speed dial';
+
+    /** True on touch-only devices (auto-detected unless explicitly set). */
+    @property({ type: Boolean, attribute: 'is-touch' }) isTouch = false;
+
+    /* ── Lifecycle ───────────────────────────────────────────────── */
+
+    connectedCallback() {
+        super.connectedCallback();
+        if (!this.hasAttribute('is-touch') && typeof window.matchMedia === 'function') {
+            this.isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+        }
+        // Keyboard events from shadow-DOM action buttons bubble as composed events.
+        this.addEventListener('keydown', this._onHostKeyDown);
+    }
+
+    disconnectedCallback() {
+        this.removeEventListener('keydown', this._onHostKeyDown);
+        super.disconnectedCallback();
+    }
+
+    /* ── Private helpers ─────────────────────────────────────────── */
+
+    /** All enabled action buttons (shadow DOM buttons inside slotted actions). */
+    private _actionButtons(): HTMLButtonElement[] {
+        return Array.from(this.querySelectorAll('ui-speed-dial-action'))
+            .filter(a => !a.hasAttribute('disabled'))
+            .map(a => (a as Element).shadowRoot?.querySelector<HTMLButtonElement>('.action-btn'))
+            .filter((b): b is HTMLButtonElement => !!b);
+    }
+
+    /** Index of the currently focused action button, or -1. */
+    private _focusedActionIndex(): number {
+        const actions = Array.from(this.querySelectorAll('ui-speed-dial-action'));
+        return actions.findIndex(a =>
+            (a as Element).shadowRoot?.activeElement?.classList.contains('action-btn')
+        );
+    }
+
+    /** Move focus to the action at `idx`, clamped to valid range. */
+    private _focusActionAt(idx: number) {
+        const btns = this._actionButtons();
+        if (!btns.length) return;
+        btns[Math.max(0, Math.min(idx, btns.length - 1))]?.focus();
+    }
+
+    /** Move focus back to the FAB. */
+    private _focusFab() {
+        this.shadowRoot?.querySelector<HTMLButtonElement>('.fab')?.focus();
+    }
+
+    private _setOpen(val: boolean) {
+        this.open = val;
+        this._updateActionTooltips();
+        this.dispatchEvent(new CustomEvent(
+            val ? 'ui-speed-dial-open' : 'ui-speed-dial-close',
+            { bubbles: true, composed: true }
+        ));
+    }
+
+    private _toggle() { this._setOpen(!this.open); }
+
+    /* ── Keyboard handler ────────────────────────────────────────── */
+
+    /**
+     * Unified keydown handler on the host element.
+     * Because `ui-speed-dial-action` shadow-DOM button events are composed,
+     * they bubble up through the host and are caught here.
+     */
+    private _onHostKeyDown = (e: KeyboardEvent) => {
+        const { key } = e;
+        const fabFocused = this.shadowRoot?.activeElement?.classList.contains('fab') ?? false;
+        const currentIdx = this._focusedActionIndex();
+        const actionFocused = currentIdx !== -1;
+
+        /* ── Escape: close + return focus to FAB ── */
+        if (key === 'Escape') {
+            if (this.open) {
+                e.preventDefault();
+                e.stopPropagation();
+                this._setOpen(false);
+                this._focusFab();
+            }
+            return;
+        }
+
+        /* ── Arrow keys: open and/or navigate actions ── */
+        const isArrow = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(key);
+        if (isArrow) {
+            e.preventDefault();
+
+            if (!this.open) {
+                // Any arrow key opens the dial; the "expected" first focus position
+                // depends on key: Down/Right → first action, Up/Left → last action.
+                const toFirst = key === 'ArrowDown' || key === 'ArrowRight';
+                this._setOpen(true);
+                this.updateComplete.then(() => {
+                    const btns = this._actionButtons();
+                    btns[toFirst ? 0 : btns.length - 1]?.focus();
+                });
+                return;
+            }
+
+            if (actionFocused) {
+                // Navigate within open actions
+                const prev = key === 'ArrowUp' || key === 'ArrowLeft';
+                this._focusActionAt(prev ? currentIdx - 1 : currentIdx + 1);
+            } else if (fabFocused) {
+                // Arrow from FAB (already open) → jump to first or last action
+                const btns = this._actionButtons();
+                const toEnd = key === 'ArrowDown' || key === 'ArrowRight';
+                btns[toEnd ? 0 : btns.length - 1]?.focus();
+            }
+        }
+    };
+
+    /* ── FAB handlers ────────────────────────────────────────────── */
+
+    /** Opening the dial on FAB keyboard focus (not mouse focus to avoid noise). */
+    private _onFabFocus(e: FocusEvent) {
+        // Open only on keyboard focus (relatedTarget is null for mouse-click focus)
+        if (e.relatedTarget !== null && !this.open) {
+            this._setOpen(true);
+        }
+    }
+
+    /* ── Action click → close ────────────────────────────────────── */
+
+    private _onActionClick() {
+        this._setOpen(false);
+        this._focusFab();
+    }
+
+    /* ── Tooltip helpers ─────────────────────────────────────────── */
+
+    private _updateActionTooltips() {
+        const actions = this.querySelectorAll('ui-speed-dial-action');
+        const showTooltip = this.persistentTooltips || this.isTouch;
+        const placement = this._tooltipPlacement();
+        actions.forEach((action, i) => {
+            action.setAttribute('tooltip-placement', placement);
+            if (showTooltip && this.open) {
+                action.setAttribute('tooltip-open', '');
+            } else {
+                action.removeAttribute('tooltip-open');
+            }
+            (action as HTMLElement).style.transitionDelay = this.open
+                ? `${i * 40}ms`
+                : `${(actions.length - 1 - i) * 30}ms`;
+        });
+    }
+
+    private _tooltipPlacement(): string {
+        switch (this.direction) {
+            case 'up': return 'left';
+            case 'down': return 'left';
+            case 'left': return 'top';
+            case 'right': return 'top';
+            default: return 'left';
+        }
+    }
+
+    updated(changed: Map<string, unknown>) {
+        if (changed.has('open') || changed.has('direction') ||
+            changed.has('persistentTooltips') || changed.has('isTouch')) {
+            this._updateActionTooltips();
+        }
+    }
+
+    private _onOpenIconSlotChange() {
+        // reserved — slot presence handled by CSS
+    }
+
+    /* ── Render ──────────────────────────────────────────────────── */
+
+    render() {
+        return html`
+            <!-- Click-away backdrop -->
+            <div class="backdrop" @click=${() => this._setOpen(false)}></div>
+
+            <!-- Actions — action-click events bubble up here -->
+            <div
+                class="actions"
+                role="menu"
+                aria-label="Speed dial actions"
+            >
+                <slot
+                    @slotchange=${() => this._updateActionTooltips()}
+                    @ui-speed-dial-action-click=${this._onActionClick}
+                ></slot>
+            </div>
+
+            <!-- Main FAB -->
+            <button
+                class="fab"
+                aria-label=${this.ariaLabel}
+                aria-expanded=${this.open}
+                aria-haspopup="true"
+                @click=${this._toggle}
+                @focus=${this._onFabFocus}
+            >
+                <!-- + icon: visible when closed -->
+                <span class="fab-icon open-icon">
+                    <slot name="icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                        </svg>
+                    </slot>
+                </span>
+
+                <!-- ✕ icon: visible when open -->
+                <span class="fab-icon close-icon">
+                    <slot name="open-icon" @slotchange=${this._onOpenIconSlotChange}>
+                        ${this.closeIcon
+                ? html`<span style="line-height:1;font-size:1.5rem;">${this.closeIcon}</span>`
+                : html`<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>`
+            }
+                    </slot>
+                </span>
+            </button>
+        `;
+    }
+}
+
+declare global {
+    interface HTMLElementTagNameMap {
+        'ui-speed-dial': UiSpeedDial;
+        'ui-speed-dial-action': UiSpeedDialAction;
+    }
+}

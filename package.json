@@ -1,0 +1,61 @@
+{
+  "name": "storybook-lit",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./dist/storybook-lit-component.umd.js",
+  "module": "./dist/storybook-lit-component.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/storybook-lit-component.es.js",
+      "require": "./dist/storybook-lit-component.umd.js"
+    }
+  },
+  "scripts": {
+    "lint": "eslint \"src/**/*.ts\"",
+    "test": "NODE_OPTIONS='--no-warnings' vitest run",
+    "test:watch": "NODE_OPTIONS='--no-warnings' vitest",
+    "build": "tsc && vite build",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "keywords": [
+    "lit",
+    "web-components",
+    "storybook"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "lit": "^3.3.2"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^5.0.1",
+    "@open-wc/testing": "^4.0.0",
+    "@storybook/addon-a11y": "^10.2.13",
+    "@storybook/addon-docs": "^10.2.13",
+    "@storybook/addon-vitest": "^10.2.13",
+    "@storybook/web-components-vite": "^10.2.13",
+    "@testing-library/dom": "^10.4.1",
+    "@types/node": "^25.3.2",
+    "@vitest/browser-playwright": "^4.0.18",
+    "@vitest/coverage-v8": "^4.0.18",
+    "eslint": "^9.39.3",
+    "eslint-plugin-lit": "^2.2.1",
+    "eslint-plugin-wc": "^3.1.0",
+    "jsdom": "^27.0.1",
+    "lit-element": "^4.2.2",
+    "lit-html": "^3.3.2",
+    "playwright": "^1.58.2",
+    "storybook": "^10.2.13",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1",
+    "vite": "^7.3.1",
+    "vitest": "^4.0.18"
+  }
+}

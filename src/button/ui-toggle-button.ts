@@ -1,0 +1,99 @@
+import { LitElement, html, css } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
+
+@customElement('ui-toggle-button')
+export class UiToggleButton extends LitElement {
+    static styles = css`
+    :host {
+      display: inline-block;
+    }
+    
+    button {
+      font-family: var(--ui-font-family, 'Inter', sans-serif);
+      font-weight: 500;
+      font-size: 14px;
+      padding: 8px 16px;
+      border: 1px solid var(--ui-input-border-color, #d1d5db);
+      background-color: var(--ui-surface-background, white);
+      color: var(--ui-text-color, #111827);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      outline: none;
+    }
+
+    button:hover:not(:disabled) {
+      background-color: var(--ui-hover-color, #f3f4f6);
+    }
+
+    button.selected {
+      background-color: var(--ui-active-color, #e5e7eb);
+      color: var(--ui-primary-color, #3b82f6);
+      border-color: var(--ui-primary-color, #3b82f6);
+      z-index: 1;
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    button:focus-visible {
+      box-shadow: 0 0 0 2px var(--ui-primary-color, #3b82f6);
+      z-index: 2;
+    }
+
+    /* Border radius management is usually handled by the group */
+    :host([data-first]) button {
+      border-top-left-radius: var(--ui-border-radius-md, 6px);
+      border-bottom-left-radius: var(--ui-border-radius-md, 6px);
+    }
+
+    :host([data-last]) button {
+      border-top-right-radius: var(--ui-border-radius-md, 6px);
+      border-bottom-right-radius: var(--ui-border-radius-md, 6px);
+    }
+
+    :host(:not([data-first])) button {
+      margin-left: -1px;
+    }
+  `;
+
+    @property({ type: Boolean, reflect: true }) selected = false;
+    @property({ type: Boolean, reflect: true }) disabled = false;
+    @property({ type: String }) value = '';
+
+    private _handleClick() {
+        if (this.disabled) return;
+
+        this.dispatchEvent(new CustomEvent('toggle-click', {
+            detail: { value: this.value, selected: !this.selected },
+            bubbles: true,
+            composed: true
+        }));
+    }
+
+    render() {
+        return html`
+      <button 
+        type="button"
+        class=${classMap({ selected: this.selected })}
+        ?disabled=${this.disabled}
+        @click=${this._handleClick}
+        aria-pressed=${this.selected}
+      >
+        <slot></slot>
+      </button>
+    `;
+    }
+}
+
+declare global {
+    interface HTMLElementTagNameMap {
+        'ui-toggle-button': UiToggleButton;
+    }
+}
