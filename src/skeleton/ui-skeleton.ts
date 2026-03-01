@@ -26,9 +26,8 @@ export class UiSkeleton extends LitElement {
             }
         }
 
-        /* Dark theme class support */
-        :host-context(.dark) .skeleton,
-        :host-context([data-theme="dark"]) .skeleton {
+        /* Explicit dark attribute support */
+        :host([dark]) .skeleton {
             background-color: var(--ui-skeleton-bg-dark, rgba(255, 255, 255, 0.13));
         }
 
@@ -76,6 +75,11 @@ export class UiSkeleton extends LitElement {
             border-radius: var(--ui-border-radius-lg, 8px);
         }
     `;
+
+    /**
+     * If true, applies dark-theme styles regardless of OS preference.
+     */
+    @property({ type: Boolean, reflect: true }) dark = false;
 
     /**
      * The animation type.

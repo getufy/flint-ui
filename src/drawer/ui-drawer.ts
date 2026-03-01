@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html, css, PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import '../backdrop/ui-backdrop.js';
 
@@ -22,18 +22,22 @@ export class UiDrawer extends LitElement {
         }
 
         /* ── Backdrop ───────────────────────────────────────────────────── */
+        /*
+         * FIX: previously used display:none/.visible pattern which cancelled
+         * the opacity transition on close (display:none fires instantly).
+         * Now always in-flow with pointer-events disabled, so fade-out works.
+         */
         .backdrop {
-            display: none;
             position: fixed;
             inset: 0;
             background: rgba(0,0,0,.5);
             z-index: calc(var(--ui-drawer-z-index) - 1);
             opacity: 0;
+            pointer-events: none;
             transition: opacity .25s;
         }
         :host([container]) .backdrop { position: absolute; }
-        .backdrop.visible { display: block; }
-        .backdrop.open    { opacity: 1; }
+        .backdrop.open { opacity: 1; pointer-events: auto; }
 
         /* ── Paper ──────────────────────────────────────────────────────── */
         .paper {
@@ -43,6 +47,7 @@ export class UiDrawer extends LitElement {
             display: flex;
             flex-direction: column;
             overflow-y: auto;
+            outline: none; /* suppress focus ring from programmatic focus */
         }
         :host([container]) .paper { position: absolute; }
 
@@ -137,6 +142,11 @@ export class UiDrawer extends LitElement {
         ::slotted([data-drawer-hide-mini]) { transition: opacity .18s; }
 
         /* ── Edge handle ─────────────────────────────────────────────────── */
+        /*
+         * FIX: Edge handle is only meaningful for temporary drawers (overlay
+         * that slides in). For persistent/mini (position:relative), a fixed/
+         * absolute edge handle floats detached from the drawer. Restrict it.
+         */
         .edge {
             display: none;
             position: fixed;
@@ -148,8 +158,10 @@ export class UiDrawer extends LitElement {
             align-items: center;
             justify-content: center;
         }
-        :host([container]) .edge  { position: absolute; }
-        :host([edge]) .edge        { display: flex; }
+        :host([container]) .edge { position: absolute; }
+        /* Only show edge for temporary variant */
+        :host([edge]:not([variant])) .edge,
+        :host([edge][variant="temporary"]) .edge { display: flex; }
 
         .edge-left   { left:0; top:0; bottom:0; width:16px; border-radius:0 8px 8px 0; }
         .edge-right  { right:0; top:0; bottom:0; width:16px; border-radius:8px 0 0 8px; }
@@ -165,9 +177,19 @@ export class UiDrawer extends LitElement {
     @property({ type: String, reflect: true }) variant: 'temporary' | 'persistent' | 'mini' = 'temporary';
     @property({ type: Boolean, reflect: true }) edge = false;
     @property({ type: Boolean, reflect: true }) container = false;
+    /** Accessible label for the drawer panel (used as aria-label on the panel). */
+    @property({ type: String }) label = 'Drawer';
+
+    /** Element that had focus before the drawer opened; restored on close. */
+    private _lastFocused: HTMLElement | null = null;
 
     private _boundKeyDown = (e: KeyboardEvent) => {
-        if (this.open && e.key === 'Escape' && this.variant === 'temporary') this._close();
+        // FIX: respect other handlers that already consumed the Escape key
+        if (e.defaultPrevented) return;
+        if (this.open && e.key === 'Escape' && this.variant === 'temporary') {
+            e.preventDefault();
+            this._close();
+        }
     };
 
     connectedCallback() {
@@ -179,19 +201,46 @@ export class UiDrawer extends LitElement {
         super.disconnectedCallback();
     }
 
+    updated(changed: PropertyValues) {
+        if (!changed.has('open')) return;
+        // Focus management only for temporary (overlay dialog behaviour)
+        if (this.variant !== 'temporary') return;
+
+        if (this.open) {
+            this._lastFocused = document.activeElement as HTMLElement | null;
+            // Move focus into the drawer so keyboard/AT users are oriented
+            this.shadowRoot?.querySelector<HTMLElement>('.paper')?.focus();
+        } else {
+            // Return focus to the element that triggered the open
+            this._lastFocused?.focus();
+            this._lastFocused = null;
+        }
+    }
+
     private _close() {
         this.dispatchEvent(new CustomEvent('ui-drawer-close', { bubbles: true, composed: true }));
     }
 
     render() {
-        const isTemporary = !this.variant || this.variant === 'temporary';
-        const showEdge = this.edge && !this.open;
+        const isTemporary = this.variant === 'temporary';
+        // FIX: only show edge for temporary; persistent/mini are position:relative
+        // and a fixed/absolute edge handle floats detached from the drawer panel.
+        const showEdge = this.edge && !this.open && isTemporary;
+
+        /*
+         * aria-hidden logic:
+         * - temporary/persistent: hidden from AT when closed (not visible)
+         * - mini: ALWAYS accessible — icons remain visible when collapsed,
+         *   so aria-hidden must never be "true" for mini regardless of open state.
+         */
+        const ariaHidden = this.variant === 'mini' ? 'false' : String(!this.open);
 
         return html`
             ${isTemporary ? html`
                 <div
-                    class="backdrop ${this.open ? 'visible open' : ''}"
+                    class="backdrop ${this.open ? 'open' : ''}"
                     @click=${this._close}
+                    aria-hidden="true"
                 ></div>
             ` : ''}
 
@@ -203,8 +252,11 @@ export class UiDrawer extends LitElement {
 
             <div
                 class="paper ${this.open ? 'open' : ''}"
-                role="complementary"
-                aria-hidden=${!this.open}
+                role=${isTemporary ? 'dialog' : 'complementary'}
+                aria-modal=${isTemporary ? String(this.open) : 'false'}
+                aria-label=${this.label}
+                aria-hidden=${ariaHidden}
+                tabindex="-1"
             >
                 <slot></slot>
             </div>

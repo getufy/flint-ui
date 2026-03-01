@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html, css, PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
 /**
@@ -56,6 +56,18 @@ export class UiAccordion extends LitElement {
      */
     @property({ type: Boolean, reflect: true }) disabled = false;
 
+    override updated(changed: PropertyValues) {
+        if (changed.has('expanded') || changed.has('disabled')) {
+            this.querySelectorAll('ui-accordion-summary, ui-accordion-details, ui-accordion-actions')
+                .forEach(el => {
+                    if (this.expanded) el.setAttribute('expanded', '');
+                    else el.removeAttribute('expanded');
+                    if (this.disabled) el.setAttribute('disabled', '');
+                    else el.removeAttribute('disabled');
+                });
+        }
+    }
+
     private _handleToggle = () => {
         if (this.disabled) return;
         this.expanded = !this.expanded;
@@ -105,11 +117,11 @@ export class UiAccordionSummary extends LitElement {
             background-color: var(--ui-hover-color, rgba(0, 0, 0, 0.04));
         }
 
-        :host-context(ui-accordion[expanded]) {
+        :host([expanded]) {
             min-height: 64px;
         }
 
-        :host-context(ui-accordion[disabled]) {
+        :host([disabled]) {
             cursor: default;
             opacity: 0.5;
             pointer-events: none;
@@ -131,7 +143,7 @@ export class UiAccordionSummary extends LitElement {
             transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        :host-context(ui-accordion[expanded]) .expand-icon {
+        :host([expanded]) .expand-icon {
             transform: rotate(180deg);
         }
     `;
@@ -191,7 +203,7 @@ export class UiAccordionDetails extends LitElement {
             overflow: hidden;
         }
 
-        :host-context(ui-accordion[expanded]) {
+        :host([expanded]) {
             grid-template-rows: 1fr;
         }
 
@@ -232,7 +244,7 @@ export class UiAccordionActions extends LitElement {
             border-top: 1px solid var(--ui-border-color, #e5e7eb);
         }
 
-        :host-context(ui-accordion[expanded]) {
+        :host([expanded]) {
             display: flex;
         }
     `;
