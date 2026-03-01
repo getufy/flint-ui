@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
+import { LitElement } from 'lit';
 import './ui-dialog.js';
 import type { UiDialog } from './ui-dialog.js';
 import type { UiDialogActions } from './ui-dialog.js';
@@ -115,12 +116,12 @@ describe('ui-dialog', () => {
         expect(panel.getAttribute('aria-modal')).toBe('true');
     });
 
-    it('panel has aria-labelledby and aria-describedby', async () => {
+    it('panel has aria-labelledby (aria-describedby removed – no target element exists)', async () => {
         const el = await fixture<UiDialog>(html`<ui-dialog open></ui-dialog>`);
         await el.updateComplete;
         const panel = el.shadowRoot!.querySelector('.dialog-panel') as HTMLElement;
         expect(panel.hasAttribute('aria-labelledby')).toBe(true);
-        expect(panel.hasAttribute('aria-describedby')).toBe(true);
+        expect(panel.hasAttribute('aria-describedby')).toBe(false);
     });
 
     // ── Slots ────────────────────────────────────────────────────────────────
@@ -144,5 +145,180 @@ describe('ui-dialog', () => {
         `);
         await el.updateComplete;
         expect(el.getAttribute('align')).toBe('start');
+    });
+
+    it('dialog-actions supports all align values', async () => {
+        for (const align of ['start', 'center', 'end', 'space-between'] as const) {
+            const el = await fixture<UiDialogActions>(html`
+                <ui-dialog-actions .align=${align}></ui-dialog-actions>
+            `);
+            await el.updateComplete;
+            expect(el.align).toBe(align);
+            expect(el.getAttribute('align')).toBe(align);
+        }
+    });
+
+    // ── Escape key ────────────────────────────────────────────────────────────
+    it('Escape fires close event when open', async () => {
+        const el = await fixture<UiDialog>(html`<ui-dialog open></ui-dialog>`);
+        const closeSpy = vi.fn();
+        el.addEventListener('close', closeSpy);
+
+        window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+        await el.updateComplete;
+
+        expect(closeSpy).toHaveBeenCalledOnce();
+    });
+
+    it('Escape does NOT fire close when dialog is closed', async () => {
+        const el = await fixture<UiDialog>(html`<ui-dialog></ui-dialog>`);
+        const closeSpy = vi.fn();
+        el.addEventListener('close', closeSpy);
+
+        window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+        await el.updateComplete;
+
+        expect(closeSpy).not.toHaveBeenCalled();
+    });
+
+    it('Escape fires close even when disableBackdropClose=true', async () => {
+        const el = await fixture<UiDialog>(html`<ui-dialog open disable-backdrop-close></ui-dialog>`);
+        const closeSpy = vi.fn();
+        el.addEventListener('close', closeSpy);
+
+        window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+        await el.updateComplete;
+
+        expect(closeSpy).toHaveBeenCalledOnce();
+    });
+
+    it('removes keydown listener when disconnected', async () => {
+        const el = await fixture<UiDialog>(html`<ui-dialog open></ui-dialog>`);
+        const closeSpy = vi.fn();
+        el.addEventListener('close', closeSpy);
+
+        el.remove();
+
+        window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+        expect(closeSpy).not.toHaveBeenCalled();
+    });
+
+    // ── Panel click isolation ─────────────────────────────────────────────────
+    it('clicking inside the dialog panel does NOT fire close', async () => {
+        const el = await fixture<UiDialog>(html`<ui-dialog open></ui-dialog>`);
+        const closeSpy = vi.fn();
+        el.addEventListener('close', closeSpy);
+
+        const panel = el.shadowRoot!.querySelector('.dialog-panel') as HTMLElement;
+        panel.dispatchEvent(new MouseEvent('click', { bubbles: true, composed: true }));
+        await el.updateComplete;
+
+        expect(closeSpy).not.toHaveBeenCalled();
+    });
+
+    // ── open toggling ─────────────────────────────────────────────────────────
+    it('toggling open adds and removes the open class', async () => {
+        const el = await fixture<UiDialog>(html`<ui-dialog></ui-dialog>`);
+        const panel = el.shadowRoot!.querySelector('.dialog-panel') as HTMLElement;
+
+        el.open = true;
+        await el.updateComplete;
+        expect(panel.classList.contains('open')).toBe(true);
+
+        el.open = false;
+        await el.updateComplete;
+        expect(panel.classList.contains('open')).toBe(false);
+    });
+
+    // ── Nested dialogs ────────────────────────────────────────────────────────
+    it('Escape closes only the topmost open dialog, not the parent', async () => {
+        const parent = await fixture<UiDialog>(html`<ui-dialog open></ui-dialog>`);
+        const child = await fixture<UiDialog>(html`<ui-dialog open></ui-dialog>`);
+        await parent.updateComplete;
+        await child.updateComplete;
+
+        const parentSpy = vi.fn();
+        const childSpy = vi.fn();
+        parent.addEventListener('close', parentSpy);
+        child.addEventListener('close', childSpy);
+
+        window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+        await parent.updateComplete;
+        await child.updateComplete;
+
+        expect(childSpy).toHaveBeenCalledOnce();
+        expect(parentSpy).not.toHaveBeenCalled();
+    });
+
+    it('Escape closes parent after child is dismissed', async () => {
+        const parent = await fixture<UiDialog>(html`<ui-dialog open></ui-dialog>`);
+        const child = await fixture<UiDialog>(html`<ui-dialog open></ui-dialog>`);
+        await parent.updateComplete;
+        await child.updateComplete;
+
+        const parentSpy = vi.fn();
+        parent.addEventListener('close', parentSpy);
+
+        // Simulate host closing the child (host sets open=false on close event)
+        child.open = false;
+        await child.updateComplete;
+
+        window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+        await parent.updateComplete;
+
+        expect(parentSpy).toHaveBeenCalledOnce();
+    });
+
+    it('parent dialog stays open when child is dismissed via Escape', async () => {
+        const parent = await fixture<UiDialog>(html`<ui-dialog open></ui-dialog>`);
+        const child = await fixture<UiDialog>(html`<ui-dialog open></ui-dialog>`);
+        await parent.updateComplete;
+        await child.updateComplete;
+
+        const parentSpy = vi.fn();
+        parent.addEventListener('close', parentSpy);
+
+        // First Escape: closes child only
+        window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+        await parent.updateComplete;
+        await child.updateComplete;
+
+        expect(parentSpy).not.toHaveBeenCalled();
+        expect(parent.open).toBe(true);
+    });
+
+    it('requestClose on child does not affect parent', async () => {
+        const parent = await fixture<UiDialog>(html`<ui-dialog open></ui-dialog>`);
+        const child = await fixture<UiDialog>(html`<ui-dialog open></ui-dialog>`);
+        await parent.updateComplete;
+        await child.updateComplete;
+
+        const parentSpy = vi.fn();
+        parent.addEventListener('close', parentSpy);
+
+        child.requestClose();
+
+        expect(parentSpy).not.toHaveBeenCalled();
+    });
+
+    // ── Sub-component rendering ───────────────────────────────────────────────
+    it('dialog-title renders an h2 inside shadow root', async () => {
+        const el = await fixture(html`<ui-dialog-title>Hello</ui-dialog-title>`);
+        await (el as LitElement).updateComplete;
+        const h2 = el.shadowRoot!.querySelector('h2');
+        expect(h2).not.toBeNull();
+        expect(h2!.id).toBe('dialog-title');
+    });
+
+    it('dialog-content renders a slot', async () => {
+        const el = await fixture(html`<ui-dialog-content>body</ui-dialog-content>`);
+        await (el as LitElement).updateComplete;
+        expect(el.shadowRoot!.querySelector('slot')).not.toBeNull();
+    });
+
+    it('dialog-content-text renders a slot', async () => {
+        const el = await fixture(html`<ui-dialog-content-text>text</ui-dialog-content-text>`);
+        await (el as LitElement).updateComplete;
+        expect(el.shadowRoot!.querySelector('slot')).not.toBeNull();
     });
 });

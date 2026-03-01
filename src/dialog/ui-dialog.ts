@@ -1,7 +1,10 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html, css, type PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import '../backdrop/ui-backdrop';
+
+// Tracks open dialogs in activation order so only the topmost handles Escape.
+const _openDialogs: UiDialog[] = [];
 
 /**
  * ui-dialog: a modal dialog component.
@@ -76,6 +79,36 @@ export class UiDialog extends LitElement {
    */
   @property({ type: Boolean, attribute: 'disable-backdrop-close' }) disableBackdropClose = false;
 
+  connectedCallback() {
+    super.connectedCallback();
+    window.addEventListener('keydown', this._handleKeyDown);
+  }
+
+  override updated(changed: PropertyValues<this>) {
+    super.updated(changed);
+    if (changed.has('open')) {
+      if (this.open) {
+        if (!_openDialogs.includes(this)) _openDialogs.push(this);
+      } else {
+        const idx = _openDialogs.indexOf(this);
+        if (idx !== -1) _openDialogs.splice(idx, 1);
+      }
+    }
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    window.removeEventListener('keydown', this._handleKeyDown);
+    const idx = _openDialogs.indexOf(this);
+    if (idx !== -1) _openDialogs.splice(idx, 1);
+  }
+
+  private readonly _handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Escape' && this.open && _openDialogs[_openDialogs.length - 1] === this) {
+      this.requestClose();
+    }
+  };
+
   /** Programmatically request the dialog to close (fires the 'close' event). */
   requestClose() {
     this.dispatchEvent(new CustomEvent('close', { bubbles: true, composed: true }));
@@ -104,7 +137,6 @@ export class UiDialog extends LitElement {
           role="dialog"
           aria-modal="true"
           aria-labelledby="dialog-title"
-          aria-describedby="dialog-description"
           @click=${(e: Event) => e.stopPropagation()}
         >
           <slot></slot>

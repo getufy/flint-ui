@@ -264,6 +264,151 @@ export const LargeContent: Story = {
   `,
 };
 
+// ── Nested Dialog ─────────────────────────────────────────────────────────
+/**
+ * A dialog that opens a second (child) confirmation dialog.
+ * Pressing Escape only closes the topmost dialog — the parent stays open.
+ * The child uses `disable-backdrop-close` to force an explicit choice.
+ */
+export const NestedDialog: Story = {
+  render: () => html`
+    <div style="height:400px;display:flex;align-items:center;justify-content:center;">
+      <ui-button @click=${() => openDialog('nested-parent-dialog')}>Open Settings</ui-button>
+
+      <!-- Parent dialog -->
+      <ui-dialog
+        id="nested-parent-dialog"
+        @close=${(e: Event) => { (e.target as UiDialog).open = false; }}
+      >
+        <ui-dialog-title>Account Settings</ui-dialog-title>
+        <ui-dialog-content>
+          <ui-dialog-content-text>
+            Manage your account. Dangerous actions will ask for confirmation.
+          </ui-dialog-content-text>
+          <div style="margin-top:12px;">
+            <ui-button
+              color="error"
+              variant="secondary"
+              @click=${() => openDialog('nested-child-dialog')}
+            >Delete Account…</ui-button>
+          </div>
+        </ui-dialog-content>
+        <ui-dialog-actions>
+          <ui-button variant="secondary" @click=${() => {
+    (document.getElementById('nested-parent-dialog') as UiDialog).open = false;
+  }}>Close</ui-button>
+        </ui-dialog-actions>
+      </ui-dialog>
+
+      <!-- Child confirmation dialog (opened from inside the parent) -->
+      <ui-dialog
+        id="nested-child-dialog"
+        disable-backdrop-close
+        transition="slide-up"
+        @confirm=${() => {
+    alert('Account deleted.');
+    (document.getElementById('nested-child-dialog') as UiDialog).open = false;
+    (document.getElementById('nested-parent-dialog') as UiDialog).open = false;
+  }}
+        @cancel=${() => {
+    (document.getElementById('nested-child-dialog') as UiDialog).open = false;
+  }}
+      >
+        <ui-dialog-title>Delete your account?</ui-dialog-title>
+        <ui-dialog-content>
+          <ui-dialog-content-text>
+            This is <strong>permanent</strong> and cannot be undone. All your data will be removed immediately.
+          </ui-dialog-content-text>
+        </ui-dialog-content>
+        <ui-dialog-actions>
+          <ui-button variant="secondary" @click=${(e: Event) => {
+    const d = (e.target as HTMLElement).closest('ui-dialog') as UiDialog;
+    d?.dispatchEvent(new CustomEvent('cancel', { bubbles: true, composed: true }));
+  }}>Keep Account</ui-button>
+          <ui-button variant="primary" color="error" @click=${(e: Event) => {
+    const d = (e.target as HTMLElement).closest('ui-dialog') as UiDialog;
+    d?.dispatchEvent(new CustomEvent('confirm', { bubbles: true, composed: true }));
+  }}>Yes, Delete</ui-button>
+        </ui-dialog-actions>
+      </ui-dialog>
+    </div>
+  `,
+};
+
+// ── Form Dialog ───────────────────────────────────────────────────────────
+/**
+ * A dialog containing a form. Closing via Escape or the Cancel button discards
+ * changes; Submit dispatches a 'confirm' event so the parent can process data.
+ */
+export const FormDialog: Story = {
+  render: () => html`
+    <div style="height:360px;display:flex;align-items:center;justify-content:center;">
+      <ui-button @click=${() => openDialog('form-dialog')}>Edit Profile</ui-button>
+
+      <ui-dialog id="form-dialog" @close=${closeDialog}>
+        <ui-dialog-title>Edit Profile</ui-dialog-title>
+        <ui-dialog-content>
+          <div style="display:flex;flex-direction:column;gap:12px;padding-top:4px;">
+            <label style="display:flex;flex-direction:column;gap:4px;font-size:.875rem;font-weight:500;">
+              Full name
+              <input id="form-name" type="text" placeholder="Jane Doe"
+                style="padding:8px 12px;border:1px solid #d1d5db;border-radius:6px;font-size:.9375rem;outline:none;" />
+            </label>
+            <label style="display:flex;flex-direction:column;gap:4px;font-size:.875rem;font-weight:500;">
+              Email
+              <input id="form-email" type="email" placeholder="jane@example.com"
+                style="padding:8px 12px;border:1px solid #d1d5db;border-radius:6px;font-size:.9375rem;outline:none;" />
+            </label>
+          </div>
+        </ui-dialog-content>
+        <ui-dialog-actions>
+          <ui-button variant="secondary" @click=${(e: Event) => {
+    const d = (e.target as HTMLElement).closest('ui-dialog') as UiDialog;
+    if (d) d.open = false;
+  }}>Cancel</ui-button>
+          <ui-button variant="primary" @click=${(e: Event) => {
+    const name = (document.getElementById('form-name') as HTMLInputElement)?.value;
+    const email = (document.getElementById('form-email') as HTMLInputElement)?.value;
+    alert(`Saved: ${name} <${email}>`);
+    const d = (e.target as HTMLElement).closest('ui-dialog') as UiDialog;
+    if (d) d.open = false;
+  }}>Save Changes</ui-button>
+        </ui-dialog-actions>
+      </ui-dialog>
+    </div>
+  `,
+};
+
+// ── Alert Dialog ─────────────────────────────────────────────────────────
+/**
+ * An informational alert with a single "OK" button and no backdrop dismiss.
+ * Useful for critical notices that require acknowledgement.
+ */
+export const Alert: Story = {
+  render: () => html`
+    <div style="height:300px;display:flex;align-items:center;justify-content:center;">
+      <ui-button color="error" variant="primary" @click=${() => openDialog('alert-dialog')}>
+        Show Alert
+      </ui-button>
+
+      <ui-dialog id="alert-dialog" disable-backdrop-close @close=${closeDialog}>
+        <ui-dialog-title>Session Expired</ui-dialog-title>
+        <ui-dialog-content>
+          <ui-dialog-content-text>
+            Your session has expired due to inactivity. Please log in again to continue.
+          </ui-dialog-content-text>
+        </ui-dialog-content>
+        <ui-dialog-actions align="center">
+          <ui-button variant="primary" @click=${(e: Event) => {
+    const d = (e.target as HTMLElement).closest('ui-dialog') as UiDialog;
+    if (d) d.open = false;
+  }}>OK, Got It</ui-button>
+        </ui-dialog-actions>
+      </ui-dialog>
+    </div>
+  `,
+};
+
 // ── Disable Backdrop Close ────────────────────────────────────────────────
 export const DisableBackdropClose: Story = {
   render: () => html`
