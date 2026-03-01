@@ -1,4 +1,3 @@
-export { UiElement } from './element/ui-element.js';
 export { UiButton } from './button/ui-button.js';
 export { UiButtonGroup } from './button/ui-button-group.js';
 export { UiCard } from './card/ui-card.js';
