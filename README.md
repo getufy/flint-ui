@@ -4,7 +4,7 @@
 - [x] Carousel
 - [x] Collapsible
 - [x] Empty
-- [ ] Hover Card
+- [x] Hover Card
 - [ ] Input OTP
 - [ ] Item
 A versatile component for displaying content with media, title, description, and actions.

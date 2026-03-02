@@ -104,6 +104,11 @@ export {
     UiCollapsibleTrigger,
     UiCollapsibleContent,
 } from './collapsible/ui-collapsible.js';
+export {
+    UiHoverCard,
+    UiHoverCardTrigger,
+    UiHoverCardContent,
+} from './hover-card/ui-hover-card.js';
 
 
 
