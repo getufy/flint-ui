@@ -2,7 +2,7 @@
 
 
 - [x] Carousel
-- [ ] Collapsible
+- [x] Collapsible
 - [x] Empty
 - [ ] Hover Card
 - [ ] Input OTP

@@ -99,6 +99,11 @@ export {
     UiEmptyDescription,
     UiEmptyContent,
 } from './empty/ui-empty.js';
+export {
+    UiCollapsible,
+    UiCollapsibleTrigger,
+    UiCollapsibleContent,
+} from './collapsible/ui-collapsible.js';
 
 
 
