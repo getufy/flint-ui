@@ -1,11 +1,6 @@
 # TODO Components
 
 
-- [x] Carousel
-- [x] Collapsible
-- [x] Empty
-- [x] Hover Card
-- [x] Input OTP
 - [ ] Item
 A versatile component for displaying content with media, title, description, and actions.
 - [ ] Kbd
