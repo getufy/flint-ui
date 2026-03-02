@@ -1,9 +1,9 @@
 # TODO Components
 
 
-- [ ] Carousel
+- [x] Carousel
 - [ ] Collapsible
-- [ ] Empty
+- [x] Empty
 - [ ] Hover Card
 - [ ] Input OTP
 - [ ] Item
