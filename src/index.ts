@@ -84,6 +84,13 @@ export {
     UiCommandShortcut,
     UiCommandDialog,
 } from './command/ui-command.js';
+export {
+    UiCarousel,
+    UiCarouselContent,
+    UiCarouselItem,
+    UiCarouselNext,
+    UiCarouselPrevious,
+} from './carousel/ui-carousel.js';
 
 
 
