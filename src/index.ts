@@ -109,6 +109,12 @@ export {
     UiHoverCardTrigger,
     UiHoverCardContent,
 } from './hover-card/ui-hover-card.js';
+export {
+    UiInputOtp,
+    UiInputOtpGroup,
+    UiInputOtpSeparator,
+    UiInputOtpSlot,
+} from './input-otp/ui-input-otp.js';
 
 
 

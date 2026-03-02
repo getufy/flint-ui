@@ -5,7 +5,7 @@
 - [x] Collapsible
 - [x] Empty
 - [x] Hover Card
-- [ ] Input OTP
+- [x] Input OTP
 - [ ] Item
 A versatile component for displaying content with media, title, description, and actions.
 - [ ] Kbd
