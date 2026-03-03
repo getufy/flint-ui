@@ -127,6 +127,7 @@ export {
     UiItemHeader,
     UiItemFooter,
 } from './item/ui-item.js';
+export { UiKbd, UiKbdGroup } from './kbd/ui-kbd.js';
 
 
 

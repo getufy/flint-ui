@@ -1,8 +1,6 @@
 # TODO Components
 
 
-- [ ] Kbd
-Used to display textual user input from keyboard.
 - [ ] Menubar
 A visually persistent menu common in desktop applications that provides quick access to a consistent set of commands.
 - [ ] Navigation Menu
