@@ -128,15 +128,19 @@ export {
     UiItemFooter,
 } from './item/ui-item.js';
 export { UiKbd, UiKbdGroup } from './kbd/ui-kbd.js';
-
-
-
-
-
-
-
-
-
-
-
-
+export {
+    UiMenubar,
+    UiMenubarCheckboxItem,
+    UiMenubarContent,
+    UiMenubarGroup,
+    UiMenubarItem,
+    UiMenubarMenu,
+    UiMenubarRadioGroup,
+    UiMenubarRadioItem,
+    UiMenubarSeparator,
+    UiMenubarShortcut,
+    UiMenubarSub,
+    UiMenubarSubContent,
+    UiMenubarSubTrigger,
+    UiMenubarTrigger
+} from './menubar/ui-menubar.js'
