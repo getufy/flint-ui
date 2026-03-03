@@ -1,8 +1,6 @@
 # TODO Components
 
 
-- [ ] Item
-A versatile component for displaying content with media, title, description, and actions.
 - [ ] Kbd
 Used to display textual user input from keyboard.
 - [ ] Menubar
@@ -19,6 +17,15 @@ Displays a form textarea or a component that looks like a textarea.
 A two-state button that can be either on or off.
 - [ ] Forms
 - [ ] Resizable
+- [ ] Copy Button
+- [ ] Format Date
+- [ ] Format Number
+- [ ] Image Comparer 
+- [ ] QR Code
+- [ ] Relative Time (x ago)
+- [ ] Split Panel   
+- [ ] Switch
+- [ ] Visually Hidden (A11y)
 
 - Continue investigating bugs under ui-grid folder.
 - Create a structurable theme.scss/css variable across all components

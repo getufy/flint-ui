@@ -115,6 +115,18 @@ export {
     UiInputOtpSeparator,
     UiInputOtpSlot,
 } from './input-otp/ui-input-otp.js';
+export {
+    UiItem,
+    UiItemGroup,
+    UiItemSeparator,
+    UiItemMedia,
+    UiItemContent,
+    UiItemTitle,
+    UiItemDescription,
+    UiItemActions,
+    UiItemHeader,
+    UiItemFooter,
+} from './item/ui-item.js';
 
 
 
