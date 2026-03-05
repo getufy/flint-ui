@@ -108,6 +108,79 @@ describe('ui-kbd — size prop', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════════════════════
+   ui-kbd — variant prop
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-kbd — variant prop', () => {
+    it('defaults to variant="raised"', async () => {
+        const el = await fixture<UiKbd>(html`<ui-kbd>K</ui-kbd>`);
+        expect(el.variant).toBe('raised');
+    });
+
+    it('reflects variant="raised" as attribute', async () => {
+        const el = await fixture<UiKbd>(html`<ui-kbd>K</ui-kbd>`);
+        expect(el.getAttribute('variant')).toBe('raised');
+    });
+
+    it('accepts variant="flat" attribute', async () => {
+        const el = await fixture<UiKbd>(html`<ui-kbd variant="flat">K</ui-kbd>`);
+        expect(el.variant).toBe('flat');
+        expect(el.getAttribute('variant')).toBe('flat');
+    });
+
+    it('updates reflected attribute when variant property changes to "flat"', async () => {
+        const el = await fixture<UiKbd>(html`<ui-kbd>K</ui-kbd>`);
+        el.variant = 'flat';
+        await el.updateComplete;
+        expect(el.getAttribute('variant')).toBe('flat');
+    });
+
+    it('updates reflected attribute back to "raised"', async () => {
+        const el = await fixture<UiKbd>(html`<ui-kbd variant="flat">K</ui-kbd>`);
+        el.variant = 'raised';
+        await el.updateComplete;
+        expect(el.getAttribute('variant')).toBe('raised');
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ui-kbd — label / aria-label prop
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-kbd — label prop', () => {
+    it('does not set aria-label by default', async () => {
+        const el = await fixture<UiKbd>(html`<ui-kbd>⌘</ui-kbd>`);
+        const kbd = el.shadowRoot!.querySelector('kbd')!;
+        expect(kbd.hasAttribute('aria-label')).toBe(false);
+    });
+
+    it('forwards label as aria-label on the inner <kbd> element', async () => {
+        const el = await fixture<UiKbd>(html`<ui-kbd label="Command">⌘</ui-kbd>`);
+        const kbd = el.shadowRoot!.querySelector('kbd')!;
+        expect(kbd.getAttribute('aria-label')).toBe('Command');
+    });
+
+    it('reflects label as host attribute', async () => {
+        const el = await fixture<UiKbd>(html`<ui-kbd label="Shift">⇧</ui-kbd>`);
+        expect(el.getAttribute('label')).toBe('Shift');
+    });
+
+    it('updates aria-label when label property changes', async () => {
+        const el = await fixture<UiKbd>(html`<ui-kbd label="Command">⌘</ui-kbd>`);
+        el.label = 'Option';
+        await el.updateComplete;
+        const kbd = el.shadowRoot!.querySelector('kbd')!;
+        expect(kbd.getAttribute('aria-label')).toBe('Option');
+    });
+
+    it('removes aria-label when label is set back to empty string', async () => {
+        const el = await fixture<UiKbd>(html`<ui-kbd label="Command">⌘</ui-kbd>`);
+        el.label = '';
+        await el.updateComplete;
+        const kbd = el.shadowRoot!.querySelector('kbd')!;
+        expect(kbd.hasAttribute('aria-label')).toBe(false);
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
    ui-kbd — accessibility
 ═══════════════════════════════════════════════════════════════════════════ */
 describe('ui-kbd — accessibility', () => {
@@ -141,6 +214,13 @@ describe('ui-kbd — edge cases', () => {
     it('renders arrow key symbols', async () => {
         const el = await fixture<UiKbd>(html`<ui-kbd>↑</ui-kbd>`);
         expect(el.textContent!.trim()).toBe('↑');
+    });
+
+    it('updates slotted text content dynamically', async () => {
+        const el = await fixture<UiKbd>(html`<ui-kbd>A</ui-kbd>`);
+        el.textContent = 'B';
+        await el.updateComplete;
+        expect(el.textContent!.trim()).toBe('B');
     });
 });
 
@@ -176,6 +256,7 @@ describe('ui-kbd-group — rendering', () => {
         await el.updateComplete;
         expect(el.querySelector('#sep')).not.toBeNull();
         expect(el.querySelectorAll('ui-kbd').length).toBe(2);
+        expect(el.children.length).toBe(3);
     });
 
     it('slots three modifier keys', async () => {
@@ -201,9 +282,10 @@ describe('ui-kbd-group — rendering', () => {
         expect(el.querySelector('ui-kbd')!.textContent!.trim()).toBe('Esc');
     });
 
-    it('renders empty group without errors', async () => {
+    it('renders empty group without errors and has no children', async () => {
         const el = await fixture<UiKbdGroup>(html`<ui-kbd-group></ui-kbd-group>`);
         expect(el.shadowRoot!.querySelector('slot')).not.toBeNull();
+        expect(el.children.length).toBe(0);
     });
 });
 
@@ -263,5 +345,17 @@ describe('ui-kbd-group — composition', () => {
         const keys = Array.from(el.querySelectorAll('ui-kbd')) as UiKbd[];
         expect(keys[0].size).toBe('sm');
         expect(keys[1].size).toBe('lg');
+    });
+
+    it('flat-variant keys in a group carry the variant attribute', async () => {
+        const el = await fixture<UiKbdGroup>(html`
+            <ui-kbd-group>
+                <ui-kbd variant="flat">⌘</ui-kbd>
+                <ui-kbd variant="flat">K</ui-kbd>
+            </ui-kbd-group>
+        `);
+        await el.updateComplete;
+        const keys = Array.from(el.querySelectorAll('ui-kbd')) as UiKbd[];
+        keys.forEach(k => expect(k.getAttribute('variant')).toBe('flat'));
     });
 });

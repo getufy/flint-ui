@@ -1,6 +1,5 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html, css, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { classMap } from 'lit/directives/class-map.js';
 
 /* ─────────────────────────────────────────────────────────────────── */
 /*  ui-kbd                                                              */
@@ -12,7 +11,9 @@ import { classMap } from 'lit/directives/class-map.js';
  *
  * @slot - Key label: text, symbol (⌘ ⇧ ⌥ ⌃ ⏎), or any inline content.
  *
- * @attr {'default'|'sm'|'lg'} size - Visual size of the key.
+ * @attr {'default'|'sm'|'lg'} size    - Visual size of the key.
+ * @attr {'raised'|'flat'}     variant - `raised` (default) shows bottom border + shadow; `flat` removes them for inline use.
+ * @attr {string}              label   - Accessible label forwarded as `aria-label` on the inner `<kbd>` element.
  *
  * @cssprop --ui-kbd-bg            - Background color (default: `#f9fafb`).
  * @cssprop --ui-kbd-border-color  - Border color (default: `#e5e7eb`).
@@ -59,15 +60,29 @@ export class UiKbd extends LitElement {
             font-size: 0.9375rem;
             padding: 4px 10px;
         }
+
+        /* flat variant — no raised effect */
+        :host([variant="flat"]) kbd {
+            border-bottom-width: 1px;
+            box-shadow: none;
+        }
     `;
 
     /** Visual size of the key. */
     @property({ reflect: true })
     size: 'sm' | 'default' | 'lg' = 'default';
 
+    /** Visual style: `raised` (default, bottom border + shadow) or `flat` (no raised effect). */
+    @property({ reflect: true })
+    variant: 'raised' | 'flat' = 'raised';
+
+    /** Accessible label forwarded as `aria-label` on the inner `<kbd>` element. Useful for symbol keys like ⌘. */
+    @property({ reflect: true })
+    label = '';
+
     render() {
         return html`
-            <kbd class=${classMap({ [`size-${this.size}`]: true })}>
+            <kbd aria-label=${this.label || nothing}>
                 <slot></slot>
             </kbd>
         `;
