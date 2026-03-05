@@ -50,7 +50,7 @@ export { UiBreadcrumbs } from './breadcrumbs/ui-breadcrumbs.js';
 export { UiDrawer } from './drawer/ui-drawer.js';
 export { UiLink } from './link/ui-link.js';
 export { UiTypography } from './typography/ui-typography.js';
-export { UiMenu, UiMenuItem, UiMenuDivider } from './menu/ui-menu.js';
+export { UiMenu, UiMenuItem, UiMenuDivider, UiMenuGroup } from './menu/ui-menu.js';
 export { UiPagination } from './pagination/ui-pagination.js';
 export { UiSpeedDial, UiSpeedDialAction } from './speed-dial/ui-speed-dial.js';
 export { UiStepper, UiStep, UiStepLabel, UiStepContent, UiStepConnector, UiMobileStepper } from './stepper/ui-stepper.js';

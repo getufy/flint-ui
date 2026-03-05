@@ -1,6 +1,7 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html, css, PropertyValues } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 
 /* ─────────────────────────────────────────────────────────────────── */
 /*  ui-menu-item                                                        */
@@ -117,7 +118,7 @@ export class UiMenuItem extends LitElement {
 
     /**
      * The machine-readable value carried in the `ui-menu-item-select` event detail.
-     * Falls back to the item's visible text if not set.
+     * Falls back to the item's visible label text if not set.
      */
     @property({ type: String, reflect: true }) value?: string;
 
@@ -134,15 +135,23 @@ export class UiMenuItem extends LitElement {
         this._hasEndIcon = slot.assignedNodes({ flatten: true }).length > 0;
     }
 
+    /** Returns only the default-slot label text, excluding icon slots. */
+    private _getLabelText(): string {
+        const slot = this.shadowRoot?.querySelector<HTMLSlotElement>('slot:not([name])');
+        return slot?.assignedNodes({ flatten: true })
+            .map(n => n.textContent ?? '')
+            .join('')
+            .trim() ?? '';
+    }
+
     private _handleClick() {
         if (this.disabled) return;
-        const label = this.textContent?.trim() ?? '';
+        const label = this._getLabelText();
         this.dispatchEvent(new CustomEvent('ui-menu-item-select', {
             bubbles: true,
             composed: true,
             detail: {
-                // value prop takes priority; fall back to visible label text
-                value: this.value ?? this.getAttribute('value') ?? label,
+                value: this.value !== undefined ? this.value : label,
                 label,
             }
         }));
@@ -191,6 +200,45 @@ export class UiMenuDivider extends LitElement {
         }
     `;
     render() { return html``; }
+}
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*  ui-menu-group                                                       */
+/* ─────────────────────────────────────────────────────────────────── */
+
+/**
+ * A labelled group of menu items. Wraps items in a `role="group"` for
+ * screen-reader announcements.
+ *
+ * @slot - Group items (ui-menu-item elements).
+ */
+@customElement('ui-menu-group')
+export class UiMenuGroup extends LitElement {
+    static styles = css`
+        :host { display: block; }
+
+        .group-label {
+            padding: 6px 16px 2px;
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--ui-text-color-muted, #6b7280);
+            user-select: none;
+        }
+    `;
+
+    /** Visible heading rendered above the group items. */
+    @property({ type: String }) label = '';
+
+    render() {
+        return html`
+            <div role="group" aria-label=${ifDefined(this.label || undefined)}>
+                ${this.label ? html`<div class="group-label">${this.label}</div>` : ''}
+                <slot></slot>
+            </div>
+        `;
+    }
 }
 
 /* ─────────────────────────────────────────────────────────────────── */
@@ -292,7 +340,12 @@ export class UiMenu extends LitElement {
     /** When true, constrains height to --ui-menu-max-height (default 300px) and enables scrolling. */
     @property({ type: Boolean }) scrollable = false;
 
+    /** Accessible label for the menu surface (aria-label on role="menu"). */
+    @property({ type: String }) label?: string;
+
     // ── Keyboard handling ──────────────────────────────────────────────────
+
+    /** Escape key on window closes the menu from anywhere. */
     private _boundKeyDown = (e: KeyboardEvent) => {
         if (this.open && e.key === 'Escape') {
             e.stopPropagation();
@@ -300,14 +353,104 @@ export class UiMenu extends LitElement {
         }
     };
 
+    /** Arrow / Home / End / first-char navigation within the menu. */
+    private _boundNavKeyDown = (e: KeyboardEvent) => {
+        if (!this.open) return;
+        this._handleNavKeyDown(e);
+    };
+
     connectedCallback() {
         super.connectedCallback();
         window.addEventListener('keydown', this._boundKeyDown);
+        this.addEventListener('keydown', this._boundNavKeyDown);
     }
 
     disconnectedCallback() {
-        super.disconnectedCallback(); // call super first
+        super.disconnectedCallback();
         window.removeEventListener('keydown', this._boundKeyDown);
+        this.removeEventListener('keydown', this._boundNavKeyDown);
+    }
+
+    // ── Focus management ───────────────────────────────────────────────────
+
+    updated(changed: PropertyValues) {
+        if (changed.has('open') && this.open) {
+            // Focus first enabled item after the paint so the menu is visible
+            setTimeout(() => {
+                const items = this._getEnabledItems();
+                if (items.length) this._focusItem(items[0]);
+            }, 0);
+        }
+    }
+
+    // ── Navigation helpers ─────────────────────────────────────────────────
+
+    private _getEnabledItems(): UiMenuItem[] {
+        return Array.from(this.querySelectorAll<UiMenuItem>('ui-menu-item'))
+            .filter(item => !item.disabled);
+    }
+
+    private _focusItem(item: UiMenuItem) {
+        // Prefer the inner .item div; fall back to the host if shadow not yet rendered.
+        const target = item.shadowRoot?.querySelector<HTMLElement>('.item') ?? item;
+        if (typeof target.focus === 'function') {
+            target.focus();
+            if (typeof target.scrollIntoView === 'function') {
+                target.scrollIntoView({ block: 'nearest' });
+            }
+        }
+    }
+
+    private _handleNavKeyDown(e: KeyboardEvent) {
+        const items = this._getEnabledItems();
+        if (!items.length) return;
+
+        // Detect currently focused item: check inner shadow activeElement first,
+        // then fall back to document.activeElement (shadow-DOM retargets to host).
+        const current = items.findIndex(item =>
+            item.shadowRoot?.activeElement != null || document.activeElement === item
+        );
+
+        switch (e.key) {
+            case 'ArrowDown': {
+                e.preventDefault();
+                const next = current < 0 || current >= items.length - 1 ? 0 : current + 1;
+                this._focusItem(items[next]);
+                break;
+            }
+            case 'ArrowUp': {
+                e.preventDefault();
+                const prev = current <= 0 ? items.length - 1 : current - 1;
+                this._focusItem(items[prev]);
+                break;
+            }
+            case 'Home':
+                e.preventDefault();
+                this._focusItem(items[0]);
+                break;
+            case 'End':
+                e.preventDefault();
+                this._focusItem(items[items.length - 1]);
+                break;
+            default: {
+                // First-character jump — only single printable chars
+                if (e.key.length === 1) {
+                    const char = e.key.toLowerCase();
+                    const startIndex = current < 0 ? 0 : (current + 1) % items.length;
+                    const rotated = [...items.slice(startIndex), ...items.slice(0, startIndex)];
+                    const match = rotated.find(item => {
+                        const slot = item.shadowRoot?.querySelector<HTMLSlotElement>('slot:not([name])');
+                        const text = slot?.assignedNodes({ flatten: true })
+                            .map(n => n.textContent ?? '')
+                            .join('')
+                            .trim()
+                            .toLowerCase() ?? '';
+                        return text.startsWith(char);
+                    });
+                    if (match) this._focusItem(match);
+                }
+            }
+        }
     }
 
     // ── Event dispatch ─────────────────────────────────────────────────────
@@ -328,7 +471,6 @@ export class UiMenu extends LitElement {
             'scrollable': this.scrollable,
         });
 
-        // BUG FIX: use classMap binding (not string interpolation) for backdrop too
         const backdropClasses = classMap({ backdrop: true, open: this.open });
 
         return html`
@@ -336,6 +478,7 @@ export class UiMenu extends LitElement {
             <div
                 class=${paperClasses}
                 role="menu"
+                aria-label=${ifDefined(this.label)}
                 aria-hidden=${this.open ? 'false' : 'true'}
                 @ui-menu-item-select=${this._handleItemSelect}
             >
@@ -350,5 +493,6 @@ declare global {
         'ui-menu': UiMenu;
         'ui-menu-item': UiMenuItem;
         'ui-menu-divider': UiMenuDivider;
+        'ui-menu-group': UiMenuGroup;
     }
 }

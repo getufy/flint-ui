@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { ref } from 'lit/directives/ref.js';
 import { UiMenu } from './ui-menu';
 import './ui-menu';
 import '../button/ui-button';
@@ -91,10 +92,6 @@ export const IconMenu: Story = {
                 </ui-menu-item>
             </ui-menu>
         </div>
-
-        <p style="margin-top:140px;font-size:.85rem;color:#94a3b8;">
-            In desktop viewport, padding is increased to give more space to the menu.
-        </p>
     `),
 };
 
@@ -163,6 +160,136 @@ export const PositionedMenu: Story = {
             `)}
         </div>
     `,
+};
+
+/* ================================================================== */
+/* Disabled Items                                                      */
+/* ================================================================== */
+export const DisabledItems: Story = {
+    render: () => wrap(html`
+        <div style="position:relative;display:inline-block;">
+            <ui-button variant="outlined" @click=${toggle}>File</ui-button>
+
+            <ui-menu open placement="bottom-start" @ui-menu-close=${close}>
+                <ui-menu-item>
+                    <span slot="icon">📄</span>
+                    New File
+                    <span slot="end-icon">⌘N</span>
+                </ui-menu-item>
+                <ui-menu-item>
+                    <span slot="icon">📂</span>
+                    Open…
+                    <span slot="end-icon">⌘O</span>
+                </ui-menu-item>
+                <ui-menu-divider></ui-menu-divider>
+                <ui-menu-item disabled>
+                    <span slot="icon">💾</span>
+                    Save
+                    <span slot="end-icon">⌘S</span>
+                </ui-menu-item>
+                <ui-menu-item disabled>
+                    <span slot="icon">🖨️</span>
+                    Print
+                    <span slot="end-icon">⌘P</span>
+                </ui-menu-item>
+                <ui-menu-divider></ui-menu-divider>
+                <ui-menu-item>
+                    <span slot="icon">🚪</span>
+                    Quit
+                    <span slot="end-icon">⌘Q</span>
+                </ui-menu-item>
+            </ui-menu>
+        </div>
+
+        <p style="margin-top:200px;font-size:.8rem;color:#94a3b8;">
+            Disabled items are non-interactive and skipped during keyboard navigation.
+        </p>
+    `),
+};
+
+/* ================================================================== */
+/* Dense Mode                                                          */
+/* ================================================================== */
+export const DenseMode: Story = {
+    render: () => wrap(html`
+        <div style="display:flex;gap:32px;align-items:flex-start;">
+            <div>
+                <p style="margin:0 0 8px;font-size:.75rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;">Default</p>
+                <div style="position:relative;display:inline-block;">
+                    <ui-button @click=${toggle}>Open</ui-button>
+                    <ui-menu open placement="bottom-start" @ui-menu-close=${close}>
+                        <ui-menu-item>Profile</ui-menu-item>
+                        <ui-menu-item>Settings</ui-menu-item>
+                        <ui-menu-item>Logout</ui-menu-item>
+                    </ui-menu>
+                </div>
+            </div>
+
+            <div>
+                <p style="margin:0 0 8px;font-size:.75rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;">Dense</p>
+                <div style="position:relative;display:inline-block;">
+                    <ui-button @click=${(e: Event) => {
+        const anchor = (e.currentTarget as HTMLElement).closest('div');
+        const menu = anchor?.querySelector('ui-menu') as UiMenu | null;
+        if (menu) menu.open = !menu.open;
+    }}>Open</ui-button>
+                    <ui-menu open placement="bottom-start" @ui-menu-close=${close}>
+                        <ui-menu-item dense>Profile</ui-menu-item>
+                        <ui-menu-item dense>Settings</ui-menu-item>
+                        <ui-menu-item dense>Logout</ui-menu-item>
+                    </ui-menu>
+                </div>
+            </div>
+        </div>
+    `),
+};
+
+/* ================================================================== */
+/* Grouped with Labels                                                 */
+/* ================================================================== */
+export const GroupedWithLabels: Story = {
+    render: () => wrap(html`
+        <div style="position:relative;display:inline-block;">
+            <ui-button @click=${toggle}>My Account</ui-button>
+
+            <ui-menu open placement="bottom-start" @ui-menu-close=${close} style="--ui-menu-min-width:200px;">
+                <ui-menu-group label="Account">
+                    <ui-menu-item>
+                        <span slot="icon">👤</span>
+                        Profile
+                    </ui-menu-item>
+                    <ui-menu-item>
+                        <span slot="icon">🔔</span>
+                        Notifications
+                    </ui-menu-item>
+                </ui-menu-group>
+
+                <ui-menu-divider></ui-menu-divider>
+
+                <ui-menu-group label="Settings">
+                    <ui-menu-item>
+                        <span slot="icon">⚙️</span>
+                        Preferences
+                    </ui-menu-item>
+                    <ui-menu-item>
+                        <span slot="icon">💳</span>
+                        Billing
+                    </ui-menu-item>
+                    <ui-menu-item>
+                        <span slot="icon">🔒</span>
+                        Security
+                    </ui-menu-item>
+                </ui-menu-group>
+
+                <ui-menu-divider></ui-menu-divider>
+
+                <ui-menu-item>
+                    <span slot="icon">🚪</span>
+                    Logout
+                </ui-menu-item>
+            </ui-menu>
+        </div>
+    `),
 };
 
 /* ================================================================== */
@@ -240,4 +367,60 @@ export const Scrollable: Story = {
             </ui-menu>
         </div>
     `),
+};
+
+/* ================================================================== */
+/* Context Menu                                                        */
+/* ================================================================== */
+export const ContextMenu: Story = {
+    render: () => {
+        let menuEl: UiMenu | null = null;
+
+        const onContextMenu = (e: MouseEvent) => {
+            e.preventDefault();
+            if (!menuEl) return;
+            menuEl.style.setProperty('position', 'fixed');
+            menuEl.style.setProperty('top', `${e.clientY}px`);
+            menuEl.style.setProperty('left', `${e.clientX}px`);
+            menuEl.open = true;
+        };
+
+        return html`
+            <div
+                class="story-root"
+                style="padding:48px 32px;background:#f8fafc;border:2px dashed #cbd5e1;border-radius:8px;font-family:Inter,sans-serif;min-height:260px;display:flex;align-items:center;justify-content:center;cursor:context-menu;user-select:none;"
+                @contextmenu=${onContextMenu}
+            >
+                <p style="color:#94a3b8;font-size:.9rem;pointer-events:none;">
+                    Right-click anywhere in this area
+                </p>
+            </div>
+
+            <ui-menu
+                placement="bottom-start"
+                @ui-menu-close=${(e: Event) => { (e.target as UiMenu).open = false; }}
+                ${ref((el) => { menuEl = (el as UiMenu) ?? null; })}
+            >
+                <ui-menu-item>
+                    <span slot="icon">✏️</span>
+                    Edit
+                </ui-menu-item>
+                <ui-menu-item>
+                    <span slot="icon">📋</span>
+                    Copy
+                    <span slot="end-icon">⌘C</span>
+                </ui-menu-item>
+                <ui-menu-item>
+                    <span slot="icon">📌</span>
+                    Paste
+                    <span slot="end-icon">⌘V</span>
+                </ui-menu-item>
+                <ui-menu-divider></ui-menu-divider>
+                <ui-menu-item>
+                    <span slot="icon">🗑️</span>
+                    Delete
+                </ui-menu-item>
+            </ui-menu>
+        `;
+    },
 };
