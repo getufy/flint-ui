@@ -3,14 +3,19 @@ import { html } from 'lit';
 import './ui-select';
 
 const meta: Meta = {
-    title: 'Inputs/Select',
-    component: 'ui-select',
-    argTypes: {
-        label: { control: 'text' },
-        placeholder: { control: 'text' },
-        multiple: { control: 'boolean' },
-        disabled: { control: 'boolean' },
-    },
+  title: 'Inputs/Select',
+  component: 'ui-select',
+  argTypes: {
+    label:        { control: 'text' },
+    placeholder:  { control: 'text' },
+    multiple:     { control: 'boolean' },
+    disabled:     { control: 'boolean' },
+    readonly:     { control: 'boolean' },
+    required:     { control: 'boolean' },
+    error:        { control: 'boolean' },
+    errorMessage: { control: 'text' },
+    size:         { control: 'select', options: ['sm', 'md', 'lg'] },
+  },
 };
 
 export default meta;
@@ -18,72 +23,123 @@ export default meta;
 type Story = StoryObj;
 
 const defaultOptions = [
-    { label: 'Apple', value: 'apple' },
-    { label: 'Banana', value: 'banana' },
-    { label: 'Cherry', value: 'cherry' },
-    { label: 'Dragonfruit', value: 'dragonfruit' },
-    { label: 'Elderberry', value: 'elderberry' },
+  { label: 'Apple',       value: 'apple'       },
+  { label: 'Banana',      value: 'banana'      },
+  { label: 'Cherry',      value: 'cherry'      },
+  { label: 'Dragonfruit', value: 'dragonfruit' },
+  { label: 'Elderberry',  value: 'elderberry'  },
 ];
 
-export const Basic: Story = {
-    args: {
-        label: 'Favorite Fruit',
-        placeholder: 'Pick a fruit',
-        options: defaultOptions,
-        multiple: false,
-        disabled: false,
-    },
-    render: (args) => html`
+// ── Playground ───────────────────────────────────────────────────────────────
+
+export const Playground: Story = {
+  args: {
+    label:        'Favorite Fruit',
+    placeholder:  'Pick a fruit',
+    multiple:     false,
+    disabled:     false,
+    readonly:     false,
+    required:     false,
+    error:        false,
+    errorMessage: '',
+    size:         'md',
+    options:      defaultOptions,
+  },
+  render: (args) => html`
     <div style="max-width: 400px; padding: 20px;">
-      <ui-select 
-        .label=${args.label} 
+      <ui-select
+        .label=${args.label}
         .placeholder=${args.placeholder}
         .options=${args.options}
+        .size=${args.size}
         ?multiple=${args.multiple}
         ?disabled=${args.disabled}
+        ?readonly=${args.readonly}
+        ?required=${args.required}
+        ?error=${args.error}
+        .errorMessage=${args.errorMessage}
       ></ui-select>
     </div>
   `,
 };
+
+// ── Basic ────────────────────────────────────────────────────────────────────
+
+export const Basic: Story = {
+  args: {
+    label:       'Favorite Fruit',
+    placeholder: 'Pick a fruit',
+    options:     defaultOptions,
+  },
+  render: (args) => html`
+    <div style="max-width: 400px; padding: 20px;">
+      <ui-select
+        .label=${args.label}
+        .placeholder=${args.placeholder}
+        .options=${args.options}
+      ></ui-select>
+    </div>
+  `,
+};
+
+// ── With preselected value ───────────────────────────────────────────────────
+
+export const WithPreselectedValue: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px;">
+      <ui-select
+        label="Favourite Fruit"
+        .options=${defaultOptions}
+        .value=${['cherry']}
+      ></ui-select>
+    </div>
+  `,
+};
+
+// ── Default value (uncontrolled) ─────────────────────────────────────────────
+
+export const UncontrolledDefaultValue: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px;">
+      <ui-select
+        label="Uncontrolled (default-value)"
+        default-value="banana"
+        .options=${defaultOptions}
+      ></ui-select>
+    </div>
+  `,
+};
+
+// ── Multi-select ─────────────────────────────────────────────────────────────
 
 export const MultiSelect: Story = {
-    args: {
-        label: 'Select Multiple Fruits',
-        placeholder: 'Select items...',
-        options: defaultOptions,
-        multiple: true,
-        value: ['apple', 'cherry'],
-    },
-    render: (args) => html`
+  render: () => html`
     <div style="max-width: 400px; padding: 20px;">
-      <ui-select 
-        .label=${args.label} 
-        .placeholder=${args.placeholder}
-        .options=${args.options}
-        ?multiple=${args.multiple}
-        .value=${args.value}
+      <ui-select
+        label="Select Multiple Fruits"
+        placeholder="Select items..."
+        multiple
+        .options=${defaultOptions}
+        .value=${['apple', 'cherry']}
       ></ui-select>
     </div>
   `,
 };
 
+// ── With icon slot ────────────────────────────────────────────────────────────
+
 export const WithIcon: Story = {
-    args: {
-        label: 'Country',
-        placeholder: 'Select country',
-        options: [
-            { label: 'United States', value: 'us' },
-            { label: 'United Kingdom', value: 'uk' },
-            { label: 'Germany', value: 'de' },
-            { label: 'France', value: 'fr' },
-        ],
-    },
-    render: (args) => html`
+  render: () => html`
     <div style="max-width: 400px; padding: 20px;">
-      <ui-select 
-        .label=${args.label} 
-        .placeholder=${args.placeholder}
-        .options=${args.options}
+      <ui-select
+        label="Country"
+        placeholder="Select country"
+        .options=${[
+          { label: 'United States', value: 'us' },
+          { label: 'United Kingdom', value: 'uk' },
+          { label: 'Germany',        value: 'de' },
+          { label: 'France',         value: 'fr' },
+        ]}
       >
         <svg slot="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="10"></circle>
@@ -95,21 +151,237 @@ export const WithIcon: Story = {
   `,
 };
 
+// ── Sizes ─────────────────────────────────────────────────────────────────────
+
+export const Sizes: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px; display: flex; flex-direction: column; gap: 16px;">
+      <ui-select label="Small"  size="sm" placeholder="sm"  .options=${defaultOptions}></ui-select>
+      <ui-select label="Medium" size="md" placeholder="md"  .options=${defaultOptions}></ui-select>
+      <ui-select label="Large"  size="lg" placeholder="lg"  .options=${defaultOptions}></ui-select>
+    </div>
+  `,
+};
+
+// ── Disabled ─────────────────────────────────────────────────────────────────
+
 export const Disabled: Story = {
-    args: {
-        label: 'Disabled Select',
-        placeholder: 'Cannot open this',
-        options: defaultOptions,
-        disabled: true,
-    },
-    render: (args) => html`
-    <div style="max-width: 400px; padding: 20px;">
-      <ui-select 
-        .label=${args.label} 
-        .placeholder=${args.placeholder}
-        .options=${args.options}
-        ?disabled=${args.disabled}
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px; display: flex; flex-direction: column; gap: 16px;">
+      <ui-select
+        label="Disabled (empty)"
+        placeholder="Cannot open this"
+        ?disabled=${true}
+        .options=${defaultOptions}
       ></ui-select>
+      <ui-select
+        label="Disabled (with value)"
+        ?disabled=${true}
+        .options=${defaultOptions}
+        .value=${['banana']}
+      ></ui-select>
+    </div>
+  `,
+};
+
+// ── Readonly ──────────────────────────────────────────────────────────────────
+
+export const Readonly: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px;">
+      <ui-select
+        label="Read-only"
+        ?readonly=${true}
+        .options=${defaultOptions}
+        .value=${['cherry']}
+      ></ui-select>
+    </div>
+  `,
+};
+
+// ── Error state ───────────────────────────────────────────────────────────────
+
+export const ErrorState: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px; display: flex; flex-direction: column; gap: 16px;">
+      <ui-select
+        label="Required field"
+        placeholder="Select an option"
+        ?error=${true}
+        error-message="This field is required."
+        .options=${defaultOptions}
+      ></ui-select>
+      <ui-select
+        label="Invalid selection"
+        ?error=${true}
+        error-message="Selected value is no longer available."
+        .options=${defaultOptions}
+        .value=${['apple']}
+      ></ui-select>
+    </div>
+  `,
+};
+
+// ── Disabled options ──────────────────────────────────────────────────────────
+
+export const WithDisabledOptions: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px;">
+      <ui-select
+        label="Availability"
+        placeholder="Choose a slot"
+        .options=${[
+          { label: 'Morning (available)',   value: 'morning'   },
+          { label: 'Afternoon (booked)',    value: 'afternoon', disabled: true },
+          { label: 'Evening (available)',   value: 'evening'   },
+          { label: 'Night (unavailable)',   value: 'night',     disabled: true },
+        ]}
+      ></ui-select>
+    </div>
+  `,
+};
+
+// ── Without label ─────────────────────────────────────────────────────────────
+
+export const WithoutLabel: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px;">
+      <ui-select placeholder="Pick a fruit" .options=${defaultOptions}></ui-select>
+    </div>
+  `,
+};
+
+// ── Empty options ─────────────────────────────────────────────────────────────
+
+export const EmptyOptions: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px;">
+      <ui-select label="No items yet" placeholder="Nothing to pick" .options=${[]}></ui-select>
+    </div>
+  `,
+};
+
+// ── Large option list ─────────────────────────────────────────────────────────
+
+export const LargeOptionList: Story = {
+  render: () => {
+    const countries = [
+      'Afghanistan', 'Albania', 'Algeria', 'Argentina', 'Australia',
+      'Austria', 'Belgium', 'Brazil', 'Canada', 'Chile',
+      'China', 'Colombia', 'Croatia', 'Czech Republic', 'Denmark',
+      'Egypt', 'Finland', 'France', 'Germany', 'Greece',
+      'Hungary', 'India', 'Indonesia', 'Iran', 'Iraq',
+      'Ireland', 'Israel', 'Italy', 'Japan', 'Jordan',
+    ].map(c => ({ label: c, value: c.toLowerCase().replace(/\s/g, '-') }));
+    return html`
+      <div style="max-width: 400px; padding: 20px;">
+        <ui-select label="Country" placeholder="Select a country" .options=${countries}></ui-select>
+      </div>
+    `;
+  },
+};
+
+// ── Controlled ───────────────────────────────────────────────────────────────
+
+export const Controlled: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px;">
+      <p style="font-size: 0.875rem; margin: 0 0 12px; color: #6b7280;">
+        Parent owns state — selection reflected in the paragraph below.
+      </p>
+      <div
+        id="controlled-root"
+        @change=${(e: CustomEvent) => {
+          const root = (e.currentTarget as HTMLElement);
+          root.querySelector<HTMLElement>('#selected-display')!.textContent =
+            `Selected: ${e.detail.value ?? '(none)'}`;
+        }}
+      >
+        <ui-select
+          label="Controlled Fruit"
+          placeholder="Pick a fruit"
+          .options=${defaultOptions}
+        ></ui-select>
+        <p id="selected-display" style="font-size: 0.875rem; margin-top: 8px;">Selected: (none)</p>
+      </div>
+    </div>
+  `,
+};
+
+// ── Controlled multi-select ───────────────────────────────────────────────────
+
+export const ControlledMulti: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px;">
+      <div
+        id="controlled-multi-root"
+        @change=${(e: CustomEvent) => {
+          const root = (e.currentTarget as HTMLElement);
+          const vals: string[] = e.detail.value ?? [];
+          root.querySelector<HTMLElement>('#multi-display')!.textContent =
+            vals.length ? `Selected: ${vals.join(', ')}` : 'Selected: (none)';
+        }}
+      >
+        <ui-select
+          label="Controlled Multi"
+          placeholder="Pick fruits..."
+          multiple
+          .options=${defaultOptions}
+        ></ui-select>
+        <p id="multi-display" style="font-size: 0.875rem; margin-top: 8px;">Selected: (none)</p>
+      </div>
+    </div>
+  `,
+};
+
+// ── Custom styling ────────────────────────────────────────────────────────────
+
+export const CustomStyling: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px;">
+      <ui-select
+        label="Custom Style"
+        placeholder="Pick a fruit"
+        .options=${defaultOptions}
+        style="
+          --ui-select-focus-color: #8b5cf6;
+          --ui-select-radius: 24px;
+          --ui-select-border: #c4b5fd;
+          --ui-font-family: Georgia, serif;
+        "
+      ></ui-select>
+    </div>
+  `,
+};
+
+// ── In a form ─────────────────────────────────────────────────────────────────
+
+export const InForm: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px;">
+      <form
+        id="demo-form"
+        @submit=${(e: Event) => {
+          e.preventDefault();
+          const fd = new FormData(e.target as HTMLFormElement);
+          const root = (e.target as HTMLElement).closest('div')!;
+          root.querySelector<HTMLElement>('#form-output')!.textContent =
+            `Submitted: fruit = ${fd.get('fruit') ?? '(none)'}`;
+        }}
+        style="display: flex; flex-direction: column; gap: 12px;"
+      >
+        <ui-select
+          name="fruit"
+          label="Favourite Fruit"
+          placeholder="Required"
+          ?required=${true}
+          .options=${defaultOptions}
+        ></ui-select>
+        <button type="submit" style="padding: 8px 16px; border-radius: 6px; cursor: pointer;">
+          Submit
+        </button>
+        <p id="form-output" style="font-size: 0.875rem; color: #6b7280;"></p>
+      </form>
     </div>
   `,
 };
