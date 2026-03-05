@@ -1,6 +1,5 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
 /**
@@ -123,7 +122,7 @@ export class UiLink extends LitElement {
     /** The ARIA label. */
     @property({ type: String }) label?: string;
 
-    private _computedRel(): string {
+    private _computedRel(): string | undefined {
         if (this.target === '_blank') {
             const base = this.rel || '';
             const parts = new Set(base.split(' ').filter(Boolean));
@@ -131,23 +130,27 @@ export class UiLink extends LitElement {
             parts.add('noreferrer');
             return Array.from(parts).join(' ');
         }
-        return this.rel || '';
+        return this.rel || undefined;
+    }
+
+    private _handleClick(e: MouseEvent) {
+        if (this.disabled) {
+            e.preventDefault();
+        }
     }
 
     render() {
-        const classes = classMap({
-            link: true,
-        });
-
         return html`
             <a
-                class="${classes}"
-                href=${this.disabled ? 'javascript:void(0)' : this.href}
-                target=${this.target}
-                rel=${this._computedRel()}
+                class="link"
+                href=${ifDefined(this.disabled ? undefined : this.href || undefined)}
+                target=${ifDefined(this.target !== '_self' ? this.target : undefined)}
+                rel=${ifDefined(this._computedRel())}
                 aria-label=${ifDefined(this.label)}
                 download=${ifDefined(this.download)}
                 aria-disabled=${this.disabled}
+                tabindex=${this.disabled ? '-1' : '0'}
+                @click=${this._handleClick}
             >
                 <slot></slot>
             </a>

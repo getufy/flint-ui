@@ -21,6 +21,9 @@ const meta: Meta = {
         },
         href: { control: 'text' },
         target: { control: { type: 'select' }, options: ['_self', '_blank', '_parent', '_top'] },
+        rel: { control: 'text' },
+        label: { control: 'text' },
+        download: { control: 'text' },
         disabled: { control: 'boolean' },
     },
 };
@@ -162,6 +165,87 @@ export const Disabled: Story = {
             <div style="${rowStyles}">
                 <ui-link href="#" disabled>Disabled Link</ui-link>
                 <ui-link href="#" color="secondary" disabled>Disabled Secondary</ui-link>
+            </div>
+            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:12px;font-size:.875rem;color:#475569;">
+                Disabled links have no <code>href</code>, <code>tabindex="-1"</code>, and click events are prevented — inaccessible to both mouse and keyboard.
+            </div>
+        </div>
+    `,
+};
+
+/* ================================================================== */
+/* Rel                                                                 */
+/* ================================================================== */
+export const Rel: Story = {
+    render: () => html`
+        <div style="${sectionStyles}">
+            <div>
+                <div style="${labelStyles}">Custom rel values</div>
+                <div style="display:flex;flex-direction:column;gap:12px;font-size:.875rem;">
+                    <div>
+                        <span style="${labelStyles}">rel="nofollow" (SEO — tell crawlers not to follow)</span><br>
+                        <ui-link href="https://example.com" rel="nofollow">nofollow link</ui-link>
+                    </div>
+                    <div>
+                        <span style="${labelStyles}">rel="sponsored" (paid/affiliate link)</span><br>
+                        <ui-link href="https://example.com" rel="sponsored">sponsored link</ui-link>
+                    </div>
+                    <div>
+                        <span style="${labelStyles}">rel="nofollow" + target="_blank" — merges with noopener noreferrer</span><br>
+                        <ui-link href="https://example.com" rel="nofollow" target="_blank">nofollow + new tab</ui-link>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `,
+};
+
+/* ================================================================== */
+/* Download                                                            */
+/* ================================================================== */
+export const Download: Story = {
+    render: () => html`
+        <div style="${sectionStyles}">
+            <div>
+                <div style="${labelStyles}">download prop — triggers file download instead of navigation</div>
+                <div style="display:flex;flex-direction:column;gap:12px;">
+                    <div>
+                        <span style="${labelStyles}">download with filename</span><br>
+                        <ui-link href="/assets/report.pdf" download="annual-report-2025.pdf">Download Annual Report (PDF)</ui-link>
+                    </div>
+                    <div>
+                        <span style="${labelStyles}">download without filename (uses server filename)</span><br>
+                        <ui-link href="/assets/report.pdf" download="">Download Report</ui-link>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `,
+};
+
+/* ================================================================== */
+/* Aria Label (Accessibility)                                          */
+/* ================================================================== */
+export const AriaLabel: Story = {
+    render: () => html`
+        <div style="${sectionStyles}">
+            <div>
+                <div style="${labelStyles}">label prop — provides accessible name for icon-only or ambiguous links</div>
+                <div style="display:flex;flex-direction:column;gap:16px;">
+                    <div>
+                        <span style="${labelStyles}">Icon-only link with label</span><br>
+                        <ui-link href="#" label="Go to homepage">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                        </ui-link>
+                    </div>
+                    <div>
+                        <span style="${labelStyles}">Ambiguous "Read more" with descriptive label</span><br>
+                        <ui-link href="#" label="Read more about our pricing plans">Read more</ui-link>
+                    </div>
+                </div>
             </div>
         </div>
     `,
