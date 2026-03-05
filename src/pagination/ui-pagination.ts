@@ -16,7 +16,7 @@ function range(start: number, end: number): number[] {
     return Array.from({ length: end - start + 1 }, (_, i) => start + i);
 }
 
-function buildPages(
+export function buildPages(
     count: number,
     page: number,
     siblingCount: number,
@@ -69,6 +69,12 @@ function buildPages(
  * a range of pages.
  *
  * @fires ui-pagination-change - { page: number } when the active page changes.
+ *
+ * @slot prev-icon    - Icon for the previous button (default: chevron left SVG).
+ * @slot next-icon    - Icon for the next button (default: chevron right SVG).
+ * @slot first-icon   - Icon for the first button (default: skip-to-start SVG).
+ * @slot last-icon    - Icon for the last button (default: skip-to-end SVG).
+ * @slot ellipsis-icon - Icon for ellipsis items (default: three-dot SVG).
  */
 @customElement('ui-pagination')
 export class UiPagination extends LitElement {
@@ -80,6 +86,9 @@ export class UiPagination extends LitElement {
             gap: 4px;
             font-family: var(--ui-font-family, 'Inter', sans-serif);
         }
+
+        /* Transparent layout wrappers */
+        nav, ol, li { display: contents; }
 
         /* ── Base button ── */
         .page-btn {
@@ -159,7 +168,7 @@ export class UiPagination extends LitElement {
 
         /* ── Size ── */
         :host([size="small"]) .page-btn    { min-width: 28px; height: 28px; font-size: 0.8125rem; }
-        :host([size="small"]) :host([shape="circular"]) .page-btn { min-width: 28px; }
+        :host([size="small"][shape="circular"]) .page-btn { min-width: 28px; }
         :host([size="large"]) .page-btn    { min-width: 44px; height: 44px; font-size: 0.9375rem; }
 
         /* ── Disabled host ── */
@@ -175,8 +184,14 @@ export class UiPagination extends LitElement {
     /** Total number of pages. */
     @property({ type: Number }) count = 1;
 
-    /** The current page (1-based, controlled). */
+    /** The current page (1-based). In controlled mode, update this from the ui-pagination-change event. */
     @property({ type: Number }) page = 1;
+
+    /** Initial page for uncontrolled mode. Ignored after first render. */
+    @property({ type: Number, attribute: 'default-page' }) defaultPage = 1;
+
+    /** Accessible label for the nav landmark (aria-label). */
+    @property({ type: String }) label = '';
 
     /** Variant. */
     @property({ type: String, reflect: true }) variant: 'text' | 'outlined' = 'text';
@@ -211,17 +226,22 @@ export class UiPagination extends LitElement {
     /** Disable the whole component. */
     @property({ type: Boolean, reflect: true }) disabled = false;
 
-    /** Custom icon for prev button (HTML string, or use slot). */
-    @property({ type: String, attribute: 'prev-icon' }) prevIcon = '';
+    private _firstUpdate = true;
 
-    /** Custom icon for next button. */
-    @property({ type: String, attribute: 'next-icon' }) nextIcon = '';
+    willUpdate() {
+        if (this._firstUpdate && this.defaultPage !== 1) {
+            this.page = this.defaultPage;
+        }
+        this._firstUpdate = false;
+    }
 
-    /** Custom icon for first button. */
-    @property({ type: String, attribute: 'first-icon' }) firstIcon = '';
+    private get _safeCount(): number {
+        return Math.max(1, this.count);
+    }
 
-    /** Custom icon for last button. */
-    @property({ type: String, attribute: 'last-icon' }) lastIcon = '';
+    private get _safePage(): number {
+        return Math.min(Math.max(1, this.page), this._safeCount);
+    }
 
     private _emit(page: number) {
         this.dispatchEvent(new CustomEvent('ui-pagination-change', {
@@ -232,58 +252,73 @@ export class UiPagination extends LitElement {
     }
 
     private _go(p: number) {
-        if (p < 1 || p > this.count || p === this.page) return;
+        const count = this._safeCount;
+        const page = this._safePage;
+        if (p < 1 || p > count || p === page) return;
+        this.page = p;
         this._emit(p);
     }
 
     private _renderNavBtn(
         label: string,
-        icon: unknown,
+        slotName: string,
+        fallbackIcon: unknown,
         onClick: () => void,
         disabled: boolean,
         hidden: boolean,
     ) {
         if (hidden) return nothing;
         return html`
-            <button
-                class="page-btn nav"
-                aria-label=${label}
-                ?disabled=${disabled || this.disabled}
-                @click=${onClick}
-            >${icon}</button>
+            <li>
+                <button
+                    class="page-btn"
+                    aria-label=${label}
+                    ?disabled=${disabled || this.disabled}
+                    @click=${onClick}
+                ><slot name=${slotName}>${fallbackIcon}</slot></button>
+            </li>
         `;
     }
 
     render() {
-        const pages = buildPages(this.count, this.page, this.siblingCount, this.boundaryCount);
-
-        const pi = this.prevIcon ? html`<span .innerHTML=${this.prevIcon}></span>` : iconPrev;
-        const ni = this.nextIcon ? html`<span .innerHTML=${this.nextIcon}></span>` : iconNext;
-        const fi = this.firstIcon ? html`<span .innerHTML=${this.firstIcon}></span>` : iconFirst;
-        const li = this.lastIcon ? html`<span .innerHTML=${this.lastIcon}></span>` : iconLast;
+        const count = this._safeCount;
+        const page = this._safePage;
+        const pages = buildPages(count, page, this.siblingCount, this.boundaryCount);
+        const navLabel = this.label || 'pagination navigation';
 
         return html`
-            ${this._renderNavBtn('Go to first page', fi, () => this._go(1), this.page === 1, !this.showFirstButton)}
-            ${this._renderNavBtn('Go to previous page', pi, () => this._go(this.page - 1), this.page === 1, this.hidePrevButton)}
+            <nav aria-label=${navLabel}>
+                <ol>
+                    ${this._renderNavBtn('Go to first page', 'first-icon', iconFirst, () => this._go(1), page === 1, !this.showFirstButton)}
+                    ${this._renderNavBtn('Go to previous page', 'prev-icon', iconPrev, () => this._go(page - 1), page === 1, this.hidePrevButton)}
 
-            ${pages.map(item => {
+                    ${pages.map(item => {
             if (item === 'start-ellipsis' || item === 'end-ellipsis') {
-                return html`<button class="page-btn ellipsis" tabindex="-1" aria-hidden="true">${iconEllipsis}</button>`;
+                return html`
+                            <li>
+                                <button class="page-btn ellipsis" tabindex="-1" aria-hidden="true">
+                                    <slot name="ellipsis-icon">${iconEllipsis}</slot>
+                                </button>
+                            </li>`;
             }
-            const active = item === this.page;
+            const active = item === page;
             return html`
-                    <button
-                        class=${classMap({ 'page-btn': true, active })}
-                        aria-label=${'Page ' + item}
-                        aria-current=${active ? 'page' : nothing}
-                        ?disabled=${this.disabled}
-                        @click=${() => this._go(item as number)}
-                    >${item}</button>
-                `;
+                        <li>
+                            <button
+                                class=${classMap({ 'page-btn': true, active })}
+                                aria-label=${'Page ' + item}
+                                aria-current=${active ? 'page' : nothing}
+                                ?disabled=${this.disabled}
+                                @click=${() => this._go(item as number)}
+                            >${item}</button>
+                        </li>
+                    `;
         })}
 
-            ${this._renderNavBtn('Go to next page', ni, () => this._go(this.page + 1), this.page === this.count, this.hideNextButton)}
-            ${this._renderNavBtn('Go to last page', li, () => this._go(this.count), this.page === this.count, !this.showLastButton)}
+                    ${this._renderNavBtn('Go to next page', 'next-icon', iconNext, () => this._go(page + 1), page === count, this.hideNextButton)}
+                    ${this._renderNavBtn('Go to last page', 'last-icon', iconLast, () => this._go(count), page === count, !this.showLastButton)}
+                </ol>
+            </nav>
         `;
     }
 }
