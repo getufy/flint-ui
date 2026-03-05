@@ -1,8 +1,6 @@
 # TODO Components
 
 
-- [ ] Menubar
-A visually persistent menu common in desktop applications that provides quick access to a consistent set of commands.
 - [ ] Navigation Menu
 A collection of links for navigating websites.
 - [ ] Scroll Area
@@ -25,7 +23,7 @@ A two-state button that can be either on or off.
 - [ ] Switch
 - [ ] Visually Hidden (A11y)
 
-- Continue investigating bugs under ui-grid folder.
+- Continue investigating bugs under ui-switch folder (started at ui-grid).
 - Create a structurable theme.scss/css variable across all components
 - Dark Mode/Light Mode
 - Find accessibility issues and fix for all components.
