@@ -428,6 +428,84 @@ describe('ui-input-otp — keyboard input', () => {
         await el.updateComplete;
         expect(getSlot(el, 2).active).toBe(true);
     });
+
+    it('Home key moves cursor to slot 0', async () => {
+        const el = await make({ value: '123' });
+        const input = getHiddenInput(el);
+        input.dispatchEvent(new FocusEvent('focus')); // cursor at 3
+        fireKey(input, 'Home');
+        await el.updateComplete;
+        expect(getSlot(el, 0).active).toBe(true);
+        expect(getSlot(el, 1).active).toBe(false);
+    });
+
+    it('End key moves cursor to last filled position', async () => {
+        const el = await make({ value: '123' });
+        const input = getHiddenInput(el);
+        input.dispatchEvent(new FocusEvent('focus')); // cursor at 3
+        fireKey(input, 'Home'); // cursor at 0
+        fireKey(input, 'End');  // cursor at 3 (min(3, 5))
+        await el.updateComplete;
+        expect(getSlot(el, 3).active).toBe(true);
+        expect(getSlot(el, 0).active).toBe(false);
+    });
+
+    it('Backspace mid-value shifts chars left', async () => {
+        // "123456" cursor at 2 → Backspace → deletes "2", shifts → "13456", cursor at 1
+        const el = await make({ value: '123456' });
+        const input = getHiddenInput(el);
+        input.dispatchEvent(new FocusEvent('focus')); // cursor at 5
+        fireKey(input, 'ArrowLeft');
+        fireKey(input, 'ArrowLeft');
+        fireKey(input, 'ArrowLeft'); // cursor at 2
+        fireKey(input, 'Backspace'); // delete char at 1 ("2"), shift → "13456"
+        await el.updateComplete;
+        expect(el.value).toBe('13456');
+        expect(getSlot(el, 1).active).toBe(true); // cursor moved to 1
+    });
+
+    it('Backspace on empty value does not fire ui-otp-change', async () => {
+        const el = await make();
+        const spy = vi.fn();
+        el.addEventListener('ui-otp-change', spy);
+        const input = getHiddenInput(el);
+        input.dispatchEvent(new FocusEvent('focus'));
+        fireKey(input, 'Backspace');
+        await el.updateComplete;
+        expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('Tab key is not intercepted (default not prevented)', async () => {
+        const el = await make();
+        const input = getHiddenInput(el);
+        const event = new KeyboardEvent('keydown', { key: 'Tab', bubbles: true, cancelable: true });
+        input.dispatchEvent(event);
+        expect(event.defaultPrevented).toBe(false);
+    });
+
+    it('ui-otp-complete fires when replacing the last slot in a full value', async () => {
+        const el = await make({ value: '123456', maxLength: 6 });
+        const spy = vi.fn();
+        el.addEventListener('ui-otp-complete', spy);
+        const input = getHiddenInput(el);
+        input.dispatchEvent(new FocusEvent('focus')); // cursor at 5
+        typeChars(input, '9'); // replaces slot 5 ("6") → "123459"
+        await el.updateComplete;
+        expect(el.value).toBe('123459');
+        expect(spy).toHaveBeenCalledOnce();
+        expect(spy.mock.calls[0][0].detail).toEqual({ value: '123459' });
+    });
+
+    it('Delete on empty-past-end does nothing', async () => {
+        const el = await make({ value: '123' });
+        const spy = vi.fn();
+        el.addEventListener('ui-otp-change', spy);
+        const input = getHiddenInput(el);
+        input.dispatchEvent(new FocusEvent('focus')); // cursor at 3 (empty)
+        fireKey(input, 'Delete'); // i >= val.length → no-op
+        await el.updateComplete;
+        expect(spy).not.toHaveBeenCalled();
+    });
 });
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -461,6 +539,16 @@ describe('ui-input-otp — paste handling', () => {
         await el.updateComplete;
         expect(getSlot(el, 0).char).toBe('9');
         expect(getSlot(el, 5).char).toBe('4');
+    });
+
+    it('cursor is at min(filtered.length, maxLength-1) after paste', async () => {
+        const el = await make({ maxLength: 6 });
+        const input = getHiddenInput(el);
+        input.dispatchEvent(new FocusEvent('focus'));
+        firePaste(input, '123'); // partial paste, 3 chars
+        await el.updateComplete;
+        // cursor should be at 3 (first empty slot)
+        expect(getSlot(el, 3).active).toBe(true);
     });
 });
 
@@ -556,6 +644,31 @@ describe('ui-input-otp — disabled', () => {
     it('host does not have disabled attribute when disabled=false', async () => {
         const el = await make({ disabled: false });
         expect(el.hasAttribute('disabled')).toBe(false);
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════
+   ui-input-otp — inputMode
+══════════════════════════════════════════════════════════════════════ */
+describe('ui-input-otp — inputMode', () => {
+    it('uses numeric inputMode when no pattern is set', async () => {
+        const el = await make();
+        expect(getHiddenInput(el).inputMode).toBe('numeric');
+    });
+
+    it('uses numeric inputMode for digit-only pattern', async () => {
+        const el = await make({ pattern: '\\d' });
+        expect(getHiddenInput(el).inputMode).toBe('numeric');
+    });
+
+    it('uses text inputMode for alphanumeric pattern', async () => {
+        const el = await make({ pattern: '[a-zA-Z0-9]' });
+        expect(getHiddenInput(el).inputMode).toBe('text');
+    });
+
+    it('uses text inputMode for letters-only pattern', async () => {
+        const el = await make({ pattern: '[a-z]' });
+        expect(getHiddenInput(el).inputMode).toBe('text');
     });
 });
 

@@ -363,26 +363,14 @@ export class UiInputOtp extends LitElement {
         if (this._internalValue.length === 0) return;
 
         const i = this._cursorIndex;
+        if (i === 0) return; // Nothing before cursor.
+
         const val = this._internalValue;
-
-        if (i === 0) {
-            // Cursor is at the very first slot — nothing before it, no-op.
-            return;
-        }
-
-        if (i < val.length) {
-            // Cursor is ON a filled slot — truncate up to (not including) this slot.
-            // This clears the current slot and all after it without shifting chars.
-            const newVal = val.slice(0, i);
-            this._commit(newVal);
-            // Cursor stays at i (now the first empty slot).
-        } else {
-            // Cursor is past the last filled slot — delete the last char and step back.
-            const newVal = val.slice(0, -1);
-            this._commit(newVal);
-            this._cursorIndex = Math.max(0, newVal.length);
-        }
-
+        // Delete the char immediately before the cursor and shift remaining chars left.
+        // Works uniformly whether the cursor is on a filled slot or past the filled region.
+        const newVal = val.slice(0, i - 1) + val.slice(i);
+        this._commit(newVal);
+        this._cursorIndex = i - 1;
         this._syncSlots();
     }
 
@@ -456,13 +444,27 @@ export class UiInputOtp extends LitElement {
         this._syncSlots();
     }
 
+    /**
+     * Compute the appropriate mobile keyboard type.
+     * Returns 'numeric' for digit-only patterns (or no pattern), 'text' otherwise.
+     */
+    private get _computedInputMode(): string {
+        if (!this.pattern) return 'numeric';
+        try {
+            // If the pattern can match the letter 'a', it accepts non-digit chars → text keyboard.
+            return new RegExp(this.pattern).test('a') ? 'text' : 'numeric';
+        } catch {
+            return 'text';
+        }
+    }
+
     render() {
         return html`
             <input
                 class="hidden-input"
                 type="text"
                 autocomplete="one-time-code"
-                inputmode="numeric"
+                .inputMode=${this._computedInputMode}
                 .maxLength=${this.maxLength}
                 .value=${this._internalValue}
                 ?disabled=${this.disabled}

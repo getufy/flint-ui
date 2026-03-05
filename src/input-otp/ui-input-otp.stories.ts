@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './ui-input-otp.js';
+import type { UiInputOtp } from './ui-input-otp.js';
+
+type UiInputOtpEl = UiInputOtp;
 
 const meta: Meta = {
     title: 'Forms/InputOTP',
@@ -292,6 +295,113 @@ export const Invalid: Story = {
             </p>
         </div>
     `,
+};
+
+/* ── AutoSubmit ──────────────────────────────────────────────────── */
+export const AutoSubmit: Story = {
+    name: 'Auto Submit on Complete',
+    render: () => {
+        const handleComplete = (e: CustomEvent<{ value: string }>) => {
+            const root = (e.currentTarget as HTMLElement).closest('div')!;
+            const status = root.querySelector<HTMLElement>('#auto-status')!;
+            status.textContent = 'Verifying…';
+            status.style.color = '#6b7280';
+            setTimeout(() => {
+                status.textContent = e.detail.value === '123456'
+                    ? '✓ Code verified!'
+                    : '✗ Invalid code. Try again.';
+                status.style.color = e.detail.value === '123456' ? '#16a34a' : '#ef4444';
+            }, 800);
+        };
+
+        return html`
+            <div style=${wrapStyle}>
+                <label style=${labelStyle}>Enter code <code>123456</code> to verify</label>
+                <p style=${noteStyle}>Fires <code>ui-otp-complete</code> when all 6 slots are filled.</p>
+                <ui-input-otp max-length="6" pattern="\\d" @ui-otp-complete=${handleComplete}>
+                    <ui-input-otp-group>
+                        <ui-input-otp-slot index="0"></ui-input-otp-slot>
+                        <ui-input-otp-slot index="1"></ui-input-otp-slot>
+                        <ui-input-otp-slot index="2"></ui-input-otp-slot>
+                    </ui-input-otp-group>
+                    <ui-input-otp-separator></ui-input-otp-separator>
+                    <ui-input-otp-group>
+                        <ui-input-otp-slot index="3"></ui-input-otp-slot>
+                        <ui-input-otp-slot index="4"></ui-input-otp-slot>
+                        <ui-input-otp-slot index="5"></ui-input-otp-slot>
+                    </ui-input-otp-group>
+                </ui-input-otp>
+                <p id="auto-status" style="margin: 16px 0 0; font-size: 0.875rem; color: #6b7280;">
+                    Waiting for input…
+                </p>
+            </div>
+        `;
+    },
+};
+
+/* ── InteractiveError ────────────────────────────────────────────── */
+export const InteractiveError: Story = {
+    name: 'Interactive Error State',
+    render: () => {
+        const setInvalid = (otp: HTMLElement, invalid: boolean) => {
+            otp.querySelectorAll<HTMLElement & { invalid: boolean }>('ui-input-otp-slot')
+                .forEach(slot => { slot.invalid = invalid; });
+        };
+
+        const handleVerify = (e: MouseEvent) => {
+            const root = (e.currentTarget as HTMLElement).closest('div')!;
+            const otp = root.querySelector<UiInputOtpEl>('ui-input-otp')!;
+            const msg = root.querySelector<HTMLElement>('#err-msg')!;
+            if (otp.value.length < 6) {
+                msg.textContent = 'Please enter all 6 digits.';
+                msg.style.display = 'block';
+                return;
+            }
+            if (otp.value !== '000000') {
+                setInvalid(otp, true);
+                msg.textContent = 'Invalid code. Please try again.';
+                msg.style.display = 'block';
+            } else {
+                setInvalid(otp, false);
+                msg.style.display = 'none';
+                msg.textContent = '';
+                alert('Verified!');
+            }
+        };
+
+        const handleChange = (e: CustomEvent) => {
+            const root = (e.currentTarget as HTMLElement).closest('div')!;
+            const otp = root.querySelector<HTMLElement>('ui-input-otp')!;
+            const msg = root.querySelector<HTMLElement>('#err-msg')!;
+            setInvalid(otp, false);
+            msg.style.display = 'none';
+        };
+
+        return html`
+            <div style=${wrapStyle}>
+                <label style=${labelStyle}>Verification code</label>
+                <p style=${noteStyle}>Enter <code>000000</code> to verify. Any other code shows an error.</p>
+                <ui-input-otp max-length="6" pattern="\\d" @ui-otp-change=${handleChange}>
+                    <ui-input-otp-group>
+                        <ui-input-otp-slot index="0"></ui-input-otp-slot>
+                        <ui-input-otp-slot index="1"></ui-input-otp-slot>
+                        <ui-input-otp-slot index="2"></ui-input-otp-slot>
+                    </ui-input-otp-group>
+                    <ui-input-otp-separator></ui-input-otp-separator>
+                    <ui-input-otp-group>
+                        <ui-input-otp-slot index="3"></ui-input-otp-slot>
+                        <ui-input-otp-slot index="4"></ui-input-otp-slot>
+                        <ui-input-otp-slot index="5"></ui-input-otp-slot>
+                    </ui-input-otp-group>
+                </ui-input-otp>
+                <button
+                    @click=${handleVerify}
+                    style="margin-top: 16px; padding: 8px 20px; background: #3b82f6; color: #fff; border: none; border-radius: 6px; font-size: 0.875rem; cursor: pointer;"
+                >Verify</button>
+                <p id="err-msg" style="display: none; margin: 10px 0 0; font-size: 0.8125rem; color: #ef4444;"></p>
+            </div>
+        `;
+    },
 };
 
 /* ── ThreeGroups ─────────────────────────────────────────────────── */
