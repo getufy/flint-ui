@@ -10,13 +10,18 @@ const meta: Meta = {
         value: { control: 'text' },
         type: {
             control: 'select',
-            options: ['text', 'password', 'email', 'number'],
+            options: ['text', 'password', 'email', 'number', 'search', 'url', 'tel', 'file', 'date', 'time'],
         },
         placeholder: { control: 'text' },
         helpText: { control: 'text' },
         error: { control: 'boolean' },
         errorMessage: { control: 'text' },
         disabled: { control: 'boolean' },
+        required: { control: 'boolean' },
+        readonly: { control: 'boolean' },
+        size: { control: 'select', options: ['sm', 'default', 'lg'] },
+        name: { control: 'text' },
+        autocomplete: { control: 'text' },
         onInput: { action: 'ui-input-input' },
         onChange: { action: 'ui-input-change' },
     },
@@ -29,6 +34,11 @@ const meta: Meta = {
         error: false,
         errorMessage: '',
         disabled: false,
+        required: false,
+        readonly: false,
+        size: 'default',
+        name: '',
+        autocomplete: '',
     },
     render: (args: Record<string, unknown>) => html`
     <div style="max-width: 300px; padding: 20px;">
@@ -39,8 +49,13 @@ const meta: Meta = {
         .placeholder=${args.placeholder}
         .helpText=${args.helpText}
         .errorMessage=${args.errorMessage}
+        .name=${args.name}
+        .autocomplete=${args.autocomplete}
+        .size=${args.size}
         ?error=${args.error}
         ?disabled=${args.disabled}
+        ?required=${args.required}
+        ?readonly=${args.readonly}
         @ui-input-input=${args.onInput}
         @ui-input-change=${args.onChange}
       ></ui-input>
@@ -82,4 +97,85 @@ export const Disabled: Story = {
         disabled: true,
         value: 'Cannot edit this',
     },
+};
+
+export const Required: Story = {
+    args: {
+        label: 'Required Field',
+        placeholder: 'This field is required',
+        required: true,
+        helpText: 'This field must be filled out.',
+    },
+};
+
+export const Readonly: Story = {
+    args: {
+        label: 'Read Only',
+        value: 'Read-only value',
+        readonly: true,
+        helpText: 'This field cannot be edited.',
+    },
+};
+
+export const Password: Story = {
+    args: {
+        label: 'Password',
+        type: 'password',
+        placeholder: '••••••••',
+        helpText: 'Must be at least 8 characters.',
+    },
+};
+
+export const Email: Story = {
+    args: {
+        label: 'Email address',
+        type: 'email',
+        placeholder: 'name@example.com',
+        autocomplete: 'email',
+    },
+};
+
+export const Search: Story = {
+    args: {
+        label: 'Search',
+        type: 'search',
+        placeholder: 'Search...',
+    },
+};
+
+export const FileInput: Story = {
+    args: {
+        label: 'Upload file',
+        type: 'file',
+        helpText: 'Select a file to upload.',
+    },
+};
+
+export const SizeSm: Story = {
+    name: 'Size: Small',
+    args: {
+        label: 'Small Input',
+        size: 'sm',
+        placeholder: 'Small size',
+    },
+};
+
+export const SizeLg: Story = {
+    name: 'Size: Large',
+    args: {
+        label: 'Large Input',
+        size: 'lg',
+        placeholder: 'Large size',
+    },
+};
+
+export const AllSizes: Story = {
+    name: 'All Sizes',
+    render: () => html`
+    <div style="max-width: 300px; padding: 20px; display: flex; flex-direction: column; gap: 16px;">
+      <ui-input label="Small" size="sm" placeholder="Small"></ui-input>
+      <ui-input label="Default" size="default" placeholder="Default"></ui-input>
+      <ui-input label="Large" size="lg" placeholder="Large"></ui-input>
+    </div>
+  `,
 };
