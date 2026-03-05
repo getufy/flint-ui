@@ -256,6 +256,30 @@ export const CustomDelays: Story = {
     `,
 };
 
+/* ── KeyboardFocus ──────────────────────────────────────────────── */
+export const KeyboardFocus: Story = {
+    name: 'Keyboard / Focus',
+    render: () => html`
+        <div style="padding: 120px 80px; display: flex; flex-direction: column; align-items: center; gap: 16px; font-family: system-ui, sans-serif;">
+            <p style="margin: 0 0 8px; font-size: 0.875rem; color: #6b7280;">Tab to the link to open the card via keyboard focus.</p>
+            <ui-hover-card open-delay="0" close-delay="200">
+                <ui-hover-card-trigger>
+                    <a href="#" style=${linkStyle} tabindex="0">@nextjs</a>
+                </ui-hover-card-trigger>
+                <ui-hover-card-content style="width: 240px;">
+                    <div style="font-family: system-ui, sans-serif;">
+                        <div style="font-weight: 600; margin-bottom: 4px; color: #111827;">Next.js</div>
+                        <div style="font-size: 0.8125rem; color: #6b7280; line-height: 1.5;">
+                            Opens on focus (keyboard) and on hover (mouse).
+                            Closes when focus leaves.
+                        </div>
+                    </div>
+                </ui-hover-card-content>
+            </ui-hover-card>
+        </div>
+    `,
+};
+
 /* ── Events ──────────────────────────────────────────────────────── */
 export const Events: Story = {
     name: 'Events',

@@ -183,6 +183,47 @@ describe('ui-hover-card — open / close timing', () => {
         expect(el.isOpen).toBe(true);
     });
 
+    it('openDelay=0 opens after 0ms', async () => {
+        const el = await make({ openDelay: 0 });
+        enter(getTriggerDiv(el));
+        vi.advanceTimersByTime(0);
+        expect(getContent(el).open).toBe(true);
+    });
+
+    it('repeated trigger leaves do not stack close timers', async () => {
+        const el = await make({ openDelay: 50, closeDelay: 100 });
+        const spy = vi.fn();
+        el.addEventListener('ui-hover-card-close', spy);
+
+        enter(getTriggerDiv(el));
+        vi.advanceTimersByTime(50);
+        expect(getContent(el).open).toBe(true);
+
+        // Leave twice rapidly — only the second timer should matter
+        leave(getTriggerDiv(el));
+        vi.advanceTimersByTime(50); // halfway through first timer
+        leave(getTriggerDiv(el));   // resets the timer
+        vi.advanceTimersByTime(60); // < 100ms from first leave, but > 0ms from second — old timer would have fired here
+        expect(getContent(el).open).toBe(true); // still open; second timer not elapsed yet
+        vi.advanceTimersByTime(50); // now 110ms after second leave → timer fires
+        expect(getContent(el).open).toBe(false);
+        expect(spy).toHaveBeenCalledOnce();
+    });
+
+    it('card leave resets close delay when trigger-leave timer is already running', async () => {
+        const el = await make({ openDelay: 50, closeDelay: 200 });
+        enter(getTriggerDiv(el));
+        vi.advanceTimersByTime(50);
+
+        leave(getTriggerDiv(el));   // starts close timer at t=0
+        vi.advanceTimersByTime(100); // half of close delay
+        leave(getCard(el));          // should reset the 200ms timer from now
+        vi.advanceTimersByTime(150); // 250ms from first leave — old timer would have fired; new timer not yet done
+        expect(getContent(el).open).toBe(true);
+        vi.advanceTimersByTime(60);  // 210ms from card leave — new timer fires
+        expect(getContent(el).open).toBe(false);
+    });
+
     it('syncs open attribute on ui-hover-card-content', async () => {
         const el = await make({ openDelay: 50 });
         enter(getTriggerDiv(el));
@@ -359,6 +400,21 @@ describe('ui-hover-card-content — positioning', () => {
         await c.updateComplete;
         expect(c.style.getPropertyValue('bottom')).not.toBe('');
         expect(c.style.getPropertyValue('top')).toBe('');
+    });
+
+    it('side and align can be set via HTML attributes', async () => {
+        const el = await fixture<UiHoverCard>(html`
+            <ui-hover-card>
+                <ui-hover-card-trigger>T</ui-hover-card-trigger>
+                <ui-hover-card-content side="top" align="end">C</ui-hover-card-content>
+            </ui-hover-card>
+        `);
+        const c = getContent(el);
+        await c.updateComplete;
+        expect(c.side).toBe('top');
+        expect(c.align).toBe('end');
+        expect(c.style.getPropertyValue('bottom')).not.toBe('');
+        expect(c.style.getPropertyValue('right')).toBe('0px');
     });
 
     it('reapplies position when align changes', async () => {

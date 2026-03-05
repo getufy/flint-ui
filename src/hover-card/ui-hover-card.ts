@@ -231,6 +231,7 @@ export class UiHoverCard extends LitElement {
     /** Called by `ui-hover-card-trigger` when the pointer/focus leaves. */
     handleTriggerLeave() {
         this._cancelOpen();
+        this._cancelClose();
         this._closeTimer = setTimeout(() => this._setOpen(false), this.closeDelay);
     }
 
@@ -241,6 +242,7 @@ export class UiHoverCard extends LitElement {
 
     /** Called by `ui-hover-card-content` when the pointer leaves the card. */
     handleContentLeave() {
+        this._cancelClose();
         this._closeTimer = setTimeout(() => this._setOpen(false), this.closeDelay);
     }
 
