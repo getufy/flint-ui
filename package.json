@@ -19,7 +19,11 @@
     "build": "tsc && vite build",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build-coverage": "NODE_OPTIONS='--no-warnings' vitest run --project components --coverage"
+    "build-coverage": "NODE_OPTIONS='--no-warnings' vitest run --project components --coverage",
+    "gen:react": "tsx scripts/generate-react-wrappers.ts",
+    "homepage:dev": "vite --config homepage/vite.config.ts",
+    "homepage:build": "vite build --config homepage/vite.config.ts",
+    "homepage:preview": "vite preview --config homepage/vite.config.ts"
   },
   "keywords": [
     "lit",
