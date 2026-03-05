@@ -262,6 +262,13 @@ export class UiItemSeparator extends LitElement {
             background: var(--ui-border-color, #e5e7eb);
         }
     `;
+
+    connectedCallback() {
+        super.connectedCallback();
+        if (!this.hasAttribute('role')) this.setAttribute('role', 'separator');
+        if (!this.hasAttribute('aria-orientation')) this.setAttribute('aria-orientation', 'horizontal');
+    }
+
     render() { return html``; }
 }
 

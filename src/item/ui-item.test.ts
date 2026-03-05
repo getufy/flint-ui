@@ -81,7 +81,7 @@ describe('ui-item — variant prop', () => {
         expect(el.getAttribute('variant')).toBe('outline');
     });
 
-    it('reflects back to default variant', async () => {
+    it('reflects variant change from outline to muted', async () => {
         const el = await fixture<UiItem>(html`<ui-item variant="outline"></ui-item>`);
         el.variant = 'muted';
         await el.updateComplete;
@@ -165,6 +165,21 @@ describe('ui-item-separator — rendering', () => {
     it('has a shadow root', async () => {
         const el = await fixture<UiItemSeparator>(html`<ui-item-separator></ui-item-separator>`);
         expect(el.shadowRoot).not.toBeNull();
+    });
+
+    it('has role="separator"', async () => {
+        const el = await fixture<UiItemSeparator>(html`<ui-item-separator></ui-item-separator>`);
+        expect(el.getAttribute('role')).toBe('separator');
+    });
+
+    it('has aria-orientation="horizontal"', async () => {
+        const el = await fixture<UiItemSeparator>(html`<ui-item-separator></ui-item-separator>`);
+        expect(el.getAttribute('aria-orientation')).toBe('horizontal');
+    });
+
+    it('renders empty shadow DOM (no slot, purely decorative)', async () => {
+        const el = await fixture<UiItemSeparator>(html`<ui-item-separator></ui-item-separator>`);
+        expect(el.shadowRoot!.querySelector('slot')).toBeNull();
     });
 });
 
@@ -574,6 +589,57 @@ describe('ui-item — corner cases', () => {
             await el.updateComplete;
             expect(el.getAttribute('variant')).toBe(v);
         }
+    });
+
+    it('ui-item size="default" reflects attribute at init', async () => {
+        const el = await fixture<UiItem>(html`<ui-item></ui-item>`);
+        expect(el.size).toBe('default');
+        expect(el.getAttribute('size')).toBe('default');
+    });
+
+    it('ui-item variant changes via setAttribute', async () => {
+        const el = await fixture<UiItem>(html`<ui-item></ui-item>`);
+        el.setAttribute('variant', 'outline');
+        await el.updateComplete;
+        expect(el.variant).toBe('outline');
+    });
+
+    it('ui-item-group renders empty without error', async () => {
+        const el = await fixture<UiItemGroup>(html`<ui-item-group></ui-item-group>`);
+        expect(el).not.toBeNull();
+        expect(el.children.length).toBe(0);
+    });
+
+    it('ui-item-media slots an img in image variant', async () => {
+        const el = await fixture<UiItemMedia>(html`
+            <ui-item-media variant="image">
+                <img id="thumb" src="thumb.jpg" alt="thumb" />
+            </ui-item-media>
+        `);
+        await el.updateComplete;
+        expect(el.querySelector('#thumb')).not.toBeNull();
+        expect(el.shadowRoot!.querySelector('.media--image')).not.toBeNull();
+    });
+
+    it('full composition: header + media + content + actions + footer', async () => {
+        const el = await fixture<UiItem>(html`
+            <ui-item variant="outline">
+                <ui-item-header><img id="hdr" src="h.jpg" alt="h" /></ui-item-header>
+                <ui-item-media variant="icon"><span>ic</span></ui-item-media>
+                <ui-item-content>
+                    <ui-item-title>Full Item</ui-item-title>
+                    <ui-item-description>All parts.</ui-item-description>
+                </ui-item-content>
+                <ui-item-actions><button id="act">Go</button></ui-item-actions>
+                <ui-item-footer><span id="ftr">Footer</span></ui-item-footer>
+            </ui-item>
+        `);
+        await el.updateComplete;
+        expect(el.querySelector('ui-item-header')).not.toBeNull();
+        expect(el.querySelector('ui-item-media')).not.toBeNull();
+        expect(el.querySelector('ui-item-title')!.textContent!.trim()).toBe('Full Item');
+        expect(el.querySelector('#act')).not.toBeNull();
+        expect(el.querySelector('ui-item-footer')).not.toBeNull();
     });
 
     it('dynamically adding children to ui-item-group is reflected', async () => {
