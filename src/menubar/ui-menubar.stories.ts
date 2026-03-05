@@ -870,3 +870,199 @@ export const EmptyMenu: Story = {
         </ui-menubar>
     `),
 };
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*  Custom Label (aria-label)                                          */
+/* ─────────────────────────────────────────────────────────────────── */
+
+export const CustomLabel: Story = {
+    render: () => wrap(html`
+        <p style="margin-bottom: 16px; color: #64748b; font-size: 0.875rem;">
+            This menubar has <code>label="Application Menu"</code> — inspect the
+            <code>role="menubar"</code> div to see the custom <code>aria-label</code>.
+        </p>
+        <ui-menubar label="Application Menu">
+            <ui-menubar-menu>
+                <ui-menubar-trigger>File</ui-menubar-trigger>
+                <ui-menubar-content>
+                    <ui-menubar-item>New</ui-menubar-item>
+                    <ui-menubar-item>Open</ui-menubar-item>
+                    <ui-menubar-item>Save <ui-menubar-shortcut>⌘S</ui-menubar-shortcut></ui-menubar-item>
+                </ui-menubar-content>
+            </ui-menubar-menu>
+            <ui-menubar-menu>
+                <ui-menubar-trigger>Edit</ui-menubar-trigger>
+                <ui-menubar-content>
+                    <ui-menubar-item>Undo <ui-menubar-shortcut>⌘Z</ui-menubar-shortcut></ui-menubar-item>
+                    <ui-menubar-item>Redo <ui-menubar-shortcut>⇧⌘Z</ui-menubar-shortcut></ui-menubar-item>
+                </ui-menubar-content>
+            </ui-menubar-menu>
+        </ui-menubar>
+    `),
+    play: async ({ canvasElement }) => {
+        const bar = canvasElement.querySelector('ui-menubar') as UiMenubar;
+        const div = bar.shadowRoot!.querySelector('[role="menubar"]')!;
+        expect(div.getAttribute('aria-label')).toBe('Application Menu');
+    },
+};
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*  Disabled Menu                                                      */
+/* ─────────────────────────────────────────────────────────────────── */
+
+export const DisabledMenu: Story = {
+    render: () => wrap(html`
+        <p style="margin-bottom: 16px; color: #64748b; font-size: 0.875rem;">
+            The <strong>Edit</strong> menu is disabled. Keyboard navigation skips it.
+        </p>
+        <ui-menubar>
+            <ui-menubar-menu>
+                <ui-menubar-trigger>File</ui-menubar-trigger>
+                <ui-menubar-content>
+                    <ui-menubar-item>New <ui-menubar-shortcut>⌘N</ui-menubar-shortcut></ui-menubar-item>
+                    <ui-menubar-item>Open <ui-menubar-shortcut>⌘O</ui-menubar-shortcut></ui-menubar-item>
+                    <ui-menubar-item>Save <ui-menubar-shortcut>⌘S</ui-menubar-shortcut></ui-menubar-item>
+                </ui-menubar-content>
+            </ui-menubar-menu>
+            <ui-menubar-menu disabled>
+                <ui-menubar-trigger>Edit</ui-menubar-trigger>
+                <ui-menubar-content>
+                    <ui-menubar-item>Undo</ui-menubar-item>
+                    <ui-menubar-item>Redo</ui-menubar-item>
+                </ui-menubar-content>
+            </ui-menubar-menu>
+            <ui-menubar-menu>
+                <ui-menubar-trigger>View</ui-menubar-trigger>
+                <ui-menubar-content>
+                    <ui-menubar-item>Zoom In <ui-menubar-shortcut>⌘+</ui-menubar-shortcut></ui-menubar-item>
+                    <ui-menubar-item>Zoom Out <ui-menubar-shortcut>⌘-</ui-menubar-shortcut></ui-menubar-item>
+                </ui-menubar-content>
+            </ui-menubar-menu>
+        </ui-menubar>
+    `),
+    play: async ({ canvasElement }) => {
+        const triggers = getTriggers(canvasElement);
+        // Edit trigger should be disabled
+        expect(getTriggerButton(triggers[1]).disabled).toBe(true);
+        // File and View triggers should be enabled
+        expect(getTriggerButton(triggers[0]).disabled).toBe(false);
+        expect(getTriggerButton(triggers[2]).disabled).toBe(false);
+    },
+};
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*  Typeahead Jump                                                     */
+/* ─────────────────────────────────────────────────────────────────── */
+
+export const TypeaheadJump: Story = {
+    render: () => wrap(html`
+        <p style="margin-bottom: 16px; color: #64748b; font-size: 0.875rem;">
+            Open the File menu, then press <kbd>P</kbd> to jump to <strong>Print</strong>
+            or <kbd>N</kbd> to jump to <strong>New Tab</strong>.
+        </p>
+        <ui-menubar>
+            <ui-menubar-menu>
+                <ui-menubar-trigger>File</ui-menubar-trigger>
+                <ui-menubar-content>
+                    <ui-menubar-item>New Tab <ui-menubar-shortcut>⌘T</ui-menubar-shortcut></ui-menubar-item>
+                    <ui-menubar-item>New Window <ui-menubar-shortcut>⌘N</ui-menubar-shortcut></ui-menubar-item>
+                    <ui-menubar-item disabled>New Incognito Window</ui-menubar-item>
+                    <ui-menubar-separator></ui-menubar-separator>
+                    <ui-menubar-item>Print... <ui-menubar-shortcut>⌘P</ui-menubar-shortcut></ui-menubar-item>
+                    <ui-menubar-item>Save Page As...</ui-menubar-item>
+                </ui-menubar-content>
+            </ui-menubar-menu>
+        </ui-menubar>
+    `),
+    play: async ({ canvasElement }) => {
+        const triggers = getTriggers(canvasElement);
+        const content = getContent(canvasElement, 0);
+
+        // Open File menu
+        await userEvent.click(getTriggerButton(triggers[0]));
+        await waitFor(() => { expect(content.open).toBe(true); });
+
+        // Press 'p' — should jump to 'Print...'
+        await userEvent.keyboard('p');
+        await waitFor(() => {
+            const items = Array.from(canvasElement.querySelectorAll<HTMLElement & { highlighted: boolean }>('ui-menubar-item'));
+            const highlighted = items.find(i => i.highlighted);
+            expect(highlighted?.textContent?.trim().toLowerCase()).toMatch(/^p/);
+        });
+
+        getMenubar(canvasElement).closeAll();
+    },
+};
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*  Accessibility Demo                                                 */
+/* ─────────────────────────────────────────────────────────────────── */
+
+export const AccessibilityDemo: Story = {
+    render: () => wrap(html`
+        <p style="margin-bottom: 16px; color: #64748b; font-size: 0.875rem;">
+            ARIA roles and attributes: <code>role="menubar"</code>,
+            <code>role="menuitem"</code>, <code>aria-haspopup</code>,
+            <code>aria-expanded</code>, <code>aria-checked</code>,
+            <code>aria-disabled</code>.
+        </p>
+        <ui-menubar label="Demo Application">
+            <ui-menubar-menu>
+                <ui-menubar-trigger>File</ui-menubar-trigger>
+                <ui-menubar-content>
+                    <ui-menubar-item>New <ui-menubar-shortcut>⌘N</ui-menubar-shortcut></ui-menubar-item>
+                    <ui-menubar-item disabled>Save (disabled)</ui-menubar-item>
+                    <ui-menubar-separator></ui-menubar-separator>
+                    <ui-menubar-sub>
+                        <ui-menubar-sub-trigger>Share</ui-menubar-sub-trigger>
+                        <ui-menubar-sub-content>
+                            <ui-menubar-item>Email</ui-menubar-item>
+                            <ui-menubar-item>Messages</ui-menubar-item>
+                        </ui-menubar-sub-content>
+                    </ui-menubar-sub>
+                </ui-menubar-content>
+            </ui-menubar-menu>
+            <ui-menubar-menu>
+                <ui-menubar-trigger>View</ui-menubar-trigger>
+                <ui-menubar-content>
+                    <ui-menubar-checkbox-item checked>Show Toolbar</ui-menubar-checkbox-item>
+                    <ui-menubar-checkbox-item>Show Statusbar</ui-menubar-checkbox-item>
+                    <ui-menubar-separator></ui-menubar-separator>
+                    <ui-menubar-radio-group value="dark">
+                        <ui-menubar-radio-item value="light">Light</ui-menubar-radio-item>
+                        <ui-menubar-radio-item value="dark">Dark</ui-menubar-radio-item>
+                    </ui-menubar-radio-group>
+                </ui-menubar-content>
+            </ui-menubar-menu>
+        </ui-menubar>
+    `),
+    play: async ({ canvasElement }) => {
+        const bar = canvasElement.querySelector('ui-menubar') as UiMenubar;
+        const menubarDiv = bar.shadowRoot!.querySelector('[role="menubar"]')!;
+
+        // Verify aria-label
+        expect(menubarDiv.getAttribute('aria-label')).toBe('Demo Application');
+
+        // Verify triggers have correct ARIA
+        const triggers = getTriggers(canvasElement);
+        const btn0 = getTriggerButton(triggers[0]);
+        expect(btn0.getAttribute('role')).toBe('menuitem');
+        expect(btn0.getAttribute('aria-haspopup')).toBe('true');
+        expect(btn0.getAttribute('aria-expanded')).toBe('false');
+
+        // Open File menu and verify aria-expanded updates
+        await userEvent.click(btn0);
+        await waitFor(() => {
+            expect(getContent(canvasElement, 0).open).toBe(true);
+        });
+        await triggers[0].updateComplete;
+        expect(getTriggerButton(triggers[0]).getAttribute('aria-expanded')).toBe('true');
+
+        // Verify disabled item has aria-disabled
+        const disabledItem = canvasElement.querySelector('ui-menubar-item[disabled]') as HTMLElement;
+        const disabledDiv = disabledItem.shadowRoot!.querySelector('.item')!;
+        expect(disabledDiv.getAttribute('aria-disabled')).toBe('true');
+
+        bar.closeAll();
+    },
+};

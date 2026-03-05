@@ -1,5 +1,5 @@
 import { LitElement, html, css, nothing, type PropertyValues } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
 
 /* ─────────────────────────────────────────────────────────────────── */
 /*  ui-menubar-shortcut                                               */
@@ -90,6 +90,8 @@ export class UiMenubarItem extends LitElement {
     @property({ reflect: true, type: Boolean }) disabled = false;
     @property({ reflect: true, type: Boolean }) highlighted = false;
     @property({ reflect: true, type: Boolean }) inset = false;
+    /** Explicit value for the select event. Falls back to label text (excludes shortcut). */
+    @property({ reflect: true }) value = '';
 
     static styles = css`
         :host { display: block; }
@@ -126,12 +128,21 @@ export class UiMenubarItem extends LitElement {
         }
     `;
 
+    /** Returns label text from direct text nodes only (excludes shortcut element content). */
+    private _labelText(): string {
+        return Array.from(this.childNodes)
+            .filter(n => n.nodeType === Node.TEXT_NODE)
+            .map(n => n.textContent ?? '')
+            .join('')
+            .trim();
+    }
+
     /** Activate the item — fires select event. */
     select() {
         if (this.disabled) return;
         this.dispatchEvent(new CustomEvent('ui-menubar-item-select', {
             bubbles: true, composed: true,
-            detail: { value: this.textContent?.trim() ?? '' },
+            detail: { value: this.value || this._labelText() },
         }));
     }
 
@@ -154,6 +165,8 @@ export class UiMenubarCheckboxItem extends LitElement {
     @property({ reflect: true, type: Boolean }) checked = false;
     @property({ reflect: true, type: Boolean }) disabled = false;
     @property({ reflect: true, type: Boolean }) highlighted = false;
+    /** Explicit value for the change event. Falls back to label text (excludes shortcut). */
+    @property({ reflect: true }) value = '';
 
     static styles = css`
         :host { display: block; }
@@ -198,12 +211,20 @@ export class UiMenubarCheckboxItem extends LitElement {
         }
     `;
 
+    private _labelText(): string {
+        return Array.from(this.childNodes)
+            .filter(n => n.nodeType === Node.TEXT_NODE)
+            .map(n => n.textContent ?? '')
+            .join('')
+            .trim();
+    }
+
     toggle() {
         if (this.disabled) return;
         this.checked = !this.checked;
         this.dispatchEvent(new CustomEvent('ui-menubar-checkbox-change', {
             bubbles: true, composed: true,
-            detail: { checked: this.checked, value: this.textContent?.trim() ?? '' },
+            detail: { checked: this.checked, value: this.value || this._labelText() },
         }));
     }
 
@@ -360,6 +381,7 @@ export class UiMenubarRadioGroup extends LitElement {
 
 /**
  * The dropdown panel of a sub-menu. Positioned to the right of the trigger.
+ * Auto-flips left when the panel would overflow the viewport edge.
  */
 @customElement('ui-menubar-sub-content')
 export class UiMenubarSubContent extends LitElement {
@@ -391,6 +413,22 @@ export class UiMenubarSubContent extends LitElement {
         }
     `;
 
+    override updated(changed: PropertyValues) {
+        if (changed.has('open') && this.open) {
+            // Flip left if overflowing viewport right edge
+            requestAnimationFrame(() => {
+                const rect = this.getBoundingClientRect();
+                if (rect.right > window.innerWidth) {
+                    this.style.left = 'auto';
+                    this.style.right = '100%';
+                } else {
+                    this.style.left = '';
+                    this.style.right = '';
+                }
+            });
+        }
+    }
+
     render() {
         return html`<div class="panel" role="menu"><slot></slot></div>`;
     }
@@ -408,6 +446,8 @@ export class UiMenubarSubTrigger extends LitElement {
     @property({ reflect: true, type: Boolean }) highlighted = false;
     @property({ reflect: true, type: Boolean }) disabled = false;
     @property({ reflect: true, type: Boolean }) inset = false;
+    /** Set by the parent `ui-menubar-sub` to reflect open state for aria-expanded. */
+    @property({ reflect: true, type: Boolean }) expanded = false;
 
     static styles = css`
         :host { display: block; }
@@ -451,7 +491,11 @@ export class UiMenubarSubTrigger extends LitElement {
 
     render() {
         return html`
-            <div class="item" role="menuitem" aria-haspopup="true" aria-disabled=${this.disabled}>
+            <div class="item"
+                role="menuitem"
+                aria-haspopup="menu"
+                aria-expanded=${this.expanded}
+                aria-disabled=${this.disabled}>
                 <slot></slot>
                 <svg class="arrow" viewBox="0 0 14 14" fill="none">
                     <path d="M5 3L9 7L5 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -488,19 +532,23 @@ export class UiMenubarSub extends LitElement {
         if (this._closeTimer) { clearTimeout(this._closeTimer); this._closeTimer = null; }
         this._openTimer = setTimeout(() => {
             this._open = true;
-            this._syncContent();
-            const trigger = this.querySelector<UiMenubarSubTrigger>(':scope > ui-menubar-sub-trigger');
-            if (trigger) trigger.highlighted = true;
+            this._syncState();
         }, 80);
+    }
+
+    /** Opens the sub-menu immediately without the hover delay. Use for keyboard interactions. */
+    showImmediate() {
+        if (this._openTimer) { clearTimeout(this._openTimer); this._openTimer = null; }
+        if (this._closeTimer) { clearTimeout(this._closeTimer); this._closeTimer = null; }
+        this._open = true;
+        this._syncState();
     }
 
     hide() {
         if (this._openTimer) { clearTimeout(this._openTimer); this._openTimer = null; }
         this._closeTimer = setTimeout(() => {
             this._open = false;
-            this._syncContent();
-            const trigger = this.querySelector<UiMenubarSubTrigger>(':scope > ui-menubar-sub-trigger');
-            if (trigger) trigger.highlighted = false;
+            this._syncState();
         }, 60);
     }
 
@@ -508,14 +556,17 @@ export class UiMenubarSub extends LitElement {
         if (this._openTimer) { clearTimeout(this._openTimer); this._openTimer = null; }
         if (this._closeTimer) { clearTimeout(this._closeTimer); this._closeTimer = null; }
         this._open = false;
-        this._syncContent();
-        const trigger = this.querySelector<UiMenubarSubTrigger>(':scope > ui-menubar-sub-trigger');
-        if (trigger) trigger.highlighted = false;
+        this._syncState();
     }
 
-    private _syncContent() {
+    private _syncState() {
         const content = this.querySelector<UiMenubarSubContent>(':scope > ui-menubar-sub-content');
         if (content) content.open = this._open;
+        const trigger = this.querySelector<UiMenubarSubTrigger>(':scope > ui-menubar-sub-trigger');
+        if (trigger) {
+            trigger.highlighted = this._open;
+            trigger.expanded = this._open;
+        }
     }
 
     private _handleMouseEnter = () => { this.show(); };
@@ -611,26 +662,29 @@ export class UiMenubarContent extends LitElement {
     /** Handle keyboard navigation inside the content panel. */
     handleKeyDown(e: KeyboardEvent) {
         const items = this._getNavigableItems();
-        if (items.length === 0) return;
 
         switch (e.key) {
             case 'ArrowDown': {
                 e.preventDefault();
+                if (items.length === 0) return;
                 this._highlightItem(this._highlightIndex + 1);
                 break;
             }
             case 'ArrowUp': {
                 e.preventDefault();
+                if (items.length === 0) return;
                 this._highlightItem(this._highlightIndex - 1);
                 break;
             }
             case 'Home': {
                 e.preventDefault();
+                if (items.length === 0) return;
                 this._highlightItem(0);
                 break;
             }
             case 'End': {
                 e.preventDefault();
+                if (items.length === 0) return;
                 this._highlightItem(items.length - 1);
                 break;
             }
@@ -649,7 +703,7 @@ export class UiMenubarContent extends LitElement {
                         (target as UiMenubarRadioItem).select();
                     } else if (target.tagName === 'UI-MENUBAR-SUB-TRIGGER') {
                         const sub = target.closest('ui-menubar-sub') as UiMenubarSub | null;
-                        if (sub) sub.show();
+                        if (sub) sub.showImmediate();
                     }
                 }
                 break;
@@ -662,19 +716,17 @@ export class UiMenubarContent extends LitElement {
                         e.preventDefault();
                         const sub = target.closest('ui-menubar-sub') as UiMenubarSub | null;
                         if (sub) {
-                            sub.show();
-                            // Highlight first item in sub-content
-                            setTimeout(() => {
-                                const subContent = sub.querySelector<UiMenubarSubContent>('ui-menubar-sub-content');
-                                if (subContent) {
-                                    const subItems = Array.from(subContent.querySelectorAll<HTMLElement>(
-                                        'ui-menubar-item:not([disabled]),ui-menubar-checkbox-item:not([disabled]),ui-menubar-radio-item:not([disabled]),ui-menubar-sub-trigger:not([disabled])'
-                                    ));
-                                    if (subItems.length > 0) {
-                                        (subItems[0] as HTMLElement & { highlighted: boolean }).highlighted = true;
-                                    }
+                            sub.showImmediate();
+                            // Highlight first item in sub-content immediately
+                            const subContent = sub.querySelector<UiMenubarSubContent>('ui-menubar-sub-content');
+                            if (subContent) {
+                                const subItems = Array.from(subContent.querySelectorAll<HTMLElement>(
+                                    'ui-menubar-item:not([disabled]),ui-menubar-checkbox-item:not([disabled]),ui-menubar-radio-item:not([disabled]),ui-menubar-sub-trigger:not([disabled])'
+                                ));
+                                if (subItems.length > 0) {
+                                    (subItems[0] as HTMLElement & { highlighted: boolean }).highlighted = true;
                                 }
-                            }, 100);
+                            }
                         }
                         return; // Don't propagate to menubar for menu switching
                     }
@@ -682,9 +734,9 @@ export class UiMenubarContent extends LitElement {
                 break;
             }
             case 'ArrowLeft': {
-                // Close sub-menu if we're in one
-                const activeSub = this.querySelector<UiMenubarSub>('ui-menubar-sub[open]') ??
-                    Array.from(this.querySelectorAll<UiMenubarSub>('ui-menubar-sub')).find(s => s.open);
+                // Close sub-menu if one is open
+                const activeSub = Array.from(this.querySelectorAll<UiMenubarSub>('ui-menubar-sub'))
+                    .find(s => s.open);
                 if (activeSub) {
                     e.preventDefault();
                     activeSub.hideImmediate();
@@ -696,6 +748,23 @@ export class UiMenubarContent extends LitElement {
                 e.preventDefault();
                 this._requestClose();
                 break;
+            }
+            default: {
+                // Typeahead: jump to first item starting with the pressed character
+                if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+                    if (items.length === 0) return;
+                    e.preventDefault();
+                    const char = e.key.toLowerCase();
+                    const start = this._highlightIndex >= 0 ? this._highlightIndex + 1 : 0;
+                    for (let i = 0; i < items.length; i++) {
+                        const idx = (start + i) % items.length;
+                        const text = items[idx].textContent?.trim().toLowerCase() ?? '';
+                        if (text.startsWith(char)) {
+                            this._highlightItem(idx);
+                            break;
+                        }
+                    }
+                }
             }
         }
     }
@@ -770,6 +839,17 @@ export class UiMenubarContent extends LitElement {
 @customElement('ui-menubar-trigger')
 export class UiMenubarTrigger extends LitElement {
     @property({ reflect: true, type: Boolean }) active = false;
+    @property({ reflect: true, type: Boolean }) disabled = false;
+
+    /**
+     * Managed by the parent `ui-menubar` to implement roving tabindex.
+     * Do not set directly.
+     */
+    @state() private _focusable = false;
+
+    setFocusable(v: boolean) {
+        this._focusable = v;
+    }
 
     static styles = css`
         :host {
@@ -805,6 +885,13 @@ export class UiMenubarTrigger extends LitElement {
             outline: 2px solid var(--ui-primary-color, #3b82f6);
             outline-offset: -2px;
         }
+
+        .trigger:disabled,
+        :host([disabled]) .trigger {
+            opacity: 0.5;
+            cursor: default;
+            pointer-events: none;
+        }
     `;
 
     render() {
@@ -813,7 +900,8 @@ export class UiMenubarTrigger extends LitElement {
                 role="menuitem"
                 aria-haspopup="true"
                 aria-expanded=${this.active}
-                tabindex=${this.active ? '0' : '-1'}>
+                ?disabled=${this.disabled}
+                tabindex=${this._focusable ? '0' : '-1'}>
                 <slot></slot>
             </button>
         `;
@@ -829,6 +917,9 @@ export class UiMenubarTrigger extends LitElement {
  */
 @customElement('ui-menubar-menu')
 export class UiMenubarMenu extends LitElement {
+    /** Disables this menu: the trigger is non-interactive and keyboard nav skips it. */
+    @property({ reflect: true, type: Boolean }) disabled = false;
+
     static styles = css`
         :host {
             display: inline-block;
@@ -844,7 +935,15 @@ export class UiMenubarMenu extends LitElement {
         return this.querySelector<UiMenubarContent>(':scope > ui-menubar-content');
     }
 
+    override updated(changed: PropertyValues) {
+        if (changed.has('disabled')) {
+            const t = this.trigger;
+            if (t) t.disabled = this.disabled;
+        }
+    }
+
     open() {
+        if (this.disabled) return;
         const trigger = this.trigger;
         const content = this.content;
         if (trigger) trigger.active = true;
@@ -893,6 +992,9 @@ export class UiMenubar extends LitElement {
     /** Which menu (by index) is currently open. -1 = all closed. */
     private _activeIndex = -1;
 
+    /** Accessible label for the menubar region. Defaults to "Menu bar". */
+    @property({ reflect: true }) label = '';
+
     static styles = css`
         :host {
             display: inline-flex;
@@ -906,18 +1008,42 @@ export class UiMenubar extends LitElement {
         }
     `;
 
+    /** Index of the currently open menu, or -1 if all closed. */
+    get activeIndex(): number { return this._activeIndex; }
+
     private _getMenus(): UiMenubarMenu[] {
         return Array.from(this.querySelectorAll<UiMenubarMenu>(':scope > ui-menubar-menu'));
     }
 
-    /** Open a menu by index and close others. */
+    /**
+     * Updates the roving tabindex so exactly one trigger button is reachable via Tab.
+     * The focusable trigger is the active (open) one, or the first non-disabled one when all closed.
+     */
+    private _updateTabFocus() {
+        const menus = this._getMenus();
+        const firstEnabled = menus.findIndex(m => !m.disabled);
+        menus.forEach((menu, i) => {
+            const trigger = menu.trigger;
+            if (trigger) {
+                trigger.setFocusable(
+                    this._activeIndex === -1
+                        ? i === firstEnabled
+                        : i === this._activeIndex
+                );
+            }
+        });
+    }
+
+    /** Open a menu by index and close others. Skips disabled menus. */
     private _openMenu(index: number) {
         const menus = this._getMenus();
+        if (menus[index]?.disabled) return;
         menus.forEach((menu, i) => {
             if (i === index) menu.open();
             else menu.close();
         });
         this._activeIndex = index;
+        this._updateTabFocus();
     }
 
     /** Close all menus. */
@@ -925,14 +1051,19 @@ export class UiMenubar extends LitElement {
         const menus = this._getMenus();
         menus.forEach(menu => menu.close());
         this._activeIndex = -1;
+        this._updateTabFocus();
     }
 
-    /** Navigate to the next or previous menu. */
+    /** Navigate to the next or previous menu, skipping disabled menus. */
     private _navigate(delta: number) {
         const menus = this._getMenus();
         if (menus.length === 0) return;
-        const newIndex = ((this._activeIndex + delta) % menus.length + menus.length) % menus.length;
-        this._openMenu(newIndex);
+        let newIndex = this._activeIndex;
+        for (let i = 0; i < menus.length; i++) {
+            newIndex = ((newIndex + delta) % menus.length + menus.length) % menus.length;
+            if (!menus[newIndex].disabled) break;
+        }
+        if (!menus[newIndex].disabled) this._openMenu(newIndex);
     }
 
     /** Handle trigger clicks */
@@ -941,7 +1072,7 @@ export class UiMenubar extends LitElement {
         if (!trigger) return;
 
         const menu = trigger.closest('ui-menubar-menu') as UiMenubarMenu | null;
-        if (!menu) return;
+        if (!menu || menu.disabled) return;
 
         const menus = this._getMenus();
         const index = menus.indexOf(menu);
@@ -962,7 +1093,7 @@ export class UiMenubar extends LitElement {
         if (!trigger) return;
 
         const menu = trigger.closest('ui-menubar-menu') as UiMenubarMenu | null;
-        if (!menu) return;
+        if (!menu || menu.disabled) return;
 
         const menus = this._getMenus();
         const index = menus.indexOf(menu);
@@ -978,10 +1109,9 @@ export class UiMenubar extends LitElement {
         switch (e.key) {
             case 'ArrowRight': {
                 if (this._activeIndex === -1) return;
-                // If inside a sub-menu, let the sub handle it first
+                // If highlighted item is a sub-trigger, let the content handle it first
                 const activeContent = menus[this._activeIndex]?.content;
                 if (activeContent) {
-                    // Check if the highlighted item is a sub-trigger
                     const items = Array.from(activeContent.querySelectorAll<HTMLElement>(
                         'ui-menubar-item, ui-menubar-checkbox-item, ui-menubar-radio-item, ui-menubar-sub-trigger'
                     ));
@@ -1000,7 +1130,8 @@ export class UiMenubar extends LitElement {
                 // Check if inside a sub-menu first
                 const activeContent2 = menus[this._activeIndex]?.content;
                 if (activeContent2) {
-                    const openSub = Array.from(activeContent2.querySelectorAll<UiMenubarSub>('ui-menubar-sub')).find(s => s.open);
+                    const openSub = Array.from(activeContent2.querySelectorAll<UiMenubarSub>('ui-menubar-sub'))
+                        .find(s => s.open);
                     if (openSub) {
                         activeContent2.handleKeyDown(e);
                         return;
@@ -1012,10 +1143,12 @@ export class UiMenubar extends LitElement {
             }
             case 'ArrowDown': {
                 if (this._activeIndex === -1) {
-                    // Open the first menu
+                    // Open the first non-disabled menu
                     e.preventDefault();
-                    this._openMenu(0);
-                    const firstContent = menus[0]?.content;
+                    const firstEnabled = menus.findIndex(m => !m.disabled);
+                    if (firstEnabled === -1) return;
+                    this._openMenu(firstEnabled);
+                    const firstContent = menus[firstEnabled]?.content;
                     if (firstContent) firstContent.handleKeyDown(e);
                 } else {
                     const content = menus[this._activeIndex]?.content;
@@ -1057,6 +1190,20 @@ export class UiMenubar extends LitElement {
                 }
                 break;
             }
+            case 'Tab': {
+                // Close open menu but let Tab move focus naturally
+                if (this._activeIndex >= 0) {
+                    this.closeAll();
+                }
+                break;
+            }
+            default: {
+                // Typeahead — delegate printable characters to the active content
+                if (this._activeIndex >= 0 && e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+                    const content = menus[this._activeIndex]?.content;
+                    if (content) content.handleKeyDown(e);
+                }
+            }
         }
     };
 
@@ -1080,18 +1227,6 @@ export class UiMenubar extends LitElement {
         }
     };
 
-    /** Ensure first trigger has tabindex=0 for roving tabindex */
-    private _initTabindex() {
-        const menus = this._getMenus();
-        menus.forEach((menu, i) => {
-            const trigger = menu.trigger;
-            if (trigger) {
-                const btn = trigger.shadowRoot?.querySelector('button');
-                if (btn) btn.tabIndex = i === 0 ? 0 : -1;
-            }
-        });
-    }
-
     connectedCallback() {
         super.connectedCallback();
         this.addEventListener('click', this._handleTriggerClick);
@@ -1110,15 +1245,15 @@ export class UiMenubar extends LitElement {
         document.removeEventListener('click', this._handleOutsideClick, true);
     }
 
-    private _onSlotChange = () => { this._initTabindex(); };
+    private _onSlotChange = () => { this._updateTabFocus(); };
 
     override firstUpdated() {
-        this._initTabindex();
+        this._updateTabFocus();
     }
 
     render() {
         return html`
-            <div part="bar" role="menubar" aria-label="Menu bar">
+            <div part="bar" role="menubar" aria-label=${this.label || 'Menu bar'}>
                 <slot @slotchange=${this._onSlotChange}></slot>
             </div>
         `;

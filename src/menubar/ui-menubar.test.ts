@@ -1292,3 +1292,472 @@ describe('UiMenubar — radio group slotchange', () => {
         expect(item2.checked).toBe(true);
     });
 });
+
+/* ═══════════════════════════════════════════════════════════════════ */
+/*  NEW TESTS — Improvements                                           */
+/* ═══════════════════════════════════════════════════════════════════ */
+
+describe('UiMenubar — roving tabindex', () => {
+    it('first trigger has tabIndex=0, others have -1 on initial render', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+        expect(getTriggerButton(getTrigger(menus[0])).tabIndex).toBe(0);
+        expect(getTriggerButton(getTrigger(menus[1])).tabIndex).toBe(-1);
+        expect(getTriggerButton(getTrigger(menus[2])).tabIndex).toBe(-1);
+    });
+
+    it('active trigger gets tabIndex=0 while open', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+
+        getTriggerButton(getTrigger(menus[1])).click();
+        await settle(bar);
+
+        expect(getTriggerButton(getTrigger(menus[0])).tabIndex).toBe(-1);
+        expect(getTriggerButton(getTrigger(menus[1])).tabIndex).toBe(0);
+    });
+
+    it('first trigger retains tabIndex=0 after open/close cycle', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+        const btn0 = getTriggerButton(getTrigger(menus[0]));
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+        expect(btn0.tabIndex).toBe(0);
+
+        bar.closeAll();
+        await settle(bar);
+        expect(btn0.tabIndex).toBe(0);
+        expect(getTriggerButton(getTrigger(menus[1])).tabIndex).toBe(-1);
+    });
+});
+
+describe('UiMenubar — select event value excludes shortcut text', () => {
+    it('item select event value is label only, not shortcut', async () => {
+        const bar = await fixture<UiMenubar>(html`
+            <ui-menubar>
+                <ui-menubar-menu>
+                    <ui-menubar-trigger>File</ui-menubar-trigger>
+                    <ui-menubar-content>
+                        <ui-menubar-item>New Tab <ui-menubar-shortcut>⌘T</ui-menubar-shortcut></ui-menubar-item>
+                    </ui-menubar-content>
+                </ui-menubar-menu>
+            </ui-menubar>
+        `);
+        await settle(bar);
+        const menus = getMenus(bar);
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+
+        const spy = vi.fn();
+        bar.addEventListener('ui-menubar-item-select', spy);
+        bar.querySelector<UiMenubarItem>('ui-menubar-item')!.select();
+        await settle(bar);
+
+        expect(spy.mock.calls[0][0].detail.value).toBe('New Tab');
+    });
+
+    it('explicit value prop takes precedence over label text', async () => {
+        const bar = await fixture<UiMenubar>(html`
+            <ui-menubar>
+                <ui-menubar-menu>
+                    <ui-menubar-trigger>File</ui-menubar-trigger>
+                    <ui-menubar-content>
+                        <ui-menubar-item value="new-tab">New Tab</ui-menubar-item>
+                    </ui-menubar-content>
+                </ui-menubar-menu>
+            </ui-menubar>
+        `);
+        await settle(bar);
+        const menus = getMenus(bar);
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+
+        const spy = vi.fn();
+        bar.addEventListener('ui-menubar-item-select', spy);
+        bar.querySelector<UiMenubarItem>('ui-menubar-item')!.select();
+        await settle(bar);
+
+        expect(spy.mock.calls[0][0].detail.value).toBe('new-tab');
+    });
+
+    it('checkbox change event value excludes shortcut text', async () => {
+        const bar = await fixture<UiMenubar>(html`
+            <ui-menubar>
+                <ui-menubar-menu>
+                    <ui-menubar-trigger>View</ui-menubar-trigger>
+                    <ui-menubar-content>
+                        <ui-menubar-checkbox-item>Show Bar <ui-menubar-shortcut>⌘B</ui-menubar-shortcut></ui-menubar-checkbox-item>
+                    </ui-menubar-content>
+                </ui-menubar-menu>
+            </ui-menubar>
+        `);
+        await settle(bar);
+
+        const spy = vi.fn();
+        bar.addEventListener('ui-menubar-checkbox-change', spy);
+        bar.querySelector<UiMenubarCheckboxItem>('ui-menubar-checkbox-item')!.toggle();
+        await settle(bar);
+
+        expect(spy.mock.calls[0][0].detail.value).toBe('Show Bar');
+    });
+});
+
+describe('UiMenubar — label prop', () => {
+    it('sets aria-label on the menubar div', async () => {
+        const bar = await fixture<UiMenubar>(html`
+            <ui-menubar label="Application Menu">
+                <ui-menubar-menu>
+                    <ui-menubar-trigger>File</ui-menubar-trigger>
+                    <ui-menubar-content><ui-menubar-item>New</ui-menubar-item></ui-menubar-content>
+                </ui-menubar-menu>
+            </ui-menubar>
+        `);
+        await settle(bar);
+        const div = bar.shadowRoot!.querySelector('[role="menubar"]')!;
+        expect(div.getAttribute('aria-label')).toBe('Application Menu');
+    });
+
+    it('defaults to "Menu bar" when label is not set', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const div = bar.shadowRoot!.querySelector('[role="menubar"]')!;
+        expect(div.getAttribute('aria-label')).toBe('Menu bar');
+    });
+});
+
+describe('UiMenubar — activeIndex getter', () => {
+    it('returns -1 when all closed', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        expect(bar.activeIndex).toBe(-1);
+    });
+
+    it('returns correct index when a menu is open', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+        getTriggerButton(getTrigger(menus[1])).click();
+        await settle(bar);
+        expect(bar.activeIndex).toBe(1);
+    });
+
+    it('returns -1 after closeAll', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+        bar.closeAll();
+        await settle(bar);
+        expect(bar.activeIndex).toBe(-1);
+    });
+});
+
+describe('UiMenubar — Tab key', () => {
+    it('Tab while menu is open closes it', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+        expect(getContent(menus[0]).open).toBe(true);
+
+        fireKeyDown(bar, 'Tab');
+        await settle(bar);
+        expect(getContent(menus[0]).open).toBe(false);
+    });
+
+    it('Tab when no menu is open is a no-op', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        // Should not throw
+        fireKeyDown(bar, 'Tab');
+        await settle(bar);
+        expect(bar.activeIndex).toBe(-1);
+    });
+});
+
+describe('UiMenubar — typeahead', () => {
+    it('pressing a letter highlights the first matching item', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+        const content = getContent(menus[0]);
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+
+        // Press 'p' — should jump to 'Print'
+        bar.dispatchEvent(new KeyboardEvent('keydown', { key: 'p', bubbles: true, composed: true }));
+        await settle(bar);
+
+        const highlighted = getHighlighted(content);
+        expect(highlighted?.textContent?.trim().toLowerCase()).toMatch(/^p/);
+    });
+
+    it('typeahead wraps around from current highlight position', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+        const content = getContent(menus[0]);
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+
+        // End → highlight 'Print', then 'n' should find 'New Tab' (wraps)
+        fireKeyDown(bar, 'End');
+        await settle(bar);
+        bar.dispatchEvent(new KeyboardEvent('keydown', { key: 'n', bubbles: true, composed: true }));
+        await settle(bar);
+
+        const highlighted = getHighlighted(content);
+        expect(highlighted?.textContent?.trim().toLowerCase()).toMatch(/^n/);
+    });
+
+    it('typeahead is case-insensitive', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+        const content = getContent(menus[0]);
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+
+        bar.dispatchEvent(new KeyboardEvent('keydown', { key: 'P', bubbles: true, composed: true }));
+        await settle(bar);
+
+        const highlighted = getHighlighted(content);
+        expect(highlighted?.textContent?.trim().toLowerCase()).toMatch(/^p/);
+    });
+});
+
+describe('UiMenubarSub — showImmediate', () => {
+    it('showImmediate opens sub without delay', async () => {
+        const bar = await fixture<UiMenubar>(SUB_FIXTURE);
+        await settle(bar);
+        const sub = bar.querySelector<UiMenubarSub>('ui-menubar-sub')!;
+
+        sub.showImmediate();
+        // No await — should be synchronous
+        expect(sub.open).toBe(true);
+        const subContent = bar.querySelector<UiMenubarSubContent>('ui-menubar-sub-content')!;
+        expect(subContent.open).toBe(true);
+    });
+
+    it('showImmediate cancels any pending timers', async () => {
+        const bar = await fixture<UiMenubar>(SUB_FIXTURE);
+        await settle(bar);
+        const sub = bar.querySelector<UiMenubarSub>('ui-menubar-sub')!;
+
+        sub.show(); // queues 80ms timer
+        sub.showImmediate(); // should cancel and open immediately
+        expect(sub.open).toBe(true);
+    });
+
+    it('ArrowRight on highlighted sub-trigger opens sub immediately', async () => {
+        const bar = await fixture<UiMenubar>(SUB_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+
+        // Navigate to 'New', then 'Share' (sub-trigger)
+        fireKeyDown(bar, 'ArrowDown');
+        await settle(bar);
+        fireKeyDown(bar, 'ArrowDown');
+        await settle(bar);
+
+        const content = getContent(menus[0]);
+        const highlighted = getHighlighted(content);
+        expect(highlighted?.tagName).toBe('UI-MENUBAR-SUB-TRIGGER');
+
+        // ArrowRight should open immediately (no timer)
+        fireKeyDown(bar, 'ArrowRight');
+        const sub = bar.querySelector<UiMenubarSub>('ui-menubar-sub')!;
+        expect(sub.open).toBe(true);
+    });
+});
+
+describe('UiMenubarSubTrigger — aria-expanded', () => {
+    it('has aria-expanded=false when sub is closed', async () => {
+        const bar = await fixture<UiMenubar>(SUB_FIXTURE);
+        await settle(bar);
+        const subTrigger = bar.querySelector<UiMenubarSubTrigger>('ui-menubar-sub-trigger')!;
+        await subTrigger.updateComplete;
+        const div = subTrigger.shadowRoot!.querySelector('.item')!;
+        expect(div.getAttribute('aria-expanded')).toBe('false');
+    });
+
+    it('has aria-expanded=true when sub is open', async () => {
+        const bar = await fixture<UiMenubar>(SUB_FIXTURE);
+        await settle(bar);
+        const sub = bar.querySelector<UiMenubarSub>('ui-menubar-sub')!;
+        const subTrigger = bar.querySelector<UiMenubarSubTrigger>('ui-menubar-sub-trigger')!;
+
+        sub.showImmediate();
+        await subTrigger.updateComplete;
+        const div = subTrigger.shadowRoot!.querySelector('.item')!;
+        expect(div.getAttribute('aria-expanded')).toBe('true');
+    });
+
+    it('aria-expanded resets to false after hideImmediate', async () => {
+        const bar = await fixture<UiMenubar>(SUB_FIXTURE);
+        await settle(bar);
+        const sub = bar.querySelector<UiMenubarSub>('ui-menubar-sub')!;
+        const subTrigger = bar.querySelector<UiMenubarSubTrigger>('ui-menubar-sub-trigger')!;
+
+        sub.showImmediate();
+        sub.hideImmediate();
+        await subTrigger.updateComplete;
+        const div = subTrigger.shadowRoot!.querySelector('.item')!;
+        expect(div.getAttribute('aria-expanded')).toBe('false');
+    });
+
+    it('inset attribute reflects on sub-trigger', async () => {
+        const bar = await fixture<UiMenubar>(html`
+            <ui-menubar>
+                <ui-menubar-menu>
+                    <ui-menubar-trigger>File</ui-menubar-trigger>
+                    <ui-menubar-content>
+                        <ui-menubar-sub>
+                            <ui-menubar-sub-trigger inset>Share</ui-menubar-sub-trigger>
+                            <ui-menubar-sub-content><ui-menubar-item>Email</ui-menubar-item></ui-menubar-sub-content>
+                        </ui-menubar-sub>
+                    </ui-menubar-content>
+                </ui-menubar-menu>
+            </ui-menubar>
+        `);
+        await settle(bar);
+        const subTrigger = bar.querySelector<UiMenubarSubTrigger>('ui-menubar-sub-trigger')!;
+        expect(subTrigger.hasAttribute('inset')).toBe(true);
+        expect(subTrigger.inset).toBe(true);
+    });
+});
+
+describe('UiMenubarMenu — disabled', () => {
+    const DISABLED_FIXTURE = html`
+        <ui-menubar>
+            <ui-menubar-menu>
+                <ui-menubar-trigger>File</ui-menubar-trigger>
+                <ui-menubar-content><ui-menubar-item>New</ui-menubar-item></ui-menubar-content>
+            </ui-menubar-menu>
+            <ui-menubar-menu disabled>
+                <ui-menubar-trigger>Edit</ui-menubar-trigger>
+                <ui-menubar-content><ui-menubar-item>Undo</ui-menubar-item></ui-menubar-content>
+            </ui-menubar-menu>
+            <ui-menubar-menu>
+                <ui-menubar-trigger>View</ui-menubar-trigger>
+                <ui-menubar-content><ui-menubar-item>Zoom</ui-menubar-item></ui-menubar-content>
+            </ui-menubar-menu>
+        </ui-menubar>
+    `;
+
+    it('disabled menu cannot be opened programmatically', async () => {
+        const bar = await fixture<UiMenubar>(DISABLED_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+        menus[1].open();
+        await settle(bar);
+        expect(getContent(menus[1]).open).toBe(false);
+    });
+
+    it('disabled menu trigger has disabled attribute', async () => {
+        const bar = await fixture<UiMenubar>(DISABLED_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+        const trigger = getTrigger(menus[1]);
+        await trigger.updateComplete;
+        expect(trigger.disabled).toBe(true);
+        expect(getTriggerButton(trigger).disabled).toBe(true);
+    });
+
+    it('keyboard nav skips disabled menu', async () => {
+        const bar = await fixture<UiMenubar>(DISABLED_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+        expect(getContent(menus[0]).open).toBe(true);
+
+        // ArrowRight — should skip disabled Edit and jump to View
+        fireKeyDown(bar, 'ArrowRight');
+        await settle(bar);
+        expect(getContent(menus[0]).open).toBe(false);
+        expect(getContent(menus[1]).open).toBe(false);
+        expect(getContent(menus[2]).open).toBe(true);
+    });
+
+    it('disabled menu trigger is excluded from initial roving tabindex', async () => {
+        const bar = await fixture<UiMenubar>(html`
+            <ui-menubar>
+                <ui-menubar-menu disabled>
+                    <ui-menubar-trigger>File</ui-menubar-trigger>
+                    <ui-menubar-content><ui-menubar-item>New</ui-menubar-item></ui-menubar-content>
+                </ui-menubar-menu>
+                <ui-menubar-menu>
+                    <ui-menubar-trigger>Edit</ui-menubar-trigger>
+                    <ui-menubar-content><ui-menubar-item>Undo</ui-menubar-item></ui-menubar-content>
+                </ui-menubar-menu>
+            </ui-menubar>
+        `);
+        await settle(bar);
+        const menus = getMenus(bar);
+        // First non-disabled menu (Edit) should get tabIndex=0
+        expect(getTriggerButton(getTrigger(menus[1])).tabIndex).toBe(0);
+    });
+});
+
+describe('UiMenubar — hover does not open when no menu is active', () => {
+    it('hovering a trigger does not open it when no menu is open', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+
+        // Hover over Edit trigger with no active menu
+        getTrigger(menus[1]).dispatchEvent(new MouseEvent('mouseover', { bubbles: true }));
+        await settle(bar);
+
+        expect(getContent(menus[1]).open).toBe(false);
+    });
+});
+
+describe('UiMenubarMenu — getters', () => {
+    it('trigger getter returns the direct trigger child', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+        expect(menus[0].trigger).toBe(getTrigger(menus[0]));
+    });
+
+    it('content getter returns the direct content child', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+        expect(menus[0].content).toBe(getContent(menus[0]));
+    });
+});
+
+describe('UiMenubarSeparator — hidden attribute', () => {
+    it('hidden attribute is applied', async () => {
+        const bar = await fixture<UiMenubar>(html`
+            <ui-menubar>
+                <ui-menubar-menu>
+                    <ui-menubar-trigger>F</ui-menubar-trigger>
+                    <ui-menubar-content>
+                        <ui-menubar-separator hidden></ui-menubar-separator>
+                    </ui-menubar-content>
+                </ui-menubar-menu>
+            </ui-menubar>
+        `);
+        await settle(bar);
+        const sep = bar.querySelector('ui-menubar-separator')!;
+        expect(sep.hasAttribute('hidden')).toBe(true);
+    });
+});
