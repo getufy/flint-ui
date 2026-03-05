@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import './ui-stepper';
-import type { UiStepper, UiStep, UiMobileStepper } from './ui-stepper';
+import type { UiStepper, UiStep, UiMobileStepper, UiStepContent } from './ui-stepper';
 
 const meta: Meta = {
     title: 'Navigation/Stepper',
@@ -56,9 +56,6 @@ export const LinearHorizontal: Story = {
             const sd = document.getElementById('lh-stepper') as UiStepper | null;
             if (!sd) return;
             sd.activeStep = step;
-            sd.querySelectorAll<UiStep>('ui-step').forEach((s, i) => {
-                s.active = i === step;
-            });
             const content = document.getElementById('lh-content');
             if (content) {
                 content.innerHTML = step < steps.length
@@ -175,10 +172,10 @@ export const Vertical: Story = {
             const sd = document.getElementById('v-stepper') as UiStepper | null;
             if (!sd) return;
             sd.activeStep = step;
+            /* Use UiStepContent.open for accessible animated reveal */
             sd.querySelectorAll<UiStep>('ui-step').forEach((s, i) => {
-                s.active = i === step;
-                const content = s.querySelector('ui-step-content');
-                if (content) (content as HTMLElement).style.display = i === step ? 'block' : 'none';
+                const content = s.querySelector<UiStepContent>('ui-step-content');
+                if (content) content.open = i === step;
             });
         }
 
@@ -187,7 +184,7 @@ export const Vertical: Story = {
                 ${steps.map((s, i) => html`
                     <ui-step>
                         <span slot="label">${s.label}</span>
-                        <ui-step-content style="${i === 0 ? '' : 'display:none'}">
+                        <ui-step-content ?open=${i === 0}>
                             <div style="color:#374151;font-size:.875rem;margin-bottom:12px;">${s.content}</div>
                             <div style="display:flex;gap:8px;">
                                 <button style="padding:6px 14px;border-radius:6px;font-size:.8rem;font-family:Inter,sans-serif;background:#3b82f6;color:#fff;border:none;cursor:pointer;"
@@ -235,6 +232,138 @@ export const ErrorStep: Story = {
             ⚠️ Step 2 has an error — fix it before continuing.
         </div>
     `)),
+};
+
+/* ================================================================== */
+/* All Steps Completed                                                  */
+/* ================================================================== */
+export const AllCompleted: Story = {
+    render: () => panel(card(html`
+        <ui-stepper active-step="3" style="border-bottom:1px solid #f1f5f9;padding:16px 24px;">
+            <ui-step completed><span slot="label">Select campaign settings</span></ui-step>
+            <ui-step completed><span slot="label">Create an ad group</span></ui-step>
+            <ui-step completed><span slot="label">Create an ad</span></ui-step>
+        </ui-stepper>
+        <div style="padding:24px;text-align:center;font-family:Inter,sans-serif;">
+            <div style="font-size:2rem;margin-bottom:8px;">🎉</div>
+            <div style="font-size:1rem;font-weight:600;color:#22c55e;">All steps completed!</div>
+            <div style="font-size:.875rem;color:#6b7280;margin-top:4px;">Your campaign is ready to go.</div>
+        </div>
+    `)),
+};
+
+/* ================================================================== */
+/* Error Recovery                                                       */
+/* ================================================================== */
+export const ErrorRecovery: Story = {
+    render: () => {
+        let hasError = true;
+
+        function update() {
+            const sd = document.getElementById('er-stepper') as UiStepper | null;
+            if (!sd) return;
+            const step1 = sd.querySelectorAll<UiStep>('ui-step')[1];
+            step1.error = hasError;
+            step1.completed = !hasError;
+            sd.activeStep = hasError ? 1 : 2;
+            const msg = document.getElementById('er-msg');
+            if (msg) {
+                msg.textContent = hasError
+                    ? '⚠️ There is a validation error in step 2. Fix it to continue.'
+                    : '✅ Error resolved — you can now proceed to step 3.';
+                (msg as HTMLElement).style.color = hasError ? '#ef4444' : '#22c55e';
+            }
+        }
+
+        return panel(card(html`
+            <ui-stepper id="er-stepper" active-step="1" style="border-bottom:1px solid #f1f5f9;padding:16px 24px;">
+                <ui-step completed><span slot="label">Select campaign settings</span></ui-step>
+                <ui-step error><span slot="label">Create an ad group</span></ui-step>
+                <ui-step><span slot="label">Create an ad</span></ui-step>
+            </ui-stepper>
+
+            <div id="er-msg"
+                style="padding:16px 24px;font-size:.875rem;color:#ef4444;font-family:Inter,sans-serif;">
+                ⚠️ There is a validation error in step 2. Fix it to continue.
+            </div>
+
+            <div style="display:flex;gap:8px;padding:0 24px 16px;font-family:Inter,sans-serif;">
+                <button style="padding:7px 18px;border-radius:6px;font-size:.8rem;font-family:inherit;background:#22c55e;color:#fff;border:none;cursor:pointer;"
+                    @click=${() => { hasError = false; update(); }}>Fix Error</button>
+                <button style="padding:7px 18px;border-radius:6px;font-size:.8rem;font-family:inherit;background:#fff;border:1px solid #e2e8f0;color:#374151;cursor:pointer;"
+                    @click=${() => { hasError = true; update(); }}>Re-introduce Error</button>
+            </div>
+        `));
+    },
+};
+
+/* ================================================================== */
+/* Custom Icons                                                         */
+/* ================================================================== */
+export const CustomIcons: Story = {
+    render: () => panel(card(html`
+        <ui-stepper active-step="1" style="border-bottom:1px solid #f1f5f9;padding:16px 24px;">
+            <ui-step completed>
+                <span slot="icon">★</span>
+                <span slot="label">Favourites</span>
+            </ui-step>
+            <ui-step>
+                <span slot="icon">✎</span>
+                <span slot="label">Edit Details</span>
+            </ui-step>
+            <ui-step>
+                <span slot="icon">✔</span>
+                <span slot="label">Confirm</span>
+            </ui-step>
+        </ui-stepper>
+        <div style="padding:16px 24px;font-size:.875rem;color:#6b7280;font-family:Inter,sans-serif;">
+            Custom icon content via <code>&lt;span slot="icon"&gt;</code>. Overridden automatically when step is completed or has an error.
+        </div>
+    `)),
+};
+
+/* ================================================================== */
+/* Controlled Stepper                                                   */
+/* ================================================================== */
+export const Controlled: Story = {
+    render: () => {
+        /* Controlled: all state lives outside the component */
+        let externalStep = 0;
+        const steps = ['Account', 'Profile', 'Review'];
+
+        function render() {
+            const sd = document.getElementById('ctrl-stepper') as UiStepper | null;
+            if (sd) sd.activeStep = externalStep;
+            const info = document.getElementById('ctrl-info');
+            if (info) info.textContent = `External state: step = ${externalStep}`;
+        }
+
+        return panel(card(html`
+            <ui-stepper id="ctrl-stepper" active-step="0"
+                style="border-bottom:1px solid #f1f5f9;"
+                @ui-step-change=${(e: CustomEvent) => {
+                    /* In controlled mode the parent decides whether to accept the change */
+                    externalStep = e.detail.step;
+                    render();
+                }}>
+                ${steps.map(l => html`<ui-step><span slot="label">${l}</span></ui-step>`)}
+            </ui-stepper>
+
+            <div id="ctrl-info"
+                style="padding:16px 24px;font-size:.875rem;color:#374151;font-family:Inter,sans-serif;border-bottom:1px solid #f1f5f9;">
+                External state: step = 0
+            </div>
+
+            <div style="display:flex;gap:8px;padding:16px 24px;font-family:Inter,sans-serif;">
+                <button style="padding:7px 18px;border-radius:6px;font-size:.8rem;font-family:inherit;background:#fff;border:1px solid #e2e8f0;color:#374151;cursor:pointer;"
+                    @click=${() => { externalStep = Math.max(0, externalStep - 1); render(); }}>← Prev</button>
+                <button style="padding:7px 18px;border-radius:6px;font-size:.8rem;font-family:inherit;background:#3b82f6;color:#fff;border:none;cursor:pointer;"
+                    @click=${() => { externalStep = Math.min(steps.length - 1, externalStep + 1); render(); }}>Next →</button>
+                <button style="padding:7px 18px;border-radius:6px;font-size:.8rem;font-family:inherit;background:#fff;border:1px solid #e2e8f0;color:#6b7280;cursor:pointer;margin-left:auto;"
+                    @click=${() => { externalStep = 0; render(); }}>Reset</button>
+            </div>
+        `));
+    },
 };
 
 /* ================================================================== */
@@ -340,6 +469,57 @@ export const MobileStepperProgress: Story = {
                 if (l) l.textContent = `Step ${step + 1} of ${steps}`;
             }}
                 ></ui-mobile-stepper>
+            </div>
+        `);
+    },
+};
+
+/* ================================================================== */
+/* Mobile Stepper — Custom Button Slots                                */
+/* ================================================================== */
+export const MobileStepperCustomButtons: Story = {
+    render: () => {
+        let step = 0;
+        const steps = 4;
+
+        return panel(html`
+            <p style="font-family:Inter,sans-serif;font-size:.875rem;color:#6b7280;margin-bottom:12px;">
+                Replace the default Back/Next buttons via <code>slot="back-button"</code> and <code>slot="next-button"</code>.
+            </p>
+            <div style="width:340px;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08);">
+                <div id="ms-custom-content"
+                    style="height:120px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;font-family:Inter,sans-serif;color:#374151;background:#f8fafc;">
+                    Slide ${step + 1}
+                </div>
+                <ui-mobile-stepper id="ms-custom" variant="dots" .steps=${steps} .activeStep=${step} position="static"
+                    @ui-mobile-step-back=${() => {
+                const el = document.getElementById('ms-custom') as UiMobileStepper;
+                step = Math.max(0, step - 1);
+                el.activeStep = step;
+                const c = document.getElementById('ms-custom-content');
+                if (c) c.textContent = `Slide ${step + 1}`;
+            }}
+                    @ui-mobile-step-next=${() => {
+                const el = document.getElementById('ms-custom') as UiMobileStepper;
+                step = Math.min(steps - 1, step + 1);
+                el.activeStep = step;
+                const c = document.getElementById('ms-custom-content');
+                if (c) c.textContent = `Slide ${step + 1}`;
+            }}
+                >
+                    <button slot="back-button"
+                        style="background:none;border:none;cursor:pointer;padding:4px 8px;font-size:1.25rem;color:#6b7280;border-radius:4px;"
+                        aria-label="Previous slide"
+                        @click=${() => document.getElementById('ms-custom')?.dispatchEvent(new CustomEvent('ui-mobile-step-back', { bubbles: true }))}>
+                        ‹
+                    </button>
+                    <button slot="next-button"
+                        style="background:none;border:none;cursor:pointer;padding:4px 8px;font-size:1.25rem;color:#3b82f6;border-radius:4px;"
+                        aria-label="Next slide"
+                        @click=${() => document.getElementById('ms-custom')?.dispatchEvent(new CustomEvent('ui-mobile-step-next', { bubbles: true }))}>
+                        ›
+                    </button>
+                </ui-mobile-stepper>
             </div>
         `);
     },

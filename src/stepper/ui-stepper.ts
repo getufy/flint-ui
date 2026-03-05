@@ -14,7 +14,7 @@ export class UiStepConnector extends LitElement {
     static styles = css`
         :host { display: block; }
         .line {
-            background: var(--connector-color, #e5e7eb);
+            background: var(--ui-stepper-connector-color, #e5e7eb);
             border-radius: 2px;
             transition: background 0.3s;
         }
@@ -62,14 +62,40 @@ export class UiStepLabel extends LitElement {
 export class UiStepContent extends LitElement {
     static styles = css`
         :host { display: block; overflow: hidden; }
+        .panel {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.25s ease;
+        }
+        .panel.open { grid-template-rows: 1fr; }
+        .inner {
+            overflow: hidden;
+            padding: 0 16px;
+            /* padding animates together with the grid expand */
+            transition: padding 0.25s ease;
+        }
+        .panel.open .inner { padding: 8px 16px 16px; }
         .content {
-            padding: 8px 16px 16px;
             font-size: .875rem;
             color: var(--ui-text-color, #374151);
             font-family: var(--ui-font-family,'Inter',sans-serif);
         }
     `;
-    render() { return html`<div class="content"><slot></slot></div>`; }
+
+    /** Whether the content is visible. Defaults true so standalone usage always shows. */
+    @property({ type: Boolean, reflect: true }) open = true;
+
+    render() {
+        return html`
+            <div
+                class="panel ${classMap({ open: this.open })}"
+                aria-hidden=${this.open ? 'false' : 'true'}
+            >
+                <div class="inner">
+                    <div class="content"><slot></slot></div>
+                </div>
+            </div>`;
+    }
 }
 
 /* ================================================================== */
@@ -125,7 +151,12 @@ export class UiStep extends LitElement {
         }
         .conn-wrap ui-step-connector { flex: 1; }
 
-        /* alt-label top row */
+        /*
+         * alt-label top row: always render two symmetric fills so every
+         * icon is centred in its column regardless of position.
+         * First step's leading fill is empty; last step's trailing fill
+         * is empty — both are rendered to keep equal column widths.
+         */
         .alt-top { display: flex; align-items: center; width: 100%; }
         .alt-top .conn-fill { flex: 1; display: flex; align-items: center; }
         .alt-top .conn-fill ui-step-connector { flex: 1; }
@@ -171,7 +202,7 @@ export class UiStep extends LitElement {
         }
         .v-line {
             width: 2px;
-            background: var(--ui-border-color, #e5e7eb);
+            background: var(--ui-stepper-connector-color, #e5e7eb);
             border-radius: 2px;
             flex-shrink: 0;
             transition: background 0.3s;
@@ -183,7 +214,9 @@ export class UiStep extends LitElement {
 
         /* ── Step icon circle ── */
         .icon-circle {
-            width: 32px; height: 32px; border-radius: 50%;
+            width: var(--ui-stepper-icon-size, 32px);
+            height: var(--ui-stepper-icon-size, 32px);
+            border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             font-size: .8125rem; font-weight: 700;
             border: 2px solid #d1d5db;
@@ -211,6 +244,17 @@ export class UiStep extends LitElement {
     @property({ type: Boolean, reflect: true, attribute: 'alternative-label' }) alternativeLabel = false;
     @property({ type: Number, attribute: 'step-index' }) stepIndex = 0;
     @property({ type: String, attribute: 'optional-label' }) optionalLabel = 'Optional';
+    /**
+     * Set by UiStepper — true when the immediately preceding step is completed.
+     * Controls whether the leading connector is rendered in the primary colour.
+     */
+    @property({ type: Boolean, attribute: 'prev-completed' }) prevCompleted = false;
+
+    connectedCallback() {
+        super.connectedCallback();
+        /* Expose semantic list role so assistive technologies can count steps */
+        if (!this.hasAttribute('role')) this.setAttribute('role', 'listitem');
+    }
 
     private _fire() {
         if (this.disabled) return;
@@ -237,12 +281,11 @@ export class UiStep extends LitElement {
 
     render() {
         const showConn = this.stepIndex > 0;
-        const connCompleted = this.completed || (!this.active && this.stepIndex > 0 && !this.disabled);
 
         /* ── Vertical ── */
         if (this.orientation === 'vertical') {
             const header = this.clickable
-                ? html`<button class="step-btn" ?disabled=${this.disabled} @click=${this._fire} aria-current=${this.active ? 'step' : 'false'}>${this._icon()} ${this._label()}</button>`
+                ? html`<button class="step-btn" ?disabled=${this.disabled} @click=${this._fire} aria-current=${this.active ? 'step' : nothing}>${this._icon()} ${this._label()}</button>`
                 : html`<div class="step-header">${this._icon()} ${this._label()}</div>`;
             return html`
                 ${header}
@@ -255,23 +298,28 @@ export class UiStep extends LitElement {
         /* ── Horizontal alt-label ── */
         if (this.alternativeLabel) {
             const inner = this.clickable
-                ? html`<button class="step-btn" ?disabled=${this.disabled} @click=${this._fire} aria-current=${this.active ? 'step' : 'false'}>${this._icon()}</button>`
+                ? html`<button class="step-btn" ?disabled=${this.disabled} @click=${this._fire} aria-current=${this.active ? 'step' : nothing}>${this._icon()}</button>`
                 : this._icon();
+            /*
+             * Both fills are always rendered (even if empty) to keep every icon
+             * centred in its equal-width column. The leading fill of the first step
+             * and the trailing fill of the last step are intentionally empty.
+             */
             return html`
                 <div class="alt-top">
-                    ${showConn ? html`<div class="conn-fill">${this._connector(connCompleted)}</div>` : nothing}
+                    <div class="conn-fill">${showConn ? this._connector(this.prevCompleted) : nothing}</div>
                     ${inner}
-                    ${this.last ? nothing : html`<div class="conn-fill"></div>`}
+                    <div class="conn-fill"></div>
                 </div>
                 <div class="alt-label-row">${this._label()}</div>`;
         }
 
         /* ── Horizontal ── */
         const inner = this.clickable
-            ? html`<button class="step-btn" ?disabled=${this.disabled} @click=${this._fire} aria-current=${this.active ? 'step' : 'false'}>${this._icon()} ${this._label()}</button>`
+            ? html`<button class="step-btn" ?disabled=${this.disabled} @click=${this._fire} aria-current=${this.active ? 'step' : nothing}>${this._icon()} ${this._label()}</button>`
             : html`<div class="step-header">${this._icon()} ${this._label()}</div>`;
         return html`
-            ${showConn ? html`<div class="conn-wrap">${this._connector(connCompleted)}</div>` : nothing}
+            ${showConn ? html`<div class="conn-wrap">${this._connector(this.prevCompleted)}</div>` : nothing}
             ${inner}`;
     }
 }
@@ -302,6 +350,8 @@ export class UiStepper extends LitElement {
     @property({ type: String, reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
     @property({ type: Boolean, attribute: 'alternative-label' }) alternativeLabel = false;
     @property({ type: Boolean, attribute: 'non-linear' }) nonLinear = false;
+    /** Accessible label for the stepper landmark (maps to aria-label on the list element). */
+    @property({ type: String }) label = 'steps';
 
     private _syncSteps() {
         const steps = Array.from(this.querySelectorAll<UiStep>(':scope > ui-step'));
@@ -311,6 +361,8 @@ export class UiStepper extends LitElement {
             s.orientation = this.orientation;
             s.alternativeLabel = this.alternativeLabel;
             s.active = i === this.activeStep;
+            /* The leading connector of step i should be blue only when step i-1 is completed */
+            s.prevCompleted = i > 0 && steps[i - 1].completed;
             if (!this.nonLinear) {
                 if (!s.completed) s.disabled = i > this.activeStep;
                 s.clickable = false;
@@ -319,6 +371,10 @@ export class UiStepper extends LitElement {
                 s.clickable = true;
             }
         });
+    }
+
+    firstUpdated() {
+        this._syncSteps();
     }
 
     updated(c: Map<string, unknown>) {
@@ -345,7 +401,7 @@ export class UiStepper extends LitElement {
     render() {
         const cls = `stepper ${this.orientation}${this.alternativeLabel ? ' alt' : ''}`;
         return html`
-            <div class=${cls}>
+            <div class=${cls} role="list" aria-label=${this.label}>
                 <slot @slotchange=${() => { this._syncSteps(); this.requestUpdate(); }}></slot>
             </div>`;
     }
@@ -381,6 +437,13 @@ export class UiMobileStepper extends LitElement {
         .bar-track { flex:1; height:4px; background:#e5e7eb; border-radius:2px; overflow:hidden; }
         .bar-fill   { height:100%; background:var(--ui-primary-color,#3b82f6); border-radius:2px; transition:width .3s; }
 
+        /* screen-reader-only utility */
+        .sr-only {
+            position: absolute; width: 1px; height: 1px;
+            padding: 0; margin: -1px; overflow: hidden;
+            clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+        }
+
         /* default nav buttons */
         .nav-btn {
             padding:6px 14px; border-radius:6px; font-size:.8rem; font-family:inherit; cursor:pointer;
@@ -395,33 +458,66 @@ export class UiMobileStepper extends LitElement {
     @property({ type: Number, attribute: 'active-step' }) activeStep = 0;
     @property({ type: String }) variant: 'text' | 'dots' | 'progress' = 'dots';
     @property({ type: String, reflect: true }) position: 'top' | 'bottom' | 'static' = 'static';
+    /** Label text for the Back navigation button (supports i18n). */
+    @property({ type: String, attribute: 'back-label' }) backLabel = 'Back';
+    /** Label text for the Next navigation button (supports i18n). */
+    @property({ type: String, attribute: 'next-label' }) nextLabel = 'Next';
+
+    /** Guards against steps=0 (divide-by-zero, nonsensical UI). */
+    private get _safeSteps() { return Math.max(1, this.steps); }
 
     private _emit(name: string) {
         this.dispatchEvent(new CustomEvent(name, { bubbles: true, composed: true }));
     }
 
     private _progress() {
+        const current = this.activeStep + 1;
+        const total = this._safeSteps;
+
         if (this.variant === 'text') {
-            return html`<span class="text">Step ${this.activeStep + 1} of ${this.steps}</span>`;
+            return html`<span class="text" aria-live="polite">Step ${current} of ${total}</span>`;
         }
         if (this.variant === 'dots') {
-            return html`<div class="dots">${Array.from({ length: this.steps }, (_, i) =>
-                html`<div class="dot ${i === this.activeStep ? 'active' : ''}"></div>`)}</div>`;
+            return html`
+                <div class="dots" aria-label="Step ${current} of ${total}">
+                    <span class="sr-only" aria-live="polite">Step ${current} of ${total}</span>
+                    ${Array.from({ length: total }, (_, i) =>
+                        html`<div class="dot ${i === this.activeStep ? 'active' : ''}"></div>`)}
+                </div>`;
         }
-        const pct = this.steps > 1 ? (this.activeStep / (this.steps - 1)) * 100 : 100;
-        return html`<div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>`;
+        /* progress variant */
+        const pct = total > 1 ? (this.activeStep / (total - 1)) * 100 : 100;
+        return html`
+            <div
+                class="bar-track"
+                role="progressbar"
+                aria-valuenow=${current}
+                aria-valuemin="1"
+                aria-valuemax=${total}
+                aria-label="Step ${current} of ${total}"
+            >
+                <div class="bar-fill" style="width:${pct}%"></div>
+            </div>`;
     }
 
     render() {
         return html`
             <slot name="back-button">
-                <button class="nav-btn back" ?disabled=${this.activeStep === 0}
-                    @click=${() => this._emit('ui-mobile-step-back')}>Back</button>
+                <button
+                    class="nav-btn back"
+                    ?disabled=${this.activeStep === 0}
+                    aria-label="Go to previous step"
+                    @click=${() => this._emit('ui-mobile-step-back')}
+                >${this.backLabel}</button>
             </slot>
             <div class="progress">${this._progress()}</div>
             <slot name="next-button">
-                <button class="nav-btn next" ?disabled=${this.activeStep >= this.steps - 1}
-                    @click=${() => this._emit('ui-mobile-step-next')}>Next</button>
+                <button
+                    class="nav-btn next"
+                    ?disabled=${this.activeStep >= this._safeSteps - 1}
+                    aria-label="Go to next step"
+                    @click=${() => this._emit('ui-mobile-step-next')}
+                >${this.nextLabel}</button>
             </slot>`;
     }
 }

@@ -8,13 +8,41 @@ const meta: Meta = {
     argTypes: {
         checked: { control: 'boolean' },
         disabled: { control: 'boolean' },
+        required: { control: 'boolean' },
         label: { control: 'text' },
+        size: { control: 'select', options: ['sm', 'md', 'lg'] },
+        name: { control: 'text' },
+        value: { control: 'text' },
     },
 };
 
 export default meta;
 
 type Story = StoryObj;
+
+export const Playground: Story = {
+    args: {
+        label: 'Enable Notifications',
+        checked: false,
+        disabled: false,
+        required: false,
+        size: 'md',
+        name: 'notifications',
+        value: 'on',
+    },
+    render: (args) => html`
+    <ui-switch
+      .label=${args.label}
+      ?checked=${args.checked}
+      ?disabled=${args.disabled}
+      ?required=${args.required}
+      size=${args.size}
+      name=${args.name}
+      value=${args.value}
+      @ui-switch-change=${(e: CustomEvent) => console.log('ui-switch-change:', e.detail)}
+    ></ui-switch>
+  `,
+};
 
 export const Default: Story = {
     args: {
@@ -23,11 +51,11 @@ export const Default: Story = {
         disabled: false,
     },
     render: (args) => html`
-    <ui-switch 
-      .label=${args.label} 
-      ?checked=${args.checked} 
+    <ui-switch
+      .label=${args.label}
+      ?checked=${args.checked}
       ?disabled=${args.disabled}
-      @change=${(e: CustomEvent) => console.log('Switch checked:', e.detail.checked)}
+      @ui-switch-change=${(e: CustomEvent) => console.log('Switch checked:', e.detail.checked)}
     ></ui-switch>
   `,
 };
@@ -39,6 +67,30 @@ export const Checked: Story = {
     },
     render: (args) => html`
     <ui-switch .label=${args.label} ?checked=${args.checked}></ui-switch>
+  `,
+};
+
+export const Sizes: Story = {
+    render: () => html`
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <ui-switch size="sm" label="Small"></ui-switch>
+        <code style="font-size: 12px; color: #6b7280;">size="sm"</code>
+      </div>
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <ui-switch size="md" label="Medium (default)"></ui-switch>
+        <code style="font-size: 12px; color: #6b7280;">size="md"</code>
+      </div>
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <ui-switch size="lg" label="Large"></ui-switch>
+        <code style="font-size: 12px; color: #6b7280;">size="lg"</code>
+      </div>
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <ui-switch size="sm" label="Small checked" checked></ui-switch>
+        <ui-switch size="md" label="Medium checked" checked></ui-switch>
+        <ui-switch size="lg" label="Large checked" checked></ui-switch>
+      </div>
+    </div>
   `,
 };
 
@@ -78,6 +130,68 @@ export const Disabled: Story = {
   `,
 };
 
+export const Controlled: Story = {
+    render: () => html`
+    <div id="controlled-demo">
+      <p style="font-family: system-ui; font-size: 14px; color: #6b7280; margin: 0 0 12px 0;">
+        State is controlled externally. The switch reflects the parent value.
+      </p>
+      <ui-switch
+        id="ctrl-switch"
+        label="Dark Mode"
+        @ui-switch-change=${(e: CustomEvent) => {
+            const sw = document.getElementById('ctrl-switch') as HTMLElement & { checked: boolean };
+            sw.checked = e.detail.checked;
+            const status = document.getElementById('ctrl-status');
+            if (status) status.textContent = e.detail.checked ? 'ON' : 'OFF';
+        }}
+      ></ui-switch>
+      <p style="font-family: system-ui; margin-top: 12px;">
+        Status: <strong id="ctrl-status">OFF</strong>
+      </p>
+    </div>
+  `,
+};
+
+export const Uncontrolled: Story = {
+    render: () => html`
+    <div>
+      <p style="font-family: system-ui; font-size: 14px; color: #6b7280; margin: 0 0 12px 0;">
+        Uses <code>default-checked</code> — starts ON without controlling the prop.
+      </p>
+      <ui-switch label="Start enabled" default-checked></ui-switch>
+    </div>
+  `,
+};
+
+export const FormUsage: Story = {
+    render: () => {
+        const handleSubmit = (e: Event) => {
+            e.preventDefault();
+            const form = e.target as HTMLFormElement;
+            const data = Object.fromEntries(new FormData(form));
+            const output = form.querySelector<HTMLElement>('.form-output');
+            if (output) output.textContent = JSON.stringify(data, null, 2);
+        };
+        return html`
+      <form @submit=${handleSubmit} style="font-family: system-ui; max-width: 360px;">
+        <fieldset style="border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px;">
+          <legend style="font-weight: 600; padding: 0 8px;">Notification Preferences</legend>
+          <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 8px;">
+            <ui-switch name="emails" value="yes" label="Email updates" checked></ui-switch>
+            <ui-switch name="push" value="yes" label="Push notifications"></ui-switch>
+            <ui-switch name="sms" value="yes" label="SMS alerts (required)" required></ui-switch>
+          </div>
+        </fieldset>
+        <button type="submit" style="margin-top: 16px; padding: 8px 16px; border-radius: 6px; background: #3b82f6; color: white; border: none; cursor: pointer; font-size: 14px;">
+          Save
+        </button>
+        <pre class="form-output" style="margin-top: 12px; font-size: 12px; background: #f9fafb; padding: 12px; border-radius: 6px; border: 1px solid #e5e7eb; min-height: 40px;"></pre>
+      </form>
+    `;
+    },
+};
+
 export const SettingsList: Story = {
     render: () => html`
     <div style="max-width: 400px; background: var(--ui-surface-background); padding: 16px; border-radius: 12px; border: 1px solid var(--ui-border-color);">
@@ -88,21 +202,21 @@ export const SettingsList: Story = {
             <span style="font-weight: 600;">Airplane Mode</span>
             <span style="font-size: 12px; color: var(--ui-text-color-muted);">Disable all radios</span>
           </div>
-          <ui-switch></ui-switch>
+          <ui-switch aria-label="Toggle airplane mode"></ui-switch>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <div style="display: flex; flex-direction: column;">
             <span style="font-weight: 600;">Bluetooth</span>
             <span style="font-size: 12px; color: var(--ui-text-color-muted);">On</span>
           </div>
-          <ui-switch checked></ui-switch>
+          <ui-switch aria-label="Toggle bluetooth" checked></ui-switch>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <div style="display: flex; flex-direction: column;">
             <span style="font-weight: 600;">VPN</span>
             <span style="font-size: 12px; color: var(--ui-text-color-muted);">Disconnected</span>
           </div>
-          <ui-switch disabled></ui-switch>
+          <ui-switch aria-label="Toggle VPN" disabled></ui-switch>
         </div>
       </div>
     </div>
