@@ -27,7 +27,6 @@ const meta: Meta = {
 export default meta;
 type Story = StoryObj;
 
-// Curated Unsplash images with consistent, beautiful photos
 const IMAGES = [
   { url: 'https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?w=400&q=80', title: 'Breakfast', author: '@annapelzer' },
   { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80', title: 'Mountains', author: '@samuelzeller' },
@@ -43,7 +42,17 @@ const IMAGES = [
   { url: 'https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=400&q=80', title: 'Abstract', author: '@pawel_czerwinski' },
 ];
 
-// ── Standard ───────────────────────────────────────────────────────────────
+// Portrait/vertical images — these Unsplash photos are natively portrait-oriented
+const PORTRAIT_IMAGES = [
+  { url: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&q=80', title: 'Portrait', author: '@slavomira' },
+  { url: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400&q=80', title: 'Fashion', author: '@omarprestegui' },
+  { url: 'https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=400&q=80', title: 'Street', author: '@domenicoloiaglio' },
+  { url: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=400&q=80', title: 'Yellow', author: '@priscilladupreez' },
+  { url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?w=400&q=80', title: 'Person', author: '@jhosnar' },
+  { url: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80', title: 'Smile', author: '@brookecagle' },
+];
+
+// ── Standard ────────────────────────────────────────────────────────────────
 export const Standard: Story = {
   render: (args) => html`
     <ui-image-list
@@ -61,7 +70,7 @@ export const Standard: Story = {
   `,
 };
 
-// ── Quilted ─────────────────────────────────────────────────────────────────
+// ── Quilted ──────────────────────────────────────────────────────────────────
 export const Quilted: Story = {
   args: { variant: 'quilted', cols: 4, rowHeight: 121, gap: 4 },
   render: (args) => html`
@@ -94,7 +103,48 @@ export const Quilted: Story = {
   `,
 };
 
-// ── Woven ───────────────────────────────────────────────────────────────────
+// ── Quilted with Overlay Bars ────────────────────────────────────────────────
+export const QuiltedWithBars: Story = {
+  args: { variant: 'quilted', cols: 4, rowHeight: 121, gap: 4 },
+  render: (args) => html`
+    <ui-image-list variant="quilted" .cols=${args.cols} .gap=${args.gap} .rowHeight=${args.rowHeight}>
+      <ui-image-list-item rows="2" cols="2">
+        <img src="${IMAGES[0].url}" alt="${IMAGES[0].title}" loading="lazy" />
+        <ui-image-list-item-bar slot="bar">${IMAGES[0].title}<span slot="subtitle">${IMAGES[0].author}</span></ui-image-list-item-bar>
+      </ui-image-list-item>
+      <ui-image-list-item>
+        <img src="${IMAGES[1].url}" alt="${IMAGES[1].title}" loading="lazy" />
+        <ui-image-list-item-bar slot="bar">${IMAGES[1].title}</ui-image-list-item-bar>
+      </ui-image-list-item>
+      <ui-image-list-item>
+        <img src="${IMAGES[2].url}" alt="${IMAGES[2].title}" loading="lazy" />
+        <ui-image-list-item-bar slot="bar">${IMAGES[2].title}</ui-image-list-item-bar>
+      </ui-image-list-item>
+      <ui-image-list-item>
+        <img src="${IMAGES[3].url}" alt="${IMAGES[3].title}" loading="lazy" />
+        <ui-image-list-item-bar slot="bar">${IMAGES[3].title}</ui-image-list-item-bar>
+      </ui-image-list-item>
+      <ui-image-list-item>
+        <img src="${IMAGES[4].url}" alt="${IMAGES[4].title}" loading="lazy" />
+        <ui-image-list-item-bar slot="bar">${IMAGES[4].title}</ui-image-list-item-bar>
+      </ui-image-list-item>
+      <ui-image-list-item rows="2" cols="2">
+        <img src="${IMAGES[5].url}" alt="${IMAGES[5].title}" loading="lazy" />
+        <ui-image-list-item-bar slot="bar">${IMAGES[5].title}<span slot="subtitle">${IMAGES[5].author}</span></ui-image-list-item-bar>
+      </ui-image-list-item>
+      <ui-image-list-item>
+        <img src="${IMAGES[6].url}" alt="${IMAGES[6].title}" loading="lazy" />
+        <ui-image-list-item-bar slot="bar">${IMAGES[6].title}</ui-image-list-item-bar>
+      </ui-image-list-item>
+      <ui-image-list-item>
+        <img src="${IMAGES[7].url}" alt="${IMAGES[7].title}" loading="lazy" />
+        <ui-image-list-item-bar slot="bar">${IMAGES[7].title}</ui-image-list-item-bar>
+      </ui-image-list-item>
+    </ui-image-list>
+  `,
+};
+
+// ── Woven ────────────────────────────────────────────────────────────────────
 export const Woven: Story = {
   args: { variant: 'woven', cols: 3, rowHeight: 100, gap: 4 },
   render: (args) => html`
@@ -108,7 +158,7 @@ export const Woven: Story = {
   `,
 };
 
-// ── Masonry ─────────────────────────────────────────────────────────────────
+// ── Masonry ──────────────────────────────────────────────────────────────────
 export const Masonry: Story = {
   args: { variant: 'masonry', cols: 3, gap: 8, rowHeight: 164 },
   render: (args) => html`
@@ -122,7 +172,60 @@ export const Masonry: Story = {
   `,
 };
 
-// ── With Title Bars (Overlay) ───────────────────────────────────────────────
+// ── Vertical / Portrait Images ───────────────────────────────────────────────
+export const VerticalImages: Story = {
+  name: 'Vertical (Portrait) Images',
+  args: { variant: 'standard', cols: 4, gap: 6 },
+  render: (args) => html`
+    <p style="margin:0 0 12px;font:14px system-ui;color:#6b7280;">
+      Portrait images using <code>aspect-ratio="3/4"</code> on items and <code>autoRows</code> on the list.
+    </p>
+    <ui-image-list variant="standard" .cols=${args.cols} .gap=${args.gap} ?autoRows=${true}>
+      ${PORTRAIT_IMAGES.map(img => html`
+        <ui-image-list-item aspect-ratio="3/4">
+          <img src="${img.url}" alt="${img.title}" loading="lazy" />
+          <ui-image-list-item-bar slot="bar">
+            ${img.title}
+            <span slot="subtitle">${img.author}</span>
+          </ui-image-list-item-bar>
+        </ui-image-list-item>
+      `)}
+    </ui-image-list>
+  `,
+};
+
+// ── Mixed Aspect Ratios ──────────────────────────────────────────────────────
+export const MixedAspectRatios: Story = {
+  name: 'Mixed Aspect Ratios',
+  args: { variant: 'standard', cols: 3, gap: 6 },
+  render: (args) => html`
+    <p style="margin:0 0 12px;font:14px system-ui;color:#6b7280;">
+      Mix of landscape (4/3), square (1/1), and portrait (3/4) cells with <code>autoRows</code>.
+    </p>
+    <ui-image-list variant="standard" .cols=${args.cols} .gap=${args.gap} ?autoRows=${true}>
+      <ui-image-list-item aspect-ratio="4/3">
+        <img src="${IMAGES[0].url}" alt="${IMAGES[0].title}" loading="lazy" />
+      </ui-image-list-item>
+      <ui-image-list-item aspect-ratio="1/1">
+        <img src="${IMAGES[1].url}" alt="${IMAGES[1].title}" loading="lazy" />
+      </ui-image-list-item>
+      <ui-image-list-item aspect-ratio="3/4">
+        <img src="${PORTRAIT_IMAGES[0].url}" alt="${PORTRAIT_IMAGES[0].title}" loading="lazy" />
+      </ui-image-list-item>
+      <ui-image-list-item aspect-ratio="3/4">
+        <img src="${PORTRAIT_IMAGES[1].url}" alt="${PORTRAIT_IMAGES[1].title}" loading="lazy" />
+      </ui-image-list-item>
+      <ui-image-list-item aspect-ratio="4/3">
+        <img src="${IMAGES[2].url}" alt="${IMAGES[2].title}" loading="lazy" />
+      </ui-image-list-item>
+      <ui-image-list-item aspect-ratio="1/1">
+        <img src="${IMAGES[3].url}" alt="${IMAGES[3].title}" loading="lazy" />
+      </ui-image-list-item>
+    </ui-image-list>
+  `,
+};
+
+// ── With Title Bars (Overlay bottom) ────────────────────────────────────────
 export const WithTitleBars: Story = {
   args: { variant: 'standard', cols: 3, gap: 4, rowHeight: 200 },
   render: (args) => html`
@@ -141,7 +244,26 @@ export const WithTitleBars: Story = {
   `,
 };
 
-// ── Title Bar Below Image ───────────────────────────────────────────────────
+// ── Bar at Top ───────────────────────────────────────────────────────────────
+export const BarTop: Story = {
+  name: 'Title Bar at Top',
+  args: { variant: 'standard', cols: 3, gap: 4, rowHeight: 200 },
+  render: (args) => html`
+    <ui-image-list variant="standard" .cols=${args.cols} .gap=${args.gap} .rowHeight=${args.rowHeight}>
+      ${IMAGES.slice(0, 6).map(img => html`
+        <ui-image-list-item>
+          <img src="${img.url}" alt="${img.title}" loading="lazy" />
+          <ui-image-list-item-bar slot="bar" position="top">
+            ${img.title}
+            <span slot="subtitle">${img.author}</span>
+          </ui-image-list-item-bar>
+        </ui-image-list-item>
+      `)}
+    </ui-image-list>
+  `,
+};
+
+// ── Title Bar Below Image ────────────────────────────────────────────────────
 export const TitleBarBelow: Story = {
   args: { variant: 'standard', cols: 3, gap: 8, rowHeight: 200 },
   render: (args) => html`
@@ -160,7 +282,7 @@ export const TitleBarBelow: Story = {
   `,
 };
 
-// ── Masonry with Title Bars ─────────────────────────────────────────────────
+// ── Masonry with Title Bars ──────────────────────────────────────────────────
 export const MasonryWithTitleBars: Story = {
   args: { variant: 'masonry', cols: 3, gap: 8 },
   render: (args) => html`
@@ -172,6 +294,42 @@ export const MasonryWithTitleBars: Story = {
             ${img.title}
             <span slot="subtitle">${img.author}</span>
           </ui-image-list-item-bar>
+        </ui-image-list-item>
+      `)}
+    </ui-image-list>
+  `,
+};
+
+// ── Masonry Portrait ─────────────────────────────────────────────────────────
+export const MasonryPortrait: Story = {
+  name: 'Masonry — Portrait Images',
+  args: { variant: 'masonry', cols: 3, gap: 8 },
+  render: (args) => html`
+    <p style="margin:0 0 12px;font:14px system-ui;color:#6b7280;">
+      Portrait images flow naturally in masonry — no fixed row height needed.
+    </p>
+    <ui-image-list variant="masonry" .cols=${args.cols} .gap=${args.gap}>
+      ${[...PORTRAIT_IMAGES, ...PORTRAIT_IMAGES].map(img => html`
+        <ui-image-list-item>
+          <img src="${img.url}" alt="${img.title}" loading="lazy" />
+        </ui-image-list-item>
+      `)}
+    </ui-image-list>
+  `,
+};
+
+// ── Object Fit: Contain ──────────────────────────────────────────────────────
+export const FitContain: Story = {
+  name: 'Object Fit: Contain',
+  args: { variant: 'standard', cols: 3, gap: 4, rowHeight: 220 },
+  render: (args) => html`
+    <p style="margin:0 0 12px;font:14px system-ui;color:#6b7280;">
+      <code>fit="contain"</code> letterboxes images — the dark background reveals empty space around non-matching aspect ratios.
+    </p>
+    <ui-image-list variant="standard" .cols=${args.cols} .gap=${args.gap} .rowHeight=${args.rowHeight}>
+      ${IMAGES.slice(0, 6).map(img => html`
+        <ui-image-list-item .fit=${'contain'} style="background:#1f2937;">
+          <img src="${img.url}" alt="${img.title}" loading="lazy" />
         </ui-image-list-item>
       `)}
     </ui-image-list>

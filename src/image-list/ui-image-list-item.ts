@@ -1,6 +1,7 @@
 import { LitElement, html, css, type PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { styleMap } from 'lit/directives/style-map.js';
+
+export type ImageFit = 'cover' | 'contain';
 
 /**
  * A single item inside a `ui-image-list`.
@@ -11,7 +12,10 @@ import { styleMap } from 'lit/directives/style-map.js';
  * Use the `rows` and `cols` props to make an item span multiple cells
  * (effective in quilted and woven variants).
  *
- * @slot img   - Place an `<img>` element here.
+ * Use `aspect-ratio` to control the cell's aspect ratio (e.g. "3/4" for portrait).
+ * Use `fit` to control how the image fills the cell ("cover" or "contain").
+ *
+ * @slot       - Place an `<img>` or any content here.
  * @slot bar   - Place a `ui-image-list-item-bar` element here.
  */
 @customElement('ui-image-list-item')
@@ -23,43 +27,49 @@ export class UiImageListItem extends LitElement {
       overflow: hidden;
     }
 
-    /* bar-position below: switch host to column flex so bar sits below */
+    /* bar-position below: host becomes column-flex so bar sits below image */
     :host([bar-position="below"]) {
       display: flex;
       flex-direction: column;
       overflow: visible;
     }
 
+    /* Masonry: let height follow image, avoid column breaks */
+    :host(.masonry) {
+      break-inside: avoid;
+      margin-bottom: var(--ui-image-list-gap, 4px);
+    }
+
     .item-wrapper {
-      display: block;
       width: 100%;
       height: 100%;
       position: relative;
       overflow: hidden;
     }
 
-    /* Masonry: let height follow the image aspect ratio */
-    :host(.masonry) .item-wrapper {
-      height: auto;
-      break-inside: avoid;
-      margin-bottom: var(--ui-image-list-gap, 4px);
+    :host([bar-position="below"]) .item-wrapper {
+      flex: 1 1 auto;
+      overflow: hidden;
     }
 
-    /* Default image slot styling */
+    /* Masonry: wrapper height follows content */
+    :host(.masonry) .item-wrapper {
+      height: auto;
+    }
+
     ::slotted(img) {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: var(--ui-image-fit, cover);
       display: block;
     }
 
-    /* Masonry: images resize naturally */
+    /* Masonry images: natural height */
     :host(.masonry) ::slotted(img) {
       height: auto;
-      object-fit: contain;
     }
 
-    /* Bar slot: pinned at bottom by default */
+    /* Bar overlay: pinned to bottom of :host (not wrapper) */
     ::slotted(ui-image-list-item-bar) {
       position: absolute;
       bottom: 0;
@@ -67,16 +77,13 @@ export class UiImageListItem extends LitElement {
       right: 0;
     }
 
-    /* Bar below: place bar outside the image area */
-    :host([bar-position="below"]) {
-      display: flex;
-      flex-direction: column;
+    /* Bar at top of image */
+    ::slotted(ui-image-list-item-bar[position="top"]) {
+      bottom: auto;
+      top: 0;
     }
 
-    :host([bar-position="below"]) .item-wrapper {
-      flex: 1;
-    }
-
+    /* Bar below image: static flow */
     :host([bar-position="below"]) ::slotted(ui-image-list-item-bar) {
       position: static;
     }
@@ -95,28 +102,50 @@ export class UiImageListItem extends LitElement {
   /** Woven variant: 'odd' or 'even' identity for alternating height */
   @property({ type: String }) weave: 'odd' | 'even' = 'odd';
 
+  /**
+   * CSS aspect-ratio for the cell (e.g. "1/1", "4/3", "3/4", "16/9", "9/16").
+   * Set to "auto" (default) to let the grid row height control cell size.
+   */
+  @property({ type: String, attribute: 'aspect-ratio', reflect: true })
+  aspectRatio = 'auto';
+
+  /**
+   * How the image fills the cell: 'cover' (default, crops to fill)
+   * or 'contain' (letterboxes to fit without cropping).
+   */
+  @property({ type: String }) fit: ImageFit = 'cover';
+
   connectedCallback() {
     super.connectedCallback();
-    // Apply grid span styles to the host element so the parent CSS grid picks them up
-    this._applyGridSpan();
+    this._applyHostStyles();
   }
 
   protected updated(_changedProperties: PropertyValues) {
     super.updated(_changedProperties);
-    this._applyGridSpan();
+    this._applyHostStyles();
   }
 
-  private _applyGridSpan() {
-    if (this.rows > 1) {
+  private _applyHostStyles() {
+    // Grid row span — reset when back to 1
+    const parent = this.closest('ui-image-list');
+    const variant = parent?.getAttribute('variant');
+
+    if (variant === 'woven') {
+      this.style.gridRow = this.weave === 'odd' ? 'span 2' : 'span 1';
+    } else if (this.rows > 1) {
       this.style.gridRow = `span ${this.rows}`;
-    }
-    if (this.cols > 1) {
-      this.style.gridColumn = `span ${this.cols}`;
+    } else {
+      this.style.gridRow = '';
     }
 
-    // Detect masonry parent
-    const parent = this.closest('ui-image-list');
-    if (parent && parent.getAttribute('variant') === 'masonry') {
+    if (this.cols > 1) {
+      this.style.gridColumn = `span ${this.cols}`;
+    } else {
+      this.style.gridColumn = '';
+    }
+
+    // Masonry class for CSS selector targeting
+    if (variant === 'masonry') {
       // eslint-disable-next-line wc/no-self-class
       this.classList.add('masonry');
     } else {
@@ -124,26 +153,19 @@ export class UiImageListItem extends LitElement {
       this.classList.remove('masonry');
     }
 
-    // Woven: alternate heights via row spans
-    if (parent && parent.getAttribute('variant') === 'woven') {
-      this.style.gridRow = this.weave === 'odd' ? 'span 2' : 'span 1';
-    }
+    // Aspect ratio on host
+    this.style.aspectRatio = this.aspectRatio !== 'auto' ? this.aspectRatio : '';
+
+    // Object-fit via CSS custom property (inherited by ::slotted img rule)
+    this.style.setProperty('--ui-image-fit', this.fit);
   }
 
   render() {
-    const styles: Record<string, string> = {};
-    if (this.rows > 1) {
-      styles['grid-row'] = `span ${this.rows}`;
-    }
-    if (this.cols > 1) {
-      styles['grid-column'] = `span ${this.cols}`;
-    }
-
     return html`
-      <li class="item-wrapper" style="${styleMap(styles)}">
-        <slot name="img"><slot></slot></slot>
-        <slot name="bar"></slot>
-      </li>
+      <div class="item-wrapper">
+        <slot></slot>
+      </div>
+      <slot name="bar"></slot>
     `;
   }
 }

@@ -38,10 +38,9 @@ export class UiImageList extends LitElement {
       grid-auto-rows: var(--ui-image-list-row-height, 164px);
     }
 
-    /* Masonry: no grid rows — CSS columns-based layout */
+    /* Masonry: CSS columns-based layout — column-count set inline */
     .variant-masonry {
       display: block;
-      columns: var(--ui-image-list-cols, 3);
     }
   `;
 
@@ -66,7 +65,6 @@ export class UiImageList extends LitElement {
     const styles: Record<string, string> = {};
 
     if (isMasonry) {
-      styles['--ui-image-list-cols'] = String(this.cols);
       styles['column-count'] = String(this.cols);
       styles['column-gap'] = `${this.gap}px`;
     } else {
@@ -76,8 +74,7 @@ export class UiImageList extends LitElement {
       styles['grid-auto-rows'] = this.autoRows ? 'auto' : `${this.rowHeight}px`;
     }
 
-    // Pass variant and gap to child items via CSS variables
-    styles['--ui-image-list-variant'] = this.variant;
+    // Pass gap to child items via CSS custom property
     styles['--ui-image-list-gap'] = `${this.gap}px`;
 
     return html`

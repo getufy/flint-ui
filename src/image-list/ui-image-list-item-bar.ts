@@ -2,8 +2,13 @@ import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
 /**
- * A title/subtitle bar overlay for `ui-image-list-item`.
- * Can be placed as an overlay on the image, or below it via `bar-position="below"` on the parent item.
+ * A title/subtitle bar for `ui-image-list-item`.
+ *
+ * Overlay positions ('bottom', 'top'): gradient over the image.
+ * 'below': solid background, placed outside the image area.
+ *
+ * Positioning relative to the image is controlled by `bar-position` on
+ * the parent `ui-image-list-item`; `position` on the bar controls styling.
  *
  * @slot          - Title text
  * @slot subtitle - Subtitle text
@@ -11,29 +16,28 @@ import { customElement, property } from 'lit/decorators.js';
  */
 @customElement('ui-image-list-item-bar')
 export class UiImageListItemBar extends LitElement {
-    static styles = css`
+  static styles = css`
     :host {
       display: block;
       box-sizing: border-box;
       background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, transparent 100%);
       color: #fff;
       padding: 12px 12px 8px;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
+      font-family: var(--ui-font-family, system-ui, sans-serif);
     }
 
-    /* Below-image mode: solid background, no gradient overlay */
+    /* Top overlay: gradient flows downward */
+    :host([position="top"]) {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, transparent 100%);
+      padding: 8px 12px 12px;
+    }
+
+    /* Below-image mode: solid background */
     :host([position="below"]) {
       background: var(--ui-surface-color, #fff);
       color: var(--ui-text-color, #111827);
       border-top: 1px solid var(--ui-border-color, #e5e7eb);
       padding: 8px 12px;
-    }
-
-    /* Top position: gradient flows from bottom of bar area upward */
-    :host([position="top"]) {
-      background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, transparent 100%);
-      top: 0;
-      bottom: auto;
     }
 
     .bar-inner {
@@ -72,7 +76,6 @@ export class UiImageListItemBar extends LitElement {
       align-items: center;
     }
 
-    /* Action slot: make icon/button white */
     ::slotted([slot="action"]) {
       color: #fff;
     }
@@ -82,11 +85,11 @@ export class UiImageListItemBar extends LitElement {
     }
   `;
 
-    /** Position hint for styling: 'bottom' (default), 'top', or 'below' */
-    @property({ type: String, reflect: true }) position: 'bottom' | 'top' | 'below' = 'bottom';
+  /** Position hint for styling: 'bottom' (default overlay), 'top' (overlay), or 'below' (solid) */
+  @property({ type: String, reflect: true }) position: 'bottom' | 'top' | 'below' = 'bottom';
 
-    render() {
-        return html`
+  render() {
+    return html`
       <div class="bar-inner">
         <div class="bar-text">
           <div class="bar-title"><slot></slot></div>
@@ -97,11 +100,11 @@ export class UiImageListItemBar extends LitElement {
         </div>
       </div>
     `;
-    }
+  }
 }
 
 declare global {
-    interface HTMLElementTagNameMap {
-        'ui-image-list-item-bar': UiImageListItemBar;
-    }
+  interface HTMLElementTagNameMap {
+    'ui-image-list-item-bar': UiImageListItemBar;
+  }
 }
