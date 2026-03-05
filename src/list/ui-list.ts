@@ -1,5 +1,5 @@
-import { LitElement, html, css } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { LitElement, html, css, nothing } from 'lit';
+import { customElement, property, state } from 'lit/decorators.js';
 
 /**
  * ui-list: A wrapper for list items.
@@ -14,7 +14,17 @@ export class UiList extends LitElement {
       list-style: none;
       background-color: var(--ui-surface-background, white);
     }
+    :host([disable-padding]) {
+      padding: 0;
+    }
+    :host([dense]) {
+      --ui-list-item-padding: 4px 16px;
+      --ui-list-item-gap: 8px;
+    }
   `;
+
+    @property({ type: Boolean, reflect: true, attribute: 'disable-padding' }) disablePadding = false;
+    @property({ type: Boolean, reflect: true }) dense = false;
 
     render() {
         return html`<ul role="list" style="margin: 0; padding: 0; list-style: none;"><slot></slot></ul>`;
@@ -34,8 +44,8 @@ export class UiListItem extends LitElement {
     li {
       display: flex;
       align-items: center;
-      padding: 8px 16px;
-      gap: 16px;
+      padding: var(--ui-list-item-padding, 8px 16px);
+      gap: var(--ui-list-item-gap, 16px);
       list-style: none;
     }
   `;
@@ -58,8 +68,8 @@ export class UiListItemButton extends LitElement {
     li {
       display: flex;
       align-items: center;
-      padding: 8px 16px;
-      gap: 16px;
+      padding: var(--ui-list-item-padding, 8px 16px);
+      gap: var(--ui-list-item-gap, 16px);
       cursor: pointer;
       transition: background-color 0.2s ease;
       user-select: none;
@@ -76,10 +86,38 @@ export class UiListItemButton extends LitElement {
       background-color: var(--ui-hover-color, rgba(0, 0, 0, 0.04));
       box-shadow: inset 0 0 0 2px var(--ui-primary-color, #3b82f6);
     }
+    :host([selected]) li {
+      background-color: var(--ui-selected-color, rgba(59, 130, 246, 0.1));
+      color: var(--ui-primary-color, #3b82f6);
+    }
+    :host([disabled]) li {
+      opacity: 0.5;
+      cursor: default;
+      pointer-events: none;
+    }
   `;
 
+    @property({ type: Boolean, reflect: true }) disabled = false;
+    @property({ type: Boolean, reflect: true }) selected = false;
+
+    private _handleKeydown = (e: KeyboardEvent) => {
+        if (this.disabled) return;
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.click();
+        }
+    };
+
     render() {
-        return html`<li role="button" tabindex="0"><slot></slot></li>`;
+        return html`
+      <li
+        role="button"
+        tabindex=${this.disabled ? '-1' : '0'}
+        aria-disabled=${this.disabled ? 'true' : nothing}
+        aria-current=${this.selected ? 'true' : nothing}
+        @keydown=${this._handleKeydown}
+      ><slot></slot></li>
+    `;
     }
 }
 
@@ -154,10 +192,20 @@ export class UiListItemText extends LitElement {
     @property({ type: String }) primary = '';
     @property({ type: String }) secondary = '';
 
+    @state() private _hasSecondarySlot = false;
+
+    private _onSecondarySlotChange(e: Event) {
+        const slot = e.target as HTMLSlotElement;
+        this._hasSecondarySlot = slot.assignedNodes({ flatten: true }).length > 0;
+    }
+
     render() {
+        const showSecondary = !!this.secondary || this._hasSecondarySlot;
         return html`
       <span class="primary">${this.primary}<slot name="primary"></slot></span>
-      ${this.secondary ? html`<span class="secondary">${this.secondary}<slot name="secondary"></slot></span>` : ''}
+      <span class="secondary" style=${showSecondary ? '' : 'display:none'}>
+        ${this.secondary}<slot name="secondary" @slotchange=${this._onSecondarySlotChange}></slot>
+      </span>
     `;
     }
 }
