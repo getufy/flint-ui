@@ -1,4 +1,4 @@
-import { LitElement, html, css, nothing } from 'lit';
+import { LitElement, html, css, nothing, type PropertyValues } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 
@@ -94,6 +94,9 @@ export class UiSpeedDialAction extends LitElement {
         }
     `;
 
+    /** Programmatic identifier for this action, included in the click event detail. */
+    @property({ type: String }) name = '';
+
     /** Tooltip text shown alongside the action and used as aria-label. */
     @property({ type: String, attribute: 'tooltip-title' }) tooltipTitle = '';
 
@@ -114,7 +117,7 @@ export class UiSpeedDialAction extends LitElement {
         this.dispatchEvent(new CustomEvent('ui-speed-dial-action-click', {
             bubbles: true,
             composed: true,
-            detail: { tooltipTitle: this.tooltipTitle },
+            detail: { name: this.name, tooltipTitle: this.tooltipTitle },
         }));
     }
 
@@ -270,6 +273,13 @@ export class UiSpeedDial extends LitElement {
         }
         :host([open]) .backdrop { display: block; }
 
+        /* ── Disabled ── */
+        :host([disabled]) .fab {
+            opacity: 0.38;
+            pointer-events: none;
+            cursor: default;
+        }
+
         /* ── Hidden ── */
         :host([hidden]) { display: none !important; }
 
@@ -281,11 +291,17 @@ export class UiSpeedDial extends LitElement {
     /** Whether the speed dial is open (controlled). */
     @property({ type: Boolean, reflect: true }) open = false;
 
+    /** Initial open state for uncontrolled usage. Sets `open` once on first render. */
+    @property({ type: Boolean, attribute: 'default-open' }) defaultOpen = false;
+
     /** Direction in which actions expand from the FAB (default 'up'). */
     @property({ type: String, reflect: true }) direction: 'up' | 'down' | 'left' | 'right' = 'up';
 
     /** Hides the entire speed dial component. */
     @property({ type: Boolean, reflect: true }) hidden = false;
+
+    /** Disables the FAB and prevents opening. */
+    @property({ type: Boolean, reflect: true }) disabled = false;
 
     /** When true, tooltips on all actions are always visible (good for touch/a11y). */
     @property({ type: Boolean, attribute: 'persistent-tooltips' }) persistentTooltips = false;
@@ -299,7 +315,18 @@ export class UiSpeedDial extends LitElement {
     /** True on touch-only devices (auto-detected unless explicitly set). */
     @property({ type: Boolean, attribute: 'is-touch' }) isTouch = false;
 
+    private _firstUpdate = true;
+
     /* ── Lifecycle ───────────────────────────────────────────────── */
+
+    willUpdate(changed: PropertyValues) {
+        if (this._firstUpdate && this.defaultOpen) {
+            this.open = true;
+        }
+        if (this._firstUpdate) this._firstUpdate = false;
+        // Forward to existing updated logic handled in updated()
+        void changed;
+    }
 
     connectedCallback() {
         super.connectedCallback();
@@ -308,10 +335,12 @@ export class UiSpeedDial extends LitElement {
         }
         // Keyboard events from shadow-DOM action buttons bubble as composed events.
         this.addEventListener('keydown', this._onHostKeyDown);
+        this.addEventListener('focusout', this._onHostFocusOut);
     }
 
     disconnectedCallback() {
         this.removeEventListener('keydown', this._onHostKeyDown);
+        this.removeEventListener('focusout', this._onHostFocusOut);
         super.disconnectedCallback();
     }
 
@@ -354,7 +383,10 @@ export class UiSpeedDial extends LitElement {
         ));
     }
 
-    private _toggle() { this._setOpen(!this.open); }
+    private _toggle() {
+        if (this.disabled) return;
+        this._setOpen(!this.open);
+    }
 
     /* ── Keyboard handler ────────────────────────────────────────── */
 
@@ -364,6 +396,7 @@ export class UiSpeedDial extends LitElement {
      * they bubble up through the host and are caught here.
      */
     private _onHostKeyDown = (e: KeyboardEvent) => {
+        if (this.disabled) return;
         const { key } = e;
         const fabFocused = this.shadowRoot?.activeElement?.classList.contains('fab') ?? false;
         const currentIdx = this._focusedActionIndex();
@@ -377,6 +410,14 @@ export class UiSpeedDial extends LitElement {
                 this._setOpen(false);
                 this._focusFab();
             }
+            return;
+        }
+
+        /* ── Home / End: jump to first / last action ── */
+        if ((key === 'Home' || key === 'End') && this.open && actionFocused) {
+            e.preventDefault();
+            const btns = this._actionButtons();
+            if (btns.length) btns[key === 'Home' ? 0 : btns.length - 1].focus();
             return;
         }
 
@@ -412,9 +453,13 @@ export class UiSpeedDial extends LitElement {
 
     /* ── FAB handlers ────────────────────────────────────────────── */
 
-    /** Opening the dial on FAB keyboard focus (not mouse focus to avoid noise). */
+    /** Suppresses the next FAB-focus auto-open (used when closing internally). */
+    private _suppressNextOpen = false;
+
+    /** Opens the dial when FAB receives keyboard focus from outside the component. */
     private _onFabFocus(e: FocusEvent) {
-        // Open only on keyboard focus (relatedTarget is null for mouse-click focus)
+        if (this._suppressNextOpen) return;
+        // Open only when focus arrives from another element (keyboard tab-in), not from mouse.
         if (e.relatedTarget !== null && !this.open) {
             this._setOpen(true);
         }
@@ -423,16 +468,36 @@ export class UiSpeedDial extends LitElement {
     /* ── Action click → close ────────────────────────────────────── */
 
     private _onActionClick() {
+        // Suppress FAB's auto-open-on-focus so returning focus here doesn't reopen the dial.
+        this._suppressNextOpen = true;
         this._setOpen(false);
         this._focusFab();
+        // Reset flag after the synchronous focus event has fired.
+        Promise.resolve().then(() => { this._suppressNextOpen = false; });
     }
 
+    /* ── Focus-out → close ───────────────────────────────────────── */
+
+    private _onHostFocusOut = (e: FocusEvent) => {
+        // Close only when focus leaves the entire component (not moving between inner elements)
+        if (this.open && !this.contains(e.relatedTarget as Node)) {
+            this._setOpen(false);
+        }
+    };
+
     /* ── Tooltip helpers ─────────────────────────────────────────── */
+
+    /** True for directions where the first DOM action is visually farthest from the FAB. */
+    private _isReversedDirection(): boolean {
+        return this.direction === 'up' || this.direction === 'left';
+    }
 
     private _updateActionTooltips() {
         const actions = this.querySelectorAll('ui-speed-dial-action');
         const showTooltip = this.persistentTooltips || this.isTouch;
         const placement = this._tooltipPlacement();
+        const reversed = this._isReversedDirection();
+        const count = actions.length;
         actions.forEach((action, i) => {
             action.setAttribute('tooltip-placement', placement);
             if (showTooltip && this.open) {
@@ -440,9 +505,12 @@ export class UiSpeedDial extends LitElement {
             } else {
                 action.removeAttribute('tooltip-open');
             }
+            // Stagger from FAB outward: for reversed directions the last DOM item is nearest the FAB
+            const staggerIdx = reversed ? (count - 1 - i) : i;
+            const closeIdx  = reversed ? i : (count - 1 - i);
             (action as HTMLElement).style.transitionDelay = this.open
-                ? `${i * 40}ms`
-                : `${(actions.length - 1 - i) * 30}ms`;
+                ? `${staggerIdx * 40}ms`
+                : `${closeIdx * 30}ms`;
         });
     }
 
@@ -463,10 +531,6 @@ export class UiSpeedDial extends LitElement {
         }
     }
 
-    private _onOpenIconSlotChange() {
-        // reserved — slot presence handled by CSS
-    }
-
     /* ── Render ──────────────────────────────────────────────────── */
 
     render() {
@@ -476,9 +540,11 @@ export class UiSpeedDial extends LitElement {
 
             <!-- Actions — action-click events bubble up here -->
             <div
+                id="sd-menu"
                 class="actions"
                 role="menu"
                 aria-label="Speed dial actions"
+                aria-hidden=${this.open ? 'false' : 'true'}
             >
                 <slot
                     @slotchange=${() => this._updateActionTooltips()}
@@ -490,8 +556,11 @@ export class UiSpeedDial extends LitElement {
             <button
                 class="fab"
                 aria-label=${this.ariaLabel}
-                aria-expanded=${this.open}
-                aria-haspopup="true"
+                aria-expanded=${this.open ? 'true' : 'false'}
+                aria-haspopup="menu"
+                aria-controls="sd-menu"
+                aria-disabled=${this.disabled ? 'true' : nothing}
+                ?disabled=${this.disabled}
                 @click=${this._toggle}
                 @focus=${this._onFabFocus}
             >
@@ -506,7 +575,7 @@ export class UiSpeedDial extends LitElement {
 
                 <!-- ✕ icon: visible when open -->
                 <span class="fab-icon close-icon">
-                    <slot name="open-icon" @slotchange=${this._onOpenIconSlotChange}>
+                    <slot name="open-icon">
                         ${this.closeIcon
                 ? html`<span style="line-height:1;font-size:1.5rem;">${this.closeIcon}</span>`
                 : html`<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>`

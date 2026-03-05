@@ -10,6 +10,7 @@ const meta: Meta = {
         open: { control: 'boolean' },
         direction: { control: { type: 'select' }, options: ['up', 'down', 'left', 'right'] },
         hidden: { control: 'boolean' },
+        disabled: { control: 'boolean' },
         persistentTooltips: { control: 'boolean' },
         isTouch: { control: 'boolean' },
         closeIcon: { control: 'text' },
@@ -295,6 +296,189 @@ export const Hidden: Story = {
                     >
                         ${actions()}
                     </ui-speed-dial>
+                </div>
+            </div>
+        </div>
+    `,
+};
+
+/* ================================================================== */
+/* Disabled Actions                                                    */
+/* ================================================================== */
+export const DisabledActions: Story = {
+    render: () => stageCorner(html`
+        <ui-speed-dial
+            open
+            aria-label="Speed dial with disabled actions"
+        >
+            <ui-speed-dial-action tooltip-title="Copy" name="copy">📋</ui-speed-dial-action>
+            <ui-speed-dial-action tooltip-title="Print (unavailable)" name="print" disabled>🖨️</ui-speed-dial-action>
+            <ui-speed-dial-action tooltip-title="Share" name="share">🔗</ui-speed-dial-action>
+            <ui-speed-dial-action tooltip-title="Delete (unavailable)" name="delete" disabled>🗑️</ui-speed-dial-action>
+        </ui-speed-dial>
+    `, 'center'),
+};
+
+/* ================================================================== */
+/* Disabled Dial                                                       */
+/* ================================================================== */
+export const DisabledDial: Story = {
+    render: () => stageCorner(html`
+        <ui-speed-dial
+            disabled
+            aria-label="Disabled speed dial"
+        >
+            ${actions()}
+        </ui-speed-dial>
+    `, 'center'),
+};
+
+/* ================================================================== */
+/* Touch Mode (persistent tooltips)                                    */
+/* ================================================================== */
+export const TouchMode: Story = {
+    render: () => html`
+        <div style="display:flex;flex-direction:column;gap:16px;font-family:Inter,sans-serif;">
+            <div style="
+                padding:10px 14px;background:#eff6ff;border:1px solid #bfdbfe;
+                border-radius:6px;font-size:.8rem;color:#1e40af;
+            ">
+                ℹ️ <code>is-touch</code> simulates a touch device — tooltips are always visible when open,
+                matching expected behaviour on mobile where hover is unavailable.
+            </div>
+            <div style="
+                position:relative;height:300px;
+                background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;
+            ">
+                <div style="position:absolute;bottom:24px;right:80px;">
+                    <ui-speed-dial
+                        is-touch
+                        open
+                        aria-label="Touch mode speed dial"
+                    >
+                        <ui-speed-dial-action tooltip-title="Copy link" name="copy-link">🔗</ui-speed-dial-action>
+                        <ui-speed-dial-action tooltip-title="Edit" name="edit">✏️</ui-speed-dial-action>
+                        <ui-speed-dial-action tooltip-title="Delete" name="delete">🗑️</ui-speed-dial-action>
+                    </ui-speed-dial>
+                </div>
+            </div>
+        </div>
+    `,
+};
+
+/* ================================================================== */
+/* Custom Open Icon (slot="icon")                                      */
+/* ================================================================== */
+export const CustomOpenIcon: Story = {
+    render: () => stageCorner(html`
+        <ui-speed-dial
+            aria-label="Custom open icon speed dial"
+            @ui-speed-dial-open=${(e: Event) => { (e.target as UiSpeedDial).open = true; }}
+            @ui-speed-dial-close=${(e: Event) => { (e.target as UiSpeedDial).open = false; }}
+        >
+            <!-- Override the default + icon shown when closed -->
+            <span slot="icon" style="font-size:1.4rem;line-height:1;">✏️</span>
+            <!-- Override the default ✕ icon shown when open -->
+            <span slot="open-icon" style="font-size:1.4rem;line-height:1;">✖</span>
+            ${actions()}
+        </ui-speed-dial>
+    `, 'center'),
+};
+
+/* ================================================================== */
+/* With Names (programmatic click handling)                            */
+/* ================================================================== */
+export const WithNames: Story = {
+    render: () => html`
+        <div style="display:flex;flex-direction:column;gap:16px;font-family:Inter,sans-serif;">
+            <div style="
+                padding:10px 14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;
+                font-size:.8rem;color:#64748b;
+            ">
+                Last action: <strong id="sd-last-action" style="color:#374151;">—</strong>
+            </div>
+            <div style="
+                position:relative;height:280px;
+                background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;
+            ">
+                <div style="position:absolute;bottom:24px;right:24px;">
+                    <ui-speed-dial
+                        aria-label="Named actions speed dial"
+                        @ui-speed-dial-open=${(e: Event) => { (e.target as UiSpeedDial).open = true; }}
+                        @ui-speed-dial-close=${(e: Event) => { (e.target as UiSpeedDial).open = false; }}
+                        @ui-speed-dial-action-click=${(e: CustomEvent) => {
+                            const label = document.getElementById('sd-last-action');
+                            if (label) label.textContent = `${e.detail.name} (${e.detail.tooltipTitle})`;
+                        }}
+                    >
+                        <ui-speed-dial-action name="copy"  tooltip-title="Copy">📋</ui-speed-dial-action>
+                        <ui-speed-dial-action name="print" tooltip-title="Print">🖨️</ui-speed-dial-action>
+                        <ui-speed-dial-action name="share" tooltip-title="Share">🔗</ui-speed-dial-action>
+                        <ui-speed-dial-action name="save"  tooltip-title="Save">💾</ui-speed-dial-action>
+                    </ui-speed-dial>
+                </div>
+            </div>
+        </div>
+    `,
+};
+
+/* ================================================================== */
+/* Keyboard Navigation (annotated)                                     */
+/* ================================================================== */
+export const KeyboardNavigation: Story = {
+    render: () => html`
+        <div style="display:flex;gap:24px;font-family:Inter,sans-serif;align-items:flex-start;flex-wrap:wrap;">
+
+            <!-- Cheat sheet -->
+            <div style="
+                flex:0 0 auto;padding:16px 20px;
+                background:#fff;border:1px solid #e2e8f0;border-radius:8px;
+                font-size:.8rem;color:#374151;min-width:220px;
+            ">
+                <div style="font-weight:600;margin-bottom:10px;color:#111827;">Keyboard shortcuts</div>
+                <table style="border-collapse:collapse;width:100%;">
+                    <tbody>
+                        ${([
+                            ['Tab', 'Focus the FAB → opens dial'],
+                            ['Space / Enter', 'Toggle open / trigger action'],
+                            ['↑ ↓ ← →', 'Navigate between actions'],
+                            ['Home', 'Jump to first action'],
+                            ['End', 'Jump to last action'],
+                            ['Escape', 'Close dial, return focus'],
+                            ['Tab away', 'Close dial automatically'],
+                        ] as [string, string][]).map(([key, desc]) => html`
+                            <tr>
+                                <td style="padding:4px 8px 4px 0;white-space:nowrap;">
+                                    <kbd style="
+                                        background:#f1f5f9;border:1px solid #cbd5e1;
+                                        border-radius:4px;padding:1px 6px;font-size:.75rem;
+                                        font-family:monospace;
+                                    ">${key}</kbd>
+                                </td>
+                                <td style="padding:4px 0;color:#64748b;">${desc}</td>
+                            </tr>
+                        `)}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Live demo -->
+            <div style="flex:1 1 auto;">
+                <div style="
+                    position:relative;height:280px;min-width:200px;
+                    background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;
+                ">
+                    <div style="position:absolute;bottom:24px;right:24px;">
+                        <ui-speed-dial
+                            aria-label="Keyboard navigation demo"
+                            @ui-speed-dial-open=${(e: Event) => { (e.target as UiSpeedDial).open = true; }}
+                            @ui-speed-dial-close=${(e: Event) => { (e.target as UiSpeedDial).open = false; }}
+                        >
+                            <ui-speed-dial-action name="copy"  tooltip-title="Copy">📋</ui-speed-dial-action>
+                            <ui-speed-dial-action name="print" tooltip-title="Print">🖨️</ui-speed-dial-action>
+                            <ui-speed-dial-action name="share" tooltip-title="Share">🔗</ui-speed-dial-action>
+                        </ui-speed-dial>
+                    </div>
                 </div>
             </div>
         </div>
