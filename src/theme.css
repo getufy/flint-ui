@@ -202,6 +202,21 @@
     --ui-input-readonly-bg:        var(--ui-color-zinc-50);
     --ui-help-text-color:          var(--ui-text-color-muted);
 
+    /* ─── Toast (Sonner) ───────────────────────────────────────── */
+    --ui-toast-z-index:   9999;
+    --ui-toast-width:     356px;
+    --ui-toast-gap:       8px;
+    --ui-toast-padding:   16px;
+    --ui-toast-bg:        var(--ui-surface-1);
+    --ui-toast-color:     var(--ui-text-color);
+    --ui-toast-border:    1px solid var(--ui-border-color);
+    --ui-toast-radius:    var(--ui-border-radius-lg);
+    --ui-toast-shadow:    var(--ui-shadow-lg);
+    --ui-toast-success-icon-color: var(--ui-success-color);
+    --ui-toast-error-icon-color:   var(--ui-error-color);
+    --ui-toast-warning-icon-color: var(--ui-warning-color);
+    --ui-toast-info-icon-color:    var(--ui-primary-color);
+
     /* ─── Scroll Area ──────────────────────────────────────────── */
     --ui-scrollbar-size:              8px;
     --ui-scrollbar-thumb-color:       rgba(0, 0, 0, 0.35);
@@ -329,6 +344,11 @@ body {
 
     /* ─── Stepper ─────────────────────────────────────────────── */
     --ui-stepper-connector-color: var(--ui-border-color);
+
+    /* ─── Toast (Sonner) ──────────────────────────────────────── */
+    --ui-toast-bg:     var(--ui-surface-1);
+    --ui-toast-color:  var(--ui-text-color);
+    --ui-toast-border: 1px solid var(--ui-border-color);
 
     /* ─── Scroll Area ──────────────────────────────────────────── */
     --ui-scrollbar-thumb-color:       rgba(255, 255, 255, 0.35);
