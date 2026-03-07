@@ -11,7 +11,8 @@
       "import": "./dist/storybook-lit-component.es.js",
       "require": "./dist/storybook-lit-component.umd.js"
     },
-    "./theme.css": "./src/theme.css"
+    "./theme.css": "./src/theme.css",
+    "./theme-dark.css": "./src/theme-dark.css"
   },
   "scripts": {
     "lint": "eslint \"src/**/*.ts\"",
@@ -36,7 +37,8 @@
   "description": "",
   "files": [
     "dist",
-    "src/theme.css"
+    "src/theme.css",
+    "src/theme-dark.css"
   ],
   "dependencies": {
     "lit": "^3.3.2"

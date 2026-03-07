@@ -1,5 +1,6 @@
 import type { Preview } from '@storybook/web-components-vite'
-import '../src/theme.css'; // Import the global styles
+import '../src/theme.css';
+import '../src/theme-dark.css';
 
 const preview: Preview = {
   parameters: {
@@ -38,15 +39,12 @@ const preview: Preview = {
 
       if (theme === 'system') {
         // Remove explicit theme overrides — let @media (prefers-color-scheme) decide
-        document.documentElement.removeAttribute('data-theme');
-        document.documentElement.classList.remove('light', 'dark');
-        document.body.removeAttribute('data-theme');
-        document.body.classList.remove('light', 'dark');
+        document.documentElement.classList.remove('ui-theme-light', 'ui-theme-dark');
+        document.body.classList.remove('ui-theme-light', 'ui-theme-dark');
       } else {
-        // Set explicit theme on <body> so .dark / [data-theme="dark"] selectors apply
-        document.body.setAttribute('data-theme', theme);
-        document.body.classList.remove('light', 'dark');
-        document.body.classList.add(theme);
+        // Set explicit theme on <body> so .ui-theme-dark / .ui-theme-light selectors apply
+        document.body.classList.remove('ui-theme-light', 'ui-theme-dark');
+        document.body.classList.add(theme === 'dark' ? 'ui-theme-dark' : 'ui-theme-light');
       }
 
       return story();
