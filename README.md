@@ -1,8 +1,5 @@
 # TODO Components
 
-
-- [ ] Scroll Area
-Augments native scroll functionality for custom, cross-browser styling.
 - [ ] Sonner/Toaster
 An opinionated toast component for React.
 - [ ] Textarea
