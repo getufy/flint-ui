@@ -125,8 +125,8 @@ export function Showcase() {
                         <UiCard style={{ width: '100%', maxWidth: 280 }}>
                             <UiCardHeader>
                                 <div style={row(8)}>
-                                    <UiAvatar initials="SL" size="small" />
-                                    <div><p style={{ fontWeight: 600, fontSize: 13 }}>storybook-lit</p><p style={{ fontSize: 11, color: c.muted }}>2 hours ago</p></div>
+                                    <UiAvatar initials="LI" size="small" />
+                                    <div><p style={{ fontWeight: 600, fontSize: 13 }}>lite</p><p style={{ fontSize: 11, color: c.muted }}>2 hours ago</p></div>
                                 </div>
                             </UiCardHeader>
                             <UiCardContent><p style={{ fontSize: 13, color: c.muted }}>A comprehensive Lit + React component library for modern UIs.</p></UiCardContent>
