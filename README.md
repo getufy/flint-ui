@@ -3,10 +3,6 @@
 - [ ] Forms
 - [ ] Format Date
 - [ ] Format Number
-- [ ] QR Code
-- [ ] Relative Time (x ago)
-- [ ] Split Panel   
-- [ ] Switch
 - [ ] Visually Hidden (A11y)
 
 - Continue investigating bugs under ui-switch folder (started at ui-grid).
