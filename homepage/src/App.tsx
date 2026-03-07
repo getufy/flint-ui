@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { getColors } from './tokens';
 import { Header } from './sections/Header';
@@ -12,6 +12,10 @@ import { Flow } from './sections/Flow';
 import { Interactive } from './sections/Interactive';
 import { ComponentList } from './sections/ComponentList';
 import { Footer } from './sections/Footer';
+import { ComponentLibraryPage } from './pages/ComponentLibraryPage';
+import { BlogPage } from './pages/BlogPage';
+import { ContactPage } from './pages/ContactPage';
+import { APIDocPage } from './pages/APIDocPage';
 
 function AppInner() {
     const { dark } = useTheme();
@@ -66,9 +70,15 @@ function AppInner() {
 }
 
 export function App() {
+    const pathname = typeof window !== 'undefined' ? window.location.pathname : '/';
+    const isDocs = pathname === '/docs';
+    const isBlog = pathname === '/blog';
+    const isContact = pathname === '/contact';
+    const isAPI = pathname === '/api';
+
     return (
         <ThemeProvider>
-            <AppInner />
+            {isDocs ? <ComponentLibraryPage /> : isBlog ? <BlogPage /> : isContact ? <ContactPage /> : isAPI ? <APIDocPage /> : <AppInner />}
         </ThemeProvider>
     );
 }

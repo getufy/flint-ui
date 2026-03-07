@@ -2,7 +2,13 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import '../../src/theme.css';
 import '../../src/theme-dark.css';
+import { animationStyles } from './animations';
 import { App } from './App';
+
+// Inject animation styles
+const styleSheet = document.createElement('style');
+styleSheet.textContent = animationStyles;
+document.head.appendChild(styleSheet);
 
 createRoot(document.getElementById('root')!).render(
     <React.StrictMode>

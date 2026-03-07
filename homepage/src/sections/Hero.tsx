@@ -51,6 +51,9 @@ export function Hero() {
                             </p>
                             <div style={{ ...row(12), marginTop: 24 }}>
                                 <UiButton size="large" variant="primary" onClick={() => document.getElementById('s-components')?.scrollIntoView({ behavior: 'smooth' })}>Browse Components</UiButton>
+                                <a href="/docs" style={{ textDecoration: 'none' }}>
+                                    <UiButton size="large" variant="secondary">View All Components</UiButton>
+                                </a>
                             </div>
                             <div style={{ ...row(12), background: dark ? '#0d1117' : '#f1f5f9', border: `1px solid ${dark ? '#30363d' : '#cbd5e1'}`, borderRadius: 8, padding: '10px 16px', width: 'fit-content', maxWidth: '100%', overflowX: 'auto', marginTop: 20 }}>
                                 <span style={{ color: dark ? '#7ee787' : '#0f7938', fontFamily: 'monospace', fontSize: 13 }}>$</span>

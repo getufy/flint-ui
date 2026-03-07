@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTheme } from '../ThemeContext';
 import { getColors, row, col, maxW } from '../tokens';
+import { NewsletterForm } from '../components/NewsletterForm';
 
 export function Footer() {
     const { dark } = useTheme();
@@ -8,6 +9,13 @@ export function Footer() {
 
     return (
         <footer style={{ background: dark ? '#09090b' : '#0f172a', color: '#94a3b8', padding: 'clamp(32px,6vw,48px) clamp(16px,3vw,24px)', borderTop: `1px solid ${dark ? '#27272a' : '#1e293b'}` }}>
+            {/* Newsletter Section */}
+            <div style={{ ...maxW(), marginBottom: 48, paddingBottom: 32, borderBottom: `1px solid ${dark ? '#27272a' : '#1e293b'}` }}>
+                <div style={{ maxWidth: 400 }}>
+                    <NewsletterForm />
+                </div>
+            </div>
+
             <div style={{ ...maxW(), display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 32 }}>
                 <div style={col(8)}>
                     <div style={row(10)}>

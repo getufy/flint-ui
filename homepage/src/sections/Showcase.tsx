@@ -35,8 +35,9 @@ import { UiCommandGroup } from '../../../react/src/components/UiCommandGroup';
 import { UiCommandItem } from '../../../react/src/components/UiCommandItem';
 import { UiCommandSeparator } from '../../../react/src/components/UiCommandSeparator';
 import { UiCommandEmpty } from '../../../react/src/components/UiCommandEmpty';
+import { UiGrid } from '../../../react/src/components/UiGrid';
 import { useTheme } from '../ThemeContext';
-import { getColors, row, col, sect, maxW, grid3 } from '../tokens';
+import { getColors, row, col, sect, maxW } from '../tokens';
 import { Heading, ShowCard } from '../components/shared';
 
 export function Showcase() {
@@ -59,9 +60,9 @@ export function Showcase() {
         <section id="s-components" style={sect(undefined, c)}>
             <div style={maxW()}>
                 <Heading title="Everything you need" sub="Every component is a live Lit custom element wrapped in a typed React component. Click around — they're all interactive." />
-                <div style={grid3()}>
+                <UiGrid container spacing={2.5}>
 
-                    <ShowCard title="Buttons" desc="Three variants, three sizes, full-width and disabled states.">
+                    <UiGrid xs={12} sm={6} md={4}><ShowCard title="Buttons" desc="Three variants, three sizes, full-width and disabled states.">
                         <div style={col(10)}>
                             <div style={row(8)}>
                                 <UiButton size="small" variant="primary">Small</UiButton>
@@ -74,9 +75,9 @@ export function Showcase() {
                                 <UiButton disabled>Disabled</UiButton>
                             </div>
                         </div>
-                    </ShowCard>
+                    </ShowCard></UiGrid>
 
-                    <ShowCard title="Switch" desc="Toggle control — form-associated, sizes sm/md/lg, icon slots.">
+                    <UiGrid xs={12} sm={6} md={4}><ShowCard title="Switch" desc="Toggle control — form-associated, sizes sm/md/lg, icon slots.">
                         <div style={col(14)}>
                             <UiSwitch label={switchOn ? 'Enabled' : 'Disabled'} checked={switchOn}
                                 onUiSwitchChange={e => setSwitchOn((e as CustomEvent<{ checked: boolean }>).detail.checked)} />
@@ -84,18 +85,18 @@ export function Showcase() {
                             <UiSwitch label="Auto-update" checked size="lg" />
                             <UiSwitch label="Offline mode" disabled />
                         </div>
-                    </ShowCard>
+                    </ShowCard></UiGrid>
 
-                    <ShowCard title="Alerts" desc="Four severity levels with optional title, icons, and dismiss button.">
+                    <UiGrid xs={12} sm={6} md={4}><ShowCard title="Alerts" desc="Four severity levels with optional title, icons, and dismiss button.">
                         <div style={{ ...col(8), width: '100%' }}>
                             <UiAlert severity="info" title="Info">New version available.</UiAlert>
                             <UiAlert severity="success" title="Saved">Changes saved successfully.</UiAlert>
                             <UiAlert severity="warning" title="Warning">Review before publishing.</UiAlert>
                             <UiAlert severity="error">Authentication failed.</UiAlert>
                         </div>
-                    </ShowCard>
+                    </ShowCard></UiGrid>
 
-                    <ShowCard title="Avatar & Badge" desc="Avatars with initials, images, variants — overlaid with count or dot badges.">
+                    <UiGrid xs={12} sm={6} md={4}><ShowCard title="Avatar & Badge" desc="Avatars with initials, images, variants — overlaid with count or dot badges.">
                         <div style={row(20)}>
                             <UiBadge content="9+" variant="error"><UiAvatar initials="JD" size="medium" /></UiBadge>
                             <UiBadge content="3" variant="primary"><UiAvatar initials="AL" size="medium" /></UiBadge>
@@ -103,9 +104,9 @@ export function Showcase() {
                             <UiAvatar initials="RB" size="large" variant="square" />
                             <UiAvatar initials="XL" size="xlarge" variant="rounded" />
                         </div>
-                    </ShowCard>
+                    </ShowCard></UiGrid>
 
-                    <ShowCard title="Chips" desc="Filled and outlined — clickable, deletable, colored, disabled.">
+                    <UiGrid xs={12} sm={6} md={4}><ShowCard title="Chips" desc="Filled and outlined — clickable, deletable, colored, disabled.">
                         <div style={col(10)}>
                             <div style={row(6)}>
                                 <UiChip label="React" color="primary" clickable />
@@ -119,9 +120,9 @@ export function Showcase() {
                                 <UiChip label="Disabled" disabled />
                             </div>
                         </div>
-                    </ShowCard>
+                    </ShowCard></UiGrid>
 
-                    <ShowCard title="Cards" desc="Composable card with header, content, media and action slots.">
+                    <UiGrid xs={12} sm={6} md={4}><ShowCard title="Cards" desc="Composable card with header, content, media and action slots.">
                         <UiCard style={{ width: '100%', maxWidth: 280 }}>
                             <UiCardHeader>
                                 <div style={row(8)}>
@@ -135,9 +136,9 @@ export function Showcase() {
                                 <UiButton size="small" variant="secondary">Share</UiButton>
                             </UiCardActions>
                         </UiCard>
-                    </ShowCard>
+                    </ShowCard></UiGrid>
 
-                    <ShowCard title="Accordion" desc="Expandable panels — click each. Supports disabled and multiple open.">
+                    <UiGrid xs={12} sm={6} md={4}><ShowCard title="Accordion" desc="Expandable panels — click each. Supports disabled and multiple open.">
                         <div style={{ width: '100%' }}>
                             {[
                                 { q: 'What is Lit?', a: 'A simple library for building fast, lightweight web components.' },
@@ -150,9 +151,9 @@ export function Showcase() {
                                 </UiAccordion>
                             ))}
                         </div>
-                    </ShowCard>
+                    </ShowCard></UiGrid>
 
-                    <ShowCard title="Tabs" desc="Keyboard-navigable tabs with ARIA roles and multiple layout variants.">
+                    <UiGrid xs={12} sm={6} md={4}><ShowCard title="Tabs" desc="Keyboard-navigable tabs with ARIA roles and multiple layout variants.">
                         <div style={{ width: '100%' }}>
                             <UiTabs value="overview">
                                 <UiTabList>
@@ -165,9 +166,9 @@ export function Showcase() {
                                 <UiTabPanel value="examples"><p style={{ fontSize: 13, color: c.muted, padding: '12px 0' }}>Live usage examples and playground.</p></UiTabPanel>
                             </UiTabs>
                         </div>
-                    </ShowCard>
+                    </ShowCard></UiGrid>
 
-                    <ShowCard title="Progress" desc="Determinate and indeterminate linear bars and circular spinners.">
+                    <UiGrid xs={12} sm={6} md={4}><ShowCard title="Progress" desc="Determinate and indeterminate linear bars and circular spinners.">
                         <div style={{ ...col(16), width: '100%', alignItems: 'center' }}>
                             <div style={{ width: '100%', ...col(10) }}>
                                 <UiLinearProgress variant="determinate" value={72} color="primary" label="72%" />
@@ -177,9 +178,9 @@ export function Showcase() {
                             </div>
                             <div style={row(20)}><UiCircularProgress value={65} /><UiCircularProgress value={85} /><UiCircularProgress /></div>
                         </div>
-                    </ShowCard>
+                    </ShowCard></UiGrid>
 
-                    <ShowCard title="Rating & Slider" desc="Star rating with half-precision and slider with live value display.">
+                    <UiGrid xs={12} sm={6} md={4}><ShowCard title="Rating & Slider" desc="Star rating with half-precision and slider with live value display.">
                         <div style={{ ...col(16), width: '100%' }}>
                             <div style={col(6)}>
                                 <p style={{ fontSize: 12, color: c.muted }}>Rating ({ratingVal}/5) — click a star</p>
@@ -191,9 +192,9 @@ export function Showcase() {
                             </div>
                             <UiSlider value={30} disabled label="Disabled" />
                         </div>
-                    </ShowCard>
+                    </ShowCard></UiGrid>
 
-                    <ShowCard title="Breadcrumbs & Pagination" desc="Breadcrumb trail with separator and full-featured paginator with keyboard support.">
+                    <UiGrid xs={12} sm={6} md={4}><ShowCard title="Breadcrumbs & Pagination" desc="Breadcrumb trail with separator and full-featured paginator with keyboard support.">
                         <div style={{ ...col(20), width: '100%', alignItems: 'center' }}>
                             <UiBreadcrumbs>
                                 <UiLink href="#" color="primary">Home</UiLink>
@@ -202,9 +203,9 @@ export function Showcase() {
                             </UiBreadcrumbs>
                             <UiPagination count={10} page={page} onUiPaginationChange={e => setPage((e as CustomEvent<{ page: number }>).detail.page)} />
                         </div>
-                    </ShowCard>
+                    </ShowCard></UiGrid>
 
-                    <ShowCard title="Carousel" desc="Keyboard & touch navigation, autoplay, items-per-view, loop, horizontal or vertical.">
+                    <UiGrid xs={12} sm={6} md={4}><ShowCard title="Carousel" desc="Keyboard & touch navigation, autoplay, items-per-view, loop, horizontal or vertical.">
                         <div style={{ width: '100%', position: 'relative' }}>
                             <UiCarousel loop style={{ width: '100%' }}>
                                 <UiCarouselContent>
@@ -221,9 +222,9 @@ export function Showcase() {
                                 <UiCarouselNext />
                             </UiCarousel>
                         </div>
-                    </ShowCard>
+                    </ShowCard></UiGrid>
 
-                    <ShowCard title="Command Palette" desc="Fuzzy search across commands and items — keyboard-first, accessible." span2>
+                    <UiGrid xs={12} sm={6} md={4}><ShowCard title="Command Palette" desc="Fuzzy search across commands and items — keyboard-first, accessible." span2>
                         <div style={{ width: '100%', maxWidth: 480 }}>
                             <UiCommand style={{ border: `1px solid ${c.border}`, borderRadius: 8, overflow: 'hidden' }}>
                                 <UiCommandInput placeholder="Search components..." />
@@ -244,9 +245,9 @@ export function Showcase() {
                                 </UiCommandList>
                             </UiCommand>
                         </div>
-                    </ShowCard>
+                    </ShowCard></UiGrid>
 
-                </div>
+                </UiGrid>
             </div>
         </section>
     );
