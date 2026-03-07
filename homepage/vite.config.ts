@@ -16,15 +16,14 @@ export default defineConfig({
     build: {
         outDir: resolve(__dirname, '../dist-homepage'),
         emptyOutDir: true,
-        minify: 'terser',
         cssCodeSplit: true,
         sourcemap: false,
         rollupOptions: {
             output: {
-                manualChunks: {
-                    react: ['react', 'react-dom'],
-                    pages: ['./src/pages/ComponentLibraryPage.tsx', './src/pages/BlogPage.tsx', './src/pages/ContactPage.tsx'],
-                    sections: ['./src/sections/Header.tsx', './src/sections/Footer.tsx'],
+                manualChunks: (id) => {
+                    if (id.includes('node_modules/react')) {
+                        return 'react-vendor';
+                    }
                 },
                 chunkFileNames: 'js/[name]-[hash].js',
                 entryFileNames: 'js/[name]-[hash].js',

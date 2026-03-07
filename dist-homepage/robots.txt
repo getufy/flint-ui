@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Allow: /docs
+Allow: /blog
+Allow: /contact
+Disallow: /private/
+Disallow: /admin/
+
+# Crawl delay (in seconds)
+Crawl-delay: 1
+
+# Sitemaps
+Sitemap: https://lite.dev/sitemap.xml
