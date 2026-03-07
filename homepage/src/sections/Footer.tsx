@@ -12,7 +12,7 @@ export function Footer() {
                 <div style={col(8)}>
                     <div style={row(10)}>
                         <svg width="22" height="22" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill={c.primary} /><path d="M8 10l4 4-4 4M14 18h6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                        <span style={{ fontWeight: 700, color: '#f1f5f9' }}>storybook-lit</span>
+                        <span style={{ fontWeight: 700, color: '#f1f5f9' }}>lite</span>
                     </div>
                     <p style={{ fontSize: 13 }}>Web Component UI · React wrappers · TypeScript first</p>
                 </div>
