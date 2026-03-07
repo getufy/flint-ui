@@ -7,6 +7,11 @@ import './ui-navigation-menu-item.js';
 import './ui-navigation-menu-trigger.js';
 import './ui-navigation-menu-content.js';
 import './ui-navigation-menu-link.js';
+import type { UiNavigationMenu } from './ui-navigation-menu.js';
+import type { UiNavigationMenuItem } from './ui-navigation-menu-item.js';
+import type { UiNavigationMenuTrigger } from './ui-navigation-menu-trigger.js';
+import type { UiNavigationMenuContent } from './ui-navigation-menu-content.js';
+import type { UiNavigationMenuLink } from './ui-navigation-menu-link.js';
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -32,9 +37,9 @@ async function makeMenu() {
             </ui-navigation-menu-list>
         </ui-navigation-menu>
     `);
-    const menu = el as any;
-    const [trigger1, trigger2] = Array.from(el.querySelectorAll('ui-navigation-menu-trigger')) as any[];
-    const [content1, content2] = Array.from(el.querySelectorAll('ui-navigation-menu-content')) as any[];
+    const menu = el as UiNavigationMenu;
+    const [trigger1, trigger2] = Array.from(el.querySelectorAll('ui-navigation-menu-trigger')) as UiNavigationMenuTrigger[];
+    const [content1, content2] = Array.from(el.querySelectorAll('ui-navigation-menu-content')) as UiNavigationMenuContent[];
     return { menu, trigger1, trigger2, content1, content2 };
 }
 
@@ -172,8 +177,8 @@ describe('ui-navigation-menu-item', () => {
                 <ui-navigation-menu-content id="x">C</ui-navigation-menu-content>
             </ui-navigation-menu-item>
         `);
-        const item = el as any;
-        const trigger = el.querySelector('ui-navigation-menu-trigger') as any;
+        const item = el as UiNavigationMenuItem;
+        const trigger = el.querySelector('ui-navigation-menu-trigger') as UiNavigationMenuTrigger;
         expect(trigger.disabled).toBe(false);
 
         item.disabled = true;
@@ -187,8 +192,8 @@ describe('ui-navigation-menu-item', () => {
                 <ui-navigation-menu-link href="#">Link</ui-navigation-menu-link>
             </ui-navigation-menu-item>
         `);
-        const item = el as any;
-        const link = el.querySelector('ui-navigation-menu-link') as any;
+        const item = el as UiNavigationMenuItem;
+        const link = el.querySelector('ui-navigation-menu-link') as UiNavigationMenuLink;
         expect(link.disabled).toBe(false);
 
         item.disabled = true;
@@ -209,8 +214,8 @@ describe('ui-navigation-menu-trigger', () => {
                 <ui-navigation-menu-content id="oc1">Content</ui-navigation-menu-content>
             </div>
         `);
-        const trigger = el.querySelector('ui-navigation-menu-trigger') as any;
-        const content = el.querySelector('ui-navigation-menu-content') as any;
+        const trigger = el.querySelector('ui-navigation-menu-trigger') as UiNavigationMenuTrigger;
+        const content = el.querySelector('ui-navigation-menu-content') as UiNavigationMenuContent;
 
         expect(content.open).toBe(false);
         trigger.click();
@@ -225,8 +230,8 @@ describe('ui-navigation-menu-trigger', () => {
                 <ui-navigation-menu-content id="oc2">Content</ui-navigation-menu-content>
             </div>
         `);
-        const trigger = el.querySelector('ui-navigation-menu-trigger') as any;
-        const content = el.querySelector('ui-navigation-menu-content') as any;
+        const trigger = el.querySelector('ui-navigation-menu-trigger') as UiNavigationMenuTrigger;
+        const content = el.querySelector('ui-navigation-menu-content') as UiNavigationMenuContent;
 
         trigger.click();
         await trigger.updateComplete;
@@ -244,8 +249,8 @@ describe('ui-navigation-menu-trigger', () => {
                 <ui-navigation-menu-content id="oc3">Content</ui-navigation-menu-content>
             </div>
         `);
-        const trigger = el.querySelector('ui-navigation-menu-trigger') as any;
-        const content = el.querySelector('ui-navigation-menu-content') as any;
+        const trigger = el.querySelector('ui-navigation-menu-trigger') as UiNavigationMenuTrigger;
+        const content = el.querySelector('ui-navigation-menu-content') as UiNavigationMenuContent;
 
         trigger.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
         await trigger.updateComplete;
@@ -259,8 +264,8 @@ describe('ui-navigation-menu-trigger', () => {
                 <ui-navigation-menu-content id="oc4">Content</ui-navigation-menu-content>
             </div>
         `);
-        const trigger = el.querySelector('ui-navigation-menu-trigger') as any;
-        const content = el.querySelector('ui-navigation-menu-content') as any;
+        const trigger = el.querySelector('ui-navigation-menu-trigger') as UiNavigationMenuTrigger;
+        const content = el.querySelector('ui-navigation-menu-content') as UiNavigationMenuContent;
 
         trigger.dispatchEvent(new KeyboardEvent('keydown', { key: ' ' }));
         await trigger.updateComplete;
@@ -293,7 +298,7 @@ describe('ui-navigation-menu-trigger', () => {
                 <ui-navigation-menu-content id="tc">Content</ui-navigation-menu-content>
             </div>
         `);
-        const trigger = el.querySelector('ui-navigation-menu-trigger') as any;
+        const trigger = el.querySelector('ui-navigation-menu-trigger') as UiNavigationMenuTrigger;
         const spy = vi.fn();
         el.addEventListener('ui-navigation-menu-trigger-click', spy);
 
@@ -315,8 +320,8 @@ describe('ui-navigation-menu-trigger', () => {
                 </ui-navigation-menu-list>
             </ui-navigation-menu>
         `);
-        const menu = el as any;
-        const trigger = el.querySelector('ui-navigation-menu-trigger') as any;
+        const menu = el as UiNavigationMenu;
+        const trigger = el.querySelector('ui-navigation-menu-trigger') as UiNavigationMenuTrigger;
 
         trigger.click();
         await trigger.updateComplete;
@@ -348,7 +353,7 @@ describe('ui-navigation-menu-content', () => {
 
     it('supports keyboard navigation with Escape', async () => {
         const el = await fixture(html`<ui-navigation-menu-content id="test" open>Content</ui-navigation-menu-content>`);
-        const content = el as any;
+        const content = el as UiNavigationMenuContent;
         content.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
         await content.updateComplete;
         expect(content.open).toBe(false);
@@ -360,7 +365,7 @@ describe('ui-navigation-menu-content', () => {
                 <ui-navigation-menu-content id="test" open>Content</ui-navigation-menu-content>
             </div>
         `);
-        const content = el.querySelector('ui-navigation-menu-content') as any;
+        const content = el.querySelector('ui-navigation-menu-content') as UiNavigationMenuContent;
         const spy = vi.fn();
         el.addEventListener('ui-navigation-menu-content-toggle', spy);
 
@@ -373,7 +378,7 @@ describe('ui-navigation-menu-content', () => {
 
     it('Tab key closes the menu', async () => {
         const el = await fixture(html`<ui-navigation-menu-content id="test" open>Content</ui-navigation-menu-content>`);
-        const content = el as any;
+        const content = el as UiNavigationMenuContent;
         content.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab' }));
         await content.updateComplete;
         expect(content.open).toBe(false);
@@ -387,7 +392,7 @@ describe('ui-navigation-menu-content', () => {
                 <ui-navigation-menu-link href="#">C</ui-navigation-menu-link>
             </ui-navigation-menu-content>
         `);
-        const content = el as any;
+        const content = el as UiNavigationMenuContent;
         const links = Array.from(el.querySelectorAll('ui-navigation-menu-link')) as HTMLElement[];
         // Focus last link host (arrow key nav operates on host elements)
         links[2].focus();
@@ -406,7 +411,7 @@ describe('ui-navigation-menu-content', () => {
                 <ui-navigation-menu-link href="#">C</ui-navigation-menu-link>
             </ui-navigation-menu-content>
         `);
-        const content = el as any;
+        const content = el as UiNavigationMenuContent;
         const links = Array.from(el.querySelectorAll('ui-navigation-menu-link')) as HTMLElement[];
         // Focus first link host (arrow key nav operates on host elements)
         links[0].focus();
@@ -495,7 +500,7 @@ describe('Accessibility', () => {
                 <ui-navigation-menu-content id="test">Content</ui-navigation-menu-content>
             </div>
         `);
-        const trigger = el.querySelector('ui-navigation-menu-trigger') as any;
+        const trigger = el.querySelector('ui-navigation-menu-trigger') as UiNavigationMenuTrigger;
         const button = trigger.shadowRoot?.querySelector('button') as HTMLButtonElement;
 
         expect(button.getAttribute('aria-expanded')).toBe('false');
