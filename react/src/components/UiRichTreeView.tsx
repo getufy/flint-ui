@@ -15,11 +15,9 @@ export interface UiRichTreeViewProps extends React.HTMLAttributes<HTMLElement> {
     getItemChildren?: (item: RichTreeItem) => RichTreeItem[] | undefined;
     isItemDisabled?: (item: RichTreeItem) => boolean;
     disabledItemsFocusable?: boolean;
-    onItemClick?: (itemId: string) => void;
     expansionTrigger?: 'content' | 'iconContainer';
     expandedItems?: string[];
     defaultExpandedItems?: string[];
-    onExpandedItemsChange?: (itemIds: string[]) => void;
     itemsReordering?: boolean;
     isItemReorderable?: (itemId: string) => boolean;
     canMoveItemToNewPosition?: (params: {
@@ -28,11 +26,6 @@ export interface UiRichTreeViewProps extends React.HTMLAttributes<HTMLElement> {
         position: 'before' | 'after' | 'inside';
     }) => boolean;
     itemsReorderingHandle?: boolean;
-    onItemPositionChange?: (params: {
-        itemId: string;
-        newParentId: string | null;
-        newIndex: number;
-    }) => void;
     onExpandedItemsChange?: (event: CustomEvent) => void;
     onItemClick?: (event: CustomEvent) => void;
     onItemPositionChange?: (event: CustomEvent) => void;
@@ -40,7 +33,7 @@ export interface UiRichTreeViewProps extends React.HTMLAttributes<HTMLElement> {
 
 export const UiRichTreeView = React.forwardRef<UiRichTreeViewElement, UiRichTreeViewProps>(
     function UiRichTreeView(
-        { items, dataSource, getItemId, getItemLabel, getItemChildren, isItemDisabled, disabledItemsFocusable, onItemClick, expansionTrigger, expandedItems, defaultExpandedItems, onExpandedItemsChange, itemsReordering, isItemReorderable, canMoveItemToNewPosition, itemsReorderingHandle, onItemPositionChange, onExpandedItemsChange, onItemClick, onItemPositionChange, children, ...htmlProps }: UiRichTreeViewProps,
+        { items, dataSource, getItemId, getItemLabel, getItemChildren, isItemDisabled, disabledItemsFocusable, expansionTrigger, expandedItems, defaultExpandedItems, itemsReordering, isItemReorderable, canMoveItemToNewPosition, itemsReorderingHandle, onExpandedItemsChange, onItemClick, onItemPositionChange, children, ...htmlProps }: UiRichTreeViewProps,
         ref: React.ForwardedRef<UiRichTreeViewElement>,
     ) {
         const innerRef = React.useRef<UiRichTreeViewElement>(null);
@@ -49,24 +42,21 @@ export const UiRichTreeView = React.forwardRef<UiRichTreeViewElement, UiRichTree
         React.useEffect(() => {
             const el = elRef.current;
             if (!el) return;
-        if (items !== undefined) (el as unknown as UiRichTreeViewElement).items = items;
-        if (dataSource !== undefined) (el as unknown as UiRichTreeViewElement).dataSource = dataSource;
-        if (getItemId !== undefined) (el as unknown as UiRichTreeViewElement).getItemId = getItemId;
-        if (getItemLabel !== undefined) (el as unknown as UiRichTreeViewElement).getItemLabel = getItemLabel;
-        if (getItemChildren !== undefined) (el as unknown as UiRichTreeViewElement).getItemChildren = getItemChildren;
-        if (isItemDisabled !== undefined) (el as unknown as UiRichTreeViewElement).isItemDisabled = isItemDisabled;
-        if (disabledItemsFocusable !== undefined) (el as unknown as UiRichTreeViewElement).disabledItemsFocusable = disabledItemsFocusable;
-        if (onItemClick !== undefined) (el as unknown as UiRichTreeViewElement).onItemClick = onItemClick;
-        if (expansionTrigger !== undefined) (el as unknown as UiRichTreeViewElement).expansionTrigger = expansionTrigger;
-        if (expandedItems !== undefined) (el as unknown as UiRichTreeViewElement).expandedItems = expandedItems;
-        if (defaultExpandedItems !== undefined) (el as unknown as UiRichTreeViewElement).defaultExpandedItems = defaultExpandedItems;
-        if (onExpandedItemsChange !== undefined) (el as unknown as UiRichTreeViewElement).onExpandedItemsChange = onExpandedItemsChange;
-        if (itemsReordering !== undefined) (el as unknown as UiRichTreeViewElement).itemsReordering = itemsReordering;
-        if (isItemReorderable !== undefined) (el as unknown as UiRichTreeViewElement).isItemReorderable = isItemReorderable;
-        if (canMoveItemToNewPosition !== undefined) (el as unknown as UiRichTreeViewElement).canMoveItemToNewPosition = canMoveItemToNewPosition;
-        if (itemsReorderingHandle !== undefined) (el as unknown as UiRichTreeViewElement).itemsReorderingHandle = itemsReorderingHandle;
-        if (onItemPositionChange !== undefined) (el as unknown as UiRichTreeViewElement).onItemPositionChange = onItemPositionChange;
-        }, [items, dataSource, getItemId, getItemLabel, getItemChildren, isItemDisabled, disabledItemsFocusable, onItemClick, expansionTrigger, expandedItems, defaultExpandedItems, onExpandedItemsChange, itemsReordering, isItemReorderable, canMoveItemToNewPosition, itemsReorderingHandle, onItemPositionChange]);
+            if (items !== undefined) (el as unknown as UiRichTreeViewElement).items = items;
+            if (dataSource !== undefined) (el as unknown as UiRichTreeViewElement).dataSource = dataSource;
+            if (getItemId !== undefined) (el as unknown as UiRichTreeViewElement).getItemId = getItemId;
+            if (getItemLabel !== undefined) (el as unknown as UiRichTreeViewElement).getItemLabel = getItemLabel;
+            if (getItemChildren !== undefined) (el as unknown as UiRichTreeViewElement).getItemChildren = getItemChildren;
+            if (isItemDisabled !== undefined) (el as unknown as UiRichTreeViewElement).isItemDisabled = isItemDisabled;
+            if (disabledItemsFocusable !== undefined) (el as unknown as UiRichTreeViewElement).disabledItemsFocusable = disabledItemsFocusable;
+            if (expansionTrigger !== undefined) (el as unknown as UiRichTreeViewElement).expansionTrigger = expansionTrigger;
+            if (expandedItems !== undefined) (el as unknown as UiRichTreeViewElement).expandedItems = expandedItems;
+            if (defaultExpandedItems !== undefined) (el as unknown as UiRichTreeViewElement).defaultExpandedItems = defaultExpandedItems;
+            if (itemsReordering !== undefined) (el as unknown as UiRichTreeViewElement).itemsReordering = itemsReordering;
+            if (isItemReorderable !== undefined) (el as unknown as UiRichTreeViewElement).isItemReorderable = isItemReorderable;
+            if (canMoveItemToNewPosition !== undefined) (el as unknown as UiRichTreeViewElement).canMoveItemToNewPosition = canMoveItemToNewPosition;
+            if (itemsReorderingHandle !== undefined) (el as unknown as UiRichTreeViewElement).itemsReorderingHandle = itemsReorderingHandle;
+        }, [items, dataSource, getItemId, getItemLabel, getItemChildren, isItemDisabled, disabledItemsFocusable, expansionTrigger, expandedItems, defaultExpandedItems, itemsReordering, isItemReorderable, canMoveItemToNewPosition, itemsReorderingHandle]);
 
         React.useEffect(() => {
             const el = elRef.current;
@@ -75,7 +65,7 @@ export const UiRichTreeView = React.forwardRef<UiRichTreeViewElement, UiRichTree
             el.addEventListener(UiRichTreeViewEvents.EXPANDED_ITEMS_CHANGE, fn);
             return () => el.removeEventListener(UiRichTreeViewEvents.EXPANDED_ITEMS_CHANGE, fn);
         }, [onExpandedItemsChange]);
-    
+
         React.useEffect(() => {
             const el = elRef.current;
             if (!el || !onItemClick) return;
@@ -83,7 +73,7 @@ export const UiRichTreeView = React.forwardRef<UiRichTreeViewElement, UiRichTree
             el.addEventListener(UiRichTreeViewEvents.ITEM_CLICK, fn);
             return () => el.removeEventListener(UiRichTreeViewEvents.ITEM_CLICK, fn);
         }, [onItemClick]);
-    
+
         React.useEffect(() => {
             const el = elRef.current;
             if (!el || !onItemPositionChange) return;
@@ -91,7 +81,7 @@ export const UiRichTreeView = React.forwardRef<UiRichTreeViewElement, UiRichTree
             el.addEventListener(UiRichTreeViewEvents.ITEM_POSITION_CHANGE, fn);
             return () => el.removeEventListener(UiRichTreeViewEvents.ITEM_POSITION_CHANGE, fn);
         }, [onItemPositionChange]);
-    
+
         return (
             <ui-rich-tree-view ref={elRef} {...htmlProps}>
                 {children}
