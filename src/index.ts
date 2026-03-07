@@ -171,3 +171,4 @@ export { parseSnapPoints } from './split-panel/ui-split-panel.js';
 export { UiRelativeTime } from './relative-time/ui-relative-time.js';
 export { UiFormatDate } from './format-date/ui-format-date.js';
 export { parseDate } from './format-date/ui-format-date.js';
+export { UiFormatNumber } from './format-number/ui-format-number.js';
