@@ -1,9 +1,5 @@
 # TODO Components
 
-- [ ] Sonner/Toaster
-An opinionated toast component for React.
-- [ ] Textarea
-Displays a form textarea or a component that looks like a textarea.
 - [ ] Toggle
 A two-state button that can be either on or off.
 - [ ] Forms

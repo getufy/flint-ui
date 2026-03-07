@@ -201,6 +201,7 @@
     --ui-input-disabled-color:     var(--ui-color-zinc-400);
     --ui-input-readonly-bg:        var(--ui-color-zinc-50);
     --ui-help-text-color:          var(--ui-text-color-muted);
+    --ui-textarea-min-height:      80px;
 
     /* ─── Toast (Sonner) ───────────────────────────────────────── */
     --ui-toast-z-index:   9999;

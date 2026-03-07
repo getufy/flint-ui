@@ -16,6 +16,7 @@ export { UiCheckbox } from './checkbox/ui-checkbox.js';
 export { UiRadioGroup, UiRadio } from './radio/ui-radio.js';
 export { UiRating } from './rating/ui-rating.js';
 export { UiSwitch } from './switch/ui-switch.js';
+export { UiTextarea } from './textarea/ui-textarea.js';
 export { UiTransferList } from './transfer-list/ui-transfer-list.js';
 export { UiBadge } from './badge/ui-badge.js';
 export { UiAlert } from './alert/ui-alert.js';
