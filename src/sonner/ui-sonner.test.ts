@@ -447,6 +447,136 @@ describe('position', () => {
         await el.updateComplete;
         expect(el.shadowRoot!.querySelector('.toaster--top')).not.toBeNull();
     });
+
+    it('unrouted toast appears in every toaster', async () => {
+        const elBR = await makeToaster({ position: 'bottom-right' });
+        const elTL = await makeToaster({ position: 'top-left' });
+        toast('everywhere');
+        await elBR.updateComplete;
+        await elTL.updateComplete;
+        expect(getToasts(elBR)).toHaveLength(1);
+        expect(getToasts(elTL)).toHaveLength(1);
+    });
+
+    it('routed toast appears only in the matching toaster', async () => {
+        const elBR = await makeToaster({ position: 'bottom-right' });
+        const elTL = await makeToaster({ position: 'top-left' });
+        toast('targeted', { position: 'bottom-right' });
+        await elBR.updateComplete;
+        await elTL.updateComplete;
+        expect(getToasts(elBR)).toHaveLength(1);
+        expect(getToasts(elTL)).toHaveLength(0);
+    });
+
+    it('routed toast does not appear in a toaster at a different position', async () => {
+        const elTR = await makeToaster({ position: 'top-right' });
+        toast('for top-left only', { position: 'top-left' });
+        await elTR.updateComplete;
+        expect(getToasts(elTR)).toHaveLength(0);
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════
+   card-deck stacking — data-front-index
+═══════════════════════════════════════════════════════════════════ */
+describe('card-deck stacking — data-front-index', () => {
+    it('single toast has data-front-index="0"', async () => {
+        const el = await makeToaster();
+        toast('only toast');
+        await el.updateComplete;
+        expect(getToasts(el)[0].getAttribute('data-front-index')).toBe('0');
+    });
+
+    it('with two bottom toasts: newest is front (index 0), oldest is back (index 1)', async () => {
+        const el = await makeToaster({ position: 'bottom-right' });
+        toast('first');
+        toast('second (newest)');
+        await el.updateComplete;
+        const toasts = getToasts(el);
+        // For bottom: newest is last in DOM (index = length-1) → front-index 0
+        const newestDom = toasts[toasts.length - 1];
+        const oldestDom = toasts[0];
+        expect(newestDom.getAttribute('data-front-index')).toBe('0');
+        expect(oldestDom.getAttribute('data-front-index')).toBe('1');
+    });
+
+    it('with two top toasts: newest is front (index 0), oldest is back (index 1)', async () => {
+        const el = await makeToaster({ position: 'top-right' });
+        toast('first');
+        toast('second (newest)');
+        await el.updateComplete;
+        const toasts = getToasts(el);
+        // For top: newest is first in DOM → front-index 0
+        const newestDom = toasts[0];
+        const oldestDom = toasts[toasts.length - 1];
+        expect(newestDom.getAttribute('data-front-index')).toBe('0');
+        expect(oldestDom.getAttribute('data-front-index')).toBe('1');
+    });
+
+    it('three toasts get front-index 0, 1, 2', async () => {
+        const el = await makeToaster({ position: 'bottom-right' });
+        toast('A');
+        toast('B');
+        toast('C newest');
+        await el.updateComplete;
+        const toasts = getToasts(el);
+        // bottom: oldest first in DOM → highest front-index
+        expect(toasts[0].getAttribute('data-front-index')).toBe('2');
+        expect(toasts[1].getAttribute('data-front-index')).toBe('1');
+        expect(toasts[2].getAttribute('data-front-index')).toBe('0');
+    });
+
+    it('front toast has CSS variable --_stack-scale set to 1', async () => {
+        const el = await makeToaster();
+        toast('front');
+        await el.updateComplete;
+        const front = el.shadowRoot!.querySelector<HTMLElement>('.toast[data-front-index="0"]')!;
+        expect(front.style.getPropertyValue('--_stack-scale')).toBe('1');
+    });
+
+    it('back toast (index 1) has --_stack-scale < 1', async () => {
+        const el = await makeToaster();
+        toast('old');
+        toast('new');
+        await el.updateComplete;
+        const back = el.shadowRoot!.querySelector<HTMLElement>('.toast[data-front-index="1"]')!;
+        const scale = parseFloat(back.style.getPropertyValue('--_stack-scale'));
+        expect(scale).toBeLessThan(1);
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════
+   card-deck stacking — expand / collapse
+═══════════════════════════════════════════════════════════════════ */
+describe('card-deck stacking — expand / collapse', () => {
+    it('toaster--expanded class NOT present initially', async () => {
+        const el = await makeToaster();
+        toast('x');
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('.toaster--expanded')).toBeNull();
+    });
+
+    it('toaster--expanded class added on .toaster mouseenter', async () => {
+        const el = await makeToaster();
+        toast('x');
+        await el.updateComplete;
+        const div = el.shadowRoot!.querySelector('.toaster') as HTMLElement;
+        div.dispatchEvent(new MouseEvent('mouseenter'));
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('.toaster--expanded')).not.toBeNull();
+    });
+
+    it('toaster--expanded class removed on .toaster mouseleave', async () => {
+        const el = await makeToaster();
+        toast('x');
+        await el.updateComplete;
+        const div = el.shadowRoot!.querySelector('.toaster') as HTMLElement;
+        div.dispatchEvent(new MouseEvent('mouseenter'));
+        await el.updateComplete;
+        div.dispatchEvent(new MouseEvent('mouseleave'));
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('.toaster--expanded')).toBeNull();
+    });
 });
 
 /* ═══════════════════════════════════════════════════════════════════

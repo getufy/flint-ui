@@ -1,5 +1,6 @@
 import { LitElement, unsafeCSS, html, nothing, type PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { repeat } from 'lit/directives/repeat.js';
 import uiToasterStyles from './ui-toaster.css?inline';
 
 /* ─────────────────────────────────────────────────────────────────── */
@@ -45,6 +46,11 @@ export interface ToastOptions {
      * Default: `true`.
      */
     dismissible?: boolean;
+    /**
+     * Route this toast to the `<ui-toaster>` whose `position` attribute matches.
+     * Leave unset to display in every mounted toaster.
+     */
+    position?: ToastPosition;
 }
 
 /** Internal extended shape stored in the singleton. */
@@ -276,6 +282,9 @@ const _closeIcon = html`
  * Toast container. Place **once** in your application (typically in `<body>`).
  * Toasts are created imperatively via the `toast()` function.
  *
+ * Multiple toasts collapse into a card-deck stack when idle; hover expands them
+ * into a full list so users can read all messages.
+ *
  * @example
  * ```html
  * <!-- In your app shell -->
@@ -290,13 +299,14 @@ const _closeIcon = html`
  *
  * @cssprop --ui-toast-z-index      - Stack order (default: 9999).
  * @cssprop --ui-toast-width        - Max width of the toaster area (default: 356px).
- * @cssprop --ui-toast-gap          - Gap between toasts (default: 8px).
+ * @cssprop --ui-toast-gap          - Gap between toasts when expanded (default: 8px).
  * @cssprop --ui-toast-padding      - Outer padding of the toaster (default: 16px).
  * @cssprop --ui-toast-bg           - Toast background (default: surface-1 / #fff).
  * @cssprop --ui-toast-color        - Toast text color (default: text-color).
  * @cssprop --ui-toast-border       - Toast border (default: 1px solid border-color).
  * @cssprop --ui-toast-radius       - Toast border-radius (default: border-radius-lg).
  * @cssprop --ui-toast-shadow       - Toast box-shadow (default: shadow-lg).
+ * @cssprop --ui-toast-stack-gap    - Peek offset per depth level when collapsed (default: 6px).
  * @cssprop --ui-toast-success-icon-color - Icon color for success type.
  * @cssprop --ui-toast-error-icon-color   - Icon color for error type.
  * @cssprop --ui-toast-warning-icon-color - Icon color for warning type.
@@ -318,8 +328,26 @@ export class UiToaster extends LitElement {
     private _toasts: _ToastData[] = [];
     private _timers = new Map<string, ReturnType<typeof setTimeout>>();
 
+    /**
+     * Whether the pointer is currently over the toaster.
+     * `true`  → expanded (all toasts in full list)
+     * `false` → collapsed (card-deck stack)
+     */
+    private _expanded = false;
+
     private _listener = (): void => {
         this._toasts = [..._store.toasts];
+        this.requestUpdate();
+    };
+
+    /** Arrow functions keep `this` context when used as event listeners on `this`. */
+    private _handleExpand = (): void => {
+        this._expanded = true;
+        this.requestUpdate();
+    };
+
+    private _handleCollapse = (): void => {
+        this._expanded = false;
         this.requestUpdate();
     };
 
@@ -391,8 +419,22 @@ export class UiToaster extends LitElement {
         }
     }
 
-    private _renderToast(t: _ToastData) {
+    /**
+     * Render a single toast.
+     *
+     * @param t          - Toast data.
+     * @param frontIndex - 0 = most-recent / front card; higher = further back.
+     */
+    private _renderToast(t: _ToastData, frontIndex: number) {
         const ariaLive = t.type === 'error' ? 'assertive' : t.type === 'loading' ? 'off' : 'polite';
+
+        // CSS custom properties drive the card-deck transforms in the collapsed
+        // state. The front toast (index 0) keeps scale=1 / offset=0 / opacity=1
+        // and stays in normal flow; back toasts shift slightly and fade.
+        const stackScale   = +(1 - frontIndex * 0.05).toFixed(3);
+        const stackOffset  = frontIndex * 6;   // px peek offset per depth level
+        const stackOpacity = +(Math.max(1 - frontIndex * 0.2, 0)).toFixed(3);
+
         return html`
             <div
                 class="toast toast--${t.type}"
@@ -400,6 +442,8 @@ export class UiToaster extends LitElement {
                 aria-live=${ariaLive}
                 aria-atomic="true"
                 data-toast-id=${t.id}
+                data-front-index=${frontIndex}
+                style="--_stack-scale:${stackScale};--_stack-offset:${stackOffset};--_stack-opacity:${stackOpacity}"
                 @mouseenter=${() => this._pauseTimer(t.id)}
                 @mouseleave=${() => this._resumeTimer(t)}
             >
@@ -433,12 +477,30 @@ export class UiToaster extends LitElement {
 
     override render() {
         const isTop = this.position.startsWith('top');
-        // Slice the most recent N toasts; for top positions newest renders first.
-        const visible = this._toasts.slice(-this.visibleToasts);
+
+        // Only show toasts targeted at this toaster's position (or unrouted ones).
+        const filtered = this._toasts.filter(
+            t => t.position === undefined || t.position === this.position,
+        );
+
+        // Slice the most-recent N toasts.
+        // Bottom: ordered oldest→newest (newest = last in DOM = front card at bottom).
+        // Top:    ordered newest→oldest (newest = first in DOM = front card at top).
+        const visible = filtered.slice(-this.visibleToasts);
         const ordered = isTop ? [...visible].reverse() : visible;
+        const total   = ordered.length;
+
         return html`
-            <div class="toaster ${isTop ? 'toaster--top' : 'toaster--bottom'}">
-                ${ordered.map(t => this._renderToast(t))}
+            <div
+                class="toaster toaster--${isTop ? 'top' : 'bottom'} ${this._expanded ? 'toaster--expanded' : ''}"
+                @mouseenter=${this._handleExpand}
+                @mouseleave=${this._handleCollapse}
+            >
+                ${repeat(ordered, t => t.id, (t, i) => {
+                    // frontIndex: 0 = newest/front, N-1 = oldest/back.
+                    const frontIndex = isTop ? i : total - 1 - i;
+                    return this._renderToast(t, frontIndex);
+                })}
             </div>
         `;
     }
