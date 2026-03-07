@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { UiButton } from '../../../react/src/components/UiButton';
-import { UiSwitch } from '../../../react/src/components/UiSwitch';
 import { UiAlert } from '../../../react/src/components/UiAlert';
 import { UiBadge } from '../../../react/src/components/UiBadge';
 import { UiChip } from '../../../react/src/components/UiChip';
@@ -11,6 +10,9 @@ import { UiInputOtp } from '../../../react/src/components/UiInputOtp';
 import { UiInputOtpGroup } from '../../../react/src/components/UiInputOtpGroup';
 import { UiInputOtpSlot } from '../../../react/src/components/UiInputOtpSlot';
 import { UiInputOtpSeparator } from '../../../react/src/components/UiInputOtpSeparator';
+import { UiHoverCard } from '../../../react/src/components/UiHoverCard';
+import { UiHoverCardTrigger } from '../../../react/src/components/UiHoverCardTrigger';
+import { UiHoverCardContent } from '../../../react/src/components/UiHoverCardContent';
 import { c, row, col, maxW } from '../tokens';
 
 export function Hero() {
@@ -35,7 +37,7 @@ export function Hero() {
                         A comprehensive, fully typed UI library built on Lit. Use natively in any framework — or drop in the included React wrappers.
                     </p>
                     <div style={row(12)}>
-                        <UiButton size="large" variant="primary">Browse Components</UiButton>
+                        <UiButton size="large" variant="primary" onClick={() => document.getElementById('s-components')?.scrollIntoView({ behavior: 'smooth' })}>Browse Components</UiButton>
                         <UiButton size="large" variant="secondary">GitHub ↗</UiButton>
                     </div>
                     <div style={{ ...row(12), background: '#0d1117', border: '1px solid #30363d', borderRadius: 8, padding: '10px 16px', width: 'fit-content' }}>
@@ -56,8 +58,30 @@ export function Hero() {
 
                     <UiDivider />
 
+                    {/* HoverCard demo — replaces the static dark mode switch */}
                     <div style={{ ...row(16), justifyContent: 'space-between' }}>
-                        <UiSwitch label="Dark mode" checked />
+                        <UiHoverCard>
+                            <UiHoverCardTrigger>
+                                <div style={{ ...row(8), cursor: 'pointer' }}>
+                                    <UiBadge dot variant="success">
+                                        <UiAvatar initials="SL" size="small" />
+                                    </UiBadge>
+                                    <span style={{ fontSize: 13, color: '#93c5fd' }}>@storybook-lit</span>
+                                </div>
+                            </UiHoverCardTrigger>
+                            <UiHoverCardContent side="top">
+                                <div style={{ ...col(8), padding: 4, minWidth: 200 }}>
+                                    <div style={row(8)}>
+                                        <UiAvatar initials="SL" size="medium" />
+                                        <div>
+                                            <p style={{ fontWeight: 700, fontSize: 13 }}>storybook-lit</p>
+                                            <p style={{ fontSize: 12, color: c.muted }}>UI Component Library</p>
+                                        </div>
+                                    </div>
+                                    <p style={{ fontSize: 12, color: c.muted, lineHeight: 1.5 }}>100+ Lit + React components. Hover this card to see it in action.</p>
+                                </div>
+                            </UiHoverCardContent>
+                        </UiHoverCard>
                         <div style={row(8)}>
                             <UiBadge content="9+" variant="error"><UiAvatar initials="JD" size="small" /></UiBadge>
                             <UiBadge dot variant="success"><UiAvatar initials="AL" size="small" /></UiBadge>

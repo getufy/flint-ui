@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { UiButton } from '../../../react/src/components/UiButton';
+import { UiAvatar } from '../../../react/src/components/UiAvatar';
 import { UiDialog } from '../../../react/src/components/UiDialog';
 import { UiDialogTitle } from '../../../react/src/components/UiDialogTitle';
 import { UiDialogContent } from '../../../react/src/components/UiDialogContent';
@@ -7,7 +8,11 @@ import { UiDialogContentText } from '../../../react/src/components/UiDialogConte
 import { UiDialogActions } from '../../../react/src/components/UiDialogActions';
 import { UiSnackbar } from '../../../react/src/components/UiSnackbar';
 import { UiTooltip } from '../../../react/src/components/UiTooltip';
-import { c, col, card, sect, maxW, grid3 } from '../tokens';
+import { UiHoverCard } from '../../../react/src/components/UiHoverCard';
+import { UiHoverCardTrigger } from '../../../react/src/components/UiHoverCardTrigger';
+import { UiHoverCardContent } from '../../../react/src/components/UiHoverCardContent';
+import { UiChip } from '../../../react/src/components/UiChip';
+import { c, col, row, card, sect, maxW, grid2 } from '../tokens';
 import { Heading } from '../components/shared';
 
 export function Overlays() {
@@ -18,11 +23,17 @@ export function Overlays() {
 
     const toast = (msg: string, v: typeof snkVariant) => { setSnkMsg(msg); setSnkVariant(v); setSnkOpen(true); };
 
+    const team = [
+        { initials: 'JD', name: 'Jane Doe',    role: 'Design Engineer',   joined: 'Jan 2024' },
+        { initials: 'AL', name: 'Alex Lee',    role: 'Frontend Developer', joined: 'Mar 2024' },
+        { initials: 'MK', name: 'Maya Kim',    role: 'Product Manager',    joined: 'Jun 2023' },
+    ];
+
     return (
         <section id="s-overlays" style={sect(c.surface)}>
             <div style={maxW()}>
-                <Heading title="Overlays & Notifications" sub="Dialog, Snackbar, and Tooltip — accessible, keyboard-dismissable, and animated." />
-                <div style={grid3()}>
+                <Heading title="Overlays & Notifications" sub="Dialog, Snackbar, Tooltip, HoverCard — accessible, keyboard-dismissable, and animated." />
+                <div style={grid2()}>
 
                     <div style={card({ ...col(20) })}>
                         <p style={{ fontWeight: 700, fontSize: 15 }}>Dialog</p>
@@ -71,6 +82,33 @@ export function Overlays() {
                                 <UiTooltip label="Right tooltip" placement="right" arrow><UiButton size="small" variant="secondary">Right →</UiButton></UiTooltip>
                             </div>
                         </div>
+                    </div>
+
+                    <div style={card({ ...col(20) })}>
+                        <p style={{ fontWeight: 700, fontSize: 15 }}>Hover Card</p>
+                        <p style={{ fontSize: 13, color: c.muted, lineHeight: 1.5 }}>Rich popovers on hover — delay in/out, custom side and alignment.</p>
+                        <div style={row(16)}>
+                            {team.map(m => (
+                                <UiHoverCard key={m.initials}>
+                                    <UiHoverCardTrigger>
+                                        <UiAvatar initials={m.initials} size="medium" style={{ cursor: 'pointer' }} />
+                                    </UiHoverCardTrigger>
+                                    <UiHoverCardContent side="top" align="center">
+                                        <div style={{ ...col(8), padding: 4, minWidth: 180 }}>
+                                            <div style={row(8)}>
+                                                <UiAvatar initials={m.initials} size="small" />
+                                                <div>
+                                                    <p style={{ fontWeight: 700, fontSize: 13 }}>{m.name}</p>
+                                                    <p style={{ fontSize: 11, color: c.muted }}>{m.role}</p>
+                                                </div>
+                                            </div>
+                                            <UiChip label={`Joined ${m.joined}`} variant="outlined" />
+                                        </div>
+                                    </UiHoverCardContent>
+                                </UiHoverCard>
+                            ))}
+                        </div>
+                        <p style={{ fontSize: 11, color: c.muted }}>Hover an avatar to see the card</p>
                     </div>
 
                 </div>

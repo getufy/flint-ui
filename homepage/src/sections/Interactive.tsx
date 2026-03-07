@@ -11,11 +11,14 @@ import { UiLink } from '../../../react/src/components/UiLink';
 import { UiInputOtp } from '../../../react/src/components/UiInputOtp';
 import { UiInputOtpGroup } from '../../../react/src/components/UiInputOtpGroup';
 import { UiInputOtpSlot } from '../../../react/src/components/UiInputOtpSlot';
-import { c, row, col, card, sect, maxW, grid3 } from '../tokens';
+import { useTheme } from '../ThemeContext';
+import { getColors, row, col, card, sect, maxW, grid3 } from '../tokens';
 import { Heading } from '../components/shared';
 
 export function Interactive() {
-    const [dark, setDark] = useState(false);
+    const { dark, setDark } = useTheme();
+    const c = getColors(dark);
+
     const [notifs, setNotifs] = useState(true);
     const [save, setSave] = useState(false);
     const [pg, setPg] = useState(3);
@@ -33,8 +36,11 @@ export function Interactive() {
                 <Heading title="Fully interactive" sub="Real Lit components rendered inside React — no mocks, no stubs." />
                 <div style={grid3()}>
 
-                    <div style={card({ ...col(20), background: dark ? '#1e293b' : c.surface, border: `1px solid ${dark ? '#334155' : c.border}`, transition: 'background 0.3s, border-color 0.3s' })}>
-                        <div><p style={{ fontWeight: 700, fontSize: 15, color: dark ? '#f8fafc' : c.text }}>Settings Panel</p><p style={{ fontSize: 13, color: dark ? '#94a3b8' : c.muted }}>State reflected live below</p></div>
+                    <div style={{ ...card({ ...col(20) }), background: c.surface, border: `1px solid ${c.border}`, transition: 'background 0.2s, border-color 0.2s' }}>
+                        <div>
+                            <p style={{ fontWeight: 700, fontSize: 15, color: c.text }}>Settings Panel</p>
+                            <p style={{ fontSize: 13, color: c.muted }}>Toggles update the live page theme</p>
+                        </div>
                         <UiDivider />
                         <div style={col(16)}>
                             <UiSwitch label="Dark mode" checked={dark} onUiSwitchChange={e => setDark((e as CustomEvent<{ checked: boolean }>).detail.checked)} />
@@ -44,13 +50,13 @@ export function Interactive() {
                         <UiDivider />
                         <div style={col(6)}>
                             {[{ l: 'Dark mode', v: dark, color: c.primary }, { l: 'Notifications', v: notifs, color: c.success }, { l: 'Auto-save', v: save, color: c.success }].map(({ l, v, color }) => (
-                                <div key={l} style={row(6)}><span style={{ width: 8, height: 8, borderRadius: '50%', background: v ? color : (dark ? '#334155' : c.border), display: 'inline-block' }} /><span style={{ fontSize: 12, color: dark ? '#94a3b8' : c.muted }}>{l}: <b style={{ color: dark ? '#f8fafc' : undefined }}>{v ? 'on' : 'off'}</b></span></div>
+                                <div key={l} style={row(6)}><span style={{ width: 8, height: 8, borderRadius: '50%', background: v ? color : c.border, display: 'inline-block' }} /><span style={{ fontSize: 12, color: c.muted }}>{l}: <b style={{ color: c.text }}>{v ? 'on' : 'off'}</b></span></div>
                             ))}
                         </div>
                     </div>
 
-                    <div style={card({ ...col(20) })}>
-                        <div><p style={{ fontWeight: 700, fontSize: 15 }}>Navigation</p><p style={{ fontSize: 13, color: c.muted }}>Breadcrumbs, Pagination &amp; Typography</p></div>
+                    <div style={{ ...card({ ...col(20) }), background: c.surface, border: `1px solid ${c.border}` }}>
+                        <div><p style={{ fontWeight: 700, fontSize: 15, color: c.text }}>Navigation</p><p style={{ fontSize: 13, color: c.muted }}>Breadcrumbs, Pagination &amp; Typography</p></div>
                         <UiDivider />
                         <UiBreadcrumbs><UiLink href="#" color="primary">Home</UiLink><UiLink href="#" color="primary">Components</UiLink><span style={{ fontSize: 13 }}>Interactive</span></UiBreadcrumbs>
                         <UiPagination count={10} page={pg} onUiPaginationChange={e => setPg((e as CustomEvent<{ page: number }>).detail.page)} />
@@ -67,8 +73,8 @@ export function Interactive() {
                         </div>
                     </div>
 
-                    <div style={card({ ...col(20) })}>
-                        <div><p style={{ fontWeight: 700, fontSize: 15 }}>Feedback</p><p style={{ fontSize: 13, color: c.muted }}>Dismissible alerts &amp; OTP input</p></div>
+                    <div style={{ ...card({ ...col(20) }), background: c.surface, border: `1px solid ${c.border}` }}>
+                        <div><p style={{ fontWeight: 700, fontSize: 15, color: c.text }}>Feedback</p><p style={{ fontSize: 13, color: c.muted }}>Dismissible alerts &amp; OTP input</p></div>
                         <UiDivider />
                         <div style={col(8)}>
                             {alertOn ? (

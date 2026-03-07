@@ -1,11 +1,12 @@
 import React from 'react';
-import { c, card } from '../tokens';
+import { getColors, card, c } from '../tokens';
 
-export function Heading({ title, sub }: { title: React.ReactNode; sub: string }) {
+export function Heading({ title, sub, dark = false }: { title: React.ReactNode; sub: string; dark?: boolean }) {
+    const colors = getColors(dark);
     return (
         <div style={{ textAlign: 'center', marginBottom: 56 }}>
-            <h2 style={{ fontSize: 'clamp(1.8rem,3vw,2.4rem)', fontWeight: 800, letterSpacing: '-0.5px', marginBottom: 12 }}>{title}</h2>
-            <p style={{ fontSize: 17, color: c.muted, maxWidth: 520, margin: '0 auto' }}>{sub}</p>
+            <h2 style={{ fontSize: 'clamp(1.8rem,3vw,2.4rem)', fontWeight: 800, letterSpacing: '-0.5px', marginBottom: 12, color: colors.text }}>{title}</h2>
+            <p style={{ fontSize: 17, color: colors.muted, maxWidth: 520, margin: '0 auto' }}>{sub}</p>
         </div>
     );
 }

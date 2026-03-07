@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { UiButton } from '../../../react/src/components/UiButton';
 import { UiBadge } from '../../../react/src/components/UiBadge';
 import { UiStepper } from '../../../react/src/components/UiStepper';
@@ -9,11 +9,21 @@ import { UiCollapsible } from '../../../react/src/components/UiCollapsible';
 import { UiCollapsibleTrigger } from '../../../react/src/components/UiCollapsibleTrigger';
 import { UiCollapsibleContent } from '../../../react/src/components/UiCollapsibleContent';
 import { UiKbd } from '../../../react/src/components/UiKbd';
+import { UiCommandDialog } from '../../../react/src/components/UiCommandDialog';
+import { UiCommand } from '../../../react/src/components/UiCommand';
+import { UiCommandInput } from '../../../react/src/components/UiCommandInput';
+import { UiCommandList } from '../../../react/src/components/UiCommandList';
+import { UiCommandGroup } from '../../../react/src/components/UiCommandGroup';
+import { UiCommandItem } from '../../../react/src/components/UiCommandItem';
+import { UiCommandSeparator } from '../../../react/src/components/UiCommandSeparator';
+import { UiCommandEmpty } from '../../../react/src/components/UiCommandEmpty';
 import { c, row, col, card, sect, maxW, grid2 } from '../tokens';
 import { Heading } from '../components/shared';
 
 export function Flow() {
     const [step, setStep] = useState(0);
+    const [cmdOpen, setCmdOpen] = useState(false);
+
     const steps = [
         { label: 'Create account', desc: 'Enter your email and choose a password.' },
         { label: 'Complete profile', desc: 'Add your name, role, and preferences.' },
@@ -27,10 +37,22 @@ export function Flow() {
         { q: 'Tree-shakeable?', a: 'Yes — import only what you need.' },
     ];
 
+    // Global ⌘K / Ctrl+K listener
+    useEffect(() => {
+        function onKey(e: KeyboardEvent) {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                setCmdOpen(o => !o);
+            }
+        }
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+    }, []);
+
     return (
         <section id="s-flow" style={sect(c.bg)}>
             <div style={maxW()}>
-                <Heading title="Navigation & Flow" sub="Stepper, Collapsible, Keyboard shortcuts — tools for multi-step flows and progressive disclosure." />
+                <Heading title="Navigation & Flow" sub="Stepper, Collapsible, Command Palette — tools for multi-step flows and progressive disclosure." />
                 <div style={grid2()}>
 
                     <div style={card({ ...col(20) })}>
@@ -80,22 +102,50 @@ export function Flow() {
                             <p style={{ fontWeight: 700, fontSize: 15 }}>Keyboard Shortcuts</p>
                             <div style={col(8)}>
                                 {[
-                                    { keys: ['⌘', 'K'], label: 'Open command palette' },
-                                    { keys: ['⌘', 'S'], label: 'Save changes' },
-                                    { keys: ['⌘', 'Z'], label: 'Undo' },
-                                    { keys: ['⌘', 'Shift', 'Z'], label: 'Redo' },
-                                    { keys: ['Esc'], label: 'Dismiss dialog' },
-                                ].map(({ keys, label }) => (
-                                    <div key={label} style={{ ...row(8), justifyContent: 'space-between' }}>
-                                        <span style={{ fontSize: 13, color: c.muted }}>{label}</span>
+                                    { keys: ['⌘', 'K'], label: 'Open command palette', action: () => setCmdOpen(true) },
+                                    { keys: ['⌘', 'S'], label: 'Save changes', action: undefined },
+                                    { keys: ['⌘', 'Z'], label: 'Undo', action: undefined },
+                                    { keys: ['⌘', 'Shift', 'Z'], label: 'Redo', action: undefined },
+                                    { keys: ['Esc'], label: 'Dismiss dialog', action: undefined },
+                                ].map(({ keys, label, action }) => (
+                                    <div
+                                        key={label}
+                                        onClick={action}
+                                        style={{ ...row(8), justifyContent: 'space-between', cursor: action ? 'pointer' : 'default', borderRadius: 6, padding: '4px 6px', margin: '0 -6px', transition: 'background 0.15s' }}
+                                        onMouseEnter={action ? e => (e.currentTarget.style.background = c.bg) : undefined}
+                                        onMouseLeave={action ? e => (e.currentTarget.style.background = 'transparent') : undefined}
+                                    >
+                                        <span style={{ fontSize: 13, color: action ? c.primary : c.muted }}>{label}</span>
                                         <div style={row(4)}>{keys.map(k => <UiKbd key={k}>{k}</UiKbd>)}</div>
                                     </div>
                                 ))}
                             </div>
+                            <UiButton size="small" variant="secondary" onClick={() => setCmdOpen(true)}>Try it — Open Palette</UiButton>
                         </div>
                     </div>
                 </div>
             </div>
+
+            {/* Command Dialog — opened by ⌘K or the button above */}
+            <UiCommandDialog open={cmdOpen} onUiCommandDialogClose={() => setCmdOpen(false)}>
+                <UiCommand>
+                    <UiCommandInput placeholder="Search components, docs…" />
+                    <UiCommandList>
+                        <UiCommandEmpty>No results found.</UiCommandEmpty>
+                        <UiCommandGroup heading="Components">
+                            <UiCommandItem value="button" onUiCommandItemSelect={() => setCmdOpen(false)}>Button</UiCommandItem>
+                            <UiCommandItem value="carousel" onUiCommandItemSelect={() => setCmdOpen(false)}>Carousel</UiCommandItem>
+                            <UiCommandItem value="datepicker" onUiCommandItemSelect={() => setCmdOpen(false)}>DatePicker</UiCommandItem>
+                            <UiCommandItem value="richtreeview" onUiCommandItemSelect={() => setCmdOpen(false)}>RichTreeView</UiCommandItem>
+                        </UiCommandGroup>
+                        <UiCommandSeparator />
+                        <UiCommandGroup heading="Navigation">
+                            <UiCommandItem value="storybook" onUiCommandItemSelect={() => setCmdOpen(false)}>Open Storybook ↗</UiCommandItem>
+                            <UiCommandItem value="github" onUiCommandItemSelect={() => setCmdOpen(false)}>View on GitHub ↗</UiCommandItem>
+                        </UiCommandGroup>
+                    </UiCommandList>
+                </UiCommand>
+            </UiCommandDialog>
         </section>
     );
 }

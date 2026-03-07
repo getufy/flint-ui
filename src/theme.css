@@ -246,3 +246,80 @@ body {
     color: var(--ui-text-color);
     font-family: var(--ui-font-family);
 }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   LAYER 3 — Dark mode overrides
+   Applied when <html class="ui-theme-dark"> or via @media.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Applied by JS when system pref is dark and no manual override is set */
+.ui-theme-dark {
+    /* ─── Surfaces ────────────────────────────────────────────── */
+    --ui-background:      var(--ui-color-zinc-950);
+    --ui-surface-1:       var(--ui-color-zinc-900);
+    --ui-surface-2:       var(--ui-color-zinc-800);
+    --ui-surface-3:       var(--ui-color-zinc-700);
+    --ui-surface-variant: var(--ui-color-zinc-900);
+
+    --ui-surface-background:      var(--ui-background);
+    --ui-surface-background-flat: var(--ui-surface-2);
+    --ui-card-background:         var(--ui-surface-1);
+    --ui-card-background-flat:    var(--ui-surface-2);
+    --ui-input-bg:                var(--ui-surface-1);
+    --ui-muted-background:        var(--ui-surface-3);
+
+    /* ─── Text ────────────────────────────────────────────────── */
+    --ui-text-color:        var(--ui-color-zinc-50);
+    --ui-text-color-muted:  var(--ui-color-zinc-400);
+    --ui-text-color-subtle: var(--ui-color-zinc-500);
+
+    /* ─── Borders ─────────────────────────────────────────────── */
+    --ui-border-color:             var(--ui-color-zinc-700);
+    --ui-input-border-color:       var(--ui-color-zinc-600);
+    --ui-input-border-hover-color: var(--ui-color-zinc-500);
+    --ui-card-border-color:        var(--ui-color-zinc-800);
+
+    /* ─── Interactive overlays ────────────────────────────────── */
+    --ui-hover-color:  rgba(255, 255, 255, 0.06);
+    --ui-active-color: rgba(255, 255, 255, 0.10);
+
+    /* ─── Input-specific ──────────────────────────────────────── */
+    --ui-label-color:             var(--ui-color-zinc-300);
+    --ui-input-placeholder-color: var(--ui-color-zinc-500);
+    --ui-input-disabled-bg:       var(--ui-color-zinc-800);
+    --ui-input-disabled-color:    var(--ui-color-zinc-600);
+    --ui-input-readonly-bg:       var(--ui-color-zinc-900);
+    --ui-help-text-color:         var(--ui-color-zinc-400);
+
+    /* ─── Primary ─────────────────────────────────────────────── */
+    --ui-primary-color:        var(--ui-color-blue-400);
+    --ui-primary-color-hover:  var(--ui-color-blue-500);
+    --ui-primary-color-active: var(--ui-color-blue-600);
+    --ui-primary-color-light:       rgba(96, 165, 250, 0.15);
+    --ui-primary-color-light-hover: rgba(96, 165, 250, 0.25);
+    --ui-primary-focus-ring:        rgba(96, 165, 250, 0.25);
+
+    /* ─── Semantic status ─────────────────────────────────────── */
+    --ui-info-bg:           rgba(59, 130, 246, 0.12);
+    --ui-info-border-color: rgba(59, 130, 246, 0.30);
+    --ui-info-text-color:   var(--ui-color-blue-200);
+
+    --ui-success-bg:           rgba(16, 185, 129, 0.12);
+    --ui-success-border-color: rgba(16, 185, 129, 0.30);
+    --ui-success-text-color:   var(--ui-color-emerald-400);
+
+    --ui-warning-bg:           rgba(245, 158, 11, 0.12);
+    --ui-warning-border-color: rgba(245, 158, 11, 0.30);
+    --ui-warning-text-color:   var(--ui-color-amber-400);
+
+    --ui-error-bg:           rgba(239, 68, 68, 0.12);
+    --ui-error-border-color: rgba(239, 68, 68, 0.30);
+    --ui-error-text-color:   var(--ui-color-red-400);
+
+    /* ─── Tabs ────────────────────────────────────────────────── */
+    --ui-tab-inactive-color: var(--ui-text-color-muted);
+
+    /* ─── Stepper ─────────────────────────────────────────────── */
+    --ui-stepper-connector-color: var(--ui-border-color);
+}

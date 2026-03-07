@@ -8,6 +8,18 @@ export const c = {
     success: '#22c55e', warning: '#f59e0b', error: '#ef4444',
 };
 
+const cDark = {
+    primary: '#60a5fa', primaryLight: 'rgba(96,165,250,0.15)',
+    dark: '#09090b', text: '#fafafa',
+    muted: '#a1a1aa', border: '#3f3f46',
+    surface: '#18181b', bg: '#09090b',
+    success: '#34d399', warning: '#fbbf24', error: '#f87171',
+};
+
+export function getColors(dark: boolean) {
+    return dark ? cDark : c;
+}
+
 export const row = (gap = 12): React.CSSProperties => ({ display: 'flex', alignItems: 'center', gap, flexWrap: 'wrap' as const });
 export const col = (gap = 12): React.CSSProperties => ({ display: 'flex', flexDirection: 'column', gap });
 export const card = (extra: React.CSSProperties = {}): React.CSSProperties => ({ background: c.surface, borderRadius: 12, border: `1px solid ${c.border}`, padding: '20px 24px', ...extra });

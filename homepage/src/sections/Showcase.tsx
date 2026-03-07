@@ -20,10 +20,21 @@ import { UiLinearProgress } from '../../../react/src/components/UiLinearProgress
 import { UiCircularProgress } from '../../../react/src/components/UiCircularProgress';
 import { UiRating } from '../../../react/src/components/UiRating';
 import { UiSlider } from '../../../react/src/components/UiSlider';
-import { UiSkeleton } from '../../../react/src/components/UiSkeleton';
 import { UiBreadcrumbs } from '../../../react/src/components/UiBreadcrumbs';
 import { UiPagination } from '../../../react/src/components/UiPagination';
 import { UiLink } from '../../../react/src/components/UiLink';
+import { UiCarousel } from '../../../react/src/components/UiCarousel';
+import { UiCarouselContent } from '../../../react/src/components/UiCarouselContent';
+import { UiCarouselItem } from '../../../react/src/components/UiCarouselItem';
+import { UiCarouselPrevious } from '../../../react/src/components/UiCarouselPrevious';
+import { UiCarouselNext } from '../../../react/src/components/UiCarouselNext';
+import { UiCommand } from '../../../react/src/components/UiCommand';
+import { UiCommandInput } from '../../../react/src/components/UiCommandInput';
+import { UiCommandList } from '../../../react/src/components/UiCommandList';
+import { UiCommandGroup } from '../../../react/src/components/UiCommandGroup';
+import { UiCommandItem } from '../../../react/src/components/UiCommandItem';
+import { UiCommandSeparator } from '../../../react/src/components/UiCommandSeparator';
+import { UiCommandEmpty } from '../../../react/src/components/UiCommandEmpty';
 import { c, row, col, sect, maxW, grid3 } from '../tokens';
 import { Heading, ShowCard } from '../components/shared';
 
@@ -32,6 +43,13 @@ export function Showcase() {
     const [sliderVal, setSliderVal] = useState(60);
     const [ratingVal, setRatingVal] = useState(3);
     const [page, setPage] = useState(2);
+
+    const slides = [
+        { bg: '#3b82f6', label: 'Components', sub: '100+ ready to use' },
+        { bg: '#8b5cf6', label: 'TypeScript', sub: 'Fully typed API' },
+        { bg: '#06b6d4', label: 'Accessible', sub: 'ARIA compliant' },
+        { bg: '#22c55e', label: 'Themeable',  sub: 'CSS custom props' },
+    ];
 
     return (
         <section id="s-components" style={sect(c.bg)}>
@@ -171,24 +189,6 @@ export function Showcase() {
                         </div>
                     </ShowCard>
 
-                    <ShowCard title="Skeleton" desc="Animated loading placeholders in text, circular, rectangular, rounded variants.">
-                        <div style={{ ...col(12), width: '100%' }}>
-                            <div style={row(12)}>
-                                <UiSkeleton variant="circular" width="40px" height="40px" />
-                                <div style={{ ...col(6), flex: 1 }}>
-                                    <UiSkeleton variant="text" width="80%" />
-                                    <UiSkeleton variant="text" width="60%" />
-                                </div>
-                            </div>
-                            <UiSkeleton variant="rectangular" width="100%" height="80px" />
-                            <div style={row(8)}>
-                                <UiSkeleton variant="rounded" width="30%" height="32px" />
-                                <UiSkeleton variant="rounded" width="30%" height="32px" />
-                                <UiSkeleton variant="rounded" width="30%" height="32px" />
-                            </div>
-                        </div>
-                    </ShowCard>
-
                     <ShowCard title="Breadcrumbs & Pagination" desc="Breadcrumb trail with separator and full-featured paginator with keyboard support.">
                         <div style={{ ...col(20), width: '100%', alignItems: 'center' }}>
                             <UiBreadcrumbs>
@@ -197,6 +197,48 @@ export function Showcase() {
                                 <span style={{ fontSize: 14 }}>Pagination</span>
                             </UiBreadcrumbs>
                             <UiPagination count={10} page={page} onUiPaginationChange={e => setPage((e as CustomEvent<{ page: number }>).detail.page)} />
+                        </div>
+                    </ShowCard>
+
+                    <ShowCard title="Carousel" desc="Keyboard & touch navigation, autoplay, items-per-view, loop, horizontal or vertical.">
+                        <div style={{ width: '100%', position: 'relative' }}>
+                            <UiCarousel loop style={{ width: '100%' }}>
+                                <UiCarouselContent>
+                                    {slides.map(s => (
+                                        <UiCarouselItem key={s.label}>
+                                            <div style={{ background: s.bg, borderRadius: 8, padding: '28px 16px', textAlign: 'center', color: '#fff' }}>
+                                                <p style={{ fontWeight: 700, fontSize: 15 }}>{s.label}</p>
+                                                <p style={{ fontSize: 12, opacity: 0.85 }}>{s.sub}</p>
+                                            </div>
+                                        </UiCarouselItem>
+                                    ))}
+                                </UiCarouselContent>
+                                <UiCarouselPrevious />
+                                <UiCarouselNext />
+                            </UiCarousel>
+                        </div>
+                    </ShowCard>
+
+                    <ShowCard title="Command Palette" desc="Fuzzy search across commands and items — keyboard-first, accessible." span2>
+                        <div style={{ width: '100%', maxWidth: 480 }}>
+                            <UiCommand style={{ border: `1px solid ${c.border}`, borderRadius: 8, overflow: 'hidden' }}>
+                                <UiCommandInput placeholder="Search components..." />
+                                <UiCommandList style={{ maxHeight: 220 }}>
+                                    <UiCommandEmpty>No results found.</UiCommandEmpty>
+                                    <UiCommandGroup heading="Components">
+                                        <UiCommandItem value="button">Button</UiCommandItem>
+                                        <UiCommandItem value="switch">Switch</UiCommandItem>
+                                        <UiCommandItem value="carousel">Carousel</UiCommandItem>
+                                        <UiCommandItem value="datepicker">DatePicker</UiCommandItem>
+                                    </UiCommandGroup>
+                                    <UiCommandSeparator />
+                                    <UiCommandGroup heading="Navigation">
+                                        <UiCommandItem value="tabs">Tabs</UiCommandItem>
+                                        <UiCommandItem value="breadcrumbs">Breadcrumbs</UiCommandItem>
+                                        <UiCommandItem value="command">Command</UiCommandItem>
+                                    </UiCommandGroup>
+                                </UiCommandList>
+                            </UiCommand>
                         </div>
                     </ShowCard>
 
