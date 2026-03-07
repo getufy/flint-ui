@@ -1,7 +1,6 @@
 # TODO Components
 
 - [ ] Forms
-- [ ] Format Number
 - [ ] Visually Hidden (A11y)
 
 - Continue investigating bugs under ui-switch folder (started at ui-grid).

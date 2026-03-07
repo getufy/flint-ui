@@ -1,89 +1,54 @@
 
 
 
-We are currently writing a lit component. This component will be used by hundreds of people in different projects. Look into folder named "Format number" and update the component, the css file, the story and test files. Create, refine stories and tests. Look into theme.css or theme-dark.css for variables or add variables there.
+We are currently writing a lit component. This component will be used by hundreds of people in different projects. Look into folder named "Visually Hidden" and update the component, the css file, the story and test files. Create, refine stories and tests. Look into theme.css or theme-dark.css for variables or add variables there.
 
 
-We are currently writing a lit component. This component will be used by hundreds of people in different projects. Create a folder named "Format number" and create the component, the css file, the story and test files. Create, refine stories and tests. Look into theme.css or theme-dark.css for variables or add variables there.
+We are currently writing a lit component. This component will be used by hundreds of people in different projects. Create a folder named "Visually Hidden" and create the component, the css file, the story and test files. Create, refine stories and tests. Look into theme.css or theme-dark.css for variables or add variables there.
 
 
 
 
-Format Number
-<sl-format-number> | SlFormatNumber
+Visually Hidden
+<sl-visually-hidden> | SlVisuallyHidden
  
-Formats a number using the specified locale and options.
+The visually hidden utility makes content accessible to assistive devices without displaying it on the screen.
 
-Localization is handled by the browser’s Intl.NumberFormat API. No language packs are required.
+According to The A11Y Project, “there are real world situations where visually hiding content may be appropriate, while the content should remain available to assistive technologies, such as screen readers. For instance, hiding a search field’s label as a common magnifying glass icon is used in its stead.”
 
-1,000
+Since visually hidden content can receive focus when tabbing, the element will become visible when something inside receives focus. This behavior is intentional, as sighted keyboard user won’t be able to determine where the focus indicator is without it.
 
-Number to Format
-1000
+Skip to main content
+<div style="min-height: 1.875rem;">
+  <sl-visually-hidden>
+    <a href="#">Skip to main content</a>
+  </sl-visually-hidden>
+</div>
+
 Source
-HTML
-React
 
 Examples
-Percentages
-To get the value as a percent, set the type attribute to percent.
+Links That Open in New Windows
+In this example, the link will open a new window. Screen readers will announce “opens in a new window” even though the text content isn’t visible to sighted users.
 
-0%
-25%
-50%
-75%
-100%
+Visit External Page opens in a new window
 Source
-HTML
-React
 
-Localization
-Use the lang attribute to set the number formatting locale.
+Content Conveyed By Context
+Adding a label may seem redundant at times, but they’re very helpful for unsighted users. Rather than omit them, you can provide context to unsighted users with visually hidden content that will be announced by assistive devices such as screen readers.
 
-English: 2,000.00
-German: 2.000,00
-Russian: 2 000,00
+Personal Info
+Name
+Email
 Source
-HTML
-React
-
-Currency
-To format a number as a monetary value, set the type attribute to currency and set the currency attribute to the desired ISO 4217 currency code. You should also specify lang to ensure the the number is formatted correctly for the target locale.
-
-$2,000.00
-£2,000.00
-2.000,00 €
-2 000,00 ₽
-¥2,000.00
-Source
-HTML
-React
 
 Importing
 If you’re using the autoloader or the traditional loader, you can ignore this section. Otherwise, feel free to use any of the following snippets to cherry pick this component.
 
 To import this component from the CDN using a script tag:
 
-<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/format-number/format-number.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/components/visually-hidden/visually-hidden.js"></script>
 
-Properties
-Name	Description	Reflects	Type	Default
-value	The number to format.		number	0
-type	The formatting style to use.		'currency' | 'decimal' | 'percent'	'decimal'
-noGrouping
-no-grouping	Turns off grouping separators.		boolean	false
-currency	The ISO 4217 currency code to use when formatting.		string	'USD'
-currencyDisplay
-currency-display	How to display the currency.		'symbol' | 'narrowSymbol' | 'code' | 'name'	'symbol'
-minimumIntegerDigits
-minimum-integer-digits	The minimum number of integer digits to use. Possible values are 1–21.		number	-
-minimumFractionDigits
-minimum-fraction-digits	The minimum number of fraction digits to use. Possible values are 0–20.		number	-
-maximumFractionDigits
-maximum-fraction-digits	The maximum number of fraction digits to use. Possible values are 0–0.		number	-
-minimumSignificantDigits
-minimum-significant-digits	The minimum number of significant digits to use. Possible values are 1–21.		number	-
-maximumSignificantDigits
-maximum-significant-digits	The maximum number of significant digits to use,. Possible values are 1–21.		number	-
-updateComplete	A read-only promise that resolves when the component has finished updating.			
-Learn more about attributes and properties.
+Slots
+Name	Description
+(default)	The content to be visually hidden.
