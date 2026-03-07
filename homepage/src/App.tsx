@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { getColors } from './tokens';
 import { Header } from './sections/Header';
@@ -16,6 +16,12 @@ import { Footer } from './sections/Footer';
 function AppInner() {
     const { dark } = useTheme();
     const colors = getColors(dark);
+
+    // Prevent browser from auto-scrolling to hash on page load
+    useEffect(() => {
+        window.history.scrollRestoration = 'manual';
+    }, []);
+
     return (
         <div style={{ fontFamily: 'system-ui,-apple-system,sans-serif', color: colors.text, background: colors.bg, minHeight: '100vh', transition: 'background 0.2s, color 0.2s' }}>
             <Header />

@@ -1,4 +1,3 @@
-import React from 'react';
 import { UiButton } from '../../../react/src/components/UiButton';
 import { useTheme } from '../ThemeContext';
 import { useBreakpoint } from '../useBreakpoint';
