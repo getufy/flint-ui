@@ -1,8 +1,6 @@
 # TODO Components
 
 
-- [ ] Navigation Menu
-A collection of links for navigating websites.
 - [ ] Scroll Area
 Augments native scroll functionality for custom, cross-browser styling.
 - [ ] Sonner/Toaster

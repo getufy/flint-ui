@@ -144,6 +144,10 @@ export {
     UiMenubarSubTrigger,
     UiMenubarTrigger
 } from './menubar/ui-menubar.js'
+export {
+    UiScrollArea,
+    UiScrollBar,
+} from './scroll-area/ui-scroll-area.js';
 export { UiNavigationMenu } from './navigation-menu/ui-navigation-menu.js';
 export { UiNavigationMenuList } from './navigation-menu/ui-navigation-menu-list.js';
 export { UiNavigationMenuItem } from './navigation-menu/ui-navigation-menu-item.js';

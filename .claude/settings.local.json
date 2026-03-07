@@ -10,7 +10,9 @@
       "Bash(NODE_OPTIONS='--no-warnings' vitest run:*)",
       "Bash(npm run:*)",
       "Bash(node:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest:*)",
+      "Bash(npx eslint:*)"
     ]
   }
 }
