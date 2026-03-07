@@ -367,7 +367,7 @@ describe('ui-resizable-group — constraints', () => {
     expect(panels[0].size).toBeLessThanOrEqual(70);
   });
 
-  it('collapses panel when collapsible and dragged below half minSize from minSize', async () => {
+  it('collapses panel on a NEW drag that starts at minSize', async () => {
     const el = await fixture<UiResizableGroup>(html`
       <ui-resizable-group>
         <ui-resizable-panel .defaultSize=${50} .minSize=${20} .collapsible=${true}>
@@ -394,17 +394,22 @@ describe('ui-resizable-group — constraints', () => {
     });
 
     const handle = getHandles(el)[0];
-    // First drag to minSize boundary (50% → 20%)
-    el._handleResize(handle, -300);
     const panels = getPanels(el);
-    expect(panels[0].size).toBe(20);
 
-    // Now drag past collapse threshold (20% → below 10% = minSize/2)
+    // Drag 1: bring panel to minSize (50% → 20%)
+    el._startDrag();
+    el._handleResize(handle, -300);
+    expect(panels[0].size).toBe(20);
+    el._endDrag();
+
+    // Drag 2: starts at minSize — collapse is now allowed
+    el._startDrag();
     el._handleResize(handle, -150);
     expect(panels[0].size).toBe(0);
+    el._endDrag();
   });
 
-  it('does not collapse on a single fast drag from above minSize', async () => {
+  it('does not collapse during the same drag that reached minSize', async () => {
     const el = await fixture<UiResizableGroup>(html`
       <ui-resizable-group>
         <ui-resizable-panel .defaultSize=${50} .minSize=${20} .collapsible=${true}>
@@ -431,12 +436,18 @@ describe('ui-resizable-group — constraints', () => {
     });
 
     const handle = getHandles(el)[0];
-    // Fast drag: 50% → would be 5% (below minSize/2=10%), but panel was above minSize
-    // so it should clamp to minSize, NOT collapse
-    el._handleResize(handle, -450);
-
     const panels = getPanels(el);
-    expect(panels[0].size).toBe(20); // clamped to minSize, not collapsed to 0
+
+    // Single drag session: panel was above minSize at drag start
+    el._startDrag();
+    // Fast drag that would skip past collapse threshold
+    el._handleResize(handle, -450);
+    expect(panels[0].size).toBe(20); // clamped to minSize, NOT collapsed
+
+    // Even continued dragging in the same session can't collapse
+    el._handleResize(handle, -150);
+    expect(panels[0].size).toBe(20); // still at minSize
+    el._endDrag();
   });
 });
 
