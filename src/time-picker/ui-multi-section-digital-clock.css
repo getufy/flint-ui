@@ -19,6 +19,6 @@
       color:var(--ui-text-color,#374151); cursor:pointer; border:none;
       background:transparent; font-family:inherit; width:100%; line-height:1; transition:background .1s;
     }
-    .item:hover { background:rgba(0,0,0,.05); }
-    .item.sel { background:var(--ui-primary-color,#3b82f6); color:#fff; font-weight:700; border-radius:6px; }
+    .item:hover { background:var(--ui-hover-color, rgba(0,0,0,.05)); }
+    .item.sel { background:var(--ui-primary-color,#3b82f6); color:var(--ui-text-color-on-primary,#fff); font-weight:700; border-radius:6px; }
     .col-spacer { min-height:80px; }

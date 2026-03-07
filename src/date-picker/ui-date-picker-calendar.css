@@ -27,7 +27,7 @@
       border-radius: 6px;
       transition: background 0.12s;
     }
-    .header-label:hover { background: rgba(0,0,0,.04); }
+    .header-label:hover { background: var(--ui-hover-color, rgba(0,0,0,.04)); }
 
     .nav-btn {
       display: flex; align-items: center; justify-content: center;
@@ -36,7 +36,7 @@
       border-radius: 50%; color: var(--ui-text-color-muted, #6b7280);
       font-size: 1rem; transition: background 0.12s;
     }
-    .nav-btn:hover { background: rgba(0,0,0,.06); }
+    .nav-btn:hover { background: var(--ui-hover-color, rgba(0,0,0,.06)); }
     .nav-btn:disabled { opacity: 0.3; cursor: default; }
 
     /* Day-of-week row */
@@ -75,7 +75,7 @@
       transition: background 0.1s, color 0.1s;
       position: relative;
     }
-    .day-cell:hover:not(.disabled):not(.selected) { background: rgba(0,0,0,.06); }
+    .day-cell:hover:not(.disabled):not(.selected) { background: var(--ui-hover-color, rgba(0,0,0,.06)); }
     .day-cell.other-month { color: var(--ui-text-color-muted, #d1d5db); }
     .day-cell.today:not(.selected) {
       color: var(--ui-primary-color, #3b82f6);
@@ -92,10 +92,10 @@
     }
     .day-cell.selected {
       background: var(--ui-primary-color, #3b82f6);
-      color: #fff;
+      color: var(--ui-text-color-on-primary, #fff);
       font-weight: 700;
     }
-    .day-cell.selected:hover { background: var(--ui-primary-color-dark, #2563eb); }
+    .day-cell.selected:hover { background: var(--ui-primary-color-hover, #2563eb); }
     .day-cell.disabled {
       opacity: 0.35;
       cursor: not-allowed;
@@ -118,10 +118,10 @@
       color: var(--ui-text-color, #374151);
       transition: background 0.12s;
     }
-    .year-btn:hover { background: rgba(0,0,0,.06); }
+    .year-btn:hover { background: var(--ui-hover-color, rgba(0,0,0,.06)); }
     .year-btn.selected-year {
       background: var(--ui-primary-color, #3b82f6);
-      color: #fff;
+      color: var(--ui-text-color-on-primary, #fff);
       font-weight: 700;
     }
 
@@ -139,9 +139,9 @@
       color: var(--ui-text-color, #374151);
       transition: background 0.12s;
     }
-    .month-btn:hover { background: rgba(0,0,0,.06); }
+    .month-btn:hover { background: var(--ui-hover-color, rgba(0,0,0,.06)); }
     .month-btn.selected-month {
       background: var(--ui-primary-color, #3b82f6);
-      color: #fff;
+      color: var(--ui-text-color-on-primary, #fff);
       font-weight: 700;
     }

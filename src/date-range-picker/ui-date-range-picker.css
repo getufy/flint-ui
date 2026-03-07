@@ -17,7 +17,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--ui-surface-background, #fff);
+      background: var(--ui-input-bg, var(--ui-surface-background, #fff));
       border: 1.5px solid var(--ui-border-color, #d1d5db);
       border-radius: var(--ui-border-radius-md, 8px);
       padding: 10px 44px 10px 14px;
@@ -31,12 +31,12 @@
     }
     .mobile-field:hover { border-color: var(--ui-primary-color, #3b82f6); }
     :host([disabled]) .mobile-field {
-      background: var(--ui-disabled-bg, #f9fafb);
+      background: var(--ui-input-disabled-bg, var(--ui-input-readonly-bg, #f9fafb));
       color: var(--ui-text-color-muted, #9ca3af);
       cursor: not-allowed;
       border-color: var(--ui-border-color, #e5e7eb);
     }
-    .mobile-field-placeholder { color: var(--ui-text-color-muted, #9ca3af); }
+    .mobile-field-placeholder { color: var(--ui-input-placeholder-color, var(--ui-text-color-muted, #9ca3af)); }
     .mobile-field-icon {
       position: absolute; right: 12px;
       font-size: 1rem; color: var(--ui-text-color-muted, #6b7280);
@@ -52,7 +52,7 @@
       z-index: 1400;
       background: var(--ui-surface-background, #fff);
       border-radius: var(--ui-border-radius-xl, 12px);
-      box-shadow: 0 8px 24px -4px rgba(0,0,0,.18), 0 2px 8px -2px rgba(0,0,0,.1);
+      box-shadow: var(--ui-shadow-lg, 0 8px 24px -4px rgba(0,0,0,.18));
       transform-origin: top left;
       transform: scale(0.94) translateY(-4px);
       opacity: 0;
@@ -92,12 +92,12 @@
       white-space: nowrap;
     }
     .shortcut-btn:hover {
-      background: rgba(59,130,246,.08);
+      background: var(--ui-primary-color-light, rgba(59,130,246,.08));
       color: var(--ui-primary-color, #3b82f6);
     }
     .shortcut-btn.active {
       background: var(--ui-primary-color, #3b82f6);
-      color: #fff;
+      color: var(--ui-text-color-on-primary, #fff);
     }
 
     /* ── Popover body ────────────────────────────────────────────────── */
@@ -126,12 +126,12 @@
       background: transparent;
       color: var(--ui-text-color-muted, #6b7280);
     }
-    .action-btn.cancel:hover { background: rgba(0,0,0,.06); }
+    .action-btn.cancel:hover { background: var(--ui-hover-color, rgba(0,0,0,.06)); }
     .action-btn.ok {
       background: var(--ui-primary-color, #3b82f6);
-      color: #fff;
+      color: var(--ui-text-color-on-primary, #fff);
     }
-    .action-btn.ok:hover { background: var(--ui-primary-color-dark, #2563eb); }
+    .action-btn.ok:hover { background: var(--ui-primary-color-hover, #2563eb); }
 
     /* ── Click-away backdrop ─────────────────────────────────────────── */
     .click-away {
@@ -144,7 +144,7 @@
     .static-wrapper {
       display: inline-block;
       border-radius: var(--ui-border-radius-xl, 12px);
-      box-shadow: 0 1px 4px rgba(0,0,0,.08), 0 0 0 1px var(--ui-border-color, #e5e7eb);
+      box-shadow: var(--ui-shadow-sm, 0 1px 4px rgba(0,0,0,.08)), 0 0 0 1px var(--ui-border-color, #e5e7eb);
       overflow: hidden;
     }
 

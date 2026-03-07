@@ -1,6 +1,6 @@
 :host { display: block; }
         .label { font-size: .875rem; font-weight: 500; color: var(--ui-text-color, #111827); font-family: var(--ui-font-family,'Inter',sans-serif); line-height: 1.4; }
-        .optional { font-size: .75rem; color: #9ca3af; font-style: italic; }
+        .optional { font-size: .75rem; color: var(--ui-text-color-muted, #9ca3af); font-style: italic; }
         :host([active])   .label { color: var(--ui-primary-color, #3b82f6); font-weight: 600; }
-        :host([disabled]) .label { color: #9ca3af; }
+        :host([disabled]) .label { color: var(--ui-text-color-muted, #9ca3af); }
         :host([error])    .label { color: var(--ui-error-color, #ef4444); }

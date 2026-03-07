@@ -40,8 +40,8 @@
         /* ── Tooltip ── */
         .tooltip {
             position: absolute;
-            background: rgba(30,41,59,.88);
-            color: #fff;
+            background: var(--ui-tooltip-bg, rgba(15,23,42,.88));
+            color: var(--ui-tooltip-text-color, #ffffff);
             font-family: var(--ui-font-family, 'Inter', sans-serif);
             font-size: 0.75rem;
             font-weight: 500;

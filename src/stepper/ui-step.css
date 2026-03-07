@@ -113,15 +113,15 @@
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             font-size: .8125rem; font-weight: 700;
-            border: 2px solid #d1d5db;
-            color: #9ca3af;
+            border: 2px solid var(--ui-input-border-color, #d1d5db);
+            color: var(--ui-text-color-muted, #9ca3af);
             background: transparent;
             transition: all .2s;
             /* Never shrink — it's a fixed-size indicator */
             flex-shrink: 0;
             box-sizing: border-box;
         }
-        .icon-circle.active   { background: var(--ui-primary-color,#3b82f6); border-color: var(--ui-primary-color,#3b82f6); color:#fff; box-shadow:0 0 0 4px rgba(59,130,246,.15); }
-        .icon-circle.completed{ background: var(--ui-primary-color,#3b82f6); border-color: var(--ui-primary-color,#3b82f6); color:#fff; }
+        .icon-circle.active   { background: var(--ui-primary-color,#3b82f6); border-color: var(--ui-primary-color,#3b82f6); color: var(--ui-text-color-on-primary,#fff); box-shadow: 0 0 0 4px var(--ui-primary-focus-ring, rgba(59,130,246,.15)); }
+        .icon-circle.completed{ background: var(--ui-primary-color,#3b82f6); border-color: var(--ui-primary-color,#3b82f6); color: var(--ui-text-color-on-primary,#fff); }
         .icon-circle.error    { border-color: var(--ui-error-color,#ef4444); color: var(--ui-error-color,#ef4444); }
         :host([disabled]) .icon-circle { opacity: .4; }

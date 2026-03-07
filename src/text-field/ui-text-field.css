@@ -21,7 +21,7 @@
       position: relative;
       display: flex;
       align-items: center;
-      background-color: var(--ui-surface-background, white);
+      background-color: var(--ui-input-bg, var(--ui-surface-background, white));
       border: 1px solid var(--ui-input-border-color, #d1d5db);
       border-radius: var(--ui-input-border-radius, 6px);
       transition: all 0.2s ease;
@@ -29,24 +29,24 @@
     }
 
     .input-wrapper:hover:not(.disabled):not(.error) {
-      border-color: var(--ui-text-color-muted, #6b7280);
+      border-color: var(--ui-input-border-hover-color, var(--ui-text-color-muted, #6b7280));
     }
 
     .input-wrapper.focused:not(.error) {
       border-color: var(--ui-primary-color, #3b82f6);
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+      box-shadow: 0 0 0 3px var(--ui-primary-focus-ring, rgba(59, 130, 246, 0.15));
     }
 
     .input-wrapper.error {
-      border-color: #ef4444;
+      border-color: var(--ui-error-color, #ef4444);
     }
 
     .input-wrapper.error.focused {
-      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+      box-shadow: 0 0 0 3px var(--ui-error-focus-ring, rgba(239, 68, 68, 0.15));
     }
 
     .input-wrapper.disabled {
-      background-color: var(--ui-surface-background-flat, #f3f4f6);
+      background-color: var(--ui-input-disabled-bg, var(--ui-surface-background-flat, #f3f4f6));
       cursor: not-allowed;
       opacity: 0.7;
     }
@@ -68,7 +68,7 @@
     }
 
     input::placeholder {
-      color: var(--ui-text-color-muted, #9ca3af);
+      color: var(--ui-input-placeholder-color, var(--ui-text-color-muted, #9ca3af));
     }
 
     .icon-leading, .icon-trailing {
@@ -89,17 +89,17 @@
 
     .helper-text {
       font-size: 0.75rem;
-      color: var(--ui-text-color-muted, #6b7280);
+      color: var(--ui-help-text-color, var(--ui-text-color-muted, #6b7280));
     }
 
     .error-text {
-      color: #ef4444;
+      color: var(--ui-error-color, #ef4444);
     }
 
     /* Outlined variant (default) */
     /* Filled variant */
     .filled .input-wrapper {
-      background-color: var(--ui-surface-background-flat, #f3f4f6);
+      background-color: var(--ui-input-disabled-bg, var(--ui-surface-background-flat, #f3f4f6));
       border-bottom: 2px solid var(--ui-input-border-color, #d1d5db);
       border-top: none;
       border-left: none;

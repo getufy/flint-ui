@@ -10,7 +10,8 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/storybook-lit-component.es.js",
       "require": "./dist/storybook-lit-component.umd.js"
-    }
+    },
+    "./theme.css": "./src/theme.css"
   },
   "scripts": {
     "lint": "eslint \"src/**/*.ts\"",
@@ -34,7 +35,8 @@
   "license": "ISC",
   "description": "",
   "files": [
-    "dist"
+    "dist",
+    "src/theme.css"
   ],
   "dependencies": {
     "lit": "^3.3.2"

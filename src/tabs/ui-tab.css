@@ -7,22 +7,22 @@
             border: none; background: none; cursor: pointer;
             font-family: var(--ui-font-family,'Inter',sans-serif);
             font-size: .875rem; font-weight: 500; line-height: 1.25;
-            color: var(--ui-tab-inactive, #6b7280);
+            color: var(--ui-tab-inactive-color, var(--ui-text-color-muted, #6b7280));
             white-space: nowrap; border-radius: 0; outline: none;
             transition: color .2s, background .15s;
             box-sizing: border-box; width: 100%;
             text-decoration: none; -webkit-tap-highlight-color: transparent;
         }
         .tab:hover:not(:disabled):not([aria-disabled="true"]) {
-            color: var(--ui-tab-active, #3b82f6);
-            background: rgba(59,130,246,.04);
+            color: var(--ui-tab-active-color, var(--ui-primary-color, #3b82f6));
+            background: var(--ui-primary-color-light, rgba(59,130,246,.1));
         }
         .tab:focus-visible {
-            outline: 2px solid var(--ui-tab-active, #3b82f6);
+            outline: 2px solid var(--ui-tab-active-color, var(--ui-primary-color, #3b82f6));
             outline-offset: -2px;
         }
-        :host([selected]) .tab { color: var(--ui-tab-active, #3b82f6); font-weight: 600; }
-        .tab:disabled { color: rgba(0,0,0,.26); cursor: not-allowed; }
+        :host([selected]) .tab { color: var(--ui-tab-active-color, var(--ui-primary-color, #3b82f6)); font-weight: 600; }
+        .tab:disabled { opacity: 0.38; cursor: not-allowed; }
 
         /* icon positions */
         .icon-top    { flex-direction: column; min-height: 72px; }

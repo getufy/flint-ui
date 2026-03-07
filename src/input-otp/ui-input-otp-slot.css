@@ -9,8 +9,8 @@
             font-family: var(--ui-font-family, system-ui, sans-serif);
             font-weight: 500;
             color: var(--ui-text-color, #111827);
-            background: #fff;
-            border: 1px solid #d1d5db;
+            background: var(--ui-input-bg, #ffffff);
+            border: 1px solid var(--ui-input-border-color, #d1d5db);
             margin-left: -1px;
             cursor: text;
             user-select: none;
@@ -29,16 +29,16 @@
         :host([active]) {
             z-index: 1;
             border-color: var(--ui-primary-color, #3b82f6);
-            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+            box-shadow: 0 0 0 2px var(--ui-primary-focus-ring, rgba(59, 130, 246, 0.2));
         }
 
         :host([invalid]) {
-            border-color: #ef4444;
+            border-color: var(--ui-error-color, #ef4444);
         }
 
         :host([invalid][active]) {
-            border-color: #ef4444;
-            box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+            border-color: var(--ui-error-color, #ef4444);
+            box-shadow: 0 0 0 2px var(--ui-error-focus-ring, rgba(239, 68, 68, 0.2));
         }
 
         .cursor {

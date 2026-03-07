@@ -6,7 +6,7 @@
       --ui-switch-thumb-offset: 4px;
       --ui-switch-bg: var(--ui-secondary-color, #6b7280);
       --ui-switch-bg-on: var(--ui-primary-color, #3b82f6);
-      --ui-switch-thumb-bg: #ffffff;
+      --ui-switch-thumb-bg: var(--ui-switch-thumb-color, #ffffff);
 
       font-family: var(--ui-font-family, sans-serif);
       cursor: pointer;

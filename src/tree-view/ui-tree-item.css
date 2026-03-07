@@ -20,16 +20,15 @@
       color: var(--ui-text-color, #111827);
       font-size: 14px;
       transition: background-color 0.15s ease;
-      /* Needed so ::before/::after drop indicators position correctly */
       position: relative;
     }
 
     :host(:not([disabled])) .item-row:hover {
-      background-color: rgba(0, 0, 0, 0.04);
+      background-color: var(--ui-hover-color, rgba(0, 0, 0, 0.04));
     }
 
     :host([disabled]) .item-row {
-      color: rgba(0, 0, 0, 0.38);
+      opacity: 0.38;
       cursor: default;
     }
 
@@ -50,7 +49,7 @@
     }
 
     .expand-btn:hover {
-      background-color: rgba(0, 0, 0, 0.08);
+      background-color: var(--ui-active-color, rgba(0, 0, 0, 0.08));
     }
 
     .expand-btn.expanded {
@@ -75,12 +74,7 @@
       display: none !important;
     }
 
-    /* ── Drag & Drop ──────────────────────────────────────────── */
-
-    /*
-     * FIX: draggable cursor on the row div (not the host) since that's
-     * the element with draggable="true" after our fix.
-     */
+    /* ── Drag & Drop ──────────────────────────────────────── */
     .item-row.is-draggable {
       cursor: grab;
     }
@@ -89,7 +83,7 @@
       cursor: grabbing;
     }
 
-    /* Drop position indicators — driven by :host attribute (reflect: true) */
+    /* Drop position indicators */
     :host([drop-position="before"]) .item-row::before {
       content: '';
       position: absolute;
@@ -115,7 +109,7 @@
     }
 
     :host([drop-position="inside"]) .item-row {
-      background-color: rgba(59, 130, 246, 0.1);
+      background-color: var(--ui-primary-color-light, rgba(59, 130, 246, 0.1));
       outline: 2px solid var(--ui-primary-color, #3b82f6);
       outline-offset: -2px;
     }
@@ -131,7 +125,7 @@
       width: 24px;
       height: 24px;
       cursor: grab;
-      color: var(--ui-text-color-secondary, #6b7280);
+      color: var(--ui-text-color-muted, #6b7280);
       margin-right: 4px;
       flex-shrink: 0;
     }

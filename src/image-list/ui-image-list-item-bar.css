@@ -2,7 +2,7 @@
       display: block;
       box-sizing: border-box;
       background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, transparent 100%);
-      color: #fff;
+      color: var(--ui-image-bar-overlay-text, #ffffff);
       padding: 12px 12px 8px;
       font-family: var(--ui-font-family, system-ui, sans-serif);
     }
@@ -58,7 +58,7 @@
     }
 
     ::slotted([slot="action"]) {
-      color: #fff;
+      color: var(--ui-image-bar-overlay-text, #ffffff);
     }
 
     :host([position="below"]) ::slotted([slot="action"]) {

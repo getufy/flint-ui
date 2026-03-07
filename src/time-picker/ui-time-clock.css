@@ -5,8 +5,8 @@
       font-family:var(--ui-font-family,'Inter',sans-serif); color:var(--ui-text-color,#111827);
     }
     .clock-seg { padding:4px 10px; border-radius:8px; cursor:pointer; transition:background .12s, color .12s; }
-    .clock-seg.active { background:var(--ui-primary-color,#3b82f6); color:#fff; border-radius:8px; }
-    .clock-seg:hover:not(.active) { background:rgba(0,0,0,.06); }
+    .clock-seg.active { background:var(--ui-primary-color,#3b82f6); color:var(--ui-text-color-on-primary,#fff); border-radius:8px; }
+    .clock-seg:hover:not(.active) { background:var(--ui-hover-color, rgba(0,0,0,.06)); }
     .clock-sep { color:var(--ui-text-color-muted,#6b7280); }
     svg { touch-action:none; cursor:pointer; }
     .face { fill:var(--ui-surface-variant,#f1f5f9); }
@@ -17,7 +17,7 @@
     .hand-tip { fill:var(--ui-primary-color,#3b82f6); }
     .num { font-size:13px; font-family:var(--ui-font-family,'Inter',sans-serif); fill:var(--ui-text-color,#374151); dominant-baseline:central; text-anchor:middle; cursor:pointer; }
     .num.inner-label { font-size:11px; fill:var(--ui-text-color-muted,#6b7280); }
-    .num.selected { fill:#fff; }
+    .num.selected { fill:var(--ui-text-color-on-primary, #fff); }
     .num-bg { fill:transparent; cursor:pointer; }
     .num-bg.selected { fill:var(--ui-primary-color,#3b82f6); }
     .tick { stroke:var(--ui-text-color-muted,#cbd5e1); stroke-width:1; }
@@ -30,4 +30,4 @@
       border-radius:20px; cursor:pointer; font-size:.875rem; font-family:inherit;
       background:transparent; color:var(--ui-text-color,#374151); transition:all .12s;
     }
-    .am-pm-btn.sel { background:var(--ui-primary-color,#3b82f6); color:#fff; border-color:var(--ui-primary-color,#3b82f6); }
+    .am-pm-btn.sel { background:var(--ui-primary-color,#3b82f6); color:var(--ui-text-color-on-primary,#fff); border-color:var(--ui-primary-color,#3b82f6); }

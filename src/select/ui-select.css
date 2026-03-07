@@ -5,11 +5,11 @@
       --_px: 12px;
       --_font: 0.875rem;
 
-      --ui-select-bg: var(--ui-surface-background, #ffffff);
+      --ui-select-bg: var(--ui-input-bg, var(--ui-surface-background, #ffffff));
       --ui-select-border: var(--ui-input-border-color, #d1d5db);
       --ui-select-radius: var(--ui-input-border-radius, 8px);
       --ui-select-focus-color: var(--ui-primary-color, #3b82f6);
-      --ui-select-error-color: #ef4444;
+      --ui-select-error-color: var(--ui-error-color, #ef4444);
 
       font-family: var(--ui-font-family, sans-serif);
     }
@@ -54,7 +54,7 @@
 
     .select-trigger.focused {
       border-color: var(--ui-select-focus-color);
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+      box-shadow: 0 0 0 3px var(--ui-primary-focus-ring, rgba(59, 130, 246, 0.15));
     }
 
     :host([error]) .select-trigger {
@@ -62,18 +62,18 @@
     }
 
     :host([error]) .select-trigger.focused {
-      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+      box-shadow: 0 0 0 3px var(--ui-error-focus-ring, rgba(239, 68, 68, 0.15));
     }
 
     .select-trigger.disabled {
       opacity: 0.6;
       cursor: not-allowed;
-      background-color: var(--ui-surface-background-flat, #f3f4f6);
+      background-color: var(--ui-input-disabled-bg, var(--ui-surface-background-flat, #f3f4f6));
     }
 
     .select-trigger.readonly {
       cursor: default;
-      background-color: var(--ui-surface-background-flat, #f3f4f6);
+      background-color: var(--ui-input-readonly-bg, var(--ui-surface-background-flat, #f3f4f6));
     }
 
     .value-container {
@@ -88,7 +88,7 @@
     }
 
     .placeholder {
-      color: var(--ui-text-color-muted, #6b7280);
+      color: var(--ui-input-placeholder-color, var(--ui-text-color-muted, #6b7280));
       font-size: var(--_font);
     }
 
@@ -102,7 +102,7 @@
 
     .chip {
       background-color: var(--ui-primary-color, #3b82f6);
-      color: #ffffff;
+      color: var(--ui-text-color-on-primary, #ffffff);
       padding: 2px 8px 2px 10px;
       border-radius: 16px;
       font-size: 0.75rem;
@@ -198,7 +198,7 @@
     }
 
     .option.selected {
-      background-color: rgba(59, 130, 246, 0.08);
+      background-color: var(--ui-primary-color-light, rgba(59, 130, 246, 0.08));
       color: var(--ui-primary-color, #3b82f6);
       font-weight: 600;
     }

@@ -42,12 +42,12 @@
 
     .chip.primary:not(.outlined) {
       background-color: var(--ui-primary-color, #3b82f6);
-      color: white;
+      color: var(--ui-text-color-on-primary, white);
     }
 
     .chip.secondary:not(.outlined) {
       background-color: var(--ui-secondary-color, #6b7280);
-      color: white;
+      color: var(--ui-text-color-on-primary, white);
     }
 
     .chip.outlined.primary {
@@ -97,7 +97,7 @@
 
     .delete-icon:hover {
       opacity: 1;
-      background-color: rgba(0, 0, 0, 0.1);
+      background-color: var(--ui-active-color, rgba(0, 0, 0, 0.1));
     }
 
     .delete-icon:focus-visible {

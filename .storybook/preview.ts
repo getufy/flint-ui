@@ -23,8 +23,9 @@ const preview: Preview = {
         title: 'Theme',
         icon: 'circlehollow',
         items: [
-          { value: 'light', icon: 'circlehollow', title: 'Light' },
-          { value: 'dark', icon: 'circle', title: 'Dark' },
+          { value: 'light', icon: 'sun', title: 'Light' },
+          { value: 'dark', icon: 'moon', title: 'Dark' },
+          { value: 'system', icon: 'browser', title: 'System' },
         ],
         dynamicTitle: true,
       },
@@ -33,11 +34,20 @@ const preview: Preview = {
 
   decorators: [
     (story, context) => {
-      // Get the selected theme from global context
       const theme = context.globals.theme || 'light';
 
-      // Update data attribute on the document HTML or body
-      document.body.setAttribute('data-theme', theme);
+      if (theme === 'system') {
+        // Remove explicit theme overrides — let @media (prefers-color-scheme) decide
+        document.documentElement.removeAttribute('data-theme');
+        document.documentElement.classList.remove('light', 'dark');
+        document.body.removeAttribute('data-theme');
+        document.body.classList.remove('light', 'dark');
+      } else {
+        // Set explicit theme on <body> so .dark / [data-theme="dark"] selectors apply
+        document.body.setAttribute('data-theme', theme);
+        document.body.classList.remove('light', 'dark');
+        document.body.classList.add(theme);
+      }
 
       return story();
     },

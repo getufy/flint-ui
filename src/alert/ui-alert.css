@@ -24,32 +24,32 @@
 
         /* Severities */
         .info {
-            background-color: #eff6ff;
-            border-color: #bfdbfe;
-            color: #1e40af;
+            background-color: var(--ui-info-bg, #eff6ff);
+            border-color: var(--ui-info-border-color, #bfdbfe);
+            color: var(--ui-info-text-color, #1e40af);
         }
-        .info .icon { color: #3b82f6; }
+        .info .icon { color: var(--ui-info-icon-color, #3b82f6); }
 
         .success {
-            background-color: #f0fdf4;
-            border-color: #bbf7d0;
-            color: #166534;
+            background-color: var(--ui-success-bg, #f0fdf4);
+            border-color: var(--ui-success-border-color, #bbf7d0);
+            color: var(--ui-success-text-color, #166534);
         }
-        .success .icon { color: #10b981; }
+        .success .icon { color: var(--ui-success-icon-color, #10b981); }
 
         .warning {
-            background-color: #fffbeb;
-            border-color: #fef3c7;
-            color: #92400e;
+            background-color: var(--ui-warning-bg, #fffbeb);
+            border-color: var(--ui-warning-border-color, #fef3c7);
+            color: var(--ui-warning-text-color, #92400e);
         }
-        .warning .icon { color: #f59e0b; }
+        .warning .icon { color: var(--ui-warning-icon-color, #f59e0b); }
 
         .error {
-            background-color: #fef2f2;
-            border-color: #fee2e2;
-            color: #991b1b;
+            background-color: var(--ui-error-bg, #fef2f2);
+            border-color: var(--ui-error-border-color, #fee2e2);
+            color: var(--ui-error-text-color, #991b1b);
         }
-        .error .icon { color: #ef4444; }
+        .error .icon { color: var(--ui-error-icon-color, #ef4444); }
 
         .icon {
             flex-shrink: 0;
@@ -97,7 +97,7 @@
 
         .close-button:hover {
             opacity: 1;
-            background-color: rgba(0, 0, 0, 0.08);
+            background-color: var(--ui-active-color, rgba(0, 0, 0, 0.08));
         }
 
         .close-button:active {

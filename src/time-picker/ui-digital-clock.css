@@ -10,7 +10,7 @@
       box-sizing:border-box; transition:background .1s; font-family:inherit;
       border-radius:0; font-variant-numeric:tabular-nums;
     }
-    .item:hover { background:rgba(0,0,0,.05); }
+    .item:hover { background:var(--ui-hover-color, rgba(0,0,0,.05)); }
     .item.selected {
-      background:var(--ui-primary-color,#3b82f6); color:#fff; font-weight:600; border-radius:6px;
+      background:var(--ui-primary-color,#3b82f6); color:var(--ui-text-color-on-primary,#fff); font-weight:600; border-radius:6px;
     }

@@ -24,9 +24,13 @@
             border-radius: 0;
         }
 
-        .item:hover  { background: rgba(0,0,0,.04); }
-        .item:active { background: rgba(0,0,0,.08); }
-        .item:focus-visible { background: rgba(0,0,0,.06); outline: 2px solid var(--ui-primary-color, #3b82f6); outline-offset: -2px; }
+        .item:hover  { background: var(--ui-hover-color, rgba(0,0,0,.04)); }
+        .item:active { background: var(--ui-active-color, rgba(0,0,0,.08)); }
+        .item:focus-visible {
+            background: var(--ui-hover-color, rgba(0,0,0,.06));
+            outline: 2px solid var(--ui-primary-color, #3b82f6);
+            outline-offset: -2px;
+        }
 
         :host([selected]) .item {
             background: var(--ui-primary-color-light, rgba(59,130,246,.12));
@@ -34,7 +38,7 @@
             font-weight: 600;
         }
         :host([selected]) .item:hover {
-            background: var(--ui-primary-color-light, rgba(59,130,246,.18));
+            background: var(--ui-primary-color-light-hover, rgba(59,130,246,.18));
         }
 
         :host([disabled]) .item {
@@ -43,9 +47,7 @@
             pointer-events: none;
         }
 
-        /* Ensure [hidden] removes the element from layout inside Shadow DOM.
-           The browser's UA [hidden]{display:none} doesn't pierce shadow roots in all
-           environments, so we declare it explicitly here. */
+        /* Ensure [hidden] removes the element from layout inside Shadow DOM. */
         [hidden] { display: none !important; }
 
         .icon-wrap {
@@ -58,7 +60,6 @@
             color: var(--ui-text-color-muted, #6b7280);
         }
         :host([selected]) .icon-wrap { color: var(--ui-primary-color, #3b82f6); }
-
 
         .end-icon-wrap {
             display: flex;

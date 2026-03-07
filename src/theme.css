@@ -1,69 +1,138 @@
 :root {
-    /* Colors - Light Theme (Default) */
-    --ui-primary-color: #3b82f6;
-    /* Blue 500 */
-    --ui-primary-color-hover: #2563eb;
-    /* Blue 600 */
-    --ui-primary-color-active: #1d4ed8;
-    /* Blue 700 */
+    /* ─── Primary ─────────────────────────────────────────── */
+    --ui-primary-color: #3b82f6;           /* Blue 500 */
+    --ui-primary-color-hover: #2563eb;     /* Blue 600 */
+    --ui-primary-color-active: #1d4ed8;    /* Blue 700 */
 
-    --ui-secondary-color: #6b7280;
-    /* Gray 500 */
-    --ui-secondary-color-hover: #4b5563;
-    /* Gray 600 */
-    --ui-secondary-color-active: #374151;
-    /* Gray 700 */
+    /* ─── Secondary ───────────────────────────────────────── */
+    --ui-secondary-color: #6b7280;         /* Gray 500 */
+    --ui-secondary-color-hover: #4b5563;   /* Gray 600 */
+    --ui-secondary-color-active: #374151;  /* Gray 700 */
 
+    /* ─── Destructive / Error ─────────────────────────────── */
+    --ui-destructive-color: #ef4444;       /* Red 500 */
+    --ui-destructive-color-hover: #dc2626; /* Red 600 */
+    --ui-destructive-color-active: #b91c1c;/* Red 700 */
+    --ui-error-color: #ef4444;
+
+    /* ─── Semantic status colors ──────────────────────────── */
+    --ui-success-color: #10b981;           /* Emerald 500 */
+    --ui-warning-color: #f59e0b;           /* Amber 500 */
+
+    /* Info severity */
+    --ui-info-bg: #eff6ff;
+    --ui-info-border-color: #bfdbfe;
+    --ui-info-text-color: #1e40af;
+    --ui-info-icon-color: #3b82f6;
+
+    /* Success severity */
+    --ui-success-bg: #f0fdf4;
+    --ui-success-border-color: #bbf7d0;
+    --ui-success-text-color: #166534;
+    --ui-success-icon-color: #10b981;
+
+    /* Warning severity */
+    --ui-warning-bg: #fffbeb;
+    --ui-warning-border-color: #fef3c7;
+    --ui-warning-text-color: #92400e;
+    --ui-warning-icon-color: #f59e0b;
+
+    /* Error severity */
+    --ui-error-bg: #fef2f2;
+    --ui-error-border-color: #fee2e2;
+    --ui-error-text-color: #991b1b;
+    --ui-error-icon-color: #ef4444;
+
+    /* ─── Surfaces ────────────────────────────────────────── */
     --ui-surface-background: #ffffff;
-    --ui-surface-background-flat: #f3f4f6;
-    /* Gray 100 */
+    --ui-surface-background-flat: #f3f4f6; /* Gray 100 */
 
-    --ui-text-color: #111827;
-    /* Gray 900 */
-    --ui-text-color-muted: #6b7280;
-    /* Gray 500 */
+    /* Surface variant (subtle tinted surface for SVG backgrounds, clock faces, etc.) */
+    --ui-surface-variant: #f1f5f9;
+
+    /* Card */
+    --ui-card-background: #ffffff;
+    --ui-card-background-flat: #f3f4f6;
+    --ui-card-border-color: #f3f4f6;
+
+    /* ─── Text ────────────────────────────────────────────── */
+    --ui-text-color: #111827;              /* Gray 900 */
+    --ui-text-color-muted: #6b7280;        /* Gray 500 */
     --ui-text-color-on-primary: #ffffff;
 
-    --ui-border-color: #e5e7eb;
-    /* Gray 200 */
-    --ui-input-border-color: #d1d5db;
-    /* Gray 300 */
+    /* ─── Borders ─────────────────────────────────────────── */
+    --ui-border-color: #e5e7eb;            /* Gray 200 */
+    --ui-input-border-color: #d1d5db;      /* Gray 300 */
+    --ui-input-border-hover-color: #9ca3af;/* Gray 400 */
 
+    /* ─── Interactive overlays ────────────────────────────── */
     --ui-hover-color: rgba(0, 0, 0, 0.04);
     --ui-active-color: rgba(0, 0, 0, 0.08);
 
-    /* Shadows */
+    /* ─── Primary tints (for selected/highlighted states) ── */
+    --ui-primary-color-light: rgba(59, 130, 246, 0.1);
+    --ui-primary-color-light-hover: rgba(59, 130, 246, 0.18);
+
+    /* ─── Focus rings ─────────────────────────────────────── */
+    --ui-primary-focus-ring: rgba(59, 130, 246, 0.2);
+    --ui-error-focus-ring: rgba(239, 68, 68, 0.2);
+
+    /* ─── Backdrop ────────────────────────────────────────── */
+    --ui-backdrop-color: rgba(0, 0, 0, 0.5);
+
+    /* ─── Tabs ────────────────────────────────────────────── */
+    --ui-tab-inactive-color: var(--ui-text-color-muted);
+    --ui-tab-active-color: var(--ui-primary-color);
+
+    /* ─── Tooltip ─────────────────────────────────────────── */
+    --ui-tooltip-bg: rgba(15, 23, 42, 0.88);
+    --ui-tooltip-text-color: #ffffff;
+    --ui-tooltip-color: #ffffff; /* alias used by ui-tooltip.css */
+
+    /* ─── Stepper ─────────────────────────────────────────── */
+    --ui-stepper-connector-color: var(--ui-border-color);
+
+    /* ─── Switch ──────────────────────────────────────────── */
+    --ui-switch-thumb-color: #ffffff;
+
+    /* ─── Input-specific ──────────────────────────────────── */
+    --ui-label-color: #374151;             /* Gray 700 */
+    --ui-input-bg: #ffffff;
+    --ui-input-placeholder-color: #9ca3af; /* Gray 400 */
+    --ui-input-disabled-bg: #f3f4f6;       /* Gray 100 */
+    --ui-input-disabled-color: #9ca3af;    /* Gray 400 */
+    --ui-input-readonly-bg: #f9fafb;       /* Gray 50 */
+    --ui-help-text-color: #6b7280;         /* Gray 500 */
+
+    /* ─── Shadows ─────────────────────────────────────────── */
     --ui-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --ui-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --ui-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --ui-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 
     --ui-card-shadow: var(--ui-shadow-lg);
-    --ui-card-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --ui-card-shadow-hover: var(--ui-shadow-xl);
 
-    /* Radii */
-    --ui-border-radius-sm: 0.125rem;
-    /* 2px */
-    --ui-border-radius-md: 0.375rem;
-    /* 6px */
-    --ui-border-radius-lg: 0.5rem;
-    /* 8px */
-    --ui-border-radius-xl: 0.75rem;
-    /* 12px */
+    /* ─── Radii ───────────────────────────────────────────── */
+    --ui-border-radius-sm: 0.125rem;  /* 2px */
+    --ui-border-radius-md: 0.375rem;  /* 6px */
+    --ui-border-radius-lg: 0.5rem;    /* 8px */
+    --ui-border-radius-xl: 0.75rem;   /* 12px */
 
     --ui-card-border-radius: var(--ui-border-radius-xl);
     --ui-input-border-radius: var(--ui-border-radius-md);
 
-    /* Typography */
+    /* ─── Typography ──────────────────────────────────────── */
     --ui-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 
-    /* Breakpoints (px) */
+    /* ─── Breakpoints (px) ────────────────────────────────── */
     --ui-breakpoint-xs: 0;
     --ui-breakpoint-sm: 600;
     --ui-breakpoint-md: 900;
     --ui-breakpoint-lg: 1200;
     --ui-breakpoint-xl: 1536;
 
-    /* Container Max Widths */
+    /* ─── Container Max Widths ────────────────────────────── */
     --ui-container-xs: 444px;
     --ui-container-sm: 601px;
     --ui-container-md: 901px;
@@ -71,45 +140,233 @@
     --ui-container-xl: 1537px;
 }
 
-/* Dark Theme */
+/* ─────────────────────────────────────────────────────────────
+   Dark Theme
+   Applied when:
+     • a parent has class="dark"
+     • a parent has data-theme="dark"
+     • system prefers dark (unless opted out with data-theme="light" or class="light")
+   ───────────────────────────────────────────────────────────── */
 .dark,
 [data-theme="dark"] {
-    --ui-primary-color: #60a5fa;
-    /* Blue 400 */
-    --ui-primary-color-hover: #3b82f6;
-    /* Blue 500 */
-    --ui-primary-color-active: #2563eb;
-    /* Blue 600 */
+    /* Primary */
+    --ui-primary-color: #60a5fa;           /* Blue 400 */
+    --ui-primary-color-hover: #3b82f6;     /* Blue 500 */
+    --ui-primary-color-active: #2563eb;    /* Blue 600 */
 
-    --ui-secondary-color: #9ca3af;
-    /* Gray 400 */
-    --ui-secondary-color-hover: #d1d5db;
-    /* Gray 300 */
-    --ui-secondary-color-active: #f3f4f6;
-    /* Gray 100 */
+    /* Secondary */
+    --ui-secondary-color: #9ca3af;         /* Gray 400 */
+    --ui-secondary-color-hover: #d1d5db;   /* Gray 300 */
+    --ui-secondary-color-active: #f3f4f6;  /* Gray 100 */
 
-    --ui-surface-background: #1f2937;
-    /* Gray 800 */
-    --ui-surface-background-flat: #111827;
-    /* Gray 900 */
+    /* Destructive / Error */
+    --ui-destructive-color: #f87171;       /* Red 400 */
+    --ui-destructive-color-hover: #ef4444; /* Red 500 */
+    --ui-destructive-color-active: #dc2626;/* Red 600 */
+    --ui-error-color: #f87171;
 
-    --ui-text-color: #f9fafb;
-    /* Gray 50 */
-    --ui-text-color-muted: #9ca3af;
-    /* Gray 400 */
+    /* Semantic status */
+    --ui-success-color: #34d399;           /* Emerald 400 */
+    --ui-warning-color: #fbbf24;           /* Amber 400 */
+
+    /* Info severity */
+    --ui-info-bg: #1e3a5f;
+    --ui-info-border-color: #1d4ed8;
+    --ui-info-text-color: #93c5fd;
+    --ui-info-icon-color: #60a5fa;
+
+    /* Success severity */
+    --ui-success-bg: #14532d;
+    --ui-success-border-color: #15803d;
+    --ui-success-text-color: #86efac;
+    --ui-success-icon-color: #34d399;
+
+    /* Warning severity */
+    --ui-warning-bg: #451a03;
+    --ui-warning-border-color: #92400e;
+    --ui-warning-text-color: #fcd34d;
+    --ui-warning-icon-color: #fbbf24;
+
+    /* Error severity */
+    --ui-error-bg: #450a0a;
+    --ui-error-border-color: #991b1b;
+    --ui-error-text-color: #fca5a5;
+    --ui-error-icon-color: #f87171;
+
+    /* Surfaces */
+    --ui-surface-background: #1f2937;      /* Gray 800 */
+    --ui-surface-background-flat: #111827; /* Gray 900 */
+
+    /* Surface variant */
+    --ui-surface-variant: #1e293b;
+
+    /* Card */
+    --ui-card-background: #1f2937;
+    --ui-card-background-flat: #111827;
+    --ui-card-border-color: #374151;       /* Gray 700 */
+
+    /* Text */
+    --ui-text-color: #f9fafb;              /* Gray 50 */
+    --ui-text-color-muted: #9ca3af;        /* Gray 400 */
     --ui-text-color-on-primary: #ffffff;
 
-    --ui-border-color: #374151;
-    /* Gray 700 */
-    --ui-input-border-color: #4b5563;
-    /* Gray 600 */
+    /* Borders */
+    --ui-border-color: #374151;            /* Gray 700 */
+    --ui-input-border-color: #4b5563;      /* Gray 600 */
+    --ui-input-border-hover-color: #6b7280;/* Gray 500 */
 
-    --ui-hover-color: rgba(255, 255, 255, 0.05);
-    --ui-active-color: rgba(255, 255, 255, 0.1);
+    /* Interactive overlays */
+    --ui-hover-color: rgba(255, 255, 255, 0.06);
+    --ui-active-color: rgba(255, 255, 255, 0.12);
 
+    /* Primary tints */
+    --ui-primary-color-light: rgba(96, 165, 250, 0.15);
+    --ui-primary-color-light-hover: rgba(96, 165, 250, 0.25);
+
+    /* Focus rings */
+    --ui-primary-focus-ring: rgba(96, 165, 250, 0.3);
+    --ui-error-focus-ring: rgba(248, 113, 113, 0.3);
+
+    /* Backdrop */
+    --ui-backdrop-color: rgba(0, 0, 0, 0.7);
+
+    /* Tabs */
+    --ui-tab-inactive-color: var(--ui-text-color-muted);
+    --ui-tab-active-color: var(--ui-primary-color);
+
+    /* Input-specific */
+    --ui-label-color: #d1d5db;             /* Gray 300 */
+    --ui-input-bg: #374151;                /* Gray 700 */
+    --ui-input-placeholder-color: #6b7280; /* Gray 500 */
+    --ui-input-disabled-bg: #1f2937;       /* Gray 800 */
+    --ui-input-disabled-color: #4b5563;    /* Gray 600 */
+    --ui-input-readonly-bg: #1f2937;
+    --ui-help-text-color: #9ca3af;         /* Gray 400 */
+
+    /* Shadows (stronger in dark to compensate for low contrast) */
     --ui-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
     --ui-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
     --ui-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+    --ui-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+
+    /* Tooltip — light tooltip on dark bg */
+    --ui-tooltip-bg: rgba(241, 245, 249, 0.92);
+    --ui-tooltip-text-color: #0f172a;
+    --ui-tooltip-color: #0f172a;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   System preference: auto dark
+   Activates when the OS is in dark mode AND no explicit theme
+   class/attribute overrides it (data-theme="light" or .light opt out).
+   ───────────────────────────────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]):not(.light) {
+        /* Primary */
+        --ui-primary-color: #60a5fa;
+        --ui-primary-color-hover: #3b82f6;
+        --ui-primary-color-active: #2563eb;
+
+        /* Secondary */
+        --ui-secondary-color: #9ca3af;
+        --ui-secondary-color-hover: #d1d5db;
+        --ui-secondary-color-active: #f3f4f6;
+
+        /* Destructive / Error */
+        --ui-destructive-color: #f87171;
+        --ui-destructive-color-hover: #ef4444;
+        --ui-destructive-color-active: #dc2626;
+        --ui-error-color: #f87171;
+
+        /* Semantic status */
+        --ui-success-color: #34d399;
+        --ui-warning-color: #fbbf24;
+
+        /* Info severity */
+        --ui-info-bg: #1e3a5f;
+        --ui-info-border-color: #1d4ed8;
+        --ui-info-text-color: #93c5fd;
+        --ui-info-icon-color: #60a5fa;
+
+        /* Success severity */
+        --ui-success-bg: #14532d;
+        --ui-success-border-color: #15803d;
+        --ui-success-text-color: #86efac;
+        --ui-success-icon-color: #34d399;
+
+        /* Warning severity */
+        --ui-warning-bg: #451a03;
+        --ui-warning-border-color: #92400e;
+        --ui-warning-text-color: #fcd34d;
+        --ui-warning-icon-color: #fbbf24;
+
+        /* Error severity */
+        --ui-error-bg: #450a0a;
+        --ui-error-border-color: #991b1b;
+        --ui-error-text-color: #fca5a5;
+        --ui-error-icon-color: #f87171;
+
+        /* Surfaces */
+        --ui-surface-background: #1f2937;
+        --ui-surface-background-flat: #111827;
+
+        /* Card */
+        --ui-card-background: #1f2937;
+        --ui-card-background-flat: #111827;
+        --ui-card-border-color: #374151;
+
+        /* Text */
+        --ui-text-color: #f9fafb;
+        --ui-text-color-muted: #9ca3af;
+        --ui-text-color-on-primary: #ffffff;
+
+        /* Borders */
+        --ui-border-color: #374151;
+        --ui-input-border-color: #4b5563;
+        --ui-input-border-hover-color: #6b7280;
+
+        /* Interactive overlays */
+        --ui-hover-color: rgba(255, 255, 255, 0.06);
+        --ui-active-color: rgba(255, 255, 255, 0.12);
+
+        /* Primary tints */
+        --ui-primary-color-light: rgba(96, 165, 250, 0.15);
+        --ui-primary-color-light-hover: rgba(96, 165, 250, 0.25);
+
+        /* Focus rings */
+        --ui-primary-focus-ring: rgba(96, 165, 250, 0.3);
+        --ui-error-focus-ring: rgba(248, 113, 113, 0.3);
+
+        /* Backdrop */
+        --ui-backdrop-color: rgba(0, 0, 0, 0.7);
+
+        /* Tabs */
+        --ui-tab-inactive-color: var(--ui-text-color-muted);
+        --ui-tab-active-color: var(--ui-primary-color);
+
+        /* Input-specific */
+        --ui-label-color: #d1d5db;
+        --ui-input-bg: #374151;
+        --ui-input-placeholder-color: #6b7280;
+        --ui-input-disabled-bg: #1f2937;
+        --ui-input-disabled-color: #4b5563;
+        --ui-input-readonly-bg: #1f2937;
+        --ui-help-text-color: #9ca3af;
+
+        /* Shadows */
+        --ui-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+        --ui-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+        --ui-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+        --ui-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+
+        /* Tooltip */
+        --ui-tooltip-bg: rgba(241, 245, 249, 0.92);
+        --ui-tooltip-text-color: #0f172a;
+        --ui-tooltip-color: #0f172a;
+
+        /* Surface variant */
+        --ui-surface-variant: #1e293b;
+    }
 }
 
 body {
