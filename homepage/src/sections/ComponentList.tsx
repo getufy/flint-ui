@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { UiTextField } from '../../../react/src/components/UiTextField';
-import { c, row, card, sect, maxW, grid3 } from '../tokens';
+import { useTheme } from '../ThemeContext';
+import { getColors, row, card, sect, maxW, grid3 } from '../tokens';
 import { Heading } from '../components/shared';
 
 const cats = [
@@ -15,6 +16,8 @@ const cats = [
 const totalCount = cats.reduce((n, cat) => n + cat.items.length, 0);
 
 export function ComponentList() {
+    const { dark } = useTheme();
+    const c = getColors(dark);
     const [query, setQuery] = useState('');
 
     const filtered = query.trim()
@@ -26,7 +29,7 @@ export function ComponentList() {
     const matchCount = filtered.reduce((n, cat) => n + cat.items.length, 0);
 
     return (
-        <section style={sect(c.bg)}>
+        <section style={sect(undefined, c)}>
             <div style={maxW()}>
                 <Heading title={<>{totalCount}+ components across 6 categories</>} sub="Every component ships with its own React wrapper, TypeScript types, Storybook stories, and unit tests." />
 
@@ -48,7 +51,7 @@ export function ComponentList() {
                 ) : (
                     <div style={grid3()}>
                         {filtered.map(cat => (
-                            <div key={cat.name} style={card()}>
+                            <div key={cat.name} style={card({}, c)}>
                                 <div style={{ ...row(8), marginBottom: 12, justifyContent: 'space-between' }}>
                                     <p style={{ fontWeight: 700, fontSize: 14 }}>{cat.name}</p>
                                     <span style={{ fontSize: 11, background: c.primaryLight, color: c.primary, padding: '2px 8px', borderRadius: 20, fontWeight: 700 }}>{cat.items.length}</span>

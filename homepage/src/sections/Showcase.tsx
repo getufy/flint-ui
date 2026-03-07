@@ -35,10 +35,14 @@ import { UiCommandGroup } from '../../../react/src/components/UiCommandGroup';
 import { UiCommandItem } from '../../../react/src/components/UiCommandItem';
 import { UiCommandSeparator } from '../../../react/src/components/UiCommandSeparator';
 import { UiCommandEmpty } from '../../../react/src/components/UiCommandEmpty';
-import { c, row, col, sect, maxW, grid3 } from '../tokens';
+import { useTheme } from '../ThemeContext';
+import { getColors, row, col, sect, maxW, grid3 } from '../tokens';
 import { Heading, ShowCard } from '../components/shared';
 
 export function Showcase() {
+    const { dark } = useTheme();
+    const c = getColors(dark);
+
     const [switchOn, setSwitchOn] = useState(false);
     const [sliderVal, setSliderVal] = useState(60);
     const [ratingVal, setRatingVal] = useState(3);
@@ -52,7 +56,7 @@ export function Showcase() {
     ];
 
     return (
-        <section id="s-components" style={sect(c.bg)}>
+        <section id="s-components" style={sect(undefined, c)}>
             <div style={maxW()}>
                 <Heading title="Everything you need" sub="Every component is a live Lit custom element wrapped in a typed React component. Click around — they're all interactive." />
                 <div style={grid3()}>

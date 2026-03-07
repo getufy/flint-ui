@@ -12,7 +12,8 @@ import { UiListItemButton } from '../../../react/src/components/UiListItemButton
 import { UiListItemText } from '../../../react/src/components/UiListItemText';
 import { UiListItemIcon } from '../../../react/src/components/UiListItemIcon';
 import { UiRichTreeView } from '../../../react/src/components/UiRichTreeView';
-import { c, col, card, sect, maxW, grid2 } from '../tokens';
+import { useTheme } from '../ThemeContext';
+import { getColors, col, card, sect, maxW, grid2 } from '../tokens';
 import { Heading } from '../components/shared';
 
 const tableRows = [
@@ -50,14 +51,16 @@ const treeItems = [
 ];
 
 export function Data() {
+    const { dark } = useTheme();
+    const c = getColors(dark);
     const statusColor = (s: string) => s === 'stable' ? 'success' : 'warning';
 
     return (
-        <section id="s-data" style={sect(c.bg)}>
+        <section id="s-data" style={sect(undefined, c)}>
             <div style={maxW()}>
                 <Heading title="Data Display" sub="Table, List, Tree View — components for structured and hierarchical data." />
                 <div style={grid2()}>
-                    <div style={card({ overflow: 'hidden', padding: 0 })}>
+                    <div style={card({ overflow: 'hidden', padding: 0 }, c)}>
                         <div style={{ padding: '16px 20px', borderBottom: `1px solid ${c.border}`, display: 'flex', alignItems: 'center', gap: 8 }}>
                             <p style={{ fontWeight: 700, fontSize: 15 }}>Component Catalog</p>
                             <UiBadge content={String(tableRows.length)} variant="primary" />
@@ -87,7 +90,7 @@ export function Data() {
                     </div>
 
                     <div style={col(20)}>
-                        <div style={card({ padding: 0, overflow: 'hidden' })}>
+                        <div style={card({ padding: 0, overflow: 'hidden' }, c)}>
                             <div style={{ padding: '16px 20px', borderBottom: `1px solid ${c.border}` }}>
                                 <p style={{ fontWeight: 700, fontSize: 15 }}>List</p>
                             </div>
@@ -109,7 +112,7 @@ export function Data() {
                             </UiList>
                         </div>
 
-                        <div style={card({ ...col(12) })}>
+                        <div style={card({ ...col(12) }, c)}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                                 <p style={{ fontWeight: 700, fontSize: 15 }}>Rich Tree View</p>
                                 <UiBadge content="keyboard nav" variant="primary" />

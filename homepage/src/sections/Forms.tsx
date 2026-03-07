@@ -9,10 +9,13 @@ import { UiInputOtp } from '../../../react/src/components/UiInputOtp';
 import { UiInputOtpGroup } from '../../../react/src/components/UiInputOtpGroup';
 import { UiInputOtpSlot } from '../../../react/src/components/UiInputOtpSlot';
 import { UiInputOtpSeparator } from '../../../react/src/components/UiInputOtpSeparator';
-import { c, row, col, card, sect, maxW, grid2 } from '../tokens';
+import { useTheme } from '../ThemeContext';
+import { getColors, row, col, card, sect, maxW, grid2 } from '../tokens';
 import { Heading } from '../components/shared';
 
 export function Forms() {
+    const { dark } = useTheme();
+    const c = getColors(dark);
     const [name, setName] = useState('');
     const [agreed, setAgreed] = useState(false);
     const [budget, setBudget] = useState(50);
@@ -26,12 +29,12 @@ export function Forms() {
     ];
 
     return (
-        <section id="s-forms" style={sect(c.surface)}>
+        <section id="s-forms" style={sect(c.surface, c)}>
             <div style={maxW()}>
                 <Heading title={<>Forms &amp; Inputs</>} sub="TextField, Select, Checkbox, Slider, OTP — all form-associated and fully accessible." />
                 <div style={grid2()}>
                     {/* live form */}
-                    <div style={card({ ...col(20) })}>
+                    <div style={card({ ...col(20) }, c)}>
                         <div>
                             <p style={{ fontWeight: 700, fontSize: 16 }}>Create Account</p>
                             <p style={{ fontSize: 13, color: c.muted }}>A fully interactive form using Lit components in React.</p>
@@ -61,7 +64,7 @@ export function Forms() {
 
                     {/* right column */}
                     <div style={col(20)}>
-                        <div style={card({ ...col(16) })}>
+                        <div style={card({ ...col(16) }, c)}>
                             <p style={{ fontWeight: 700, fontSize: 15 }}>Input States</p>
                             <UiTextField label="Default" placeholder="Normal state" />
                             <UiTextField label="With helper" placeholder="Start typing…" helperText="Provides additional context." />
@@ -70,7 +73,7 @@ export function Forms() {
                             <UiTextField label="Filled variant" placeholder="Filled style" variant="filled" />
                         </div>
 
-                        <div style={card({ ...col(16) })}>
+                        <div style={card({ ...col(16) }, c)}>
                             <p style={{ fontWeight: 700, fontSize: 15 }}>OTP Input</p>
                             <p style={{ fontSize: 13, color: c.muted }}>Click the slots and type — paste works too.</p>
                             <div style={col(12)}>

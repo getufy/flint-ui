@@ -17,10 +17,13 @@ import { UiCommandGroup } from '../../../react/src/components/UiCommandGroup';
 import { UiCommandItem } from '../../../react/src/components/UiCommandItem';
 import { UiCommandSeparator } from '../../../react/src/components/UiCommandSeparator';
 import { UiCommandEmpty } from '../../../react/src/components/UiCommandEmpty';
-import { c, row, col, card, sect, maxW, grid2 } from '../tokens';
+import { useTheme } from '../ThemeContext';
+import { getColors, row, col, card, sect, maxW, grid2 } from '../tokens';
 import { Heading } from '../components/shared';
 
 export function Flow() {
+    const { dark } = useTheme();
+    const c = getColors(dark);
     const [step, setStep] = useState(0);
     const [cmdOpen, setCmdOpen] = useState(false);
 
@@ -50,12 +53,12 @@ export function Flow() {
     }, []);
 
     return (
-        <section id="s-flow" style={sect(c.bg)}>
+        <section id="s-flow" style={sect(undefined, c)}>
             <div style={maxW()}>
                 <Heading title="Navigation & Flow" sub="Stepper, Collapsible, Command Palette — tools for multi-step flows and progressive disclosure." />
                 <div style={grid2()}>
 
-                    <div style={card({ ...col(20) })}>
+                    <div style={card({ ...col(20) }, c)}>
                         <div>
                             <p style={{ fontWeight: 700, fontSize: 15 }}>Multi-step Stepper</p>
                             <p style={{ fontSize: 13, color: c.muted }}>Step {step + 1} of {steps.length}: {steps[step].label}</p>
@@ -78,7 +81,7 @@ export function Flow() {
                     </div>
 
                     <div style={col(20)}>
-                        <div style={card({ ...col(12) })}>
+                        <div style={card({ ...col(12) }, c)}>
                             <div style={row(8)}>
                                 <p style={{ fontWeight: 700, fontSize: 15 }}>FAQ — Collapsible</p>
                                 <UiBadge content={String(faq.length)} variant="primary" />
@@ -98,7 +101,7 @@ export function Flow() {
                             ))}
                         </div>
 
-                        <div style={card({ ...col(12) })}>
+                        <div style={card({ ...col(12) }, c)}>
                             <p style={{ fontWeight: 700, fontSize: 15 }}>Keyboard Shortcuts</p>
                             <div style={col(8)}>
                                 {[

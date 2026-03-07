@@ -31,7 +31,7 @@ export function Interactive() {
     }, []);
 
     return (
-        <section style={sect(c.surface)}>
+        <section style={sect(c.surface, c)}>
             <div style={maxW()}>
                 <Heading title="Fully interactive" sub="Real Lit components rendered inside React — no mocks, no stubs." />
                 <div style={grid3()}>

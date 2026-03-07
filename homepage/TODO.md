@@ -74,7 +74,8 @@
 
 ## UX / Polish
 
-- [ ] Mobile responsiveness — remaining grids are fixed columns, need breakpoints or `auto-fit`
+- [x] Mobile responsiveness — `grid2`/`grid3` use `auto-fit/minmax`; `sect` uses `clamp()` padding; Hero stacks to 1-col on tablet, hides preview card on mobile; Header nav collapses on tablet; Footer wraps with responsive gap
+- [x] Dark mode — all sections use `getColors(dark)` + pass `colors` to `sect()`/`card()`; `ShowCard`/`Heading` in `shared.tsx` are dark-aware; `theme.css` has full `.ui-theme-dark` token block
 - [ ] Smooth scroll for nav anchor links — verify all section `id`s match header nav hrefs
 - [ ] Add a "back to top" button or floating action
 

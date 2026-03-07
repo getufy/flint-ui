@@ -1,15 +1,15 @@
-import { unsafeCSS as p, LitElement as c, html as l, nothing as v, svg as ar, css as as } from "lit";
-import { property as o, customElement as d, state as g, queryAssignedElements as hs, query as wi } from "lit/decorators.js";
+import { unsafeCSS as p, LitElement as c, html as l, nothing as g, svg as ar, css as ao } from "lit";
+import { property as s, customElement as d, state as m, queryAssignedElements as uo, query as wi } from "lit/decorators.js";
 import { classMap as u } from "lit/directives/class-map.js";
 import { repeat as At } from "lit/directives/repeat.js";
 import { ifDefined as pe } from "lit/directives/if-defined.js";
 import { styleMap as ei } from "lit/directives/style-map.js";
-import { literal as C, html as ns, unsafeStatic as us } from "lit/static-html.js";
-const fs = ':host{display:inline-block}:host([full-width]){display:block}button{font-family:var(--ui-font-family, "Inter", sans-serif);font-weight:600;border:none;border-radius:var(--ui-button-border-radius, var(--ui-border-radius-md, 6px));cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;transition:all .2s ease;box-shadow:var(--ui-shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, .05))}.primary{background-color:var(--ui-primary-color, #3b82f6);color:var(--ui-text-color-on-primary, white)}.primary:hover{background-color:var(--ui-primary-color-hover, #2563eb)}.primary:active{background-color:var(--ui-primary-color-active, #1d4ed8)}.secondary{background-color:var(--ui-surface-background, white);color:var(--ui-text-color, #111827);border:1px solid var(--ui-input-border-color, #d1d5db)}.secondary:hover{background-color:var(--ui-hover-color, #f3f4f6)}.secondary:active{background-color:var(--ui-active-color, #e5e7eb)}.destructive{background-color:var(--ui-destructive-color, #ef4444);color:var(--ui-text-color-on-primary, white)}.destructive:hover{background-color:var(--ui-destructive-color-hover, #dc2626)}.destructive:active{background-color:var(--ui-destructive-color-active, #b91c1c)}.small{padding:6px 12px;font-size:14px}.medium{padding:10px 16px;font-size:14px}.large{padding:14px 20px;font-size:16px}button:disabled{opacity:.6;cursor:not-allowed}';
-var bs = Object.defineProperty, ms = Object.getOwnPropertyDescriptor, ki = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? ms(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && bs(t, i, r), r;
+import { literal as C, html as no, unsafeStatic as fo } from "lit/static-html.js";
+const bo = ":host{display:inline-block}:host([full-width]){display:block}button{font-family:var(--ui-font-family);font-weight:600;border:none;border-radius:var(--ui-button-border-radius, var(--ui-border-radius-md));cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;transition:all .2s ease;box-shadow:var(--ui-shadow-sm)}.primary{background-color:var(--ui-primary-color);color:var(--ui-text-color-on-primary)}.primary:hover{background-color:var(--ui-primary-color-hover)}.primary:active{background-color:var(--ui-primary-color-active)}.secondary{background-color:var(--ui-surface-1);color:var(--ui-text-color);border:1px solid var(--ui-input-border-color)}.secondary:hover{background-color:var(--ui-hover-color)}.secondary:active{background-color:var(--ui-active-color)}.destructive{background-color:var(--ui-destructive-color);color:var(--ui-text-color-on-primary)}.destructive:hover{background-color:var(--ui-destructive-color-hover)}.destructive:active{background-color:var(--ui-destructive-color-active)}.small{padding:6px 12px;font-size:14px}.medium{padding:10px 16px;font-size:14px}.large{padding:14px 20px;font-size:16px}button:disabled{opacity:.6;cursor:not-allowed}";
+var vo = Object.defineProperty, mo = Object.getOwnPropertyDescriptor, ki = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? mo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && vo(t, i, r), r;
 };
 let pt = class extends c {
   constructor() {
@@ -36,25 +36,25 @@ let pt = class extends c {
     `;
   }
 };
-pt.styles = p(fs);
+pt.styles = p(bo);
 ki([
-  o({ type: String })
+  s({ type: String })
 ], pt.prototype, "variant", 2);
 ki([
-  o({ type: String })
+  s({ type: String })
 ], pt.prototype, "size", 2);
 ki([
-  o({ type: Boolean })
+  s({ type: Boolean })
 ], pt.prototype, "disabled", 2);
 ki([
-  o({ type: Boolean, reflect: !0, attribute: "full-width" })
+  s({ type: Boolean, reflect: !0, attribute: "full-width" })
 ], pt.prototype, "fullWidth", 2);
 pt = ki([
   d("ui-button")
 ], pt);
-const gs = ":host{display:inline-flex;border-radius:var(--ui-border-radius-md, 6px)}::slotted(ui-button){position:relative}::slotted(ui-button:hover),::slotted(ui-button:focus-within),::slotted(ui-button:active){z-index:1}::slotted(ui-button:not(:first-child)){margin-left:-1px}::slotted(ui-button){--ui-button-border-radius: 0}::slotted(ui-button:first-child){--ui-button-border-radius: var(--ui-border-radius-md, 6px) 0 0 var(--ui-border-radius-md, 6px)}::slotted(ui-button:last-child){--ui-button-border-radius: 0 var(--ui-border-radius-md, 6px) var(--ui-border-radius-md, 6px) 0}::slotted(ui-button:first-child:last-child){--ui-button-border-radius: var(--ui-border-radius-md, 6px)}";
-var vs = Object.getOwnPropertyDescriptor, ys = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? vs(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+const go = ":host{display:inline-flex;border-radius:var(--ui-border-radius-md, 6px)}::slotted(ui-button){position:relative}::slotted(ui-button:hover),::slotted(ui-button:focus-within),::slotted(ui-button:active){z-index:1}::slotted(ui-button:not(:first-child)){margin-left:-1px}::slotted(ui-button){--ui-button-border-radius: 0}::slotted(ui-button:first-child){--ui-button-border-radius: var(--ui-border-radius-md, 6px) 0 0 var(--ui-border-radius-md, 6px)}::slotted(ui-button:last-child){--ui-button-border-radius: 0 var(--ui-border-radius-md, 6px) var(--ui-border-radius-md, 6px) 0}::slotted(ui-button:first-child:last-child){--ui-button-border-radius: var(--ui-border-radius-md, 6px)}";
+var yo = Object.getOwnPropertyDescriptor, xo = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? yo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = n(r) || r);
   return r;
 };
@@ -65,15 +65,15 @@ let lr = class extends c {
     `;
   }
 };
-lr.styles = p(gs);
-lr = ys([
+lr.styles = p(go);
+lr = xo([
   d("ui-button-group")
 ], lr);
-const xs = ":host{display:block;font-family:Inter,sans-serif}.card{background:var(--ui-card-background, white);border-radius:var(--ui-card-border-radius, 12px);box-shadow:var(--ui-card-shadow, 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05));border:1px solid var(--ui-card-border-color, #f3f4f6);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .3s ease,border-color .3s ease;padding:var(--ui-card-padding, 0)}.card.interactive:hover{box-shadow:var(--ui-card-shadow-hover, 0 20px 25px -5px rgba(0, 0, 0, .1), 0 10px 10px -5px rgba(0, 0, 0, .04));cursor:pointer}.card.variant-outlined{box-shadow:none;border:1px solid var(--ui-card-border-color, #d1d5db)}.card.variant-flat{box-shadow:none;border:none;background:var(--ui-card-background-flat, #f3f4f6)}";
-var _s = Object.defineProperty, ws = Object.getOwnPropertyDescriptor, Qr = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? ws(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && _s(t, i, r), r;
+const _o = ":host{display:block;font-family:Inter,sans-serif}.card{background:var(--ui-card-background);border-radius:var(--ui-card-border-radius);box-shadow:var(--ui-card-shadow);border:1px solid var(--ui-card-border-color);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .3s ease,border-color .3s ease;padding:var(--ui-card-padding, 0)}.card.interactive:hover{box-shadow:var(--ui-card-shadow-hover);cursor:pointer}.card.variant-outlined{box-shadow:none;border:1px solid var(--ui-card-border-color)}.card.variant-flat{box-shadow:none;border:none;background:var(--ui-card-background-flat)}";
+var wo = Object.defineProperty, ko = Object.getOwnPropertyDescriptor, Qr = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? ko(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && wo(t, i, r), r;
 };
 let ni = class extends c {
   constructor() {
@@ -92,21 +92,21 @@ let ni = class extends c {
     `;
   }
 };
-ni.styles = p(xs);
+ni.styles = p(_o);
 Qr([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], ni.prototype, "variant", 2);
 Qr([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], ni.prototype, "interactive", 2);
 ni = Qr([
   d("ui-card")
 ], ni);
-const ks = ":host{display:block;padding:var(--ui-card-header-padding, 16px 24px)}.header{display:flex;align-items:center;gap:16px}.content{flex:1 1 auto}.title{margin:0;font-size:var(--ui-card-title-size, 1.25rem);font-weight:700;color:var(--ui-card-title-color, #111827);line-height:1.4}.subtitle{margin:4px 0 0;font-size:var(--ui-card-subtitle-size, .875rem);color:var(--ui-card-subtitle-color, #6b7280);font-weight:500}";
-var $s = Object.defineProperty, Ss = Object.getOwnPropertyDescriptor, es = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Ss(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && $s(t, i, r), r;
+const $o = ":host{display:block;padding:var(--ui-card-header-padding, 16px 24px)}.header{display:flex;align-items:center;gap:16px}.content{flex:1 1 auto}.title{margin:0;font-size:var(--ui-card-title-size, 1.25rem);font-weight:700;color:var(--ui-text-color);line-height:1.4}.subtitle{margin:4px 0 0;font-size:var(--ui-card-subtitle-size, .875rem);color:var(--ui-text-color-muted);font-weight:500}";
+var So = Object.defineProperty, Co = Object.getOwnPropertyDescriptor, eo = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Co(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && So(t, i, r), r;
 };
 let li = class extends c {
   constructor() {
@@ -126,19 +126,19 @@ let li = class extends c {
     `;
   }
 };
-li.styles = p(ks);
-es([
-  o({ type: String })
+li.styles = p($o);
+eo([
+  s({ type: String })
 ], li.prototype, "title", 2);
-es([
-  o({ type: String })
+eo([
+  s({ type: String })
 ], li.prototype, "subtitle", 2);
-li = es([
+li = eo([
   d("ui-card-header")
 ], li);
-const Cs = ":host{display:block;padding:var(--ui-card-content-padding, 16px 24px);font-size:var(--ui-card-content-size, 1rem);color:var(--ui-card-content-color, #4b5563);line-height:1.5}";
-var Is = Object.getOwnPropertyDescriptor, Es = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Is(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+const Io = ":host{display:block;padding:var(--ui-card-content-padding, 16px 24px);font-size:var(--ui-card-content-size, 1rem);color:var(--ui-text-color-muted);line-height:1.5}";
+var Eo = Object.getOwnPropertyDescriptor, Po = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Eo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = n(r) || r);
   return r;
 };
@@ -149,15 +149,15 @@ let cr = class extends c {
     `;
   }
 };
-cr.styles = p(Cs);
-cr = Es([
+cr.styles = p(Io);
+cr = Po([
   d("ui-card-content")
 ], cr);
-const Ps = ":host{display:block;width:100%;overflow:hidden}.media{width:100%;height:var(--ui-card-media-height, 200px);background-size:cover;background-position:center;background-repeat:no-repeat}img{width:100%;height:100%;object-fit:cover;display:block}";
-var Os = Object.defineProperty, Ds = Object.getOwnPropertyDescriptor, Xi = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Ds(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Os(t, i, r), r;
+const Oo = ":host{display:block;width:100%;overflow:hidden}.media{width:100%;height:var(--ui-card-media-height, 200px);background-size:cover;background-position:center;background-repeat:no-repeat}img{width:100%;height:100%;object-fit:cover;display:block}";
+var Do = Object.defineProperty, zo = Object.getOwnPropertyDescriptor, Xi = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? zo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Do(t, i, r), r;
 };
 let Bt = class extends c {
   constructor() {
@@ -175,22 +175,22 @@ let Bt = class extends c {
     return l`<slot></slot>`;
   }
 };
-Bt.styles = p(Ps);
+Bt.styles = p(Oo);
 Xi([
-  o({ type: String })
+  s({ type: String })
 ], Bt.prototype, "image", 2);
 Xi([
-  o({ type: String })
+  s({ type: String })
 ], Bt.prototype, "alt", 2);
 Xi([
-  o({ type: String })
+  s({ type: String })
 ], Bt.prototype, "height", 2);
 Bt = Xi([
   d("ui-card-media")
 ], Bt);
-const zs = ":host{display:flex;padding:var(--ui-card-actions-padding, 8px 16px);align-items:center;gap:8px}";
-var Ts = Object.getOwnPropertyDescriptor, As = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Ts(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+const To = ":host{display:flex;padding:var(--ui-card-actions-padding, 8px 16px);align-items:center;gap:8px}";
+var Ao = Object.getOwnPropertyDescriptor, Bo = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Ao(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = n(r) || r);
   return r;
 };
@@ -201,13 +201,13 @@ let dr = class extends c {
     `;
   }
 };
-dr.styles = p(zs);
-dr = As([
+dr.styles = p(To);
+dr = Bo([
   d("ui-card-actions")
 ], dr);
-const Bs = ":host{display:block;width:100%;cursor:pointer;position:relative}.action-area{transition:background-color .2s}.action-area:hover{background-color:var(--ui-card-action-area-hover, rgba(0, 0, 0, .04))}.action-area:active{background-color:var(--ui-card-action-area-active, rgba(0, 0, 0, .08))}.action-area:focus-visible{outline:2px solid var(--ui-card-action-area-focus-ring, #3b82f6);outline-offset:-2px}";
-var Ms = Object.getOwnPropertyDescriptor, Ls = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Ms(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+const Mo = ":host{display:block;width:100%;cursor:pointer;position:relative}.action-area{transition:background-color .2s}.action-area:hover{background-color:var(--ui-card-action-area-hover, var(--ui-hover-color))}.action-area:active{background-color:var(--ui-card-action-area-active, var(--ui-active-color))}.action-area:focus-visible{outline:2px solid var(--ui-card-action-area-focus-ring, var(--ui-primary-color));outline-offset:-2px}";
+var Lo = Object.getOwnPropertyDescriptor, jo = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Lo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = n(r) || r);
   return r;
 };
@@ -223,15 +223,15 @@ let pr = class extends c {
     (e.key === "Enter" || e.key === " ") && (e.preventDefault(), this.click());
   }
 };
-pr.styles = p(Bs);
-pr = Ls([
+pr.styles = p(Mo);
+pr = jo([
   d("ui-card-action-area")
 ], pr);
-const js = ':host{display:block;box-sizing:border-box;background-color:var(--ui-surface-background, #ffffff);color:var(--ui-text-color, #111827);border-radius:var(--ui-border-radius-md, 8px);padding:var(--ui-paper-padding, 0);transition:box-shadow .25s cubic-bezier(.4,0,.2,1),border-color .25s cubic-bezier(.4,0,.2,1),background-color .25s cubic-bezier(.4,0,.2,1);border:1px solid transparent}:host([square]){border-radius:0}:host([variant="outlined"]){border:1px solid var(--ui-border-color, rgba(0, 0, 0, .1));box-shadow:none!important}:host([variant="flat"]){border:none;box-shadow:none}:host([variant="elevated"][elevation="0"]){box-shadow:none}:host([variant="elevated"][elevation="1"]){box-shadow:0 2px 4px #0000000d}:host([variant="elevated"][elevation="2"]){box-shadow:0 3px 6px #00000012}:host([variant="elevated"][elevation="3"]){box-shadow:0 4px 12px #00000014}:host([variant="elevated"][elevation="4"]){box-shadow:0 8px 16px #00000017}:host([variant="elevated"][elevation="6"]){box-shadow:0 12px 24px #0000001a}:host([variant="elevated"][elevation="8"]){box-shadow:0 16px 32px #0000001c}:host([variant="elevated"][elevation="12"]){box-shadow:0 20px 40px #0000001f}:host([variant="elevated"][elevation="16"]){box-shadow:0 24px 48px #00000021}:host([variant="elevated"][elevation="24"]){box-shadow:0 32px 64px #00000026}@media(prefers-color-scheme:dark){:host{background-color:var(--ui-surface-background-flat, #1e1e1e)}:host([variant="elevated"][elevation="0"]){box-shadow:none}:host([variant="elevated"][elevation="1"]){box-shadow:0 2px 4px #0000004d}:host([variant="elevated"][elevation="2"]){box-shadow:0 3px 6px #00000059}:host([variant="elevated"][elevation="3"]){box-shadow:0 4px 12px #0006}:host([variant="elevated"][elevation="4"]){box-shadow:0 8px 16px #00000073}:host([variant="elevated"][elevation="6"]){box-shadow:0 12px 24px #00000080}:host([variant="elevated"][elevation="8"]){box-shadow:0 16px 32px #0000008c}:host([variant="elevated"][elevation="12"]){box-shadow:0 20px 40px #0009}:host([variant="elevated"][elevation="16"]){box-shadow:0 24px 48px #000000a6}:host([variant="elevated"][elevation="24"]){box-shadow:0 32px 64px #000000b3}}';
-var Us = Object.defineProperty, Rs = Object.getOwnPropertyDescriptor, Ji = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Rs(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Us(t, i, r), r;
+const Uo = ':host{display:block;box-sizing:border-box;background-color:var(--ui-surface-1);color:var(--ui-text-color);border-radius:var(--ui-border-radius-md);padding:var(--ui-paper-padding, 0);transition:box-shadow .25s cubic-bezier(.4,0,.2,1),border-color .25s cubic-bezier(.4,0,.2,1),background-color .25s cubic-bezier(.4,0,.2,1);border:1px solid transparent}:host([square]){border-radius:0}:host([variant="outlined"]){border:1px solid var(--ui-border-color);box-shadow:none!important}:host([variant="flat"]){border:none;box-shadow:none}:host([variant="elevated"][elevation="0"]){box-shadow:none}:host([variant="elevated"][elevation="1"]){box-shadow:0 2px 4px #0000000d}:host([variant="elevated"][elevation="2"]){box-shadow:0 3px 6px #00000012}:host([variant="elevated"][elevation="3"]){box-shadow:0 4px 12px #00000014}:host([variant="elevated"][elevation="4"]){box-shadow:0 8px 16px #00000017}:host([variant="elevated"][elevation="6"]){box-shadow:0 12px 24px #0000001a}:host([variant="elevated"][elevation="8"]){box-shadow:0 16px 32px #0000001c}:host([variant="elevated"][elevation="12"]){box-shadow:0 20px 40px #0000001f}:host([variant="elevated"][elevation="16"]){box-shadow:0 24px 48px #00000021}:host([variant="elevated"][elevation="24"]){box-shadow:0 32px 64px #00000026}@media(prefers-color-scheme:dark){:host{background-color:var(--ui-surface-background-flat)}:host([variant="elevated"][elevation="0"]){box-shadow:none}:host([variant="elevated"][elevation="1"]){box-shadow:0 2px 4px #0000004d}:host([variant="elevated"][elevation="2"]){box-shadow:0 3px 6px #00000059}:host([variant="elevated"][elevation="3"]){box-shadow:0 4px 12px #0006}:host([variant="elevated"][elevation="4"]){box-shadow:0 8px 16px #00000073}:host([variant="elevated"][elevation="6"]){box-shadow:0 12px 24px #00000080}:host([variant="elevated"][elevation="8"]){box-shadow:0 16px 32px #0000008c}:host([variant="elevated"][elevation="12"]){box-shadow:0 20px 40px #0009}:host([variant="elevated"][elevation="16"]){box-shadow:0 24px 48px #000000a6}:host([variant="elevated"][elevation="24"]){box-shadow:0 32px 64px #000000b3}}';
+var Ro = Object.defineProperty, Vo = Object.getOwnPropertyDescriptor, Ji = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Vo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Ro(t, i, r), r;
 };
 let Mt = class extends c {
   constructor() {
@@ -241,28 +241,28 @@ let Mt = class extends c {
     return l`<slot></slot>`;
   }
 };
-Mt.styles = p(js);
+Mt.styles = p(Uo);
 Ji([
-  o({ type: Number, reflect: !0 })
+  s({ type: Number, reflect: !0 })
 ], Mt.prototype, "elevation", 2);
 Ji([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], Mt.prototype, "square", 2);
 Ji([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], Mt.prototype, "variant", 2);
 Mt = Ji([
   d("ui-paper")
 ], Mt);
-const Vs = ':host{display:block;font-family:var(--ui-font-family, system-ui)}.input-wrapper{display:flex;flex-direction:column;gap:6px}label{font-size:14px;font-weight:500;color:var(--ui-label-color, #374151)}input{font-family:inherit;width:100%;box-sizing:border-box;padding:10px 14px;font-size:14px;border-radius:6px;border:1px solid var(--ui-input-border-color, #d1d5db);background-color:var(--ui-input-bg, #ffffff);color:var(--ui-text-color, #111827);transition:border-color .2s,box-shadow .2s;outline:none}:host([size="sm"]) input{padding:6px 10px;font-size:13px}:host([size="lg"]) input{padding:12px 16px;font-size:16px}input::placeholder{color:var(--ui-input-placeholder-color, #9ca3af)}input:hover:not(:disabled):not(.error-input){border-color:var(--ui-input-border-hover-color, #9ca3af)}input:focus-visible{border-color:var(--ui-primary-color, #3b82f6);box-shadow:0 0 0 3px #3b82f633}input[aria-invalid=true]{border-color:var(--ui-error-color, #ef4444)}input[aria-invalid=true]:focus-visible{box-shadow:0 0 0 3px #ef444433}input:disabled{background-color:var(--ui-input-disabled-bg, #f3f4f6);color:var(--ui-input-disabled-color, #9ca3af);cursor:not-allowed;opacity:1}input[readonly]{background-color:var(--ui-input-readonly-bg, #f9fafb);cursor:default}.help-text{font-size:12px;color:var(--ui-help-text-color, #6b7280);margin:0}.error-text{color:var(--ui-error-color, #ef4444)}';
-var Ns = Object.defineProperty, Fs = Object.getOwnPropertyDescriptor, Z = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Fs(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Ns(t, i, r), r;
+const No = ':host{display:block;font-family:var(--ui-font-family)}.input-wrapper{display:flex;flex-direction:column;gap:6px}label{font-size:14px;font-weight:500;color:var(--ui-label-color)}input{font-family:inherit;width:100%;box-sizing:border-box;padding:10px 14px;font-size:14px;border-radius:var(--ui-input-border-radius);border:1px solid var(--ui-input-border-color);background-color:var(--ui-input-bg);color:var(--ui-text-color);transition:border-color .2s,box-shadow .2s;outline:none}:host([size="sm"]) input{padding:6px 10px;font-size:13px}:host([size="lg"]) input{padding:12px 16px;font-size:16px}input::placeholder{color:var(--ui-input-placeholder-color)}input:hover:not(:disabled):not(.error-input){border-color:var(--ui-input-border-hover-color)}input:focus-visible{border-color:var(--ui-primary-color);box-shadow:0 0 0 3px var(--ui-primary-focus-ring)}input[aria-invalid=true]{border-color:var(--ui-error-color)}input[aria-invalid=true]:focus-visible{box-shadow:0 0 0 3px var(--ui-error-focus-ring)}input:disabled{background-color:var(--ui-input-disabled-bg);color:var(--ui-input-disabled-color);cursor:not-allowed;opacity:1}input[readonly]{background-color:var(--ui-input-readonly-bg);cursor:default}.help-text{font-size:12px;color:var(--ui-help-text-color);margin:0}.error-text{color:var(--ui-error-color)}';
+var Fo = Object.defineProperty, qo = Object.getOwnPropertyDescriptor, Z = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? qo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Fo(t, i, r), r;
 };
-let qs = 0, F = class extends c {
+let Ho = 0, F = class extends c {
   constructor() {
-    super(...arguments), this._inputId = `ui-input-${++qs}`, this.label = "", this.value = "", this.type = "text", this.placeholder = "", this.helpText = "", this.error = !1, this.errorMessage = "", this.disabled = !1, this.required = !1, this.readonly = !1, this.name = "", this.autocomplete = "", this.size = "default";
+    super(...arguments), this._inputId = `ui-input-${++Ho}`, this.label = "", this.value = "", this.type = "text", this.placeholder = "", this.helpText = "", this.error = !1, this.errorMessage = "", this.disabled = !1, this.required = !1, this.readonly = !1, this.name = "", this.autocomplete = "", this.size = "default";
   }
   /** Expose the internal <input> for direct access */
   get inputElement() {
@@ -315,77 +315,77 @@ let qs = 0, F = class extends c {
     );
   }
 };
-F.styles = p(Vs);
+F.styles = p(No);
 Z([
-  o({ type: String })
+  s({ type: String })
 ], F.prototype, "label", 2);
 Z([
-  o({ type: String })
+  s({ type: String })
 ], F.prototype, "value", 2);
 Z([
-  o({ type: String })
+  s({ type: String })
 ], F.prototype, "type", 2);
 Z([
-  o({ type: String })
+  s({ type: String })
 ], F.prototype, "placeholder", 2);
 Z([
-  o({ type: String, attribute: "help-text" })
+  s({ type: String, attribute: "help-text" })
 ], F.prototype, "helpText", 2);
 Z([
-  o({ type: Boolean })
+  s({ type: Boolean })
 ], F.prototype, "error", 2);
 Z([
-  o({ type: String, attribute: "error-message" })
+  s({ type: String, attribute: "error-message" })
 ], F.prototype, "errorMessage", 2);
 Z([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], F.prototype, "disabled", 2);
 Z([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], F.prototype, "required", 2);
 Z([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], F.prototype, "readonly", 2);
 Z([
-  o({ type: String })
+  s({ type: String })
 ], F.prototype, "name", 2);
 Z([
-  o({ type: String })
+  s({ type: String })
 ], F.prototype, "autocomplete", 2);
 Z([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], F.prototype, "size", 2);
 F = Z([
   d("ui-input")
 ], F);
-const Hs = ':host{display:block;--_h: 40px;--_px: 12px;--_font: .875rem;--ui-select-bg: var(--ui-surface-background, #ffffff);--ui-select-border: var(--ui-input-border-color, #d1d5db);--ui-select-radius: var(--ui-input-border-radius, 8px);--ui-select-focus-color: var(--ui-primary-color, #3b82f6);--ui-select-error-color: #ef4444;font-family:var(--ui-font-family, sans-serif)}:host([size="sm"]){--_h: 32px;--_px: 8px;--_font: .8125rem}:host([size="md"]){--_h: 40px;--_px: 12px;--_font: .875rem}:host([size="lg"]){--_h: 48px;--_px: 16px;--_font: .9375rem}.wrapper{display:flex;flex-direction:column;gap:6px;position:relative}label{font-size:.875rem;font-weight:500;color:var(--ui-text-color, #111827);margin-left:2px}.select-trigger{display:flex;align-items:center;min-height:var(--_h);padding:0 var(--_px);background-color:var(--ui-select-bg);border:1.5px solid var(--ui-select-border);border-radius:var(--ui-select-radius);cursor:pointer;transition:border-color .2s,box-shadow .2s;position:relative;gap:10px;-webkit-user-select:none;user-select:none;outline:none}.select-trigger:hover:not(.disabled):not(.readonly){border-color:var(--ui-secondary-color, #6b7280)}.select-trigger.focused{border-color:var(--ui-select-focus-color);box-shadow:0 0 0 3px #3b82f626}:host([error]) .select-trigger{border-color:var(--ui-select-error-color)}:host([error]) .select-trigger.focused{box-shadow:0 0 0 3px #ef444426}.select-trigger.disabled{opacity:.6;cursor:not-allowed;background-color:var(--ui-surface-background-flat, #f3f4f6)}.select-trigger.readonly{cursor:default;background-color:var(--ui-surface-background-flat, #f3f4f6)}.value-container{flex:1;display:flex;flex-wrap:wrap;gap:6px;padding:6px 0;min-height:24px;align-items:center;overflow:hidden}.placeholder{color:var(--ui-text-color-muted, #6b7280);font-size:var(--_font)}.single-value{color:var(--ui-text-color, #111827);font-size:var(--_font);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chip{background-color:var(--ui-primary-color, #3b82f6);color:#fff;padding:2px 8px 2px 10px;border-radius:16px;font-size:.75rem;font-weight:600;display:flex;align-items:center;gap:4px;animation:chip-in .2s ease-out}@keyframes chip-in{0%{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}.chip-remove{display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:.8;transition:opacity .2s;background:none;border:none;padding:0;color:inherit;line-height:0}.chip-remove:hover{opacity:1}.arrow{display:flex;align-items:center;justify-content:center;transition:transform .3s ease;color:var(--ui-text-color-muted, #6b7280);flex-shrink:0}.select-trigger.open .arrow{transform:rotate(180deg);color:var(--ui-select-focus-color)}.dropdown{position:absolute;left:0;right:0;background-color:var(--ui-select-bg);border-radius:var(--ui-select-radius);box-shadow:var(--ui-shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, .1));border:1px solid var(--ui-border-color, #e5e7eb);z-index:1000;max-height:260px;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .15s,transform .15s}.dropdown.below{top:calc(100% + 6px);transform:translateY(-8px)}.dropdown.above{bottom:calc(100% + 6px);transform:translateY(8px)}.dropdown.open{opacity:1;transform:translateY(0);pointer-events:auto}.option{padding:10px 14px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;color:var(--ui-text-color, #111827);transition:background-color .15s;font-size:var(--_font)}.option.highlighted{background-color:var(--ui-hover-color, rgba(0, 0, 0, .05))}.option.selected{background-color:#3b82f614;color:var(--ui-primary-color, #3b82f6);font-weight:600}.option.option-disabled{opacity:.4;cursor:not-allowed;pointer-events:none}.check-icon{color:var(--ui-primary-color, #3b82f6);opacity:0;transition:opacity .15s;flex-shrink:0}.option.selected .check-icon{opacity:1}.no-options{padding:12px 16px;color:var(--ui-text-color-muted, #6b7280);font-size:.875rem;cursor:default}.error-message{font-size:.75rem;color:var(--ui-select-error-color);margin-left:2px}.dropdown::-webkit-scrollbar{width:6px}.dropdown::-webkit-scrollbar-track{background:transparent}.dropdown::-webkit-scrollbar-thumb{background:var(--ui-border-color, #e5e7eb);border-radius:3px}';
-var Ks = Object.defineProperty, Ys = Object.getOwnPropertyDescriptor, M = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Ys(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Ks(t, i, r), r;
+const Ko = ':host{display:block;--_h: 40px;--_px: 12px;--_font: .875rem;--ui-select-bg: var(--ui-input-bg);--ui-select-border: var(--ui-input-border-color);--ui-select-radius: var(--ui-input-border-radius);--ui-select-focus-color: var(--ui-primary-color);--ui-select-error-color: var(--ui-error-color);font-family:var(--ui-font-family)}:host([size="sm"]){--_h: 32px;--_px: 8px;--_font: .8125rem}:host([size="md"]){--_h: 40px;--_px: 12px;--_font: .875rem}:host([size="lg"]){--_h: 48px;--_px: 16px;--_font: .9375rem}.wrapper{display:flex;flex-direction:column;gap:6px;position:relative}label{font-size:.875rem;font-weight:500;color:var(--ui-label-color);margin-left:2px}.select-trigger{display:flex;align-items:center;min-height:var(--_h);padding:0 var(--_px);background-color:var(--ui-select-bg);border:1.5px solid var(--ui-select-border);border-radius:var(--ui-select-radius);cursor:pointer;transition:border-color .2s,box-shadow .2s;position:relative;gap:10px;-webkit-user-select:none;user-select:none;outline:none}.select-trigger:hover:not(.disabled):not(.readonly){border-color:var(--ui-input-border-hover-color)}.select-trigger.focused{border-color:var(--ui-select-focus-color);box-shadow:0 0 0 3px var(--ui-primary-focus-ring)}:host([error]) .select-trigger{border-color:var(--ui-select-error-color)}:host([error]) .select-trigger.focused{box-shadow:0 0 0 3px var(--ui-error-focus-ring)}.select-trigger.disabled{opacity:.6;cursor:not-allowed;background-color:var(--ui-input-disabled-bg)}.select-trigger.readonly{cursor:default;background-color:var(--ui-input-readonly-bg)}.value-container{flex:1;display:flex;flex-wrap:wrap;gap:6px;padding:6px 0;min-height:24px;align-items:center;overflow:hidden}.placeholder{color:var(--ui-input-placeholder-color);font-size:var(--_font)}.single-value{color:var(--ui-text-color);font-size:var(--_font);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chip{background-color:var(--ui-primary-color);color:var(--ui-text-color-on-primary);padding:2px 8px 2px 10px;border-radius:16px;font-size:.75rem;font-weight:600;display:flex;align-items:center;gap:4px;animation:chip-in .2s ease-out}@keyframes chip-in{0%{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}.chip-remove{display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:.8;transition:opacity .2s;background:none;border:none;padding:0;color:inherit;line-height:0}.chip-remove:hover{opacity:1}.arrow{display:flex;align-items:center;justify-content:center;transition:transform .3s ease;color:var(--ui-text-color-muted);flex-shrink:0}.select-trigger.open .arrow{transform:rotate(180deg);color:var(--ui-select-focus-color)}.dropdown{position:absolute;left:0;right:0;background-color:var(--ui-select-bg);border-radius:var(--ui-select-radius);box-shadow:var(--ui-shadow-lg);border:1px solid var(--ui-border-color);z-index:1000;max-height:260px;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .15s,transform .15s}.dropdown.below{top:calc(100% + 6px);transform:translateY(-8px)}.dropdown.above{bottom:calc(100% + 6px);transform:translateY(8px)}.dropdown.open{opacity:1;transform:translateY(0);pointer-events:auto}.option{padding:10px 14px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;color:var(--ui-text-color);transition:background-color .15s;font-size:var(--_font)}.option.highlighted{background-color:var(--ui-hover-color)}.option.selected{background-color:var(--ui-primary-color-light);color:var(--ui-primary-color);font-weight:600}.option.option-disabled{opacity:.4;cursor:not-allowed;pointer-events:none}.check-icon{color:var(--ui-primary-color);opacity:0;transition:opacity .15s;flex-shrink:0}.option.selected .check-icon{opacity:1}.no-options{padding:12px 16px;color:var(--ui-text-color-muted);font-size:.875rem;cursor:default}.error-message{font-size:.75rem;color:var(--ui-select-error-color);margin-left:2px}.dropdown::-webkit-scrollbar{width:6px}.dropdown::-webkit-scrollbar-track{background:transparent}.dropdown::-webkit-scrollbar-thumb{background:var(--ui-border-color);border-radius:3px}';
+var Yo = Object.defineProperty, Go = Object.getOwnPropertyDescriptor, M = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Go(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Yo(t, i, r), r;
 };
-let Gs = 0, D = class extends c {
+let Wo = 0, D = class extends c {
   constructor() {
-    super(), this.label = "", this.options = [], this.value = [], this.multiple = !1, this.placeholder = "Select an option", this.disabled = !1, this.readonly = !1, this.required = !1, this.error = !1, this.errorMessage = "", this.name = "", this.size = "md", this.defaultValue = "", this._isOpen = !1, this._highlightedIndex = -1, this._isFocused = !1, this._opensUp = !1, this._uid = `ui-select-${++Gs}`, this._firstUpdate = !0, this._handleOutsideClick = (e) => {
+    super(), this.label = "", this.options = [], this.value = [], this.multiple = !1, this.placeholder = "Select an option", this.disabled = !1, this.readonly = !1, this.required = !1, this.error = !1, this.errorMessage = "", this.name = "", this.size = "md", this.defaultValue = "", this._isOpen = !1, this._highlightedIndex = -1, this._isFocused = !1, this._opensUp = !1, this._uid = `ui-select-${++Wo}`, this._firstUpdate = !0, this._handleOutsideClick = (e) => {
       if (!this._isOpen) return;
       const t = e.composedPath();
       (t.length > 0 ? t.includes(this) : this.contains(e.target)) || (this._isOpen = !1, this._highlightedIndex = -1);
     }, this._handleKeydown = (e) => {
-      const t = this.options.map((i, s) => ({ o: i, i: s })).filter(({ o: i }) => !i.disabled);
+      const t = this.options.map((i, o) => ({ o: i, i: o })).filter(({ o: i }) => !i.disabled);
       switch (e.key) {
         case "ArrowDown": {
           if (e.preventDefault(), !this._isOpen)
             this._toggleDropdown(), this._highlightedIndex === -1 && t.length > 0 && (this._highlightedIndex = t[0].i);
           else {
-            const i = t.findIndex(({ i: r }) => r === this._highlightedIndex), s = t[i + 1];
-            s && (this._highlightedIndex = s.i, this._scrollOptionIntoView(s.i));
+            const i = t.findIndex(({ i: r }) => r === this._highlightedIndex), o = t[i + 1];
+            o && (this._highlightedIndex = o.i, this._scrollOptionIntoView(o.i));
           }
           break;
         }
         case "ArrowUp": {
           if (e.preventDefault(), this._isOpen) {
-            const i = t.findIndex(({ i: r }) => r === this._highlightedIndex), s = i > 0 ? t[i - 1] : null;
-            s && (this._highlightedIndex = s.i, this._scrollOptionIntoView(s.i));
+            const i = t.findIndex(({ i: r }) => r === this._highlightedIndex), o = i > 0 ? t[i - 1] : null;
+            o && (this._highlightedIndex = o.i, this._scrollOptionIntoView(o.i));
           }
           break;
         }
@@ -442,8 +442,8 @@ let Gs = 0, D = class extends c {
   _handleOptionClick(e, t) {
     if (!e.disabled) {
       if (t.stopPropagation(), this.multiple) {
-        const i = [...this.value], s = i.indexOf(e.value);
-        s > -1 ? i.splice(s, 1) : i.push(e.value), this.value = i;
+        const i = [...this.value], o = i.indexOf(e.value);
+        o > -1 ? i.splice(o, 1) : i.push(e.value), this.value = i;
       } else
         this.value = [e.value], this._isOpen = !1, this._highlightedIndex = -1;
       this._dispatchChange();
@@ -466,10 +466,10 @@ let Gs = 0, D = class extends c {
     });
   }
   render() {
-    const e = this.options.filter((r) => this.value.includes(r.value)), t = `${this._uid}-label`, i = `${this._uid}-listbox`, s = this._highlightedIndex >= 0 ? `${this._uid}-opt-${this._highlightedIndex}` : "";
+    const e = this.options.filter((r) => this.value.includes(r.value)), t = `${this._uid}-label`, i = `${this._uid}-listbox`, o = this._highlightedIndex >= 0 ? `${this._uid}-opt-${this._highlightedIndex}` : "";
     return l`
       <div class="wrapper">
-        ${this.label ? l`<label id=${t}>${this.label}</label>` : v}
+        ${this.label ? l`<label id=${t}>${this.label}</label>` : g}
 
         <div
           class=${u({
@@ -485,10 +485,10 @@ let Gs = 0, D = class extends c {
           aria-expanded=${this._isOpen ? "true" : "false"}
           aria-haspopup="listbox"
           aria-controls=${i}
-          aria-labelledby=${this.label ? t : v}
-          aria-activedescendant=${s || v}
-          aria-disabled=${this.disabled ? "true" : v}
-          aria-required=${this.required ? "true" : v}
+          aria-labelledby=${this.label ? t : g}
+          aria-activedescendant=${o || g}
+          aria-disabled=${this.disabled ? "true" : g}
+          aria-required=${this.required ? "true" : g}
           @click=${this._toggleDropdown}
           @keydown=${this._handleKeydown}
           @focus=${() => {
@@ -503,7 +503,7 @@ let Gs = 0, D = class extends c {
           <div class="value-container">
             ${e.length === 0 ? l`
               <span class="placeholder">${this.placeholder}</span>
-            ` : v}
+            ` : g}
 
             ${this.multiple ? At(e, (r) => r.value, (r) => l`
                   <span class="chip">
@@ -521,7 +521,7 @@ let Gs = 0, D = class extends c {
                   </span>
                 `) : e[0] ? l`
                   <span class="single-value">${e[0].label}</span>
-                ` : v}
+                ` : g}
           </div>
 
           <div class="arrow">
@@ -559,7 +559,7 @@ let Gs = 0, D = class extends c {
       }}
                     role="option"
                     aria-selected=${n ? "true" : "false"}
-                    aria-disabled=${r.disabled ? "true" : v}
+                    aria-disabled=${r.disabled ? "true" : g}
                   >
                     <span>${r.label}</span>
                     <div class="check-icon">
@@ -574,72 +574,72 @@ let Gs = 0, D = class extends c {
 
         ${this.error && this.errorMessage ? l`
           <span class="error-message" role="alert">${this.errorMessage}</span>
-        ` : v}
+        ` : g}
       </div>
     `;
   }
 };
 D.formAssociated = !0;
-D.styles = p(Hs);
+D.styles = p(Ko);
 M([
-  o({ type: String })
+  s({ type: String })
 ], D.prototype, "label", 2);
 M([
-  o({ type: Array })
+  s({ type: Array })
 ], D.prototype, "options", 2);
 M([
-  o({ type: Array })
+  s({ type: Array })
 ], D.prototype, "value", 2);
 M([
-  o({ type: Boolean })
+  s({ type: Boolean })
 ], D.prototype, "multiple", 2);
 M([
-  o({ type: String })
+  s({ type: String })
 ], D.prototype, "placeholder", 2);
 M([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], D.prototype, "disabled", 2);
 M([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], D.prototype, "readonly", 2);
 M([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], D.prototype, "required", 2);
 M([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], D.prototype, "error", 2);
 M([
-  o({ type: String, attribute: "error-message" })
+  s({ type: String, attribute: "error-message" })
 ], D.prototype, "errorMessage", 2);
 M([
-  o({ type: String })
+  s({ type: String })
 ], D.prototype, "name", 2);
 M([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], D.prototype, "size", 2);
 M([
-  o({ type: String, attribute: "default-value" })
+  s({ type: String, attribute: "default-value" })
 ], D.prototype, "defaultValue", 2);
 M([
-  g()
+  m()
 ], D.prototype, "_isOpen", 2);
 M([
-  g()
+  m()
 ], D.prototype, "_highlightedIndex", 2);
 M([
-  g()
+  m()
 ], D.prototype, "_isFocused", 2);
 M([
-  g()
+  m()
 ], D.prototype, "_opensUp", 2);
 D = M([
   d("ui-select")
 ], D);
-const Ws = ":host{--ui-fab-size: 56px;--ui-fab-background: var(--ui-primary-color, #3b82f6);--ui-fab-color: var(--ui-text-color-on-primary, white);--ui-fab-shadow: var(--ui-shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, .1));--ui-fab-radius: 50%;display:inline-block;position:fixed;z-index:100}.fab{display:flex;align-items:center;justify-content:center;width:var(--ui-fab-size);height:var(--ui-fab-size);border-radius:var(--ui-fab-radius);background-color:var(--ui-fab-background);color:var(--ui-fab-color);box-shadow:var(--ui-fab-shadow);border:none;cursor:pointer;transition:all .2s cubic-bezier(.4,0,.2,1);padding:0;overflow:hidden;outline:none}.fab:hover:not(:disabled){box-shadow:var(--ui-shadow-xl, 0 20px 25px -5px rgba(0, 0, 0, .1));filter:brightness(1.1);transform:translateY(-2px)}.fab:active:not(:disabled){transform:translateY(0);filter:brightness(.9)}.fab:focus-visible{outline:3px solid var(--ui-fab-background);outline-offset:3px}.fab:disabled{opacity:.4;cursor:not-allowed}.fab.extended{width:auto;min-width:80px;padding:0 20px;border-radius:28px;height:56px}.fab.extended .icon-slot{margin-right:12px}.icon-slot{display:flex;align-items:center;justify-content:center;font-size:24px}.label-slot{font-family:var(--ui-font-family, sans-serif);font-weight:500;font-size:.875rem;letter-spacing:.1px;text-transform:uppercase}";
-var Xs = Object.defineProperty, Js = Object.getOwnPropertyDescriptor, $i = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Js(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Xs(t, i, r), r;
+const Xo = ":host{--ui-fab-size: 56px;--ui-fab-background: var(--ui-primary-color);--ui-fab-color: var(--ui-text-color-on-primary);--ui-fab-shadow: var(--ui-shadow-lg);--ui-fab-radius: 50%;display:inline-block;position:fixed;z-index:100}.fab{display:flex;align-items:center;justify-content:center;width:var(--ui-fab-size);height:var(--ui-fab-size);border-radius:var(--ui-fab-radius);background-color:var(--ui-fab-background);color:var(--ui-fab-color);box-shadow:var(--ui-fab-shadow);border:none;cursor:pointer;transition:all .2s cubic-bezier(.4,0,.2,1);padding:0;overflow:hidden;outline:none}.fab:hover:not(:disabled){box-shadow:var(--ui-shadow-xl);filter:brightness(1.1);transform:translateY(-2px)}.fab:active:not(:disabled){transform:translateY(0);filter:brightness(.9)}.fab:focus-visible{outline:3px solid var(--ui-fab-background);outline-offset:3px}.fab:disabled{opacity:.4;cursor:not-allowed}.fab.extended{width:auto;min-width:80px;padding:0 20px;border-radius:28px;height:56px}.fab.extended .icon-slot{margin-right:12px}.icon-slot{display:flex;align-items:center;justify-content:center;font-size:24px}.label-slot{font-family:var(--ui-font-family);font-weight:500;font-size:.875rem;letter-spacing:.1px;text-transform:uppercase}";
+var Jo = Object.defineProperty, Zo = Object.getOwnPropertyDescriptor, $i = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Zo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Jo(t, i, r), r;
 };
 let ht = class extends c {
   constructor() {
@@ -658,8 +658,8 @@ let ht = class extends c {
       "bottom-left": ["", "24px", "", "24px"],
       "top-right": ["24px", "", "24px", ""],
       "top-left": ["24px", "", "", "24px"]
-    }, [t, i, s, r] = e[this.position] ?? e["bottom-right"];
-    this.style.position = "fixed", this.style.top = t, this.style.bottom = i, this.style.right = s, this.style.left = r;
+    }, [t, i, o, r] = e[this.position] ?? e["bottom-right"];
+    this.style.position = "fixed", this.style.top = t, this.style.bottom = i, this.style.right = o, this.style.left = r;
   }
   render() {
     const e = {
@@ -681,27 +681,27 @@ let ht = class extends c {
     `;
   }
 };
-ht.styles = p(Ws);
+ht.styles = p(Xo);
 $i([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], ht.prototype, "extended", 2);
 $i([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], ht.prototype, "disabled", 2);
 $i([
-  o({ type: String })
+  s({ type: String })
 ], ht.prototype, "label", 2);
 $i([
-  o({ type: String })
+  s({ type: String })
 ], ht.prototype, "position", 2);
 ht = $i([
   d("ui-fab")
 ], ht);
-const Zs = ":host{display:inline-block;position:relative;font-family:var(--ui-font-family, system-ui, sans-serif);width:100%}.input-wrapper{position:relative}input{width:100%;padding:8px 12px;border:1px solid var(--ui-input-border-color, #d1d5db);border-radius:var(--ui-input-border-radius, 4px);font-size:14px;box-sizing:border-box;outline:none;transition:border-color .2s,box-shadow .2s;font-family:inherit;color:var(--ui-text-color, #111827);background:var(--ui-surface-background, #fff)}input:focus{border-color:var(--ui-primary-color, #3b82f6);box-shadow:0 0 0 1px var(--ui-primary-color, #3b82f6)}input:disabled{background-color:var(--ui-disabled-background, #f9fafb);color:var(--ui-disabled-text-color, #9ca3af);cursor:not-allowed}.dropdown{position:absolute;top:100%;left:0;right:0;max-height:250px;overflow-y:auto;background:var(--ui-surface-background, #fff);border:1px solid var(--ui-input-border-color, #d1d5db);border-radius:var(--ui-input-border-radius, 4px);margin-top:4px;box-shadow:0 4px 6px -1px #0000001a,0 2px 4px -1px #0000000f;z-index:10;display:none}.dropdown.open{display:block}.option{padding:10px 12px;cursor:pointer;font-size:14px;transition:background-color .15s;color:var(--ui-text-color, #111827)}.option:hover,.option.active{background-color:var(--ui-hover-color, #f3f4f6)}.no-options{padding:10px 12px;font-size:14px;color:#6b7280}";
-var Qs = Object.defineProperty, eo = Object.getOwnPropertyDescriptor, Ae = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? eo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Qs(t, i, r), r;
+const Qo = ":host{display:inline-block;position:relative;font-family:var(--ui-font-family);width:100%}.input-wrapper{position:relative}input{width:100%;padding:8px 12px;border:1px solid var(--ui-input-border-color);border-radius:var(--ui-input-border-radius);font-size:14px;box-sizing:border-box;outline:none;transition:border-color .2s,box-shadow .2s;font-family:inherit;color:var(--ui-text-color);background:var(--ui-input-bg)}input:focus{border-color:var(--ui-primary-color);box-shadow:0 0 0 1px var(--ui-primary-color)}input:disabled{background-color:var(--ui-input-disabled-bg);color:var(--ui-text-color-subtle);cursor:not-allowed}.dropdown{position:absolute;top:100%;left:0;right:0;max-height:250px;overflow-y:auto;background:var(--ui-surface-1);border:1px solid var(--ui-input-border-color);border-radius:var(--ui-input-border-radius);margin-top:4px;box-shadow:0 4px 6px -1px #0000001a,0 2px 4px -1px #0000000f;z-index:10;display:none}.dropdown.open{display:block}.option{padding:10px 12px;cursor:pointer;font-size:14px;transition:background-color .15s;color:var(--ui-text-color)}.option:hover,.option.active{background-color:var(--ui-hover-color)}.no-options{padding:10px 12px;font-size:14px;color:var(--ui-text-color-muted)}";
+var es = Object.defineProperty, ts = Object.getOwnPropertyDescriptor, Ae = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? ts(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && es(t, i, r), r;
 };
 let he = class extends c {
   constructor() {
@@ -755,7 +755,7 @@ let he = class extends c {
         break;
       case "Escape":
         if (e.preventDefault(), this._isOpen = !1, this._activeIndex = -1, !this.freeSolo) {
-          const i = this.options.find((s) => s.value === this.value);
+          const i = this.options.find((o) => o.value === this.value);
           this._inputValue = i ? i.label : "";
         }
         break;
@@ -803,7 +803,7 @@ let he = class extends c {
                     role="option"
                     aria-selected=${i === this._activeIndex ? "true" : "false"}
                     class=${u({ option: !0, active: i === this._activeIndex })}
-                    @mousedown=${(s) => s.preventDefault()}
+                    @mousedown=${(o) => o.preventDefault()}
                     @click=${() => this._selectOption(t)}
                   >
                     ${t.label}
@@ -815,42 +815,42 @@ let he = class extends c {
     `;
   }
 };
-he.styles = p(Zs);
+he.styles = p(Qo);
 Ae([
-  o({ type: Array })
+  s({ type: Array })
 ], he.prototype, "options", 2);
 Ae([
-  o({ type: Boolean })
+  s({ type: Boolean })
 ], he.prototype, "freeSolo", 2);
 Ae([
-  o({ type: Boolean })
+  s({ type: Boolean })
 ], he.prototype, "disabled", 2);
 Ae([
-  o({ type: String })
+  s({ type: String })
 ], he.prototype, "value", 2);
 Ae([
-  o({ type: String })
+  s({ type: String })
 ], he.prototype, "placeholder", 2);
 Ae([
-  g()
+  m()
 ], he.prototype, "_isOpen", 2);
 Ae([
-  g()
+  m()
 ], he.prototype, "_inputValue", 2);
 Ae([
-  g()
+  m()
 ], he.prototype, "_filteredOptions", 2);
 Ae([
-  g()
+  m()
 ], he.prototype, "_activeIndex", 2);
 he = Ae([
   d("ui-autocomplete")
 ], he);
-const to = ':host{display:inline-block;font-family:var(--ui-font-family, "Inter", sans-serif);color:var(--ui-text-color, #111827)}.wrapper{display:inline-flex;align-items:center;cursor:pointer}.wrapper.disabled{opacity:.5;cursor:not-allowed}.checkbox{position:relative;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border:2px solid var(--ui-input-border-color, #d1d5db);border-radius:var(--ui-border-radius-sm, 4px);background-color:var(--ui-surface-background, white);transition:all .2s ease;margin-right:8px}.wrapper:hover:not(.disabled) .checkbox{border-color:var(--ui-primary-color, #3b82f6)}.checkbox.checked,.checkbox.indeterminate{background-color:var(--ui-primary-color, #3b82f6);border-color:var(--ui-primary-color, #3b82f6)}.icon{fill:none;stroke:var(--ui-text-color-on-primary, white);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;width:12px;height:12px;opacity:0;transform:scale(.5);transition:all .2s cubic-bezier(.175,.885,.32,1.275)}.checked .icon,.indeterminate .icon{opacity:1;transform:scale(1)}input{position:absolute;opacity:0;width:0;height:0;margin:0}input:focus-visible+.checkbox{outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:2px}.label{font-size:14px;line-height:1.5;-webkit-user-select:none;user-select:none}::slotted(*),.label{cursor:inherit}';
-var io = Object.defineProperty, ro = Object.getOwnPropertyDescriptor, ot = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? ro(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && io(t, i, r), r;
+const is = ":host{display:inline-block;font-family:var(--ui-font-family);color:var(--ui-text-color)}.wrapper{display:inline-flex;align-items:center;cursor:pointer}.wrapper.disabled{opacity:.5;cursor:not-allowed}.checkbox{position:relative;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border:2px solid var(--ui-input-border-color);border-radius:var(--ui-border-radius-sm);background-color:var(--ui-surface-1);transition:all .2s ease;margin-right:8px}.wrapper:hover:not(.disabled) .checkbox{border-color:var(--ui-primary-color)}.checkbox.checked,.checkbox.indeterminate{background-color:var(--ui-primary-color);border-color:var(--ui-primary-color)}.icon{fill:none;stroke:var(--ui-text-color-on-primary);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;width:12px;height:12px;opacity:0;transform:scale(.5);transition:all .2s cubic-bezier(.175,.885,.32,1.275)}.checked .icon,.indeterminate .icon{opacity:1;transform:scale(1)}input{position:absolute;opacity:0;width:0;height:0;margin:0}input:focus-visible+.checkbox{outline:2px solid var(--ui-primary-color);outline-offset:2px}.label{font-size:14px;line-height:1.5;-webkit-user-select:none;user-select:none}::slotted(*),.label{cursor:inherit}";
+var rs = Object.defineProperty, os = Object.getOwnPropertyDescriptor, st = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? os(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && rs(t, i, r), r;
 };
 let Ce = class extends c {
   constructor() {
@@ -874,7 +874,7 @@ let Ce = class extends c {
           .indeterminate=${this.indeterminate}
           ?disabled=${this.disabled}
           ?required=${this.required}
-          name=${this.name || v}
+          name=${this.name || g}
           .value=${this.value}
           @change=${this._handleChange}
         >
@@ -888,38 +888,38 @@ let Ce = class extends c {
     `;
   }
 };
-Ce.styles = p(to);
-ot([
-  o({ type: Boolean, reflect: !0 })
+Ce.styles = p(is);
+st([
+  s({ type: Boolean, reflect: !0 })
 ], Ce.prototype, "checked", 2);
-ot([
-  o({ type: Boolean })
+st([
+  s({ type: Boolean })
 ], Ce.prototype, "indeterminate", 2);
-ot([
-  o({ type: Boolean, reflect: !0 })
+st([
+  s({ type: Boolean, reflect: !0 })
 ], Ce.prototype, "disabled", 2);
-ot([
-  o({ type: Boolean })
+st([
+  s({ type: Boolean })
 ], Ce.prototype, "required", 2);
-ot([
-  o({ type: String })
+st([
+  s({ type: String })
 ], Ce.prototype, "label", 2);
-ot([
-  o({ type: String })
+st([
+  s({ type: String })
 ], Ce.prototype, "name", 2);
-ot([
-  o({ type: String })
+st([
+  s({ type: String })
 ], Ce.prototype, "value", 2);
-Ce = ot([
+Ce = st([
   d("ui-checkbox")
 ], Ce);
-const so = ':host{display:block;font-family:var(--ui-font-family, "Inter", sans-serif);color:var(--ui-text-color, #111827)}:host([disabled]){opacity:.5;pointer-events:none}.group-container{display:flex;flex-direction:column;gap:var(--ui-radio-group-gap, 8px)}:host([orientation="horizontal"]) .group-container{flex-direction:row;flex-wrap:wrap}', oo = ':host{display:inline-block;cursor:pointer}:host([disabled]){cursor:not-allowed}.wrapper{display:inline-flex;align-items:center;cursor:pointer}.wrapper.disabled{opacity:.5;cursor:not-allowed}.radio-circle{position:relative;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border:2px solid var(--ui-input-border-color, #d1d5db);border-radius:50%;background-color:var(--ui-surface-background, white);transition:all .2s ease;margin-right:8px;flex-shrink:0}:host([size="sm"]) .radio-circle{width:14px;height:14px}:host([size="lg"]) .radio-circle{width:22px;height:22px}.wrapper:hover:not(.disabled) .radio-circle{border-color:var(--ui-primary-color, #3b82f6)}.radio-circle.checked{border-color:var(--ui-primary-color, #3b82f6)}.radio-circle:after{content:"";width:8px;height:8px;border-radius:50%;background-color:var(--ui-primary-color, #3b82f6);opacity:0;transform:scale(.5);transition:all .2s cubic-bezier(.175,.885,.32,1.275)}:host([size="sm"]) .radio-circle:after{width:6px;height:6px}:host([size="lg"]) .radio-circle:after{width:10px;height:10px}.checked:after{opacity:1;transform:scale(1)}input{position:absolute;opacity:0;width:0;height:0;margin:0}input:focus-visible+.radio-circle{outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:2px}.label{font-size:14px;line-height:1.5;-webkit-user-select:none;user-select:none}:host([size="sm"]) .label{font-size:12px}:host([size="lg"]) .label{font-size:16px}';
-var ao = Object.defineProperty, no = Object.getOwnPropertyDescriptor, U = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? no(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && ao(t, i, r), r;
+const ss = ':host{display:block;font-family:var(--ui-font-family);color:var(--ui-text-color)}:host([disabled]){opacity:.5;pointer-events:none}.group-container{display:flex;flex-direction:column;gap:var(--ui-radio-group-gap, 8px)}:host([orientation="horizontal"]) .group-container{flex-direction:row;flex-wrap:wrap}', as = ':host{display:inline-block;cursor:pointer}:host([disabled]){cursor:not-allowed}.wrapper{display:inline-flex;align-items:center;cursor:pointer}.wrapper.disabled{opacity:.5;cursor:not-allowed}.radio-circle{position:relative;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border:2px solid var(--ui-input-border-color);border-radius:50%;background-color:var(--ui-surface-1);transition:all .2s ease;margin-right:8px;flex-shrink:0}:host([size="sm"]) .radio-circle{width:14px;height:14px}:host([size="lg"]) .radio-circle{width:22px;height:22px}.wrapper:hover:not(.disabled) .radio-circle{border-color:var(--ui-primary-color)}.radio-circle.checked{border-color:var(--ui-primary-color)}.radio-circle:after{content:"";width:8px;height:8px;border-radius:50%;background-color:var(--ui-primary-color);opacity:0;transform:scale(.5);transition:all .2s cubic-bezier(.175,.885,.32,1.275)}:host([size="sm"]) .radio-circle:after{width:6px;height:6px}:host([size="lg"]) .radio-circle:after{width:10px;height:10px}.checked:after{opacity:1;transform:scale(1)}input{position:absolute;opacity:0;width:0;height:0;margin:0}input:focus-visible+.radio-circle{outline:2px solid var(--ui-primary-color);outline-offset:2px}.label{font-size:14px;line-height:1.5;-webkit-user-select:none;user-select:none}:host([size="sm"]) .label{font-size:12px}:host([size="lg"]) .label{font-size:16px}';
+var ns = Object.defineProperty, ls = Object.getOwnPropertyDescriptor, U = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? ls(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && ns(t, i, r), r;
 };
-let ve = class extends c {
+let ge = class extends c {
   constructor() {
     super(...arguments), this.label = "", this.name = "", this.value = "", this.defaultValue = "", this.disabled = !1, this.required = !1, this.orientation = "vertical", this.size = "md", this._firstUpdate = !0, this._boundHandleRadioSelect = this._handleRadioSelect.bind(this), this._boundHandleKeyDown = this._handleKeyDown.bind(this);
   }
@@ -954,7 +954,7 @@ let ve = class extends c {
     if (this.disabled || !["ArrowDown", "ArrowUp", "ArrowLeft", "ArrowRight"].includes(e.key)) return;
     const t = this._getEnabledRadios();
     if (!t.length) return;
-    const i = e.composedPath(), s = t.find((f) => i.includes(f)), r = s ? t.indexOf(s) : t.findIndex((f) => f.value === this.value), a = r >= 0 ? r : 0;
+    const i = e.composedPath(), o = t.find((f) => i.includes(f)), r = o ? t.indexOf(o) : t.findIndex((f) => f.value === this.value), a = r >= 0 ? r : 0;
     e.preventDefault();
     const n = e.key === "ArrowDown" || e.key === "ArrowRight" ? (a + 1) % t.length : (a - 1 + t.length) % t.length, h = t[n];
     h.focus(), this.value = h.value, this._syncChildren(), this.dispatchEvent(new CustomEvent("ui-radio-group-change", {
@@ -985,34 +985,34 @@ let ve = class extends c {
         `;
   }
 };
-ve.styles = p(so);
+ge.styles = p(ss);
 U([
-  o({ type: String })
-], ve.prototype, "label", 2);
+  s({ type: String })
+], ge.prototype, "label", 2);
 U([
-  o({ type: String })
-], ve.prototype, "name", 2);
+  s({ type: String })
+], ge.prototype, "name", 2);
 U([
-  o({ type: String })
-], ve.prototype, "value", 2);
+  s({ type: String })
+], ge.prototype, "value", 2);
 U([
-  o({ type: String, attribute: "default-value" })
-], ve.prototype, "defaultValue", 2);
+  s({ type: String, attribute: "default-value" })
+], ge.prototype, "defaultValue", 2);
 U([
-  o({ type: Boolean, reflect: !0 })
-], ve.prototype, "disabled", 2);
+  s({ type: Boolean, reflect: !0 })
+], ge.prototype, "disabled", 2);
 U([
-  o({ type: Boolean, reflect: !0 })
-], ve.prototype, "required", 2);
+  s({ type: Boolean, reflect: !0 })
+], ge.prototype, "required", 2);
 U([
-  o({ type: String, reflect: !0 })
-], ve.prototype, "orientation", 2);
+  s({ type: String, reflect: !0 })
+], ge.prototype, "orientation", 2);
 U([
-  o({ type: String, reflect: !0 })
-], ve.prototype, "size", 2);
-ve = U([
+  s({ type: String, reflect: !0 })
+], ge.prototype, "size", 2);
+ge = U([
   d("ui-radio-group")
-], ve);
+], ge);
 let Ie = class extends c {
   constructor() {
     super(...arguments), this.checked = !1, this.disabled = !1, this.required = !1, this.name = "", this.value = "", this.label = "", this.size = "md";
@@ -1047,36 +1047,36 @@ let Ie = class extends c {
         `;
   }
 };
-Ie.styles = p(oo);
+Ie.styles = p(as);
 U([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], Ie.prototype, "checked", 2);
 U([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], Ie.prototype, "disabled", 2);
 U([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], Ie.prototype, "required", 2);
 U([
-  o({ type: String })
+  s({ type: String })
 ], Ie.prototype, "name", 2);
 U([
-  o({ type: String })
+  s({ type: String })
 ], Ie.prototype, "value", 2);
 U([
-  o({ type: String })
+  s({ type: String })
 ], Ie.prototype, "label", 2);
 U([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], Ie.prototype, "size", 2);
 Ie = U([
   d("ui-radio")
 ], Ie);
-const lo = ':host{display:inline-block;font-family:var(--ui-font-family, system-ui, sans-serif);--ui-rating-color: #ffb400;--ui-rating-empty-color: #faaf0033;--ui-rating-size: 2rem;font-size:var(--ui-rating-size)}:host([size="sm"]){--ui-rating-size: 1.25rem}:host([size="md"]){--ui-rating-size: 2rem}:host([size="lg"]){--ui-rating-size: 2.75rem}:host([disabled]){opacity:.4;cursor:not-allowed}:host([readonly]) .rating-container{cursor:default}.rating-container{display:inline-flex;position:relative;cursor:pointer;font-size:1em;line-height:1;gap:.1em}.rating-container:focus{outline:none}.star-wrapper{position:relative;display:inline-flex;transition:transform .1s ease;outline:none}.star-wrapper:focus-visible{border-radius:2px;box-shadow:0 0 0 2px var(--ui-rating-color)}.star-wrapper:not(.readonly):not(.disabled):hover{transform:scale(1.1)}svg{width:1em;height:1em;fill:var(--ui-rating-empty-color);stroke:var(--ui-rating-color);stroke-width:1;transition:fill .2s ease,stroke .2s ease;overflow:visible}.active svg{fill:var(--ui-rating-color)}.hover svg{fill:var(--ui-rating-color);opacity:.7}.half svg .star-full{display:none}.half svg .star-half{display:block}.star-half{display:none}.hidden-input{position:absolute;opacity:0;width:0;height:0;margin:0;pointer-events:none}';
-var co = Object.defineProperty, po = Object.getOwnPropertyDescriptor, ge = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? po(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && co(t, i, r), r;
+const cs = ':host{display:inline-block;font-family:var(--ui-font-family);--ui-rating-color: #ffb400;--ui-rating-empty-color: #faaf0033;--ui-rating-size: 2rem;font-size:var(--ui-rating-size)}:host([size="sm"]){--ui-rating-size: 1.25rem}:host([size="md"]){--ui-rating-size: 2rem}:host([size="lg"]){--ui-rating-size: 2.75rem}:host([disabled]){opacity:.4;cursor:not-allowed}:host([readonly]) .rating-container{cursor:default}.rating-container{display:inline-flex;position:relative;cursor:pointer;font-size:1em;line-height:1;gap:.1em}.rating-container:focus{outline:none}.star-wrapper{position:relative;display:inline-flex;transition:transform .1s ease;outline:none}.star-wrapper:focus-visible{border-radius:2px;box-shadow:0 0 0 2px var(--ui-rating-color)}.star-wrapper:not(.readonly):not(.disabled):hover{transform:scale(1.1)}svg{width:1em;height:1em;fill:var(--ui-rating-empty-color);stroke:var(--ui-rating-color);stroke-width:1;transition:fill .2s ease,stroke .2s ease;overflow:visible}.active svg{fill:var(--ui-rating-color)}.hover svg{fill:var(--ui-rating-color);opacity:.7}.half svg .star-full{display:none}.half svg .star-half{display:block}.star-half{display:none}.hidden-input{position:absolute;opacity:0;width:0;height:0;margin:0;pointer-events:none}';
+var ds = Object.defineProperty, ps = Object.getOwnPropertyDescriptor, me = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? ps(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && ds(t, i, r), r;
 };
 let J = class extends c {
   constructor() {
@@ -1103,7 +1103,7 @@ let J = class extends c {
   }
   _handleMouseMove(e, t) {
     if (!this._isInteractive() || this.precision !== 0.5) return;
-    const i = e.currentTarget, { left: s, width: r } = i.getBoundingClientRect(), a = e.clientX - s < r / 2;
+    const i = e.currentTarget, { left: o, width: r } = i.getBoundingClientRect(), a = e.clientX - o < r / 2;
     this._hoverValue = a ? t - 0.5 : t;
   }
   _handleClick(e) {
@@ -1118,21 +1118,21 @@ let J = class extends c {
   _handleKeydown(e, t) {
     if (!this._isInteractive()) return;
     const i = this.precision === 0.5 ? 0.5 : 1;
-    let s = this.value;
+    let o = this.value;
     switch (e.key) {
       case "ArrowRight":
       case "ArrowUp":
-        e.preventDefault(), s = Math.min(this.max, this.value + i);
+        e.preventDefault(), o = Math.min(this.max, this.value + i);
         break;
       case "ArrowLeft":
       case "ArrowDown":
-        e.preventDefault(), s = Math.max(0, this.value - i);
+        e.preventDefault(), o = Math.max(0, this.value - i);
         break;
       case "Home":
-        e.preventDefault(), s = 0;
+        e.preventDefault(), o = 0;
         break;
       case "End":
-        e.preventDefault(), s = this.max;
+        e.preventDefault(), o = this.max;
         break;
       case " ":
       case "Enter":
@@ -1141,7 +1141,7 @@ let J = class extends c {
       default:
         return;
     }
-    s !== this.value && (this.value = s, this.dispatchEvent(new CustomEvent("ui-rating-change", {
+    o !== this.value && (this.value = o, this.dispatchEvent(new CustomEvent("ui-rating-change", {
       detail: { value: this.value },
       bubbles: !0,
       composed: !0
@@ -1169,7 +1169,7 @@ let J = class extends c {
   render() {
     const e = Math.ceil(this.value) || 1, t = [];
     for (let i = 1; i <= this.max; i++) {
-      const s = this._hoverValue !== -1 ? this._hoverValue : this.value, r = this.precision === 0.5 && s >= i - 0.5 && s < i, a = s >= i, n = this._hoverValue !== -1;
+      const o = this._hoverValue !== -1 ? this._hoverValue : this.value, r = this.precision === 0.5 && o >= i - 0.5 && o < i, a = o >= i, n = this._hoverValue !== -1;
       let h;
       r ? h = "half" : a ? h = "full" : h = "empty";
       const f = {
@@ -1211,52 +1211,52 @@ let J = class extends c {
         `;
   }
 };
-J.styles = p(lo);
-ge([
-  o({ type: Number })
+J.styles = p(cs);
+me([
+  s({ type: Number })
 ], J.prototype, "value", 2);
-ge([
-  o({ type: Number })
+me([
+  s({ type: Number })
 ], J.prototype, "max", 2);
-ge([
-  o({ type: Boolean, reflect: !0 })
+me([
+  s({ type: Boolean, reflect: !0 })
 ], J.prototype, "readonly", 2);
-ge([
-  o({ type: Boolean, reflect: !0 })
+me([
+  s({ type: Boolean, reflect: !0 })
 ], J.prototype, "disabled", 2);
-ge([
-  o({ type: Boolean })
+me([
+  s({ type: Boolean })
 ], J.prototype, "clearable", 2);
-ge([
-  o({ type: Number })
+me([
+  s({ type: Number })
 ], J.prototype, "defaultValue", 2);
-ge([
-  o({ type: String, reflect: !0 })
+me([
+  s({ type: String, reflect: !0 })
 ], J.prototype, "size", 2);
-ge([
-  o({ type: String })
+me([
+  s({ type: String })
 ], J.prototype, "name", 2);
-ge([
-  o({ type: String })
+me([
+  s({ type: String })
 ], J.prototype, "label", 2);
-ge([
-  o({ type: Number })
+me([
+  s({ type: Number })
 ], J.prototype, "precision", 2);
-ge([
-  g()
+me([
+  m()
 ], J.prototype, "_hoverValue", 2);
-J = ge([
+J = me([
   d("ui-rating")
 ], J);
-const ho = ':host{display:inline-block;--ui-switch-width: 52px;--ui-switch-height: 32px;--ui-switch-thumb-size: 24px;--ui-switch-thumb-offset: 4px;--ui-switch-bg: var(--ui-secondary-color, #6b7280);--ui-switch-bg-on: var(--ui-primary-color, #3b82f6);--ui-switch-thumb-bg: #ffffff;font-family:var(--ui-font-family, sans-serif);cursor:pointer}:host([disabled]){cursor:not-allowed}:host([size="sm"]){--ui-switch-width: 36px;--ui-switch-height: 22px;--ui-switch-thumb-size: 16px;--ui-switch-thumb-offset: 3px}:host([size="lg"]){--ui-switch-width: 64px;--ui-switch-height: 38px;--ui-switch-thumb-size: 30px;--ui-switch-thumb-offset: 4px}.wrapper{display:flex;align-items:center;gap:12px;-webkit-user-select:none;user-select:none}.switch{position:relative;width:var(--ui-switch-width);height:var(--ui-switch-height);background-color:var(--ui-switch-bg);border-radius:calc(var(--ui-switch-height) / 2);transition:background-color .3s cubic-bezier(.4,0,.2,1);flex-shrink:0}.switch.checked{background-color:var(--ui-switch-bg-on)}.thumb{position:absolute;top:var(--ui-switch-thumb-offset);left:var(--ui-switch-thumb-offset);width:var(--ui-switch-thumb-size);height:var(--ui-switch-thumb-size);background-color:var(--ui-switch-thumb-bg);border-radius:50%;box-shadow:var(--ui-shadow-sm, 0 1px 3px rgba(0,0,0,.1));transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;align-items:center;justify-content:center;color:var(--ui-text-color-muted, #6b7280)}.switch.checked .thumb{transform:translate(calc(var(--ui-switch-width) - var(--ui-switch-thumb-size) - (var(--ui-switch-thumb-offset) * 2)));color:var(--ui-primary-color, #3b82f6)}.label{font-size:.9375rem;font-weight:500;color:var(--ui-text-color, #111827)}.label.disabled{cursor:not-allowed;opacity:.5}.switch.disabled{opacity:.5;cursor:not-allowed}.switch:focus-visible{outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:2px}.icon-wrapper{font-size:14px;display:flex;align-items:center;justify-content:center}';
-var uo = Object.defineProperty, fo = Object.getOwnPropertyDescriptor, Be = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? fo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && uo(t, i, r), r;
+const hs = ':host{display:inline-block;--ui-switch-width: 52px;--ui-switch-height: 32px;--ui-switch-thumb-size: 24px;--ui-switch-thumb-offset: 4px;--ui-switch-bg: var(--ui-secondary-color);--ui-switch-bg-on: var(--ui-primary-color);--ui-switch-thumb-bg: var(--ui-switch-thumb-color);font-family:var(--ui-font-family);cursor:pointer}:host([disabled]){cursor:not-allowed}:host([size="sm"]){--ui-switch-width: 36px;--ui-switch-height: 22px;--ui-switch-thumb-size: 16px;--ui-switch-thumb-offset: 3px}:host([size="lg"]){--ui-switch-width: 64px;--ui-switch-height: 38px;--ui-switch-thumb-size: 30px;--ui-switch-thumb-offset: 4px}.wrapper{display:flex;align-items:center;gap:12px;-webkit-user-select:none;user-select:none}.switch{position:relative;width:var(--ui-switch-width);height:var(--ui-switch-height);background-color:var(--ui-switch-bg);border-radius:calc(var(--ui-switch-height) / 2);transition:background-color .3s cubic-bezier(.4,0,.2,1);flex-shrink:0}.switch.checked{background-color:var(--ui-switch-bg-on)}.thumb{position:absolute;top:var(--ui-switch-thumb-offset);left:var(--ui-switch-thumb-offset);width:var(--ui-switch-thumb-size);height:var(--ui-switch-thumb-size);background-color:var(--ui-switch-thumb-bg);border-radius:50%;box-shadow:var(--ui-shadow-sm);transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;align-items:center;justify-content:center;color:var(--ui-text-color-muted)}.switch.checked .thumb{transform:translate(calc(var(--ui-switch-width) - var(--ui-switch-thumb-size) - (var(--ui-switch-thumb-offset) * 2)));color:var(--ui-primary-color)}.label{font-size:.9375rem;font-weight:500;color:var(--ui-text-color)}.label.disabled{cursor:not-allowed;opacity:.5}.switch.disabled{opacity:.5;cursor:not-allowed}.switch:focus-visible{outline:2px solid var(--ui-primary-color);outline-offset:2px}.icon-wrapper{font-size:14px;display:flex;align-items:center;justify-content:center}';
+var us = Object.defineProperty, fs = Object.getOwnPropertyDescriptor, Be = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? fs(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && us(t, i, r), r;
 };
-let rs = 0, re = class extends c {
+let ro = 0, re = class extends c {
   constructor() {
-    super(), this.checked = !1, this.disabled = !1, this.required = !1, this.size = "md", this.label = "", this.name = "", this.value = "on", this.defaultChecked = !1, this.ariaLabel = null, this._internals = null, this._firstUpdate = !0, rs++, this._labelId = `ui-switch-label-${rs}`, typeof this.attachInternals == "function" && (this._internals = this.attachInternals());
+    super(), this.checked = !1, this.disabled = !1, this.required = !1, this.size = "md", this.label = "", this.name = "", this.value = "on", this.defaultChecked = !1, this.ariaLabel = null, this._internals = null, this._firstUpdate = !0, ro++, this._labelId = `ui-switch-label-${ro}`, typeof this.attachInternals == "function" && (this._internals = this.attachInternals());
   }
   willUpdate(e) {
     super.willUpdate(e), this._firstUpdate && (this._firstUpdate = !1, this.defaultChecked && (this.checked = !0));
@@ -1281,8 +1281,8 @@ let rs = 0, re = class extends c {
           aria-checked=${this.checked ? "true" : "false"}
           aria-disabled=${this.disabled ? "true" : "false"}
           aria-required=${this.required ? "true" : "false"}
-          aria-label=${this.ariaLabel ?? v}
-          aria-labelledby=${e ? this._labelId : v}
+          aria-label=${this.ariaLabel ?? g}
+          aria-labelledby=${e ? this._labelId : g}
           .tabIndex=${this.disabled ? -1 : 0}
           @keydown=${(t) => (t.key === " " || t.key === "Enter") && this._handleClick()}
         >
@@ -1298,49 +1298,49 @@ let rs = 0, re = class extends c {
   }
 };
 re.formAssociated = !0;
-re.styles = p(ho);
+re.styles = p(hs);
 Be([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], re.prototype, "checked", 2);
 Be([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], re.prototype, "disabled", 2);
 Be([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], re.prototype, "required", 2);
 Be([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], re.prototype, "size", 2);
 Be([
-  o({ type: String })
+  s({ type: String })
 ], re.prototype, "label", 2);
 Be([
-  o({ type: String })
+  s({ type: String })
 ], re.prototype, "name", 2);
 Be([
-  o({ type: String })
+  s({ type: String })
 ], re.prototype, "value", 2);
 Be([
-  o({ type: Boolean, attribute: "default-checked" })
+  s({ type: Boolean, attribute: "default-checked" })
 ], re.prototype, "defaultChecked", 2);
 Be([
-  o({ type: String, attribute: "aria-label" })
+  s({ type: String, attribute: "aria-label" })
 ], re.prototype, "ariaLabel", 2);
 re = Be([
   d("ui-switch")
 ], re);
-const bo = ":host{display:block;--ui-transfer-list-height: 300px;--ui-transfer-list-width: 200px;font-family:var(--ui-font-family, sans-serif);color:var(--ui-text-color, #111827)}.container{display:flex;align-items:center;gap:16px}.list-wrapper{display:flex;flex-direction:column;gap:8px}.list-title{font-size:.875rem;font-weight:600;color:var(--ui-text-color-muted, #6b7280);margin-bottom:4px}.list-box{width:var(--ui-transfer-list-width);height:var(--ui-transfer-list-height);background:var(--ui-surface-background, #ffffff);border:1.5px solid var(--ui-border-color, #e5e7eb);border-radius:var(--ui-border-radius-lg, 8px);overflow-y:auto;display:flex;flex-direction:column;box-shadow:var(--ui-shadow-sm)}.list-item{display:flex;align-items:center;padding:10px 12px;cursor:pointer;transition:background-color .2s;gap:10px;-webkit-user-select:none;user-select:none}.list-item:hover{background-color:var(--ui-hover-color, rgba(0, 0, 0, .04))}.list-item.selected{background-color:#3b82f614}.checkbox{width:18px;height:18px;border:2px solid var(--ui-border-color, #d1d5db);border-radius:4px;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}.list-item.selected .checkbox{background-color:var(--ui-primary-color, #3b82f6);border-color:var(--ui-primary-color, #3b82f6)}.check-icon{color:#fff;opacity:0;transform:scale(.5);transition:all .2s}.list-item.selected .check-icon{opacity:1;transform:scale(1)}.item-label{font-size:.9375rem}.actions{display:flex;flex-direction:column;gap:12px}.action-button{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1.5px solid var(--ui-border-color, #e5e7eb);background:var(--ui-surface-background, #ffffff);border-radius:8px;cursor:pointer;color:var(--ui-text-color, #111827);transition:all .2s}.action-button:hover:not(:disabled){border-color:var(--ui-primary-color, #3b82f6);color:var(--ui-primary-color, #3b82f6);box-shadow:var(--ui-shadow-md);transform:translateY(-1px)}.action-button:active:not(:disabled){transform:translateY(0)}.action-button:disabled{opacity:.4;cursor:not-allowed;background-color:var(--ui-surface-background-flat, #f3f4f6)}.list-box::-webkit-scrollbar{width:6px}.list-box::-webkit-scrollbar-track{background:transparent}.list-box::-webkit-scrollbar-thumb{background:var(--ui-border-color, #e5e7eb);border-radius:3px}";
-var mo = Object.defineProperty, go = Object.getOwnPropertyDescriptor, kt = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? go(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && mo(t, i, r), r;
+const bs = ":host{display:block;--ui-transfer-list-height: 300px;--ui-transfer-list-width: 200px;font-family:var(--ui-font-family);color:var(--ui-text-color)}.container{display:flex;align-items:center;gap:16px}.list-wrapper{display:flex;flex-direction:column;gap:8px}.list-title{font-size:.875rem;font-weight:600;color:var(--ui-text-color-muted);margin-bottom:4px}.list-box{width:var(--ui-transfer-list-width);height:var(--ui-transfer-list-height);background:var(--ui-surface-1);border:1.5px solid var(--ui-border-color);border-radius:var(--ui-border-radius-lg);overflow-y:auto;display:flex;flex-direction:column;box-shadow:var(--ui-shadow-sm)}.list-item{display:flex;align-items:center;padding:10px 12px;cursor:pointer;transition:background-color .2s;gap:10px;-webkit-user-select:none;user-select:none}.list-item:hover{background-color:var(--ui-hover-color)}.list-item.selected{background-color:var(--ui-primary-color-light)}.checkbox{width:18px;height:18px;border:2px solid var(--ui-border-color);border-radius:4px;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}.list-item.selected .checkbox{background-color:var(--ui-primary-color);border-color:var(--ui-primary-color)}.check-icon{color:var(--ui-text-color-on-primary);opacity:0;transform:scale(.5);transition:all .2s}.list-item.selected .check-icon{opacity:1;transform:scale(1)}.item-label{font-size:.9375rem}.actions{display:flex;flex-direction:column;gap:12px}.action-button{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1.5px solid var(--ui-border-color);background:var(--ui-surface-1);border-radius:8px;cursor:pointer;color:var(--ui-text-color);transition:all .2s}.action-button:hover:not(:disabled){border-color:var(--ui-primary-color);color:var(--ui-primary-color);box-shadow:var(--ui-shadow-md);transform:translateY(-1px)}.action-button:active:not(:disabled){transform:translateY(0)}.action-button:disabled{opacity:.4;cursor:not-allowed;background-color:var(--ui-surface-2)}.list-box::-webkit-scrollbar{width:6px}.list-box::-webkit-scrollbar-track{background:transparent}.list-box::-webkit-scrollbar-thumb{background:var(--ui-border-color);border-radius:3px}";
+var vs = Object.defineProperty, ms = Object.getOwnPropertyDescriptor, kt = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? ms(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && vs(t, i, r), r;
 };
 let Le = class extends c {
   constructor() {
     super(...arguments), this.options = [], this.value = [], this.leftTitle = "Options", this.rightTitle = "Selected", this.leftChecked = [], this.rightChecked = [];
   }
   _toggleChecked(e, t) {
-    t === "left" ? this.leftChecked.indexOf(e) > -1 ? this.leftChecked = this.leftChecked.filter((s) => s !== e) : this.leftChecked = [...this.leftChecked, e] : this.rightChecked.indexOf(e) > -1 ? this.rightChecked = this.rightChecked.filter((s) => s !== e) : this.rightChecked = [...this.rightChecked, e];
+    t === "left" ? this.leftChecked.indexOf(e) > -1 ? this.leftChecked = this.leftChecked.filter((o) => o !== e) : this.leftChecked = [...this.leftChecked, e] : this.rightChecked.indexOf(e) > -1 ? this.rightChecked = this.rightChecked.filter((o) => o !== e) : this.rightChecked = [...this.rightChecked, e];
   }
   _moveRight() {
     this.value = [...this.value, ...this.leftChecked], this.leftChecked = [], this._dispatchChange();
@@ -1442,33 +1442,33 @@ let Le = class extends c {
     `;
   }
 };
-Le.styles = p(bo);
+Le.styles = p(bs);
 kt([
-  o({ type: Array })
+  s({ type: Array })
 ], Le.prototype, "options", 2);
 kt([
-  o({ type: Array })
+  s({ type: Array })
 ], Le.prototype, "value", 2);
 kt([
-  o({ type: String })
+  s({ type: String })
 ], Le.prototype, "leftTitle", 2);
 kt([
-  o({ type: String })
+  s({ type: String })
 ], Le.prototype, "rightTitle", 2);
 kt([
-  g()
+  m()
 ], Le.prototype, "leftChecked", 2);
 kt([
-  g()
+  m()
 ], Le.prototype, "rightChecked", 2);
 Le = kt([
   d("ui-transfer-list")
 ], Le);
-const vo = ":host{display:inline-flex;position:relative;vertical-align:middle;flex-shrink:0}.badge{display:flex;flex-wrap:wrap;place-content:center;align-items:center;position:absolute;box-sizing:border-box;font-family:var(--ui-font-family, sans-serif);font-weight:600;font-size:.75rem;min-width:20px;line-height:1;padding:0 6px;height:20px;border-radius:10px;z-index:1;transition:transform .2s cubic-bezier(.4,0,.2,1);background-color:var(--ui-badge-background, var(--ui-primary-color, #3b82f6));color:var(--ui-badge-color, var(--ui-text-color-on-primary, white));top:0;right:0;transform:scale(1) translate(50%,-50%);transform-origin:100% 0%;border:2px solid var(--ui-surface-background, white)}.badge.hidden{transform:scale(0) translate(50%,-50%)}.badge.dot{min-width:8px;height:8px;padding:0;border-radius:4px}.primary{background-color:var(--ui-primary-color, #3b82f6)}.secondary{background-color:var(--ui-secondary-color, #6b7280)}.error{background-color:#ef4444}.success{background-color:#10b981}.warning{background-color:#f59e0b}";
-var yo = Object.defineProperty, xo = Object.getOwnPropertyDescriptor, ti = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? xo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && yo(t, i, r), r;
+const gs = ":host{display:inline-flex;position:relative;vertical-align:middle;flex-shrink:0}.badge{display:flex;flex-wrap:wrap;place-content:center;align-items:center;position:absolute;box-sizing:border-box;font-family:var(--ui-font-family);font-weight:600;font-size:.75rem;min-width:20px;line-height:1;padding:0 6px;height:20px;border-radius:10px;z-index:1;transition:transform .2s cubic-bezier(.4,0,.2,1);background-color:var(--ui-badge-background, var(--ui-primary-color));color:var(--ui-badge-color, var(--ui-text-color-on-primary));top:0;right:0;transform:scale(1) translate(50%,-50%);transform-origin:100% 0%;border:2px solid var(--ui-surface-1)}.badge.hidden{transform:scale(0) translate(50%,-50%)}.badge.dot{min-width:8px;height:8px;padding:0;border-radius:4px}.primary{background-color:var(--ui-primary-color)}.secondary{background-color:var(--ui-secondary-color)}.error{background-color:var(--ui-error-color);color:var(--ui-text-color-on-primary)}.success{background-color:var(--ui-success-color);color:var(--ui-text-color-on-primary)}.warning{background-color:var(--ui-warning-color);color:var(--ui-text-color-on-primary)}";
+var ys = Object.defineProperty, xs = Object.getOwnPropertyDescriptor, ti = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? xs(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && ys(t, i, r), r;
 };
 let Ze = class extends c {
   constructor() {
@@ -1497,30 +1497,30 @@ let Ze = class extends c {
     `;
   }
 };
-Ze.styles = p(vo);
+Ze.styles = p(gs);
 ti([
-  o({ type: String })
+  s({ type: String })
 ], Ze.prototype, "content", 2);
 ti([
-  o({ type: Boolean })
+  s({ type: Boolean })
 ], Ze.prototype, "dot", 2);
 ti([
-  o({ type: Boolean })
+  s({ type: Boolean })
 ], Ze.prototype, "invisible", 2);
 ti([
-  o({ type: String })
+  s({ type: String })
 ], Ze.prototype, "variant", 2);
 ti([
-  o({ type: Number })
+  s({ type: Number })
 ], Ze.prototype, "max", 2);
 Ze = ti([
   d("ui-badge")
 ], Ze);
-const _o = ':host{display:block;width:100%;font-family:var(--ui-font-family, "Inter", sans-serif);margin-bottom:1rem}.alert{display:flex;align-items:flex-start;padding:12px 16px;border-radius:var(--ui-border-radius-md, 6px);gap:12px;border:1px solid transparent;position:relative;box-sizing:border-box;animation:fadeIn .3s ease-out}@keyframes fadeIn{0%{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}.info{background-color:#eff6ff;border-color:#bfdbfe;color:#1e40af}.info .icon{color:#3b82f6}.success{background-color:#f0fdf4;border-color:#bbf7d0;color:#166534}.success .icon{color:#10b981}.warning{background-color:#fffbeb;border-color:#fef3c7;color:#92400e}.warning .icon{color:#f59e0b}.error{background-color:#fef2f2;border-color:#fee2e2;color:#991b1b}.error .icon{color:#ef4444}.icon{flex-shrink:0;display:flex;align-items:center;justify-content:center;width:20px;height:20px;margin-top:2px}.content{flex-grow:1}.title{font-weight:600;font-size:.875rem;margin-bottom:2px}.message{font-size:.875rem;line-height:1.5}.close-button{flex-shrink:0;cursor:pointer;padding:6px;border-radius:50%;display:flex;align-items:center;justify-content:center;width:28px;height:28px;margin-top:-6px;margin-right:-10px;color:currentColor;opacity:.6;transition:all .2s ease;border:none;background:transparent}.close-button:hover{opacity:1;background-color:#00000014}.close-button:active{transform:scale(.92)}.icon svg,.close-button svg{width:100%;height:100%}';
-var wo = Object.defineProperty, ko = Object.getOwnPropertyDescriptor, Zi = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? ko(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && wo(t, i, r), r;
+const _s = ":host{display:block;width:100%;font-family:var(--ui-font-family);margin-bottom:1rem}.alert{display:flex;align-items:flex-start;padding:12px 16px;border-radius:var(--ui-border-radius-md);gap:12px;border:1px solid transparent;position:relative;box-sizing:border-box;animation:fadeIn .3s ease-out}@keyframes fadeIn{0%{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}.info{background-color:var(--ui-info-bg);border-color:var(--ui-info-border-color);color:var(--ui-info-text-color)}.info .icon{color:var(--ui-info-icon-color)}.success{background-color:var(--ui-success-bg);border-color:var(--ui-success-border-color);color:var(--ui-success-text-color)}.success .icon{color:var(--ui-success-icon-color)}.warning{background-color:var(--ui-warning-bg);border-color:var(--ui-warning-border-color);color:var(--ui-warning-text-color)}.warning .icon{color:var(--ui-warning-icon-color)}.error{background-color:var(--ui-error-bg);border-color:var(--ui-error-border-color);color:var(--ui-error-text-color)}.error .icon{color:var(--ui-error-icon-color)}.icon{flex-shrink:0;display:flex;align-items:center;justify-content:center;width:20px;height:20px;margin-top:2px}.content{flex-grow:1}.title{font-weight:600;font-size:.875rem;margin-bottom:2px}.message{font-size:.875rem;line-height:1.5}.close-button{flex-shrink:0;cursor:pointer;padding:6px;border-radius:50%;display:flex;align-items:center;justify-content:center;width:28px;height:28px;margin-top:-6px;margin-right:-10px;color:currentColor;opacity:.6;transition:all .2s ease;border:none;background:transparent}.close-button:hover{opacity:1;background-color:var(--ui-active-color)}.close-button:active{transform:scale(.92)}.icon svg,.close-button svg{width:100%;height:100%}";
+var ws = Object.defineProperty, ks = Object.getOwnPropertyDescriptor, Zi = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? ks(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && ws(t, i, r), r;
 };
 let Lt = class extends c {
   constructor() {
@@ -1574,24 +1574,24 @@ let Lt = class extends c {
         `;
   }
 };
-Lt.styles = p(_o);
+Lt.styles = p(_s);
 Zi([
-  o({ type: String })
+  s({ type: String })
 ], Lt.prototype, "severity", 2);
 Zi([
-  o({ type: String })
+  s({ type: String })
 ], Lt.prototype, "title", 2);
 Zi([
-  o({ type: Boolean })
+  s({ type: Boolean })
 ], Lt.prototype, "dismissible", 2);
 Lt = Zi([
   d("ui-alert")
 ], Lt);
-const $o = ':host{display:block}.skeleton{display:block;background-color:var(--ui-skeleton-bg, #e0e0e0);position:relative;overflow:hidden}@media(prefers-color-scheme:dark){.skeleton{background-color:var(--ui-skeleton-bg-dark, rgba(255, 255, 255, .13))}}:host([dark]) .skeleton{background-color:var(--ui-skeleton-bg-dark, rgba(255, 255, 255, .13))}.skeleton.pulse{animation:pulse var(--ui-skeleton-animation-duration, 1.5s) ease-in-out .5s infinite}.skeleton.wave:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,var(--ui-skeleton-wave-color, rgba(255, 255, 255, .4)),transparent);animation:wave var(--ui-skeleton-animation-duration, 1.6s) linear infinite;transform:translate(-100%)}@keyframes pulse{0%{opacity:1}50%{opacity:.4}to{opacity:1}}@keyframes wave{0%{transform:translate(-100%)}to{transform:translate(100%)}}.text{border-radius:var(--ui-border-radius-sm, 3px)}.circular{border-radius:50%}.rectangular{border-radius:var(--ui-border-radius-md, 4px)}.rounded{border-radius:var(--ui-border-radius-lg, 8px)}@media(prefers-reduced-motion:reduce){.skeleton.pulse{animation:none}.skeleton.wave:after{display:none}}';
-var So = Object.defineProperty, Co = Object.getOwnPropertyDescriptor, $t = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Co(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && So(t, i, r), r;
+const $s = ':host{display:block}.skeleton{display:block;background-color:var(--ui-skeleton-bg, var(--ui-surface-3));position:relative;overflow:hidden}@media(prefers-color-scheme:dark){.skeleton{background-color:var(--ui-skeleton-bg-dark, rgba(255, 255, 255, .13))}}:host([dark]) .skeleton{background-color:var(--ui-skeleton-bg-dark, rgba(255, 255, 255, .13))}.skeleton.pulse{animation:pulse var(--ui-skeleton-animation-duration, 1.5s) ease-in-out .5s infinite}.skeleton.wave:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,var(--ui-skeleton-wave-color, rgba(255, 255, 255, .4)),transparent);animation:wave var(--ui-skeleton-animation-duration, 1.6s) linear infinite;transform:translate(-100%)}@keyframes pulse{0%{opacity:1}50%{opacity:.4}to{opacity:1}}@keyframes wave{0%{transform:translate(-100%)}to{transform:translate(100%)}}.text{border-radius:var(--ui-border-radius-sm)}.circular{border-radius:50%}.rectangular{border-radius:var(--ui-border-radius-md)}.rounded{border-radius:var(--ui-border-radius-lg)}@media(prefers-reduced-motion:reduce){.skeleton.pulse{animation:none}.skeleton.wave:after{display:none}}';
+var Ss = Object.defineProperty, Cs = Object.getOwnPropertyDescriptor, $t = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Cs(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Ss(t, i, r), r;
 };
 let je = class extends c {
   constructor() {
@@ -1623,33 +1623,33 @@ let je = class extends c {
         `;
   }
 };
-je.styles = p($o);
+je.styles = p($s);
 $t([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], je.prototype, "dark", 2);
 $t([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], je.prototype, "animation", 2);
 $t([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], je.prototype, "variant", 2);
 $t([
-  o({ type: String })
+  s({ type: String })
 ], je.prototype, "width", 2);
 $t([
-  o({ type: String })
+  s({ type: String })
 ], je.prototype, "height", 2);
 $t([
-  o({ type: String })
+  s({ type: String })
 ], je.prototype, "label", 2);
 je = $t([
   d("ui-skeleton")
 ], je);
-const Io = ':host{display:flex;align-items:center;justify-content:center;pointer-events:none;position:fixed;z-index:var(--ui-snackbar-z-index, 1400);transition:all .3s cubic-bezier(.4,0,.2,1)}:host([anchor-origin*="bottom"]){bottom:var(--ui-snackbar-offset, 24px)}:host([anchor-origin*="top"]){top:var(--ui-snackbar-offset, 24px)}:host([anchor-origin*="left"]){left:var(--ui-snackbar-offset, 24px)}:host([anchor-origin*="right"]){right:var(--ui-snackbar-offset, 24px)}:host([anchor-origin*="center"]){left:50%;transform:translate(-50%)}.snackbar{background-color:var(--ui-snackbar-bg, #313131);color:var(--ui-snackbar-color, #fff);font-family:var(--ui-font-family, "Inter", sans-serif);font-size:.875rem;line-height:1.43;letter-spacing:.01071em;display:flex;align-items:center;padding:6px 16px;border-radius:var(--ui-border-radius-md, 4px);box-shadow:var(--ui-shadow-lg, 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12));min-width:var(--ui-snackbar-min-width, 288px);max-width:var(--ui-snackbar-max-width, 560px);pointer-events:auto;opacity:0;transform:scale(.85);transition:opacity 225ms cubic-bezier(.4,0,.2,1),transform .15s cubic-bezier(.4,0,.2,1);visibility:hidden}.snackbar.open{opacity:1;transform:scale(1);visibility:visible}:host([variant="info"]) .snackbar{background-color:var(--ui-snackbar-bg-info, #0288d1)}:host([variant="success"]) .snackbar{background-color:var(--ui-snackbar-bg-success, #2e7d32)}:host([variant="warning"]) .snackbar{background-color:var(--ui-snackbar-bg-warning, #ed6c02)}:host([variant="error"]) .snackbar{background-color:var(--ui-snackbar-bg-error, #d32f2f)}.message{padding:8px 0;flex-grow:1}.action{display:flex;align-items:center;margin-left:8px;margin-right:-8px;padding-left:16px}.action.hidden{display:none}.close-btn{background:none;border:none;color:inherit;cursor:pointer;padding:4px 8px;margin-left:8px;margin-right:-8px;opacity:.8;display:flex;align-items:center;border-radius:2px;line-height:0}.close-btn:hover{opacity:1}::slotted(ui-alert){margin-bottom:0!important;width:100%;min-width:288px}';
-var Eo = Object.defineProperty, Po = Object.getOwnPropertyDescriptor, Ye = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Po(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Eo(t, i, r), r;
+const Is = ':host{display:flex;align-items:center;justify-content:center;pointer-events:none;position:fixed;z-index:var(--ui-snackbar-z-index, 1400);transition:all .3s cubic-bezier(.4,0,.2,1)}:host([anchor-origin*="bottom"]){bottom:var(--ui-snackbar-offset, 24px)}:host([anchor-origin*="top"]){top:var(--ui-snackbar-offset, 24px)}:host([anchor-origin*="left"]){left:var(--ui-snackbar-offset, 24px)}:host([anchor-origin*="right"]){right:var(--ui-snackbar-offset, 24px)}:host([anchor-origin*="center"]){left:50%;transform:translate(-50%)}.snackbar{background-color:var(--ui-snackbar-bg, #313131);color:var(--ui-snackbar-color, #ffffff);font-family:var(--ui-font-family);font-size:.875rem;line-height:1.43;letter-spacing:.01071em;display:flex;align-items:center;padding:6px 16px;border-radius:var(--ui-border-radius-md);box-shadow:var(--ui-shadow-lg);min-width:var(--ui-snackbar-min-width, 288px);max-width:var(--ui-snackbar-max-width, 560px);pointer-events:auto;opacity:0;transform:scale(.85);transition:opacity 225ms cubic-bezier(.4,0,.2,1),transform .15s cubic-bezier(.4,0,.2,1);visibility:hidden}.snackbar.open{opacity:1;transform:scale(1);visibility:visible}:host([variant="info"]) .snackbar{background-color:var(--ui-snackbar-bg-info, #0288d1)}:host([variant="success"]) .snackbar{background-color:var(--ui-snackbar-bg-success, #2e7d32)}:host([variant="warning"]) .snackbar{background-color:var(--ui-snackbar-bg-warning, #ed6c02)}:host([variant="error"]) .snackbar{background-color:var(--ui-snackbar-bg-error, #d32f2f)}.message{padding:8px 0;flex-grow:1}.action{display:flex;align-items:center;margin-left:8px;margin-right:-8px;padding-left:16px}.action.hidden{display:none}.close-btn{background:none;border:none;color:inherit;cursor:pointer;padding:4px 8px;margin-left:8px;margin-right:-8px;opacity:.8;display:flex;align-items:center;border-radius:2px;line-height:0}.close-btn:hover{opacity:1}::slotted(ui-alert){margin-bottom:0!important;width:100%;min-width:288px}';
+var Es = Object.defineProperty, Ps = Object.getOwnPropertyDescriptor, Ye = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Ps(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Es(t, i, r), r;
 };
 let ye = class extends c {
   constructor() {
@@ -1713,39 +1713,39 @@ let ye = class extends c {
         `;
   }
 };
-ye.styles = p(Io);
+ye.styles = p(Is);
 Ye([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], ye.prototype, "open", 2);
 Ye([
-  o({ type: String })
+  s({ type: String })
 ], ye.prototype, "message", 2);
 Ye([
-  o({ type: Number, attribute: "auto-hide-duration" })
+  s({ type: Number, attribute: "auto-hide-duration" })
 ], ye.prototype, "autoHideDuration", 2);
 Ye([
-  o({ type: String, attribute: "anchor-origin", reflect: !0 })
+  s({ type: String, attribute: "anchor-origin", reflect: !0 })
 ], ye.prototype, "anchorOrigin", 2);
 Ye([
-  o({ type: Boolean, attribute: "pause-on-hover" })
+  s({ type: Boolean, attribute: "pause-on-hover" })
 ], ye.prototype, "pauseOnHover", 2);
 Ye([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], ye.prototype, "closable", 2);
 Ye([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], ye.prototype, "variant", 2);
 Ye([
-  g()
+  m()
 ], ye.prototype, "_hasAction", 2);
 ye = Ye([
   d("ui-snackbar")
 ], ye);
-const Oo = ':host{display:block;--ui-divider-color: var(--ui-border-color, #e5e7eb);--ui-divider-margin: 16px;--ui-divider-thickness: 1px}.divider-container{display:flex;align-items:center;width:100%;box-sizing:border-box;margin:var(--ui-divider-margin) 0}.divider-line{flex-grow:1;height:var(--ui-divider-thickness);background-color:var(--ui-divider-color);border:none}.divider-content{padding:0 16px;font-family:var(--ui-font-family, sans-serif);font-size:.875rem;color:var(--ui-text-color-muted, #6b7280);white-space:nowrap}:host([orientation="vertical"]){display:flex;align-self:stretch;margin:0;width:auto;min-width:var(--ui-divider-thickness)}:host([orientation="vertical"]) .divider-container{flex-direction:column;height:100%;width:auto;min-width:var(--ui-divider-thickness);margin:0}:host([orientation="vertical"]) .divider-line{width:var(--ui-divider-thickness);height:auto;flex:1;min-height:24px}.variant-middle{margin-left:32px;margin-right:32px;width:auto}.variant-inset{margin-left:72px}.weight-light{--ui-divider-thickness: 1px}.weight-medium{--ui-divider-thickness: 2px}.weight-heavy{--ui-divider-thickness: 4px}';
-var Do = Object.defineProperty, zo = Object.getOwnPropertyDescriptor, Si = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? zo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Do(t, i, r), r;
+const Os = ':host{display:block;--ui-divider-color: var(--ui-border-color);--ui-divider-margin: 16px;--ui-divider-thickness: 1px}.divider-container{display:flex;align-items:center;width:100%;box-sizing:border-box;margin:var(--ui-divider-margin) 0}.divider-line{flex-grow:1;height:var(--ui-divider-thickness);background-color:var(--ui-divider-color);border:none}.divider-content{padding:0 16px;font-family:var(--ui-font-family);font-size:.875rem;color:var(--ui-text-color-muted);white-space:nowrap}:host([orientation="vertical"]){display:flex;align-self:stretch;margin:0;width:auto;min-width:var(--ui-divider-thickness)}:host([orientation="vertical"]) .divider-container{flex-direction:column;height:100%;width:auto;min-width:var(--ui-divider-thickness);margin:0}:host([orientation="vertical"]) .divider-line{width:var(--ui-divider-thickness);height:auto;flex:1;min-height:24px}.variant-middle{margin-left:32px;margin-right:32px;width:auto}.variant-inset{margin-left:72px}.weight-light{--ui-divider-thickness: 1px}.weight-medium{--ui-divider-thickness: 2px}.weight-heavy{--ui-divider-thickness: 4px}';
+var Ds = Object.defineProperty, zs = Object.getOwnPropertyDescriptor, Si = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? zs(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Ds(t, i, r), r;
 };
 let ut = class extends c {
   constructor() {
@@ -1770,27 +1770,27 @@ let ut = class extends c {
     `;
   }
 };
-ut.styles = p(Oo);
+ut.styles = p(Os);
 Si([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], ut.prototype, "orientation", 2);
 Si([
-  o({ type: String })
+  s({ type: String })
 ], ut.prototype, "variant", 2);
 Si([
-  o({ type: String })
+  s({ type: String })
 ], ut.prototype, "weight", 2);
 Si([
-  o({ type: String })
+  s({ type: String })
 ], ut.prototype, "textAlign", 2);
 ut = Si([
   d("ui-divider")
 ], ut);
-const To = ':host{display:block;padding:12px 0;font-family:var(--ui-font-family, "Inter", sans-serif);color:var(--ui-text-color, #111827);--_track-height: 6px;--_thumb-size: 20px;--_font-size: 14px}:host([size="sm"]){--_track-height: 4px;--_thumb-size: 14px;--_font-size: 12px}:host([size="lg"]){--_track-height: 8px;--_thumb-size: 24px;--_font-size: 16px}:host([vertical]){padding:0 12px;display:inline-flex;height:var(--ui-slider-vertical-height, 200px)}.slider-wrapper{display:flex;flex-direction:column;gap:8px}.slider-wrapper.vertical{flex-direction:column-reverse;align-items:center;gap:12px;width:100%;height:100%;justify-content:flex-end}.label-row{display:flex;justify-content:space-between;align-items:center;font-size:var(--_font-size);font-weight:500}.label-row.vertical{flex-direction:column;align-items:center;gap:2px;flex-shrink:0}.value-display{font-weight:600;color:var(--ui-primary-color, #3b82f6)}.track-container{flex:1;display:flex;align-items:center;justify-content:center;width:100%}.track-container.vertical{flex:1;min-height:0;width:auto;height:100%;display:flex;align-items:center;justify-content:center}input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:var(--_track-height);background:var(--ui-input-border-color, #d1d5db);border-radius:3px;outline:none;margin:10px 0;cursor:pointer;transition:all .2s ease}input[type=range].vertical{writing-mode:vertical-lr;direction:rtl;width:var(--_track-height);height:100%;margin:0;appearance:slider-vertical;-webkit-appearance:slider-vertical}@supports not (appearance: slider-vertical){input[type=range].vertical{writing-mode:vertical-lr;direction:rtl;width:var(--_track-height);height:100%;margin:0}}input[type=range]:disabled{cursor:not-allowed;opacity:.5}input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:var(--_thumb-size);height:var(--_thumb-size);border-radius:50%;background:var(--ui-surface-background, white);border:2px solid var(--ui-primary-color, #3b82f6);box-shadow:var(--ui-shadow-sm);cursor:pointer;transition:transform .1s ease,box-shadow .1s ease}input[type=range]::-moz-range-thumb{width:calc(var(--_thumb-size) - 2px);height:calc(var(--_thumb-size) - 2px);border-radius:50%;background:var(--ui-surface-background, white);border:2px solid var(--ui-primary-color, #3b82f6);box-shadow:var(--ui-shadow-sm);cursor:pointer}input[type=range]::-moz-range-progress{background:var(--ui-primary-color, #3b82f6);height:var(--_track-height);border-radius:3px}input[type=range]:focus-visible::-webkit-slider-thumb{outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:4px}input[type=range]:not(:disabled):hover::-webkit-slider-thumb{transform:scale(1.1);box-shadow:var(--ui-shadow-md)}input[type=range]:active::-webkit-slider-thumb{transform:scale(.95)}.disabled-label{color:var(--ui-text-color-muted)}';
-var Ao = Object.defineProperty, Bo = Object.getOwnPropertyDescriptor, le = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Bo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Ao(t, i, r), r;
+const Ts = ':host{display:block;padding:12px 0;font-family:var(--ui-font-family);color:var(--ui-text-color);--_track-height: 6px;--_thumb-size: 20px;--_font-size: 14px}:host([size="sm"]){--_track-height: 4px;--_thumb-size: 14px;--_font-size: 12px}:host([size="lg"]){--_track-height: 8px;--_thumb-size: 24px;--_font-size: 16px}:host([vertical]){padding:0 12px;display:inline-flex;height:var(--ui-slider-vertical-height, 200px)}.slider-wrapper{display:flex;flex-direction:column;gap:8px}.slider-wrapper.vertical{flex-direction:column-reverse;align-items:center;gap:12px;width:100%;height:100%;justify-content:flex-end}.label-row{display:flex;justify-content:space-between;align-items:center;font-size:var(--_font-size);font-weight:500}.label-row.vertical{flex-direction:column;align-items:center;gap:2px;flex-shrink:0}.value-display{font-weight:600;color:var(--ui-primary-color)}.track-container{flex:1;display:flex;align-items:center;justify-content:center;width:100%}.track-container.vertical{flex:1;min-height:0;width:auto;height:100%;display:flex;align-items:center;justify-content:center}input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:var(--_track-height);background:var(--ui-input-border-color);border-radius:3px;outline:none;margin:10px 0;cursor:pointer;transition:all .2s ease}input[type=range].vertical{writing-mode:vertical-lr;direction:rtl;width:var(--_track-height);height:100%;margin:0;appearance:slider-vertical;-webkit-appearance:slider-vertical}@supports not (appearance: slider-vertical){input[type=range].vertical{writing-mode:vertical-lr;direction:rtl;width:var(--_track-height);height:100%;margin:0}}input[type=range]:disabled{cursor:not-allowed;opacity:.5}input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:var(--_thumb-size);height:var(--_thumb-size);border-radius:50%;background:var(--ui-surface-1);border:2px solid var(--ui-primary-color);box-shadow:var(--ui-shadow-sm);cursor:pointer;transition:transform .1s ease,box-shadow .1s ease}input[type=range]::-moz-range-thumb{width:calc(var(--_thumb-size) - 2px);height:calc(var(--_thumb-size) - 2px);border-radius:50%;background:var(--ui-surface-1);border:2px solid var(--ui-primary-color);box-shadow:var(--ui-shadow-sm);cursor:pointer}input[type=range]::-moz-range-progress{background:var(--ui-primary-color);height:var(--_track-height);border-radius:3px}input[type=range]:focus-visible::-webkit-slider-thumb{outline:2px solid var(--ui-primary-color);outline-offset:4px}input[type=range]:not(:disabled):hover::-webkit-slider-thumb{transform:scale(1.1);box-shadow:var(--ui-shadow-md)}input[type=range]:active::-webkit-slider-thumb{transform:scale(.95)}.disabled-label{color:var(--ui-text-color-muted)}';
+var As = Object.defineProperty, Bs = Object.getOwnPropertyDescriptor, le = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Bs(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && As(t, i, r), r;
 };
 let q = class extends c {
   constructor() {
@@ -1821,10 +1821,10 @@ let q = class extends c {
   }
   // ── Render ────────────────────────────────────────────────────────────────
   render() {
-    const e = this._safeValue, t = this._safeMin, i = this._safeMax, s = (e - t) / (i - t) * 100, r = this.formatValue ? this.formatValue(e) : String(e), a = this.vertical ? {
-      background: `linear-gradient(to left, var(--ui-primary-color, #3b82f6) 0%, var(--ui-primary-color, #3b82f6) ${s}%, var(--ui-input-border-color, #d1d5db) ${s}%, var(--ui-input-border-color, #d1d5db) 100%)`
+    const e = this._safeValue, t = this._safeMin, i = this._safeMax, o = (e - t) / (i - t) * 100, r = this.formatValue ? this.formatValue(e) : String(e), a = this.vertical ? {
+      background: `linear-gradient(to left, var(--ui-primary-color, #3b82f6) 0%, var(--ui-primary-color, #3b82f6) ${o}%, var(--ui-input-border-color, #d1d5db) ${o}%, var(--ui-input-border-color, #d1d5db) 100%)`
     } : {
-      background: `linear-gradient(to right, var(--ui-primary-color, #3b82f6) 0%, var(--ui-primary-color, #3b82f6) ${s}%, var(--ui-input-border-color, #d1d5db) ${s}%, var(--ui-input-border-color, #d1d5db) 100%)`
+      background: `linear-gradient(to right, var(--ui-primary-color, #3b82f6) 0%, var(--ui-primary-color, #3b82f6) ${o}%, var(--ui-input-border-color, #d1d5db) ${o}%, var(--ui-input-border-color, #d1d5db) 100%)`
     }, n = { "slider-wrapper": !0, vertical: this.vertical }, h = { "label-row": !0, vertical: this.vertical }, f = { "track-container": !0, vertical: this.vertical }, y = { vertical: this.vertical }, b = "slider-input";
     return l`
       <div class=${u(n)}>
@@ -1857,53 +1857,53 @@ let q = class extends c {
   }
 };
 q.formAssociated = !0;
-q.styles = p(To);
+q.styles = p(Ts);
 le([
-  o({ type: Number })
+  s({ type: Number })
 ], q.prototype, "value", 2);
 le([
-  o({ type: Number, attribute: "default-value" })
+  s({ type: Number, attribute: "default-value" })
 ], q.prototype, "defaultValue", 2);
 le([
-  o({ type: Number })
+  s({ type: Number })
 ], q.prototype, "min", 2);
 le([
-  o({ type: Number })
+  s({ type: Number })
 ], q.prototype, "max", 2);
 le([
-  o({ type: Number })
+  s({ type: Number })
 ], q.prototype, "step", 2);
 le([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], q.prototype, "disabled", 2);
 le([
-  o({ type: String })
+  s({ type: String })
 ], q.prototype, "label", 2);
 le([
-  o({ type: Boolean, attribute: "show-value" })
+  s({ type: Boolean, attribute: "show-value" })
 ], q.prototype, "showValue", 2);
 le([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], q.prototype, "vertical", 2);
 le([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], q.prototype, "size", 2);
 le([
-  o({ type: String })
+  s({ type: String })
 ], q.prototype, "name", 2);
 le([
-  o({ attribute: !1 })
+  s({ attribute: !1 })
 ], q.prototype, "formatValue", 2);
 q = le([
   d("ui-slider")
 ], q);
-const Mo = ':host{display:block;font-family:var(--ui-font-family, "Inter", sans-serif);margin-bottom:1rem}.field-container{display:flex;flex-direction:column;gap:.5rem}.label{font-size:.875rem;font-weight:500;color:var(--ui-text-color, #111827);transition:color .2s}.input-wrapper{position:relative;display:flex;align-items:center;background-color:var(--ui-surface-background, white);border:1px solid var(--ui-input-border-color, #d1d5db);border-radius:var(--ui-input-border-radius, 6px);transition:all .2s ease;overflow:hidden}.input-wrapper:hover:not(.disabled):not(.error){border-color:var(--ui-text-color-muted, #6b7280)}.input-wrapper.focused:not(.error){border-color:var(--ui-primary-color, #3b82f6);box-shadow:0 0 0 3px #3b82f626}.input-wrapper.error{border-color:#ef4444}.input-wrapper.error.focused{box-shadow:0 0 0 3px #ef444426}.input-wrapper.disabled{background-color:var(--ui-surface-background-flat, #f3f4f6);cursor:not-allowed;opacity:.7}input{flex:1;width:100%;padding:.625rem .875rem;font-size:1rem;font-family:inherit;color:inherit;background:transparent;border:none;outline:none}input:disabled{cursor:not-allowed}input::placeholder{color:var(--ui-text-color-muted, #9ca3af)}.icon-leading,.icon-trailing{display:flex;align-items:center;justify-content:center;color:var(--ui-text-color-muted, #6b7280);padding:0 .75rem}.icon-leading{padding-right:0}.icon-trailing{padding-left:0}.helper-text{font-size:.75rem;color:var(--ui-text-color-muted, #6b7280)}.error-text{color:#ef4444}.filled .input-wrapper{background-color:var(--ui-surface-background-flat, #f3f4f6);border-bottom:2px solid var(--ui-input-border-color, #d1d5db);border-top:none;border-left:none;border-right:none;border-radius:4px 4px 0 0}.filled .input-wrapper.focused{border-bottom-color:var(--ui-primary-color, #3b82f6);background-color:var(--ui-hover-color, rgba(0,0,0,.02))}';
-var Lo = Object.defineProperty, jo = Object.getOwnPropertyDescriptor, we = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? jo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Lo(t, i, r), r;
+const Ms = ":host{display:block;font-family:var(--ui-font-family);margin-bottom:1rem}.field-container{display:flex;flex-direction:column;gap:.5rem}.label{font-size:.875rem;font-weight:500;color:var(--ui-label-color);transition:color .2s}.input-wrapper{position:relative;display:flex;align-items:center;background-color:var(--ui-input-bg);border:1px solid var(--ui-input-border-color);border-radius:var(--ui-input-border-radius);transition:all .2s ease;overflow:hidden}.input-wrapper:hover:not(.disabled):not(.error){border-color:var(--ui-input-border-hover-color)}.input-wrapper.focused:not(.error){border-color:var(--ui-primary-color);box-shadow:0 0 0 3px var(--ui-primary-focus-ring)}.input-wrapper.error{border-color:var(--ui-error-color)}.input-wrapper.error.focused{box-shadow:0 0 0 3px var(--ui-error-focus-ring)}.input-wrapper.disabled{background-color:var(--ui-input-disabled-bg);cursor:not-allowed;opacity:.7}input{flex:1;width:100%;padding:.625rem .875rem;font-size:1rem;font-family:inherit;color:inherit;background:transparent;border:none;outline:none}input:disabled{cursor:not-allowed}input::placeholder{color:var(--ui-input-placeholder-color)}.icon-leading,.icon-trailing{display:flex;align-items:center;justify-content:center;color:var(--ui-text-color-muted);padding:0 .75rem}.icon-leading{padding-right:0}.icon-trailing{padding-left:0}.helper-text{font-size:.75rem;color:var(--ui-help-text-color)}.error-text{color:var(--ui-error-color)}.filled .input-wrapper{background-color:var(--ui-surface-2);border-bottom:2px solid var(--ui-input-border-color);border-top:none;border-left:none;border-right:none;border-radius:4px 4px 0 0}.filled .input-wrapper.focused{border-bottom-color:var(--ui-primary-color);background-color:var(--ui-hover-color)}";
+var Ls = Object.defineProperty, js = Object.getOwnPropertyDescriptor, we = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? js(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Ls(t, i, r), r;
 };
-let se = class extends c {
+let oe = class extends c {
   constructor() {
     super(...arguments), this.label = "", this.value = "", this.placeholder = "", this.type = "text", this.variant = "outlined", this.disabled = !1, this.error = !1, this.helperText = "", this.errorMessage = "", this._focused = !1;
   }
@@ -1965,45 +1965,45 @@ let se = class extends c {
     `;
   }
 };
-se.styles = p(Mo);
+oe.styles = p(Ms);
 we([
-  o({ type: String })
-], se.prototype, "label", 2);
+  s({ type: String })
+], oe.prototype, "label", 2);
 we([
-  o({ type: String })
-], se.prototype, "value", 2);
+  s({ type: String })
+], oe.prototype, "value", 2);
 we([
-  o({ type: String })
-], se.prototype, "placeholder", 2);
+  s({ type: String })
+], oe.prototype, "placeholder", 2);
 we([
-  o({ type: String })
-], se.prototype, "type", 2);
+  s({ type: String })
+], oe.prototype, "type", 2);
 we([
-  o({ type: String })
-], se.prototype, "variant", 2);
+  s({ type: String })
+], oe.prototype, "variant", 2);
 we([
-  o({ type: Boolean })
-], se.prototype, "disabled", 2);
+  s({ type: Boolean })
+], oe.prototype, "disabled", 2);
 we([
-  o({ type: Boolean })
-], se.prototype, "error", 2);
+  s({ type: Boolean })
+], oe.prototype, "error", 2);
 we([
-  o({ type: String })
-], se.prototype, "helperText", 2);
+  s({ type: String })
+], oe.prototype, "helperText", 2);
 we([
-  o({ type: String })
-], se.prototype, "errorMessage", 2);
+  s({ type: String })
+], oe.prototype, "errorMessage", 2);
 we([
-  g()
-], se.prototype, "_focused", 2);
-se = we([
+  m()
+], oe.prototype, "_focused", 2);
+oe = we([
   d("ui-text-field")
-], se);
-const Uo = ':host{display:inline-block}button{font-family:var(--ui-font-family, "Inter", sans-serif);font-weight:500;font-size:14px;padding:8px 16px;border:1px solid var(--ui-input-border-color, #d1d5db);background-color:var(--ui-surface-background, white);color:var(--ui-text-color, #111827);cursor:pointer;transition:all .2s ease;display:inline-flex;align-items:center;justify-content:center;gap:8px;outline:none}button:hover:not(:disabled){background-color:var(--ui-hover-color, #f3f4f6)}button.selected{background-color:var(--ui-active-color, #e5e7eb);color:var(--ui-primary-color, #3b82f6);border-color:var(--ui-primary-color, #3b82f6);z-index:1}button:disabled{opacity:.5;cursor:not-allowed}button:focus-visible{box-shadow:0 0 0 2px var(--ui-primary-color, #3b82f6);z-index:2}:host([data-first]) button{border-top-left-radius:var(--ui-border-radius-md, 6px);border-bottom-left-radius:var(--ui-border-radius-md, 6px)}:host([data-last]) button{border-top-right-radius:var(--ui-border-radius-md, 6px);border-bottom-right-radius:var(--ui-border-radius-md, 6px)}:host(:not([data-first])) button{margin-left:-1px}';
-var Ro = Object.defineProperty, Vo = Object.getOwnPropertyDescriptor, Qi = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Vo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Ro(t, i, r), r;
+], oe);
+const Us = ":host{display:inline-block}button{font-family:var(--ui-font-family);font-weight:500;font-size:14px;padding:8px 16px;border:1px solid var(--ui-input-border-color);background-color:var(--ui-surface-1);color:var(--ui-text-color);cursor:pointer;transition:all .2s ease;display:inline-flex;align-items:center;justify-content:center;gap:8px;outline:none}button:hover:not(:disabled){background-color:var(--ui-hover-color)}button.selected{background-color:var(--ui-active-color);color:var(--ui-primary-color);border-color:var(--ui-primary-color);z-index:1}button:disabled{opacity:.5;cursor:not-allowed}button:focus-visible{box-shadow:0 0 0 2px var(--ui-primary-color);z-index:2}:host([data-first]) button{border-top-left-radius:var(--ui-border-radius-md);border-bottom-left-radius:var(--ui-border-radius-md)}:host([data-last]) button{border-top-right-radius:var(--ui-border-radius-md);border-bottom-right-radius:var(--ui-border-radius-md)}:host(:not([data-first])) button{margin-left:-1px}";
+var Rs = Object.defineProperty, Vs = Object.getOwnPropertyDescriptor, Qi = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Vs(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Rs(t, i, r), r;
 };
 let jt = class extends c {
   constructor() {
@@ -2030,24 +2030,24 @@ let jt = class extends c {
     `;
   }
 };
-jt.styles = p(Uo);
+jt.styles = p(Us);
 Qi([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], jt.prototype, "selected", 2);
 Qi([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], jt.prototype, "disabled", 2);
 Qi([
-  o({ type: String })
+  s({ type: String })
 ], jt.prototype, "value", 2);
 jt = Qi([
   d("ui-toggle-button")
 ], jt);
-const No = ":host{display:inline-flex;vertical-align:middle}";
-var Fo = Object.defineProperty, qo = Object.getOwnPropertyDescriptor, ts = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? qo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Fo(t, i, r), r;
+const Ns = ":host{display:inline-flex;vertical-align:middle}";
+var Fs = Object.defineProperty, qs = Object.getOwnPropertyDescriptor, to = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? qs(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Fs(t, i, r), r;
 };
 let ci = class extends c {
   constructor() {
@@ -2064,14 +2064,14 @@ let ci = class extends c {
     if (this.exclusive)
       this.value = i ? t : "";
     else {
-      const s = Array.isArray(this.value) ? [...this.value] : this.value ? [this.value] : [];
+      const o = Array.isArray(this.value) ? [...this.value] : this.value ? [this.value] : [];
       if (i)
-        s.includes(t) || s.push(t);
+        o.includes(t) || o.push(t);
       else {
-        const r = s.indexOf(t);
-        r > -1 && s.splice(r, 1);
+        const r = o.indexOf(t);
+        r > -1 && o.splice(r, 1);
       }
-      this.value = s;
+      this.value = o;
     }
     this._updateChildren(), this.dispatchEvent(new CustomEvent("change", {
       detail: { value: this.value },
@@ -2082,8 +2082,8 @@ let ci = class extends c {
   _updateChildren() {
     const e = Array.from(this.querySelectorAll("ui-toggle-button"));
     e.forEach((t, i) => {
-      const s = t, r = this.exclusive ? this.value === s.value : Array.isArray(this.value) && this.value.includes(s.value);
-      s.selected = r, i === 0 ? s.setAttribute("data-first", "") : s.removeAttribute("data-first"), i === e.length - 1 ? s.setAttribute("data-last", "") : s.removeAttribute("data-last");
+      const o = t, r = this.exclusive ? this.value === o.value : Array.isArray(this.value) && this.value.includes(o.value);
+      o.selected = r, i === 0 ? o.setAttribute("data-first", "") : o.removeAttribute("data-first"), i === e.length - 1 ? o.setAttribute("data-last", "") : o.removeAttribute("data-last");
     });
   }
   updated(e) {
@@ -2093,21 +2093,21 @@ let ci = class extends c {
     return l`<slot @slotchange=${this._updateChildren}></slot>`;
   }
 };
-ci.styles = p(No);
-ts([
-  o({ type: String })
+ci.styles = p(Ns);
+to([
+  s({ type: String })
 ], ci.prototype, "value", 2);
-ts([
-  o({ type: Boolean })
+to([
+  s({ type: Boolean })
 ], ci.prototype, "exclusive", 2);
-ci = ts([
+ci = to([
   d("ui-toggle-button-group")
 ], ci);
-const Ho = ':host{display:inline-block;vertical-align:middle;line-height:1}.avatar{position:relative;display:flex;align-items:center;justify-content:center;flex-shrink:0;width:var(--ui-avatar-size, 40px);height:var(--ui-avatar-size, 40px);font-family:var(--ui-font-family, "Inter", sans-serif);font-size:calc(var(--ui-avatar-size, 40px) / 2.5);font-weight:600;border-radius:50%;overflow:hidden;-webkit-user-select:none;user-select:none;background-color:var(--ui-avatar-bg, #e5e7eb);color:var(--ui-avatar-color, #4b5563);transition:all .2s ease}.avatar.square{border-radius:0}.avatar.rounded{border-radius:var(--ui-border-radius-md, 6px)}img{width:100%;height:100%;object-fit:cover;display:block}.initials{text-transform:uppercase}:host([size="small"]){--ui-avatar-size: 32px}:host([size="medium"]){--ui-avatar-size: 40px}:host([size="large"]){--ui-avatar-size: 56px}:host([size="xlarge"]){--ui-avatar-size: 80px}.avatar.loading{background:linear-gradient(90deg,#f3f4f6 25%,#e5e7eb,#f3f4f6 75%);background-size:200% 100%;animation:loading 1.5s infinite}@keyframes loading{0%{background-position:200% 0}to{background-position:-200% 0}}';
-var Ko = Object.defineProperty, Yo = Object.getOwnPropertyDescriptor, at = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Yo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Ko(t, i, r), r;
+const Hs = ':host{display:inline-block;vertical-align:middle;line-height:1}.avatar{position:relative;display:flex;align-items:center;justify-content:center;flex-shrink:0;width:var(--ui-avatar-size, 40px);height:var(--ui-avatar-size, 40px);font-family:var(--ui-font-family);font-size:calc(var(--ui-avatar-size, 40px) / 2.5);font-weight:600;border-radius:50%;overflow:hidden;-webkit-user-select:none;user-select:none;background-color:var(--ui-avatar-bg, var(--ui-surface-3));color:var(--ui-avatar-color, var(--ui-text-color-muted));transition:all .2s ease}.avatar.square{border-radius:0}.avatar.rounded{border-radius:var(--ui-border-radius-md)}img{width:100%;height:100%;object-fit:cover;display:block}.initials{text-transform:uppercase}:host([size="small"]){--ui-avatar-size: 32px}:host([size="medium"]){--ui-avatar-size: 40px}:host([size="large"]){--ui-avatar-size: 56px}:host([size="xlarge"]){--ui-avatar-size: 80px}.avatar.loading{background:linear-gradient(90deg,var(--ui-surface-2) 25%,var(--ui-surface-3) 50%,var(--ui-surface-2) 75%);background-size:200% 100%;animation:loading 1.5s infinite}@keyframes loading{0%{background-position:200% 0}to{background-position:-200% 0}}';
+var Ks = Object.defineProperty, Ys = Object.getOwnPropertyDescriptor, at = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Ys(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Ks(t, i, r), r;
 };
 let Ee = class extends c {
   constructor() {
@@ -2131,41 +2131,41 @@ let Ee = class extends c {
     };
     return l`
       <div class=${u(e)} part="base">
-        ${this.src && !this._hasError ? l`<img src=${this.src} alt=${this.alt} @error=${this._handleError} @load=${this._handleLoad} style=${this._isLoading ? "display:none" : v} part="image" />` : this.initials ? l`<span class="initials" part="initials">${this.initials.substring(0, 2)}</span>` : l`<slot><svg width="60%" height="60%" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></slot>`}
+        ${this.src && !this._hasError ? l`<img src=${this.src} alt=${this.alt} @error=${this._handleError} @load=${this._handleLoad} style=${this._isLoading ? "display:none" : g} part="image" />` : this.initials ? l`<span class="initials" part="initials">${this.initials.substring(0, 2)}</span>` : l`<slot><svg width="60%" height="60%" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></slot>`}
       </div>
     `;
   }
 };
-Ee.styles = p(Ho);
+Ee.styles = p(Hs);
 at([
-  o({ type: String })
+  s({ type: String })
 ], Ee.prototype, "src", 2);
 at([
-  o({ type: String })
+  s({ type: String })
 ], Ee.prototype, "alt", 2);
 at([
-  o({ type: String })
+  s({ type: String })
 ], Ee.prototype, "initials", 2);
 at([
-  o({ type: String })
+  s({ type: String })
 ], Ee.prototype, "variant", 2);
 at([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], Ee.prototype, "size", 2);
 at([
-  g()
+  m()
 ], Ee.prototype, "_hasError", 2);
 at([
-  g()
+  m()
 ], Ee.prototype, "_isLoading", 2);
 Ee = at([
   d("ui-avatar")
 ], Ee);
-const Go = ':host{display:inline-block;vertical-align:middle;font-family:var(--ui-font-family, "Inter", sans-serif)}.chip{display:inline-flex;align-items:center;height:32px;padding:0 12px;border-radius:16px;font-size:14px;font-weight:500;white-space:nowrap;transition:all .2s ease;background-color:var(--ui-surface-background-flat, #f3f4f6);color:var(--ui-text-color, #111827);border:1px solid transparent;-webkit-user-select:none;user-select:none;gap:8px;outline:none;overflow:hidden}.chip.clickable{cursor:pointer}.chip.clickable:hover:not(.disabled){background-color:var(--ui-hover-color, #e5e7eb)}.chip.clickable:active:not(.disabled){background-color:var(--ui-active-color, #d1d5db)}.chip.outlined{background-color:transparent;border-color:var(--ui-input-border-color, #d1d5db)}.chip.primary:not(.outlined){background-color:var(--ui-primary-color, #3b82f6);color:#fff}.chip.secondary:not(.outlined){background-color:var(--ui-secondary-color, #6b7280);color:#fff}.chip.outlined.primary{color:var(--ui-primary-color, #3b82f6);border-color:var(--ui-primary-color, #3b82f6)}.chip.outlined.secondary{color:var(--ui-secondary-color, #6b7280);border-color:var(--ui-secondary-color, #6b7280)}.chip.primary.clickable:hover:not(.disabled){filter:brightness(.9);box-shadow:var(--ui-shadow-sm)}.chip.secondary.clickable:hover:not(.disabled){filter:brightness(.9);box-shadow:var(--ui-shadow-sm)}.chip.disabled{opacity:.5;cursor:not-allowed}.chip:focus-visible{outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:2px}.delete-icon{display:flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;margin-right:-4px;cursor:pointer;color:inherit;opacity:.7;transition:opacity .2s,background-color .2s;outline:none}.delete-icon:hover{opacity:1;background-color:#0000001a}.delete-icon:focus-visible{opacity:1;outline:2px solid currentColor;outline-offset:1px}.chip.disabled .delete-icon{cursor:not-allowed;pointer-events:none}::slotted([slot="avatar"]){--ui-avatar-size: 24px;width:24px;height:24px;margin-left:-8px;border-radius:50%;overflow:hidden;flex-shrink:0}::slotted([slot="icon"]){display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;margin-left:-4px;flex-shrink:0;line-height:1}';
-var Wo = Object.defineProperty, Xo = Object.getOwnPropertyDescriptor, St = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Xo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Wo(t, i, r), r;
+const Gs = ':host{display:inline-block;vertical-align:middle;font-family:var(--ui-font-family)}.chip{display:inline-flex;align-items:center;height:32px;padding:0 12px;border-radius:16px;font-size:14px;font-weight:500;white-space:nowrap;transition:all .2s ease;background-color:var(--ui-surface-2);color:var(--ui-text-color);border:1px solid transparent;-webkit-user-select:none;user-select:none;gap:8px;outline:none;overflow:hidden}.chip.clickable{cursor:pointer}.chip.clickable:hover:not(.disabled){background-color:var(--ui-hover-color)}.chip.clickable:active:not(.disabled){background-color:var(--ui-active-color)}.chip.outlined{background-color:transparent;border-color:var(--ui-input-border-color)}.chip.primary:not(.outlined){background-color:var(--ui-primary-color);color:var(--ui-text-color-on-primary)}.chip.secondary:not(.outlined){background-color:var(--ui-secondary-color);color:var(--ui-text-color-on-primary)}.chip.outlined.primary{color:var(--ui-primary-color);border-color:var(--ui-primary-color)}.chip.outlined.secondary{color:var(--ui-secondary-color);border-color:var(--ui-secondary-color)}.chip.primary.clickable:hover:not(.disabled){filter:brightness(.9);box-shadow:var(--ui-shadow-sm)}.chip.secondary.clickable:hover:not(.disabled){filter:brightness(.9);box-shadow:var(--ui-shadow-sm)}.chip.disabled{opacity:.5;cursor:not-allowed}.chip:focus-visible{outline:2px solid var(--ui-primary-color);outline-offset:2px}.delete-icon{display:flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;margin-right:-4px;cursor:pointer;color:inherit;opacity:.7;transition:opacity .2s,background-color .2s;outline:none}.delete-icon:hover{opacity:1;background-color:var(--ui-active-color)}.delete-icon:focus-visible{opacity:1;outline:2px solid currentColor;outline-offset:1px}.chip.disabled .delete-icon{cursor:not-allowed;pointer-events:none}::slotted([slot="avatar"]){--ui-avatar-size: 24px;width:24px;height:24px;margin-left:-8px;border-radius:50%;overflow:hidden;flex-shrink:0}::slotted([slot="icon"]){display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;margin-left:-4px;flex-shrink:0;line-height:1}';
+var Ws = Object.defineProperty, Xs = Object.getOwnPropertyDescriptor, St = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Xs(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Ws(t, i, r), r;
 };
 let Ue = class extends c {
   constructor() {
@@ -2234,33 +2234,33 @@ let Ue = class extends c {
     `;
   }
 };
-Ue.styles = p(Go);
+Ue.styles = p(Gs);
 St([
-  o({ type: String })
+  s({ type: String })
 ], Ue.prototype, "label", 2);
 St([
-  o({ type: String })
+  s({ type: String })
 ], Ue.prototype, "variant", 2);
 St([
-  o({ type: String })
+  s({ type: String })
 ], Ue.prototype, "color", 2);
 St([
-  o({ type: Boolean })
+  s({ type: Boolean })
 ], Ue.prototype, "clickable", 2);
 St([
-  o({ type: Boolean })
+  s({ type: Boolean })
 ], Ue.prototype, "deletable", 2);
 St([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], Ue.prototype, "disabled", 2);
 Ue = St([
   d("ui-chip")
 ], Ue);
-const Jo = ":host{display:block;padding:8px 0;margin:0;list-style:none;background-color:var(--ui-surface-background, white)}:host([disable-padding]){padding:0}:host([dense]){--ui-list-item-padding: 4px 16px;--ui-list-item-gap: 8px}", Zo = ":host{display:block;box-sizing:border-box}li{display:flex;align-items:center;padding:var(--ui-list-item-padding, 8px 16px);gap:var(--ui-list-item-gap, 16px);list-style:none}", Qo = ":host{display:block;box-sizing:border-box}li{display:flex;align-items:center;padding:var(--ui-list-item-padding, 8px 16px);gap:var(--ui-list-item-gap, 16px);cursor:pointer;transition:background-color .2s ease;-webkit-user-select:none;user-select:none;list-style:none;outline:none}li:hover{background-color:var(--ui-hover-color, rgba(0, 0, 0, .04))}li:active{background-color:var(--ui-active-color, rgba(0, 0, 0, .08))}li:focus-visible{background-color:var(--ui-hover-color, rgba(0, 0, 0, .04));box-shadow:inset 0 0 0 2px var(--ui-primary-color, #3b82f6)}:host([selected]) li{background-color:var(--ui-selected-color, rgba(59, 130, 246, .1));color:var(--ui-primary-color, #3b82f6)}:host([disabled]) li{opacity:.5;cursor:default;pointer-events:none}", ea = ":host{display:inline-flex;min-width:40px;color:var(--ui-text-color-muted, #6b7280);flex-shrink:0}::slotted(*){width:24px;height:24px}", ta = ":host{display:inline-flex;min-width:56px;flex-shrink:0}", ia = ":host{flex:1 1 auto;margin-top:4px;margin-bottom:4px}.primary{display:block;font-family:var(--ui-font-family, sans-serif);font-size:1rem;color:var(--ui-text-color, #111827);line-height:1.5}.secondary{display:block;font-family:var(--ui-font-family, sans-serif);font-size:.875rem;color:var(--ui-text-color-muted, #6b7280);line-height:1.43}", ra = ":host{display:block;padding:16px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--ui-text-color-muted, #6b7280);font-family:var(--ui-font-family, sans-serif);line-height:1}";
-var sa = Object.defineProperty, oa = Object.getOwnPropertyDescriptor, Q = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? oa(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && sa(t, i, r), r;
+const Js = ":host{display:block;padding:8px 0;margin:0;list-style:none;background-color:var(--ui-surface-background, white)}:host([disable-padding]){padding:0}:host([dense]){--ui-list-item-padding: 4px 16px;--ui-list-item-gap: 8px}", Zs = ":host{display:block;box-sizing:border-box}li{display:flex;align-items:center;padding:var(--ui-list-item-padding, 8px 16px);gap:var(--ui-list-item-gap, 16px);list-style:none}", Qs = ":host{display:block;box-sizing:border-box}li{display:flex;align-items:center;padding:var(--ui-list-item-padding, 8px 16px);gap:var(--ui-list-item-gap, 16px);cursor:pointer;transition:background-color .2s ease;-webkit-user-select:none;user-select:none;list-style:none;outline:none}li:hover{background-color:var(--ui-hover-color)}li:active{background-color:var(--ui-active-color)}li:focus-visible{background-color:var(--ui-hover-color);box-shadow:inset 0 0 0 2px var(--ui-primary-color)}:host([selected]) li{background-color:var(--ui-primary-color-light);color:var(--ui-primary-color)}:host([disabled]) li{opacity:.5;cursor:default;pointer-events:none}", ea = ":host{display:inline-flex;min-width:40px;color:var(--ui-text-color-muted);flex-shrink:0}::slotted(*){width:24px;height:24px}", ta = ":host{display:inline-flex;min-width:56px;flex-shrink:0}", ia = ":host{flex:1 1 auto;margin-top:4px;margin-bottom:4px}.primary{display:block;font-family:var(--ui-font-family);font-size:1rem;color:var(--ui-text-color);line-height:1.5}.secondary{display:block;font-family:var(--ui-font-family);font-size:.875rem;color:var(--ui-text-color-muted);line-height:1.43}", ra = ":host{display:block;padding:16px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--ui-text-color-muted);font-family:var(--ui-font-family);line-height:1}";
+var oa = Object.defineProperty, sa = Object.getOwnPropertyDescriptor, Q = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? sa(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && oa(t, i, r), r;
 };
 let di = class extends c {
   constructor() {
@@ -2270,12 +2270,12 @@ let di = class extends c {
     return l`<ul role="list" style="margin: 0; padding: 0; list-style: none;"><slot></slot></ul>`;
   }
 };
-di.styles = p(Jo);
+di.styles = p(Js);
 Q([
-  o({ type: Boolean, reflect: !0, attribute: "disable-padding" })
+  s({ type: Boolean, reflect: !0, attribute: "disable-padding" })
 ], di.prototype, "disablePadding", 2);
 Q([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], di.prototype, "dense", 2);
 di = Q([
   d("ui-list")
@@ -2285,7 +2285,7 @@ let hr = class extends c {
     return l`<li role="listitem"><slot></slot></li>`;
   }
 };
-hr.styles = p(Zo);
+hr.styles = p(Zs);
 hr = Q([
   d("ui-list-item")
 ], hr);
@@ -2300,19 +2300,19 @@ let pi = class extends c {
       <li
         role="button"
         tabindex=${this.disabled ? "-1" : "0"}
-        aria-disabled=${this.disabled ? "true" : v}
-        aria-current=${this.selected ? "true" : v}
+        aria-disabled=${this.disabled ? "true" : g}
+        aria-current=${this.selected ? "true" : g}
         @keydown=${this._handleKeydown}
       ><slot></slot></li>
     `;
   }
 };
-pi.styles = p(Qo);
+pi.styles = p(Qs);
 Q([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], pi.prototype, "disabled", 2);
 Q([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], pi.prototype, "selected", 2);
 pi = Q([
   d("ui-list-item-button")
@@ -2355,13 +2355,13 @@ let Ut = class extends c {
 };
 Ut.styles = p(ia);
 Q([
-  o({ type: String })
+  s({ type: String })
 ], Ut.prototype, "primary", 2);
 Q([
-  o({ type: String })
+  s({ type: String })
 ], Ut.prototype, "secondary", 2);
 Q([
-  g()
+  m()
 ], Ut.prototype, "_hasSecondarySlot", 2);
 Ut = Q([
   d("ui-list-item-text")
@@ -2375,11 +2375,11 @@ br.styles = p(ra);
 br = Q([
   d("ui-list-subheader")
 ], br);
-const aa = ":host{display:block;width:100%;overflow-x:auto;background-color:var(--ui-surface-background, white);border-radius:var(--ui-border-radius-lg, 8px);box-shadow:var(--ui-shadow-sm, 0 1px 3px rgba(0,0,0,.1))}:host([shadow]){box-shadow:var(--ui-shadow-md, 0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -1px rgba(0, 0, 0, .06))}", na = ':host{display:table;width:100%;border-collapse:collapse;border-spacing:0;font-family:var(--ui-font-family, "Inter", sans-serif);color:var(--ui-text-color, #111827)}', la = ":host{display:table-header-group}", ca = ":host{display:table-row-group}", da = ":host{display:table-row;vertical-align:middle;outline:0;transition:background-color .2s ease}:host(:hover){background-color:var(--ui-hover-color, rgba(0, 0, 0, .04))}:host([selected]){background-color:var(--ui-active-color, rgba(59, 130, 246, .08))}", pa = ':host{display:table-cell;padding:16px;font-size:.875rem;text-align:left;border-bottom:1px solid var(--ui-border-color, #e5e7eb)}:host([header]){color:var(--ui-text-color-muted, #6b7280);font-weight:600;line-height:1.5rem}:host([align="right"]){text-align:right}:host([align="center"]){text-align:center}:host([padding="checkbox"]){width:48px;padding:0 0 0 4px}', ha = ":host{display:table-footer-group}";
-var ua = Object.defineProperty, fa = Object.getOwnPropertyDescriptor, ke = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? fa(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && ua(t, i, r), r;
+const aa = ":host{display:block;width:100%;overflow-x:auto;background-color:var(--ui-surface-background, white);border-radius:var(--ui-border-radius-lg, 8px);box-shadow:var(--ui-shadow-sm, 0 1px 3px rgba(0,0,0,.1))}:host([shadow]){box-shadow:var(--ui-shadow-md, 0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -1px rgba(0, 0, 0, .06))}", na = ":host{display:table;width:100%;border-collapse:collapse;border-spacing:0;font-family:var(--ui-font-family);color:var(--ui-text-color)}", la = ":host{display:table-header-group}", ca = ":host{display:table-row-group}", da = ":host{display:table-row;vertical-align:middle;outline:0;transition:background-color .2s ease}:host(:hover){background-color:var(--ui-hover-color, rgba(0, 0, 0, .04))}:host([selected]){background-color:var(--ui-active-color, rgba(59, 130, 246, .08))}", pa = ':host{display:table-cell;padding:16px;font-size:.875rem;text-align:left;border-bottom:1px solid var(--ui-border-color)}:host([header]){color:var(--ui-text-color-muted);font-weight:600;line-height:1.5rem}:host([align="right"]){text-align:right}:host([align="center"]){text-align:center}:host([padding="checkbox"]){width:48px;padding:0 0 0 4px}', ha = ":host{display:table-footer-group}";
+var ua = Object.defineProperty, fa = Object.getOwnPropertyDescriptor, ke = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? fa(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && ua(t, i, r), r;
 };
 let zi = class extends c {
   constructor() {
@@ -2391,38 +2391,38 @@ let zi = class extends c {
 };
 zi.styles = p(aa);
 ke([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], zi.prototype, "shadow", 2);
 zi = ke([
   d("ui-table-container")
 ], zi);
+let vr = class extends c {
+  render() {
+    return l`<slot></slot>`;
+  }
+};
+vr.styles = p(na);
+vr = ke([
+  d("ui-table")
+], vr);
 let mr = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
-mr.styles = p(na);
+mr.styles = p(la);
 mr = ke([
-  d("ui-table")
+  d("ui-table-head")
 ], mr);
 let gr = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
-gr.styles = p(la);
+gr.styles = p(ca);
 gr = ke([
-  d("ui-table-head")
-], gr);
-let vr = class extends c {
-  render() {
-    return l`<slot></slot>`;
-  }
-};
-vr.styles = p(ca);
-vr = ke([
   d("ui-table-body")
-], vr);
+], gr);
 let Ti = class extends c {
   constructor() {
     super(...arguments), this.selected = !1;
@@ -2433,7 +2433,7 @@ let Ti = class extends c {
 };
 Ti.styles = p(da);
 ke([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], Ti.prototype, "selected", 2);
 Ti = ke([
   d("ui-table-row")
@@ -2448,10 +2448,10 @@ let hi = class extends c {
 };
 hi.styles = p(pa);
 ke([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], hi.prototype, "header", 2);
 ke([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], hi.prototype, "align", 2);
 hi = ke([
   d("ui-table-cell")
@@ -2465,11 +2465,11 @@ yr.styles = p(ha);
 yr = ke([
   d("ui-table-footer")
 ], yr);
-const ba = ":host{display:inline-flex;align-items:center;cursor:pointer;-webkit-user-select:none;user-select:none;transition:color .2s}:host(:hover){color:var(--ui-text-color, #111827)}:host(.active){color:var(--ui-text-color, #111827);font-weight:700}.icon{margin-left:4px;width:18px;height:18px;transition:transform .2s ease,opacity .2s;opacity:0}:host(:hover) .icon,:host(.active) .icon{opacity:1}.icon.desc{transform:rotate(180deg)}";
-var ma = Object.defineProperty, ga = Object.getOwnPropertyDescriptor, is = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? ga(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && ma(t, i, r), r;
+const ba = ":host{display:inline-flex;align-items:center;cursor:pointer;-webkit-user-select:none;user-select:none;transition:color .2s}:host(:hover){color:var(--ui-text-color)}:host(.active){color:var(--ui-text-color);font-weight:700}.icon{margin-left:4px;width:18px;height:18px;transition:transform .2s ease,opacity .2s;opacity:0}:host(:hover) .icon,:host(.active) .icon{opacity:1}.icon.desc{transform:rotate(180deg)}";
+var va = Object.defineProperty, ma = Object.getOwnPropertyDescriptor, io = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? ma(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && va(t, i, r), r;
 };
 let ui = class extends c {
   constructor() {
@@ -2485,20 +2485,20 @@ let ui = class extends c {
   }
 };
 ui.styles = p(ba);
-is([
-  o({ type: Boolean, reflect: !0 })
+io([
+  s({ type: Boolean, reflect: !0 })
 ], ui.prototype, "active", 2);
-is([
-  o({ type: String })
+io([
+  s({ type: String })
 ], ui.prototype, "direction", 2);
-ui = is([
+ui = io([
   d("ui-table-sort-label")
 ], ui);
-const va = ':host{display:flex;align-items:center;justify-content:flex-end;padding:8px 16px;font-family:var(--ui-font-family, "Inter", sans-serif);font-size:.875rem;color:var(--ui-text-color-muted, #6b7280);border-top:1px solid var(--ui-border-color, #e5e7eb)}.spacer{flex:1 1 100%}.actions{display:flex;align-items:center;gap:16px}.nav-buttons{display:flex;gap:4px}button{background:transparent;border:none;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ui-text-color, #111827);transition:background-color .2s}button:hover:not(:disabled){background-color:var(--ui-hover-color, rgba(0,0,0,.04))}button:disabled{color:var(--ui-text-color-muted, #9ca3af);cursor:not-allowed}select{border:none;background:transparent;font-family:inherit;font-size:inherit;color:inherit;cursor:pointer;padding:4px;outline:none}';
-var ya = Object.defineProperty, xa = Object.getOwnPropertyDescriptor, Ci = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? xa(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && ya(t, i, r), r;
+const ga = ":host{display:flex;align-items:center;justify-content:flex-end;padding:8px 16px;font-family:var(--ui-font-family);font-size:.875rem;color:var(--ui-text-color-muted);border-top:1px solid var(--ui-border-color)}.spacer{flex:1 1 100%}.actions{display:flex;align-items:center;gap:16px}.nav-buttons{display:flex;gap:4px}button{background:transparent;border:none;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ui-text-color);transition:background-color .2s}button:hover:not(:disabled){background-color:var(--ui-hover-color)}button:disabled{color:var(--ui-text-color-muted);cursor:not-allowed}select{border:none;background:transparent;font-family:inherit;font-size:inherit;color:inherit;cursor:pointer;padding:4px;outline:none}";
+var ya = Object.defineProperty, xa = Object.getOwnPropertyDescriptor, Ci = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? xa(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && ya(t, i, r), r;
 };
 let ft = class extends c {
   constructor() {
@@ -2543,27 +2543,27 @@ let ft = class extends c {
     `;
   }
 };
-ft.styles = p(va);
+ft.styles = p(ga);
 Ci([
-  o({ type: Number })
+  s({ type: Number })
 ], ft.prototype, "count", 2);
 Ci([
-  o({ type: Number })
+  s({ type: Number })
 ], ft.prototype, "page", 2);
 Ci([
-  o({ type: Number })
+  s({ type: Number })
 ], ft.prototype, "rowsPerPage", 2);
 Ci([
-  o({ type: Array })
+  s({ type: Array })
 ], ft.prototype, "rowsPerPageOptions", 2);
 ft = Ci([
   d("ui-table-pagination")
 ], ft);
-const _a = ':host{display:inline-block;position:relative}.tooltip-container{display:inline-block}.tooltip-popup{position:absolute;background-color:var(--ui-tooltip-bg, rgba(97, 97, 97, .92));color:var(--ui-tooltip-color, #fff);padding:4px 8px;border-radius:var(--ui-border-radius-sm, 4px);font-size:.75rem;font-family:var(--ui-font-family, "Inter", sans-serif);line-height:1.4;white-space:nowrap;z-index:1000;opacity:0;visibility:hidden;transition:opacity .2s,visibility .2s,transform .2s;pointer-events:none;box-shadow:var(--ui-shadow-sm, 0 2px 4px rgba(0,0,0,.2))}.tooltip-popup.top{bottom:100%;left:50%;transform:translate(-50%) translateY(0);margin-bottom:8px}.tooltip-popup.top.visible{transform:translate(-50%) translateY(-4px)}.tooltip-popup.bottom{top:100%;left:50%;transform:translate(-50%) translateY(0);margin-top:8px}.tooltip-popup.bottom.visible{transform:translate(-50%) translateY(4px)}.tooltip-popup.left{right:100%;top:50%;transform:translateY(-50%) translate(0);margin-right:8px}.tooltip-popup.left.visible{transform:translateY(-50%) translate(-4px)}.tooltip-popup.right{left:100%;top:50%;transform:translateY(-50%) translate(0);margin-left:8px}.tooltip-popup.right.visible{transform:translateY(-50%) translate(4px)}.tooltip-popup.visible{opacity:1;visibility:visible}.arrow{position:absolute;width:0;height:0;border-style:solid}.tooltip-popup.top .arrow{top:100%;left:50%;transform:translate(-50%);border-width:5px 5px 0 5px;border-color:var(--ui-tooltip-bg, rgba(97, 97, 97, .92)) transparent transparent transparent}.tooltip-popup.bottom .arrow{bottom:100%;left:50%;transform:translate(-50%);border-width:0 5px 5px 5px;border-color:transparent transparent var(--ui-tooltip-bg, rgba(97, 97, 97, .92)) transparent}.tooltip-popup.left .arrow{left:100%;top:50%;transform:translateY(-50%);border-width:5px 0 5px 5px;border-color:transparent transparent transparent var(--ui-tooltip-bg, rgba(97, 97, 97, .92))}.tooltip-popup.right .arrow{right:100%;top:50%;transform:translateY(-50%);border-width:5px 5px 5px 0;border-color:transparent var(--ui-tooltip-bg, rgba(97, 97, 97, .92)) transparent transparent}';
-var wa = Object.defineProperty, ka = Object.getOwnPropertyDescriptor, ii = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? ka(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && wa(t, i, r), r;
+const _a = ":host{display:inline-block;position:relative}.tooltip-container{display:inline-block}.tooltip-popup{position:absolute;background-color:var(--ui-tooltip-bg);color:var(--ui-tooltip-color);padding:4px 8px;border-radius:var(--ui-border-radius-sm);font-size:.75rem;font-family:var(--ui-font-family);line-height:1.4;white-space:nowrap;z-index:1000;opacity:0;visibility:hidden;transition:opacity .2s,visibility .2s,transform .2s;pointer-events:none;box-shadow:var(--ui-shadow-sm)}.tooltip-popup.top{bottom:100%;left:50%;transform:translate(-50%) translateY(0);margin-bottom:8px}.tooltip-popup.top.visible{transform:translate(-50%) translateY(-4px)}.tooltip-popup.bottom{top:100%;left:50%;transform:translate(-50%) translateY(0);margin-top:8px}.tooltip-popup.bottom.visible{transform:translate(-50%) translateY(4px)}.tooltip-popup.left{right:100%;top:50%;transform:translateY(-50%) translate(0);margin-right:8px}.tooltip-popup.left.visible{transform:translateY(-50%) translate(-4px)}.tooltip-popup.right{left:100%;top:50%;transform:translateY(-50%) translate(0);margin-left:8px}.tooltip-popup.right.visible{transform:translateY(-50%) translate(4px)}.tooltip-popup.visible{opacity:1;visibility:visible}.arrow{position:absolute;width:0;height:0;border-style:solid}.tooltip-popup.top .arrow{top:100%;left:50%;transform:translate(-50%);border-width:5px 5px 0 5px;border-color:var(--ui-tooltip-bg) transparent transparent transparent}.tooltip-popup.bottom .arrow{bottom:100%;left:50%;transform:translate(-50%);border-width:0 5px 5px 5px;border-color:transparent transparent var(--ui-tooltip-bg) transparent}.tooltip-popup.left .arrow{left:100%;top:50%;transform:translateY(-50%);border-width:5px 0 5px 5px;border-color:transparent transparent transparent var(--ui-tooltip-bg)}.tooltip-popup.right .arrow{right:100%;top:50%;transform:translateY(-50%);border-width:5px 5px 5px 0;border-color:transparent var(--ui-tooltip-bg) transparent transparent}";
+var wa = Object.defineProperty, ka = Object.getOwnPropertyDescriptor, ii = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? ka(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && wa(t, i, r), r;
 };
 let Qe = class extends c {
   constructor() {
@@ -2599,28 +2599,28 @@ let Qe = class extends c {
 };
 Qe.styles = p(_a);
 ii([
-  o({ type: String })
+  s({ type: String })
 ], Qe.prototype, "label", 2);
 ii([
-  o({ type: String })
+  s({ type: String })
 ], Qe.prototype, "placement", 2);
 ii([
-  o({ type: Boolean })
+  s({ type: Boolean })
 ], Qe.prototype, "arrow", 2);
 ii([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], Qe.prototype, "disabled", 2);
 ii([
-  g()
+  m()
 ], Qe.prototype, "_visible", 2);
 Qe = ii([
   d("ui-tooltip")
 ], Qe);
 const $a = ":host{display:block;--ui-backdrop-color: rgba(0, 0, 0, .5);--ui-backdrop-z-index: 1200}.backdrop{position:var(--ui-backdrop-position, fixed);display:flex;align-items:center;justify-content:center;inset:0;background-color:var(--ui-backdrop-color);z-index:var(--ui-backdrop-z-index);-webkit-tap-highlight-color:transparent;opacity:0;visibility:hidden;transition:opacity .3s cubic-bezier(.4,0,.2,1),visibility .3s}:host([container]){--ui-backdrop-position: absolute}.backdrop.open{opacity:1;visibility:visible}.backdrop.invisible{background-color:transparent}.content{z-index:calc(var(--ui-backdrop-z-index) + 1)}";
-var Sa = Object.defineProperty, Ca = Object.getOwnPropertyDescriptor, er = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Ca(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Sa(t, i, r), r;
+var Sa = Object.defineProperty, Ca = Object.getOwnPropertyDescriptor, er = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Ca(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Sa(t, i, r), r;
 };
 let Rt = class extends c {
   constructor() {
@@ -2638,7 +2638,7 @@ let Rt = class extends c {
       invisible: this.invisible
     })}" 
         @click="${this._handleClick}"
-        aria-hidden="${this.open ? v : "true"}"
+        aria-hidden="${this.open ? g : "true"}"
       >
         <div class="content">
           <slot></slot>
@@ -2649,22 +2649,22 @@ let Rt = class extends c {
 };
 Rt.styles = p($a);
 er([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], Rt.prototype, "open", 2);
 er([
-  o({ type: Boolean })
+  s({ type: Boolean })
 ], Rt.prototype, "invisible", 2);
 er([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], Rt.prototype, "container", 2);
 Rt = er([
   d("ui-backdrop")
 ], Rt);
-const Ia = ":host{display:block}.dialog-panel{position:relative;background-color:var(--ui-surface-background, white);border-radius:var(--ui-border-radius-xl, 12px);box-shadow:var(--ui-shadow-xl, 0 20px 25px -5px rgba(0, 0, 0, .1));max-width:90vw;max-height:var(--ui-dialog-max-height, 90vh);width:var(--ui-dialog-width, 444px);display:flex;flex-direction:column;overflow:hidden;opacity:0;transform:scale(.9);transition:opacity .25s cubic-bezier(.4,0,.2,1),transform .25s cubic-bezier(.4,0,.2,1);pointer-events:none}.dialog-panel.open{opacity:1;transform:scale(1);pointer-events:auto}.dialog-panel.transition-slide-up{transform:translateY(40px)}.dialog-panel.transition-slide-up.open{transform:translateY(0)}.dialog-panel.transition-slide-down{transform:translateY(-40px)}.dialog-panel.transition-slide-down.open{transform:translateY(0)}", Ea = ':host{display:block;padding:20px 24px 12px;font-family:var(--ui-font-family, "Inter", sans-serif);font-size:1.25rem;font-weight:600;color:var(--ui-text-color, #111827)}', Pa = ":host{display:block;padding:0 24px 20px;flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch}", Oa = ':host{display:block;font-family:var(--ui-font-family, "Inter", sans-serif);font-size:.9375rem;line-height:1.6;color:var(--ui-text-color-muted, #6b7280);margin-bottom:8px}', Da = ':host{display:flex;align-items:center;justify-content:flex-end;padding:8px 16px 16px;gap:8px;border-top:1px solid var(--ui-border-color, #f3f4f6)}:host([align="start"]){justify-content:flex-start}:host([align="center"]){justify-content:center}:host([align="space-between"]){justify-content:space-between}';
-var za = Object.defineProperty, Ta = Object.getOwnPropertyDescriptor, Ge = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Ta(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && za(t, i, r), r;
+const Ia = ":host{display:block}.dialog-panel{position:relative;background-color:var(--ui-surface-background, white);border-radius:var(--ui-border-radius-xl, 12px);box-shadow:var(--ui-shadow-xl, 0 20px 25px -5px rgba(0, 0, 0, .1));max-width:90vw;max-height:var(--ui-dialog-max-height, 90vh);width:var(--ui-dialog-width, 444px);display:flex;flex-direction:column;overflow:hidden;opacity:0;transform:scale(.9);transition:opacity .25s cubic-bezier(.4,0,.2,1),transform .25s cubic-bezier(.4,0,.2,1);pointer-events:none}.dialog-panel.open{opacity:1;transform:scale(1);pointer-events:auto}.dialog-panel.transition-slide-up{transform:translateY(40px)}.dialog-panel.transition-slide-up.open{transform:translateY(0)}.dialog-panel.transition-slide-down{transform:translateY(-40px)}.dialog-panel.transition-slide-down.open{transform:translateY(0)}", Ea = ":host{display:block;padding:20px 24px 12px;font-family:var(--ui-font-family);font-size:1.25rem;font-weight:600;color:var(--ui-text-color)}", Pa = ":host{display:block;padding:0 24px 20px;flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch}", Oa = ":host{display:block;font-family:var(--ui-font-family);font-size:.9375rem;line-height:1.6;color:var(--ui-text-color-muted);margin-bottom:8px}", Da = ':host{display:flex;align-items:center;justify-content:flex-end;padding:8px 16px 16px;gap:8px;border-top:1px solid var(--ui-border-color)}:host([align="start"]){justify-content:flex-start}:host([align="center"]){justify-content:center}:host([align="space-between"]){justify-content:space-between}';
+var za = Object.defineProperty, Ta = Object.getOwnPropertyDescriptor, Ge = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Ta(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && za(t, i, r), r;
 };
 const Xe = [];
 let Vt = class extends c {
@@ -2720,13 +2720,13 @@ let Vt = class extends c {
 };
 Vt.styles = p(Ia);
 Ge([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], Vt.prototype, "open", 2);
 Ge([
-  o({ type: String })
+  s({ type: String })
 ], Vt.prototype, "transition", 2);
 Ge([
-  o({ type: Boolean, attribute: "disable-backdrop-close" })
+  s({ type: Boolean, attribute: "disable-backdrop-close" })
 ], Vt.prototype, "disableBackdropClose", 2);
 Vt = Ge([
   d("ui-dialog")
@@ -2768,16 +2768,16 @@ let Ai = class extends c {
 };
 Ai.styles = p(Da);
 Ge([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], Ai.prototype, "align", 2);
 Ai = Ge([
   d("ui-dialog-actions")
 ], Ai);
-const Aa = ":host{display:inline-block;--ui-circular-progress-size: 40px;--ui-circular-progress-color: var(--ui-primary-color, #3b82f6);--ui-circular-progress-thickness: 3.6}.circular-root{width:var(--ui-circular-progress-size);height:var(--ui-circular-progress-size);display:inline-block;animation:rotate 1.4s linear infinite}.circular-root.determinate{animation:none;transform:rotate(-90deg)}svg{display:block}circle{stroke:var(--ui-circular-progress-color);stroke-linecap:round;transition:stroke-dashoffset .3s ease}.indeterminate circle{animation:dash 1.4s ease-in-out infinite;stroke-dasharray:80,200;stroke-dashoffset:0}@keyframes rotate{to{transform:rotate(360deg)}}@keyframes dash{0%{stroke-dasharray:1,200;stroke-dashoffset:0}50%{stroke-dasharray:89,200;stroke-dashoffset:-35px}to{stroke-dasharray:89,200;stroke-dashoffset:-124px}}";
-var Ba = Object.defineProperty, Ma = Object.getOwnPropertyDescriptor, Ct = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Ma(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Ba(t, i, r), r;
+const Aa = ":host{display:inline-block;--ui-circular-progress-size: 40px;--ui-circular-progress-color: var(--ui-primary-color);--ui-circular-progress-thickness: 3.6}.circular-root{width:var(--ui-circular-progress-size);height:var(--ui-circular-progress-size);display:inline-block;animation:rotate 1.4s linear infinite}.circular-root.determinate{animation:none;transform:rotate(-90deg)}svg{display:block}circle{stroke:var(--ui-circular-progress-color);stroke-linecap:round;transition:stroke-dashoffset .3s ease}.indeterminate circle{animation:dash 1.4s ease-in-out infinite;stroke-dasharray:80,200;stroke-dashoffset:0}@keyframes rotate{to{transform:rotate(360deg)}}@keyframes dash{0%{stroke-dasharray:1,200;stroke-dashoffset:0}50%{stroke-dasharray:89,200;stroke-dashoffset:-35px}to{stroke-dasharray:89,200;stroke-dashoffset:-124px}}";
+var Ba = Object.defineProperty, Ma = Object.getOwnPropertyDescriptor, Ct = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Ma(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Ba(t, i, r), r;
 };
 let ue = class extends c {
   constructor() {
@@ -2787,16 +2787,16 @@ let ue = class extends c {
     return Math.min(100, Math.max(0, this.value));
   }
   render() {
-    const e = this.variant === "determinate", t = 20 - this.thickness / 2, i = 2 * Math.PI * t, s = i - this._safeValue / 100 * i, r = ue._colorMap[this.color] ?? ue._colorMap.primary;
+    const e = this.variant === "determinate", t = 20 - this.thickness / 2, i = 2 * Math.PI * t, o = i - this._safeValue / 100 * i, r = ue._colorMap[this.color] ?? ue._colorMap.primary;
     return l`
       <div
         class="circular-root ${u({ determinate: e, indeterminate: !e })}"
         style="--ui-circular-progress-size: ${this.size}px; --ui-circular-progress-thickness: ${this.thickness}; --ui-circular-progress-color: ${r}"
         role="progressbar"
-        aria-valuenow="${e ? this._safeValue : v}"
+        aria-valuenow="${e ? this._safeValue : g}"
         aria-valuemin="0"
         aria-valuemax="100"
-        aria-label="${this.label || v}"
+        aria-label="${this.label || g}"
       >
         <svg viewBox="22 22 44 44">
           <circle
@@ -2806,7 +2806,7 @@ let ue = class extends c {
             r="${t}"
             fill="none"
             stroke-width="${this.thickness}"
-            style="${e ? `stroke-dasharray: ${i}; stroke-dashoffset: ${s}px` : ""}"
+            style="${e ? `stroke-dasharray: ${i}; stroke-dashoffset: ${o}px` : ""}"
           ></circle>
         </svg>
       </div>
@@ -2821,31 +2821,31 @@ ue._colorMap = {
   warning: "#f59e0b"
 };
 Ct([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], ue.prototype, "variant", 2);
 Ct([
-  o({ type: Number, reflect: !0 })
+  s({ type: Number, reflect: !0 })
 ], ue.prototype, "value", 2);
 Ct([
-  o({ type: Number })
+  s({ type: Number })
 ], ue.prototype, "size", 2);
 Ct([
-  o({ type: Number })
+  s({ type: Number })
 ], ue.prototype, "thickness", 2);
 Ct([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], ue.prototype, "color", 2);
 Ct([
-  o({ type: String })
+  s({ type: String })
 ], ue.prototype, "label", 2);
 ue = Ct([
   d("ui-circular-progress")
 ], ue);
-const La = ":host{display:block;width:100%;--ui-linear-progress-height: 4px;--ui-linear-progress-color: var(--ui-primary-color, #3b82f6);--ui-linear-progress-bg: rgba(59, 130, 246, .15)}.root{position:relative;overflow:hidden;height:var(--ui-linear-progress-height);background-color:var(--ui-linear-progress-bg);border-radius:calc(var(--ui-linear-progress-height) / 2)}.bar{width:100%;position:absolute;left:0;bottom:0;top:0;transition:transform .4s linear;transform-origin:left;background-color:var(--ui-linear-progress-color);border-radius:inherit}.indeterminate .bar1{width:auto;animation:indeterminate1 2.1s cubic-bezier(.65,.815,.735,.395) infinite}.indeterminate .bar2{width:auto;animation:indeterminate2 2.1s cubic-bezier(.165,.84,.44,1) infinite;animation-delay:1.15s}@keyframes indeterminate1{0%{left:-35%;right:100%}60%{left:100%;right:-90%}to{left:100%;right:-90%}}@keyframes indeterminate2{0%{left:-200%;right:100%}60%{left:107%;right:-8%}to{left:107%;right:-8%}}";
-var ja = Object.defineProperty, Ua = Object.getOwnPropertyDescriptor, ri = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Ua(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && ja(t, i, r), r;
+const La = ":host{display:block;width:100%;--ui-linear-progress-height: 4px;--ui-linear-progress-color: var(--ui-primary-color);--ui-linear-progress-bg: var(--ui-primary-color-light)}.root{position:relative;overflow:hidden;height:var(--ui-linear-progress-height);background-color:var(--ui-linear-progress-bg);border-radius:calc(var(--ui-linear-progress-height) / 2)}.bar{width:100%;position:absolute;left:0;bottom:0;top:0;transition:transform .4s linear;transform-origin:left;background-color:var(--ui-linear-progress-color);border-radius:inherit}.indeterminate .bar1{width:auto;animation:indeterminate1 2.1s cubic-bezier(.65,.815,.735,.395) infinite}.indeterminate .bar2{width:auto;animation:indeterminate2 2.1s cubic-bezier(.165,.84,.44,1) infinite;animation-delay:1.15s}@keyframes indeterminate1{0%{left:-35%;right:100%}60%{left:100%;right:-90%}to{left:100%;right:-90%}}@keyframes indeterminate2{0%{left:-200%;right:100%}60%{left:107%;right:-8%}to{left:107%;right:-8%}}";
+var ja = Object.defineProperty, Ua = Object.getOwnPropertyDescriptor, ri = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Ua(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && ja(t, i, r), r;
 };
 let xe = class extends c {
   constructor() {
@@ -2863,10 +2863,10 @@ let xe = class extends c {
       <div
         class="root ${u({ determinate: e, indeterminate: !e })}"
         role="progressbar"
-        aria-valuenow="${e ? this._safeValue : v}"
+        aria-valuenow="${e ? this._safeValue : g}"
         aria-valuemin="0"
         aria-valuemax="100"
-        aria-label="${this.label || v}"
+        aria-label="${this.label || g}"
         style="${i}"
       >
         ${e ? l`
@@ -2887,28 +2887,28 @@ xe._colorMap = {
   warning: "#f59e0b"
 };
 ri([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], xe.prototype, "variant", 2);
 ri([
-  o({ type: Number, reflect: !0 })
+  s({ type: Number, reflect: !0 })
 ], xe.prototype, "value", 2);
 ri([
-  o({ type: Number })
+  s({ type: Number })
 ], xe.prototype, "height", 2);
 ri([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], xe.prototype, "color", 2);
 ri([
-  o({ type: String })
+  s({ type: String })
 ], xe.prototype, "label", 2);
 xe = ri([
   d("ui-linear-progress")
 ], xe);
-const Ra = ":host{display:block;border-top:1px solid var(--ui-border-color, #e5e7eb);background-color:var(--ui-surface-background, #ffffff);color:var(--ui-text-color, #111827);transition:margin .15s cubic-bezier(.4,0,.2,1)}:host(:first-of-type){border-top:none;border-top-left-radius:var(--ui-border-radius-md, 4px);border-top-right-radius:var(--ui-border-radius-md, 4px)}:host(:last-of-type){border-bottom-left-radius:var(--ui-border-radius-md, 4px);border-bottom-right-radius:var(--ui-border-radius-md, 4px)}:host([expanded]){margin:16px 0;border-top:none;box-shadow:var(--ui-shadow-md, 0 4px 6px -1px rgba(0, 0, 0, .1))}:host([expanded]:first-of-type){margin-top:0}:host([expanded]:last-of-type){margin-bottom:0}.accordion-container{display:flex;flex-direction:column}", Va = ":host{display:flex;align-items:center;padding:0 16px;min-height:48px;cursor:pointer;-webkit-user-select:none;user-select:none;transition:min-height .15s cubic-bezier(.4,0,.2,1),background-color .15s cubic-bezier(.4,0,.2,1)}:host(:focus-visible){outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:-2px}:host(:hover){background-color:var(--ui-hover-color, rgba(0, 0, 0, .04))}:host([expanded]){min-height:64px}:host([disabled]){cursor:default;opacity:.5;pointer-events:none}.content{display:flex;flex-grow:1;margin:12px 0;font-family:var(--ui-font-family, sans-serif);font-weight:500}.expand-icon{display:flex;padding:8px;border-radius:50%;color:var(--ui-text-color-muted, #6b7280);transition:transform .15s cubic-bezier(.4,0,.2,1)}:host([expanded]) .expand-icon{transform:rotate(180deg)}", Na = ":host{display:grid;grid-template-rows:0fr;transition:grid-template-rows .15s cubic-bezier(.4,0,.2,1);overflow:hidden}:host([expanded]){grid-template-rows:1fr}.details-inner{min-height:0}.content{padding:8px 16px 16px;font-family:var(--ui-font-family, sans-serif);font-size:.875rem;color:var(--ui-text-color, #111827)}", Fa = ":host{display:none;padding:8px 16px 16px;justify-content:flex-end;gap:8px;border-top:1px solid var(--ui-border-color, #e5e7eb)}:host([expanded]){display:flex}";
-var qa = Object.defineProperty, Ha = Object.getOwnPropertyDescriptor, si = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Ha(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && qa(t, i, r), r;
+const Ra = ":host{display:block;border-top:1px solid var(--ui-border-color);background-color:var(--ui-surface-1);color:var(--ui-text-color);transition:margin .15s cubic-bezier(.4,0,.2,1)}:host(:first-of-type){border-top:none;border-top-left-radius:var(--ui-border-radius-md);border-top-right-radius:var(--ui-border-radius-md)}:host(:last-of-type){border-bottom-left-radius:var(--ui-border-radius-md);border-bottom-right-radius:var(--ui-border-radius-md)}:host([expanded]){margin:16px 0;border-top:none;box-shadow:var(--ui-shadow-md)}:host([expanded]:first-of-type){margin-top:0}:host([expanded]:last-of-type){margin-bottom:0}.accordion-container{display:flex;flex-direction:column}", Va = ":host{display:flex;align-items:center;padding:0 16px;min-height:48px;cursor:pointer;-webkit-user-select:none;user-select:none;transition:min-height .15s cubic-bezier(.4,0,.2,1),background-color .15s cubic-bezier(.4,0,.2,1)}:host(:focus-visible){outline:2px solid var(--ui-primary-color);outline-offset:-2px}:host(:hover){background-color:var(--ui-hover-color)}:host([expanded]){min-height:64px}:host([disabled]){cursor:default;opacity:.5;pointer-events:none}.content{display:flex;flex-grow:1;margin:12px 0;font-family:var(--ui-font-family);font-weight:500}.expand-icon{display:flex;padding:8px;border-radius:50%;color:var(--ui-text-color-muted);transition:transform .15s cubic-bezier(.4,0,.2,1)}:host([expanded]) .expand-icon{transform:rotate(180deg)}", Na = ":host{display:grid;grid-template-rows:0fr;transition:grid-template-rows .15s cubic-bezier(.4,0,.2,1);overflow:hidden}:host([expanded]){grid-template-rows:1fr}.details-inner{min-height:0}.content{padding:8px 16px 16px;font-family:var(--ui-font-family);font-size:.875rem;color:var(--ui-text-color)}", Fa = ":host{display:none;padding:8px 16px 16px;justify-content:flex-end;gap:8px;border-top:1px solid var(--ui-border-color)}:host([expanded]){display:flex}";
+var qa = Object.defineProperty, Ha = Object.getOwnPropertyDescriptor, oi = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Ha(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && qa(t, i, r), r;
 };
 let fi = class extends c {
   constructor() {
@@ -2934,13 +2934,13 @@ let fi = class extends c {
   }
 };
 fi.styles = p(Ra);
-si([
-  o({ type: Boolean, reflect: !0 })
+oi([
+  s({ type: Boolean, reflect: !0 })
 ], fi.prototype, "expanded", 2);
-si([
-  o({ type: Boolean, reflect: !0 })
+oi([
+  s({ type: Boolean, reflect: !0 })
 ], fi.prototype, "disabled", 2);
-fi = si([
+fi = oi([
   d("ui-accordion")
 ], fi);
 let kr = class extends c {
@@ -2973,7 +2973,7 @@ let kr = class extends c {
   }
 };
 kr.styles = p(Va);
-kr = si([
+kr = oi([
   d("ui-accordion-summary")
 ], kr);
 let $r = class extends c {
@@ -2988,7 +2988,7 @@ let $r = class extends c {
   }
 };
 $r.styles = p(Na);
-$r = si([
+$r = oi([
   d("ui-accordion-details")
 ], $r);
 let Sr = class extends c {
@@ -2997,14 +2997,14 @@ let Sr = class extends c {
   }
 };
 Sr.styles = p(Fa);
-Sr = si([
+Sr = oi([
   d("ui-accordion-actions")
 ], Sr);
-const Ka = ':host{display:block;position:relative;--ui-app-bar-height: 64px;--ui-app-bar-bg: var(--ui-primary-color, #3b82f6);--ui-app-bar-color: var(--ui-text-color-on-primary, #ffffff);--ui-app-bar-shadow: var(--ui-shadow-md, 0 4px 6px -1px rgba(0, 0, 0, .1));z-index:1100}:host([position="fixed"]){position:fixed;top:0;left:0;right:0}:host([position="absolute"]){position:absolute;top:0;left:0;right:0}:host([position="sticky"]){position:sticky;top:0}header{display:flex;align-items:center;box-sizing:border-box;width:100%;height:var(--ui-app-bar-height);padding:0 16px;background-color:var(--ui-app-bar-bg);color:var(--ui-app-bar-color);box-shadow:var(--ui-app-bar-shadow);position:relative}header.variant-outlined{background-color:var(--ui-surface-background, #ffffff);color:var(--ui-text-color, #111827);border-bottom:1px solid var(--ui-border-color, #e5e7eb);box-shadow:none}.title{flex-grow:1;min-width:0;margin:0 16px;font-family:var(--ui-font-family, sans-serif);font-size:1.25rem;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.left-section,.right-section{display:flex;align-items:center;flex-shrink:0;gap:8px}';
-var Ya = Object.defineProperty, Ga = Object.getOwnPropertyDescriptor, tr = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Ga(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Ya(t, i, r), r;
+const Ka = ':host{display:block;position:relative;--ui-app-bar-height: 64px;--ui-app-bar-bg: var(--ui-primary-color);--ui-app-bar-color: var(--ui-text-color-on-primary);--ui-app-bar-shadow: var(--ui-shadow-md);z-index:1100}:host([position="fixed"]){position:fixed;top:0;left:0;right:0}:host([position="absolute"]){position:absolute;top:0;left:0;right:0}:host([position="sticky"]){position:sticky;top:0}header{display:flex;align-items:center;box-sizing:border-box;width:100%;height:var(--ui-app-bar-height);padding:0 16px;background-color:var(--ui-app-bar-bg);color:var(--ui-app-bar-color);box-shadow:var(--ui-app-bar-shadow);position:relative}header.variant-outlined{background-color:var(--ui-surface-1);color:var(--ui-text-color);border-bottom:1px solid var(--ui-border-color);box-shadow:none}.title{flex-grow:1;min-width:0;margin:0 16px;font-family:var(--ui-font-family);font-size:1.25rem;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.left-section,.right-section{display:flex;align-items:center;flex-shrink:0;gap:8px}';
+var Ya = Object.defineProperty, Ga = Object.getOwnPropertyDescriptor, tr = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Ga(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Ya(t, i, r), r;
 };
 let Nt = class extends c {
   constructor() {
@@ -3032,22 +3032,22 @@ let Nt = class extends c {
 };
 Nt.styles = p(Ka);
 tr([
-  o({ type: String })
+  s({ type: String })
 ], Nt.prototype, "title", 2);
 tr([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], Nt.prototype, "position", 2);
 tr([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], Nt.prototype, "variant", 2);
 Nt = tr([
   d("ui-app-bar")
 ], Nt);
-const Wa = ":host{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 12px 8px;color:var(--ui-text-color-muted, #6b7280);cursor:pointer;transition:color .25s cubic-bezier(.4,0,.2,1),padding .25s cubic-bezier(.4,0,.2,1);-webkit-user-select:none;user-select:none;min-width:80px;max-width:168px}:host(:hover){background-color:var(--ui-hover-color, rgba(0, 0, 0, .04))}:host([active]){color:var(--ui-primary-color, #3b82f6);padding-top:8px}.icon-container{display:flex;align-items:center;justify-content:center;height:24px;margin-bottom:2px;transition:transform .25s cubic-bezier(.4,0,.2,1)}:host([active]) .icon-container{transform:scale(1.1)}.label{font-family:var(--ui-font-family, sans-serif);font-size:.75rem;transition:font-size .25s cubic-bezier(.4,0,.2,1),opacity .25s cubic-bezier(.4,0,.2,1);opacity:1}:host([active]) .label{font-size:.875rem}.label.hidden{opacity:0;font-size:0;pointer-events:none}";
-var Xa = Object.defineProperty, Ja = Object.getOwnPropertyDescriptor, Ii = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Ja(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Xa(t, i, r), r;
+const Wa = ":host{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 12px 8px;color:var(--ui-text-color-muted);cursor:pointer;transition:color .25s cubic-bezier(.4,0,.2,1),padding .25s cubic-bezier(.4,0,.2,1);-webkit-user-select:none;user-select:none;min-width:80px;max-width:168px}:host(:hover){background-color:var(--ui-hover-color)}:host([active]){color:var(--ui-primary-color);padding-top:8px}.icon-container{display:flex;align-items:center;justify-content:center;height:24px;margin-bottom:2px;transition:transform .25s cubic-bezier(.4,0,.2,1)}:host([active]) .icon-container{transform:scale(1.1)}.label{font-family:var(--ui-font-family);font-size:.75rem;transition:font-size .25s cubic-bezier(.4,0,.2,1),opacity .25s cubic-bezier(.4,0,.2,1);opacity:1}:host([active]) .label{font-size:.875rem}.label.hidden{opacity:0;font-size:0;pointer-events:none}";
+var Xa = Object.defineProperty, Ja = Object.getOwnPropertyDescriptor, Ii = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Ja(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Xa(t, i, r), r;
 };
 let et = class extends c {
   constructor() {
@@ -3078,25 +3078,25 @@ let et = class extends c {
 };
 et.styles = p(Wa);
 Ii([
-  o({ type: String })
+  s({ type: String })
 ], et.prototype, "label", 2);
 Ii([
-  o()
+  s()
 ], et.prototype, "value", 2);
 Ii([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], et.prototype, "active", 2);
 Ii([
-  o({ type: Boolean })
+  s({ type: Boolean })
 ], et.prototype, "showLabel", 2);
 et = Ii([
   d("ui-bottom-navigation-action")
 ], et);
-const Za = ":host{display:flex;justify-content:center;height:56px;background-color:var(--ui-surface-background, #ffffff);box-shadow:var(--ui-shadow-lg, 0 -1px 10px rgba(0, 0, 0, .1));position:relative;width:100%}.container{display:flex;flex:1;max-width:100%}";
-var Qa = Object.defineProperty, en = Object.getOwnPropertyDescriptor, ir = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? en(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Qa(t, i, r), r;
+const Za = ":host{display:flex;justify-content:center;height:56px;background-color:var(--ui-surface-1);box-shadow:var(--ui-shadow-lg);position:relative;width:100%}.container{display:flex;flex:1;max-width:100%}";
+var Qa = Object.defineProperty, en = Object.getOwnPropertyDescriptor, ir = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? en(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Qa(t, i, r), r;
 };
 let Ft = class extends c {
   constructor() {
@@ -3134,22 +3134,22 @@ let Ft = class extends c {
 };
 Ft.styles = p(Za);
 ir([
-  o()
+  s()
 ], Ft.prototype, "value", 2);
 ir([
-  o({ type: Boolean, attribute: "show-labels" })
+  s({ type: Boolean, attribute: "show-labels" })
 ], Ft.prototype, "showLabels", 2);
 ir([
-  hs({ selector: "ui-bottom-navigation-action" })
+  uo({ selector: "ui-bottom-navigation-action" })
 ], Ft.prototype, "_actions", 2);
 Ft = ir([
   d("ui-bottom-navigation")
 ], Ft);
-const tn = ':host{display:block}.breadcrumbs-ol{display:flex;flex-wrap:wrap;align-items:center;padding:0;margin:0;list-style:none}.breadcrumb-li{display:flex;align-items:center}.separator{display:flex;-webkit-user-select:none;user-select:none;margin-left:8px;margin-right:8px;color:var(--ui-text-color-muted, #6b7280)}::slotted(*){font-family:var(--ui-font-family, sans-serif);font-size:.875rem;color:var(--ui-text-color-muted, #6b7280);text-decoration:none;transition:color .2s}::slotted(a:hover){text-decoration:underline;color:var(--ui-text-color, #111827)}::slotted([aria-current="page"]),::slotted(.active){color:var(--ui-text-color, #111827);font-weight:500;pointer-events:none}.collapsed-button{display:flex;align-items:center;justify-content:center;background:var(--ui-hover-color, rgba(0, 0, 0, .04));border:none;border-radius:4px;cursor:pointer;padding:4px 8px;font-size:1rem;line-height:1;color:var(--ui-text-color-muted, #6b7280);transition:background-color .2s}.collapsed-button:hover{background-color:var(--ui-hover-color-strong, rgba(0, 0, 0, .08))}';
-var rn = Object.defineProperty, sn = Object.getOwnPropertyDescriptor, nt = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? sn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && rn(t, i, r), r;
+const tn = ':host{display:block}.breadcrumbs-ol{display:flex;flex-wrap:wrap;align-items:center;padding:0;margin:0;list-style:none}.breadcrumb-li{display:flex;align-items:center}.separator{display:flex;-webkit-user-select:none;user-select:none;margin-left:8px;margin-right:8px;color:var(--ui-text-color-muted)}::slotted(*){font-family:var(--ui-font-family);font-size:.875rem;color:var(--ui-text-color-muted);text-decoration:none;transition:color .2s}::slotted(a:hover){text-decoration:underline;color:var(--ui-text-color)}::slotted([aria-current="page"]),::slotted(.active){color:var(--ui-text-color);font-weight:500;pointer-events:none}.collapsed-button{display:flex;align-items:center;justify-content:center;background:var(--ui-hover-color);border:none;border-radius:4px;cursor:pointer;padding:4px 8px;font-size:1rem;line-height:1;color:var(--ui-text-color-muted);transition:background-color .2s}.collapsed-button:hover{background-color:var(--ui-active-color)}';
+var rn = Object.defineProperty, on = Object.getOwnPropertyDescriptor, nt = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? on(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && rn(t, i, r), r;
 };
 let Pe = class extends c {
   constructor() {
@@ -3157,8 +3157,8 @@ let Pe = class extends c {
   }
   _handleSlotChange() {
     const t = Array.from(this.children).filter((i) => !i.slot || i.slot.startsWith("breadcrumb-item-"));
-    t.forEach((i, s) => {
-      const r = `breadcrumb-item-${s}`;
+    t.forEach((i, o) => {
+      const r = `breadcrumb-item-${o}`;
       i.getAttribute("slot") !== r && i.setAttribute("slot", r);
     }), this._itemsCount = t.length;
   }
@@ -3189,9 +3189,9 @@ let Pe = class extends c {
     const t = Math.min(this.itemsBefore, e), i = Math.min(this.itemsAfter, e - t);
     if (t + i >= e)
       return Array.from({ length: e }).map((a, n) => this._renderItem(n, n === e - 1));
-    const s = Array.from({ length: t }).map((a, n) => n), r = Array.from({ length: i }).map((a, n) => e - i + n);
+    const o = Array.from({ length: t }).map((a, n) => n), r = Array.from({ length: i }).map((a, n) => e - i + n);
     return l`
-            ${s.map((a) => this._renderItem(a, !1))}
+            ${o.map((a) => this._renderItem(a, !1))}
             <li class="breadcrumb-li">
                 <button class="collapsed-button" @click=${() => this._expanded = !0} aria-label="Show all breadcrumbs">
                     ...
@@ -3217,34 +3217,34 @@ let Pe = class extends c {
 };
 Pe.styles = p(tn);
 nt([
-  o({ type: Number, attribute: "max-items" })
+  s({ type: Number, attribute: "max-items" })
 ], Pe.prototype, "maxItems", 2);
 nt([
-  o({ type: Number, attribute: "items-before" })
+  s({ type: Number, attribute: "items-before" })
 ], Pe.prototype, "itemsBefore", 2);
 nt([
-  o({ type: Number, attribute: "items-after" })
+  s({ type: Number, attribute: "items-after" })
 ], Pe.prototype, "itemsAfter", 2);
 nt([
-  o({ type: String })
+  s({ type: String })
 ], Pe.prototype, "separator", 2);
 nt([
-  g()
+  m()
 ], Pe.prototype, "_expanded", 2);
 nt([
-  g()
+  m()
 ], Pe.prototype, "_itemsCount", 2);
 nt([
-  g()
+  m()
 ], Pe.prototype, "_separatorNode", 2);
 Pe = nt([
   d("ui-breadcrumbs")
 ], Pe);
-const on = ':host{display:contents;--ui-drawer-width: 250px;--ui-drawer-mini-width: 72px;--ui-drawer-height: auto;--ui-drawer-bg: var(--ui-surface-background, #ffffff);--ui-drawer-z-index: 1200;--ui-drawer-shadow: 0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12)}.backdrop{position:fixed;inset:0;background:#00000080;z-index:calc(var(--ui-drawer-z-index) - 1);opacity:0;pointer-events:none;transition:opacity .25s}:host([container]) .backdrop{position:absolute}.backdrop.open{opacity:1;pointer-events:auto}.paper{position:fixed;background:var(--ui-drawer-bg);z-index:var(--ui-drawer-z-index);display:flex;flex-direction:column;overflow-y:auto;outline:none}:host([container]) .paper{position:absolute}:host(:not([variant])) .paper,:host([variant="temporary"]) .paper{top:0;bottom:0;left:0;width:var(--ui-drawer-width);box-shadow:var(--ui-drawer-shadow);transform:translate(-100%);transition:transform .225s cubic-bezier(0,0,.2,1)}:host(:not([variant])[open]) .paper,:host([variant="temporary"][open]) .paper{transform:translate(0)}:host([variant="temporary"][anchor="right"]) .paper{left:auto;right:0;transform:translate(100%)}:host([variant="temporary"][anchor="right"][open]) .paper{transform:translate(0)}:host([variant="temporary"][anchor="top"]) .paper{inset:0 0 auto;width:auto;height:var(--ui-drawer-height);transform:translateY(-100%)}:host([variant="temporary"][anchor="top"][open]) .paper{transform:translateY(0)}:host([variant="temporary"][anchor="bottom"]) .paper{inset:auto 0 0;width:auto;height:var(--ui-drawer-height);transform:translateY(100%)}:host([variant="temporary"][anchor="bottom"][open]) .paper{transform:translateY(0)}:host([variant="persistent"]) .paper{position:relative;transform:none;box-shadow:none;transition:none;border-right:1px solid var(--ui-border-color, #e5e7eb)}:host([variant="persistent"][anchor="right"]) .paper{border-right:none;border-left:1px solid var(--ui-border-color, #e5e7eb)}:host([variant="persistent"]) .paper:not(.open){display:none}:host([variant="mini"]){display:flex}:host([variant="mini"]) .paper{position:relative;transform:none;box-shadow:none;border-right:1px solid var(--ui-border-color, #e5e7eb);width:var(--ui-drawer-mini-width);overflow-x:hidden;white-space:nowrap;transition:width .225s cubic-bezier(.4,0,.6,1);flex-shrink:0}:host([variant="mini"][anchor="right"]) .paper{border-right:none;border-left:1px solid var(--ui-border-color, #e5e7eb)}:host([variant="mini"][open]) .paper{width:var(--ui-drawer-width)}:host([variant="mini"]:not([open])) ::slotted([data-drawer-hide-mini]){opacity:0;pointer-events:none}::slotted([data-drawer-hide-mini]){transition:opacity .18s}.edge{display:none;position:fixed;background:var(--ui-drawer-bg);border:1px solid var(--ui-border-color, #e5e7eb);box-shadow:0 1px 3px #0000001f;cursor:pointer;z-index:var(--ui-drawer-z-index);align-items:center;justify-content:center}:host([container]) .edge{position:absolute}:host([edge]:not([variant])) .edge,:host([edge][variant="temporary"]) .edge{display:flex}.edge-left{left:0;top:0;bottom:0;width:16px;border-radius:0 8px 8px 0}.edge-right{right:0;top:0;bottom:0;width:16px;border-radius:8px 0 0 8px}.edge-top{top:0;left:0;right:0;height:16px;border-radius:0 0 8px 8px}.edge-bottom{bottom:0;left:0;right:0;height:16px;border-radius:8px 8px 0 0}.edge-handle{width:4px;height:32px;background:#cbd5e1;border-radius:2px}.edge-top .edge-handle,.edge-bottom .edge-handle{width:32px;height:4px}';
-var an = Object.defineProperty, nn = Object.getOwnPropertyDescriptor, It = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? nn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && an(t, i, r), r;
+const sn = ':host{display:contents;--ui-drawer-width: 250px;--ui-drawer-mini-width: 72px;--ui-drawer-height: auto;--ui-drawer-bg: var(--ui-surface-1);--ui-drawer-z-index: 1200;--ui-drawer-shadow: 0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12)}.backdrop{position:fixed;inset:0;background:var(--ui-backdrop-color);z-index:calc(var(--ui-drawer-z-index) - 1);opacity:0;pointer-events:none;transition:opacity .25s}:host([container]) .backdrop{position:absolute}.backdrop.open{opacity:1;pointer-events:auto}.paper{position:fixed;background:var(--ui-drawer-bg);z-index:var(--ui-drawer-z-index);display:flex;flex-direction:column;overflow-y:auto;outline:none}:host([container]) .paper{position:absolute}:host(:not([variant])) .paper,:host([variant="temporary"]) .paper{top:0;bottom:0;left:0;width:var(--ui-drawer-width);box-shadow:var(--ui-drawer-shadow);transform:translate(-100%);transition:transform .225s cubic-bezier(0,0,.2,1)}:host(:not([variant])[open]) .paper,:host([variant="temporary"][open]) .paper{transform:translate(0)}:host([variant="temporary"][anchor="right"]) .paper{left:auto;right:0;transform:translate(100%)}:host([variant="temporary"][anchor="right"][open]) .paper{transform:translate(0)}:host([variant="temporary"][anchor="top"]) .paper{inset:0 0 auto;width:auto;height:var(--ui-drawer-height);transform:translateY(-100%)}:host([variant="temporary"][anchor="top"][open]) .paper{transform:translateY(0)}:host([variant="temporary"][anchor="bottom"]) .paper{inset:auto 0 0;width:auto;height:var(--ui-drawer-height);transform:translateY(100%)}:host([variant="temporary"][anchor="bottom"][open]) .paper{transform:translateY(0)}:host([variant="persistent"]) .paper{position:relative;transform:none;box-shadow:none;transition:none;border-right:1px solid var(--ui-border-color)}:host([variant="persistent"][anchor="right"]) .paper{border-right:none;border-left:1px solid var(--ui-border-color)}:host([variant="persistent"]) .paper:not(.open){display:none}:host([variant="mini"]){display:flex}:host([variant="mini"]) .paper{position:relative;transform:none;box-shadow:none;border-right:1px solid var(--ui-border-color);width:var(--ui-drawer-mini-width);overflow-x:hidden;white-space:nowrap;transition:width .225s cubic-bezier(.4,0,.6,1);flex-shrink:0}:host([variant="mini"][anchor="right"]) .paper{border-right:none;border-left:1px solid var(--ui-border-color)}:host([variant="mini"][open]) .paper{width:var(--ui-drawer-width)}:host([variant="mini"]:not([open])) ::slotted([data-drawer-hide-mini]){opacity:0;pointer-events:none}::slotted([data-drawer-hide-mini]){transition:opacity .18s}.edge{display:none;position:fixed;background:var(--ui-drawer-bg);border:1px solid var(--ui-border-color);box-shadow:0 1px 3px #0000001f;cursor:pointer;z-index:var(--ui-drawer-z-index);align-items:center;justify-content:center}:host([container]) .edge{position:absolute}:host([edge]:not([variant])) .edge,:host([edge][variant="temporary"]) .edge{display:flex}.edge-left{left:0;top:0;bottom:0;width:16px;border-radius:0 8px 8px 0}.edge-right{right:0;top:0;bottom:0;width:16px;border-radius:8px 0 0 8px}.edge-top{top:0;left:0;right:0;height:16px;border-radius:0 0 8px 8px}.edge-bottom{bottom:0;left:0;right:0;height:16px;border-radius:8px 8px 0 0}.edge-handle{width:4px;height:32px;background:var(--ui-border-color);border-radius:2px}.edge-top .edge-handle,.edge-bottom .edge-handle{width:32px;height:4px}';
+var an = Object.defineProperty, nn = Object.getOwnPropertyDescriptor, It = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? nn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && an(t, i, r), r;
 };
 let Re = class extends c {
   constructor() {
@@ -3296,33 +3296,33 @@ let Re = class extends c {
         `;
   }
 };
-Re.styles = p(on);
+Re.styles = p(sn);
 It([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], Re.prototype, "open", 2);
 It([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], Re.prototype, "anchor", 2);
 It([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], Re.prototype, "variant", 2);
 It([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], Re.prototype, "edge", 2);
 It([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], Re.prototype, "container", 2);
 It([
-  o({ type: String })
+  s({ type: String })
 ], Re.prototype, "label", 2);
 Re = It([
   d("ui-drawer")
 ], Re);
-const ln = ':host{display:inline;--ui-link-color: var(--ui-primary-color, #3b82f6);--ui-link-color-hover: var(--ui-primary-color-dark, #2563eb);--ui-link-color-visited: var(--ui-secondary-color, #7c3aed)}a{color:var(--ui-link-color);font-family:var(--ui-font-family, "Inter", sans-serif);font-size:inherit;font-weight:inherit;line-height:inherit;cursor:pointer;display:inline;transition:color .15s ease,opacity .15s ease}:host([color="inherit"]) a{color:inherit}:host([color="primary"]) a{color:var(--ui-primary-color, #3b82f6)}:host([color="secondary"]) a{color:var(--ui-secondary-color, #7c3aed)}:host([color="success"]) a{color:var(--ui-success-color, #16a34a)}:host([color="error"]) a{color:var(--ui-error-color, #dc2626)}:host([color="warning"]) a{color:var(--ui-warning-color, #d97706)}:host([color="info"]) a{color:var(--ui-info-color, #0891b2)}:host([color="textPrimary"]) a{color:var(--ui-text-color, #111827)}:host([color="textSecondary"]) a{color:var(--ui-text-color-muted, #6b7280)}:host([underline="none"]) a{text-decoration:none}:host([underline="hover"]) a{text-decoration:none}:host([underline="hover"]) a:hover{text-decoration:underline}:host([underline="always"]) a{text-decoration:underline}:host([underline="always"]) a:hover{text-decoration:underline}a{text-decoration:underline}a:hover{opacity:.8}a:visited{color:var(--ui-link-color-visited)}:host([color="inherit"]) a:visited{color:inherit}:host([variant="h1"]) a{font-size:6rem;font-weight:300;letter-spacing:-1.5px;line-height:1.167}:host([variant="h2"]) a{font-size:3.75rem;font-weight:300;letter-spacing:-.5px;line-height:1.2}:host([variant="h3"]) a{font-size:3rem;font-weight:400;line-height:1.167}:host([variant="h4"]) a{font-size:2.125rem;font-weight:400;letter-spacing:.25px;line-height:1.235}:host([variant="h5"]) a{font-size:1.5rem;font-weight:400;line-height:1.334}:host([variant="h6"]) a{font-size:1.25rem;font-weight:500;letter-spacing:.15px;line-height:1.6}:host([variant="subtitle1"]) a{font-size:1rem;font-weight:400;letter-spacing:.15px;line-height:1.75}:host([variant="subtitle2"]) a{font-size:.875rem;font-weight:500;letter-spacing:.1px;line-height:1.57}:host([variant="body1"]) a{font-size:1rem;font-weight:400;letter-spacing:.15px;line-height:1.5}:host([variant="body2"]) a{font-size:.875rem;font-weight:400;letter-spacing:.15px;line-height:1.43}:host([variant="caption"]) a{font-size:.75rem;font-weight:400;letter-spacing:.4px;line-height:1.66}:host([variant="overline"]) a{font-size:.75rem;font-weight:400;letter-spacing:1px;line-height:2.66;text-transform:uppercase}:host([disabled]) a{opacity:.38;cursor:not-allowed;pointer-events:none}';
-var cn = Object.defineProperty, dn = Object.getOwnPropertyDescriptor, Me = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? dn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && cn(t, i, r), r;
+const ln = ':host{display:inline;--ui-link-color: var(--ui-primary-color);--ui-link-color-hover: var(--ui-primary-color-hover);--ui-link-color-visited: var(--ui-secondary-color)}a{color:var(--ui-link-color);font-family:var(--ui-font-family);font-size:inherit;font-weight:inherit;line-height:inherit;cursor:pointer;display:inline;transition:color .15s ease,opacity .15s ease}:host([color="inherit"]) a{color:inherit}:host([color="primary"]) a{color:var(--ui-primary-color)}:host([color="secondary"]) a{color:var(--ui-secondary-color)}:host([color="success"]) a{color:var(--ui-success-color)}:host([color="error"]) a{color:var(--ui-error-color)}:host([color="warning"]) a{color:var(--ui-warning-color)}:host([color="info"]) a{color:var(--ui-info-icon-color)}:host([color="textPrimary"]) a{color:var(--ui-text-color)}:host([color="textSecondary"]) a{color:var(--ui-text-color-muted)}:host([underline="none"]) a{text-decoration:none}:host([underline="hover"]) a{text-decoration:none}:host([underline="hover"]) a:hover{text-decoration:underline}:host([underline="always"]) a{text-decoration:underline}:host([underline="always"]) a:hover{text-decoration:underline}a{text-decoration:underline}a:hover{opacity:.8}a:visited{color:var(--ui-link-color-visited)}:host([color="inherit"]) a:visited{color:inherit}:host([variant="h1"]) a{font-size:6rem;font-weight:300;letter-spacing:-1.5px;line-height:1.167}:host([variant="h2"]) a{font-size:3.75rem;font-weight:300;letter-spacing:-.5px;line-height:1.2}:host([variant="h3"]) a{font-size:3rem;font-weight:400;line-height:1.167}:host([variant="h4"]) a{font-size:2.125rem;font-weight:400;letter-spacing:.25px;line-height:1.235}:host([variant="h5"]) a{font-size:1.5rem;font-weight:400;line-height:1.334}:host([variant="h6"]) a{font-size:1.25rem;font-weight:500;letter-spacing:.15px;line-height:1.6}:host([variant="subtitle1"]) a{font-size:1rem;font-weight:400;letter-spacing:.15px;line-height:1.75}:host([variant="subtitle2"]) a{font-size:.875rem;font-weight:500;letter-spacing:.1px;line-height:1.57}:host([variant="body1"]) a{font-size:1rem;font-weight:400;letter-spacing:.15px;line-height:1.5}:host([variant="body2"]) a{font-size:.875rem;font-weight:400;letter-spacing:.15px;line-height:1.43}:host([variant="caption"]) a{font-size:.75rem;font-weight:400;letter-spacing:.4px;line-height:1.66}:host([variant="overline"]) a{font-size:.75rem;font-weight:400;letter-spacing:1px;line-height:2.66;text-transform:uppercase}:host([disabled]) a{opacity:.38;cursor:not-allowed;pointer-events:none}';
+var cn = Object.defineProperty, dn = Object.getOwnPropertyDescriptor, Me = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? dn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && cn(t, i, r), r;
 };
 let fe = class extends c {
   constructor() {
@@ -3358,40 +3358,40 @@ let fe = class extends c {
 };
 fe.styles = p(ln);
 Me([
-  o({ type: String })
+  s({ type: String })
 ], fe.prototype, "href", 2);
 Me([
-  o({ type: String })
+  s({ type: String })
 ], fe.prototype, "target", 2);
 Me([
-  o({ type: String })
+  s({ type: String })
 ], fe.prototype, "rel", 2);
 Me([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], fe.prototype, "color", 2);
 Me([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], fe.prototype, "underline", 2);
 Me([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], fe.prototype, "variant", 2);
 Me([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], fe.prototype, "disabled", 2);
 Me([
-  o({ type: String })
+  s({ type: String })
 ], fe.prototype, "download", 2);
 Me([
-  o({ type: String })
+  s({ type: String })
 ], fe.prototype, "label", 2);
 fe = Me([
   d("ui-link")
 ], fe);
-const pn = ':host{display:block;font-family:var(--ui-font-family, "Inter", sans-serif);color:var(--ui-text-color, #111827)}.typography{margin:0;padding:0}.h1{font-size:6rem;font-weight:300;letter-spacing:-1.5px;line-height:1.167}.h2{font-size:3.75rem;font-weight:300;letter-spacing:-.5px;line-height:1.2}.h3{font-size:3rem;font-weight:400;line-height:1.167}.h4{font-size:2.125rem;font-weight:400;letter-spacing:.25px;line-height:1.235}.h5{font-size:1.5rem;font-weight:400;line-height:1.334}.h6{font-size:1.25rem;font-weight:500;letter-spacing:.15px;line-height:1.6}.subtitle1{font-size:1rem;font-weight:400;letter-spacing:.15px;line-height:1.75}.subtitle2{font-size:.875rem;font-weight:500;letter-spacing:.1px;line-height:1.57}.body1{font-size:1rem;font-weight:400;letter-spacing:.15px;line-height:1.5}.body2{font-size:.875rem;font-weight:400;letter-spacing:.15px;line-height:1.43}.caption{font-size:.75rem;font-weight:400;letter-spacing:.4px;line-height:1.66}.overline{font-size:.75rem;font-weight:400;letter-spacing:1px;line-height:2.66;text-transform:uppercase}:host([color="primary"]) .typography{color:var(--ui-primary-color, #3b82f6)}:host([color="secondary"]) .typography{color:var(--ui-secondary-color, #7c3aed)}:host([color="success"]) .typography{color:var(--ui-success-color, #16a34a)}:host([color="error"]) .typography{color:var(--ui-error-color, #dc2626)}:host([color="warning"]) .typography{color:var(--ui-warning-color, #d97706)}:host([color="info"]) .typography{color:var(--ui-info-color, #0891b2)}:host([color="textPrimary"]) .typography{color:var(--ui-text-color, #111827)}:host([color="textSecondary"]) .typography{color:var(--ui-text-color-muted, #6b7280)}:host([color="inherit"]) .typography{color:inherit}:host([align="left"]) .typography{text-align:left}:host([align="center"]) .typography{text-align:center}:host([align="right"]) .typography{text-align:right}:host([align="justify"]) .typography{text-align:justify}:host([noWrap]) .typography{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}:host([gutterBottom]) .typography{margin-bottom:.35em}:host([paragraph]) .typography{margin-bottom:16px}';
-var hn = Object.defineProperty, un = Object.getOwnPropertyDescriptor, lt = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? un(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && hn(t, i, r), r;
+const pn = ':host{display:block;font-family:var(--ui-font-family);color:var(--ui-text-color)}.typography{margin:0;padding:0}.h1{font-size:6rem;font-weight:300;letter-spacing:-1.5px;line-height:1.167}.h2{font-size:3.75rem;font-weight:300;letter-spacing:-.5px;line-height:1.2}.h3{font-size:3rem;font-weight:400;line-height:1.167}.h4{font-size:2.125rem;font-weight:400;letter-spacing:.25px;line-height:1.235}.h5{font-size:1.5rem;font-weight:400;line-height:1.334}.h6{font-size:1.25rem;font-weight:500;letter-spacing:.15px;line-height:1.6}.subtitle1{font-size:1rem;font-weight:400;letter-spacing:.15px;line-height:1.75}.subtitle2{font-size:.875rem;font-weight:500;letter-spacing:.1px;line-height:1.57}.body1{font-size:1rem;font-weight:400;letter-spacing:.15px;line-height:1.5}.body2{font-size:.875rem;font-weight:400;letter-spacing:.15px;line-height:1.43}.caption{font-size:.75rem;font-weight:400;letter-spacing:.4px;line-height:1.66}.overline{font-size:.75rem;font-weight:400;letter-spacing:1px;line-height:2.66;text-transform:uppercase}:host([color="primary"]) .typography{color:var(--ui-primary-color)}:host([color="secondary"]) .typography{color:var(--ui-secondary-color)}:host([color="success"]) .typography{color:var(--ui-success-color)}:host([color="error"]) .typography{color:var(--ui-error-color)}:host([color="warning"]) .typography{color:var(--ui-warning-color)}:host([color="info"]) .typography{color:var(--ui-info-icon-color)}:host([color="textPrimary"]) .typography{color:var(--ui-text-color)}:host([color="textSecondary"]) .typography{color:var(--ui-text-color-muted)}:host([color="inherit"]) .typography{color:inherit}:host([align="left"]) .typography{text-align:left}:host([align="center"]) .typography{text-align:center}:host([align="right"]) .typography{text-align:right}:host([align="justify"]) .typography{text-align:justify}:host([noWrap]) .typography{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}:host([gutterBottom]) .typography{margin-bottom:.35em}:host([paragraph]) .typography{margin-bottom:16px}';
+var hn = Object.defineProperty, un = Object.getOwnPropertyDescriptor, lt = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? un(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && hn(t, i, r), r;
 };
 let Oe = class extends c {
   constructor() {
@@ -3427,39 +3427,39 @@ let Oe = class extends c {
   }
   render() {
     const e = this._literalTag(), t = `typography ${this.variant !== "inherit" ? this.variant : ""}`;
-    return ns`<${e} class="${t}"><slot></slot></${e}>`;
+    return no`<${e} class="${t}"><slot></slot></${e}>`;
   }
 };
 Oe.styles = p(pn);
 lt([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], Oe.prototype, "variant", 2);
 lt([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], Oe.prototype, "color", 2);
 lt([
-  o({ type: String })
+  s({ type: String })
 ], Oe.prototype, "component", 2);
 lt([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], Oe.prototype, "align", 2);
 lt([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], Oe.prototype, "noWrap", 2);
 lt([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], Oe.prototype, "gutterBottom", 2);
 lt([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], Oe.prototype, "paragraph", 2);
 Oe = lt([
   d("ui-typography")
 ], Oe);
-const fn = ':host{display:block;font-family:var(--ui-font-family, "Inter", sans-serif)}.item{display:flex;align-items:center;gap:12px;padding:8px 16px;min-height:40px;cursor:pointer;-webkit-user-select:none;user-select:none;font-size:.9375rem;color:var(--ui-text-color, #111827);background:transparent;border:none;width:100%;text-align:left;box-sizing:border-box;transition:background .12s;position:relative;outline:none;border-radius:0}.item:hover{background:#0000000a}.item:active{background:#00000014}.item:focus-visible{background:#0000000f;outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:-2px}:host([selected]) .item{background:var(--ui-primary-color-light, rgba(59,130,246,.12));color:var(--ui-primary-color, #3b82f6);font-weight:600}:host([selected]) .item:hover{background:var(--ui-primary-color-light, rgba(59,130,246,.18))}:host([disabled]) .item{opacity:.38;cursor:not-allowed;pointer-events:none}[hidden]{display:none!important}.icon-wrap{display:flex;align-items:center;justify-content:center;width:24px;height:24px;flex-shrink:0;color:var(--ui-text-color-muted, #6b7280)}:host([selected]) .icon-wrap{color:var(--ui-primary-color, #3b82f6)}.end-icon-wrap{display:flex;align-items:center;margin-left:auto;padding-left:16px;color:var(--ui-text-color-muted, #6b7280);font-size:.75rem}.label{flex:1;line-height:1.5}:host([dense]) .item{padding:4px 16px;min-height:32px;font-size:.875rem}:host([divider]){border-bottom:1px solid var(--ui-border-color, #e5e7eb);padding-bottom:4px;margin-bottom:4px}', bn = ":host{display:block;height:1px;background:var(--ui-border-color, #e5e7eb);margin:4px 0}", mn = ":host{display:block}.group-label{padding:6px 16px 2px;font-size:.6875rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ui-text-color-muted, #6b7280);-webkit-user-select:none;user-select:none}", gn = ":host{display:block;position:relative;--ui-menu-z-index: 1300;--ui-menu-min-width: 120px}.backdrop{display:none;position:fixed;inset:0;z-index:calc(var(--ui-menu-z-index) - 1)}.backdrop.open{display:block}.menu-paper{position:absolute;background:var(--ui-surface-background, #fff);border-radius:var(--ui-border-radius-md, 8px);box-shadow:0 4px 6px -1px #0000001a,0 10px 15px -3px #0000001a;min-width:var(--ui-menu-min-width);z-index:var(--ui-menu-z-index);overflow:hidden;transform-origin:top left;transform:scale(.85);opacity:0;visibility:hidden;pointer-events:none;transition:transform .15s cubic-bezier(.4,0,.2,1),opacity .15s cubic-bezier(.4,0,.2,1),visibility .15s;padding:4px 0}.menu-paper.open{transform:scale(1);opacity:1;visibility:visible;pointer-events:auto}.pos-bottom-start{top:100%;left:0;transform-origin:top left}.pos-bottom-end{top:100%;right:0;transform-origin:top right}.pos-top-start{bottom:100%;left:0;transform-origin:bottom left}.pos-top-end{bottom:100%;right:0;transform-origin:bottom right}.pos-right-start{left:100%;top:0;transform-origin:top left}.pos-left-start{right:100%;top:0;transform-origin:top right}.menu-paper.scrollable{max-height:var(--ui-menu-max-height, 300px);overflow-y:auto}";
-var vn = Object.defineProperty, yn = Object.getOwnPropertyDescriptor, R = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? yn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && vn(t, i, r), r;
+const fn = ":host{display:block;font-family:var(--ui-font-family)}.item{display:flex;align-items:center;gap:12px;padding:8px 16px;min-height:40px;cursor:pointer;-webkit-user-select:none;user-select:none;font-size:.9375rem;color:var(--ui-text-color);background:transparent;border:none;width:100%;text-align:left;box-sizing:border-box;transition:background .12s;position:relative;outline:none;border-radius:0}.item:hover{background:var(--ui-hover-color)}.item:active{background:var(--ui-active-color)}.item:focus-visible{background:var(--ui-hover-color);outline:2px solid var(--ui-primary-color);outline-offset:-2px}:host([selected]) .item{background:var(--ui-primary-color-light);color:var(--ui-primary-color);font-weight:600}:host([selected]) .item:hover{background:var(--ui-primary-color-light-hover)}:host([disabled]) .item{opacity:.38;cursor:not-allowed;pointer-events:none}[hidden]{display:none!important}.icon-wrap{display:flex;align-items:center;justify-content:center;width:24px;height:24px;flex-shrink:0;color:var(--ui-text-color-muted)}:host([selected]) .icon-wrap{color:var(--ui-primary-color)}.end-icon-wrap{display:flex;align-items:center;margin-left:auto;padding-left:16px;color:var(--ui-text-color-muted);font-size:.75rem}.label{flex:1;line-height:1.5}:host([dense]) .item{padding:4px 16px;min-height:32px;font-size:.875rem}:host([divider]){border-bottom:1px solid var(--ui-border-color);padding-bottom:4px;margin-bottom:4px}", bn = ":host{display:block;height:1px;background:var(--ui-border-color);margin:4px 0}", vn = ":host{display:block}.group-label{padding:6px 16px 2px;font-size:.6875rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ui-text-color-muted);-webkit-user-select:none;user-select:none}", mn = ":host{display:block;position:relative;--ui-menu-z-index: 1300;--ui-menu-min-width: 120px}.backdrop{display:none;position:fixed;inset:0;z-index:calc(var(--ui-menu-z-index) - 1)}.backdrop.open{display:block}.menu-paper{position:absolute;background:var(--ui-surface-1);border-radius:var(--ui-border-radius-md);box-shadow:var(--ui-shadow-md),var(--ui-shadow-lg);min-width:var(--ui-menu-min-width);z-index:var(--ui-menu-z-index);overflow:hidden;transform-origin:top left;transform:scale(.85);opacity:0;visibility:hidden;pointer-events:none;transition:transform .15s cubic-bezier(.4,0,.2,1),opacity .15s cubic-bezier(.4,0,.2,1),visibility .15s;padding:4px 0}.menu-paper.open{transform:scale(1);opacity:1;visibility:visible;pointer-events:auto}.pos-bottom-start{top:100%;left:0;transform-origin:top left}.pos-bottom-end{top:100%;right:0;transform-origin:top right}.pos-top-start{bottom:100%;left:0;transform-origin:bottom left}.pos-top-end{bottom:100%;right:0;transform-origin:bottom right}.pos-right-start{left:100%;top:0;transform-origin:top left}.pos-left-start{right:100%;top:0;transform-origin:top right}.menu-paper.scrollable{max-height:var(--ui-menu-max-height, 300px);overflow-y:auto}";
+var gn = Object.defineProperty, yn = Object.getOwnPropertyDescriptor, R = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? yn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && gn(t, i, r), r;
 };
 let De = class extends c {
   constructor() {
@@ -3514,25 +3514,25 @@ let De = class extends c {
 };
 De.styles = p(fn);
 R([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], De.prototype, "selected", 2);
 R([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], De.prototype, "disabled", 2);
 R([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], De.prototype, "dense", 2);
 R([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], De.prototype, "divider", 2);
 R([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], De.prototype, "value", 2);
 R([
-  g()
+  m()
 ], De.prototype, "_hasIcon", 2);
 R([
-  g()
+  m()
 ], De.prototype, "_hasEndIcon", 2);
 De = R([
   d("ui-menu-item")
@@ -3559,9 +3559,9 @@ let Bi = class extends c {
         `;
   }
 };
-Bi.styles = p(mn);
+Bi.styles = p(vn);
 R([
-  o({ type: String })
+  s({ type: String })
 ], Bi.prototype, "label", 2);
 Bi = R([
   d("ui-menu-group")
@@ -3599,19 +3599,19 @@ let tt = class extends c {
     const t = this._getEnabledItems();
     if (!t.length) return;
     const i = t.findIndex(
-      (s) => s.shadowRoot?.activeElement != null || document.activeElement === s
+      (o) => o.shadowRoot?.activeElement != null || document.activeElement === o
     );
     switch (e.key) {
       case "ArrowDown": {
         e.preventDefault();
-        const s = i < 0 || i >= t.length - 1 ? 0 : i + 1;
-        this._focusItem(t[s]);
+        const o = i < 0 || i >= t.length - 1 ? 0 : i + 1;
+        this._focusItem(t[o]);
         break;
       }
       case "ArrowUp": {
         e.preventDefault();
-        const s = i <= 0 ? t.length - 1 : i - 1;
-        this._focusItem(t[s]);
+        const o = i <= 0 ? t.length - 1 : i - 1;
+        this._focusItem(t[o]);
         break;
       }
       case "Home":
@@ -3622,7 +3622,7 @@ let tt = class extends c {
         break;
       default:
         if (e.key.length === 1) {
-          const s = e.key.toLowerCase(), r = i < 0 ? 0 : (i + 1) % t.length, n = [...t.slice(r), ...t.slice(0, r)].find((h) => (h.shadowRoot?.querySelector("slot:not([name])")?.assignedNodes({ flatten: !0 }).map((b) => b.textContent ?? "").join("").trim().toLowerCase() ?? "").startsWith(s));
+          const o = e.key.toLowerCase(), r = i < 0 ? 0 : (i + 1) % t.length, n = [...t.slice(r), ...t.slice(0, r)].find((h) => (h.shadowRoot?.querySelector("slot:not([name])")?.assignedNodes({ flatten: !0 }).map((b) => b.textContent ?? "").join("").trim().toLowerCase() ?? "").startsWith(o));
           n && this._focusItem(n);
         }
     }
@@ -3656,47 +3656,47 @@ let tt = class extends c {
         `;
   }
 };
-tt.styles = p(gn);
+tt.styles = p(mn);
 R([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], tt.prototype, "open", 2);
 R([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], tt.prototype, "placement", 2);
 R([
-  o({ type: Boolean, attribute: "close-on-select" })
+  s({ type: Boolean, attribute: "close-on-select" })
 ], tt.prototype, "closeOnSelect", 2);
 R([
-  o({ type: Boolean })
+  s({ type: Boolean })
 ], tt.prototype, "scrollable", 2);
 R([
-  o({ type: String })
+  s({ type: String })
 ], tt.prototype, "label", 2);
 tt = R([
   d("ui-menu")
 ], tt);
-const xn = ':host{display:inline-flex;align-items:center;flex-wrap:wrap;gap:4px;font-family:var(--ui-font-family, "Inter", sans-serif)}nav,ol,li{display:contents}.page-btn{display:inline-flex;align-items:center;justify-content:center;min-width:36px;height:36px;padding:0 6px;border-radius:4px;border:none;background:transparent;color:var(--ui-text-color, #111827);font-family:inherit;font-size:.875rem;font-weight:400;cursor:pointer;transition:background .15s,color .15s,border-color .15s;-webkit-user-select:none;user-select:none;box-sizing:border-box;outline:none;text-decoration:none}.page-btn:hover:not(:disabled){background:#0000000f}.page-btn:focus-visible{outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:2px}.page-btn.active{background:var(--ui-primary-color, #3b82f6);color:#fff;font-weight:600}.page-btn:disabled{opacity:.38;cursor:default;pointer-events:none}.page-btn.ellipsis{cursor:default;pointer-events:none;color:var(--ui-text-color-muted, #6b7280)}:host([variant="outlined"]) .page-btn{border:1px solid var(--ui-border-color, #e5e7eb)}:host([variant="outlined"]) .page-btn.active{border-color:var(--ui-primary-color, #3b82f6);background:var(--ui-primary-color, #3b82f6);color:#fff}:host([variant="outlined"]) .page-btn:hover:not(:disabled):not(.active){background:#3b82f60f;border-color:var(--ui-primary-color, #3b82f6)}:host([color="secondary"]) .page-btn.active{background:var(--ui-secondary-color, #7c3aed)}:host([color="secondary"][variant="outlined"]) .page-btn.active{background:var(--ui-secondary-color, #7c3aed);border-color:var(--ui-secondary-color, #7c3aed)}:host([color="standard"]) .page-btn.active{background:var(--ui-text-color, #111827);color:#fff}:host([shape="rounded"]) .page-btn{border-radius:8px}:host([shape="circular"]) .page-btn{border-radius:50%;min-width:36px;aspect-ratio:1}:host([size="small"]) .page-btn{min-width:28px;height:28px;font-size:.8125rem}:host([size="small"][shape="circular"]) .page-btn{min-width:28px}:host([size="large"]) .page-btn{min-width:44px;height:44px;font-size:.9375rem}:host([disabled]) .page-btn{opacity:.38;pointer-events:none}svg{display:block}';
-var _n = Object.defineProperty, wn = Object.getOwnPropertyDescriptor, K = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? wn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && _n(t, i, r), r;
+const xn = ':host{display:inline-flex;align-items:center;flex-wrap:wrap;gap:4px;font-family:var(--ui-font-family)}nav,ol,li{display:contents}.page-btn{display:inline-flex;align-items:center;justify-content:center;min-width:36px;height:36px;padding:0 6px;border-radius:4px;border:none;background:transparent;color:var(--ui-text-color);font-family:inherit;font-size:.875rem;font-weight:400;cursor:pointer;transition:background .15s,color .15s,border-color .15s;-webkit-user-select:none;user-select:none;box-sizing:border-box;outline:none;text-decoration:none}.page-btn:hover:not(:disabled){background:var(--ui-hover-color)}.page-btn:focus-visible{outline:2px solid var(--ui-primary-color);outline-offset:2px}.page-btn.active{background:var(--ui-primary-color);color:var(--ui-text-color-on-primary);font-weight:600}.page-btn:disabled{opacity:.38;cursor:default;pointer-events:none}.page-btn.ellipsis{cursor:default;pointer-events:none;color:var(--ui-text-color-muted)}:host([variant="outlined"]) .page-btn{border:1px solid var(--ui-border-color)}:host([variant="outlined"]) .page-btn.active{border-color:var(--ui-primary-color);background:var(--ui-primary-color);color:var(--ui-text-color-on-primary)}:host([variant="outlined"]) .page-btn:hover:not(:disabled):not(.active){background:var(--ui-primary-color-light);border-color:var(--ui-primary-color)}:host([color="secondary"]) .page-btn.active{background:var(--ui-secondary-color)}:host([color="secondary"][variant="outlined"]) .page-btn.active{background:var(--ui-secondary-color);border-color:var(--ui-secondary-color)}:host([color="standard"]) .page-btn.active{background:var(--ui-text-color);color:var(--ui-text-color-on-primary)}:host([shape="rounded"]) .page-btn{border-radius:8px}:host([shape="circular"]) .page-btn{border-radius:50%;min-width:36px;aspect-ratio:1}:host([size="small"]) .page-btn{min-width:28px;height:28px;font-size:.8125rem}:host([size="small"][shape="circular"]) .page-btn{min-width:28px}:host([size="large"]) .page-btn{min-width:44px;height:44px;font-size:.9375rem}:host([disabled]) .page-btn{opacity:.38;pointer-events:none}svg{display:block}';
+var _n = Object.defineProperty, wn = Object.getOwnPropertyDescriptor, K = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? wn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && _n(t, i, r), r;
 };
 const kn = l`<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6zM6 6h2v12H6z"/></svg>`, $n = l`<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.59 7.41L10.18 12l-4.59 4.59L7 18l6-6-6-6zM16 6h2v12h-2z"/></svg>`, Sn = l`<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>`, Cn = l`<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>`, In = l`<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>`;
 function nr(e, t) {
-  return Array.from({ length: t - e + 1 }, (i, s) => e + s);
+  return Array.from({ length: t - e + 1 }, (i, o) => e + o);
 }
-function En(e, t, i, s) {
-  const r = nr(1, Math.min(s, e)), a = nr(Math.max(e - s + 1, s + 1), e), n = Math.max(
-    Math.min(t - i, e - s - i * 2 - 1),
-    s + 2
+function En(e, t, i, o) {
+  const r = nr(1, Math.min(o, e)), a = nr(Math.max(e - o + 1, o + 1), e), n = Math.max(
+    Math.min(t - i, e - o - i * 2 - 1),
+    o + 2
   ), h = Math.min(
-    Math.max(t + i, s + i * 2 + 2),
+    Math.max(t + i, o + i * 2 + 2),
     a.length > 0 ? a[0] - 2 : e - 1
   ), f = [
     ...r,
-    ...n > s + 2 ? ["start-ellipsis"] : s + 1 < e - s ? [s + 1] : [],
+    ...n > o + 2 ? ["start-ellipsis"] : o + 1 < e - o ? [o + 1] : [],
     ...nr(n, h),
-    ...h < e - s - 1 ? ["end-ellipsis"] : e - s > s ? [e - s] : [],
+    ...h < e - o - 1 ? ["end-ellipsis"] : e - o > o ? [e - o] : [],
     ...a
   ], y = /* @__PURE__ */ new Set();
   return f.filter((b) => {
@@ -3728,22 +3728,22 @@ let A = class extends c {
     const t = this._safeCount, i = this._safePage;
     e < 1 || e > t || e === i || (this.page = e, this._emit(e));
   }
-  _renderNavBtn(e, t, i, s, r, a) {
-    return a ? v : l`
+  _renderNavBtn(e, t, i, o, r, a) {
+    return a ? g : l`
             <li>
                 <button
                     class="page-btn"
                     aria-label=${e}
                     ?disabled=${r || this.disabled}
-                    @click=${s}
+                    @click=${o}
                 ><slot name=${t}>${i}</slot></button>
             </li>
         `;
   }
   render() {
-    const e = this._safeCount, t = this._safePage, i = En(e, t, this.siblingCount, this.boundaryCount), s = this.label || "pagination navigation";
+    const e = this._safeCount, t = this._safePage, i = En(e, t, this.siblingCount, this.boundaryCount), o = this.label || "pagination navigation";
     return l`
-            <nav aria-label=${s}>
+            <nav aria-label=${o}>
                 <ol>
                     ${this._renderNavBtn("Go to first page", "first-icon", kn, () => this._go(1), t === 1, !this.showFirstButton)}
                     ${this._renderNavBtn("Go to previous page", "prev-icon", Sn, () => this._go(t - 1), t === 1, this.hidePrevButton)}
@@ -3762,7 +3762,7 @@ let A = class extends c {
                             <button
                                 class=${u({ "page-btn": !0, active: a })}
                                 aria-label=${"Page " + r}
-                                aria-current=${a ? "page" : v}
+                                aria-current=${a ? "page" : g}
                                 ?disabled=${this.disabled}
                                 @click=${() => this._go(r)}
                             >${r}</button>
@@ -3779,58 +3779,58 @@ let A = class extends c {
 };
 A.styles = p(xn);
 K([
-  o({ type: Number })
+  s({ type: Number })
 ], A.prototype, "count", 2);
 K([
-  o({ type: Number })
+  s({ type: Number })
 ], A.prototype, "page", 2);
 K([
-  o({ type: Number, attribute: "default-page" })
+  s({ type: Number, attribute: "default-page" })
 ], A.prototype, "defaultPage", 2);
 K([
-  o({ type: String })
+  s({ type: String })
 ], A.prototype, "label", 2);
 K([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], A.prototype, "variant", 2);
 K([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], A.prototype, "shape", 2);
 K([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], A.prototype, "size", 2);
 K([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], A.prototype, "color", 2);
 K([
-  o({ type: Boolean, reflect: !0, attribute: "show-first-button" })
+  s({ type: Boolean, reflect: !0, attribute: "show-first-button" })
 ], A.prototype, "showFirstButton", 2);
 K([
-  o({ type: Boolean, reflect: !0, attribute: "show-last-button" })
+  s({ type: Boolean, reflect: !0, attribute: "show-last-button" })
 ], A.prototype, "showLastButton", 2);
 K([
-  o({ type: Boolean, reflect: !0, attribute: "hide-prev-button" })
+  s({ type: Boolean, reflect: !0, attribute: "hide-prev-button" })
 ], A.prototype, "hidePrevButton", 2);
 K([
-  o({ type: Boolean, reflect: !0, attribute: "hide-next-button" })
+  s({ type: Boolean, reflect: !0, attribute: "hide-next-button" })
 ], A.prototype, "hideNextButton", 2);
 K([
-  o({ type: Number, attribute: "sibling-count" })
+  s({ type: Number, attribute: "sibling-count" })
 ], A.prototype, "siblingCount", 2);
 K([
-  o({ type: Number, attribute: "boundary-count" })
+  s({ type: Number, attribute: "boundary-count" })
 ], A.prototype, "boundaryCount", 2);
 K([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], A.prototype, "disabled", 2);
 A = K([
   d("ui-pagination")
 ], A);
-const Pn = ':host{display:flex;align-items:center;position:relative;--action-size: 40px}.action-btn{display:inline-flex;align-items:center;justify-content:center;width:var(--action-size);height:var(--action-size);border-radius:50%;background:var(--ui-surface-background, #fff);color:var(--ui-text-color, #374151);border:none;cursor:pointer;box-shadow:0 3px 5px -1px #0003,0 6px 10px #00000024;transition:background .15s,box-shadow .15s,transform .15s;flex-shrink:0;outline:none;font-size:1.25rem}.action-btn:hover{background:var(--ui-surface-background-flat, #f3f4f6);box-shadow:0 5px 8px -1px #00000040,0 8px 12px #00000029;transform:scale(1.08)}.action-btn:focus-visible{outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:3px}:host([disabled]) .action-btn{opacity:.38;pointer-events:none}.tooltip{position:absolute;background:#1e293be0;color:#fff;font-family:var(--ui-font-family, "Inter", sans-serif);font-size:.75rem;font-weight:500;letter-spacing:.02em;padding:4px 10px;border-radius:5px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .15s}.tooltip.visible{opacity:1}:host([tooltip-placement="left"]) .tooltip{right:calc(100% + 10px);top:50%;transform:translateY(-50%)}:host([tooltip-placement="right"]) .tooltip{left:calc(100% + 10px);top:50%;transform:translateY(-50%)}:host([tooltip-placement="top"]) .tooltip{bottom:calc(100% + 10px);left:50%;transform:translate(-50%)}:host([tooltip-placement="bottom"]) .tooltip{top:calc(100% + 10px);left:50%;transform:translate(-50%)}', On = ':host{display:inline-flex;flex-direction:column;align-items:center;position:relative;--fab-size: 56px;--fab-bg: var(--ui-primary-color, #3b82f6);--fab-color: #fff;--action-gap: 12px}.actions{display:flex;align-items:center;gap:var(--action-gap)}:host([direction="up"]) .actions{flex-direction:column-reverse;margin-bottom:var(--action-gap)}:host([direction="down"]) .actions{flex-direction:column;margin-top:var(--action-gap)}:host([direction="left"]) .actions{flex-direction:row-reverse;margin-right:var(--action-gap)}:host([direction="right"]) .actions{flex-direction:row;margin-left:var(--action-gap)}:host([direction="up"]),:host([direction="down"]){flex-direction:column;align-items:center}:host([direction="left"]),:host([direction="right"]){flex-direction:row;align-items:center}:host([direction="up"]){flex-direction:column-reverse}.fab{display:inline-flex;align-items:center;justify-content:center;width:var(--fab-size);height:var(--fab-size);border-radius:50%;background:var(--fab-bg);color:var(--fab-color);border:none;cursor:pointer;box-shadow:0 6px 10px -2px #00000040,0 4px 5px #00000024;outline:none;font-size:1.5rem;transition:box-shadow .2s,background .2s;flex-shrink:0;position:relative;z-index:1}.fab:hover{box-shadow:0 8px 14px -2px #0000004d,0 6px 8px #00000029;background:var(--fab-bg-hover, var(--ui-primary-color-dark, #2563eb))}.fab:focus-visible{outline:3px solid var(--ui-primary-color, #3b82f6);outline-offset:3px}.fab-icon{display:flex;align-items:center;justify-content:center;transition:transform .25s cubic-bezier(.4,0,.2,1),opacity .2s}.fab-icon.close-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transform:rotate(-45deg)}:host([open]) .fab-icon.open-icon{opacity:0;transform:rotate(45deg)}:host([open]) .fab-icon.close-icon{opacity:1;transform:rotate(0)}::slotted(ui-speed-dial-action){opacity:0;transform:scale(.6);transition:opacity .18s ease,transform .18s cubic-bezier(.4,0,.2,1);pointer-events:none}:host([open]) ::slotted(ui-speed-dial-action){opacity:1;transform:scale(1);pointer-events:auto}.backdrop{display:none;position:fixed;inset:0;z-index:-1}:host([open]) .backdrop{display:block}:host([disabled]) .fab{opacity:.38;pointer-events:none;cursor:default}:host([hidden]){display:none!important}svg{display:block}';
-var Dn = Object.defineProperty, zn = Object.getOwnPropertyDescriptor, V = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? zn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Dn(t, i, r), r;
+const Pn = ':host{display:flex;align-items:center;position:relative;--action-size: 40px}.action-btn{display:inline-flex;align-items:center;justify-content:center;width:var(--action-size);height:var(--action-size);border-radius:50%;background:var(--ui-surface-1);color:var(--ui-text-color);border:none;cursor:pointer;box-shadow:0 3px 5px -1px #0003,0 6px 10px #00000024;transition:background .15s,box-shadow .15s,transform .15s;flex-shrink:0;outline:none;font-size:1.25rem}.action-btn:hover{background:var(--ui-surface-2);box-shadow:0 5px 8px -1px #00000040,0 8px 12px #00000029;transform:scale(1.08)}.action-btn:focus-visible{outline:2px solid var(--ui-primary-color);outline-offset:3px}:host([disabled]) .action-btn{opacity:.38;pointer-events:none}.tooltip{position:absolute;background:var(--ui-tooltip-bg);color:var(--ui-tooltip-text-color);font-family:var(--ui-font-family);font-size:.75rem;font-weight:500;letter-spacing:.02em;padding:4px 10px;border-radius:5px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .15s}.tooltip.visible{opacity:1}:host([tooltip-placement="left"]) .tooltip{right:calc(100% + 10px);top:50%;transform:translateY(-50%)}:host([tooltip-placement="right"]) .tooltip{left:calc(100% + 10px);top:50%;transform:translateY(-50%)}:host([tooltip-placement="top"]) .tooltip{bottom:calc(100% + 10px);left:50%;transform:translate(-50%)}:host([tooltip-placement="bottom"]) .tooltip{top:calc(100% + 10px);left:50%;transform:translate(-50%)}', On = ':host{display:inline-flex;flex-direction:column;align-items:center;position:relative;--fab-size: 56px;--fab-bg: var(--ui-primary-color);--fab-color: var(--ui-text-color-on-primary);--action-gap: 12px}.actions{display:flex;align-items:center;gap:var(--action-gap)}:host([direction="up"]) .actions{flex-direction:column-reverse;margin-bottom:var(--action-gap)}:host([direction="down"]) .actions{flex-direction:column;margin-top:var(--action-gap)}:host([direction="left"]) .actions{flex-direction:row-reverse;margin-right:var(--action-gap)}:host([direction="right"]) .actions{flex-direction:row;margin-left:var(--action-gap)}:host([direction="up"]),:host([direction="down"]){flex-direction:column;align-items:center}:host([direction="left"]),:host([direction="right"]){flex-direction:row;align-items:center}:host([direction="up"]){flex-direction:column-reverse}.fab{display:inline-flex;align-items:center;justify-content:center;width:var(--fab-size);height:var(--fab-size);border-radius:50%;background:var(--fab-bg);color:var(--fab-color);border:none;cursor:pointer;box-shadow:0 6px 10px -2px #00000040,0 4px 5px #00000024;outline:none;font-size:1.5rem;transition:box-shadow .2s,background .2s;flex-shrink:0;position:relative;z-index:1}.fab:hover{box-shadow:0 8px 14px -2px #0000004d,0 6px 8px #00000029;background:var(--fab-bg-hover, var(--ui-primary-color-hover))}.fab:focus-visible{outline:3px solid var(--ui-primary-color);outline-offset:3px}.fab-icon{display:flex;align-items:center;justify-content:center;transition:transform .25s cubic-bezier(.4,0,.2,1),opacity .2s}.fab-icon.close-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transform:rotate(-45deg)}:host([open]) .fab-icon.open-icon{opacity:0;transform:rotate(45deg)}:host([open]) .fab-icon.close-icon{opacity:1;transform:rotate(0)}::slotted(ui-speed-dial-action){opacity:0;transform:scale(.6);transition:opacity .18s ease,transform .18s cubic-bezier(.4,0,.2,1);pointer-events:none}:host([open]) ::slotted(ui-speed-dial-action){opacity:1;transform:scale(1);pointer-events:auto}.backdrop{display:none;position:fixed;inset:0;z-index:-1}:host([open]) .backdrop{display:block}:host([disabled]) .fab{opacity:.38;pointer-events:none;cursor:default}:host([hidden]){display:none!important}svg{display:block}';
+var Dn = Object.defineProperty, zn = Object.getOwnPropertyDescriptor, V = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? zn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Dn(t, i, r), r;
 };
 let Ve = class extends c {
   constructor() {
@@ -3873,28 +3873,28 @@ let Ve = class extends c {
                 <div class="tooltip ${u({ visible: this._tooltipVisible })}">
                     ${this.tooltipTitle}
                 </div>
-            ` : v}
+            ` : g}
         `;
   }
 };
 Ve.styles = p(Pn);
 V([
-  o({ type: String })
+  s({ type: String })
 ], Ve.prototype, "name", 2);
 V([
-  o({ type: String, attribute: "tooltip-title" })
+  s({ type: String, attribute: "tooltip-title" })
 ], Ve.prototype, "tooltipTitle", 2);
 V([
-  o({ type: Boolean, attribute: "tooltip-open" })
+  s({ type: Boolean, attribute: "tooltip-open" })
 ], Ve.prototype, "tooltipOpen", 2);
 V([
-  o({ type: String, reflect: !0, attribute: "tooltip-placement" })
+  s({ type: String, reflect: !0, attribute: "tooltip-placement" })
 ], Ve.prototype, "tooltipPlacement", 2);
 V([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], Ve.prototype, "disabled", 2);
 V([
-  g()
+  m()
 ], Ve.prototype, "_hovered", 2);
 Ve = V([
   d("ui-speed-dial-action")
@@ -3903,7 +3903,7 @@ let be = class extends c {
   constructor() {
     super(...arguments), this.open = !1, this.defaultOpen = !1, this.direction = "up", this.hidden = !1, this.disabled = !1, this.persistentTooltips = !1, this.closeIcon = "", this.ariaLabel = "Speed dial", this.isTouch = !1, this._firstUpdate = !0, this._onHostKeyDown = (e) => {
       if (this.disabled) return;
-      const { key: t } = e, i = this.shadowRoot?.activeElement?.classList.contains("fab") ?? !1, s = this._focusedActionIndex(), r = s !== -1;
+      const { key: t } = e, i = this.shadowRoot?.activeElement?.classList.contains("fab") ?? !1, o = this._focusedActionIndex(), r = o !== -1;
       if (t === "Escape") {
         this.open && (e.preventDefault(), e.stopPropagation(), this._setOpen(!1), this._focusFab());
         return;
@@ -3925,7 +3925,7 @@ let be = class extends c {
         }
         if (r) {
           const n = t === "ArrowUp" || t === "ArrowLeft";
-          this._focusActionAt(n ? s - 1 : s + 1);
+          this._focusActionAt(n ? o - 1 : o + 1);
         } else if (i) {
           const n = this._actionButtons();
           n[t === "ArrowDown" || t === "ArrowRight" ? 0 : n.length - 1]?.focus();
@@ -3990,10 +3990,10 @@ let be = class extends c {
     return this.direction === "up" || this.direction === "left";
   }
   _updateActionTooltips() {
-    const e = this.querySelectorAll("ui-speed-dial-action"), t = this.persistentTooltips || this.isTouch, i = this._tooltipPlacement(), s = this._isReversedDirection(), r = e.length;
+    const e = this.querySelectorAll("ui-speed-dial-action"), t = this.persistentTooltips || this.isTouch, i = this._tooltipPlacement(), o = this._isReversedDirection(), r = e.length;
     e.forEach((a, n) => {
       a.setAttribute("tooltip-placement", i), t && this.open ? a.setAttribute("tooltip-open", "") : a.removeAttribute("tooltip-open");
-      const h = s ? r - 1 - n : n, f = s ? n : r - 1 - n;
+      const h = o ? r - 1 - n : n, f = o ? n : r - 1 - n;
       a.style.transitionDelay = this.open ? `${h * 40}ms` : `${f * 30}ms`;
     });
   }
@@ -4041,7 +4041,7 @@ let be = class extends c {
                 aria-expanded=${this.open ? "true" : "false"}
                 aria-haspopup="menu"
                 aria-controls="sd-menu"
-                aria-disabled=${this.disabled ? "true" : v}
+                aria-disabled=${this.disabled ? "true" : g}
                 ?disabled=${this.disabled}
                 @click=${this._toggle}
                 @focus=${this._onFabFocus}
@@ -4067,40 +4067,40 @@ let be = class extends c {
 };
 be.styles = p(On);
 V([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], be.prototype, "open", 2);
 V([
-  o({ type: Boolean, attribute: "default-open" })
+  s({ type: Boolean, attribute: "default-open" })
 ], be.prototype, "defaultOpen", 2);
 V([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], be.prototype, "direction", 2);
 V([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], be.prototype, "hidden", 2);
 V([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], be.prototype, "disabled", 2);
 V([
-  o({ type: Boolean, attribute: "persistent-tooltips" })
+  s({ type: Boolean, attribute: "persistent-tooltips" })
 ], be.prototype, "persistentTooltips", 2);
 V([
-  o({ type: String, attribute: "close-icon" })
+  s({ type: String, attribute: "close-icon" })
 ], be.prototype, "closeIcon", 2);
 V([
-  o({ type: String, attribute: "aria-label" })
+  s({ type: String, attribute: "aria-label" })
 ], be.prototype, "ariaLabel", 2);
 V([
-  o({ type: Boolean, attribute: "is-touch" })
+  s({ type: Boolean, attribute: "is-touch" })
 ], be.prototype, "isTouch", 2);
 be = V([
   d("ui-speed-dial")
 ], be);
-const Tn = ':host{display:block}.line{background:var(--ui-stepper-connector-color, #e5e7eb);border-radius:2px;transition:background .3s}.line.completed{background:var(--ui-primary-color, #3b82f6)}:host([orientation="horizontal"]) .line{height:2px;width:100%}:host([orientation="vertical"]) .line{width:2px;min-height:24px;margin:0 auto}', An = ':host{display:block}.label{font-size:.875rem;font-weight:500;color:var(--ui-text-color, #111827);font-family:var(--ui-font-family,"Inter",sans-serif);line-height:1.4}.optional{font-size:.75rem;color:#9ca3af;font-style:italic}:host([active]) .label{color:var(--ui-primary-color, #3b82f6);font-weight:600}:host([disabled]) .label{color:#9ca3af}:host([error]) .label{color:var(--ui-error-color, #ef4444)}', Bn = ':host{display:block;overflow:hidden}.panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease}.panel.open{grid-template-rows:1fr}.inner{overflow:hidden;padding:0 16px;transition:padding .25s ease}.panel.open .inner{padding:8px 16px 16px}.content{font-size:.875rem;color:var(--ui-text-color, #374151);font-family:var(--ui-font-family,"Inter",sans-serif)}', Mn = ':host{display:flex;flex:1 1 0;min-width:0;font-family:var(--ui-font-family,"Inter",sans-serif)}:host([orientation="horizontal"]){align-items:flex-start;padding-top:4px}:host([orientation="vertical"]){flex-direction:column;flex:none;width:100%}:host([alternative-label]){flex-direction:column;align-items:center;flex:1;min-width:0}.conn-wrap{flex:1 1 auto;min-width:12px;display:flex;align-items:flex-start;padding-top:15px}.conn-wrap ui-step-connector{flex:1}.alt-top{display:flex;align-items:center;width:100%}.alt-top .conn-fill{flex:1;display:flex;align-items:center}.alt-top .conn-fill ui-step-connector{flex:1}.step-header{display:flex;align-items:flex-start;gap:14px;min-width:0}.step-header ui-step-label,.step-btn ui-step-label{padding-top:5px;min-width:0}:host([alternative-label]) .alt-label-row{margin-top:8px;text-align:center;min-width:0;width:100%}.step-btn{background:none;border:none;padding:0;cursor:pointer;font-family:inherit;border-radius:6px;outline:none;display:flex;align-items:flex-start;gap:14px;min-width:0;text-align:left}.step-btn:focus-visible{outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:3px}:host([disabled]) .step-btn{cursor:default}:host([alternative-label]) .step-btn{flex-direction:column;align-items:center;gap:0}.v-body{display:flex;margin-left:15px;min-height:16px}.v-line{width:2px;background:var(--ui-stepper-connector-color, #e5e7eb);border-radius:2px;flex-shrink:0;transition:background .3s;margin-right:14px}.v-line.completed{background:var(--ui-primary-color, #3b82f6)}:host([last]) .v-line{background:transparent}.v-content{flex:1;padding-bottom:8px;min-width:0}.icon-circle{width:var(--ui-stepper-icon-size, 32px);height:var(--ui-stepper-icon-size, 32px);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8125rem;font-weight:700;border:2px solid #d1d5db;color:#9ca3af;background:transparent;transition:all .2s;flex-shrink:0;box-sizing:border-box}.icon-circle.active{background:var(--ui-primary-color,#3b82f6);border-color:var(--ui-primary-color,#3b82f6);color:#fff;box-shadow:0 0 0 4px #3b82f626}.icon-circle.completed{background:var(--ui-primary-color,#3b82f6);border-color:var(--ui-primary-color,#3b82f6);color:#fff}.icon-circle.error{border-color:var(--ui-error-color,#ef4444);color:var(--ui-error-color,#ef4444)}:host([disabled]) .icon-circle{opacity:.4}', Ln = ':host{display:block;font-family:var(--ui-font-family,"Inter",sans-serif)}.stepper{display:flex;padding:16px 24px;background:var(--ui-surface-background, #fff)}.stepper.horizontal{align-items:stretch;flex-direction:row}.stepper.vertical{flex-direction:column;gap:0}.stepper.alt{align-items:flex-start}', jn = ':host{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;gap:8px;background:var(--ui-surface-background,#fff);font-family:var(--ui-font-family,"Inter",sans-serif)}:host([position="static"]){border:1px solid var(--ui-border-color,#e5e7eb);border-radius:8px}:host([position="bottom"]){border-top:1px solid var(--ui-border-color,#e5e7eb)}:host([position="top"]){border-bottom:1px solid var(--ui-border-color,#e5e7eb)}.progress{display:flex;align-items:center;justify-content:center;flex:1;gap:0}.text{font-size:.8rem;color:#6b7280}.dots{display:flex;gap:6px}.dot{width:10px;height:10px;border-radius:50%;background:#d1d5db;transition:background .2s}.dot.active{background:var(--ui-primary-color,#3b82f6)}.bar-track{flex:1;height:4px;background:#e5e7eb;border-radius:2px;overflow:hidden}.bar-fill{height:100%;background:var(--ui-primary-color,#3b82f6);border-radius:2px;transition:width .3s}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.nav-btn{padding:6px 14px;border-radius:6px;font-size:.8rem;font-family:inherit;cursor:pointer;transition:opacity .15s}.nav-btn:disabled{opacity:.38;cursor:default}.nav-btn.back{background:#fff;color:#374151;border:1px solid #e2e8f0}.nav-btn.next{background:var(--ui-primary-color,#3b82f6);color:#fff;border:none}';
-var Un = Object.defineProperty, Rn = Object.getOwnPropertyDescriptor, _ = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Rn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Un(t, i, r), r;
+const Tn = ':host{display:block}.line{background:var(--ui-stepper-connector-color);border-radius:2px;transition:background .3s}.line.completed{background:var(--ui-primary-color)}:host([orientation="horizontal"]) .line{height:2px;width:100%}:host([orientation="vertical"]) .line{width:2px;min-height:24px;margin:0 auto}', An = ":host{display:block}.label{font-size:.875rem;font-weight:500;color:var(--ui-text-color);font-family:var(--ui-font-family);line-height:1.4}.optional{font-size:.75rem;color:var(--ui-text-color-muted);font-style:italic}:host([active]) .label{color:var(--ui-primary-color);font-weight:600}:host([disabled]) .label{color:var(--ui-text-color-muted)}:host([error]) .label{color:var(--ui-error-color)}", Bn = ":host{display:block;overflow:hidden}.panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease}.panel.open{grid-template-rows:1fr}.inner{overflow:hidden;padding:0 16px;transition:padding .25s ease}.panel.open .inner{padding:8px 16px 16px}.content{font-size:.875rem;color:var(--ui-text-color);font-family:var(--ui-font-family)}", Mn = ':host{display:flex;flex:1 1 0;min-width:0;font-family:var(--ui-font-family)}:host([orientation="horizontal"]){align-items:flex-start;padding-top:4px}:host([orientation="vertical"]){flex-direction:column;flex:none;width:100%}:host([alternative-label]){flex-direction:column;align-items:center;flex:1;min-width:0}.conn-wrap{flex:1 1 auto;min-width:12px;display:flex;align-items:flex-start;padding-top:15px}.conn-wrap ui-step-connector{flex:1}.alt-top{display:flex;align-items:center;width:100%}.alt-top .conn-fill{flex:1;display:flex;align-items:center}.alt-top .conn-fill ui-step-connector{flex:1}.step-header{display:flex;align-items:flex-start;gap:14px;min-width:0}.step-header ui-step-label,.step-btn ui-step-label{padding-top:5px;min-width:0}:host([alternative-label]) .alt-label-row{margin-top:8px;text-align:center;min-width:0;width:100%}.step-btn{background:none;border:none;padding:0;cursor:pointer;font-family:inherit;border-radius:6px;outline:none;display:flex;align-items:flex-start;gap:14px;min-width:0;text-align:left}.step-btn:focus-visible{outline:2px solid var(--ui-primary-color);outline-offset:3px}:host([disabled]) .step-btn{cursor:default}:host([alternative-label]) .step-btn{flex-direction:column;align-items:center;gap:0}.v-body{display:flex;margin-left:15px;min-height:16px}.v-line{width:2px;background:var(--ui-stepper-connector-color);border-radius:2px;flex-shrink:0;transition:background .3s;margin-right:14px}.v-line.completed{background:var(--ui-primary-color)}:host([last]) .v-line{background:transparent}.v-content{flex:1;padding-bottom:8px;min-width:0}.icon-circle{width:var(--ui-stepper-icon-size, 32px);height:var(--ui-stepper-icon-size, 32px);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8125rem;font-weight:700;border:2px solid var(--ui-input-border-color);color:var(--ui-text-color-muted);background:transparent;transition:all .2s;flex-shrink:0;box-sizing:border-box}.icon-circle.active{background:var(--ui-primary-color);border-color:var(--ui-primary-color);color:var(--ui-text-color-on-primary);box-shadow:0 0 0 4px var(--ui-primary-focus-ring)}.icon-circle.completed{background:var(--ui-primary-color);border-color:var(--ui-primary-color);color:var(--ui-text-color-on-primary)}.icon-circle.error{border-color:var(--ui-error-color);color:var(--ui-error-color)}:host([disabled]) .icon-circle{opacity:.4}', Ln = ":host{display:block;font-family:var(--ui-font-family)}.stepper{display:flex;padding:16px 24px;background:var(--ui-surface-1)}.stepper.horizontal{align-items:stretch;flex-direction:row}.stepper.vertical{flex-direction:column;gap:0}.stepper.alt{align-items:flex-start}", jn = ':host{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;gap:8px;background:var(--ui-surface-1);font-family:var(--ui-font-family)}:host([position="static"]){border:1px solid var(--ui-border-color);border-radius:8px}:host([position="bottom"]){border-top:1px solid var(--ui-border-color)}:host([position="top"]){border-bottom:1px solid var(--ui-border-color)}.progress{display:flex;align-items:center;justify-content:center;flex:1;gap:0}.text{font-size:.8rem;color:var(--ui-text-color-muted)}.dots{display:flex;gap:6px}.dot{width:10px;height:10px;border-radius:50%;background:var(--ui-input-border-color);transition:background .2s}.dot.active{background:var(--ui-primary-color)}.bar-track{flex:1;height:4px;background:var(--ui-border-color);border-radius:2px;overflow:hidden}.bar-fill{height:100%;background:var(--ui-primary-color);border-radius:2px;transition:width .3s}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.nav-btn{padding:6px 14px;border-radius:6px;font-size:.8rem;font-family:inherit;cursor:pointer;transition:opacity .15s}.nav-btn:disabled{opacity:.38;cursor:default}.nav-btn.back{background:var(--ui-surface-1);color:var(--ui-text-color);border:1px solid var(--ui-border-color)}.nav-btn.next{background:var(--ui-primary-color);color:var(--ui-text-color-on-primary);border:none}';
+var Un = Object.defineProperty, Rn = Object.getOwnPropertyDescriptor, _ = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Rn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Un(t, i, r), r;
 };
 const Vn = l`<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>`, Nn = l`<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>`;
 let bi = class extends c {
@@ -4113,10 +4113,10 @@ let bi = class extends c {
 };
 bi.styles = p(Tn);
 _([
-  o({ reflect: !0 })
+  s({ reflect: !0 })
 ], bi.prototype, "orientation", 2);
 _([
-  o({ type: Boolean })
+  s({ type: Boolean })
 ], bi.prototype, "completed", 2);
 bi = _([
   d("ui-step-connector")
@@ -4134,13 +4134,13 @@ let qt = class extends c {
 };
 qt.styles = p(An);
 _([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], qt.prototype, "active", 2);
 _([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], qt.prototype, "disabled", 2);
 _([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], qt.prototype, "error", 2);
 qt = _([
   d("ui-step-label")
@@ -4163,7 +4163,7 @@ let Mi = class extends c {
 };
 Mi.styles = p(Bn);
 _([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], Mi.prototype, "open", 2);
 Mi = _([
   d("ui-step-content")
@@ -4186,7 +4186,7 @@ let W = class extends c {
     return l`
             <ui-step-label ?active=${this.active} ?disabled=${this.disabled} ?error=${this.error}>
                 <slot name="label"></slot>
-                ${this.optional ? l`<span slot="optional">${this.optionalLabel}</span>` : v}
+                ${this.optional ? l`<span slot="optional">${this.optionalLabel}</span>` : g}
             </ui-step-label>`;
   }
   _connector(e = !1) {
@@ -4195,7 +4195,7 @@ let W = class extends c {
   render() {
     const e = this.stepIndex > 0;
     if (this.orientation === "vertical") {
-      const i = this.clickable ? l`<button class="step-btn" ?disabled=${this.disabled} @click=${this._fire} aria-current=${this.active ? "step" : v}>${this._icon()} ${this._label()}</button>` : l`<div class="step-header">${this._icon()} ${this._label()}</div>`;
+      const i = this.clickable ? l`<button class="step-btn" ?disabled=${this.disabled} @click=${this._fire} aria-current=${this.active ? "step" : g}>${this._icon()} ${this._label()}</button>` : l`<div class="step-header">${this._icon()} ${this._label()}</div>`;
       return l`
                 ${i}
                 <div class="v-body">
@@ -4204,57 +4204,57 @@ let W = class extends c {
                 </div>`;
     }
     if (this.alternativeLabel) {
-      const i = this.clickable ? l`<button class="step-btn" ?disabled=${this.disabled} @click=${this._fire} aria-current=${this.active ? "step" : v}>${this._icon()}</button>` : this._icon();
+      const i = this.clickable ? l`<button class="step-btn" ?disabled=${this.disabled} @click=${this._fire} aria-current=${this.active ? "step" : g}>${this._icon()}</button>` : this._icon();
       return l`
                 <div class="alt-top">
-                    <div class="conn-fill">${e ? this._connector(this.prevCompleted) : v}</div>
+                    <div class="conn-fill">${e ? this._connector(this.prevCompleted) : g}</div>
                     ${i}
                     <div class="conn-fill"></div>
                 </div>
                 <div class="alt-label-row">${this._label()}</div>`;
     }
-    const t = this.clickable ? l`<button class="step-btn" ?disabled=${this.disabled} @click=${this._fire} aria-current=${this.active ? "step" : v}>${this._icon()} ${this._label()}</button>` : l`<div class="step-header">${this._icon()} ${this._label()}</div>`;
+    const t = this.clickable ? l`<button class="step-btn" ?disabled=${this.disabled} @click=${this._fire} aria-current=${this.active ? "step" : g}>${this._icon()} ${this._label()}</button>` : l`<div class="step-header">${this._icon()} ${this._label()}</div>`;
     return l`
-            ${e ? l`<div class="conn-wrap">${this._connector(this.prevCompleted)}</div>` : v}
+            ${e ? l`<div class="conn-wrap">${this._connector(this.prevCompleted)}</div>` : g}
             ${t}`;
   }
 };
 W.styles = p(Mn);
 _([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], W.prototype, "active", 2);
 _([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], W.prototype, "completed", 2);
 _([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], W.prototype, "disabled", 2);
 _([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], W.prototype, "optional", 2);
 _([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], W.prototype, "error", 2);
 _([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], W.prototype, "last", 2);
 _([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], W.prototype, "clickable", 2);
 _([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], W.prototype, "orientation", 2);
 _([
-  o({ type: Boolean, reflect: !0, attribute: "alternative-label" })
+  s({ type: Boolean, reflect: !0, attribute: "alternative-label" })
 ], W.prototype, "alternativeLabel", 2);
 _([
-  o({ type: Number, attribute: "step-index" })
+  s({ type: Number, attribute: "step-index" })
 ], W.prototype, "stepIndex", 2);
 _([
-  o({ type: String, attribute: "optional-label" })
+  s({ type: String, attribute: "optional-label" })
 ], W.prototype, "optionalLabel", 2);
 _([
-  o({ type: Boolean, attribute: "prev-completed" })
+  s({ type: Boolean, attribute: "prev-completed" })
 ], W.prototype, "prevCompleted", 2);
 W = _([
   d("ui-step")
@@ -4295,19 +4295,19 @@ let it = class extends c {
 };
 it.styles = p(Ln);
 _([
-  o({ type: Number, attribute: "active-step" })
+  s({ type: Number, attribute: "active-step" })
 ], it.prototype, "activeStep", 2);
 _([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], it.prototype, "orientation", 2);
 _([
-  o({ type: Boolean, attribute: "alternative-label" })
+  s({ type: Boolean, attribute: "alternative-label" })
 ], it.prototype, "alternativeLabel", 2);
 _([
-  o({ type: Boolean, attribute: "non-linear" })
+  s({ type: Boolean, attribute: "non-linear" })
 ], it.prototype, "nonLinear", 2);
 _([
-  o({ type: String })
+  s({ type: String })
 ], it.prototype, "label", 2);
 it = _([
   d("ui-stepper")
@@ -4331,7 +4331,7 @@ let Ne = class extends c {
       return l`
                 <div class="dots" aria-label="Step ${e} of ${t}">
                     <span class="sr-only" aria-live="polite">Step ${e} of ${t}</span>
-                    ${Array.from({ length: t }, (s, r) => l`<div class="dot ${r === this.activeStep ? "active" : ""}"></div>`)}
+                    ${Array.from({ length: t }, (o, r) => l`<div class="dot ${r === this.activeStep ? "active" : ""}"></div>`)}
                 </div>`;
     const i = t > 1 ? this.activeStep / (t - 1) * 100 : 100;
     return l`
@@ -4369,31 +4369,31 @@ let Ne = class extends c {
 };
 Ne.styles = p(jn);
 _([
-  o({ type: Number })
+  s({ type: Number })
 ], Ne.prototype, "steps", 2);
 _([
-  o({ type: Number, attribute: "active-step" })
+  s({ type: Number, attribute: "active-step" })
 ], Ne.prototype, "activeStep", 2);
 _([
-  o({ type: String })
+  s({ type: String })
 ], Ne.prototype, "variant", 2);
 _([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], Ne.prototype, "position", 2);
 _([
-  o({ type: String, attribute: "back-label" })
+  s({ type: String, attribute: "back-label" })
 ], Ne.prototype, "backLabel", 2);
 _([
-  o({ type: String, attribute: "next-label" })
+  s({ type: String, attribute: "next-label" })
 ], Ne.prototype, "nextLabel", 2);
 Ne = _([
   d("ui-mobile-stepper")
 ], Ne);
-const Fn = ':host{display:inline-flex;position:relative;background:var(--ui-surface-background, #fff)}:host([full-width]){flex:1}.tab{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 16px;min-height:48px;border:none;background:none;cursor:pointer;font-family:var(--ui-font-family,"Inter",sans-serif);font-size:.875rem;font-weight:500;line-height:1.25;color:var(--ui-tab-inactive, #6b7280);white-space:nowrap;border-radius:0;outline:none;transition:color .2s,background .15s;box-sizing:border-box;width:100%;text-decoration:none;-webkit-tap-highlight-color:transparent}.tab:hover:not(:disabled):not([aria-disabled=true]){color:var(--ui-tab-active, #3b82f6);background:#3b82f60a}.tab:focus-visible{outline:2px solid var(--ui-tab-active, #3b82f6);outline-offset:-2px}:host([selected]) .tab{color:var(--ui-tab-active, #3b82f6);font-weight:600}.tab:disabled{color:#00000042;cursor:not-allowed}.icon-top{flex-direction:column;min-height:72px}.icon-bottom{flex-direction:column-reverse;min-height:72px}.icon-start{flex-direction:row}.icon-end{flex-direction:row-reverse}.icon-slot{display:contents;line-height:0}', qn = ':host{display:block;background:var(--ui-surface-background, #fff)}:host([hidden]){display:none!important}.panel{padding:24px;font-family:var(--ui-font-family,"Inter",sans-serif);font-size:.875rem;color:#374151;line-height:1.6}', Hn = ':host{display:block;position:relative;background:var(--ui-surface-background, #fff)}:host([orientation="vertical"]){height:100%}:host([orientation="vertical"]) .container{height:100%}.container{display:flex;align-items:center;position:relative;border-bottom:1px solid #e5e7eb}:host([orientation="vertical"]) .container{flex-direction:column;border-bottom:none;border-right:1px solid #e5e7eb;align-items:stretch}.scroll-btn{flex-shrink:0;display:flex;align-items:center;justify-content:center;border:none;background:none;cursor:pointer;color:#6b7280;border-radius:4px;padding:0;transition:color .15s,background .15s}:host(:not([orientation="vertical"])) .scroll-btn{width:40px;height:40px}:host([orientation="vertical"]) .scroll-btn{width:100%;height:40px}.scroll-btn:hover:not(:disabled){color:#374151;background:#0000000d}.scroll-btn:disabled{opacity:.38;cursor:default}.scroll-area{flex:1;position:relative;min-height:0;scrollbar-width:none;-ms-overflow-style:none}.scroll-area::-webkit-scrollbar{display:none}:host(:not([orientation="vertical"])) .scroll-area{overflow-x:auto;overflow-y:hidden}:host([orientation="vertical"]) .scroll-area{overflow-y:auto;overflow-x:hidden}.tabs-row{display:flex;position:relative;min-width:max-content}:host([orientation="vertical"]) .tabs-row{flex-direction:column;min-width:unset;min-height:max-content}:host([variant="fullWidth"]) .tabs-row{min-width:100%}:host([variant="fullWidth"]) ::slotted(ui-tab){flex:1}:host([centered]) .tabs-row{justify-content:center;min-width:100%}.indicator{position:absolute;pointer-events:none;opacity:0;background:var(--ui-tabs-ind-color, #3b82f6);border-radius:3px;transition:left .25s cubic-bezier(.4,0,.2,1),width .25s cubic-bezier(.4,0,.2,1),top .25s cubic-bezier(.4,0,.2,1),height .25s cubic-bezier(.4,0,.2,1),opacity .15s}:host(:not([orientation="vertical"])) .indicator{bottom:0;height:3px}:host([orientation="vertical"]) .indicator{right:0;width:3px}', Kn = ':host{display:block;font-family:var(--ui-font-family,"Inter",sans-serif);background:var(--ui-surface-background, #fff)}:host([orientation="vertical"]) .root{display:flex;flex-direction:row;height:100%;min-height:inherit}.root{display:block}';
-var Yn = Object.defineProperty, Gn = Object.getOwnPropertyDescriptor, $ = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Gn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Yn(t, i, r), r;
+const Fn = ":host{display:inline-flex;position:relative;background:var(--ui-background)}:host([full-width]){flex:1}.tab{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 16px;min-height:48px;border:none;background:none;cursor:pointer;font-family:var(--ui-font-family);font-size:.875rem;font-weight:500;line-height:1.25;color:var(--ui-tab-inactive-color);white-space:nowrap;border-radius:0;outline:none;transition:color .2s,background .15s;box-sizing:border-box;width:100%;text-decoration:none;-webkit-tap-highlight-color:transparent}.tab:hover:not(:disabled):not([aria-disabled=true]){color:var(--ui-tab-active-color);background:var(--ui-primary-color-light)}.tab:focus-visible{outline:2px solid var(--ui-tab-active-color);outline-offset:-2px}:host([selected]) .tab{color:var(--ui-tab-active-color);font-weight:600}.tab:disabled{opacity:.38;cursor:not-allowed}.icon-top{flex-direction:column;min-height:72px}.icon-bottom{flex-direction:column-reverse;min-height:72px}.icon-start{flex-direction:row}.icon-end{flex-direction:row-reverse}.icon-slot{display:contents;line-height:0}", qn = ":host{display:block;background:var(--ui-background)}:host([hidden]){display:none!important}.panel{padding:24px;font-family:var(--ui-font-family);font-size:.875rem;color:var(--ui-text-color);line-height:1.6}", Hn = ':host{display:block;position:relative;background:var(--ui-background)}:host([orientation="vertical"]){height:100%}:host([orientation="vertical"]) .container{height:100%}.container{display:flex;align-items:center;position:relative;border-bottom:1px solid var(--ui-border-color)}:host([orientation="vertical"]) .container{flex-direction:column;border-bottom:none;border-right:1px solid var(--ui-border-color);align-items:stretch}.scroll-btn{flex-shrink:0;display:flex;align-items:center;justify-content:center;border:none;background:none;cursor:pointer;color:var(--ui-text-color-muted);border-radius:4px;padding:0;transition:color .15s,background .15s}:host(:not([orientation="vertical"])) .scroll-btn{width:40px;height:40px}:host([orientation="vertical"]) .scroll-btn{width:100%;height:40px}.scroll-btn:hover:not(:disabled){color:var(--ui-text-color);background:var(--ui-hover-color)}.scroll-btn:disabled{opacity:.38;cursor:default}.scroll-area{flex:1;position:relative;min-height:0;scrollbar-width:none;-ms-overflow-style:none}.scroll-area::-webkit-scrollbar{display:none}:host(:not([orientation="vertical"])) .scroll-area{overflow-x:auto;overflow-y:hidden}:host([orientation="vertical"]) .scroll-area{overflow-y:auto;overflow-x:hidden}.tabs-row{display:flex;position:relative;min-width:max-content}:host([orientation="vertical"]) .tabs-row{flex-direction:column;min-width:unset;min-height:max-content}:host([variant="fullWidth"]) .tabs-row{min-width:100%}:host([variant="fullWidth"]) ::slotted(ui-tab){flex:1}:host([centered]) .tabs-row{justify-content:center;min-width:100%}.indicator{position:absolute;pointer-events:none;opacity:0;background:var(--ui-tabs-ind-color, var(--ui-primary-color));border-radius:3px;transition:left .25s cubic-bezier(.4,0,.2,1),width .25s cubic-bezier(.4,0,.2,1),top .25s cubic-bezier(.4,0,.2,1),height .25s cubic-bezier(.4,0,.2,1),opacity .15s}:host(:not([orientation="vertical"])) .indicator{bottom:0;height:3px}:host([orientation="vertical"]) .indicator{right:0;width:3px}', Kn = ':host{display:block;font-family:var(--ui-font-family);background:var(--ui-background)}:host([orientation="vertical"]) .root{display:flex;flex-direction:row;height:100%;min-height:inherit}.root{display:block}';
+var Yn = Object.defineProperty, Gn = Object.getOwnPropertyDescriptor, $ = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Gn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Yn(t, i, r), r;
 };
 const rr = (e) => l`<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="${e}"/></svg>`, Wn = () => rr("M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"), Xn = () => rr("M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"), Jn = () => rr("M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"), Zn = () => rr("M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z");
 let Fe = class extends c {
@@ -4437,22 +4437,22 @@ let Fe = class extends c {
 };
 Fe.styles = p(Fn);
 $([
-  o({ reflect: !0 })
+  s({ reflect: !0 })
 ], Fe.prototype, "value", 2);
 $([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], Fe.prototype, "disabled", 2);
 $([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], Fe.prototype, "selected", 2);
 $([
-  o({ attribute: "icon-position", reflect: !0 })
+  s({ attribute: "icon-position", reflect: !0 })
 ], Fe.prototype, "iconPosition", 2);
 $([
-  o()
+  s()
 ], Fe.prototype, "href", 2);
 $([
-  o({ type: Boolean, reflect: !0, attribute: "full-width" })
+  s({ type: Boolean, reflect: !0, attribute: "full-width" })
 ], Fe.prototype, "fullWidth", 2);
 Fe = $([
   d("ui-tab")
@@ -4467,12 +4467,12 @@ let Li = class extends c {
 };
 Li.styles = p(qn);
 $([
-  o({ reflect: !0 })
+  s({ reflect: !0 })
 ], Li.prototype, "value", 2);
 Li = $([
   d("ui-tab-panel")
 ], Li);
-let oe = class extends c {
+let se = class extends c {
   constructor() {
     super(...arguments), this.orientation = "horizontal", this.variant = "standard", this.centered = !1, this.scrollButtons = "auto", this._canBack = !1, this._canFwd = !1;
   }
@@ -4495,7 +4495,7 @@ let oe = class extends c {
     e && (this.orientation === "horizontal" ? (this._canBack = e.scrollLeft > 1, this._canFwd = e.scrollLeft < e.scrollWidth - e.clientWidth - 1) : (this._canBack = e.scrollTop > 1, this._canFwd = e.scrollTop < e.scrollHeight - e.clientHeight - 1));
   }
   syncIndicator() {
-    const e = this._tabs().find((s) => s.selected);
+    const e = this._tabs().find((o) => o.selected);
     if (!e || !this._ind || !this._row) return;
     const t = this._row.getBoundingClientRect(), i = e.getBoundingClientRect();
     !i.width && !i.height || (this.orientation === "horizontal" ? (this._ind.style.left = `${i.left - t.left}px`, this._ind.style.width = `${i.width}px`, this._ind.style.top = "", this._ind.style.height = "") : (this._ind.style.top = `${i.top - t.top}px`, this._ind.style.height = `${i.height}px`, this._ind.style.left = "", this._ind.style.width = ""), this._ind.style.opacity = "1");
@@ -4505,12 +4505,12 @@ let oe = class extends c {
   }
   /** Keyboard navigation across tabs */
   _onKey(e) {
-    const t = this.orientation === "horizontal", i = t ? "ArrowLeft" : "ArrowUp", s = t ? "ArrowRight" : "ArrowDown";
-    if (![i, s, "Home", "End"].includes(e.key)) return;
+    const t = this.orientation === "horizontal", i = t ? "ArrowLeft" : "ArrowUp", o = t ? "ArrowRight" : "ArrowDown";
+    if (![i, o, "Home", "End"].includes(e.key)) return;
     e.preventDefault();
     const r = this._tabs().filter((h) => !h.disabled), a = r.findIndex((h) => h.contains(document.activeElement) || h === document.activeElement);
     let n = a < 0 ? 0 : a;
-    e.key === i && (n = (n - 1 + r.length) % r.length), e.key === s && (n = (n + 1) % r.length), e.key === "Home" && (n = 0), e.key === "End" && (n = r.length - 1), r[n]?.focusInner(), r[n]?.dispatchEvent(new CustomEvent("ui-tab-click", {
+    e.key === i && (n = (n - 1 + r.length) % r.length), e.key === o && (n = (n + 1) % r.length), e.key === "Home" && (n = 0), e.key === "End" && (n = r.length - 1), r[n]?.focusInner(), r[n]?.dispatchEvent(new CustomEvent("ui-tab-click", {
       detail: { value: r[n].value },
       bubbles: !0,
       composed: !0
@@ -4525,12 +4525,12 @@ let oe = class extends c {
                 ?disabled=${!this._canBack}
                 @click=${() => this._scroll(-200)}>
                 ${t ? Jn() : Wn()}
-            </button>` : v, s = e ? l`
+            </button>` : g, o = e ? l`
             <button class="scroll-btn" aria-label="Scroll forward"
                 ?disabled=${!this._canFwd}
                 @click=${() => this._scroll(200)}>
                 ${t ? Zn() : Xn()}
-            </button>` : v;
+            </button>` : g;
     return l`
             <div class="container">
                 ${i}
@@ -4540,44 +4540,44 @@ let oe = class extends c {
                         <div class="indicator"></div>
                     </div>
                 </div>
-                ${s}
+                ${o}
             </div>`;
   }
 };
-oe.styles = p(Hn);
+se.styles = p(Hn);
 $([
-  o({ reflect: !0 })
-], oe.prototype, "orientation", 2);
+  s({ reflect: !0 })
+], se.prototype, "orientation", 2);
 $([
-  o({ reflect: !0 })
-], oe.prototype, "variant", 2);
+  s({ reflect: !0 })
+], se.prototype, "variant", 2);
 $([
-  o({ type: Boolean, reflect: !0 })
-], oe.prototype, "centered", 2);
+  s({ type: Boolean, reflect: !0 })
+], se.prototype, "centered", 2);
 $([
-  o({ attribute: "scroll-buttons" })
-], oe.prototype, "scrollButtons", 2);
+  s({ attribute: "scroll-buttons" })
+], se.prototype, "scrollButtons", 2);
 $([
-  g()
-], oe.prototype, "_canBack", 2);
+  m()
+], se.prototype, "_canBack", 2);
 $([
-  g()
-], oe.prototype, "_canFwd", 2);
+  m()
+], se.prototype, "_canFwd", 2);
 $([
   wi(".scroll-area")
-], oe.prototype, "_area", 2);
+], se.prototype, "_area", 2);
 $([
   wi(".tabs-row")
-], oe.prototype, "_row", 2);
+], se.prototype, "_row", 2);
 $([
   wi(".indicator")
-], oe.prototype, "_ind", 2);
+], se.prototype, "_ind", 2);
 $([
   wi("slot")
-], oe.prototype, "_slot", 2);
-oe = $([
+], se.prototype, "_slot", 2);
+se = $([
   d("ui-tab-list")
-], oe);
+], se);
 let ze = class extends c {
   constructor() {
     super(...arguments), this.value = "", this.orientation = "horizontal", this.variant = "standard", this.centered = !1, this.scrollButtons = "auto", this.textColor = "primary", this.indicatorColor = "primary", this._onTabClick = (e) => {
@@ -4599,17 +4599,17 @@ let ze = class extends c {
   }
   _syncAll() {
     const e = this.querySelector("ui-tab-list"), t = Array.from(this.querySelectorAll("ui-tab")), i = Array.from(this.querySelectorAll("ui-tab-panel"));
-    let s = this.value;
-    if (!s) {
+    let o = this.value;
+    if (!o) {
       const n = t.find((h) => !h.disabled);
-      n && (s = n.value);
+      n && (o = n.value);
     }
     e && (e.orientation = this.orientation, e.variant = this.variant, e.centered = this.centered, e.scrollButtons = this.scrollButtons, e.style.setProperty("--ui-tabs-ind-color", this._resolveColor(this.indicatorColor)));
     const r = this._resolveColor(this.textColor), a = this.textColor === "inherit" ? "currentColor" : "#6b7280";
     t.forEach((n) => {
-      n.selected = n.value === s, n.fullWidth = this.variant === "fullWidth", n.style.setProperty("--ui-tab-active", r), n.style.setProperty("--ui-tab-inactive", a), n.setAttribute("id", `tab-${n.value}`), n.setAttribute("aria-controls", `panel-${n.value}`);
+      n.selected = n.value === o, n.fullWidth = this.variant === "fullWidth", n.style.setProperty("--ui-tab-active", r), n.style.setProperty("--ui-tab-inactive", a), n.setAttribute("id", `tab-${n.value}`), n.setAttribute("aria-controls", `panel-${n.value}`);
     }), i.forEach((n) => {
-      n.setAttribute("id", `panel-${n.value}`), n.setAttribute("aria-labelledby", `tab-${n.value}`), n.value === s ? n.removeAttribute("hidden") : n.setAttribute("hidden", "");
+      n.setAttribute("id", `panel-${n.value}`), n.setAttribute("aria-labelledby", `tab-${n.value}`), n.value === o ? n.removeAttribute("hidden") : n.setAttribute("hidden", "");
     }), requestAnimationFrame(() => e?.syncIndicator());
   }
   updated(e) {
@@ -4624,34 +4624,34 @@ let ze = class extends c {
 };
 ze.styles = p(Kn);
 $([
-  o({ reflect: !0 })
+  s({ reflect: !0 })
 ], ze.prototype, "value", 2);
 $([
-  o({ reflect: !0 })
+  s({ reflect: !0 })
 ], ze.prototype, "orientation", 2);
 $([
-  o()
+  s()
 ], ze.prototype, "variant", 2);
 $([
-  o({ type: Boolean })
+  s({ type: Boolean })
 ], ze.prototype, "centered", 2);
 $([
-  o({ attribute: "scroll-buttons" })
+  s({ attribute: "scroll-buttons" })
 ], ze.prototype, "scrollButtons", 2);
 $([
-  o({ attribute: "text-color" })
+  s({ attribute: "text-color" })
 ], ze.prototype, "textColor", 2);
 $([
-  o({ attribute: "indicator-color" })
+  s({ attribute: "indicator-color" })
 ], ze.prototype, "indicatorColor", 2);
 ze = $([
   d("ui-tabs")
 ], ze);
 const Qn = ":host{display:block}";
-var el = Object.defineProperty, tl = Object.getOwnPropertyDescriptor, k = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? tl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && el(t, i, r), r;
+var el = Object.defineProperty, tl = Object.getOwnPropertyDescriptor, k = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? tl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && el(t, i, r), r;
 };
 const il = /* @__PURE__ */ new Set([
   "div",
@@ -4690,8 +4690,8 @@ let w = class extends c {
     return this.m && (e.margin = this.m), this.mx && (e.marginLeft = this.mx, e.marginRight = this.mx), this.my && (e.marginTop = this.my, e.marginBottom = this.my), this.mt && (e.marginTop = this.mt), this.mr && (e.marginRight = this.mr), this.mb && (e.marginBottom = this.mb), this.ml && (e.marginLeft = this.ml), this.p && (e.padding = this.p), this.px && (e.paddingLeft = this.px, e.paddingRight = this.px), this.py && (e.paddingTop = this.py, e.paddingBottom = this.py), this.pt && (e.paddingTop = this.pt), this.pr && (e.paddingRight = this.pr), this.pb && (e.paddingBottom = this.pb), this.pl && (e.paddingLeft = this.pl), this.display && (e.display = this.display), this.flexDirection && (e.flexDirection = this.flexDirection), this.alignItems && (e.alignItems = this.alignItems), this.justifyContent && (e.justifyContent = this.justifyContent), this.flexWrap && (e.flexWrap = this.flexWrap), this.flexBasis && (e.flexBasis = this.flexBasis), this.flexGrow && (e.flexGrow = this.flexGrow), this.flexShrink && (e.flexShrink = this.flexShrink), this.gap && (e.gap = this.gap), this.bgcolor && (e.backgroundColor = this.bgcolor === "primary" ? "var(--ui-primary-color)" : this.bgcolor === "secondary" ? "var(--ui-secondary-color)" : this.bgcolor), this.color && (e.color = this.color === "primary" ? "var(--ui-primary-color)" : this.color === "secondary" ? "var(--ui-secondary-color)" : this.color), this.border && (e.border = this.border), this.borderRadius && (e.borderRadius = this.borderRadius), this.boxShadow && (e.boxShadow = this.boxShadow), this.width && (e.width = this.width), this.height && (e.height = this.height), e;
   }
   render() {
-    const e = us(this._safeComponent);
-    return ns`
+    const e = fo(this._safeComponent);
+    return no`
       <${e} style=${ei(this._getStyles())}>
         <slot></slot>
       </${e}>
@@ -4700,106 +4700,106 @@ let w = class extends c {
 };
 w.styles = p(Qn);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "component", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "m", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "mt", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "mr", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "mb", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "ml", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "mx", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "my", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "p", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "pt", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "pr", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "pb", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "pl", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "px", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "py", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "display", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "flexDirection", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "alignItems", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "justifyContent", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "flexWrap", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "flexBasis", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "flexGrow", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "flexShrink", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "gap", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "bgcolor", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "color", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "border", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "borderRadius", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "boxShadow", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "width", 2);
 k([
-  o({ type: String })
+  s({ type: String })
 ], w.prototype, "height", 2);
 w = k([
   d("ui-box")
 ], w);
 const rl = ":host{display:block}.container{width:100%;margin-left:auto;margin-right:auto;box-sizing:border-box;padding-left:var(--ui-container-padding, 16px);padding-right:var(--ui-container-padding, 16px)}@media(min-width:600px){.container{padding-left:var(--ui-container-padding-sm, 24px);padding-right:var(--ui-container-padding-sm, 24px)}}.disable-gutters{padding-left:0;padding-right:0}.max-width-xs{max-width:var(--ui-container-xs, 444px)}.max-width-sm{max-width:var(--ui-container-sm, 600px)}.max-width-md{max-width:var(--ui-container-md, 900px)}.max-width-lg{max-width:var(--ui-container-lg, 1200px)}.max-width-xl{max-width:var(--ui-container-xl, 1536px)}.fixed{max-width:var(--ui-container-xs, 444px)}@media(min-width:600px){.fixed{max-width:var(--ui-container-sm, 600px)}}@media(min-width:900px){.fixed{max-width:var(--ui-container-md, 900px)}}@media(min-width:1200px){.fixed{max-width:var(--ui-container-lg, 1200px)}}@media(min-width:1536px){.fixed{max-width:var(--ui-container-xl, 1536px)}}@media(min-width:600px){.fixed.max-width-xs{max-width:var(--ui-container-xs, 444px)}}@media(min-width:900px){.fixed.max-width-sm{max-width:var(--ui-container-sm, 600px)}}@media(min-width:1200px){.fixed.max-width-md{max-width:var(--ui-container-md, 900px)}}@media(min-width:1536px){.fixed.max-width-lg{max-width:var(--ui-container-lg, 1200px)}}";
-var sl = Object.defineProperty, ol = Object.getOwnPropertyDescriptor, sr = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? ol(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && sl(t, i, r), r;
+var ol = Object.defineProperty, sl = Object.getOwnPropertyDescriptor, or = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? sl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && ol(t, i, r), r;
 };
 let Ht = class extends c {
   constructor() {
@@ -4819,8 +4819,8 @@ let Ht = class extends c {
   }
 };
 Ht.styles = p(rl);
-sr([
-  o({
+or([
+  s({
     attribute: "max-width",
     reflect: !0,
     converter: {
@@ -4829,20 +4829,20 @@ sr([
     }
   })
 ], Ht.prototype, "maxWidth", 2);
-sr([
-  o({ type: Boolean, attribute: "disable-gutters", reflect: !0 })
+or([
+  s({ type: Boolean, attribute: "disable-gutters", reflect: !0 })
 ], Ht.prototype, "disableGutters", 2);
-sr([
-  o({ type: Boolean, reflect: !0 })
+or([
+  s({ type: Boolean, reflect: !0 })
 ], Ht.prototype, "fixed", 2);
-Ht = sr([
+Ht = or([
   d("ui-container")
 ], Ht);
 const al = ":host{display:block}.grid-wrapper{box-sizing:border-box;display:block}.grid-wrapper.container{display:flex;flex-wrap:wrap;width:100%}.direction-row{flex-direction:row}.direction-row-reverse{flex-direction:row-reverse}.direction-column{flex-direction:column}.direction-column-reverse{flex-direction:column-reverse}.wrap-nowrap{flex-wrap:nowrap}.wrap-wrap-reverse{flex-wrap:wrap-reverse}.grid-item{box-sizing:border-box;margin:0}";
-var nl = Object.defineProperty, ll = Object.getOwnPropertyDescriptor, L = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? ll(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && nl(t, i, r), r;
+var nl = Object.defineProperty, ll = Object.getOwnPropertyDescriptor, L = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? ll(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && nl(t, i, r), r;
 };
 let z = class extends c {
   constructor() {
@@ -4871,8 +4871,8 @@ let z = class extends c {
   }
   _getEffectiveSize(e) {
     const t = ["xs", "sm", "md", "lg", "xl"], i = t.indexOf(e);
-    for (let s = i; s >= 0; s--) {
-      const r = this[t[s]];
+    for (let o = i; o >= 0; o--) {
+      const r = this[t[o]];
       if (r !== void 0)
         return typeof r == "string" && !isNaN(Number(r)) && r.trim() !== "" ? Number(r) : r === "true" ? !0 : r === "false" ? !1 : r;
     }
@@ -4880,16 +4880,16 @@ let z = class extends c {
   _getEffectiveOffset(e) {
     if (!this.offset) return;
     const t = ["xs", "sm", "md", "lg", "xl"], i = t.indexOf(e);
-    for (let s = i; s >= 0; s--) {
-      const r = this.offset[t[s]];
+    for (let o = i; o >= 0; o--) {
+      const r = this.offset[t[o]];
       if (r !== void 0)
         return typeof r == "string" && !isNaN(Number(r)) && r.trim() !== "" ? Number(r) : r;
     }
   }
   _resolveResponsive(e, t) {
     if (typeof e == "object" && e !== null) {
-      const i = ["xs", "sm", "md", "lg", "xl"], s = i.indexOf(t);
-      for (let r = s; r >= 0; r--) {
+      const i = ["xs", "sm", "md", "lg", "xl"], o = i.indexOf(t);
+      for (let r = o; r >= 0; r--) {
         const a = e[i[r]];
         if (a !== void 0) return a;
       }
@@ -4899,8 +4899,8 @@ let z = class extends c {
   }
   _resolveResponsiveOrder(e, t) {
     if (typeof e == "object" && e !== null) {
-      const i = ["xs", "sm", "md", "lg", "xl"], s = i.indexOf(t);
-      for (let r = s; r >= 0; r--) {
+      const i = ["xs", "sm", "md", "lg", "xl"], o = i.indexOf(t);
+      for (let r = o; r >= 0; r--) {
         const a = e[i[r]];
         if (a !== void 0) return a;
       }
@@ -4913,9 +4913,9 @@ let z = class extends c {
   }
   _getSpacingStyles(e) {
     if (!this.container) return {};
-    const t = this._resolveResponsive(this.spacing, e), i = this.rowSpacing !== void 0 ? this._resolveResponsive(this.rowSpacing, e) : t, s = this.columnSpacing !== void 0 ? this._resolveResponsive(this.columnSpacing, e) : t;
+    const t = this._resolveResponsive(this.spacing, e), i = this.rowSpacing !== void 0 ? this._resolveResponsive(this.rowSpacing, e) : t, o = this.columnSpacing !== void 0 ? this._resolveResponsive(this.columnSpacing, e) : t;
     return {
-      gap: `${this._toPx(i)} ${this._toPx(s)}`
+      gap: `${this._toPx(i)} ${this._toPx(o)}`
     };
   }
   _getEffectiveColumns() {
@@ -4924,8 +4924,8 @@ let z = class extends c {
     return e && !isNaN(Number(e)) ? Number(e) : this.columns;
   }
   _getItemStyles(e) {
-    const t = this.xs !== void 0 || this.sm !== void 0 || this.md !== void 0 || this.lg !== void 0 || this.xl !== void 0, i = !!this.offset, s = this.order !== void 0;
-    if (!t && !i && !s) return {};
+    const t = this.xs !== void 0 || this.sm !== void 0 || this.md !== void 0 || this.lg !== void 0 || this.xl !== void 0, i = !!this.offset, o = this.order !== void 0;
+    if (!t && !i && !o) return {};
     const r = this._getEffectiveSize(e), a = this._getEffectiveOffset(e), n = this._getEffectiveColumns(), h = {};
     if (r === !0)
       h["flex-grow"] = "1", h["flex-basis"] = "0%", h["max-width"] = "100%";
@@ -4952,12 +4952,12 @@ let z = class extends c {
   }
   _applyItemStyles() {
     const e = this._getBreakpoint(), t = this._getItemStyles(e);
-    if (this.style.flexGrow = "", this.style.flexBasis = "", this.style.maxWidth = "", this.style.width = "", this.style.marginLeft = "", this.style.order = "", Object.entries(t).forEach(([i, s]) => {
-      this.style.setProperty(i, s);
+    if (this.style.flexGrow = "", this.style.flexBasis = "", this.style.maxWidth = "", this.style.width = "", this.style.marginLeft = "", this.style.order = "", Object.entries(t).forEach(([i, o]) => {
+      this.style.setProperty(i, o);
     }), this.container) {
       const i = this._getSpacingStyles(e);
       if (i.gap) {
-        const s = i.gap.split(" "), r = s.length === 2 ? s[1] : s[0];
+        const o = i.gap.split(" "), r = o.length === 2 ? o[1] : o[0];
         this.style.setProperty("--ui-grid-column-gap", r);
       }
       this.style.setProperty("--ui-grid-columns", String(this.columns));
@@ -4983,64 +4983,64 @@ let z = class extends c {
 };
 z.styles = p(al);
 L([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], z.prototype, "container", 2);
 L([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], z.prototype, "direction", 2);
 L([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], z.prototype, "wrap", 2);
 L([
-  o({ type: String, attribute: "align-items", reflect: !0 })
+  s({ type: String, attribute: "align-items", reflect: !0 })
 ], z.prototype, "alignItems", 2);
 L([
-  o({ type: String, attribute: "justify-content", reflect: !0 })
+  s({ type: String, attribute: "justify-content", reflect: !0 })
 ], z.prototype, "justifyContent", 2);
 L([
-  o({ type: Number })
+  s({ type: Number })
 ], z.prototype, "columns", 2);
 L([
-  o({ type: Object })
+  s({ type: Object })
 ], z.prototype, "spacing", 2);
 L([
-  o({ type: Object })
+  s({ type: Object })
 ], z.prototype, "rowSpacing", 2);
 L([
-  o({ type: Object })
+  s({ type: Object })
 ], z.prototype, "columnSpacing", 2);
 L([
-  o()
+  s()
 ], z.prototype, "xs", 2);
 L([
-  o()
+  s()
 ], z.prototype, "sm", 2);
 L([
-  o()
+  s()
 ], z.prototype, "md", 2);
 L([
-  o()
+  s()
 ], z.prototype, "lg", 2);
 L([
-  o()
+  s()
 ], z.prototype, "xl", 2);
 L([
-  o({ type: Object })
+  s({ type: Object })
 ], z.prototype, "offset", 2);
 L([
-  o({ type: Object })
+  s({ type: Object })
 ], z.prototype, "order", 2);
 L([
-  g()
+  m()
 ], z.prototype, "_currentWidth", 2);
 z = L([
   d("ui-grid")
 ], z);
 const cl = ":host{display:block}.stack-wrapper{display:flex;box-sizing:border-box}.stack-wrapper.direction-column,.stack-wrapper.direction-column-reverse{width:100%}::slotted(ui-divider){margin:0!important}.stack-wrapper.no-flex-gap.direction-column ::slotted(*:not(:first-child)){margin-top:var(--ui-stack-spacing, 0px)}.stack-wrapper.no-flex-gap.direction-column-reverse ::slotted(*:not(:last-child)){margin-bottom:var(--ui-stack-spacing, 0px)}.stack-wrapper.no-flex-gap.direction-row ::slotted(*:not(:first-child)){margin-left:var(--ui-stack-spacing, 0px)}.stack-wrapper.no-flex-gap.direction-row-reverse ::slotted(*:not(:last-child)){margin-right:var(--ui-stack-spacing, 0px)}";
-var dl = Object.defineProperty, pl = Object.getOwnPropertyDescriptor, Et = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? pl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && dl(t, i, r), r;
+var dl = Object.defineProperty, pl = Object.getOwnPropertyDescriptor, Et = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? pl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && dl(t, i, r), r;
 };
 let X = class extends c {
   constructor() {
@@ -5074,8 +5074,8 @@ let X = class extends c {
     const e = this._getBreakpoint(), t = this._resolveResponsive(this.direction, e);
     if (!t) return;
     const i = t.startsWith("row") ? "vertical" : "horizontal";
-    this.querySelectorAll("ui-divider").forEach((s) => {
-      s.getAttribute("orientation") !== i && s.setAttribute("orientation", i);
+    this.querySelectorAll("ui-divider").forEach((o) => {
+      o.getAttribute("orientation") !== i && o.setAttribute("orientation", i);
     });
   }
   _getBreakpoint() {
@@ -5084,8 +5084,8 @@ let X = class extends c {
   }
   _resolveResponsive(e, t) {
     if (typeof e == "object" && e !== null && !Array.isArray(e)) {
-      const i = ["xs", "sm", "md", "lg", "xl"], s = i.indexOf(t);
-      for (let n = s; n >= 0; n--) {
+      const i = ["xs", "sm", "md", "lg", "xl"], o = i.indexOf(t);
+      for (let n = o; n >= 0; n--) {
         const h = e[i[n]];
         if (h !== void 0) return h;
       }
@@ -5098,12 +5098,12 @@ let X = class extends c {
     return typeof e == "number" ? `${e * 8}px` : e;
   }
   render() {
-    const e = this._getBreakpoint(), t = this._resolveResponsive(this.direction, e), i = this._resolveResponsive(this.spacing, e), s = this._getSpacingPx(i), r = t ?? "column", a = r.startsWith("column") ? "stretch" : "center", n = {
+    const e = this._getBreakpoint(), t = this._resolveResponsive(this.direction, e), i = this._resolveResponsive(this.spacing, e), o = this._getSpacingPx(i), r = t ?? "column", a = r.startsWith("column") ? "stretch" : "center", n = {
       "flex-direction": r,
       "align-items": this.alignItems || a,
       "justify-content": this.justifyContent || "flex-start",
-      gap: this.useFlexGap ? s : "0",
-      "--ui-stack-spacing": s
+      gap: this.useFlexGap ? o : "0",
+      "--ui-stack-spacing": o
     };
     return l`
       <div
@@ -5118,7 +5118,7 @@ let X = class extends c {
 X.styles = p(cl);
 X._breakPoints = {};
 Et([
-  o({
+  s({
     converter: {
       fromAttribute: (e) => {
         if (!e) return "column";
@@ -5132,28 +5132,28 @@ Et([
   })
 ], X.prototype, "direction", 2);
 Et([
-  o({ type: Object })
+  s({ type: Object })
 ], X.prototype, "spacing", 2);
 Et([
-  o({ type: String })
+  s({ type: String })
 ], X.prototype, "alignItems", 2);
 Et([
-  o({ type: String })
+  s({ type: String })
 ], X.prototype, "justifyContent", 2);
 Et([
-  o({ type: Boolean })
+  s({ type: Boolean })
 ], X.prototype, "useFlexGap", 2);
 Et([
-  g()
+  m()
 ], X.prototype, "_currentWidth", 2);
 X = Et([
   d("ui-stack")
 ], X);
 const hl = ":host{display:block}.image-list{display:grid;overflow:hidden;box-sizing:border-box}.variant-standard,.variant-quilted,.variant-woven{grid-auto-rows:var(--ui-image-list-row-height, 164px)}.variant-masonry{display:block}";
-var ul = Object.defineProperty, fl = Object.getOwnPropertyDescriptor, oi = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? fl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && ul(t, i, r), r;
+var ul = Object.defineProperty, fl = Object.getOwnPropertyDescriptor, si = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? fl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && ul(t, i, r), r;
 };
 let rt = class extends c {
   constructor() {
@@ -5169,29 +5169,29 @@ let rt = class extends c {
   }
 };
 rt.styles = p(hl);
-oi([
-  o({ type: String })
+si([
+  s({ type: String })
 ], rt.prototype, "variant", 2);
-oi([
-  o({ type: Number })
+si([
+  s({ type: Number })
 ], rt.prototype, "cols", 2);
-oi([
-  o({ type: Number })
+si([
+  s({ type: Number })
 ], rt.prototype, "gap", 2);
-oi([
-  o({ type: Number })
+si([
+  s({ type: Number })
 ], rt.prototype, "rowHeight", 2);
-oi([
-  o({ type: Boolean })
+si([
+  s({ type: Boolean })
 ], rt.prototype, "autoRows", 2);
-rt = oi([
+rt = si([
   d("ui-image-list")
 ], rt);
 const bl = ':host{display:block;position:relative;overflow:hidden}:host([bar-position="below"]){display:flex;flex-direction:column;overflow:visible}:host(.masonry){break-inside:avoid;margin-bottom:var(--ui-image-list-gap, 4px)}.item-wrapper{width:100%;height:100%;position:relative;overflow:hidden}:host([bar-position="below"]) .item-wrapper{flex:1 1 auto;overflow:hidden}:host(.masonry) .item-wrapper{height:auto}::slotted(img){width:100%;height:100%;object-fit:var(--ui-image-fit, cover);display:block}:host(.masonry) ::slotted(img){height:auto}::slotted(ui-image-list-item-bar){position:absolute;bottom:0;left:0;right:0}::slotted(ui-image-list-item-bar[position="top"]){bottom:auto;top:0}:host([bar-position="below"]) ::slotted(ui-image-list-item-bar){position:static}';
-var ml = Object.defineProperty, gl = Object.getOwnPropertyDescriptor, Pt = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? gl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && ml(t, i, r), r;
+var vl = Object.defineProperty, ml = Object.getOwnPropertyDescriptor, Pt = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? ml(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && vl(t, i, r), r;
 };
 let qe = class extends c {
   constructor() {
@@ -5218,31 +5218,31 @@ let qe = class extends c {
 };
 qe.styles = p(bl);
 Pt([
-  o({ type: Number })
+  s({ type: Number })
 ], qe.prototype, "rows", 2);
 Pt([
-  o({ type: Number })
+  s({ type: Number })
 ], qe.prototype, "cols", 2);
 Pt([
-  o({ type: String, attribute: "bar-position", reflect: !0 })
+  s({ type: String, attribute: "bar-position", reflect: !0 })
 ], qe.prototype, "barPosition", 2);
 Pt([
-  o({ type: String })
+  s({ type: String })
 ], qe.prototype, "weave", 2);
 Pt([
-  o({ type: String, attribute: "aspect-ratio", reflect: !0 })
+  s({ type: String, attribute: "aspect-ratio", reflect: !0 })
 ], qe.prototype, "aspectRatio", 2);
 Pt([
-  o({ type: String })
+  s({ type: String })
 ], qe.prototype, "fit", 2);
 qe = Pt([
   d("ui-image-list-item")
 ], qe);
-const vl = ':host{display:block;box-sizing:border-box;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.3) 70%,transparent 100%);color:#fff;padding:12px 12px 8px;font-family:var(--ui-font-family, system-ui, sans-serif)}:host([position="top"]){background:linear-gradient(to bottom,rgba(0,0,0,.7) 0%,rgba(0,0,0,.3) 70%,transparent 100%);padding:8px 12px 12px}:host([position="below"]){background:var(--ui-surface-color, #fff);color:var(--ui-text-color, #111827);border-top:1px solid var(--ui-border-color, #e5e7eb);padding:8px 12px}.bar-inner{display:flex;align-items:center;gap:8px}.bar-text{flex:1;min-width:0}.bar-title{font-size:.875rem;font-weight:600;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.bar-subtitle{font-size:.75rem;font-weight:400;opacity:.8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:2px}.bar-action{flex-shrink:0;display:flex;align-items:center}::slotted([slot="action"]){color:#fff}:host([position="below"]) ::slotted([slot="action"]){color:var(--ui-text-color, #111827)}';
-var yl = Object.defineProperty, xl = Object.getOwnPropertyDescriptor, ls = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? xl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && yl(t, i, r), r;
+const gl = ':host{display:block;box-sizing:border-box;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.3) 70%,transparent 100%);color:var(--ui-image-bar-overlay-text, var(--ui-text-color-on-primary));padding:12px 12px 8px;font-family:var(--ui-font-family)}:host([position="top"]){background:linear-gradient(to bottom,rgba(0,0,0,.7) 0%,rgba(0,0,0,.3) 70%,transparent 100%);padding:8px 12px 12px}:host([position="below"]){background:var(--ui-surface-1);color:var(--ui-text-color);border-top:1px solid var(--ui-border-color);padding:8px 12px}.bar-inner{display:flex;align-items:center;gap:8px}.bar-text{flex:1;min-width:0}.bar-title{font-size:.875rem;font-weight:600;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.bar-subtitle{font-size:.75rem;font-weight:400;opacity:.8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:2px}.bar-action{flex-shrink:0;display:flex;align-items:center}::slotted([slot="action"]){color:var(--ui-image-bar-overlay-text, var(--ui-text-color-on-primary))}:host([position="below"]) ::slotted([slot="action"]){color:var(--ui-text-color)}';
+var yl = Object.defineProperty, xl = Object.getOwnPropertyDescriptor, lo = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? xl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && yl(t, i, r), r;
 };
 let ji = class extends c {
   constructor() {
@@ -5262,20 +5262,20 @@ let ji = class extends c {
     `;
   }
 };
-ji.styles = p(vl);
-ls([
-  o({ type: String, reflect: !0 })
+ji.styles = p(gl);
+lo([
+  s({ type: String, reflect: !0 })
 ], ji.prototype, "position", 2);
-ji = ls([
+ji = lo([
   d("ui-image-list-item-bar")
 ], ji);
-const _l = ':host{display:inline-block;font-family:var(--ui-font-family, "Inter", sans-serif);-webkit-user-select:none;user-select:none}.calendar{width:296px;background:var(--ui-surface-background, #fff);border-radius:var(--ui-border-radius-xl, 12px);overflow:hidden}.header{display:flex;align-items:center;justify-content:space-between;padding:12px 8px 8px}.header-label{font-size:.9375rem;font-weight:600;color:var(--ui-text-color, #111827);cursor:pointer;padding:4px 8px;border-radius:6px;transition:background .12s}.header-label:hover{background:#0000000a}.nav-btn{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border:none;background:transparent;cursor:pointer;border-radius:50%;color:var(--ui-text-color-muted, #6b7280);font-size:1rem;transition:background .12s}.nav-btn:hover{background:#0000000f}.nav-btn:disabled{opacity:.3;cursor:default}.dow-row{display:grid;grid-template-columns:repeat(7,1fr);padding:0 8px;margin-bottom:4px}.dow-cell{text-align:center;font-size:.6875rem;font-weight:600;color:var(--ui-text-color-muted, #9ca3af);padding:4px 0;text-transform:uppercase;letter-spacing:.04em}.day-grid{display:grid;grid-template-columns:repeat(7,1fr);padding:0 8px 12px;gap:2px 0}.day-cell{display:flex;align-items:center;justify-content:center;height:36px;width:100%;border:none;background:transparent;cursor:pointer;border-radius:50%;font-size:.8125rem;color:var(--ui-text-color, #374151);transition:background .1s,color .1s;position:relative}.day-cell:hover:not(.disabled):not(.selected){background:#0000000f}.day-cell.other-month{color:var(--ui-text-color-muted, #d1d5db)}.day-cell.today:not(.selected){color:var(--ui-primary-color, #3b82f6);font-weight:700}.day-cell.today:not(.selected):after{content:"";position:absolute;bottom:4px;left:50%;transform:translate(-50%);width:4px;height:4px;border-radius:50%;background:var(--ui-primary-color, #3b82f6)}.day-cell.selected{background:var(--ui-primary-color, #3b82f6);color:#fff;font-weight:700}.day-cell.selected:hover{background:var(--ui-primary-color-dark, #2563eb)}.day-cell.disabled{opacity:.35;cursor:not-allowed;pointer-events:none}.year-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px;max-height:220px;overflow-y:auto}.year-btn{padding:8px 4px;border:none;background:transparent;cursor:pointer;border-radius:6px;font-size:.875rem;color:var(--ui-text-color, #374151);transition:background .12s}.year-btn:hover{background:#0000000f}.year-btn.selected-year{background:var(--ui-primary-color, #3b82f6);color:#fff;font-weight:700}.month-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px}.month-btn{padding:10px 4px;border:none;background:transparent;cursor:pointer;border-radius:6px;font-size:.8125rem;color:var(--ui-text-color, #374151);transition:background .12s}.month-btn:hover{background:#0000000f}.month-btn.selected-month{background:var(--ui-primary-color, #3b82f6);color:#fff;font-weight:700}', wl = ':host{display:inline-block;font-family:var(--ui-font-family, "Inter", sans-serif)}.field-wrapper{position:relative;display:inline-flex;align-items:center}.field-label{display:block;font-size:.75rem;font-weight:500;color:var(--ui-text-color-muted, #6b7280);margin-bottom:4px}.field-input{font-family:inherit;font-size:.9375rem;color:var(--ui-text-color, #111827);background:var(--ui-surface-background, #fff);border:1.5px solid var(--ui-border-color, #d1d5db);border-radius:var(--ui-border-radius-md, 8px);padding:10px 44px 10px 14px;width:180px;outline:none;transition:border-color .15s,box-shadow .15s;box-sizing:border-box;cursor:text}.field-input::placeholder{color:var(--ui-text-color-muted, #9ca3af)}.field-input:focus{border-color:var(--ui-primary-color, #3b82f6);box-shadow:0 0 0 3px #3b82f626}:host([disabled]) .field-input{background:var(--ui-disabled-bg, #f9fafb);color:var(--ui-text-color-muted, #9ca3af);cursor:not-allowed;border-color:var(--ui-border-color, #e5e7eb)}:host([readonly]) .field-input{cursor:default}.calendar-icon-btn{position:absolute;right:10px;display:flex;align-items:center;justify-content:center;width:28px;height:28px;border:none;background:transparent;cursor:pointer;border-radius:50%;color:var(--ui-text-color-muted, #6b7280);transition:background .12s,color .12s;font-size:1rem}.calendar-icon-btn:hover{background:#0000000f;color:var(--ui-primary-color, #3b82f6)}:host([disabled]) .calendar-icon-btn{pointer-events:none;opacity:.4}:host([readonly]) .calendar-icon-btn{pointer-events:none}:host([error]) .field-input{border-color:var(--ui-error-color, #ef4444)}:host([error]) .field-input:focus{box-shadow:0 0 0 3px #ef444426}.helper-text{font-size:.75rem;margin-top:4px;color:var(--ui-text-color-muted, #6b7280)}:host([error]) .helper-text{color:var(--ui-error-color, #ef4444)}.popover-anchor{position:relative;display:inline-block}.popover{position:absolute;top:calc(100% + 6px);left:0;z-index:1400;background:var(--ui-surface-background, #fff);border-radius:var(--ui-border-radius-xl, 12px);box-shadow:0 8px 24px -4px #0000002e,0 2px 8px -2px #0000001a;transform-origin:top left;transform:scale(.94) translateY(-4px);opacity:0;visibility:hidden;transition:transform .15s cubic-bezier(.4,0,.2,1),opacity .15s,visibility .15s;pointer-events:none}.popover.open{transform:scale(1) translateY(0);opacity:1;visibility:visible;pointer-events:auto}.popover-actions{display:flex;justify-content:flex-end;gap:8px;padding:4px 12px 12px;border-top:1px solid var(--ui-border-color, #f3f4f6)}.action-btn{font-family:inherit;font-size:.875rem;font-weight:600;padding:6px 14px;border:none;border-radius:6px;cursor:pointer;transition:background .12s}.action-btn.cancel{background:transparent;color:var(--ui-text-color-muted, #6b7280)}.action-btn.cancel:hover{background:#0000000f}.action-btn.ok{background:var(--ui-primary-color, #3b82f6);color:#fff}.action-btn.ok:hover{background:var(--ui-primary-color-dark, #2563eb)}.static-wrapper{display:inline-block;border-radius:var(--ui-border-radius-xl, 12px);box-shadow:0 1px 4px #00000014,0 0 0 1px var(--ui-border-color, #e5e7eb);overflow:hidden}.click-away{display:none;position:fixed;inset:0;z-index:1399}.click-away.open{display:block}';
-var kl = Object.defineProperty, $l = Object.getOwnPropertyDescriptor, E = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? $l(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && kl(t, i, r), r;
+const _l = ':host{display:inline-block;font-family:var(--ui-font-family);-webkit-user-select:none;user-select:none}.calendar{width:296px;background:var(--ui-surface-1);border-radius:var(--ui-border-radius-xl);overflow:hidden}.header{display:flex;align-items:center;justify-content:space-between;padding:12px 8px 8px}.header-label{font-size:.9375rem;font-weight:600;color:var(--ui-text-color);cursor:pointer;padding:4px 8px;border-radius:6px;transition:background .12s}.header-label:hover{background:var(--ui-hover-color)}.nav-btn{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border:none;background:transparent;cursor:pointer;border-radius:50%;color:var(--ui-text-color-muted);font-size:1rem;transition:background .12s}.nav-btn:hover{background:var(--ui-hover-color)}.nav-btn:disabled{opacity:.3;cursor:default}.dow-row{display:grid;grid-template-columns:repeat(7,1fr);padding:0 8px;margin-bottom:4px}.dow-cell{text-align:center;font-size:.6875rem;font-weight:600;color:var(--ui-text-color-muted);padding:4px 0;text-transform:uppercase;letter-spacing:.04em}.day-grid{display:grid;grid-template-columns:repeat(7,1fr);padding:0 8px 12px;gap:2px 0}.day-cell{display:flex;align-items:center;justify-content:center;height:36px;width:100%;border:none;background:transparent;cursor:pointer;border-radius:50%;font-size:.8125rem;color:var(--ui-text-color);transition:background .1s,color .1s;position:relative}.day-cell:hover:not(.disabled):not(.selected){background:var(--ui-hover-color)}.day-cell.other-month{color:var(--ui-text-color-muted)}.day-cell.today:not(.selected){color:var(--ui-primary-color);font-weight:700}.day-cell.today:not(.selected):after{content:"";position:absolute;bottom:4px;left:50%;transform:translate(-50%);width:4px;height:4px;border-radius:50%;background:var(--ui-primary-color)}.day-cell.selected{background:var(--ui-primary-color);color:var(--ui-text-color-on-primary);font-weight:700}.day-cell.selected:hover{background:var(--ui-primary-color-hover)}.day-cell.disabled{opacity:.35;cursor:not-allowed;pointer-events:none}.year-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px;max-height:220px;overflow-y:auto}.year-btn{padding:8px 4px;border:none;background:transparent;cursor:pointer;border-radius:6px;font-size:.875rem;color:var(--ui-text-color);transition:background .12s}.year-btn:hover{background:var(--ui-hover-color)}.year-btn.selected-year{background:var(--ui-primary-color);color:var(--ui-text-color-on-primary);font-weight:700}.month-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px}.month-btn{padding:10px 4px;border:none;background:transparent;cursor:pointer;border-radius:6px;font-size:.8125rem;color:var(--ui-text-color);transition:background .12s}.month-btn:hover{background:var(--ui-hover-color)}.month-btn.selected-month{background:var(--ui-primary-color);color:var(--ui-text-color-on-primary);font-weight:700}', wl = ":host{display:inline-block;font-family:var(--ui-font-family)}.field-wrapper{position:relative;display:inline-flex;align-items:center}.field-label{display:block;font-size:.75rem;font-weight:500;color:var(--ui-text-color-muted);margin-bottom:4px}.field-input{font-family:inherit;font-size:.9375rem;color:var(--ui-text-color);background:var(--ui-input-bg);border:1.5px solid var(--ui-border-color);border-radius:var(--ui-border-radius-md);padding:10px 44px 10px 14px;width:180px;outline:none;transition:border-color .15s,box-shadow .15s;box-sizing:border-box;cursor:text}.field-input::placeholder{color:var(--ui-input-placeholder-color)}.field-input:focus{border-color:var(--ui-primary-color);box-shadow:0 0 0 3px var(--ui-primary-focus-ring)}:host([disabled]) .field-input{background:var(--ui-input-disabled-bg);color:var(--ui-text-color-muted);cursor:not-allowed;border-color:var(--ui-border-color)}:host([readonly]) .field-input{cursor:default}.calendar-icon-btn{position:absolute;right:10px;display:flex;align-items:center;justify-content:center;width:28px;height:28px;border:none;background:transparent;cursor:pointer;border-radius:50%;color:var(--ui-text-color-muted);transition:background .12s,color .12s;font-size:1rem}.calendar-icon-btn:hover{background:var(--ui-hover-color);color:var(--ui-primary-color)}:host([disabled]) .calendar-icon-btn{pointer-events:none;opacity:.4}:host([readonly]) .calendar-icon-btn{pointer-events:none}:host([error]) .field-input{border-color:var(--ui-error-color)}:host([error]) .field-input:focus{box-shadow:0 0 0 3px var(--ui-error-focus-ring)}.helper-text{font-size:.75rem;margin-top:4px;color:var(--ui-text-color-muted)}:host([error]) .helper-text{color:var(--ui-error-color)}.popover-anchor{position:relative;display:inline-block}.popover{position:absolute;top:calc(100% + 6px);left:0;z-index:1400;background:var(--ui-surface-1);border-radius:var(--ui-border-radius-xl);box-shadow:var(--ui-shadow-lg);transform-origin:top left;transform:scale(.94) translateY(-4px);opacity:0;visibility:hidden;transition:transform .15s cubic-bezier(.4,0,.2,1),opacity .15s,visibility .15s;pointer-events:none}.popover.open{transform:scale(1) translateY(0);opacity:1;visibility:visible;pointer-events:auto}.popover-actions{display:flex;justify-content:flex-end;gap:8px;padding:4px 12px 12px;border-top:1px solid var(--ui-border-color)}.action-btn{font-family:inherit;font-size:.875rem;font-weight:600;padding:6px 14px;border:none;border-radius:6px;cursor:pointer;transition:background .12s}.action-btn.cancel{background:transparent;color:var(--ui-text-color-muted)}.action-btn.cancel:hover{background:var(--ui-hover-color)}.action-btn.ok{background:var(--ui-primary-color);color:var(--ui-text-color-on-primary)}.action-btn.ok:hover{background:var(--ui-primary-color-hover)}.static-wrapper{display:inline-block;border-radius:var(--ui-border-radius-xl);box-shadow:var(--ui-shadow-sm),0 0 0 1px var(--ui-border-color);overflow:hidden}.click-away{display:none;position:fixed;inset:0;z-index:1399}.click-away.open{display:block}";
+var kl = Object.defineProperty, $l = Object.getOwnPropertyDescriptor, E = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? $l(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && kl(t, i, r), r;
 };
-const Sl = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"], ss = [
+const Sl = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"], oo = [
   "January",
   "February",
   "March",
@@ -5291,12 +5291,12 @@ const Sl = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"], ss = [
 ];
 function dt(e) {
   if (!e) return null;
-  const [t, i, s] = e.split("-").map(Number);
-  return !t || !i || !s ? null : new Date(t, i - 1, s);
+  const [t, i, o] = e.split("-").map(Number);
+  return !t || !i || !o ? null : new Date(t, i - 1, o);
 }
 function Di(e) {
-  const t = e.getFullYear(), i = String(e.getMonth() + 1).padStart(2, "0"), s = String(e.getDate()).padStart(2, "0");
-  return `${t}-${i}-${s}`;
+  const t = e.getFullYear(), i = String(e.getMonth() + 1).padStart(2, "0"), o = String(e.getDate()).padStart(2, "0");
+  return `${t}-${i}-${o}`;
 }
 function Cl(e) {
   const t = dt(e);
@@ -5308,8 +5308,8 @@ function Il() {
 function zt(e, t) {
   return e.getFullYear() === t.getFullYear() && e.getMonth() === t.getMonth() && e.getDate() === t.getDate();
 }
-function El(e, t, i, s, r) {
-  const a = [], n = new Date(e, t, 1), h = Il(), f = dt(h), y = i ? dt(i) : null, b = s ? dt(s) : null, S = r ? dt(r) : null, de = n.getDay();
+function El(e, t, i, o, r) {
+  const a = [], n = new Date(e, t, 1), h = Il(), f = dt(h), y = i ? dt(i) : null, b = o ? dt(o) : null, S = r ? dt(r) : null, de = n.getDay();
   for (let ie = de - 1; ie >= 0; ie--) {
     const O = new Date(e, t, -ie), ai = Di(O);
     a.push({
@@ -5335,8 +5335,8 @@ function El(e, t, i, s, r) {
       isDisabled: (b ? O < b : !1) || (S ? O > S : !1)
     });
   }
-  const ps = 42 - a.length;
-  for (let ie = 1; ie <= ps; ie++) {
+  const ho = 42 - a.length;
+  for (let ie = 1; ie <= ho; ie++) {
     const O = new Date(e, t + 1, ie), ai = Di(O);
     a.push({
       date: O,
@@ -5392,7 +5392,7 @@ let Te = class extends c {
         <span class="header-label" @click=${() => this._mode = "month"} role="button" tabindex="0"
           @keydown=${(t) => t.key === "Enter" && (this._mode = "month")}
         >
-          ${ss[this._viewMonth]} ${this._viewYear}
+          ${oo[this._viewMonth]} ${this._viewYear}
         </span>
         <button class="nav-btn" @click=${this._nextMonth} aria-label="Next month">›</button>
       </div>
@@ -5425,7 +5425,7 @@ let Te = class extends c {
         <button class="nav-btn" @click=${() => this._viewYear++} aria-label="Next year">›</button>
       </div>
       <div class="month-grid">
-        ${ss.map((e, t) => l`
+        ${oo.map((e, t) => l`
           <button class=${u({ "month-btn": !0, "selected-month": t === this._viewMonth })}
             @click=${() => this._selectMonth(t)}>${e.slice(0, 3)}</button>
         `)}
@@ -5433,7 +5433,7 @@ let Te = class extends c {
     `;
   }
   _renderYearView() {
-    const e = (/* @__PURE__ */ new Date()).getFullYear(), t = Array.from({ length: 201 }, (i, s) => e - 100 + s);
+    const e = (/* @__PURE__ */ new Date()).getFullYear(), t = Array.from({ length: 201 }, (i, o) => e - 100 + o);
     return l`
       <div class="header">
         <span class="header-label" style="cursor:default">Select Year</span>
@@ -5456,25 +5456,25 @@ let Te = class extends c {
 };
 Te.styles = p(_l);
 E([
-  o({ type: String })
+  s({ type: String })
 ], Te.prototype, "value", 2);
 E([
-  o({ type: String })
+  s({ type: String })
 ], Te.prototype, "min", 2);
 E([
-  o({ type: String })
+  s({ type: String })
 ], Te.prototype, "max", 2);
 E([
-  o({ type: Boolean })
+  s({ type: Boolean })
 ], Te.prototype, "disabled", 2);
 E([
-  g()
+  m()
 ], Te.prototype, "_viewYear", 2);
 E([
-  g()
+  m()
 ], Te.prototype, "_viewMonth", 2);
 E([
-  g()
+  m()
 ], Te.prototype, "_mode", 2);
 Te = E([
   d("ui-date-picker-calendar")
@@ -5523,15 +5523,15 @@ let H = class extends c {
     if (this.readonly) return;
     const i = e.target.value.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
     if (i) {
-      const s = `${i[3]}-${i[1]}-${i[2]}`;
-      if (isNaN(new Date(s).getTime()) || this.min && s < this.min || this.max && s > this.max) return;
-      this._commit(s);
+      const o = `${i[3]}-${i[1]}-${i[2]}`;
+      if (isNaN(new Date(o).getTime()) || this.min && o < this.min || this.max && o > this.max) return;
+      this._commit(o);
     }
   }
   // ── Field ───────────────────────────────────────────────────────────────
   _renderField() {
     return l`
-      ${this.label ? l`<label class="field-label" for="dp-input">${this.label}</label>` : v}
+      ${this.label ? l`<label class="field-label" for="dp-input">${this.label}</label>` : g}
       <div class="field-wrapper">
         <input
           id="dp-input"
@@ -5539,7 +5539,7 @@ let H = class extends c {
           type="text"
           .value=${Cl(this.value)}
           placeholder=${this.placeholder}
-          name=${this.name || v}
+          name=${this.name || g}
           ?disabled=${this.disabled}
           ?readonly=${this.readonly}
           aria-label=${this.label || "Date"}
@@ -5560,7 +5560,7 @@ let H = class extends c {
           📅
         </button>
       </div>
-      ${this.helperText ? l`<p class="helper-text">${this.helperText}</p>` : v}
+      ${this.helperText ? l`<p class="helper-text">${this.helperText}</p>` : g}
     `;
   }
   // ── Desktop variant ─────────────────────────────────────────────────────
@@ -5633,52 +5633,52 @@ let H = class extends c {
 };
 H.styles = p(wl);
 E([
-  o({ type: String })
+  s({ type: String })
 ], H.prototype, "value", 2);
 E([
-  o({ type: String })
+  s({ type: String })
 ], H.prototype, "label", 2);
 E([
-  o({ type: String })
+  s({ type: String })
 ], H.prototype, "placeholder", 2);
 E([
-  o({ type: String })
+  s({ type: String })
 ], H.prototype, "name", 2);
 E([
-  o({ type: String })
+  s({ type: String })
 ], H.prototype, "variant", 2);
 E([
-  o({ type: String })
+  s({ type: String })
 ], H.prototype, "min", 2);
 E([
-  o({ type: String })
+  s({ type: String })
 ], H.prototype, "max", 2);
 E([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], H.prototype, "disabled", 2);
 E([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], H.prototype, "readonly", 2);
 E([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], H.prototype, "error", 2);
 E([
-  o({ type: String, attribute: "helper-text" })
+  s({ type: String, attribute: "helper-text" })
 ], H.prototype, "helperText", 2);
 E([
-  g()
+  m()
 ], H.prototype, "_open", 2);
 E([
-  g()
+  m()
 ], H.prototype, "_pendingValue", 2);
 H = E([
   d("ui-date-picker")
 ], H);
-const Pl = ':host{display:inline-block;font-family:var(--ui-font-family, "Inter", sans-serif)}.field-label{display:block;font-size:.75rem;font-weight:500;letter-spacing:.01em;color:var(--ui-text-color-muted, #6b7280);margin-bottom:5px;transition:color .15s}:host([error]) .field-label{color:var(--ui-error-color, #ef4444)}.field-label.focused{color:var(--ui-primary-color, #3b82f6)}:host([error]) .field-label.focused{color:var(--ui-error-color, #ef4444)}.field-container{display:inline-flex;align-items:center;gap:4px;background:var(--ui-surface-background, #ffffff);border:1.5px solid var(--ui-border-color, #d1d5db);border-radius:var(--ui-border-radius-md, 8px);padding:0 10px;height:44px;min-width:200px;cursor:text;box-sizing:border-box;transition:border-color .15s,box-shadow .15s;position:relative}.field-container.focused{border-color:var(--ui-primary-color, #3b82f6);box-shadow:0 0 0 3px #3b82f626}:host([error]) .field-container{border-color:var(--ui-error-color, #ef4444)}:host([error]) .field-container.focused{box-shadow:0 0 0 3px #ef444426}:host([disabled]) .field-container{background:var(--ui-disabled-bg, #f9fafb);border-color:var(--ui-border-color, #e5e7eb);cursor:not-allowed}:host([readonly]) .field-container{cursor:default}.segments{display:flex;align-items:center;flex:1;gap:1px;outline:none;min-height:100%}.segment{display:inline-flex;align-items:center;justify-content:center;border-radius:4px;padding:2px 4px;font-size:.9375rem;font-variant-numeric:tabular-nums;color:var(--ui-text-color, #111827);min-width:2ch;line-height:1;transition:background .1s;cursor:text;-webkit-user-select:none;user-select:none}.segment.placeholder{color:var(--ui-text-color-muted, #9ca3af)}.segment.active{background:var(--ui-primary-color, #3b82f6);color:#fff;border-radius:3px}:host([disabled]) .segment{color:var(--ui-text-color-muted, #9ca3af)}:host([disabled]) .segment.active{background:var(--ui-border-color, #e5e7eb);color:var(--ui-text-color-muted, #9ca3af)}.segment-year{min-width:4ch}.separator{color:var(--ui-text-color-muted, #6b7280);font-size:.9375rem;pointer-events:none;line-height:1}.field-actions{display:flex;align-items:center;gap:2px;margin-left:auto}.icon-btn{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border:none;background:transparent;cursor:pointer;border-radius:50%;color:var(--ui-text-color-muted, #6b7280);font-size:.875rem;transition:background .12s,color .12s;flex-shrink:0;padding:0}.icon-btn:hover{background:#0000000f;color:var(--ui-text-color, #374151)}:host([disabled]) .icon-btn{pointer-events:none;opacity:0}.helper{display:block;font-size:.75rem;margin-top:5px;color:var(--ui-text-color-muted, #6b7280)}:host([error]) .helper{color:var(--ui-error-color, #ef4444)}';
-var Ol = Object.defineProperty, Dl = Object.getOwnPropertyDescriptor, Y = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Dl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Ol(t, i, r), r;
+const Pl = ":host{display:inline-block;font-family:var(--ui-font-family)}.field-label{display:block;font-size:.75rem;font-weight:500;letter-spacing:.01em;color:var(--ui-text-color-muted);margin-bottom:5px;transition:color .15s}:host([error]) .field-label{color:var(--ui-error-color)}.field-label.focused{color:var(--ui-primary-color)}:host([error]) .field-label.focused{color:var(--ui-error-color)}.field-container{display:inline-flex;align-items:center;gap:4px;background:var(--ui-input-bg);border:1.5px solid var(--ui-border-color);border-radius:var(--ui-border-radius-md);padding:0 10px;height:44px;min-width:200px;cursor:text;box-sizing:border-box;transition:border-color .15s,box-shadow .15s;position:relative}.field-container.focused{border-color:var(--ui-primary-color);box-shadow:0 0 0 3px var(--ui-primary-focus-ring)}:host([error]) .field-container{border-color:var(--ui-error-color)}:host([error]) .field-container.focused{box-shadow:0 0 0 3px var(--ui-error-focus-ring)}:host([disabled]) .field-container{background:var(--ui-input-disabled-bg);border-color:var(--ui-border-color);cursor:not-allowed}:host([readonly]) .field-container{cursor:default}.segments{display:flex;align-items:center;flex:1;gap:1px;outline:none;min-height:100%}.segment{display:inline-flex;align-items:center;justify-content:center;border-radius:4px;padding:2px 4px;font-size:.9375rem;font-variant-numeric:tabular-nums;color:var(--ui-text-color);min-width:2ch;line-height:1;transition:background .1s;cursor:text;-webkit-user-select:none;user-select:none}.segment.placeholder{color:var(--ui-input-placeholder-color)}.segment.active{background:var(--ui-primary-color);color:var(--ui-text-color-on-primary);border-radius:3px}:host([disabled]) .segment{color:var(--ui-text-color-muted)}:host([disabled]) .segment.active{background:var(--ui-border-color);color:var(--ui-text-color-muted)}.segment-year{min-width:4ch}.separator{color:var(--ui-text-color-muted);font-size:.9375rem;pointer-events:none;line-height:1}.field-actions{display:flex;align-items:center;gap:2px;margin-left:auto}.icon-btn{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border:none;background:transparent;cursor:pointer;border-radius:50%;color:var(--ui-text-color-muted);font-size:.875rem;transition:background .12s,color .12s;flex-shrink:0;padding:0}.icon-btn:hover{background:var(--ui-hover-color);color:var(--ui-text-color)}:host([disabled]) .icon-btn{pointer-events:none;opacity:0}.helper{display:block;font-size:.75rem;margin-top:5px;color:var(--ui-text-color-muted)}:host([error]) .helper{color:var(--ui-error-color)}";
+var Ol = Object.defineProperty, Dl = Object.getOwnPropertyDescriptor, Y = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Dl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Ol(t, i, r), r;
 };
 function Pi(e, t, i) {
   return Math.min(Math.max(e, t), i);
@@ -5691,7 +5691,7 @@ function zl(e) {
   const t = e.match(/^(\d{4})-(\d{2})-(\d{2})$/);
   return t ? { y: parseInt(t[1]), m: parseInt(t[2]), d: parseInt(t[3]) } : { m: null, d: null, y: null };
 }
-function os(e, t, i) {
+function so(e, t, i) {
   return e === null || t === null || i === null ? "" : `${String(i).padStart(4, "0")}-${String(e).padStart(2, "0")}-${String(t).padStart(2, "0")}`;
 }
 const Je = ["month", "day", "year"];
@@ -5703,8 +5703,8 @@ let T = class extends c {
   // Sync controlled value → segments before each render (willUpdate avoids a double-render cycle)
   willUpdate(e) {
     if (e.has("value")) {
-      const { m: t, d: i, y: s } = zl(this.value);
-      this._month = t, this._day = i, this._year = s;
+      const { m: t, d: i, y: o } = zl(this.value);
+      this._month = t, this._day = i, this._year = o;
     }
   }
   updated() {
@@ -5717,7 +5717,7 @@ let T = class extends c {
   }
   // ── Form value sync ──────────────────────────────────────────────────────
   _syncFormValue() {
-    const e = os(this._month, this._day, this._year);
+    const e = so(this._month, this._day, this._year);
     this._internals.setFormValue?.(e || null);
   }
   // ── Internal: segment navigation ─────────────────────────────────────────
@@ -5763,16 +5763,16 @@ let T = class extends c {
       if (i.length === 1)
         e >= 2 && e <= 9 ? (this._month = e, this._buf = "", this._nextSegment()) : this._buf = i;
       else {
-        const s = parseInt(i);
-        s >= 1 && s <= 12 ? (this._month = s, this._buf = "", this._nextSegment()) : (this._buf = String(e), e >= 2 && e <= 9 && (this._month = e, this._buf = "", this._nextSegment()));
+        const o = parseInt(i);
+        o >= 1 && o <= 12 ? (this._month = o, this._buf = "", this._nextSegment()) : (this._buf = String(e), e >= 2 && e <= 9 && (this._month = e, this._buf = "", this._nextSegment()));
       }
     else if (t === "day") {
-      const s = Oi(this._month ?? 1, this._year ?? 2e3);
+      const o = Oi(this._month ?? 1, this._year ?? 2e3);
       if (i.length === 1)
         e >= 4 && e <= 9 ? (this._day = e, this._buf = "", this._nextSegment()) : this._buf = i;
       else {
         const r = parseInt(i);
-        r >= 1 && r <= s ? (this._day = r, this._buf = "", this._nextSegment()) : (this._buf = String(e), e >= 4 && e <= 9 && (this._day = e, this._buf = "", this._nextSegment()));
+        r >= 1 && r <= o ? (this._day = r, this._buf = "", this._nextSegment()) : (this._buf = String(e), e >= 4 && e <= 9 && (this._day = e, this._buf = "", this._nextSegment()));
       }
     } else t === "year" && (this._buf = i.slice(-4), this._buf.length === 4 && (this._year = parseInt(this._buf), this._buf = "", this._checkAndEmit()));
   }
@@ -5784,8 +5784,8 @@ let T = class extends c {
         const i = this._month ?? (e > 0 ? 0 : 13);
         this._month = Pi(i + e, 1, 12), this._day !== null && (this._day = Pi(this._day, 1, Oi(this._month, this._year ?? 2e3)));
       } else if (t === "day") {
-        const i = Oi(this._month ?? 1, this._year ?? 2e3), s = this._day ?? (e > 0 ? 0 : i + 1);
-        this._day = Pi(s + e, 1, i);
+        const i = Oi(this._month ?? 1, this._year ?? 2e3), o = this._day ?? (e > 0 ? 0 : i + 1);
+        this._day = Pi(o + e, 1, i);
       } else if (t === "year") {
         const i = this._year ?? (/* @__PURE__ */ new Date()).getFullYear();
         this._year = Pi(i + e, 1, 9999);
@@ -5795,7 +5795,7 @@ let T = class extends c {
   }
   // ── Internal: emit when a full date is ready ──────────────────────────────
   _checkAndEmit() {
-    const e = os(this._month, this._day, this._year);
+    const e = so(this._month, this._day, this._year);
     e && e !== this.value && (this.value = e, this.dispatchEvent(new CustomEvent("change", {
       detail: { value: e },
       bubbles: !0,
@@ -5855,24 +5855,24 @@ let T = class extends c {
     return this._month !== null || this._day !== null || this._year !== null;
   }
   render() {
-    const e = u({ "field-label": !0, focused: this._focused }), t = u({ "field-container": !0, focused: this._focused }), i = (s, r = "") => {
-      const { text: a, isPlaceholder: n } = this._segmentText(s);
+    const e = u({ "field-label": !0, focused: this._focused }), t = u({ "field-container": !0, focused: this._focused }), i = (o, r = "") => {
+      const { text: a, isPlaceholder: n } = this._segmentText(o);
       return l`<span
         class=${u({
         segment: !0,
-        [s]: !0,
-        active: this._active === s,
+        [o]: !0,
+        active: this._active === o,
         placeholder: n,
-        [`segment-${s}`]: !0,
+        [`segment-${o}`]: !0,
         [r]: !!r
       })}
         @click=${(h) => {
-        h.stopPropagation(), this._setActive(s), this.shadowRoot?.querySelector(".segments")?.focus();
+        h.stopPropagation(), this._setActive(o), this.shadowRoot?.querySelector(".segments")?.focus();
       }}
       >${a}</span>`;
     };
     return l`
-      ${this.label ? l`<label class=${e}>${this.label}</label>` : v}
+      ${this.label ? l`<label class=${e}>${this.label}</label>` : g}
 
       <div class=${t} @click=${this._handleContainerClick}>
 
@@ -5895,82 +5895,82 @@ let T = class extends c {
         <div class="field-actions">
           ${this._hasValue() && !this.disabled && !this.readonly ? l`
             <button class="icon-btn" aria-label="Clear date" tabindex="-1"
-              @click=${(s) => {
-      s.stopPropagation(), this.clear();
+              @click=${(o) => {
+      o.stopPropagation(), this.clear();
     }}>✕</button>
-          ` : v}
+          ` : g}
         </div>
       </div>
 
-      ${this.helperText ? l`<small class="helper">${this.helperText}</small>` : v}
+      ${this.helperText ? l`<small class="helper">${this.helperText}</small>` : g}
     `;
   }
 };
 T.formAssociated = !0;
 T.styles = p(Pl);
 Y([
-  o({ type: String })
+  s({ type: String })
 ], T.prototype, "value", 2);
 Y([
-  o({ type: String })
+  s({ type: String })
 ], T.prototype, "label", 2);
 Y([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], T.prototype, "name", 2);
 Y([
-  o({ type: String })
+  s({ type: String })
 ], T.prototype, "min", 2);
 Y([
-  o({ type: String })
+  s({ type: String })
 ], T.prototype, "max", 2);
 Y([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], T.prototype, "disabled", 2);
 Y([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], T.prototype, "readonly", 2);
 Y([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], T.prototype, "error", 2);
 Y([
-  o({ type: String, attribute: "helper-text" })
+  s({ type: String, attribute: "helper-text" })
 ], T.prototype, "helperText", 2);
 Y([
-  g()
+  m()
 ], T.prototype, "_month", 2);
 Y([
-  g()
+  m()
 ], T.prototype, "_day", 2);
 Y([
-  g()
+  m()
 ], T.prototype, "_year", 2);
 Y([
-  g()
+  m()
 ], T.prototype, "_active", 2);
 Y([
-  g()
+  m()
 ], T.prototype, "_focused", 2);
 Y([
-  g()
+  m()
 ], T.prototype, "_buf", 2);
 T = Y([
   d("ui-date-field")
 ], T);
-const Tl = ':host{display:inline-block;font-family:var(--ui-font-family,"Inter",sans-serif)}.label{display:block;font-size:.75rem;font-weight:500;color:var(--ui-text-color-muted,#6b7280);margin-bottom:5px}.label.focused{color:var(--ui-primary-color,#3b82f6)}:host([error]) .label{color:var(--ui-error-color,#ef4444)}.container{display:inline-flex;align-items:center;gap:4px;background:var(--ui-surface-background,#fff);border:1.5px solid var(--ui-border-color,#d1d5db);border-radius:var(--ui-border-radius-md,8px);padding:0 10px;height:44px;min-width:160px;cursor:text;box-sizing:border-box;transition:border-color .15s,box-shadow .15s}.container.focused{border-color:var(--ui-primary-color,#3b82f6);box-shadow:0 0 0 3px #3b82f626}:host([error]) .container{border-color:var(--ui-error-color,#ef4444)}:host([disabled]) .container{background:var(--ui-disabled-bg,#f9fafb);border-color:#e5e7eb;cursor:not-allowed}.segments{display:flex;align-items:center;flex:1;gap:1px;outline:none;min-height:100%}.seg{display:inline-flex;align-items:center;justify-content:center;border-radius:3px;padding:2px 4px;font-size:.9375rem;font-variant-numeric:tabular-nums;color:var(--ui-text-color,#111827);min-width:2ch;line-height:1;cursor:text;-webkit-user-select:none;user-select:none;transition:background .1s}.seg.active{background:var(--ui-primary-color,#3b82f6);color:#fff}.seg.placeholder{color:var(--ui-text-color-muted,#9ca3af)}.seg.meridiem{min-width:3ch}.sep{color:var(--ui-text-color-muted,#6b7280);font-size:.9375rem;pointer-events:none}.icon-btn{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border:none;background:transparent;cursor:pointer;border-radius:50%;color:var(--ui-text-color-muted,#6b7280);font-size:.875rem;margin-left:auto;transition:background .12s}.icon-btn:hover{background:#0000000f}.helper{display:block;font-size:.75rem;margin-top:5px;color:var(--ui-text-color-muted,#6b7280)}:host([error]) .helper{color:var(--ui-error-color,#ef4444)}', Al = ':host{display:block;font-family:var(--ui-font-family,"Inter",sans-serif)}.clock{overflow-y:auto;max-height:var(--ui-digital-clock-height,300px);padding:4px 0;scrollbar-width:thin}.item{display:flex;align-items:center;justify-content:center;padding:10px 16px;font-size:.9375rem;color:var(--ui-text-color,#374151);cursor:pointer;border:none;background:transparent;width:100%;box-sizing:border-box;transition:background .1s;font-family:inherit;border-radius:0;font-variant-numeric:tabular-nums}.item:hover{background:#0000000d}.item.selected{background:var(--ui-primary-color,#3b82f6);color:#fff;font-weight:600;border-radius:6px}', Bl = ':host{display:inline-block;font-family:var(--ui-font-family,"Inter",sans-serif)}.msdc{display:flex;gap:0;border-radius:var(--ui-border-radius-xl,12px);overflow:hidden}.col{display:flex;flex-direction:column;overflow-y:auto;width:72px;max-height:var(--ui-msdc-height,240px);position:relative;scrollbar-width:none}.col::-webkit-scrollbar{display:none}.col+.col{border-left:1px solid var(--ui-border-color,#f3f4f6)}.col-header{position:sticky;top:0;background:var(--ui-surface-background,#fff);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ui-text-color-muted,#9ca3af);text-align:center;padding:6px 0 4px;border-bottom:1px solid var(--ui-border-color,#f3f4f6);z-index:1}.item{display:flex;align-items:center;justify-content:center;padding:8px 4px;font-size:.9375rem;font-variant-numeric:tabular-nums;color:var(--ui-text-color,#374151);cursor:pointer;border:none;background:transparent;font-family:inherit;width:100%;line-height:1;transition:background .1s}.item:hover{background:#0000000d}.item.sel{background:var(--ui-primary-color,#3b82f6);color:#fff;font-weight:700;border-radius:6px}.col-spacer{min-height:80px}', Ml = ':host{display:inline-block;-webkit-user-select:none;user-select:none}.clock-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}.clock-header{display:flex;gap:4px;font-size:2rem;font-weight:700;font-family:var(--ui-font-family,"Inter",sans-serif);color:var(--ui-text-color,#111827)}.clock-seg{padding:4px 10px;border-radius:8px;cursor:pointer;transition:background .12s,color .12s}.clock-seg.active{background:var(--ui-primary-color,#3b82f6);color:#fff;border-radius:8px}.clock-seg:hover:not(.active){background:#0000000f}.clock-sep{color:var(--ui-text-color-muted,#6b7280)}svg{touch-action:none;cursor:pointer}.face{fill:var(--ui-surface-variant,#f1f5f9)}.face-inner{fill:#00000005;stroke:#0000000f;stroke-width:1;stroke-dasharray:4 4}.track{fill:none;stroke:var(--ui-border-color,#e2e8f0);stroke-width:2}.hand{stroke:var(--ui-primary-color,#3b82f6);stroke-width:2;stroke-linecap:round}.hand-center,.hand-tip{fill:var(--ui-primary-color,#3b82f6)}.num{font-size:13px;font-family:var(--ui-font-family,"Inter",sans-serif);fill:var(--ui-text-color,#374151);dominant-baseline:central;text-anchor:middle;cursor:pointer}.num.inner-label{font-size:11px;fill:var(--ui-text-color-muted,#6b7280)}.num.selected{fill:#fff}.num-bg{fill:transparent;cursor:pointer}.num-bg.selected{fill:var(--ui-primary-color,#3b82f6)}.tick{stroke:var(--ui-text-color-muted,#cbd5e1);stroke-width:1}.tick.major{stroke-width:2}.inner-ring-track{fill:none;stroke:var(--ui-primary-color,#3b82f6);stroke-width:1.5;stroke-opacity:.2}.inner-tick{stroke:var(--ui-primary-color,#3b82f6);stroke-width:1.5;stroke-opacity:.35;stroke-linecap:round}.am-pm{display:flex;gap:8px}.am-pm-btn{padding:4px 16px;border:1.5px solid var(--ui-border-color,#d1d5db);border-radius:20px;cursor:pointer;font-size:.875rem;font-family:inherit;background:transparent;color:var(--ui-text-color,#374151);transition:all .12s}.am-pm-btn.sel{background:var(--ui-primary-color,#3b82f6);color:#fff;border-color:var(--ui-primary-color,#3b82f6)}', Ll = ':host{display:inline-block;font-family:var(--ui-font-family,"Inter",sans-serif)}.surface{border-radius:var(--ui-border-radius-xl,12px);box-shadow:0 1px 4px #00000014,0 0 0 1px var(--ui-border-color,#e5e7eb);overflow:hidden;display:inline-block}', jl = ":host{display:inline-block}";
-var Ul = Object.defineProperty, Rl = Object.getOwnPropertyDescriptor, m = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Rl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Ul(t, i, r), r;
+const Tl = ":host{display:inline-block;font-family:var(--ui-font-family)}.label{display:block;font-size:.75rem;font-weight:500;color:var(--ui-text-color-muted);margin-bottom:5px}.label.focused{color:var(--ui-primary-color)}:host([error]) .label{color:var(--ui-error-color)}.container{display:inline-flex;align-items:center;gap:4px;background:var(--ui-input-bg);border:1.5px solid var(--ui-border-color);border-radius:var(--ui-border-radius-md);padding:0 10px;height:44px;min-width:160px;cursor:text;box-sizing:border-box;transition:border-color .15s,box-shadow .15s}.container.focused{border-color:var(--ui-primary-color);box-shadow:0 0 0 3px var(--ui-primary-focus-ring)}:host([error]) .container{border-color:var(--ui-error-color)}:host([disabled]) .container{background:var(--ui-input-disabled-bg);border-color:var(--ui-border-color);cursor:not-allowed}.segments{display:flex;align-items:center;flex:1;gap:1px;outline:none;min-height:100%}.seg{display:inline-flex;align-items:center;justify-content:center;border-radius:3px;padding:2px 4px;font-size:.9375rem;font-variant-numeric:tabular-nums;color:var(--ui-text-color);min-width:2ch;line-height:1;cursor:text;-webkit-user-select:none;user-select:none;transition:background .1s}.seg.active{background:var(--ui-primary-color);color:var(--ui-text-color-on-primary)}.seg.placeholder{color:var(--ui-text-color-muted)}.seg.meridiem{min-width:3ch}.sep{color:var(--ui-text-color-muted);font-size:.9375rem;pointer-events:none}.icon-btn{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border:none;background:transparent;cursor:pointer;border-radius:50%;color:var(--ui-text-color-muted);font-size:.875rem;margin-left:auto;transition:background .12s}.icon-btn:hover{background:var(--ui-hover-color)}.helper{display:block;font-size:.75rem;margin-top:5px;color:var(--ui-text-color-muted)}:host([error]) .helper{color:var(--ui-error-color)}", Al = ":host{display:block;font-family:var(--ui-font-family)}.clock{overflow-y:auto;max-height:var(--ui-digital-clock-height,300px);padding:4px 0;scrollbar-width:thin}.item{display:flex;align-items:center;justify-content:center;padding:10px 16px;font-size:.9375rem;color:var(--ui-text-color);cursor:pointer;border:none;background:transparent;width:100%;box-sizing:border-box;transition:background .1s;font-family:inherit;border-radius:0;font-variant-numeric:tabular-nums}.item:hover{background:var(--ui-hover-color)}.item.selected{background:var(--ui-primary-color);color:var(--ui-text-color-on-primary);font-weight:600;border-radius:6px}", Bl = ":host{display:inline-block;font-family:var(--ui-font-family)}.msdc{display:flex;gap:0;border-radius:var(--ui-border-radius-xl);overflow:hidden}.col{display:flex;flex-direction:column;overflow-y:auto;width:72px;max-height:var(--ui-msdc-height,240px);position:relative;scrollbar-width:none}.col::-webkit-scrollbar{display:none}.col+.col{border-left:1px solid var(--ui-border-color)}.col-header{position:sticky;top:0;background:var(--ui-surface-1);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ui-text-color-muted);text-align:center;padding:6px 0 4px;border-bottom:1px solid var(--ui-border-color);z-index:1}.item{display:flex;align-items:center;justify-content:center;padding:8px 4px;font-size:.9375rem;font-variant-numeric:tabular-nums;color:var(--ui-text-color);cursor:pointer;border:none;background:transparent;font-family:inherit;width:100%;line-height:1;transition:background .1s}.item:hover{background:var(--ui-hover-color)}.item.sel{background:var(--ui-primary-color);color:var(--ui-text-color-on-primary);font-weight:700;border-radius:6px}.col-spacer{min-height:80px}", Ml = ":host{display:inline-block;-webkit-user-select:none;user-select:none}.clock-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}.clock-header{display:flex;gap:4px;font-size:2rem;font-weight:700;font-family:var(--ui-font-family);color:var(--ui-text-color)}.clock-seg{padding:4px 10px;border-radius:8px;cursor:pointer;transition:background .12s,color .12s}.clock-seg.active{background:var(--ui-primary-color);color:var(--ui-text-color-on-primary);border-radius:8px}.clock-seg:hover:not(.active){background:var(--ui-hover-color)}.clock-sep{color:var(--ui-text-color-muted)}svg{touch-action:none;cursor:pointer}.face{fill:var(--ui-surface-variant)}.face-inner{fill:#00000005;stroke:#0000000f;stroke-width:1;stroke-dasharray:4 4}.track{fill:none;stroke:var(--ui-border-color);stroke-width:2}.hand{stroke:var(--ui-primary-color);stroke-width:2;stroke-linecap:round}.hand-center,.hand-tip{fill:var(--ui-primary-color)}.num{font-size:13px;font-family:var(--ui-font-family);fill:var(--ui-text-color);dominant-baseline:central;text-anchor:middle;cursor:pointer}.num.inner-label{font-size:11px;fill:var(--ui-text-color-muted)}.num.selected{fill:var(--ui-text-color-on-primary)}.num-bg{fill:transparent;cursor:pointer}.num-bg.selected{fill:var(--ui-primary-color)}.tick{stroke:var(--ui-text-color-muted);stroke-width:1}.tick.major{stroke-width:2}.inner-ring-track{fill:none;stroke:var(--ui-primary-color);stroke-width:1.5;stroke-opacity:.2}.inner-tick{stroke:var(--ui-primary-color);stroke-width:1.5;stroke-opacity:.35;stroke-linecap:round}.am-pm{display:flex;gap:8px}.am-pm-btn{padding:4px 16px;border:1.5px solid var(--ui-border-color);border-radius:20px;cursor:pointer;font-size:.875rem;font-family:inherit;background:transparent;color:var(--ui-text-color);transition:all .12s}.am-pm-btn.sel{background:var(--ui-primary-color);color:var(--ui-text-color-on-primary);border-color:var(--ui-primary-color)}", Ll = ":host{display:inline-block;font-family:var(--ui-font-family)}.surface{border-radius:var(--ui-border-radius-xl);box-shadow:0 1px 4px #00000014,0 0 0 1px var(--ui-border-color);overflow:hidden;display:inline-block}", jl = ":host{display:inline-block}";
+var Ul = Object.defineProperty, Rl = Object.getOwnPropertyDescriptor, v = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Rl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Ul(t, i, r), r;
 };
 function j(e) {
   return String(e).padStart(2, "0");
 }
-function or(e) {
+function sr(e) {
   if (!e) return null;
   const t = e.split(":").map(Number);
   return t.length < 2 || t.some(isNaN) ? null : { h: t[0], m: t[1], s: t[2] ?? 0 };
 }
-function st(e, t, i = 0) {
+function ot(e, t, i = 0) {
   return `${j(e)}:${j(t)}:${j(i)}`;
 }
 function Se(e) {
@@ -5980,17 +5980,17 @@ function Tt(e, t) {
   return t === "AM" ? e === 12 ? 0 : e : e === 12 ? 12 : e + 12;
 }
 function Vl(e, t, i = !1) {
-  const s = or(e);
-  if (!s) return "";
-  const r = t ? Se(s.h).hour : s.h, a = t ? ` ${Se(s.h).ampm}` : "";
-  return `${j(r)}:${j(s.m)}${i ? ":" + j(s.s) : ""}${a}`;
+  const o = sr(e);
+  if (!o) return "";
+  const r = t ? Se(o.h).hour : o.h, a = t ? ` ${Se(o.h).ampm}` : "";
+  return `${j(r)}:${j(o.m)}${i ? ":" + j(o.s) : ""}${a}`;
 }
-function Nl(e, t, i, s = 140, r = 140) {
+function Nl(e, t, i, o = 140, r = 140) {
   const a = (e / t - 0.25) * Math.PI * 2;
-  return { x: s + i * Math.cos(a), y: r + i * Math.sin(a) };
+  return { x: o + i * Math.cos(a), y: r + i * Math.sin(a) };
 }
-function Fl(e, t, i = 140, s = 140) {
-  let r = Math.atan2(t - s, e - i) * 180 / Math.PI + 90;
+function Fl(e, t, i = 140, o = 140) {
+  let r = Math.atan2(t - o, e - i) * 180 / Math.PI + 90;
   return r < 0 && (r += 360), r;
 }
 let B = class extends c {
@@ -6003,10 +6003,10 @@ let B = class extends c {
   }
   willUpdate(e) {
     if (e.has("value") && this.value) {
-      const t = or(this.value);
+      const t = sr(this.value);
       if (t) {
-        const { hour: i, ampm: s } = Se(t.h);
-        this._h = this.ampm ? i : t.h, this._m = t.m, this._s = t.s, this._mer = s;
+        const { hour: i, ampm: o } = Se(t.h);
+        this._h = this.ampm ? i : t.h, this._m = t.m, this._s = t.s, this._mer = o;
       }
     }
   }
@@ -6015,7 +6015,7 @@ let B = class extends c {
   }
   _emit() {
     if (this._h === null || this._m === null) return;
-    const e = this.ampm ? Tt(this._h, this._mer) : this._h, t = st(e, this._m, this._s ?? 0);
+    const e = this.ampm ? Tt(this._h, this._mer) : this._h, t = ot(e, this._m, this._s ?? 0);
     t !== this.value && (this.value = t, this.dispatchEvent(new CustomEvent("change", { detail: { value: t }, bubbles: !0, composed: !0 })));
   }
   _commitBuf() {
@@ -6048,18 +6048,18 @@ let B = class extends c {
     const t = this._buf + e, i = this.ampm ? 12 : 23;
     if (this._active === "hour")
       if (t.length === 1) {
-        const s = this.ampm ? 2 : 3;
-        e >= s ? (this._h = e, this._buf = "", this._next()) : this._buf = t;
+        const o = this.ampm ? 2 : 3;
+        e >= o ? (this._h = e, this._buf = "", this._next()) : this._buf = t;
       } else {
-        const s = parseInt(t);
-        s >= (this.ampm ? 1 : 0) && s <= i ? (this._h = s, this._buf = "", this._next()) : (this._buf = String(e), e >= (this.ampm ? 2 : 3) && (this._h = e, this._buf = "", this._next()));
+        const o = parseInt(t);
+        o >= (this.ampm ? 1 : 0) && o <= i ? (this._h = o, this._buf = "", this._next()) : (this._buf = String(e), e >= (this.ampm ? 2 : 3) && (this._h = e, this._buf = "", this._next()));
       }
     else if (this._active === "minute" || this._active === "second")
       if (t.length === 1)
         e >= 6 ? (this[this._active === "minute" ? "_m" : "_s"] = e, this._buf = "", this._next()) : this._buf = t;
       else {
-        const s = parseInt(t);
-        s >= 0 && s <= 59 ? (this[this._active === "minute" ? "_m" : "_s"] = s, this._buf = "", this._next()) : (this._buf = String(e), e >= 6 && (this[this._active === "minute" ? "_m" : "_s"] = e, this._buf = "", this._next()));
+        const o = parseInt(t);
+        o >= 0 && o <= 59 ? (this[this._active === "minute" ? "_m" : "_s"] = o, this._buf = "", this._next()) : (this._buf = String(e), e >= 6 && (this[this._active === "minute" ? "_m" : "_s"] = e, this._buf = "", this._next()));
       }
     this._emit();
   }
@@ -6121,7 +6121,7 @@ let B = class extends c {
   render() {
     const e = this._h !== null || this._m !== null;
     return l`
-      ${this.label ? l`<label class="label ${this._focused ? "focused" : ""}">${this.label}</label>` : v}
+      ${this.label ? l`<label class="label ${this._focused ? "focused" : ""}">${this.label}</label>` : g}
       <div class="container ${this._focused ? "focused" : ""}">
         <div class="segments" tabindex=${this.disabled ? -1 : 0} role="group" aria-label=${this.label || "Time"}
           @keydown=${this._onKey}
@@ -6133,70 +6133,70 @@ let B = class extends c {
     }}
         >
           ${this._segs.map((t, i) => {
-      const { text: s, ph: r } = this._segText(t), a = i > 0 && t !== "meridiem" ? l`<span class="sep">:</span>` : t === "meridiem" ? l`<span class="sep"> </span>` : v;
+      const { text: o, ph: r } = this._segText(t), a = i > 0 && t !== "meridiem" ? l`<span class="sep">:</span>` : t === "meridiem" ? l`<span class="sep"> </span>` : g;
       return l`${a}<span
               class=${u({ seg: !0, active: this._active === t, placeholder: r, meridiem: t === "meridiem" })}
               @click=${(n) => {
         n.stopPropagation(), this._setActive(t), this.shadowRoot?.querySelector(".segments")?.focus();
       }}
-            >${s}</span>`;
+            >${o}</span>`;
     })}
         </div>
         ${e && !this.disabled ? l`<button class="icon-btn" tabindex="-1" aria-label="Clear" @click=${(t) => {
       t.stopPropagation(), this.clear();
-    }}>✕</button>` : v}
+    }}>✕</button>` : g}
       </div>
-      ${this.helperText ? l`<small class="helper">${this.helperText}</small>` : v}
+      ${this.helperText ? l`<small class="helper">${this.helperText}</small>` : g}
     `;
   }
 };
 B.styles = p(Tl);
-m([
-  o({ type: String })
+v([
+  s({ type: String })
 ], B.prototype, "value", 2);
-m([
-  o({ type: String })
+v([
+  s({ type: String })
 ], B.prototype, "label", 2);
-m([
-  o({ type: Boolean })
+v([
+  s({ type: Boolean })
 ], B.prototype, "ampm", 2);
-m([
-  o({ type: Boolean })
+v([
+  s({ type: Boolean })
 ], B.prototype, "seconds", 2);
-m([
-  o({ type: Boolean, reflect: !0 })
+v([
+  s({ type: Boolean, reflect: !0 })
 ], B.prototype, "disabled", 2);
-m([
-  o({ type: Boolean, reflect: !0 })
+v([
+  s({ type: Boolean, reflect: !0 })
 ], B.prototype, "readonly", 2);
-m([
-  o({ type: Boolean, reflect: !0 })
+v([
+  s({ type: Boolean, reflect: !0 })
 ], B.prototype, "error", 2);
-m([
-  o({ type: String, attribute: "helper-text" })
+v([
+  s({ type: String, attribute: "helper-text" })
 ], B.prototype, "helperText", 2);
-m([
-  g()
+v([
+  m()
 ], B.prototype, "_h", 2);
-m([
-  g()
+v([
+  m()
 ], B.prototype, "_m", 2);
-m([
-  g()
+v([
+  m()
 ], B.prototype, "_s", 2);
-m([
-  g()
+v([
+  m()
 ], B.prototype, "_mer", 2);
-m([
-  g()
+v([
+  m()
 ], B.prototype, "_active", 2);
-m([
-  g()
+v([
+  m()
 ], B.prototype, "_focused", 2);
-m([
-  g()
+v([
+  m()
 ], B.prototype, "_buf", 2);
-B = m([
+B = v([
   d("ui-time-field")
 ], B);
 let Kt = class extends c {
@@ -6206,8 +6206,8 @@ let Kt = class extends c {
   _items() {
     const e = [];
     for (let t = 0; t < 1440; t += this.step) {
-      const i = Math.floor(t / 60), s = t % 60;
-      e.push(st(i, s));
+      const i = Math.floor(t / 60), o = t % 60;
+      e.push(ot(i, o));
     }
     return e;
   }
@@ -6235,16 +6235,16 @@ let Kt = class extends c {
   }
 };
 Kt.styles = p(Al);
-m([
-  o({ type: String })
+v([
+  s({ type: String })
 ], Kt.prototype, "value", 2);
-m([
-  o({ type: Number })
+v([
+  s({ type: Number })
 ], Kt.prototype, "step", 2);
-m([
-  o({ type: Boolean })
+v([
+  s({ type: Boolean })
 ], Kt.prototype, "ampm", 2);
-Kt = m([
+Kt = v([
   d("ui-digital-clock")
 ], Kt);
 let Yt = class extends c {
@@ -6252,11 +6252,11 @@ let Yt = class extends c {
     super(...arguments), this.value = "", this.ampm = !0, this.seconds = !1;
   }
   _t() {
-    return or(this.value) ?? { h: 0, m: 0, s: 0 };
+    return sr(this.value) ?? { h: 0, m: 0, s: 0 };
   }
   _set(e, t, i) {
-    const s = st(e, t, i);
-    this.dispatchEvent(new CustomEvent("change", { detail: { value: s }, bubbles: !0, composed: !0 }));
+    const o = ot(e, t, i);
+    this.dispatchEvent(new CustomEvent("change", { detail: { value: o }, bubbles: !0, composed: !0 }));
   }
   _col(e) {
     const t = this._t(), i = Se(t.h);
@@ -6271,9 +6271,9 @@ let Yt = class extends c {
           <div class="col-spacer"></div>
         </div>
       `;
-    const s = Array.from({ length: 12 }, (n, h) => h + 1), r = Array.from({ length: 24 }, (n, h) => h), a = Array.from({ length: 60 }, (n, h) => h);
+    const o = Array.from({ length: 12 }, (n, h) => h + 1), r = Array.from({ length: 24 }, (n, h) => h), a = Array.from({ length: 60 }, (n, h) => h);
     if (e === "h") {
-      const n = this.ampm ? s : r, h = this.ampm ? i.hour : t.h;
+      const n = this.ampm ? o : r, h = this.ampm ? i.hour : t.h;
       return l`
         <div class="col">
           <div class="col-header">Hr</div>
@@ -6319,23 +6319,23 @@ let Yt = class extends c {
       <div class="msdc">
         ${this._col("h")}
         ${this._col("m")}
-        ${this.seconds ? this._col("s") : v}
-        ${this.ampm ? this._col("mer") : v}
+        ${this.seconds ? this._col("s") : g}
+        ${this.ampm ? this._col("mer") : g}
       </div>
     `;
   }
 };
 Yt.styles = p(Bl);
-m([
-  o({ type: String })
+v([
+  s({ type: String })
 ], Yt.prototype, "value", 2);
-m([
-  o({ type: Boolean })
+v([
+  s({ type: Boolean })
 ], Yt.prototype, "ampm", 2);
-m([
-  o({ type: Boolean })
+v([
+  s({ type: Boolean })
 ], Yt.prototype, "seconds", 2);
-Yt = m([
+Yt = v([
   d("ui-multi-section-digital-clock")
 ], Yt);
 let bt = class extends c {
@@ -6343,17 +6343,17 @@ let bt = class extends c {
     super(...arguments), this.value = "", this.ampm = !0, this.seconds = !1, this.view = "hours";
   }
   get _t() {
-    return or(this.value) ?? { h: 0, m: 0, s: 0 };
+    return sr(this.value) ?? { h: 0, m: 0, s: 0 };
   }
   _emit(e, t, i) {
-    const s = st(e, t, i);
-    this.dispatchEvent(new CustomEvent("change", { detail: { value: s }, bubbles: !0, composed: !0 }));
+    const o = ot(e, t, i);
+    this.dispatchEvent(new CustomEvent("change", { detail: { value: o }, bubbles: !0, composed: !0 }));
   }
   _switchView(e) {
     this.view = e, this.dispatchEvent(new CustomEvent("view-change", { detail: { view: e }, bubbles: !0, composed: !0 }));
   }
   _handleClick(e) {
-    const i = this.shadowRoot.querySelector("svg").getBoundingClientRect(), s = 280 / i.width, r = 280 / i.height, a = (e.clientX - i.left) * s, n = (e.clientY - i.top) * r, h = 140, f = 140, y = Fl(a, n, h, f), b = this._t;
+    const i = this.shadowRoot.querySelector("svg").getBoundingClientRect(), o = 280 / i.width, r = 280 / i.height, a = (e.clientX - i.left) * o, n = (e.clientY - i.top) * r, h = 140, f = 140, y = Fl(a, n, h, f), b = this._t;
     if (this.view === "hours") {
       const S = Math.sqrt((a - h) ** 2 + (n - f) ** 2), de = !this.ampm && S < 82;
       let te = Math.round(y / 30) % 12;
@@ -6368,12 +6368,12 @@ let bt = class extends c {
   }
   _renderFace() {
     const i = this._t;
-    let s = 0, r = 100;
+    let o = 0, r = 100;
     if (this.view === "hours") {
       let b;
-      this.ampm ? b = Se(i.h).hour : b = i.h === 0 || i.h > 12 ? i.h % 12 : i.h, s = b / 12 * 360, r = this.ampm ? 100 : i.h === 0 || i.h > 12 ? 64 : 100;
-    } else this.view === "minutes" ? (s = i.m / 60 * 360, r = 100) : (s = i.s / 60 * 360, r = 100);
-    const a = (b) => (b - 90) * Math.PI / 180, n = 140 + r * Math.cos(a(s)), h = 140 + r * Math.sin(a(s)), f = [];
+      this.ampm ? b = Se(i.h).hour : b = i.h === 0 || i.h > 12 ? i.h % 12 : i.h, o = b / 12 * 360, r = this.ampm ? 100 : i.h === 0 || i.h > 12 ? 64 : 100;
+    } else this.view === "minutes" ? (o = i.m / 60 * 360, r = 100) : (o = i.s / 60 * 360, r = 100);
+    const a = (b) => (b - 90) * Math.PI / 180, n = 140 + r * Math.cos(a(o)), h = 140 + r * Math.sin(a(o)), f = [];
     if (this.view === "hours")
       if (this.ampm)
         for (let b = 1; b <= 12; b++) f.push({ val: b, label: String(b), r: 100 });
@@ -6390,7 +6390,7 @@ let bt = class extends c {
     return l`
       <svg width="280" height="280" viewBox="0 0 280 280" @click=${this._handleClick}>
         <circle cx=${140} cy=${140} r="125" class="face"/>
-        ${this.view === "hours" && !this.ampm ? l`<circle cx=${140} cy=${140} r="82" class="face-inner"></circle>` : v}
+        ${this.view === "hours" && !this.ampm ? l`<circle cx=${140} cy=${140} r="82" class="face-inner"></circle>` : g}
         <!-- hand -->
         <line x1=${140} y1=${140} x2=${n} y2=${h} class="hand"/>
         <circle cx=${n} cy=${h} r="18" class="hand-tip"/>
@@ -6407,15 +6407,15 @@ let bt = class extends c {
     `;
   }
   render() {
-    const e = this._t, { hour: t, ampm: i } = Se(e.h), s = this.ampm ? j(t) : j(e.h);
+    const e = this._t, { hour: t, ampm: i } = Se(e.h), o = this.ampm ? j(t) : j(e.h);
     return l`
       <div class="clock-wrap">
         <div class="clock-header">
-          <span class=${u({ "clock-seg": !0, active: this.view === "hours" })} @click=${() => this._switchView("hours")}>${s}</span>
+          <span class=${u({ "clock-seg": !0, active: this.view === "hours" })} @click=${() => this._switchView("hours")}>${o}</span>
           <span class="clock-sep">:</span>
           <span class=${u({ "clock-seg": !0, active: this.view === "minutes" })} @click=${() => this._switchView("minutes")}>${j(e.m)}</span>
-          ${this.seconds ? l`<span class="clock-sep">:</span><span class=${u({ "clock-seg": !0, active: this.view === "seconds" })} @click=${() => this._switchView("seconds")}>${j(e.s)}</span>` : v}
-          ${this.ampm ? l`<span class="clock-sep" style="font-size:1rem;align-self:flex-end;margin-bottom:6px;">${i}</span>` : v}
+          ${this.seconds ? l`<span class="clock-sep">:</span><span class=${u({ "clock-seg": !0, active: this.view === "seconds" })} @click=${() => this._switchView("seconds")}>${j(e.s)}</span>` : g}
+          ${this.ampm ? l`<span class="clock-sep" style="font-size:1rem;align-self:flex-end;margin-bottom:6px;">${i}</span>` : g}
         </div>
         ${this.ampm ? l`
           <div class="am-pm">
@@ -6428,29 +6428,29 @@ let bt = class extends c {
       this._emit(Tt(Se(r.h).hour, "PM"), r.m, r.s);
     }}>PM</button>
           </div>
-        ` : v}
+        ` : g}
         ${this._renderFace()}
       </div>
     `;
   }
 };
 bt.styles = p(Ml);
-m([
-  o({ type: String })
+v([
+  s({ type: String })
 ], bt.prototype, "value", 2);
-m([
-  o({ type: Boolean })
+v([
+  s({ type: Boolean })
 ], bt.prototype, "ampm", 2);
-m([
-  o({ type: Boolean })
+v([
+  s({ type: Boolean })
 ], bt.prototype, "seconds", 2);
-m([
-  o({ type: String })
+v([
+  s({ type: String })
 ], bt.prototype, "view", 2);
-bt = m([
+bt = v([
   d("ui-time-clock")
 ], bt);
-const cs = as`
+const co = ao`
   :host { display:inline-block; font-family:var(--ui-font-family,'Inter',sans-serif); }
   .popover-anchor { position:relative; display:inline-block; }
   .click-away { display:none; position:fixed; inset:0; z-index:1399; }
@@ -6476,7 +6476,7 @@ const cs = as`
   .btn-ok { background:var(--ui-primary-color,#3b82f6); color:#fff; }
   .btn-ok:hover { background:var(--ui-primary-color-dark,#2563eb); }
 `;
-let me = class extends c {
+let ve = class extends c {
   constructor() {
     super(...arguments), this.value = "", this.label = "Time", this.ampm = !0, this.seconds = !1, this.disabled = !1, this.readonly = !1, this.error = !1, this.helperText = "", this._open = !1;
   }
@@ -6495,51 +6495,51 @@ let me = class extends c {
         ></ui-time-field>
         <div class="click-away ${this._open ? "open" : ""}" @click=${() => this._open = !1}></div>
         <div class="popover ${this._open ? "open" : ""}" role="dialog" aria-label="Time picker">
-          <ui-multi-section-digital-clock .value=${this.value || st(12, 0)} ?ampm=${this.ampm} ?seconds=${this.seconds}
+          <ui-multi-section-digital-clock .value=${this.value || ot(12, 0)} ?ampm=${this.ampm} ?seconds=${this.seconds}
             @change=${(e) => {
       this.value = e.detail.value;
     }}
           ></ui-multi-section-digital-clock>
           <div class="actions">
             <button class="btn btn-cancel" @click=${() => this._open = !1}>Cancel</button>
-            <button class="btn btn-ok" @click=${() => this._commit(this.value || st(12, 0))}>OK</button>
+            <button class="btn btn-ok" @click=${() => this._commit(this.value || ot(12, 0))}>OK</button>
           </div>
         </div>
       </div>
     `;
   }
 };
-me.styles = [cs];
-m([
-  o({ type: String })
-], me.prototype, "value", 2);
-m([
-  o({ type: String })
-], me.prototype, "label", 2);
-m([
-  o({ type: Boolean })
-], me.prototype, "ampm", 2);
-m([
-  o({ type: Boolean })
-], me.prototype, "seconds", 2);
-m([
-  o({ type: Boolean, reflect: !0 })
-], me.prototype, "disabled", 2);
-m([
-  o({ type: Boolean, reflect: !0 })
-], me.prototype, "readonly", 2);
-m([
-  o({ type: Boolean, reflect: !0 })
-], me.prototype, "error", 2);
-m([
-  o({ type: String, attribute: "helper-text" })
-], me.prototype, "helperText", 2);
-m([
-  g()
-], me.prototype, "_open", 2);
-me = m([
+ve.styles = [co];
+v([
+  s({ type: String })
+], ve.prototype, "value", 2);
+v([
+  s({ type: String })
+], ve.prototype, "label", 2);
+v([
+  s({ type: Boolean })
+], ve.prototype, "ampm", 2);
+v([
+  s({ type: Boolean })
+], ve.prototype, "seconds", 2);
+v([
+  s({ type: Boolean, reflect: !0 })
+], ve.prototype, "disabled", 2);
+v([
+  s({ type: Boolean, reflect: !0 })
+], ve.prototype, "readonly", 2);
+v([
+  s({ type: Boolean, reflect: !0 })
+], ve.prototype, "error", 2);
+v([
+  s({ type: String, attribute: "helper-text" })
+], ve.prototype, "helperText", 2);
+v([
+  m()
+], ve.prototype, "_open", 2);
+ve = v([
   d("ui-desktop-time-picker")
-], me);
+], ve);
 let ae = class extends c {
   constructor() {
     super(...arguments), this.value = "", this.label = "Time", this.ampm = !0, this.seconds = !1, this.disabled = !1, this.error = !1, this.helperText = "", this._open = !1, this._pending = "", this._view = "hours";
@@ -6558,7 +6558,7 @@ let ae = class extends c {
       <ui-dialog .open=${this._open} disable-backdrop-close @close=${() => this._open = !1} style="--ui-dialog-width:320px">
         <ui-dialog-title>Select Time</ui-dialog-title>
         <ui-dialog-content style="padding:12px;display:flex;justify-content:center;">
-          <ui-time-clock .value=${this._pending || this.value || st(12, 0)} ?ampm=${this.ampm} ?seconds=${this.seconds} .view=${this._view}
+          <ui-time-clock .value=${this._pending || this.value || ot(12, 0)} ?ampm=${this.ampm} ?seconds=${this.seconds} .view=${this._view}
             @change=${(e) => {
       this._pending = e.detail.value;
     }}
@@ -6580,38 +6580,38 @@ let ae = class extends c {
     `;
   }
 };
-ae.styles = [cs];
-m([
-  o({ type: String })
+ae.styles = [co];
+v([
+  s({ type: String })
 ], ae.prototype, "value", 2);
-m([
-  o({ type: String })
+v([
+  s({ type: String })
 ], ae.prototype, "label", 2);
-m([
-  o({ type: Boolean })
+v([
+  s({ type: Boolean })
 ], ae.prototype, "ampm", 2);
-m([
-  o({ type: Boolean })
+v([
+  s({ type: Boolean })
 ], ae.prototype, "seconds", 2);
-m([
-  o({ type: Boolean, reflect: !0 })
+v([
+  s({ type: Boolean, reflect: !0 })
 ], ae.prototype, "disabled", 2);
-m([
-  o({ type: Boolean, reflect: !0 })
+v([
+  s({ type: Boolean, reflect: !0 })
 ], ae.prototype, "error", 2);
-m([
-  o({ type: String, attribute: "helper-text" })
+v([
+  s({ type: String, attribute: "helper-text" })
 ], ae.prototype, "helperText", 2);
-m([
-  g()
+v([
+  m()
 ], ae.prototype, "_open", 2);
-m([
-  g()
+v([
+  m()
 ], ae.prototype, "_pending", 2);
-m([
-  g()
+v([
+  m()
 ], ae.prototype, "_view", 2);
-ae = m([
+ae = v([
   d("ui-mobile-time-picker")
 ], ae);
 let Gt = class extends c {
@@ -6621,7 +6621,7 @@ let Gt = class extends c {
   render() {
     return l`
       <div class="surface">
-        <ui-multi-section-digital-clock .value=${this.value || st(12, 0)} ?ampm=${this.ampm} ?seconds=${this.seconds}
+        <ui-multi-section-digital-clock .value=${this.value || ot(12, 0)} ?ampm=${this.ampm} ?seconds=${this.seconds}
           @change=${(e) => {
       this.value = e.detail.value, this.dispatchEvent(new CustomEvent("change", { detail: e.detail, bubbles: !0, composed: !0 }));
     }}
@@ -6631,16 +6631,16 @@ let Gt = class extends c {
   }
 };
 Gt.styles = p(Ll);
-m([
-  o({ type: String })
+v([
+  s({ type: String })
 ], Gt.prototype, "value", 2);
-m([
-  o({ type: Boolean })
+v([
+  s({ type: Boolean })
 ], Gt.prototype, "ampm", 2);
-m([
-  o({ type: Boolean })
+v([
+  s({ type: Boolean })
 ], Gt.prototype, "seconds", 2);
-Gt = m([
+Gt = v([
   d("ui-static-time-picker")
 ], Gt);
 let _e = class extends c {
@@ -6659,38 +6659,38 @@ let _e = class extends c {
   }
 };
 _e.styles = p(jl);
-m([
-  o({ type: String })
+v([
+  s({ type: String })
 ], _e.prototype, "value", 2);
-m([
-  o({ type: String })
+v([
+  s({ type: String })
 ], _e.prototype, "label", 2);
-m([
-  o({ type: String })
+v([
+  s({ type: String })
 ], _e.prototype, "variant", 2);
-m([
-  o({ type: Boolean })
+v([
+  s({ type: Boolean })
 ], _e.prototype, "ampm", 2);
-m([
-  o({ type: Boolean })
+v([
+  s({ type: Boolean })
 ], _e.prototype, "seconds", 2);
-m([
-  o({ type: Boolean, reflect: !0 })
+v([
+  s({ type: Boolean, reflect: !0 })
 ], _e.prototype, "disabled", 2);
-m([
-  o({ type: Boolean, reflect: !0 })
+v([
+  s({ type: Boolean, reflect: !0 })
 ], _e.prototype, "error", 2);
-m([
-  o({ type: String, attribute: "helper-text" })
+v([
+  s({ type: String, attribute: "helper-text" })
 ], _e.prototype, "helperText", 2);
-_e = m([
+_e = v([
   d("ui-time-picker")
 ], _e);
-const ql = ':host{display:block;outline:none;font-family:var(--ui-font-family, system-ui, sans-serif)}:host(:focus-visible) .item-row{outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:-2px}.item-row{display:flex;align-items:center;min-height:36px;padding-right:8px;border-radius:var(--ui-border-radius-sm, 4px);cursor:pointer;-webkit-user-select:none;user-select:none;color:var(--ui-text-color, #111827);font-size:14px;transition:background-color .15s ease;position:relative}:host(:not([disabled])) .item-row:hover{background-color:#0000000a}:host([disabled]) .item-row{color:#00000061;cursor:default}.expand-btn{width:28px;height:28px;min-width:28px;display:flex;align-items:center;justify-content:center;background:none;border:none;padding:0;border-radius:50%;cursor:pointer;color:inherit;transition:transform .2s ease,background-color .15s}.expand-btn:hover{background-color:#00000014}.expand-btn.expanded{transform:rotate(90deg)}.expand-placeholder{width:28px;min-width:28px}.item-label{flex:1;line-height:1.5}.children-container{display:block}.children-container[hidden]{display:none!important}.item-row.is-draggable{cursor:grab}.item-row.is-draggable:active{cursor:grabbing}:host([drop-position="before"]) .item-row:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background-color:var(--ui-primary-color, #3b82f6);z-index:10;border-radius:2px}:host([drop-position="after"]) .item-row:after{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background-color:var(--ui-primary-color, #3b82f6);z-index:10;border-radius:2px}:host([drop-position="inside"]) .item-row{background-color:#3b82f61a;outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:-2px}:host([dragging]){opacity:.4}.drag-handle{display:flex;align-items:center;justify-content:center;width:24px;height:24px;cursor:grab;color:var(--ui-text-color-secondary, #6b7280);margin-right:4px;flex-shrink:0}.drag-handle:active{cursor:grabbing}';
-var Hl = Object.defineProperty, Kl = Object.getOwnPropertyDescriptor, $e = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Kl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Hl(t, i, r), r;
+const ql = ':host{display:block;outline:none;font-family:var(--ui-font-family)}:host(:focus-visible) .item-row{outline:2px solid var(--ui-primary-color);outline-offset:-2px}.item-row{display:flex;align-items:center;min-height:36px;padding-right:8px;border-radius:var(--ui-border-radius-sm);cursor:pointer;-webkit-user-select:none;user-select:none;color:var(--ui-text-color);font-size:14px;transition:background-color .15s ease;position:relative}:host(:not([disabled])) .item-row:hover{background-color:var(--ui-hover-color)}:host([disabled]) .item-row{opacity:.38;cursor:default}.expand-btn{width:28px;height:28px;min-width:28px;display:flex;align-items:center;justify-content:center;background:none;border:none;padding:0;border-radius:50%;cursor:pointer;color:inherit;transition:transform .2s ease,background-color .15s}.expand-btn:hover{background-color:var(--ui-active-color)}.expand-btn.expanded{transform:rotate(90deg)}.expand-placeholder{width:28px;min-width:28px}.item-label{flex:1;line-height:1.5}.children-container{display:block}.children-container[hidden]{display:none!important}.item-row.is-draggable{cursor:grab}.item-row.is-draggable:active{cursor:grabbing}:host([drop-position="before"]) .item-row:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background-color:var(--ui-primary-color);z-index:10;border-radius:2px}:host([drop-position="after"]) .item-row:after{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background-color:var(--ui-primary-color);z-index:10;border-radius:2px}:host([drop-position="inside"]) .item-row{background-color:var(--ui-primary-color-light);outline:2px solid var(--ui-primary-color);outline-offset:-2px}:host([dragging]){opacity:.4}.drag-handle{display:flex;align-items:center;justify-content:center;width:24px;height:24px;cursor:grab;color:var(--ui-text-color-muted);margin-right:4px;flex-shrink:0}.drag-handle:active{cursor:grabbing}';
+var Hl = Object.defineProperty, Kl = Object.getOwnPropertyDescriptor, $e = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Kl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Hl(t, i, r), r;
 };
 let ne = class extends c {
   constructor() {
@@ -6716,8 +6716,8 @@ let ne = class extends c {
     super.updated(e), this._hasSlottedChildren || this.hasChildren ? this.setAttribute("aria-expanded", String(this.expanded)) : this.removeAttribute("aria-expanded"), this.setAttribute("aria-disabled", String(this.disabled));
   }
   _onSlotChange(e) {
-    const s = e.target.assignedElements({ flatten: !0 }).some((r) => r.tagName === "UI-TREE-ITEM");
-    s !== this._hasSlottedChildren && (this._hasSlottedChildren = s);
+    const o = e.target.assignedElements({ flatten: !0 }).some((r) => r.tagName === "UI-TREE-ITEM");
+    o !== this._hasSlottedChildren && (this._hasSlottedChildren = o);
   }
   _toggleExpand(e) {
     e.stopPropagation(), !this.disabled && this.dispatchEvent(new CustomEvent("ui-tree-item-toggle", {
@@ -6767,7 +6767,7 @@ let ne = class extends c {
               <circle cx="15" cy="19" r="1" fill="currentColor"/>
             </svg>
           </div>
-        ` : v}
+        ` : g}
 
         ${t ? l`
               <button
@@ -6783,7 +6783,7 @@ let ne = class extends c {
             ` : l`<span class="expand-placeholder"></span>`}
 
         <span class="item-label">${this.label}</span>
-        ${this.label ? v : l`<slot name="label"></slot>`}
+        ${this.label ? g : l`<slot name="label"></slot>`}
       </div>
 
       <div class="children-container" ?hidden=${!this.expanded} role="group">
@@ -6794,60 +6794,60 @@ let ne = class extends c {
 };
 ne.styles = p(ql);
 $e([
-  o({ type: String, attribute: "item-id", reflect: !0 })
+  s({ type: String, attribute: "item-id", reflect: !0 })
 ], ne.prototype, "itemId", 2);
 $e([
-  o({ type: String })
+  s({ type: String })
 ], ne.prototype, "label", 2);
 $e([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], ne.prototype, "disabled", 2);
 $e([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], ne.prototype, "expanded", 2);
 $e([
-  o({ type: Boolean, attribute: "has-children", reflect: !0 })
+  s({ type: Boolean, attribute: "has-children", reflect: !0 })
 ], ne.prototype, "hasChildren", 2);
 $e([
-  g()
+  m()
 ], ne.prototype, "_isDraggable", 2);
 $e([
-  g()
+  m()
 ], ne.prototype, "_handleOnly", 2);
 $e([
-  o({ type: String, attribute: "drop-position", reflect: !0 })
+  s({ type: String, attribute: "drop-position", reflect: !0 })
 ], ne.prototype, "dropPosition", 2);
 $e([
-  o({ type: Boolean, attribute: "show-drag-handle" })
+  s({ type: Boolean, attribute: "show-drag-handle" })
 ], ne.prototype, "showDragHandle", 2);
 $e([
-  g()
+  m()
 ], ne.prototype, "_hasSlottedChildren", 2);
 ne = $e([
   d("ui-tree-item")
 ], ne);
 const Yl = ":host{display:block;font-family:var(--ui-font-family, system-ui, sans-serif)}.tree-root{padding:4px 0}";
-var Gl = Object.defineProperty, Wl = Object.getOwnPropertyDescriptor, Ot = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Wl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Gl(t, i, r), r;
+var Gl = Object.defineProperty, Wl = Object.getOwnPropertyDescriptor, Ot = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Wl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Gl(t, i, r), r;
 };
 let He = class extends c {
   constructor() {
     super(...arguments), this.disabledItemsFocusable = !1, this.defaultExpandedItems = [], this.expansionTrigger = "content", this._internalExpandedItems = /* @__PURE__ */ new Set(), this._expansionInitialized = !1, this._handleKeydown = (e) => {
       const t = e.target;
       if (t.tagName !== "UI-TREE-ITEM") return;
-      const i = t, s = this._getFocusableItems(), r = s.indexOf(i);
+      const i = t, o = this._getFocusableItems(), r = o.indexOf(i);
       switch (e.key) {
         case "ArrowDown": {
           e.preventDefault();
-          const a = s[r + 1];
+          const a = o[r + 1];
           a && this._focusItem(a);
           break;
         }
         case "ArrowUp": {
           e.preventDefault();
-          const a = s[r - 1];
+          const a = o[r - 1];
           a && this._focusItem(a);
           break;
         }
@@ -6873,13 +6873,13 @@ let He = class extends c {
         }
         case "Home": {
           e.preventDefault();
-          const a = s[0];
+          const a = o[0];
           a && this._focusItem(a);
           break;
         }
         case "End": {
           e.preventDefault();
-          const a = s[s.length - 1];
+          const a = o[o.length - 1];
           a && this._focusItem(a);
           break;
         }
@@ -6895,8 +6895,8 @@ let He = class extends c {
         default:
           if (e.key.length === 1) {
             const a = e.key.toLowerCase(), n = r < 0 ? 0 : r + 1, f = [
-              ...s.slice(n),
-              ...s.slice(0, n)
+              ...o.slice(n),
+              ...o.slice(0, n)
             ].find(
               (y) => y.label.toLowerCase().startsWith(a)
             );
@@ -6971,9 +6971,9 @@ let He = class extends c {
     if (this._isControlled) {
       const i = new Set(this.expandedItems);
       t ? i.add(e.itemId) : i.delete(e.itemId);
-      const s = Array.from(i);
-      this.onExpandedItemsChange?.(s), this.dispatchEvent(new CustomEvent("expanded-items-change", {
-        detail: { expandedItems: s },
+      const o = Array.from(i);
+      this.onExpandedItemsChange?.(o), this.dispatchEvent(new CustomEvent("expanded-items-change", {
+        detail: { expandedItems: o },
         bubbles: !1
       })), this._syncExpansion();
     } else
@@ -6984,7 +6984,7 @@ let He = class extends c {
     const e = this._getAllItems();
     if (e.length === 0) return;
     if (!e.some((i) => i.getAttribute("tabindex") === "0")) {
-      const i = this.disabledItemsFocusable ? e[0] : e.find((s) => !s.disabled);
+      const i = this.disabledItemsFocusable ? e[0] : e.find((o) => !o.disabled);
       i && i.setAttribute("tabindex", "0");
     }
   }
@@ -6998,8 +6998,8 @@ let He = class extends c {
   }
   /** Handles the `ui-tree-item-toggle` event from the expand icon button. */
   _handleUiToggle(e) {
-    const { itemId: t, expanded: i } = e.detail, s = this.getItemDOMElement(t);
-    s && this._handleToggle(s, i);
+    const { itemId: t, expanded: i } = e.detail, o = this.getItemDOMElement(t);
+    o && this._handleToggle(o, i);
   }
   /** Handles `ui-tree-item-click` (row click). Also triggers expansion in content mode. */
   _handleItemClick(e) {
@@ -7035,31 +7035,31 @@ let He = class extends c {
 };
 He.styles = p(Yl);
 Ot([
-  o({ type: Boolean, attribute: "disabled-items-focusable" })
+  s({ type: Boolean, attribute: "disabled-items-focusable" })
 ], He.prototype, "disabledItemsFocusable", 2);
 Ot([
-  o({ attribute: !1 })
+  s({ attribute: !1 })
 ], He.prototype, "onItemClick", 2);
 Ot([
-  o({ attribute: !1 })
+  s({ attribute: !1 })
 ], He.prototype, "expandedItems", 2);
 Ot([
-  o({ attribute: !1 })
+  s({ attribute: !1 })
 ], He.prototype, "defaultExpandedItems", 2);
 Ot([
-  o({ attribute: !1 })
+  s({ attribute: !1 })
 ], He.prototype, "onExpandedItemsChange", 2);
 Ot([
-  o({ type: String, attribute: "expansion-trigger" })
+  s({ type: String, attribute: "expansion-trigger" })
 ], He.prototype, "expansionTrigger", 2);
 He = Ot([
   d("ui-simple-tree-view")
 ], He);
-const Xl = ":host{display:block;font-family:var(--ui-font-family, system-ui, sans-serif)}.tree-root{padding:4px 0}.lazy-indicator{display:flex;align-items:center;gap:8px;min-height:32px;font-size:14px;color:var(--ui-text-color, #6b7280)}.lazy-root{padding:8px}@keyframes ui-spin{to{transform:rotate(360deg)}}.lazy-spinner{width:14px;height:14px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:ui-spin .7s linear infinite;flex-shrink:0;opacity:.55}ui-tree-item[dragging]{opacity:.4}ui-tree-item[drop-position=before]{box-shadow:0 -2px 0 0 var(--ui-primary, #3b82f6)}ui-tree-item[drop-position=after]{box-shadow:0 2px 0 0 var(--ui-primary, #3b82f6)}ui-tree-item[drop-position=inside]{outline:2px solid var(--ui-primary, #3b82f6);outline-offset:-1px;border-radius:4px}";
-var Jl = Object.defineProperty, Zl = Object.getOwnPropertyDescriptor, P = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Zl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Jl(t, i, r), r;
+const Xl = ":host{display:block;font-family:var(--ui-font-family)}.tree-root{padding:4px 0}.lazy-indicator{display:flex;align-items:center;gap:8px;min-height:32px;font-size:14px;color:var(--ui-text-color)}.lazy-root{padding:8px}@keyframes ui-spin{to{transform:rotate(360deg)}}.lazy-spinner{width:14px;height:14px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:ui-spin .7s linear infinite;flex-shrink:0;opacity:.55}ui-tree-item[dragging]{opacity:.4}ui-tree-item[drop-position=before]{box-shadow:0 -2px 0 0 var(--ui-primary-color)}ui-tree-item[drop-position=after]{box-shadow:0 2px 0 0 var(--ui-primary-color)}ui-tree-item[drop-position=inside]{outline:2px solid var(--ui-primary-color);outline-offset:-1px;border-radius:4px}";
+var Jl = Object.defineProperty, Zl = Object.getOwnPropertyDescriptor, P = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Zl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Jl(t, i, r), r;
 };
 let I = class extends c {
   constructor() {
@@ -7067,8 +7067,8 @@ let I = class extends c {
       const t = e.target;
       t.tagName === "UI-TREE-ITEM" && (this._getAllItems().forEach((i) => i.setAttribute("tabindex", "-1")), t.setAttribute("tabindex", "0"));
     }, this._handleUiToggle = (e) => {
-      const { itemId: t, expanded: i } = e.detail, s = this.getItemDOMElement(t);
-      s && this._handleToggle(s, i);
+      const { itemId: t, expanded: i } = e.detail, o = this.getItemDOMElement(t);
+      o && this._handleToggle(o, i);
     }, this._handleItemClick = (e) => {
       const { itemId: t } = e.detail;
       if (this.expansionTrigger === "content") {
@@ -7082,17 +7082,17 @@ let I = class extends c {
     }, this._handleKeydown = (e) => {
       const t = e.target;
       if (t.tagName !== "UI-TREE-ITEM") return;
-      const i = t, s = this._getFocusableItems(), r = s.indexOf(i);
+      const i = t, o = this._getFocusableItems(), r = o.indexOf(i);
       switch (e.key) {
         case "ArrowDown": {
           e.preventDefault();
-          const a = s[r + 1];
+          const a = o[r + 1];
           a && this._focusItem(a);
           break;
         }
         case "ArrowUp": {
           e.preventDefault();
-          const a = s[r - 1];
+          const a = o[r - 1];
           a && this._focusItem(a);
           break;
         }
@@ -7118,13 +7118,13 @@ let I = class extends c {
         }
         case "Home": {
           e.preventDefault();
-          const a = s[0];
+          const a = o[0];
           a && this._focusItem(a);
           break;
         }
         case "End": {
           e.preventDefault();
-          const a = s[s.length - 1];
+          const a = o[o.length - 1];
           a && this._focusItem(a);
           break;
         }
@@ -7140,8 +7140,8 @@ let I = class extends c {
         default:
           if (e.key.length === 1) {
             const a = e.key.toLowerCase(), n = r < 0 ? 0 : r + 1, f = [
-              ...s.slice(n),
-              ...s.slice(0, n)
+              ...o.slice(n),
+              ...o.slice(0, n)
             ].find(
               (y) => y.label.toLowerCase().startsWith(a)
             );
@@ -7178,7 +7178,7 @@ let I = class extends c {
         this._clearDropTarget();
         return;
       }
-      const s = t.getBoundingClientRect(), r = e.clientY - s.top, a = s.height;
+      const o = t.getBoundingClientRect(), r = e.clientY - o.top, a = o.height;
       let n = "inside";
       if (r < a * 0.25 ? n = "before" : r > a * 0.75 && (n = "after"), this.canMoveItemToNewPosition && !this.canMoveItemToNewPosition({
         itemId: this._draggedItemId,
@@ -7196,8 +7196,8 @@ let I = class extends c {
       if (!this.itemsReordering || !this._draggedItemId || !this._dropTargetId || !this._dropPosition)
         return;
       e.preventDefault();
-      const t = this._draggedItemId, i = this._dropTargetId, s = this._dropPosition;
-      this._moveItem(t, i, s), this._draggedItemId = null, this._clearDropTarget();
+      const t = this._draggedItemId, i = this._dropTargetId, o = this._dropPosition;
+      this._moveItem(t, i, o), this._draggedItemId = null, this._clearDropTarget();
     };
   }
   get _isControlled() {
@@ -7238,7 +7238,7 @@ let I = class extends c {
   _findItemById(e, t) {
     for (const i of t) {
       if (this.getItemId(i) === e) return i;
-      const s = this.getItemChildren(i) ?? [], r = this._findItemById(e, s);
+      const o = this.getItemChildren(i) ?? [], r = this._findItemById(e, o);
       if (r) return r;
     }
     return null;
@@ -7248,20 +7248,20 @@ let I = class extends c {
   }
   _cloneItemsTree(e) {
     return e.map((t) => {
-      const i = { ...t }, s = this.getItemChildren(t);
-      if (s) {
-        const r = Object.keys(t).find((a) => t[a] === s) || "children";
-        i[r] = this._cloneItemsTree(s);
+      const i = { ...t }, o = this.getItemChildren(t);
+      if (o) {
+        const r = Object.keys(t).find((a) => t[a] === o) || "children";
+        i[r] = this._cloneItemsTree(o);
       }
       return i;
     });
   }
   /** Find an item and its parent list/index within a tree structure. */
   _findItemAndParentInTree(e, t, i = null) {
-    for (let s = 0; s < t.length; s++) {
-      const r = t[s];
+    for (let o = 0; o < t.length; o++) {
+      const r = t[o];
       if (this.getItemId(r) === e)
-        return { item: r, parentList: t, index: s, parentId: i };
+        return { item: r, parentList: t, index: o, parentId: i };
       const a = this.getItemChildren(r) ?? [], n = this._findItemAndParentInTree(e, a, this.getItemId(r));
       if (n) return n;
     }
@@ -7278,10 +7278,10 @@ let I = class extends c {
    * anywhere in the subtree (deep, recursive check).
    */
   _isAncestorOf(e, t, i) {
-    for (const s of i) {
-      if (this.getItemId(s) === e)
-        return !!this._findItemById(t, this.getItemChildren(s) ?? []);
-      if (this._isAncestorOf(e, t, this.getItemChildren(s) ?? []))
+    for (const o of i) {
+      if (this.getItemId(o) === e)
+        return !!this._findItemById(t, this.getItemChildren(o) ?? []);
+      if (this._isAncestorOf(e, t, this.getItemChildren(o) ?? []))
         return !0;
     }
     return !1;
@@ -7329,9 +7329,9 @@ let I = class extends c {
     if (t && this.dataSource && !this._lazyChildren.has(e.itemId) && !this._loading.has(e.itemId) && this._loadChildren(e.itemId), this._isControlled) {
       const i = new Set(this.expandedItems);
       t ? i.add(e.itemId) : i.delete(e.itemId);
-      const s = Array.from(i);
-      this.onExpandedItemsChange?.(s), this.dispatchEvent(new CustomEvent("expanded-items-change", {
-        detail: { expandedItems: s },
+      const o = Array.from(i);
+      this.onExpandedItemsChange?.(o), this.dispatchEvent(new CustomEvent("expanded-items-change", {
+        detail: { expandedItems: o },
         bubbles: !1
       })), this._syncExpansion();
     } else
@@ -7342,7 +7342,7 @@ let I = class extends c {
     const e = this._getAllItems();
     if (e.length === 0) return;
     if (!e.some((i) => i.getAttribute("tabindex") === "0")) {
-      const i = this.disabledItemsFocusable ? e[0] : e.find((s) => !s.disabled);
+      const i = this.disabledItemsFocusable ? e[0] : e.find((o) => !o.disabled);
       i && i.setAttribute("tabindex", "0");
     }
   }
@@ -7388,14 +7388,14 @@ let I = class extends c {
   }
   // ─── Rendering ────────────────────────────────────────────────────────────
   _renderItem(e, t = 0) {
-    const i = this.getItemId(e), s = this.getItemLabel(e), r = this._getEffectiveDisabled(e);
+    const i = this.getItemId(e), o = this.getItemLabel(e), r = this._getEffectiveDisabled(e);
     let a = [], n = !1, h = !1;
     this.dataSource ? this._lazyChildren.has(i) ? (a = this._lazyChildren.get(i), h = a.length > 0) : (n = this._loading.has(i), h = this.dataSource.getChildrenCount(e) !== 0) : (a = this.getItemChildren(e) ?? [], h = a.length > 0);
     const f = (t + 1) * 24 + 8;
     return l`
       <ui-tree-item
         item-id=${i}
-        label=${s}
+        label=${o}
         ?disabled=${r}
         ?has-children=${h}
         ?show-drag-handle=${this.itemsReordering && this.itemsReorderingHandle}
@@ -7405,7 +7405,7 @@ let I = class extends c {
             <span class="lazy-spinner"></span>
             <span>Loading…</span>
           </div>
-        ` : v}
+        ` : g}
         ${a.map((y) => this._renderItem(y, t + 1))}
       </ui-tree-item>
     `;
@@ -7419,8 +7419,8 @@ let I = class extends c {
             <span class="lazy-spinner"></span>
             <span>Loading…</span>
           </div>
-        ` : v}
-        ${t.map((s) => this._renderItem(s))}
+        ` : g}
+        ${t.map((o) => this._renderItem(o))}
       </div>
     `;
   }
@@ -7443,20 +7443,20 @@ let I = class extends c {
   }
   _moveItem(e, t, i) {
     if (!this._orderedItems) return;
-    const s = this._findItemAndParentInTree(e, this._orderedItems), r = this._findItemAndParentInTree(t, this._orderedItems);
-    if (!s || !r) return;
-    s.parentList.splice(s.index, 1);
+    const o = this._findItemAndParentInTree(e, this._orderedItems), r = this._findItemAndParentInTree(t, this._orderedItems);
+    if (!o || !r) return;
+    o.parentList.splice(o.index, 1);
     let n = null, h = 0;
     if (i === "inside") {
       const f = r.item, y = this.getItemChildren(f), b = Object.keys(f).find((de) => f[de] === y) || "children";
       f[b] || (f[b] = []);
       const S = f[b];
-      S.push(s.item), n = t, h = S.length - 1;
+      S.push(o.item), n = t, h = S.length - 1;
     } else {
       const f = this._findItemAndParentInTree(t, this._orderedItems);
       if (!f) return;
       const y = i === "before" ? f.index : f.index + 1;
-      f.parentList.splice(y, 0, s.item), n = f.parentId, h = y;
+      f.parentList.splice(y, 0, o.item), n = f.parentId, h = y;
     }
     this._orderedItems = [...this._orderedItems], this.onItemPositionChange?.({
       itemId: e,
@@ -7471,76 +7471,76 @@ let I = class extends c {
 };
 I.styles = p(Xl);
 P([
-  o({ attribute: !1 })
+  s({ attribute: !1 })
 ], I.prototype, "items", 2);
 P([
-  o({ attribute: !1 })
+  s({ attribute: !1 })
 ], I.prototype, "dataSource", 2);
 P([
-  o({ attribute: !1 })
+  s({ attribute: !1 })
 ], I.prototype, "getItemId", 2);
 P([
-  o({ attribute: !1 })
+  s({ attribute: !1 })
 ], I.prototype, "getItemLabel", 2);
 P([
-  o({ attribute: !1 })
+  s({ attribute: !1 })
 ], I.prototype, "getItemChildren", 2);
 P([
-  o({ attribute: !1 })
+  s({ attribute: !1 })
 ], I.prototype, "isItemDisabled", 2);
 P([
-  o({ type: Boolean, attribute: "disabled-items-focusable" })
+  s({ type: Boolean, attribute: "disabled-items-focusable" })
 ], I.prototype, "disabledItemsFocusable", 2);
 P([
-  o({ attribute: !1 })
+  s({ attribute: !1 })
 ], I.prototype, "onItemClick", 2);
 P([
-  o({ type: String, attribute: "expansion-trigger" })
+  s({ type: String, attribute: "expansion-trigger" })
 ], I.prototype, "expansionTrigger", 2);
 P([
-  o({ attribute: !1 })
+  s({ attribute: !1 })
 ], I.prototype, "expandedItems", 2);
 P([
-  o({ attribute: !1 })
+  s({ attribute: !1 })
 ], I.prototype, "defaultExpandedItems", 2);
 P([
-  o({ attribute: !1 })
+  s({ attribute: !1 })
 ], I.prototype, "onExpandedItemsChange", 2);
 P([
-  o({ type: Boolean, attribute: "items-reordering" })
+  s({ type: Boolean, attribute: "items-reordering" })
 ], I.prototype, "itemsReordering", 2);
 P([
-  o({ attribute: !1 })
+  s({ attribute: !1 })
 ], I.prototype, "isItemReorderable", 2);
 P([
-  o({ attribute: !1 })
+  s({ attribute: !1 })
 ], I.prototype, "canMoveItemToNewPosition", 2);
 P([
-  o({ type: Boolean, attribute: "items-reordering-handle" })
+  s({ type: Boolean, attribute: "items-reordering-handle" })
 ], I.prototype, "itemsReorderingHandle", 2);
 P([
-  o({ attribute: !1 })
+  s({ attribute: !1 })
 ], I.prototype, "onItemPositionChange", 2);
 P([
-  g()
+  m()
 ], I.prototype, "_orderedItems", 2);
 P([
-  g()
+  m()
 ], I.prototype, "_draggedItemId", 2);
 P([
-  g()
+  m()
 ], I.prototype, "_dropTargetId", 2);
 P([
-  g()
+  m()
 ], I.prototype, "_dropPosition", 2);
 I = P([
   d("ui-rich-tree-view")
 ], I);
-const Ql = ":host{display:inline-flex;align-items:center;margin-left:auto;padding-left:8px;font-size:.6875rem;letter-spacing:.05em;color:var(--ui-text-color-muted, #6b7280);font-family:var(--ui-font-family, system-ui, sans-serif)}", ec = ":host{display:block;height:1px;background:var(--ui-border-color, #e5e7eb);margin:4px 0}:host([hidden]){display:none!important}", tc = ":host{display:block}:host([hidden]){display:none!important}.item{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:4px;cursor:pointer;font-size:.875rem;line-height:1.25rem;color:var(--ui-text-color, #111827);font-family:var(--ui-font-family, system-ui, sans-serif);outline:none;-webkit-user-select:none;user-select:none;transition:background .1s}:host([highlighted]) .item{background:var(--ui-command-highlight-bg, rgba(0, 0, 0, .06));color:var(--ui-command-highlight-color, var(--ui-text-color, #111827))}.item:hover{background:var(--ui-hover-bg, rgba(0, 0, 0, .04))}:host([highlighted]) .item:hover{background:var(--ui-command-highlight-bg, rgba(0, 0, 0, .06))}:host([disabled]) .item{opacity:.38;cursor:not-allowed;pointer-events:none}.icon{display:flex;align-items:center;justify-content:center;width:16px;height:16px;flex-shrink:0;color:var(--ui-text-color-muted, #6b7280)}.label{flex:1}[hidden]{display:none!important}", ic = ":host{display:block;padding:24px 8px;text-align:center;font-size:.875rem;color:var(--ui-text-color-muted, #6b7280);font-family:var(--ui-font-family, system-ui, sans-serif)}:host([hidden]){display:none!important}", rc = ":host{display:block;font-family:var(--ui-font-family, system-ui, sans-serif)}:host([hidden]){display:none!important}.heading{padding:6px 8px 2px;font-size:.6875rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ui-text-color-muted, #6b7280)}.heading:empty{display:none}", sc = ":host{display:block;overflow-y:auto;max-height:var(--ui-command-list-max-height, 300px)}.list{padding:4px;outline:none}.list:focus-visible{outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:-2px}", oc = ":host{display:block;font-family:var(--ui-font-family, system-ui, sans-serif)}.input-wrap{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--ui-border-color, #e5e7eb)}.search-icon{flex-shrink:0;color:var(--ui-text-color-muted, #6b7280);display:flex;align-items:center}input{flex:1;border:none;outline:none;background:transparent;font-size:.9375rem;color:var(--ui-text-color, #111827);font-family:inherit;min-width:0}input::placeholder{color:var(--ui-text-color-muted, #6b7280)}input[type=search]::-webkit-search-cancel-button{display:none}input[type=search]::-webkit-search-decoration{display:none}", ac = ":host{display:block;font-family:var(--ui-font-family, system-ui, sans-serif);background:var(--ui-surface-background, #fff);border-radius:var(--ui-border-radius-md, 8px);overflow:hidden}.command{display:flex;flex-direction:column}", nc = ":host{display:block}.backdrop{position:fixed;inset:0;background:#00000080;z-index:var(--ui-command-z-index, 1400);display:flex;align-items:flex-start;justify-content:center;padding-top:12vh;opacity:0;pointer-events:none;transition:opacity .18s ease}.backdrop.open{opacity:1;pointer-events:auto}.panel{width:100%;max-width:var(--ui-command-dialog-width, 512px);background:var(--ui-surface-background, #fff);border-radius:var(--ui-border-radius-md, 8px);box-shadow:0 20px 25px -5px #00000026,0 10px 10px -5px #0000000f;overflow:hidden;transform:scale(.94) translateY(-8px);transition:transform .18s cubic-bezier(.4,0,.2,1)}.backdrop.open .panel{transform:scale(1) translateY(0)}";
-var lc = Object.defineProperty, cc = Object.getOwnPropertyDescriptor, N = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? cc(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && lc(t, i, r), r;
+const Ql = ":host{display:inline-flex;align-items:center;margin-left:auto;padding-left:8px;font-size:.6875rem;letter-spacing:.05em;color:var(--ui-text-color-muted);font-family:var(--ui-font-family)}", ec = ":host{display:block;height:1px;background:var(--ui-border-color);margin:4px 0}:host([hidden]){display:none!important}", tc = ":host{display:block}:host([hidden]){display:none!important}.item{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:4px;cursor:pointer;font-size:.875rem;line-height:1.25rem;color:var(--ui-text-color);font-family:var(--ui-font-family);outline:none;-webkit-user-select:none;user-select:none;transition:background .1s}:host([highlighted]) .item{background:var(--ui-command-highlight-bg, var(--ui-hover-color));color:var(--ui-command-highlight-color, var(--ui-text-color))}.item:hover{background:var(--ui-hover-color)}:host([highlighted]) .item:hover{background:var(--ui-command-highlight-bg, var(--ui-hover-color))}:host([disabled]) .item{opacity:.38;cursor:not-allowed;pointer-events:none}.icon{display:flex;align-items:center;justify-content:center;width:16px;height:16px;flex-shrink:0;color:var(--ui-text-color-muted)}.label{flex:1}[hidden]{display:none!important}", ic = ":host{display:block;padding:24px 8px;text-align:center;font-size:.875rem;color:var(--ui-text-color-muted);font-family:var(--ui-font-family)}:host([hidden]){display:none!important}", rc = ":host{display:block;font-family:var(--ui-font-family)}:host([hidden]){display:none!important}.heading{padding:6px 8px 2px;font-size:.6875rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ui-text-color-muted)}.heading:empty{display:none}", oc = ":host{display:block;overflow-y:auto;max-height:var(--ui-command-list-max-height, 300px)}.list{padding:4px;outline:none}.list:focus-visible{outline:2px solid var(--ui-primary-color);outline-offset:-2px}", sc = ":host{display:block;font-family:var(--ui-font-family)}.input-wrap{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--ui-border-color)}.search-icon{flex-shrink:0;color:var(--ui-text-color-muted);display:flex;align-items:center}input{flex:1;border:none;outline:none;background:transparent;font-size:.9375rem;color:var(--ui-text-color);font-family:inherit;min-width:0}input::placeholder{color:var(--ui-text-color-muted)}input[type=search]::-webkit-search-cancel-button{display:none}input[type=search]::-webkit-search-decoration{display:none}", ac = ":host{display:block;font-family:var(--ui-font-family);background:var(--ui-surface-1);border-radius:var(--ui-border-radius-md);overflow:hidden}.command{display:flex;flex-direction:column}", nc = ":host{display:block}.backdrop{position:fixed;inset:0;background:#00000080;z-index:var(--ui-command-z-index, 1400);display:flex;align-items:flex-start;justify-content:center;padding-top:12vh;opacity:0;pointer-events:none;transition:opacity .18s ease}.backdrop.open{opacity:1;pointer-events:auto}.panel{width:100%;max-width:var(--ui-command-dialog-width, 512px);background:var(--ui-surface-1);border-radius:var(--ui-border-radius-md);box-shadow:0 20px 25px -5px #00000026,0 10px 10px -5px #0000000f;overflow:hidden;transform:scale(.94) translateY(-8px);transition:transform .18s cubic-bezier(.4,0,.2,1)}.backdrop.open .panel{transform:scale(1) translateY(0)}";
+var lc = Object.defineProperty, cc = Object.getOwnPropertyDescriptor, N = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? cc(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && lc(t, i, r), r;
 };
 let Ir = class extends c {
   render() {
@@ -7560,7 +7560,7 @@ Er.styles = p(ec);
 Er = N([
   d("ui-command-separator")
 ], Er);
-let mt = class extends c {
+let vt = class extends c {
   constructor() {
     super(...arguments), this.value = "", this.disabled = !1, this.highlighted = !1, this._hasIcon = !1;
   }
@@ -7598,22 +7598,22 @@ let mt = class extends c {
         `;
   }
 };
-mt.styles = p(tc);
+vt.styles = p(tc);
 N([
-  o({ type: String, reflect: !0 })
-], mt.prototype, "value", 2);
+  s({ type: String, reflect: !0 })
+], vt.prototype, "value", 2);
 N([
-  o({ type: Boolean, reflect: !0 })
-], mt.prototype, "disabled", 2);
+  s({ type: Boolean, reflect: !0 })
+], vt.prototype, "disabled", 2);
 N([
-  o({ type: Boolean, reflect: !0 })
-], mt.prototype, "highlighted", 2);
+  s({ type: Boolean, reflect: !0 })
+], vt.prototype, "highlighted", 2);
 N([
-  g()
-], mt.prototype, "_hasIcon", 2);
-mt = N([
+  m()
+], vt.prototype, "_hasIcon", 2);
+vt = N([
   d("ui-command-item")
-], mt);
+], vt);
 let Pr = class extends c {
   render() {
     return l`<slot></slot>`;
@@ -7636,7 +7636,7 @@ let Ui = class extends c {
 };
 Ui.styles = p(rc);
 N([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], Ui.prototype, "heading", 2);
 Ui = N([
   d("ui-command-group")
@@ -7650,11 +7650,11 @@ let Or = class extends c {
         `;
   }
 };
-Or.styles = p(sc);
+Or.styles = p(oc);
 Or = N([
   d("ui-command-list")
 ], Or);
-let mi = class extends c {
+let vi = class extends c {
   constructor() {
     super(...arguments), this.placeholder = "Type a command or search...", this.value = "";
   }
@@ -7703,16 +7703,16 @@ let mi = class extends c {
         `;
   }
 };
-mi.styles = p(oc);
+vi.styles = p(sc);
 N([
-  o({ type: String })
-], mi.prototype, "placeholder", 2);
+  s({ type: String })
+], vi.prototype, "placeholder", 2);
 N([
-  o({ type: String, reflect: !0 })
-], mi.prototype, "value", 2);
-mi = N([
+  s({ type: String, reflect: !0 })
+], vi.prototype, "value", 2);
+vi = N([
   d("ui-command-input")
-], mi);
+], vi);
 let Dr = class extends c {
   constructor() {
     super(...arguments), this._query = "", this._highlightedItem = null, this._handleFilter = (e) => {
@@ -7767,10 +7767,10 @@ let Dr = class extends c {
   _applyFilter(e) {
     this._query = e;
     const t = e.toLowerCase(), i = [...this.querySelectorAll("ui-command-item")];
-    let s = 0;
+    let o = 0;
     for (const h of i) {
       const f = (h.value || h.textContent || "").toLowerCase().trim(), y = t === "" || f.includes(t);
-      h.hidden = !y, y && s++;
+      h.hidden = !y, y && o++;
     }
     const r = [...this.querySelectorAll("ui-command-group")];
     for (const h of r) {
@@ -7778,7 +7778,7 @@ let Dr = class extends c {
       h.hidden = f.length === 0 || f.every((y) => y.hidden);
     }
     const a = this.querySelector("ui-command-empty");
-    a && (a.hidden = s > 0);
+    a && (a.hidden = o > 0);
     const n = this.querySelector("ui-command-list");
     if (n) {
       const h = [...n.children], f = (y) => y.tagName.toLowerCase() !== "ui-command-separator" && y.tagName.toLowerCase() !== "ui-command-empty" && !y.hidden;
@@ -7860,18 +7860,18 @@ let Ri = class extends c {
 };
 Ri.styles = p(nc);
 N([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], Ri.prototype, "open", 2);
 Ri = N([
   d("ui-command-dialog")
 ], Ri);
-const dc = ':host{display:block;overflow:hidden;width:100%}.track{display:flex;flex-wrap:nowrap;height:100%;gap:var(--ui-carousel-gap, 0px);will-change:transform;transition:transform var(--ui-carousel-duration, .35s) var(--ui-carousel-ease, cubic-bezier(.25, .1, .25, 1))}:host([orientation="vertical"]){height:var(--ui-carousel-height, 320px)}:host([orientation="vertical"]) .track{flex-direction:column}::slotted(ui-carousel-item){flex:0 0 calc((100% - (var(--ui-carousel-items-per-view, 1) - 1) * var(--ui-carousel-gap, 0px)) / var(--ui-carousel-items-per-view, 1));min-width:0;min-height:0}:host([orientation="vertical"]) ::slotted(ui-carousel-item){flex:0 0 calc((var(--ui-carousel-height, 320px) - (var(--ui-carousel-items-per-view, 1) - 1) * var(--ui-carousel-gap, 0px)) / var(--ui-carousel-items-per-view, 1));min-height:0}', pc = ":host{display:block;flex-shrink:0;min-width:0}.item{width:100%;height:100%}", hc = ":host{display:block;position:relative}.carousel{position:relative;width:100%;outline:none}.carousel:focus-visible{outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:4px;border-radius:var(--ui-border-radius-md, 6px)}";
-var uc = Object.defineProperty, fc = Object.getOwnPropertyDescriptor, G = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? fc(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && uc(t, i, r), r;
+const dc = ':host{display:block;overflow:hidden;width:100%}.track{display:flex;flex-wrap:nowrap;height:100%;gap:var(--ui-carousel-gap, 0px);will-change:transform;transition:transform var(--ui-carousel-duration, .35s) var(--ui-carousel-ease, cubic-bezier(.25, .1, .25, 1))}:host([orientation="vertical"]){height:var(--ui-carousel-height, 320px)}:host([orientation="vertical"]) .track{flex-direction:column}::slotted(ui-carousel-item){flex:0 0 calc((100% - (var(--ui-carousel-items-per-view, 1) - 1) * var(--ui-carousel-gap, 0px)) / var(--ui-carousel-items-per-view, 1));min-width:0;min-height:0}:host([orientation="vertical"]) ::slotted(ui-carousel-item){flex:0 0 calc((var(--ui-carousel-height, 320px) - (var(--ui-carousel-items-per-view, 1) - 1) * var(--ui-carousel-gap, 0px)) / var(--ui-carousel-items-per-view, 1));min-height:0}', pc = ":host{display:block;flex-shrink:0;min-width:0}.item{width:100%;height:100%}", hc = ":host{display:block;position:relative}.carousel{position:relative;width:100%;outline:none}.carousel:focus-visible{outline:2px solid var(--ui-primary-color);outline-offset:4px;border-radius:var(--ui-border-radius-md)}";
+var uc = Object.defineProperty, fc = Object.getOwnPropertyDescriptor, G = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? fc(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && uc(t, i, r), r;
 };
-const ds = as`
+const po = ao`
   :host {
     display: inline-flex;
   }
@@ -7915,7 +7915,7 @@ let Wt = class extends c {
     );
   }
   render() {
-    const i = `calc((100% + var(--ui-carousel-gap, 0px)) / ${this.itemsPerView})`, s = `calc(-${this.index} * ${i})`, r = this.orientation === "vertical" ? `translateY(${s})` : `translateX(${s})`;
+    const i = `calc((100% + var(--ui-carousel-gap, 0px)) / ${this.itemsPerView})`, o = `calc(-${this.index} * ${i})`, r = this.orientation === "vertical" ? `translateY(${o})` : `translateX(${o})`;
     return l`
       <div
         class="track"
@@ -7930,13 +7930,13 @@ let Wt = class extends c {
 };
 Wt.styles = p(dc);
 G([
-  o({ type: Number })
+  s({ type: Number })
 ], Wt.prototype, "index", 2);
 G([
-  o({ type: Number, attribute: "items-per-view" })
+  s({ type: Number, attribute: "items-per-view" })
 ], Wt.prototype, "itemsPerView", 2);
 G([
-  o({ reflect: !0 })
+  s({ reflect: !0 })
 ], Wt.prototype, "orientation", 2);
 Wt = G([
   d("ui-carousel-content")
@@ -7954,7 +7954,7 @@ zr.styles = p(pc);
 zr = G([
   d("ui-carousel-item")
 ], zr);
-let gi = class extends c {
+let mi = class extends c {
   constructor() {
     super(...arguments), this.disabled = !1, this.orientation = "horizontal", this._handleClick = () => {
       this.closest("ui-carousel")?.previous();
@@ -7975,17 +7975,17 @@ let gi = class extends c {
     `;
   }
 };
-gi.styles = ds;
+mi.styles = po;
 G([
-  o({ type: Boolean, reflect: !0 })
-], gi.prototype, "disabled", 2);
+  s({ type: Boolean, reflect: !0 })
+], mi.prototype, "disabled", 2);
 G([
-  o({ reflect: !0 })
-], gi.prototype, "orientation", 2);
-gi = G([
+  s({ reflect: !0 })
+], mi.prototype, "orientation", 2);
+mi = G([
   d("ui-carousel-previous")
-], gi);
-let vi = class extends c {
+], mi);
+let gi = class extends c {
   constructor() {
     super(...arguments), this.disabled = !1, this.orientation = "horizontal", this._handleClick = () => {
       this.closest("ui-carousel")?.next();
@@ -8006,21 +8006,21 @@ let vi = class extends c {
     `;
   }
 };
-vi.styles = ds;
+gi.styles = po;
 G([
-  o({ type: Boolean, reflect: !0 })
-], vi.prototype, "disabled", 2);
+  s({ type: Boolean, reflect: !0 })
+], gi.prototype, "disabled", 2);
 G([
-  o({ reflect: !0 })
-], vi.prototype, "orientation", 2);
-vi = G([
+  s({ reflect: !0 })
+], gi.prototype, "orientation", 2);
+gi = G([
   d("ui-carousel-next")
-], vi);
-let gt = class extends c {
+], gi);
+let mt = class extends c {
   constructor() {
     super(...arguments), this.loop = !1, this.orientation = "horizontal", this.autoplay = 0, this.itemsPerView = 1, this._currentIndex = 0, this._total = 0, this._observer = null, this._autoplayTimer = null, this._handleKeydown = (e) => {
-      const t = this.orientation === "vertical", i = t ? "ArrowUp" : "ArrowLeft", s = t ? "ArrowDown" : "ArrowRight";
-      e.key === i ? (e.preventDefault(), this.previous()) : e.key === s && (e.preventDefault(), this.next());
+      const t = this.orientation === "vertical", i = t ? "ArrowUp" : "ArrowLeft", o = t ? "ArrowDown" : "ArrowRight";
+      e.key === i ? (e.preventDefault(), this.previous()) : e.key === o && (e.preventDefault(), this.next());
     };
   }
   connectedCallback() {
@@ -8053,8 +8053,8 @@ let gt = class extends c {
       "ui-carousel-previous"
     ), i = this.querySelector(
       "ui-carousel-next"
-    ), s = Math.max(0, this._total - this.itemsPerView);
-    e && (e.index = this._currentIndex, e.orientation = this.orientation, e.itemsPerView = this.itemsPerView), t && (t.disabled = !this.loop && this._currentIndex === 0, t.orientation = this.orientation), i && (i.disabled = !this.loop && (this._total === 0 || this._currentIndex >= s), i.orientation = this.orientation);
+    ), o = Math.max(0, this._total - this.itemsPerView);
+    e && (e.index = this._currentIndex, e.orientation = this.orientation, e.itemsPerView = this.itemsPerView), t && (t.disabled = !this.loop && this._currentIndex === 0, t.orientation = this.orientation), i && (i.disabled = !this.loop && (this._total === 0 || this._currentIndex >= o), i.orientation = this.orientation);
   }
   _fireChange() {
     this.dispatchEvent(
@@ -8111,27 +8111,27 @@ let gt = class extends c {
     `;
   }
 };
-gt.styles = p(hc);
+mt.styles = p(hc);
 G([
-  o({ type: Boolean })
-], gt.prototype, "loop", 2);
+  s({ type: Boolean })
+], mt.prototype, "loop", 2);
 G([
-  o({ reflect: !0 })
-], gt.prototype, "orientation", 2);
+  s({ reflect: !0 })
+], mt.prototype, "orientation", 2);
 G([
-  o({ type: Number })
-], gt.prototype, "autoplay", 2);
+  s({ type: Number })
+], mt.prototype, "autoplay", 2);
 G([
-  o({ type: Number, attribute: "items-per-view" })
-], gt.prototype, "itemsPerView", 2);
-gt = G([
+  s({ type: Number, attribute: "items-per-view" })
+], mt.prototype, "itemsPerView", 2);
+mt = G([
   d("ui-carousel")
-], gt);
-const bc = ":host{display:block;font-size:1rem;font-weight:600;line-height:1.4;color:var(--ui-text-color, #111827);font-family:var(--ui-font-family, system-ui, sans-serif);margin:0}", mc = ":host{display:block;font-size:.875rem;line-height:1.5;color:var(--ui-text-color-muted, #6b7280);font-family:var(--ui-font-family, system-ui, sans-serif);margin:0}", gc = ":host{display:flex;align-items:center;justify-content:center}.media{display:flex;align-items:center;justify-content:center}.media--icon{width:48px;height:48px;border-radius:12px;background:var(--ui-empty-media-bg, #f3f4f6);color:var(--ui-empty-media-color, #6b7280)}::slotted(svg),::slotted([data-icon]){width:24px;height:24px}", vc = ":host{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}", yc = ":host{display:flex;flex-direction:column;align-items:center;gap:8px}", xc = ":host{display:flex;flex-direction:column;align-items:center;justify-content:center}.container{display:flex;flex-direction:column;align-items:center;gap:var(--ui-empty-gap, 16px);padding:var(--ui-empty-padding, 32px);max-width:var(--ui-empty-max-width, 480px);width:100%;box-sizing:border-box;text-align:center;font-family:var(--ui-font-family, system-ui, sans-serif)}";
-var _c = Object.defineProperty, wc = Object.getOwnPropertyDescriptor, Dt = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? wc(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && _c(t, i, r), r;
+], mt);
+const bc = ":host{display:block;font-size:1rem;font-weight:600;line-height:1.4;color:var(--ui-text-color);font-family:var(--ui-font-family);margin:0}", vc = ":host{display:block;font-size:.875rem;line-height:1.5;color:var(--ui-text-color-muted);font-family:var(--ui-font-family);margin:0}", mc = ":host{display:flex;align-items:center;justify-content:center}.media{display:flex;align-items:center;justify-content:center}.media--icon{width:48px;height:48px;border-radius:12px;background:var(--ui-empty-media-bg, var(--ui-surface-2));color:var(--ui-empty-media-color, var(--ui-text-color-muted))}::slotted(svg),::slotted([data-icon]){width:24px;height:24px}", gc = ":host{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}", yc = ":host{display:flex;flex-direction:column;align-items:center;gap:8px}", xc = ":host{display:flex;flex-direction:column;align-items:center;justify-content:center}.container{display:flex;flex-direction:column;align-items:center;gap:var(--ui-empty-gap, 16px);padding:var(--ui-empty-padding, 32px);max-width:var(--ui-empty-max-width, 480px);width:100%;box-sizing:border-box;text-align:center;font-family:var(--ui-font-family, system-ui, sans-serif)}";
+var _c = Object.defineProperty, wc = Object.getOwnPropertyDescriptor, Dt = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? wc(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && _c(t, i, r), r;
 };
 let Tr = class extends c {
   render() {
@@ -8147,7 +8147,7 @@ let Ar = class extends c {
     return l`<slot></slot>`;
   }
 };
-Ar.styles = p(mc);
+Ar.styles = p(vc);
 Ar = Dt([
   d("ui-empty-description")
 ], Ar);
@@ -8163,9 +8163,9 @@ let Vi = class extends c {
         `;
   }
 };
-Vi.styles = p(gc);
+Vi.styles = p(mc);
 Dt([
-  o({ reflect: !0 })
+  s({ reflect: !0 })
 ], Vi.prototype, "variant", 2);
 Vi = Dt([
   d("ui-empty-media")
@@ -8175,7 +8175,7 @@ let Br = class extends c {
     return l`<slot></slot>`;
   }
 };
-Br.styles = p(vc);
+Br.styles = p(gc);
 Br = Dt([
   d("ui-empty-header")
 ], Br);
@@ -8202,10 +8202,10 @@ Lr = Dt([
   d("ui-empty")
 ], Lr);
 const kc = ":host{display:block}.trigger{display:flex;align-items:center;width:100%;background:none;border:none;padding:0;margin:0;cursor:pointer;font:inherit;color:inherit;text-align:left}:host([disabled]) .trigger{cursor:not-allowed;opacity:.5}", $c = ":host{display:block}.panel{display:grid;grid-template-rows:0fr;overflow:hidden;transition:grid-template-rows var(--ui-collapsible-duration, .2s) var(--ui-collapsible-easing, ease)}:host([open]) .panel{grid-template-rows:1fr}.panel-inner{overflow:hidden}", Sc = ":host{display:block}";
-var Cc = Object.defineProperty, Ic = Object.getOwnPropertyDescriptor, We = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Ic(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Cc(t, i, r), r;
+var Cc = Object.defineProperty, Ic = Object.getOwnPropertyDescriptor, We = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Ic(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Cc(t, i, r), r;
 };
 let yi = class extends c {
   constructor() {
@@ -8230,10 +8230,10 @@ let yi = class extends c {
 };
 yi.styles = p(kc);
 We([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], yi.prototype, "expanded", 2);
 We([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], yi.prototype, "disabled", 2);
 yi = We([
   d("ui-collapsible-trigger")
@@ -8254,7 +8254,7 @@ let Ni = class extends c {
 };
 Ni.styles = p($c);
 We([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], Ni.prototype, "open", 2);
 Ni = We([
   d("ui-collapsible-content")
@@ -8290,22 +8290,22 @@ let Xt = class extends c {
 };
 Xt.styles = p(Sc);
 We([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], Xt.prototype, "open", 2);
 We([
-  o({ type: Boolean, attribute: "default-open" })
+  s({ type: Boolean, attribute: "default-open" })
 ], Xt.prototype, "defaultOpen", 2);
 We([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], Xt.prototype, "disabled", 2);
 Xt = We([
   d("ui-collapsible")
 ], Xt);
-const Ec = ":host{display:inline-block}", Pc = ":host{display:block;position:absolute;z-index:var(--ui-hovercard-z-index, 1000);opacity:0;visibility:hidden;transition:opacity var(--ui-hovercard-duration, .15s) ease,visibility var(--ui-hovercard-duration, .15s) ease;pointer-events:none}:host([open]){opacity:1;visibility:visible;pointer-events:auto}.card{background:var(--ui-hovercard-bg, #fff);border:1px solid var(--ui-hovercard-border-color, #e5e7eb);border-radius:var(--ui-hovercard-radius, 8px);box-shadow:var(--ui-hovercard-shadow, 0 4px 16px rgba(0, 0, 0, .12));padding:var(--ui-hovercard-padding, 16px);min-width:var(--ui-hovercard-min-width, 200px);font-family:var(--ui-font-family, system-ui, sans-serif);font-size:var(--ui-hovercard-font-size, .875rem);color:var(--ui-hovercard-color, #111827);line-height:1.5}", Oc = ":host{display:inline-block;position:relative}";
-var Dc = Object.defineProperty, zc = Object.getOwnPropertyDescriptor, ct = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? zc(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Dc(t, i, r), r;
+const Ec = ":host{display:inline-block}", Pc = ":host{display:block;position:absolute;z-index:var(--ui-hovercard-z-index, 1000);opacity:0;visibility:hidden;transition:opacity var(--ui-hovercard-duration, .15s) ease,visibility var(--ui-hovercard-duration, .15s) ease;pointer-events:none}:host([open]){opacity:1;visibility:visible;pointer-events:auto}.card{background:var(--ui-hovercard-bg, var(--ui-surface-1));border:1px solid var(--ui-hovercard-border-color, var(--ui-border-color));border-radius:var(--ui-hovercard-radius, 8px);box-shadow:var(--ui-hovercard-shadow, 0 4px 16px rgba(0, 0, 0, .12));padding:var(--ui-hovercard-padding, 16px);min-width:var(--ui-hovercard-min-width, 200px);font-family:var(--ui-font-family);font-size:var(--ui-hovercard-font-size, .875rem);color:var(--ui-hovercard-color, var(--ui-text-color));line-height:1.5}", Oc = ":host{display:inline-block;position:relative}";
+var Dc = Object.defineProperty, zc = Object.getOwnPropertyDescriptor, ct = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? zc(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Dc(t, i, r), r;
 };
 let jr = class extends c {
   constructor() {
@@ -8369,13 +8369,13 @@ let Jt = class extends c {
 };
 Jt.styles = p(Pc);
 ct([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], Jt.prototype, "side", 2);
 ct([
-  o({ type: String, reflect: !0 })
+  s({ type: String, reflect: !0 })
 ], Jt.prototype, "align", 2);
 ct([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], Jt.prototype, "open", 2);
 Jt = ct([
   d("ui-hover-card-content")
@@ -8430,19 +8430,19 @@ let xi = class extends c {
 };
 xi.styles = p(Oc);
 ct([
-  o({ type: Number, attribute: "open-delay" })
+  s({ type: Number, attribute: "open-delay" })
 ], xi.prototype, "openDelay", 2);
 ct([
-  o({ type: Number, attribute: "close-delay" })
+  s({ type: Number, attribute: "close-delay" })
 ], xi.prototype, "closeDelay", 2);
 xi = ct([
   d("ui-hover-card")
 ], xi);
-const Tc = ":host{display:inline-flex;align-items:center}", Ac = ":host{display:inline-flex;align-items:center;padding:0 6px;color:var(--ui-text-color, #111827)}.bar{width:8px;height:2px;background:currentColor;border-radius:1px;opacity:.4}", Bc = ":host{position:relative;display:inline-flex;align-items:center;justify-content:center;width:40px;height:48px;font-size:1.25rem;font-family:var(--ui-font-family, system-ui, sans-serif);font-weight:500;color:var(--ui-text-color, #111827);background:#fff;border:1px solid #d1d5db;margin-left:-1px;cursor:text;-webkit-user-select:none;user-select:none;transition:border-color .15s ease,box-shadow .15s ease}:host(:first-child){margin-left:0;border-radius:6px 0 0 6px}:host(:last-child){border-radius:0 6px 6px 0}:host([active]){z-index:1;border-color:var(--ui-primary-color, #3b82f6);box-shadow:0 0 0 2px #3b82f633}:host([invalid]){border-color:#ef4444}:host([invalid][active]){border-color:#ef4444;box-shadow:0 0 0 2px #ef444433}.cursor{width:2px;height:1.2em;background:var(--ui-text-color, #111827);border-radius:1px;animation:otp-blink 1.2s step-end infinite}@keyframes otp-blink{0%,to{opacity:1}50%{opacity:0}}", Mc = ":host{display:inline-flex;align-items:center;gap:8px;position:relative;cursor:text;font-family:var(--ui-font-family, system-ui, sans-serif)}:host([disabled]){opacity:.5;cursor:not-allowed;pointer-events:none}.hidden-input{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;top:0;left:0;border:none;outline:none;padding:0;margin:0}";
-var Lc = Object.defineProperty, jc = Object.getOwnPropertyDescriptor, ee = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? jc(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Lc(t, i, r), r;
+const Tc = ":host{display:inline-flex;align-items:center}", Ac = ":host{display:inline-flex;align-items:center;padding:0 6px;color:var(--ui-text-color, #111827)}.bar{width:8px;height:2px;background:currentColor;border-radius:1px;opacity:.4}", Bc = ":host{position:relative;display:inline-flex;align-items:center;justify-content:center;width:40px;height:48px;font-size:1.25rem;font-family:var(--ui-font-family);font-weight:500;color:var(--ui-text-color);background:var(--ui-input-bg);border:1px solid var(--ui-input-border-color);margin-left:-1px;cursor:text;-webkit-user-select:none;user-select:none;transition:border-color .15s ease,box-shadow .15s ease}:host(:first-child){margin-left:0;border-radius:6px 0 0 6px}:host(:last-child){border-radius:0 6px 6px 0}:host([active]){z-index:1;border-color:var(--ui-primary-color);box-shadow:0 0 0 2px var(--ui-primary-focus-ring)}:host([invalid]){border-color:var(--ui-error-color)}:host([invalid][active]){border-color:var(--ui-error-color);box-shadow:0 0 0 2px var(--ui-error-focus-ring)}.cursor{width:2px;height:1.2em;background:var(--ui-text-color);border-radius:1px;animation:otp-blink 1.2s step-end infinite}@keyframes otp-blink{0%,to{opacity:1}50%{opacity:0}}", Mc = ":host{display:inline-flex;align-items:center;gap:8px;position:relative;cursor:text;font-family:var(--ui-font-family, system-ui, sans-serif)}:host([disabled]){opacity:.5;cursor:not-allowed;pointer-events:none}.hidden-input{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;top:0;left:0;border:none;outline:none;padding:0;margin:0}";
+var Lc = Object.defineProperty, jc = Object.getOwnPropertyDescriptor, ee = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? jc(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Lc(t, i, r), r;
 };
 let Ur = class extends c {
   render() {
@@ -8462,7 +8462,7 @@ Rr.styles = p(Ac);
 Rr = ee([
   d("ui-input-otp-separator")
 ], Rr);
-let vt = class extends c {
+let gt = class extends c {
   constructor() {
     super(...arguments), this.index = 0, this.char = "", this.active = !1, this.invalid = !1;
   }
@@ -8470,22 +8470,22 @@ let vt = class extends c {
     return this.char ? l`${this.char}` : this.active ? l`<div class="cursor"></div>` : l``;
   }
 };
-vt.styles = p(Bc);
+gt.styles = p(Bc);
 ee([
-  o({ type: Number })
-], vt.prototype, "index", 2);
+  s({ type: Number })
+], gt.prototype, "index", 2);
 ee([
-  o()
-], vt.prototype, "char", 2);
+  s()
+], gt.prototype, "char", 2);
 ee([
-  o({ type: Boolean, reflect: !0 })
-], vt.prototype, "active", 2);
+  s({ type: Boolean, reflect: !0 })
+], gt.prototype, "active", 2);
 ee([
-  o({ type: Boolean, reflect: !0 })
-], vt.prototype, "invalid", 2);
-vt = ee([
+  s({ type: Boolean, reflect: !0 })
+], gt.prototype, "invalid", 2);
+gt = ee([
   d("ui-input-otp-slot")
-], vt);
+], gt);
 let Ke = class extends c {
   constructor() {
     super(), this.value = "", this.defaultValue = "", this.maxLength = 6, this.pattern = "", this.disabled = !1, this._internalValue = "", this._focused = !1, this._cursorIndex = 0, this._firstUpdate = !0, this.addEventListener("click", (e) => {
@@ -8509,9 +8509,9 @@ let Ke = class extends c {
   }
   _syncSlots() {
     const e = this._getAllSlots(), t = this._internalValue.length, i = this._focused ? this._cursorIndex : -1;
-    for (const s of e) {
-      const r = s.index;
-      s.char = r < t ? this._internalValue[r] : "", s.active = r === i;
+    for (const o of e) {
+      const r = o.index;
+      o.char = r < t ? this._internalValue[r] : "", o.active = r === i;
     }
   }
   _filterByPattern(e) {
@@ -8539,14 +8539,14 @@ let Ke = class extends c {
   _insertChar(e) {
     if (this.pattern && !new RegExp(this.pattern).test(e)) return;
     const t = this._cursorIndex, i = this._internalValue;
-    let s;
+    let o;
     if (t < i.length)
-      s = i.slice(0, t) + e + i.slice(t + 1);
+      o = i.slice(0, t) + e + i.slice(t + 1);
     else if (i.length < this.maxLength)
-      s = i + e;
+      o = i + e;
     else
       return;
-    this._commit(s), this._cursorIndex = Math.min(t + 1, this.maxLength - 1), this._syncSlots();
+    this._commit(o), this._cursorIndex = Math.min(t + 1, this.maxLength - 1), this._syncSlots();
   }
   /** Delete the character at the cursor (standard Backspace). */
   _deleteBackward() {
@@ -8645,19 +8645,19 @@ let Ke = class extends c {
 };
 Ke.styles = p(Mc);
 ee([
-  o({ reflect: !0 })
+  s({ reflect: !0 })
 ], Ke.prototype, "value", 2);
 ee([
-  o({ attribute: "default-value" })
+  s({ attribute: "default-value" })
 ], Ke.prototype, "defaultValue", 2);
 ee([
-  o({ type: Number, attribute: "max-length" })
+  s({ type: Number, attribute: "max-length" })
 ], Ke.prototype, "maxLength", 2);
 ee([
-  o()
+  s()
 ], Ke.prototype, "pattern", 2);
 ee([
-  o({ type: Boolean, reflect: !0 })
+  s({ type: Boolean, reflect: !0 })
 ], Ke.prototype, "disabled", 2);
 ee([
   wi(".hidden-input")
@@ -8665,11 +8665,11 @@ ee([
 Ke = ee([
   d("ui-input-otp")
 ], Ke);
-const Uc = ":host{display:block;font-size:.875rem;font-weight:500;line-height:1.4;color:var(--ui-text-color, #111827);font-family:var(--ui-font-family, system-ui, sans-serif)}", Rc = ":host{display:block;font-size:.8125rem;line-height:1.5;color:var(--ui-text-color-muted, #6b7280);font-family:var(--ui-font-family, system-ui, sans-serif)}", Vc = ":host{display:flex;flex-shrink:0;align-items:center;justify-content:center}.media{display:flex;align-items:center;justify-content:center}.media--icon{width:40px;height:40px;border-radius:8px;background:var(--ui-item-media-icon-bg, #f3f4f6);color:var(--ui-item-media-icon-color, #6b7280)}.media--image{width:40px;height:40px;border-radius:6px;overflow:hidden;flex-shrink:0}::slotted(svg),::slotted([data-icon]){width:20px;height:20px}::slotted(img){width:100%;height:100%;object-fit:cover;display:block}", Nc = ":host{display:flex;flex-direction:column;flex:1 1 auto;min-width:0;gap:2px}", Fc = ":host{display:flex;flex-shrink:0;align-items:center;gap:8px;margin-left:auto}", qc = ":host{display:block;flex:0 0 calc(100% + 2 * var(--ui-item-padding, 16px));margin-left:calc(-1 * var(--ui-item-padding, 16px));margin-right:calc(-1 * var(--ui-item-padding, 16px));margin-top:calc(-1 * var(--ui-item-padding, 16px));margin-bottom:0;overflow:hidden;line-height:0}::slotted(img){width:100%;display:block;object-fit:cover}", Hc = ":host{display:block;flex:0 0 calc(100% + 2 * var(--ui-item-padding, 16px));margin-left:calc(-1 * var(--ui-item-padding, 16px));margin-right:calc(-1 * var(--ui-item-padding, 16px));margin-bottom:calc(-1 * var(--ui-item-padding, 16px));margin-top:0;padding:10px var(--ui-item-padding, 16px);border-top:1px solid var(--ui-border-color, #e5e7eb);background:var(--ui-item-footer-bg, transparent);box-sizing:border-box;font-size:.8125rem;color:var(--ui-text-color-muted, #6b7280);font-family:var(--ui-font-family, system-ui, sans-serif)}", Kc = ":host{display:block;height:1px;background:var(--ui-border-color, #e5e7eb)}", Yc = ":host{display:flex;flex-direction:column;gap:var(--ui-item-group-gap, 4px)}", Gc = ':host{--ui-item-padding: 16px;--ui-item-gap: 12px;display:flex;flex-wrap:wrap;align-items:center;gap:var(--ui-item-gap);padding:var(--ui-item-padding);border-radius:8px;box-sizing:border-box;overflow:hidden;font-family:var(--ui-font-family, system-ui, sans-serif)}:host([size="sm"]){--ui-item-padding: 12px;--ui-item-gap: 8px}:host([size="xs"]){--ui-item-padding: 8px;--ui-item-gap: 6px}:host([variant="outline"]){border:1px solid var(--ui-border-color, #e5e7eb)}:host([variant="muted"]){background:var(--ui-muted-bg, #f9fafb)}';
-var Wc = Object.defineProperty, Xc = Object.getOwnPropertyDescriptor, ce = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? Xc(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Wc(t, i, r), r;
+const Uc = ":host{display:block;font-size:.875rem;font-weight:500;line-height:1.4;color:var(--ui-text-color);font-family:var(--ui-font-family)}", Rc = ":host{display:block;font-size:.8125rem;line-height:1.5;color:var(--ui-text-color-muted);font-family:var(--ui-font-family)}", Vc = ":host{display:flex;flex-shrink:0;align-items:center;justify-content:center}.media{display:flex;align-items:center;justify-content:center}.media--icon{width:40px;height:40px;border-radius:8px;background:var(--ui-item-media-icon-bg, var(--ui-surface-2));color:var(--ui-item-media-icon-color, var(--ui-text-color-muted))}.media--image{width:40px;height:40px;border-radius:6px;overflow:hidden;flex-shrink:0}::slotted(svg),::slotted([data-icon]){width:20px;height:20px}::slotted(img){width:100%;height:100%;object-fit:cover;display:block}", Nc = ":host{display:flex;flex-direction:column;flex:1 1 auto;min-width:0;gap:2px}", Fc = ":host{display:flex;flex-shrink:0;align-items:center;gap:8px;margin-left:auto}", qc = ":host{display:block;flex:0 0 calc(100% + 2 * var(--ui-item-padding, 16px));margin-left:calc(-1 * var(--ui-item-padding, 16px));margin-right:calc(-1 * var(--ui-item-padding, 16px));margin-top:calc(-1 * var(--ui-item-padding, 16px));margin-bottom:0;overflow:hidden;line-height:0}::slotted(img){width:100%;display:block;object-fit:cover}", Hc = ":host{display:block;flex:0 0 calc(100% + 2 * var(--ui-item-padding, 16px));margin-left:calc(-1 * var(--ui-item-padding, 16px));margin-right:calc(-1 * var(--ui-item-padding, 16px));margin-bottom:calc(-1 * var(--ui-item-padding, 16px));margin-top:0;padding:10px var(--ui-item-padding, 16px);border-top:1px solid var(--ui-border-color);background:var(--ui-item-footer-bg, transparent);box-sizing:border-box;font-size:.8125rem;color:var(--ui-text-color-muted);font-family:var(--ui-font-family)}", Kc = ":host{display:block;height:1px;background:var(--ui-border-color)}", Yc = ":host{display:flex;flex-direction:column;gap:var(--ui-item-group-gap, 4px)}", Gc = ':host{--ui-item-padding: 16px;--ui-item-gap: 12px;display:flex;flex-wrap:wrap;align-items:center;gap:var(--ui-item-gap);padding:var(--ui-item-padding);border-radius:8px;box-sizing:border-box;overflow:hidden;font-family:var(--ui-font-family)}:host([size="sm"]){--ui-item-padding: 12px;--ui-item-gap: 8px}:host([size="xs"]){--ui-item-padding: 8px;--ui-item-gap: 6px}:host([variant="outline"]){border:1px solid var(--ui-border-color)}:host([variant="muted"]){background:var(--ui-muted-bg, var(--ui-muted-background))}';
+var Wc = Object.defineProperty, Xc = Object.getOwnPropertyDescriptor, ce = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Xc(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Wc(t, i, r), r;
 };
 let Vr = class extends c {
   render() {
@@ -8707,7 +8707,7 @@ let Fi = class extends c {
 };
 Fi.styles = p(Vc);
 ce([
-  o({ reflect: !0 })
+  s({ reflect: !0 })
 ], Fi.prototype, "variant", 2);
 Fi = ce([
   d("ui-item-media")
@@ -8779,19 +8779,19 @@ let _i = class extends c {
 };
 _i.styles = p(Gc);
 ce([
-  o({ reflect: !0 })
+  s({ reflect: !0 })
 ], _i.prototype, "variant", 2);
 ce([
-  o({ reflect: !0 })
+  s({ reflect: !0 })
 ], _i.prototype, "size", 2);
 _i = ce([
   d("ui-item")
 ], _i);
-const Jc = ':host{display:inline-flex;align-items:center;justify-content:center}kbd{display:inline-flex;align-items:center;justify-content:center;font-family:var(--ui-kbd-font-family, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);font-size:.8125rem;font-weight:500;line-height:1;color:var(--ui-kbd-color, #374151);background:var(--ui-kbd-bg, #f9fafb);border:1px solid var(--ui-kbd-border-color, #e5e7eb);border-bottom-width:2px;border-radius:var(--ui-kbd-radius, 4px);box-shadow:0 1px 0 0 var(--ui-kbd-shadow-color, #d1d5db);padding:2px 6px;white-space:nowrap;-webkit-user-select:none;user-select:none}:host([size="sm"]) kbd{font-size:.6875rem;padding:1px 4px}:host([size="lg"]) kbd{font-size:.9375rem;padding:4px 10px}:host([variant="flat"]) kbd{border-bottom-width:1px;box-shadow:none}', Zc = ":host{display:inline-flex;align-items:center;gap:var(--ui-kbd-group-gap, 4px)}";
-var Qc = Object.defineProperty, ed = Object.getOwnPropertyDescriptor, Ei = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? ed(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && Qc(t, i, r), r;
+const Jc = ':host{display:inline-flex;align-items:center;justify-content:center}kbd{display:inline-flex;align-items:center;justify-content:center;font-family:var(--ui-kbd-font-family, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);font-size:.8125rem;font-weight:500;line-height:1;color:var(--ui-kbd-color, var(--ui-label-color));background:var(--ui-kbd-bg, var(--ui-surface-2));border:1px solid var(--ui-kbd-border-color, var(--ui-border-color));border-bottom-width:2px;border-radius:var(--ui-kbd-radius, var(--ui-border-radius-sm));box-shadow:0 1px 0 0 var(--ui-kbd-shadow-color, var(--ui-input-border-color));padding:2px 6px;white-space:nowrap;-webkit-user-select:none;user-select:none}:host([size="sm"]) kbd{font-size:.6875rem;padding:1px 4px}:host([size="lg"]) kbd{font-size:.9375rem;padding:4px 10px}:host([variant="flat"]) kbd{border-bottom-width:1px;box-shadow:none}', Zc = ":host{display:inline-flex;align-items:center;gap:var(--ui-kbd-group-gap, 4px)}";
+var Qc = Object.defineProperty, ed = Object.getOwnPropertyDescriptor, Ei = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? ed(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && Qc(t, i, r), r;
 };
 let Zt = class extends c {
   constructor() {
@@ -8799,7 +8799,7 @@ let Zt = class extends c {
   }
   render() {
     return l`
-            <kbd aria-label=${this.label || v}>
+            <kbd aria-label=${this.label || g}>
                 <slot></slot>
             </kbd>
         `;
@@ -8807,13 +8807,13 @@ let Zt = class extends c {
 };
 Zt.styles = p(Jc);
 Ei([
-  o({ reflect: !0 })
+  s({ reflect: !0 })
 ], Zt.prototype, "size", 2);
 Ei([
-  o({ reflect: !0 })
+  s({ reflect: !0 })
 ], Zt.prototype, "variant", 2);
 Ei([
-  o({ reflect: !0 })
+  s({ reflect: !0 })
 ], Zt.prototype, "label", 2);
 Zt = Ei([
   d("ui-kbd")
@@ -8827,11 +8827,11 @@ Wr.styles = p(Zc);
 Wr = Ei([
   d("ui-kbd-group")
 ], Wr);
-const td = ":host{display:inline-flex;align-items:center;margin-left:auto;padding-left:16px;font-size:.6875rem;letter-spacing:.05em;color:var(--ui-text-color-muted, #6b7280);font-family:var(--ui-font-family, system-ui, sans-serif)}", id = ":host{display:block;height:1px;background:var(--ui-border-color, #e5e7eb);margin:4px -4px}:host([hidden]){display:none!important}", rd = ":host{display:block}.heading{padding:6px 8px 4px;font-size:.6875rem;font-weight:600;color:var(--ui-text-color-muted, #6b7280);font-family:var(--ui-font-family, system-ui, sans-serif);-webkit-user-select:none;user-select:none}", sd = ":host{display:block}:host([hidden]){display:none!important}.item{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:4px;cursor:pointer;font-size:.875rem;line-height:1.25rem;color:var(--ui-text-color, #111827);font-family:var(--ui-font-family, system-ui, sans-serif);outline:none;-webkit-user-select:none;user-select:none;transition:background .1s}:host([inset]) .item{padding-left:32px}:host([highlighted]) .item{background:var(--ui-menubar-highlight-bg, rgba(0, 0, 0, .06))}:host([disabled]) .item{opacity:.5;pointer-events:none;cursor:default}", od = ":host{display:block}:host([hidden]){display:none!important}.item{display:flex;align-items:center;gap:8px;padding:6px 8px 6px 32px;border-radius:4px;cursor:pointer;font-size:.875rem;line-height:1.25rem;color:var(--ui-text-color, #111827);font-family:var(--ui-font-family, system-ui, sans-serif);outline:none;-webkit-user-select:none;user-select:none;transition:background .1s;position:relative}:host([highlighted]) .item{background:var(--ui-menubar-highlight-bg, rgba(0, 0, 0, .06))}:host([disabled]) .item{opacity:.5;pointer-events:none}.check{position:absolute;left:8px;top:50%;transform:translateY(-50%);width:16px;height:16px;display:flex;align-items:center;justify-content:center}", ad = ":host{display:block}:host([hidden]){display:none!important}.item{display:flex;align-items:center;gap:8px;padding:6px 8px 6px 32px;border-radius:4px;cursor:pointer;font-size:.875rem;line-height:1.25rem;color:var(--ui-text-color, #111827);font-family:var(--ui-font-family, system-ui, sans-serif);outline:none;-webkit-user-select:none;user-select:none;transition:background .1s;position:relative}:host([highlighted]) .item{background:var(--ui-menubar-highlight-bg, rgba(0, 0, 0, .06))}:host([disabled]) .item{opacity:.5;pointer-events:none}.dot{position:absolute;left:8px;top:50%;transform:translateY(-50%);width:16px;height:16px;display:flex;align-items:center;justify-content:center}", nd = ":host{display:block}", ld = ":host{display:none;position:absolute;left:100%;top:-4px;z-index:1001}:host([open]){display:block}.panel{min-width:180px;background:var(--ui-menubar-content-bg, #fff);border:1px solid var(--ui-border-color, #e5e7eb);border-radius:6px;padding:4px;box-shadow:0 4px 16px #0000001f;animation:menubar-sub-in .12s ease-out}@keyframes menubar-sub-in{0%{opacity:0;transform:translate(-4px)}to{opacity:1;transform:translate(0)}}", cd = ":host{display:block}.item{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:4px;cursor:pointer;font-size:.875rem;line-height:1.25rem;color:var(--ui-text-color, #111827);font-family:var(--ui-font-family, system-ui, sans-serif);outline:none;-webkit-user-select:none;user-select:none;transition:background .1s}:host([inset]) .item{padding-left:32px}:host([highlighted]) .item{background:var(--ui-menubar-highlight-bg, rgba(0, 0, 0, .06))}:host([disabled]) .item{opacity:.5;pointer-events:none}.arrow{margin-left:auto;width:14px;height:14px;color:var(--ui-text-color-muted, #6b7280)}", dd = ":host{display:block;position:relative}", pd = ":host{display:none;position:absolute;top:100%;left:0;z-index:1000;padding-top:4px}:host([open]){display:block}.panel{min-width:200px;background:var(--ui-menubar-content-bg, #fff);border:1px solid var(--ui-border-color, #e5e7eb);border-radius:6px;padding:4px;box-shadow:0 4px 16px #0000001f;animation:menubar-in .12s ease-out}@keyframes menubar-in{0%{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}", hd = ":host{display:inline-flex}.trigger{display:inline-flex;align-items:center;justify-content:center;padding:4px 10px;border:none;background:transparent;border-radius:4px;font-size:.875rem;font-weight:500;line-height:1.5;color:var(--ui-text-color, #111827);font-family:var(--ui-font-family, system-ui, sans-serif);cursor:pointer;outline:none;-webkit-user-select:none;user-select:none;white-space:nowrap;transition:background .1s}.trigger:hover,:host([active]) .trigger{background:var(--ui-menubar-trigger-hover-bg, rgba(0, 0, 0, .06))}.trigger:focus-visible{outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:-2px}.trigger:disabled,:host([disabled]) .trigger{opacity:.5;cursor:default;pointer-events:none}", ud = ":host{display:inline-block;position:relative}", fd = ":host{display:inline-flex;align-items:center;background:var(--ui-menubar-bg, #fff);border:1px solid var(--ui-border-color, #e5e7eb);border-radius:6px;padding:3px;gap:2px;font-family:var(--ui-font-family, system-ui, sans-serif)}";
-var bd = Object.defineProperty, md = Object.getOwnPropertyDescriptor, x = (e, t, i, s) => {
-  for (var r = s > 1 ? void 0 : s ? md(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
-  return s && r && bd(t, i, r), r;
+const td = ":host{display:inline-flex;align-items:center;margin-left:auto;padding-left:16px;font-size:.6875rem;letter-spacing:.05em;color:var(--ui-text-color-muted);font-family:var(--ui-font-family)}", id = ":host{display:block;height:1px;background:var(--ui-border-color);margin:4px -4px}:host([hidden]){display:none!important}", rd = ":host{display:block}.heading{padding:6px 8px 4px;font-size:.6875rem;font-weight:600;color:var(--ui-text-color-muted);font-family:var(--ui-font-family);-webkit-user-select:none;user-select:none}", od = ":host{display:block}:host([hidden]){display:none!important}.item{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:4px;cursor:pointer;font-size:.875rem;line-height:1.25rem;color:var(--ui-text-color);font-family:var(--ui-font-family);outline:none;-webkit-user-select:none;user-select:none;transition:background .1s}:host([inset]) .item{padding-left:32px}:host([highlighted]) .item{background:var(--ui-menubar-highlight-bg, var(--ui-hover-color))}:host([disabled]) .item{opacity:.5;pointer-events:none;cursor:default}", sd = ":host{display:block}:host([hidden]){display:none!important}.item{display:flex;align-items:center;gap:8px;padding:6px 8px 6px 32px;border-radius:4px;cursor:pointer;font-size:.875rem;line-height:1.25rem;color:var(--ui-text-color);font-family:var(--ui-font-family);outline:none;-webkit-user-select:none;user-select:none;transition:background .1s;position:relative}:host([highlighted]) .item{background:var(--ui-menubar-highlight-bg, var(--ui-hover-color))}:host([disabled]) .item{opacity:.5;pointer-events:none}.check{position:absolute;left:8px;top:50%;transform:translateY(-50%);width:16px;height:16px;display:flex;align-items:center;justify-content:center}", ad = ":host{display:block}:host([hidden]){display:none!important}.item{display:flex;align-items:center;gap:8px;padding:6px 8px 6px 32px;border-radius:4px;cursor:pointer;font-size:.875rem;line-height:1.25rem;color:var(--ui-text-color);font-family:var(--ui-font-family);outline:none;-webkit-user-select:none;user-select:none;transition:background .1s;position:relative}:host([highlighted]) .item{background:var(--ui-menubar-highlight-bg, var(--ui-hover-color))}:host([disabled]) .item{opacity:.5;pointer-events:none}.dot{position:absolute;left:8px;top:50%;transform:translateY(-50%);width:16px;height:16px;display:flex;align-items:center;justify-content:center}", nd = ":host{display:block}", ld = ":host{display:none;position:absolute;left:100%;top:-4px;z-index:1001}:host([open]){display:block}.panel{min-width:180px;background:var(--ui-menubar-content-bg, var(--ui-surface-1));border:1px solid var(--ui-border-color);border-radius:6px;padding:4px;box-shadow:0 4px 16px #0000001f;animation:menubar-sub-in .12s ease-out}@keyframes menubar-sub-in{0%{opacity:0;transform:translate(-4px)}to{opacity:1;transform:translate(0)}}", cd = ":host{display:block}.item{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:4px;cursor:pointer;font-size:.875rem;line-height:1.25rem;color:var(--ui-text-color);font-family:var(--ui-font-family);outline:none;-webkit-user-select:none;user-select:none;transition:background .1s}:host([inset]) .item{padding-left:32px}:host([highlighted]) .item{background:var(--ui-menubar-highlight-bg, var(--ui-hover-color))}:host([disabled]) .item{opacity:.5;pointer-events:none}.arrow{margin-left:auto;width:14px;height:14px;color:var(--ui-text-color-muted)}", dd = ":host{display:block;position:relative}", pd = ":host{display:none;position:absolute;top:100%;left:0;z-index:1000;padding-top:4px}:host([open]){display:block}.panel{min-width:200px;background:var(--ui-menubar-content-bg, var(--ui-surface-1));border:1px solid var(--ui-border-color);border-radius:6px;padding:4px;box-shadow:0 4px 16px #0000001f;animation:menubar-in .12s ease-out}@keyframes menubar-in{0%{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}", hd = ":host{display:inline-flex}.trigger{display:inline-flex;align-items:center;justify-content:center;padding:4px 10px;border:none;background:transparent;border-radius:4px;font-size:.875rem;font-weight:500;line-height:1.5;color:var(--ui-text-color);font-family:var(--ui-font-family);cursor:pointer;outline:none;-webkit-user-select:none;user-select:none;white-space:nowrap;transition:background .1s}.trigger:hover,:host([active]) .trigger{background:var(--ui-menubar-trigger-hover-bg, var(--ui-hover-color))}.trigger:focus-visible{outline:2px solid var(--ui-primary-color);outline-offset:-2px}.trigger:disabled,:host([disabled]) .trigger{opacity:.5;cursor:default;pointer-events:none}", ud = ":host{display:inline-block;position:relative}", fd = ":host{display:inline-flex;align-items:center;background:var(--ui-menubar-bg, var(--ui-surface-1));border:1px solid var(--ui-border-color);border-radius:6px;padding:3px;gap:2px;font-family:var(--ui-font-family)}";
+var bd = Object.defineProperty, vd = Object.getOwnPropertyDescriptor, x = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? vd(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
+  return o && r && bd(t, i, r), r;
 };
 let Xr = class extends c {
   render() {
@@ -8857,8 +8857,8 @@ let qi = class extends c {
   }
   render() {
     return l`
-            ${this.heading ? l`<div class="heading" role="presentation">${this.heading}</div>` : v}
-            <div role="group" aria-label=${this.heading || v}>
+            ${this.heading ? l`<div class="heading" role="presentation">${this.heading}</div>` : g}
+            <div role="group" aria-label=${this.heading || g}>
                 <slot></slot>
             </div>
         `;
@@ -8866,7 +8866,7 @@ let qi = class extends c {
 };
 qi.styles = p(rd);
 x([
-  o({ reflect: !0 })
+  s({ reflect: !0 })
 ], qi.prototype, "heading", 2);
 qi = x([
   d("ui-menubar-group")
@@ -8891,18 +8891,18 @@ let yt = class extends c {
     return l`<div class="item" role="menuitem" aria-disabled=${this.disabled}><slot></slot></div>`;
   }
 };
-yt.styles = p(sd);
+yt.styles = p(od);
 x([
-  o({ reflect: !0, type: Boolean })
+  s({ reflect: !0, type: Boolean })
 ], yt.prototype, "disabled", 2);
 x([
-  o({ reflect: !0, type: Boolean })
+  s({ reflect: !0, type: Boolean })
 ], yt.prototype, "highlighted", 2);
 x([
-  o({ reflect: !0, type: Boolean })
+  s({ reflect: !0, type: Boolean })
 ], yt.prototype, "inset", 2);
 x([
-  o({ reflect: !0 })
+  s({ reflect: !0 })
 ], yt.prototype, "value", 2);
 yt = x([
   d("ui-menubar-item")
@@ -8925,25 +8925,25 @@ let xt = class extends c {
     return l`
             <div class="item" role="menuitemcheckbox" aria-checked=${this.checked} aria-disabled=${this.disabled}>
                 <span class="check">
-                    ${this.checked ? l`<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11.5 3.5L5.5 9.5L2.5 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>` : v}
+                    ${this.checked ? l`<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11.5 3.5L5.5 9.5L2.5 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>` : g}
                 </span>
                 <slot></slot>
             </div>
         `;
   }
 };
-xt.styles = p(od);
+xt.styles = p(sd);
 x([
-  o({ reflect: !0, type: Boolean })
+  s({ reflect: !0, type: Boolean })
 ], xt.prototype, "checked", 2);
 x([
-  o({ reflect: !0, type: Boolean })
+  s({ reflect: !0, type: Boolean })
 ], xt.prototype, "disabled", 2);
 x([
-  o({ reflect: !0, type: Boolean })
+  s({ reflect: !0, type: Boolean })
 ], xt.prototype, "highlighted", 2);
 x([
-  o({ reflect: !0 })
+  s({ reflect: !0 })
 ], xt.prototype, "value", 2);
 xt = x([
   d("ui-menubar-checkbox-item")
@@ -8963,7 +8963,7 @@ let _t = class extends c {
     return l`
             <div class="item" role="menuitemradio" aria-checked=${this.checked} aria-disabled=${this.disabled}>
                 <span class="dot">
-                    ${this.checked ? l`<svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"></circle></svg>` : v}
+                    ${this.checked ? l`<svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"></circle></svg>` : g}
                 </span>
                 <slot></slot>
             </div>
@@ -8972,16 +8972,16 @@ let _t = class extends c {
 };
 _t.styles = p(ad);
 x([
-  o({ reflect: !0 })
+  s({ reflect: !0 })
 ], _t.prototype, "value", 2);
 x([
-  o({ reflect: !0, type: Boolean })
+  s({ reflect: !0, type: Boolean })
 ], _t.prototype, "checked", 2);
 x([
-  o({ reflect: !0, type: Boolean })
+  s({ reflect: !0, type: Boolean })
 ], _t.prototype, "disabled", 2);
 x([
-  o({ reflect: !0, type: Boolean })
+  s({ reflect: !0, type: Boolean })
 ], _t.prototype, "highlighted", 2);
 _t = x([
   d("ui-menubar-radio-item")
@@ -9019,7 +9019,7 @@ let Hi = class extends c {
 };
 Hi.styles = p(nd);
 x([
-  o({ reflect: !0 })
+  s({ reflect: !0 })
 ], Hi.prototype, "value", 2);
 Hi = x([
   d("ui-menubar-radio-group")
@@ -9039,7 +9039,7 @@ let Ki = class extends c {
 };
 Ki.styles = p(ld);
 x([
-  o({ reflect: !0, type: Boolean })
+  s({ reflect: !0, type: Boolean })
 ], Ki.prototype, "open", 2);
 Ki = x([
   d("ui-menubar-sub-content")
@@ -9065,16 +9065,16 @@ let wt = class extends c {
 };
 wt.styles = p(cd);
 x([
-  o({ reflect: !0, type: Boolean })
+  s({ reflect: !0, type: Boolean })
 ], wt.prototype, "highlighted", 2);
 x([
-  o({ reflect: !0, type: Boolean })
+  s({ reflect: !0, type: Boolean })
 ], wt.prototype, "disabled", 2);
 x([
-  o({ reflect: !0, type: Boolean })
+  s({ reflect: !0, type: Boolean })
 ], wt.prototype, "inset", 2);
 x([
-  o({ reflect: !0, type: Boolean })
+  s({ reflect: !0, type: Boolean })
 ], wt.prototype, "expanded", 2);
 wt = x([
   d("ui-menubar-sub-trigger")
@@ -9135,9 +9135,9 @@ let Yi = class extends c {
         i.select(), this._requestClose();
         return;
       }
-      const s = t.closest("ui-menubar-checkbox-item");
-      if (s && !s.disabled) {
-        s.toggle();
+      const o = t.closest("ui-menubar-checkbox-item");
+      if (o && !o.disabled) {
+        o.toggle();
         return;
       }
       const r = t.closest("ui-menubar-radio-item");
@@ -9149,8 +9149,8 @@ let Yi = class extends c {
       const i = e.target.closest("ui-menubar-item, ui-menubar-checkbox-item, ui-menubar-radio-item, ui-menubar-sub-trigger");
       if (i && !i.disabled) {
         this._clearHighlight(), i.highlighted = !0;
-        const s = this._getNavigableItems();
-        this._highlightIndex = s.indexOf(i);
+        const o = this._getNavigableItems();
+        this._highlightIndex = o.indexOf(i);
       }
     };
   }
@@ -9209,8 +9209,8 @@ let Yi = class extends c {
           else if (i.tagName === "UI-MENUBAR-RADIO-ITEM")
             i.select();
           else if (i.tagName === "UI-MENUBAR-SUB-TRIGGER") {
-            const s = i.closest("ui-menubar-sub");
-            s && s.showImmediate();
+            const o = i.closest("ui-menubar-sub");
+            o && o.showImmediate();
           }
         }
         break;
@@ -9220,10 +9220,10 @@ let Yi = class extends c {
           const i = t[this._highlightIndex];
           if (i.tagName === "UI-MENUBAR-SUB-TRIGGER") {
             e.preventDefault();
-            const s = i.closest("ui-menubar-sub");
-            if (s) {
-              s.showImmediate();
-              const r = s.querySelector("ui-menubar-sub-content");
+            const o = i.closest("ui-menubar-sub");
+            if (o) {
+              o.showImmediate();
+              const r = o.querySelector("ui-menubar-sub-content");
               if (r) {
                 const a = Array.from(r.querySelectorAll(
                   "ui-menubar-item:not([disabled]),ui-menubar-checkbox-item:not([disabled]),ui-menubar-radio-item:not([disabled]),ui-menubar-sub-trigger:not([disabled])"
@@ -9237,7 +9237,7 @@ let Yi = class extends c {
         break;
       }
       case "ArrowLeft": {
-        const i = Array.from(this.querySelectorAll("ui-menubar-sub")).find((s) => s.open);
+        const i = Array.from(this.querySelectorAll("ui-menubar-sub")).find((o) => o.open);
         if (i) {
           e.preventDefault(), i.hideImmediate();
           return;
@@ -9252,9 +9252,9 @@ let Yi = class extends c {
         if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
           if (t.length === 0) return;
           e.preventDefault();
-          const i = e.key.toLowerCase(), s = this._highlightIndex >= 0 ? this._highlightIndex + 1 : 0;
+          const i = e.key.toLowerCase(), o = this._highlightIndex >= 0 ? this._highlightIndex + 1 : 0;
           for (let r = 0; r < t.length; r++) {
-            const a = (s + r) % t.length;
+            const a = (o + r) % t.length;
             if ((t[a].textContent?.trim().toLowerCase() ?? "").startsWith(i)) {
               this._highlightItem(a);
               break;
@@ -9284,7 +9284,7 @@ let Yi = class extends c {
 };
 Yi.styles = p(pd);
 x([
-  o({ reflect: !0, type: Boolean })
+  s({ reflect: !0, type: Boolean })
 ], Yi.prototype, "open", 2);
 Yi = x([
   d("ui-menubar-content")
@@ -9311,13 +9311,13 @@ let Qt = class extends c {
 };
 Qt.styles = p(hd);
 x([
-  o({ reflect: !0, type: Boolean })
+  s({ reflect: !0, type: Boolean })
 ], Qt.prototype, "active", 2);
 x([
-  o({ reflect: !0, type: Boolean })
+  s({ reflect: !0, type: Boolean })
 ], Qt.prototype, "disabled", 2);
 x([
-  g()
+  m()
 ], Qt.prototype, "_focusable", 2);
 Qt = x([
   d("ui-menubar-trigger")
@@ -9356,7 +9356,7 @@ let Gi = class extends c {
 };
 Gi.styles = p(ud);
 x([
-  o({ reflect: !0, type: Boolean })
+  s({ reflect: !0, type: Boolean })
 ], Gi.prototype, "disabled", 2);
 Gi = x([
   d("ui-menubar-menu")
@@ -9409,8 +9409,8 @@ let Wi = class extends c {
             const i = t.findIndex((r) => !r.disabled);
             if (i === -1) return;
             this._openMenu(i);
-            const s = t[i]?.content;
-            s && s.handleKeyDown(e);
+            const o = t[i]?.content;
+            o && o.handleKeyDown(e);
           } else {
             const i = t[this._activeIndex]?.content;
             i && i.handleKeyDown(e);
@@ -9429,9 +9429,9 @@ let Wi = class extends c {
             e.preventDefault();
             const i = this.querySelector('ui-menubar-trigger[tabindex="0"]');
             if (i) {
-              const s = i.closest("ui-menubar-menu");
-              if (s) {
-                const r = t.indexOf(s);
+              const o = i.closest("ui-menubar-menu");
+              if (o) {
+                const r = t.indexOf(o);
                 r !== -1 && this._openMenu(r);
               }
             }
@@ -9461,8 +9461,8 @@ let Wi = class extends c {
     }, this._handleRequestClose = () => {
       const e = this._activeIndex;
       this.closeAll();
-      const s = this._getMenus()[e]?.trigger?.shadowRoot?.querySelector("button");
-      s && s.focus();
+      const o = this._getMenus()[e]?.trigger?.shadowRoot?.querySelector("button");
+      o && o.focus();
     }, this._handleOutsideClick = (e) => {
       if (this._activeIndex === -1) return;
       e.composedPath().includes(this) || this.closeAll();
@@ -9483,18 +9483,18 @@ let Wi = class extends c {
    */
   _updateTabFocus() {
     const e = this._getMenus(), t = e.findIndex((i) => !i.disabled);
-    e.forEach((i, s) => {
+    e.forEach((i, o) => {
       const r = i.trigger;
       r && r.setFocusable(
-        this._activeIndex === -1 ? s === t : s === this._activeIndex
+        this._activeIndex === -1 ? o === t : o === this._activeIndex
       );
     });
   }
   /** Open a menu by index and close others. Skips disabled menus. */
   _openMenu(e) {
     const t = this._getMenus();
-    t[e]?.disabled || (t.forEach((i, s) => {
-      s === e ? i.open() : i.close();
+    t[e]?.disabled || (t.forEach((i, o) => {
+      o === e ? i.open() : i.close();
     }), this._activeIndex = e, this._updateTabFocus());
   }
   /** Close all menus. */
@@ -9506,7 +9506,7 @@ let Wi = class extends c {
     const t = this._getMenus();
     if (t.length === 0) return;
     let i = this._activeIndex;
-    for (let s = 0; s < t.length && (i = ((i + e) % t.length + t.length) % t.length, !!t[i].disabled); s++)
+    for (let o = 0; o < t.length && (i = ((i + e) % t.length + t.length) % t.length, !!t[i].disabled); o++)
       ;
     t[i].disabled || this._openMenu(i);
   }
@@ -9529,7 +9529,7 @@ let Wi = class extends c {
 };
 Wi.styles = p(fd);
 x([
-  o({ reflect: !0 })
+  s({ reflect: !0 })
 ], Wi.prototype, "label", 2);
 Wi = x([
   d("ui-menubar")
@@ -9557,11 +9557,11 @@ export {
   cr as UiCardContent,
   li as UiCardHeader,
   Bt as UiCardMedia,
-  gt as UiCarousel,
+  mt as UiCarousel,
   Wt as UiCarouselContent,
   zr as UiCarouselItem,
-  vi as UiCarouselNext,
-  gi as UiCarouselPrevious,
+  gi as UiCarouselNext,
+  mi as UiCarouselPrevious,
   Ce as UiCheckbox,
   Ue as UiChip,
   ue as UiCircularProgress,
@@ -9572,8 +9572,8 @@ export {
   Ri as UiCommandDialog,
   Pr as UiCommandEmpty,
   Ui as UiCommandGroup,
-  mi as UiCommandInput,
-  mt as UiCommandItem,
+  vi as UiCommandInput,
+  vt as UiCommandItem,
   Or as UiCommandList,
   Er as UiCommandSeparator,
   Ir as UiCommandShortcut,
@@ -9581,7 +9581,7 @@ export {
   T as UiDateField,
   H as UiDatePicker,
   Te as UiDatePickerCalendar,
-  me as UiDesktopTimePicker,
+  ve as UiDesktopTimePicker,
   Vt as UiDialog,
   Ai as UiDialogActions,
   _r as UiDialogContent,
@@ -9608,7 +9608,7 @@ export {
   Ke as UiInputOtp,
   Ur as UiInputOtpGroup,
   Rr as UiInputOtpSeparator,
-  vt as UiInputOtpSlot,
+  gt as UiInputOtpSlot,
   _i as UiItem,
   qr as UiItemActions,
   Fr as UiItemContent,
@@ -9654,7 +9654,7 @@ export {
   A as UiPagination,
   Mt as UiPaper,
   Ie as UiRadio,
-  ve as UiRadioGroup,
+  ge as UiRadioGroup,
   J as UiRating,
   I as UiRichTreeView,
   D as UiSelect,
@@ -9673,19 +9673,19 @@ export {
   it as UiStepper,
   re as UiSwitch,
   Fe as UiTab,
-  oe as UiTabList,
+  se as UiTabList,
   Li as UiTabPanel,
-  mr as UiTable,
-  vr as UiTableBody,
+  vr as UiTable,
+  gr as UiTableBody,
   hi as UiTableCell,
   zi as UiTableContainer,
   yr as UiTableFooter,
-  gr as UiTableHead,
+  mr as UiTableHead,
   ft as UiTablePagination,
   Ti as UiTableRow,
   ui as UiTableSortLabel,
   ze as UiTabs,
-  se as UiTextField,
+  oe as UiTextField,
   bt as UiTimeClock,
   B as UiTimeField,
   _e as UiTimePicker,

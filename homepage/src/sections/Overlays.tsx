@@ -12,10 +12,13 @@ import { UiHoverCard } from '../../../react/src/components/UiHoverCard';
 import { UiHoverCardTrigger } from '../../../react/src/components/UiHoverCardTrigger';
 import { UiHoverCardContent } from '../../../react/src/components/UiHoverCardContent';
 import { UiChip } from '../../../react/src/components/UiChip';
-import { c, col, row, card, sect, maxW, grid2 } from '../tokens';
+import { useTheme } from '../ThemeContext';
+import { getColors, col, row, card, sect, maxW, grid2 } from '../tokens';
 import { Heading } from '../components/shared';
 
 export function Overlays() {
+    const { dark } = useTheme();
+    const c = getColors(dark);
     const [dlgOpen, setDlgOpen] = useState(false);
     const [snkOpen, setSnkOpen] = useState(false);
     const [snkMsg, setSnkMsg] = useState('');
@@ -30,12 +33,12 @@ export function Overlays() {
     ];
 
     return (
-        <section id="s-overlays" style={sect(c.surface)}>
+        <section id="s-overlays" style={sect(c.surface, c)}>
             <div style={maxW()}>
                 <Heading title="Overlays & Notifications" sub="Dialog, Snackbar, Tooltip, HoverCard — accessible, keyboard-dismissable, and animated." />
                 <div style={grid2()}>
 
-                    <div style={card({ ...col(20) })}>
+                    <div style={card({ ...col(20) }, c)}>
                         <p style={{ fontWeight: 700, fontSize: 15 }}>Dialog</p>
                         <p style={{ fontSize: 13, color: c.muted, lineHeight: 1.5 }}>Modal dialogs with scale/slide transitions, backdrop click dismiss, and focus trap.</p>
                         <div>
@@ -53,7 +56,7 @@ export function Overlays() {
                         </UiDialog>
                     </div>
 
-                    <div style={card({ ...col(20) })}>
+                    <div style={card({ ...col(20) }, c)}>
                         <p style={{ fontWeight: 700, fontSize: 15 }}>Snackbar</p>
                         <p style={{ fontSize: 13, color: c.muted, lineHeight: 1.5 }}>Toast notifications — auto-hide, pause-on-hover, anchor position, four variants.</p>
                         <div style={col(8)}>
@@ -69,7 +72,7 @@ export function Overlays() {
                         <UiSnackbar open={snkOpen} message={snkMsg} variant={snkVariant} closable autoHideDuration={4000} onUiSnackbarClose={() => setSnkOpen(false)} />
                     </div>
 
-                    <div style={card({ ...col(20) })}>
+                    <div style={card({ ...col(20) }, c)}>
                         <p style={{ fontWeight: 700, fontSize: 15 }}>Tooltip</p>
                         <p style={{ fontSize: 13, color: c.muted, lineHeight: 1.5 }}>Hover tooltips — top, bottom, left, right placement with optional arrow.</p>
                         <div style={col(12)}>
@@ -84,7 +87,7 @@ export function Overlays() {
                         </div>
                     </div>
 
-                    <div style={card({ ...col(20) })}>
+                    <div style={card({ ...col(20) }, c)}>
                         <p style={{ fontWeight: 700, fontSize: 15 }}>Hover Card</p>
                         <p style={{ fontSize: 13, color: c.muted, lineHeight: 1.5 }}>Rich popovers on hover — delay in/out, custom side and alignment.</p>
                         <div style={row(16)}>

@@ -1,24 +1,34 @@
 import React from 'react';
 import { UiButton } from '../../../react/src/components/UiButton';
 import { useTheme } from '../ThemeContext';
+import { useBreakpoint } from '../useBreakpoint';
 import { getColors, row, maxW } from '../tokens';
 
 export function Header() {
     const { dark, setDark } = useTheme();
+    const { isMobile, isTablet } = useBreakpoint();
     const c = getColors(dark);
 
     return (
         <header style={{ position: 'sticky', top: 0, zIndex: 100, background: dark ? 'rgba(9,9,11,0.88)' : 'rgba(255,255,255,0.88)', backdropFilter: 'blur(12px)', borderBottom: `1px solid ${c.border}` }}>
-            <div style={{ ...maxW(), height: 60, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 24px' }}>
+            <div style={{ ...maxW(), height: 60, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 clamp(16px,3vw,24px)' }}>
+                {/* Logo */}
                 <div style={row(10)}>
                     <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill={c.primary} /><path d="M8 10l4 4-4 4M14 18h6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                     <span style={{ fontWeight: 700, fontSize: 16, color: c.text }}>storybook-lit</span>
-                    <span style={{ fontSize: 11, fontWeight: 600, background: c.primaryLight, color: c.primary, padding: '2px 8px', borderRadius: 20 }}>v1.0</span>
+                    {!isMobile && (
+                        <span style={{ fontSize: 11, fontWeight: 600, background: c.primaryLight, color: c.primary, padding: '2px 8px', borderRadius: 20 }}>v1.0</span>
+                    )}
                 </div>
+
+                {/* Nav */}
                 <nav style={row(4)}>
-                    {['Components', 'Forms', 'Data', 'Overlays', 'Flow'].map(l => (
+                    {/* Nav links — hidden on mobile */}
+                    {!isTablet && ['Components', 'Forms', 'Data', 'Overlays', 'Flow'].map(l => (
                         <a key={l} href={`#s-${l.toLowerCase()}`} style={{ fontSize: 14, fontWeight: 500, color: c.muted, textDecoration: 'none', padding: '6px 12px', borderRadius: 6 }}>{l}</a>
                     ))}
+
+                    {/* Dark mode toggle — always visible */}
                     <button
                         onClick={() => setDark(!dark)}
                         title={dark ? 'Switch to light mode' : 'Switch to dark mode'}
@@ -29,6 +39,8 @@ export function Header() {
                             : <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
                         }
                     </button>
+
+                    {/* GitHub — always visible */}
                     <UiButton size="small" variant="secondary">GitHub ↗</UiButton>
                 </nav>
             </div>
