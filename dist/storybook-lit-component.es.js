@@ -7754,8 +7754,8 @@ let Dr = class extends c {
       (e) => !e.hidden && !e.disabled
     );
   }
-  _setHighlight(e) {
-    this._highlightedItem && (this._highlightedItem.highlighted = !1), this._highlightedItem = e, e && (e.highlighted = !0, e.scrollIntoViewIfNeeded());
+  _setHighlight(e, t = !0) {
+    this._highlightedItem && (this._highlightedItem.highlighted = !1), this._highlightedItem = e, e && (e.highlighted = !0, t && e.scrollIntoViewIfNeeded());
   }
   _activateItem(e) {
     e.dispatchEvent(new CustomEvent("ui-command-item-select", {
@@ -7788,7 +7788,7 @@ let Dr = class extends c {
         y.hidden = !S || !de;
       }
     }
-    this._setHighlight(this._getNavigableItems()[0] ?? null);
+    this._setHighlight(this._getNavigableItems()[0] ?? null, !1);
   }
   /* ── Slot change — initialise state once children are assigned ─────────── */
   _onSlotChange() {
