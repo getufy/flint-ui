@@ -1,7 +1,6 @@
 # TODO Components
 
 - [ ] Forms
-- [ ] Visually Hidden (A11y)
 
 - Continue investigating bugs under ui-switch folder (started at ui-grid).
 - Create a structurable theme.scss/css variable across all components

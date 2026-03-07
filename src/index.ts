@@ -172,3 +172,4 @@ export { UiRelativeTime } from './relative-time/ui-relative-time.js';
 export { UiFormatDate } from './format-date/ui-format-date.js';
 export { parseDate } from './format-date/ui-format-date.js';
 export { UiFormatNumber } from './format-number/ui-format-number.js';
+export { UiVisuallyHidden } from './visually-hidden/ui-visually-hidden.js';
