@@ -1,0 +1,66 @@
+:host {
+    display: block;
+    position: absolute;
+    z-index: 10;
+    touch-action: none;
+    user-select: none;
+    background: var(--ui-scrollbar-track-color, transparent);
+    border-radius: var(--ui-scrollbar-thumb-radius, 9999px);
+    opacity: 0;
+    transition: opacity 150ms ease;
+}
+
+:host([data-visible]) {
+    opacity: 1;
+}
+
+:host([orientation="vertical"]) {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: var(--ui-scrollbar-size, 8px);
+}
+
+:host([orientation="horizontal"]) {
+    bottom: 0;
+    left: 0;
+    right: var(--ui-scrollbar-size, 8px);
+    height: var(--ui-scrollbar-size, 8px);
+}
+
+.track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.thumb {
+    position: absolute;
+    border-radius: var(--ui-scrollbar-thumb-radius, 9999px);
+    background: var(--ui-scrollbar-thumb-color, rgba(0, 0, 0, 0.35));
+    transition: background 150ms ease;
+    cursor: grab;
+}
+
+.thumb:active,
+.thumb--dragging {
+    cursor: grabbing;
+    background: var(--ui-scrollbar-thumb-hover-color, rgba(0, 0, 0, 0.5));
+}
+
+:host(:hover) .thumb {
+    background: var(--ui-scrollbar-thumb-hover-color, rgba(0, 0, 0, 0.5));
+}
+
+:host([orientation="vertical"]) .thumb {
+    left: 2px;
+    right: 2px;
+    min-height: 20px;
+}
+
+:host([orientation="horizontal"]) .thumb {
+    top: 2px;
+    bottom: 2px;
+    min-width: 20px;
+}

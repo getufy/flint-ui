@@ -202,6 +202,13 @@
     --ui-input-readonly-bg:        var(--ui-color-zinc-50);
     --ui-help-text-color:          var(--ui-text-color-muted);
 
+    /* ─── Scroll Area ──────────────────────────────────────────── */
+    --ui-scrollbar-size:              8px;
+    --ui-scrollbar-thumb-color:       rgba(0, 0, 0, 0.35);
+    --ui-scrollbar-thumb-hover-color: rgba(0, 0, 0, 0.50);
+    --ui-scrollbar-thumb-radius:      9999px;
+    --ui-scrollbar-track-color:       transparent;
+
     /* ─── Shadows ──────────────────────────────────────────────── */
     --ui-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --ui-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -322,4 +329,8 @@ body {
 
     /* ─── Stepper ─────────────────────────────────────────────── */
     --ui-stepper-connector-color: var(--ui-border-color);
+
+    /* ─── Scroll Area ──────────────────────────────────────────── */
+    --ui-scrollbar-thumb-color:       rgba(255, 255, 255, 0.35);
+    --ui-scrollbar-thumb-hover-color: rgba(255, 255, 255, 0.50);
 }
