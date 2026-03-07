@@ -25,7 +25,7 @@ import { customElement, property } from 'lit/decorators.js';
 export class UiNavigationMenuLink extends LitElement {
     static override styles = css`
         :host {
-            display: inline-flex;
+            display: flex;
             --ui-navigation-menu-link-padding: 8px 14px;
             --ui-navigation-menu-link-font-size: 14px;
             --ui-navigation-menu-link-color: var(--ui-text-color, #111827);
@@ -38,9 +38,10 @@ export class UiNavigationMenuLink extends LitElement {
         }
 
         .link {
-            display: inline-flex;
+            display: flex;
             align-items: center;
             height: 36px;
+            flex: 1;
             padding: var(--ui-navigation-menu-link-padding);
             font-size: var(--ui-navigation-menu-link-font-size);
             font-weight: 500;
@@ -118,14 +119,9 @@ export class UiNavigationMenuLink extends LitElement {
             e.preventDefault();
             return;
         }
-
-        if (this.href) {
-            if (this.target) {
-                window.open(this.href, this.target);
-            } else {
-                window.location.href = this.href;
-            }
-        }
+        // Close the parent navigation menu when a link is activated
+        const menu = this.closest('ui-navigation-menu') as (HTMLElement & { closeAll?: () => void }) | null;
+        menu?.closeAll?.();
     };
 
     private _handleKeydown = (e: KeyboardEvent) => {
@@ -133,7 +129,8 @@ export class UiNavigationMenuLink extends LitElement {
 
         if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            this._handleClick(e as unknown as MouseEvent);
+            const a = this.shadowRoot?.querySelector('a') as HTMLAnchorElement | null;
+            a?.click();
         }
     };
 
@@ -153,7 +150,7 @@ export class UiNavigationMenuLink extends LitElement {
                 target=${this.target}
                 title=${this.title}
                 role="menuitem"
-                ?aria-disabled=${this.disabled}
+                aria-disabled=${this.disabled ? 'true' : 'false'}
                 aria-current=${this.active ? 'page' : ''}
             >
                 <slot></slot>

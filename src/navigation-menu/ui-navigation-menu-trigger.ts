@@ -26,7 +26,7 @@ import type { UiNavigationMenuContent } from './ui-navigation-menu-content.js';
 export class UiNavigationMenuTrigger extends LitElement {
     static override styles = css`
         :host {
-            display: inline-flex;
+            display: flex;
             --ui-navigation-menu-trigger-padding: 8px 14px;
             --ui-navigation-menu-trigger-font-size: 14px;
             --ui-navigation-menu-trigger-color: var(--ui-text-color, #111827);
@@ -37,10 +37,11 @@ export class UiNavigationMenuTrigger extends LitElement {
         }
 
         .trigger {
-            display: inline-flex;
+            display: flex;
             align-items: center;
             gap: 4px;
             height: 36px;
+            flex: 1;
             padding: var(--ui-navigation-menu-trigger-padding);
             font-size: var(--ui-navigation-menu-trigger-font-size);
             font-weight: 500;
@@ -109,7 +110,6 @@ export class UiNavigationMenuTrigger extends LitElement {
         super.connectedCallback();
         this.addEventListener('click', this._handleClick);
         this.addEventListener('keydown', this._handleKeydown);
-        this.setAttribute('tabindex', '0');
     }
 
     override disconnectedCallback() {

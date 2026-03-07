@@ -19,16 +19,18 @@ import type { UiNavigationMenuTrigger } from './ui-navigation-menu-trigger.js';
 export class UiNavigationMenuItem extends LitElement {
     static override styles = css`
         :host {
-            display: inline-flex;
+            display: flex;
             position: relative;
             --ui-navigation-menu-item-padding: 0;
         }
 
         .item {
-            display: inline-flex;
-            align-items: center;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
             padding: var(--ui-navigation-menu-item-padding);
             position: relative;
+            width: 100%;
         }
     `;
 

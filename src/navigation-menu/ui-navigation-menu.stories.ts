@@ -251,34 +251,29 @@ export const VerticalSidebar: Story = {
     },
     render: () => html`
         <div style="width: 240px; border: 1px solid #e5e7eb; border-radius: 8px; padding: 8px;">
-            <ui-navigation-menu style="--ui-navigation-menu-bg: transparent">
-                <ui-navigation-menu-list direction="column" gap="2" style="width: 100%">
-                    <ui-navigation-menu-item style="width: 100%">
-                        <ui-navigation-menu-link href="#" active
-                            style="width: 100%; --ui-navigation-menu-link-border-radius: 6px;">
+            <ui-navigation-menu>
+                <ui-navigation-menu-list direction="column" gap="2">
+                    <ui-navigation-menu-item>
+                        <ui-navigation-menu-link href="#" active>
                             Dashboard
                         </ui-navigation-menu-link>
                     </ui-navigation-menu-item>
 
-                    <ui-navigation-menu-item style="width: 100%">
+                    <ui-navigation-menu-item>
                         <ui-navigation-menu-trigger content-id="v-components"
-                            style="width: 100%; justify-content: space-between; --ui-navigation-menu-trigger-border-radius: 6px;">
+                            style="justify-content: space-between;">
                             Components
                         </ui-navigation-menu-trigger>
                         <ui-navigation-menu-content id="v-components"
-                            style="position: static; margin-top: 0; --ui-navigation-menu-content-shadow: none; --ui-navigation-menu-content-border: none; --ui-navigation-menu-content-border-radius: 0; --ui-navigation-menu-content-padding: 4px 0 4px 12px; --ui-navigation-menu-content-bg: transparent;">
-                            <ui-navigation-menu-link href="#"
-                                style="--ui-navigation-menu-link-border-radius: 6px;">Button</ui-navigation-menu-link>
-                            <ui-navigation-menu-link href="#"
-                                style="--ui-navigation-menu-link-border-radius: 6px;">Input</ui-navigation-menu-link>
-                            <ui-navigation-menu-link href="#"
-                                style="--ui-navigation-menu-link-border-radius: 6px;">Select</ui-navigation-menu-link>
+                            style="position: static; --ui-navigation-menu-content-shadow: none; --ui-navigation-menu-content-border: none; --ui-navigation-menu-content-border-radius: 0; --ui-navigation-menu-content-padding: 4px 0 4px 12px; --ui-navigation-menu-content-bg: transparent;">
+                            <ui-navigation-menu-link href="#">Button</ui-navigation-menu-link>
+                            <ui-navigation-menu-link href="#">Input</ui-navigation-menu-link>
+                            <ui-navigation-menu-link href="#">Select</ui-navigation-menu-link>
                         </ui-navigation-menu-content>
                     </ui-navigation-menu-item>
 
-                    <ui-navigation-menu-item style="width: 100%">
-                        <ui-navigation-menu-link href="#"
-                            style="width: 100%; --ui-navigation-menu-link-border-radius: 6px;">
+                    <ui-navigation-menu-item>
+                        <ui-navigation-menu-link href="#">
                             Settings
                         </ui-navigation-menu-link>
                     </ui-navigation-menu-item>
@@ -664,6 +659,93 @@ export const DisabledItems: Story = {
         </ui-navigation-menu>
     `,
 };
+
+// ---------------------------------------------------------------------------
+// RTL
+// ---------------------------------------------------------------------------
+
+export const RTL: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'Set `dir="rtl"` on the root to flip dropdown positioning to the right side via logical CSS properties.',
+            },
+        },
+    },
+    render: () => html`
+        <div dir="rtl" style="padding: 24px; min-height: 120px;">
+            <ui-navigation-menu dir="rtl">
+                <ui-navigation-menu-list>
+                    <ui-navigation-menu-item>
+                        <ui-navigation-menu-trigger content-id="rtl-docs">توثيق</ui-navigation-menu-trigger>
+                        <ui-navigation-menu-content id="rtl-docs">
+                            <ui-navigation-menu-link href="#">البدء السريع</ui-navigation-menu-link>
+                            <ui-navigation-menu-link href="#">مرجع API</ui-navigation-menu-link>
+                            <ui-navigation-menu-link href="#">أمثلة</ui-navigation-menu-link>
+                        </ui-navigation-menu-content>
+                    </ui-navigation-menu-item>
+                    <ui-navigation-menu-item>
+                        <ui-navigation-menu-link href="#" active>الرئيسية</ui-navigation-menu-link>
+                    </ui-navigation-menu-item>
+                    <ui-navigation-menu-item>
+                        <ui-navigation-menu-link href="#">تواصل معنا</ui-navigation-menu-link>
+                    </ui-navigation-menu-item>
+                </ui-navigation-menu-list>
+            </ui-navigation-menu>
+        </div>
+    `,
+};
+
+// ---------------------------------------------------------------------------
+// AccessibilityShowcase
+// ---------------------------------------------------------------------------
+
+export const AccessibilityShowcase: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'Demonstrates full keyboard navigation: Tab to reach the trigger, Enter/Space to open, ArrowDown to move into the menu, ArrowUp/Down to navigate items, Home/End for first/last, Escape to close and return focus to trigger.',
+            },
+        },
+    },
+    render: () => html`
+        <div style="padding: 24px; min-height: 200px;">
+            <p style="font-size: 13px; color: #6b7280; margin-bottom: 16px;">
+                Tab → trigger → Enter/Space to open → ArrowDown into menu → ArrowUp/Down to navigate →
+                Home/End for first/last → Escape to close
+            </p>
+            <ui-navigation-menu>
+                <ui-navigation-menu-list>
+                    <ui-navigation-menu-item>
+                        <ui-navigation-menu-trigger content-id="a11y-1">File</ui-navigation-menu-trigger>
+                        <ui-navigation-menu-content id="a11y-1">
+                            <ui-navigation-menu-link href="#">New</ui-navigation-menu-link>
+                            <ui-navigation-menu-link href="#">Open</ui-navigation-menu-link>
+                            <ui-navigation-menu-link href="#">Save</ui-navigation-menu-link>
+                            <ui-navigation-menu-link href="#" disabled>Export (disabled)</ui-navigation-menu-link>
+                            <ui-navigation-menu-link href="#">Close</ui-navigation-menu-link>
+                        </ui-navigation-menu-content>
+                    </ui-navigation-menu-item>
+                    <ui-navigation-menu-item>
+                        <ui-navigation-menu-trigger content-id="a11y-2">Edit</ui-navigation-menu-trigger>
+                        <ui-navigation-menu-content id="a11y-2">
+                            <ui-navigation-menu-link href="#">Undo</ui-navigation-menu-link>
+                            <ui-navigation-menu-link href="#">Redo</ui-navigation-menu-link>
+                            <ui-navigation-menu-link href="#">Cut</ui-navigation-menu-link>
+                            <ui-navigation-menu-link href="#">Copy</ui-navigation-menu-link>
+                            <ui-navigation-menu-link href="#">Paste</ui-navigation-menu-link>
+                        </ui-navigation-menu-content>
+                    </ui-navigation-menu-item>
+                    <ui-navigation-menu-item>
+                        <ui-navigation-menu-link href="#" active>Home</ui-navigation-menu-link>
+                    </ui-navigation-menu-item>
+                </ui-navigation-menu-list>
+            </ui-navigation-menu>
+        </div>
+    `,
+};
+
+// ---------------------------------------------------------------------------
 
 export const ResponsiveLayout: Story = {
     render: () => html`
