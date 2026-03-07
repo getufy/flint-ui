@@ -258,6 +258,14 @@
     --ui-split-panel-min:                0;
     --ui-split-panel-max:                100%;
 
+    /* ─── Format Number ─────────────────────────────────────────── */
+    --ui-format-number-color:          inherit;
+    --ui-format-number-font-size:      inherit;
+    --ui-format-number-font-weight:    inherit;
+    --ui-format-number-font-family:    inherit;
+    --ui-format-number-positive-color: inherit;
+    --ui-format-number-negative-color: inherit;
+
     /* ─── Shadows ──────────────────────────────────────────────── */
     --ui-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --ui-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
