@@ -29,5 +29,5 @@ export const card = (extra: React.CSSProperties = {}, colors: Colors = c): React
 export const sect = (bg?: string, colors: Colors = c): React.CSSProperties => ({ padding: 'clamp(48px,8vw,80px) clamp(16px,3vw,24px)', background: bg ?? colors.bg, borderTop: `1px solid ${colors.border}` });
 export const maxW = (extra: React.CSSProperties = {}): React.CSSProperties => ({ maxWidth: 1200, margin: '0 auto', ...extra });
 // auto-fit/minmax lets columns wrap naturally: 3-up on wide, 2-up on mid, 1-up on narrow
-export const grid3 = (extra: React.CSSProperties = {}): React.CSSProperties => ({ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(260px,1fr))', gap: 20, ...extra });
+export const grid3 = (extra: React.CSSProperties = {}): React.CSSProperties => ({ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,360px),1fr))', gap: 20, ...extra });
 export const grid2 = (extra: React.CSSProperties = {}): React.CSSProperties => ({ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,340px),1fr))', gap: 24, ...extra });
