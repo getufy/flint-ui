@@ -155,6 +155,7 @@ export { UiNavigationMenuItem } from './navigation-menu/ui-navigation-menu-item.
 export { UiNavigationMenuTrigger } from './navigation-menu/ui-navigation-menu-trigger.js';
 export { UiNavigationMenuContent } from './navigation-menu/ui-navigation-menu-content.js';
 export { UiNavigationMenuLink } from './navigation-menu/ui-navigation-menu-link.js';
+export { UiCopyButton } from './copy-button/ui-copy-button.js';
 export { UiToaster, toast } from './sonner/ui-sonner.js';
 export type { ToastType, ToastPosition, ToastAction, ToastOptions } from './sonner/ui-sonner.js';
 export { UiToggle } from './toggle/ui-toggle.js';

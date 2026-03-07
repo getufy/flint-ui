@@ -1,7 +1,6 @@
 # TODO Components
 
 - [ ] Forms
-- [ ] Copy Button
 - [ ] Format Date
 - [ ] Format Number
 - [ ] Image Comparer 

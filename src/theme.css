@@ -225,6 +225,10 @@
     --ui-scrollbar-thumb-radius:      9999px;
     --ui-scrollbar-track-color:       transparent;
 
+    /* ─── Copy Button ────────────────────────────────────────── */
+    --ui-copy-button-success-color: var(--ui-success-color);
+    --ui-copy-button-error-color:   var(--ui-error-color);
+
     /* ─── Resizable ───────────────────────────────────────────── */
     --ui-resizable-handle-size:        4px;
     --ui-resizable-handle-active-size: 12px;
