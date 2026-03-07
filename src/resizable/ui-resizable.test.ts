@@ -119,8 +119,12 @@ describe('ui-resizable-panel — properties', () => {
   it('applies flex-basis based on size', async () => {
     const el = await make({ panelSizes: [40, 60] });
     const panels = getPanels(el);
-    expect(panels[0].style.flexBasis).toBe('40%');
-    expect(panels[1].style.flexBasis).toBe('60%');
+    // flex-basis is expressed as a calc() formula that embeds the size value
+    // so the handle always remains visible (never pushed off-screen).
+    expect(panels[0].size).toBe(40);
+    expect(panels[1].size).toBe(60);
+    expect(panels[0].style.flexBasis).toContain('40');
+    expect(panels[1].style.flexBasis).toContain('60');
   });
 
   it('defaults minSize to 0 and maxSize to 100', async () => {
@@ -887,8 +891,117 @@ describe('ui-resizable-panel — connectedCallback', () => {
     document.body.appendChild(panel);
     await panel.updateComplete;
 
-    expect(panel.style.flexBasis).toBe('42%');
+    // flex-basis uses a calc() formula containing the size value
+    expect(panel.style.flexBasis).not.toBe('');
+    expect(panel.style.flexBasis).toContain('42');
+    expect(panel.size).toBe(42);
     panel.remove();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/*  ui-resizable-handle — ARIA attributes                             */
+/* ------------------------------------------------------------------ */
+
+/* ------------------------------------------------------------------ */
+/*  ui-resizable-group — handle-total CSS custom property             */
+/* ------------------------------------------------------------------ */
+
+describe('ui-resizable-group — --_rg-handle-total CSS variable', () => {
+  it('sets --_rg-handle-total when handles are present', async () => {
+    const el = await make({ withHandle: false });
+    const total = el.style.getPropertyValue('--_rg-handle-total');
+    expect(total).not.toBe('');
+    expect(total).not.toBe('0px');
+  });
+
+  it('sets 0px when there are no handles', async () => {
+    const el = await fixture<UiResizableGroup>(html`
+      <ui-resizable-group>
+        <ui-resizable-panel .defaultSize=${100}>
+          <div>Solo</div>
+        </ui-resizable-panel>
+      </ui-resizable-group>
+    `);
+    await el.updateComplete;
+    const total = el.style.getPropertyValue('--_rg-handle-total');
+    expect(total).toBe('0px');
+  });
+
+  it('uses active-size var for with-handle handles', async () => {
+    const el = await make({ withHandle: true });
+    const total = el.style.getPropertyValue('--_rg-handle-total');
+    expect(total).toContain('active-size');
+  });
+
+  it('uses regular size var for plain handles', async () => {
+    const el = await make({ withHandle: false });
+    const total = el.style.getPropertyValue('--_rg-handle-total');
+    expect(total).toContain('handle-size');
+    expect(total).not.toContain('active-size');
+  });
+
+  it('uses calc() for multiple handles', async () => {
+    const el = await make({ panelSizes: [30, 40, 30] });
+    const total = el.style.getPropertyValue('--_rg-handle-total');
+    expect(total).toContain('calc(');
+  });
+
+  it('updates --_rg-handle-total when orientation changes', async () => {
+    const el = await make({ orientation: 'horizontal' });
+    el.orientation = 'vertical';
+    await el.updateComplete;
+    const total = el.style.getPropertyValue('--_rg-handle-total');
+    expect(total).not.toBe('');
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/*  ui-resizable-panel — flex-basis calc formula (overflow bug fix)   */
+/* ------------------------------------------------------------------ */
+
+describe('ui-resizable-panel — flex-basis calc formula', () => {
+  it('flex-basis uses calc() formula to keep handle on-screen', async () => {
+    const el = await make({ panelSizes: [50, 50] });
+    const panels = getPanels(el);
+    expect(panels[0].style.flexBasis).toContain('calc(');
+    expect(panels[0].style.flexBasis).toContain('--_rg-handle-total');
+  });
+
+  it('extreme right: before.size stays ≤100 and flex-basis contains the size', async () => {
+    const el = await make({ panelSizes: [50, 50] });
+    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue({
+      width: 1000, height: 400,
+      x: 0, y: 0, top: 0, right: 1000, bottom: 400, left: 0,
+      toJSON: () => ({}),
+    });
+
+    const handle = getHandles(el)[0];
+    // Drag far right — should clamp at 100% logically
+    el._handleResize(handle, 600);
+
+    const panels = getPanels(el);
+    expect(panels[0].size).toBeLessThanOrEqual(100);
+    expect(panels[1].size).toBeGreaterThanOrEqual(0);
+    // The calc formula ensures handle space is reserved visually
+    expect(panels[0].style.flexBasis).toContain('calc(');
+  });
+
+  it('extreme left: after.size stays ≤100 and flex-basis contains the size', async () => {
+    const el = await make({ panelSizes: [50, 50] });
+    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue({
+      width: 1000, height: 400,
+      x: 0, y: 0, top: 0, right: 1000, bottom: 400, left: 0,
+      toJSON: () => ({}),
+    });
+
+    const handle = getHandles(el)[0];
+    el._handleResize(handle, -600);
+
+    const panels = getPanels(el);
+    expect(panels[0].size).toBeGreaterThanOrEqual(0);
+    expect(panels[1].size).toBeLessThanOrEqual(100);
+    expect(panels[1].style.flexBasis).toContain('calc(');
   });
 });
 

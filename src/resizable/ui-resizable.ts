@@ -13,6 +13,8 @@ export class UiResizableGroup extends LitElement {
       height: 100%;
       width: 100%;
       overflow: hidden;
+      /* Internal: total pixel width/height of all handles — set by JS. */
+      --_rg-handle-total: 0px;
     }
     :host([orientation='vertical']) {
       flex-direction: column;
@@ -64,8 +66,25 @@ export class UiResizableGroup extends LitElement {
       handle.orientation = this.orientation;
       handle._dir = this.dir;
     }
+    // Update the CSS custom property used by panels to account for handle widths.
+    this.style.setProperty('--_rg-handle-total', this._computeHandleTotal());
     this._distributeDefaultSizes();
     this._syncAriaOnHandles();
+  }
+
+  /**
+   * Builds the CSS value for `--_rg-handle-total` — the sum of all handle
+   * pixel sizes (honouring `with-handle` vs plain).  Panels use this in
+   * `calc()` so their `flex-basis` never pushes a handle off-screen.
+   */
+  private _computeHandleTotal(): string {
+    if (this._handles.length === 0) return '0px';
+    const parts = this._handles.map(h =>
+      h.withHandle
+        ? 'var(--ui-resizable-handle-active-size, 12px)'
+        : 'var(--ui-resizable-handle-size, 4px)',
+    );
+    return parts.length === 1 ? parts[0] : `calc(${parts.join(' + ')})`;
   }
 
   private _distributeDefaultSizes() {
@@ -292,8 +311,11 @@ export class UiResizablePanel extends LitElement {
 
   /** @internal */
   _applySize() {
-    const basis = `${this.size}%`;
-    this.style.flexBasis = basis;
+    // calc(size * (1% - handleTotal/100)) distributes handle space proportionally,
+    // so at size=100 the panel is exactly (100% - handleTotal), leaving the handle
+    // on-screen instead of being pushed past overflow:hidden.
+    this.style.flexBasis =
+      `calc(${this.size} * (1% - var(--_rg-handle-total, 0px) / 100))`;
   }
 
   override connectedCallback() {
