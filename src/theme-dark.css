@@ -112,6 +112,10 @@
     --ui-input-readonly-bg:        var(--ui-color-zinc-900);
     --ui-help-text-color:          var(--ui-color-zinc-400);
 
+    /* ─── Copy Button ────────────────────────────────────────── */
+    --ui-copy-button-success-color: var(--ui-success-color);
+    --ui-copy-button-error-color:   var(--ui-error-color);
+
     /* ─── Shadows ──────────────────────────────────────────────── */
     --ui-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.50);
     --ui-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.50), 0 2px 4px -1px rgba(0, 0, 0, 0.40);
@@ -215,6 +219,10 @@
         --ui-input-disabled-color:     var(--ui-color-zinc-600);
         --ui-input-readonly-bg:        var(--ui-color-zinc-900);
         --ui-help-text-color:          var(--ui-color-zinc-400);
+
+        /* ─── Copy Button ────────────────────────────────────────── */
+        --ui-copy-button-success-color: var(--ui-success-color);
+        --ui-copy-button-error-color:   var(--ui-error-color);
 
         --ui-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.50);
         --ui-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.50), 0 2px 4px -1px rgba(0, 0, 0, 0.40);
