@@ -1,0 +1,9 @@
+:host {
+    display: inline;
+}
+
+time {
+    font: inherit;
+    color: var(--ui-format-date-color, inherit);
+    font-size: var(--ui-format-date-font-size, inherit);
+}
