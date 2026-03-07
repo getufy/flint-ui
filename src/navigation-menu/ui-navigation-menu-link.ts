@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit';
-import { property } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 
 /**
  * @tag ui-navigation-menu-link
@@ -18,36 +18,43 @@ import { property } from 'lit/decorators.js';
  * @cssprop --ui-navigation-menu-link-bg - Background (default: transparent)
  * @cssprop --ui-navigation-menu-link-hover-bg - Hover background (default: #f0f0f0)
  * @cssprop --ui-navigation-menu-link-border-radius - Border radius (default: 6px)
+ * @cssprop --ui-navigation-menu-link-active-bg - Background when active (default: #eff6ff)
+ * @cssprop --ui-navigation-menu-link-active-color - Color when active (default: #1d4ed8)
  */
+@customElement('ui-navigation-menu-link')
 export class UiNavigationMenuLink extends LitElement {
     static override styles = css`
         :host {
-            display: inline-block;
-            --ui-navigation-menu-link-padding: 8px 12px;
+            display: inline-flex;
+            --ui-navigation-menu-link-padding: 8px 14px;
             --ui-navigation-menu-link-font-size: 14px;
-            --ui-navigation-menu-link-color: inherit;
+            --ui-navigation-menu-link-color: var(--ui-text-color, #111827);
             --ui-navigation-menu-link-text-decoration: none;
             --ui-navigation-menu-link-bg: transparent;
-            --ui-navigation-menu-link-hover-bg: #f0f0f0;
+            --ui-navigation-menu-link-hover-bg: #f3f4f6;
             --ui-navigation-menu-link-border-radius: 6px;
+            --ui-navigation-menu-link-active-bg: #eff6ff;
+            --ui-navigation-menu-link-active-color: var(--ui-primary-color, #3b82f6);
         }
 
         .link {
             display: inline-flex;
             align-items: center;
+            height: 36px;
             padding: var(--ui-navigation-menu-link-padding);
             font-size: var(--ui-navigation-menu-link-font-size);
+            font-weight: 500;
+            font-family: inherit;
             color: var(--ui-navigation-menu-link-color);
             text-decoration: var(--ui-navigation-menu-link-text-decoration);
             background: var(--ui-navigation-menu-link-bg);
             border-radius: var(--ui-navigation-menu-link-border-radius);
             cursor: pointer;
-            transition: background 0.2s, color 0.2s;
-            font-family: inherit;
-            font-weight: 500;
+            transition: background 0.15s ease, color 0.15s ease;
             border: none;
             white-space: nowrap;
             user-select: none;
+            outline: none;
         }
 
         .link:hover {
@@ -55,7 +62,7 @@ export class UiNavigationMenuLink extends LitElement {
         }
 
         .link:focus-visible {
-            outline: 2px solid currentColor;
+            outline: 2px solid var(--ui-primary-color, #3b82f6);
             outline-offset: 2px;
         }
 
@@ -63,6 +70,11 @@ export class UiNavigationMenuLink extends LitElement {
             opacity: 0.5;
             cursor: not-allowed;
             pointer-events: none;
+        }
+
+        .link--active {
+            background: var(--ui-navigation-menu-link-active-bg);
+            color: var(--ui-navigation-menu-link-active-color);
         }
     `;
 
@@ -81,6 +93,13 @@ export class UiNavigationMenuLink extends LitElement {
     /** Whether the link is disabled */
     @property({ type: Boolean, reflect: true })
     disabled: boolean = false;
+
+    /**
+     * Whether this link represents the current page.
+     * Sets aria-current="page" and applies active styles.
+     */
+    @property({ type: Boolean, reflect: true })
+    active: boolean = false;
 
     override connectedCallback() {
         super.connectedCallback();
@@ -118,16 +137,24 @@ export class UiNavigationMenuLink extends LitElement {
         }
     };
 
+    /** Delegate focus to the inner anchor element */
+    override focus(options?: FocusOptions) {
+        const a = this.shadowRoot?.querySelector('a') as HTMLElement | undefined;
+        if (a) a.focus(options);
+        else super.focus(options);
+    }
+
     override render() {
         return html`
             <a
-                class="link"
+                class="link ${this.active ? 'link--active' : ''}"
                 part="link"
                 href=${this.href}
                 target=${this.target}
                 title=${this.title}
                 role="menuitem"
                 ?aria-disabled=${this.disabled}
+                aria-current=${this.active ? 'page' : ''}
             >
                 <slot></slot>
             </a>

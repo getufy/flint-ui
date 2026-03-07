@@ -1,5 +1,5 @@
 import { LitElement, html, css, PropertyValues } from 'lit';
-import { property } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 
 /**
  * @tag ui-navigation-menu-list
@@ -13,16 +13,18 @@ import { property } from 'lit/decorators.js';
  * @cssprop --ui-navigation-menu-list-gap - Gap between items (default: 8px)
  * @cssprop --ui-navigation-menu-list-direction - Flex direction (default: row)
  */
+@customElement('ui-navigation-menu-list')
 export class UiNavigationMenuList extends LitElement {
     static override styles = css`
         :host {
-            display: block;
-            --ui-navigation-menu-list-gap: 8px;
+            display: inline-flex;
+            --ui-navigation-menu-list-gap: 4px;
             --ui-navigation-menu-list-direction: row;
         }
 
         .list {
-            display: flex;
+            display: inline-flex;
+            align-items: center;
             flex-direction: var(--ui-navigation-menu-list-direction);
             gap: var(--ui-navigation-menu-list-gap);
             list-style: none;
@@ -39,9 +41,15 @@ export class UiNavigationMenuList extends LitElement {
     @property({ type: String })
     direction: 'row' | 'column' = 'row';
 
+    /**
+     * Accessible label for the navigation landmark.
+     * Required when multiple nav elements are on the same page.
+     */
+    @property({ type: String, attribute: 'aria-label' })
+    override ariaLabel: string = 'Main navigation';
+
     override connectedCallback() {
         super.connectedCallback();
-        // Update CSS variable when properties change
         this._updateStyles();
     }
 
@@ -58,7 +66,7 @@ export class UiNavigationMenuList extends LitElement {
 
     override render() {
         return html`
-            <nav class="list" part="root">
+            <nav class="list" part="root" role="menubar" aria-label=${this.ariaLabel}>
                 <slot></slot>
             </nav>
         `;

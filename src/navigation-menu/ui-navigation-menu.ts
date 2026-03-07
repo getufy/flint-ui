@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit';
-import { property, state } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
 import type { UiNavigationMenuContent } from './ui-navigation-menu-content.js';
 
 /**
@@ -16,21 +16,26 @@ import type { UiNavigationMenuContent } from './ui-navigation-menu-content.js';
  * @cssprop --ui-navigation-menu-gap - Gap between items (default: 8px)
  * @cssprop --ui-navigation-menu-bg - Background color (default: transparent)
  * @cssprop --ui-navigation-menu-border - Border style (default: none)
+ * @cssprop --ui-navigation-menu-border-radius - Border radius (default: 0)
  */
+@customElement('ui-navigation-menu')
 export class UiNavigationMenu extends LitElement {
     static override styles = css`
         :host {
             display: block;
+            position: relative;
             --ui-navigation-menu-padding: 0;
             --ui-navigation-menu-gap: 8px;
             --ui-navigation-menu-bg: transparent;
             --ui-navigation-menu-border: none;
+            --ui-navigation-menu-border-radius: 0;
         }
 
         .menu {
             padding: var(--ui-navigation-menu-padding);
             background: var(--ui-navigation-menu-bg);
             border: var(--ui-navigation-menu-border);
+            border-radius: var(--ui-navigation-menu-border-radius);
         }
     `;
 
@@ -42,14 +47,16 @@ export class UiNavigationMenu extends LitElement {
     @state()
     private _openContentId: string | null = null;
 
+    // Arrow field so add/remove use the same reference (fixes memory leak)
     private _handleContentToggle = (e: CustomEvent) => {
         const detail = e.detail as { contentId: string; open: boolean };
         if (detail.open) {
-            // Close any currently open content
             this._closeAllContent();
             this._openContentId = detail.contentId;
         } else {
-            this._openContentId = null;
+            if (this._openContentId === detail.contentId) {
+                this._openContentId = null;
+            }
         }
     };
 
@@ -59,24 +66,29 @@ export class UiNavigationMenu extends LitElement {
         });
     };
 
-    override connectedCallback() {
-        super.connectedCallback();
-        this.addEventListener('ui-navigation-menu-content-toggle', this._handleContentToggle as EventListener);
-        document.addEventListener('click', this._handleDocumentClick.bind(this) as EventListener);
-    }
-
-    override disconnectedCallback() {
-        super.disconnectedCallback();
-        this.removeEventListener('ui-navigation-menu-content-toggle', this._handleContentToggle as EventListener);
-        document.removeEventListener('click', this._handleDocumentClick.bind(this) as EventListener);
-    }
-
+    // Arrow field so add/remove use the same reference (fixes memory leak)
     private _handleDocumentClick = (e: Event) => {
         const target = e.target as HTMLElement;
         if (!this.contains(target)) {
             this._closeAllContent();
+            this._openContentId = null;
         }
     };
+
+    override connectedCallback() {
+        super.connectedCallback();
+        // Both trigger-click and content-toggle events carry { contentId, open }
+        this.addEventListener('ui-navigation-menu-trigger-click', this._handleContentToggle as EventListener);
+        this.addEventListener('ui-navigation-menu-content-toggle', this._handleContentToggle as EventListener);
+        document.addEventListener('click', this._handleDocumentClick);
+    }
+
+    override disconnectedCallback() {
+        super.disconnectedCallback();
+        this.removeEventListener('ui-navigation-menu-trigger-click', this._handleContentToggle as EventListener);
+        this.removeEventListener('ui-navigation-menu-content-toggle', this._handleContentToggle as EventListener);
+        document.removeEventListener('click', this._handleDocumentClick);
+    }
 
     /** Get the currently open content item ID */
     get openContentId() {

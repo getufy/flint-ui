@@ -144,3 +144,9 @@ export {
     UiMenubarSubTrigger,
     UiMenubarTrigger
 } from './menubar/ui-menubar.js'
+export { UiNavigationMenu } from './navigation-menu/ui-navigation-menu.js';
+export { UiNavigationMenuList } from './navigation-menu/ui-navigation-menu-list.js';
+export { UiNavigationMenuItem } from './navigation-menu/ui-navigation-menu-item.js';
+export { UiNavigationMenuTrigger } from './navigation-menu/ui-navigation-menu-trigger.js';
+export { UiNavigationMenuContent } from './navigation-menu/ui-navigation-menu-content.js';
+export { UiNavigationMenuLink } from './navigation-menu/ui-navigation-menu-link.js';

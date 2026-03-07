@@ -1,5 +1,5 @@
 import { LitElement, html, css, PropertyValues } from 'lit';
-import { property } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 
 /**
  * @tag ui-navigation-menu-content
@@ -21,35 +21,39 @@ import { property } from 'lit/decorators.js';
  * @cssprop --ui-navigation-menu-content-min-width - Minimum width (default: 200px)
  * @cssprop --ui-navigation-menu-content-z-index - Z-index (default: 1000)
  */
+@customElement('ui-navigation-menu-content')
 export class UiNavigationMenuContent extends LitElement {
     static override styles = css`
         :host {
             display: none;
             position: absolute;
-            top: 100%;
+            top: calc(100% + 6px);
             left: 0;
             z-index: var(--ui-navigation-menu-content-z-index, 1000);
-            margin-top: 4px;
         }
 
         :host([open]) {
             display: block;
+            animation: slideDown 0.15s ease-out;
         }
 
         .panel {
-            background: var(--ui-navigation-menu-content-bg, white);
+            background: var(--ui-navigation-menu-content-bg, #ffffff);
             border: var(--ui-navigation-menu-content-border, 1px solid #e5e7eb);
             border-radius: var(--ui-navigation-menu-content-border-radius, 8px);
-            padding: var(--ui-navigation-menu-content-padding, 16px);
-            box-shadow: var(--ui-navigation-menu-content-shadow, 0 4px 6px rgba(0, 0, 0, 0.1));
+            padding: var(--ui-navigation-menu-content-padding, 12px);
+            box-shadow: var(
+                --ui-navigation-menu-content-shadow,
+                0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -2px rgba(0, 0, 0, 0.06)
+            );
             min-width: var(--ui-navigation-menu-content-min-width, 200px);
-            animation: slideDown 0.2s ease-out;
         }
 
         @keyframes slideDown {
             from {
                 opacity: 0;
-                transform: translateY(-8px);
+                transform: translateY(-6px);
             }
             to {
                 opacity: 1;
@@ -58,7 +62,7 @@ export class UiNavigationMenuContent extends LitElement {
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .panel {
+            :host([open]) {
                 animation: none;
             }
         }
@@ -110,6 +114,10 @@ export class UiNavigationMenuContent extends LitElement {
                 this._close();
                 this._focusTrigger();
                 break;
+            case 'Tab':
+                // Close on Tab so focus moves naturally — do NOT preventDefault
+                this._close();
+                break;
             case 'ArrowUp':
                 e.preventDefault();
                 this._focusPreviousItem();
@@ -141,48 +149,66 @@ export class UiNavigationMenuContent extends LitElement {
     };
 
     private _focusTrigger = () => {
+        const menu = this.closest('ui-navigation-menu');
+        if (menu) {
+            const trigger = menu.querySelector(
+                `ui-navigation-menu-trigger[content-id="${this.id}"]`
+            ) as HTMLElement | null;
+            if (trigger) {
+                trigger.focus();
+                return;
+            }
+        }
+        // Fallback: document-level search
         const trigger = document.querySelector(
             `ui-navigation-menu-trigger[content-id="${this.id}"]`
-        ) as HTMLElement;
-        if (trigger) {
-            trigger.focus();
-        }
+        ) as HTMLElement | null;
+        if (trigger) trigger.focus();
     };
 
     private _getAllItems = () => {
-        return Array.from(this.querySelectorAll('[role="menuitem"]')) as HTMLElement[];
+        // ui-navigation-menu-link has role="menuitem" inside its shadow DOM;
+        // query host elements directly so focus() works on the custom element host
+        return Array.from(
+            this.querySelectorAll('ui-navigation-menu-link, [role="menuitem"]')
+        ) as HTMLElement[];
     };
 
     private _focusFirstItem = () => {
         const items = this._getAllItems();
-        if (items.length > 0) {
-            items[0].focus();
-        }
+        if (items.length > 0) items[0].focus();
     };
 
     private _focusLastItem = () => {
         const items = this._getAllItems();
-        if (items.length > 0) {
-            items[items.length - 1].focus();
-        }
+        if (items.length > 0) items[items.length - 1].focus();
+    };
+
+    private _findFocusedIndex = (items: HTMLElement[]) => {
+        const active = this.ownerDocument.activeElement as HTMLElement;
+        // Active element might be the host itself, or inside its shadow DOM (browser behaviour:
+        // document.activeElement is the host, jsdom may return the actual focused inner element)
+        return items.findIndex(
+            (item) => item === active || item.shadowRoot?.contains(active)
+        );
     };
 
     private _focusNextItem = () => {
         const items = this._getAllItems();
-        const focused = this.ownerDocument.activeElement as HTMLElement;
-        const currentIndex = items.indexOf(focused);
-        if (currentIndex < items.length - 1) {
-            items[currentIndex + 1].focus();
-        }
+        if (items.length === 0) return;
+        const currentIndex = this._findFocusedIndex(items);
+        // Wrap: if at last item (or not found), go to first
+        const nextIndex = currentIndex >= items.length - 1 ? 0 : currentIndex + 1;
+        items[nextIndex].focus();
     };
 
     private _focusPreviousItem = () => {
         const items = this._getAllItems();
-        const focused = this.ownerDocument.activeElement as HTMLElement;
-        const currentIndex = items.indexOf(focused);
-        if (currentIndex > 0) {
-            items[currentIndex - 1].focus();
-        }
+        if (items.length === 0) return;
+        const currentIndex = this._findFocusedIndex(items);
+        // Wrap: if at first item (or not found), go to last
+        const prevIndex = currentIndex <= 0 ? items.length - 1 : currentIndex - 1;
+        items[prevIndex].focus();
     };
 
     override render() {
