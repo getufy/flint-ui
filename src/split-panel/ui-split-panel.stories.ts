@@ -1,0 +1,369 @@
+import type { Meta, StoryObj } from '@storybook/web-components';
+import { html } from 'lit';
+import './ui-split-panel.js';
+import type { UiSplitPanel, SnapFunction } from './ui-split-panel.js';
+
+const meta: Meta = {
+    title: 'Layout/Split Panel',
+    component: 'ui-split-panel',
+    parameters: {
+        docs: {
+            description: {
+                component:
+                    'Split panels display two adjacent panels, allowing the user to ' +
+                    'reposition the divider by dragging or using keyboard arrow keys.',
+            },
+        },
+    },
+    argTypes: {
+        position: { control: { type: 'range', min: 0, max: 100, step: 1 } },
+        positionInPixels: { control: { type: 'number' } },
+        vertical: { control: 'boolean' },
+        disabled: { control: 'boolean' },
+        primary: { control: 'select', options: ['', 'start', 'end'] },
+        snapThreshold: { control: { type: 'number' } },
+    },
+    args: {
+        position: 50,
+        positionInPixels: -1,
+        vertical: false,
+        disabled: false,
+        primary: '',
+        snapThreshold: 12,
+    },
+};
+
+export default meta;
+type Story = StoryObj;
+
+/* ── shared helpers ────────────────────────────────────────────────── */
+
+const panelStyle =
+    'display:flex;align-items:center;justify-content:center;height:100%;padding:24px;' +
+    'font-weight:600;font-family:system-ui;color:var(--ui-text-color,#111827);';
+
+const wrapStyle =
+    'height:200px;max-width:600px;border:1px solid var(--ui-border-color,#e4e4e7);' +
+    'border-radius:8px;overflow:hidden;';
+
+/* ── Playground ────────────────────────────────────────────────────── */
+
+export const Playground: Story = {
+    render: (args) => html`
+        <div style="${wrapStyle}">
+            <ui-split-panel
+                .position=${args.position as number}
+                .positionInPixels=${args.positionInPixels as number}
+                ?vertical=${args.vertical as boolean}
+                ?disabled=${args.disabled as boolean}
+                .primary=${(args.primary as string) || undefined}
+                .snapThreshold=${args.snapThreshold as number}
+                style="height:100%;"
+            >
+                <div slot="start" style="${panelStyle}">Start</div>
+                <div slot="end" style="${panelStyle}">End</div>
+            </ui-split-panel>
+        </div>
+    `,
+};
+
+/* ── Initial Position ──────────────────────────────────────────────── */
+
+export const InitialPosition: Story = {
+    name: 'Initial Position (30%)',
+    render: () => html`
+        <div style="${wrapStyle}">
+            <ui-split-panel position="30" style="height:100%;">
+                <div slot="start" style="${panelStyle}">Start (30%)</div>
+                <div slot="end" style="${panelStyle}">End</div>
+            </ui-split-panel>
+        </div>
+    `,
+};
+
+/* ── Initial Position in Pixels ────────────────────────────────────── */
+
+export const InitialPositionInPixels: Story = {
+    name: 'Initial Position in Pixels (200px)',
+    render: () => html`
+        <div style="${wrapStyle}">
+            <ui-split-panel position-in-pixels="200" style="height:100%;">
+                <div slot="start" style="${panelStyle}">Start (200px)</div>
+                <div slot="end" style="${panelStyle}">End</div>
+            </ui-split-panel>
+        </div>
+    `,
+};
+
+/* ── Vertical ──────────────────────────────────────────────────────── */
+
+export const Vertical: Story = {
+    render: () => html`
+        <div
+            style="height:350px;max-width:400px;border:1px solid var(--ui-border-color,#e4e4e7);border-radius:8px;overflow:hidden;"
+        >
+            <ui-split-panel vertical style="height:100%;">
+                <div slot="start" style="${panelStyle}">Start (Top)</div>
+                <div slot="end" style="${panelStyle}">End (Bottom)</div>
+            </ui-split-panel>
+        </div>
+    `,
+};
+
+/* ── Disabled ──────────────────────────────────────────────────────── */
+
+export const Disabled: Story = {
+    render: () => html`
+        <div style="${wrapStyle}">
+            <ui-split-panel disabled position="40" style="height:100%;">
+                <div slot="start" style="${panelStyle}">Start (Fixed)</div>
+                <div slot="end" style="${panelStyle}">End (Fixed)</div>
+            </ui-split-panel>
+        </div>
+    `,
+};
+
+/* ── Primary Panel ─────────────────────────────────────────────────── */
+
+export const PrimaryPanel: Story = {
+    name: 'Primary Panel',
+    render: () => html`
+        <p
+            style="font-family:system-ui;font-size:13px;color:var(--ui-text-color-muted,#71717a);margin-bottom:12px;"
+        >
+            Resize your browser window. The primary start panel keeps its pixel size.
+        </p>
+        <div style="${wrapStyle}">
+            <ui-split-panel primary="start" style="height:100%;">
+                <div slot="start" style="${panelStyle}">Start (primary)</div>
+                <div slot="end" style="${panelStyle}">End (flexible)</div>
+            </ui-split-panel>
+        </div>
+        <p
+            style="font-family:system-ui;font-size:13px;color:var(--ui-text-color-muted,#71717a);margin:16px 0 8px;"
+        >
+            Primary end — the end panel keeps its size.
+        </p>
+        <div style="${wrapStyle}">
+            <ui-split-panel primary="end" style="height:100%;">
+                <div slot="start" style="${panelStyle}">Start (flexible)</div>
+                <div slot="end" style="${panelStyle}">End (primary)</div>
+            </ui-split-panel>
+        </div>
+    `,
+};
+
+/* ── Min & Max ─────────────────────────────────────────────────────── */
+
+export const MinMax: Story = {
+    name: 'Min & Max',
+    render: () => html`
+        <p
+            style="font-family:system-ui;font-size:13px;color:var(--ui-text-color-muted,#71717a);margin-bottom:12px;"
+        >
+            Both panels have a minimum of 150px via <code>--ui-split-panel-min</code> and
+            <code>--ui-split-panel-max</code>.
+        </p>
+        <div style="${wrapStyle}">
+            <ui-split-panel
+                primary="start"
+                style="height:100%; --ui-split-panel-min: 150px; --ui-split-panel-max: calc(100% - 150px);"
+            >
+                <div slot="start" style="${panelStyle}">Start (min 150px)</div>
+                <div slot="end" style="${panelStyle}">End (min 150px)</div>
+            </ui-split-panel>
+        </div>
+    `,
+};
+
+/* ── Snapping ──────────────────────────────────────────────────────── */
+
+export const Snapping: Story = {
+    render: () => html`
+        <p
+            style="font-family:system-ui;font-size:13px;color:var(--ui-text-color-muted,#71717a);margin-bottom:12px;"
+        >
+            Snaps at 100px and 50% — <code>snap="100px 50%"</code>.
+        </p>
+        <div style="${wrapStyle}">
+            <ui-split-panel snap="100px 50%" style="height:100%;">
+                <div slot="start" style="${panelStyle}">Start</div>
+                <div slot="end" style="${panelStyle}">End</div>
+            </ui-split-panel>
+        </div>
+    `,
+};
+
+export const SnappingRepeat: Story = {
+    name: 'Snapping (repeat)',
+    render: () => html`
+        <p
+            style="font-family:system-ui;font-size:13px;color:var(--ui-text-color-muted,#71717a);margin-bottom:12px;"
+        >
+            Snaps every 100px and at 50% — <code>snap="repeat(100px) 50%"</code>.
+        </p>
+        <div style="${wrapStyle}">
+            <ui-split-panel snap="repeat(100px) 50%" style="height:100%;">
+                <div slot="start" style="${panelStyle}">Start</div>
+                <div slot="end" style="${panelStyle}">End</div>
+            </ui-split-panel>
+        </div>
+    `,
+};
+
+export const CustomSnapFunction: Story = {
+    name: 'Custom Snap Function',
+    render: () => {
+        const snapFn: SnapFunction = ({ pos, size }) =>
+            pos < size / 2 ? 100 : size - 100;
+
+        return html`
+            <p
+                style="font-family:system-ui;font-size:13px;color:var(--ui-text-color-muted,#71717a);margin-bottom:12px;"
+            >
+                Snaps to either 100px from the left or 100px from the right.
+            </p>
+            <div style="${wrapStyle}">
+                <ui-split-panel
+                    .snap=${snapFn}
+                    style="height:100%;"
+                >
+                    <div slot="start" style="${panelStyle}">Start</div>
+                    <div slot="end" style="${panelStyle}">End</div>
+                </ui-split-panel>
+            </div>
+        `;
+    },
+};
+
+/* ── Nested ────────────────────────────────────────────────────────── */
+
+export const Nested: Story = {
+    render: () => html`
+        <div
+            style="height:300px;max-width:700px;border:1px solid var(--ui-border-color,#e4e4e7);border-radius:8px;overflow:hidden;"
+        >
+            <ui-split-panel style="height:100%;">
+                <div slot="start" style="${panelStyle}">Start</div>
+                <ui-split-panel slot="end" vertical style="height:100%;width:100%;">
+                    <div slot="start" style="${panelStyle}">Top</div>
+                    <div slot="end" style="${panelStyle}">Bottom</div>
+                </ui-split-panel>
+            </ui-split-panel>
+        </div>
+    `,
+};
+
+/* ── Custom Divider ────────────────────────────────────────────────── */
+
+export const CustomDivider: Story = {
+    name: 'Custom Divider',
+    render: () => html`
+        <p
+            style="font-family:system-ui;font-size:13px;color:var(--ui-text-color-muted,#71717a);margin-bottom:12px;"
+        >
+            Custom handle via the <code>divider</code> slot and CSS custom properties.
+        </p>
+        <div style="${wrapStyle}">
+            <ui-split-panel
+                style="
+                    height:100%;
+                    --ui-split-panel-divider-width: 2px;
+                    --ui-split-panel-divider-color: var(--ui-primary-color, #3b82f6);
+                    --ui-split-panel-divider-hover-color: var(--ui-primary-color-hover, #2563eb);
+                "
+            >
+                <div slot="start" style="${panelStyle}">Start</div>
+                <div slot="end" style="${panelStyle}">End</div>
+                <div
+                    slot="divider"
+                    style="
+                        width:20px;height:40px;
+                        background:var(--ui-primary-color,#3b82f6);
+                        border-radius:4px;
+                        display:flex;align-items:center;justify-content:center;
+                        color:#fff;font-size:10px;letter-spacing:1px;
+                    "
+                >
+                    &#x2195;
+                </div>
+            </ui-split-panel>
+        </div>
+    `,
+};
+
+/* ── Event Logging ─────────────────────────────────────────────────── */
+
+export const EventLogging: Story = {
+    name: 'Event Logging',
+    render: () => html`
+        <div style="${wrapStyle}">
+            <ui-split-panel
+                style="height:100%;"
+                @ui-split-panel-reposition=${(e: CustomEvent) => {
+                    const el = document.getElementById('split-log');
+                    if (el) {
+                        el.textContent =
+                            `position: ${e.detail.position.toFixed(1)}% ` +
+                            `| positionInPixels: ${e.detail.positionInPixels.toFixed(0)}px`;
+                    }
+                }}
+            >
+                <div slot="start" style="${panelStyle}">Start</div>
+                <div slot="end" style="${panelStyle}">End</div>
+            </ui-split-panel>
+        </div>
+        <div
+            style="margin-top:12px;padding:8px 12px;font-family:monospace;font-size:13px;
+                   background:var(--ui-muted,#f4f4f5);color:var(--ui-text-color,#111827);
+                   border:1px solid var(--ui-border-color,#e4e4e7);border-radius:6px;"
+        >
+            <span id="split-log">Drag the divider to see events</span>
+        </div>
+    `,
+};
+
+/* ── Controlled ────────────────────────────────────────────────────── */
+
+export const Controlled: Story = {
+    render: () => html`
+        <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+            <button
+                style="padding:6px 14px;border:1px solid var(--ui-border-color,#e4e4e7);border-radius:6px;
+                       background:var(--ui-background,#fff);cursor:pointer;font-family:system-ui;font-size:13px;"
+                @click=${() => {
+                    const p = document.getElementById('controlled-panel') as UiSplitPanel | null;
+                    if (p) p.position = 25;
+                }}
+            >
+                25%
+            </button>
+            <button
+                style="padding:6px 14px;border:1px solid var(--ui-border-color,#e4e4e7);border-radius:6px;
+                       background:var(--ui-background,#fff);cursor:pointer;font-family:system-ui;font-size:13px;"
+                @click=${() => {
+                    const p = document.getElementById('controlled-panel') as UiSplitPanel | null;
+                    if (p) p.position = 50;
+                }}
+            >
+                50%
+            </button>
+            <button
+                style="padding:6px 14px;border:1px solid var(--ui-border-color,#e4e4e7);border-radius:6px;
+                       background:var(--ui-background,#fff);cursor:pointer;font-family:system-ui;font-size:13px;"
+                @click=${() => {
+                    const p = document.getElementById('controlled-panel') as UiSplitPanel | null;
+                    if (p) p.position = 75;
+                }}
+            >
+                75%
+            </button>
+        </div>
+        <div style="${wrapStyle}">
+            <ui-split-panel id="controlled-panel" style="height:100%;">
+                <div slot="start" style="${panelStyle}">Start</div>
+                <div slot="end" style="${panelStyle}">End</div>
+            </ui-split-panel>
+        </div>
+    `,
+};

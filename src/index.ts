@@ -165,3 +165,6 @@ export {
     UiResizableHandle,
 } from './resizable/ui-resizable.js';
 export { UiImageComparer } from './image-comparer/ui-image-comparer.js';
+export { UiSplitPanel } from './split-panel/ui-split-panel.js';
+export type { SnapFunction, SnapFunctionParams } from './split-panel/ui-split-panel.js';
+export { parseSnapPoints } from './split-panel/ui-split-panel.js';

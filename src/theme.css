@@ -250,6 +250,14 @@
     --ui-resizable-grip-dot-color:     var(--ui-text-color-muted);
     --ui-resizable-step:               5;
 
+    /* ─── Split Panel ─────────────────────────────────────────── */
+    --ui-split-panel-divider-width:      4px;
+    --ui-split-panel-divider-hit-area:   12px;
+    --ui-split-panel-divider-color:      var(--ui-border-color);
+    --ui-split-panel-divider-hover-color: var(--ui-primary-color);
+    --ui-split-panel-min:                0;
+    --ui-split-panel-max:                100%;
+
     /* ─── Shadows ──────────────────────────────────────────────── */
     --ui-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --ui-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -391,4 +399,8 @@ body {
     --ui-resizable-handle-hover-bg: var(--ui-primary-color);
     --ui-resizable-grip-bg:         var(--ui-surface-1);
     --ui-resizable-grip-dot-color:  var(--ui-text-color-muted);
+
+    /* ─── Split Panel ─────────────────────────────────────────── */
+    --ui-split-panel-divider-color:       var(--ui-border-color);
+    --ui-split-panel-divider-hover-color: var(--ui-primary-color);
 }

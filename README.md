@@ -3,7 +3,6 @@
 - [ ] Forms
 - [ ] Format Date
 - [ ] Format Number
-- [ ] Image Comparer 
 - [ ] QR Code
 - [ ] Relative Time (x ago)
 - [ ] Split Panel   
