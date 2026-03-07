@@ -1,7 +1,6 @@
 # TODO Components
 
 - [ ] Forms
-- [ ] Resizable
 - [ ] Copy Button
 - [ ] Format Date
 - [ ] Format Number

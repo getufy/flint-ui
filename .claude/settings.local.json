@@ -12,7 +12,10 @@
       "Bash(node:*)",
       "Bash(curl:*)",
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest:*)",
-      "Bash(npx eslint:*)"
+      "Bash(npx eslint:*)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/resizable/ui-resizable.test.ts --project components)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/resizable/ui-resizable.test.ts)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/navigation-menu/ui-navigation-menu.test.ts)"
     ]
   }
 }

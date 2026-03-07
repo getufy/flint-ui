@@ -479,12 +479,10 @@ describe('ui-navigation-menu-link', () => {
         expect(el.hasAttribute('active')).toBe(true);
     });
 
-    it('inactive link does not have aria-current', async () => {
+    it('inactive link does not have aria-current attribute', async () => {
         const el = await fixture(html`<ui-navigation-menu-link href="/test">Link</ui-navigation-menu-link>`);
         const link = el.shadowRoot?.querySelector('a') as HTMLAnchorElement;
-        // aria-current="" (empty) is falsy but exists; spec says absent or "false" means not current
-        const val = link.getAttribute('aria-current');
-        expect(val === null || val === '' || val === 'false').toBe(true);
+        expect(link.hasAttribute('aria-current')).toBe(false);
     });
 });
 

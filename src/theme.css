@@ -225,6 +225,18 @@
     --ui-scrollbar-thumb-radius:      9999px;
     --ui-scrollbar-track-color:       transparent;
 
+    /* ─── Resizable ───────────────────────────────────────────── */
+    --ui-resizable-handle-size:        4px;
+    --ui-resizable-handle-active-size: 12px;
+    --ui-resizable-handle-bg:          var(--ui-border-color);
+    --ui-resizable-handle-hover-bg:    var(--ui-primary-color);
+    --ui-resizable-handle-transition:  150ms;
+    --ui-resizable-grip-bg:            var(--ui-background);
+    --ui-resizable-grip-width:         12px;
+    --ui-resizable-grip-height:        24px;
+    --ui-resizable-grip-dot-color:     var(--ui-text-color-muted);
+    --ui-resizable-step:               5;
+
     /* ─── Shadows ──────────────────────────────────────────────── */
     --ui-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --ui-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -354,4 +366,10 @@ body {
     /* ─── Scroll Area ──────────────────────────────────────────── */
     --ui-scrollbar-thumb-color:       rgba(255, 255, 255, 0.35);
     --ui-scrollbar-thumb-hover-color: rgba(255, 255, 255, 0.50);
+
+    /* ─── Resizable ──────────────────────────────────────────── */
+    --ui-resizable-handle-bg:       var(--ui-border-color);
+    --ui-resizable-handle-hover-bg: var(--ui-primary-color);
+    --ui-resizable-grip-bg:         var(--ui-surface-1);
+    --ui-resizable-grip-dot-color:  var(--ui-text-color-muted);
 }
