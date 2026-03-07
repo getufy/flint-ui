@@ -14,18 +14,18 @@
       outline: none;
     }
     li:hover {
-      background-color: var(--ui-hover-color, rgba(0, 0, 0, 0.04));
+      background-color: var(--ui-hover-color);
     }
     li:active {
-      background-color: var(--ui-active-color, rgba(0, 0, 0, 0.08));
+      background-color: var(--ui-active-color);
     }
     li:focus-visible {
-      background-color: var(--ui-hover-color, rgba(0, 0, 0, 0.04));
-      box-shadow: inset 0 0 0 2px var(--ui-primary-color, #3b82f6);
+      background-color: var(--ui-hover-color);
+      box-shadow: inset 0 0 0 2px var(--ui-primary-color);
     }
     :host([selected]) li {
-      background-color: var(--ui-selected-color, rgba(59, 130, 246, 0.1));
-      color: var(--ui-primary-color, #3b82f6);
+      background-color: var(--ui-primary-color-light);
+      color: var(--ui-primary-color);
     }
     :host([disabled]) li {
       opacity: 0.5;

@@ -4,8 +4,8 @@
             align-items: center;
             position: relative;
             --fab-size: 56px;
-            --fab-bg: var(--ui-primary-color, #3b82f6);
-            --fab-color: var(--ui-text-color-on-primary, #fff);
+            --fab-bg: var(--ui-primary-color);
+            --fab-color: var(--ui-text-color-on-primary);
             --action-gap: 12px;
         }
 
@@ -51,10 +51,10 @@
         }
         .fab:hover {
             box-shadow: 0 8px 14px -2px rgba(0,0,0,.3), 0 6px 8px 0 rgba(0,0,0,.16);
-            background: var(--fab-bg-hover, var(--ui-primary-color-hover, #2563eb));
+            background: var(--fab-bg-hover, var(--ui-primary-color-hover));
         }
         .fab:focus-visible {
-            outline: 3px solid var(--ui-primary-color, #3b82f6);
+            outline: 3px solid var(--ui-primary-color);
             outline-offset: 3px;
         }
 

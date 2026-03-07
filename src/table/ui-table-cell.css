@@ -3,10 +3,10 @@
       padding: 16px;
       font-size: 0.875rem;
       text-align: left;
-      border-bottom: 1px solid var(--ui-border-color, #e5e7eb);
+      border-bottom: 1px solid var(--ui-border-color);
     }
     :host([header]) {
-      color: var(--ui-text-color-muted, #6b7280);
+      color: var(--ui-text-color-muted);
       font-weight: 600;
       line-height: 1.5rem;
     }

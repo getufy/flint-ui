@@ -10,8 +10,8 @@
         }
         .panel {
             min-width: 180px;
-            background: var(--ui-menubar-content-bg, #fff);
-            border: 1px solid var(--ui-border-color, #e5e7eb);
+            background: var(--ui-menubar-content-bg, var(--ui-surface-1));
+            border: 1px solid var(--ui-border-color);
             border-radius: 6px;
             padding: 4px;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);

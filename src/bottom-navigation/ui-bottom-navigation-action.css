@@ -5,7 +5,7 @@
             align-items: center;
             justify-content: center;
             padding: 6px 12px 8px;
-            color: var(--ui-text-color-muted, #6b7280);
+            color: var(--ui-text-color-muted);
             cursor: pointer;
             transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), padding 250ms cubic-bezier(0.4, 0, 0.2, 1);
             user-select: none;
@@ -14,11 +14,11 @@
         }
 
         :host(:hover) {
-            background-color: var(--ui-hover-color, rgba(0, 0, 0, 0.04));
+            background-color: var(--ui-hover-color);
         }
 
         :host([active]) {
-            color: var(--ui-primary-color, #3b82f6);
+            color: var(--ui-primary-color);
             padding-top: 8px;
         }
 
@@ -36,7 +36,7 @@
         }
 
         .label {
-            font-family: var(--ui-font-family, sans-serif);
+            font-family: var(--ui-font-family);
             font-size: 0.75rem;
             transition: font-size 250ms cubic-bezier(0.4, 0, 0.2, 1), opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
             opacity: 1;

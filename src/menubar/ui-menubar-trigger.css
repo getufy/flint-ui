@@ -13,8 +13,8 @@
             font-size: 0.875rem;
             font-weight: 500;
             line-height: 1.5;
-            color: var(--ui-text-color, #111827);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
+            color: var(--ui-text-color);
+            font-family: var(--ui-font-family);
             cursor: pointer;
             outline: none;
             user-select: none;
@@ -24,11 +24,11 @@
 
         .trigger:hover,
         :host([active]) .trigger {
-            background: var(--ui-menubar-trigger-hover-bg, rgba(0, 0, 0, 0.06));
+            background: var(--ui-menubar-trigger-hover-bg, var(--ui-hover-color));
         }
 
         .trigger:focus-visible {
-            outline: 2px solid var(--ui-primary-color, #3b82f6);
+            outline: 2px solid var(--ui-primary-color);
             outline-offset: -2px;
         }
 

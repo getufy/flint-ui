@@ -21,25 +21,25 @@
             user-select: none;
             margin-left: 8px;
             margin-right: 8px;
-            color: var(--ui-text-color-muted, #6b7280);
+            color: var(--ui-text-color-muted);
         }
 
         ::slotted(*) {
-            font-family: var(--ui-font-family, sans-serif);
+            font-family: var(--ui-font-family);
             font-size: 0.875rem;
-            color: var(--ui-text-color-muted, #6b7280);
+            color: var(--ui-text-color-muted);
             text-decoration: none;
             transition: color 200ms;
         }
 
         ::slotted(a:hover) {
             text-decoration: underline;
-            color: var(--ui-text-color, #111827);
+            color: var(--ui-text-color);
         }
 
         ::slotted([aria-current="page"]),
         ::slotted(.active) {
-            color: var(--ui-text-color, #111827);
+            color: var(--ui-text-color);
             font-weight: 500;
             pointer-events: none;
         }
@@ -48,17 +48,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--ui-hover-color, rgba(0, 0, 0, 0.04));
+            background: var(--ui-hover-color);
             border: none;
             border-radius: 4px;
             cursor: pointer;
             padding: 4px 8px;
             font-size: 1rem;
             line-height: 1;
-            color: var(--ui-text-color-muted, #6b7280);
+            color: var(--ui-text-color-muted);
             transition: background-color 200ms;
         }
 
         .collapsed-button:hover {
-            background-color: var(--ui-hover-color-strong, rgba(0, 0, 0, 0.08));
+            background-color: var(--ui-active-color);
         }

@@ -1,7 +1,7 @@
 :host {
             display: block;
             width: 100%;
-            font-family: var(--ui-font-family, 'Inter', sans-serif);
+            font-family: var(--ui-font-family);
             margin-bottom: 1rem;
         }
 
@@ -9,7 +9,7 @@
             display: flex;
             align-items: flex-start;
             padding: 12px 16px;
-            border-radius: var(--ui-border-radius-md, 6px);
+            border-radius: var(--ui-border-radius-md);
             gap: 12px;
             border: 1px solid transparent;
             position: relative;
@@ -24,32 +24,32 @@
 
         /* Severities */
         .info {
-            background-color: var(--ui-info-bg, #eff6ff);
-            border-color: var(--ui-info-border-color, #bfdbfe);
-            color: var(--ui-info-text-color, #1e40af);
+            background-color: var(--ui-info-bg);
+            border-color: var(--ui-info-border-color);
+            color: var(--ui-info-text-color);
         }
-        .info .icon { color: var(--ui-info-icon-color, #3b82f6); }
+        .info .icon { color: var(--ui-info-icon-color); }
 
         .success {
-            background-color: var(--ui-success-bg, #f0fdf4);
-            border-color: var(--ui-success-border-color, #bbf7d0);
-            color: var(--ui-success-text-color, #166534);
+            background-color: var(--ui-success-bg);
+            border-color: var(--ui-success-border-color);
+            color: var(--ui-success-text-color);
         }
-        .success .icon { color: var(--ui-success-icon-color, #10b981); }
+        .success .icon { color: var(--ui-success-icon-color); }
 
         .warning {
-            background-color: var(--ui-warning-bg, #fffbeb);
-            border-color: var(--ui-warning-border-color, #fef3c7);
-            color: var(--ui-warning-text-color, #92400e);
+            background-color: var(--ui-warning-bg);
+            border-color: var(--ui-warning-border-color);
+            color: var(--ui-warning-text-color);
         }
-        .warning .icon { color: var(--ui-warning-icon-color, #f59e0b); }
+        .warning .icon { color: var(--ui-warning-icon-color); }
 
         .error {
-            background-color: var(--ui-error-bg, #fef2f2);
-            border-color: var(--ui-error-border-color, #fee2e2);
-            color: var(--ui-error-text-color, #991b1b);
+            background-color: var(--ui-error-bg);
+            border-color: var(--ui-error-border-color);
+            color: var(--ui-error-text-color);
         }
-        .error .icon { color: var(--ui-error-icon-color, #ef4444); }
+        .error .icon { color: var(--ui-error-icon-color); }
 
         .icon {
             flex-shrink: 0;
@@ -97,7 +97,7 @@
 
         .close-button:hover {
             opacity: 1;
-            background-color: var(--ui-active-color, rgba(0, 0, 0, 0.08));
+            background-color: var(--ui-active-color);
         }
 
         .close-button:active {

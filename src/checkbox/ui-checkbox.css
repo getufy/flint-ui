@@ -1,7 +1,7 @@
 :host {
       display: inline-block;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-      color: var(--ui-text-color, #111827);
+      font-family: var(--ui-font-family);
+      color: var(--ui-text-color);
     }
 
     .wrapper {
@@ -22,25 +22,25 @@
       justify-content: center;
       width: 18px;
       height: 18px;
-      border: 2px solid var(--ui-input-border-color, #d1d5db);
-      border-radius: var(--ui-border-radius-sm, 4px);
-      background-color: var(--ui-surface-background, white);
+      border: 2px solid var(--ui-input-border-color);
+      border-radius: var(--ui-border-radius-sm);
+      background-color: var(--ui-surface-1);
       transition: all 0.2s ease;
       margin-right: 8px;
     }
 
     .wrapper:hover:not(.disabled) .checkbox {
-      border-color: var(--ui-primary-color, #3b82f6);
+      border-color: var(--ui-primary-color);
     }
 
     .checkbox.checked, .checkbox.indeterminate {
-      background-color: var(--ui-primary-color, #3b82f6);
-      border-color: var(--ui-primary-color, #3b82f6);
+      background-color: var(--ui-primary-color);
+      border-color: var(--ui-primary-color);
     }
 
     .icon {
       fill: none;
-      stroke: var(--ui-text-color-on-primary, white);
+      stroke: var(--ui-text-color-on-primary);
       stroke-width: 3;
       stroke-linecap: round;
       stroke-linejoin: round;
@@ -66,7 +66,7 @@
 
     /* Focus ring for accessibility */
     input:focus-visible + .checkbox {
-      outline: 2px solid var(--ui-primary-color, #3b82f6);
+      outline: 2px solid var(--ui-primary-color);
       outline-offset: 2px;
     }
 

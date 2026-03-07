@@ -8,7 +8,7 @@
       outline: none;
     }
     .carousel:focus-visible {
-      outline: 2px solid var(--ui-primary-color, #3b82f6);
+      outline: 2px solid var(--ui-primary-color);
       outline-offset: 4px;
-      border-radius: var(--ui-border-radius-md, 6px);
+      border-radius: var(--ui-border-radius-md);
     }

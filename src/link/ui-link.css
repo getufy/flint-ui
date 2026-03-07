@@ -1,13 +1,13 @@
 :host {
             display: inline;
-            --ui-link-color: var(--ui-primary-color, #3b82f6);
-            --ui-link-color-hover: var(--ui-primary-color-dark, #2563eb);
-            --ui-link-color-visited: var(--ui-secondary-color, #7c3aed);
+            --ui-link-color: var(--ui-primary-color);
+            --ui-link-color-hover: var(--ui-primary-color-hover);
+            --ui-link-color-visited: var(--ui-secondary-color);
         }
 
         a {
             color: var(--ui-link-color);
-            font-family: var(--ui-font-family, 'Inter', sans-serif);
+            font-family: var(--ui-font-family);
             font-size: inherit;
             font-weight: inherit;
             line-height: inherit;
@@ -18,14 +18,14 @@
 
         /* Color variants */
         :host([color="inherit"]) a { color: inherit; }
-        :host([color="primary"])  a { color: var(--ui-primary-color, #3b82f6); }
-        :host([color="secondary"]) a { color: var(--ui-secondary-color, #7c3aed); }
-        :host([color="success"])  a { color: var(--ui-success-color, #16a34a); }
-        :host([color="error"])    a { color: var(--ui-error-color, #dc2626); }
-        :host([color="warning"])  a { color: var(--ui-warning-color, #d97706); }
-        :host([color="info"])     a { color: var(--ui-info-color, #0891b2); }
-        :host([color="textPrimary"]) a   { color: var(--ui-text-color, #111827); }
-        :host([color="textSecondary"]) a { color: var(--ui-text-color-muted, #6b7280); }
+        :host([color="primary"])  a { color: var(--ui-primary-color); }
+        :host([color="secondary"]) a { color: var(--ui-secondary-color); }
+        :host([color="success"])  a { color: var(--ui-success-color); }
+        :host([color="error"])    a { color: var(--ui-error-color); }
+        :host([color="warning"])  a { color: var(--ui-warning-color); }
+        :host([color="info"])     a { color: var(--ui-info-icon-color); }
+        :host([color="textPrimary"]) a   { color: var(--ui-text-color); }
+        :host([color="textSecondary"]) a { color: var(--ui-text-color-muted); }
 
         /* Underline variants */
         :host([underline="none"])   a { text-decoration: none; }

@@ -1,7 +1,7 @@
 :host {
       display: inline-block;
       vertical-align: middle;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
+      font-family: var(--ui-font-family);
     }
 
     .chip {
@@ -14,8 +14,8 @@
       font-weight: 500;
       white-space: nowrap;
       transition: all 0.2s ease;
-      background-color: var(--ui-surface-background-flat, #f3f4f6);
-      color: var(--ui-text-color, #111827);
+      background-color: var(--ui-surface-2);
+      color: var(--ui-text-color);
       border: 1px solid transparent;
       user-select: none;
       gap: 8px;
@@ -28,36 +28,36 @@
     }
 
     .chip.clickable:hover:not(.disabled) {
-      background-color: var(--ui-hover-color, #e5e7eb);
+      background-color: var(--ui-hover-color);
     }
 
     .chip.clickable:active:not(.disabled) {
-      background-color: var(--ui-active-color, #d1d5db);
+      background-color: var(--ui-active-color);
     }
 
     .chip.outlined {
       background-color: transparent;
-      border-color: var(--ui-input-border-color, #d1d5db);
+      border-color: var(--ui-input-border-color);
     }
 
     .chip.primary:not(.outlined) {
-      background-color: var(--ui-primary-color, #3b82f6);
-      color: var(--ui-text-color-on-primary, white);
+      background-color: var(--ui-primary-color);
+      color: var(--ui-text-color-on-primary);
     }
 
     .chip.secondary:not(.outlined) {
-      background-color: var(--ui-secondary-color, #6b7280);
-      color: var(--ui-text-color-on-primary, white);
+      background-color: var(--ui-secondary-color);
+      color: var(--ui-text-color-on-primary);
     }
 
     .chip.outlined.primary {
-      color: var(--ui-primary-color, #3b82f6);
-      border-color: var(--ui-primary-color, #3b82f6);
+      color: var(--ui-primary-color);
+      border-color: var(--ui-primary-color);
     }
 
     .chip.outlined.secondary {
-      color: var(--ui-secondary-color, #6b7280);
-      border-color: var(--ui-secondary-color, #6b7280);
+      color: var(--ui-secondary-color);
+      border-color: var(--ui-secondary-color);
     }
 
     .chip.primary.clickable:hover:not(.disabled) {
@@ -76,7 +76,7 @@
     }
 
     .chip:focus-visible {
-      outline: 2px solid var(--ui-primary-color, #3b82f6);
+      outline: 2px solid var(--ui-primary-color);
       outline-offset: 2px;
     }
 
@@ -97,7 +97,7 @@
 
     .delete-icon:hover {
       opacity: 1;
-      background-color: var(--ui-active-color, rgba(0, 0, 0, 0.1));
+      background-color: var(--ui-active-color);
     }
 
     .delete-icon:focus-visible {

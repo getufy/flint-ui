@@ -2,9 +2,9 @@
       display: block;
       box-sizing: border-box;
       background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, transparent 100%);
-      color: var(--ui-image-bar-overlay-text, #ffffff);
+      color: var(--ui-image-bar-overlay-text, var(--ui-text-color-on-primary));
       padding: 12px 12px 8px;
-      font-family: var(--ui-font-family, system-ui, sans-serif);
+      font-family: var(--ui-font-family);
     }
 
     /* Top overlay: gradient flows downward */
@@ -15,9 +15,9 @@
 
     /* Below-image mode: solid background */
     :host([position="below"]) {
-      background: var(--ui-surface-color, #fff);
-      color: var(--ui-text-color, #111827);
-      border-top: 1px solid var(--ui-border-color, #e5e7eb);
+      background: var(--ui-surface-1);
+      color: var(--ui-text-color);
+      border-top: 1px solid var(--ui-border-color);
       padding: 8px 12px;
     }
 
@@ -58,9 +58,9 @@
     }
 
     ::slotted([slot="action"]) {
-      color: var(--ui-image-bar-overlay-text, #ffffff);
+      color: var(--ui-image-bar-overlay-text, var(--ui-text-color-on-primary));
     }
 
     :host([position="below"]) ::slotted([slot="action"]) {
-      color: var(--ui-text-color, #111827);
+      color: var(--ui-text-color);
     }

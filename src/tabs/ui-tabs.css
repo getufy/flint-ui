@@ -1,5 +1,5 @@
-:host { display: block; font-family: var(--ui-font-family,'Inter',sans-serif);
-                background: var(--ui-surface-background, #fff); }
+:host { display: block; font-family: var(--ui-font-family);
+                background: var(--ui-background); }
         /* Vertical: stretch the root div so panels fill available height */
         :host([orientation="vertical"]) .root {
             display: flex; flex-direction: row;

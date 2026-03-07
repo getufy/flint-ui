@@ -3,21 +3,16 @@
             --ui-drawer-width: 250px;
             --ui-drawer-mini-width: 72px;
             --ui-drawer-height: auto;
-            --ui-drawer-bg: var(--ui-surface-background, #ffffff);
+            --ui-drawer-bg: var(--ui-surface-1);
             --ui-drawer-z-index: 1200;
             --ui-drawer-shadow: 0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12);
         }
 
         /* ── Backdrop ───────────────────────────────────────────────────── */
-        /*
-         * FIX: previously used display:none/.visible pattern which cancelled
-         * the opacity transition on close (display:none fires instantly).
-         * Now always in-flow with pointer-events disabled, so fade-out works.
-         */
         .backdrop {
             position: fixed;
             inset: 0;
-            background: var(--ui-backdrop-color, rgba(0,0,0,.5));
+            background: var(--ui-backdrop-color);
             z-index: calc(var(--ui-drawer-z-index) - 1);
             opacity: 0;
             pointer-events: none;
@@ -34,7 +29,7 @@
             display: flex;
             flex-direction: column;
             overflow-y: auto;
-            outline: none; /* suppress focus ring from programmatic focus */
+            outline: none;
         }
         :host([container]) .paper { position: absolute; }
 
@@ -89,11 +84,11 @@
             transform: none;
             box-shadow: none;
             transition: none;
-            border-right: 1px solid var(--ui-border-color, #e5e7eb);
+            border-right: 1px solid var(--ui-border-color);
         }
         :host([variant="persistent"][anchor="right"]) .paper {
             border-right: none;
-            border-left: 1px solid var(--ui-border-color, #e5e7eb);
+            border-left: 1px solid var(--ui-border-color);
         }
         :host([variant="persistent"]) .paper:not(.open) {
             display: none;
@@ -101,13 +96,13 @@
 
         /* ── Mini ───────────────────────────────────────────────────────── */
         :host([variant="mini"]) {
-            display: flex; /* mini participates in flex layout of its parent */
+            display: flex;
         }
         :host([variant="mini"]) .paper {
             position: relative;
             transform: none;
             box-shadow: none;
-            border-right: 1px solid var(--ui-border-color, #e5e7eb);
+            border-right: 1px solid var(--ui-border-color);
             width: var(--ui-drawer-mini-width);
             overflow-x: hidden;
             white-space: nowrap;
@@ -116,7 +111,7 @@
         }
         :host([variant="mini"][anchor="right"]) .paper {
             border-right: none;
-            border-left: 1px solid var(--ui-border-color, #e5e7eb);
+            border-left: 1px solid var(--ui-border-color);
         }
         :host([variant="mini"][open]) .paper {
             width: var(--ui-drawer-width);
@@ -129,16 +124,11 @@
         ::slotted([data-drawer-hide-mini]) { transition: opacity .18s; }
 
         /* ── Edge handle ─────────────────────────────────────────────────── */
-        /*
-         * FIX: Edge handle is only meaningful for temporary drawers (overlay
-         * that slides in). For persistent/mini (position:relative), a fixed/
-         * absolute edge handle floats detached from the drawer. Restrict it.
-         */
         .edge {
             display: none;
             position: fixed;
             background: var(--ui-drawer-bg);
-            border: 1px solid var(--ui-border-color, #e5e7eb);
+            border: 1px solid var(--ui-border-color);
             box-shadow: 0 1px 3px rgba(0,0,0,.12);
             cursor: pointer;
             z-index: var(--ui-drawer-z-index);
@@ -155,5 +145,5 @@
         .edge-top    { top:0; left:0; right:0; height:16px; border-radius:0 0 8px 8px; }
         .edge-bottom { bottom:0; left:0; right:0; height:16px; border-radius:8px 8px 0 0; }
 
-        .edge-handle { width:4px; height:32px; background:var(--ui-border-color, #cbd5e1); border-radius:2px; }
+        .edge-handle { width:4px; height:32px; background:var(--ui-border-color); border-radius:2px; }
         .edge-top .edge-handle, .edge-bottom .edge-handle { width:32px; height:4px; }

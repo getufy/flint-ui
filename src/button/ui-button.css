@@ -5,10 +5,10 @@
       display: block;
     }
     button {
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
+      font-family: var(--ui-font-family);
       font-weight: 600;
       border: none;
-      border-radius: var(--ui-button-border-radius, var(--ui-border-radius-md, 6px));
+      border-radius: var(--ui-button-border-radius, var(--ui-border-radius-md));
       cursor: pointer;
       display: inline-flex;
       align-items: center;
@@ -16,38 +16,38 @@
       gap: 8px;
       width: 100%;
       transition: all 0.2s ease;
-      box-shadow: var(--ui-shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+      box-shadow: var(--ui-shadow-sm);
     }
     .primary {
-      background-color: var(--ui-primary-color, #3b82f6);
-      color: var(--ui-text-color-on-primary, white);
+      background-color: var(--ui-primary-color);
+      color: var(--ui-text-color-on-primary);
     }
     .primary:hover {
-      background-color: var(--ui-primary-color-hover, #2563eb);
+      background-color: var(--ui-primary-color-hover);
     }
     .primary:active {
-      background-color: var(--ui-primary-color-active, #1d4ed8);
+      background-color: var(--ui-primary-color-active);
     }
     .secondary {
-      background-color: var(--ui-surface-background, white);
-      color: var(--ui-text-color, #111827);
-      border: 1px solid var(--ui-input-border-color, #d1d5db);
+      background-color: var(--ui-surface-1);
+      color: var(--ui-text-color);
+      border: 1px solid var(--ui-input-border-color);
     }
     .secondary:hover {
-      background-color: var(--ui-hover-color, #f3f4f6);
+      background-color: var(--ui-hover-color);
     }
     .secondary:active {
-      background-color: var(--ui-active-color, #e5e7eb);
+      background-color: var(--ui-active-color);
     }
     .destructive {
-      background-color: var(--ui-destructive-color, #ef4444);
-      color: var(--ui-text-color-on-primary, white);
+      background-color: var(--ui-destructive-color);
+      color: var(--ui-text-color-on-primary);
     }
     .destructive:hover {
-      background-color: var(--ui-destructive-color-hover, #dc2626);
+      background-color: var(--ui-destructive-color-hover);
     }
     .destructive:active {
-      background-color: var(--ui-destructive-color-active, #b91c1c);
+      background-color: var(--ui-destructive-color-active);
     }
     .small {
       padding: 6px 12px;

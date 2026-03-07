@@ -2,8 +2,8 @@
       display: block;
       width: 100%;
       --ui-linear-progress-height: 4px;
-      --ui-linear-progress-color: var(--ui-primary-color, #3b82f6);
-      --ui-linear-progress-bg: rgba(59, 130, 246, 0.15);
+      --ui-linear-progress-color: var(--ui-primary-color);
+      --ui-linear-progress-bg: var(--ui-primary-color-light);
     }
 
     .root {
@@ -38,31 +38,13 @@
     }
 
     @keyframes indeterminate1 {
-      0% {
-        left: -35%;
-        right: 100%;
-      }
-      60% {
-        left: 100%;
-        right: -90%;
-      }
-      100% {
-        left: 100%;
-        right: -90%;
-      }
+      0% { left: -35%; right: 100%; }
+      60% { left: 100%; right: -90%; }
+      100% { left: 100%; right: -90%; }
     }
 
     @keyframes indeterminate2 {
-      0% {
-        left: -200%;
-        right: 100%;
-      }
-      60% {
-        left: 107%;
-        right: -8%;
-      }
-      100% {
-        left: 107%;
-        right: -8%;
-      }
+      0% { left: -200%; right: 100%; }
+      60% { left: 107%; right: -8%; }
+      100% { left: 107%; right: -8%; }
     }

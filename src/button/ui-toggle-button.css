@@ -1,15 +1,15 @@
 :host {
       display: inline-block;
     }
-    
+
     button {
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
+      font-family: var(--ui-font-family);
       font-weight: 500;
       font-size: 14px;
       padding: 8px 16px;
-      border: 1px solid var(--ui-input-border-color, #d1d5db);
-      background-color: var(--ui-surface-background, white);
-      color: var(--ui-text-color, #111827);
+      border: 1px solid var(--ui-input-border-color);
+      background-color: var(--ui-surface-1);
+      color: var(--ui-text-color);
       cursor: pointer;
       transition: all 0.2s ease;
       display: inline-flex;
@@ -20,13 +20,13 @@
     }
 
     button:hover:not(:disabled) {
-      background-color: var(--ui-hover-color, #f3f4f6);
+      background-color: var(--ui-hover-color);
     }
 
     button.selected {
-      background-color: var(--ui-active-color, #e5e7eb);
-      color: var(--ui-primary-color, #3b82f6);
-      border-color: var(--ui-primary-color, #3b82f6);
+      background-color: var(--ui-active-color);
+      color: var(--ui-primary-color);
+      border-color: var(--ui-primary-color);
       z-index: 1;
     }
 
@@ -36,19 +36,19 @@
     }
 
     button:focus-visible {
-      box-shadow: 0 0 0 2px var(--ui-primary-color, #3b82f6);
+      box-shadow: 0 0 0 2px var(--ui-primary-color);
       z-index: 2;
     }
 
     /* Border radius management is usually handled by the group */
     :host([data-first]) button {
-      border-top-left-radius: var(--ui-border-radius-md, 6px);
-      border-bottom-left-radius: var(--ui-border-radius-md, 6px);
+      border-top-left-radius: var(--ui-border-radius-md);
+      border-bottom-left-radius: var(--ui-border-radius-md);
     }
 
     :host([data-last]) button {
-      border-top-right-radius: var(--ui-border-radius-md, 6px);
-      border-bottom-right-radius: var(--ui-border-radius-md, 6px);
+      border-top-right-radius: var(--ui-border-radius-md);
+      border-bottom-right-radius: var(--ui-border-radius-md);
     }
 
     :host(:not([data-first])) button {

@@ -1,8 +1,8 @@
 :host {
             display: block;
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-            background: var(--ui-surface-background, #fff);
-            border-radius: var(--ui-border-radius-md, 8px);
+            font-family: var(--ui-font-family);
+            background: var(--ui-surface-1);
+            border-radius: var(--ui-border-radius-md);
             overflow: hidden;
         }
 

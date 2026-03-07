@@ -4,11 +4,11 @@
       --ui-switch-height: 32px;
       --ui-switch-thumb-size: 24px;
       --ui-switch-thumb-offset: 4px;
-      --ui-switch-bg: var(--ui-secondary-color, #6b7280);
-      --ui-switch-bg-on: var(--ui-primary-color, #3b82f6);
-      --ui-switch-thumb-bg: var(--ui-switch-thumb-color, #ffffff);
+      --ui-switch-bg: var(--ui-secondary-color);
+      --ui-switch-bg-on: var(--ui-primary-color);
+      --ui-switch-thumb-bg: var(--ui-switch-thumb-color);
 
-      font-family: var(--ui-font-family, sans-serif);
+      font-family: var(--ui-font-family);
       cursor: pointer;
     }
 
@@ -59,23 +59,23 @@
       height: var(--ui-switch-thumb-size);
       background-color: var(--ui-switch-thumb-bg);
       border-radius: 50%;
-      box-shadow: var(--ui-shadow-sm, 0 1px 3px rgba(0,0,0,0.1));
+      box-shadow: var(--ui-shadow-sm);
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--ui-text-color-muted, #6b7280);
+      color: var(--ui-text-color-muted);
     }
 
     .switch.checked .thumb {
       transform: translateX(calc(var(--ui-switch-width) - var(--ui-switch-thumb-size) - (var(--ui-switch-thumb-offset) * 2)));
-      color: var(--ui-primary-color, #3b82f6);
+      color: var(--ui-primary-color);
     }
 
     .label {
       font-size: 0.9375rem;
       font-weight: 500;
-      color: var(--ui-text-color, #111827);
+      color: var(--ui-text-color);
     }
 
     .label.disabled {
@@ -89,7 +89,7 @@
     }
 
     .switch:focus-visible {
-      outline: 2px solid var(--ui-primary-color, #3b82f6);
+      outline: 2px solid var(--ui-primary-color);
       outline-offset: 2px;
     }
 

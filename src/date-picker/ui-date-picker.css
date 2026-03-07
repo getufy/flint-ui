@@ -1,6 +1,6 @@
 :host {
       display: inline-block;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
+      font-family: var(--ui-font-family);
     }
 
     /* ── Field ─────────────────────────────────────────────────────── */
@@ -14,17 +14,17 @@
       display: block;
       font-size: 0.75rem;
       font-weight: 500;
-      color: var(--ui-text-color-muted, #6b7280);
+      color: var(--ui-text-color-muted);
       margin-bottom: 4px;
     }
 
     .field-input {
       font-family: inherit;
       font-size: 0.9375rem;
-      color: var(--ui-text-color, #111827);
-      background: var(--ui-input-bg, var(--ui-surface-background, #fff));
-      border: 1.5px solid var(--ui-border-color, #d1d5db);
-      border-radius: var(--ui-border-radius-md, 8px);
+      color: var(--ui-text-color);
+      background: var(--ui-input-bg);
+      border: 1.5px solid var(--ui-border-color);
+      border-radius: var(--ui-border-radius-md);
       padding: 10px 44px 10px 14px;
       width: 180px;
       outline: none;
@@ -32,16 +32,16 @@
       box-sizing: border-box;
       cursor: text;
     }
-    .field-input::placeholder { color: var(--ui-input-placeholder-color, var(--ui-text-color-muted, #9ca3af)); }
+    .field-input::placeholder { color: var(--ui-input-placeholder-color); }
     .field-input:focus {
-      border-color: var(--ui-primary-color, #3b82f6);
-      box-shadow: 0 0 0 3px var(--ui-primary-focus-ring, rgba(59,130,246,.15));
+      border-color: var(--ui-primary-color);
+      box-shadow: 0 0 0 3px var(--ui-primary-focus-ring);
     }
     :host([disabled]) .field-input {
-      background: var(--ui-input-disabled-bg, var(--ui-input-readonly-bg, #f9fafb));
-      color: var(--ui-text-color-muted, #9ca3af);
+      background: var(--ui-input-disabled-bg);
+      color: var(--ui-text-color-muted);
       cursor: not-allowed;
-      border-color: var(--ui-border-color, #e5e7eb);
+      border-color: var(--ui-border-color);
     }
     :host([readonly]) .field-input { cursor: default; }
 
@@ -51,27 +51,27 @@
       display: flex; align-items: center; justify-content: center;
       width: 28px; height: 28px;
       border: none; background: transparent; cursor: pointer;
-      border-radius: 50%; color: var(--ui-text-color-muted, #6b7280);
+      border-radius: 50%; color: var(--ui-text-color-muted);
       transition: background 0.12s, color 0.12s;
       font-size: 1rem;
     }
-    .calendar-icon-btn:hover { background: var(--ui-hover-color, rgba(0,0,0,.06)); color: var(--ui-primary-color, #3b82f6); }
+    .calendar-icon-btn:hover { background: var(--ui-hover-color); color: var(--ui-primary-color); }
     :host([disabled]) .calendar-icon-btn { pointer-events: none; opacity: 0.4; }
     :host([readonly]) .calendar-icon-btn { pointer-events: none; }
 
     /* Error state */
     :host([error]) .field-input {
-      border-color: var(--ui-error-color, #ef4444);
+      border-color: var(--ui-error-color);
     }
     :host([error]) .field-input:focus {
-      box-shadow: 0 0 0 3px var(--ui-error-focus-ring, rgba(239,68,68,.15));
+      box-shadow: 0 0 0 3px var(--ui-error-focus-ring);
     }
     .helper-text {
       font-size: 0.75rem;
       margin-top: 4px;
-      color: var(--ui-text-color-muted, #6b7280);
+      color: var(--ui-text-color-muted);
     }
-    :host([error]) .helper-text { color: var(--ui-error-color, #ef4444); }
+    :host([error]) .helper-text { color: var(--ui-error-color); }
 
     /* ── Desktop popover ───────────────────────────────────────────── */
     .popover-anchor {
@@ -84,9 +84,9 @@
       top: calc(100% + 6px);
       left: 0;
       z-index: 1400;
-      background: var(--ui-surface-background, #fff);
-      border-radius: var(--ui-border-radius-xl, 12px);
-      box-shadow: var(--ui-shadow-lg, 0 8px 24px -4px rgba(0,0,0,.18));
+      background: var(--ui-surface-1);
+      border-radius: var(--ui-border-radius-xl);
+      box-shadow: var(--ui-shadow-lg);
       transform-origin: top left;
       transform: scale(0.94) translateY(-4px);
       opacity: 0;
@@ -108,7 +108,7 @@
       justify-content: flex-end;
       gap: 8px;
       padding: 4px 12px 12px;
-      border-top: 1px solid var(--ui-border-color, #f3f4f6);
+      border-top: 1px solid var(--ui-border-color);
     }
     .action-btn {
       font-family: inherit;
@@ -120,20 +120,20 @@
     }
     .action-btn.cancel {
       background: transparent;
-      color: var(--ui-text-color-muted, #6b7280);
+      color: var(--ui-text-color-muted);
     }
-    .action-btn.cancel:hover { background: var(--ui-hover-color, rgba(0,0,0,.06)); }
+    .action-btn.cancel:hover { background: var(--ui-hover-color); }
     .action-btn.ok {
-      background: var(--ui-primary-color, #3b82f6);
-      color: var(--ui-text-color-on-primary, #fff);
+      background: var(--ui-primary-color);
+      color: var(--ui-text-color-on-primary);
     }
-    .action-btn.ok:hover { background: var(--ui-primary-color-hover, #2563eb); }
+    .action-btn.ok:hover { background: var(--ui-primary-color-hover); }
 
     /* ── Static ─────────────────────────────────────────────────────── */
     .static-wrapper {
       display: inline-block;
-      border-radius: var(--ui-border-radius-xl, 12px);
-      box-shadow: var(--ui-shadow-sm, 0 1px 4px rgba(0,0,0,.08)), 0 0 0 1px var(--ui-border-color, #e5e7eb);
+      border-radius: var(--ui-border-radius-xl);
+      box-shadow: var(--ui-shadow-sm), 0 0 0 1px var(--ui-border-color);
       overflow: hidden;
     }
 

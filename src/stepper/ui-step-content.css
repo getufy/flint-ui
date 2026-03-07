@@ -14,6 +14,6 @@
         .panel.open .inner { padding: 8px 16px 16px; }
         .content {
             font-size: .875rem;
-            color: var(--ui-text-color, #374151);
-            font-family: var(--ui-font-family,'Inter',sans-serif);
+            color: var(--ui-text-color);
+            font-family: var(--ui-font-family);
         }

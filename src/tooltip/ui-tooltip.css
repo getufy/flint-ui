@@ -9,12 +9,12 @@
 
     .tooltip-popup {
       position: absolute;
-      background-color: var(--ui-tooltip-bg, rgba(97, 97, 97, 0.92));
-      color: var(--ui-tooltip-color, #fff);
+      background-color: var(--ui-tooltip-bg);
+      color: var(--ui-tooltip-color);
       padding: 4px 8px;
-      border-radius: var(--ui-border-radius-sm, 4px);
+      border-radius: var(--ui-border-radius-sm);
       font-size: 0.75rem;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
+      font-family: var(--ui-font-family);
       line-height: 1.4;
       white-space: nowrap;
       z-index: 1000;
@@ -22,7 +22,7 @@
       visibility: hidden;
       transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
       pointer-events: none;
-      box-shadow: var(--ui-shadow-sm, 0 2px 4px rgba(0,0,0,0.2));
+      box-shadow: var(--ui-shadow-sm);
     }
 
     /* Placements */
@@ -84,7 +84,7 @@
       left: 50%;
       transform: translateX(-50%);
       border-width: 5px 5px 0 5px;
-      border-color: var(--ui-tooltip-bg, rgba(97, 97, 97, 0.92)) transparent transparent transparent;
+      border-color: var(--ui-tooltip-bg) transparent transparent transparent;
     }
 
     .tooltip-popup.bottom .arrow {
@@ -92,7 +92,7 @@
       left: 50%;
       transform: translateX(-50%);
       border-width: 0 5px 5px 5px;
-      border-color: transparent transparent var(--ui-tooltip-bg, rgba(97, 97, 97, 0.92)) transparent;
+      border-color: transparent transparent var(--ui-tooltip-bg) transparent;
     }
 
     .tooltip-popup.left .arrow {
@@ -100,7 +100,7 @@
       top: 50%;
       transform: translateY(-50%);
       border-width: 5px 0 5px 5px;
-      border-color: transparent transparent transparent var(--ui-tooltip-bg, rgba(97, 97, 97, 0.92));
+      border-color: transparent transparent transparent var(--ui-tooltip-bg);
     }
 
     .tooltip-popup.right .arrow {
@@ -108,5 +108,5 @@
       top: 50%;
       transform: translateY(-50%);
       border-width: 5px 5px 5px 0;
-      border-color: transparent var(--ui-tooltip-bg, rgba(97, 97, 97, 0.92)) transparent transparent;
+      border-color: transparent var(--ui-tooltip-bg) transparent transparent;
     }

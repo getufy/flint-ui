@@ -19,17 +19,18 @@
         }
 
         .snackbar {
+            /* Intentionally dark regardless of theme — standard snackbar pattern */
             background-color: var(--ui-snackbar-bg, #313131);
-            color: var(--ui-snackbar-color, #fff);
-            font-family: var(--ui-font-family, 'Inter', sans-serif);
+            color: var(--ui-snackbar-color, #ffffff);
+            font-family: var(--ui-font-family);
             font-size: 0.875rem;
             line-height: 1.43;
             letter-spacing: 0.01071em;
             display: flex;
             align-items: center;
             padding: 6px 16px;
-            border-radius: var(--ui-border-radius-md, 4px);
-            box-shadow: var(--ui-shadow-lg, 0 3px 5px -1px rgba(0,0,0,0.2), 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12));
+            border-radius: var(--ui-border-radius-md);
+            box-shadow: var(--ui-shadow-lg);
             min-width: var(--ui-snackbar-min-width, 288px);
             max-width: var(--ui-snackbar-max-width, 560px);
             pointer-events: auto;
@@ -45,7 +46,7 @@
             visibility: visible;
         }
 
-        /* Variants */
+        /* Variants — intentional brand colors, not theme tokens */
         :host([variant="info"])    .snackbar { background-color: var(--ui-snackbar-bg-info, #0288d1); }
         :host([variant="success"]) .snackbar { background-color: var(--ui-snackbar-bg-success, #2e7d32); }
         :host([variant="warning"]) .snackbar { background-color: var(--ui-snackbar-bg-warning, #ed6c02); }

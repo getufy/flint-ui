@@ -15,7 +15,7 @@
 
         .content {
             padding: 8px 16px 16px;
-            font-family: var(--ui-font-family, sans-serif);
+            font-family: var(--ui-font-family);
             font-size: 0.875rem;
-            color: var(--ui-text-color, #111827);
+            color: var(--ui-text-color);
         }

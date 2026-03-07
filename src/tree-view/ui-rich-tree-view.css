@@ -1,6 +1,6 @@
 :host {
       display: block;
-      font-family: var(--ui-font-family, system-ui, sans-serif);
+      font-family: var(--ui-font-family);
     }
 
     .tree-root {
@@ -15,7 +15,7 @@
       gap: 8px;
       min-height: 32px;
       font-size: 14px;
-      color: var(--ui-text-color, #6b7280);
+      color: var(--ui-text-color);
     }
 
     .lazy-root {
@@ -39,22 +39,20 @@
 
     /* ── Drag & Drop indicators ────────────────────────────────── */
 
-    /* FIX #1: Added missing drag/drop CSS that was completely absent */
-
     ui-tree-item[dragging] {
       opacity: 0.4;
     }
 
     ui-tree-item[drop-position="before"] {
-      box-shadow: 0 -2px 0 0 var(--ui-primary, #3b82f6);
+      box-shadow: 0 -2px 0 0 var(--ui-primary-color);
     }
 
     ui-tree-item[drop-position="after"] {
-      box-shadow: 0 2px 0 0 var(--ui-primary, #3b82f6);
+      box-shadow: 0 2px 0 0 var(--ui-primary-color);
     }
 
     ui-tree-item[drop-position="inside"] {
-      outline: 2px solid var(--ui-primary, #3b82f6);
+      outline: 2px solid var(--ui-primary-color);
       outline-offset: -1px;
       border-radius: 4px;
     }

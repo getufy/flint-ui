@@ -17,14 +17,14 @@
         }
 
         .card {
-            background: var(--ui-hovercard-bg, #fff);
-            border: 1px solid var(--ui-hovercard-border-color, #e5e7eb);
+            background: var(--ui-hovercard-bg, var(--ui-surface-1));
+            border: 1px solid var(--ui-hovercard-border-color, var(--ui-border-color));
             border-radius: var(--ui-hovercard-radius, 8px);
             box-shadow: var(--ui-hovercard-shadow, 0 4px 16px rgba(0, 0, 0, 0.12));
             padding: var(--ui-hovercard-padding, 16px);
             min-width: var(--ui-hovercard-min-width, 200px);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
+            font-family: var(--ui-font-family);
             font-size: var(--ui-hovercard-font-size, 0.875rem);
-            color: var(--ui-hovercard-color, #111827);
+            color: var(--ui-hovercard-color, var(--ui-text-color));
             line-height: 1.5;
         }

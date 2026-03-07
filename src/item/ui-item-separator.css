@@ -1,5 +1,5 @@
 :host {
             display: block;
             height: 1px;
-            background: var(--ui-border-color, #e5e7eb);
+            background: var(--ui-border-color);
         }

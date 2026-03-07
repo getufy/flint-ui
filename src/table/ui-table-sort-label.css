@@ -6,10 +6,10 @@
       transition: color 0.2s;
     }
     :host(:hover) {
-      color: var(--ui-text-color, #111827);
+      color: var(--ui-text-color);
     }
     :host(.active) {
-      color: var(--ui-text-color, #111827);
+      color: var(--ui-text-color);
       font-weight: 700;
     }
     .icon {

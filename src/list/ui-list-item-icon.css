@@ -1,7 +1,7 @@
 :host {
       display: inline-flex;
       min-width: 40px;
-      color: var(--ui-text-color-muted, #6b7280);
+      color: var(--ui-text-color-muted);
       flex-shrink: 0;
     }
     ::slotted(*) {

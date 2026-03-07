@@ -17,9 +17,9 @@
         /* Menu surface */
         .menu-paper {
             position: absolute;
-            background: var(--ui-surface-background, #fff);
-            border-radius: var(--ui-border-radius-md, 8px);
-            box-shadow: var(--ui-shadow-md, 0 4px 6px -1px rgba(0,0,0,.1)), var(--ui-shadow-lg, 0 10px 15px -3px rgba(0,0,0,.1));
+            background: var(--ui-surface-1);
+            border-radius: var(--ui-border-radius-md);
+            box-shadow: var(--ui-shadow-md), var(--ui-shadow-lg);
             min-width: var(--ui-menu-min-width);
             z-index: var(--ui-menu-z-index);
             overflow: hidden;

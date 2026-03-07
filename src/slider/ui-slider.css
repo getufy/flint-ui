@@ -1,8 +1,8 @@
 :host {
       display: block;
       padding: 12px 0;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-      color: var(--ui-text-color, #111827);
+      font-family: var(--ui-font-family);
+      color: var(--ui-text-color);
 
       /* Size tokens — overridden per size below */
       --_track-height: 6px;
@@ -60,7 +60,7 @@
 
     .value-display {
       font-weight: 600;
-      color: var(--ui-primary-color, #3b82f6);
+      color: var(--ui-primary-color);
     }
 
     .track-container {
@@ -86,7 +86,7 @@
       appearance: none;
       width: 100%;
       height: var(--_track-height);
-      background: var(--ui-input-border-color, #d1d5db);
+      background: var(--ui-input-border-color);
       border-radius: 3px;
       outline: none;
       margin: 10px 0;
@@ -126,8 +126,8 @@
       width: var(--_thumb-size);
       height: var(--_thumb-size);
       border-radius: 50%;
-      background: var(--ui-surface-background, white);
-      border: 2px solid var(--ui-primary-color, #3b82f6);
+      background: var(--ui-surface-1);
+      border: 2px solid var(--ui-primary-color);
       box-shadow: var(--ui-shadow-sm);
       cursor: pointer;
       transition: transform 0.1s ease, box-shadow 0.1s ease;
@@ -138,21 +138,21 @@
       width: calc(var(--_thumb-size) - 2px);
       height: calc(var(--_thumb-size) - 2px);
       border-radius: 50%;
-      background: var(--ui-surface-background, white);
-      border: 2px solid var(--ui-primary-color, #3b82f6);
+      background: var(--ui-surface-1);
+      border: 2px solid var(--ui-primary-color);
       box-shadow: var(--ui-shadow-sm);
       cursor: pointer;
     }
 
     /* Firefox fill track */
     input[type='range']::-moz-range-progress {
-      background: var(--ui-primary-color, #3b82f6);
+      background: var(--ui-primary-color);
       height: var(--_track-height);
       border-radius: 3px;
     }
 
     input[type='range']:focus-visible::-webkit-slider-thumb {
-      outline: 2px solid var(--ui-primary-color, #3b82f6);
+      outline: 2px solid var(--ui-primary-color);
       outline-offset: 4px;
     }
 

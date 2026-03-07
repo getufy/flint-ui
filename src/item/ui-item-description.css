@@ -2,6 +2,6 @@
             display: block;
             font-size: 0.8125rem;
             line-height: 1.5;
-            color: var(--ui-text-color-muted, #6b7280);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
+            color: var(--ui-text-color-muted);
+            font-family: var(--ui-font-family);
         }

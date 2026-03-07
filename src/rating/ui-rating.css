@@ -1,6 +1,7 @@
 :host {
       display: inline-block;
-      font-family: var(--ui-font-family, system-ui, sans-serif);
+      font-family: var(--ui-font-family);
+      /* Star colors are intentional yellow — not theme tokens */
       --ui-rating-color: #ffb400;
       --ui-rating-empty-color: #faaf0033;
       --ui-rating-size: 2rem;
@@ -59,26 +60,12 @@
       overflow: visible;
     }
 
-    .active svg {
-      fill: var(--ui-rating-color);
-    }
+    .active svg { fill: var(--ui-rating-color); }
+    .hover svg  { fill: var(--ui-rating-color); opacity: 0.7; }
 
-    .hover svg {
-      fill: var(--ui-rating-color);
-      opacity: 0.7;
-    }
-
-    .half svg .star-full {
-      display: none;
-    }
-
-    .half svg .star-half {
-      display: block;
-    }
-
-    .star-half {
-      display: none;
-    }
+    .half svg .star-full  { display: none; }
+    .half svg .star-half  { display: block; }
+    .star-half            { display: none; }
 
     .hidden-input {
       position: absolute;

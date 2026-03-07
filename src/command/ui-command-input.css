@@ -1,6 +1,6 @@
 :host {
             display: block;
-            font-family: var(--ui-font-family, system-ui, sans-serif);
+            font-family: var(--ui-font-family);
         }
 
         .input-wrap {
@@ -8,12 +8,12 @@
             align-items: center;
             gap: 8px;
             padding: 10px 12px;
-            border-bottom: 1px solid var(--ui-border-color, #e5e7eb);
+            border-bottom: 1px solid var(--ui-border-color);
         }
 
         .search-icon {
             flex-shrink: 0;
-            color: var(--ui-text-color-muted, #6b7280);
+            color: var(--ui-text-color-muted);
             display: flex;
             align-items: center;
         }
@@ -24,13 +24,13 @@
             outline: none;
             background: transparent;
             font-size: 0.9375rem;
-            color: var(--ui-text-color, #111827);
+            color: var(--ui-text-color);
             font-family: inherit;
             min-width: 0;
         }
 
         input::placeholder {
-            color: var(--ui-text-color-muted, #6b7280);
+            color: var(--ui-text-color-muted);
         }
 
         /* Hide the native clear button added by type="search" in WebKit. */

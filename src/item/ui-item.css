@@ -11,7 +11,7 @@
             border-radius: 8px;
             box-sizing: border-box;
             overflow: hidden;
-            font-family: var(--ui-font-family, system-ui, sans-serif);
+            font-family: var(--ui-font-family);
         }
 
         /* Size variants — override sizing custom properties */
@@ -27,9 +27,9 @@
 
         /* Visual variants */
         :host([variant='outline']) {
-            border: 1px solid var(--ui-border-color, #e5e7eb);
+            border: 1px solid var(--ui-border-color);
         }
 
         :host([variant='muted']) {
-            background: var(--ui-muted-bg, #f9fafb);
+            background: var(--ui-muted-bg, var(--ui-muted-background));
         }

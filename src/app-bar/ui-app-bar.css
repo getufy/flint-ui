@@ -2,9 +2,9 @@
       display: block;
       position: relative;
       --ui-app-bar-height: 64px;
-      --ui-app-bar-bg: var(--ui-primary-color, #3b82f6);
-      --ui-app-bar-color: var(--ui-text-color-on-primary, #ffffff);
-      --ui-app-bar-shadow: var(--ui-shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
+      --ui-app-bar-bg: var(--ui-primary-color);
+      --ui-app-bar-color: var(--ui-text-color-on-primary);
+      --ui-app-bar-shadow: var(--ui-shadow-md);
       z-index: 1100;
     }
 
@@ -41,9 +41,9 @@
     }
 
     header.variant-outlined {
-      background-color: var(--ui-surface-background, #ffffff);
-      color: var(--ui-text-color, #111827);
-      border-bottom: 1px solid var(--ui-border-color, #e5e7eb);
+      background-color: var(--ui-surface-1);
+      color: var(--ui-text-color);
+      border-bottom: 1px solid var(--ui-border-color);
       box-shadow: none;
     }
 
@@ -51,7 +51,7 @@
       flex-grow: 1;
       min-width: 0;
       margin: 0 16px;
-      font-family: var(--ui-font-family, sans-serif);
+      font-family: var(--ui-font-family);
       font-size: 1.25rem;
       font-weight: 500;
       white-space: nowrap;

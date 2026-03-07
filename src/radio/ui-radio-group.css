@@ -1,7 +1,7 @@
 :host {
             display: block;
-            font-family: var(--ui-font-family, 'Inter', sans-serif);
-            color: var(--ui-text-color, #111827);
+            font-family: var(--ui-font-family);
+            color: var(--ui-text-color);
         }
 
         :host([disabled]) {

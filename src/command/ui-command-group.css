@@ -1,6 +1,6 @@
 :host {
             display: block;
-            font-family: var(--ui-font-family, system-ui, sans-serif);
+            font-family: var(--ui-font-family);
         }
         :host([hidden]) { display: none !important; }
 
@@ -10,7 +10,7 @@
             font-weight: 600;
             letter-spacing: 0.04em;
             text-transform: uppercase;
-            color: var(--ui-text-color-muted, #6b7280);
+            color: var(--ui-text-color-muted);
         }
 
         .heading:empty { display: none; }

@@ -1,8 +1,8 @@
 :host {
       display: block;
       padding: 12px 0;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-      color: var(--ui-text-color, #111827);
+      font-family: var(--ui-font-family);
+      color: var(--ui-text-color);
     }
 
     .slider-wrapper {
@@ -21,7 +21,7 @@
 
     .value-display {
       font-weight: 600;
-      color: var(--ui-primary-color, #3b82f6);
+      color: var(--ui-primary-color);
     }
 
     .disabled-label {
@@ -41,7 +41,7 @@
       left: 0;
       right: 0;
       height: 6px;
-      background: var(--ui-input-border-color, #d1d5db);
+      background: var(--ui-input-border-color);
       border-radius: 3px;
       pointer-events: none;
     }
@@ -49,7 +49,7 @@
     .track-fill {
       position: absolute;
       height: 6px;
-      background: var(--ui-primary-color, #3b82f6);
+      background: var(--ui-primary-color);
       border-radius: 3px;
       pointer-events: none;
       transition: left 0.05s, width 0.05s;
@@ -91,15 +91,15 @@
       width: 20px;
       height: 20px;
       border-radius: 50%;
-      background: var(--ui-surface-background, white);
-      border: 2px solid var(--ui-primary-color, #3b82f6);
+      background: var(--ui-surface-1);
+      border: 2px solid var(--ui-primary-color);
       box-shadow: var(--ui-shadow-sm);
       cursor: pointer;
       transition: transform 0.1s ease, box-shadow 0.1s ease;
     }
 
     input[type='range']:focus-visible::-webkit-slider-thumb {
-      outline: 2px solid var(--ui-primary-color, #3b82f6);
+      outline: 2px solid var(--ui-primary-color);
       outline-offset: 4px;
     }
 
@@ -115,22 +115,22 @@
     input[type='range']:disabled::-webkit-slider-thumb {
       cursor: not-allowed;
       opacity: 0.5;
-      border-color: var(--ui-input-border-color, #d1d5db);
+      border-color: var(--ui-input-border-color);
     }
 
     input[type='range']::-moz-range-thumb {
       width: 18px;
       height: 18px;
       border-radius: 50%;
-      background: var(--ui-surface-background, white);
-      border: 2px solid var(--ui-primary-color, #3b82f6);
+      background: var(--ui-surface-1);
+      border: 2px solid var(--ui-primary-color);
       box-shadow: var(--ui-shadow-sm);
       cursor: pointer;
     }
 
     input[type='range']:disabled::-moz-range-thumb {
       opacity: 0.5;
-      border-color: var(--ui-input-border-color, #d1d5db);
+      border-color: var(--ui-input-border-color);
     }
 
     input[type='range']::-moz-range-track {

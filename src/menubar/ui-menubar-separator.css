@@ -1,7 +1,7 @@
 :host {
             display: block;
             height: 1px;
-            background: var(--ui-border-color, #e5e7eb);
+            background: var(--ui-border-color);
             margin: 4px -4px;
         }
         :host([hidden]) { display: none !important; }

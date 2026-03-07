@@ -1,8 +1,8 @@
-:host { display: block; font-family: var(--ui-font-family,'Inter',sans-serif); }
+:host { display: block; font-family: var(--ui-font-family); }
         .stepper {
             display: flex;
             padding: 16px 24px;
-            background: var(--ui-surface-background, #fff);
+            background: var(--ui-surface-1);
         }
         /* Horizontal: align-items:stretch lets each step be as tall as the tallest */
         .stepper.horizontal { align-items: stretch; flex-direction: row; }

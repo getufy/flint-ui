@@ -10,8 +10,8 @@
             cursor: pointer;
             font-size: 0.875rem;
             line-height: 1.25rem;
-            color: var(--ui-text-color, #111827);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
+            color: var(--ui-text-color);
+            font-family: var(--ui-font-family);
             outline: none;
             user-select: none;
             transition: background 0.1s;
@@ -22,7 +22,7 @@
         }
 
         :host([highlighted]) .item {
-            background: var(--ui-menubar-highlight-bg, rgba(0, 0, 0, 0.06));
+            background: var(--ui-menubar-highlight-bg, var(--ui-hover-color));
         }
 
         :host([disabled]) .item {

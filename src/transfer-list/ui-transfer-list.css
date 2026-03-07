@@ -2,9 +2,9 @@
       display: block;
       --ui-transfer-list-height: 300px;
       --ui-transfer-list-width: 200px;
-      
-      font-family: var(--ui-font-family, sans-serif);
-      color: var(--ui-text-color, #111827);
+
+      font-family: var(--ui-font-family);
+      color: var(--ui-text-color);
     }
 
     .container {
@@ -22,16 +22,16 @@
     .list-title {
       font-size: 0.875rem;
       font-weight: 600;
-      color: var(--ui-text-color-muted, #6b7280);
+      color: var(--ui-text-color-muted);
       margin-bottom: 4px;
     }
 
     .list-box {
       width: var(--ui-transfer-list-width);
       height: var(--ui-transfer-list-height);
-      background: var(--ui-surface-background, #ffffff);
-      border: 1.5px solid var(--ui-border-color, #e5e7eb);
-      border-radius: var(--ui-border-radius-lg, 8px);
+      background: var(--ui-surface-1);
+      border: 1.5px solid var(--ui-border-color);
+      border-radius: var(--ui-border-radius-lg);
       overflow-y: auto;
       display: flex;
       flex-direction: column;
@@ -49,17 +49,17 @@
     }
 
     .list-item:hover {
-      background-color: var(--ui-hover-color, rgba(0, 0, 0, 0.04));
+      background-color: var(--ui-hover-color);
     }
 
     .list-item.selected {
-      background-color: var(--ui-primary-color-light, rgba(59, 130, 246, 0.08));
+      background-color: var(--ui-primary-color-light);
     }
 
     .checkbox {
       width: 18px;
       height: 18px;
-      border: 2px solid var(--ui-border-color, #d1d5db);
+      border: 2px solid var(--ui-border-color);
       border-radius: 4px;
       display: flex;
       align-items: center;
@@ -69,12 +69,12 @@
     }
 
     .list-item.selected .checkbox {
-      background-color: var(--ui-primary-color, #3b82f6);
-      border-color: var(--ui-primary-color, #3b82f6);
+      background-color: var(--ui-primary-color);
+      border-color: var(--ui-primary-color);
     }
 
     .check-icon {
-      color: var(--ui-text-color-on-primary, white);
+      color: var(--ui-text-color-on-primary);
       opacity: 0;
       transform: scale(0.5);
       transition: all 0.2s;
@@ -101,17 +101,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1.5px solid var(--ui-border-color, #e5e7eb);
-      background: var(--ui-surface-background, #ffffff);
+      border: 1.5px solid var(--ui-border-color);
+      background: var(--ui-surface-1);
       border-radius: 8px;
       cursor: pointer;
-      color: var(--ui-text-color, #111827);
+      color: var(--ui-text-color);
       transition: all 0.2s;
     }
 
     .action-button:hover:not(:disabled) {
-      border-color: var(--ui-primary-color, #3b82f6);
-      color: var(--ui-primary-color, #3b82f6);
+      border-color: var(--ui-primary-color);
+      color: var(--ui-primary-color);
       box-shadow: var(--ui-shadow-md);
       transform: translateY(-1px);
     }
@@ -123,7 +123,7 @@
     .action-button:disabled {
       opacity: 0.4;
       cursor: not-allowed;
-      background-color: var(--ui-surface-background-flat, #f3f4f6);
+      background-color: var(--ui-surface-2);
     }
 
     /* Scrollbar */
@@ -134,6 +134,6 @@
       background: transparent;
     }
     .list-box::-webkit-scrollbar-thumb {
-      background: var(--ui-border-color, #e5e7eb);
+      background: var(--ui-border-color);
       border-radius: 3px;
     }

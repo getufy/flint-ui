@@ -3,7 +3,7 @@
             font-size: 1rem;
             font-weight: 600;
             line-height: 1.4;
-            color: var(--ui-text-color, #111827);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
+            color: var(--ui-text-color);
+            font-family: var(--ui-font-family);
             margin: 0;
         }

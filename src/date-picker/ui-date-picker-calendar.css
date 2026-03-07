@@ -1,13 +1,13 @@
 :host {
       display: inline-block;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
+      font-family: var(--ui-font-family);
       user-select: none;
     }
 
     .calendar {
       width: 296px;
-      background: var(--ui-surface-background, #fff);
-      border-radius: var(--ui-border-radius-xl, 12px);
+      background: var(--ui-surface-1);
+      border-radius: var(--ui-border-radius-xl);
       overflow: hidden;
     }
 
@@ -21,22 +21,22 @@
     .header-label {
       font-size: 0.9375rem;
       font-weight: 600;
-      color: var(--ui-text-color, #111827);
+      color: var(--ui-text-color);
       cursor: pointer;
       padding: 4px 8px;
       border-radius: 6px;
       transition: background 0.12s;
     }
-    .header-label:hover { background: var(--ui-hover-color, rgba(0,0,0,.04)); }
+    .header-label:hover { background: var(--ui-hover-color); }
 
     .nav-btn {
       display: flex; align-items: center; justify-content: center;
       width: 32px; height: 32px;
       border: none; background: transparent; cursor: pointer;
-      border-radius: 50%; color: var(--ui-text-color-muted, #6b7280);
+      border-radius: 50%; color: var(--ui-text-color-muted);
       font-size: 1rem; transition: background 0.12s;
     }
-    .nav-btn:hover { background: var(--ui-hover-color, rgba(0,0,0,.06)); }
+    .nav-btn:hover { background: var(--ui-hover-color); }
     .nav-btn:disabled { opacity: 0.3; cursor: default; }
 
     /* Day-of-week row */
@@ -50,7 +50,7 @@
       text-align: center;
       font-size: 0.6875rem;
       font-weight: 600;
-      color: var(--ui-text-color-muted, #9ca3af);
+      color: var(--ui-text-color-muted);
       padding: 4px 0;
       text-transform: uppercase;
       letter-spacing: 0.04em;
@@ -71,14 +71,14 @@
       border: none; background: transparent; cursor: pointer;
       border-radius: 50%;
       font-size: 0.8125rem;
-      color: var(--ui-text-color, #374151);
+      color: var(--ui-text-color);
       transition: background 0.1s, color 0.1s;
       position: relative;
     }
-    .day-cell:hover:not(.disabled):not(.selected) { background: var(--ui-hover-color, rgba(0,0,0,.06)); }
-    .day-cell.other-month { color: var(--ui-text-color-muted, #d1d5db); }
+    .day-cell:hover:not(.disabled):not(.selected) { background: var(--ui-hover-color); }
+    .day-cell.other-month { color: var(--ui-text-color-muted); }
     .day-cell.today:not(.selected) {
-      color: var(--ui-primary-color, #3b82f6);
+      color: var(--ui-primary-color);
       font-weight: 700;
     }
     .day-cell.today:not(.selected)::after {
@@ -88,14 +88,14 @@
       left: 50%; transform: translateX(-50%);
       width: 4px; height: 4px;
       border-radius: 50%;
-      background: var(--ui-primary-color, #3b82f6);
+      background: var(--ui-primary-color);
     }
     .day-cell.selected {
-      background: var(--ui-primary-color, #3b82f6);
-      color: var(--ui-text-color-on-primary, #fff);
+      background: var(--ui-primary-color);
+      color: var(--ui-text-color-on-primary);
       font-weight: 700;
     }
-    .day-cell.selected:hover { background: var(--ui-primary-color-hover, #2563eb); }
+    .day-cell.selected:hover { background: var(--ui-primary-color-hover); }
     .day-cell.disabled {
       opacity: 0.35;
       cursor: not-allowed;
@@ -115,13 +115,13 @@
       padding: 8px 4px;
       border: none; background: transparent; cursor: pointer;
       border-radius: 6px; font-size: 0.875rem;
-      color: var(--ui-text-color, #374151);
+      color: var(--ui-text-color);
       transition: background 0.12s;
     }
-    .year-btn:hover { background: var(--ui-hover-color, rgba(0,0,0,.06)); }
+    .year-btn:hover { background: var(--ui-hover-color); }
     .year-btn.selected-year {
-      background: var(--ui-primary-color, #3b82f6);
-      color: var(--ui-text-color-on-primary, #fff);
+      background: var(--ui-primary-color);
+      color: var(--ui-text-color-on-primary);
       font-weight: 700;
     }
 
@@ -136,12 +136,12 @@
       padding: 10px 4px;
       border: none; background: transparent; cursor: pointer;
       border-radius: 6px; font-size: 0.8125rem;
-      color: var(--ui-text-color, #374151);
+      color: var(--ui-text-color);
       transition: background 0.12s;
     }
-    .month-btn:hover { background: var(--ui-hover-color, rgba(0,0,0,.06)); }
+    .month-btn:hover { background: var(--ui-hover-color); }
     .month-btn.selected-month {
-      background: var(--ui-primary-color, #3b82f6);
-      color: var(--ui-text-color-on-primary, #fff);
+      background: var(--ui-primary-color);
+      color: var(--ui-text-color-on-primary);
       font-weight: 700;
     }
