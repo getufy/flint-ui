@@ -2,7 +2,7 @@
 // Source: src/tree-view/ui-rich-tree-view.ts
 
 import React from 'react';
-import type { UiRichTreeView as UiRichTreeViewElement } from '../../../src/tree-view/ui-rich-tree-view.js';
+import type { UiRichTreeView as UiRichTreeViewElement, RichTreeItem, RichTreeViewDataSource } from '../../../src/tree-view/ui-rich-tree-view.js';
 import { UiRichTreeViewEvents } from '../events/ui-rich-tree-view.js';
 // Register the custom element
 import '../../../src/tree-view/ui-rich-tree-view.js';

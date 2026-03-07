@@ -25,7 +25,10 @@ export function Header() {
                 <nav style={row(4)}>
                     {/* Nav links — hidden on mobile */}
                     {!isTablet && ['Components', 'Forms', 'Data', 'Overlays', 'Flow'].map(l => (
-                        <a key={l} href={`#s-${l.toLowerCase()}`} style={{ fontSize: 14, fontWeight: 500, color: c.muted, textDecoration: 'none', padding: '6px 12px', borderRadius: 6 }}>{l}</a>
+                        <a key={l} href={`#s-${l.toLowerCase()}`} onClick={e => {
+                            e.preventDefault();
+                            document.getElementById(`s-${l.toLowerCase()}`)?.scrollIntoView({ behavior: 'smooth' });
+                        }} style={{ fontSize: 14, fontWeight: 500, color: c.muted, textDecoration: 'none', padding: '6px 12px', borderRadius: 6, cursor: 'pointer' }}>{l}</a>
                     ))}
 
                     {/* Dark mode toggle — always visible */}
