@@ -1,7 +1,5 @@
 # TODO Components
 
-- [ ] Toggle
-A two-state button that can be either on or off.
 - [ ] Forms
 - [ ] Resizable
 - [ ] Copy Button
