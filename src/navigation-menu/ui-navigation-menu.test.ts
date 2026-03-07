@@ -514,4 +514,254 @@ describe('Accessibility', () => {
         const panel = el.shadowRoot?.querySelector('[role="menu"]');
         expect(panel).toBeTruthy();
     });
+
+    it('link has aria-disabled="false" when not disabled', async () => {
+        const el = await fixture(html`<ui-navigation-menu-link href="#">Link</ui-navigation-menu-link>`);
+        const a = el.shadowRoot?.querySelector('a') as HTMLAnchorElement;
+        expect(a.getAttribute('aria-disabled')).toBe('false');
+    });
+
+    it('link has aria-disabled="true" when disabled', async () => {
+        const el = await fixture(html`<ui-navigation-menu-link href="#" disabled>Link</ui-navigation-menu-link>`);
+        const a = el.shadowRoot?.querySelector('a') as HTMLAnchorElement;
+        expect(a.getAttribute('aria-disabled')).toBe('true');
+    });
+
+    it('trigger host has no tabindex attribute', async () => {
+        const el = await fixture(html`<ui-navigation-menu-trigger content-id="x">T</ui-navigation-menu-trigger>`);
+        expect(el.hasAttribute('tabindex')).toBe(false);
+    });
+});
+
+// ---------------------------------------------------------------------------
+// ui-navigation-menu-item hover timers
+// ---------------------------------------------------------------------------
+
+describe('ui-navigation-menu-item hover timers', () => {
+    it('opens content after openDelay on mouseenter', async () => {
+        vi.useFakeTimers();
+        const el = await fixture(html`
+            <ui-navigation-menu>
+                <ui-navigation-menu-list>
+                    <ui-navigation-menu-item open-delay="100">
+                        <ui-navigation-menu-trigger content-id="ht1">T</ui-navigation-menu-trigger>
+                        <ui-navigation-menu-content id="ht1">C</ui-navigation-menu-content>
+                    </ui-navigation-menu-item>
+                </ui-navigation-menu-list>
+            </ui-navigation-menu>
+        `);
+        const item = el.querySelector('ui-navigation-menu-item')!;
+        const content = el.querySelector('ui-navigation-menu-content') as UiNavigationMenuContent;
+
+        item.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        expect(content.open).toBe(false); // not yet open
+
+        vi.advanceTimersByTime(100);
+        await content.updateComplete;
+        expect(content.open).toBe(true);
+        vi.useRealTimers();
+    });
+
+    it('mouseleave before openDelay cancels pending open', async () => {
+        vi.useFakeTimers();
+        const el = await fixture(html`
+            <ui-navigation-menu>
+                <ui-navigation-menu-list>
+                    <ui-navigation-menu-item open-delay="200">
+                        <ui-navigation-menu-trigger content-id="ht2">T</ui-navigation-menu-trigger>
+                        <ui-navigation-menu-content id="ht2">C</ui-navigation-menu-content>
+                    </ui-navigation-menu-item>
+                </ui-navigation-menu-list>
+            </ui-navigation-menu>
+        `);
+        const item = el.querySelector('ui-navigation-menu-item')!;
+        const content = el.querySelector('ui-navigation-menu-content') as UiNavigationMenuContent;
+
+        item.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        vi.advanceTimersByTime(100); // before delay fires
+        item.dispatchEvent(new MouseEvent('mouseleave', { bubbles: true }));
+        vi.advanceTimersByTime(300); // advance past original delay
+        await content.updateComplete;
+
+        expect(content.open).toBe(false);
+        vi.useRealTimers();
+    });
+
+    it('closes content after closeDelay on mouseleave', async () => {
+        vi.useFakeTimers();
+        const el = await fixture(html`
+            <ui-navigation-menu>
+                <ui-navigation-menu-list>
+                    <ui-navigation-menu-item open-delay="0" close-delay="150">
+                        <ui-navigation-menu-trigger content-id="ht3">T</ui-navigation-menu-trigger>
+                        <ui-navigation-menu-content id="ht3">C</ui-navigation-menu-content>
+                    </ui-navigation-menu-item>
+                </ui-navigation-menu-list>
+            </ui-navigation-menu>
+        `);
+        const item = el.querySelector('ui-navigation-menu-item')!;
+        const content = el.querySelector('ui-navigation-menu-content') as UiNavigationMenuContent;
+
+        item.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        vi.advanceTimersByTime(0);
+        await content.updateComplete;
+        expect(content.open).toBe(true);
+
+        item.dispatchEvent(new MouseEvent('mouseleave', { bubbles: true }));
+        expect(content.open).toBe(true); // not yet closed
+
+        vi.advanceTimersByTime(150);
+        await content.updateComplete;
+        expect(content.open).toBe(false);
+        vi.useRealTimers();
+    });
+
+    it('mouseenter during close delay cancels close', async () => {
+        vi.useFakeTimers();
+        const el = await fixture(html`
+            <ui-navigation-menu>
+                <ui-navigation-menu-list>
+                    <ui-navigation-menu-item open-delay="0" close-delay="200">
+                        <ui-navigation-menu-trigger content-id="ht4">T</ui-navigation-menu-trigger>
+                        <ui-navigation-menu-content id="ht4">C</ui-navigation-menu-content>
+                    </ui-navigation-menu-item>
+                </ui-navigation-menu-list>
+            </ui-navigation-menu>
+        `);
+        const item = el.querySelector('ui-navigation-menu-item')!;
+        const content = el.querySelector('ui-navigation-menu-content') as UiNavigationMenuContent;
+
+        item.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        vi.advanceTimersByTime(0);
+        await content.updateComplete;
+        expect(content.open).toBe(true);
+
+        item.dispatchEvent(new MouseEvent('mouseleave', { bubbles: true }));
+        vi.advanceTimersByTime(100); // before close fires
+        item.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true })); // re-enter cancels close
+        vi.advanceTimersByTime(300);
+        await content.updateComplete;
+
+        expect(content.open).toBe(true); // still open
+        vi.useRealTimers();
+    });
+
+    it('timers are cleared on disconnectedCallback', async () => {
+        vi.useFakeTimers();
+        const el = await fixture(html`
+            <ui-navigation-menu>
+                <ui-navigation-menu-list>
+                    <ui-navigation-menu-item open-delay="100">
+                        <ui-navigation-menu-trigger content-id="ht5">T</ui-navigation-menu-trigger>
+                        <ui-navigation-menu-content id="ht5">C</ui-navigation-menu-content>
+                    </ui-navigation-menu-item>
+                </ui-navigation-menu-list>
+            </ui-navigation-menu>
+        `);
+        const item = el.querySelector('ui-navigation-menu-item')!;
+        const content = el.querySelector('ui-navigation-menu-content') as UiNavigationMenuContent;
+
+        item.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        item.remove(); // disconnect before timer fires
+        vi.advanceTimersByTime(200);
+        await content.updateComplete;
+
+        expect(content.open).toBe(false);
+        vi.useRealTimers();
+    });
+});
+
+// ---------------------------------------------------------------------------
+// ui-navigation-menu-content keyboard Home/End
+// ---------------------------------------------------------------------------
+
+describe('ui-navigation-menu-content Home/End keys', () => {
+    it('Home key focuses first item', async () => {
+        const el = await fixture(html`
+            <ui-navigation-menu-content id="he-test" open>
+                <ui-navigation-menu-link href="#">A</ui-navigation-menu-link>
+                <ui-navigation-menu-link href="#">B</ui-navigation-menu-link>
+                <ui-navigation-menu-link href="#">C</ui-navigation-menu-link>
+            </ui-navigation-menu-content>
+        `);
+        const content = el as UiNavigationMenuContent;
+        const links = Array.from(el.querySelectorAll('ui-navigation-menu-link')) as HTMLElement[];
+        links[2].focus();
+
+        content.dispatchEvent(new KeyboardEvent('keydown', { key: 'Home', bubbles: true }));
+        await content.updateComplete;
+
+        expect(el.ownerDocument.activeElement).toBe(links[0]);
+    });
+
+    it('End key focuses last item', async () => {
+        const el = await fixture(html`
+            <ui-navigation-menu-content id="he-test2" open>
+                <ui-navigation-menu-link href="#">A</ui-navigation-menu-link>
+                <ui-navigation-menu-link href="#">B</ui-navigation-menu-link>
+                <ui-navigation-menu-link href="#">C</ui-navigation-menu-link>
+            </ui-navigation-menu-content>
+        `);
+        const content = el as UiNavigationMenuContent;
+        const links = Array.from(el.querySelectorAll('ui-navigation-menu-link')) as HTMLElement[];
+        links[0].focus();
+
+        content.dispatchEvent(new KeyboardEvent('keydown', { key: 'End', bubbles: true }));
+        await content.updateComplete;
+
+        expect(el.ownerDocument.activeElement).toBe(links[2]);
+    });
+});
+
+// ---------------------------------------------------------------------------
+// close-on-link-click
+// ---------------------------------------------------------------------------
+
+describe('close on link click', () => {
+    it('clicking a link inside content closes the menu', async () => {
+        const el = await fixture(html`
+            <ui-navigation-menu>
+                <ui-navigation-menu-list>
+                    <ui-navigation-menu-item>
+                        <ui-navigation-menu-trigger content-id="col1">T</ui-navigation-menu-trigger>
+                        <ui-navigation-menu-content id="col1">
+                            <ui-navigation-menu-link href="#">Link</ui-navigation-menu-link>
+                        </ui-navigation-menu-content>
+                    </ui-navigation-menu-item>
+                </ui-navigation-menu-list>
+            </ui-navigation-menu>
+        `);
+        const menu = el as UiNavigationMenu;
+        const content = el.querySelector('ui-navigation-menu-content') as UiNavigationMenuContent;
+        const link = el.querySelector('ui-navigation-menu-link') as UiNavigationMenuLink;
+
+        menu.openContent('col1');
+        await content.updateComplete;
+        expect(content.open).toBe(true);
+
+        link.click();
+        await content.updateComplete;
+        expect(content.open).toBe(false);
+        expect(menu.openContentId).toBeNull();
+    });
+});
+
+// ---------------------------------------------------------------------------
+// openContent closes previously open content
+// ---------------------------------------------------------------------------
+
+describe('openContent replaces open panel', () => {
+    it('openContent() on a different id closes previously open content', async () => {
+        const { menu, content1, content2 } = await makeMenu();
+        menu.openContent('c1');
+        await content1.updateComplete;
+        expect(content1.open).toBe(true);
+
+        menu.openContent('c2');
+        await content1.updateComplete;
+        await content2.updateComplete;
+        expect(content1.open).toBe(false);
+        expect(content2.open).toBe(true);
+        expect(menu.openContentId).toBe('c2');
+    });
 });

@@ -17,25 +17,27 @@ import { customElement, property } from 'lit/decorators.js';
 export class UiNavigationMenuList extends LitElement {
     static override styles = css`
         :host {
-            display: inline-flex;
+            display: flex;
             --ui-navigation-menu-list-gap: 4px;
             --ui-navigation-menu-list-direction: row;
+            --ui-navigation-menu-list-align: center;
         }
 
         .list {
-            display: inline-flex;
-            align-items: center;
+            display: flex;
+            align-items: var(--ui-navigation-menu-list-align);
             flex-direction: var(--ui-navigation-menu-list-direction);
             gap: var(--ui-navigation-menu-list-gap);
             list-style: none;
             margin: 0;
             padding: 0;
+            width: 100%;
         }
     `;
 
     /** Gap between menu items */
     @property({ type: Number })
-    gap: number = 8;
+    gap: number = 4;
 
     /** Flex direction for the list */
     @property({ type: String })
@@ -62,6 +64,7 @@ export class UiNavigationMenuList extends LitElement {
     private _updateStyles() {
         this.style.setProperty('--ui-navigation-menu-list-gap', `${this.gap}px`);
         this.style.setProperty('--ui-navigation-menu-list-direction', this.direction);
+        this.style.setProperty('--ui-navigation-menu-list-align', this.direction === 'column' ? 'stretch' : 'center');
     }
 
     override render() {

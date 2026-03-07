@@ -28,7 +28,7 @@ export class UiNavigationMenuContent extends LitElement {
             display: none;
             position: absolute;
             top: calc(100% + 6px);
-            left: 0;
+            inset-inline-start: 0;
             z-index: var(--ui-navigation-menu-content-z-index, 1000);
         }
 
@@ -69,6 +69,12 @@ export class UiNavigationMenuContent extends LitElement {
 
         ::slotted(*) {
             display: block;
+        }
+
+        ::slotted(ui-navigation-menu-link) {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
         }
     `;
 
