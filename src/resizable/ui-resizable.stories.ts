@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './ui-resizable.js';
+import '../tabs/ui-tabs.js';
+import type { UiResizablePanel } from './ui-resizable.js';
 
 const meta: Meta = {
   title: 'Layout/Resizable',
@@ -10,7 +12,8 @@ const meta: Meta = {
       description: {
         component:
           'Accessible resizable panel groups and layouts with keyboard support. ' +
-          'Panels can be resized by dragging handles or using arrow keys.',
+          'Panels can be resized by dragging handles or using arrow keys. ' +
+          'Use `collapse()`, `expand()`, and `toggle()` on a panel for programmatic control.',
       },
     },
   },
@@ -154,7 +157,7 @@ export const ThreePanels: Story = {
 };
 
 /* ------------------------------------------------------------------ */
-/*  Collapsible Panel                                                 */
+/*  Collapsible (drag-based)                                          */
 /* ------------------------------------------------------------------ */
 
 export const Collapsible: Story = {
@@ -169,6 +172,89 @@ export const Collapsible: Story = {
           <div style="${panelStyle}">Content</div>
         </ui-resizable-panel>
       </ui-resizable-group>
+    </div>
+    <p style="font-size:12px;color:var(--ui-text-color-muted,#71717a);margin-top:8px;">
+      Drag the sidebar to its minimum, then keep dragging to snap it fully closed.
+    </p>
+  `,
+};
+
+/* ------------------------------------------------------------------ */
+/*  Collapse API                                                      */
+/* ------------------------------------------------------------------ */
+
+export const CollapseAPI: Story = {
+  name: 'Collapse API',
+  render: () => html`
+    <div data-collapse-demo>
+      <!-- External controls — always visible, never inside a collapsible panel -->
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;">
+        <button
+          style="padding:5px 14px;border:1px solid var(--ui-border-color,#e4e4e7);border-radius:6px;
+                 cursor:pointer;font-size:13px;background:var(--ui-background,#fff);"
+          @click=${(e: Event) => {
+            const root = (e.target as HTMLElement).closest('[data-collapse-demo]')!;
+            const panel = root.querySelector<UiResizablePanel>('[data-sidebar-panel]')!;
+            panel.collapse();
+          }}
+        >Collapse</button>
+        <button
+          style="padding:5px 14px;border:1px solid var(--ui-border-color,#e4e4e7);border-radius:6px;
+                 cursor:pointer;font-size:13px;background:var(--ui-background,#fff);"
+          @click=${(e: Event) => {
+            const root = (e.target as HTMLElement).closest('[data-collapse-demo]')!;
+            const panel = root.querySelector<UiResizablePanel>('[data-sidebar-panel]')!;
+            panel.expand();
+          }}
+        >Expand</button>
+        <button
+          style="padding:5px 14px;border:1px solid var(--ui-primary-color,#3b82f6);border-radius:6px;
+                 cursor:pointer;font-size:13px;color:#fff;background:var(--ui-primary-color,#3b82f6);"
+          @click=${(e: Event) => {
+            const root = (e.target as HTMLElement).closest('[data-collapse-demo]')!;
+            const panel = root.querySelector<UiResizablePanel>('[data-sidebar-panel]')!;
+            const statusEl = root.querySelector<HTMLElement>('[data-status]')!;
+            panel.toggle();
+            if (statusEl) statusEl.textContent = panel.collapsed ? 'collapsed' : 'visible';
+          }}
+        >Toggle</button>
+        <span style="font-size:13px;color:var(--ui-text-color-muted,#71717a);">
+          Sidebar:
+          <strong data-status style="color:var(--ui-text-color,#111827);">visible</strong>
+        </span>
+      </div>
+
+      <div
+        style="height:200px;max-width:600px;border:1px solid var(--ui-border-color,#e4e4e7);border-radius:8px;overflow:hidden;"
+        @ui-resizable-collapse=${(e: CustomEvent) => {
+          const root = (e.currentTarget as HTMLElement).closest('[data-collapse-demo]')!;
+          const statusEl = root?.querySelector<HTMLElement>('[data-status]');
+          if (statusEl) statusEl.textContent = 'collapsed';
+          e.stopPropagation();
+        }}
+        @ui-resizable-expand=${(e: CustomEvent) => {
+          const root = (e.currentTarget as HTMLElement).closest('[data-collapse-demo]')!;
+          const statusEl = root?.querySelector<HTMLElement>('[data-status]');
+          if (statusEl) statusEl.textContent = 'visible';
+          e.stopPropagation();
+        }}
+      >
+        <ui-resizable-group orientation="horizontal">
+          <ui-resizable-panel data-sidebar-panel .defaultSize=${30} .minSize=${10}>
+            <div style="${panelStyle}background:var(--ui-muted,#f4f4f5);">Sidebar</div>
+          </ui-resizable-panel>
+          <ui-resizable-handle with-handle></ui-resizable-handle>
+          <ui-resizable-panel .defaultSize=${70}>
+            <div style="${panelStyle}">Content</div>
+          </ui-resizable-panel>
+        </ui-resizable-group>
+      </div>
+
+      <p style="font-size:12px;color:var(--ui-text-color-muted,#71717a);margin-top:8px;">
+        Buttons live <em>outside</em> the resizable group — they stay visible even when the sidebar
+        is fully collapsed. The panel fires <code>ui-resizable-collapse</code> /
+        <code>ui-resizable-expand</code> events.
+      </p>
     </div>
   `,
 };
@@ -284,96 +370,178 @@ export const EventLogging: Story = {
 };
 
 /* ------------------------------------------------------------------ */
-/*  Complex Event Logging (nested horizontal + vertical)              */
-/* ------------------------------------------------------------------ */
-
-const logStyle = 'padding:8px 12px;font-family:monospace;font-size:12px;background:var(--ui-muted,#f4f4f5);color:var(--ui-text-color,#111827);border:1px solid var(--ui-border-color,#e4e4e7);border-radius:6px;';
-
-function updateLog(id: string, e: CustomEvent) {
-  const el = document.getElementById(id);
-  if (el) {
-    const sizes = (e.detail.layout as number[]).map((n: number) => `${n.toFixed(1)}%`).join(' | ');
-    el.textContent = sizes;
-  }
-}
-
-/* ------------------------------------------------------------------ */
-/*  IDE Layout                                                        */
+/*  IDE Layout                                                         */
 /* ------------------------------------------------------------------ */
 
 export const IDELayout: Story = {
   name: 'IDE Layout',
   render: () => html`
-    <div style="height:480px;max-width:900px;border:1px solid var(--ui-border-color,#e4e4e7);border-radius:8px;overflow:hidden;font-family:var(--ui-font-family,system-ui);font-size:13px;">
-      <!-- Outer: sidebar | main area -->
-      <ui-resizable-group orientation="horizontal">
+    <div
+      data-ide
+      style="height:520px;max-width:960px;border:1px solid var(--ui-border-color,#e4e4e7);
+             border-radius:8px;overflow:hidden;font-family:var(--ui-font-family,system-ui);
+             font-size:13px;display:flex;flex-direction:column;"
+    >
+      <!-- ── Top toolbar (always visible — toggle buttons live here) ── -->
+      <div style="display:flex;align-items:center;gap:4px;padding:4px 8px;
+                  border-bottom:1px solid var(--ui-border-color,#e4e4e7);
+                  background:var(--ui-muted,#f4f4f5);flex-shrink:0;">
+        <!-- Sidebar toggle — OUTSIDE the sidebar panel so it works when collapsed -->
+        <button
+          data-sidebar-toggle
+          title="Toggle Explorer sidebar"
+          style="border:1px solid var(--ui-border-color,#e4e4e7);background:var(--ui-background,#fff);
+                 cursor:pointer;padding:3px 10px;font-size:12px;border-radius:4px;
+                 color:var(--ui-text-color,#111827);display:flex;align-items:center;gap:5px;"
+          @click=${(e: Event) => {
+            const root = (e.target as HTMLElement).closest('[data-ide]')!;
+            const panel = root.querySelector<UiResizablePanel>('[data-sidebar]')!;
+            const btn = root.querySelector<HTMLElement>('[data-sidebar-toggle]')!;
+            panel.toggle();
+            btn.setAttribute('title', panel.collapsed ? 'Show Explorer' : 'Hide Explorer');
+            btn.querySelector('[data-label]')!.textContent = panel.collapsed ? '› Explorer' : '‹ Explorer';
+          }}
+        ><span data-label>‹ Explorer</span></button>
 
-        <!-- File tree -->
-        <ui-resizable-panel .defaultSize=${20} .minSize=${12} .collapsible=${true}>
-          <div style="height:100%;background:var(--ui-muted,#f4f4f5);display:flex;flex-direction:column;overflow:hidden;">
-            <div style="padding:10px 12px;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--ui-text-color-muted,#71717a);border-bottom:1px solid var(--ui-border-color,#e4e4e7);">Explorer</div>
-            ${['src/', '  ui-button.ts', '  ui-input.ts', '  ui-dialog.ts', 'tests/', '  ui-button.test.ts', 'package.json', 'tsconfig.json'].map(f => html`
-              <div style="padding:4px 12px;color:var(--ui-text-color,#111827);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${f}</div>
-            `)}
-          </div>
-        </ui-resizable-panel>
-        <ui-resizable-handle with-handle></ui-resizable-handle>
+        <span style="flex:1;text-align:center;font-size:12px;font-weight:600;
+                     color:var(--ui-text-color-muted,#71717a);letter-spacing:.05em;">
+          MY IDE
+        </span>
 
-        <!-- Editor + terminal -->
-        <ui-resizable-panel .defaultSize=${80}>
-          <ui-resizable-group orientation="vertical">
+        <!-- Terminal toggle — OUTSIDE the terminal panel so it works when collapsed -->
+        <button
+          data-terminal-toggle
+          title="Toggle Terminal"
+          style="border:1px solid var(--ui-border-color,#e4e4e7);background:var(--ui-background,#fff);
+                 cursor:pointer;padding:3px 10px;font-size:12px;border-radius:4px;
+                 color:var(--ui-text-color,#111827);display:flex;align-items:center;gap:5px;"
+          @click=${(e: Event) => {
+            const root = (e.target as HTMLElement).closest('[data-ide]')!;
+            const panel = root.querySelector<UiResizablePanel>('[data-terminal]')!;
+            const btn = root.querySelector<HTMLElement>('[data-terminal-toggle]')!;
+            panel.toggle();
+            btn.setAttribute('title', panel.collapsed ? 'Show Terminal' : 'Hide Terminal');
+            btn.querySelector('[data-label]')!.textContent = panel.collapsed ? '▲ Terminal' : '▼ Terminal';
+          }}
+        ><span data-label>▼ Terminal</span></button>
+      </div>
 
-            <!-- Editor tabs + content -->
-            <ui-resizable-panel .defaultSize=${70} .minSize=${20}>
-              <div style="height:100%;display:flex;flex-direction:column;overflow:hidden;">
-                <div style="display:flex;gap:1px;background:var(--ui-border-color,#e4e4e7);border-bottom:1px solid var(--ui-border-color,#e4e4e7);">
-                  ${['ui-button.ts', 'ui-input.ts'].map((tab, i) => html`
-                    <div style="padding:6px 16px;font-size:12px;background:${i === 0 ? 'var(--ui-background,#fff)' : 'var(--ui-muted,#f4f4f5)'};color:${i === 0 ? 'var(--ui-text-color,#111827)' : 'var(--ui-text-color-muted,#71717a)'};cursor:pointer;">${tab}</div>
-                  `)}
-                </div>
-                <div style="flex:1;padding:16px;overflow:auto;background:var(--ui-background,#fff);font-family:monospace;font-size:13px;line-height:1.6;color:var(--ui-text-color,#111827);">
-                  <div style="color:#7c3aed;">import</div>
-                  <div>&nbsp;&nbsp;<span style="color:#059669;">{ LitElement, html, css }</span></div>
-                  <div style="color:#7c3aed;">from <span style="color:#d97706;">'lit'</span>;</div>
-                  <br>
-                  <div><span style="color:#7c3aed;">@customElement</span>(<span style="color:#d97706;">'ui-button'</span>)</div>
-                  <div><span style="color:#7c3aed;">export class</span> UiButton</div>
-                  <div>&nbsp;&nbsp;<span style="color:#7c3aed;">extends</span> LitElement {</div>
-                  <div>&nbsp;&nbsp;<span style="color:#7c3aed;">override</span> render() {</div>
-                  <div>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#7c3aed;">return</span> html&#96;&lt;button&gt;</div>
-                  <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;slot&gt;&lt;/slot&gt;</div>
-                  <div>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/button&gt;&#96;;</div>
-                  <div>&nbsp;&nbsp;}</div>
-                  <div>}</div>
-                </div>
+      <!-- ── Main area ── -->
+      <div style="flex:1;overflow:hidden;min-height:0;">
+        <!-- ── Outer: sidebar | main ── -->
+        <ui-resizable-group data-outer orientation="horizontal">
+
+          <!-- ── File tree (collapsible) ── -->
+          <ui-resizable-panel data-sidebar .defaultSize=${20} .minSize=${10} .collapsible=${true}>
+            <div style="height:100%;background:var(--ui-muted,#f4f4f5);display:flex;flex-direction:column;overflow:hidden;">
+              <div style="padding:8px 12px;border-bottom:1px solid var(--ui-border-color,#e4e4e7);
+                          font-weight:600;font-size:11px;text-transform:uppercase;
+                          letter-spacing:.05em;color:var(--ui-text-color-muted,#71717a);flex-shrink:0;">
+                Explorer
               </div>
-            </ui-resizable-panel>
-            <ui-resizable-handle with-handle></ui-resizable-handle>
-
-            <!-- Terminal -->
-            <ui-resizable-panel .defaultSize=${30} .minSize=${10}>
-              <div style="height:100%;background:#0c0c0c;display:flex;flex-direction:column;overflow:hidden;">
-                <div style="padding:6px 12px;font-size:11px;color:#a1a1aa;border-bottom:1px solid #27272a;display:flex;gap:16px;">
-                  <span style="color:#fff;">TERMINAL</span>
-                  <span>PROBLEMS</span>
-                  <span>OUTPUT</span>
+              ${[
+                { label: 'src/', indent: 0, folder: true },
+                { label: 'ui-button.ts', indent: 1 },
+                { label: 'ui-input.ts',  indent: 1 },
+                { label: 'ui-dialog.ts', indent: 1 },
+                { label: 'tests/', indent: 0, folder: true },
+                { label: 'ui-button.test.ts', indent: 1 },
+                { label: 'package.json', indent: 0 },
+                { label: 'tsconfig.json', indent: 0 },
+              ].map(f => html`
+                <div style="padding:4px 12px 4px ${f.indent * 12 + 12}px;
+                            color:${f.folder ? 'var(--ui-text-color-muted,#71717a)' : 'var(--ui-text-color,#111827)'};
+                            white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px;">
+                  ${f.folder ? '📁 ' : ''}${f.label}
                 </div>
-                <div style="flex:1;padding:10px 14px;font-family:monospace;font-size:12px;color:#d4d4d4;overflow:auto;line-height:1.6;">
-                  <div><span style="color:#4ade80;">✔</span> Build succeeded in 312ms</div>
-                  <div><span style="color:#a1a1aa;">$</span> npm test</div>
-                  <div><span style="color:#4ade80;">✔</span> 42 tests passed</div>
-                  <div style="color:#a1a1aa;">$ <span style="animation:blink 1s step-end infinite;">▌</span></div>
+              `)}
+            </div>
+          </ui-resizable-panel>
+          <ui-resizable-handle with-handle></ui-resizable-handle>
+
+          <!-- ── Main column: editor + terminal ── -->
+          <ui-resizable-panel .defaultSize=${80}>
+            <ui-resizable-group data-inner orientation="vertical">
+
+              <!-- ── Editor ── -->
+              <ui-resizable-panel .defaultSize=${70} .minSize=${20}>
+                <div style="height:100%;display:flex;flex-direction:column;overflow:hidden;
+                            background:var(--ui-background,#fff);">
+                  <ui-tabs value="button" style="flex:1;overflow:hidden;min-height:0;display:flex;flex-direction:column;">
+                    <ui-tab-list style="border-bottom:1px solid var(--ui-border-color,#e4e4e7);">
+                      <ui-tab value="button">ui-button.ts</ui-tab>
+                      <ui-tab value="input">ui-input.ts</ui-tab>
+                    </ui-tab-list>
+
+                    <ui-tab-panel value="button" style="flex:1;overflow:auto;min-height:0;">
+                      <pre style="margin:0;padding:16px;font-family:monospace;font-size:12px;
+                                  line-height:1.7;color:var(--ui-text-color,#111827);
+                                  background:var(--ui-background,#fff);"><code
+><span style="color:#7c3aed">import</span> <span style="color:#059669">{ LitElement, html, css }</span> <span style="color:#7c3aed">from</span> <span style="color:#d97706">'lit'</span>;
+<span style="color:#7c3aed">import</span> <span style="color:#059669">{ customElement, property }</span> <span style="color:#7c3aed">from</span> <span style="color:#d97706">'lit/decorators.js'</span>;
+
+<span style="color:#7c3aed">@customElement</span>(<span style="color:#d97706">'ui-button'</span>)
+<span style="color:#7c3aed">export class</span> <span style="color:#0369a1">UiButton</span> <span style="color:#7c3aed">extends</span> LitElement {
+  <span style="color:#7c3aed">@property</span>({ reflect: <span style="color:#16a34a">true</span> }) variant = <span style="color:#d97706">'default'</span>;
+  <span style="color:#7c3aed">@property</span>({ type: <span style="color:#16a34a">Boolean</span>, reflect: <span style="color:#16a34a">true</span> }) disabled = <span style="color:#16a34a">false</span>;
+
+  <span style="color:#7c3aed">override</span> render() {
+    <span style="color:#7c3aed">return</span> html<span style="color:#d97706">\`
+      &lt;button class="btn" ?disabled=\${this.disabled}&gt;
+        &lt;slot&gt;&lt;/slot&gt;
+      &lt;/button&gt;\`</span>;
+  }
+}</code></pre>
+                    </ui-tab-panel>
+
+                    <ui-tab-panel value="input" style="flex:1;overflow:auto;min-height:0;">
+                      <pre style="margin:0;padding:16px;font-family:monospace;font-size:12px;
+                                  line-height:1.7;color:var(--ui-text-color,#111827);
+                                  background:var(--ui-background,#fff);"><code
+><span style="color:#7c3aed">import</span> <span style="color:#059669">{ LitElement, html }</span> <span style="color:#7c3aed">from</span> <span style="color:#d97706">'lit'</span>;
+<span style="color:#7c3aed">import</span> <span style="color:#059669">{ customElement, property }</span> <span style="color:#7c3aed">from</span> <span style="color:#d97706">'lit/decorators.js'</span>;
+
+<span style="color:#7c3aed">@customElement</span>(<span style="color:#d97706">'ui-input'</span>)
+<span style="color:#7c3aed">export class</span> <span style="color:#0369a1">UiInput</span> <span style="color:#7c3aed">extends</span> LitElement {
+  <span style="color:#7c3aed">@property</span>() value = <span style="color:#d97706">''</span>;
+  <span style="color:#7c3aed">@property</span>() placeholder = <span style="color:#d97706">''</span>;
+  <span style="color:#7c3aed">@property</span>({ type: <span style="color:#16a34a">Boolean</span>, reflect: <span style="color:#16a34a">true</span> }) disabled = <span style="color:#16a34a">false</span>;
+}</code></pre>
+                    </ui-tab-panel>
+                  </ui-tabs>
                 </div>
-              </div>
-            </ui-resizable-panel>
+              </ui-resizable-panel>
+              <ui-resizable-handle with-handle></ui-resizable-handle>
 
-          </ui-resizable-group>
-        </ui-resizable-panel>
+              <!-- ── Terminal (collapsible) ── -->
+              <ui-resizable-panel data-terminal .defaultSize=${30} .minSize=${8} .collapsible=${true}>
+                <div style="height:100%;background:#0c0c0c;display:flex;flex-direction:column;overflow:hidden;">
+                  <div style="display:flex;align-items:center;gap:16px;
+                              padding:5px 12px;border-bottom:1px solid #27272a;flex-shrink:0;">
+                    <span style="font-size:11px;font-weight:600;color:#fff;text-transform:uppercase;
+                                 letter-spacing:.05em;">Terminal</span>
+                    <span style="font-size:11px;color:#a1a1aa;">Problems</span>
+                    <span style="font-size:11px;color:#a1a1aa;">Output</span>
+                  </div>
+                  <div style="flex:1;padding:10px 14px;font-family:monospace;font-size:12px;
+                              color:#d4d4d4;overflow:auto;line-height:1.6;">
+                    <div><span style="color:#4ade80">✔</span> Build complete in 312ms</div>
+                    <div><span style="color:#a1a1aa">$</span> npm test</div>
+                    <div><span style="color:#4ade80">✔</span> 59 tests passed</div>
+                    <div style="margin-top:4px;color:#a1a1aa">$ ▌</div>
+                  </div>
+                </div>
+              </ui-resizable-panel>
 
-      </ui-resizable-group>
+            </ui-resizable-group>
+          </ui-resizable-panel>
+
+        </ui-resizable-group>
+      </div>
     </div>
     <p style="font-size:12px;color:var(--ui-text-color-muted,#71717a);margin-top:8px;">
-      Drag any handle — the file tree can collapse, and the terminal can be resized vertically.
+      Toggle buttons live in the <strong>toolbar</strong> (outside all resizable panels) so they
+      remain clickable even when a panel is fully collapsed. Drag handles to resize.
     </p>
   `,
 };
@@ -416,8 +584,18 @@ export const CustomTheme: Story = {
 };
 
 /* ------------------------------------------------------------------ */
-/*  ComplexEventLogging (nested horizontal + vertical)                */
+/*  Complex Event Logging (nested horizontal + vertical)              */
 /* ------------------------------------------------------------------ */
+
+const logStyle = 'padding:8px 12px;font-family:monospace;font-size:12px;background:var(--ui-muted,#f4f4f5);color:var(--ui-text-color,#111827);border:1px solid var(--ui-border-color,#e4e4e7);border-radius:6px;';
+
+function updateLog(id: string, e: CustomEvent) {
+  const el = document.getElementById(id);
+  if (el) {
+    const sizes = (e.detail.layout as number[]).map((n: number) => `${n.toFixed(1)}%`).join(' | ');
+    el.textContent = sizes;
+  }
+}
 
 export const ComplexEventLogging: Story = {
   name: 'Complex Event Logging',
