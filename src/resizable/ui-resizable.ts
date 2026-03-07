@@ -155,6 +155,68 @@ export class UiResizableGroup extends LitElement {
     this._collapsibleAtDragStart.clear();
   }
 
+  /* ---- collapse / expand API ---- */
+
+  /** @internal – called by UiResizablePanel.collapse() */
+  _collapsePanel(panel: UiResizablePanel) {
+    const idx = this._panels.indexOf(panel);
+    if (idx === -1 || panel.collapsed) return;
+
+    // Prefer giving space to next sibling, fall back to prev
+    const sibling = this._panels[idx + 1] ?? this._panels[idx - 1];
+    if (!sibling) return;
+
+    sibling.size += panel.size;
+    panel.size = 0;
+    panel.collapsed = true;
+    panel._applySize();
+    sibling._applySize();
+    this._syncAriaOnHandles();
+
+    this._fireChange();
+    this.dispatchEvent(
+      new CustomEvent('ui-resizable-collapse', {
+        bubbles: true,
+        composed: true,
+        detail: { index: idx, layout: this.getLayout() },
+      }),
+    );
+  }
+
+  /** @internal – called by UiResizablePanel.expand() */
+  _expandPanel(panel: UiResizablePanel) {
+    const idx = this._panels.indexOf(panel);
+    if (idx === -1 || !panel.collapsed) return;
+
+    const sibling = this._panels[idx + 1] ?? this._panels[idx - 1];
+    if (!sibling) return;
+
+    const restoreSize =
+      panel._restoreSize > 0
+        ? panel._restoreSize
+        : Math.max(panel.minSize > 0 ? panel.minSize : 0, panel.defaultSize > 0 ? panel.defaultSize : 20);
+
+    const available = sibling.size - sibling.minSize;
+    const actual = Math.min(restoreSize, Math.max(0, available));
+    if (actual <= 0) return;
+
+    panel.size = actual;
+    sibling.size = Math.max(sibling.minSize, sibling.size - actual);
+    panel.collapsed = false;
+    panel._applySize();
+    sibling._applySize();
+    this._syncAriaOnHandles();
+
+    this._fireChange();
+    this.dispatchEvent(
+      new CustomEvent('ui-resizable-expand', {
+        bubbles: true,
+        composed: true,
+        detail: { index: idx, layout: this.getLayout() },
+      }),
+    );
+  }
+
   /* ---- resize logic (called from handle) ---- */
 
   /** @internal */
@@ -226,13 +288,7 @@ export class UiResizableGroup extends LitElement {
     after._applySize();
     this._syncAriaOnHandles();
 
-    this.dispatchEvent(
-      new CustomEvent('ui-resizable-change', {
-        bubbles: true,
-        composed: true,
-        detail: { layout: this.getLayout() },
-      }),
-    );
+    this._fireChange();
   }
 
   /** @internal – keyboard step resize */
@@ -243,6 +299,16 @@ export class UiResizableGroup extends LitElement {
     this._handleResize(handle, direction * ((this.orientation === 'horizontal'
       ? this.getBoundingClientRect().width
       : this.getBoundingClientRect().height) * stepPct / 100));
+  }
+
+  private _fireChange() {
+    this.dispatchEvent(
+      new CustomEvent('ui-resizable-change', {
+        bubbles: true,
+        composed: true,
+        detail: { layout: this.getLayout() },
+      }),
+    );
   }
 
   /* ---- lifecycle ---- */
@@ -285,8 +351,17 @@ export class UiResizablePanel extends LitElement {
   /** Maximum size percentage (0–100). */
   @property({ type: Number, attribute: 'max-size' }) maxSize = 100;
 
-  /** Whether the panel can collapse to zero size. */
+  /** Whether the panel can collapse to zero size via drag. */
   @property({ type: Boolean }) collapsible = false;
+
+  /**
+   * Whether the panel is currently collapsed via the programmatic API.
+   * Set automatically by `collapse()` / `expand()` / `toggle()`.
+   */
+  @property({ type: Boolean, reflect: true }) collapsed = false;
+
+  /** @internal – last non-zero size, used by expand() to restore. */
+  _restoreSize = 0;
 
   /** @internal */
   _orientation: 'horizontal' | 'vertical' = 'horizontal';
@@ -311,6 +386,8 @@ export class UiResizablePanel extends LitElement {
 
   /** @internal */
   _applySize() {
+    // Track last non-zero size for expand() restore.
+    if (this.size > 0) this._restoreSize = this.size;
     // calc(size * (1% - handleTotal/100)) distributes handle space proportionally,
     // so at size=100 the panel is exactly (100% - handleTotal), leaving the handle
     // on-screen instead of being pushed past overflow:hidden.
@@ -323,6 +400,36 @@ export class UiResizablePanel extends LitElement {
     if (this.size > 0) {
       this._hasExplicitSize = true;
       this._applySize();
+    }
+  }
+
+  /* ---- programmatic collapse / expand API ---- */
+
+  /**
+   * Collapse this panel to zero size, transferring its space to the adjacent
+   * sibling. Sets `collapsed = true` and stores the current size for `expand()`.
+   * No-op if already collapsed.
+   */
+  collapse() {
+    (this.closest('ui-resizable-group') as UiResizableGroup | null)?._collapsePanel(this);
+  }
+
+  /**
+   * Expand this panel back to its previous size (or `defaultSize` as fallback).
+   * Sets `collapsed = false`. No-op if not currently collapsed.
+   */
+  expand() {
+    (this.closest('ui-resizable-group') as UiResizableGroup | null)?._expandPanel(this);
+  }
+
+  /**
+   * Toggle between collapsed and expanded states.
+   */
+  toggle() {
+    if (this.collapsed) {
+      this.expand();
+    } else {
+      this.collapse();
     }
   }
 
