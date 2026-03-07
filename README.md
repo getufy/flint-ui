@@ -1,7 +1,6 @@
 # TODO Components
 
 - [ ] Forms
-- [ ] Format Date
 - [ ] Format Number
 - [ ] Visually Hidden (A11y)
 
