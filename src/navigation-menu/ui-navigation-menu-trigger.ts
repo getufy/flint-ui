@@ -1,5 +1,6 @@
 import { LitElement, html, css, PropertyValues } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
+import type { UiNavigationMenuContent } from './ui-navigation-menu-content.js';
 
 /**
  * @tag ui-navigation-menu-trigger
@@ -108,6 +109,7 @@ export class UiNavigationMenuTrigger extends LitElement {
         super.connectedCallback();
         this.addEventListener('click', this._handleClick);
         this.addEventListener('keydown', this._handleKeydown);
+        this.setAttribute('tabindex', '0');
     }
 
     override disconnectedCallback() {
@@ -182,9 +184,9 @@ export class UiNavigationMenuTrigger extends LitElement {
     };
 
     private _syncContent = () => {
-        const content = this._getContent();
+        const content = this._getContent() as UiNavigationMenuContent | null;
         if (content) {
-            (content as any).open = this._isOpen;
+            content.open = this._isOpen;
         }
     };
 
@@ -233,16 +235,16 @@ export class UiNavigationMenuTrigger extends LitElement {
                 <slot></slot>
                 <span class="icon" part="icon">
                     <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
+                        width="12"
+                        height="12"
+                        viewBox="0 0 12 12"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="2"
+                        stroke-width="1.5"
                         stroke-linecap="round"
                         stroke-linejoin="round"
                     >
-                        <polyline points="6 9 12 15 18 9"></polyline>
+                        <polyline points="1 4 6 9 11 4"></polyline>
                     </svg>
                 </span>
             </button>
