@@ -1,0 +1,32 @@
+:host { display: block; }
+        :host([hidden]) { display: none !important; }
+
+        .item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            color: var(--ui-text-color, #111827);
+            font-family: var(--ui-font-family, system-ui, sans-serif);
+            outline: none;
+            user-select: none;
+            transition: background 0.1s;
+        }
+
+        :host([inset]) .item {
+            padding-left: 32px;
+        }
+
+        :host([highlighted]) .item {
+            background: var(--ui-menubar-highlight-bg, rgba(0, 0, 0, 0.06));
+        }
+
+        :host([disabled]) .item {
+            opacity: 0.5;
+            pointer-events: none;
+            cursor: default;
+        }

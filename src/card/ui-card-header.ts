@@ -1,40 +1,10 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, unsafeCSS, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import uiCardHeaderStyles from './ui-card-header.css?inline';
 
 @customElement('ui-card-header')
 export class UiCardHeader extends LitElement {
-    static styles = css`
-    :host {
-      display: block;
-      padding: var(--ui-card-header-padding, 16px 24px);
-    }
-    
-    .header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    
-    .content {
-      flex: 1 1 auto;
-    }
-
-    .title {
-      margin: 0;
-      font-size: var(--ui-card-title-size, 1.25rem);
-      font-weight: 700;
-      color: var(--ui-card-title-color, #111827);
-      line-height: 1.4;
-    }
-    
-    .subtitle {
-      margin: 0;
-      font-size: var(--ui-card-subtitle-size, 0.875rem);
-      color: var(--ui-card-subtitle-color, #6b7280);
-      font-weight: 500;
-      margin-top: 4px;
-    }
-  `;
+    static styles = unsafeCSS(uiCardHeaderStyles);
 
     @property({ type: String })
     title = '';

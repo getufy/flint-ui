@@ -1,36 +1,16 @@
-import { LitElement, html, css, PropertyValues } from 'lit';
+import { LitElement, unsafeCSS, html, PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import uiRadioGroupStyles from './ui-radio-group.css?inline';
+import uiRadioStyles from './ui-radio.css?inline';
 
 export type RadioSize = 'sm' | 'md' | 'lg';
 export type RadioOrientation = 'horizontal' | 'vertical';
 
 @customElement('ui-radio-group')
 export class UiRadioGroup extends LitElement {
-    static styles = css`
-        :host {
-            display: block;
-            font-family: var(--ui-font-family, 'Inter', sans-serif);
-            color: var(--ui-text-color, #111827);
-        }
-
-        :host([disabled]) {
-            opacity: 0.5;
-            pointer-events: none;
-        }
-
-        .group-container {
-            display: flex;
-            flex-direction: column;
-            gap: var(--ui-radio-group-gap, 8px);
-        }
-
-        :host([orientation="horizontal"]) .group-container {
-            flex-direction: row;
-            flex-wrap: wrap;
-        }
-    `;
+    static styles = unsafeCSS(uiRadioGroupStyles);
 
     @property({ type: String }) label = '';
     @property({ type: String }) name = '';
@@ -152,113 +132,7 @@ export class UiRadioGroup extends LitElement {
 
 @customElement('ui-radio')
 export class UiRadio extends LitElement {
-    static styles = css`
-        :host {
-            display: inline-block;
-            cursor: pointer;
-        }
-
-        :host([disabled]) {
-            cursor: not-allowed;
-        }
-
-        .wrapper {
-            display: inline-flex;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .wrapper.disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .radio-circle {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 18px;
-            height: 18px;
-            border: 2px solid var(--ui-input-border-color, #d1d5db);
-            border-radius: 50%;
-            background-color: var(--ui-surface-background, white);
-            transition: all 0.2s ease;
-            margin-right: 8px;
-            flex-shrink: 0;
-        }
-
-        :host([size="sm"]) .radio-circle {
-            width: 14px;
-            height: 14px;
-        }
-
-        :host([size="lg"]) .radio-circle {
-            width: 22px;
-            height: 22px;
-        }
-
-        .wrapper:hover:not(.disabled) .radio-circle {
-            border-color: var(--ui-primary-color, #3b82f6);
-        }
-
-        .radio-circle.checked {
-            border-color: var(--ui-primary-color, #3b82f6);
-        }
-
-        .radio-circle::after {
-            content: '';
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: var(--ui-primary-color, #3b82f6);
-            opacity: 0;
-            transform: scale(0.5);
-            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        :host([size="sm"]) .radio-circle::after {
-            width: 6px;
-            height: 6px;
-        }
-
-        :host([size="lg"]) .radio-circle::after {
-            width: 10px;
-            height: 10px;
-        }
-
-        .checked::after {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        input {
-            position: absolute;
-            opacity: 0;
-            width: 0;
-            height: 0;
-            margin: 0;
-        }
-
-        input:focus-visible + .radio-circle {
-            outline: 2px solid var(--ui-primary-color, #3b82f6);
-            outline-offset: 2px;
-        }
-
-        .label {
-            font-size: 14px;
-            line-height: 1.5;
-            user-select: none;
-        }
-
-        :host([size="sm"]) .label {
-            font-size: 12px;
-        }
-
-        :host([size="lg"]) .label {
-            font-size: 16px;
-        }
-    `;
+    static styles = unsafeCSS(uiRadioStyles);
 
     @property({ type: Boolean, reflect: true }) checked = false;
     @property({ type: Boolean, reflect: true }) disabled = false;

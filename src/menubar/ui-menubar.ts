@@ -1,5 +1,19 @@
-import { LitElement, html, css, nothing, type PropertyValues } from 'lit';
+import { LitElement, unsafeCSS, html, nothing, type PropertyValues } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
+import uiMenubarShortcutStyles from './ui-menubar-shortcut.css?inline';
+import uiMenubarSeparatorStyles from './ui-menubar-separator.css?inline';
+import uiMenubarGroupStyles from './ui-menubar-group.css?inline';
+import uiMenubarItemStyles from './ui-menubar-item.css?inline';
+import uiMenubarCheckboxItemStyles from './ui-menubar-checkbox-item.css?inline';
+import uiMenubarRadioItemStyles from './ui-menubar-radio-item.css?inline';
+import uiMenubarRadioGroupStyles from './ui-menubar-radio-group.css?inline';
+import uiMenubarSubContentStyles from './ui-menubar-sub-content.css?inline';
+import uiMenubarSubTriggerStyles from './ui-menubar-sub-trigger.css?inline';
+import uiMenubarSubStyles from './ui-menubar-sub.css?inline';
+import uiMenubarContentStyles from './ui-menubar-content.css?inline';
+import uiMenubarTriggerStyles from './ui-menubar-trigger.css?inline';
+import uiMenubarMenuStyles from './ui-menubar-menu.css?inline';
+import uiMenubarStyles from './ui-menubar.css?inline';
 
 /* ─────────────────────────────────────────────────────────────────── */
 /*  ui-menubar-shortcut                                               */
@@ -11,18 +25,7 @@ import { customElement, property, state } from 'lit/decorators.js';
  */
 @customElement('ui-menubar-shortcut')
 export class UiMenubarShortcut extends LitElement {
-    static styles = css`
-        :host {
-            display: inline-flex;
-            align-items: center;
-            margin-left: auto;
-            padding-left: 16px;
-            font-size: 0.6875rem;
-            letter-spacing: 0.05em;
-            color: var(--ui-text-color-muted, #6b7280);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-        }
-    `;
+    static styles = unsafeCSS(uiMenubarShortcutStyles);
     render() { return html`<slot></slot>`; }
 }
 
@@ -33,15 +36,7 @@ export class UiMenubarShortcut extends LitElement {
 /** A hairline separator between menu groups. */
 @customElement('ui-menubar-separator')
 export class UiMenubarSeparator extends LitElement {
-    static styles = css`
-        :host {
-            display: block;
-            height: 1px;
-            background: var(--ui-border-color, #e5e7eb);
-            margin: 4px -4px;
-        }
-        :host([hidden]) { display: none !important; }
-    `;
+    static styles = unsafeCSS(uiMenubarSeparatorStyles);
     render() { return html``; }
 }
 
@@ -54,17 +49,7 @@ export class UiMenubarSeparator extends LitElement {
 export class UiMenubarGroup extends LitElement {
     @property({ reflect: true }) heading = '';
 
-    static styles = css`
-        :host { display: block; }
-        .heading {
-            padding: 6px 8px 4px;
-            font-size: 0.6875rem;
-            font-weight: 600;
-            color: var(--ui-text-color-muted, #6b7280);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-            user-select: none;
-        }
-    `;
+    static styles = unsafeCSS(uiMenubarGroupStyles);
     render() {
         return html`
             ${this.heading ? html`<div class="heading" role="presentation">${this.heading}</div>` : nothing}
@@ -93,40 +78,7 @@ export class UiMenubarItem extends LitElement {
     /** Explicit value for the select event. Falls back to label text (excludes shortcut). */
     @property({ reflect: true }) value = '';
 
-    static styles = css`
-        :host { display: block; }
-        :host([hidden]) { display: none !important; }
-
-        .item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 8px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.875rem;
-            line-height: 1.25rem;
-            color: var(--ui-text-color, #111827);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-            outline: none;
-            user-select: none;
-            transition: background 0.1s;
-        }
-
-        :host([inset]) .item {
-            padding-left: 32px;
-        }
-
-        :host([highlighted]) .item {
-            background: var(--ui-menubar-highlight-bg, rgba(0, 0, 0, 0.06));
-        }
-
-        :host([disabled]) .item {
-            opacity: 0.5;
-            pointer-events: none;
-            cursor: default;
-        }
-    `;
+    static styles = unsafeCSS(uiMenubarItemStyles);
 
     /** Returns label text from direct text nodes only (excludes shortcut element content). */
     private _labelText(): string {
@@ -168,48 +120,7 @@ export class UiMenubarCheckboxItem extends LitElement {
     /** Explicit value for the change event. Falls back to label text (excludes shortcut). */
     @property({ reflect: true }) value = '';
 
-    static styles = css`
-        :host { display: block; }
-        :host([hidden]) { display: none !important; }
-
-        .item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 8px 6px 32px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.875rem;
-            line-height: 1.25rem;
-            color: var(--ui-text-color, #111827);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-            outline: none;
-            user-select: none;
-            transition: background 0.1s;
-            position: relative;
-        }
-
-        :host([highlighted]) .item {
-            background: var(--ui-menubar-highlight-bg, rgba(0, 0, 0, 0.06));
-        }
-
-        :host([disabled]) .item {
-            opacity: 0.5;
-            pointer-events: none;
-        }
-
-        .check {
-            position: absolute;
-            left: 8px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 16px;
-            height: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-    `;
+    static styles = unsafeCSS(uiMenubarCheckboxItemStyles);
 
     private _labelText(): string {
         return Array.from(this.childNodes)
@@ -254,48 +165,7 @@ export class UiMenubarRadioItem extends LitElement {
     @property({ reflect: true, type: Boolean }) disabled = false;
     @property({ reflect: true, type: Boolean }) highlighted = false;
 
-    static styles = css`
-        :host { display: block; }
-        :host([hidden]) { display: none !important; }
-
-        .item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 8px 6px 32px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.875rem;
-            line-height: 1.25rem;
-            color: var(--ui-text-color, #111827);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-            outline: none;
-            user-select: none;
-            transition: background 0.1s;
-            position: relative;
-        }
-
-        :host([highlighted]) .item {
-            background: var(--ui-menubar-highlight-bg, rgba(0, 0, 0, 0.06));
-        }
-
-        :host([disabled]) .item {
-            opacity: 0.5;
-            pointer-events: none;
-        }
-
-        .dot {
-            position: absolute;
-            left: 8px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 16px;
-            height: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-    `;
+    static styles = unsafeCSS(uiMenubarRadioItemStyles);
 
     select() {
         if (this.disabled) return;
@@ -330,9 +200,7 @@ export class UiMenubarRadioItem extends LitElement {
 export class UiMenubarRadioGroup extends LitElement {
     @property({ reflect: true }) value = '';
 
-    static styles = css`
-        :host { display: block; }
-    `;
+    static styles = unsafeCSS(uiMenubarRadioGroupStyles);
 
     private _handleRadioSelect = (e: Event) => {
         const ce = e as CustomEvent<{ value: string }>;
@@ -387,31 +255,7 @@ export class UiMenubarRadioGroup extends LitElement {
 export class UiMenubarSubContent extends LitElement {
     @property({ reflect: true, type: Boolean }) open = false;
 
-    static styles = css`
-        :host {
-            display: none;
-            position: absolute;
-            left: 100%;
-            top: -4px;
-            z-index: 1001;
-        }
-        :host([open]) {
-            display: block;
-        }
-        .panel {
-            min-width: 180px;
-            background: var(--ui-menubar-content-bg, #fff);
-            border: 1px solid var(--ui-border-color, #e5e7eb);
-            border-radius: 6px;
-            padding: 4px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-            animation: menubar-sub-in 0.12s ease-out;
-        }
-        @keyframes menubar-sub-in {
-            from { opacity: 0; transform: translateX(-4px); }
-            to   { opacity: 1; transform: translateX(0); }
-        }
-    `;
+    static styles = unsafeCSS(uiMenubarSubContentStyles);
 
     override updated(changed: PropertyValues) {
         if (changed.has('open') && this.open) {
@@ -449,45 +293,7 @@ export class UiMenubarSubTrigger extends LitElement {
     /** Set by the parent `ui-menubar-sub` to reflect open state for aria-expanded. */
     @property({ reflect: true, type: Boolean }) expanded = false;
 
-    static styles = css`
-        :host { display: block; }
-
-        .item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 8px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.875rem;
-            line-height: 1.25rem;
-            color: var(--ui-text-color, #111827);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-            outline: none;
-            user-select: none;
-            transition: background 0.1s;
-        }
-
-        :host([inset]) .item {
-            padding-left: 32px;
-        }
-
-        :host([highlighted]) .item {
-            background: var(--ui-menubar-highlight-bg, rgba(0, 0, 0, 0.06));
-        }
-
-        :host([disabled]) .item {
-            opacity: 0.5;
-            pointer-events: none;
-        }
-
-        .arrow {
-            margin-left: auto;
-            width: 14px;
-            height: 14px;
-            color: var(--ui-text-color-muted, #6b7280);
-        }
-    `;
+    static styles = unsafeCSS(uiMenubarSubTriggerStyles);
 
     render() {
         return html`
@@ -519,12 +325,7 @@ export class UiMenubarSub extends LitElement {
     private _openTimer: ReturnType<typeof setTimeout> | null = null;
     private _closeTimer: ReturnType<typeof setTimeout> | null = null;
 
-    static styles = css`
-        :host {
-            display: block;
-            position: relative;
-        }
-    `;
+    static styles = unsafeCSS(uiMenubarSubStyles);
 
     get open() { return this._open; }
 
@@ -606,32 +407,7 @@ export class UiMenubarContent extends LitElement {
     /** Currently highlighted item index for keyboard nav */
     private _highlightIndex = -1;
 
-    static styles = css`
-        :host {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            z-index: 1000;
-            padding-top: 4px;
-        }
-        :host([open]) {
-            display: block;
-        }
-        .panel {
-            min-width: 200px;
-            background: var(--ui-menubar-content-bg, #fff);
-            border: 1px solid var(--ui-border-color, #e5e7eb);
-            border-radius: 6px;
-            padding: 4px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-            animation: menubar-in 0.12s ease-out;
-        }
-        @keyframes menubar-in {
-            from { opacity: 0; transform: translateY(-4px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-    `;
+    static styles = unsafeCSS(uiMenubarContentStyles);
 
     /** Get all navigable items (items, checkbox items, radio items, sub-triggers). */
     private _getNavigableItems(): HTMLElement[] {
@@ -851,48 +627,7 @@ export class UiMenubarTrigger extends LitElement {
         this._focusable = v;
     }
 
-    static styles = css`
-        :host {
-            display: inline-flex;
-        }
-
-        .trigger {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 4px 10px;
-            border: none;
-            background: transparent;
-            border-radius: 4px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            line-height: 1.5;
-            color: var(--ui-text-color, #111827);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-            cursor: pointer;
-            outline: none;
-            user-select: none;
-            white-space: nowrap;
-            transition: background 0.1s;
-        }
-
-        .trigger:hover,
-        :host([active]) .trigger {
-            background: var(--ui-menubar-trigger-hover-bg, rgba(0, 0, 0, 0.06));
-        }
-
-        .trigger:focus-visible {
-            outline: 2px solid var(--ui-primary-color, #3b82f6);
-            outline-offset: -2px;
-        }
-
-        .trigger:disabled,
-        :host([disabled]) .trigger {
-            opacity: 0.5;
-            cursor: default;
-            pointer-events: none;
-        }
-    `;
+    static styles = unsafeCSS(uiMenubarTriggerStyles);
 
     render() {
         return html`
@@ -920,12 +655,7 @@ export class UiMenubarMenu extends LitElement {
     /** Disables this menu: the trigger is non-interactive and keyboard nav skips it. */
     @property({ reflect: true, type: Boolean }) disabled = false;
 
-    static styles = css`
-        :host {
-            display: inline-block;
-            position: relative;
-        }
-    `;
+    static styles = unsafeCSS(uiMenubarMenuStyles);
 
     get trigger(): UiMenubarTrigger | null {
         return this.querySelector<UiMenubarTrigger>(':scope > ui-menubar-trigger');
@@ -995,18 +725,7 @@ export class UiMenubar extends LitElement {
     /** Accessible label for the menubar region. Defaults to "Menu bar". */
     @property({ reflect: true }) label = '';
 
-    static styles = css`
-        :host {
-            display: inline-flex;
-            align-items: center;
-            background: var(--ui-menubar-bg, #fff);
-            border: 1px solid var(--ui-border-color, #e5e7eb);
-            border-radius: 6px;
-            padding: 3px;
-            gap: 2px;
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-        }
-    `;
+    static styles = unsafeCSS(uiMenubarStyles);
 
     /** Index of the currently open menu, or -1 if all closed. */
     get activeIndex(): number { return this._activeIndex; }

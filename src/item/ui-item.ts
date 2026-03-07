@@ -1,6 +1,16 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, unsafeCSS, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import uiItemTitleStyles from './ui-item-title.css?inline';
+import uiItemDescriptionStyles from './ui-item-description.css?inline';
+import uiItemMediaStyles from './ui-item-media.css?inline';
+import uiItemContentStyles from './ui-item-content.css?inline';
+import uiItemActionsStyles from './ui-item-actions.css?inline';
+import uiItemHeaderStyles from './ui-item-header.css?inline';
+import uiItemFooterStyles from './ui-item-footer.css?inline';
+import uiItemSeparatorStyles from './ui-item-separator.css?inline';
+import uiItemGroupStyles from './ui-item-group.css?inline';
+import uiItemStyles from './ui-item.css?inline';
 
 /* ─────────────────────────────────────────────────────────────────── */
 /*  ui-item-title                                                       */
@@ -13,16 +23,7 @@ import { classMap } from 'lit/directives/class-map.js';
  */
 @customElement('ui-item-title')
 export class UiItemTitle extends LitElement {
-    static styles = css`
-        :host {
-            display: block;
-            font-size: 0.875rem;
-            font-weight: 500;
-            line-height: 1.4;
-            color: var(--ui-text-color, #111827);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-        }
-    `;
+    static styles = unsafeCSS(uiItemTitleStyles);
     render() { return html`<slot></slot>`; }
 }
 
@@ -37,15 +38,7 @@ export class UiItemTitle extends LitElement {
  */
 @customElement('ui-item-description')
 export class UiItemDescription extends LitElement {
-    static styles = css`
-        :host {
-            display: block;
-            font-size: 0.8125rem;
-            line-height: 1.5;
-            color: var(--ui-text-color-muted, #6b7280);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-        }
-    `;
+    static styles = unsafeCSS(uiItemDescriptionStyles);
     render() { return html`<slot></slot>`; }
 }
 
@@ -68,49 +61,7 @@ export class UiItemDescription extends LitElement {
  */
 @customElement('ui-item-media')
 export class UiItemMedia extends LitElement {
-    static styles = css`
-        :host {
-            display: flex;
-            flex-shrink: 0;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .media {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .media--icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            background: var(--ui-item-media-icon-bg, #f3f4f6);
-            color: var(--ui-item-media-icon-color, #6b7280);
-        }
-
-        .media--image {
-            width: 40px;
-            height: 40px;
-            border-radius: 6px;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-
-        ::slotted(svg),
-        ::slotted([data-icon]) {
-            width: 20px;
-            height: 20px;
-        }
-
-        ::slotted(img) {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-    `;
+    static styles = unsafeCSS(uiItemMediaStyles);
 
     /** Visual treatment for the media container. */
     @property({ reflect: true })
@@ -140,15 +91,7 @@ export class UiItemMedia extends LitElement {
  */
 @customElement('ui-item-content')
 export class UiItemContent extends LitElement {
-    static styles = css`
-        :host {
-            display: flex;
-            flex-direction: column;
-            flex: 1 1 auto;
-            min-width: 0;
-            gap: 2px;
-        }
-    `;
+    static styles = unsafeCSS(uiItemContentStyles);
     render() { return html`<slot></slot>`; }
 }
 
@@ -164,15 +107,7 @@ export class UiItemContent extends LitElement {
  */
 @customElement('ui-item-actions')
 export class UiItemActions extends LitElement {
-    static styles = css`
-        :host {
-            display: flex;
-            flex-shrink: 0;
-            align-items: center;
-            gap: 8px;
-            margin-left: auto;
-        }
-    `;
+    static styles = unsafeCSS(uiItemActionsStyles);
     render() { return html`<slot></slot>`; }
 }
 
@@ -189,25 +124,7 @@ export class UiItemActions extends LitElement {
  */
 @customElement('ui-item-header')
 export class UiItemHeader extends LitElement {
-    static styles = css`
-        :host {
-            display: block;
-            /* Stretch to fill item width including its padding */
-            flex: 0 0 calc(100% + 2 * var(--ui-item-padding, 16px));
-            margin-left: calc(-1 * var(--ui-item-padding, 16px));
-            margin-right: calc(-1 * var(--ui-item-padding, 16px));
-            margin-top: calc(-1 * var(--ui-item-padding, 16px));
-            margin-bottom: 0;
-            overflow: hidden;
-            line-height: 0;
-        }
-
-        ::slotted(img) {
-            width: 100%;
-            display: block;
-            object-fit: cover;
-        }
-    `;
+    static styles = unsafeCSS(uiItemHeaderStyles);
     render() { return html`<slot></slot>`; }
 }
 
@@ -224,23 +141,7 @@ export class UiItemHeader extends LitElement {
  */
 @customElement('ui-item-footer')
 export class UiItemFooter extends LitElement {
-    static styles = css`
-        :host {
-            display: block;
-            flex: 0 0 calc(100% + 2 * var(--ui-item-padding, 16px));
-            margin-left: calc(-1 * var(--ui-item-padding, 16px));
-            margin-right: calc(-1 * var(--ui-item-padding, 16px));
-            margin-bottom: calc(-1 * var(--ui-item-padding, 16px));
-            margin-top: 0;
-            padding: 10px var(--ui-item-padding, 16px);
-            border-top: 1px solid var(--ui-border-color, #e5e7eb);
-            background: var(--ui-item-footer-bg, transparent);
-            box-sizing: border-box;
-            font-size: 0.8125rem;
-            color: var(--ui-text-color-muted, #6b7280);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-        }
-    `;
+    static styles = unsafeCSS(uiItemFooterStyles);
     render() { return html`<slot></slot>`; }
 }
 
@@ -255,13 +156,7 @@ export class UiItemFooter extends LitElement {
  */
 @customElement('ui-item-separator')
 export class UiItemSeparator extends LitElement {
-    static styles = css`
-        :host {
-            display: block;
-            height: 1px;
-            background: var(--ui-border-color, #e5e7eb);
-        }
-    `;
+    static styles = unsafeCSS(uiItemSeparatorStyles);
 
     connectedCallback() {
         super.connectedCallback();
@@ -285,13 +180,7 @@ export class UiItemSeparator extends LitElement {
  */
 @customElement('ui-item-group')
 export class UiItemGroup extends LitElement {
-    static styles = css`
-        :host {
-            display: flex;
-            flex-direction: column;
-            gap: var(--ui-item-group-gap, 4px);
-        }
-    `;
+    static styles = unsafeCSS(uiItemGroupStyles);
     render() { return html`<slot></slot>`; }
 }
 
@@ -319,43 +208,7 @@ export class UiItemGroup extends LitElement {
  */
 @customElement('ui-item')
 export class UiItem extends LitElement {
-    static styles = css`
-        :host {
-            /* Sizing custom properties — read by sub-components too */
-            --ui-item-padding: 16px;
-            --ui-item-gap: 12px;
-
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: var(--ui-item-gap);
-            padding: var(--ui-item-padding);
-            border-radius: 8px;
-            box-sizing: border-box;
-            overflow: hidden;
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-        }
-
-        /* Size variants — override sizing custom properties */
-        :host([size='sm']) {
-            --ui-item-padding: 12px;
-            --ui-item-gap: 8px;
-        }
-
-        :host([size='xs']) {
-            --ui-item-padding: 8px;
-            --ui-item-gap: 6px;
-        }
-
-        /* Visual variants */
-        :host([variant='outline']) {
-            border: 1px solid var(--ui-border-color, #e5e7eb);
-        }
-
-        :host([variant='muted']) {
-            background: var(--ui-muted-bg, #f9fafb);
-        }
-    `;
+    static styles = unsafeCSS(uiItemStyles);
 
     /**
      * Visual style of the item.

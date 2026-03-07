@@ -1,6 +1,7 @@
-import { LitElement, html, css, nothing } from 'lit';
+import { LitElement, unsafeCSS, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import uiPaginationStyles from './ui-pagination.css?inline';
 
 /* ── SVG icon helpers ─────────────────────────────────────────────── */
 const iconFirst = html`<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6zM6 6h2v12H6z"/></svg>`;
@@ -78,108 +79,7 @@ export function buildPages(
  */
 @customElement('ui-pagination')
 export class UiPagination extends LitElement {
-    static styles = css`
-        :host {
-            display: inline-flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 4px;
-            font-family: var(--ui-font-family, 'Inter', sans-serif);
-        }
-
-        /* Transparent layout wrappers */
-        nav, ol, li { display: contents; }
-
-        /* ── Base button ── */
-        .page-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 36px;
-            height: 36px;
-            padding: 0 6px;
-            border-radius: 4px;
-            border: none;
-            background: transparent;
-            color: var(--ui-text-color, #111827);
-            font-family: inherit;
-            font-size: 0.875rem;
-            font-weight: 400;
-            cursor: pointer;
-            transition: background 0.15s, color 0.15s, border-color 0.15s;
-            user-select: none;
-            box-sizing: border-box;
-            outline: none;
-            text-decoration: none;
-        }
-        .page-btn:hover:not(:disabled) {
-            background: rgba(0,0,0,.06);
-        }
-        .page-btn:focus-visible {
-            outline: 2px solid var(--ui-primary-color, #3b82f6);
-            outline-offset: 2px;
-        }
-        .page-btn.active {
-            background: var(--ui-primary-color, #3b82f6);
-            color: #fff;
-            font-weight: 600;
-        }
-        .page-btn:disabled {
-            opacity: 0.38;
-            cursor: default;
-            pointer-events: none;
-        }
-        .page-btn.ellipsis {
-            cursor: default;
-            pointer-events: none;
-            color: var(--ui-text-color-muted, #6b7280);
-        }
-
-        /* ── Variants ── */
-        :host([variant="outlined"]) .page-btn {
-            border: 1px solid var(--ui-border-color, #e5e7eb);
-        }
-        :host([variant="outlined"]) .page-btn.active {
-            border-color: var(--ui-primary-color, #3b82f6);
-            background: var(--ui-primary-color, #3b82f6);
-            color: #fff;
-        }
-        :host([variant="outlined"]) .page-btn:hover:not(:disabled):not(.active) {
-            background: rgba(59,130,246,.06);
-            border-color: var(--ui-primary-color, #3b82f6);
-        }
-
-        /* ── Color: secondary ── */
-        :host([color="secondary"]) .page-btn.active {
-            background: var(--ui-secondary-color, #7c3aed);
-        }
-        :host([color="secondary"][variant="outlined"]) .page-btn.active {
-            background: var(--ui-secondary-color, #7c3aed);
-            border-color: var(--ui-secondary-color, #7c3aed);
-        }
-        :host([color="standard"]) .page-btn.active {
-            background: var(--ui-text-color, #111827);
-            color: #fff;
-        }
-
-        /* ── Shape ── */
-        :host([shape="rounded"]) .page-btn  { border-radius: 8px; }
-        :host([shape="circular"]) .page-btn { border-radius: 50%; min-width: 36px; aspect-ratio: 1; }
-
-        /* ── Size ── */
-        :host([size="small"]) .page-btn    { min-width: 28px; height: 28px; font-size: 0.8125rem; }
-        :host([size="small"][shape="circular"]) .page-btn { min-width: 28px; }
-        :host([size="large"]) .page-btn    { min-width: 44px; height: 44px; font-size: 0.9375rem; }
-
-        /* ── Disabled host ── */
-        :host([disabled]) .page-btn {
-            opacity: 0.38;
-            pointer-events: none;
-        }
-
-        /* ── Nav icon size ── */
-        svg { display: block; }
-    `;
+    static styles = unsafeCSS(uiPaginationStyles);
 
     /** Total number of pages. */
     @property({ type: Number }) count = 1;

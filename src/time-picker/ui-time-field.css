@@ -1,0 +1,35 @@
+:host { display: inline-block; font-family: var(--ui-font-family,'Inter',sans-serif); }
+    .label { display:block; font-size:.75rem; font-weight:500; color:var(--ui-text-color-muted,#6b7280); margin-bottom:5px; }
+    .label.focused { color:var(--ui-primary-color,#3b82f6); }
+    :host([error]) .label { color:var(--ui-error-color,#ef4444); }
+    .container {
+      display:inline-flex; align-items:center; gap:4px;
+      background:var(--ui-surface-background,#fff);
+      border:1.5px solid var(--ui-border-color,#d1d5db);
+      border-radius:var(--ui-border-radius-md,8px);
+      padding:0 10px; height:44px; min-width:160px;
+      cursor:text; box-sizing:border-box; transition:border-color .15s,box-shadow .15s;
+    }
+    .container.focused { border-color:var(--ui-primary-color,#3b82f6); box-shadow:0 0 0 3px rgba(59,130,246,.15); }
+    :host([error]) .container { border-color:var(--ui-error-color,#ef4444); }
+    :host([disabled]) .container { background:var(--ui-disabled-bg,#f9fafb); border-color:#e5e7eb; cursor:not-allowed; }
+    .segments { display:flex; align-items:center; flex:1; gap:1px; outline:none; min-height:100%; }
+    .seg {
+      display:inline-flex; align-items:center; justify-content:center;
+      border-radius:3px; padding:2px 4px; font-size:.9375rem;
+      font-variant-numeric:tabular-nums; color:var(--ui-text-color,#111827);
+      min-width:2ch; line-height:1; cursor:text; user-select:none; transition:background .1s;
+    }
+    .seg.active { background:var(--ui-primary-color,#3b82f6); color:#fff; }
+    .seg.placeholder { color:var(--ui-text-color-muted,#9ca3af); }
+    .seg.meridiem { min-width:3ch; }
+    .sep { color:var(--ui-text-color-muted,#6b7280); font-size:.9375rem; pointer-events:none; }
+    .icon-btn {
+      display:flex; align-items:center; justify-content:center; width:24px; height:24px;
+      border:none; background:transparent; cursor:pointer; border-radius:50%;
+      color:var(--ui-text-color-muted,#6b7280); font-size:.875rem; margin-left:auto;
+      transition:background .12s;
+    }
+    .icon-btn:hover { background:rgba(0,0,0,.06); }
+    .helper { display:block; font-size:.75rem; margin-top:5px; color:var(--ui-text-color-muted,#6b7280); }
+    :host([error]) .helper { color:var(--ui-error-color,#ef4444); }

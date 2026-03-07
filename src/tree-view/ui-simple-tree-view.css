@@ -1,0 +1,8 @@
+:host {
+      display: block;
+      font-family: var(--ui-font-family, system-ui, sans-serif);
+    }
+
+    .tree-root {
+      padding: 4px 0;
+    }

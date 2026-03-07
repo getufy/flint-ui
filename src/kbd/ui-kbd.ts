@@ -1,5 +1,7 @@
-import { LitElement, html, css, nothing } from 'lit';
+import { LitElement, unsafeCSS, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import uiKbdStyles from './ui-kbd.css?inline';
+import uiKbdGroupStyles from './ui-kbd-group.css?inline';
 
 /* ─────────────────────────────────────────────────────────────────── */
 /*  ui-kbd                                                              */
@@ -24,49 +26,7 @@ import { customElement, property } from 'lit/decorators.js';
  */
 @customElement('ui-kbd')
 export class UiKbd extends LitElement {
-    static styles = css`
-        :host {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        kbd {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--ui-kbd-font-family, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
-            font-size: 0.8125rem;
-            font-weight: 500;
-            line-height: 1;
-            color: var(--ui-kbd-color, #374151);
-            background: var(--ui-kbd-bg, #f9fafb);
-            border: 1px solid var(--ui-kbd-border-color, #e5e7eb);
-            border-bottom-width: 2px;
-            border-radius: var(--ui-kbd-radius, 4px);
-            box-shadow: 0 1px 0 0 var(--ui-kbd-shadow-color, #d1d5db);
-            padding: 2px 6px;
-            white-space: nowrap;
-            user-select: none;
-        }
-
-        /* size variants */
-        :host([size="sm"]) kbd {
-            font-size: 0.6875rem;
-            padding: 1px 4px;
-        }
-
-        :host([size="lg"]) kbd {
-            font-size: 0.9375rem;
-            padding: 4px 10px;
-        }
-
-        /* flat variant — no raised effect */
-        :host([variant="flat"]) kbd {
-            border-bottom-width: 1px;
-            box-shadow: none;
-        }
-    `;
+    static styles = unsafeCSS(uiKbdStyles);
 
     /** Visual size of the key. */
     @property({ reflect: true })
@@ -103,13 +63,7 @@ export class UiKbd extends LitElement {
  */
 @customElement('ui-kbd-group')
 export class UiKbdGroup extends LitElement {
-    static styles = css`
-        :host {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--ui-kbd-group-gap, 4px);
-        }
-    `;
+    static styles = unsafeCSS(uiKbdGroupStyles);
 
     render() {
         return html`<slot></slot>`;

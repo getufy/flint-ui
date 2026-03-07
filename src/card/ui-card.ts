@@ -1,45 +1,11 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, unsafeCSS, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import uiCardStyles from './ui-card.css?inline';
 
 @customElement('ui-card')
 export class UiCard extends LitElement {
-  static styles = css`
-    :host {
-      display: block;
-      font-family: 'Inter', sans-serif;
-    }
-    
-    .card {
-      background: var(--ui-card-background, white);
-      border-radius: var(--ui-card-border-radius, 12px);
-      box-shadow: var(--ui-card-shadow, 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05));
-      border: 1px solid var(--ui-card-border-color, #f3f4f6);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: box-shadow 0.3s ease, border-color 0.3s ease;
-      padding: var(--ui-card-padding, 0); /* Cards usually don't have padding at the root level if using content blocks */
-    }
-
-    /* Interactive Hover effect */
-    .card.interactive:hover {
-      box-shadow: var(--ui-card-shadow-hover, 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04));
-      cursor: pointer;
-    }
-
-    /* Variants */
-    .card.variant-outlined {
-      box-shadow: none;
-      border: 1px solid var(--ui-card-border-color, #d1d5db);
-    }
-    
-    .card.variant-flat {
-      box-shadow: none;
-      border: none;
-      background: var(--ui-card-background-flat, #f3f4f6);
-    }
-  `;
+  static styles = unsafeCSS(uiCardStyles);
 
   @property({ type: String, reflect: true })
   variant: 'elevated' | 'outlined' | 'flat' = 'elevated';

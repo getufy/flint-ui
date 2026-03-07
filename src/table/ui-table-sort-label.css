@@ -1,0 +1,27 @@
+:host {
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.2s;
+    }
+    :host(:hover) {
+      color: var(--ui-text-color, #111827);
+    }
+    :host(.active) {
+      color: var(--ui-text-color, #111827);
+      font-weight: 700;
+    }
+    .icon {
+      margin-left: 4px;
+      width: 18px;
+      height: 18px;
+      transition: transform 0.2s ease, opacity 0.2s;
+      opacity: 0;
+    }
+    :host(:hover) .icon, :host(.active) .icon {
+      opacity: 1;
+    }
+    .icon.desc {
+      transform: rotate(180deg);
+    }

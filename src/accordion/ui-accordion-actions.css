@@ -1,0 +1,11 @@
+:host {
+            display: none;
+            padding: 8px 16px 16px;
+            justify-content: flex-end;
+            gap: 8px;
+            border-top: 1px solid var(--ui-border-color, #e5e7eb);
+        }
+
+        :host([expanded]) {
+            display: flex;
+        }

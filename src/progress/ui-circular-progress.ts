@@ -1,69 +1,14 @@
-import { LitElement, html, css, nothing } from 'lit';
+import { LitElement, unsafeCSS, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import uiCircularProgressStyles from './ui-circular-progress.css?inline';
 
 /**
  * ui-circular-progress: a circular progress indicator (spinner).
  */
 @customElement('ui-circular-progress')
 export class UiCircularProgress extends LitElement {
-    static styles = css`
-    :host {
-      display: inline-block;
-      --ui-circular-progress-size: 40px;
-      --ui-circular-progress-color: var(--ui-primary-color, #3b82f6);
-      --ui-circular-progress-thickness: 3.6;
-    }
-
-    .circular-root {
-      width: var(--ui-circular-progress-size);
-      height: var(--ui-circular-progress-size);
-      display: inline-block;
-      animation: rotate 1.4s linear infinite;
-    }
-
-    .circular-root.determinate {
-      animation: none;
-      transform: rotate(-90deg);
-    }
-
-    svg {
-      display: block;
-    }
-
-    circle {
-      stroke: var(--ui-circular-progress-color);
-      stroke-linecap: round;
-      transition: stroke-dashoffset 0.3s ease;
-    }
-
-    .indeterminate circle {
-      animation: dash 1.4s ease-in-out infinite;
-      stroke-dasharray: 80, 200;
-      stroke-dashoffset: 0;
-    }
-
-    @keyframes rotate {
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes dash {
-      0% {
-        stroke-dasharray: 1, 200;
-        stroke-dashoffset: 0;
-      }
-      50% {
-        stroke-dasharray: 89, 200;
-        stroke-dashoffset: -35px;
-      }
-      100% {
-        stroke-dasharray: 89, 200;
-        stroke-dashoffset: -124px;
-      }
-    }
-  `;
+    static styles = unsafeCSS(uiCircularProgressStyles);
 
     @property({ type: String, reflect: true }) variant: 'determinate' | 'indeterminate' = 'indeterminate';
     @property({ type: Number, reflect: true }) value = 0; // percentage for determinate 0-100

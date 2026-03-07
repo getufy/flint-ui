@@ -1,6 +1,8 @@
-import { LitElement, html, css, nothing, type PropertyValues } from 'lit';
+import { LitElement, unsafeCSS, html, nothing, type PropertyValues } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import uiSpeedDialActionStyles from './ui-speed-dial-action.css?inline';
+import uiSpeedDialStyles from './ui-speed-dial.css?inline';
 
 /* ─────────────────────────────────────────────────────────────────── */
 /*  ui-speed-dial-action                                                */
@@ -14,85 +16,7 @@ import { classMap } from 'lit/directives/class-map.js';
  */
 @customElement('ui-speed-dial-action')
 export class UiSpeedDialAction extends LitElement {
-    static styles = css`
-        :host {
-            display: flex;
-            align-items: center;
-            position: relative;
-            --action-size: 40px;
-        }
-
-        /* ── Mini FAB ── */
-        .action-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: var(--action-size);
-            height: var(--action-size);
-            border-radius: 50%;
-            background: var(--ui-surface-background, #fff);
-            color: var(--ui-text-color, #374151);
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14);
-            transition: background 0.15s, box-shadow 0.15s, transform 0.15s;
-            flex-shrink: 0;
-            outline: none;
-            font-size: 1.25rem;
-        }
-        .action-btn:hover {
-            background: var(--ui-surface-background-flat, #f3f4f6);
-            box-shadow: 0 5px 8px -1px rgba(0,0,0,.25), 0 8px 12px 0 rgba(0,0,0,.16);
-            transform: scale(1.08);
-        }
-        .action-btn:focus-visible {
-            outline: 2px solid var(--ui-primary-color, #3b82f6);
-            outline-offset: 3px;
-        }
-        :host([disabled]) .action-btn {
-            opacity: 0.38;
-            pointer-events: none;
-        }
-
-        /* ── Tooltip ── */
-        .tooltip {
-            position: absolute;
-            background: rgba(30,41,59,.88);
-            color: #fff;
-            font-family: var(--ui-font-family, 'Inter', sans-serif);
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: .02em;
-            padding: 4px 10px;
-            border-radius: 5px;
-            white-space: nowrap;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.15s;
-        }
-        .tooltip.visible { opacity: 1; }
-
-        :host([tooltip-placement="left"]) .tooltip {
-            right: calc(100% + 10px);
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        :host([tooltip-placement="right"]) .tooltip {
-            left: calc(100% + 10px);
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        :host([tooltip-placement="top"]) .tooltip {
-            bottom: calc(100% + 10px);
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        :host([tooltip-placement="bottom"]) .tooltip {
-            top: calc(100% + 10px);
-            left: 50%;
-            transform: translateX(-50%);
-        }
-    `;
+    static styles = unsafeCSS(uiSpeedDialActionStyles);
 
     /** Programmatic identifier for this action, included in the click event detail. */
     @property({ type: String }) name = '';
@@ -171,120 +95,7 @@ export class UiSpeedDialAction extends LitElement {
  */
 @customElement('ui-speed-dial')
 export class UiSpeedDial extends LitElement {
-    static styles = css`
-        :host {
-            display: inline-flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            --fab-size: 56px;
-            --fab-bg: var(--ui-primary-color, #3b82f6);
-            --fab-color: #fff;
-            --action-gap: 12px;
-        }
-
-        /* ── Actions list ── */
-        .actions {
-            display: flex;
-            align-items: center;
-            gap: var(--action-gap);
-        }
-
-        /* Direction layout */
-        :host([direction="up"])    .actions { flex-direction: column-reverse; margin-bottom: var(--action-gap); }
-        :host([direction="down"])  .actions { flex-direction: column;         margin-top:    var(--action-gap); }
-        :host([direction="left"])  .actions { flex-direction: row-reverse;    margin-right:  var(--action-gap); }
-        :host([direction="right"]) .actions { flex-direction: row;            margin-left:   var(--action-gap); }
-
-        /* Container direction */
-        :host([direction="up"]),
-        :host([direction="down"]) { flex-direction: column; align-items: center; }
-        :host([direction="left"]),
-        :host([direction="right"]) { flex-direction: row; align-items: center; }
-        :host([direction="up"]) { flex-direction: column-reverse; }
-
-        /* ── Main FAB ── */
-        .fab {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: var(--fab-size);
-            height: var(--fab-size);
-            border-radius: 50%;
-            background: var(--fab-bg);
-            color: var(--fab-color);
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 6px 10px -2px rgba(0,0,0,.25), 0 4px 5px 0 rgba(0,0,0,.14);
-            outline: none;
-            font-size: 1.5rem;
-            transition: box-shadow 0.2s, background 0.2s;
-            flex-shrink: 0;
-            position: relative;
-            z-index: 1;
-        }
-        .fab:hover {
-            box-shadow: 0 8px 14px -2px rgba(0,0,0,.3), 0 6px 8px 0 rgba(0,0,0,.16);
-            background: var(--fab-bg-hover, var(--ui-primary-color-dark, #2563eb));
-        }
-        .fab:focus-visible {
-            outline: 3px solid var(--ui-primary-color, #3b82f6);
-            outline-offset: 3px;
-        }
-
-        /* ── Icon crossfade ── */
-        .fab-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.25s cubic-bezier(0.4,0,0.2,1), opacity 0.2s;
-        }
-        .fab-icon.close-icon {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transform: rotate(-45deg);
-        }
-        :host([open]) .fab-icon.open-icon  { opacity: 0; transform: rotate(45deg); }
-        :host([open]) .fab-icon.close-icon { opacity: 1; transform: rotate(0deg); }
-
-        /* ── Action entrance animation ── */
-        ::slotted(ui-speed-dial-action) {
-            opacity: 0;
-            transform: scale(0.6);
-            transition: opacity 0.18s ease, transform 0.18s cubic-bezier(0.4,0,0.2,1);
-            pointer-events: none;
-        }
-        :host([open]) ::slotted(ui-speed-dial-action) {
-            opacity: 1;
-            transform: scale(1);
-            pointer-events: auto;
-        }
-
-        /* ── Backdrop ── */
-        .backdrop {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-        }
-        :host([open]) .backdrop { display: block; }
-
-        /* ── Disabled ── */
-        :host([disabled]) .fab {
-            opacity: 0.38;
-            pointer-events: none;
-            cursor: default;
-        }
-
-        /* ── Hidden ── */
-        :host([hidden]) { display: none !important; }
-
-        svg { display: block; }
-    `;
+    static styles = unsafeCSS(uiSpeedDialStyles);
 
     /* ── Properties ──────────────────────────────────────────────── */
 

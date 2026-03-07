@@ -1,7 +1,8 @@
-import { LitElement, html, css, type PropertyValues } from 'lit';
+import { LitElement, unsafeCSS, html, type PropertyValues } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { styleMap } from 'lit/directives/style-map.js';
 import { classMap } from 'lit/directives/class-map.js';
+import uiGridStyles from './ui-grid.css?inline';
 
 export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type GridSize = number | 'auto' | boolean;
@@ -9,37 +10,7 @@ export type ResponsiveValue<T> = T | Partial<Record<Breakpoint, T>>;
 
 @customElement('ui-grid')
 export class UiGrid extends LitElement {
-    static styles = css`
-    :host {
-      display: block;
-    }
-
-    .grid-wrapper {
-      box-sizing: border-box;
-      display: block;
-    }
-
-    .grid-wrapper.container {
-      display: flex;
-      flex-wrap: wrap;
-      width: 100%;
-    }
-
-    /* Direction */
-    .direction-row { flex-direction: row; }
-    .direction-row-reverse { flex-direction: row-reverse; }
-    .direction-column { flex-direction: column; }
-    .direction-column-reverse { flex-direction: column-reverse; }
-
-    /* Wrap */
-    .wrap-nowrap { flex-wrap: nowrap; }
-    .wrap-wrap-reverse { flex-wrap: wrap-reverse; }
-
-    .grid-item {
-      box-sizing: border-box;
-      margin: 0;
-    }
-  `;
+    static styles = unsafeCSS(uiGridStyles);
 
     @property({ type: Boolean, reflect: true }) container = false;
     @property({ type: String, reflect: true }) direction: 'row' | 'row-reverse' | 'column' | 'column-reverse' = 'row';

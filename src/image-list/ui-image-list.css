@@ -1,0 +1,29 @@
+:host {
+      display: block;
+    }
+
+    .image-list {
+      display: grid;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    /* Standard: uniform grid, items crop to fill each cell */
+    .variant-standard {
+      grid-auto-rows: var(--ui-image-list-row-height, 164px);
+    }
+
+    /* Quilted: same column grid, items can span multiple rows/cols */
+    .variant-quilted {
+      grid-auto-rows: var(--ui-image-list-row-height, 164px);
+    }
+
+    /* Woven: alternating heights, set via nth-child in items */
+    .variant-woven {
+      grid-auto-rows: var(--ui-image-list-row-height, 164px);
+    }
+
+    /* Masonry: CSS columns-based layout — column-count set inline */
+    .variant-masonry {
+      display: block;
+    }

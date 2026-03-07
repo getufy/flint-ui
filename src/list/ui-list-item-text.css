@@ -1,0 +1,19 @@
+:host {
+      flex: 1 1 auto;
+      margin-top: 4px;
+      margin-bottom: 4px;
+    }
+    .primary {
+      display: block;
+      font-family: var(--ui-font-family, sans-serif);
+      font-size: 1rem;
+      color: var(--ui-text-color, #111827);
+      line-height: 1.5;
+    }
+    .secondary {
+      display: block;
+      font-family: var(--ui-font-family, sans-serif);
+      font-size: 0.875rem;
+      color: var(--ui-text-color-muted, #6b7280);
+      line-height: 1.43;
+    }

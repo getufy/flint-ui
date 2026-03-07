@@ -1,33 +1,10 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, unsafeCSS, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
+import uiCardActionAreaStyles from './ui-card-action-area.css?inline';
 
 @customElement('ui-card-action-area')
 export class UiCardActionArea extends LitElement {
-  static styles = css`
-    :host {
-      display: block;
-      width: 100%;
-      cursor: pointer;
-      position: relative;
-    }
-
-    .action-area {
-      transition: background-color 0.2s;
-    }
-
-    .action-area:hover {
-      background-color: var(--ui-card-action-area-hover, rgba(0, 0, 0, 0.04));
-    }
-
-    .action-area:active {
-      background-color: var(--ui-card-action-area-active, rgba(0, 0, 0, 0.08));
-    }
-
-    .action-area:focus-visible {
-      outline: 2px solid var(--ui-card-action-area-focus-ring, #3b82f6);
-      outline-offset: -2px;
-    }
-  `;
+  static styles = unsafeCSS(uiCardActionAreaStyles);
 
   render() {
     return html`

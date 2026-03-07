@@ -1,6 +1,7 @@
-import { LitElement, html, css, nothing, type PropertyValues, type TemplateResult } from 'lit';
+import { LitElement, unsafeCSS, html, nothing, type PropertyValues, type TemplateResult } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import type { UiTreeItem } from './ui-tree-item.js';
+import uiRichTreeViewStyles from './ui-rich-tree-view.css?inline';
 import './ui-tree-item.js';
 
 export type RichTreeItem = Record<string, unknown>;
@@ -39,68 +40,7 @@ export interface RichTreeViewDataSource {
  */
 @customElement('ui-rich-tree-view')
 export class UiRichTreeView extends LitElement {
-    static styles = css`
-    :host {
-      display: block;
-      font-family: var(--ui-font-family, system-ui, sans-serif);
-    }
-
-    .tree-root {
-      padding: 4px 0;
-    }
-
-    /* ── Lazy loading indicators ───────────────────────────────── */
-
-    .lazy-indicator {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      min-height: 32px;
-      font-size: 14px;
-      color: var(--ui-text-color, #6b7280);
-    }
-
-    .lazy-root {
-      padding: 8px 8px;
-    }
-
-    @keyframes ui-spin {
-      to { transform: rotate(360deg); }
-    }
-
-    .lazy-spinner {
-      width: 14px;
-      height: 14px;
-      border: 2px solid currentColor;
-      border-top-color: transparent;
-      border-radius: 50%;
-      animation: ui-spin 0.7s linear infinite;
-      flex-shrink: 0;
-      opacity: 0.55;
-    }
-
-    /* ── Drag & Drop indicators ────────────────────────────────── */
-
-    /* FIX #1: Added missing drag/drop CSS that was completely absent */
-
-    ui-tree-item[dragging] {
-      opacity: 0.4;
-    }
-
-    ui-tree-item[drop-position="before"] {
-      box-shadow: 0 -2px 0 0 var(--ui-primary, #3b82f6);
-    }
-
-    ui-tree-item[drop-position="after"] {
-      box-shadow: 0 2px 0 0 var(--ui-primary, #3b82f6);
-    }
-
-    ui-tree-item[drop-position="inside"] {
-      outline: 2px solid var(--ui-primary, #3b82f6);
-      outline-offset: -1px;
-      border-radius: 4px;
-    }
-  `;
+    static styles = unsafeCSS(uiRichTreeViewStyles);
 
     // ─── Data props ───────────────────────────────────────────────────────────
 

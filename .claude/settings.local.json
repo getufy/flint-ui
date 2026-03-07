@@ -8,7 +8,8 @@
       "Bash(npx eslint src/tree-view/ui-tree-item.ts src/tree-view/ui-rich-tree-view.ts src/tree-view/ui-rich-tree-view-lazy.stories.ts src/index.ts --max-warnings 0)",
       "Bash(npx vitest run src/command/ui-command.test.ts)",
       "Bash(NODE_OPTIONS='--no-warnings' vitest run:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(node:*)"
     ]
   }
 }

@@ -1,7 +1,8 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, unsafeCSS, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { repeat } from 'lit/directives/repeat.js';
 import { classMap } from 'lit/directives/class-map.js';
+import uiTransferListStyles from './ui-transfer-list.css?inline';
 
 export interface TransferOption {
     label: string;
@@ -15,147 +16,7 @@ export interface TransferOption {
  */
 @customElement('ui-transfer-list')
 export class UiTransferList extends LitElement {
-    static styles = css`
-    :host {
-      display: block;
-      --ui-transfer-list-height: 300px;
-      --ui-transfer-list-width: 200px;
-      
-      font-family: var(--ui-font-family, sans-serif);
-      color: var(--ui-text-color, #111827);
-    }
-
-    .container {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .list-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .list-title {
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--ui-text-color-muted, #6b7280);
-      margin-bottom: 4px;
-    }
-
-    .list-box {
-      width: var(--ui-transfer-list-width);
-      height: var(--ui-transfer-list-height);
-      background: var(--ui-surface-background, #ffffff);
-      border: 1.5px solid var(--ui-border-color, #e5e7eb);
-      border-radius: var(--ui-border-radius-lg, 8px);
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      box-shadow: var(--ui-shadow-sm);
-    }
-
-    .list-item {
-      display: flex;
-      align-items: center;
-      padding: 10px 12px;
-      cursor: pointer;
-      transition: background-color 0.2s;
-      gap: 10px;
-      user-select: none;
-    }
-
-    .list-item:hover {
-      background-color: var(--ui-hover-color, rgba(0, 0, 0, 0.04));
-    }
-
-    .list-item.selected {
-      background-color: rgba(59, 130, 246, 0.08);
-    }
-
-    .checkbox {
-      width: 18px;
-      height: 18px;
-      border: 2px solid var(--ui-border-color, #d1d5db);
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s;
-      flex-shrink: 0;
-    }
-
-    .list-item.selected .checkbox {
-      background-color: var(--ui-primary-color, #3b82f6);
-      border-color: var(--ui-primary-color, #3b82f6);
-    }
-
-    .check-icon {
-      color: white;
-      opacity: 0;
-      transform: scale(0.5);
-      transition: all 0.2s;
-    }
-
-    .list-item.selected .check-icon {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    .item-label {
-      font-size: 0.9375rem;
-    }
-
-    .actions {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .action-button {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1.5px solid var(--ui-border-color, #e5e7eb);
-      background: var(--ui-surface-background, #ffffff);
-      border-radius: 8px;
-      cursor: pointer;
-      color: var(--ui-text-color, #111827);
-      transition: all 0.2s;
-    }
-
-    .action-button:hover:not(:disabled) {
-      border-color: var(--ui-primary-color, #3b82f6);
-      color: var(--ui-primary-color, #3b82f6);
-      box-shadow: var(--ui-shadow-md);
-      transform: translateY(-1px);
-    }
-
-    .action-button:active:not(:disabled) {
-      transform: translateY(0);
-    }
-
-    .action-button:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-      background-color: var(--ui-surface-background-flat, #f3f4f6);
-    }
-
-    /* Scrollbar */
-    .list-box::-webkit-scrollbar {
-      width: 6px;
-    }
-    .list-box::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    .list-box::-webkit-scrollbar-thumb {
-      background: var(--ui-border-color, #e5e7eb);
-      border-radius: 3px;
-    }
-  `;
+    static styles = unsafeCSS(uiTransferListStyles);
 
     @property({ type: Array }) options: TransferOption[] = [];
     @property({ type: Array }) value: string[] = []; // Values on the right side

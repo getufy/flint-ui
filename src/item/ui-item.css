@@ -1,0 +1,35 @@
+:host {
+            /* Sizing custom properties — read by sub-components too */
+            --ui-item-padding: 16px;
+            --ui-item-gap: 12px;
+
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: var(--ui-item-gap);
+            padding: var(--ui-item-padding);
+            border-radius: 8px;
+            box-sizing: border-box;
+            overflow: hidden;
+            font-family: var(--ui-font-family, system-ui, sans-serif);
+        }
+
+        /* Size variants — override sizing custom properties */
+        :host([size='sm']) {
+            --ui-item-padding: 12px;
+            --ui-item-gap: 8px;
+        }
+
+        :host([size='xs']) {
+            --ui-item-padding: 8px;
+            --ui-item-gap: 6px;
+        }
+
+        /* Visual variants */
+        :host([variant='outline']) {
+            border: 1px solid var(--ui-border-color, #e5e7eb);
+        }
+
+        :host([variant='muted']) {
+            background: var(--ui-muted-bg, #f9fafb);
+        }

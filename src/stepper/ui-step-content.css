@@ -1,0 +1,19 @@
+:host { display: block; overflow: hidden; }
+        .panel {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.25s ease;
+        }
+        .panel.open { grid-template-rows: 1fr; }
+        .inner {
+            overflow: hidden;
+            padding: 0 16px;
+            /* padding animates together with the grid expand */
+            transition: padding 0.25s ease;
+        }
+        .panel.open .inner { padding: 8px 16px 16px; }
+        .content {
+            font-size: .875rem;
+            color: var(--ui-text-color, #374151);
+            font-family: var(--ui-font-family,'Inter',sans-serif);
+        }

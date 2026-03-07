@@ -1,50 +1,16 @@
-import { LitElement, html, css, PropertyValues } from 'lit';
+import { LitElement, unsafeCSS, html, PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import uiAccordionStyles from './ui-accordion.css?inline';
+import uiAccordionSummaryStyles from './ui-accordion-summary.css?inline';
+import uiAccordionDetailsStyles from './ui-accordion-details.css?inline';
+import uiAccordionActionsStyles from './ui-accordion-actions.css?inline';
 
 /**
  * Accordion: the wrapper for grouping related components.
  */
 @customElement('ui-accordion')
 export class UiAccordion extends LitElement {
-    static styles = css`
-        :host {
-            display: block;
-            border-top: 1px solid var(--ui-border-color, #e5e7eb);
-            background-color: var(--ui-surface-background, #ffffff);
-            color: var(--ui-text-color, #111827);
-            transition: margin 150ms cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        :host(:first-of-type) {
-            border-top: none;
-            border-top-left-radius: var(--ui-border-radius-md, 4px);
-            border-top-right-radius: var(--ui-border-radius-md, 4px);
-        }
-
-        :host(:last-of-type) {
-            border-bottom-left-radius: var(--ui-border-radius-md, 4px);
-            border-bottom-right-radius: var(--ui-border-radius-md, 4px);
-        }
-
-        :host([expanded]) {
-            margin: 16px 0;
-            border-top: none;
-            box-shadow: var(--ui-shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
-        }
-
-        :host([expanded]:first-of-type) {
-            margin-top: 0;
-        }
-
-        :host([expanded]:last-of-type) {
-            margin-bottom: 0;
-        }
-
-        .accordion-container {
-            display: flex;
-            flex-direction: column;
-        }
-    `;
+    static styles = unsafeCSS(uiAccordionStyles);
 
     /**
      * If true, expands the accordion by default.
@@ -97,56 +63,7 @@ export class UiAccordion extends LitElement {
  */
 @customElement('ui-accordion-summary')
 export class UiAccordionSummary extends LitElement {
-    static styles = css`
-        :host {
-            display: flex;
-            align-items: center;
-            padding: 0 16px;
-            min-height: 48px;
-            cursor: pointer;
-            user-select: none;
-            transition: min-height 150ms cubic-bezier(0.4, 0, 0.2, 1), background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        :host(:focus-visible) {
-            outline: 2px solid var(--ui-primary-color, #3b82f6);
-            outline-offset: -2px;
-        }
-
-        :host(:hover) {
-            background-color: var(--ui-hover-color, rgba(0, 0, 0, 0.04));
-        }
-
-        :host([expanded]) {
-            min-height: 64px;
-        }
-
-        :host([disabled]) {
-            cursor: default;
-            opacity: 0.5;
-            pointer-events: none;
-        }
-
-        .content {
-            display: flex;
-            flex-grow: 1;
-            margin: 12px 0;
-            font-family: var(--ui-font-family, sans-serif);
-            font-weight: 500;
-        }
-
-        .expand-icon {
-            display: flex;
-            padding: 8px;
-            border-radius: 50%;
-            color: var(--ui-text-color-muted, #6b7280);
-            transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        :host([expanded]) .expand-icon {
-            transform: rotate(180deg);
-        }
-    `;
+    static styles = unsafeCSS(uiAccordionSummaryStyles);
 
     private _handleActivate = () => {
         this.dispatchEvent(new CustomEvent('ui-accordion-toggle', {
@@ -195,29 +112,7 @@ export class UiAccordionSummary extends LitElement {
  */
 @customElement('ui-accordion-details')
 export class UiAccordionDetails extends LitElement {
-    static styles = css`
-        :host {
-            display: grid;
-            grid-template-rows: 0fr;
-            transition: grid-template-rows 150ms cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: hidden;
-        }
-
-        :host([expanded]) {
-            grid-template-rows: 1fr;
-        }
-
-        .details-inner {
-            min-height: 0;
-        }
-
-        .content {
-            padding: 8px 16px 16px;
-            font-family: var(--ui-font-family, sans-serif);
-            font-size: 0.875rem;
-            color: var(--ui-text-color, #111827);
-        }
-    `;
+    static styles = unsafeCSS(uiAccordionDetailsStyles);
 
     render() {
         return html`
@@ -235,19 +130,7 @@ export class UiAccordionDetails extends LitElement {
  */
 @customElement('ui-accordion-actions')
 export class UiAccordionActions extends LitElement {
-    static styles = css`
-        :host {
-            display: none;
-            padding: 8px 16px 16px;
-            justify-content: flex-end;
-            gap: 8px;
-            border-top: 1px solid var(--ui-border-color, #e5e7eb);
-        }
-
-        :host([expanded]) {
-            display: flex;
-        }
-    `;
+    static styles = unsafeCSS(uiAccordionActionsStyles);
 
     render() {
         return html`<slot></slot>`;

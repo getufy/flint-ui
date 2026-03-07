@@ -1,0 +1,10 @@
+:host {
+            display: inline-flex;
+            align-items: center;
+            background: var(--ui-menubar-bg, #fff);
+            border: 1px solid var(--ui-border-color, #e5e7eb);
+            border-radius: 6px;
+            padding: 3px;
+            gap: 2px;
+            font-family: var(--ui-font-family, system-ui, sans-serif);
+        }

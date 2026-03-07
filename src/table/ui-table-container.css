@@ -1,0 +1,11 @@
+:host {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+      background-color: var(--ui-surface-background, white);
+      border-radius: var(--ui-border-radius-lg, 8px);
+      box-shadow: var(--ui-shadow-sm, 0 1px 3px rgba(0,0,0,0.1));
+    }
+    :host([shadow]) {
+      box-shadow: var(--ui-shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06));
+    }

@@ -1,0 +1,33 @@
+:host {
+      display: block;
+    }
+
+    .stack-wrapper {
+      display: flex;
+      box-sizing: border-box;
+    }
+
+    /* Column direction stacks fill full width */
+    .stack-wrapper.direction-column,
+    .stack-wrapper.direction-column-reverse {
+      width: 100%;
+    }
+
+    /* Reset slotted divider margins so stack gap controls spacing */
+    ::slotted(ui-divider) {
+      margin: 0 !important;
+    }
+
+    /* Fallback margin-based spacing when useFlexGap=false */
+    .stack-wrapper.no-flex-gap.direction-column ::slotted(*:not(:first-child)) {
+      margin-top: var(--ui-stack-spacing, 0px);
+    }
+    .stack-wrapper.no-flex-gap.direction-column-reverse ::slotted(*:not(:last-child)) {
+      margin-bottom: var(--ui-stack-spacing, 0px);
+    }
+    .stack-wrapper.no-flex-gap.direction-row ::slotted(*:not(:first-child)) {
+      margin-left: var(--ui-stack-spacing, 0px);
+    }
+    .stack-wrapper.no-flex-gap.direction-row-reverse ::slotted(*:not(:last-child)) {
+      margin-right: var(--ui-stack-spacing, 0px);
+    }

@@ -1,0 +1,14 @@
+:host {
+      display: block;
+      padding: 8px 0;
+      margin: 0;
+      list-style: none;
+      background-color: var(--ui-surface-background, white);
+    }
+    :host([disable-padding]) {
+      padding: 0;
+    }
+    :host([dense]) {
+      --ui-list-item-padding: 4px 16px;
+      --ui-list-item-gap: 8px;
+    }

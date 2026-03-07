@@ -1,5 +1,6 @@
-import { LitElement, html, css, type PropertyValues } from 'lit';
+import { LitElement, unsafeCSS, html, type PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import uiImageListItemStyles from './ui-image-list-item.css?inline';
 
 export type ImageFit = 'cover' | 'contain';
 
@@ -20,74 +21,7 @@ export type ImageFit = 'cover' | 'contain';
  */
 @customElement('ui-image-list-item')
 export class UiImageListItem extends LitElement {
-  static styles = css`
-    :host {
-      display: block;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* bar-position below: host becomes column-flex so bar sits below image */
-    :host([bar-position="below"]) {
-      display: flex;
-      flex-direction: column;
-      overflow: visible;
-    }
-
-    /* Masonry: let height follow image, avoid column breaks */
-    :host(.masonry) {
-      break-inside: avoid;
-      margin-bottom: var(--ui-image-list-gap, 4px);
-    }
-
-    .item-wrapper {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      overflow: hidden;
-    }
-
-    :host([bar-position="below"]) .item-wrapper {
-      flex: 1 1 auto;
-      overflow: hidden;
-    }
-
-    /* Masonry: wrapper height follows content */
-    :host(.masonry) .item-wrapper {
-      height: auto;
-    }
-
-    ::slotted(img) {
-      width: 100%;
-      height: 100%;
-      object-fit: var(--ui-image-fit, cover);
-      display: block;
-    }
-
-    /* Masonry images: natural height */
-    :host(.masonry) ::slotted(img) {
-      height: auto;
-    }
-
-    /* Bar overlay: pinned to bottom of :host (not wrapper) */
-    ::slotted(ui-image-list-item-bar) {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-    }
-
-    /* Bar at top of image */
-    ::slotted(ui-image-list-item-bar[position="top"]) {
-      bottom: auto;
-      top: 0;
-    }
-
-    /* Bar below image: static flow */
-    :host([bar-position="below"]) ::slotted(ui-image-list-item-bar) {
-      position: static;
-    }
-  `;
+  static styles = unsafeCSS(uiImageListItemStyles);
 
   /** How many grid rows this item spans (quilted/woven only) */
   @property({ type: Number }) rows = 1;

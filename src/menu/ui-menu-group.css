@@ -1,0 +1,11 @@
+:host { display: block; }
+
+        .group-label {
+            padding: 6px 16px 2px;
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--ui-text-color-muted, #6b7280);
+            user-select: none;
+        }

@@ -1,15 +1,11 @@
-import { LitElement, html, css, type PropertyValues } from 'lit';
+import { LitElement, unsafeCSS, html, type PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { UiToggleButton } from './ui-toggle-button.js';
+import uiToggleButtonGroupStyles from './ui-toggle-button-group.css?inline';
 
 @customElement('ui-toggle-button-group')
 export class UiToggleButtonGroup extends LitElement {
-    static styles = css`
-    :host {
-      display: inline-flex;
-      vertical-align: middle;
-    }
-  `;
+    static styles = unsafeCSS(uiToggleButtonGroupStyles);
 
     @property({ type: String }) value: string | string[] = '';
     @property({ type: Boolean }) exclusive = true;

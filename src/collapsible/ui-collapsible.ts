@@ -1,5 +1,8 @@
-import { LitElement, html, css, type PropertyValues } from 'lit';
+import { LitElement, unsafeCSS, html, type PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import uiCollapsibleTriggerStyles from './ui-collapsible-trigger.css?inline';
+import uiCollapsibleContentStyles from './ui-collapsible-content.css?inline';
+import uiCollapsibleStyles from './ui-collapsible.css?inline';
 
 /* ─────────────────────────────────────────────────────────────────── */
 /*  ui-collapsible-trigger                                              */
@@ -16,28 +19,7 @@ import { customElement, property } from 'lit/decorators.js';
  */
 @customElement('ui-collapsible-trigger')
 export class UiCollapsibleTrigger extends LitElement {
-    static styles = css`
-        :host { display: block; }
-
-        .trigger {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            background: none;
-            border: none;
-            padding: 0;
-            margin: 0;
-            cursor: pointer;
-            font: inherit;
-            color: inherit;
-            text-align: left;
-        }
-
-        :host([disabled]) .trigger {
-            cursor: not-allowed;
-            opacity: 0.5;
-        }
-    `;
+    static styles = unsafeCSS(uiCollapsibleTriggerStyles);
 
     /** Reflects the parent collapsible's open state. Set by `ui-collapsible`. */
     @property({ type: Boolean, reflect: true }) expanded = false;
@@ -82,25 +64,7 @@ export class UiCollapsibleTrigger extends LitElement {
  */
 @customElement('ui-collapsible-content')
 export class UiCollapsibleContent extends LitElement {
-    static styles = css`
-        :host { display: block; }
-
-        .panel {
-            display: grid;
-            grid-template-rows: 0fr;
-            overflow: hidden;
-            transition:
-                grid-template-rows var(--ui-collapsible-duration, 200ms) var(--ui-collapsible-easing, ease);
-        }
-
-        :host([open]) .panel {
-            grid-template-rows: 1fr;
-        }
-
-        .panel-inner {
-            overflow: hidden;
-        }
-    `;
+    static styles = unsafeCSS(uiCollapsibleContentStyles);
 
     /** Whether the panel is visible. Managed by the parent `ui-collapsible`. */
     @property({ type: Boolean, reflect: true }) open = false;
@@ -138,9 +102,7 @@ export class UiCollapsibleContent extends LitElement {
  */
 @customElement('ui-collapsible')
 export class UiCollapsible extends LitElement {
-    static styles = css`
-        :host { display: block; }
-    `;
+    static styles = unsafeCSS(uiCollapsibleStyles);
 
     /** Whether the panel is open. Reflects to attribute for CSS targeting. */
     @property({ type: Boolean, reflect: true }) open = false;

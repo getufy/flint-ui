@@ -1,0 +1,17 @@
+:host {
+            display: block;
+            /* Stretch to fill item width including its padding */
+            flex: 0 0 calc(100% + 2 * var(--ui-item-padding, 16px));
+            margin-left: calc(-1 * var(--ui-item-padding, 16px));
+            margin-right: calc(-1 * var(--ui-item-padding, 16px));
+            margin-top: calc(-1 * var(--ui-item-padding, 16px));
+            margin-bottom: 0;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        ::slotted(img) {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }

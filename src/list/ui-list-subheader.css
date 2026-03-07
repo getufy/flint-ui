@@ -1,0 +1,11 @@
+:host {
+      display: block;
+      padding: 16px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ui-text-color-muted, #6b7280);
+      font-family: var(--ui-font-family, sans-serif);
+      line-height: 1;
+    }

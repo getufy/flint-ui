@@ -1,0 +1,16 @@
+:host {
+            display: block;
+            font-family: var(--ui-font-family, system-ui, sans-serif);
+        }
+        :host([hidden]) { display: none !important; }
+
+        .heading {
+            padding: 6px 8px 2px;
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--ui-text-color-muted, #6b7280);
+        }
+
+        .heading:empty { display: none; }

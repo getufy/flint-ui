@@ -1,5 +1,6 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, unsafeCSS, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
+import uiBreadcrumbsStyles from './ui-breadcrumbs.css?inline';
 
 /**
  * Breadcrumbs provide a navigational aid showing the current page's location
@@ -10,72 +11,7 @@ import { customElement, property, state } from 'lit/decorators.js';
  */
 @customElement('ui-breadcrumbs')
 export class UiBreadcrumbs extends LitElement {
-    static styles = css`
-        :host {
-            display: block;
-        }
-
-        .breadcrumbs-ol {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            padding: 0;
-            margin: 0;
-            list-style: none;
-        }
-
-        .breadcrumb-li {
-            display: flex;
-            align-items: center;
-        }
-
-        .separator {
-            display: flex;
-            user-select: none;
-            margin-left: 8px;
-            margin-right: 8px;
-            color: var(--ui-text-color-muted, #6b7280);
-        }
-
-        ::slotted(*) {
-            font-family: var(--ui-font-family, sans-serif);
-            font-size: 0.875rem;
-            color: var(--ui-text-color-muted, #6b7280);
-            text-decoration: none;
-            transition: color 200ms;
-        }
-
-        ::slotted(a:hover) {
-            text-decoration: underline;
-            color: var(--ui-text-color, #111827);
-        }
-
-        ::slotted([aria-current="page"]),
-        ::slotted(.active) {
-            color: var(--ui-text-color, #111827);
-            font-weight: 500;
-            pointer-events: none;
-        }
-
-        .collapsed-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--ui-hover-color, rgba(0, 0, 0, 0.04));
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            padding: 4px 8px;
-            font-size: 1rem;
-            line-height: 1;
-            color: var(--ui-text-color-muted, #6b7280);
-            transition: background-color 200ms;
-        }
-
-        .collapsed-button:hover {
-            background-color: var(--ui-hover-color-strong, rgba(0, 0, 0, 0.08));
-        }
-    `;
+    static styles = unsafeCSS(uiBreadcrumbsStyles);
 
     /**
      * Max number of items to display before collapsing.

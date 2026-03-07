@@ -1,30 +1,10 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, unsafeCSS, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import uiCardMediaStyles from './ui-card-media.css?inline';
 
 @customElement('ui-card-media')
 export class UiCardMedia extends LitElement {
-    static styles = css`
-    :host {
-      display: block;
-      width: 100%;
-      overflow: hidden;
-    }
-    
-    .media {
-      width: 100%;
-      height: var(--ui-card-media-height, 200px);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-    
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-  `;
+    static styles = unsafeCSS(uiCardMediaStyles);
 
     @property({ type: String })
     image = '';

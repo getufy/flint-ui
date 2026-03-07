@@ -1,5 +1,8 @@
-import { LitElement, html, css, type PropertyValues } from 'lit';
+import { LitElement, unsafeCSS, html, type PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import uiHoverCardTriggerStyles from './ui-hover-card-trigger.css?inline';
+import uiHoverCardContentStyles from './ui-hover-card-content.css?inline';
+import uiHoverCardStyles from './ui-hover-card.css?inline';
 
 /* ─────────────────────────────────────────────────────────────────── */
 /*  ui-hover-card-trigger                                               */
@@ -13,9 +16,7 @@ import { customElement, property } from 'lit/decorators.js';
  */
 @customElement('ui-hover-card-trigger')
 export class UiHoverCardTrigger extends LitElement {
-    static styles = css`
-        :host { display: inline-block; }
-    `;
+    static styles = unsafeCSS(uiHoverCardTriggerStyles);
 
     private _getRoot(): UiHoverCard | null {
         return this.closest('ui-hover-card') as UiHoverCard | null;
@@ -68,38 +69,7 @@ export class UiHoverCardTrigger extends LitElement {
  */
 @customElement('ui-hover-card-content')
 export class UiHoverCardContent extends LitElement {
-    static styles = css`
-        :host {
-            display: block;
-            position: absolute;
-            z-index: var(--ui-hovercard-z-index, 1000);
-            opacity: 0;
-            visibility: hidden;
-            transition:
-                opacity var(--ui-hovercard-duration, 150ms) ease,
-                visibility var(--ui-hovercard-duration, 150ms) ease;
-            pointer-events: none;
-        }
-
-        :host([open]) {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-        }
-
-        .card {
-            background: var(--ui-hovercard-bg, #fff);
-            border: 1px solid var(--ui-hovercard-border-color, #e5e7eb);
-            border-radius: var(--ui-hovercard-radius, 8px);
-            box-shadow: var(--ui-hovercard-shadow, 0 4px 16px rgba(0, 0, 0, 0.12));
-            padding: var(--ui-hovercard-padding, 16px);
-            min-width: var(--ui-hovercard-min-width, 200px);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-            font-size: var(--ui-hovercard-font-size, 0.875rem);
-            color: var(--ui-hovercard-color, #111827);
-            line-height: 1.5;
-        }
-    `;
+    static styles = unsafeCSS(uiHoverCardContentStyles);
 
     /** Which side of the trigger to display the card on. */
     @property({ type: String, reflect: true }) side: 'top' | 'right' | 'bottom' | 'left' = 'bottom';
@@ -200,12 +170,7 @@ export class UiHoverCardContent extends LitElement {
  */
 @customElement('ui-hover-card')
 export class UiHoverCard extends LitElement {
-    static styles = css`
-        :host {
-            display: inline-block;
-            position: relative;
-        }
-    `;
+    static styles = unsafeCSS(uiHoverCardStyles);
 
     /** Delay in milliseconds before the hover card opens. */
     @property({ type: Number, attribute: 'open-delay' }) openDelay = 700;

@@ -1,0 +1,133 @@
+:host {
+      display: inline-block;
+      vertical-align: middle;
+      font-family: var(--ui-font-family, 'Inter', sans-serif);
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      height: 32px;
+      padding: 0 12px;
+      border-radius: 16px;
+      font-size: 14px;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      background-color: var(--ui-surface-background-flat, #f3f4f6);
+      color: var(--ui-text-color, #111827);
+      border: 1px solid transparent;
+      user-select: none;
+      gap: 8px;
+      outline: none;
+      overflow: hidden;
+    }
+
+    .chip.clickable {
+      cursor: pointer;
+    }
+
+    .chip.clickable:hover:not(.disabled) {
+      background-color: var(--ui-hover-color, #e5e7eb);
+    }
+
+    .chip.clickable:active:not(.disabled) {
+      background-color: var(--ui-active-color, #d1d5db);
+    }
+
+    .chip.outlined {
+      background-color: transparent;
+      border-color: var(--ui-input-border-color, #d1d5db);
+    }
+
+    .chip.primary:not(.outlined) {
+      background-color: var(--ui-primary-color, #3b82f6);
+      color: white;
+    }
+
+    .chip.secondary:not(.outlined) {
+      background-color: var(--ui-secondary-color, #6b7280);
+      color: white;
+    }
+
+    .chip.outlined.primary {
+      color: var(--ui-primary-color, #3b82f6);
+      border-color: var(--ui-primary-color, #3b82f6);
+    }
+
+    .chip.outlined.secondary {
+      color: var(--ui-secondary-color, #6b7280);
+      border-color: var(--ui-secondary-color, #6b7280);
+    }
+
+    .chip.primary.clickable:hover:not(.disabled) {
+      filter: brightness(0.9);
+      box-shadow: var(--ui-shadow-sm);
+    }
+
+    .chip.secondary.clickable:hover:not(.disabled) {
+      filter: brightness(0.9);
+      box-shadow: var(--ui-shadow-sm);
+    }
+
+    .chip.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .chip:focus-visible {
+      outline: 2px solid var(--ui-primary-color, #3b82f6);
+      outline-offset: 2px;
+    }
+
+    .delete-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      margin-right: -4px;
+      cursor: pointer;
+      color: inherit;
+      opacity: 0.7;
+      transition: opacity 0.2s, background-color 0.2s;
+      outline: none;
+    }
+
+    .delete-icon:hover {
+      opacity: 1;
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .delete-icon:focus-visible {
+      opacity: 1;
+      outline: 2px solid currentColor;
+      outline-offset: 1px;
+    }
+
+    .chip.disabled .delete-icon {
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    ::slotted([slot="avatar"]) {
+      --ui-avatar-size: 24px;
+      width: 24px;
+      height: 24px;
+      margin-left: -8px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    ::slotted([slot="icon"]) {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      margin-left: -4px;
+      flex-shrink: 0;
+      line-height: 1;
+    }

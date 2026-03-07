@@ -1,0 +1,14 @@
+:host { display: block; font-family: var(--ui-font-family,'Inter',sans-serif); }
+        .stepper {
+            display: flex;
+            padding: 16px 24px;
+            background: var(--ui-surface-background, #fff);
+        }
+        /* Horizontal: align-items:stretch lets each step be as tall as the tallest */
+        .stepper.horizontal { align-items: stretch; flex-direction: row; }
+        .stepper.vertical   { flex-direction: column; gap: 0; }
+        /* alt-label: icons sit at the same height across all steps */
+        .stepper.alt { align-items: flex-start; }
+
+        /* Expose primary color to steps */
+        ::slotted(ui-step) { /* overridden in child */ }

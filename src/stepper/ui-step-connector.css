@@ -1,0 +1,9 @@
+:host { display: block; }
+        .line {
+            background: var(--ui-stepper-connector-color, #e5e7eb);
+            border-radius: 2px;
+            transition: background 0.3s;
+        }
+        .line.completed { background: var(--ui-primary-color, #3b82f6); }
+        :host([orientation="horizontal"]) .line { height: 2px; width: 100%; }
+        :host([orientation="vertical"])   .line { width: 2px; min-height: 24px; margin: 0 auto; }

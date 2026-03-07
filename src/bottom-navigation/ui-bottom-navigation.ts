@@ -1,6 +1,7 @@
-import { LitElement, html, css, PropertyValues } from 'lit';
+import { LitElement, unsafeCSS, html, PropertyValues } from 'lit';
 import { customElement, property, queryAssignedElements } from 'lit/decorators.js';
 import { UiBottomNavigationAction } from './ui-bottom-navigation-action.js';
+import uiBottomNavigationStyles from './ui-bottom-navigation.css?inline';
 
 /**
  * Bottom Navigation bars allow movement between primary destinations in an app.
@@ -10,23 +11,7 @@ import { UiBottomNavigationAction } from './ui-bottom-navigation-action.js';
  */
 @customElement('ui-bottom-navigation')
 export class UiBottomNavigation extends LitElement {
-    static styles = css`
-        :host {
-            display: flex;
-            justify-content: center;
-            height: 56px;
-            background-color: var(--ui-surface-background, #ffffff);
-            box-shadow: var(--ui-shadow-lg, 0 -1px 10px rgba(0, 0, 0, 0.1));
-            position: relative;
-            width: 100%;
-        }
-
-        .container {
-            display: flex;
-            flex: 1;
-            max-width: 100%;
-        }
-    `;
+    static styles = unsafeCSS(uiBottomNavigationStyles);
 
     /**
      * The value of the currently selected action.

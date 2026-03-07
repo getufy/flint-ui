@@ -1,0 +1,9 @@
+:host {
+            display: block;
+            padding: 24px 8px;
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--ui-text-color-muted, #6b7280);
+            font-family: var(--ui-font-family, system-ui, sans-serif);
+        }
+        :host([hidden]) { display: none !important; }

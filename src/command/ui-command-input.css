@@ -1,0 +1,38 @@
+:host {
+            display: block;
+            font-family: var(--ui-font-family, system-ui, sans-serif);
+        }
+
+        .input-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--ui-border-color, #e5e7eb);
+        }
+
+        .search-icon {
+            flex-shrink: 0;
+            color: var(--ui-text-color-muted, #6b7280);
+            display: flex;
+            align-items: center;
+        }
+
+        input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 0.9375rem;
+            color: var(--ui-text-color, #111827);
+            font-family: inherit;
+            min-width: 0;
+        }
+
+        input::placeholder {
+            color: var(--ui-text-color-muted, #6b7280);
+        }
+
+        /* Hide the native clear button added by type="search" in WebKit. */
+        input[type="search"]::-webkit-search-cancel-button { display: none; }
+        input[type="search"]::-webkit-search-decoration      { display: none; }

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './ui-slider';
+import type { UiSlider } from './ui-slider';
 
 const meta: Meta = {
   title: 'Inputs/Slider',

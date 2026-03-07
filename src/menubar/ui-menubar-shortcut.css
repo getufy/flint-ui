@@ -1,0 +1,10 @@
+:host {
+            display: inline-flex;
+            align-items: center;
+            margin-left: auto;
+            padding-left: 16px;
+            font-size: 0.6875rem;
+            letter-spacing: 0.05em;
+            color: var(--ui-text-color-muted, #6b7280);
+            font-family: var(--ui-font-family, system-ui, sans-serif);
+        }

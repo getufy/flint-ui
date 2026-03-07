@@ -1,6 +1,12 @@
-import { LitElement, html, css, nothing } from 'lit';
+import { LitElement, unsafeCSS, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import uiStepConnectorStyles from './ui-step-connector.css?inline';
+import uiStepLabelStyles from './ui-step-label.css?inline';
+import uiStepContentStyles from './ui-step-content.css?inline';
+import uiStepStyles from './ui-step.css?inline';
+import uiStepperStyles from './ui-stepper.css?inline';
+import uiMobileStepperStyles from './ui-mobile-stepper.css?inline';
 
 /* ── SVG icons ─────────────────────────────────────────────────────── */
 const iconCheck = html`<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>`;
@@ -11,17 +17,7 @@ const iconWarn = html`<svg width="18" height="18" viewBox="0 0 24 24" fill="curr
 /* ================================================================== */
 @customElement('ui-step-connector')
 export class UiStepConnector extends LitElement {
-    static styles = css`
-        :host { display: block; }
-        .line {
-            background: var(--ui-stepper-connector-color, #e5e7eb);
-            border-radius: 2px;
-            transition: background 0.3s;
-        }
-        .line.completed { background: var(--ui-primary-color, #3b82f6); }
-        :host([orientation="horizontal"]) .line { height: 2px; width: 100%; }
-        :host([orientation="vertical"])   .line { width: 2px; min-height: 24px; margin: 0 auto; }
-    `;
+    static styles = unsafeCSS(uiStepConnectorStyles);
 
     @property({ reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
     @property({ type: Boolean }) completed = false;
@@ -34,14 +30,7 @@ export class UiStepConnector extends LitElement {
 /* ================================================================== */
 @customElement('ui-step-label')
 export class UiStepLabel extends LitElement {
-    static styles = css`
-        :host { display: block; }
-        .label { font-size: .875rem; font-weight: 500; color: var(--ui-text-color, #111827); font-family: var(--ui-font-family,'Inter',sans-serif); line-height: 1.4; }
-        .optional { font-size: .75rem; color: #9ca3af; font-style: italic; }
-        :host([active])   .label { color: var(--ui-primary-color, #3b82f6); font-weight: 600; }
-        :host([disabled]) .label { color: #9ca3af; }
-        :host([error])    .label { color: var(--ui-error-color, #ef4444); }
-    `;
+    static styles = unsafeCSS(uiStepLabelStyles);
 
     @property({ type: Boolean, reflect: true }) active = false;
     @property({ type: Boolean, reflect: true }) disabled = false;
@@ -60,27 +49,7 @@ export class UiStepLabel extends LitElement {
 /* ================================================================== */
 @customElement('ui-step-content')
 export class UiStepContent extends LitElement {
-    static styles = css`
-        :host { display: block; overflow: hidden; }
-        .panel {
-            display: grid;
-            grid-template-rows: 0fr;
-            transition: grid-template-rows 0.25s ease;
-        }
-        .panel.open { grid-template-rows: 1fr; }
-        .inner {
-            overflow: hidden;
-            padding: 0 16px;
-            /* padding animates together with the grid expand */
-            transition: padding 0.25s ease;
-        }
-        .panel.open .inner { padding: 8px 16px 16px; }
-        .content {
-            font-size: .875rem;
-            color: var(--ui-text-color, #374151);
-            font-family: var(--ui-font-family,'Inter',sans-serif);
-        }
-    `;
+    static styles = unsafeCSS(uiStepContentStyles);
 
     /** Whether the content is visible. Defaults true so standalone usage always shows. */
     @property({ type: Boolean, reflect: true }) open = true;
@@ -103,135 +72,7 @@ export class UiStepContent extends LitElement {
 /* ================================================================== */
 @customElement('ui-step')
 export class UiStep extends LitElement {
-    static styles = css`
-        :host {
-            display: flex;
-            /*
-             * flex: 1 1 0  ← key for equal columns:
-             * '0' flex-basis means the available space is divided equally,
-             * ignoring each step's content size.  Combined with min-width:0
-             * this prevents longer labels from widening their column.
-             */
-            flex: 1 1 0;
-            min-width: 0;
-            font-family: var(--ui-font-family,'Inter',sans-serif);
-        }
-
-        /* ── Horizontal ── */
-        :host([orientation="horizontal"]) { align-items: flex-start; padding-top: 4px; }
-
-        /* ── Vertical ── */
-        :host([orientation="vertical"]) {
-            flex-direction: column;
-            flex: none;
-            width: 100%;
-        }
-
-        /* ── Alternative label (horizontal) ── */
-        :host([alternative-label]) {
-            flex-direction: column;
-            align-items: center;
-            flex: 1;
-            min-width: 0;
-        }
-
-        /* connector wrapper — fills the gap between steps */
-        .conn-wrap {
-            flex: 1 1 auto;
-            min-width: 12px;
-            display: flex;
-            /*
-             * flex-start so the connector stays anchored to the top
-             * regardless of how tall a multi-line label makes the row.
-             * padding-top places the 2px line exactly at the icon's center:
-             *   host padding-top (4px) + half icon (16px) - 1px (half line) = 15px
-             */
-            align-items: flex-start;
-            padding-top: 15px;
-        }
-        .conn-wrap ui-step-connector { flex: 1; }
-
-        /*
-         * alt-label top row: always render two symmetric fills so every
-         * icon is centred in its column regardless of position.
-         * First step's leading fill is empty; last step's trailing fill
-         * is empty — both are rendered to keep equal column widths.
-         */
-        .alt-top { display: flex; align-items: center; width: 100%; }
-        .alt-top .conn-fill { flex: 1; display: flex; align-items: center; }
-        .alt-top .conn-fill ui-step-connector { flex: 1; }
-
-        /* ── Step header: icon + label ── */
-        .step-header {
-            display: flex;
-            align-items: flex-start;   /* icon aligns to first line of label */
-            gap: 14px;
-            min-width: 0;              /* allow label to wrap instead of overflow */
-        }
-        /* Optically nudge label down so its baseline sits at the icon's centre */
-        .step-header ui-step-label,
-        .step-btn    ui-step-label {
-            padding-top: 5px;          /* (32px icon − ~22px text) / 2 ≈ 5px */
-            min-width: 0;
-        }
-
-        :host([alternative-label]) .alt-label-row {
-            margin-top: 8px;
-            text-align: center;
-            min-width: 0;
-            width: 100%;
-        }
-
-        /* clickable button mode */
-        .step-btn {
-            background: none; border: none; padding: 0; cursor: pointer;
-            font-family: inherit; border-radius: 6px; outline: none;
-            display: flex; align-items: flex-start; gap: 14px;
-            min-width: 0;
-            text-align: left;
-        }
-        .step-btn:focus-visible { outline: 2px solid var(--ui-primary-color, #3b82f6); outline-offset: 3px; }
-        :host([disabled]) .step-btn { cursor: default; }
-        :host([alternative-label]) .step-btn { flex-direction: column; align-items: center; gap: 0; }
-
-        /* ── Vertical body ── */
-        .v-body {
-            display: flex;
-            margin-left: 15px;
-            min-height: 16px;
-        }
-        .v-line {
-            width: 2px;
-            background: var(--ui-stepper-connector-color, #e5e7eb);
-            border-radius: 2px;
-            flex-shrink: 0;
-            transition: background 0.3s;
-            margin-right: 14px;
-        }
-        .v-line.completed { background: var(--ui-primary-color, #3b82f6); }
-        :host([last]) .v-line { background: transparent; }
-        .v-content { flex: 1; padding-bottom: 8px; min-width: 0; }
-
-        /* ── Step icon circle ── */
-        .icon-circle {
-            width: var(--ui-stepper-icon-size, 32px);
-            height: var(--ui-stepper-icon-size, 32px);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: .8125rem; font-weight: 700;
-            border: 2px solid #d1d5db;
-            color: #9ca3af;
-            background: transparent;
-            transition: all .2s;
-            /* Never shrink — it's a fixed-size indicator */
-            flex-shrink: 0;
-            box-sizing: border-box;
-        }
-        .icon-circle.active   { background: var(--ui-primary-color,#3b82f6); border-color: var(--ui-primary-color,#3b82f6); color:#fff; box-shadow:0 0 0 4px rgba(59,130,246,.15); }
-        .icon-circle.completed{ background: var(--ui-primary-color,#3b82f6); border-color: var(--ui-primary-color,#3b82f6); color:#fff; }
-        .icon-circle.error    { border-color: var(--ui-error-color,#ef4444); color: var(--ui-error-color,#ef4444); }
-        :host([disabled]) .icon-circle { opacity: .4; }
-    `;
+    static styles = unsafeCSS(uiStepStyles);
 
     @property({ type: Boolean, reflect: true }) active = false;
     @property({ type: Boolean, reflect: true }) completed = false;
@@ -329,22 +170,7 @@ export class UiStep extends LitElement {
 /* ================================================================== */
 @customElement('ui-stepper')
 export class UiStepper extends LitElement {
-    static styles = css`
-        :host { display: block; font-family: var(--ui-font-family,'Inter',sans-serif); }
-        .stepper {
-            display: flex;
-            padding: 16px 24px;
-            background: var(--ui-surface-background, #fff);
-        }
-        /* Horizontal: align-items:stretch lets each step be as tall as the tallest */
-        .stepper.horizontal { align-items: stretch; flex-direction: row; }
-        .stepper.vertical   { flex-direction: column; gap: 0; }
-        /* alt-label: icons sit at the same height across all steps */
-        .stepper.alt { align-items: flex-start; }
-
-        /* Expose primary color to steps */
-        ::slotted(ui-step) { /* overridden in child */ }
-    `;
+    static styles = unsafeCSS(uiStepperStyles);
 
     @property({ type: Number, attribute: 'active-step' }) activeStep = 0;
     @property({ type: String, reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
@@ -412,47 +238,7 @@ export class UiStepper extends LitElement {
 /* ================================================================== */
 @customElement('ui-mobile-stepper')
 export class UiMobileStepper extends LitElement {
-    static styles = css`
-        :host {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 8px 12px; gap: 8px;
-            background: var(--ui-surface-background,#fff);
-            font-family: var(--ui-font-family,'Inter',sans-serif);
-        }
-        :host([position="static"]) { border:1px solid var(--ui-border-color,#e5e7eb); border-radius:8px; }
-        :host([position="bottom"]) { border-top:1px solid var(--ui-border-color,#e5e7eb); }
-        :host([position="top"])    { border-bottom:1px solid var(--ui-border-color,#e5e7eb); }
-
-        .progress { display:flex; align-items:center; justify-content:center; flex:1; gap:0; }
-
-        /* text */
-        .text { font-size:.8rem; color:#6b7280; }
-
-        /* dots */
-        .dots { display:flex; gap:6px; }
-        .dot  { width:10px; height:10px; border-radius:50%; background:#d1d5db; transition:background .2s; }
-        .dot.active { background:var(--ui-primary-color,#3b82f6); }
-
-        /* progress bar */
-        .bar-track { flex:1; height:4px; background:#e5e7eb; border-radius:2px; overflow:hidden; }
-        .bar-fill   { height:100%; background:var(--ui-primary-color,#3b82f6); border-radius:2px; transition:width .3s; }
-
-        /* screen-reader-only utility */
-        .sr-only {
-            position: absolute; width: 1px; height: 1px;
-            padding: 0; margin: -1px; overflow: hidden;
-            clip: rect(0,0,0,0); white-space: nowrap; border: 0;
-        }
-
-        /* default nav buttons */
-        .nav-btn {
-            padding:6px 14px; border-radius:6px; font-size:.8rem; font-family:inherit; cursor:pointer;
-            transition: opacity .15s;
-        }
-        .nav-btn:disabled { opacity:.38; cursor:default; }
-        .nav-btn.back { background:#fff; color:#374151; border:1px solid #e2e8f0; }
-        .nav-btn.next { background:var(--ui-primary-color,#3b82f6); color:#fff; border:none; }
-    `;
+    static styles = unsafeCSS(uiMobileStepperStyles);
 
     @property({ type: Number }) steps = 0;
     @property({ type: Number, attribute: 'active-step' }) activeStep = 0;

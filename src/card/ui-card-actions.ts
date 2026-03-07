@@ -1,16 +1,10 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, unsafeCSS, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
+import uiCardActionsStyles from './ui-card-actions.css?inline';
 
 @customElement('ui-card-actions')
 export class UiCardActions extends LitElement {
-    static styles = css`
-    :host {
-      display: flex;
-      padding: var(--ui-card-actions-padding, 8px 16px);
-      align-items: center;
-      gap: 8px;
-    }
-  `;
+    static styles = unsafeCSS(uiCardActionsStyles);
 
     render() {
         return html`

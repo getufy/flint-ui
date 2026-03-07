@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, unsafeCSS, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { repeat } from 'lit/directives/repeat.js';
@@ -9,6 +9,7 @@ import {
     type DateRange, EMPTY_RANGE,
     type RangeCalendarDay,
 } from './date-range-helpers.js';
+import uiDateRangeCalendarStyles from './ui-date-range-calendar.css?inline';
 
 /**
  * A dual-month calendar for range selection.
@@ -18,161 +19,7 @@ import {
  */
 @customElement('ui-date-range-calendar')
 export class UiDateRangeCalendar extends LitElement {
-    static styles = css`
-    :host {
-      display: inline-block;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-      user-select: none;
-    }
-
-    .calendars {
-      display: flex;
-      gap: 0;
-    }
-
-    .month-panel {
-      width: 296px;
-      background: var(--ui-surface-background, #fff);
-      flex-shrink: 0;
-    }
-
-    .month-panel + .month-panel {
-      border-left: 1px solid var(--ui-border-color, #e5e7eb);
-    }
-
-    /* ── Header ─────────────────────────────────────────────────────── */
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 8px 8px;
-    }
-    .header-label {
-      font-size: 0.9375rem;
-      font-weight: 600;
-      color: var(--ui-text-color, #111827);
-      padding: 4px 8px;
-      border-radius: 6px;
-    }
-    .nav-btn {
-      display: flex; align-items: center; justify-content: center;
-      width: 32px; height: 32px;
-      border: none; background: transparent; cursor: pointer;
-      border-radius: 50%; color: var(--ui-text-color-muted, #6b7280);
-      font-size: 1rem; transition: background 0.12s;
-    }
-    .nav-btn:hover { background: rgba(0,0,0,.06); }
-    .nav-btn.hidden { visibility: hidden; pointer-events: none; }
-
-    /* ── Day-of-week row ─────────────────────────────────────────────── */
-    .dow-row {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      padding: 0 8px;
-      margin-bottom: 4px;
-    }
-    .dow-cell {
-      text-align: center;
-      font-size: 0.6875rem;
-      font-weight: 600;
-      color: var(--ui-text-color-muted, #9ca3af);
-      padding: 4px 0;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    /* ── Day grid ────────────────────────────────────────────────────── */
-    .day-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      padding: 0 8px 12px;
-      gap: 2px 0;
-    }
-
-    .day-cell {
-      display: flex; align-items: center; justify-content: center;
-      height: 36px;
-      width: 100%;
-      border: none; background: transparent; cursor: pointer;
-      border-radius: 50%;
-      font-size: 0.8125rem;
-      color: var(--ui-text-color, #374151);
-      transition: background 0.08s, color 0.08s;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* In-range background stripe */
-    .day-cell.in-range,
-    .day-cell.hover-range {
-      background: transparent;
-      color: var(--ui-text-color, #374151);
-    }
-    .day-cell.in-range::before,
-    .day-cell.hover-range::before {
-      content: '';
-      position: absolute;
-      inset: 0 0;
-      background: var(--ui-primary-light, rgba(59,130,246,.12));
-      border-radius: 0;
-      z-index: -1;
-    }
-
-    /* Start / End endpoints */
-    .day-cell.range-start,
-    .day-cell.range-end {
-      background: var(--ui-primary-color, #3b82f6);
-      color: #fff;
-      font-weight: 700;
-      border-radius: 50%;
-    }
-    .day-cell.range-start::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      right: -50%;
-      background: var(--ui-primary-light, rgba(59,130,246,.12));
-      border-radius: 0;
-      z-index: -1;
-    }
-    .day-cell.range-end::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      left: -50%;
-      background: var(--ui-primary-light, rgba(59,130,246,.12));
-      border-radius: 0;
-      z-index: -1;
-    }
-
-    /* Same day start=end */
-    .day-cell.range-start.range-end::before { display: none; }
-
-    .day-cell.range-start:hover { background: var(--ui-primary-color-dark, #2563eb); }
-    .day-cell.range-end:hover { background: var(--ui-primary-color-dark, #2563eb); }
-
-    .day-cell:hover:not(.range-start):not(.range-end):not(.disabled) {
-      background: rgba(0,0,0,.06);
-    }
-    .day-cell.other-month { color: var(--ui-text-color-muted, #d1d5db); }
-    .day-cell.today:not(.range-start):not(.range-end) {
-      color: var(--ui-primary-color, #3b82f6);
-      font-weight: 700;
-    }
-    .day-cell.today:not(.range-start):not(.range-end)::after {
-      content: '';
-      position: absolute;
-      bottom: 4px; left: 50%; transform: translateX(-50%);
-      width: 4px; height: 4px;
-      border-radius: 50%;
-      background: var(--ui-primary-color, #3b82f6);
-    }
-    .day-cell.disabled {
-      opacity: 0.35;
-      cursor: not-allowed;
-      pointer-events: none;
-    }
-  `;
+    static styles = unsafeCSS(uiDateRangeCalendarStyles);
 
     // ── Props ─────────────────────────────────────────────────────────────────
 

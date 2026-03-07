@@ -1,0 +1,158 @@
+:host {
+      display: inline-block;
+      font-family: var(--ui-font-family, 'Inter', sans-serif);
+    }
+
+    /* ── Field wrapper ───────────────────────────────────────────────── */
+    .field-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--ui-text-color-muted, #6b7280);
+      margin-bottom: 4px;
+    }
+
+    /* ── Mobile field ────────────────────────────────────────────────── */
+    .mobile-field {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--ui-surface-background, #fff);
+      border: 1.5px solid var(--ui-border-color, #d1d5db);
+      border-radius: var(--ui-border-radius-md, 8px);
+      padding: 10px 44px 10px 14px;
+      font-size: 0.9375rem;
+      color: var(--ui-text-color, #111827);
+      position: relative;
+      min-width: 260px;
+      cursor: pointer;
+      box-sizing: border-box;
+      transition: border-color 0.15s;
+    }
+    .mobile-field:hover { border-color: var(--ui-primary-color, #3b82f6); }
+    :host([disabled]) .mobile-field {
+      background: var(--ui-disabled-bg, #f9fafb);
+      color: var(--ui-text-color-muted, #9ca3af);
+      cursor: not-allowed;
+      border-color: var(--ui-border-color, #e5e7eb);
+    }
+    .mobile-field-placeholder { color: var(--ui-text-color-muted, #9ca3af); }
+    .mobile-field-icon {
+      position: absolute; right: 12px;
+      font-size: 1rem; color: var(--ui-text-color-muted, #6b7280);
+    }
+
+    /* ── Popover ─────────────────────────────────────────────────────── */
+    .popover-anchor { position: relative; display: inline-block; }
+
+    .popover {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      z-index: 1400;
+      background: var(--ui-surface-background, #fff);
+      border-radius: var(--ui-border-radius-xl, 12px);
+      box-shadow: 0 8px 24px -4px rgba(0,0,0,.18), 0 2px 8px -2px rgba(0,0,0,.1);
+      transform-origin: top left;
+      transform: scale(0.94) translateY(-4px);
+      opacity: 0;
+      visibility: hidden;
+      transition: transform 0.15s cubic-bezier(0.4,0,.2,1),
+                  opacity 0.15s, visibility 0.15s;
+      pointer-events: none;
+      display: flex;
+    }
+    .popover.open {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    /* ── Shortcuts panel ─────────────────────────────────────────────── */
+    .shortcuts-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding: 12px 8px;
+      min-width: 148px;
+      border-right: 1px solid var(--ui-border-color, #e5e7eb);
+    }
+    .shortcut-btn {
+      text-align: left;
+      font-family: inherit;
+      font-size: 0.8125rem;
+      padding: 8px 12px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      border-radius: 6px;
+      color: var(--ui-text-color, #374151);
+      transition: background 0.12s, color 0.12s;
+      white-space: nowrap;
+    }
+    .shortcut-btn:hover {
+      background: rgba(59,130,246,.08);
+      color: var(--ui-primary-color, #3b82f6);
+    }
+    .shortcut-btn.active {
+      background: var(--ui-primary-color, #3b82f6);
+      color: #fff;
+    }
+
+    /* ── Popover body ────────────────────────────────────────────────── */
+    .popover-body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Popover actions ─────────────────────────────────────────────── */
+    .popover-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      padding: 4px 12px 12px;
+      border-top: 1px solid var(--ui-border-color, #f3f4f6);
+    }
+    .action-btn {
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border: none; border-radius: 6px; cursor: pointer;
+      transition: background 0.12s;
+    }
+    .action-btn.cancel {
+      background: transparent;
+      color: var(--ui-text-color-muted, #6b7280);
+    }
+    .action-btn.cancel:hover { background: rgba(0,0,0,.06); }
+    .action-btn.ok {
+      background: var(--ui-primary-color, #3b82f6);
+      color: #fff;
+    }
+    .action-btn.ok:hover { background: var(--ui-primary-color-dark, #2563eb); }
+
+    /* ── Click-away backdrop ─────────────────────────────────────────── */
+    .click-away {
+      display: none;
+      position: fixed; inset: 0; z-index: 1399;
+    }
+    .click-away.open { display: block; }
+
+    /* ── Static wrapper ──────────────────────────────────────────────── */
+    .static-wrapper {
+      display: inline-block;
+      border-radius: var(--ui-border-radius-xl, 12px);
+      box-shadow: 0 1px 4px rgba(0,0,0,.08), 0 0 0 1px var(--ui-border-color, #e5e7eb);
+      overflow: hidden;
+    }
+
+    /* ── Helper text ─────────────────────────────────────────────────── */
+    .helper-text {
+      font-size: 0.75rem;
+      margin-top: 4px;
+      color: var(--ui-text-color-muted, #6b7280);
+    }
+    :host([error]) .helper-text { color: var(--ui-error-color, #ef4444); }
+    :host([error]) ui-single-input-date-range-field { --ui-border-color: var(--ui-error-color, #ef4444); }

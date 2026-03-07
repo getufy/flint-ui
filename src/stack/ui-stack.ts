@@ -1,47 +1,14 @@
-import { LitElement, html, css, type PropertyValues } from 'lit';
+import { LitElement, unsafeCSS, html, type PropertyValues } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { styleMap } from 'lit/directives/style-map.js';
+import uiStackStyles from './ui-stack.css?inline';
 
 export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type ResponsiveValue<T> = T | Partial<Record<Breakpoint, T>>;
 
 @customElement('ui-stack')
 export class UiStack extends LitElement {
-    static styles = css`
-    :host {
-      display: block;
-    }
-
-    .stack-wrapper {
-      display: flex;
-      box-sizing: border-box;
-    }
-
-    /* Column direction stacks fill full width */
-    .stack-wrapper.direction-column,
-    .stack-wrapper.direction-column-reverse {
-      width: 100%;
-    }
-
-    /* Reset slotted divider margins so stack gap controls spacing */
-    ::slotted(ui-divider) {
-      margin: 0 !important;
-    }
-
-    /* Fallback margin-based spacing when useFlexGap=false */
-    .stack-wrapper.no-flex-gap.direction-column ::slotted(*:not(:first-child)) {
-      margin-top: var(--ui-stack-spacing, 0px);
-    }
-    .stack-wrapper.no-flex-gap.direction-column-reverse ::slotted(*:not(:last-child)) {
-      margin-bottom: var(--ui-stack-spacing, 0px);
-    }
-    .stack-wrapper.no-flex-gap.direction-row ::slotted(*:not(:first-child)) {
-      margin-left: var(--ui-stack-spacing, 0px);
-    }
-    .stack-wrapper.no-flex-gap.direction-row-reverse ::slotted(*:not(:last-child)) {
-      margin-right: var(--ui-stack-spacing, 0px);
-    }
-  `;
+    static styles = unsafeCSS(uiStackStyles);
 
     @property({
         converter: {

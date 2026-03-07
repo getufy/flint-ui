@@ -1,7 +1,8 @@
-import { LitElement, css } from 'lit';
+import { LitElement, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { styleMap } from 'lit/directives/style-map.js';
+import uiBoxStyles from './ui-box.css?inline';
 
 const ALLOWED_TAGS = new Set([
     'div', 'span', 'section', 'article', 'header', 'footer', 'main',
@@ -12,11 +13,7 @@ const ALLOWED_TAGS = new Set([
 
 @customElement('ui-box')
 export class UiBox extends LitElement {
-    static styles = css`
-    :host {
-      display: block;
-    }
-  `;
+    static styles = unsafeCSS(uiBoxStyles);
 
     /** The component tag to render */
     @property({ type: String }) component = 'div';

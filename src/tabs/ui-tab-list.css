@@ -1,0 +1,67 @@
+:host { display: block; position: relative; background: var(--ui-surface-background, #fff); }
+        /* In vertical mode the host must fill the height that flex-stretching gives it
+           so .scroll-area has a bounded height and overflow:auto actually fires. */
+        :host([orientation="vertical"]) { height: 100%; }
+        :host([orientation="vertical"]) .container { height: 100%; }
+
+        .container {
+            display: flex; align-items: center; position: relative;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        :host([orientation="vertical"]) .container {
+            flex-direction: column; border-bottom: none;
+            border-right: 1px solid #e5e7eb; align-items: stretch;
+        }
+
+        /* scroll buttons */
+        .scroll-btn {
+            flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+            border: none; background: none; cursor: pointer; color: #6b7280;
+            border-radius: 4px; padding: 0;
+            transition: color .15s, background .15s;
+        }
+        /* Horizontal: fixed square on left/right of the scroll area */
+        :host(:not([orientation="vertical"])) .scroll-btn { width: 40px; height: 40px; }
+        /* Vertical: full-width bar on top/bottom — centres the chevron across the sidebar */
+        :host([orientation="vertical"]) .scroll-btn     { width: 100%; height: 40px; }
+        .scroll-btn:hover:not(:disabled) { color: #374151; background: rgba(0,0,0,.05); }
+        .scroll-btn:disabled { opacity: .38; cursor: default; }
+
+        /* scroll area – axis-locked so scroll events don't bleed to the page */
+        .scroll-area {
+            flex: 1; position: relative; min-height: 0;
+            scrollbar-width: none; -ms-overflow-style: none;
+        }
+        .scroll-area::-webkit-scrollbar { display: none; }
+        :host(:not([orientation="vertical"])) .scroll-area {
+            overflow-x: auto; overflow-y: hidden;
+        }
+        :host([orientation="vertical"]) .scroll-area {
+            overflow-y: auto; overflow-x: hidden;
+        }
+
+        /* tabs row */
+        .tabs-row {
+            display: flex; position: relative;
+            min-width: max-content;
+        }
+        :host([orientation="vertical"]) .tabs-row {
+            flex-direction: column; min-width: unset; min-height: max-content;
+        }
+        :host([variant="fullWidth"]) .tabs-row  { min-width: 100%; }
+        :host([variant="fullWidth"]) ::slotted(ui-tab) { flex: 1; }
+        :host([centered]) .tabs-row { justify-content: center; min-width: 100%; }
+
+        /* indicator */
+        .indicator {
+            position: absolute; pointer-events: none; opacity: 0;
+            background: var(--ui-tabs-ind-color, #3b82f6); border-radius: 3px;
+            transition:
+                left   .25s cubic-bezier(.4,0,.2,1),
+                width  .25s cubic-bezier(.4,0,.2,1),
+                top    .25s cubic-bezier(.4,0,.2,1),
+                height .25s cubic-bezier(.4,0,.2,1),
+                opacity .15s;
+        }
+        :host(:not([orientation="vertical"])) .indicator { bottom: 0; height: 3px; }
+        :host([orientation="vertical"])       .indicator { right: 0;  width: 3px; }

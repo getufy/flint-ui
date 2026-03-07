@@ -1,16 +1,17 @@
-import { css as p, LitElement as c, html as l, nothing as y } from "lit";
-import { property as s, customElement as d, state as m, queryAssignedElements as co, query as vi } from "lit/decorators.js";
+import { unsafeCSS as p, LitElement as c, html as l, nothing as v, svg as ar, css as as } from "lit";
+import { property as o, customElement as d, state as g, queryAssignedElements as hs, query as wi } from "lit/decorators.js";
 import { classMap as u } from "lit/directives/class-map.js";
-import { repeat as It } from "lit/directives/repeat.js";
-import { ifDefined as $e } from "lit/directives/if-defined.js";
-import { styleMap as Kt } from "lit/directives/style-map.js";
-import { literal as I, html as oo, unsafeStatic as po } from "lit/static-html.js";
-var ho = Object.defineProperty, uo = Object.getOwnPropertyDescriptor, yi = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? uo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && ho(t, i, r), r;
+import { repeat as At } from "lit/directives/repeat.js";
+import { ifDefined as pe } from "lit/directives/if-defined.js";
+import { styleMap as ei } from "lit/directives/style-map.js";
+import { literal as C, html as ns, unsafeStatic as us } from "lit/static-html.js";
+const fs = ':host{display:inline-block}:host([full-width]){display:block}button{font-family:var(--ui-font-family, "Inter", sans-serif);font-weight:600;border:none;border-radius:var(--ui-button-border-radius, var(--ui-border-radius-md, 6px));cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;transition:all .2s ease;box-shadow:var(--ui-shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, .05))}.primary{background-color:var(--ui-primary-color, #3b82f6);color:var(--ui-text-color-on-primary, white)}.primary:hover{background-color:var(--ui-primary-color-hover, #2563eb)}.primary:active{background-color:var(--ui-primary-color-active, #1d4ed8)}.secondary{background-color:var(--ui-surface-background, white);color:var(--ui-text-color, #111827);border:1px solid var(--ui-input-border-color, #d1d5db)}.secondary:hover{background-color:var(--ui-hover-color, #f3f4f6)}.secondary:active{background-color:var(--ui-active-color, #e5e7eb)}.destructive{background-color:var(--ui-destructive-color, #ef4444);color:var(--ui-text-color-on-primary, white)}.destructive:hover{background-color:var(--ui-destructive-color-hover, #dc2626)}.destructive:active{background-color:var(--ui-destructive-color-active, #b91c1c)}.small{padding:6px 12px;font-size:14px}.medium{padding:10px 16px;font-size:14px}.large{padding:14px 20px;font-size:16px}button:disabled{opacity:.6;cursor:not-allowed}';
+var bs = Object.defineProperty, ms = Object.getOwnPropertyDescriptor, ki = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? ms(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && bs(t, i, r), r;
 };
-let tt = class extends c {
+let pt = class extends c {
   constructor() {
     super(...arguments), this.variant = "primary", this.size = "medium", this.disabled = !1, this.fullWidth = !1;
   }
@@ -35,151 +36,46 @@ let tt = class extends c {
     `;
   }
 };
-tt.styles = p`
-    :host {
-      display: inline-block;
-    }
-    :host([full-width]) {
-      display: block;
-    }
-    button {
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-      font-weight: 600;
-      border: none;
-      border-radius: var(--ui-button-border-radius, var(--ui-border-radius-md, 6px));
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      width: 100%;
-      transition: all 0.2s ease;
-      box-shadow: var(--ui-shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
-    }
-    .primary {
-      background-color: var(--ui-primary-color, #3b82f6);
-      color: var(--ui-text-color-on-primary, white);
-    }
-    .primary:hover {
-      background-color: var(--ui-primary-color-hover, #2563eb);
-    }
-    .primary:active {
-      background-color: var(--ui-primary-color-active, #1d4ed8);
-    }
-    .secondary {
-      background-color: var(--ui-surface-background, white);
-      color: var(--ui-text-color, #111827);
-      border: 1px solid var(--ui-input-border-color, #d1d5db);
-    }
-    .secondary:hover {
-      background-color: var(--ui-hover-color, #f3f4f6);
-    }
-    .secondary:active {
-      background-color: var(--ui-active-color, #e5e7eb);
-    }
-    .destructive {
-      background-color: var(--ui-destructive-color, #ef4444);
-      color: var(--ui-text-color-on-primary, white);
-    }
-    .destructive:hover {
-      background-color: var(--ui-destructive-color-hover, #dc2626);
-    }
-    .destructive:active {
-      background-color: var(--ui-destructive-color-active, #b91c1c);
-    }
-    .small {
-      padding: 6px 12px;
-      font-size: 14px;
-    }
-    .medium {
-      padding: 10px 16px;
-      font-size: 14px;
-    }
-    .large {
-      padding: 14px 20px;
-      font-size: 16px;
-    }
-    button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-  `;
-yi([
-  s({ type: String })
-], tt.prototype, "variant", 2);
-yi([
-  s({ type: String })
-], tt.prototype, "size", 2);
-yi([
-  s({ type: Boolean })
-], tt.prototype, "disabled", 2);
-yi([
-  s({ type: Boolean, reflect: !0, attribute: "full-width" })
-], tt.prototype, "fullWidth", 2);
-tt = yi([
+pt.styles = p(fs);
+ki([
+  o({ type: String })
+], pt.prototype, "variant", 2);
+ki([
+  o({ type: String })
+], pt.prototype, "size", 2);
+ki([
+  o({ type: Boolean })
+], pt.prototype, "disabled", 2);
+ki([
+  o({ type: Boolean, reflect: !0, attribute: "full-width" })
+], pt.prototype, "fullWidth", 2);
+pt = ki([
   d("ui-button")
-], tt);
-var fo = Object.getOwnPropertyDescriptor, bo = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? fo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+], pt);
+const gs = ":host{display:inline-flex;border-radius:var(--ui-border-radius-md, 6px)}::slotted(ui-button){position:relative}::slotted(ui-button:hover),::slotted(ui-button:focus-within),::slotted(ui-button:active){z-index:1}::slotted(ui-button:not(:first-child)){margin-left:-1px}::slotted(ui-button){--ui-button-border-radius: 0}::slotted(ui-button:first-child){--ui-button-border-radius: var(--ui-border-radius-md, 6px) 0 0 var(--ui-border-radius-md, 6px)}::slotted(ui-button:last-child){--ui-button-border-radius: 0 var(--ui-border-radius-md, 6px) var(--ui-border-radius-md, 6px) 0}::slotted(ui-button:first-child:last-child){--ui-button-border-radius: var(--ui-border-radius-md, 6px)}";
+var vs = Object.getOwnPropertyDescriptor, ys = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? vs(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = n(r) || r);
   return r;
 };
-let sr = class extends c {
+let lr = class extends c {
   render() {
     return l`
       <slot></slot>
     `;
   }
 };
-sr.styles = p`
-    :host {
-      display: inline-flex;
-      border-radius: var(--ui-border-radius-md, 6px);
-    }
-    
-    ::slotted(ui-button) {
-      position: relative;
-    }
-
-    ::slotted(ui-button:hover),
-    ::slotted(ui-button:focus-within),
-    ::slotted(ui-button:active) {
-      z-index: 1;
-    }
-
-    ::slotted(ui-button:not(:first-child)) {
-      margin-left: -1px;
-    }
-
-    /* Base state for grouped buttons - 0 border radius internally */
-    ::slotted(ui-button) {
-      --ui-button-border-radius: 0;
-    }
-
-    /* First child */
-    ::slotted(ui-button:first-child) {
-      --ui-button-border-radius: var(--ui-border-radius-md, 6px) 0 0 var(--ui-border-radius-md, 6px);
-    }
-
-    /* Last child */
-    ::slotted(ui-button:last-child) {
-      --ui-button-border-radius: 0 var(--ui-border-radius-md, 6px) var(--ui-border-radius-md, 6px) 0;
-    }
-
-    /* Only child - reset to full radius */
-    ::slotted(ui-button:first-child:last-child) {
-      --ui-button-border-radius: var(--ui-border-radius-md, 6px);
-    }
-  `;
-sr = bo([
+lr.styles = p(gs);
+lr = ys([
   d("ui-button-group")
-], sr);
-var go = Object.defineProperty, mo = Object.getOwnPropertyDescriptor, Jr = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? mo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && go(t, i, r), r;
+], lr);
+const xs = ":host{display:block;font-family:Inter,sans-serif}.card{background:var(--ui-card-background, white);border-radius:var(--ui-card-border-radius, 12px);box-shadow:var(--ui-card-shadow, 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05));border:1px solid var(--ui-card-border-color, #f3f4f6);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .3s ease,border-color .3s ease;padding:var(--ui-card-padding, 0)}.card.interactive:hover{box-shadow:var(--ui-card-shadow-hover, 0 20px 25px -5px rgba(0, 0, 0, .1), 0 10px 10px -5px rgba(0, 0, 0, .04));cursor:pointer}.card.variant-outlined{box-shadow:none;border:1px solid var(--ui-card-border-color, #d1d5db)}.card.variant-flat{box-shadow:none;border:none;background:var(--ui-card-background-flat, #f3f4f6)}";
+var _s = Object.defineProperty, ws = Object.getOwnPropertyDescriptor, Qr = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? ws(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && _s(t, i, r), r;
 };
-let ti = class extends c {
+let ni = class extends c {
   constructor() {
     super(...arguments), this.variant = "elevated", this.interactive = !1;
   }
@@ -196,57 +92,23 @@ let ti = class extends c {
     `;
   }
 };
-ti.styles = p`
-    :host {
-      display: block;
-      font-family: 'Inter', sans-serif;
-    }
-    
-    .card {
-      background: var(--ui-card-background, white);
-      border-radius: var(--ui-card-border-radius, 12px);
-      box-shadow: var(--ui-card-shadow, 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05));
-      border: 1px solid var(--ui-card-border-color, #f3f4f6);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: box-shadow 0.3s ease, border-color 0.3s ease;
-      padding: var(--ui-card-padding, 0); /* Cards usually don't have padding at the root level if using content blocks */
-    }
-
-    /* Interactive Hover effect */
-    .card.interactive:hover {
-      box-shadow: var(--ui-card-shadow-hover, 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04));
-      cursor: pointer;
-    }
-
-    /* Variants */
-    .card.variant-outlined {
-      box-shadow: none;
-      border: 1px solid var(--ui-card-border-color, #d1d5db);
-    }
-    
-    .card.variant-flat {
-      box-shadow: none;
-      border: none;
-      background: var(--ui-card-background-flat, #f3f4f6);
-    }
-  `;
-Jr([
-  s({ type: String, reflect: !0 })
-], ti.prototype, "variant", 2);
-Jr([
-  s({ type: Boolean, reflect: !0 })
-], ti.prototype, "interactive", 2);
-ti = Jr([
+ni.styles = p(xs);
+Qr([
+  o({ type: String, reflect: !0 })
+], ni.prototype, "variant", 2);
+Qr([
+  o({ type: Boolean, reflect: !0 })
+], ni.prototype, "interactive", 2);
+ni = Qr([
   d("ui-card")
-], ti);
-var vo = Object.defineProperty, yo = Object.getOwnPropertyDescriptor, Qr = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? yo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && vo(t, i, r), r;
+], ni);
+const ks = ":host{display:block;padding:var(--ui-card-header-padding, 16px 24px)}.header{display:flex;align-items:center;gap:16px}.content{flex:1 1 auto}.title{margin:0;font-size:var(--ui-card-title-size, 1.25rem);font-weight:700;color:var(--ui-card-title-color, #111827);line-height:1.4}.subtitle{margin:4px 0 0;font-size:var(--ui-card-subtitle-size, .875rem);color:var(--ui-card-subtitle-color, #6b7280);font-weight:500}";
+var $s = Object.defineProperty, Ss = Object.getOwnPropertyDescriptor, es = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Ss(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && $s(t, i, r), r;
 };
-let ii = class extends c {
+let li = class extends c {
   constructor() {
     super(...arguments), this.title = "", this.subtitle = "";
   }
@@ -264,77 +126,40 @@ let ii = class extends c {
     `;
   }
 };
-ii.styles = p`
-    :host {
-      display: block;
-      padding: var(--ui-card-header-padding, 16px 24px);
-    }
-    
-    .header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    
-    .content {
-      flex: 1 1 auto;
-    }
-
-    .title {
-      margin: 0;
-      font-size: var(--ui-card-title-size, 1.25rem);
-      font-weight: 700;
-      color: var(--ui-card-title-color, #111827);
-      line-height: 1.4;
-    }
-    
-    .subtitle {
-      margin: 0;
-      font-size: var(--ui-card-subtitle-size, 0.875rem);
-      color: var(--ui-card-subtitle-color, #6b7280);
-      font-weight: 500;
-      margin-top: 4px;
-    }
-  `;
-Qr([
-  s({ type: String })
-], ii.prototype, "title", 2);
-Qr([
-  s({ type: String })
-], ii.prototype, "subtitle", 2);
-ii = Qr([
+li.styles = p(ks);
+es([
+  o({ type: String })
+], li.prototype, "title", 2);
+es([
+  o({ type: String })
+], li.prototype, "subtitle", 2);
+li = es([
   d("ui-card-header")
-], ii);
-var xo = Object.getOwnPropertyDescriptor, _o = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? xo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+], li);
+const Cs = ":host{display:block;padding:var(--ui-card-content-padding, 16px 24px);font-size:var(--ui-card-content-size, 1rem);color:var(--ui-card-content-color, #4b5563);line-height:1.5}";
+var Is = Object.getOwnPropertyDescriptor, Es = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Is(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = n(r) || r);
   return r;
 };
-let ar = class extends c {
+let cr = class extends c {
   render() {
     return l`
       <slot></slot>
     `;
   }
 };
-ar.styles = p`
-    :host {
-      display: block;
-      padding: var(--ui-card-content-padding, 16px 24px);
-      font-size: var(--ui-card-content-size, 1rem);
-      color: var(--ui-card-content-color, #4b5563);
-      line-height: 1.5;
-    }
-  `;
-ar = _o([
+cr.styles = p(Cs);
+cr = Es([
   d("ui-card-content")
-], ar);
-var wo = Object.defineProperty, ko = Object.getOwnPropertyDescriptor, Ki = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? ko(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && wo(t, i, r), r;
+], cr);
+const Ps = ":host{display:block;width:100%;overflow:hidden}.media{width:100%;height:var(--ui-card-media-height, 200px);background-size:cover;background-position:center;background-repeat:no-repeat}img{width:100%;height:100%;object-fit:cover;display:block}";
+var Os = Object.defineProperty, Ds = Object.getOwnPropertyDescriptor, Xi = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Ds(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Os(t, i, r), r;
 };
-let St = class extends c {
+let Bt = class extends c {
   constructor() {
     super(...arguments), this.image = "", this.alt = "", this.height = "";
   }
@@ -350,69 +175,43 @@ let St = class extends c {
     return l`<slot></slot>`;
   }
 };
-St.styles = p`
-    :host {
-      display: block;
-      width: 100%;
-      overflow: hidden;
-    }
-    
-    .media {
-      width: 100%;
-      height: var(--ui-card-media-height, 200px);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-    
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-  `;
-Ki([
-  s({ type: String })
-], St.prototype, "image", 2);
-Ki([
-  s({ type: String })
-], St.prototype, "alt", 2);
-Ki([
-  s({ type: String })
-], St.prototype, "height", 2);
-St = Ki([
+Bt.styles = p(Ps);
+Xi([
+  o({ type: String })
+], Bt.prototype, "image", 2);
+Xi([
+  o({ type: String })
+], Bt.prototype, "alt", 2);
+Xi([
+  o({ type: String })
+], Bt.prototype, "height", 2);
+Bt = Xi([
   d("ui-card-media")
-], St);
-var $o = Object.getOwnPropertyDescriptor, Co = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? $o(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+], Bt);
+const zs = ":host{display:flex;padding:var(--ui-card-actions-padding, 8px 16px);align-items:center;gap:8px}";
+var Ts = Object.getOwnPropertyDescriptor, As = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Ts(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = n(r) || r);
   return r;
 };
-let nr = class extends c {
+let dr = class extends c {
   render() {
     return l`
       <slot></slot>
     `;
   }
 };
-nr.styles = p`
-    :host {
-      display: flex;
-      padding: var(--ui-card-actions-padding, 8px 16px);
-      align-items: center;
-      gap: 8px;
-    }
-  `;
-nr = Co([
+dr.styles = p(zs);
+dr = As([
   d("ui-card-actions")
-], nr);
-var Io = Object.getOwnPropertyDescriptor, So = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Io(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+], dr);
+const Bs = ":host{display:block;width:100%;cursor:pointer;position:relative}.action-area{transition:background-color .2s}.action-area:hover{background-color:var(--ui-card-action-area-hover, rgba(0, 0, 0, .04))}.action-area:active{background-color:var(--ui-card-action-area-active, rgba(0, 0, 0, .08))}.action-area:focus-visible{outline:2px solid var(--ui-card-action-area-focus-ring, #3b82f6);outline-offset:-2px}";
+var Ms = Object.getOwnPropertyDescriptor, Ls = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Ms(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = n(r) || r);
   return r;
 };
-let lr = class extends c {
+let pr = class extends c {
   render() {
     return l`
       <div class="action-area" part="action-area" @keydown=${this._handleKeyDown} tabindex="0" role="button">
@@ -424,40 +223,17 @@ let lr = class extends c {
     (e.key === "Enter" || e.key === " ") && (e.preventDefault(), this.click());
   }
 };
-lr.styles = p`
-    :host {
-      display: block;
-      width: 100%;
-      cursor: pointer;
-      position: relative;
-    }
-
-    .action-area {
-      transition: background-color 0.2s;
-    }
-
-    .action-area:hover {
-      background-color: var(--ui-card-action-area-hover, rgba(0, 0, 0, 0.04));
-    }
-
-    .action-area:active {
-      background-color: var(--ui-card-action-area-active, rgba(0, 0, 0, 0.08));
-    }
-
-    .action-area:focus-visible {
-      outline: 2px solid var(--ui-card-action-area-focus-ring, #3b82f6);
-      outline-offset: -2px;
-    }
-  `;
-lr = So([
+pr.styles = p(Bs);
+pr = Ls([
   d("ui-card-action-area")
-], lr);
-var Eo = Object.defineProperty, Po = Object.getOwnPropertyDescriptor, Wi = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Po(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Eo(t, i, r), r;
+], pr);
+const js = ':host{display:block;box-sizing:border-box;background-color:var(--ui-surface-background, #ffffff);color:var(--ui-text-color, #111827);border-radius:var(--ui-border-radius-md, 8px);padding:var(--ui-paper-padding, 0);transition:box-shadow .25s cubic-bezier(.4,0,.2,1),border-color .25s cubic-bezier(.4,0,.2,1),background-color .25s cubic-bezier(.4,0,.2,1);border:1px solid transparent}:host([square]){border-radius:0}:host([variant="outlined"]){border:1px solid var(--ui-border-color, rgba(0, 0, 0, .1));box-shadow:none!important}:host([variant="flat"]){border:none;box-shadow:none}:host([variant="elevated"][elevation="0"]){box-shadow:none}:host([variant="elevated"][elevation="1"]){box-shadow:0 2px 4px #0000000d}:host([variant="elevated"][elevation="2"]){box-shadow:0 3px 6px #00000012}:host([variant="elevated"][elevation="3"]){box-shadow:0 4px 12px #00000014}:host([variant="elevated"][elevation="4"]){box-shadow:0 8px 16px #00000017}:host([variant="elevated"][elevation="6"]){box-shadow:0 12px 24px #0000001a}:host([variant="elevated"][elevation="8"]){box-shadow:0 16px 32px #0000001c}:host([variant="elevated"][elevation="12"]){box-shadow:0 20px 40px #0000001f}:host([variant="elevated"][elevation="16"]){box-shadow:0 24px 48px #00000021}:host([variant="elevated"][elevation="24"]){box-shadow:0 32px 64px #00000026}@media(prefers-color-scheme:dark){:host{background-color:var(--ui-surface-background-flat, #1e1e1e)}:host([variant="elevated"][elevation="0"]){box-shadow:none}:host([variant="elevated"][elevation="1"]){box-shadow:0 2px 4px #0000004d}:host([variant="elevated"][elevation="2"]){box-shadow:0 3px 6px #00000059}:host([variant="elevated"][elevation="3"]){box-shadow:0 4px 12px #0006}:host([variant="elevated"][elevation="4"]){box-shadow:0 8px 16px #00000073}:host([variant="elevated"][elevation="6"]){box-shadow:0 12px 24px #00000080}:host([variant="elevated"][elevation="8"]){box-shadow:0 16px 32px #0000008c}:host([variant="elevated"][elevation="12"]){box-shadow:0 20px 40px #0009}:host([variant="elevated"][elevation="16"]){box-shadow:0 24px 48px #000000a6}:host([variant="elevated"][elevation="24"]){box-shadow:0 32px 64px #000000b3}}';
+var Us = Object.defineProperty, Rs = Object.getOwnPropertyDescriptor, Ji = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Rs(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Us(t, i, r), r;
 };
-let Et = class extends c {
+let Mt = class extends c {
   constructor() {
     super(...arguments), this.elevation = 1, this.square = !1, this.variant = "elevated";
   }
@@ -465,84 +241,28 @@ let Et = class extends c {
     return l`<slot></slot>`;
   }
 };
-Et.styles = p`
-        :host {
-            display: block;
-            box-sizing: border-box;
-            background-color: var(--ui-surface-background, #ffffff);
-            color: var(--ui-text-color, #111827);
-            border-radius: var(--ui-border-radius-md, 8px);
-            padding: var(--ui-paper-padding, 0);
-            transition:
-                box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
-                border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-                background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid transparent;
-        }
-
-        :host([square]) {
-            border-radius: 0;
-        }
-
-        :host([variant="outlined"]) {
-            border: 1px solid var(--ui-border-color, rgba(0, 0, 0, 0.1));
-            box-shadow: none !important;
-        }
-
-        :host([variant="flat"]) {
-            border: none;
-            box-shadow: none;
-        }
-
-        /* Elevation Styles */
-        :host([variant="elevated"][elevation="0"])  { box-shadow: none; }
-        :host([variant="elevated"][elevation="1"])  { box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); }
-        :host([variant="elevated"][elevation="2"])  { box-shadow: 0 3px 6px rgba(0, 0, 0, 0.07); }
-        :host([variant="elevated"][elevation="3"])  { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
-        :host([variant="elevated"][elevation="4"])  { box-shadow: 0 8px 16px rgba(0, 0, 0, 0.09); }
-        :host([variant="elevated"][elevation="6"])  { box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1); }
-        :host([variant="elevated"][elevation="8"])  { box-shadow: 0 16px 32px rgba(0, 0, 0, 0.11); }
-        :host([variant="elevated"][elevation="12"]) { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12); }
-        :host([variant="elevated"][elevation="16"]) { box-shadow: 0 24px 48px rgba(0, 0, 0, 0.13); }
-        :host([variant="elevated"][elevation="24"]) { box-shadow: 0 32px 64px rgba(0, 0, 0, 0.15); }
-
-        /* Dark Mode — per-elevation shadows */
-        @media (prefers-color-scheme: dark) {
-            :host {
-                background-color: var(--ui-surface-background-flat, #1e1e1e);
-            }
-            :host([variant="elevated"][elevation="0"])  { box-shadow: none; }
-            :host([variant="elevated"][elevation="1"])  { box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); }
-            :host([variant="elevated"][elevation="2"])  { box-shadow: 0 3px 6px rgba(0, 0, 0, 0.35); }
-            :host([variant="elevated"][elevation="3"])  { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); }
-            :host([variant="elevated"][elevation="4"])  { box-shadow: 0 8px 16px rgba(0, 0, 0, 0.45); }
-            :host([variant="elevated"][elevation="6"])  { box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5); }
-            :host([variant="elevated"][elevation="8"])  { box-shadow: 0 16px 32px rgba(0, 0, 0, 0.55); }
-            :host([variant="elevated"][elevation="12"]) { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6); }
-            :host([variant="elevated"][elevation="16"]) { box-shadow: 0 24px 48px rgba(0, 0, 0, 0.65); }
-            :host([variant="elevated"][elevation="24"]) { box-shadow: 0 32px 64px rgba(0, 0, 0, 0.7); }
-        }
-    `;
-Wi([
-  s({ type: Number, reflect: !0 })
-], Et.prototype, "elevation", 2);
-Wi([
-  s({ type: Boolean, reflect: !0 })
-], Et.prototype, "square", 2);
-Wi([
-  s({ type: String, reflect: !0 })
-], Et.prototype, "variant", 2);
-Et = Wi([
+Mt.styles = p(js);
+Ji([
+  o({ type: Number, reflect: !0 })
+], Mt.prototype, "elevation", 2);
+Ji([
+  o({ type: Boolean, reflect: !0 })
+], Mt.prototype, "square", 2);
+Ji([
+  o({ type: String, reflect: !0 })
+], Mt.prototype, "variant", 2);
+Mt = Ji([
   d("ui-paper")
-], Et);
-var Oo = Object.defineProperty, Do = Object.getOwnPropertyDescriptor, Y = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Do(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Oo(t, i, r), r;
+], Mt);
+const Vs = ':host{display:block;font-family:var(--ui-font-family, system-ui)}.input-wrapper{display:flex;flex-direction:column;gap:6px}label{font-size:14px;font-weight:500;color:var(--ui-label-color, #374151)}input{font-family:inherit;width:100%;box-sizing:border-box;padding:10px 14px;font-size:14px;border-radius:6px;border:1px solid var(--ui-input-border-color, #d1d5db);background-color:var(--ui-input-bg, #ffffff);color:var(--ui-text-color, #111827);transition:border-color .2s,box-shadow .2s;outline:none}:host([size="sm"]) input{padding:6px 10px;font-size:13px}:host([size="lg"]) input{padding:12px 16px;font-size:16px}input::placeholder{color:var(--ui-input-placeholder-color, #9ca3af)}input:hover:not(:disabled):not(.error-input){border-color:var(--ui-input-border-hover-color, #9ca3af)}input:focus-visible{border-color:var(--ui-primary-color, #3b82f6);box-shadow:0 0 0 3px #3b82f633}input[aria-invalid=true]{border-color:var(--ui-error-color, #ef4444)}input[aria-invalid=true]:focus-visible{box-shadow:0 0 0 3px #ef444433}input:disabled{background-color:var(--ui-input-disabled-bg, #f3f4f6);color:var(--ui-input-disabled-color, #9ca3af);cursor:not-allowed;opacity:1}input[readonly]{background-color:var(--ui-input-readonly-bg, #f9fafb);cursor:default}.help-text{font-size:12px;color:var(--ui-help-text-color, #6b7280);margin:0}.error-text{color:var(--ui-error-color, #ef4444)}';
+var Ns = Object.defineProperty, Fs = Object.getOwnPropertyDescriptor, Z = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Fs(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Ns(t, i, r), r;
 };
-let zo = 0, U = class extends c {
+let qs = 0, F = class extends c {
   constructor() {
-    super(...arguments), this._inputId = `ui-input-${++zo}`, this.label = "", this.value = "", this.type = "text", this.placeholder = "", this.helpText = "", this.error = !1, this.errorMessage = "", this.disabled = !1, this.required = !1, this.readonly = !1, this.name = "", this.autocomplete = "", this.size = "default";
+    super(...arguments), this._inputId = `ui-input-${++qs}`, this.label = "", this.value = "", this.type = "text", this.placeholder = "", this.helpText = "", this.error = !1, this.errorMessage = "", this.disabled = !1, this.required = !1, this.readonly = !1, this.name = "", this.autocomplete = "", this.size = "default";
   }
   /** Expose the internal <input> for direct access */
   get inputElement() {
@@ -595,143 +315,99 @@ let zo = 0, U = class extends c {
     );
   }
 };
-U.styles = p`
-    :host {
-      display: block;
-      font-family: var(--ui-font-family, system-ui);
-    }
-
-    .input-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    label {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--ui-label-color, #374151);
-    }
-
-    input {
-      font-family: inherit;
-      width: 100%;
-      box-sizing: border-box;
-      padding: 10px 14px;
-      font-size: 14px;
-      border-radius: 6px;
-      border: 1px solid var(--ui-input-border-color, #d1d5db);
-      background-color: var(--ui-input-bg, #ffffff);
-      color: var(--ui-text-color, #111827);
-      transition: border-color 0.2s, box-shadow 0.2s;
-      outline: none;
-    }
-
-    :host([size="sm"]) input {
-      padding: 6px 10px;
-      font-size: 13px;
-    }
-
-    :host([size="lg"]) input {
-      padding: 12px 16px;
-      font-size: 16px;
-    }
-
-    input::placeholder {
-      color: var(--ui-input-placeholder-color, #9ca3af);
-    }
-
-    input:hover:not(:disabled):not(.error-input) {
-      border-color: var(--ui-input-border-hover-color, #9ca3af);
-    }
-
-    input:focus-visible {
-      border-color: var(--ui-primary-color, #3b82f6);
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-    }
-
-    input[aria-invalid="true"] {
-      border-color: var(--ui-error-color, #ef4444);
-    }
-
-    input[aria-invalid="true"]:focus-visible {
-      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
-    }
-
-    input:disabled {
-      background-color: var(--ui-input-disabled-bg, #f3f4f6);
-      color: var(--ui-input-disabled-color, #9ca3af);
-      cursor: not-allowed;
-      opacity: 1;
-    }
-
-    input[readonly] {
-      background-color: var(--ui-input-readonly-bg, #f9fafb);
-      cursor: default;
-    }
-
-    .help-text {
-      font-size: 12px;
-      color: var(--ui-help-text-color, #6b7280);
-      margin: 0;
-    }
-
-    .error-text {
-      color: var(--ui-error-color, #ef4444);
-    }
-  `;
-Y([
-  s({ type: String })
-], U.prototype, "label", 2);
-Y([
-  s({ type: String })
-], U.prototype, "value", 2);
-Y([
-  s({ type: String })
-], U.prototype, "type", 2);
-Y([
-  s({ type: String })
-], U.prototype, "placeholder", 2);
-Y([
-  s({ type: String, attribute: "help-text" })
-], U.prototype, "helpText", 2);
-Y([
-  s({ type: Boolean })
-], U.prototype, "error", 2);
-Y([
-  s({ type: String, attribute: "error-message" })
-], U.prototype, "errorMessage", 2);
-Y([
-  s({ type: Boolean, reflect: !0 })
-], U.prototype, "disabled", 2);
-Y([
-  s({ type: Boolean, reflect: !0 })
-], U.prototype, "required", 2);
-Y([
-  s({ type: Boolean, reflect: !0 })
-], U.prototype, "readonly", 2);
-Y([
-  s({ type: String })
-], U.prototype, "name", 2);
-Y([
-  s({ type: String })
-], U.prototype, "autocomplete", 2);
-Y([
-  s({ type: String, reflect: !0 })
-], U.prototype, "size", 2);
-U = Y([
+F.styles = p(Vs);
+Z([
+  o({ type: String })
+], F.prototype, "label", 2);
+Z([
+  o({ type: String })
+], F.prototype, "value", 2);
+Z([
+  o({ type: String })
+], F.prototype, "type", 2);
+Z([
+  o({ type: String })
+], F.prototype, "placeholder", 2);
+Z([
+  o({ type: String, attribute: "help-text" })
+], F.prototype, "helpText", 2);
+Z([
+  o({ type: Boolean })
+], F.prototype, "error", 2);
+Z([
+  o({ type: String, attribute: "error-message" })
+], F.prototype, "errorMessage", 2);
+Z([
+  o({ type: Boolean, reflect: !0 })
+], F.prototype, "disabled", 2);
+Z([
+  o({ type: Boolean, reflect: !0 })
+], F.prototype, "required", 2);
+Z([
+  o({ type: Boolean, reflect: !0 })
+], F.prototype, "readonly", 2);
+Z([
+  o({ type: String })
+], F.prototype, "name", 2);
+Z([
+  o({ type: String })
+], F.prototype, "autocomplete", 2);
+Z([
+  o({ type: String, reflect: !0 })
+], F.prototype, "size", 2);
+F = Z([
   d("ui-input")
-], U);
-var Bo = Object.defineProperty, To = Object.getOwnPropertyDescriptor, We = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? To(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Bo(t, i, r), r;
+], F);
+const Hs = ':host{display:block;--_h: 40px;--_px: 12px;--_font: .875rem;--ui-select-bg: var(--ui-surface-background, #ffffff);--ui-select-border: var(--ui-input-border-color, #d1d5db);--ui-select-radius: var(--ui-input-border-radius, 8px);--ui-select-focus-color: var(--ui-primary-color, #3b82f6);--ui-select-error-color: #ef4444;font-family:var(--ui-font-family, sans-serif)}:host([size="sm"]){--_h: 32px;--_px: 8px;--_font: .8125rem}:host([size="md"]){--_h: 40px;--_px: 12px;--_font: .875rem}:host([size="lg"]){--_h: 48px;--_px: 16px;--_font: .9375rem}.wrapper{display:flex;flex-direction:column;gap:6px;position:relative}label{font-size:.875rem;font-weight:500;color:var(--ui-text-color, #111827);margin-left:2px}.select-trigger{display:flex;align-items:center;min-height:var(--_h);padding:0 var(--_px);background-color:var(--ui-select-bg);border:1.5px solid var(--ui-select-border);border-radius:var(--ui-select-radius);cursor:pointer;transition:border-color .2s,box-shadow .2s;position:relative;gap:10px;-webkit-user-select:none;user-select:none;outline:none}.select-trigger:hover:not(.disabled):not(.readonly){border-color:var(--ui-secondary-color, #6b7280)}.select-trigger.focused{border-color:var(--ui-select-focus-color);box-shadow:0 0 0 3px #3b82f626}:host([error]) .select-trigger{border-color:var(--ui-select-error-color)}:host([error]) .select-trigger.focused{box-shadow:0 0 0 3px #ef444426}.select-trigger.disabled{opacity:.6;cursor:not-allowed;background-color:var(--ui-surface-background-flat, #f3f4f6)}.select-trigger.readonly{cursor:default;background-color:var(--ui-surface-background-flat, #f3f4f6)}.value-container{flex:1;display:flex;flex-wrap:wrap;gap:6px;padding:6px 0;min-height:24px;align-items:center;overflow:hidden}.placeholder{color:var(--ui-text-color-muted, #6b7280);font-size:var(--_font)}.single-value{color:var(--ui-text-color, #111827);font-size:var(--_font);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chip{background-color:var(--ui-primary-color, #3b82f6);color:#fff;padding:2px 8px 2px 10px;border-radius:16px;font-size:.75rem;font-weight:600;display:flex;align-items:center;gap:4px;animation:chip-in .2s ease-out}@keyframes chip-in{0%{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}.chip-remove{display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:.8;transition:opacity .2s;background:none;border:none;padding:0;color:inherit;line-height:0}.chip-remove:hover{opacity:1}.arrow{display:flex;align-items:center;justify-content:center;transition:transform .3s ease;color:var(--ui-text-color-muted, #6b7280);flex-shrink:0}.select-trigger.open .arrow{transform:rotate(180deg);color:var(--ui-select-focus-color)}.dropdown{position:absolute;left:0;right:0;background-color:var(--ui-select-bg);border-radius:var(--ui-select-radius);box-shadow:var(--ui-shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, .1));border:1px solid var(--ui-border-color, #e5e7eb);z-index:1000;max-height:260px;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .15s,transform .15s}.dropdown.below{top:calc(100% + 6px);transform:translateY(-8px)}.dropdown.above{bottom:calc(100% + 6px);transform:translateY(8px)}.dropdown.open{opacity:1;transform:translateY(0);pointer-events:auto}.option{padding:10px 14px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;color:var(--ui-text-color, #111827);transition:background-color .15s;font-size:var(--_font)}.option.highlighted{background-color:var(--ui-hover-color, rgba(0, 0, 0, .05))}.option.selected{background-color:#3b82f614;color:var(--ui-primary-color, #3b82f6);font-weight:600}.option.option-disabled{opacity:.4;cursor:not-allowed;pointer-events:none}.check-icon{color:var(--ui-primary-color, #3b82f6);opacity:0;transition:opacity .15s;flex-shrink:0}.option.selected .check-icon{opacity:1}.no-options{padding:12px 16px;color:var(--ui-text-color-muted, #6b7280);font-size:.875rem;cursor:default}.error-message{font-size:.75rem;color:var(--ui-select-error-color);margin-left:2px}.dropdown::-webkit-scrollbar{width:6px}.dropdown::-webkit-scrollbar-track{background:transparent}.dropdown::-webkit-scrollbar-thumb{background:var(--ui-border-color, #e5e7eb);border-radius:3px}';
+var Ks = Object.defineProperty, Ys = Object.getOwnPropertyDescriptor, M = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Ys(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Ks(t, i, r), r;
 };
-let ue = class extends c {
+let Gs = 0, D = class extends c {
   constructor() {
-    super(...arguments), this.label = "", this.options = [], this.value = [], this.multiple = !1, this.placeholder = "Select an option", this.disabled = !1, this.isOpen = !1, this._handleOutsideClick = (e) => {
-      this.isOpen && !this.contains(e.target) && (this.isOpen = !1);
+    super(), this.label = "", this.options = [], this.value = [], this.multiple = !1, this.placeholder = "Select an option", this.disabled = !1, this.readonly = !1, this.required = !1, this.error = !1, this.errorMessage = "", this.name = "", this.size = "md", this.defaultValue = "", this._isOpen = !1, this._highlightedIndex = -1, this._isFocused = !1, this._opensUp = !1, this._uid = `ui-select-${++Gs}`, this._firstUpdate = !0, this._handleOutsideClick = (e) => {
+      if (!this._isOpen) return;
+      const t = e.composedPath();
+      (t.length > 0 ? t.includes(this) : this.contains(e.target)) || (this._isOpen = !1, this._highlightedIndex = -1);
+    }, this._handleKeydown = (e) => {
+      const t = this.options.map((i, s) => ({ o: i, i: s })).filter(({ o: i }) => !i.disabled);
+      switch (e.key) {
+        case "ArrowDown": {
+          if (e.preventDefault(), !this._isOpen)
+            this._toggleDropdown(), this._highlightedIndex === -1 && t.length > 0 && (this._highlightedIndex = t[0].i);
+          else {
+            const i = t.findIndex(({ i: r }) => r === this._highlightedIndex), s = t[i + 1];
+            s && (this._highlightedIndex = s.i, this._scrollOptionIntoView(s.i));
+          }
+          break;
+        }
+        case "ArrowUp": {
+          if (e.preventDefault(), this._isOpen) {
+            const i = t.findIndex(({ i: r }) => r === this._highlightedIndex), s = i > 0 ? t[i - 1] : null;
+            s && (this._highlightedIndex = s.i, this._scrollOptionIntoView(s.i));
+          }
+          break;
+        }
+        case "Enter":
+        case " ": {
+          e.preventDefault(), this._isOpen ? this._highlightedIndex >= 0 && this._handleOptionClick(this.options[this._highlightedIndex], e) : this._toggleDropdown();
+          break;
+        }
+        case "Escape": {
+          this._isOpen && (e.preventDefault(), this._isOpen = !1, this._highlightedIndex = -1);
+          break;
+        }
+        case "Tab": {
+          this._isOpen && (this._isOpen = !1, this._highlightedIndex = -1);
+          break;
+        }
+      }
     };
+    try {
+      this._internals = this.attachInternals();
+    } catch {
+    }
   }
   connectedCallback() {
     super.connectedCallback(), document.addEventListener("click", this._handleOutsideClick);
@@ -739,320 +415,233 @@ let ue = class extends c {
   disconnectedCallback() {
     super.disconnectedCallback(), document.removeEventListener("click", this._handleOutsideClick);
   }
+  willUpdate(e) {
+    this._firstUpdate && (this._firstUpdate = !1, this.defaultValue && this.value.length === 0 && (this.value = [this.defaultValue])), (e.has("value") || e.has("name") || e.has("required")) && this._updateFormValue();
+  }
+  _updateFormValue() {
+    if (!(!this._internals || typeof this._internals.setFormValue != "function")) {
+      if (this.multiple) {
+        const e = new FormData();
+        this.value.forEach((t) => e.append(this.name || "select", t)), this._internals.setFormValue(e);
+      } else
+        this._internals.setFormValue(this.value[0] ?? "");
+      this.required && this.value.length === 0 ? this._internals.setValidity({ valueMissing: !0 }, "Please select an option") : this._internals.setValidity({});
+    }
+  }
   _toggleDropdown() {
-    this.disabled || (this.isOpen = !this.isOpen);
+    if (!(this.disabled || this.readonly)) {
+      if (this._isOpen)
+        this._highlightedIndex = -1;
+      else {
+        const e = this.getBoundingClientRect();
+        this._opensUp = window.innerHeight - e.bottom < 280, this._highlightedIndex = this.value.length > 0 ? this.options.findIndex((t) => t.value === this.value[0]) : -1;
+      }
+      this._isOpen = !this._isOpen;
+    }
   }
   _handleOptionClick(e, t) {
-    if (t.stopPropagation(), this.multiple) {
-      const i = [...this.value], o = i.indexOf(e.value);
-      o > -1 ? i.splice(o, 1) : i.push(e.value), this.value = i;
-    } else
-      this.value = [e.value], this.isOpen = !1;
-    this._dispatchChange();
+    if (!e.disabled) {
+      if (t.stopPropagation(), this.multiple) {
+        const i = [...this.value], s = i.indexOf(e.value);
+        s > -1 ? i.splice(s, 1) : i.push(e.value), this.value = i;
+      } else
+        this.value = [e.value], this._isOpen = !1, this._highlightedIndex = -1;
+      this._dispatchChange();
+    }
   }
   _removeValue(e, t) {
-    t.stopPropagation(), this.value = this.value.filter((i) => i !== e), this._dispatchChange();
+    t.stopPropagation(), this.value = this.value.filter((i) => i !== e), this._dispatchChange(), this.shadowRoot?.querySelector(".select-trigger")?.focus();
   }
   _dispatchChange() {
     this.dispatchEvent(new CustomEvent("change", {
-      detail: { value: this.multiple ? this.value : this.value[0] },
+      detail: { value: this.multiple ? this.value : this.value[0] ?? null },
       bubbles: !0,
       composed: !0
     }));
   }
+  _scrollOptionIntoView(e) {
+    this.updateComplete.then(() => {
+      const t = this.shadowRoot?.querySelector(`#${this._uid}-opt-${e}`);
+      t && typeof t.scrollIntoView == "function" && t.scrollIntoView({ block: "nearest" });
+    });
+  }
   render() {
-    const e = this.options.filter((t) => this.value.includes(t.value));
+    const e = this.options.filter((r) => this.value.includes(r.value)), t = `${this._uid}-label`, i = `${this._uid}-listbox`, s = this._highlightedIndex >= 0 ? `${this._uid}-opt-${this._highlightedIndex}` : "";
     return l`
       <div class="wrapper">
-        ${this.label ? l`<label>${this.label}</label>` : ""}
-        
-        <div 
-          class="select-trigger ${u({
-      focused: this.isOpen,
+        ${this.label ? l`<label id=${t}>${this.label}</label>` : v}
+
+        <div
+          class=${u({
+      "select-trigger": !0,
+      focused: this._isOpen || this._isFocused,
+      open: this._isOpen,
       disabled: this.disabled,
-      has_value: e.length > 0
-    })}"
-          @click=${this._toggleDropdown}
+      readonly: this.readonly,
+      "has-value": e.length > 0
+    })}
+          tabindex=${this.disabled ? "-1" : "0"}
           role="combobox"
-          aria-expanded="${this.isOpen}"
+          aria-expanded=${this._isOpen ? "true" : "false"}
           aria-haspopup="listbox"
+          aria-controls=${i}
+          aria-labelledby=${this.label ? t : v}
+          aria-activedescendant=${s || v}
+          aria-disabled=${this.disabled ? "true" : v}
+          aria-required=${this.required ? "true" : v}
+          @click=${this._toggleDropdown}
+          @keydown=${this._handleKeydown}
+          @focus=${() => {
+      this._isFocused = !0;
+    }}
+          @blur=${() => {
+      this._isFocused = !1;
+    }}
         >
           <slot name="icon"></slot>
-          
+
           <div class="value-container">
             ${e.length === 0 ? l`
               <span class="placeholder">${this.placeholder}</span>
-            ` : ""}
-            
-            ${this.multiple ? It(e, (t) => t.value, (t) => l`
-                <span class="chip">
-                  ${t.label}
-                  <span class="chip-remove" @click=${(i) => this._removeValue(t.value, i)}>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                      <path d="M18 6L6 18M6 6l12 12"/>
-                    </svg>
+            ` : v}
+
+            ${this.multiple ? At(e, (r) => r.value, (r) => l`
+                  <span class="chip">
+                    ${r.label}
+                    <button
+                      type="button"
+                      class="chip-remove"
+                      aria-label="Remove ${r.label}"
+                      @click=${(a) => this._removeValue(r.value, a)}
+                    >
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <path d="M18 6L6 18M6 6l12 12"></path>
+                      </svg>
+                    </button>
                   </span>
-                </span>
-              `) : e[0] ? l`
-                <span class="single-value">${e[0].label}</span>
-              ` : ""}
+                `) : e[0] ? l`
+                  <span class="single-value">${e[0].label}</span>
+                ` : v}
           </div>
 
           <div class="arrow">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
           </div>
         </div>
 
-        <div class="dropdown ${u({ open: this.isOpen })}" role="listbox">
-          ${this.options.length === 0 ? l`
-            <div class="option" style="cursor: default; opacity: 0.5;">No options available</div>
-          ` : It(this.options, (t) => t.value, (t) => {
-      const i = this.value.includes(t.value);
+        <div
+          id=${i}
+          class=${u({
+      dropdown: !0,
+      open: this._isOpen,
+      above: this._opensUp,
+      below: !this._opensUp
+    })}
+          role="listbox"
+          aria-multiselectable=${this.multiple ? "true" : "false"}
+        >
+          ${this.options.length === 0 ? l`<div class="no-options">No options available</div>` : At(this.options, (r) => r.value, (r, a) => {
+      const n = this.value.includes(r.value);
       return l`
-              <div 
-                class="option ${u({ selected: i })}"
-                @click=${(o) => this._handleOptionClick(t, o)}
-                role="option"
-                aria-selected="${i}"
-              >
-                <span>${t.label}</span>
-                <div class="check-icon">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                </div>
-              </div>
-            `;
+                  <div
+                    id=${`${this._uid}-opt-${a}`}
+                    class=${u({
+        option: !0,
+        selected: n,
+        highlighted: a === this._highlightedIndex,
+        "option-disabled": !!r.disabled
+      })}
+                    @click=${(h) => this._handleOptionClick(r, h)}
+                    @mouseenter=${() => {
+        r.disabled || (this._highlightedIndex = a);
+      }}
+                    role="option"
+                    aria-selected=${n ? "true" : "false"}
+                    aria-disabled=${r.disabled ? "true" : v}
+                  >
+                    <span>${r.label}</span>
+                    <div class="check-icon">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+                `;
     })}
         </div>
+
+        ${this.error && this.errorMessage ? l`
+          <span class="error-message" role="alert">${this.errorMessage}</span>
+        ` : v}
       </div>
     `;
   }
 };
-ue.styles = p`
-    :host {
-      display: block;
-      --ui-select-height: 48px;
-      --ui-select-bg: var(--ui-surface-background, #ffffff);
-      --ui-select-border: var(--ui-input-border-color, #d1d5db);
-      --ui-select-radius: var(--ui-input-border-radius, 8px);
-      --ui-select-focus-color: var(--ui-primary-color, #3b82f6);
-      
-      font-family: var(--ui-font-family, sans-serif);
-      margin-bottom: 16px;
-    }
-
-    .wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      position: relative;
-    }
-
-    label {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--ui-text-color, #111827);
-      margin-left: 2px;
-    }
-
-    .select-trigger {
-      display: flex;
-      align-items: center;
-      min-height: var(--ui-select-height);
-      padding: 0 16px;
-      background-color: var(--ui-select-bg);
-      border: 1.5px solid var(--ui-select-border);
-      border-radius: var(--ui-select-radius);
-      cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      gap: 12px;
-      user-select: none;
-    }
-
-    .select-trigger:hover:not(.disabled) {
-      border-color: var(--ui-secondary-color, #6b7280);
-    }
-
-    .select-trigger.focused {
-      border-color: var(--ui-select-focus-color);
-      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
-    }
-
-    .select-trigger.disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      background-color: var(--ui-surface-background-flat, #f3f4f6);
-    }
-
-    .value-container {
-      flex: 1;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      padding: 8px 0;
-      min-height: 24px;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    .placeholder {
-      color: var(--ui-text-color-muted, #6b7280);
-      font-size: 0.9375rem;
-    }
-
-    .single-value {
-      color: var(--ui-text-color, #111827);
-      font-size: 0.9375rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .chip {
-      background-color: var(--ui-primary-color, #3b82f6);
-      color: var(--ui-text-color-on-primary, #ffffff);
-      padding: 4px 10px;
-      border-radius: 16px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      animation: chip-in 0.2s ease-out;
-    }
-
-    @keyframes chip-in {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    .chip-remove {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      opacity: 0.8;
-      transition: opacity 0.2s;
-    }
-
-    .chip-remove:hover {
-      opacity: 1;
-    }
-
-    .arrow {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.3s ease;
-      color: var(--ui-text-color-muted, #6b7280);
-    }
-
-    .select-trigger.focused .arrow {
-      transform: rotate(180deg);
-      color: var(--ui-select-focus-color);
-    }
-
-    .dropdown {
-      position: absolute;
-      top: calc(100% + 8px);
-      left: 0;
-      right: 0;
-      background-color: var(--ui-select-bg);
-      border-radius: var(--ui-select-radius);
-      box-shadow: var(--ui-shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
-      border: 1px solid var(--ui-border-color, #e5e7eb);
-      z-index: 1000;
-      max-height: 260px;
-      overflow-y: auto;
-      opacity: 0;
-      transform: translateY(-10px);
-      pointer-events: none;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .dropdown.open {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-
-    .option {
-      padding: 12px 16px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      color: var(--ui-text-color, #111827);
-      transition: background-color 0.2s;
-      font-size: 0.9375rem;
-    }
-
-    .option:hover {
-      background-color: var(--ui-hover-color, rgba(0, 0, 0, 0.04));
-    }
-
-    .option.selected {
-      background-color: rgba(59, 130, 246, 0.08);
-      color: var(--ui-primary-color, #3b82f6);
-      font-weight: 600;
-    }
-
-    .check-icon {
-      color: var(--ui-primary-color, #3b82f6);
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-
-    .option.selected .check-icon {
-      opacity: 1;
-    }
-
-    /* Scrollbar Styling */
-    .dropdown::-webkit-scrollbar {
-      width: 6px;
-    }
-    .dropdown::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    .dropdown::-webkit-scrollbar-thumb {
-      background: var(--ui-border-color, #e5e7eb);
-      border-radius: 3px;
-    }
-  `;
-We([
-  s({ type: String })
-], ue.prototype, "label", 2);
-We([
-  s({ type: Array })
-], ue.prototype, "options", 2);
-We([
-  s({ type: Array })
-], ue.prototype, "value", 2);
-We([
-  s({ type: Boolean })
-], ue.prototype, "multiple", 2);
-We([
-  s({ type: String })
-], ue.prototype, "placeholder", 2);
-We([
-  s({ type: Boolean, reflect: !0 })
-], ue.prototype, "disabled", 2);
-We([
-  m()
-], ue.prototype, "isOpen", 2);
-ue = We([
+D.formAssociated = !0;
+D.styles = p(Hs);
+M([
+  o({ type: String })
+], D.prototype, "label", 2);
+M([
+  o({ type: Array })
+], D.prototype, "options", 2);
+M([
+  o({ type: Array })
+], D.prototype, "value", 2);
+M([
+  o({ type: Boolean })
+], D.prototype, "multiple", 2);
+M([
+  o({ type: String })
+], D.prototype, "placeholder", 2);
+M([
+  o({ type: Boolean, reflect: !0 })
+], D.prototype, "disabled", 2);
+M([
+  o({ type: Boolean, reflect: !0 })
+], D.prototype, "readonly", 2);
+M([
+  o({ type: Boolean, reflect: !0 })
+], D.prototype, "required", 2);
+M([
+  o({ type: Boolean, reflect: !0 })
+], D.prototype, "error", 2);
+M([
+  o({ type: String, attribute: "error-message" })
+], D.prototype, "errorMessage", 2);
+M([
+  o({ type: String })
+], D.prototype, "name", 2);
+M([
+  o({ type: String, reflect: !0 })
+], D.prototype, "size", 2);
+M([
+  o({ type: String, attribute: "default-value" })
+], D.prototype, "defaultValue", 2);
+M([
+  g()
+], D.prototype, "_isOpen", 2);
+M([
+  g()
+], D.prototype, "_highlightedIndex", 2);
+M([
+  g()
+], D.prototype, "_isFocused", 2);
+M([
+  g()
+], D.prototype, "_opensUp", 2);
+D = M([
   d("ui-select")
-], ue);
-var Ao = Object.defineProperty, Mo = Object.getOwnPropertyDescriptor, xi = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Mo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Ao(t, i, r), r;
+], D);
+const Ws = ":host{--ui-fab-size: 56px;--ui-fab-background: var(--ui-primary-color, #3b82f6);--ui-fab-color: var(--ui-text-color-on-primary, white);--ui-fab-shadow: var(--ui-shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, .1));--ui-fab-radius: 50%;display:inline-block;position:fixed;z-index:100}.fab{display:flex;align-items:center;justify-content:center;width:var(--ui-fab-size);height:var(--ui-fab-size);border-radius:var(--ui-fab-radius);background-color:var(--ui-fab-background);color:var(--ui-fab-color);box-shadow:var(--ui-fab-shadow);border:none;cursor:pointer;transition:all .2s cubic-bezier(.4,0,.2,1);padding:0;overflow:hidden;outline:none}.fab:hover:not(:disabled){box-shadow:var(--ui-shadow-xl, 0 20px 25px -5px rgba(0, 0, 0, .1));filter:brightness(1.1);transform:translateY(-2px)}.fab:active:not(:disabled){transform:translateY(0);filter:brightness(.9)}.fab:focus-visible{outline:3px solid var(--ui-fab-background);outline-offset:3px}.fab:disabled{opacity:.4;cursor:not-allowed}.fab.extended{width:auto;min-width:80px;padding:0 20px;border-radius:28px;height:56px}.fab.extended .icon-slot{margin-right:12px}.icon-slot{display:flex;align-items:center;justify-content:center;font-size:24px}.label-slot{font-family:var(--ui-font-family, sans-serif);font-weight:500;font-size:.875rem;letter-spacing:.1px;text-transform:uppercase}";
+var Xs = Object.defineProperty, Js = Object.getOwnPropertyDescriptor, $i = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Js(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Xs(t, i, r), r;
 };
-let it = class extends c {
+let ht = class extends c {
   constructor() {
     super(...arguments), this.extended = !1, this.disabled = !1, this.label = "Action", this.position = "bottom-right";
   }
@@ -1069,8 +658,8 @@ let it = class extends c {
       "bottom-left": ["", "24px", "", "24px"],
       "top-right": ["24px", "", "24px", ""],
       "top-left": ["24px", "", "", "24px"]
-    }, [t, i, o, r] = e[this.position] ?? e["bottom-right"];
-    this.style.position = "fixed", this.style.top = t, this.style.bottom = i, this.style.right = o, this.style.left = r;
+    }, [t, i, s, r] = e[this.position] ?? e["bottom-right"];
+    this.style.position = "fixed", this.style.top = t, this.style.bottom = i, this.style.right = s, this.style.left = r;
   }
   render() {
     const e = {
@@ -1081,7 +670,7 @@ let it = class extends c {
       <button
         class="${u(e)}"
         ?disabled="${this.disabled}"
-        aria-label="${$e(this.extended ? void 0 : this.label)}"
+        aria-label="${pe(this.extended ? void 0 : this.label)}"
       >
         <span class="icon-slot">
           <slot name="icon"></slot>
@@ -1092,106 +681,29 @@ let it = class extends c {
     `;
   }
 };
-it.styles = p`
-    :host {
-      --ui-fab-size: 56px;
-      --ui-fab-background: var(--ui-primary-color, #3b82f6);
-      --ui-fab-color: var(--ui-text-color-on-primary, white);
-      --ui-fab-shadow: var(--ui-shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
-      --ui-fab-radius: 50%;
-
-      display: inline-block;
-      position: fixed;
-      z-index: 100;
-    }
-
-    .fab {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: var(--ui-fab-size);
-      height: var(--ui-fab-size);
-      border-radius: var(--ui-fab-radius);
-      background-color: var(--ui-fab-background);
-      color: var(--ui-fab-color);
-      box-shadow: var(--ui-fab-shadow);
-      border: none;
-      cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-      padding: 0;
-      overflow: hidden;
-      outline: none;
-    }
-
-    .fab:hover:not(:disabled) {
-      box-shadow: var(--ui-shadow-xl, 0 20px 25px -5px rgba(0, 0, 0, 0.1));
-      filter: brightness(1.1);
-      transform: translateY(-2px);
-    }
-
-    .fab:active:not(:disabled) {
-      transform: translateY(0);
-      filter: brightness(0.9);
-    }
-
-    .fab:focus-visible {
-      outline: 3px solid var(--ui-fab-background);
-      outline-offset: 3px;
-    }
-
-    .fab:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-    }
-
-    .fab.extended {
-      width: auto;
-      min-width: 80px;
-      padding: 0 20px;
-      border-radius: 28px;
-      height: 56px;
-    }
-
-    .fab.extended .icon-slot {
-      margin-right: 12px;
-    }
-
-    .icon-slot {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-    }
-
-    .label-slot {
-      font-family: var(--ui-font-family, sans-serif);
-      font-weight: 500;
-      font-size: 0.875rem;
-      letter-spacing: 0.1px;
-      text-transform: uppercase;
-    }
-  `;
-xi([
-  s({ type: Boolean, reflect: !0 })
-], it.prototype, "extended", 2);
-xi([
-  s({ type: Boolean, reflect: !0 })
-], it.prototype, "disabled", 2);
-xi([
-  s({ type: String })
-], it.prototype, "label", 2);
-xi([
-  s({ type: String })
-], it.prototype, "position", 2);
-it = xi([
+ht.styles = p(Ws);
+$i([
+  o({ type: Boolean, reflect: !0 })
+], ht.prototype, "extended", 2);
+$i([
+  o({ type: Boolean, reflect: !0 })
+], ht.prototype, "disabled", 2);
+$i([
+  o({ type: String })
+], ht.prototype, "label", 2);
+$i([
+  o({ type: String })
+], ht.prototype, "position", 2);
+ht = $i([
   d("ui-fab")
-], it);
-var Lo = Object.defineProperty, jo = Object.getOwnPropertyDescriptor, we = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? jo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Lo(t, i, r), r;
+], ht);
+const Zs = ":host{display:inline-block;position:relative;font-family:var(--ui-font-family, system-ui, sans-serif);width:100%}.input-wrapper{position:relative}input{width:100%;padding:8px 12px;border:1px solid var(--ui-input-border-color, #d1d5db);border-radius:var(--ui-input-border-radius, 4px);font-size:14px;box-sizing:border-box;outline:none;transition:border-color .2s,box-shadow .2s;font-family:inherit;color:var(--ui-text-color, #111827);background:var(--ui-surface-background, #fff)}input:focus{border-color:var(--ui-primary-color, #3b82f6);box-shadow:0 0 0 1px var(--ui-primary-color, #3b82f6)}input:disabled{background-color:var(--ui-disabled-background, #f9fafb);color:var(--ui-disabled-text-color, #9ca3af);cursor:not-allowed}.dropdown{position:absolute;top:100%;left:0;right:0;max-height:250px;overflow-y:auto;background:var(--ui-surface-background, #fff);border:1px solid var(--ui-input-border-color, #d1d5db);border-radius:var(--ui-input-border-radius, 4px);margin-top:4px;box-shadow:0 4px 6px -1px #0000001a,0 2px 4px -1px #0000000f;z-index:10;display:none}.dropdown.open{display:block}.option{padding:10px 12px;cursor:pointer;font-size:14px;transition:background-color .15s;color:var(--ui-text-color, #111827)}.option:hover,.option.active{background-color:var(--ui-hover-color, #f3f4f6)}.no-options{padding:10px 12px;font-size:14px;color:#6b7280}";
+var Qs = Object.defineProperty, eo = Object.getOwnPropertyDescriptor, Ae = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? eo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Qs(t, i, r), r;
 };
-let oe = class extends c {
+let he = class extends c {
   constructor() {
     super(...arguments), this.options = [], this.freeSolo = !1, this.disabled = !1, this.value = "", this.placeholder = "", this._isOpen = !1, this._inputValue = "", this._filteredOptions = [], this._activeIndex = -1, this._handleOutsideClick = (e) => {
       if (!this.contains(e.target) && (this._isOpen = !1, this._activeIndex = -1, !this.freeSolo)) {
@@ -1243,7 +755,7 @@ let oe = class extends c {
         break;
       case "Escape":
         if (e.preventDefault(), this._isOpen = !1, this._activeIndex = -1, !this.freeSolo) {
-          const i = this.options.find((o) => o.value === this.value);
+          const i = this.options.find((s) => s.value === this.value);
           this._inputValue = i ? i.label : "";
         }
         break;
@@ -1291,7 +803,7 @@ let oe = class extends c {
                     role="option"
                     aria-selected=${i === this._activeIndex ? "true" : "false"}
                     class=${u({ option: !0, active: i === this._activeIndex })}
-                    @mousedown=${(o) => o.preventDefault()}
+                    @mousedown=${(s) => s.preventDefault()}
                     @click=${() => this._selectOption(t)}
                   >
                     ${t.label}
@@ -1303,118 +815,44 @@ let oe = class extends c {
     `;
   }
 };
-oe.styles = p`
-    :host {
-      display: inline-block;
-      position: relative;
-      font-family: var(--ui-font-family, system-ui, sans-serif);
-      width: 100%;
-    }
-
-    .input-wrapper {
-      position: relative;
-    }
-
-    input {
-      width: 100%;
-      padding: 8px 12px;
-      border: 1px solid var(--ui-input-border-color, #d1d5db);
-      border-radius: var(--ui-input-border-radius, 4px);
-      font-size: 14px;
-      box-sizing: border-box;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      font-family: inherit;
-      color: var(--ui-text-color, #111827);
-      background: var(--ui-surface-background, #fff);
-    }
-
-    input:focus {
-      border-color: var(--ui-primary-color, #3b82f6);
-      box-shadow: 0 0 0 1px var(--ui-primary-color, #3b82f6);
-    }
-
-    input:disabled {
-      background-color: var(--ui-disabled-background, #f9fafb);
-      color: var(--ui-disabled-text-color, #9ca3af);
-      cursor: not-allowed;
-    }
-
-    .dropdown {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      max-height: 250px;
-      overflow-y: auto;
-      background: var(--ui-surface-background, #fff);
-      border: 1px solid var(--ui-input-border-color, #d1d5db);
-      border-radius: var(--ui-input-border-radius, 4px);
-      margin-top: 4px;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      z-index: 10;
-      display: none;
-    }
-
-    .dropdown.open {
-      display: block;
-    }
-
-    .option {
-      padding: 10px 12px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: background-color 0.15s;
-      color: var(--ui-text-color, #111827);
-    }
-
-    .option:hover,
-    .option.active {
-      background-color: var(--ui-hover-color, #f3f4f6);
-    }
-
-    .no-options {
-      padding: 10px 12px;
-      font-size: 14px;
-      color: #6b7280;
-    }
-  `;
-we([
-  s({ type: Array })
-], oe.prototype, "options", 2);
-we([
-  s({ type: Boolean })
-], oe.prototype, "freeSolo", 2);
-we([
-  s({ type: Boolean })
-], oe.prototype, "disabled", 2);
-we([
-  s({ type: String })
-], oe.prototype, "value", 2);
-we([
-  s({ type: String })
-], oe.prototype, "placeholder", 2);
-we([
-  m()
-], oe.prototype, "_isOpen", 2);
-we([
-  m()
-], oe.prototype, "_inputValue", 2);
-we([
-  m()
-], oe.prototype, "_filteredOptions", 2);
-we([
-  m()
-], oe.prototype, "_activeIndex", 2);
-oe = we([
+he.styles = p(Zs);
+Ae([
+  o({ type: Array })
+], he.prototype, "options", 2);
+Ae([
+  o({ type: Boolean })
+], he.prototype, "freeSolo", 2);
+Ae([
+  o({ type: Boolean })
+], he.prototype, "disabled", 2);
+Ae([
+  o({ type: String })
+], he.prototype, "value", 2);
+Ae([
+  o({ type: String })
+], he.prototype, "placeholder", 2);
+Ae([
+  g()
+], he.prototype, "_isOpen", 2);
+Ae([
+  g()
+], he.prototype, "_inputValue", 2);
+Ae([
+  g()
+], he.prototype, "_filteredOptions", 2);
+Ae([
+  g()
+], he.prototype, "_activeIndex", 2);
+he = Ae([
   d("ui-autocomplete")
-], oe);
-var Uo = Object.defineProperty, Ro = Object.getOwnPropertyDescriptor, Ge = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Ro(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Uo(t, i, r), r;
+], he);
+const to = ':host{display:inline-block;font-family:var(--ui-font-family, "Inter", sans-serif);color:var(--ui-text-color, #111827)}.wrapper{display:inline-flex;align-items:center;cursor:pointer}.wrapper.disabled{opacity:.5;cursor:not-allowed}.checkbox{position:relative;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border:2px solid var(--ui-input-border-color, #d1d5db);border-radius:var(--ui-border-radius-sm, 4px);background-color:var(--ui-surface-background, white);transition:all .2s ease;margin-right:8px}.wrapper:hover:not(.disabled) .checkbox{border-color:var(--ui-primary-color, #3b82f6)}.checkbox.checked,.checkbox.indeterminate{background-color:var(--ui-primary-color, #3b82f6);border-color:var(--ui-primary-color, #3b82f6)}.icon{fill:none;stroke:var(--ui-text-color-on-primary, white);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;width:12px;height:12px;opacity:0;transform:scale(.5);transition:all .2s cubic-bezier(.175,.885,.32,1.275)}.checked .icon,.indeterminate .icon{opacity:1;transform:scale(1)}input{position:absolute;opacity:0;width:0;height:0;margin:0}input:focus-visible+.checkbox{outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:2px}.label{font-size:14px;line-height:1.5;-webkit-user-select:none;user-select:none}::slotted(*),.label{cursor:inherit}';
+var io = Object.defineProperty, ro = Object.getOwnPropertyDescriptor, ot = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? ro(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && io(t, i, r), r;
 };
-let fe = class extends c {
+let Ce = class extends c {
   constructor() {
     super(...arguments), this.checked = !1, this.indeterminate = !1, this.disabled = !1, this.required = !1, this.label = "", this.name = "", this.value = "";
   }
@@ -1436,7 +874,7 @@ let fe = class extends c {
           .indeterminate=${this.indeterminate}
           ?disabled=${this.disabled}
           ?required=${this.required}
-          name=${this.name || y}
+          name=${this.name || v}
           .value=${this.value}
           @change=${this._handleChange}
         >
@@ -1450,182 +888,140 @@ let fe = class extends c {
     `;
   }
 };
-fe.styles = p`
-    :host {
-      display: inline-block;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-      color: var(--ui-text-color, #111827);
-    }
-
-    .wrapper {
-      display: inline-flex;
-      align-items: center;
-      cursor: pointer;
-    }
-
-    .wrapper.disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    .checkbox {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 18px;
-      height: 18px;
-      border: 2px solid var(--ui-input-border-color, #d1d5db);
-      border-radius: var(--ui-border-radius-sm, 4px);
-      background-color: var(--ui-surface-background, white);
-      transition: all 0.2s ease;
-      margin-right: 8px;
-    }
-
-    .wrapper:hover:not(.disabled) .checkbox {
-      border-color: var(--ui-primary-color, #3b82f6);
-    }
-
-    .checkbox.checked, .checkbox.indeterminate {
-      background-color: var(--ui-primary-color, #3b82f6);
-      border-color: var(--ui-primary-color, #3b82f6);
-    }
-
-    .icon {
-      fill: none;
-      stroke: var(--ui-text-color-on-primary, white);
-      stroke-width: 3;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      width: 12px;
-      height: 12px;
-      opacity: 0;
-      transform: scale(0.5);
-      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    .checked .icon, .indeterminate .icon {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    input {
-      position: absolute;
-      opacity: 0;
-      width: 0;
-      height: 0;
-      margin: 0;
-    }
-
-    /* Focus ring for accessibility */
-    input:focus-visible + .checkbox {
-      outline: 2px solid var(--ui-primary-color, #3b82f6);
-      outline-offset: 2px;
-    }
-
-    .label {
-      font-size: 14px;
-      line-height: 1.5;
-      user-select: none;
-    }
-
-    /* Style when no label and no slot text is passed */
-    ::slotted(*), .label {
-      cursor: inherit;
-    }
-  `;
-Ge([
-  s({ type: Boolean, reflect: !0 })
-], fe.prototype, "checked", 2);
-Ge([
-  s({ type: Boolean })
-], fe.prototype, "indeterminate", 2);
-Ge([
-  s({ type: Boolean, reflect: !0 })
-], fe.prototype, "disabled", 2);
-Ge([
-  s({ type: Boolean })
-], fe.prototype, "required", 2);
-Ge([
-  s({ type: String })
-], fe.prototype, "label", 2);
-Ge([
-  s({ type: String })
-], fe.prototype, "name", 2);
-Ge([
-  s({ type: String })
-], fe.prototype, "value", 2);
-fe = Ge([
+Ce.styles = p(to);
+ot([
+  o({ type: Boolean, reflect: !0 })
+], Ce.prototype, "checked", 2);
+ot([
+  o({ type: Boolean })
+], Ce.prototype, "indeterminate", 2);
+ot([
+  o({ type: Boolean, reflect: !0 })
+], Ce.prototype, "disabled", 2);
+ot([
+  o({ type: Boolean })
+], Ce.prototype, "required", 2);
+ot([
+  o({ type: String })
+], Ce.prototype, "label", 2);
+ot([
+  o({ type: String })
+], Ce.prototype, "name", 2);
+ot([
+  o({ type: String })
+], Ce.prototype, "value", 2);
+Ce = ot([
   d("ui-checkbox")
-], fe);
-var No = Object.defineProperty, Vo = Object.getOwnPropertyDescriptor, ze = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Vo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && No(t, i, r), r;
+], Ce);
+const so = ':host{display:block;font-family:var(--ui-font-family, "Inter", sans-serif);color:var(--ui-text-color, #111827)}:host([disabled]){opacity:.5;pointer-events:none}.group-container{display:flex;flex-direction:column;gap:var(--ui-radio-group-gap, 8px)}:host([orientation="horizontal"]) .group-container{flex-direction:row;flex-wrap:wrap}', oo = ':host{display:inline-block;cursor:pointer}:host([disabled]){cursor:not-allowed}.wrapper{display:inline-flex;align-items:center;cursor:pointer}.wrapper.disabled{opacity:.5;cursor:not-allowed}.radio-circle{position:relative;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border:2px solid var(--ui-input-border-color, #d1d5db);border-radius:50%;background-color:var(--ui-surface-background, white);transition:all .2s ease;margin-right:8px;flex-shrink:0}:host([size="sm"]) .radio-circle{width:14px;height:14px}:host([size="lg"]) .radio-circle{width:22px;height:22px}.wrapper:hover:not(.disabled) .radio-circle{border-color:var(--ui-primary-color, #3b82f6)}.radio-circle.checked{border-color:var(--ui-primary-color, #3b82f6)}.radio-circle:after{content:"";width:8px;height:8px;border-radius:50%;background-color:var(--ui-primary-color, #3b82f6);opacity:0;transform:scale(.5);transition:all .2s cubic-bezier(.175,.885,.32,1.275)}:host([size="sm"]) .radio-circle:after{width:6px;height:6px}:host([size="lg"]) .radio-circle:after{width:10px;height:10px}.checked:after{opacity:1;transform:scale(1)}input{position:absolute;opacity:0;width:0;height:0;margin:0}input:focus-visible+.radio-circle{outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:2px}.label{font-size:14px;line-height:1.5;-webkit-user-select:none;user-select:none}:host([size="sm"]) .label{font-size:12px}:host([size="lg"]) .label{font-size:16px}';
+var ao = Object.defineProperty, no = Object.getOwnPropertyDescriptor, U = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? no(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && ao(t, i, r), r;
 };
-let ri = class extends c {
+let ve = class extends c {
   constructor() {
-    super(...arguments), this.name = "", this.value = "";
+    super(...arguments), this.label = "", this.name = "", this.value = "", this.defaultValue = "", this.disabled = !1, this.required = !1, this.orientation = "vertical", this.size = "md", this._firstUpdate = !0, this._boundHandleRadioSelect = this._handleRadioSelect.bind(this), this._boundHandleKeyDown = this._handleKeyDown.bind(this);
   }
   connectedCallback() {
-    super.connectedCallback(), this.addEventListener("radio-changed", this._handleRadioChange);
+    super.connectedCallback(), this.addEventListener("ui-radio-select", this._boundHandleRadioSelect), this.addEventListener("keydown", this._boundHandleKeyDown);
   }
-  _handleRadioChange(e) {
+  disconnectedCallback() {
+    super.disconnectedCallback(), this.removeEventListener("ui-radio-select", this._boundHandleRadioSelect), this.removeEventListener("keydown", this._boundHandleKeyDown);
+  }
+  willUpdate() {
+    this._firstUpdate && (this._firstUpdate = !1, this.defaultValue && !this.value && (this.value = this.defaultValue));
+  }
+  updated(e) {
+    (e.has("value") || e.has("name") || e.has("size") || e.has("required")) && this._syncChildren();
+  }
+  _getRadios() {
+    return Array.from(this.querySelectorAll("ui-radio"));
+  }
+  _getEnabledRadios() {
+    return this._getRadios().filter((e) => !e.disabled);
+  }
+  _handleRadioSelect(e) {
+    if (this.disabled) return;
     const { value: t } = e.detail;
-    this.value = t, this.querySelectorAll("ui-radio").forEach((o) => {
-      const r = o;
-      r.checked = r.value === t;
-    }), this.dispatchEvent(new CustomEvent("change", {
+    this.value = t, this._syncChildren(), this.dispatchEvent(new CustomEvent("ui-radio-group-change", {
       detail: { value: t },
       bubbles: !0,
       composed: !0
     }));
   }
-  updated(e) {
-    e.has("value") && this.querySelectorAll("ui-radio").forEach((i) => {
-      const o = i;
-      o.checked = o.value === this.value;
-    }), e.has("name") && this.querySelectorAll("ui-radio").forEach((i) => {
-      const o = i;
-      o.name = this.name;
+  _handleKeyDown(e) {
+    if (this.disabled || !["ArrowDown", "ArrowUp", "ArrowLeft", "ArrowRight"].includes(e.key)) return;
+    const t = this._getEnabledRadios();
+    if (!t.length) return;
+    const i = e.composedPath(), s = t.find((f) => i.includes(f)), r = s ? t.indexOf(s) : t.findIndex((f) => f.value === this.value), a = r >= 0 ? r : 0;
+    e.preventDefault();
+    const n = e.key === "ArrowDown" || e.key === "ArrowRight" ? (a + 1) % t.length : (a - 1 + t.length) % t.length, h = t[n];
+    h.focus(), this.value = h.value, this._syncChildren(), this.dispatchEvent(new CustomEvent("ui-radio-group-change", {
+      detail: { value: this.value },
+      bubbles: !0,
+      composed: !0
+    }));
+  }
+  _syncChildren() {
+    this._getRadios().forEach((e) => {
+      e.checked = e.value === this.value, this.name && (e.name = this.name), e.size = this.size, e.required = this.required;
     });
+  }
+  _handleSlotChange() {
+    this._syncChildren();
   }
   render() {
     return l`
-      <div class="group-container" role="radiogroup">
-        <slot></slot>
-      </div>
-    `;
+            <div
+                class="group-container"
+                role="radiogroup"
+                aria-label=${pe(this.label || void 0)}
+                aria-disabled=${pe(this.disabled ? "true" : void 0)}
+                aria-required=${pe(this.required ? "true" : void 0)}
+            >
+                <slot @slotchange=${this._handleSlotChange}></slot>
+            </div>
+        `;
   }
 };
-ri.styles = p`
-    :host {
-      display: block;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-      color: var(--ui-text-color, #111827);
-    }
-
-    .group-container {
-      display: flex;
-      flex-direction: var(--ui-radio-group-direction, column);
-      gap: var(--ui-radio-group-gap, 8px);
-    }
-  `;
-ze([
-  s({ type: String })
-], ri.prototype, "name", 2);
-ze([
-  s({ type: String })
-], ri.prototype, "value", 2);
-ri = ze([
+ve.styles = p(so);
+U([
+  o({ type: String })
+], ve.prototype, "label", 2);
+U([
+  o({ type: String })
+], ve.prototype, "name", 2);
+U([
+  o({ type: String })
+], ve.prototype, "value", 2);
+U([
+  o({ type: String, attribute: "default-value" })
+], ve.prototype, "defaultValue", 2);
+U([
+  o({ type: Boolean, reflect: !0 })
+], ve.prototype, "disabled", 2);
+U([
+  o({ type: Boolean, reflect: !0 })
+], ve.prototype, "required", 2);
+U([
+  o({ type: String, reflect: !0 })
+], ve.prototype, "orientation", 2);
+U([
+  o({ type: String, reflect: !0 })
+], ve.prototype, "size", 2);
+ve = U([
   d("ui-radio-group")
-], ri);
-let je = class extends c {
+], ve);
+let Ie = class extends c {
   constructor() {
-    super(...arguments), this.checked = !1, this.disabled = !1, this.name = "", this.value = "", this.label = "";
+    super(...arguments), this.checked = !1, this.disabled = !1, this.required = !1, this.name = "", this.value = "", this.label = "", this.size = "md";
+  }
+  focus(e) {
+    this.shadowRoot?.querySelector("input")?.focus(e);
   }
   _handleChange() {
-    this.disabled || this.checked || this.dispatchEvent(new CustomEvent("radio-changed", {
+    this.disabled || this.dispatchEvent(new CustomEvent("ui-radio-select", {
       detail: { value: this.value },
       bubbles: !0,
       composed: !0
@@ -1634,266 +1030,261 @@ let je = class extends c {
   render() {
     return l`
             <label class=${u({ wrapper: !0, disabled: this.disabled })}>
-                <input 
-                    type="radio" 
+                <input
+                    type="radio"
                     .name=${this.name}
                     .value=${this.value}
                     .checked=${this.checked}
                     ?disabled=${this.disabled}
+                    ?required=${this.required}
                     @change=${this._handleChange}
                 >
                 <div class=${u({ "radio-circle": !0, checked: this.checked })}></div>
                 <span class="label">
-                    ${this.label || l`<slot></slot>`}
+                    ${this.label ? this.label : l`<slot></slot>`}
                 </span>
             </label>
         `;
   }
 };
-je.styles = p`
-        :host {
-            display: inline-block;
-            cursor: pointer;
-        }
-
-        .wrapper {
-            display: inline-flex;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .wrapper.disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .radio-circle {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 18px;
-            height: 18px;
-            border: 2px solid var(--ui-input-border-color, #d1d5db);
-            border-radius: 50%;
-            background-color: var(--ui-surface-background, white);
-            transition: all 0.2s ease;
-            margin-right: 8px;
-        }
-
-        .wrapper:hover:not(.disabled) .radio-circle {
-            border-color: var(--ui-primary-color, #3b82f6);
-        }
-
-        .radio-circle.checked {
-            border-color: var(--ui-primary-color, #3b82f6);
-        }
-
-        .radio-circle::after {
-            content: '';
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: var(--ui-primary-color, #3b82f6);
-            opacity: 0;
-            transform: scale(0.5);
-            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .checked::after {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        input {
-            position: absolute;
-            opacity: 0;
-            width: 0;
-            height: 0;
-            margin: 0;
-        }
-
-        input:focus-visible + .radio-circle {
-            outline: 2px solid var(--ui-primary-color, #3b82f6);
-            outline-offset: 2px;
-        }
-
-        .label {
-            font-size: 14px;
-            line-height: 1.5;
-            user-select: none;
-        }
-    `;
-ze([
-  s({ type: Boolean, reflect: !0 })
-], je.prototype, "checked", 2);
-ze([
-  s({ type: Boolean })
-], je.prototype, "disabled", 2);
-ze([
-  s({ type: String })
-], je.prototype, "name", 2);
-ze([
-  s({ type: String })
-], je.prototype, "value", 2);
-ze([
-  s({ type: String })
-], je.prototype, "label", 2);
-je = ze([
+Ie.styles = p(oo);
+U([
+  o({ type: Boolean, reflect: !0 })
+], Ie.prototype, "checked", 2);
+U([
+  o({ type: Boolean, reflect: !0 })
+], Ie.prototype, "disabled", 2);
+U([
+  o({ type: Boolean, reflect: !0 })
+], Ie.prototype, "required", 2);
+U([
+  o({ type: String })
+], Ie.prototype, "name", 2);
+U([
+  o({ type: String })
+], Ie.prototype, "value", 2);
+U([
+  o({ type: String })
+], Ie.prototype, "label", 2);
+U([
+  o({ type: String, reflect: !0 })
+], Ie.prototype, "size", 2);
+Ie = U([
   d("ui-radio")
-], je);
-var Fo = Object.defineProperty, qo = Object.getOwnPropertyDescriptor, Wt = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? qo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Fo(t, i, r), r;
+], Ie);
+const lo = ':host{display:inline-block;font-family:var(--ui-font-family, system-ui, sans-serif);--ui-rating-color: #ffb400;--ui-rating-empty-color: #faaf0033;--ui-rating-size: 2rem;font-size:var(--ui-rating-size)}:host([size="sm"]){--ui-rating-size: 1.25rem}:host([size="md"]){--ui-rating-size: 2rem}:host([size="lg"]){--ui-rating-size: 2.75rem}:host([disabled]){opacity:.4;cursor:not-allowed}:host([readonly]) .rating-container{cursor:default}.rating-container{display:inline-flex;position:relative;cursor:pointer;font-size:1em;line-height:1;gap:.1em}.rating-container:focus{outline:none}.star-wrapper{position:relative;display:inline-flex;transition:transform .1s ease;outline:none}.star-wrapper:focus-visible{border-radius:2px;box-shadow:0 0 0 2px var(--ui-rating-color)}.star-wrapper:not(.readonly):not(.disabled):hover{transform:scale(1.1)}svg{width:1em;height:1em;fill:var(--ui-rating-empty-color);stroke:var(--ui-rating-color);stroke-width:1;transition:fill .2s ease,stroke .2s ease;overflow:visible}.active svg{fill:var(--ui-rating-color)}.hover svg{fill:var(--ui-rating-color);opacity:.7}.half svg .star-full{display:none}.half svg .star-half{display:block}.star-half{display:none}.hidden-input{position:absolute;opacity:0;width:0;height:0;margin:0;pointer-events:none}';
+var co = Object.defineProperty, po = Object.getOwnPropertyDescriptor, ge = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? po(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && co(t, i, r), r;
 };
-let Ue = class extends c {
+let J = class extends c {
   constructor() {
-    super(...arguments), this.value = 0, this.max = 5, this.readonly = !1, this.name = "", this._hoverValue = -1;
+    super(...arguments), this.value = 0, this.max = 5, this.readonly = !1, this.disabled = !1, this.clearable = !1, this.defaultValue = 0, this.size = "md", this.name = "", this.label = "Rating", this.precision = 1, this._hoverValue = -1, this._firstUpdate = !0;
+  }
+  willUpdate(e) {
+    this._firstUpdate && this.defaultValue !== 0 && (this.value = this.defaultValue), this._firstUpdate = !1, (e.has("value") || e.has("name")) && this._syncHiddenInput();
+  }
+  _syncHiddenInput() {
+    const e = this.shadowRoot?.querySelector(".hidden-input");
+    e && (e.name = this.name, e.value = String(this.value));
+  }
+  firstUpdated() {
+    this._syncHiddenInput();
+  }
+  _isInteractive() {
+    return !this.readonly && !this.disabled;
   }
   _handleMouseEnter(e) {
-    this.readonly || (this._hoverValue = e);
+    this._isInteractive() && (this._hoverValue = e);
   }
   _handleMouseLeave() {
-    this.readonly || (this._hoverValue = -1);
+    this._isInteractive() && (this._hoverValue = -1);
+  }
+  _handleMouseMove(e, t) {
+    if (!this._isInteractive() || this.precision !== 0.5) return;
+    const i = e.currentTarget, { left: s, width: r } = i.getBoundingClientRect(), a = e.clientX - s < r / 2;
+    this._hoverValue = a ? t - 0.5 : t;
   }
   _handleClick(e) {
-    this.readonly || (this.value = e, this.dispatchEvent(new CustomEvent("change", {
+    if (!this._isInteractive()) return;
+    const t = this.clearable && this.value === e ? 0 : e;
+    this.value = t, this.dispatchEvent(new CustomEvent("ui-rating-change", {
+      detail: { value: this.value },
+      bubbles: !0,
+      composed: !0
+    }));
+  }
+  _handleKeydown(e, t) {
+    if (!this._isInteractive()) return;
+    const i = this.precision === 0.5 ? 0.5 : 1;
+    let s = this.value;
+    switch (e.key) {
+      case "ArrowRight":
+      case "ArrowUp":
+        e.preventDefault(), s = Math.min(this.max, this.value + i);
+        break;
+      case "ArrowLeft":
+      case "ArrowDown":
+        e.preventDefault(), s = Math.max(0, this.value - i);
+        break;
+      case "Home":
+        e.preventDefault(), s = 0;
+        break;
+      case "End":
+        e.preventDefault(), s = this.max;
+        break;
+      case " ":
+      case "Enter":
+        e.preventDefault(), this._handleClick(t);
+        return;
+      default:
+        return;
+    }
+    s !== this.value && (this.value = s, this.dispatchEvent(new CustomEvent("ui-rating-change", {
       detail: { value: this.value },
       bubbles: !0,
       composed: !0
     })));
   }
-  render() {
-    const e = [];
-    for (let t = 1; t <= this.max; t++) {
-      const i = this._hoverValue >= t, o = this.value >= t && this._hoverValue === -1;
-      e.push(l`
-            <span 
-                class=${u({
-        "star-wrapper": !0,
-        active: o,
-        hover: i,
-        readonly: this.readonly
-      })}
-                @mouseenter=${() => this._handleMouseEnter(t)}
-                @mouseleave=${this._handleMouseLeave}
-                @click=${() => this._handleClick(t)}
-            >
-                <svg viewBox="0 0 24 24">
+  _starSvg(e) {
+    const t = "ui-rating-half";
+    return ar`
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                ${e === "half" ? ar`
+                    <defs>
+                        <linearGradient id="${t}">
+                            <stop offset="50%" stop-color="var(--ui-rating-color)"></stop>
+                            <stop offset="50%" stop-color="var(--ui-rating-empty-color)"></stop>
+                        </linearGradient>
+                    </defs>
+                    <path fill="url(#${t})" stroke="var(--ui-rating-color)" stroke-width="1"
+                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                ` : ar`
                     <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-                </svg>
-            </span>
-        `);
+                `}
+            </svg>
+        `;
+  }
+  render() {
+    const e = Math.ceil(this.value) || 1, t = [];
+    for (let i = 1; i <= this.max; i++) {
+      const s = this._hoverValue !== -1 ? this._hoverValue : this.value, r = this.precision === 0.5 && s >= i - 0.5 && s < i, a = s >= i, n = this._hoverValue !== -1;
+      let h;
+      r ? h = "half" : a ? h = "full" : h = "empty";
+      const f = {
+        "star-wrapper": !0,
+        active: h === "full" && !n,
+        hover: h === "full" && n,
+        half: h === "half",
+        readonly: this.readonly,
+        disabled: this.disabled
+      };
+      t.push(l`
+                <span
+                    class=${u(f)}
+                    role="radio"
+                    aria-label="${i} ${i === 1 ? "star" : "stars"}"
+                    aria-checked=${this.value >= i ? "true" : "false"}
+                    tabindex=${i === e && !this.disabled ? "0" : "-1"}
+                    @mouseenter=${() => this._handleMouseEnter(i)}
+                    @mousemove=${(y) => this._handleMouseMove(y, i)}
+                    @click=${() => this._handleClick(this._hoverValue !== -1 ? this._hoverValue : i)}
+                    @keydown=${(y) => this._handleKeydown(y, i)}
+                >
+                    ${this._starSvg(h)}
+                </span>
+            `);
     }
     return l`
-      <div class=${u({ "rating-container": !0, readonly: this.readonly })} role="slider" 
-           aria-valuemin="0" aria-valuemax=${this.max} aria-valuenow=${this.value}>
-        ${e}
-      </div>
-    `;
+            <input class="hidden-input" type="hidden" .name=${this.name} .value=${String(this.value)}>
+            <div
+                class="rating-container"
+                role="radiogroup"
+                aria-label=${this.label}
+                aria-disabled=${this.disabled ? "true" : "false"}
+                aria-readonly=${this.readonly ? "true" : "false"}
+                @mouseleave=${this._handleMouseLeave}
+            >
+                ${t}
+            </div>
+        `;
   }
 };
-Ue.styles = p`
-    :host {
-      display: inline-block;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-      --ui-rating-color: #ffb400;
-      --ui-rating-empty-color: #faaf0033;
-    }
-
-    .rating-container {
-      display: inline-flex;
-      position: relative;
-      cursor: pointer;
-      font-size: 2rem;
-      line-height: 1;
-    }
-
-    .rating-container.readonly {
-      cursor: default;
-    }
-
-    .star-wrapper {
-        position: relative;
-        display: inline-flex;
-        transition: transform 0.1s ease;
-    }
-
-    .star-wrapper:not(.readonly):hover {
-        transform: scale(1.1);
-    }
-
-    svg {
-        width: 1em;
-        height: 1em;
-        fill: var(--ui-rating-empty-color);
-        stroke: var(--ui-rating-color);
-        stroke-width: 1;
-        transition: fill 0.2s ease, stroke 0.2s ease;
-    }
-
-    .active svg {
-        fill: var(--ui-rating-color);
-    }
-    
-    .hover svg {
-        fill: var(--ui-rating-color);
-        opacity: 0.7;
-    }
-
-    .hidden-input {
-        position: absolute;
-        opacity: 0;
-        width: 0;
-        height: 0;
-        margin: 0;
-    }
-  `;
-Wt([
-  s({ type: Number })
-], Ue.prototype, "value", 2);
-Wt([
-  s({ type: Number })
-], Ue.prototype, "max", 2);
-Wt([
-  s({ type: Boolean })
-], Ue.prototype, "readonly", 2);
-Wt([
-  s({ type: String })
-], Ue.prototype, "name", 2);
-Wt([
-  m()
-], Ue.prototype, "_hoverValue", 2);
-Ue = Wt([
+J.styles = p(lo);
+ge([
+  o({ type: Number })
+], J.prototype, "value", 2);
+ge([
+  o({ type: Number })
+], J.prototype, "max", 2);
+ge([
+  o({ type: Boolean, reflect: !0 })
+], J.prototype, "readonly", 2);
+ge([
+  o({ type: Boolean, reflect: !0 })
+], J.prototype, "disabled", 2);
+ge([
+  o({ type: Boolean })
+], J.prototype, "clearable", 2);
+ge([
+  o({ type: Number })
+], J.prototype, "defaultValue", 2);
+ge([
+  o({ type: String, reflect: !0 })
+], J.prototype, "size", 2);
+ge([
+  o({ type: String })
+], J.prototype, "name", 2);
+ge([
+  o({ type: String })
+], J.prototype, "label", 2);
+ge([
+  o({ type: Number })
+], J.prototype, "precision", 2);
+ge([
+  g()
+], J.prototype, "_hoverValue", 2);
+J = ge([
   d("ui-rating")
-], Ue);
-var Ho = Object.defineProperty, Yo = Object.getOwnPropertyDescriptor, Gi = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Yo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Ho(t, i, r), r;
+], J);
+const ho = ':host{display:inline-block;--ui-switch-width: 52px;--ui-switch-height: 32px;--ui-switch-thumb-size: 24px;--ui-switch-thumb-offset: 4px;--ui-switch-bg: var(--ui-secondary-color, #6b7280);--ui-switch-bg-on: var(--ui-primary-color, #3b82f6);--ui-switch-thumb-bg: #ffffff;font-family:var(--ui-font-family, sans-serif);cursor:pointer}:host([disabled]){cursor:not-allowed}:host([size="sm"]){--ui-switch-width: 36px;--ui-switch-height: 22px;--ui-switch-thumb-size: 16px;--ui-switch-thumb-offset: 3px}:host([size="lg"]){--ui-switch-width: 64px;--ui-switch-height: 38px;--ui-switch-thumb-size: 30px;--ui-switch-thumb-offset: 4px}.wrapper{display:flex;align-items:center;gap:12px;-webkit-user-select:none;user-select:none}.switch{position:relative;width:var(--ui-switch-width);height:var(--ui-switch-height);background-color:var(--ui-switch-bg);border-radius:calc(var(--ui-switch-height) / 2);transition:background-color .3s cubic-bezier(.4,0,.2,1);flex-shrink:0}.switch.checked{background-color:var(--ui-switch-bg-on)}.thumb{position:absolute;top:var(--ui-switch-thumb-offset);left:var(--ui-switch-thumb-offset);width:var(--ui-switch-thumb-size);height:var(--ui-switch-thumb-size);background-color:var(--ui-switch-thumb-bg);border-radius:50%;box-shadow:var(--ui-shadow-sm, 0 1px 3px rgba(0,0,0,.1));transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;align-items:center;justify-content:center;color:var(--ui-text-color-muted, #6b7280)}.switch.checked .thumb{transform:translate(calc(var(--ui-switch-width) - var(--ui-switch-thumb-size) - (var(--ui-switch-thumb-offset) * 2)));color:var(--ui-primary-color, #3b82f6)}.label{font-size:.9375rem;font-weight:500;color:var(--ui-text-color, #111827)}.label.disabled{cursor:not-allowed;opacity:.5}.switch.disabled{opacity:.5;cursor:not-allowed}.switch:focus-visible{outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:2px}.icon-wrapper{font-size:14px;display:flex;align-items:center;justify-content:center}';
+var uo = Object.defineProperty, fo = Object.getOwnPropertyDescriptor, Be = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? fo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && uo(t, i, r), r;
 };
-let Pt = class extends c {
+let rs = 0, re = class extends c {
   constructor() {
-    super(...arguments), this.checked = !1, this.disabled = !1, this.label = "";
+    super(), this.checked = !1, this.disabled = !1, this.required = !1, this.size = "md", this.label = "", this.name = "", this.value = "on", this.defaultChecked = !1, this.ariaLabel = null, this._internals = null, this._firstUpdate = !0, rs++, this._labelId = `ui-switch-label-${rs}`, typeof this.attachInternals == "function" && (this._internals = this.attachInternals());
+  }
+  willUpdate(e) {
+    super.willUpdate(e), this._firstUpdate && (this._firstUpdate = !1, this.defaultChecked && (this.checked = !0));
+  }
+  updated(e) {
+    super.updated(e), (e.has("checked") || e.has("value")) && this._internals?.setFormValue?.(this.checked ? this.value : null), (e.has("checked") || e.has("required")) && (this.required && !this.checked ? this._internals?.setValidity?.({ valueMissing: !0 }, "Please check this switch.") : this._internals?.setValidity?.({}));
   }
   _handleClick() {
-    this.disabled || (this.checked = !this.checked, this.dispatchEvent(new CustomEvent("change", {
+    this.disabled || (this.checked = !this.checked, this.dispatchEvent(new CustomEvent("ui-switch-change", {
       detail: { checked: this.checked },
       bubbles: !0,
       composed: !0
     })));
   }
   render() {
+    const e = !!this.label;
     return l`
       <div class="wrapper" @click=${this._handleClick}>
-        <div 
-          class="switch ${u({ checked: this.checked, disabled: this.disabled })}"
+        <div
+          class=${u({ switch: !0, checked: this.checked, disabled: this.disabled })}
           role="switch"
-          aria-checked="${this.checked}"
-          aria-disabled="${this.disabled}"
-          tabindex="${this.disabled ? "-1" : "0"}"
-          @keydown=${(e) => (e.key === " " || e.key === "Enter") && this._handleClick()}
+          aria-checked=${this.checked ? "true" : "false"}
+          aria-disabled=${this.disabled ? "true" : "false"}
+          aria-required=${this.required ? "true" : "false"}
+          aria-label=${this.ariaLabel ?? v}
+          aria-labelledby=${e ? this._labelId : v}
+          .tabIndex=${this.disabled ? -1 : 0}
+          @keydown=${(t) => (t.key === " " || t.key === "Enter") && this._handleClick()}
         >
           <div class="thumb">
             <div class="icon-wrapper">
@@ -1901,114 +1292,55 @@ let Pt = class extends c {
             </div>
           </div>
         </div>
-        ${this.label ? l`<span class="label">${this.label}</span>` : l`<slot></slot>`}
+        ${e ? l`<span id=${this._labelId} class=${u({ label: !0, disabled: this.disabled })}>${this.label}</span>` : l`<slot></slot>`}
       </div>
     `;
   }
 };
-Pt.styles = p`
-    :host {
-      display: inline-block;
-      --ui-switch-width: 52px;
-      --ui-switch-height: 32px;
-      --ui-switch-thumb-size: 24px;
-      --ui-switch-thumb-offset: 4px;
-      --ui-switch-bg: var(--ui-secondary-color, #6b7280);
-      --ui-switch-bg-on: var(--ui-primary-color, #3b82f6);
-      --ui-switch-thumb-bg: #ffffff;
-      
-      font-family: var(--ui-font-family, sans-serif);
-      cursor: pointer;
-    }
-
-    .wrapper {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      user-select: none;
-    }
-
-    .switch {
-      position: relative;
-      width: var(--ui-switch-width);
-      height: var(--ui-switch-height);
-      background-color: var(--ui-switch-bg);
-      border-radius: calc(var(--ui-switch-height) / 2);
-      transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      flex-shrink: 0;
-    }
-
-    .switch.checked {
-      background-color: var(--ui-switch-bg-on);
-    }
-
-    .thumb {
-      position: absolute;
-      top: var(--ui-switch-thumb-offset);
-      left: var(--ui-switch-thumb-offset);
-      width: var(--ui-switch-thumb-size);
-      height: var(--ui-switch-thumb-size);
-      background-color: var(--ui-switch-thumb-bg);
-      border-radius: 50%;
-      box-shadow: var(--ui-shadow-sm, 0 1px 3px rgba(0,0,0,0.1));
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--ui-text-color-muted, #6b7280);
-    }
-
-    .switch.checked .thumb {
-      transform: translateX(calc(var(--ui-switch-width) - var(--ui-switch-thumb-size) - (var(--ui-switch-thumb-offset) * 2)));
-      color: var(--ui-primary-color, #3b82f6);
-    }
-
-    .label {
-      font-size: 0.9375rem;
-      font-weight: 500;
-      color: var(--ui-text-color, #111827);
-    }
-
-    .switch.disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    .switch:focus-visible {
-      outline: 2px solid var(--ui-primary-color, #3b82f6);
-      outline-offset: 2px;
-    }
-
-    .icon-wrapper {
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  `;
-Gi([
-  s({ type: Boolean, reflect: !0 })
-], Pt.prototype, "checked", 2);
-Gi([
-  s({ type: Boolean, reflect: !0 })
-], Pt.prototype, "disabled", 2);
-Gi([
-  s({ type: String })
-], Pt.prototype, "label", 2);
-Pt = Gi([
+re.formAssociated = !0;
+re.styles = p(ho);
+Be([
+  o({ type: Boolean, reflect: !0 })
+], re.prototype, "checked", 2);
+Be([
+  o({ type: Boolean, reflect: !0 })
+], re.prototype, "disabled", 2);
+Be([
+  o({ type: Boolean, reflect: !0 })
+], re.prototype, "required", 2);
+Be([
+  o({ type: String, reflect: !0 })
+], re.prototype, "size", 2);
+Be([
+  o({ type: String })
+], re.prototype, "label", 2);
+Be([
+  o({ type: String })
+], re.prototype, "name", 2);
+Be([
+  o({ type: String })
+], re.prototype, "value", 2);
+Be([
+  o({ type: Boolean, attribute: "default-checked" })
+], re.prototype, "defaultChecked", 2);
+Be([
+  o({ type: String, attribute: "aria-label" })
+], re.prototype, "ariaLabel", 2);
+re = Be([
   d("ui-switch")
-], Pt);
-var Ko = Object.defineProperty, Wo = Object.getOwnPropertyDescriptor, mt = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Wo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Ko(t, i, r), r;
+], re);
+const bo = ":host{display:block;--ui-transfer-list-height: 300px;--ui-transfer-list-width: 200px;font-family:var(--ui-font-family, sans-serif);color:var(--ui-text-color, #111827)}.container{display:flex;align-items:center;gap:16px}.list-wrapper{display:flex;flex-direction:column;gap:8px}.list-title{font-size:.875rem;font-weight:600;color:var(--ui-text-color-muted, #6b7280);margin-bottom:4px}.list-box{width:var(--ui-transfer-list-width);height:var(--ui-transfer-list-height);background:var(--ui-surface-background, #ffffff);border:1.5px solid var(--ui-border-color, #e5e7eb);border-radius:var(--ui-border-radius-lg, 8px);overflow-y:auto;display:flex;flex-direction:column;box-shadow:var(--ui-shadow-sm)}.list-item{display:flex;align-items:center;padding:10px 12px;cursor:pointer;transition:background-color .2s;gap:10px;-webkit-user-select:none;user-select:none}.list-item:hover{background-color:var(--ui-hover-color, rgba(0, 0, 0, .04))}.list-item.selected{background-color:#3b82f614}.checkbox{width:18px;height:18px;border:2px solid var(--ui-border-color, #d1d5db);border-radius:4px;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}.list-item.selected .checkbox{background-color:var(--ui-primary-color, #3b82f6);border-color:var(--ui-primary-color, #3b82f6)}.check-icon{color:#fff;opacity:0;transform:scale(.5);transition:all .2s}.list-item.selected .check-icon{opacity:1;transform:scale(1)}.item-label{font-size:.9375rem}.actions{display:flex;flex-direction:column;gap:12px}.action-button{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1.5px solid var(--ui-border-color, #e5e7eb);background:var(--ui-surface-background, #ffffff);border-radius:8px;cursor:pointer;color:var(--ui-text-color, #111827);transition:all .2s}.action-button:hover:not(:disabled){border-color:var(--ui-primary-color, #3b82f6);color:var(--ui-primary-color, #3b82f6);box-shadow:var(--ui-shadow-md);transform:translateY(-1px)}.action-button:active:not(:disabled){transform:translateY(0)}.action-button:disabled{opacity:.4;cursor:not-allowed;background-color:var(--ui-surface-background-flat, #f3f4f6)}.list-box::-webkit-scrollbar{width:6px}.list-box::-webkit-scrollbar-track{background:transparent}.list-box::-webkit-scrollbar-thumb{background:var(--ui-border-color, #e5e7eb);border-radius:3px}";
+var mo = Object.defineProperty, go = Object.getOwnPropertyDescriptor, kt = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? go(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && mo(t, i, r), r;
 };
-let Ce = class extends c {
+let Le = class extends c {
   constructor() {
     super(...arguments), this.options = [], this.value = [], this.leftTitle = "Options", this.rightTitle = "Selected", this.leftChecked = [], this.rightChecked = [];
   }
   _toggleChecked(e, t) {
-    t === "left" ? this.leftChecked.indexOf(e) > -1 ? this.leftChecked = this.leftChecked.filter((o) => o !== e) : this.leftChecked = [...this.leftChecked, e] : this.rightChecked.indexOf(e) > -1 ? this.rightChecked = this.rightChecked.filter((o) => o !== e) : this.rightChecked = [...this.rightChecked, e];
+    t === "left" ? this.leftChecked.indexOf(e) > -1 ? this.leftChecked = this.leftChecked.filter((s) => s !== e) : this.leftChecked = [...this.leftChecked, e] : this.rightChecked.indexOf(e) > -1 ? this.rightChecked = this.rightChecked.filter((s) => s !== e) : this.rightChecked = [...this.rightChecked, e];
   }
   _moveRight() {
     this.value = [...this.value, ...this.leftChecked], this.leftChecked = [], this._dispatchChange();
@@ -2037,7 +1369,7 @@ let Ce = class extends c {
         <div class="list-wrapper">
           <div class="list-title">${this.leftTitle}</div>
           <div class="list-box">
-            ${It(e, (i) => i.value, (i) => l`
+            ${At(e, (i) => i.value, (i) => l`
               <div 
                 class="list-item ${u({ selected: this.leftChecked.includes(i.value) })}"
                 @click=${() => this._toggleChecked(i.value, "left")}
@@ -2091,7 +1423,7 @@ let Ce = class extends c {
         <div class="list-wrapper">
           <div class="list-title">${this.rightTitle}</div>
           <div class="list-box">
-            ${It(t, (i) => i.value, (i) => l`
+            ${At(t, (i) => i.value, (i) => l`
               <div 
                 class="list-item ${u({ selected: this.rightChecked.includes(i.value) })}"
                 @click=${() => this._toggleChecked(i.value, "right")}
@@ -2110,174 +1442,35 @@ let Ce = class extends c {
     `;
   }
 };
-Ce.styles = p`
-    :host {
-      display: block;
-      --ui-transfer-list-height: 300px;
-      --ui-transfer-list-width: 200px;
-      
-      font-family: var(--ui-font-family, sans-serif);
-      color: var(--ui-text-color, #111827);
-    }
-
-    .container {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .list-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .list-title {
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--ui-text-color-muted, #6b7280);
-      margin-bottom: 4px;
-    }
-
-    .list-box {
-      width: var(--ui-transfer-list-width);
-      height: var(--ui-transfer-list-height);
-      background: var(--ui-surface-background, #ffffff);
-      border: 1.5px solid var(--ui-border-color, #e5e7eb);
-      border-radius: var(--ui-border-radius-lg, 8px);
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      box-shadow: var(--ui-shadow-sm);
-    }
-
-    .list-item {
-      display: flex;
-      align-items: center;
-      padding: 10px 12px;
-      cursor: pointer;
-      transition: background-color 0.2s;
-      gap: 10px;
-      user-select: none;
-    }
-
-    .list-item:hover {
-      background-color: var(--ui-hover-color, rgba(0, 0, 0, 0.04));
-    }
-
-    .list-item.selected {
-      background-color: rgba(59, 130, 246, 0.08);
-    }
-
-    .checkbox {
-      width: 18px;
-      height: 18px;
-      border: 2px solid var(--ui-border-color, #d1d5db);
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s;
-      flex-shrink: 0;
-    }
-
-    .list-item.selected .checkbox {
-      background-color: var(--ui-primary-color, #3b82f6);
-      border-color: var(--ui-primary-color, #3b82f6);
-    }
-
-    .check-icon {
-      color: white;
-      opacity: 0;
-      transform: scale(0.5);
-      transition: all 0.2s;
-    }
-
-    .list-item.selected .check-icon {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    .item-label {
-      font-size: 0.9375rem;
-    }
-
-    .actions {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .action-button {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1.5px solid var(--ui-border-color, #e5e7eb);
-      background: var(--ui-surface-background, #ffffff);
-      border-radius: 8px;
-      cursor: pointer;
-      color: var(--ui-text-color, #111827);
-      transition: all 0.2s;
-    }
-
-    .action-button:hover:not(:disabled) {
-      border-color: var(--ui-primary-color, #3b82f6);
-      color: var(--ui-primary-color, #3b82f6);
-      box-shadow: var(--ui-shadow-md);
-      transform: translateY(-1px);
-    }
-
-    .action-button:active:not(:disabled) {
-      transform: translateY(0);
-    }
-
-    .action-button:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-      background-color: var(--ui-surface-background-flat, #f3f4f6);
-    }
-
-    /* Scrollbar */
-    .list-box::-webkit-scrollbar {
-      width: 6px;
-    }
-    .list-box::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    .list-box::-webkit-scrollbar-thumb {
-      background: var(--ui-border-color, #e5e7eb);
-      border-radius: 3px;
-    }
-  `;
-mt([
-  s({ type: Array })
-], Ce.prototype, "options", 2);
-mt([
-  s({ type: Array })
-], Ce.prototype, "value", 2);
-mt([
-  s({ type: String })
-], Ce.prototype, "leftTitle", 2);
-mt([
-  s({ type: String })
-], Ce.prototype, "rightTitle", 2);
-mt([
-  m()
-], Ce.prototype, "leftChecked", 2);
-mt([
-  m()
-], Ce.prototype, "rightChecked", 2);
-Ce = mt([
+Le.styles = p(bo);
+kt([
+  o({ type: Array })
+], Le.prototype, "options", 2);
+kt([
+  o({ type: Array })
+], Le.prototype, "value", 2);
+kt([
+  o({ type: String })
+], Le.prototype, "leftTitle", 2);
+kt([
+  o({ type: String })
+], Le.prototype, "rightTitle", 2);
+kt([
+  g()
+], Le.prototype, "leftChecked", 2);
+kt([
+  g()
+], Le.prototype, "rightChecked", 2);
+Le = kt([
   d("ui-transfer-list")
-], Ce);
-var Go = Object.defineProperty, Xo = Object.getOwnPropertyDescriptor, Gt = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Xo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Go(t, i, r), r;
+], Le);
+const vo = ":host{display:inline-flex;position:relative;vertical-align:middle;flex-shrink:0}.badge{display:flex;flex-wrap:wrap;place-content:center;align-items:center;position:absolute;box-sizing:border-box;font-family:var(--ui-font-family, sans-serif);font-weight:600;font-size:.75rem;min-width:20px;line-height:1;padding:0 6px;height:20px;border-radius:10px;z-index:1;transition:transform .2s cubic-bezier(.4,0,.2,1);background-color:var(--ui-badge-background, var(--ui-primary-color, #3b82f6));color:var(--ui-badge-color, var(--ui-text-color-on-primary, white));top:0;right:0;transform:scale(1) translate(50%,-50%);transform-origin:100% 0%;border:2px solid var(--ui-surface-background, white)}.badge.hidden{transform:scale(0) translate(50%,-50%)}.badge.dot{min-width:8px;height:8px;padding:0;border-radius:4px}.primary{background-color:var(--ui-primary-color, #3b82f6)}.secondary{background-color:var(--ui-secondary-color, #6b7280)}.error{background-color:#ef4444}.success{background-color:#10b981}.warning{background-color:#f59e0b}";
+var yo = Object.defineProperty, xo = Object.getOwnPropertyDescriptor, ti = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? xo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && yo(t, i, r), r;
 };
-let Re = class extends c {
+let Ze = class extends c {
   constructor() {
     super(...arguments), this.content = "", this.dot = !1, this.invisible = !1, this.variant = "primary", this.max = 99;
   }
@@ -2304,82 +1497,32 @@ let Re = class extends c {
     `;
   }
 };
-Re.styles = p`
-    :host {
-      display: inline-flex;
-      position: relative;
-      vertical-align: middle;
-      flex-shrink: 0;
-    }
-
-    .badge {
-      display: flex;
-      flex-wrap: wrap;
-      place-content: center;
-      align-items: center;
-      position: absolute;
-      box-sizing: border-box;
-      font-family: var(--ui-font-family, sans-serif);
-      font-weight: 600;
-      font-size: 0.75rem;
-      min-width: 20px;
-      line-height: 1;
-      padding: 0 6px;
-      height: 20px;
-      border-radius: 10px;
-      z-index: 1;
-      transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-      background-color: var(--ui-badge-background, var(--ui-primary-color, #3b82f6));
-      color: var(--ui-badge-color, var(--ui-text-color-on-primary, white));
-      top: 0;
-      right: 0;
-      transform: scale(1) translate(50%, -50%);
-      transform-origin: 100% 0%;
-      border: 2px solid var(--ui-surface-background, white);
-    }
-
-    .badge.hidden {
-      transform: scale(0) translate(50%, -50%);
-    }
-
-    .badge.dot {
-      min-width: 8px;
-      height: 8px;
-      padding: 0;
-      border-radius: 4px;
-    }
-
-    /* Variants */
-    .primary { background-color: var(--ui-primary-color, #3b82f6); }
-    .secondary { background-color: var(--ui-secondary-color, #6b7280); }
-    .error { background-color: #ef4444; }
-    .success { background-color: #10b981; }
-    .warning { background-color: #f59e0b; }
-  `;
-Gt([
-  s({ type: String })
-], Re.prototype, "content", 2);
-Gt([
-  s({ type: Boolean })
-], Re.prototype, "dot", 2);
-Gt([
-  s({ type: Boolean })
-], Re.prototype, "invisible", 2);
-Gt([
-  s({ type: String })
-], Re.prototype, "variant", 2);
-Gt([
-  s({ type: Number })
-], Re.prototype, "max", 2);
-Re = Gt([
+Ze.styles = p(vo);
+ti([
+  o({ type: String })
+], Ze.prototype, "content", 2);
+ti([
+  o({ type: Boolean })
+], Ze.prototype, "dot", 2);
+ti([
+  o({ type: Boolean })
+], Ze.prototype, "invisible", 2);
+ti([
+  o({ type: String })
+], Ze.prototype, "variant", 2);
+ti([
+  o({ type: Number })
+], Ze.prototype, "max", 2);
+Ze = ti([
   d("ui-badge")
-], Re);
-var Jo = Object.defineProperty, Qo = Object.getOwnPropertyDescriptor, Xi = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Qo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Jo(t, i, r), r;
+], Ze);
+const _o = ':host{display:block;width:100%;font-family:var(--ui-font-family, "Inter", sans-serif);margin-bottom:1rem}.alert{display:flex;align-items:flex-start;padding:12px 16px;border-radius:var(--ui-border-radius-md, 6px);gap:12px;border:1px solid transparent;position:relative;box-sizing:border-box;animation:fadeIn .3s ease-out}@keyframes fadeIn{0%{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}.info{background-color:#eff6ff;border-color:#bfdbfe;color:#1e40af}.info .icon{color:#3b82f6}.success{background-color:#f0fdf4;border-color:#bbf7d0;color:#166534}.success .icon{color:#10b981}.warning{background-color:#fffbeb;border-color:#fef3c7;color:#92400e}.warning .icon{color:#f59e0b}.error{background-color:#fef2f2;border-color:#fee2e2;color:#991b1b}.error .icon{color:#ef4444}.icon{flex-shrink:0;display:flex;align-items:center;justify-content:center;width:20px;height:20px;margin-top:2px}.content{flex-grow:1}.title{font-weight:600;font-size:.875rem;margin-bottom:2px}.message{font-size:.875rem;line-height:1.5}.close-button{flex-shrink:0;cursor:pointer;padding:6px;border-radius:50%;display:flex;align-items:center;justify-content:center;width:28px;height:28px;margin-top:-6px;margin-right:-10px;color:currentColor;opacity:.6;transition:all .2s ease;border:none;background:transparent}.close-button:hover{opacity:1;background-color:#00000014}.close-button:active{transform:scale(.92)}.icon svg,.close-button svg{width:100%;height:100%}';
+var wo = Object.defineProperty, ko = Object.getOwnPropertyDescriptor, Zi = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? ko(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && wo(t, i, r), r;
 };
-let Ot = class extends c {
+let Lt = class extends c {
   constructor() {
     super(...arguments), this.severity = "info", this.title = "", this.dismissible = !1;
   }
@@ -2431,377 +1574,180 @@ let Ot = class extends c {
         `;
   }
 };
-Ot.styles = p`
-        :host {
-            display: block;
-            width: 100%;
-            font-family: var(--ui-font-family, 'Inter', sans-serif);
-            margin-bottom: 1rem;
-        }
-
-        .alert {
-            display: flex;
-            align-items: flex-start;
-            padding: 12px 16px;
-            border-radius: var(--ui-border-radius-md, 6px);
-            gap: 12px;
-            border: 1px solid transparent;
-            position: relative;
-            box-sizing: border-box;
-            animation: fadeIn 0.3s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-4px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Severities */
-        .info {
-            background-color: #eff6ff;
-            border-color: #bfdbfe;
-            color: #1e40af;
-        }
-        .info .icon { color: #3b82f6; }
-
-        .success {
-            background-color: #f0fdf4;
-            border-color: #bbf7d0;
-            color: #166534;
-        }
-        .success .icon { color: #10b981; }
-
-        .warning {
-            background-color: #fffbeb;
-            border-color: #fef3c7;
-            color: #92400e;
-        }
-        .warning .icon { color: #f59e0b; }
-
-        .error {
-            background-color: #fef2f2;
-            border-color: #fee2e2;
-            color: #991b1b;
-        }
-        .error .icon { color: #ef4444; }
-
-        .icon {
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 20px;
-            height: 20px;
-            margin-top: 2px;
-        }
-
-        .content {
-            flex-grow: 1;
-        }
-
-        .title {
-            font-weight: 600;
-            font-size: 0.875rem;
-            margin-bottom: 2px;
-        }
-
-        .message {
-            font-size: 0.875rem;
-            line-height: 1.5;
-        }
-
-        .close-button {
-            flex-shrink: 0;
-            cursor: pointer;
-            padding: 6px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 28px;
-            height: 28px;
-            margin-top: -6px;
-            margin-right: -10px;
-            color: currentColor;
-            opacity: 0.6;
-            transition: all 0.2s ease;
-            border: none;
-            background: transparent;
-        }
-
-        .close-button:hover {
-            opacity: 1;
-            background-color: rgba(0, 0, 0, 0.08);
-        }
-
-        .close-button:active {
-            transform: scale(0.92);
-        }
-
-        .icon svg,
-        .close-button svg {
-            width: 100%;
-            height: 100%;
-        }
-    `;
-Xi([
-  s({ type: String })
-], Ot.prototype, "severity", 2);
-Xi([
-  s({ type: String })
-], Ot.prototype, "title", 2);
-Xi([
-  s({ type: Boolean })
-], Ot.prototype, "dismissible", 2);
-Ot = Xi([
+Lt.styles = p(_o);
+Zi([
+  o({ type: String })
+], Lt.prototype, "severity", 2);
+Zi([
+  o({ type: String })
+], Lt.prototype, "title", 2);
+Zi([
+  o({ type: Boolean })
+], Lt.prototype, "dismissible", 2);
+Lt = Zi([
   d("ui-alert")
-], Ot);
-var Zo = Object.defineProperty, es = Object.getOwnPropertyDescriptor, Xt = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? es(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Zo(t, i, r), r;
+], Lt);
+const $o = ':host{display:block}.skeleton{display:block;background-color:var(--ui-skeleton-bg, #e0e0e0);position:relative;overflow:hidden}@media(prefers-color-scheme:dark){.skeleton{background-color:var(--ui-skeleton-bg-dark, rgba(255, 255, 255, .13))}}:host([dark]) .skeleton{background-color:var(--ui-skeleton-bg-dark, rgba(255, 255, 255, .13))}.skeleton.pulse{animation:pulse var(--ui-skeleton-animation-duration, 1.5s) ease-in-out .5s infinite}.skeleton.wave:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,var(--ui-skeleton-wave-color, rgba(255, 255, 255, .4)),transparent);animation:wave var(--ui-skeleton-animation-duration, 1.6s) linear infinite;transform:translate(-100%)}@keyframes pulse{0%{opacity:1}50%{opacity:.4}to{opacity:1}}@keyframes wave{0%{transform:translate(-100%)}to{transform:translate(100%)}}.text{border-radius:var(--ui-border-radius-sm, 3px)}.circular{border-radius:50%}.rectangular{border-radius:var(--ui-border-radius-md, 4px)}.rounded{border-radius:var(--ui-border-radius-lg, 8px)}@media(prefers-reduced-motion:reduce){.skeleton.pulse{animation:none}.skeleton.wave:after{display:none}}';
+var So = Object.defineProperty, Co = Object.getOwnPropertyDescriptor, $t = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Co(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && So(t, i, r), r;
 };
-let Ne = class extends c {
+let je = class extends c {
   constructor() {
-    super(...arguments), this.dark = !1, this.animation = "pulse", this.variant = "text", this.width = "", this.height = "";
+    super(...arguments), this.dark = !1, this.animation = "pulse", this.variant = "text", this.width = "", this.height = "", this.label = "Loading...";
+  }
+  connectedCallback() {
+    super.connectedCallback(), this.hasAttribute("role") || this.setAttribute("role", "status"), this._syncLabel();
+  }
+  updated(e) {
+    e.has("label") && this._syncLabel();
+  }
+  _syncLabel() {
+    this.label ? this.setAttribute("aria-label", this.label) : this.removeAttribute("aria-label");
   }
   render() {
-    const e = {
-      width: this.width || (this.variant === "text" ? "100%" : ""),
-      height: this.height || (this.variant === "text" ? "0.8em" : ""),
-      marginTop: this.variant === "text" ? "0.3em" : "",
-      marginBottom: this.variant === "text" ? "0.3em" : ""
+    const e = this.variant === "text", t = this.animation !== "none" ? this.animation : "", i = {
+      width: this.width || (e ? "100%" : ""),
+      height: this.height || (e ? "0.8em" : ""),
+      marginTop: e ? "0.3em" : "",
+      marginBottom: e ? "0.3em" : ""
     };
     return l`
-            <span 
-                class="skeleton ${this.animation} ${this.variant}" 
-                style=${Kt(e)}
+            <span
+                part="skeleton"
+                class="skeleton ${t} ${this.variant}"
+                style=${ei(i)}
                 aria-hidden="true"
             ></span>
         `;
   }
 };
-Ne.styles = p`
-        :host {
-            display: block;
-        }
-
-        .skeleton {
-            display: block;
-            background-color: var(--ui-skeleton-bg, rgba(0, 0, 0, 0.11));
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Dark mode support */
-        @media (prefers-color-scheme: dark) {
-            .skeleton {
-                background-color: var(--ui-skeleton-bg-dark, rgba(255, 255, 255, 0.13));
-            }
-        }
-
-        /* Explicit dark attribute support */
-        :host([dark]) .skeleton {
-            background-color: var(--ui-skeleton-bg-dark, rgba(255, 255, 255, 0.13));
-        }
-
-        .skeleton.pulse {
-            animation: pulse 1.5s ease-in-out 0.5s infinite;
-        }
-
-        .skeleton.wave::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255, 255, 255, 0.4),
-                transparent
-            );
-            animation: wave 1.6s linear infinite;
-            transform: translateX(-100%);
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.4; }
-            100% { opacity: 1; }
-        }
-
-        @keyframes wave {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        .circular {
-            border-radius: 50%;
-        }
-
-        .rectangular {
-            border-radius: var(--ui-border-radius-md, 4px);
-        }
-
-        .rounded {
-            border-radius: var(--ui-border-radius-lg, 8px);
-        }
-    `;
-Xt([
-  s({ type: Boolean, reflect: !0 })
-], Ne.prototype, "dark", 2);
-Xt([
-  s({ type: String })
-], Ne.prototype, "animation", 2);
-Xt([
-  s({ type: String })
-], Ne.prototype, "variant", 2);
-Xt([
-  s({ type: String })
-], Ne.prototype, "width", 2);
-Xt([
-  s({ type: String })
-], Ne.prototype, "height", 2);
-Ne = Xt([
+je.styles = p($o);
+$t([
+  o({ type: Boolean, reflect: !0 })
+], je.prototype, "dark", 2);
+$t([
+  o({ type: String, reflect: !0 })
+], je.prototype, "animation", 2);
+$t([
+  o({ type: String, reflect: !0 })
+], je.prototype, "variant", 2);
+$t([
+  o({ type: String })
+], je.prototype, "width", 2);
+$t([
+  o({ type: String })
+], je.prototype, "height", 2);
+$t([
+  o({ type: String })
+], je.prototype, "label", 2);
+je = $t([
   d("ui-skeleton")
-], Ne);
-var ts = Object.defineProperty, is = Object.getOwnPropertyDescriptor, _i = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? is(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && ts(t, i, r), r;
+], je);
+const Io = ':host{display:flex;align-items:center;justify-content:center;pointer-events:none;position:fixed;z-index:var(--ui-snackbar-z-index, 1400);transition:all .3s cubic-bezier(.4,0,.2,1)}:host([anchor-origin*="bottom"]){bottom:var(--ui-snackbar-offset, 24px)}:host([anchor-origin*="top"]){top:var(--ui-snackbar-offset, 24px)}:host([anchor-origin*="left"]){left:var(--ui-snackbar-offset, 24px)}:host([anchor-origin*="right"]){right:var(--ui-snackbar-offset, 24px)}:host([anchor-origin*="center"]){left:50%;transform:translate(-50%)}.snackbar{background-color:var(--ui-snackbar-bg, #313131);color:var(--ui-snackbar-color, #fff);font-family:var(--ui-font-family, "Inter", sans-serif);font-size:.875rem;line-height:1.43;letter-spacing:.01071em;display:flex;align-items:center;padding:6px 16px;border-radius:var(--ui-border-radius-md, 4px);box-shadow:var(--ui-shadow-lg, 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12));min-width:var(--ui-snackbar-min-width, 288px);max-width:var(--ui-snackbar-max-width, 560px);pointer-events:auto;opacity:0;transform:scale(.85);transition:opacity 225ms cubic-bezier(.4,0,.2,1),transform .15s cubic-bezier(.4,0,.2,1);visibility:hidden}.snackbar.open{opacity:1;transform:scale(1);visibility:visible}:host([variant="info"]) .snackbar{background-color:var(--ui-snackbar-bg-info, #0288d1)}:host([variant="success"]) .snackbar{background-color:var(--ui-snackbar-bg-success, #2e7d32)}:host([variant="warning"]) .snackbar{background-color:var(--ui-snackbar-bg-warning, #ed6c02)}:host([variant="error"]) .snackbar{background-color:var(--ui-snackbar-bg-error, #d32f2f)}.message{padding:8px 0;flex-grow:1}.action{display:flex;align-items:center;margin-left:8px;margin-right:-8px;padding-left:16px}.action.hidden{display:none}.close-btn{background:none;border:none;color:inherit;cursor:pointer;padding:4px 8px;margin-left:8px;margin-right:-8px;opacity:.8;display:flex;align-items:center;border-radius:2px;line-height:0}.close-btn:hover{opacity:1}::slotted(ui-alert){margin-bottom:0!important;width:100%;min-width:288px}';
+var Eo = Object.defineProperty, Po = Object.getOwnPropertyDescriptor, Ye = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Po(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Eo(t, i, r), r;
 };
-let rt = class extends c {
+let ye = class extends c {
   constructor() {
-    super(...arguments), this.open = !1, this.message = "", this.autoHideDuration = 5e3, this.anchorOrigin = "bottom-center", this._timer = null;
+    super(...arguments), this.open = !1, this.message = "", this.autoHideDuration = 5e3, this.anchorOrigin = "bottom-center", this.pauseOnHover = !0, this.closable = !1, this.variant = "default", this._hasAction = !1, this._timer = null, this._remainingTime = 0, this._timerStartedAt = 0;
   }
   updated(e) {
-    e.has("open") && (this.open ? this._startTimer() : this._clearTimer());
+    e.has("open") && (this.open ? (this._remainingTime = this.autoHideDuration, this._startTimer(this._remainingTime), this.dispatchEvent(new CustomEvent("ui-snackbar-open", { bubbles: !0, composed: !0 }))) : (this._clearTimer(), this.dispatchEvent(new CustomEvent("ui-snackbar-close", { bubbles: !0, composed: !0 }))));
   }
-  _startTimer() {
-    this._clearTimer(), this.autoHideDuration > 0 && (this._timer = setTimeout(() => {
-      this.close();
-    }, this.autoHideDuration));
+  disconnectedCallback() {
+    super.disconnectedCallback(), this._clearTimer();
+  }
+  _startTimer(e) {
+    this._clearTimer(), e > 0 && (this._timerStartedAt = Date.now(), this._timer = setTimeout(() => this.close(), e));
   }
   _clearTimer() {
     this._timer && (clearTimeout(this._timer), this._timer = null);
   }
-  /**
-   * Closes the snackbar.
-   */
+  _handleMouseEnter() {
+    if (!this.pauseOnHover || !this.open || this._timer === null) return;
+    const e = Date.now() - this._timerStartedAt;
+    this._remainingTime = Math.max(0, this._remainingTime - e), this._clearTimer();
+  }
+  _handleMouseLeave() {
+    !this.pauseOnHover || !this.open || this._startTimer(this._remainingTime);
+  }
+  _handleActionSlotChange(e) {
+    const t = e.target;
+    this._hasAction = t.assignedNodes({ flatten: !0 }).length > 0;
+  }
+  /** Closes the snackbar. */
   close() {
-    this.open = !1, this.dispatchEvent(new CustomEvent("ui-snackbar-close", {
-      bubbles: !0,
-      composed: !0
-    }));
+    this.open = !1;
   }
   render() {
-    const e = {
-      snackbar: !0,
-      open: this.open
-    };
+    const e = { snackbar: !0, open: this.open }, t = { action: !0, hidden: !this._hasAction };
     return l`
-            <div class=${u(e)} role="presentation">
+            <div
+                class=${u(e)}
+                part="snackbar"
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+                @mouseenter=${this._handleMouseEnter}
+                @mouseleave=${this._handleMouseLeave}
+            >
                 <div class="message">
                     <slot>${this.message}</slot>
                 </div>
-                <div class="action">
-                    <slot name="action"></slot>
+                <div class=${u(t)}>
+                    <slot name="action" @slotchange=${this._handleActionSlotChange}></slot>
                 </div>
+                ${this.closable ? l`
+                    <button class="close-btn" aria-label="Close" @click=${() => this.close()}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                ` : ""}
             </div>
         `;
   }
 };
-rt.styles = p`
-        :host {
-            display: block;
-            pointer-events: none;
-            position: fixed;
-            z-index: 1400;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Positions */
-        :host([anchor-origin*="bottom"]) { bottom: 24px; }
-        :host([anchor-origin*="top"]) { top: 24px; }
-        :host([anchor-origin*="left"]) { left: 24px; }
-        :host([anchor-origin*="right"]) { right: 24px; }
-        :host([anchor-origin*="center"]) { 
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .snackbar {
-            background-color: var(--ui-surface-background-flat, #313131);
-            color: var(--ui-text-color-on-primary, #fff);
-            font-family: var(--ui-font-family, 'Inter', sans-serif);
-            font-size: 0.875rem;
-            line-height: 1.43;
-            letter-spacing: 0.01071em;
-            display: flex;
-            align-items: center;
-            padding: 6px 16px;
-            border-radius: var(--ui-border-radius-md, 4px);
-            box-shadow: var(--ui-shadow-lg, 0 3px 5px -1px rgba(0,0,0,0.2), 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12));
-            min-width: 288px;
-            max-width: 560px;
-            pointer-events: auto;
-            opacity: 0;
-            transform: scale(0.85);
-            transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1), transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
-            visibility: hidden;
-        }
-
-        .snackbar.open {
-            opacity: 1;
-            transform: scale(1);
-            visibility: visible;
-        }
-
-        .message {
-            padding: 8px 0;
-            flex-grow: 1;
-        }
-
-        .action {
-            display: flex;
-            align-items: center;
-            margin-left: 8px;
-            margin-right: -8px;
-            padding-left: 16px;
-        }
-
-        ::slotted(ui-alert) {
-            margin-bottom: 0 !important;
-            width: 100%;
-            min-width: 288px;
-        }
-    `;
-_i([
-  s({ type: Boolean, reflect: !0 })
-], rt.prototype, "open", 2);
-_i([
-  s({ type: String })
-], rt.prototype, "message", 2);
-_i([
-  s({ type: Number })
-], rt.prototype, "autoHideDuration", 2);
-_i([
-  s({ type: String, attribute: "anchor-origin" })
-], rt.prototype, "anchorOrigin", 2);
-rt = _i([
+ye.styles = p(Io);
+Ye([
+  o({ type: Boolean, reflect: !0 })
+], ye.prototype, "open", 2);
+Ye([
+  o({ type: String })
+], ye.prototype, "message", 2);
+Ye([
+  o({ type: Number, attribute: "auto-hide-duration" })
+], ye.prototype, "autoHideDuration", 2);
+Ye([
+  o({ type: String, attribute: "anchor-origin", reflect: !0 })
+], ye.prototype, "anchorOrigin", 2);
+Ye([
+  o({ type: Boolean, attribute: "pause-on-hover" })
+], ye.prototype, "pauseOnHover", 2);
+Ye([
+  o({ type: Boolean, reflect: !0 })
+], ye.prototype, "closable", 2);
+Ye([
+  o({ type: String, reflect: !0 })
+], ye.prototype, "variant", 2);
+Ye([
+  g()
+], ye.prototype, "_hasAction", 2);
+ye = Ye([
   d("ui-snackbar")
-], rt);
-var rs = Object.defineProperty, os = Object.getOwnPropertyDescriptor, wi = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? os(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && rs(t, i, r), r;
+], ye);
+const Oo = ':host{display:block;--ui-divider-color: var(--ui-border-color, #e5e7eb);--ui-divider-margin: 16px;--ui-divider-thickness: 1px}.divider-container{display:flex;align-items:center;width:100%;box-sizing:border-box;margin:var(--ui-divider-margin) 0}.divider-line{flex-grow:1;height:var(--ui-divider-thickness);background-color:var(--ui-divider-color);border:none}.divider-content{padding:0 16px;font-family:var(--ui-font-family, sans-serif);font-size:.875rem;color:var(--ui-text-color-muted, #6b7280);white-space:nowrap}:host([orientation="vertical"]){display:flex;align-self:stretch;margin:0;width:auto;min-width:var(--ui-divider-thickness)}:host([orientation="vertical"]) .divider-container{flex-direction:column;height:100%;width:auto;min-width:var(--ui-divider-thickness);margin:0}:host([orientation="vertical"]) .divider-line{width:var(--ui-divider-thickness);height:auto;flex:1;min-height:24px}.variant-middle{margin-left:32px;margin-right:32px;width:auto}.variant-inset{margin-left:72px}.weight-light{--ui-divider-thickness: 1px}.weight-medium{--ui-divider-thickness: 2px}.weight-heavy{--ui-divider-thickness: 4px}';
+var Do = Object.defineProperty, zo = Object.getOwnPropertyDescriptor, Si = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? zo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Do(t, i, r), r;
 };
-let ot = class extends c {
+let ut = class extends c {
   constructor() {
     super(...arguments), this.orientation = "horizontal", this.variant = "full", this.weight = "light", this.textAlign = "center";
   }
@@ -2824,328 +1770,140 @@ let ot = class extends c {
     `;
   }
 };
-ot.styles = p`
-    :host {
-      display: block;
-      --ui-divider-color: var(--ui-border-color, #e5e7eb);
-      --ui-divider-margin: 16px;
-      --ui-divider-thickness: 1px;
-    }
-
-    .divider-container {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      box-sizing: border-box;
-      margin: var(--ui-divider-margin) 0;
-    }
-
-    .divider-line {
-      flex-grow: 1;
-      height: var(--ui-divider-thickness);
-      background-color: var(--ui-divider-color);
-      border: none;
-    }
-
-    .divider-content {
-      padding: 0 16px;
-      font-family: var(--ui-font-family, sans-serif);
-      font-size: 0.875rem;
-      color: var(--ui-text-color-muted, #6b7280);
-      white-space: nowrap;
-    }
-
-    /* Vertical Orientation */
-    :host([orientation="vertical"]) {
-      display: flex;
-      align-self: stretch;
-      margin: 0;
-      width: auto;
-      min-width: var(--ui-divider-thickness);
-    }
-
-    :host([orientation="vertical"]) .divider-container {
-      flex-direction: column;
-      height: 100%;
-      width: auto;        /* override the default width: 100% */
-      min-width: var(--ui-divider-thickness);
-      margin: 0;
-    }
-
-    :host([orientation="vertical"]) .divider-line {
-      width: var(--ui-divider-thickness);
-      height: auto;
-      flex: 1;            /* stretch to fill the full height of the row */
-      min-height: 24px;
-    }
-
-    /* Variants */
-    .variant-middle {
-      margin-left: 32px;
-      margin-right: 32px;
-      width: auto;
-    }
-
-    .variant-inset {
-      margin-left: 72px;
-    }
-
-    /* Thickness weights */
-    .weight-light { --ui-divider-thickness: 1px; }
-    .weight-medium { --ui-divider-thickness: 2px; }
-    .weight-heavy { --ui-divider-thickness: 4px; }
-  `;
-wi([
-  s({ type: String, reflect: !0 })
-], ot.prototype, "orientation", 2);
-wi([
-  s({ type: String })
-], ot.prototype, "variant", 2);
-wi([
-  s({ type: String })
-], ot.prototype, "weight", 2);
-wi([
-  s({ type: String })
-], ot.prototype, "textAlign", 2);
-ot = wi([
+ut.styles = p(Oo);
+Si([
+  o({ type: String, reflect: !0 })
+], ut.prototype, "orientation", 2);
+Si([
+  o({ type: String })
+], ut.prototype, "variant", 2);
+Si([
+  o({ type: String })
+], ut.prototype, "weight", 2);
+Si([
+  o({ type: String })
+], ut.prototype, "textAlign", 2);
+ut = Si([
   d("ui-divider")
-], ot);
-var ss = Object.defineProperty, as = Object.getOwnPropertyDescriptor, Be = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? as(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && ss(t, i, r), r;
+], ut);
+const To = ':host{display:block;padding:12px 0;font-family:var(--ui-font-family, "Inter", sans-serif);color:var(--ui-text-color, #111827);--_track-height: 6px;--_thumb-size: 20px;--_font-size: 14px}:host([size="sm"]){--_track-height: 4px;--_thumb-size: 14px;--_font-size: 12px}:host([size="lg"]){--_track-height: 8px;--_thumb-size: 24px;--_font-size: 16px}:host([vertical]){padding:0 12px;display:inline-flex;height:var(--ui-slider-vertical-height, 200px)}.slider-wrapper{display:flex;flex-direction:column;gap:8px}.slider-wrapper.vertical{flex-direction:column-reverse;align-items:center;gap:12px;width:100%;height:100%;justify-content:flex-end}.label-row{display:flex;justify-content:space-between;align-items:center;font-size:var(--_font-size);font-weight:500}.label-row.vertical{flex-direction:column;align-items:center;gap:2px;flex-shrink:0}.value-display{font-weight:600;color:var(--ui-primary-color, #3b82f6)}.track-container{flex:1;display:flex;align-items:center;justify-content:center;width:100%}.track-container.vertical{flex:1;min-height:0;width:auto;height:100%;display:flex;align-items:center;justify-content:center}input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:var(--_track-height);background:var(--ui-input-border-color, #d1d5db);border-radius:3px;outline:none;margin:10px 0;cursor:pointer;transition:all .2s ease}input[type=range].vertical{writing-mode:vertical-lr;direction:rtl;width:var(--_track-height);height:100%;margin:0;appearance:slider-vertical;-webkit-appearance:slider-vertical}@supports not (appearance: slider-vertical){input[type=range].vertical{writing-mode:vertical-lr;direction:rtl;width:var(--_track-height);height:100%;margin:0}}input[type=range]:disabled{cursor:not-allowed;opacity:.5}input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:var(--_thumb-size);height:var(--_thumb-size);border-radius:50%;background:var(--ui-surface-background, white);border:2px solid var(--ui-primary-color, #3b82f6);box-shadow:var(--ui-shadow-sm);cursor:pointer;transition:transform .1s ease,box-shadow .1s ease}input[type=range]::-moz-range-thumb{width:calc(var(--_thumb-size) - 2px);height:calc(var(--_thumb-size) - 2px);border-radius:50%;background:var(--ui-surface-background, white);border:2px solid var(--ui-primary-color, #3b82f6);box-shadow:var(--ui-shadow-sm);cursor:pointer}input[type=range]::-moz-range-progress{background:var(--ui-primary-color, #3b82f6);height:var(--_track-height);border-radius:3px}input[type=range]:focus-visible::-webkit-slider-thumb{outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:4px}input[type=range]:not(:disabled):hover::-webkit-slider-thumb{transform:scale(1.1);box-shadow:var(--ui-shadow-md)}input[type=range]:active::-webkit-slider-thumb{transform:scale(.95)}.disabled-label{color:var(--ui-text-color-muted)}';
+var Ao = Object.defineProperty, Bo = Object.getOwnPropertyDescriptor, le = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Bo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Ao(t, i, r), r;
 };
-let ne = class extends c {
+let q = class extends c {
   constructor() {
-    super(...arguments), this.value = 50, this.min = 0, this.max = 100, this.step = 1, this.disabled = !1, this.label = "", this.showValue = !1, this.vertical = !1;
+    super(), this._internals = null, this.value = 50, this.defaultValue = void 0, this.min = 0, this.max = 100, this.step = 1, this.disabled = !1, this.label = "", this.showValue = !1, this.vertical = !1, this.size = "md", this.name = "", this.formatValue = void 0, this._firstUpdate = !0, typeof this.attachInternals == "function" && (this._internals = this.attachInternals());
   }
+  // ── Safe value getters ────────────────────────────────────────────────────
+  get _safeMin() {
+    return this.min < this.max ? this.min : 0;
+  }
+  get _safeMax() {
+    return this.max > this.min ? this.max : this._safeMin + 100;
+  }
+  get _safeValue() {
+    return Math.min(this._safeMax, Math.max(this._safeMin, this.value));
+  }
+  // ── Lifecycle ─────────────────────────────────────────────────────────────
+  willUpdate(e) {
+    this._firstUpdate && this.defaultValue !== void 0 && (this.value = this.defaultValue), this._firstUpdate = !1, (e.has("value") || e.has("name")) && typeof this._internals?.setFormValue == "function" && this._internals.setFormValue(this._safeValue.toString());
+  }
+  // ── Event handler ─────────────────────────────────────────────────────────
   _handleInput(e) {
     const t = e.target;
-    this.value = Number(t.value), this.dispatchEvent(new CustomEvent("change", {
+    this.value = Number(t.value), this.dispatchEvent(new CustomEvent("ui-slider-change", {
       detail: { value: this.value },
       bubbles: !0,
       composed: !0
     }));
   }
+  // ── Render ────────────────────────────────────────────────────────────────
   render() {
-    const e = (this.value - this.min) / (this.max - this.min) * 100, t = this.vertical ? {
-      background: `linear-gradient(to left, var(--ui-primary-color, #3b82f6) 0%, var(--ui-primary-color, #3b82f6) ${e}%, var(--ui-input-border-color, #d1d5db) ${e}%, var(--ui-input-border-color, #d1d5db) 100%)`
+    const e = this._safeValue, t = this._safeMin, i = this._safeMax, s = (e - t) / (i - t) * 100, r = this.formatValue ? this.formatValue(e) : String(e), a = this.vertical ? {
+      background: `linear-gradient(to left, var(--ui-primary-color, #3b82f6) 0%, var(--ui-primary-color, #3b82f6) ${s}%, var(--ui-input-border-color, #d1d5db) ${s}%, var(--ui-input-border-color, #d1d5db) 100%)`
     } : {
-      background: `linear-gradient(to right, var(--ui-primary-color, #3b82f6) 0%, var(--ui-primary-color, #3b82f6) ${e}%, var(--ui-input-border-color, #d1d5db) ${e}%, var(--ui-input-border-color, #d1d5db) 100%)`
-    }, i = { "slider-wrapper": !0, vertical: this.vertical }, o = { "label-row": !0, vertical: this.vertical }, r = { "track-container": !0, vertical: this.vertical }, a = { vertical: this.vertical };
+      background: `linear-gradient(to right, var(--ui-primary-color, #3b82f6) 0%, var(--ui-primary-color, #3b82f6) ${s}%, var(--ui-input-border-color, #d1d5db) ${s}%, var(--ui-input-border-color, #d1d5db) 100%)`
+    }, n = { "slider-wrapper": !0, vertical: this.vertical }, h = { "label-row": !0, vertical: this.vertical }, f = { "track-container": !0, vertical: this.vertical }, y = { vertical: this.vertical }, b = "slider-input";
     return l`
-      <div class=${u(i)}>
-        <div class=${u(o)}>
-          ${this.label ? l`<label class=${u({ "disabled-label": this.disabled })}>${this.label}</label>` : ""}
-          ${this.showValue ? l`<span class="value-display">${this.value}</span>` : ""}
+      <div class=${u(n)}>
+        <div class=${u(h)}>
+          ${this.label ? l`<label
+                for=${b}
+                class=${u({ "disabled-label": this.disabled })}
+              >${this.label}</label>` : ""}
+          ${this.showValue ? l`<span class="value-display">${r}</span>` : ""}
         </div>
-        <div class=${u(r)}>
+        <div class=${u(f)}>
           <input
+            id=${b}
             type="range"
-            class=${u(a)}
-            .min=${this.min.toString()}
-            .max=${this.max.toString()}
+            class=${u(y)}
+            .min=${t.toString()}
+            .max=${i.toString()}
             .step=${this.step.toString()}
-            .value=${this.value.toString()}
+            .value=${e.toString()}
             ?disabled=${this.disabled}
             @input=${this._handleInput}
-            style=${Kt(t)}
+            style=${ei(a)}
             aria-label=${this.label || "Slider"}
             aria-orientation=${this.vertical ? "vertical" : "horizontal"}
+            aria-valuetext=${this.formatValue ? r : ""}
           >
         </div>
       </div>
     `;
   }
 };
-ne.styles = p`
-    :host {
-      display: block;
-      padding: 12px 0;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-      color: var(--ui-text-color, #111827);
-    }
-
-    :host([vertical]) {
-      /* The host IS the sizing boundary. Consumers set height on the host
-         (or via --ui-slider-vertical-height). Internal layout fills it. */
-      padding: 0 12px;
-      display: inline-flex;
-      height: var(--ui-slider-vertical-height, 200px);
-    }
-
-    .slider-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .slider-wrapper.vertical {
-      /* Fill the host completely; label row at top, track fills the rest */
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      width: 100%;
-      height: 100%;
-      /* Move label/value to the bottom so the track has maximum room above */
-      flex-direction: column-reverse;
-      justify-content: flex-end;
-    }
-
-    .label-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    .label-row.vertical {
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-      flex-shrink: 0;
-    }
-
-    .value-display {
-      font-weight: 600;
-      color: var(--ui-primary-color, #3b82f6);
-    }
-
-    .track-container {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-    }
-
-    .track-container.vertical {
-      /* Fill all remaining vertical space */
-      flex: 1;
-      min-height: 0;   /* critical: lets flex child shrink below content size */
-      width: auto;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    input[type='range'] {
-      -webkit-appearance: none;
-      width: 100%;
-      height: 6px;
-      background: var(--ui-input-border-color, #d1d5db);
-      border-radius: 3px;
-      outline: none;
-      margin: 10px 0;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    input[type='range'].vertical {
-      writing-mode: vertical-lr;
-      direction: rtl;
-      /* Width/height are swapped in vertical writing mode:
-         'width' here becomes the visual thickness of the track,
-         'height' becomes the visual length. */
-      width: 6px;
-      height: 100%;
-      margin: 0;
-      appearance: slider-vertical;
-      -webkit-appearance: slider-vertical;
-    }
-
-    @supports not (appearance: slider-vertical) {
-      input[type='range'].vertical {
-        writing-mode: vertical-lr;
-        direction: rtl;
-        width: 6px;
-        height: 100%;
-        margin: 0;
-      }
-    }
-
-    input[type='range']:disabled {
-      cursor: not-allowed;
-      opacity: 0.5;
-    }
-
-    /* Thumb Styling */
-    input[type='range']::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: var(--ui-surface-background, white);
-      border: 2px solid var(--ui-primary-color, #3b82f6);
-      box-shadow: var(--ui-shadow-sm);
-      cursor: pointer;
-      transition: transform 0.1s ease, box-shadow 0.1s ease;
-    }
-
-    input[type='range']::-moz-range-thumb {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: var(--ui-surface-background, white);
-      border: 2px solid var(--ui-primary-color, #3b82f6);
-      box-shadow: var(--ui-shadow-sm);
-      cursor: pointer;
-    }
-
-    input[type='range']:focus-visible::-webkit-slider-thumb {
-        outline: 2px solid var(--ui-primary-color, #3b82f6);
-        outline-offset: 4px;
-    }
-
-    input[type='range']:not(:disabled):hover::-webkit-slider-thumb {
-        transform: scale(1.1);
-        box-shadow: var(--ui-shadow-md);
-    }
-
-    input[type='range']:active::-webkit-slider-thumb {
-        transform: scale(0.95);
-    }
-
-    .disabled-label {
-        color: var(--ui-text-color-muted);
-    }
-  `;
-Be([
-  s({ type: Number })
-], ne.prototype, "value", 2);
-Be([
-  s({ type: Number })
-], ne.prototype, "min", 2);
-Be([
-  s({ type: Number })
-], ne.prototype, "max", 2);
-Be([
-  s({ type: Number })
-], ne.prototype, "step", 2);
-Be([
-  s({ type: Boolean })
-], ne.prototype, "disabled", 2);
-Be([
-  s({ type: String })
-], ne.prototype, "label", 2);
-Be([
-  s({ type: Boolean })
-], ne.prototype, "showValue", 2);
-Be([
-  s({ type: Boolean, reflect: !0 })
-], ne.prototype, "vertical", 2);
-ne = Be([
+q.formAssociated = !0;
+q.styles = p(To);
+le([
+  o({ type: Number })
+], q.prototype, "value", 2);
+le([
+  o({ type: Number, attribute: "default-value" })
+], q.prototype, "defaultValue", 2);
+le([
+  o({ type: Number })
+], q.prototype, "min", 2);
+le([
+  o({ type: Number })
+], q.prototype, "max", 2);
+le([
+  o({ type: Number })
+], q.prototype, "step", 2);
+le([
+  o({ type: Boolean, reflect: !0 })
+], q.prototype, "disabled", 2);
+le([
+  o({ type: String })
+], q.prototype, "label", 2);
+le([
+  o({ type: Boolean, attribute: "show-value" })
+], q.prototype, "showValue", 2);
+le([
+  o({ type: Boolean, reflect: !0 })
+], q.prototype, "vertical", 2);
+le([
+  o({ type: String, reflect: !0 })
+], q.prototype, "size", 2);
+le([
+  o({ type: String })
+], q.prototype, "name", 2);
+le([
+  o({ attribute: !1 })
+], q.prototype, "formatValue", 2);
+q = le([
   d("ui-slider")
-], ne);
-var ns = Object.defineProperty, ls = Object.getOwnPropertyDescriptor, ce = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? ls(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && ns(t, i, r), r;
+], q);
+const Mo = ':host{display:block;font-family:var(--ui-font-family, "Inter", sans-serif);margin-bottom:1rem}.field-container{display:flex;flex-direction:column;gap:.5rem}.label{font-size:.875rem;font-weight:500;color:var(--ui-text-color, #111827);transition:color .2s}.input-wrapper{position:relative;display:flex;align-items:center;background-color:var(--ui-surface-background, white);border:1px solid var(--ui-input-border-color, #d1d5db);border-radius:var(--ui-input-border-radius, 6px);transition:all .2s ease;overflow:hidden}.input-wrapper:hover:not(.disabled):not(.error){border-color:var(--ui-text-color-muted, #6b7280)}.input-wrapper.focused:not(.error){border-color:var(--ui-primary-color, #3b82f6);box-shadow:0 0 0 3px #3b82f626}.input-wrapper.error{border-color:#ef4444}.input-wrapper.error.focused{box-shadow:0 0 0 3px #ef444426}.input-wrapper.disabled{background-color:var(--ui-surface-background-flat, #f3f4f6);cursor:not-allowed;opacity:.7}input{flex:1;width:100%;padding:.625rem .875rem;font-size:1rem;font-family:inherit;color:inherit;background:transparent;border:none;outline:none}input:disabled{cursor:not-allowed}input::placeholder{color:var(--ui-text-color-muted, #9ca3af)}.icon-leading,.icon-trailing{display:flex;align-items:center;justify-content:center;color:var(--ui-text-color-muted, #6b7280);padding:0 .75rem}.icon-leading{padding-right:0}.icon-trailing{padding-left:0}.helper-text{font-size:.75rem;color:var(--ui-text-color-muted, #6b7280)}.error-text{color:#ef4444}.filled .input-wrapper{background-color:var(--ui-surface-background-flat, #f3f4f6);border-bottom:2px solid var(--ui-input-border-color, #d1d5db);border-top:none;border-left:none;border-right:none;border-radius:4px 4px 0 0}.filled .input-wrapper.focused{border-bottom-color:var(--ui-primary-color, #3b82f6);background-color:var(--ui-hover-color, rgba(0,0,0,.02))}';
+var Lo = Object.defineProperty, jo = Object.getOwnPropertyDescriptor, we = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? jo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Lo(t, i, r), r;
 };
-let Q = class extends c {
+let se = class extends c {
   constructor() {
     super(...arguments), this.label = "", this.value = "", this.placeholder = "", this.type = "text", this.variant = "outlined", this.disabled = !1, this.error = !1, this.helperText = "", this.errorMessage = "", this._focused = !1;
   }
@@ -3207,160 +1965,47 @@ let Q = class extends c {
     `;
   }
 };
-Q.styles = p`
-    :host {
-      display: block;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-      margin-bottom: 1rem;
-    }
-
-    .field-container {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .label {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--ui-text-color, #111827);
-      transition: color 0.2s;
-    }
-
-    .input-wrapper {
-      position: relative;
-      display: flex;
-      align-items: center;
-      background-color: var(--ui-surface-background, white);
-      border: 1px solid var(--ui-input-border-color, #d1d5db);
-      border-radius: var(--ui-input-border-radius, 6px);
-      transition: all 0.2s ease;
-      overflow: hidden;
-    }
-
-    .input-wrapper:hover:not(.disabled):not(.error) {
-      border-color: var(--ui-text-color-muted, #6b7280);
-    }
-
-    .input-wrapper.focused:not(.error) {
-      border-color: var(--ui-primary-color, #3b82f6);
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-    }
-
-    .input-wrapper.error {
-      border-color: #ef4444;
-    }
-
-    .input-wrapper.error.focused {
-      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
-    }
-
-    .input-wrapper.disabled {
-      background-color: var(--ui-surface-background-flat, #f3f4f6);
-      cursor: not-allowed;
-      opacity: 0.7;
-    }
-
-    input {
-      flex: 1;
-      width: 100%;
-      padding: 0.625rem 0.875rem;
-      font-size: 1rem;
-      font-family: inherit;
-      color: inherit;
-      background: transparent;
-      border: none;
-      outline: none;
-    }
-
-    input:disabled {
-      cursor: not-allowed;
-    }
-
-    input::placeholder {
-      color: var(--ui-text-color-muted, #9ca3af);
-    }
-
-    .icon-leading, .icon-trailing {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--ui-text-color-muted, #6b7280);
-      padding: 0 0.75rem;
-    }
-
-    .icon-leading {
-      padding-right: 0;
-    }
-
-    .icon-trailing {
-      padding-left: 0;
-    }
-
-    .helper-text {
-      font-size: 0.75rem;
-      color: var(--ui-text-color-muted, #6b7280);
-    }
-
-    .error-text {
-      color: #ef4444;
-    }
-
-    /* Outlined variant (default) */
-    /* Filled variant */
-    .filled .input-wrapper {
-      background-color: var(--ui-surface-background-flat, #f3f4f6);
-      border-bottom: 2px solid var(--ui-input-border-color, #d1d5db);
-      border-top: none;
-      border-left: none;
-      border-right: none;
-      border-radius: 4px 4px 0 0;
-    }
-
-    .filled .input-wrapper.focused {
-      border-bottom-color: var(--ui-primary-color, #3b82f6);
-      background-color: var(--ui-hover-color, rgba(0,0,0,0.02));
-    }
-  `;
-ce([
-  s({ type: String })
-], Q.prototype, "label", 2);
-ce([
-  s({ type: String })
-], Q.prototype, "value", 2);
-ce([
-  s({ type: String })
-], Q.prototype, "placeholder", 2);
-ce([
-  s({ type: String })
-], Q.prototype, "type", 2);
-ce([
-  s({ type: String })
-], Q.prototype, "variant", 2);
-ce([
-  s({ type: Boolean })
-], Q.prototype, "disabled", 2);
-ce([
-  s({ type: Boolean })
-], Q.prototype, "error", 2);
-ce([
-  s({ type: String })
-], Q.prototype, "helperText", 2);
-ce([
-  s({ type: String })
-], Q.prototype, "errorMessage", 2);
-ce([
-  m()
-], Q.prototype, "_focused", 2);
-Q = ce([
+se.styles = p(Mo);
+we([
+  o({ type: String })
+], se.prototype, "label", 2);
+we([
+  o({ type: String })
+], se.prototype, "value", 2);
+we([
+  o({ type: String })
+], se.prototype, "placeholder", 2);
+we([
+  o({ type: String })
+], se.prototype, "type", 2);
+we([
+  o({ type: String })
+], se.prototype, "variant", 2);
+we([
+  o({ type: Boolean })
+], se.prototype, "disabled", 2);
+we([
+  o({ type: Boolean })
+], se.prototype, "error", 2);
+we([
+  o({ type: String })
+], se.prototype, "helperText", 2);
+we([
+  o({ type: String })
+], se.prototype, "errorMessage", 2);
+we([
+  g()
+], se.prototype, "_focused", 2);
+se = we([
   d("ui-text-field")
-], Q);
-var cs = Object.defineProperty, ds = Object.getOwnPropertyDescriptor, Ji = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? ds(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && cs(t, i, r), r;
+], se);
+const Uo = ':host{display:inline-block}button{font-family:var(--ui-font-family, "Inter", sans-serif);font-weight:500;font-size:14px;padding:8px 16px;border:1px solid var(--ui-input-border-color, #d1d5db);background-color:var(--ui-surface-background, white);color:var(--ui-text-color, #111827);cursor:pointer;transition:all .2s ease;display:inline-flex;align-items:center;justify-content:center;gap:8px;outline:none}button:hover:not(:disabled){background-color:var(--ui-hover-color, #f3f4f6)}button.selected{background-color:var(--ui-active-color, #e5e7eb);color:var(--ui-primary-color, #3b82f6);border-color:var(--ui-primary-color, #3b82f6);z-index:1}button:disabled{opacity:.5;cursor:not-allowed}button:focus-visible{box-shadow:0 0 0 2px var(--ui-primary-color, #3b82f6);z-index:2}:host([data-first]) button{border-top-left-radius:var(--ui-border-radius-md, 6px);border-bottom-left-radius:var(--ui-border-radius-md, 6px)}:host([data-last]) button{border-top-right-radius:var(--ui-border-radius-md, 6px);border-bottom-right-radius:var(--ui-border-radius-md, 6px)}:host(:not([data-first])) button{margin-left:-1px}';
+var Ro = Object.defineProperty, Vo = Object.getOwnPropertyDescriptor, Qi = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Vo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Ro(t, i, r), r;
 };
-let Dt = class extends c {
+let jt = class extends c {
   constructor() {
     super(...arguments), this.selected = !1, this.disabled = !1, this.value = "";
   }
@@ -3385,82 +2030,26 @@ let Dt = class extends c {
     `;
   }
 };
-Dt.styles = p`
-    :host {
-      display: inline-block;
-    }
-    
-    button {
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-      font-weight: 500;
-      font-size: 14px;
-      padding: 8px 16px;
-      border: 1px solid var(--ui-input-border-color, #d1d5db);
-      background-color: var(--ui-surface-background, white);
-      color: var(--ui-text-color, #111827);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      outline: none;
-    }
-
-    button:hover:not(:disabled) {
-      background-color: var(--ui-hover-color, #f3f4f6);
-    }
-
-    button.selected {
-      background-color: var(--ui-active-color, #e5e7eb);
-      color: var(--ui-primary-color, #3b82f6);
-      border-color: var(--ui-primary-color, #3b82f6);
-      z-index: 1;
-    }
-
-    button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    button:focus-visible {
-      box-shadow: 0 0 0 2px var(--ui-primary-color, #3b82f6);
-      z-index: 2;
-    }
-
-    /* Border radius management is usually handled by the group */
-    :host([data-first]) button {
-      border-top-left-radius: var(--ui-border-radius-md, 6px);
-      border-bottom-left-radius: var(--ui-border-radius-md, 6px);
-    }
-
-    :host([data-last]) button {
-      border-top-right-radius: var(--ui-border-radius-md, 6px);
-      border-bottom-right-radius: var(--ui-border-radius-md, 6px);
-    }
-
-    :host(:not([data-first])) button {
-      margin-left: -1px;
-    }
-  `;
-Ji([
-  s({ type: Boolean, reflect: !0 })
-], Dt.prototype, "selected", 2);
-Ji([
-  s({ type: Boolean, reflect: !0 })
-], Dt.prototype, "disabled", 2);
-Ji([
-  s({ type: String })
-], Dt.prototype, "value", 2);
-Dt = Ji([
+jt.styles = p(Uo);
+Qi([
+  o({ type: Boolean, reflect: !0 })
+], jt.prototype, "selected", 2);
+Qi([
+  o({ type: Boolean, reflect: !0 })
+], jt.prototype, "disabled", 2);
+Qi([
+  o({ type: String })
+], jt.prototype, "value", 2);
+jt = Qi([
   d("ui-toggle-button")
-], Dt);
-var ps = Object.defineProperty, hs = Object.getOwnPropertyDescriptor, Zr = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? hs(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && ps(t, i, r), r;
+], jt);
+const No = ":host{display:inline-flex;vertical-align:middle}";
+var Fo = Object.defineProperty, qo = Object.getOwnPropertyDescriptor, ts = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? qo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Fo(t, i, r), r;
 };
-let oi = class extends c {
+let ci = class extends c {
   constructor() {
     super(...arguments), this.value = "", this.exclusive = !0;
   }
@@ -3475,14 +2064,14 @@ let oi = class extends c {
     if (this.exclusive)
       this.value = i ? t : "";
     else {
-      const o = Array.isArray(this.value) ? [...this.value] : this.value ? [this.value] : [];
+      const s = Array.isArray(this.value) ? [...this.value] : this.value ? [this.value] : [];
       if (i)
-        o.includes(t) || o.push(t);
+        s.includes(t) || s.push(t);
       else {
-        const r = o.indexOf(t);
-        r > -1 && o.splice(r, 1);
+        const r = s.indexOf(t);
+        r > -1 && s.splice(r, 1);
       }
-      this.value = o;
+      this.value = s;
     }
     this._updateChildren(), this.dispatchEvent(new CustomEvent("change", {
       detail: { value: this.value },
@@ -3493,8 +2082,8 @@ let oi = class extends c {
   _updateChildren() {
     const e = Array.from(this.querySelectorAll("ui-toggle-button"));
     e.forEach((t, i) => {
-      const o = t, r = this.exclusive ? this.value === o.value : Array.isArray(this.value) && this.value.includes(o.value);
-      o.selected = r, i === 0 ? o.setAttribute("data-first", "") : o.removeAttribute("data-first"), i === e.length - 1 ? o.setAttribute("data-last", "") : o.removeAttribute("data-last");
+      const s = t, r = this.exclusive ? this.value === s.value : Array.isArray(this.value) && this.value.includes(s.value);
+      s.selected = r, i === 0 ? s.setAttribute("data-first", "") : s.removeAttribute("data-first"), i === e.length - 1 ? s.setAttribute("data-last", "") : s.removeAttribute("data-last");
     });
   }
   updated(e) {
@@ -3504,27 +2093,23 @@ let oi = class extends c {
     return l`<slot @slotchange=${this._updateChildren}></slot>`;
   }
 };
-oi.styles = p`
-    :host {
-      display: inline-flex;
-      vertical-align: middle;
-    }
-  `;
-Zr([
-  s({ type: String })
-], oi.prototype, "value", 2);
-Zr([
-  s({ type: Boolean })
-], oi.prototype, "exclusive", 2);
-oi = Zr([
+ci.styles = p(No);
+ts([
+  o({ type: String })
+], ci.prototype, "value", 2);
+ts([
+  o({ type: Boolean })
+], ci.prototype, "exclusive", 2);
+ci = ts([
   d("ui-toggle-button-group")
-], oi);
-var us = Object.defineProperty, fs = Object.getOwnPropertyDescriptor, Xe = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? fs(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && us(t, i, r), r;
+], ci);
+const Ho = ':host{display:inline-block;vertical-align:middle;line-height:1}.avatar{position:relative;display:flex;align-items:center;justify-content:center;flex-shrink:0;width:var(--ui-avatar-size, 40px);height:var(--ui-avatar-size, 40px);font-family:var(--ui-font-family, "Inter", sans-serif);font-size:calc(var(--ui-avatar-size, 40px) / 2.5);font-weight:600;border-radius:50%;overflow:hidden;-webkit-user-select:none;user-select:none;background-color:var(--ui-avatar-bg, #e5e7eb);color:var(--ui-avatar-color, #4b5563);transition:all .2s ease}.avatar.square{border-radius:0}.avatar.rounded{border-radius:var(--ui-border-radius-md, 6px)}img{width:100%;height:100%;object-fit:cover;display:block}.initials{text-transform:uppercase}:host([size="small"]){--ui-avatar-size: 32px}:host([size="medium"]){--ui-avatar-size: 40px}:host([size="large"]){--ui-avatar-size: 56px}:host([size="xlarge"]){--ui-avatar-size: 80px}.avatar.loading{background:linear-gradient(90deg,#f3f4f6 25%,#e5e7eb,#f3f4f6 75%);background-size:200% 100%;animation:loading 1.5s infinite}@keyframes loading{0%{background-position:200% 0}to{background-position:-200% 0}}';
+var Ko = Object.defineProperty, Yo = Object.getOwnPropertyDescriptor, at = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Yo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Ko(t, i, r), r;
 };
-let be = class extends c {
+let Ee = class extends c {
   constructor() {
     super(...arguments), this.src = "", this.alt = "", this.initials = "", this.variant = "circle", this.size = "medium", this._hasError = !1, this._isLoading = !1;
   }
@@ -3546,104 +2131,43 @@ let be = class extends c {
     };
     return l`
       <div class=${u(e)} part="base">
-        ${this.src && !this._hasError ? l`<img src=${this.src} alt=${this.alt} @error=${this._handleError} @load=${this._handleLoad} style=${this._isLoading ? "display:none" : y} part="image" />` : this.initials ? l`<span class="initials" part="initials">${this.initials.substring(0, 2)}</span>` : l`<slot><svg width="60%" height="60%" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></slot>`}
+        ${this.src && !this._hasError ? l`<img src=${this.src} alt=${this.alt} @error=${this._handleError} @load=${this._handleLoad} style=${this._isLoading ? "display:none" : v} part="image" />` : this.initials ? l`<span class="initials" part="initials">${this.initials.substring(0, 2)}</span>` : l`<slot><svg width="60%" height="60%" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></slot>`}
       </div>
     `;
   }
 };
-be.styles = p`
-    :host {
-      display: inline-block;
-      vertical-align: middle;
-      line-height: 1;
-    }
-
-    .avatar {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      width: var(--ui-avatar-size, 40px);
-      height: var(--ui-avatar-size, 40px);
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-      font-size: calc(var(--ui-avatar-size, 40px) / 2.5);
-      font-weight: 600;
-      border-radius: 50%;
-      overflow: hidden;
-      user-select: none;
-      background-color: var(--ui-avatar-bg, #e5e7eb);
-      color: var(--ui-avatar-color, #4b5563);
-      transition: all 0.2s ease;
-    }
-
-    .avatar.square {
-      border-radius: 0;
-    }
-
-    .avatar.rounded {
-      border-radius: var(--ui-border-radius-md, 6px);
-    }
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .initials {
-      text-transform: uppercase;
-    }
-
-    /* Size variants */
-    :host([size="small"]) { --ui-avatar-size: 32px; }
-    :host([size="medium"]) { --ui-avatar-size: 40px; }
-    :host([size="large"]) { --ui-avatar-size: 56px; }
-    :host([size="xlarge"]) { --ui-avatar-size: 80px; }
-
-    /* Skeleton state */
-    .avatar.loading {
-      background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
-      background-size: 200% 100%;
-      animation: loading 1.5s infinite;
-    }
-
-    @keyframes loading {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-    }
-  `;
-Xe([
-  s({ type: String })
-], be.prototype, "src", 2);
-Xe([
-  s({ type: String })
-], be.prototype, "alt", 2);
-Xe([
-  s({ type: String })
-], be.prototype, "initials", 2);
-Xe([
-  s({ type: String })
-], be.prototype, "variant", 2);
-Xe([
-  s({ type: String, reflect: !0 })
-], be.prototype, "size", 2);
-Xe([
-  m()
-], be.prototype, "_hasError", 2);
-Xe([
-  m()
-], be.prototype, "_isLoading", 2);
-be = Xe([
+Ee.styles = p(Ho);
+at([
+  o({ type: String })
+], Ee.prototype, "src", 2);
+at([
+  o({ type: String })
+], Ee.prototype, "alt", 2);
+at([
+  o({ type: String })
+], Ee.prototype, "initials", 2);
+at([
+  o({ type: String })
+], Ee.prototype, "variant", 2);
+at([
+  o({ type: String, reflect: !0 })
+], Ee.prototype, "size", 2);
+at([
+  g()
+], Ee.prototype, "_hasError", 2);
+at([
+  g()
+], Ee.prototype, "_isLoading", 2);
+Ee = at([
   d("ui-avatar")
-], be);
-var bs = Object.defineProperty, gs = Object.getOwnPropertyDescriptor, vt = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? gs(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && bs(t, i, r), r;
+], Ee);
+const Go = ':host{display:inline-block;vertical-align:middle;font-family:var(--ui-font-family, "Inter", sans-serif)}.chip{display:inline-flex;align-items:center;height:32px;padding:0 12px;border-radius:16px;font-size:14px;font-weight:500;white-space:nowrap;transition:all .2s ease;background-color:var(--ui-surface-background-flat, #f3f4f6);color:var(--ui-text-color, #111827);border:1px solid transparent;-webkit-user-select:none;user-select:none;gap:8px;outline:none;overflow:hidden}.chip.clickable{cursor:pointer}.chip.clickable:hover:not(.disabled){background-color:var(--ui-hover-color, #e5e7eb)}.chip.clickable:active:not(.disabled){background-color:var(--ui-active-color, #d1d5db)}.chip.outlined{background-color:transparent;border-color:var(--ui-input-border-color, #d1d5db)}.chip.primary:not(.outlined){background-color:var(--ui-primary-color, #3b82f6);color:#fff}.chip.secondary:not(.outlined){background-color:var(--ui-secondary-color, #6b7280);color:#fff}.chip.outlined.primary{color:var(--ui-primary-color, #3b82f6);border-color:var(--ui-primary-color, #3b82f6)}.chip.outlined.secondary{color:var(--ui-secondary-color, #6b7280);border-color:var(--ui-secondary-color, #6b7280)}.chip.primary.clickable:hover:not(.disabled){filter:brightness(.9);box-shadow:var(--ui-shadow-sm)}.chip.secondary.clickable:hover:not(.disabled){filter:brightness(.9);box-shadow:var(--ui-shadow-sm)}.chip.disabled{opacity:.5;cursor:not-allowed}.chip:focus-visible{outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:2px}.delete-icon{display:flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;margin-right:-4px;cursor:pointer;color:inherit;opacity:.7;transition:opacity .2s,background-color .2s;outline:none}.delete-icon:hover{opacity:1;background-color:#0000001a}.delete-icon:focus-visible{opacity:1;outline:2px solid currentColor;outline-offset:1px}.chip.disabled .delete-icon{cursor:not-allowed;pointer-events:none}::slotted([slot="avatar"]){--ui-avatar-size: 24px;width:24px;height:24px;margin-left:-8px;border-radius:50%;overflow:hidden;flex-shrink:0}::slotted([slot="icon"]){display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;margin-left:-4px;flex-shrink:0;line-height:1}';
+var Wo = Object.defineProperty, Xo = Object.getOwnPropertyDescriptor, St = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Xo(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Wo(t, i, r), r;
 };
-let Ie = class extends c {
+let Ue = class extends c {
   constructor() {
     super(...arguments), this.label = "", this.variant = "filled", this.color = "default", this.clickable = !1, this.deletable = !1, this.disabled = !1;
   }
@@ -3685,7 +2209,7 @@ let Ie = class extends c {
         class=${u(e)}
         @click=${this._handleClick}
         @keydown=${this._handleKeyDown}
-        role=${$e(this.clickable ? "button" : void 0)}
+        role=${pe(this.clickable ? "button" : void 0)}
         tabindex=${this.clickable && !this.disabled ? "0" : "-1"}
         aria-disabled=${this.disabled ? "true" : "false"}
       >
@@ -3710,168 +2234,35 @@ let Ie = class extends c {
     `;
   }
 };
-Ie.styles = p`
-    :host {
-      display: inline-block;
-      vertical-align: middle;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-    }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      height: 32px;
-      padding: 0 12px;
-      border-radius: 16px;
-      font-size: 14px;
-      font-weight: 500;
-      white-space: nowrap;
-      transition: all 0.2s ease;
-      background-color: var(--ui-surface-background-flat, #f3f4f6);
-      color: var(--ui-text-color, #111827);
-      border: 1px solid transparent;
-      user-select: none;
-      gap: 8px;
-      outline: none;
-      overflow: hidden;
-    }
-
-    .chip.clickable {
-      cursor: pointer;
-    }
-
-    .chip.clickable:hover:not(.disabled) {
-      background-color: var(--ui-hover-color, #e5e7eb);
-    }
-
-    .chip.clickable:active:not(.disabled) {
-      background-color: var(--ui-active-color, #d1d5db);
-    }
-
-    .chip.outlined {
-      background-color: transparent;
-      border-color: var(--ui-input-border-color, #d1d5db);
-    }
-
-    .chip.primary:not(.outlined) {
-      background-color: var(--ui-primary-color, #3b82f6);
-      color: white;
-    }
-
-    .chip.secondary:not(.outlined) {
-      background-color: var(--ui-secondary-color, #6b7280);
-      color: white;
-    }
-
-    .chip.outlined.primary {
-      color: var(--ui-primary-color, #3b82f6);
-      border-color: var(--ui-primary-color, #3b82f6);
-    }
-
-    .chip.outlined.secondary {
-      color: var(--ui-secondary-color, #6b7280);
-      border-color: var(--ui-secondary-color, #6b7280);
-    }
-
-    .chip.primary.clickable:hover:not(.disabled) {
-      filter: brightness(0.9);
-      box-shadow: var(--ui-shadow-sm);
-    }
-
-    .chip.secondary.clickable:hover:not(.disabled) {
-      filter: brightness(0.9);
-      box-shadow: var(--ui-shadow-sm);
-    }
-
-    .chip.disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    .chip:focus-visible {
-      outline: 2px solid var(--ui-primary-color, #3b82f6);
-      outline-offset: 2px;
-    }
-
-    .delete-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      margin-right: -4px;
-      cursor: pointer;
-      color: inherit;
-      opacity: 0.7;
-      transition: opacity 0.2s, background-color 0.2s;
-      outline: none;
-    }
-
-    .delete-icon:hover {
-      opacity: 1;
-      background-color: rgba(0, 0, 0, 0.1);
-    }
-
-    .delete-icon:focus-visible {
-      opacity: 1;
-      outline: 2px solid currentColor;
-      outline-offset: 1px;
-    }
-
-    .chip.disabled .delete-icon {
-      cursor: not-allowed;
-      pointer-events: none;
-    }
-
-    ::slotted([slot="avatar"]) {
-      --ui-avatar-size: 24px;
-      width: 24px;
-      height: 24px;
-      margin-left: -8px;
-      border-radius: 50%;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    ::slotted([slot="icon"]) {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 18px;
-      height: 18px;
-      margin-left: -4px;
-      flex-shrink: 0;
-      line-height: 1;
-    }
-  `;
-vt([
-  s({ type: String })
-], Ie.prototype, "label", 2);
-vt([
-  s({ type: String })
-], Ie.prototype, "variant", 2);
-vt([
-  s({ type: String })
-], Ie.prototype, "color", 2);
-vt([
-  s({ type: Boolean })
-], Ie.prototype, "clickable", 2);
-vt([
-  s({ type: Boolean })
-], Ie.prototype, "deletable", 2);
-vt([
-  s({ type: Boolean, reflect: !0 })
-], Ie.prototype, "disabled", 2);
-Ie = vt([
+Ue.styles = p(Go);
+St([
+  o({ type: String })
+], Ue.prototype, "label", 2);
+St([
+  o({ type: String })
+], Ue.prototype, "variant", 2);
+St([
+  o({ type: String })
+], Ue.prototype, "color", 2);
+St([
+  o({ type: Boolean })
+], Ue.prototype, "clickable", 2);
+St([
+  o({ type: Boolean })
+], Ue.prototype, "deletable", 2);
+St([
+  o({ type: Boolean, reflect: !0 })
+], Ue.prototype, "disabled", 2);
+Ue = St([
   d("ui-chip")
-], Ie);
-var ms = Object.defineProperty, vs = Object.getOwnPropertyDescriptor, K = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? vs(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && ms(t, i, r), r;
+], Ue);
+const Jo = ":host{display:block;padding:8px 0;margin:0;list-style:none;background-color:var(--ui-surface-background, white)}:host([disable-padding]){padding:0}:host([dense]){--ui-list-item-padding: 4px 16px;--ui-list-item-gap: 8px}", Zo = ":host{display:block;box-sizing:border-box}li{display:flex;align-items:center;padding:var(--ui-list-item-padding, 8px 16px);gap:var(--ui-list-item-gap, 16px);list-style:none}", Qo = ":host{display:block;box-sizing:border-box}li{display:flex;align-items:center;padding:var(--ui-list-item-padding, 8px 16px);gap:var(--ui-list-item-gap, 16px);cursor:pointer;transition:background-color .2s ease;-webkit-user-select:none;user-select:none;list-style:none;outline:none}li:hover{background-color:var(--ui-hover-color, rgba(0, 0, 0, .04))}li:active{background-color:var(--ui-active-color, rgba(0, 0, 0, .08))}li:focus-visible{background-color:var(--ui-hover-color, rgba(0, 0, 0, .04));box-shadow:inset 0 0 0 2px var(--ui-primary-color, #3b82f6)}:host([selected]) li{background-color:var(--ui-selected-color, rgba(59, 130, 246, .1));color:var(--ui-primary-color, #3b82f6)}:host([disabled]) li{opacity:.5;cursor:default;pointer-events:none}", ea = ":host{display:inline-flex;min-width:40px;color:var(--ui-text-color-muted, #6b7280);flex-shrink:0}::slotted(*){width:24px;height:24px}", ta = ":host{display:inline-flex;min-width:56px;flex-shrink:0}", ia = ":host{flex:1 1 auto;margin-top:4px;margin-bottom:4px}.primary{display:block;font-family:var(--ui-font-family, sans-serif);font-size:1rem;color:var(--ui-text-color, #111827);line-height:1.5}.secondary{display:block;font-family:var(--ui-font-family, sans-serif);font-size:.875rem;color:var(--ui-text-color-muted, #6b7280);line-height:1.43}", ra = ":host{display:block;padding:16px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--ui-text-color-muted, #6b7280);font-family:var(--ui-font-family, sans-serif);line-height:1}";
+var sa = Object.defineProperty, oa = Object.getOwnPropertyDescriptor, Q = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? oa(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && sa(t, i, r), r;
 };
-let si = class extends c {
+let di = class extends c {
   constructor() {
     super(...arguments), this.disablePadding = !1, this.dense = !1;
   }
@@ -3879,53 +2270,26 @@ let si = class extends c {
     return l`<ul role="list" style="margin: 0; padding: 0; list-style: none;"><slot></slot></ul>`;
   }
 };
-si.styles = p`
-    :host {
-      display: block;
-      padding: 8px 0;
-      margin: 0;
-      list-style: none;
-      background-color: var(--ui-surface-background, white);
-    }
-    :host([disable-padding]) {
-      padding: 0;
-    }
-    :host([dense]) {
-      --ui-list-item-padding: 4px 16px;
-      --ui-list-item-gap: 8px;
-    }
-  `;
-K([
-  s({ type: Boolean, reflect: !0, attribute: "disable-padding" })
-], si.prototype, "disablePadding", 2);
-K([
-  s({ type: Boolean, reflect: !0 })
-], si.prototype, "dense", 2);
-si = K([
+di.styles = p(Jo);
+Q([
+  o({ type: Boolean, reflect: !0, attribute: "disable-padding" })
+], di.prototype, "disablePadding", 2);
+Q([
+  o({ type: Boolean, reflect: !0 })
+], di.prototype, "dense", 2);
+di = Q([
   d("ui-list")
-], si);
-let cr = class extends c {
+], di);
+let hr = class extends c {
   render() {
     return l`<li role="listitem"><slot></slot></li>`;
   }
 };
-cr.styles = p`
-    :host {
-      display: block;
-      box-sizing: border-box;
-    }
-    li {
-      display: flex;
-      align-items: center;
-      padding: var(--ui-list-item-padding, 8px 16px);
-      gap: var(--ui-list-item-gap, 16px);
-      list-style: none;
-    }
-  `;
-cr = K([
+hr.styles = p(Zo);
+hr = Q([
   d("ui-list-item")
-], cr);
-let ai = class extends c {
+], hr);
+let pi = class extends c {
   constructor() {
     super(...arguments), this.disabled = !1, this.selected = !1, this._handleKeydown = (e) => {
       this.disabled || (e.key === "Enter" || e.key === " ") && (e.preventDefault(), this.click());
@@ -3936,94 +2300,42 @@ let ai = class extends c {
       <li
         role="button"
         tabindex=${this.disabled ? "-1" : "0"}
-        aria-disabled=${this.disabled ? "true" : y}
-        aria-current=${this.selected ? "true" : y}
+        aria-disabled=${this.disabled ? "true" : v}
+        aria-current=${this.selected ? "true" : v}
         @keydown=${this._handleKeydown}
       ><slot></slot></li>
     `;
   }
 };
-ai.styles = p`
-    :host {
-      display: block;
-      box-sizing: border-box;
-    }
-    li {
-      display: flex;
-      align-items: center;
-      padding: var(--ui-list-item-padding, 8px 16px);
-      gap: var(--ui-list-item-gap, 16px);
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-      user-select: none;
-      list-style: none;
-      outline: none;
-    }
-    li:hover {
-      background-color: var(--ui-hover-color, rgba(0, 0, 0, 0.04));
-    }
-    li:active {
-      background-color: var(--ui-active-color, rgba(0, 0, 0, 0.08));
-    }
-    li:focus-visible {
-      background-color: var(--ui-hover-color, rgba(0, 0, 0, 0.04));
-      box-shadow: inset 0 0 0 2px var(--ui-primary-color, #3b82f6);
-    }
-    :host([selected]) li {
-      background-color: var(--ui-selected-color, rgba(59, 130, 246, 0.1));
-      color: var(--ui-primary-color, #3b82f6);
-    }
-    :host([disabled]) li {
-      opacity: 0.5;
-      cursor: default;
-      pointer-events: none;
-    }
-  `;
-K([
-  s({ type: Boolean, reflect: !0 })
-], ai.prototype, "disabled", 2);
-K([
-  s({ type: Boolean, reflect: !0 })
-], ai.prototype, "selected", 2);
-ai = K([
+pi.styles = p(Qo);
+Q([
+  o({ type: Boolean, reflect: !0 })
+], pi.prototype, "disabled", 2);
+Q([
+  o({ type: Boolean, reflect: !0 })
+], pi.prototype, "selected", 2);
+pi = Q([
   d("ui-list-item-button")
-], ai);
-let dr = class extends c {
+], pi);
+let ur = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
-dr.styles = p`
-    :host {
-      display: inline-flex;
-      min-width: 40px;
-      color: var(--ui-text-color-muted, #6b7280);
-      flex-shrink: 0;
-    }
-    ::slotted(*) {
-        width: 24px;
-        height: 24px;
-    }
-  `;
-dr = K([
+ur.styles = p(ea);
+ur = Q([
   d("ui-list-item-icon")
-], dr);
-let pr = class extends c {
+], ur);
+let fr = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
-pr.styles = p`
-    :host {
-      display: inline-flex;
-      min-width: 56px;
-      flex-shrink: 0;
-    }
-  `;
-pr = K([
+fr.styles = p(ta);
+fr = Q([
   d("ui-list-item-avatar")
-], pr);
-let zt = class extends c {
+], fr);
+let Ut = class extends c {
   constructor() {
     super(...arguments), this.primary = "", this.secondary = "", this._hasSecondarySlot = !1;
   }
@@ -4041,66 +2353,35 @@ let zt = class extends c {
     `;
   }
 };
-zt.styles = p`
-    :host {
-      flex: 1 1 auto;
-      margin-top: 4px;
-      margin-bottom: 4px;
-    }
-    .primary {
-      display: block;
-      font-family: var(--ui-font-family, sans-serif);
-      font-size: 1rem;
-      color: var(--ui-text-color, #111827);
-      line-height: 1.5;
-    }
-    .secondary {
-      display: block;
-      font-family: var(--ui-font-family, sans-serif);
-      font-size: 0.875rem;
-      color: var(--ui-text-color-muted, #6b7280);
-      line-height: 1.43;
-    }
-  `;
-K([
-  s({ type: String })
-], zt.prototype, "primary", 2);
-K([
-  s({ type: String })
-], zt.prototype, "secondary", 2);
-K([
-  m()
-], zt.prototype, "_hasSecondarySlot", 2);
-zt = K([
+Ut.styles = p(ia);
+Q([
+  o({ type: String })
+], Ut.prototype, "primary", 2);
+Q([
+  o({ type: String })
+], Ut.prototype, "secondary", 2);
+Q([
+  g()
+], Ut.prototype, "_hasSecondarySlot", 2);
+Ut = Q([
   d("ui-list-item-text")
-], zt);
-let hr = class extends c {
+], Ut);
+let br = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
-hr.styles = p`
-    :host {
-      display: block;
-      padding: 16px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--ui-text-color-muted, #6b7280);
-      font-family: var(--ui-font-family, sans-serif);
-      line-height: 1;
-    }
-  `;
-hr = K([
+br.styles = p(ra);
+br = Q([
   d("ui-list-subheader")
-], hr);
-var ys = Object.defineProperty, xs = Object.getOwnPropertyDescriptor, de = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? xs(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && ys(t, i, r), r;
+], br);
+const aa = ":host{display:block;width:100%;overflow-x:auto;background-color:var(--ui-surface-background, white);border-radius:var(--ui-border-radius-lg, 8px);box-shadow:var(--ui-shadow-sm, 0 1px 3px rgba(0,0,0,.1))}:host([shadow]){box-shadow:var(--ui-shadow-md, 0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -1px rgba(0, 0, 0, .06))}", na = ':host{display:table;width:100%;border-collapse:collapse;border-spacing:0;font-family:var(--ui-font-family, "Inter", sans-serif);color:var(--ui-text-color, #111827)}', la = ":host{display:table-header-group}", ca = ":host{display:table-row-group}", da = ":host{display:table-row;vertical-align:middle;outline:0;transition:background-color .2s ease}:host(:hover){background-color:var(--ui-hover-color, rgba(0, 0, 0, .04))}:host([selected]){background-color:var(--ui-active-color, rgba(59, 130, 246, .08))}", pa = ':host{display:table-cell;padding:16px;font-size:.875rem;text-align:left;border-bottom:1px solid var(--ui-border-color, #e5e7eb)}:host([header]){color:var(--ui-text-color-muted, #6b7280);font-weight:600;line-height:1.5rem}:host([align="right"]){text-align:right}:host([align="center"]){text-align:center}:host([padding="checkbox"]){width:48px;padding:0 0 0 4px}', ha = ":host{display:table-footer-group}";
+var ua = Object.defineProperty, fa = Object.getOwnPropertyDescriptor, ke = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? fa(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && ua(t, i, r), r;
 };
-let Oi = class extends c {
+let zi = class extends c {
   constructor() {
     super(...arguments), this.shadow = !1;
   }
@@ -4108,70 +2389,41 @@ let Oi = class extends c {
     return l`<slot></slot>`;
   }
 };
-Oi.styles = p`
-    :host {
-      display: block;
-      width: 100%;
-      overflow-x: auto;
-      background-color: var(--ui-surface-background, white);
-      border-radius: var(--ui-border-radius-lg, 8px);
-      box-shadow: var(--ui-shadow-sm, 0 1px 3px rgba(0,0,0,0.1));
-    }
-    :host([shadow]) {
-      box-shadow: var(--ui-shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06));
-    }
-  `;
-de([
-  s({ type: Boolean, reflect: !0 })
-], Oi.prototype, "shadow", 2);
-Oi = de([
+zi.styles = p(aa);
+ke([
+  o({ type: Boolean, reflect: !0 })
+], zi.prototype, "shadow", 2);
+zi = ke([
   d("ui-table-container")
-], Oi);
-let ur = class extends c {
+], zi);
+let mr = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
-ur.styles = p`
-    :host {
-      display: table;
-      width: 100%;
-      border-collapse: collapse;
-      border-spacing: 0;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-      color: var(--ui-text-color, #111827);
-    }
-  `;
-ur = de([
+mr.styles = p(na);
+mr = ke([
   d("ui-table")
-], ur);
-let fr = class extends c {
+], mr);
+let gr = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
-fr.styles = p`
-    :host {
-      display: table-header-group;
-    }
-  `;
-fr = de([
+gr.styles = p(la);
+gr = ke([
   d("ui-table-head")
-], fr);
-let br = class extends c {
+], gr);
+let vr = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
-br.styles = p`
-    :host {
-      display: table-row-group;
-    }
-  `;
-br = de([
+vr.styles = p(ca);
+vr = ke([
   d("ui-table-body")
-], br);
-let Di = class extends c {
+], vr);
+let Ti = class extends c {
   constructor() {
     super(...arguments), this.selected = !1;
   }
@@ -4179,27 +2431,14 @@ let Di = class extends c {
     return l`<slot></slot>`;
   }
 };
-Di.styles = p`
-    :host {
-      display: table-row;
-      vertical-align: middle;
-      outline: 0;
-      transition: background-color 0.2s ease;
-    }
-    :host(:hover) {
-      background-color: var(--ui-hover-color, rgba(0, 0, 0, 0.04));
-    }
-    :host([selected]) {
-      background-color: var(--ui-active-color, rgba(59, 130, 246, 0.08));
-    }
-  `;
-de([
-  s({ type: Boolean, reflect: !0 })
-], Di.prototype, "selected", 2);
-Di = de([
+Ti.styles = p(da);
+ke([
+  o({ type: Boolean, reflect: !0 })
+], Ti.prototype, "selected", 2);
+Ti = ke([
   d("ui-table-row")
-], Di);
-let ni = class extends c {
+], Ti);
+let hi = class extends c {
   constructor() {
     super(...arguments), this.header = !1, this.align = "left";
   }
@@ -4207,51 +2446,32 @@ let ni = class extends c {
     return l`<slot></slot>`;
   }
 };
-ni.styles = p`
-    :host {
-      display: table-cell;
-      padding: 16px;
-      font-size: 0.875rem;
-      text-align: left;
-      border-bottom: 1px solid var(--ui-border-color, #e5e7eb);
-    }
-    :host([header]) {
-      color: var(--ui-text-color-muted, #6b7280);
-      font-weight: 600;
-      line-height: 1.5rem;
-    }
-    :host([align="right"]) { text-align: right; }
-    :host([align="center"]) { text-align: center; }
-    :host([padding="checkbox"]) { width: 48px; padding: 0 0 0 4px; }
-  `;
-de([
-  s({ type: Boolean, reflect: !0 })
-], ni.prototype, "header", 2);
-de([
-  s({ type: String, reflect: !0 })
-], ni.prototype, "align", 2);
-ni = de([
+hi.styles = p(pa);
+ke([
+  o({ type: Boolean, reflect: !0 })
+], hi.prototype, "header", 2);
+ke([
+  o({ type: String, reflect: !0 })
+], hi.prototype, "align", 2);
+hi = ke([
   d("ui-table-cell")
-], ni);
-let gr = class extends c {
+], hi);
+let yr = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
-gr.styles = p`
-    :host {
-      display: table-footer-group;
-    }
-  `;
-gr = de([
+yr.styles = p(ha);
+yr = ke([
   d("ui-table-footer")
-], gr);
-var _s = Object.defineProperty, ws = Object.getOwnPropertyDescriptor, eo = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? ws(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && _s(t, i, r), r;
+], yr);
+const ba = ":host{display:inline-flex;align-items:center;cursor:pointer;-webkit-user-select:none;user-select:none;transition:color .2s}:host(:hover){color:var(--ui-text-color, #111827)}:host(.active){color:var(--ui-text-color, #111827);font-weight:700}.icon{margin-left:4px;width:18px;height:18px;transition:transform .2s ease,opacity .2s;opacity:0}:host(:hover) .icon,:host(.active) .icon{opacity:1}.icon.desc{transform:rotate(180deg)}";
+var ma = Object.defineProperty, ga = Object.getOwnPropertyDescriptor, is = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? ga(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && ma(t, i, r), r;
 };
-let li = class extends c {
+let ui = class extends c {
   constructor() {
     super(...arguments), this.active = !1, this.direction = "asc";
   }
@@ -4264,50 +2484,23 @@ let li = class extends c {
     `;
   }
 };
-li.styles = p`
-    :host {
-      display: inline-flex;
-      align-items: center;
-      cursor: pointer;
-      user-select: none;
-      transition: color 0.2s;
-    }
-    :host(:hover) {
-      color: var(--ui-text-color, #111827);
-    }
-    :host(.active) {
-      color: var(--ui-text-color, #111827);
-      font-weight: 700;
-    }
-    .icon {
-      margin-left: 4px;
-      width: 18px;
-      height: 18px;
-      transition: transform 0.2s ease, opacity 0.2s;
-      opacity: 0;
-    }
-    :host(:hover) .icon, :host(.active) .icon {
-      opacity: 1;
-    }
-    .icon.desc {
-      transform: rotate(180deg);
-    }
-  `;
-eo([
-  s({ type: Boolean, reflect: !0 })
-], li.prototype, "active", 2);
-eo([
-  s({ type: String })
-], li.prototype, "direction", 2);
-li = eo([
+ui.styles = p(ba);
+is([
+  o({ type: Boolean, reflect: !0 })
+], ui.prototype, "active", 2);
+is([
+  o({ type: String })
+], ui.prototype, "direction", 2);
+ui = is([
   d("ui-table-sort-label")
-], li);
-var ks = Object.defineProperty, $s = Object.getOwnPropertyDescriptor, ki = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? $s(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && ks(t, i, r), r;
+], ui);
+const va = ':host{display:flex;align-items:center;justify-content:flex-end;padding:8px 16px;font-family:var(--ui-font-family, "Inter", sans-serif);font-size:.875rem;color:var(--ui-text-color-muted, #6b7280);border-top:1px solid var(--ui-border-color, #e5e7eb)}.spacer{flex:1 1 100%}.actions{display:flex;align-items:center;gap:16px}.nav-buttons{display:flex;gap:4px}button{background:transparent;border:none;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ui-text-color, #111827);transition:background-color .2s}button:hover:not(:disabled){background-color:var(--ui-hover-color, rgba(0,0,0,.04))}button:disabled{color:var(--ui-text-color-muted, #9ca3af);cursor:not-allowed}select{border:none;background:transparent;font-family:inherit;font-size:inherit;color:inherit;cursor:pointer;padding:4px;outline:none}';
+var ya = Object.defineProperty, xa = Object.getOwnPropertyDescriptor, Ci = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? xa(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && ya(t, i, r), r;
 };
-let st = class extends c {
+let ft = class extends c {
   constructor() {
     super(...arguments), this.count = 0, this.page = 0, this.rowsPerPage = 10, this.rowsPerPageOptions = [5, 10, 25];
   }
@@ -4350,81 +2543,29 @@ let st = class extends c {
     `;
   }
 };
-st.styles = p`
-    :host {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding: 8px 16px;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-      font-size: 0.875rem;
-      color: var(--ui-text-color-muted, #6b7280);
-      border-top: 1px solid var(--ui-border-color, #e5e7eb);
-    }
-    .spacer {
-      flex: 1 1 100%;
-    }
-    .actions {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .nav-buttons {
-      display: flex;
-      gap: 4px;
-    }
-    button {
-      background: transparent;
-      border: none;
-      border-radius: 50%;
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      color: var(--ui-text-color, #111827);
-      transition: background-color 0.2s;
-    }
-    button:hover:not(:disabled) {
-      background-color: var(--ui-hover-color, rgba(0,0,0,0.04));
-    }
-    button:disabled {
-      color: var(--ui-text-color-muted, #9ca3af);
-      cursor: not-allowed;
-    }
-    select {
-      border: none;
-      background: transparent;
-      font-family: inherit;
-      font-size: inherit;
-      color: inherit;
-      cursor: pointer;
-      padding: 4px;
-      outline: none;
-    }
-  `;
-ki([
-  s({ type: Number })
-], st.prototype, "count", 2);
-ki([
-  s({ type: Number })
-], st.prototype, "page", 2);
-ki([
-  s({ type: Number })
-], st.prototype, "rowsPerPage", 2);
-ki([
-  s({ type: Array })
-], st.prototype, "rowsPerPageOptions", 2);
-st = ki([
+ft.styles = p(va);
+Ci([
+  o({ type: Number })
+], ft.prototype, "count", 2);
+Ci([
+  o({ type: Number })
+], ft.prototype, "page", 2);
+Ci([
+  o({ type: Number })
+], ft.prototype, "rowsPerPage", 2);
+Ci([
+  o({ type: Array })
+], ft.prototype, "rowsPerPageOptions", 2);
+ft = Ci([
   d("ui-table-pagination")
-], st);
-var Cs = Object.defineProperty, Is = Object.getOwnPropertyDescriptor, Jt = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Is(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Cs(t, i, r), r;
+], ft);
+const _a = ':host{display:inline-block;position:relative}.tooltip-container{display:inline-block}.tooltip-popup{position:absolute;background-color:var(--ui-tooltip-bg, rgba(97, 97, 97, .92));color:var(--ui-tooltip-color, #fff);padding:4px 8px;border-radius:var(--ui-border-radius-sm, 4px);font-size:.75rem;font-family:var(--ui-font-family, "Inter", sans-serif);line-height:1.4;white-space:nowrap;z-index:1000;opacity:0;visibility:hidden;transition:opacity .2s,visibility .2s,transform .2s;pointer-events:none;box-shadow:var(--ui-shadow-sm, 0 2px 4px rgba(0,0,0,.2))}.tooltip-popup.top{bottom:100%;left:50%;transform:translate(-50%) translateY(0);margin-bottom:8px}.tooltip-popup.top.visible{transform:translate(-50%) translateY(-4px)}.tooltip-popup.bottom{top:100%;left:50%;transform:translate(-50%) translateY(0);margin-top:8px}.tooltip-popup.bottom.visible{transform:translate(-50%) translateY(4px)}.tooltip-popup.left{right:100%;top:50%;transform:translateY(-50%) translate(0);margin-right:8px}.tooltip-popup.left.visible{transform:translateY(-50%) translate(-4px)}.tooltip-popup.right{left:100%;top:50%;transform:translateY(-50%) translate(0);margin-left:8px}.tooltip-popup.right.visible{transform:translateY(-50%) translate(4px)}.tooltip-popup.visible{opacity:1;visibility:visible}.arrow{position:absolute;width:0;height:0;border-style:solid}.tooltip-popup.top .arrow{top:100%;left:50%;transform:translate(-50%);border-width:5px 5px 0 5px;border-color:var(--ui-tooltip-bg, rgba(97, 97, 97, .92)) transparent transparent transparent}.tooltip-popup.bottom .arrow{bottom:100%;left:50%;transform:translate(-50%);border-width:0 5px 5px 5px;border-color:transparent transparent var(--ui-tooltip-bg, rgba(97, 97, 97, .92)) transparent}.tooltip-popup.left .arrow{left:100%;top:50%;transform:translateY(-50%);border-width:5px 0 5px 5px;border-color:transparent transparent transparent var(--ui-tooltip-bg, rgba(97, 97, 97, .92))}.tooltip-popup.right .arrow{right:100%;top:50%;transform:translateY(-50%);border-width:5px 5px 5px 0;border-color:transparent var(--ui-tooltip-bg, rgba(97, 97, 97, .92)) transparent transparent}';
+var wa = Object.defineProperty, ka = Object.getOwnPropertyDescriptor, ii = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? ka(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && wa(t, i, r), r;
 };
-let Ve = class extends c {
+let Qe = class extends c {
   constructor() {
     super(...arguments), this.label = "", this.placement = "top", this.arrow = !1, this.disabled = !1, this._visible = !1;
   }
@@ -4456,144 +2597,32 @@ let Ve = class extends c {
     `;
   }
 };
-Ve.styles = p`
-    :host {
-      display: inline-block;
-      position: relative;
-    }
-
-    .tooltip-container {
-      display: inline-block;
-    }
-
-    .tooltip-popup {
-      position: absolute;
-      background-color: var(--ui-tooltip-bg, rgba(97, 97, 97, 0.92));
-      color: var(--ui-tooltip-color, #fff);
-      padding: 4px 8px;
-      border-radius: var(--ui-border-radius-sm, 4px);
-      font-size: 0.75rem;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-      line-height: 1.4;
-      white-space: nowrap;
-      z-index: 1000;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
-      pointer-events: none;
-      box-shadow: var(--ui-shadow-sm, 0 2px 4px rgba(0,0,0,0.2));
-    }
-
-    /* Placements */
-    .tooltip-popup.top {
-      bottom: 100%;
-      left: 50%;
-      transform: translateX(-50%) translateY(0);
-      margin-bottom: 8px;
-    }
-    .tooltip-popup.top.visible {
-      transform: translateX(-50%) translateY(-4px);
-    }
-
-    .tooltip-popup.bottom {
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%) translateY(0);
-      margin-top: 8px;
-    }
-    .tooltip-popup.bottom.visible {
-      transform: translateX(-50%) translateY(4px);
-    }
-
-    .tooltip-popup.left {
-      right: 100%;
-      top: 50%;
-      transform: translateY(-50%) translateX(0);
-      margin-right: 8px;
-    }
-    .tooltip-popup.left.visible {
-      transform: translateY(-50%) translateX(-4px);
-    }
-
-    .tooltip-popup.right {
-      left: 100%;
-      top: 50%;
-      transform: translateY(-50%) translateX(0);
-      margin-left: 8px;
-    }
-    .tooltip-popup.right.visible {
-      transform: translateY(-50%) translateX(4px);
-    }
-
-    .tooltip-popup.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    /* Arrow */
-    .arrow {
-      position: absolute;
-      width: 0;
-      height: 0;
-      border-style: solid;
-    }
-
-    .tooltip-popup.top .arrow {
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      border-width: 5px 5px 0 5px;
-      border-color: var(--ui-tooltip-bg, rgba(97, 97, 97, 0.92)) transparent transparent transparent;
-    }
-
-    .tooltip-popup.bottom .arrow {
-      bottom: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      border-width: 0 5px 5px 5px;
-      border-color: transparent transparent var(--ui-tooltip-bg, rgba(97, 97, 97, 0.92)) transparent;
-    }
-
-    .tooltip-popup.left .arrow {
-      left: 100%;
-      top: 50%;
-      transform: translateY(-50%);
-      border-width: 5px 0 5px 5px;
-      border-color: transparent transparent transparent var(--ui-tooltip-bg, rgba(97, 97, 97, 0.92));
-    }
-
-    .tooltip-popup.right .arrow {
-      right: 100%;
-      top: 50%;
-      transform: translateY(-50%);
-      border-width: 5px 5px 5px 0;
-      border-color: transparent var(--ui-tooltip-bg, rgba(97, 97, 97, 0.92)) transparent transparent;
-    }
-  `;
-Jt([
-  s({ type: String })
-], Ve.prototype, "label", 2);
-Jt([
-  s({ type: String })
-], Ve.prototype, "placement", 2);
-Jt([
-  s({ type: Boolean })
-], Ve.prototype, "arrow", 2);
-Jt([
-  s({ type: Boolean, reflect: !0 })
-], Ve.prototype, "disabled", 2);
-Jt([
-  m()
-], Ve.prototype, "_visible", 2);
-Ve = Jt([
+Qe.styles = p(_a);
+ii([
+  o({ type: String })
+], Qe.prototype, "label", 2);
+ii([
+  o({ type: String })
+], Qe.prototype, "placement", 2);
+ii([
+  o({ type: Boolean })
+], Qe.prototype, "arrow", 2);
+ii([
+  o({ type: Boolean, reflect: !0 })
+], Qe.prototype, "disabled", 2);
+ii([
+  g()
+], Qe.prototype, "_visible", 2);
+Qe = ii([
   d("ui-tooltip")
-], Ve);
-var Ss = Object.defineProperty, Es = Object.getOwnPropertyDescriptor, Qi = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Es(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Ss(t, i, r), r;
+], Qe);
+const $a = ":host{display:block;--ui-backdrop-color: rgba(0, 0, 0, .5);--ui-backdrop-z-index: 1200}.backdrop{position:var(--ui-backdrop-position, fixed);display:flex;align-items:center;justify-content:center;inset:0;background-color:var(--ui-backdrop-color);z-index:var(--ui-backdrop-z-index);-webkit-tap-highlight-color:transparent;opacity:0;visibility:hidden;transition:opacity .3s cubic-bezier(.4,0,.2,1),visibility .3s}:host([container]){--ui-backdrop-position: absolute}.backdrop.open{opacity:1;visibility:visible}.backdrop.invisible{background-color:transparent}.content{z-index:calc(var(--ui-backdrop-z-index) + 1)}";
+var Sa = Object.defineProperty, Ca = Object.getOwnPropertyDescriptor, er = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Ca(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Sa(t, i, r), r;
 };
-let Bt = class extends c {
+let Rt = class extends c {
   constructor() {
     super(...arguments), this.open = !1, this.invisible = !1, this.container = !1;
   }
@@ -4609,7 +2638,7 @@ let Bt = class extends c {
       invisible: this.invisible
     })}" 
         @click="${this._handleClick}"
-        aria-hidden="${this.open ? y : "true"}"
+        aria-hidden="${this.open ? v : "true"}"
       >
         <div class="content">
           <slot></slot>
@@ -4618,66 +2647,30 @@ let Bt = class extends c {
     `;
   }
 };
-Bt.styles = p`
-    :host {
-      display: block;
-      --ui-backdrop-color: rgba(0, 0, 0, 0.5);
-      --ui-backdrop-z-index: 1200;
-    }
-
-    .backdrop {
-      position: var(--ui-backdrop-position, fixed);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      inset: 0;
-      background-color: var(--ui-backdrop-color);
-      z-index: var(--ui-backdrop-z-index);
-      -webkit-tap-highlight-color: transparent;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s;
-    }
-
-    :host([container]) {
-      --ui-backdrop-position: absolute;
-    }
-
-    .backdrop.open {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .backdrop.invisible {
-      background-color: transparent;
-    }
-
-    .content {
-      z-index: calc(var(--ui-backdrop-z-index) + 1);
-    }
-  `;
-Qi([
-  s({ type: Boolean, reflect: !0 })
-], Bt.prototype, "open", 2);
-Qi([
-  s({ type: Boolean })
-], Bt.prototype, "invisible", 2);
-Qi([
-  s({ type: Boolean, reflect: !0 })
-], Bt.prototype, "container", 2);
-Bt = Qi([
+Rt.styles = p($a);
+er([
+  o({ type: Boolean, reflect: !0 })
+], Rt.prototype, "open", 2);
+er([
+  o({ type: Boolean })
+], Rt.prototype, "invisible", 2);
+er([
+  o({ type: Boolean, reflect: !0 })
+], Rt.prototype, "container", 2);
+Rt = er([
   d("ui-backdrop")
-], Bt);
-var Ps = Object.defineProperty, Os = Object.getOwnPropertyDescriptor, Te = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Os(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Ps(t, i, r), r;
+], Rt);
+const Ia = ":host{display:block}.dialog-panel{position:relative;background-color:var(--ui-surface-background, white);border-radius:var(--ui-border-radius-xl, 12px);box-shadow:var(--ui-shadow-xl, 0 20px 25px -5px rgba(0, 0, 0, .1));max-width:90vw;max-height:var(--ui-dialog-max-height, 90vh);width:var(--ui-dialog-width, 444px);display:flex;flex-direction:column;overflow:hidden;opacity:0;transform:scale(.9);transition:opacity .25s cubic-bezier(.4,0,.2,1),transform .25s cubic-bezier(.4,0,.2,1);pointer-events:none}.dialog-panel.open{opacity:1;transform:scale(1);pointer-events:auto}.dialog-panel.transition-slide-up{transform:translateY(40px)}.dialog-panel.transition-slide-up.open{transform:translateY(0)}.dialog-panel.transition-slide-down{transform:translateY(-40px)}.dialog-panel.transition-slide-down.open{transform:translateY(0)}", Ea = ':host{display:block;padding:20px 24px 12px;font-family:var(--ui-font-family, "Inter", sans-serif);font-size:1.25rem;font-weight:600;color:var(--ui-text-color, #111827)}', Pa = ":host{display:block;padding:0 24px 20px;flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch}", Oa = ':host{display:block;font-family:var(--ui-font-family, "Inter", sans-serif);font-size:.9375rem;line-height:1.6;color:var(--ui-text-color-muted, #6b7280);margin-bottom:8px}', Da = ':host{display:flex;align-items:center;justify-content:flex-end;padding:8px 16px 16px;gap:8px;border-top:1px solid var(--ui-border-color, #f3f4f6)}:host([align="start"]){justify-content:flex-start}:host([align="center"]){justify-content:center}:host([align="space-between"]){justify-content:space-between}';
+var za = Object.defineProperty, Ta = Object.getOwnPropertyDescriptor, Ge = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Ta(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && za(t, i, r), r;
 };
-const Me = [];
-let Tt = class extends c {
+const Xe = [];
+let Vt = class extends c {
   constructor() {
     super(...arguments), this.open = !1, this.transition = "scale", this.disableBackdropClose = !1, this._handleKeyDown = (e) => {
-      e.key === "Escape" && this.open && Me[Me.length - 1] === this && this.requestClose();
+      e.key === "Escape" && this.open && Xe[Xe.length - 1] === this && this.requestClose();
     };
   }
   connectedCallback() {
@@ -4686,16 +2679,16 @@ let Tt = class extends c {
   updated(e) {
     if (super.updated(e), e.has("open"))
       if (this.open)
-        Me.includes(this) || Me.push(this);
+        Xe.includes(this) || Xe.push(this);
       else {
-        const t = Me.indexOf(this);
-        t !== -1 && Me.splice(t, 1);
+        const t = Xe.indexOf(this);
+        t !== -1 && Xe.splice(t, 1);
       }
   }
   disconnectedCallback() {
     super.disconnectedCallback(), window.removeEventListener("keydown", this._handleKeyDown);
-    const e = Me.indexOf(this);
-    e !== -1 && Me.splice(e, 1);
+    const e = Xe.indexOf(this);
+    e !== -1 && Xe.splice(e, 1);
   }
   /** Programmatically request the dialog to close (fires the 'close' event). */
   requestClose() {
@@ -4725,119 +2718,47 @@ let Tt = class extends c {
     `;
   }
 };
-Tt.styles = p`
-    :host {
-      display: block;
-    }
-
-    .dialog-panel {
-      position: relative;
-      background-color: var(--ui-surface-background, white);
-      border-radius: var(--ui-border-radius-xl, 12px);
-      box-shadow: var(--ui-shadow-xl, 0 20px 25px -5px rgba(0, 0, 0, 0.1));
-      max-width: 90vw;
-      max-height: var(--ui-dialog-max-height, 90vh); /* ← bounds the panel so content scrolls */
-      width: var(--ui-dialog-width, 444px);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden; /* clip panel; inner ui-dialog-content scrolls independently */
-
-      /* Base state: hidden (scale transition) */
-      opacity: 0;
-      transform: scale(0.9);
-      transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-                  transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      pointer-events: none;
-    }
-
-    .dialog-panel.open {
-      opacity: 1;
-      transform: scale(1);
-      pointer-events: auto;
-    }
-
-    /* Slide-up: start below, animate to centre */
-    .dialog-panel.transition-slide-up {
-      transform: translateY(40px);
-    }
-    .dialog-panel.transition-slide-up.open {
-      transform: translateY(0);
-    }
-
-    /* Slide-down: start above, animate to centre */
-    .dialog-panel.transition-slide-down {
-      transform: translateY(-40px);
-    }
-    .dialog-panel.transition-slide-down.open {
-      transform: translateY(0);
-    }
-  `;
-Te([
-  s({ type: Boolean, reflect: !0 })
-], Tt.prototype, "open", 2);
-Te([
-  s({ type: String })
-], Tt.prototype, "transition", 2);
-Te([
-  s({ type: Boolean, attribute: "disable-backdrop-close" })
-], Tt.prototype, "disableBackdropClose", 2);
-Tt = Te([
+Vt.styles = p(Ia);
+Ge([
+  o({ type: Boolean, reflect: !0 })
+], Vt.prototype, "open", 2);
+Ge([
+  o({ type: String })
+], Vt.prototype, "transition", 2);
+Ge([
+  o({ type: Boolean, attribute: "disable-backdrop-close" })
+], Vt.prototype, "disableBackdropClose", 2);
+Vt = Ge([
   d("ui-dialog")
-], Tt);
-let mr = class extends c {
+], Vt);
+let xr = class extends c {
   render() {
     return l`<h2 id="dialog-title" style="margin:0;font-size:inherit;font-weight:inherit;"><slot></slot></h2>`;
   }
 };
-mr.styles = p`
-    :host {
-      display: block;
-      padding: 20px 24px 12px;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: var(--ui-text-color, #111827);
-    }
-  `;
-mr = Te([
+xr.styles = p(Ea);
+xr = Ge([
   d("ui-dialog-title")
-], mr);
-let vr = class extends c {
+], xr);
+let _r = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
-vr.styles = p`
-    :host {
-      display: block;
-      padding: 0 24px 20px 24px;
-      flex: 1 1 auto;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-  `;
-vr = Te([
+_r.styles = p(Pa);
+_r = Ge([
   d("ui-dialog-content")
-], vr);
-let yr = class extends c {
+], _r);
+let wr = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
-yr.styles = p`
-    :host {
-      display: block;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-      font-size: 0.9375rem;
-      line-height: 1.6;
-      color: var(--ui-text-color-muted, #6b7280);
-      margin-bottom: 8px;
-    }
-  `;
-yr = Te([
+wr.styles = p(Oa);
+wr = Ge([
   d("ui-dialog-content-text")
-], yr);
-let zi = class extends c {
+], wr);
+let Ai = class extends c {
   constructor() {
     super(...arguments), this.align = "end";
   }
@@ -4845,155 +2766,111 @@ let zi = class extends c {
     return l`<slot></slot>`;
   }
 };
-zi.styles = p`
-    :host {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding: 8px 16px 16px;
-      gap: 8px;
-      border-top: 1px solid var(--ui-border-color, #f3f4f6);
-    }
-
-    :host([align="start"]) { justify-content: flex-start; }
-    :host([align="center"]) { justify-content: center; }
-    :host([align="space-between"]) { justify-content: space-between; }
-  `;
-Te([
-  s({ type: String, reflect: !0 })
-], zi.prototype, "align", 2);
-zi = Te([
+Ai.styles = p(Da);
+Ge([
+  o({ type: String, reflect: !0 })
+], Ai.prototype, "align", 2);
+Ai = Ge([
   d("ui-dialog-actions")
-], zi);
-var Ds = Object.defineProperty, zs = Object.getOwnPropertyDescriptor, $i = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? zs(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Ds(t, i, r), r;
+], Ai);
+const Aa = ":host{display:inline-block;--ui-circular-progress-size: 40px;--ui-circular-progress-color: var(--ui-primary-color, #3b82f6);--ui-circular-progress-thickness: 3.6}.circular-root{width:var(--ui-circular-progress-size);height:var(--ui-circular-progress-size);display:inline-block;animation:rotate 1.4s linear infinite}.circular-root.determinate{animation:none;transform:rotate(-90deg)}svg{display:block}circle{stroke:var(--ui-circular-progress-color);stroke-linecap:round;transition:stroke-dashoffset .3s ease}.indeterminate circle{animation:dash 1.4s ease-in-out infinite;stroke-dasharray:80,200;stroke-dashoffset:0}@keyframes rotate{to{transform:rotate(360deg)}}@keyframes dash{0%{stroke-dasharray:1,200;stroke-dashoffset:0}50%{stroke-dasharray:89,200;stroke-dashoffset:-35px}to{stroke-dasharray:89,200;stroke-dashoffset:-124px}}";
+var Ba = Object.defineProperty, Ma = Object.getOwnPropertyDescriptor, Ct = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Ma(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Ba(t, i, r), r;
 };
-let at = class extends c {
+let ue = class extends c {
   constructor() {
-    super(...arguments), this.variant = "indeterminate", this.value = 0, this.size = 40, this.thickness = 3.6;
+    super(...arguments), this.variant = "indeterminate", this.value = 0, this.size = 40, this.thickness = 3.6, this.color = "primary", this.label = "";
+  }
+  get _safeValue() {
+    return Math.min(100, Math.max(0, this.value));
   }
   render() {
-    const e = this.variant === "determinate", t = 20, i = 2 * Math.PI * t, o = i - this.value / 100 * i;
+    const e = this.variant === "determinate", t = 20 - this.thickness / 2, i = 2 * Math.PI * t, s = i - this._safeValue / 100 * i, r = ue._colorMap[this.color] ?? ue._colorMap.primary;
     return l`
-      <div 
+      <div
         class="circular-root ${u({ determinate: e, indeterminate: !e })}"
-        style="--ui-circular-progress-size: ${this.size}px; --ui-circular-progress-thickness: ${this.thickness}"
+        style="--ui-circular-progress-size: ${this.size}px; --ui-circular-progress-thickness: ${this.thickness}; --ui-circular-progress-color: ${r}"
         role="progressbar"
-        aria-valuenow="${e ? this.value : void 0}"
+        aria-valuenow="${e ? this._safeValue : v}"
         aria-valuemin="0"
         aria-valuemax="100"
+        aria-label="${this.label || v}"
       >
         <svg viewBox="22 22 44 44">
-          <circle 
+          <circle
             class="circle"
-            cx="44" 
-            cy="44" 
-            r="${t}" 
-            fill="none" 
+            cx="44"
+            cy="44"
+            r="${t}"
+            fill="none"
             stroke-width="${this.thickness}"
-            style="${e ? `stroke-dasharray: ${i}; stroke-dashoffset: ${o}px` : ""}"
+            style="${e ? `stroke-dasharray: ${i}; stroke-dashoffset: ${s}px` : ""}"
           ></circle>
         </svg>
       </div>
     `;
   }
 };
-at.styles = p`
-    :host {
-      display: inline-block;
-      --ui-circular-progress-size: 40px;
-      --ui-circular-progress-color: var(--ui-primary-color, #3b82f6);
-      --ui-circular-progress-thickness: 3.6;
-    }
-
-    .circular-root {
-      width: var(--ui-circular-progress-size);
-      height: var(--ui-circular-progress-size);
-      display: inline-block;
-      animation: rotate 1.4s linear infinite;
-    }
-
-    .circular-root.determinate {
-      animation: none;
-      transform: rotate(-90deg);
-    }
-
-    svg {
-      display: block;
-    }
-
-    circle {
-      stroke: var(--ui-circular-progress-color);
-      stroke-linecap: round;
-      transition: stroke-dashoffset 0.3s ease;
-    }
-
-    .indeterminate circle {
-      animation: dash 1.4s ease-in-out infinite;
-      stroke-dasharray: 80, 200;
-      stroke-dashoffset: 0;
-    }
-
-    @keyframes rotate {
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes dash {
-      0% {
-        stroke-dasharray: 1, 200;
-        stroke-dashoffset: 0;
-      }
-      50% {
-        stroke-dasharray: 89, 200;
-        stroke-dashoffset: -35px;
-      }
-      100% {
-        stroke-dasharray: 89, 200;
-        stroke-dashoffset: -124px;
-      }
-    }
-  `;
-$i([
-  s({ type: String })
-], at.prototype, "variant", 2);
-$i([
-  s({ type: Number })
-], at.prototype, "value", 2);
-$i([
-  s({ type: Number })
-], at.prototype, "size", 2);
-$i([
-  s({ type: Number })
-], at.prototype, "thickness", 2);
-at = $i([
-  d("ui-circular-progress")
-], at);
-var Bs = Object.defineProperty, Ts = Object.getOwnPropertyDescriptor, to = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Ts(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Bs(t, i, r), r;
+ue.styles = p(Aa);
+ue._colorMap = {
+  primary: "#3b82f6",
+  success: "#22c55e",
+  error: "#ef4444",
+  warning: "#f59e0b"
 };
-let ci = class extends c {
+Ct([
+  o({ type: String, reflect: !0 })
+], ue.prototype, "variant", 2);
+Ct([
+  o({ type: Number, reflect: !0 })
+], ue.prototype, "value", 2);
+Ct([
+  o({ type: Number })
+], ue.prototype, "size", 2);
+Ct([
+  o({ type: Number })
+], ue.prototype, "thickness", 2);
+Ct([
+  o({ type: String, reflect: !0 })
+], ue.prototype, "color", 2);
+Ct([
+  o({ type: String })
+], ue.prototype, "label", 2);
+ue = Ct([
+  d("ui-circular-progress")
+], ue);
+const La = ":host{display:block;width:100%;--ui-linear-progress-height: 4px;--ui-linear-progress-color: var(--ui-primary-color, #3b82f6);--ui-linear-progress-bg: rgba(59, 130, 246, .15)}.root{position:relative;overflow:hidden;height:var(--ui-linear-progress-height);background-color:var(--ui-linear-progress-bg);border-radius:calc(var(--ui-linear-progress-height) / 2)}.bar{width:100%;position:absolute;left:0;bottom:0;top:0;transition:transform .4s linear;transform-origin:left;background-color:var(--ui-linear-progress-color);border-radius:inherit}.indeterminate .bar1{width:auto;animation:indeterminate1 2.1s cubic-bezier(.65,.815,.735,.395) infinite}.indeterminate .bar2{width:auto;animation:indeterminate2 2.1s cubic-bezier(.165,.84,.44,1) infinite;animation-delay:1.15s}@keyframes indeterminate1{0%{left:-35%;right:100%}60%{left:100%;right:-90%}to{left:100%;right:-90%}}@keyframes indeterminate2{0%{left:-200%;right:100%}60%{left:107%;right:-8%}to{left:107%;right:-8%}}";
+var ja = Object.defineProperty, Ua = Object.getOwnPropertyDescriptor, ri = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Ua(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && ja(t, i, r), r;
+};
+let xe = class extends c {
   constructor() {
-    super(...arguments), this.variant = "indeterminate", this.value = 0;
+    super(...arguments), this.variant = "indeterminate", this.value = 0, this.height = 4, this.color = "primary", this.label = "";
   }
-  // 0-100
+  get _safeValue() {
+    return Math.min(100, Math.max(0, this.value));
+  }
   render() {
-    const e = this.variant === "determinate";
+    const e = this.variant === "determinate", t = xe._colorMap[this.color] ?? xe._colorMap.primary, i = [
+      `--ui-linear-progress-height: ${this.height}px`,
+      `--ui-linear-progress-color: ${t}`
+    ].join("; ");
     return l`
-      <div 
+      <div
         class="root ${u({ determinate: e, indeterminate: !e })}"
         role="progressbar"
-        aria-valuenow="${e ? this.value : void 0}"
+        aria-valuenow="${e ? this._safeValue : v}"
         aria-valuemin="0"
         aria-valuemax="100"
+        aria-label="${this.label || v}"
+        style="${i}"
       >
         ${e ? l`
-          <div class="bar" style="transform: scaleX(${this.value / 100})"></div>
+          <div class="bar" style="transform: scaleX(${this._safeValue / 100})"></div>
         ` : l`
           <div class="bar bar1"></div>
           <div class="bar bar2"></div>
@@ -5002,91 +2879,38 @@ let ci = class extends c {
     `;
   }
 };
-ci.styles = p`
-    :host {
-      display: block;
-      width: 100%;
-      --ui-linear-progress-height: 4px;
-      --ui-linear-progress-color: var(--ui-primary-color, #3b82f6);
-      --ui-linear-progress-bg: rgba(59, 130, 246, 0.15);
-    }
-
-    .root {
-      position: relative;
-      overflow: hidden;
-      height: var(--ui-linear-progress-height);
-      background-color: var(--ui-linear-progress-bg);
-      border-radius: calc(var(--ui-linear-progress-height) / 2);
-    }
-
-    .bar {
-      width: 100%;
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      top: 0;
-      transition: transform 0.4s linear;
-      transform-origin: left;
-      background-color: var(--ui-linear-progress-color);
-      border-radius: inherit;
-    }
-
-    .indeterminate .bar1 {
-      width: auto;
-      animation: indeterminate1 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
-    }
-
-    .indeterminate .bar2 {
-      width: auto;
-      animation: indeterminate2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
-      animation-delay: 1.15s;
-    }
-
-    @keyframes indeterminate1 {
-      0% {
-        left: -35%;
-        right: 100%;
-      }
-      60% {
-        left: 100%;
-        right: -90%;
-      }
-      100% {
-        left: 100%;
-        right: -90%;
-      }
-    }
-
-    @keyframes indeterminate2 {
-      0% {
-        left: -200%;
-        right: 100%;
-      }
-      60% {
-        left: 107%;
-        right: -8%;
-      }
-      100% {
-        left: 107%;
-        right: -8%;
-      }
-    }
-  `;
-to([
-  s({ type: String })
-], ci.prototype, "variant", 2);
-to([
-  s({ type: Number })
-], ci.prototype, "value", 2);
-ci = to([
-  d("ui-linear-progress")
-], ci);
-var As = Object.defineProperty, Ms = Object.getOwnPropertyDescriptor, Qt = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Ms(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && As(t, i, r), r;
+xe.styles = p(La);
+xe._colorMap = {
+  primary: "#3b82f6",
+  success: "#22c55e",
+  error: "#ef4444",
+  warning: "#f59e0b"
 };
-let di = class extends c {
+ri([
+  o({ type: String, reflect: !0 })
+], xe.prototype, "variant", 2);
+ri([
+  o({ type: Number, reflect: !0 })
+], xe.prototype, "value", 2);
+ri([
+  o({ type: Number })
+], xe.prototype, "height", 2);
+ri([
+  o({ type: String, reflect: !0 })
+], xe.prototype, "color", 2);
+ri([
+  o({ type: String })
+], xe.prototype, "label", 2);
+xe = ri([
+  d("ui-linear-progress")
+], xe);
+const Ra = ":host{display:block;border-top:1px solid var(--ui-border-color, #e5e7eb);background-color:var(--ui-surface-background, #ffffff);color:var(--ui-text-color, #111827);transition:margin .15s cubic-bezier(.4,0,.2,1)}:host(:first-of-type){border-top:none;border-top-left-radius:var(--ui-border-radius-md, 4px);border-top-right-radius:var(--ui-border-radius-md, 4px)}:host(:last-of-type){border-bottom-left-radius:var(--ui-border-radius-md, 4px);border-bottom-right-radius:var(--ui-border-radius-md, 4px)}:host([expanded]){margin:16px 0;border-top:none;box-shadow:var(--ui-shadow-md, 0 4px 6px -1px rgba(0, 0, 0, .1))}:host([expanded]:first-of-type){margin-top:0}:host([expanded]:last-of-type){margin-bottom:0}.accordion-container{display:flex;flex-direction:column}", Va = ":host{display:flex;align-items:center;padding:0 16px;min-height:48px;cursor:pointer;-webkit-user-select:none;user-select:none;transition:min-height .15s cubic-bezier(.4,0,.2,1),background-color .15s cubic-bezier(.4,0,.2,1)}:host(:focus-visible){outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:-2px}:host(:hover){background-color:var(--ui-hover-color, rgba(0, 0, 0, .04))}:host([expanded]){min-height:64px}:host([disabled]){cursor:default;opacity:.5;pointer-events:none}.content{display:flex;flex-grow:1;margin:12px 0;font-family:var(--ui-font-family, sans-serif);font-weight:500}.expand-icon{display:flex;padding:8px;border-radius:50%;color:var(--ui-text-color-muted, #6b7280);transition:transform .15s cubic-bezier(.4,0,.2,1)}:host([expanded]) .expand-icon{transform:rotate(180deg)}", Na = ":host{display:grid;grid-template-rows:0fr;transition:grid-template-rows .15s cubic-bezier(.4,0,.2,1);overflow:hidden}:host([expanded]){grid-template-rows:1fr}.details-inner{min-height:0}.content{padding:8px 16px 16px;font-family:var(--ui-font-family, sans-serif);font-size:.875rem;color:var(--ui-text-color, #111827)}", Fa = ":host{display:none;padding:8px 16px 16px;justify-content:flex-end;gap:8px;border-top:1px solid var(--ui-border-color, #e5e7eb)}:host([expanded]){display:flex}";
+var qa = Object.defineProperty, Ha = Object.getOwnPropertyDescriptor, si = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Ha(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && qa(t, i, r), r;
+};
+let fi = class extends c {
   constructor() {
     super(), this.expanded = !1, this.disabled = !1, this._handleToggle = () => {
       this.disabled || (this.expanded = !this.expanded, this.dispatchEvent(new CustomEvent("ui-accordion-change", {
@@ -5109,55 +2933,17 @@ let di = class extends c {
         `;
   }
 };
-di.styles = p`
-        :host {
-            display: block;
-            border-top: 1px solid var(--ui-border-color, #e5e7eb);
-            background-color: var(--ui-surface-background, #ffffff);
-            color: var(--ui-text-color, #111827);
-            transition: margin 150ms cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        :host(:first-of-type) {
-            border-top: none;
-            border-top-left-radius: var(--ui-border-radius-md, 4px);
-            border-top-right-radius: var(--ui-border-radius-md, 4px);
-        }
-
-        :host(:last-of-type) {
-            border-bottom-left-radius: var(--ui-border-radius-md, 4px);
-            border-bottom-right-radius: var(--ui-border-radius-md, 4px);
-        }
-
-        :host([expanded]) {
-            margin: 16px 0;
-            border-top: none;
-            box-shadow: var(--ui-shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
-        }
-
-        :host([expanded]:first-of-type) {
-            margin-top: 0;
-        }
-
-        :host([expanded]:last-of-type) {
-            margin-bottom: 0;
-        }
-
-        .accordion-container {
-            display: flex;
-            flex-direction: column;
-        }
-    `;
-Qt([
-  s({ type: Boolean, reflect: !0 })
-], di.prototype, "expanded", 2);
-Qt([
-  s({ type: Boolean, reflect: !0 })
-], di.prototype, "disabled", 2);
-di = Qt([
+fi.styles = p(Ra);
+si([
+  o({ type: Boolean, reflect: !0 })
+], fi.prototype, "expanded", 2);
+si([
+  o({ type: Boolean, reflect: !0 })
+], fi.prototype, "disabled", 2);
+fi = si([
   d("ui-accordion")
-], di);
-let xr = class extends c {
+], fi);
+let kr = class extends c {
   constructor() {
     super(), this._handleActivate = () => {
       this.dispatchEvent(new CustomEvent("ui-accordion-toggle", {
@@ -5186,60 +2972,11 @@ let xr = class extends c {
         `;
   }
 };
-xr.styles = p`
-        :host {
-            display: flex;
-            align-items: center;
-            padding: 0 16px;
-            min-height: 48px;
-            cursor: pointer;
-            user-select: none;
-            transition: min-height 150ms cubic-bezier(0.4, 0, 0.2, 1), background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        :host(:focus-visible) {
-            outline: 2px solid var(--ui-primary-color, #3b82f6);
-            outline-offset: -2px;
-        }
-
-        :host(:hover) {
-            background-color: var(--ui-hover-color, rgba(0, 0, 0, 0.04));
-        }
-
-        :host([expanded]) {
-            min-height: 64px;
-        }
-
-        :host([disabled]) {
-            cursor: default;
-            opacity: 0.5;
-            pointer-events: none;
-        }
-
-        .content {
-            display: flex;
-            flex-grow: 1;
-            margin: 12px 0;
-            font-family: var(--ui-font-family, sans-serif);
-            font-weight: 500;
-        }
-
-        .expand-icon {
-            display: flex;
-            padding: 8px;
-            border-radius: 50%;
-            color: var(--ui-text-color-muted, #6b7280);
-            transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        :host([expanded]) .expand-icon {
-            transform: rotate(180deg);
-        }
-    `;
-xr = Qt([
+kr.styles = p(Va);
+kr = si([
   d("ui-accordion-summary")
-], xr);
-let _r = class extends c {
+], kr);
+let $r = class extends c {
   render() {
     return l`
             <div class="details-inner">
@@ -5250,59 +2987,26 @@ let _r = class extends c {
         `;
   }
 };
-_r.styles = p`
-        :host {
-            display: grid;
-            grid-template-rows: 0fr;
-            transition: grid-template-rows 150ms cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: hidden;
-        }
-
-        :host([expanded]) {
-            grid-template-rows: 1fr;
-        }
-
-        .details-inner {
-            min-height: 0;
-        }
-
-        .content {
-            padding: 8px 16px 16px;
-            font-family: var(--ui-font-family, sans-serif);
-            font-size: 0.875rem;
-            color: var(--ui-text-color, #111827);
-        }
-    `;
-_r = Qt([
+$r.styles = p(Na);
+$r = si([
   d("ui-accordion-details")
-], _r);
-let wr = class extends c {
+], $r);
+let Sr = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
-wr.styles = p`
-        :host {
-            display: none;
-            padding: 8px 16px 16px;
-            justify-content: flex-end;
-            gap: 8px;
-            border-top: 1px solid var(--ui-border-color, #e5e7eb);
-        }
-
-        :host([expanded]) {
-            display: flex;
-        }
-    `;
-wr = Qt([
+Sr.styles = p(Fa);
+Sr = si([
   d("ui-accordion-actions")
-], wr);
-var Ls = Object.defineProperty, js = Object.getOwnPropertyDescriptor, Zi = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? js(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Ls(t, i, r), r;
+], Sr);
+const Ka = ':host{display:block;position:relative;--ui-app-bar-height: 64px;--ui-app-bar-bg: var(--ui-primary-color, #3b82f6);--ui-app-bar-color: var(--ui-text-color-on-primary, #ffffff);--ui-app-bar-shadow: var(--ui-shadow-md, 0 4px 6px -1px rgba(0, 0, 0, .1));z-index:1100}:host([position="fixed"]){position:fixed;top:0;left:0;right:0}:host([position="absolute"]){position:absolute;top:0;left:0;right:0}:host([position="sticky"]){position:sticky;top:0}header{display:flex;align-items:center;box-sizing:border-box;width:100%;height:var(--ui-app-bar-height);padding:0 16px;background-color:var(--ui-app-bar-bg);color:var(--ui-app-bar-color);box-shadow:var(--ui-app-bar-shadow);position:relative}header.variant-outlined{background-color:var(--ui-surface-background, #ffffff);color:var(--ui-text-color, #111827);border-bottom:1px solid var(--ui-border-color, #e5e7eb);box-shadow:none}.title{flex-grow:1;min-width:0;margin:0 16px;font-family:var(--ui-font-family, sans-serif);font-size:1.25rem;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.left-section,.right-section{display:flex;align-items:center;flex-shrink:0;gap:8px}';
+var Ya = Object.defineProperty, Ga = Object.getOwnPropertyDescriptor, tr = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Ga(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Ya(t, i, r), r;
 };
-let At = class extends c {
+let Nt = class extends c {
   constructor() {
     super(...arguments), this.title = "", this.position = "static", this.variant = "regular";
   }
@@ -5326,93 +3030,26 @@ let At = class extends c {
     `;
   }
 };
-At.styles = p`
-    :host {
-      display: block;
-      position: relative;
-      --ui-app-bar-height: 64px;
-      --ui-app-bar-bg: var(--ui-primary-color, #3b82f6);
-      --ui-app-bar-color: var(--ui-text-color-on-primary, #ffffff);
-      --ui-app-bar-shadow: var(--ui-shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
-      z-index: 1100;
-    }
-
-    :host([position="fixed"]) {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-    }
-
-    :host([position="absolute"]) {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-    }
-
-    :host([position="sticky"]) {
-      position: sticky;
-      top: 0;
-    }
-
-    header {
-      display: flex;
-      align-items: center;
-      box-sizing: border-box;
-      width: 100%;
-      height: var(--ui-app-bar-height);
-      padding: 0 16px;
-      background-color: var(--ui-app-bar-bg);
-      color: var(--ui-app-bar-color);
-      box-shadow: var(--ui-app-bar-shadow);
-      position: relative;
-    }
-
-    header.variant-outlined {
-      background-color: var(--ui-surface-background, #ffffff);
-      color: var(--ui-text-color, #111827);
-      border-bottom: 1px solid var(--ui-border-color, #e5e7eb);
-      box-shadow: none;
-    }
-
-    .title {
-      flex-grow: 1;
-      min-width: 0;
-      margin: 0 16px;
-      font-family: var(--ui-font-family, sans-serif);
-      font-size: 1.25rem;
-      font-weight: 500;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .left-section, .right-section {
-      display: flex;
-      align-items: center;
-      flex-shrink: 0;
-      gap: 8px;
-    }
-  `;
-Zi([
-  s({ type: String })
-], At.prototype, "title", 2);
-Zi([
-  s({ type: String, reflect: !0 })
-], At.prototype, "position", 2);
-Zi([
-  s({ type: String, reflect: !0 })
-], At.prototype, "variant", 2);
-At = Zi([
+Nt.styles = p(Ka);
+tr([
+  o({ type: String })
+], Nt.prototype, "title", 2);
+tr([
+  o({ type: String, reflect: !0 })
+], Nt.prototype, "position", 2);
+tr([
+  o({ type: String, reflect: !0 })
+], Nt.prototype, "variant", 2);
+Nt = tr([
   d("ui-app-bar")
-], At);
-var Us = Object.defineProperty, Rs = Object.getOwnPropertyDescriptor, Ci = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Rs(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Us(t, i, r), r;
+], Nt);
+const Wa = ":host{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 12px 8px;color:var(--ui-text-color-muted, #6b7280);cursor:pointer;transition:color .25s cubic-bezier(.4,0,.2,1),padding .25s cubic-bezier(.4,0,.2,1);-webkit-user-select:none;user-select:none;min-width:80px;max-width:168px}:host(:hover){background-color:var(--ui-hover-color, rgba(0, 0, 0, .04))}:host([active]){color:var(--ui-primary-color, #3b82f6);padding-top:8px}.icon-container{display:flex;align-items:center;justify-content:center;height:24px;margin-bottom:2px;transition:transform .25s cubic-bezier(.4,0,.2,1)}:host([active]) .icon-container{transform:scale(1.1)}.label{font-family:var(--ui-font-family, sans-serif);font-size:.75rem;transition:font-size .25s cubic-bezier(.4,0,.2,1),opacity .25s cubic-bezier(.4,0,.2,1);opacity:1}:host([active]) .label{font-size:.875rem}.label.hidden{opacity:0;font-size:0;pointer-events:none}";
+var Xa = Object.defineProperty, Ja = Object.getOwnPropertyDescriptor, Ii = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Ja(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Xa(t, i, r), r;
 };
-let Fe = class extends c {
+let et = class extends c {
   constructor() {
     super(...arguments), this.label = "", this.active = !1, this.showLabel = !0, this._handleKeydown = (e) => {
       (e.key === "Enter" || e.key === " ") && (e.preventDefault(), this.click());
@@ -5439,82 +3076,29 @@ let Fe = class extends c {
         `;
   }
 };
-Fe.styles = p`
-        :host {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 6px 12px 8px;
-            color: var(--ui-text-color-muted, #6b7280);
-            cursor: pointer;
-            transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), padding 250ms cubic-bezier(0.4, 0, 0.2, 1);
-            user-select: none;
-            min-width: 80px;
-            max-width: 168px;
-        }
-
-        :host(:hover) {
-            background-color: var(--ui-hover-color, rgba(0, 0, 0, 0.04));
-        }
-
-        :host([active]) {
-            color: var(--ui-primary-color, #3b82f6);
-            padding-top: 8px;
-        }
-
-        .icon-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 24px;
-            margin-bottom: 2px;
-            transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        :host([active]) .icon-container {
-            transform: scale(1.1);
-        }
-
-        .label {
-            font-family: var(--ui-font-family, sans-serif);
-            font-size: 0.75rem;
-            transition: font-size 250ms cubic-bezier(0.4, 0, 0.2, 1), opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-            opacity: 1;
-        }
-
-        :host([active]) .label {
-            font-size: 0.875rem;
-        }
-
-        .label.hidden {
-            opacity: 0;
-            font-size: 0;
-            pointer-events: none;
-        }
-    `;
-Ci([
-  s({ type: String })
-], Fe.prototype, "label", 2);
-Ci([
-  s()
-], Fe.prototype, "value", 2);
-Ci([
-  s({ type: Boolean, reflect: !0 })
-], Fe.prototype, "active", 2);
-Ci([
-  s({ type: Boolean })
-], Fe.prototype, "showLabel", 2);
-Fe = Ci([
+et.styles = p(Wa);
+Ii([
+  o({ type: String })
+], et.prototype, "label", 2);
+Ii([
+  o()
+], et.prototype, "value", 2);
+Ii([
+  o({ type: Boolean, reflect: !0 })
+], et.prototype, "active", 2);
+Ii([
+  o({ type: Boolean })
+], et.prototype, "showLabel", 2);
+et = Ii([
   d("ui-bottom-navigation-action")
-], Fe);
-var Ns = Object.defineProperty, Vs = Object.getOwnPropertyDescriptor, er = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Vs(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Ns(t, i, r), r;
+], et);
+const Za = ":host{display:flex;justify-content:center;height:56px;background-color:var(--ui-surface-background, #ffffff);box-shadow:var(--ui-shadow-lg, 0 -1px 10px rgba(0, 0, 0, .1));position:relative;width:100%}.container{display:flex;flex:1;max-width:100%}";
+var Qa = Object.defineProperty, en = Object.getOwnPropertyDescriptor, ir = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? en(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Qa(t, i, r), r;
 };
-let Mt = class extends c {
+let Ft = class extends c {
   constructor() {
     super(...arguments), this.showLabels = !1;
   }
@@ -5532,7 +3116,7 @@ let Mt = class extends c {
   }
   _handleActionChange(e) {
     const t = e.composedPath().find(
-      (i) => i instanceof Fe
+      (i) => i instanceof et
     );
     !t || t.value === this.value || (this.value = t.value, this.dispatchEvent(new CustomEvent("ui-bottom-navigation-change", {
       detail: { value: t.value },
@@ -5548,48 +3132,33 @@ let Mt = class extends c {
         `;
   }
 };
-Mt.styles = p`
-        :host {
-            display: flex;
-            justify-content: center;
-            height: 56px;
-            background-color: var(--ui-surface-background, #ffffff);
-            box-shadow: var(--ui-shadow-lg, 0 -1px 10px rgba(0, 0, 0, 0.1));
-            position: relative;
-            width: 100%;
-        }
-
-        .container {
-            display: flex;
-            flex: 1;
-            max-width: 100%;
-        }
-    `;
-er([
-  s()
-], Mt.prototype, "value", 2);
-er([
-  s({ type: Boolean, attribute: "show-labels" })
-], Mt.prototype, "showLabels", 2);
-er([
-  co({ selector: "ui-bottom-navigation-action" })
-], Mt.prototype, "_actions", 2);
-Mt = er([
+Ft.styles = p(Za);
+ir([
+  o()
+], Ft.prototype, "value", 2);
+ir([
+  o({ type: Boolean, attribute: "show-labels" })
+], Ft.prototype, "showLabels", 2);
+ir([
+  hs({ selector: "ui-bottom-navigation-action" })
+], Ft.prototype, "_actions", 2);
+Ft = ir([
   d("ui-bottom-navigation")
-], Mt);
-var Fs = Object.defineProperty, qs = Object.getOwnPropertyDescriptor, Je = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? qs(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Fs(t, i, r), r;
+], Ft);
+const tn = ':host{display:block}.breadcrumbs-ol{display:flex;flex-wrap:wrap;align-items:center;padding:0;margin:0;list-style:none}.breadcrumb-li{display:flex;align-items:center}.separator{display:flex;-webkit-user-select:none;user-select:none;margin-left:8px;margin-right:8px;color:var(--ui-text-color-muted, #6b7280)}::slotted(*){font-family:var(--ui-font-family, sans-serif);font-size:.875rem;color:var(--ui-text-color-muted, #6b7280);text-decoration:none;transition:color .2s}::slotted(a:hover){text-decoration:underline;color:var(--ui-text-color, #111827)}::slotted([aria-current="page"]),::slotted(.active){color:var(--ui-text-color, #111827);font-weight:500;pointer-events:none}.collapsed-button{display:flex;align-items:center;justify-content:center;background:var(--ui-hover-color, rgba(0, 0, 0, .04));border:none;border-radius:4px;cursor:pointer;padding:4px 8px;font-size:1rem;line-height:1;color:var(--ui-text-color-muted, #6b7280);transition:background-color .2s}.collapsed-button:hover{background-color:var(--ui-hover-color-strong, rgba(0, 0, 0, .08))}';
+var rn = Object.defineProperty, sn = Object.getOwnPropertyDescriptor, nt = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? sn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && rn(t, i, r), r;
 };
-let ge = class extends c {
+let Pe = class extends c {
   constructor() {
     super(...arguments), this.maxItems = 8, this.itemsBefore = 1, this.itemsAfter = 1, this.separator = "/", this._expanded = !1, this._itemsCount = 0, this._separatorNode = null;
   }
   _handleSlotChange() {
     const t = Array.from(this.children).filter((i) => !i.slot || i.slot.startsWith("breadcrumb-item-"));
-    t.forEach((i, o) => {
-      const r = `breadcrumb-item-${o}`;
+    t.forEach((i, s) => {
+      const r = `breadcrumb-item-${s}`;
       i.getAttribute("slot") !== r && i.setAttribute("slot", r);
     }), this._itemsCount = t.length;
   }
@@ -5620,9 +3189,9 @@ let ge = class extends c {
     const t = Math.min(this.itemsBefore, e), i = Math.min(this.itemsAfter, e - t);
     if (t + i >= e)
       return Array.from({ length: e }).map((a, n) => this._renderItem(n, n === e - 1));
-    const o = Array.from({ length: t }).map((a, n) => n), r = Array.from({ length: i }).map((a, n) => e - i + n);
+    const s = Array.from({ length: t }).map((a, n) => n), r = Array.from({ length: i }).map((a, n) => e - i + n);
     return l`
-            ${o.map((a) => this._renderItem(a, !1))}
+            ${s.map((a) => this._renderItem(a, !1))}
             <li class="breadcrumb-li">
                 <button class="collapsed-button" @click=${() => this._expanded = !0} aria-label="Show all breadcrumbs">
                     ...
@@ -5646,102 +3215,38 @@ let ge = class extends c {
         `;
   }
 };
-ge.styles = p`
-        :host {
-            display: block;
-        }
-
-        .breadcrumbs-ol {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            padding: 0;
-            margin: 0;
-            list-style: none;
-        }
-
-        .breadcrumb-li {
-            display: flex;
-            align-items: center;
-        }
-
-        .separator {
-            display: flex;
-            user-select: none;
-            margin-left: 8px;
-            margin-right: 8px;
-            color: var(--ui-text-color-muted, #6b7280);
-        }
-
-        ::slotted(*) {
-            font-family: var(--ui-font-family, sans-serif);
-            font-size: 0.875rem;
-            color: var(--ui-text-color-muted, #6b7280);
-            text-decoration: none;
-            transition: color 200ms;
-        }
-
-        ::slotted(a:hover) {
-            text-decoration: underline;
-            color: var(--ui-text-color, #111827);
-        }
-
-        ::slotted([aria-current="page"]),
-        ::slotted(.active) {
-            color: var(--ui-text-color, #111827);
-            font-weight: 500;
-            pointer-events: none;
-        }
-
-        .collapsed-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--ui-hover-color, rgba(0, 0, 0, 0.04));
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            padding: 4px 8px;
-            font-size: 1rem;
-            line-height: 1;
-            color: var(--ui-text-color-muted, #6b7280);
-            transition: background-color 200ms;
-        }
-
-        .collapsed-button:hover {
-            background-color: var(--ui-hover-color-strong, rgba(0, 0, 0, 0.08));
-        }
-    `;
-Je([
-  s({ type: Number, attribute: "max-items" })
-], ge.prototype, "maxItems", 2);
-Je([
-  s({ type: Number, attribute: "items-before" })
-], ge.prototype, "itemsBefore", 2);
-Je([
-  s({ type: Number, attribute: "items-after" })
-], ge.prototype, "itemsAfter", 2);
-Je([
-  s({ type: String })
-], ge.prototype, "separator", 2);
-Je([
-  m()
-], ge.prototype, "_expanded", 2);
-Je([
-  m()
-], ge.prototype, "_itemsCount", 2);
-Je([
-  m()
-], ge.prototype, "_separatorNode", 2);
-ge = Je([
+Pe.styles = p(tn);
+nt([
+  o({ type: Number, attribute: "max-items" })
+], Pe.prototype, "maxItems", 2);
+nt([
+  o({ type: Number, attribute: "items-before" })
+], Pe.prototype, "itemsBefore", 2);
+nt([
+  o({ type: Number, attribute: "items-after" })
+], Pe.prototype, "itemsAfter", 2);
+nt([
+  o({ type: String })
+], Pe.prototype, "separator", 2);
+nt([
+  g()
+], Pe.prototype, "_expanded", 2);
+nt([
+  g()
+], Pe.prototype, "_itemsCount", 2);
+nt([
+  g()
+], Pe.prototype, "_separatorNode", 2);
+Pe = nt([
   d("ui-breadcrumbs")
-], ge);
-var Hs = Object.defineProperty, Ys = Object.getOwnPropertyDescriptor, yt = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Ys(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Hs(t, i, r), r;
+], Pe);
+const on = ':host{display:contents;--ui-drawer-width: 250px;--ui-drawer-mini-width: 72px;--ui-drawer-height: auto;--ui-drawer-bg: var(--ui-surface-background, #ffffff);--ui-drawer-z-index: 1200;--ui-drawer-shadow: 0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12)}.backdrop{position:fixed;inset:0;background:#00000080;z-index:calc(var(--ui-drawer-z-index) - 1);opacity:0;pointer-events:none;transition:opacity .25s}:host([container]) .backdrop{position:absolute}.backdrop.open{opacity:1;pointer-events:auto}.paper{position:fixed;background:var(--ui-drawer-bg);z-index:var(--ui-drawer-z-index);display:flex;flex-direction:column;overflow-y:auto;outline:none}:host([container]) .paper{position:absolute}:host(:not([variant])) .paper,:host([variant="temporary"]) .paper{top:0;bottom:0;left:0;width:var(--ui-drawer-width);box-shadow:var(--ui-drawer-shadow);transform:translate(-100%);transition:transform .225s cubic-bezier(0,0,.2,1)}:host(:not([variant])[open]) .paper,:host([variant="temporary"][open]) .paper{transform:translate(0)}:host([variant="temporary"][anchor="right"]) .paper{left:auto;right:0;transform:translate(100%)}:host([variant="temporary"][anchor="right"][open]) .paper{transform:translate(0)}:host([variant="temporary"][anchor="top"]) .paper{inset:0 0 auto;width:auto;height:var(--ui-drawer-height);transform:translateY(-100%)}:host([variant="temporary"][anchor="top"][open]) .paper{transform:translateY(0)}:host([variant="temporary"][anchor="bottom"]) .paper{inset:auto 0 0;width:auto;height:var(--ui-drawer-height);transform:translateY(100%)}:host([variant="temporary"][anchor="bottom"][open]) .paper{transform:translateY(0)}:host([variant="persistent"]) .paper{position:relative;transform:none;box-shadow:none;transition:none;border-right:1px solid var(--ui-border-color, #e5e7eb)}:host([variant="persistent"][anchor="right"]) .paper{border-right:none;border-left:1px solid var(--ui-border-color, #e5e7eb)}:host([variant="persistent"]) .paper:not(.open){display:none}:host([variant="mini"]){display:flex}:host([variant="mini"]) .paper{position:relative;transform:none;box-shadow:none;border-right:1px solid var(--ui-border-color, #e5e7eb);width:var(--ui-drawer-mini-width);overflow-x:hidden;white-space:nowrap;transition:width .225s cubic-bezier(.4,0,.6,1);flex-shrink:0}:host([variant="mini"][anchor="right"]) .paper{border-right:none;border-left:1px solid var(--ui-border-color, #e5e7eb)}:host([variant="mini"][open]) .paper{width:var(--ui-drawer-width)}:host([variant="mini"]:not([open])) ::slotted([data-drawer-hide-mini]){opacity:0;pointer-events:none}::slotted([data-drawer-hide-mini]){transition:opacity .18s}.edge{display:none;position:fixed;background:var(--ui-drawer-bg);border:1px solid var(--ui-border-color, #e5e7eb);box-shadow:0 1px 3px #0000001f;cursor:pointer;z-index:var(--ui-drawer-z-index);align-items:center;justify-content:center}:host([container]) .edge{position:absolute}:host([edge]:not([variant])) .edge,:host([edge][variant="temporary"]) .edge{display:flex}.edge-left{left:0;top:0;bottom:0;width:16px;border-radius:0 8px 8px 0}.edge-right{right:0;top:0;bottom:0;width:16px;border-radius:8px 0 0 8px}.edge-top{top:0;left:0;right:0;height:16px;border-radius:0 0 8px 8px}.edge-bottom{bottom:0;left:0;right:0;height:16px;border-radius:8px 8px 0 0}.edge-handle{width:4px;height:32px;background:#cbd5e1;border-radius:2px}.edge-top .edge-handle,.edge-bottom .edge-handle{width:32px;height:4px}';
+var an = Object.defineProperty, nn = Object.getOwnPropertyDescriptor, It = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? nn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && an(t, i, r), r;
 };
-let Se = class extends c {
+let Re = class extends c {
   constructor() {
     super(...arguments), this.open = !1, this.anchor = "left", this.variant = "temporary", this.edge = !1, this.container = !1, this.label = "Drawer", this._lastFocused = null, this._boundKeyDown = (e) => {
       e.defaultPrevented || this.open && e.key === "Escape" && this.variant === "temporary" && (e.preventDefault(), this._close());
@@ -5791,194 +3296,35 @@ let Se = class extends c {
         `;
   }
 };
-Se.styles = p`
-        :host {
-            display: contents; /* transparent wrapper — doesn't affect layout */
-            --ui-drawer-width: 250px;
-            --ui-drawer-mini-width: 72px;
-            --ui-drawer-height: auto;
-            --ui-drawer-bg: var(--ui-surface-background, #ffffff);
-            --ui-drawer-z-index: 1200;
-            --ui-drawer-shadow: 0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12);
-        }
-
-        /* ── Backdrop ───────────────────────────────────────────────────── */
-        /*
-         * FIX: previously used display:none/.visible pattern which cancelled
-         * the opacity transition on close (display:none fires instantly).
-         * Now always in-flow with pointer-events disabled, so fade-out works.
-         */
-        .backdrop {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,.5);
-            z-index: calc(var(--ui-drawer-z-index) - 1);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity .25s;
-        }
-        :host([container]) .backdrop { position: absolute; }
-        .backdrop.open { opacity: 1; pointer-events: auto; }
-
-        /* ── Paper ──────────────────────────────────────────────────────── */
-        .paper {
-            position: fixed;
-            background: var(--ui-drawer-bg);
-            z-index: var(--ui-drawer-z-index);
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-            outline: none; /* suppress focus ring from programmatic focus */
-        }
-        :host([container]) .paper { position: absolute; }
-
-        /* Temporary – left (default) */
-        :host(:not([variant])) .paper,
-        :host([variant="temporary"]) .paper {
-            top: 0; bottom: 0; left: 0;
-            width: var(--ui-drawer-width);
-            box-shadow: var(--ui-drawer-shadow);
-            transform: translateX(-100%);
-            transition: transform .225s cubic-bezier(0,.0,.2,1);
-        }
-        :host(:not([variant])[open]) .paper,
-        :host([variant="temporary"][open]) .paper {
-            transform: translateX(0);
-        }
-
-        /* Temporary – right */
-        :host([variant="temporary"][anchor="right"]) .paper {
-            left: auto; right: 0;
-            transform: translateX(100%);
-        }
-        :host([variant="temporary"][anchor="right"][open]) .paper {
-            transform: translateX(0);
-        }
-
-        /* Temporary – top */
-        :host([variant="temporary"][anchor="top"]) .paper {
-            top: 0; left: 0; right: 0; bottom: auto;
-            width: auto;
-            height: var(--ui-drawer-height);
-            transform: translateY(-100%);
-        }
-        :host([variant="temporary"][anchor="top"][open]) .paper {
-            transform: translateY(0);
-        }
-
-        /* Temporary – bottom */
-        :host([variant="temporary"][anchor="bottom"]) .paper {
-            top: auto; bottom: 0; left: 0; right: 0;
-            width: auto;
-            height: var(--ui-drawer-height);
-            transform: translateY(100%);
-        }
-        :host([variant="temporary"][anchor="bottom"][open]) .paper {
-            transform: translateY(0);
-        }
-
-        /* ── Persistent ─────────────────────────────────────────────────── */
-        :host([variant="persistent"]) .paper {
-            position: relative;
-            transform: none;
-            box-shadow: none;
-            transition: none;
-            border-right: 1px solid var(--ui-border-color, #e5e7eb);
-        }
-        :host([variant="persistent"][anchor="right"]) .paper {
-            border-right: none;
-            border-left: 1px solid var(--ui-border-color, #e5e7eb);
-        }
-        :host([variant="persistent"]) .paper:not(.open) {
-            display: none;
-        }
-
-        /* ── Mini ───────────────────────────────────────────────────────── */
-        :host([variant="mini"]) {
-            display: flex; /* mini participates in flex layout of its parent */
-        }
-        :host([variant="mini"]) .paper {
-            position: relative;
-            transform: none;
-            box-shadow: none;
-            border-right: 1px solid var(--ui-border-color, #e5e7eb);
-            width: var(--ui-drawer-mini-width);
-            overflow-x: hidden;
-            white-space: nowrap;
-            transition: width .225s cubic-bezier(.4,0,.6,1);
-            flex-shrink: 0;
-        }
-        :host([variant="mini"][anchor="right"]) .paper {
-            border-right: none;
-            border-left: 1px solid var(--ui-border-color, #e5e7eb);
-        }
-        :host([variant="mini"][open]) .paper {
-            width: var(--ui-drawer-width);
-        }
-        /* Fade out labels when mini is collapsed */
-        :host([variant="mini"]:not([open])) ::slotted([data-drawer-hide-mini]) {
-            opacity: 0;
-            pointer-events: none;
-        }
-        ::slotted([data-drawer-hide-mini]) { transition: opacity .18s; }
-
-        /* ── Edge handle ─────────────────────────────────────────────────── */
-        /*
-         * FIX: Edge handle is only meaningful for temporary drawers (overlay
-         * that slides in). For persistent/mini (position:relative), a fixed/
-         * absolute edge handle floats detached from the drawer. Restrict it.
-         */
-        .edge {
-            display: none;
-            position: fixed;
-            background: var(--ui-drawer-bg);
-            border: 1px solid var(--ui-border-color, #e5e7eb);
-            box-shadow: 0 1px 3px rgba(0,0,0,.12);
-            cursor: pointer;
-            z-index: var(--ui-drawer-z-index);
-            align-items: center;
-            justify-content: center;
-        }
-        :host([container]) .edge { position: absolute; }
-        /* Only show edge for temporary variant */
-        :host([edge]:not([variant])) .edge,
-        :host([edge][variant="temporary"]) .edge { display: flex; }
-
-        .edge-left   { left:0; top:0; bottom:0; width:16px; border-radius:0 8px 8px 0; }
-        .edge-right  { right:0; top:0; bottom:0; width:16px; border-radius:8px 0 0 8px; }
-        .edge-top    { top:0; left:0; right:0; height:16px; border-radius:0 0 8px 8px; }
-        .edge-bottom { bottom:0; left:0; right:0; height:16px; border-radius:8px 8px 0 0; }
-
-        .edge-handle { width:4px; height:32px; background:#cbd5e1; border-radius:2px; }
-        .edge-top .edge-handle, .edge-bottom .edge-handle { width:32px; height:4px; }
-    `;
-yt([
-  s({ type: Boolean, reflect: !0 })
-], Se.prototype, "open", 2);
-yt([
-  s({ type: String, reflect: !0 })
-], Se.prototype, "anchor", 2);
-yt([
-  s({ type: String, reflect: !0 })
-], Se.prototype, "variant", 2);
-yt([
-  s({ type: Boolean, reflect: !0 })
-], Se.prototype, "edge", 2);
-yt([
-  s({ type: Boolean, reflect: !0 })
-], Se.prototype, "container", 2);
-yt([
-  s({ type: String })
-], Se.prototype, "label", 2);
-Se = yt([
+Re.styles = p(on);
+It([
+  o({ type: Boolean, reflect: !0 })
+], Re.prototype, "open", 2);
+It([
+  o({ type: String, reflect: !0 })
+], Re.prototype, "anchor", 2);
+It([
+  o({ type: String, reflect: !0 })
+], Re.prototype, "variant", 2);
+It([
+  o({ type: Boolean, reflect: !0 })
+], Re.prototype, "edge", 2);
+It([
+  o({ type: Boolean, reflect: !0 })
+], Re.prototype, "container", 2);
+It([
+  o({ type: String })
+], Re.prototype, "label", 2);
+Re = It([
   d("ui-drawer")
-], Se);
-var Ks = Object.defineProperty, Ws = Object.getOwnPropertyDescriptor, ke = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Ws(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Ks(t, i, r), r;
+], Re);
+const ln = ':host{display:inline;--ui-link-color: var(--ui-primary-color, #3b82f6);--ui-link-color-hover: var(--ui-primary-color-dark, #2563eb);--ui-link-color-visited: var(--ui-secondary-color, #7c3aed)}a{color:var(--ui-link-color);font-family:var(--ui-font-family, "Inter", sans-serif);font-size:inherit;font-weight:inherit;line-height:inherit;cursor:pointer;display:inline;transition:color .15s ease,opacity .15s ease}:host([color="inherit"]) a{color:inherit}:host([color="primary"]) a{color:var(--ui-primary-color, #3b82f6)}:host([color="secondary"]) a{color:var(--ui-secondary-color, #7c3aed)}:host([color="success"]) a{color:var(--ui-success-color, #16a34a)}:host([color="error"]) a{color:var(--ui-error-color, #dc2626)}:host([color="warning"]) a{color:var(--ui-warning-color, #d97706)}:host([color="info"]) a{color:var(--ui-info-color, #0891b2)}:host([color="textPrimary"]) a{color:var(--ui-text-color, #111827)}:host([color="textSecondary"]) a{color:var(--ui-text-color-muted, #6b7280)}:host([underline="none"]) a{text-decoration:none}:host([underline="hover"]) a{text-decoration:none}:host([underline="hover"]) a:hover{text-decoration:underline}:host([underline="always"]) a{text-decoration:underline}:host([underline="always"]) a:hover{text-decoration:underline}a{text-decoration:underline}a:hover{opacity:.8}a:visited{color:var(--ui-link-color-visited)}:host([color="inherit"]) a:visited{color:inherit}:host([variant="h1"]) a{font-size:6rem;font-weight:300;letter-spacing:-1.5px;line-height:1.167}:host([variant="h2"]) a{font-size:3.75rem;font-weight:300;letter-spacing:-.5px;line-height:1.2}:host([variant="h3"]) a{font-size:3rem;font-weight:400;line-height:1.167}:host([variant="h4"]) a{font-size:2.125rem;font-weight:400;letter-spacing:.25px;line-height:1.235}:host([variant="h5"]) a{font-size:1.5rem;font-weight:400;line-height:1.334}:host([variant="h6"]) a{font-size:1.25rem;font-weight:500;letter-spacing:.15px;line-height:1.6}:host([variant="subtitle1"]) a{font-size:1rem;font-weight:400;letter-spacing:.15px;line-height:1.75}:host([variant="subtitle2"]) a{font-size:.875rem;font-weight:500;letter-spacing:.1px;line-height:1.57}:host([variant="body1"]) a{font-size:1rem;font-weight:400;letter-spacing:.15px;line-height:1.5}:host([variant="body2"]) a{font-size:.875rem;font-weight:400;letter-spacing:.15px;line-height:1.43}:host([variant="caption"]) a{font-size:.75rem;font-weight:400;letter-spacing:.4px;line-height:1.66}:host([variant="overline"]) a{font-size:.75rem;font-weight:400;letter-spacing:1px;line-height:2.66;text-transform:uppercase}:host([disabled]) a{opacity:.38;cursor:not-allowed;pointer-events:none}';
+var cn = Object.defineProperty, dn = Object.getOwnPropertyDescriptor, Me = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? dn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && cn(t, i, r), r;
 };
-let se = class extends c {
+let fe = class extends c {
   constructor() {
     super(...arguments), this.href = "", this.target = "_self", this.rel = "", this.color = "primary", this.underline = "always", this.variant = "inherit", this.disabled = !1;
   }
@@ -5996,11 +3342,11 @@ let se = class extends c {
     return l`
             <a
                 class="link"
-                href=${$e(this.disabled ? void 0 : this.href || void 0)}
-                target=${$e(this.target !== "_self" ? this.target : void 0)}
-                rel=${$e(this._computedRel())}
-                aria-label=${$e(this.label)}
-                download=${$e(this.download)}
+                href=${pe(this.disabled ? void 0 : this.href || void 0)}
+                target=${pe(this.target !== "_self" ? this.target : void 0)}
+                rel=${pe(this._computedRel())}
+                aria-label=${pe(this.label)}
+                download=${pe(this.download)}
                 aria-disabled=${this.disabled}
                 tabindex=${this.disabled ? "-1" : "0"}
                 @click=${this._handleClick}
@@ -6010,234 +3356,112 @@ let se = class extends c {
         `;
   }
 };
-se.styles = p`
-        :host {
-            display: inline;
-            --ui-link-color: var(--ui-primary-color, #3b82f6);
-            --ui-link-color-hover: var(--ui-primary-color-dark, #2563eb);
-            --ui-link-color-visited: var(--ui-secondary-color, #7c3aed);
-        }
-
-        a {
-            color: var(--ui-link-color);
-            font-family: var(--ui-font-family, 'Inter', sans-serif);
-            font-size: inherit;
-            font-weight: inherit;
-            line-height: inherit;
-            cursor: pointer;
-            display: inline;
-            transition: color 0.15s ease, opacity 0.15s ease;
-        }
-
-        /* Color variants */
-        :host([color="inherit"]) a { color: inherit; }
-        :host([color="primary"])  a { color: var(--ui-primary-color, #3b82f6); }
-        :host([color="secondary"]) a { color: var(--ui-secondary-color, #7c3aed); }
-        :host([color="success"])  a { color: var(--ui-success-color, #16a34a); }
-        :host([color="error"])    a { color: var(--ui-error-color, #dc2626); }
-        :host([color="warning"])  a { color: var(--ui-warning-color, #d97706); }
-        :host([color="info"])     a { color: var(--ui-info-color, #0891b2); }
-        :host([color="textPrimary"]) a   { color: var(--ui-text-color, #111827); }
-        :host([color="textSecondary"]) a { color: var(--ui-text-color-muted, #6b7280); }
-
-        /* Underline variants */
-        :host([underline="none"])   a { text-decoration: none; }
-        :host([underline="hover"])  a { text-decoration: none; }
-        :host([underline="hover"])  a:hover { text-decoration: underline; }
-        :host([underline="always"]) a { text-decoration: underline; }
-        :host([underline="always"]) a:hover { text-decoration: underline; }
-
-        /* Default underline (always) */
-        a { text-decoration: underline; }
-
-        /* Hover states */
-        a:hover { opacity: 0.8; }
-
-        /* Visited */
-        a:visited {
-            color: var(--ui-link-color-visited);
-        }
-        :host([color="inherit"]) a:visited { color: inherit; }
-
-        /* Typography variants */
-        :host([variant="h1"]) a { font-size: 6rem;   font-weight: 300; letter-spacing: -1.5px; line-height: 1.167; }
-        :host([variant="h2"]) a { font-size: 3.75rem; font-weight: 300; letter-spacing: -0.5px; line-height: 1.2; }
-        :host([variant="h3"]) a { font-size: 3rem;   font-weight: 400; line-height: 1.167; }
-        :host([variant="h4"]) a { font-size: 2.125rem; font-weight: 400; letter-spacing: 0.25px; line-height: 1.235; }
-        :host([variant="h5"]) a { font-size: 1.5rem;  font-weight: 400; line-height: 1.334; }
-        :host([variant="h6"]) a { font-size: 1.25rem; font-weight: 500; letter-spacing: 0.15px; line-height: 1.6; }
-        :host([variant="subtitle1"]) a { font-size: 1rem;    font-weight: 400; letter-spacing: 0.15px; line-height: 1.75; }
-        :host([variant="subtitle2"]) a { font-size: 0.875rem; font-weight: 500; letter-spacing: 0.1px;  line-height: 1.57; }
-        :host([variant="body1"]) a { font-size: 1rem;    font-weight: 400; letter-spacing: 0.15px; line-height: 1.5; }
-        :host([variant="body2"]) a { font-size: 0.875rem; font-weight: 400; letter-spacing: 0.15px; line-height: 1.43; }
-        :host([variant="caption"]) a { font-size: 0.75rem;  font-weight: 400; letter-spacing: 0.4px;  line-height: 1.66; }
-        :host([variant="overline"]) a { font-size: 0.75rem;  font-weight: 400; letter-spacing: 1px;   line-height: 2.66; text-transform: uppercase; }
-
-        /* Disabled */
-        :host([disabled]) a {
-            opacity: 0.38;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-    `;
-ke([
-  s({ type: String })
-], se.prototype, "href", 2);
-ke([
-  s({ type: String })
-], se.prototype, "target", 2);
-ke([
-  s({ type: String })
-], se.prototype, "rel", 2);
-ke([
-  s({ type: String, reflect: !0 })
-], se.prototype, "color", 2);
-ke([
-  s({ type: String, reflect: !0 })
-], se.prototype, "underline", 2);
-ke([
-  s({ type: String, reflect: !0 })
-], se.prototype, "variant", 2);
-ke([
-  s({ type: Boolean, reflect: !0 })
-], se.prototype, "disabled", 2);
-ke([
-  s({ type: String })
-], se.prototype, "download", 2);
-ke([
-  s({ type: String })
-], se.prototype, "label", 2);
-se = ke([
+fe.styles = p(ln);
+Me([
+  o({ type: String })
+], fe.prototype, "href", 2);
+Me([
+  o({ type: String })
+], fe.prototype, "target", 2);
+Me([
+  o({ type: String })
+], fe.prototype, "rel", 2);
+Me([
+  o({ type: String, reflect: !0 })
+], fe.prototype, "color", 2);
+Me([
+  o({ type: String, reflect: !0 })
+], fe.prototype, "underline", 2);
+Me([
+  o({ type: String, reflect: !0 })
+], fe.prototype, "variant", 2);
+Me([
+  o({ type: Boolean, reflect: !0 })
+], fe.prototype, "disabled", 2);
+Me([
+  o({ type: String })
+], fe.prototype, "download", 2);
+Me([
+  o({ type: String })
+], fe.prototype, "label", 2);
+fe = Me([
   d("ui-link")
-], se);
-var Gs = Object.defineProperty, Xs = Object.getOwnPropertyDescriptor, Qe = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Xs(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Gs(t, i, r), r;
+], fe);
+const pn = ':host{display:block;font-family:var(--ui-font-family, "Inter", sans-serif);color:var(--ui-text-color, #111827)}.typography{margin:0;padding:0}.h1{font-size:6rem;font-weight:300;letter-spacing:-1.5px;line-height:1.167}.h2{font-size:3.75rem;font-weight:300;letter-spacing:-.5px;line-height:1.2}.h3{font-size:3rem;font-weight:400;line-height:1.167}.h4{font-size:2.125rem;font-weight:400;letter-spacing:.25px;line-height:1.235}.h5{font-size:1.5rem;font-weight:400;line-height:1.334}.h6{font-size:1.25rem;font-weight:500;letter-spacing:.15px;line-height:1.6}.subtitle1{font-size:1rem;font-weight:400;letter-spacing:.15px;line-height:1.75}.subtitle2{font-size:.875rem;font-weight:500;letter-spacing:.1px;line-height:1.57}.body1{font-size:1rem;font-weight:400;letter-spacing:.15px;line-height:1.5}.body2{font-size:.875rem;font-weight:400;letter-spacing:.15px;line-height:1.43}.caption{font-size:.75rem;font-weight:400;letter-spacing:.4px;line-height:1.66}.overline{font-size:.75rem;font-weight:400;letter-spacing:1px;line-height:2.66;text-transform:uppercase}:host([color="primary"]) .typography{color:var(--ui-primary-color, #3b82f6)}:host([color="secondary"]) .typography{color:var(--ui-secondary-color, #7c3aed)}:host([color="success"]) .typography{color:var(--ui-success-color, #16a34a)}:host([color="error"]) .typography{color:var(--ui-error-color, #dc2626)}:host([color="warning"]) .typography{color:var(--ui-warning-color, #d97706)}:host([color="info"]) .typography{color:var(--ui-info-color, #0891b2)}:host([color="textPrimary"]) .typography{color:var(--ui-text-color, #111827)}:host([color="textSecondary"]) .typography{color:var(--ui-text-color-muted, #6b7280)}:host([color="inherit"]) .typography{color:inherit}:host([align="left"]) .typography{text-align:left}:host([align="center"]) .typography{text-align:center}:host([align="right"]) .typography{text-align:right}:host([align="justify"]) .typography{text-align:justify}:host([noWrap]) .typography{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}:host([gutterBottom]) .typography{margin-bottom:.35em}:host([paragraph]) .typography{margin-bottom:16px}';
+var hn = Object.defineProperty, un = Object.getOwnPropertyDescriptor, lt = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? un(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && hn(t, i, r), r;
 };
-let me = class extends c {
+let Oe = class extends c {
   constructor() {
     super(...arguments), this.variant = "body1", this.color = "textPrimary", this.align = "left", this.noWrap = !1, this.gutterBottom = !1, this.paragraph = !1;
   }
   _literalTag() {
     const e = this.component;
     return e ? {
-      h1: I`h1`,
-      h2: I`h2`,
-      h3: I`h3`,
-      h4: I`h4`,
-      h5: I`h5`,
-      h6: I`h6`,
-      p: I`p`,
-      span: I`span`,
-      div: I`div`
-    }[e] ?? I`p` : {
-      h1: I`h1`,
-      h2: I`h2`,
-      h3: I`h3`,
-      h4: I`h4`,
-      h5: I`h5`,
-      h6: I`h6`,
-      subtitle1: I`h6`,
-      subtitle2: I`h6`,
-      body1: I`p`,
-      body2: I`p`,
-      caption: I`span`,
-      overline: I`span`,
-      inherit: I`p`
-    }[this.variant] ?? I`p`;
+      h1: C`h1`,
+      h2: C`h2`,
+      h3: C`h3`,
+      h4: C`h4`,
+      h5: C`h5`,
+      h6: C`h6`,
+      p: C`p`,
+      span: C`span`,
+      div: C`div`
+    }[e] ?? C`p` : {
+      h1: C`h1`,
+      h2: C`h2`,
+      h3: C`h3`,
+      h4: C`h4`,
+      h5: C`h5`,
+      h6: C`h6`,
+      subtitle1: C`h6`,
+      subtitle2: C`h6`,
+      body1: C`p`,
+      body2: C`p`,
+      caption: C`span`,
+      overline: C`span`,
+      inherit: C`p`
+    }[this.variant] ?? C`p`;
   }
   render() {
     const e = this._literalTag(), t = `typography ${this.variant !== "inherit" ? this.variant : ""}`;
-    return oo`<${e} class="${t}"><slot></slot></${e}>`;
+    return ns`<${e} class="${t}"><slot></slot></${e}>`;
   }
 };
-me.styles = p`
-        :host {
-            display: block;
-            font-family: var(--ui-font-family, 'Inter', sans-serif);
-            color: var(--ui-text-color, #111827);
-        }
-
-        .typography {
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Variants */
-        .h1 { font-size: 6rem;    font-weight: 300; letter-spacing: -1.5px; line-height: 1.167; }
-        .h2 { font-size: 3.75rem; font-weight: 300; letter-spacing: -0.5px; line-height: 1.2;   }
-        .h3 { font-size: 3rem;    font-weight: 400; line-height: 1.167; }
-        .h4 { font-size: 2.125rem; font-weight: 400; letter-spacing: 0.25px; line-height: 1.235; }
-        .h5 { font-size: 1.5rem;  font-weight: 400; line-height: 1.334; }
-        .h6 { font-size: 1.25rem; font-weight: 500; letter-spacing: 0.15px; line-height: 1.6;   }
-        .subtitle1 { font-size: 1rem;    font-weight: 400; letter-spacing: 0.15px; line-height: 1.75; }
-        .subtitle2 { font-size: 0.875rem; font-weight: 500; letter-spacing: 0.1px;  line-height: 1.57; }
-        .body1 { font-size: 1rem;    font-weight: 400; letter-spacing: 0.15px; line-height: 1.5;  }
-        .body2 { font-size: 0.875rem; font-weight: 400; letter-spacing: 0.15px; line-height: 1.43; }
-        .caption  { font-size: 0.75rem; font-weight: 400; letter-spacing: 0.4px; line-height: 1.66; }
-        .overline { font-size: 0.75rem; font-weight: 400; letter-spacing: 1px;   line-height: 2.66; text-transform: uppercase; }
-
-        /* Colors */
-        :host([color="primary"])       .typography { color: var(--ui-primary-color, #3b82f6); }
-        :host([color="secondary"])     .typography { color: var(--ui-secondary-color, #7c3aed); }
-        :host([color="success"])       .typography { color: var(--ui-success-color, #16a34a); }
-        :host([color="error"])         .typography { color: var(--ui-error-color, #dc2626); }
-        :host([color="warning"])       .typography { color: var(--ui-warning-color, #d97706); }
-        :host([color="info"])          .typography { color: var(--ui-info-color, #0891b2); }
-        :host([color="textPrimary"])   .typography { color: var(--ui-text-color, #111827); }
-        :host([color="textSecondary"]) .typography { color: var(--ui-text-color-muted, #6b7280); }
-        :host([color="inherit"])       .typography { color: inherit; }
-
-        /* Alignment */
-        :host([align="left"])    .typography { text-align: left; }
-        :host([align="center"])  .typography { text-align: center; }
-        :host([align="right"])   .typography { text-align: right; }
-        :host([align="justify"]) .typography { text-align: justify; }
-
-        /* No wrapping */
-        :host([noWrap]) .typography {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        /* Gutter bottom — matches MUI spacing */
-        :host([gutterBottom]) .typography { margin-bottom: 0.35em; }
-
-        /* Paragraph adds bottom margin */
-        :host([paragraph]) .typography { margin-bottom: 16px; }
-    `;
-Qe([
-  s({ type: String, reflect: !0 })
-], me.prototype, "variant", 2);
-Qe([
-  s({ type: String, reflect: !0 })
-], me.prototype, "color", 2);
-Qe([
-  s({ type: String })
-], me.prototype, "component", 2);
-Qe([
-  s({ type: String, reflect: !0 })
-], me.prototype, "align", 2);
-Qe([
-  s({ type: Boolean, reflect: !0 })
-], me.prototype, "noWrap", 2);
-Qe([
-  s({ type: Boolean, reflect: !0 })
-], me.prototype, "gutterBottom", 2);
-Qe([
-  s({ type: Boolean, reflect: !0 })
-], me.prototype, "paragraph", 2);
-me = Qe([
+Oe.styles = p(pn);
+lt([
+  o({ type: String, reflect: !0 })
+], Oe.prototype, "variant", 2);
+lt([
+  o({ type: String, reflect: !0 })
+], Oe.prototype, "color", 2);
+lt([
+  o({ type: String })
+], Oe.prototype, "component", 2);
+lt([
+  o({ type: String, reflect: !0 })
+], Oe.prototype, "align", 2);
+lt([
+  o({ type: Boolean, reflect: !0 })
+], Oe.prototype, "noWrap", 2);
+lt([
+  o({ type: Boolean, reflect: !0 })
+], Oe.prototype, "gutterBottom", 2);
+lt([
+  o({ type: Boolean, reflect: !0 })
+], Oe.prototype, "paragraph", 2);
+Oe = lt([
   d("ui-typography")
-], me);
-var Js = Object.defineProperty, Qs = Object.getOwnPropertyDescriptor, L = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Qs(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Js(t, i, r), r;
+], Oe);
+const fn = ':host{display:block;font-family:var(--ui-font-family, "Inter", sans-serif)}.item{display:flex;align-items:center;gap:12px;padding:8px 16px;min-height:40px;cursor:pointer;-webkit-user-select:none;user-select:none;font-size:.9375rem;color:var(--ui-text-color, #111827);background:transparent;border:none;width:100%;text-align:left;box-sizing:border-box;transition:background .12s;position:relative;outline:none;border-radius:0}.item:hover{background:#0000000a}.item:active{background:#00000014}.item:focus-visible{background:#0000000f;outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:-2px}:host([selected]) .item{background:var(--ui-primary-color-light, rgba(59,130,246,.12));color:var(--ui-primary-color, #3b82f6);font-weight:600}:host([selected]) .item:hover{background:var(--ui-primary-color-light, rgba(59,130,246,.18))}:host([disabled]) .item{opacity:.38;cursor:not-allowed;pointer-events:none}[hidden]{display:none!important}.icon-wrap{display:flex;align-items:center;justify-content:center;width:24px;height:24px;flex-shrink:0;color:var(--ui-text-color-muted, #6b7280)}:host([selected]) .icon-wrap{color:var(--ui-primary-color, #3b82f6)}.end-icon-wrap{display:flex;align-items:center;margin-left:auto;padding-left:16px;color:var(--ui-text-color-muted, #6b7280);font-size:.75rem}.label{flex:1;line-height:1.5}:host([dense]) .item{padding:4px 16px;min-height:32px;font-size:.875rem}:host([divider]){border-bottom:1px solid var(--ui-border-color, #e5e7eb);padding-bottom:4px;margin-bottom:4px}', bn = ":host{display:block;height:1px;background:var(--ui-border-color, #e5e7eb);margin:4px 0}", mn = ":host{display:block}.group-label{padding:6px 16px 2px;font-size:.6875rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ui-text-color-muted, #6b7280);-webkit-user-select:none;user-select:none}", gn = ":host{display:block;position:relative;--ui-menu-z-index: 1300;--ui-menu-min-width: 120px}.backdrop{display:none;position:fixed;inset:0;z-index:calc(var(--ui-menu-z-index) - 1)}.backdrop.open{display:block}.menu-paper{position:absolute;background:var(--ui-surface-background, #fff);border-radius:var(--ui-border-radius-md, 8px);box-shadow:0 4px 6px -1px #0000001a,0 10px 15px -3px #0000001a;min-width:var(--ui-menu-min-width);z-index:var(--ui-menu-z-index);overflow:hidden;transform-origin:top left;transform:scale(.85);opacity:0;visibility:hidden;pointer-events:none;transition:transform .15s cubic-bezier(.4,0,.2,1),opacity .15s cubic-bezier(.4,0,.2,1),visibility .15s;padding:4px 0}.menu-paper.open{transform:scale(1);opacity:1;visibility:visible;pointer-events:auto}.pos-bottom-start{top:100%;left:0;transform-origin:top left}.pos-bottom-end{top:100%;right:0;transform-origin:top right}.pos-top-start{bottom:100%;left:0;transform-origin:bottom left}.pos-top-end{bottom:100%;right:0;transform-origin:bottom right}.pos-right-start{left:100%;top:0;transform-origin:top left}.pos-left-start{right:100%;top:0;transform-origin:top right}.menu-paper.scrollable{max-height:var(--ui-menu-max-height, 300px);overflow-y:auto}";
+var vn = Object.defineProperty, yn = Object.getOwnPropertyDescriptor, R = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? yn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && vn(t, i, r), r;
 };
-let ve = class extends c {
+let De = class extends c {
   constructor() {
     super(...arguments), this.selected = !1, this.disabled = !1, this.dense = !1, this.divider = !1, this._hasIcon = !1, this._hasEndIcon = !1;
   }
@@ -6288,163 +3512,61 @@ let ve = class extends c {
         `;
   }
 };
-ve.styles = p`
-        :host {
-            display: block;
-            font-family: var(--ui-font-family, 'Inter', sans-serif);
-        }
-
-        .item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 8px 16px;
-            min-height: 40px;
-            cursor: pointer;
-            user-select: none;
-            font-size: 0.9375rem;
-            color: var(--ui-text-color, #111827);
-            background: transparent;
-            border: none;
-            width: 100%;
-            text-align: left;
-            box-sizing: border-box;
-            transition: background 0.12s;
-            position: relative;
-            outline: none;
-            border-radius: 0;
-        }
-
-        .item:hover  { background: rgba(0,0,0,.04); }
-        .item:active { background: rgba(0,0,0,.08); }
-        .item:focus-visible { background: rgba(0,0,0,.06); outline: 2px solid var(--ui-primary-color, #3b82f6); outline-offset: -2px; }
-
-        :host([selected]) .item {
-            background: var(--ui-primary-color-light, rgba(59,130,246,.12));
-            color: var(--ui-primary-color, #3b82f6);
-            font-weight: 600;
-        }
-        :host([selected]) .item:hover {
-            background: var(--ui-primary-color-light, rgba(59,130,246,.18));
-        }
-
-        :host([disabled]) .item {
-            opacity: 0.38;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-
-        /* Ensure [hidden] removes the element from layout inside Shadow DOM.
-           The browser's UA [hidden]{display:none} doesn't pierce shadow roots in all
-           environments, so we declare it explicitly here. */
-        [hidden] { display: none !important; }
-
-        .icon-wrap {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 24px;
-            height: 24px;
-            flex-shrink: 0;
-            color: var(--ui-text-color-muted, #6b7280);
-        }
-        :host([selected]) .icon-wrap { color: var(--ui-primary-color, #3b82f6); }
-
-
-        .end-icon-wrap {
-            display: flex;
-            align-items: center;
-            margin-left: auto;
-            padding-left: 16px;
-            color: var(--ui-text-color-muted, #6b7280);
-            font-size: 0.75rem;
-        }
-
-        .label { flex: 1; line-height: 1.5; }
-
-        /* Dense (desktop) */
-        :host([dense]) .item { padding: 4px 16px; min-height: 32px; font-size: 0.875rem; }
-
-        /* Divider below item */
-        :host([divider]) {
-            border-bottom: 1px solid var(--ui-border-color, #e5e7eb);
-            padding-bottom: 4px;
-            margin-bottom: 4px;
-        }
-    `;
-L([
-  s({ type: Boolean, reflect: !0 })
-], ve.prototype, "selected", 2);
-L([
-  s({ type: Boolean, reflect: !0 })
-], ve.prototype, "disabled", 2);
-L([
-  s({ type: Boolean, reflect: !0 })
-], ve.prototype, "dense", 2);
-L([
-  s({ type: Boolean, reflect: !0 })
-], ve.prototype, "divider", 2);
-L([
-  s({ type: String, reflect: !0 })
-], ve.prototype, "value", 2);
-L([
-  m()
-], ve.prototype, "_hasIcon", 2);
-L([
-  m()
-], ve.prototype, "_hasEndIcon", 2);
-ve = L([
+De.styles = p(fn);
+R([
+  o({ type: Boolean, reflect: !0 })
+], De.prototype, "selected", 2);
+R([
+  o({ type: Boolean, reflect: !0 })
+], De.prototype, "disabled", 2);
+R([
+  o({ type: Boolean, reflect: !0 })
+], De.prototype, "dense", 2);
+R([
+  o({ type: Boolean, reflect: !0 })
+], De.prototype, "divider", 2);
+R([
+  o({ type: String, reflect: !0 })
+], De.prototype, "value", 2);
+R([
+  g()
+], De.prototype, "_hasIcon", 2);
+R([
+  g()
+], De.prototype, "_hasEndIcon", 2);
+De = R([
   d("ui-menu-item")
-], ve);
-let kr = class extends c {
+], De);
+let Cr = class extends c {
   render() {
     return l``;
   }
 };
-kr.styles = p`
-        :host {
-            display: block;
-            height: 1px;
-            background: var(--ui-border-color, #e5e7eb);
-            margin: 4px 0;
-        }
-    `;
-kr = L([
+Cr.styles = p(bn);
+Cr = R([
   d("ui-menu-divider")
-], kr);
+], Cr);
 let Bi = class extends c {
   constructor() {
     super(...arguments), this.label = "";
   }
   render() {
     return l`
-            <div role="group" aria-label=${$e(this.label || void 0)}>
+            <div role="group" aria-label=${pe(this.label || void 0)}>
                 ${this.label ? l`<div class="group-label">${this.label}</div>` : ""}
                 <slot></slot>
             </div>
         `;
   }
 };
-Bi.styles = p`
-        :host { display: block; }
-
-        .group-label {
-            padding: 6px 16px 2px;
-            font-size: 0.6875rem;
-            font-weight: 600;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: var(--ui-text-color-muted, #6b7280);
-            user-select: none;
-        }
-    `;
-L([
-  s({ type: String })
+Bi.styles = p(mn);
+R([
+  o({ type: String })
 ], Bi.prototype, "label", 2);
-Bi = L([
+Bi = R([
   d("ui-menu-group")
 ], Bi);
-let qe = class extends c {
+let tt = class extends c {
   constructor() {
     super(...arguments), this.open = !1, this.placement = "bottom-start", this.closeOnSelect = !0, this.scrollable = !1, this._boundKeyDown = (e) => {
       this.open && e.key === "Escape" && (e.stopPropagation(), this._close());
@@ -6477,19 +3599,19 @@ let qe = class extends c {
     const t = this._getEnabledItems();
     if (!t.length) return;
     const i = t.findIndex(
-      (o) => o.shadowRoot?.activeElement != null || document.activeElement === o
+      (s) => s.shadowRoot?.activeElement != null || document.activeElement === s
     );
     switch (e.key) {
       case "ArrowDown": {
         e.preventDefault();
-        const o = i < 0 || i >= t.length - 1 ? 0 : i + 1;
-        this._focusItem(t[o]);
+        const s = i < 0 || i >= t.length - 1 ? 0 : i + 1;
+        this._focusItem(t[s]);
         break;
       }
       case "ArrowUp": {
         e.preventDefault();
-        const o = i <= 0 ? t.length - 1 : i - 1;
-        this._focusItem(t[o]);
+        const s = i <= 0 ? t.length - 1 : i - 1;
+        this._focusItem(t[s]);
         break;
       }
       case "Home":
@@ -6500,7 +3622,7 @@ let qe = class extends c {
         break;
       default:
         if (e.key.length === 1) {
-          const o = e.key.toLowerCase(), r = i < 0 ? 0 : (i + 1) % t.length, n = [...t.slice(r), ...t.slice(0, r)].find((h) => (h.shadowRoot?.querySelector("slot:not([name])")?.assignedNodes({ flatten: !0 }).map((b) => b.textContent ?? "").join("").trim().toLowerCase() ?? "").startsWith(o));
+          const s = e.key.toLowerCase(), r = i < 0 ? 0 : (i + 1) % t.length, n = [...t.slice(r), ...t.slice(0, r)].find((h) => (h.shadowRoot?.querySelector("slot:not([name])")?.assignedNodes({ flatten: !0 }).map((b) => b.textContent ?? "").join("").trim().toLowerCase() ?? "").startsWith(s));
           n && this._focusItem(n);
         }
     }
@@ -6525,7 +3647,7 @@ let qe = class extends c {
             <div
                 class=${e}
                 role="menu"
-                aria-label=${$e(this.label)}
+                aria-label=${pe(this.label)}
                 aria-hidden=${this.open ? "false" : "true"}
                 @ui-menu-item-select=${this._handleItemSelect}
             >
@@ -6534,114 +3656,55 @@ let qe = class extends c {
         `;
   }
 };
-qe.styles = p`
-        :host {
-            display: block;
-            position: relative;
-            --ui-menu-z-index: 1300;
-            --ui-menu-min-width: 120px;
-        }
-
-        /* Invisible full-screen click-away layer */
-        .backdrop {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: calc(var(--ui-menu-z-index) - 1);
-        }
-        .backdrop.open { display: block; }
-
-        /* Menu surface */
-        .menu-paper {
-            position: absolute;
-            background: var(--ui-surface-background, #fff);
-            border-radius: var(--ui-border-radius-md, 8px);
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 10px 15px -3px rgba(0,0,0,.1);
-            min-width: var(--ui-menu-min-width);
-            z-index: var(--ui-menu-z-index);
-            overflow: hidden;
-            transform-origin: top left;
-
-            /* Closed state */
-            transform: scale(0.85);
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            transition: transform 0.15s cubic-bezier(0.4,0,0.2,1),
-                        opacity   0.15s cubic-bezier(0.4,0,0.2,1),
-                        visibility 0.15s;
-            padding: 4px 0;
-        }
-
-        /* Open state */
-        .menu-paper.open {
-            transform: scale(1);
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-        }
-
-        /* Placement variants */
-        .pos-bottom-start { top: 100%; left: 0;      transform-origin: top left;    }
-        .pos-bottom-end   { top: 100%; right: 0;     transform-origin: top right;   }
-        .pos-top-start    { bottom: 100%; left: 0;   transform-origin: bottom left; }
-        .pos-top-end      { bottom: 100%; right: 0;  transform-origin: bottom right;}
-        .pos-right-start  { left: 100%; top: 0;      transform-origin: top left;    }
-        .pos-left-start   { right: 100%; top: 0;     transform-origin: top right;   }
-
-        /* Scrollable list */
-        .menu-paper.scrollable {
-            max-height: var(--ui-menu-max-height, 300px);
-            overflow-y: auto;
-        }
-    `;
-L([
-  s({ type: Boolean, reflect: !0 })
-], qe.prototype, "open", 2);
-L([
-  s({ type: String, reflect: !0 })
-], qe.prototype, "placement", 2);
-L([
-  s({ type: Boolean, attribute: "close-on-select" })
-], qe.prototype, "closeOnSelect", 2);
-L([
-  s({ type: Boolean })
-], qe.prototype, "scrollable", 2);
-L([
-  s({ type: String })
-], qe.prototype, "label", 2);
-qe = L([
+tt.styles = p(gn);
+R([
+  o({ type: Boolean, reflect: !0 })
+], tt.prototype, "open", 2);
+R([
+  o({ type: String, reflect: !0 })
+], tt.prototype, "placement", 2);
+R([
+  o({ type: Boolean, attribute: "close-on-select" })
+], tt.prototype, "closeOnSelect", 2);
+R([
+  o({ type: Boolean })
+], tt.prototype, "scrollable", 2);
+R([
+  o({ type: String })
+], tt.prototype, "label", 2);
+tt = R([
   d("ui-menu")
-], qe);
-var Zs = Object.defineProperty, ea = Object.getOwnPropertyDescriptor, N = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? ea(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Zs(t, i, r), r;
+], tt);
+const xn = ':host{display:inline-flex;align-items:center;flex-wrap:wrap;gap:4px;font-family:var(--ui-font-family, "Inter", sans-serif)}nav,ol,li{display:contents}.page-btn{display:inline-flex;align-items:center;justify-content:center;min-width:36px;height:36px;padding:0 6px;border-radius:4px;border:none;background:transparent;color:var(--ui-text-color, #111827);font-family:inherit;font-size:.875rem;font-weight:400;cursor:pointer;transition:background .15s,color .15s,border-color .15s;-webkit-user-select:none;user-select:none;box-sizing:border-box;outline:none;text-decoration:none}.page-btn:hover:not(:disabled){background:#0000000f}.page-btn:focus-visible{outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:2px}.page-btn.active{background:var(--ui-primary-color, #3b82f6);color:#fff;font-weight:600}.page-btn:disabled{opacity:.38;cursor:default;pointer-events:none}.page-btn.ellipsis{cursor:default;pointer-events:none;color:var(--ui-text-color-muted, #6b7280)}:host([variant="outlined"]) .page-btn{border:1px solid var(--ui-border-color, #e5e7eb)}:host([variant="outlined"]) .page-btn.active{border-color:var(--ui-primary-color, #3b82f6);background:var(--ui-primary-color, #3b82f6);color:#fff}:host([variant="outlined"]) .page-btn:hover:not(:disabled):not(.active){background:#3b82f60f;border-color:var(--ui-primary-color, #3b82f6)}:host([color="secondary"]) .page-btn.active{background:var(--ui-secondary-color, #7c3aed)}:host([color="secondary"][variant="outlined"]) .page-btn.active{background:var(--ui-secondary-color, #7c3aed);border-color:var(--ui-secondary-color, #7c3aed)}:host([color="standard"]) .page-btn.active{background:var(--ui-text-color, #111827);color:#fff}:host([shape="rounded"]) .page-btn{border-radius:8px}:host([shape="circular"]) .page-btn{border-radius:50%;min-width:36px;aspect-ratio:1}:host([size="small"]) .page-btn{min-width:28px;height:28px;font-size:.8125rem}:host([size="small"][shape="circular"]) .page-btn{min-width:28px}:host([size="large"]) .page-btn{min-width:44px;height:44px;font-size:.9375rem}:host([disabled]) .page-btn{opacity:.38;pointer-events:none}svg{display:block}';
+var _n = Object.defineProperty, wn = Object.getOwnPropertyDescriptor, K = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? wn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && _n(t, i, r), r;
 };
-const ta = l`<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6zM6 6h2v12H6z"/></svg>`, ia = l`<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.59 7.41L10.18 12l-4.59 4.59L7 18l6-6-6-6zM16 6h2v12h-2z"/></svg>`, ra = l`<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>`, oa = l`<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>`, sa = l`<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>`;
-function or(e, t) {
-  return Array.from({ length: t - e + 1 }, (i, o) => e + o);
+const kn = l`<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6zM6 6h2v12H6z"/></svg>`, $n = l`<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.59 7.41L10.18 12l-4.59 4.59L7 18l6-6-6-6zM16 6h2v12h-2z"/></svg>`, Sn = l`<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>`, Cn = l`<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>`, In = l`<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>`;
+function nr(e, t) {
+  return Array.from({ length: t - e + 1 }, (i, s) => e + s);
 }
-function aa(e, t, i, o) {
-  const r = or(1, Math.min(o, e)), a = or(Math.max(e - o + 1, o + 1), e), n = Math.max(
-    Math.min(t - i, e - o - i * 2 - 1),
-    o + 2
+function En(e, t, i, s) {
+  const r = nr(1, Math.min(s, e)), a = nr(Math.max(e - s + 1, s + 1), e), n = Math.max(
+    Math.min(t - i, e - s - i * 2 - 1),
+    s + 2
   ), h = Math.min(
-    Math.max(t + i, o + i * 2 + 2),
+    Math.max(t + i, s + i * 2 + 2),
     a.length > 0 ? a[0] - 2 : e - 1
-  ), g = [
+  ), f = [
     ...r,
-    ...n > o + 2 ? ["start-ellipsis"] : o + 1 < e - o ? [o + 1] : [],
-    ...or(n, h),
-    ...h < e - o - 1 ? ["end-ellipsis"] : e - o > o ? [e - o] : [],
+    ...n > s + 2 ? ["start-ellipsis"] : s + 1 < e - s ? [s + 1] : [],
+    ...nr(n, h),
+    ...h < e - s - 1 ? ["end-ellipsis"] : e - s > s ? [e - s] : [],
     ...a
-  ], v = /* @__PURE__ */ new Set();
-  return g.filter((b) => {
-    const C = String(b);
-    return v.has(C) ? !1 : (v.add(C), !0);
+  ], y = /* @__PURE__ */ new Set();
+  return f.filter((b) => {
+    const S = String(b);
+    return y.has(S) ? !1 : (y.add(S), !0);
   });
 }
-let B = class extends c {
+let A = class extends c {
   constructor() {
     super(...arguments), this.count = 1, this.page = 1, this.defaultPage = 1, this.label = "", this.variant = "text", this.shape = "circular", this.size = "medium", this.color = "primary", this.showFirstButton = !1, this.showLastButton = !1, this.hidePrevButton = !1, this.hideNextButton = !1, this.siblingCount = 1, this.boundaryCount = 1, this.disabled = !1, this._firstUpdate = !0;
   }
@@ -6665,32 +3728,32 @@ let B = class extends c {
     const t = this._safeCount, i = this._safePage;
     e < 1 || e > t || e === i || (this.page = e, this._emit(e));
   }
-  _renderNavBtn(e, t, i, o, r, a) {
-    return a ? y : l`
+  _renderNavBtn(e, t, i, s, r, a) {
+    return a ? v : l`
             <li>
                 <button
                     class="page-btn"
                     aria-label=${e}
                     ?disabled=${r || this.disabled}
-                    @click=${o}
+                    @click=${s}
                 ><slot name=${t}>${i}</slot></button>
             </li>
         `;
   }
   render() {
-    const e = this._safeCount, t = this._safePage, i = aa(e, t, this.siblingCount, this.boundaryCount), o = this.label || "pagination navigation";
+    const e = this._safeCount, t = this._safePage, i = En(e, t, this.siblingCount, this.boundaryCount), s = this.label || "pagination navigation";
     return l`
-            <nav aria-label=${o}>
+            <nav aria-label=${s}>
                 <ol>
-                    ${this._renderNavBtn("Go to first page", "first-icon", ta, () => this._go(1), t === 1, !this.showFirstButton)}
-                    ${this._renderNavBtn("Go to previous page", "prev-icon", ra, () => this._go(t - 1), t === 1, this.hidePrevButton)}
+                    ${this._renderNavBtn("Go to first page", "first-icon", kn, () => this._go(1), t === 1, !this.showFirstButton)}
+                    ${this._renderNavBtn("Go to previous page", "prev-icon", Sn, () => this._go(t - 1), t === 1, this.hidePrevButton)}
 
                     ${i.map((r) => {
       if (r === "start-ellipsis" || r === "end-ellipsis")
         return l`
                             <li>
                                 <button class="page-btn ellipsis" tabindex="-1" aria-hidden="true">
-                                    <slot name="ellipsis-icon">${sa}</slot>
+                                    <slot name="ellipsis-icon">${In}</slot>
                                 </button>
                             </li>`;
       const a = r === t;
@@ -6699,7 +3762,7 @@ let B = class extends c {
                             <button
                                 class=${u({ "page-btn": !0, active: a })}
                                 aria-label=${"Page " + r}
-                                aria-current=${a ? "page" : y}
+                                aria-current=${a ? "page" : v}
                                 ?disabled=${this.disabled}
                                 @click=${() => this._go(r)}
                             >${r}</button>
@@ -6707,177 +3770,77 @@ let B = class extends c {
                     `;
     })}
 
-                    ${this._renderNavBtn("Go to next page", "next-icon", oa, () => this._go(t + 1), t === e, this.hideNextButton)}
-                    ${this._renderNavBtn("Go to last page", "last-icon", ia, () => this._go(e), t === e, !this.showLastButton)}
+                    ${this._renderNavBtn("Go to next page", "next-icon", Cn, () => this._go(t + 1), t === e, this.hideNextButton)}
+                    ${this._renderNavBtn("Go to last page", "last-icon", $n, () => this._go(e), t === e, !this.showLastButton)}
                 </ol>
             </nav>
         `;
   }
 };
-B.styles = p`
-        :host {
-            display: inline-flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 4px;
-            font-family: var(--ui-font-family, 'Inter', sans-serif);
-        }
-
-        /* Transparent layout wrappers */
-        nav, ol, li { display: contents; }
-
-        /* ── Base button ── */
-        .page-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 36px;
-            height: 36px;
-            padding: 0 6px;
-            border-radius: 4px;
-            border: none;
-            background: transparent;
-            color: var(--ui-text-color, #111827);
-            font-family: inherit;
-            font-size: 0.875rem;
-            font-weight: 400;
-            cursor: pointer;
-            transition: background 0.15s, color 0.15s, border-color 0.15s;
-            user-select: none;
-            box-sizing: border-box;
-            outline: none;
-            text-decoration: none;
-        }
-        .page-btn:hover:not(:disabled) {
-            background: rgba(0,0,0,.06);
-        }
-        .page-btn:focus-visible {
-            outline: 2px solid var(--ui-primary-color, #3b82f6);
-            outline-offset: 2px;
-        }
-        .page-btn.active {
-            background: var(--ui-primary-color, #3b82f6);
-            color: #fff;
-            font-weight: 600;
-        }
-        .page-btn:disabled {
-            opacity: 0.38;
-            cursor: default;
-            pointer-events: none;
-        }
-        .page-btn.ellipsis {
-            cursor: default;
-            pointer-events: none;
-            color: var(--ui-text-color-muted, #6b7280);
-        }
-
-        /* ── Variants ── */
-        :host([variant="outlined"]) .page-btn {
-            border: 1px solid var(--ui-border-color, #e5e7eb);
-        }
-        :host([variant="outlined"]) .page-btn.active {
-            border-color: var(--ui-primary-color, #3b82f6);
-            background: var(--ui-primary-color, #3b82f6);
-            color: #fff;
-        }
-        :host([variant="outlined"]) .page-btn:hover:not(:disabled):not(.active) {
-            background: rgba(59,130,246,.06);
-            border-color: var(--ui-primary-color, #3b82f6);
-        }
-
-        /* ── Color: secondary ── */
-        :host([color="secondary"]) .page-btn.active {
-            background: var(--ui-secondary-color, #7c3aed);
-        }
-        :host([color="secondary"][variant="outlined"]) .page-btn.active {
-            background: var(--ui-secondary-color, #7c3aed);
-            border-color: var(--ui-secondary-color, #7c3aed);
-        }
-        :host([color="standard"]) .page-btn.active {
-            background: var(--ui-text-color, #111827);
-            color: #fff;
-        }
-
-        /* ── Shape ── */
-        :host([shape="rounded"]) .page-btn  { border-radius: 8px; }
-        :host([shape="circular"]) .page-btn { border-radius: 50%; min-width: 36px; aspect-ratio: 1; }
-
-        /* ── Size ── */
-        :host([size="small"]) .page-btn    { min-width: 28px; height: 28px; font-size: 0.8125rem; }
-        :host([size="small"][shape="circular"]) .page-btn { min-width: 28px; }
-        :host([size="large"]) .page-btn    { min-width: 44px; height: 44px; font-size: 0.9375rem; }
-
-        /* ── Disabled host ── */
-        :host([disabled]) .page-btn {
-            opacity: 0.38;
-            pointer-events: none;
-        }
-
-        /* ── Nav icon size ── */
-        svg { display: block; }
-    `;
-N([
-  s({ type: Number })
-], B.prototype, "count", 2);
-N([
-  s({ type: Number })
-], B.prototype, "page", 2);
-N([
-  s({ type: Number, attribute: "default-page" })
-], B.prototype, "defaultPage", 2);
-N([
-  s({ type: String })
-], B.prototype, "label", 2);
-N([
-  s({ type: String, reflect: !0 })
-], B.prototype, "variant", 2);
-N([
-  s({ type: String, reflect: !0 })
-], B.prototype, "shape", 2);
-N([
-  s({ type: String, reflect: !0 })
-], B.prototype, "size", 2);
-N([
-  s({ type: String, reflect: !0 })
-], B.prototype, "color", 2);
-N([
-  s({ type: Boolean, reflect: !0, attribute: "show-first-button" })
-], B.prototype, "showFirstButton", 2);
-N([
-  s({ type: Boolean, reflect: !0, attribute: "show-last-button" })
-], B.prototype, "showLastButton", 2);
-N([
-  s({ type: Boolean, reflect: !0, attribute: "hide-prev-button" })
-], B.prototype, "hidePrevButton", 2);
-N([
-  s({ type: Boolean, reflect: !0, attribute: "hide-next-button" })
-], B.prototype, "hideNextButton", 2);
-N([
-  s({ type: Number, attribute: "sibling-count" })
-], B.prototype, "siblingCount", 2);
-N([
-  s({ type: Number, attribute: "boundary-count" })
-], B.prototype, "boundaryCount", 2);
-N([
-  s({ type: Boolean, reflect: !0 })
-], B.prototype, "disabled", 2);
-B = N([
+A.styles = p(xn);
+K([
+  o({ type: Number })
+], A.prototype, "count", 2);
+K([
+  o({ type: Number })
+], A.prototype, "page", 2);
+K([
+  o({ type: Number, attribute: "default-page" })
+], A.prototype, "defaultPage", 2);
+K([
+  o({ type: String })
+], A.prototype, "label", 2);
+K([
+  o({ type: String, reflect: !0 })
+], A.prototype, "variant", 2);
+K([
+  o({ type: String, reflect: !0 })
+], A.prototype, "shape", 2);
+K([
+  o({ type: String, reflect: !0 })
+], A.prototype, "size", 2);
+K([
+  o({ type: String, reflect: !0 })
+], A.prototype, "color", 2);
+K([
+  o({ type: Boolean, reflect: !0, attribute: "show-first-button" })
+], A.prototype, "showFirstButton", 2);
+K([
+  o({ type: Boolean, reflect: !0, attribute: "show-last-button" })
+], A.prototype, "showLastButton", 2);
+K([
+  o({ type: Boolean, reflect: !0, attribute: "hide-prev-button" })
+], A.prototype, "hidePrevButton", 2);
+K([
+  o({ type: Boolean, reflect: !0, attribute: "hide-next-button" })
+], A.prototype, "hideNextButton", 2);
+K([
+  o({ type: Number, attribute: "sibling-count" })
+], A.prototype, "siblingCount", 2);
+K([
+  o({ type: Number, attribute: "boundary-count" })
+], A.prototype, "boundaryCount", 2);
+K([
+  o({ type: Boolean, reflect: !0 })
+], A.prototype, "disabled", 2);
+A = K([
   d("ui-pagination")
-], B);
-var na = Object.defineProperty, la = Object.getOwnPropertyDescriptor, W = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? la(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && na(t, i, r), r;
+], A);
+const Pn = ':host{display:flex;align-items:center;position:relative;--action-size: 40px}.action-btn{display:inline-flex;align-items:center;justify-content:center;width:var(--action-size);height:var(--action-size);border-radius:50%;background:var(--ui-surface-background, #fff);color:var(--ui-text-color, #374151);border:none;cursor:pointer;box-shadow:0 3px 5px -1px #0003,0 6px 10px #00000024;transition:background .15s,box-shadow .15s,transform .15s;flex-shrink:0;outline:none;font-size:1.25rem}.action-btn:hover{background:var(--ui-surface-background-flat, #f3f4f6);box-shadow:0 5px 8px -1px #00000040,0 8px 12px #00000029;transform:scale(1.08)}.action-btn:focus-visible{outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:3px}:host([disabled]) .action-btn{opacity:.38;pointer-events:none}.tooltip{position:absolute;background:#1e293be0;color:#fff;font-family:var(--ui-font-family, "Inter", sans-serif);font-size:.75rem;font-weight:500;letter-spacing:.02em;padding:4px 10px;border-radius:5px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .15s}.tooltip.visible{opacity:1}:host([tooltip-placement="left"]) .tooltip{right:calc(100% + 10px);top:50%;transform:translateY(-50%)}:host([tooltip-placement="right"]) .tooltip{left:calc(100% + 10px);top:50%;transform:translateY(-50%)}:host([tooltip-placement="top"]) .tooltip{bottom:calc(100% + 10px);left:50%;transform:translate(-50%)}:host([tooltip-placement="bottom"]) .tooltip{top:calc(100% + 10px);left:50%;transform:translate(-50%)}', On = ':host{display:inline-flex;flex-direction:column;align-items:center;position:relative;--fab-size: 56px;--fab-bg: var(--ui-primary-color, #3b82f6);--fab-color: #fff;--action-gap: 12px}.actions{display:flex;align-items:center;gap:var(--action-gap)}:host([direction="up"]) .actions{flex-direction:column-reverse;margin-bottom:var(--action-gap)}:host([direction="down"]) .actions{flex-direction:column;margin-top:var(--action-gap)}:host([direction="left"]) .actions{flex-direction:row-reverse;margin-right:var(--action-gap)}:host([direction="right"]) .actions{flex-direction:row;margin-left:var(--action-gap)}:host([direction="up"]),:host([direction="down"]){flex-direction:column;align-items:center}:host([direction="left"]),:host([direction="right"]){flex-direction:row;align-items:center}:host([direction="up"]){flex-direction:column-reverse}.fab{display:inline-flex;align-items:center;justify-content:center;width:var(--fab-size);height:var(--fab-size);border-radius:50%;background:var(--fab-bg);color:var(--fab-color);border:none;cursor:pointer;box-shadow:0 6px 10px -2px #00000040,0 4px 5px #00000024;outline:none;font-size:1.5rem;transition:box-shadow .2s,background .2s;flex-shrink:0;position:relative;z-index:1}.fab:hover{box-shadow:0 8px 14px -2px #0000004d,0 6px 8px #00000029;background:var(--fab-bg-hover, var(--ui-primary-color-dark, #2563eb))}.fab:focus-visible{outline:3px solid var(--ui-primary-color, #3b82f6);outline-offset:3px}.fab-icon{display:flex;align-items:center;justify-content:center;transition:transform .25s cubic-bezier(.4,0,.2,1),opacity .2s}.fab-icon.close-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transform:rotate(-45deg)}:host([open]) .fab-icon.open-icon{opacity:0;transform:rotate(45deg)}:host([open]) .fab-icon.close-icon{opacity:1;transform:rotate(0)}::slotted(ui-speed-dial-action){opacity:0;transform:scale(.6);transition:opacity .18s ease,transform .18s cubic-bezier(.4,0,.2,1);pointer-events:none}:host([open]) ::slotted(ui-speed-dial-action){opacity:1;transform:scale(1);pointer-events:auto}.backdrop{display:none;position:fixed;inset:0;z-index:-1}:host([open]) .backdrop{display:block}:host([disabled]) .fab{opacity:.38;pointer-events:none;cursor:default}:host([hidden]){display:none!important}svg{display:block}';
+var Dn = Object.defineProperty, zn = Object.getOwnPropertyDescriptor, V = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? zn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Dn(t, i, r), r;
 };
-let He = class extends c {
+let Ve = class extends c {
   constructor() {
-    super(...arguments), this.tooltipTitle = "", this.tooltipOpen = !1, this.tooltipPlacement = "left", this.disabled = !1, this._hovered = !1;
+    super(...arguments), this.name = "", this.tooltipTitle = "", this.tooltipOpen = !1, this.tooltipPlacement = "left", this.disabled = !1, this._hovered = !1;
   }
   _handleClick() {
     this.disabled || this.dispatchEvent(new CustomEvent("ui-speed-dial-action-click", {
       bubbles: !0,
       composed: !0,
-      detail: { tooltipTitle: this.tooltipTitle }
+      detail: { name: this.name, tooltipTitle: this.tooltipTitle }
     }));
   }
   get _tooltipVisible() {
@@ -6910,113 +3873,45 @@ let He = class extends c {
                 <div class="tooltip ${u({ visible: this._tooltipVisible })}">
                     ${this.tooltipTitle}
                 </div>
-            ` : y}
+            ` : v}
         `;
   }
 };
-He.styles = p`
-        :host {
-            display: flex;
-            align-items: center;
-            position: relative;
-            --action-size: 40px;
-        }
-
-        /* ── Mini FAB ── */
-        .action-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: var(--action-size);
-            height: var(--action-size);
-            border-radius: 50%;
-            background: var(--ui-surface-background, #fff);
-            color: var(--ui-text-color, #374151);
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14);
-            transition: background 0.15s, box-shadow 0.15s, transform 0.15s;
-            flex-shrink: 0;
-            outline: none;
-            font-size: 1.25rem;
-        }
-        .action-btn:hover {
-            background: var(--ui-surface-background-flat, #f3f4f6);
-            box-shadow: 0 5px 8px -1px rgba(0,0,0,.25), 0 8px 12px 0 rgba(0,0,0,.16);
-            transform: scale(1.08);
-        }
-        .action-btn:focus-visible {
-            outline: 2px solid var(--ui-primary-color, #3b82f6);
-            outline-offset: 3px;
-        }
-        :host([disabled]) .action-btn {
-            opacity: 0.38;
-            pointer-events: none;
-        }
-
-        /* ── Tooltip ── */
-        .tooltip {
-            position: absolute;
-            background: rgba(30,41,59,.88);
-            color: #fff;
-            font-family: var(--ui-font-family, 'Inter', sans-serif);
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: .02em;
-            padding: 4px 10px;
-            border-radius: 5px;
-            white-space: nowrap;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.15s;
-        }
-        .tooltip.visible { opacity: 1; }
-
-        :host([tooltip-placement="left"]) .tooltip {
-            right: calc(100% + 10px);
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        :host([tooltip-placement="right"]) .tooltip {
-            left: calc(100% + 10px);
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        :host([tooltip-placement="top"]) .tooltip {
-            bottom: calc(100% + 10px);
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        :host([tooltip-placement="bottom"]) .tooltip {
-            top: calc(100% + 10px);
-            left: 50%;
-            transform: translateX(-50%);
-        }
-    `;
-W([
-  s({ type: String, attribute: "tooltip-title" })
-], He.prototype, "tooltipTitle", 2);
-W([
-  s({ type: Boolean, attribute: "tooltip-open" })
-], He.prototype, "tooltipOpen", 2);
-W([
-  s({ type: String, reflect: !0, attribute: "tooltip-placement" })
-], He.prototype, "tooltipPlacement", 2);
-W([
-  s({ type: Boolean, reflect: !0 })
-], He.prototype, "disabled", 2);
-W([
-  m()
-], He.prototype, "_hovered", 2);
-He = W([
+Ve.styles = p(Pn);
+V([
+  o({ type: String })
+], Ve.prototype, "name", 2);
+V([
+  o({ type: String, attribute: "tooltip-title" })
+], Ve.prototype, "tooltipTitle", 2);
+V([
+  o({ type: Boolean, attribute: "tooltip-open" })
+], Ve.prototype, "tooltipOpen", 2);
+V([
+  o({ type: String, reflect: !0, attribute: "tooltip-placement" })
+], Ve.prototype, "tooltipPlacement", 2);
+V([
+  o({ type: Boolean, reflect: !0 })
+], Ve.prototype, "disabled", 2);
+V([
+  g()
+], Ve.prototype, "_hovered", 2);
+Ve = V([
   d("ui-speed-dial-action")
-], He);
-let ye = class extends c {
+], Ve);
+let be = class extends c {
   constructor() {
-    super(...arguments), this.open = !1, this.direction = "up", this.hidden = !1, this.persistentTooltips = !1, this.closeIcon = "", this.ariaLabel = "Speed dial", this.isTouch = !1, this._onHostKeyDown = (e) => {
-      const { key: t } = e, i = this.shadowRoot?.activeElement?.classList.contains("fab") ?? !1, o = this._focusedActionIndex(), r = o !== -1;
+    super(...arguments), this.open = !1, this.defaultOpen = !1, this.direction = "up", this.hidden = !1, this.disabled = !1, this.persistentTooltips = !1, this.closeIcon = "", this.ariaLabel = "Speed dial", this.isTouch = !1, this._firstUpdate = !0, this._onHostKeyDown = (e) => {
+      if (this.disabled) return;
+      const { key: t } = e, i = this.shadowRoot?.activeElement?.classList.contains("fab") ?? !1, s = this._focusedActionIndex(), r = s !== -1;
       if (t === "Escape") {
         this.open && (e.preventDefault(), e.stopPropagation(), this._setOpen(!1), this._focusFab());
+        return;
+      }
+      if ((t === "Home" || t === "End") && this.open && r) {
+        e.preventDefault();
+        const n = this._actionButtons();
+        n.length && n[t === "Home" ? 0 : n.length - 1].focus();
         return;
       }
       if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(t)) {
@@ -7030,20 +3925,25 @@ let ye = class extends c {
         }
         if (r) {
           const n = t === "ArrowUp" || t === "ArrowLeft";
-          this._focusActionAt(n ? o - 1 : o + 1);
+          this._focusActionAt(n ? s - 1 : s + 1);
         } else if (i) {
           const n = this._actionButtons();
           n[t === "ArrowDown" || t === "ArrowRight" ? 0 : n.length - 1]?.focus();
         }
       }
+    }, this._suppressNextOpen = !1, this._onHostFocusOut = (e) => {
+      this.open && !this.contains(e.relatedTarget) && this._setOpen(!1);
     };
   }
   /* ── Lifecycle ───────────────────────────────────────────────── */
+  willUpdate(e) {
+    this._firstUpdate && this.defaultOpen && (this.open = !0), this._firstUpdate && (this._firstUpdate = !1);
+  }
   connectedCallback() {
-    super.connectedCallback(), !this.hasAttribute("is-touch") && typeof window.matchMedia == "function" && (this.isTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches), this.addEventListener("keydown", this._onHostKeyDown);
+    super.connectedCallback(), !this.hasAttribute("is-touch") && typeof window.matchMedia == "function" && (this.isTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches), this.addEventListener("keydown", this._onHostKeyDown), this.addEventListener("focusout", this._onHostFocusOut);
   }
   disconnectedCallback() {
-    this.removeEventListener("keydown", this._onHostKeyDown), super.disconnectedCallback();
+    this.removeEventListener("keydown", this._onHostKeyDown), this.removeEventListener("focusout", this._onHostFocusOut), super.disconnectedCallback();
   }
   /* ── Private helpers ─────────────────────────────────────────── */
   /** All enabled action buttons (shadow DOM buttons inside slotted actions). */
@@ -7072,22 +3972,29 @@ let ye = class extends c {
     ));
   }
   _toggle() {
-    this._setOpen(!this.open);
+    this.disabled || this._setOpen(!this.open);
   }
-  /* ── FAB handlers ────────────────────────────────────────────── */
-  /** Opening the dial on FAB keyboard focus (not mouse focus to avoid noise). */
+  /** Opens the dial when FAB receives keyboard focus from outside the component. */
   _onFabFocus(e) {
-    e.relatedTarget !== null && !this.open && this._setOpen(!0);
+    this._suppressNextOpen || e.relatedTarget !== null && !this.open && this._setOpen(!0);
   }
   /* ── Action click → close ────────────────────────────────────── */
   _onActionClick() {
-    this._setOpen(!1), this._focusFab();
+    this._suppressNextOpen = !0, this._setOpen(!1), this._focusFab(), Promise.resolve().then(() => {
+      this._suppressNextOpen = !1;
+    });
   }
   /* ── Tooltip helpers ─────────────────────────────────────────── */
+  /** True for directions where the first DOM action is visually farthest from the FAB. */
+  _isReversedDirection() {
+    return this.direction === "up" || this.direction === "left";
+  }
   _updateActionTooltips() {
-    const e = this.querySelectorAll("ui-speed-dial-action"), t = this.persistentTooltips || this.isTouch, i = this._tooltipPlacement();
-    e.forEach((o, r) => {
-      o.setAttribute("tooltip-placement", i), t && this.open ? o.setAttribute("tooltip-open", "") : o.removeAttribute("tooltip-open"), o.style.transitionDelay = this.open ? `${r * 40}ms` : `${(e.length - 1 - r) * 30}ms`;
+    const e = this.querySelectorAll("ui-speed-dial-action"), t = this.persistentTooltips || this.isTouch, i = this._tooltipPlacement(), s = this._isReversedDirection(), r = e.length;
+    e.forEach((a, n) => {
+      a.setAttribute("tooltip-placement", i), t && this.open ? a.setAttribute("tooltip-open", "") : a.removeAttribute("tooltip-open");
+      const h = s ? r - 1 - n : n, f = s ? n : r - 1 - n;
+      a.style.transitionDelay = this.open ? `${h * 40}ms` : `${f * 30}ms`;
     });
   }
   _tooltipPlacement() {
@@ -7107,8 +4014,6 @@ let ye = class extends c {
   updated(e) {
     (e.has("open") || e.has("direction") || e.has("persistentTooltips") || e.has("isTouch")) && this._updateActionTooltips();
   }
-  _onOpenIconSlotChange() {
-  }
   /* ── Render ──────────────────────────────────────────────────── */
   render() {
     return l`
@@ -7117,9 +4022,11 @@ let ye = class extends c {
 
             <!-- Actions — action-click events bubble up here -->
             <div
+                id="sd-menu"
                 class="actions"
                 role="menu"
                 aria-label="Speed dial actions"
+                aria-hidden=${this.open ? "false" : "true"}
             >
                 <slot
                     @slotchange=${() => this._updateActionTooltips()}
@@ -7131,8 +4038,11 @@ let ye = class extends c {
             <button
                 class="fab"
                 aria-label=${this.ariaLabel}
-                aria-expanded=${this.open}
-                aria-haspopup="true"
+                aria-expanded=${this.open ? "true" : "false"}
+                aria-haspopup="menu"
+                aria-controls="sd-menu"
+                aria-disabled=${this.disabled ? "true" : v}
+                ?disabled=${this.disabled}
                 @click=${this._toggle}
                 @focus=${this._onFabFocus}
             >
@@ -7147,7 +4057,7 @@ let ye = class extends c {
 
                 <!-- ✕ icon: visible when open -->
                 <span class="fab-icon close-icon">
-                    <slot name="open-icon" @slotchange=${this._onOpenIconSlotChange}>
+                    <slot name="open-icon">
                         ${this.closeIcon ? l`<span style="line-height:1;font-size:1.5rem;">${this.closeIcon}</span>` : l`<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>`}
                     </slot>
                 </span>
@@ -7155,144 +4065,45 @@ let ye = class extends c {
         `;
   }
 };
-ye.styles = p`
-        :host {
-            display: inline-flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            --fab-size: 56px;
-            --fab-bg: var(--ui-primary-color, #3b82f6);
-            --fab-color: #fff;
-            --action-gap: 12px;
-        }
-
-        /* ── Actions list ── */
-        .actions {
-            display: flex;
-            align-items: center;
-            gap: var(--action-gap);
-        }
-
-        /* Direction layout */
-        :host([direction="up"])    .actions { flex-direction: column-reverse; margin-bottom: var(--action-gap); }
-        :host([direction="down"])  .actions { flex-direction: column;         margin-top:    var(--action-gap); }
-        :host([direction="left"])  .actions { flex-direction: row-reverse;    margin-right:  var(--action-gap); }
-        :host([direction="right"]) .actions { flex-direction: row;            margin-left:   var(--action-gap); }
-
-        /* Container direction */
-        :host([direction="up"]),
-        :host([direction="down"]) { flex-direction: column; align-items: center; }
-        :host([direction="left"]),
-        :host([direction="right"]) { flex-direction: row; align-items: center; }
-        :host([direction="up"]) { flex-direction: column-reverse; }
-
-        /* ── Main FAB ── */
-        .fab {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: var(--fab-size);
-            height: var(--fab-size);
-            border-radius: 50%;
-            background: var(--fab-bg);
-            color: var(--fab-color);
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 6px 10px -2px rgba(0,0,0,.25), 0 4px 5px 0 rgba(0,0,0,.14);
-            outline: none;
-            font-size: 1.5rem;
-            transition: box-shadow 0.2s, background 0.2s;
-            flex-shrink: 0;
-            position: relative;
-            z-index: 1;
-        }
-        .fab:hover {
-            box-shadow: 0 8px 14px -2px rgba(0,0,0,.3), 0 6px 8px 0 rgba(0,0,0,.16);
-            background: var(--fab-bg-hover, var(--ui-primary-color-dark, #2563eb));
-        }
-        .fab:focus-visible {
-            outline: 3px solid var(--ui-primary-color, #3b82f6);
-            outline-offset: 3px;
-        }
-
-        /* ── Icon crossfade ── */
-        .fab-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.25s cubic-bezier(0.4,0,0.2,1), opacity 0.2s;
-        }
-        .fab-icon.close-icon {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transform: rotate(-45deg);
-        }
-        :host([open]) .fab-icon.open-icon  { opacity: 0; transform: rotate(45deg); }
-        :host([open]) .fab-icon.close-icon { opacity: 1; transform: rotate(0deg); }
-
-        /* ── Action entrance animation ── */
-        ::slotted(ui-speed-dial-action) {
-            opacity: 0;
-            transform: scale(0.6);
-            transition: opacity 0.18s ease, transform 0.18s cubic-bezier(0.4,0,0.2,1);
-            pointer-events: none;
-        }
-        :host([open]) ::slotted(ui-speed-dial-action) {
-            opacity: 1;
-            transform: scale(1);
-            pointer-events: auto;
-        }
-
-        /* ── Backdrop ── */
-        .backdrop {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-        }
-        :host([open]) .backdrop { display: block; }
-
-        /* ── Hidden ── */
-        :host([hidden]) { display: none !important; }
-
-        svg { display: block; }
-    `;
-W([
-  s({ type: Boolean, reflect: !0 })
-], ye.prototype, "open", 2);
-W([
-  s({ type: String, reflect: !0 })
-], ye.prototype, "direction", 2);
-W([
-  s({ type: Boolean, reflect: !0 })
-], ye.prototype, "hidden", 2);
-W([
-  s({ type: Boolean, attribute: "persistent-tooltips" })
-], ye.prototype, "persistentTooltips", 2);
-W([
-  s({ type: String, attribute: "close-icon" })
-], ye.prototype, "closeIcon", 2);
-W([
-  s({ type: String, attribute: "aria-label" })
-], ye.prototype, "ariaLabel", 2);
-W([
-  s({ type: Boolean, attribute: "is-touch" })
-], ye.prototype, "isTouch", 2);
-ye = W([
+be.styles = p(On);
+V([
+  o({ type: Boolean, reflect: !0 })
+], be.prototype, "open", 2);
+V([
+  o({ type: Boolean, attribute: "default-open" })
+], be.prototype, "defaultOpen", 2);
+V([
+  o({ type: String, reflect: !0 })
+], be.prototype, "direction", 2);
+V([
+  o({ type: Boolean, reflect: !0 })
+], be.prototype, "hidden", 2);
+V([
+  o({ type: Boolean, reflect: !0 })
+], be.prototype, "disabled", 2);
+V([
+  o({ type: Boolean, attribute: "persistent-tooltips" })
+], be.prototype, "persistentTooltips", 2);
+V([
+  o({ type: String, attribute: "close-icon" })
+], be.prototype, "closeIcon", 2);
+V([
+  o({ type: String, attribute: "aria-label" })
+], be.prototype, "ariaLabel", 2);
+V([
+  o({ type: Boolean, attribute: "is-touch" })
+], be.prototype, "isTouch", 2);
+be = V([
   d("ui-speed-dial")
-], ye);
-var ca = Object.defineProperty, da = Object.getOwnPropertyDescriptor, k = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? da(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && ca(t, i, r), r;
+], be);
+const Tn = ':host{display:block}.line{background:var(--ui-stepper-connector-color, #e5e7eb);border-radius:2px;transition:background .3s}.line.completed{background:var(--ui-primary-color, #3b82f6)}:host([orientation="horizontal"]) .line{height:2px;width:100%}:host([orientation="vertical"]) .line{width:2px;min-height:24px;margin:0 auto}', An = ':host{display:block}.label{font-size:.875rem;font-weight:500;color:var(--ui-text-color, #111827);font-family:var(--ui-font-family,"Inter",sans-serif);line-height:1.4}.optional{font-size:.75rem;color:#9ca3af;font-style:italic}:host([active]) .label{color:var(--ui-primary-color, #3b82f6);font-weight:600}:host([disabled]) .label{color:#9ca3af}:host([error]) .label{color:var(--ui-error-color, #ef4444)}', Bn = ':host{display:block;overflow:hidden}.panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease}.panel.open{grid-template-rows:1fr}.inner{overflow:hidden;padding:0 16px;transition:padding .25s ease}.panel.open .inner{padding:8px 16px 16px}.content{font-size:.875rem;color:var(--ui-text-color, #374151);font-family:var(--ui-font-family,"Inter",sans-serif)}', Mn = ':host{display:flex;flex:1 1 0;min-width:0;font-family:var(--ui-font-family,"Inter",sans-serif)}:host([orientation="horizontal"]){align-items:flex-start;padding-top:4px}:host([orientation="vertical"]){flex-direction:column;flex:none;width:100%}:host([alternative-label]){flex-direction:column;align-items:center;flex:1;min-width:0}.conn-wrap{flex:1 1 auto;min-width:12px;display:flex;align-items:flex-start;padding-top:15px}.conn-wrap ui-step-connector{flex:1}.alt-top{display:flex;align-items:center;width:100%}.alt-top .conn-fill{flex:1;display:flex;align-items:center}.alt-top .conn-fill ui-step-connector{flex:1}.step-header{display:flex;align-items:flex-start;gap:14px;min-width:0}.step-header ui-step-label,.step-btn ui-step-label{padding-top:5px;min-width:0}:host([alternative-label]) .alt-label-row{margin-top:8px;text-align:center;min-width:0;width:100%}.step-btn{background:none;border:none;padding:0;cursor:pointer;font-family:inherit;border-radius:6px;outline:none;display:flex;align-items:flex-start;gap:14px;min-width:0;text-align:left}.step-btn:focus-visible{outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:3px}:host([disabled]) .step-btn{cursor:default}:host([alternative-label]) .step-btn{flex-direction:column;align-items:center;gap:0}.v-body{display:flex;margin-left:15px;min-height:16px}.v-line{width:2px;background:var(--ui-stepper-connector-color, #e5e7eb);border-radius:2px;flex-shrink:0;transition:background .3s;margin-right:14px}.v-line.completed{background:var(--ui-primary-color, #3b82f6)}:host([last]) .v-line{background:transparent}.v-content{flex:1;padding-bottom:8px;min-width:0}.icon-circle{width:var(--ui-stepper-icon-size, 32px);height:var(--ui-stepper-icon-size, 32px);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8125rem;font-weight:700;border:2px solid #d1d5db;color:#9ca3af;background:transparent;transition:all .2s;flex-shrink:0;box-sizing:border-box}.icon-circle.active{background:var(--ui-primary-color,#3b82f6);border-color:var(--ui-primary-color,#3b82f6);color:#fff;box-shadow:0 0 0 4px #3b82f626}.icon-circle.completed{background:var(--ui-primary-color,#3b82f6);border-color:var(--ui-primary-color,#3b82f6);color:#fff}.icon-circle.error{border-color:var(--ui-error-color,#ef4444);color:var(--ui-error-color,#ef4444)}:host([disabled]) .icon-circle{opacity:.4}', Ln = ':host{display:block;font-family:var(--ui-font-family,"Inter",sans-serif)}.stepper{display:flex;padding:16px 24px;background:var(--ui-surface-background, #fff)}.stepper.horizontal{align-items:stretch;flex-direction:row}.stepper.vertical{flex-direction:column;gap:0}.stepper.alt{align-items:flex-start}', jn = ':host{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;gap:8px;background:var(--ui-surface-background,#fff);font-family:var(--ui-font-family,"Inter",sans-serif)}:host([position="static"]){border:1px solid var(--ui-border-color,#e5e7eb);border-radius:8px}:host([position="bottom"]){border-top:1px solid var(--ui-border-color,#e5e7eb)}:host([position="top"]){border-bottom:1px solid var(--ui-border-color,#e5e7eb)}.progress{display:flex;align-items:center;justify-content:center;flex:1;gap:0}.text{font-size:.8rem;color:#6b7280}.dots{display:flex;gap:6px}.dot{width:10px;height:10px;border-radius:50%;background:#d1d5db;transition:background .2s}.dot.active{background:var(--ui-primary-color,#3b82f6)}.bar-track{flex:1;height:4px;background:#e5e7eb;border-radius:2px;overflow:hidden}.bar-fill{height:100%;background:var(--ui-primary-color,#3b82f6);border-radius:2px;transition:width .3s}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.nav-btn{padding:6px 14px;border-radius:6px;font-size:.8rem;font-family:inherit;cursor:pointer;transition:opacity .15s}.nav-btn:disabled{opacity:.38;cursor:default}.nav-btn.back{background:#fff;color:#374151;border:1px solid #e2e8f0}.nav-btn.next{background:var(--ui-primary-color,#3b82f6);color:#fff;border:none}';
+var Un = Object.defineProperty, Rn = Object.getOwnPropertyDescriptor, _ = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Rn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Un(t, i, r), r;
 };
-const pa = l`<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>`, ha = l`<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>`;
-let pi = class extends c {
+const Vn = l`<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>`, Nn = l`<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>`;
+let bi = class extends c {
   constructor() {
     super(...arguments), this.orientation = "horizontal", this.completed = !1;
   }
@@ -7300,27 +4111,17 @@ let pi = class extends c {
     return l`<div class="line ${u({ completed: this.completed })}"></div>`;
   }
 };
-pi.styles = p`
-        :host { display: block; }
-        .line {
-            background: var(--connector-color, #e5e7eb);
-            border-radius: 2px;
-            transition: background 0.3s;
-        }
-        .line.completed { background: var(--ui-primary-color, #3b82f6); }
-        :host([orientation="horizontal"]) .line { height: 2px; width: 100%; }
-        :host([orientation="vertical"])   .line { width: 2px; min-height: 24px; margin: 0 auto; }
-    `;
-k([
-  s({ reflect: !0 })
-], pi.prototype, "orientation", 2);
-k([
-  s({ type: Boolean })
-], pi.prototype, "completed", 2);
-pi = k([
+bi.styles = p(Tn);
+_([
+  o({ reflect: !0 })
+], bi.prototype, "orientation", 2);
+_([
+  o({ type: Boolean })
+], bi.prototype, "completed", 2);
+bi = _([
   d("ui-step-connector")
-], pi);
-let Lt = class extends c {
+], bi);
+let qt = class extends c {
   constructor() {
     super(...arguments), this.active = !1, this.disabled = !1, this.error = !1;
   }
@@ -7331,260 +4132,147 @@ let Lt = class extends c {
     `;
   }
 };
-Lt.styles = p`
-        :host { display: block; }
-        .label { font-size: .875rem; font-weight: 500; color: var(--ui-text-color, #111827); font-family: var(--ui-font-family,'Inter',sans-serif); line-height: 1.4; }
-        .optional { font-size: .75rem; color: #9ca3af; font-style: italic; }
-        :host([active])   .label { color: var(--ui-primary-color, #3b82f6); font-weight: 600; }
-        :host([disabled]) .label { color: #9ca3af; }
-        :host([error])    .label { color: var(--ui-error-color, #ef4444); }
-    `;
-k([
-  s({ type: Boolean, reflect: !0 })
-], Lt.prototype, "active", 2);
-k([
-  s({ type: Boolean, reflect: !0 })
-], Lt.prototype, "disabled", 2);
-k([
-  s({ type: Boolean, reflect: !0 })
-], Lt.prototype, "error", 2);
-Lt = k([
+qt.styles = p(An);
+_([
+  o({ type: Boolean, reflect: !0 })
+], qt.prototype, "active", 2);
+_([
+  o({ type: Boolean, reflect: !0 })
+], qt.prototype, "disabled", 2);
+_([
+  o({ type: Boolean, reflect: !0 })
+], qt.prototype, "error", 2);
+qt = _([
   d("ui-step-label")
-], Lt);
-let $r = class extends c {
+], qt);
+let Mi = class extends c {
+  constructor() {
+    super(...arguments), this.open = !0;
+  }
   render() {
-    return l`<div class="content"><slot></slot></div>`;
+    return l`
+            <div
+                class="panel ${u({ open: this.open })}"
+                aria-hidden=${this.open ? "false" : "true"}
+            >
+                <div class="inner">
+                    <div class="content"><slot></slot></div>
+                </div>
+            </div>`;
   }
 };
-$r.styles = p`
-        :host { display: block; overflow: hidden; }
-        .content {
-            padding: 8px 16px 16px;
-            font-size: .875rem;
-            color: var(--ui-text-color, #374151);
-            font-family: var(--ui-font-family,'Inter',sans-serif);
-        }
-    `;
-$r = k([
+Mi.styles = p(Bn);
+_([
+  o({ type: Boolean, reflect: !0 })
+], Mi.prototype, "open", 2);
+Mi = _([
   d("ui-step-content")
-], $r);
-let H = class extends c {
+], Mi);
+let W = class extends c {
   constructor() {
-    super(...arguments), this.active = !1, this.completed = !1, this.disabled = !1, this.optional = !1, this.error = !1, this.last = !1, this.clickable = !1, this.orientation = "horizontal", this.alternativeLabel = !1, this.stepIndex = 0, this.optionalLabel = "Optional";
+    super(...arguments), this.active = !1, this.completed = !1, this.disabled = !1, this.optional = !1, this.error = !1, this.last = !1, this.clickable = !1, this.orientation = "horizontal", this.alternativeLabel = !1, this.stepIndex = 0, this.optionalLabel = "Optional", this.prevCompleted = !1;
+  }
+  connectedCallback() {
+    super.connectedCallback(), this.hasAttribute("role") || this.setAttribute("role", "listitem");
   }
   _fire() {
     this.disabled || this.dispatchEvent(new CustomEvent("ui-step-click", { detail: { index: this.stepIndex }, bubbles: !0, composed: !0 }));
   }
   _icon() {
-    const e = { "icon-circle": !0, active: this.active, completed: this.completed, error: this.error }, t = this.error ? ha : this.completed ? pa : l`<slot name="icon">${this.stepIndex + 1}</slot>`;
+    const e = { "icon-circle": !0, active: this.active, completed: this.completed, error: this.error }, t = this.error ? Nn : this.completed ? Vn : l`<slot name="icon">${this.stepIndex + 1}</slot>`;
     return l`<div class=${u(e)}>${t}</div>`;
   }
   _label() {
     return l`
             <ui-step-label ?active=${this.active} ?disabled=${this.disabled} ?error=${this.error}>
                 <slot name="label"></slot>
-                ${this.optional ? l`<span slot="optional">${this.optionalLabel}</span>` : y}
+                ${this.optional ? l`<span slot="optional">${this.optionalLabel}</span>` : v}
             </ui-step-label>`;
   }
   _connector(e = !1) {
     return l`<ui-step-connector orientation=${this.orientation} ?completed=${e}></ui-step-connector>`;
   }
   render() {
-    const e = this.stepIndex > 0, t = this.completed || !this.active && this.stepIndex > 0 && !this.disabled;
+    const e = this.stepIndex > 0;
     if (this.orientation === "vertical") {
-      const o = this.clickable ? l`<button class="step-btn" ?disabled=${this.disabled} @click=${this._fire} aria-current=${this.active ? "step" : "false"}>${this._icon()} ${this._label()}</button>` : l`<div class="step-header">${this._icon()} ${this._label()}</div>`;
+      const i = this.clickable ? l`<button class="step-btn" ?disabled=${this.disabled} @click=${this._fire} aria-current=${this.active ? "step" : v}>${this._icon()} ${this._label()}</button>` : l`<div class="step-header">${this._icon()} ${this._label()}</div>`;
       return l`
-                ${o}
+                ${i}
                 <div class="v-body">
                     <div class="v-line ${u({ completed: this.completed })}"></div>
                     <div class="v-content"><slot></slot></div>
                 </div>`;
     }
     if (this.alternativeLabel) {
-      const o = this.clickable ? l`<button class="step-btn" ?disabled=${this.disabled} @click=${this._fire} aria-current=${this.active ? "step" : "false"}>${this._icon()}</button>` : this._icon();
+      const i = this.clickable ? l`<button class="step-btn" ?disabled=${this.disabled} @click=${this._fire} aria-current=${this.active ? "step" : v}>${this._icon()}</button>` : this._icon();
       return l`
                 <div class="alt-top">
-                    ${e ? l`<div class="conn-fill">${this._connector(t)}</div>` : y}
-                    ${o}
-                    ${this.last ? y : l`<div class="conn-fill"></div>`}
+                    <div class="conn-fill">${e ? this._connector(this.prevCompleted) : v}</div>
+                    ${i}
+                    <div class="conn-fill"></div>
                 </div>
                 <div class="alt-label-row">${this._label()}</div>`;
     }
-    const i = this.clickable ? l`<button class="step-btn" ?disabled=${this.disabled} @click=${this._fire} aria-current=${this.active ? "step" : "false"}>${this._icon()} ${this._label()}</button>` : l`<div class="step-header">${this._icon()} ${this._label()}</div>`;
+    const t = this.clickable ? l`<button class="step-btn" ?disabled=${this.disabled} @click=${this._fire} aria-current=${this.active ? "step" : v}>${this._icon()} ${this._label()}</button>` : l`<div class="step-header">${this._icon()} ${this._label()}</div>`;
     return l`
-            ${e ? l`<div class="conn-wrap">${this._connector(t)}</div>` : y}
-            ${i}`;
+            ${e ? l`<div class="conn-wrap">${this._connector(this.prevCompleted)}</div>` : v}
+            ${t}`;
   }
 };
-H.styles = p`
-        :host {
-            display: flex;
-            /*
-             * flex: 1 1 0  ← key for equal columns:
-             * '0' flex-basis means the available space is divided equally,
-             * ignoring each step's content size.  Combined with min-width:0
-             * this prevents longer labels from widening their column.
-             */
-            flex: 1 1 0;
-            min-width: 0;
-            font-family: var(--ui-font-family,'Inter',sans-serif);
-        }
-
-        /* ── Horizontal ── */
-        :host([orientation="horizontal"]) { align-items: flex-start; padding-top: 4px; }
-
-        /* ── Vertical ── */
-        :host([orientation="vertical"]) {
-            flex-direction: column;
-            flex: none;
-            width: 100%;
-        }
-
-        /* ── Alternative label (horizontal) ── */
-        :host([alternative-label]) {
-            flex-direction: column;
-            align-items: center;
-            flex: 1;
-            min-width: 0;
-        }
-
-        /* connector wrapper — fills the gap between steps */
-        .conn-wrap {
-            flex: 1 1 auto;
-            min-width: 12px;
-            display: flex;
-            /*
-             * flex-start so the connector stays anchored to the top
-             * regardless of how tall a multi-line label makes the row.
-             * padding-top places the 2px line exactly at the icon's center:
-             *   host padding-top (4px) + half icon (16px) - 1px (half line) = 15px
-             */
-            align-items: flex-start;
-            padding-top: 15px;
-        }
-        .conn-wrap ui-step-connector { flex: 1; }
-
-        /* alt-label top row */
-        .alt-top { display: flex; align-items: center; width: 100%; }
-        .alt-top .conn-fill { flex: 1; display: flex; align-items: center; }
-        .alt-top .conn-fill ui-step-connector { flex: 1; }
-
-        /* ── Step header: icon + label ── */
-        .step-header {
-            display: flex;
-            align-items: flex-start;   /* icon aligns to first line of label */
-            gap: 14px;
-            min-width: 0;              /* allow label to wrap instead of overflow */
-        }
-        /* Optically nudge label down so its baseline sits at the icon's centre */
-        .step-header ui-step-label,
-        .step-btn    ui-step-label {
-            padding-top: 5px;          /* (32px icon − ~22px text) / 2 ≈ 5px */
-            min-width: 0;
-        }
-
-        :host([alternative-label]) .alt-label-row {
-            margin-top: 8px;
-            text-align: center;
-            min-width: 0;
-            width: 100%;
-        }
-
-        /* clickable button mode */
-        .step-btn {
-            background: none; border: none; padding: 0; cursor: pointer;
-            font-family: inherit; border-radius: 6px; outline: none;
-            display: flex; align-items: flex-start; gap: 14px;
-            min-width: 0;
-            text-align: left;
-        }
-        .step-btn:focus-visible { outline: 2px solid var(--ui-primary-color, #3b82f6); outline-offset: 3px; }
-        :host([disabled]) .step-btn { cursor: default; }
-        :host([alternative-label]) .step-btn { flex-direction: column; align-items: center; gap: 0; }
-
-        /* ── Vertical body ── */
-        .v-body {
-            display: flex;
-            margin-left: 15px;
-            min-height: 16px;
-        }
-        .v-line {
-            width: 2px;
-            background: var(--ui-border-color, #e5e7eb);
-            border-radius: 2px;
-            flex-shrink: 0;
-            transition: background 0.3s;
-            margin-right: 14px;
-        }
-        .v-line.completed { background: var(--ui-primary-color, #3b82f6); }
-        :host([last]) .v-line { background: transparent; }
-        .v-content { flex: 1; padding-bottom: 8px; min-width: 0; }
-
-        /* ── Step icon circle ── */
-        .icon-circle {
-            width: 32px; height: 32px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: .8125rem; font-weight: 700;
-            border: 2px solid #d1d5db;
-            color: #9ca3af;
-            background: transparent;
-            transition: all .2s;
-            /* Never shrink — it's a fixed-size indicator */
-            flex-shrink: 0;
-            box-sizing: border-box;
-        }
-        .icon-circle.active   { background: var(--ui-primary-color,#3b82f6); border-color: var(--ui-primary-color,#3b82f6); color:#fff; box-shadow:0 0 0 4px rgba(59,130,246,.15); }
-        .icon-circle.completed{ background: var(--ui-primary-color,#3b82f6); border-color: var(--ui-primary-color,#3b82f6); color:#fff; }
-        .icon-circle.error    { border-color: var(--ui-error-color,#ef4444); color: var(--ui-error-color,#ef4444); }
-        :host([disabled]) .icon-circle { opacity: .4; }
-    `;
-k([
-  s({ type: Boolean, reflect: !0 })
-], H.prototype, "active", 2);
-k([
-  s({ type: Boolean, reflect: !0 })
-], H.prototype, "completed", 2);
-k([
-  s({ type: Boolean, reflect: !0 })
-], H.prototype, "disabled", 2);
-k([
-  s({ type: Boolean, reflect: !0 })
-], H.prototype, "optional", 2);
-k([
-  s({ type: Boolean, reflect: !0 })
-], H.prototype, "error", 2);
-k([
-  s({ type: Boolean, reflect: !0 })
-], H.prototype, "last", 2);
-k([
-  s({ type: Boolean, reflect: !0 })
-], H.prototype, "clickable", 2);
-k([
-  s({ type: String, reflect: !0 })
-], H.prototype, "orientation", 2);
-k([
-  s({ type: Boolean, reflect: !0, attribute: "alternative-label" })
-], H.prototype, "alternativeLabel", 2);
-k([
-  s({ type: Number, attribute: "step-index" })
-], H.prototype, "stepIndex", 2);
-k([
-  s({ type: String, attribute: "optional-label" })
-], H.prototype, "optionalLabel", 2);
-H = k([
+W.styles = p(Mn);
+_([
+  o({ type: Boolean, reflect: !0 })
+], W.prototype, "active", 2);
+_([
+  o({ type: Boolean, reflect: !0 })
+], W.prototype, "completed", 2);
+_([
+  o({ type: Boolean, reflect: !0 })
+], W.prototype, "disabled", 2);
+_([
+  o({ type: Boolean, reflect: !0 })
+], W.prototype, "optional", 2);
+_([
+  o({ type: Boolean, reflect: !0 })
+], W.prototype, "error", 2);
+_([
+  o({ type: Boolean, reflect: !0 })
+], W.prototype, "last", 2);
+_([
+  o({ type: Boolean, reflect: !0 })
+], W.prototype, "clickable", 2);
+_([
+  o({ type: String, reflect: !0 })
+], W.prototype, "orientation", 2);
+_([
+  o({ type: Boolean, reflect: !0, attribute: "alternative-label" })
+], W.prototype, "alternativeLabel", 2);
+_([
+  o({ type: Number, attribute: "step-index" })
+], W.prototype, "stepIndex", 2);
+_([
+  o({ type: String, attribute: "optional-label" })
+], W.prototype, "optionalLabel", 2);
+_([
+  o({ type: Boolean, attribute: "prev-completed" })
+], W.prototype, "prevCompleted", 2);
+W = _([
   d("ui-step")
-], H);
-let nt = class extends c {
+], W);
+let it = class extends c {
   constructor() {
-    super(...arguments), this.activeStep = 0, this.orientation = "horizontal", this.alternativeLabel = !1, this.nonLinear = !1, this._onStepClick = (e) => {
+    super(...arguments), this.activeStep = 0, this.orientation = "horizontal", this.alternativeLabel = !1, this.nonLinear = !1, this.label = "steps", this._onStepClick = (e) => {
       this.activeStep = e.detail.index, this.dispatchEvent(new CustomEvent("ui-step-change", { detail: { step: e.detail.index }, bubbles: !0, composed: !0 })), this._syncSteps();
     };
   }
   _syncSteps() {
     const e = Array.from(this.querySelectorAll(":scope > ui-step"));
     e.forEach((t, i) => {
-      t.stepIndex = i, t.last = i === e.length - 1, t.orientation = this.orientation, t.alternativeLabel = this.alternativeLabel, t.active = i === this.activeStep, this.nonLinear ? (t.disabled = !1, t.clickable = !0) : (t.completed || (t.disabled = i > this.activeStep), t.clickable = !1);
+      t.stepIndex = i, t.last = i === e.length - 1, t.orientation = this.orientation, t.alternativeLabel = this.alternativeLabel, t.active = i === this.activeStep, t.prevCompleted = i > 0 && e[i - 1].completed, this.nonLinear ? (t.disabled = !1, t.clickable = !0) : (t.completed || (t.disabled = i > this.activeStep), t.clickable = !1);
     });
+  }
+  firstUpdated() {
+    this._syncSteps();
   }
   updated(e) {
     (e.has("activeStep") || e.has("orientation") || e.has("alternativeLabel") || e.has("nonLinear")) && this._syncSteps();
@@ -7598,128 +4286,117 @@ let nt = class extends c {
   render() {
     const e = `stepper ${this.orientation}${this.alternativeLabel ? " alt" : ""}`;
     return l`
-            <div class=${e}>
+            <div class=${e} role="list" aria-label=${this.label}>
                 <slot @slotchange=${() => {
       this._syncSteps(), this.requestUpdate();
     }}></slot>
             </div>`;
   }
 };
-nt.styles = p`
-        :host { display: block; font-family: var(--ui-font-family,'Inter',sans-serif); }
-        .stepper {
-            display: flex;
-            padding: 16px 24px;
-            background: var(--ui-surface-background, #fff);
-        }
-        /* Horizontal: align-items:stretch lets each step be as tall as the tallest */
-        .stepper.horizontal { align-items: stretch; flex-direction: row; }
-        .stepper.vertical   { flex-direction: column; gap: 0; }
-        /* alt-label: icons sit at the same height across all steps */
-        .stepper.alt { align-items: flex-start; }
-
-        /* Expose primary color to steps */
-        ::slotted(ui-step) { /* overridden in child */ }
-    `;
-k([
-  s({ type: Number, attribute: "active-step" })
-], nt.prototype, "activeStep", 2);
-k([
-  s({ type: String, reflect: !0 })
-], nt.prototype, "orientation", 2);
-k([
-  s({ type: Boolean, attribute: "alternative-label" })
-], nt.prototype, "alternativeLabel", 2);
-k([
-  s({ type: Boolean, attribute: "non-linear" })
-], nt.prototype, "nonLinear", 2);
-nt = k([
+it.styles = p(Ln);
+_([
+  o({ type: Number, attribute: "active-step" })
+], it.prototype, "activeStep", 2);
+_([
+  o({ type: String, reflect: !0 })
+], it.prototype, "orientation", 2);
+_([
+  o({ type: Boolean, attribute: "alternative-label" })
+], it.prototype, "alternativeLabel", 2);
+_([
+  o({ type: Boolean, attribute: "non-linear" })
+], it.prototype, "nonLinear", 2);
+_([
+  o({ type: String })
+], it.prototype, "label", 2);
+it = _([
   d("ui-stepper")
-], nt);
-let lt = class extends c {
+], it);
+let Ne = class extends c {
   constructor() {
-    super(...arguments), this.steps = 0, this.activeStep = 0, this.variant = "dots", this.position = "static";
+    super(...arguments), this.steps = 0, this.activeStep = 0, this.variant = "dots", this.position = "static", this.backLabel = "Back", this.nextLabel = "Next";
+  }
+  /** Guards against steps=0 (divide-by-zero, nonsensical UI). */
+  get _safeSteps() {
+    return Math.max(1, this.steps);
   }
   _emit(e) {
     this.dispatchEvent(new CustomEvent(e, { bubbles: !0, composed: !0 }));
   }
   _progress() {
+    const e = this.activeStep + 1, t = this._safeSteps;
     if (this.variant === "text")
-      return l`<span class="text">Step ${this.activeStep + 1} of ${this.steps}</span>`;
+      return l`<span class="text" aria-live="polite">Step ${e} of ${t}</span>`;
     if (this.variant === "dots")
-      return l`<div class="dots">${Array.from({ length: this.steps }, (t, i) => l`<div class="dot ${i === this.activeStep ? "active" : ""}"></div>`)}</div>`;
-    const e = this.steps > 1 ? this.activeStep / (this.steps - 1) * 100 : 100;
-    return l`<div class="bar-track"><div class="bar-fill" style="width:${e}%"></div></div>`;
+      return l`
+                <div class="dots" aria-label="Step ${e} of ${t}">
+                    <span class="sr-only" aria-live="polite">Step ${e} of ${t}</span>
+                    ${Array.from({ length: t }, (s, r) => l`<div class="dot ${r === this.activeStep ? "active" : ""}"></div>`)}
+                </div>`;
+    const i = t > 1 ? this.activeStep / (t - 1) * 100 : 100;
+    return l`
+            <div
+                class="bar-track"
+                role="progressbar"
+                aria-valuenow=${e}
+                aria-valuemin="1"
+                aria-valuemax=${t}
+                aria-label="Step ${e} of ${t}"
+            >
+                <div class="bar-fill" style="width:${i}%"></div>
+            </div>`;
   }
   render() {
     return l`
             <slot name="back-button">
-                <button class="nav-btn back" ?disabled=${this.activeStep === 0}
-                    @click=${() => this._emit("ui-mobile-step-back")}>Back</button>
+                <button
+                    class="nav-btn back"
+                    ?disabled=${this.activeStep === 0}
+                    aria-label="Go to previous step"
+                    @click=${() => this._emit("ui-mobile-step-back")}
+                >${this.backLabel}</button>
             </slot>
             <div class="progress">${this._progress()}</div>
             <slot name="next-button">
-                <button class="nav-btn next" ?disabled=${this.activeStep >= this.steps - 1}
-                    @click=${() => this._emit("ui-mobile-step-next")}>Next</button>
+                <button
+                    class="nav-btn next"
+                    ?disabled=${this.activeStep >= this._safeSteps - 1}
+                    aria-label="Go to next step"
+                    @click=${() => this._emit("ui-mobile-step-next")}
+                >${this.nextLabel}</button>
             </slot>`;
   }
 };
-lt.styles = p`
-        :host {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 8px 12px; gap: 8px;
-            background: var(--ui-surface-background,#fff);
-            font-family: var(--ui-font-family,'Inter',sans-serif);
-        }
-        :host([position="static"]) { border:1px solid var(--ui-border-color,#e5e7eb); border-radius:8px; }
-        :host([position="bottom"]) { border-top:1px solid var(--ui-border-color,#e5e7eb); }
-        :host([position="top"])    { border-bottom:1px solid var(--ui-border-color,#e5e7eb); }
-
-        .progress { display:flex; align-items:center; justify-content:center; flex:1; gap:0; }
-
-        /* text */
-        .text { font-size:.8rem; color:#6b7280; }
-
-        /* dots */
-        .dots { display:flex; gap:6px; }
-        .dot  { width:10px; height:10px; border-radius:50%; background:#d1d5db; transition:background .2s; }
-        .dot.active { background:var(--ui-primary-color,#3b82f6); }
-
-        /* progress bar */
-        .bar-track { flex:1; height:4px; background:#e5e7eb; border-radius:2px; overflow:hidden; }
-        .bar-fill   { height:100%; background:var(--ui-primary-color,#3b82f6); border-radius:2px; transition:width .3s; }
-
-        /* default nav buttons */
-        .nav-btn {
-            padding:6px 14px; border-radius:6px; font-size:.8rem; font-family:inherit; cursor:pointer;
-            transition: opacity .15s;
-        }
-        .nav-btn:disabled { opacity:.38; cursor:default; }
-        .nav-btn.back { background:#fff; color:#374151; border:1px solid #e2e8f0; }
-        .nav-btn.next { background:var(--ui-primary-color,#3b82f6); color:#fff; border:none; }
-    `;
-k([
-  s({ type: Number })
-], lt.prototype, "steps", 2);
-k([
-  s({ type: Number, attribute: "active-step" })
-], lt.prototype, "activeStep", 2);
-k([
-  s({ type: String })
-], lt.prototype, "variant", 2);
-k([
-  s({ type: String, reflect: !0 })
-], lt.prototype, "position", 2);
-lt = k([
+Ne.styles = p(jn);
+_([
+  o({ type: Number })
+], Ne.prototype, "steps", 2);
+_([
+  o({ type: Number, attribute: "active-step" })
+], Ne.prototype, "activeStep", 2);
+_([
+  o({ type: String })
+], Ne.prototype, "variant", 2);
+_([
+  o({ type: String, reflect: !0 })
+], Ne.prototype, "position", 2);
+_([
+  o({ type: String, attribute: "back-label" })
+], Ne.prototype, "backLabel", 2);
+_([
+  o({ type: String, attribute: "next-label" })
+], Ne.prototype, "nextLabel", 2);
+Ne = _([
   d("ui-mobile-stepper")
-], lt);
-var ua = Object.defineProperty, fa = Object.getOwnPropertyDescriptor, $ = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? fa(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && ua(t, i, r), r;
+], Ne);
+const Fn = ':host{display:inline-flex;position:relative;background:var(--ui-surface-background, #fff)}:host([full-width]){flex:1}.tab{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 16px;min-height:48px;border:none;background:none;cursor:pointer;font-family:var(--ui-font-family,"Inter",sans-serif);font-size:.875rem;font-weight:500;line-height:1.25;color:var(--ui-tab-inactive, #6b7280);white-space:nowrap;border-radius:0;outline:none;transition:color .2s,background .15s;box-sizing:border-box;width:100%;text-decoration:none;-webkit-tap-highlight-color:transparent}.tab:hover:not(:disabled):not([aria-disabled=true]){color:var(--ui-tab-active, #3b82f6);background:#3b82f60a}.tab:focus-visible{outline:2px solid var(--ui-tab-active, #3b82f6);outline-offset:-2px}:host([selected]) .tab{color:var(--ui-tab-active, #3b82f6);font-weight:600}.tab:disabled{color:#00000042;cursor:not-allowed}.icon-top{flex-direction:column;min-height:72px}.icon-bottom{flex-direction:column-reverse;min-height:72px}.icon-start{flex-direction:row}.icon-end{flex-direction:row-reverse}.icon-slot{display:contents;line-height:0}', qn = ':host{display:block;background:var(--ui-surface-background, #fff)}:host([hidden]){display:none!important}.panel{padding:24px;font-family:var(--ui-font-family,"Inter",sans-serif);font-size:.875rem;color:#374151;line-height:1.6}', Hn = ':host{display:block;position:relative;background:var(--ui-surface-background, #fff)}:host([orientation="vertical"]){height:100%}:host([orientation="vertical"]) .container{height:100%}.container{display:flex;align-items:center;position:relative;border-bottom:1px solid #e5e7eb}:host([orientation="vertical"]) .container{flex-direction:column;border-bottom:none;border-right:1px solid #e5e7eb;align-items:stretch}.scroll-btn{flex-shrink:0;display:flex;align-items:center;justify-content:center;border:none;background:none;cursor:pointer;color:#6b7280;border-radius:4px;padding:0;transition:color .15s,background .15s}:host(:not([orientation="vertical"])) .scroll-btn{width:40px;height:40px}:host([orientation="vertical"]) .scroll-btn{width:100%;height:40px}.scroll-btn:hover:not(:disabled){color:#374151;background:#0000000d}.scroll-btn:disabled{opacity:.38;cursor:default}.scroll-area{flex:1;position:relative;min-height:0;scrollbar-width:none;-ms-overflow-style:none}.scroll-area::-webkit-scrollbar{display:none}:host(:not([orientation="vertical"])) .scroll-area{overflow-x:auto;overflow-y:hidden}:host([orientation="vertical"]) .scroll-area{overflow-y:auto;overflow-x:hidden}.tabs-row{display:flex;position:relative;min-width:max-content}:host([orientation="vertical"]) .tabs-row{flex-direction:column;min-width:unset;min-height:max-content}:host([variant="fullWidth"]) .tabs-row{min-width:100%}:host([variant="fullWidth"]) ::slotted(ui-tab){flex:1}:host([centered]) .tabs-row{justify-content:center;min-width:100%}.indicator{position:absolute;pointer-events:none;opacity:0;background:var(--ui-tabs-ind-color, #3b82f6);border-radius:3px;transition:left .25s cubic-bezier(.4,0,.2,1),width .25s cubic-bezier(.4,0,.2,1),top .25s cubic-bezier(.4,0,.2,1),height .25s cubic-bezier(.4,0,.2,1),opacity .15s}:host(:not([orientation="vertical"])) .indicator{bottom:0;height:3px}:host([orientation="vertical"]) .indicator{right:0;width:3px}', Kn = ':host{display:block;font-family:var(--ui-font-family,"Inter",sans-serif);background:var(--ui-surface-background, #fff)}:host([orientation="vertical"]) .root{display:flex;flex-direction:row;height:100%;min-height:inherit}.root{display:block}';
+var Yn = Object.defineProperty, Gn = Object.getOwnPropertyDescriptor, $ = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Gn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Yn(t, i, r), r;
 };
-const tr = (e) => l`<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="${e}"/></svg>`, ba = () => tr("M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"), ga = () => tr("M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"), ma = () => tr("M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"), va = () => tr("M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z");
-let Ee = class extends c {
+const rr = (e) => l`<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="${e}"/></svg>`, Wn = () => rr("M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"), Xn = () => rr("M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"), Jn = () => rr("M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"), Zn = () => rr("M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z");
+let Fe = class extends c {
   constructor() {
     super(...arguments), this.value = "", this.disabled = !1, this.selected = !1, this.iconPosition = "start", this.href = "", this.fullWidth = !1;
   }
@@ -7758,63 +4435,29 @@ let Ee = class extends c {
             @click=${this._fire}>${this._inner()}</button>`;
   }
 };
-Ee.styles = p`
-        :host { display: inline-flex; position: relative; background: var(--ui-surface-background, #fff); }
-        :host([full-width]) { flex: 1; }
-
-        .tab {
-            display: inline-flex; align-items: center; justify-content: center;
-            gap: 6px; padding: 10px 16px; min-height: 48px;
-            border: none; background: none; cursor: pointer;
-            font-family: var(--ui-font-family,'Inter',sans-serif);
-            font-size: .875rem; font-weight: 500; line-height: 1.25;
-            color: var(--ui-tab-inactive, #6b7280);
-            white-space: nowrap; border-radius: 0; outline: none;
-            transition: color .2s, background .15s;
-            box-sizing: border-box; width: 100%;
-            text-decoration: none; -webkit-tap-highlight-color: transparent;
-        }
-        .tab:hover:not(:disabled):not([aria-disabled="true"]) {
-            color: var(--ui-tab-active, #3b82f6);
-            background: rgba(59,130,246,.04);
-        }
-        .tab:focus-visible {
-            outline: 2px solid var(--ui-tab-active, #3b82f6);
-            outline-offset: -2px;
-        }
-        :host([selected]) .tab { color: var(--ui-tab-active, #3b82f6); font-weight: 600; }
-        .tab:disabled { color: rgba(0,0,0,.26); cursor: not-allowed; }
-
-        /* icon positions */
-        .icon-top    { flex-direction: column; min-height: 72px; }
-        .icon-bottom { flex-direction: column-reverse; min-height: 72px; }
-        .icon-start  { flex-direction: row; }
-        .icon-end    { flex-direction: row-reverse; }
-
-        .icon-slot { display: contents; line-height: 0; }
-    `;
+Fe.styles = p(Fn);
 $([
-  s({ reflect: !0 })
-], Ee.prototype, "value", 2);
+  o({ reflect: !0 })
+], Fe.prototype, "value", 2);
 $([
-  s({ type: Boolean, reflect: !0 })
-], Ee.prototype, "disabled", 2);
+  o({ type: Boolean, reflect: !0 })
+], Fe.prototype, "disabled", 2);
 $([
-  s({ type: Boolean, reflect: !0 })
-], Ee.prototype, "selected", 2);
+  o({ type: Boolean, reflect: !0 })
+], Fe.prototype, "selected", 2);
 $([
-  s({ attribute: "icon-position", reflect: !0 })
-], Ee.prototype, "iconPosition", 2);
+  o({ attribute: "icon-position", reflect: !0 })
+], Fe.prototype, "iconPosition", 2);
 $([
-  s()
-], Ee.prototype, "href", 2);
+  o()
+], Fe.prototype, "href", 2);
 $([
-  s({ type: Boolean, reflect: !0, attribute: "full-width" })
-], Ee.prototype, "fullWidth", 2);
-Ee = $([
+  o({ type: Boolean, reflect: !0, attribute: "full-width" })
+], Fe.prototype, "fullWidth", 2);
+Fe = $([
   d("ui-tab")
-], Ee);
-let Ti = class extends c {
+], Fe);
+let Li = class extends c {
   constructor() {
     super(...arguments), this.value = "";
   }
@@ -7822,19 +4465,14 @@ let Ti = class extends c {
     return l`<div class="panel" role="tabpanel"><slot></slot></div>`;
   }
 };
-Ti.styles = p`
-        :host         { display: block; background: var(--ui-surface-background, #fff); }
-        :host([hidden]){ display: none !important; }
-        .panel        { padding: 24px; font-family: var(--ui-font-family,'Inter',sans-serif);
-                        font-size: .875rem; color: #374151; line-height: 1.6; }
-    `;
+Li.styles = p(qn);
 $([
-  s({ reflect: !0 })
-], Ti.prototype, "value", 2);
-Ti = $([
+  o({ reflect: !0 })
+], Li.prototype, "value", 2);
+Li = $([
   d("ui-tab-panel")
-], Ti);
-let Z = class extends c {
+], Li);
+let oe = class extends c {
   constructor() {
     super(...arguments), this.orientation = "horizontal", this.variant = "standard", this.centered = !1, this.scrollButtons = "auto", this._canBack = !1, this._canFwd = !1;
   }
@@ -7857,7 +4495,7 @@ let Z = class extends c {
     e && (this.orientation === "horizontal" ? (this._canBack = e.scrollLeft > 1, this._canFwd = e.scrollLeft < e.scrollWidth - e.clientWidth - 1) : (this._canBack = e.scrollTop > 1, this._canFwd = e.scrollTop < e.scrollHeight - e.clientHeight - 1));
   }
   syncIndicator() {
-    const e = this._tabs().find((o) => o.selected);
+    const e = this._tabs().find((s) => s.selected);
     if (!e || !this._ind || !this._row) return;
     const t = this._row.getBoundingClientRect(), i = e.getBoundingClientRect();
     !i.width && !i.height || (this.orientation === "horizontal" ? (this._ind.style.left = `${i.left - t.left}px`, this._ind.style.width = `${i.width}px`, this._ind.style.top = "", this._ind.style.height = "") : (this._ind.style.top = `${i.top - t.top}px`, this._ind.style.height = `${i.height}px`, this._ind.style.left = "", this._ind.style.width = ""), this._ind.style.opacity = "1");
@@ -7867,12 +4505,12 @@ let Z = class extends c {
   }
   /** Keyboard navigation across tabs */
   _onKey(e) {
-    const t = this.orientation === "horizontal", i = t ? "ArrowLeft" : "ArrowUp", o = t ? "ArrowRight" : "ArrowDown";
-    if (![i, o, "Home", "End"].includes(e.key)) return;
+    const t = this.orientation === "horizontal", i = t ? "ArrowLeft" : "ArrowUp", s = t ? "ArrowRight" : "ArrowDown";
+    if (![i, s, "Home", "End"].includes(e.key)) return;
     e.preventDefault();
     const r = this._tabs().filter((h) => !h.disabled), a = r.findIndex((h) => h.contains(document.activeElement) || h === document.activeElement);
     let n = a < 0 ? 0 : a;
-    e.key === i && (n = (n - 1 + r.length) % r.length), e.key === o && (n = (n + 1) % r.length), e.key === "Home" && (n = 0), e.key === "End" && (n = r.length - 1), r[n]?.focusInner(), r[n]?.dispatchEvent(new CustomEvent("ui-tab-click", {
+    e.key === i && (n = (n - 1 + r.length) % r.length), e.key === s && (n = (n + 1) % r.length), e.key === "Home" && (n = 0), e.key === "End" && (n = r.length - 1), r[n]?.focusInner(), r[n]?.dispatchEvent(new CustomEvent("ui-tab-click", {
       detail: { value: r[n].value },
       bubbles: !0,
       composed: !0
@@ -7886,13 +4524,13 @@ let Z = class extends c {
             <button class="scroll-btn" aria-label="Scroll back"
                 ?disabled=${!this._canBack}
                 @click=${() => this._scroll(-200)}>
-                ${t ? ma() : ba()}
-            </button>` : y, o = e ? l`
+                ${t ? Jn() : Wn()}
+            </button>` : v, s = e ? l`
             <button class="scroll-btn" aria-label="Scroll forward"
                 ?disabled=${!this._canFwd}
                 @click=${() => this._scroll(200)}>
-                ${t ? va() : ga()}
-            </button>` : y;
+                ${t ? Zn() : Xn()}
+            </button>` : v;
     return l`
             <div class="container">
                 ${i}
@@ -7902,113 +4540,45 @@ let Z = class extends c {
                         <div class="indicator"></div>
                     </div>
                 </div>
-                ${o}
+                ${s}
             </div>`;
   }
 };
-Z.styles = p`
-        :host { display: block; position: relative; background: var(--ui-surface-background, #fff); }
-        /* In vertical mode the host must fill the height that flex-stretching gives it
-           so .scroll-area has a bounded height and overflow:auto actually fires. */
-        :host([orientation="vertical"]) { height: 100%; }
-        :host([orientation="vertical"]) .container { height: 100%; }
-
-        .container {
-            display: flex; align-items: center; position: relative;
-            border-bottom: 1px solid #e5e7eb;
-        }
-        :host([orientation="vertical"]) .container {
-            flex-direction: column; border-bottom: none;
-            border-right: 1px solid #e5e7eb; align-items: stretch;
-        }
-
-        /* scroll buttons */
-        .scroll-btn {
-            flex-shrink: 0; display: flex; align-items: center; justify-content: center;
-            border: none; background: none; cursor: pointer; color: #6b7280;
-            border-radius: 4px; padding: 0;
-            transition: color .15s, background .15s;
-        }
-        /* Horizontal: fixed square on left/right of the scroll area */
-        :host(:not([orientation="vertical"])) .scroll-btn { width: 40px; height: 40px; }
-        /* Vertical: full-width bar on top/bottom — centres the chevron across the sidebar */
-        :host([orientation="vertical"]) .scroll-btn     { width: 100%; height: 40px; }
-        .scroll-btn:hover:not(:disabled) { color: #374151; background: rgba(0,0,0,.05); }
-        .scroll-btn:disabled { opacity: .38; cursor: default; }
-
-        /* scroll area – axis-locked so scroll events don't bleed to the page */
-        .scroll-area {
-            flex: 1; position: relative; min-height: 0;
-            scrollbar-width: none; -ms-overflow-style: none;
-        }
-        .scroll-area::-webkit-scrollbar { display: none; }
-        :host(:not([orientation="vertical"])) .scroll-area {
-            overflow-x: auto; overflow-y: hidden;
-        }
-        :host([orientation="vertical"]) .scroll-area {
-            overflow-y: auto; overflow-x: hidden;
-        }
-
-        /* tabs row */
-        .tabs-row {
-            display: flex; position: relative;
-            min-width: max-content;
-        }
-        :host([orientation="vertical"]) .tabs-row {
-            flex-direction: column; min-width: unset; min-height: max-content;
-        }
-        :host([variant="fullWidth"]) .tabs-row  { min-width: 100%; }
-        :host([variant="fullWidth"]) ::slotted(ui-tab) { flex: 1; }
-        :host([centered]) .tabs-row { justify-content: center; min-width: 100%; }
-
-        /* indicator */
-        .indicator {
-            position: absolute; pointer-events: none; opacity: 0;
-            background: var(--ui-tabs-ind-color, #3b82f6); border-radius: 3px;
-            transition:
-                left   .25s cubic-bezier(.4,0,.2,1),
-                width  .25s cubic-bezier(.4,0,.2,1),
-                top    .25s cubic-bezier(.4,0,.2,1),
-                height .25s cubic-bezier(.4,0,.2,1),
-                opacity .15s;
-        }
-        :host(:not([orientation="vertical"])) .indicator { bottom: 0; height: 3px; }
-        :host([orientation="vertical"])       .indicator { right: 0;  width: 3px; }
-    `;
+oe.styles = p(Hn);
 $([
-  s({ reflect: !0 })
-], Z.prototype, "orientation", 2);
+  o({ reflect: !0 })
+], oe.prototype, "orientation", 2);
 $([
-  s({ reflect: !0 })
-], Z.prototype, "variant", 2);
+  o({ reflect: !0 })
+], oe.prototype, "variant", 2);
 $([
-  s({ type: Boolean, reflect: !0 })
-], Z.prototype, "centered", 2);
+  o({ type: Boolean, reflect: !0 })
+], oe.prototype, "centered", 2);
 $([
-  s({ attribute: "scroll-buttons" })
-], Z.prototype, "scrollButtons", 2);
+  o({ attribute: "scroll-buttons" })
+], oe.prototype, "scrollButtons", 2);
 $([
-  m()
-], Z.prototype, "_canBack", 2);
+  g()
+], oe.prototype, "_canBack", 2);
 $([
-  m()
-], Z.prototype, "_canFwd", 2);
+  g()
+], oe.prototype, "_canFwd", 2);
 $([
-  vi(".scroll-area")
-], Z.prototype, "_area", 2);
+  wi(".scroll-area")
+], oe.prototype, "_area", 2);
 $([
-  vi(".tabs-row")
-], Z.prototype, "_row", 2);
+  wi(".tabs-row")
+], oe.prototype, "_row", 2);
 $([
-  vi(".indicator")
-], Z.prototype, "_ind", 2);
+  wi(".indicator")
+], oe.prototype, "_ind", 2);
 $([
-  vi("slot")
-], Z.prototype, "_slot", 2);
-Z = $([
+  wi("slot")
+], oe.prototype, "_slot", 2);
+oe = $([
   d("ui-tab-list")
-], Z);
-let xe = class extends c {
+], oe);
+let ze = class extends c {
   constructor() {
     super(...arguments), this.value = "", this.orientation = "horizontal", this.variant = "standard", this.centered = !1, this.scrollButtons = "auto", this.textColor = "primary", this.indicatorColor = "primary", this._onTabClick = (e) => {
       this.value = e.detail.value, this.dispatchEvent(new CustomEvent("ui-tab-change", {
@@ -8029,17 +4599,17 @@ let xe = class extends c {
   }
   _syncAll() {
     const e = this.querySelector("ui-tab-list"), t = Array.from(this.querySelectorAll("ui-tab")), i = Array.from(this.querySelectorAll("ui-tab-panel"));
-    let o = this.value;
-    if (!o) {
+    let s = this.value;
+    if (!s) {
       const n = t.find((h) => !h.disabled);
-      n && (o = n.value);
+      n && (s = n.value);
     }
     e && (e.orientation = this.orientation, e.variant = this.variant, e.centered = this.centered, e.scrollButtons = this.scrollButtons, e.style.setProperty("--ui-tabs-ind-color", this._resolveColor(this.indicatorColor)));
     const r = this._resolveColor(this.textColor), a = this.textColor === "inherit" ? "currentColor" : "#6b7280";
     t.forEach((n) => {
-      n.selected = n.value === o, n.fullWidth = this.variant === "fullWidth", n.style.setProperty("--ui-tab-active", r), n.style.setProperty("--ui-tab-inactive", a), n.setAttribute("id", `tab-${n.value}`), n.setAttribute("aria-controls", `panel-${n.value}`);
+      n.selected = n.value === s, n.fullWidth = this.variant === "fullWidth", n.style.setProperty("--ui-tab-active", r), n.style.setProperty("--ui-tab-inactive", a), n.setAttribute("id", `tab-${n.value}`), n.setAttribute("aria-controls", `panel-${n.value}`);
     }), i.forEach((n) => {
-      n.setAttribute("id", `panel-${n.value}`), n.setAttribute("aria-labelledby", `tab-${n.value}`), n.value === o ? n.removeAttribute("hidden") : n.setAttribute("hidden", "");
+      n.setAttribute("id", `panel-${n.value}`), n.setAttribute("aria-labelledby", `tab-${n.value}`), n.value === s ? n.removeAttribute("hidden") : n.setAttribute("hidden", "");
     }), requestAnimationFrame(() => e?.syncIndicator());
   }
   updated(e) {
@@ -8052,46 +4622,38 @@ let xe = class extends c {
             </div>`;
   }
 };
-xe.styles = p`
-        :host { display: block; font-family: var(--ui-font-family,'Inter',sans-serif);
-                background: var(--ui-surface-background, #fff); }
-        /* Vertical: stretch the root div so panels fill available height */
-        :host([orientation="vertical"]) .root {
-            display: flex; flex-direction: row;
-            height: 100%; min-height: inherit;
-        }
-        .root { display: block; }
-    `;
+ze.styles = p(Kn);
 $([
-  s({ reflect: !0 })
-], xe.prototype, "value", 2);
+  o({ reflect: !0 })
+], ze.prototype, "value", 2);
 $([
-  s({ reflect: !0 })
-], xe.prototype, "orientation", 2);
+  o({ reflect: !0 })
+], ze.prototype, "orientation", 2);
 $([
-  s()
-], xe.prototype, "variant", 2);
+  o()
+], ze.prototype, "variant", 2);
 $([
-  s({ type: Boolean })
-], xe.prototype, "centered", 2);
+  o({ type: Boolean })
+], ze.prototype, "centered", 2);
 $([
-  s({ attribute: "scroll-buttons" })
-], xe.prototype, "scrollButtons", 2);
+  o({ attribute: "scroll-buttons" })
+], ze.prototype, "scrollButtons", 2);
 $([
-  s({ attribute: "text-color" })
-], xe.prototype, "textColor", 2);
+  o({ attribute: "text-color" })
+], ze.prototype, "textColor", 2);
 $([
-  s({ attribute: "indicator-color" })
-], xe.prototype, "indicatorColor", 2);
-xe = $([
+  o({ attribute: "indicator-color" })
+], ze.prototype, "indicatorColor", 2);
+ze = $([
   d("ui-tabs")
-], xe);
-var ya = Object.defineProperty, xa = Object.getOwnPropertyDescriptor, w = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? xa(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && ya(t, i, r), r;
+], ze);
+const Qn = ":host{display:block}";
+var el = Object.defineProperty, tl = Object.getOwnPropertyDescriptor, k = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? tl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && el(t, i, r), r;
 };
-const _a = /* @__PURE__ */ new Set([
+const il = /* @__PURE__ */ new Set([
   "div",
   "span",
   "section",
@@ -8116,133 +4678,130 @@ const _a = /* @__PURE__ */ new Set([
   "summary",
   "dialog"
 ]);
-let _ = class extends c {
+let w = class extends c {
   constructor() {
     super(...arguments), this.component = "div";
   }
   get _safeComponent() {
-    return _a.has(this.component) ? this.component : (console.warn(`[ui-box] Unknown component tag "${this.component}", falling back to "div".`), "div");
+    return il.has(this.component) ? this.component : (console.warn(`[ui-box] Unknown component tag "${this.component}", falling back to "div".`), "div");
   }
   _getStyles() {
     const e = {};
     return this.m && (e.margin = this.m), this.mx && (e.marginLeft = this.mx, e.marginRight = this.mx), this.my && (e.marginTop = this.my, e.marginBottom = this.my), this.mt && (e.marginTop = this.mt), this.mr && (e.marginRight = this.mr), this.mb && (e.marginBottom = this.mb), this.ml && (e.marginLeft = this.ml), this.p && (e.padding = this.p), this.px && (e.paddingLeft = this.px, e.paddingRight = this.px), this.py && (e.paddingTop = this.py, e.paddingBottom = this.py), this.pt && (e.paddingTop = this.pt), this.pr && (e.paddingRight = this.pr), this.pb && (e.paddingBottom = this.pb), this.pl && (e.paddingLeft = this.pl), this.display && (e.display = this.display), this.flexDirection && (e.flexDirection = this.flexDirection), this.alignItems && (e.alignItems = this.alignItems), this.justifyContent && (e.justifyContent = this.justifyContent), this.flexWrap && (e.flexWrap = this.flexWrap), this.flexBasis && (e.flexBasis = this.flexBasis), this.flexGrow && (e.flexGrow = this.flexGrow), this.flexShrink && (e.flexShrink = this.flexShrink), this.gap && (e.gap = this.gap), this.bgcolor && (e.backgroundColor = this.bgcolor === "primary" ? "var(--ui-primary-color)" : this.bgcolor === "secondary" ? "var(--ui-secondary-color)" : this.bgcolor), this.color && (e.color = this.color === "primary" ? "var(--ui-primary-color)" : this.color === "secondary" ? "var(--ui-secondary-color)" : this.color), this.border && (e.border = this.border), this.borderRadius && (e.borderRadius = this.borderRadius), this.boxShadow && (e.boxShadow = this.boxShadow), this.width && (e.width = this.width), this.height && (e.height = this.height), e;
   }
   render() {
-    const e = po(this._safeComponent);
-    return oo`
-      <${e} style=${Kt(this._getStyles())}>
+    const e = us(this._safeComponent);
+    return ns`
+      <${e} style=${ei(this._getStyles())}>
         <slot></slot>
       </${e}>
     `;
   }
 };
-_.styles = p`
-    :host {
-      display: block;
-    }
-  `;
-w([
-  s({ type: String })
-], _.prototype, "component", 2);
-w([
-  s({ type: String })
-], _.prototype, "m", 2);
-w([
-  s({ type: String })
-], _.prototype, "mt", 2);
-w([
-  s({ type: String })
-], _.prototype, "mr", 2);
-w([
-  s({ type: String })
-], _.prototype, "mb", 2);
-w([
-  s({ type: String })
-], _.prototype, "ml", 2);
-w([
-  s({ type: String })
-], _.prototype, "mx", 2);
-w([
-  s({ type: String })
-], _.prototype, "my", 2);
-w([
-  s({ type: String })
-], _.prototype, "p", 2);
-w([
-  s({ type: String })
-], _.prototype, "pt", 2);
-w([
-  s({ type: String })
-], _.prototype, "pr", 2);
-w([
-  s({ type: String })
-], _.prototype, "pb", 2);
-w([
-  s({ type: String })
-], _.prototype, "pl", 2);
-w([
-  s({ type: String })
-], _.prototype, "px", 2);
-w([
-  s({ type: String })
-], _.prototype, "py", 2);
-w([
-  s({ type: String })
-], _.prototype, "display", 2);
-w([
-  s({ type: String })
-], _.prototype, "flexDirection", 2);
-w([
-  s({ type: String })
-], _.prototype, "alignItems", 2);
-w([
-  s({ type: String })
-], _.prototype, "justifyContent", 2);
-w([
-  s({ type: String })
-], _.prototype, "flexWrap", 2);
-w([
-  s({ type: String })
-], _.prototype, "flexBasis", 2);
-w([
-  s({ type: String })
-], _.prototype, "flexGrow", 2);
-w([
-  s({ type: String })
-], _.prototype, "flexShrink", 2);
-w([
-  s({ type: String })
-], _.prototype, "gap", 2);
-w([
-  s({ type: String })
-], _.prototype, "bgcolor", 2);
-w([
-  s({ type: String })
-], _.prototype, "color", 2);
-w([
-  s({ type: String })
-], _.prototype, "border", 2);
-w([
-  s({ type: String })
-], _.prototype, "borderRadius", 2);
-w([
-  s({ type: String })
-], _.prototype, "boxShadow", 2);
-w([
-  s({ type: String })
-], _.prototype, "width", 2);
-w([
-  s({ type: String })
-], _.prototype, "height", 2);
-_ = w([
+w.styles = p(Qn);
+k([
+  o({ type: String })
+], w.prototype, "component", 2);
+k([
+  o({ type: String })
+], w.prototype, "m", 2);
+k([
+  o({ type: String })
+], w.prototype, "mt", 2);
+k([
+  o({ type: String })
+], w.prototype, "mr", 2);
+k([
+  o({ type: String })
+], w.prototype, "mb", 2);
+k([
+  o({ type: String })
+], w.prototype, "ml", 2);
+k([
+  o({ type: String })
+], w.prototype, "mx", 2);
+k([
+  o({ type: String })
+], w.prototype, "my", 2);
+k([
+  o({ type: String })
+], w.prototype, "p", 2);
+k([
+  o({ type: String })
+], w.prototype, "pt", 2);
+k([
+  o({ type: String })
+], w.prototype, "pr", 2);
+k([
+  o({ type: String })
+], w.prototype, "pb", 2);
+k([
+  o({ type: String })
+], w.prototype, "pl", 2);
+k([
+  o({ type: String })
+], w.prototype, "px", 2);
+k([
+  o({ type: String })
+], w.prototype, "py", 2);
+k([
+  o({ type: String })
+], w.prototype, "display", 2);
+k([
+  o({ type: String })
+], w.prototype, "flexDirection", 2);
+k([
+  o({ type: String })
+], w.prototype, "alignItems", 2);
+k([
+  o({ type: String })
+], w.prototype, "justifyContent", 2);
+k([
+  o({ type: String })
+], w.prototype, "flexWrap", 2);
+k([
+  o({ type: String })
+], w.prototype, "flexBasis", 2);
+k([
+  o({ type: String })
+], w.prototype, "flexGrow", 2);
+k([
+  o({ type: String })
+], w.prototype, "flexShrink", 2);
+k([
+  o({ type: String })
+], w.prototype, "gap", 2);
+k([
+  o({ type: String })
+], w.prototype, "bgcolor", 2);
+k([
+  o({ type: String })
+], w.prototype, "color", 2);
+k([
+  o({ type: String })
+], w.prototype, "border", 2);
+k([
+  o({ type: String })
+], w.prototype, "borderRadius", 2);
+k([
+  o({ type: String })
+], w.prototype, "boxShadow", 2);
+k([
+  o({ type: String })
+], w.prototype, "width", 2);
+k([
+  o({ type: String })
+], w.prototype, "height", 2);
+w = k([
   d("ui-box")
-], _);
-var wa = Object.defineProperty, ka = Object.getOwnPropertyDescriptor, ir = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? ka(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && wa(t, i, r), r;
+], w);
+const rl = ":host{display:block}.container{width:100%;margin-left:auto;margin-right:auto;box-sizing:border-box;padding-left:var(--ui-container-padding, 16px);padding-right:var(--ui-container-padding, 16px)}@media(min-width:600px){.container{padding-left:var(--ui-container-padding-sm, 24px);padding-right:var(--ui-container-padding-sm, 24px)}}.disable-gutters{padding-left:0;padding-right:0}.max-width-xs{max-width:var(--ui-container-xs, 444px)}.max-width-sm{max-width:var(--ui-container-sm, 600px)}.max-width-md{max-width:var(--ui-container-md, 900px)}.max-width-lg{max-width:var(--ui-container-lg, 1200px)}.max-width-xl{max-width:var(--ui-container-xl, 1536px)}.fixed{max-width:var(--ui-container-xs, 444px)}@media(min-width:600px){.fixed{max-width:var(--ui-container-sm, 600px)}}@media(min-width:900px){.fixed{max-width:var(--ui-container-md, 900px)}}@media(min-width:1200px){.fixed{max-width:var(--ui-container-lg, 1200px)}}@media(min-width:1536px){.fixed{max-width:var(--ui-container-xl, 1536px)}}@media(min-width:600px){.fixed.max-width-xs{max-width:var(--ui-container-xs, 444px)}}@media(min-width:900px){.fixed.max-width-sm{max-width:var(--ui-container-sm, 600px)}}@media(min-width:1200px){.fixed.max-width-md{max-width:var(--ui-container-md, 900px)}}@media(min-width:1536px){.fixed.max-width-lg{max-width:var(--ui-container-lg, 1200px)}}";
+var sl = Object.defineProperty, ol = Object.getOwnPropertyDescriptor, sr = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? ol(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && sl(t, i, r), r;
 };
-let jt = class extends c {
+let Ht = class extends c {
   constructor() {
     super(...arguments), this.maxWidth = "lg", this.disableGutters = !1, this.fixed = !1;
   }
@@ -8259,70 +4818,9 @@ let jt = class extends c {
     `;
   }
 };
-jt.styles = p`
-    :host {
-      display: block;
-    }
-
-    .container {
-      width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-      box-sizing: border-box;
-      padding-left: var(--ui-container-padding, 16px);
-      padding-right: var(--ui-container-padding, 16px);
-    }
-
-    @media (min-width: 600px) {
-      .container {
-        padding-left: var(--ui-container-padding-sm, 24px);
-        padding-right: var(--ui-container-padding-sm, 24px);
-      }
-    }
-
-    .disable-gutters {
-      padding-left: 0;
-      padding-right: 0;
-    }
-
-    /* Max Widths */
-    .max-width-xs { max-width: var(--ui-container-xs, 444px); }
-    .max-width-sm { max-width: var(--ui-container-sm, 600px); }
-    .max-width-md { max-width: var(--ui-container-md, 900px); }
-    .max-width-lg { max-width: var(--ui-container-lg, 1200px); }
-    .max-width-xl { max-width: var(--ui-container-xl, 1536px); }
-
-    /* Fixed behavior: step through breakpoints */
-    .fixed { max-width: var(--ui-container-xs, 444px); }
-    @media (min-width: 600px) {
-      .fixed { max-width: var(--ui-container-sm, 600px); }
-    }
-    @media (min-width: 900px) {
-      .fixed { max-width: var(--ui-container-md, 900px); }
-    }
-    @media (min-width: 1200px) {
-      .fixed { max-width: var(--ui-container-lg, 1200px); }
-    }
-    @media (min-width: 1536px) {
-      .fixed { max-width: var(--ui-container-xl, 1536px); }
-    }
-
-    /* Cap fixed containers at their maxWidth (higher specificity = 2 classes) */
-    @media (min-width: 600px) {
-      .fixed.max-width-xs { max-width: var(--ui-container-xs, 444px); }
-    }
-    @media (min-width: 900px) {
-      .fixed.max-width-sm { max-width: var(--ui-container-sm, 600px); }
-    }
-    @media (min-width: 1200px) {
-      .fixed.max-width-md { max-width: var(--ui-container-md, 900px); }
-    }
-    @media (min-width: 1536px) {
-      .fixed.max-width-lg { max-width: var(--ui-container-lg, 1200px); }
-    }
-  `;
-ir([
-  s({
+Ht.styles = p(rl);
+sr([
+  o({
     attribute: "max-width",
     reflect: !0,
     converter: {
@@ -8330,22 +4828,23 @@ ir([
       toAttribute: (e) => e === !1 ? null : e
     }
   })
-], jt.prototype, "maxWidth", 2);
-ir([
-  s({ type: Boolean, attribute: "disable-gutters", reflect: !0 })
-], jt.prototype, "disableGutters", 2);
-ir([
-  s({ type: Boolean, reflect: !0 })
-], jt.prototype, "fixed", 2);
-jt = ir([
+], Ht.prototype, "maxWidth", 2);
+sr([
+  o({ type: Boolean, attribute: "disable-gutters", reflect: !0 })
+], Ht.prototype, "disableGutters", 2);
+sr([
+  o({ type: Boolean, reflect: !0 })
+], Ht.prototype, "fixed", 2);
+Ht = sr([
   d("ui-container")
-], jt);
-var $a = Object.defineProperty, Ca = Object.getOwnPropertyDescriptor, A = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Ca(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && $a(t, i, r), r;
+], Ht);
+const al = ":host{display:block}.grid-wrapper{box-sizing:border-box;display:block}.grid-wrapper.container{display:flex;flex-wrap:wrap;width:100%}.direction-row{flex-direction:row}.direction-row-reverse{flex-direction:row-reverse}.direction-column{flex-direction:column}.direction-column-reverse{flex-direction:column-reverse}.wrap-nowrap{flex-wrap:nowrap}.wrap-wrap-reverse{flex-wrap:wrap-reverse}.grid-item{box-sizing:border-box;margin:0}";
+var nl = Object.defineProperty, ll = Object.getOwnPropertyDescriptor, L = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? ll(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && nl(t, i, r), r;
 };
-let D = class extends c {
+let z = class extends c {
   constructor() {
     super(...arguments), this.container = !1, this.direction = "row", this.wrap = "wrap", this.columns = 12, this.spacing = 0, this._currentWidth = typeof window < "u" ? window.innerWidth : 1200, this._onResize = () => {
       this._currentWidth = window.innerWidth;
@@ -8372,8 +4871,8 @@ let D = class extends c {
   }
   _getEffectiveSize(e) {
     const t = ["xs", "sm", "md", "lg", "xl"], i = t.indexOf(e);
-    for (let o = i; o >= 0; o--) {
-      const r = this[t[o]];
+    for (let s = i; s >= 0; s--) {
+      const r = this[t[s]];
       if (r !== void 0)
         return typeof r == "string" && !isNaN(Number(r)) && r.trim() !== "" ? Number(r) : r === "true" ? !0 : r === "false" ? !1 : r;
     }
@@ -8381,16 +4880,16 @@ let D = class extends c {
   _getEffectiveOffset(e) {
     if (!this.offset) return;
     const t = ["xs", "sm", "md", "lg", "xl"], i = t.indexOf(e);
-    for (let o = i; o >= 0; o--) {
-      const r = this.offset[t[o]];
+    for (let s = i; s >= 0; s--) {
+      const r = this.offset[t[s]];
       if (r !== void 0)
         return typeof r == "string" && !isNaN(Number(r)) && r.trim() !== "" ? Number(r) : r;
     }
   }
   _resolveResponsive(e, t) {
     if (typeof e == "object" && e !== null) {
-      const i = ["xs", "sm", "md", "lg", "xl"], o = i.indexOf(t);
-      for (let r = o; r >= 0; r--) {
+      const i = ["xs", "sm", "md", "lg", "xl"], s = i.indexOf(t);
+      for (let r = s; r >= 0; r--) {
         const a = e[i[r]];
         if (a !== void 0) return a;
       }
@@ -8400,8 +4899,8 @@ let D = class extends c {
   }
   _resolveResponsiveOrder(e, t) {
     if (typeof e == "object" && e !== null) {
-      const i = ["xs", "sm", "md", "lg", "xl"], o = i.indexOf(t);
-      for (let r = o; r >= 0; r--) {
+      const i = ["xs", "sm", "md", "lg", "xl"], s = i.indexOf(t);
+      for (let r = s; r >= 0; r--) {
         const a = e[i[r]];
         if (a !== void 0) return a;
       }
@@ -8414,9 +4913,9 @@ let D = class extends c {
   }
   _getSpacingStyles(e) {
     if (!this.container) return {};
-    const t = this._resolveResponsive(this.spacing, e), i = this.rowSpacing !== void 0 ? this._resolveResponsive(this.rowSpacing, e) : t, o = this.columnSpacing !== void 0 ? this._resolveResponsive(this.columnSpacing, e) : t;
+    const t = this._resolveResponsive(this.spacing, e), i = this.rowSpacing !== void 0 ? this._resolveResponsive(this.rowSpacing, e) : t, s = this.columnSpacing !== void 0 ? this._resolveResponsive(this.columnSpacing, e) : t;
     return {
-      gap: `${this._toPx(i)} ${this._toPx(o)}`
+      gap: `${this._toPx(i)} ${this._toPx(s)}`
     };
   }
   _getEffectiveColumns() {
@@ -8425,26 +4924,26 @@ let D = class extends c {
     return e && !isNaN(Number(e)) ? Number(e) : this.columns;
   }
   _getItemStyles(e) {
-    const t = this.xs !== void 0 || this.sm !== void 0 || this.md !== void 0 || this.lg !== void 0 || this.xl !== void 0, i = !!this.offset, o = this.order !== void 0;
-    if (!t && !i && !o) return {};
+    const t = this.xs !== void 0 || this.sm !== void 0 || this.md !== void 0 || this.lg !== void 0 || this.xl !== void 0, i = !!this.offset, s = this.order !== void 0;
+    if (!t && !i && !s) return {};
     const r = this._getEffectiveSize(e), a = this._getEffectiveOffset(e), n = this._getEffectiveColumns(), h = {};
     if (r === !0)
       h["flex-grow"] = "1", h["flex-basis"] = "0%", h["max-width"] = "100%";
     else if (r === "auto")
       h["flex-grow"] = "0", h["flex-basis"] = "auto", h.width = "auto", h["max-width"] = "none";
     else if (typeof r == "number") {
-      const g = r / n * 100;
-      h["flex-grow"] = "0", h["flex-basis"] = `calc(${g}% - var(--ui-grid-column-gap, 0px) * ${(n - r) / n})`, h["max-width"] = `calc(${g}% - var(--ui-grid-column-gap, 0px) * ${(n - r) / n})`;
+      const f = r / n * 100;
+      h["flex-grow"] = "0", h["flex-basis"] = `calc(${f}% - var(--ui-grid-column-gap, 0px) * ${(n - r) / n})`, h["max-width"] = `calc(${f}% - var(--ui-grid-column-gap, 0px) * ${(n - r) / n})`;
     } else this.container || (h["flex-grow"] = "0", h["flex-basis"] = "auto", h.width = "100%");
     if (a === "auto")
       h["margin-left"] = "auto";
     else if (typeof a == "number") {
-      const g = a / n * 100;
-      h["margin-left"] = `${g}%`;
+      const f = a / n * 100;
+      h["margin-left"] = `${f}%`;
     }
     if (this.order !== void 0) {
-      const g = this._resolveResponsiveOrder(this.order, e);
-      g !== void 0 && (h.order = String(g));
+      const f = this._resolveResponsiveOrder(this.order, e);
+      f !== void 0 && (h.order = String(f));
     }
     return h;
   }
@@ -8453,12 +4952,12 @@ let D = class extends c {
   }
   _applyItemStyles() {
     const e = this._getBreakpoint(), t = this._getItemStyles(e);
-    if (this.style.flexGrow = "", this.style.flexBasis = "", this.style.maxWidth = "", this.style.width = "", this.style.marginLeft = "", this.style.order = "", Object.entries(t).forEach(([i, o]) => {
-      this.style.setProperty(i, o);
+    if (this.style.flexGrow = "", this.style.flexBasis = "", this.style.maxWidth = "", this.style.width = "", this.style.marginLeft = "", this.style.order = "", Object.entries(t).forEach(([i, s]) => {
+      this.style.setProperty(i, s);
     }), this.container) {
       const i = this._getSpacingStyles(e);
       if (i.gap) {
-        const o = i.gap.split(" "), r = o.length === 2 ? o[1] : o[0];
+        const s = i.gap.split(" "), r = s.length === 2 ? s[1] : s[0];
         this.style.setProperty("--ui-grid-column-gap", r);
       }
       this.style.setProperty("--ui-grid-columns", String(this.columns));
@@ -8476,114 +4975,85 @@ let D = class extends c {
       container: this.container,
       [`direction-${this.direction}`]: this.container,
       [`wrap-${this.wrap}`]: this.container && this.wrap !== "wrap"
-    })} style=${Kt(i)}>
+    })} style=${ei(i)}>
         <slot></slot>
       </div>
     `;
   }
 };
-D.styles = p`
-    :host {
-      display: block;
-    }
-
-    .grid-wrapper {
-      box-sizing: border-box;
-      display: block;
-    }
-
-    .grid-wrapper.container {
-      display: flex;
-      flex-wrap: wrap;
-      width: 100%;
-    }
-
-    /* Direction */
-    .direction-row { flex-direction: row; }
-    .direction-row-reverse { flex-direction: row-reverse; }
-    .direction-column { flex-direction: column; }
-    .direction-column-reverse { flex-direction: column-reverse; }
-
-    /* Wrap */
-    .wrap-nowrap { flex-wrap: nowrap; }
-    .wrap-wrap-reverse { flex-wrap: wrap-reverse; }
-
-    .grid-item {
-      box-sizing: border-box;
-      margin: 0;
-    }
-  `;
-A([
-  s({ type: Boolean, reflect: !0 })
-], D.prototype, "container", 2);
-A([
-  s({ type: String, reflect: !0 })
-], D.prototype, "direction", 2);
-A([
-  s({ type: String, reflect: !0 })
-], D.prototype, "wrap", 2);
-A([
-  s({ type: String, attribute: "align-items", reflect: !0 })
-], D.prototype, "alignItems", 2);
-A([
-  s({ type: String, attribute: "justify-content", reflect: !0 })
-], D.prototype, "justifyContent", 2);
-A([
-  s({ type: Number })
-], D.prototype, "columns", 2);
-A([
-  s({ type: Object })
-], D.prototype, "spacing", 2);
-A([
-  s({ type: Object })
-], D.prototype, "rowSpacing", 2);
-A([
-  s({ type: Object })
-], D.prototype, "columnSpacing", 2);
-A([
-  s()
-], D.prototype, "xs", 2);
-A([
-  s()
-], D.prototype, "sm", 2);
-A([
-  s()
-], D.prototype, "md", 2);
-A([
-  s()
-], D.prototype, "lg", 2);
-A([
-  s()
-], D.prototype, "xl", 2);
-A([
-  s({ type: Object })
-], D.prototype, "offset", 2);
-A([
-  s({ type: Object })
-], D.prototype, "order", 2);
-A([
-  m()
-], D.prototype, "_currentWidth", 2);
-D = A([
+z.styles = p(al);
+L([
+  o({ type: Boolean, reflect: !0 })
+], z.prototype, "container", 2);
+L([
+  o({ type: String, reflect: !0 })
+], z.prototype, "direction", 2);
+L([
+  o({ type: String, reflect: !0 })
+], z.prototype, "wrap", 2);
+L([
+  o({ type: String, attribute: "align-items", reflect: !0 })
+], z.prototype, "alignItems", 2);
+L([
+  o({ type: String, attribute: "justify-content", reflect: !0 })
+], z.prototype, "justifyContent", 2);
+L([
+  o({ type: Number })
+], z.prototype, "columns", 2);
+L([
+  o({ type: Object })
+], z.prototype, "spacing", 2);
+L([
+  o({ type: Object })
+], z.prototype, "rowSpacing", 2);
+L([
+  o({ type: Object })
+], z.prototype, "columnSpacing", 2);
+L([
+  o()
+], z.prototype, "xs", 2);
+L([
+  o()
+], z.prototype, "sm", 2);
+L([
+  o()
+], z.prototype, "md", 2);
+L([
+  o()
+], z.prototype, "lg", 2);
+L([
+  o()
+], z.prototype, "xl", 2);
+L([
+  o({ type: Object })
+], z.prototype, "offset", 2);
+L([
+  o({ type: Object })
+], z.prototype, "order", 2);
+L([
+  g()
+], z.prototype, "_currentWidth", 2);
+z = L([
   d("ui-grid")
-], D);
-var Ia = Object.defineProperty, Sa = Object.getOwnPropertyDescriptor, xt = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Sa(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Ia(t, i, r), r;
+], z);
+const cl = ":host{display:block}.stack-wrapper{display:flex;box-sizing:border-box}.stack-wrapper.direction-column,.stack-wrapper.direction-column-reverse{width:100%}::slotted(ui-divider){margin:0!important}.stack-wrapper.no-flex-gap.direction-column ::slotted(*:not(:first-child)){margin-top:var(--ui-stack-spacing, 0px)}.stack-wrapper.no-flex-gap.direction-column-reverse ::slotted(*:not(:last-child)){margin-bottom:var(--ui-stack-spacing, 0px)}.stack-wrapper.no-flex-gap.direction-row ::slotted(*:not(:first-child)){margin-left:var(--ui-stack-spacing, 0px)}.stack-wrapper.no-flex-gap.direction-row-reverse ::slotted(*:not(:last-child)){margin-right:var(--ui-stack-spacing, 0px)}";
+var dl = Object.defineProperty, pl = Object.getOwnPropertyDescriptor, Et = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? pl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && dl(t, i, r), r;
 };
-let q = class extends c {
+let X = class extends c {
   constructor() {
     super(...arguments), this.direction = "column", this.spacing = 0, this.useFlexGap = !0, this._currentWidth = typeof window < "u" ? window.innerWidth : 1200, this._onResize = () => {
       this._currentWidth = window.innerWidth, this.requestUpdate();
     };
   }
   _getBreakpointValue(e, t) {
-    if (q._breakPoints[e]) return q._breakPoints[e];
+    if (X._breakPoints[e]) return X._breakPoints[e];
     if (typeof window < "u") {
       const i = getComputedStyle(document.documentElement).getPropertyValue(`--ui-breakpoint-${e}`);
       if (i && i.trim())
-        return q._breakPoints[e] = parseInt(i, 10), q._breakPoints[e];
+        return X._breakPoints[e] = parseInt(i, 10), X._breakPoints[e];
     }
     return t;
   }
@@ -8604,8 +5074,8 @@ let q = class extends c {
     const e = this._getBreakpoint(), t = this._resolveResponsive(this.direction, e);
     if (!t) return;
     const i = t.startsWith("row") ? "vertical" : "horizontal";
-    this.querySelectorAll("ui-divider").forEach((o) => {
-      o.getAttribute("orientation") !== i && o.setAttribute("orientation", i);
+    this.querySelectorAll("ui-divider").forEach((s) => {
+      s.getAttribute("orientation") !== i && s.setAttribute("orientation", i);
     });
   }
   _getBreakpoint() {
@@ -8614,8 +5084,8 @@ let q = class extends c {
   }
   _resolveResponsive(e, t) {
     if (typeof e == "object" && e !== null && !Array.isArray(e)) {
-      const i = ["xs", "sm", "md", "lg", "xl"], o = i.indexOf(t);
-      for (let n = o; n >= 0; n--) {
+      const i = ["xs", "sm", "md", "lg", "xl"], s = i.indexOf(t);
+      for (let n = s; n >= 0; n--) {
         const h = e[i[n]];
         if (h !== void 0) return h;
       }
@@ -8628,61 +5098,27 @@ let q = class extends c {
     return typeof e == "number" ? `${e * 8}px` : e;
   }
   render() {
-    const e = this._getBreakpoint(), t = this._resolveResponsive(this.direction, e), i = this._resolveResponsive(this.spacing, e), o = this._getSpacingPx(i), r = t ?? "column", a = r.startsWith("column") ? "stretch" : "center", n = {
+    const e = this._getBreakpoint(), t = this._resolveResponsive(this.direction, e), i = this._resolveResponsive(this.spacing, e), s = this._getSpacingPx(i), r = t ?? "column", a = r.startsWith("column") ? "stretch" : "center", n = {
       "flex-direction": r,
       "align-items": this.alignItems || a,
       "justify-content": this.justifyContent || "flex-start",
-      gap: this.useFlexGap ? o : "0",
-      "--ui-stack-spacing": o
+      gap: this.useFlexGap ? s : "0",
+      "--ui-stack-spacing": s
     };
     return l`
       <div
         class="stack-wrapper direction-${t} ${this.useFlexGap ? "" : "no-flex-gap"}"
-        style=${Kt(n)}
+        style=${ei(n)}
       >
         <slot></slot>
       </div>
     `;
   }
 };
-q.styles = p`
-    :host {
-      display: block;
-    }
-
-    .stack-wrapper {
-      display: flex;
-      box-sizing: border-box;
-    }
-
-    /* Column direction stacks fill full width */
-    .stack-wrapper.direction-column,
-    .stack-wrapper.direction-column-reverse {
-      width: 100%;
-    }
-
-    /* Reset slotted divider margins so stack gap controls spacing */
-    ::slotted(ui-divider) {
-      margin: 0 !important;
-    }
-
-    /* Fallback margin-based spacing when useFlexGap=false */
-    .stack-wrapper.no-flex-gap.direction-column ::slotted(*:not(:first-child)) {
-      margin-top: var(--ui-stack-spacing, 0px);
-    }
-    .stack-wrapper.no-flex-gap.direction-column-reverse ::slotted(*:not(:last-child)) {
-      margin-bottom: var(--ui-stack-spacing, 0px);
-    }
-    .stack-wrapper.no-flex-gap.direction-row ::slotted(*:not(:first-child)) {
-      margin-left: var(--ui-stack-spacing, 0px);
-    }
-    .stack-wrapper.no-flex-gap.direction-row-reverse ::slotted(*:not(:last-child)) {
-      margin-right: var(--ui-stack-spacing, 0px);
-    }
-  `;
-q._breakPoints = {};
-xt([
-  s({
+X.styles = p(cl);
+X._breakPoints = {};
+Et([
+  o({
     converter: {
       fromAttribute: (e) => {
         if (!e) return "column";
@@ -8694,98 +5130,70 @@ xt([
       }
     }
   })
-], q.prototype, "direction", 2);
-xt([
-  s({ type: Object })
-], q.prototype, "spacing", 2);
-xt([
-  s({ type: String })
-], q.prototype, "alignItems", 2);
-xt([
-  s({ type: String })
-], q.prototype, "justifyContent", 2);
-xt([
-  s({ type: Boolean })
-], q.prototype, "useFlexGap", 2);
-xt([
-  m()
-], q.prototype, "_currentWidth", 2);
-q = xt([
+], X.prototype, "direction", 2);
+Et([
+  o({ type: Object })
+], X.prototype, "spacing", 2);
+Et([
+  o({ type: String })
+], X.prototype, "alignItems", 2);
+Et([
+  o({ type: String })
+], X.prototype, "justifyContent", 2);
+Et([
+  o({ type: Boolean })
+], X.prototype, "useFlexGap", 2);
+Et([
+  g()
+], X.prototype, "_currentWidth", 2);
+X = Et([
   d("ui-stack")
-], q);
-var Ea = Object.defineProperty, Pa = Object.getOwnPropertyDescriptor, Zt = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Pa(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Ea(t, i, r), r;
+], X);
+const hl = ":host{display:block}.image-list{display:grid;overflow:hidden;box-sizing:border-box}.variant-standard,.variant-quilted,.variant-woven{grid-auto-rows:var(--ui-image-list-row-height, 164px)}.variant-masonry{display:block}";
+var ul = Object.defineProperty, fl = Object.getOwnPropertyDescriptor, oi = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? fl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && ul(t, i, r), r;
 };
-let Ye = class extends c {
+let rt = class extends c {
   constructor() {
     super(...arguments), this.variant = "standard", this.cols = 3, this.gap = 4, this.rowHeight = 164, this.autoRows = !1;
   }
   render() {
     const e = this.variant === "masonry", t = {};
     return e ? (t["column-count"] = String(this.cols), t["column-gap"] = `${this.gap}px`) : (t["grid-template-columns"] = `repeat(${this.cols}, 1fr)`, t.gap = `${this.gap}px`, t["--ui-image-list-row-height"] = `${this.rowHeight}px`, t["grid-auto-rows"] = this.autoRows ? "auto" : `${this.rowHeight}px`), t["--ui-image-list-gap"] = `${this.gap}px`, l`
-      <ul class="image-list variant-${this.variant}" style="${Kt(t)}" role="list">
+      <ul class="image-list variant-${this.variant}" style="${ei(t)}" role="list">
         <slot></slot>
       </ul>
     `;
   }
 };
-Ye.styles = p`
-    :host {
-      display: block;
-    }
-
-    .image-list {
-      display: grid;
-      overflow: hidden;
-      box-sizing: border-box;
-    }
-
-    /* Standard: uniform grid, items crop to fill each cell */
-    .variant-standard {
-      grid-auto-rows: var(--ui-image-list-row-height, 164px);
-    }
-
-    /* Quilted: same column grid, items can span multiple rows/cols */
-    .variant-quilted {
-      grid-auto-rows: var(--ui-image-list-row-height, 164px);
-    }
-
-    /* Woven: alternating heights, set via nth-child in items */
-    .variant-woven {
-      grid-auto-rows: var(--ui-image-list-row-height, 164px);
-    }
-
-    /* Masonry: CSS columns-based layout — column-count set inline */
-    .variant-masonry {
-      display: block;
-    }
-  `;
-Zt([
-  s({ type: String })
-], Ye.prototype, "variant", 2);
-Zt([
-  s({ type: Number })
-], Ye.prototype, "cols", 2);
-Zt([
-  s({ type: Number })
-], Ye.prototype, "gap", 2);
-Zt([
-  s({ type: Number })
-], Ye.prototype, "rowHeight", 2);
-Zt([
-  s({ type: Boolean })
-], Ye.prototype, "autoRows", 2);
-Ye = Zt([
+rt.styles = p(hl);
+oi([
+  o({ type: String })
+], rt.prototype, "variant", 2);
+oi([
+  o({ type: Number })
+], rt.prototype, "cols", 2);
+oi([
+  o({ type: Number })
+], rt.prototype, "gap", 2);
+oi([
+  o({ type: Number })
+], rt.prototype, "rowHeight", 2);
+oi([
+  o({ type: Boolean })
+], rt.prototype, "autoRows", 2);
+rt = oi([
   d("ui-image-list")
-], Ye);
-var Oa = Object.defineProperty, Da = Object.getOwnPropertyDescriptor, _t = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Da(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Oa(t, i, r), r;
+], rt);
+const bl = ':host{display:block;position:relative;overflow:hidden}:host([bar-position="below"]){display:flex;flex-direction:column;overflow:visible}:host(.masonry){break-inside:avoid;margin-bottom:var(--ui-image-list-gap, 4px)}.item-wrapper{width:100%;height:100%;position:relative;overflow:hidden}:host([bar-position="below"]) .item-wrapper{flex:1 1 auto;overflow:hidden}:host(.masonry) .item-wrapper{height:auto}::slotted(img){width:100%;height:100%;object-fit:var(--ui-image-fit, cover);display:block}:host(.masonry) ::slotted(img){height:auto}::slotted(ui-image-list-item-bar){position:absolute;bottom:0;left:0;right:0}::slotted(ui-image-list-item-bar[position="top"]){bottom:auto;top:0}:host([bar-position="below"]) ::slotted(ui-image-list-item-bar){position:static}';
+var ml = Object.defineProperty, gl = Object.getOwnPropertyDescriptor, Pt = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? gl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && ml(t, i, r), r;
 };
-let Pe = class extends c {
+let qe = class extends c {
   constructor() {
     super(...arguments), this.rows = 1, this.cols = 1, this.barPosition = "overlay", this.weave = "odd", this.aspectRatio = "auto", this.fit = "cover";
   }
@@ -8808,101 +5216,35 @@ let Pe = class extends c {
     `;
   }
 };
-Pe.styles = p`
-    :host {
-      display: block;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* bar-position below: host becomes column-flex so bar sits below image */
-    :host([bar-position="below"]) {
-      display: flex;
-      flex-direction: column;
-      overflow: visible;
-    }
-
-    /* Masonry: let height follow image, avoid column breaks */
-    :host(.masonry) {
-      break-inside: avoid;
-      margin-bottom: var(--ui-image-list-gap, 4px);
-    }
-
-    .item-wrapper {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      overflow: hidden;
-    }
-
-    :host([bar-position="below"]) .item-wrapper {
-      flex: 1 1 auto;
-      overflow: hidden;
-    }
-
-    /* Masonry: wrapper height follows content */
-    :host(.masonry) .item-wrapper {
-      height: auto;
-    }
-
-    ::slotted(img) {
-      width: 100%;
-      height: 100%;
-      object-fit: var(--ui-image-fit, cover);
-      display: block;
-    }
-
-    /* Masonry images: natural height */
-    :host(.masonry) ::slotted(img) {
-      height: auto;
-    }
-
-    /* Bar overlay: pinned to bottom of :host (not wrapper) */
-    ::slotted(ui-image-list-item-bar) {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-    }
-
-    /* Bar at top of image */
-    ::slotted(ui-image-list-item-bar[position="top"]) {
-      bottom: auto;
-      top: 0;
-    }
-
-    /* Bar below image: static flow */
-    :host([bar-position="below"]) ::slotted(ui-image-list-item-bar) {
-      position: static;
-    }
-  `;
-_t([
-  s({ type: Number })
-], Pe.prototype, "rows", 2);
-_t([
-  s({ type: Number })
-], Pe.prototype, "cols", 2);
-_t([
-  s({ type: String, attribute: "bar-position", reflect: !0 })
-], Pe.prototype, "barPosition", 2);
-_t([
-  s({ type: String })
-], Pe.prototype, "weave", 2);
-_t([
-  s({ type: String, attribute: "aspect-ratio", reflect: !0 })
-], Pe.prototype, "aspectRatio", 2);
-_t([
-  s({ type: String })
-], Pe.prototype, "fit", 2);
-Pe = _t([
+qe.styles = p(bl);
+Pt([
+  o({ type: Number })
+], qe.prototype, "rows", 2);
+Pt([
+  o({ type: Number })
+], qe.prototype, "cols", 2);
+Pt([
+  o({ type: String, attribute: "bar-position", reflect: !0 })
+], qe.prototype, "barPosition", 2);
+Pt([
+  o({ type: String })
+], qe.prototype, "weave", 2);
+Pt([
+  o({ type: String, attribute: "aspect-ratio", reflect: !0 })
+], qe.prototype, "aspectRatio", 2);
+Pt([
+  o({ type: String })
+], qe.prototype, "fit", 2);
+qe = Pt([
   d("ui-image-list-item")
-], Pe);
-var za = Object.defineProperty, Ba = Object.getOwnPropertyDescriptor, so = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Ba(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && za(t, i, r), r;
+], qe);
+const vl = ':host{display:block;box-sizing:border-box;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.3) 70%,transparent 100%);color:#fff;padding:12px 12px 8px;font-family:var(--ui-font-family, system-ui, sans-serif)}:host([position="top"]){background:linear-gradient(to bottom,rgba(0,0,0,.7) 0%,rgba(0,0,0,.3) 70%,transparent 100%);padding:8px 12px 12px}:host([position="below"]){background:var(--ui-surface-color, #fff);color:var(--ui-text-color, #111827);border-top:1px solid var(--ui-border-color, #e5e7eb);padding:8px 12px}.bar-inner{display:flex;align-items:center;gap:8px}.bar-text{flex:1;min-width:0}.bar-title{font-size:.875rem;font-weight:600;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.bar-subtitle{font-size:.75rem;font-weight:400;opacity:.8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:2px}.bar-action{flex-shrink:0;display:flex;align-items:center}::slotted([slot="action"]){color:#fff}:host([position="below"]) ::slotted([slot="action"]){color:var(--ui-text-color, #111827)}';
+var yl = Object.defineProperty, xl = Object.getOwnPropertyDescriptor, ls = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? xl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && yl(t, i, r), r;
 };
-let Ai = class extends c {
+let ji = class extends c {
   constructor() {
     super(...arguments), this.position = "bottom";
   }
@@ -8920,86 +5262,20 @@ let Ai = class extends c {
     `;
   }
 };
-Ai.styles = p`
-    :host {
-      display: block;
-      box-sizing: border-box;
-      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, transparent 100%);
-      color: #fff;
-      padding: 12px 12px 8px;
-      font-family: var(--ui-font-family, system-ui, sans-serif);
-    }
-
-    /* Top overlay: gradient flows downward */
-    :host([position="top"]) {
-      background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, transparent 100%);
-      padding: 8px 12px 12px;
-    }
-
-    /* Below-image mode: solid background */
-    :host([position="below"]) {
-      background: var(--ui-surface-color, #fff);
-      color: var(--ui-text-color, #111827);
-      border-top: 1px solid var(--ui-border-color, #e5e7eb);
-      padding: 8px 12px;
-    }
-
-    .bar-inner {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .bar-text {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .bar-title {
-      font-size: 0.875rem;
-      font-weight: 600;
-      line-height: 1.3;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .bar-subtitle {
-      font-size: 0.75rem;
-      font-weight: 400;
-      opacity: 0.8;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      margin-top: 2px;
-    }
-
-    .bar-action {
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-    }
-
-    ::slotted([slot="action"]) {
-      color: #fff;
-    }
-
-    :host([position="below"]) ::slotted([slot="action"]) {
-      color: var(--ui-text-color, #111827);
-    }
-  `;
-so([
-  s({ type: String, reflect: !0 })
-], Ai.prototype, "position", 2);
-Ai = so([
+ji.styles = p(vl);
+ls([
+  o({ type: String, reflect: !0 })
+], ji.prototype, "position", 2);
+ji = ls([
   d("ui-image-list-item-bar")
-], Ai);
-var Ta = Object.defineProperty, Aa = Object.getOwnPropertyDescriptor, E = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Aa(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Ta(t, i, r), r;
+], ji);
+const _l = ':host{display:inline-block;font-family:var(--ui-font-family, "Inter", sans-serif);-webkit-user-select:none;user-select:none}.calendar{width:296px;background:var(--ui-surface-background, #fff);border-radius:var(--ui-border-radius-xl, 12px);overflow:hidden}.header{display:flex;align-items:center;justify-content:space-between;padding:12px 8px 8px}.header-label{font-size:.9375rem;font-weight:600;color:var(--ui-text-color, #111827);cursor:pointer;padding:4px 8px;border-radius:6px;transition:background .12s}.header-label:hover{background:#0000000a}.nav-btn{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border:none;background:transparent;cursor:pointer;border-radius:50%;color:var(--ui-text-color-muted, #6b7280);font-size:1rem;transition:background .12s}.nav-btn:hover{background:#0000000f}.nav-btn:disabled{opacity:.3;cursor:default}.dow-row{display:grid;grid-template-columns:repeat(7,1fr);padding:0 8px;margin-bottom:4px}.dow-cell{text-align:center;font-size:.6875rem;font-weight:600;color:var(--ui-text-color-muted, #9ca3af);padding:4px 0;text-transform:uppercase;letter-spacing:.04em}.day-grid{display:grid;grid-template-columns:repeat(7,1fr);padding:0 8px 12px;gap:2px 0}.day-cell{display:flex;align-items:center;justify-content:center;height:36px;width:100%;border:none;background:transparent;cursor:pointer;border-radius:50%;font-size:.8125rem;color:var(--ui-text-color, #374151);transition:background .1s,color .1s;position:relative}.day-cell:hover:not(.disabled):not(.selected){background:#0000000f}.day-cell.other-month{color:var(--ui-text-color-muted, #d1d5db)}.day-cell.today:not(.selected){color:var(--ui-primary-color, #3b82f6);font-weight:700}.day-cell.today:not(.selected):after{content:"";position:absolute;bottom:4px;left:50%;transform:translate(-50%);width:4px;height:4px;border-radius:50%;background:var(--ui-primary-color, #3b82f6)}.day-cell.selected{background:var(--ui-primary-color, #3b82f6);color:#fff;font-weight:700}.day-cell.selected:hover{background:var(--ui-primary-color-dark, #2563eb)}.day-cell.disabled{opacity:.35;cursor:not-allowed;pointer-events:none}.year-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px;max-height:220px;overflow-y:auto}.year-btn{padding:8px 4px;border:none;background:transparent;cursor:pointer;border-radius:6px;font-size:.875rem;color:var(--ui-text-color, #374151);transition:background .12s}.year-btn:hover{background:#0000000f}.year-btn.selected-year{background:var(--ui-primary-color, #3b82f6);color:#fff;font-weight:700}.month-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px}.month-btn{padding:10px 4px;border:none;background:transparent;cursor:pointer;border-radius:6px;font-size:.8125rem;color:var(--ui-text-color, #374151);transition:background .12s}.month-btn:hover{background:#0000000f}.month-btn.selected-month{background:var(--ui-primary-color, #3b82f6);color:#fff;font-weight:700}', wl = ':host{display:inline-block;font-family:var(--ui-font-family, "Inter", sans-serif)}.field-wrapper{position:relative;display:inline-flex;align-items:center}.field-label{display:block;font-size:.75rem;font-weight:500;color:var(--ui-text-color-muted, #6b7280);margin-bottom:4px}.field-input{font-family:inherit;font-size:.9375rem;color:var(--ui-text-color, #111827);background:var(--ui-surface-background, #fff);border:1.5px solid var(--ui-border-color, #d1d5db);border-radius:var(--ui-border-radius-md, 8px);padding:10px 44px 10px 14px;width:180px;outline:none;transition:border-color .15s,box-shadow .15s;box-sizing:border-box;cursor:text}.field-input::placeholder{color:var(--ui-text-color-muted, #9ca3af)}.field-input:focus{border-color:var(--ui-primary-color, #3b82f6);box-shadow:0 0 0 3px #3b82f626}:host([disabled]) .field-input{background:var(--ui-disabled-bg, #f9fafb);color:var(--ui-text-color-muted, #9ca3af);cursor:not-allowed;border-color:var(--ui-border-color, #e5e7eb)}:host([readonly]) .field-input{cursor:default}.calendar-icon-btn{position:absolute;right:10px;display:flex;align-items:center;justify-content:center;width:28px;height:28px;border:none;background:transparent;cursor:pointer;border-radius:50%;color:var(--ui-text-color-muted, #6b7280);transition:background .12s,color .12s;font-size:1rem}.calendar-icon-btn:hover{background:#0000000f;color:var(--ui-primary-color, #3b82f6)}:host([disabled]) .calendar-icon-btn{pointer-events:none;opacity:.4}:host([readonly]) .calendar-icon-btn{pointer-events:none}:host([error]) .field-input{border-color:var(--ui-error-color, #ef4444)}:host([error]) .field-input:focus{box-shadow:0 0 0 3px #ef444426}.helper-text{font-size:.75rem;margin-top:4px;color:var(--ui-text-color-muted, #6b7280)}:host([error]) .helper-text{color:var(--ui-error-color, #ef4444)}.popover-anchor{position:relative;display:inline-block}.popover{position:absolute;top:calc(100% + 6px);left:0;z-index:1400;background:var(--ui-surface-background, #fff);border-radius:var(--ui-border-radius-xl, 12px);box-shadow:0 8px 24px -4px #0000002e,0 2px 8px -2px #0000001a;transform-origin:top left;transform:scale(.94) translateY(-4px);opacity:0;visibility:hidden;transition:transform .15s cubic-bezier(.4,0,.2,1),opacity .15s,visibility .15s;pointer-events:none}.popover.open{transform:scale(1) translateY(0);opacity:1;visibility:visible;pointer-events:auto}.popover-actions{display:flex;justify-content:flex-end;gap:8px;padding:4px 12px 12px;border-top:1px solid var(--ui-border-color, #f3f4f6)}.action-btn{font-family:inherit;font-size:.875rem;font-weight:600;padding:6px 14px;border:none;border-radius:6px;cursor:pointer;transition:background .12s}.action-btn.cancel{background:transparent;color:var(--ui-text-color-muted, #6b7280)}.action-btn.cancel:hover{background:#0000000f}.action-btn.ok{background:var(--ui-primary-color, #3b82f6);color:#fff}.action-btn.ok:hover{background:var(--ui-primary-color-dark, #2563eb)}.static-wrapper{display:inline-block;border-radius:var(--ui-border-radius-xl, 12px);box-shadow:0 1px 4px #00000014,0 0 0 1px var(--ui-border-color, #e5e7eb);overflow:hidden}.click-away{display:none;position:fixed;inset:0;z-index:1399}.click-away.open{display:block}';
+var kl = Object.defineProperty, $l = Object.getOwnPropertyDescriptor, E = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? $l(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && kl(t, i, r), r;
 };
-const Ma = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"], io = [
+const Sl = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"], ss = [
   "January",
   "February",
   "March",
@@ -9013,80 +5289,80 @@ const Ma = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"], io = [
   "November",
   "December"
 ];
-function et(e) {
+function dt(e) {
   if (!e) return null;
-  const [t, i, o] = e.split("-").map(Number);
-  return !t || !i || !o ? null : new Date(t, i - 1, o);
+  const [t, i, s] = e.split("-").map(Number);
+  return !t || !i || !s ? null : new Date(t, i - 1, s);
 }
-function Pi(e) {
-  const t = e.getFullYear(), i = String(e.getMonth() + 1).padStart(2, "0"), o = String(e.getDate()).padStart(2, "0");
-  return `${t}-${i}-${o}`;
+function Di(e) {
+  const t = e.getFullYear(), i = String(e.getMonth() + 1).padStart(2, "0"), s = String(e.getDate()).padStart(2, "0");
+  return `${t}-${i}-${s}`;
 }
-function La(e) {
-  const t = et(e);
+function Cl(e) {
+  const t = dt(e);
   return t ? `${String(t.getMonth() + 1).padStart(2, "0")}/${String(t.getDate()).padStart(2, "0")}/${t.getFullYear()}` : "";
 }
-function ja() {
-  return Pi(/* @__PURE__ */ new Date());
+function Il() {
+  return Di(/* @__PURE__ */ new Date());
 }
-function $t(e, t) {
+function zt(e, t) {
   return e.getFullYear() === t.getFullYear() && e.getMonth() === t.getMonth() && e.getDate() === t.getDate();
 }
-function Ua(e, t, i, o, r) {
-  const a = [], n = new Date(e, t, 1), h = ja(), g = et(h), v = i ? et(i) : null, b = o ? et(o) : null, C = r ? et(r) : null, re = n.getDay();
-  for (let J = re - 1; J >= 0; J--) {
-    const O = new Date(e, t, -J), ei = Pi(O);
+function El(e, t, i, s, r) {
+  const a = [], n = new Date(e, t, 1), h = Il(), f = dt(h), y = i ? dt(i) : null, b = s ? dt(s) : null, S = r ? dt(r) : null, de = n.getDay();
+  for (let ie = de - 1; ie >= 0; ie--) {
+    const O = new Date(e, t, -ie), ai = Di(O);
     a.push({
       date: O,
-      iso: ei,
+      iso: ai,
       day: O.getDate(),
       isCurrentMonth: !1,
-      isToday: $t(O, g),
-      isSelected: v ? $t(O, v) : !1,
-      isDisabled: (b ? O < b : !1) || (C ? O > C : !1)
+      isToday: zt(O, f),
+      isSelected: y ? zt(O, y) : !1,
+      isDisabled: (b ? O < b : !1) || (S ? O > S : !1)
     });
   }
-  const X = new Date(e, t + 1, 0).getDate();
-  for (let J = 1; J <= X; J++) {
-    const O = new Date(e, t, J), ei = Pi(O);
+  const te = new Date(e, t + 1, 0).getDate();
+  for (let ie = 1; ie <= te; ie++) {
+    const O = new Date(e, t, ie), ai = Di(O);
     a.push({
       date: O,
-      iso: ei,
-      day: J,
+      iso: ai,
+      day: ie,
       isCurrentMonth: !0,
-      isToday: $t(O, g),
-      isSelected: v ? $t(O, v) : !1,
-      isDisabled: (b ? O < b : !1) || (C ? O > C : !1)
+      isToday: zt(O, f),
+      isSelected: y ? zt(O, y) : !1,
+      isDisabled: (b ? O < b : !1) || (S ? O > S : !1)
     });
   }
-  const lo = 42 - a.length;
-  for (let J = 1; J <= lo; J++) {
-    const O = new Date(e, t + 1, J), ei = Pi(O);
+  const ps = 42 - a.length;
+  for (let ie = 1; ie <= ps; ie++) {
+    const O = new Date(e, t + 1, ie), ai = Di(O);
     a.push({
       date: O,
-      iso: ei,
-      day: J,
+      iso: ai,
+      day: ie,
       isCurrentMonth: !1,
-      isToday: $t(O, g),
-      isSelected: v ? $t(O, v) : !1,
-      isDisabled: (b ? O < b : !1) || (C ? O > C : !1)
+      isToday: zt(O, f),
+      isSelected: y ? zt(O, y) : !1,
+      isDisabled: (b ? O < b : !1) || (S ? O > S : !1)
     });
   }
   return a;
 }
-let _e = class extends c {
+let Te = class extends c {
   constructor() {
     super(...arguments), this.disabled = !1, this._viewYear = (/* @__PURE__ */ new Date()).getFullYear(), this._viewMonth = (/* @__PURE__ */ new Date()).getMonth(), this._mode = "day";
   }
   connectedCallback() {
     if (super.connectedCallback(), this.value) {
-      const e = et(this.value);
+      const e = dt(this.value);
       e && (this._viewYear = e.getFullYear(), this._viewMonth = e.getMonth());
     }
   }
   /** Navigate to the month/year of a given ISO date programmatically. */
   navigateTo(e) {
-    const t = et(e);
+    const t = dt(e);
     t && (this._viewYear = t.getFullYear(), this._viewMonth = t.getMonth());
   }
   _prevMonth() {
@@ -9109,20 +5385,20 @@ let _e = class extends c {
     this._viewMonth = e, this._mode = "day";
   }
   _renderDayView() {
-    const e = Ua(this._viewYear, this._viewMonth, this.value ?? null, this.min ?? null, this.max ?? null);
+    const e = El(this._viewYear, this._viewMonth, this.value ?? null, this.min ?? null, this.max ?? null);
     return l`
       <div class="header">
         <button class="nav-btn" @click=${this._prevMonth} aria-label="Previous month">‹</button>
         <span class="header-label" @click=${() => this._mode = "month"} role="button" tabindex="0"
           @keydown=${(t) => t.key === "Enter" && (this._mode = "month")}
         >
-          ${io[this._viewMonth]} ${this._viewYear}
+          ${ss[this._viewMonth]} ${this._viewYear}
         </span>
         <button class="nav-btn" @click=${this._nextMonth} aria-label="Next month">›</button>
       </div>
-      <div class="dow-row">${Ma.map((t) => l`<span class="dow-cell">${t}</span>`)}</div>
+      <div class="dow-row">${Sl.map((t) => l`<span class="dow-cell">${t}</span>`)}</div>
       <div class="day-grid" role="grid" aria-label="Calendar">
-        ${It(e, (t) => t.iso, (t) => l`
+        ${At(e, (t) => t.iso, (t) => l`
           <button
             class=${u({
       "day-cell": !0,
@@ -9149,7 +5425,7 @@ let _e = class extends c {
         <button class="nav-btn" @click=${() => this._viewYear++} aria-label="Next year">›</button>
       </div>
       <div class="month-grid">
-        ${io.map((e, t) => l`
+        ${ss.map((e, t) => l`
           <button class=${u({ "month-btn": !0, "selected-month": t === this._viewMonth })}
             @click=${() => this._selectMonth(t)}>${e.slice(0, 3)}</button>
         `)}
@@ -9157,7 +5433,7 @@ let _e = class extends c {
     `;
   }
   _renderYearView() {
-    const e = (/* @__PURE__ */ new Date()).getFullYear(), t = Array.from({ length: 201 }, (i, o) => e - 100 + o);
+    const e = (/* @__PURE__ */ new Date()).getFullYear(), t = Array.from({ length: 201 }, (i, s) => e - 100 + s);
     return l`
       <div class="header">
         <span class="header-label" style="cursor:default">Select Year</span>
@@ -9178,180 +5454,32 @@ let _e = class extends c {
     `;
   }
 };
-_e.styles = p`
-    :host {
-      display: inline-block;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-      user-select: none;
-    }
-
-    .calendar {
-      width: 296px;
-      background: var(--ui-surface-background, #fff);
-      border-radius: var(--ui-border-radius-xl, 12px);
-      overflow: hidden;
-    }
-
-    /* Header */
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 8px 8px;
-    }
-    .header-label {
-      font-size: 0.9375rem;
-      font-weight: 600;
-      color: var(--ui-text-color, #111827);
-      cursor: pointer;
-      padding: 4px 8px;
-      border-radius: 6px;
-      transition: background 0.12s;
-    }
-    .header-label:hover { background: rgba(0,0,0,.04); }
-
-    .nav-btn {
-      display: flex; align-items: center; justify-content: center;
-      width: 32px; height: 32px;
-      border: none; background: transparent; cursor: pointer;
-      border-radius: 50%; color: var(--ui-text-color-muted, #6b7280);
-      font-size: 1rem; transition: background 0.12s;
-    }
-    .nav-btn:hover { background: rgba(0,0,0,.06); }
-    .nav-btn:disabled { opacity: 0.3; cursor: default; }
-
-    /* Day-of-week row */
-    .dow-row {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      padding: 0 8px;
-      margin-bottom: 4px;
-    }
-    .dow-cell {
-      text-align: center;
-      font-size: 0.6875rem;
-      font-weight: 600;
-      color: var(--ui-text-color-muted, #9ca3af);
-      padding: 4px 0;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    /* Day grid */
-    .day-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      padding: 0 8px 12px;
-      gap: 2px 0;
-    }
-
-    .day-cell {
-      display: flex; align-items: center; justify-content: center;
-      height: 36px;
-      width: 100%;
-      border: none; background: transparent; cursor: pointer;
-      border-radius: 50%;
-      font-size: 0.8125rem;
-      color: var(--ui-text-color, #374151);
-      transition: background 0.1s, color 0.1s;
-      position: relative;
-    }
-    .day-cell:hover:not(.disabled):not(.selected) { background: rgba(0,0,0,.06); }
-    .day-cell.other-month { color: var(--ui-text-color-muted, #d1d5db); }
-    .day-cell.today:not(.selected) {
-      color: var(--ui-primary-color, #3b82f6);
-      font-weight: 700;
-    }
-    .day-cell.today:not(.selected)::after {
-      content: '';
-      position: absolute;
-      bottom: 4px;
-      left: 50%; transform: translateX(-50%);
-      width: 4px; height: 4px;
-      border-radius: 50%;
-      background: var(--ui-primary-color, #3b82f6);
-    }
-    .day-cell.selected {
-      background: var(--ui-primary-color, #3b82f6);
-      color: #fff;
-      font-weight: 700;
-    }
-    .day-cell.selected:hover { background: var(--ui-primary-color-dark, #2563eb); }
-    .day-cell.disabled {
-      opacity: 0.35;
-      cursor: not-allowed;
-      pointer-events: none;
-    }
-
-    /* Year picker overlay */
-    .year-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      padding: 12px;
-      max-height: 220px;
-      overflow-y: auto;
-    }
-    .year-btn {
-      padding: 8px 4px;
-      border: none; background: transparent; cursor: pointer;
-      border-radius: 6px; font-size: 0.875rem;
-      color: var(--ui-text-color, #374151);
-      transition: background 0.12s;
-    }
-    .year-btn:hover { background: rgba(0,0,0,.06); }
-    .year-btn.selected-year {
-      background: var(--ui-primary-color, #3b82f6);
-      color: #fff;
-      font-weight: 700;
-    }
-
-    /* Month picker overlay */
-    .month-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      padding: 12px;
-    }
-    .month-btn {
-      padding: 10px 4px;
-      border: none; background: transparent; cursor: pointer;
-      border-radius: 6px; font-size: 0.8125rem;
-      color: var(--ui-text-color, #374151);
-      transition: background 0.12s;
-    }
-    .month-btn:hover { background: rgba(0,0,0,.06); }
-    .month-btn.selected-month {
-      background: var(--ui-primary-color, #3b82f6);
-      color: #fff;
-      font-weight: 700;
-    }
-  `;
+Te.styles = p(_l);
 E([
-  s({ type: String })
-], _e.prototype, "value", 2);
+  o({ type: String })
+], Te.prototype, "value", 2);
 E([
-  s({ type: String })
-], _e.prototype, "min", 2);
+  o({ type: String })
+], Te.prototype, "min", 2);
 E([
-  s({ type: String })
-], _e.prototype, "max", 2);
+  o({ type: String })
+], Te.prototype, "max", 2);
 E([
-  s({ type: Boolean })
-], _e.prototype, "disabled", 2);
+  o({ type: Boolean })
+], Te.prototype, "disabled", 2);
 E([
-  m()
-], _e.prototype, "_viewYear", 2);
+  g()
+], Te.prototype, "_viewYear", 2);
 E([
-  m()
-], _e.prototype, "_viewMonth", 2);
+  g()
+], Te.prototype, "_viewMonth", 2);
 E([
-  m()
-], _e.prototype, "_mode", 2);
-_e = E([
+  g()
+], Te.prototype, "_mode", 2);
+Te = E([
   d("ui-date-picker-calendar")
-], _e);
-let R = class extends c {
+], Te);
+let H = class extends c {
   constructor() {
     super(...arguments), this.value = "", this.label = "Date", this.placeholder = "MM/DD/YYYY", this.name = "", this.variant = "desktop", this.min = "", this.max = "", this.disabled = !1, this.readonly = !1, this.error = !1, this.helperText = "", this._open = !1, this._pendingValue = "";
   }
@@ -9395,23 +5523,23 @@ let R = class extends c {
     if (this.readonly) return;
     const i = e.target.value.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
     if (i) {
-      const o = `${i[3]}-${i[1]}-${i[2]}`;
-      if (isNaN(new Date(o).getTime()) || this.min && o < this.min || this.max && o > this.max) return;
-      this._commit(o);
+      const s = `${i[3]}-${i[1]}-${i[2]}`;
+      if (isNaN(new Date(s).getTime()) || this.min && s < this.min || this.max && s > this.max) return;
+      this._commit(s);
     }
   }
   // ── Field ───────────────────────────────────────────────────────────────
   _renderField() {
     return l`
-      ${this.label ? l`<label class="field-label" for="dp-input">${this.label}</label>` : y}
+      ${this.label ? l`<label class="field-label" for="dp-input">${this.label}</label>` : v}
       <div class="field-wrapper">
         <input
           id="dp-input"
           class="field-input"
           type="text"
-          .value=${La(this.value)}
+          .value=${Cl(this.value)}
           placeholder=${this.placeholder}
-          name=${this.name || y}
+          name=${this.name || v}
           ?disabled=${this.disabled}
           ?readonly=${this.readonly}
           aria-label=${this.label || "Date"}
@@ -9432,7 +5560,7 @@ let R = class extends c {
           📅
         </button>
       </div>
-      ${this.helperText ? l`<p class="helper-text">${this.helperText}</p>` : y}
+      ${this.helperText ? l`<p class="helper-text">${this.helperText}</p>` : v}
     `;
   }
   // ── Desktop variant ─────────────────────────────────────────────────────
@@ -9503,216 +5631,71 @@ let R = class extends c {
     return e === "static" ? this._renderStatic() : e === "mobile" ? this._renderMobile() : this._renderDesktop();
   }
 };
-R.styles = p`
-    :host {
-      display: inline-block;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-    }
-
-    /* ── Field ─────────────────────────────────────────────────────── */
-    .field-wrapper {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-    }
-
-    .field-label {
-      display: block;
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: var(--ui-text-color-muted, #6b7280);
-      margin-bottom: 4px;
-    }
-
-    .field-input {
-      font-family: inherit;
-      font-size: 0.9375rem;
-      color: var(--ui-text-color, #111827);
-      background: var(--ui-surface-background, #fff);
-      border: 1.5px solid var(--ui-border-color, #d1d5db);
-      border-radius: var(--ui-border-radius-md, 8px);
-      padding: 10px 44px 10px 14px;
-      width: 180px;
-      outline: none;
-      transition: border-color 0.15s, box-shadow 0.15s;
-      box-sizing: border-box;
-      cursor: text;
-    }
-    .field-input::placeholder { color: var(--ui-text-color-muted, #9ca3af); }
-    .field-input:focus {
-      border-color: var(--ui-primary-color, #3b82f6);
-      box-shadow: 0 0 0 3px rgba(59,130,246,.15);
-    }
-    :host([disabled]) .field-input {
-      background: var(--ui-disabled-bg, #f9fafb);
-      color: var(--ui-text-color-muted, #9ca3af);
-      cursor: not-allowed;
-      border-color: var(--ui-border-color, #e5e7eb);
-    }
-    :host([readonly]) .field-input { cursor: default; }
-
-    .calendar-icon-btn {
-      position: absolute;
-      right: 10px;
-      display: flex; align-items: center; justify-content: center;
-      width: 28px; height: 28px;
-      border: none; background: transparent; cursor: pointer;
-      border-radius: 50%; color: var(--ui-text-color-muted, #6b7280);
-      transition: background 0.12s, color 0.12s;
-      font-size: 1rem;
-    }
-    .calendar-icon-btn:hover { background: rgba(0,0,0,.06); color: var(--ui-primary-color, #3b82f6); }
-    :host([disabled]) .calendar-icon-btn { pointer-events: none; opacity: 0.4; }
-    :host([readonly]) .calendar-icon-btn { pointer-events: none; }
-
-    /* Error state */
-    :host([error]) .field-input {
-      border-color: var(--ui-error-color, #ef4444);
-    }
-    :host([error]) .field-input:focus {
-      box-shadow: 0 0 0 3px rgba(239,68,68,.15);
-    }
-    .helper-text {
-      font-size: 0.75rem;
-      margin-top: 4px;
-      color: var(--ui-text-color-muted, #6b7280);
-    }
-    :host([error]) .helper-text { color: var(--ui-error-color, #ef4444); }
-
-    /* ── Desktop popover ───────────────────────────────────────────── */
-    .popover-anchor {
-      position: relative;
-      display: inline-block;
-    }
-
-    .popover {
-      position: absolute;
-      top: calc(100% + 6px);
-      left: 0;
-      z-index: 1400;
-      background: var(--ui-surface-background, #fff);
-      border-radius: var(--ui-border-radius-xl, 12px);
-      box-shadow: 0 8px 24px -4px rgba(0,0,0,.18), 0 2px 8px -2px rgba(0,0,0,.1);
-      transform-origin: top left;
-      transform: scale(0.94) translateY(-4px);
-      opacity: 0;
-      visibility: hidden;
-      transition: transform 0.15s cubic-bezier(0.4,0,.2,1),
-                  opacity 0.15s, visibility 0.15s;
-      pointer-events: none;
-    }
-    .popover.open {
-      transform: scale(1) translateY(0);
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-    }
-
-    /* Popover actions row */
-    .popover-actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 8px;
-      padding: 4px 12px 12px;
-      border-top: 1px solid var(--ui-border-color, #f3f4f6);
-    }
-    .action-btn {
-      font-family: inherit;
-      font-size: 0.875rem;
-      font-weight: 600;
-      padding: 6px 14px;
-      border: none; border-radius: 6px; cursor: pointer;
-      transition: background 0.12s;
-    }
-    .action-btn.cancel {
-      background: transparent;
-      color: var(--ui-text-color-muted, #6b7280);
-    }
-    .action-btn.cancel:hover { background: rgba(0,0,0,.06); }
-    .action-btn.ok {
-      background: var(--ui-primary-color, #3b82f6);
-      color: #fff;
-    }
-    .action-btn.ok:hover { background: var(--ui-primary-color-dark, #2563eb); }
-
-    /* ── Static ─────────────────────────────────────────────────────── */
-    .static-wrapper {
-      display: inline-block;
-      border-radius: var(--ui-border-radius-xl, 12px);
-      box-shadow: 0 1px 4px rgba(0,0,0,.08), 0 0 0 1px var(--ui-border-color, #e5e7eb);
-      overflow: hidden;
-    }
-
-    /* ── Click-away backdrop (desktop) ──────────────────────────────── */
-    .click-away {
-      display: none;
-      position: fixed; inset: 0; z-index: 1399;
-    }
-    .click-away.open { display: block; }
-  `;
+H.styles = p(wl);
 E([
-  s({ type: String })
-], R.prototype, "value", 2);
+  o({ type: String })
+], H.prototype, "value", 2);
 E([
-  s({ type: String })
-], R.prototype, "label", 2);
+  o({ type: String })
+], H.prototype, "label", 2);
 E([
-  s({ type: String })
-], R.prototype, "placeholder", 2);
+  o({ type: String })
+], H.prototype, "placeholder", 2);
 E([
-  s({ type: String })
-], R.prototype, "name", 2);
+  o({ type: String })
+], H.prototype, "name", 2);
 E([
-  s({ type: String })
-], R.prototype, "variant", 2);
+  o({ type: String })
+], H.prototype, "variant", 2);
 E([
-  s({ type: String })
-], R.prototype, "min", 2);
+  o({ type: String })
+], H.prototype, "min", 2);
 E([
-  s({ type: String })
-], R.prototype, "max", 2);
+  o({ type: String })
+], H.prototype, "max", 2);
 E([
-  s({ type: Boolean, reflect: !0 })
-], R.prototype, "disabled", 2);
+  o({ type: Boolean, reflect: !0 })
+], H.prototype, "disabled", 2);
 E([
-  s({ type: Boolean, reflect: !0 })
-], R.prototype, "readonly", 2);
+  o({ type: Boolean, reflect: !0 })
+], H.prototype, "readonly", 2);
 E([
-  s({ type: Boolean, reflect: !0 })
-], R.prototype, "error", 2);
+  o({ type: Boolean, reflect: !0 })
+], H.prototype, "error", 2);
 E([
-  s({ type: String, attribute: "helper-text" })
-], R.prototype, "helperText", 2);
+  o({ type: String, attribute: "helper-text" })
+], H.prototype, "helperText", 2);
 E([
-  m()
-], R.prototype, "_open", 2);
+  g()
+], H.prototype, "_open", 2);
 E([
-  m()
-], R.prototype, "_pendingValue", 2);
-R = E([
+  g()
+], H.prototype, "_pendingValue", 2);
+H = E([
   d("ui-date-picker")
-], R);
-var Ra = Object.defineProperty, Na = Object.getOwnPropertyDescriptor, V = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Na(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Ra(t, i, r), r;
+], H);
+const Pl = ':host{display:inline-block;font-family:var(--ui-font-family, "Inter", sans-serif)}.field-label{display:block;font-size:.75rem;font-weight:500;letter-spacing:.01em;color:var(--ui-text-color-muted, #6b7280);margin-bottom:5px;transition:color .15s}:host([error]) .field-label{color:var(--ui-error-color, #ef4444)}.field-label.focused{color:var(--ui-primary-color, #3b82f6)}:host([error]) .field-label.focused{color:var(--ui-error-color, #ef4444)}.field-container{display:inline-flex;align-items:center;gap:4px;background:var(--ui-surface-background, #ffffff);border:1.5px solid var(--ui-border-color, #d1d5db);border-radius:var(--ui-border-radius-md, 8px);padding:0 10px;height:44px;min-width:200px;cursor:text;box-sizing:border-box;transition:border-color .15s,box-shadow .15s;position:relative}.field-container.focused{border-color:var(--ui-primary-color, #3b82f6);box-shadow:0 0 0 3px #3b82f626}:host([error]) .field-container{border-color:var(--ui-error-color, #ef4444)}:host([error]) .field-container.focused{box-shadow:0 0 0 3px #ef444426}:host([disabled]) .field-container{background:var(--ui-disabled-bg, #f9fafb);border-color:var(--ui-border-color, #e5e7eb);cursor:not-allowed}:host([readonly]) .field-container{cursor:default}.segments{display:flex;align-items:center;flex:1;gap:1px;outline:none;min-height:100%}.segment{display:inline-flex;align-items:center;justify-content:center;border-radius:4px;padding:2px 4px;font-size:.9375rem;font-variant-numeric:tabular-nums;color:var(--ui-text-color, #111827);min-width:2ch;line-height:1;transition:background .1s;cursor:text;-webkit-user-select:none;user-select:none}.segment.placeholder{color:var(--ui-text-color-muted, #9ca3af)}.segment.active{background:var(--ui-primary-color, #3b82f6);color:#fff;border-radius:3px}:host([disabled]) .segment{color:var(--ui-text-color-muted, #9ca3af)}:host([disabled]) .segment.active{background:var(--ui-border-color, #e5e7eb);color:var(--ui-text-color-muted, #9ca3af)}.segment-year{min-width:4ch}.separator{color:var(--ui-text-color-muted, #6b7280);font-size:.9375rem;pointer-events:none;line-height:1}.field-actions{display:flex;align-items:center;gap:2px;margin-left:auto}.icon-btn{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border:none;background:transparent;cursor:pointer;border-radius:50%;color:var(--ui-text-color-muted, #6b7280);font-size:.875rem;transition:background .12s,color .12s;flex-shrink:0;padding:0}.icon-btn:hover{background:#0000000f;color:var(--ui-text-color, #374151)}:host([disabled]) .icon-btn{pointer-events:none;opacity:0}.helper{display:block;font-size:.75rem;margin-top:5px;color:var(--ui-text-color-muted, #6b7280)}:host([error]) .helper{color:var(--ui-error-color, #ef4444)}';
+var Ol = Object.defineProperty, Dl = Object.getOwnPropertyDescriptor, Y = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Dl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Ol(t, i, r), r;
 };
-function Si(e, t, i) {
+function Pi(e, t, i) {
   return Math.min(Math.max(e, t), i);
 }
-function Ei(e, t) {
+function Oi(e, t) {
   return e < 1 || e > 12 ? 31 : new Date(t || 2e3, e, 0).getDate();
 }
-function Va(e) {
+function zl(e) {
   if (!e) return { m: null, d: null, y: null };
   const t = e.match(/^(\d{4})-(\d{2})-(\d{2})$/);
   return t ? { y: parseInt(t[1]), m: parseInt(t[2]), d: parseInt(t[3]) } : { m: null, d: null, y: null };
 }
-function ro(e, t, i) {
+function os(e, t, i) {
   return e === null || t === null || i === null ? "" : `${String(i).padStart(4, "0")}-${String(e).padStart(2, "0")}-${String(t).padStart(2, "0")}`;
 }
-const Le = ["month", "day", "year"];
-let z = class extends c {
+const Je = ["month", "day", "year"];
+let T = class extends c {
   constructor() {
     super(...arguments), this.value = "", this.label = "", this.name = "", this.min = "", this.max = "", this.disabled = !1, this.readonly = !1, this.error = !1, this.helperText = "", this._internals = this.attachInternals(), this._month = null, this._day = null, this._year = null, this._active = null, this._focused = !1, this._buf = "";
   }
@@ -9720,8 +5703,8 @@ let z = class extends c {
   // Sync controlled value → segments before each render (willUpdate avoids a double-render cycle)
   willUpdate(e) {
     if (e.has("value")) {
-      const { m: t, d: i, y: o } = Va(this.value);
-      this._month = t, this._day = i, this._year = o;
+      const { m: t, d: i, y: s } = zl(this.value);
+      this._month = t, this._day = i, this._year = s;
     }
   }
   updated() {
@@ -9734,7 +5717,7 @@ let z = class extends c {
   }
   // ── Form value sync ──────────────────────────────────────────────────────
   _syncFormValue() {
-    const e = ro(this._month, this._day, this._year);
+    const e = os(this._month, this._day, this._year);
     this._internals.setFormValue?.(e || null);
   }
   // ── Internal: segment navigation ─────────────────────────────────────────
@@ -9748,7 +5731,7 @@ let z = class extends c {
       if (this._active === "month" && e >= 1 && e <= 12)
         this._month = e;
       else if (this._active === "day") {
-        const t = Ei(this._month ?? 1, this._year ?? 2e3);
+        const t = Oi(this._month ?? 1, this._year ?? 2e3);
         e >= 1 && e <= t && (this._day = e);
       }
     }
@@ -9758,19 +5741,19 @@ let z = class extends c {
       this._setActive("month");
       return;
     }
-    const e = Le.indexOf(this._active);
-    e < Le.length - 1 && this._setActive(Le[e + 1]);
+    const e = Je.indexOf(this._active);
+    e < Je.length - 1 && this._setActive(Je[e + 1]);
   }
   _prevSegment() {
     if (!this._active) return;
-    const e = Le.indexOf(this._active);
-    e > 0 && this._setActive(Le[e - 1]);
+    const e = Je.indexOf(this._active);
+    e > 0 && this._setActive(Je[e - 1]);
   }
   _canGoNext() {
-    return this._active ? Le.indexOf(this._active) < Le.length - 1 : !0;
+    return this._active ? Je.indexOf(this._active) < Je.length - 1 : !0;
   }
   _canGoPrev() {
-    return this._active ? Le.indexOf(this._active) > 0 : !1;
+    return this._active ? Je.indexOf(this._active) > 0 : !1;
   }
   // ── Internal: digit handling ─────────────────────────────────────────────
   _handleDigit(e) {
@@ -9780,16 +5763,16 @@ let z = class extends c {
       if (i.length === 1)
         e >= 2 && e <= 9 ? (this._month = e, this._buf = "", this._nextSegment()) : this._buf = i;
       else {
-        const o = parseInt(i);
-        o >= 1 && o <= 12 ? (this._month = o, this._buf = "", this._nextSegment()) : (this._buf = String(e), e >= 2 && e <= 9 && (this._month = e, this._buf = "", this._nextSegment()));
+        const s = parseInt(i);
+        s >= 1 && s <= 12 ? (this._month = s, this._buf = "", this._nextSegment()) : (this._buf = String(e), e >= 2 && e <= 9 && (this._month = e, this._buf = "", this._nextSegment()));
       }
     else if (t === "day") {
-      const o = Ei(this._month ?? 1, this._year ?? 2e3);
+      const s = Oi(this._month ?? 1, this._year ?? 2e3);
       if (i.length === 1)
         e >= 4 && e <= 9 ? (this._day = e, this._buf = "", this._nextSegment()) : this._buf = i;
       else {
         const r = parseInt(i);
-        r >= 1 && r <= o ? (this._day = r, this._buf = "", this._nextSegment()) : (this._buf = String(e), e >= 4 && e <= 9 && (this._day = e, this._buf = "", this._nextSegment()));
+        r >= 1 && r <= s ? (this._day = r, this._buf = "", this._nextSegment()) : (this._buf = String(e), e >= 4 && e <= 9 && (this._day = e, this._buf = "", this._nextSegment()));
       }
     } else t === "year" && (this._buf = i.slice(-4), this._buf.length === 4 && (this._year = parseInt(this._buf), this._buf = "", this._checkAndEmit()));
   }
@@ -9799,20 +5782,20 @@ let z = class extends c {
     if (t) {
       if (this._buf = "", t === "month") {
         const i = this._month ?? (e > 0 ? 0 : 13);
-        this._month = Si(i + e, 1, 12), this._day !== null && (this._day = Si(this._day, 1, Ei(this._month, this._year ?? 2e3)));
+        this._month = Pi(i + e, 1, 12), this._day !== null && (this._day = Pi(this._day, 1, Oi(this._month, this._year ?? 2e3)));
       } else if (t === "day") {
-        const i = Ei(this._month ?? 1, this._year ?? 2e3), o = this._day ?? (e > 0 ? 0 : i + 1);
-        this._day = Si(o + e, 1, i);
+        const i = Oi(this._month ?? 1, this._year ?? 2e3), s = this._day ?? (e > 0 ? 0 : i + 1);
+        this._day = Pi(s + e, 1, i);
       } else if (t === "year") {
         const i = this._year ?? (/* @__PURE__ */ new Date()).getFullYear();
-        this._year = Si(i + e, 1, 9999);
+        this._year = Pi(i + e, 1, 9999);
       }
       this._checkAndEmit();
     }
   }
   // ── Internal: emit when a full date is ready ──────────────────────────────
   _checkAndEmit() {
-    const e = ro(this._month, this._day, this._year);
+    const e = os(this._month, this._day, this._year);
     e && e !== this.value && (this.value = e, this.dispatchEvent(new CustomEvent("change", {
       detail: { value: e },
       bubbles: !0,
@@ -9872,24 +5855,24 @@ let z = class extends c {
     return this._month !== null || this._day !== null || this._year !== null;
   }
   render() {
-    const e = u({ "field-label": !0, focused: this._focused }), t = u({ "field-container": !0, focused: this._focused }), i = (o, r = "") => {
-      const { text: a, isPlaceholder: n } = this._segmentText(o);
+    const e = u({ "field-label": !0, focused: this._focused }), t = u({ "field-container": !0, focused: this._focused }), i = (s, r = "") => {
+      const { text: a, isPlaceholder: n } = this._segmentText(s);
       return l`<span
         class=${u({
         segment: !0,
-        [o]: !0,
-        active: this._active === o,
+        [s]: !0,
+        active: this._active === s,
         placeholder: n,
-        [`segment-${o}`]: !0,
+        [`segment-${s}`]: !0,
         [r]: !!r
       })}
         @click=${(h) => {
-        h.stopPropagation(), this._setActive(o), this.shadowRoot?.querySelector(".segments")?.focus();
+        h.stopPropagation(), this._setActive(s), this.shadowRoot?.querySelector(".segments")?.focus();
       }}
       >${a}</span>`;
     };
     return l`
-      ${this.label ? l`<label class=${e}>${this.label}</label>` : y}
+      ${this.label ? l`<label class=${e}>${this.label}</label>` : v}
 
       <div class=${t} @click=${this._handleContainerClick}>
 
@@ -9912,235 +5895,105 @@ let z = class extends c {
         <div class="field-actions">
           ${this._hasValue() && !this.disabled && !this.readonly ? l`
             <button class="icon-btn" aria-label="Clear date" tabindex="-1"
-              @click=${(o) => {
-      o.stopPropagation(), this.clear();
+              @click=${(s) => {
+      s.stopPropagation(), this.clear();
     }}>✕</button>
-          ` : y}
+          ` : v}
         </div>
       </div>
 
-      ${this.helperText ? l`<small class="helper">${this.helperText}</small>` : y}
+      ${this.helperText ? l`<small class="helper">${this.helperText}</small>` : v}
     `;
   }
 };
-z.formAssociated = !0;
-z.styles = p`
-    :host {
-      display: inline-block;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-    }
-
-    /* ── Label ────────────────────────────────────────────────────────── */
-    .field-label {
-      display: block;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-      color: var(--ui-text-color-muted, #6b7280);
-      margin-bottom: 5px;
-      transition: color 0.15s;
-    }
-    :host([error]) .field-label { color: var(--ui-error-color, #ef4444); }
-    .field-label.focused { color: var(--ui-primary-color, #3b82f6); }
-    :host([error]) .field-label.focused { color: var(--ui-error-color, #ef4444); }
-
-    /* ── Field container ─────────────────────────────────────────────── */
-    .field-container {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: var(--ui-surface-background, #ffffff);
-      border: 1.5px solid var(--ui-border-color, #d1d5db);
-      border-radius: var(--ui-border-radius-md, 8px);
-      padding: 0 10px;
-      height: 44px;
-      min-width: 200px;
-      cursor: text;
-      box-sizing: border-box;
-      transition: border-color 0.15s, box-shadow 0.15s;
-      position: relative;
-    }
-    .field-container.focused {
-      border-color: var(--ui-primary-color, #3b82f6);
-      box-shadow: 0 0 0 3px rgba(59,130,246,.15);
-    }
-    :host([error]) .field-container {
-      border-color: var(--ui-error-color, #ef4444);
-    }
-    :host([error]) .field-container.focused {
-      box-shadow: 0 0 0 3px rgba(239,68,68,.15);
-    }
-    :host([disabled]) .field-container {
-      background: var(--ui-disabled-bg, #f9fafb);
-      border-color: var(--ui-border-color, #e5e7eb);
-      cursor: not-allowed;
-    }
-    :host([readonly]) .field-container { cursor: default; }
-
-    /* ── Segments row ────────────────────────────────────────────────── */
-    .segments {
-      display: flex;
-      align-items: center;
-      flex: 1;
-      gap: 1px;
-      outline: none;
-      min-height: 100%;
-    }
-
-    .segment {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 4px;
-      padding: 2px 4px;
-      font-size: 0.9375rem;
-      font-variant-numeric: tabular-nums;
-      color: var(--ui-text-color, #111827);
-      min-width: 2ch;
-      line-height: 1;
-      transition: background 0.1s;
-      cursor: text;
-      user-select: none;
-    }
-    .segment.placeholder { color: var(--ui-text-color-muted, #9ca3af); }
-    .segment.active {
-      background: var(--ui-primary-color, #3b82f6);
-      color: #fff;
-      border-radius: 3px;
-    }
-    :host([disabled]) .segment {
-      color: var(--ui-text-color-muted, #9ca3af);
-    }
-    :host([disabled]) .segment.active {
-      background: var(--ui-border-color, #e5e7eb);
-      color: var(--ui-text-color-muted, #9ca3af);
-    }
-
-    .segment-year { min-width: 4ch; }
-
-    .separator {
-      color: var(--ui-text-color-muted, #6b7280);
-      font-size: 0.9375rem;
-      pointer-events: none;
-      line-height: 1;
-    }
-
-    /* ── Clear + Calendar icon ───────────────────────────────────────── */
-    .field-actions {
-      display: flex;
-      align-items: center;
-      gap: 2px;
-      margin-left: auto;
-    }
-
-    .icon-btn {
-      display: flex; align-items: center; justify-content: center;
-      width: 24px; height: 24px;
-      border: none; background: transparent; cursor: pointer;
-      border-radius: 50%;
-      color: var(--ui-text-color-muted, #6b7280);
-      font-size: 0.875rem;
-      transition: background 0.12s, color 0.12s;
-      flex-shrink: 0;
-      padding: 0;
-    }
-    .icon-btn:hover { background: rgba(0,0,0,.06); color: var(--ui-text-color, #374151); }
-    :host([disabled]) .icon-btn { pointer-events: none; opacity: 0; }
-
-    /* ── Helper text ─────────────────────────────────────────────────── */
-    .helper {
-      display: block;
-      font-size: 0.75rem;
-      margin-top: 5px;
-      color: var(--ui-text-color-muted, #6b7280);
-    }
-    :host([error]) .helper { color: var(--ui-error-color, #ef4444); }
-  `;
-V([
-  s({ type: String })
-], z.prototype, "value", 2);
-V([
-  s({ type: String })
-], z.prototype, "label", 2);
-V([
-  s({ type: String, reflect: !0 })
-], z.prototype, "name", 2);
-V([
-  s({ type: String })
-], z.prototype, "min", 2);
-V([
-  s({ type: String })
-], z.prototype, "max", 2);
-V([
-  s({ type: Boolean, reflect: !0 })
-], z.prototype, "disabled", 2);
-V([
-  s({ type: Boolean, reflect: !0 })
-], z.prototype, "readonly", 2);
-V([
-  s({ type: Boolean, reflect: !0 })
-], z.prototype, "error", 2);
-V([
-  s({ type: String, attribute: "helper-text" })
-], z.prototype, "helperText", 2);
-V([
-  m()
-], z.prototype, "_month", 2);
-V([
-  m()
-], z.prototype, "_day", 2);
-V([
-  m()
-], z.prototype, "_year", 2);
-V([
-  m()
-], z.prototype, "_active", 2);
-V([
-  m()
-], z.prototype, "_focused", 2);
-V([
-  m()
-], z.prototype, "_buf", 2);
-z = V([
+T.formAssociated = !0;
+T.styles = p(Pl);
+Y([
+  o({ type: String })
+], T.prototype, "value", 2);
+Y([
+  o({ type: String })
+], T.prototype, "label", 2);
+Y([
+  o({ type: String, reflect: !0 })
+], T.prototype, "name", 2);
+Y([
+  o({ type: String })
+], T.prototype, "min", 2);
+Y([
+  o({ type: String })
+], T.prototype, "max", 2);
+Y([
+  o({ type: Boolean, reflect: !0 })
+], T.prototype, "disabled", 2);
+Y([
+  o({ type: Boolean, reflect: !0 })
+], T.prototype, "readonly", 2);
+Y([
+  o({ type: Boolean, reflect: !0 })
+], T.prototype, "error", 2);
+Y([
+  o({ type: String, attribute: "helper-text" })
+], T.prototype, "helperText", 2);
+Y([
+  g()
+], T.prototype, "_month", 2);
+Y([
+  g()
+], T.prototype, "_day", 2);
+Y([
+  g()
+], T.prototype, "_year", 2);
+Y([
+  g()
+], T.prototype, "_active", 2);
+Y([
+  g()
+], T.prototype, "_focused", 2);
+Y([
+  g()
+], T.prototype, "_buf", 2);
+T = Y([
   d("ui-date-field")
-], z);
-var Fa = Object.defineProperty, qa = Object.getOwnPropertyDescriptor, f = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? qa(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Fa(t, i, r), r;
+], T);
+const Tl = ':host{display:inline-block;font-family:var(--ui-font-family,"Inter",sans-serif)}.label{display:block;font-size:.75rem;font-weight:500;color:var(--ui-text-color-muted,#6b7280);margin-bottom:5px}.label.focused{color:var(--ui-primary-color,#3b82f6)}:host([error]) .label{color:var(--ui-error-color,#ef4444)}.container{display:inline-flex;align-items:center;gap:4px;background:var(--ui-surface-background,#fff);border:1.5px solid var(--ui-border-color,#d1d5db);border-radius:var(--ui-border-radius-md,8px);padding:0 10px;height:44px;min-width:160px;cursor:text;box-sizing:border-box;transition:border-color .15s,box-shadow .15s}.container.focused{border-color:var(--ui-primary-color,#3b82f6);box-shadow:0 0 0 3px #3b82f626}:host([error]) .container{border-color:var(--ui-error-color,#ef4444)}:host([disabled]) .container{background:var(--ui-disabled-bg,#f9fafb);border-color:#e5e7eb;cursor:not-allowed}.segments{display:flex;align-items:center;flex:1;gap:1px;outline:none;min-height:100%}.seg{display:inline-flex;align-items:center;justify-content:center;border-radius:3px;padding:2px 4px;font-size:.9375rem;font-variant-numeric:tabular-nums;color:var(--ui-text-color,#111827);min-width:2ch;line-height:1;cursor:text;-webkit-user-select:none;user-select:none;transition:background .1s}.seg.active{background:var(--ui-primary-color,#3b82f6);color:#fff}.seg.placeholder{color:var(--ui-text-color-muted,#9ca3af)}.seg.meridiem{min-width:3ch}.sep{color:var(--ui-text-color-muted,#6b7280);font-size:.9375rem;pointer-events:none}.icon-btn{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border:none;background:transparent;cursor:pointer;border-radius:50%;color:var(--ui-text-color-muted,#6b7280);font-size:.875rem;margin-left:auto;transition:background .12s}.icon-btn:hover{background:#0000000f}.helper{display:block;font-size:.75rem;margin-top:5px;color:var(--ui-text-color-muted,#6b7280)}:host([error]) .helper{color:var(--ui-error-color,#ef4444)}', Al = ':host{display:block;font-family:var(--ui-font-family,"Inter",sans-serif)}.clock{overflow-y:auto;max-height:var(--ui-digital-clock-height,300px);padding:4px 0;scrollbar-width:thin}.item{display:flex;align-items:center;justify-content:center;padding:10px 16px;font-size:.9375rem;color:var(--ui-text-color,#374151);cursor:pointer;border:none;background:transparent;width:100%;box-sizing:border-box;transition:background .1s;font-family:inherit;border-radius:0;font-variant-numeric:tabular-nums}.item:hover{background:#0000000d}.item.selected{background:var(--ui-primary-color,#3b82f6);color:#fff;font-weight:600;border-radius:6px}', Bl = ':host{display:inline-block;font-family:var(--ui-font-family,"Inter",sans-serif)}.msdc{display:flex;gap:0;border-radius:var(--ui-border-radius-xl,12px);overflow:hidden}.col{display:flex;flex-direction:column;overflow-y:auto;width:72px;max-height:var(--ui-msdc-height,240px);position:relative;scrollbar-width:none}.col::-webkit-scrollbar{display:none}.col+.col{border-left:1px solid var(--ui-border-color,#f3f4f6)}.col-header{position:sticky;top:0;background:var(--ui-surface-background,#fff);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ui-text-color-muted,#9ca3af);text-align:center;padding:6px 0 4px;border-bottom:1px solid var(--ui-border-color,#f3f4f6);z-index:1}.item{display:flex;align-items:center;justify-content:center;padding:8px 4px;font-size:.9375rem;font-variant-numeric:tabular-nums;color:var(--ui-text-color,#374151);cursor:pointer;border:none;background:transparent;font-family:inherit;width:100%;line-height:1;transition:background .1s}.item:hover{background:#0000000d}.item.sel{background:var(--ui-primary-color,#3b82f6);color:#fff;font-weight:700;border-radius:6px}.col-spacer{min-height:80px}', Ml = ':host{display:inline-block;-webkit-user-select:none;user-select:none}.clock-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}.clock-header{display:flex;gap:4px;font-size:2rem;font-weight:700;font-family:var(--ui-font-family,"Inter",sans-serif);color:var(--ui-text-color,#111827)}.clock-seg{padding:4px 10px;border-radius:8px;cursor:pointer;transition:background .12s,color .12s}.clock-seg.active{background:var(--ui-primary-color,#3b82f6);color:#fff;border-radius:8px}.clock-seg:hover:not(.active){background:#0000000f}.clock-sep{color:var(--ui-text-color-muted,#6b7280)}svg{touch-action:none;cursor:pointer}.face{fill:var(--ui-surface-variant,#f1f5f9)}.face-inner{fill:#00000005;stroke:#0000000f;stroke-width:1;stroke-dasharray:4 4}.track{fill:none;stroke:var(--ui-border-color,#e2e8f0);stroke-width:2}.hand{stroke:var(--ui-primary-color,#3b82f6);stroke-width:2;stroke-linecap:round}.hand-center,.hand-tip{fill:var(--ui-primary-color,#3b82f6)}.num{font-size:13px;font-family:var(--ui-font-family,"Inter",sans-serif);fill:var(--ui-text-color,#374151);dominant-baseline:central;text-anchor:middle;cursor:pointer}.num.inner-label{font-size:11px;fill:var(--ui-text-color-muted,#6b7280)}.num.selected{fill:#fff}.num-bg{fill:transparent;cursor:pointer}.num-bg.selected{fill:var(--ui-primary-color,#3b82f6)}.tick{stroke:var(--ui-text-color-muted,#cbd5e1);stroke-width:1}.tick.major{stroke-width:2}.inner-ring-track{fill:none;stroke:var(--ui-primary-color,#3b82f6);stroke-width:1.5;stroke-opacity:.2}.inner-tick{stroke:var(--ui-primary-color,#3b82f6);stroke-width:1.5;stroke-opacity:.35;stroke-linecap:round}.am-pm{display:flex;gap:8px}.am-pm-btn{padding:4px 16px;border:1.5px solid var(--ui-border-color,#d1d5db);border-radius:20px;cursor:pointer;font-size:.875rem;font-family:inherit;background:transparent;color:var(--ui-text-color,#374151);transition:all .12s}.am-pm-btn.sel{background:var(--ui-primary-color,#3b82f6);color:#fff;border-color:var(--ui-primary-color,#3b82f6)}', Ll = ':host{display:inline-block;font-family:var(--ui-font-family,"Inter",sans-serif)}.surface{border-radius:var(--ui-border-radius-xl,12px);box-shadow:0 1px 4px #00000014,0 0 0 1px var(--ui-border-color,#e5e7eb);overflow:hidden;display:inline-block}', jl = ":host{display:inline-block}";
+var Ul = Object.defineProperty, Rl = Object.getOwnPropertyDescriptor, m = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Rl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Ul(t, i, r), r;
 };
-function M(e) {
+function j(e) {
   return String(e).padStart(2, "0");
 }
-function rr(e) {
+function or(e) {
   if (!e) return null;
   const t = e.split(":").map(Number);
   return t.length < 2 || t.some(isNaN) ? null : { h: t[0], m: t[1], s: t[2] ?? 0 };
 }
-function Ke(e, t, i = 0) {
-  return `${M(e)}:${M(t)}:${M(i)}`;
+function st(e, t, i = 0) {
+  return `${j(e)}:${j(t)}:${j(i)}`;
 }
-function he(e) {
+function Se(e) {
   return { hour: e % 12 || 12, ampm: e < 12 ? "AM" : "PM" };
 }
-function Ct(e, t) {
+function Tt(e, t) {
   return t === "AM" ? e === 12 ? 0 : e : e === 12 ? 12 : e + 12;
 }
-function Ha(e, t, i = !1) {
-  const o = rr(e);
-  if (!o) return "";
-  const r = t ? he(o.h).hour : o.h, a = t ? ` ${he(o.h).ampm}` : "";
-  return `${M(r)}:${M(o.m)}${i ? ":" + M(o.s) : ""}${a}`;
+function Vl(e, t, i = !1) {
+  const s = or(e);
+  if (!s) return "";
+  const r = t ? Se(s.h).hour : s.h, a = t ? ` ${Se(s.h).ampm}` : "";
+  return `${j(r)}:${j(s.m)}${i ? ":" + j(s.s) : ""}${a}`;
 }
-function Ya(e, t, i, o = 140, r = 140) {
+function Nl(e, t, i, s = 140, r = 140) {
   const a = (e / t - 0.25) * Math.PI * 2;
-  return { x: o + i * Math.cos(a), y: r + i * Math.sin(a) };
+  return { x: s + i * Math.cos(a), y: r + i * Math.sin(a) };
 }
-function Ka(e, t, i = 140, o = 140) {
-  let r = Math.atan2(t - o, e - i) * 180 / Math.PI + 90;
+function Fl(e, t, i = 140, s = 140) {
+  let r = Math.atan2(t - s, e - i) * 180 / Math.PI + 90;
   return r < 0 && (r += 360), r;
 }
-let T = class extends c {
+let B = class extends c {
   constructor() {
     super(...arguments), this.value = "", this.label = "", this.ampm = !0, this.seconds = !1, this.disabled = !1, this.readonly = !1, this.error = !1, this.helperText = "", this._h = null, this._m = null, this._s = null, this._mer = "AM", this._active = null, this._focused = !1, this._buf = "";
   }
@@ -10150,10 +6003,10 @@ let T = class extends c {
   }
   willUpdate(e) {
     if (e.has("value") && this.value) {
-      const t = rr(this.value);
+      const t = or(this.value);
       if (t) {
-        const { hour: i, ampm: o } = he(t.h);
-        this._h = this.ampm ? i : t.h, this._m = t.m, this._s = t.s, this._mer = o;
+        const { hour: i, ampm: s } = Se(t.h);
+        this._h = this.ampm ? i : t.h, this._m = t.m, this._s = t.s, this._mer = s;
       }
     }
   }
@@ -10162,7 +6015,7 @@ let T = class extends c {
   }
   _emit() {
     if (this._h === null || this._m === null) return;
-    const e = this.ampm ? Ct(this._h, this._mer) : this._h, t = Ke(e, this._m, this._s ?? 0);
+    const e = this.ampm ? Tt(this._h, this._mer) : this._h, t = st(e, this._m, this._s ?? 0);
     t !== this.value && (this.value = t, this.dispatchEvent(new CustomEvent("change", { detail: { value: t }, bubbles: !0, composed: !0 })));
   }
   _commitBuf() {
@@ -10195,18 +6048,18 @@ let T = class extends c {
     const t = this._buf + e, i = this.ampm ? 12 : 23;
     if (this._active === "hour")
       if (t.length === 1) {
-        const o = this.ampm ? 2 : 3;
-        e >= o ? (this._h = e, this._buf = "", this._next()) : this._buf = t;
+        const s = this.ampm ? 2 : 3;
+        e >= s ? (this._h = e, this._buf = "", this._next()) : this._buf = t;
       } else {
-        const o = parseInt(t);
-        o >= (this.ampm ? 1 : 0) && o <= i ? (this._h = o, this._buf = "", this._next()) : (this._buf = String(e), e >= (this.ampm ? 2 : 3) && (this._h = e, this._buf = "", this._next()));
+        const s = parseInt(t);
+        s >= (this.ampm ? 1 : 0) && s <= i ? (this._h = s, this._buf = "", this._next()) : (this._buf = String(e), e >= (this.ampm ? 2 : 3) && (this._h = e, this._buf = "", this._next()));
       }
     else if (this._active === "minute" || this._active === "second")
       if (t.length === 1)
         e >= 6 ? (this[this._active === "minute" ? "_m" : "_s"] = e, this._buf = "", this._next()) : this._buf = t;
       else {
-        const o = parseInt(t);
-        o >= 0 && o <= 59 ? (this[this._active === "minute" ? "_m" : "_s"] = o, this._buf = "", this._next()) : (this._buf = String(e), e >= 6 && (this[this._active === "minute" ? "_m" : "_s"] = e, this._buf = "", this._next()));
+        const s = parseInt(t);
+        s >= 0 && s <= 59 ? (this[this._active === "minute" ? "_m" : "_s"] = s, this._buf = "", this._next()) : (this._buf = String(e), e >= 6 && (this[this._active === "minute" ? "_m" : "_s"] = e, this._buf = "", this._next()));
       }
     this._emit();
   }
@@ -10263,12 +6116,12 @@ let T = class extends c {
       const i = (e === "hour" && this.ampm, 2);
       return { text: this._buf.padEnd(i, "_"), ph: !1 };
     }
-    return e === "hour" ? this._h !== null ? { text: M(this._h), ph: !1 } : { text: "HH", ph: !0 } : e === "minute" ? this._m !== null ? { text: M(this._m), ph: !1 } : { text: "MM", ph: !0 } : this._s !== null ? { text: M(this._s), ph: !1 } : { text: "SS", ph: !0 };
+    return e === "hour" ? this._h !== null ? { text: j(this._h), ph: !1 } : { text: "HH", ph: !0 } : e === "minute" ? this._m !== null ? { text: j(this._m), ph: !1 } : { text: "MM", ph: !0 } : this._s !== null ? { text: j(this._s), ph: !1 } : { text: "SS", ph: !0 };
   }
   render() {
     const e = this._h !== null || this._m !== null;
     return l`
-      ${this.label ? l`<label class="label ${this._focused ? "focused" : ""}">${this.label}</label>` : y}
+      ${this.label ? l`<label class="label ${this._focused ? "focused" : ""}">${this.label}</label>` : v}
       <div class="container ${this._focused ? "focused" : ""}">
         <div class="segments" tabindex=${this.disabled ? -1 : 0} role="group" aria-label=${this.label || "Time"}
           @keydown=${this._onKey}
@@ -10280,122 +6133,86 @@ let T = class extends c {
     }}
         >
           ${this._segs.map((t, i) => {
-      const { text: o, ph: r } = this._segText(t), a = i > 0 && t !== "meridiem" ? l`<span class="sep">:</span>` : t === "meridiem" ? l`<span class="sep"> </span>` : y;
+      const { text: s, ph: r } = this._segText(t), a = i > 0 && t !== "meridiem" ? l`<span class="sep">:</span>` : t === "meridiem" ? l`<span class="sep"> </span>` : v;
       return l`${a}<span
               class=${u({ seg: !0, active: this._active === t, placeholder: r, meridiem: t === "meridiem" })}
               @click=${(n) => {
         n.stopPropagation(), this._setActive(t), this.shadowRoot?.querySelector(".segments")?.focus();
       }}
-            >${o}</span>`;
+            >${s}</span>`;
     })}
         </div>
         ${e && !this.disabled ? l`<button class="icon-btn" tabindex="-1" aria-label="Clear" @click=${(t) => {
       t.stopPropagation(), this.clear();
-    }}>✕</button>` : y}
+    }}>✕</button>` : v}
       </div>
-      ${this.helperText ? l`<small class="helper">${this.helperText}</small>` : y}
+      ${this.helperText ? l`<small class="helper">${this.helperText}</small>` : v}
     `;
   }
 };
-T.styles = p`
-    :host { display: inline-block; font-family: var(--ui-font-family,'Inter',sans-serif); }
-    .label { display:block; font-size:.75rem; font-weight:500; color:var(--ui-text-color-muted,#6b7280); margin-bottom:5px; }
-    .label.focused { color:var(--ui-primary-color,#3b82f6); }
-    :host([error]) .label { color:var(--ui-error-color,#ef4444); }
-    .container {
-      display:inline-flex; align-items:center; gap:4px;
-      background:var(--ui-surface-background,#fff);
-      border:1.5px solid var(--ui-border-color,#d1d5db);
-      border-radius:var(--ui-border-radius-md,8px);
-      padding:0 10px; height:44px; min-width:160px;
-      cursor:text; box-sizing:border-box; transition:border-color .15s,box-shadow .15s;
-    }
-    .container.focused { border-color:var(--ui-primary-color,#3b82f6); box-shadow:0 0 0 3px rgba(59,130,246,.15); }
-    :host([error]) .container { border-color:var(--ui-error-color,#ef4444); }
-    :host([disabled]) .container { background:var(--ui-disabled-bg,#f9fafb); border-color:#e5e7eb; cursor:not-allowed; }
-    .segments { display:flex; align-items:center; flex:1; gap:1px; outline:none; min-height:100%; }
-    .seg {
-      display:inline-flex; align-items:center; justify-content:center;
-      border-radius:3px; padding:2px 4px; font-size:.9375rem;
-      font-variant-numeric:tabular-nums; color:var(--ui-text-color,#111827);
-      min-width:2ch; line-height:1; cursor:text; user-select:none; transition:background .1s;
-    }
-    .seg.active { background:var(--ui-primary-color,#3b82f6); color:#fff; }
-    .seg.placeholder { color:var(--ui-text-color-muted,#9ca3af); }
-    .seg.meridiem { min-width:3ch; }
-    .sep { color:var(--ui-text-color-muted,#6b7280); font-size:.9375rem; pointer-events:none; }
-    .icon-btn {
-      display:flex; align-items:center; justify-content:center; width:24px; height:24px;
-      border:none; background:transparent; cursor:pointer; border-radius:50%;
-      color:var(--ui-text-color-muted,#6b7280); font-size:.875rem; margin-left:auto;
-      transition:background .12s;
-    }
-    .icon-btn:hover { background:rgba(0,0,0,.06); }
-    .helper { display:block; font-size:.75rem; margin-top:5px; color:var(--ui-text-color-muted,#6b7280); }
-    :host([error]) .helper { color:var(--ui-error-color,#ef4444); }
-  `;
-f([
-  s({ type: String })
-], T.prototype, "value", 2);
-f([
-  s({ type: String })
-], T.prototype, "label", 2);
-f([
-  s({ type: Boolean })
-], T.prototype, "ampm", 2);
-f([
-  s({ type: Boolean })
-], T.prototype, "seconds", 2);
-f([
-  s({ type: Boolean, reflect: !0 })
-], T.prototype, "disabled", 2);
-f([
-  s({ type: Boolean, reflect: !0 })
-], T.prototype, "readonly", 2);
-f([
-  s({ type: Boolean, reflect: !0 })
-], T.prototype, "error", 2);
-f([
-  s({ type: String, attribute: "helper-text" })
-], T.prototype, "helperText", 2);
-f([
-  m()
-], T.prototype, "_h", 2);
-f([
-  m()
-], T.prototype, "_m", 2);
-f([
-  m()
-], T.prototype, "_s", 2);
-f([
-  m()
-], T.prototype, "_mer", 2);
-f([
-  m()
-], T.prototype, "_active", 2);
-f([
-  m()
-], T.prototype, "_focused", 2);
-f([
-  m()
-], T.prototype, "_buf", 2);
-T = f([
+B.styles = p(Tl);
+m([
+  o({ type: String })
+], B.prototype, "value", 2);
+m([
+  o({ type: String })
+], B.prototype, "label", 2);
+m([
+  o({ type: Boolean })
+], B.prototype, "ampm", 2);
+m([
+  o({ type: Boolean })
+], B.prototype, "seconds", 2);
+m([
+  o({ type: Boolean, reflect: !0 })
+], B.prototype, "disabled", 2);
+m([
+  o({ type: Boolean, reflect: !0 })
+], B.prototype, "readonly", 2);
+m([
+  o({ type: Boolean, reflect: !0 })
+], B.prototype, "error", 2);
+m([
+  o({ type: String, attribute: "helper-text" })
+], B.prototype, "helperText", 2);
+m([
+  g()
+], B.prototype, "_h", 2);
+m([
+  g()
+], B.prototype, "_m", 2);
+m([
+  g()
+], B.prototype, "_s", 2);
+m([
+  g()
+], B.prototype, "_mer", 2);
+m([
+  g()
+], B.prototype, "_active", 2);
+m([
+  g()
+], B.prototype, "_focused", 2);
+m([
+  g()
+], B.prototype, "_buf", 2);
+B = m([
   d("ui-time-field")
-], T);
-let Ut = class extends c {
+], B);
+let Kt = class extends c {
   constructor() {
     super(...arguments), this.value = "", this.step = 30, this.ampm = !0;
   }
   _items() {
     const e = [];
     for (let t = 0; t < 1440; t += this.step) {
-      const i = Math.floor(t / 60), o = t % 60;
-      e.push(Ke(i, o));
+      const i = Math.floor(t / 60), s = t % 60;
+      e.push(st(i, s));
     }
     return e;
   }
   _label(e) {
-    return Ha(e, this.ampm);
+    return Vl(e, this.ampm);
   }
   updated() {
     const e = this.shadowRoot?.querySelector(".selected");
@@ -10405,7 +6222,7 @@ let Ut = class extends c {
     const e = this._items();
     return l`
       <div class="clock" role="listbox" aria-label="Select time">
-        ${It(e, (t) => t, (t) => l`
+        ${At(e, (t) => t, (t) => l`
           <button class=${u({ item: !0, selected: t === this.value })}
             role="option" aria-selected=${t === this.value}
             @click=${() => {
@@ -10417,72 +6234,55 @@ let Ut = class extends c {
     `;
   }
 };
-Ut.styles = p`
-    :host { display:block; font-family:var(--ui-font-family,'Inter',sans-serif); }
-    .clock {
-      overflow-y:auto; max-height:var(--ui-digital-clock-height,300px);
-      padding:4px 0; scrollbar-width:thin;
-    }
-    .item {
-      display:flex; align-items:center; justify-content:center;
-      padding:10px 16px; font-size:.9375rem; color:var(--ui-text-color,#374151);
-      cursor:pointer; border:none; background:transparent; width:100%;
-      box-sizing:border-box; transition:background .1s; font-family:inherit;
-      border-radius:0; font-variant-numeric:tabular-nums;
-    }
-    .item:hover { background:rgba(0,0,0,.05); }
-    .item.selected {
-      background:var(--ui-primary-color,#3b82f6); color:#fff; font-weight:600; border-radius:6px;
-    }
-  `;
-f([
-  s({ type: String })
-], Ut.prototype, "value", 2);
-f([
-  s({ type: Number })
-], Ut.prototype, "step", 2);
-f([
-  s({ type: Boolean })
-], Ut.prototype, "ampm", 2);
-Ut = f([
+Kt.styles = p(Al);
+m([
+  o({ type: String })
+], Kt.prototype, "value", 2);
+m([
+  o({ type: Number })
+], Kt.prototype, "step", 2);
+m([
+  o({ type: Boolean })
+], Kt.prototype, "ampm", 2);
+Kt = m([
   d("ui-digital-clock")
-], Ut);
-let Rt = class extends c {
+], Kt);
+let Yt = class extends c {
   constructor() {
     super(...arguments), this.value = "", this.ampm = !0, this.seconds = !1;
   }
   _t() {
-    return rr(this.value) ?? { h: 0, m: 0, s: 0 };
+    return or(this.value) ?? { h: 0, m: 0, s: 0 };
   }
   _set(e, t, i) {
-    const o = Ke(e, t, i);
-    this.dispatchEvent(new CustomEvent("change", { detail: { value: o }, bubbles: !0, composed: !0 }));
+    const s = st(e, t, i);
+    this.dispatchEvent(new CustomEvent("change", { detail: { value: s }, bubbles: !0, composed: !0 }));
   }
   _col(e) {
-    const t = this._t(), i = he(t.h);
+    const t = this._t(), i = Se(t.h);
     if (e === "mer")
       return l`
         <div class="col">
           <div class="col-header">AM/PM</div>
           ${["AM", "PM"].map((n) => l`
             <button class=${u({ item: !0, sel: i.ampm === n })}
-              @click=${() => this._set(Ct(i.hour, n), t.m, t.s)}>${n}</button>
+              @click=${() => this._set(Tt(i.hour, n), t.m, t.s)}>${n}</button>
           `)}
           <div class="col-spacer"></div>
         </div>
       `;
-    const o = Array.from({ length: 12 }, (n, h) => h + 1), r = Array.from({ length: 24 }, (n, h) => h), a = Array.from({ length: 60 }, (n, h) => h);
+    const s = Array.from({ length: 12 }, (n, h) => h + 1), r = Array.from({ length: 24 }, (n, h) => h), a = Array.from({ length: 60 }, (n, h) => h);
     if (e === "h") {
-      const n = this.ampm ? o : r, h = this.ampm ? i.hour : t.h;
+      const n = this.ampm ? s : r, h = this.ampm ? i.hour : t.h;
       return l`
         <div class="col">
           <div class="col-header">Hr</div>
-          ${n.map((g) => l`
-            <button class=${u({ item: !0, sel: h === g })}
+          ${n.map((f) => l`
+            <button class=${u({ item: !0, sel: h === f })}
               @click=${() => {
-        const v = this.ampm ? Ct(g, i.ampm) : g;
-        this._set(v, t.m, t.s);
-      }}>${M(g)}</button>
+        const y = this.ampm ? Tt(f, i.ampm) : f;
+        this._set(y, t.m, t.s);
+      }}>${j(f)}</button>
           `)}
           <div class="col-spacer"></div>
         </div>
@@ -10493,7 +6293,7 @@ let Rt = class extends c {
         <div class="col-header">Min</div>
         ${a.map((n) => l`
           <button class=${u({ item: !0, sel: t.m === n })}
-            @click=${() => this._set(t.h, n, t.s)}>${M(n)}</button>
+            @click=${() => this._set(t.h, n, t.s)}>${j(n)}</button>
         `)}
         <div class="col-spacer"></div>
       </div>
@@ -10502,7 +6302,7 @@ let Rt = class extends c {
         <div class="col-header">Sec</div>
         ${a.map((n) => l`
           <button class=${u({ item: !0, sel: t.s === n })}
-            @click=${() => this._set(t.h, t.m, n)}>${M(n)}</button>
+            @click=${() => this._set(t.h, t.m, n)}>${j(n)}</button>
         `)}
         <div class="col-spacer"></div>
       </div>
@@ -10519,197 +6319,138 @@ let Rt = class extends c {
       <div class="msdc">
         ${this._col("h")}
         ${this._col("m")}
-        ${this.seconds ? this._col("s") : y}
-        ${this.ampm ? this._col("mer") : y}
+        ${this.seconds ? this._col("s") : v}
+        ${this.ampm ? this._col("mer") : v}
       </div>
     `;
   }
 };
-Rt.styles = p`
-    :host { display:inline-block; font-family:var(--ui-font-family,'Inter',sans-serif); }
-    .msdc { display:flex; gap:0; border-radius:var(--ui-border-radius-xl,12px); overflow:hidden; }
-    .col {
-      display:flex; flex-direction:column; overflow-y:auto; width:72px;
-      max-height:var(--ui-msdc-height,240px); position:relative; scrollbar-width:none;
-    }
-    .col::-webkit-scrollbar { display:none; }
-    .col + .col { border-left:1px solid var(--ui-border-color,#f3f4f6); }
-    .col-header {
-      position:sticky; top:0; background:var(--ui-surface-background,#fff);
-      font-size:.65rem; font-weight:700; text-transform:uppercase;
-      letter-spacing:.06em; color:var(--ui-text-color-muted,#9ca3af);
-      text-align:center; padding:6px 0 4px; border-bottom:1px solid var(--ui-border-color,#f3f4f6);
-      z-index:1;
-    }
-    .item {
-      display:flex; align-items:center; justify-content:center;
-      padding:8px 4px; font-size:.9375rem; font-variant-numeric:tabular-nums;
-      color:var(--ui-text-color,#374151); cursor:pointer; border:none;
-      background:transparent; font-family:inherit; width:100%; line-height:1; transition:background .1s;
-    }
-    .item:hover { background:rgba(0,0,0,.05); }
-    .item.sel { background:var(--ui-primary-color,#3b82f6); color:#fff; font-weight:700; border-radius:6px; }
-    .col-spacer { min-height:80px; }
-  `;
-f([
-  s({ type: String })
-], Rt.prototype, "value", 2);
-f([
-  s({ type: Boolean })
-], Rt.prototype, "ampm", 2);
-f([
-  s({ type: Boolean })
-], Rt.prototype, "seconds", 2);
-Rt = f([
+Yt.styles = p(Bl);
+m([
+  o({ type: String })
+], Yt.prototype, "value", 2);
+m([
+  o({ type: Boolean })
+], Yt.prototype, "ampm", 2);
+m([
+  o({ type: Boolean })
+], Yt.prototype, "seconds", 2);
+Yt = m([
   d("ui-multi-section-digital-clock")
-], Rt);
-let ct = class extends c {
+], Yt);
+let bt = class extends c {
   constructor() {
     super(...arguments), this.value = "", this.ampm = !0, this.seconds = !1, this.view = "hours";
   }
   get _t() {
-    return rr(this.value) ?? { h: 0, m: 0, s: 0 };
+    return or(this.value) ?? { h: 0, m: 0, s: 0 };
   }
   _emit(e, t, i) {
-    const o = Ke(e, t, i);
-    this.dispatchEvent(new CustomEvent("change", { detail: { value: o }, bubbles: !0, composed: !0 }));
+    const s = st(e, t, i);
+    this.dispatchEvent(new CustomEvent("change", { detail: { value: s }, bubbles: !0, composed: !0 }));
   }
   _switchView(e) {
     this.view = e, this.dispatchEvent(new CustomEvent("view-change", { detail: { view: e }, bubbles: !0, composed: !0 }));
   }
   _handleClick(e) {
-    const i = this.shadowRoot.querySelector("svg").getBoundingClientRect(), o = 280 / i.width, r = 280 / i.height, a = (e.clientX - i.left) * o, n = (e.clientY - i.top) * r, h = 140, g = 140, v = Ka(a, n, h, g), b = this._t;
+    const i = this.shadowRoot.querySelector("svg").getBoundingClientRect(), s = 280 / i.width, r = 280 / i.height, a = (e.clientX - i.left) * s, n = (e.clientY - i.top) * r, h = 140, f = 140, y = Fl(a, n, h, f), b = this._t;
     if (this.view === "hours") {
-      const C = Math.sqrt((a - h) ** 2 + (n - g) ** 2), re = !this.ampm && C < 82;
-      let X = Math.round(v / 30) % 12;
-      re ? X = X === 0 ? 0 : X + 12 : (X = X || 12, this.ampm && (X = Ct(X, he(b.h).ampm))), this._emit(X, b.m, b.s), this._switchView("minutes");
+      const S = Math.sqrt((a - h) ** 2 + (n - f) ** 2), de = !this.ampm && S < 82;
+      let te = Math.round(y / 30) % 12;
+      de ? te = te === 0 ? 0 : te + 12 : (te = te || 12, this.ampm && (te = Tt(te, Se(b.h).ampm))), this._emit(te, b.m, b.s), this._switchView("minutes");
     } else if (this.view === "minutes") {
-      const C = Math.round(v / 6) % 60;
-      this._emit(b.h, C, b.s), this.seconds && this._switchView("seconds");
+      const S = Math.round(y / 6) % 60;
+      this._emit(b.h, S, b.s), this.seconds && this._switchView("seconds");
     } else {
-      const C = Math.round(v / 6) % 60;
-      this._emit(b.h, b.m, C);
+      const S = Math.round(y / 6) % 60;
+      this._emit(b.h, b.m, S);
     }
   }
   _renderFace() {
     const i = this._t;
-    let o = 0, r = 100;
+    let s = 0, r = 100;
     if (this.view === "hours") {
       let b;
-      this.ampm ? b = he(i.h).hour : b = i.h === 0 || i.h > 12 ? i.h % 12 : i.h, o = b / 12 * 360, r = this.ampm ? 100 : i.h === 0 || i.h > 12 ? 64 : 100;
-    } else this.view === "minutes" ? (o = i.m / 60 * 360, r = 100) : (o = i.s / 60 * 360, r = 100);
-    const a = (b) => (b - 90) * Math.PI / 180, n = 140 + r * Math.cos(a(o)), h = 140 + r * Math.sin(a(o)), g = [];
+      this.ampm ? b = Se(i.h).hour : b = i.h === 0 || i.h > 12 ? i.h % 12 : i.h, s = b / 12 * 360, r = this.ampm ? 100 : i.h === 0 || i.h > 12 ? 64 : 100;
+    } else this.view === "minutes" ? (s = i.m / 60 * 360, r = 100) : (s = i.s / 60 * 360, r = 100);
+    const a = (b) => (b - 90) * Math.PI / 180, n = 140 + r * Math.cos(a(s)), h = 140 + r * Math.sin(a(s)), f = [];
     if (this.view === "hours")
       if (this.ampm)
-        for (let b = 1; b <= 12; b++) g.push({ val: b, label: String(b), r: 100 });
+        for (let b = 1; b <= 12; b++) f.push({ val: b, label: String(b), r: 100 });
       else {
-        for (let b = 1; b <= 12; b++) g.push({ val: b, label: String(b), r: 100 });
-        for (let b = 13; b <= 24; b++) g.push({ val: b % 24, label: b === 24 ? "00" : String(b), r: 64, inner: !0 });
+        for (let b = 1; b <= 12; b++) f.push({ val: b, label: String(b), r: 100 });
+        for (let b = 13; b <= 24; b++) f.push({ val: b % 24, label: b === 24 ? "00" : String(b), r: 64, inner: !0 });
       }
     else
       for (let b = 0; b < 12; b++) {
-        const C = b * 5;
-        g.push({ val: C, label: M(C), r: 100 });
+        const S = b * 5;
+        f.push({ val: S, label: j(S), r: 100 });
       }
-    const v = 12;
+    const y = 12;
     return l`
       <svg width="280" height="280" viewBox="0 0 280 280" @click=${this._handleClick}>
         <circle cx=${140} cy=${140} r="125" class="face"/>
-        ${this.view === "hours" && !this.ampm ? l`<circle cx=${140} cy=${140} r="82" class="face-inner"></circle>` : y}
+        ${this.view === "hours" && !this.ampm ? l`<circle cx=${140} cy=${140} r="82" class="face-inner"></circle>` : v}
         <!-- hand -->
         <line x1=${140} y1=${140} x2=${n} y2=${h} class="hand"/>
         <circle cx=${n} cy=${h} r="18" class="hand-tip"/>
         <circle cx=${140} cy=${140} r="4" class="hand-center"/>
         <!-- numbers -->
-        ${g.map((b) => {
-      const C = b.inner ? b.val % 12 : b.val, re = Ya(C, v, b.r, 140, 140), X = this.view === "hours" ? this.ampm ? he(i.h).hour === b.val : i.h === b.val : this.view === "minutes" ? i.m === b.val : i.s === b.val;
+        ${f.map((b) => {
+      const S = b.inner ? b.val % 12 : b.val, de = Nl(S, y, b.r, 140, 140), te = this.view === "hours" ? this.ampm ? Se(i.h).hour === b.val : i.h === b.val : this.view === "minutes" ? i.m === b.val : i.s === b.val;
       return l`
-          <circle cx=${re.x} cy=${re.y} r="17" class=${u({ "num-bg": !0, selected: X })}></circle>
-          <text x=${re.x} y=${re.y} class=${u({ num: !0, selected: X, "inner-label": !!b.inner })}>${b.label}</text>
+          <circle cx=${de.x} cy=${de.y} r="17" class=${u({ "num-bg": !0, selected: te })}></circle>
+          <text x=${de.x} y=${de.y} class=${u({ num: !0, selected: te, "inner-label": !!b.inner })}>${b.label}</text>
         `;
     })}
       </svg>
     `;
   }
   render() {
-    const e = this._t, { hour: t, ampm: i } = he(e.h), o = this.ampm ? M(t) : M(e.h);
+    const e = this._t, { hour: t, ampm: i } = Se(e.h), s = this.ampm ? j(t) : j(e.h);
     return l`
       <div class="clock-wrap">
         <div class="clock-header">
-          <span class=${u({ "clock-seg": !0, active: this.view === "hours" })} @click=${() => this._switchView("hours")}>${o}</span>
+          <span class=${u({ "clock-seg": !0, active: this.view === "hours" })} @click=${() => this._switchView("hours")}>${s}</span>
           <span class="clock-sep">:</span>
-          <span class=${u({ "clock-seg": !0, active: this.view === "minutes" })} @click=${() => this._switchView("minutes")}>${M(e.m)}</span>
-          ${this.seconds ? l`<span class="clock-sep">:</span><span class=${u({ "clock-seg": !0, active: this.view === "seconds" })} @click=${() => this._switchView("seconds")}>${M(e.s)}</span>` : y}
-          ${this.ampm ? l`<span class="clock-sep" style="font-size:1rem;align-self:flex-end;margin-bottom:6px;">${i}</span>` : y}
+          <span class=${u({ "clock-seg": !0, active: this.view === "minutes" })} @click=${() => this._switchView("minutes")}>${j(e.m)}</span>
+          ${this.seconds ? l`<span class="clock-sep">:</span><span class=${u({ "clock-seg": !0, active: this.view === "seconds" })} @click=${() => this._switchView("seconds")}>${j(e.s)}</span>` : v}
+          ${this.ampm ? l`<span class="clock-sep" style="font-size:1rem;align-self:flex-end;margin-bottom:6px;">${i}</span>` : v}
         </div>
         ${this.ampm ? l`
           <div class="am-pm">
             <button class=${u({ "am-pm-btn": !0, sel: i === "AM" })} @click=${() => {
       const r = this._t;
-      this._emit(Ct(he(r.h).hour, "AM"), r.m, r.s);
+      this._emit(Tt(Se(r.h).hour, "AM"), r.m, r.s);
     }}>AM</button>
             <button class=${u({ "am-pm-btn": !0, sel: i === "PM" })} @click=${() => {
       const r = this._t;
-      this._emit(Ct(he(r.h).hour, "PM"), r.m, r.s);
+      this._emit(Tt(Se(r.h).hour, "PM"), r.m, r.s);
     }}>PM</button>
           </div>
-        ` : y}
+        ` : v}
         ${this._renderFace()}
       </div>
     `;
   }
 };
-ct.styles = p`
-    :host { display:inline-block; user-select:none; }
-    .clock-wrap { display:flex; flex-direction:column; align-items:center; gap:12px; }
-    .clock-header {
-      display:flex; gap:4px; font-size:2rem; font-weight:700;
-      font-family:var(--ui-font-family,'Inter',sans-serif); color:var(--ui-text-color,#111827);
-    }
-    .clock-seg { padding:4px 10px; border-radius:8px; cursor:pointer; transition:background .12s, color .12s; }
-    .clock-seg.active { background:var(--ui-primary-color,#3b82f6); color:#fff; border-radius:8px; }
-    .clock-seg:hover:not(.active) { background:rgba(0,0,0,.06); }
-    .clock-sep { color:var(--ui-text-color-muted,#6b7280); }
-    svg { touch-action:none; cursor:pointer; }
-    .face { fill:var(--ui-surface-variant,#f1f5f9); }
-    .face-inner { fill:rgba(0,0,0,.02); stroke:rgba(0,0,0,.06); stroke-width:1; stroke-dasharray:4 4; }
-    .track { fill:none; stroke:var(--ui-border-color,#e2e8f0); stroke-width:2; }
-    .hand { stroke:var(--ui-primary-color,#3b82f6); stroke-width:2; stroke-linecap:round; }
-    .hand-center { fill:var(--ui-primary-color,#3b82f6); }
-    .hand-tip { fill:var(--ui-primary-color,#3b82f6); }
-    .num { font-size:13px; font-family:var(--ui-font-family,'Inter',sans-serif); fill:var(--ui-text-color,#374151); dominant-baseline:central; text-anchor:middle; cursor:pointer; }
-    .num.inner-label { font-size:11px; fill:var(--ui-text-color-muted,#6b7280); }
-    .num.selected { fill:#fff; }
-    .num-bg { fill:transparent; cursor:pointer; }
-    .num-bg.selected { fill:var(--ui-primary-color,#3b82f6); }
-    .tick { stroke:var(--ui-text-color-muted,#cbd5e1); stroke-width:1; }
-    .tick.major { stroke-width:2; }
-    .inner-ring-track { fill:none; stroke:var(--ui-primary-color,#3b82f6); stroke-width:1.5; stroke-opacity:0.2; }
-    .inner-tick { stroke:var(--ui-primary-color,#3b82f6); stroke-width:1.5; stroke-opacity:0.35; stroke-linecap:round; }
-    .am-pm { display:flex; gap:8px; }
-    .am-pm-btn {
-      padding:4px 16px; border:1.5px solid var(--ui-border-color,#d1d5db);
-      border-radius:20px; cursor:pointer; font-size:.875rem; font-family:inherit;
-      background:transparent; color:var(--ui-text-color,#374151); transition:all .12s;
-    }
-    .am-pm-btn.sel { background:var(--ui-primary-color,#3b82f6); color:#fff; border-color:var(--ui-primary-color,#3b82f6); }
-  `;
-f([
-  s({ type: String })
-], ct.prototype, "value", 2);
-f([
-  s({ type: Boolean })
-], ct.prototype, "ampm", 2);
-f([
-  s({ type: Boolean })
-], ct.prototype, "seconds", 2);
-f([
-  s({ type: String })
-], ct.prototype, "view", 2);
-ct = f([
+bt.styles = p(Ml);
+m([
+  o({ type: String })
+], bt.prototype, "value", 2);
+m([
+  o({ type: Boolean })
+], bt.prototype, "ampm", 2);
+m([
+  o({ type: Boolean })
+], bt.prototype, "seconds", 2);
+m([
+  o({ type: String })
+], bt.prototype, "view", 2);
+bt = m([
   d("ui-time-clock")
-], ct);
-const ao = p`
+], bt);
+const cs = as`
   :host { display:inline-block; font-family:var(--ui-font-family,'Inter',sans-serif); }
   .popover-anchor { position:relative; display:inline-block; }
   .click-away { display:none; position:fixed; inset:0; z-index:1399; }
@@ -10735,7 +6476,7 @@ const ao = p`
   .btn-ok { background:var(--ui-primary-color,#3b82f6); color:#fff; }
   .btn-ok:hover { background:var(--ui-primary-color-dark,#2563eb); }
 `;
-let ae = class extends c {
+let me = class extends c {
   constructor() {
     super(...arguments), this.value = "", this.label = "Time", this.ampm = !0, this.seconds = !1, this.disabled = !1, this.readonly = !1, this.error = !1, this.helperText = "", this._open = !1;
   }
@@ -10754,52 +6495,52 @@ let ae = class extends c {
         ></ui-time-field>
         <div class="click-away ${this._open ? "open" : ""}" @click=${() => this._open = !1}></div>
         <div class="popover ${this._open ? "open" : ""}" role="dialog" aria-label="Time picker">
-          <ui-multi-section-digital-clock .value=${this.value || Ke(12, 0)} ?ampm=${this.ampm} ?seconds=${this.seconds}
+          <ui-multi-section-digital-clock .value=${this.value || st(12, 0)} ?ampm=${this.ampm} ?seconds=${this.seconds}
             @change=${(e) => {
       this.value = e.detail.value;
     }}
           ></ui-multi-section-digital-clock>
           <div class="actions">
             <button class="btn btn-cancel" @click=${() => this._open = !1}>Cancel</button>
-            <button class="btn btn-ok" @click=${() => this._commit(this.value || Ke(12, 0))}>OK</button>
+            <button class="btn btn-ok" @click=${() => this._commit(this.value || st(12, 0))}>OK</button>
           </div>
         </div>
       </div>
     `;
   }
 };
-ae.styles = [ao];
-f([
-  s({ type: String })
-], ae.prototype, "value", 2);
-f([
-  s({ type: String })
-], ae.prototype, "label", 2);
-f([
-  s({ type: Boolean })
-], ae.prototype, "ampm", 2);
-f([
-  s({ type: Boolean })
-], ae.prototype, "seconds", 2);
-f([
-  s({ type: Boolean, reflect: !0 })
-], ae.prototype, "disabled", 2);
-f([
-  s({ type: Boolean, reflect: !0 })
-], ae.prototype, "readonly", 2);
-f([
-  s({ type: Boolean, reflect: !0 })
-], ae.prototype, "error", 2);
-f([
-  s({ type: String, attribute: "helper-text" })
-], ae.prototype, "helperText", 2);
-f([
-  m()
-], ae.prototype, "_open", 2);
-ae = f([
+me.styles = [cs];
+m([
+  o({ type: String })
+], me.prototype, "value", 2);
+m([
+  o({ type: String })
+], me.prototype, "label", 2);
+m([
+  o({ type: Boolean })
+], me.prototype, "ampm", 2);
+m([
+  o({ type: Boolean })
+], me.prototype, "seconds", 2);
+m([
+  o({ type: Boolean, reflect: !0 })
+], me.prototype, "disabled", 2);
+m([
+  o({ type: Boolean, reflect: !0 })
+], me.prototype, "readonly", 2);
+m([
+  o({ type: Boolean, reflect: !0 })
+], me.prototype, "error", 2);
+m([
+  o({ type: String, attribute: "helper-text" })
+], me.prototype, "helperText", 2);
+m([
+  g()
+], me.prototype, "_open", 2);
+me = m([
   d("ui-desktop-time-picker")
-], ae);
-let ee = class extends c {
+], me);
+let ae = class extends c {
   constructor() {
     super(...arguments), this.value = "", this.label = "Time", this.ampm = !0, this.seconds = !1, this.disabled = !1, this.error = !1, this.helperText = "", this._open = !1, this._pending = "", this._view = "hours";
   }
@@ -10817,7 +6558,7 @@ let ee = class extends c {
       <ui-dialog .open=${this._open} disable-backdrop-close @close=${() => this._open = !1} style="--ui-dialog-width:320px">
         <ui-dialog-title>Select Time</ui-dialog-title>
         <ui-dialog-content style="padding:12px;display:flex;justify-content:center;">
-          <ui-time-clock .value=${this._pending || this.value || Ke(12, 0)} ?ampm=${this.ampm} ?seconds=${this.seconds} .view=${this._view}
+          <ui-time-clock .value=${this._pending || this.value || st(12, 0)} ?ampm=${this.ampm} ?seconds=${this.seconds} .view=${this._view}
             @change=${(e) => {
       this._pending = e.detail.value;
     }}
@@ -10839,48 +6580,48 @@ let ee = class extends c {
     `;
   }
 };
-ee.styles = [ao];
-f([
-  s({ type: String })
-], ee.prototype, "value", 2);
-f([
-  s({ type: String })
-], ee.prototype, "label", 2);
-f([
-  s({ type: Boolean })
-], ee.prototype, "ampm", 2);
-f([
-  s({ type: Boolean })
-], ee.prototype, "seconds", 2);
-f([
-  s({ type: Boolean, reflect: !0 })
-], ee.prototype, "disabled", 2);
-f([
-  s({ type: Boolean, reflect: !0 })
-], ee.prototype, "error", 2);
-f([
-  s({ type: String, attribute: "helper-text" })
-], ee.prototype, "helperText", 2);
-f([
-  m()
-], ee.prototype, "_open", 2);
-f([
-  m()
-], ee.prototype, "_pending", 2);
-f([
-  m()
-], ee.prototype, "_view", 2);
-ee = f([
+ae.styles = [cs];
+m([
+  o({ type: String })
+], ae.prototype, "value", 2);
+m([
+  o({ type: String })
+], ae.prototype, "label", 2);
+m([
+  o({ type: Boolean })
+], ae.prototype, "ampm", 2);
+m([
+  o({ type: Boolean })
+], ae.prototype, "seconds", 2);
+m([
+  o({ type: Boolean, reflect: !0 })
+], ae.prototype, "disabled", 2);
+m([
+  o({ type: Boolean, reflect: !0 })
+], ae.prototype, "error", 2);
+m([
+  o({ type: String, attribute: "helper-text" })
+], ae.prototype, "helperText", 2);
+m([
+  g()
+], ae.prototype, "_open", 2);
+m([
+  g()
+], ae.prototype, "_pending", 2);
+m([
+  g()
+], ae.prototype, "_view", 2);
+ae = m([
   d("ui-mobile-time-picker")
-], ee);
-let Nt = class extends c {
+], ae);
+let Gt = class extends c {
   constructor() {
     super(...arguments), this.value = "", this.ampm = !0, this.seconds = !1;
   }
   render() {
     return l`
       <div class="surface">
-        <ui-multi-section-digital-clock .value=${this.value || Ke(12, 0)} ?ampm=${this.ampm} ?seconds=${this.seconds}
+        <ui-multi-section-digital-clock .value=${this.value || st(12, 0)} ?ampm=${this.ampm} ?seconds=${this.seconds}
           @change=${(e) => {
       this.value = e.detail.value, this.dispatchEvent(new CustomEvent("change", { detail: e.detail, bubbles: !0, composed: !0 }));
     }}
@@ -10889,27 +6630,20 @@ let Nt = class extends c {
     `;
   }
 };
-Nt.styles = p`
-    :host { display:inline-block; font-family:var(--ui-font-family,'Inter',sans-serif); }
-    .surface {
-      border-radius:var(--ui-border-radius-xl,12px);
-      box-shadow:0 1px 4px rgba(0,0,0,.08),0 0 0 1px var(--ui-border-color,#e5e7eb);
-      overflow:hidden; display:inline-block;
-    }
-  `;
-f([
-  s({ type: String })
-], Nt.prototype, "value", 2);
-f([
-  s({ type: Boolean })
-], Nt.prototype, "ampm", 2);
-f([
-  s({ type: Boolean })
-], Nt.prototype, "seconds", 2);
-Nt = f([
+Gt.styles = p(Ll);
+m([
+  o({ type: String })
+], Gt.prototype, "value", 2);
+m([
+  o({ type: Boolean })
+], Gt.prototype, "ampm", 2);
+m([
+  o({ type: Boolean })
+], Gt.prototype, "seconds", 2);
+Gt = m([
   d("ui-static-time-picker")
-], Nt);
-let le = class extends c {
+], Gt);
+let _e = class extends c {
   constructor() {
     super(...arguments), this.value = "", this.label = "Time", this.variant = "desktop", this.ampm = !0, this.seconds = !1, this.disabled = !1, this.error = !1, this.helperText = "";
   }
@@ -10924,40 +6658,41 @@ let le = class extends c {
     return e === "static" ? l`<ui-static-time-picker .value=${this.value} ?ampm=${this.ampm} ?seconds=${this.seconds} @change=${this._onChange}></ui-static-time-picker>` : e === "mobile" ? l`<ui-mobile-time-picker .value=${this.value} .label=${this.label} ?ampm=${this.ampm} ?seconds=${this.seconds} ?disabled=${this.disabled} ?error=${this.error} helper-text=${this.helperText} @change=${this._onChange}></ui-mobile-time-picker>` : l`<ui-desktop-time-picker .value=${this.value} .label=${this.label} ?ampm=${this.ampm} ?seconds=${this.seconds} ?disabled=${this.disabled} ?error=${this.error} helper-text=${this.helperText} @change=${this._onChange}></ui-desktop-time-picker>`;
   }
 };
-le.styles = p`:host { display:inline-block; }`;
-f([
-  s({ type: String })
-], le.prototype, "value", 2);
-f([
-  s({ type: String })
-], le.prototype, "label", 2);
-f([
-  s({ type: String })
-], le.prototype, "variant", 2);
-f([
-  s({ type: Boolean })
-], le.prototype, "ampm", 2);
-f([
-  s({ type: Boolean })
-], le.prototype, "seconds", 2);
-f([
-  s({ type: Boolean, reflect: !0 })
-], le.prototype, "disabled", 2);
-f([
-  s({ type: Boolean, reflect: !0 })
-], le.prototype, "error", 2);
-f([
-  s({ type: String, attribute: "helper-text" })
-], le.prototype, "helperText", 2);
-le = f([
+_e.styles = p(jl);
+m([
+  o({ type: String })
+], _e.prototype, "value", 2);
+m([
+  o({ type: String })
+], _e.prototype, "label", 2);
+m([
+  o({ type: String })
+], _e.prototype, "variant", 2);
+m([
+  o({ type: Boolean })
+], _e.prototype, "ampm", 2);
+m([
+  o({ type: Boolean })
+], _e.prototype, "seconds", 2);
+m([
+  o({ type: Boolean, reflect: !0 })
+], _e.prototype, "disabled", 2);
+m([
+  o({ type: Boolean, reflect: !0 })
+], _e.prototype, "error", 2);
+m([
+  o({ type: String, attribute: "helper-text" })
+], _e.prototype, "helperText", 2);
+_e = m([
   d("ui-time-picker")
-], le);
-var Wa = Object.defineProperty, Ga = Object.getOwnPropertyDescriptor, pe = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Ga(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Wa(t, i, r), r;
+], _e);
+const ql = ':host{display:block;outline:none;font-family:var(--ui-font-family, system-ui, sans-serif)}:host(:focus-visible) .item-row{outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:-2px}.item-row{display:flex;align-items:center;min-height:36px;padding-right:8px;border-radius:var(--ui-border-radius-sm, 4px);cursor:pointer;-webkit-user-select:none;user-select:none;color:var(--ui-text-color, #111827);font-size:14px;transition:background-color .15s ease;position:relative}:host(:not([disabled])) .item-row:hover{background-color:#0000000a}:host([disabled]) .item-row{color:#00000061;cursor:default}.expand-btn{width:28px;height:28px;min-width:28px;display:flex;align-items:center;justify-content:center;background:none;border:none;padding:0;border-radius:50%;cursor:pointer;color:inherit;transition:transform .2s ease,background-color .15s}.expand-btn:hover{background-color:#00000014}.expand-btn.expanded{transform:rotate(90deg)}.expand-placeholder{width:28px;min-width:28px}.item-label{flex:1;line-height:1.5}.children-container{display:block}.children-container[hidden]{display:none!important}.item-row.is-draggable{cursor:grab}.item-row.is-draggable:active{cursor:grabbing}:host([drop-position="before"]) .item-row:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background-color:var(--ui-primary-color, #3b82f6);z-index:10;border-radius:2px}:host([drop-position="after"]) .item-row:after{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background-color:var(--ui-primary-color, #3b82f6);z-index:10;border-radius:2px}:host([drop-position="inside"]) .item-row{background-color:#3b82f61a;outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:-2px}:host([dragging]){opacity:.4}.drag-handle{display:flex;align-items:center;justify-content:center;width:24px;height:24px;cursor:grab;color:var(--ui-text-color-secondary, #6b7280);margin-right:4px;flex-shrink:0}.drag-handle:active{cursor:grabbing}';
+var Hl = Object.defineProperty, Kl = Object.getOwnPropertyDescriptor, $e = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Kl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Hl(t, i, r), r;
 };
-let te = class extends c {
+let ne = class extends c {
   constructor() {
     super(...arguments), this.itemId = "", this.label = "", this.disabled = !1, this.expanded = !1, this.hasChildren = !1, this._isDraggable = !1, this._handleOnly = !1, this.dropPosition = null, this.showDragHandle = !1, this._hasSlottedChildren = !1;
   }
@@ -10981,8 +6716,8 @@ let te = class extends c {
     super.updated(e), this._hasSlottedChildren || this.hasChildren ? this.setAttribute("aria-expanded", String(this.expanded)) : this.removeAttribute("aria-expanded"), this.setAttribute("aria-disabled", String(this.disabled));
   }
   _onSlotChange(e) {
-    const o = e.target.assignedElements({ flatten: !0 }).some((r) => r.tagName === "UI-TREE-ITEM");
-    o !== this._hasSlottedChildren && (this._hasSlottedChildren = o);
+    const s = e.target.assignedElements({ flatten: !0 }).some((r) => r.tagName === "UI-TREE-ITEM");
+    s !== this._hasSlottedChildren && (this._hasSlottedChildren = s);
   }
   _toggleExpand(e) {
     e.stopPropagation(), !this.disabled && this.dispatchEvent(new CustomEvent("ui-tree-item-toggle", {
@@ -11032,7 +6767,7 @@ let te = class extends c {
               <circle cx="15" cy="19" r="1" fill="currentColor"/>
             </svg>
           </div>
-        ` : y}
+        ` : v}
 
         ${t ? l`
               <button
@@ -11048,7 +6783,7 @@ let te = class extends c {
             ` : l`<span class="expand-placeholder"></span>`}
 
         <span class="item-label">${this.label}</span>
-        ${this.label ? y : l`<slot name="label"></slot>`}
+        ${this.label ? v : l`<slot name="label"></slot>`}
       </div>
 
       <div class="children-container" ?hidden=${!this.expanded} role="group">
@@ -11057,203 +6792,62 @@ let te = class extends c {
     `;
   }
 };
-te.styles = p`
-    :host {
-      display: block;
-      outline: none;
-      font-family: var(--ui-font-family, system-ui, sans-serif);
-    }
-
-    :host(:focus-visible) .item-row {
-      outline: 2px solid var(--ui-primary-color, #3b82f6);
-      outline-offset: -2px;
-    }
-
-    .item-row {
-      display: flex;
-      align-items: center;
-      min-height: 36px;
-      padding-right: 8px;
-      border-radius: var(--ui-border-radius-sm, 4px);
-      cursor: pointer;
-      user-select: none;
-      color: var(--ui-text-color, #111827);
-      font-size: 14px;
-      transition: background-color 0.15s ease;
-      /* Needed so ::before/::after drop indicators position correctly */
-      position: relative;
-    }
-
-    :host(:not([disabled])) .item-row:hover {
-      background-color: rgba(0, 0, 0, 0.04);
-    }
-
-    :host([disabled]) .item-row {
-      color: rgba(0, 0, 0, 0.38);
-      cursor: default;
-    }
-
-    .expand-btn {
-      width: 28px;
-      height: 28px;
-      min-width: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: none;
-      border: none;
-      padding: 0;
-      border-radius: 50%;
-      cursor: pointer;
-      color: inherit;
-      transition: transform 0.2s ease, background-color 0.15s;
-    }
-
-    .expand-btn:hover {
-      background-color: rgba(0, 0, 0, 0.08);
-    }
-
-    .expand-btn.expanded {
-      transform: rotate(90deg);
-    }
-
-    .expand-placeholder {
-      width: 28px;
-      min-width: 28px;
-    }
-
-    .item-label {
-      flex: 1;
-      line-height: 1.5;
-    }
-
-    .children-container {
-      display: block;
-    }
-
-    .children-container[hidden] {
-      display: none !important;
-    }
-
-    /* ── Drag & Drop ──────────────────────────────────────────── */
-
-    /*
-     * FIX: draggable cursor on the row div (not the host) since that's
-     * the element with draggable="true" after our fix.
-     */
-    .item-row.is-draggable {
-      cursor: grab;
-    }
-
-    .item-row.is-draggable:active {
-      cursor: grabbing;
-    }
-
-    /* Drop position indicators — driven by :host attribute (reflect: true) */
-    :host([drop-position="before"]) .item-row::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background-color: var(--ui-primary-color, #3b82f6);
-      z-index: 10;
-      border-radius: 2px;
-    }
-
-    :host([drop-position="after"]) .item-row::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background-color: var(--ui-primary-color, #3b82f6);
-      z-index: 10;
-      border-radius: 2px;
-    }
-
-    :host([drop-position="inside"]) .item-row {
-      background-color: rgba(59, 130, 246, 0.1);
-      outline: 2px solid var(--ui-primary-color, #3b82f6);
-      outline-offset: -2px;
-    }
-
-    :host([dragging]) {
-      opacity: 0.4;
-    }
-
-    .drag-handle {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 24px;
-      height: 24px;
-      cursor: grab;
-      color: var(--ui-text-color-secondary, #6b7280);
-      margin-right: 4px;
-      flex-shrink: 0;
-    }
-
-    .drag-handle:active {
-      cursor: grabbing;
-    }
-  `;
-pe([
-  s({ type: String, attribute: "item-id", reflect: !0 })
-], te.prototype, "itemId", 2);
-pe([
-  s({ type: String })
-], te.prototype, "label", 2);
-pe([
-  s({ type: Boolean, reflect: !0 })
-], te.prototype, "disabled", 2);
-pe([
-  s({ type: Boolean, reflect: !0 })
-], te.prototype, "expanded", 2);
-pe([
-  s({ type: Boolean, attribute: "has-children", reflect: !0 })
-], te.prototype, "hasChildren", 2);
-pe([
-  m()
-], te.prototype, "_isDraggable", 2);
-pe([
-  m()
-], te.prototype, "_handleOnly", 2);
-pe([
-  s({ type: String, attribute: "drop-position", reflect: !0 })
-], te.prototype, "dropPosition", 2);
-pe([
-  s({ type: Boolean, attribute: "show-drag-handle" })
-], te.prototype, "showDragHandle", 2);
-pe([
-  m()
-], te.prototype, "_hasSlottedChildren", 2);
-te = pe([
+ne.styles = p(ql);
+$e([
+  o({ type: String, attribute: "item-id", reflect: !0 })
+], ne.prototype, "itemId", 2);
+$e([
+  o({ type: String })
+], ne.prototype, "label", 2);
+$e([
+  o({ type: Boolean, reflect: !0 })
+], ne.prototype, "disabled", 2);
+$e([
+  o({ type: Boolean, reflect: !0 })
+], ne.prototype, "expanded", 2);
+$e([
+  o({ type: Boolean, attribute: "has-children", reflect: !0 })
+], ne.prototype, "hasChildren", 2);
+$e([
+  g()
+], ne.prototype, "_isDraggable", 2);
+$e([
+  g()
+], ne.prototype, "_handleOnly", 2);
+$e([
+  o({ type: String, attribute: "drop-position", reflect: !0 })
+], ne.prototype, "dropPosition", 2);
+$e([
+  o({ type: Boolean, attribute: "show-drag-handle" })
+], ne.prototype, "showDragHandle", 2);
+$e([
+  g()
+], ne.prototype, "_hasSlottedChildren", 2);
+ne = $e([
   d("ui-tree-item")
-], te);
-var Xa = Object.defineProperty, Ja = Object.getOwnPropertyDescriptor, wt = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Ja(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Xa(t, i, r), r;
+], ne);
+const Yl = ":host{display:block;font-family:var(--ui-font-family, system-ui, sans-serif)}.tree-root{padding:4px 0}";
+var Gl = Object.defineProperty, Wl = Object.getOwnPropertyDescriptor, Ot = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Wl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Gl(t, i, r), r;
 };
-let Oe = class extends c {
+let He = class extends c {
   constructor() {
     super(...arguments), this.disabledItemsFocusable = !1, this.defaultExpandedItems = [], this.expansionTrigger = "content", this._internalExpandedItems = /* @__PURE__ */ new Set(), this._expansionInitialized = !1, this._handleKeydown = (e) => {
       const t = e.target;
       if (t.tagName !== "UI-TREE-ITEM") return;
-      const i = t, o = this._getFocusableItems(), r = o.indexOf(i);
+      const i = t, s = this._getFocusableItems(), r = s.indexOf(i);
       switch (e.key) {
         case "ArrowDown": {
           e.preventDefault();
-          const a = o[r + 1];
+          const a = s[r + 1];
           a && this._focusItem(a);
           break;
         }
         case "ArrowUp": {
           e.preventDefault();
-          const a = o[r - 1];
+          const a = s[r - 1];
           a && this._focusItem(a);
           break;
         }
@@ -11279,13 +6873,13 @@ let Oe = class extends c {
         }
         case "Home": {
           e.preventDefault();
-          const a = o[0];
+          const a = s[0];
           a && this._focusItem(a);
           break;
         }
         case "End": {
           e.preventDefault();
-          const a = o[o.length - 1];
+          const a = s[s.length - 1];
           a && this._focusItem(a);
           break;
         }
@@ -11300,13 +6894,13 @@ let Oe = class extends c {
         }
         default:
           if (e.key.length === 1) {
-            const a = e.key.toLowerCase(), n = r < 0 ? 0 : r + 1, g = [
-              ...o.slice(n),
-              ...o.slice(0, n)
+            const a = e.key.toLowerCase(), n = r < 0 ? 0 : r + 1, f = [
+              ...s.slice(n),
+              ...s.slice(0, n)
             ].find(
-              (v) => v.label.toLowerCase().startsWith(a)
+              (y) => y.label.toLowerCase().startsWith(a)
             );
-            g && this._focusItem(g);
+            f && this._focusItem(f);
           }
       }
     };
@@ -11377,9 +6971,9 @@ let Oe = class extends c {
     if (this._isControlled) {
       const i = new Set(this.expandedItems);
       t ? i.add(e.itemId) : i.delete(e.itemId);
-      const o = Array.from(i);
-      this.onExpandedItemsChange?.(o), this.dispatchEvent(new CustomEvent("expanded-items-change", {
-        detail: { expandedItems: o },
+      const s = Array.from(i);
+      this.onExpandedItemsChange?.(s), this.dispatchEvent(new CustomEvent("expanded-items-change", {
+        detail: { expandedItems: s },
         bubbles: !1
       })), this._syncExpansion();
     } else
@@ -11390,7 +6984,7 @@ let Oe = class extends c {
     const e = this._getAllItems();
     if (e.length === 0) return;
     if (!e.some((i) => i.getAttribute("tabindex") === "0")) {
-      const i = this.disabledItemsFocusable ? e[0] : e.find((o) => !o.disabled);
+      const i = this.disabledItemsFocusable ? e[0] : e.find((s) => !s.disabled);
       i && i.setAttribute("tabindex", "0");
     }
   }
@@ -11404,8 +6998,8 @@ let Oe = class extends c {
   }
   /** Handles the `ui-tree-item-toggle` event from the expand icon button. */
   _handleUiToggle(e) {
-    const { itemId: t, expanded: i } = e.detail, o = this.getItemDOMElement(t);
-    o && this._handleToggle(o, i);
+    const { itemId: t, expanded: i } = e.detail, s = this.getItemDOMElement(t);
+    s && this._handleToggle(s, i);
   }
   /** Handles `ui-tree-item-click` (row click). Also triggers expansion in content mode. */
   _handleItemClick(e) {
@@ -11439,50 +7033,42 @@ let Oe = class extends c {
     `;
   }
 };
-Oe.styles = p`
-    :host {
-      display: block;
-      font-family: var(--ui-font-family, system-ui, sans-serif);
-    }
-
-    .tree-root {
-      padding: 4px 0;
-    }
-  `;
-wt([
-  s({ type: Boolean, attribute: "disabled-items-focusable" })
-], Oe.prototype, "disabledItemsFocusable", 2);
-wt([
-  s({ attribute: !1 })
-], Oe.prototype, "onItemClick", 2);
-wt([
-  s({ attribute: !1 })
-], Oe.prototype, "expandedItems", 2);
-wt([
-  s({ attribute: !1 })
-], Oe.prototype, "defaultExpandedItems", 2);
-wt([
-  s({ attribute: !1 })
-], Oe.prototype, "onExpandedItemsChange", 2);
-wt([
-  s({ type: String, attribute: "expansion-trigger" })
-], Oe.prototype, "expansionTrigger", 2);
-Oe = wt([
+He.styles = p(Yl);
+Ot([
+  o({ type: Boolean, attribute: "disabled-items-focusable" })
+], He.prototype, "disabledItemsFocusable", 2);
+Ot([
+  o({ attribute: !1 })
+], He.prototype, "onItemClick", 2);
+Ot([
+  o({ attribute: !1 })
+], He.prototype, "expandedItems", 2);
+Ot([
+  o({ attribute: !1 })
+], He.prototype, "defaultExpandedItems", 2);
+Ot([
+  o({ attribute: !1 })
+], He.prototype, "onExpandedItemsChange", 2);
+Ot([
+  o({ type: String, attribute: "expansion-trigger" })
+], He.prototype, "expansionTrigger", 2);
+He = Ot([
   d("ui-simple-tree-view")
-], Oe);
-var Qa = Object.defineProperty, Za = Object.getOwnPropertyDescriptor, P = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Za(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Qa(t, i, r), r;
+], He);
+const Xl = ":host{display:block;font-family:var(--ui-font-family, system-ui, sans-serif)}.tree-root{padding:4px 0}.lazy-indicator{display:flex;align-items:center;gap:8px;min-height:32px;font-size:14px;color:var(--ui-text-color, #6b7280)}.lazy-root{padding:8px}@keyframes ui-spin{to{transform:rotate(360deg)}}.lazy-spinner{width:14px;height:14px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:ui-spin .7s linear infinite;flex-shrink:0;opacity:.55}ui-tree-item[dragging]{opacity:.4}ui-tree-item[drop-position=before]{box-shadow:0 -2px 0 0 var(--ui-primary, #3b82f6)}ui-tree-item[drop-position=after]{box-shadow:0 2px 0 0 var(--ui-primary, #3b82f6)}ui-tree-item[drop-position=inside]{outline:2px solid var(--ui-primary, #3b82f6);outline-offset:-1px;border-radius:4px}";
+var Jl = Object.defineProperty, Zl = Object.getOwnPropertyDescriptor, P = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Zl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Jl(t, i, r), r;
 };
-let S = class extends c {
+let I = class extends c {
   constructor() {
     super(...arguments), this.items = [], this.getItemId = (e) => e.id, this.getItemLabel = (e) => e.label, this.getItemChildren = (e) => e.children, this.isItemDisabled = () => !1, this.disabledItemsFocusable = !1, this.expansionTrigger = "content", this.defaultExpandedItems = [], this.itemsReordering = !1, this.itemsReorderingHandle = !1, this._internalExpandedItems = /* @__PURE__ */ new Set(), this._expansionInitialized = !1, this._disabledOverrides = /* @__PURE__ */ new Map(), this._lazyChildren = /* @__PURE__ */ new Map(), this._loading = /* @__PURE__ */ new Set(), this._orderedItems = null, this._draggedItemId = null, this._dropTargetId = null, this._dropPosition = null, this._handleFocusIn = (e) => {
       const t = e.target;
       t.tagName === "UI-TREE-ITEM" && (this._getAllItems().forEach((i) => i.setAttribute("tabindex", "-1")), t.setAttribute("tabindex", "0"));
     }, this._handleUiToggle = (e) => {
-      const { itemId: t, expanded: i } = e.detail, o = this.getItemDOMElement(t);
-      o && this._handleToggle(o, i);
+      const { itemId: t, expanded: i } = e.detail, s = this.getItemDOMElement(t);
+      s && this._handleToggle(s, i);
     }, this._handleItemClick = (e) => {
       const { itemId: t } = e.detail;
       if (this.expansionTrigger === "content") {
@@ -11496,17 +7082,17 @@ let S = class extends c {
     }, this._handleKeydown = (e) => {
       const t = e.target;
       if (t.tagName !== "UI-TREE-ITEM") return;
-      const i = t, o = this._getFocusableItems(), r = o.indexOf(i);
+      const i = t, s = this._getFocusableItems(), r = s.indexOf(i);
       switch (e.key) {
         case "ArrowDown": {
           e.preventDefault();
-          const a = o[r + 1];
+          const a = s[r + 1];
           a && this._focusItem(a);
           break;
         }
         case "ArrowUp": {
           e.preventDefault();
-          const a = o[r - 1];
+          const a = s[r - 1];
           a && this._focusItem(a);
           break;
         }
@@ -11532,13 +7118,13 @@ let S = class extends c {
         }
         case "Home": {
           e.preventDefault();
-          const a = o[0];
+          const a = s[0];
           a && this._focusItem(a);
           break;
         }
         case "End": {
           e.preventDefault();
-          const a = o[o.length - 1];
+          const a = s[s.length - 1];
           a && this._focusItem(a);
           break;
         }
@@ -11553,13 +7139,13 @@ let S = class extends c {
         }
         default:
           if (e.key.length === 1) {
-            const a = e.key.toLowerCase(), n = r < 0 ? 0 : r + 1, g = [
-              ...o.slice(n),
-              ...o.slice(0, n)
+            const a = e.key.toLowerCase(), n = r < 0 ? 0 : r + 1, f = [
+              ...s.slice(n),
+              ...s.slice(0, n)
             ].find(
-              (v) => v.label.toLowerCase().startsWith(a)
+              (y) => y.label.toLowerCase().startsWith(a)
             );
-            g && this._focusItem(g);
+            f && this._focusItem(f);
           }
       }
     }, this._handleDragStart = (e) => {
@@ -11592,7 +7178,7 @@ let S = class extends c {
         this._clearDropTarget();
         return;
       }
-      const o = t.getBoundingClientRect(), r = e.clientY - o.top, a = o.height;
+      const s = t.getBoundingClientRect(), r = e.clientY - s.top, a = s.height;
       let n = "inside";
       if (r < a * 0.25 ? n = "before" : r > a * 0.75 && (n = "after"), this.canMoveItemToNewPosition && !this.canMoveItemToNewPosition({
         itemId: this._draggedItemId,
@@ -11610,8 +7196,8 @@ let S = class extends c {
       if (!this.itemsReordering || !this._draggedItemId || !this._dropTargetId || !this._dropPosition)
         return;
       e.preventDefault();
-      const t = this._draggedItemId, i = this._dropTargetId, o = this._dropPosition;
-      this._moveItem(t, i, o), this._draggedItemId = null, this._clearDropTarget();
+      const t = this._draggedItemId, i = this._dropTargetId, s = this._dropPosition;
+      this._moveItem(t, i, s), this._draggedItemId = null, this._clearDropTarget();
     };
   }
   get _isControlled() {
@@ -11652,7 +7238,7 @@ let S = class extends c {
   _findItemById(e, t) {
     for (const i of t) {
       if (this.getItemId(i) === e) return i;
-      const o = this.getItemChildren(i) ?? [], r = this._findItemById(e, o);
+      const s = this.getItemChildren(i) ?? [], r = this._findItemById(e, s);
       if (r) return r;
     }
     return null;
@@ -11662,20 +7248,20 @@ let S = class extends c {
   }
   _cloneItemsTree(e) {
     return e.map((t) => {
-      const i = { ...t }, o = this.getItemChildren(t);
-      if (o) {
-        const r = Object.keys(t).find((a) => t[a] === o) || "children";
-        i[r] = this._cloneItemsTree(o);
+      const i = { ...t }, s = this.getItemChildren(t);
+      if (s) {
+        const r = Object.keys(t).find((a) => t[a] === s) || "children";
+        i[r] = this._cloneItemsTree(s);
       }
       return i;
     });
   }
   /** Find an item and its parent list/index within a tree structure. */
   _findItemAndParentInTree(e, t, i = null) {
-    for (let o = 0; o < t.length; o++) {
-      const r = t[o];
+    for (let s = 0; s < t.length; s++) {
+      const r = t[s];
       if (this.getItemId(r) === e)
-        return { item: r, parentList: t, index: o, parentId: i };
+        return { item: r, parentList: t, index: s, parentId: i };
       const a = this.getItemChildren(r) ?? [], n = this._findItemAndParentInTree(e, a, this.getItemId(r));
       if (n) return n;
     }
@@ -11692,10 +7278,10 @@ let S = class extends c {
    * anywhere in the subtree (deep, recursive check).
    */
   _isAncestorOf(e, t, i) {
-    for (const o of i) {
-      if (this.getItemId(o) === e)
-        return !!this._findItemById(t, this.getItemChildren(o) ?? []);
-      if (this._isAncestorOf(e, t, this.getItemChildren(o) ?? []))
+    for (const s of i) {
+      if (this.getItemId(s) === e)
+        return !!this._findItemById(t, this.getItemChildren(s) ?? []);
+      if (this._isAncestorOf(e, t, this.getItemChildren(s) ?? []))
         return !0;
     }
     return !1;
@@ -11743,9 +7329,9 @@ let S = class extends c {
     if (t && this.dataSource && !this._lazyChildren.has(e.itemId) && !this._loading.has(e.itemId) && this._loadChildren(e.itemId), this._isControlled) {
       const i = new Set(this.expandedItems);
       t ? i.add(e.itemId) : i.delete(e.itemId);
-      const o = Array.from(i);
-      this.onExpandedItemsChange?.(o), this.dispatchEvent(new CustomEvent("expanded-items-change", {
-        detail: { expandedItems: o },
+      const s = Array.from(i);
+      this.onExpandedItemsChange?.(s), this.dispatchEvent(new CustomEvent("expanded-items-change", {
+        detail: { expandedItems: s },
         bubbles: !1
       })), this._syncExpansion();
     } else
@@ -11756,7 +7342,7 @@ let S = class extends c {
     const e = this._getAllItems();
     if (e.length === 0) return;
     if (!e.some((i) => i.getAttribute("tabindex") === "0")) {
-      const i = this.disabledItemsFocusable ? e[0] : e.find((o) => !o.disabled);
+      const i = this.disabledItemsFocusable ? e[0] : e.find((s) => !s.disabled);
       i && i.setAttribute("tabindex", "0");
     }
   }
@@ -11802,25 +7388,25 @@ let S = class extends c {
   }
   // ─── Rendering ────────────────────────────────────────────────────────────
   _renderItem(e, t = 0) {
-    const i = this.getItemId(e), o = this.getItemLabel(e), r = this._getEffectiveDisabled(e);
+    const i = this.getItemId(e), s = this.getItemLabel(e), r = this._getEffectiveDisabled(e);
     let a = [], n = !1, h = !1;
     this.dataSource ? this._lazyChildren.has(i) ? (a = this._lazyChildren.get(i), h = a.length > 0) : (n = this._loading.has(i), h = this.dataSource.getChildrenCount(e) !== 0) : (a = this.getItemChildren(e) ?? [], h = a.length > 0);
-    const g = (t + 1) * 24 + 8;
+    const f = (t + 1) * 24 + 8;
     return l`
       <ui-tree-item
         item-id=${i}
-        label=${o}
+        label=${s}
         ?disabled=${r}
         ?has-children=${h}
         ?show-drag-handle=${this.itemsReordering && this.itemsReorderingHandle}
       >
         ${n ? l`
-          <div class="lazy-indicator" style="padding-left:${g}px">
+          <div class="lazy-indicator" style="padding-left:${f}px">
             <span class="lazy-spinner"></span>
             <span>Loading…</span>
           </div>
-        ` : y}
-        ${a.map((v) => this._renderItem(v, t + 1))}
+        ` : v}
+        ${a.map((y) => this._renderItem(y, t + 1))}
       </ui-tree-item>
     `;
   }
@@ -11833,8 +7419,8 @@ let S = class extends c {
             <span class="lazy-spinner"></span>
             <span>Loading…</span>
           </div>
-        ` : y}
-        ${t.map((o) => this._renderItem(o))}
+        ` : v}
+        ${t.map((s) => this._renderItem(s))}
       </div>
     `;
   }
@@ -11857,20 +7443,20 @@ let S = class extends c {
   }
   _moveItem(e, t, i) {
     if (!this._orderedItems) return;
-    const o = this._findItemAndParentInTree(e, this._orderedItems), r = this._findItemAndParentInTree(t, this._orderedItems);
-    if (!o || !r) return;
-    o.parentList.splice(o.index, 1);
+    const s = this._findItemAndParentInTree(e, this._orderedItems), r = this._findItemAndParentInTree(t, this._orderedItems);
+    if (!s || !r) return;
+    s.parentList.splice(s.index, 1);
     let n = null, h = 0;
     if (i === "inside") {
-      const g = r.item, v = this.getItemChildren(g), b = Object.keys(g).find((re) => g[re] === v) || "children";
-      g[b] || (g[b] = []);
-      const C = g[b];
-      C.push(o.item), n = t, h = C.length - 1;
+      const f = r.item, y = this.getItemChildren(f), b = Object.keys(f).find((de) => f[de] === y) || "children";
+      f[b] || (f[b] = []);
+      const S = f[b];
+      S.push(s.item), n = t, h = S.length - 1;
     } else {
-      const g = this._findItemAndParentInTree(t, this._orderedItems);
-      if (!g) return;
-      const v = i === "before" ? g.index : g.index + 1;
-      g.parentList.splice(v, 0, o.item), n = g.parentId, h = v;
+      const f = this._findItemAndParentInTree(t, this._orderedItems);
+      if (!f) return;
+      const y = i === "before" ? f.index : f.index + 1;
+      f.parentList.splice(y, 0, s.item), n = f.parentId, h = y;
     }
     this._orderedItems = [...this._orderedItems], this.onItemPositionChange?.({
       itemId: e,
@@ -11883,177 +7469,98 @@ let S = class extends c {
     }));
   }
 };
-S.styles = p`
-    :host {
-      display: block;
-      font-family: var(--ui-font-family, system-ui, sans-serif);
-    }
-
-    .tree-root {
-      padding: 4px 0;
-    }
-
-    /* ── Lazy loading indicators ───────────────────────────────── */
-
-    .lazy-indicator {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      min-height: 32px;
-      font-size: 14px;
-      color: var(--ui-text-color, #6b7280);
-    }
-
-    .lazy-root {
-      padding: 8px 8px;
-    }
-
-    @keyframes ui-spin {
-      to { transform: rotate(360deg); }
-    }
-
-    .lazy-spinner {
-      width: 14px;
-      height: 14px;
-      border: 2px solid currentColor;
-      border-top-color: transparent;
-      border-radius: 50%;
-      animation: ui-spin 0.7s linear infinite;
-      flex-shrink: 0;
-      opacity: 0.55;
-    }
-
-    /* ── Drag & Drop indicators ────────────────────────────────── */
-
-    /* FIX #1: Added missing drag/drop CSS that was completely absent */
-
-    ui-tree-item[dragging] {
-      opacity: 0.4;
-    }
-
-    ui-tree-item[drop-position="before"] {
-      box-shadow: 0 -2px 0 0 var(--ui-primary, #3b82f6);
-    }
-
-    ui-tree-item[drop-position="after"] {
-      box-shadow: 0 2px 0 0 var(--ui-primary, #3b82f6);
-    }
-
-    ui-tree-item[drop-position="inside"] {
-      outline: 2px solid var(--ui-primary, #3b82f6);
-      outline-offset: -1px;
-      border-radius: 4px;
-    }
-  `;
+I.styles = p(Xl);
 P([
-  s({ attribute: !1 })
-], S.prototype, "items", 2);
+  o({ attribute: !1 })
+], I.prototype, "items", 2);
 P([
-  s({ attribute: !1 })
-], S.prototype, "dataSource", 2);
+  o({ attribute: !1 })
+], I.prototype, "dataSource", 2);
 P([
-  s({ attribute: !1 })
-], S.prototype, "getItemId", 2);
+  o({ attribute: !1 })
+], I.prototype, "getItemId", 2);
 P([
-  s({ attribute: !1 })
-], S.prototype, "getItemLabel", 2);
+  o({ attribute: !1 })
+], I.prototype, "getItemLabel", 2);
 P([
-  s({ attribute: !1 })
-], S.prototype, "getItemChildren", 2);
+  o({ attribute: !1 })
+], I.prototype, "getItemChildren", 2);
 P([
-  s({ attribute: !1 })
-], S.prototype, "isItemDisabled", 2);
+  o({ attribute: !1 })
+], I.prototype, "isItemDisabled", 2);
 P([
-  s({ type: Boolean, attribute: "disabled-items-focusable" })
-], S.prototype, "disabledItemsFocusable", 2);
+  o({ type: Boolean, attribute: "disabled-items-focusable" })
+], I.prototype, "disabledItemsFocusable", 2);
 P([
-  s({ attribute: !1 })
-], S.prototype, "onItemClick", 2);
+  o({ attribute: !1 })
+], I.prototype, "onItemClick", 2);
 P([
-  s({ type: String, attribute: "expansion-trigger" })
-], S.prototype, "expansionTrigger", 2);
+  o({ type: String, attribute: "expansion-trigger" })
+], I.prototype, "expansionTrigger", 2);
 P([
-  s({ attribute: !1 })
-], S.prototype, "expandedItems", 2);
+  o({ attribute: !1 })
+], I.prototype, "expandedItems", 2);
 P([
-  s({ attribute: !1 })
-], S.prototype, "defaultExpandedItems", 2);
+  o({ attribute: !1 })
+], I.prototype, "defaultExpandedItems", 2);
 P([
-  s({ attribute: !1 })
-], S.prototype, "onExpandedItemsChange", 2);
+  o({ attribute: !1 })
+], I.prototype, "onExpandedItemsChange", 2);
 P([
-  s({ type: Boolean, attribute: "items-reordering" })
-], S.prototype, "itemsReordering", 2);
+  o({ type: Boolean, attribute: "items-reordering" })
+], I.prototype, "itemsReordering", 2);
 P([
-  s({ attribute: !1 })
-], S.prototype, "isItemReorderable", 2);
+  o({ attribute: !1 })
+], I.prototype, "isItemReorderable", 2);
 P([
-  s({ attribute: !1 })
-], S.prototype, "canMoveItemToNewPosition", 2);
+  o({ attribute: !1 })
+], I.prototype, "canMoveItemToNewPosition", 2);
 P([
-  s({ type: Boolean, attribute: "items-reordering-handle" })
-], S.prototype, "itemsReorderingHandle", 2);
+  o({ type: Boolean, attribute: "items-reordering-handle" })
+], I.prototype, "itemsReorderingHandle", 2);
 P([
-  s({ attribute: !1 })
-], S.prototype, "onItemPositionChange", 2);
+  o({ attribute: !1 })
+], I.prototype, "onItemPositionChange", 2);
 P([
-  m()
-], S.prototype, "_orderedItems", 2);
+  g()
+], I.prototype, "_orderedItems", 2);
 P([
-  m()
-], S.prototype, "_draggedItemId", 2);
+  g()
+], I.prototype, "_draggedItemId", 2);
 P([
-  m()
-], S.prototype, "_dropTargetId", 2);
+  g()
+], I.prototype, "_dropTargetId", 2);
 P([
-  m()
-], S.prototype, "_dropPosition", 2);
-S = P([
+  g()
+], I.prototype, "_dropPosition", 2);
+I = P([
   d("ui-rich-tree-view")
-], S);
-var en = Object.defineProperty, tn = Object.getOwnPropertyDescriptor, j = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? tn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && en(t, i, r), r;
+], I);
+const Ql = ":host{display:inline-flex;align-items:center;margin-left:auto;padding-left:8px;font-size:.6875rem;letter-spacing:.05em;color:var(--ui-text-color-muted, #6b7280);font-family:var(--ui-font-family, system-ui, sans-serif)}", ec = ":host{display:block;height:1px;background:var(--ui-border-color, #e5e7eb);margin:4px 0}:host([hidden]){display:none!important}", tc = ":host{display:block}:host([hidden]){display:none!important}.item{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:4px;cursor:pointer;font-size:.875rem;line-height:1.25rem;color:var(--ui-text-color, #111827);font-family:var(--ui-font-family, system-ui, sans-serif);outline:none;-webkit-user-select:none;user-select:none;transition:background .1s}:host([highlighted]) .item{background:var(--ui-command-highlight-bg, rgba(0, 0, 0, .06));color:var(--ui-command-highlight-color, var(--ui-text-color, #111827))}.item:hover{background:var(--ui-hover-bg, rgba(0, 0, 0, .04))}:host([highlighted]) .item:hover{background:var(--ui-command-highlight-bg, rgba(0, 0, 0, .06))}:host([disabled]) .item{opacity:.38;cursor:not-allowed;pointer-events:none}.icon{display:flex;align-items:center;justify-content:center;width:16px;height:16px;flex-shrink:0;color:var(--ui-text-color-muted, #6b7280)}.label{flex:1}[hidden]{display:none!important}", ic = ":host{display:block;padding:24px 8px;text-align:center;font-size:.875rem;color:var(--ui-text-color-muted, #6b7280);font-family:var(--ui-font-family, system-ui, sans-serif)}:host([hidden]){display:none!important}", rc = ":host{display:block;font-family:var(--ui-font-family, system-ui, sans-serif)}:host([hidden]){display:none!important}.heading{padding:6px 8px 2px;font-size:.6875rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ui-text-color-muted, #6b7280)}.heading:empty{display:none}", sc = ":host{display:block;overflow-y:auto;max-height:var(--ui-command-list-max-height, 300px)}.list{padding:4px;outline:none}.list:focus-visible{outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:-2px}", oc = ":host{display:block;font-family:var(--ui-font-family, system-ui, sans-serif)}.input-wrap{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--ui-border-color, #e5e7eb)}.search-icon{flex-shrink:0;color:var(--ui-text-color-muted, #6b7280);display:flex;align-items:center}input{flex:1;border:none;outline:none;background:transparent;font-size:.9375rem;color:var(--ui-text-color, #111827);font-family:inherit;min-width:0}input::placeholder{color:var(--ui-text-color-muted, #6b7280)}input[type=search]::-webkit-search-cancel-button{display:none}input[type=search]::-webkit-search-decoration{display:none}", ac = ":host{display:block;font-family:var(--ui-font-family, system-ui, sans-serif);background:var(--ui-surface-background, #fff);border-radius:var(--ui-border-radius-md, 8px);overflow:hidden}.command{display:flex;flex-direction:column}", nc = ":host{display:block}.backdrop{position:fixed;inset:0;background:#00000080;z-index:var(--ui-command-z-index, 1400);display:flex;align-items:flex-start;justify-content:center;padding-top:12vh;opacity:0;pointer-events:none;transition:opacity .18s ease}.backdrop.open{opacity:1;pointer-events:auto}.panel{width:100%;max-width:var(--ui-command-dialog-width, 512px);background:var(--ui-surface-background, #fff);border-radius:var(--ui-border-radius-md, 8px);box-shadow:0 20px 25px -5px #00000026,0 10px 10px -5px #0000000f;overflow:hidden;transform:scale(.94) translateY(-8px);transition:transform .18s cubic-bezier(.4,0,.2,1)}.backdrop.open .panel{transform:scale(1) translateY(0)}";
+var lc = Object.defineProperty, cc = Object.getOwnPropertyDescriptor, N = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? cc(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && lc(t, i, r), r;
 };
-let Cr = class extends c {
+let Ir = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
-Cr.styles = p`
-        :host {
-            display: inline-flex;
-            align-items: center;
-            margin-left: auto;
-            padding-left: 8px;
-            font-size: 0.6875rem;
-            letter-spacing: 0.05em;
-            color: var(--ui-text-color-muted, #6b7280);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-        }
-    `;
-Cr = j([
+Ir.styles = p(Ql);
+Ir = N([
   d("ui-command-shortcut")
-], Cr);
-let Ir = class extends c {
+], Ir);
+let Er = class extends c {
   render() {
     return l``;
   }
 };
-Ir.styles = p`
-        :host {
-            display: block;
-            height: 1px;
-            background: var(--ui-border-color, #e5e7eb);
-            margin: 4px 0;
-        }
-        :host([hidden]) { display: none !important; }
-    `;
-Ir = j([
+Er.styles = p(ec);
+Er = N([
   d("ui-command-separator")
-], Ir);
-let dt = class extends c {
+], Er);
+let mt = class extends c {
   constructor() {
     super(...arguments), this.value = "", this.disabled = !1, this.highlighted = !1, this._hasIcon = !1;
   }
@@ -12091,94 +7598,32 @@ let dt = class extends c {
         `;
   }
 };
-dt.styles = p`
-        :host { display: block; }
-        :host([hidden]) { display: none !important; }
-
-        .item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 8px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.875rem;
-            line-height: 1.25rem;
-            color: var(--ui-text-color, #111827);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-            outline: none;
-            user-select: none;
-            transition: background 0.1s;
-        }
-
-        :host([highlighted]) .item {
-            background: var(--ui-command-highlight-bg, rgba(0, 0, 0, 0.06));
-            color: var(--ui-command-highlight-color, var(--ui-text-color, #111827));
-        }
-
-        .item:hover {
-            background: var(--ui-hover-bg, rgba(0, 0, 0, 0.04));
-        }
-
-        :host([highlighted]) .item:hover {
-            background: var(--ui-command-highlight-bg, rgba(0, 0, 0, 0.06));
-        }
-
-        :host([disabled]) .item {
-            opacity: 0.38;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-
-        .icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 16px;
-            height: 16px;
-            flex-shrink: 0;
-            color: var(--ui-text-color-muted, #6b7280);
-        }
-
-        .label { flex: 1; }
-
-        [hidden] { display: none !important; }
-    `;
-j([
-  s({ type: String, reflect: !0 })
-], dt.prototype, "value", 2);
-j([
-  s({ type: Boolean, reflect: !0 })
-], dt.prototype, "disabled", 2);
-j([
-  s({ type: Boolean, reflect: !0 })
-], dt.prototype, "highlighted", 2);
-j([
-  m()
-], dt.prototype, "_hasIcon", 2);
-dt = j([
+mt.styles = p(tc);
+N([
+  o({ type: String, reflect: !0 })
+], mt.prototype, "value", 2);
+N([
+  o({ type: Boolean, reflect: !0 })
+], mt.prototype, "disabled", 2);
+N([
+  o({ type: Boolean, reflect: !0 })
+], mt.prototype, "highlighted", 2);
+N([
+  g()
+], mt.prototype, "_hasIcon", 2);
+mt = N([
   d("ui-command-item")
-], dt);
-let Sr = class extends c {
+], mt);
+let Pr = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
-Sr.styles = p`
-        :host {
-            display: block;
-            padding: 24px 8px;
-            text-align: center;
-            font-size: 0.875rem;
-            color: var(--ui-text-color-muted, #6b7280);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-        }
-        :host([hidden]) { display: none !important; }
-    `;
-Sr = j([
+Pr.styles = p(ic);
+Pr = N([
   d("ui-command-empty")
-], Sr);
-let Mi = class extends c {
+], Pr);
+let Ui = class extends c {
   constructor() {
     super(...arguments), this.heading = "";
   }
@@ -12189,31 +7634,14 @@ let Mi = class extends c {
         `;
   }
 };
-Mi.styles = p`
-        :host {
-            display: block;
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-        }
-        :host([hidden]) { display: none !important; }
-
-        .heading {
-            padding: 6px 8px 2px;
-            font-size: 0.6875rem;
-            font-weight: 600;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            color: var(--ui-text-color-muted, #6b7280);
-        }
-
-        .heading:empty { display: none; }
-    `;
-j([
-  s({ type: String, reflect: !0 })
-], Mi.prototype, "heading", 2);
-Mi = j([
+Ui.styles = p(rc);
+N([
+  o({ type: String, reflect: !0 })
+], Ui.prototype, "heading", 2);
+Ui = N([
   d("ui-command-group")
-], Mi);
-let Er = class extends c {
+], Ui);
+let Or = class extends c {
   render() {
     return l`
             <div class="list" role="listbox" tabindex="0" aria-label="Command results">
@@ -12222,27 +7650,11 @@ let Er = class extends c {
         `;
   }
 };
-Er.styles = p`
-        :host {
-            display: block;
-            overflow-y: auto;
-            max-height: var(--ui-command-list-max-height, 300px);
-        }
-
-        .list {
-            padding: 4px;
-            outline: none;
-        }
-
-        .list:focus-visible {
-            outline: 2px solid var(--ui-primary-color, #3b82f6);
-            outline-offset: -2px;
-        }
-    `;
-Er = j([
+Or.styles = p(sc);
+Or = N([
   d("ui-command-list")
-], Er);
-let hi = class extends c {
+], Or);
+let mi = class extends c {
   constructor() {
     super(...arguments), this.placeholder = "Type a command or search...", this.value = "";
   }
@@ -12291,56 +7703,17 @@ let hi = class extends c {
         `;
   }
 };
-hi.styles = p`
-        :host {
-            display: block;
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-        }
-
-        .input-wrap {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 12px;
-            border-bottom: 1px solid var(--ui-border-color, #e5e7eb);
-        }
-
-        .search-icon {
-            flex-shrink: 0;
-            color: var(--ui-text-color-muted, #6b7280);
-            display: flex;
-            align-items: center;
-        }
-
-        input {
-            flex: 1;
-            border: none;
-            outline: none;
-            background: transparent;
-            font-size: 0.9375rem;
-            color: var(--ui-text-color, #111827);
-            font-family: inherit;
-            min-width: 0;
-        }
-
-        input::placeholder {
-            color: var(--ui-text-color-muted, #6b7280);
-        }
-
-        /* Hide the native clear button added by type="search" in WebKit. */
-        input[type="search"]::-webkit-search-cancel-button { display: none; }
-        input[type="search"]::-webkit-search-decoration      { display: none; }
-    `;
-j([
-  s({ type: String })
-], hi.prototype, "placeholder", 2);
-j([
-  s({ type: String, reflect: !0 })
-], hi.prototype, "value", 2);
-hi = j([
+mi.styles = p(oc);
+N([
+  o({ type: String })
+], mi.prototype, "placeholder", 2);
+N([
+  o({ type: String, reflect: !0 })
+], mi.prototype, "value", 2);
+mi = N([
   d("ui-command-input")
-], hi);
-let Pr = class extends c {
+], mi);
+let Dr = class extends c {
   constructor() {
     super(...arguments), this._query = "", this._highlightedItem = null, this._handleFilter = (e) => {
       this._applyFilter(e.detail.query);
@@ -12394,25 +7767,25 @@ let Pr = class extends c {
   _applyFilter(e) {
     this._query = e;
     const t = e.toLowerCase(), i = [...this.querySelectorAll("ui-command-item")];
-    let o = 0;
+    let s = 0;
     for (const h of i) {
-      const g = (h.value || h.textContent || "").toLowerCase().trim(), v = t === "" || g.includes(t);
-      h.hidden = !v, v && o++;
+      const f = (h.value || h.textContent || "").toLowerCase().trim(), y = t === "" || f.includes(t);
+      h.hidden = !y, y && s++;
     }
     const r = [...this.querySelectorAll("ui-command-group")];
     for (const h of r) {
-      const g = [...h.querySelectorAll("ui-command-item")];
-      h.hidden = g.length === 0 || g.every((v) => v.hidden);
+      const f = [...h.querySelectorAll("ui-command-item")];
+      h.hidden = f.length === 0 || f.every((y) => y.hidden);
     }
     const a = this.querySelector("ui-command-empty");
-    a && (a.hidden = o > 0);
+    a && (a.hidden = s > 0);
     const n = this.querySelector("ui-command-list");
     if (n) {
-      const h = [...n.children], g = (v) => v.tagName.toLowerCase() !== "ui-command-separator" && v.tagName.toLowerCase() !== "ui-command-empty" && !v.hidden;
-      for (const v of h) {
-        if (v.tagName.toLowerCase() !== "ui-command-separator") continue;
-        const b = h.indexOf(v), C = h.slice(0, b).some(g), re = h.slice(b + 1).some(g);
-        v.hidden = !C || !re;
+      const h = [...n.children], f = (y) => y.tagName.toLowerCase() !== "ui-command-separator" && y.tagName.toLowerCase() !== "ui-command-empty" && !y.hidden;
+      for (const y of h) {
+        if (y.tagName.toLowerCase() !== "ui-command-separator") continue;
+        const b = h.indexOf(y), S = h.slice(0, b).some(f), de = h.slice(b + 1).some(f);
+        y.hidden = !S || !de;
       }
     }
     this._setHighlight(this._getNavigableItems()[0] ?? null);
@@ -12435,24 +7808,11 @@ let Pr = class extends c {
         `;
   }
 };
-Pr.styles = p`
-        :host {
-            display: block;
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-            background: var(--ui-surface-background, #fff);
-            border-radius: var(--ui-border-radius-md, 8px);
-            overflow: hidden;
-        }
-
-        .command {
-            display: flex;
-            flex-direction: column;
-        }
-    `;
-Pr = j([
+Dr.styles = p(ac);
+Dr = N([
   d("ui-command")
-], Pr);
-let Li = class extends c {
+], Dr);
+let Ri = class extends c {
   constructor() {
     super(...arguments), this.open = !1, this._boundKeyDown = (e) => {
       this.open && e.key === "Escape" && (e.stopPropagation(), this._close());
@@ -12498,58 +7858,20 @@ let Li = class extends c {
         `;
   }
 };
-Li.styles = p`
-        :host { display: block; }
-
-        .backdrop {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: var(--ui-command-z-index, 1400);
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            padding-top: 12vh;
-
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.18s ease;
-        }
-
-        .backdrop.open {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .panel {
-            width: 100%;
-            max-width: var(--ui-command-dialog-width, 512px);
-            background: var(--ui-surface-background, #fff);
-            border-radius: var(--ui-border-radius-md, 8px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15),
-                        0 10px 10px -5px rgba(0, 0, 0, 0.06);
-            overflow: hidden;
-
-            transform: scale(0.94) translateY(-8px);
-            transition: transform 0.18s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .backdrop.open .panel {
-            transform: scale(1) translateY(0);
-        }
-    `;
-j([
-  s({ type: Boolean, reflect: !0 })
-], Li.prototype, "open", 2);
-Li = j([
+Ri.styles = p(nc);
+N([
+  o({ type: Boolean, reflect: !0 })
+], Ri.prototype, "open", 2);
+Ri = N([
   d("ui-command-dialog")
-], Li);
-var rn = Object.defineProperty, on = Object.getOwnPropertyDescriptor, F = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? on(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && rn(t, i, r), r;
+], Ri);
+const dc = ':host{display:block;overflow:hidden;width:100%}.track{display:flex;flex-wrap:nowrap;height:100%;gap:var(--ui-carousel-gap, 0px);will-change:transform;transition:transform var(--ui-carousel-duration, .35s) var(--ui-carousel-ease, cubic-bezier(.25, .1, .25, 1))}:host([orientation="vertical"]){height:var(--ui-carousel-height, 320px)}:host([orientation="vertical"]) .track{flex-direction:column}::slotted(ui-carousel-item){flex:0 0 calc((100% - (var(--ui-carousel-items-per-view, 1) - 1) * var(--ui-carousel-gap, 0px)) / var(--ui-carousel-items-per-view, 1));min-width:0;min-height:0}:host([orientation="vertical"]) ::slotted(ui-carousel-item){flex:0 0 calc((var(--ui-carousel-height, 320px) - (var(--ui-carousel-items-per-view, 1) - 1) * var(--ui-carousel-gap, 0px)) / var(--ui-carousel-items-per-view, 1));min-height:0}', pc = ":host{display:block;flex-shrink:0;min-width:0}.item{width:100%;height:100%}", hc = ":host{display:block;position:relative}.carousel{position:relative;width:100%;outline:none}.carousel:focus-visible{outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:4px;border-radius:var(--ui-border-radius-md, 6px)}";
+var uc = Object.defineProperty, fc = Object.getOwnPropertyDescriptor, G = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? fc(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && uc(t, i, r), r;
 };
-const no = p`
+const ds = as`
   :host {
     display: inline-flex;
   }
@@ -12582,7 +7904,7 @@ const no = p`
     pointer-events: none;
   }
 `;
-let Vt = class extends c {
+let Wt = class extends c {
   constructor() {
     super(...arguments), this.index = 0, this.itemsPerView = 1, this.orientation = "horizontal";
   }
@@ -12593,7 +7915,7 @@ let Vt = class extends c {
     );
   }
   render() {
-    const i = `calc((100% + var(--ui-carousel-gap, 0px)) / ${this.itemsPerView})`, o = `calc(-${this.index} * ${i})`, r = this.orientation === "vertical" ? `translateY(${o})` : `translateX(${o})`;
+    const i = `calc((100% + var(--ui-carousel-gap, 0px)) / ${this.itemsPerView})`, s = `calc(-${this.index} * ${i})`, r = this.orientation === "vertical" ? `translateY(${s})` : `translateX(${s})`;
     return l`
       <div
         class="track"
@@ -12606,59 +7928,20 @@ let Vt = class extends c {
     `;
   }
 };
-Vt.styles = p`
-    :host {
-      display: block;
-      overflow: hidden;
-      width: 100%;
-    }
-    .track {
-      display: flex;
-      flex-wrap: nowrap;
-      height: 100%;
-      gap: var(--ui-carousel-gap, 0px);
-      will-change: transform;
-      transition:
-        transform var(--ui-carousel-duration, 0.35s)
-        var(--ui-carousel-ease, cubic-bezier(0.25, 0.1, 0.25, 1));
-    }
-    :host([orientation='vertical']) {
-      height: var(--ui-carousel-height, 320px);
-    }
-    :host([orientation='vertical']) .track {
-      flex-direction: column;
-    }
-    ::slotted(ui-carousel-item) {
-      /* Width = (viewport - gaps between visible items) / items-per-view */
-      flex: 0 0 calc(
-        (100% - (var(--ui-carousel-items-per-view, 1) - 1) * var(--ui-carousel-gap, 0px))
-        / var(--ui-carousel-items-per-view, 1)
-      );
-      min-width: 0;
-      min-height: 0;
-    }
-    :host([orientation='vertical']) ::slotted(ui-carousel-item) {
-      /* Height = (viewport - gaps between visible items) / items-per-view */
-      flex: 0 0 calc(
-        (var(--ui-carousel-height, 320px) - (var(--ui-carousel-items-per-view, 1) - 1) * var(--ui-carousel-gap, 0px))
-        / var(--ui-carousel-items-per-view, 1)
-      );
-      min-height: 0;
-    }
-  `;
-F([
-  s({ type: Number })
-], Vt.prototype, "index", 2);
-F([
-  s({ type: Number, attribute: "items-per-view" })
-], Vt.prototype, "itemsPerView", 2);
-F([
-  s({ reflect: !0 })
-], Vt.prototype, "orientation", 2);
-Vt = F([
+Wt.styles = p(dc);
+G([
+  o({ type: Number })
+], Wt.prototype, "index", 2);
+G([
+  o({ type: Number, attribute: "items-per-view" })
+], Wt.prototype, "itemsPerView", 2);
+G([
+  o({ reflect: !0 })
+], Wt.prototype, "orientation", 2);
+Wt = G([
   d("ui-carousel-content")
-], Vt);
-let Or = class extends c {
+], Wt);
+let zr = class extends c {
   render() {
     return l`
       <div class="item" role="group" aria-roledescription="slide">
@@ -12667,21 +7950,11 @@ let Or = class extends c {
     `;
   }
 };
-Or.styles = p`
-    :host {
-      display: block;
-      flex-shrink: 0;
-      min-width: 0;
-    }
-    .item {
-      width: 100%;
-      height: 100%;
-    }
-  `;
-Or = F([
+zr.styles = p(pc);
+zr = G([
   d("ui-carousel-item")
-], Or);
-let ui = class extends c {
+], zr);
+let gi = class extends c {
   constructor() {
     super(...arguments), this.disabled = !1, this.orientation = "horizontal", this._handleClick = () => {
       this.closest("ui-carousel")?.previous();
@@ -12702,17 +7975,17 @@ let ui = class extends c {
     `;
   }
 };
-ui.styles = no;
-F([
-  s({ type: Boolean, reflect: !0 })
-], ui.prototype, "disabled", 2);
-F([
-  s({ reflect: !0 })
-], ui.prototype, "orientation", 2);
-ui = F([
+gi.styles = ds;
+G([
+  o({ type: Boolean, reflect: !0 })
+], gi.prototype, "disabled", 2);
+G([
+  o({ reflect: !0 })
+], gi.prototype, "orientation", 2);
+gi = G([
   d("ui-carousel-previous")
-], ui);
-let fi = class extends c {
+], gi);
+let vi = class extends c {
   constructor() {
     super(...arguments), this.disabled = !1, this.orientation = "horizontal", this._handleClick = () => {
       this.closest("ui-carousel")?.next();
@@ -12733,21 +8006,21 @@ let fi = class extends c {
     `;
   }
 };
-fi.styles = no;
-F([
-  s({ type: Boolean, reflect: !0 })
-], fi.prototype, "disabled", 2);
-F([
-  s({ reflect: !0 })
-], fi.prototype, "orientation", 2);
-fi = F([
+vi.styles = ds;
+G([
+  o({ type: Boolean, reflect: !0 })
+], vi.prototype, "disabled", 2);
+G([
+  o({ reflect: !0 })
+], vi.prototype, "orientation", 2);
+vi = G([
   d("ui-carousel-next")
-], fi);
-let pt = class extends c {
+], vi);
+let gt = class extends c {
   constructor() {
     super(...arguments), this.loop = !1, this.orientation = "horizontal", this.autoplay = 0, this.itemsPerView = 1, this._currentIndex = 0, this._total = 0, this._observer = null, this._autoplayTimer = null, this._handleKeydown = (e) => {
-      const t = this.orientation === "vertical", i = t ? "ArrowUp" : "ArrowLeft", o = t ? "ArrowDown" : "ArrowRight";
-      e.key === i ? (e.preventDefault(), this.previous()) : e.key === o && (e.preventDefault(), this.next());
+      const t = this.orientation === "vertical", i = t ? "ArrowUp" : "ArrowLeft", s = t ? "ArrowDown" : "ArrowRight";
+      e.key === i ? (e.preventDefault(), this.previous()) : e.key === s && (e.preventDefault(), this.next());
     };
   }
   connectedCallback() {
@@ -12780,8 +8053,8 @@ let pt = class extends c {
       "ui-carousel-previous"
     ), i = this.querySelector(
       "ui-carousel-next"
-    ), o = Math.max(0, this._total - this.itemsPerView);
-    e && (e.index = this._currentIndex, e.orientation = this.orientation, e.itemsPerView = this.itemsPerView), t && (t.disabled = !this.loop && this._currentIndex === 0, t.orientation = this.orientation), i && (i.disabled = !this.loop && (this._total === 0 || this._currentIndex >= o), i.orientation = this.orientation);
+    ), s = Math.max(0, this._total - this.itemsPerView);
+    e && (e.index = this._currentIndex, e.orientation = this.orientation, e.itemsPerView = this.itemsPerView), t && (t.disabled = !this.loop && this._currentIndex === 0, t.orientation = this.orientation), i && (i.disabled = !this.loop && (this._total === 0 || this._currentIndex >= s), i.orientation = this.orientation);
   }
   _fireChange() {
     this.dispatchEvent(
@@ -12838,80 +8111,47 @@ let pt = class extends c {
     `;
   }
 };
-pt.styles = p`
-    :host {
-      display: block;
-      position: relative;
-    }
-    .carousel {
-      position: relative;
-      width: 100%;
-      outline: none;
-    }
-    .carousel:focus-visible {
-      outline: 2px solid var(--ui-primary-color, #3b82f6);
-      outline-offset: 4px;
-      border-radius: var(--ui-border-radius-md, 6px);
-    }
-  `;
-F([
-  s({ type: Boolean })
-], pt.prototype, "loop", 2);
-F([
-  s({ reflect: !0 })
-], pt.prototype, "orientation", 2);
-F([
-  s({ type: Number })
-], pt.prototype, "autoplay", 2);
-F([
-  s({ type: Number, attribute: "items-per-view" })
-], pt.prototype, "itemsPerView", 2);
-pt = F([
+gt.styles = p(hc);
+G([
+  o({ type: Boolean })
+], gt.prototype, "loop", 2);
+G([
+  o({ reflect: !0 })
+], gt.prototype, "orientation", 2);
+G([
+  o({ type: Number })
+], gt.prototype, "autoplay", 2);
+G([
+  o({ type: Number, attribute: "items-per-view" })
+], gt.prototype, "itemsPerView", 2);
+gt = G([
   d("ui-carousel")
-], pt);
-var sn = Object.defineProperty, an = Object.getOwnPropertyDescriptor, kt = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? an(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && sn(t, i, r), r;
+], gt);
+const bc = ":host{display:block;font-size:1rem;font-weight:600;line-height:1.4;color:var(--ui-text-color, #111827);font-family:var(--ui-font-family, system-ui, sans-serif);margin:0}", mc = ":host{display:block;font-size:.875rem;line-height:1.5;color:var(--ui-text-color-muted, #6b7280);font-family:var(--ui-font-family, system-ui, sans-serif);margin:0}", gc = ":host{display:flex;align-items:center;justify-content:center}.media{display:flex;align-items:center;justify-content:center}.media--icon{width:48px;height:48px;border-radius:12px;background:var(--ui-empty-media-bg, #f3f4f6);color:var(--ui-empty-media-color, #6b7280)}::slotted(svg),::slotted([data-icon]){width:24px;height:24px}", vc = ":host{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}", yc = ":host{display:flex;flex-direction:column;align-items:center;gap:8px}", xc = ":host{display:flex;flex-direction:column;align-items:center;justify-content:center}.container{display:flex;flex-direction:column;align-items:center;gap:var(--ui-empty-gap, 16px);padding:var(--ui-empty-padding, 32px);max-width:var(--ui-empty-max-width, 480px);width:100%;box-sizing:border-box;text-align:center;font-family:var(--ui-font-family, system-ui, sans-serif)}";
+var _c = Object.defineProperty, wc = Object.getOwnPropertyDescriptor, Dt = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? wc(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && _c(t, i, r), r;
 };
-let Dr = class extends c {
+let Tr = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
-Dr.styles = p`
-        :host {
-            display: block;
-            font-size: 1rem;
-            font-weight: 600;
-            line-height: 1.4;
-            color: var(--ui-text-color, #111827);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-            margin: 0;
-        }
-    `;
-Dr = kt([
+Tr.styles = p(bc);
+Tr = Dt([
   d("ui-empty-title")
-], Dr);
-let zr = class extends c {
+], Tr);
+let Ar = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
-zr.styles = p`
-        :host {
-            display: block;
-            font-size: 0.875rem;
-            line-height: 1.5;
-            color: var(--ui-text-color-muted, #6b7280);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-            margin: 0;
-        }
-    `;
-zr = kt([
+Ar.styles = p(mc);
+Ar = Dt([
   d("ui-empty-description")
-], zr);
-let ji = class extends c {
+], Ar);
+let Vi = class extends c {
   constructor() {
     super(...arguments), this.variant = "default";
   }
@@ -12923,73 +8163,32 @@ let ji = class extends c {
         `;
   }
 };
-ji.styles = p`
-        :host {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .media {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .media--icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            background: var(--ui-empty-media-bg, #f3f4f6);
-            color: var(--ui-empty-media-color, #6b7280);
-        }
-
-        ::slotted(svg),
-        ::slotted([data-icon]) {
-            width: 24px;
-            height: 24px;
-        }
-    `;
-kt([
-  s({ reflect: !0 })
-], ji.prototype, "variant", 2);
-ji = kt([
+Vi.styles = p(gc);
+Dt([
+  o({ reflect: !0 })
+], Vi.prototype, "variant", 2);
+Vi = Dt([
   d("ui-empty-media")
-], ji);
+], Vi);
 let Br = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
-Br.styles = p`
-        :host {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            text-align: center;
-        }
-    `;
-Br = kt([
+Br.styles = p(vc);
+Br = Dt([
   d("ui-empty-header")
 ], Br);
-let Tr = class extends c {
+let Mr = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
-Tr.styles = p`
-        :host {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
-    `;
-Tr = kt([
+Mr.styles = p(yc);
+Mr = Dt([
   d("ui-empty-content")
-], Tr);
-let Ar = class extends c {
+], Mr);
+let Lr = class extends c {
   render() {
     return l`
             <div class="container" part="container">
@@ -12998,36 +8197,17 @@ let Ar = class extends c {
         `;
   }
 };
-Ar.styles = p`
-        :host {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: var(--ui-empty-gap, 16px);
-            padding: var(--ui-empty-padding, 32px);
-            max-width: var(--ui-empty-max-width, 480px);
-            width: 100%;
-            box-sizing: border-box;
-            text-align: center;
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-        }
-    `;
-Ar = kt([
+Lr.styles = p(xc);
+Lr = Dt([
   d("ui-empty")
-], Ar);
-var nn = Object.defineProperty, ln = Object.getOwnPropertyDescriptor, Ae = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? ln(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && nn(t, i, r), r;
+], Lr);
+const kc = ":host{display:block}.trigger{display:flex;align-items:center;width:100%;background:none;border:none;padding:0;margin:0;cursor:pointer;font:inherit;color:inherit;text-align:left}:host([disabled]) .trigger{cursor:not-allowed;opacity:.5}", $c = ":host{display:block}.panel{display:grid;grid-template-rows:0fr;overflow:hidden;transition:grid-template-rows var(--ui-collapsible-duration, .2s) var(--ui-collapsible-easing, ease)}:host([open]) .panel{grid-template-rows:1fr}.panel-inner{overflow:hidden}", Sc = ":host{display:block}";
+var Cc = Object.defineProperty, Ic = Object.getOwnPropertyDescriptor, We = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Ic(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Cc(t, i, r), r;
 };
-let bi = class extends c {
+let yi = class extends c {
   constructor() {
     super(...arguments), this.expanded = !1, this.disabled = !1;
   }
@@ -13048,38 +8228,17 @@ let bi = class extends c {
         `;
   }
 };
-bi.styles = p`
-        :host { display: block; }
-
-        .trigger {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            background: none;
-            border: none;
-            padding: 0;
-            margin: 0;
-            cursor: pointer;
-            font: inherit;
-            color: inherit;
-            text-align: left;
-        }
-
-        :host([disabled]) .trigger {
-            cursor: not-allowed;
-            opacity: 0.5;
-        }
-    `;
-Ae([
-  s({ type: Boolean, reflect: !0 })
-], bi.prototype, "expanded", 2);
-Ae([
-  s({ type: Boolean, reflect: !0 })
-], bi.prototype, "disabled", 2);
-bi = Ae([
+yi.styles = p(kc);
+We([
+  o({ type: Boolean, reflect: !0 })
+], yi.prototype, "expanded", 2);
+We([
+  o({ type: Boolean, reflect: !0 })
+], yi.prototype, "disabled", 2);
+yi = We([
   d("ui-collapsible-trigger")
-], bi);
-let Ui = class extends c {
+], yi);
+let Ni = class extends c {
   constructor() {
     super(...arguments), this.open = !1;
   }
@@ -13093,32 +8252,14 @@ let Ui = class extends c {
         `;
   }
 };
-Ui.styles = p`
-        :host { display: block; }
-
-        .panel {
-            display: grid;
-            grid-template-rows: 0fr;
-            overflow: hidden;
-            transition:
-                grid-template-rows var(--ui-collapsible-duration, 200ms) var(--ui-collapsible-easing, ease);
-        }
-
-        :host([open]) .panel {
-            grid-template-rows: 1fr;
-        }
-
-        .panel-inner {
-            overflow: hidden;
-        }
-    `;
-Ae([
-  s({ type: Boolean, reflect: !0 })
-], Ui.prototype, "open", 2);
-Ui = Ae([
+Ni.styles = p($c);
+We([
+  o({ type: Boolean, reflect: !0 })
+], Ni.prototype, "open", 2);
+Ni = We([
   d("ui-collapsible-content")
-], Ui);
-let Ft = class extends c {
+], Ni);
+let Xt = class extends c {
   constructor() {
     super(...arguments), this.open = !1, this.defaultOpen = !1, this.disabled = !1, this._firstUpdate = !0;
   }
@@ -13147,27 +8288,26 @@ let Ft = class extends c {
     return l`<slot @slotchange=${() => this._syncChildren()}></slot>`;
   }
 };
-Ft.styles = p`
-        :host { display: block; }
-    `;
-Ae([
-  s({ type: Boolean, reflect: !0 })
-], Ft.prototype, "open", 2);
-Ae([
-  s({ type: Boolean, attribute: "default-open" })
-], Ft.prototype, "defaultOpen", 2);
-Ae([
-  s({ type: Boolean, reflect: !0 })
-], Ft.prototype, "disabled", 2);
-Ft = Ae([
+Xt.styles = p(Sc);
+We([
+  o({ type: Boolean, reflect: !0 })
+], Xt.prototype, "open", 2);
+We([
+  o({ type: Boolean, attribute: "default-open" })
+], Xt.prototype, "defaultOpen", 2);
+We([
+  o({ type: Boolean, reflect: !0 })
+], Xt.prototype, "disabled", 2);
+Xt = We([
   d("ui-collapsible")
-], Ft);
-var cn = Object.defineProperty, dn = Object.getOwnPropertyDescriptor, Ze = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? dn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && cn(t, i, r), r;
+], Xt);
+const Ec = ":host{display:inline-block}", Pc = ":host{display:block;position:absolute;z-index:var(--ui-hovercard-z-index, 1000);opacity:0;visibility:hidden;transition:opacity var(--ui-hovercard-duration, .15s) ease,visibility var(--ui-hovercard-duration, .15s) ease;pointer-events:none}:host([open]){opacity:1;visibility:visible;pointer-events:auto}.card{background:var(--ui-hovercard-bg, #fff);border:1px solid var(--ui-hovercard-border-color, #e5e7eb);border-radius:var(--ui-hovercard-radius, 8px);box-shadow:var(--ui-hovercard-shadow, 0 4px 16px rgba(0, 0, 0, .12));padding:var(--ui-hovercard-padding, 16px);min-width:var(--ui-hovercard-min-width, 200px);font-family:var(--ui-font-family, system-ui, sans-serif);font-size:var(--ui-hovercard-font-size, .875rem);color:var(--ui-hovercard-color, #111827);line-height:1.5}", Oc = ":host{display:inline-block;position:relative}";
+var Dc = Object.defineProperty, zc = Object.getOwnPropertyDescriptor, ct = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? zc(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Dc(t, i, r), r;
 };
-let Mr = class extends c {
+let jr = class extends c {
   constructor() {
     super(...arguments), this._handleMouseEnter = () => this._getRoot()?.handleTriggerEnter(), this._handleMouseLeave = () => this._getRoot()?.handleTriggerLeave(), this._handleFocusIn = () => this._getRoot()?.handleTriggerEnter(), this._handleFocusOut = () => this._getRoot()?.handleTriggerLeave();
   }
@@ -13187,13 +8327,11 @@ let Mr = class extends c {
         `;
   }
 };
-Mr.styles = p`
-        :host { display: inline-block; }
-    `;
-Mr = Ze([
+jr.styles = p(Ec);
+jr = ct([
   d("ui-hover-card-trigger")
-], Mr);
-let qt = class extends c {
+], jr);
+let Jt = class extends c {
   constructor() {
     super(...arguments), this.side = "bottom", this.align = "center", this.open = !1, this._handleMouseEnter = () => this._getRoot()?.handleContentEnter(), this._handleMouseLeave = () => this._getRoot()?.handleContentLeave();
   }
@@ -13229,51 +8367,20 @@ let qt = class extends c {
         `;
   }
 };
-qt.styles = p`
-        :host {
-            display: block;
-            position: absolute;
-            z-index: var(--ui-hovercard-z-index, 1000);
-            opacity: 0;
-            visibility: hidden;
-            transition:
-                opacity var(--ui-hovercard-duration, 150ms) ease,
-                visibility var(--ui-hovercard-duration, 150ms) ease;
-            pointer-events: none;
-        }
-
-        :host([open]) {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-        }
-
-        .card {
-            background: var(--ui-hovercard-bg, #fff);
-            border: 1px solid var(--ui-hovercard-border-color, #e5e7eb);
-            border-radius: var(--ui-hovercard-radius, 8px);
-            box-shadow: var(--ui-hovercard-shadow, 0 4px 16px rgba(0, 0, 0, 0.12));
-            padding: var(--ui-hovercard-padding, 16px);
-            min-width: var(--ui-hovercard-min-width, 200px);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-            font-size: var(--ui-hovercard-font-size, 0.875rem);
-            color: var(--ui-hovercard-color, #111827);
-            line-height: 1.5;
-        }
-    `;
-Ze([
-  s({ type: String, reflect: !0 })
-], qt.prototype, "side", 2);
-Ze([
-  s({ type: String, reflect: !0 })
-], qt.prototype, "align", 2);
-Ze([
-  s({ type: Boolean, reflect: !0 })
-], qt.prototype, "open", 2);
-qt = Ze([
+Jt.styles = p(Pc);
+ct([
+  o({ type: String, reflect: !0 })
+], Jt.prototype, "side", 2);
+ct([
+  o({ type: String, reflect: !0 })
+], Jt.prototype, "align", 2);
+ct([
+  o({ type: Boolean, reflect: !0 })
+], Jt.prototype, "open", 2);
+Jt = ct([
   d("ui-hover-card-content")
-], qt);
-let gi = class extends c {
+], Jt);
+let xi = class extends c {
   constructor() {
     super(...arguments), this.openDelay = 700, this.closeDelay = 300, this._isOpen = !1, this._openTimer = null, this._closeTimer = null;
   }
@@ -13321,65 +8428,41 @@ let gi = class extends c {
     return l`<slot @slotchange=${() => this._syncChildren()}></slot>`;
   }
 };
-gi.styles = p`
-        :host {
-            display: inline-block;
-            position: relative;
-        }
-    `;
-Ze([
-  s({ type: Number, attribute: "open-delay" })
-], gi.prototype, "openDelay", 2);
-Ze([
-  s({ type: Number, attribute: "close-delay" })
-], gi.prototype, "closeDelay", 2);
-gi = Ze([
+xi.styles = p(Oc);
+ct([
+  o({ type: Number, attribute: "open-delay" })
+], xi.prototype, "openDelay", 2);
+ct([
+  o({ type: Number, attribute: "close-delay" })
+], xi.prototype, "closeDelay", 2);
+xi = ct([
   d("ui-hover-card")
-], gi);
-var pn = Object.defineProperty, hn = Object.getOwnPropertyDescriptor, G = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? hn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && pn(t, i, r), r;
+], xi);
+const Tc = ":host{display:inline-flex;align-items:center}", Ac = ":host{display:inline-flex;align-items:center;padding:0 6px;color:var(--ui-text-color, #111827)}.bar{width:8px;height:2px;background:currentColor;border-radius:1px;opacity:.4}", Bc = ":host{position:relative;display:inline-flex;align-items:center;justify-content:center;width:40px;height:48px;font-size:1.25rem;font-family:var(--ui-font-family, system-ui, sans-serif);font-weight:500;color:var(--ui-text-color, #111827);background:#fff;border:1px solid #d1d5db;margin-left:-1px;cursor:text;-webkit-user-select:none;user-select:none;transition:border-color .15s ease,box-shadow .15s ease}:host(:first-child){margin-left:0;border-radius:6px 0 0 6px}:host(:last-child){border-radius:0 6px 6px 0}:host([active]){z-index:1;border-color:var(--ui-primary-color, #3b82f6);box-shadow:0 0 0 2px #3b82f633}:host([invalid]){border-color:#ef4444}:host([invalid][active]){border-color:#ef4444;box-shadow:0 0 0 2px #ef444433}.cursor{width:2px;height:1.2em;background:var(--ui-text-color, #111827);border-radius:1px;animation:otp-blink 1.2s step-end infinite}@keyframes otp-blink{0%,to{opacity:1}50%{opacity:0}}", Mc = ":host{display:inline-flex;align-items:center;gap:8px;position:relative;cursor:text;font-family:var(--ui-font-family, system-ui, sans-serif)}:host([disabled]){opacity:.5;cursor:not-allowed;pointer-events:none}.hidden-input{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;top:0;left:0;border:none;outline:none;padding:0;margin:0}";
+var Lc = Object.defineProperty, jc = Object.getOwnPropertyDescriptor, ee = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? jc(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Lc(t, i, r), r;
 };
-let Lr = class extends c {
+let Ur = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
-Lr.styles = p`
-        :host {
-            display: inline-flex;
-            align-items: center;
-        }
-    `;
-Lr = G([
+Ur.styles = p(Tc);
+Ur = ee([
   d("ui-input-otp-group")
-], Lr);
-let jr = class extends c {
+], Ur);
+let Rr = class extends c {
   render() {
     return l`<div class="bar"></div>`;
   }
 };
-jr.styles = p`
-        :host {
-            display: inline-flex;
-            align-items: center;
-            padding: 0 6px;
-            color: var(--ui-text-color, #111827);
-        }
-
-        .bar {
-            width: 8px;
-            height: 2px;
-            background: currentColor;
-            border-radius: 1px;
-            opacity: 0.4;
-        }
-    `;
-jr = G([
+Rr.styles = p(Ac);
+Rr = ee([
   d("ui-input-otp-separator")
-], jr);
-let ht = class extends c {
+], Rr);
+let vt = class extends c {
   constructor() {
     super(...arguments), this.index = 0, this.char = "", this.active = !1, this.invalid = !1;
   }
@@ -13387,79 +8470,23 @@ let ht = class extends c {
     return this.char ? l`${this.char}` : this.active ? l`<div class="cursor"></div>` : l``;
   }
 };
-ht.styles = p`
-        :host {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 48px;
-            font-size: 1.25rem;
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-            font-weight: 500;
-            color: var(--ui-text-color, #111827);
-            background: #fff;
-            border: 1px solid #d1d5db;
-            margin-left: -1px;
-            cursor: text;
-            user-select: none;
-            transition: border-color 150ms ease, box-shadow 150ms ease;
-        }
-
-        :host(:first-child) {
-            margin-left: 0;
-            border-radius: 6px 0 0 6px;
-        }
-
-        :host(:last-child) {
-            border-radius: 0 6px 6px 0;
-        }
-
-        :host([active]) {
-            z-index: 1;
-            border-color: var(--ui-primary-color, #3b82f6);
-            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
-        }
-
-        :host([invalid]) {
-            border-color: #ef4444;
-        }
-
-        :host([invalid][active]) {
-            border-color: #ef4444;
-            box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
-        }
-
-        .cursor {
-            width: 2px;
-            height: 1.2em;
-            background: var(--ui-text-color, #111827);
-            border-radius: 1px;
-            animation: otp-blink 1.2s step-end infinite;
-        }
-
-        @keyframes otp-blink {
-            0%, 100% { opacity: 1; }
-            50%       { opacity: 0; }
-        }
-    `;
-G([
-  s({ type: Number })
-], ht.prototype, "index", 2);
-G([
-  s()
-], ht.prototype, "char", 2);
-G([
-  s({ type: Boolean, reflect: !0 })
-], ht.prototype, "active", 2);
-G([
-  s({ type: Boolean, reflect: !0 })
-], ht.prototype, "invalid", 2);
-ht = G([
+vt.styles = p(Bc);
+ee([
+  o({ type: Number })
+], vt.prototype, "index", 2);
+ee([
+  o()
+], vt.prototype, "char", 2);
+ee([
+  o({ type: Boolean, reflect: !0 })
+], vt.prototype, "active", 2);
+ee([
+  o({ type: Boolean, reflect: !0 })
+], vt.prototype, "invalid", 2);
+vt = ee([
   d("ui-input-otp-slot")
-], ht);
-let De = class extends c {
+], vt);
+let Ke = class extends c {
   constructor() {
     super(), this.value = "", this.defaultValue = "", this.maxLength = 6, this.pattern = "", this.disabled = !1, this._internalValue = "", this._focused = !1, this._cursorIndex = 0, this._firstUpdate = !0, this.addEventListener("click", (e) => {
       if (this.disabled) return;
@@ -13482,9 +8509,9 @@ let De = class extends c {
   }
   _syncSlots() {
     const e = this._getAllSlots(), t = this._internalValue.length, i = this._focused ? this._cursorIndex : -1;
-    for (const o of e) {
-      const r = o.index;
-      o.char = r < t ? this._internalValue[r] : "", o.active = r === i;
+    for (const s of e) {
+      const r = s.index;
+      s.char = r < t ? this._internalValue[r] : "", s.active = r === i;
     }
   }
   _filterByPattern(e) {
@@ -13512,14 +8539,14 @@ let De = class extends c {
   _insertChar(e) {
     if (this.pattern && !new RegExp(this.pattern).test(e)) return;
     const t = this._cursorIndex, i = this._internalValue;
-    let o;
+    let s;
     if (t < i.length)
-      o = i.slice(0, t) + e + i.slice(t + 1);
+      s = i.slice(0, t) + e + i.slice(t + 1);
     else if (i.length < this.maxLength)
-      o = i + e;
+      s = i + e;
     else
       return;
-    this._commit(o), this._cursorIndex = Math.min(t + 1, this.maxLength - 1), this._syncSlots();
+    this._commit(s), this._cursorIndex = Math.min(t + 1, this.maxLength - 1), this._syncSlots();
   }
   /** Delete the character at the cursor (standard Backspace). */
   _deleteBackward() {
@@ -13616,98 +8643,53 @@ let De = class extends c {
         `;
   }
 };
-De.styles = p`
-        :host {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            position: relative;
-            cursor: text;
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-        }
-
-        :host([disabled]) {
-            opacity: 0.5;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-
-        .hidden-input {
-            position: absolute;
-            opacity: 0;
-            pointer-events: none;
-            width: 1px;
-            height: 1px;
-            top: 0;
-            left: 0;
-            border: none;
-            outline: none;
-            padding: 0;
-            margin: 0;
-        }
-    `;
-G([
-  s({ reflect: !0 })
-], De.prototype, "value", 2);
-G([
-  s({ attribute: "default-value" })
-], De.prototype, "defaultValue", 2);
-G([
-  s({ type: Number, attribute: "max-length" })
-], De.prototype, "maxLength", 2);
-G([
-  s()
-], De.prototype, "pattern", 2);
-G([
-  s({ type: Boolean, reflect: !0 })
-], De.prototype, "disabled", 2);
-G([
-  vi(".hidden-input")
-], De.prototype, "_hiddenInput", 2);
-De = G([
+Ke.styles = p(Mc);
+ee([
+  o({ reflect: !0 })
+], Ke.prototype, "value", 2);
+ee([
+  o({ attribute: "default-value" })
+], Ke.prototype, "defaultValue", 2);
+ee([
+  o({ type: Number, attribute: "max-length" })
+], Ke.prototype, "maxLength", 2);
+ee([
+  o()
+], Ke.prototype, "pattern", 2);
+ee([
+  o({ type: Boolean, reflect: !0 })
+], Ke.prototype, "disabled", 2);
+ee([
+  wi(".hidden-input")
+], Ke.prototype, "_hiddenInput", 2);
+Ke = ee([
   d("ui-input-otp")
-], De);
-var un = Object.defineProperty, fn = Object.getOwnPropertyDescriptor, ie = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? fn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && un(t, i, r), r;
+], Ke);
+const Uc = ":host{display:block;font-size:.875rem;font-weight:500;line-height:1.4;color:var(--ui-text-color, #111827);font-family:var(--ui-font-family, system-ui, sans-serif)}", Rc = ":host{display:block;font-size:.8125rem;line-height:1.5;color:var(--ui-text-color-muted, #6b7280);font-family:var(--ui-font-family, system-ui, sans-serif)}", Vc = ":host{display:flex;flex-shrink:0;align-items:center;justify-content:center}.media{display:flex;align-items:center;justify-content:center}.media--icon{width:40px;height:40px;border-radius:8px;background:var(--ui-item-media-icon-bg, #f3f4f6);color:var(--ui-item-media-icon-color, #6b7280)}.media--image{width:40px;height:40px;border-radius:6px;overflow:hidden;flex-shrink:0}::slotted(svg),::slotted([data-icon]){width:20px;height:20px}::slotted(img){width:100%;height:100%;object-fit:cover;display:block}", Nc = ":host{display:flex;flex-direction:column;flex:1 1 auto;min-width:0;gap:2px}", Fc = ":host{display:flex;flex-shrink:0;align-items:center;gap:8px;margin-left:auto}", qc = ":host{display:block;flex:0 0 calc(100% + 2 * var(--ui-item-padding, 16px));margin-left:calc(-1 * var(--ui-item-padding, 16px));margin-right:calc(-1 * var(--ui-item-padding, 16px));margin-top:calc(-1 * var(--ui-item-padding, 16px));margin-bottom:0;overflow:hidden;line-height:0}::slotted(img){width:100%;display:block;object-fit:cover}", Hc = ":host{display:block;flex:0 0 calc(100% + 2 * var(--ui-item-padding, 16px));margin-left:calc(-1 * var(--ui-item-padding, 16px));margin-right:calc(-1 * var(--ui-item-padding, 16px));margin-bottom:calc(-1 * var(--ui-item-padding, 16px));margin-top:0;padding:10px var(--ui-item-padding, 16px);border-top:1px solid var(--ui-border-color, #e5e7eb);background:var(--ui-item-footer-bg, transparent);box-sizing:border-box;font-size:.8125rem;color:var(--ui-text-color-muted, #6b7280);font-family:var(--ui-font-family, system-ui, sans-serif)}", Kc = ":host{display:block;height:1px;background:var(--ui-border-color, #e5e7eb)}", Yc = ":host{display:flex;flex-direction:column;gap:var(--ui-item-group-gap, 4px)}", Gc = ':host{--ui-item-padding: 16px;--ui-item-gap: 12px;display:flex;flex-wrap:wrap;align-items:center;gap:var(--ui-item-gap);padding:var(--ui-item-padding);border-radius:8px;box-sizing:border-box;overflow:hidden;font-family:var(--ui-font-family, system-ui, sans-serif)}:host([size="sm"]){--ui-item-padding: 12px;--ui-item-gap: 8px}:host([size="xs"]){--ui-item-padding: 8px;--ui-item-gap: 6px}:host([variant="outline"]){border:1px solid var(--ui-border-color, #e5e7eb)}:host([variant="muted"]){background:var(--ui-muted-bg, #f9fafb)}';
+var Wc = Object.defineProperty, Xc = Object.getOwnPropertyDescriptor, ce = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? Xc(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Wc(t, i, r), r;
 };
-let Ur = class extends c {
+let Vr = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
-Ur.styles = p`
-        :host {
-            display: block;
-            font-size: 0.875rem;
-            font-weight: 500;
-            line-height: 1.4;
-            color: var(--ui-text-color, #111827);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-        }
-    `;
-Ur = ie([
+Vr.styles = p(Uc);
+Vr = ce([
   d("ui-item-title")
-], Ur);
-let Rr = class extends c {
+], Vr);
+let Nr = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
-Rr.styles = p`
-        :host {
-            display: block;
-            font-size: 0.8125rem;
-            line-height: 1.5;
-            color: var(--ui-text-color-muted, #6b7280);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-        }
-    `;
-Rr = ie([
+Nr.styles = p(Rc);
+Nr = ce([
   d("ui-item-description")
-], Rr);
-let Ri = class extends c {
+], Nr);
+let Fi = class extends c {
   constructor() {
     super(...arguments), this.variant = "default";
   }
@@ -13723,142 +8705,50 @@ let Ri = class extends c {
         `;
   }
 };
-Ri.styles = p`
-        :host {
-            display: flex;
-            flex-shrink: 0;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .media {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .media--icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            background: var(--ui-item-media-icon-bg, #f3f4f6);
-            color: var(--ui-item-media-icon-color, #6b7280);
-        }
-
-        .media--image {
-            width: 40px;
-            height: 40px;
-            border-radius: 6px;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-
-        ::slotted(svg),
-        ::slotted([data-icon]) {
-            width: 20px;
-            height: 20px;
-        }
-
-        ::slotted(img) {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-    `;
-ie([
-  s({ reflect: !0 })
-], Ri.prototype, "variant", 2);
-Ri = ie([
+Fi.styles = p(Vc);
+ce([
+  o({ reflect: !0 })
+], Fi.prototype, "variant", 2);
+Fi = ce([
   d("ui-item-media")
-], Ri);
-let Nr = class extends c {
-  render() {
-    return l`<slot></slot>`;
-  }
-};
-Nr.styles = p`
-        :host {
-            display: flex;
-            flex-direction: column;
-            flex: 1 1 auto;
-            min-width: 0;
-            gap: 2px;
-        }
-    `;
-Nr = ie([
-  d("ui-item-content")
-], Nr);
-let Vr = class extends c {
-  render() {
-    return l`<slot></slot>`;
-  }
-};
-Vr.styles = p`
-        :host {
-            display: flex;
-            flex-shrink: 0;
-            align-items: center;
-            gap: 8px;
-            margin-left: auto;
-        }
-    `;
-Vr = ie([
-  d("ui-item-actions")
-], Vr);
+], Fi);
 let Fr = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
-Fr.styles = p`
-        :host {
-            display: block;
-            /* Stretch to fill item width including its padding */
-            flex: 0 0 calc(100% + 2 * var(--ui-item-padding, 16px));
-            margin-left: calc(-1 * var(--ui-item-padding, 16px));
-            margin-right: calc(-1 * var(--ui-item-padding, 16px));
-            margin-top: calc(-1 * var(--ui-item-padding, 16px));
-            margin-bottom: 0;
-            overflow: hidden;
-            line-height: 0;
-        }
-
-        ::slotted(img) {
-            width: 100%;
-            display: block;
-            object-fit: cover;
-        }
-    `;
-Fr = ie([
-  d("ui-item-header")
+Fr.styles = p(Nc);
+Fr = ce([
+  d("ui-item-content")
 ], Fr);
 let qr = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
-qr.styles = p`
-        :host {
-            display: block;
-            flex: 0 0 calc(100% + 2 * var(--ui-item-padding, 16px));
-            margin-left: calc(-1 * var(--ui-item-padding, 16px));
-            margin-right: calc(-1 * var(--ui-item-padding, 16px));
-            margin-bottom: calc(-1 * var(--ui-item-padding, 16px));
-            margin-top: 0;
-            padding: 10px var(--ui-item-padding, 16px);
-            border-top: 1px solid var(--ui-border-color, #e5e7eb);
-            background: var(--ui-item-footer-bg, transparent);
-            box-sizing: border-box;
-            font-size: 0.8125rem;
-            color: var(--ui-text-color-muted, #6b7280);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-        }
-    `;
-qr = ie([
-  d("ui-item-footer")
+qr.styles = p(Fc);
+qr = ce([
+  d("ui-item-actions")
 ], qr);
 let Hr = class extends c {
+  render() {
+    return l`<slot></slot>`;
+  }
+};
+Hr.styles = p(qc);
+Hr = ce([
+  d("ui-item-header")
+], Hr);
+let Kr = class extends c {
+  render() {
+    return l`<slot></slot>`;
+  }
+};
+Kr.styles = p(Hc);
+Kr = ce([
+  d("ui-item-footer")
+], Kr);
+let Yr = class extends c {
   connectedCallback() {
     super.connectedCallback(), this.hasAttribute("role") || this.setAttribute("role", "separator"), this.hasAttribute("aria-orientation") || this.setAttribute("aria-orientation", "horizontal");
   }
@@ -13866,32 +8756,20 @@ let Hr = class extends c {
     return l``;
   }
 };
-Hr.styles = p`
-        :host {
-            display: block;
-            height: 1px;
-            background: var(--ui-border-color, #e5e7eb);
-        }
-    `;
-Hr = ie([
+Yr.styles = p(Kc);
+Yr = ce([
   d("ui-item-separator")
-], Hr);
-let Yr = class extends c {
+], Yr);
+let Gr = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
-Yr.styles = p`
-        :host {
-            display: flex;
-            flex-direction: column;
-            gap: var(--ui-item-group-gap, 4px);
-        }
-    `;
-Yr = ie([
+Gr.styles = p(Yc);
+Gr = ce([
   d("ui-item-group")
-], Yr);
-let mi = class extends c {
+], Gr);
+let _i = class extends c {
   constructor() {
     super(...arguments), this.variant = "default", this.size = "default";
   }
@@ -13899,212 +8777,101 @@ let mi = class extends c {
     return l`<slot></slot>`;
   }
 };
-mi.styles = p`
-        :host {
-            /* Sizing custom properties — read by sub-components too */
-            --ui-item-padding: 16px;
-            --ui-item-gap: 12px;
-
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: var(--ui-item-gap);
-            padding: var(--ui-item-padding);
-            border-radius: 8px;
-            box-sizing: border-box;
-            overflow: hidden;
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-        }
-
-        /* Size variants — override sizing custom properties */
-        :host([size='sm']) {
-            --ui-item-padding: 12px;
-            --ui-item-gap: 8px;
-        }
-
-        :host([size='xs']) {
-            --ui-item-padding: 8px;
-            --ui-item-gap: 6px;
-        }
-
-        /* Visual variants */
-        :host([variant='outline']) {
-            border: 1px solid var(--ui-border-color, #e5e7eb);
-        }
-
-        :host([variant='muted']) {
-            background: var(--ui-muted-bg, #f9fafb);
-        }
-    `;
-ie([
-  s({ reflect: !0 })
-], mi.prototype, "variant", 2);
-ie([
-  s({ reflect: !0 })
-], mi.prototype, "size", 2);
-mi = ie([
+_i.styles = p(Gc);
+ce([
+  o({ reflect: !0 })
+], _i.prototype, "variant", 2);
+ce([
+  o({ reflect: !0 })
+], _i.prototype, "size", 2);
+_i = ce([
   d("ui-item")
-], mi);
-var bn = Object.defineProperty, gn = Object.getOwnPropertyDescriptor, Ii = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? gn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && bn(t, i, r), r;
+], _i);
+const Jc = ':host{display:inline-flex;align-items:center;justify-content:center}kbd{display:inline-flex;align-items:center;justify-content:center;font-family:var(--ui-kbd-font-family, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);font-size:.8125rem;font-weight:500;line-height:1;color:var(--ui-kbd-color, #374151);background:var(--ui-kbd-bg, #f9fafb);border:1px solid var(--ui-kbd-border-color, #e5e7eb);border-bottom-width:2px;border-radius:var(--ui-kbd-radius, 4px);box-shadow:0 1px 0 0 var(--ui-kbd-shadow-color, #d1d5db);padding:2px 6px;white-space:nowrap;-webkit-user-select:none;user-select:none}:host([size="sm"]) kbd{font-size:.6875rem;padding:1px 4px}:host([size="lg"]) kbd{font-size:.9375rem;padding:4px 10px}:host([variant="flat"]) kbd{border-bottom-width:1px;box-shadow:none}', Zc = ":host{display:inline-flex;align-items:center;gap:var(--ui-kbd-group-gap, 4px)}";
+var Qc = Object.defineProperty, ed = Object.getOwnPropertyDescriptor, Ei = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? ed(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && Qc(t, i, r), r;
 };
-let Ht = class extends c {
+let Zt = class extends c {
   constructor() {
     super(...arguments), this.size = "default", this.variant = "raised", this.label = "";
   }
   render() {
     return l`
-            <kbd aria-label=${this.label || y}>
+            <kbd aria-label=${this.label || v}>
                 <slot></slot>
             </kbd>
         `;
   }
 };
-Ht.styles = p`
-        :host {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        kbd {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--ui-kbd-font-family, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
-            font-size: 0.8125rem;
-            font-weight: 500;
-            line-height: 1;
-            color: var(--ui-kbd-color, #374151);
-            background: var(--ui-kbd-bg, #f9fafb);
-            border: 1px solid var(--ui-kbd-border-color, #e5e7eb);
-            border-bottom-width: 2px;
-            border-radius: var(--ui-kbd-radius, 4px);
-            box-shadow: 0 1px 0 0 var(--ui-kbd-shadow-color, #d1d5db);
-            padding: 2px 6px;
-            white-space: nowrap;
-            user-select: none;
-        }
-
-        /* size variants */
-        :host([size="sm"]) kbd {
-            font-size: 0.6875rem;
-            padding: 1px 4px;
-        }
-
-        :host([size="lg"]) kbd {
-            font-size: 0.9375rem;
-            padding: 4px 10px;
-        }
-
-        /* flat variant — no raised effect */
-        :host([variant="flat"]) kbd {
-            border-bottom-width: 1px;
-            box-shadow: none;
-        }
-    `;
-Ii([
-  s({ reflect: !0 })
-], Ht.prototype, "size", 2);
-Ii([
-  s({ reflect: !0 })
-], Ht.prototype, "variant", 2);
-Ii([
-  s({ reflect: !0 })
-], Ht.prototype, "label", 2);
-Ht = Ii([
+Zt.styles = p(Jc);
+Ei([
+  o({ reflect: !0 })
+], Zt.prototype, "size", 2);
+Ei([
+  o({ reflect: !0 })
+], Zt.prototype, "variant", 2);
+Ei([
+  o({ reflect: !0 })
+], Zt.prototype, "label", 2);
+Zt = Ei([
   d("ui-kbd")
-], Ht);
-let Kr = class extends c {
-  render() {
-    return l`<slot></slot>`;
-  }
-};
-Kr.styles = p`
-        :host {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--ui-kbd-group-gap, 4px);
-        }
-    `;
-Kr = Ii([
-  d("ui-kbd-group")
-], Kr);
-var mn = Object.defineProperty, vn = Object.getOwnPropertyDescriptor, x = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? vn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
-    (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && mn(t, i, r), r;
-};
+], Zt);
 let Wr = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
-Wr.styles = p`
-        :host {
-            display: inline-flex;
-            align-items: center;
-            margin-left: auto;
-            padding-left: 16px;
-            font-size: 0.6875rem;
-            letter-spacing: 0.05em;
-            color: var(--ui-text-color-muted, #6b7280);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-        }
-    `;
-Wr = x([
-  d("ui-menubar-shortcut")
+Wr.styles = p(Zc);
+Wr = Ei([
+  d("ui-kbd-group")
 ], Wr);
-let Gr = class extends c {
+const td = ":host{display:inline-flex;align-items:center;margin-left:auto;padding-left:16px;font-size:.6875rem;letter-spacing:.05em;color:var(--ui-text-color-muted, #6b7280);font-family:var(--ui-font-family, system-ui, sans-serif)}", id = ":host{display:block;height:1px;background:var(--ui-border-color, #e5e7eb);margin:4px -4px}:host([hidden]){display:none!important}", rd = ":host{display:block}.heading{padding:6px 8px 4px;font-size:.6875rem;font-weight:600;color:var(--ui-text-color-muted, #6b7280);font-family:var(--ui-font-family, system-ui, sans-serif);-webkit-user-select:none;user-select:none}", sd = ":host{display:block}:host([hidden]){display:none!important}.item{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:4px;cursor:pointer;font-size:.875rem;line-height:1.25rem;color:var(--ui-text-color, #111827);font-family:var(--ui-font-family, system-ui, sans-serif);outline:none;-webkit-user-select:none;user-select:none;transition:background .1s}:host([inset]) .item{padding-left:32px}:host([highlighted]) .item{background:var(--ui-menubar-highlight-bg, rgba(0, 0, 0, .06))}:host([disabled]) .item{opacity:.5;pointer-events:none;cursor:default}", od = ":host{display:block}:host([hidden]){display:none!important}.item{display:flex;align-items:center;gap:8px;padding:6px 8px 6px 32px;border-radius:4px;cursor:pointer;font-size:.875rem;line-height:1.25rem;color:var(--ui-text-color, #111827);font-family:var(--ui-font-family, system-ui, sans-serif);outline:none;-webkit-user-select:none;user-select:none;transition:background .1s;position:relative}:host([highlighted]) .item{background:var(--ui-menubar-highlight-bg, rgba(0, 0, 0, .06))}:host([disabled]) .item{opacity:.5;pointer-events:none}.check{position:absolute;left:8px;top:50%;transform:translateY(-50%);width:16px;height:16px;display:flex;align-items:center;justify-content:center}", ad = ":host{display:block}:host([hidden]){display:none!important}.item{display:flex;align-items:center;gap:8px;padding:6px 8px 6px 32px;border-radius:4px;cursor:pointer;font-size:.875rem;line-height:1.25rem;color:var(--ui-text-color, #111827);font-family:var(--ui-font-family, system-ui, sans-serif);outline:none;-webkit-user-select:none;user-select:none;transition:background .1s;position:relative}:host([highlighted]) .item{background:var(--ui-menubar-highlight-bg, rgba(0, 0, 0, .06))}:host([disabled]) .item{opacity:.5;pointer-events:none}.dot{position:absolute;left:8px;top:50%;transform:translateY(-50%);width:16px;height:16px;display:flex;align-items:center;justify-content:center}", nd = ":host{display:block}", ld = ":host{display:none;position:absolute;left:100%;top:-4px;z-index:1001}:host([open]){display:block}.panel{min-width:180px;background:var(--ui-menubar-content-bg, #fff);border:1px solid var(--ui-border-color, #e5e7eb);border-radius:6px;padding:4px;box-shadow:0 4px 16px #0000001f;animation:menubar-sub-in .12s ease-out}@keyframes menubar-sub-in{0%{opacity:0;transform:translate(-4px)}to{opacity:1;transform:translate(0)}}", cd = ":host{display:block}.item{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:4px;cursor:pointer;font-size:.875rem;line-height:1.25rem;color:var(--ui-text-color, #111827);font-family:var(--ui-font-family, system-ui, sans-serif);outline:none;-webkit-user-select:none;user-select:none;transition:background .1s}:host([inset]) .item{padding-left:32px}:host([highlighted]) .item{background:var(--ui-menubar-highlight-bg, rgba(0, 0, 0, .06))}:host([disabled]) .item{opacity:.5;pointer-events:none}.arrow{margin-left:auto;width:14px;height:14px;color:var(--ui-text-color-muted, #6b7280)}", dd = ":host{display:block;position:relative}", pd = ":host{display:none;position:absolute;top:100%;left:0;z-index:1000;padding-top:4px}:host([open]){display:block}.panel{min-width:200px;background:var(--ui-menubar-content-bg, #fff);border:1px solid var(--ui-border-color, #e5e7eb);border-radius:6px;padding:4px;box-shadow:0 4px 16px #0000001f;animation:menubar-in .12s ease-out}@keyframes menubar-in{0%{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}", hd = ":host{display:inline-flex}.trigger{display:inline-flex;align-items:center;justify-content:center;padding:4px 10px;border:none;background:transparent;border-radius:4px;font-size:.875rem;font-weight:500;line-height:1.5;color:var(--ui-text-color, #111827);font-family:var(--ui-font-family, system-ui, sans-serif);cursor:pointer;outline:none;-webkit-user-select:none;user-select:none;white-space:nowrap;transition:background .1s}.trigger:hover,:host([active]) .trigger{background:var(--ui-menubar-trigger-hover-bg, rgba(0, 0, 0, .06))}.trigger:focus-visible{outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:-2px}.trigger:disabled,:host([disabled]) .trigger{opacity:.5;cursor:default;pointer-events:none}", ud = ":host{display:inline-block;position:relative}", fd = ":host{display:inline-flex;align-items:center;background:var(--ui-menubar-bg, #fff);border:1px solid var(--ui-border-color, #e5e7eb);border-radius:6px;padding:3px;gap:2px;font-family:var(--ui-font-family, system-ui, sans-serif)}";
+var bd = Object.defineProperty, md = Object.getOwnPropertyDescriptor, x = (e, t, i, s) => {
+  for (var r = s > 1 ? void 0 : s ? md(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+    (n = e[a]) && (r = (s ? n(t, i, r) : n(r)) || r);
+  return s && r && bd(t, i, r), r;
+};
+let Xr = class extends c {
+  render() {
+    return l`<slot></slot>`;
+  }
+};
+Xr.styles = p(td);
+Xr = x([
+  d("ui-menubar-shortcut")
+], Xr);
+let Jr = class extends c {
   render() {
     return l``;
   }
 };
-Gr.styles = p`
-        :host {
-            display: block;
-            height: 1px;
-            background: var(--ui-border-color, #e5e7eb);
-            margin: 4px -4px;
-        }
-        :host([hidden]) { display: none !important; }
-    `;
-Gr = x([
+Jr.styles = p(id);
+Jr = x([
   d("ui-menubar-separator")
-], Gr);
-let Ni = class extends c {
+], Jr);
+let qi = class extends c {
   constructor() {
     super(...arguments), this.heading = "";
   }
   render() {
     return l`
-            ${this.heading ? l`<div class="heading" role="presentation">${this.heading}</div>` : y}
-            <div role="group" aria-label=${this.heading || y}>
+            ${this.heading ? l`<div class="heading" role="presentation">${this.heading}</div>` : v}
+            <div role="group" aria-label=${this.heading || v}>
                 <slot></slot>
             </div>
         `;
   }
 };
-Ni.styles = p`
-        :host { display: block; }
-        .heading {
-            padding: 6px 8px 4px;
-            font-size: 0.6875rem;
-            font-weight: 600;
-            color: var(--ui-text-color-muted, #6b7280);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-            user-select: none;
-        }
-    `;
+qi.styles = p(rd);
 x([
-  s({ reflect: !0 })
-], Ni.prototype, "heading", 2);
-Ni = x([
+  o({ reflect: !0 })
+], qi.prototype, "heading", 2);
+qi = x([
   d("ui-menubar-group")
-], Ni);
-let ut = class extends c {
+], qi);
+let yt = class extends c {
   constructor() {
     super(...arguments), this.disabled = !1, this.highlighted = !1, this.inset = !1, this.value = "";
   }
@@ -14124,56 +8891,23 @@ let ut = class extends c {
     return l`<div class="item" role="menuitem" aria-disabled=${this.disabled}><slot></slot></div>`;
   }
 };
-ut.styles = p`
-        :host { display: block; }
-        :host([hidden]) { display: none !important; }
-
-        .item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 8px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.875rem;
-            line-height: 1.25rem;
-            color: var(--ui-text-color, #111827);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-            outline: none;
-            user-select: none;
-            transition: background 0.1s;
-        }
-
-        :host([inset]) .item {
-            padding-left: 32px;
-        }
-
-        :host([highlighted]) .item {
-            background: var(--ui-menubar-highlight-bg, rgba(0, 0, 0, 0.06));
-        }
-
-        :host([disabled]) .item {
-            opacity: 0.5;
-            pointer-events: none;
-            cursor: default;
-        }
-    `;
+yt.styles = p(sd);
 x([
-  s({ reflect: !0, type: Boolean })
-], ut.prototype, "disabled", 2);
+  o({ reflect: !0, type: Boolean })
+], yt.prototype, "disabled", 2);
 x([
-  s({ reflect: !0, type: Boolean })
-], ut.prototype, "highlighted", 2);
+  o({ reflect: !0, type: Boolean })
+], yt.prototype, "highlighted", 2);
 x([
-  s({ reflect: !0, type: Boolean })
-], ut.prototype, "inset", 2);
+  o({ reflect: !0, type: Boolean })
+], yt.prototype, "inset", 2);
 x([
-  s({ reflect: !0 })
-], ut.prototype, "value", 2);
-ut = x([
+  o({ reflect: !0 })
+], yt.prototype, "value", 2);
+yt = x([
   d("ui-menubar-item")
-], ut);
-let ft = class extends c {
+], yt);
+let xt = class extends c {
   constructor() {
     super(...arguments), this.checked = !1, this.disabled = !1, this.highlighted = !1, this.value = "";
   }
@@ -14191,71 +8925,30 @@ let ft = class extends c {
     return l`
             <div class="item" role="menuitemcheckbox" aria-checked=${this.checked} aria-disabled=${this.disabled}>
                 <span class="check">
-                    ${this.checked ? l`<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11.5 3.5L5.5 9.5L2.5 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>` : y}
+                    ${this.checked ? l`<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11.5 3.5L5.5 9.5L2.5 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>` : v}
                 </span>
                 <slot></slot>
             </div>
         `;
   }
 };
-ft.styles = p`
-        :host { display: block; }
-        :host([hidden]) { display: none !important; }
-
-        .item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 8px 6px 32px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.875rem;
-            line-height: 1.25rem;
-            color: var(--ui-text-color, #111827);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-            outline: none;
-            user-select: none;
-            transition: background 0.1s;
-            position: relative;
-        }
-
-        :host([highlighted]) .item {
-            background: var(--ui-menubar-highlight-bg, rgba(0, 0, 0, 0.06));
-        }
-
-        :host([disabled]) .item {
-            opacity: 0.5;
-            pointer-events: none;
-        }
-
-        .check {
-            position: absolute;
-            left: 8px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 16px;
-            height: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-    `;
+xt.styles = p(od);
 x([
-  s({ reflect: !0, type: Boolean })
-], ft.prototype, "checked", 2);
+  o({ reflect: !0, type: Boolean })
+], xt.prototype, "checked", 2);
 x([
-  s({ reflect: !0, type: Boolean })
-], ft.prototype, "disabled", 2);
+  o({ reflect: !0, type: Boolean })
+], xt.prototype, "disabled", 2);
 x([
-  s({ reflect: !0, type: Boolean })
-], ft.prototype, "highlighted", 2);
+  o({ reflect: !0, type: Boolean })
+], xt.prototype, "highlighted", 2);
 x([
-  s({ reflect: !0 })
-], ft.prototype, "value", 2);
-ft = x([
+  o({ reflect: !0 })
+], xt.prototype, "value", 2);
+xt = x([
   d("ui-menubar-checkbox-item")
-], ft);
-let bt = class extends c {
+], xt);
+let _t = class extends c {
   constructor() {
     super(...arguments), this.value = "", this.checked = !1, this.disabled = !1, this.highlighted = !1;
   }
@@ -14270,71 +8963,30 @@ let bt = class extends c {
     return l`
             <div class="item" role="menuitemradio" aria-checked=${this.checked} aria-disabled=${this.disabled}>
                 <span class="dot">
-                    ${this.checked ? l`<svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"></circle></svg>` : y}
+                    ${this.checked ? l`<svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"></circle></svg>` : v}
                 </span>
                 <slot></slot>
             </div>
         `;
   }
 };
-bt.styles = p`
-        :host { display: block; }
-        :host([hidden]) { display: none !important; }
-
-        .item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 8px 6px 32px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.875rem;
-            line-height: 1.25rem;
-            color: var(--ui-text-color, #111827);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-            outline: none;
-            user-select: none;
-            transition: background 0.1s;
-            position: relative;
-        }
-
-        :host([highlighted]) .item {
-            background: var(--ui-menubar-highlight-bg, rgba(0, 0, 0, 0.06));
-        }
-
-        :host([disabled]) .item {
-            opacity: 0.5;
-            pointer-events: none;
-        }
-
-        .dot {
-            position: absolute;
-            left: 8px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 16px;
-            height: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-    `;
+_t.styles = p(ad);
 x([
-  s({ reflect: !0 })
-], bt.prototype, "value", 2);
+  o({ reflect: !0 })
+], _t.prototype, "value", 2);
 x([
-  s({ reflect: !0, type: Boolean })
-], bt.prototype, "checked", 2);
+  o({ reflect: !0, type: Boolean })
+], _t.prototype, "checked", 2);
 x([
-  s({ reflect: !0, type: Boolean })
-], bt.prototype, "disabled", 2);
+  o({ reflect: !0, type: Boolean })
+], _t.prototype, "disabled", 2);
 x([
-  s({ reflect: !0, type: Boolean })
-], bt.prototype, "highlighted", 2);
-bt = x([
+  o({ reflect: !0, type: Boolean })
+], _t.prototype, "highlighted", 2);
+_t = x([
   d("ui-menubar-radio-item")
-], bt);
-let Vi = class extends c {
+], _t);
+let Hi = class extends c {
   constructor() {
     super(...arguments), this.value = "", this._handleRadioSelect = (e) => {
       const t = e;
@@ -14365,16 +9017,14 @@ let Vi = class extends c {
     return l`<div role="group"><slot @slotchange=${this._onSlotChange}></slot></div>`;
   }
 };
-Vi.styles = p`
-        :host { display: block; }
-    `;
+Hi.styles = p(nd);
 x([
-  s({ reflect: !0 })
-], Vi.prototype, "value", 2);
-Vi = x([
+  o({ reflect: !0 })
+], Hi.prototype, "value", 2);
+Hi = x([
   d("ui-menubar-radio-group")
-], Vi);
-let Fi = class extends c {
+], Hi);
+let Ki = class extends c {
   constructor() {
     super(...arguments), this.open = !1;
   }
@@ -14387,38 +9037,14 @@ let Fi = class extends c {
     return l`<div class="panel" role="menu"><slot></slot></div>`;
   }
 };
-Fi.styles = p`
-        :host {
-            display: none;
-            position: absolute;
-            left: 100%;
-            top: -4px;
-            z-index: 1001;
-        }
-        :host([open]) {
-            display: block;
-        }
-        .panel {
-            min-width: 180px;
-            background: var(--ui-menubar-content-bg, #fff);
-            border: 1px solid var(--ui-border-color, #e5e7eb);
-            border-radius: 6px;
-            padding: 4px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-            animation: menubar-sub-in 0.12s ease-out;
-        }
-        @keyframes menubar-sub-in {
-            from { opacity: 0; transform: translateX(-4px); }
-            to   { opacity: 1; transform: translateX(0); }
-        }
-    `;
+Ki.styles = p(ld);
 x([
-  s({ reflect: !0, type: Boolean })
-], Fi.prototype, "open", 2);
-Fi = x([
+  o({ reflect: !0, type: Boolean })
+], Ki.prototype, "open", 2);
+Ki = x([
   d("ui-menubar-sub-content")
-], Fi);
-let gt = class extends c {
+], Ki);
+let wt = class extends c {
   constructor() {
     super(...arguments), this.highlighted = !1, this.disabled = !1, this.inset = !1, this.expanded = !1;
   }
@@ -14437,61 +9063,23 @@ let gt = class extends c {
         `;
   }
 };
-gt.styles = p`
-        :host { display: block; }
-
-        .item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 8px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.875rem;
-            line-height: 1.25rem;
-            color: var(--ui-text-color, #111827);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-            outline: none;
-            user-select: none;
-            transition: background 0.1s;
-        }
-
-        :host([inset]) .item {
-            padding-left: 32px;
-        }
-
-        :host([highlighted]) .item {
-            background: var(--ui-menubar-highlight-bg, rgba(0, 0, 0, 0.06));
-        }
-
-        :host([disabled]) .item {
-            opacity: 0.5;
-            pointer-events: none;
-        }
-
-        .arrow {
-            margin-left: auto;
-            width: 14px;
-            height: 14px;
-            color: var(--ui-text-color-muted, #6b7280);
-        }
-    `;
+wt.styles = p(cd);
 x([
-  s({ reflect: !0, type: Boolean })
-], gt.prototype, "highlighted", 2);
+  o({ reflect: !0, type: Boolean })
+], wt.prototype, "highlighted", 2);
 x([
-  s({ reflect: !0, type: Boolean })
-], gt.prototype, "disabled", 2);
+  o({ reflect: !0, type: Boolean })
+], wt.prototype, "disabled", 2);
 x([
-  s({ reflect: !0, type: Boolean })
-], gt.prototype, "inset", 2);
+  o({ reflect: !0, type: Boolean })
+], wt.prototype, "inset", 2);
 x([
-  s({ reflect: !0, type: Boolean })
-], gt.prototype, "expanded", 2);
-gt = x([
+  o({ reflect: !0, type: Boolean })
+], wt.prototype, "expanded", 2);
+wt = x([
   d("ui-menubar-sub-trigger")
-], gt);
-let Xr = class extends c {
+], wt);
+let Zr = class extends c {
   constructor() {
     super(...arguments), this._open = !1, this._openTimer = null, this._closeTimer = null, this._handleMouseEnter = () => {
       this.show();
@@ -14535,16 +9123,11 @@ let Xr = class extends c {
     return l`<slot></slot>`;
   }
 };
-Xr.styles = p`
-        :host {
-            display: block;
-            position: relative;
-        }
-    `;
-Xr = x([
+Zr.styles = p(dd);
+Zr = x([
   d("ui-menubar-sub")
-], Xr);
-let qi = class extends c {
+], Zr);
+let Yi = class extends c {
   constructor() {
     super(...arguments), this.open = !1, this._highlightIndex = -1, this._handleClick = (e) => {
       const t = e.target, i = t.closest("ui-menubar-item");
@@ -14552,9 +9135,9 @@ let qi = class extends c {
         i.select(), this._requestClose();
         return;
       }
-      const o = t.closest("ui-menubar-checkbox-item");
-      if (o && !o.disabled) {
-        o.toggle();
+      const s = t.closest("ui-menubar-checkbox-item");
+      if (s && !s.disabled) {
+        s.toggle();
         return;
       }
       const r = t.closest("ui-menubar-radio-item");
@@ -14566,8 +9149,8 @@ let qi = class extends c {
       const i = e.target.closest("ui-menubar-item, ui-menubar-checkbox-item, ui-menubar-radio-item, ui-menubar-sub-trigger");
       if (i && !i.disabled) {
         this._clearHighlight(), i.highlighted = !0;
-        const o = this._getNavigableItems();
-        this._highlightIndex = o.indexOf(i);
+        const s = this._getNavigableItems();
+        this._highlightIndex = s.indexOf(i);
       }
     };
   }
@@ -14626,8 +9209,8 @@ let qi = class extends c {
           else if (i.tagName === "UI-MENUBAR-RADIO-ITEM")
             i.select();
           else if (i.tagName === "UI-MENUBAR-SUB-TRIGGER") {
-            const o = i.closest("ui-menubar-sub");
-            o && o.showImmediate();
+            const s = i.closest("ui-menubar-sub");
+            s && s.showImmediate();
           }
         }
         break;
@@ -14637,10 +9220,10 @@ let qi = class extends c {
           const i = t[this._highlightIndex];
           if (i.tagName === "UI-MENUBAR-SUB-TRIGGER") {
             e.preventDefault();
-            const o = i.closest("ui-menubar-sub");
-            if (o) {
-              o.showImmediate();
-              const r = o.querySelector("ui-menubar-sub-content");
+            const s = i.closest("ui-menubar-sub");
+            if (s) {
+              s.showImmediate();
+              const r = s.querySelector("ui-menubar-sub-content");
               if (r) {
                 const a = Array.from(r.querySelectorAll(
                   "ui-menubar-item:not([disabled]),ui-menubar-checkbox-item:not([disabled]),ui-menubar-radio-item:not([disabled]),ui-menubar-sub-trigger:not([disabled])"
@@ -14654,7 +9237,7 @@ let qi = class extends c {
         break;
       }
       case "ArrowLeft": {
-        const i = Array.from(this.querySelectorAll("ui-menubar-sub")).find((o) => o.open);
+        const i = Array.from(this.querySelectorAll("ui-menubar-sub")).find((s) => s.open);
         if (i) {
           e.preventDefault(), i.hideImmediate();
           return;
@@ -14669,9 +9252,9 @@ let qi = class extends c {
         if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
           if (t.length === 0) return;
           e.preventDefault();
-          const i = e.key.toLowerCase(), o = this._highlightIndex >= 0 ? this._highlightIndex + 1 : 0;
+          const i = e.key.toLowerCase(), s = this._highlightIndex >= 0 ? this._highlightIndex + 1 : 0;
           for (let r = 0; r < t.length; r++) {
-            const a = (o + r) % t.length;
+            const a = (s + r) % t.length;
             if ((t[a].textContent?.trim().toLowerCase() ?? "").startsWith(i)) {
               this._highlightItem(a);
               break;
@@ -14699,39 +9282,14 @@ let qi = class extends c {
     return l`<div class="panel" role="menu"><slot></slot></div>`;
   }
 };
-qi.styles = p`
-        :host {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            z-index: 1000;
-            padding-top: 4px;
-        }
-        :host([open]) {
-            display: block;
-        }
-        .panel {
-            min-width: 200px;
-            background: var(--ui-menubar-content-bg, #fff);
-            border: 1px solid var(--ui-border-color, #e5e7eb);
-            border-radius: 6px;
-            padding: 4px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-            animation: menubar-in 0.12s ease-out;
-        }
-        @keyframes menubar-in {
-            from { opacity: 0; transform: translateY(-4px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-    `;
+Yi.styles = p(pd);
 x([
-  s({ reflect: !0, type: Boolean })
-], qi.prototype, "open", 2);
-qi = x([
+  o({ reflect: !0, type: Boolean })
+], Yi.prototype, "open", 2);
+Yi = x([
   d("ui-menubar-content")
-], qi);
-let Yt = class extends c {
+], Yi);
+let Qt = class extends c {
   constructor() {
     super(...arguments), this.active = !1, this.disabled = !1, this._focusable = !1;
   }
@@ -14751,61 +9309,20 @@ let Yt = class extends c {
         `;
   }
 };
-Yt.styles = p`
-        :host {
-            display: inline-flex;
-        }
-
-        .trigger {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 4px 10px;
-            border: none;
-            background: transparent;
-            border-radius: 4px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            line-height: 1.5;
-            color: var(--ui-text-color, #111827);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-            cursor: pointer;
-            outline: none;
-            user-select: none;
-            white-space: nowrap;
-            transition: background 0.1s;
-        }
-
-        .trigger:hover,
-        :host([active]) .trigger {
-            background: var(--ui-menubar-trigger-hover-bg, rgba(0, 0, 0, 0.06));
-        }
-
-        .trigger:focus-visible {
-            outline: 2px solid var(--ui-primary-color, #3b82f6);
-            outline-offset: -2px;
-        }
-
-        .trigger:disabled,
-        :host([disabled]) .trigger {
-            opacity: 0.5;
-            cursor: default;
-            pointer-events: none;
-        }
-    `;
+Qt.styles = p(hd);
 x([
-  s({ reflect: !0, type: Boolean })
-], Yt.prototype, "active", 2);
+  o({ reflect: !0, type: Boolean })
+], Qt.prototype, "active", 2);
 x([
-  s({ reflect: !0, type: Boolean })
-], Yt.prototype, "disabled", 2);
+  o({ reflect: !0, type: Boolean })
+], Qt.prototype, "disabled", 2);
 x([
-  m()
-], Yt.prototype, "_focusable", 2);
-Yt = x([
+  g()
+], Qt.prototype, "_focusable", 2);
+Qt = x([
   d("ui-menubar-trigger")
-], Yt);
-let Hi = class extends c {
+], Qt);
+let Gi = class extends c {
   constructor() {
     super(...arguments), this.disabled = !1;
   }
@@ -14837,19 +9354,14 @@ let Hi = class extends c {
     return l`<slot></slot>`;
   }
 };
-Hi.styles = p`
-        :host {
-            display: inline-block;
-            position: relative;
-        }
-    `;
+Gi.styles = p(ud);
 x([
-  s({ reflect: !0, type: Boolean })
-], Hi.prototype, "disabled", 2);
-Hi = x([
+  o({ reflect: !0, type: Boolean })
+], Gi.prototype, "disabled", 2);
+Gi = x([
   d("ui-menubar-menu")
-], Hi);
-let Yi = class extends c {
+], Gi);
+let Wi = class extends c {
   constructor() {
     super(...arguments), this._activeIndex = -1, this.label = "", this._handleTriggerClick = (e) => {
       const t = e.target.closest?.("ui-menubar-trigger");
@@ -14897,8 +9409,8 @@ let Yi = class extends c {
             const i = t.findIndex((r) => !r.disabled);
             if (i === -1) return;
             this._openMenu(i);
-            const o = t[i]?.content;
-            o && o.handleKeyDown(e);
+            const s = t[i]?.content;
+            s && s.handleKeyDown(e);
           } else {
             const i = t[this._activeIndex]?.content;
             i && i.handleKeyDown(e);
@@ -14917,9 +9429,9 @@ let Yi = class extends c {
             e.preventDefault();
             const i = this.querySelector('ui-menubar-trigger[tabindex="0"]');
             if (i) {
-              const o = i.closest("ui-menubar-menu");
-              if (o) {
-                const r = t.indexOf(o);
+              const s = i.closest("ui-menubar-menu");
+              if (s) {
+                const r = t.indexOf(s);
                 r !== -1 && this._openMenu(r);
               }
             }
@@ -14949,8 +9461,8 @@ let Yi = class extends c {
     }, this._handleRequestClose = () => {
       const e = this._activeIndex;
       this.closeAll();
-      const o = this._getMenus()[e]?.trigger?.shadowRoot?.querySelector("button");
-      o && o.focus();
+      const s = this._getMenus()[e]?.trigger?.shadowRoot?.querySelector("button");
+      s && s.focus();
     }, this._handleOutsideClick = (e) => {
       if (this._activeIndex === -1) return;
       e.composedPath().includes(this) || this.closeAll();
@@ -14971,18 +9483,18 @@ let Yi = class extends c {
    */
   _updateTabFocus() {
     const e = this._getMenus(), t = e.findIndex((i) => !i.disabled);
-    e.forEach((i, o) => {
+    e.forEach((i, s) => {
       const r = i.trigger;
       r && r.setFocusable(
-        this._activeIndex === -1 ? o === t : o === this._activeIndex
+        this._activeIndex === -1 ? s === t : s === this._activeIndex
       );
     });
   }
   /** Open a menu by index and close others. Skips disabled menus. */
   _openMenu(e) {
     const t = this._getMenus();
-    t[e]?.disabled || (t.forEach((i, o) => {
-      o === e ? i.open() : i.close();
+    t[e]?.disabled || (t.forEach((i, s) => {
+      s === e ? i.open() : i.close();
     }), this._activeIndex = e, this._updateTabFocus());
   }
   /** Close all menus. */
@@ -14994,7 +9506,7 @@ let Yi = class extends c {
     const t = this._getMenus();
     if (t.length === 0) return;
     let i = this._activeIndex;
-    for (let o = 0; o < t.length && (i = ((i + e) % t.length + t.length) % t.length, !!t[i].disabled); o++)
+    for (let s = 0; s < t.length && (i = ((i + e) % t.length + t.length) % t.length, !!t[i].disabled); s++)
       ;
     t[i].disabled || this._openMenu(i);
   }
@@ -15015,183 +9527,172 @@ let Yi = class extends c {
         `;
   }
 };
-Yi.styles = p`
-        :host {
-            display: inline-flex;
-            align-items: center;
-            background: var(--ui-menubar-bg, #fff);
-            border: 1px solid var(--ui-border-color, #e5e7eb);
-            border-radius: 6px;
-            padding: 3px;
-            gap: 2px;
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-        }
-    `;
+Wi.styles = p(fd);
 x([
-  s({ reflect: !0 })
-], Yi.prototype, "label", 2);
-Yi = x([
+  o({ reflect: !0 })
+], Wi.prototype, "label", 2);
+Wi = x([
   d("ui-menubar")
-], Yi);
+], Wi);
 export {
-  di as UiAccordion,
-  wr as UiAccordionActions,
-  _r as UiAccordionDetails,
-  xr as UiAccordionSummary,
-  Ot as UiAlert,
-  At as UiAppBar,
-  oe as UiAutocomplete,
-  be as UiAvatar,
-  Bt as UiBackdrop,
-  Re as UiBadge,
-  Mt as UiBottomNavigation,
-  Fe as UiBottomNavigationAction,
-  _ as UiBox,
-  ge as UiBreadcrumbs,
-  tt as UiButton,
-  sr as UiButtonGroup,
-  ti as UiCard,
-  lr as UiCardActionArea,
-  nr as UiCardActions,
-  ar as UiCardContent,
-  ii as UiCardHeader,
-  St as UiCardMedia,
-  pt as UiCarousel,
-  Vt as UiCarouselContent,
-  Or as UiCarouselItem,
-  fi as UiCarouselNext,
-  ui as UiCarouselPrevious,
-  fe as UiCheckbox,
-  Ie as UiChip,
-  at as UiCircularProgress,
-  Ft as UiCollapsible,
-  Ui as UiCollapsibleContent,
-  bi as UiCollapsibleTrigger,
-  Pr as UiCommand,
-  Li as UiCommandDialog,
-  Sr as UiCommandEmpty,
-  Mi as UiCommandGroup,
-  hi as UiCommandInput,
-  dt as UiCommandItem,
-  Er as UiCommandList,
-  Ir as UiCommandSeparator,
-  Cr as UiCommandShortcut,
-  jt as UiContainer,
-  z as UiDateField,
-  R as UiDatePicker,
-  _e as UiDatePickerCalendar,
-  ae as UiDesktopTimePicker,
-  Tt as UiDialog,
-  zi as UiDialogActions,
-  vr as UiDialogContent,
-  yr as UiDialogContentText,
-  mr as UiDialogTitle,
-  Ut as UiDigitalClock,
-  ot as UiDivider,
-  Se as UiDrawer,
-  Ar as UiEmpty,
-  Tr as UiEmptyContent,
-  zr as UiEmptyDescription,
+  fi as UiAccordion,
+  Sr as UiAccordionActions,
+  $r as UiAccordionDetails,
+  kr as UiAccordionSummary,
+  Lt as UiAlert,
+  Nt as UiAppBar,
+  he as UiAutocomplete,
+  Ee as UiAvatar,
+  Rt as UiBackdrop,
+  Ze as UiBadge,
+  Ft as UiBottomNavigation,
+  et as UiBottomNavigationAction,
+  w as UiBox,
+  Pe as UiBreadcrumbs,
+  pt as UiButton,
+  lr as UiButtonGroup,
+  ni as UiCard,
+  pr as UiCardActionArea,
+  dr as UiCardActions,
+  cr as UiCardContent,
+  li as UiCardHeader,
+  Bt as UiCardMedia,
+  gt as UiCarousel,
+  Wt as UiCarouselContent,
+  zr as UiCarouselItem,
+  vi as UiCarouselNext,
+  gi as UiCarouselPrevious,
+  Ce as UiCheckbox,
+  Ue as UiChip,
+  ue as UiCircularProgress,
+  Xt as UiCollapsible,
+  Ni as UiCollapsibleContent,
+  yi as UiCollapsibleTrigger,
+  Dr as UiCommand,
+  Ri as UiCommandDialog,
+  Pr as UiCommandEmpty,
+  Ui as UiCommandGroup,
+  mi as UiCommandInput,
+  mt as UiCommandItem,
+  Or as UiCommandList,
+  Er as UiCommandSeparator,
+  Ir as UiCommandShortcut,
+  Ht as UiContainer,
+  T as UiDateField,
+  H as UiDatePicker,
+  Te as UiDatePickerCalendar,
+  me as UiDesktopTimePicker,
+  Vt as UiDialog,
+  Ai as UiDialogActions,
+  _r as UiDialogContent,
+  wr as UiDialogContentText,
+  xr as UiDialogTitle,
+  Kt as UiDigitalClock,
+  ut as UiDivider,
+  Re as UiDrawer,
+  Lr as UiEmpty,
+  Mr as UiEmptyContent,
+  Ar as UiEmptyDescription,
   Br as UiEmptyHeader,
-  ji as UiEmptyMedia,
-  Dr as UiEmptyTitle,
-  it as UiFab,
-  D as UiGrid,
-  gi as UiHoverCard,
-  qt as UiHoverCardContent,
-  Mr as UiHoverCardTrigger,
-  Ye as UiImageList,
-  Pe as UiImageListItem,
-  Ai as UiImageListItemBar,
-  U as UiInput,
-  De as UiInputOtp,
-  Lr as UiInputOtpGroup,
-  jr as UiInputOtpSeparator,
-  ht as UiInputOtpSlot,
-  mi as UiItem,
-  Vr as UiItemActions,
-  Nr as UiItemContent,
-  Rr as UiItemDescription,
-  qr as UiItemFooter,
-  Yr as UiItemGroup,
-  Fr as UiItemHeader,
-  Ri as UiItemMedia,
-  Hr as UiItemSeparator,
-  Ur as UiItemTitle,
-  Ht as UiKbd,
-  Kr as UiKbdGroup,
-  ci as UiLinearProgress,
-  se as UiLink,
-  si as UiList,
-  cr as UiListItem,
-  pr as UiListItemAvatar,
-  ai as UiListItemButton,
-  dr as UiListItemIcon,
-  zt as UiListItemText,
-  hr as UiListSubheader,
-  qe as UiMenu,
-  kr as UiMenuDivider,
+  Vi as UiEmptyMedia,
+  Tr as UiEmptyTitle,
+  ht as UiFab,
+  z as UiGrid,
+  xi as UiHoverCard,
+  Jt as UiHoverCardContent,
+  jr as UiHoverCardTrigger,
+  rt as UiImageList,
+  qe as UiImageListItem,
+  ji as UiImageListItemBar,
+  F as UiInput,
+  Ke as UiInputOtp,
+  Ur as UiInputOtpGroup,
+  Rr as UiInputOtpSeparator,
+  vt as UiInputOtpSlot,
+  _i as UiItem,
+  qr as UiItemActions,
+  Fr as UiItemContent,
+  Nr as UiItemDescription,
+  Kr as UiItemFooter,
+  Gr as UiItemGroup,
+  Hr as UiItemHeader,
+  Fi as UiItemMedia,
+  Yr as UiItemSeparator,
+  Vr as UiItemTitle,
+  Zt as UiKbd,
+  Wr as UiKbdGroup,
+  xe as UiLinearProgress,
+  fe as UiLink,
+  di as UiList,
+  hr as UiListItem,
+  fr as UiListItemAvatar,
+  pi as UiListItemButton,
+  ur as UiListItemIcon,
+  Ut as UiListItemText,
+  br as UiListSubheader,
+  tt as UiMenu,
+  Cr as UiMenuDivider,
   Bi as UiMenuGroup,
-  ve as UiMenuItem,
-  Yi as UiMenubar,
-  ft as UiMenubarCheckboxItem,
-  qi as UiMenubarContent,
-  Ni as UiMenubarGroup,
-  ut as UiMenubarItem,
-  Hi as UiMenubarMenu,
-  Vi as UiMenubarRadioGroup,
-  bt as UiMenubarRadioItem,
-  Gr as UiMenubarSeparator,
-  Wr as UiMenubarShortcut,
-  Xr as UiMenubarSub,
-  Fi as UiMenubarSubContent,
-  gt as UiMenubarSubTrigger,
-  Yt as UiMenubarTrigger,
-  lt as UiMobileStepper,
-  ee as UiMobileTimePicker,
-  Rt as UiMultiSectionDigitalClock,
-  B as UiPagination,
-  Et as UiPaper,
-  je as UiRadio,
-  ri as UiRadioGroup,
-  Ue as UiRating,
-  S as UiRichTreeView,
-  ue as UiSelect,
-  Oe as UiSimpleTreeView,
-  Ne as UiSkeleton,
-  ne as UiSlider,
-  rt as UiSnackbar,
-  ye as UiSpeedDial,
-  He as UiSpeedDialAction,
-  q as UiStack,
-  Nt as UiStaticTimePicker,
-  H as UiStep,
-  pi as UiStepConnector,
-  $r as UiStepContent,
-  Lt as UiStepLabel,
-  nt as UiStepper,
-  Pt as UiSwitch,
-  Ee as UiTab,
-  Z as UiTabList,
-  Ti as UiTabPanel,
-  ur as UiTable,
-  br as UiTableBody,
-  ni as UiTableCell,
-  Oi as UiTableContainer,
-  gr as UiTableFooter,
-  fr as UiTableHead,
-  st as UiTablePagination,
-  Di as UiTableRow,
-  li as UiTableSortLabel,
-  xe as UiTabs,
-  Q as UiTextField,
-  ct as UiTimeClock,
-  T as UiTimeField,
-  le as UiTimePicker,
-  Dt as UiToggleButton,
-  oi as UiToggleButtonGroup,
-  Ve as UiTooltip,
-  Ce as UiTransferList,
-  te as UiTreeItem,
-  me as UiTypography
+  De as UiMenuItem,
+  Wi as UiMenubar,
+  xt as UiMenubarCheckboxItem,
+  Yi as UiMenubarContent,
+  qi as UiMenubarGroup,
+  yt as UiMenubarItem,
+  Gi as UiMenubarMenu,
+  Hi as UiMenubarRadioGroup,
+  _t as UiMenubarRadioItem,
+  Jr as UiMenubarSeparator,
+  Xr as UiMenubarShortcut,
+  Zr as UiMenubarSub,
+  Ki as UiMenubarSubContent,
+  wt as UiMenubarSubTrigger,
+  Qt as UiMenubarTrigger,
+  Ne as UiMobileStepper,
+  ae as UiMobileTimePicker,
+  Yt as UiMultiSectionDigitalClock,
+  A as UiPagination,
+  Mt as UiPaper,
+  Ie as UiRadio,
+  ve as UiRadioGroup,
+  J as UiRating,
+  I as UiRichTreeView,
+  D as UiSelect,
+  He as UiSimpleTreeView,
+  je as UiSkeleton,
+  q as UiSlider,
+  ye as UiSnackbar,
+  be as UiSpeedDial,
+  Ve as UiSpeedDialAction,
+  X as UiStack,
+  Gt as UiStaticTimePicker,
+  W as UiStep,
+  bi as UiStepConnector,
+  Mi as UiStepContent,
+  qt as UiStepLabel,
+  it as UiStepper,
+  re as UiSwitch,
+  Fe as UiTab,
+  oe as UiTabList,
+  Li as UiTabPanel,
+  mr as UiTable,
+  vr as UiTableBody,
+  hi as UiTableCell,
+  zi as UiTableContainer,
+  yr as UiTableFooter,
+  gr as UiTableHead,
+  ft as UiTablePagination,
+  Ti as UiTableRow,
+  ui as UiTableSortLabel,
+  ze as UiTabs,
+  se as UiTextField,
+  bt as UiTimeClock,
+  B as UiTimeField,
+  _e as UiTimePicker,
+  jt as UiToggleButton,
+  ci as UiToggleButtonGroup,
+  Qe as UiTooltip,
+  Le as UiTransferList,
+  ne as UiTreeItem,
+  Oe as UiTypography
 };

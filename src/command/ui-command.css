@@ -1,0 +1,12 @@
+:host {
+            display: block;
+            font-family: var(--ui-font-family, system-ui, sans-serif);
+            background: var(--ui-surface-background, #fff);
+            border-radius: var(--ui-border-radius-md, 8px);
+            overflow: hidden;
+        }
+
+        .command {
+            display: flex;
+            flex-direction: column;
+        }

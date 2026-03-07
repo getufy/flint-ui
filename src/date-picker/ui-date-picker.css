@@ -1,0 +1,145 @@
+:host {
+      display: inline-block;
+      font-family: var(--ui-font-family, 'Inter', sans-serif);
+    }
+
+    /* ── Field ─────────────────────────────────────────────────────── */
+    .field-wrapper {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--ui-text-color-muted, #6b7280);
+      margin-bottom: 4px;
+    }
+
+    .field-input {
+      font-family: inherit;
+      font-size: 0.9375rem;
+      color: var(--ui-text-color, #111827);
+      background: var(--ui-surface-background, #fff);
+      border: 1.5px solid var(--ui-border-color, #d1d5db);
+      border-radius: var(--ui-border-radius-md, 8px);
+      padding: 10px 44px 10px 14px;
+      width: 180px;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      box-sizing: border-box;
+      cursor: text;
+    }
+    .field-input::placeholder { color: var(--ui-text-color-muted, #9ca3af); }
+    .field-input:focus {
+      border-color: var(--ui-primary-color, #3b82f6);
+      box-shadow: 0 0 0 3px rgba(59,130,246,.15);
+    }
+    :host([disabled]) .field-input {
+      background: var(--ui-disabled-bg, #f9fafb);
+      color: var(--ui-text-color-muted, #9ca3af);
+      cursor: not-allowed;
+      border-color: var(--ui-border-color, #e5e7eb);
+    }
+    :host([readonly]) .field-input { cursor: default; }
+
+    .calendar-icon-btn {
+      position: absolute;
+      right: 10px;
+      display: flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px;
+      border: none; background: transparent; cursor: pointer;
+      border-radius: 50%; color: var(--ui-text-color-muted, #6b7280);
+      transition: background 0.12s, color 0.12s;
+      font-size: 1rem;
+    }
+    .calendar-icon-btn:hover { background: rgba(0,0,0,.06); color: var(--ui-primary-color, #3b82f6); }
+    :host([disabled]) .calendar-icon-btn { pointer-events: none; opacity: 0.4; }
+    :host([readonly]) .calendar-icon-btn { pointer-events: none; }
+
+    /* Error state */
+    :host([error]) .field-input {
+      border-color: var(--ui-error-color, #ef4444);
+    }
+    :host([error]) .field-input:focus {
+      box-shadow: 0 0 0 3px rgba(239,68,68,.15);
+    }
+    .helper-text {
+      font-size: 0.75rem;
+      margin-top: 4px;
+      color: var(--ui-text-color-muted, #6b7280);
+    }
+    :host([error]) .helper-text { color: var(--ui-error-color, #ef4444); }
+
+    /* ── Desktop popover ───────────────────────────────────────────── */
+    .popover-anchor {
+      position: relative;
+      display: inline-block;
+    }
+
+    .popover {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      z-index: 1400;
+      background: var(--ui-surface-background, #fff);
+      border-radius: var(--ui-border-radius-xl, 12px);
+      box-shadow: 0 8px 24px -4px rgba(0,0,0,.18), 0 2px 8px -2px rgba(0,0,0,.1);
+      transform-origin: top left;
+      transform: scale(0.94) translateY(-4px);
+      opacity: 0;
+      visibility: hidden;
+      transition: transform 0.15s cubic-bezier(0.4,0,.2,1),
+                  opacity 0.15s, visibility 0.15s;
+      pointer-events: none;
+    }
+    .popover.open {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    /* Popover actions row */
+    .popover-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      padding: 4px 12px 12px;
+      border-top: 1px solid var(--ui-border-color, #f3f4f6);
+    }
+    .action-btn {
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border: none; border-radius: 6px; cursor: pointer;
+      transition: background 0.12s;
+    }
+    .action-btn.cancel {
+      background: transparent;
+      color: var(--ui-text-color-muted, #6b7280);
+    }
+    .action-btn.cancel:hover { background: rgba(0,0,0,.06); }
+    .action-btn.ok {
+      background: var(--ui-primary-color, #3b82f6);
+      color: #fff;
+    }
+    .action-btn.ok:hover { background: var(--ui-primary-color-dark, #2563eb); }
+
+    /* ── Static ─────────────────────────────────────────────────────── */
+    .static-wrapper {
+      display: inline-block;
+      border-radius: var(--ui-border-radius-xl, 12px);
+      box-shadow: 0 1px 4px rgba(0,0,0,.08), 0 0 0 1px var(--ui-border-color, #e5e7eb);
+      overflow: hidden;
+    }
+
+    /* ── Click-away backdrop (desktop) ──────────────────────────────── */
+    .click-away {
+      display: none;
+      position: fixed; inset: 0; z-index: 1399;
+    }
+    .click-away.open { display: block; }

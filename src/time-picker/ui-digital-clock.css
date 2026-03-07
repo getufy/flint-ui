@@ -1,0 +1,16 @@
+:host { display:block; font-family:var(--ui-font-family,'Inter',sans-serif); }
+    .clock {
+      overflow-y:auto; max-height:var(--ui-digital-clock-height,300px);
+      padding:4px 0; scrollbar-width:thin;
+    }
+    .item {
+      display:flex; align-items:center; justify-content:center;
+      padding:10px 16px; font-size:.9375rem; color:var(--ui-text-color,#374151);
+      cursor:pointer; border:none; background:transparent; width:100%;
+      box-sizing:border-box; transition:background .1s; font-family:inherit;
+      border-radius:0; font-variant-numeric:tabular-nums;
+    }
+    .item:hover { background:rgba(0,0,0,.05); }
+    .item.selected {
+      background:var(--ui-primary-color,#3b82f6); color:#fff; font-weight:600; border-radius:6px;
+    }

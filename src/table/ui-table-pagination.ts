@@ -1,62 +1,10 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, unsafeCSS, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import uiTablePaginationStyles from './ui-table-pagination.css?inline';
 
 @customElement('ui-table-pagination')
 export class UiTablePagination extends LitElement {
-    static styles = css`
-    :host {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding: 8px 16px;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-      font-size: 0.875rem;
-      color: var(--ui-text-color-muted, #6b7280);
-      border-top: 1px solid var(--ui-border-color, #e5e7eb);
-    }
-    .spacer {
-      flex: 1 1 100%;
-    }
-    .actions {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .nav-buttons {
-      display: flex;
-      gap: 4px;
-    }
-    button {
-      background: transparent;
-      border: none;
-      border-radius: 50%;
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      color: var(--ui-text-color, #111827);
-      transition: background-color 0.2s;
-    }
-    button:hover:not(:disabled) {
-      background-color: var(--ui-hover-color, rgba(0,0,0,0.04));
-    }
-    button:disabled {
-      color: var(--ui-text-color-muted, #9ca3af);
-      cursor: not-allowed;
-    }
-    select {
-      border: none;
-      background: transparent;
-      font-family: inherit;
-      font-size: inherit;
-      color: inherit;
-      cursor: pointer;
-      padding: 4px;
-      outline: none;
-    }
-  `;
+    static styles = unsafeCSS(uiTablePaginationStyles);
 
     @property({ type: Number }) count = 0;
     @property({ type: Number }) page = 0;

@@ -1,5 +1,8 @@
-import { LitElement, html, css, type PropertyValues } from 'lit';
+import { LitElement, unsafeCSS, html, css, type PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import uiCarouselContentStyles from './ui-carousel-content.css?inline';
+import uiCarouselItemStyles from './ui-carousel-item.css?inline';
+import uiCarouselStyles from './ui-carousel.css?inline';
 
 /* ── Shared nav-button styles ─────────────────────────────────────────────── */
 const navButtonStyles = css`
@@ -41,46 +44,7 @@ const navButtonStyles = css`
 ═══════════════════════════════════════════════════════════════════════════ */
 @customElement('ui-carousel-content')
 export class UiCarouselContent extends LitElement {
-  static styles = css`
-    :host {
-      display: block;
-      overflow: hidden;
-      width: 100%;
-    }
-    .track {
-      display: flex;
-      flex-wrap: nowrap;
-      height: 100%;
-      gap: var(--ui-carousel-gap, 0px);
-      will-change: transform;
-      transition:
-        transform var(--ui-carousel-duration, 0.35s)
-        var(--ui-carousel-ease, cubic-bezier(0.25, 0.1, 0.25, 1));
-    }
-    :host([orientation='vertical']) {
-      height: var(--ui-carousel-height, 320px);
-    }
-    :host([orientation='vertical']) .track {
-      flex-direction: column;
-    }
-    ::slotted(ui-carousel-item) {
-      /* Width = (viewport - gaps between visible items) / items-per-view */
-      flex: 0 0 calc(
-        (100% - (var(--ui-carousel-items-per-view, 1) - 1) * var(--ui-carousel-gap, 0px))
-        / var(--ui-carousel-items-per-view, 1)
-      );
-      min-width: 0;
-      min-height: 0;
-    }
-    :host([orientation='vertical']) ::slotted(ui-carousel-item) {
-      /* Height = (viewport - gaps between visible items) / items-per-view */
-      flex: 0 0 calc(
-        (var(--ui-carousel-height, 320px) - (var(--ui-carousel-items-per-view, 1) - 1) * var(--ui-carousel-gap, 0px))
-        / var(--ui-carousel-items-per-view, 1)
-      );
-      min-height: 0;
-    }
-  `;
+  static styles = unsafeCSS(uiCarouselContentStyles);
 
   @property({ type: Number }) index = 0;
   /** Number of slides visible at once. */
@@ -125,17 +89,7 @@ export class UiCarouselContent extends LitElement {
 ═══════════════════════════════════════════════════════════════════════════ */
 @customElement('ui-carousel-item')
 export class UiCarouselItem extends LitElement {
-  static styles = css`
-    :host {
-      display: block;
-      flex-shrink: 0;
-      min-width: 0;
-    }
-    .item {
-      width: 100%;
-      height: 100%;
-    }
-  `;
+  static styles = unsafeCSS(uiCarouselItemStyles);
 
   render() {
     return html`
@@ -219,22 +173,7 @@ export class UiCarouselNext extends LitElement {
 ═══════════════════════════════════════════════════════════════════════════ */
 @customElement('ui-carousel')
 export class UiCarousel extends LitElement {
-  static styles = css`
-    :host {
-      display: block;
-      position: relative;
-    }
-    .carousel {
-      position: relative;
-      width: 100%;
-      outline: none;
-    }
-    .carousel:focus-visible {
-      outline: 2px solid var(--ui-primary-color, #3b82f6);
-      outline-offset: 4px;
-      border-radius: var(--ui-border-radius-md, 6px);
-    }
-  `;
+  static styles = unsafeCSS(uiCarouselStyles);
 
   /** When true, navigation wraps from last slide back to first and vice versa. */
   @property({ type: Boolean }) loop = false;

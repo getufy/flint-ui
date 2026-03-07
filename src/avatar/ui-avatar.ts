@@ -1,72 +1,11 @@
-import { LitElement, html, css, PropertyValues, nothing } from 'lit';
+import { LitElement, unsafeCSS, html, PropertyValues, nothing } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import uiAvatarStyles from './ui-avatar.css?inline';
 
 @customElement('ui-avatar')
 export class UiAvatar extends LitElement {
-    static styles = css`
-    :host {
-      display: inline-block;
-      vertical-align: middle;
-      line-height: 1;
-    }
-
-    .avatar {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      width: var(--ui-avatar-size, 40px);
-      height: var(--ui-avatar-size, 40px);
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-      font-size: calc(var(--ui-avatar-size, 40px) / 2.5);
-      font-weight: 600;
-      border-radius: 50%;
-      overflow: hidden;
-      user-select: none;
-      background-color: var(--ui-avatar-bg, #e5e7eb);
-      color: var(--ui-avatar-color, #4b5563);
-      transition: all 0.2s ease;
-    }
-
-    .avatar.square {
-      border-radius: 0;
-    }
-
-    .avatar.rounded {
-      border-radius: var(--ui-border-radius-md, 6px);
-    }
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .initials {
-      text-transform: uppercase;
-    }
-
-    /* Size variants */
-    :host([size="small"]) { --ui-avatar-size: 32px; }
-    :host([size="medium"]) { --ui-avatar-size: 40px; }
-    :host([size="large"]) { --ui-avatar-size: 56px; }
-    :host([size="xlarge"]) { --ui-avatar-size: 80px; }
-
-    /* Skeleton state */
-    .avatar.loading {
-      background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
-      background-size: 200% 100%;
-      animation: loading 1.5s infinite;
-    }
-
-    @keyframes loading {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-    }
-  `;
+    static styles = unsafeCSS(uiAvatarStyles);
 
     @property({ type: String }) src = '';
     @property({ type: String }) alt = '';

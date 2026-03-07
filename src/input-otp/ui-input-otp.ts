@@ -1,5 +1,9 @@
-import { LitElement, html, css, type PropertyValues } from 'lit';
+import { LitElement, unsafeCSS, html, type PropertyValues } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
+import uiInputOtpGroupStyles from './ui-input-otp-group.css?inline';
+import uiInputOtpSeparatorStyles from './ui-input-otp-separator.css?inline';
+import uiInputOtpSlotStyles from './ui-input-otp-slot.css?inline';
+import uiInputOtpStyles from './ui-input-otp.css?inline';
 
 /* ─────────────────────────────────────────────────────────────────── */
 /*  ui-input-otp-group                                                 */
@@ -13,12 +17,7 @@ import { customElement, property, query } from 'lit/decorators.js';
  */
 @customElement('ui-input-otp-group')
 export class UiInputOtpGroup extends LitElement {
-    static styles = css`
-        :host {
-            display: inline-flex;
-            align-items: center;
-        }
-    `;
+    static styles = unsafeCSS(uiInputOtpGroupStyles);
 
     render() {
         return html`<slot></slot>`;
@@ -35,22 +34,7 @@ export class UiInputOtpGroup extends LitElement {
  */
 @customElement('ui-input-otp-separator')
 export class UiInputOtpSeparator extends LitElement {
-    static styles = css`
-        :host {
-            display: inline-flex;
-            align-items: center;
-            padding: 0 6px;
-            color: var(--ui-text-color, #111827);
-        }
-
-        .bar {
-            width: 8px;
-            height: 2px;
-            background: currentColor;
-            border-radius: 1px;
-            opacity: 0.4;
-        }
-    `;
+    static styles = unsafeCSS(uiInputOtpSeparatorStyles);
 
     render() {
         return html`<div class="bar"></div>`;
@@ -72,63 +56,7 @@ export class UiInputOtpSeparator extends LitElement {
  */
 @customElement('ui-input-otp-slot')
 export class UiInputOtpSlot extends LitElement {
-    static styles = css`
-        :host {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 48px;
-            font-size: 1.25rem;
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-            font-weight: 500;
-            color: var(--ui-text-color, #111827);
-            background: #fff;
-            border: 1px solid #d1d5db;
-            margin-left: -1px;
-            cursor: text;
-            user-select: none;
-            transition: border-color 150ms ease, box-shadow 150ms ease;
-        }
-
-        :host(:first-child) {
-            margin-left: 0;
-            border-radius: 6px 0 0 6px;
-        }
-
-        :host(:last-child) {
-            border-radius: 0 6px 6px 0;
-        }
-
-        :host([active]) {
-            z-index: 1;
-            border-color: var(--ui-primary-color, #3b82f6);
-            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
-        }
-
-        :host([invalid]) {
-            border-color: #ef4444;
-        }
-
-        :host([invalid][active]) {
-            border-color: #ef4444;
-            box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
-        }
-
-        .cursor {
-            width: 2px;
-            height: 1.2em;
-            background: var(--ui-text-color, #111827);
-            border-radius: 1px;
-            animation: otp-blink 1.2s step-end infinite;
-        }
-
-        @keyframes otp-blink {
-            0%, 100% { opacity: 1; }
-            50%       { opacity: 0; }
-        }
-    `;
+    static styles = unsafeCSS(uiInputOtpSlotStyles);
 
     /** Zero-based position index of this slot. */
     @property({ type: Number }) index = 0;
@@ -179,36 +107,7 @@ export class UiInputOtpSlot extends LitElement {
  */
 @customElement('ui-input-otp')
 export class UiInputOtp extends LitElement {
-    static styles = css`
-        :host {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            position: relative;
-            cursor: text;
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-        }
-
-        :host([disabled]) {
-            opacity: 0.5;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-
-        .hidden-input {
-            position: absolute;
-            opacity: 0;
-            pointer-events: none;
-            width: 1px;
-            height: 1px;
-            top: 0;
-            left: 0;
-            border: none;
-            outline: none;
-            padding: 0;
-            margin: 0;
-        }
-    `;
+    static styles = unsafeCSS(uiInputOtpStyles);
 
     /** Current OTP value. Reflects to attribute for external observation. */
     @property({ reflect: true }) value = '';

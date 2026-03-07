@@ -1,6 +1,7 @@
-import { LitElement, html, css, nothing, type PropertyValues } from 'lit';
+import { LitElement, unsafeCSS, html, nothing, type PropertyValues } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import uiTreeItemStyles from './ui-tree-item.css?inline';
 
 /**
  * A single item inside a `ui-simple-tree-view` or `ui-rich-tree-view`.
@@ -12,149 +13,7 @@ import { classMap } from 'lit/directives/class-map.js';
  */
 @customElement('ui-tree-item')
 export class UiTreeItem extends LitElement {
-  static styles = css`
-    :host {
-      display: block;
-      outline: none;
-      font-family: var(--ui-font-family, system-ui, sans-serif);
-    }
-
-    :host(:focus-visible) .item-row {
-      outline: 2px solid var(--ui-primary-color, #3b82f6);
-      outline-offset: -2px;
-    }
-
-    .item-row {
-      display: flex;
-      align-items: center;
-      min-height: 36px;
-      padding-right: 8px;
-      border-radius: var(--ui-border-radius-sm, 4px);
-      cursor: pointer;
-      user-select: none;
-      color: var(--ui-text-color, #111827);
-      font-size: 14px;
-      transition: background-color 0.15s ease;
-      /* Needed so ::before/::after drop indicators position correctly */
-      position: relative;
-    }
-
-    :host(:not([disabled])) .item-row:hover {
-      background-color: rgba(0, 0, 0, 0.04);
-    }
-
-    :host([disabled]) .item-row {
-      color: rgba(0, 0, 0, 0.38);
-      cursor: default;
-    }
-
-    .expand-btn {
-      width: 28px;
-      height: 28px;
-      min-width: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: none;
-      border: none;
-      padding: 0;
-      border-radius: 50%;
-      cursor: pointer;
-      color: inherit;
-      transition: transform 0.2s ease, background-color 0.15s;
-    }
-
-    .expand-btn:hover {
-      background-color: rgba(0, 0, 0, 0.08);
-    }
-
-    .expand-btn.expanded {
-      transform: rotate(90deg);
-    }
-
-    .expand-placeholder {
-      width: 28px;
-      min-width: 28px;
-    }
-
-    .item-label {
-      flex: 1;
-      line-height: 1.5;
-    }
-
-    .children-container {
-      display: block;
-    }
-
-    .children-container[hidden] {
-      display: none !important;
-    }
-
-    /* ── Drag & Drop ──────────────────────────────────────────── */
-
-    /*
-     * FIX: draggable cursor on the row div (not the host) since that's
-     * the element with draggable="true" after our fix.
-     */
-    .item-row.is-draggable {
-      cursor: grab;
-    }
-
-    .item-row.is-draggable:active {
-      cursor: grabbing;
-    }
-
-    /* Drop position indicators — driven by :host attribute (reflect: true) */
-    :host([drop-position="before"]) .item-row::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background-color: var(--ui-primary-color, #3b82f6);
-      z-index: 10;
-      border-radius: 2px;
-    }
-
-    :host([drop-position="after"]) .item-row::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background-color: var(--ui-primary-color, #3b82f6);
-      z-index: 10;
-      border-radius: 2px;
-    }
-
-    :host([drop-position="inside"]) .item-row {
-      background-color: rgba(59, 130, 246, 0.1);
-      outline: 2px solid var(--ui-primary-color, #3b82f6);
-      outline-offset: -2px;
-    }
-
-    :host([dragging]) {
-      opacity: 0.4;
-    }
-
-    .drag-handle {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 24px;
-      height: 24px;
-      cursor: grab;
-      color: var(--ui-text-color-secondary, #6b7280);
-      margin-right: 4px;
-      flex-shrink: 0;
-    }
-
-    .drag-handle:active {
-      cursor: grabbing;
-    }
-  `;
+  static styles = unsafeCSS(uiTreeItemStyles);
 
   /** Unique identifier for this item within the tree */
   @property({ type: String, attribute: 'item-id', reflect: true })

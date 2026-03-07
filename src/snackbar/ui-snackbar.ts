@@ -1,6 +1,7 @@
-import { LitElement, html, css, PropertyValues } from 'lit';
+import { LitElement, unsafeCSS, html, PropertyValues } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import uiSnackbarStyles from './ui-snackbar.css?inline';
 
 /**
  * Snackbars (also known as toasts) are used for brief notifications.
@@ -27,100 +28,7 @@ import { classMap } from 'lit/directives/class-map.js';
  */
 @customElement('ui-snackbar')
 export class UiSnackbar extends LitElement {
-    static styles = css`
-        :host {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            pointer-events: none;
-            position: fixed;
-            z-index: var(--ui-snackbar-z-index, 1400);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Positions */
-        :host([anchor-origin*="bottom"]) { bottom: var(--ui-snackbar-offset, 24px); }
-        :host([anchor-origin*="top"])    { top: var(--ui-snackbar-offset, 24px); }
-        :host([anchor-origin*="left"])   { left: var(--ui-snackbar-offset, 24px); }
-        :host([anchor-origin*="right"])  { right: var(--ui-snackbar-offset, 24px); }
-        :host([anchor-origin*="center"]) {
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .snackbar {
-            background-color: var(--ui-snackbar-bg, #313131);
-            color: var(--ui-snackbar-color, #fff);
-            font-family: var(--ui-font-family, 'Inter', sans-serif);
-            font-size: 0.875rem;
-            line-height: 1.43;
-            letter-spacing: 0.01071em;
-            display: flex;
-            align-items: center;
-            padding: 6px 16px;
-            border-radius: var(--ui-border-radius-md, 4px);
-            box-shadow: var(--ui-shadow-lg, 0 3px 5px -1px rgba(0,0,0,0.2), 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12));
-            min-width: var(--ui-snackbar-min-width, 288px);
-            max-width: var(--ui-snackbar-max-width, 560px);
-            pointer-events: auto;
-            opacity: 0;
-            transform: scale(0.85);
-            transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1), transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
-            visibility: hidden;
-        }
-
-        .snackbar.open {
-            opacity: 1;
-            transform: scale(1);
-            visibility: visible;
-        }
-
-        /* Variants */
-        :host([variant="info"])    .snackbar { background-color: var(--ui-snackbar-bg-info, #0288d1); }
-        :host([variant="success"]) .snackbar { background-color: var(--ui-snackbar-bg-success, #2e7d32); }
-        :host([variant="warning"]) .snackbar { background-color: var(--ui-snackbar-bg-warning, #ed6c02); }
-        :host([variant="error"])   .snackbar { background-color: var(--ui-snackbar-bg-error, #d32f2f); }
-
-        .message {
-            padding: 8px 0;
-            flex-grow: 1;
-        }
-
-        .action {
-            display: flex;
-            align-items: center;
-            margin-left: 8px;
-            margin-right: -8px;
-            padding-left: 16px;
-        }
-
-        .action.hidden {
-            display: none;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            color: inherit;
-            cursor: pointer;
-            padding: 4px 8px;
-            margin-left: 8px;
-            margin-right: -8px;
-            opacity: 0.8;
-            display: flex;
-            align-items: center;
-            border-radius: 2px;
-            line-height: 0;
-        }
-
-        .close-btn:hover { opacity: 1; }
-
-        ::slotted(ui-alert) {
-            margin-bottom: 0 !important;
-            width: 100%;
-            min-width: 288px;
-        }
-    `;
+    static styles = unsafeCSS(uiSnackbarStyles);
 
     /** Whether the snackbar is open. */
     @property({ type: Boolean, reflect: true }) open = false;

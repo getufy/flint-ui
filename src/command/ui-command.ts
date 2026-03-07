@@ -1,6 +1,15 @@
-import { LitElement, html, css, type PropertyValues } from 'lit';
+import { LitElement, unsafeCSS, html, type PropertyValues } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import uiCommandShortcutStyles from './ui-command-shortcut.css?inline';
+import uiCommandSeparatorStyles from './ui-command-separator.css?inline';
+import uiCommandItemStyles from './ui-command-item.css?inline';
+import uiCommandEmptyStyles from './ui-command-empty.css?inline';
+import uiCommandGroupStyles from './ui-command-group.css?inline';
+import uiCommandListStyles from './ui-command-list.css?inline';
+import uiCommandInputStyles from './ui-command-input.css?inline';
+import uiCommandStyles from './ui-command.css?inline';
+import uiCommandDialogStyles from './ui-command-dialog.css?inline';
 
 /* ─────────────────────────────────────────────────────────────────── */
 /*  ui-command-shortcut                                                 */
@@ -14,18 +23,7 @@ import { classMap } from 'lit/directives/class-map.js';
  */
 @customElement('ui-command-shortcut')
 export class UiCommandShortcut extends LitElement {
-    static styles = css`
-        :host {
-            display: inline-flex;
-            align-items: center;
-            margin-left: auto;
-            padding-left: 8px;
-            font-size: 0.6875rem;
-            letter-spacing: 0.05em;
-            color: var(--ui-text-color-muted, #6b7280);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-        }
-    `;
+    static styles = unsafeCSS(uiCommandShortcutStyles);
     render() { return html`<slot></slot>`; }
 }
 
@@ -36,15 +34,7 @@ export class UiCommandShortcut extends LitElement {
 /** A hairline separator between command groups. */
 @customElement('ui-command-separator')
 export class UiCommandSeparator extends LitElement {
-    static styles = css`
-        :host {
-            display: block;
-            height: 1px;
-            background: var(--ui-border-color, #e5e7eb);
-            margin: 4px 0;
-        }
-        :host([hidden]) { display: none !important; }
-    `;
+    static styles = unsafeCSS(uiCommandSeparatorStyles);
     render() { return html``; }
 }
 
@@ -68,59 +58,7 @@ export class UiCommandSeparator extends LitElement {
  */
 @customElement('ui-command-item')
 export class UiCommandItem extends LitElement {
-    static styles = css`
-        :host { display: block; }
-        :host([hidden]) { display: none !important; }
-
-        .item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 8px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.875rem;
-            line-height: 1.25rem;
-            color: var(--ui-text-color, #111827);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-            outline: none;
-            user-select: none;
-            transition: background 0.1s;
-        }
-
-        :host([highlighted]) .item {
-            background: var(--ui-command-highlight-bg, rgba(0, 0, 0, 0.06));
-            color: var(--ui-command-highlight-color, var(--ui-text-color, #111827));
-        }
-
-        .item:hover {
-            background: var(--ui-hover-bg, rgba(0, 0, 0, 0.04));
-        }
-
-        :host([highlighted]) .item:hover {
-            background: var(--ui-command-highlight-bg, rgba(0, 0, 0, 0.06));
-        }
-
-        :host([disabled]) .item {
-            opacity: 0.38;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-
-        .icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 16px;
-            height: 16px;
-            flex-shrink: 0;
-            color: var(--ui-text-color-muted, #6b7280);
-        }
-
-        .label { flex: 1; }
-
-        [hidden] { display: none !important; }
-    `;
+    static styles = unsafeCSS(uiCommandItemStyles);
 
     /** Machine-readable value used for filter matching. Falls back to textContent. */
     @property({ type: String, reflect: true }) value = '';
@@ -186,17 +124,7 @@ export class UiCommandItem extends LitElement {
  */
 @customElement('ui-command-empty')
 export class UiCommandEmpty extends LitElement {
-    static styles = css`
-        :host {
-            display: block;
-            padding: 24px 8px;
-            text-align: center;
-            font-size: 0.875rem;
-            color: var(--ui-text-color-muted, #6b7280);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-        }
-        :host([hidden]) { display: none !important; }
-    `;
+    static styles = unsafeCSS(uiCommandEmptyStyles);
     render() { return html`<slot></slot>`; }
 }
 
@@ -213,24 +141,7 @@ export class UiCommandEmpty extends LitElement {
  */
 @customElement('ui-command-group')
 export class UiCommandGroup extends LitElement {
-    static styles = css`
-        :host {
-            display: block;
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-        }
-        :host([hidden]) { display: none !important; }
-
-        .heading {
-            padding: 6px 8px 2px;
-            font-size: 0.6875rem;
-            font-weight: 600;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            color: var(--ui-text-color-muted, #6b7280);
-        }
-
-        .heading:empty { display: none; }
-    `;
+    static styles = unsafeCSS(uiCommandGroupStyles);
 
     /** Label rendered above the group items. */
     @property({ type: String, reflect: true }) heading = '';
@@ -254,23 +165,7 @@ export class UiCommandGroup extends LitElement {
  */
 @customElement('ui-command-list')
 export class UiCommandList extends LitElement {
-    static styles = css`
-        :host {
-            display: block;
-            overflow-y: auto;
-            max-height: var(--ui-command-list-max-height, 300px);
-        }
-
-        .list {
-            padding: 4px;
-            outline: none;
-        }
-
-        .list:focus-visible {
-            outline: 2px solid var(--ui-primary-color, #3b82f6);
-            outline-offset: -2px;
-        }
-    `;
+    static styles = unsafeCSS(uiCommandListStyles);
 
     render() {
         return html`
@@ -294,46 +189,7 @@ export class UiCommandList extends LitElement {
  */
 @customElement('ui-command-input')
 export class UiCommandInput extends LitElement {
-    static styles = css`
-        :host {
-            display: block;
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-        }
-
-        .input-wrap {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 12px;
-            border-bottom: 1px solid var(--ui-border-color, #e5e7eb);
-        }
-
-        .search-icon {
-            flex-shrink: 0;
-            color: var(--ui-text-color-muted, #6b7280);
-            display: flex;
-            align-items: center;
-        }
-
-        input {
-            flex: 1;
-            border: none;
-            outline: none;
-            background: transparent;
-            font-size: 0.9375rem;
-            color: var(--ui-text-color, #111827);
-            font-family: inherit;
-            min-width: 0;
-        }
-
-        input::placeholder {
-            color: var(--ui-text-color-muted, #6b7280);
-        }
-
-        /* Hide the native clear button added by type="search" in WebKit. */
-        input[type="search"]::-webkit-search-cancel-button { display: none; }
-        input[type="search"]::-webkit-search-decoration      { display: none; }
-    `;
+    static styles = unsafeCSS(uiCommandInputStyles);
 
     /** Placeholder text shown when input is empty. */
     @property({ type: String }) placeholder = 'Type a command or search...';
@@ -423,20 +279,7 @@ export class UiCommandInput extends LitElement {
  */
 @customElement('ui-command')
 export class UiCommand extends LitElement {
-    static styles = css`
-        :host {
-            display: block;
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-            background: var(--ui-surface-background, #fff);
-            border-radius: var(--ui-border-radius-md, 8px);
-            overflow: hidden;
-        }
-
-        .command {
-            display: flex;
-            flex-direction: column;
-        }
-    `;
+    static styles = unsafeCSS(uiCommandStyles);
 
     private _query = '';
     private _highlightedItem: UiCommandItem | null = null;
@@ -616,46 +459,7 @@ export class UiCommand extends LitElement {
  */
 @customElement('ui-command-dialog')
 export class UiCommandDialog extends LitElement {
-    static styles = css`
-        :host { display: block; }
-
-        .backdrop {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: var(--ui-command-z-index, 1400);
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            padding-top: 12vh;
-
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.18s ease;
-        }
-
-        .backdrop.open {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .panel {
-            width: 100%;
-            max-width: var(--ui-command-dialog-width, 512px);
-            background: var(--ui-surface-background, #fff);
-            border-radius: var(--ui-border-radius-md, 8px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15),
-                        0 10px 10px -5px rgba(0, 0, 0, 0.06);
-            overflow: hidden;
-
-            transform: scale(0.94) translateY(-8px);
-            transition: transform 0.18s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .backdrop.open .panel {
-            transform: scale(1) translateY(0);
-        }
-    `;
+    static styles = unsafeCSS(uiCommandDialogStyles);
 
     /** Controls the open/closed state of the dialog. */
     @property({ type: Boolean, reflect: true }) open = false;

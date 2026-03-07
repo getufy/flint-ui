@@ -1,24 +1,19 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, unsafeCSS, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import uiTableContainerStyles from './ui-table-container.css?inline';
+import uiTableStyles from './ui-table.css?inline';
+import uiTableHeadStyles from './ui-table-head.css?inline';
+import uiTableBodyStyles from './ui-table-body.css?inline';
+import uiTableRowStyles from './ui-table-row.css?inline';
+import uiTableCellStyles from './ui-table-cell.css?inline';
+import uiTableFooterStyles from './ui-table-footer.css?inline';
 
 /**
  * ui-table-container
  */
 @customElement('ui-table-container')
 export class UiTableContainer extends LitElement {
-  static styles = css`
-    :host {
-      display: block;
-      width: 100%;
-      overflow-x: auto;
-      background-color: var(--ui-surface-background, white);
-      border-radius: var(--ui-border-radius-lg, 8px);
-      box-shadow: var(--ui-shadow-sm, 0 1px 3px rgba(0,0,0,0.1));
-    }
-    :host([shadow]) {
-      box-shadow: var(--ui-shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06));
-    }
-  `;
+  static styles = unsafeCSS(uiTableContainerStyles);
   @property({ type: Boolean, reflect: true }) shadow = false;
   render() { return html`<slot></slot>`; }
 }
@@ -28,16 +23,7 @@ export class UiTableContainer extends LitElement {
  */
 @customElement('ui-table')
 export class UiTable extends LitElement {
-  static styles = css`
-    :host {
-      display: table;
-      width: 100%;
-      border-collapse: collapse;
-      border-spacing: 0;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-      color: var(--ui-text-color, #111827);
-    }
-  `;
+  static styles = unsafeCSS(uiTableStyles);
   render() { return html`<slot></slot>`; }
 }
 
@@ -46,11 +32,7 @@ export class UiTable extends LitElement {
  */
 @customElement('ui-table-head')
 export class UiTableHead extends LitElement {
-  static styles = css`
-    :host {
-      display: table-header-group;
-    }
-  `;
+  static styles = unsafeCSS(uiTableHeadStyles);
   render() { return html`<slot></slot>`; }
 }
 
@@ -59,11 +41,7 @@ export class UiTableHead extends LitElement {
  */
 @customElement('ui-table-body')
 export class UiTableBody extends LitElement {
-  static styles = css`
-    :host {
-      display: table-row-group;
-    }
-  `;
+  static styles = unsafeCSS(uiTableBodyStyles);
   render() { return html`<slot></slot>`; }
 }
 
@@ -72,20 +50,7 @@ export class UiTableBody extends LitElement {
  */
 @customElement('ui-table-row')
 export class UiTableRow extends LitElement {
-  static styles = css`
-    :host {
-      display: table-row;
-      vertical-align: middle;
-      outline: 0;
-      transition: background-color 0.2s ease;
-    }
-    :host(:hover) {
-      background-color: var(--ui-hover-color, rgba(0, 0, 0, 0.04));
-    }
-    :host([selected]) {
-      background-color: var(--ui-active-color, rgba(59, 130, 246, 0.08));
-    }
-  `;
+  static styles = unsafeCSS(uiTableRowStyles);
   @property({ type: Boolean, reflect: true }) selected = false;
   render() { return html`<slot></slot>`; }
 }
@@ -95,23 +60,7 @@ export class UiTableRow extends LitElement {
  */
 @customElement('ui-table-cell')
 export class UiTableCell extends LitElement {
-  static styles = css`
-    :host {
-      display: table-cell;
-      padding: 16px;
-      font-size: 0.875rem;
-      text-align: left;
-      border-bottom: 1px solid var(--ui-border-color, #e5e7eb);
-    }
-    :host([header]) {
-      color: var(--ui-text-color-muted, #6b7280);
-      font-weight: 600;
-      line-height: 1.5rem;
-    }
-    :host([align="right"]) { text-align: right; }
-    :host([align="center"]) { text-align: center; }
-    :host([padding="checkbox"]) { width: 48px; padding: 0 0 0 4px; }
-  `;
+  static styles = unsafeCSS(uiTableCellStyles);
   @property({ type: Boolean, reflect: true }) header = false;
   @property({ type: String, reflect: true }) align: 'left' | 'right' | 'center' = 'left';
 
@@ -123,10 +72,6 @@ export class UiTableCell extends LitElement {
  */
 @customElement('ui-table-footer')
 export class UiTableFooter extends LitElement {
-  static styles = css`
-    :host {
-      display: table-footer-group;
-    }
-  `;
+  static styles = unsafeCSS(uiTableFooterStyles);
   render() { return html`<slot></slot>`; }
 }

@@ -1,0 +1,33 @@
+:host { display:inline-block; user-select:none; }
+    .clock-wrap { display:flex; flex-direction:column; align-items:center; gap:12px; }
+    .clock-header {
+      display:flex; gap:4px; font-size:2rem; font-weight:700;
+      font-family:var(--ui-font-family,'Inter',sans-serif); color:var(--ui-text-color,#111827);
+    }
+    .clock-seg { padding:4px 10px; border-radius:8px; cursor:pointer; transition:background .12s, color .12s; }
+    .clock-seg.active { background:var(--ui-primary-color,#3b82f6); color:#fff; border-radius:8px; }
+    .clock-seg:hover:not(.active) { background:rgba(0,0,0,.06); }
+    .clock-sep { color:var(--ui-text-color-muted,#6b7280); }
+    svg { touch-action:none; cursor:pointer; }
+    .face { fill:var(--ui-surface-variant,#f1f5f9); }
+    .face-inner { fill:rgba(0,0,0,.02); stroke:rgba(0,0,0,.06); stroke-width:1; stroke-dasharray:4 4; }
+    .track { fill:none; stroke:var(--ui-border-color,#e2e8f0); stroke-width:2; }
+    .hand { stroke:var(--ui-primary-color,#3b82f6); stroke-width:2; stroke-linecap:round; }
+    .hand-center { fill:var(--ui-primary-color,#3b82f6); }
+    .hand-tip { fill:var(--ui-primary-color,#3b82f6); }
+    .num { font-size:13px; font-family:var(--ui-font-family,'Inter',sans-serif); fill:var(--ui-text-color,#374151); dominant-baseline:central; text-anchor:middle; cursor:pointer; }
+    .num.inner-label { font-size:11px; fill:var(--ui-text-color-muted,#6b7280); }
+    .num.selected { fill:#fff; }
+    .num-bg { fill:transparent; cursor:pointer; }
+    .num-bg.selected { fill:var(--ui-primary-color,#3b82f6); }
+    .tick { stroke:var(--ui-text-color-muted,#cbd5e1); stroke-width:1; }
+    .tick.major { stroke-width:2; }
+    .inner-ring-track { fill:none; stroke:var(--ui-primary-color,#3b82f6); stroke-width:1.5; stroke-opacity:0.2; }
+    .inner-tick { stroke:var(--ui-primary-color,#3b82f6); stroke-width:1.5; stroke-opacity:0.35; stroke-linecap:round; }
+    .am-pm { display:flex; gap:8px; }
+    .am-pm-btn {
+      padding:4px 16px; border:1.5px solid var(--ui-border-color,#d1d5db);
+      border-radius:20px; cursor:pointer; font-size:.875rem; font-family:inherit;
+      background:transparent; color:var(--ui-text-color,#374151); transition:all .12s;
+    }
+    .am-pm-btn.sel { background:var(--ui-primary-color,#3b82f6); color:#fff; border-color:var(--ui-primary-color,#3b82f6); }

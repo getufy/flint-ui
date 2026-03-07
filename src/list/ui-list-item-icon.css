@@ -1,0 +1,10 @@
+:host {
+      display: inline-flex;
+      min-width: 40px;
+      color: var(--ui-text-color-muted, #6b7280);
+      flex-shrink: 0;
+    }
+    ::slotted(*) {
+        width: 24px;
+        height: 24px;
+    }

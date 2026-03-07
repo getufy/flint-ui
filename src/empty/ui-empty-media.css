@@ -1,0 +1,25 @@
+:host {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .media {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .media--icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--ui-empty-media-bg, #f3f4f6);
+            color: var(--ui-empty-media-color, #6b7280);
+        }
+
+        ::slotted(svg),
+        ::slotted([data-icon]) {
+            width: 24px;
+            height: 24px;
+        }

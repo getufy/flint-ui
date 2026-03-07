@@ -1,6 +1,7 @@
-import { LitElement, html, css, type PropertyValues } from 'lit';
+import { LitElement, unsafeCSS, html, type PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import type { UiTreeItem } from './ui-tree-item.js';
+import uiSimpleTreeViewStyles from './ui-simple-tree-view.css?inline';
 
 /**
  * A simple tree-view container that manages keyboard navigation, focus,
@@ -25,16 +26,7 @@ import type { UiTreeItem } from './ui-tree-item.js';
  */
 @customElement('ui-simple-tree-view')
 export class UiSimpleTreeView extends LitElement {
-    static styles = css`
-    :host {
-      display: block;
-      font-family: var(--ui-font-family, system-ui, sans-serif);
-    }
-
-    .tree-root {
-      padding: 4px 0;
-    }
-  `;
+    static styles = unsafeCSS(uiSimpleTreeViewStyles);
 
     // ─── Props ────────────────────────────────────────────────────────────────
 

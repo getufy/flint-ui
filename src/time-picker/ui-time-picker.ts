@@ -1,7 +1,13 @@
-import { LitElement, html, css, nothing } from 'lit';
+import { LitElement, unsafeCSS, html, css, nothing } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { repeat } from 'lit/directives/repeat.js';
+import uiTimeFieldStyles from './ui-time-field.css?inline';
+import uiDigitalClockStyles from './ui-digital-clock.css?inline';
+import uiMultiSectionDigitalClockStyles from './ui-multi-section-digital-clock.css?inline';
+import uiTimeClockStyles from './ui-time-clock.css?inline';
+import uiStaticTimePickerStyles from './ui-static-time-picker.css?inline';
+import uiTimePickerStyles from './ui-time-picker.css?inline';
 import '../dialog/ui-dialog.js';
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -51,43 +57,7 @@ type TimeView = 'hours' | 'minutes' | 'seconds';
 // ─── ui-time-field ────────────────────────────────────────────────────────────
 @customElement('ui-time-field')
 export class UiTimeField extends LitElement {
-    static styles = css`
-    :host { display: inline-block; font-family: var(--ui-font-family,'Inter',sans-serif); }
-    .label { display:block; font-size:.75rem; font-weight:500; color:var(--ui-text-color-muted,#6b7280); margin-bottom:5px; }
-    .label.focused { color:var(--ui-primary-color,#3b82f6); }
-    :host([error]) .label { color:var(--ui-error-color,#ef4444); }
-    .container {
-      display:inline-flex; align-items:center; gap:4px;
-      background:var(--ui-surface-background,#fff);
-      border:1.5px solid var(--ui-border-color,#d1d5db);
-      border-radius:var(--ui-border-radius-md,8px);
-      padding:0 10px; height:44px; min-width:160px;
-      cursor:text; box-sizing:border-box; transition:border-color .15s,box-shadow .15s;
-    }
-    .container.focused { border-color:var(--ui-primary-color,#3b82f6); box-shadow:0 0 0 3px rgba(59,130,246,.15); }
-    :host([error]) .container { border-color:var(--ui-error-color,#ef4444); }
-    :host([disabled]) .container { background:var(--ui-disabled-bg,#f9fafb); border-color:#e5e7eb; cursor:not-allowed; }
-    .segments { display:flex; align-items:center; flex:1; gap:1px; outline:none; min-height:100%; }
-    .seg {
-      display:inline-flex; align-items:center; justify-content:center;
-      border-radius:3px; padding:2px 4px; font-size:.9375rem;
-      font-variant-numeric:tabular-nums; color:var(--ui-text-color,#111827);
-      min-width:2ch; line-height:1; cursor:text; user-select:none; transition:background .1s;
-    }
-    .seg.active { background:var(--ui-primary-color,#3b82f6); color:#fff; }
-    .seg.placeholder { color:var(--ui-text-color-muted,#9ca3af); }
-    .seg.meridiem { min-width:3ch; }
-    .sep { color:var(--ui-text-color-muted,#6b7280); font-size:.9375rem; pointer-events:none; }
-    .icon-btn {
-      display:flex; align-items:center; justify-content:center; width:24px; height:24px;
-      border:none; background:transparent; cursor:pointer; border-radius:50%;
-      color:var(--ui-text-color-muted,#6b7280); font-size:.875rem; margin-left:auto;
-      transition:background .12s;
-    }
-    .icon-btn:hover { background:rgba(0,0,0,.06); }
-    .helper { display:block; font-size:.75rem; margin-top:5px; color:var(--ui-text-color-muted,#6b7280); }
-    :host([error]) .helper { color:var(--ui-error-color,#ef4444); }
-  `;
+    static styles = unsafeCSS(uiTimeFieldStyles);
 
     @property({ type: String }) value = '';
     @property({ type: String }) label = '';
@@ -270,24 +240,7 @@ export class UiTimeField extends LitElement {
 // ─── ui-digital-clock ─────────────────────────────────────────────────────────
 @customElement('ui-digital-clock')
 export class UiDigitalClock extends LitElement {
-    static styles = css`
-    :host { display:block; font-family:var(--ui-font-family,'Inter',sans-serif); }
-    .clock {
-      overflow-y:auto; max-height:var(--ui-digital-clock-height,300px);
-      padding:4px 0; scrollbar-width:thin;
-    }
-    .item {
-      display:flex; align-items:center; justify-content:center;
-      padding:10px 16px; font-size:.9375rem; color:var(--ui-text-color,#374151);
-      cursor:pointer; border:none; background:transparent; width:100%;
-      box-sizing:border-box; transition:background .1s; font-family:inherit;
-      border-radius:0; font-variant-numeric:tabular-nums;
-    }
-    .item:hover { background:rgba(0,0,0,.05); }
-    .item.selected {
-      background:var(--ui-primary-color,#3b82f6); color:#fff; font-weight:600; border-radius:6px;
-    }
-  `;
+    static styles = unsafeCSS(uiDigitalClockStyles);
 
     @property({ type: String }) value = '';
     @property({ type: Number }) step = 30;
@@ -331,32 +284,7 @@ export class UiDigitalClock extends LitElement {
 // ─── ui-multi-section-digital-clock ──────────────────────────────────────────
 @customElement('ui-multi-section-digital-clock')
 export class UiMultiSectionDigitalClock extends LitElement {
-    static styles = css`
-    :host { display:inline-block; font-family:var(--ui-font-family,'Inter',sans-serif); }
-    .msdc { display:flex; gap:0; border-radius:var(--ui-border-radius-xl,12px); overflow:hidden; }
-    .col {
-      display:flex; flex-direction:column; overflow-y:auto; width:72px;
-      max-height:var(--ui-msdc-height,240px); position:relative; scrollbar-width:none;
-    }
-    .col::-webkit-scrollbar { display:none; }
-    .col + .col { border-left:1px solid var(--ui-border-color,#f3f4f6); }
-    .col-header {
-      position:sticky; top:0; background:var(--ui-surface-background,#fff);
-      font-size:.65rem; font-weight:700; text-transform:uppercase;
-      letter-spacing:.06em; color:var(--ui-text-color-muted,#9ca3af);
-      text-align:center; padding:6px 0 4px; border-bottom:1px solid var(--ui-border-color,#f3f4f6);
-      z-index:1;
-    }
-    .item {
-      display:flex; align-items:center; justify-content:center;
-      padding:8px 4px; font-size:.9375rem; font-variant-numeric:tabular-nums;
-      color:var(--ui-text-color,#374151); cursor:pointer; border:none;
-      background:transparent; font-family:inherit; width:100%; line-height:1; transition:background .1s;
-    }
-    .item:hover { background:rgba(0,0,0,.05); }
-    .item.sel { background:var(--ui-primary-color,#3b82f6); color:#fff; font-weight:700; border-radius:6px; }
-    .col-spacer { min-height:80px; }
-  `;
+    static styles = unsafeCSS(uiMultiSectionDigitalClockStyles);
 
     @property({ type: String }) value = '';
     @property({ type: Boolean }) ampm = true;
@@ -450,41 +378,7 @@ export class UiMultiSectionDigitalClock extends LitElement {
 // ─── ui-time-clock ────────────────────────────────────────────────────────────
 @customElement('ui-time-clock')
 export class UiTimeClock extends LitElement {
-    static styles = css`
-    :host { display:inline-block; user-select:none; }
-    .clock-wrap { display:flex; flex-direction:column; align-items:center; gap:12px; }
-    .clock-header {
-      display:flex; gap:4px; font-size:2rem; font-weight:700;
-      font-family:var(--ui-font-family,'Inter',sans-serif); color:var(--ui-text-color,#111827);
-    }
-    .clock-seg { padding:4px 10px; border-radius:8px; cursor:pointer; transition:background .12s, color .12s; }
-    .clock-seg.active { background:var(--ui-primary-color,#3b82f6); color:#fff; border-radius:8px; }
-    .clock-seg:hover:not(.active) { background:rgba(0,0,0,.06); }
-    .clock-sep { color:var(--ui-text-color-muted,#6b7280); }
-    svg { touch-action:none; cursor:pointer; }
-    .face { fill:var(--ui-surface-variant,#f1f5f9); }
-    .face-inner { fill:rgba(0,0,0,.02); stroke:rgba(0,0,0,.06); stroke-width:1; stroke-dasharray:4 4; }
-    .track { fill:none; stroke:var(--ui-border-color,#e2e8f0); stroke-width:2; }
-    .hand { stroke:var(--ui-primary-color,#3b82f6); stroke-width:2; stroke-linecap:round; }
-    .hand-center { fill:var(--ui-primary-color,#3b82f6); }
-    .hand-tip { fill:var(--ui-primary-color,#3b82f6); }
-    .num { font-size:13px; font-family:var(--ui-font-family,'Inter',sans-serif); fill:var(--ui-text-color,#374151); dominant-baseline:central; text-anchor:middle; cursor:pointer; }
-    .num.inner-label { font-size:11px; fill:var(--ui-text-color-muted,#6b7280); }
-    .num.selected { fill:#fff; }
-    .num-bg { fill:transparent; cursor:pointer; }
-    .num-bg.selected { fill:var(--ui-primary-color,#3b82f6); }
-    .tick { stroke:var(--ui-text-color-muted,#cbd5e1); stroke-width:1; }
-    .tick.major { stroke-width:2; }
-    .inner-ring-track { fill:none; stroke:var(--ui-primary-color,#3b82f6); stroke-width:1.5; stroke-opacity:0.2; }
-    .inner-tick { stroke:var(--ui-primary-color,#3b82f6); stroke-width:1.5; stroke-opacity:0.35; stroke-linecap:round; }
-    .am-pm { display:flex; gap:8px; }
-    .am-pm-btn {
-      padding:4px 16px; border:1.5px solid var(--ui-border-color,#d1d5db);
-      border-radius:20px; cursor:pointer; font-size:.875rem; font-family:inherit;
-      background:transparent; color:var(--ui-text-color,#374151); transition:all .12s;
-    }
-    .am-pm-btn.sel { background:var(--ui-primary-color,#3b82f6); color:#fff; border-color:var(--ui-primary-color,#3b82f6); }
-  `;
+    static styles = unsafeCSS(uiTimeClockStyles);
 
     @property({ type: String }) value = '';
     @property({ type: Boolean }) ampm = true;
@@ -759,14 +653,7 @@ export class UiMobileTimePicker extends LitElement {
 // ─── ui-static-time-picker ────────────────────────────────────────────────────
 @customElement('ui-static-time-picker')
 export class UiStaticTimePicker extends LitElement {
-    static styles = css`
-    :host { display:inline-block; font-family:var(--ui-font-family,'Inter',sans-serif); }
-    .surface {
-      border-radius:var(--ui-border-radius-xl,12px);
-      box-shadow:0 1px 4px rgba(0,0,0,.08),0 0 0 1px var(--ui-border-color,#e5e7eb);
-      overflow:hidden; display:inline-block;
-    }
-  `;
+    static styles = unsafeCSS(uiStaticTimePickerStyles);
 
     @property({ type: String }) value = '';
     @property({ type: Boolean }) ampm = true;
@@ -789,7 +676,7 @@ export class UiStaticTimePicker extends LitElement {
 // ─── ui-time-picker ───────────────────────────────────────────────────────────
 @customElement('ui-time-picker')
 export class UiTimePicker extends LitElement {
-    static styles = css`:host { display:inline-block; }`;
+    static styles = unsafeCSS(uiTimePickerStyles);
 
     @property({ type: String }) value = '';
     @property({ type: String }) label = 'Time';

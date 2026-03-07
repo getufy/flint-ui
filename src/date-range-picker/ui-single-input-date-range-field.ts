@@ -1,10 +1,11 @@
-import { LitElement, html, css, nothing } from 'lit';
+import { LitElement, unsafeCSS, html, nothing } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import {
     isoToDate,
     type DateRange, EMPTY_RANGE,
 } from './date-range-helpers.js';
+import uiSingleInputDateRangeFieldStyles from './ui-single-input-date-range-field.css?inline';
 
 type Segment = 'start-month' | 'start-day' | 'start-year' | 'end-month' | 'end-day' | 'end-year';
 const SEGMENT_ORDER: Segment[] = ['start-month', 'start-day', 'start-year', 'end-month', 'end-day', 'end-year'];
@@ -25,137 +26,7 @@ function daysInMonth(month: number, year: number): number {
  */
 @customElement('ui-single-input-date-range-field')
 export class UiSingleInputDateRangeField extends LitElement {
-    static styles = css`
-    :host {
-      display: inline-block;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-    }
-
-    .field-label {
-      display: block;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-      color: var(--ui-text-color-muted, #6b7280);
-      margin-bottom: 5px;
-      transition: color 0.15s;
-    }
-    :host([error]) .field-label { color: var(--ui-error-color, #ef4444); }
-    .field-label.focused { color: var(--ui-primary-color, #3b82f6); }
-
-    .field-container {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: var(--ui-surface-background, #fff);
-      border: 1.5px solid var(--ui-border-color, #d1d5db);
-      border-radius: var(--ui-border-radius-md, 8px);
-      padding: 0 10px;
-      height: 44px;
-      min-width: 300px;
-      cursor: text;
-      box-sizing: border-box;
-      transition: border-color 0.15s, box-shadow 0.15s;
-    }
-    .field-container.focused {
-      border-color: var(--ui-primary-color, #3b82f6);
-      box-shadow: 0 0 0 3px rgba(59,130,246,.15);
-    }
-    :host([error]) .field-container {
-      border-color: var(--ui-error-color, #ef4444);
-    }
-    :host([error]) .field-container.focused {
-      box-shadow: 0 0 0 3px rgba(239,68,68,.15);
-    }
-    :host([disabled]) .field-container {
-      background: var(--ui-disabled-bg, #f9fafb);
-      border-color: var(--ui-border-color, #e5e7eb);
-      cursor: not-allowed;
-    }
-    :host([readonly]) .field-container { cursor: default; }
-
-    .segments {
-      display: flex;
-      align-items: center;
-      flex: 1;
-      gap: 1px;
-      outline: none;
-      min-height: 100%;
-    }
-
-    .segment {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 4px;
-      padding: 2px 3px;
-      font-size: 0.9375rem;
-      font-variant-numeric: tabular-nums;
-      color: var(--ui-text-color, #111827);
-      min-width: 2ch;
-      line-height: 1;
-      transition: background 0.1s;
-      cursor: text;
-      user-select: none;
-    }
-    .segment.placeholder { color: var(--ui-text-color-muted, #9ca3af); }
-    .segment.active {
-      background: var(--ui-primary-color, #3b82f6);
-      color: #fff;
-      border-radius: 3px;
-    }
-    .segment-year { min-width: 4ch; }
-    :host([disabled]) .segment { color: var(--ui-text-color-muted, #9ca3af); }
-    :host([disabled]) .segment.active {
-      background: var(--ui-border-color, #e5e7eb);
-      color: var(--ui-text-color-muted, #9ca3af);
-    }
-
-    .separator {
-      color: var(--ui-text-color-muted, #6b7280);
-      font-size: 0.9375rem;
-      pointer-events: none;
-      line-height: 1;
-      padding: 0 1px;
-    }
-
-    .range-dash {
-      color: var(--ui-text-color-muted, #6b7280);
-      font-size: 0.9375rem;
-      padding: 0 6px;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    .field-actions {
-      display: flex;
-      align-items: center;
-      gap: 2px;
-      margin-left: auto;
-    }
-
-    .icon-btn {
-      display: flex; align-items: center; justify-content: center;
-      width: 24px; height: 24px;
-      border: none; background: transparent; cursor: pointer;
-      border-radius: 50%;
-      color: var(--ui-text-color-muted, #6b7280);
-      font-size: 0.875rem;
-      transition: background 0.12s, color 0.12s;
-      flex-shrink: 0;
-      padding: 0;
-    }
-    .icon-btn:hover { background: rgba(0,0,0,.06); }
-    :host([disabled]) .icon-btn { pointer-events: none; opacity: 0; }
-
-    .helper {
-      display: block;
-      font-size: 0.75rem;
-      margin-top: 5px;
-      color: var(--ui-text-color-muted, #6b7280);
-    }
-    :host([error]) .helper { color: var(--ui-error-color, #ef4444); }
-  `;
+    static styles = unsafeCSS(uiSingleInputDateRangeFieldStyles);
 
     // ── Props ─────────────────────────────────────────────────────────────────
 

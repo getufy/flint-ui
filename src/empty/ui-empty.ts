@@ -1,6 +1,12 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, unsafeCSS, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import uiEmptyTitleStyles from './ui-empty-title.css?inline';
+import uiEmptyDescriptionStyles from './ui-empty-description.css?inline';
+import uiEmptyMediaStyles from './ui-empty-media.css?inline';
+import uiEmptyHeaderStyles from './ui-empty-header.css?inline';
+import uiEmptyContentStyles from './ui-empty-content.css?inline';
+import uiEmptyStyles from './ui-empty.css?inline';
 
 /* ─────────────────────────────────────────────────────────────────── */
 /*  ui-empty-title                                                      */
@@ -13,17 +19,7 @@ import { classMap } from 'lit/directives/class-map.js';
  */
 @customElement('ui-empty-title')
 export class UiEmptyTitle extends LitElement {
-    static styles = css`
-        :host {
-            display: block;
-            font-size: 1rem;
-            font-weight: 600;
-            line-height: 1.4;
-            color: var(--ui-text-color, #111827);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-            margin: 0;
-        }
-    `;
+    static styles = unsafeCSS(uiEmptyTitleStyles);
     render() { return html`<slot></slot>`; }
 }
 
@@ -38,16 +34,7 @@ export class UiEmptyTitle extends LitElement {
  */
 @customElement('ui-empty-description')
 export class UiEmptyDescription extends LitElement {
-    static styles = css`
-        :host {
-            display: block;
-            font-size: 0.875rem;
-            line-height: 1.5;
-            color: var(--ui-text-color-muted, #6b7280);
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-            margin: 0;
-        }
-    `;
+    static styles = unsafeCSS(uiEmptyDescriptionStyles);
     render() { return html`<slot></slot>`; }
 }
 
@@ -66,33 +53,7 @@ export class UiEmptyDescription extends LitElement {
  */
 @customElement('ui-empty-media')
 export class UiEmptyMedia extends LitElement {
-    static styles = css`
-        :host {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .media {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .media--icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            background: var(--ui-empty-media-bg, #f3f4f6);
-            color: var(--ui-empty-media-color, #6b7280);
-        }
-
-        ::slotted(svg),
-        ::slotted([data-icon]) {
-            width: 24px;
-            height: 24px;
-        }
-    `;
+    static styles = unsafeCSS(uiEmptyMediaStyles);
 
     /** Visual treatment for the media container. */
     @property({ reflect: true })
@@ -118,15 +79,7 @@ export class UiEmptyMedia extends LitElement {
  */
 @customElement('ui-empty-header')
 export class UiEmptyHeader extends LitElement {
-    static styles = css`
-        :host {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            text-align: center;
-        }
-    `;
+    static styles = unsafeCSS(uiEmptyHeaderStyles);
     render() { return html`<slot></slot>`; }
 }
 
@@ -141,14 +94,7 @@ export class UiEmptyHeader extends LitElement {
  */
 @customElement('ui-empty-content')
 export class UiEmptyContent extends LitElement {
-    static styles = css`
-        :host {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
-    `;
+    static styles = unsafeCSS(uiEmptyContentStyles);
     render() { return html`<slot></slot>`; }
 }
 
@@ -171,27 +117,7 @@ export class UiEmptyContent extends LitElement {
  */
 @customElement('ui-empty')
 export class UiEmpty extends LitElement {
-    static styles = css`
-        :host {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: var(--ui-empty-gap, 16px);
-            padding: var(--ui-empty-padding, 32px);
-            max-width: var(--ui-empty-max-width, 480px);
-            width: 100%;
-            box-sizing: border-box;
-            text-align: center;
-            font-family: var(--ui-font-family, system-ui, sans-serif);
-        }
-    `;
+    static styles = unsafeCSS(uiEmptyStyles);
 
     render() {
         return html`

@@ -1,0 +1,6 @@
+:host { display:inline-block; font-family:var(--ui-font-family,'Inter',sans-serif); }
+    .surface {
+      border-radius:var(--ui-border-radius-xl,12px);
+      box-shadow:0 1px 4px rgba(0,0,0,.08),0 0 0 1px var(--ui-border-color,#e5e7eb);
+      overflow:hidden; display:inline-block;
+    }

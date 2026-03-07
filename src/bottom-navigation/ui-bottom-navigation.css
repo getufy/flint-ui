@@ -1,0 +1,15 @@
+:host {
+            display: flex;
+            justify-content: center;
+            height: 56px;
+            background-color: var(--ui-surface-background, #ffffff);
+            box-shadow: var(--ui-shadow-lg, 0 -1px 10px rgba(0, 0, 0, 0.1));
+            position: relative;
+            width: 100%;
+        }
+
+        .container {
+            display: flex;
+            flex: 1;
+            max-width: 100%;
+        }

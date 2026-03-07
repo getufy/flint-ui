@@ -1,0 +1,8 @@
+:host { display: block; font-family: var(--ui-font-family,'Inter',sans-serif);
+                background: var(--ui-surface-background, #fff); }
+        /* Vertical: stretch the root div so panels fill available height */
+        :host([orientation="vertical"]) .root {
+            display: flex; flex-direction: row;
+            height: 100%; min-height: inherit;
+        }
+        .root { display: block; }

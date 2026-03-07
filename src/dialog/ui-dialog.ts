@@ -1,6 +1,11 @@
-import { LitElement, html, css, type PropertyValues } from 'lit';
+import { LitElement, unsafeCSS, html, type PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import uiDialogStyles from './ui-dialog.css?inline';
+import uiDialogTitleStyles from './ui-dialog-title.css?inline';
+import uiDialogContentStyles from './ui-dialog-content.css?inline';
+import uiDialogContentTextStyles from './ui-dialog-content-text.css?inline';
+import uiDialogActionsStyles from './ui-dialog-actions.css?inline';
 import '../backdrop/ui-backdrop';
 
 // Tracks open dialogs in activation order so only the topmost handles Escape.
@@ -19,53 +24,7 @@ const _openDialogs: UiDialog[] = [];
  */
 @customElement('ui-dialog')
 export class UiDialog extends LitElement {
-  static styles = css`
-    :host {
-      display: block;
-    }
-
-    .dialog-panel {
-      position: relative;
-      background-color: var(--ui-surface-background, white);
-      border-radius: var(--ui-border-radius-xl, 12px);
-      box-shadow: var(--ui-shadow-xl, 0 20px 25px -5px rgba(0, 0, 0, 0.1));
-      max-width: 90vw;
-      max-height: var(--ui-dialog-max-height, 90vh); /* ← bounds the panel so content scrolls */
-      width: var(--ui-dialog-width, 444px);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden; /* clip panel; inner ui-dialog-content scrolls independently */
-
-      /* Base state: hidden (scale transition) */
-      opacity: 0;
-      transform: scale(0.9);
-      transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-                  transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      pointer-events: none;
-    }
-
-    .dialog-panel.open {
-      opacity: 1;
-      transform: scale(1);
-      pointer-events: auto;
-    }
-
-    /* Slide-up: start below, animate to centre */
-    .dialog-panel.transition-slide-up {
-      transform: translateY(40px);
-    }
-    .dialog-panel.transition-slide-up.open {
-      transform: translateY(0);
-    }
-
-    /* Slide-down: start above, animate to centre */
-    .dialog-panel.transition-slide-down {
-      transform: translateY(-40px);
-    }
-    .dialog-panel.transition-slide-down.open {
-      transform: translateY(0);
-    }
-  `;
+  static styles = unsafeCSS(uiDialogStyles);
 
   /** Controls the open / closed state of the dialog. */
   @property({ type: Boolean, reflect: true }) open = false;
@@ -152,16 +111,7 @@ export class UiDialog extends LitElement {
  */
 @customElement('ui-dialog-title')
 export class UiDialogTitle extends LitElement {
-  static styles = css`
-    :host {
-      display: block;
-      padding: 20px 24px 12px;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: var(--ui-text-color, #111827);
-    }
-  `;
+  static styles = unsafeCSS(uiDialogTitleStyles);
 
   render() {
     return html`<h2 id="dialog-title" style="margin:0;font-size:inherit;font-weight:inherit;"><slot></slot></h2>`;
@@ -173,15 +123,7 @@ export class UiDialogTitle extends LitElement {
  */
 @customElement('ui-dialog-content')
 export class UiDialogContent extends LitElement {
-  static styles = css`
-    :host {
-      display: block;
-      padding: 0 24px 20px 24px;
-      flex: 1 1 auto;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-  `;
+  static styles = unsafeCSS(uiDialogContentStyles);
 
   render() {
     return html`<slot></slot>`;
@@ -193,16 +135,7 @@ export class UiDialogContent extends LitElement {
  */
 @customElement('ui-dialog-content-text')
 export class UiDialogContentText extends LitElement {
-  static styles = css`
-    :host {
-      display: block;
-      font-family: var(--ui-font-family, 'Inter', sans-serif);
-      font-size: 0.9375rem;
-      line-height: 1.6;
-      color: var(--ui-text-color-muted, #6b7280);
-      margin-bottom: 8px;
-    }
-  `;
+  static styles = unsafeCSS(uiDialogContentTextStyles);
 
   render() {
     return html`<slot></slot>`;
@@ -215,20 +148,7 @@ export class UiDialogContentText extends LitElement {
  */
 @customElement('ui-dialog-actions')
 export class UiDialogActions extends LitElement {
-  static styles = css`
-    :host {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding: 8px 16px 16px;
-      gap: 8px;
-      border-top: 1px solid var(--ui-border-color, #f3f4f6);
-    }
-
-    :host([align="start"]) { justify-content: flex-start; }
-    :host([align="center"]) { justify-content: center; }
-    :host([align="space-between"]) { justify-content: space-between; }
-  `;
+  static styles = unsafeCSS(uiDialogActionsStyles);
 
   /** Alignment of action buttons: 'end' (default), 'start', 'center', 'space-between'. */
   @property({ type: String, reflect: true }) align: 'start' | 'center' | 'end' | 'space-between' = 'end';

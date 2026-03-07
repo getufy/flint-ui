@@ -1,0 +1,8 @@
+:host {
+      display: block;
+      padding: 20px 24px 12px;
+      font-family: var(--ui-font-family, 'Inter', sans-serif);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--ui-text-color, #111827);
+    }

@@ -1,38 +1,11 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, unsafeCSS, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import uiTableSortLabelStyles from './ui-table-sort-label.css?inline';
 
 @customElement('ui-table-sort-label')
 export class UiTableSortLabel extends LitElement {
-    static styles = css`
-    :host {
-      display: inline-flex;
-      align-items: center;
-      cursor: pointer;
-      user-select: none;
-      transition: color 0.2s;
-    }
-    :host(:hover) {
-      color: var(--ui-text-color, #111827);
-    }
-    :host(.active) {
-      color: var(--ui-text-color, #111827);
-      font-weight: 700;
-    }
-    .icon {
-      margin-left: 4px;
-      width: 18px;
-      height: 18px;
-      transition: transform 0.2s ease, opacity 0.2s;
-      opacity: 0;
-    }
-    :host(:hover) .icon, :host(.active) .icon {
-      opacity: 1;
-    }
-    .icon.desc {
-      transform: rotate(180deg);
-    }
-  `;
+    static styles = unsafeCSS(uiTableSortLabelStyles);
 
     @property({ type: Boolean, reflect: true }) active = false;
     @property({ type: String }) direction: 'asc' | 'desc' = 'asc';

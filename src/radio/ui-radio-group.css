@@ -1,0 +1,21 @@
+:host {
+            display: block;
+            font-family: var(--ui-font-family, 'Inter', sans-serif);
+            color: var(--ui-text-color, #111827);
+        }
+
+        :host([disabled]) {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .group-container {
+            display: flex;
+            flex-direction: column;
+            gap: var(--ui-radio-group-gap, 8px);
+        }
+
+        :host([orientation="horizontal"]) .group-container {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }

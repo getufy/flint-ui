@@ -1,6 +1,7 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, unsafeCSS, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { styleMap } from 'lit/directives/style-map.js';
+import uiImageListStyles from './ui-image-list.css?inline';
 
 export type ImageListVariant = 'standard' | 'quilted' | 'woven' | 'masonry';
 
@@ -12,37 +13,7 @@ export type ImageListVariant = 'standard' | 'quilted' | 'woven' | 'masonry';
  */
 @customElement('ui-image-list')
 export class UiImageList extends LitElement {
-  static styles = css`
-    :host {
-      display: block;
-    }
-
-    .image-list {
-      display: grid;
-      overflow: hidden;
-      box-sizing: border-box;
-    }
-
-    /* Standard: uniform grid, items crop to fill each cell */
-    .variant-standard {
-      grid-auto-rows: var(--ui-image-list-row-height, 164px);
-    }
-
-    /* Quilted: same column grid, items can span multiple rows/cols */
-    .variant-quilted {
-      grid-auto-rows: var(--ui-image-list-row-height, 164px);
-    }
-
-    /* Woven: alternating heights, set via nth-child in items */
-    .variant-woven {
-      grid-auto-rows: var(--ui-image-list-row-height, 164px);
-    }
-
-    /* Masonry: CSS columns-based layout — column-count set inline */
-    .variant-masonry {
-      display: block;
-    }
-  `;
+  static styles = unsafeCSS(uiImageListStyles);
 
   /** Layout variant */
   @property({ type: String }) variant: ImageListVariant = 'standard';
