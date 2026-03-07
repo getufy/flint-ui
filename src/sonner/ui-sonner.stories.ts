@@ -188,30 +188,35 @@ export const WithAction: Story = {
 /* ── Position ────────────────────────────────────────────────────── */
 export const Position: Story = {
     render: () => html`
+        <ui-toaster position="top-left"></ui-toaster>
+        <ui-toaster position="top-center"></ui-toaster>
+        <ui-toaster position="top-right"></ui-toaster>
+        <ui-toaster position="bottom-left"></ui-toaster>
+        <ui-toaster position="bottom-center"></ui-toaster>
         <ui-toaster position="bottom-right"></ui-toaster>
         <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; padding: 24px; font-family: var(--ui-font-family, system-ui);">
             <ui-button variant="secondary"
-                @click=${() => toast('Event has been created', { position: 'top-left' } as Parameters<typeof toast>[1])}>
+                @click=${() => toast('Top Left', { position: 'top-left' })}>
                 Top Left
             </ui-button>
             <ui-button variant="secondary"
-                @click=${() => toast('Event has been created', { position: 'top-center' } as Parameters<typeof toast>[1])}>
+                @click=${() => toast('Top Center', { position: 'top-center' })}>
                 Top Center
             </ui-button>
             <ui-button variant="secondary"
-                @click=${() => toast('Event has been created', { position: 'top-right' } as Parameters<typeof toast>[1])}>
+                @click=${() => toast('Top Right', { position: 'top-right' })}>
                 Top Right
             </ui-button>
             <ui-button variant="secondary"
-                @click=${() => toast('Event has been created', { position: 'bottom-left' } as Parameters<typeof toast>[1])}>
+                @click=${() => toast('Bottom Left', { position: 'bottom-left' })}>
                 Bottom Left
             </ui-button>
             <ui-button variant="secondary"
-                @click=${() => toast('Event has been created', { position: 'bottom-center' } as Parameters<typeof toast>[1])}>
+                @click=${() => toast('Bottom Center', { position: 'bottom-center' })}>
                 Bottom Center
             </ui-button>
             <ui-button variant="secondary"
-                @click=${() => toast('Event has been created', { position: 'bottom-right' } as Parameters<typeof toast>[1])}>
+                @click=${() => toast('Bottom Right', { position: 'bottom-right' })}>
                 Bottom Right
             </ui-button>
         </div>
@@ -219,7 +224,7 @@ export const Position: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Each button fires a toast at a specific position. Note: the `position` on individual `toast()` calls is informational — it is the `<ui-toaster position="…">` attribute that determines where the stack appears. Use multiple `<ui-toaster>` elements if you need toasts at different corners simultaneously.',
+                story: 'Six `<ui-toaster>` elements — one per corner. Each button routes its toast to the matching toaster via `{ position: "…" }`. Unrouted `toast()` calls appear in every toaster; routed calls appear only in the matching one.',
             },
         },
     },
@@ -329,6 +334,30 @@ export const DismissAll: Story = {
             </ui-button>
             <ui-button variant="secondary" @click=${() => toast.dismiss()}>
                 Dismiss All
+            </ui-button>
+        </div>
+    `,
+};
+
+/* ── Stacked ─────────────────────────────────────────────────────── */
+export const Stacked: Story = {
+    name: 'Card Stack (hover to expand)',
+    render: () => html`
+        <ui-toaster position="bottom-right"></ui-toaster>
+        <div style="padding: 24px; font-family: var(--ui-font-family, system-ui);">
+            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280;">
+                When multiple toasts are active they collapse into a card deck.
+                Hover the stack in the bottom-right to expand all toasts.
+            </p>
+            <ui-button
+                variant="secondary"
+                @click=${() => {
+                    toast('Event has been created');
+                    toast.success('Changes saved successfully');
+                    toast.info('3 items were updated');
+                }}
+            >
+                Show 3 Toasts
             </ui-button>
         </div>
     `,
