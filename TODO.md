@@ -195,7 +195,7 @@ Quick lookup when doing Pass B (bare hex → token):
 
 ## Follow-up / Future
 
-- [ ] Add `--ui-accent-color` / `--ui-accent-foreground` tokens if an accent (non-primary tint) is needed
-- [ ] Consider adding `--ui-border-radius-full` (9999px) for pill shapes
-- [ ] Document token API in README or Storybook docs page
-- [ ] Validate WCAG AA contrast ratios for all text/background token pairs in both modes
+- [x] Add `--ui-accent-color` / `--ui-accent-foreground` tokens if an accent (non-primary tint) is needed
+- [x] Consider adding `--ui-border-radius-full` (9999px) for pill shapes
+- [x] Document token API in README or Storybook docs page
+- [x] Validate WCAG AA contrast ratios for all text/background token pairs in both modes
