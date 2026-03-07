@@ -89,13 +89,13 @@ describe('ui-navigation-menu', () => {
         expect(menu.openContentId).toBeNull();
     });
 
-    it('closes content when clicking outside', async () => {
+    it('closes content when pointerdown fires outside', async () => {
         const { menu, content1 } = await makeMenu();
         menu.openContent('c1');
         await content1.updateComplete;
         expect(menu.openContentId).toBe('c1');
 
-        document.body.click();
+        document.body.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true }));
         await content1.updateComplete;
         expect(menu.openContentId).toBeNull();
         expect(content1.open).toBe(false);
@@ -106,11 +106,11 @@ describe('ui-navigation-menu', () => {
         expect(el.getAttribute('dir')).toBe('rtl');
     });
 
-    it('removes document click listener on disconnectedCallback', async () => {
+    it('removes document pointerdown listener on disconnectedCallback', async () => {
         const el = await fixture(html`<ui-navigation-menu></ui-navigation-menu>`);
         const spy = vi.spyOn(document, 'removeEventListener');
         el.remove();
-        expect(spy).toHaveBeenCalledWith('click', expect.any(Function));
+        expect(spy).toHaveBeenCalledWith('pointerdown', expect.any(Function));
         spy.mockRestore();
     });
 });
@@ -743,6 +743,41 @@ describe('close on link click', () => {
         await content.updateComplete;
         expect(content.open).toBe(false);
         expect(menu.openContentId).toBeNull();
+    });
+});
+
+// ---------------------------------------------------------------------------
+// Programmatic control: openContent from external button does not self-close
+// ---------------------------------------------------------------------------
+
+describe('programmatic control', () => {
+    it('openContent stays open when a click event also fires on document (external button pattern)', async () => {
+        const { menu, content1 } = await makeMenu();
+
+        // Simulate an external button: pointerdown fires first (handled by menu),
+        // then click fires and calls openContent — menu must remain open.
+        document.body.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true }));
+        menu.openContent('c1');
+        await content1.updateComplete;
+
+        expect(content1.open).toBe(true);
+        expect(menu.openContentId).toBe('c1');
+    });
+
+    it('openContent from external button switches correctly between menus', async () => {
+        const { menu, content1, content2 } = await makeMenu();
+
+        document.body.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true }));
+        menu.openContent('c1');
+        await content1.updateComplete;
+        expect(content1.open).toBe(true);
+
+        document.body.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true }));
+        menu.openContent('c2');
+        await content1.updateComplete;
+        await content2.updateComplete;
+        expect(content1.open).toBe(false);
+        expect(content2.open).toBe(true);
     });
 });
 
