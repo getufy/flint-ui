@@ -80,14 +80,16 @@ export class UiNavigationMenu extends LitElement {
         // Both trigger-click and content-toggle events carry { contentId, open }
         this.addEventListener('ui-navigation-menu-trigger-click', this._handleContentToggle as EventListener);
         this.addEventListener('ui-navigation-menu-content-toggle', this._handleContentToggle as EventListener);
-        document.addEventListener('click', this._handleDocumentClick);
+        // pointerdown fires before click, so programmatic openContent() called from an
+        // outside button's onclick handler won't be immediately cancelled by this listener.
+        document.addEventListener('pointerdown', this._handleDocumentClick);
     }
 
     override disconnectedCallback() {
         super.disconnectedCallback();
         this.removeEventListener('ui-navigation-menu-trigger-click', this._handleContentToggle as EventListener);
         this.removeEventListener('ui-navigation-menu-content-toggle', this._handleContentToggle as EventListener);
-        document.removeEventListener('click', this._handleDocumentClick);
+        document.removeEventListener('pointerdown', this._handleDocumentClick);
     }
 
     /** Get the currently open content item ID */
