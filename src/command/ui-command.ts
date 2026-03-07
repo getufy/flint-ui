@@ -343,12 +343,14 @@ export class UiCommand extends LitElement {
         ) as UiCommandItem[];
     }
 
-    private _setHighlight(item: UiCommandItem | null) {
+    private _setHighlight(item: UiCommandItem | null, scrollIntoView = true) {
         if (this._highlightedItem) this._highlightedItem.highlighted = false;
         this._highlightedItem = item;
         if (item) {
             item.highlighted = true;
-            item.scrollIntoViewIfNeeded();
+            if (scrollIntoView) {
+                item.scrollIntoViewIfNeeded();
+            }
         }
     }
 
@@ -403,8 +405,8 @@ export class UiCommand extends LitElement {
             }
         }
 
-        /* 5. Move keyboard highlight to first navigable item. */
-        this._setHighlight(this._getNavigableItems()[0] ?? null);
+        /* 5. Move keyboard highlight to first navigable item (without scrolling on initial load). */
+        this._setHighlight(this._getNavigableItems()[0] ?? null, false);
     }
 
     /* ── Slot change — initialise state once children are assigned ─────────── */
