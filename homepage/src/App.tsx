@@ -762,8 +762,8 @@ function Interactive() {
                 <Heading title="Fully interactive" sub="Real Lit components rendered inside React — no mocks, no stubs." />
                 <div style={grid3()}>
 
-                    <div style={card({ ...col(20) })}>
-                        <div><p style={{ fontWeight: 700, fontSize: 15 }}>Settings Panel</p><p style={{ fontSize: 13, color: c.muted }}>State reflected live below</p></div>
+                    <div style={card({ ...col(20), background: dark ? '#1e293b' : c.surface, border: `1px solid ${dark ? '#334155' : c.border}`, transition: 'background 0.3s, border-color 0.3s' })}>
+                        <div><p style={{ fontWeight: 700, fontSize: 15, color: dark ? '#f8fafc' : c.text }}>Settings Panel</p><p style={{ fontSize: 13, color: dark ? '#94a3b8' : c.muted }}>State reflected live below</p></div>
                         <UiDivider />
                         <div style={col(16)}>
                             <UiSwitch label="Dark mode" checked={dark} onUiSwitchChange={e => setDark((e as CustomEvent<{ checked: boolean }>).detail.checked)} />
@@ -773,7 +773,7 @@ function Interactive() {
                         <UiDivider />
                         <div style={col(6)}>
                             {[{ l: 'Dark mode', v: dark, color: c.primary }, { l: 'Notifications', v: notifs, color: c.success }, { l: 'Auto-save', v: save, color: c.success }].map(({ l, v, color }) => (
-                                <div key={l} style={row(6)}><span style={{ width: 8, height: 8, borderRadius: '50%', background: v ? color : c.border, display: 'inline-block' }} /><span style={{ fontSize: 12, color: c.muted }}>{l}: <b>{v ? 'on' : 'off'}</b></span></div>
+                                <div key={l} style={row(6)}><span style={{ width: 8, height: 8, borderRadius: '50%', background: v ? color : (dark ? '#334155' : c.border), display: 'inline-block' }} /><span style={{ fontSize: 12, color: dark ? '#94a3b8' : c.muted }}>{l}: <b style={{ color: dark ? '#f8fafc' : undefined }}>{v ? 'on' : 'off'}</b></span></div>
                             ))}
                         </div>
                     </div>
