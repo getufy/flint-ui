@@ -28,6 +28,8 @@ export class UiResizableGroup extends LitElement {
   /* ---- internal bookkeeping ---- */
   private _panels: UiResizablePanel[] = [];
   private _handles: UiResizableHandle[] = [];
+  /** Panels that were at/below minSize when the current drag started — only these may collapse. */
+  private _collapsibleAtDragStart = new Set<UiResizablePanel>();
 
   /* ---- public API ---- */
 
@@ -117,6 +119,23 @@ export class UiResizableGroup extends LitElement {
     }
   }
 
+  /* ---- drag session tracking ---- */
+
+  /** @internal – called by handle on pointerdown */
+  _startDrag() {
+    this._collapsibleAtDragStart.clear();
+    for (const p of this._panels) {
+      if (p.collapsible && p.size <= p.minSize) {
+        this._collapsibleAtDragStart.add(p);
+      }
+    }
+  }
+
+  /** @internal – called by handle on pointerup / cancel / lost */
+  _endDrag() {
+    this._collapsibleAtDragStart.clear();
+  }
+
   /* ---- resize logic (called from handle) ---- */
 
   /** @internal */
@@ -144,10 +163,10 @@ export class UiResizableGroup extends LitElement {
     let newAfter = after.size - deltaPct;
 
     // Enforce min/max constraints
-    // Collapse only allowed when the panel is already at minSize (prevents
-    // fast-drag skipping straight from a large size past the collapse threshold).
+    // Collapse only allowed when the panel was already at minSize when the
+    // drag started — prevents a fast single drag from skipping minSize.
     if (newBefore < before.minSize) {
-      if (before.collapsible && before.size <= before.minSize && newBefore < before.minSize / 2) {
+      if (this._collapsibleAtDragStart.has(before) && newBefore < before.minSize / 2) {
         newAfter += newBefore;
         newBefore = 0;
       } else {
@@ -157,7 +176,7 @@ export class UiResizableGroup extends LitElement {
       }
     }
     if (newAfter < after.minSize) {
-      if (after.collapsible && after.size <= after.minSize && newAfter < after.minSize / 2) {
+      if (this._collapsibleAtDragStart.has(after) && newAfter < after.minSize / 2) {
         newBefore += newAfter;
         newAfter = 0;
       } else {
@@ -392,6 +411,7 @@ export class UiResizableHandle extends LitElement {
     this._dragging = true;
     this._startPos = this.orientation === 'horizontal' ? e.clientX : e.clientY;
     this.setPointerCapture(e.pointerId);
+    (this.closest('ui-resizable-group') as UiResizableGroup | null)?._startDrag();
   };
 
   private _onPointerMove = (e: PointerEvent) => {
@@ -412,16 +432,19 @@ export class UiResizableHandle extends LitElement {
     if (!this._dragging) return;
     this._dragging = false;
     this.releasePointerCapture(e.pointerId);
+    (this.closest('ui-resizable-group') as UiResizableGroup | null)?._endDrag();
   };
 
   private _onPointerCancel = (e: PointerEvent) => {
     if (!this._dragging) return;
     this._dragging = false;
     this.releasePointerCapture(e.pointerId);
+    (this.closest('ui-resizable-group') as UiResizableGroup | null)?._endDrag();
   };
 
   private _onLostPointerCapture = () => {
     this._dragging = false;
+    (this.closest('ui-resizable-group') as UiResizableGroup | null)?._endDrag();
   };
 
   /* ---- keyboard handling ---- */
