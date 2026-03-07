@@ -1,5 +1,5 @@
-import { LitElement, html, css } from 'lit';
-import { property, state } from 'lit/decorators.js';
+import { LitElement, html, css, PropertyValues } from 'lit';
+import { customElement, property, state } from 'lit/decorators.js';
 
 /**
  * @tag ui-navigation-menu-trigger
@@ -21,54 +21,68 @@ import { property, state } from 'lit/decorators.js';
  *
  * @fires ui-navigation-menu-trigger-click - Fired when trigger is clicked
  */
+@customElement('ui-navigation-menu-trigger')
 export class UiNavigationMenuTrigger extends LitElement {
     static override styles = css`
         :host {
-            display: inline-block;
-            --ui-navigation-menu-trigger-padding: 8px 12px;
+            display: inline-flex;
+            --ui-navigation-menu-trigger-padding: 8px 14px;
             --ui-navigation-menu-trigger-font-size: 14px;
-            --ui-navigation-menu-trigger-color: inherit;
+            --ui-navigation-menu-trigger-color: var(--ui-text-color, #111827);
             --ui-navigation-menu-trigger-bg: transparent;
-            --ui-navigation-menu-trigger-hover-bg: #f0f0f0;
+            --ui-navigation-menu-trigger-hover-bg: #f3f4f6;
+            --ui-navigation-menu-trigger-active-bg: #f3f4f6;
             --ui-navigation-menu-trigger-border-radius: 6px;
         }
 
         .trigger {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 4px;
+            height: 36px;
             padding: var(--ui-navigation-menu-trigger-padding);
             font-size: var(--ui-navigation-menu-trigger-font-size);
+            font-weight: 500;
+            font-family: inherit;
             color: var(--ui-navigation-menu-trigger-color);
             background: var(--ui-navigation-menu-trigger-bg);
             border: none;
             border-radius: var(--ui-navigation-menu-trigger-border-radius);
             cursor: pointer;
-            transition: background 0.2s, color 0.2s;
-            font-family: inherit;
-            font-weight: 500;
+            transition: background 0.15s ease, color 0.15s ease;
+            outline: none;
+            white-space: nowrap;
+            user-select: none;
         }
 
         .trigger:hover:not(:disabled) {
             background: var(--ui-navigation-menu-trigger-hover-bg);
         }
 
+        .trigger:focus-visible {
+            outline: 2px solid var(--ui-primary-color, #3b82f6);
+            outline-offset: 2px;
+        }
+
         .trigger:disabled {
             opacity: 0.5;
             cursor: not-allowed;
+            pointer-events: none;
         }
 
         .trigger[aria-expanded="true"] {
-            background: var(--ui-navigation-menu-trigger-hover-bg);
+            background: var(--ui-navigation-menu-trigger-active-bg);
         }
 
         .icon {
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.2s;
+            opacity: 0.7;
+            transition: transform 0.2s ease;
+            flex-shrink: 0;
         }
 
         .trigger[aria-expanded="true"] .icon {
@@ -77,7 +91,7 @@ export class UiNavigationMenuTrigger extends LitElement {
     `;
 
     /** The ID of the associated content element */
-    @property({ type: String })
+    @property({ type: String, reflect: true, attribute: 'content-id' })
     contentId: string = '';
 
     /** Whether the trigger is disabled */
@@ -87,6 +101,8 @@ export class UiNavigationMenuTrigger extends LitElement {
     /** Whether the associated content is open */
     @state()
     private _isOpen = false;
+
+    private _contentObserver: MutationObserver | null = null;
 
     override connectedCallback() {
         super.connectedCallback();
@@ -98,6 +114,32 @@ export class UiNavigationMenuTrigger extends LitElement {
         super.disconnectedCallback();
         this.removeEventListener('click', this._handleClick);
         this.removeEventListener('keydown', this._handleKeydown);
+        this._contentObserver?.disconnect();
+        this._contentObserver = null;
+    }
+
+    override firstUpdated() {
+        this._observeContent();
+    }
+
+    override updated(changed: PropertyValues) {
+        if (changed.has('contentId')) {
+            this._observeContent();
+        }
+    }
+
+    /** Watch content's open attribute so _isOpen stays in sync when closed externally */
+    private _observeContent() {
+        this._contentObserver?.disconnect();
+        const content = this._getContent();
+        if (!content) return;
+        this._contentObserver = new MutationObserver(() => {
+            const open = content.hasAttribute('open');
+            if (this._isOpen !== open) {
+                this._isOpen = open;
+            }
+        });
+        this._contentObserver.observe(content, { attributes: true, attributeFilter: ['open'] });
     }
 
     private _handleClick = () => {
@@ -123,21 +165,20 @@ export class UiNavigationMenuTrigger extends LitElement {
 
     private _toggle = () => {
         this._isOpen = !this._isOpen;
-        this._emitToggleEvent();
+        this._emitEvents();
         this._syncContent();
     };
 
-    private _emitToggleEvent = () => {
-        const content = this._getContent();
-        if (content) {
-            this.dispatchEvent(
-                new CustomEvent('ui-navigation-menu-trigger-click', {
-                    detail: { contentId: this.contentId, open: this._isOpen },
-                    bubbles: true,
-                    composed: true,
-                })
-            );
-        }
+    private _emitEvents = () => {
+        const detail = { contentId: this.contentId, open: this._isOpen };
+        // Fire the public trigger event
+        this.dispatchEvent(
+            new CustomEvent('ui-navigation-menu-trigger-click', {
+                detail,
+                bubbles: true,
+                composed: true,
+            })
+        );
     };
 
     private _syncContent = () => {
@@ -147,8 +188,25 @@ export class UiNavigationMenuTrigger extends LitElement {
         }
     };
 
+    /** Find content relative to the nearest menu root (shadow-DOM-safe) */
     private _getContent = () => {
         if (!this.contentId) return null;
+        const item = this.closest('ui-navigation-menu-item');
+        if (item) {
+            const found = item.querySelector(`[id="${this.contentId}"]`);
+            if (found) return found;
+        }
+        const menu = this.closest('ui-navigation-menu');
+        if (menu) {
+            const found = menu.querySelector(`[id="${this.contentId}"]`);
+            if (found) return found;
+        }
+        // Check parent element (sibling usage without full menu wrapper)
+        const parent = this.parentElement;
+        if (parent) {
+            const found = parent.querySelector(`[id="${this.contentId}"]`);
+            if (found) return found;
+        }
         return document.getElementById(this.contentId);
     };
 

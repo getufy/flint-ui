@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit';
-import { property } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 
 /**
  * @tag ui-navigation-menu-item
@@ -13,17 +13,20 @@ import { property } from 'lit/decorators.js';
  * @cssprop --ui-navigation-menu-item-padding - Item padding (default: 0)
  * @cssprop --ui-navigation-menu-item-position - Position style (default: relative)
  */
+@customElement('ui-navigation-menu-item')
 export class UiNavigationMenuItem extends LitElement {
     static override styles = css`
         :host {
-            display: inline-block;
+            display: inline-flex;
+            position: relative;
             --ui-navigation-menu-item-padding: 0;
-            --ui-navigation-menu-item-position: relative;
         }
 
         .item {
+            display: inline-flex;
+            align-items: center;
             padding: var(--ui-navigation-menu-item-padding);
-            position: var(--ui-navigation-menu-item-position);
+            position: relative;
         }
     `;
 
@@ -35,9 +38,40 @@ export class UiNavigationMenuItem extends LitElement {
     @property({ type: Boolean, reflect: true })
     disabled: boolean = false;
 
+    override connectedCallback() {
+        super.connectedCallback();
+        this.shadowRoot!.addEventListener('slotchange', this._syncChildren);
+    }
+
+    override disconnectedCallback() {
+        super.disconnectedCallback();
+        this.shadowRoot!.removeEventListener('slotchange', this._syncChildren);
+    }
+
+    override updated(changed: Map<PropertyKey, unknown>) {
+        if (changed.has('disabled')) {
+            this._syncChildren();
+        }
+    }
+
+    private _syncChildren = () => {
+        const triggers = this.querySelectorAll('ui-navigation-menu-trigger');
+        const links = this.querySelectorAll('ui-navigation-menu-link');
+        triggers.forEach((el) => {
+            if (el.closest('ui-navigation-menu-item') === this) {
+                (el as any).disabled = this.disabled;
+            }
+        });
+        links.forEach((el) => {
+            if (el.closest('ui-navigation-menu-item') === this) {
+                (el as any).disabled = this.disabled;
+            }
+        });
+    };
+
     override render() {
         return html`
-            <div class="item" part="root" role="menuitem" ?aria-disabled=${this.disabled}>
+            <div class="item" part="root" role="none">
                 <slot></slot>
             </div>
         `;
