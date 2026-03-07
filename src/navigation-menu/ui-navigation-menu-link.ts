@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html, css, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
 /**
@@ -151,7 +151,7 @@ export class UiNavigationMenuLink extends LitElement {
                 title=${this.title}
                 role="menuitem"
                 aria-disabled=${this.disabled ? 'true' : 'false'}
-                aria-current=${this.active ? 'page' : ''}
+                aria-current=${this.active ? 'page' : nothing}
             >
                 <slot></slot>
             </a>

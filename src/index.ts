@@ -158,3 +158,8 @@ export { UiNavigationMenuLink } from './navigation-menu/ui-navigation-menu-link.
 export { UiToaster, toast } from './sonner/ui-sonner.js';
 export type { ToastType, ToastPosition, ToastAction, ToastOptions } from './sonner/ui-sonner.js';
 export { UiToggle } from './toggle/ui-toggle.js';
+export {
+    UiResizableGroup,
+    UiResizablePanel,
+    UiResizableHandle,
+} from './resizable/ui-resizable.js';
