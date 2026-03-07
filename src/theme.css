@@ -229,6 +229,15 @@
     --ui-copy-button-success-color: var(--ui-success-color);
     --ui-copy-button-error-color:   var(--ui-error-color);
 
+    /* ─── Image Comparer ─────────────────────────────────────── */
+    --ui-image-comparer-divider-width:      2px;
+    --ui-image-comparer-divider-color:      var(--ui-color-white);
+    --ui-image-comparer-handle-size:        40px;
+    --ui-image-comparer-handle-bg:          var(--ui-color-white);
+    --ui-image-comparer-handle-border-color: rgba(0, 0, 0, 0.15);
+    --ui-image-comparer-handle-icon-color:  var(--ui-text-color-muted);
+    --ui-image-comparer-border-radius:      var(--ui-border-radius-md);
+
     /* ─── Resizable ───────────────────────────────────────────── */
     --ui-resizable-handle-size:        4px;
     --ui-resizable-handle-active-size: 12px;
@@ -370,6 +379,12 @@ body {
     /* ─── Scroll Area ──────────────────────────────────────────── */
     --ui-scrollbar-thumb-color:       rgba(255, 255, 255, 0.35);
     --ui-scrollbar-thumb-hover-color: rgba(255, 255, 255, 0.50);
+
+    /* ─── Image Comparer ─────────────────────────────────────── */
+    --ui-image-comparer-divider-color:      var(--ui-color-zinc-300);
+    --ui-image-comparer-handle-bg:          var(--ui-color-zinc-800);
+    --ui-image-comparer-handle-border-color: rgba(255, 255, 255, 0.20);
+    --ui-image-comparer-handle-icon-color:  var(--ui-color-zinc-300);
 
     /* ─── Resizable ──────────────────────────────────────────── */
     --ui-resizable-handle-bg:       var(--ui-border-color);

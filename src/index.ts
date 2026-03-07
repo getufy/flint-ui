@@ -164,3 +164,4 @@ export {
     UiResizablePanel,
     UiResizableHandle,
 } from './resizable/ui-resizable.js';
+export { UiImageComparer } from './image-comparer/ui-image-comparer.js';

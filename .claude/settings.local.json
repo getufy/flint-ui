@@ -18,7 +18,8 @@
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/navigation-menu/ui-navigation-menu.test.ts)",
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/copy-button/ui-copy-button.test.ts --project components)",
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/copy-button/ui-copy-button.test.ts)",
-      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/tooltip/ui-tooltip.test.ts)"
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/tooltip/ui-tooltip.test.ts)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/image-comparer/ui-image-comparer.test.ts)"
     ]
   }
 }
