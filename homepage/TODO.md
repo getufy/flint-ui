@@ -76,7 +76,7 @@
 
 - [x] Mobile responsiveness — `grid2`/`grid3` use `auto-fit/minmax`; `sect` uses `clamp()` padding; Hero stacks to 1-col on tablet, hides preview card on mobile; Header nav collapses on tablet; Footer wraps with responsive gap
 - [x] Dark mode — all sections use `getColors(dark)` + pass `colors` to `sect()`/`card()`; `ShowCard`/`Heading` in `shared.tsx` are dark-aware; `theme.css` has full `.ui-theme-dark` token block
-- [ ] Smooth scroll for nav anchor links — verify all section `id`s match header nav hrefs
+- [x] Smooth scroll for nav anchor links — all section `id`s match header nav hrefs (`#s-components`, `#s-forms`, `#s-data`, `#s-overlays`, `#s-flow`); Header nav links use `scrollIntoView({ behavior: 'smooth' })`; App.tsx prevents browser auto-scroll to hash on page load, handles hash changes manually
 - [ ] Add a "back to top" button or floating action
 
 ---

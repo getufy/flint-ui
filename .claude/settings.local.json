@@ -9,7 +9,8 @@
       "Bash(npx vitest run src/command/ui-command.test.ts)",
       "Bash(NODE_OPTIONS='--no-warnings' vitest run:*)",
       "Bash(npm run:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(curl:*)"
     ]
   }
 }
