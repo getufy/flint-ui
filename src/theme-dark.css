@@ -124,6 +124,12 @@
 
     --ui-card-shadow:       var(--ui-shadow-lg);
     --ui-card-shadow-hover: var(--ui-shadow-xl);
+
+    /* ─── Resizable ──────────────────────────────────────────── */
+    --ui-resizable-handle-bg:       var(--ui-border-color);
+    --ui-resizable-handle-hover-bg: var(--ui-primary-color);
+    --ui-resizable-grip-bg:         var(--ui-surface-1);
+    --ui-resizable-grip-dot-color:  var(--ui-text-color-muted);
 }
 
 
