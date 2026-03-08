@@ -30,8 +30,10 @@ export class UiResizableGroup extends LitElement {
   /* ---- internal bookkeeping ---- */
   private _panels: UiResizablePanel[] = [];
   private _handles: UiResizableHandle[] = [];
-  /** Panels that were at/below minSize when the current drag started — only these may collapse. */
+  /** Collapsible panels eligible to collapse in the current drag session. */
   private _collapsibleAtDragStart = new Set<UiResizablePanel>();
+  /** Accumulated overshoot past minSize per panel (percentage points) in current drag. */
+  private _collapseOvershoot = new Map<UiResizablePanel, number>();
 
   /* ---- public API ---- */
 
@@ -143,8 +145,9 @@ export class UiResizableGroup extends LitElement {
   /** @internal – called by handle on pointerdown */
   _startDrag() {
     this._collapsibleAtDragStart.clear();
+    this._collapseOvershoot.clear();
     for (const p of this._panels) {
-      if (p.collapsible && p.size <= p.minSize) {
+      if (p.collapsible) {
         this._collapsibleAtDragStart.add(p);
       }
     }
@@ -153,6 +156,7 @@ export class UiResizableGroup extends LitElement {
   /** @internal – called by handle on pointerup / cancel / lost */
   _endDrag() {
     this._collapsibleAtDragStart.clear();
+    this._collapseOvershoot.clear();
   }
 
   /* ---- collapse / expand API ---- */
@@ -243,28 +247,73 @@ export class UiResizableGroup extends LitElement {
     let newBefore = before.size + deltaPct;
     let newAfter = after.size - deltaPct;
 
-    // Enforce min/max constraints
-    // Collapse only allowed when the panel was already at minSize when the
-    // drag started — prevents a fast single drag from skipping minSize.
+    // Enforce min/max constraints.
+    // Collapse: accumulate "overshoot" distance dragged past minSize each event.
+    //   Once overshoot >= minSize/2, snap to 0. Resets if user drags back above minSize.
+    // Expand: when panel is already at 0, clamp to minSize (snap open).
     if (newBefore < before.minSize) {
-      if (this._collapsibleAtDragStart.has(before) && newBefore < before.minSize / 2) {
-        newAfter += newBefore;
-        newBefore = 0;
+      if (before.size === 0) {
+        // Panel already collapsed — stay at 0 while dragging further in collapse direction;
+        // snap back to minSize when user drags the other way (newBefore > 0).
+        if (newBefore <= 0) {
+          newAfter += newBefore; // transfer overshoot to sibling
+          newBefore = 0;
+        } else {
+          const diff = before.minSize - newBefore;
+          newBefore = before.minSize;
+          newAfter -= diff;
+        }
+      } else if (this._collapsibleAtDragStart.has(before)) {
+        const overshoot = (this._collapseOvershoot.get(before) ?? 0) + (before.minSize - newBefore);
+        if (overshoot >= before.minSize / 2) {
+          newAfter += newBefore;
+          newBefore = 0;
+          this._collapseOvershoot.delete(before);
+        } else {
+          this._collapseOvershoot.set(before, overshoot);
+          const diff = before.minSize - newBefore;
+          newBefore = before.minSize;
+          newAfter -= diff;
+        }
       } else {
         const diff = before.minSize - newBefore;
         newBefore = before.minSize;
         newAfter -= diff;
       }
+    } else {
+      this._collapseOvershoot.delete(before);
     }
     if (newAfter < after.minSize) {
-      if (this._collapsibleAtDragStart.has(after) && newAfter < after.minSize / 2) {
-        newBefore += newAfter;
-        newAfter = 0;
+      if (after.size === 0) {
+        // Panel already collapsed — stay at 0 while dragging further in collapse direction;
+        // snap back to minSize when user drags the other way (newAfter > 0).
+        if (newAfter <= 0) {
+          newBefore += newAfter; // transfer overshoot to sibling
+          newAfter = 0;
+        } else {
+          const diff = after.minSize - newAfter;
+          newAfter = after.minSize;
+          newBefore -= diff;
+        }
+      } else if (this._collapsibleAtDragStart.has(after)) {
+        const overshoot = (this._collapseOvershoot.get(after) ?? 0) + (after.minSize - newAfter);
+        if (overshoot >= after.minSize / 2) {
+          newBefore += newAfter;
+          newAfter = 0;
+          this._collapseOvershoot.delete(after);
+        } else {
+          this._collapseOvershoot.set(after, overshoot);
+          const diff = after.minSize - newAfter;
+          newAfter = after.minSize;
+          newBefore -= diff;
+        }
       } else {
         const diff = after.minSize - newAfter;
         newAfter = after.minSize;
         newBefore -= diff;
       }
+    } else {
+      this._collapseOvershoot.delete(after);
     }
 
     if (before.maxSize < 100 && newBefore > before.maxSize) {
@@ -336,6 +385,8 @@ export class UiResizablePanel extends LitElement {
       overflow: hidden;
       flex-shrink: 0;
       flex-grow: 0;
+      min-width: 0;
+      min-height: 0;
     }
   `;
 
@@ -452,11 +503,16 @@ export class UiResizableHandle extends LitElement {
       flex-shrink: 0;
       outline: none;
       background: var(--ui-resizable-handle-bg, var(--ui-border-color, #e4e4e7));
+      border-radius: var(--ui-resizable-handle-border-radius, 0px);
       transition: background var(--ui-resizable-handle-transition, 150ms) ease;
     }
-    :host(:hover),
-    :host(:focus-visible) {
+    :host(:hover) {
       background: var(--ui-resizable-handle-hover-bg, var(--ui-primary-color, #3b82f6));
+    }
+    :host(:focus-visible) {
+      background: var(--ui-resizable-handle-focus-bg, var(--ui-primary-color, #3b82f6));
+      outline: 2px solid var(--ui-resizable-handle-focus-bg, var(--ui-primary-color, #3b82f6));
+      outline-offset: 1px;
     }
     :host([orientation='horizontal']) {
       width: var(--ui-resizable-handle-size, 4px);
@@ -501,7 +557,7 @@ export class UiResizableHandle extends LitElement {
 
     .grip-dots {
       display: flex;
-      gap: 1px;
+      gap: var(--ui-resizable-grip-dot-gap, 1px);
     }
     :host([orientation='horizontal']) .grip-dots {
       flex-direction: column;
@@ -510,8 +566,8 @@ export class UiResizableHandle extends LitElement {
       flex-direction: row;
     }
     .grip-dot {
-      width: 2px;
-      height: 2px;
+      width: var(--ui-resizable-grip-dot-size, 2px);
+      height: var(--ui-resizable-grip-dot-size, 2px);
       border-radius: 50%;
       background: var(--ui-resizable-grip-dot-color, var(--ui-text-color-muted, #71717a));
     }

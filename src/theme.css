@@ -273,16 +273,20 @@
     --ui-image-comparer-border-radius:      var(--ui-border-radius-md);
 
     /* ─── Resizable ───────────────────────────────────────────── */
-    --ui-resizable-handle-size:        4px;
-    --ui-resizable-handle-active-size: 12px;
-    --ui-resizable-handle-bg:          var(--ui-border-color);
-    --ui-resizable-handle-hover-bg:    var(--ui-primary-color);
-    --ui-resizable-handle-transition:  150ms;
-    --ui-resizable-grip-bg:            var(--ui-background);
-    --ui-resizable-grip-width:         12px;
-    --ui-resizable-grip-height:        24px;
-    --ui-resizable-grip-dot-color:     var(--ui-text-color-muted);
-    --ui-resizable-step:               5;
+    --ui-resizable-handle-size:           4px;
+    --ui-resizable-handle-active-size:    12px;
+    --ui-resizable-handle-bg:             var(--ui-border-color);
+    --ui-resizable-handle-hover-bg:       var(--ui-primary-color);
+    --ui-resizable-handle-focus-bg:       var(--ui-primary-color);
+    --ui-resizable-handle-transition:     150ms;
+    --ui-resizable-handle-border-radius:  0px;
+    --ui-resizable-grip-bg:              var(--ui-background);
+    --ui-resizable-grip-width:            12px;
+    --ui-resizable-grip-height:           24px;
+    --ui-resizable-grip-dot-color:        var(--ui-text-color-muted);
+    --ui-resizable-grip-dot-size:         2px;
+    --ui-resizable-grip-dot-gap:          1px;
+    --ui-resizable-step:                  5;
 
     /* ─── Autocomplete ────────────────────────────────────────── */
     --ui-autocomplete-dropdown-max-height: 250px;
@@ -542,10 +546,11 @@ body {
     --ui-image-comparer-handle-icon-color:  var(--ui-color-zinc-300);
 
     /* ─── Resizable ──────────────────────────────────────────── */
-    --ui-resizable-handle-bg:       var(--ui-border-color);
-    --ui-resizable-handle-hover-bg: var(--ui-primary-color);
-    --ui-resizable-grip-bg:         var(--ui-surface-1);
-    --ui-resizable-grip-dot-color:  var(--ui-text-color-muted);
+    --ui-resizable-handle-bg:        var(--ui-border-color);
+    --ui-resizable-handle-hover-bg:  var(--ui-primary-color);
+    --ui-resizable-handle-focus-bg:  var(--ui-primary-color);
+    --ui-resizable-grip-bg:          var(--ui-surface-1);
+    --ui-resizable-grip-dot-color:   var(--ui-text-color-muted);
 
     /* ─── Split Panel ─────────────────────────────────────────── */
     --ui-split-panel-divider-color:       var(--ui-border-color);
