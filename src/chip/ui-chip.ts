@@ -11,6 +11,7 @@ export class UiChip extends LitElement {
     @property({ type: String }) label = '';
     @property({ type: String }) variant: 'filled' | 'outlined' = 'filled';
     @property({ type: String }) color: 'default' | 'primary' | 'secondary' = 'default';
+    @property({ type: String, reflect: true }) size: 'sm' | 'md' | 'lg' = 'md';
     @property({ type: Boolean }) clickable = false;
     @property({ type: Boolean }) deletable = false;
     @property({ type: Boolean, reflect: true }) disabled = false;
@@ -65,7 +66,9 @@ export class UiChip extends LitElement {
             disabled: this.disabled,
             outlined: this.variant === 'outlined',
             primary: this.color === 'primary',
-            secondary: this.color === 'secondary'
+            secondary: this.color === 'secondary',
+            'size-sm': this.size === 'sm',
+            'size-lg': this.size === 'lg',
         };
 
         return html`
