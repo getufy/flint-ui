@@ -323,6 +323,100 @@ export const EventLogging: Story = {
     `,
 };
 
+/* ── Three Panes ──────────────────────────────────────────────────── */
+
+export const ThreePanes: Story = {
+    name: 'Three Panes',
+    render: () => html`
+        <div
+            style="height:250px;max-width:800px;border:1px solid var(--ui-border-color,#e4e4e7);border-radius:8px;overflow:hidden;"
+        >
+            <ui-split-panel position="33" style="height:100%;">
+                <div slot="start" style="${panelStyle}background:#eff6ff;">Panel 1</div>
+                <ui-split-panel slot="end" position="50" style="height:100%;width:100%;">
+                    <div slot="start" style="${panelStyle}background:#f0fdf4;">Panel 2</div>
+                    <div slot="end" style="${panelStyle}background:#fef3c7;">Panel 3</div>
+                </ui-split-panel>
+            </ui-split-panel>
+        </div>
+    `,
+};
+
+/* ── Vertical Snapping ────────────────────────────────────────────── */
+
+export const VerticalSnapping: Story = {
+    name: 'Vertical with Snapping',
+    render: () => html`
+        <p
+            style="font-family:system-ui;font-size:13px;color:var(--ui-text-color-muted,#71717a);margin-bottom:12px;"
+        >
+            Vertical layout snapping at 33% and 66%.
+        </p>
+        <div
+            style="height:350px;max-width:400px;border:1px solid var(--ui-border-color,#e4e4e7);border-radius:8px;overflow:hidden;"
+        >
+            <ui-split-panel vertical snap="33% 66%" style="height:100%;">
+                <div slot="start" style="${panelStyle}">Top</div>
+                <div slot="end" style="${panelStyle}">Bottom</div>
+            </ui-split-panel>
+        </div>
+    `,
+};
+
+/* ── Custom Styling ───────────────────────────────────────────────── */
+
+export const CustomStyling: Story = {
+    name: 'Custom Styling',
+    render: () => html`
+        <p
+            style="font-family:system-ui;font-size:13px;color:var(--ui-text-color-muted,#71717a);margin-bottom:12px;"
+        >
+            Demonstrates CSS custom properties for divider customization.
+        </p>
+        <div style="${wrapStyle}">
+            <ui-split-panel
+                style="
+                    height:100%;
+                    --ui-split-panel-divider-width: 8px;
+                    --ui-split-panel-divider-hit-area: 20px;
+                    --ui-split-panel-divider-color: #e0e7ff;
+                    --ui-split-panel-divider-hover-color: #6366f1;
+                "
+            >
+                <div slot="start" style="${panelStyle}background:#f5f3ff;">Start</div>
+                <div slot="end" style="${panelStyle}background:#fdf2f8;">End</div>
+            </ui-split-panel>
+        </div>
+    `,
+};
+
+/* ── Collapsible Sidebar ──────────────────────────────────────────── */
+
+export const CollapsibleSidebar: Story = {
+    name: 'Collapsible Sidebar',
+    render: () => html`
+        <p
+            style="font-family:system-ui;font-size:13px;color:var(--ui-text-color-muted,#71717a);margin-bottom:12px;"
+        >
+            Snaps to 0px or 200px — drag past the midpoint to collapse or expand.
+        </p>
+        <div style="${wrapStyle}">
+            <ui-split-panel
+                .snap=${'0px 200px'}
+                .snapThreshold=${100}
+                position-in-pixels="200"
+                primary="start"
+                style="height:100%; --ui-split-panel-min: 0;"
+            >
+                <div slot="start" style="${panelStyle}background:#f0fdf4;font-size:13px;">
+                    Sidebar
+                </div>
+                <div slot="end" style="${panelStyle}">Main Content</div>
+            </ui-split-panel>
+        </div>
+    `,
+};
+
 /* ── Controlled ────────────────────────────────────────────────────── */
 
 export const Controlled: Story = {

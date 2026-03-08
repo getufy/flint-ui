@@ -21,7 +21,9 @@
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/tooltip/ui-tooltip.test.ts)",
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/image-comparer/ui-image-comparer.test.ts)",
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/scroll-area/ui-scroll-area.test.ts)",
-      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --project components --coverage src/scroll-area/ui-scroll-area.test.ts)"
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --project components --coverage src/scroll-area/ui-scroll-area.test.ts)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/split-panel/ui-split-panel.test.ts)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --project components --coverage src/split-panel/ui-split-panel.test.ts)"
     ]
   }
 }

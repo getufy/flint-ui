@@ -15,6 +15,13 @@ beforeAll(() => {
             disconnect() {}
         };
     }
+    // setPointerCapture / releasePointerCapture are not in jsdom
+    if (!HTMLElement.prototype.setPointerCapture) {
+        HTMLElement.prototype.setPointerCapture = function () {};
+    }
+    if (!HTMLElement.prototype.releasePointerCapture) {
+        HTMLElement.prototype.releasePointerCapture = function () {};
+    }
 });
 
 /* ── helpers ─────────────────────────────────────────────────────── */
@@ -429,11 +436,558 @@ describe('ui-split-panel — snap function', () => {
     });
 });
 
+/* ── pointer drag ────────────────────────────────────────────────── */
+
+describe('ui-split-panel — pointer drag', () => {
+    function mockLayout() {
+        vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+            width: 600, height: 400, top: 0, left: 0, right: 600, bottom: 400,
+            x: 0, y: 0, toJSON() { return this; },
+        } as DOMRect);
+    }
+
+    function firePointerDown(el: UiSplitPanel, x = 300, y = 200) {
+        getDivider(el).dispatchEvent(
+            new PointerEvent('pointerdown', {
+                button: 0, buttons: 1, clientX: x, clientY: y,
+                pointerId: 1, bubbles: true, composed: true,
+            }),
+        );
+    }
+
+    function firePointerMove(el: UiSplitPanel, x: number, y = 200) {
+        el.dispatchEvent(
+            new PointerEvent('pointermove', {
+                buttons: 1, clientX: x, clientY: y,
+                pointerId: 1, bubbles: true, composed: true,
+            }),
+        );
+    }
+
+    function firePointerUp(el: UiSplitPanel) {
+        el.dispatchEvent(
+            new PointerEvent('pointerup', {
+                pointerId: 1, bubbles: true, composed: true,
+            }),
+        );
+    }
+
+    it('starts drag on pointerdown and updates position on pointermove', async () => {
+        mockLayout();
+        const el = await make({ position: 50 });
+        const spy = vi.fn();
+        el.addEventListener('ui-split-panel-reposition', spy);
+
+        firePointerDown(el, 300);
+        firePointerMove(el, 350);
+        await el.updateComplete;
+
+        expect(spy).toHaveBeenCalled();
+        expect(el.positionInPixels).toBe(350);
+        vi.restoreAllMocks();
+    });
+
+    it('fires reposition event with correct detail on drag', async () => {
+        mockLayout();
+        const el = await make({ position: 50 });
+        let detail: { position: number; positionInPixels: number } | null = null;
+        el.addEventListener('ui-split-panel-reposition', (e) => {
+            detail = (e as CustomEvent).detail;
+        });
+
+        firePointerDown(el, 300);
+        firePointerMove(el, 200);
+        await el.updateComplete;
+
+        expect(detail).not.toBeNull();
+        expect(detail!.positionInPixels).toBe(200);
+        expect(detail!.position).toBeCloseTo((200 / 600) * 100, 1);
+        vi.restoreAllMocks();
+    });
+
+    it('stops drag on pointerup and releases capture', async () => {
+        mockLayout();
+        const el = await make({ position: 50 });
+
+        firePointerDown(el, 300);
+        firePointerUp(el);
+
+        // After pointerup, further pointermove should not change position
+        const posAfterUp = el.positionInPixels;
+        firePointerMove(el, 100);
+        await el.updateComplete;
+        expect(el.positionInPixels).toBe(posAfterUp);
+        vi.restoreAllMocks();
+    });
+
+    it('ignores pointerdown when disabled', async () => {
+        mockLayout();
+        const el = await make({ disabled: true });
+        const spy = vi.fn();
+        el.addEventListener('ui-split-panel-reposition', spy);
+
+        firePointerDown(el, 300);
+        firePointerMove(el, 200);
+        await el.updateComplete;
+
+        expect(spy).not.toHaveBeenCalled();
+        vi.restoreAllMocks();
+    });
+
+    it('ignores non-primary button', async () => {
+        mockLayout();
+        const el = await make({ position: 50 });
+        const spy = vi.fn();
+        el.addEventListener('ui-split-panel-reposition', spy);
+
+        // button=2 is right-click
+        getDivider(el).dispatchEvent(
+            new PointerEvent('pointerdown', {
+                button: 2, buttons: 2, clientX: 300, clientY: 200,
+                pointerId: 1, bubbles: true, composed: true,
+            }),
+        );
+        firePointerMove(el, 200);
+        await el.updateComplete;
+
+        expect(spy).not.toHaveBeenCalled();
+        vi.restoreAllMocks();
+    });
+
+    it('stops drag when buttons === 0 during pointermove', async () => {
+        mockLayout();
+        const el = await make({ position: 50 });
+
+        firePointerDown(el, 300);
+        // Simulate buttons=0 (mouse released outside)
+        el.dispatchEvent(
+            new PointerEvent('pointermove', {
+                buttons: 0, clientX: 200, clientY: 200,
+                pointerId: 1, bubbles: true, composed: true,
+            }),
+        );
+        await el.updateComplete;
+
+        // Further moves should not affect position
+        const posAfter = el.positionInPixels;
+        firePointerMove(el, 100);
+        await el.updateComplete;
+        expect(el.positionInPixels).toBe(posAfter);
+        vi.restoreAllMocks();
+    });
+
+    it('drags vertically when vertical=true', async () => {
+        mockLayout();
+        const el = await make({ vertical: true, position: 50 });
+        const spy = vi.fn();
+        el.addEventListener('ui-split-panel-reposition', spy);
+
+        firePointerDown(el, 300, 200);
+        // Move pointer on Y axis
+        el.dispatchEvent(
+            new PointerEvent('pointermove', {
+                buttons: 1, clientX: 300, clientY: 150,
+                pointerId: 1, bubbles: true, composed: true,
+            }),
+        );
+        await el.updateComplete;
+
+        expect(spy).toHaveBeenCalled();
+        expect(el.positionInPixels).toBe(150);
+        vi.restoreAllMocks();
+    });
+
+    it('clamps drag position to container bounds', async () => {
+        mockLayout();
+        const el = await make({ position: 50 });
+
+        firePointerDown(el, 300);
+        firePointerMove(el, 800); // beyond container width=600
+        await el.updateComplete;
+
+        expect(el.positionInPixels).toBe(600);
+
+        firePointerMove(el, -50); // below 0
+        await el.updateComplete;
+
+        expect(el.positionInPixels).toBe(0);
+        vi.restoreAllMocks();
+    });
+});
+
+/* ── snap via pointer drag ───────────────────────────────────────── */
+
+describe('ui-split-panel — snap during drag', () => {
+    function mockLayout() {
+        vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+            width: 600, height: 400, top: 0, left: 0, right: 600, bottom: 400,
+            x: 0, y: 0, toJSON() { return this; },
+        } as DOMRect);
+    }
+
+    it('snaps to string snap points within threshold during drag', async () => {
+        mockLayout();
+        const el = await make({ position: 50 });
+        el.snap = '200px';
+        el.snapThreshold = 15;
+        await el.updateComplete;
+
+        getDivider(el).dispatchEvent(
+            new PointerEvent('pointerdown', {
+                button: 0, buttons: 1, clientX: 300, clientY: 200,
+                pointerId: 1, bubbles: true, composed: true,
+            }),
+        );
+        // Move to 208 (within 15px of 200)
+        el.dispatchEvent(
+            new PointerEvent('pointermove', {
+                buttons: 1, clientX: 208, clientY: 200,
+                pointerId: 1, bubbles: true, composed: true,
+            }),
+        );
+        await el.updateComplete;
+
+        expect(el.positionInPixels).toBe(200); // snapped
+        vi.restoreAllMocks();
+    });
+
+    it('does not snap when outside threshold', async () => {
+        mockLayout();
+        const el = await make({ position: 50 });
+        el.snap = '200px';
+        el.snapThreshold = 5;
+        await el.updateComplete;
+
+        getDivider(el).dispatchEvent(
+            new PointerEvent('pointerdown', {
+                button: 0, buttons: 1, clientX: 300, clientY: 200,
+                pointerId: 1, bubbles: true, composed: true,
+            }),
+        );
+        // Move to 210 (10px from 200, threshold is 5)
+        el.dispatchEvent(
+            new PointerEvent('pointermove', {
+                buttons: 1, clientX: 210, clientY: 200,
+                pointerId: 1, bubbles: true, composed: true,
+            }),
+        );
+        await el.updateComplete;
+
+        expect(el.positionInPixels).toBe(210); // not snapped
+        vi.restoreAllMocks();
+    });
+
+    it('calls snap function during drag', async () => {
+        mockLayout();
+        const el = await make({ position: 50 });
+        const snapFn = vi.fn(({ pos }: { pos: number }) => Math.round(pos / 50) * 50);
+        el.snap = snapFn;
+        await el.updateComplete;
+
+        getDivider(el).dispatchEvent(
+            new PointerEvent('pointerdown', {
+                button: 0, buttons: 1, clientX: 300, clientY: 200,
+                pointerId: 1, bubbles: true, composed: true,
+            }),
+        );
+        el.dispatchEvent(
+            new PointerEvent('pointermove', {
+                buttons: 1, clientX: 227, clientY: 200,
+                pointerId: 1, bubbles: true, composed: true,
+            }),
+        );
+        await el.updateComplete;
+
+        expect(snapFn).toHaveBeenCalledWith(
+            expect.objectContaining({ pos: 227, size: 600 }),
+        );
+        expect(el.positionInPixels).toBe(250); // rounded to nearest 50
+        vi.restoreAllMocks();
+    });
+
+    it('_applySnap returns px unchanged when snap is empty', async () => {
+        mockLayout();
+        const el = await make({ position: 50 });
+        el.snap = '';
+        await el.updateComplete;
+
+        getDivider(el).dispatchEvent(
+            new PointerEvent('pointerdown', {
+                button: 0, buttons: 1, clientX: 300, clientY: 200,
+                pointerId: 1, bubbles: true, composed: true,
+            }),
+        );
+        el.dispatchEvent(
+            new PointerEvent('pointermove', {
+                buttons: 1, clientX: 237, clientY: 200,
+                pointerId: 1, bubbles: true, composed: true,
+            }),
+        );
+        await el.updateComplete;
+
+        expect(el.positionInPixels).toBe(237); // no snapping
+        vi.restoreAllMocks();
+    });
+});
+
+/* ── _handleContainerResize ──────────────────────────────────────── */
+
+describe('ui-split-panel — container resize', () => {
+    it('primary="end" adjusts position to keep end panel size', async () => {
+        vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+            width: 600, height: 400, top: 0, left: 0, right: 600, bottom: 400,
+            x: 0, y: 0, toJSON() { return this; },
+        } as DOMRect);
+        const el = await make({ primary: 'end', position: 50 });
+        // Position is at 300px, end panel = 300px, cachedSize = 600
+        expect(el.positionInPixels).toBe(300);
+
+        // Simulate resize to 800px — end panel should stay at 300px, so position moves to 500
+        // Access private method via any
+        /* eslint-disable */
+        (el as any)._handleContainerResize(800);
+        /* eslint-enable */
+        await el.updateComplete;
+
+        expect(el.positionInPixels).toBe(500); // 800 - 300 end
+    });
+
+    it('primary="start" keeps start panel size on resize', async () => {
+        vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+            width: 600, height: 400, top: 0, left: 0, right: 600, bottom: 400,
+            x: 0, y: 0, toJSON() { return this; },
+        } as DOMRect);
+        const el = await make({ primary: 'start', position: 50 });
+        expect(el.positionInPixels).toBe(300);
+
+        /* eslint-disable */
+        (el as any)._handleContainerResize(800);
+        /* eslint-enable */
+        await el.updateComplete;
+
+        expect(el.positionInPixels).toBe(300); // start keeps its pixel size
+    });
+
+    it('no primary — maintains proportion on resize', async () => {
+        vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+            width: 600, height: 400, top: 0, left: 0, right: 600, bottom: 400,
+            x: 0, y: 0, toJSON() { return this; },
+        } as DOMRect);
+        const el = await make({ position: 50 });
+        expect(el.positionInPixels).toBe(300);
+
+        /* eslint-disable */
+        (el as any)._handleContainerResize(900);
+        /* eslint-enable */
+        await el.updateComplete;
+
+        expect(el.positionInPixels).toBe(450); // 50% of 900
+    });
+
+    it('ignores resize when newSize <= 0', async () => {
+        vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+            width: 600, height: 400, top: 0, left: 0, right: 600, bottom: 400,
+            x: 0, y: 0, toJSON() { return this; },
+        } as DOMRect);
+        const el = await make({ position: 50 });
+        const posBefore = el.positionInPixels;
+
+        /* eslint-disable */
+        (el as any)._handleContainerResize(0);
+        /* eslint-enable */
+        await el.updateComplete;
+
+        expect(el.positionInPixels).toBe(posBefore);
+    });
+
+    it('caches size when _positionPx < 0 (before firstUpdated)', async () => {
+        vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+            width: 600, height: 400, top: 0, left: 0, right: 600, bottom: 400,
+            x: 0, y: 0, toJSON() { return this; },
+        } as DOMRect);
+        const el = await make();
+
+        // Force _positionPx to -1 to simulate pre-firstUpdated state
+        /* eslint-disable */
+        (el as any)._positionPx = -1;
+        (el as any)._handleContainerResize(500);
+        /* eslint-enable */
+        await el.updateComplete;
+
+        /* eslint-disable */
+        expect((el as any)._cachedSize).toBe(500);
+        /* eslint-enable */
+    });
+});
+
+/* ── updated() guards ────────────────────────────────────────────── */
+
+describe('ui-split-panel — updated() guards', () => {
+    it('updated() skips when _internalUpdate is true', async () => {
+        vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+            width: 600, height: 400, top: 0, left: 0, right: 600, bottom: 400,
+            x: 0, y: 0, toJSON() { return this; },
+        } as DOMRect);
+        const el = await make({ position: 50 });
+        const posBefore = el.positionInPixels;
+
+        // Set _internalUpdate then change position — updated() should skip
+        /* eslint-disable */
+        (el as any)._internalUpdate = true;
+        /* eslint-enable */
+        el.position = 80;
+        await el.updateComplete;
+
+        // Position px should not change because updated() returned early
+        expect(el.positionInPixels).toBe(posBefore);
+
+        /* eslint-disable */
+        (el as any)._internalUpdate = false;
+        /* eslint-enable */
+        vi.restoreAllMocks();
+    });
+
+    it('positionInPixels change triggers position sync in updated()', async () => {
+        vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+            width: 600, height: 400, top: 0, left: 0, right: 600, bottom: 400,
+            x: 0, y: 0, toJSON() { return this; },
+        } as DOMRect);
+        const el = await make({ position: 50 });
+
+        el.positionInPixels = 200;
+        await el.updateComplete;
+        // Need another update cycle for the sync
+        await el.updateComplete;
+
+        expect(el.positionInPixels).toBeCloseTo(200, 0);
+        expect(el.position).toBeCloseTo((200 / 600) * 100, 1);
+        vi.restoreAllMocks();
+    });
+});
+
+/* ── vertical keyboard Home/End ──────────────────────────────────── */
+
+describe('ui-split-panel — vertical keyboard', () => {
+    function fireKey(el: UiSplitPanel, key: string, shiftKey = false) {
+        getDivider(el).dispatchEvent(
+            new KeyboardEvent('keydown', { key, shiftKey, bubbles: true, composed: true }),
+        );
+    }
+
+    it('Home fires reposition event in vertical mode', async () => {
+        const el = await make({ vertical: true });
+        const spy = vi.fn();
+        el.addEventListener('ui-split-panel-reposition', spy);
+        fireKey(el, 'Home');
+        await el.updateComplete;
+        expect(spy).toHaveBeenCalledOnce();
+        expect(el.positionInPixels).toBe(0);
+    });
+
+    it('End fires reposition event in vertical mode', async () => {
+        vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+            width: 600, height: 400, top: 0, left: 0, right: 600, bottom: 400,
+            x: 0, y: 0, toJSON() { return this; },
+        } as DOMRect);
+        const el = await make({ vertical: true, position: 50 });
+        const spy = vi.fn();
+        el.addEventListener('ui-split-panel-reposition', spy);
+        fireKey(el, 'End');
+        await el.updateComplete;
+        expect(spy).toHaveBeenCalledOnce();
+        expect(el.positionInPixels).toBeCloseTo(400, 0);
+        vi.restoreAllMocks();
+    });
+
+    it('Shift+ArrowDown moves by 10 in vertical mode', async () => {
+        vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+            width: 600, height: 400, top: 0, left: 0, right: 600, bottom: 400,
+            x: 0, y: 0, toJSON() { return this; },
+        } as DOMRect);
+        const el = await make({ vertical: true, position: 50 });
+        const before = el.positionInPixels;
+        fireKey(el, 'ArrowDown', true);
+        await el.updateComplete;
+        expect(el.positionInPixels).toBe(before + 10);
+        vi.restoreAllMocks();
+    });
+
+    it('ArrowRight on vertical does nothing (wrong orientation)', async () => {
+        const el = await make({ vertical: true });
+        const spy = vi.fn();
+        el.addEventListener('ui-split-panel-reposition', spy);
+        fireKey(el, 'ArrowRight');
+        await el.updateComplete;
+        expect(spy).not.toHaveBeenCalled();
+    });
+});
+
 /* ── disconnectedCallback ────────────────────────────────────────── */
 
 describe('ui-split-panel — lifecycle', () => {
     it('disconnects without errors', async () => {
         const el = await make();
         expect(() => el.remove()).not.toThrow();
+    });
+
+    it('disconnects during active drag without errors', async () => {
+        const el = await make();
+
+        getDivider(el).dispatchEvent(
+            new PointerEvent('pointerdown', {
+                button: 0, buttons: 1, clientX: 300, clientY: 200,
+                pointerId: 1, bubbles: true, composed: true,
+            }),
+        );
+
+        expect(() => el.remove()).not.toThrow();
+    });
+});
+
+/* ── _parseSizeToken edge cases ──────────────────────────────────── */
+
+describe('ui-split-panel — _parseSizeToken', () => {
+    it('returns 0 for "0" value', async () => {
+        vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+            width: 600, height: 400, top: 0, left: 0, right: 600, bottom: 400,
+            x: 0, y: 0, toJSON() { return this; },
+        } as DOMRect);
+        const el = await make({ position: 50 });
+
+        /* eslint-disable */
+        expect((el as any)._parseSizeToken('0', 999)).toBe(0);
+        expect((el as any)._parseSizeToken('100px', 999)).toBe(100);
+        expect((el as any)._parseSizeToken('50%', 999)).toBeCloseTo(300, 0); // 50% of cachedSize=600
+        expect((el as any)._parseSizeToken('', 42)).toBe(42); // fallback
+        expect((el as any)._parseSizeToken('bogus', 42)).toBe(42); // fallback
+        /* eslint-enable */
+        vi.restoreAllMocks();
+    });
+});
+
+/* ── rendering edge cases ────────────────────────────────────────── */
+
+describe('ui-split-panel — rendering edge cases', () => {
+    it('start panel uses percentage before firstUpdated (fallback)', async () => {
+        const el = await make({ position: 30 });
+        const start = el.shadowRoot!.querySelector('.start') as HTMLElement;
+        // After firstUpdated, the style should use pixel values
+        expect(start.getAttribute('style')).toMatch(/width:/);
+    });
+
+    it('vertical mode sets height on start panel', async () => {
+        const el = await make({ vertical: true, position: 40 });
+        const start = el.shadowRoot!.querySelector('.start') as HTMLElement;
+        expect(start.getAttribute('style')).toMatch(/height:/);
+    });
+
+    it('positionInPixels takes precedence over position in firstUpdated', async () => {
+        vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+            width: 600, height: 400, top: 0, left: 0, right: 600, bottom: 400,
+            x: 0, y: 0, toJSON() { return this; },
+        } as DOMRect);
+        const el = await make({ position: 50, positionInPixels: 150 });
+        expect(el.positionInPixels).toBe(150);
+        vi.restoreAllMocks();
     });
 });

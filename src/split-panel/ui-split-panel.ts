@@ -330,6 +330,13 @@ export class UiSplitPanel extends LitElement {
         return this.vertical ? rect.height : rect.width;
     }
 
+    /** Actual pixel size of the divider element. */
+    private _getDividerSize(): number {
+        const divider = this.shadowRoot?.querySelector('.divider') as HTMLElement | null;
+        if (!divider) return 0;
+        return this.vertical ? divider.offsetHeight : divider.offsetWidth;
+    }
+
     private _clampPosition() {
         if (this._cachedSize <= 0) return;
 
@@ -342,8 +349,9 @@ export class UiSplitPanel extends LitElement {
             this._cachedSize,
         );
 
+        const upperBound = this._cachedSize - this._getDividerSize();
         this._positionPx = Math.max(minPx, Math.min(maxPx, this._positionPx));
-        this._positionPx = Math.max(0, Math.min(this._cachedSize, this._positionPx));
+        this._positionPx = Math.max(0, Math.min(upperBound, this._positionPx));
 
         // Sync public props — guard so updated() doesn't re-process these writes
         this._internalUpdate = true;
@@ -478,7 +486,8 @@ export class UiSplitPanel extends LitElement {
             getComputedStyle(this).getPropertyValue('--ui-split-panel-max').trim(),
             this._cachedSize,
         );
-        return Math.max(0, Math.min(this._cachedSize, Math.max(minPx, Math.min(maxPx, px))));
+        const upperBound = this._cachedSize - this._getDividerSize();
+        return Math.max(0, Math.min(upperBound, Math.max(minPx, Math.min(maxPx, px))));
     }
 
     /* ── Event ──────────────────────────────────────────────────── */
