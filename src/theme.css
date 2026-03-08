@@ -287,6 +287,14 @@
     --ui-split-panel-min:                0;
     --ui-split-panel-max:                100%;
 
+    /* ─── Box ───────────────────────────────────────────────────── */
+    --ui-box-bg:             transparent;
+    --ui-box-color:          inherit;
+    --ui-box-border-radius:  0;
+    --ui-box-border:         none;
+    --ui-box-shadow:         none;
+    --ui-box-padding:        0;
+
     /* ─── Table ─────────────────────────────────────────────────── */
     --ui-table-border-color:         var(--ui-border-color);
     --ui-table-border-radius:        var(--ui-border-radius-lg);
