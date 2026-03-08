@@ -1,5 +1,6 @@
 import { LitElement, unsafeCSS, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
+import type { PropertyValues } from 'lit';
 import { repeat } from 'lit/directives/repeat.js';
 import { classMap } from 'lit/directives/class-map.js';
 import uiTransferListStyles from './ui-transfer-list.css?inline';
@@ -20,6 +21,8 @@ export class UiTransferList extends LitElement {
 
     @property({ type: Array }) options: TransferOption[] = [];
     @property({ type: Array }) value: string[] = [];
+    /** Initial value for uncontrolled usage. Applied once on first render. */
+    @property({ type: Array, attribute: 'default-value' }) defaultValue: string[] = [];
     @property({ type: String }) leftTitle = 'Options';
     @property({ type: String }) rightTitle = 'Selected';
     @property({ type: Boolean, reflect: true }) disabled = false;
@@ -29,6 +32,18 @@ export class UiTransferList extends LitElement {
     @state() private rightChecked: string[] = [];
     @state() private _leftSearch = '';
     @state() private _rightSearch = '';
+
+    private _firstUpdate = true;
+
+    override willUpdate(changed: PropertyValues) {
+        if (this._firstUpdate) {
+            this._firstUpdate = false;
+            if (this.defaultValue.length > 0 && this.value.length === 0) {
+                this.value = [...this.defaultValue];
+            }
+        }
+        void changed;
+    }
 
     private _toggleChecked(val: string, side: 'left' | 'right') {
         if (this.disabled) return;
@@ -46,6 +61,13 @@ export class UiTransferList extends LitElement {
             } else {
                 this.rightChecked = [...this.rightChecked, val];
             }
+        }
+    }
+
+    private _handleItemKeydown(e: KeyboardEvent, val: string, side: 'left' | 'right') {
+        if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            this._toggleChecked(val, side);
         }
     }
 
@@ -121,8 +143,10 @@ export class UiTransferList extends LitElement {
               <div
                 class="list-item ${classMap({ selected: this.leftChecked.includes(opt.value) })}"
                 role="option"
+                tabindex="0"
                 aria-selected=${this.leftChecked.includes(opt.value)}
                 @click=${() => this._toggleChecked(opt.value, 'left')}
+                @keydown=${(e: KeyboardEvent) => this._handleItemKeydown(e, opt.value, 'left')}
               >
                 <div class="checkbox">
                   <svg class="check-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4">
@@ -138,7 +162,7 @@ export class UiTransferList extends LitElement {
         <!-- Action Buttons -->
         <div class="actions">
           <button class="action-button" title="Move all right" aria-label="Move all right"
-            ?disabled=${this.disabled} @click=${this._moveAllRight}>
+            ?disabled=${this.disabled || leftOptions.length === 0} @click=${this._moveAllRight}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M13 17l5-5-5-5M6 17l5-5-5-5"/>
             </svg>
@@ -166,7 +190,7 @@ export class UiTransferList extends LitElement {
             </svg>
           </button>
           <button class="action-button" title="Move all left" aria-label="Move all left"
-            ?disabled=${this.disabled} @click=${this._moveAllLeft}>
+            ?disabled=${this.disabled || rightOptions.length === 0} @click=${this._moveAllLeft}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M11 17l-5-5 5-5M18 17l-5-5 5-5"/>
             </svg>
@@ -194,8 +218,10 @@ export class UiTransferList extends LitElement {
               <div
                 class="list-item ${classMap({ selected: this.rightChecked.includes(opt.value) })}"
                 role="option"
+                tabindex="0"
                 aria-selected=${this.rightChecked.includes(opt.value)}
                 @click=${() => this._toggleChecked(opt.value, 'right')}
+                @keydown=${(e: KeyboardEvent) => this._handleItemKeydown(e, opt.value, 'right')}
               >
                 <div class="checkbox">
                   <svg class="check-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4">
