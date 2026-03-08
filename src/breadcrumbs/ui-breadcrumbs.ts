@@ -8,6 +8,14 @@ import uiBreadcrumbsStyles from './ui-breadcrumbs.css?inline';
  *
  * @slot - Breadcrumb items (links or text), distributed in order.
  * @slot separator - Custom separator element rendered between each item.
+ *
+ * @cssvar --ui-breadcrumb-font-size          - Font size for items (default: 0.875rem)
+ * @cssvar --ui-breadcrumb-color              - Inactive item color
+ * @cssvar --ui-breadcrumb-color-active       - Active/current item color
+ * @cssvar --ui-breadcrumb-separator-margin   - Horizontal margin around separators (default: 8px)
+ * @cssvar --ui-breadcrumb-collapsed-bg       - Background of the expand "…" button
+ * @cssvar --ui-breadcrumb-collapsed-hover-bg - Hover background of the expand button
+ * @cssvar --ui-breadcrumb-collapsed-radius   - Border-radius of the expand button
  */
 @customElement('ui-breadcrumbs')
 export class UiBreadcrumbs extends LitElement {
@@ -97,8 +105,8 @@ export class UiBreadcrumbs extends LitElement {
         return html`
             ${before.map(i => this._renderItem(i, false))}
             <li class="breadcrumb-li">
-                <button class="collapsed-button" @click=${() => this._expanded = true} aria-label="Show all breadcrumbs">
-                    ...
+                <button class="collapsed-button" @click=${() => { this._expanded = true; }} aria-label="Show all breadcrumbs">
+                    &hellip;
                 </button>
                 ${this._renderSeparator()}
             </li>
