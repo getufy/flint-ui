@@ -1457,7 +1457,7 @@ describe('UiRichTreeView — lazy loading (dataSource)', () => {
         const rootPromise = new Promise<RichTreeItem[]>(res => { resolveRoot = res; });
 
         const dataSource = {
-            getTreeItems: (_id: string | null) => rootPromise,
+            getTreeItems: () => rootPromise,
             getChildrenCount: () => 0,
         };
 
@@ -1483,7 +1483,7 @@ describe('UiRichTreeView — lazy loading (dataSource)', () => {
             { id: 'r2', label: 'Lazy Root 2' },
         ];
         const dataSource = {
-            getTreeItems: async (_id: string | null) => rootItems,
+            getTreeItems: async () => rootItems,
             getChildrenCount: () => 0,
         };
 
@@ -1531,7 +1531,7 @@ describe('UiRichTreeView — lazy loading (dataSource)', () => {
     it('handles dataSource rejection gracefully (no crash)', async () => {
         const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => { });
         const dataSource = {
-            getTreeItems: async (_id: string | null): Promise<RichTreeItem[]> => {
+            getTreeItems: async (): Promise<RichTreeItem[]> => {
                 throw new Error('Network error');
             },
             getChildrenCount: () => 0,
@@ -1549,7 +1549,7 @@ describe('UiRichTreeView — lazy loading (dataSource)', () => {
     it('resets lazy state when dataSource prop is replaced', async () => {
         const ds1Items: RichTreeItem[] = [{ id: 'd1', label: 'From DS1' }];
         const ds1 = {
-            getTreeItems: async (_id: string | null) => ds1Items,
+            getTreeItems: async () => ds1Items,
             getChildrenCount: () => 0,
         };
 
@@ -1563,7 +1563,7 @@ describe('UiRichTreeView — lazy loading (dataSource)', () => {
         // Replace dataSource — should reset and reload
         const ds2Items: RichTreeItem[] = [{ id: 'd2', label: 'From DS2' }];
         const ds2 = {
-            getTreeItems: async (_id: string | null) => ds2Items,
+            getTreeItems: async () => ds2Items,
             getChildrenCount: () => 0,
         };
         tree.dataSource = ds2;
@@ -1602,7 +1602,7 @@ describe('UiRichTreeView — lazy loading (dataSource)', () => {
         const rootPromise = new Promise<RichTreeItem[]>(res => { resolveRoot = res; });
 
         const dataSource = {
-            getTreeItems: (_id: string | null) => { callCount++; return rootPromise; },
+            getTreeItems: () => { callCount++; return rootPromise; },
             getChildrenCount: () => 0,
         };
 
@@ -1887,5 +1887,586 @@ describe('UiRichTreeView — _isAncestorOf recursive path', () => {
 
         // Structure unchanged — parent cannot be dropped into child
         expect(JSON.stringify(tree.getItemTree())).toBe(before);
+    });
+});
+
+// =============================================================================
+// ─── Mutation-killing additions ───────────────────────────────────────────────
+// =============================================================================
+
+// ─── Drop position: before / inside thresholds ───────────────────────────────
+
+describe('UiRichTreeView — dragover position thresholds (before / inside)', () => {
+    let tree: UiRichTreeView;
+
+    beforeEach(async () => {
+        tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${FLAT_ITEMS} items-reordering></ui-rich-tree-view>
+        `);
+        await settle(tree);
+    });
+
+    it('clientY in top 25% of item → drop-position="before"', async () => {
+        const fromEl = getItem(tree, 'a')!;
+        const toEl = getItem(tree, 'c')!;
+        const height = 40;
+        const top = 200;
+        toEl.getBoundingClientRect = () => ({
+            top, bottom: top + height, height, left: 0, right: 200, width: 200,
+            x: 0, y: top, toJSON: () => ({})
+        } as DOMRect);
+
+        fromEl.dispatchEvent(new DragEvent('dragstart', { bubbles: true, composed: true, dataTransfer: new DataTransfer() }));
+        // top + 6 = 15% of height → below 25% threshold → 'before'
+        toEl.dispatchEvent(new DragEvent('dragover', {
+            bubbles: true, composed: true, dataTransfer: new DataTransfer(),
+            clientY: top + 6,
+        }));
+        await settle(tree);
+
+        expect(toEl.getAttribute('drop-position')).toBe('before');
+    });
+
+    it('clientY in middle of item → drop-position="inside"', async () => {
+        const fromEl = getItem(tree, 'a')!;
+        const toEl = getItem(tree, 'c')!;
+        const height = 40;
+        const top = 200;
+        toEl.getBoundingClientRect = () => ({
+            top, bottom: top + height, height, left: 0, right: 200, width: 200,
+            x: 0, y: top, toJSON: () => ({})
+        } as DOMRect);
+
+        fromEl.dispatchEvent(new DragEvent('dragstart', { bubbles: true, composed: true, dataTransfer: new DataTransfer() }));
+        // top + 20 = 50% → between 25% and 75% → 'inside'
+        toEl.dispatchEvent(new DragEvent('dragover', {
+            bubbles: true, composed: true, dataTransfer: new DataTransfer(),
+            clientY: top + 20,
+        }));
+        await settle(tree);
+
+        expect(toEl.getAttribute('drop-position')).toBe('inside');
+    });
+
+    it('clientY exactly at 25% boundary → drop-position="inside" (not before)', async () => {
+        const fromEl = getItem(tree, 'a')!;
+        const toEl = getItem(tree, 'c')!;
+        const height = 40;
+        const top = 200;
+        toEl.getBoundingClientRect = () => ({
+            top, bottom: top + height, height, left: 0, right: 200, width: 200,
+            x: 0, y: top, toJSON: () => ({})
+        } as DOMRect);
+
+        fromEl.dispatchEvent(new DragEvent('dragstart', { bubbles: true, composed: true, dataTransfer: new DataTransfer() }));
+        // top + 10 = exactly 25% → NOT < 0.25 → 'inside'
+        toEl.dispatchEvent(new DragEvent('dragover', {
+            bubbles: true, composed: true, dataTransfer: new DataTransfer(),
+            clientY: top + 10,
+        }));
+        await settle(tree);
+
+        expect(toEl.getAttribute('drop-position')).toBe('inside');
+    });
+
+    it('clientY exactly at 75% boundary → drop-position="inside" (not after)', async () => {
+        const fromEl = getItem(tree, 'a')!;
+        const toEl = getItem(tree, 'c')!;
+        const height = 40;
+        const top = 200;
+        toEl.getBoundingClientRect = () => ({
+            top, bottom: top + height, height, left: 0, right: 200, width: 200,
+            x: 0, y: top, toJSON: () => ({})
+        } as DOMRect);
+
+        fromEl.dispatchEvent(new DragEvent('dragstart', { bubbles: true, composed: true, dataTransfer: new DataTransfer() }));
+        // top + 30 = exactly 75% → NOT > 0.75 → 'inside'
+        toEl.dispatchEvent(new DragEvent('dragover', {
+            bubbles: true, composed: true, dataTransfer: new DataTransfer(),
+            clientY: top + 30,
+        }));
+        await settle(tree);
+
+        expect(toEl.getAttribute('drop-position')).toBe('inside');
+    });
+});
+
+// ─── Exact newIndex in item-position-change ───────────────────────────────────
+
+describe('UiRichTreeView — item-position-change exact newIndex', () => {
+    it('reports newIndex=2 when moving "a" after "c" (last slot)', async () => {
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${FLAT_ITEMS} items-reordering></ui-rich-tree-view>
+        `);
+        await settle(tree);
+        const handler = vi.fn();
+        tree.addEventListener('item-position-change', handler);
+
+        simulateDrop(tree, 'a', 'c', 'after');
+        await settle(tree);
+
+        // [a,b,c] → remove a → [b,c] → insert after c at index 2
+        expect(handler.mock.calls[0][0].detail.newIndex).toBe(2);
+    });
+
+    it('reports newIndex=0 when moving "c" before "a"', async () => {
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${FLAT_ITEMS} items-reordering></ui-rich-tree-view>
+        `);
+        await settle(tree);
+        const handler = vi.fn();
+        tree.addEventListener('item-position-change', handler);
+
+        simulateDrop(tree, 'c', 'a', 'before');
+        await settle(tree);
+
+        // [a,b,c] → remove c → [a,b] → insert before a at index 0
+        expect(handler.mock.calls[0][0].detail.newIndex).toBe(0);
+    });
+
+    it('reports newIndex=1 when moving "a" after "b"', async () => {
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${FLAT_ITEMS} items-reordering></ui-rich-tree-view>
+        `);
+        await settle(tree);
+        const handler = vi.fn();
+        tree.addEventListener('item-position-change', handler);
+
+        simulateDrop(tree, 'a', 'b', 'after');
+        await settle(tree);
+
+        // [a,b,c] → remove a → [b,c] → insert after b (now at 0) at index 1
+        expect(handler.mock.calls[0][0].detail.newIndex).toBe(1);
+    });
+
+    it('reports newIndex=0 when dropping inside an empty parent', async () => {
+        const items: RichTreeItem[] = [
+            { id: 'folder', label: 'Folder', children: [] },
+            { id: 'file', label: 'File' },
+        ];
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${items} items-reordering></ui-rich-tree-view>
+        `);
+        await settle(tree);
+        const handler = vi.fn();
+        tree.addEventListener('item-position-change', handler);
+
+        simulateDrop(tree, 'file', 'folder', 'inside');
+        await settle(tree);
+
+        // File becomes the first (and only) child → index 0
+        expect(handler.mock.calls[0][0].detail.newParentId).toBe('folder');
+        expect(handler.mock.calls[0][0].detail.newIndex).toBe(0);
+    });
+});
+
+// ─── knownHasChildren: children.length > 0 boundary ─────────────────────────
+
+describe('UiRichTreeView — knownHasChildren without dataSource', () => {
+    it('empty children array → has-children attribute is absent (no expand icon)', async () => {
+        const items: RichTreeItem[] = [
+            { id: 'empty', label: 'Empty', children: [] },
+        ];
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${items}></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        expect(getItem(tree, 'empty')!.hasAttribute('has-children')).toBe(false);
+    });
+
+    it('non-empty children array → has-children attribute is present', async () => {
+        const items: RichTreeItem[] = [
+            { id: 'parent', label: 'Parent', children: [{ id: 'c', label: 'Child' }] },
+        ];
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${items}></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        expect(getItem(tree, 'parent')!.hasAttribute('has-children')).toBe(true);
+    });
+
+    it('item with no children property → has-children is absent', async () => {
+        const items: RichTreeItem[] = [{ id: 'leaf', label: 'Leaf' }];
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${items}></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        expect(getItem(tree, 'leaf')!.hasAttribute('has-children')).toBe(false);
+    });
+});
+
+// ─── getChildrenCount boundary: 0 vs non-zero (including -1) ─────────────────
+
+describe('UiRichTreeView — dataSource getChildrenCount boundary', () => {
+    it('getChildrenCount=0 → item has no expand indicator (has-children absent)', async () => {
+        const items: RichTreeItem[] = [{ id: 'leaf', label: 'Leaf' }];
+        const ds = {
+            getTreeItems: async () => [] as RichTreeItem[],
+            getChildrenCount: () => 0,
+        };
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${items} .dataSource=${ds}></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        expect(getItem(tree, 'leaf')!.hasAttribute('has-children')).toBe(false);
+    });
+
+    it('getChildrenCount=1 → item has expand indicator (has-children present)', async () => {
+        const items: RichTreeItem[] = [{ id: 'parent', label: 'Parent' }];
+        const ds = {
+            getTreeItems: async (id: string | null) => id ? [{ id: 'child', label: 'Child' }] : items,
+            getChildrenCount: () => 1,
+        };
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${items} .dataSource=${ds}></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        expect(getItem(tree, 'parent')!.hasAttribute('has-children')).toBe(true);
+    });
+
+    it('getChildrenCount=-1 (unknown) → item has expand indicator', async () => {
+        const items: RichTreeItem[] = [{ id: 'parent', label: 'Parent' }];
+        const ds = {
+            getTreeItems: async () => [] as RichTreeItem[],
+            getChildrenCount: () => -1,
+        };
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${items} .dataSource=${ds}></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        expect(getItem(tree, 'parent')!.hasAttribute('has-children')).toBe(true);
+    });
+});
+
+// ─── Character navigation: startIdx = idx + 1 (not idx) ──────────────────────
+
+describe('UiRichTreeView — first-char navigation startIdx wrapping', () => {
+    it('char nav from focused item finds the NEXT match, not the current one', async () => {
+        // Two items starting with 'a'; focus on first → pressing 'a' should go to second
+        const items: RichTreeItem[] = [
+            { id: 'a1', label: 'Apple' },
+            { id: 'a2', label: 'Apricot' },
+            { id: 'b', label: 'Banana' },
+        ];
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${items}></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        const item1 = getItem(tree, 'a1')!;
+        item1.focus();
+        item1.dispatchEvent(new KeyboardEvent('keydown', { key: 'a', bubbles: true }));
+        await tree.updateComplete;
+
+        // Should advance to 'a2', NOT stay on 'a1'
+        expect(tree.shadowRoot!.activeElement).toBe(getItem(tree, 'a2'));
+    });
+
+    it('char nav wraps from last matching item back to first matching item', async () => {
+        const items: RichTreeItem[] = [
+            { id: 'a1', label: 'Apple' },
+            { id: 'b', label: 'Banana' },
+            { id: 'a2', label: 'Avocado' },
+        ];
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${items}></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        const itemA2 = getItem(tree, 'a2')!;
+        itemA2.setAttribute('tabindex', '0');
+        getItem(tree, 'a1')!.setAttribute('tabindex', '-1');
+        itemA2.focus();
+        itemA2.dispatchEvent(new KeyboardEvent('keydown', { key: 'a', bubbles: true }));
+        await tree.updateComplete;
+
+        // 'a2' is last 'a' item → wraps to 'a1'
+        expect(tree.shadowRoot!.activeElement).toBe(getItem(tree, 'a1'));
+    });
+
+    it('char nav: pressing char when focused item is not in focusable list (idx=-1) starts from index 0', async () => {
+        const items: RichTreeItem[] = [
+            { id: 'x', label: 'Xray' },
+            { id: 'z', label: 'Zebra' },
+        ];
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${items}></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        // Disable 'x' so it's not in focusable list → idx will be -1 when 'x' dispatches keydown
+        tree.isItemDisabled = (i) => i['id'] === 'x';
+        await settle(tree);
+
+        const itemX = getItem(tree, 'x')!;
+        itemX.focus();
+        itemX.dispatchEvent(new KeyboardEvent('keydown', { key: 'z', bubbles: true }));
+        await tree.updateComplete;
+
+        expect(tree.shadowRoot!.activeElement).toBe(getItem(tree, 'z'));
+    });
+});
+
+// ─── _initRovingTabindex: don't reset if tabindex=0 already exists ────────────
+
+describe('UiRichTreeView — _initRovingTabindex hasFocusable guard', () => {
+    it('does not reset tabindex when an item already has tabindex=0 after disabledItemsFocusable change', async () => {
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${FLAT_ITEMS}></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        // Manually move focus to 'b'
+        getItem(tree, 'a')!.setAttribute('tabindex', '-1');
+        getItem(tree, 'b')!.setAttribute('tabindex', '0');
+
+        // Trigger _initRovingTabindex by changing disabledItemsFocusable
+        tree.disabledItemsFocusable = true;
+        await settle(tree);
+
+        // 'b' already had tabindex=0 → should remain
+        expect(getItem(tree, 'b')!.getAttribute('tabindex')).toBe('0');
+        expect(getItem(tree, 'a')!.getAttribute('tabindex')).not.toBe('0');
+    });
+
+    it('sets tabindex=0 on first non-disabled item when none has it yet', async () => {
+        const items: RichTreeItem[] = [
+            { id: '1', label: 'Alpha' },
+            { id: '2', label: 'Beta' },
+        ];
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${items}></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        // Both items should have been initialized; first gets tabindex=0
+        expect(getItem(tree, '1')!.getAttribute('tabindex')).toBe('0');
+        expect(getItem(tree, '2')!.getAttribute('tabindex')).toBe('-1');
+    });
+
+    it('when disabledItemsFocusable=false, skips disabled items for initial tabindex=0', async () => {
+        const items: RichTreeItem[] = [
+            { id: 'disabled', label: 'Disabled' },
+            { id: 'enabled', label: 'Enabled' },
+        ];
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view
+                .items=${items}
+                .isItemDisabled=${(i: RichTreeItem) => i['id'] === 'disabled'}
+            ></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        // First non-disabled item gets tabindex=0
+        expect(getItem(tree, 'disabled')!.getAttribute('tabindex')).not.toBe('0');
+        expect(getItem(tree, 'enabled')!.getAttribute('tabindex')).toBe('0');
+    });
+});
+
+// ─── render(): items.length > 0 with dataSource uses items prop ───────────────
+
+describe('UiRichTreeView — render with dataSource and non-empty items', () => {
+    it('renders from items prop (not lazy cache) when items is non-empty', async () => {
+        const staticItems: RichTreeItem[] = [{ id: 'static', label: 'Static' }];
+        const ds = {
+            getTreeItems: async () => [{ id: 'lazy', label: 'Lazy' }],
+            getChildrenCount: () => 0,
+        };
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${staticItems} .dataSource=${ds}></ui-rich-tree-view>
+        `);
+        await settle(tree, 100);
+
+        // items is non-empty → root comes from items, NOT the lazy cache
+        expect(getItem(tree, 'static')).not.toBeNull();
+        expect(getItem(tree, 'lazy')).toBeNull();
+    });
+
+    it('rootLoading indicator only shown when items is empty (not when items has content)', async () => {
+        let resolve!: (v: RichTreeItem[]) => void;
+        const pending = new Promise<RichTreeItem[]>(r => { resolve = r; });
+        const ds = {
+            getTreeItems: () => pending,
+            getChildrenCount: () => 0,
+        };
+
+        // items is NON-empty → no root loading indicator even though dataSource is set
+        const staticItems: RichTreeItem[] = [{ id: 's', label: 'S' }];
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${staticItems} .dataSource=${ds}></ui-rich-tree-view>
+        `);
+        await tree.updateComplete;
+        await new Promise(r => setTimeout(r, 20));
+        await tree.updateComplete;
+
+        expect(tree.shadowRoot!.querySelector('.lazy-root')).toBeNull();
+        resolve([]);
+    });
+});
+
+// ─── _expansionInitialized: defaultExpandedItems not re-applied ───────────────
+
+describe('UiRichTreeView — _expansionInitialized prevents re-application', () => {
+    it('changing items after collapse does not re-expand defaultExpandedItems', async () => {
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view
+                .items=${BASIC_ITEMS}
+                .defaultExpandedItems=${['1']}
+            ></ui-rich-tree-view>
+        `);
+        await settle(tree);
+        expect(getItem(tree, '1')?.expanded).toBe(true);
+
+        // Collapse item '1'
+        getItem(tree, '1')!.shadowRoot!.querySelector<HTMLElement>('.expand-btn')!.click();
+        await tree.updateComplete;
+        expect(getItem(tree, '1')?.expanded).toBe(false);
+
+        // Replace items → _expansionInitialized is true → should NOT re-expand '1'
+        tree.items = [...BASIC_ITEMS];
+        await settle(tree);
+
+        expect(getItem(tree, '1')?.expanded).toBe(false);
+    });
+
+    it('defaultExpandedItems=[] does not expand anything on first render', async () => {
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view
+                .items=${BASIC_ITEMS}
+                .defaultExpandedItems=${[] as string[]}
+            ></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        getAllItems(tree).forEach(item => {
+            expect(item.expanded).toBe(false);
+        });
+    });
+});
+
+// ─── item-click and expanded-items-change do NOT bubble ──────────────────────
+
+describe('UiRichTreeView — event bubbling (bubbles=false)', () => {
+    it('item-click event does not bubble to parent container', async () => {
+        const spy = vi.fn();
+        const container = await fixture<HTMLDivElement>(html`
+            <div @item-click=${spy}>
+                <ui-rich-tree-view .items=${FLAT_ITEMS}></ui-rich-tree-view>
+            </div>
+        `);
+        const tree = container.querySelector('ui-rich-tree-view') as UiRichTreeView;
+        await settle(tree);
+
+        getItem(tree, 'a')!.shadowRoot!.querySelector<HTMLElement>('.item-row')!.click();
+
+        expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('expanded-items-change event does not bubble to parent container', async () => {
+        const spy = vi.fn();
+        const container = await fixture<HTMLDivElement>(html`
+            <div @expanded-items-change=${spy}>
+                <ui-rich-tree-view
+                    .items=${BASIC_ITEMS}
+                    .expandedItems=${[] as string[]}
+                ></ui-rich-tree-view>
+            </div>
+        `);
+        const tree = container.querySelector('ui-rich-tree-view') as UiRichTreeView;
+        await settle(tree);
+
+        getItem(tree, '1')!.shadowRoot!.querySelector<HTMLElement>('.expand-btn')!.click();
+        await tree.updateComplete;
+
+        expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('item-click event is still dispatched on the tree host itself', async () => {
+        const spy = vi.fn();
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${FLAT_ITEMS}></ui-rich-tree-view>
+        `);
+        await settle(tree);
+        tree.addEventListener('item-click', spy);
+
+        getItem(tree, 'b')!.shadowRoot!.querySelector<HTMLElement>('.item-row')!.click();
+
+        expect(spy).toHaveBeenCalledOnce();
+        expect(spy.mock.calls[0][0].detail).toEqual({ itemId: 'b' });
+    });
+});
+
+// ─── _getEffectiveItems: both conditions of the guard ────────────────────────
+
+describe('UiRichTreeView — _getEffectiveItems reordering guard', () => {
+    it('returns original items reference when reordering=false (even if _orderedItems were somehow set)', async () => {
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${FLAT_ITEMS}></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        // No reordering → getItemTree() must return the original reference
+        expect(tree.getItemTree()).toBe(FLAT_ITEMS);
+    });
+
+    it('returns _orderedItems after drag when reordering=true', async () => {
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${FLAT_ITEMS} items-reordering></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        simulateDrop(tree, 'b', 'a', 'before');
+        await settle(tree);
+
+        const result = tree.getItemTree();
+        expect(result).not.toBe(FLAT_ITEMS);
+        expect(result.map((i: RichTreeItem) => i['id'])).toEqual(['b', 'a', 'c']);
+    });
+});
+
+// ─── _isControlled: undefined vs defined expandedItems ───────────────────────
+
+describe('UiRichTreeView — _isControlled detection', () => {
+    it('uncontrolled mode: expandedItems=undefined → changes persist after toggle', async () => {
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${BASIC_ITEMS}></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        // expandedItems not set → uncontrolled → expansion state IS kept internally
+        getItem(tree, '1')!.shadowRoot!.querySelector<HTMLElement>('.expand-btn')!.click();
+        await tree.updateComplete;
+        expect(getItem(tree, '1')?.expanded).toBe(true);
+
+        // Second toggle → collapses
+        getItem(tree, '1')!.shadowRoot!.querySelector<HTMLElement>('.expand-btn')!.click();
+        await tree.updateComplete;
+        expect(getItem(tree, '1')?.expanded).toBe(false);
+    });
+
+    it('controlled mode: expandedItems=[] → toggle fires event but item reverts', async () => {
+        const spy = vi.fn();
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view
+                .items=${BASIC_ITEMS}
+                .expandedItems=${[] as string[]}
+            ></ui-rich-tree-view>
+        `);
+        await settle(tree);
+        tree.addEventListener('expanded-items-change', spy);
+
+        getItem(tree, '1')!.shadowRoot!.querySelector<HTMLElement>('.expand-btn')!.click();
+        await tree.updateComplete;
+
+        // Event fired but since parent doesn't update expandedItems, item reverts
+        expect(spy).toHaveBeenCalledOnce();
+        expect(spy.mock.calls[0][0].detail.expandedItems).toContain('1');
+        expect(getItem(tree, '1')?.expanded).toBe(false);
     });
 });
