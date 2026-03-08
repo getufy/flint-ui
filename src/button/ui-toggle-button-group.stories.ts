@@ -25,7 +25,7 @@ export const Default: Story = {
         <ui-toggle-button-group 
             .exclusive=${args.exclusive} 
             .value=${args.value}
-            @change=${(e: Event) => console.log('Selection changed:', (e as CustomEvent).detail.value)}
+            @ui-toggle-button-group-change=${(e: Event) => console.log('Selection changed:', (e as CustomEvent).detail.value)}
         >
             <ui-toggle-button value="left">Left</ui-toggle-button>
             <ui-toggle-button value="center">Center</ui-toggle-button>

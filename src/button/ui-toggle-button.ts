@@ -10,11 +10,12 @@ export class UiToggleButton extends LitElement {
     @property({ type: Boolean, reflect: true }) selected = false;
     @property({ type: Boolean, reflect: true }) disabled = false;
     @property({ type: String }) value = '';
+    @property({ type: String, reflect: true }) size: 'sm' | 'md' | 'lg' = 'md';
 
     private _handleClick() {
         if (this.disabled) return;
 
-        this.dispatchEvent(new CustomEvent('toggle-click', {
+        this.dispatchEvent(new CustomEvent('ui-toggle-button-change', {
             detail: { value: this.value, selected: !this.selected },
             bubbles: true,
             composed: true
@@ -23,7 +24,7 @@ export class UiToggleButton extends LitElement {
 
     render() {
         return html`
-      <button 
+      <button
         type="button"
         class=${classMap({ selected: this.selected })}
         ?disabled=${this.disabled}

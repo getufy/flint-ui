@@ -64,7 +64,7 @@ describe('ui-toggle-button-group', () => {
     it('dispatches change event', async () => {
         let changed = false;
         const el = await fixture<UiToggleButtonGroup>(html`
-      <ui-toggle-button-group @change=${() => changed = true}>
+      <ui-toggle-button-group @ui-toggle-button-group-change=${() => changed = true}>
         <ui-toggle-button value="1">1</ui-toggle-button>
       </ui-toggle-button-group>
     `);
@@ -76,7 +76,7 @@ describe('ui-toggle-button-group', () => {
     it('change event detail contains the updated value', async () => {
         let detail: unknown;
         const el = await fixture<UiToggleButtonGroup>(html`
-      <ui-toggle-button-group @change=${(e: CustomEvent) => { detail = e.detail.value; }}>
+      <ui-toggle-button-group @ui-toggle-button-group-change=${(e: CustomEvent) => { detail = e.detail.value; }}>
         <ui-toggle-button value="a">A</ui-toggle-button>
         <ui-toggle-button value="b">B</ui-toggle-button>
       </ui-toggle-button-group>

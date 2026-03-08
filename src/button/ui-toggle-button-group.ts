@@ -12,13 +12,13 @@ export class UiToggleButtonGroup extends LitElement {
 
     connectedCallback() {
         super.connectedCallback();
-        this.addEventListener('toggle-click', this._handleToggleClick as EventListener);
+        this.addEventListener('ui-toggle-button-change', this._handleToggleClick as EventListener);
         this._updateChildren();
     }
 
     disconnectedCallback() {
         super.disconnectedCallback();
-        this.removeEventListener('toggle-click', this._handleToggleClick as EventListener);
+        this.removeEventListener('ui-toggle-button-change', this._handleToggleClick as EventListener);
     }
 
     private _handleToggleClick(e: CustomEvent) {
@@ -39,7 +39,7 @@ export class UiToggleButtonGroup extends LitElement {
 
         this._updateChildren();
 
-        this.dispatchEvent(new CustomEvent('change', {
+        this.dispatchEvent(new CustomEvent('ui-toggle-button-group-change', {
             detail: { value: this.value },
             bubbles: true,
             composed: true

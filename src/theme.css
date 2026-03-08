@@ -271,6 +271,15 @@
     --ui-autocomplete-option-padding:      10px 12px;
     --ui-autocomplete-z-index:             10;
 
+    /* ─── Toggle Button ───────────────────────────────────────── */
+    --ui-toggle-button-font-size:           14px;
+    --ui-toggle-button-padding:             8px 16px;
+    --ui-toggle-button-gap:                 8px;
+    --ui-toggle-button-border-radius:       var(--ui-border-radius-md);
+    --ui-toggle-button-selected-bg:         var(--ui-active-color);
+    --ui-toggle-button-selected-color:      var(--ui-primary-color);
+    --ui-toggle-button-selected-border-color: var(--ui-primary-color);
+
     /* ─── Range Slider ────────────────────────────────────────── */
     --ui-range-slider-track-height:  6px;
     --ui-range-slider-thumb-size:    20px;
