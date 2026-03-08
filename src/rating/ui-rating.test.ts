@@ -165,6 +165,15 @@ describe('ui-rating — readonly', () => {
         getStar(el, 4).click();
         expect(spy).not.toHaveBeenCalled();
     });
+
+    it('mouseleave does nothing when readonly', async () => {
+        const el = await fixture<UiRating>(html`<ui-rating .value=${1} readonly></ui-rating>`);
+        // No error should occur and _hoverValue should stay at -1 (not change anything)
+        el.shadowRoot!.querySelector('.rating-container')!
+            .dispatchEvent(new MouseEvent('mouseleave'));
+        await el.updateComplete;
+        expect(countClass(el, 'hover')).toBe(0);
+    });
 });
 
 // ─── disabled ─────────────────────────────────────────────────────────────────
@@ -285,6 +294,39 @@ describe('ui-rating — keyboard', () => {
         expect(spy).toHaveBeenCalledOnce();
         expect((spy.mock.calls[0][0] as CustomEvent).detail.value).toBe(3);
     });
+
+    it('Space key fires click on focused star', async () => {
+        const spy = vi.fn();
+        const el = await fixture<UiRating>(html`<ui-rating .value=${1} @ui-rating-change=${spy}></ui-rating>`);
+        getStar(el, 3).dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true }));
+        expect(spy).toHaveBeenCalledOnce();
+        expect((spy.mock.calls[0][0] as CustomEvent).detail.value).toBe(4);
+    });
+
+    it('unrecognised key does nothing', async () => {
+        const spy = vi.fn();
+        const el = await fixture<UiRating>(html`<ui-rating .value=${2} @ui-rating-change=${spy}></ui-rating>`);
+        getStar(el, 1).dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab', bubbles: true }));
+        await el.updateComplete;
+        expect(el.value).toBe(2);
+        expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('ArrowRight at max fires no event (no change)', async () => {
+        const spy = vi.fn();
+        const el = await fixture<UiRating>(html`<ui-rating .value=${5} .max=${5} @ui-rating-change=${spy}></ui-rating>`);
+        getStar(el, 4).dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+        await el.updateComplete;
+        expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('ArrowLeft at 0 fires no event (no change)', async () => {
+        const spy = vi.fn();
+        const el = await fixture<UiRating>(html`<ui-rating .value=${0} @ui-rating-change=${spy}></ui-rating>`);
+        getStar(el, 0).dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }));
+        await el.updateComplete;
+        expect(spy).not.toHaveBeenCalled();
+    });
 });
 
 // ─── precision / half-star ───────────────────────────────────────────────────
@@ -308,6 +350,63 @@ describe('ui-rating — precision', () => {
         getStar(el, 2).dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }));
         await el.updateComplete;
         expect(el.value).toBe(2.5);
+    });
+
+    it('precision=0.5: mousemove on left half sets hoverValue to starIndex-0.5', async () => {
+        const el = await fixture<UiRating>(html`<ui-rating .value=${0} .precision=${0.5 as const}></ui-rating>`);
+        const star = getStar(el, 2); // 3rd star (index=2 → starIndex=3)
+        // Mock getBoundingClientRect to place star at x=100, width=40
+        star.getBoundingClientRect = () => ({ left: 100, width: 40, right: 140, top: 0, bottom: 40, height: 40, x: 100, y: 0, toJSON: () => ({}) });
+        // clientX at left half (x=110 < 100+20)
+        star.dispatchEvent(new MouseEvent('mousemove', { clientX: 110, bubbles: true }));
+        await el.updateComplete;
+        expect(countClass(el, 'half')).toBe(1); // star 3 = half
+    });
+
+    it('precision=0.5: mousemove on right half sets hoverValue to starIndex', async () => {
+        const el = await fixture<UiRating>(html`<ui-rating .value=${0} .precision=${0.5 as const}></ui-rating>`);
+        const star = getStar(el, 2); // 3rd star
+        star.getBoundingClientRect = () => ({ left: 100, width: 40, right: 140, top: 0, bottom: 40, height: 40, x: 100, y: 0, toJSON: () => ({}) });
+        // clientX at right half (x=130 > 100+20)
+        star.dispatchEvent(new MouseEvent('mousemove', { clientX: 130, bubbles: true }));
+        await el.updateComplete;
+        expect(countClass(el, 'hover')).toBeGreaterThan(0);
+        expect(countClass(el, 'half')).toBe(0);
+    });
+
+    it('precision=0.5: mousemove ignored when not interactive (readonly)', async () => {
+        const el = await fixture<UiRating>(html`<ui-rating .value=${0} .precision=${0.5 as const} readonly></ui-rating>`);
+        const star = getStar(el, 2);
+        star.getBoundingClientRect = () => ({ left: 100, width: 40, right: 140, top: 0, bottom: 40, height: 40, x: 100, y: 0, toJSON: () => ({}) });
+        star.dispatchEvent(new MouseEvent('mousemove', { clientX: 110, bubbles: true }));
+        await el.updateComplete;
+        expect(countClass(el, 'half')).toBe(0);
+    });
+
+    it('precision=0.5: mousemove ignored when precision=1', async () => {
+        const el = await fixture<UiRating>(html`<ui-rating .value=${0}></ui-rating>`);
+        const star = getStar(el, 2);
+        star.getBoundingClientRect = () => ({ left: 100, width: 40, right: 140, top: 0, bottom: 40, height: 40, x: 100, y: 0, toJSON: () => ({}) });
+        star.dispatchEvent(new MouseEvent('mousemove', { clientX: 110, bubbles: true }));
+        await el.updateComplete;
+        // No half class since precision=1
+        expect(countClass(el, 'half')).toBe(0);
+    });
+
+    it('precision=0.5: click uses hoverValue when it is set (half-star click)', async () => {
+        const spy = vi.fn();
+        const el = await fixture<UiRating>(html`<ui-rating .value=${0} .precision=${0.5 as const} @ui-rating-change=${spy}></ui-rating>`);
+        const star = getStar(el, 2); // 3rd star → starIndex=3
+        star.getBoundingClientRect = () => ({ left: 100, width: 40, right: 140, top: 0, bottom: 40, height: 40, x: 100, y: 0, toJSON: () => ({}) });
+        // Move to left half → _hoverValue = 2.5
+        star.dispatchEvent(new MouseEvent('mousemove', { clientX: 110, bubbles: true }));
+        await el.updateComplete;
+        // Now click — should use _hoverValue (2.5) not starIndex (3)
+        star.click();
+        await el.updateComplete;
+        expect(el.value).toBe(2.5);
+        expect(spy).toHaveBeenCalledOnce();
+        expect((spy.mock.calls[0][0] as CustomEvent).detail.value).toBe(2.5);
     });
 });
 
