@@ -35,7 +35,10 @@
       "Bash(NODE_OPTIONS='--no-warnings' npm run test:watch -- --run src/tabs/ui-tabs.test.ts --project components)",
       "Bash(npm test)",
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/tabs/ui-tabs.test.ts)",
-      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --project components --coverage src/tabs/ui-tabs.test.ts)"
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --project components --coverage src/tabs/ui-tabs.test.ts)",
+      "Bash(NODE_OPTIONS='--no-warnings' vitest run src/tabs/ui-tabs.test.ts)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --project components --coverage --coverage.include='src/tabs/ui-tabs.ts' src/tabs/ui-tabs.test.ts)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --project components --coverage)"
     ]
   }
 }
