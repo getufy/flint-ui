@@ -309,6 +309,21 @@
     --ui-otp-slot-radius:    var(--ui-border-radius-md);
     --ui-otp-gap:            8px;
 
+    /* ─── Chip ─────────────────────────────────────────────────── */
+    --ui-chip-height:            32px;
+    --ui-chip-height-sm:         24px;
+    --ui-chip-height-lg:         40px;
+    --ui-chip-border-radius:     16px;
+    --ui-chip-border-radius-sm:  12px;
+    --ui-chip-border-radius-lg:  20px;
+    --ui-chip-font-size:         0.875rem;
+    --ui-chip-font-size-sm:      0.75rem;
+    --ui-chip-font-size-lg:      1rem;
+    --ui-chip-padding-x:         12px;
+    --ui-chip-padding-x-sm:      8px;
+    --ui-chip-padding-x-lg:      16px;
+    --ui-chip-gap:               8px;
+
     /* ─── Carousel ────────────────────────────────────────────── */
     --ui-carousel-gap:             0px;
     --ui-carousel-height:          320px;
