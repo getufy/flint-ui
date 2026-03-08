@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './ui-text-field.js';
 import type { UiTextField } from './ui-text-field.js';
@@ -74,5 +74,152 @@ describe('ui-text-field', () => {
         input.dispatchEvent(new Event('change'));
 
         expect(changed).toBe(true);
+    });
+
+    // ── Mutation-killing additions ─────────────────────────────────────────────
+
+    // isError = this.error || !!this.errorMessage
+    it('error=true alone (no errorMessage) adds error class and sets aria-invalid=true', async () => {
+        const el = await fixture<UiTextField>(html`<ui-text-field error></ui-text-field>`);
+        await el.updateComplete;
+        const wrapper = el.shadowRoot!.querySelector('.input-wrapper')!;
+        const input = el.shadowRoot!.querySelector('input')!;
+        expect(wrapper.classList.contains('error')).toBe(true);
+        expect(input.getAttribute('aria-invalid')).toBe('true');
+    });
+
+    it('no error shows aria-invalid=false', async () => {
+        const el = await fixture<UiTextField>(html`<ui-text-field></ui-text-field>`);
+        await el.updateComplete;
+        const input = el.shadowRoot!.querySelector('input')!;
+        expect(input.getAttribute('aria-invalid')).toBe('false');
+    });
+
+    it('error=true alone does not render error-text span (errorMessage is empty)', async () => {
+        const el = await fixture<UiTextField>(html`<ui-text-field error></ui-text-field>`);
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('.error-text')).toBeNull();
+    });
+
+    it('errorMessage takes priority over helperText (shows error-text, not helper)', async () => {
+        const el = await fixture<UiTextField>(html`
+            <ui-text-field errorMessage="Err" helperText="Help"></ui-text-field>
+        `);
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('.error-text')?.textContent).toBe('Err');
+        // helperText should NOT be shown when errorMessage is set
+        const helperSpans = el.shadowRoot!.querySelectorAll('.helper-text');
+        const helperOnly = Array.from(helperSpans).filter(s => !s.classList.contains('error-text'));
+        expect(helperOnly.length).toBe(0);
+    });
+
+    it('helperText shows when there is no error', async () => {
+        const el = await fixture<UiTextField>(html`<ui-text-field helperText="Hint"></ui-text-field>`);
+        await el.updateComplete;
+        const helper = el.shadowRoot!.querySelector('.helper-text');
+        expect(helper).not.toBeNull();
+        expect(helper?.textContent).toBe('Hint');
+        expect(helper?.classList.contains('error-text')).toBe(false);
+    });
+
+    it('no helperText and no errorMessage renders no helper span', async () => {
+        const el = await fixture<UiTextField>(html`<ui-text-field></ui-text-field>`);
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('.helper-text')).toBeNull();
+    });
+
+    it('no label renders no label element', async () => {
+        const el = await fixture<UiTextField>(html`<ui-text-field></ui-text-field>`);
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('label')).toBeNull();
+    });
+
+    it('input event dispatches with correct detail.value', async () => {
+        const spy = vi.fn();
+        const el = await fixture<UiTextField>(html`<ui-text-field @input=${spy}></ui-text-field>`);
+        const input = el.shadowRoot!.querySelector('input')!;
+        input.value = 'hello';
+        input.dispatchEvent(new InputEvent('input', { bubbles: true, composed: true }));
+        expect(spy).toHaveBeenCalled();
+        // Find the CustomEvent (has .detail) dispatched by the component
+        const customCall = spy.mock.calls.find(c => (c[0] as CustomEvent).detail !== undefined);
+        expect(customCall).toBeDefined();
+        expect((customCall![0] as CustomEvent).detail.value).toBe('hello');
+    });
+
+    it('change event dispatches with correct detail.value', async () => {
+        const spy = vi.fn();
+        const el = await fixture<UiTextField>(html`<ui-text-field @change=${spy}></ui-text-field>`);
+        const input = el.shadowRoot!.querySelector('input')!;
+        input.value = 'world';
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+        expect(spy).toHaveBeenCalledOnce();
+        expect((spy.mock.calls[0][0] as CustomEvent).detail.value).toBe('world');
+    });
+
+    it('variant=filled adds filled class to container', async () => {
+        const el = await fixture<UiTextField>(html`<ui-text-field variant="filled"></ui-text-field>`);
+        await el.updateComplete;
+        const container = el.shadowRoot!.querySelector('.field-container')!;
+        expect(container.classList.contains('filled')).toBe(true);
+    });
+
+    it('variant=outlined (default) does not add filled class', async () => {
+        const el = await fixture<UiTextField>(html`<ui-text-field></ui-text-field>`);
+        await el.updateComplete;
+        const container = el.shadowRoot!.querySelector('.field-container')!;
+        expect(container.classList.contains('filled')).toBe(false);
+    });
+
+    it('type prop sets input type attribute', async () => {
+        const el = await fixture<UiTextField>(html`<ui-text-field type="email"></ui-text-field>`);
+        await el.updateComplete;
+        const input = el.shadowRoot!.querySelector('input')!;
+        expect(input.type).toBe('email');
+    });
+
+    it('type defaults to text', async () => {
+        const el = await fixture<UiTextField>(html`<ui-text-field></ui-text-field>`);
+        await el.updateComplete;
+        const input = el.shadowRoot!.querySelector('input')!;
+        expect(input.type).toBe('text');
+    });
+
+    it('wrapper has no focused class initially', async () => {
+        const el = await fixture<UiTextField>(html`<ui-text-field></ui-text-field>`);
+        await el.updateComplete;
+        const wrapper = el.shadowRoot!.querySelector('.input-wrapper')!;
+        expect(wrapper.classList.contains('focused')).toBe(false);
+    });
+
+    it('input event bubbles and is composed', async () => {
+        const spy = vi.fn();
+        const container = await fixture<HTMLDivElement>(html`
+            <div @input=${spy}><ui-text-field></ui-text-field></div>
+        `);
+        const el = container.querySelector('ui-text-field')!;
+        const input = el.shadowRoot!.querySelector('input')!;
+        input.value = 'test';
+        input.dispatchEvent(new InputEvent('input', { bubbles: true, composed: true }));
+        expect(spy).toHaveBeenCalled();
+    });
+
+    it('change event bubbles and is composed', async () => {
+        const spy = vi.fn();
+        const container = await fixture<HTMLDivElement>(html`
+            <div @change=${spy}><ui-text-field></ui-text-field></div>
+        `);
+        const el = container.querySelector('ui-text-field')!;
+        const input = el.shadowRoot!.querySelector('input')!;
+        input.dispatchEvent(new Event('change', { bubbles: true, composed: true }));
+        expect(spy).toHaveBeenCalled();
+    });
+
+    it('errorMessage without error prop still shows error-text and error class', async () => {
+        const el = await fixture<UiTextField>(html`<ui-text-field errorMessage="Bad input"></ui-text-field>`);
+        await el.updateComplete;
+        const wrapper = el.shadowRoot!.querySelector('.input-wrapper')!;
+        expect(wrapper.classList.contains('error')).toBe(true);
+        expect(el.shadowRoot!.querySelector('.error-text')?.textContent).toBe('Bad input');
     });
 });

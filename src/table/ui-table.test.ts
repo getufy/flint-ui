@@ -324,4 +324,268 @@ describe('ui-table-pagination', () => {
         // The displayed range should start at 3*10+1 = 31
         expect(el.shadowRoot!.textContent).toContain('31');
     });
+
+    // ── Mutation-killing: from/to/count display ───────────────────────────────
+
+    it('displays correct from-to-of-count on first page', async () => {
+        const el = await fixture<UiTablePagination>(html`
+            <ui-table-pagination .count=${100} .page=${0} .rowsPerPage=${10}></ui-table-pagination>
+        `);
+        await el.updateComplete;
+        expect(el.shadowRoot!.textContent).toContain('1-10 of 100');
+    });
+
+    it('displays correct from-to-of-count on second page', async () => {
+        const el = await fixture<UiTablePagination>(html`
+            <ui-table-pagination .count=${100} .page=${1} .rowsPerPage=${10}></ui-table-pagination>
+        `);
+        await el.updateComplete;
+        expect(el.shadowRoot!.textContent).toContain('11-20 of 100');
+    });
+
+    it('displays correct from-to-of-count on last partial page', async () => {
+        const el = await fixture<UiTablePagination>(html`
+            <ui-table-pagination .count=${95} .page=${9} .rowsPerPage=${10}></ui-table-pagination>
+        `);
+        await el.updateComplete;
+        // page 9: from=91, to=min(95, 100)=95
+        expect(el.shadowRoot!.textContent).toContain('91-95 of 95');
+    });
+
+    it('next button disabled exactly on last page (isLast = to >= count)', async () => {
+        const el = await fixture<UiTablePagination>(html`
+            <ui-table-pagination .count=${30} .page=${2} .rowsPerPage=${10}></ui-table-pagination>
+        `);
+        await el.updateComplete;
+        // page 2: to = min(30, 30) = 30 >= 30 → isLast = true
+        const next = el.shadowRoot!.querySelector<HTMLButtonElement>('button[aria-label="Next page"]')!;
+        expect(next.disabled).toBe(true);
+    });
+
+    it('next button enabled one page before last', async () => {
+        const el = await fixture<UiTablePagination>(html`
+            <ui-table-pagination .count=${30} .page=${1} .rowsPerPage=${10}></ui-table-pagination>
+        `);
+        await el.updateComplete;
+        // page 1: to = min(30, 20) = 20; 20 < 30 → isLast = false
+        const next = el.shadowRoot!.querySelector<HTMLButtonElement>('button[aria-label="Next page"]')!;
+        expect(next.disabled).toBe(false);
+    });
+
+    it('rows-per-page change resets page to 0 and fires event', async () => {
+        const handler = vi.fn();
+        const el = await fixture<UiTablePagination>(html`
+            <ui-table-pagination .count=${100} .page=${5} @rows-per-page-change=${handler}></ui-table-pagination>
+        `);
+        const select = el.shadowRoot!.querySelector<HTMLSelectElement>('select')!;
+        select.value = '25';
+        select.dispatchEvent(new Event('change'));
+        await el.updateComplete;
+        // After rows change, page resets to 0 — display should show "1-..."
+        expect(el.shadowRoot!.textContent).toContain('1-');
+    });
+
+    it('_lastPage: last page button dispatches correct page for non-round count', async () => {
+        const handler = vi.fn();
+        const el = await fixture<UiTablePagination>(html`
+            <ui-table-pagination .count=${95} .page=${0} .rowsPerPage=${10} show-first-last @page-change=${handler}></ui-table-pagination>
+        `);
+        el.shadowRoot!.querySelector<HTMLButtonElement>('button[aria-label="Last page"]')!.click();
+        // ceil(95/10) - 1 = 10 - 1 = 9
+        expect(handler.mock.calls[0][0].detail.page).toBe(9);
+    });
+
+    it('_lastPage: last page button disabled when count=0 (isLast=true)', async () => {
+        const el = await fixture<UiTablePagination>(html`
+            <ui-table-pagination .count=${0} .page=${0} .rowsPerPage=${10} show-first-last></ui-table-pagination>
+        `);
+        await el.updateComplete;
+        // count=0 → isLast=true → Last and Next buttons both disabled
+        const last = el.shadowRoot!.querySelector<HTMLButtonElement>('button[aria-label="Last page"]')!;
+        expect(last.disabled).toBe(true);
+    });
+
+    it('defaultRowsPerPage > 0 uses that value over rowsPerPage', async () => {
+        const el = await fixture<UiTablePagination>(html`
+            <ui-table-pagination .count=${100} default-rows-per-page="25"></ui-table-pagination>
+        `);
+        await el.updateComplete;
+        // display should show 1-25 of 100
+        expect(el.shadowRoot!.textContent).toContain('1-25 of 100');
+    });
+
+    it('defaultRowsPerPage=0 falls back to rowsPerPage', async () => {
+        const el = await fixture<UiTablePagination>(html`
+            <ui-table-pagination .count=${100} .rowsPerPage=${5} default-rows-per-page="0"></ui-table-pagination>
+        `);
+        await el.updateComplete;
+        // defaultRowsPerPage=0 (not > 0) → falls back to rowsPerPage=5
+        expect(el.shadowRoot!.textContent).toContain('1-5 of 100');
+    });
+
+    it('page-change event detail has correct value for _go(1)', async () => {
+        const handler = vi.fn();
+        const el = await fixture<UiTablePagination>(html`
+            <ui-table-pagination .count=${100} .page=${3} @page-change=${handler}></ui-table-pagination>
+        `);
+        el.shadowRoot!.querySelector<HTMLButtonElement>('button[aria-label="Next page"]')!.click();
+        expect(handler.mock.calls[0][0].detail.page).toBe(4);
+    });
+
+    it('page-change event detail has correct value for _go(-1)', async () => {
+        const handler = vi.fn();
+        const el = await fixture<UiTablePagination>(html`
+            <ui-table-pagination .count=${100} .page=${3} @page-change=${handler}></ui-table-pagination>
+        `);
+        el.shadowRoot!.querySelector<HTMLButtonElement>('button[aria-label="Previous page"]')!.click();
+        expect(handler.mock.calls[0][0].detail.page).toBe(2);
+    });
+});
+
+/* ------------------------------------------------------------------ */
+/*  UiTableSortLabel (mutation-killing additions)                       */
+/* ------------------------------------------------------------------ */
+
+describe('ui-table-sort-label mutations', () => {
+    it('icon has asc class when direction=asc (regardless of active)', async () => {
+        const el = await fixture<UiTableSortLabel>(html`
+            <ui-table-sort-label direction="asc">Col</ui-table-sort-label>
+        `);
+        const icon = el.shadowRoot!.querySelector('.icon')!;
+        expect(icon.classList.contains('asc')).toBe(true);
+        expect(icon.classList.contains('desc')).toBe(false);
+    });
+
+    it('icon has desc class when direction=desc (regardless of active)', async () => {
+        const el = await fixture<UiTableSortLabel>(html`
+            <ui-table-sort-label direction="desc">Col</ui-table-sort-label>
+        `);
+        const icon = el.shadowRoot!.querySelector('.icon')!;
+        expect(icon.classList.contains('desc')).toBe(true);
+        expect(icon.classList.contains('asc')).toBe(false);
+    });
+
+    it('active defaults to false', async () => {
+        const el = await fixture<UiTableSortLabel>(html`
+            <ui-table-sort-label>Col</ui-table-sort-label>
+        `);
+        expect(el.active).toBe(false);
+        expect(el.hasAttribute('active')).toBe(false);
+    });
+
+    it('active=true reflects to attribute', async () => {
+        const el = await fixture<UiTableSortLabel>(html`
+            <ui-table-sort-label active>Col</ui-table-sort-label>
+        `);
+        expect(el.active).toBe(true);
+        expect(el.hasAttribute('active')).toBe(true);
+    });
+
+    it('direction defaults to asc', async () => {
+        const el = await fixture<UiTableSortLabel>(html`
+            <ui-table-sort-label>Col</ui-table-sort-label>
+        `);
+        expect(el.direction).toBe('asc');
+    });
+
+    it('programmatic direction change to desc updates icon class', async () => {
+        const el = await fixture<UiTableSortLabel>(html`
+            <ui-table-sort-label direction="asc">Col</ui-table-sort-label>
+        `);
+        el.direction = 'desc';
+        await el.updateComplete;
+        const icon = el.shadowRoot!.querySelector('.icon')!;
+        expect(icon.classList.contains('desc')).toBe(true);
+        expect(icon.classList.contains('asc')).toBe(false);
+    });
+});
+
+/* ------------------------------------------------------------------ */
+/*  Table component programmatic toggles                                */
+/* ------------------------------------------------------------------ */
+
+describe('ui-table-container programmatic toggles', () => {
+    it('stickyHeader can be toggled programmatically', async () => {
+        const el = await fixture<UiTableContainer>(html`<ui-table-container></ui-table-container>`);
+        expect(el.stickyHeader).toBe(false);
+        el.stickyHeader = true;
+        await el.updateComplete;
+        expect(el.hasAttribute('sticky-header')).toBe(true);
+        el.stickyHeader = false;
+        await el.updateComplete;
+        expect(el.hasAttribute('sticky-header')).toBe(false);
+    });
+
+    it('shadow can be toggled programmatically', async () => {
+        const el = await fixture<UiTableContainer>(html`<ui-table-container></ui-table-container>`);
+        el.shadow = true;
+        await el.updateComplete;
+        expect(el.hasAttribute('shadow')).toBe(true);
+        el.shadow = false;
+        await el.updateComplete;
+        expect(el.hasAttribute('shadow')).toBe(false);
+    });
+});
+
+describe('ui-table-row programmatic hover toggle', () => {
+    it('hover defaults to false', async () => {
+        const el = await fixture<UiTableRow>(html`<ui-table-row></ui-table-row>`);
+        expect(el.hover).toBe(false);
+        expect(el.hasAttribute('hover')).toBe(false);
+    });
+
+    it('hover can be toggled programmatically', async () => {
+        const el = await fixture<UiTableRow>(html`<ui-table-row></ui-table-row>`);
+        el.hover = true;
+        await el.updateComplete;
+        expect(el.hasAttribute('hover')).toBe(true);
+        el.hover = false;
+        await el.updateComplete;
+        expect(el.hasAttribute('hover')).toBe(false);
+    });
+});
+
+describe('ui-table size programmatic change', () => {
+    it('size can be changed to small programmatically', async () => {
+        const el = await fixture<UiTable>(html`<ui-table></ui-table>`);
+        expect(el.size).toBe('medium');
+        el.size = 'small';
+        await el.updateComplete;
+        expect(el.getAttribute('size')).toBe('small');
+    });
+});
+
+describe('ui-table-cell programmatic changes', () => {
+    it('header can be toggled programmatically', async () => {
+        const el = await fixture<UiTableCell>(html`<ui-table-cell>H</ui-table-cell>`);
+        el.header = true;
+        await el.updateComplete;
+        expect(el.hasAttribute('header')).toBe(true);
+        el.header = false;
+        await el.updateComplete;
+        expect(el.hasAttribute('header')).toBe(false);
+    });
+
+    it('align can be changed programmatically', async () => {
+        const el = await fixture<UiTableCell>(html`<ui-table-cell>C</ui-table-cell>`);
+        el.align = 'center';
+        await el.updateComplete;
+        expect(el.getAttribute('align')).toBe('center');
+        el.align = 'right';
+        await el.updateComplete;
+        expect(el.getAttribute('align')).toBe('right');
+    });
+
+    it('padding can be changed programmatically', async () => {
+        const el = await fixture<UiTableCell>(html`<ui-table-cell>C</ui-table-cell>`);
+        el.padding = 'checkbox';
+        await el.updateComplete;
+        expect(el.getAttribute('padding')).toBe('checkbox');
+        el.padding = 'none';
+        await el.updateComplete;
+        expect(el.getAttribute('padding')).toBe('none');
+        el.padding = 'normal';
+        await el.updateComplete;
+        expect(el.getAttribute('padding')).toBe('normal');
+    });
 });

@@ -2131,3 +2131,302 @@ describe('ui-time-picker auto variant', () => {
         window.matchMedia = original;
     });
 });
+
+// ── Mutation-focused: boundary arithmetic and no-op guards ────────────────────
+describe('ui-time-field boundary and no-op mutations', () => {
+    // _adjust: hour clamping at max in 12hr mode
+    it('ArrowUp at hour 12 in 12hr stays at 12 (no change event)', async () => {
+        const el = await fixture<UiTimeField>(html`<ui-time-field value="12:00:00"></ui-time-field>`);
+        await el.updateComplete;
+        const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
+        focus(segs);
+        await el.updateComplete;
+        // Navigate to hour 12 (already parsed)
+        const spy = vi.fn();
+        el.addEventListener('change', spy);
+        key(segs, 'ArrowUp');
+        await el.updateComplete;
+        const hourSeg = el.shadowRoot!.querySelectorAll('.seg')[0];
+        expect(hourSeg.textContent?.trim()).toBe('12');
+    });
+
+    // _adjust: hour clamping at min in 12hr mode
+    it('ArrowDown at hour 1 in 12hr stays at 01 (clamp min=1)', async () => {
+        const el = await fixture<UiTimeField>(html`<ui-time-field value="01:00:00"></ui-time-field>`);
+        await el.updateComplete;
+        const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
+        focus(segs);
+        await el.updateComplete;
+        key(segs, 'ArrowDown');
+        await el.updateComplete;
+        const hourSeg = el.shadowRoot!.querySelectorAll('.seg')[0];
+        expect(hourSeg.textContent?.trim()).toBe('01');
+    });
+
+    // _adjust: 24hr mode hour clamps at max=23
+    it('ArrowUp at hour 23 in 24hr stays at 23 (clamp max=23)', async () => {
+        const el = await fixture<UiTimeField>(html`<ui-time-field value="23:00:00" .ampm=${false}></ui-time-field>`);
+        await el.updateComplete;
+        const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
+        focus(segs);
+        await el.updateComplete;
+        key(segs, 'ArrowUp');
+        await el.updateComplete;
+        const hourSeg = el.shadowRoot!.querySelectorAll('.seg')[0];
+        expect(hourSeg.textContent?.trim()).toBe('23');
+    });
+
+    // _adjust: 24hr mode hour clamps at min=0
+    it('ArrowDown at hour 0 in 24hr stays at 00 (clamp min=0)', async () => {
+        const el = await fixture<UiTimeField>(html`<ui-time-field value="00:00:00" .ampm=${false}></ui-time-field>`);
+        await el.updateComplete;
+        const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
+        focus(segs);
+        await el.updateComplete;
+        key(segs, 'ArrowDown');
+        await el.updateComplete;
+        const hourSeg = el.shadowRoot!.querySelectorAll('.seg')[0];
+        expect(hourSeg.textContent?.trim()).toBe('00');
+    });
+
+    // _emit no-op guard: same value should not fire change
+    it('ArrowUp then ArrowDown fires two change events (value differs each time)', async () => {
+        const el = await fixture<UiTimeField>(html`<ui-time-field value="10:00:00"></ui-time-field>`);
+        await el.updateComplete;
+        const spy = vi.fn();
+        el.addEventListener('change', spy);
+        const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
+        focus(segs);
+        await el.updateComplete;
+        key(segs, 'ArrowUp');   // 10 → 11, fires change
+        await el.updateComplete;
+        key(segs, 'ArrowDown'); // 11 → 10, fires change
+        await el.updateComplete;
+        expect(spy).toHaveBeenCalledTimes(2);
+        // Second call restores original value '10:00:00'
+        expect((spy.mock.calls[1][0] as CustomEvent).detail.value).toBe('10:00:00');
+    });
+
+    // to24(12, 'AM') = 0 (midnight)
+    it('to24 edge: hour=12 AM becomes 00:xx:xx', async () => {
+        // Press 'a' on a 12 PM field → becomes 12 AM → 00:xx:xx
+        const el = await fixture<UiTimeField>(html`<ui-time-field value="12:30:00"></ui-time-field>`);
+        await el.updateComplete;
+        const spy = vi.fn();
+        el.addEventListener('change', spy);
+        const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
+        focus(segs);
+        await el.updateComplete;
+        key(segs, 'a'); // force AM
+        await el.updateComplete;
+        expect((spy.mock.calls[spy.mock.calls.length - 1][0] as CustomEvent).detail.value).toBe('00:30:00');
+    });
+
+    // to24(12, 'PM') = 12 (noon)
+    it('to24 edge: hour=12 PM becomes 12:xx:xx', async () => {
+        // Start with 12 AM (00:30), press 'p' → 12 PM → 12:30:00
+        const el = await fixture<UiTimeField>(html`<ui-time-field value="00:30:00"></ui-time-field>`);
+        await el.updateComplete;
+        const spy = vi.fn();
+        el.addEventListener('change', spy);
+        const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
+        focus(segs);
+        await el.updateComplete;
+        key(segs, 'p'); // force PM — 12 AM → 12 PM
+        await el.updateComplete;
+        expect((spy.mock.calls[spy.mock.calls.length - 1][0] as CustomEvent).detail.value).toBe('12:30:00');
+    });
+
+    // _digit threshold in 24hr: typing '0' buffers (d=0 < threshold=3)
+    it('typing 0 in 24hr hour buffers and does not auto-advance', async () => {
+        const el = await fixture<UiTimeField>(html`<ui-time-field .ampm=${false}></ui-time-field>`);
+        const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
+        focus(segs);
+        await el.updateComplete;
+        key(segs, '0');
+        await el.updateComplete;
+        // Should still be on hour segment (not advanced)
+        expect(el.shadowRoot!.querySelectorAll('.seg')[0].classList.contains('active')).toBe(true);
+    });
+
+    // _digit: typing '0' then '0' in 24hr sets hour to 0 (n=0 >= 0 is valid in 24hr)
+    it('typing 00 in 24hr mode sets hour to 00', async () => {
+        const el = await fixture<UiTimeField>(html`<ui-time-field .ampm=${false}></ui-time-field>`);
+        const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
+        focus(segs);
+        await el.updateComplete;
+        key(segs, '0');
+        key(segs, '0');
+        await el.updateComplete;
+        const hourSeg = el.shadowRoot!.querySelectorAll('.seg')[0];
+        expect(hourSeg.textContent?.trim()).toBe('00');
+    });
+
+    // _digit threshold in 12hr: typing '1' buffers (d=1 < threshold=2)
+    it('typing 1 in 12hr hour buffers (threshold=2)', async () => {
+        const el = await fixture<UiTimeField>(html`<ui-time-field></ui-time-field>`);
+        const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
+        focus(segs);
+        await el.updateComplete;
+        key(segs, '1');
+        await el.updateComplete;
+        // Still on hour (awaiting second digit since 1 < 2)
+        expect(el.shadowRoot!.querySelectorAll('.seg')[0].classList.contains('active')).toBe(true);
+    });
+
+    // _digit: typing '2' in 12hr auto-advances (d=2 >= threshold=2)
+    it('typing 2 in 12hr mode auto-advances hour', async () => {
+        const el = await fixture<UiTimeField>(html`<ui-time-field></ui-time-field>`);
+        const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
+        focus(segs);
+        await el.updateComplete;
+        key(segs, '2');
+        await el.updateComplete;
+        // Auto-advances to minute
+        expect(el.shadowRoot!.querySelectorAll('.seg')[1].classList.contains('active')).toBe(true);
+        expect(el.shadowRoot!.querySelectorAll('.seg')[0].textContent?.trim()).toBe('02');
+    });
+
+    // _adjust: ArrowUp from null hour in 24hr starts at minH=0
+    it('ArrowUp on null hour in 24hr mode sets to 00', async () => {
+        const el = await fixture<UiTimeField>(html`<ui-time-field .ampm=${false}></ui-time-field>`);
+        const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
+        focus(segs);
+        await el.updateComplete;
+        key(segs, 'ArrowUp');
+        await el.updateComplete;
+        const hourSeg = el.shadowRoot!.querySelectorAll('.seg')[0];
+        expect(hourSeg.textContent?.trim()).toBe('00');
+    });
+
+    // _adjust: ArrowDown from null hour in 24hr starts at maxH=23
+    it('ArrowDown on null hour in 24hr mode sets to 23', async () => {
+        const el = await fixture<UiTimeField>(html`<ui-time-field .ampm=${false}></ui-time-field>`);
+        const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
+        focus(segs);
+        await el.updateComplete;
+        key(segs, 'ArrowDown');
+        await el.updateComplete;
+        const hourSeg = el.shadowRoot!.querySelectorAll('.seg')[0];
+        expect(hourSeg.textContent?.trim()).toBe('23');
+    });
+
+    // _emit: does not fire if _h is null
+    it('change event not fired when hour is still null', async () => {
+        const el = await fixture<UiTimeField>(html`<ui-time-field></ui-time-field>`);
+        const spy = vi.fn();
+        el.addEventListener('change', spy);
+        const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
+        focus(segs);
+        await el.updateComplete;
+        key(segs, 'ArrowRight'); // move to minute (hour still null)
+        key(segs, '3');          // set minute=3
+        await el.updateComplete;
+        // hour is null → emit skips
+        expect(spy).not.toHaveBeenCalled();
+    });
+
+    // change event detail value matches segment values
+    it('change event detail.value matches displayed time', async () => {
+        const el = await fixture<UiTimeField>(html`<ui-time-field value="10:00:00"></ui-time-field>`);
+        await el.updateComplete;
+        const spy = vi.fn();
+        el.addEventListener('change', spy);
+        const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
+        focus(segs);
+        await el.updateComplete;
+        key(segs, 'ArrowUp'); // 10 → 11
+        await el.updateComplete;
+        expect((spy.mock.calls[0][0] as CustomEvent).detail.value).toBe('11:00:00');
+    });
+
+    // Backspace on meridiem does nothing (only hour/min/sec are cleared)
+    it('Backspace on meridiem segment does not clear it', async () => {
+        const el = await fixture<UiTimeField>(html`<ui-time-field value="14:00:00"></ui-time-field>`);
+        await el.updateComplete;
+        const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
+        focus(segs);
+        await el.updateComplete;
+        key(segs, 'ArrowRight'); // minute
+        key(segs, 'ArrowRight'); // meridiem
+        await el.updateComplete;
+        key(segs, 'Backspace');
+        await el.updateComplete;
+        const merSeg = el.shadowRoot!.querySelectorAll('.seg')[2];
+        expect(merSeg.textContent?.trim()).toBe('PM');
+    });
+
+    // _next/_prev boundary: _canNext=false at last segment
+    it('Tab at last segment does not wrap around', async () => {
+        const el = await fixture<UiTimeField>(html`<ui-time-field></ui-time-field>`);
+        const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
+        focus(segs);
+        await el.updateComplete;
+        key(segs, 'ArrowRight'); // minute
+        key(segs, 'ArrowRight'); // meridiem (last)
+        await el.updateComplete;
+        key(segs, 'Tab'); // no-op (canNext=false)
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelectorAll('.seg')[2].classList.contains('active')).toBe(true);
+    });
+
+    // _prev boundary: _canPrev=false at first segment
+    it('Shift+Tab at first segment does not go before first', async () => {
+        const el = await fixture<UiTimeField>(html`<ui-time-field></ui-time-field>`);
+        const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
+        focus(segs);
+        await el.updateComplete;
+        key(segs, 'Tab', { shiftKey: true }); // no-op (canPrev=false)
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelectorAll('.seg')[0].classList.contains('active')).toBe(true);
+    });
+});
+
+// ── Mutation-focused: digital clock boundary values ───────────────────────────
+describe('ui-digital-clock boundary value assertions', () => {
+    it('ArrowDown at last item keeps value at last item (boundary clamped)', async () => {
+        const el = await fixture<UiDigitalClock>(html`<ui-digital-clock value="23:30:00" step=30></ui-digital-clock>`);
+        await el.updateComplete;
+        const spy = vi.fn();
+        el.addEventListener('change', spy);
+        const items = el.shadowRoot!.querySelectorAll<HTMLButtonElement>('.item');
+        items[items.length - 1].dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+        // Math.min(last+1, last) = last → same item → target===idx → no event
+        expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('ArrowUp at first item keeps value at first item (boundary clamped)', async () => {
+        const el = await fixture<UiDigitalClock>(html`<ui-digital-clock value="00:00:00" step=30></ui-digital-clock>`);
+        await el.updateComplete;
+        const spy = vi.fn();
+        el.addEventListener('change', spy);
+        const items = el.shadowRoot!.querySelectorAll<HTMLButtonElement>('.item');
+        items[0].dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
+        // Math.max(0-1,0) = 0 → same item → target===idx → no event
+        expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('ArrowDown one step before last moves to last', async () => {
+        const el = await fixture<UiDigitalClock>(html`<ui-digital-clock value="23:00:00" step=30></ui-digital-clock>`);
+        await el.updateComplete;
+        const spy = vi.fn();
+        el.addEventListener('change', spy);
+        const items = el.shadowRoot!.querySelectorAll<HTMLButtonElement>('.item');
+        const selectedIdx = Array.from(items).findIndex(i => i.classList.contains('selected'));
+        items[selectedIdx].dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+        expect(spy).toHaveBeenCalledOnce();
+        expect((spy.mock.calls[0][0] as CustomEvent).detail.value).toBe('23:30:00');
+    });
+
+    it('ArrowUp from second item moves to first', async () => {
+        const el = await fixture<UiDigitalClock>(html`<ui-digital-clock value="00:30:00" step=30></ui-digital-clock>`);
+        await el.updateComplete;
+        const spy = vi.fn();
+        el.addEventListener('change', spy);
+        const items = el.shadowRoot!.querySelectorAll<HTMLButtonElement>('.item');
+        const selectedIdx = Array.from(items).findIndex(i => i.classList.contains('selected'));
+        items[selectedIdx].dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
+        expect(spy).toHaveBeenCalledOnce();
+        expect((spy.mock.calls[0][0] as CustomEvent).detail.value).toBe('00:00:00');
+    });
+});
