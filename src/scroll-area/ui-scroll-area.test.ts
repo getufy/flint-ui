@@ -251,6 +251,35 @@ describe('ui-scroll-area — scroll type', () => {
         const barY = getScrollbarY(el);
         expect(barY.classList.contains('scrollbar--active')).toBe(false);
     });
+
+    it('type="scroll" resets the hide timer when a second scroll fires before expiry', async () => {
+        const el = await fixture<UiScrollArea>(html`
+            <ui-scroll-area type="scroll" style="height: 200px; width: 200px;">
+                <div style="height: 1000px;"></div>
+            </ui-scroll-area>
+        `);
+        await el.updateComplete;
+
+        const vp = getViewport(el);
+        // First scroll sets _hideTimer
+        vp.dispatchEvent(new Event('scroll'));
+        await el.updateComplete;
+
+        // Second scroll fires before timer expires — hits `if (this._hideTimer) clearTimeout(...)`
+        vp.dispatchEvent(new Event('scroll'));
+        await el.updateComplete;
+
+        // Advance only 400 ms — if timer wasn't reset, _isScrolling would be false already;
+        // because it was reset the bar should still be active
+        vi.advanceTimersByTime(400);
+        await el.updateComplete;
+        expect(getScrollbarY(el).classList.contains('scrollbar--active')).toBe(true);
+
+        // Now let the full 600 ms expire from the second scroll
+        vi.advanceTimersByTime(200);
+        await el.updateComplete;
+        expect(getScrollbarY(el).classList.contains('scrollbar--active')).toBe(false);
+    });
 });
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -1055,5 +1084,205 @@ describe('ui-scroll-area — _onSlotChange ResizeObserver', () => {
         } finally {
             globalThis.ResizeObserver = original;
         }
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ui-scroll-area — ResizeObserver callback (lines 193-194)
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-scroll-area — ResizeObserver callback fires', () => {
+    it('executes _updateOverflow and _syncScrollBars when the callback is invoked', async () => {
+        let roCallback: (() => void) | null = null;
+        const original = globalThis.ResizeObserver;
+        globalThis.ResizeObserver = function MockRO(cb: () => void) {
+            roCallback = cb;
+            return { observe: vi.fn(), disconnect: vi.fn(), unobserve: vi.fn() };
+        } as unknown as typeof ResizeObserver;
+
+        try {
+            const el = await fixture<UiScrollArea>(html`
+                <ui-scroll-area style="height: 200px; width: 200px;">
+                    <div style="height: 800px;"></div>
+                </ui-scroll-area>
+            `);
+            await el.updateComplete;
+            expect(roCallback).not.toBeNull();
+            // Invoking the callback covers lines 193-194 (_updateOverflow + _syncScrollBars)
+            roCallback!();
+            await el.updateComplete;
+            // After callback fires the element is still connected without errors
+            expect(el.shadowRoot!.querySelector('.viewport')).not.toBeNull();
+        } finally {
+            globalThis.ResizeObserver = original;
+        }
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ui-scroll-area — _shouldShowBar default branch (line 333)
+═══════════════════════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════════════════════
+   ui-scroll-area — viewport null guards (lines 237, 244, 251, 277, 284)
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-scroll-area — viewport null guards', () => {
+    it('_getScrollPos returns 0 when viewport is not rendered', () => {
+        const el = document.createElement('ui-scroll-area') as UiScrollArea;
+        expect(el._getScrollPos('vertical')).toBe(0);
+        expect(el._getScrollPos('horizontal')).toBe(0);
+    });
+
+    it('_getScrollRange returns 0 when viewport is not rendered', () => {
+        const el = document.createElement('ui-scroll-area') as UiScrollArea;
+        expect(el._getScrollRange('vertical')).toBe(0);
+        expect(el._getScrollRange('horizontal')).toBe(0);
+    });
+
+    it('_setScrollPos does nothing when viewport is not rendered', () => {
+        const el = document.createElement('ui-scroll-area') as UiScrollArea;
+        // Should not throw
+        expect(() => el._setScrollPos('vertical', 50)).not.toThrow();
+    });
+
+    it('_updateOverflow and _computeThumb handle null viewport (lines 277, 284)', async () => {
+        const el = await makeArea();
+        const realVp = getViewport(el);
+
+        // Shadow _viewport to null — triggers the `if (!vp) return` guards in both
+        // _updateOverflow (line 277) and _computeThumb (line 284)
+        Object.defineProperty(el, '_viewport', { get: () => null, configurable: true });
+
+        // Dispatch scroll on the real viewport div — _onScroll fires, calling
+        // _updateOverflow() and _syncScrollBars() → _computeThumb() with null _viewport
+        realVp.dispatchEvent(new Event('scroll'));
+        await el.updateComplete;
+
+        // No errors; element still intact
+        expect(el.shadowRoot!.querySelector('.scrollbar--y')).not.toBeNull();
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ui-scroll-area — _syncScrollBars skips nested scrollbar (line 313)
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-scroll-area — _syncScrollBars skips nested scrollbar', () => {
+    it('does not call setThumb on a ui-scroll-bar inside a nested ui-scroll-area', async () => {
+        const outer = await fixture<UiScrollArea>(html`
+            <ui-scroll-area type="always" style="height: 300px; width: 300px;">
+                <ui-scroll-area style="height: 200px; width: 200px;">
+                    <div style="height: 800px;"></div>
+                    <ui-scroll-bar slot="scrollbar" orientation="vertical"></ui-scroll-bar>
+                </ui-scroll-area>
+            </ui-scroll-area>
+        `);
+        await outer.updateComplete;
+
+        const innerBar = outer.querySelector('ui-scroll-bar') as UiScrollBar;
+        const setThumbSpy = vi.spyOn(innerBar, 'setThumb');
+
+        // Force outer _syncScrollBars — the inner bar's closest('ui-scroll-area') !== outer
+        outer.shadowRoot!.querySelector('.viewport')!.dispatchEvent(new Event('scroll'));
+        await outer.updateComplete;
+
+        expect(setThumbSpy).not.toHaveBeenCalled();
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ui-scroll-area — Y-thumb drag returns early when trackH = 0 (line 358)
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-scroll-area — Y-thumb drag zero track', () => {
+    it('pointermove does nothing when scrollbarY offsetHeight is 0', async () => {
+        const el = await makeArea();
+        const vp = getViewport(el);
+        const thumbY = getThumbY(el);
+        thumbY.setPointerCapture = vi.fn();
+
+        // Start drag
+        thumbY.dispatchEvent(new PointerEvent('pointerdown', { clientY: 0, pointerId: 1 }));
+        await el.updateComplete;
+
+        // Fire move without mocking offsetHeight — stays 0 in jsdom → early return
+        thumbY.dispatchEvent(new PointerEvent('pointermove', { clientY: 50 }));
+        expect(vp.scrollTop).toBe(0);
+    });
+
+    it('pointermove does nothing when scrollbarY is null (?.  null path)', async () => {
+        const el = await makeArea();
+        const vp = getViewport(el);
+        const thumbY = getThumbY(el);
+        thumbY.setPointerCapture = vi.fn();
+
+        // Start drag
+        thumbY.dispatchEvent(new PointerEvent('pointerdown', { clientY: 0, pointerId: 1 }));
+        await el.updateComplete;
+
+        // Shadow scrollbarY to null on the instance so _scrollbarY?. returns undefined
+        Object.defineProperty(el, '_scrollbarY', { get: () => null, configurable: true });
+
+        thumbY.dispatchEvent(new PointerEvent('pointermove', { clientY: 50 }));
+        expect(vp.scrollTop).toBe(0);
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ui-scroll-area — X-thumb drag returns early when trackW = 0 (line 388)
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-scroll-area — X-thumb drag zero track', () => {
+    it('pointermove does nothing when scrollbarX offsetWidth is 0', async () => {
+        const el = await makeArea();
+        const vp = getViewport(el);
+        const thumbX = getThumbX(el);
+        thumbX.setPointerCapture = vi.fn();
+
+        // Start drag
+        thumbX.dispatchEvent(new PointerEvent('pointerdown', { clientX: 0, pointerId: 2 }));
+        await el.updateComplete;
+
+        // Fire move without mocking offsetWidth — stays 0 in jsdom → early return
+        thumbX.dispatchEvent(new PointerEvent('pointermove', { clientX: 50 }));
+        expect(vp.scrollLeft).toBe(0);
+    });
+
+    it('pointermove does nothing when scrollbarX is null (?. null path)', async () => {
+        const el = await makeArea();
+        const vp = getViewport(el);
+        const thumbX = getThumbX(el);
+        thumbX.setPointerCapture = vi.fn();
+
+        // Start drag
+        thumbX.dispatchEvent(new PointerEvent('pointerdown', { clientX: 0, pointerId: 2 }));
+        await el.updateComplete;
+
+        // Shadow scrollbarX to null on the instance
+        Object.defineProperty(el, '_scrollbarX', { get: () => null, configurable: true });
+
+        thumbX.dispatchEvent(new PointerEvent('pointermove', { clientX: 50 }));
+        expect(vp.scrollLeft).toBe(0);
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ui-scroll-area — _shouldShowBar default branch (line 333)
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-scroll-area — _shouldShowBar default branch', () => {
+    it('returns hasOverflow for an unknown type value', async () => {
+        const el = await makeArea();
+        const vp = getViewport(el);
+        mockOverflowY(vp, 800, 200);
+
+        // Dispatch scroll to trigger _onScroll → _updateOverflow → _hasOverflowY = true
+        vp.dispatchEvent(new Event('scroll'));
+        await el.updateComplete;
+
+        // Force an unknown type so the switch falls through to `default`
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (el as any).type = 'unknown-type';
+        // Trigger re-render so _scrollbarClasses → _shouldShowBar is called
+        el.requestUpdate();
+        await el.updateComplete;
+
+        // default case returns hasOverflow (true here), so the bar gets scrollbar--visible
+        const sbY = getScrollbarY(el);
+        expect(sbY.classList.contains('scrollbar--visible')).toBe(true);
     });
 });
