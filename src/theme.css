@@ -302,6 +302,13 @@
     --ui-range-slider-thumb-color:   var(--ui-surface-1);
     --ui-range-slider-thumb-border:  var(--ui-primary-color);
 
+    /* ─── Input OTP ────────────────────────────────────────────── */
+    --ui-otp-slot-width:     40px;
+    --ui-otp-slot-height:    48px;
+    --ui-otp-slot-font-size: 1.25rem;
+    --ui-otp-slot-radius:    var(--ui-border-radius-md);
+    --ui-otp-gap:            8px;
+
     /* ─── Carousel ────────────────────────────────────────────── */
     --ui-carousel-gap:             0px;
     --ui-carousel-height:          320px;

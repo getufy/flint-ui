@@ -3,9 +3,9 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 48px;
-            font-size: 1.25rem;
+            width: var(--ui-otp-slot-width, 40px);
+            height: var(--ui-otp-slot-height, 48px);
+            font-size: var(--ui-otp-slot-font-size, 1.25rem);
             font-family: var(--ui-font-family);
             font-weight: 500;
             color: var(--ui-text-color);
@@ -19,11 +19,11 @@
 
         :host(:first-child) {
             margin-left: 0;
-            border-radius: 6px 0 0 6px;
+            border-radius: var(--ui-otp-slot-radius, 6px) 0 0 var(--ui-otp-slot-radius, 6px);
         }
 
         :host(:last-child) {
-            border-radius: 0 6px 6px 0;
+            border-radius: 0 var(--ui-otp-slot-radius, 6px) var(--ui-otp-slot-radius, 6px) 0;
         }
 
         :host([active]) {
