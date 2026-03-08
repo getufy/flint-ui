@@ -1210,3 +1210,682 @@ describe('UiRichTreeView — getItemTree() after reordering', () => {
         expect(childIds).toEqual(['c3', 'c1', 'c2']);
     });
 });
+
+// ─── Keyboard on disabled items ───────────────────────────────────────────────
+
+describe('UiRichTreeView — keyboard on disabled items (disabledItemsFocusable=true)', () => {
+    let tree: UiRichTreeView;
+
+    beforeEach(async () => {
+        const items: RichTreeItem[] = [
+            { id: '1', label: 'Alpha', children: [{ id: '1-1', label: 'Beta' }] },
+            { id: '2', label: 'Delta', children: [{ id: '2-1', label: 'Gamma' }] },
+            { id: '3', label: 'Zeta' },
+        ];
+        tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view
+                .items=${items}
+                .isItemDisabled=${(i: RichTreeItem) => i['id'] === '1' || i['id'] === '2'}
+                disabled-items-focusable
+            ></ui-rich-tree-view>
+        `);
+        await settle(tree);
+    });
+
+    it('ArrowRight on disabled item does not expand', async () => {
+        const item1 = getItem(tree, '1')!;
+        item1.focus();
+        expect(item1.expanded).toBe(false);
+
+        item1.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+        await tree.updateComplete;
+
+        expect(item1.expanded).toBe(false);
+    });
+
+    it('ArrowLeft on disabled expanded item does not collapse', async () => {
+        // Expand item 2 first via uncontrolled toggle
+        const item2 = getItem(tree, '2')!;
+        // Use the expand button from shadow root (we can click expand btn from the item)
+        item2.shadowRoot!.querySelector<HTMLElement>('.expand-btn')?.click();
+        await settle(tree);
+        // Since isItemDisabled returns true for '2', expansion should be controlled separately
+        // Force expansion for this test:
+        item2.expanded = true;
+        await item2.updateComplete;
+        item2.focus();
+
+        item2.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }));
+        await tree.updateComplete;
+
+        expect(item2.expanded).toBe(true);
+    });
+
+    it('Enter on disabled item does NOT fire onItemClick', async () => {
+        const handler = vi.fn();
+        tree.onItemClick = handler;
+        const item1 = getItem(tree, '1')!;
+        item1.focus();
+
+        item1.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+        await tree.updateComplete;
+
+        expect(handler).not.toHaveBeenCalled();
+    });
+
+    it('Space on disabled item does NOT fire onItemClick', async () => {
+        const handler = vi.fn();
+        tree.onItemClick = handler;
+        const item1 = getItem(tree, '1')!;
+        item1.focus();
+
+        item1.dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true }));
+        await tree.updateComplete;
+
+        expect(handler).not.toHaveBeenCalled();
+    });
+});
+
+// ─── Keyboard: Enter/Space on items with children ─────────────────────────────
+
+describe('UiRichTreeView — Enter/Space toggles parent items', () => {
+    let tree: UiRichTreeView;
+
+    beforeEach(async () => {
+        tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${BASIC_ITEMS}></ui-rich-tree-view>
+        `);
+        await settle(tree);
+    });
+
+    it('Enter on parent item expands it', async () => {
+        const parent = getItem(tree, '1')!;
+        parent.focus();
+        expect(parent.expanded).toBe(false);
+
+        parent.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+        await tree.updateComplete;
+
+        expect(parent.expanded).toBe(true);
+    });
+
+    it('Space on parent item expands it', async () => {
+        const parent = getItem(tree, '1')!;
+        parent.focus();
+        expect(parent.expanded).toBe(false);
+
+        parent.dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true }));
+        await tree.updateComplete;
+
+        expect(parent.expanded).toBe(true);
+    });
+
+    it('Enter on already expanded parent collapses it', async () => {
+        const parent = getItem(tree, '1')!;
+        parent.shadowRoot!.querySelector<HTMLElement>('.expand-btn')!.click();
+        await tree.updateComplete;
+        expect(parent.expanded).toBe(true);
+
+        parent.focus();
+        parent.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+        await tree.updateComplete;
+
+        expect(parent.expanded).toBe(false);
+    });
+});
+
+// ─── Item click on items with children (content mode) ─────────────────────────
+
+describe('UiRichTreeView — item click expansion in content mode', () => {
+    it('clicking item row expands parent in content mode', async () => {
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${BASIC_ITEMS} expansion-trigger="content"></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        const parent = getItem(tree, '1')!;
+        expect(parent.expanded).toBe(false);
+
+        parent.shadowRoot!.querySelector<HTMLElement>('.item-row')!.click();
+        await tree.updateComplete;
+
+        expect(parent.expanded).toBe(true);
+    });
+
+    it('clicking item row in iconContainer mode does not expand', async () => {
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${BASIC_ITEMS} expansion-trigger="iconContainer"></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        const parent = getItem(tree, '1')!;
+        expect(parent.expanded).toBe(false);
+
+        parent.shadowRoot!.querySelector<HTMLElement>('.item-row')!.click();
+        await tree.updateComplete;
+
+        expect(parent.expanded).toBe(false);
+    });
+});
+
+// ─── Keyboard boundary navigation ─────────────────────────────────────────────
+
+describe('UiRichTreeView — keyboard boundary navigation', () => {
+    let tree: UiRichTreeView;
+
+    beforeEach(async () => {
+        tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${FLAT_ITEMS}></ui-rich-tree-view>
+        `);
+        await settle(tree);
+    });
+
+    it('ArrowDown at last item keeps focus on last item', async () => {
+        const last = getItem(tree, 'c')!;
+        last.setAttribute('tabindex', '0');
+        last.focus();
+
+        last.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+        await tree.updateComplete;
+
+        expect(tree.shadowRoot!.activeElement).toBe(last);
+    });
+
+    it('ArrowUp at first item keeps focus on first item', async () => {
+        const first = getItem(tree, 'a')!;
+        first.focus();
+
+        first.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
+        await tree.updateComplete;
+
+        expect(tree.shadowRoot!.activeElement).toBe(first);
+    });
+
+    it('ArrowLeft on root-level collapsed item does nothing', async () => {
+        const first = getItem(tree, 'a')!;
+        first.focus();
+
+        first.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }));
+        await tree.updateComplete;
+
+        expect(tree.shadowRoot!.activeElement).toBe(first);
+    });
+
+    it('first-character navigation with no match keeps focus', async () => {
+        const first = getItem(tree, 'a')!;
+        first.focus();
+
+        first.dispatchEvent(new KeyboardEvent('keydown', { key: 'z', bubbles: true }));
+        await tree.updateComplete;
+
+        expect(tree.shadowRoot!.activeElement).toBe(first);
+    });
+
+    it('non-character keys are ignored silently', async () => {
+        const first = getItem(tree, 'a')!;
+        first.focus();
+
+        // Shift key alone → length > 1, should be ignored
+        expect(() => {
+            first.dispatchEvent(new KeyboardEvent('keydown', { key: 'Shift', bubbles: true }));
+        }).not.toThrow();
+    });
+});
+
+// ─── disconnectedCallback ─────────────────────────────────────────────────────
+
+describe('UiRichTreeView — disconnectedCallback', () => {
+    it('removes event listeners after disconnect (no errors)', async () => {
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${FLAT_ITEMS}></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        tree.remove();
+        // After removing, dispatching events to the shadow root should not throw
+        expect(() => {
+            tree.shadowRoot!.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+        }).not.toThrow();
+    });
+});
+
+// ─── Lazy loading ─────────────────────────────────────────────────────────────
+
+describe('UiRichTreeView — lazy loading (dataSource)', () => {
+    it('renders root loading indicator while fetching root items', async () => {
+        let resolveRoot!: (items: RichTreeItem[]) => void;
+        const rootPromise = new Promise<RichTreeItem[]>(res => { resolveRoot = res; });
+
+        const dataSource = {
+            getTreeItems: (_id: string | null) => rootPromise,
+            getChildrenCount: () => 0,
+        };
+
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${[] as RichTreeItem[]} .dataSource=${dataSource}></ui-rich-tree-view>
+        `);
+        await tree.updateComplete;
+        // Allow microtask for _loadChildren to kick off
+        await new Promise(r => setTimeout(r, 10));
+        await tree.updateComplete;
+
+        const spinner = tree.shadowRoot!.querySelector('.lazy-root');
+        expect(spinner).not.toBeNull();
+
+        // Resolve to complete the loading
+        resolveRoot([{ id: 'r1', label: 'Root 1' }]);
+        await settle(tree, 50);
+    });
+
+    it('renders items after root lazy load completes', async () => {
+        const rootItems: RichTreeItem[] = [
+            { id: 'r1', label: 'Lazy Root' },
+            { id: 'r2', label: 'Lazy Root 2' },
+        ];
+        const dataSource = {
+            getTreeItems: async (_id: string | null) => rootItems,
+            getChildrenCount: () => 0,
+        };
+
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${[] as RichTreeItem[]} .dataSource=${dataSource}></ui-rich-tree-view>
+        `);
+        await settle(tree, 100);
+
+        expect(getItem(tree, 'r1')).not.toBeNull();
+        expect(getItem(tree, 'r2')).not.toBeNull();
+    });
+
+    it('renders child loading indicator while fetching children', async () => {
+        let resolveChild!: (items: RichTreeItem[]) => void;
+        const childPromise = new Promise<RichTreeItem[]>(res => { resolveChild = res; });
+
+        const parentItems: RichTreeItem[] = [{ id: 'p1', label: 'Parent' }];
+        const dataSource = {
+            getTreeItems: async (id: string | null) => {
+                if (id === null) return parentItems;
+                return childPromise;
+            },
+            getChildrenCount: () => 1, // indicate has children
+        };
+
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${parentItems} .dataSource=${dataSource}></ui-rich-tree-view>
+        `);
+        await settle(tree, 50);
+
+        // Expand p1 to trigger child lazy load
+        const p1 = getItem(tree, 'p1')!;
+        p1.shadowRoot!.querySelector<HTMLElement>('.expand-btn')?.click();
+        await tree.updateComplete;
+        await new Promise(r => setTimeout(r, 10));
+        await tree.updateComplete;
+
+        const loadingEl = tree.shadowRoot!.querySelector('.lazy-indicator');
+        expect(loadingEl).not.toBeNull();
+
+        resolveChild([{ id: 'c1', label: 'Child 1' }]);
+        await settle(tree, 50);
+    });
+
+    it('handles dataSource rejection gracefully (no crash)', async () => {
+        const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => { });
+        const dataSource = {
+            getTreeItems: async (_id: string | null): Promise<RichTreeItem[]> => {
+                throw new Error('Network error');
+            },
+            getChildrenCount: () => 0,
+        };
+
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${[] as RichTreeItem[]} .dataSource=${dataSource}></ui-rich-tree-view>
+        `);
+        await settle(tree, 100);
+
+        expect(consoleSpy).toHaveBeenCalled();
+        consoleSpy.mockRestore();
+    });
+
+    it('resets lazy state when dataSource prop is replaced', async () => {
+        const ds1Items: RichTreeItem[] = [{ id: 'd1', label: 'From DS1' }];
+        const ds1 = {
+            getTreeItems: async (_id: string | null) => ds1Items,
+            getChildrenCount: () => 0,
+        };
+
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${[] as RichTreeItem[]} .dataSource=${ds1}></ui-rich-tree-view>
+        `);
+        await settle(tree, 100);
+
+        expect(getItem(tree, 'd1')).not.toBeNull();
+
+        // Replace dataSource — should reset and reload
+        const ds2Items: RichTreeItem[] = [{ id: 'd2', label: 'From DS2' }];
+        const ds2 = {
+            getTreeItems: async (_id: string | null) => ds2Items,
+            getChildrenCount: () => 0,
+        };
+        tree.dataSource = ds2;
+        await settle(tree, 100);
+
+        expect(getItem(tree, 'd2')).not.toBeNull();
+    });
+
+    it('triggers lazy load when expanding item with dataSource', async () => {
+        const childItems: RichTreeItem[] = [{ id: 'child-lazy', label: 'Lazy Child' }];
+        const parentItems: RichTreeItem[] = [{ id: 'lazy-parent', label: 'Lazy Parent' }];
+        const dataSource = {
+            getTreeItems: async (id: string | null) => {
+                if (id === null) return parentItems;
+                return childItems;
+            },
+            getChildrenCount: () => 1,
+        };
+
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${parentItems} .dataSource=${dataSource}></ui-rich-tree-view>
+        `);
+        await settle(tree, 50);
+
+        // Click expand to trigger lazy child load
+        const parent = getItem(tree, 'lazy-parent')!;
+        parent.shadowRoot!.querySelector<HTMLElement>('.expand-btn')?.click();
+        await settle(tree, 100);
+
+        expect(getItem(tree, 'child-lazy')).not.toBeNull();
+    });
+
+    it('does not duplicate fetch when already loading', async () => {
+        let callCount = 0;
+        let resolveRoot!: (items: RichTreeItem[]) => void;
+        const rootPromise = new Promise<RichTreeItem[]>(res => { resolveRoot = res; });
+
+        const dataSource = {
+            getTreeItems: (_id: string | null) => { callCount++; return rootPromise; },
+            getChildrenCount: () => 0,
+        };
+
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${[] as RichTreeItem[]} .dataSource=${dataSource}></ui-rich-tree-view>
+        `);
+        await tree.updateComplete;
+        await new Promise(r => setTimeout(r, 10));
+
+        // Force another update — should not re-trigger the same fetch
+        tree.requestUpdate();
+        await tree.updateComplete;
+        await new Promise(r => setTimeout(r, 10));
+
+        expect(callCount).toBe(1); // fetched only once
+
+        resolveRoot([]);
+        await settle(tree, 20);
+    });
+});
+
+// ─── _isAncestorOf deep recursion ─────────────────────────────────────────────
+
+describe('UiRichTreeView — ancestor detection (nested)', () => {
+    it('prevents drop of a grandparent onto its grandchild', async () => {
+        const items: RichTreeItem[] = [
+            {
+                id: 'gp', label: 'Grandparent', children: [
+                    {
+                        id: 'p', label: 'Parent', children: [
+                            { id: 'gc', label: 'Grandchild' },
+                        ],
+                    },
+                ],
+            },
+        ];
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${items} items-reordering></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        // Expand both levels
+        getItem(tree, 'gp')!.shadowRoot!.querySelector<HTMLElement>('.expand-btn')!.click();
+        await settle(tree);
+        getItem(tree, 'p')!.shadowRoot!.querySelector<HTMLElement>('.expand-btn')!.click();
+        await settle(tree);
+
+        const before = JSON.stringify(tree.getItemTree());
+        simulateDrop(tree, 'gp', 'gc', 'inside');
+        await settle(tree);
+
+        // Structure should be unchanged
+        expect(JSON.stringify(tree.getItemTree())).toBe(before);
+    });
+});
+
+// ─── Drag: handle-only mode (no handle path) ──────────────────────────────────
+
+describe('UiRichTreeView — itemsReorderingHandle drag restrictions', () => {
+    it('dragstart not from handle is cancelled (tree unchanged)', async () => {
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${FLAT_ITEMS} items-reordering items-reordering-handle></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        const before = tree.getItemTree().map(i => i['id']);
+
+        // Dispatch dragstart directly on the item host (not the handle)
+        // composedPath() is empty in jsdom so isHandle detection will fail → preventDefault
+        const fromEl = getItem(tree, 'a')!;
+        const dt = new DataTransfer();
+        fromEl.dispatchEvent(new DragEvent('dragstart', { bubbles: true, composed: true, dataTransfer: dt }));
+
+        const toEl = getItem(tree, 'c')!;
+        toEl.getBoundingClientRect = () => ({
+            top: 100, bottom: 136, height: 36, left: 0, right: 200, width: 200,
+            x: 0, y: 100, toJSON: () => ({}),
+        } as DOMRect);
+        toEl.dispatchEvent(new DragEvent('dragover', { bubbles: true, composed: true, dataTransfer: dt, clientY: 130 }));
+        toEl.dispatchEvent(new DragEvent('drop', { bubbles: true, composed: true, dataTransfer: dt, clientY: 130 }));
+        fromEl.dispatchEvent(new DragEvent('dragend', { bubbles: true, composed: true }));
+        await settle(tree);
+
+        expect(tree.getItemTree().map(i => i['id'])).toEqual(before);
+    });
+});
+
+// ─── Drag: dragover edge cases ─────────────────────────────────────────────────
+
+describe('UiRichTreeView — dragover edge cases', () => {
+    it('dragover with no draggedItemId is a no-op', async () => {
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${FLAT_ITEMS} items-reordering></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        const toEl = getItem(tree, 'b')!;
+        toEl.getBoundingClientRect = () => ({
+            top: 100, bottom: 136, height: 36, left: 0, right: 200, width: 200,
+            x: 0, y: 100, toJSON: () => ({}),
+        } as DOMRect);
+
+        // Dispatch dragover WITHOUT a prior dragstart → _draggedItemId is null
+        expect(() => {
+            toEl.dispatchEvent(new DragEvent('dragover', {
+                bubbles: true, composed: true, dataTransfer: new DataTransfer(), clientY: 115,
+            }));
+        }).not.toThrow();
+    });
+
+    it('dragover when itemsReordering=false is a no-op', async () => {
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${FLAT_ITEMS}></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        const toEl = getItem(tree, 'b')!;
+        expect(() => {
+            toEl.dispatchEvent(new DragEvent('dragover', {
+                bubbles: true, composed: true, dataTransfer: new DataTransfer(), clientY: 115,
+            }));
+        }).not.toThrow();
+    });
+});
+
+// ─── Drag: drop edge cases ────────────────────────────────────────────────────
+
+describe('UiRichTreeView — drop edge cases', () => {
+    it('drop with itemsReordering=false is a no-op', async () => {
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${FLAT_ITEMS}></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        const toEl = getItem(tree, 'b')!;
+        expect(() => {
+            toEl.dispatchEvent(new DragEvent('drop', { bubbles: true, composed: true }));
+        }).not.toThrow();
+
+        // items unchanged
+        expect(tree.getItemTree()).toBe(FLAT_ITEMS);
+    });
+
+    it('dragend with no matching tree item is handled gracefully', async () => {
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${FLAT_ITEMS} items-reordering></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        // Dispatch dragend on the tree root (not a ui-tree-item)
+        expect(() => {
+            tree.shadowRoot!.querySelector('.tree-root')!.dispatchEvent(
+                new DragEvent('dragend', { bubbles: true, composed: true })
+            );
+        }).not.toThrow();
+    });
+});
+
+// ─── _cloneItemsTree with custom children key ────────────────────────────────
+
+describe('UiRichTreeView — _cloneItemsTree with custom children key', () => {
+    it('preserves custom children key after reorder', async () => {
+        const items: RichTreeItem[] = [
+            {
+                id: 'p', label: 'Parent', nodes: [
+                    { id: 'c1', label: 'Child 1', nodes: [] },
+                    { id: 'c2', label: 'Child 2', nodes: [] },
+                ],
+            },
+            { id: 'x', label: 'Extra' },
+        ];
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view
+                .items=${items}
+                .getItemChildren=${(item: RichTreeItem) => item['nodes'] as RichTreeItem[] | undefined}
+                items-reordering
+            ></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        // Expand parent so children are visible
+        getItem(tree, 'p')!.shadowRoot!.querySelector<HTMLElement>('.expand-btn')!.click();
+        await settle(tree);
+
+        simulateDrop(tree, 'c2', 'c1', 'before');
+        await settle(tree);
+
+        const parent = tree.getItemTree()[0];
+        const childIds = (parent['nodes'] as RichTreeItem[]).map(c => c['id']);
+        expect(childIds).toEqual(['c2', 'c1']);
+    });
+});
+
+// ─── focusin on non-tree-item ─────────────────────────────────────────────────
+
+describe('UiRichTreeView — focusin on non-tree-item', () => {
+    it('focusin from a div (non-tree-item) in shadow DOM does not throw', async () => {
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${FLAT_ITEMS}></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        const root = tree.shadowRoot!.querySelector('.tree-root')!;
+        expect(() => {
+            root.dispatchEvent(new FocusEvent('focusin', { bubbles: true }));
+        }).not.toThrow();
+    });
+});
+
+// ─── getItemOrderedChildrenIds with empty/leaf items ──────────────────────────
+
+describe('UiRichTreeView — getItemOrderedChildrenIds edge cases', () => {
+    it('returns empty array for item with no children array', async () => {
+        const items: RichTreeItem[] = [
+            { id: 'leaf', label: 'Leaf' }, // no children property at all
+        ];
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${items}></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        expect(tree.getItemOrderedChildrenIds('leaf')).toEqual([]);
+    });
+});
+// ─── Controlled mode collapse ─────────────────────────────────────────────────
+
+describe('UiRichTreeView — controlled mode collapse', () => {
+    it('controlled collapse fires onExpandedItemsChange without the collapsed item', async () => {
+        const handler = vi.fn();
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view
+                .items=${BASIC_ITEMS}
+                .expandedItems=${['1']}
+                .onExpandedItemsChange=${handler}
+            ></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        // Item '1' is currently expanded; clicking expand button collapses it
+        const item1 = getItem(tree, '1')!;
+        expect(item1.expanded).toBe(true);
+
+        item1.shadowRoot!.querySelector<HTMLElement>('.expand-btn')!.click();
+        await tree.updateComplete;
+
+        expect(handler).toHaveBeenCalledOnce();
+        expect(handler).toHaveBeenCalledWith([]); // '1' removed
+    });
+});
+
+// ─── _isAncestorOf: recursive path (ancestor NOT at root level) ───────────────
+
+describe('UiRichTreeView — _isAncestorOf recursive path', () => {
+    it('prevents dragging a nested parent into its own child (non-root ancestor)', async () => {
+        // root → parent → child  (parent is NOT at root level)
+        const items: RichTreeItem[] = [
+            {
+                id: 'root', label: 'Root', children: [
+                    {
+                        id: 'parent', label: 'Parent', children: [
+                            { id: 'child', label: 'Child' },
+                        ],
+                    },
+                ],
+            },
+        ];
+        const tree = await fixture<UiRichTreeView>(html`
+            <ui-rich-tree-view .items=${items} items-reordering></ui-rich-tree-view>
+        `);
+        await settle(tree);
+
+        // Expand both to make all items visible
+        getItem(tree, 'root')!.shadowRoot!.querySelector<HTMLElement>('.expand-btn')!.click();
+        await settle(tree);
+        getItem(tree, 'parent')!.shadowRoot!.querySelector<HTMLElement>('.expand-btn')!.click();
+        await settle(tree);
+
+        const before = JSON.stringify(tree.getItemTree());
+        // Try to drag 'parent' into 'child' — _isAncestorOf must recurse through 'root' children
+        simulateDrop(tree, 'parent', 'child', 'inside');
+        await settle(tree);
+
+        // Structure unchanged — parent cannot be dropped into child
+        expect(JSON.stringify(tree.getItemTree())).toBe(before);
+    });
+});

@@ -268,7 +268,9 @@ export class UiRichTreeView extends LitElement {
             const children = await this.dataSource.getTreeItems(id);
             this._lazyChildren.set(id, children);
         } catch (err) {
-            // Don't cache failures — allow retry on next expand
+            // For root loads (id=null) cache an empty result to break the retry loop in updated().
+            // For child loads, don't cache — the next expand click triggers a fresh attempt.
+            if (id === null) this._lazyChildren.set(null, []);
             console.error('[ui-rich-tree-view] Failed to load children for', id, err);
         } finally {
             this._loading.delete(id);
