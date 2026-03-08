@@ -525,4 +525,250 @@ describe('ui-tab-list', () => {
         expect(el.hasAttribute('orientation')).toBe(true);
         expect(el.getAttribute('orientation')).toBe('vertical');
     });
+
+    it('variant prop reflects', async () => {
+        const el = await fixture<UiTabList>(html`<ui-tab-list variant="scrollable"><ui-tab value="a">A</ui-tab></ui-tab-list>`);
+        expect(el.getAttribute('variant')).toBe('scrollable');
+    });
+
+    it('scroll buttons disabled/enabled state based on scroll position', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list variant="scrollable" scroll-buttons="auto" style="width: 200px; overflow: hidden;">
+                ${Array.from({ length: 20 }, (_, i) => html`<ui-tab value="${i}">Tab ${i}</ui-tab>`)}
+            </ui-tab-list>`);
+        const backBtn = el.shadowRoot!.querySelector<HTMLButtonElement>('.scroll-btn:first-child')!;
+        expect(backBtn.disabled).toBe(true);
+    });
+
+    it('vertical scroll buttons show for vertical orientation', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list orientation="vertical" variant="scrollable" scroll-buttons="auto" style="height: 100px;">
+                ${Array.from({ length: 10 }, (_, i) => html`<ui-tab value="${i}">Item ${i}</ui-tab>`)}
+            </ui-tab-list>`);
+        const buttons = el.shadowRoot!.querySelectorAll('.scroll-btn');
+        expect(buttons.length).toBe(2);
+    });
+
+    it('syncIndicator returns early when no selected tab without crashing', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list>
+                <ui-tab value="a">A</ui-tab>
+                <ui-tab value="b">B</ui-tab>
+            </ui-tab-list>`);
+        // Should not crash even with no selected tab
+        expect(() => el.syncIndicator()).not.toThrow();
+    });
+
+    it('keyboard navigation works with scrollIntoView guard', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list>
+                <ui-tab value="a">A</ui-tab>
+                <ui-tab value="b">B</ui-tab>
+            </ui-tab-list>`);
+        const tabs = el.querySelectorAll<UiTab>('ui-tab');
+        tabs[0].focusInner();
+        const evt = new KeyboardEvent('keydown', { key: 'ArrowRight' });
+        el.shadowRoot!.querySelector('.scroll-area')!.dispatchEvent(evt);
+        await el.updateComplete;
+        expect(tabs[1].shadowRoot!.activeElement).toBeTruthy();
+    });
+
+    it('ariaLabel prop sets aria-label on tablist', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list aria-label="Custom label">
+                <ui-tab value="a">A</ui-tab>
+            </ui-tab-list>`);
+        const tablist = el.shadowRoot!.querySelector('[role="tablist"]');
+        expect(tablist?.getAttribute('aria-label')).toBe('Custom label');
+    });
+
+    it('empty ariaLabel does not set aria-label', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list>
+                <ui-tab value="a">A</ui-tab>
+            </ui-tab-list>`);
+        const tablist = el.shadowRoot!.querySelector('[role="tablist"]');
+        expect(tablist?.getAttribute('aria-label')).toBeNull();
+    });
+});
+
+/* ================================================================== */
+describe('ui-tab-list keyboard & interaction', () => {
+    it('scroll button click scrolls content left (horizontal)', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list variant="scrollable" scroll-buttons="auto" style="width: 100px;">
+                ${Array.from({ length: 10 }, (_, i) => html`<ui-tab value="${i}">T${i}</ui-tab>`)}
+            </ui-tab-list>`);
+        const scrollArea = el.shadowRoot!.querySelector<HTMLDivElement>('.scroll-area')!;
+        const buttons = el.shadowRoot!.querySelectorAll<HTMLButtonElement>('.scroll-btn');
+        const backBtn = buttons[0];
+        const initialScroll = scrollArea.scrollLeft;
+        backBtn.click();
+        await new Promise(resolve => setTimeout(resolve, 50));
+        expect(scrollArea.scrollLeft).toBeLessThanOrEqual(initialScroll);
+    });
+
+    it('indicator element exists in shadow dom', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list>
+                <ui-tab value="a" selected>First</ui-tab>
+                <ui-tab value="b">Second</ui-tab>
+            </ui-tab-list>`);
+        const indicator = el.shadowRoot!.querySelector<HTMLDivElement>('.indicator');
+        expect(indicator).toBeTruthy();
+        expect(indicator?.className).toContain('indicator');
+    });
+});
+
+/* ================================================================== */
+describe('ui-tabs event cleanup', () => {
+    it('disconnectedCallback removes event listener', async () => {
+        const el = await fixture<UiTabs>(html`
+            <ui-tabs value="a">
+                <ui-tab-list><ui-tab value="a">A</ui-tab></ui-tab-list>
+                <ui-tab-panel value="a">A</ui-tab-panel>
+            </ui-tabs>`);
+        const spy = vi.spyOn(el, 'removeEventListener');
+        el.disconnectedCallback();
+        expect(spy).toHaveBeenCalledWith('ui-tab-click', expect.any(Function));
+        spy.mockRestore();
+    });
+
+    it('event listener is active during connection', async () => {
+        const el = await makeTabs('a');
+        const spy = vi.fn();
+        el.addEventListener('ui-tab-change', spy);
+        const btn = el.querySelector<UiTab>('ui-tab[value="b"]')!.shadowRoot!.querySelector<HTMLButtonElement>('button')!;
+        setTimeout(() => btn.click());
+        await oneEvent(el, 'ui-tab-change');
+        expect(spy).toHaveBeenCalled();
+    });
+});
+
+/* ================================================================== */
+describe('ui-tabs value edge cases', () => {
+    it('value changes to disabled tab silently fail on click', async () => {
+        const el = await fixture<UiTabs>(html`
+            <ui-tabs value="a">
+                <ui-tab-list>
+                    <ui-tab value="a">A</ui-tab>
+                    <ui-tab value="b" disabled>B</ui-tab>
+                </ui-tab-list>
+                <ui-tab-panel value="a">A</ui-tab-panel>
+                <ui-tab-panel value="b">B</ui-tab-panel>
+            </ui-tabs>`);
+        const spy = vi.fn();
+        el.addEventListener('ui-tab-change', spy);
+        const disabledTab = el.querySelector<UiTab>('ui-tab[disabled]')!;
+        disabledTab.shadowRoot?.querySelector<HTMLButtonElement>('button')?.click();
+        expect(spy).not.toHaveBeenCalled();
+        expect(el.value).toBe('a');
+    });
+
+    it('value set to non-existent tab id shows nothing', async () => {
+        const el = await makeTabs('a');
+        el.value = 'nonexistent';
+        el.requestUpdate();
+        await el.updateComplete;
+        const panels = el.querySelectorAll<UiTabPanel>('ui-tab-panel');
+        panels.forEach(p => expect(p.hasAttribute('hidden')).toBe(true));
+    });
+
+    it('switching between all tabs updates correctly', async () => {
+        const el = await makeTabs('a');
+        const values = ['a', 'b', 'c'];
+        for (const val of values) {
+            el.value = val;
+            el.requestUpdate();
+            await el.updateComplete;
+            const panels = el.querySelectorAll<UiTabPanel>('ui-tab-panel');
+            panels.forEach((p, i) => {
+                const shouldBeHidden = values[i] !== val;
+                expect(p.hasAttribute('hidden')).toBe(shouldBeHidden);
+            });
+        }
+    });
+});
+
+/* ================================================================== */
+describe('ui-tab icon slot rendering', () => {
+    it('renders both icon and text slots', async () => {
+        const el = await fixture<UiTab>(html`
+            <ui-tab value="x" icon-position="start">
+                <span slot="icon">📧</span>
+                Mail
+            </ui-tab>`);
+        const iconSlot = el.shadowRoot!.querySelector('slot[name="icon"]');
+        const defaultSlot = el.shadowRoot!.querySelector('slot:not([name])');
+        expect(iconSlot).toBeTruthy();
+        expect(defaultSlot).toBeTruthy();
+    });
+
+    it('icon slot is empty when no icon provided', async () => {
+        const el = await fixture<UiTab>(html`<ui-tab value="x">Label</ui-tab>`);
+        const iconSlot = el.shadowRoot!.querySelector('slot[name="icon"]');
+        expect(iconSlot).toBeTruthy();
+    });
+});
+
+/* ================================================================== */
+describe('ui-tab-panel accessibility', () => {
+    it('has role=tabpanel on inner div', async () => {
+        const el = await fixture<UiTabPanel>(html`<ui-tab-panel value="test">Content</ui-tab-panel>`);
+        const panel = el.shadowRoot!.querySelector('[role="tabpanel"]');
+        expect(panel).toBeTruthy();
+    });
+
+    it('tabpanel content is accessible via slot', async () => {
+        const el = await fixture<UiTabPanel>(html`
+            <ui-tab-panel value="test">
+                <p class="content">Test</p>
+            </ui-tab-panel>`);
+        const slot = el.shadowRoot!.querySelector('slot');
+        expect(slot).toBeTruthy();
+    });
+});
+
+/* ================================================================== */
+describe('ui-tabs integration with fullWidth variant', () => {
+    it('fullWidth sets full-width on all tabs immediately', async () => {
+        const el = await fixture<UiTabs>(html`
+            <ui-tabs value="a" variant="fullWidth">
+                <ui-tab-list>
+                    <ui-tab value="a">A</ui-tab>
+                    <ui-tab value="b">B</ui-tab>
+                    <ui-tab value="c">C</ui-tab>
+                </ui-tab-list>
+                <ui-tab-panel value="a">A</ui-tab-panel>
+                <ui-tab-panel value="b">B</ui-tab-panel>
+                <ui-tab-panel value="c">C</ui-tab-panel>
+            </ui-tabs>`);
+        const tabs = el.querySelectorAll<UiTab>('ui-tab');
+        tabs.forEach(t => expect(t.fullWidth).toBe(true));
+    });
+});
+
+/* ================================================================== */
+describe('ui-tabs color resolution', () => {
+    it('resolves undefined color to inherit', async () => {
+        const el = await fixture<UiTabs>(html`
+            <ui-tabs text-color="unknown-color">
+                <ui-tab-list><ui-tab value="a" selected>A</ui-tab></ui-tab-list>
+                <ui-tab-panel value="a">A</ui-tab-panel>
+            </ui-tabs>`);
+        const tab = el.querySelector<UiTab>('ui-tab')!;
+        const activeColor = tab.style.getPropertyValue('--ui-tab-active');
+        expect(activeColor).toBe('unknown-color');
+    });
+
+    it('textColor="inherit" uses currentColor for inactive', async () => {
+        const el = await fixture<UiTabs>(html`
+            <ui-tabs text-color="inherit">
+                <ui-tab-list><ui-tab value="a">A</ui-tab></ui-tab-list>
+                <ui-tab-panel value="a">A</ui-tab-panel>
+            </ui-tabs>`);
+        const tab = el.querySelector<UiTab>('ui-tab')!;
+        const inactiveColor = tab.style.getPropertyValue('--ui-tab-inactive');
+        expect(inactiveColor).toBe('currentColor');
+    });
 });

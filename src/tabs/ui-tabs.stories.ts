@@ -600,7 +600,7 @@ export const DynamicTabs: Story = {
                 <button style="padding:8px 16px;border:1px solid #e5e7eb;background:#3b82f6;color:white;border-radius:6px;cursor:pointer;"
                         @click=${(e: MouseEvent) => {
                             const container = (e.target as HTMLElement).closest('[data-dynamic-demo]');
-                            const tabs = container?.querySelector('ui-tabs') as unknown as { querySelectorAll: (sel: string) => HTMLElement[] };
+                            const tabs = container?.querySelector('ui-tabs') as Element | null;
                             if (!tabs) return;
                             const count = Math.max(...Array.from(tabs.querySelectorAll('ui-tab')).map((t) => parseInt(t.getAttribute('value')?.replace('tab-', '') ?? '0') || 0)) + 1;
                             const newTab = document.createElement('ui-tab');
@@ -637,5 +637,115 @@ export const DynamicTabs: Story = {
                     </ui-tabs>
                 </div>
             `)}
+        </div>`,
+};
+
+/* ================================================================== */
+/* Responsive Tabs                                                     */
+/* ================================================================== */
+export const Responsive: Story = {
+    render: () => html`
+        <div style="font-family:Inter,sans-serif;">
+            <p style="margin:0 0 16px;font-size:.875rem;color:#6b7280;font-style:italic;">
+                Resize your browser window to see tabs adapt to different viewports. On small screens, tabs become scrollable; on large screens, they use fullWidth variant.
+            </p>
+            ${wrap(html`
+                <ui-tabs value="home" style="--tab-variant: scrollable;" id="responsive-tabs">
+                    <ui-tab-list aria-label="Responsive navigation tabs">
+                        <ui-tab value="home">Home</ui-tab>
+                        <ui-tab value="products">Products</ui-tab>
+                        <ui-tab value="services">Services</ui-tab>
+                        <ui-tab value="about">About</ui-tab>
+                        <ui-tab value="contact">Contact</ui-tab>
+                    </ui-tab-list>
+                    <ui-tab-panel value="home">${panelContent('Home', 'Welcome to our responsive tabs demo. These tabs automatically adjust their layout based on available space.')}</ui-tab-panel>
+                    <ui-tab-panel value="products">${panelContent('Products', 'Explore our wide range of high-quality products designed for all your needs.')}</ui-tab-panel>
+                    <ui-tab-panel value="services">${panelContent('Services', 'We offer professional services tailored to help your business succeed.')}</ui-tab-panel>
+                    <ui-tab-panel value="about">${panelContent('About', 'Learn more about our company, mission, and the team behind our success.')}</ui-tab-panel>
+                    <ui-tab-panel value="contact">${panelContent('Contact', 'Get in touch with us. We\'re here to help and answer any questions you have.')}</ui-tab-panel>
+                </ui-tabs>
+            `)}
+        </div>`,
+};
+
+/* ================================================================== */
+/* Multi-Color Theme Tabs                                              */
+/* ================================================================== */
+export const MultiColorTheme: Story = {
+    render: () => html`
+        <div style="display:flex;flex-direction:column;gap:32px;font-family:Inter,sans-serif;">
+            <div>
+                <p style="margin:0 0 6px;font-size:.75rem;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">
+                    Interactive Dashboard Tabs
+                </p>
+                ${wrap(html`
+                    <ui-tabs value="overview" text-color="primary" indicator-color="primary">
+                        <ui-tab-list aria-label="Dashboard navigation">
+                            <ui-tab value="overview">Overview</ui-tab>
+                            <ui-tab value="analytics">Analytics</ui-tab>
+                            <ui-tab value="reports">Reports</ui-tab>
+                            <ui-tab value="settings" disabled>Settings</ui-tab>
+                        </ui-tab-list>
+                        <ui-tab-panel value="overview">${panelContent('Dashboard Overview', 'Real-time metrics and system status at a glance.')}</ui-tab-panel>
+                        <ui-tab-panel value="analytics">${panelContent('Analytics', 'Detailed analytics and performance metrics for your application.')}</ui-tab-panel>
+                        <ui-tab-panel value="reports">${panelContent('Reports', 'Generate, view, and export comprehensive reports.')}</ui-tab-panel>
+                        <ui-tab-panel value="settings">${panelContent('Settings', 'Configure your dashboard preferences and notifications.')}</ui-tab-panel>
+                    </ui-tabs>
+                `)}
+            </div>
+
+            <div>
+                <p style="margin:0 0 6px;font-size:.75rem;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">
+                    Accent Color Tabs
+                </p>
+                ${wrap(html`
+                    <ui-tabs value="library" text-color="secondary" indicator-color="secondary">
+                        <ui-tab-list aria-label="Content library tabs">
+                            <ui-tab value="library">Library</ui-tab>
+                            <ui-tab value="recent">Recent</ui-tab>
+                            <ui-tab value="saved">Saved</ui-tab>
+                        </ui-tab-list>
+                        <ui-tab-panel value="library">${panelContent('Content Library', 'Browse your complete content collection.')}</ui-tab-panel>
+                        <ui-tab-panel value="recent">${panelContent('Recently Viewed', 'Items you\'ve recently accessed.')}</ui-tab-panel>
+                        <ui-tab-panel value="saved">${panelContent('Saved Items', 'Your bookmarks and favorite content.')}</ui-tab-panel>
+                    </ui-tabs>
+                `)}
+            </div>
+        </div>`,
+};
+
+/* ================================================================== */
+/* Error States                                                        */
+/* ================================================================== */
+export const ErrorStates: Story = {
+    render: () => html`
+        <div style="font-family:Inter,sans-serif;display:flex;flex-direction:column;gap:24px;">
+            <div>
+                <p style="margin:0 0 6px;font-size:.75rem;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">
+                    Form Tabs with Validation States
+                </p>
+                ${wrap(html`
+                    <ui-tabs value="personal" text-color="primary">
+                        <ui-tab-list aria-label="Form steps">
+                            <ui-tab value="personal">Personal Info</ui-tab>
+                            <ui-tab value="address">Address</ui-tab>
+                            <ui-tab value="payment">Payment</ui-tab>
+                            <ui-tab value="review">Review</ui-tab>
+                        </ui-tab-list>
+                        <ui-tab-panel value="personal">
+                            ${panelContent('Personal Information', 'Enter your name, email, and phone number. All fields are required.')}
+                        </ui-tab-panel>
+                        <ui-tab-panel value="address">
+                            ${panelContent('Shipping Address', 'Provide your complete shipping address for delivery.')}
+                        </ui-tab-panel>
+                        <ui-tab-panel value="payment">
+                            ${panelContent('Payment Details', 'Enter your payment information securely.')}
+                        </ui-tab-panel>
+                        <ui-tab-panel value="review">
+                            ${panelContent('Review Order', 'Double-check your information before submitting.')}
+                        </ui-tab-panel>
+                    </ui-tabs>
+                `)}
+            </div>
         </div>`,
 };

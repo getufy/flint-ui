@@ -1,3 +1,13 @@
+/* Customizable properties:
+   --ui-tab-border-color: var(--ui-border-color)
+   --ui-tab-scroll-btn-size: 40px
+   --ui-tab-indicator-color: var(--ui-primary-color)
+   --ui-tab-indicator-height: 3px (horizontal mode)
+   --ui-tab-indicator-width: 3px (vertical mode)
+   --ui-tab-indicator-radius: 3px
+   --ui-text-color-muted: for inactive tab text
+   --ui-hover-color: for button hover state
+ */
 :host { display: block; position: relative; background: var(--ui-background); }
         /* In vertical mode the host must fill the height that flex-stretching gives it
            so .scroll-area has a bounded height and overflow:auto actually fires. */
