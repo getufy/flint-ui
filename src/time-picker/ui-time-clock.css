@@ -2,32 +2,40 @@
     .clock-wrap { display:flex; flex-direction:column; align-items:center; gap:12px; }
     .clock-header {
       display:flex; gap:4px; font-size:2rem; font-weight:700;
-      font-family:var(--ui-font-family); color:var(--ui-text-color);
+      font-family:var(--ui-font-family); color:var(--ui-text-color, #111827);
     }
     .clock-seg { padding:4px 10px; border-radius:8px; cursor:pointer; transition:background .12s, color .12s; }
-    .clock-seg.active { background:var(--ui-primary-color); color:var(--ui-text-color-on-primary); border-radius:8px; }
-    .clock-seg:hover:not(.active) { background:var(--ui-hover-color); }
-    .clock-sep { color:var(--ui-text-color-muted); }
-    svg { touch-action:none; cursor:pointer; }
-    .face { fill:var(--ui-surface-variant); }
-    .face-inner { fill:rgba(0,0,0,.02); stroke:rgba(0,0,0,.06); stroke-width:1; stroke-dasharray:4 4; }
-    .track { fill:none; stroke:var(--ui-border-color); stroke-width:2; }
-    .hand { stroke:var(--ui-primary-color); stroke-width:2; stroke-linecap:round; }
-    .hand-center { fill:var(--ui-primary-color); }
-    .hand-tip { fill:var(--ui-primary-color); }
-    .num { font-size:13px; font-family:var(--ui-font-family); fill:var(--ui-text-color); dominant-baseline:central; text-anchor:middle; cursor:pointer; }
-    .num.inner-label { font-size:11px; fill:var(--ui-text-color-muted); }
-    .num.selected { fill:var(--ui-text-color-on-primary); }
-    .num-bg { fill:transparent; cursor:pointer; }
-    .num-bg.selected { fill:var(--ui-primary-color); }
-    .tick { stroke:var(--ui-text-color-muted); stroke-width:1; }
-    .tick.major { stroke-width:2; }
-    .inner-ring-track { fill:none; stroke:var(--ui-primary-color); stroke-width:1.5; stroke-opacity:0.2; }
-    .inner-tick { stroke:var(--ui-primary-color); stroke-width:1.5; stroke-opacity:0.35; stroke-linecap:round; }
-    .am-pm { display:flex; gap:8px; }
-    .am-pm-btn {
-      padding:4px 16px; border:1.5px solid var(--ui-border-color);
-      border-radius:20px; cursor:pointer; font-size:.875rem; font-family:inherit;
-      background:transparent; color:var(--ui-text-color); transition:all .12s;
+    .clock-seg.active { background:var(--ui-primary-color, #3b82f6); color:var(--ui-text-color-on-primary, #fff); border-radius:8px; }
+    .clock-seg:hover:not(.active) { background:var(--ui-hover-color, rgba(0,0,0,.06)); }
+    .clock-sep { color:var(--ui-text-color-muted, #6b7280); }
+    .clock-mer { font-size:1rem; font-weight:600; align-self:flex-end; margin-bottom:6px; color:var(--ui-text-color-muted, #6b7280); }
+    svg { touch-action:none; cursor:pointer; outline:none; }
+    svg.dragging { cursor:grabbing; }
+    svg:focus-visible { outline:2px solid var(--ui-primary-color, #3b82f6); outline-offset:4px; border-radius:50%; }
+    .face { fill:var(--ui-time-clock-face-bg, var(--ui-surface-variant, #f1f5f9)); }
+    .face-inner { fill:var(--ui-time-clock-inner-bg, rgba(0,0,0,.04)); stroke:var(--ui-time-clock-inner-border, var(--ui-border-color, #e5e7eb)); stroke-width:1; }
+    .hand { stroke:var(--ui-time-clock-hand-color, var(--ui-primary-color, #3b82f6)); stroke-width:2; stroke-linecap:round; }
+    .hand-center { fill:var(--ui-time-clock-hand-color, var(--ui-primary-color, #3b82f6)); }
+    .hand-tip { fill:var(--ui-time-clock-hand-color, var(--ui-primary-color, #3b82f6)); }
+    .num {
+      font-size:var(--ui-time-clock-num-size, 14px); font-weight:500;
+      font-family:var(--ui-font-family, system-ui, sans-serif); fill:var(--ui-text-color, #111827);
+      text-anchor:middle; pointer-events:none;
     }
-    .am-pm-btn.sel { background:var(--ui-primary-color); color:var(--ui-text-color-on-primary); border-color:var(--ui-primary-color); }
+    .num.inner-label { font-size:var(--ui-time-clock-inner-num-size, 12px); fill:var(--ui-text-color-muted, #6b7280); }
+    .num.selected { fill:var(--ui-text-color-on-primary, #fff); font-weight:700; }
+    .num-bg { fill:transparent; cursor:pointer; }
+    .num-bg.selected { fill:var(--ui-primary-color, #3b82f6); }
+    .am-pm { display:inline-flex; border-radius:var(--ui-time-clock-ampm-radius, 20px); overflow:hidden; border:1.5px solid var(--ui-border-color, #e5e7eb); }
+    .am-pm-btn {
+      padding:5px 18px; border:none;
+      cursor:pointer; font-size:.875rem; font-weight:500; font-family:inherit;
+      background:transparent; color:var(--ui-text-color, #111827); transition:all .12s;
+      position:relative;
+    }
+    .am-pm-btn:first-child { border-right:1.5px solid var(--ui-border-color, #e5e7eb); }
+    .am-pm-btn.sel {
+      background:var(--ui-primary-color, #3b82f6); color:var(--ui-text-color-on-primary, #fff);
+      border-color:var(--ui-primary-color, #3b82f6);
+    }
+    .am-pm-btn:hover:not(.sel) { background:var(--ui-hover-color, rgba(0,0,0,.06)); }

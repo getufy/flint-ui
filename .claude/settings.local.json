@@ -23,7 +23,14 @@
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/scroll-area/ui-scroll-area.test.ts)",
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --project components --coverage src/scroll-area/ui-scroll-area.test.ts)",
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/split-panel/ui-split-panel.test.ts)",
-      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --project components --coverage src/split-panel/ui-split-panel.test.ts)"
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --project components --coverage src/split-panel/ui-split-panel.test.ts)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/time-picker/ui-time-picker.test.ts)",
+      "Bash(npx vitest run --project components --coverage)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/time-picker/ui-time-picker.test.ts --coverage)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --project components --coverage src/time-picker/ui-time-picker.test.ts)",
+      "WebFetch(domain:localhost)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx eslint src/time-picker/ui-time-picker.ts)",
+      "Bash(NODE_OPTIONS='--no-warnings' vitest run src/time-picker/ui-time-picker.test.ts --reporter=verbose)"
     ]
   }
 }
