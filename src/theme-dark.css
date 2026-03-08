@@ -130,6 +130,12 @@
     --ui-resizable-handle-hover-bg: var(--ui-primary-color);
     --ui-resizable-grip-bg:         var(--ui-surface-1);
     --ui-resizable-grip-dot-color:  var(--ui-text-color-muted);
+
+    /* ─── Time Picker ──────────────────────────────────────────── */
+    --ui-time-clock-face-bg:      var(--ui-surface-variant);
+    --ui-time-clock-inner-bg:     rgba(255, 255, 255, 0.06);
+    --ui-time-clock-inner-border: var(--ui-color-zinc-600);
+    --ui-time-clock-hand-color:   var(--ui-primary-color);
 }
 
 
@@ -237,5 +243,11 @@
 
         --ui-card-shadow:       var(--ui-shadow-lg);
         --ui-card-shadow-hover: var(--ui-shadow-xl);
+
+        /* ─── Time Picker ──────────────────────────────────────────── */
+        --ui-time-clock-face-bg:      var(--ui-surface-variant);
+        --ui-time-clock-inner-bg:     rgba(255, 255, 255, 0.06);
+        --ui-time-clock-inner-border: var(--ui-color-zinc-600);
+        --ui-time-clock-hand-color:   var(--ui-primary-color);
     }
 }

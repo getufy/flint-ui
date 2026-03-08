@@ -7,7 +7,7 @@
       background:var(--ui-input-bg);
       border:1.5px solid var(--ui-border-color);
       border-radius:var(--ui-border-radius-md);
-      padding:0 10px; height:44px; min-width:160px;
+      padding:0 10px; height:var(--ui-time-field-height,44px); min-width:var(--ui-time-field-min-width,160px);
       cursor:text; box-sizing:border-box; transition:border-color .15s,box-shadow .15s;
     }
     .container.focused { border-color:var(--ui-primary-color); box-shadow:0 0 0 3px var(--ui-primary-focus-ring); }

@@ -266,6 +266,19 @@
     --ui-format-number-positive-color: inherit;
     --ui-format-number-negative-color: inherit;
 
+    /* ─── Time Picker ──────────────────────────────────────────── */
+    --ui-time-field-height:         44px;
+    --ui-time-field-min-width:      160px;
+    --ui-time-clock-face-bg:        var(--ui-surface-variant);
+    --ui-time-clock-inner-bg:       rgba(0, 0, 0, 0.04);
+    --ui-time-clock-inner-border:   var(--ui-border-color);
+    --ui-time-clock-hand-color:     var(--ui-primary-color);
+    --ui-time-clock-num-size:       14px;
+    --ui-time-clock-inner-num-size: 12px;
+    --ui-time-clock-ampm-radius:    20px;
+    --ui-digital-clock-height:      300px;
+    --ui-msdc-height:               240px;
+
     /* ─── Shadows ──────────────────────────────────────────────── */
     --ui-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --ui-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -411,4 +424,10 @@ body {
     /* ─── Split Panel ─────────────────────────────────────────── */
     --ui-split-panel-divider-color:       var(--ui-border-color);
     --ui-split-panel-divider-hover-color: var(--ui-primary-color);
+
+    /* ─── Time Picker ──────────────────────────────────────────── */
+    --ui-time-clock-face-bg:      var(--ui-surface-variant);
+    --ui-time-clock-inner-bg:     rgba(255, 255, 255, 0.06);
+    --ui-time-clock-inner-border: var(--ui-color-zinc-600);
+    --ui-time-clock-hand-color:   var(--ui-primary-color);
 }

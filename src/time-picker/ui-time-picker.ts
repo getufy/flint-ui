@@ -1,4 +1,4 @@
-import { LitElement, unsafeCSS, html, css, nothing } from 'lit';
+import { LitElement, unsafeCSS, html, svg, css, nothing } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { repeat } from 'lit/directives/repeat.js';
@@ -257,6 +257,29 @@ export class UiDigitalClock extends LitElement {
 
     private _label(v: string) { return displayTime(v, this.ampm); }
 
+    private _select(v: string) {
+        this.dispatchEvent(new CustomEvent('change', { detail: { value: v }, bubbles: true, composed: true }));
+    }
+
+    private _onItemKeyDown(e: KeyboardEvent, v: string) {
+        const items = this._items();
+        const idx = items.indexOf(v);
+        let target = -1;
+        if (e.key === 'ArrowDown') { e.preventDefault(); target = Math.min(idx + 1, items.length - 1); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); target = Math.max(idx - 1, 0); }
+        else if (e.key === 'Home') { e.preventDefault(); target = 0; }
+        else if (e.key === 'End') { e.preventDefault(); target = items.length - 1; }
+        else return;
+        if (target >= 0 && target !== idx) {
+            this._select(items[target]);
+            this.updateComplete.then(() => {
+                const btn = this.shadowRoot?.querySelectorAll<HTMLButtonElement>('.item')[target];
+                btn?.focus();
+                if (btn && typeof btn.scrollIntoView === 'function') btn.scrollIntoView({ block: 'nearest' });
+            });
+        }
+    }
+
     updated() {
         const sel = this.shadowRoot?.querySelector('.selected') as HTMLElement;
         if (sel && typeof sel.scrollIntoView === 'function') {
@@ -271,9 +294,8 @@ export class UiDigitalClock extends LitElement {
         ${repeat(items, v => v, v => html`
           <button class=${classMap({ item: true, selected: v === this.value })}
             role="option" aria-selected=${v === this.value}
-            @click=${() => {
-                this.dispatchEvent(new CustomEvent('change', { detail: { value: v }, bubbles: true, composed: true }));
-            }}
+            @click=${() => this._select(v)}
+            @keydown=${(e: KeyboardEvent) => this._onItemKeyDown(e, v)}
           >${this._label(v)}</button>
         `)}
       </div>
@@ -297,13 +319,36 @@ export class UiMultiSectionDigitalClock extends LitElement {
         this.dispatchEvent(new CustomEvent('change', { detail: { value: v }, bubbles: true, composed: true }));
     }
 
+    private _colKeyDown(e: KeyboardEvent, seg: 'h' | 'm' | 's' | 'mer') {
+        if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
+        e.preventDefault();
+        const t = this._t();
+        const delta = e.key === 'ArrowDown' ? 1 : -1;
+        if (seg === 'h') {
+            if (this.ampm) {
+                const { hour, ampm } = to12(t.h);
+                const newH = ((hour - 1 + delta + 12) % 12) + 1; // cycles 1-12
+                this._set(to24(newH, ampm), t.m, t.s);
+            } else {
+                this._set(((t.h + delta) + 24) % 24, t.m, t.s);
+            }
+        } else if (seg === 'm') {
+            this._set(t.h, ((t.m + delta) + 60) % 60, t.s);
+        } else if (seg === 's') {
+            this._set(t.h, t.m, ((t.s + delta) + 60) % 60);
+        } else if (seg === 'mer') {
+            const { hour, ampm } = to12(t.h);
+            this._set(to24(hour, ampm === 'AM' ? 'PM' : 'AM'), t.m, t.s);
+        }
+    }
+
     private _col(seg: 'h' | 'm' | 's' | 'mer') {
         const t = this._t();
         const cur12 = to12(t.h);
 
         if (seg === 'mer') {
             return html`
-        <div class="col">
+        <div class="col" @keydown=${(e: KeyboardEvent) => this._colKeyDown(e, 'mer')}>
           <div class="col-header">AM/PM</div>
           ${(['AM', 'PM'] as const).map((v: 'AM' | 'PM') => html`
             <button class=${classMap({ item: true, sel: cur12.ampm === v })}
@@ -322,7 +367,7 @@ export class UiMultiSectionDigitalClock extends LitElement {
             const items = this.ampm ? hours12 : hours24;
             const curH = this.ampm ? cur12.hour : t.h;
             return html`
-        <div class="col">
+        <div class="col" @keydown=${(e: KeyboardEvent) => this._colKeyDown(e, 'h')}>
           <div class="col-header">Hr</div>
           ${items.map(v => html`
             <button class=${classMap({ item: true, sel: curH === v })}
@@ -333,7 +378,7 @@ export class UiMultiSectionDigitalClock extends LitElement {
       `;
         }
         if (seg === 'm') return html`
-      <div class="col">
+      <div class="col" @keydown=${(e: KeyboardEvent) => this._colKeyDown(e, 'm')}>
         <div class="col-header">Min</div>
         ${mins.map(v => html`
           <button class=${classMap({ item: true, sel: t.m === v })}
@@ -343,7 +388,7 @@ export class UiMultiSectionDigitalClock extends LitElement {
       </div>
     `;
         return html`
-      <div class="col">
+      <div class="col" @keydown=${(e: KeyboardEvent) => this._colKeyDown(e, 's')}>
         <div class="col-header">Sec</div>
         ${mins.map(v => html`
           <button class=${classMap({ item: true, sel: t.s === v })}
@@ -385,7 +430,16 @@ export class UiTimeClock extends LitElement {
     @property({ type: Boolean }) seconds = false;
     @property({ type: String }) view: TimeView = 'hours';
 
+    @state() private _isDragging = false;
+    @state() private _liveValue = '';
+
     private get _t() { return parseTime(this.value) ?? { h: 0, m: 0, s: 0 }; }
+
+    // During drag use the live (unconfirmed) value for rendering so the hand follows the pointer immediately.
+    private get _renderT() {
+        const val = (this._isDragging && this._liveValue) ? this._liveValue : this.value;
+        return parseTime(val) ?? { h: 0, m: 0, s: 0 };
+    }
 
     private _emit(h: number, m: number, s: number) {
         const v = buildTime(h, m, s);
@@ -397,44 +451,103 @@ export class UiTimeClock extends LitElement {
         this.dispatchEvent(new CustomEvent('view-change', { detail: { view: v }, bubbles: true, composed: true }));
     }
 
-    private _handleClick(e: MouseEvent) {
+    private _getSvgCoords(e: PointerEvent): { mx: number; my: number } {
         const svgEl = this.shadowRoot!.querySelector('svg')!;
         const rect = svgEl.getBoundingClientRect();
-        const scaleX = 280 / rect.width, scaleY = 280 / rect.height;
-        const mx = (e.clientX - rect.left) * scaleX;
-        const my = (e.clientY - rect.top) * scaleY;
+        return {
+            mx: (e.clientX - rect.left) * (280 / rect.width),
+            my: (e.clientY - rect.top) * (280 / rect.height),
+        };
+    }
+
+    private _calcValue(mx: number, my: number): string {
         const CX = 140, CY = 140;
         const angle = clockAngle(mx, my, CX, CY);
-        const t = this._t;
-
+        const t = this._t; // use committed value for non-edited segments
         if (this.view === 'hours') {
             const dist = Math.sqrt((mx - CX) ** 2 + (my - CY) ** 2);
-            // FIX 1 (click): Inner ring threshold at r=82; outer ring is 1-12, inner is 0 and 13-23
             const isInner = !this.ampm && dist < 82;
             let h = Math.round(angle / 30) % 12;
             if (isInner) {
-                // Inner ring: positions 0-11 map to hours 13-23 and 0
-                // Position 0 on inner ring = 00 (midnight), positions 1-11 = 13-23
                 h = h === 0 ? 0 : h + 12;
             } else {
                 h = h || 12;
                 if (this.ampm) h = to24(h, to12(t.h).ampm);
             }
-            this._emit(h, t.m, t.s);
-            this._switchView('minutes');
+            return buildTime(h, t.m, t.s);
         } else if (this.view === 'minutes') {
             const m = Math.round(angle / 6) % 60;
-            this._emit(t.h, m, t.s);
-            if (this.seconds) this._switchView('seconds');
+            return buildTime(t.h, m, t.s);
         } else {
             const s = Math.round(angle / 6) % 60;
-            this._emit(t.h, t.m, s);
+            return buildTime(t.h, t.m, s);
         }
     }
 
+    private _onClockKeyDown(e: KeyboardEvent) {
+        const t = this._t;
+        let delta = 0;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { e.preventDefault(); delta = 1; }
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { e.preventDefault(); delta = -1; }
+        else if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            if (this.view === 'hours') this._switchView('minutes');
+            else if (this.view === 'minutes' && this.seconds) this._switchView('seconds');
+            return;
+        } else return;
+
+        if (this.view === 'hours') {
+            if (this.ampm) {
+                const { hour, ampm } = to12(t.h);
+                const newH = ((hour - 1 + delta + 12) % 12) + 1;
+                this._emit(to24(newH, ampm), t.m, t.s);
+            } else {
+                this._emit(((t.h + delta) + 24) % 24, t.m, t.s);
+            }
+        } else if (this.view === 'minutes') {
+            this._emit(t.h, ((t.m + delta) + 60) % 60, t.s);
+        } else {
+            this._emit(t.h, t.m, ((t.s + delta) + 60) % 60);
+        }
+    }
+
+    private _onPointerDown = (e: PointerEvent) => {
+        e.preventDefault();
+        (e.currentTarget as SVGSVGElement).setPointerCapture(e.pointerId);
+        this._isDragging = true;
+        const { mx, my } = this._getSvgCoords(e);
+        this._liveValue = this._calcValue(mx, my);
+        const p = parseTime(this._liveValue);
+        if (p) this._emit(p.h, p.m, p.s);
+    };
+
+    private _onPointerMove = (e: PointerEvent) => {
+        if (!this._isDragging) return;
+        const { mx, my } = this._getSvgCoords(e);
+        this._liveValue = this._calcValue(mx, my);
+        const p = parseTime(this._liveValue);
+        if (p) this._emit(p.h, p.m, p.s);
+    };
+
+    private _onPointerUp = (e: PointerEvent) => {
+        if (!this._isDragging) return;
+        this._isDragging = false;
+        const { mx, my } = this._getSvgCoords(e);
+        const v = this._calcValue(mx, my);
+        this._liveValue = '';
+        const p = parseTime(v);
+        if (p) this._emit(p.h, p.m, p.s);
+        // Advance view after pointer is released
+        if (this.view === 'hours') {
+            this._switchView('minutes');
+        } else if (this.view === 'minutes' && this.seconds) {
+            this._switchView('seconds');
+        }
+    };
+
     private _renderFace() {
         const CX = 140, CY = 140;
-        const t = this._t;
+        const t = this._renderT;
 
         // FIX 2: Correct hand angle for 24h dual-ring mode.
         // Inner ring hours (0 and 13-23) must map to the same angular positions as 0 and 1-11.
@@ -480,30 +593,33 @@ export class UiTimeClock extends LitElement {
             }
         }
 
-        const total = 12; // Always 12 positions on the clock face
+        // Hours use 12 positions (1-12); minutes/seconds use 60 positions (0,5,10,...,55)
+        const total = this.view === 'hours' ? 12 : 60;
 
         return html`
-      <svg width="280" height="280" viewBox="0 0 280 280" @click=${this._handleClick}>
-        <circle cx=${CX} cy=${CY} r="125" class="face"/>
-        ${this.view === 'hours' && !this.ampm ? html`<circle cx=${CX} cy=${CY} r="82" class="face-inner"></circle>` : nothing}
-        <!-- hand -->
-        <line x1=${CX} y1=${CY} x2=${hx} y2=${hy} class="hand"/>
-        <circle cx=${hx} cy=${hy} r="18" class="hand-tip"/>
-        <circle cx=${CX} cy=${CY} r="4" class="hand-center"/>
-        <!-- numbers -->
+      <svg width="280" height="280" viewBox="0 0 280 280" tabindex="0"
+        class=${this._isDragging ? 'dragging' : ''}
+        @pointerdown=${this._onPointerDown}
+        @pointermove=${this._onPointerMove}
+        @pointerup=${this._onPointerUp}
+        @keydown=${this._onClockKeyDown}>
+        <circle cx=${CX} cy=${CY} r="125" class="face"></circle>
+        ${this.view === 'hours' && !this.ampm ? svg`<circle cx=${CX} cy=${CY} r="82" class="face-inner"></circle>` : nothing}
+        <line x1=${CX} y1=${CY} x2=${hx} y2=${hy} class="hand"></line>
+        <circle cx=${hx} cy=${hy} r="17" class="hand-tip"></circle>
+        <circle cx=${CX} cy=${CY} r="4" class="hand-center"></circle>
         ${nums.map(n => {
-            // FIX 3: Correct position for inner ring numbers.
-            // Inner ring vals are 0 and 13-23. They must occupy clock positions 0 and 1-11.
-            // Use val % 12 uniformly — this maps 0→0, 13→1, 14→2, ..., 23→11.
+            // Hours: inner ring vals (0,13-23) → clock position via %12; outer ring vals (1-12) used directly.
+            // Minutes/seconds: vals (0,5,10,...,55) used directly with total=60.
             const clockPos = n.inner ? n.val % 12 : n.val;
             const pos = clockXY(clockPos, total, n.r, CX, CY);
 
             const isSel = this.view === 'hours'
                 ? (this.ampm ? to12(t.h).hour === n.val : t.h === n.val)
                 : (this.view === 'minutes' ? t.m === n.val : t.s === n.val);
-            return html`
+            return svg`
           <circle cx=${pos.x} cy=${pos.y} r="17" class=${classMap({ 'num-bg': true, selected: isSel })}></circle>
-          <text x=${pos.x} y=${pos.y} class=${classMap({ num: true, selected: isSel, 'inner-label': !!n.inner })}>${n.label}</text>
+          <text x=${pos.x} y=${pos.y} dominant-baseline="central" class=${classMap({ num: true, selected: isSel, 'inner-label': !!n.inner })}>${n.label}</text>
         `;
         })}
       </svg>
@@ -521,7 +637,7 @@ export class UiTimeClock extends LitElement {
           <span class="clock-sep">:</span>
           <span class=${classMap({ 'clock-seg': true, active: this.view === 'minutes' })} @click=${() => this._switchView('minutes')}>${padZ(t.m)}</span>
           ${this.seconds ? html`<span class="clock-sep">:</span><span class=${classMap({ 'clock-seg': true, active: this.view === 'seconds' })} @click=${() => this._switchView('seconds')}>${padZ(t.s)}</span>` : nothing}
-          ${this.ampm ? html`<span class="clock-sep" style="font-size:1rem;align-self:flex-end;margin-bottom:6px;">${mer}</span>` : nothing}
+          ${this.ampm ? html`<span class="clock-mer">${mer}</span>` : nothing}
         </div>
         ${this.ampm ? html`
           <div class="am-pm">
@@ -589,14 +705,14 @@ export class UiDesktopTimePicker extends LitElement {
     render() {
         return html`
       <div class="popover-anchor">
-        <ui-time-field .value=${this.value} .label=${this.label} ?ampm=${this.ampm} ?seconds=${this.seconds}
+        <ui-time-field .value=${this.value} .label=${this.label} .ampm=${this.ampm} ?seconds=${this.seconds}
           ?disabled=${this.disabled} ?readonly=${this.readonly} ?error=${this.error} helper-text=${this.helperText}
           @change=${(e: CustomEvent) => this._commit(e.detail.value)}
           @focus=${() => { if (!this.disabled && !this.readonly) this._open = true; }}
         ></ui-time-field>
         <div class="click-away ${this._open ? 'open' : ''}" @click=${() => this._open = false}></div>
         <div class="popover ${this._open ? 'open' : ''}" role="dialog" aria-label="Time picker">
-          <ui-multi-section-digital-clock .value=${this.value || buildTime(12, 0)} ?ampm=${this.ampm} ?seconds=${this.seconds}
+          <ui-multi-section-digital-clock .value=${this.value || buildTime(12, 0)} .ampm=${this.ampm} ?seconds=${this.seconds}
             @change=${(e: CustomEvent) => { this.value = e.detail.value; }}
           ></ui-multi-section-digital-clock>
           <div class="actions">
@@ -628,7 +744,7 @@ export class UiMobileTimePicker extends LitElement {
 
     render() {
         return html`
-      <ui-time-field .value=${this.value} .label=${this.label} ?ampm=${this.ampm} ?seconds=${this.seconds}
+      <ui-time-field .value=${this.value} .label=${this.label} .ampm=${this.ampm} ?seconds=${this.seconds}
         ?disabled=${this.disabled} ?error=${this.error} helper-text=${this.helperText} readonly
         @focus=${() => { if (!this.disabled) { this._pending = this.value; this._view = 'hours'; this._open = true; } }}
         @change=${(e: CustomEvent) => { this.value = e.detail.value; this.dispatchEvent(new CustomEvent('change', { detail: e.detail, bubbles: true, composed: true })); }}
@@ -636,7 +752,7 @@ export class UiMobileTimePicker extends LitElement {
       <ui-dialog .open=${this._open} disable-backdrop-close @close=${() => this._open = false} style="--ui-dialog-width:320px">
         <ui-dialog-title>Select Time</ui-dialog-title>
         <ui-dialog-content style="padding:12px;display:flex;justify-content:center;">
-          <ui-time-clock .value=${this._pending || this.value || buildTime(12, 0)} ?ampm=${this.ampm} ?seconds=${this.seconds} .view=${this._view}
+          <ui-time-clock .value=${this._pending || this.value || buildTime(12, 0)} .ampm=${this.ampm} ?seconds=${this.seconds} .view=${this._view}
             @change=${(e: CustomEvent) => { this._pending = e.detail.value; }}
             @view-change=${(e: CustomEvent) => { this._view = e.detail.view; }}
           ></ui-time-clock>
@@ -662,7 +778,7 @@ export class UiStaticTimePicker extends LitElement {
     render() {
         return html`
       <div class="surface">
-        <ui-multi-section-digital-clock .value=${this.value || buildTime(12, 0)} ?ampm=${this.ampm} ?seconds=${this.seconds}
+        <ui-multi-section-digital-clock .value=${this.value || buildTime(12, 0)} .ampm=${this.ampm} ?seconds=${this.seconds}
           @change=${(e: CustomEvent) => {
                 this.value = e.detail.value;
                 this.dispatchEvent(new CustomEvent('change', { detail: e.detail, bubbles: true, composed: true }));
@@ -700,9 +816,9 @@ export class UiTimePicker extends LitElement {
 
     render() {
         const v = this._v;
-        if (v === 'static') return html`<ui-static-time-picker .value=${this.value} ?ampm=${this.ampm} ?seconds=${this.seconds} @change=${this._onChange}></ui-static-time-picker>`;
-        if (v === 'mobile') return html`<ui-mobile-time-picker .value=${this.value} .label=${this.label} ?ampm=${this.ampm} ?seconds=${this.seconds} ?disabled=${this.disabled} ?error=${this.error} helper-text=${this.helperText} @change=${this._onChange}></ui-mobile-time-picker>`;
-        return html`<ui-desktop-time-picker .value=${this.value} .label=${this.label} ?ampm=${this.ampm} ?seconds=${this.seconds} ?disabled=${this.disabled} ?error=${this.error} helper-text=${this.helperText} @change=${this._onChange}></ui-desktop-time-picker>`;
+        if (v === 'static') return html`<ui-static-time-picker .value=${this.value} .ampm=${this.ampm} ?seconds=${this.seconds} @change=${this._onChange}></ui-static-time-picker>`;
+        if (v === 'mobile') return html`<ui-mobile-time-picker .value=${this.value} .label=${this.label} .ampm=${this.ampm} ?seconds=${this.seconds} ?disabled=${this.disabled} ?error=${this.error} helper-text=${this.helperText} @change=${this._onChange}></ui-mobile-time-picker>`;
+        return html`<ui-desktop-time-picker .value=${this.value} .label=${this.label} .ampm=${this.ampm} ?seconds=${this.seconds} ?disabled=${this.disabled} ?error=${this.error} helper-text=${this.helperText} @change=${this._onChange}></ui-desktop-time-picker>`;
     }
 }
 

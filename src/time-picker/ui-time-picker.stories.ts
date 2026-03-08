@@ -21,7 +21,11 @@ type Story = StoryObj;
 
 const pad = (content: TemplateResult) => html`<div style="padding:48px 48px 300px;font-family:Inter,sans-serif;">${content}</div>`;
 
-// ── Adaptive (default) ────────────────────────────────────────────────────────
+/* eslint-disable @typescript-eslint/no-explicit-any */
+const clockHandler = (e: CustomEvent) => { (e.target as any).value = e.detail.value; };
+/* eslint-enable @typescript-eslint/no-explicit-any */
+
+// ── Playground (default) ─────────────────────────────────────────────────────
 export const Default: Story = {
   render: (args) => pad(html`
     <ui-time-picker
@@ -32,7 +36,7 @@ export const Default: Story = {
   `),
 };
 
-// ── Desktop ───────────────────────────────────────────────────────────────────
+// ── Desktop ──────────────────────────────────────────────────────────────────
 export const Desktop: Story = {
   name: 'Desktop Picker',
   render: () => html`
@@ -47,7 +51,7 @@ export const Desktop: Story = {
   `,
 };
 
-// ── Mobile ────────────────────────────────────────────────────────────────────
+// ── Mobile ───────────────────────────────────────────────────────────────────
 export const Mobile: Story = {
   name: 'Mobile Picker (Modal)',
   render: () => html`
@@ -63,7 +67,7 @@ export const Mobile: Story = {
   `,
 };
 
-// ── Static ────────────────────────────────────────────────────────────────────
+// ── Static ───────────────────────────────────────────────────────────────────
 export const Static: Story = {
   name: 'Static (Always Visible)',
   render: () => html`
@@ -76,7 +80,7 @@ export const Static: Story = {
   `,
 };
 
-// ── Digital Clock ─────────────────────────────────────────────────────────────
+// ── Digital Clock ────────────────────────────────────────────────────────────
 export const DigitalClock: Story = {
   name: 'Digital Clock (List)',
   render: () => html`
@@ -103,7 +107,7 @@ export const DigitalClock: Story = {
   `,
 };
 
-// ── Multi-Section Digital Clock ───────────────────────────────────────────────
+// ── Multi-Section Digital Clock ──────────────────────────────────────────────
 export const MultiSectionDigitalClock: Story = {
   name: 'Multi-Section Digital Clock',
   render: () => html`
@@ -124,37 +128,51 @@ export const MultiSectionDigitalClock: Story = {
   `,
 };
 
-// ── Analog Clock ──────────────────────────────────────────────────────────────
+// ── Analog Clock ─────────────────────────────────────────────────────────────
 export const TimeClock: Story = {
   name: 'Time Clock (Analog)',
   render: () => html`
     <div style="padding:32px;font-family:Inter,sans-serif;display:flex;gap:48px;flex-wrap:wrap;align-items:flex-start;">
       <div>
         <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">12-hour (AM/PM)</p>
-        <ui-time-clock value="10:30:00" view="hours"
-          @change=${(e: CustomEvent) => {
-      const el = e.target as EventTarget & { value: string }; el.value = e.detail.value;
-      console.log('time-clock change →', e.detail.value);
-    }}
-        ></ui-time-clock>
+        <ui-time-clock value="10:30:00" view="hours" @change=${clockHandler}></ui-time-clock>
       </div>
       <div>
-        <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">24-hour</p>
-        <ui-time-clock value="14:00:00" .ampm=${false} view="hours"
-          @change=${(e: CustomEvent) => { const el = e.target as EventTarget & { value: string }; el.value = e.detail.value; }}
-        ></ui-time-clock>
+        <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">24-hour (dual ring)</p>
+        <ui-time-clock value="14:00:00" .ampm=${false} view="hours" @change=${clockHandler}></ui-time-clock>
+      </div>
+      <div>
+        <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">24-hour midnight</p>
+        <ui-time-clock value="00:00:00" .ampm=${false} view="hours" @change=${clockHandler}></ui-time-clock>
       </div>
     </div>
   `,
 };
 
-// ── Time Field ────────────────────────────────────────────────────────────────
+// ── Time Clock Minutes View ──────────────────────────────────────────────────
+export const TimeClockMinutes: Story = {
+  name: 'Time Clock (Minutes View)',
+  render: () => html`
+    <div style="padding:32px;font-family:Inter,sans-serif;display:flex;gap:48px;flex-wrap:wrap;align-items:flex-start;">
+      <div>
+        <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">Minutes view</p>
+        <ui-time-clock value="10:15:00" view="minutes" @change=${clockHandler}></ui-time-clock>
+      </div>
+      <div>
+        <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">Seconds view</p>
+        <ui-time-clock value="10:30:45" view="seconds" seconds @change=${clockHandler}></ui-time-clock>
+      </div>
+    </div>
+  `,
+};
+
+// ── Time Field ───────────────────────────────────────────────────────────────
 export const TimeField: Story = {
   name: 'Time Field (Keyboard)',
   render: () => html`
     <div style="padding:48px;font-family:Inter,sans-serif;">
       <p style="font-size:.85rem;color:#6b7280;margin:0 0 20px;">
-        Keyboard-only input. Type digits, use ↑↓ to increment, Tab to advance segments.
+        Keyboard-only input. Type digits, use arrow keys to increment, Tab to advance segments.
         Type <kbd style="background:#f1f5f9;border:1px solid #cbd5e1;border-radius:4px;padding:1px 6px;font-size:.8rem;">A</kbd>/<kbd style="background:#f1f5f9;border:1px solid #cbd5e1;border-radius:4px;padding:1px 6px;font-size:.8rem;">P</kbd> to toggle AM/PM.
       </p>
       <div style="display:flex;gap:24px;flex-wrap:wrap;">
@@ -166,7 +184,70 @@ export const TimeField: Story = {
   `,
 };
 
-// ── All Variants ──────────────────────────────────────────────────────────────
+// ── Disabled & Error States ──────────────────────────────────────────────────
+export const DisabledAndError: Story = {
+  name: 'Disabled & Error States',
+  render: () => html`
+    <div style="padding:48px;font-family:Inter,sans-serif;display:flex;gap:32px;flex-wrap:wrap;padding-bottom:320px;">
+      <div>
+        <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">Disabled</p>
+        <ui-time-picker variant="desktop" label="Disabled" value="09:00:00" disabled></ui-time-picker>
+      </div>
+      <div>
+        <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">Error</p>
+        <ui-time-picker variant="desktop" label="Invalid Time" value="25:00:00" error helper-text="Please enter a valid time"></ui-time-picker>
+      </div>
+      <div>
+        <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">Disabled Field</p>
+        <ui-time-field label="Disabled" value="14:00:00" disabled></ui-time-field>
+      </div>
+      <div>
+        <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">Error Field</p>
+        <ui-time-field label="Error" value="14:00:00" error helper-text="Time conflict"></ui-time-field>
+      </div>
+    </div>
+  `,
+};
+
+// ── With Seconds ─────────────────────────────────────────────────────────────
+export const WithSeconds: Story = {
+  name: 'With Seconds',
+  render: () => html`
+    <div style="padding:48px;font-family:Inter,sans-serif;display:flex;gap:40px;flex-wrap:wrap;padding-bottom:320px;">
+      <div>
+        <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">Desktop + Seconds</p>
+        <ui-time-picker variant="desktop" label="Precise Time" value="14:30:45" seconds></ui-time-picker>
+      </div>
+      <div>
+        <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">Static + Seconds (24h)</p>
+        <ui-time-picker variant="static" value="08:15:30" seconds .ampm=${false}></ui-time-picker>
+      </div>
+    </div>
+  `,
+};
+
+// ── 24-Hour Format ───────────────────────────────────────────────────────────
+export const TwentyFourHour: Story = {
+  name: '24-Hour Format',
+  render: () => html`
+    <div style="padding:48px;font-family:Inter,sans-serif;display:flex;gap:40px;flex-wrap:wrap;padding-bottom:320px;">
+      <div>
+        <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">Desktop 24h</p>
+        <ui-desktop-time-picker label="Time (24h)" value="14:30:00" .ampm=${false}></ui-desktop-time-picker>
+      </div>
+      <div>
+        <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">Clock 24h (inner: 13-23, 00)</p>
+        <ui-time-clock value="00:00:00" .ampm=${false} view="hours" @change=${clockHandler}></ui-time-clock>
+      </div>
+      <div>
+        <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">Clock 24h (outer: 1-12)</p>
+        <ui-time-clock value="03:00:00" .ampm=${false} view="hours" @change=${clockHandler}></ui-time-clock>
+      </div>
+    </div>
+  `,
+};
+
+// ── All Variants ─────────────────────────────────────────────────────────────
 export const AllVariants: Story = {
   name: 'All Variants',
   render: () => html`
@@ -185,6 +266,148 @@ export const AllVariants: Story = {
           <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">Static</p>
           <ui-time-picker variant="static" value="12:00:00"></ui-time-picker>
         </div>
+      </div>
+    </div>
+  `,
+};
+
+// ── All Clock Views ──────────────────────────────────────────────────────────
+export const AllClockViews: Story = {
+  name: 'All Clock Views',
+  render: () => html`
+    <div style="padding:32px;font-family:Inter,sans-serif;">
+      <h3 style="margin:0 0 24px;font-size:1rem;font-weight:700;">Analog Clock Views</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start;">
+        <div>
+          <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">Hours (12h)</p>
+          <ui-time-clock value="10:30:00" view="hours" @change=${clockHandler}></ui-time-clock>
+        </div>
+        <div>
+          <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">Hours (24h)</p>
+          <ui-time-clock value="14:00:00" .ampm=${false} view="hours" @change=${clockHandler}></ui-time-clock>
+        </div>
+        <div>
+          <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">Minutes</p>
+          <ui-time-clock value="10:15:00" view="minutes" @change=${clockHandler}></ui-time-clock>
+        </div>
+        <div>
+          <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">Seconds</p>
+          <ui-time-clock value="10:30:45" view="seconds" seconds @change=${clockHandler}></ui-time-clock>
+        </div>
+      </div>
+    </div>
+  `,
+};
+
+// ── Readonly ──────────────────────────────────────────────────────────────────
+export const Readonly: Story = {
+  name: 'Readonly States',
+  render: () => html`
+    <div style="padding:48px;font-family:Inter,sans-serif;display:flex;gap:32px;flex-wrap:wrap;padding-bottom:320px;">
+      <div>
+        <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">Readonly Field</p>
+        <ui-time-field label="Read Only" value="14:30:00" readonly></ui-time-field>
+      </div>
+      <div>
+        <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">Readonly Desktop Picker</p>
+        <ui-desktop-time-picker label="Read Only" value="09:00:00" readonly></ui-desktop-time-picker>
+      </div>
+      <div>
+        <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">Readonly with Helper</p>
+        <ui-time-field label="Schedule" value="08:15:00" readonly helper-text="This time cannot be changed"></ui-time-field>
+      </div>
+    </div>
+  `,
+};
+
+// ── Controlled ───────────────────────────────────────────────────────────────
+export const Controlled: Story = {
+  name: 'Controlled (External State)',
+  render: () => {
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    const onChangeDesktop = (e: CustomEvent) => {
+      const picker = (e.currentTarget as any).querySelector('ui-desktop-time-picker');
+      if (picker) picker.value = e.detail.value;
+      const display = (e.currentTarget as any).querySelector('.val-display');
+      if (display) display.textContent = e.detail.value;
+    };
+    const onChangeStatic = (e: CustomEvent) => {
+      const display = (e.currentTarget as any).querySelector('.val-static');
+      if (display) display.textContent = e.detail.value;
+    };
+    /* eslint-enable @typescript-eslint/no-explicit-any */
+    return html`
+      <div style="padding:48px;font-family:Inter,sans-serif;display:flex;gap:48px;flex-wrap:wrap;padding-bottom:320px;">
+        <div @change=${onChangeDesktop}>
+          <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">Desktop – Controlled</p>
+          <ui-desktop-time-picker label="Controlled Time" value="09:30:00"></ui-desktop-time-picker>
+          <p style="margin:10px 0 0;font-size:.8rem;color:#374151;">
+            Selected: <code class="val-display" style="background:#f1f5f9;padding:2px 6px;border-radius:4px;">09:30:00</code>
+          </p>
+        </div>
+        <div @change=${onChangeStatic}>
+          <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">Static – Controlled</p>
+          <ui-static-time-picker value="12:00:00"></ui-static-time-picker>
+          <p style="margin:10px 0 0;font-size:.8rem;color:#374151;">
+            Selected: <code class="val-static" style="background:#f1f5f9;padding:2px 6px;border-radius:4px;">12:00:00</code>
+          </p>
+        </div>
+      </div>
+    `;
+  },
+};
+
+// ── Custom Sizing ─────────────────────────────────────────────────────────────
+export const CustomSizing: Story = {
+  name: 'Custom Sizing (CSS Tokens)',
+  render: () => html`
+    <div style="padding:48px;font-family:Inter,sans-serif;display:flex;gap:32px;flex-wrap:wrap;align-items:flex-start;padding-bottom:320px;">
+      <div>
+        <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">Default size (44px)</p>
+        <ui-time-field label="Default" value="09:30:00"></ui-time-field>
+      </div>
+      <div>
+        <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">Compact (36px via CSS token)</p>
+        <ui-time-field label="Compact" value="09:30:00"
+          style="--ui-time-field-height:36px;--ui-time-field-min-width:140px;">
+        </ui-time-field>
+      </div>
+      <div>
+        <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">Large (52px via CSS token)</p>
+        <ui-time-field label="Large" value="14:00:00"
+          style="--ui-time-field-height:52px;--ui-time-field-min-width:190px;">
+        </ui-time-field>
+      </div>
+      <div>
+        <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">Compact Desktop Picker</p>
+        <ui-desktop-time-picker label="Compact Picker" value="10:00:00"
+          style="--ui-time-field-height:36px;">
+        </ui-desktop-time-picker>
+      </div>
+    </div>
+  `,
+};
+
+// ── Dark Mode ─────────────────────────────────────────────────────────────────
+export const DarkMode: Story = {
+  name: 'Dark Mode',
+  render: () => html`
+    <div class="ui-theme-dark" style="padding:48px;background:#0f172a;border-radius:16px;display:flex;gap:40px;flex-wrap:wrap;align-items:flex-start;padding-bottom:320px;">
+      <div>
+        <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#94a3b8;margin:0 0 10px;">Time Field</p>
+        <ui-time-field label="Dark Field" value="14:30:00"></ui-time-field>
+      </div>
+      <div>
+        <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#94a3b8;margin:0 0 10px;">Desktop Picker</p>
+        <ui-desktop-time-picker label="Dark Picker" value="09:00:00"></ui-desktop-time-picker>
+      </div>
+      <div>
+        <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#94a3b8;margin:0 0 10px;">Static Picker</p>
+        <ui-static-time-picker value="10:45:00"></ui-static-time-picker>
+      </div>
+      <div>
+        <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#94a3b8;margin:0 0 10px;">Analog Clock</p>
+        <ui-time-clock value="14:30:00" view="hours" @change=${clockHandler}></ui-time-clock>
       </div>
     </div>
   `,
