@@ -12,11 +12,19 @@ import uiRangeSliderStyles from './ui-range-slider.css?inline';
  * @prop {number}           min            - Minimum bound (default: 0).
  * @prop {number}           max            - Maximum bound (default: 100).
  * @prop {number}           step           - Step increment (default: 1).
+ * @prop {'sm'|'md'|'lg'}  size           - Visual size of track and thumbs (default: 'md').
  * @prop {boolean}          disabled       - Disables both thumbs.
  * @prop {string}           label          - Label text shown above the track.
  * @prop {boolean}          showValue      - Show the current [start, end] values.
  *
- * @fires change - When either thumb moves. detail: { value: [number, number] }
+ * @fires ui-range-slider-change - When either thumb moves. detail: { value: [number, number] }
+ *
+ * @cssprop {length} --ui-range-slider-track-height   - Track thickness (default: 6px).
+ * @cssprop {length} --ui-range-slider-thumb-size     - Thumb diameter (default: 20px).
+ * @cssprop {color}  --ui-range-slider-track-color    - Unfilled track color.
+ * @cssprop {color}  --ui-range-slider-fill-color     - Filled range color.
+ * @cssprop {color}  --ui-range-slider-thumb-color    - Thumb background color.
+ * @cssprop {color}  --ui-range-slider-thumb-border   - Thumb border color.
  */
 @customElement('ui-range-slider')
 export class UiRangeSlider extends LitElement {
@@ -30,6 +38,7 @@ export class UiRangeSlider extends LitElement {
     @property({ type: Number }) min = 0;
     @property({ type: Number }) max = 100;
     @property({ type: Number }) step = 1;
+    @property({ type: String, reflect: true }) size: 'sm' | 'md' | 'lg' = 'md';
     @property({ type: Boolean, reflect: true }) disabled = false;
     @property({ type: String }) label = '';
     @property({ type: Boolean, attribute: 'show-value' }) showValue = false;
@@ -95,7 +104,7 @@ export class UiRangeSlider extends LitElement {
 
     private _emit(next: [number, number]) {
         this.value = [...next] as [number, number];
-        this.dispatchEvent(new CustomEvent('change', {
+        this.dispatchEvent(new CustomEvent('ui-range-slider-change', {
             detail: { value: this.value },
             bubbles: true,
             composed: true,

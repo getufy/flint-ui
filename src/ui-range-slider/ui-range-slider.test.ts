@@ -142,6 +142,90 @@ describe('UiRangeSlider — min / max / step props', () => {
         expect(el.max).toBe(100);
         expect(el.step).toBe(1);
     });
+
+    it('clamps values when max is reduced below current end', async () => {
+        const el = await fixture<UiRangeSlider>(html`
+            <ui-range-slider .value=${[25, 75] as [number, number]}></ui-range-slider>
+        `);
+        await settle(el);
+
+        // Reduce max below end value — should clamp end to new max
+        el.max = 50;
+        await settle(el);
+
+        expect(el.value[1]).toBe(50);
+        expect(el.value[0]).toBe(25);
+    });
+
+    it('clamps values when min is raised above current start', async () => {
+        const el = await fixture<UiRangeSlider>(html`
+            <ui-range-slider .value=${[10, 80] as [number, number]}></ui-range-slider>
+        `);
+        await settle(el);
+
+        // Raise min above start value — should clamp start to new min
+        el.min = 30;
+        await settle(el);
+
+        expect(el.value[0]).toBe(30);
+    });
+
+    it('does not fire change event when values are clamped by bounds change', async () => {
+        const el = await fixture<UiRangeSlider>(html`
+            <ui-range-slider .value=${[25, 90] as [number, number]}></ui-range-slider>
+        `);
+        await settle(el);
+
+        const handler = vi.fn();
+        el.addEventListener('ui-range-slider-change', handler);
+
+        el.max = 60;
+        await settle(el);
+
+        // Bounds correction is silent — no event
+        expect(handler).not.toHaveBeenCalled();
+        expect(el.value[1]).toBe(60);
+    });
+});
+
+// ─── Props: size ──────────────────────────────────────────────────────────────
+
+describe('UiRangeSlider — size prop', () => {
+    it('defaults to size="md"', async () => {
+        const el = await fixture<UiRangeSlider>(html`<ui-range-slider></ui-range-slider>`);
+        await settle(el);
+        expect(el.size).toBe('md');
+        expect(el.getAttribute('size')).toBe('md');
+    });
+
+    it('reflects size="sm" to attribute', async () => {
+        const el = await fixture<UiRangeSlider>(html`
+            <ui-range-slider size="sm"></ui-range-slider>
+        `);
+        await settle(el);
+        expect(el.size).toBe('sm');
+        expect(el.hasAttribute('size')).toBe(true);
+        expect(el.getAttribute('size')).toBe('sm');
+    });
+
+    it('reflects size="lg" to attribute', async () => {
+        const el = await fixture<UiRangeSlider>(html`
+            <ui-range-slider size="lg"></ui-range-slider>
+        `);
+        await settle(el);
+        expect(el.size).toBe('lg');
+        expect(el.getAttribute('size')).toBe('lg');
+    });
+
+    it('updates size attribute when size prop changes', async () => {
+        const el = await fixture<UiRangeSlider>(html`<ui-range-slider></ui-range-slider>`);
+        await settle(el);
+
+        el.size = 'lg';
+        await settle(el);
+
+        expect(el.getAttribute('size')).toBe('lg');
+    });
 });
 
 // ─── Props: label ─────────────────────────────────────────────────────────────
@@ -252,9 +336,9 @@ describe('UiRangeSlider — disabled prop', () => {
     });
 });
 
-// ─── change event ─────────────────────────────────────────────────────────────
+// ─── ui-range-slider-change event ────────────────────────────────────────────
 
-describe('UiRangeSlider — change event', () => {
+describe('UiRangeSlider — ui-range-slider-change event', () => {
     let el: UiRangeSlider;
 
     beforeEach(async () => {
@@ -264,39 +348,39 @@ describe('UiRangeSlider — change event', () => {
         await settle(el);
     });
 
-    it('fires change event when start thumb moves', () => {
+    it('fires ui-range-slider-change event when start thumb moves', () => {
         const handler = vi.fn();
-        el.addEventListener('change', handler);
+        el.addEventListener('ui-range-slider-change', handler);
         moveThumb(thumbStart(el), 30);
         expect(handler).toHaveBeenCalledOnce();
     });
 
-    it('fires change event when end thumb moves', () => {
+    it('fires ui-range-slider-change event when end thumb moves', () => {
         const handler = vi.fn();
-        el.addEventListener('change', handler);
+        el.addEventListener('ui-range-slider-change', handler);
         moveThumb(thumbEnd(el), 80);
         expect(handler).toHaveBeenCalledOnce();
     });
 
-    it('change event detail contains updated [start, end] array', () => {
+    it('event detail contains updated [start, end] array', () => {
         const handler = vi.fn();
-        el.addEventListener('change', handler);
+        el.addEventListener('ui-range-slider-change', handler);
         moveThumb(thumbStart(el), 40);
         expect(handler.mock.calls[0][0].detail.value).toEqual([40, 75]);
     });
 
-    it('change event detail reflects end thumb move', () => {
+    it('event detail reflects end thumb move', () => {
         const handler = vi.fn();
-        el.addEventListener('change', handler);
+        el.addEventListener('ui-range-slider-change', handler);
         moveThumb(thumbEnd(el), 90);
         expect(handler.mock.calls[0][0].detail.value).toEqual([25, 90]);
     });
 
-    it('change event bubbles', () => {
+    it('event bubbles up to parent', () => {
         const handler = vi.fn();
-        document.addEventListener('change', handler);
+        document.addEventListener('ui-range-slider-change', handler);
         moveThumb(thumbStart(el), 30);
-        document.removeEventListener('change', handler);
+        document.removeEventListener('ui-range-slider-change', handler);
         expect(handler).toHaveBeenCalledOnce();
     });
 
@@ -354,7 +438,7 @@ describe('UiRangeSlider — thumb crossing swaps values', () => {
         await settle(el);
 
         const handler = vi.fn();
-        el.addEventListener('change', handler);
+        el.addEventListener('ui-range-slider-change', handler);
 
         moveThumb(thumbEnd(el), 10);
 
@@ -475,6 +559,23 @@ describe('UiRangeSlider — on-top class', () => {
         expect(thumbStart(el).classList.contains('on-top')).toBe(true);
     });
 
+    it('end thumb pointerdown sets activeThumb to end (removes on-top from start)', async () => {
+        const el = await fixture<UiRangeSlider>(html`
+            <ui-range-slider .value=${[25, 75] as [number, number]}></ui-range-slider>
+        `);
+        await settle(el);
+
+        // First make start active
+        thumbStart(el).dispatchEvent(new PointerEvent('pointerdown', { bubbles: true, composed: true }));
+        await settle(el);
+        expect(thumbStart(el).classList.contains('on-top')).toBe(true);
+
+        // Then make end active — start should lose on-top
+        thumbEnd(el).dispatchEvent(new PointerEvent('pointerdown', { bubbles: true, composed: true }));
+        await settle(el);
+        expect(thumbStart(el).classList.contains('on-top')).toBe(false);
+    });
+
     it('start thumb gets on-top class when start value equals max', async () => {
         const el = await fixture<UiRangeSlider>(html`
             <ui-range-slider .value=${[100, 100] as [number, number]}></ui-range-slider>
@@ -549,7 +650,7 @@ describe('UiRangeSlider — edge cases', () => {
         await settle(el);
 
         const handler = vi.fn();
-        el.addEventListener('change', handler);
+        el.addEventListener('ui-range-slider-change', handler);
 
         el.value = [30, 70];
         await settle(el);
@@ -564,5 +665,23 @@ describe('UiRangeSlider — edge cases', () => {
         await settle(el);
         expect(trackFill(el).style.left).toBe('0%');
         expect(trackFill(el).style.width).toBe('100%');
+    });
+
+    it('no change event fired when min/max change but values stay in bounds', async () => {
+        const el = await fixture<UiRangeSlider>(html`
+            <ui-range-slider .value=${[25, 75] as [number, number]}></ui-range-slider>
+        `);
+        await settle(el);
+
+        const handler = vi.fn();
+        el.addEventListener('ui-range-slider-change', handler);
+
+        // Widen the range — values stay in bounds, no clamping needed
+        el.min = 0;
+        el.max = 200;
+        await settle(el);
+
+        expect(handler).not.toHaveBeenCalled();
+        expect(el.value).toEqual([25, 75]);
     });
 });
