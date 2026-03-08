@@ -3,7 +3,7 @@ import { html, type TemplateResult } from 'lit';
 import './ui-time-picker.js';
 
 const meta: Meta = {
-  title: 'Date and Time/Time Picker',
+  title: 'Date & Time/Time Picker',
   component: 'ui-time-picker',
   argTypes: {
     variant: { control: 'select', options: ['desktop', 'mobile', 'static', 'auto'] },

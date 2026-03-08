@@ -4,7 +4,7 @@ import './ui-empty';
 import '../button/ui-button.js';
 
 const meta: Meta = {
-  title: 'Display/Empty',
+  title: 'Utilities/Empty',
   component: 'ui-empty',
   parameters: {
     docs: {

@@ -4,7 +4,7 @@ import './ui-app-bar';
 import '../button/ui-button';
 
 const meta: Meta = {
-    title: 'Surfaces/App Bar',
+    title: 'Navigation/App Bar',
     component: 'ui-app-bar',
     argTypes: {
         title: { control: 'text' },

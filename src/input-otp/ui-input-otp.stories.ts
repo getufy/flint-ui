@@ -6,7 +6,7 @@ import type { UiInputOtp } from './ui-input-otp.js';
 type UiInputOtpEl = UiInputOtp;
 
 const meta: Meta = {
-    title: 'Forms/InputOTP',
+    title: 'Inputs/Input OTP',
     component: 'ui-input-otp',
     parameters: {
         docs: {

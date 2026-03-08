@@ -23,7 +23,7 @@ const LAKE_SHARP = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4
 const LAKE_SOFT  = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80&blur=100';
 
 const meta: Meta = {
-    title: 'Media/ImageComparer',
+    title: 'Data Display/Image Comparer',
     component: 'ui-image-comparer',
     parameters: {
         docs: {

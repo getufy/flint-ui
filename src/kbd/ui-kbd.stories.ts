@@ -3,7 +3,7 @@ import { html } from 'lit';
 import './ui-kbd';
 
 const meta: Meta = {
-  title: 'Display/Kbd',
+  title: 'Utilities/Kbd',
   component: 'ui-kbd',
   parameters: {
     docs: {

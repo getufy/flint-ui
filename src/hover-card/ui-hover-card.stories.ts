@@ -3,7 +3,7 @@ import { html } from 'lit';
 import './ui-hover-card';
 
 const meta: Meta = {
-    title: 'Overlays/HoverCard',
+    title: 'Data Display/Hover Card',
     component: 'ui-hover-card',
     parameters: {
         docs: {

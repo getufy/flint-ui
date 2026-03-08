@@ -3,7 +3,7 @@ import { html } from 'lit';
 import './ui-carousel';
 
 const meta: Meta = {
-  title: 'Navigation/Carousel',
+  title: 'Data Display/Carousel',
   component: 'ui-carousel',
   parameters: {
     docs: {
