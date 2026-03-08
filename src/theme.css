@@ -351,6 +351,16 @@
     --ui-carousel-ease:            cubic-bezier(0.25, 0.1, 0.25, 1);
     --ui-carousel-nav-button-size: 36px;
 
+    /* ─── Drawer ───────────────────────────────────────────────── */
+    --ui-drawer-width:      250px;
+    --ui-drawer-mini-width: 72px;
+    --ui-drawer-height:     auto;
+    --ui-drawer-bg:         var(--ui-surface-1);
+    --ui-drawer-z-index:    1200;
+    --ui-drawer-shadow:     0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12);
+    --ui-drawer-transition: .225s cubic-bezier(0, 0, .2, 1);
+    --ui-drawer-edge-width: 16px;
+
     /* ─── Split Panel ─────────────────────────────────────────── */
     --ui-split-panel-divider-width:      4px;
     --ui-split-panel-divider-hit-area:   12px;
@@ -575,6 +585,9 @@ body {
     /* ─── Split Panel ─────────────────────────────────────────── */
     --ui-split-panel-divider-color:       var(--ui-border-color);
     --ui-split-panel-divider-hover-color: var(--ui-primary-color);
+
+    /* ─── Drawer ──────────────────────────────────────────────── */
+    --ui-drawer-shadow: 0 8px 10px -5px rgba(0,0,0,.4), 0 16px 24px 2px rgba(0,0,0,.3), 0 6px 30px 5px rgba(0,0,0,.25);
 
     /* ─── Time Picker ──────────────────────────────────────────── */
     --ui-time-clock-face-bg:      var(--ui-surface-variant);
