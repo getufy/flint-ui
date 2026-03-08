@@ -8,7 +8,7 @@
     :host(:hover) {
       color: var(--ui-text-color);
     }
-    :host(.active) {
+    :host([active]) {
       color: var(--ui-text-color);
       font-weight: 700;
     }
@@ -19,7 +19,7 @@
       transition: transform 0.2s ease, opacity 0.2s;
       opacity: 0;
     }
-    :host(:hover) .icon, :host(.active) .icon {
+    :host(:hover) .icon, :host([active]) .icon {
       opacity: 1;
     }
     .icon.desc {
