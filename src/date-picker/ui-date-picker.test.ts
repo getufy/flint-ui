@@ -329,3 +329,359 @@ describe('ui-date-picker-calendar view transitions', () => {
         expect(el.shadowRoot!.querySelectorAll('.month-btn').length).toBe(12);
     });
 });
+
+// ═══════════════════════════════════════════════════════════════════════
+// ui-date-picker-calendar — full coverage
+// ═══════════════════════════════════════════════════════════════════════
+describe('ui-date-picker-calendar — full coverage', () => {
+
+    // isoToDate null guard (line 20): y=0 is falsy → returns null
+    it('navigateTo with invalid ISO does not update the view', async () => {
+        const el = await fixture<UiDatePickerCalendar>(html`
+            <ui-date-picker-calendar value="2025-06-01"></ui-date-picker-calendar>
+        `);
+        await el.updateComplete;
+        const before = el.shadowRoot!.querySelector('.header-label')!.textContent?.trim();
+        el.navigateTo('not-a-valid-date');
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('.header-label')!.textContent?.trim()).toBe(before);
+    });
+
+    // connectedCallback if(d) false branch (line 132): value parses to null
+    it('connectedCallback with malformed value string does not crash', async () => {
+        const el = await fixture<UiDatePickerCalendar>(html`
+            <ui-date-picker-calendar value="0-0-0"></ui-date-picker-calendar>
+        `);
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelectorAll('.day-cell').length).toBe(42);
+    });
+
+    // maxDate branch for leading/trailing days (line 67):
+    // March 2025 starts on Saturday → 6 leading days from Feb; max="2025-02-25" makes Feb 26-28 disabled
+    it('cells beyond max date are disabled (covers leading-day maxDate branch)', async () => {
+        const el = await fixture<UiDatePickerCalendar>(html`
+            <ui-date-picker-calendar value="2025-03-01" max="2025-02-25"></ui-date-picker-calendar>
+        `);
+        await el.updateComplete;
+        const disabledCells = el.shadowRoot!.querySelectorAll('.day-cell.disabled');
+        expect(disabledCells.length).toBeGreaterThan(0);
+    });
+
+    // _prevMonth when month === 0 (line 143): January → December
+    it('previous month from January wraps to December and decrements year', async () => {
+        const el = await fixture<UiDatePickerCalendar>(html`
+            <ui-date-picker-calendar value="2025-01-15"></ui-date-picker-calendar>
+        `);
+        await el.updateComplete;
+        (el.shadowRoot!.querySelector('.nav-btn') as HTMLButtonElement).click();
+        await el.updateComplete;
+        const header = el.shadowRoot!.querySelector('.header-label') as HTMLElement;
+        expect(header.textContent).toContain('December');
+        expect(header.textContent).toContain('2024');
+    });
+
+    // _nextMonth when month === 11 (line 148): December → January
+    it('next month from December wraps to January and increments year', async () => {
+        const el = await fixture<UiDatePickerCalendar>(html`
+            <ui-date-picker-calendar value="2025-12-15"></ui-date-picker-calendar>
+        `);
+        await el.updateComplete;
+        const navBtns = el.shadowRoot!.querySelectorAll<HTMLButtonElement>('.nav-btn');
+        navBtns[1].click();
+        await el.updateComplete;
+        const header = el.shadowRoot!.querySelector('.header-label') as HTMLElement;
+        expect(header.textContent).toContain('January');
+        expect(header.textContent).toContain('2026');
+    });
+
+    // Enter keydown on header-label (line 174)
+    it('Enter key on header-label switches to month view', async () => {
+        const el = await fixture<UiDatePickerCalendar>(html`<ui-date-picker-calendar></ui-date-picker-calendar>`);
+        await el.updateComplete;
+        const label = el.shadowRoot!.querySelector('.header-label') as HTMLElement;
+        label.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelectorAll('.month-btn').length).toBe(12);
+    });
+
+    it('non-Enter key on header-label does not switch view', async () => {
+        const el = await fixture<UiDatePickerCalendar>(html`<ui-date-picker-calendar></ui-date-picker-calendar>`);
+        await el.updateComplete;
+        const label = el.shadowRoot!.querySelector('.header-label') as HTMLElement;
+        label.dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true }));
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelectorAll('.day-cell').length).toBe(42);
+    });
+
+    // Month-view previous/next year buttons (lines 205, 207)
+    it('previous year button in month view decrements year', async () => {
+        const el = await fixture<UiDatePickerCalendar>(html`
+            <ui-date-picker-calendar value="2025-06-01"></ui-date-picker-calendar>
+        `);
+        await el.updateComplete;
+        (el.shadowRoot!.querySelector('.header-label') as HTMLElement).click();
+        await el.updateComplete;
+        (el.shadowRoot!.querySelector('.nav-btn') as HTMLButtonElement).click();
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('.header-label')!.textContent?.trim()).toBe('2024');
+    });
+
+    it('next year button in month view increments year', async () => {
+        const el = await fixture<UiDatePickerCalendar>(html`
+            <ui-date-picker-calendar value="2025-06-01"></ui-date-picker-calendar>
+        `);
+        await el.updateComplete;
+        (el.shadowRoot!.querySelector('.header-label') as HTMLElement).click();
+        await el.updateComplete;
+        const navBtns = el.shadowRoot!.querySelectorAll<HTMLButtonElement>('.nav-btn');
+        navBtns[1].click();
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('.header-label')!.textContent?.trim()).toBe('2026');
+    });
+
+    // _selectDay: this.disabled branch (in addition to cell.isDisabled already tested)
+    it('calendar disabled prop prevents date-select even on non-disabled cells', async () => {
+        const el = await fixture<UiDatePickerCalendar>(html`<ui-date-picker-calendar disabled></ui-date-picker-calendar>`);
+        await el.updateComplete;
+        const spy = vi.fn();
+        el.addEventListener('date-select', spy);
+        (el.shadowRoot!.querySelector<HTMLElement>('.day-cell:not(.other-month)'))?.click();
+        expect(spy).not.toHaveBeenCalled();
+    });
+});
+
+// ═══════════════════════════════════════════════════════════════════════
+// ui-date-picker — full coverage
+// ═══════════════════════════════════════════════════════════════════════
+describe('ui-date-picker — full coverage', () => {
+
+    // label absent branch (line 372): empty label renders nothing
+    it('renders no label element when label prop is empty', async () => {
+        const el = await fixture<UiDatePicker>(html`<ui-date-picker label=""></ui-date-picker>`);
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('.field-label')).toBeNull();
+    });
+
+    // aria-label fallback (line 383): '' || 'Date' = 'Date'
+    it('input aria-label falls back to "Date" when label is empty', async () => {
+        const el = await fixture<UiDatePicker>(html`<ui-date-picker label=""></ui-date-picker>`);
+        await el.updateComplete;
+        const input = el.shadowRoot!.querySelector<HTMLInputElement>('input')!;
+        expect(input.getAttribute('aria-label')).toBe('Date');
+    });
+
+    // _openPicker: _open already true (line 308)
+    it('clicking calendar icon when already open does not close the popover', async () => {
+        const el = await fixture<UiDatePicker>(html`<ui-date-picker></ui-date-picker>`);
+        await el.updateComplete;
+        const btn = el.shadowRoot!.querySelector<HTMLButtonElement>('.calendar-icon-btn')!;
+        btn.click(); await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(true);
+        btn.click(); await el.updateComplete;
+        // Guard returns early — popover stays open
+        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(true);
+    });
+
+    // _openPicker: disabled (line 308)
+    it('clicking calendar icon when disabled does not open popover', async () => {
+        const el = await fixture<UiDatePicker>(html`<ui-date-picker disabled></ui-date-picker>`);
+        await el.updateComplete;
+        el.shadowRoot!.querySelector<HTMLButtonElement>('.calendar-icon-btn')!.click();
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open') ?? false).toBe(false);
+    });
+
+    // mobile variant render (lines 326-329)
+    it('mobile variant renders ui-dialog instead of .popover', async () => {
+        const el = await fixture<UiDatePicker>(html`<ui-date-picker variant="mobile"></ui-date-picker>`);
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('ui-dialog')).not.toBeNull();
+        expect(el.shadowRoot!.querySelector('.popover')).toBeNull();
+    });
+
+    it('mobile variant: selecting a day stages value without firing change event', async () => {
+        const el = await fixture<UiDatePicker>(html`<ui-date-picker variant="mobile" value="2025-06-01"></ui-date-picker>`);
+        await el.updateComplete;
+        el.shadowRoot!.querySelector<HTMLButtonElement>('.calendar-icon-btn')!.click();
+        await el.updateComplete;
+        const cal = el.shadowRoot!.querySelector('ui-date-picker-calendar') as UiDatePickerCalendar;
+        await cal.updateComplete;
+        const spy = vi.fn();
+        el.addEventListener('change', spy);
+        const days = cal.shadowRoot!.querySelectorAll<HTMLElement>('.day-cell:not(.other-month):not(.disabled)');
+        days[9].click();
+        await el.updateComplete;
+        // No change event until OK is clicked
+        expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('mobile variant: OK button commits staged value and fires change', async () => {
+        const el = await fixture<UiDatePicker>(html`<ui-date-picker variant="mobile" value="2025-06-01"></ui-date-picker>`);
+        await el.updateComplete;
+        el.shadowRoot!.querySelector<HTMLButtonElement>('.calendar-icon-btn')!.click();
+        await el.updateComplete;
+        const cal = el.shadowRoot!.querySelector('ui-date-picker-calendar') as UiDatePickerCalendar;
+        await cal.updateComplete;
+        // Stage day 10 (index 9)
+        const days = cal.shadowRoot!.querySelectorAll<HTMLElement>('.day-cell:not(.other-month):not(.disabled)');
+        days[9].click();
+        await el.updateComplete;
+        setTimeout(() => {
+            (el.shadowRoot!.querySelector('.action-btn.ok') as HTMLButtonElement).click();
+        });
+        const event = await oneEvent(el, 'change') as CustomEvent;
+        expect(event.detail.value).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    });
+
+    it('mobile variant: Cancel button closes without committing', async () => {
+        const el = await fixture<UiDatePicker>(html`<ui-date-picker variant="mobile" value="2025-06-01"></ui-date-picker>`);
+        await el.updateComplete;
+        el.shadowRoot!.querySelector<HTMLButtonElement>('.calendar-icon-btn')!.click();
+        await el.updateComplete;
+        const cal = el.shadowRoot!.querySelector('ui-date-picker-calendar') as UiDatePickerCalendar;
+        await cal.updateComplete;
+        // Stage a different day
+        const days = cal.shadowRoot!.querySelectorAll<HTMLElement>('.day-cell:not(.other-month):not(.disabled)');
+        days[9].click();
+        await el.updateComplete;
+        const spy = vi.fn();
+        el.addEventListener('change', spy);
+        (el.shadowRoot!.querySelector('.action-btn.cancel') as HTMLButtonElement).click();
+        await el.updateComplete;
+        expect(spy).not.toHaveBeenCalled();
+        expect(el.value).toBe('2025-06-01');
+    });
+
+    // _handleFieldInput: readonly guard (line 356)
+    it('field input event when readonly does not fire change', async () => {
+        const el = await fixture<UiDatePicker>(html`<ui-date-picker readonly></ui-date-picker>`);
+        await el.updateComplete;
+        const input = el.shadowRoot!.querySelector<HTMLInputElement>('input')!;
+        input.value = '07/04/2028';
+        const spy = vi.fn();
+        el.addEventListener('change', spy);
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        expect(spy).not.toHaveBeenCalled();
+    });
+
+    // _handleFieldInput: invalid Date (line 362): 99/99/2025 matches regex but NaN
+    it('invalid date value in input does not fire change', async () => {
+        const el = await fixture<UiDatePicker>(html`<ui-date-picker></ui-date-picker>`);
+        await el.updateComplete;
+        const input = el.shadowRoot!.querySelector<HTMLInputElement>('input')!;
+        input.value = '99/99/2025';
+        const spy = vi.fn();
+        el.addEventListener('change', spy);
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        expect(spy).not.toHaveBeenCalled();
+    });
+
+    // _handleFieldInput: max constraint (line 363)
+    it('manual input after max constraint is rejected', async () => {
+        const el = await fixture<UiDatePicker>(html`<ui-date-picker max="2025-06-30"></ui-date-picker>`);
+        await el.updateComplete;
+        const input = el.shadowRoot!.querySelector<HTMLInputElement>('input')!;
+        input.value = '07/01/2025'; // 2025-07-01 > max 2025-06-30
+        const spy = vi.fn();
+        el.addEventListener('change', spy);
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        expect(spy).not.toHaveBeenCalled();
+    });
+
+    // _commit: same value no-op (line 337)
+    it('selecting the already-selected date closes picker without firing change', async () => {
+        const el = await fixture<UiDatePicker>(html`<ui-date-picker value="2025-06-10"></ui-date-picker>`);
+        await el.updateComplete;
+        el.shadowRoot!.querySelector<HTMLButtonElement>('.calendar-icon-btn')!.click();
+        await el.updateComplete;
+        const cal = el.shadowRoot!.querySelector('ui-date-picker-calendar') as UiDatePickerCalendar;
+        await cal.updateComplete;
+        const spy = vi.fn();
+        el.addEventListener('change', spy);
+        const selectedCell = cal.shadowRoot!.querySelector<HTMLElement>('.day-cell.selected');
+        selectedCell?.click();
+        await el.updateComplete;
+        expect(spy).not.toHaveBeenCalled();
+        // Picker closes even on no-op
+        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(false);
+    });
+
+    // auto variant: pointer coarse → mobile (lines 302-303)
+    it('auto variant resolves to mobile when pointer is coarse', async () => {
+        Object.defineProperty(window, 'matchMedia', {
+            writable: true, configurable: true,
+            value: (query: string) => ({
+                matches: query === '(pointer: coarse)',
+                media: query, onchange: null,
+                addListener: vi.fn(), removeListener: vi.fn(),
+                addEventListener: vi.fn(), removeEventListener: vi.fn(),
+                dispatchEvent: vi.fn(),
+            }),
+        });
+        const el = await fixture<UiDatePicker>(html`<ui-date-picker variant="auto"></ui-date-picker>`);
+        await el.updateComplete;
+        const hasDialog = el.shadowRoot!.querySelector('ui-dialog') !== null;
+        Object.defineProperty(window, 'matchMedia', { writable: true, configurable: true, value: undefined });
+        expect(hasDialog).toBe(true);
+    });
+
+    // Line 347 ||: _pendingValue falsy → uses this.value fallback
+    it('mobile OK with no staged value commits existing value (covers || right side)', async () => {
+        const el = await fixture<UiDatePicker>(html`<ui-date-picker variant="mobile" value="2025-06-15"></ui-date-picker>`);
+        await el.updateComplete;
+        // Open picker: _pendingValue = '2025-06-15' (truthy so far — we need it empty)
+        // Manually set pendingValue to '' to test the || fallback
+        (el as unknown as Record<string, unknown>)['_pendingValue'] = '';
+        (el as unknown as Record<string, unknown>)['_open'] = true;
+        await el.updateComplete;
+        // Click OK: _commit('' || '2025-06-15') → '' is falsy, uses this.value
+        // iso === this.value → no change event, just closes
+        const spy = vi.fn();
+        el.addEventListener('change', spy);
+        (el.shadowRoot!.querySelector('.action-btn.ok') as HTMLButtonElement).click();
+        await el.updateComplete;
+        expect(spy).not.toHaveBeenCalled();
+    });
+
+    // Line 360 if(m) false: input doesn't match MM/DD/YYYY regex
+    it('partial input that does not match date regex does not fire change', async () => {
+        const el = await fixture<UiDatePicker>(html`<ui-date-picker></ui-date-picker>`);
+        await el.updateComplete;
+        const input = el.shadowRoot!.querySelector<HTMLInputElement>('input')!;
+        input.value = '07/04'; // too short, won't match /^(\d{2})\/(\d{2})\/(\d{4})$/
+        const spy = vi.fn();
+        el.addEventListener('change', spy);
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        expect(spy).not.toHaveBeenCalled();
+    });
+
+    // Line 387 focus handler false branch: focus on non-readonly input does not open picker
+    it('focus on non-readonly input does not open picker', async () => {
+        const el = await fixture<UiDatePicker>(html`<ui-date-picker></ui-date-picker>`);
+        await el.updateComplete;
+        const input = el.shadowRoot!.querySelector<HTMLInputElement>('input')!;
+        input.dispatchEvent(new Event('focus', { bubbles: true }));
+        await el.updateComplete;
+        const popover = el.shadowRoot!.querySelector('.popover');
+        expect(popover?.classList.contains('open')).toBe(false);
+    });
+
+    // auto variant: pointer fine → desktop
+    it('auto variant resolves to desktop when pointer is fine', async () => {
+        Object.defineProperty(window, 'matchMedia', {
+            writable: true, configurable: true,
+            value: (query: string) => ({
+                matches: false, // pointer: coarse = false
+                media: query, onchange: null,
+                addListener: vi.fn(), removeListener: vi.fn(),
+                addEventListener: vi.fn(), removeEventListener: vi.fn(),
+                dispatchEvent: vi.fn(),
+            }),
+        });
+        const el = await fixture<UiDatePicker>(html`<ui-date-picker variant="auto"></ui-date-picker>`);
+        await el.updateComplete;
+        const hasPopover = el.shadowRoot!.querySelector('.popover') !== null;
+        Object.defineProperty(window, 'matchMedia', { writable: true, configurable: true, value: undefined });
+        expect(hasPopover).toBe(true);
+    });
+});

@@ -317,15 +317,10 @@ export class UiDatePicker extends LitElement {
 
     private _handleCalendarSelect(e: CustomEvent) {
         const iso = e.detail.value as string;
-        const variant = this._resolvedVariant;
-
-        if (variant === 'desktop') {
-            // Immediate commit for desktop popover (no separate OK needed, but we keep pending for cancel)
-            this._pendingValue = iso;
+        // Always stage the value; commit immediately for desktop (mobile needs OK)
+        this._pendingValue = iso;
+        if (this._resolvedVariant !== 'mobile') {
             this._commit(iso);
-        } else if (variant === 'mobile') {
-            // In mobile we stage the selection; OK commits it
-            this._pendingValue = iso;
         }
     }
 
