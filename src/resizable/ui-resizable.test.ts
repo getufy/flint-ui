@@ -365,7 +365,88 @@ describe('ui-resizable-group — constraints', () => {
     el._endDrag();
   });
 
-  it('does not collapse during the same drag that reached minSize', async () => {
+  it('collapses in a single drag when dragged past minSize/2', async () => {
+    const el = await fixture<UiResizableGroup>(html`
+      <ui-resizable-group>
+        <ui-resizable-panel .defaultSize=${50} .minSize=${20} .collapsible=${true}>
+          <div>A</div>
+        </ui-resizable-panel>
+        <ui-resizable-handle></ui-resizable-handle>
+        <ui-resizable-panel .defaultSize=${50}>
+          <div>B</div>
+        </ui-resizable-panel>
+      </ui-resizable-group>
+    `);
+    await el.updateComplete;
+    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue(mockRect());
+
+    const handle = getHandles(el)[0];
+    const panels = getPanels(el);
+
+    // Single drag: 50% → 5% (< minSize/2 = 10%) → collapses immediately
+    el._startDrag();
+    el._handleResize(handle, -450); // newBefore = 5 < minSize/2 (10) → collapse
+    expect(panels[0].size).toBe(0);
+    el._endDrag();
+  });
+
+  it('clamps to minSize when single drag stops between minSize and minSize/2', async () => {
+    const el = await fixture<UiResizableGroup>(html`
+      <ui-resizable-group>
+        <ui-resizable-panel .defaultSize=${50} .minSize=${20} .collapsible=${true}>
+          <div>A</div>
+        </ui-resizable-panel>
+        <ui-resizable-handle></ui-resizable-handle>
+        <ui-resizable-panel .defaultSize=${50}>
+          <div>B</div>
+        </ui-resizable-panel>
+      </ui-resizable-group>
+    `);
+    await el.updateComplete;
+    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue(mockRect());
+
+    const handle = getHandles(el)[0];
+    const panels = getPanels(el);
+
+    // Single drag: 50% → 15% (≥ minSize/2 = 10%) → clamped to minSize, NOT collapsed
+    el._startDrag();
+    el._handleResize(handle, -350); // newBefore = 15 ≥ minSize/2 (10) → clamp to 20
+    expect(panels[0].size).toBe(20);
+    el._endDrag();
+  });
+
+  it('collapses via accumulated overshoot across many small drag events', async () => {
+    const el = await fixture<UiResizableGroup>(html`
+      <ui-resizable-group>
+        <ui-resizable-panel .defaultSize=${50} .minSize=${20} .collapsible=${true}>
+          <div>A</div>
+        </ui-resizable-panel>
+        <ui-resizable-handle></ui-resizable-handle>
+        <ui-resizable-panel .defaultSize=${50}>
+          <div>B</div>
+        </ui-resizable-panel>
+      </ui-resizable-group>
+    `);
+    await el.updateComplete;
+    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue(mockRect());
+
+    const handle = getHandles(el)[0];
+    const panels = getPanels(el);
+
+    // Drag past minSize in many tiny steps — each step is 1% (10px on 1000px)
+    // minSize=20%, threshold=minSize/2=10%, so after 10 steps of 1% overshoot → collapse
+    el._startDrag();
+    // First bring panel from 50% to minSize (30 × -1% = -30%)
+    for (let i = 0; i < 30; i++) el._handleResize(handle, -10);
+    expect(panels[0].size).toBe(20); // clamped at minSize
+
+    // Continue dragging past minSize: 10 × -1% = -10% overshoot ≥ threshold(10%) → collapse
+    for (let i = 0; i < 10; i++) el._handleResize(handle, -10);
+    expect(panels[0].size).toBe(0);
+    el._endDrag();
+  });
+
+  it('resets overshoot when user drags back above minSize', async () => {
     const el = await fixture<UiResizableGroup>(html`
       <ui-resizable-group>
         <ui-resizable-panel .defaultSize=${50} .minSize=${20} .collapsible=${true}>
@@ -384,11 +465,21 @@ describe('ui-resizable-group — constraints', () => {
     const panels = getPanels(el);
 
     el._startDrag();
-    el._handleResize(handle, -450);
-    expect(panels[0].size).toBe(20); // clamped to minSize, NOT collapsed
+    // Bring to minSize
+    for (let i = 0; i < 30; i++) el._handleResize(handle, -10);
+    expect(panels[0].size).toBe(20);
 
-    el._handleResize(handle, -150);
-    expect(panels[0].size).toBe(20); // still at minSize
+    // Accumulate 5% overshoot (half the threshold)
+    for (let i = 0; i < 5; i++) el._handleResize(handle, -10);
+    expect(panels[0].size).toBe(20); // still clamped, not collapsed
+
+    // Drag back above minSize → overshoot resets
+    el._handleResize(handle, 50); // +5% → panel = 25%
+    expect(panels[0].size).toBe(25);
+
+    // Now drag past minSize again: need full threshold from scratch
+    for (let i = 0; i < 9; i++) el._handleResize(handle, -10); // 9% overshoot < 10%
+    expect(panels[0].size).toBe(20); // still at minSize, not collapsed
     el._endDrag();
   });
 });
@@ -1048,5 +1139,476 @@ describe('UiResizablePanel — collapse/expand API', () => {
     panels[0].expand();
     await panels[0].updateComplete;
     expect(panels[0].hasAttribute('collapsed')).toBe(false);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/*  ui-resizable-group — malformed group (handle without panels)      */
+/* ------------------------------------------------------------------ */
+
+describe('ui-resizable-group — malformed structure', () => {
+  it('handles a group with a handle but no panels without errors', async () => {
+    const el = await fixture<UiResizableGroup>(html`
+      <ui-resizable-group>
+        <ui-resizable-handle></ui-resizable-handle>
+      </ui-resizable-group>
+    `);
+    await el.updateComplete;
+    // _syncAriaOnHandles: !before || !after → continue (line 132)
+    expect(el.getLayout()).toEqual([]);
+  });
+
+  it('_handleResize with handle in list but no panels returns early', async () => {
+    const el = await fixture<UiResizableGroup>(html`
+      <ui-resizable-group>
+        <ui-resizable-handle></ui-resizable-handle>
+      </ui-resizable-group>
+    `);
+    await el.updateComplete;
+    const handle = getHandles(el)[0];
+    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue(mockRect());
+
+    const spy = vi.fn();
+    el.addEventListener('ui-resizable-change', spy);
+    // idx=0, but _panels is empty → !before → return (line 229)
+    el._handleResize(handle, 100);
+    expect(spy).not.toHaveBeenCalled();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/*  _collapsePanel — edge cases                                       */
+/* ------------------------------------------------------------------ */
+
+describe('ui-resizable-group — _collapsePanel edge cases', () => {
+  it('_collapsePanel is a no-op when panel is not registered (idx === -1)', async () => {
+    const el = await make({ panelSizes: [50, 50] });
+    const outsidePanel = document.createElement('ui-resizable-panel') as UiResizablePanel;
+    outsidePanel.size = 30;
+    document.body.appendChild(outsidePanel);
+    await outsidePanel.updateComplete;
+
+    const spy = vi.fn();
+    el.addEventListener('ui-resizable-collapse', spy);
+    el._collapsePanel(outsidePanel); // idx === -1 → return
+    expect(spy).not.toHaveBeenCalled();
+    outsidePanel.remove();
+  });
+
+  it('_collapsePanel is a no-op when group has only one panel (no sibling)', async () => {
+    const el = await fixture<UiResizableGroup>(html`
+      <ui-resizable-group>
+        <ui-resizable-panel .defaultSize=${100}><div>Solo</div></ui-resizable-panel>
+      </ui-resizable-group>
+    `);
+    await el.updateComplete;
+    const panels = getPanels(el);
+    panels[0].collapse(); // !sibling → return
+    expect(panels[0].size).toBe(100);
+    expect(panels[0].collapsed).toBe(false);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/*  _expandPanel — edge cases                                         */
+/* ------------------------------------------------------------------ */
+
+describe('ui-resizable-group — _expandPanel edge cases', () => {
+  it('_expandPanel is a no-op when panel is not registered (idx === -1)', async () => {
+    const el = await make({ panelSizes: [50, 50] });
+    const outsidePanel = document.createElement('ui-resizable-panel') as UiResizablePanel;
+    outsidePanel.collapsed = true;
+    document.body.appendChild(outsidePanel);
+    await outsidePanel.updateComplete;
+
+    const spy = vi.fn();
+    el.addEventListener('ui-resizable-expand', spy);
+    el._expandPanel(outsidePanel); // idx === -1 → return
+    expect(spy).not.toHaveBeenCalled();
+    outsidePanel.remove();
+  });
+
+  it('_expandPanel is a no-op when group has only one panel (no sibling)', async () => {
+    const el = await fixture<UiResizableGroup>(html`
+      <ui-resizable-group>
+        <ui-resizable-panel .defaultSize=${100}><div>Solo</div></ui-resizable-panel>
+      </ui-resizable-group>
+    `);
+    await el.updateComplete;
+    const panels = getPanels(el);
+    panels[0].collapsed = true;
+    panels[0].size = 0;
+    panels[0]._applySize();
+    panels[0].expand(); // !sibling → return
+    expect(panels[0].size).toBe(0);
+  });
+
+  it('_expandPanel is a no-op when sibling has no available space (actual <= 0)', async () => {
+    const el = await fixture<UiResizableGroup>(html`
+      <ui-resizable-group>
+        <ui-resizable-panel .defaultSize=${50}><div>A</div></ui-resizable-panel>
+        <ui-resizable-handle></ui-resizable-handle>
+        <ui-resizable-panel .defaultSize=${50} .minSize=${50}><div>B</div></ui-resizable-panel>
+      </ui-resizable-group>
+    `);
+    await el.updateComplete;
+    const panels = getPanels(el);
+
+    // Manually set state: panels[0] collapsed, sibling exactly at minSize (no available space)
+    panels[0]._restoreSize = 50;
+    panels[0].size = 0;
+    panels[0].collapsed = true;
+    panels[0]._applySize();
+    panels[1].size = 50; // exactly at minSize → available = 50 - 50 = 0
+    panels[1]._applySize();
+
+    panels[0].expand(); // actual = min(50, 0) = 0 → actual <= 0 → return
+    expect(panels[0].size).toBe(0);
+    expect(panels[0].collapsed).toBe(true);
+  });
+
+  it('expand() uses defaultSize fallback when _restoreSize is 0', async () => {
+    const el = await make({ panelSizes: [50, 50] });
+    const panels = getPanels(el);
+
+    // Manually put panel in collapsed state without a prior non-zero size
+    panels[0]._restoreSize = 0;
+    panels[0].size = 0;
+    panels[0].collapsed = true;
+    panels[0]._applySize();
+    panels[1].size = 100;
+    panels[1]._applySize();
+
+    panels[0].expand();
+    // _restoreSize=0 → fallback: Math.max(minSize>0?minSize:0, defaultSize>0?defaultSize:20)
+    // minSize=0, defaultSize=50 → Math.max(0, 50) = 50
+    expect(panels[0].size).toBe(50);
+    expect(panels[0].collapsed).toBe(false);
+  });
+
+  it('expand() uses 20 as final fallback when _restoreSize, minSize, and defaultSize are all 0', async () => {
+    const el = await make({ panelSizes: [50, 50] });
+    const panels = getPanels(el);
+
+    panels[0].defaultSize = 0;
+    panels[0]._restoreSize = 0;
+    panels[0].size = 0;
+    panels[0].collapsed = true;
+    panels[0]._applySize();
+    panels[1].size = 100;
+    panels[1]._applySize();
+
+    panels[0].expand();
+    // Math.max(0 ? 0:0, 0 ? 0:20) = Math.max(0, 20) = 20
+    expect(panels[0].size).toBe(20);
+    expect(panels[0].collapsed).toBe(false);
+  });
+
+  it('expand() uses minSize fallback when _restoreSize is 0 and minSize > 0', async () => {
+    const el = await fixture<UiResizableGroup>(html`
+      <ui-resizable-group>
+        <ui-resizable-panel .defaultSize=${30} .minSize=${15}><div>A</div></ui-resizable-panel>
+        <ui-resizable-handle></ui-resizable-handle>
+        <ui-resizable-panel .defaultSize=${70}><div>B</div></ui-resizable-panel>
+      </ui-resizable-group>
+    `);
+    await el.updateComplete;
+    const panels = getPanels(el);
+
+    panels[0].defaultSize = 0;
+    panels[0]._restoreSize = 0;
+    panels[0].size = 0;
+    panels[0].collapsed = true;
+    panels[0]._applySize();
+    panels[1].size = 100;
+    panels[1]._applySize();
+
+    panels[0].expand();
+    // Math.max(15>0?15:0, 0>0?0:20) = Math.max(15, 20) = 20
+    expect(panels[0].size).toBe(20);
+    expect(panels[0].collapsed).toBe(false);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/*  _handleResize — invalid handle (idx === -1)                       */
+/* ------------------------------------------------------------------ */
+
+describe('ui-resizable-group — _handleResize invalid handle', () => {
+  it('_handleResize is a no-op when handle is not in the group', async () => {
+    const el = await make({ panelSizes: [50, 50] });
+    const outsideHandle = document.createElement('ui-resizable-handle') as UiResizableHandle;
+    document.body.appendChild(outsideHandle);
+    await outsideHandle.updateComplete;
+
+    const spy = vi.fn();
+    el.addEventListener('ui-resizable-change', spy);
+    el._handleResize(outsideHandle, 100); // idx === -1 → return
+    expect(spy).not.toHaveBeenCalled();
+    outsideHandle.remove();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/*  Pointer events — early returns when not currently dragging        */
+/* ------------------------------------------------------------------ */
+
+describe('ui-resizable-handle — pointer events without active drag', () => {
+  it('pointermove before pointerdown does nothing (early return)', async () => {
+    const el = await make({ panelSizes: [50, 50] });
+    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue(mockRect());
+    const handle = getHandles(el)[0];
+
+    // Fire pointermove without first starting a drag
+    handle.dispatchEvent(
+      new PointerEvent('pointermove', { clientX: 700, clientY: 200, pointerId: 1, bubbles: true, buttons: 1 }),
+    );
+
+    const panels = getPanels(el);
+    expect(panels[0].size).toBe(50);
+    expect(panels[1].size).toBe(50);
+  });
+
+  it('pointerup before pointerdown does nothing (early return)', async () => {
+    const el = await make({ panelSizes: [50, 50] });
+    const handle = getHandles(el)[0];
+    handle.releasePointerCapture = vi.fn();
+
+    handle.dispatchEvent(new PointerEvent('pointerup', { pointerId: 1, bubbles: true }));
+    expect(handle.releasePointerCapture).not.toHaveBeenCalled();
+  });
+
+  it('pointercancel before pointerdown does nothing (early return)', async () => {
+    const el = await make({ panelSizes: [50, 50] });
+    const handle = getHandles(el)[0];
+    handle.releasePointerCapture = vi.fn();
+
+    handle.dispatchEvent(new PointerEvent('pointercancel', { pointerId: 1, bubbles: true }));
+    expect(handle.releasePointerCapture).not.toHaveBeenCalled();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/*  Keyboard — standalone handle (no group)                           */
+/* ------------------------------------------------------------------ */
+
+describe('ui-resizable-handle — keyboard without parent group', () => {
+  it('keydown on a standalone handle does not throw', async () => {
+    const handle = document.createElement('ui-resizable-handle') as UiResizableHandle;
+    document.body.appendChild(handle);
+    await handle.updateComplete;
+
+    // No parent ui-resizable-group → _onKeyDown early-returns (!group)
+    expect(() => {
+      handle.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+    }).not.toThrow();
+
+    handle.remove();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/*  Keyboard — ArrowUp in vertical orientation                        */
+/* ------------------------------------------------------------------ */
+
+describe('ui-resizable-handle — keyboard ArrowUp vertical', () => {
+  it('calls _handleKeyResize with direction -1 on ArrowUp (vertical)', async () => {
+    const el = await make({ orientation: 'vertical', panelSizes: [50, 50] });
+    const handle = getHandles(el)[0];
+    await handle.updateComplete;
+
+    const spy = vi.spyOn(el, '_handleKeyResize');
+    handle.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
+    expect(spy).toHaveBeenCalledWith(handle, -1);
+  });
+
+  it('ignores horizontal keys (ArrowLeft/Right) in vertical orientation', async () => {
+    const el = await make({ orientation: 'vertical', panelSizes: [50, 50] });
+    const handle = getHandles(el)[0];
+    await handle.updateComplete;
+
+    const spy = vi.spyOn(el, '_handleKeyResize');
+    handle.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }));
+    handle.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  it('ignores vertical keys (ArrowUp/Down) in horizontal orientation', async () => {
+    const el = await make({ orientation: 'horizontal', panelSizes: [50, 50] });
+    const handle = getHandles(el)[0];
+
+    const spy = vi.spyOn(el, '_handleKeyResize');
+    handle.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
+    handle.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+    expect(spy).not.toHaveBeenCalled();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/*  Fast collapse — after panel                                       */
+/* ------------------------------------------------------------------ */
+
+describe('ui-resizable-group — fast collapse of after panel', () => {
+  it('collapses after panel on new drag that starts at minSize', async () => {
+    const el = await fixture<UiResizableGroup>(html`
+      <ui-resizable-group>
+        <ui-resizable-panel .defaultSize=${50}><div>A</div></ui-resizable-panel>
+        <ui-resizable-handle></ui-resizable-handle>
+        <ui-resizable-panel .defaultSize=${50} .minSize=${20} .collapsible=${true}>
+          <div>B</div>
+        </ui-resizable-panel>
+      </ui-resizable-group>
+    `);
+    await el.updateComplete;
+    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue(mockRect());
+
+    const handle = getHandles(el)[0];
+    const panels = getPanels(el);
+
+    // Drag 1: bring panels[1] to minSize (50% → 20%)
+    el._startDrag();
+    el._handleResize(handle, 300); // +30% → panels[1]: 50-30=20 (= minSize)
+    expect(panels[1].size).toBe(20);
+    el._endDrag();
+
+    // Drag 2: starts with panels[1] at minSize → in _collapsibleAtDragStart
+    el._startDrag();
+    el._handleResize(handle, 150); // +15% → newAfter = 20-15=5 < minSize/2(10) → collapse
+    expect(panels[1].size).toBe(0);
+    el._endDrag();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/*  _distributeDefaultSizes — defaultSize path (lines 93–95)         */
+/* ------------------------------------------------------------------ */
+
+describe('ui-resizable-group — _distributeDefaultSizes defaultSize path', () => {
+  it('applies defaultSize when panel is appended before its first Lit update', async () => {
+    const el = await fixture<UiResizableGroup>(html`
+      <ui-resizable-group>
+        <ui-resizable-panel .defaultSize=${60}><div>A</div></ui-resizable-panel>
+        <ui-resizable-handle></ui-resizable-handle>
+      </ui-resizable-group>
+    `);
+    await el.updateComplete;
+
+    // Create panel with defaultSize but _hasExplicitSize = false
+    const panel = document.createElement('ui-resizable-panel') as UiResizablePanel;
+    panel.defaultSize = 40;
+    // Appending triggers slotchange → _collectChildren → _distributeDefaultSizes
+    // At that moment _hasExplicitSize is false and defaultSize > 0 → lines 93-95 execute
+    el.appendChild(panel);
+    await el.updateComplete;
+
+    expect(panel.size).toBeGreaterThan(0);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/*  ui-resizable-panel — size property set after connect              */
+/* ------------------------------------------------------------------ */
+
+describe('ui-resizable-panel — size change triggers _applySize', () => {
+  it('updates flex-basis when size property changes via willUpdate', async () => {
+    const el = await make({ panelSizes: [50, 50] });
+    const panels = getPanels(el);
+    panels[0].size = 30;
+    await panels[0].updateComplete;
+    expect(panels[0].style.flexBasis).toContain('30');
+  });
+
+  it('willUpdate skips _applySize when size did not change (line 382 false branch)', async () => {
+    const el = await make({ panelSizes: [50, 50] });
+    const panels = getPanels(el);
+    const applySpy = vi.spyOn(panels[0], '_applySize');
+
+    // Changing a property that is NOT 'size' triggers willUpdate without 'size' in changed
+    panels[0].minSize = 10;
+    await panels[0].updateComplete;
+
+    // _applySize should NOT have been called from willUpdate (size didn't change)
+    expect(applySpy).not.toHaveBeenCalled();
+    expect(panels[0].size).toBe(50);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/*  ui-resizable-group — updated() false-false branch (line 317)     */
+/* ------------------------------------------------------------------ */
+
+describe('ui-resizable-group — updated() skips _syncChildren when no relevant change', () => {
+  it('does not call _syncChildren when neither orientation nor dir changed', async () => {
+    const el = await make({ panelSizes: [50, 50] });
+    const syncSpy = vi.spyOn(el as unknown as { _syncChildren: () => void }, '_syncChildren' as never);
+
+    // Force a Lit update without changing orientation or dir
+    el.requestUpdate();
+    await el.updateComplete;
+
+    // _syncChildren should NOT be called (false-false branch of || on line 317)
+    expect(syncSpy).not.toHaveBeenCalled();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/*  Vertical orientation — pointer drag uses clientY                  */
+/* ------------------------------------------------------------------ */
+
+describe('ui-resizable-handle — vertical pointer drag', () => {
+  it('resizes panels in vertical mode using clientY', async () => {
+    const el = await make({ orientation: 'vertical', panelSizes: [50, 50] });
+    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue(mockRect(400, 1000));
+
+    const handle = getHandles(el)[0];
+    handle.setPointerCapture = vi.fn();
+    handle.releasePointerCapture = vi.fn();
+
+    handle.dispatchEvent(
+      new PointerEvent('pointerdown', { clientX: 200, clientY: 500, pointerId: 1, bubbles: true, button: 0 }),
+    );
+    handle.dispatchEvent(
+      new PointerEvent('pointermove', { clientX: 200, clientY: 600, pointerId: 1, bubbles: true, buttons: 1 }),
+    );
+    handle.dispatchEvent(
+      new PointerEvent('pointerup', { clientX: 200, clientY: 600, pointerId: 1, bubbles: true }),
+    );
+
+    const panels = getPanels(el);
+    // 100px delta on 1000px height = 10% shift
+    expect(panels[0].size).toBe(60);
+    expect(panels[1].size).toBe(40);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/*  ui-resizable-group — _handleKeyResize uses step from CSS var      */
+/* ------------------------------------------------------------------ */
+
+describe('ui-resizable-group — _handleKeyResize', () => {
+  it('_handleKeyResize calls _handleResize with step-based delta', async () => {
+    const el = await make({ panelSizes: [50, 50] });
+    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue(mockRect());
+    vi.spyOn(el, '_handleResize');
+
+    const handle = getHandles(el)[0];
+    el._handleKeyResize(handle, 1);
+
+    expect(el._handleResize).toHaveBeenCalled();
+  });
+
+  it('_handleKeyResize uses CSS custom property value when set (line 298 truthy branch)', async () => {
+    const el = await make({ panelSizes: [50, 50] });
+    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue(mockRect());
+    const resizeSpy = vi.spyOn(el, '_handleResize');
+
+    // Set the step via inline style so getComputedStyle returns it
+    el.style.setProperty('--ui-resizable-step', '10');
+
+    const handle = getHandles(el)[0];
+    el._handleKeyResize(handle, 1);
+
+    // With step=10%, direction=1, width=1000px → delta = 1 * (1000 * 10/100) = 100px
+    expect(resizeSpy).toHaveBeenCalledWith(handle, 100);
   });
 });

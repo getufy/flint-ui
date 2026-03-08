@@ -67,7 +67,8 @@
       "Bash(cat /Users/algoassasin/storybook-lit/src/menubar/*.css)",
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --project components --coverage src/menubar/ui-menubar.test.ts)",
       "Bash(NODE_OPTIONS='--no-warnings' vitest run src/navigation-menu/ui-navigation-menu.test.ts --coverage --reporter=verbose)",
-      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/navigation-menu/ui-navigation-menu.test.ts --project components --reporter=verbose)"
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/navigation-menu/ui-navigation-menu.test.ts --project components --reporter=verbose)",
+      "Bash(NODE_OPTIONS='--no-warnings' vitest run src/resizable/ui-resizable.test.ts --project components)"
     ]
   }
 }

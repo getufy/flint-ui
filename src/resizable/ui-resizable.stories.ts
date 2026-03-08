@@ -382,48 +382,14 @@ export const IDELayout: Story = {
              border-radius:8px;overflow:hidden;font-family:var(--ui-font-family,system-ui);
              font-size:13px;display:flex;flex-direction:column;"
     >
-      <!-- ── Top toolbar (always visible — toggle buttons live here) ── -->
-      <div style="display:flex;align-items:center;gap:4px;padding:4px 8px;
+      <!-- ── Top toolbar ── -->
+      <div style="display:flex;align-items:center;padding:4px 12px;
                   border-bottom:1px solid var(--ui-border-color,#e4e4e7);
                   background:var(--ui-muted,#f4f4f5);flex-shrink:0;">
-        <!-- Sidebar toggle — OUTSIDE the sidebar panel so it works when collapsed -->
-        <button
-          data-sidebar-toggle
-          title="Toggle Explorer sidebar"
-          style="border:1px solid var(--ui-border-color,#e4e4e7);background:var(--ui-background,#fff);
-                 cursor:pointer;padding:3px 10px;font-size:12px;border-radius:4px;
-                 color:var(--ui-text-color,#111827);display:flex;align-items:center;gap:5px;"
-          @click=${(e: Event) => {
-            const root = (e.target as HTMLElement).closest('[data-ide]')!;
-            const panel = root.querySelector<UiResizablePanel>('[data-sidebar]')!;
-            const btn = root.querySelector<HTMLElement>('[data-sidebar-toggle]')!;
-            panel.toggle();
-            btn.setAttribute('title', panel.collapsed ? 'Show Explorer' : 'Hide Explorer');
-            btn.querySelector('[data-label]')!.textContent = panel.collapsed ? '› Explorer' : '‹ Explorer';
-          }}
-        ><span data-label>‹ Explorer</span></button>
-
         <span style="flex:1;text-align:center;font-size:12px;font-weight:600;
                      color:var(--ui-text-color-muted,#71717a);letter-spacing:.05em;">
           MY IDE
         </span>
-
-        <!-- Terminal toggle — OUTSIDE the terminal panel so it works when collapsed -->
-        <button
-          data-terminal-toggle
-          title="Toggle Terminal"
-          style="border:1px solid var(--ui-border-color,#e4e4e7);background:var(--ui-background,#fff);
-                 cursor:pointer;padding:3px 10px;font-size:12px;border-radius:4px;
-                 color:var(--ui-text-color,#111827);display:flex;align-items:center;gap:5px;"
-          @click=${(e: Event) => {
-            const root = (e.target as HTMLElement).closest('[data-ide]')!;
-            const panel = root.querySelector<UiResizablePanel>('[data-terminal]')!;
-            const btn = root.querySelector<HTMLElement>('[data-terminal-toggle]')!;
-            panel.toggle();
-            btn.setAttribute('title', panel.collapsed ? 'Show Terminal' : 'Hide Terminal');
-            btn.querySelector('[data-label]')!.textContent = panel.collapsed ? '▲ Terminal' : '▼ Terminal';
-          }}
-        ><span data-label>▼ Terminal</span></button>
       </div>
 
       <!-- ── Main area ── -->
@@ -540,8 +506,9 @@ export const IDELayout: Story = {
       </div>
     </div>
     <p style="font-size:12px;color:var(--ui-text-color-muted,#71717a);margin-top:8px;">
-      Toggle buttons live in the <strong>toolbar</strong> (outside all resizable panels) so they
-      remain clickable even when a panel is fully collapsed. Drag handles to resize.
+      Drag the Explorer handle left past its snap point to collapse it.
+      Drag the Terminal handle down past its snap point to collapse it.
+      Drag back toward center to expand.
     </p>
   `,
 };
