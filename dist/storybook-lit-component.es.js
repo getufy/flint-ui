@@ -1,4 +1,4 @@
-import { unsafeCSS as h, LitElement as c, html as l, nothing as b, svg as wt, css as Pe } from "lit";
+import { unsafeCSS as h, LitElement as c, html as l, nothing as b, svg as wt, css as ze } from "lit";
 import { property as s, customElement as d, state as v, queryAssignedElements as rs, query as Dt } from "lit/decorators.js";
 import { classMap as f } from "lit/directives/class-map.js";
 import { repeat as Ut } from "lit/directives/repeat.js";
@@ -154,12 +154,12 @@ Jr = ys([
   d("ui-card-content")
 ], Jr);
 const xs = ":host{display:block;width:100%;overflow:hidden}.media{width:100%;height:var(--ui-card-media-height, 200px);background-size:cover;background-position:center;background-repeat:no-repeat}img{width:100%;height:100%;object-fit:cover;display:block}";
-var _s = Object.defineProperty, ws = Object.getOwnPropertyDescriptor, Mr = (e, t, i, o) => {
+var _s = Object.defineProperty, ws = Object.getOwnPropertyDescriptor, Lr = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? ws(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && _s(t, i, r), r;
 };
-let di = class extends c {
+let hi = class extends c {
   constructor() {
     super(...arguments), this.image = "", this.alt = "", this.height = "";
   }
@@ -175,19 +175,19 @@ let di = class extends c {
     return l`<slot></slot>`;
   }
 };
-di.styles = h(xs);
-Mr([
+hi.styles = h(xs);
+Lr([
   s({ type: String })
-], di.prototype, "image", 2);
-Mr([
+], hi.prototype, "image", 2);
+Lr([
   s({ type: String })
-], di.prototype, "alt", 2);
-Mr([
+], hi.prototype, "alt", 2);
+Lr([
   s({ type: String })
-], di.prototype, "height", 2);
-di = Mr([
+], hi.prototype, "height", 2);
+hi = Lr([
   d("ui-card-media")
-], di);
+], hi);
 const ks = ":host{display:flex;padding:var(--ui-card-actions-padding, 8px 16px);align-items:center;gap:8px}";
 var $s = Object.getOwnPropertyDescriptor, Ss = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? $s(t, i) : t, a = e.length - 1, n; a >= 0; a--)
@@ -206,7 +206,7 @@ Qr = Ss([
   d("ui-card-actions")
 ], Qr);
 const Cs = ":host{display:block;width:100%;cursor:pointer;position:relative}.action-area{transition:background-color .2s}.action-area:hover{background-color:var(--ui-card-action-area-hover, var(--ui-hover-color))}.action-area:active{background-color:var(--ui-card-action-area-active, var(--ui-active-color))}.action-area:focus-visible{outline:2px solid var(--ui-card-action-area-focus-ring, var(--ui-primary-color));outline-offset:-2px}";
-var Is = Object.getOwnPropertyDescriptor, Ps = (e, t, i, o) => {
+var Is = Object.getOwnPropertyDescriptor, zs = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? Is(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = n(r) || r);
   return r;
@@ -224,16 +224,16 @@ let eo = class extends c {
   }
 };
 eo.styles = h(Cs);
-eo = Ps([
+eo = zs([
   d("ui-card-action-area")
 ], eo);
-const zs = ':host{display:block;box-sizing:border-box;background-color:var(--ui-surface-1);color:var(--ui-text-color);border-radius:var(--ui-border-radius-md);padding:var(--ui-paper-padding, 0);transition:box-shadow .25s cubic-bezier(.4,0,.2,1),border-color .25s cubic-bezier(.4,0,.2,1),background-color .25s cubic-bezier(.4,0,.2,1);border:1px solid transparent}:host([square]){border-radius:0}:host([variant="outlined"]){border:1px solid var(--ui-border-color);box-shadow:none!important}:host([variant="flat"]){border:none;box-shadow:none}:host([variant="elevated"][elevation="0"]){box-shadow:none}:host([variant="elevated"][elevation="1"]){box-shadow:0 2px 4px #0000000d}:host([variant="elevated"][elevation="2"]){box-shadow:0 3px 6px #00000012}:host([variant="elevated"][elevation="3"]){box-shadow:0 4px 12px #00000014}:host([variant="elevated"][elevation="4"]){box-shadow:0 8px 16px #00000017}:host([variant="elevated"][elevation="6"]){box-shadow:0 12px 24px #0000001a}:host([variant="elevated"][elevation="8"]){box-shadow:0 16px 32px #0000001c}:host([variant="elevated"][elevation="12"]){box-shadow:0 20px 40px #0000001f}:host([variant="elevated"][elevation="16"]){box-shadow:0 24px 48px #00000021}:host([variant="elevated"][elevation="24"]){box-shadow:0 32px 64px #00000026}@media(prefers-color-scheme:dark){:host{background-color:var(--ui-surface-background-flat)}:host([variant="elevated"][elevation="0"]){box-shadow:none}:host([variant="elevated"][elevation="1"]){box-shadow:0 2px 4px #0000004d}:host([variant="elevated"][elevation="2"]){box-shadow:0 3px 6px #00000059}:host([variant="elevated"][elevation="3"]){box-shadow:0 4px 12px #0006}:host([variant="elevated"][elevation="4"]){box-shadow:0 8px 16px #00000073}:host([variant="elevated"][elevation="6"]){box-shadow:0 12px 24px #00000080}:host([variant="elevated"][elevation="8"]){box-shadow:0 16px 32px #0000008c}:host([variant="elevated"][elevation="12"]){box-shadow:0 20px 40px #0009}:host([variant="elevated"][elevation="16"]){box-shadow:0 24px 48px #000000a6}:host([variant="elevated"][elevation="24"]){box-shadow:0 32px 64px #000000b3}}';
-var Ds = Object.defineProperty, Es = Object.getOwnPropertyDescriptor, Lr = (e, t, i, o) => {
+const Ps = ':host{display:block;box-sizing:border-box;background-color:var(--ui-surface-1);color:var(--ui-text-color);border-radius:var(--ui-border-radius-md);padding:var(--ui-paper-padding, 0);transition:box-shadow .25s cubic-bezier(.4,0,.2,1),border-color .25s cubic-bezier(.4,0,.2,1),background-color .25s cubic-bezier(.4,0,.2,1);border:1px solid transparent}:host([square]){border-radius:0}:host([variant="outlined"]){border:1px solid var(--ui-border-color);box-shadow:none!important}:host([variant="flat"]){border:none;box-shadow:none}:host([variant="elevated"][elevation="0"]){box-shadow:none}:host([variant="elevated"][elevation="1"]){box-shadow:0 2px 4px #0000000d}:host([variant="elevated"][elevation="2"]){box-shadow:0 3px 6px #00000012}:host([variant="elevated"][elevation="3"]){box-shadow:0 4px 12px #00000014}:host([variant="elevated"][elevation="4"]){box-shadow:0 8px 16px #00000017}:host([variant="elevated"][elevation="6"]){box-shadow:0 12px 24px #0000001a}:host([variant="elevated"][elevation="8"]){box-shadow:0 16px 32px #0000001c}:host([variant="elevated"][elevation="12"]){box-shadow:0 20px 40px #0000001f}:host([variant="elevated"][elevation="16"]){box-shadow:0 24px 48px #00000021}:host([variant="elevated"][elevation="24"]){box-shadow:0 32px 64px #00000026}@media(prefers-color-scheme:dark){:host{background-color:var(--ui-surface-background-flat)}:host([variant="elevated"][elevation="0"]){box-shadow:none}:host([variant="elevated"][elevation="1"]){box-shadow:0 2px 4px #0000004d}:host([variant="elevated"][elevation="2"]){box-shadow:0 3px 6px #00000059}:host([variant="elevated"][elevation="3"]){box-shadow:0 4px 12px #0006}:host([variant="elevated"][elevation="4"]){box-shadow:0 8px 16px #00000073}:host([variant="elevated"][elevation="6"]){box-shadow:0 12px 24px #00000080}:host([variant="elevated"][elevation="8"]){box-shadow:0 16px 32px #0000008c}:host([variant="elevated"][elevation="12"]){box-shadow:0 20px 40px #0009}:host([variant="elevated"][elevation="16"]){box-shadow:0 24px 48px #000000a6}:host([variant="elevated"][elevation="24"]){box-shadow:0 32px 64px #000000b3}}';
+var Ds = Object.defineProperty, Es = Object.getOwnPropertyDescriptor, Ur = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? Es(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && Ds(t, i, r), r;
 };
-let hi = class extends c {
+let pi = class extends c {
   constructor() {
     super(...arguments), this.elevation = 1, this.square = !1, this.variant = "elevated";
   }
@@ -241,19 +241,19 @@ let hi = class extends c {
     return l`<slot></slot>`;
   }
 };
-hi.styles = h(zs);
-Lr([
+pi.styles = h(Ps);
+Ur([
   s({ type: Number, reflect: !0 })
-], hi.prototype, "elevation", 2);
-Lr([
+], pi.prototype, "elevation", 2);
+Ur([
   s({ type: Boolean, reflect: !0 })
-], hi.prototype, "square", 2);
-Lr([
+], pi.prototype, "square", 2);
+Ur([
   s({ type: String, reflect: !0 })
-], hi.prototype, "variant", 2);
-hi = Lr([
+], pi.prototype, "variant", 2);
+pi = Ur([
   d("ui-paper")
-], hi);
+], pi);
 const Os = ':host{display:block;font-family:var(--ui-font-family)}.input-wrapper{display:flex;flex-direction:column;gap:6px}label{font-size:14px;font-weight:500;color:var(--ui-label-color)}input{font-family:inherit;width:100%;box-sizing:border-box;padding:10px 14px;font-size:14px;border-radius:var(--ui-input-border-radius);border:1px solid var(--ui-input-border-color);background-color:var(--ui-input-bg);color:var(--ui-text-color);transition:border-color .2s,box-shadow .2s;outline:none}:host([size="sm"]) input{padding:6px 10px;font-size:13px}:host([size="lg"]) input{padding:12px 16px;font-size:16px}input::placeholder{color:var(--ui-input-placeholder-color)}input:hover:not(:disabled):not(.error-input){border-color:var(--ui-input-border-hover-color)}input:focus-visible{border-color:var(--ui-primary-color);box-shadow:0 0 0 3px var(--ui-primary-focus-ring)}input[aria-invalid=true]{border-color:var(--ui-error-color)}input[aria-invalid=true]:focus-visible{box-shadow:0 0 0 3px var(--ui-error-focus-ring)}input:disabled{background-color:var(--ui-input-disabled-bg);color:var(--ui-input-disabled-color);cursor:not-allowed;opacity:1}input[readonly]{background-color:var(--ui-input-readonly-bg);cursor:default}.help-text{font-size:12px;color:var(--ui-help-text-color);margin:0}.error-text{color:var(--ui-error-color)}';
 var Ts = Object.defineProperty, As = Object.getOwnPropertyDescriptor, ce = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? As(t, i) : t, a = e.length - 1, n; a >= 0; a--)
@@ -697,7 +697,7 @@ nr([
 Rt = nr([
   d("ui-fab")
 ], Rt);
-const Fs = ":host{display:inline-block;position:relative;font-family:var(--ui-font-family);width:100%}.input-wrapper{position:relative}input{width:100%;padding:8px 12px;border:1px solid var(--ui-input-border-color);border-radius:var(--ui-input-border-radius);font-size:14px;box-sizing:border-box;outline:none;transition:border-color .2s,box-shadow .2s;font-family:inherit;color:var(--ui-text-color);background:var(--ui-input-bg)}input:focus{border-color:var(--ui-primary-color);box-shadow:0 0 0 1px var(--ui-primary-color)}input:disabled{background-color:var(--ui-input-disabled-bg);color:var(--ui-text-color-subtle);cursor:not-allowed}.dropdown{position:absolute;top:100%;left:0;right:0;max-height:250px;overflow-y:auto;background:var(--ui-surface-1);border:1px solid var(--ui-input-border-color);border-radius:var(--ui-input-border-radius);margin-top:4px;box-shadow:0 4px 6px -1px #0000001a,0 2px 4px -1px #0000000f;z-index:10;display:none}.dropdown.open{display:block}.option{padding:10px 12px;cursor:pointer;font-size:14px;transition:background-color .15s;color:var(--ui-text-color)}.option:hover,.option.active{background-color:var(--ui-hover-color)}.no-options{padding:10px 12px;font-size:14px;color:var(--ui-text-color-muted)}";
+const Fs = ":host{display:inline-block;position:relative;font-family:var(--ui-font-family);width:100%}.input-wrapper{position:relative}input{width:100%;padding:8px 12px;border:1px solid var(--ui-input-border-color);border-radius:var(--ui-input-border-radius);font-size:14px;box-sizing:border-box;outline:none;transition:border-color .2s,box-shadow .2s;font-family:inherit;color:var(--ui-text-color);background:var(--ui-input-bg)}input:focus{border-color:var(--ui-primary-color);box-shadow:0 0 0 1px var(--ui-primary-color)}input:disabled{background-color:var(--ui-input-disabled-bg);color:var(--ui-text-color-subtle);cursor:not-allowed}.dropdown{position:absolute;top:100%;left:0;right:0;max-height:var(--ui-autocomplete-dropdown-max-height, 250px);overflow-y:auto;background:var(--ui-surface-1);border:1px solid var(--ui-input-border-color);border-radius:var(--ui-input-border-radius);margin-top:4px;box-shadow:0 4px 6px -1px #0000001a,0 2px 4px -1px #0000000f;z-index:var(--ui-autocomplete-z-index, 10);display:none}.dropdown.open{display:block}.option{padding:var(--ui-autocomplete-option-padding, 10px 12px);cursor:pointer;font-size:14px;transition:background-color .15s;color:var(--ui-text-color)}.option:hover,.option.active{background-color:var(--ui-hover-color)}.no-options{padding:var(--ui-autocomplete-option-padding, 10px 12px);font-size:14px;color:var(--ui-text-color-muted)}";
 var qs = Object.defineProperty, Hs = Object.getOwnPropertyDescriptor, Qe = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? Hs(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
@@ -1073,7 +1073,7 @@ He = q([
   d("ui-radio")
 ], He);
 const Qs = ':host{display:inline-block;font-family:var(--ui-font-family);--ui-rating-color: #ffb400;--ui-rating-empty-color: #faaf0033;--ui-rating-size: 2rem;font-size:var(--ui-rating-size)}:host([size="sm"]){--ui-rating-size: 1.25rem}:host([size="md"]){--ui-rating-size: 2rem}:host([size="lg"]){--ui-rating-size: 2.75rem}:host([disabled]){opacity:.4;cursor:not-allowed}:host([readonly]) .rating-container{cursor:default}.rating-container{display:inline-flex;position:relative;cursor:pointer;font-size:1em;line-height:1;gap:.1em}.rating-container:focus{outline:none}.star-wrapper{position:relative;display:inline-flex;transition:transform .1s ease;outline:none}.star-wrapper:focus-visible{border-radius:2px;box-shadow:0 0 0 2px var(--ui-rating-color)}.star-wrapper:not(.readonly):not(.disabled):hover{transform:scale(1.1)}svg{width:1em;height:1em;fill:var(--ui-rating-empty-color);stroke:var(--ui-rating-color);stroke-width:1;transition:fill .2s ease,stroke .2s ease;overflow:visible}.active svg{fill:var(--ui-rating-color)}.hover svg{fill:var(--ui-rating-color);opacity:.7}.half svg .star-full{display:none}.half svg .star-half{display:block}.star-half{display:none}.hidden-input{position:absolute;opacity:0;width:0;height:0;margin:0;pointer-events:none}';
-var ea = Object.defineProperty, ta = Object.getOwnPropertyDescriptor, ze = (e, t, i, o) => {
+var ea = Object.defineProperty, ta = Object.getOwnPropertyDescriptor, Pe = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? ta(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && ea(t, i, r), r;
@@ -1212,40 +1212,40 @@ let ne = class extends c {
   }
 };
 ne.styles = h(Qs);
-ze([
+Pe([
   s({ type: Number })
 ], ne.prototype, "value", 2);
-ze([
+Pe([
   s({ type: Number })
 ], ne.prototype, "max", 2);
-ze([
+Pe([
   s({ type: Boolean, reflect: !0 })
 ], ne.prototype, "readonly", 2);
-ze([
+Pe([
   s({ type: Boolean, reflect: !0 })
 ], ne.prototype, "disabled", 2);
-ze([
+Pe([
   s({ type: Boolean })
 ], ne.prototype, "clearable", 2);
-ze([
+Pe([
   s({ type: Number })
 ], ne.prototype, "defaultValue", 2);
-ze([
+Pe([
   s({ type: String, reflect: !0 })
 ], ne.prototype, "size", 2);
-ze([
+Pe([
   s({ type: String })
 ], ne.prototype, "name", 2);
-ze([
+Pe([
   s({ type: String })
 ], ne.prototype, "label", 2);
-ze([
+Pe([
   s({ type: Number })
 ], ne.prototype, "precision", 2);
-ze([
+Pe([
   v()
 ], ne.prototype, "_hoverValue", 2);
-ne = ze([
+ne = Pe([
   d("ui-rating")
 ], ne);
 const ia = ':host{display:inline-block;--ui-switch-width: 52px;--ui-switch-height: 32px;--ui-switch-thumb-size: 24px;--ui-switch-thumb-offset: 4px;--ui-switch-bg: var(--ui-secondary-color);--ui-switch-bg-on: var(--ui-primary-color);--ui-switch-thumb-bg: var(--ui-switch-thumb-color);font-family:var(--ui-font-family);cursor:pointer}:host([disabled]){cursor:not-allowed}:host([size="sm"]){--ui-switch-width: 36px;--ui-switch-height: 22px;--ui-switch-thumb-size: 16px;--ui-switch-thumb-offset: 3px}:host([size="lg"]){--ui-switch-width: 64px;--ui-switch-height: 38px;--ui-switch-thumb-size: 30px;--ui-switch-thumb-offset: 4px}.wrapper{display:flex;align-items:center;gap:12px;-webkit-user-select:none;user-select:none}.switch{position:relative;width:var(--ui-switch-width);height:var(--ui-switch-height);background-color:var(--ui-switch-bg);border-radius:calc(var(--ui-switch-height) / 2);transition:background-color .3s cubic-bezier(.4,0,.2,1);flex-shrink:0}.switch.checked{background-color:var(--ui-switch-bg-on)}.thumb{position:absolute;top:var(--ui-switch-thumb-offset);left:var(--ui-switch-thumb-offset);width:var(--ui-switch-thumb-size);height:var(--ui-switch-thumb-size);background-color:var(--ui-switch-thumb-bg);border-radius:50%;box-shadow:var(--ui-shadow-sm);transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;align-items:center;justify-content:center;color:var(--ui-text-color-muted)}.switch.checked .thumb{transform:translate(calc(var(--ui-switch-width) - var(--ui-switch-thumb-size) - (var(--ui-switch-thumb-offset) * 2)));color:var(--ui-primary-color)}.label{font-size:.9375rem;font-weight:500;color:var(--ui-text-color)}.label.disabled{cursor:not-allowed;opacity:.5}.switch.disabled{opacity:.5;cursor:not-allowed}.switch:focus-visible{outline:2px solid var(--ui-primary-color);outline-offset:2px}.icon-wrapper{font-size:14px;display:flex;align-items:center;justify-content:center}';
@@ -1698,12 +1698,12 @@ kt = Ai([
   d("ui-badge")
 ], kt);
 const fa = ":host{display:block;width:100%;font-family:var(--ui-font-family);margin-bottom:1rem}.alert{display:flex;align-items:flex-start;padding:12px 16px;border-radius:var(--ui-border-radius-md);gap:12px;border:1px solid transparent;position:relative;box-sizing:border-box;animation:fadeIn .3s ease-out}@keyframes fadeIn{0%{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}.info{background-color:var(--ui-info-bg);border-color:var(--ui-info-border-color);color:var(--ui-info-text-color)}.info .icon{color:var(--ui-info-icon-color)}.success{background-color:var(--ui-success-bg);border-color:var(--ui-success-border-color);color:var(--ui-success-text-color)}.success .icon{color:var(--ui-success-icon-color)}.warning{background-color:var(--ui-warning-bg);border-color:var(--ui-warning-border-color);color:var(--ui-warning-text-color)}.warning .icon{color:var(--ui-warning-icon-color)}.error{background-color:var(--ui-error-bg);border-color:var(--ui-error-border-color);color:var(--ui-error-text-color)}.error .icon{color:var(--ui-error-icon-color)}.icon{flex-shrink:0;display:flex;align-items:center;justify-content:center;width:20px;height:20px;margin-top:2px}.content{flex-grow:1}.title{font-weight:600;font-size:.875rem;margin-bottom:2px}.message{font-size:.875rem;line-height:1.5}.close-button{flex-shrink:0;cursor:pointer;padding:6px;border-radius:50%;display:flex;align-items:center;justify-content:center;width:28px;height:28px;margin-top:-6px;margin-right:-10px;color:currentColor;opacity:.6;transition:all .2s ease;border:none;background:transparent}.close-button:hover{opacity:1;background-color:var(--ui-active-color)}.close-button:active{transform:scale(.92)}.icon svg,.close-button svg{width:100%;height:100%}";
-var ba = Object.defineProperty, va = Object.getOwnPropertyDescriptor, Ur = (e, t, i, o) => {
+var ba = Object.defineProperty, va = Object.getOwnPropertyDescriptor, jr = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? va(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && ba(t, i, r), r;
 };
-let pi = class extends c {
+let ui = class extends c {
   constructor() {
     super(...arguments), this.severity = "info", this.title = "", this.dismissible = !1;
   }
@@ -1755,21 +1755,21 @@ let pi = class extends c {
         `;
   }
 };
-pi.styles = h(fa);
-Ur([
+ui.styles = h(fa);
+jr([
   s({ type: String })
-], pi.prototype, "severity", 2);
-Ur([
+], ui.prototype, "severity", 2);
+jr([
   s({ type: String })
-], pi.prototype, "title", 2);
-Ur([
+], ui.prototype, "title", 2);
+jr([
   s({ type: Boolean })
-], pi.prototype, "dismissible", 2);
-pi = Ur([
+], ui.prototype, "dismissible", 2);
+ui = jr([
   d("ui-alert")
-], pi);
+], ui);
 const ga = ':host{display:block}.skeleton{display:block;background-color:var(--ui-skeleton-bg, var(--ui-surface-3));position:relative;overflow:hidden}@media(prefers-color-scheme:dark){.skeleton{background-color:var(--ui-skeleton-bg-dark, rgba(255, 255, 255, .13))}}:host([dark]) .skeleton{background-color:var(--ui-skeleton-bg-dark, rgba(255, 255, 255, .13))}.skeleton.pulse{animation:pulse var(--ui-skeleton-animation-duration, 1.5s) ease-in-out .5s infinite}.skeleton.wave:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,var(--ui-skeleton-wave-color, rgba(255, 255, 255, .4)),transparent);animation:wave var(--ui-skeleton-animation-duration, 1.6s) linear infinite;transform:translate(-100%)}@keyframes pulse{0%{opacity:1}50%{opacity:.4}to{opacity:1}}@keyframes wave{0%{transform:translate(-100%)}to{transform:translate(100%)}}.text{border-radius:var(--ui-border-radius-sm)}.circular{border-radius:50%}.rectangular{border-radius:var(--ui-border-radius-md)}.rounded{border-radius:var(--ui-border-radius-lg)}@media(prefers-reduced-motion:reduce){.skeleton.pulse{animation:none}.skeleton.wave:after{display:none}}';
-var ma = Object.defineProperty, ya = Object.getOwnPropertyDescriptor, Qt = (e, t, i, o) => {
+var ma = Object.defineProperty, ya = Object.getOwnPropertyDescriptor, ei = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? ya(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && ma(t, i, r), r;
@@ -1805,25 +1805,25 @@ let rt = class extends c {
   }
 };
 rt.styles = h(ga);
-Qt([
+ei([
   s({ type: Boolean, reflect: !0 })
 ], rt.prototype, "dark", 2);
-Qt([
+ei([
   s({ type: String, reflect: !0 })
 ], rt.prototype, "animation", 2);
-Qt([
+ei([
   s({ type: String, reflect: !0 })
 ], rt.prototype, "variant", 2);
-Qt([
+ei([
   s({ type: String })
 ], rt.prototype, "width", 2);
-Qt([
+ei([
   s({ type: String })
 ], rt.prototype, "height", 2);
-Qt([
+ei([
   s({ type: String })
 ], rt.prototype, "label", 2);
-rt = Qt([
+rt = ei([
   d("ui-skeleton")
 ], rt);
 const xa = ':host{display:flex;align-items:center;justify-content:center;pointer-events:none;position:fixed;z-index:var(--ui-snackbar-z-index, 1400);transition:all .3s cubic-bezier(.4,0,.2,1)}:host([anchor-origin*="bottom"]){bottom:var(--ui-snackbar-offset, 24px)}:host([anchor-origin*="top"]){top:var(--ui-snackbar-offset, 24px)}:host([anchor-origin*="left"]){left:var(--ui-snackbar-offset, 24px)}:host([anchor-origin*="right"]){right:var(--ui-snackbar-offset, 24px)}:host([anchor-origin*="center"]){left:50%;transform:translate(-50%)}.snackbar{background-color:var(--ui-snackbar-bg, #313131);color:var(--ui-snackbar-color, #ffffff);font-family:var(--ui-font-family);font-size:.875rem;line-height:1.43;letter-spacing:.01071em;display:flex;align-items:center;padding:6px 16px;border-radius:var(--ui-border-radius-md);box-shadow:var(--ui-shadow-lg);min-width:var(--ui-snackbar-min-width, 288px);max-width:var(--ui-snackbar-max-width, 560px);pointer-events:auto;opacity:0;transform:scale(.85);transition:opacity 225ms cubic-bezier(.4,0,.2,1),transform .15s cubic-bezier(.4,0,.2,1);visibility:hidden}.snackbar.open{opacity:1;transform:scale(1);visibility:visible}:host([variant="info"]) .snackbar{background-color:var(--ui-snackbar-bg-info, #0288d1)}:host([variant="success"]) .snackbar{background-color:var(--ui-snackbar-bg-success, #2e7d32)}:host([variant="warning"]) .snackbar{background-color:var(--ui-snackbar-bg-warning, #ed6c02)}:host([variant="error"]) .snackbar{background-color:var(--ui-snackbar-bg-error, #d32f2f)}.message{padding:8px 0;flex-grow:1}.action{display:flex;align-items:center;margin-left:8px;margin-right:-8px;padding-left:16px}.action.hidden{display:none}.close-btn{background:none;border:none;color:inherit;cursor:pointer;padding:4px 8px;margin-left:8px;margin-right:-8px;opacity:.8;display:flex;align-items:center;border-radius:2px;line-height:0}.close-btn:hover{opacity:1}::slotted(ui-alert){margin-bottom:0!important;width:100%;min-width:288px}';
@@ -1968,8 +1968,8 @@ Nt = lr([
   d("ui-divider")
 ], Nt);
 const Ca = ':host{display:block;padding:12px 0;font-family:var(--ui-font-family);color:var(--ui-text-color);--_track-height: 6px;--_thumb-size: 20px;--_font-size: 14px}:host([size="sm"]){--_track-height: 4px;--_thumb-size: 14px;--_font-size: 12px}:host([size="lg"]){--_track-height: 8px;--_thumb-size: 24px;--_font-size: 16px}:host([vertical]){padding:0 12px;display:inline-flex;height:var(--ui-slider-vertical-height, 200px)}.slider-wrapper{display:flex;flex-direction:column;gap:8px}.slider-wrapper.vertical{flex-direction:column-reverse;align-items:center;gap:12px;width:100%;height:100%;justify-content:flex-end}.label-row{display:flex;justify-content:space-between;align-items:center;font-size:var(--_font-size);font-weight:500}.label-row.vertical{flex-direction:column;align-items:center;gap:2px;flex-shrink:0}.value-display{font-weight:600;color:var(--ui-primary-color)}.track-container{flex:1;display:flex;align-items:center;justify-content:center;width:100%}.track-container.vertical{flex:1;min-height:0;width:auto;height:100%;display:flex;align-items:center;justify-content:center}input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:var(--_track-height);background:var(--ui-input-border-color);border-radius:3px;outline:none;margin:10px 0;cursor:pointer;transition:all .2s ease}input[type=range].vertical{writing-mode:vertical-lr;direction:rtl;width:var(--_track-height);height:100%;margin:0;appearance:slider-vertical;-webkit-appearance:slider-vertical}@supports not (appearance: slider-vertical){input[type=range].vertical{writing-mode:vertical-lr;direction:rtl;width:var(--_track-height);height:100%;margin:0}}input[type=range]:disabled{cursor:not-allowed;opacity:.5}input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:var(--_thumb-size);height:var(--_thumb-size);border-radius:50%;background:var(--ui-surface-1);border:2px solid var(--ui-primary-color);box-shadow:var(--ui-shadow-sm);cursor:pointer;transition:transform .1s ease,box-shadow .1s ease}input[type=range]::-moz-range-thumb{width:calc(var(--_thumb-size) - 2px);height:calc(var(--_thumb-size) - 2px);border-radius:50%;background:var(--ui-surface-1);border:2px solid var(--ui-primary-color);box-shadow:var(--ui-shadow-sm);cursor:pointer}input[type=range]::-moz-range-progress{background:var(--ui-primary-color);height:var(--_track-height);border-radius:3px}input[type=range]:focus-visible::-webkit-slider-thumb{outline:2px solid var(--ui-primary-color);outline-offset:4px}input[type=range]:not(:disabled):hover::-webkit-slider-thumb{transform:scale(1.1);box-shadow:var(--ui-shadow-md)}input[type=range]:active::-webkit-slider-thumb{transform:scale(.95)}.disabled-label{color:var(--ui-text-color-muted)}';
-var Ia = Object.defineProperty, Pa = Object.getOwnPropertyDescriptor, _e = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? Pa(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+var Ia = Object.defineProperty, za = Object.getOwnPropertyDescriptor, _e = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? za(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && Ia(t, i, r), r;
 };
@@ -2078,7 +2078,7 @@ _e([
 Z = _e([
   d("ui-slider")
 ], Z);
-const za = ":host{display:block;font-family:var(--ui-font-family);margin-bottom:1rem}.field-container{display:flex;flex-direction:column;gap:.5rem}.label{font-size:.875rem;font-weight:500;color:var(--ui-label-color);transition:color .2s}.input-wrapper{position:relative;display:flex;align-items:center;background-color:var(--ui-input-bg);border:1px solid var(--ui-input-border-color);border-radius:var(--ui-input-border-radius);transition:all .2s ease;overflow:hidden}.input-wrapper:hover:not(.disabled):not(.error){border-color:var(--ui-input-border-hover-color)}.input-wrapper.focused:not(.error){border-color:var(--ui-primary-color);box-shadow:0 0 0 3px var(--ui-primary-focus-ring)}.input-wrapper.error{border-color:var(--ui-error-color)}.input-wrapper.error.focused{box-shadow:0 0 0 3px var(--ui-error-focus-ring)}.input-wrapper.disabled{background-color:var(--ui-input-disabled-bg);cursor:not-allowed;opacity:.7}input{flex:1;width:100%;padding:.625rem .875rem;font-size:1rem;font-family:inherit;color:inherit;background:transparent;border:none;outline:none}input:disabled{cursor:not-allowed}input::placeholder{color:var(--ui-input-placeholder-color)}.icon-leading,.icon-trailing{display:flex;align-items:center;justify-content:center;color:var(--ui-text-color-muted);padding:0 .75rem}.icon-leading{padding-right:0}.icon-trailing{padding-left:0}.helper-text{font-size:.75rem;color:var(--ui-help-text-color)}.error-text{color:var(--ui-error-color)}.filled .input-wrapper{background-color:var(--ui-surface-2);border-bottom:2px solid var(--ui-input-border-color);border-top:none;border-left:none;border-right:none;border-radius:4px 4px 0 0}.filled .input-wrapper.focused{border-bottom-color:var(--ui-primary-color);background-color:var(--ui-hover-color)}";
+const Pa = ":host{display:block;font-family:var(--ui-font-family);margin-bottom:1rem}.field-container{display:flex;flex-direction:column;gap:.5rem}.label{font-size:.875rem;font-weight:500;color:var(--ui-label-color);transition:color .2s}.input-wrapper{position:relative;display:flex;align-items:center;background-color:var(--ui-input-bg);border:1px solid var(--ui-input-border-color);border-radius:var(--ui-input-border-radius);transition:all .2s ease;overflow:hidden}.input-wrapper:hover:not(.disabled):not(.error){border-color:var(--ui-input-border-hover-color)}.input-wrapper.focused:not(.error){border-color:var(--ui-primary-color);box-shadow:0 0 0 3px var(--ui-primary-focus-ring)}.input-wrapper.error{border-color:var(--ui-error-color)}.input-wrapper.error.focused{box-shadow:0 0 0 3px var(--ui-error-focus-ring)}.input-wrapper.disabled{background-color:var(--ui-input-disabled-bg);cursor:not-allowed;opacity:.7}input{flex:1;width:100%;padding:.625rem .875rem;font-size:1rem;font-family:inherit;color:inherit;background:transparent;border:none;outline:none}input:disabled{cursor:not-allowed}input::placeholder{color:var(--ui-input-placeholder-color)}.icon-leading,.icon-trailing{display:flex;align-items:center;justify-content:center;color:var(--ui-text-color-muted);padding:0 .75rem}.icon-leading{padding-right:0}.icon-trailing{padding-left:0}.helper-text{font-size:.75rem;color:var(--ui-help-text-color)}.error-text{color:var(--ui-error-color)}.filled .input-wrapper{background-color:var(--ui-surface-2);border-bottom:2px solid var(--ui-input-border-color);border-top:none;border-left:none;border-right:none;border-radius:4px 4px 0 0}.filled .input-wrapper.focused{border-bottom-color:var(--ui-primary-color);background-color:var(--ui-hover-color)}";
 var Da = Object.defineProperty, Ea = Object.getOwnPropertyDescriptor, Re = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? Ea(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
@@ -2146,7 +2146,7 @@ let ge = class extends c {
     `;
   }
 };
-ge.styles = h(za);
+ge.styles = h(Pa);
 Re([
   s({ type: String })
 ], ge.prototype, "label", 2);
@@ -2180,18 +2180,18 @@ Re([
 ge = Re([
   d("ui-text-field")
 ], ge);
-const Oa = ":host{display:inline-block}button{font-family:var(--ui-font-family);font-weight:500;font-size:14px;padding:8px 16px;border:1px solid var(--ui-input-border-color);background-color:var(--ui-surface-1);color:var(--ui-text-color);cursor:pointer;transition:all .2s ease;display:inline-flex;align-items:center;justify-content:center;gap:8px;outline:none}button:hover:not(:disabled){background-color:var(--ui-hover-color)}button.selected{background-color:var(--ui-active-color);color:var(--ui-primary-color);border-color:var(--ui-primary-color);z-index:1}button:disabled{opacity:.5;cursor:not-allowed}button:focus-visible{box-shadow:0 0 0 2px var(--ui-primary-color);z-index:2}:host([data-first]) button{border-top-left-radius:var(--ui-border-radius-md);border-bottom-left-radius:var(--ui-border-radius-md)}:host([data-last]) button{border-top-right-radius:var(--ui-border-radius-md);border-bottom-right-radius:var(--ui-border-radius-md)}:host(:not([data-first])) button{margin-left:-1px}";
-var Ta = Object.defineProperty, Aa = Object.getOwnPropertyDescriptor, jr = (e, t, i, o) => {
+const Oa = ':host{display:inline-block}button{font-family:var(--ui-font-family);font-weight:500;font-size:var(--ui-toggle-button-font-size, 14px);padding:var(--ui-toggle-button-padding, 8px 16px);border:1px solid var(--ui-input-border-color);background-color:var(--ui-surface-1);color:var(--ui-text-color);cursor:pointer;transition:background-color .2s ease,color .2s ease,border-color .2s ease,box-shadow .2s ease;display:inline-flex;align-items:center;justify-content:center;gap:var(--ui-toggle-button-gap, 8px);outline:none;border-radius:var(--ui-toggle-button-border-radius, var(--ui-border-radius-md));line-height:1}button:hover:not(:disabled){background-color:var(--ui-hover-color)}button.selected{background-color:var(--ui-toggle-button-selected-bg, var(--ui-active-color));color:var(--ui-toggle-button-selected-color, var(--ui-primary-color));border-color:var(--ui-toggle-button-selected-border-color, var(--ui-primary-color));z-index:1}button:disabled{opacity:.5;cursor:not-allowed}button:focus-visible{box-shadow:0 0 0 2px var(--ui-primary-color);z-index:2}:host([size="sm"]) button{font-size:12px;padding:4px 10px;gap:4px}:host([size="lg"]) button{font-size:16px;padding:12px 20px;gap:10px}:host([data-first]) button,:host([data-last]) button,:host([data-first][data-last]) button{border-radius:0}:host([data-first]) button{border-top-left-radius:var(--ui-border-radius-md);border-bottom-left-radius:var(--ui-border-radius-md)}:host([data-last]) button{border-top-right-radius:var(--ui-border-radius-md);border-bottom-right-radius:var(--ui-border-radius-md)}:host([data-first][data-last]) button{border-radius:var(--ui-border-radius-md)}:host([data-last]:not([data-first])) button,:host(:not([data-first]):not([data-last])) button{margin-left:-1px}';
+var Ta = Object.defineProperty, Aa = Object.getOwnPropertyDescriptor, cr = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? Aa(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && Ta(t, i, r), r;
 };
-let ui = class extends c {
+let Vt = class extends c {
   constructor() {
-    super(...arguments), this.selected = !1, this.disabled = !1, this.value = "";
+    super(...arguments), this.selected = !1, this.disabled = !1, this.value = "", this.size = "md";
   }
   _handleClick() {
-    this.disabled || this.dispatchEvent(new CustomEvent("toggle-click", {
+    this.disabled || this.dispatchEvent(new CustomEvent("ui-toggle-button-change", {
       detail: { value: this.value, selected: !this.selected },
       bubbles: !0,
       composed: !0
@@ -2199,7 +2199,7 @@ let ui = class extends c {
   }
   render() {
     return l`
-      <button 
+      <button
         type="button"
         class=${f({ selected: this.selected })}
         ?disabled=${this.disabled}
@@ -2211,19 +2211,22 @@ let ui = class extends c {
     `;
   }
 };
-ui.styles = h(Oa);
-jr([
+Vt.styles = h(Oa);
+cr([
   s({ type: Boolean, reflect: !0 })
-], ui.prototype, "selected", 2);
-jr([
+], Vt.prototype, "selected", 2);
+cr([
   s({ type: Boolean, reflect: !0 })
-], ui.prototype, "disabled", 2);
-jr([
+], Vt.prototype, "disabled", 2);
+cr([
   s({ type: String })
-], ui.prototype, "value", 2);
-ui = jr([
+], Vt.prototype, "value", 2);
+cr([
+  s({ type: String, reflect: !0 })
+], Vt.prototype, "size", 2);
+Vt = cr([
   d("ui-toggle-button")
-], ui);
+], Vt);
 const Ba = ":host{display:inline-flex;vertical-align:middle}";
 var Ma = Object.defineProperty, La = Object.getOwnPropertyDescriptor, Fo = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? La(t, i) : t, a = e.length - 1, n; a >= 0; a--)
@@ -2235,10 +2238,10 @@ let Fi = class extends c {
     super(...arguments), this.value = "", this.exclusive = !0;
   }
   connectedCallback() {
-    super.connectedCallback(), this.addEventListener("toggle-click", this._handleToggleClick), this._updateChildren();
+    super.connectedCallback(), this.addEventListener("ui-toggle-button-change", this._handleToggleClick), this._updateChildren();
   }
   disconnectedCallback() {
-    super.disconnectedCallback(), this.removeEventListener("toggle-click", this._handleToggleClick);
+    super.disconnectedCallback(), this.removeEventListener("ui-toggle-button-change", this._handleToggleClick);
   }
   _handleToggleClick(e) {
     const { value: t, selected: i } = e.detail;
@@ -2254,7 +2257,7 @@ let Fi = class extends c {
       }
       this.value = o;
     }
-    this._updateChildren(), this.dispatchEvent(new CustomEvent("change", {
+    this._updateChildren(), this.dispatchEvent(new CustomEvent("ui-toggle-button-group-change", {
       detail: { value: this.value },
       bubbles: !0,
       composed: !0
@@ -2343,7 +2346,7 @@ Ye = Ot([
   d("ui-avatar")
 ], Ye);
 const Na = ':host{display:inline-block;vertical-align:middle;font-family:var(--ui-font-family)}.chip{display:inline-flex;align-items:center;height:32px;padding:0 12px;border-radius:16px;font-size:14px;font-weight:500;white-space:nowrap;transition:all .2s ease;background-color:var(--ui-surface-2);color:var(--ui-text-color);border:1px solid transparent;-webkit-user-select:none;user-select:none;gap:8px;outline:none;overflow:hidden}.chip.clickable{cursor:pointer}.chip.clickable:hover:not(.disabled){background-color:var(--ui-hover-color)}.chip.clickable:active:not(.disabled){background-color:var(--ui-active-color)}.chip.outlined{background-color:transparent;border-color:var(--ui-input-border-color)}.chip.primary:not(.outlined){background-color:var(--ui-primary-color);color:var(--ui-text-color-on-primary)}.chip.secondary:not(.outlined){background-color:var(--ui-secondary-color);color:var(--ui-text-color-on-primary)}.chip.outlined.primary{color:var(--ui-primary-color);border-color:var(--ui-primary-color)}.chip.outlined.secondary{color:var(--ui-secondary-color);border-color:var(--ui-secondary-color)}.chip.primary.clickable:hover:not(.disabled){filter:brightness(.9);box-shadow:var(--ui-shadow-sm)}.chip.secondary.clickable:hover:not(.disabled){filter:brightness(.9);box-shadow:var(--ui-shadow-sm)}.chip.disabled{opacity:.5;cursor:not-allowed}.chip:focus-visible{outline:2px solid var(--ui-primary-color);outline-offset:2px}.delete-icon{display:flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;margin-right:-4px;cursor:pointer;color:inherit;opacity:.7;transition:opacity .2s,background-color .2s;outline:none}.delete-icon:hover{opacity:1;background-color:var(--ui-active-color)}.delete-icon:focus-visible{opacity:1;outline:2px solid currentColor;outline-offset:1px}.chip.disabled .delete-icon{cursor:not-allowed;pointer-events:none}::slotted([slot="avatar"]){--ui-avatar-size: 24px;width:24px;height:24px;margin-left:-8px;border-radius:50%;overflow:hidden;flex-shrink:0}::slotted([slot="icon"]){display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;margin-left:-4px;flex-shrink:0;line-height:1}';
-var Va = Object.defineProperty, Fa = Object.getOwnPropertyDescriptor, ei = (e, t, i, o) => {
+var Va = Object.defineProperty, Fa = Object.getOwnPropertyDescriptor, ti = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? Fa(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && Va(t, i, r), r;
@@ -2416,25 +2419,25 @@ let ot = class extends c {
   }
 };
 ot.styles = h(Na);
-ei([
+ti([
   s({ type: String })
 ], ot.prototype, "label", 2);
-ei([
+ti([
   s({ type: String })
 ], ot.prototype, "variant", 2);
-ei([
+ti([
   s({ type: String })
 ], ot.prototype, "color", 2);
-ei([
+ti([
   s({ type: Boolean })
 ], ot.prototype, "clickable", 2);
-ei([
+ti([
   s({ type: Boolean })
 ], ot.prototype, "deletable", 2);
-ei([
+ti([
   s({ type: Boolean, reflect: !0 })
 ], ot.prototype, "disabled", 2);
-ot = ei([
+ot = ti([
   d("ui-chip")
 ], ot);
 const qa = ":host{display:block;padding:8px 0;margin:0;list-style:none;background-color:var(--ui-surface-background, white)}:host([disable-padding]){padding:0}:host([dense]){--ui-list-item-padding: 4px 16px;--ui-list-item-gap: 8px}", Ha = ":host{display:block;box-sizing:border-box}li{display:flex;align-items:center;padding:var(--ui-list-item-padding, 8px 16px);gap:var(--ui-list-item-gap, 16px);list-style:none}", Ya = ":host{display:block;box-sizing:border-box}li{display:flex;align-items:center;padding:var(--ui-list-item-padding, 8px 16px);gap:var(--ui-list-item-gap, 16px);cursor:pointer;transition:background-color .2s ease;-webkit-user-select:none;user-select:none;list-style:none;outline:none}li:hover{background-color:var(--ui-hover-color)}li:active{background-color:var(--ui-active-color)}li:focus-visible{background-color:var(--ui-hover-color);box-shadow:inset 0 0 0 2px var(--ui-primary-color)}:host([selected]) li{background-color:var(--ui-primary-color-light);color:var(--ui-primary-color)}:host([disabled]) li{opacity:.5;cursor:default;pointer-events:none}", Ka = ":host{display:inline-flex;min-width:40px;color:var(--ui-text-color-muted);flex-shrink:0}::slotted(*){width:24px;height:24px}", Wa = ":host{display:inline-flex;min-width:56px;flex-shrink:0}", Ga = ":host{flex:1 1 auto;margin-top:4px;margin-bottom:4px}.primary{display:block;font-family:var(--ui-font-family);font-size:1rem;color:var(--ui-text-color);line-height:1.5}.secondary{display:block;font-family:var(--ui-font-family);font-size:.875rem;color:var(--ui-text-color-muted);line-height:1.43}", Xa = ":host{display:block;padding:16px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--ui-text-color-muted);font-family:var(--ui-font-family);line-height:1}";
@@ -2580,7 +2583,7 @@ Q([
 Yi = Q([
   d("ui-table-container")
 ], Yi);
-let gr = class extends c {
+let mr = class extends c {
   constructor() {
     super(...arguments), this.size = "medium";
   }
@@ -2588,13 +2591,13 @@ let gr = class extends c {
     return l`<slot></slot>`;
   }
 };
-gr.styles = h(en);
+mr.styles = h(en);
 Q([
   s({ type: String, reflect: !0 })
-], gr.prototype, "size", 2);
-gr = Q([
+], mr.prototype, "size", 2);
+mr = Q([
   d("ui-table")
-], gr);
+], mr);
 let so = class extends c {
   render() {
     return l`<slot></slot>`;
@@ -2604,7 +2607,7 @@ so.styles = h(tn);
 so = Q([
   d("ui-table-head")
 ], so);
-let mr = class extends c {
+let yr = class extends c {
   constructor() {
     super(...arguments), this.striped = !1;
   }
@@ -2612,13 +2615,13 @@ let mr = class extends c {
     return l`<slot></slot>`;
   }
 };
-mr.styles = h(rn);
+yr.styles = h(rn);
 Q([
   s({ type: Boolean, reflect: !0 })
-], mr.prototype, "striped", 2);
-mr = Q([
+], yr.prototype, "striped", 2);
+yr = Q([
   d("ui-table-body")
-], mr);
+], yr);
 let Ki = class extends c {
   constructor() {
     super(...arguments), this.selected = !1, this.hover = !1;
@@ -2978,10 +2981,10 @@ vi = Rr([
   d("ui-backdrop")
 ], vi);
 const kn = ":host{display:block}.dialog-panel{position:relative;background-color:var(--ui-surface-background, white);border-radius:var(--ui-border-radius-xl, 12px);box-shadow:var(--ui-shadow-xl, 0 20px 25px -5px rgba(0, 0, 0, .1));max-width:90vw;max-height:var(--ui-dialog-max-height, 90vh);width:var(--ui-dialog-width, 444px);display:flex;flex-direction:column;overflow:hidden;opacity:0;transform:scale(.9);transition:opacity .25s cubic-bezier(.4,0,.2,1),transform .25s cubic-bezier(.4,0,.2,1);pointer-events:none}.dialog-panel.open{opacity:1;transform:scale(1);pointer-events:auto}.dialog-panel.transition-slide-up{transform:translateY(40px)}.dialog-panel.transition-slide-up.open{transform:translateY(0)}.dialog-panel.transition-slide-down{transform:translateY(-40px)}.dialog-panel.transition-slide-down.open{transform:translateY(0)}", $n = ":host{display:block;padding:20px 24px 12px;font-family:var(--ui-font-family);font-size:1.25rem;font-weight:600;color:var(--ui-text-color)}", Sn = ":host{display:block;padding:0 24px 20px;flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch}", Cn = ":host{display:block;font-family:var(--ui-font-family);font-size:.9375rem;line-height:1.6;color:var(--ui-text-color-muted);margin-bottom:8px}", In = ':host{display:flex;align-items:center;justify-content:flex-end;padding:8px 16px 16px;gap:8px;border-top:1px solid var(--ui-border-color)}:host([align="start"]){justify-content:flex-start}:host([align="center"]){justify-content:center}:host([align="space-between"]){justify-content:space-between}';
-var Pn = Object.defineProperty, zn = Object.getOwnPropertyDescriptor, vt = (e, t, i, o) => {
-  for (var r = o > 1 ? void 0 : o ? zn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
+var zn = Object.defineProperty, Pn = Object.getOwnPropertyDescriptor, vt = (e, t, i, o) => {
+  for (var r = o > 1 ? void 0 : o ? Pn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && Pn(t, i, r), r;
+  return o && r && zn(t, i, r), r;
 };
 const yt = [];
 let gi = class extends c {
@@ -3075,7 +3078,7 @@ co.styles = h(Cn);
 co = vt([
   d("ui-dialog-content-text")
 ], co);
-let yr = class extends c {
+let xr = class extends c {
   constructor() {
     super(...arguments), this.align = "end";
   }
@@ -3083,15 +3086,15 @@ let yr = class extends c {
     return l`<slot></slot>`;
   }
 };
-yr.styles = h(In);
+xr.styles = h(In);
 vt([
   s({ type: String, reflect: !0 })
-], yr.prototype, "align", 2);
-yr = vt([
+], xr.prototype, "align", 2);
+xr = vt([
   d("ui-dialog-actions")
-], yr);
+], xr);
 const Dn = ":host{display:inline-block;--ui-circular-progress-size: 40px;--ui-circular-progress-color: var(--ui-primary-color);--ui-circular-progress-thickness: 3.6}.circular-root{width:var(--ui-circular-progress-size);height:var(--ui-circular-progress-size);display:inline-block;animation:rotate 1.4s linear infinite}.circular-root.determinate{animation:none;transform:rotate(-90deg)}svg{display:block}circle{stroke:var(--ui-circular-progress-color);stroke-linecap:round;transition:stroke-dashoffset .3s ease}.indeterminate circle{animation:dash 1.4s ease-in-out infinite;stroke-dasharray:80,200;stroke-dashoffset:0}@keyframes rotate{to{transform:rotate(360deg)}}@keyframes dash{0%{stroke-dasharray:1,200;stroke-dashoffset:0}50%{stroke-dasharray:89,200;stroke-dashoffset:-35px}to{stroke-dasharray:89,200;stroke-dashoffset:-124px}}";
-var En = Object.defineProperty, On = Object.getOwnPropertyDescriptor, ti = (e, t, i, o) => {
+var En = Object.defineProperty, On = Object.getOwnPropertyDescriptor, ii = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? On(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && En(t, i, r), r;
@@ -3137,25 +3140,25 @@ $e._colorMap = {
   error: "#ef4444",
   warning: "#f59e0b"
 };
-ti([
+ii([
   s({ type: String, reflect: !0 })
 ], $e.prototype, "variant", 2);
-ti([
+ii([
   s({ type: Number, reflect: !0 })
 ], $e.prototype, "value", 2);
-ti([
+ii([
   s({ type: Number })
 ], $e.prototype, "size", 2);
-ti([
+ii([
   s({ type: Number })
 ], $e.prototype, "thickness", 2);
-ti([
+ii([
   s({ type: String, reflect: !0 })
 ], $e.prototype, "color", 2);
-ti([
+ii([
   s({ type: String })
 ], $e.prototype, "label", 2);
-$e = ti([
+$e = ii([
   d("ui-circular-progress")
 ], $e);
 const Tn = ":host{display:block;width:100%;--ui-linear-progress-height: 4px;--ui-linear-progress-color: var(--ui-primary-color);--ui-linear-progress-bg: var(--ui-primary-color-light)}.root{position:relative;overflow:hidden;height:var(--ui-linear-progress-height);background-color:var(--ui-linear-progress-bg);border-radius:calc(var(--ui-linear-progress-height) / 2)}.bar{width:100%;position:absolute;left:0;bottom:0;top:0;transition:transform .4s linear;transform-origin:left;background-color:var(--ui-linear-progress-color);border-radius:inherit}.indeterminate .bar1{width:auto;animation:indeterminate1 2.1s cubic-bezier(.65,.815,.735,.395) infinite}.indeterminate .bar2{width:auto;animation:indeterminate2 2.1s cubic-bezier(.165,.84,.44,1) infinite;animation-delay:1.15s}@keyframes indeterminate1{0%{left:-35%;right:100%}60%{left:100%;right:-90%}to{left:100%;right:-90%}}@keyframes indeterminate2{0%{left:-200%;right:100%}60%{left:107%;right:-8%}to{left:107%;right:-8%}}";
@@ -3361,7 +3364,7 @@ mi = Nr([
   d("ui-app-bar")
 ], mi);
 const Hn = ":host{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 12px 8px;color:var(--ui-text-color-muted);cursor:pointer;transition:color .25s cubic-bezier(.4,0,.2,1),padding .25s cubic-bezier(.4,0,.2,1);-webkit-user-select:none;user-select:none;min-width:80px;max-width:168px}:host(:hover){background-color:var(--ui-hover-color)}:host([active]){color:var(--ui-primary-color);padding-top:8px}.icon-container{display:flex;align-items:center;justify-content:center;height:24px;margin-bottom:2px;transition:transform .25s cubic-bezier(.4,0,.2,1)}:host([active]) .icon-container{transform:scale(1.1)}.label{font-family:var(--ui-font-family);font-size:.75rem;transition:font-size .25s cubic-bezier(.4,0,.2,1),opacity .25s cubic-bezier(.4,0,.2,1);opacity:1}:host([active]) .label{font-size:.875rem}.label.hidden{opacity:0;font-size:0;pointer-events:none}";
-var Yn = Object.defineProperty, Kn = Object.getOwnPropertyDescriptor, cr = (e, t, i, o) => {
+var Yn = Object.defineProperty, Kn = Object.getOwnPropertyDescriptor, dr = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? Kn(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && Yn(t, i, r), r;
@@ -3394,19 +3397,19 @@ let $t = class extends c {
   }
 };
 $t.styles = h(Hn);
-cr([
+dr([
   s({ type: String })
 ], $t.prototype, "label", 2);
-cr([
+dr([
   s()
 ], $t.prototype, "value", 2);
-cr([
+dr([
   s({ type: Boolean, reflect: !0 })
 ], $t.prototype, "active", 2);
-cr([
+dr([
   s({ type: Boolean })
 ], $t.prototype, "showLabel", 2);
-$t = cr([
+$t = dr([
   d("ui-bottom-navigation-action")
 ], $t);
 const Wn = ":host{display:flex;justify-content:center;height:56px;background-color:var(--ui-surface-1);box-shadow:var(--ui-shadow-lg);position:relative;width:100%}.container{display:flex;flex:1;max-width:100%}";
@@ -3558,7 +3561,7 @@ Ke = Tt([
   d("ui-breadcrumbs")
 ], Ke);
 const el = ':host{display:contents;--ui-drawer-width: 250px;--ui-drawer-mini-width: 72px;--ui-drawer-height: auto;--ui-drawer-bg: var(--ui-surface-1);--ui-drawer-z-index: 1200;--ui-drawer-shadow: 0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12)}.backdrop{position:fixed;inset:0;background:var(--ui-backdrop-color);z-index:calc(var(--ui-drawer-z-index) - 1);opacity:0;pointer-events:none;transition:opacity .25s}:host([container]) .backdrop{position:absolute}.backdrop.open{opacity:1;pointer-events:auto}.paper{position:fixed;background:var(--ui-drawer-bg);z-index:var(--ui-drawer-z-index);display:flex;flex-direction:column;overflow-y:auto;outline:none}:host([container]) .paper{position:absolute}:host(:not([variant])) .paper,:host([variant="temporary"]) .paper{top:0;bottom:0;left:0;width:var(--ui-drawer-width);box-shadow:var(--ui-drawer-shadow);transform:translate(-100%);transition:transform .225s cubic-bezier(0,0,.2,1)}:host(:not([variant])[open]) .paper,:host([variant="temporary"][open]) .paper{transform:translate(0)}:host([variant="temporary"][anchor="right"]) .paper{left:auto;right:0;transform:translate(100%)}:host([variant="temporary"][anchor="right"][open]) .paper{transform:translate(0)}:host([variant="temporary"][anchor="top"]) .paper{inset:0 0 auto;width:auto;height:var(--ui-drawer-height);transform:translateY(-100%)}:host([variant="temporary"][anchor="top"][open]) .paper{transform:translateY(0)}:host([variant="temporary"][anchor="bottom"]) .paper{inset:auto 0 0;width:auto;height:var(--ui-drawer-height);transform:translateY(100%)}:host([variant="temporary"][anchor="bottom"][open]) .paper{transform:translateY(0)}:host([variant="persistent"]) .paper{position:relative;transform:none;box-shadow:none;transition:none;border-right:1px solid var(--ui-border-color)}:host([variant="persistent"][anchor="right"]) .paper{border-right:none;border-left:1px solid var(--ui-border-color)}:host([variant="persistent"]) .paper:not(.open){display:none}:host([variant="mini"]){display:flex}:host([variant="mini"]) .paper{position:relative;transform:none;box-shadow:none;border-right:1px solid var(--ui-border-color);width:var(--ui-drawer-mini-width);overflow-x:hidden;white-space:nowrap;transition:width .225s cubic-bezier(.4,0,.6,1);flex-shrink:0}:host([variant="mini"][anchor="right"]) .paper{border-right:none;border-left:1px solid var(--ui-border-color)}:host([variant="mini"][open]) .paper{width:var(--ui-drawer-width)}:host([variant="mini"]:not([open])) ::slotted([data-drawer-hide-mini]){opacity:0;pointer-events:none}::slotted([data-drawer-hide-mini]){transition:opacity .18s}.edge{display:none;position:fixed;background:var(--ui-drawer-bg);border:1px solid var(--ui-border-color);box-shadow:0 1px 3px #0000001f;cursor:pointer;z-index:var(--ui-drawer-z-index);align-items:center;justify-content:center}:host([container]) .edge{position:absolute}:host([edge]:not([variant])) .edge,:host([edge][variant="temporary"]) .edge{display:flex}.edge-left{left:0;top:0;bottom:0;width:16px;border-radius:0 8px 8px 0}.edge-right{right:0;top:0;bottom:0;width:16px;border-radius:8px 0 0 8px}.edge-top{top:0;left:0;right:0;height:16px;border-radius:0 0 8px 8px}.edge-bottom{bottom:0;left:0;right:0;height:16px;border-radius:8px 8px 0 0}.edge-handle{width:4px;height:32px;background:var(--ui-border-color);border-radius:2px}.edge-top .edge-handle,.edge-bottom .edge-handle{width:32px;height:4px}';
-var tl = Object.defineProperty, il = Object.getOwnPropertyDescriptor, ii = (e, t, i, o) => {
+var tl = Object.defineProperty, il = Object.getOwnPropertyDescriptor, ri = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? il(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && tl(t, i, r), r;
@@ -3614,25 +3617,25 @@ let st = class extends c {
   }
 };
 st.styles = h(el);
-ii([
+ri([
   s({ type: Boolean, reflect: !0 })
 ], st.prototype, "open", 2);
-ii([
+ri([
   s({ type: String, reflect: !0 })
 ], st.prototype, "anchor", 2);
-ii([
+ri([
   s({ type: String, reflect: !0 })
 ], st.prototype, "variant", 2);
-ii([
+ri([
   s({ type: Boolean, reflect: !0 })
 ], st.prototype, "edge", 2);
-ii([
+ri([
   s({ type: Boolean, reflect: !0 })
 ], st.prototype, "container", 2);
-ii([
+ri([
   s({ type: String })
 ], st.prototype, "label", 2);
-st = ii([
+st = ri([
   d("ui-drawer")
 ], st);
 const rl = ':host{display:inline;--ui-link-color: var(--ui-primary-color);--ui-link-color-hover: var(--ui-primary-color-hover);--ui-link-color-visited: var(--ui-secondary-color)}a{color:var(--ui-link-color);font-family:var(--ui-font-family);font-size:inherit;font-weight:inherit;line-height:inherit;cursor:pointer;display:inline;transition:color .15s ease,opacity .15s ease}:host([color="inherit"]) a{color:inherit}:host([color="primary"]) a{color:var(--ui-primary-color)}:host([color="secondary"]) a{color:var(--ui-secondary-color)}:host([color="success"]) a{color:var(--ui-success-color)}:host([color="error"]) a{color:var(--ui-error-color)}:host([color="warning"]) a{color:var(--ui-warning-color)}:host([color="info"]) a{color:var(--ui-info-icon-color)}:host([color="textPrimary"]) a{color:var(--ui-text-color)}:host([color="textSecondary"]) a{color:var(--ui-text-color-muted)}:host([underline="none"]) a{text-decoration:none}:host([underline="hover"]) a{text-decoration:none}:host([underline="hover"]) a:hover{text-decoration:underline}:host([underline="always"]) a{text-decoration:underline}:host([underline="always"]) a:hover{text-decoration:underline}a{text-decoration:underline}a:hover{opacity:.8}a:visited{color:var(--ui-link-color-visited)}:host([color="inherit"]) a:visited{color:inherit}:host([variant="h1"]) a{font-size:6rem;font-weight:300;letter-spacing:-1.5px;line-height:1.167}:host([variant="h2"]) a{font-size:3.75rem;font-weight:300;letter-spacing:-.5px;line-height:1.2}:host([variant="h3"]) a{font-size:3rem;font-weight:400;line-height:1.167}:host([variant="h4"]) a{font-size:2.125rem;font-weight:400;letter-spacing:.25px;line-height:1.235}:host([variant="h5"]) a{font-size:1.5rem;font-weight:400;line-height:1.334}:host([variant="h6"]) a{font-size:1.25rem;font-weight:500;letter-spacing:.15px;line-height:1.6}:host([variant="subtitle1"]) a{font-size:1rem;font-weight:400;letter-spacing:.15px;line-height:1.75}:host([variant="subtitle2"]) a{font-size:.875rem;font-weight:500;letter-spacing:.1px;line-height:1.57}:host([variant="body1"]) a{font-size:1rem;font-weight:400;letter-spacing:.15px;line-height:1.5}:host([variant="body2"]) a{font-size:.875rem;font-weight:400;letter-spacing:.15px;line-height:1.43}:host([variant="caption"]) a{font-size:.75rem;font-weight:400;letter-spacing:.4px;line-height:1.66}:host([variant="overline"]) a{font-size:.75rem;font-weight:400;letter-spacing:1px;line-height:2.66;text-transform:uppercase}:host([disabled]) a{opacity:.38;cursor:not-allowed;pointer-events:none}';
@@ -3863,7 +3866,7 @@ fo.styles = h(dl);
 fo = H([
   d("ui-menu-divider")
 ], fo);
-let xr = class extends c {
+let _r = class extends c {
   constructor() {
     super(...arguments), this.label = "";
   }
@@ -3876,13 +3879,13 @@ let xr = class extends c {
         `;
   }
 };
-xr.styles = h(hl);
+_r.styles = h(hl);
 H([
   s({ type: String })
-], xr.prototype, "label", 2);
-xr = H([
+], _r.prototype, "label", 2);
+_r = H([
   d("ui-menu-group")
-], xr);
+], _r);
 let St = class extends c {
   constructor() {
     super(...arguments), this.open = !1, this.placement = "bottom-start", this.closeOnSelect = !0, this.scrollable = !1, this._boundKeyDown = (e) => {
@@ -4413,7 +4416,7 @@ Y([
 Ce = Y([
   d("ui-speed-dial")
 ], Ce);
-const Pl = ':host{display:block}.line{background:var(--ui-stepper-connector-color);border-radius:2px;transition:background .3s}.line.completed{background:var(--ui-primary-color)}:host([orientation="horizontal"]) .line{height:2px;width:100%}:host([orientation="vertical"]) .line{width:2px;min-height:24px;margin:0 auto}', zl = ":host{display:block}.label{font-size:.875rem;font-weight:500;color:var(--ui-text-color);font-family:var(--ui-font-family);line-height:1.4}.optional{font-size:.75rem;color:var(--ui-text-color-muted);font-style:italic}:host([active]) .label{color:var(--ui-primary-color);font-weight:600}:host([disabled]) .label{color:var(--ui-text-color-muted)}:host([error]) .label{color:var(--ui-error-color)}", Dl = ":host{display:block;overflow:hidden}.panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease}.panel.open{grid-template-rows:1fr}.inner{overflow:hidden;padding:0 16px;transition:padding .25s ease}.panel.open .inner{padding:8px 16px 16px}.content{font-size:.875rem;color:var(--ui-text-color);font-family:var(--ui-font-family)}", El = ':host{display:flex;flex:1 1 0;min-width:0;font-family:var(--ui-font-family)}:host([orientation="horizontal"]){align-items:flex-start;padding-top:4px}:host([orientation="vertical"]){flex-direction:column;flex:none;width:100%}:host([alternative-label]){flex-direction:column;align-items:center;flex:1;min-width:0}.conn-wrap{flex:1 1 auto;min-width:12px;display:flex;align-items:flex-start;padding-top:15px}.conn-wrap ui-step-connector{flex:1}.alt-top{display:flex;align-items:center;width:100%}.alt-top .conn-fill{flex:1;display:flex;align-items:center}.alt-top .conn-fill ui-step-connector{flex:1}.step-header{display:flex;align-items:flex-start;gap:14px;min-width:0}.step-header ui-step-label,.step-btn ui-step-label{padding-top:5px;min-width:0}:host([alternative-label]) .alt-label-row{margin-top:8px;text-align:center;min-width:0;width:100%}.step-btn{background:none;border:none;padding:0;cursor:pointer;font-family:inherit;border-radius:6px;outline:none;display:flex;align-items:flex-start;gap:14px;min-width:0;text-align:left}.step-btn:focus-visible{outline:2px solid var(--ui-primary-color);outline-offset:3px}:host([disabled]) .step-btn{cursor:default}:host([alternative-label]) .step-btn{flex-direction:column;align-items:center;gap:0}.v-body{display:flex;margin-left:15px;min-height:16px}.v-line{width:2px;background:var(--ui-stepper-connector-color);border-radius:2px;flex-shrink:0;transition:background .3s;margin-right:14px}.v-line.completed{background:var(--ui-primary-color)}:host([last]) .v-line{background:transparent}.v-content{flex:1;padding-bottom:8px;min-width:0}.icon-circle{width:var(--ui-stepper-icon-size, 32px);height:var(--ui-stepper-icon-size, 32px);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8125rem;font-weight:700;border:2px solid var(--ui-input-border-color);color:var(--ui-text-color-muted);background:transparent;transition:all .2s;flex-shrink:0;box-sizing:border-box}.icon-circle.active{background:var(--ui-primary-color);border-color:var(--ui-primary-color);color:var(--ui-text-color-on-primary);box-shadow:0 0 0 4px var(--ui-primary-focus-ring)}.icon-circle.completed{background:var(--ui-primary-color);border-color:var(--ui-primary-color);color:var(--ui-text-color-on-primary)}.icon-circle.error{border-color:var(--ui-error-color);color:var(--ui-error-color)}:host([disabled]) .icon-circle{opacity:.4}', Ol = ":host{display:block;font-family:var(--ui-font-family)}.stepper{display:flex;padding:16px 24px;background:var(--ui-surface-1)}.stepper.horizontal{align-items:stretch;flex-direction:row}.stepper.vertical{flex-direction:column;gap:0}.stepper.alt{align-items:flex-start}", Tl = ':host{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;gap:8px;background:var(--ui-surface-1);font-family:var(--ui-font-family)}:host([position="static"]){border:1px solid var(--ui-border-color);border-radius:8px}:host([position="bottom"]){border-top:1px solid var(--ui-border-color)}:host([position="top"]){border-bottom:1px solid var(--ui-border-color)}.progress{display:flex;align-items:center;justify-content:center;flex:1;gap:0}.text{font-size:.8rem;color:var(--ui-text-color-muted)}.dots{display:flex;gap:6px}.dot{width:10px;height:10px;border-radius:50%;background:var(--ui-input-border-color);transition:background .2s}.dot.active{background:var(--ui-primary-color)}.bar-track{flex:1;height:4px;background:var(--ui-border-color);border-radius:2px;overflow:hidden}.bar-fill{height:100%;background:var(--ui-primary-color);border-radius:2px;transition:width .3s}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.nav-btn{padding:6px 14px;border-radius:6px;font-size:.8rem;font-family:inherit;cursor:pointer;transition:opacity .15s}.nav-btn:disabled{opacity:.38;cursor:default}.nav-btn.back{background:var(--ui-surface-1);color:var(--ui-text-color);border:1px solid var(--ui-border-color)}.nav-btn.next{background:var(--ui-primary-color);color:var(--ui-text-color-on-primary);border:none}';
+const zl = ':host{display:block}.line{background:var(--ui-stepper-connector-color);border-radius:2px;transition:background .3s}.line.completed{background:var(--ui-primary-color)}:host([orientation="horizontal"]) .line{height:2px;width:100%}:host([orientation="vertical"]) .line{width:2px;min-height:24px;margin:0 auto}', Pl = ":host{display:block}.label{font-size:.875rem;font-weight:500;color:var(--ui-text-color);font-family:var(--ui-font-family);line-height:1.4}.optional{font-size:.75rem;color:var(--ui-text-color-muted);font-style:italic}:host([active]) .label{color:var(--ui-primary-color);font-weight:600}:host([disabled]) .label{color:var(--ui-text-color-muted)}:host([error]) .label{color:var(--ui-error-color)}", Dl = ":host{display:block;overflow:hidden}.panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease}.panel.open{grid-template-rows:1fr}.inner{overflow:hidden;padding:0 16px;transition:padding .25s ease}.panel.open .inner{padding:8px 16px 16px}.content{font-size:.875rem;color:var(--ui-text-color);font-family:var(--ui-font-family)}", El = ':host{display:flex;flex:1 1 0;min-width:0;font-family:var(--ui-font-family)}:host([orientation="horizontal"]){align-items:flex-start;padding-top:4px}:host([orientation="vertical"]){flex-direction:column;flex:none;width:100%}:host([alternative-label]){flex-direction:column;align-items:center;flex:1;min-width:0}.conn-wrap{flex:1 1 auto;min-width:12px;display:flex;align-items:flex-start;padding-top:15px}.conn-wrap ui-step-connector{flex:1}.alt-top{display:flex;align-items:center;width:100%}.alt-top .conn-fill{flex:1;display:flex;align-items:center}.alt-top .conn-fill ui-step-connector{flex:1}.step-header{display:flex;align-items:flex-start;gap:14px;min-width:0}.step-header ui-step-label,.step-btn ui-step-label{padding-top:5px;min-width:0}:host([alternative-label]) .alt-label-row{margin-top:8px;text-align:center;min-width:0;width:100%}.step-btn{background:none;border:none;padding:0;cursor:pointer;font-family:inherit;border-radius:6px;outline:none;display:flex;align-items:flex-start;gap:14px;min-width:0;text-align:left}.step-btn:focus-visible{outline:2px solid var(--ui-primary-color);outline-offset:3px}:host([disabled]) .step-btn{cursor:default}:host([alternative-label]) .step-btn{flex-direction:column;align-items:center;gap:0}.v-body{display:flex;margin-left:15px;min-height:16px}.v-line{width:2px;background:var(--ui-stepper-connector-color);border-radius:2px;flex-shrink:0;transition:background .3s;margin-right:14px}.v-line.completed{background:var(--ui-primary-color)}:host([last]) .v-line{background:transparent}.v-content{flex:1;padding-bottom:8px;min-width:0}.icon-circle{width:var(--ui-stepper-icon-size, 32px);height:var(--ui-stepper-icon-size, 32px);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8125rem;font-weight:700;border:2px solid var(--ui-input-border-color);color:var(--ui-text-color-muted);background:transparent;transition:all .2s;flex-shrink:0;box-sizing:border-box}.icon-circle.active{background:var(--ui-primary-color);border-color:var(--ui-primary-color);color:var(--ui-text-color-on-primary);box-shadow:0 0 0 4px var(--ui-primary-focus-ring)}.icon-circle.completed{background:var(--ui-primary-color);border-color:var(--ui-primary-color);color:var(--ui-text-color-on-primary)}.icon-circle.error{border-color:var(--ui-error-color);color:var(--ui-error-color)}:host([disabled]) .icon-circle{opacity:.4}', Ol = ":host{display:block;font-family:var(--ui-font-family)}.stepper{display:flex;padding:16px 24px;background:var(--ui-surface-1)}.stepper.horizontal{align-items:stretch;flex-direction:row}.stepper.vertical{flex-direction:column;gap:0}.stepper.alt{align-items:flex-start}", Tl = ':host{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;gap:8px;background:var(--ui-surface-1);font-family:var(--ui-font-family)}:host([position="static"]){border:1px solid var(--ui-border-color);border-radius:8px}:host([position="bottom"]){border-top:1px solid var(--ui-border-color)}:host([position="top"]){border-bottom:1px solid var(--ui-border-color)}.progress{display:flex;align-items:center;justify-content:center;flex:1;gap:0}.text{font-size:.8rem;color:var(--ui-text-color-muted)}.dots{display:flex;gap:6px}.dot{width:10px;height:10px;border-radius:50%;background:var(--ui-input-border-color);transition:background .2s}.dot.active{background:var(--ui-primary-color)}.bar-track{flex:1;height:4px;background:var(--ui-border-color);border-radius:2px;overflow:hidden}.bar-fill{height:100%;background:var(--ui-primary-color);border-radius:2px;transition:width .3s}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.nav-btn{padding:6px 14px;border-radius:6px;font-size:.8rem;font-family:inherit;cursor:pointer;transition:opacity .15s}.nav-btn:disabled{opacity:.38;cursor:default}.nav-btn.back{background:var(--ui-surface-1);color:var(--ui-text-color);border:1px solid var(--ui-border-color)}.nav-btn.next{background:var(--ui-primary-color);color:var(--ui-text-color-on-primary);border:none}';
 var Al = Object.defineProperty, Bl = Object.getOwnPropertyDescriptor, _ = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? Bl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
@@ -4428,7 +4431,7 @@ let Xi = class extends c {
     return l`<div class="line ${f({ completed: this.completed })}"></div>`;
   }
 };
-Xi.styles = h(Pl);
+Xi.styles = h(zl);
 _([
   s({ reflect: !0 })
 ], Xi.prototype, "orientation", 2);
@@ -4449,7 +4452,7 @@ let xi = class extends c {
     `;
   }
 };
-xi.styles = h(zl);
+xi.styles = h(Pl);
 _([
   s({ type: Boolean, reflect: !0 })
 ], xi.prototype, "active", 2);
@@ -4462,7 +4465,7 @@ _([
 xi = _([
   d("ui-step-label")
 ], xi);
-let _r = class extends c {
+let wr = class extends c {
   constructor() {
     super(...arguments), this.open = !0;
   }
@@ -4478,13 +4481,13 @@ let _r = class extends c {
             </div>`;
   }
 };
-_r.styles = h(Dl);
+wr.styles = h(Dl);
 _([
   s({ type: Boolean, reflect: !0 })
-], _r.prototype, "open", 2);
-_r = _([
+], wr.prototype, "open", 2);
+wr = _([
   d("ui-step-content")
-], _r);
+], wr);
 let oe = class extends c {
   constructor() {
     super(...arguments), this.active = !1, this.completed = !1, this.disabled = !1, this.optional = !1, this.error = !1, this.last = !1, this.clickable = !1, this.orientation = "horizontal", this.alternativeLabel = !1, this.stepIndex = 0, this.optionalLabel = "Optional", this.prevCompleted = !1;
@@ -4774,7 +4777,7 @@ $([
 lt = $([
   d("ui-tab")
 ], lt);
-let wr = class extends c {
+let kr = class extends c {
   constructor() {
     super(...arguments), this.value = "";
   }
@@ -4782,13 +4785,13 @@ let wr = class extends c {
     return l`<div class="panel" role="tabpanel"><slot></slot></div>`;
   }
 };
-wr.styles = h(jl);
+kr.styles = h(jl);
 $([
   s({ reflect: !0 })
-], wr.prototype, "value", 2);
-wr = $([
+], kr.prototype, "value", 2);
+kr = $([
   d("ui-tab-panel")
-], wr);
+], kr);
 let le = class extends c {
   constructor() {
     super(...arguments), this.orientation = "horizontal", this.variant = "standard", this.centered = !1, this.scrollButtons = "auto", this.ariaLabel = "", this._canBack = !1, this._canFwd = !1;
@@ -4973,7 +4976,7 @@ $([
 Me = $([
   d("ui-tabs")
 ], Me);
-const Wl = ":host{display:block}";
+const Wl = ":host{display:block;background-color:var(--ui-box-bg, transparent);color:var(--ui-box-color, inherit);border:var(--ui-box-border, none);border-radius:var(--ui-box-border-radius, 0);box-shadow:var(--ui-box-shadow, none);padding:var(--ui-box-padding, 0)}";
 var Gl = Object.defineProperty, Xl = Object.getOwnPropertyDescriptor, k = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? Xl(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
@@ -5363,7 +5366,7 @@ O = N([
   d("ui-grid")
 ], O);
 const oc = ":host{display:block}.stack-wrapper{display:flex;box-sizing:border-box}.stack-wrapper.direction-column,.stack-wrapper.direction-column-reverse{width:100%}::slotted(ui-divider){margin:0!important}.stack-wrapper.no-flex-gap.direction-column ::slotted(*:not(:first-child)){margin-top:var(--ui-stack-spacing, 0px)}.stack-wrapper.no-flex-gap.direction-column-reverse ::slotted(*:not(:last-child)){margin-bottom:var(--ui-stack-spacing, 0px)}.stack-wrapper.no-flex-gap.direction-row ::slotted(*:not(:first-child)){margin-left:var(--ui-stack-spacing, 0px)}.stack-wrapper.no-flex-gap.direction-row-reverse ::slotted(*:not(:last-child)){margin-right:var(--ui-stack-spacing, 0px)}";
-var sc = Object.defineProperty, ac = Object.getOwnPropertyDescriptor, ri = (e, t, i, o) => {
+var sc = Object.defineProperty, ac = Object.getOwnPropertyDescriptor, oi = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? ac(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && sc(t, i, r), r;
@@ -5443,7 +5446,7 @@ let ae = class extends c {
 };
 ae.styles = h(oc);
 ae._breakPoints = {};
-ri([
+oi([
   s({
     converter: {
       fromAttribute: (e) => {
@@ -5457,22 +5460,22 @@ ri([
     }
   })
 ], ae.prototype, "direction", 2);
-ri([
+oi([
   s({ type: Object })
 ], ae.prototype, "spacing", 2);
-ri([
+oi([
   s({ type: String })
 ], ae.prototype, "alignItems", 2);
-ri([
+oi([
   s({ type: String })
 ], ae.prototype, "justifyContent", 2);
-ri([
+oi([
   s({ type: Boolean })
 ], ae.prototype, "useFlexGap", 2);
-ri([
+oi([
   v()
 ], ae.prototype, "_currentWidth", 2);
-ae = ri([
+ae = oi([
   d("ui-stack")
 ], ae);
 const nc = ":host{display:block}.image-list{display:grid;overflow:hidden;box-sizing:border-box}.variant-standard,.variant-quilted,.variant-woven{grid-auto-rows:var(--ui-image-list-row-height, 164px)}.variant-masonry{display:block}";
@@ -5514,7 +5517,7 @@ It = Li([
   d("ui-image-list")
 ], It);
 const dc = ':host{display:block;position:relative;overflow:hidden}:host([bar-position="below"]){display:flex;flex-direction:column;overflow:visible}:host(.masonry){break-inside:avoid;margin-bottom:var(--ui-image-list-gap, 4px)}.item-wrapper{width:100%;height:100%;position:relative;overflow:hidden}:host([bar-position="below"]) .item-wrapper{flex:1 1 auto;overflow:hidden}:host(.masonry) .item-wrapper{height:auto}::slotted(img){width:100%;height:100%;object-fit:var(--ui-image-fit, cover);display:block}:host(.masonry) ::slotted(img){height:auto}::slotted(ui-image-list-item-bar){position:absolute;bottom:0;left:0;right:0}::slotted(ui-image-list-item-bar[position="top"]){bottom:auto;top:0}:host([bar-position="below"]) ::slotted(ui-image-list-item-bar){position:static}';
-var hc = Object.defineProperty, pc = Object.getOwnPropertyDescriptor, oi = (e, t, i, o) => {
+var hc = Object.defineProperty, pc = Object.getOwnPropertyDescriptor, si = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? pc(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && hc(t, i, r), r;
@@ -5543,25 +5546,25 @@ let ct = class extends c {
   }
 };
 ct.styles = h(dc);
-oi([
+si([
   s({ type: Number })
 ], ct.prototype, "rows", 2);
-oi([
+si([
   s({ type: Number })
 ], ct.prototype, "cols", 2);
-oi([
+si([
   s({ type: String, attribute: "bar-position", reflect: !0 })
 ], ct.prototype, "barPosition", 2);
-oi([
+si([
   s({ type: String })
 ], ct.prototype, "weave", 2);
-oi([
+si([
   s({ type: String, attribute: "aspect-ratio", reflect: !0 })
 ], ct.prototype, "aspectRatio", 2);
-oi([
+si([
   s({ type: String })
 ], ct.prototype, "fit", 2);
-ct = oi([
+ct = si([
   d("ui-image-list-item")
 ], ct);
 const uc = ':host{display:block;box-sizing:border-box;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.3) 70%,transparent 100%);color:var(--ui-image-bar-overlay-text, var(--ui-text-color-on-primary));padding:12px 12px 8px;font-family:var(--ui-font-family)}:host([position="top"]){background:linear-gradient(to bottom,rgba(0,0,0,.7) 0%,rgba(0,0,0,.3) 70%,transparent 100%);padding:8px 12px 12px}:host([position="below"]){background:var(--ui-surface-1);color:var(--ui-text-color);border-top:1px solid var(--ui-border-color);padding:8px 12px}.bar-inner{display:flex;align-items:center;gap:8px}.bar-text{flex:1;min-width:0}.bar-title{font-size:.875rem;font-weight:600;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.bar-subtitle{font-size:.75rem;font-weight:400;opacity:.8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:2px}.bar-action{flex-shrink:0;display:flex;align-items:center}::slotted([slot="action"]){color:var(--ui-image-bar-overlay-text, var(--ui-text-color-on-primary))}:host([position="below"]) ::slotted([slot="action"]){color:var(--ui-text-color)}';
@@ -5570,7 +5573,7 @@ var fc = Object.defineProperty, bc = Object.getOwnPropertyDescriptor, Zo = (e, t
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && fc(t, i, r), r;
 };
-let kr = class extends c {
+let $r = class extends c {
   constructor() {
     super(...arguments), this.position = "bottom";
   }
@@ -5588,15 +5591,15 @@ let kr = class extends c {
     `;
   }
 };
-kr.styles = h(uc);
+$r.styles = h(uc);
 Zo([
   s({ type: String, reflect: !0 })
-], kr.prototype, "position", 2);
-kr = Zo([
+], $r.prototype, "position", 2);
+$r = Zo([
   d("ui-image-list-item-bar")
-], kr);
+], $r);
 const vc = ':host{display:inline-block;font-family:var(--ui-font-family);-webkit-user-select:none;user-select:none}.calendar{width:296px;background:var(--ui-surface-1);border-radius:var(--ui-border-radius-xl);overflow:hidden}.header{display:flex;align-items:center;justify-content:space-between;padding:12px 8px 8px}.header-label{font-size:.9375rem;font-weight:600;color:var(--ui-text-color);cursor:pointer;padding:4px 8px;border-radius:6px;transition:background .12s}.header-label:hover{background:var(--ui-hover-color)}.nav-btn{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border:none;background:transparent;cursor:pointer;border-radius:50%;color:var(--ui-text-color-muted);font-size:1rem;transition:background .12s}.nav-btn:hover{background:var(--ui-hover-color)}.nav-btn:disabled{opacity:.3;cursor:default}.dow-row{display:grid;grid-template-columns:repeat(7,1fr);padding:0 8px;margin-bottom:4px}.dow-cell{text-align:center;font-size:.6875rem;font-weight:600;color:var(--ui-text-color-muted);padding:4px 0;text-transform:uppercase;letter-spacing:.04em}.day-grid{display:grid;grid-template-columns:repeat(7,1fr);padding:0 8px 12px;gap:2px 0}.day-cell{display:flex;align-items:center;justify-content:center;height:36px;width:100%;border:none;background:transparent;cursor:pointer;border-radius:50%;font-size:.8125rem;color:var(--ui-text-color);transition:background .1s,color .1s;position:relative}.day-cell:hover:not(.disabled):not(.selected){background:var(--ui-hover-color)}.day-cell.other-month{color:var(--ui-text-color-muted)}.day-cell.today:not(.selected){color:var(--ui-primary-color);font-weight:700}.day-cell.today:not(.selected):after{content:"";position:absolute;bottom:4px;left:50%;transform:translate(-50%);width:4px;height:4px;border-radius:50%;background:var(--ui-primary-color)}.day-cell.selected{background:var(--ui-primary-color);color:var(--ui-text-color-on-primary);font-weight:700}.day-cell.selected:hover{background:var(--ui-primary-color-hover)}.day-cell.disabled{opacity:.35;cursor:not-allowed;pointer-events:none}.year-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px;max-height:220px;overflow-y:auto}.year-btn{padding:8px 4px;border:none;background:transparent;cursor:pointer;border-radius:6px;font-size:.875rem;color:var(--ui-text-color);transition:background .12s}.year-btn:hover{background:var(--ui-hover-color)}.year-btn.selected-year{background:var(--ui-primary-color);color:var(--ui-text-color-on-primary);font-weight:700}.month-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px}.month-btn{padding:10px 4px;border:none;background:transparent;cursor:pointer;border-radius:6px;font-size:.8125rem;color:var(--ui-text-color);transition:background .12s}.month-btn:hover{background:var(--ui-hover-color)}.month-btn.selected-month{background:var(--ui-primary-color);color:var(--ui-text-color-on-primary);font-weight:700}', gc = ":host{display:inline-block;font-family:var(--ui-font-family)}.field-wrapper{position:relative;display:inline-flex;align-items:center}.field-label{display:block;font-size:.75rem;font-weight:500;color:var(--ui-text-color-muted);margin-bottom:4px}.field-input{font-family:inherit;font-size:.9375rem;color:var(--ui-text-color);background:var(--ui-input-bg);border:1.5px solid var(--ui-border-color);border-radius:var(--ui-border-radius-md);padding:10px 44px 10px 14px;width:180px;outline:none;transition:border-color .15s,box-shadow .15s;box-sizing:border-box;cursor:text}.field-input::placeholder{color:var(--ui-input-placeholder-color)}.field-input:focus{border-color:var(--ui-primary-color);box-shadow:0 0 0 3px var(--ui-primary-focus-ring)}:host([disabled]) .field-input{background:var(--ui-input-disabled-bg);color:var(--ui-text-color-muted);cursor:not-allowed;border-color:var(--ui-border-color)}:host([readonly]) .field-input{cursor:default}.calendar-icon-btn{position:absolute;right:10px;display:flex;align-items:center;justify-content:center;width:28px;height:28px;border:none;background:transparent;cursor:pointer;border-radius:50%;color:var(--ui-text-color-muted);transition:background .12s,color .12s;font-size:1rem}.calendar-icon-btn:hover{background:var(--ui-hover-color);color:var(--ui-primary-color)}:host([disabled]) .calendar-icon-btn{pointer-events:none;opacity:.4}:host([readonly]) .calendar-icon-btn{pointer-events:none}:host([error]) .field-input{border-color:var(--ui-error-color)}:host([error]) .field-input:focus{box-shadow:0 0 0 3px var(--ui-error-focus-ring)}.helper-text{font-size:.75rem;margin-top:4px;color:var(--ui-text-color-muted)}:host([error]) .helper-text{color:var(--ui-error-color)}.popover-anchor{position:relative;display:inline-block}.popover{position:absolute;top:calc(100% + 6px);left:0;z-index:1400;background:var(--ui-surface-1);border-radius:var(--ui-border-radius-xl);box-shadow:var(--ui-shadow-lg);transform-origin:top left;transform:scale(.94) translateY(-4px);opacity:0;visibility:hidden;transition:transform .15s cubic-bezier(.4,0,.2,1),opacity .15s,visibility .15s;pointer-events:none}.popover.open{transform:scale(1) translateY(0);opacity:1;visibility:visible;pointer-events:auto}.popover-actions{display:flex;justify-content:flex-end;gap:8px;padding:4px 12px 12px;border-top:1px solid var(--ui-border-color)}.action-btn{font-family:inherit;font-size:.875rem;font-weight:600;padding:6px 14px;border:none;border-radius:6px;cursor:pointer;transition:background .12s}.action-btn.cancel{background:transparent;color:var(--ui-text-color-muted)}.action-btn.cancel:hover{background:var(--ui-hover-color)}.action-btn.ok{background:var(--ui-primary-color);color:var(--ui-text-color-on-primary)}.action-btn.ok:hover{background:var(--ui-primary-color-hover)}.static-wrapper{display:inline-block;border-radius:var(--ui-border-radius-xl);box-shadow:var(--ui-shadow-sm),0 0 0 1px var(--ui-border-color);overflow:hidden}.click-away{display:none;position:fixed;inset:0;z-index:1399}.click-away.open{display:block}";
-var mc = Object.defineProperty, yc = Object.getOwnPropertyDescriptor, P = (e, t, i, o) => {
+var mc = Object.defineProperty, yc = Object.getOwnPropertyDescriptor, z = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? yc(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && mc(t, i, r), r;
@@ -5620,7 +5623,7 @@ function Lt(e) {
   const [t, i, o] = e.split("-").map(Number);
   return !t || !i || !o ? null : new Date(t, i - 1, o);
 }
-function vr(e) {
+function gr(e) {
   const t = e.getFullYear(), i = String(e.getMonth() + 1).padStart(2, "0"), o = String(e.getDate()).padStart(2, "0");
   return `${t}-${i}-${o}`;
 }
@@ -5629,48 +5632,48 @@ function _c(e) {
   return t ? `${String(t.getMonth() + 1).padStart(2, "0")}/${String(t.getDate()).padStart(2, "0")}/${t.getFullYear()}` : "";
 }
 function wc() {
-  return vr(/* @__PURE__ */ new Date());
+  return gr(/* @__PURE__ */ new Date());
 }
-function li(e, t) {
+function ci(e, t) {
   return e.getFullYear() === t.getFullYear() && e.getMonth() === t.getMonth() && e.getDate() === t.getDate();
 }
 function kc(e, t, i, o, r) {
   const a = [], n = new Date(e, t, 1), p = wc(), u = Lt(p), y = i ? Lt(i) : null, g = o ? Lt(o) : null, T = r ? Lt(r) : null, Fe = n.getDay();
   for (let ue = Fe - 1; ue >= 0; ue--) {
-    const D = new Date(e, t, -ue), Ri = vr(D);
+    const D = new Date(e, t, -ue), Ri = gr(D);
     a.push({
       date: D,
       iso: Ri,
       day: D.getDate(),
       isCurrentMonth: !1,
-      isToday: li(D, u),
-      isSelected: y ? li(D, y) : !1,
+      isToday: ci(D, u),
+      isSelected: y ? ci(D, y) : !1,
       isDisabled: (g ? D < g : !1) || (T ? D > T : !1)
     });
   }
-  const ur = new Date(e, t + 1, 0).getDate();
-  for (let ue = 1; ue <= ur; ue++) {
-    const D = new Date(e, t, ue), Ri = vr(D);
+  const fr = new Date(e, t + 1, 0).getDate();
+  for (let ue = 1; ue <= fr; ue++) {
+    const D = new Date(e, t, ue), Ri = gr(D);
     a.push({
       date: D,
       iso: Ri,
       day: ue,
       isCurrentMonth: !0,
-      isToday: li(D, u),
-      isSelected: y ? li(D, y) : !1,
+      isToday: ci(D, u),
+      isSelected: y ? ci(D, y) : !1,
       isDisabled: (g ? D < g : !1) || (T ? D > T : !1)
     });
   }
   const is = 42 - a.length;
   for (let ue = 1; ue <= is; ue++) {
-    const D = new Date(e, t + 1, ue), Ri = vr(D);
+    const D = new Date(e, t + 1, ue), Ri = gr(D);
     a.push({
       date: D,
       iso: Ri,
       day: ue,
       isCurrentMonth: !1,
-      isToday: li(D, u),
-      isSelected: y ? li(D, y) : !1,
+      isToday: ci(D, u),
+      isSelected: y ? ci(D, y) : !1,
       isDisabled: (g ? D < g : !1) || (T ? D > T : !1)
     });
   }
@@ -5781,28 +5784,28 @@ let Xe = class extends c {
   }
 };
 Xe.styles = h(vc);
-P([
+z([
   s({ type: String })
 ], Xe.prototype, "value", 2);
-P([
+z([
   s({ type: String })
 ], Xe.prototype, "min", 2);
-P([
+z([
   s({ type: String })
 ], Xe.prototype, "max", 2);
-P([
+z([
   s({ type: Boolean })
 ], Xe.prototype, "disabled", 2);
-P([
+z([
   v()
 ], Xe.prototype, "_viewYear", 2);
-P([
+z([
   v()
 ], Xe.prototype, "_viewMonth", 2);
-P([
+z([
   v()
 ], Xe.prototype, "_mode", 2);
-Xe = P([
+Xe = z([
   d("ui-date-picker-calendar")
 ], Xe);
 let J = class extends c {
@@ -5958,46 +5961,46 @@ let J = class extends c {
   }
 };
 J.styles = h(gc);
-P([
+z([
   s({ type: String })
 ], J.prototype, "value", 2);
-P([
+z([
   s({ type: String })
 ], J.prototype, "label", 2);
-P([
+z([
   s({ type: String })
 ], J.prototype, "placeholder", 2);
-P([
+z([
   s({ type: String })
 ], J.prototype, "name", 2);
-P([
+z([
   s({ type: String })
 ], J.prototype, "variant", 2);
-P([
+z([
   s({ type: String })
 ], J.prototype, "min", 2);
-P([
+z([
   s({ type: String })
 ], J.prototype, "max", 2);
-P([
+z([
   s({ type: Boolean, reflect: !0 })
 ], J.prototype, "disabled", 2);
-P([
+z([
   s({ type: Boolean, reflect: !0 })
 ], J.prototype, "readonly", 2);
-P([
+z([
   s({ type: Boolean, reflect: !0 })
 ], J.prototype, "error", 2);
-P([
+z([
   s({ type: String, attribute: "helper-text" })
 ], J.prototype, "helperText", 2);
-P([
+z([
   v()
 ], J.prototype, "_open", 2);
-P([
+z([
   v()
 ], J.prototype, "_pendingValue", 2);
-J = P([
+J = z([
   d("ui-date-picker")
 ], J);
 const $c = ":host{display:inline-block;font-family:var(--ui-font-family)}.field-label{display:block;font-size:.75rem;font-weight:500;letter-spacing:.01em;color:var(--ui-text-color-muted);margin-bottom:5px;transition:color .15s}:host([error]) .field-label{color:var(--ui-error-color)}.field-label.focused{color:var(--ui-primary-color)}:host([error]) .field-label.focused{color:var(--ui-error-color)}.field-container{display:inline-flex;align-items:center;gap:4px;background:var(--ui-input-bg);border:1.5px solid var(--ui-border-color);border-radius:var(--ui-border-radius-md);padding:0 10px;height:44px;min-width:200px;cursor:text;box-sizing:border-box;transition:border-color .15s,box-shadow .15s;position:relative}.field-container.focused{border-color:var(--ui-primary-color);box-shadow:0 0 0 3px var(--ui-primary-focus-ring)}:host([error]) .field-container{border-color:var(--ui-error-color)}:host([error]) .field-container.focused{box-shadow:0 0 0 3px var(--ui-error-focus-ring)}:host([disabled]) .field-container{background:var(--ui-input-disabled-bg);border-color:var(--ui-border-color);cursor:not-allowed}:host([readonly]) .field-container{cursor:default}.segments{display:flex;align-items:center;flex:1;gap:1px;outline:none;min-height:100%}.segment{display:inline-flex;align-items:center;justify-content:center;border-radius:4px;padding:2px 4px;font-size:.9375rem;font-variant-numeric:tabular-nums;color:var(--ui-text-color);min-width:2ch;line-height:1;transition:background .1s;cursor:text;-webkit-user-select:none;user-select:none}.segment.placeholder{color:var(--ui-input-placeholder-color)}.segment.active{background:var(--ui-primary-color);color:var(--ui-text-color-on-primary);border-radius:3px}:host([disabled]) .segment{color:var(--ui-text-color-muted)}:host([disabled]) .segment.active{background:var(--ui-border-color);color:var(--ui-text-color-muted)}.segment-year{min-width:4ch}.separator{color:var(--ui-text-color-muted);font-size:.9375rem;pointer-events:none;line-height:1}.field-actions{display:flex;align-items:center;gap:2px;margin-left:auto}.icon-btn{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border:none;background:transparent;cursor:pointer;border-radius:50%;color:var(--ui-text-color-muted);font-size:.875rem;transition:background .12s,color .12s;flex-shrink:0;padding:0}.icon-btn:hover{background:var(--ui-hover-color);color:var(--ui-text-color)}:host([disabled]) .icon-btn{pointer-events:none;opacity:0}.helper{display:block;font-size:.75rem;margin-top:5px;color:var(--ui-text-color-muted)}:host([error]) .helper{color:var(--ui-error-color)}";
@@ -6006,10 +6009,10 @@ var Sc = Object.defineProperty, Cc = Object.getOwnPropertyDescriptor, te = (e, t
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && Sc(t, i, r), r;
 };
-function fr(e, t, i) {
+function br(e, t, i) {
   return Math.min(Math.max(e, t), i);
 }
-function br(e, t) {
+function vr(e, t) {
   return e < 1 || e > 12 ? 31 : new Date(t || 2e3, e, 0).getDate();
 }
 function Ic(e) {
@@ -6043,8 +6046,8 @@ let A = class extends c {
   }
   // ── Form value sync ──────────────────────────────────────────────────────
   _syncFormValue() {
-    const e = Go(this._month, this._day, this._year);
-    this._internals.setFormValue?.(e || null);
+    const t = Go(this._month, this._day, this._year) || null;
+    this._internals.setFormValue?.(t);
   }
   // ── Internal: segment navigation ─────────────────────────────────────────
   _setActive(e) {
@@ -6057,7 +6060,7 @@ let A = class extends c {
       if (this._active === "month" && e >= 1 && e <= 12)
         this._month = e;
       else if (this._active === "day") {
-        const t = br(this._month ?? 1, this._year ?? 2e3);
+        const t = vr(this._month ?? 1, this._year ?? 2e3);
         e >= 1 && e <= t && (this._day = e);
       }
     }
@@ -6093,14 +6096,15 @@ let A = class extends c {
         o >= 1 && o <= 12 ? (this._month = o, this._buf = "", this._nextSegment()) : (this._buf = String(e), e >= 2 && e <= 9 && (this._month = e, this._buf = "", this._nextSegment()));
       }
     else if (t === "day") {
-      const o = br(this._month ?? 1, this._year ?? 2e3);
+      const o = vr(this._month ?? 1, this._year ?? 2e3);
       if (i.length === 1)
         e >= 4 && e <= 9 ? (this._day = e, this._buf = "", this._nextSegment()) : this._buf = i;
       else {
         const r = parseInt(i);
         r >= 1 && r <= o ? (this._day = r, this._buf = "", this._nextSegment()) : (this._buf = String(e), e >= 4 && e <= 9 && (this._day = e, this._buf = "", this._nextSegment()));
       }
-    } else t === "year" && (this._buf = i.slice(-4), this._buf.length === 4 && (this._year = parseInt(this._buf), this._buf = "", this._checkAndEmit()));
+    } else
+      this._buf = i.slice(-4), this._buf.length === 4 && (this._year = parseInt(this._buf), this._buf = "", this._checkAndEmit());
   }
   // ── Internal: increment / decrement ──────────────────────────────────────
   _adjust(e) {
@@ -6108,13 +6112,13 @@ let A = class extends c {
     if (t) {
       if (this._buf = "", t === "month") {
         const i = this._month ?? (e > 0 ? 0 : 13);
-        this._month = fr(i + e, 1, 12), this._day !== null && (this._day = fr(this._day, 1, br(this._month, this._year ?? 2e3)));
+        this._month = br(i + e, 1, 12), this._day !== null && (this._day = br(this._day, 1, vr(this._month, this._year ?? 2e3)));
       } else if (t === "day") {
-        const i = br(this._month ?? 1, this._year ?? 2e3), o = this._day ?? (e > 0 ? 0 : i + 1);
-        this._day = fr(o + e, 1, i);
-      } else if (t === "year") {
+        const i = vr(this._month ?? 1, this._year ?? 2e3), o = this._day ?? (e > 0 ? 0 : i + 1);
+        this._day = br(o + e, 1, i);
+      } else {
         const i = this._year ?? (/* @__PURE__ */ new Date()).getFullYear();
-        this._year = fr(i + e, 1, 9999);
+        this._year = br(i + e, 1, 9999);
       }
       this._checkAndEmit();
     }
@@ -6154,7 +6158,7 @@ let A = class extends c {
           break;
         case "Backspace":
         case "Delete":
-          e.preventDefault(), e.stopPropagation(), this._buf = "", this._active === "month" ? this._month = null : this._active === "day" ? this._day = null : this._active === "year" && (this._year = null);
+          e.preventDefault(), e.stopPropagation(), this._buf = "", this._active === "month" && (this._month = null), this._active === "day" && (this._day = null), this._active === "year" && (this._year = null);
           break;
         case "Escape":
           e.preventDefault(), e.stopPropagation(), this.clear();
@@ -6282,7 +6286,7 @@ te([
 A = te([
   d("ui-date-field")
 ], A);
-const Pc = ":host{display:inline-block;font-family:var(--ui-font-family)}.label{display:block;font-size:.75rem;font-weight:500;color:var(--ui-text-color-muted);margin-bottom:5px}.label.focused{color:var(--ui-primary-color)}:host([error]) .label{color:var(--ui-error-color)}.container{display:inline-flex;align-items:center;gap:4px;background:var(--ui-input-bg);border:1.5px solid var(--ui-border-color);border-radius:var(--ui-border-radius-md);padding:0 10px;height:var(--ui-time-field-height,44px);min-width:var(--ui-time-field-min-width,160px);cursor:text;box-sizing:border-box;transition:border-color .15s,box-shadow .15s}.container.focused{border-color:var(--ui-primary-color);box-shadow:0 0 0 3px var(--ui-primary-focus-ring)}:host([error]) .container{border-color:var(--ui-error-color)}:host([disabled]) .container{background:var(--ui-input-disabled-bg);border-color:var(--ui-border-color);cursor:not-allowed}.segments{display:flex;align-items:center;flex:1;gap:1px;outline:none;min-height:100%}.seg{display:inline-flex;align-items:center;justify-content:center;border-radius:3px;padding:2px 4px;font-size:.9375rem;font-variant-numeric:tabular-nums;color:var(--ui-text-color);min-width:2ch;line-height:1;cursor:text;-webkit-user-select:none;user-select:none;transition:background .1s}.seg.active{background:var(--ui-primary-color);color:var(--ui-text-color-on-primary)}.seg.placeholder{color:var(--ui-text-color-muted)}.seg.meridiem{min-width:3ch}.sep{color:var(--ui-text-color-muted);font-size:.9375rem;pointer-events:none}.icon-btn{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border:none;background:transparent;cursor:pointer;border-radius:50%;color:var(--ui-text-color-muted);font-size:.875rem;margin-left:auto;transition:background .12s}.icon-btn:hover{background:var(--ui-hover-color)}.helper{display:block;font-size:.75rem;margin-top:5px;color:var(--ui-text-color-muted)}:host([error]) .helper{color:var(--ui-error-color)}", zc = ":host{display:block;font-family:var(--ui-font-family)}.clock{overflow-y:auto;max-height:var(--ui-digital-clock-height,300px);padding:4px 0;scrollbar-width:thin}.item{display:flex;align-items:center;justify-content:center;padding:10px 16px;font-size:.9375rem;color:var(--ui-text-color);cursor:pointer;border:none;background:transparent;width:100%;box-sizing:border-box;transition:background .1s;font-family:inherit;border-radius:0;font-variant-numeric:tabular-nums}.item:hover{background:var(--ui-hover-color)}.item.selected{background:var(--ui-primary-color);color:var(--ui-text-color-on-primary);font-weight:600;border-radius:6px}", Dc = ":host{display:inline-block;font-family:var(--ui-font-family)}.msdc{display:flex;gap:0;border-radius:var(--ui-border-radius-xl);overflow:hidden}.col{display:flex;flex-direction:column;overflow-y:auto;width:72px;max-height:var(--ui-msdc-height,240px);position:relative;scrollbar-width:none}.col::-webkit-scrollbar{display:none}.col+.col{border-left:1px solid var(--ui-border-color)}.col-header{position:sticky;top:0;background:var(--ui-surface-1);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ui-text-color-muted);text-align:center;padding:6px 0 4px;border-bottom:1px solid var(--ui-border-color);z-index:1}.item{display:flex;align-items:center;justify-content:center;padding:8px 4px;font-size:.9375rem;font-variant-numeric:tabular-nums;color:var(--ui-text-color);cursor:pointer;border:none;background:transparent;font-family:inherit;width:100%;line-height:1;transition:background .1s}.item:hover{background:var(--ui-hover-color)}.item.sel{background:var(--ui-primary-color);color:var(--ui-text-color-on-primary);font-weight:700;border-radius:6px}.col-spacer{min-height:80px}", Ec = ":host{display:inline-block;-webkit-user-select:none;user-select:none}.clock-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}.clock-header{display:flex;gap:4px;font-size:2rem;font-weight:700;font-family:var(--ui-font-family);color:var(--ui-text-color, #111827)}.clock-seg{padding:4px 10px;border-radius:8px;cursor:pointer;transition:background .12s,color .12s}.clock-seg.active{background:var(--ui-primary-color, #3b82f6);color:var(--ui-text-color-on-primary, #fff);border-radius:8px}.clock-seg:hover:not(.active){background:var(--ui-hover-color, rgba(0,0,0,.06))}.clock-sep{color:var(--ui-text-color-muted, #6b7280)}.clock-mer{font-size:1rem;font-weight:600;align-self:flex-end;margin-bottom:6px;color:var(--ui-text-color-muted, #6b7280)}svg{touch-action:none;cursor:pointer;outline:none}svg.dragging{cursor:grabbing}svg:focus-visible{outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:4px;border-radius:50%}.face{fill:var(--ui-time-clock-face-bg, var(--ui-surface-variant, #f1f5f9))}.face-inner{fill:var(--ui-time-clock-inner-bg, rgba(0,0,0,.04));stroke:var(--ui-time-clock-inner-border, var(--ui-border-color, #e5e7eb));stroke-width:1}.hand{stroke:var(--ui-time-clock-hand-color, var(--ui-primary-color, #3b82f6));stroke-width:2;stroke-linecap:round}.hand-center,.hand-tip{fill:var(--ui-time-clock-hand-color, var(--ui-primary-color, #3b82f6))}.num{font-size:var(--ui-time-clock-num-size, 14px);font-weight:500;font-family:var(--ui-font-family, system-ui, sans-serif);fill:var(--ui-text-color, #111827);text-anchor:middle;pointer-events:none}.num.inner-label{font-size:var(--ui-time-clock-inner-num-size, 12px);fill:var(--ui-text-color-muted, #6b7280)}.num.selected{fill:var(--ui-text-color-on-primary, #fff);font-weight:700}.num-bg{fill:transparent;cursor:pointer}.num-bg.selected{fill:var(--ui-primary-color, #3b82f6)}.am-pm{display:inline-flex;border-radius:var(--ui-time-clock-ampm-radius, 20px);overflow:hidden;border:1.5px solid var(--ui-border-color, #e5e7eb)}.am-pm-btn{padding:5px 18px;border:none;cursor:pointer;font-size:.875rem;font-weight:500;font-family:inherit;background:transparent;color:var(--ui-text-color, #111827);transition:all .12s;position:relative}.am-pm-btn:first-child{border-right:1.5px solid var(--ui-border-color, #e5e7eb)}.am-pm-btn.sel{background:var(--ui-primary-color, #3b82f6);color:var(--ui-text-color-on-primary, #fff);border-color:var(--ui-primary-color, #3b82f6)}.am-pm-btn:hover:not(.sel){background:var(--ui-hover-color, rgba(0,0,0,.06))}", Oc = ":host{display:inline-block;font-family:var(--ui-font-family)}.surface{border-radius:var(--ui-border-radius-xl);box-shadow:0 1px 4px #00000014,0 0 0 1px var(--ui-border-color);overflow:hidden;display:inline-block}", Tc = ":host{display:inline-block}";
+const zc = ":host{display:inline-block;font-family:var(--ui-font-family)}.label{display:block;font-size:.75rem;font-weight:500;color:var(--ui-text-color-muted);margin-bottom:5px}.label.focused{color:var(--ui-primary-color)}:host([error]) .label{color:var(--ui-error-color)}.container{display:inline-flex;align-items:center;gap:4px;background:var(--ui-input-bg);border:1.5px solid var(--ui-border-color);border-radius:var(--ui-border-radius-md);padding:0 10px;height:var(--ui-time-field-height,44px);min-width:var(--ui-time-field-min-width,160px);cursor:text;box-sizing:border-box;transition:border-color .15s,box-shadow .15s}.container.focused{border-color:var(--ui-primary-color);box-shadow:0 0 0 3px var(--ui-primary-focus-ring)}:host([error]) .container{border-color:var(--ui-error-color)}:host([disabled]) .container{background:var(--ui-input-disabled-bg);border-color:var(--ui-border-color);cursor:not-allowed}.segments{display:flex;align-items:center;flex:1;gap:1px;outline:none;min-height:100%}.seg{display:inline-flex;align-items:center;justify-content:center;border-radius:3px;padding:2px 4px;font-size:.9375rem;font-variant-numeric:tabular-nums;color:var(--ui-text-color);min-width:2ch;line-height:1;cursor:text;-webkit-user-select:none;user-select:none;transition:background .1s}.seg.active{background:var(--ui-primary-color);color:var(--ui-text-color-on-primary)}.seg.placeholder{color:var(--ui-text-color-muted)}.seg.meridiem{min-width:3ch}.sep{color:var(--ui-text-color-muted);font-size:.9375rem;pointer-events:none}.icon-btn{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border:none;background:transparent;cursor:pointer;border-radius:50%;color:var(--ui-text-color-muted);font-size:.875rem;margin-left:auto;transition:background .12s}.icon-btn:hover{background:var(--ui-hover-color)}.helper{display:block;font-size:.75rem;margin-top:5px;color:var(--ui-text-color-muted)}:host([error]) .helper{color:var(--ui-error-color)}", Pc = ":host{display:block;font-family:var(--ui-font-family)}.clock{overflow-y:auto;max-height:var(--ui-digital-clock-height,300px);padding:4px 0;scrollbar-width:thin}.item{display:flex;align-items:center;justify-content:center;padding:10px 16px;font-size:.9375rem;color:var(--ui-text-color);cursor:pointer;border:none;background:transparent;width:100%;box-sizing:border-box;transition:background .1s;font-family:inherit;border-radius:0;font-variant-numeric:tabular-nums}.item:hover{background:var(--ui-hover-color)}.item.selected{background:var(--ui-primary-color);color:var(--ui-text-color-on-primary);font-weight:600;border-radius:6px}", Dc = ":host{display:inline-block;font-family:var(--ui-font-family)}.msdc{display:flex;gap:0;border-radius:var(--ui-border-radius-xl);overflow:hidden}.col{display:flex;flex-direction:column;overflow-y:auto;width:72px;max-height:var(--ui-msdc-height,240px);position:relative;scrollbar-width:none}.col::-webkit-scrollbar{display:none}.col+.col{border-left:1px solid var(--ui-border-color)}.col-header{position:sticky;top:0;background:var(--ui-surface-1);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ui-text-color-muted);text-align:center;padding:6px 0 4px;border-bottom:1px solid var(--ui-border-color);z-index:1}.item{display:flex;align-items:center;justify-content:center;padding:8px 4px;font-size:.9375rem;font-variant-numeric:tabular-nums;color:var(--ui-text-color);cursor:pointer;border:none;background:transparent;font-family:inherit;width:100%;line-height:1;transition:background .1s}.item:hover{background:var(--ui-hover-color)}.item.sel{background:var(--ui-primary-color);color:var(--ui-text-color-on-primary);font-weight:700;border-radius:6px}.col-spacer{min-height:80px}", Ec = ":host{display:inline-block;-webkit-user-select:none;user-select:none}.clock-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}.clock-header{display:flex;gap:4px;font-size:2rem;font-weight:700;font-family:var(--ui-font-family);color:var(--ui-text-color, #111827)}.clock-seg{padding:4px 10px;border-radius:8px;cursor:pointer;transition:background .12s,color .12s}.clock-seg.active{background:var(--ui-primary-color, #3b82f6);color:var(--ui-text-color-on-primary, #fff);border-radius:8px}.clock-seg:hover:not(.active){background:var(--ui-hover-color, rgba(0,0,0,.06))}.clock-sep{color:var(--ui-text-color-muted, #6b7280)}.clock-mer{font-size:1rem;font-weight:600;align-self:flex-end;margin-bottom:6px;color:var(--ui-text-color-muted, #6b7280)}svg{touch-action:none;cursor:pointer;outline:none}svg.dragging{cursor:grabbing}svg:focus-visible{outline:2px solid var(--ui-primary-color, #3b82f6);outline-offset:4px;border-radius:50%}.face{fill:var(--ui-time-clock-face-bg, var(--ui-surface-variant, #f1f5f9))}.face-inner{fill:var(--ui-time-clock-inner-bg, rgba(0,0,0,.04));stroke:var(--ui-time-clock-inner-border, var(--ui-border-color, #e5e7eb));stroke-width:1}.hand{stroke:var(--ui-time-clock-hand-color, var(--ui-primary-color, #3b82f6));stroke-width:2;stroke-linecap:round}.hand-center,.hand-tip{fill:var(--ui-time-clock-hand-color, var(--ui-primary-color, #3b82f6))}.num{font-size:var(--ui-time-clock-num-size, 14px);font-weight:500;font-family:var(--ui-font-family, system-ui, sans-serif);fill:var(--ui-text-color, #111827);text-anchor:middle;pointer-events:none}.num.inner-label{font-size:var(--ui-time-clock-inner-num-size, 12px);fill:var(--ui-text-color-muted, #6b7280)}.num.selected{fill:var(--ui-text-color-on-primary, #fff);font-weight:700}.num-bg{fill:transparent;cursor:pointer}.num-bg.selected{fill:var(--ui-primary-color, #3b82f6)}.am-pm{display:inline-flex;border-radius:var(--ui-time-clock-ampm-radius, 20px);overflow:hidden;border:1.5px solid var(--ui-border-color, #e5e7eb)}.am-pm-btn{padding:5px 18px;border:none;cursor:pointer;font-size:.875rem;font-weight:500;font-family:inherit;background:transparent;color:var(--ui-text-color, #111827);transition:all .12s;position:relative}.am-pm-btn:first-child{border-right:1.5px solid var(--ui-border-color, #e5e7eb)}.am-pm-btn.sel{background:var(--ui-primary-color, #3b82f6);color:var(--ui-text-color-on-primary, #fff);border-color:var(--ui-primary-color, #3b82f6)}.am-pm-btn:hover:not(.sel){background:var(--ui-hover-color, rgba(0,0,0,.06))}", Oc = ":host{display:inline-block;font-family:var(--ui-font-family)}.surface{border-radius:var(--ui-border-radius-xl);box-shadow:0 1px 4px #00000014,0 0 0 1px var(--ui-border-color);overflow:hidden;display:inline-block}", Tc = ":host{display:inline-block}";
 var Ac = Object.defineProperty, Bc = Object.getOwnPropertyDescriptor, m = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? Bc(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
@@ -6476,7 +6480,7 @@ let j = class extends c {
     `;
   }
 };
-j.styles = h(Pc);
+j.styles = h(zc);
 m([
   s({ type: String })
 ], j.prototype, "value", 2);
@@ -6579,7 +6583,7 @@ let wi = class extends c {
     `;
   }
 };
-wi.styles = h(zc);
+wi.styles = h(Pc);
 m([
   s({ type: String })
 ], wi.prototype, "value", 2);
@@ -6814,10 +6818,10 @@ let dt = class extends c {
         <circle cx=${n} cy=${p} r="17" class="hand-tip"></circle>
         <circle cx=${140} cy=${140} r="4" class="hand-center"></circle>
         ${u.map((g) => {
-      const T = g.inner ? g.val % 12 : g.val, Fe = Lc(T, y, g.r, 140, 140), ur = this.view === "hours" ? this.ampm ? fe(i.h).hour === g.val : i.h === g.val : this.view === "minutes" ? i.m === g.val : i.s === g.val;
+      const T = g.inner ? g.val % 12 : g.val, Fe = Lc(T, y, g.r, 140, 140), fr = this.view === "hours" ? this.ampm ? fe(i.h).hour === g.val : i.h === g.val : this.view === "minutes" ? i.m === g.val : i.s === g.val;
       return wt`
-          <circle cx=${Fe.x} cy=${Fe.y} r="17" class=${f({ "num-bg": !0, selected: ur })}></circle>
-          <text x=${Fe.x} y=${Fe.y} dominant-baseline="central" class=${f({ num: !0, selected: ur, "inner-label": !!g.inner })}>${g.label}</text>
+          <circle cx=${Fe.x} cy=${Fe.y} r="17" class=${f({ "num-bg": !0, selected: fr })}></circle>
+          <text x=${Fe.x} y=${Fe.y} dominant-baseline="central" class=${f({ num: !0, selected: fr, "inner-label": !!g.inner })}>${g.label}</text>
         `;
     })}
       </svg>
@@ -6873,7 +6877,7 @@ m([
 dt = m([
   d("ui-time-clock")
 ], dt);
-const Jo = Pe`
+const Jo = ze`
   :host { display:inline-block; font-family:var(--ui-font-family,'Inter',sans-serif); }
   .popover-anchor { position:relative; display:inline-block; }
   .click-away { display:none; position:fixed; inset:0; z-index:1399; }
@@ -7250,7 +7254,7 @@ xe = Ve([
   d("ui-tree-item")
 ], xe);
 const Vc = ":host{display:block;font-family:var(--ui-font-family, system-ui, sans-serif)}.tree-root{padding:4px 0}";
-var Fc = Object.defineProperty, qc = Object.getOwnPropertyDescriptor, si = (e, t, i, o) => {
+var Fc = Object.defineProperty, qc = Object.getOwnPropertyDescriptor, ai = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? qc(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && Fc(t, i, r), r;
@@ -7457,29 +7461,29 @@ let ht = class extends c {
   }
 };
 ht.styles = h(Vc);
-si([
+ai([
   s({ type: Boolean, attribute: "disabled-items-focusable" })
 ], ht.prototype, "disabledItemsFocusable", 2);
-si([
+ai([
   s({ attribute: !1 })
 ], ht.prototype, "onItemClick", 2);
-si([
+ai([
   s({ attribute: !1 })
 ], ht.prototype, "expandedItems", 2);
-si([
+ai([
   s({ attribute: !1 })
 ], ht.prototype, "defaultExpandedItems", 2);
-si([
+ai([
   s({ attribute: !1 })
 ], ht.prototype, "onExpandedItemsChange", 2);
-si([
+ai([
   s({ type: String, attribute: "expansion-trigger" })
 ], ht.prototype, "expansionTrigger", 2);
-ht = si([
+ht = ai([
   d("ui-simple-tree-view")
 ], ht);
 const Hc = ":host{display:block;font-family:var(--ui-font-family)}.tree-root{padding:4px 0}.lazy-indicator{display:flex;align-items:center;gap:8px;min-height:32px;font-size:14px;color:var(--ui-text-color)}.lazy-root{padding:8px}@keyframes ui-spin{to{transform:rotate(360deg)}}.lazy-spinner{width:14px;height:14px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:ui-spin .7s linear infinite;flex-shrink:0;opacity:.55}ui-tree-item[dragging]{opacity:.4}ui-tree-item[drop-position=before]{box-shadow:0 -2px 0 0 var(--ui-primary-color)}ui-tree-item[drop-position=after]{box-shadow:0 2px 0 0 var(--ui-primary-color)}ui-tree-item[drop-position=inside]{outline:2px solid var(--ui-primary-color);outline-offset:-1px;border-radius:4px}";
-var Yc = Object.defineProperty, Kc = Object.getOwnPropertyDescriptor, z = (e, t, i, o) => {
+var Yc = Object.defineProperty, Kc = Object.getOwnPropertyDescriptor, P = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? Kc(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && Yc(t, i, r), r;
@@ -7893,70 +7897,70 @@ let C = class extends c {
   }
 };
 C.styles = h(Hc);
-z([
+P([
   s({ attribute: !1 })
 ], C.prototype, "items", 2);
-z([
+P([
   s({ attribute: !1 })
 ], C.prototype, "dataSource", 2);
-z([
+P([
   s({ attribute: !1 })
 ], C.prototype, "getItemId", 2);
-z([
+P([
   s({ attribute: !1 })
 ], C.prototype, "getItemLabel", 2);
-z([
+P([
   s({ attribute: !1 })
 ], C.prototype, "getItemChildren", 2);
-z([
+P([
   s({ attribute: !1 })
 ], C.prototype, "isItemDisabled", 2);
-z([
+P([
   s({ type: Boolean, attribute: "disabled-items-focusable" })
 ], C.prototype, "disabledItemsFocusable", 2);
-z([
+P([
   s({ attribute: !1 })
 ], C.prototype, "onItemClick", 2);
-z([
+P([
   s({ type: String, attribute: "expansion-trigger" })
 ], C.prototype, "expansionTrigger", 2);
-z([
+P([
   s({ attribute: !1 })
 ], C.prototype, "expandedItems", 2);
-z([
+P([
   s({ attribute: !1 })
 ], C.prototype, "defaultExpandedItems", 2);
-z([
+P([
   s({ attribute: !1 })
 ], C.prototype, "onExpandedItemsChange", 2);
-z([
+P([
   s({ type: Boolean, attribute: "items-reordering" })
 ], C.prototype, "itemsReordering", 2);
-z([
+P([
   s({ attribute: !1 })
 ], C.prototype, "isItemReorderable", 2);
-z([
+P([
   s({ attribute: !1 })
 ], C.prototype, "canMoveItemToNewPosition", 2);
-z([
+P([
   s({ type: Boolean, attribute: "items-reordering-handle" })
 ], C.prototype, "itemsReorderingHandle", 2);
-z([
+P([
   s({ attribute: !1 })
 ], C.prototype, "onItemPositionChange", 2);
-z([
+P([
   v()
 ], C.prototype, "_orderedItems", 2);
-z([
+P([
   v()
 ], C.prototype, "_draggedItemId", 2);
-z([
+P([
   v()
 ], C.prototype, "_dropTargetId", 2);
-z([
+P([
   v()
 ], C.prototype, "_dropPosition", 2);
-C = z([
+C = P([
   d("ui-rich-tree-view")
 ], C);
 const Wc = ":host{display:inline-flex;align-items:center;margin-left:auto;padding-left:8px;font-size:.6875rem;letter-spacing:.05em;color:var(--ui-text-color-muted);font-family:var(--ui-font-family)}", Gc = ":host{display:block;height:1px;background:var(--ui-border-color);margin:4px 0}:host([hidden]){display:none!important}", Xc = ":host{display:block}:host([hidden]){display:none!important}.item{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:4px;cursor:pointer;font-size:.875rem;line-height:1.25rem;color:var(--ui-text-color);font-family:var(--ui-font-family);outline:none;-webkit-user-select:none;user-select:none;transition:background .1s}:host([highlighted]) .item{background:var(--ui-command-highlight-bg, var(--ui-hover-color));color:var(--ui-command-highlight-color, var(--ui-text-color))}.item:hover{background:var(--ui-hover-color)}:host([highlighted]) .item:hover{background:var(--ui-command-highlight-bg, var(--ui-hover-color))}:host([disabled]) .item{opacity:.38;cursor:not-allowed;pointer-events:none}.icon{display:flex;align-items:center;justify-content:center;width:16px;height:16px;flex-shrink:0;color:var(--ui-text-color-muted)}.label{flex:1}[hidden]{display:none!important}", Zc = ":host{display:block;padding:24px 8px;text-align:center;font-size:.875rem;color:var(--ui-text-color-muted);font-family:var(--ui-font-family)}:host([hidden]){display:none!important}", Jc = ":host{display:block;font-family:var(--ui-font-family)}:host([hidden]){display:none!important}.heading{padding:6px 8px 2px;font-size:.6875rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ui-text-color-muted)}.heading:empty{display:none}", Qc = ":host{display:block;overflow-y:auto;max-height:var(--ui-command-list-max-height, 300px)}.list{padding:4px;outline:none}.list:focus-visible{outline:2px solid var(--ui-primary-color);outline-offset:-2px}", ed = ":host{display:block;font-family:var(--ui-font-family)}.input-wrap{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--ui-border-color)}.search-icon{flex-shrink:0;color:var(--ui-text-color-muted);display:flex;align-items:center}input{flex:1;border:none;outline:none;background:transparent;font-size:.9375rem;color:var(--ui-text-color);font-family:inherit;min-width:0}input::placeholder{color:var(--ui-text-color-muted)}input[type=search]::-webkit-search-cancel-button{display:none}input[type=search]::-webkit-search-decoration{display:none}", td = ":host{display:block;font-family:var(--ui-font-family);background:var(--ui-surface-1);border-radius:var(--ui-border-radius-md);overflow:hidden}.command{display:flex;flex-direction:column}", id = ":host{display:block}.backdrop{position:fixed;inset:0;background:#00000080;z-index:var(--ui-command-z-index, 1400);display:flex;align-items:flex-start;justify-content:center;padding-top:12vh;opacity:0;pointer-events:none;transition:opacity .18s ease}.backdrop.open{opacity:1;pointer-events:auto}.panel{width:100%;max-width:var(--ui-command-dialog-width, 512px);background:var(--ui-surface-1);border-radius:var(--ui-border-radius-md);box-shadow:0 20px 25px -5px #00000026,0 10px 10px -5px #0000000f;overflow:hidden;transform:scale(.94) translateY(-8px);transition:transform .18s cubic-bezier(.4,0,.2,1)}.backdrop.open .panel{transform:scale(1) translateY(0)}";
@@ -7983,7 +7987,7 @@ vo.styles = h(Gc);
 vo = K([
   d("ui-command-separator")
 ], vo);
-let Vt = class extends c {
+let Ft = class extends c {
   constructor() {
     super(...arguments), this.value = "", this.disabled = !1, this.highlighted = !1, this._hasIcon = !1;
   }
@@ -8021,22 +8025,22 @@ let Vt = class extends c {
         `;
   }
 };
-Vt.styles = h(Xc);
+Ft.styles = h(Xc);
 K([
   s({ type: String, reflect: !0 })
-], Vt.prototype, "value", 2);
+], Ft.prototype, "value", 2);
 K([
   s({ type: Boolean, reflect: !0 })
-], Vt.prototype, "disabled", 2);
+], Ft.prototype, "disabled", 2);
 K([
   s({ type: Boolean, reflect: !0 })
-], Vt.prototype, "highlighted", 2);
+], Ft.prototype, "highlighted", 2);
 K([
   v()
-], Vt.prototype, "_hasIcon", 2);
-Vt = K([
+], Ft.prototype, "_hasIcon", 2);
+Ft = K([
   d("ui-command-item")
-], Vt);
+], Ft);
 let go = class extends c {
   render() {
     return l`<slot></slot>`;
@@ -8046,7 +8050,7 @@ go.styles = h(Zc);
 go = K([
   d("ui-command-empty")
 ], go);
-let $r = class extends c {
+let Sr = class extends c {
   constructor() {
     super(...arguments), this.heading = "";
   }
@@ -8057,13 +8061,13 @@ let $r = class extends c {
         `;
   }
 };
-$r.styles = h(Jc);
+Sr.styles = h(Jc);
 K([
   s({ type: String, reflect: !0 })
-], $r.prototype, "heading", 2);
-$r = K([
+], Sr.prototype, "heading", 2);
+Sr = K([
   d("ui-command-group")
-], $r);
+], Sr);
 let mo = class extends c {
   render() {
     return l`
@@ -8235,7 +8239,7 @@ yo.styles = h(td);
 yo = K([
   d("ui-command")
 ], yo);
-let Sr = class extends c {
+let Cr = class extends c {
   constructor() {
     super(...arguments), this.open = !1, this._boundKeyDown = (e) => {
       this.open && e.key === "Escape" && (e.stopPropagation(), this._close());
@@ -8281,20 +8285,20 @@ let Sr = class extends c {
         `;
   }
 };
-Sr.styles = h(id);
+Cr.styles = h(id);
 K([
   s({ type: Boolean, reflect: !0 })
-], Sr.prototype, "open", 2);
-Sr = K([
+], Cr.prototype, "open", 2);
+Cr = K([
   d("ui-command-dialog")
-], Sr);
+], Cr);
 const sd = ':host{display:block;overflow:hidden;width:100%}.track{display:flex;flex-wrap:nowrap;height:100%;gap:var(--ui-carousel-gap, 0px);will-change:transform;transition:transform var(--ui-carousel-duration, .35s) var(--ui-carousel-ease, cubic-bezier(.25, .1, .25, 1))}:host([orientation="vertical"]){height:var(--ui-carousel-height, 320px)}:host([orientation="vertical"]) .track{flex-direction:column}::slotted(ui-carousel-item){flex:0 0 calc((100% - (var(--ui-carousel-items-per-view, 1) - 1) * var(--ui-carousel-gap, 0px)) / var(--ui-carousel-items-per-view, 1));min-width:0;min-height:0}:host([orientation="vertical"]) ::slotted(ui-carousel-item){flex:0 0 calc((var(--ui-carousel-height, 320px) - (var(--ui-carousel-items-per-view, 1) - 1) * var(--ui-carousel-gap, 0px)) / var(--ui-carousel-items-per-view, 1));min-height:0}', ad = ":host{display:block;flex-shrink:0;min-width:0}.item{width:100%;height:100%}", nd = ":host{display:block;position:relative}.carousel{position:relative;width:100%;outline:none}.carousel:focus-visible{outline:2px solid var(--ui-primary-color);outline-offset:4px;border-radius:var(--ui-border-radius-md)}";
 var ld = Object.defineProperty, cd = Object.getOwnPropertyDescriptor, ie = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? cd(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && ld(t, i, r), r;
 };
-const Qo = Pe`
+const Qo = ze`
   :host {
     display: inline-flex;
   }
@@ -8439,7 +8443,7 @@ ie([
 Qi = ie([
   d("ui-carousel-next")
 ], Qi);
-let Ft = class extends c {
+let qt = class extends c {
   constructor() {
     super(...arguments), this.loop = !1, this.orientation = "horizontal", this.autoplay = 0, this.itemsPerView = 1, this._currentIndex = 0, this._total = 0, this._observer = null, this._autoplayTimer = null, this._handleKeydown = (e) => {
       const t = this.orientation === "vertical", i = t ? "ArrowUp" : "ArrowLeft", o = t ? "ArrowDown" : "ArrowRight";
@@ -8534,24 +8538,24 @@ let Ft = class extends c {
     `;
   }
 };
-Ft.styles = h(nd);
+qt.styles = h(nd);
 ie([
   s({ type: Boolean })
-], Ft.prototype, "loop", 2);
+], qt.prototype, "loop", 2);
 ie([
   s({ reflect: !0 })
-], Ft.prototype, "orientation", 2);
+], qt.prototype, "orientation", 2);
 ie([
   s({ type: Number })
-], Ft.prototype, "autoplay", 2);
+], qt.prototype, "autoplay", 2);
 ie([
   s({ type: Number, attribute: "items-per-view" })
-], Ft.prototype, "itemsPerView", 2);
-Ft = ie([
+], qt.prototype, "itemsPerView", 2);
+qt = ie([
   d("ui-carousel")
-], Ft);
+], qt);
 const dd = ":host{display:block;font-size:1rem;font-weight:600;line-height:1.4;color:var(--ui-text-color);font-family:var(--ui-font-family);margin:0}", hd = ":host{display:block;font-size:.875rem;line-height:1.5;color:var(--ui-text-color-muted);font-family:var(--ui-font-family);margin:0}", pd = ":host{display:flex;align-items:center;justify-content:center}.media{display:flex;align-items:center;justify-content:center}.media--icon{width:48px;height:48px;border-radius:12px;background:var(--ui-empty-media-bg, var(--ui-surface-2));color:var(--ui-empty-media-color, var(--ui-text-color-muted))}::slotted(svg),::slotted([data-icon]){width:24px;height:24px}", ud = ":host{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}", fd = ":host{display:flex;flex-direction:column;align-items:center;gap:8px}", bd = ":host{display:flex;flex-direction:column;align-items:center;justify-content:center}.container{display:flex;flex-direction:column;align-items:center;gap:var(--ui-empty-gap, 16px);padding:var(--ui-empty-padding, 32px);max-width:var(--ui-empty-max-width, 480px);width:100%;box-sizing:border-box;text-align:center;font-family:var(--ui-font-family, system-ui, sans-serif)}";
-var vd = Object.defineProperty, gd = Object.getOwnPropertyDescriptor, ai = (e, t, i, o) => {
+var vd = Object.defineProperty, gd = Object.getOwnPropertyDescriptor, ni = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? gd(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && vd(t, i, r), r;
@@ -8562,7 +8566,7 @@ let _o = class extends c {
   }
 };
 _o.styles = h(dd);
-_o = ai([
+_o = ni([
   d("ui-empty-title")
 ], _o);
 let wo = class extends c {
@@ -8571,10 +8575,10 @@ let wo = class extends c {
   }
 };
 wo.styles = h(hd);
-wo = ai([
+wo = ni([
   d("ui-empty-description")
 ], wo);
-let Cr = class extends c {
+let Ir = class extends c {
   constructor() {
     super(...arguments), this.variant = "default";
   }
@@ -8586,20 +8590,20 @@ let Cr = class extends c {
         `;
   }
 };
-Cr.styles = h(pd);
-ai([
+Ir.styles = h(pd);
+ni([
   s({ reflect: !0 })
-], Cr.prototype, "variant", 2);
-Cr = ai([
+], Ir.prototype, "variant", 2);
+Ir = ni([
   d("ui-empty-media")
-], Cr);
+], Ir);
 let ko = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
 ko.styles = h(ud);
-ko = ai([
+ko = ni([
   d("ui-empty-header")
 ], ko);
 let $o = class extends c {
@@ -8608,7 +8612,7 @@ let $o = class extends c {
   }
 };
 $o.styles = h(fd);
-$o = ai([
+$o = ni([
   d("ui-empty-content")
 ], $o);
 let So = class extends c {
@@ -8621,7 +8625,7 @@ let So = class extends c {
   }
 };
 So.styles = h(bd);
-So = ai([
+So = ni([
   d("ui-empty")
 ], So);
 const md = ":host{display:block}.trigger{display:flex;align-items:center;width:100%;background:none;border:none;padding:0;margin:0;cursor:pointer;font:inherit;color:inherit;text-align:left}:host([disabled]) .trigger{cursor:not-allowed;opacity:.5}", yd = ":host{display:block}.panel{display:grid;grid-template-rows:0fr;overflow:hidden;transition:grid-template-rows var(--ui-collapsible-duration, .2s) var(--ui-collapsible-easing, ease)}:host([open]) .panel{grid-template-rows:1fr}.panel-inner{overflow:hidden}", xd = ":host{display:block}";
@@ -8661,7 +8665,7 @@ gt([
 er = gt([
   d("ui-collapsible-trigger")
 ], er);
-let Ir = class extends c {
+let zr = class extends c {
   constructor() {
     super(...arguments), this.open = !1;
   }
@@ -8675,13 +8679,13 @@ let Ir = class extends c {
         `;
   }
 };
-Ir.styles = h(yd);
+zr.styles = h(yd);
 gt([
   s({ type: Boolean, reflect: !0 })
-], Ir.prototype, "open", 2);
-Ir = gt([
+], zr.prototype, "open", 2);
+zr = gt([
   d("ui-collapsible-content")
-], Ir);
+], zr);
 let Ci = class extends c {
   constructor() {
     super(...arguments), this.open = !1, this.defaultOpen = !1, this.disabled = !1, this._firstUpdate = !0;
@@ -8861,7 +8865,7 @@ Bt([
 tr = Bt([
   d("ui-hover-card")
 ], tr);
-const Pd = ":host{display:inline-flex;align-items:center}", zd = ":host{display:inline-flex;align-items:center;padding:0 6px;color:var(--ui-text-color, #111827)}.bar{width:8px;height:2px;background:currentColor;border-radius:1px;opacity:.4}", Dd = ":host{position:relative;display:inline-flex;align-items:center;justify-content:center;width:40px;height:48px;font-size:1.25rem;font-family:var(--ui-font-family);font-weight:500;color:var(--ui-text-color);background:var(--ui-input-bg);border:1px solid var(--ui-input-border-color);margin-left:-1px;cursor:text;-webkit-user-select:none;user-select:none;transition:border-color .15s ease,box-shadow .15s ease}:host(:first-child){margin-left:0;border-radius:6px 0 0 6px}:host(:last-child){border-radius:0 6px 6px 0}:host([active]){z-index:1;border-color:var(--ui-primary-color);box-shadow:0 0 0 2px var(--ui-primary-focus-ring)}:host([invalid]){border-color:var(--ui-error-color)}:host([invalid][active]){border-color:var(--ui-error-color);box-shadow:0 0 0 2px var(--ui-error-focus-ring)}.cursor{width:2px;height:1.2em;background:var(--ui-text-color);border-radius:1px;animation:otp-blink 1.2s step-end infinite}@keyframes otp-blink{0%,to{opacity:1}50%{opacity:0}}", Ed = ":host{display:inline-flex;align-items:center;gap:8px;position:relative;cursor:text;font-family:var(--ui-font-family, system-ui, sans-serif)}:host([disabled]){opacity:.5;cursor:not-allowed;pointer-events:none}.hidden-input{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;top:0;left:0;border:none;outline:none;padding:0;margin:0}";
+const zd = ":host{display:inline-flex;align-items:center}", Pd = ":host{display:inline-flex;align-items:center;padding:0 6px;color:var(--ui-text-color, #111827)}.bar{width:8px;height:2px;background:currentColor;border-radius:1px;opacity:.4}", Dd = ":host{position:relative;display:inline-flex;align-items:center;justify-content:center;width:40px;height:48px;font-size:1.25rem;font-family:var(--ui-font-family);font-weight:500;color:var(--ui-text-color);background:var(--ui-input-bg);border:1px solid var(--ui-input-border-color);margin-left:-1px;cursor:text;-webkit-user-select:none;user-select:none;transition:border-color .15s ease,box-shadow .15s ease}:host(:first-child){margin-left:0;border-radius:6px 0 0 6px}:host(:last-child){border-radius:0 6px 6px 0}:host([active]){z-index:1;border-color:var(--ui-primary-color);box-shadow:0 0 0 2px var(--ui-primary-focus-ring)}:host([invalid]){border-color:var(--ui-error-color)}:host([invalid][active]){border-color:var(--ui-error-color);box-shadow:0 0 0 2px var(--ui-error-focus-ring)}.cursor{width:2px;height:1.2em;background:var(--ui-text-color);border-radius:1px;animation:otp-blink 1.2s step-end infinite}@keyframes otp-blink{0%,to{opacity:1}50%{opacity:0}}", Ed = ":host{display:inline-flex;align-items:center;gap:8px;position:relative;cursor:text;font-family:var(--ui-font-family, system-ui, sans-serif)}:host([disabled]){opacity:.5;cursor:not-allowed;pointer-events:none}.hidden-input{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;top:0;left:0;border:none;outline:none;padding:0;margin:0}";
 var Od = Object.defineProperty, Td = Object.getOwnPropertyDescriptor, he = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? Td(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
@@ -8872,20 +8876,20 @@ let Io = class extends c {
     return l`<slot></slot>`;
   }
 };
-Io.styles = h(Pd);
+Io.styles = h(zd);
 Io = he([
   d("ui-input-otp-group")
 ], Io);
-let Po = class extends c {
+let zo = class extends c {
   render() {
     return l`<div class="bar"></div>`;
   }
 };
-Po.styles = h(zd);
-Po = he([
+zo.styles = h(Pd);
+zo = he([
   d("ui-input-otp-separator")
-], Po);
-let qt = class extends c {
+], zo);
+let Ht = class extends c {
   constructor() {
     super(...arguments), this.index = 0, this.char = "", this.active = !1, this.invalid = !1;
   }
@@ -8893,22 +8897,22 @@ let qt = class extends c {
     return this.char ? l`${this.char}` : this.active ? l`<div class="cursor"></div>` : l``;
   }
 };
-qt.styles = h(Dd);
+Ht.styles = h(Dd);
 he([
   s({ type: Number })
-], qt.prototype, "index", 2);
+], Ht.prototype, "index", 2);
 he([
   s()
-], qt.prototype, "char", 2);
+], Ht.prototype, "char", 2);
 he([
   s({ type: Boolean, reflect: !0 })
-], qt.prototype, "active", 2);
+], Ht.prototype, "active", 2);
 he([
   s({ type: Boolean, reflect: !0 })
-], qt.prototype, "invalid", 2);
-qt = he([
+], Ht.prototype, "invalid", 2);
+Ht = he([
   d("ui-input-otp-slot")
-], qt);
+], Ht);
 let pt = class extends c {
   constructor() {
     super(), this.value = "", this.defaultValue = "", this.maxLength = 6, this.pattern = "", this.disabled = !1, this._internalValue = "", this._focused = !1, this._cursorIndex = 0, this._firstUpdate = !0, this.addEventListener("click", (e) => {
@@ -9094,15 +9098,15 @@ var qd = Object.defineProperty, Hd = Object.getOwnPropertyDescriptor, we = (e, t
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && qd(t, i, r), r;
 };
-let zo = class extends c {
+let Po = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
-zo.styles = h(Ad);
-zo = we([
+Po.styles = h(Ad);
+Po = we([
   d("ui-item-title")
-], zo);
+], Po);
 let Do = class extends c {
   render() {
     return l`<slot></slot>`;
@@ -9211,12 +9215,12 @@ ir = we([
   d("ui-item")
 ], ir);
 const Yd = ':host{display:inline-flex;align-items:center;justify-content:center}kbd{display:inline-flex;align-items:center;justify-content:center;font-family:var(--ui-kbd-font-family, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);font-size:.8125rem;font-weight:500;line-height:1;color:var(--ui-kbd-color, var(--ui-label-color));background:var(--ui-kbd-bg, var(--ui-surface-2));border:1px solid var(--ui-kbd-border-color, var(--ui-border-color));border-bottom-width:2px;border-radius:var(--ui-kbd-radius, var(--ui-border-radius-sm));box-shadow:0 1px 0 0 var(--ui-kbd-shadow-color, var(--ui-input-border-color));padding:2px 6px;white-space:nowrap;-webkit-user-select:none;user-select:none}:host([size="sm"]) kbd{font-size:.6875rem;padding:1px 4px}:host([size="lg"]) kbd{font-size:.9375rem;padding:4px 10px}:host([variant="flat"]) kbd{border-bottom-width:1px;box-shadow:none}', Kd = ":host{display:inline-flex;align-items:center;gap:var(--ui-kbd-group-gap, 4px)}";
-var Wd = Object.defineProperty, Gd = Object.getOwnPropertyDescriptor, dr = (e, t, i, o) => {
+var Wd = Object.defineProperty, Gd = Object.getOwnPropertyDescriptor, hr = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? Gd(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && Wd(t, i, r), r;
 };
-let Pi = class extends c {
+let zi = class extends c {
   constructor() {
     super(...arguments), this.size = "default", this.variant = "raised", this.label = "";
   }
@@ -9228,26 +9232,26 @@ let Pi = class extends c {
         `;
   }
 };
-Pi.styles = h(Yd);
-dr([
+zi.styles = h(Yd);
+hr([
   s({ reflect: !0 })
-], Pi.prototype, "size", 2);
-dr([
+], zi.prototype, "size", 2);
+hr([
   s({ reflect: !0 })
-], Pi.prototype, "variant", 2);
-dr([
+], zi.prototype, "variant", 2);
+hr([
   s({ reflect: !0 })
-], Pi.prototype, "label", 2);
-Pi = dr([
+], zi.prototype, "label", 2);
+zi = hr([
   d("ui-kbd")
-], Pi);
+], zi);
 let Lo = class extends c {
   render() {
     return l`<slot></slot>`;
   }
 };
 Lo.styles = h(Kd);
-Lo = dr([
+Lo = hr([
   d("ui-kbd-group")
 ], Lo);
 const Xd = ":host{display:inline-flex;align-items:center;margin-left:auto;padding-left:16px;font-size:.6875rem;letter-spacing:.05em;color:var(--ui-text-color-muted);font-family:var(--ui-font-family)}", Zd = ":host{display:block;height:1px;background:var(--ui-border-color);margin:4px -4px}:host([hidden]){display:none!important}", Jd = ":host{display:block}.heading{padding:6px 8px 4px;font-size:.6875rem;font-weight:600;color:var(--ui-text-color-muted);font-family:var(--ui-font-family);-webkit-user-select:none;user-select:none}", Qd = ":host{display:block}:host([hidden]){display:none!important}.item{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:4px;cursor:pointer;font-size:.875rem;line-height:1.25rem;color:var(--ui-text-color);font-family:var(--ui-font-family);outline:none;-webkit-user-select:none;user-select:none;transition:background .1s}:host([inset]) .item{padding-left:32px}:host([highlighted]) .item{background:var(--ui-menubar-highlight-bg, var(--ui-hover-color))}:host([disabled]) .item{opacity:.5;pointer-events:none;cursor:default}", eh = ":host{display:block}:host([hidden]){display:none!important}.item{display:flex;align-items:center;gap:8px;padding:6px 8px 6px 32px;border-radius:4px;cursor:pointer;font-size:.875rem;line-height:1.25rem;color:var(--ui-text-color);font-family:var(--ui-font-family);outline:none;-webkit-user-select:none;user-select:none;transition:background .1s;position:relative}:host([highlighted]) .item{background:var(--ui-menubar-highlight-bg, var(--ui-hover-color))}:host([disabled]) .item{opacity:.5;pointer-events:none}.check{position:absolute;left:8px;top:50%;transform:translateY(-50%);width:16px;height:16px;display:flex;align-items:center;justify-content:center}", th = ":host{display:block}:host([hidden]){display:none!important}.item{display:flex;align-items:center;gap:8px;padding:6px 8px 6px 32px;border-radius:4px;cursor:pointer;font-size:.875rem;line-height:1.25rem;color:var(--ui-text-color);font-family:var(--ui-font-family);outline:none;-webkit-user-select:none;user-select:none;transition:background .1s;position:relative}:host([highlighted]) .item{background:var(--ui-menubar-highlight-bg, var(--ui-hover-color))}:host([disabled]) .item{opacity:.5;pointer-events:none}.dot{position:absolute;left:8px;top:50%;transform:translateY(-50%);width:16px;height:16px;display:flex;align-items:center;justify-content:center}", ih = ":host{display:block}", rh = ":host{display:none;position:absolute;left:100%;top:-4px;z-index:1001}:host([open]){display:block}.panel{min-width:180px;background:var(--ui-menubar-content-bg, var(--ui-surface-1));border:1px solid var(--ui-border-color);border-radius:6px;padding:4px;box-shadow:0 4px 16px #0000001f;animation:menubar-sub-in .12s ease-out}@keyframes menubar-sub-in{0%{opacity:0;transform:translate(-4px)}to{opacity:1;transform:translate(0)}}", oh = ":host{display:block}.item{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:4px;cursor:pointer;font-size:.875rem;line-height:1.25rem;color:var(--ui-text-color);font-family:var(--ui-font-family);outline:none;-webkit-user-select:none;user-select:none;transition:background .1s}:host([inset]) .item{padding-left:32px}:host([highlighted]) .item{background:var(--ui-menubar-highlight-bg, var(--ui-hover-color))}:host([disabled]) .item{opacity:.5;pointer-events:none}.arrow{margin-left:auto;width:14px;height:14px;color:var(--ui-text-color-muted)}", sh = ":host{display:block;position:relative}", ah = ":host{display:none;position:absolute;top:100%;left:0;z-index:1000;padding-top:4px}:host([open]){display:block}.panel{min-width:200px;background:var(--ui-menubar-content-bg, var(--ui-surface-1));border:1px solid var(--ui-border-color);border-radius:6px;padding:4px;box-shadow:0 4px 16px #0000001f;animation:menubar-in .12s ease-out}@keyframes menubar-in{0%{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}", nh = ":host{display:inline-flex}.trigger{display:inline-flex;align-items:center;justify-content:center;padding:4px 10px;border:none;background:transparent;border-radius:4px;font-size:.875rem;font-weight:500;line-height:1.5;color:var(--ui-text-color);font-family:var(--ui-font-family);cursor:pointer;outline:none;-webkit-user-select:none;user-select:none;white-space:nowrap;transition:background .1s}.trigger:hover,:host([active]) .trigger{background:var(--ui-menubar-trigger-hover-bg, var(--ui-hover-color))}.trigger:focus-visible{outline:2px solid var(--ui-primary-color);outline-offset:-2px}.trigger:disabled,:host([disabled]) .trigger{opacity:.5;cursor:default;pointer-events:none}", lh = ":host{display:inline-block;position:relative}", ch = ":host{display:inline-flex;align-items:center;background:var(--ui-menubar-bg, var(--ui-surface-1));border:1px solid var(--ui-border-color);border-radius:6px;padding:3px;gap:2px;font-family:var(--ui-font-family)}";
@@ -9274,7 +9278,7 @@ jo.styles = h(Zd);
 jo = x([
   d("ui-menubar-separator")
 ], jo);
-let zr = class extends c {
+let Dr = class extends c {
   constructor() {
     super(...arguments), this.heading = "";
   }
@@ -9287,14 +9291,14 @@ let zr = class extends c {
         `;
   }
 };
-zr.styles = h(Jd);
+Dr.styles = h(Jd);
 x([
   s({ reflect: !0 })
-], zr.prototype, "heading", 2);
-zr = x([
+], Dr.prototype, "heading", 2);
+Dr = x([
   d("ui-menubar-group")
-], zr);
-let Ht = class extends c {
+], Dr);
+let Yt = class extends c {
   constructor() {
     super(...arguments), this.disabled = !1, this.highlighted = !1, this.inset = !1, this.value = "";
   }
@@ -9314,23 +9318,23 @@ let Ht = class extends c {
     return l`<div class="item" role="menuitem" aria-disabled=${this.disabled}><slot></slot></div>`;
   }
 };
-Ht.styles = h(Qd);
+Yt.styles = h(Qd);
 x([
   s({ reflect: !0, type: Boolean })
-], Ht.prototype, "disabled", 2);
+], Yt.prototype, "disabled", 2);
 x([
   s({ reflect: !0, type: Boolean })
-], Ht.prototype, "highlighted", 2);
+], Yt.prototype, "highlighted", 2);
 x([
   s({ reflect: !0, type: Boolean })
-], Ht.prototype, "inset", 2);
+], Yt.prototype, "inset", 2);
 x([
   s({ reflect: !0 })
-], Ht.prototype, "value", 2);
-Ht = x([
+], Yt.prototype, "value", 2);
+Yt = x([
   d("ui-menubar-item")
-], Ht);
-let Yt = class extends c {
+], Yt);
+let Kt = class extends c {
   constructor() {
     super(...arguments), this.checked = !1, this.disabled = !1, this.highlighted = !1, this.value = "";
   }
@@ -9355,23 +9359,23 @@ let Yt = class extends c {
         `;
   }
 };
-Yt.styles = h(eh);
+Kt.styles = h(eh);
 x([
   s({ reflect: !0, type: Boolean })
-], Yt.prototype, "checked", 2);
+], Kt.prototype, "checked", 2);
 x([
   s({ reflect: !0, type: Boolean })
-], Yt.prototype, "disabled", 2);
+], Kt.prototype, "disabled", 2);
 x([
   s({ reflect: !0, type: Boolean })
-], Yt.prototype, "highlighted", 2);
+], Kt.prototype, "highlighted", 2);
 x([
   s({ reflect: !0 })
-], Yt.prototype, "value", 2);
-Yt = x([
+], Kt.prototype, "value", 2);
+Kt = x([
   d("ui-menubar-checkbox-item")
-], Yt);
-let Kt = class extends c {
+], Kt);
+let Wt = class extends c {
   constructor() {
     super(...arguments), this.value = "", this.checked = !1, this.disabled = !1, this.highlighted = !1;
   }
@@ -9393,23 +9397,23 @@ let Kt = class extends c {
         `;
   }
 };
-Kt.styles = h(th);
+Wt.styles = h(th);
 x([
   s({ reflect: !0 })
-], Kt.prototype, "value", 2);
+], Wt.prototype, "value", 2);
 x([
   s({ reflect: !0, type: Boolean })
-], Kt.prototype, "checked", 2);
+], Wt.prototype, "checked", 2);
 x([
   s({ reflect: !0, type: Boolean })
-], Kt.prototype, "disabled", 2);
+], Wt.prototype, "disabled", 2);
 x([
   s({ reflect: !0, type: Boolean })
-], Kt.prototype, "highlighted", 2);
-Kt = x([
+], Wt.prototype, "highlighted", 2);
+Wt = x([
   d("ui-menubar-radio-item")
-], Kt);
-let Dr = class extends c {
+], Wt);
+let Er = class extends c {
   constructor() {
     super(...arguments), this.value = "", this._handleRadioSelect = (e) => {
       const t = e;
@@ -9440,14 +9444,14 @@ let Dr = class extends c {
     return l`<div role="group"><slot @slotchange=${this._onSlotChange}></slot></div>`;
   }
 };
-Dr.styles = h(ih);
+Er.styles = h(ih);
 x([
   s({ reflect: !0 })
-], Dr.prototype, "value", 2);
-Dr = x([
+], Er.prototype, "value", 2);
+Er = x([
   d("ui-menubar-radio-group")
-], Dr);
-let Er = class extends c {
+], Er);
+let Or = class extends c {
   constructor() {
     super(...arguments), this.open = !1;
   }
@@ -9460,14 +9464,14 @@ let Er = class extends c {
     return l`<div class="panel" role="menu"><slot></slot></div>`;
   }
 };
-Er.styles = h(rh);
+Or.styles = h(rh);
 x([
   s({ reflect: !0, type: Boolean })
-], Er.prototype, "open", 2);
-Er = x([
+], Or.prototype, "open", 2);
+Or = x([
   d("ui-menubar-sub-content")
-], Er);
-let Wt = class extends c {
+], Or);
+let Gt = class extends c {
   constructor() {
     super(...arguments), this.highlighted = !1, this.disabled = !1, this.inset = !1, this.expanded = !1;
   }
@@ -9486,22 +9490,22 @@ let Wt = class extends c {
         `;
   }
 };
-Wt.styles = h(oh);
+Gt.styles = h(oh);
 x([
   s({ reflect: !0, type: Boolean })
-], Wt.prototype, "highlighted", 2);
+], Gt.prototype, "highlighted", 2);
 x([
   s({ reflect: !0, type: Boolean })
-], Wt.prototype, "disabled", 2);
+], Gt.prototype, "disabled", 2);
 x([
   s({ reflect: !0, type: Boolean })
-], Wt.prototype, "inset", 2);
+], Gt.prototype, "inset", 2);
 x([
   s({ reflect: !0, type: Boolean })
-], Wt.prototype, "expanded", 2);
-Wt = x([
+], Gt.prototype, "expanded", 2);
+Gt = x([
   d("ui-menubar-sub-trigger")
-], Wt);
+], Gt);
 let Ro = class extends c {
   constructor() {
     super(...arguments), this._open = !1, this._openTimer = null, this._closeTimer = null, this._handleMouseEnter = () => {
@@ -9550,7 +9554,7 @@ Ro.styles = h(sh);
 Ro = x([
   d("ui-menubar-sub")
 ], Ro);
-let Or = class extends c {
+let Tr = class extends c {
   constructor() {
     super(...arguments), this.open = !1, this._highlightIndex = -1, this._handleClick = (e) => {
       const t = e.target, i = t.closest("ui-menubar-item");
@@ -9705,14 +9709,14 @@ let Or = class extends c {
     return l`<div class="panel" role="menu"><slot></slot></div>`;
   }
 };
-Or.styles = h(ah);
+Tr.styles = h(ah);
 x([
   s({ reflect: !0, type: Boolean })
-], Or.prototype, "open", 2);
-Or = x([
+], Tr.prototype, "open", 2);
+Tr = x([
   d("ui-menubar-content")
-], Or);
-let zi = class extends c {
+], Tr);
+let Pi = class extends c {
   constructor() {
     super(...arguments), this.active = !1, this.disabled = !1, this._focusable = !1;
   }
@@ -9732,20 +9736,20 @@ let zi = class extends c {
         `;
   }
 };
-zi.styles = h(nh);
+Pi.styles = h(nh);
 x([
   s({ reflect: !0, type: Boolean })
-], zi.prototype, "active", 2);
+], Pi.prototype, "active", 2);
 x([
   s({ reflect: !0, type: Boolean })
-], zi.prototype, "disabled", 2);
+], Pi.prototype, "disabled", 2);
 x([
   v()
-], zi.prototype, "_focusable", 2);
-zi = x([
+], Pi.prototype, "_focusable", 2);
+Pi = x([
   d("ui-menubar-trigger")
-], zi);
-let Tr = class extends c {
+], Pi);
+let Ar = class extends c {
   constructor() {
     super(...arguments), this.disabled = !1;
   }
@@ -9777,14 +9781,14 @@ let Tr = class extends c {
     return l`<slot></slot>`;
   }
 };
-Tr.styles = h(lh);
+Ar.styles = h(lh);
 x([
   s({ reflect: !0, type: Boolean })
-], Tr.prototype, "disabled", 2);
-Tr = x([
+], Ar.prototype, "disabled", 2);
+Ar = x([
   d("ui-menubar-menu")
-], Tr);
-let Ar = class extends c {
+], Ar);
+let Br = class extends c {
   constructor() {
     super(...arguments), this._activeIndex = -1, this.label = "", this._handleTriggerClick = (e) => {
       const t = e.target.closest?.("ui-menubar-trigger");
@@ -9950,20 +9954,20 @@ let Ar = class extends c {
         `;
   }
 };
-Ar.styles = h(ch);
+Br.styles = h(ch);
 x([
   s({ reflect: !0 })
-], Ar.prototype, "label", 2);
-Ar = x([
+], Br.prototype, "label", 2);
+Br = x([
   d("ui-menubar")
-], Ar);
+], Br);
 const ph = ':host{display:block;position:relative;overflow:hidden}.root{position:relative;width:100%;height:100%}.viewport{overflow:scroll;scrollbar-width:none;-ms-overflow-style:none;width:100%;height:100%}.viewport::-webkit-scrollbar{display:none}.scrollbar{position:absolute;z-index:10;opacity:0;transition:opacity .15s ease;background:var(--ui-scrollbar-track-color, transparent);touch-action:none;-webkit-user-select:none;user-select:none;border-radius:var(--ui-scrollbar-thumb-radius, 9999px)}.scrollbar--y{top:0;right:0;bottom:0;width:var(--ui-scrollbar-size, 8px)}.scrollbar--x{bottom:0;left:0;right:var(--ui-scrollbar-size, 8px);height:var(--ui-scrollbar-size, 8px)}:host([dir="rtl"]) .scrollbar--y{right:auto;left:0}:host([dir="rtl"]) .scrollbar--x{left:var(--ui-scrollbar-size, 8px);right:0}:host([type="always"]) .scrollbar{opacity:1}:host([type="auto"]) .scrollbar--visible{opacity:1}:host([type="hover"]) .root:hover .scrollbar--visible{opacity:1}:host([type="scroll"]) .scrollbar--visible.scrollbar--active{opacity:1}.thumb{position:absolute;border-radius:var(--ui-scrollbar-thumb-radius, 9999px);background:var(--ui-scrollbar-thumb-color, rgba(0, 0, 0, .35));transition:background .15s ease;cursor:grab}.thumb:active,.thumb--dragging{cursor:grabbing;background:var(--ui-scrollbar-thumb-hover-color, rgba(0, 0, 0, .5))}.scrollbar:hover .thumb{background:var(--ui-scrollbar-thumb-hover-color, rgba(0, 0, 0, .5))}.thumb--y{left:2px;right:2px;min-height:20px}.thumb--x{top:2px;bottom:2px;min-width:20px}', uh = ':host{display:block;position:absolute;z-index:10;touch-action:none;-webkit-user-select:none;user-select:none;background:var(--ui-scrollbar-track-color, transparent);border-radius:var(--ui-scrollbar-thumb-radius, 9999px);opacity:0;transition:opacity .15s ease}:host([data-visible]){opacity:1}:host([orientation="vertical"]){top:0;right:0;bottom:0;width:var(--ui-scrollbar-size, 8px)}:host([orientation="horizontal"]){bottom:0;left:0;right:var(--ui-scrollbar-size, 8px);height:var(--ui-scrollbar-size, 8px)}.track{position:relative;width:100%;height:100%;cursor:pointer}.thumb{position:absolute;border-radius:var(--ui-scrollbar-thumb-radius, 9999px);background:var(--ui-scrollbar-thumb-color, rgba(0, 0, 0, .35));transition:background .15s ease;cursor:grab}.thumb:active,.thumb--dragging{cursor:grabbing;background:var(--ui-scrollbar-thumb-hover-color, rgba(0, 0, 0, .5))}:host(:hover) .thumb{background:var(--ui-scrollbar-thumb-hover-color, rgba(0, 0, 0, .5))}:host([orientation="vertical"]) .thumb{left:2px;right:2px;min-height:20px}:host([orientation="horizontal"]) .thumb{top:2px;bottom:2px;min-width:20px}';
 var fh = Object.defineProperty, bh = Object.getOwnPropertyDescriptor, V = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? bh(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && fh(t, i, r), r;
 };
-let Gt = class extends c {
+let Xt = class extends c {
   constructor() {
     super(...arguments), this.orientation = "vertical", this._thumbPos = 0, this._thumbSize = 100, this._dragging = !1, this._dragStart = 0, this._scrollStart = 0;
   }
@@ -10019,22 +10023,22 @@ let Gt = class extends c {
         `;
   }
 };
-Gt.styles = h(uh);
+Xt.styles = h(uh);
 V([
   s({ reflect: !0 })
-], Gt.prototype, "orientation", 2);
+], Xt.prototype, "orientation", 2);
 V([
   v()
-], Gt.prototype, "_thumbPos", 2);
+], Xt.prototype, "_thumbPos", 2);
 V([
   v()
-], Gt.prototype, "_thumbSize", 2);
+], Xt.prototype, "_thumbSize", 2);
 V([
   v()
-], Gt.prototype, "_dragging", 2);
-Gt = V([
+], Xt.prototype, "_dragging", 2);
+Xt = V([
   d("ui-scroll-bar")
-], Gt);
+], Xt);
 let se = class extends c {
   constructor() {
     super(...arguments), this.type = "hover", this.dir = "ltr", this._thumbYPos = 0, this._thumbYSize = 100, this._thumbXPos = 0, this._thumbXSize = 100, this._hasOverflowY = !1, this._hasOverflowX = !1, this._isScrolling = !1, this._hideTimer = null, this._draggingY = !1, this._dragYStart = 0, this._scrollYStart = 0, this._draggingX = !1, this._dragXStart = 0, this._scrollXStart = 0;
@@ -10298,7 +10302,7 @@ let rr = class extends c {
         `;
   }
 };
-rr.styles = Pe`
+rr.styles = ze`
         :host {
             display: block;
             position: relative;
@@ -10351,7 +10355,7 @@ let Di = class extends c {
         `;
   }
 };
-Di.styles = Pe`
+Di.styles = ze`
         :host {
             display: flex;
             --ui-navigation-menu-list-gap: 4px;
@@ -10382,12 +10386,12 @@ Hr([
 Di = Hr([
   d("ui-navigation-menu-list")
 ], Di);
-var xh = Object.defineProperty, _h = Object.getOwnPropertyDescriptor, hr = (e, t, i, o) => {
+var xh = Object.defineProperty, _h = Object.getOwnPropertyDescriptor, pr = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? _h(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && xh(t, i, r), r;
 };
-let Xt = class extends c {
+let Zt = class extends c {
   constructor() {
     super(...arguments), this.itemId = "", this.disabled = !1, this.openDelay = 100, this.closeDelay = 150, this._openTimer = null, this._closeTimer = null, this._handleMouseEnter = () => {
       this.disabled || (this._cancelClose(), this._openTimer = setTimeout(() => {
@@ -10460,7 +10464,7 @@ let Xt = class extends c {
         `;
   }
 };
-Xt.styles = Pe`
+Zt.styles = ze`
         :host {
             display: flex;
             position: relative;
@@ -10476,21 +10480,21 @@ Xt.styles = Pe`
             width: 100%;
         }
     `;
-hr([
+pr([
   s({ type: String })
-], Xt.prototype, "itemId", 2);
-hr([
+], Zt.prototype, "itemId", 2);
+pr([
   s({ type: Boolean, reflect: !0 })
-], Xt.prototype, "disabled", 2);
-hr([
+], Zt.prototype, "disabled", 2);
+pr([
   s({ type: Number, attribute: "open-delay" })
-], Xt.prototype, "openDelay", 2);
-hr([
+], Zt.prototype, "openDelay", 2);
+pr([
   s({ type: Number, attribute: "close-delay" })
-], Xt.prototype, "closeDelay", 2);
-Xt = hr([
+], Zt.prototype, "closeDelay", 2);
+Zt = pr([
   d("ui-navigation-menu-item")
-], Xt);
+], Zt);
 var wh = Object.defineProperty, kh = Object.getOwnPropertyDescriptor, Yr = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? kh(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
@@ -10601,7 +10605,7 @@ let Ei = class extends c {
         `;
   }
 };
-Ei.styles = Pe`
+Ei.styles = ze`
         :host {
             display: flex;
             --ui-navigation-menu-trigger-padding: 8px 14px;
@@ -10680,12 +10684,12 @@ Yr([
 Ei = Yr([
   d("ui-navigation-menu-trigger")
 ], Ei);
-var $h = Object.defineProperty, Sh = Object.getOwnPropertyDescriptor, pr = (e, t, i, o) => {
+var $h = Object.defineProperty, Sh = Object.getOwnPropertyDescriptor, ur = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? Sh(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && $h(t, i, r), r;
 };
-let Zt = class extends c {
+let Jt = class extends c {
   constructor() {
     super(...arguments), this.id = "", this.open = !1, this.dir = "ltr", this.gap = 12, this._handleKeydown = (e) => {
       switch (e.key) {
@@ -10773,7 +10777,7 @@ let Zt = class extends c {
         `;
   }
 };
-Zt.styles = Pe`
+Jt.styles = ze`
         :host {
             display: none;
             position: absolute;
@@ -10827,27 +10831,27 @@ Zt.styles = Pe`
             box-sizing: border-box;
         }
     `;
-pr([
+ur([
   s({ type: String })
-], Zt.prototype, "id", 2);
-pr([
+], Jt.prototype, "id", 2);
+ur([
   s({ type: Boolean, reflect: !0 })
-], Zt.prototype, "open", 2);
-pr([
+], Jt.prototype, "open", 2);
+ur([
   s({ type: String })
-], Zt.prototype, "dir", 2);
-pr([
+], Jt.prototype, "dir", 2);
+ur([
   s({ type: Number })
-], Zt.prototype, "gap", 2);
-Zt = pr([
+], Jt.prototype, "gap", 2);
+Jt = ur([
   d("ui-navigation-menu-content")
-], Zt);
+], Jt);
 var Ch = Object.defineProperty, Ih = Object.getOwnPropertyDescriptor, Ui = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? Ih(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && Ch(t, i, r), r;
 };
-let Pt = class extends c {
+let zt = class extends c {
   constructor() {
     super(...arguments), this.href = "", this.target = "", this.title = "", this.disabled = !1, this.active = !1, this._handleClick = (e) => {
       if (this.disabled) {
@@ -10887,7 +10891,7 @@ let Pt = class extends c {
         `;
   }
 };
-Pt.styles = Pe`
+zt.styles = ze`
         :host {
             display: flex;
             --ui-navigation-menu-link-padding: 8px 14px;
@@ -10944,27 +10948,27 @@ Pt.styles = Pe`
     `;
 Ui([
   s({ type: String })
-], Pt.prototype, "href", 2);
+], zt.prototype, "href", 2);
 Ui([
   s({ type: String })
-], Pt.prototype, "target", 2);
+], zt.prototype, "target", 2);
 Ui([
   s({ type: String })
-], Pt.prototype, "title", 2);
+], zt.prototype, "title", 2);
 Ui([
   s({ type: Boolean, reflect: !0 })
-], Pt.prototype, "disabled", 2);
+], zt.prototype, "disabled", 2);
 Ui([
   s({ type: Boolean, reflect: !0 })
-], Pt.prototype, "active", 2);
-Pt = Ui([
+], zt.prototype, "active", 2);
+zt = Ui([
   d("ui-navigation-menu-link")
-], Pt);
-const Ph = ":host{display:inline-block;--ui-copy-button-size: 32px;--ui-copy-button-icon-size: 16px;font-family:var(--ui-font-family)}:host([disabled]){cursor:not-allowed}.copy-button{position:relative;display:inline-flex;align-items:center;justify-content:center;width:var(--ui-copy-button-size);height:var(--ui-copy-button-size);padding:0;border:1px solid var(--ui-border-color);border-radius:var(--ui-border-radius-md);background:var(--ui-surface-1);color:var(--ui-text-color-muted);cursor:pointer;transition:color .15s ease,background-color .15s ease,border-color .15s ease}.copy-button:hover:not(:disabled){background:var(--ui-hover-color);color:var(--ui-text-color)}.copy-button:active:not(:disabled){background:var(--ui-active-color)}.copy-button:focus-visible{outline:2px solid var(--ui-primary-color);outline-offset:2px}.copy-button:disabled{opacity:.5;cursor:not-allowed;pointer-events:none}.icon{display:flex;align-items:center;justify-content:center;width:var(--ui-copy-button-icon-size);height:var(--ui-copy-button-icon-size)}.icon svg{width:100%;height:100%}.icon--success{color:var(--ui-copy-button-success-color, var(--ui-success-color))}.icon--error{color:var(--ui-copy-button-error-color, var(--ui-error-color))}.tooltip{position:absolute;z-index:10;padding:4px 8px;border-radius:var(--ui-border-radius-sm);background:var(--ui-tooltip-bg);color:var(--ui-tooltip-text-color);font-size:.75rem;line-height:1;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .15s ease}.tooltip--visible{opacity:1}.tooltip--top{bottom:calc(100% + 6px);left:50%;transform:translate(-50%)}.tooltip--bottom{top:calc(100% + 6px);left:50%;transform:translate(-50%)}.tooltip--left{right:calc(100% + 6px);top:50%;transform:translateY(-50%)}.tooltip--right{left:calc(100% + 6px);top:50%;transform:translateY(-50%)}";
-var zh = Object.defineProperty, Dh = Object.getOwnPropertyDescriptor, mt = (e, t, i, o) => {
+], zt);
+const zh = ":host{display:inline-block;--ui-copy-button-size: 32px;--ui-copy-button-icon-size: 16px;font-family:var(--ui-font-family)}:host([disabled]){cursor:not-allowed}.copy-button{position:relative;display:inline-flex;align-items:center;justify-content:center;width:var(--ui-copy-button-size);height:var(--ui-copy-button-size);padding:0;border:1px solid var(--ui-border-color);border-radius:var(--ui-border-radius-md);background:var(--ui-surface-1);color:var(--ui-text-color-muted);cursor:pointer;transition:color .15s ease,background-color .15s ease,border-color .15s ease}.copy-button:hover:not(:disabled){background:var(--ui-hover-color);color:var(--ui-text-color)}.copy-button:active:not(:disabled){background:var(--ui-active-color)}.copy-button:focus-visible{outline:2px solid var(--ui-primary-color);outline-offset:2px}.copy-button:disabled{opacity:.5;cursor:not-allowed;pointer-events:none}.icon{display:flex;align-items:center;justify-content:center;width:var(--ui-copy-button-icon-size);height:var(--ui-copy-button-icon-size)}.icon svg{width:100%;height:100%}.icon--success{color:var(--ui-copy-button-success-color, var(--ui-success-color))}.icon--error{color:var(--ui-copy-button-error-color, var(--ui-error-color))}.tooltip{position:absolute;z-index:10;padding:4px 8px;border-radius:var(--ui-border-radius-sm);background:var(--ui-tooltip-bg);color:var(--ui-tooltip-text-color);font-size:.75rem;line-height:1;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .15s ease}.tooltip--visible{opacity:1}.tooltip--top{bottom:calc(100% + 6px);left:50%;transform:translate(-50%)}.tooltip--bottom{top:calc(100% + 6px);left:50%;transform:translate(-50%)}.tooltip--left{right:calc(100% + 6px);top:50%;transform:translateY(-50%)}.tooltip--right{left:calc(100% + 6px);top:50%;transform:translateY(-50%)}";
+var Ph = Object.defineProperty, Dh = Object.getOwnPropertyDescriptor, mt = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? Dh(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
-  return o && r && zh(t, i, r), r;
+  return o && r && Ph(t, i, r), r;
 };
 let Eh = 0;
 const Oh = wt`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"></rect><path d="M10.5 5.5V3a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3v6A1.5 1.5 0 0 0 3 10.5h2.5"></path></svg>`, Th = wt`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3.5 8.5 6.5 11.5 12.5 4.5"></polyline></svg>`, Ah = wt`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="4" x2="12" y2="12"></line><line x1="12" y1="4" x2="4" y2="12"></line></svg>`;
@@ -11090,7 +11094,7 @@ let Ue = class extends c {
         `;
   }
 };
-Ue.styles = h(Ph);
+Ue.styles = h(zh);
 mt([
   s({ type: String })
 ], Ue.prototype, "value", 2);
@@ -11146,7 +11150,7 @@ const De = {
 };
 let Uh = 0;
 const es = () => `ui-toast-${++Uh}`;
-function ci(e, t, i = {}) {
+function di(e, t, i = {}) {
   const o = i.id ?? es();
   return De.add({
     ...i,
@@ -11157,18 +11161,18 @@ function ci(e, t, i = {}) {
   }), o;
 }
 const kp = Object.assign(
-  (e, t) => ci(e, "default", t),
+  (e, t) => di(e, "default", t),
   {
     /** Show a success toast. */
-    success: (e, t) => ci(e, "success", t),
+    success: (e, t) => di(e, "success", t),
     /** Show an error toast. */
-    error: (e, t) => ci(e, "error", t),
+    error: (e, t) => di(e, "error", t),
     /** Show an info toast. */
-    info: (e, t) => ci(e, "info", t),
+    info: (e, t) => di(e, "info", t),
     /** Show a warning toast. */
-    warning: (e, t) => ci(e, "warning", t),
+    warning: (e, t) => di(e, "warning", t),
     /** Show a persistent loading toast (duration = Infinity). */
-    loading: (e, t) => ci(e, "loading", { ...t, duration: 1 / 0 }),
+    loading: (e, t) => di(e, "loading", { ...t, duration: 1 / 0 }),
     /**
      * Track a Promise with automatic loading → success/error transitions.
      *
@@ -11375,7 +11379,7 @@ Oi = Kr([
   d("ui-toaster")
 ], Oi);
 const qh = ':host{display:inline-flex;font-family:var(--ui-font-family)}:host([disabled]){cursor:not-allowed;pointer-events:none}.toggle{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;border-radius:var(--ui-toggle-border-radius, var(--ui-border-radius-md));padding:var(--ui-toggle-padding-y, .5rem) var(--ui-toggle-padding-x, .75rem);min-width:var(--ui-toggle-min-width, 2.25rem);min-height:var(--ui-toggle-min-height, 2.25rem);font-size:var(--ui-toggle-font-size, .875rem);font-weight:500;font-family:inherit;color:var(--ui-toggle-color, var(--ui-text-color));background-color:var(--ui-toggle-bg, transparent);border:1px solid transparent;cursor:pointer;transition:background-color .15s ease,color .15s ease,border-color .15s ease;-webkit-user-select:none;user-select:none;white-space:nowrap;line-height:1;text-decoration:none;box-sizing:border-box}.toggle:hover:not([disabled]){background-color:var(--ui-toggle-bg-hover, var(--ui-muted-background));color:var(--ui-toggle-color-hover, var(--ui-text-color))}.toggle[aria-pressed=true]{background-color:var(--ui-toggle-bg-pressed, var(--ui-primary-color-light));color:var(--ui-toggle-color-pressed, var(--ui-primary-color))}.toggle[aria-pressed=true]:hover:not([disabled]){background-color:var(--ui-toggle-bg-pressed-hover, var(--ui-primary-color-light-hover))}.toggle[disabled]{opacity:.5;cursor:not-allowed;pointer-events:none}.toggle:focus-visible{outline:2px solid var(--ui-primary-color);outline-offset:2px}:host([size="sm"]) .toggle{padding:var(--ui-toggle-padding-y-sm, .375rem) var(--ui-toggle-padding-x-sm, .625rem);min-width:2rem;min-height:2rem;font-size:.8125rem}:host([size="lg"]) .toggle{padding:var(--ui-toggle-padding-y-lg, .625rem) var(--ui-toggle-padding-x-lg, 1rem);min-width:2.75rem;min-height:2.75rem;font-size:1rem}:host([variant="outline"]) .toggle{border-color:var(--ui-toggle-border-color, var(--ui-border-color));background-color:var(--ui-toggle-bg, var(--ui-surface-1))}:host([variant="outline"]) .toggle:hover:not([disabled]){background-color:var(--ui-toggle-bg-hover, var(--ui-muted-background));border-color:var(--ui-toggle-border-color, var(--ui-border-color))}:host([variant="outline"]) .toggle[aria-pressed=true]{background-color:var(--ui-toggle-bg-pressed, var(--ui-primary-color-light));color:var(--ui-toggle-color-pressed, var(--ui-primary-color));border-color:var(--ui-toggle-border-pressed-color, var(--ui-primary-color-light-hover))}:host([variant="outline"]) .toggle[aria-pressed=true]:hover:not([disabled]){background-color:var(--ui-toggle-bg-pressed-hover, var(--ui-primary-color-light-hover))}:host([dir="rtl"]) .toggle{direction:rtl}';
-var Hh = Object.defineProperty, Yh = Object.getOwnPropertyDescriptor, ni = (e, t, i, o) => {
+var Hh = Object.defineProperty, Yh = Object.getOwnPropertyDescriptor, li = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? Yh(t, i) : t, a = e.length - 1, n; a >= 0; a--)
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && Hh(t, i, r), r;
@@ -11413,25 +11417,25 @@ let ut = class extends c {
   }
 };
 ut.styles = h(qh);
-ni([
+li([
   s({ type: Boolean, reflect: !0 })
 ], ut.prototype, "pressed", 2);
-ni([
+li([
   s({ type: Boolean, reflect: !0 })
 ], ut.prototype, "disabled", 2);
-ni([
+li([
   s({ type: String, reflect: !0 })
 ], ut.prototype, "variant", 2);
-ni([
+li([
   s({ type: String, reflect: !0 })
 ], ut.prototype, "size", 2);
-ni([
+li([
   s({ type: String, reflect: !0 })
 ], ut.prototype, "dir", 2);
-ni([
+li([
   s({ type: Boolean, attribute: "default-pressed" })
 ], ut.prototype, "defaultPressed", 2);
-ut = ni([
+ut = li([
   d("ui-toggle")
 ], ut);
 var Kh = Object.defineProperty, Wh = Object.getOwnPropertyDescriptor, pe = (e, t, i, o) => {
@@ -11454,7 +11458,7 @@ let or = class extends c {
       "ui-resizable-panel, ui-resizable-handle"
     );
     for (const o of i)
-      o.closest("ui-resizable-group") === this && (o instanceof Ze ? e.push(o) : o instanceof Jt && t.push(o));
+      o.closest("ui-resizable-group") === this && (o instanceof Ze ? e.push(o) : o instanceof Qt && t.push(o));
     this._panels = e, this._handles = t, this._syncChildren();
   }
   _syncChildren() {
@@ -11593,7 +11597,7 @@ let or = class extends c {
     return l`<slot @slotchange=${() => this._collectChildren()}></slot>`;
   }
 };
-or.styles = Pe`
+or.styles = ze`
     :host {
       display: flex;
       height: 100%;
@@ -11655,7 +11659,7 @@ let Ze = class extends c {
     return l`<slot></slot>`;
   }
 };
-Ze.styles = Pe`
+Ze.styles = ze`
     :host {
       position: relative;
       overflow: hidden;
@@ -11684,7 +11688,7 @@ pe([
 Ze = pe([
   d("ui-resizable-panel")
 ], Ze);
-let Jt = class extends c {
+let Qt = class extends c {
   constructor() {
     super(...arguments), this.withHandle = !1, this.disabled = !1, this.orientation = "horizontal", this._dir = "ltr", this._dragging = !1, this._startPos = 0, this._onPointerDown = (e) => {
       this.disabled || e.button !== 0 || (e.preventDefault(), this._dragging = !0, this._startPos = this.orientation === "horizontal" ? e.clientX : e.clientY, this.setPointerCapture(e.pointerId), this.closest("ui-resizable-group")?._startDrag());
@@ -11727,7 +11731,7 @@ let Jt = class extends c {
     return t;
   }
 };
-Jt.styles = Pe`
+Qt.styles = ze`
     :host {
       display: flex;
       align-items: center;
@@ -11801,16 +11805,16 @@ Jt.styles = Pe`
   `;
 pe([
   s({ type: Boolean, reflect: !0, attribute: "with-handle" })
-], Jt.prototype, "withHandle", 2);
+], Qt.prototype, "withHandle", 2);
 pe([
   s({ type: Boolean, reflect: !0 })
-], Jt.prototype, "disabled", 2);
+], Qt.prototype, "disabled", 2);
 pe([
   s({ reflect: !0 })
-], Jt.prototype, "orientation", 2);
-Jt = pe([
+], Qt.prototype, "orientation", 2);
+Qt = pe([
   d("ui-resizable-handle")
-], Jt);
+], Qt);
 const Gh = ":host{display:block;position:relative;overflow:hidden;user-select:none;-webkit-user-select:none;touch-action:none;border-radius:var(--ui-image-comparer-border-radius, var(--ui-border-radius-md));aspect-ratio:var(--ui-image-comparer-aspect-ratio, 16 / 9)}.base{position:relative;width:100%;height:100%;overflow:hidden}.before,.after{position:absolute;inset:0;overflow:hidden}.after ::slotted(img),.after ::slotted(svg),.before ::slotted(img),.before ::slotted(svg){display:block;width:100%;height:100%;object-fit:cover;max-width:none;pointer-events:none}.before{z-index:1}.divider{position:absolute;top:0;height:100%;z-index:2;width:var(--ui-image-comparer-divider-width, 2px);background:var(--ui-image-comparer-divider-color, var(--ui-color-white));transform:translate(-50%);pointer-events:none;box-shadow:0 0 4px #0000004d}.handle{position:absolute;top:50%;z-index:3;display:flex;align-items:center;justify-content:center;width:var(--ui-image-comparer-handle-size, 40px);height:var(--ui-image-comparer-handle-size, 40px);border-radius:var(--ui-border-radius-full);background:var(--ui-image-comparer-handle-bg, var(--ui-color-white));border:2px solid var(--ui-image-comparer-handle-border-color, rgba(0, 0, 0, .15));box-shadow:var(--ui-shadow-md);transform:translate(-50%,-50%);cursor:ew-resize;outline:none;transition:box-shadow .15s ease}.handle:focus-visible{box-shadow:var(--ui-shadow-md),0 0 0 3px var(--ui-primary-focus-ring)}.handle:hover{box-shadow:var(--ui-shadow-lg)}.handle svg{width:20px;height:20px;color:var(--ui-image-comparer-handle-icon-color, var(--ui-text-color-muted));flex-shrink:0}:host([disabled]){opacity:.5;pointer-events:none}";
 var Xh = Object.defineProperty, Zh = Object.getOwnPropertyDescriptor, Yo = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? Zh(t, i) : t, a = e.length - 1, n; a >= 0; a--)
@@ -12125,7 +12129,7 @@ let Je = class extends c {
         `;
   }
 };
-Je.styles = Pe`
+Je.styles = ze`
         :host {
             display: flex;
             position: relative;
@@ -12269,7 +12273,7 @@ function sp(e) {
     if (e >= t.seconds) return t;
   return Xr[Xr.length - 1];
 }
-let zt = class extends c {
+let Pt = class extends c {
   constructor() {
     super(...arguments), this.date = /* @__PURE__ */ new Date(), this.format = "long", this.numeric = "auto", this.sync = !1, this.lang = "", this._timer = null;
   }
@@ -12322,25 +12326,25 @@ let zt = class extends c {
         `;
   }
 };
-zt.styles = h(ip);
+Pt.styles = h(ip);
 ji([
   s()
-], zt.prototype, "date", 2);
+], Pt.prototype, "date", 2);
 ji([
   s({ reflect: !0 })
-], zt.prototype, "format", 2);
+], Pt.prototype, "format", 2);
 ji([
   s({ reflect: !0 })
-], zt.prototype, "numeric", 2);
+], Pt.prototype, "numeric", 2);
 ji([
   s({ type: Boolean, reflect: !0 })
-], zt.prototype, "sync", 2);
+], Pt.prototype, "sync", 2);
 ji([
   s({ attribute: "lang", reflect: !0 })
-], zt.prototype, "lang", 2);
-zt = ji([
+], Pt.prototype, "lang", 2);
+Pt = ji([
   d("ui-relative-time")
-], zt);
+], Pt);
 const ap = ":host{display:inline}time{font:inherit;color:var(--ui-format-date-color, inherit);font-size:var(--ui-format-date-font-size, inherit)}";
 var np = Object.defineProperty, lp = Object.getOwnPropertyDescriptor, W = (e, t, i, o) => {
   for (var r = o > 1 ? void 0 : o ? lp(t, i) : t, a = e.length - 1, n; a >= 0; a--)
@@ -12531,7 +12535,7 @@ var fp = Object.defineProperty, bp = Object.getOwnPropertyDescriptor, ts = (e, t
     (n = e[a]) && (r = (o ? n(t, i, r) : n(r)) || r);
   return o && r && fp(t, i, r), r;
 };
-let Br = class extends c {
+let Mr = class extends c {
   constructor() {
     super(...arguments), this.notFocusable = !1;
   }
@@ -12539,19 +12543,19 @@ let Br = class extends c {
     return l`<slot></slot>`;
   }
 };
-Br.styles = h(up);
+Mr.styles = h(up);
 ts([
   s({ type: Boolean, reflect: !0, attribute: "not-focusable" })
-], Br.prototype, "notFocusable", 2);
-Br = ts([
+], Mr.prototype, "notFocusable", 2);
+Mr = ts([
   d("ui-visually-hidden")
-], Br);
+], Mr);
 export {
   Gi as UiAccordion,
   uo as UiAccordionActions,
   po as UiAccordionDetails,
   ho as UiAccordionSummary,
-  pi as UiAlert,
+  ui as UiAlert,
   mi as UiAppBar,
   ke as UiAutocomplete,
   Ye as UiAvatar,
@@ -12568,8 +12572,8 @@ export {
   Qr as UiCardActions,
   Jr as UiCardContent,
   Vi as UiCardHeader,
-  di as UiCardMedia,
-  Ft as UiCarousel,
+  hi as UiCardMedia,
+  qt as UiCarousel,
   Si as UiCarouselContent,
   xo as UiCarouselItem,
   Qi as UiCarouselNext,
@@ -12578,14 +12582,14 @@ export {
   ot as UiChip,
   $e as UiCircularProgress,
   Ci as UiCollapsible,
-  Ir as UiCollapsibleContent,
+  zr as UiCollapsibleContent,
   er as UiCollapsibleTrigger,
   yo as UiCommand,
-  Sr as UiCommandDialog,
+  Cr as UiCommandDialog,
   go as UiCommandEmpty,
-  $r as UiCommandGroup,
+  Sr as UiCommandGroup,
   Zi as UiCommandInput,
-  Vt as UiCommandItem,
+  Ft as UiCommandItem,
   mo as UiCommandList,
   vo as UiCommandSeparator,
   bo as UiCommandShortcut,
@@ -12596,7 +12600,7 @@ export {
   Xe as UiDatePickerCalendar,
   Ie as UiDesktopTimePicker,
   gi as UiDialog,
-  yr as UiDialogActions,
+  xr as UiDialogActions,
   lo as UiDialogContent,
   co as UiDialogContentText,
   no as UiDialogTitle,
@@ -12607,7 +12611,7 @@ export {
   $o as UiEmptyContent,
   wo as UiEmptyDescription,
   ko as UiEmptyHeader,
-  Cr as UiEmptyMedia,
+  Ir as UiEmptyMedia,
   _o as UiEmptyTitle,
   Rt as UiFab,
   B as UiFormatDate,
@@ -12619,12 +12623,12 @@ export {
   sr as UiImageComparer,
   It as UiImageList,
   ct as UiImageListItem,
-  kr as UiImageListItemBar,
+  $r as UiImageListItemBar,
   X as UiInput,
   pt as UiInputOtp,
   Io as UiInputOtpGroup,
-  Po as UiInputOtpSeparator,
-  qt as UiInputOtpSlot,
+  zo as UiInputOtpSeparator,
+  Ht as UiInputOtpSlot,
   ir as UiItem,
   Oo as UiItemActions,
   Eo as UiItemContent,
@@ -12634,8 +12638,8 @@ export {
   To as UiItemHeader,
   Pr as UiItemMedia,
   Bo as UiItemSeparator,
-  zo as UiItemTitle,
-  Pi as UiKbd,
+  Po as UiItemTitle,
+  zi as UiKbd,
   Lo as UiKbdGroup,
   Be as UiLinearProgress,
   Se as UiLink,
@@ -12648,43 +12652,43 @@ export {
   oo as UiListSubheader,
   St as UiMenu,
   fo as UiMenuDivider,
-  xr as UiMenuGroup,
+  _r as UiMenuGroup,
   Ge as UiMenuItem,
-  Ar as UiMenubar,
-  Yt as UiMenubarCheckboxItem,
-  Or as UiMenubarContent,
-  zr as UiMenubarGroup,
-  Ht as UiMenubarItem,
-  Tr as UiMenubarMenu,
-  Dr as UiMenubarRadioGroup,
-  Kt as UiMenubarRadioItem,
+  Br as UiMenubar,
+  Kt as UiMenubarCheckboxItem,
+  Tr as UiMenubarContent,
+  Dr as UiMenubarGroup,
+  Yt as UiMenubarItem,
+  Ar as UiMenubarMenu,
+  Er as UiMenubarRadioGroup,
+  Wt as UiMenubarRadioItem,
   jo as UiMenubarSeparator,
   Uo as UiMenubarShortcut,
   Ro as UiMenubarSub,
-  Er as UiMenubarSubContent,
-  Wt as UiMenubarSubTrigger,
-  zi as UiMenubarTrigger,
+  Or as UiMenubarSubContent,
+  Gt as UiMenubarSubTrigger,
+  Pi as UiMenubarTrigger,
   nt as UiMobileStepper,
   ye as UiMobileTimePicker,
   ki as UiMultiSectionDigitalClock,
   rr as UiNavigationMenu,
-  Zt as UiNavigationMenuContent,
-  Xt as UiNavigationMenuItem,
-  Pt as UiNavigationMenuLink,
+  Jt as UiNavigationMenuContent,
+  Zt as UiNavigationMenuItem,
+  zt as UiNavigationMenuLink,
   Di as UiNavigationMenuList,
   Ei as UiNavigationMenuTrigger,
   U as UiPagination,
-  hi as UiPaper,
+  pi as UiPaper,
   He as UiRadio,
   Oe as UiRadioGroup,
   ne as UiRating,
-  zt as UiRelativeTime,
+  Pt as UiRelativeTime,
   or as UiResizableGroup,
-  Jt as UiResizableHandle,
+  Qt as UiResizableHandle,
   Ze as UiResizablePanel,
   C as UiRichTreeView,
   se as UiScrollArea,
-  Gt as UiScrollBar,
+  Xt as UiScrollBar,
   E as UiSelect,
   ht as UiSimpleTreeView,
   rt as UiSkeleton,
@@ -12697,15 +12701,15 @@ export {
   $i as UiStaticTimePicker,
   oe as UiStep,
   Xi as UiStepConnector,
-  _r as UiStepContent,
+  wr as UiStepContent,
   xi as UiStepLabel,
   Ct as UiStepper,
   be as UiSwitch,
   lt as UiTab,
   le as UiTabList,
-  wr as UiTabPanel,
-  gr as UiTable,
-  mr as UiTableBody,
+  kr as UiTabPanel,
+  mr as UiTable,
+  yr as UiTableBody,
   bi as UiTableCell,
   Yi as UiTableContainer,
   ao as UiTableFooter,
@@ -12721,13 +12725,13 @@ export {
   Le as UiTimePicker,
   Oi as UiToaster,
   ut as UiToggle,
-  ui as UiToggleButton,
+  Vt as UiToggleButton,
   Fi as UiToggleButtonGroup,
   Ae as UiTooltip,
   ve as UiTransferList,
   xe as UiTreeItem,
   We as UiTypography,
-  Br as UiVisuallyHidden,
+  Mr as UiVisuallyHidden,
   cp as parseDate,
   ep as parseSnapPoints,
   kp as toast
