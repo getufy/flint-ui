@@ -597,3 +597,272 @@ describe('UiSimpleTreeView — expansionTrigger', () => {
         expect(handler).toHaveBeenCalledWith('1');
     });
 });
+
+// ─── Keyboard: disabled item branches ─────────────────────────────────────────
+
+describe('UiSimpleTreeView — keyboard on disabled items (disabledItemsFocusable=true)', () => {
+    let tree: UiSimpleTreeView;
+    let disabledItem: UiTreeItem;
+    let disabledParent: UiTreeItem;
+
+    beforeEach(async () => {
+        tree = await fixture<UiSimpleTreeView>(html`
+      <ui-simple-tree-view disabled-items-focusable>
+        <ui-tree-item item-id="1" label="Alpha" disabled>
+          <ui-tree-item item-id="1-1" label="Beta"></ui-tree-item>
+        </ui-tree-item>
+        <ui-tree-item item-id="2" label="Delta" disabled>
+          <ui-tree-item item-id="2-1" label="Gamma" disabled></ui-tree-item>
+        </ui-tree-item>
+        <ui-tree-item item-id="3" label="Epsilon"></ui-tree-item>
+      </ui-simple-tree-view>
+    `);
+        await tree.updateComplete;
+        await new Promise(r => setTimeout(r, 20));
+        disabledItem = tree.querySelector('ui-tree-item[item-id="1"]') as UiTreeItem;
+        disabledParent = tree.querySelector('ui-tree-item[item-id="2"]') as UiTreeItem;
+    });
+
+    it('ArrowRight on disabled item does nothing (no expand)', async () => {
+        disabledItem.focus();
+        expect(disabledItem.expanded).toBe(false);
+        disabledItem.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+        await tree.updateComplete;
+        expect(disabledItem.expanded).toBe(false);
+    });
+
+    it('ArrowLeft on disabled expanded item does nothing (no collapse)', async () => {
+        disabledParent.expanded = true;
+        await disabledParent.updateComplete;
+        disabledParent.focus();
+
+        disabledParent.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }));
+        await tree.updateComplete;
+        expect(disabledParent.expanded).toBe(true);
+    });
+
+    it('Enter on disabled item does NOT fire onItemClick', async () => {
+        const handler = vi.fn();
+        tree.onItemClick = handler;
+        disabledItem.focus();
+
+        disabledItem.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+        await tree.updateComplete;
+
+        expect(handler).not.toHaveBeenCalled();
+    });
+
+    it('Space on disabled item does NOT fire onItemClick', async () => {
+        const handler = vi.fn();
+        tree.onItemClick = handler;
+        disabledItem.focus();
+
+        disabledItem.dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true }));
+        await tree.updateComplete;
+
+        expect(handler).not.toHaveBeenCalled();
+    });
+});
+
+// ─── Keyboard: boundary navigation ────────────────────────────────────────────
+
+describe('UiSimpleTreeView — keyboard boundary navigation', () => {
+    let tree: UiSimpleTreeView;
+
+    beforeEach(async () => {
+        tree = await fixture<UiSimpleTreeView>(html`
+      <ui-simple-tree-view>
+        <ui-tree-item item-id="1" label="Alpha"></ui-tree-item>
+        <ui-tree-item item-id="2" label="Beta"></ui-tree-item>
+      </ui-simple-tree-view>
+    `);
+        await tree.updateComplete;
+        await new Promise(r => setTimeout(r, 20));
+    });
+
+    it('ArrowDown at last item keeps focus on last item', async () => {
+        const last = tree.querySelector('ui-tree-item[item-id="2"]') as UiTreeItem;
+        last.setAttribute('tabindex', '0');
+        last.focus();
+
+        last.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+        await tree.updateComplete;
+
+        expect(document.activeElement).toBe(last);
+    });
+
+    it('ArrowUp at first item keeps focus on first item', async () => {
+        const first = tree.querySelector('ui-tree-item[item-id="1"]') as UiTreeItem;
+        first.focus();
+
+        first.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
+        await tree.updateComplete;
+
+        expect(document.activeElement).toBe(first);
+    });
+
+    it('ArrowLeft on root-level collapsed item does nothing (no parent)', async () => {
+        const first = tree.querySelector('ui-tree-item[item-id="1"]') as UiTreeItem;
+        first.focus();
+
+        first.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }));
+        await tree.updateComplete;
+
+        expect(document.activeElement).toBe(first); // focus stays
+    });
+
+    it('first-character navigation with no match does not change focus', async () => {
+        const first = tree.querySelector('ui-tree-item[item-id="1"]') as UiTreeItem;
+        first.focus();
+
+        first.dispatchEvent(new KeyboardEvent('keydown', { key: 'z', bubbles: true }));
+        await tree.updateComplete;
+
+        expect(document.activeElement).toBe(first);
+    });
+});
+
+// ─── disconnectedCallback / event cleanup ─────────────────────────────────────
+
+describe('UiSimpleTreeView — disconnectedCallback', () => {
+    it('removes keydown listener after disconnect (no errors)', async () => {
+        const tree = await fixture<UiSimpleTreeView>(html`
+      <ui-simple-tree-view>
+        <ui-tree-item item-id="1" label="Alpha"></ui-tree-item>
+      </ui-simple-tree-view>
+    `);
+        await tree.updateComplete;
+
+        // Disconnecting and reconnecting should not throw
+        tree.remove();
+        expect(() => {
+            tree.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+        }).not.toThrow();
+    });
+});
+
+// ─── focusin on non-tree-item ──────────────────────────────────────────────────
+
+describe('UiSimpleTreeView — focusin on non-tree-item', () => {
+    it('focusin from a non-tree-item element does not throw', async () => {
+        const tree = await fixture<UiSimpleTreeView>(html`
+      <ui-simple-tree-view>
+        <ui-tree-item item-id="1" label="Alpha"></ui-tree-item>
+        <button id="btn">Click</button>
+      </ui-simple-tree-view>
+    `);
+        await tree.updateComplete;
+
+        const btn = tree.querySelector('#btn') as HTMLElement;
+        expect(() => {
+            btn.dispatchEvent(new FocusEvent('focusin', { bubbles: true }));
+        }).not.toThrow();
+    });
+});
+
+// ─── _initRovingTabindex edge cases ───────────────────────────────────────────
+
+describe('UiSimpleTreeView — _initRovingTabindex edge cases', () => {
+    it('when all items are disabled and disabledItemsFocusable=false, no item gets tabindex=0', async () => {
+        const tree = await fixture<UiSimpleTreeView>(html`
+      <ui-simple-tree-view>
+        <ui-tree-item item-id="1" label="Alpha" disabled></ui-tree-item>
+        <ui-tree-item item-id="2" label="Beta" disabled></ui-tree-item>
+      </ui-simple-tree-view>
+    `);
+        await tree.updateComplete;
+        await new Promise(r => setTimeout(r, 20));
+
+        const allItems = Array.from(tree.querySelectorAll('ui-tree-item')) as UiTreeItem[];
+        const hasFocusable = allItems.some(i => i.getAttribute('tabindex') === '0');
+        expect(hasFocusable).toBe(false);
+    });
+
+    it('when disabledItemsFocusable changes to true, first item gets tabindex=0', async () => {
+        const tree = await fixture<UiSimpleTreeView>(html`
+      <ui-simple-tree-view>
+        <ui-tree-item item-id="1" label="Alpha" disabled></ui-tree-item>
+        <ui-tree-item item-id="2" label="Beta" disabled></ui-tree-item>
+      </ui-simple-tree-view>
+    `);
+        await tree.updateComplete;
+        await new Promise(r => setTimeout(r, 20));
+
+        tree.disabledItemsFocusable = true;
+        await tree.updateComplete;
+
+        const first = tree.querySelector('ui-tree-item[item-id="1"]') as UiTreeItem;
+        expect(first.getAttribute('tabindex')).toBe('0');
+    });
+});
+
+// ─── Controlled mode collapse ─────────────────────────────────────────────────
+
+describe('UiSimpleTreeView — controlled mode collapse', () => {
+    it('controlled collapse fires onExpandedItemsChange without the item', async () => {
+        const handler = vi.fn();
+        const tree = await fixture<UiSimpleTreeView>(html`
+      <ui-simple-tree-view .expandedItems=${['1']} .onExpandedItemsChange=${handler}>
+        <ui-tree-item item-id="1" label="Alpha">
+          <ui-tree-item item-id="1-1" label="Beta"></ui-tree-item>
+        </ui-tree-item>
+      </ui-simple-tree-view>
+    `);
+        await tree.updateComplete;
+        await new Promise(r => setTimeout(r, 20));
+
+        // Item '1' is currently expanded; clicking expand button collapses it
+        const item1 = tree.querySelector('ui-tree-item[item-id="1"]') as UiTreeItem;
+        item1.shadowRoot!.querySelector<HTMLElement>('.expand-btn')!.click();
+        await tree.updateComplete;
+
+        expect(handler).toHaveBeenCalledOnce();
+        expect(handler).toHaveBeenCalledWith([]); // '1' removed
+    });
+});
+
+// ─── ArrowRight on expanded / ArrowLeft to parent ─────────────────────────────
+
+describe('UiSimpleTreeView — ArrowRight focus to first child / ArrowLeft to parent', () => {
+    let tree: UiSimpleTreeView;
+    let parent: UiTreeItem;
+
+    beforeEach(async () => {
+        tree = await fixture<UiSimpleTreeView>(html`
+      <ui-simple-tree-view>
+        <ui-tree-item item-id="1" label="Alpha">
+          <ui-tree-item item-id="1-1" label="Beta"></ui-tree-item>
+          <ui-tree-item item-id="1-2" label="Gamma"></ui-tree-item>
+        </ui-tree-item>
+        <ui-tree-item item-id="2" label="Delta"></ui-tree-item>
+      </ui-simple-tree-view>
+    `);
+        await tree.updateComplete;
+        await new Promise(r => setTimeout(r, 20));
+
+        // Expand parent so children are visible
+        parent = tree.querySelector('ui-tree-item[item-id="1"]') as UiTreeItem;
+        parent.shadowRoot!.querySelector<HTMLElement>('.expand-btn')!.click();
+        await tree.updateComplete;
+        await new Promise(r => setTimeout(r, 10));
+        expect(parent.expanded).toBe(true);
+    });
+
+    it('ArrowRight on expanded item moves focus to its first child', async () => {
+        parent.focus();
+        parent.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+        await tree.updateComplete;
+
+        const firstChild = tree.querySelector('ui-tree-item[item-id="1-1"]') as UiTreeItem;
+        expect(document.activeElement).toBe(firstChild);
+    });
+
+    it('ArrowLeft on child moves focus to its parent', async () => {
+        const child = tree.querySelector('ui-tree-item[item-id="1-1"]') as UiTreeItem;
+        child.focus();
+        child.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }));
+        await tree.updateComplete;
+
+        expect(document.activeElement).toBe(parent);
+    });
+});
