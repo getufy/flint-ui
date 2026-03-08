@@ -2,10 +2,17 @@
       display: block;
       width: 100%;
       overflow-x: auto;
-      background-color: var(--ui-surface-background, white);
-      border-radius: var(--ui-border-radius-lg, 8px);
-      box-shadow: var(--ui-shadow-sm, 0 1px 3px rgba(0,0,0,0.1));
+      background-color: var(--ui-table-container-bg, var(--ui-surface-background, white));
+      border-radius: var(--ui-table-border-radius, var(--ui-border-radius-lg, 8px));
+      box-shadow: var(--ui-table-shadow, var(--ui-shadow-sm));
+      border: 1px solid var(--ui-table-border-color, var(--ui-border-color));
     }
     :host([shadow]) {
-      box-shadow: var(--ui-shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06));
+      box-shadow: var(--ui-table-shadow-elevated, var(--ui-shadow-md));
+    }
+    :host([sticky-header]) ui-table-head,
+    :host([sticky-header]) ::slotted(ui-table-head) {
+      position: sticky;
+      top: 0;
+      z-index: 2;
     }

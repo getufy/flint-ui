@@ -258,6 +258,22 @@
     --ui-split-panel-min:                0;
     --ui-split-panel-max:                100%;
 
+    /* ─── Table ─────────────────────────────────────────────────── */
+    --ui-table-border-color:         var(--ui-border-color);
+    --ui-table-border-radius:        var(--ui-border-radius-lg);
+    --ui-table-shadow:               var(--ui-shadow-sm);
+    --ui-table-shadow-elevated:      var(--ui-shadow-md);
+    --ui-table-container-bg:         var(--ui-surface-background);
+    --ui-table-header-bg:            transparent;
+    --ui-table-header-color:         var(--ui-text-color-muted);
+    --ui-table-row-hover-bg:         var(--ui-hover-color);
+    --ui-table-row-selected-bg:      var(--ui-primary-color-light);
+    --ui-table-striped-bg:           var(--ui-surface-2);
+    --ui-table-cell-padding-y:       16px;
+    --ui-table-cell-padding-x:       16px;
+    --ui-table-cell-padding-y-dense: 6px;
+    --ui-table-cell-padding-x-dense: 16px;
+
     /* ─── Format Number ─────────────────────────────────────────── */
     --ui-format-number-color:          inherit;
     --ui-format-number-font-size:      inherit;

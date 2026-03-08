@@ -10,20 +10,25 @@ import uiTableFooterStyles from './ui-table-footer.css?inline';
 
 /**
  * ui-table-container
+ * @prop {boolean} shadow        - Stronger box-shadow elevation.
+ * @prop {boolean} sticky-header - Sticks thead to top on scroll.
  */
 @customElement('ui-table-container')
 export class UiTableContainer extends LitElement {
   static styles = unsafeCSS(uiTableContainerStyles);
   @property({ type: Boolean, reflect: true }) shadow = false;
+  @property({ type: Boolean, reflect: true, attribute: 'sticky-header' }) stickyHeader = false;
   render() { return html`<slot></slot>`; }
 }
 
 /**
  * ui-table
+ * @prop {'medium'|'small'} size - Cell padding density.
  */
 @customElement('ui-table')
 export class UiTable extends LitElement {
   static styles = unsafeCSS(uiTableStyles);
+  @property({ type: String, reflect: true }) size: 'medium' | 'small' = 'medium';
   render() { return html`<slot></slot>`; }
 }
 
@@ -38,31 +43,40 @@ export class UiTableHead extends LitElement {
 
 /**
  * ui-table-body
+ * @prop {boolean} striped - Alternating row shading.
  */
 @customElement('ui-table-body')
 export class UiTableBody extends LitElement {
   static styles = unsafeCSS(uiTableBodyStyles);
+  @property({ type: Boolean, reflect: true }) striped = false;
   render() { return html`<slot></slot>`; }
 }
 
 /**
  * ui-table-row
+ * @prop {boolean} selected - Selected row highlight.
+ * @prop {boolean} hover    - Force hover highlight.
  */
 @customElement('ui-table-row')
 export class UiTableRow extends LitElement {
   static styles = unsafeCSS(uiTableRowStyles);
   @property({ type: Boolean, reflect: true }) selected = false;
+  @property({ type: Boolean, reflect: true }) hover = false;
   render() { return html`<slot></slot>`; }
 }
 
 /**
  * ui-table-cell
+ * @prop {boolean}                    header  - Header cell styling.
+ * @prop {'left'|'right'|'center'}    align   - Text alignment.
+ * @prop {'normal'|'checkbox'|'none'} padding - Padding preset.
  */
 @customElement('ui-table-cell')
 export class UiTableCell extends LitElement {
   static styles = unsafeCSS(uiTableCellStyles);
   @property({ type: Boolean, reflect: true }) header = false;
   @property({ type: String, reflect: true }) align: 'left' | 'right' | 'center' = 'left';
+  @property({ type: String, reflect: true }) padding: 'normal' | 'checkbox' | 'none' = 'normal';
 
   render() { return html`<slot></slot>`; }
 }

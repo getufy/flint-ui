@@ -29,6 +29,7 @@ export default defineConfig({
         coverage: {
             provider: 'v8', // or 'istanbul'
             reporter: ['text', 'html'], // include 'html' to generate HTML report
+            exclude: ['.storybook/**'],
         },
 
         projects: [{

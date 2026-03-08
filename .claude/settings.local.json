@@ -30,7 +30,8 @@
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --project components --coverage src/time-picker/ui-time-picker.test.ts)",
       "WebFetch(domain:localhost)",
       "Bash(NODE_OPTIONS='--no-warnings' npx eslint src/time-picker/ui-time-picker.ts)",
-      "Bash(NODE_OPTIONS='--no-warnings' vitest run src/time-picker/ui-time-picker.test.ts --reporter=verbose)"
+      "Bash(NODE_OPTIONS='--no-warnings' vitest run src/time-picker/ui-time-picker.test.ts --reporter=verbose)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/table/ui-table.test.ts)"
     ]
   }
 }

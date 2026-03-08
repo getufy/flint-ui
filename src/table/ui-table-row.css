@@ -5,8 +5,11 @@
       transition: background-color 0.2s ease;
     }
     :host(:hover) {
-      background-color: var(--ui-hover-color, rgba(0, 0, 0, 0.04));
+      background-color: var(--ui-table-row-hover-bg, var(--ui-hover-color, rgba(0, 0, 0, 0.04)));
     }
     :host([selected]) {
-      background-color: var(--ui-active-color, rgba(59, 130, 246, 0.08));
+      background-color: var(--ui-table-row-selected-bg, var(--ui-primary-color-light, rgba(59, 130, 246, 0.08)));
+    }
+    :host([hover]) {
+      background-color: var(--ui-table-row-hover-bg, var(--ui-hover-color, rgba(0, 0, 0, 0.04)));
     }

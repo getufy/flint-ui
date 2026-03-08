@@ -1,7 +1,5 @@
 # TODO Components
 
-- [ ] Forms
-
 - Continue investigating bugs under ui-switch folder (started at ui-grid).
 - Create a structurable theme.scss/css variable across all components
 - Dark Mode/Light Mode
