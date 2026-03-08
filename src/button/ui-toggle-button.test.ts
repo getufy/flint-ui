@@ -9,6 +9,7 @@ describe('ui-toggle-button', () => {
         expect(el.selected).toBe(false);
         expect(el.disabled).toBe(false);
         expect(el.value).toBe('x');
+        expect(el.size).toBe('md');
 
         const button = el.shadowRoot!.querySelector('button')!;
         expect(button.type).toBe('button');
@@ -36,10 +37,10 @@ describe('ui-toggle-button', () => {
         expect(button.disabled).toBe(true);
     });
 
-    it('dispatches toggle-click event with value and next selected state', async () => {
+    it('dispatches ui-toggle-button-change event with value and next selected state', async () => {
         const handler = vi.fn();
         const el = await fixture<UiToggleButton>(html`
-            <ui-toggle-button value="bold" @toggle-click=${handler}>B</ui-toggle-button>
+            <ui-toggle-button value="bold" @ui-toggle-button-change=${handler}>B</ui-toggle-button>
         `);
 
         el.shadowRoot!.querySelector('button')!.click();
@@ -50,10 +51,10 @@ describe('ui-toggle-button', () => {
         expect(event.detail.selected).toBe(true);
     });
 
-    it('dispatches toggle-click with selected=false when already selected', async () => {
+    it('dispatches ui-toggle-button-change with selected=false when already selected', async () => {
         const handler = vi.fn();
         const el = await fixture<UiToggleButton>(html`
-            <ui-toggle-button value="bold" selected @toggle-click=${handler}>B</ui-toggle-button>
+            <ui-toggle-button value="bold" selected @ui-toggle-button-change=${handler}>B</ui-toggle-button>
         `);
 
         el.shadowRoot!.querySelector('button')!.click();
@@ -62,20 +63,32 @@ describe('ui-toggle-button', () => {
         expect(event.detail.selected).toBe(false);
     });
 
-    it('does not dispatch event when disabled', async () => {
+    it('does not dispatch event when native disabled button is clicked', async () => {
         const handler = vi.fn();
         const el = await fixture<UiToggleButton>(html`
-            <ui-toggle-button value="bold" disabled @toggle-click=${handler}>B</ui-toggle-button>
+            <ui-toggle-button value="bold" disabled @ui-toggle-button-change=${handler}>B</ui-toggle-button>
         `);
 
+        // Native disabled button swallows DOM click — handler is never invoked
         el.shadowRoot!.querySelector('button')!.click();
         expect(handler).not.toHaveBeenCalled();
     });
 
-    it('toggle-click event bubbles and is composed', async () => {
+    it('_handleClick returns early when disabled is true (covers disabled branch)', async () => {
+        // Directly invoke _handleClick while disabled=true to exercise the guard branch.
+        // Native button.click() on a disabled button never fires in jsdom, so we bypass it here.
+        const handler = vi.fn();
+        const el = await fixture<UiToggleButton>(html`
+            <ui-toggle-button value="x" disabled @ui-toggle-button-change=${handler}>X</ui-toggle-button>
+        `);
+        (el as unknown as { _handleClick(): void })._handleClick();
+        expect(handler).not.toHaveBeenCalled();
+    });
+
+    it('ui-toggle-button-change event bubbles and is composed', async () => {
         let captured: CustomEvent | null = null;
         const el = await fixture<UiToggleButton>(html`<ui-toggle-button value="x">X</ui-toggle-button>`);
-        el.addEventListener('toggle-click', (e) => { captured = e as CustomEvent; });
+        el.addEventListener('ui-toggle-button-change', (e) => { captured = e as CustomEvent; });
 
         el.shadowRoot!.querySelector('button')!.click();
 
@@ -87,5 +100,32 @@ describe('ui-toggle-button', () => {
     it('renders slotted content', async () => {
         const el = await fixture<UiToggleButton>(html`<ui-toggle-button>Bold</ui-toggle-button>`);
         expect(el.textContent?.trim()).toBe('Bold');
+    });
+
+    describe('size prop', () => {
+        it('defaults to md', async () => {
+            const el = await fixture<UiToggleButton>(html`<ui-toggle-button>X</ui-toggle-button>`);
+            expect(el.size).toBe('md');
+            expect(el.getAttribute('size')).toBe('md');
+        });
+
+        it('reflects sm to attribute', async () => {
+            const el = await fixture<UiToggleButton>(html`<ui-toggle-button size="sm">X</ui-toggle-button>`);
+            expect(el.size).toBe('sm');
+            expect(el.getAttribute('size')).toBe('sm');
+        });
+
+        it('reflects lg to attribute', async () => {
+            const el = await fixture<UiToggleButton>(html`<ui-toggle-button size="lg">X</ui-toggle-button>`);
+            expect(el.size).toBe('lg');
+            expect(el.getAttribute('size')).toBe('lg');
+        });
+
+        it('can be changed programmatically', async () => {
+            const el = await fixture<UiToggleButton>(html`<ui-toggle-button>X</ui-toggle-button>`);
+            el.size = 'lg';
+            await el.updateComplete;
+            expect(el.getAttribute('size')).toBe('lg');
+        });
     });
 });

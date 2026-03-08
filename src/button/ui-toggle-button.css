@@ -1,56 +1,86 @@
 :host {
-      display: inline-block;
-    }
+    display: inline-block;
+}
 
-    button {
-      font-family: var(--ui-font-family);
-      font-weight: 500;
-      font-size: 14px;
-      padding: 8px 16px;
-      border: 1px solid var(--ui-input-border-color);
-      background-color: var(--ui-surface-1);
-      color: var(--ui-text-color);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      outline: none;
-    }
+button {
+    font-family: var(--ui-font-family);
+    font-weight: 500;
+    font-size: var(--ui-toggle-button-font-size, 14px);
+    padding: var(--ui-toggle-button-padding, 8px 16px);
+    border: 1px solid var(--ui-input-border-color);
+    background-color: var(--ui-surface-1);
+    color: var(--ui-text-color);
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ui-toggle-button-gap, 8px);
+    outline: none;
+    /* Standalone default: fully rounded */
+    border-radius: var(--ui-toggle-button-border-radius, var(--ui-border-radius-md));
+    line-height: 1;
+}
 
-    button:hover:not(:disabled) {
-      background-color: var(--ui-hover-color);
-    }
+button:hover:not(:disabled) {
+    background-color: var(--ui-hover-color);
+}
 
-    button.selected {
-      background-color: var(--ui-active-color);
-      color: var(--ui-primary-color);
-      border-color: var(--ui-primary-color);
-      z-index: 1;
-    }
+button.selected {
+    background-color: var(--ui-toggle-button-selected-bg, var(--ui-active-color));
+    color: var(--ui-toggle-button-selected-color, var(--ui-primary-color));
+    border-color: var(--ui-toggle-button-selected-border-color, var(--ui-primary-color));
+    z-index: 1;
+}
 
-    button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
 
-    button:focus-visible {
-      box-shadow: 0 0 0 2px var(--ui-primary-color);
-      z-index: 2;
-    }
+button:focus-visible {
+    box-shadow: 0 0 0 2px var(--ui-primary-color);
+    z-index: 2;
+}
 
-    /* Border radius management is usually handled by the group */
-    :host([data-first]) button {
-      border-top-left-radius: var(--ui-border-radius-md);
-      border-bottom-left-radius: var(--ui-border-radius-md);
-    }
+/* ─── Size variants ───────────────────────────────── */
+:host([size='sm']) button {
+    font-size: 12px;
+    padding: 4px 10px;
+    gap: 4px;
+}
 
-    :host([data-last]) button {
-      border-top-right-radius: var(--ui-border-radius-md);
-      border-bottom-right-radius: var(--ui-border-radius-md);
-    }
+:host([size='lg']) button {
+    font-size: 16px;
+    padding: 12px 20px;
+    gap: 10px;
+}
 
-    :host(:not([data-first])) button {
-      margin-left: -1px;
-    }
+/* ─── Group context (set by ui-toggle-button-group) ── */
+/* Reset radius for group members; group controls corners via data-first/data-last */
+:host([data-first]) button,
+:host([data-last]) button,
+:host([data-first][data-last]) button {
+    border-radius: 0;
+}
+
+:host([data-first]) button {
+    border-top-left-radius: var(--ui-border-radius-md);
+    border-bottom-left-radius: var(--ui-border-radius-md);
+}
+
+:host([data-last]) button {
+    border-top-right-radius: var(--ui-border-radius-md);
+    border-bottom-right-radius: var(--ui-border-radius-md);
+}
+
+/* Single child in group gets full radius */
+:host([data-first][data-last]) button {
+    border-radius: var(--ui-border-radius-md);
+}
+
+/* Overlap borders between group items */
+:host([data-last]:not([data-first])) button,
+:host(:not([data-first]):not([data-last])) button {
+    margin-left: -1px;
+}
