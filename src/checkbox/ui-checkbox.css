@@ -20,13 +20,24 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 18px;
-      height: 18px;
+      flex-shrink: 0;
+      width: var(--ui-checkbox-size, 18px);
+      height: var(--ui-checkbox-size, 18px);
       border: 2px solid var(--ui-input-border-color);
-      border-radius: var(--ui-border-radius-sm);
+      border-radius: var(--ui-checkbox-border-radius, var(--ui-border-radius-sm));
       background-color: var(--ui-surface-1);
       transition: all 0.2s ease;
-      margin-right: 8px;
+      margin-right: var(--ui-checkbox-gap, 8px);
+    }
+
+    :host([size="sm"]) .checkbox {
+      width: var(--ui-checkbox-size-sm, 14px);
+      height: var(--ui-checkbox-size-sm, 14px);
+    }
+
+    :host([size="lg"]) .checkbox {
+      width: var(--ui-checkbox-size-lg, 22px);
+      height: var(--ui-checkbox-size-lg, 22px);
     }
 
     .wrapper:hover:not(.disabled) .checkbox {
@@ -44,11 +55,21 @@
       stroke-width: 3;
       stroke-linecap: round;
       stroke-linejoin: round;
-      width: 12px;
-      height: 12px;
+      width: var(--ui-checkbox-icon-size, 12px);
+      height: var(--ui-checkbox-icon-size, 12px);
       opacity: 0;
       transform: scale(0.5);
       transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    :host([size="sm"]) .icon {
+      width: var(--ui-checkbox-icon-size-sm, 10px);
+      height: var(--ui-checkbox-icon-size-sm, 10px);
+    }
+
+    :host([size="lg"]) .icon {
+      width: var(--ui-checkbox-icon-size-lg, 16px);
+      height: var(--ui-checkbox-icon-size-lg, 16px);
     }
 
     .checked .icon, .indeterminate .icon {
@@ -71,9 +92,17 @@
     }
 
     .label {
-      font-size: 14px;
+      font-size: var(--ui-checkbox-label-font-size, 14px);
       line-height: 1.5;
       user-select: none;
+    }
+
+    :host([size="sm"]) .label {
+      font-size: var(--ui-checkbox-label-font-size-sm, 12px);
+    }
+
+    :host([size="lg"]) .label {
+      font-size: var(--ui-checkbox-label-font-size-lg, 16px);
     }
 
     /* Style when no label and no slot text is passed */

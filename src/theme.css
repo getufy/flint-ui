@@ -210,6 +210,19 @@
     --ui-stepper-connector-color: var(--ui-border-color);
     --ui-switch-thumb-color:      var(--ui-color-white);
 
+    /* ─── Checkbox ──────────────────────────────────────────────── */
+    --ui-checkbox-size:              18px;
+    --ui-checkbox-size-sm:           14px;
+    --ui-checkbox-size-lg:           22px;
+    --ui-checkbox-icon-size:         12px;
+    --ui-checkbox-icon-size-sm:      10px;
+    --ui-checkbox-icon-size-lg:      16px;
+    --ui-checkbox-border-radius:     var(--ui-border-radius-sm);
+    --ui-checkbox-gap:               8px;
+    --ui-checkbox-label-font-size:   14px;
+    --ui-checkbox-label-font-size-sm: 12px;
+    --ui-checkbox-label-font-size-lg: 16px;
+
     /* ─── Input-specific ───────────────────────────────────────── */
     --ui-label-color:              var(--ui-color-zinc-700, #3f3f46);
     --ui-input-placeholder-color:  var(--ui-color-zinc-400);
