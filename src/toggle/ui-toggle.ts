@@ -1,4 +1,4 @@
-import { LitElement, unsafeCSS, html, PropertyValues } from 'lit';
+import { LitElement, unsafeCSS, html, PropertyValues, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import uiToggleStyles from './ui-toggle.css?inline';
 
@@ -14,6 +14,7 @@ import uiToggleStyles from './ui-toggle.css?inline';
  * @attr {'sm'|'default'|'lg'} size - Size of the toggle.
  * @attr {'ltr'|'rtl'} dir - Text direction.
  * @attr {boolean} default-pressed - Initial pressed state (uncontrolled mode).
+ * @attr {string} aria-label - Accessible label for icon-only toggles.
  */
 @customElement('ui-toggle')
 export class UiToggle extends LitElement {
@@ -25,6 +26,7 @@ export class UiToggle extends LitElement {
     @property({ type: String, reflect: true }) size: 'sm' | 'default' | 'lg' = 'default';
     @property({ type: String, reflect: true }) dir: 'ltr' | 'rtl' = 'ltr';
     @property({ type: Boolean, attribute: 'default-pressed' }) defaultPressed = false;
+    @property({ attribute: 'aria-label' }) ariaLabel: string | null = null;
 
     private _firstUpdate = true;
 
@@ -61,6 +63,7 @@ export class UiToggle extends LitElement {
                 class="toggle"
                 type="button"
                 aria-pressed=${this.pressed ? 'true' : 'false'}
+                aria-label=${this.ariaLabel || nothing}
                 ?disabled=${this.disabled}
                 @click=${this._handleClick}
                 @keydown=${this._handleKeydown}

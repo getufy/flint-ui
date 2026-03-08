@@ -286,3 +286,139 @@ describe('ui-toggle — controlled mode', () => {
         expect(getButton(el).getAttribute('aria-pressed')).toBe('false');
     });
 });
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ui-toggle — disabled + keyboard (kills the disabled guard branch)
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-toggle — disabled + keyboard', () => {
+    it('Space key does not toggle when disabled', async () => {
+        const el = await make({ disabled: true });
+        getButton(el).dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true }));
+        await el.updateComplete;
+        expect(el.pressed).toBe(false);
+    });
+
+    it('Space key does not fire event when disabled', async () => {
+        const el = await make({ disabled: true });
+        const spy = vi.fn();
+        el.addEventListener('ui-toggle-change', spy);
+        getButton(el).dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true }));
+        await el.updateComplete;
+        expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('Enter key does not toggle when disabled', async () => {
+        const el = await make({ disabled: true });
+        getButton(el).dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+        await el.updateComplete;
+        expect(el.pressed).toBe(false);
+    });
+
+    it('Enter key does not fire event when disabled', async () => {
+        const el = await make({ disabled: true });
+        const spy = vi.fn();
+        el.addEventListener('ui-toggle-change', spy);
+        getButton(el).dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+        await el.updateComplete;
+        expect(spy).not.toHaveBeenCalled();
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ui-toggle — event detail completeness
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-toggle — event detail', () => {
+    it('fires event with { pressed: false } when toggling from pressed to unpressed', async () => {
+        const el = await make({ pressed: true });
+        const spy = vi.fn();
+        el.addEventListener('ui-toggle-change', spy);
+
+        getButton(el).click();
+        await el.updateComplete;
+
+        expect(spy).toHaveBeenCalledOnce();
+        expect(spy.mock.calls[0][0].detail).toEqual({ pressed: false });
+    });
+
+    it('fires event on each click in alternating detail values', async () => {
+        const el = await make();
+        const details: boolean[] = [];
+        el.addEventListener('ui-toggle-change', (e) => { details.push((e as CustomEvent).detail.pressed); });
+
+        getButton(el).click();
+        await el.updateComplete;
+        getButton(el).click();
+        await el.updateComplete;
+        getButton(el).click();
+        await el.updateComplete;
+
+        expect(details).toEqual([true, false, true]);
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ui-toggle — _firstUpdate guard
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-toggle — firstUpdate guard', () => {
+    it('defaultPressed does not re-apply after first update', async () => {
+        const el = await make({ defaultPressed: true });
+        await el.updateComplete;
+        expect(el.pressed).toBe(true);
+
+        // External update: programmatically turn off
+        el.pressed = false;
+        await el.updateComplete; // triggers willUpdate again
+
+        // Must NOT re-set to true from defaultPressed
+        expect(el.pressed).toBe(false);
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ui-toggle — ariaLabel
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-toggle — ariaLabel', () => {
+    it('no aria-label on inner button by default', async () => {
+        const el = await make();
+        expect(getButton(el).getAttribute('aria-label')).toBeNull();
+    });
+
+    it('aria-label attribute sets aria-label on inner button', async () => {
+        const el = await fixture<UiToggle>(html`<ui-toggle aria-label="Bold text">B</ui-toggle>`);
+        await el.updateComplete;
+        expect(getButton(el).getAttribute('aria-label')).toBe('Bold text');
+    });
+
+    it('ariaLabel property sets aria-label on inner button', async () => {
+        const el = await make();
+        el.ariaLabel = 'Italic';
+        await el.updateComplete;
+        expect(getButton(el).getAttribute('aria-label')).toBe('Italic');
+    });
+
+    it('clearing ariaLabel removes aria-label from inner button', async () => {
+        const el = await fixture<UiToggle>(html`<ui-toggle aria-label="Bold">B</ui-toggle>`);
+        await el.updateComplete;
+        el.ariaLabel = null;
+        await el.updateComplete;
+        expect(getButton(el).getAttribute('aria-label')).toBeNull();
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ui-toggle — dir default
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-toggle — dir', () => {
+    it('defaults to dir="ltr"', async () => {
+        const el = await make();
+        expect(el.dir).toBe('ltr');
+        expect(el.getAttribute('dir')).toBe('ltr');
+    });
+
+    it('reflects dir="rtl"', async () => {
+        const el = await fixture<UiToggle>(html`<ui-toggle dir="rtl">B</ui-toggle>`);
+        await el.updateComplete;
+        expect(el.dir).toBe('rtl');
+        expect(el.getAttribute('dir')).toBe('rtl');
+    });
+});
