@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './ui-carousel';
 import type { UiCarousel } from './ui-carousel';
@@ -481,5 +481,566 @@ describe('ui-carousel — items-per-view', () => {
     expect(
       content.style.getPropertyValue('--ui-carousel-items-per-view'),
     ).toBe('3');
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Zero-items carousel
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-carousel — zero items', () => {
+  async function makeEmpty() {
+    const el = await fixture<UiCarousel>(html`
+      <ui-carousel>
+        <ui-carousel-previous></ui-carousel-previous>
+        <ui-carousel-content></ui-carousel-content>
+        <ui-carousel-next></ui-carousel-next>
+      </ui-carousel>
+    `);
+    await el.updateComplete;
+    return el;
+  }
+
+  it('total is 0 for empty carousel', async () => {
+    const el = await makeEmpty();
+    expect(el.total).toBe(0);
+  });
+
+  it('next() is a no-op when total is 0', async () => {
+    const el = await makeEmpty();
+    const spy = vi.fn();
+    el.addEventListener('ui-carousel-change', spy);
+    el.next();
+    expect(spy).not.toHaveBeenCalled();
+    expect(el.currentIndex).toBe(0);
+  });
+
+  it('previous() is a no-op when total is 0', async () => {
+    const el = await makeEmpty();
+    const spy = vi.fn();
+    el.addEventListener('ui-carousel-change', spy);
+    el.previous();
+    expect(spy).not.toHaveBeenCalled();
+    expect(el.currentIndex).toBe(0);
+  });
+
+  it('goTo(0) is a no-op when total is 0', async () => {
+    const el = await makeEmpty();
+    const spy = vi.fn();
+    el.addEventListener('ui-carousel-change', spy);
+    el.goTo(0);
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  it('next button is disabled when total is 0', async () => {
+    const el = await makeEmpty();
+    expect(getNext(el).disabled).toBe(true);
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   goTo() exact boundary
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-carousel — goTo() exact boundary', () => {
+  it('goTo(total) is a no-op — index === total is out of range', async () => {
+    const el = await makeCarousel(); // 3 items: valid range 0-2
+    const spy = vi.fn();
+    el.addEventListener('ui-carousel-change', spy);
+    el.goTo(3);
+    expect(spy).not.toHaveBeenCalled();
+    expect(el.currentIndex).toBe(0);
+  });
+
+  it('goTo(total - 1) navigates successfully', async () => {
+    const el = await makeCarousel();
+    el.goTo(2);
+    expect(el.currentIndex).toBe(2);
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Dynamic items via MutationObserver
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-carousel — dynamic items (MutationObserver)', () => {
+  it('total increases when an item is appended', async () => {
+    const el = await makeCarousel();
+    expect(el.total).toBe(3);
+
+    const newItem = document.createElement('ui-carousel-item');
+    newItem.textContent = 'Slide 4';
+    getContent(el).appendChild(newItem);
+
+    await new Promise(r => setTimeout(r, 0));
+    await el.updateComplete;
+
+    expect(el.total).toBe(4);
+  });
+
+  it('total decreases when an item is removed', async () => {
+    const el = await makeCarousel();
+    const content = getContent(el);
+    content.removeChild(content.querySelector('ui-carousel-item')!);
+
+    await new Promise(r => setTimeout(r, 0));
+    await el.updateComplete;
+
+    expect(el.total).toBe(2);
+  });
+
+  it('currentIndex is clamped when removing the last item while on it', async () => {
+    const el = await makeCarousel();
+    el.goTo(2);
+
+    const content = getContent(el);
+    const items = content.querySelectorAll('ui-carousel-item');
+    content.removeChild(items[items.length - 1]);
+
+    await new Promise(r => setTimeout(r, 0));
+    await el.updateComplete;
+
+    expect(el.total).toBe(2);
+    expect(el.currentIndex).toBe(1); // clamped to new total - 1
+  });
+
+  it('currentIndex stays when total is unchanged after mutation', async () => {
+    const el = await makeCarousel();
+    el.goTo(1);
+
+    getContent(el).appendChild(document.createComment('noop'));
+
+    await new Promise(r => setTimeout(r, 0));
+    await el.updateComplete;
+
+    expect(el.currentIndex).toBe(1);
+    expect(el.total).toBe(3);
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   updated() lifecycle — prop changes after initial render
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-carousel — updated() lifecycle', () => {
+  it('changing orientation updates content and nav buttons', async () => {
+    const el = await makeCarousel();
+    el.orientation = 'vertical';
+    await el.updateComplete;
+    expect(getContent(el).orientation).toBe('vertical');
+    expect(getPrev(el).orientation).toBe('vertical');
+    expect(getNext(el).orientation).toBe('vertical');
+  });
+
+  it('changing loop=true enables prev button at index 0', async () => {
+    const el = await makeCarousel();
+    expect(getPrev(el).disabled).toBe(true);
+    el.loop = true;
+    await el.updateComplete;
+    expect(getPrev(el).disabled).toBe(false);
+  });
+
+  it('changing loop=false disables prev button at index 0', async () => {
+    const el = await fixture<UiCarousel>(html`
+      <ui-carousel loop>
+        <ui-carousel-previous></ui-carousel-previous>
+        <ui-carousel-content>
+          <ui-carousel-item>A</ui-carousel-item>
+          <ui-carousel-item>B</ui-carousel-item>
+        </ui-carousel-content>
+        <ui-carousel-next></ui-carousel-next>
+      </ui-carousel>
+    `);
+    await el.updateComplete;
+    expect(getPrev(el).disabled).toBe(false);
+    el.loop = false;
+    await el.updateComplete;
+    expect(getPrev(el).disabled).toBe(true);
+  });
+
+  it('changing itemsPerView updates content.itemsPerView', async () => {
+    const el = await makeCarousel();
+    el.itemsPerView = 2;
+    await el.updateComplete;
+    expect(getContent(el).itemsPerView).toBe(2);
+  });
+
+  it('increasing itemsPerView can disable next button', async () => {
+    const el = await fixture<UiCarousel>(html`
+      <ui-carousel items-per-view="1">
+        <ui-carousel-previous></ui-carousel-previous>
+        <ui-carousel-content>
+          <ui-carousel-item>A</ui-carousel-item>
+          <ui-carousel-item>B</ui-carousel-item>
+          <ui-carousel-item>C</ui-carousel-item>
+        </ui-carousel-content>
+        <ui-carousel-next></ui-carousel-next>
+      </ui-carousel>
+    `);
+    await el.updateComplete;
+    el.goTo(1);
+    expect(getNext(el).disabled).toBe(false);
+    el.itemsPerView = 2;
+    await el.updateComplete;
+    // lastIndex = 3-2=1, currentIndex=1 → next is disabled
+    expect(getNext(el).disabled).toBe(true);
+  });
+
+  it('setting autoplay=0 stops timer', async () => {
+    vi.useFakeTimers();
+    try {
+      const el = await fixture<UiCarousel>(html`
+        <ui-carousel autoplay="100">
+          <ui-carousel-content>
+            <ui-carousel-item>A</ui-carousel-item>
+            <ui-carousel-item>B</ui-carousel-item>
+            <ui-carousel-item>C</ui-carousel-item>
+          </ui-carousel-content>
+        </ui-carousel>
+      `);
+      await el.updateComplete;
+      el.autoplay = 0;
+      await el.updateComplete;
+      vi.advanceTimersByTime(500);
+      expect(el.currentIndex).toBe(0);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('starting autoplay via prop change after mount advances slides', async () => {
+    vi.useFakeTimers();
+    try {
+      const el = await makeCarousel();
+      el.autoplay = 100;
+      await el.updateComplete;
+      vi.advanceTimersByTime(100);
+      expect(el.currentIndex).toBe(1);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('changing autoplay interval restarts timer', async () => {
+    vi.useFakeTimers();
+    try {
+      const el = await fixture<UiCarousel>(html`
+        <ui-carousel autoplay="100">
+          <ui-carousel-content>
+            <ui-carousel-item>A</ui-carousel-item>
+            <ui-carousel-item>B</ui-carousel-item>
+            <ui-carousel-item>C</ui-carousel-item>
+          </ui-carousel-content>
+        </ui-carousel>
+      `);
+      await el.updateComplete;
+      el.autoplay = 200;
+      await el.updateComplete;
+      vi.advanceTimersByTime(100);
+      expect(el.currentIndex).toBe(0); // not enough for new interval
+      vi.advanceTimersByTime(100);
+      expect(el.currentIndex).toBe(1);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Autoplay
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-carousel — autoplay', () => {
+  beforeEach(() => { vi.useFakeTimers(); });
+  afterEach(() => { vi.useRealTimers(); });
+
+  it('auto-advances at the configured interval', async () => {
+    const el = await fixture<UiCarousel>(html`
+      <ui-carousel autoplay="100">
+        <ui-carousel-content>
+          <ui-carousel-item>A</ui-carousel-item>
+          <ui-carousel-item>B</ui-carousel-item>
+          <ui-carousel-item>C</ui-carousel-item>
+        </ui-carousel-content>
+      </ui-carousel>
+    `);
+    await el.updateComplete;
+    expect(el.currentIndex).toBe(0);
+    vi.advanceTimersByTime(100);
+    expect(el.currentIndex).toBe(1);
+    vi.advanceTimersByTime(100);
+    expect(el.currentIndex).toBe(2);
+  });
+
+  it('stops at boundary when loop=false', async () => {
+    const el = await fixture<UiCarousel>(html`
+      <ui-carousel autoplay="100">
+        <ui-carousel-content>
+          <ui-carousel-item>A</ui-carousel-item>
+          <ui-carousel-item>B</ui-carousel-item>
+        </ui-carousel-content>
+      </ui-carousel>
+    `);
+    await el.updateComplete;
+    vi.advanceTimersByTime(100);
+    expect(el.currentIndex).toBe(1);
+    vi.advanceTimersByTime(100); // boundary — no advance
+    expect(el.currentIndex).toBe(1);
+  });
+
+  it('wraps around when loop=true', async () => {
+    const el = await fixture<UiCarousel>(html`
+      <ui-carousel autoplay="100" loop>
+        <ui-carousel-content>
+          <ui-carousel-item>A</ui-carousel-item>
+          <ui-carousel-item>B</ui-carousel-item>
+          <ui-carousel-item>C</ui-carousel-item>
+        </ui-carousel-content>
+      </ui-carousel>
+    `);
+    await el.updateComplete;
+    vi.advanceTimersByTime(300); // 3 × 100ms → back to 0
+    expect(el.currentIndex).toBe(0);
+  });
+
+  it('respects items-per-view boundary', async () => {
+    const el = await fixture<UiCarousel>(html`
+      <ui-carousel autoplay="100" items-per-view="2">
+        <ui-carousel-content>
+          <ui-carousel-item>A</ui-carousel-item>
+          <ui-carousel-item>B</ui-carousel-item>
+          <ui-carousel-item>C</ui-carousel-item>
+        </ui-carousel-content>
+      </ui-carousel>
+    `);
+    await el.updateComplete;
+    vi.advanceTimersByTime(100); // index 0 → 1 (lastIndex = 3-2 = 1)
+    expect(el.currentIndex).toBe(1);
+    vi.advanceTimersByTime(100); // at boundary — stops
+    expect(el.currentIndex).toBe(1);
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   disconnectedCallback
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-carousel — disconnectedCallback', () => {
+  it('stops autoplay on removal from DOM', async () => {
+    vi.useFakeTimers();
+    try {
+      const el = await fixture<UiCarousel>(html`
+        <ui-carousel autoplay="100">
+          <ui-carousel-content>
+            <ui-carousel-item>A</ui-carousel-item>
+            <ui-carousel-item>B</ui-carousel-item>
+            <ui-carousel-item>C</ui-carousel-item>
+          </ui-carousel-content>
+        </ui-carousel>
+      `);
+      await el.updateComplete;
+      el.parentNode!.removeChild(el);
+      vi.advanceTimersByTime(500);
+      expect(el.currentIndex).toBe(0);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('removal from DOM does not throw', async () => {
+    const el = await makeCarousel();
+    expect(() => el.parentNode!.removeChild(el)).not.toThrow();
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   UiCarouselContent — transform output
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-carousel-content — transform', () => {
+  it('renders translateX for horizontal at index > 0', async () => {
+    const el = await makeCarousel();
+    el.next();
+    const content = getContent(el);
+    await content.updateComplete;
+    const track = content.shadowRoot!.querySelector('.track') as HTMLElement;
+    expect(track.style.transform).toContain('translateX');
+    expect(track.style.transform).not.toContain('translateY');
+  });
+
+  it('renders translateY for vertical at index > 0', async () => {
+    const el = await fixture<UiCarousel>(html`
+      <ui-carousel orientation="vertical">
+        <ui-carousel-content>
+          <ui-carousel-item>A</ui-carousel-item>
+          <ui-carousel-item>B</ui-carousel-item>
+          <ui-carousel-item>C</ui-carousel-item>
+        </ui-carousel-content>
+      </ui-carousel>
+    `);
+    await el.updateComplete;
+    el.next();
+    const content = getContent(el);
+    await content.updateComplete;
+    const track = content.shadowRoot!.querySelector('.track') as HTMLElement;
+    expect(track.style.transform).toContain('translateY');
+    expect(track.style.transform).not.toContain('translateX');
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   UiCarouselPrevious / UiCarouselNext — orientation icons
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-carousel-previous — orientation icons', () => {
+  it('shows left-pointing chevron (horizontal)', async () => {
+    const el = await makeCarousel();
+    const prevEl = getPrev(el);
+    await prevEl.updateComplete;
+    const polyline = prevEl.shadowRoot!.querySelector('polyline')!;
+    expect(polyline.getAttribute('points')).toBe('15 18 9 12 15 6');
+  });
+
+  it('shows up-pointing chevron (vertical)', async () => {
+    const el = await fixture<UiCarousel>(html`
+      <ui-carousel orientation="vertical">
+        <ui-carousel-previous></ui-carousel-previous>
+        <ui-carousel-content>
+          <ui-carousel-item>A</ui-carousel-item>
+        </ui-carousel-content>
+      </ui-carousel>
+    `);
+    await el.updateComplete;
+    const prevEl = getPrev(el);
+    await prevEl.updateComplete;
+    const polyline = prevEl.shadowRoot!.querySelector('polyline')!;
+    expect(polyline.getAttribute('points')).toBe('18 15 12 9 6 15');
+  });
+});
+
+describe('ui-carousel-next — orientation icons', () => {
+  it('shows right-pointing chevron (horizontal)', async () => {
+    const el = await makeCarousel();
+    const nextEl = getNext(el);
+    await nextEl.updateComplete;
+    const polyline = nextEl.shadowRoot!.querySelector('polyline')!;
+    expect(polyline.getAttribute('points')).toBe('9 18 15 12 9 6');
+  });
+
+  it('shows down-pointing chevron (vertical)', async () => {
+    const el = await fixture<UiCarousel>(html`
+      <ui-carousel orientation="vertical">
+        <ui-carousel-content>
+          <ui-carousel-item>A</ui-carousel-item>
+        </ui-carousel-content>
+        <ui-carousel-next></ui-carousel-next>
+      </ui-carousel>
+    `);
+    await el.updateComplete;
+    const nextEl = getNext(el);
+    await nextEl.updateComplete;
+    const polyline = nextEl.shadowRoot!.querySelector('polyline')!;
+    expect(polyline.getAttribute('points')).toBe('6 9 12 15 18 9');
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Keyboard navigation — vertical orientation specifics
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-carousel — keyboard (vertical orientation)', () => {
+  async function makeVertical() {
+    const el = await fixture<UiCarousel>(html`
+      <ui-carousel orientation="vertical">
+        <ui-carousel-content>
+          <ui-carousel-item>A</ui-carousel-item>
+          <ui-carousel-item>B</ui-carousel-item>
+          <ui-carousel-item>C</ui-carousel-item>
+        </ui-carousel-content>
+      </ui-carousel>
+    `);
+    await el.updateComplete;
+    return el;
+  }
+
+  it('ArrowUp calls previous() when vertical', async () => {
+    const el = await makeVertical();
+    el.goTo(2);
+    el.shadowRoot!.querySelector('.carousel')!.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true, composed: true }),
+    );
+    expect(el.currentIndex).toBe(1);
+  });
+
+  it('ArrowRight is ignored in vertical mode', async () => {
+    const el = await makeVertical();
+    el.shadowRoot!.querySelector('.carousel')!.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true, composed: true }),
+    );
+    expect(el.currentIndex).toBe(0);
+  });
+
+  it('ArrowLeft is ignored in vertical mode', async () => {
+    const el = await makeVertical();
+    el.goTo(2);
+    el.shadowRoot!.querySelector('.carousel')!.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true, composed: true }),
+    );
+    expect(el.currentIndex).toBe(2);
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   label prop
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-carousel — label prop', () => {
+  it('defaults aria-label to "Carousel"', async () => {
+    const el = await makeCarousel();
+    expect(
+      el.shadowRoot!.querySelector('[role="region"]')!.getAttribute('aria-label'),
+    ).toBe('Carousel');
+  });
+
+  it('sets custom aria-label via label attribute', async () => {
+    const el = await fixture<UiCarousel>(html`
+      <ui-carousel label="Product images">
+        <ui-carousel-content>
+          <ui-carousel-item>A</ui-carousel-item>
+        </ui-carousel-content>
+      </ui-carousel>
+    `);
+    await el.updateComplete;
+    expect(
+      el.shadowRoot!.querySelector('[role="region"]')!.getAttribute('aria-label'),
+    ).toBe('Product images');
+  });
+
+  it('updates aria-label when label changes', async () => {
+    const el = await makeCarousel();
+    el.label = 'Featured slides';
+    await el.updateComplete;
+    expect(
+      el.shadowRoot!.querySelector('[role="region"]')!.getAttribute('aria-label'),
+    ).toBe('Featured slides');
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   No nav buttons / no content
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-carousel — no nav buttons / no content', () => {
+  it('programmatic navigation works without nav buttons', async () => {
+    const el = await fixture<UiCarousel>(html`
+      <ui-carousel>
+        <ui-carousel-content>
+          <ui-carousel-item>A</ui-carousel-item>
+          <ui-carousel-item>B</ui-carousel-item>
+          <ui-carousel-item>C</ui-carousel-item>
+        </ui-carousel-content>
+      </ui-carousel>
+    `);
+    await el.updateComplete;
+    el.next();
+    expect(el.currentIndex).toBe(1);
+    el.previous();
+    expect(el.currentIndex).toBe(0);
+  });
+
+  it('carousel with no ui-carousel-content has total=0', async () => {
+    const el = await fixture<UiCarousel>(html`<ui-carousel></ui-carousel>`);
+    await el.updateComplete;
+    expect(el.total).toBe(0);
+    expect(el.currentIndex).toBe(0);
   });
 });
