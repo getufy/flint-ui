@@ -266,6 +266,14 @@
     --ui-resizable-grip-dot-color:     var(--ui-text-color-muted);
     --ui-resizable-step:               5;
 
+    /* ─── Range Slider ────────────────────────────────────────── */
+    --ui-range-slider-track-height:  6px;
+    --ui-range-slider-thumb-size:    20px;
+    --ui-range-slider-track-color:   var(--ui-input-border-color);
+    --ui-range-slider-fill-color:    var(--ui-primary-color);
+    --ui-range-slider-thumb-color:   var(--ui-surface-1);
+    --ui-range-slider-thumb-border:  var(--ui-primary-color);
+
     /* ─── Split Panel ─────────────────────────────────────────── */
     --ui-split-panel-divider-width:      4px;
     --ui-split-panel-divider-hit-area:   12px;

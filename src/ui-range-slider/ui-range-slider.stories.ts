@@ -22,6 +22,11 @@ const meta: Meta = {
             control: 'number',
             description: 'Step increment',
         },
+        size: {
+            control: 'select',
+            options: ['sm', 'md', 'lg'],
+            description: 'Visual size of the track and thumbs',
+        },
         disabled: {
             control: 'boolean',
             description: 'Disables both thumbs',
@@ -40,6 +45,7 @@ const meta: Meta = {
         min: 0,
         max: 100,
         step: 1,
+        size: 'md',
         disabled: false,
         label: '',
         showValue: false,
@@ -66,10 +72,11 @@ function renderSlider(args: Record<string, unknown>) {
             .min=${min}
             .max=${max}
             .step=${args['step'] as number}
+            .size=${args['size'] as string}
             .disabled=${args['disabled'] as boolean}
             .label=${args['label'] as string}
             .showValue=${args['showValue'] as boolean}
-            @change=${(e: CustomEvent) => console.log('change:', e.detail.value)}
+            @ui-range-slider-change=${(e: CustomEvent) => console.log('ui-range-slider-change:', e.detail.value)}
         ></ui-range-slider>
     `;
 }
@@ -136,6 +143,41 @@ export const CustomMinMax: Story = {
     `,
 };
 
+// ─── Sizes ────────────────────────────────────────────────────────────────────
+
+export const Sizes: Story = {
+    name: 'Sizes',
+    parameters: { controls: { disable: true } },
+    render: () => html`
+        <p style="font-size:14px;color:#555;margin-bottom:16px;">
+            The <code>size</code> prop scales the track thickness and thumb diameter.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:16px;max-width:400px">
+            <ui-range-slider
+                .value=${[20, 80] as [number, number]}
+                size="sm"
+                label="Small"
+                show-value
+                @ui-range-slider-change=${(e: CustomEvent) => console.log('change:', e.detail.value)}
+            ></ui-range-slider>
+            <ui-range-slider
+                .value=${[25, 75] as [number, number]}
+                size="md"
+                label="Medium (default)"
+                show-value
+                @ui-range-slider-change=${(e: CustomEvent) => console.log('change:', e.detail.value)}
+            ></ui-range-slider>
+            <ui-range-slider
+                .value=${[30, 70] as [number, number]}
+                size="lg"
+                label="Large"
+                show-value
+                @ui-range-slider-change=${(e: CustomEvent) => console.log('change:', e.detail.value)}
+            ></ui-range-slider>
+        </div>
+    `,
+};
+
 // ─── Disabled ─────────────────────────────────────────────────────────────────
 
 export const Disabled: Story = {
@@ -158,7 +200,6 @@ export const Disabled: Story = {
 
 export const BoundaryTest: Story = {
     name: 'Boundary test (thumbs at same position)',
-    // Intentionally no args — this story is illustrative with fixed values
     parameters: { controls: { disable: true } },
     render: () => html`
         <p style="font-size:14px;color:#555;margin-bottom:16px;">
@@ -169,21 +210,21 @@ export const BoundaryTest: Story = {
             .value=${[50, 50] as [number, number]}
             .label=${'Equal start'}
             .showValue=${true}
-            @change=${(e: CustomEvent) => console.log('change:', e.detail.value)}
+            @ui-range-slider-change=${(e: CustomEvent) => console.log('change:', e.detail.value)}
         ></ui-range-slider>
         <ui-range-slider
             .value=${[0, 0] as [number, number]}
             .label=${'Both at min'}
             .showValue=${true}
             style="margin-top:24px;display:block"
-            @change=${(e: CustomEvent) => console.log('change:', e.detail.value)}
+            @ui-range-slider-change=${(e: CustomEvent) => console.log('change:', e.detail.value)}
         ></ui-range-slider>
         <ui-range-slider
             .value=${[100, 100] as [number, number]}
             .label=${'Both at max'}
             .showValue=${true}
             style="margin-top:24px;display:block"
-            @change=${(e: CustomEvent) => console.log('change:', e.detail.value)}
+            @ui-range-slider-change=${(e: CustomEvent) => console.log('change:', e.detail.value)}
         ></ui-range-slider>
     `,
 };
@@ -213,7 +254,7 @@ export const Controlled: Story = {
 
         return html`
             <p style="font-size:14px;color:#555;margin-bottom:16px;">
-                Listen to the <code>change</code> event to read the current value.
+                Listen to the <code>ui-range-slider-change</code> event to read the current value.
                 Current value: <strong id="range-display">[${value[0]}, ${value[1]}]</strong>
             </p>
             <ui-range-slider
@@ -221,11 +262,69 @@ export const Controlled: Story = {
                 .min=${min}
                 .max=${max}
                 .step=${args['step'] as number}
+                .size=${args['size'] as string}
                 .disabled=${args['disabled'] as boolean}
                 .label=${args['label'] as string}
                 .showValue=${args['showValue'] as boolean}
-                @change=${handleChange}
+                @ui-range-slider-change=${handleChange}
             ></ui-range-slider>
         `;
     },
+};
+
+// ─── Dark mode ────────────────────────────────────────────────────────────────
+
+export const DarkMode: Story = {
+    name: 'Dark mode',
+    parameters: { controls: { disable: true } },
+    render: () => html`
+        <div class="ui-theme-dark" style="background:#09090b;padding:24px;border-radius:8px">
+            <ui-range-slider
+                .value=${[25, 75] as [number, number]}
+                label="Price range"
+                show-value
+                @ui-range-slider-change=${(e: CustomEvent) => console.log('change:', e.detail.value)}
+            ></ui-range-slider>
+            <ui-range-slider
+                .value=${[30, 70] as [number, number]}
+                size="lg"
+                label="Large · dark"
+                show-value
+                style="margin-top:16px;display:block"
+                @ui-range-slider-change=${(e: CustomEvent) => console.log('change:', e.detail.value)}
+            ></ui-range-slider>
+            <ui-range-slider
+                .value=${[20, 60] as [number, number]}
+                label="Disabled · dark"
+                show-value
+                disabled
+                style="margin-top:16px;display:block"
+                @ui-range-slider-change=${(e: CustomEvent) => console.log('change:', e.detail.value)}
+            ></ui-range-slider>
+        </div>
+    `,
+};
+
+// ─── Accessibility ────────────────────────────────────────────────────────────
+
+export const Accessibility: Story = {
+    name: 'Accessibility',
+    parameters: { controls: { disable: true } },
+    render: () => html`
+        <p style="font-size:14px;color:#555;margin-bottom:16px;">
+            Each thumb exposes <code>aria-label</code>, <code>aria-valuemin</code>,
+            <code>aria-valuemax</code>, and <code>aria-valuenow</code>. Screen readers
+            announce the label as "<em>Price range start</em>" and "<em>Price range end</em>".
+        </p>
+        <ui-range-slider
+            .value=${[200, 800] as [number, number]}
+            .min=${0}
+            .max=${1000}
+            .step=${50}
+            label="Price range"
+            show-value
+            style="max-width:400px;display:block"
+            @ui-range-slider-change=${(e: CustomEvent) => console.log('change:', e.detail.value)}
+        ></ui-range-slider>
+    `,
 };
