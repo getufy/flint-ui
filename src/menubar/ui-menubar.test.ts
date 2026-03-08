@@ -1761,3 +1761,835 @@ describe('UiMenubarSeparator — hidden attribute', () => {
         expect(sep.hasAttribute('hidden')).toBe(true);
     });
 });
+
+/* ═══════════════════════════════════════════════════════════════════ */
+/*  COVERAGE TESTS — targeting uncovered branches                      */
+/* ═══════════════════════════════════════════════════════════════════ */
+
+describe('UiMenubar — keyboard no-op when no menu is open', () => {
+    it('ArrowRight is no-op when activeIndex is -1', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+        // No menu open — ArrowRight should do nothing
+        fireKeyDown(bar, 'ArrowRight');
+        await settle(bar);
+        menus.forEach(m => expect(getContent(m).open).toBe(false));
+        expect(bar.activeIndex).toBe(-1);
+    });
+
+    it('ArrowLeft is no-op when activeIndex is -1', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+        fireKeyDown(bar, 'ArrowLeft');
+        await settle(bar);
+        menus.forEach(m => expect(getContent(m).open).toBe(false));
+        expect(bar.activeIndex).toBe(-1);
+    });
+
+    it('Escape is no-op when no menu is open', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        // No active menu — Escape should not throw
+        fireKeyDown(bar, 'Escape');
+        await settle(bar);
+        expect(bar.activeIndex).toBe(-1);
+    });
+
+    it('ArrowUp is no-op when activeIndex is -1', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        fireKeyDown(bar, 'ArrowUp');
+        await settle(bar);
+        expect(bar.activeIndex).toBe(-1);
+    });
+});
+
+describe('UiMenubar — ArrowLeft closes open sub-menu', () => {
+    it('ArrowLeft closes open sub-menu instead of navigating to prev menu', async () => {
+        const bar = await fixture<UiMenubar>(SUB_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+        const sub = bar.querySelector<UiMenubarSub>('ui-menubar-sub')!;
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+
+        sub.showImmediate();
+        await settle(bar);
+        expect(sub.open).toBe(true);
+
+        // ArrowLeft — content has open sub, so it closes sub instead of navigating
+        fireKeyDown(bar, 'ArrowLeft');
+        await settle(bar);
+        expect(sub.open).toBe(false);
+        // Parent menu must still be open
+        expect(getContent(menus[0]).open).toBe(true);
+        // Should NOT have navigated to previous menu
+        expect(getContent(menus[1]).open).toBe(false);
+    });
+});
+
+describe('UiMenubar — click event on non-trigger element', () => {
+    it('clicking inside content area (not a trigger) does not open menu', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+        // Click directly on the menubar container (not on a trigger)
+        bar.click();
+        await settle(bar);
+        menus.forEach(m => expect(getContent(m).open).toBe(false));
+    });
+
+    it('clicking on disabled menu trigger does not open', async () => {
+        const bar = await fixture<UiMenubar>(html`
+            <ui-menubar>
+                <ui-menubar-menu disabled>
+                    <ui-menubar-trigger>File</ui-menubar-trigger>
+                    <ui-menubar-content><ui-menubar-item>New</ui-menubar-item></ui-menubar-content>
+                </ui-menubar-menu>
+            </ui-menubar>
+        `);
+        await settle(bar);
+        const menus = getMenus(bar);
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+        expect(getContent(menus[0]).open).toBe(false);
+    });
+});
+
+describe('UiMenubar — _handleClick with disabled items', () => {
+    it('clicking a disabled item via content click handler fires no event', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+
+        const spy = vi.fn();
+        bar.addEventListener('ui-menubar-item-select', spy);
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+
+        // Click the disabled 'Incognito' item
+        const disabledItem = bar.querySelector<UiMenubarItem>('ui-menubar-item[disabled]')!;
+        disabledItem.click();
+        await settle(bar);
+
+        expect(spy).not.toHaveBeenCalled();
+        // Menu remains open since nothing closed it
+        expect(getContent(menus[0]).open).toBe(true);
+    });
+
+    it('clicking a disabled checkbox item via content click handler fires no event', async () => {
+        const bar = await fixture<UiMenubar>(html`
+            <ui-menubar>
+                <ui-menubar-menu>
+                    <ui-menubar-trigger>View</ui-menubar-trigger>
+                    <ui-menubar-content>
+                        <ui-menubar-checkbox-item disabled>Bookmarks</ui-menubar-checkbox-item>
+                    </ui-menubar-content>
+                </ui-menubar-menu>
+            </ui-menubar>
+        `);
+        await settle(bar);
+        const menus = getMenus(bar);
+
+        const spy = vi.fn();
+        bar.addEventListener('ui-menubar-checkbox-change', spy);
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+
+        const cbItem = bar.querySelector<UiMenubarCheckboxItem>('ui-menubar-checkbox-item')!;
+        cbItem.click();
+        await settle(bar);
+
+        expect(spy).not.toHaveBeenCalled();
+        expect(cbItem.checked).toBe(false);
+    });
+
+    it('clicking a disabled radio item via content click handler fires no event', async () => {
+        const bar = await fixture<UiMenubar>(html`
+            <ui-menubar>
+                <ui-menubar-menu>
+                    <ui-menubar-trigger>P</ui-menubar-trigger>
+                    <ui-menubar-content>
+                        <ui-menubar-radio-group value="a">
+                            <ui-menubar-radio-item value="a">A</ui-menubar-radio-item>
+                            <ui-menubar-radio-item value="b" disabled>B</ui-menubar-radio-item>
+                        </ui-menubar-radio-group>
+                    </ui-menubar-content>
+                </ui-menubar-menu>
+            </ui-menubar>
+        `);
+        await settle(bar);
+        const menus = getMenus(bar);
+
+        const spy = vi.fn();
+        bar.addEventListener('ui-menubar-radio-change', spy);
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+
+        const items = bar.querySelectorAll<UiMenubarRadioItem>('ui-menubar-radio-item');
+        items[1].click(); // click disabled B
+        await settle(bar);
+
+        expect(spy).not.toHaveBeenCalled();
+        const group = bar.querySelector<UiMenubarRadioGroup>('ui-menubar-radio-group')!;
+        expect(group.value).toBe('a'); // unchanged
+    });
+});
+
+describe('UiMenubar — _handleMouseOver edge cases', () => {
+    it('hovering a disabled item does not highlight it', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+
+        const disabledItem = bar.querySelector<UiMenubarItem>('ui-menubar-item[disabled]')!;
+        disabledItem.dispatchEvent(new MouseEvent('mouseover', { bubbles: true }));
+        await settle(bar);
+
+        expect(disabledItem.highlighted).toBe(false);
+    });
+
+    it('hovering same active trigger does not re-open or close menu', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+        expect(getContent(menus[0]).open).toBe(true);
+
+        // Hover over the same (already active) trigger
+        getTrigger(menus[0]).dispatchEvent(new MouseEvent('mouseover', { bubbles: true }));
+        await settle(bar);
+
+        // Menu should still be open
+        expect(getContent(menus[0]).open).toBe(true);
+        expect(bar.activeIndex).toBe(0);
+    });
+
+    it('hovering a non-trigger, non-item element is ignored', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+
+        // Mouseover on separator — not a navigable item, should not change highlight
+        const sep = bar.querySelector('ui-menubar-separator')!;
+        sep.dispatchEvent(new MouseEvent('mouseover', { bubbles: true }));
+        await settle(bar);
+        // No item highlighted
+        const content = getContent(menus[0]);
+        const highlighted = getHighlighted(content);
+        expect(highlighted).toBeUndefined();
+    });
+});
+
+describe('UiMenubarSub — timer cancellation', () => {
+    it('show() cancels pending close timer', async () => {
+        const bar = await fixture<UiMenubar>(SUB_FIXTURE);
+        await settle(bar);
+        const sub = bar.querySelector<UiMenubarSub>('ui-menubar-sub')!;
+
+        sub.showImmediate();
+        expect(sub.open).toBe(true);
+
+        sub.hide(); // starts 60ms close timer
+        sub.show(); // should cancel close timer, start 80ms open timer
+        await new Promise(r => setTimeout(r, 120));
+        // Sub should remain open (close timer was cancelled)
+        expect(sub.open).toBe(true);
+    });
+
+    it('hide() cancels pending open timer', async () => {
+        const bar = await fixture<UiMenubar>(SUB_FIXTURE);
+        await settle(bar);
+        const sub = bar.querySelector<UiMenubarSub>('ui-menubar-sub')!;
+
+        sub.show(); // starts 80ms open timer
+        sub.hide(); // should cancel open timer, start 60ms close timer
+        await new Promise(r => setTimeout(r, 150));
+        // Sub should remain closed (open timer was cancelled)
+        expect(sub.open).toBe(false);
+    });
+});
+
+describe('UiMenubarContent — ArrowRight with empty sub-content', () => {
+    it('ArrowRight on sub-trigger with no navigable sub-items does not throw', async () => {
+        const bar = await fixture<UiMenubar>(html`
+            <ui-menubar>
+                <ui-menubar-menu>
+                    <ui-menubar-trigger>File</ui-menubar-trigger>
+                    <ui-menubar-content>
+                        <ui-menubar-sub>
+                            <ui-menubar-sub-trigger>Share</ui-menubar-sub-trigger>
+                            <ui-menubar-sub-content></ui-menubar-sub-content>
+                        </ui-menubar-sub>
+                    </ui-menubar-content>
+                </ui-menubar-menu>
+            </ui-menubar>
+        `);
+        await settle(bar);
+        const menus = getMenus(bar);
+        const sub = bar.querySelector<UiMenubarSub>('ui-menubar-sub')!;
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+
+        fireKeyDown(bar, 'ArrowDown'); // highlight Share sub-trigger
+        await settle(bar);
+        fireKeyDown(bar, 'ArrowRight'); // open sub — no items to highlight
+        await settle(bar);
+
+        expect(sub.open).toBe(true);
+    });
+});
+
+describe('UiMenubarRadioGroup — disconnectedCallback', () => {
+    it('disconnectedCallback removes _menubar-radio-select listener', async () => {
+        const bar = await fixture<UiMenubar>(RADIO_FIXTURE);
+        await settle(bar);
+
+        const spy = vi.fn();
+        bar.addEventListener('ui-menubar-radio-change', spy);
+
+        const group = bar.querySelector<UiMenubarRadioGroup>('ui-menubar-radio-group')!;
+        // Disconnect the group
+        group.remove();
+        await settle(bar);
+
+        // Dispatch the internal radio-select event directly on the detached group
+        const item = group.querySelector<UiMenubarRadioItem>('ui-menubar-radio-item')!;
+        item.select();
+        // Should not propagate to bar since group is removed
+        expect(spy).not.toHaveBeenCalled();
+    });
+});
+
+describe('UiMenubar — ArrowDown with all menus disabled', () => {
+    it('ArrowDown when all menus disabled is a no-op', async () => {
+        const bar = await fixture<UiMenubar>(html`
+            <ui-menubar>
+                <ui-menubar-menu disabled>
+                    <ui-menubar-trigger>File</ui-menubar-trigger>
+                    <ui-menubar-content><ui-menubar-item>New</ui-menubar-item></ui-menubar-content>
+                </ui-menubar-menu>
+                <ui-menubar-menu disabled>
+                    <ui-menubar-trigger>Edit</ui-menubar-trigger>
+                    <ui-menubar-content><ui-menubar-item>Undo</ui-menubar-item></ui-menubar-content>
+                </ui-menubar-menu>
+            </ui-menubar>
+        `);
+        await settle(bar);
+        fireKeyDown(bar, 'ArrowDown');
+        await settle(bar);
+        expect(bar.activeIndex).toBe(-1);
+    });
+});
+
+describe('UiMenubar — Enter/Space opens focused trigger when no menu open', () => {
+    // The component finds the trigger via 'ui-menubar-trigger[tabindex="0"]' selector
+    // (light DOM attribute). We simulate this by setting the attribute manually.
+    it('Enter opens the menu when trigger host has tabindex="0" attribute', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+
+        // Simulate the trigger being "focused" by setting tabindex attribute on host
+        getTrigger(menus[0]).setAttribute('tabindex', '0');
+
+        fireKeyDown(bar, 'Enter');
+        await settle(bar);
+        expect(getContent(menus[0]).open).toBe(true);
+    });
+
+    it('Space opens the menu when trigger host has tabindex="0" attribute', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+
+        getTrigger(menus[0]).setAttribute('tabindex', '0');
+
+        fireKeyDown(bar, ' ');
+        await settle(bar);
+        expect(getContent(menus[0]).open).toBe(true);
+    });
+
+    it('Enter when no trigger has tabindex="0" does nothing', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+
+        // Ensure no trigger has tabindex attribute (host level)
+        getMenus(bar).forEach(m => getTrigger(m).removeAttribute('tabindex'));
+
+        fireKeyDown(bar, 'Enter');
+        await settle(bar);
+        menus.forEach(m => expect(getContent(m).open).toBe(false));
+    });
+});
+
+describe('UiMenubar — hover over disabled menu trigger when a menu is open', () => {
+    it('hovering disabled menu trigger does not switch menus', async () => {
+        const bar = await fixture<UiMenubar>(html`
+            <ui-menubar>
+                <ui-menubar-menu>
+                    <ui-menubar-trigger>File</ui-menubar-trigger>
+                    <ui-menubar-content><ui-menubar-item>New</ui-menubar-item></ui-menubar-content>
+                </ui-menubar-menu>
+                <ui-menubar-menu disabled>
+                    <ui-menubar-trigger>Edit</ui-menubar-trigger>
+                    <ui-menubar-content><ui-menubar-item>Undo</ui-menubar-item></ui-menubar-content>
+                </ui-menubar-menu>
+            </ui-menubar>
+        `);
+        await settle(bar);
+        const menus = getMenus(bar);
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+        expect(getContent(menus[0]).open).toBe(true);
+
+        // Hover the disabled Edit trigger
+        getTrigger(menus[1]).dispatchEvent(new MouseEvent('mouseover', { bubbles: true }));
+        await settle(bar);
+
+        expect(getContent(menus[0]).open).toBe(true);
+        expect(getContent(menus[1]).open).toBe(false);
+    });
+});
+
+describe('UiMenubar — _openMenu guard', () => {
+    it('_openMenu does not open a disabled menu', async () => {
+        const bar = await fixture<UiMenubar>(html`
+            <ui-menubar>
+                <ui-menubar-menu>
+                    <ui-menubar-trigger>File</ui-menubar-trigger>
+                    <ui-menubar-content><ui-menubar-item>New</ui-menubar-item></ui-menubar-content>
+                </ui-menubar-menu>
+                <ui-menubar-menu disabled>
+                    <ui-menubar-trigger>Edit</ui-menubar-trigger>
+                    <ui-menubar-content><ui-menubar-item>Undo</ui-menubar-item></ui-menubar-content>
+                </ui-menubar-menu>
+            </ui-menubar>
+        `);
+        await settle(bar);
+        const menus = getMenus(bar);
+
+        // ArrowRight from open File menu skips disabled Edit
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+
+        // Navigate to disabled menu directly via ArrowRight (with only 2 menus, should wrap)
+        fireKeyDown(bar, 'ArrowRight');
+        await settle(bar);
+        // Skips disabled Edit, wraps back to File
+        expect(getContent(menus[0]).open).toBe(true);
+        expect(getContent(menus[1]).open).toBe(false);
+    });
+});
+
+describe('UiMenubarContent — handleKeyDown with no highlighted item on Enter', () => {
+    it('Enter/Space with no highlighted item does nothing', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+
+        const spy = vi.fn();
+        bar.addEventListener('ui-menubar-item-select', spy);
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+        // No item highlighted — Enter should do nothing
+        fireKeyDown(bar, 'Enter');
+        await settle(bar);
+
+        expect(spy).not.toHaveBeenCalled();
+    });
+});
+
+describe('UiMenubar — ArrowRight from sub-trigger keeps menu open', () => {
+    it('ArrowRight on sub-trigger does NOT navigate to next top-level menu', async () => {
+        const bar = await fixture<UiMenubar>(SUB_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+
+        // Navigate to Share sub-trigger
+        fireKeyDown(bar, 'ArrowDown'); // New
+        await settle(bar);
+        fireKeyDown(bar, 'ArrowDown'); // Share
+        await settle(bar);
+
+        fireKeyDown(bar, 'ArrowRight'); // Opens sub-menu, must NOT switch to menus[1]
+        await settle(bar);
+
+        expect(getContent(menus[0]).open).toBe(true);
+        expect(getContent(menus[1]).open).toBe(false);
+    });
+});
+
+describe('UiMenubarSubContent — overflow detection', () => {
+    it('does not overflow in jsdom (else branch clears styles)', async () => {
+        const bar = await fixture<UiMenubar>(SUB_FIXTURE);
+        await settle(bar);
+        const sub = bar.querySelector<UiMenubarSub>('ui-menubar-sub')!;
+        const subContent = bar.querySelector<UiMenubarSubContent>('ui-menubar-sub-content')!;
+
+        sub.showImmediate();
+        await subContent.updateComplete;
+        // rAF fires — in jsdom rect.right is 0 which is less than window.innerWidth,
+        // so the else branch executes (clears style.left/right)
+        await new Promise(r => setTimeout(r, 50));
+
+        expect(subContent.style.left).toBe('');
+        expect(subContent.style.right).toBe('');
+    });
+
+    it('overflow detection sets left=auto right=100% when overflowing', async () => {
+        const bar = await fixture<UiMenubar>(SUB_FIXTURE);
+        await settle(bar);
+        const sub = bar.querySelector<UiMenubarSub>('ui-menubar-sub')!;
+        const subContent = bar.querySelector<UiMenubarSubContent>('ui-menubar-sub-content')!;
+
+        // Mock getBoundingClientRect to simulate overflow
+        const orig = subContent.getBoundingClientRect.bind(subContent);
+        subContent.getBoundingClientRect = () => ({
+            ...orig(),
+            right: window.innerWidth + 100,
+        } as DOMRect);
+
+        sub.showImmediate();
+        await subContent.updateComplete;
+        await new Promise(r => setTimeout(r, 50));
+
+        expect(subContent.style.left).toBe('auto');
+        expect(subContent.style.right).toBe('100%');
+
+        // Restore
+        subContent.getBoundingClientRect = orig;
+    });
+});
+
+describe('UiMenubar — typeahead with ctrl/meta/alt modifiers ignored', () => {
+    it('Ctrl+key does not trigger typeahead', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+        const content = getContent(menus[0]);
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+
+        bar.dispatchEvent(new KeyboardEvent('keydown', { key: 'n', ctrlKey: true, bubbles: true, composed: true }));
+        await settle(bar);
+
+        expect(getHighlighted(content)).toBeUndefined();
+    });
+
+    it('Meta+key does not trigger typeahead', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+        const content = getContent(menus[0]);
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+
+        bar.dispatchEvent(new KeyboardEvent('keydown', { key: 'n', metaKey: true, bubbles: true, composed: true }));
+        await settle(bar);
+
+        expect(getHighlighted(content)).toBeUndefined();
+    });
+});
+
+describe('UiMenubar — navigate with no menus', () => {
+    it('empty menubar does not crash on ArrowDown', async () => {
+        const bar = await fixture<UiMenubar>(html`<ui-menubar></ui-menubar>`);
+        await settle(bar);
+        fireKeyDown(bar, 'ArrowDown');
+        fireKeyDown(bar, 'ArrowRight');
+        fireKeyDown(bar, 'ArrowLeft');
+        await settle(bar);
+        expect(bar.activeIndex).toBe(-1);
+    });
+});
+
+describe('UiMenubarContent — ArrowLeft when no sub is open', () => {
+    it('ArrowLeft with no open sub does not prevent parent menubar from navigating', async () => {
+        const bar = await fixture<UiMenubar>(SUB_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+
+        // Open second menu (Edit)
+        getTriggerButton(getTrigger(menus[1])).click();
+        await settle(bar);
+        expect(getContent(menus[1]).open).toBe(true);
+
+        // ArrowLeft — no open sub in Edit's content, should navigate to File
+        fireKeyDown(bar, 'ArrowLeft');
+        await settle(bar);
+        expect(getContent(menus[1]).open).toBe(false);
+        expect(getContent(menus[0]).open).toBe(true);
+    });
+});
+
+describe('UiMenubar — _handleRequestClose returns focus', () => {
+    it('Escape returns focus to the trigger element (or its shadow host)', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+        expect(getContent(menus[0]).open).toBe(true);
+
+        fireKeyDown(bar, 'Escape');
+        await settle(bar);
+
+        expect(getContent(menus[0]).open).toBe(false);
+        // In jsdom, document.activeElement for shadow DOM focus resolves to the shadow host
+        const trigger = getTrigger(menus[0]);
+        const btn = getTriggerButton(trigger);
+        const focused = document.activeElement;
+        expect(focused === trigger || focused === btn).toBe(true);
+    });
+});
+
+describe('UiMenubar — _handleOutsideClick early return', () => {
+    it('outside click when no menu is open is a no-op', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        expect(bar.activeIndex).toBe(-1);
+        // Click outside — should not throw, activeIndex stays -1
+        document.body.click();
+        await settle(bar);
+        expect(bar.activeIndex).toBe(-1);
+    });
+});
+
+describe('UiMenubar — _handleRequestClose via item click', () => {
+    it('clicking an item fires _menubar-request-close and closes menu', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+
+        const spy = vi.fn();
+        bar.addEventListener('_menubar-request-close', spy);
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+        expect(getContent(menus[0]).open).toBe(true);
+
+        const items = getItems(getContent(menus[0]));
+        items[0].click();
+        await settle(bar);
+
+        expect(spy).toHaveBeenCalled();
+        expect(getContent(menus[0]).open).toBe(false);
+    });
+
+    it('_handleRequestClose focuses the trigger after close', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+
+        // Fire _menubar-request-close directly — simulates content requesting close
+        bar.dispatchEvent(new CustomEvent('_menubar-request-close', { bubbles: true, composed: true }));
+        await settle(bar);
+
+        expect(getContent(menus[0]).open).toBe(false);
+        // Focus moved to trigger (shadow host or inner button)
+        const trigger = getTrigger(menus[0]);
+        const btn = getTriggerButton(trigger);
+        const focused = document.activeElement;
+        expect(focused === trigger || focused === btn || focused?.closest?.('ui-menubar-trigger') !== null).toBe(true);
+    });
+});
+
+describe('UiMenubar — item disabled branch in select()', () => {
+    it('select() on disabled item does not dispatch event (disabled=true branch)', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+
+        const spy = vi.fn();
+        bar.addEventListener('ui-menubar-item-select', spy);
+
+        // Get disabled item and explicitly call select
+        const disabledItem = bar.querySelector<UiMenubarItem>('ui-menubar-item[disabled]')!;
+        expect(disabledItem.disabled).toBe(true);
+        disabledItem.select();
+
+        expect(spy).not.toHaveBeenCalled();
+    });
+});
+
+describe('UiMenubar — hover switches menu while another is open', () => {
+    it('hovering a different trigger while a menu is open switches to it', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+
+        // Open first menu via click
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+        expect(getContent(menus[0]).open).toBe(true);
+
+        // Hover over second trigger (different from active)
+        getTrigger(menus[1]).dispatchEvent(new MouseEvent('mouseover', { bubbles: true }));
+        await settle(bar);
+
+        expect(getContent(menus[0]).open).toBe(false);
+        expect(getContent(menus[1]).open).toBe(true);
+    });
+});
+
+describe('UiMenubar — ArrowDown opens first menu when none is open', () => {
+    it('ArrowDown with no open menu opens the first non-disabled menu', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+
+        expect(bar.activeIndex).toBe(-1);
+        fireKeyDown(bar, 'ArrowDown');
+        await settle(bar);
+
+        // First menu should now be open
+        expect(getContent(menus[0]).open).toBe(true);
+        expect(bar.activeIndex).toBe(0);
+    });
+
+    it('ArrowDown with no open menu also moves highlight to first item', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+        const content = getContent(menus[0]);
+
+        fireKeyDown(bar, 'ArrowDown');
+        await settle(bar);
+
+        // After ArrowDown opens menu, it also delegates ArrowDown to content
+        const highlighted = getHighlighted(content);
+        expect(highlighted).toBeTruthy();
+        expect(highlighted!.textContent?.trim()).toBe('New Tab');
+    });
+});
+
+describe('UiMenubarContent — handleKeyDown called directly', () => {
+    // These cover defensive branches in UiMenubarContent.handleKeyDown that
+    // are not reached through the normal UiMenubar delegation path.
+
+    it('Escape directly on content fires _menubar-request-close', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+        const content = getContent(menus[0]);
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+
+        const spy = vi.fn();
+        bar.addEventListener('_menubar-request-close', spy);
+
+        content.handleKeyDown(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+        await settle(bar);
+
+        expect(spy).toHaveBeenCalled();
+    });
+
+    it('ArrowLeft directly on content with no open sub does nothing (break)', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+        const content = getContent(menus[0]);
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+
+        // No open sub — ArrowLeft in content just breaks; no error
+        content.handleKeyDown(new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }));
+        await settle(bar);
+        // Menu remains open
+        expect(content.open).toBe(true);
+    });
+
+    it('ArrowRight directly on content with highlighted non-sub-trigger item breaks without opening sub', async () => {
+        const bar = await fixture<UiMenubar>(BASIC_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+        const content = getContent(menus[0]);
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+
+        // Highlight first item (a regular ui-menubar-item, not a sub-trigger)
+        fireKeyDown(bar, 'ArrowDown');
+        await settle(bar);
+
+        const highlighted = getHighlighted(content);
+        expect(highlighted?.tagName).toBe('UI-MENUBAR-ITEM');
+
+        // ArrowRight directly on content — not a sub-trigger, so it just breaks
+        content.handleKeyDown(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+        await settle(bar);
+        // Menu remains open, no sub opened
+        expect(content.open).toBe(true);
+    });
+});
+
+describe('UiMenubarContent — keyboard on sub-trigger via Enter', () => {
+    it('Enter on sub-trigger opens the sub-menu immediately', async () => {
+        const bar = await fixture<UiMenubar>(SUB_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+        const sub = bar.querySelector<UiMenubarSub>('ui-menubar-sub')!;
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+
+        fireKeyDown(bar, 'ArrowDown'); // New
+        await settle(bar);
+        fireKeyDown(bar, 'ArrowDown'); // Share (sub-trigger)
+        await settle(bar);
+
+        fireKeyDown(bar, 'Enter'); // Should open sub immediately
+        await settle(bar);
+
+        expect(sub.open).toBe(true);
+    });
+
+    it('Space on sub-trigger opens the sub-menu immediately', async () => {
+        const bar = await fixture<UiMenubar>(SUB_FIXTURE);
+        await settle(bar);
+        const menus = getMenus(bar);
+        const sub = bar.querySelector<UiMenubarSub>('ui-menubar-sub')!;
+
+        getTriggerButton(getTrigger(menus[0])).click();
+        await settle(bar);
+
+        fireKeyDown(bar, 'ArrowDown'); // New
+        await settle(bar);
+        fireKeyDown(bar, 'ArrowDown'); // Share (sub-trigger)
+        await settle(bar);
+
+        fireKeyDown(bar, ' '); // Should open sub immediately
+        await settle(bar);
+
+        expect(sub.open).toBe(true);
+    });
+});
