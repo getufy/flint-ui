@@ -945,3 +945,283 @@ describe('ui-tab-list variant and scroll prop changes', () => {
         expect(tabs[1].shadowRoot!.activeElement).toBeFalsy();
     });
 });
+
+/* ================================================================== */
+describe('ui-tab-list syncIndicator with real dimensions', () => {
+    it('positions indicator correctly for horizontal orientation', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list>
+                <ui-tab value="a" selected>A</ui-tab>
+                <ui-tab value="b">B</ui-tab>
+            </ui-tab-list>`);
+        const row = el.shadowRoot!.querySelector<HTMLDivElement>('.tabs-row')!;
+        const tab = el.querySelector<UiTab>('ui-tab[value="a"]')!;
+
+        vi.spyOn(row, 'getBoundingClientRect').mockReturnValue({
+            left: 10, top: 20, width: 400, height: 48,
+            right: 410, bottom: 68, x: 10, y: 20, toJSON: () => ({}),
+        } as DOMRect);
+        vi.spyOn(tab, 'getBoundingClientRect').mockReturnValue({
+            left: 10, top: 20, width: 120, height: 48,
+            right: 130, bottom: 68, x: 10, y: 20, toJSON: () => ({}),
+        } as DOMRect);
+
+        el.syncIndicator();
+
+        const indicator = el.shadowRoot!.querySelector<HTMLDivElement>('.indicator')!;
+        expect(indicator.style.left).toBe('0px');
+        expect(indicator.style.width).toBe('120px');
+        expect(indicator.style.top).toBe('');
+        expect(indicator.style.height).toBe('');
+        expect(indicator.style.opacity).toBe('1');
+    });
+
+    it('positions indicator correctly for vertical orientation', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list orientation="vertical">
+                <ui-tab value="a" selected>A</ui-tab>
+                <ui-tab value="b">B</ui-tab>
+            </ui-tab-list>`);
+        const row = el.shadowRoot!.querySelector<HTMLDivElement>('.tabs-row')!;
+        const tab = el.querySelector<UiTab>('ui-tab[value="a"]')!;
+
+        vi.spyOn(row, 'getBoundingClientRect').mockReturnValue({
+            left: 0, top: 10, width: 200, height: 300,
+            right: 200, bottom: 310, x: 0, y: 10, toJSON: () => ({}),
+        } as DOMRect);
+        vi.spyOn(tab, 'getBoundingClientRect').mockReturnValue({
+            left: 0, top: 10, width: 200, height: 48,
+            right: 200, bottom: 58, x: 0, y: 10, toJSON: () => ({}),
+        } as DOMRect);
+
+        el.syncIndicator();
+
+        const indicator = el.shadowRoot!.querySelector<HTMLDivElement>('.indicator')!;
+        expect(indicator.style.top).toBe('0px');
+        expect(indicator.style.height).toBe('48px');
+        expect(indicator.style.left).toBe('');
+        expect(indicator.style.width).toBe('');
+        expect(indicator.style.opacity).toBe('1');
+    });
+
+    it('indicator left offset accounts for row offset', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list>
+                <ui-tab value="a">A</ui-tab>
+                <ui-tab value="b" selected>B</ui-tab>
+            </ui-tab-list>`);
+        const row = el.shadowRoot!.querySelector<HTMLDivElement>('.tabs-row')!;
+        const tab = el.querySelector<UiTab>('ui-tab[value="b"]')!;
+
+        vi.spyOn(row, 'getBoundingClientRect').mockReturnValue({
+            left: 0, top: 0, width: 400, height: 48,
+            right: 400, bottom: 48, x: 0, y: 0, toJSON: () => ({}),
+        } as DOMRect);
+        vi.spyOn(tab, 'getBoundingClientRect').mockReturnValue({
+            left: 100, top: 0, width: 100, height: 48,
+            right: 200, bottom: 48, x: 100, y: 0, toJSON: () => ({}),
+        } as DOMRect);
+
+        el.syncIndicator();
+
+        const indicator = el.shadowRoot!.querySelector<HTMLDivElement>('.indicator')!;
+        expect(indicator.style.left).toBe('100px');
+        expect(indicator.style.width).toBe('100px');
+        expect(indicator.style.opacity).toBe('1');
+    });
+});
+
+/* ================================================================== */
+describe('ui-tab-list _scroll with enabled buttons', () => {
+    function mockScrollArea(scrollArea: HTMLDivElement, opts: {
+        scrollLeft?: number; scrollTop?: number;
+        scrollWidth?: number; scrollHeight?: number;
+        clientWidth?: number; clientHeight?: number;
+    }) {
+        for (const [key, val] of Object.entries(opts)) {
+            Object.defineProperty(scrollArea, key, { get: () => val, configurable: true });
+        }
+    }
+
+    function polyfillScrollBy(el: HTMLDivElement) {
+        if (typeof el.scrollBy !== 'function') {
+            (el as unknown as Record<string, unknown>).scrollBy = () => {};
+        }
+    }
+
+    it('back button calls scrollBy left=-200 when canBack is true', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list variant="scrollable">
+                ${Array.from({ length: 10 }, (_, i) => html`<ui-tab value="${i}">T${i}</ui-tab>`)}
+            </ui-tab-list>`);
+        const scrollArea = el.shadowRoot!.querySelector<HTMLDivElement>('.scroll-area')!;
+        polyfillScrollBy(scrollArea);
+        mockScrollArea(scrollArea, { scrollLeft: 50, scrollWidth: 500, clientWidth: 200 });
+        scrollArea.dispatchEvent(new Event('scroll'));
+        await el.updateComplete;
+
+        const scrollSpy = vi.spyOn(scrollArea, 'scrollBy');
+        const backBtn = el.shadowRoot!.querySelector<HTMLButtonElement>('.scroll-btn:first-child')!;
+        expect(backBtn.disabled).toBe(false);
+        backBtn.click();
+        expect(scrollSpy).toHaveBeenCalledWith({ left: -200, behavior: 'smooth' });
+    });
+
+    it('forward button calls scrollBy left=200 when canFwd is true', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list variant="scrollable">
+                ${Array.from({ length: 10 }, (_, i) => html`<ui-tab value="${i}">T${i}</ui-tab>`)}
+            </ui-tab-list>`);
+        const scrollArea = el.shadowRoot!.querySelector<HTMLDivElement>('.scroll-area')!;
+        polyfillScrollBy(scrollArea);
+        mockScrollArea(scrollArea, { scrollLeft: 0, scrollWidth: 500, clientWidth: 200 });
+        scrollArea.dispatchEvent(new Event('scroll'));
+        await el.updateComplete;
+
+        const scrollSpy = vi.spyOn(scrollArea, 'scrollBy');
+        const fwdBtn = el.shadowRoot!.querySelector<HTMLButtonElement>('.scroll-btn:last-child')!;
+        expect(fwdBtn.disabled).toBe(false);
+        fwdBtn.click();
+        expect(scrollSpy).toHaveBeenCalledWith({ left: 200, behavior: 'smooth' });
+    });
+
+    it('vertical back button calls scrollBy top=-200', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list orientation="vertical" variant="scrollable">
+                ${Array.from({ length: 10 }, (_, i) => html`<ui-tab value="${i}">T${i}</ui-tab>`)}
+            </ui-tab-list>`);
+        const scrollArea = el.shadowRoot!.querySelector<HTMLDivElement>('.scroll-area')!;
+        polyfillScrollBy(scrollArea);
+        mockScrollArea(scrollArea, { scrollTop: 50, scrollHeight: 500, clientHeight: 200 });
+        scrollArea.dispatchEvent(new Event('scroll'));
+        await el.updateComplete;
+
+        const scrollSpy = vi.spyOn(scrollArea, 'scrollBy');
+        const backBtn = el.shadowRoot!.querySelector<HTMLButtonElement>('.scroll-btn:first-child')!;
+        expect(backBtn.disabled).toBe(false);
+        backBtn.click();
+        expect(scrollSpy).toHaveBeenCalledWith({ top: -200, behavior: 'smooth' });
+    });
+
+    it('vertical forward button calls scrollBy top=200', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list orientation="vertical" variant="scrollable">
+                ${Array.from({ length: 10 }, (_, i) => html`<ui-tab value="${i}">T${i}</ui-tab>`)}
+            </ui-tab-list>`);
+        const scrollArea = el.shadowRoot!.querySelector<HTMLDivElement>('.scroll-area')!;
+        polyfillScrollBy(scrollArea);
+        mockScrollArea(scrollArea, { scrollTop: 0, scrollHeight: 500, clientHeight: 200 });
+        scrollArea.dispatchEvent(new Event('scroll'));
+        await el.updateComplete;
+
+        const scrollSpy = vi.spyOn(scrollArea, 'scrollBy');
+        const fwdBtn = el.shadowRoot!.querySelector<HTMLButtonElement>('.scroll-btn:last-child')!;
+        expect(fwdBtn.disabled).toBe(false);
+        fwdBtn.click();
+        expect(scrollSpy).toHaveBeenCalledWith({ top: 200, behavior: 'smooth' });
+    });
+});
+
+/* ================================================================== */
+describe('ui-tab-list ResizeObserver callback and scroll event listener', () => {
+    it('ResizeObserver callback triggers checkScroll and syncIndicator without throwing', async () => {
+        let capturedCallback: (() => void) | null = null;
+        const OrigRO = globalThis.ResizeObserver;
+        globalThis.ResizeObserver = class {
+            constructor(cb: () => void) { capturedCallback = cb; }
+            observe() {}
+            unobserve() {}
+            disconnect() {}
+        } as unknown as typeof ResizeObserver;
+
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list>
+                <ui-tab value="a">A</ui-tab>
+            </ui-tab-list>`);
+
+        expect(capturedCallback).not.toBeNull();
+        expect(() => capturedCallback!()).not.toThrow();
+        globalThis.ResizeObserver = OrigRO;
+        el.disconnectedCallback();
+    });
+
+    it('scroll event on scroll-area triggers _checkScroll callback', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list>
+                <ui-tab value="a">A</ui-tab>
+            </ui-tab-list>`);
+        const scrollArea = el.shadowRoot!.querySelector<HTMLDivElement>('.scroll-area')!;
+        expect(() => scrollArea.dispatchEvent(new Event('scroll'))).not.toThrow();
+    });
+});
+
+/* ================================================================== */
+describe('ui-tab-list keyboard nav with no prior focus', () => {
+    it('ArrowRight without prior focus defaults to first tab', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list>
+                <ui-tab value="a">A</ui-tab>
+                <ui-tab value="b">B</ui-tab>
+            </ui-tab-list>`);
+        // Do NOT call focusInner — no tab has focus, so cur < 0
+        const evt = new KeyboardEvent('keydown', { key: 'ArrowRight' });
+        el.shadowRoot!.querySelector('.scroll-area')!.dispatchEvent(evt);
+        await el.updateComplete;
+        const tabs = el.querySelectorAll<UiTab>('ui-tab');
+        // idx starts at 0, ArrowRight → idx=1
+        expect(tabs[1].shadowRoot!.activeElement).toBeTruthy();
+    });
+
+    it('ArrowLeft without prior focus defaults to last tab (wraps from 0)', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list>
+                <ui-tab value="a">A</ui-tab>
+                <ui-tab value="b">B</ui-tab>
+                <ui-tab value="c">C</ui-tab>
+            </ui-tab-list>`);
+        // No focusInner, cur < 0 → idx=0 → ArrowLeft wraps to last
+        const evt = new KeyboardEvent('keydown', { key: 'ArrowLeft' });
+        el.shadowRoot!.querySelector('.scroll-area')!.dispatchEvent(evt);
+        await el.updateComplete;
+        const tabs = el.querySelectorAll<UiTab>('ui-tab');
+        expect(tabs[2].shadowRoot!.activeElement).toBeTruthy();
+    });
+});
+
+/* ================================================================== */
+describe('ui-tab-list without ResizeObserver', () => {
+    it('firstUpdated works when ResizeObserver is undefined', async () => {
+        const OrigRO = globalThis.ResizeObserver;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (globalThis as any).ResizeObserver = undefined;
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list>
+                <ui-tab value="a">A</ui-tab>
+            </ui-tab-list>`);
+        // Should work fine without ResizeObserver
+        expect(el.shadowRoot?.querySelector('.indicator')).toBeTruthy();
+        globalThis.ResizeObserver = OrigRO;
+    });
+});
+
+/* ================================================================== */
+describe('ui-tab-list scrollIntoView when available', () => {
+    it('calls scrollIntoView on keyboard navigation when method exists', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list>
+                <ui-tab value="a">A</ui-tab>
+                <ui-tab value="b">B</ui-tab>
+            </ui-tab-list>`);
+        const tabs = el.querySelectorAll<UiTab>('ui-tab');
+        const scrollSpy = vi.fn();
+        // Attach scrollIntoView to target tab
+        (tabs[1] as unknown as Record<string, unknown>).scrollIntoView = scrollSpy;
+
+        tabs[0].focusInner();
+        const evt = new KeyboardEvent('keydown', { key: 'ArrowRight' });
+        el.shadowRoot!.querySelector('.scroll-area')!.dispatchEvent(evt);
+        await el.updateComplete;
+
+        expect(scrollSpy).toHaveBeenCalledWith({ block: 'nearest', inline: 'nearest' });
+    });
+});
