@@ -3,7 +3,7 @@ import { html } from 'lit';
 import './ui-format-date';
 
 const meta: Meta = {
-    title: 'Display/Format Date',
+    title: 'Utilities/Format Date',
     component: 'ui-format-date',
     parameters: {
         docs: {

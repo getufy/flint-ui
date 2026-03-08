@@ -4,7 +4,7 @@ import './ui-collapsible';
 import '../button/ui-button.js';
 
 const meta: Meta = {
-    title: 'Display/Collapsible',
+    title: 'Surfaces/Collapsible',
     component: 'ui-collapsible',
     parameters: {
         docs: {

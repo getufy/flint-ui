@@ -3,7 +3,7 @@ import { html } from 'lit';
 import './ui-item';
 
 const meta: Meta = {
-    title: 'Display/Item',
+    title: 'Utilities/Item',
     component: 'ui-item',
     parameters: {
         docs: {

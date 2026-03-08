@@ -3,7 +3,7 @@ import { html } from 'lit';
 import './ui-format-number';
 
 const meta: Meta = {
-    title: 'Display/Format Number',
+    title: 'Utilities/Format Number',
     component: 'ui-format-number',
     parameters: {
         docs: {

@@ -3,7 +3,7 @@ import { html } from 'lit';
 import './ui-relative-time';
 
 const meta: Meta = {
-    title: 'Display/Relative Time',
+    title: 'Utilities/Relative Time',
     component: 'ui-relative-time',
     parameters: {
         docs: {

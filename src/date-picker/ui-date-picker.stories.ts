@@ -4,7 +4,7 @@ import './ui-date-picker.js';
 import type { UiDatePicker } from './ui-date-picker.js';
 
 const meta: Meta = {
-    title: 'Date and Time/Date Picker',
+    title: 'Date & Time/Date Picker',
     component: 'ui-date-picker',
     argTypes: {
         variant: {

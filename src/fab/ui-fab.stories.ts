@@ -3,7 +3,7 @@ import { html } from 'lit';
 import './ui-fab';
 
 const meta: Meta = {
-  title: 'Components/FAB',
+  title: 'Inputs/FAB',
   component: 'ui-fab',
   argTypes: {
     extended: { control: 'boolean' },

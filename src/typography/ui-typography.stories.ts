@@ -3,7 +3,7 @@ import { html } from 'lit';
 import './ui-typography';
 
 const meta: Meta = {
-    title: 'Components/Typography',
+    title: 'Data Display/Typography',
     component: 'ui-typography',
     argTypes: {
         variant: {

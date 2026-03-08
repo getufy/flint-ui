@@ -4,7 +4,7 @@ import './ui-date-field.js';
 import type { UiDateField } from './ui-date-field.js';
 
 const meta: Meta = {
-    title: 'Date and Time/Date Field',
+    title: 'Date & Time/Date Field',
     component: 'ui-date-field',
     argTypes: {
         value: { control: 'text', description: 'Controlled date value (YYYY-MM-DD).' },

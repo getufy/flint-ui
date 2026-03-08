@@ -32,7 +32,7 @@ function getSegments(pickerShadow: ShadowRoot): HTMLElement {
 }
 
 const meta: Meta = {
-    title: 'Date and Time/Date Range Picker',
+    title: 'Date & Time/Date Range Picker',
     component: 'ui-date-range-picker',
     argTypes: {
         variant: {

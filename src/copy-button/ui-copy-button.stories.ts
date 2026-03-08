@@ -3,7 +3,7 @@ import { html } from 'lit';
 import './ui-copy-button';
 
 const meta: Meta = {
-    title: 'Utils/CopyButton',
+    title: 'Utilities/Copy Button',
     component: 'ui-copy-button',
     argTypes: {
         value: { control: 'text' },
