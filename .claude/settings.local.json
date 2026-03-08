@@ -58,7 +58,9 @@
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/typography/ui-typography.test.ts --project components)",
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/autocomplete/ui-autocomplete.test.ts)",
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --project components --reporter=verbose)",
-      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --project components --coverage src/box/ui-box.test.ts)"
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --project components --coverage src/box/ui-box.test.ts)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --project components src/date-range-picker/ui-date-range-picker.test.ts)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --project components --coverage src/date-range-picker/ui-date-range-picker.test.ts)"
     ]
   }
 }
