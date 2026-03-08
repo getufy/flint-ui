@@ -63,7 +63,11 @@
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --project components --coverage src/date-range-picker/ui-date-range-picker.test.ts)",
       "Bash(NODE_OPTIONS='--no-warnings' vitest run src/menubar/ui-menubar.test.ts)",
       "Bash(npx vitest run src/menubar/ui-menubar.test.ts --reporter=verbose)",
-      "Bash(npx vitest run src/menubar/ui-menubar.test.ts)"
+      "Bash(npx vitest run src/menubar/ui-menubar.test.ts)",
+      "Bash(cat /Users/algoassasin/storybook-lit/src/menubar/*.css)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --project components --coverage src/menubar/ui-menubar.test.ts)",
+      "Bash(NODE_OPTIONS='--no-warnings' vitest run src/navigation-menu/ui-navigation-menu.test.ts --coverage --reporter=verbose)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/navigation-menu/ui-navigation-menu.test.ts --project components --reporter=verbose)"
     ]
   }
 }
