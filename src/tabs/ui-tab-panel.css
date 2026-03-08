@@ -1,4 +1,4 @@
 :host         { display: block; background: var(--ui-background); }
         :host([hidden]){ display: none !important; }
-        .panel        { padding: 24px; font-family: var(--ui-font-family);
+        .panel        { padding: var(--ui-tab-panel-padding, 24px); font-family: var(--ui-font-family);
                         font-size: .875rem; color: var(--ui-text-color); line-height: 1.6; }
