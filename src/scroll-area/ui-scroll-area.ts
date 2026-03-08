@@ -206,16 +206,28 @@ export class UiScrollArea extends LitElement {
     }
 
     /** Scroll the viewport to a position. */
-    scrollTo(options?: ScrollToOptions) {
+    override scrollTo(options?: ScrollToOptions): void;
+    override scrollTo(x: number, y: number): void;
+    override scrollTo(optionsOrX?: ScrollToOptions | number, y?: number) {
         if (typeof this._viewport?.scrollTo === 'function') {
-            this._viewport.scrollTo(options);
+            if (typeof optionsOrX === 'number') {
+                this._viewport.scrollTo(optionsOrX, y ?? 0);
+            } else {
+                this._viewport.scrollTo(optionsOrX);
+            }
         }
     }
 
     /** Scroll the viewport by a relative amount. */
-    scrollBy(options?: ScrollToOptions) {
+    override scrollBy(options?: ScrollToOptions): void;
+    override scrollBy(x: number, y: number): void;
+    override scrollBy(optionsOrX?: ScrollToOptions | number, y?: number) {
         if (typeof this._viewport?.scrollBy === 'function') {
-            this._viewport.scrollBy(options);
+            if (typeof optionsOrX === 'number') {
+                this._viewport.scrollBy(optionsOrX, y ?? 0);
+            } else {
+                this._viewport.scrollBy(optionsOrX);
+            }
         }
     }
 

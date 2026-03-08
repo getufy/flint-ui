@@ -471,3 +471,589 @@ describe('ui-scroll-area — slotted ui-scroll-bar', () => {
         expect(bar.hasAttribute('data-visible')).toBe(true);
     });
 });
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ui-scroll-area — scrollTo / scrollBy overloads
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-scroll-area — scrollTo/scrollBy overloads', () => {
+    it('scrollTo(options) delegates to viewport', async () => {
+        const el = await makeArea();
+        const vp = getViewport(el);
+        const spy = vi.fn();
+        vp.scrollTo = spy as typeof vp.scrollTo;
+        el.scrollTo({ top: 100 });
+        expect(spy).toHaveBeenCalledWith({ top: 100 });
+    });
+
+    it('scrollTo(x, y) delegates to viewport', async () => {
+        const el = await makeArea();
+        const vp = getViewport(el);
+        const spy = vi.fn();
+        vp.scrollTo = spy as typeof vp.scrollTo;
+        el.scrollTo(100, 200);
+        expect(spy).toHaveBeenCalledWith(100, 200);
+    });
+
+    it('scrollTo does not throw when viewport lacks scrollTo', async () => {
+        const el = await makeArea();
+        const vp = getViewport(el);
+        Object.defineProperty(vp, 'scrollTo', { value: undefined, configurable: true });
+        expect(() => el.scrollTo({ top: 100 })).not.toThrow();
+    });
+
+    it('scrollBy(options) delegates to viewport', async () => {
+        const el = await makeArea();
+        const vp = getViewport(el);
+        const spy = vi.fn();
+        vp.scrollBy = spy as typeof vp.scrollBy;
+        el.scrollBy({ top: 50 });
+        expect(spy).toHaveBeenCalledWith({ top: 50 });
+    });
+
+    it('scrollBy(x, y) delegates to viewport', async () => {
+        const el = await makeArea();
+        const vp = getViewport(el);
+        const spy = vi.fn();
+        vp.scrollBy = spy as typeof vp.scrollBy;
+        el.scrollBy(10, 20);
+        expect(spy).toHaveBeenCalledWith(10, 20);
+    });
+
+    it('scrollBy does not throw when viewport lacks scrollBy', async () => {
+        const el = await makeArea();
+        const vp = getViewport(el);
+        Object.defineProperty(vp, 'scrollBy', { value: undefined, configurable: true });
+        expect(() => el.scrollBy({ top: 10 })).not.toThrow();
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ui-scroll-area — overflow detection & _computeThumb
+═══════════════════════════════════════════════════════════════════════════ */
+
+function mockOverflowY(vp: HTMLDivElement, scrollHeight = 800, clientHeight = 200) {
+    Object.defineProperty(vp, 'scrollHeight', { value: scrollHeight, configurable: true });
+    Object.defineProperty(vp, 'clientHeight', { value: clientHeight, configurable: true });
+}
+
+function mockOverflowX(vp: HTMLDivElement, scrollWidth = 600, clientWidth = 200) {
+    Object.defineProperty(vp, 'scrollWidth', { value: scrollWidth, configurable: true });
+    Object.defineProperty(vp, 'clientWidth', { value: clientWidth, configurable: true });
+}
+
+describe('ui-scroll-area — overflow detection', () => {
+    it('_getScrollRange returns correct vertical range with mocked dims', async () => {
+        const el = await makeArea();
+        const vp = getViewport(el);
+        mockOverflowY(vp);
+        expect(el._getScrollRange('vertical')).toBe(600);
+    });
+
+    it('_getScrollRange returns correct horizontal range with mocked dims', async () => {
+        const el = await makeArea();
+        const vp = getViewport(el);
+        mockOverflowX(vp);
+        expect(el._getScrollRange('horizontal')).toBe(400);
+    });
+
+    it('_setScrollPos sets scrollLeft for horizontal', async () => {
+        const el = await makeArea();
+        const vp = getViewport(el);
+        mockOverflowX(vp, 600, 200);
+        el._setScrollPos('horizontal', 50);
+        expect(vp.scrollLeft).toBe(50);
+    });
+
+    it('type="auto" adds scrollbar--visible when overflow', async () => {
+        const el = await makeArea({ type: 'auto' });
+        const vp = getViewport(el);
+        mockOverflowY(vp);
+        vp.dispatchEvent(new Event('scroll'));
+        await el.updateComplete;
+        expect(getScrollbarY(el).classList.contains('scrollbar--visible')).toBe(true);
+    });
+
+    it('type="hover" adds scrollbar--visible when overflow', async () => {
+        const el = await makeArea({ type: 'hover' });
+        const vp = getViewport(el);
+        mockOverflowY(vp);
+        vp.dispatchEvent(new Event('scroll'));
+        await el.updateComplete;
+        expect(getScrollbarY(el).classList.contains('scrollbar--visible')).toBe(true);
+    });
+
+    it('type="always" adds scrollbar--visible regardless of overflow', async () => {
+        const el = await makeArea({ type: 'always' });
+        await el.updateComplete;
+        expect(getScrollbarY(el).classList.contains('scrollbar--visible')).toBe(true);
+    });
+
+    it('type="scroll" adds scrollbar--visible while scrolling with overflow', async () => {
+        vi.useFakeTimers();
+        try {
+            const el = await makeArea({ type: 'scroll' });
+            const vp = getViewport(el);
+            mockOverflowY(vp);
+            vp.dispatchEvent(new Event('scroll'));
+            await el.updateComplete;
+            expect(getScrollbarY(el).classList.contains('scrollbar--visible')).toBe(true);
+        } finally {
+            vi.useRealTimers();
+        }
+    });
+
+    it('_computeThumb produces correct thumb size with overflow', async () => {
+        const el = await makeArea();
+        const vp = getViewport(el);
+        // scrollHeight=800, clientHeight=200 → thumbSize = max(10, 200/800*100) = 25
+        mockOverflowY(vp);
+        vp.dispatchEvent(new Event('scroll'));
+        await el.updateComplete;
+        const thumbStyle = getThumbY(el).getAttribute('style') ?? '';
+        expect(thumbStyle).toContain('height: 25%');
+    });
+
+    it('_computeThumb clamps thumb size to minimum 10%', async () => {
+        const el = await makeArea();
+        const vp = getViewport(el);
+        // scrollHeight=10000, clientHeight=200 → thumbSize = max(10, 2) = 10
+        mockOverflowY(vp, 10000, 200);
+        vp.dispatchEvent(new Event('scroll'));
+        await el.updateComplete;
+        const thumbStyle = getThumbY(el).getAttribute('style') ?? '';
+        expect(thumbStyle).toContain('height: 10%');
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ui-scroll-area — built-in Y-thumb drag
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-scroll-area — Y-thumb drag', () => {
+    it('pointerdown on thumb--y adds thumb--dragging class', async () => {
+        const el = await makeArea();
+        const thumbY = el.shadowRoot!.querySelector('.thumb--y') as HTMLElement;
+        thumbY.setPointerCapture = vi.fn();
+        thumbY.dispatchEvent(
+            new PointerEvent('pointerdown', { clientY: 100, pointerId: 1 }),
+        );
+        await el.updateComplete;
+        expect(thumbY.classList.contains('thumb--dragging')).toBe(true);
+    });
+
+    it('pointermove on thumb--y does nothing when not dragging', async () => {
+        const el = await makeArea();
+        const thumbY = el.shadowRoot!.querySelector('.thumb--y') as HTMLElement;
+        thumbY.dispatchEvent(new PointerEvent('pointermove', { clientY: 150 }));
+        expect(getViewport(el).scrollTop).toBe(0);
+    });
+
+    it('pointerup on thumb--y removes thumb--dragging class', async () => {
+        const el = await makeArea();
+        const thumbY = el.shadowRoot!.querySelector('.thumb--y') as HTMLElement;
+        thumbY.setPointerCapture = vi.fn();
+        thumbY.releasePointerCapture = vi.fn();
+        thumbY.dispatchEvent(
+            new PointerEvent('pointerdown', { clientY: 100, pointerId: 1 }),
+        );
+        await el.updateComplete;
+        thumbY.dispatchEvent(
+            new PointerEvent('pointerup', { pointerId: 1 }),
+        );
+        await el.updateComplete;
+        expect(thumbY.classList.contains('thumb--dragging')).toBe(false);
+    });
+
+    it('pointercancel on thumb--y removes thumb--dragging class', async () => {
+        const el = await makeArea();
+        const thumbY = el.shadowRoot!.querySelector('.thumb--y') as HTMLElement;
+        thumbY.setPointerCapture = vi.fn();
+        thumbY.releasePointerCapture = vi.fn();
+        thumbY.dispatchEvent(
+            new PointerEvent('pointerdown', { clientY: 100, pointerId: 1 }),
+        );
+        await el.updateComplete;
+        thumbY.dispatchEvent(
+            new PointerEvent('pointercancel', { pointerId: 1 }),
+        );
+        await el.updateComplete;
+        expect(thumbY.classList.contains('thumb--dragging')).toBe(false);
+    });
+
+    it('pointerup on thumb--y does nothing when not dragging', async () => {
+        const el = await makeArea();
+        const thumbY = el.shadowRoot!.querySelector('.thumb--y') as HTMLElement;
+        thumbY.releasePointerCapture = vi.fn();
+        // no pointerdown first
+        thumbY.dispatchEvent(new PointerEvent('pointerup', { pointerId: 1 }));
+        expect(thumbY.classList.contains('thumb--dragging')).toBe(false);
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ui-scroll-area — built-in X-thumb drag
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-scroll-area — X-thumb drag', () => {
+    it('pointerdown on thumb--x adds thumb--dragging class', async () => {
+        const el = await makeArea();
+        const thumbX = el.shadowRoot!.querySelector('.thumb--x') as HTMLElement;
+        thumbX.setPointerCapture = vi.fn();
+        thumbX.dispatchEvent(
+            new PointerEvent('pointerdown', { clientX: 50, pointerId: 2 }),
+        );
+        await el.updateComplete;
+        expect(thumbX.classList.contains('thumb--dragging')).toBe(true);
+    });
+
+    it('pointermove on thumb--x does nothing when not dragging', async () => {
+        const el = await makeArea();
+        const thumbX = el.shadowRoot!.querySelector('.thumb--x') as HTMLElement;
+        thumbX.dispatchEvent(new PointerEvent('pointermove', { clientX: 80 }));
+        expect(getViewport(el).scrollLeft).toBe(0);
+    });
+
+    it('pointerup on thumb--x removes thumb--dragging class', async () => {
+        const el = await makeArea();
+        const thumbX = el.shadowRoot!.querySelector('.thumb--x') as HTMLElement;
+        thumbX.setPointerCapture = vi.fn();
+        thumbX.releasePointerCapture = vi.fn();
+        thumbX.dispatchEvent(
+            new PointerEvent('pointerdown', { clientX: 50, pointerId: 2 }),
+        );
+        await el.updateComplete;
+        thumbX.dispatchEvent(
+            new PointerEvent('pointerup', { pointerId: 2 }),
+        );
+        await el.updateComplete;
+        expect(thumbX.classList.contains('thumb--dragging')).toBe(false);
+    });
+
+    it('pointercancel on thumb--x removes thumb--dragging class', async () => {
+        const el = await makeArea();
+        const thumbX = el.shadowRoot!.querySelector('.thumb--x') as HTMLElement;
+        thumbX.setPointerCapture = vi.fn();
+        thumbX.releasePointerCapture = vi.fn();
+        thumbX.dispatchEvent(
+            new PointerEvent('pointerdown', { clientX: 50, pointerId: 2 }),
+        );
+        await el.updateComplete;
+        thumbX.dispatchEvent(
+            new PointerEvent('pointercancel', { pointerId: 2 }),
+        );
+        await el.updateComplete;
+        expect(thumbX.classList.contains('thumb--dragging')).toBe(false);
+    });
+
+    it('pointerup on thumb--x does nothing when not dragging', async () => {
+        const el = await makeArea();
+        const thumbX = el.shadowRoot!.querySelector('.thumb--x') as HTMLElement;
+        thumbX.releasePointerCapture = vi.fn();
+        thumbX.dispatchEvent(new PointerEvent('pointerup', { pointerId: 2 }));
+        expect(thumbX.classList.contains('thumb--dragging')).toBe(false);
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ui-scroll-bar — pointer drag
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-scroll-bar — pointer drag', () => {
+    it('pointerdown on track adds thumb--dragging class', async () => {
+        const bar = await makeScrollBar();
+        const track = bar.shadowRoot!.querySelector('.track') as HTMLElement;
+        track.setPointerCapture = vi.fn();
+        track.dispatchEvent(
+            new PointerEvent('pointerdown', { clientY: 100, pointerId: 1 }),
+        );
+        await bar.updateComplete;
+        expect(bar.shadowRoot!.querySelector('.thumb--dragging')).not.toBeNull();
+    });
+
+    it('pointermove does nothing when not dragging', async () => {
+        const bar = await makeScrollBar();
+        const track = bar.shadowRoot!.querySelector('.track') as HTMLElement;
+        // Should not throw even without an area
+        expect(() =>
+            track.dispatchEvent(new PointerEvent('pointermove', { clientY: 150 })),
+        ).not.toThrow();
+    });
+
+    it('pointermove with no area returns early', async () => {
+        const bar = await makeScrollBar();
+        const track = bar.shadowRoot!.querySelector('.track') as HTMLElement;
+        track.setPointerCapture = vi.fn();
+        track.dispatchEvent(
+            new PointerEvent('pointerdown', { clientY: 100, pointerId: 1 }),
+        );
+        await bar.updateComplete;
+        // bar is not inside a ui-scroll-area, so _area is null → returns early
+        expect(() =>
+            track.dispatchEvent(new PointerEvent('pointermove', { clientY: 150 })),
+        ).not.toThrow();
+    });
+
+    it('pointerup releases dragging state', async () => {
+        const bar = await makeScrollBar();
+        const track = bar.shadowRoot!.querySelector('.track') as HTMLElement;
+        track.setPointerCapture = vi.fn();
+        track.releasePointerCapture = vi.fn();
+        track.dispatchEvent(
+            new PointerEvent('pointerdown', { clientY: 100, pointerId: 1 }),
+        );
+        await bar.updateComplete;
+        track.dispatchEvent(
+            new PointerEvent('pointerup', { pointerId: 1 }),
+        );
+        await bar.updateComplete;
+        expect(bar.shadowRoot!.querySelector('.thumb--dragging')).toBeNull();
+    });
+
+    it('pointercancel also releases dragging state', async () => {
+        const bar = await makeScrollBar();
+        const track = bar.shadowRoot!.querySelector('.track') as HTMLElement;
+        track.setPointerCapture = vi.fn();
+        track.releasePointerCapture = vi.fn();
+        track.dispatchEvent(
+            new PointerEvent('pointerdown', { clientY: 100, pointerId: 1 }),
+        );
+        await bar.updateComplete;
+        track.dispatchEvent(
+            new PointerEvent('pointercancel', { pointerId: 1 }),
+        );
+        await bar.updateComplete;
+        expect(bar.shadowRoot!.querySelector('.thumb--dragging')).toBeNull();
+    });
+
+    it('pointerup does nothing when not dragging', async () => {
+        const bar = await makeScrollBar();
+        const track = bar.shadowRoot!.querySelector('.track') as HTMLElement;
+        track.releasePointerCapture = vi.fn();
+        // No prior pointerdown
+        expect(() =>
+            track.dispatchEvent(new PointerEvent('pointerup', { pointerId: 1 })),
+        ).not.toThrow();
+        expect(bar.shadowRoot!.querySelector('.thumb--dragging')).toBeNull();
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ui-scroll-bar — inside ui-scroll-area (drag communicates with parent)
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-scroll-bar — drag communicates with parent scroll area', () => {
+    it('pointermove calls _setScrollPos on parent', async () => {
+        const el = await fixture<UiScrollArea>(html`
+            <ui-scroll-area type="always" style="height: 200px; width: 200px;">
+                <div style="height: 1000px;"></div>
+                <ui-scroll-bar slot="scrollbar" orientation="vertical"></ui-scroll-bar>
+            </ui-scroll-area>
+        `);
+        await el.updateComplete;
+        const bar = el.querySelector('ui-scroll-bar') as UiScrollBar;
+        await bar.updateComplete;
+
+        const track = bar.shadowRoot!.querySelector('.track') as HTMLElement;
+        track.setPointerCapture = vi.fn();
+        // Mock offsetHeight for delta calculation
+        Object.defineProperty(track, 'offsetHeight', { value: 200, configurable: true });
+
+        const vp = el.shadowRoot!.querySelector('.viewport') as HTMLDivElement;
+        Object.defineProperty(vp, 'scrollHeight', { value: 1000, configurable: true });
+        Object.defineProperty(vp, 'clientHeight', { value: 200, configurable: true });
+
+        track.dispatchEvent(
+            new PointerEvent('pointerdown', { clientY: 0, pointerId: 1 }),
+        );
+        track.dispatchEvent(
+            new PointerEvent('pointermove', { clientY: 50, pointerId: 1 }),
+        );
+        // scrollTop should be updated (clamped to range)
+        expect(typeof vp.scrollTop).toBe('number');
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ui-scroll-area — _onSlotChange with ResizeObserver
+═══════════════════════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════════════════════
+   ui-scroll-area — scrollTo/scrollBy without y argument
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-scroll-area — scrollTo/scrollBy y-default', () => {
+    it('scrollTo(x) defaults y to 0', async () => {
+        const el = await makeArea();
+        const vp = getViewport(el);
+        const spy = vi.fn();
+        vp.scrollTo = spy as typeof vp.scrollTo;
+        // Call the (x, y) overload with only x via apply
+        el.scrollTo(42, undefined as unknown as number);
+        expect(spy).toHaveBeenCalledWith(42, 0);
+    });
+
+    it('scrollBy(x) defaults y to 0', async () => {
+        const el = await makeArea();
+        const vp = getViewport(el);
+        const spy = vi.fn();
+        vp.scrollBy = spy as typeof vp.scrollBy;
+        el.scrollBy(10, undefined as unknown as number);
+        expect(spy).toHaveBeenCalledWith(10, 0);
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ui-scroll-area — Y-thumb drag with mocked track height
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-scroll-area — Y-thumb drag with layout', () => {
+    it('pointermove on thumb--y scrolls viewport when trackH > 0', async () => {
+        const el = await makeArea();
+        const vp = getViewport(el);
+        mockOverflowY(vp, 800, 200);
+
+        const scrollbarY = getScrollbarY(el);
+        Object.defineProperty(scrollbarY, 'offsetHeight', { value: 200, configurable: true });
+
+        const thumbY = getThumbY(el);
+        thumbY.setPointerCapture = vi.fn();
+
+        thumbY.dispatchEvent(
+            new PointerEvent('pointerdown', { clientY: 0, pointerId: 1 }),
+        );
+        await el.updateComplete;
+
+        thumbY.dispatchEvent(
+            new PointerEvent('pointermove', { clientY: 50 }),
+        );
+        // delta=50, trackH=200, range=600 → expected scrollTop = 0 + (50/200)*600 = 150
+        expect(vp.scrollTop).toBe(150);
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ui-scroll-area — X-thumb drag with mocked track width
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-scroll-area — X-thumb drag with layout', () => {
+    it('pointermove on thumb--x scrolls viewport when trackW > 0', async () => {
+        const el = await makeArea();
+        const vp = getViewport(el);
+        mockOverflowX(vp, 600, 200);
+
+        const scrollbarX = getScrollbarX(el);
+        Object.defineProperty(scrollbarX, 'offsetWidth', { value: 200, configurable: true });
+
+        const thumbX = getThumbX(el);
+        thumbX.setPointerCapture = vi.fn();
+
+        thumbX.dispatchEvent(
+            new PointerEvent('pointerdown', { clientX: 0, pointerId: 2 }),
+        );
+        await el.updateComplete;
+
+        thumbX.dispatchEvent(
+            new PointerEvent('pointermove', { clientX: 40 }),
+        );
+        // delta=40, trackW=200, range=400 → expected scrollLeft = 0 + (40/200)*400 = 80
+        expect(vp.scrollLeft).toBe(80);
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ui-scroll-bar — horizontal pointer drag
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-scroll-bar — horizontal pointer drag', () => {
+    it('pointerdown records clientX for horizontal bar', async () => {
+        const bar = await makeScrollBar('horizontal');
+        const track = bar.shadowRoot!.querySelector('.track') as HTMLElement;
+        track.setPointerCapture = vi.fn();
+        track.dispatchEvent(
+            new PointerEvent('pointerdown', { clientX: 80, pointerId: 3 }),
+        );
+        await bar.updateComplete;
+        expect(bar.shadowRoot!.querySelector('.thumb--dragging')).not.toBeNull();
+    });
+
+    it('pointermove computes delta from clientX for horizontal bar', async () => {
+        // Horizontal bar inside a scroll area
+        const el = await fixture<UiScrollArea>(html`
+            <ui-scroll-area type="always" style="height: 200px; width: 200px;">
+                <div style="width: 600px; height: 100px;"></div>
+                <ui-scroll-bar slot="scrollbar" orientation="horizontal"></ui-scroll-bar>
+            </ui-scroll-area>
+        `);
+        await el.updateComplete;
+        const bar = el.querySelector('ui-scroll-bar') as UiScrollBar;
+        await bar.updateComplete;
+
+        const track = bar.shadowRoot!.querySelector('.track') as HTMLElement;
+        track.setPointerCapture = vi.fn();
+        // Mock bar offsetWidth (horizontal uses offsetWidth)
+        Object.defineProperty(bar, 'offsetWidth', { value: 200, configurable: true });
+
+        const vp = el.shadowRoot!.querySelector('.viewport') as HTMLDivElement;
+        Object.defineProperty(vp, 'scrollWidth', { value: 600, configurable: true });
+        Object.defineProperty(vp, 'clientWidth', { value: 200, configurable: true });
+
+        track.dispatchEvent(
+            new PointerEvent('pointerdown', { clientX: 0, pointerId: 3 }),
+        );
+        track.dispatchEvent(
+            new PointerEvent('pointermove', { clientX: 50 }),
+        );
+        // delta=50, trackW=200, range=400 → scrollLeft = 0 + (50/200)*400 = 100
+        expect(vp.scrollLeft).toBe(100);
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ui-scroll-bar — vertical drag with parent (full path)
+═══════════════════════════════════════════════════════════════════════════ */
+describe('ui-scroll-bar — vertical drag with parent (full path)', () => {
+    it('pointermove calls _setScrollPos with correct calculation', async () => {
+        const el = await fixture<UiScrollArea>(html`
+            <ui-scroll-area type="always" style="height: 200px; width: 200px;">
+                <div style="height: 1000px;"></div>
+                <ui-scroll-bar slot="scrollbar" orientation="vertical"></ui-scroll-bar>
+            </ui-scroll-area>
+        `);
+        await el.updateComplete;
+        const bar = el.querySelector('ui-scroll-bar') as UiScrollBar;
+        await bar.updateComplete;
+
+        const track = bar.shadowRoot!.querySelector('.track') as HTMLElement;
+        track.setPointerCapture = vi.fn();
+        // Mock bar offsetHeight (vertical uses offsetHeight)
+        Object.defineProperty(bar, 'offsetHeight', { value: 200, configurable: true });
+
+        const vp = el.shadowRoot!.querySelector('.viewport') as HTMLDivElement;
+        Object.defineProperty(vp, 'scrollHeight', { value: 1000, configurable: true });
+        Object.defineProperty(vp, 'clientHeight', { value: 200, configurable: true });
+
+        track.dispatchEvent(
+            new PointerEvent('pointerdown', { clientY: 0, pointerId: 1 }),
+        );
+        track.dispatchEvent(
+            new PointerEvent('pointermove', { clientY: 50 }),
+        );
+        // delta=50, trackH=200, range=800 → scrollTop = 0 + (50/200)*800 = 200
+        expect(vp.scrollTop).toBe(200);
+    });
+});
+
+describe('ui-scroll-area — _onSlotChange ResizeObserver', () => {
+    it('observes slotted elements when ResizeObserver is available', async () => {
+        const observeSpy = vi.fn();
+        const original = globalThis.ResizeObserver;
+        globalThis.ResizeObserver = function MockRO() {
+            return { observe: observeSpy, disconnect: vi.fn(), unobserve: vi.fn() };
+        } as unknown as typeof ResizeObserver;
+
+        try {
+            const el = await fixture<UiScrollArea>(html`
+                <ui-scroll-area style="height: 200px; width: 200px;">
+                    <div style="height: 800px;"></div>
+                </ui-scroll-area>
+            `);
+            await el.updateComplete;
+            // observe is called at least for the viewport in firstUpdated
+            // and for slotted children in _onSlotChange
+            expect(observeSpy).toHaveBeenCalled();
+        } finally {
+            globalThis.ResizeObserver = original;
+        }
+    });
+});

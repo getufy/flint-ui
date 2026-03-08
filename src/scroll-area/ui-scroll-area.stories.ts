@@ -296,3 +296,180 @@ export const BothAxes: Story = {
         </div>
     `,
 };
+
+/* ── Nested ──────────────────────────────────────────────────────── */
+export const Nested: Story = {
+    name: 'Nested Scroll Areas',
+    render: () => html`
+        <div style="padding: 24px;">
+            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+                Scroll areas can be nested. Each manages its own scrollbars independently.
+            </p>
+            <ui-scroll-area
+                type="always"
+                style="height: 300px; width: 400px; border: 1px solid var(--ui-border-color, #e4e4e7); border-radius: 6px;"
+            >
+                <div style="padding: 16px;">
+                    <h4 style="margin: 0 0 12px; font-size: 0.875rem; font-weight: 600; font-family: system-ui; color: var(--ui-text-color, #111827);">
+                        Outer scroll area
+                    </h4>
+                    ${Array.from({ length: 5 }, (_, i) => html`
+                        <div style="font-size: 0.875rem; font-family: system-ui; color: var(--ui-text-color, #111827); padding: 4px 0;">
+                            Outer item ${i + 1}
+                        </div>
+                    `)}
+                    <ui-scroll-area
+                        type="always"
+                        style="
+                            height: 150px; margin: 12px 0;
+                            border: 1px solid var(--ui-border-color, #e4e4e7); border-radius: 4px;
+                            --ui-scrollbar-thumb-color: var(--ui-primary-color, #3b82f6);
+                        "
+                    >
+                        <div style="padding: 12px;">
+                            <h5 style="margin: 0 0 8px; font-size: 0.8125rem; font-weight: 600; font-family: system-ui; color: var(--ui-text-color, #111827);">
+                                Inner scroll area
+                            </h5>
+                            ${Array.from({ length: 20 }, (_, j) => html`
+                                <div style="font-size: 0.8125rem; font-family: system-ui; color: var(--ui-text-color-muted, #6b7280); padding: 2px 0;">
+                                    Nested item ${j + 1}
+                                </div>
+                            `)}
+                        </div>
+                    </ui-scroll-area>
+                    ${Array.from({ length: 20 }, (_, i) => html`
+                        <div style="font-size: 0.875rem; font-family: system-ui; color: var(--ui-text-color, #111827); padding: 4px 0;">
+                            Outer item ${i + 6}
+                        </div>
+                    `)}
+                </div>
+            </ui-scroll-area>
+        </div>
+    `,
+};
+
+/* ── DarkMode ────────────────────────────────────────────────────── */
+export const DarkMode: Story = {
+    name: 'Dark Mode',
+    render: () => html`
+        <div
+            class="ui-theme-dark"
+            style="
+                padding: 24px; background: #1a1a2e; border-radius: 8px;
+                --ui-text-color: #e5e7eb; --ui-text-color-muted: #9ca3af;
+                --ui-border-color: #374151; --ui-surface-3: #1f2937;
+                --ui-scrollbar-thumb-color: rgba(255,255,255,0.35);
+                --ui-scrollbar-thumb-hover-color: rgba(255,255,255,0.50);
+            "
+        >
+            <p style="margin: 0 0 12px; font-size: 0.875rem; color: var(--ui-text-color-muted); font-family: system-ui;">
+                Dark mode uses inverted scrollbar thumb colors via <code style="color: #93c5fd;">--ui-scrollbar-thumb-color</code>.
+            </p>
+            <ui-scroll-area
+                type="always"
+                style="height: 288px; width: 192px; border: 1px solid var(--ui-border-color); border-radius: 6px;"
+            >
+                <div style="padding: 16px;">
+                    <h4 style="margin: 0 0 16px; font-size: 0.875rem; font-weight: 600; font-family: system-ui; color: var(--ui-text-color);">
+                        Tags
+                    </h4>
+                    ${tags.slice(0, 25).map(tag => html`
+                        <div style="font-size: 0.875rem; font-family: system-ui; color: var(--ui-text-color);">
+                            ${tag}
+                        </div>
+                        <div style="height: 1px; background: var(--ui-border-color); margin: 8px 0;"></div>
+                    `)}
+                </div>
+            </ui-scroll-area>
+        </div>
+    `,
+};
+
+/* ── ScrollType ──────────────────────────────────────────────────── */
+export const ScrollType: Story = {
+    name: 'Scroll Type (auto-hide)',
+    render: () => html`
+        <div style="padding: 24px;">
+            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+                <code>type="scroll"</code> — scrollbar appears only while actively scrolling,
+                then fades after 600ms.
+            </p>
+            <ui-scroll-area
+                type="scroll"
+                style="height: 288px; width: 192px; border: 1px solid var(--ui-border-color, #e4e4e7); border-radius: 6px;"
+            >
+                <div style="padding: 16px;">
+                    <h4 style="margin: 0 0 16px; font-size: 0.875rem; font-weight: 600; font-family: system-ui; color: var(--ui-text-color, #111827);">
+                        Scroll me!
+                    </h4>
+                    ${tags.map(tag => html`
+                        <div style="font-size: 0.875rem; font-family: system-ui; color: var(--ui-text-color, #111827);">
+                            ${tag}
+                        </div>
+                        <div style=${separatorStyle}></div>
+                    `)}
+                </div>
+            </ui-scroll-area>
+        </div>
+    `,
+};
+
+/* ── ChatExample ─────────────────────────────────────────────────── */
+export const ChatExample: Story = {
+    name: 'Chat Window',
+    render: () => {
+        const messages = [
+            { from: 'Alice', text: 'Hey, have you seen the new release?', time: '10:01' },
+            { from: 'Bob', text: 'Not yet! What changed?', time: '10:02' },
+            { from: 'Alice', text: 'They added custom scrollbars with CSS custom properties.', time: '10:03' },
+            { from: 'Bob', text: 'Nice! Is it accessible?', time: '10:03' },
+            { from: 'Alice', text: 'Yes, ARIA scrollbar roles and keyboard support.', time: '10:04' },
+            { from: 'Bob', text: 'What about RTL support?', time: '10:05' },
+            { from: 'Alice', text: 'Fully supported. The vertical bar flips to the left side.', time: '10:05' },
+            { from: 'Bob', text: 'How about performance?', time: '10:06' },
+            { from: 'Alice', text: 'ResizeObserver keeps everything in sync. No polling.', time: '10:06' },
+            { from: 'Bob', text: 'Awesome, I will try it today.', time: '10:07' },
+            { from: 'Alice', text: 'Let me know if you run into anything!', time: '10:08' },
+            { from: 'Bob', text: 'Will do. Thanks!', time: '10:08' },
+        ];
+        return html`
+            <div style="padding: 24px;">
+                <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+                    A chat window using <code>type="auto"</code> — scrollbar visible when content overflows.
+                </p>
+                <div style="width: 320px; border: 1px solid var(--ui-border-color, #e4e4e7); border-radius: 8px; overflow: hidden;">
+                    <div style="padding: 12px 16px; border-bottom: 1px solid var(--ui-border-color, #e4e4e7); font-weight: 600; font-size: 0.875rem; font-family: system-ui; color: var(--ui-text-color, #111827);">
+                        Chat
+                    </div>
+                    <ui-scroll-area type="auto" style="height: 280px;">
+                        <div style="padding: 12px 16px; display: flex; flex-direction: column; gap: 8px;">
+                            ${messages.map(m => html`
+                                <div style="display: flex; gap: 8px; align-items: flex-start;">
+                                    <div style="
+                                        flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+                                        background: ${m.from === 'Alice' ? 'var(--ui-primary-color, #3b82f6)' : '#6b7280'};
+                                        display: flex; align-items: center; justify-content: center;
+                                        color: white; font-size: 0.6875rem; font-weight: 600; font-family: system-ui;
+                                    ">${m.from[0]}</div>
+                                    <div style="flex: 1; min-width: 0;">
+                                        <div style="display: flex; align-items: baseline; gap: 6px;">
+                                            <span style="font-size: 0.8125rem; font-weight: 600; font-family: system-ui; color: var(--ui-text-color, #111827);">
+                                                ${m.from}
+                                            </span>
+                                            <span style="font-size: 0.6875rem; color: #9ca3af; font-family: system-ui;">
+                                                ${m.time}
+                                            </span>
+                                        </div>
+                                        <div style="font-size: 0.8125rem; font-family: system-ui; color: var(--ui-text-color, #111827); margin-top: 2px;">
+                                            ${m.text}
+                                        </div>
+                                    </div>
+                                </div>
+                            `)}
+                        </div>
+                    </ui-scroll-area>
+                </div>
+            </div>
+        `;
+    },
+};
