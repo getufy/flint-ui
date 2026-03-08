@@ -311,4 +311,235 @@ describe('ui-grid', () => {
         expect(el.style.flexBasis).toBe('');
         expect(el.style.maxWidth).toBe('');
     });
+
+    // -------------------------------------------------------------------------
+    // XL breakpoint
+    // -------------------------------------------------------------------------
+
+    it('returns xl breakpoint when viewport >= 1536px', async () => {
+        const el = await fixture<UiGrid>(html`<ui-grid xs="12" xl="3"></ui-grid>`);
+        await setWidth(el, 1600); // xl viewport
+        // 3/12 = 25%
+        expect(el.style.flexBasis).toContain('25%');
+    });
+
+    it('applies lg size when viewport is lg (1200-1535px)', async () => {
+        const el = await fixture<UiGrid>(html`<ui-grid xs="12" lg="4"></ui-grid>`);
+        await setWidth(el, 1300); // lg viewport
+        // 4/12 ≈ 33.33...%
+        expect(el.style.flexBasis).toContain('33.33333333333333%');
+    });
+
+    // -------------------------------------------------------------------------
+    // String attribute "false" → GridSize false
+    // -------------------------------------------------------------------------
+
+    it('treats xs="false" (string attribute) as boolean false → no size applied', async () => {
+        const el = await fixture<UiGrid>(html`<ui-grid xs="false"></ui-grid>`);
+        await setWidth(el, 375);
+        // size===false falls through to the !this.container branch → width 100%
+        expect(el.style.width).toBe('100%');
+    });
+
+    // -------------------------------------------------------------------------
+    // _getEffectiveOffset: numeric string value
+    // -------------------------------------------------------------------------
+
+    it('converts a numeric-string offset value to a number', async () => {
+        // Set offset via a JS object with a string number to exercise the
+        // typeof val === 'string' && !isNaN(Number(val)) branch in _getEffectiveOffset
+        const el = await fixture<UiGrid>(html`<ui-grid xs="6" .offset=${{ xs: '3' as unknown as number }}></ui-grid>`);
+        await setWidth(el, 375);
+        // 3/12 = 25%
+        expect(parseFloat(el.style.marginLeft)).toBeCloseTo(25, 1);
+    });
+
+    // -------------------------------------------------------------------------
+    // _resolveResponsive: responsive object (spacing as object)
+    // -------------------------------------------------------------------------
+
+    it('resolves responsive spacing object at current breakpoint', async () => {
+        const el = await fixture<UiGrid>(html`
+            <ui-grid container .spacing=${{ xs: 1, md: 3 }}></ui-grid>
+        `);
+        await setWidth(el, 375); // xs → 1 unit = 8px
+        const wrapper = el.shadowRoot!.querySelector('.grid-wrapper') as HTMLDivElement;
+        expect(wrapper.style.gap).toBe('8px 8px');
+
+        await setWidth(el, 960); // md → 3 units = 24px
+        expect(wrapper.style.gap).toBe('24px 24px');
+    });
+
+    it('resolves responsive spacing object to 0 when no breakpoint matches', async () => {
+        // Only md defined — at xs viewport the loop exhausts all breakpoints and returns 0
+        const el = await fixture<UiGrid>(html`
+            <ui-grid container .spacing=${{ md: 3 }}></ui-grid>
+        `);
+        await setWidth(el, 375); // xs → falls back to 0
+        const wrapper = el.shadowRoot!.querySelector('.grid-wrapper') as HTMLDivElement;
+        expect(wrapper.style.gap).toBe('0px 0px');
+    });
+
+    it('resolves responsive columnSpacing object at current breakpoint', async () => {
+        const el = await fixture<UiGrid>(html`
+            <ui-grid container .rowSpacing=${1} .columnSpacing=${{ xs: 2, md: 4 }}></ui-grid>
+        `);
+        await setWidth(el, 375); // xs col = 2*8=16px, row = 8px
+        const wrapper = el.shadowRoot!.querySelector('.grid-wrapper') as HTMLDivElement;
+        expect(wrapper.style.gap).toBe('8px 16px');
+
+        await setWidth(el, 960); // md col = 4*8=32px
+        expect(wrapper.style.gap).toBe('8px 32px');
+    });
+
+    // -------------------------------------------------------------------------
+    // _resolveResponsive: string number for spacing
+    // -------------------------------------------------------------------------
+
+    it('converts spacing string number to numeric px value', async () => {
+        // spacing="2" as a string attribute exercises the isNaN(Number(val)) branch
+        const el = await fixture<UiGrid>(html`<ui-grid container spacing="2"></ui-grid>`);
+        await setWidth(el, 375);
+        const wrapper = el.shadowRoot!.querySelector('.grid-wrapper') as HTMLDivElement;
+        expect(wrapper.style.gap).toBe('16px 16px');
+    });
+
+    // -------------------------------------------------------------------------
+    // _resolveResponsiveOrder: object with no match at current breakpoint
+    // -------------------------------------------------------------------------
+
+    it('resolves order to undefined when object has no matching lower breakpoint', async () => {
+        // order={{ md: 0 }} — at xs viewport there is no xs/sm/md entry for xs
+        const el = await fixture<UiGrid>(html`<ui-grid xs="12" .order=${{ md: 0 }}></ui-grid>`);
+        await setWidth(el, 375); // xs — md does not cascade downward
+        // No order applied since no xs match
+        expect(el.style.order).toBe('');
+    });
+
+    // -------------------------------------------------------------------------
+    // _getEffectiveColumns: container branch
+    // -------------------------------------------------------------------------
+
+    it('returns its own columns value when the element is a container', async () => {
+        // A container+item hybrid with xs set: _getEffectiveColumns should use
+        // this.columns directly (skipping CSS var lookup) because container=true
+        const el = await fixture<UiGrid>(html`
+            <ui-grid container columns="8" xs="4"></ui-grid>
+        `);
+        await setWidth(el, 375);
+        // 4/8 = 50%
+        expect(el.style.flexBasis).toContain('50%');
+    });
+
+    // -------------------------------------------------------------------------
+    // Direction variants
+    // -------------------------------------------------------------------------
+
+    it('applies direction-row class on container with default direction', async () => {
+        const el = await fixture<UiGrid>(html`<ui-grid container></ui-grid>`);
+        await el.updateComplete;
+        const wrapper = el.shadowRoot!.querySelector('.grid-wrapper');
+        expect(wrapper?.classList.contains('direction-row')).toBe(true);
+    });
+
+    it('applies direction-row-reverse class', async () => {
+        const el = await fixture<UiGrid>(html`<ui-grid container direction="row-reverse"></ui-grid>`);
+        await el.updateComplete;
+        const wrapper = el.shadowRoot!.querySelector('.grid-wrapper');
+        expect(wrapper?.classList.contains('direction-row-reverse')).toBe(true);
+    });
+
+    it('applies direction-column-reverse class', async () => {
+        const el = await fixture<UiGrid>(html`<ui-grid container direction="column-reverse"></ui-grid>`);
+        await el.updateComplete;
+        const wrapper = el.shadowRoot!.querySelector('.grid-wrapper');
+        expect(wrapper?.classList.contains('direction-column-reverse')).toBe(true);
+    });
+
+    // -------------------------------------------------------------------------
+    // Spacing: gap has only one part (row === column)
+    // -------------------------------------------------------------------------
+
+    it('uses single gap value for --ui-grid-column-gap when gap is uniform', async () => {
+        // spacing=2 produces "16px 16px" → parts[1] = '16px'
+        const el = await fixture<UiGrid>(html`<ui-grid container spacing="2"></ui-grid>`);
+        await setWidth(el, 375);
+        expect(el.style.getPropertyValue('--ui-grid-column-gap')).toBe('16px');
+    });
+
+    // -------------------------------------------------------------------------
+    // Breakpoint cascade: sm size resolves at sm viewport
+    // -------------------------------------------------------------------------
+
+    it('applies sm size when viewport is in sm range (600-899px)', async () => {
+        const el = await fixture<UiGrid>(html`<ui-grid xs="12" sm="6"></ui-grid>`);
+        await setWidth(el, 700); // sm viewport
+        expect(el.style.flexBasis).toContain('50%');
+    });
+
+    // -------------------------------------------------------------------------
+    // disconnectedCallback removes resize listener
+    // -------------------------------------------------------------------------
+
+    it('removes resize listener on disconnect', async () => {
+        const el = await fixture<UiGrid>(html`<ui-grid xs="12" md="6"></ui-grid>`);
+        const removeSpy = vi.spyOn(window, 'removeEventListener');
+        el.remove();
+        expect(removeSpy).toHaveBeenCalledWith('resize', expect.any(Function));
+        removeSpy.mockRestore();
+    });
+
+    // -------------------------------------------------------------------------
+    // _breakpointCache: second lookup returns cached value
+    // -------------------------------------------------------------------------
+
+    it('uses cached breakpoint values on repeated style calculations', async () => {
+        const el = await fixture<UiGrid>(html`<ui-grid xs="6"></ui-grid>`);
+        // First call populates cache, second call returns cached value
+        await setWidth(el, 375);
+        await setWidth(el, 375); // second render — cache hit
+        expect(el.style.flexBasis).toContain('50%');
+    });
+
+    // -------------------------------------------------------------------------
+    // _toPx: string spacing value (already px)
+    // -------------------------------------------------------------------------
+
+    it('passes through string spacing value as-is (no unit multiplication)', async () => {
+        const el = await fixture<UiGrid>(html`<ui-grid container .spacing=${'20px'}></ui-grid>`);
+        await setWidth(el, 375);
+        const wrapper = el.shadowRoot!.querySelector('.grid-wrapper') as HTMLDivElement;
+        expect(wrapper.style.gap).toBe('20px 20px');
+    });
+
+    // -------------------------------------------------------------------------
+    // _resolveResponsive: string numeric value (not a px string, not an object)
+    // -------------------------------------------------------------------------
+
+    it('converts plain string number spacing to numeric px (e.g. spacing="3" via property)', async () => {
+        // Property binding with a string number exercises the
+        // `typeof val === 'string' && !isNaN(Number(val))` branch in _resolveResponsive
+        const el = await fixture<UiGrid>(html`<ui-grid container .spacing=${'3'}></ui-grid>`);
+        await setWidth(el, 375);
+        const wrapper = el.shadowRoot!.querySelector('.grid-wrapper') as HTMLDivElement;
+        expect(wrapper.style.gap).toBe('24px 24px');
+    });
+
+    // -------------------------------------------------------------------------
+    // _getBreakpointValue: CSS custom property lookup (lines 73-74)
+    // -------------------------------------------------------------------------
+
+    it('reads breakpoint value from CSS custom property when set on :root', async () => {
+        // Set a custom breakpoint on :root so _getBreakpointValue parses it
+        document.documentElement.style.setProperty('--ui-breakpoint-sm', '500');
+        try {
+            const el = await fixture<UiGrid>(html`<ui-grid xs="12" sm="6"></ui-grid>`);
+            // Clear the cache so it re-reads from getComputedStyle
+            (el as unknown as { _breakpointCache: Record<string, number> })._breakpointCache = {};
+            await setWidth(el, 520); // above our custom 500px sm breakpoint
+            expect(el.style.flexBasis).toContain('50%');
+        } finally {
+            document.documentElement.style.removeProperty('--ui-breakpoint-sm');
+        }
+    });
 });
