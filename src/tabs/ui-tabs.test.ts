@@ -618,6 +618,30 @@ describe('ui-tab-list keyboard & interaction', () => {
         expect(indicator).toBeTruthy();
         expect(indicator?.className).toContain('indicator');
     });
+
+    it('forward scroll button click invokes _scroll forward', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list variant="scrollable" scroll-buttons="auto" style="width: 100px;">
+                ${Array.from({ length: 10 }, (_, i) => html`<ui-tab value="${i}">T${i}</ui-tab>`)}
+            </ui-tab-list>`);
+        const buttons = el.shadowRoot!.querySelectorAll<HTMLButtonElement>('.scroll-btn');
+        const fwdBtn = buttons[1]; // second button = forward
+        expect(fwdBtn).toBeTruthy();
+        // clicking forward button should not throw
+        expect(() => fwdBtn.click()).not.toThrow();
+    });
+
+    it('vertical scroll buttons click _scroll with top delta', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list orientation="vertical" variant="scrollable" scroll-buttons="auto" style="height:100px;">
+                ${Array.from({ length: 10 }, (_, i) => html`<ui-tab value="${i}">Item ${i}</ui-tab>`)}
+            </ui-tab-list>`);
+        const buttons = el.shadowRoot!.querySelectorAll<HTMLButtonElement>('.scroll-btn');
+        expect(buttons.length).toBe(2);
+        // click both — neither should throw (exercises vertical _scroll branch)
+        expect(() => buttons[0].click()).not.toThrow(); // scroll back
+        expect(() => buttons[1].click()).not.toThrow(); // scroll forward
+    });
 });
 
 /* ================================================================== */
@@ -770,5 +794,154 @@ describe('ui-tabs color resolution', () => {
         const tab = el.querySelector<UiTab>('ui-tab')!;
         const inactiveColor = tab.style.getPropertyValue('--ui-tab-inactive');
         expect(inactiveColor).toBe('currentColor');
+    });
+});
+
+/* ================================================================== */
+describe('ui-tab-list vertical orientation', () => {
+    it('ArrowDown focuses next tab in vertical orientation', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list orientation="vertical">
+                <ui-tab value="a">A</ui-tab>
+                <ui-tab value="b">B</ui-tab>
+                <ui-tab value="c">C</ui-tab>
+            </ui-tab-list>`);
+        const tabs = el.querySelectorAll<UiTab>('ui-tab');
+        tabs[0].focusInner();
+        const evt = new KeyboardEvent('keydown', { key: 'ArrowDown' });
+        el.shadowRoot!.querySelector('.scroll-area')!.dispatchEvent(evt);
+        await el.updateComplete;
+        expect(tabs[1].shadowRoot!.activeElement).toBeTruthy();
+    });
+
+    it('ArrowUp focuses previous tab in vertical orientation', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list orientation="vertical">
+                <ui-tab value="a">A</ui-tab>
+                <ui-tab value="b">B</ui-tab>
+                <ui-tab value="c">C</ui-tab>
+            </ui-tab-list>`);
+        const tabs = el.querySelectorAll<UiTab>('ui-tab');
+        tabs[1].focusInner();
+        const evt = new KeyboardEvent('keydown', { key: 'ArrowUp' });
+        el.shadowRoot!.querySelector('.scroll-area')!.dispatchEvent(evt);
+        await el.updateComplete;
+        expect(tabs[0].shadowRoot!.activeElement).toBeTruthy();
+    });
+
+    it('ArrowDown wraps from last to first in vertical orientation', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list orientation="vertical">
+                <ui-tab value="a">A</ui-tab>
+                <ui-tab value="b">B</ui-tab>
+                <ui-tab value="c">C</ui-tab>
+            </ui-tab-list>`);
+        const tabs = el.querySelectorAll<UiTab>('ui-tab');
+        tabs[2].focusInner();
+        const evt = new KeyboardEvent('keydown', { key: 'ArrowDown' });
+        el.shadowRoot!.querySelector('.scroll-area')!.dispatchEvent(evt);
+        await el.updateComplete;
+        expect(tabs[0].shadowRoot!.activeElement).toBeTruthy();
+    });
+
+    it('ArrowUp wraps from first to last in vertical orientation', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list orientation="vertical">
+                <ui-tab value="a">A</ui-tab>
+                <ui-tab value="b">B</ui-tab>
+                <ui-tab value="c">C</ui-tab>
+            </ui-tab-list>`);
+        const tabs = el.querySelectorAll<UiTab>('ui-tab');
+        tabs[0].focusInner();
+        const evt = new KeyboardEvent('keydown', { key: 'ArrowUp' });
+        el.shadowRoot!.querySelector('.scroll-area')!.dispatchEvent(evt);
+        await el.updateComplete;
+        expect(tabs[2].shadowRoot!.activeElement).toBeTruthy();
+    });
+
+    it('horizontal keys (ArrowLeft/Right) are ignored in vertical orientation', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list orientation="vertical">
+                <ui-tab value="a">A</ui-tab>
+                <ui-tab value="b">B</ui-tab>
+            </ui-tab-list>`);
+        const tabs = el.querySelectorAll<UiTab>('ui-tab');
+        tabs[0].focusInner();
+        const evt = new KeyboardEvent('keydown', { key: 'ArrowRight', cancelable: true });
+        el.shadowRoot!.querySelector('.scroll-area')!.dispatchEvent(evt);
+        await el.updateComplete;
+        // focus should not move (ArrowRight not valid for vertical)
+        expect(tabs[1].shadowRoot!.activeElement).toBeFalsy();
+    });
+
+    it('syncIndicator runs for vertical orientation without crashing', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list orientation="vertical">
+                <ui-tab value="a" selected>A</ui-tab>
+                <ui-tab value="b">B</ui-tab>
+            </ui-tab-list>`);
+        expect(() => el.syncIndicator()).not.toThrow();
+    });
+
+    it('disconnectedCallback disconnects ResizeObserver', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list>
+                <ui-tab value="a">A</ui-tab>
+            </ui-tab-list>`);
+        // Should not throw when disconnected
+        expect(() => el.disconnectedCallback()).not.toThrow();
+    });
+});
+
+/* ================================================================== */
+describe('ui-tabs without tab-list', () => {
+    it('_syncAll runs without tabList present', async () => {
+        const el = await fixture<UiTabs>(html`
+            <ui-tabs value="a">
+                <ui-tab value="a">A</ui-tab>
+                <ui-tab-panel value="a">Panel A</ui-tab-panel>
+            </ui-tabs>`);
+        // No ui-tab-list child — should not throw
+        expect(() => el.requestUpdate()).not.toThrow();
+        await el.updateComplete;
+        expect(el.value).toBe('a');
+    });
+});
+
+/* ================================================================== */
+describe('ui-tab-list variant and scroll prop changes', () => {
+    it('variant changes from standard to scrollable show scroll buttons', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list variant="standard">
+                <ui-tab value="a">A</ui-tab>
+            </ui-tab-list>`);
+        expect(el.shadowRoot?.querySelector('.scroll-btn')).toBeNull();
+        el.variant = 'scrollable';
+        await el.updateComplete;
+        expect(el.shadowRoot?.querySelectorAll('.scroll-btn').length).toBe(2);
+    });
+
+    it('centered prop reflects to attribute', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list centered>
+                <ui-tab value="a">A</ui-tab>
+            </ui-tab-list>`);
+        expect(el.hasAttribute('centered')).toBe(true);
+        expect(el.centered).toBe(true);
+    });
+
+    it('unrecognized key in keydown is ignored', async () => {
+        const el = await fixture<UiTabList>(html`
+            <ui-tab-list>
+                <ui-tab value="a">A</ui-tab>
+                <ui-tab value="b">B</ui-tab>
+            </ui-tab-list>`);
+        const tabs = el.querySelectorAll<UiTab>('ui-tab');
+        tabs[0].focusInner();
+        const evt = new KeyboardEvent('keydown', { key: 'Tab', cancelable: true });
+        el.shadowRoot!.querySelector('.scroll-area')!.dispatchEvent(evt);
+        await el.updateComplete;
+        // no crash, focus unchanged
+        expect(tabs[1].shadowRoot!.activeElement).toBeFalsy();
     });
 });

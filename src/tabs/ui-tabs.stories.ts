@@ -471,40 +471,36 @@ export const WithIcons: Story = {
 /* Controlled — external state management                              */
 /* ================================================================== */
 export const Controlled: Story = {
-    render: () => {
-        const state = { value: 'a' };
-        const setActiveTab = (val: string) => {
-            state.value = val;
-            const container = document.querySelector('[data-controlled-demo]');
-            if (container) {
-                const tabs = container.querySelector('ui-tabs') as unknown as { value: string };
-                if (tabs) tabs.value = val;
-            }
-        };
-        return html`
-            <div data-controlled-demo>
-                <div style="display:flex;gap:12px;margin-bottom:16px;font-family:Inter,sans-serif;">
-                    <button style="padding:8px 16px;border:1px solid #e5e7eb;background:#f9fafb;border-radius:6px;cursor:pointer;"
-                            @click=${() => setActiveTab('a')}>Select A</button>
-                    <button style="padding:8px 16px;border:1px solid #e5e7eb;background:#f9fafb;border-radius:6px;cursor:pointer;"
-                            @click=${() => setActiveTab('b')}>Select B</button>
-                    <button style="padding:8px 16px;border:1px solid #e5e7eb;background:#f9fafb;border-radius:6px;cursor:pointer;"
-                            @click=${() => setActiveTab('c')}>Select C</button>
-                </div>
-                ${wrap(html`
-                    <ui-tabs value="a" @ui-tab-change=${(e: CustomEvent) => { (e.currentTarget as unknown as { value: string }).value = e.detail.value; }}>
-                        <ui-tab-list aria-label="Controlled tabs">
-                            <ui-tab value="a">Tab A</ui-tab>
-                            <ui-tab value="b">Tab B</ui-tab>
-                            <ui-tab value="c">Tab C</ui-tab>
-                        </ui-tab-list>
-                        <ui-tab-panel value="a">${panelContent('Controlled Tab A', 'Click the buttons above to change the active tab programmatically.')}</ui-tab-panel>
-                        <ui-tab-panel value="b">${panelContent('Controlled Tab B', 'External state controls which tab is active.')}</ui-tab-panel>
-                        <ui-tab-panel value="c">${panelContent('Controlled Tab C', 'This pattern works well with Redux, React state, or any state management.')}</ui-tab-panel>
-                    </ui-tabs>
+    render: () => html`
+        <div data-controlled-demo style="font-family:Inter,sans-serif;">
+            <div style="display:flex;gap:12px;margin-bottom:16px;">
+                ${(['a', 'b', 'c'] as const).map(v => html`
+                    <button
+                        style="padding:8px 16px;border:1px solid #e5e7eb;background:#f9fafb;border-radius:6px;cursor:pointer;font-family:Inter,sans-serif;"
+                        @click=${(e: MouseEvent) => {
+                            const tabs = (e.target as HTMLElement)
+                                .closest('[data-controlled-demo]')
+                                ?.querySelector('ui-tabs') as (HTMLElement & { value: string }) | null;
+                            if (tabs) tabs.value = v;
+                        }}>Select ${v.toUpperCase()}</button>
                 `)}
-            </div>`;
-    },
+            </div>
+            ${wrap(html`
+                <ui-tabs value="a"
+                    @ui-tab-change=${(e: CustomEvent) => {
+                        (e.currentTarget as HTMLElement & { value: string }).value = e.detail.value;
+                    }}>
+                    <ui-tab-list aria-label="Controlled tabs">
+                        <ui-tab value="a">Tab A</ui-tab>
+                        <ui-tab value="b">Tab B</ui-tab>
+                        <ui-tab value="c">Tab C</ui-tab>
+                    </ui-tab-list>
+                    <ui-tab-panel value="a">${panelContent('Controlled Tab A', 'Click the buttons above to change the active tab programmatically.')}</ui-tab-panel>
+                    <ui-tab-panel value="b">${panelContent('Controlled Tab B', 'External state drives which tab is active — the component just reflects what it receives.')}</ui-tab-panel>
+                    <ui-tab-panel value="c">${panelContent('Controlled Tab C', 'Works well with any state manager: Redux, signals, or plain JS.')}</ui-tab-panel>
+                </ui-tabs>
+            `)}
+        </div>`,
 };
 
 /* ================================================================== */
@@ -530,17 +526,48 @@ export const Uncontrolled: Story = {
 /* ================================================================== */
 export const DarkMode: Story = {
     render: () => html`
-        <div class="ui-theme-dark" style="background:#000;padding:24px;border-radius:12px;">
-            ${wrap(html`
+        <div style="display:flex;flex-direction:column;gap:24px;">
+            <div class="ui-theme-dark" style="background:#111827;padding:0;border-radius:12px;overflow:hidden;
+                        border:1px solid #374151;box-shadow:0 2px 8px rgba(0,0,0,.4);">
                 <ui-tabs value="tab1">
                     <ui-tab-list aria-label="Dark mode tabs">
                         <ui-tab value="tab1">Dark Tab</ui-tab>
                         <ui-tab value="tab2">Another Tab</ui-tab>
                         <ui-tab value="tab3">Third Tab</ui-tab>
                     </ui-tab-list>
-                    <ui-tab-panel value="tab1">${panelContent('Dark Mode', 'Apply .ui-theme-dark to any ancestor to enable dark mode theme override.')}</ui-tab-panel>
-                    <ui-tab-panel value="tab2">${panelContent('Better Contrast', 'All colors auto-adjust to dark backgrounds for readability.')}</ui-tab-panel>
-                    <ui-tab-panel value="tab3">${panelContent('CSS Variables', 'Uses CSS custom properties for complete theme flexibility.')}</ui-tab-panel>
+                    <ui-tab-panel value="tab1">
+                        <div style="font-family:Inter,sans-serif;">
+                            <h3 style="margin:0 0 8px;font-size:1rem;font-weight:600;color:#f9fafb;">Dark Mode</h3>
+                            <p style="margin:0;font-size:.875rem;color:#9ca3af;line-height:1.6;">Apply .ui-theme-dark to any ancestor to enable the dark theme. All CSS variables adjust automatically.</p>
+                        </div>
+                    </ui-tab-panel>
+                    <ui-tab-panel value="tab2">
+                        <div style="font-family:Inter,sans-serif;">
+                            <h3 style="margin:0 0 8px;font-size:1rem;font-weight:600;color:#f9fafb;">Better Contrast</h3>
+                            <p style="margin:0;font-size:.875rem;color:#9ca3af;line-height:1.6;">All colors auto-adjust to dark backgrounds for readability.</p>
+                        </div>
+                    </ui-tab-panel>
+                    <ui-tab-panel value="tab3">
+                        <div style="font-family:Inter,sans-serif;">
+                            <h3 style="margin:0 0 8px;font-size:1rem;font-weight:600;color:#f9fafb;">CSS Variables</h3>
+                            <p style="margin:0;font-size:.875rem;color:#9ca3af;line-height:1.6;">Uses CSS custom properties for complete theme flexibility.</p>
+                        </div>
+                    </ui-tab-panel>
+                </ui-tabs>
+            </div>
+            <p style="font-family:Inter,sans-serif;margin:0;font-size:.875rem;color:#6b7280;">
+                Light mode (default) for comparison:
+            </p>
+            ${wrap(html`
+                <ui-tabs value="tab1">
+                    <ui-tab-list aria-label="Light mode tabs">
+                        <ui-tab value="tab1">Light Tab</ui-tab>
+                        <ui-tab value="tab2">Another Tab</ui-tab>
+                        <ui-tab value="tab3">Third Tab</ui-tab>
+                    </ui-tab-list>
+                    <ui-tab-panel value="tab1">${panelContent('Light Mode', 'Default appearance without .ui-theme-dark.')}</ui-tab-panel>
+                    <ui-tab-panel value="tab2">${panelContent('Standard Colors', 'Uses the default primary blue palette.')}</ui-tab-panel>
+                    <ui-tab-panel value="tab3">${panelContent('Light Theme', 'White background with standard border color.')}</ui-tab-panel>
                 </ui-tabs>
             `)}
         </div>`,
@@ -578,14 +605,24 @@ export const TabListOnly: Story = {
             <p style="margin:0 0 12px;font-size:.875rem;color:#6b7280;">
                 <code style="background:#f3f4f6;padding:2px 5px;border-radius:4px;">&lt;ui-tab-list&gt;</code>
                 can be used standalone for filter chips, button groups, or other tab-like patterns (no panels needed).
+                A <code style="background:#f3f4f6;padding:2px 5px;border-radius:4px;">ui-tab-click</code> event
+                bubbles out so you can handle selection in your own logic.
             </p>
             ${wrap(html`
-                <ui-tab-list>
-                    <ui-tab value="all">All Items</ui-tab>
-                    <ui-tab value="active">Active</ui-tab>
-                    <ui-tab value="archived">Archived</ui-tab>
-                    <ui-tab value="deleted">Deleted</ui-tab>
-                </ui-tab-list>
+                <div @ui-tab-click=${(e: CustomEvent) => {
+                    const list = (e.currentTarget as HTMLElement).querySelector('ui-tab-list');
+                    if (!list) return;
+                    list.querySelectorAll('ui-tab').forEach((t: Element) => {
+                        (t as HTMLElement & { selected: boolean }).selected = t.getAttribute('value') === e.detail.value;
+                    });
+                }}>
+                    <ui-tab-list aria-label="Filter tabs">
+                        <ui-tab value="all" selected>All Items</ui-tab>
+                        <ui-tab value="active">Active</ui-tab>
+                        <ui-tab value="archived">Archived</ui-tab>
+                        <ui-tab value="deleted">Deleted</ui-tab>
+                    </ui-tab-list>
+                </div>
             `)}
         </div>`,
 };
@@ -595,47 +632,55 @@ export const TabListOnly: Story = {
 /* ================================================================== */
 export const DynamicTabs: Story = {
     render: () => html`
-        <div style="font-family:Inter,sans-serif;">
+        <div data-dynamic-demo style="font-family:Inter,sans-serif;">
             <div style="display:flex;gap:8px;margin-bottom:16px;">
                 <button style="padding:8px 16px;border:1px solid #e5e7eb;background:#3b82f6;color:white;border-radius:6px;cursor:pointer;"
                         @click=${(e: MouseEvent) => {
                             const container = (e.target as HTMLElement).closest('[data-dynamic-demo]');
-                            const tabs = container?.querySelector('ui-tabs') as Element | null;
+                            const tabs = container?.querySelector('ui-tabs');
                             if (!tabs) return;
-                            const count = Math.max(...Array.from(tabs.querySelectorAll('ui-tab')).map((t) => parseInt(t.getAttribute('value')?.replace('tab-', '') ?? '0') || 0)) + 1;
+                            const allTabs = Array.from(tabs.querySelectorAll('ui-tab'));
+                            const count = Math.max(...allTabs.map((t) => parseInt(t.getAttribute('value')?.replace('tab-', '') ?? '0') || 0)) + 1;
                             const newTab = document.createElement('ui-tab');
                             newTab.setAttribute('value', `tab-${count}`);
                             newTab.textContent = `Tab ${count}`;
                             const newPanel = document.createElement('ui-tab-panel');
                             newPanel.setAttribute('value', `tab-${count}`);
-                            newPanel.innerHTML = `<div style="font-family:Inter,sans-serif;"><h3 style="margin:0 0 8px;font-size:1rem;font-weight:600;">Dynamic Tab ${count}</h3><p style="margin:0;color:#6b7280;">Added at runtime to demonstrate dynamic tab creation.</p></div>`;
+                            newPanel.innerHTML = `<div style="font-family:Inter,sans-serif;padding:24px;"><h3 style="margin:0 0 8px;font-size:1rem;font-weight:600;color:#111827;">Dynamic Tab ${count}</h3><p style="margin:0;font-size:.875rem;color:#6b7280;">Added at runtime to demonstrate dynamic tab creation.</p></div>`;
                             tabs.querySelector('ui-tab-list')?.appendChild(newTab);
                             tabs.appendChild(newPanel);
                         }}>Add Tab</button>
                 <button style="padding:8px 16px;border:1px solid #e5e7eb;background:#ef4444;color:white;border-radius:6px;cursor:pointer;"
                         @click=${(e: MouseEvent) => {
                             const container = (e.target as HTMLElement).closest('[data-dynamic-demo]');
-                            const tabs = container?.querySelector('ui-tabs');
+                            const tabs = container?.querySelector('ui-tabs') as (HTMLElement & { value: string }) | null;
                             if (!tabs) return;
-                            const lastTab = tabs.querySelector('ui-tab:last-of-type');
-                            const lastPanel = tabs.querySelector('ui-tab-panel:last-of-type');
-                            if (lastTab) lastTab.remove();
+                            const allTabs = tabs.querySelectorAll('ui-tab');
+                            if (allTabs.length <= 1) return; // keep at least one tab
+                            const lastTab = allTabs[allTabs.length - 1];
+                            const lastPanel = tabs.querySelector(`ui-tab-panel[value="${lastTab.getAttribute('value')}"]`);
+                            const wasActive = lastTab.getAttribute('value') === tabs.value;
+                            lastTab.remove();
                             if (lastPanel) lastPanel.remove();
+                            // if removed tab was active, switch to new last tab
+                            if (wasActive) {
+                                const remaining = tabs.querySelectorAll('ui-tab');
+                                const newLast = remaining[remaining.length - 1];
+                                if (newLast) tabs.value = newLast.getAttribute('value') ?? '';
+                            }
                         }}>Remove Tab</button>
             </div>
             ${wrap(html`
-                <div data-dynamic-demo>
-                    <ui-tabs value="tab-1">
-                        <ui-tab-list aria-label="Dynamic tabs">
-                            <ui-tab value="tab-1">Tab 1</ui-tab>
-                            <ui-tab value="tab-2">Tab 2</ui-tab>
-                            <ui-tab value="tab-3">Tab 3</ui-tab>
-                        </ui-tab-list>
-                        <ui-tab-panel value="tab-1">${panelContent('Dynamic Tab 1', 'Use Add/Remove buttons to dynamically add or remove tabs. The component re-syncs automatically.')}</ui-tab-panel>
-                        <ui-tab-panel value="tab-2">${panelContent('Dynamic Tab 2', 'When tabs are added or removed, the component updates the tab list and panels.')}</ui-tab-panel>
-                        <ui-tab-panel value="tab-3">${panelContent('Dynamic Tab 3', 'This is useful for tabbed interfaces that change content dynamically.')}</ui-tab-panel>
-                    </ui-tabs>
-                </div>
+                <ui-tabs value="tab-1">
+                    <ui-tab-list aria-label="Dynamic tabs">
+                        <ui-tab value="tab-1">Tab 1</ui-tab>
+                        <ui-tab value="tab-2">Tab 2</ui-tab>
+                        <ui-tab value="tab-3">Tab 3</ui-tab>
+                    </ui-tab-list>
+                    <ui-tab-panel value="tab-1">${panelContent('Dynamic Tab 1', 'Use Add/Remove buttons to dynamically add or remove tabs. The component re-syncs automatically.')}</ui-tab-panel>
+                    <ui-tab-panel value="tab-2">${panelContent('Dynamic Tab 2', 'When tabs are added or removed, the component updates the tab list and panels.')}</ui-tab-panel>
+                    <ui-tab-panel value="tab-3">${panelContent('Dynamic Tab 3', 'This is useful for tabbed interfaces that change content dynamically.')}</ui-tab-panel>
+                </ui-tabs>
             `)}
         </div>`,
 };
@@ -645,26 +690,48 @@ export const DynamicTabs: Story = {
 /* ================================================================== */
 export const Responsive: Story = {
     render: () => html`
-        <div style="font-family:Inter,sans-serif;">
-            <p style="margin:0 0 16px;font-size:.875rem;color:#6b7280;font-style:italic;">
-                Resize your browser window to see tabs adapt to different viewports. On small screens, tabs become scrollable; on large screens, they use fullWidth variant.
+        <div style="font-family:Inter,sans-serif;display:flex;flex-direction:column;gap:24px;">
+            <p style="margin:0;font-size:.875rem;color:#374151;">
+                Two common patterns for adapting tabs across screen sizes — choose the one that fits your layout.
             </p>
-            ${wrap(html`
-                <ui-tabs value="home" style="--tab-variant: scrollable;" id="responsive-tabs">
-                    <ui-tab-list aria-label="Responsive navigation tabs">
-                        <ui-tab value="home">Home</ui-tab>
-                        <ui-tab value="products">Products</ui-tab>
-                        <ui-tab value="services">Services</ui-tab>
-                        <ui-tab value="about">About</ui-tab>
-                        <ui-tab value="contact">Contact</ui-tab>
-                    </ui-tab-list>
-                    <ui-tab-panel value="home">${panelContent('Home', 'Welcome to our responsive tabs demo. These tabs automatically adjust their layout based on available space.')}</ui-tab-panel>
-                    <ui-tab-panel value="products">${panelContent('Products', 'Explore our wide range of high-quality products designed for all your needs.')}</ui-tab-panel>
-                    <ui-tab-panel value="services">${panelContent('Services', 'We offer professional services tailored to help your business succeed.')}</ui-tab-panel>
-                    <ui-tab-panel value="about">${panelContent('About', 'Learn more about our company, mission, and the team behind our success.')}</ui-tab-panel>
-                    <ui-tab-panel value="contact">${panelContent('Contact', 'Get in touch with us. We\'re here to help and answer any questions you have.')}</ui-tab-panel>
-                </ui-tabs>
-            `)}
+            <div>
+                <p style="margin:0 0 6px;font-size:.75rem;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">
+                    variant="scrollable" — natural on mobile, works at any width
+                </p>
+                ${wrap(html`
+                    <ui-tabs value="home" variant="scrollable" scroll-buttons="auto">
+                        <ui-tab-list aria-label="Scrollable navigation tabs">
+                            <ui-tab value="home">Home</ui-tab>
+                            <ui-tab value="products">Products</ui-tab>
+                            <ui-tab value="services">Services</ui-tab>
+                            <ui-tab value="about">About</ui-tab>
+                            <ui-tab value="contact">Contact</ui-tab>
+                        </ui-tab-list>
+                        <ui-tab-panel value="home">${panelContent('Home', 'Tabs overflow into a scrollable strip with arrow buttons on each side.')}</ui-tab-panel>
+                        <ui-tab-panel value="products">${panelContent('Products', 'Explore our wide range of high-quality products.')}</ui-tab-panel>
+                        <ui-tab-panel value="services">${panelContent('Services', 'Professional services tailored to your needs.')}</ui-tab-panel>
+                        <ui-tab-panel value="about">${panelContent('About', 'Learn about our company and mission.')}</ui-tab-panel>
+                        <ui-tab-panel value="contact">${panelContent('Contact', 'Get in touch with us.')}</ui-tab-panel>
+                    </ui-tabs>
+                `)}
+            </div>
+            <div>
+                <p style="margin:0 0 6px;font-size:.75rem;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">
+                    variant="fullWidth" — each tab expands to fill equal space
+                </p>
+                ${wrap(html`
+                    <ui-tabs value="home" variant="fullWidth">
+                        <ui-tab-list aria-label="Full-width navigation tabs">
+                            <ui-tab value="home">Home</ui-tab>
+                            <ui-tab value="products">Products</ui-tab>
+                            <ui-tab value="services">Services</ui-tab>
+                        </ui-tab-list>
+                        <ui-tab-panel value="home">${panelContent('Home', 'Great for mobile layouts where the tab bar should always fill the container width.')}</ui-tab-panel>
+                        <ui-tab-panel value="products">${panelContent('Products', 'All tabs share the width equally.')}</ui-tab-panel>
+                        <ui-tab-panel value="services">${panelContent('Services', 'The indicator stretches to fill each tab.')}</ui-tab-panel>
+                    </ui-tabs>
+                `)}
+            </div>
         </div>`,
 };
 
