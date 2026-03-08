@@ -309,6 +309,15 @@
     --ui-split-panel-min:                0;
     --ui-split-panel-max:                100%;
 
+    /* ─── Breadcrumbs ───────────────────────────────────────────── */
+    --ui-breadcrumb-font-size:         0.875rem;
+    --ui-breadcrumb-color:             var(--ui-text-color-muted);
+    --ui-breadcrumb-color-active:      var(--ui-text-color);
+    --ui-breadcrumb-separator-margin:  8px;
+    --ui-breadcrumb-collapsed-bg:      var(--ui-hover-color);
+    --ui-breadcrumb-collapsed-hover-bg: var(--ui-active-color);
+    --ui-breadcrumb-collapsed-radius:  var(--ui-border-radius-md);
+
     /* ─── Box ───────────────────────────────────────────────────── */
     --ui-box-bg:             transparent;
     --ui-box-color:          inherit;
