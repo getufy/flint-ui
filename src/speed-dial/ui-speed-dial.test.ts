@@ -559,3 +559,901 @@ describe('ui-speed-dial-action', () => {
         expect(el.name).toBe('');
     });
 });
+
+/* ================================================================== */
+/* Mutation-killing additions                                           */
+/* ================================================================== */
+
+/* ── mouseenter / mouseleave / focus / blur on action button ── */
+describe('ui-speed-dial-action — hover/focus/blur tooltip visibility', () => {
+    it('mouseenter makes tooltip visible', async () => {
+        const el = await fixture<UiSpeedDialAction>(html`
+            <ui-speed-dial-action tooltip-title="Edit">✏️</ui-speed-dial-action>
+        `);
+        const btn = el.shadowRoot!.querySelector<HTMLButtonElement>('.action-btn')!;
+        btn.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('.tooltip')?.classList.contains('visible')).toBe(true);
+    });
+
+    it('mouseleave hides tooltip again', async () => {
+        const el = await fixture<UiSpeedDialAction>(html`
+            <ui-speed-dial-action tooltip-title="Edit">✏️</ui-speed-dial-action>
+        `);
+        const btn = el.shadowRoot!.querySelector<HTMLButtonElement>('.action-btn')!;
+        btn.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        await el.updateComplete;
+        btn.dispatchEvent(new MouseEvent('mouseleave', { bubbles: true }));
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('.tooltip')?.classList.contains('visible')).toBe(false);
+    });
+
+    it('focus on action button makes tooltip visible', async () => {
+        const el = await fixture<UiSpeedDialAction>(html`
+            <ui-speed-dial-action tooltip-title="Zoom">🔍</ui-speed-dial-action>
+        `);
+        const btn = el.shadowRoot!.querySelector<HTMLButtonElement>('.action-btn')!;
+        btn.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('.tooltip')?.classList.contains('visible')).toBe(true);
+    });
+
+    it('blur on action button hides tooltip', async () => {
+        const el = await fixture<UiSpeedDialAction>(html`
+            <ui-speed-dial-action tooltip-title="Zoom">🔍</ui-speed-dial-action>
+        `);
+        const btn = el.shadowRoot!.querySelector<HTMLButtonElement>('.action-btn')!;
+        btn.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
+        await el.updateComplete;
+        btn.dispatchEvent(new FocusEvent('blur', { bubbles: true }));
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('.tooltip')?.classList.contains('visible')).toBe(false);
+    });
+
+    it('_tooltipVisible = tooltipOpen || _hovered: hover alone (no tooltipOpen) suffices', async () => {
+        const el = await fixture<UiSpeedDialAction>(html`
+            <ui-speed-dial-action tooltip-title="X">X</ui-speed-dial-action>
+        `);
+        expect(el.tooltipOpen).toBe(false);
+        const btn = el.shadowRoot!.querySelector<HTMLButtonElement>('.action-btn')!;
+        btn.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('.tooltip')?.classList.contains('visible')).toBe(true);
+    });
+
+    it('_tooltipVisible = tooltipOpen || _hovered: tooltipOpen alone (no hover) suffices', async () => {
+        const el = await fixture<UiSpeedDialAction>(html`
+            <ui-speed-dial-action tooltip-title="X" tooltip-open>X</ui-speed-dial-action>
+        `);
+        await el.updateComplete;
+        // _hovered is false (no mouseenter dispatched)
+        expect(el.shadowRoot!.querySelector('.tooltip')?.classList.contains('visible')).toBe(true);
+    });
+
+    it('disabled guard in _handleClick: click event dispatched directly on disabled button is blocked', async () => {
+        const spy = vi.fn();
+        const el = await fixture<UiSpeedDialAction>(html`
+            <ui-speed-dial-action tooltip-title="X" disabled>X</ui-speed-dial-action>
+        `);
+        el.addEventListener('ui-speed-dial-action-click', spy);
+        el.shadowRoot!.querySelector<HTMLButtonElement>('.action-btn')!
+            .dispatchEvent(new MouseEvent('click', { bubbles: true }));
+        expect(spy).not.toHaveBeenCalled();
+    });
+});
+
+/* ── FAB arrow navigation when dial is already open ── */
+describe('ui-speed-dial — FAB arrow navigation when dial is already open', () => {
+    async function openDialFabFocused() {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial open>
+                <ui-speed-dial-action tooltip-title="A" name="a">A</ui-speed-dial-action>
+                <ui-speed-dial-action tooltip-title="B" name="b">B</ui-speed-dial-action>
+                <ui-speed-dial-action tooltip-title="C" name="c">C</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        fab(el).focus();
+        return el;
+    }
+
+    it('ArrowDown from focused FAB focuses first action (not last)', async () => {
+        const el = await openDialFabFocused();
+        keydown(el, 'ArrowDown');
+        await el.updateComplete;
+        const actions = Array.from(el.querySelectorAll('ui-speed-dial-action'));
+        expect(actions[0].shadowRoot!.activeElement?.classList.contains('action-btn')).toBe(true);
+        expect(actions[2].shadowRoot!.activeElement).toBeNull();
+    });
+
+    it('ArrowUp from focused FAB focuses last action (not first)', async () => {
+        const el = await openDialFabFocused();
+        keydown(el, 'ArrowUp');
+        await el.updateComplete;
+        const actions = Array.from(el.querySelectorAll('ui-speed-dial-action'));
+        expect(actions[2].shadowRoot!.activeElement?.classList.contains('action-btn')).toBe(true);
+        expect(actions[0].shadowRoot!.activeElement).toBeNull();
+    });
+
+    it('ArrowRight from focused FAB focuses first action', async () => {
+        const el = await openDialFabFocused();
+        keydown(el, 'ArrowRight');
+        await el.updateComplete;
+        const actions = Array.from(el.querySelectorAll('ui-speed-dial-action'));
+        expect(actions[0].shadowRoot!.activeElement?.classList.contains('action-btn')).toBe(true);
+        expect(actions[2].shadowRoot!.activeElement).toBeNull();
+    });
+
+    it('ArrowLeft from focused FAB focuses last action', async () => {
+        const el = await openDialFabFocused();
+        keydown(el, 'ArrowLeft');
+        await el.updateComplete;
+        const actions = Array.from(el.querySelectorAll('ui-speed-dial-action'));
+        expect(actions[2].shadowRoot!.activeElement?.classList.contains('action-btn')).toBe(true);
+        expect(actions[0].shadowRoot!.activeElement).toBeNull();
+    });
+});
+
+/* ── _focusActionAt clamping and empty guard ── */
+describe('ui-speed-dial — _focusActionAt clamping (mutation kills)', () => {
+    it('ArrowUp on first action stays on first (clamps to 0, not -1)', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial open>
+                <ui-speed-dial-action tooltip-title="A" name="a">A</ui-speed-dial-action>
+                <ui-speed-dial-action tooltip-title="B" name="b">B</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        actionButtons(el)[0].focus();
+        keydown(el, 'ArrowUp');
+        await el.updateComplete;
+        const actions = Array.from(el.querySelectorAll('ui-speed-dial-action'));
+        expect(actions[0].shadowRoot!.activeElement?.classList.contains('action-btn')).toBe(true);
+    });
+
+    it('ArrowDown on last action stays on last (clamps to btns.length-1)', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial open>
+                <ui-speed-dial-action tooltip-title="A" name="a">A</ui-speed-dial-action>
+                <ui-speed-dial-action tooltip-title="B" name="b">B</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        actionButtons(el)[1].focus();
+        keydown(el, 'ArrowDown');
+        await el.updateComplete;
+        const actions = Array.from(el.querySelectorAll('ui-speed-dial-action'));
+        expect(actions[1].shadowRoot!.activeElement?.classList.contains('action-btn')).toBe(true);
+    });
+
+    it('arrow key on open dial with no enabled actions does not throw', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial open>
+                <ui-speed-dial-action tooltip-title="X" disabled>X</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        // All actions disabled → _actionButtons() returns [] → _focusActionAt returns early
+        expect(() => keydown(el, 'ArrowDown')).not.toThrow();
+        expect(el.open).toBe(true);
+    });
+});
+
+/* ── Stagger delay arithmetic — all 4 directions, open + close ── */
+describe('ui-speed-dial — stagger delay arithmetic (mutation kills)', () => {
+    it('direction=left (reversed): open delays are 80ms, 40ms, 0ms', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial direction="left" open>
+                <ui-speed-dial-action tooltip-title="A">A</ui-speed-dial-action>
+                <ui-speed-dial-action tooltip-title="B">B</ui-speed-dial-action>
+                <ui-speed-dial-action tooltip-title="C">C</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        const actions = Array.from(el.querySelectorAll<HTMLElement>('ui-speed-dial-action'));
+        // reversed=true, count=3: staggerIdx[i] = count-1-i → [2,1,0] → *40ms
+        expect(actions[0].style.transitionDelay).toBe('80ms');
+        expect(actions[1].style.transitionDelay).toBe('40ms');
+        expect(actions[2].style.transitionDelay).toBe('0ms');
+    });
+
+    it('direction=right (not reversed): open delays are 0ms, 40ms, 80ms', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial direction="right" open>
+                <ui-speed-dial-action tooltip-title="A">A</ui-speed-dial-action>
+                <ui-speed-dial-action tooltip-title="B">B</ui-speed-dial-action>
+                <ui-speed-dial-action tooltip-title="C">C</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        const actions = Array.from(el.querySelectorAll<HTMLElement>('ui-speed-dial-action'));
+        // reversed=false: staggerIdx[i] = i → [0,1,2] → *40ms
+        expect(actions[0].style.transitionDelay).toBe('0ms');
+        expect(actions[1].style.transitionDelay).toBe('40ms');
+        expect(actions[2].style.transitionDelay).toBe('80ms');
+    });
+
+    it('direction=up: close delays are 0ms, 30ms, 60ms (closeIdx=i for reversed)', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial direction="up" open>
+                <ui-speed-dial-action tooltip-title="A">A</ui-speed-dial-action>
+                <ui-speed-dial-action tooltip-title="B">B</ui-speed-dial-action>
+                <ui-speed-dial-action tooltip-title="C">C</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        el.open = false;
+        await el.updateComplete;
+        const actions = Array.from(el.querySelectorAll<HTMLElement>('ui-speed-dial-action'));
+        // reversed=true, closeIdx=i → [0,1,2] → *30ms
+        expect(actions[0].style.transitionDelay).toBe('0ms');
+        expect(actions[1].style.transitionDelay).toBe('30ms');
+        expect(actions[2].style.transitionDelay).toBe('60ms');
+    });
+
+    it('direction=down: close delays are 60ms, 30ms, 0ms (closeIdx=count-1-i)', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial direction="down" open>
+                <ui-speed-dial-action tooltip-title="A">A</ui-speed-dial-action>
+                <ui-speed-dial-action tooltip-title="B">B</ui-speed-dial-action>
+                <ui-speed-dial-action tooltip-title="C">C</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        el.open = false;
+        await el.updateComplete;
+        const actions = Array.from(el.querySelectorAll<HTMLElement>('ui-speed-dial-action'));
+        // reversed=false, closeIdx=count-1-i → [2,1,0] → *30ms
+        expect(actions[0].style.transitionDelay).toBe('60ms');
+        expect(actions[1].style.transitionDelay).toBe('30ms');
+        expect(actions[2].style.transitionDelay).toBe('0ms');
+    });
+
+    it('open multiplier is 40ms not 30ms: 2-action dial has second delay=40ms', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial direction="down" open>
+                <ui-speed-dial-action tooltip-title="A">A</ui-speed-dial-action>
+                <ui-speed-dial-action tooltip-title="B">B</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        const actions = Array.from(el.querySelectorAll<HTMLElement>('ui-speed-dial-action'));
+        expect(actions[1].style.transitionDelay).toBe('40ms');
+    });
+
+    it('close multiplier is 30ms not 40ms: reversed 2-action on close has 0ms,30ms', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial direction="up" open>
+                <ui-speed-dial-action tooltip-title="A">A</ui-speed-dial-action>
+                <ui-speed-dial-action tooltip-title="B">B</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        el.open = false;
+        await el.updateComplete;
+        const actions = Array.from(el.querySelectorAll<HTMLElement>('ui-speed-dial-action'));
+        // reversed, closeIdx=i: [0]*30=0ms, [1]*30=30ms
+        expect(actions[0].style.transitionDelay).toBe('0ms');
+        expect(actions[1].style.transitionDelay).toBe('30ms');
+    });
+});
+
+/* ── _onFabFocus guard conditions ── */
+describe('ui-speed-dial — FAB focus auto-open guards', () => {
+    it('FAB focus with relatedTarget=null does NOT open (mouse click, not tab)', async () => {
+        const el = await dial();
+        const spy = vi.fn();
+        el.addEventListener('ui-speed-dial-open', spy);
+        fab(el).dispatchEvent(new FocusEvent('focus', {
+            bubbles: true, composed: true, relatedTarget: null,
+        }));
+        await el.updateComplete;
+        expect(spy).not.toHaveBeenCalled();
+        expect(el.open).toBe(false);
+    });
+
+    it('FAB focus with external relatedTarget opens the dial', async () => {
+        const container = await fixture<HTMLDivElement>(html`
+            <div>
+                <button id="before">before</button>
+                <ui-speed-dial>
+                    <ui-speed-dial-action tooltip-title="Copy">📋</ui-speed-dial-action>
+                </ui-speed-dial>
+            </div>
+        `);
+        const el = container.querySelector('ui-speed-dial') as UiSpeedDial;
+        await el.updateComplete;
+        const before = container.querySelector<HTMLButtonElement>('#before')!;
+        fab(el).dispatchEvent(new FocusEvent('focus', {
+            bubbles: true, composed: true, relatedTarget: before,
+        }));
+        await el.updateComplete;
+        expect(el.open).toBe(true);
+    });
+
+    it('FAB focus when already open does NOT re-fire ui-speed-dial-open', async () => {
+        const container = await fixture<HTMLDivElement>(html`
+            <div>
+                <button id="before">before</button>
+                <ui-speed-dial open>
+                    <ui-speed-dial-action tooltip-title="Copy">📋</ui-speed-dial-action>
+                </ui-speed-dial>
+            </div>
+        `);
+        const el = container.querySelector('ui-speed-dial') as UiSpeedDial;
+        await el.updateComplete;
+        const spy = vi.fn();
+        el.addEventListener('ui-speed-dial-open', spy);
+        const before = container.querySelector<HTMLButtonElement>('#before')!;
+        fab(el).dispatchEvent(new FocusEvent('focus', {
+            bubbles: true, composed: true, relatedTarget: before,
+        }));
+        await el.updateComplete;
+        expect(spy).not.toHaveBeenCalled();
+        expect(el.open).toBe(true);
+    });
+});
+
+/* ── Arrow open: exact first/last focus target ── */
+describe('ui-speed-dial — arrow open: exact first/last action focus', () => {
+    it('ArrowDown opens dial and focuses first action (not last)', async () => {
+        const el = await dial();
+        keydown(el, 'ArrowDown');
+        await el.updateComplete;
+        await Promise.resolve(); // flush updateComplete.then()
+        const actions = Array.from(el.querySelectorAll('ui-speed-dial-action'));
+        expect(actions[0].shadowRoot!.activeElement?.classList.contains('action-btn')).toBe(true);
+        expect(actions[2].shadowRoot!.activeElement).toBeNull();
+    });
+
+    it('ArrowUp opens dial and focuses last action (not first)', async () => {
+        const el = await dial();
+        keydown(el, 'ArrowUp');
+        await el.updateComplete;
+        await Promise.resolve();
+        const actions = Array.from(el.querySelectorAll('ui-speed-dial-action'));
+        expect(actions[2].shadowRoot!.activeElement?.classList.contains('action-btn')).toBe(true);
+        expect(actions[0].shadowRoot!.activeElement).toBeNull();
+    });
+
+    it('ArrowRight opens dial and focuses first action', async () => {
+        const el = await dial();
+        keydown(el, 'ArrowRight');
+        await el.updateComplete;
+        await Promise.resolve();
+        const actions = Array.from(el.querySelectorAll('ui-speed-dial-action'));
+        expect(actions[0].shadowRoot!.activeElement?.classList.contains('action-btn')).toBe(true);
+        expect(actions[2].shadowRoot!.activeElement).toBeNull();
+    });
+
+    it('ArrowLeft opens dial and focuses last action', async () => {
+        const el = await dial();
+        keydown(el, 'ArrowLeft');
+        await el.updateComplete;
+        await Promise.resolve();
+        const actions = Array.from(el.querySelectorAll('ui-speed-dial-action'));
+        expect(actions[2].shadowRoot!.activeElement?.classList.contains('action-btn')).toBe(true);
+        expect(actions[0].shadowRoot!.activeElement).toBeNull();
+    });
+});
+
+/* ── Arrow navigate actions: exact prev/next focus ── */
+describe('ui-speed-dial — arrow navigation exact prev/next focus', () => {
+    it('ArrowDown on action[0] moves focus to action[1]', async () => {
+        const el = await dial(true);
+        await el.updateComplete;
+        actionButtons(el)[0].focus();
+        keydown(el, 'ArrowDown');
+        await el.updateComplete;
+        const actions = Array.from(el.querySelectorAll('ui-speed-dial-action'));
+        expect(actions[1].shadowRoot!.activeElement?.classList.contains('action-btn')).toBe(true);
+        expect(actions[0].shadowRoot!.activeElement).toBeNull();
+    });
+
+    it('ArrowUp on action[1] moves focus to action[0]', async () => {
+        const el = await dial(true);
+        await el.updateComplete;
+        actionButtons(el)[1].focus();
+        keydown(el, 'ArrowUp');
+        await el.updateComplete;
+        const actions = Array.from(el.querySelectorAll('ui-speed-dial-action'));
+        expect(actions[0].shadowRoot!.activeElement?.classList.contains('action-btn')).toBe(true);
+        expect(actions[1].shadowRoot!.activeElement).toBeNull();
+    });
+
+    it('ArrowRight on action[1] moves focus to action[2]', async () => {
+        const el = await dial(true);
+        await el.updateComplete;
+        actionButtons(el)[1].focus();
+        keydown(el, 'ArrowRight');
+        await el.updateComplete;
+        const actions = Array.from(el.querySelectorAll('ui-speed-dial-action'));
+        expect(actions[2].shadowRoot!.activeElement?.classList.contains('action-btn')).toBe(true);
+        expect(actions[1].shadowRoot!.activeElement).toBeNull();
+    });
+
+    it('ArrowLeft on action[2] moves focus to action[1]', async () => {
+        const el = await dial(true);
+        await el.updateComplete;
+        actionButtons(el)[2].focus();
+        keydown(el, 'ArrowLeft');
+        await el.updateComplete;
+        const actions = Array.from(el.querySelectorAll('ui-speed-dial-action'));
+        expect(actions[1].shadowRoot!.activeElement?.classList.contains('action-btn')).toBe(true);
+        expect(actions[2].shadowRoot!.activeElement).toBeNull();
+    });
+});
+
+/* ── Home/End exact focus targets ── */
+describe('ui-speed-dial — Home/End exact focus targets (mutation kills)', () => {
+    it('Home focuses action[0] not action[2]', async () => {
+        const el = await dial(true);
+        await el.updateComplete;
+        actionButtons(el)[2].focus();
+        keydown(el, 'Home');
+        await el.updateComplete;
+        const actions = Array.from(el.querySelectorAll('ui-speed-dial-action'));
+        expect(actions[0].shadowRoot!.activeElement?.classList.contains('action-btn')).toBe(true);
+        expect(actions[2].shadowRoot!.activeElement).toBeNull();
+    });
+
+    it('End focuses action[2] not action[0]', async () => {
+        const el = await dial(true);
+        await el.updateComplete;
+        actionButtons(el)[0].focus();
+        keydown(el, 'End');
+        await el.updateComplete;
+        const actions = Array.from(el.querySelectorAll('ui-speed-dial-action'));
+        expect(actions[2].shadowRoot!.activeElement?.classList.contains('action-btn')).toBe(true);
+        expect(actions[0].shadowRoot!.activeElement).toBeNull();
+    });
+
+    it('Home/End ignored when no action is focused (actionFocused=false)', async () => {
+        const el = await dial(true);
+        await el.updateComplete;
+        // FAB focused, no action focused → actionFocused = false
+        fab(el).focus();
+        const spy = vi.fn();
+        el.addEventListener('ui-speed-dial-close', spy);
+        keydown(el, 'Home');
+        keydown(el, 'End');
+        await el.updateComplete;
+        expect(el.open).toBe(true);
+        expect(spy).not.toHaveBeenCalled();
+    });
+});
+
+/* ── showTooltip = persistentTooltips || isTouch (mutation: || vs &&) ── */
+describe('ui-speed-dial — showTooltip: persistentTooltips || isTouch (mutation kills)', () => {
+    it('isTouch=true alone (without persistentTooltips) adds tooltip-open when open', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial is-touch open>
+                <ui-speed-dial-action tooltip-title="Copy">📋</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        expect(el.querySelector('ui-speed-dial-action')!.hasAttribute('tooltip-open')).toBe(true);
+    });
+
+    it('persistentTooltips=true alone (without isTouch) adds tooltip-open when open', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial persistent-tooltips open>
+                <ui-speed-dial-action tooltip-title="Copy">📋</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        expect(el.querySelector('ui-speed-dial-action')!.hasAttribute('tooltip-open')).toBe(true);
+    });
+
+    it('neither isTouch nor persistentTooltips → no tooltip-open even when open', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial open>
+                <ui-speed-dial-action tooltip-title="Copy">📋</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        expect(el.querySelector('ui-speed-dial-action')!.hasAttribute('tooltip-open')).toBe(false);
+    });
+
+    it('showTooltip=true but dial closed → tooltip-open is NOT set (open guard)', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial persistent-tooltips>
+                <ui-speed-dial-action tooltip-title="Copy">📋</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        expect(el.querySelector('ui-speed-dial-action')!.hasAttribute('tooltip-open')).toBe(false);
+    });
+});
+
+/* ── updated() re-syncs tooltips on prop changes ── */
+describe('ui-speed-dial — updated() re-syncs tooltip state on prop changes', () => {
+    it('changing direction from up to left updates tooltip placement to top', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial direction="up" open>
+                <ui-speed-dial-action tooltip-title="Copy">📋</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        const action = el.querySelector('ui-speed-dial-action')!;
+        expect(action.getAttribute('tooltip-placement')).toBe('left');
+        el.direction = 'left';
+        await el.updateComplete;
+        expect(action.getAttribute('tooltip-placement')).toBe('top');
+    });
+
+    it('changing isTouch=true triggers tooltip-open sync on open dial', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial open>
+                <ui-speed-dial-action tooltip-title="Copy">📋</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        expect(el.querySelector('ui-speed-dial-action')!.hasAttribute('tooltip-open')).toBe(false);
+        el.isTouch = true;
+        await el.updateComplete;
+        expect(el.querySelector('ui-speed-dial-action')!.hasAttribute('tooltip-open')).toBe(true);
+    });
+
+    it('changing persistentTooltips=true triggers tooltip-open sync on open dial', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial open>
+                <ui-speed-dial-action tooltip-title="Copy">📋</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        expect(el.querySelector('ui-speed-dial-action')!.hasAttribute('tooltip-open')).toBe(false);
+        el.persistentTooltips = true;
+        await el.updateComplete;
+        expect(el.querySelector('ui-speed-dial-action')!.hasAttribute('tooltip-open')).toBe(true);
+    });
+});
+
+/* ── Edge cases: Escape/focusout when closed, _setOpen event name ── */
+describe('ui-speed-dial — edge cases (mutation kills)', () => {
+    it('Escape when already closed does NOT fire ui-speed-dial-close', async () => {
+        const el = await dial();
+        const spy = vi.fn();
+        el.addEventListener('ui-speed-dial-close', spy);
+        keydown(el, 'Escape');
+        await el.updateComplete;
+        expect(spy).not.toHaveBeenCalled();
+        expect(el.open).toBe(false);
+    });
+
+    it('focusout when already closed does NOT fire ui-speed-dial-close', async () => {
+        const el = await dial();
+        const spy = vi.fn();
+        el.addEventListener('ui-speed-dial-close', spy);
+        el.dispatchEvent(new FocusEvent('focusout', {
+            bubbles: true, relatedTarget: document.body,
+        }));
+        await el.updateComplete;
+        expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('FAB click on closed dial fires ui-speed-dial-open (not close)', async () => {
+        const el = await dial();
+        const openSpy = vi.fn();
+        const closeSpy = vi.fn();
+        el.addEventListener('ui-speed-dial-open', openSpy);
+        el.addEventListener('ui-speed-dial-close', closeSpy);
+        fab(el).click();
+        await el.updateComplete;
+        expect(openSpy).toHaveBeenCalledOnce();
+        expect(closeSpy).not.toHaveBeenCalled();
+        expect(el.open).toBe(true);
+    });
+
+    it('FAB click on open dial fires ui-speed-dial-close (not open)', async () => {
+        const el = await dial(true);
+        const openSpy = vi.fn();
+        const closeSpy = vi.fn();
+        el.addEventListener('ui-speed-dial-open', openSpy);
+        el.addEventListener('ui-speed-dial-close', closeSpy);
+        fab(el).click();
+        await el.updateComplete;
+        expect(closeSpy).toHaveBeenCalledOnce();
+        expect(openSpy).not.toHaveBeenCalled();
+        expect(el.open).toBe(false);
+    });
+
+    it('disconnecting component removes event listeners without throwing', async () => {
+        const container = await fixture<HTMLDivElement>(html`
+            <div>
+                <ui-speed-dial open>
+                    <ui-speed-dial-action tooltip-title="Copy">📋</ui-speed-dial-action>
+                </ui-speed-dial>
+            </div>
+        `);
+        const el = container.querySelector('ui-speed-dial') as UiSpeedDial;
+        await el.updateComplete;
+        expect(() => container.removeChild(el)).not.toThrow();
+    });
+});
+
+/* ── Action click _suppressNextOpen: FAB regains focus without reopening ── */
+describe('ui-speed-dial — action click: suppress re-open on FAB focus-back', () => {
+    it('after action click, FAB is focused and dial stays closed', async () => {
+        const el = await dial(true);
+        await el.updateComplete;
+        const btns = actionButtons(el);
+        btns[0].click();
+        await el.updateComplete;
+        await Promise.resolve(); // flush microtask for _suppressNextOpen reset
+        expect(el.open).toBe(false);
+        expect(el.shadowRoot!.activeElement?.classList.contains('fab')).toBe(true);
+    });
+
+    it('_suppressNextOpen: FAB focus event after action-click does not reopen', async () => {
+        const el = await dial(true);
+        await el.updateComplete;
+        const btns = actionButtons(el);
+        const openSpy = vi.fn();
+        el.addEventListener('ui-speed-dial-open', openSpy);
+        btns[0].click();
+        await el.updateComplete;
+        // At this point _suppressNextOpen=true; focus returns to FAB
+        // The flag should prevent re-open even if focus event fires
+        expect(openSpy).not.toHaveBeenCalled();
+    });
+});
+
+/* ── _isReversedDirection mutation kills ── */
+describe('ui-speed-dial — _isReversedDirection (up and left are reversed)', () => {
+    it('direction=up has reversed stagger (80ms,40ms,0ms on open)', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial direction="up" open>
+                <ui-speed-dial-action tooltip-title="A">A</ui-speed-dial-action>
+                <ui-speed-dial-action tooltip-title="B">B</ui-speed-dial-action>
+                <ui-speed-dial-action tooltip-title="C">C</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        const actions = Array.from(el.querySelectorAll<HTMLElement>('ui-speed-dial-action'));
+        expect(actions[0].style.transitionDelay).toBe('80ms');
+        expect(actions[2].style.transitionDelay).toBe('0ms');
+    });
+
+    it('direction=left has reversed stagger (same as up)', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial direction="left" open>
+                <ui-speed-dial-action tooltip-title="A">A</ui-speed-dial-action>
+                <ui-speed-dial-action tooltip-title="B">B</ui-speed-dial-action>
+                <ui-speed-dial-action tooltip-title="C">C</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        const actions = Array.from(el.querySelectorAll<HTMLElement>('ui-speed-dial-action'));
+        expect(actions[0].style.transitionDelay).toBe('80ms');
+        expect(actions[2].style.transitionDelay).toBe('0ms');
+    });
+
+    it('direction=down has forward stagger (0ms,40ms,80ms on open)', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial direction="down" open>
+                <ui-speed-dial-action tooltip-title="A">A</ui-speed-dial-action>
+                <ui-speed-dial-action tooltip-title="B">B</ui-speed-dial-action>
+                <ui-speed-dial-action tooltip-title="C">C</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        const actions = Array.from(el.querySelectorAll<HTMLElement>('ui-speed-dial-action'));
+        expect(actions[0].style.transitionDelay).toBe('0ms');
+        expect(actions[2].style.transitionDelay).toBe('80ms');
+    });
+
+    it('direction=right has forward stagger (0ms,40ms,80ms on open)', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial direction="right" open>
+                <ui-speed-dial-action tooltip-title="A">A</ui-speed-dial-action>
+                <ui-speed-dial-action tooltip-title="B">B</ui-speed-dial-action>
+                <ui-speed-dial-action tooltip-title="C">C</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        const actions = Array.from(el.querySelectorAll<HTMLElement>('ui-speed-dial-action'));
+        expect(actions[0].style.transitionDelay).toBe('0ms');
+        expect(actions[2].style.transitionDelay).toBe('80ms');
+    });
+});
+
+/* ── _tooltipPlacement switch: all 4 directions ── */
+describe('ui-speed-dial — _tooltipPlacement switch (mutation kills)', () => {
+    it('up → left placement (not top/right/bottom)', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial direction="up" open>
+                <ui-speed-dial-action tooltip-title="X">X</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        expect(el.querySelector('ui-speed-dial-action')!.getAttribute('tooltip-placement')).toBe('left');
+    });
+
+    it('down → left placement (not top/right/bottom)', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial direction="down" open>
+                <ui-speed-dial-action tooltip-title="X">X</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        expect(el.querySelector('ui-speed-dial-action')!.getAttribute('tooltip-placement')).toBe('left');
+    });
+
+    it('left → top placement (not left/right/bottom)', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial direction="left" open>
+                <ui-speed-dial-action tooltip-title="X">X</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        expect(el.querySelector('ui-speed-dial-action')!.getAttribute('tooltip-placement')).toBe('top');
+    });
+
+    it('right → top placement (not left/right/bottom)', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial direction="right" open>
+                <ui-speed-dial-action tooltip-title="X">X</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        expect(el.querySelector('ui-speed-dial-action')!.getAttribute('tooltip-placement')).toBe('top');
+    });
+
+    it('up and down both use left placement (not the same as left/right directions)', async () => {
+        const up = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial direction="up" open>
+                <ui-speed-dial-action tooltip-title="X">X</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        const down = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial direction="down" open>
+                <ui-speed-dial-action tooltip-title="X">X</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await up.updateComplete;
+        await down.updateComplete;
+        expect(up.querySelector('ui-speed-dial-action')!.getAttribute('tooltip-placement')).toBe('left');
+        expect(down.querySelector('ui-speed-dial-action')!.getAttribute('tooltip-placement')).toBe('left');
+    });
+});
+
+/* ── willUpdate / defaultOpen guard ── */
+describe('ui-speed-dial — willUpdate defaultOpen guard (mutation kills)', () => {
+    it('defaultOpen=true sets open=true on first render silently', async () => {
+        const spy = vi.fn();
+        const el = await fixture<UiSpeedDial>(html`<ui-speed-dial default-open></ui-speed-dial>`);
+        el.addEventListener('ui-speed-dial-open', spy);
+        await el.updateComplete;
+        expect(el.open).toBe(true);
+        expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('element without default-open starts closed', async () => {
+        const el = await fixture<UiSpeedDial>(html`<ui-speed-dial></ui-speed-dial>`);
+        await el.updateComplete;
+        expect(el.open).toBe(false);
+    });
+
+    it('open=false is the default (no defaultOpen attribute)', async () => {
+        const el = await fixture<UiSpeedDial>(html`<ui-speed-dial></ui-speed-dial>`);
+        expect(el.open).toBe(false);
+        expect(el.hasAttribute('open')).toBe(false);
+    });
+});
+
+/* ── connectedCallback matchMedia auto-detect ── */
+describe('ui-speed-dial — connectedCallback matchMedia auto-detect', () => {
+    it('auto-detects touch device via matchMedia when is-touch attribute is absent', async () => {
+        const origMatchMedia = window.matchMedia;
+        Object.defineProperty(window, 'matchMedia', {
+            writable: true,
+            value: vi.fn().mockReturnValue({ matches: true }),
+        });
+        try {
+            const el = await fixture<UiSpeedDial>(html`<ui-speed-dial></ui-speed-dial>`);
+            await el.updateComplete;
+            expect(el.isTouch).toBe(true);
+        } finally {
+            Object.defineProperty(window, 'matchMedia', {
+                writable: true,
+                value: origMatchMedia,
+            });
+        }
+    });
+
+    it('does not override explicit is-touch attribute with matchMedia result', async () => {
+        Object.defineProperty(window, 'matchMedia', {
+            writable: true,
+            value: vi.fn().mockReturnValue({ matches: false }),
+        });
+        try {
+            const el = await fixture<UiSpeedDial>(html`<ui-speed-dial is-touch></ui-speed-dial>`);
+            await el.updateComplete;
+            expect(el.isTouch).toBe(true);
+        } finally {
+            Object.defineProperty(window, 'matchMedia', { writable: true, value: undefined });
+        }
+    });
+});
+
+/* ── _tooltipPlacement default case (unreachable via TS but coverage) ── */
+describe('ui-speed-dial — _tooltipPlacement default case', () => {
+    it('invalid direction falls back to left placement (default switch case)', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial open>
+                <ui-speed-dial-action tooltip-title="X">X</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        // Force an invalid direction to hit the default case
+        (el as unknown as { direction: string }).direction = 'diagonal';
+        await el.updateComplete;
+        expect(el.querySelector('ui-speed-dial-action')!.getAttribute('tooltip-placement')).toBe('left');
+    });
+});
+
+/* ── closeIcon prop: renders custom span (line 390 branch) ── */
+describe('ui-speed-dial — closeIcon custom text', () => {
+    it('closeIcon prop renders custom icon span instead of default SVG', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial close-icon="✖"></ui-speed-dial>
+        `);
+        await el.updateComplete;
+        const closeSpan = el.shadowRoot!.querySelector('.fab-icon.close-icon span');
+        expect(closeSpan).not.toBeNull();
+        expect(closeSpan?.textContent).toBe('✖');
+    });
+
+    it('without closeIcon prop, default SVG close icon is rendered', async () => {
+        const el = await dial();
+        const svg = el.shadowRoot!.querySelector('.fab-icon.close-icon svg');
+        expect(svg).not.toBeNull();
+        const customSpan = el.shadowRoot!.querySelector('.fab-icon.close-icon span');
+        expect(customSpan).toBeNull();
+    });
+});
+
+/* ── Home/End + Arrow with btns.length=0 guard (lines 231, 179) ── */
+describe('ui-speed-dial — btns.length=0 defensive guards', () => {
+    it('Home guard: action focused then disabled mid-flight → no throw', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial open>
+                <ui-speed-dial-action tooltip-title="A" name="a">A</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        // Focus the enabled action so actionFocused=true
+        actionButtons(el)[0].focus();
+        // Now disable it so _actionButtons() returns [] at keydown time
+        el.querySelector('ui-speed-dial-action')!.setAttribute('disabled', '');
+        expect(() => keydown(el, 'Home')).not.toThrow();
+        expect(el.open).toBe(true);
+    });
+
+    it('End guard: action focused then disabled mid-flight → no throw', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial open>
+                <ui-speed-dial-action tooltip-title="A" name="a">A</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        actionButtons(el)[0].focus();
+        el.querySelector('ui-speed-dial-action')!.setAttribute('disabled', '');
+        expect(() => keydown(el, 'End')).not.toThrow();
+        expect(el.open).toBe(true);
+    });
+
+    it('Arrow guard: _focusActionAt called with empty btns → no throw', async () => {
+        const el = await fixture<UiSpeedDial>(html`
+            <ui-speed-dial open>
+                <ui-speed-dial-action tooltip-title="A" name="a">A</ui-speed-dial-action>
+            </ui-speed-dial>
+        `);
+        await el.updateComplete;
+        actionButtons(el)[0].focus();
+        el.querySelector('ui-speed-dial-action')!.setAttribute('disabled', '');
+        expect(() => keydown(el, 'ArrowDown')).not.toThrow();
+        expect(el.open).toBe(true);
+    });
+});

@@ -526,6 +526,46 @@ describe('ui-grid', () => {
     });
 
     // -------------------------------------------------------------------------
+    // xs="true" string attribute → (val as unknown) === 'true' branch
+    // -------------------------------------------------------------------------
+
+    it('treats xs="true" (string attribute) as boolean true → flex-grow:1', async () => {
+        // @property() xs? has no type converter, so Lit passes the string "true" as-is.
+        // _getEffectiveSize checks (val as unknown) === 'true' to convert it.
+        const el = await fixture<UiGrid>(html`<ui-grid xs="true"></ui-grid>`);
+        await setWidth(el, 375);
+        expect(el.style.flexGrow).toBe('1');
+        expect(el.style.flexBasis).toBe('0%');
+    });
+
+    // -------------------------------------------------------------------------
+    // _getEffectiveColumns: CSS var inheritance branch (line 193)
+    // -------------------------------------------------------------------------
+
+    it('reads --ui-grid-columns CSS var when element is not a container', async () => {
+        // Simulate CSS var inheritance by setting it as inline style directly on
+        // the non-container item (jsdom does not propagate inherited CSS vars).
+        const el = await fixture<UiGrid>(html`<ui-grid xs="4"></ui-grid>`);
+        el.style.setProperty('--ui-grid-columns', '8');
+        await setWidth(el, 375);
+        // 4/8 = 50% (instead of the default 4/12 ≈ 33%)
+        expect(el.style.flexBasis).toContain('50%');
+    });
+
+    // -------------------------------------------------------------------------
+    // size===false on a container: else if (!this.container) false branch (line 226)
+    // -------------------------------------------------------------------------
+
+    it('size===false on a container skips width:100% assignment (else-if false branch)', async () => {
+        // When size===false AND container===true, the `else if (!this.container)` condition
+        // is false — so no width style is applied (unlike a non-container where width:100% is set).
+        const el = await fixture<UiGrid>(html`<ui-grid container xs="false"></ui-grid>`);
+        await setWidth(el, 375);
+        // container=true means !this.container is false → width should NOT be set to '100%'
+        expect(el.style.width).toBe('');
+    });
+
+    // -------------------------------------------------------------------------
     // _getBreakpointValue: CSS custom property lookup (lines 73-74)
     // -------------------------------------------------------------------------
 
