@@ -13,8 +13,8 @@ const navButtonStyles = css`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: var(--ui-carousel-nav-button-size, 36px);
+    height: var(--ui-carousel-nav-button-size, 36px);
     border-radius: 50%;
     border: 1px solid var(--ui-border-color, #e5e7eb);
     background: var(--ui-surface-background, #ffffff);
@@ -186,6 +186,9 @@ export class UiCarousel extends LitElement {
 
   /** Number of slides visible simultaneously. */
   @property({ type: Number, attribute: 'items-per-view' }) itemsPerView = 1;
+
+  /** Accessible label for the carousel region. */
+  @property() label = 'Carousel';
 
   private _currentIndex = 0;
   private _total = 0;
@@ -365,7 +368,7 @@ export class UiCarousel extends LitElement {
         class="carousel"
         role="region"
         aria-roledescription="carousel"
-        aria-label="Carousel"
+        aria-label="${this.label}"
         tabindex="0"
         @keydown=${this._handleKeydown}
       >

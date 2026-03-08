@@ -301,6 +301,13 @@
     --ui-range-slider-thumb-color:   var(--ui-surface-1);
     --ui-range-slider-thumb-border:  var(--ui-primary-color);
 
+    /* ─── Carousel ────────────────────────────────────────────── */
+    --ui-carousel-gap:             0px;
+    --ui-carousel-height:          320px;
+    --ui-carousel-duration:        0.35s;
+    --ui-carousel-ease:            cubic-bezier(0.25, 0.1, 0.25, 1);
+    --ui-carousel-nav-button-size: 36px;
+
     /* ─── Split Panel ─────────────────────────────────────────── */
     --ui-split-panel-divider-width:      4px;
     --ui-split-panel-divider-hit-area:   12px;
