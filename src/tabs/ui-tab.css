@@ -3,10 +3,10 @@
 
         .tab {
             display: inline-flex; align-items: center; justify-content: center;
-            gap: 6px; padding: 10px 16px; min-height: 48px;
+            gap: 6px; padding: var(--ui-tab-padding-y, 10px) var(--ui-tab-padding-x, 16px); min-height: var(--ui-tab-min-height, 48px);
             border: none; background: none; cursor: pointer;
             font-family: var(--ui-font-family);
-            font-size: .875rem; font-weight: 500; line-height: 1.25;
+            font-size: var(--ui-tab-font-size, 0.875rem); font-weight: var(--ui-tab-font-weight, 500); line-height: 1.25;
             color: var(--ui-tab-inactive-color);
             white-space: nowrap; border-radius: 0; outline: none;
             transition: color .2s, background .15s;
@@ -15,18 +15,18 @@
         }
         .tab:hover:not(:disabled):not([aria-disabled="true"]) {
             color: var(--ui-tab-active-color);
-            background: var(--ui-primary-color-light);
+            background: var(--ui-tab-hover-bg, var(--ui-primary-color-light));
         }
         .tab:focus-visible {
             outline: 2px solid var(--ui-tab-active-color);
             outline-offset: -2px;
         }
-        :host([selected]) .tab { color: var(--ui-tab-active-color); font-weight: 600; }
-        .tab:disabled { opacity: 0.38; cursor: not-allowed; }
+        :host([selected]) .tab { color: var(--ui-tab-active-color); font-weight: var(--ui-tab-font-weight-active, 600); }
+        .tab:disabled { opacity: var(--ui-tab-disabled-opacity, 0.38); cursor: not-allowed; }
 
         /* icon positions */
-        .icon-top    { flex-direction: column; min-height: 72px; }
-        .icon-bottom { flex-direction: column-reverse; min-height: 72px; }
+        .icon-top    { flex-direction: column; min-height: var(--ui-tab-icon-min-height, 72px); }
+        .icon-bottom { flex-direction: column-reverse; min-height: var(--ui-tab-icon-min-height, 72px); }
         .icon-start  { flex-direction: row; }
         .icon-end    { flex-direction: row-reverse; }
 

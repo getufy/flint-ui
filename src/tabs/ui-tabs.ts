@@ -92,6 +92,7 @@ export class UiTabList extends LitElement {
     @property({ reflect: true }) variant: 'standard' | 'fullWidth' | 'scrollable' = 'standard';
     @property({ type: Boolean, reflect: true }) centered = false;
     @property({ attribute: 'scroll-buttons' }) scrollButtons: 'auto' | 'false' = 'auto';
+    @property({ attribute: 'aria-label' }) override ariaLabel = '';
 
     @state() private _canBack = false;
     @state() private _canFwd = false;
@@ -173,7 +174,8 @@ export class UiTabList extends LitElement {
 
         e.preventDefault();
         const tabs = this._tabs().filter(t => !t.disabled);
-        const cur = tabs.findIndex(t => t.contains(document.activeElement) || t === document.activeElement);
+        // Check if tab has focus inside its shadow DOM
+        const cur = tabs.findIndex(t => t.shadowRoot?.activeElement != null || t === document.activeElement);
         let idx = cur < 0 ? 0 : cur;
 
         if (e.key === prev) idx = (idx - 1 + tabs.length) % tabs.length;
@@ -182,6 +184,10 @@ export class UiTabList extends LitElement {
         if (e.key === 'End') idx = tabs.length - 1;
 
         tabs[idx]?.focusInner();
+        // Scroll focused tab into view
+        if (typeof tabs[idx].scrollIntoView === 'function') {
+            tabs[idx].scrollIntoView({ block: 'nearest', inline: 'nearest' });
+        }
         tabs[idx]?.dispatchEvent(new CustomEvent('ui-tab-click', {
             detail: { value: tabs[idx].value }, bubbles: true, composed: true,
         }));
@@ -214,7 +220,7 @@ export class UiTabList extends LitElement {
             <div class="container">
                 ${backBtn}
                 <div class="scroll-area" @keydown=${this._onKey}>
-                    <div class="tabs-row" role="tablist">
+                    <div class="tabs-row" role="tablist" aria-label=${this.ariaLabel || nothing}>
                         <slot @slotchange=${this._onSlotChange}></slot>
                         <div class="indicator"></div>
                     </div>
@@ -240,6 +246,17 @@ export class UiTabs extends LitElement {
     @property({ attribute: 'text-color' }) textColor = 'primary';
     /** 'primary' | 'secondary' | any CSS color */
     @property({ attribute: 'indicator-color' }) indicatorColor = 'primary';
+    /** Uncontrolled mode: initial value if `value` not set */
+    @property({ attribute: 'default-value' }) defaultValue = '';
+
+    private _firstUpdate = true;
+
+    willUpdate() {
+        if (this._firstUpdate && this.defaultValue && !this.value) {
+            this.value = this.defaultValue;
+        }
+        if (this._firstUpdate) this._firstUpdate = false;
+    }
 
     connectedCallback() {
         super.connectedCallback();
@@ -266,7 +283,10 @@ export class UiTabs extends LitElement {
         let active = this.value;
         if (!active) {
             const first = tabs.find(t => !t.disabled);
-            if (first) active = first.value;
+            if (first) {
+                active = first.value;
+                this.value = first.value; // persist auto-selected value
+            }
         }
 
         // Configure tab list

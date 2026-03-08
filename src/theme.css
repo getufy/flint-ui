@@ -184,8 +184,24 @@
     --ui-backdrop-color: rgba(0, 0, 0, 0.50);
 
     /* ─── Component-specific ───────────────────────────────────── */
-    --ui-tab-inactive-color: var(--ui-text-color-muted);
-    --ui-tab-active-color:   var(--ui-primary-color);
+    --ui-tab-inactive-color:    var(--ui-text-color-muted);
+    --ui-tab-active-color:      var(--ui-primary-color);
+    --ui-tab-indicator-color:   var(--ui-primary-color);
+    --ui-tab-indicator-height:  3px;
+    --ui-tab-indicator-width:   3px;
+    --ui-tab-indicator-radius:  3px;
+    --ui-tab-min-height:        48px;
+    --ui-tab-icon-min-height:   72px;
+    --ui-tab-padding-x:         16px;
+    --ui-tab-padding-y:         10px;
+    --ui-tab-font-size:         0.875rem;
+    --ui-tab-font-weight:       500;
+    --ui-tab-font-weight-active: 600;
+    --ui-tab-panel-padding:     24px;
+    --ui-tab-border-color:      var(--ui-border-color);
+    --ui-tab-scroll-btn-size:   40px;
+    --ui-tab-disabled-opacity:  0.38;
+    --ui-tab-hover-bg:          var(--ui-primary-color-light);
 
     --ui-tooltip-bg:         rgba(15, 23, 42, 0.88);
     --ui-tooltip-text-color: var(--ui-color-white);
