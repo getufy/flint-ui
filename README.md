@@ -8,3 +8,7 @@
 - Create this npm package for lit framework native
 - Create this npm package for react
 - Find a name suitable for this component framework
+
+
+
+/Users/algoassasin/storybook-lit/reports/mutation/mutation.html

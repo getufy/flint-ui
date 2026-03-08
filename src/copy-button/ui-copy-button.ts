@@ -59,8 +59,6 @@ export class UiCopyButton extends LitElement {
 
     /** Resolves the text to copy from the `from` attribute. */
     private _resolveFromValue(): string | null {
-        if (!this.from) return null;
-
         // from="el[attr]"  — copy attribute value
         const attrMatch = this.from.match(/^(.+)\[(.+)\]$/);
         if (attrMatch) {
@@ -79,7 +77,7 @@ export class UiCopyButton extends LitElement {
 
         // from="el" — copy textContent
         const el = document.getElementById(this.from);
-        return el ? (el.textContent ?? null) : null;
+        return el ? el.textContent : null;
     }
 
     /** Returns the text to be copied. `from` takes precedence over `value`. */

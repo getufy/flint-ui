@@ -695,6 +695,143 @@ describe('ui-copy-button', () => {
         expect(tooltip!.classList.contains('tooltip--visible')).toBe(true);
     });
 
+    // ── disconnectedCallback with no active timer ────────────────
+    it('does not throw when disconnected with no active timer', async () => {
+        const el = await fixture<UiCopyButton>(
+            html`<ui-copy-button value="test"></ui-copy-button>`,
+        );
+        // Remove without clicking — feedbackTimer is null, exercises the false branch
+        expect(() => el.remove()).not.toThrow();
+    });
+
+    // ── from attr pattern — element missing ──────────────────────
+    it('fires error when from attr pattern element does not exist', async () => {
+        const el = await fixture<UiCopyButton>(
+            html`<ui-copy-button from="totally-missing-el[href]"></ui-copy-button>`,
+        );
+        const spy = vi.fn();
+        el.addEventListener('ui-copy-error', spy);
+
+        el.shadowRoot!.querySelector<HTMLButtonElement>('button')!.click();
+        await el.updateComplete;
+        await new Promise((r) => setTimeout(r, 0));
+
+        expect(writeTextMock).not.toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledOnce();
+    });
+
+    // ── from prop pattern — element missing ──────────────────────
+    it('fires error when from prop pattern element does not exist', async () => {
+        const el = await fixture<UiCopyButton>(
+            html`<ui-copy-button from="totally-missing-el.value"></ui-copy-button>`,
+        );
+        const spy = vi.fn();
+        el.addEventListener('ui-copy-error', spy);
+
+        el.shadowRoot!.querySelector<HTMLButtonElement>('button')!.click();
+        await el.updateComplete;
+        await new Promise((r) => setTimeout(r, 0));
+
+        expect(writeTextMock).not.toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledOnce();
+    });
+
+    // ── _handleClick early-return when disabled ───────────────────
+    it('ignores synthetic click when disabled property is true', async () => {
+        const el = await fixture<UiCopyButton>(
+            html`<ui-copy-button value="test" disabled></ui-copy-button>`,
+        );
+        const btn = el.shadowRoot!.querySelector('button') as HTMLButtonElement;
+        // dispatchEvent bypasses the native disabled guard, exercising line 94
+        btn.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+        await el.updateComplete;
+        await new Promise((r) => setTimeout(r, 0));
+
+        expect(writeTextMock).not.toHaveBeenCalled();
+    });
+
+    // ── mouseenter when NOT idle (false branch of line 143) ───────
+    it('mouseenter during feedback does not re-show tooltip', async () => {
+        const el = await fixture<UiCopyButton>(
+            html`<ui-copy-button value="test"></ui-copy-button>`,
+        );
+        const btn = el.shadowRoot!.querySelector('button') as HTMLButtonElement;
+
+        // Enter feedback/success state
+        btn.click();
+        await el.updateComplete;
+        await new Promise((r) => setTimeout(r, 0));
+        await el.updateComplete;
+
+        // Mouseenter while in success state — exercises the false branch of _handleMouseEnter
+        btn.dispatchEvent(new MouseEvent('mouseenter'));
+        await el.updateComplete;
+
+        // Tooltip should still show success label (not reset to idle)
+        const tooltip = el.shadowRoot!.querySelector('.tooltip');
+        expect(tooltip!.textContent).toBe('Copied!');
+    });
+
+    // ── focus when NOT idle (false branch) ───────────────────────
+    it('focus during feedback does not reset tooltip', async () => {
+        const el = await fixture<UiCopyButton>(
+            html`<ui-copy-button value="test"></ui-copy-button>`,
+        );
+        const btn = el.shadowRoot!.querySelector('button') as HTMLButtonElement;
+
+        btn.click();
+        await el.updateComplete;
+        await new Promise((r) => setTimeout(r, 0));
+        await el.updateComplete;
+
+        // Focus while in success state — exercises the false branch of _handleFocus
+        btn.dispatchEvent(new FocusEvent('focus'));
+        await el.updateComplete;
+
+        const tooltip = el.shadowRoot!.querySelector('.tooltip');
+        expect(tooltip!.textContent).toBe('Copied!');
+    });
+
+    // ── blur when NOT idle (false branch) ────────────────────────
+    it('blur during feedback does not hide tooltip', async () => {
+        const el = await fixture<UiCopyButton>(
+            html`<ui-copy-button value="test"></ui-copy-button>`,
+        );
+        const btn = el.shadowRoot!.querySelector('button') as HTMLButtonElement;
+
+        btn.click();
+        await el.updateComplete;
+        await new Promise((r) => setTimeout(r, 0));
+        await el.updateComplete;
+
+        // Blur while in success state — exercises the false branch of _handleBlur
+        btn.dispatchEvent(new FocusEvent('blur'));
+        await el.updateComplete;
+
+        const tooltip = el.shadowRoot!.querySelector('.tooltip');
+        expect(tooltip!.classList.contains('tooltip--visible')).toBe(true);
+    });
+
+    // ── empty label renders nothing (lines 196, 206) ─────────────
+    it('renders no aria-label and no tooltip when all labels are empty', async () => {
+        const el = await fixture<UiCopyButton>(html`
+            <ui-copy-button
+                value="test"
+                copy-label=""
+                success-label=""
+                error-label=""
+            ></ui-copy-button>
+        `);
+        const btn = el.shadowRoot!.querySelector('button') as HTMLButtonElement;
+
+        // aria-label should not be set (label || nothing → nothing)
+        expect(btn.hasAttribute('aria-label')).toBe(false);
+
+        // No tooltip element rendered (label ? html`...` : nothing → nothing)
+        const tooltip = el.shadowRoot!.querySelector('.tooltip');
+        expect(tooltip).toBeNull();
+    });
+
     // ── aria-describedby ─────────────────────────────────────────
     it('sets aria-describedby when tooltip is visible', async () => {
         const el = await fixture<UiCopyButton>(
