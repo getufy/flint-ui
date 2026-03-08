@@ -343,6 +343,14 @@
     --ui-split-panel-min:                0;
     --ui-split-panel-max:                100%;
 
+    /* ─── Relative Time ─────────────────────────────────────────── */
+    --ui-relative-time-color:           inherit;
+    --ui-relative-time-font-size:       inherit;
+    --ui-relative-time-font-weight:     inherit;
+    --ui-relative-time-text-decoration: none;
+    --ui-relative-time-cursor:          text;
+    --ui-relative-time-white-space:     nowrap;
+
     /* ─── Breadcrumbs ───────────────────────────────────────────── */
     --ui-breadcrumb-font-size:         0.875rem;
     --ui-breadcrumb-color:             var(--ui-text-color-muted);
