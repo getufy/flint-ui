@@ -293,14 +293,26 @@
     --ui-autocomplete-option-padding:      10px 12px;
     --ui-autocomplete-z-index:             10;
 
-    /* ─── Toggle Button ───────────────────────────────────────── */
-    --ui-toggle-button-font-size:           14px;
-    --ui-toggle-button-padding:             8px 16px;
-    --ui-toggle-button-gap:                 8px;
-    --ui-toggle-button-border-radius:       var(--ui-border-radius-md);
-    --ui-toggle-button-selected-bg:         var(--ui-active-color);
-    --ui-toggle-button-selected-color:      var(--ui-primary-color);
-    --ui-toggle-button-selected-border-color: var(--ui-primary-color);
+    /* ─── Toggle ───────────────────────────────────────────────── */
+    --ui-toggle-border-radius:        var(--ui-border-radius-md);
+    --ui-toggle-font-size:            0.875rem;
+    --ui-toggle-padding-x:            0.75rem;
+    --ui-toggle-padding-y:            0.5rem;
+    --ui-toggle-padding-x-sm:         0.625rem;
+    --ui-toggle-padding-y-sm:         0.375rem;
+    --ui-toggle-padding-x-lg:         1rem;
+    --ui-toggle-padding-y-lg:         0.625rem;
+    --ui-toggle-min-width:            2.25rem;
+    --ui-toggle-min-height:           2.25rem;
+    --ui-toggle-color:                var(--ui-text-color);
+    --ui-toggle-color-hover:          var(--ui-text-color);
+    --ui-toggle-bg:                   transparent;
+    --ui-toggle-bg-hover:             var(--ui-muted-background);
+    --ui-toggle-bg-pressed:           var(--ui-primary-color-light);
+    --ui-toggle-color-pressed:        var(--ui-primary-color);
+    --ui-toggle-bg-pressed-hover:     var(--ui-primary-color-light-hover);
+    --ui-toggle-border-color:         var(--ui-border-color);
+    --ui-toggle-border-pressed-color: var(--ui-primary-color-light-hover);
 
     /* ─── Range Slider ────────────────────────────────────────── */
     --ui-range-slider-track-height:  6px;
@@ -551,6 +563,14 @@ body {
     --ui-resizable-handle-focus-bg:  var(--ui-primary-color);
     --ui-resizable-grip-bg:          var(--ui-surface-1);
     --ui-resizable-grip-dot-color:   var(--ui-text-color-muted);
+
+    /* ─── Toggle ──────────────────────────────────────────────── */
+    --ui-toggle-bg-hover:             var(--ui-muted-background);
+    --ui-toggle-bg-pressed:           var(--ui-primary-color-light);
+    --ui-toggle-color-pressed:        var(--ui-primary-color);
+    --ui-toggle-bg-pressed-hover:     var(--ui-primary-color-light-hover);
+    --ui-toggle-border-color:         var(--ui-border-color);
+    --ui-toggle-border-pressed-color: var(--ui-primary-color-light-hover);
 
     /* ─── Split Panel ─────────────────────────────────────────── */
     --ui-split-panel-divider-color:       var(--ui-border-color);
