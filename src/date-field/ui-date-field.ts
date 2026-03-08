@@ -122,7 +122,8 @@ export class UiDateField extends LitElement {
         const iso = segmentsToIso(this._month, this._day, this._year);
         // setFormValue is part of the FACE spec but may be absent in test environments
         // (e.g. jsdom 27). Cast to an optional signature so we fail gracefully.
-        (this._internals as { setFormValue?(v: string | null): void }).setFormValue?.(iso || null);
+        const formValue: string | null = iso || null;
+        (this._internals as { setFormValue?(v: string | null): void }).setFormValue?.(formValue);
     }
 
     // ── Internal: segment navigation ─────────────────────────────────────────
@@ -230,7 +231,8 @@ export class UiDateField extends LitElement {
                     }
                 }
             }
-        } else if (seg === 'year') {
+        } else {
+            // year
             this._buf = buf.slice(-4); // keep last 4 digits
             if (this._buf.length === 4) {
                 this._year = parseInt(this._buf);
@@ -258,7 +260,8 @@ export class UiDateField extends LitElement {
             const max = daysInMonth(this._month ?? 1, this._year ?? 2000);
             const cur = this._day ?? (delta > 0 ? 0 : max + 1);
             this._day = clamp(cur + delta, 1, max);
-        } else if (seg === 'year') {
+        } else {
+            // year
             const cur = this._year ?? new Date().getFullYear();
             this._year = clamp(cur + delta, 1, 9999);
         }
@@ -335,9 +338,9 @@ export class UiDateField extends LitElement {
                 e.preventDefault();
                 e.stopPropagation();
                 this._buf = '';
-                if (this._active === 'month') this._month = null;
-                else if (this._active === 'day') this._day = null;
-                else if (this._active === 'year') this._year = null;
+                if (this._active === 'month') { this._month = null; }
+                if (this._active === 'day') { this._day = null; }
+                if (this._active === 'year') { this._year = null; }
                 break;
             case 'Escape':
                 e.preventDefault();
