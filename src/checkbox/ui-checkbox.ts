@@ -1,19 +1,58 @@
-import { LitElement, unsafeCSS, html, nothing } from 'lit';
+import { LitElement, unsafeCSS, html, nothing, PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import uiCheckboxStyles from './ui-checkbox.css?inline';
 
 @customElement('ui-checkbox')
 export class UiCheckbox extends LitElement {
+    static formAssociated = true;
+
     static styles = unsafeCSS(uiCheckboxStyles);
 
     @property({ type: Boolean, reflect: true }) checked = false;
     @property({ type: Boolean }) indeterminate = false;
     @property({ type: Boolean, reflect: true }) disabled = false;
-    @property({ type: Boolean }) required = false;
+    @property({ type: Boolean, reflect: true }) required = false;
+    @property({ type: String, reflect: true }) size: 'sm' | 'md' | 'lg' = 'md';
     @property({ type: String }) label = '';
     @property({ type: String }) name = '';
-    @property({ type: String }) value = '';
+    @property({ type: String }) value = 'on';
+    @property({ type: Boolean, attribute: 'default-checked' }) defaultChecked = false;
+    @property({ type: String, attribute: 'aria-label' }) override ariaLabel: string | null = null;
+
+    private _internals: ElementInternals | null = null;
+    private _firstUpdate = true;
+
+    constructor() {
+        super();
+        if (typeof this.attachInternals === 'function') {
+            this._internals = this.attachInternals();
+        }
+    }
+
+    protected override willUpdate(changed: PropertyValues) {
+        super.willUpdate(changed);
+        if (this._firstUpdate) {
+            this._firstUpdate = false;
+            if (this.defaultChecked) {
+                this.checked = true;
+            }
+        }
+    }
+
+    protected override updated(changed: PropertyValues) {
+        super.updated(changed);
+        if (changed.has('checked') || changed.has('value')) {
+            this._internals?.setFormValue?.(this.checked ? this.value : null);
+        }
+        if (changed.has('checked') || changed.has('required')) {
+            if (this.required && !this.checked) {
+                this._internals?.setValidity?.({ valueMissing: true }, 'Please check this box.');
+            } else {
+                this._internals?.setValidity?.({});
+            }
+        }
+    }
 
     private _handleChange(e: Event) {
         if (this.disabled) return;
@@ -40,6 +79,7 @@ export class UiCheckbox extends LitElement {
           ?required=${this.required}
           name=${this.name || nothing}
           .value=${this.value}
+          aria-label=${this.ariaLabel ?? nothing}
           @change=${this._handleChange}
         >
         <div class=${classMap({ checkbox: true, checked: this.checked, indeterminate: this.indeterminate })}>

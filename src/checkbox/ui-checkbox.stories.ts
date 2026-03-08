@@ -9,13 +9,20 @@ const meta: Meta = {
         checked: { control: 'boolean' },
         indeterminate: { control: 'boolean' },
         disabled: { control: 'boolean' },
+        required: { control: 'boolean' },
+        size: { control: 'select', options: ['sm', 'md', 'lg'] },
         label: { control: 'text' },
+        value: { control: 'text' },
+        'aria-label': { control: 'text' },
     },
     args: {
         checked: false,
         indeterminate: false,
         disabled: false,
+        required: false,
+        size: 'md',
         label: 'Label',
+        value: 'on',
     },
 };
 
@@ -29,8 +36,11 @@ export const Default: Story = {
             ?checked=${args.checked}
             ?indeterminate=${args.indeterminate}
             ?disabled=${args.disabled}
+            ?required=${args.required}
+            size=${args.size}
             label=${args.label}
-            @change=${(e: CustomEvent) => console.log('Checked:', e.detail.checked)}
+            value=${args.value}
+            @change=${(e: CustomEvent) => console.log('Checked:', e.detail.checked, 'Value:', e.detail.value)}
         ></ui-checkbox>
     `
 };
@@ -55,6 +65,19 @@ export const Indeterminate: Story = {
     `
 };
 
+export const Sizes: Story = {
+    render: () => html`
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+            <ui-checkbox size="sm" label="Small checkbox"></ui-checkbox>
+            <ui-checkbox size="md" label="Medium checkbox (default)"></ui-checkbox>
+            <ui-checkbox size="lg" label="Large checkbox"></ui-checkbox>
+            <ui-checkbox size="sm" checked label="Small checked"></ui-checkbox>
+            <ui-checkbox size="md" checked label="Medium checked"></ui-checkbox>
+            <ui-checkbox size="lg" checked label="Large checked"></ui-checkbox>
+        </div>
+    `
+};
+
 export const Disabled: Story = {
     args: {
         disabled: true,
@@ -68,11 +91,36 @@ export const Disabled: Story = {
     `
 };
 
+export const DefaultChecked: Story = {
+    render: () => html`
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+            <ui-checkbox default-checked label="Default checked (uncontrolled)"></ui-checkbox>
+            <ui-checkbox label="Default unchecked (uncontrolled)"></ui-checkbox>
+        </div>
+    `
+};
+
 export const WithSlottedLabel: Story = {
     render: () => html`
         <ui-checkbox>
             <span>I agree to the <a href="#" style="color: var(--ui-primary-color);">Terms and Conditions</a></span>
         </ui-checkbox>
+    `
+};
+
+export const FormUsage: Story = {
+    render: () => html`
+        <form @submit=${(e: Event) => {
+            e.preventDefault();
+            const data = new FormData(e.target as HTMLFormElement);
+            console.log('Form data:', Object.fromEntries(data.entries()));
+        }}>
+            <div style="display: flex; flex-direction: column; gap: 12px; max-width: 300px;">
+                <ui-checkbox name="newsletter" value="yes" label="Subscribe to newsletter"></ui-checkbox>
+                <ui-checkbox name="terms" value="accepted" required label="Accept terms (required)"></ui-checkbox>
+                <button type="submit" style="margin-top: 8px; padding: 8px 16px; cursor: pointer;">Submit</button>
+            </div>
+        </form>
     `
 };
 
@@ -83,6 +131,32 @@ export const FormGroup: Story = {
             <ui-checkbox checked label="Email Notifications"></ui-checkbox>
             <ui-checkbox checked label="Push Notifications"></ui-checkbox>
             <ui-checkbox label="SMS Alerts"></ui-checkbox>
+        </div>
+    `
+};
+
+export const DarkMode: Story = {
+    render: () => html`
+        <div class="ui-theme-dark" style="padding: 24px; background: var(--ui-background, #09090b); border-radius: 8px; display: flex; flex-direction: column; gap: 12px;">
+            <ui-checkbox label="Unchecked dark"></ui-checkbox>
+            <ui-checkbox checked label="Checked dark"></ui-checkbox>
+            <ui-checkbox indeterminate label="Indeterminate dark"></ui-checkbox>
+            <ui-checkbox disabled label="Disabled dark"></ui-checkbox>
+            <ui-checkbox size="sm" checked label="Small checked dark"></ui-checkbox>
+            <ui-checkbox size="lg" checked label="Large checked dark"></ui-checkbox>
+        </div>
+    `
+};
+
+export const Accessibility: Story = {
+    render: () => html`
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+            <!-- With visible label -->
+            <ui-checkbox label="Visible label checkbox"></ui-checkbox>
+            <!-- With aria-label (no visible label) -->
+            <ui-checkbox aria-label="Accept marketing emails"></ui-checkbox>
+            <!-- Required with label -->
+            <ui-checkbox required label="Required field *"></ui-checkbox>
         </div>
     `
 };
