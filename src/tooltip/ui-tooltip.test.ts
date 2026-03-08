@@ -472,4 +472,317 @@ describe('ui-tooltip', () => {
         await el.updateComplete;
         expect(popup.textContent!.trim()).toBe('Updated');
     });
+
+    // ── Default label value ───────────────────────────────────────
+    it('has empty string as default label', () => {
+        const el = document.createElement('ui-tooltip') as UiTooltip;
+        expect(el.label).toBe('');
+    });
+
+    // ── Open-timer dedup guard ────────────────────────────────────
+    it('does not restart open timer if one is already pending', async () => {
+        vi.useFakeTimers();
+
+        const el = await fixture<UiTooltip>(html`
+            <ui-tooltip label="Dedup" open-delay="200"><button>B</button></ui-tooltip>
+        `);
+        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+
+        container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        await el.updateComplete;
+        const firstTimerId = (el as unknown as { _openTimer: unknown })._openTimer;
+        expect(firstTimerId).not.toBeNull();
+
+        // Second mouseenter — should be a no-op (timer already running)
+        container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        await el.updateComplete;
+        const secondTimerId = (el as unknown as { _openTimer: unknown })._openTimer;
+
+        expect(secondTimerId).toBe(firstTimerId);
+
+        vi.useRealTimers();
+    });
+
+    // ── Close-timer dedup guard ───────────────────────────────────
+    it('does not restart close timer if one is already pending', async () => {
+        vi.useFakeTimers();
+
+        const el = await fixture<UiTooltip>(html`
+            <ui-tooltip label="Dedup close" close-delay="200"><button>B</button></ui-tooltip>
+        `);
+        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+
+        container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        await el.updateComplete;
+
+        container.dispatchEvent(new MouseEvent('mouseleave', { bubbles: true }));
+        await el.updateComplete;
+        const firstTimerId = (el as unknown as { _closeTimer: unknown })._closeTimer;
+        expect(firstTimerId).not.toBeNull();
+
+        // Second mouseleave — should be a no-op
+        container.dispatchEvent(new MouseEvent('mouseleave', { bubbles: true }));
+        await el.updateComplete;
+        const secondTimerId = (el as unknown as { _closeTimer: unknown })._closeTimer;
+
+        expect(secondTimerId).toBe(firstTimerId);
+
+        vi.useRealTimers();
+    });
+
+    // ── Disconnect clears open timer ──────────────────────────────
+    it('disconnectedCallback clears a pending open timer', async () => {
+        vi.useFakeTimers();
+
+        const el = await fixture<UiTooltip>(html`
+            <ui-tooltip label="DC open" open-delay="300"><button>B</button></ui-tooltip>
+        `);
+        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+
+        container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        await el.updateComplete;
+        expect((el as unknown as { _openTimer: unknown })._openTimer).not.toBeNull();
+
+        el.remove();
+
+        expect((el as unknown as { _openTimer: unknown })._openTimer).toBeNull();
+
+        // Advance time — tooltip must not become visible
+        await vi.advanceTimersByTimeAsync(400);
+        expect((el as unknown as { _visible: boolean })._visible).toBe(false);
+
+        vi.useRealTimers();
+    });
+
+    // ── Disconnect clears close timer (covers NoCoverage branch) ──
+    it('disconnectedCallback clears a pending close timer', async () => {
+        vi.useFakeTimers();
+
+        const el = await fixture<UiTooltip>(html`
+            <ui-tooltip label="DC close" close-delay="300"><button>B</button></ui-tooltip>
+        `);
+        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+
+        // Show the tooltip first
+        container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        await el.updateComplete;
+
+        // Start the close timer
+        container.dispatchEvent(new MouseEvent('mouseleave', { bubbles: true }));
+        await el.updateComplete;
+        expect((el as unknown as { _closeTimer: unknown })._closeTimer).not.toBeNull();
+
+        el.remove();
+
+        expect((el as unknown as { _closeTimer: unknown })._closeTimer).toBeNull();
+
+        vi.useRealTimers();
+    });
+
+    // ── Auto-flip: fallback popup dimensions ─────────────────────
+    // jsdom always returns 0 for getBoundingClientRect on shadow elements,
+    // so pw=100 and ph=30 are used as fallbacks.  Tests below only pass when
+    // the fallback values are correctly applied (|| 100 / || 30, not && 100/30).
+
+    it('flips top→bottom when top is in the fallback-sensitive range (ph=30 zone)', async () => {
+        const el = await fixture<UiTooltip>(html`
+            <ui-tooltip label="ph fallback" placement="top"><button>B</button></ui-tooltip>
+        `);
+        // top=20: needs ph=30 fallback to flip (20-30-8=-18<0). With ph=0 would not flip.
+        vi.spyOn(el, 'getBoundingClientRect').mockReturnValue({
+            top: 20, bottom: 50, left: 100, right: 200,
+            width: 100, height: 30, x: 100, y: 20, toJSON: () => ({}),
+        });
+
+        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        await el.updateComplete;
+
+        const popup = el.shadowRoot!.querySelector('.tooltip-popup')!;
+        expect(popup.classList.contains('bottom')).toBe(true);
+    });
+
+    it('flips left→right when left is in the fallback-sensitive range (pw=100 zone)', async () => {
+        const el = await fixture<UiTooltip>(html`
+            <ui-tooltip label="pw fallback" placement="left"><button>B</button></ui-tooltip>
+        `);
+        // left=50: needs pw=100 fallback to flip (50-100-8=-58<0). With pw=0 would not flip.
+        vi.spyOn(el, 'getBoundingClientRect').mockReturnValue({
+            top: 100, bottom: 130, left: 50, right: 150,
+            width: 100, height: 30, x: 50, y: 100, toJSON: () => ({}),
+        });
+
+        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        await el.updateComplete;
+
+        const popup = el.shadowRoot!.querySelector('.tooltip-popup')!;
+        expect(popup.classList.contains('right')).toBe(true);
+    });
+
+    // ── Auto-flip: arithmetic boundary (margin sign) ─────────────
+
+    it('flips top→bottom when margin makes value just negative (top=30)', async () => {
+        const el = await fixture<UiTooltip>(html`
+            <ui-tooltip label="arith top" placement="top"><button>B</button></ui-tooltip>
+        `);
+        // top=30: original 30-30-8=-8<0 (flip); mutant with +margin: 30-30+8=8>=0 (no flip)
+        vi.spyOn(el, 'getBoundingClientRect').mockReturnValue({
+            top: 30, bottom: 60, left: 100, right: 200,
+            width: 100, height: 30, x: 100, y: 30, toJSON: () => ({}),
+        });
+
+        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        await el.updateComplete;
+
+        expect(el.shadowRoot!.querySelector('.tooltip-popup')!.classList.contains('bottom')).toBe(true);
+    });
+
+    it('flips bottom→top when margin makes value just over limit (bottom=770, H=800)', async () => {
+        vi.stubGlobal('innerHeight', 800);
+
+        const el = await fixture<UiTooltip>(html`
+            <ui-tooltip label="arith bottom" placement="bottom"><button>B</button></ui-tooltip>
+        `);
+        // original: 770+30+8=808>800 (flip); mutant -margin: 770+30-8=792<=800 (no flip)
+        vi.spyOn(el, 'getBoundingClientRect').mockReturnValue({
+            top: 740, bottom: 770, left: 100, right: 200,
+            width: 100, height: 30, x: 100, y: 740, toJSON: () => ({}),
+        });
+
+        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        await el.updateComplete;
+
+        expect(el.shadowRoot!.querySelector('.tooltip-popup')!.classList.contains('top')).toBe(true);
+
+        vi.unstubAllGlobals();
+    });
+
+    it('flips left→right when margin makes value just negative (left=100)', async () => {
+        const el = await fixture<UiTooltip>(html`
+            <ui-tooltip label="arith left" placement="left"><button>B</button></ui-tooltip>
+        `);
+        // original: 100-100-8=-8<0 (flip); mutant +margin: 100-100+8=8>=0 (no flip)
+        vi.spyOn(el, 'getBoundingClientRect').mockReturnValue({
+            top: 100, bottom: 130, left: 100, right: 200,
+            width: 100, height: 30, x: 100, y: 100, toJSON: () => ({}),
+        });
+
+        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        await el.updateComplete;
+
+        expect(el.shadowRoot!.querySelector('.tooltip-popup')!.classList.contains('right')).toBe(true);
+    });
+
+    it('flips right→left when margin makes value just over limit (right=924, W=1024)', async () => {
+        vi.stubGlobal('innerWidth', 1024);
+
+        const el = await fixture<UiTooltip>(html`
+            <ui-tooltip label="arith right" placement="right"><button>B</button></ui-tooltip>
+        `);
+        // original: 924+100+8=1032>1024 (flip); mutant -margin: 924+100-8=1016<=1024 (no flip)
+        vi.spyOn(el, 'getBoundingClientRect').mockReturnValue({
+            top: 100, bottom: 130, left: 824, right: 924,
+            width: 100, height: 30, x: 824, y: 100, toJSON: () => ({}),
+        });
+
+        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        await el.updateComplete;
+
+        expect(el.shadowRoot!.querySelector('.tooltip-popup')!.classList.contains('left')).toBe(true);
+
+        vi.unstubAllGlobals();
+    });
+
+    // ── Auto-flip: equality boundary (>= vs >) ───────────────────
+
+    it('does NOT flip top when exactly at boundary (top-ph-margin === 0)', async () => {
+        const el = await fixture<UiTooltip>(html`
+            <ui-tooltip label="eq top" placement="top"><button>B</button></ui-tooltip>
+        `);
+        // top=38: 38-30-8=0>=0 → fits (no flip); mutant >0: 0>0=false → flip
+        vi.spyOn(el, 'getBoundingClientRect').mockReturnValue({
+            top: 38, bottom: 68, left: 100, right: 200,
+            width: 100, height: 30, x: 100, y: 38, toJSON: () => ({}),
+        });
+
+        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        await el.updateComplete;
+
+        expect(el.shadowRoot!.querySelector('.tooltip-popup')!.classList.contains('top')).toBe(true);
+    });
+
+    it('does NOT flip bottom when exactly at boundary (bottom+ph+margin === innerHeight)', async () => {
+        vi.stubGlobal('innerHeight', 800);
+
+        const el = await fixture<UiTooltip>(html`
+            <ui-tooltip label="eq bottom" placement="bottom"><button>B</button></ui-tooltip>
+        `);
+        // bottom=762: 762+30+8=800<=800 → fits; mutant <800: 800<800=false → flip
+        vi.spyOn(el, 'getBoundingClientRect').mockReturnValue({
+            top: 732, bottom: 762, left: 100, right: 200,
+            width: 100, height: 30, x: 100, y: 732, toJSON: () => ({}),
+        });
+
+        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        await el.updateComplete;
+
+        expect(el.shadowRoot!.querySelector('.tooltip-popup')!.classList.contains('bottom')).toBe(true);
+
+        vi.unstubAllGlobals();
+    });
+
+    it('does NOT flip left when exactly at boundary (left-pw-margin === 0)', async () => {
+        const el = await fixture<UiTooltip>(html`
+            <ui-tooltip label="eq left" placement="left"><button>B</button></ui-tooltip>
+        `);
+        // left=108: 108-100-8=0>=0 → fits; mutant >0: 0>0=false → flip
+        vi.spyOn(el, 'getBoundingClientRect').mockReturnValue({
+            top: 100, bottom: 130, left: 108, right: 208,
+            width: 100, height: 30, x: 108, y: 100, toJSON: () => ({}),
+        });
+
+        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        await el.updateComplete;
+
+        expect(el.shadowRoot!.querySelector('.tooltip-popup')!.classList.contains('left')).toBe(true);
+    });
+
+    // ── Auto-flip: no popup element (defensive guard) ────────────
+    it('_applyAutoFlip falls back to placement when popup element is absent', () => {
+        // Call _applyAutoFlip on a fresh (not yet connected) element.
+        // shadowRoot is null before Lit renders, so popup is null → fallback runs.
+        const el = document.createElement('ui-tooltip') as UiTooltip;
+        el.placement = 'left';
+        (el as unknown as { _applyAutoFlip(): void })._applyAutoFlip();
+        expect((el as unknown as { _activePlacement: string })._activePlacement).toBe('left');
+    });
+
+    it('does NOT flip right when exactly at boundary (right+pw+margin === innerWidth)', async () => {
+        vi.stubGlobal('innerWidth', 1024);
+
+        const el = await fixture<UiTooltip>(html`
+            <ui-tooltip label="eq right" placement="right"><button>B</button></ui-tooltip>
+        `);
+        // right=916: 916+100+8=1024<=1024 → fits; mutant <1024: 1024<1024=false → flip
+        vi.spyOn(el, 'getBoundingClientRect').mockReturnValue({
+            top: 100, bottom: 130, left: 816, right: 916,
+            width: 100, height: 30, x: 816, y: 100, toJSON: () => ({}),
+        });
+
+        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        await el.updateComplete;
+
+        expect(el.shadowRoot!.querySelector('.tooltip-popup')!.classList.contains('right')).toBe(true);
+
+        vi.unstubAllGlobals();
+    });
 });
