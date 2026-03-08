@@ -2,6 +2,9 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './ui-resizable.js';
 import '../tabs/ui-tabs.js';
+import '../box/ui-box.js';
+import '../typography/ui-typography.js';
+import '../button/ui-button.js';
 import type { UiResizablePanel } from './ui-resizable.js';
 
 const meta: Meta = {
@@ -37,12 +40,6 @@ export default meta;
 type Story = StoryObj;
 
 /* ------------------------------------------------------------------ */
-/*  shared panel content style                                        */
-/* ------------------------------------------------------------------ */
-
-const panelStyle = 'display:flex;align-items:center;justify-content:center;height:100%;padding:24px;font-weight:600;';
-
-/* ------------------------------------------------------------------ */
 /*  Playground                                                        */
 /* ------------------------------------------------------------------ */
 
@@ -51,11 +48,15 @@ export const Playground: Story = {
     <div style="height:200px;max-width:600px;border:1px solid var(--ui-border-color,#e4e4e7);border-radius:8px;overflow:hidden;">
       <ui-resizable-group .orientation=${args.orientation} .dir=${args.dir}>
         <ui-resizable-panel .defaultSize=${50}>
-          <div style="${panelStyle}">One</div>
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+            <ui-typography variant="subtitle2">One</ui-typography>
+          </div>
         </ui-resizable-panel>
         <ui-resizable-handle with-handle></ui-resizable-handle>
         <ui-resizable-panel .defaultSize=${50}>
-          <div style="${panelStyle}">Two</div>
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+            <ui-typography variant="subtitle2">Two</ui-typography>
+          </div>
         </ui-resizable-panel>
       </ui-resizable-group>
     </div>
@@ -71,11 +72,15 @@ export const Vertical: Story = {
     <div style="height:300px;max-width:400px;border:1px solid var(--ui-border-color,#e4e4e7);border-radius:8px;overflow:hidden;">
       <ui-resizable-group orientation="vertical">
         <ui-resizable-panel .defaultSize=${25}>
-          <div style="${panelStyle}">Header</div>
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+            <ui-typography variant="subtitle2">Header</ui-typography>
+          </div>
         </ui-resizable-panel>
         <ui-resizable-handle></ui-resizable-handle>
         <ui-resizable-panel .defaultSize=${75}>
-          <div style="${panelStyle}">Content</div>
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+            <ui-typography variant="subtitle2">Content</ui-typography>
+          </div>
         </ui-resizable-panel>
       </ui-resizable-group>
     </div>
@@ -92,11 +97,15 @@ export const WithHandle: Story = {
     <div style="height:200px;max-width:500px;border:1px solid var(--ui-border-color,#e4e4e7);border-radius:8px;overflow:hidden;">
       <ui-resizable-group orientation="horizontal">
         <ui-resizable-panel .defaultSize=${25}>
-          <div style="${panelStyle}">Sidebar</div>
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+            <ui-typography variant="subtitle2">Sidebar</ui-typography>
+          </div>
         </ui-resizable-panel>
         <ui-resizable-handle with-handle></ui-resizable-handle>
         <ui-resizable-panel .defaultSize=${75}>
-          <div style="${panelStyle}">Content</div>
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+            <ui-typography variant="subtitle2">Content</ui-typography>
+          </div>
         </ui-resizable-panel>
       </ui-resizable-group>
     </div>
@@ -112,17 +121,23 @@ export const Nested: Story = {
     <div style="height:300px;max-width:600px;border:1px solid var(--ui-border-color,#e4e4e7);border-radius:8px;overflow:hidden;">
       <ui-resizable-group orientation="horizontal">
         <ui-resizable-panel .defaultSize=${50}>
-          <div style="${panelStyle}">One</div>
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+            <ui-typography variant="subtitle2">One</ui-typography>
+          </div>
         </ui-resizable-panel>
         <ui-resizable-handle with-handle></ui-resizable-handle>
         <ui-resizable-panel .defaultSize=${50}>
           <ui-resizable-group orientation="vertical">
             <ui-resizable-panel .defaultSize=${25}>
-              <div style="${panelStyle}">Two</div>
+              <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+                <ui-typography variant="subtitle2">Two</ui-typography>
+              </div>
             </ui-resizable-panel>
             <ui-resizable-handle with-handle></ui-resizable-handle>
             <ui-resizable-panel .defaultSize=${75}>
-              <div style="${panelStyle}">Three</div>
+              <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+                <ui-typography variant="subtitle2">Three</ui-typography>
+              </div>
             </ui-resizable-panel>
           </ui-resizable-group>
         </ui-resizable-panel>
@@ -141,15 +156,21 @@ export const ThreePanels: Story = {
     <div style="height:200px;max-width:600px;border:1px solid var(--ui-border-color,#e4e4e7);border-radius:8px;overflow:hidden;">
       <ui-resizable-group orientation="horizontal">
         <ui-resizable-panel .defaultSize=${25}>
-          <div style="${panelStyle}">Nav</div>
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+            <ui-typography variant="subtitle2">Nav</ui-typography>
+          </div>
         </ui-resizable-panel>
         <ui-resizable-handle with-handle></ui-resizable-handle>
         <ui-resizable-panel .defaultSize=${50}>
-          <div style="${panelStyle}">Content</div>
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+            <ui-typography variant="subtitle2">Content</ui-typography>
+          </div>
         </ui-resizable-panel>
         <ui-resizable-handle with-handle></ui-resizable-handle>
         <ui-resizable-panel .defaultSize=${25}>
-          <div style="${panelStyle}">Details</div>
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+            <ui-typography variant="subtitle2">Details</ui-typography>
+          </div>
         </ui-resizable-panel>
       </ui-resizable-group>
     </div>
@@ -165,17 +186,21 @@ export const Collapsible: Story = {
     <div style="height:200px;max-width:600px;border:1px solid var(--ui-border-color,#e4e4e7);border-radius:8px;overflow:hidden;">
       <ui-resizable-group orientation="horizontal">
         <ui-resizable-panel .defaultSize=${25} .minSize=${15} .collapsible=${true}>
-          <div style="${panelStyle}">Sidebar</div>
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+            <ui-typography variant="subtitle2">Sidebar</ui-typography>
+          </div>
         </ui-resizable-panel>
         <ui-resizable-handle with-handle></ui-resizable-handle>
         <ui-resizable-panel .defaultSize=${75}>
-          <div style="${panelStyle}">Content</div>
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+            <ui-typography variant="subtitle2">Content</ui-typography>
+          </div>
         </ui-resizable-panel>
       </ui-resizable-group>
     </div>
-    <p style="font-size:12px;color:var(--ui-text-color-muted,#71717a);margin-top:8px;">
+    <ui-typography variant="caption" color="textSecondary" style="display:block;margin-top:8px;">
       Drag the sidebar to its minimum, then keep dragging to snap it fully closed.
-    </p>
+    </ui-typography>
   `,
 };
 
@@ -189,27 +214,26 @@ export const CollapseAPI: Story = {
     <div data-collapse-demo>
       <!-- External controls — always visible, never inside a collapsible panel -->
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;">
-        <button
-          style="padding:5px 14px;border:1px solid var(--ui-border-color,#e4e4e7);border-radius:6px;
-                 cursor:pointer;font-size:13px;background:var(--ui-background,#fff);"
+        <ui-button
+          variant="secondary"
+          size="small"
           @click=${(e: Event) => {
             const root = (e.target as HTMLElement).closest('[data-collapse-demo]')!;
             const panel = root.querySelector<UiResizablePanel>('[data-sidebar-panel]')!;
             panel.collapse();
           }}
-        >Collapse</button>
-        <button
-          style="padding:5px 14px;border:1px solid var(--ui-border-color,#e4e4e7);border-radius:6px;
-                 cursor:pointer;font-size:13px;background:var(--ui-background,#fff);"
+        >Collapse</ui-button>
+        <ui-button
+          variant="secondary"
+          size="small"
           @click=${(e: Event) => {
             const root = (e.target as HTMLElement).closest('[data-collapse-demo]')!;
             const panel = root.querySelector<UiResizablePanel>('[data-sidebar-panel]')!;
             panel.expand();
           }}
-        >Expand</button>
-        <button
-          style="padding:5px 14px;border:1px solid var(--ui-primary-color,#3b82f6);border-radius:6px;
-                 cursor:pointer;font-size:13px;color:#fff;background:var(--ui-primary-color,#3b82f6);"
+        >Expand</ui-button>
+        <ui-button
+          size="small"
           @click=${(e: Event) => {
             const root = (e.target as HTMLElement).closest('[data-collapse-demo]')!;
             const panel = root.querySelector<UiResizablePanel>('[data-sidebar-panel]')!;
@@ -217,11 +241,10 @@ export const CollapseAPI: Story = {
             panel.toggle();
             if (statusEl) statusEl.textContent = panel.collapsed ? 'collapsed' : 'visible';
           }}
-        >Toggle</button>
-        <span style="font-size:13px;color:var(--ui-text-color-muted,#71717a);">
-          Sidebar:
-          <strong data-status style="color:var(--ui-text-color,#111827);">visible</strong>
-        </span>
+        >Toggle</ui-button>
+        <ui-typography variant="body2" color="textSecondary">
+          Sidebar: <strong data-status style="color:var(--ui-text-color,#111827);">visible</strong>
+        </ui-typography>
       </div>
 
       <div
@@ -241,20 +264,24 @@ export const CollapseAPI: Story = {
       >
         <ui-resizable-group orientation="horizontal">
           <ui-resizable-panel data-sidebar-panel .defaultSize=${30} .minSize=${10}>
-            <div style="${panelStyle}background:var(--ui-muted,#f4f4f5);">Sidebar</div>
+            <ui-box bgcolor="var(--ui-muted-background,#f4f4f5)" style="height:100%;display:flex;align-items:center;justify-content:center;padding:24px;">
+              <ui-typography variant="subtitle2">Sidebar</ui-typography>
+            </ui-box>
           </ui-resizable-panel>
           <ui-resizable-handle with-handle></ui-resizable-handle>
           <ui-resizable-panel .defaultSize=${70}>
-            <div style="${panelStyle}">Content</div>
+            <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+              <ui-typography variant="subtitle2">Content</ui-typography>
+            </div>
           </ui-resizable-panel>
         </ui-resizable-group>
       </div>
 
-      <p style="font-size:12px;color:var(--ui-text-color-muted,#71717a);margin-top:8px;">
+      <ui-typography variant="caption" color="textSecondary" style="display:block;margin-top:8px;">
         Buttons live <em>outside</em> the resizable group — they stay visible even when the sidebar
         is fully collapsed. The panel fires <code>ui-resizable-collapse</code> /
         <code>ui-resizable-expand</code> events.
-      </p>
+      </ui-typography>
     </div>
   `,
 };
@@ -269,19 +296,19 @@ export const Constraints: Story = {
     <div style="height:200px;max-width:600px;border:1px solid var(--ui-border-color,#e4e4e7);border-radius:8px;overflow:hidden;">
       <ui-resizable-group orientation="horizontal">
         <ui-resizable-panel .defaultSize=${30} .minSize=${20} .maxSize=${60}>
-          <div style="${panelStyle}">
-            <div style="text-align:center">
-              <div>Panel A</div>
-              <div style="font-size:12px;font-weight:400;color:var(--ui-text-color-muted,#71717a);">min:20% max:60%</div>
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+            <div style="text-align:center;">
+              <ui-typography variant="subtitle2" gutterBottom>Panel A</ui-typography>
+              <ui-typography variant="caption" color="textSecondary">min:20% max:60%</ui-typography>
             </div>
           </div>
         </ui-resizable-panel>
         <ui-resizable-handle with-handle></ui-resizable-handle>
         <ui-resizable-panel .defaultSize=${70} .minSize=${30}>
-          <div style="${panelStyle}">
-            <div style="text-align:center">
-              <div>Panel B</div>
-              <div style="font-size:12px;font-weight:400;color:var(--ui-text-color-muted,#71717a);">min:30%</div>
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+            <div style="text-align:center;">
+              <ui-typography variant="subtitle2" gutterBottom>Panel B</ui-typography>
+              <ui-typography variant="caption" color="textSecondary">min:30%</ui-typography>
             </div>
           </div>
         </ui-resizable-panel>
@@ -300,11 +327,15 @@ export const RTL: Story = {
     <div style="height:200px;max-width:600px;border:1px solid var(--ui-border-color,#e4e4e7);border-radius:8px;overflow:hidden;">
       <ui-resizable-group orientation="horizontal" dir="rtl">
         <ui-resizable-panel .defaultSize=${30}>
-          <div style="${panelStyle}">Right (30%)</div>
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+            <ui-typography variant="subtitle2">Right (30%)</ui-typography>
+          </div>
         </ui-resizable-panel>
         <ui-resizable-handle with-handle></ui-resizable-handle>
         <ui-resizable-panel .defaultSize=${70}>
-          <div style="${panelStyle}">Left (70%)</div>
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+            <ui-typography variant="subtitle2">Left (70%)</ui-typography>
+          </div>
         </ui-resizable-panel>
       </ui-resizable-group>
     </div>
@@ -321,15 +352,21 @@ export const DisabledHandle: Story = {
     <div style="height:200px;max-width:600px;border:1px solid var(--ui-border-color,#e4e4e7);border-radius:8px;overflow:hidden;">
       <ui-resizable-group orientation="horizontal">
         <ui-resizable-panel .defaultSize=${30}>
-          <div style="${panelStyle}">Fixed</div>
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+            <ui-typography variant="subtitle2">Fixed</ui-typography>
+          </div>
         </ui-resizable-panel>
         <ui-resizable-handle with-handle disabled></ui-resizable-handle>
         <ui-resizable-panel .defaultSize=${40}>
-          <div style="${panelStyle}">Resizable</div>
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+            <ui-typography variant="subtitle2">Resizable</ui-typography>
+          </div>
         </ui-resizable-panel>
         <ui-resizable-handle with-handle></ui-resizable-handle>
         <ui-resizable-panel .defaultSize=${30}>
-          <div style="${panelStyle}">Resizable</div>
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+            <ui-typography variant="subtitle2">Resizable</ui-typography>
+          </div>
         </ui-resizable-panel>
       </ui-resizable-group>
     </div>
@@ -355,17 +392,28 @@ export const EventLogging: Story = {
         }}
       >
         <ui-resizable-panel .defaultSize=${50}>
-          <div style="${panelStyle}">One</div>
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+            <ui-typography variant="subtitle2">One</ui-typography>
+          </div>
         </ui-resizable-panel>
         <ui-resizable-handle with-handle></ui-resizable-handle>
         <ui-resizable-panel .defaultSize=${50}>
-          <div style="${panelStyle}">Two</div>
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+            <ui-typography variant="subtitle2">Two</ui-typography>
+          </div>
         </ui-resizable-panel>
       </ui-resizable-group>
     </div>
-    <div style="margin-top:12px;padding:8px 12px;font-family:monospace;font-size:13px;background:var(--ui-muted,#f4f4f5);color:var(--ui-text-color,#111827);border:1px solid var(--ui-border-color,#e4e4e7);border-radius:6px;">
-      Layout: <span id="resize-log">50.0% | 50.0%</span>
-    </div>
+    <ui-box
+      mt="12px" px="12px" py="8px"
+      bgcolor="var(--ui-muted-background,#f4f4f5)"
+      border="1px solid var(--ui-border-color,#e4e4e7)"
+      borderRadius="6px"
+    >
+      <ui-typography variant="body2" color="textSecondary" style="font-family:monospace;">
+        Layout: <span id="resize-log" style="color:var(--ui-text-color,#111827);">50.0% | 50.0%</span>
+      </ui-typography>
+    </ui-box>
   `,
 };
 
@@ -383,14 +431,18 @@ export const IDELayout: Story = {
              font-size:13px;display:flex;flex-direction:column;"
     >
       <!-- ── Top toolbar ── -->
-      <div style="display:flex;align-items:center;padding:4px 12px;
-                  border-bottom:1px solid var(--ui-border-color,#e4e4e7);
-                  background:var(--ui-muted,#f4f4f5);flex-shrink:0;">
-        <span style="flex:1;text-align:center;font-size:12px;font-weight:600;
-                     color:var(--ui-text-color-muted,#71717a);letter-spacing:.05em;">
+      <ui-box
+        bgcolor="var(--ui-muted-background,#f4f4f5)"
+        display="flex"
+        alignItems="center"
+        px="12px"
+        py="4px"
+        style="border-bottom:1px solid var(--ui-border-color,#e4e4e7);flex-shrink:0;"
+      >
+        <ui-typography variant="overline" color="textSecondary" align="center" style="flex:1;letter-spacing:.05em;">
           MY IDE
-        </span>
-      </div>
+        </ui-typography>
+      </ui-box>
 
       <!-- ── Main area ── -->
       <div style="flex:1;overflow:hidden;min-height:0;">
@@ -399,11 +451,11 @@ export const IDELayout: Story = {
 
           <!-- ── File tree (collapsible) ── -->
           <ui-resizable-panel data-sidebar .defaultSize=${20} .minSize=${10} .collapsible=${true}>
-            <div style="height:100%;background:var(--ui-muted,#f4f4f5);display:flex;flex-direction:column;overflow:hidden;">
-              <div style="padding:8px 12px;border-bottom:1px solid var(--ui-border-color,#e4e4e7);
-                          font-weight:600;font-size:11px;text-transform:uppercase;
-                          letter-spacing:.05em;color:var(--ui-text-color-muted,#71717a);flex-shrink:0;">
-                Explorer
+            <ui-box bgcolor="var(--ui-muted-background,#f4f4f5)" style="height:100%;display:flex;flex-direction:column;overflow:hidden;">
+              <div style="padding:8px 12px;border-bottom:1px solid var(--ui-border-color,#e4e4e7);flex-shrink:0;">
+                <ui-typography variant="overline" color="textSecondary" style="letter-spacing:.05em;">
+                  Explorer
+                </ui-typography>
               </div>
               ${[
                 { label: 'src/', indent: 0, folder: true },
@@ -415,13 +467,13 @@ export const IDELayout: Story = {
                 { label: 'package.json', indent: 0 },
                 { label: 'tsconfig.json', indent: 0 },
               ].map(f => html`
-                <div style="padding:4px 12px 4px ${f.indent * 12 + 12}px;
-                            color:${f.folder ? 'var(--ui-text-color-muted,#71717a)' : 'var(--ui-text-color,#111827)'};
-                            white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px;">
-                  ${f.folder ? '📁 ' : ''}${f.label}
+                <div style="padding:4px 12px 4px ${f.indent * 12 + 12}px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                  <ui-typography variant="body2" color=${f.folder ? 'textSecondary' : 'textPrimary'}>
+                    ${f.folder ? '📁 ' : ''}${f.label}
+                  </ui-typography>
                 </div>
               `)}
-            </div>
+            </ui-box>
           </ui-resizable-panel>
           <ui-resizable-handle with-handle></ui-resizable-handle>
 
@@ -431,8 +483,7 @@ export const IDELayout: Story = {
 
               <!-- ── Editor ── -->
               <ui-resizable-panel .defaultSize=${70} .minSize=${20}>
-                <div style="height:100%;display:flex;flex-direction:column;overflow:hidden;
-                            background:var(--ui-background,#fff);">
+                <div style="height:100%;display:flex;flex-direction:column;overflow:hidden;background:var(--ui-background,#fff);">
                   <ui-tabs value="button" style="flex:1;overflow:hidden;min-height:0;display:flex;flex-direction:column;">
                     <ui-tab-list style="border-bottom:1px solid var(--ui-border-color,#e4e4e7);">
                       <ui-tab value="button">ui-button.ts</ui-tab>
@@ -482,15 +533,12 @@ export const IDELayout: Story = {
               <!-- ── Terminal (collapsible) ── -->
               <ui-resizable-panel data-terminal .defaultSize=${30} .minSize=${8} .collapsible=${true}>
                 <div style="height:100%;background:#0c0c0c;display:flex;flex-direction:column;overflow:hidden;">
-                  <div style="display:flex;align-items:center;gap:16px;
-                              padding:5px 12px;border-bottom:1px solid #27272a;flex-shrink:0;">
-                    <span style="font-size:11px;font-weight:600;color:#fff;text-transform:uppercase;
-                                 letter-spacing:.05em;">Terminal</span>
-                    <span style="font-size:11px;color:#a1a1aa;">Problems</span>
-                    <span style="font-size:11px;color:#a1a1aa;">Output</span>
+                  <div style="display:flex;align-items:center;gap:16px;padding:5px 12px;border-bottom:1px solid #27272a;flex-shrink:0;">
+                    <ui-typography variant="overline" style="color:#fff;letter-spacing:.05em;">Terminal</ui-typography>
+                    <ui-typography variant="caption" style="color:#a1a1aa;">Problems</ui-typography>
+                    <ui-typography variant="caption" style="color:#a1a1aa;">Output</ui-typography>
                   </div>
-                  <div style="flex:1;padding:10px 14px;font-family:monospace;font-size:12px;
-                              color:#d4d4d4;overflow:auto;line-height:1.6;">
+                  <div style="flex:1;padding:10px 14px;font-family:monospace;font-size:12px;color:#d4d4d4;overflow:auto;line-height:1.6;">
                     <div><span style="color:#4ade80">✔</span> Build complete in 312ms</div>
                     <div><span style="color:#a1a1aa">$</span> npm test</div>
                     <div><span style="color:#4ade80">✔</span> 59 tests passed</div>
@@ -505,11 +553,11 @@ export const IDELayout: Story = {
         </ui-resizable-group>
       </div>
     </div>
-    <p style="font-size:12px;color:var(--ui-text-color-muted,#71717a);margin-top:8px;">
+    <ui-typography variant="caption" color="textSecondary" style="display:block;margin-top:8px;">
       Drag the Explorer handle left past its snap point to collapse it.
       Drag the Terminal handle down past its snap point to collapse it.
       Drag back toward center to expand.
-    </p>
+    </ui-typography>
   `,
 };
 
@@ -531,30 +579,34 @@ export const CustomTheme: Story = {
     ">
       <ui-resizable-group orientation="horizontal">
         <ui-resizable-panel .defaultSize=${33}>
-          <div style="${panelStyle}background:#f8fafc;">Panel A</div>
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;background:#f8fafc;">
+            <ui-typography variant="subtitle2">Panel A</ui-typography>
+          </div>
         </ui-resizable-panel>
         <ui-resizable-handle with-handle></ui-resizable-handle>
         <ui-resizable-panel .defaultSize=${34}>
-          <div style="${panelStyle}background:#f0f9ff;">Panel B</div>
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;background:#f0f9ff;">
+            <ui-typography variant="subtitle2">Panel B</ui-typography>
+          </div>
         </ui-resizable-panel>
         <ui-resizable-handle with-handle></ui-resizable-handle>
         <ui-resizable-panel .defaultSize=${33}>
-          <div style="${panelStyle}background:#fdf4ff;">Panel C</div>
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;background:#fdf4ff;">
+            <ui-typography variant="subtitle2">Panel C</ui-typography>
+          </div>
         </ui-resizable-panel>
       </ui-resizable-group>
     </div>
-    <p style="font-size:12px;color:var(--ui-text-color-muted,#71717a);margin-top:8px;">
+    <ui-typography variant="caption" color="textSecondary" style="display:block;margin-top:8px;">
       All handle appearance is controlled via CSS custom properties:
       <code>--ui-resizable-handle-size</code>, <code>--ui-resizable-handle-hover-bg</code>, etc.
-    </p>
+    </ui-typography>
   `,
 };
 
 /* ------------------------------------------------------------------ */
 /*  Complex Event Logging (nested horizontal + vertical)              */
 /* ------------------------------------------------------------------ */
-
-const logStyle = 'padding:8px 12px;font-family:monospace;font-size:12px;background:var(--ui-muted,#f4f4f5);color:var(--ui-text-color,#111827);border:1px solid var(--ui-border-color,#e4e4e7);border-radius:6px;';
 
 function updateLog(id: string, e: CustomEvent) {
   const el = document.getElementById(id);
@@ -579,12 +631,12 @@ export const ComplexEventLogging: Story = {
       >
         <!-- Left sidebar -->
         <ui-resizable-panel .defaultSize=${20} .minSize=${10} .collapsible=${true}>
-          <div style="${panelStyle}background:var(--ui-muted,#f4f4f5);">
-            <div style="text-align:center">
-              <div>Sidebar</div>
-              <div style="font-size:11px;font-weight:400;color:var(--ui-text-color-muted,#71717a);">min:10% collapsible</div>
+          <ui-box bgcolor="var(--ui-muted-background,#f4f4f5)" style="height:100%;display:flex;align-items:center;justify-content:center;padding:24px;">
+            <div style="text-align:center;">
+              <ui-typography variant="subtitle2" gutterBottom>Sidebar</ui-typography>
+              <ui-typography variant="caption" color="textSecondary">min:10% collapsible</ui-typography>
             </div>
-          </div>
+          </ui-box>
         </ui-resizable-panel>
         <ui-resizable-handle with-handle></ui-resizable-handle>
 
@@ -598,28 +650,28 @@ export const ComplexEventLogging: Story = {
             }}
           >
             <ui-resizable-panel .defaultSize=${30}>
-              <div style="${panelStyle}">
-                <div style="text-align:center">
-                  <div>Header</div>
-                  <div style="font-size:11px;font-weight:400;color:var(--ui-text-color-muted,#71717a);">vertical top</div>
+              <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+                <div style="text-align:center;">
+                  <ui-typography variant="subtitle2" gutterBottom>Header</ui-typography>
+                  <ui-typography variant="caption" color="textSecondary">vertical top</ui-typography>
                 </div>
               </div>
             </ui-resizable-panel>
             <ui-resizable-handle with-handle></ui-resizable-handle>
             <ui-resizable-panel .defaultSize=${40}>
-              <div style="${panelStyle}">
-                <div style="text-align:center">
-                  <div>Content</div>
-                  <div style="font-size:11px;font-weight:400;color:var(--ui-text-color-muted,#71717a);">vertical middle</div>
+              <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+                <div style="text-align:center;">
+                  <ui-typography variant="subtitle2" gutterBottom>Content</ui-typography>
+                  <ui-typography variant="caption" color="textSecondary">vertical middle</ui-typography>
                 </div>
               </div>
             </ui-resizable-panel>
             <ui-resizable-handle with-handle></ui-resizable-handle>
             <ui-resizable-panel .defaultSize=${30}>
-              <div style="${panelStyle}">
-                <div style="text-align:center">
-                  <div>Footer</div>
-                  <div style="font-size:11px;font-weight:400;color:var(--ui-text-color-muted,#71717a);">vertical bottom</div>
+              <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+                <div style="text-align:center;">
+                  <ui-typography variant="subtitle2" gutterBottom>Footer</ui-typography>
+                  <ui-typography variant="caption" color="textSecondary">vertical bottom</ui-typography>
                 </div>
               </div>
             </ui-resizable-panel>
@@ -637,19 +689,19 @@ export const ComplexEventLogging: Story = {
             }}
           >
             <ui-resizable-panel .defaultSize=${50}>
-              <div style="${panelStyle}">
-                <div style="text-align:center">
-                  <div>Inspector</div>
-                  <div style="font-size:11px;font-weight:400;color:var(--ui-text-color-muted,#71717a);">top</div>
+              <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+                <div style="text-align:center;">
+                  <ui-typography variant="subtitle2" gutterBottom>Inspector</ui-typography>
+                  <ui-typography variant="caption" color="textSecondary">top</ui-typography>
                 </div>
               </div>
             </ui-resizable-panel>
             <ui-resizable-handle with-handle></ui-resizable-handle>
             <ui-resizable-panel .defaultSize=${50}>
-              <div style="${panelStyle}">
-                <div style="text-align:center">
-                  <div>Console</div>
-                  <div style="font-size:11px;font-weight:400;color:var(--ui-text-color-muted,#71717a);">bottom</div>
+              <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;">
+                <div style="text-align:center;">
+                  <ui-typography variant="subtitle2" gutterBottom>Console</ui-typography>
+                  <ui-typography variant="caption" color="textSecondary">bottom</ui-typography>
                 </div>
               </div>
             </ui-resizable-panel>
@@ -659,18 +711,36 @@ export const ComplexEventLogging: Story = {
     </div>
 
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
-      <div style="flex:1;min-width:180px;${logStyle}">
-        <div style="font-weight:600;margin-bottom:4px;">Outer (horizontal)</div>
-        <span id="log-outer">20.0% | 55.0% | 25.0%</span>
-      </div>
-      <div style="flex:1;min-width:180px;${logStyle}">
-        <div style="font-weight:600;margin-bottom:4px;">Center (vertical)</div>
-        <span id="log-center">30.0% | 40.0% | 30.0%</span>
-      </div>
-      <div style="flex:1;min-width:180px;${logStyle}">
-        <div style="font-weight:600;margin-bottom:4px;">Right (vertical)</div>
-        <span id="log-right">50.0% | 50.0%</span>
-      </div>
+      <ui-box
+        style="flex:1;min-width:180px;"
+        px="12px" py="8px"
+        bgcolor="var(--ui-muted-background,#f4f4f5)"
+        border="1px solid var(--ui-border-color,#e4e4e7)"
+        borderRadius="6px"
+      >
+        <ui-typography variant="body2" style="font-weight:600;margin-bottom:4px;font-family:monospace;">Outer (horizontal)</ui-typography>
+        <ui-typography variant="body2" color="textPrimary" style="font-family:monospace;"><span id="log-outer">20.0% | 55.0% | 25.0%</span></ui-typography>
+      </ui-box>
+      <ui-box
+        style="flex:1;min-width:180px;"
+        px="12px" py="8px"
+        bgcolor="var(--ui-muted-background,#f4f4f5)"
+        border="1px solid var(--ui-border-color,#e4e4e7)"
+        borderRadius="6px"
+      >
+        <ui-typography variant="body2" style="font-weight:600;margin-bottom:4px;font-family:monospace;">Center (vertical)</ui-typography>
+        <ui-typography variant="body2" color="textPrimary" style="font-family:monospace;"><span id="log-center">30.0% | 40.0% | 30.0%</span></ui-typography>
+      </ui-box>
+      <ui-box
+        style="flex:1;min-width:180px;"
+        px="12px" py="8px"
+        bgcolor="var(--ui-muted-background,#f4f4f5)"
+        border="1px solid var(--ui-border-color,#e4e4e7)"
+        borderRadius="6px"
+      >
+        <ui-typography variant="body2" style="font-weight:600;margin-bottom:4px;font-family:monospace;">Right (vertical)</ui-typography>
+        <ui-typography variant="body2" color="textPrimary" style="font-family:monospace;"><span id="log-right">50.0% | 50.0%</span></ui-typography>
+      </ui-box>
     </div>
   `,
 };
