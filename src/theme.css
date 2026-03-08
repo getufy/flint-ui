@@ -266,6 +266,11 @@
     --ui-resizable-grip-dot-color:     var(--ui-text-color-muted);
     --ui-resizable-step:               5;
 
+    /* ─── Autocomplete ────────────────────────────────────────── */
+    --ui-autocomplete-dropdown-max-height: 250px;
+    --ui-autocomplete-option-padding:      10px 12px;
+    --ui-autocomplete-z-index:             10;
+
     /* ─── Range Slider ────────────────────────────────────────── */
     --ui-range-slider-track-height:  6px;
     --ui-range-slider-thumb-size:    20px;

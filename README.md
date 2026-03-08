@@ -1,6 +1,6 @@
 # TODO Components
 
-- Continue investigating bugs under ui-switch folder (started at ui-grid).
+- Continue investigating bugs above  ui-grid.
 - Create a structurable theme.scss/css variable across all components
 - Dark Mode/Light Mode
 - Find accessibility issues and fix for all components.
