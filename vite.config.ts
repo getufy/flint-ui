@@ -29,9 +29,16 @@ export default defineConfig({
         coverage: {
             provider: 'v8', // or 'istanbul'
             reporter: ['text', 'html'], // include 'html' to generate HTML report
-            exclude: ['.storybook/**'],
+            exclude: [
+                '.storybook/**',
+                '**/*.css',      // Exclude plain CSS files
+                '**/*.scss',     // Exclude SCSS
+                '**/*.sass',     // Exclude SASS
+                '**/*.less',     // Exclude LESS
+                '**/*.styl',     // Exclude Stylus
+                '**/*.module.css', // Exclude CSS modules
+            ],
         },
-
         projects: [{
             extends: true,
             plugins: [

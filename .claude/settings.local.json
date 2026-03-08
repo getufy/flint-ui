@@ -43,7 +43,9 @@
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/stack/ui-stack.test.ts)",
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --project components --coverage --coverage.include='src/stack/**' src/stack/ui-stack.test.ts)",
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --project components --coverage src/stack/ui-stack.test.ts)",
-      "Bash(NODE_OPTIONS='--no-warnings' npx eslint src/stack/)"
+      "Bash(NODE_OPTIONS='--no-warnings' npx eslint src/stack/)",
+      "Bash(NODE_OPTIONS='--no-warnings' vitest run src/transfer-list/ui-transfer-list.test.ts)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/transfer-list/ui-transfer-list.test.ts)"
     ]
   }
 }
