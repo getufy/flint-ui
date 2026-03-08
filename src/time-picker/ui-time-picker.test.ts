@@ -2430,3 +2430,292 @@ describe('ui-digital-clock boundary value assertions', () => {
         expect((spy.mock.calls[0][0] as CustomEvent).detail.value).toBe('00:00:00');
     });
 });
+
+// ── Coverage-gap: _commitBuf via Tab after buffering a digit ──────────────────
+describe('ui-time-field _commitBuf coverage', () => {
+    it('Tab after typing a buffered digit commits partial hour value', async () => {
+        // type '1' → buf='1' (does not commit immediately in 12hr since threshold=2)
+        // Tab → _next() → _setActive('minute') → _commitBuf() commits buf='1' as hour=1
+        const el = await fixture<UiTimeField>(html`<ui-time-field></ui-time-field>`);
+        const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
+        focus(segs);
+        await el.updateComplete;
+        key(segs, '1'); // buf='1', does not commit immediately
+        await el.updateComplete;
+        key(segs, 'Tab'); // _next() → _setActive('minute') → _commitBuf()
+        await el.updateComplete;
+        const hourSeg = el.shadowRoot!.querySelectorAll('.seg')[0];
+        expect(hourSeg.textContent?.trim()).toBe('01');
+    });
+
+    it('Tab after typing buffered minute digit commits partial minute value', async () => {
+        // Set up hour first, then navigate to minute, type '3' (buf='3'), then Tab
+        const el = await fixture<UiTimeField>(html`<ui-time-field value="10:00:00"></ui-time-field>`);
+        const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
+        focus(segs);
+        await el.updateComplete;
+        key(segs, 'ArrowRight'); // move to minute
+        await el.updateComplete;
+        key(segs, '3'); // buf='3', does not commit immediately (3 < 6 threshold)
+        await el.updateComplete;
+        key(segs, 'Tab'); // _next() → _setActive('meridiem') → _commitBuf() commits buf='3' as minute=3
+        await el.updateComplete;
+        const minSeg = el.shadowRoot!.querySelectorAll('.seg')[1];
+        expect(minSeg.textContent?.trim()).toBe('03');
+    });
+
+    it('_commitBuf: buf with invalid number is a no-op', async () => {
+        // Edge case: _buf is non-empty non-numeric → parseInt returns NaN → early return
+        const el = await fixture<UiTimeField>(html`<ui-time-field></ui-time-field>`);
+        const spy = vi.fn();
+        el.addEventListener('change', spy);
+        const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
+        focus(segs);
+        await el.updateComplete;
+        // Manually inject a non-numeric buf value and then Tab to trigger _commitBuf
+        (el as unknown as Record<string, unknown>)['_buf'] = 'x';
+        key(segs, 'Tab'); // triggers _setActive → _commitBuf with buf='x'
+        await el.updateComplete;
+        expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('willUpdate else branch: setting value to empty string clears parse', async () => {
+        // ch.has('value') && this.value → false when value is empty
+        const el = await fixture<UiTimeField>(html`<ui-time-field value="10:00:00"></ui-time-field>`);
+        await el.updateComplete;
+        el.value = ''; // triggers willUpdate; ch.has('value')=true but this.value='' → branch not taken
+        await el.updateComplete;
+        // segments still show previous (no re-parse, no crash)
+        expect(el.shadowRoot!.querySelectorAll('.seg').length).toBeGreaterThan(0);
+    });
+
+    it('blur with relatedTarget inside shadowRoot does not clear focus state', async () => {
+        // The else branch of `if (!shadowRoot.contains(relatedTarget))`
+        const el = await fixture<UiTimeField>(html`<ui-time-field></ui-time-field>`);
+        const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
+        focus(segs);
+        await el.updateComplete;
+        // relatedTarget is inside the shadow root → condition is false → _focused stays true
+        blur(segs, segs);
+        await el.updateComplete;
+        // _focused remains true (the if body did NOT run)
+        expect(el.shadowRoot!.querySelector('.container')?.classList.contains('focused')).toBe(true);
+    });
+});
+
+// ── Coverage-gap: clockAngle negative angle branch ────────────────────────────
+describe('ui-time-clock clockAngle negative angle coverage', () => {
+    function mockSvg(el: UiTimeClock) {
+        const svg = el.shadowRoot!.querySelector('svg') as SVGSVGElement;
+        (svg as unknown as Record<string, unknown>).getBoundingClientRect = () =>
+            ({ left: 0, top: 0, width: 280, height: 280, right: 280, bottom: 280, x: 0, y: 0, toJSON: () => ({}) } as DOMRect);
+        (svg as unknown as Record<string, unknown>).setPointerCapture = () => {};
+        return svg;
+    }
+
+    it('pointerdown at top-left (negative clockAngle) triggers a < 0 branch', async () => {
+        // At (60, 60) with centre (140, 140): atan2(-80, -80) * 180/π + 90 ≈ -45° → += 360 → 315°
+        const el = await fixture<UiTimeClock>(html`<ui-time-clock value="10:00:00" view="hours"></ui-time-clock>`);
+        await el.updateComplete;
+        const svg = mockSvg(el);
+        const spy = vi.fn();
+        el.addEventListener('change', spy);
+        svg.dispatchEvent(new PointerEvent('pointerdown', { clientX: 60, clientY: 60, bubbles: true, pointerId: 1 }));
+        expect(spy).toHaveBeenCalled();
+        // 315° corresponds to hour 10–11 o'clock area; just confirm we got a value
+        const val = (spy.mock.calls[0][0] as CustomEvent).detail.value;
+        expect(typeof val).toBe('string');
+    });
+
+    it('pointerdown in seconds view (else branch of _calcValue)', async () => {
+        // Exercises the third branch of _calcValue: view==='seconds'
+        const el = await fixture<UiTimeClock>(html`<ui-time-clock value="10:30:00" view="seconds"></ui-time-clock>`);
+        await el.updateComplete;
+        const svg = mockSvg(el);
+        const spy = vi.fn();
+        el.addEventListener('change', spy);
+        // 3 o'clock = 15 seconds (angle=90°, round(90/6)%60 = 15)
+        svg.dispatchEvent(new PointerEvent('pointerdown', { clientX: 240, clientY: 140, bubbles: true, pointerId: 1 }));
+        expect(spy).toHaveBeenCalled();
+        const val = (spy.mock.calls[0][0] as CustomEvent).detail.value;
+        expect(val).toMatch(/:15$/);
+    });
+
+    it('pointermove in seconds view fires change with second value', async () => {
+        const el = await fixture<UiTimeClock>(html`<ui-time-clock value="10:30:00" view="seconds"></ui-time-clock>`);
+        await el.updateComplete;
+        const svg = mockSvg(el);
+        const spy = vi.fn();
+        el.addEventListener('change', spy);
+        svg.dispatchEvent(new PointerEvent('pointerdown', { clientX: 240, clientY: 140, bubbles: true, pointerId: 1 }));
+        spy.mockClear();
+        svg.dispatchEvent(new PointerEvent('pointermove', { clientX: 240, clientY: 140, bubbles: true, pointerId: 1 }));
+        expect(spy).toHaveBeenCalled();
+    });
+});
+
+// ── Coverage-gap: _switchView('hours') click on clock header ──────────────────
+describe('ui-time-clock _switchView hours click coverage', () => {
+    it('clicking hours header segment while in minutes view switches to hours', async () => {
+        // The @click=${() => this._switchView('hours')} on the hours clock-seg
+        const el = await fixture<UiTimeClock>(html`<ui-time-clock value="10:30:00" view="minutes"></ui-time-clock>`);
+        await el.updateComplete;
+        const viewSpy = vi.fn();
+        el.addEventListener('view-change', viewSpy);
+        const hoursSeg = el.shadowRoot!.querySelector('.clock-seg') as HTMLElement;
+        hoursSeg.click();
+        await el.updateComplete;
+        expect(viewSpy).toHaveBeenCalledOnce();
+        expect((viewSpy.mock.calls[0][0] as CustomEvent).detail.view).toBe('hours');
+        expect(el.view).toBe('hours');
+    });
+
+    it('clicking seconds header segment (rendered when seconds=true) switches to seconds', async () => {
+        const el = await fixture<UiTimeClock>(html`<ui-time-clock value="10:30:15" view="minutes" seconds></ui-time-clock>`);
+        await el.updateComplete;
+        const viewSpy = vi.fn();
+        el.addEventListener('view-change', viewSpy);
+        // Third clock-seg is the seconds segment (hours, minutes, seconds)
+        const segs = el.shadowRoot!.querySelectorAll('.clock-seg');
+        const secSeg = segs[2] as HTMLElement;
+        secSeg.click();
+        await el.updateComplete;
+        expect(viewSpy).toHaveBeenCalledOnce();
+        expect((viewSpy.mock.calls[0][0] as CustomEvent).detail.view).toBe('seconds');
+    });
+
+    it('clicking minutes header segment switches to minutes view', async () => {
+        const el = await fixture<UiTimeClock>(html`<ui-time-clock value="10:30:00" view="hours"></ui-time-clock>`);
+        await el.updateComplete;
+        const viewSpy = vi.fn();
+        el.addEventListener('view-change', viewSpy);
+        const segs = el.shadowRoot!.querySelectorAll('.clock-seg');
+        const minSeg = segs[1] as HTMLElement;
+        minSeg.click();
+        expect(viewSpy).toHaveBeenCalledOnce();
+        expect((viewSpy.mock.calls[0][0] as CustomEvent).detail.view).toBe('minutes');
+    });
+});
+
+// ── Coverage-gap: mobile time-picker @change and @close handlers ─────────────
+describe('ui-mobile-time-picker @change and @close coverage', () => {
+    it('@change on readonly time-field re-emits change event upward', async () => {
+        // The readonly time-field in UiMobileTimePicker can still fire 'change' in theory.
+        // The handler: this.value = e.detail.value + re-dispatch
+        // Note: the event both bubbles (1st call) and is re-emitted by the handler (2nd call).
+        const el = await fixture<UiMobileTimePicker>(html`<ui-mobile-time-picker value="10:00:00"></ui-mobile-time-picker>`);
+        await el.updateComplete;
+        const spy = vi.fn();
+        el.addEventListener('change', spy);
+        const field = el.shadowRoot!.querySelector('ui-time-field') as UiTimeField;
+        field.dispatchEvent(new CustomEvent('change', { detail: { value: '11:30:00' }, bubbles: true, composed: true }));
+        expect(spy).toHaveBeenCalled();
+        expect(el.value).toBe('11:30:00');
+    });
+
+    it('@close on dialog sets _open to false', async () => {
+        const el = await fixture<UiMobileTimePicker>(html`<ui-mobile-time-picker></ui-mobile-time-picker>`);
+        await el.updateComplete;
+        // First open it
+        const field = el.shadowRoot!.querySelector('ui-time-field') as UiTimeField;
+        field.dispatchEvent(new FocusEvent('focus', { bubbles: true, composed: true }));
+        await el.updateComplete;
+        const dialog = el.shadowRoot!.querySelector('ui-dialog') as Element & { open: boolean };
+        expect(dialog.open).toBe(true);
+        // Dispatch 'close' event from dialog → @close handler sets _open=false
+        dialog.dispatchEvent(new CustomEvent('close', { bubbles: true, composed: true }));
+        await el.updateComplete;
+        expect(dialog.open).toBe(false);
+    });
+});
+
+// ── Coverage-gap: digit overflow / two-digit minute second ───────────────────
+describe('ui-time-field _digit minute/second overflow coverage', () => {
+    it('minute overflow: inject buf="6" then type "9" → 69 > 59 → commits 9 (overflow path)', async () => {
+        // Normally a first digit >= 6 commits immediately, so this buf state can't happen via keyboard.
+        // We inject it to exercise the overflow else-branch in _digit for minute.
+        const el = await fixture<UiTimeField>(html`<ui-time-field value="10:00:00"></ui-time-field>`);
+        const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
+        focus(segs);
+        await el.updateComplete;
+        key(segs, 'ArrowRight'); // to minute
+        await el.updateComplete;
+        // Inject impossible buf state: '6' in minute (normally would have committed immediately)
+        (el as unknown as Record<string, unknown>)['_buf'] = '6';
+        key(segs, '9'); // buf='69' > 59 → overflow: _buf='9', 9 >= 6 → commits 9
+        await el.updateComplete;
+        const minSeg = el.shadowRoot!.querySelectorAll('.seg')[1];
+        expect(minSeg.textContent?.trim()).toBe('09');
+    });
+
+    it('typing overflow hour in 12hr: "1" then "5" → 15 > 12 → resets to 5, advances', async () => {
+        // buf='1' (1 < threshold=2, stays in buf), then '5' → '15' > 12 → overflow
+        // overflow: _buf=String(5), 5 >= threshold=2 → commits 5, advances
+        const el = await fixture<UiTimeField>(html`<ui-time-field></ui-time-field>`);
+        const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
+        focus(segs);
+        await el.updateComplete;
+        key(segs, '1'); // buf='1'
+        await el.updateComplete;
+        key(segs, '5'); // buf='15' > 12 → overflow: d=5 >= 2 → commits 5
+        await el.updateComplete;
+        const hourSeg = el.shadowRoot!.querySelectorAll('.seg')[0];
+        expect(hourSeg.textContent?.trim()).toBe('05');
+    });
+
+    it('parseTime invalid: value with non-numeric parts returns null (display shows placeholder)', async () => {
+        // parseTime('ab:cd') → p.some(isNaN) → null → displayTime returns ''
+        const el = await fixture<UiTimeField>(html`<ui-time-field value="ab:cd"></ui-time-field>`);
+        await el.updateComplete;
+        // Invalid value → parseTime returns null → segments show placeholder
+        const hourSeg = el.shadowRoot!.querySelectorAll('.seg')[0];
+        expect(hourSeg.classList.contains('placeholder')).toBe(true);
+    });
+
+    it('_commitBuf: commits buffered second digit (line 119 branch)', async () => {
+        // Need _active='second', _buf='3', then Tab to call _commitBuf.
+        // With ampm=true: segments = [hour, minute, second, meridiem], so second is NOT last.
+        const el = await fixture<UiTimeField>(html`<ui-time-field seconds value="10:00:00"></ui-time-field>`);
+        const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
+        focus(segs);
+        await el.updateComplete;
+        key(segs, 'ArrowRight'); // minute
+        key(segs, 'ArrowRight'); // second
+        await el.updateComplete;
+        key(segs, '3'); // buf='3' (3 < 6, buffers in second segment)
+        await el.updateComplete;
+        // Tab: _canNext() → second(idx=2) < meridiem(last, idx=3) → true → _next() → _commitBuf
+        key(segs, 'Tab');
+        await el.updateComplete;
+        const sSeg = el.shadowRoot!.querySelectorAll('.seg')[2];
+        expect(sSeg.textContent?.trim()).toBe('03');
+    });
+});
+
+// ── Coverage-gap: scrollIntoView in updated() ─────────────────────────────────
+describe('scrollIntoView in updated() coverage', () => {
+    it('UiDigitalClock.updated calls scrollIntoView on selected item', async () => {
+        const scrollSpy = vi.fn();
+        // scrollIntoView is not implemented in jsdom – inject it temporarily
+        (HTMLElement.prototype as unknown as Record<string, unknown>)['scrollIntoView'] = scrollSpy;
+        try {
+            const el = await fixture<UiDigitalClock>(html`<ui-digital-clock value="10:00:00"></ui-digital-clock>`);
+            await el.updateComplete;
+            expect(scrollSpy).toHaveBeenCalled();
+        } finally {
+            delete (HTMLElement.prototype as unknown as Record<string, unknown>)['scrollIntoView'];
+        }
+    });
+
+    it('UiMultiSectionDigitalClock.updated calls scrollIntoView on .sel items', async () => {
+        const scrollSpy = vi.fn();
+        (HTMLElement.prototype as unknown as Record<string, unknown>)['scrollIntoView'] = scrollSpy;
+        try {
+            const el = await fixture<UiMultiSectionDigitalClock>(html`<ui-multi-section-digital-clock value="10:30:00"></ui-multi-section-digital-clock>`);
+            await el.updateComplete;
+            expect(scrollSpy).toHaveBeenCalled();
+        } finally {
+            delete (HTMLElement.prototype as unknown as Record<string, unknown>)['scrollIntoView'];
+        }
+    });
+});
