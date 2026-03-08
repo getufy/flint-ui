@@ -39,14 +39,14 @@
       top: 100%;
       left: 0;
       right: 0;
-      max-height: 250px;
+      max-height: var(--ui-autocomplete-dropdown-max-height, 250px);
       overflow-y: auto;
       background: var(--ui-surface-1);
       border: 1px solid var(--ui-input-border-color);
       border-radius: var(--ui-input-border-radius);
       margin-top: 4px;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      z-index: 10;
+      z-index: var(--ui-autocomplete-z-index, 10);
       display: none;
     }
 
@@ -55,7 +55,7 @@
     }
 
     .option {
-      padding: 10px 12px;
+      padding: var(--ui-autocomplete-option-padding, 10px 12px);
       cursor: pointer;
       font-size: 14px;
       transition: background-color 0.15s;
@@ -68,7 +68,7 @@
     }
 
     .no-options {
-      padding: 10px 12px;
+      padding: var(--ui-autocomplete-option-padding, 10px 12px);
       font-size: 14px;
       color: var(--ui-text-color-muted);
     }
