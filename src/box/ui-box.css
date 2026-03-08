@@ -1,3 +1,9 @@
 :host {
-      display: block;
-    }
+    display: block;
+    background-color: var(--ui-box-bg, transparent);
+    color: var(--ui-box-color, inherit);
+    border: var(--ui-box-border, none);
+    border-radius: var(--ui-box-border-radius, 0);
+    box-shadow: var(--ui-box-shadow, none);
+    padding: var(--ui-box-padding, 0);
+}
