@@ -176,9 +176,6 @@ export class UiInputOtp extends LitElement {
     override updated(changed: PropertyValues) {
         if (changed.has('value') || changed.has('maxLength')) {
             this._syncSlots();
-            if (this._hiddenInput && this._hiddenInput.value !== this._internalValue) {
-                this._hiddenInput.value = this._internalValue;
-            }
         }
     }
 
@@ -209,7 +206,7 @@ export class UiInputOtp extends LitElement {
     private _commit(newVal: string) {
         this._internalValue = newVal;
         this.value = newVal;
-        if (this._hiddenInput) this._hiddenInput.value = newVal;
+        this._hiddenInput.value = newVal;
 
         this.dispatchEvent(new CustomEvent('ui-otp-change', {
             detail: { value: newVal },
@@ -242,11 +239,10 @@ export class UiInputOtp extends LitElement {
         if (i < val.length) {
             // Replace the character at position i (no shifting).
             newVal = val.slice(0, i) + char + val.slice(i + 1);
-        } else if (val.length < this.maxLength) {
-            // Cursor is at the first empty slot — append.
-            newVal = val + char;
         } else {
-            return; // Full value and cursor at end; shouldn't be reachable.
+            // Cursor is at the first empty slot — append.
+            // (val.length < maxLength is guaranteed since cursor ≤ maxLength-1 < val.length when full)
+            newVal = val + char;
         }
 
         this._commit(newVal);

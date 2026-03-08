@@ -698,4 +698,249 @@ describe('ui-input-otp — controlled mode', () => {
         await el.updateComplete;
         expect(getHiddenInput(el).value).toBe('777');
     });
+
+    it('clamps cursor to new value length when value is shortened externally', async () => {
+        const el = await make({ value: '123456' });
+        const input = getHiddenInput(el);
+        input.dispatchEvent(new FocusEvent('focus')); // cursor at 5
+        el.value = '12';
+        await el.updateComplete;
+        // cursor should be clamped to min(5, 2) = 2
+        expect(getSlot(el, 2).active).toBe(true);
+        expect(getSlot(el, 5).active).toBe(false);
+    });
+
+    it('syncs slots when maxLength changes', async () => {
+        const el = await make({ value: '1234', maxLength: 6 });
+        el.maxLength = 4;
+        await el.updateComplete;
+        expect(getSlot(el, 0).char).toBe('1');
+        expect(getSlot(el, 3).char).toBe('4');
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════
+   ui-input-otp — slot click cursor positioning
+══════════════════════════════════════════════════════════════════════ */
+describe('ui-input-otp — slot click cursor positioning', () => {
+    it('clicking a slot positions cursor at that slot index', async () => {
+        const el = await make({ value: '123456' });
+        const slot0 = getSlot(el, 0);
+        slot0.dispatchEvent(new MouseEvent('click', { bubbles: true, composed: true }));
+        await el.updateComplete;
+        expect(getSlot(el, 0).active).toBe(true);
+        expect(getSlot(el, 5).active).toBe(false);
+    });
+
+    it('clicking a slot beyond value length clamps cursor to value length', async () => {
+        const el = await make({ value: '123' });
+        const slot5 = getSlot(el, 5);
+        slot5.dispatchEvent(new MouseEvent('click', { bubbles: true, composed: true }));
+        await el.updateComplete;
+        // min(slot.index=5, value.length=3) = 3
+        expect(getSlot(el, 3).active).toBe(true);
+        expect(getSlot(el, 5).active).toBe(false);
+    });
+
+    it('clicking when disabled does not focus or change cursor state', async () => {
+        const el = await make({ disabled: true, value: '123' });
+        const slot0 = getSlot(el, 0);
+        slot0.dispatchEvent(new MouseEvent('click', { bubbles: true, composed: true }));
+        await el.updateComplete;
+        // disabled → early return → no slot should be active
+        expect(getSlots(el).every(s => !s.active)).toBe(true);
+    });
+
+    it('clicking host without hitting a slot still focuses input', async () => {
+        const el = await make({ value: '123' });
+        el.dispatchEvent(new MouseEvent('click', { bubbles: true, composed: true }));
+        await el.updateComplete;
+        // no slot was the target, so click handler focuses but doesn't override cursor
+        // (cursor set by _handleFocus to min(3, 5) = 3)
+        expect(getSlot(el, 3).active).toBe(true);
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════
+   ui-input-otp — cursor boundary conditions (mutation killers)
+══════════════════════════════════════════════════════════════════════ */
+describe('ui-input-otp — cursor boundary conditions', () => {
+    it('cursor stays at maxLength-1 after typing at the last slot', async () => {
+        const el = await make({ value: '123456', maxLength: 6 });
+        const input = getHiddenInput(el);
+        input.dispatchEvent(new FocusEvent('focus')); // cursor at 5 (= maxLength-1)
+        typeChars(input, '9'); // replaces slot 5 — cursor must stay at 5, NOT 6
+        await el.updateComplete;
+        expect(getSlot(el, 5).active).toBe(true);
+    });
+
+    it('ArrowRight on full value stays at maxLength-1, not maxLength', async () => {
+        const el = await make({ value: '123456', maxLength: 6 });
+        const input = getHiddenInput(el);
+        input.dispatchEvent(new FocusEvent('focus')); // cursor at 5
+        fireKey(input, 'ArrowRight'); // maxIdx = min(6, 5) = 5 → clamped at 5
+        await el.updateComplete;
+        expect(getSlot(el, 5).active).toBe(true);
+    });
+
+    it('End key on full value positions cursor at maxLength-1', async () => {
+        const el = await make({ value: '123456', maxLength: 6 });
+        const input = getHiddenInput(el);
+        input.dispatchEvent(new FocusEvent('focus'));
+        fireKey(input, 'Home'); // cursor at 0
+        fireKey(input, 'End');  // cursor = min(6, 5) = 5
+        await el.updateComplete;
+        expect(getSlot(el, 5).active).toBe(true);
+        expect(getSlot(el, 0).active).toBe(false);
+    });
+
+    it('ArrowLeft at cursor 0 does not go negative', async () => {
+        const el = await make({ value: '123' });
+        const input = getHiddenInput(el);
+        input.dispatchEvent(new FocusEvent('focus'));
+        fireKey(input, 'Home'); // cursor at 0
+        fireKey(input, 'ArrowLeft'); // should stay at 0
+        await el.updateComplete;
+        expect(getSlot(el, 0).active).toBe(true);
+    });
+
+    it('cursor is at maxLength-1 after focusing a full value (not maxLength)', async () => {
+        const el = await make({ value: '123456', maxLength: 6 });
+        const input = getHiddenInput(el);
+        input.dispatchEvent(new FocusEvent('focus'));
+        await el.updateComplete;
+        // cursor = min(6, 5) = 5 — slot 5 active, NOT index 6
+        expect(getSlot(el, 5).active).toBe(true);
+    });
+
+    it('paste positions cursor at maxLength-1 when paste fills all slots', async () => {
+        const el = await make({ maxLength: 6 });
+        const input = getHiddenInput(el);
+        input.dispatchEvent(new FocusEvent('focus'));
+        firePaste(input, '123456');
+        await el.updateComplete;
+        // cursor = min(6, 5) = 5
+        expect(getSlot(el, 5).active).toBe(true);
+    });
+
+    it('Backspace on value of length 1 at cursor 1 clears value', async () => {
+        const el = await make({ value: '5' });
+        const input = getHiddenInput(el);
+        input.dispatchEvent(new FocusEvent('focus')); // cursor at min(1, 5) = 1
+        fireKey(input, 'Backspace'); // slice(0, 0) + slice(1) = '' + '' = ''
+        await el.updateComplete;
+        expect(el.value).toBe('');
+        expect(getSlot(el, 0).char).toBe('');
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════
+   ui-input-otp — inputMode catch branch
+══════════════════════════════════════════════════════════════════════ */
+describe('ui-input-otp — inputMode catch branch', () => {
+    it('uses text inputMode for invalid regex pattern (catch branch)', async () => {
+        const el = await make({ pattern: '[' }); // invalid regex → catch → 'text'
+        expect(getHiddenInput(el).inputMode).toBe('text');
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════
+   ui-input-otp — updated() branch coverage
+══════════════════════════════════════════════════════════════════════ */
+describe('ui-input-otp — updated() branch coverage', () => {
+    it('slots remain correct when only disabled changes (value/maxLength unchanged)', async () => {
+        const el = await make({ value: '123' });
+        // Changing `disabled` triggers updated() but the if(value||maxLength) branch is false
+        el.disabled = true;
+        await el.updateComplete;
+        expect(getSlot(el, 0).char).toBe('1');
+        expect(getSlot(el, 2).char).toBe('3');
+    });
+
+    it('slots remain correct when only pattern changes', async () => {
+        const el = await make({ value: '12', pattern: '' });
+        el.pattern = '\\d';
+        await el.updateComplete;
+        expect(getSlot(el, 0).char).toBe('1');
+        expect(getSlot(el, 1).char).toBe('2');
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════
+   ui-input-otp — keydown keys with length > 1 (non-character keys)
+══════════════════════════════════════════════════════════════════════ */
+describe('ui-input-otp — non-character keydown keys', () => {
+    it('Escape does not insert a character and does not prevent default', async () => {
+        const el = await make();
+        const input = getHiddenInput(el);
+        const event = new KeyboardEvent('keydown', {
+            key: 'Escape', bubbles: true, cancelable: true,
+        });
+        input.dispatchEvent(event);
+        await el.updateComplete;
+        expect(el.value).toBe('');
+        expect(event.defaultPrevented).toBe(false);
+    });
+
+    it('Enter does not insert a character', async () => {
+        const el = await make();
+        typeChars(getHiddenInput(el), '1');
+        const input = getHiddenInput(el);
+        const event = new KeyboardEvent('keydown', {
+            key: 'Enter', bubbles: true, cancelable: true,
+        });
+        input.dispatchEvent(event);
+        await el.updateComplete;
+        expect(el.value).toBe('1');
+    });
+
+    it('F1 does not insert a character', async () => {
+        const el = await make();
+        const input = getHiddenInput(el);
+        const event = new KeyboardEvent('keydown', { key: 'F1', bubbles: true, cancelable: true });
+        input.dispatchEvent(event);
+        await el.updateComplete;
+        expect(el.value).toBe('');
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════
+   ui-input-otp — paste edge cases
+══════════════════════════════════════════════════════════════════════ */
+describe('ui-input-otp — paste edge cases', () => {
+    it('handles null clipboardData gracefully (no value change)', async () => {
+        const el = await make({ value: '123' });
+        const event = Object.assign(
+            new Event('paste', { bubbles: true, cancelable: true }),
+            { clipboardData: null }
+        ) as unknown as ClipboardEvent;
+        getHiddenInput(el).dispatchEvent(event);
+        await el.updateComplete;
+        // null clipboardData → pasted = '' → value set to ''
+        expect(el.value).toBe('');
+    });
+
+    it('Ctrl+key does not prevent default and does not insert char', async () => {
+        const el = await make();
+        const input = getHiddenInput(el);
+        const event = new KeyboardEvent('keydown', {
+            key: 'c', ctrlKey: true, bubbles: true, cancelable: true,
+        });
+        input.dispatchEvent(event);
+        expect(event.defaultPrevented).toBe(false);
+        await el.updateComplete;
+        expect(el.value).toBe('');
+    });
+
+    it('Meta+key does not prevent default and does not insert char', async () => {
+        const el = await make();
+        const input = getHiddenInput(el);
+        const event = new KeyboardEvent('keydown', {
+            key: 'v', metaKey: true, bubbles: true, cancelable: true,
+        });
+        input.dispatchEvent(event);
+        expect(event.defaultPrevented).toBe(false);
+        await el.updateComplete;
+        expect(el.value).toBe('');
+    });
 });

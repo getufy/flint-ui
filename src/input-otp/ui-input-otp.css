@@ -1,7 +1,7 @@
 :host {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: var(--ui-otp-gap, 8px);
             position: relative;
             cursor: text;
             font-family: var(--ui-font-family, system-ui, sans-serif);
