@@ -1,3 +1,16 @@
+/* Customizable properties:
+   --ui-tab-padding-x: 16px
+   --ui-tab-padding-y: 10px
+   --ui-tab-min-height: 48px
+   --ui-tab-font-size: 0.875rem
+   --ui-tab-font-weight: 500
+   --ui-tab-font-weight-active: 600
+   --ui-tab-icon-min-height: 72px (for icon-top/bottom)
+   --ui-tab-inactive-color: var(--ui-text-color-muted)
+   --ui-tab-active-color: var(--ui-primary-color)
+   --ui-tab-disabled-opacity: 0.38
+   --ui-tab-hover-bg: var(--ui-primary-color-light)
+ */
 :host { display: inline-flex; position: relative; background: var(--ui-background); }
         :host([full-width]) { flex: 1; }
 

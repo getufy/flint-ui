@@ -1,3 +1,32 @@
+/**
+ * @fileoverview Accessible tab components for LitElement.
+ *
+ * Usage:
+ * ```html
+ * <ui-tabs value="tab1">
+ *   <ui-tab-list>
+ *     <ui-tab value="tab1">Label 1</ui-tab>
+ *     <ui-tab value="tab2">Label 2</ui-tab>
+ *   </ui-tab-list>
+ *   <ui-tab-panel value="tab1">Content 1</ui-tab-panel>
+ *   <ui-tab-panel value="tab2">Content 2</ui-tab-panel>
+ * </ui-tabs>
+ * ```
+ *
+ * Components:
+ * - ui-tabs: Root container, manages state and coordinates children
+ * - ui-tab-list: Holds tabs, renders scroll buttons, manages keyboard navigation
+ * - ui-tab: Individual tab button/link with icon support
+ * - ui-tab-panel: Content container, hidden/shown based on active tab
+ *
+ * Events:
+ * - ui-tab-change: Fired on ui-tabs when active tab changes {detail: {value}}
+ *
+ * CSS Variables:
+ * --ui-tab-inactive-color, --ui-tab-active-color, --ui-tab-indicator-color,
+ * --ui-tab-indicator-height, --ui-tab-indicator-width, --ui-tab-padding-y,
+ * --ui-tab-padding-x, --ui-tab-font-size, --ui-tab-border-color
+ */
 import { LitElement, unsafeCSS, html, nothing } from 'lit';
 import { customElement, property, state, query } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
