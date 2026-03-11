@@ -1,6 +1,8 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './ui-rich-tree-view.js';
+import '../button/ui-button';
+import '../stack/ui-stack.js';
 import type { UiRichTreeView, RichTreeItem } from './ui-rich-tree-view.js';
 
 const meta: Meta = {
@@ -240,12 +242,12 @@ export const FocusableDisabledItems: Story = {
         };
 
         return html`
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;font-size:14px;font-family:system-ui,sans-serif;">
+      <ui-stack direction="row" alignItems="center" gap="8px" style="margin-bottom:16px;font-size:14px;font-family:system-ui,sans-serif;">
         <label>
           <input type="checkbox" @change=${toggle} .checked=${args['disabledItemsFocusable'] as boolean} />
           disabledItemsFocusable
         </label>
-      </div>
+      </ui-stack>
       <ui-rich-tree-view
         id="rich-focusable-tree"
         ?disabled-items-focusable=${args['disabledItemsFocusable']}
@@ -297,20 +299,15 @@ export const GetItemById: Story = {
         };
 
         return html`
-      <div style="display:flex;gap:8px;align-items:center;margin-bottom:16px;font-size:14px;font-family:system-ui,sans-serif;">
+      <ui-stack direction="row" gap="8px" alignItems="center" style="margin-bottom:16px;font-size:14px;font-family:system-ui,sans-serif;">
         <input
           id="rich-get-item-input"
           type="text"
           placeholder='Enter item id (e.g. "5-1")'
           style="padding:6px 10px;border:1px solid #d1d5db;border-radius:4px;font-size:14px;width:220px;"
         />
-        <button
-          @click=${lookup}
-          style="padding:6px 14px;border-radius:4px;background:#3b82f6;color:white;border:none;cursor:pointer;font-size:14px;"
-        >
-          getItem()
-        </button>
-      </div>
+        <ui-button @click=${lookup}>getItem()</ui-button>
+      </ui-stack>
       <ui-rich-tree-view id="rich-get-item-tree" .items=${FILESYSTEM_ITEMS}></ui-rich-tree-view>
       <pre id="rich-get-item-output" style="margin-top:16px;font-size:13px;font-family:monospace;color:#374151;">
         Enter an id above and click the button...
@@ -347,20 +344,15 @@ export const GetItemDOMElement: Story = {
         };
 
         return html`
-      <div style="display:flex;gap:8px;align-items:center;margin-bottom:16px;font-size:14px;font-family:system-ui,sans-serif;">
+      <ui-stack direction="row" gap="8px" alignItems="center" style="margin-bottom:16px;font-size:14px;font-family:system-ui,sans-serif;">
         <input
           id="rich-dom-input"
           type="text"
           placeholder='Enter item id (e.g. "2-1")'
           style="padding:6px 10px;border:1px solid #d1d5db;border-radius:4px;font-size:14px;width:220px;"
         />
-        <button
-          @click=${highlight}
-          style="padding:6px 14px;border-radius:4px;background:#3b82f6;color:white;border:none;cursor:pointer;font-size:14px;"
-        >
-          getItemDOMElement()
-        </button>
-      </div>
+        <ui-button @click=${highlight}>getItemDOMElement()</ui-button>
+      </ui-stack>
       <ui-rich-tree-view id="rich-dom-tree" .items=${FILESYSTEM_ITEMS}></ui-rich-tree-view>
       <p id="rich-dom-output" style="margin-top:16px;font-size:14px;font-family:system-ui,sans-serif;color:#555;">
         Enter an id above and click the button...
@@ -382,12 +374,7 @@ export const GetItemTree: Story = {
         };
 
         return html`
-      <button
-        @click=${showTree}
-        style="padding:6px 14px;border-radius:4px;background:#3b82f6;color:white;border:none;cursor:pointer;font-size:14px;margin-bottom:16px;"
-      >
-        getItemTree()
-      </button>
+      <ui-button @click=${showTree} style="margin-bottom:16px;">getItemTree()</ui-button>
       <ui-rich-tree-view id="rich-tree-api" .items=${MUI_ITEMS}></ui-rich-tree-view>
       <pre id="rich-tree-output" style="margin-top:16px;font-size:13px;font-family:monospace;color:#374151;max-height:200px;overflow:auto;">
         Click the button to inspect the item tree...
@@ -412,7 +399,7 @@ export const ImperativelyDisableItem: Story = {
         };
 
         return html`
-      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:16px;font-size:14px;font-family:system-ui,sans-serif;">
+      <ui-stack direction="row" gap="8px" alignItems="center" style="flex-wrap:wrap;margin-bottom:16px;font-size:14px;font-family:system-ui,sans-serif;">
         <input
           id="rich-disable-input"
           type="text"
@@ -423,13 +410,8 @@ export const ImperativelyDisableItem: Story = {
           <input id="rich-disable-checkbox" type="checkbox" checked />
           disabled
         </label>
-        <button
-          @click=${apply}
-          style="padding:6px 14px;border-radius:4px;background:#3b82f6;color:white;border:none;cursor:pointer;font-size:14px;"
-        >
-          setIsItemDisabled()
-        </button>
-      </div>
+        <ui-button @click=${apply}>setIsItemDisabled()</ui-button>
+      </ui-stack>
       <ui-rich-tree-view id="rich-disable-tree" .items=${MUI_ITEMS}></ui-rich-tree-view>
     `;
     },
@@ -479,16 +461,10 @@ export const ControlledExpansion: Story = {
         };
 
         return html`
-      <div style="display:flex;gap:8px;margin-bottom:12px;">
-        <button
-          @click=${expandAll}
-          style="padding:6px 14px;border-radius:4px;background:#3b82f6;color:white;border:none;cursor:pointer;font-size:14px;"
-        >Expand all</button>
-        <button
-          @click=${collapseAll}
-          style="padding:6px 14px;border-radius:4px;background:#6b7280;color:white;border:none;cursor:pointer;font-size:14px;"
-        >Collapse all</button>
-      </div>
+      <ui-stack direction="row" gap="8px" style="margin-bottom:12px;">
+        <ui-button @click=${expandAll}>Expand all</ui-button>
+        <ui-button @click=${collapseAll}>Collapse all</ui-button>
+      </ui-stack>
       <ui-rich-tree-view
         id="rich-controlled-tree"
         .items=${FILESYSTEM_ITEMS}

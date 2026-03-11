@@ -3,6 +3,8 @@ import { html, nothing } from 'lit';
 import './ui-stepper';
 import '../paper/ui-paper';
 import '../button/ui-button';
+import '../stack/ui-stack';
+import '../box/ui-box';
 import type { UiStepper, UiStep, UiMobileStepper, UiStepContent } from './ui-stepper';
 
 const meta: Meta = {
@@ -77,11 +79,9 @@ export const LinearHorizontal: Story = {
                 <strong>Step 1:</strong> ${steps[0]}
             </div>
 
-            <div style="display:flex;gap:8px;padding:0 24px 16px;">
-                <button style="padding:7px 18px;border-radius:6px;font-size:.8rem;font-family:inherit;background:#fff;border:1px solid #e2e8f0;color:#374151;cursor:pointer;"
-                    @click=${() => { step = Math.max(0, step - 1); syncUI(); }}>Back</button>
-                <button style="padding:7px 18px;border-radius:6px;font-size:.8rem;font-family:inherit;background:#3b82f6;color:#fff;border:none;cursor:pointer;"
-                    @click=${() => {
+            <ui-stack direction="row" gap="8px" p="0 24px 16px">
+                <ui-button variant="outlined" @click=${() => { step = Math.max(0, step - 1); syncUI(); }}>Back</ui-button>
+                <ui-button @click=${() => {
                 const sd = document.getElementById('lh-stepper') as UiStepper | null;
                 if (!sd) return;
                 if (step < steps.length - 1) {
@@ -94,8 +94,8 @@ export const LinearHorizontal: Story = {
                 syncUI();
             }}>
                     ${step >= steps.length - 1 ? 'Finish' : 'Next'}
-                </button>
-            </div>
+                </ui-button>
+            </ui-stack>
         `));
     },
 };
@@ -131,11 +131,9 @@ export const NonLinear: Story = {
                 <span style="font-size:.75rem;color:#9ca3af;margin-left:8px;">(Click steps above to navigate freely)</span>
             </div>
 
-            <div style="display:flex;gap:8px;padding:0 24px 16px;font-family:Inter,sans-serif;">
-                <button style="padding:7px 18px;border-radius:6px;font-size:.8rem;font-family:inherit;background:#3b82f6;color:#fff;border:none;cursor:pointer;"
-                    @click=${() => { completed.add(active); syncNL(); }}>Mark Complete</button>
-                <button style="padding:7px 18px;border-radius:6px;font-size:.8rem;font-family:inherit;background:#fff;border:1px solid #e2e8f0;color:#374151;cursor:pointer;"
-                    @click=${() => { completed.delete(active); syncNL(); }}>Reset Step</button>
+            <ui-stack direction="row" gap="8px" p="0 24px 16px" style="font-family:Inter,sans-serif;">
+                <ui-button @click=${() => { completed.add(active); syncNL(); }}>Mark Complete</ui-button>
+                <ui-button variant="outlined" @click=${() => { completed.delete(active); syncNL(); }}>Reset Step</ui-button>
             </div>
         `));
     },
@@ -188,14 +186,12 @@ export const Vertical: Story = {
                         <span slot="label">${s.label}</span>
                         <ui-step-content ?open=${i === 0}>
                             <div style="color:#374151;font-size:.875rem;margin-bottom:12px;">${s.content}</div>
-                            <div style="display:flex;gap:8px;">
-                                <button style="padding:6px 14px;border-radius:6px;font-size:.8rem;font-family:Inter,sans-serif;background:#3b82f6;color:#fff;border:none;cursor:pointer;"
-                                    @click=${() => { if (step < steps.length - 1) step++; syncV(); }}>Continue</button>
+                            <ui-stack direction="row" gap="8px;">
+                                <ui-button @click=${() => { if (step < steps.length - 1) step++; syncV(); }}>Continue</ui-button>
                                 ${i > 0 ? html`
-                                    <button style="padding:6px 14px;border-radius:6px;font-size:.8rem;font-family:Inter,sans-serif;background:#fff;border:1px solid #e2e8f0;color:#374151;cursor:pointer;"
-                                        @click=${() => { step = Math.max(0, step - 1); syncV(); }}>Back</button>
+                                    <ui-button variant="outlined" @click=${() => { step = Math.max(0, step - 1); syncV(); }}>Back</ui-button>
                                 ` : nothing}
-                            </div>
+                            </ui-stack>
                         </ui-step-content>
                     </ui-step>
                 `)}
@@ -289,11 +285,9 @@ export const ErrorRecovery: Story = {
                 ⚠️ There is a validation error in step 2. Fix it to continue.
             </div>
 
-            <div style="display:flex;gap:8px;padding:0 24px 16px;font-family:Inter,sans-serif;">
-                <button style="padding:7px 18px;border-radius:6px;font-size:.8rem;font-family:inherit;background:#22c55e;color:#fff;border:none;cursor:pointer;"
-                    @click=${() => { hasError = false; update(); }}>Fix Error</button>
-                <button style="padding:7px 18px;border-radius:6px;font-size:.8rem;font-family:inherit;background:#fff;border:1px solid #e2e8f0;color:#374151;cursor:pointer;"
-                    @click=${() => { hasError = true; update(); }}>Re-introduce Error</button>
+            <ui-stack direction="row" gap="8px" p="0 24px 16px" style="font-family:Inter,sans-serif;">
+                <ui-button @click=${() => { hasError = false; update(); }}>Fix Error</ui-button>
+                <ui-button variant="outlined" @click=${() => { hasError = true; update(); }}>Re-introduce Error</ui-button>
             </div>
         `));
     },
@@ -356,13 +350,10 @@ export const Controlled: Story = {
                 External state: step = 0
             </div>
 
-            <div style="display:flex;gap:8px;padding:16px 24px;font-family:Inter,sans-serif;">
-                <button style="padding:7px 18px;border-radius:6px;font-size:.8rem;font-family:inherit;background:#fff;border:1px solid #e2e8f0;color:#374151;cursor:pointer;"
-                    @click=${() => { externalStep = Math.max(0, externalStep - 1); render(); }}>← Prev</button>
-                <button style="padding:7px 18px;border-radius:6px;font-size:.8rem;font-family:inherit;background:#3b82f6;color:#fff;border:none;cursor:pointer;"
-                    @click=${() => { externalStep = Math.min(steps.length - 1, externalStep + 1); render(); }}>Next →</button>
-                <button style="padding:7px 18px;border-radius:6px;font-size:.8rem;font-family:inherit;background:#fff;border:1px solid #e2e8f0;color:#6b7280;cursor:pointer;margin-left:auto;"
-                    @click=${() => { externalStep = 0; render(); }}>Reset</button>
+            <ui-stack direction="row" gap="8px" p="16px 24px" style="font-family:Inter,sans-serif;">
+                <ui-button variant="outlined" @click=${() => { externalStep = Math.max(0, externalStep - 1); render(); }}>← Prev</ui-button>
+                <ui-button @click=${() => { externalStep = Math.min(steps.length - 1, externalStep + 1); render(); }}>Next →</ui-button>
+                <ui-button variant="outlined" style="margin-left:auto;" @click=${() => { externalStep = 0; render(); }}>Reset</ui-button>
             </div>
         `));
     },
@@ -379,10 +370,9 @@ export const MobileStepperText: Story = {
 
         return panel(html`
             <div style="width:320px;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08);">
-                <div id="ms-text-content"
-                    style="height:160px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;background:#f8fafc;">
+                <ui-box id="ms-text-content" display="flex" alignItems="center" justifyContent="center" height="160px" style="font-size:2.5rem;background:var(--ui-muted-background, #f8fafc);">
                     ${slides[step]}
-                </div>
+                </ui-box>
                 <ui-mobile-stepper id="ms-text" variant="text" .steps=${steps} .activeStep=${step} position="static"
                     @ui-mobile-step-back=${() => {
                 const el = document.getElementById('ms-text') as UiMobileStepper;
@@ -416,10 +406,9 @@ export const MobileStepperDots: Story = {
 
         return panel(html`
             <div style="width:320px;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08);">
-                <div id="ms-dots-content"
-                    style="height:160px;display:flex;align-items:center;justify-content:center;font-size:1rem;font-family:Inter,sans-serif;font-weight:600;color:#fff;background:${colors[step]};transition:background .3s;">
+                <ui-box id="ms-dots-content" display="flex" alignItems="center" justifyContent="center" height="160px" style="font-size:1rem;font-family:Inter,sans-serif;font-weight:600;color:#fff;background:${colors[step]};transition:background .3s;">
                     ${labels[step]}
-                </div>
+                </ui-box>
                 <ui-mobile-stepper id="ms-dots" variant="dots" .steps=${steps} .activeStep=${step} position="static"
                     @ui-mobile-step-back=${() => {
                 const el = document.getElementById('ms-dots') as UiMobileStepper;
@@ -451,7 +440,7 @@ export const MobileStepperProgress: Story = {
 
         return panel(html`
             <div style="width:360px;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08);">
-                <div style="padding:20px 24px;background:#f8fafc;font-family:Inter,sans-serif;">
+                <div style="padding:20px 24px;background:var(--ui-muted-background, #f8fafc);font-family:Inter,sans-serif;">
                     <div id="ms-prog-label" style="font-weight:600;color:#374151;margin-bottom:4px;">Step 1 of ${steps}</div>
                     <div style="font-size:.8rem;color:#6b7280;">Long installation wizard with many steps</div>
                 </div>
@@ -489,10 +478,9 @@ export const MobileStepperCustomButtons: Story = {
                 Replace the default Back/Next buttons via <code>slot="back-button"</code> and <code>slot="next-button"</code>.
             </p>
             <div style="width:340px;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08);">
-                <div id="ms-custom-content"
-                    style="height:120px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;font-family:Inter,sans-serif;color:#374151;background:#f8fafc;">
+                <ui-box id="ms-custom-content" display="flex" alignItems="center" justifyContent="center" height="120px" style="font-size:1.25rem;font-family:Inter,sans-serif;color:#374151;background:var(--ui-muted-background, #f8fafc);">
                     Slide ${step + 1}
-                </div>
+                </ui-box>
                 <ui-mobile-stepper id="ms-custom" variant="dots" .steps=${steps} .activeStep=${step} position="static"
                     @ui-mobile-step-back=${() => {
                 const el = document.getElementById('ms-custom') as UiMobileStepper;
@@ -509,18 +497,14 @@ export const MobileStepperCustomButtons: Story = {
                 if (c) c.textContent = `Slide ${step + 1}`;
             }}
                 >
-                    <button slot="back-button"
-                        style="background:none;border:none;cursor:pointer;padding:4px 8px;font-size:1.25rem;color:#6b7280;border-radius:4px;"
-                        aria-label="Previous slide"
+                    <ui-button slot="back-button" variant="text" aria-label="Previous slide"
                         @click=${() => document.getElementById('ms-custom')?.dispatchEvent(new CustomEvent('ui-mobile-step-back', { bubbles: true }))}>
                         ‹
-                    </button>
-                    <button slot="next-button"
-                        style="background:none;border:none;cursor:pointer;padding:4px 8px;font-size:1.25rem;color:#3b82f6;border-radius:4px;"
-                        aria-label="Next slide"
+                    </ui-button>
+                    <ui-button slot="next-button" variant="text" aria-label="Next slide"
                         @click=${() => document.getElementById('ms-custom')?.dispatchEvent(new CustomEvent('ui-mobile-step-next', { bubbles: true }))}>
                         ›
-                    </button>
+                    </ui-button>
                 </ui-mobile-stepper>
             </div>
         `);

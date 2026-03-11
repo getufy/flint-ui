@@ -3,6 +3,7 @@ import { html } from 'lit';
 import './ui-image-list';
 import './ui-image-list-item';
 import './ui-image-list-item-bar';
+import '../button/ui-button';
 
 const meta: Meta = {
   title: 'Layout/Image List',
@@ -236,7 +237,7 @@ export const WithTitleBars: Story = {
           <ui-image-list-item-bar slot="bar">
             ${img.title}
             <span slot="subtitle">${img.author}</span>
-            <button slot="action" style="background:none;border:none;cursor:pointer;color:#fff;font-size:18px;" title="Star">★</button>
+            <ui-button slot="action" variant="text" title="Star" style="font-size:18px;">★</ui-button>
           </ui-image-list-item-bar>
         </ui-image-list-item>
       `)}
@@ -274,7 +275,7 @@ export const TitleBarBelow: Story = {
           <ui-image-list-item-bar slot="bar" position="below">
             ${img.title}
             <span slot="subtitle">${img.author}</span>
-            <button slot="action" style="background:none;border:none;cursor:pointer;font-size:18px;" title="Info">ℹ</button>
+            <ui-button slot="action" variant="text" title="Info" style="font-size:18px;">ℹ</ui-button>
           </ui-image-list-item-bar>
         </ui-image-list-item>
       `)}
@@ -328,7 +329,7 @@ export const FitContain: Story = {
     </p>
     <ui-image-list variant="standard" .cols=${args.cols} .gap=${args.gap} .rowHeight=${args.rowHeight}>
       ${IMAGES.slice(0, 6).map(img => html`
-        <ui-image-list-item .fit=${'contain'} style="background:#1f2937;">
+        <ui-image-list-item .fit=${'contain'} style="background:var(--ui-demo-background-dark, #1f2937);">
           <img src="${img.url}" alt="${img.title}" loading="lazy" />
         </ui-image-list-item>
       `)}

@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './ui-range-slider.js';
+import '../stack/ui-stack';
 
 const meta: Meta = {
     title: 'Inputs/Range Slider',
@@ -152,7 +153,7 @@ export const Sizes: Story = {
         <p style="font-size:14px;color:#555;margin-bottom:16px;">
             The <code>size</code> prop scales the track thickness and thumb diameter.
         </p>
-        <div style="display:flex;flex-direction:column;gap:16px;max-width:400px">
+        <ui-stack direction="column" gap="16px" style="max-width:400px">
             <ui-range-slider
                 .value=${[20, 80] as [number, number]}
                 size="sm"
@@ -174,7 +175,7 @@ export const Sizes: Story = {
                 show-value
                 @ui-range-slider-change=${(e: CustomEvent) => console.log('change:', e.detail.value)}
             ></ui-range-slider>
-        </div>
+        </ui-stack>
     `,
 };
 
@@ -278,7 +279,7 @@ export const DarkMode: Story = {
     name: 'Dark mode',
     parameters: { controls: { disable: true } },
     render: () => html`
-        <div class="ui-theme-dark" style="background:#09090b;padding:24px;border-radius:8px">
+        <div class="ui-theme-dark" style="background:var(--ui-surface-background, #09090b);padding:24px;border-radius:8px">
             <ui-range-slider
                 .value=${[25, 75] as [number, number]}
                 label="Price range"

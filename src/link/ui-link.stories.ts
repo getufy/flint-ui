@@ -3,6 +3,7 @@ import { html } from 'lit';
 import { UiLink } from './ui-link';
 import './ui-link';
 import '../box/ui-box';
+import '../stack/ui-stack';
 
 const meta: Meta = {
     title: 'Navigation/Link',
@@ -121,14 +122,14 @@ export const TypographyVariants: Story = {
         <div style="${sectionStyles}">
             <div>
                 <div style="${labelStyles}">Typography Variants</div>
-                <div style="display:flex;flex-direction:column;gap:12px;">
+                <ui-stack direction="column" gap="12px">
                     ${(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1', 'subtitle2', 'body1', 'body2', 'caption', 'overline'] as const).map(v => html`
                         <div>
                             <span style="font-size:.7rem;color:#94a3b8;width:90px;display:inline-block;">${v}</span>
                             <ui-link href="#" .variant=${v}>${v} link</ui-link>
                         </div>
                     `)}
-                </div>
+                </ui-stack>
             </div>
         </div>
     `,
@@ -167,9 +168,9 @@ export const Disabled: Story = {
                 <ui-link href="#" disabled>Disabled Link</ui-link>
                 <ui-link href="#" color="secondary" disabled>Disabled Secondary</ui-link>
             </div>
-            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:12px;font-size:.875rem;color:#475569;">
+            <ui-box bgcolor="var(--ui-muted-background, #f8fafc)" border="1px solid #e2e8f0" borderRadius="6px" p="12px" style="font-size:.875rem;color:#475569;">
                 Disabled links have no <code>href</code>, <code>tabindex="-1"</code>, and click events are prevented — inaccessible to both mouse and keyboard.
-            </div>
+            </ui-box>
         </div>
     `,
 };
@@ -182,7 +183,7 @@ export const Rel: Story = {
         <div style="${sectionStyles}">
             <div>
                 <div style="${labelStyles}">Custom rel values</div>
-                <div style="display:flex;flex-direction:column;gap:12px;font-size:.875rem;">
+                <ui-stack direction="column" gap="12px" style="font-size:.875rem;">
                     <div>
                         <span style="${labelStyles}">rel="nofollow" (SEO — tell crawlers not to follow)</span><br>
                         <ui-link href="https://example.com" rel="nofollow">nofollow link</ui-link>
@@ -209,7 +210,7 @@ export const Download: Story = {
         <div style="${sectionStyles}">
             <div>
                 <div style="${labelStyles}">download prop — triggers file download instead of navigation</div>
-                <div style="display:flex;flex-direction:column;gap:12px;">
+                <ui-stack direction="column" gap="12px">
                     <div>
                         <span style="${labelStyles}">download with filename</span><br>
                         <ui-link href="/assets/report.pdf" download="annual-report-2025.pdf">Download Annual Report (PDF)</ui-link>
@@ -232,7 +233,7 @@ export const AriaLabel: Story = {
         <div style="${sectionStyles}">
             <div>
                 <div style="${labelStyles}">label prop — provides accessible name for icon-only or ambiguous links</div>
-                <div style="display:flex;flex-direction:column;gap:16px;">
+                <ui-stack direction="column" gap="16px">
                     <div>
                         <span style="${labelStyles}">Icon-only link with label</span><br>
                         <ui-link href="#" label="Go to homepage">

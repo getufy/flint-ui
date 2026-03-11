@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './ui-box';
+import '../stack/ui-stack';
 
 const meta: Meta = {
     title: 'Layout/Box',
@@ -290,7 +291,7 @@ export const AsSemantic: Story = {
 
 export const CssCustomProperties: Story = {
     render: () => html`
-        <div style="display:flex; gap:16px; flex-wrap:wrap;">
+        <ui-stack direction="row" gap="16px" style="flex-wrap:wrap;">
             <ui-box
                 p="20px"
                 borderRadius="8px"
@@ -305,7 +306,7 @@ export const CssCustomProperties: Story = {
             >
                 Custom shadow via <code>--ui-box-shadow</code>
             </ui-box>
-        </div>
+        </ui-stack>
     `,
 };
 
@@ -313,7 +314,7 @@ export const CssCustomProperties: Story = {
 
 export const DarkMode: Story = {
     render: () => html`
-        <div class="ui-theme-dark" style="background:#111827; padding:24px; border-radius:12px;">
+        <div class="ui-theme-dark" style="background:var(--ui-surface-background, #111827); padding:24px; border-radius:12px;">
             <ui-box display="flex" gap="12px" flexWrap="wrap">
                 <ui-box bgcolor="primary" color="white" p="16px" borderRadius="8px">
                     Primary bg

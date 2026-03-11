@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
+import '../button/ui-button';
 import { html } from 'lit';
+import '../button/ui-button';
 import './ui-radio';
+import '../button/ui-button';
 
 const meta: Meta = {
     title: 'Inputs/Radio Group',
@@ -137,7 +140,7 @@ export const Required: Story = {
                 <ui-radio value="pro" label="Pro"></ui-radio>
                 <ui-radio value="enterprise" label="Enterprise"></ui-radio>
             </ui-radio-group>
-            <button type="submit" style="margin-top: 12px;">Submit</button>
+            <ui-button type="submit" style="margin-top: 12px;">Submit</ui-button>
         </form>
     `,
 };

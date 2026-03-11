@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
+import '../button/ui-button';
 import { html } from 'lit';
+import '../button/ui-button';
 import './ui-checkbox';
+import '../button/ui-button';
 
 const meta: Meta = {
     title: 'Inputs/Checkbox',
@@ -118,7 +121,7 @@ export const FormUsage: Story = {
             <div style="display: flex; flex-direction: column; gap: 12px; max-width: 300px;">
                 <ui-checkbox name="newsletter" value="yes" label="Subscribe to newsletter"></ui-checkbox>
                 <ui-checkbox name="terms" value="accepted" required label="Accept terms (required)"></ui-checkbox>
-                <button type="submit" style="margin-top: 8px; padding: 8px 16px; cursor: pointer;">Submit</button>
+                <ui-button type="submit" style="margin-top: 8px;">Submit</ui-button>
             </div>
         </form>
     `

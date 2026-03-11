@@ -3,7 +3,9 @@ import { html } from 'lit';
 import { UiDrawer } from './ui-drawer';
 import './ui-drawer';  // side-effect: ensures @customElement registers
 import '../button/ui-button';
+import '../box/ui-box';
 import '../paper/ui-paper';
+import '../stack/ui-stack';
 
 const meta: Meta = {
     title: 'Navigation/Drawer',
@@ -67,8 +69,7 @@ function navContent() {
 export const Temporary: Story = {
     args: { open: false, anchor: 'left', variant: 'temporary' },
     render: (args) => html`
-        <div class="story-root"
-             style="position:relative;height:320px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+        <ui-box class="story-root" display="flex" alignItems="center" justifyContent="center" bgcolor="var(--ui-muted-background, #f8fafc)" border="1px solid #e2e8f0" borderRadius="8px" style="position:relative;height:320px;overflow:hidden;">
 
             <ui-drawer
                 .open=${args.open}
@@ -87,7 +88,7 @@ export const Temporary: Story = {
             <p style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:.8rem;color:#94a3b8;margin:0;">
                 Click the button · click the overlay or press Esc to close
             </p>
-        </div>
+        </ui-box>
     `,
 };
 
@@ -104,7 +105,7 @@ export const Persistent: Story = {
             </ui-drawer>
 
             <div style="flex:1;padding:24px;overflow-y:auto;">
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+                <ui-stack direction="row" alignItems="center" justifyContent="space-between" mb="16px">
                     <h2 style="margin:0;font-size:1.25rem;">Persistent Drawer</h2>
                     <ui-button variant="outlined" @click=${toggleDrawer}>Toggle</ui-button>
                 </div>
@@ -138,18 +139,18 @@ export const Mini: Story = {
             { icon: '🗑️', label: 'Trash' },
             { icon: '⚙️', label: 'Settings' },
         ]).map(({ icon, label }) => html`
-                        <div style="display:flex;align-items:center;height:52px;cursor:pointer;transition:background .15s;"
+                        <ui-stack direction="row" alignItems="center" style="height:52px;cursor:pointer;transition:background .15s;"
                              onmouseover="this.style.background='rgba(0,0,0,.06)'"
                              onmouseout="this.style.background=''">
                             <span style="display:flex;align-items:center;justify-content:center;min-width:72px;font-size:22px;">${icon}</span>
                             <span data-drawer-hide-mini style="white-space:nowrap;font-size:.95rem;">${label}</span>
-                        </div>
+                        </ui-stack>
                     `)}
                 </div>
             </ui-drawer>
 
             <div style="flex:1;padding:24px;overflow-y:auto;">
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+                <ui-stack direction="row" alignItems="center" justifyContent="space-between" mb="16px">
                     <h2 style="margin:0;font-size:1.25rem;">Mini Variant</h2>
                     <ui-button variant="outlined" @click=${toggleDrawer}>Toggle</ui-button>
                 </div>
@@ -170,8 +171,7 @@ export const Mini: Story = {
 export const EdgeDrawer: Story = {
     args: { open: false, anchor: 'bottom', edge: true },
     render: (args) => html`
-        <div class="story-root"
-             style="position:relative;height:360px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;">
+        <ui-box class="story-root" display="flex" alignItems="center" justifyContent="center" bgcolor="var(--ui-muted-background, #f8fafc)" border="1px solid #e2e8f0" borderRadius="8px" style="position:relative;height:360px;overflow:hidden;">
 
             <p style="text-align:center;color:#64748b;">↓ Click the edge handle at the bottom to open</p>
 
@@ -188,7 +188,7 @@ export const EdgeDrawer: Story = {
                     <ui-button @click=${closeDrawer}>Close</ui-button>
                 </div>
             </ui-drawer>
-        </div>
+        </ui-box>
     `,
 };
 
@@ -197,8 +197,7 @@ export const EdgeDrawer: Story = {
 /* ================================================================== */
 export const Anchors: Story = {
     render: () => html`
-        <div class="story-root"
-             style="position:relative;height:460px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;padding:24px;display:flex;flex-wrap:wrap;gap:12px;align-content:flex-start;">
+        <ui-box class="story-root" display="flex" flexWrap="wrap" alignContent="flex-start" bgcolor="var(--ui-muted-background, #f8fafc)" border="1px solid #e2e8f0" borderRadius="8px" p="24px" style="position:relative;height:460px;overflow:hidden;gap:12px;">
 
             ${(['left', 'right', 'top', 'bottom'] as const).map(anchor => html`
                 <ui-button variant="outlined"
@@ -226,6 +225,6 @@ export const Anchors: Story = {
             <p style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:.8rem;color:#94a3b8;margin:0;">
                 All four anchors demonstrated — drawers are scoped to this container
             </p>
-        </div>
+        </ui-box>
     `,
 };

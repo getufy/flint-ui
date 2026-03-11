@@ -3,6 +3,8 @@ import { html } from 'lit';
 import './ui-dialog.js';
 import { UiDialog } from './ui-dialog.js';
 import '../button/ui-button.js';
+import '../box/ui-box.js';
+import '../stack/ui-stack.js';
 
 const meta: Meta = {
   title: 'Feedback/Dialog',
@@ -36,7 +38,7 @@ function closeDialog(e: Event) {
 // ── Basic ────────────────────────────────────────────────────────────────────
 export const Basic: Story = {
   render: (args) => html`
-    <div style="height:300px;display:flex;align-items:center;justify-content:center;">
+    <ui-box display="flex" alignItems="center" justifyContent="center" height="300px">
       <ui-button @click=${() => openDialog('basic-dialog')}>Open Dialog</ui-button>
 
       <ui-dialog
@@ -63,7 +65,7 @@ export const Basic: Story = {
     }}>Discard</ui-button>
         </ui-dialog-actions>
       </ui-dialog>
-    </div>
+    </ui-box>
   `,
 };
 
@@ -75,7 +77,7 @@ export const Basic: Story = {
  */
 export const Confirmation: Story = {
   render: () => html`
-    <div style="height:300px;display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap;">
+    <ui-stack direction="row" gap="16px" alignItems="center" justifyContent="center" style="height:300px;flex-wrap:wrap;">
 
       <!-- Trigger buttons for different confirmation types -->
       <ui-button color="error" variant="primary" @click=${() => openDialog('delete-confirm-dialog')}>
@@ -178,14 +180,14 @@ export const Confirmation: Story = {
     }}>Log Out</ui-button>
         </ui-dialog-actions>
       </ui-dialog>
-    </div>
+    </ui-stack>
   `,
 };
 
 // ── Transitions ──────────────────────────────────────────────────────────────
 export const Transitions: Story = {
   render: () => html`
-    <div style="height:300px;display:flex;gap:16px;align-items:center;justify-content:center;">
+    <ui-stack direction="row" gap="16px" alignItems="center" justifyContent="center" style="height:300px;">
       <ui-button @click=${() => openDialog('slide-up-dialog')}>Slide Up</ui-button>
       <ui-button @click=${() => openDialog('slide-down-dialog')}>Slide Down</ui-button>
       <ui-button @click=${() => openDialog('scale-dialog')}>Scale (default)</ui-button>
@@ -228,14 +230,14 @@ export const Transitions: Story = {
     }}>Got it</ui-button>
         </ui-dialog-actions>
       </ui-dialog>
-    </div>
+    </ui-stack>
   `,
 };
 
 // ── Large / Scrolling Content ─────────────────────────────────────────────
 export const LargeContent: Story = {
   render: () => html`
-    <div style="height:300px;display:flex;align-items:center;justify-content:center;">
+    <ui-box display="flex" alignItems="center" justifyContent="center" height="300px">
       <ui-button @click=${() => openDialog('scroll-dialog')}>Privacy Policy</ui-button>
 
       <ui-dialog id="scroll-dialog" @close=${closeDialog}>
@@ -260,7 +262,7 @@ export const LargeContent: Story = {
     }}>I Understand</ui-button>
         </ui-dialog-actions>
       </ui-dialog>
-    </div>
+    </ui-box>
   `,
 };
 
@@ -272,7 +274,7 @@ export const LargeContent: Story = {
  */
 export const NestedDialog: Story = {
   render: () => html`
-    <div style="height:400px;display:flex;align-items:center;justify-content:center;">
+    <ui-box display="flex" alignItems="center" justifyContent="center" height="400px">
       <ui-button @click=${() => openDialog('nested-parent-dialog')}>Open Settings</ui-button>
 
       <!-- Parent dialog -->
@@ -331,7 +333,7 @@ export const NestedDialog: Story = {
   }}>Yes, Delete</ui-button>
         </ui-dialog-actions>
       </ui-dialog>
-    </div>
+    </ui-box>
   `,
 };
 
@@ -342,13 +344,13 @@ export const NestedDialog: Story = {
  */
 export const FormDialog: Story = {
   render: () => html`
-    <div style="height:360px;display:flex;align-items:center;justify-content:center;">
+    <ui-box display="flex" alignItems="center" justifyContent="center" height="360px">
       <ui-button @click=${() => openDialog('form-dialog')}>Edit Profile</ui-button>
 
       <ui-dialog id="form-dialog" @close=${closeDialog}>
         <ui-dialog-title>Edit Profile</ui-dialog-title>
         <ui-dialog-content>
-          <div style="display:flex;flex-direction:column;gap:12px;padding-top:4px;">
+          <ui-stack direction="column" gap="12px" style="padding-top:4px;">
             <label style="display:flex;flex-direction:column;gap:4px;font-size:.875rem;font-weight:500;">
               Full name
               <input id="form-name" type="text" placeholder="Jane Doe"
@@ -359,7 +361,7 @@ export const FormDialog: Story = {
               <input id="form-email" type="email" placeholder="jane@example.com"
                 style="padding:8px 12px;border:1px solid #d1d5db;border-radius:6px;font-size:.9375rem;outline:none;" />
             </label>
-          </div>
+          </ui-stack>
         </ui-dialog-content>
         <ui-dialog-actions>
           <ui-button variant="secondary" @click=${(e: Event) => {
@@ -375,7 +377,7 @@ export const FormDialog: Story = {
   }}>Save Changes</ui-button>
         </ui-dialog-actions>
       </ui-dialog>
-    </div>
+    </ui-box>
   `,
 };
 
@@ -386,7 +388,7 @@ export const FormDialog: Story = {
  */
 export const Alert: Story = {
   render: () => html`
-    <div style="height:300px;display:flex;align-items:center;justify-content:center;">
+    <ui-box display="flex" alignItems="center" justifyContent="center" height="300px">
       <ui-button color="error" variant="primary" @click=${() => openDialog('alert-dialog')}>
         Show Alert
       </ui-button>
@@ -405,14 +407,14 @@ export const Alert: Story = {
   }}>OK, Got It</ui-button>
         </ui-dialog-actions>
       </ui-dialog>
-    </div>
+    </ui-box>
   `,
 };
 
 // ── Disable Backdrop Close ────────────────────────────────────────────────
 export const DisableBackdropClose: Story = {
   render: () => html`
-    <div style="height:300px;display:flex;align-items:center;justify-content:center;">
+    <ui-box display="flex" alignItems="center" justifyContent="center" height="300px">
       <ui-button @click=${() => openDialog('locked-dialog')}>Open Locked Dialog</ui-button>
 
       <ui-dialog id="locked-dialog" disable-backdrop-close @close=${closeDialog}>
@@ -434,6 +436,6 @@ export const DisableBackdropClose: Story = {
     }}>Confirm</ui-button>
         </ui-dialog-actions>
       </ui-dialog>
-    </div>
+    </ui-box>
   `,
 };

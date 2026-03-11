@@ -4,6 +4,7 @@ import { userEvent, expect, waitFor } from 'storybook/test';
 import './ui-date-range-picker.js';
 import './ui-date-range-calendar.js';
 import './ui-single-input-date-range-field.js';
+import '../stack/ui-stack.js';
 import type { UiDateRangePicker } from './ui-date-range-picker.js';
 import type { UiSingleInputDateRangeField } from './ui-single-input-date-range-field.js';
 import { type DateRange } from './date-range-helpers.js';
@@ -559,7 +560,7 @@ export const AllVariants: Story = {
     render: () => html`
     <div style="padding:32px;font-family:Inter,sans-serif;">
       <h3 style="margin:0 0 24px;font-size:1rem;font-weight:600;color:#374151;">Date Range Picker Variants</h3>
-      <div style="display:flex;flex-direction:column;gap:48px;align-items:flex-start;">
+      <ui-stack direction="column" gap="48px" alignItems="flex-start">
 
         <div>
           <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;color:#6b7280;letter-spacing:.05em;margin:0 0 12px;">Desktop (Popover)</p>
@@ -590,7 +591,7 @@ export const AllVariants: Story = {
 export const SingleInputField: Story = {
     name: 'Single Input Field (standalone)',
     render: () => html`
-    <div style="padding:48px;font-family:Inter,sans-serif;display:flex;flex-direction:column;gap:32px;">
+    <ui-stack direction="column" gap="32px" style="padding:48px;font-family:Inter,sans-serif;">
       <div>
         <h3 style="margin:0 0 16px;font-size:1rem;font-weight:600;color:#111827;">
           SingleInputDateRangeField
@@ -619,7 +620,7 @@ export const SingleInputField: Story = {
         ></ui-single-input-date-range-field>
       </div>
 
-      <div style="display:flex;gap:24px;flex-wrap:wrap;">
+      <ui-stack direction="row" gap="24px" style="flex-wrap:wrap;">
         <div>
           <p style="margin:0 0 10px;font-size:.8rem;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.04em;">Disabled</p>
           <ui-single-input-date-range-field
@@ -636,8 +637,8 @@ export const SingleInputField: Story = {
             helper-text="End must be after start"
           ></ui-single-input-date-range-field>
         </div>
-      </div>
-    </div>
+      </ui-stack>
+    </ui-stack>
   `,
 
     /**
@@ -994,7 +995,7 @@ export const StaticWithMinMax: Story = {
 export const FieldReadOnly: Story = {
     name: 'Field: Read Only',
     render: () => html`
-    <div style="padding:48px;font-family:Inter,sans-serif;display:flex;flex-direction:column;gap:24px;">
+    <ui-stack direction="column" gap="24px" style="padding:48px;font-family:Inter,sans-serif;">
       <div>
         <p style="margin:0 0 8px;font-size:.8rem;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.04em;">Read Only</p>
         <ui-single-input-date-range-field
@@ -1012,7 +1013,7 @@ export const FieldReadOnly: Story = {
           helper-text="This range is locked and cannot be changed."
         ></ui-single-input-date-range-field>
       </div>
-    </div>
+    </ui-stack>
   `,
 };
 
@@ -1020,7 +1021,7 @@ export const FieldReadOnly: Story = {
 export const FieldStates: Story = {
     name: 'Field: All States',
     render: () => html`
-    <div style="padding:48px;font-family:Inter,sans-serif;display:flex;flex-direction:column;gap:28px;">
+    <ui-stack direction="column" gap="28px" style="padding:48px;font-family:Inter,sans-serif;">
       <div>
         <p style="margin:0 0 8px;font-size:.8rem;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:.04em;">Default (empty)</p>
         <ui-single-input-date-range-field label="Select a range"></ui-single-input-date-range-field>

@@ -1,7 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
+import '../button/ui-button';
 import { html } from 'lit';
+import '../button/ui-button';
 import './ui-input-otp.js';
+import '../button/ui-button';
 import type { UiInputOtp } from './ui-input-otp.js';
+import '../button/ui-button';
 
 type UiInputOtpEl = UiInputOtp;
 
@@ -394,10 +398,7 @@ export const InteractiveError: Story = {
                         <ui-input-otp-slot index="5"></ui-input-otp-slot>
                     </ui-input-otp-group>
                 </ui-input-otp>
-                <button
-                    @click=${handleVerify}
-                    style="margin-top: 16px; padding: 8px 20px; background: #3b82f6; color: #fff; border: none; border-radius: 6px; font-size: 0.875rem; cursor: pointer;"
-                >Verify</button>
+                <ui-button @click=${handleVerify} style="margin-top: 16px;">Verify</ui-button>
                 <p id="err-msg" style="display: none; margin: 10px 0 0; font-size: 0.8125rem; color: #ef4444;"></p>
             </div>
         `;

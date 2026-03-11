@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import '../stack/ui-stack.js';
 
 const meta: Meta = {
     title: 'Docs/Theme Tokens',
@@ -14,7 +15,7 @@ type Story = StoryObj;
 /* ─── helpers ──────────────────────────────────────────────────────────── */
 
 const swatch = (token: string, label?: string) => html`
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+    <ui-stack direction="row" alignItems="center" gap="12px" style="margin-bottom:8px;">
         <div style="
             width:40px;height:40px;border-radius:6px;flex-shrink:0;
             background:var(${token});
@@ -24,11 +25,11 @@ const swatch = (token: string, label?: string) => html`
             <code style="font-size:0.8125rem;">${token}</code>
             ${label ? html`<div style="font-size:0.75rem;color:var(--ui-text-color-muted);margin-top:2px;">${label}</div>` : ''}
         </div>
-    </div>
+    </ui-stack>
 `;
 
 const radiusSwatch = (token: string, label: string) => html`
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+    <ui-stack direction="row" alignItems="center" gap="12px" style="margin-bottom:8px;">
         <div style="
             width:48px;height:32px;flex-shrink:0;
             background:var(--ui-primary-color-light);
@@ -39,11 +40,11 @@ const radiusSwatch = (token: string, label: string) => html`
             <code style="font-size:0.8125rem;">${token}</code>
             <div style="font-size:0.75rem;color:var(--ui-text-color-muted);margin-top:2px;">${label}</div>
         </div>
-    </div>
+    </ui-stack>
 `;
 
 const shadowSwatch = (token: string, label: string) => html`
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+    <ui-stack direction="row" alignItems="center" gap="12px" style="margin-bottom:12px;">
         <div style="
             width:48px;height:32px;flex-shrink:0;border-radius:6px;
             background:var(--ui-surface-1);
@@ -53,7 +54,7 @@ const shadowSwatch = (token: string, label: string) => html`
             <code style="font-size:0.8125rem;">${token}</code>
             <div style="font-size:0.75rem;color:var(--ui-text-color-muted);margin-top:2px;">${label}</div>
         </div>
-    </div>
+    </ui-stack>
 `;
 
 const section = (title: string, content: unknown) => html`
@@ -171,14 +172,14 @@ export const Text: Story = {
     render: () => html`
         <div style="font-family:var(--ui-font-family);max-width:480px;">
             ${section('Text colors', html`
-                <div style="display:flex;flex-direction:column;gap:6px;">
+                <ui-stack direction="column" gap="6px">
                     ${(['--ui-text-color', '--ui-text-color-muted', '--ui-text-color-subtle', '--ui-text-color-on-primary', '--ui-label-color', '--ui-input-placeholder-color', '--ui-help-text-color'] as const).map(t => html`
-                        <div style="display:flex;align-items:center;gap:12px;">
+                        <ui-stack direction="row" alignItems="center" gap="12px">
                             <span style="color:var(${t});font-size:1.25rem;font-weight:700;width:32px;text-align:center;">Aa</span>
                             <code style="font-size:0.8125rem;color:var(--ui-text-color-muted);">${t}</code>
-                        </div>
+                        </ui-stack>
                     `)}
-                </div>
+                </ui-stack>
             `)}
         </div>
     `,
@@ -210,10 +211,10 @@ export const Radii: Story = {
                 ${radiusSwatch('--ui-border-radius-full', '9999px — pills, chips')}
             `)}
             ${section('Semantic aliases', html`
-                <div style="font-size:0.8125rem;color:var(--ui-text-color-muted);display:flex;flex-direction:column;gap:4px;">
+                <ui-stack direction="column" gap="4px" style="font-size:0.8125rem;color:var(--ui-text-color-muted);">
                     <div><code>--ui-card-border-radius</code> → <code>--ui-border-radius-xl</code></div>
                     <div><code>--ui-input-border-radius</code> → <code>--ui-border-radius-md</code></div>
-                </div>
+                </ui-stack>
             `)}
         </div>
     `,

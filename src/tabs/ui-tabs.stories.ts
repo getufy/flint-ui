@@ -1,7 +1,10 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './ui-tabs';
+import '../button/ui-button';
 import '../paper/ui-paper';
+import '../stack/ui-stack';
+import '../box/ui-box';
 
 const meta: Meta = {
     title: 'Navigation/Tabs',
@@ -127,7 +130,7 @@ export const WrappedLabels: Story = {
 /* ================================================================== */
 export const Colored: Story = {
     render: () => html`
-        <div style="display:flex;flex-direction:column;gap:24px;">
+        <ui-stack direction="column" gap="24px">
             ${[
             { label: 'Primary (default)', text: 'primary', ind: 'primary' },
             { label: 'Secondary', text: 'secondary', ind: 'secondary' },
@@ -159,7 +162,7 @@ export const Colored: Story = {
                     `)}
                 </div>
             `)}
-        </div>`,
+        </ui-stack>`,
 };
 
 /* ================================================================== */
@@ -187,7 +190,7 @@ export const DisabledTab: Story = {
 /* ================================================================== */
 export const FullWidth: Story = {
     render: () => html`
-        <div style="display:flex;flex-direction:column;gap:24px;">
+        <ui-stack direction="column" gap="24px">
             <div>
                 <p style="font-family:Inter,sans-serif;font-size:.75rem;color:#6b7280;font-weight:600;
                            text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px;">
@@ -222,7 +225,7 @@ export const FullWidth: Story = {
                     </ui-tabs>
                 `)}
             </div>
-        </div>`,
+        </ui-stack>`,
 };
 
 /* ================================================================== */
@@ -267,7 +270,7 @@ export const Scrollable: Story = {
 /* ================================================================== */
 export const ScrollButtons: Story = {
     render: () => html`
-        <div style="display:flex;flex-direction:column;gap:24px;font-family:Inter,sans-serif;">
+        <ui-stack direction="column" gap="24px" style="font-family:Inter,sans-serif;">
             <div>
                 <p style="margin:0 0 6px;font-size:.75rem;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">
                     scroll-buttons="auto" — arrow buttons appear when tabs overflow
@@ -301,7 +304,7 @@ export const ScrollButtons: Story = {
                     </ui-tabs>
                 `)}
             </div>
-        </div>`,
+        </ui-stack>`,
 };
 
 /* ================================================================== */
@@ -309,9 +312,9 @@ export const ScrollButtons: Story = {
 /* ================================================================== */
 export const Vertical: Story = {
     render: () => html`
-        <div style="border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;
-                    box-shadow:0 2px 8px rgba(0,0,0,.06);background:#fff;
-                    display:flex;min-height:280px;">
+        <ui-box display="flex" border="1px solid #e5e7eb" borderRadius="12px" style="overflow:hidden;
+                    box-shadow:0 2px 8px rgba(0,0,0,.06);background:var(--ui-background, #fff);
+                    min-height:280px;">
             <ui-tabs value="one" orientation="vertical" style="display:flex;width:100%;">
                 <ui-tab-list aria-label="Vertical tabs" style="width:160px;flex-shrink:0;">
                     <ui-tab value="one">Item One</ui-tab>
@@ -328,7 +331,7 @@ export const Vertical: Story = {
                     <ui-tab-panel value="five">${panelContent('Item Five', 'The right border becomes the separator between the tab list and panel.')}</ui-tab-panel>
                 </div>
             </ui-tabs>
-        </div>`,
+        </ui-box>`,
 };
 
 /* ================================================================== */
@@ -336,9 +339,9 @@ export const Vertical: Story = {
 /* ================================================================== */
 export const VerticalScrollable: Story = {
     render: () => html`
-        <div style="border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;
-                    box-shadow:0 2px 8px rgba(0,0,0,.06);background:#fff;
-                    display:flex;height:260px;">
+        <ui-box display="flex" border="1px solid #e5e7eb" borderRadius="12px" style="overflow:hidden;
+                    box-shadow:0 2px 8px rgba(0,0,0,.06);background:var(--ui-background, #fff);
+                    height:260px;">
             <ui-tabs value="0" orientation="vertical" variant="scrollable"
                      scroll-buttons="auto" style="display:flex;width:100%;">
                 <ui-tab-list aria-label="Vertical scrollable" style="width:160px;flex-shrink:0;">
@@ -351,7 +354,7 @@ export const VerticalScrollable: Story = {
                         </ui-tab-panel>`)}
                 </div>
             </ui-tabs>
-        </div>`,
+        </ui-box>`,
 };
 
 /* ================================================================== */
@@ -359,10 +362,10 @@ export const VerticalScrollable: Story = {
 /* ================================================================== */
 export const NavTabs: Story = {
     render: () => html`
-        <div style="font-family:Inter,sans-serif;display:flex;flex-direction:column;gap:24px;">
+        <ui-stack direction="column" gap="24px" style="font-family:Inter,sans-serif;">
             <p style="margin:0;font-size:.875rem;color:#374151;">
-                Set <code style="background:#f3f4f6;padding:2px 5px;border-radius:4px;">href</code>
-                on a tab to render it as an <code style="background:#f3f4f6;padding:2px 5px;border-radius:4px;">&lt;a&gt;</code>
+                Set <code style="background:var(--ui-muted-background, #f3f4f6);padding:2px 5px;border-radius:4px;">href</code>
+                on a tab to render it as an <code style="background:var(--ui-muted-background, #f3f4f6);padding:2px 5px;border-radius:4px;">&lt;a&gt;</code>
                 element — perfect for hash-based or client-side navigation.
             </p>
             ${wrap(html`
@@ -381,7 +384,7 @@ export const NavTabs: Story = {
                     <ui-tab-panel value="contact">${panelContent('Contact', 'All accessibility attributes are preserved on the anchor element.')}</ui-tab-panel>
                 </ui-tabs>
             `)}
-        </div>`,
+        </ui-stack>`,
 };
 
 /* ================================================================== */
@@ -389,7 +392,7 @@ export const NavTabs: Story = {
 /* ================================================================== */
 export const IconPosition: Story = {
     render: () => html`
-        <div style="display:flex;flex-direction:column;gap:24px;">
+        <ui-stack direction="column" gap="24px">
             ${(['top', 'bottom', 'start', 'end'] as const).map(pos => html`
                 <div>
                     <p style="font-family:Inter,sans-serif;margin:0 0 6px;font-size:.75rem;color:#6b7280;
@@ -409,7 +412,7 @@ export const IconPosition: Story = {
                         </ui-tabs>
                     `)}
                 </div>`)}
-        </div>`,
+        </ui-stack>`,
 };
 
 /* ================================================================== */
@@ -439,7 +442,7 @@ export const IconOnly: Story = {
 /* ================================================================== */
 export const WithIcons: Story = {
     render: () => html`
-        <div style="display:flex;flex-direction:column;gap:24px;">
+        <ui-stack direction="column" gap="24px">
             ${wrap(html`
                 <ui-tabs value="recents" text-color="primary">
                     <ui-tab-list aria-label="Tabs with icons">
@@ -473,10 +476,10 @@ export const WithIcons: Story = {
 export const Controlled: Story = {
     render: () => html`
         <div data-controlled-demo style="font-family:Inter,sans-serif;">
-            <div style="display:flex;gap:12px;margin-bottom:16px;">
+            <ui-stack direction="row" gap="12px" style="margin-bottom:16px;">
                 ${(['a', 'b', 'c'] as const).map(v => html`
                     <button
-                        style="padding:8px 16px;border:1px solid #e5e7eb;background:#f9fafb;border-radius:6px;cursor:pointer;font-family:Inter,sans-serif;"
+                        style="padding:8px 16px;border:1px solid #e5e7eb;background:var(--ui-muted-background, #f9fafb);border-radius:6px;cursor:pointer;font-family:Inter,sans-serif;"
                         @click=${(e: MouseEvent) => {
                             const tabs = (e.target as HTMLElement)
                                 .closest('[data-controlled-demo]')
@@ -484,7 +487,7 @@ export const Controlled: Story = {
                             if (tabs) tabs.value = v;
                         }}>Select ${v.toUpperCase()}</button>
                 `)}
-            </div>
+            </ui-stack>
             ${wrap(html`
                 <ui-tabs value="a"
                     @ui-tab-change=${(e: CustomEvent) => {
@@ -500,7 +503,7 @@ export const Controlled: Story = {
                     <ui-tab-panel value="c">${panelContent('Controlled Tab C', 'Works well with any state manager: Redux, signals, or plain JS.')}</ui-tab-panel>
                 </ui-tabs>
             `)}
-        </div>`,
+        </ui-stack>`,
 };
 
 /* ================================================================== */
@@ -526,8 +529,8 @@ export const Uncontrolled: Story = {
 /* ================================================================== */
 export const DarkMode: Story = {
     render: () => html`
-        <div style="display:flex;flex-direction:column;gap:24px;">
-            <div class="ui-theme-dark" style="background:#111827;padding:0;border-radius:12px;overflow:hidden;
+        <ui-stack direction="column" gap="24px">
+            <div class="ui-theme-dark" style="background:var(--ui-surface-background, #111827);padding:0;border-radius:12px;overflow:hidden;
                         border:1px solid #374151;box-shadow:0 2px 8px rgba(0,0,0,.4);">
                 <ui-tabs value="tab1">
                     <ui-tab-list aria-label="Dark mode tabs">
@@ -570,7 +573,7 @@ export const DarkMode: Story = {
                     <ui-tab-panel value="tab3">${panelContent('Light Theme', 'White background with standard border color.')}</ui-tab-panel>
                 </ui-tabs>
             `)}
-        </div>`,
+        </ui-stack>`,
 };
 
 /* ================================================================== */
@@ -579,7 +582,7 @@ export const DarkMode: Story = {
 export const Accessibility: Story = {
     render: () => wrap(html`
         <div style="font-family:Inter,sans-serif;">
-            <div style="margin-bottom:16px;padding:12px;background:#eff6ff;border-left:4px solid #3b82f6;border-radius:4px;font-size:.875rem;color:#1e40af;">
+            <div style="margin-bottom:16px;padding:12px;background:var(--ui-info-background, #eff6ff);border-left:4px solid #3b82f6;border-radius:4px;font-size:.875rem;color:#1e40af;">
                 <strong>Keyboard Navigation:</strong> Use Arrow Left/Right (horizontal) or Arrow Up/Down (vertical) to navigate tabs. Press Home to go to the first tab, End for the last. Disabled tabs are skipped.
             </div>
             <ui-tabs value="home">
@@ -603,9 +606,9 @@ export const TabListOnly: Story = {
     render: () => html`
         <div style="font-family:Inter,sans-serif;">
             <p style="margin:0 0 12px;font-size:.875rem;color:#6b7280;">
-                <code style="background:#f3f4f6;padding:2px 5px;border-radius:4px;">&lt;ui-tab-list&gt;</code>
+                <code style="background:var(--ui-muted-background, #f3f4f6);padding:2px 5px;border-radius:4px;">&lt;ui-tab-list&gt;</code>
                 can be used standalone for filter chips, button groups, or other tab-like patterns (no panels needed).
-                A <code style="background:#f3f4f6;padding:2px 5px;border-radius:4px;">ui-tab-click</code> event
+                A <code style="background:var(--ui-muted-background, #f3f4f6);padding:2px 5px;border-radius:4px;">ui-tab-click</code> event
                 bubbles out so you can handle selection in your own logic.
             </p>
             ${wrap(html`
@@ -633,9 +636,8 @@ export const TabListOnly: Story = {
 export const DynamicTabs: Story = {
     render: () => html`
         <div data-dynamic-demo style="font-family:Inter,sans-serif;">
-            <div style="display:flex;gap:8px;margin-bottom:16px;">
-                <button style="padding:8px 16px;border:1px solid #e5e7eb;background:#3b82f6;color:white;border-radius:6px;cursor:pointer;"
-                        @click=${(e: MouseEvent) => {
+            <ui-stack direction="row" gap="8px" style="margin-bottom:16px;">
+                <ui-button @click=${(e: MouseEvent) => {
                             const container = (e.target as HTMLElement).closest('[data-dynamic-demo]');
                             const tabs = container?.querySelector('ui-tabs');
                             if (!tabs) return;
@@ -649,9 +651,8 @@ export const DynamicTabs: Story = {
                             newPanel.innerHTML = `<div style="font-family:Inter,sans-serif;padding:24px;"><h3 style="margin:0 0 8px;font-size:1rem;font-weight:600;color:#111827;">Dynamic Tab ${count}</h3><p style="margin:0;font-size:.875rem;color:#6b7280;">Added at runtime to demonstrate dynamic tab creation.</p></div>`;
                             tabs.querySelector('ui-tab-list')?.appendChild(newTab);
                             tabs.appendChild(newPanel);
-                        }}>Add Tab</button>
-                <button style="padding:8px 16px;border:1px solid #e5e7eb;background:#ef4444;color:white;border-radius:6px;cursor:pointer;"
-                        @click=${(e: MouseEvent) => {
+                        }}>Add Tab</ui-button>
+                <ui-button variant="danger" @click=${(e: MouseEvent) => {
                             const container = (e.target as HTMLElement).closest('[data-dynamic-demo]');
                             const tabs = container?.querySelector('ui-tabs') as (HTMLElement & { value: string }) | null;
                             if (!tabs) return;
@@ -668,8 +669,8 @@ export const DynamicTabs: Story = {
                                 const newLast = remaining[remaining.length - 1];
                                 if (newLast) tabs.value = newLast.getAttribute('value') ?? '';
                             }
-                        }}>Remove Tab</button>
-            </div>
+                        }}>Remove Tab</ui-button>
+            </ui-stack>
             ${wrap(html`
                 <ui-tabs value="tab-1">
                     <ui-tab-list aria-label="Dynamic tabs">
@@ -690,7 +691,7 @@ export const DynamicTabs: Story = {
 /* ================================================================== */
 export const Responsive: Story = {
     render: () => html`
-        <div style="font-family:Inter,sans-serif;display:flex;flex-direction:column;gap:24px;">
+        <ui-stack direction="column" gap="24px" style="font-family:Inter,sans-serif;">
             <p style="margin:0;font-size:.875rem;color:#374151;">
                 Two common patterns for adapting tabs across screen sizes — choose the one that fits your layout.
             </p>
@@ -740,7 +741,7 @@ export const Responsive: Story = {
 /* ================================================================== */
 export const MultiColorTheme: Story = {
     render: () => html`
-        <div style="display:flex;flex-direction:column;gap:32px;font-family:Inter,sans-serif;">
+        <ui-stack direction="column" gap="32px" style="font-family:Inter,sans-serif;">
             <div>
                 <p style="margin:0 0 6px;font-size:.75rem;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">
                     Interactive Dashboard Tabs
@@ -778,7 +779,7 @@ export const MultiColorTheme: Story = {
                     </ui-tabs>
                 `)}
             </div>
-        </div>`,
+        </ui-stack>`,
 };
 
 /* ================================================================== */
@@ -786,7 +787,7 @@ export const MultiColorTheme: Story = {
 /* ================================================================== */
 export const ErrorStates: Story = {
     render: () => html`
-        <div style="font-family:Inter,sans-serif;display:flex;flex-direction:column;gap:24px;">
+        <ui-stack direction="column" gap="24px" style="font-family:Inter,sans-serif;">
             <div>
                 <p style="margin:0 0 6px;font-size:.75rem;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">
                     Form Tabs with Validation States
@@ -814,5 +815,5 @@ export const ErrorStates: Story = {
                     </ui-tabs>
                 `)}
             </div>
-        </div>`,
+        </ui-stack>`,
 };

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './ui-toggle';
+import '../button/ui-button';
 import '../paper/ui-paper';
 
 const meta: Meta = {
@@ -270,12 +271,9 @@ export const Controlled: Story = {
                         State: <strong id="ctrl-status">Off</strong>
                     </span>
                 </div>
-                <button
-                    style="align-self: flex-start; padding: 6px 14px; border-radius: 6px; border: 1px solid #d1d5db; background: #f9fafb; font-size: 0.8125rem; cursor: pointer; font-family: system-ui;"
-                    @click=${handleChange}
-                >
+                <ui-button variant="outlined" style="align-self: flex-start; font-size: 0.8125rem;" @click=${handleChange}>
                     Toggle externally
-                </button>
+                </ui-button>
             </div>
         `;
     },

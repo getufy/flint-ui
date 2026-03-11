@@ -1,6 +1,9 @@
 import { Meta, StoryObj } from '@storybook/web-components';
+import '../button/ui-button';
 import { html } from 'lit';
+import '../button/ui-button';
 import './ui-select';
+import '../button/ui-button';
 
 const meta: Meta = {
   title: 'Inputs/Select',
@@ -377,9 +380,7 @@ export const InForm: Story = {
           ?required=${true}
           .options=${defaultOptions}
         ></ui-select>
-        <button type="submit" style="padding: 8px 16px; border-radius: 6px; cursor: pointer;">
-          Submit
-        </button>
+        <ui-button type="submit">Submit</ui-button>
         <p id="form-output" style="font-size: 0.875rem; color: #6b7280;"></p>
       </form>
     </div>
