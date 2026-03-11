@@ -2,7 +2,7 @@
             display: inline-flex;
             align-items: center;
             flex-wrap: wrap;
-            gap: 4px;
+            gap: var(--ui-pagination-gap, 4px);
             font-family: var(--ui-font-family);
         }
 
@@ -14,15 +14,15 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-width: 36px;
-            height: 36px;
+            min-width: var(--ui-pagination-btn-size, 36px);
+            height: var(--ui-pagination-btn-size, 36px);
             padding: 0 6px;
-            border-radius: 4px;
+            border-radius: var(--ui-pagination-btn-radius, 4px);
             border: none;
             background: transparent;
             color: var(--ui-text-color);
             font-family: inherit;
-            font-size: 0.875rem;
+            font-size: var(--ui-pagination-btn-font-size, 0.875rem);
             font-weight: 400;
             cursor: pointer;
             transition: background 0.15s, color 0.15s, border-color 0.15s;
@@ -35,16 +35,16 @@
             background: var(--ui-hover-color);
         }
         .page-btn:focus-visible {
-            outline: 2px solid var(--ui-primary-color);
+            outline: 2px solid var(--ui-pagination-focus-ring-color, var(--ui-primary-color));
             outline-offset: 2px;
         }
         .page-btn.active {
-            background: var(--ui-primary-color);
-            color: var(--ui-text-color-on-primary);
+            background: var(--ui-pagination-active-bg, var(--ui-primary-color));
+            color: var(--ui-pagination-active-color, var(--ui-text-color-on-primary));
             font-weight: 600;
         }
         .page-btn:disabled {
-            opacity: 0.38;
+            opacity: var(--ui-pagination-disabled-opacity, 0.38);
             cursor: default;
             pointer-events: none;
         }
@@ -56,43 +56,50 @@
 
         /* ── Variants ── */
         :host([variant="outlined"]) .page-btn {
-            border: 1px solid var(--ui-border-color);
+            border: 1px solid var(--ui-pagination-outlined-border, var(--ui-border-color));
         }
         :host([variant="outlined"]) .page-btn.active {
-            border-color: var(--ui-primary-color);
-            background: var(--ui-primary-color);
-            color: var(--ui-text-color-on-primary);
+            border-color: var(--ui-pagination-active-bg, var(--ui-primary-color));
+            background: var(--ui-pagination-active-bg, var(--ui-primary-color));
+            color: var(--ui-pagination-active-color, var(--ui-text-color-on-primary));
         }
         :host([variant="outlined"]) .page-btn:hover:not(:disabled):not(.active) {
-            background: var(--ui-primary-color-light);
-            border-color: var(--ui-primary-color);
+            background: var(--ui-pagination-outlined-hover-bg, var(--ui-primary-color-light));
+            border-color: var(--ui-pagination-outlined-hover-border, var(--ui-primary-color));
         }
 
         /* ── Color: secondary ── */
         :host([color="secondary"]) .page-btn.active {
-            background: var(--ui-secondary-color);
+            background: var(--ui-pagination-active-bg-secondary, var(--ui-secondary-color));
         }
         :host([color="secondary"][variant="outlined"]) .page-btn.active {
-            background: var(--ui-secondary-color);
-            border-color: var(--ui-secondary-color);
+            background: var(--ui-pagination-active-bg-secondary, var(--ui-secondary-color));
+            border-color: var(--ui-pagination-active-bg-secondary, var(--ui-secondary-color));
         }
+
+        /* ── Color: standard ── */
         :host([color="standard"]) .page-btn.active {
-            background: var(--ui-text-color);
-            color: var(--ui-text-color-on-primary);
+            background: var(--ui-pagination-active-bg-standard, var(--ui-text-color));
+            color: var(--ui-pagination-active-color, var(--ui-text-color-on-primary));
+        }
+        :host([color="standard"][variant="outlined"]) .page-btn.active {
+            background: var(--ui-pagination-active-bg-standard, var(--ui-text-color));
+            border-color: var(--ui-pagination-active-bg-standard, var(--ui-text-color));
+            color: var(--ui-pagination-active-color, var(--ui-text-color-on-primary));
         }
 
         /* ── Shape ── */
-        :host([shape="rounded"]) .page-btn  { border-radius: 8px; }
-        :host([shape="circular"]) .page-btn { border-radius: 50%; min-width: 36px; aspect-ratio: 1; }
+        :host([shape="rounded"]) .page-btn  { border-radius: var(--ui-pagination-btn-radius-rounded, 8px); }
+        :host([shape="circular"]) .page-btn { border-radius: 50%; min-width: var(--ui-pagination-btn-size, 36px); aspect-ratio: 1; }
 
         /* ── Size ── */
-        :host([size="small"]) .page-btn    { min-width: 28px; height: 28px; font-size: 0.8125rem; }
-        :host([size="small"][shape="circular"]) .page-btn { min-width: 28px; }
-        :host([size="large"]) .page-btn    { min-width: 44px; height: 44px; font-size: 0.9375rem; }
+        :host([size="small"]) .page-btn    { min-width: var(--ui-pagination-btn-size-sm, 28px); height: var(--ui-pagination-btn-size-sm, 28px); font-size: var(--ui-pagination-btn-font-size-sm, 0.8125rem); }
+        :host([size="small"][shape="circular"]) .page-btn { min-width: var(--ui-pagination-btn-size-sm, 28px); }
+        :host([size="large"]) .page-btn    { min-width: var(--ui-pagination-btn-size-lg, 44px); height: var(--ui-pagination-btn-size-lg, 44px); font-size: var(--ui-pagination-btn-font-size-lg, 0.9375rem); }
 
         /* ── Disabled host ── */
         :host([disabled]) .page-btn {
-            opacity: 0.38;
+            opacity: var(--ui-pagination-disabled-opacity, 0.38);
             pointer-events: none;
         }
 

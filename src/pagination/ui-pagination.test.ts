@@ -317,4 +317,200 @@ describe('ui-pagination', () => {
         expect(assigned.length).toBe(1);
         expect((assigned[0] as HTMLElement).id).toBe('custom-prev');
     });
+
+    it('slotted next-icon renders in next button', async () => {
+        const el = await fixture<UiPagination>(html`
+            <ui-pagination count="5" page="2">
+                <span slot="next-icon" id="custom-next">NEXT</span>
+            </ui-pagination>
+        `);
+        const slot = el.shadowRoot!.querySelector<HTMLSlotElement>('slot[name="next-icon"]')!;
+        const assigned = slot.assignedElements();
+        expect(assigned.length).toBe(1);
+        expect((assigned[0] as HTMLElement).id).toBe('custom-next');
+    });
+
+    it('slotted first-icon renders in first button', async () => {
+        const el = await fixture<UiPagination>(html`
+            <ui-pagination count="5" page="3" show-first-button>
+                <span slot="first-icon" id="custom-first">FIRST</span>
+            </ui-pagination>
+        `);
+        const slot = el.shadowRoot!.querySelector<HTMLSlotElement>('slot[name="first-icon"]')!;
+        const assigned = slot.assignedElements();
+        expect(assigned.length).toBe(1);
+        expect((assigned[0] as HTMLElement).id).toBe('custom-first');
+    });
+
+    it('slotted last-icon renders in last button', async () => {
+        const el = await fixture<UiPagination>(html`
+            <ui-pagination count="5" page="3" show-last-button>
+                <span slot="last-icon" id="custom-last">LAST</span>
+            </ui-pagination>
+        `);
+        const slot = el.shadowRoot!.querySelector<HTMLSlotElement>('slot[name="last-icon"]')!;
+        const assigned = slot.assignedElements();
+        expect(assigned.length).toBe(1);
+        expect((assigned[0] as HTMLElement).id).toBe('custom-last');
+    });
+
+    it('slotted ellipsis-icon renders in ellipsis buttons', async () => {
+        const el = await fixture<UiPagination>(html`
+            <ui-pagination count="20" page="10">
+                <span slot="ellipsis-icon" id="custom-ellipsis">...</span>
+            </ui-pagination>
+        `);
+        const slots = el.shadowRoot!.querySelectorAll<HTMLSlotElement>('slot[name="ellipsis-icon"]');
+        expect(slots.length).toBeGreaterThan(0);
+        expect(slots[0].assignedElements().length).toBe(1);
+    });
+
+    it('fires ui-pagination-change on prev click', async () => {
+        const el = await fixture<UiPagination>(html`<ui-pagination count="5" page="3"></ui-pagination>`);
+        const prev = el.shadowRoot!.querySelector('.page-btn[aria-label="Go to previous page"]') as HTMLButtonElement;
+        setTimeout(() => prev.click());
+        const event = await oneEvent(el, 'ui-pagination-change') as CustomEvent;
+        expect(event.detail.page).toBe(2);
+    });
+
+    it('renders only start-ellipsis near end of range', async () => {
+        const el = await fixture<UiPagination>(html`<ui-pagination count="20" page="19"></ui-pagination>`);
+        const ellipsis = el.shadowRoot!.querySelectorAll('.page-btn.ellipsis');
+        expect(ellipsis.length).toBe(1);
+    });
+
+    it('page=0 clamps to page 1 in rendering', async () => {
+        const el = await fixture<UiPagination>(html`<ui-pagination count="5" page="0"></ui-pagination>`);
+        const active = el.shadowRoot!.querySelector('.page-btn.active');
+        expect(active?.textContent?.trim()).toBe('1');
+    });
+
+    it('page buttons have correct aria-label', async () => {
+        const el = await fixture<UiPagination>(html`<ui-pagination count="3" page="1"></ui-pagination>`);
+        const page2 = Array.from(el.shadowRoot!.querySelectorAll('.page-btn'))
+            .find(b => b.textContent?.trim() === '2');
+        expect(page2?.getAttribute('aria-label')).toBe('Page 2');
+    });
+
+    it('reflects color="standard" attribute', async () => {
+        const el = await fixture<UiPagination>(html`<ui-pagination count="5" color="standard"></ui-pagination>`);
+        expect(el.getAttribute('color')).toBe('standard');
+    });
+
+    it('reflects variant="text" (default) attribute', async () => {
+        const el = await fixture<UiPagination>(html`<ui-pagination count="5"></ui-pagination>`);
+        expect(el.getAttribute('variant')).toBe('text');
+    });
+
+    it('reflects size="medium" (default) attribute', async () => {
+        const el = await fixture<UiPagination>(html`<ui-pagination count="5"></ui-pagination>`);
+        expect(el.getAttribute('size')).toBe('medium');
+    });
+
+    it('reflects shape="circular" (default) attribute', async () => {
+        const el = await fixture<UiPagination>(html`<ui-pagination count="5"></ui-pagination>`);
+        expect(el.getAttribute('shape')).toBe('circular');
+    });
+
+    it('reflects shape="square" attribute', async () => {
+        const el = await fixture<UiPagination>(html`<ui-pagination count="5" shape="square"></ui-pagination>`);
+        expect(el.getAttribute('shape')).toBe('square');
+    });
+
+    it('reflects disabled attribute', async () => {
+        const el = await fixture<UiPagination>(html`<ui-pagination count="5" disabled></ui-pagination>`);
+        expect(el.hasAttribute('disabled')).toBe(true);
+    });
+
+    it('reflects show-first-button attribute', async () => {
+        const el = await fixture<UiPagination>(html`<ui-pagination count="5" show-first-button></ui-pagination>`);
+        expect(el.hasAttribute('show-first-button')).toBe(true);
+    });
+
+    it('reflects show-last-button attribute', async () => {
+        const el = await fixture<UiPagination>(html`<ui-pagination count="5" show-last-button></ui-pagination>`);
+        expect(el.hasAttribute('show-last-button')).toBe(true);
+    });
+
+    it('reflects hide-prev-button attribute', async () => {
+        const el = await fixture<UiPagination>(html`<ui-pagination count="5" hide-prev-button></ui-pagination>`);
+        expect(el.hasAttribute('hide-prev-button')).toBe(true);
+    });
+
+    it('reflects hide-next-button attribute', async () => {
+        const el = await fixture<UiPagination>(html`<ui-pagination count="5" hide-next-button></ui-pagination>`);
+        expect(el.hasAttribute('hide-next-button')).toBe(true);
+    });
+
+    it('_go with p < 1 does not navigate or fire event', async () => {
+        const el = await fixture<UiPagination>(html`<ui-pagination count="5" page="1"></ui-pagination>`);
+        const spy = vi.fn();
+        el.addEventListener('ui-pagination-change', spy);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (el as any)._go(0);
+        await el.updateComplete;
+        expect(spy).not.toHaveBeenCalled();
+        expect(el.page).toBe(1);
+    });
+
+    it('_go with p > count does not navigate or fire event', async () => {
+        const el = await fixture<UiPagination>(html`<ui-pagination count="5" page="5"></ui-pagination>`);
+        const spy = vi.fn();
+        el.addEventListener('ui-pagination-change', spy);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (el as any)._go(6);
+        await el.updateComplete;
+        expect(spy).not.toHaveBeenCalled();
+        expect(el.page).toBe(5);
+    });
+
+    it('defaultPage=1 (explicit) keeps page at 1', async () => {
+        const el = await fixture<UiPagination>(html`<ui-pagination count="10" default-page="1"></ui-pagination>`);
+        expect(el.page).toBe(1);
+    });
+
+    it('color="primary" is the default color', async () => {
+        const el = await fixture<UiPagination>(html`<ui-pagination count="5"></ui-pagination>`);
+        expect(el.getAttribute('color')).toBe('primary');
+    });
+});
+
+/* ── Additional buildPages edge cases ──────────────────────────── */
+describe('buildPages edge cases', () => {
+    it('count=2 returns both pages', () => {
+        expect(buildPages(2, 1, 1, 1)).toEqual([1, 2]);
+    });
+
+    it('large siblingCount covering all pages shows no ellipsis', () => {
+        const items = buildPages(7, 4, 3, 1);
+        expect(items).not.toContain('start-ellipsis');
+        expect(items).not.toContain('end-ellipsis');
+        const nums = items.filter((i): i is number => typeof i === 'number');
+        expect(nums).toEqual([1, 2, 3, 4, 5, 6, 7]);
+    });
+
+    it('shows page number instead of ellipsis when gap is exactly 1', () => {
+        // With count=5, page=3, sibling=0, boundary=1 the gap is just page 2
+        // so it inserts the number rather than an ellipsis
+        const items = buildPages(5, 3, 0, 1);
+        expect(items).not.toContain('start-ellipsis');
+    });
+
+    it('boundaryCount > count deduplicates properly', () => {
+        const items = buildPages(3, 2, 0, 5);
+        const nums = items.filter((i): i is number => typeof i === 'number');
+        expect(nums).toEqual([1, 2, 3]);
+    });
+
+    it('page=1 on large count produces end-ellipsis only', () => {
+        const items = buildPages(100, 1, 1, 1);
+        expect(items).toContain('end-ellipsis');
+        expect(items).not.toContain('start-ellipsis');
+    });
+
+    it('page=count on large count produces start-ellipsis only', () => {
+        const items = buildPages(100, 100, 1, 1);
+        expect(items).toContain('start-ellipsis');
+        expect(items).not.toContain('end-ellipsis');
+    });
 });
