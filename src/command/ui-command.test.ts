@@ -8,6 +8,9 @@ import type {
     UiCommandGroup,
     UiCommandEmpty,
     UiCommandDialog,
+    UiCommandShortcut,
+    UiCommandSeparator,
+    UiCommandList,
 } from './ui-command.js';
 
 /* ─────────────────────────────────────────────────────────────────── */
@@ -576,5 +579,501 @@ describe('UiCommandItem — value fallback', () => {
         const visible = getVisibleItems(cmd);
         expect(visible).toHaveLength(1);
         expect(visible[0].textContent?.trim()).toBe('Banana');
+    });
+});
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*  UiCommandShortcut                                                   */
+/* ─────────────────────────────────────────────────────────────────── */
+
+describe('UiCommandShortcut', () => {
+    it('renders slot content', async () => {
+        const el = await fixture<UiCommandShortcut>(html`<ui-command-shortcut>⌘P</ui-command-shortcut>`);
+        expect(el.textContent).toBe('⌘P');
+    });
+});
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*  UiCommandSeparator                                                  */
+/* ─────────────────────────────────────────────────────────────────── */
+
+describe('UiCommandSeparator', () => {
+    it('renders without errors', async () => {
+        const el = await fixture<UiCommandSeparator>(html`<ui-command-separator></ui-command-separator>`);
+        expect(el).toBeTruthy();
+    });
+
+    it('is hidden when hidden attribute is set', async () => {
+        const el = await fixture<UiCommandSeparator>(html`<ui-command-separator hidden></ui-command-separator>`);
+        expect(el.hidden).toBe(true);
+    });
+});
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*  UiCommandEmpty                                                      */
+/* ─────────────────────────────────────────────────────────────────── */
+
+describe('UiCommandEmpty', () => {
+    it('renders slot content', async () => {
+        const el = await fixture<UiCommandEmpty>(html`<ui-command-empty>No results</ui-command-empty>`);
+        expect(el.textContent).toBe('No results');
+    });
+});
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*  UiCommandGroup                                                      */
+/* ─────────────────────────────────────────────────────────────────── */
+
+describe('UiCommandGroup', () => {
+    it('renders heading in shadow DOM', async () => {
+        const el = await fixture<UiCommandGroup>(html`<ui-command-group heading="Actions"></ui-command-group>`);
+        await el.updateComplete;
+        const heading = el.shadowRoot!.querySelector('.heading')!;
+        const text = [...heading.childNodes]
+            .filter((n) => n.nodeType === Node.TEXT_NODE)
+            .map((n) => n.textContent)
+            .join('')
+            .trim();
+        expect(text).toBe('Actions');
+    });
+
+    it('hides heading when heading is empty', async () => {
+        const el = await fixture<UiCommandGroup>(html`<ui-command-group></ui-command-group>`);
+        await el.updateComplete;
+        const heading = el.shadowRoot!.querySelector('.heading')!;
+        // .heading:empty { display: none } via CSS; we verify the text is empty
+        expect(heading.textContent?.trim()).toBe('');
+    });
+});
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*  UiCommandList                                                       */
+/* ─────────────────────────────────────────────────────────────────── */
+
+describe('UiCommandList', () => {
+    it('has listbox role', async () => {
+        const el = await fixture<UiCommandList>(html`<ui-command-list></ui-command-list>`);
+        await el.updateComplete;
+        const listbox = el.shadowRoot!.querySelector('[role="listbox"]');
+        expect(listbox).toBeTruthy();
+    });
+
+    it('has aria-label on the listbox', async () => {
+        const el = await fixture<UiCommandList>(html`<ui-command-list></ui-command-list>`);
+        await el.updateComplete;
+        const listbox = el.shadowRoot!.querySelector('[role="listbox"]')!;
+        expect(listbox.getAttribute('aria-label')).toBe('Command results');
+    });
+});
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*  UiCommandInput                                                      */
+/* ─────────────────────────────────────────────────────────────────── */
+
+describe('UiCommandInput', () => {
+    it('focus() delegates to inner input', async () => {
+        const el = await fixture<UiCommandInput>(html`<ui-command-input></ui-command-input>`);
+        await el.updateComplete;
+        const inner = el.shadowRoot!.querySelector('input') as HTMLInputElement;
+        const focusSpy = vi.spyOn(inner, 'focus');
+        el.focus();
+        expect(focusSpy).toHaveBeenCalled();
+    });
+
+    it('reset() clears the value property', async () => {
+        const el = await fixture<UiCommandInput>(html`<ui-command-input></ui-command-input>`);
+        await el.updateComplete;
+        const inner = el.shadowRoot!.querySelector('input') as HTMLInputElement;
+        inner.value = 'hello';
+        el.reset();
+        expect(el.value).toBe('');
+        expect(inner.value).toBe('');
+    });
+
+    it('reset() dispatches _cmd-filter event with empty query', async () => {
+        const el = await fixture<UiCommandInput>(html`<ui-command-input></ui-command-input>`);
+        await el.updateComplete;
+        const handler = vi.fn();
+        el.addEventListener('_cmd-filter', handler);
+        el.reset();
+        expect(handler).toHaveBeenCalledOnce();
+        expect(handler.mock.calls[0][0].detail.query).toBe('');
+    });
+
+    it('dispatches _cmd-filter on input event', async () => {
+        const el = await fixture<UiCommandInput>(html`<ui-command-input></ui-command-input>`);
+        await el.updateComplete;
+        const handler = vi.fn();
+        el.addEventListener('_cmd-filter', handler);
+        const inner = el.shadowRoot!.querySelector('input') as HTMLInputElement;
+        inner.value = 'test';
+        inner.dispatchEvent(new Event('input', { bubbles: true, composed: true }));
+        expect(handler).toHaveBeenCalledOnce();
+        expect(handler.mock.calls[0][0].detail.query).toBe('test');
+    });
+
+    it('reflects value property', async () => {
+        const el = await fixture<UiCommandInput>(html`<ui-command-input></ui-command-input>`);
+        await el.updateComplete;
+        const inner = el.shadowRoot!.querySelector('input') as HTMLInputElement;
+        inner.value = 'abc';
+        inner.dispatchEvent(new Event('input', { bubbles: true, composed: true }));
+        expect(el.value).toBe('abc');
+    });
+});
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*  UiCommandItem — icon slot                                           */
+/* ─────────────────────────────────────────────────────────────────── */
+
+describe('UiCommandItem — icon slot', () => {
+    it('hides icon span when icon slot is empty', async () => {
+        const el = await fixture<UiCommandItem>(html`<ui-command-item>Search</ui-command-item>`);
+        await el.updateComplete;
+        const icon = el.shadowRoot!.querySelector('.icon') as HTMLElement;
+        expect(icon.hidden).toBe(true);
+    });
+
+    it('shows icon span when icon slot has content', async () => {
+        const el = await fixture<UiCommandItem>(html`
+            <ui-command-item>
+                <span slot="icon">★</span>
+                Search
+            </ui-command-item>
+        `);
+        await el.updateComplete;
+        // Wait for slotchange to fire
+        await new Promise((r) => setTimeout(r, 20));
+        const icon = el.shadowRoot!.querySelector('.icon') as HTMLElement;
+        expect(icon.hidden).toBe(false);
+    });
+});
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*  UiCommandItem — ARIA attributes                                     */
+/* ─────────────────────────────────────────────────────────────────── */
+
+describe('UiCommandItem — aria attributes', () => {
+    it('has aria-selected=false by default', async () => {
+        const el = await fixture<UiCommandItem>(html`<ui-command-item>Item</ui-command-item>`);
+        await el.updateComplete;
+        const div = el.shadowRoot!.querySelector('.item')!;
+        expect(div.getAttribute('aria-selected')).toBe('false');
+    });
+
+    it('has aria-selected=true when highlighted', async () => {
+        const el = await fixture<UiCommandItem>(html`<ui-command-item>Item</ui-command-item>`);
+        el.highlighted = true;
+        await el.updateComplete;
+        const div = el.shadowRoot!.querySelector('.item')!;
+        expect(div.getAttribute('aria-selected')).toBe('true');
+    });
+
+    it('has aria-disabled=true when disabled', async () => {
+        const el = await fixture<UiCommandItem>(html`<ui-command-item disabled>Item</ui-command-item>`);
+        await el.updateComplete;
+        const div = el.shadowRoot!.querySelector('.item')!;
+        expect(div.getAttribute('aria-disabled')).toBe('true');
+    });
+
+    it('has aria-disabled=false when not disabled', async () => {
+        const el = await fixture<UiCommandItem>(html`<ui-command-item>Item</ui-command-item>`);
+        await el.updateComplete;
+        const div = el.shadowRoot!.querySelector('.item')!;
+        expect(div.getAttribute('aria-disabled')).toBe('false');
+    });
+});
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*  UiCommandItem — scrollIntoViewIfNeeded                              */
+/* ─────────────────────────────────────────────────────────────────── */
+
+describe('UiCommandItem — scrollIntoViewIfNeeded', () => {
+    it('calls scrollIntoView with block:nearest when available', async () => {
+        const el = await fixture<UiCommandItem>(html`<ui-command-item>Item</ui-command-item>`);
+        // jsdom does not define scrollIntoView — assign a mock so the guard passes
+        const spy = vi.fn();
+        (el as unknown as { scrollIntoView: typeof spy }).scrollIntoView = spy;
+        el.scrollIntoViewIfNeeded();
+        expect(spy).toHaveBeenCalledWith({ block: 'nearest' });
+    });
+
+    it('does not throw when scrollIntoView is not a function', async () => {
+        const el = await fixture<UiCommandItem>(html`<ui-command-item>Item</ui-command-item>`);
+        Object.defineProperty(el, 'scrollIntoView', { value: undefined, configurable: true });
+        expect(() => el.scrollIntoViewIfNeeded()).not.toThrow();
+    });
+});
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*  UiCommand — edge cases                                              */
+/* ─────────────────────────────────────────────────────────────────── */
+
+describe('UiCommand — edge cases', () => {
+    it('does not throw on keydown when there are no navigable items', async () => {
+        const cmd = await fixture<UiCommand>(html`
+            <ui-command>
+                <ui-command-input></ui-command-input>
+                <ui-command-list>
+                    <ui-command-empty>No results</ui-command-empty>
+                </ui-command-list>
+            </ui-command>
+        `);
+        await settle(cmd);
+        expect(() =>
+            cmd.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true, composed: true }))
+        ).not.toThrow();
+    });
+
+    it('Enter does not fire event when no item is highlighted', async () => {
+        const cmd = await fixture<UiCommand>(html`
+            <ui-command>
+                <ui-command-input></ui-command-input>
+                <ui-command-list>
+                    <ui-command-empty>No results</ui-command-empty>
+                    <ui-command-item value="a">A</ui-command-item>
+                </ui-command-list>
+            </ui-command>
+        `);
+        await settle(cmd);
+        // Filter to empty → no navigable items → no highlighted item
+        await typeInInput(cmd, 'zzz');
+        const handler = vi.fn();
+        cmd.addEventListener('ui-command-item-select', handler);
+        cmd.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, composed: true }));
+        expect(handler).not.toHaveBeenCalled();
+    });
+
+    it('reset() calls _applyFilter directly when no ui-command-input present', async () => {
+        const cmd = await fixture<UiCommand>(html`
+            <ui-command>
+                <ui-command-list>
+                    <ui-command-empty>No results</ui-command-empty>
+                    <ui-command-item value="a">A</ui-command-item>
+                    <ui-command-item value="b">B</ui-command-item>
+                </ui-command-list>
+            </ui-command>
+        `);
+        await settle(cmd);
+        // All items visible by default
+        expect(getVisibleItems(cmd)).toHaveLength(2);
+        // reset() with no input should still work
+        cmd.reset();
+        await settle(cmd);
+        expect(getVisibleItems(cmd)).toHaveLength(2);
+    });
+
+    it('applyFilter handles missing ui-command-empty gracefully', async () => {
+        const cmd = await fixture<UiCommand>(html`
+            <ui-command>
+                <ui-command-input></ui-command-input>
+                <ui-command-list>
+                    <ui-command-item value="apple">Apple</ui-command-item>
+                </ui-command-list>
+            </ui-command>
+        `);
+        await settle(cmd);
+        // No empty element; filtering should not throw
+        await expect(typeInInput(cmd, 'zzz')).resolves.toBeUndefined();
+        expect(getVisibleItems(cmd)).toHaveLength(0);
+    });
+
+    it('applyFilter handles missing ui-command-list gracefully', async () => {
+        const cmd = await fixture<UiCommand>(html`
+            <ui-command>
+                <ui-command-input></ui-command-input>
+                <ui-command-item value="apple">Apple</ui-command-item>
+                <ui-command-item value="banana">Banana</ui-command-item>
+            </ui-command>
+        `);
+        await settle(cmd);
+        // Separator logic is skipped if no list; filtering should still work
+        await typeInInput(cmd, 'apple');
+        expect(getVisibleItems(cmd)).toHaveLength(1);
+    });
+
+    it('disconnectedCallback removes keydown listener', async () => {
+        const cmd = await fixture<UiCommand>(BASIC_FIXTURE);
+        await settle(cmd);
+
+        const handler = vi.fn();
+        cmd.addEventListener('ui-command-item-select', handler);
+
+        // Detach from DOM — removes event listeners
+        cmd.remove();
+
+        // Keydown should not reach _handleKeyDown anymore
+        // We test indirectly by checking disconnectedCallback doesn't throw
+        expect(() => cmd.disconnectedCallback()).not.toThrow();
+    });
+});
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*  UiCommand — mouse hover highlight                                   */
+/* ─────────────────────────────────────────────────────────────────── */
+
+describe('UiCommand — mouse hover highlight', () => {
+    it('updates keyboard highlight when mouse enters an item', async () => {
+        const cmd = await fixture<UiCommand>(BASIC_FIXTURE);
+        await settle(cmd);
+
+        const billing = cmd.querySelector('ui-command-item[value="billing"]') as UiCommandItem;
+        billing.dispatchEvent(new MouseEvent('mouseover', { bubbles: true, composed: true }));
+        await settle(cmd);
+
+        expect(billing.highlighted).toBe(true);
+    });
+
+    it('clears previous highlight when mouse enters a new item', async () => {
+        const cmd = await fixture<UiCommand>(BASIC_FIXTURE);
+        await settle(cmd);
+
+        const calendar = cmd.querySelector('ui-command-item[value="calendar"]') as UiCommandItem;
+        const billing = cmd.querySelector('ui-command-item[value="billing"]') as UiCommandItem;
+
+        billing.dispatchEvent(new MouseEvent('mouseover', { bubbles: true, composed: true }));
+        await settle(cmd);
+
+        expect(billing.highlighted).toBe(true);
+        expect(calendar.highlighted).toBe(false);
+    });
+
+    it('does not highlight a disabled item on mouseover', async () => {
+        const cmd = await fixture<UiCommand>(BASIC_FIXTURE);
+        await settle(cmd);
+
+        const calc = cmd.querySelector('ui-command-item[value="calculator"]') as UiCommandItem;
+        calc.dispatchEvent(new MouseEvent('mouseover', { bubbles: true, composed: true }));
+        await settle(cmd);
+
+        expect(calc.highlighted).toBe(false);
+    });
+
+    it('does not highlight a hidden item on mouseover', async () => {
+        const cmd = await fixture<UiCommand>(BASIC_FIXTURE);
+        await settle(cmd);
+
+        // Filter so "profile" is visible but "billing" is hidden
+        await typeInInput(cmd, 'profile');
+
+        const billing = cmd.querySelector('ui-command-item[value="billing"]') as UiCommandItem;
+        billing.dispatchEvent(new MouseEvent('mouseover', { bubbles: true, composed: true }));
+        await settle(cmd);
+
+        expect(billing.highlighted).toBe(false);
+    });
+
+    it('ignores mouseover events from non-item elements', async () => {
+        const cmd = await fixture<UiCommand>(BASIC_FIXTURE);
+        await settle(cmd);
+
+        const firstHighlight = getHighlighted(cmd);
+
+        // Fire mouseover on the command-group, not an item
+        const group = cmd.querySelector('ui-command-group') as UiCommandGroup;
+        group.dispatchEvent(new MouseEvent('mouseover', { bubbles: true, composed: true }));
+        await settle(cmd);
+
+        // Highlight should be unchanged
+        expect(getHighlighted(cmd)).toBe(firstHighlight);
+    });
+});
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*  UiCommandDialog — additional coverage                               */
+/* ─────────────────────────────────────────────────────────────────── */
+
+describe('UiCommandDialog — backdrop click inner panel', () => {
+    const DIALOG_FIXTURE_LOCAL = html`
+        <ui-command-dialog>
+            <ui-command>
+                <ui-command-input placeholder="Search..."></ui-command-input>
+                <ui-command-list>
+                    <ui-command-empty>No results found.</ui-command-empty>
+                    <ui-command-group heading="Actions">
+                        <ui-command-item value="save">Save</ui-command-item>
+                        <ui-command-item value="delete">Delete</ui-command-item>
+                    </ui-command-group>
+                </ui-command-list>
+            </ui-command>
+        </ui-command-dialog>
+    `;
+
+    it('does not fire close when clicking inside the panel (not on backdrop)', async () => {
+        const dialog = await fixture<UiCommandDialog>(DIALOG_FIXTURE_LOCAL);
+        dialog.open = true;
+        await settle(dialog);
+
+        const handler = vi.fn();
+        dialog.addEventListener('ui-command-dialog-close', handler);
+
+        // Click on the panel (child of backdrop) — target !== currentTarget → no close
+        const panel = dialog.shadowRoot!.querySelector('.panel') as HTMLElement;
+        panel.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+
+        expect(handler).not.toHaveBeenCalled();
+    });
+
+    it('auto-focuses the input when dialog opens', async () => {
+        const dialog = await fixture<UiCommandDialog>(DIALOG_FIXTURE_LOCAL);
+        await settle(dialog);
+
+        const input = dialog.querySelector('ui-command-input') as UiCommandInput;
+        const focusSpy = vi.spyOn(input, 'focus');
+
+        dialog.open = true;
+        await settle(dialog, 60); // rAF fires within 60 ms
+
+        expect(focusSpy).toHaveBeenCalled();
+    });
+
+    it('disconnectedCallback removes the window keydown listener', async () => {
+        const dialog = await fixture<UiCommandDialog>(DIALOG_FIXTURE_LOCAL);
+        dialog.open = true;
+        await settle(dialog);
+
+        // Disconnect — should remove window listener
+        dialog.remove();
+
+        const handler = vi.fn();
+        dialog.addEventListener('ui-command-dialog-close', handler);
+
+        window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+
+        expect(handler).not.toHaveBeenCalled();
+    });
+
+    it('does not fire close on Escape when open prop is false', async () => {
+        const dialog = await fixture<UiCommandDialog>(DIALOG_FIXTURE_LOCAL);
+        // open = false (default)
+        await settle(dialog);
+
+        const handler = vi.fn();
+        dialog.addEventListener('ui-command-dialog-close', handler);
+
+        window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+
+        expect(handler).not.toHaveBeenCalled();
+    });
+
+    it('does not reset when re-rendered without open changing', async () => {
+        const dialog = await fixture<UiCommandDialog>(DIALOG_FIXTURE_LOCAL);
+        dialog.open = true;
+        await settle(dialog);
+
+        const cmd = dialog.querySelector('ui-command') as UiCommand;
+        await typeInInput(cmd, 'save');
+        expect(getVisibleItems(cmd)).toHaveLength(1);
+
+        // Trigger a re-render without changing open (spy on reset)
+        const resetSpy = vi.spyOn(cmd, 'reset');
+        // Force re-render by calling requestUpdate without changing properties
+        (dialog as unknown as { requestUpdate: () => void }).requestUpdate();
+        await dialog.updateComplete;
+
+        // reset should NOT have been called (early return in updated())
+        expect(resetSpy).not.toHaveBeenCalled();
+        // Items still filtered
+        expect(getVisibleItems(cmd)).toHaveLength(1);
     });
 });

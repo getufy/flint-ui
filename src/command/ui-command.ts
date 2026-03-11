@@ -290,6 +290,19 @@ export class UiCommand extends LitElement {
         this._applyFilter((e as CustomEvent<{ query: string }>).detail.query);
     };
 
+    /**
+     * Sync keyboard highlight with mouse hover so arrow-key navigation always
+     * continues from the item the pointer last touched.
+     */
+    private _handleMouseOver = (e: MouseEvent) => {
+        const target = e.target as Element;
+        if (target.tagName?.toLowerCase() !== 'ui-command-item') return;
+        const item = target as UiCommandItem;
+        if (!item.disabled && !item.hidden) {
+            this._setHighlight(item, false);
+        }
+    };
+
     private _handleKeyDown = (e: KeyboardEvent) => {
         const visible = this._getNavigableItems();
         if (visible.length === 0) return;
@@ -326,12 +339,14 @@ export class UiCommand extends LitElement {
         super.connectedCallback();
         this.addEventListener('_cmd-filter', this._handleFilter);
         this.addEventListener('keydown', this._handleKeyDown);
+        this.addEventListener('mouseover', this._handleMouseOver);
     }
 
     disconnectedCallback() {
         super.disconnectedCallback();
         this.removeEventListener('_cmd-filter', this._handleFilter);
         this.removeEventListener('keydown', this._handleKeyDown);
+        this.removeEventListener('mouseover', this._handleMouseOver);
     }
 
     /* ── Private helpers ───────────────────────────────────────────────────── */

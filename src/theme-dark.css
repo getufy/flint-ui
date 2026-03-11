@@ -136,6 +136,9 @@
     --ui-time-clock-inner-bg:     rgba(255, 255, 255, 0.06);
     --ui-time-clock-inner-border: var(--ui-color-zinc-600);
     --ui-time-clock-hand-color:   var(--ui-primary-color);
+
+    /* ─── Command Menu ──────────────────────────────────────────── */
+    --ui-command-backdrop-bg: rgba(0, 0, 0, 0.70);
 }
 
 
@@ -249,5 +252,8 @@
         --ui-time-clock-inner-bg:     rgba(255, 255, 255, 0.06);
         --ui-time-clock-inner-border: var(--ui-color-zinc-600);
         --ui-time-clock-hand-color:   var(--ui-primary-color);
+
+        /* ─── Command Menu ──────────────────────────────────────────── */
+        --ui-command-backdrop-bg: rgba(0, 0, 0, 0.70);
     }
 }
