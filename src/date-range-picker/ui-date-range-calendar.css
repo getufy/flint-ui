@@ -108,8 +108,8 @@
     .day-cell.range-start::before {
       content: '';
       position: absolute;
-      inset: 0;
-      right: -50%;
+      top: 0; bottom: 0;
+      left: 50%; right: -50%;
       background: var(--ui-primary-color-light);
       border-radius: 0;
       z-index: -1;
@@ -117,8 +117,8 @@
     .day-cell.range-end::before {
       content: '';
       position: absolute;
-      inset: 0;
-      left: -50%;
+      top: 0; bottom: 0;
+      left: -50%; right: 50%;
       background: var(--ui-primary-color-light);
       border-radius: 0;
       z-index: -1;
