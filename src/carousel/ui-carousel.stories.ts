@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './ui-carousel';
+import '../paper/ui-paper';
 
 const meta: Meta = {
   title: 'Data Display/Carousel',
@@ -362,22 +363,11 @@ const cardData = [
 
 const card = (d: typeof cardData[number]) => html`
   <ui-carousel-item>
-    <div style="
-      padding: 20px;
-      background: #fff;
-      border: 1px solid #e5e7eb;
-      border-radius: 12px;
-      height: 200px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      font-family: var(--ui-font-family, system-ui);
-    ">
+    <ui-paper elevation="1" style="padding: 20px; height: 200px; display: flex; flex-direction: column; gap: 8px; font-family: var(--ui-font-family, system-ui);">
       <div style="font-size: 2rem; line-height: 1;">${d.emoji}</div>
       <div style="font-weight: 700; font-size: 1rem; color: ${d.accent};">${d.title}</div>
       <div style="font-size: 0.8rem; color: #6b7280; line-height: 1.4;">${d.desc}</div>
-    </div>
+    </ui-paper>
   </ui-carousel-item>
 `;
 

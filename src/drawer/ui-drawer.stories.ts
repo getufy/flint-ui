@@ -3,6 +3,7 @@ import { html } from 'lit';
 import { UiDrawer } from './ui-drawer';
 import './ui-drawer';  // side-effect: ensures @customElement registers
 import '../button/ui-button';
+import '../paper/ui-paper';
 
 const meta: Meta = {
     title: 'Navigation/Drawer',
@@ -96,8 +97,7 @@ export const Temporary: Story = {
 export const Persistent: Story = {
     args: { open: true, variant: 'persistent' },
     render: (args) => html`
-        <div class="story-root"
-             style="display:flex;height:360px;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;background:#fff;">
+        <ui-paper class="story-root" elevation="1" style="display:flex;height:360px;overflow:hidden;">
 
             <ui-drawer .open=${args.open} .variant=${'persistent'}>
                 ${navContent()}
@@ -117,7 +117,7 @@ export const Persistent: Story = {
                     </p>
                 `)}
             </div>
-        </div>
+        </ui-paper>
     `,
 };
 
@@ -127,8 +127,7 @@ export const Persistent: Story = {
 export const Mini: Story = {
     args: { open: false, variant: 'mini' },
     render: (args) => html`
-        <div class="story-root"
-             style="display:flex;height:360px;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;background:#fff;">
+        <ui-paper class="story-root" elevation="1" style="display:flex;height:360px;overflow:hidden;">
 
             <ui-drawer .open=${args.open} .variant=${'mini'}>
                 <div style="width:250px;">
@@ -161,7 +160,7 @@ export const Mini: Story = {
                     </p>
                 `)}
             </div>
-        </div>
+        </ui-paper>
     `,
 };
 

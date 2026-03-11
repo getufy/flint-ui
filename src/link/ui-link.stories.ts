@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { UiLink } from './ui-link';
 import './ui-link';
+import '../box/ui-box';
 
 const meta: Meta = {
     title: 'Navigation/Link',
@@ -145,13 +146,13 @@ export const SecurityTarget: Story = {
                     Open in new tab (safe)
                 </ui-link>
             </div>
-            <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:6px;padding:12px;font-size:.875rem;color:#92400e;">
+            <ui-box bgcolor="#fffbeb" border="1px solid #fde68a" borderRadius="6px" p="12px" style="font-size: 0.875rem; color: #92400e;">
                 ⚠️ When <code>target="_blank"</code> is set, <code>rel="noopener noreferrer"</code> is automatically applied
                 to prevent reverse tabnapping attacks.
-            </div>
-            <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:12px;font-size:.875rem;color:#1e40af;">
+            </ui-box>
+            <ui-box bgcolor="#eff6ff" border="1px solid #bfdbfe" borderRadius="6px" p="12px" style="font-size: 0.875rem; color: #1e40af;">
                 ℹ️ Using <code>rel="noreferrer"</code> also prevents the <em>Referer</em> header from being sent, which may affect analytics.
-            </div>
+            </ui-box>
         </div>
     `,
 };

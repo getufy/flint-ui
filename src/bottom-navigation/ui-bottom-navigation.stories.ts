@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './ui-bottom-navigation';
 import './ui-bottom-navigation-action';
+import '../box/ui-box';
 
 const meta: Meta = {
     title: 'Navigation/Bottom Navigation',
@@ -36,7 +37,7 @@ export const Basic: Story = {
         label3: 'Nearby',
     },
     render: (args) => html`
-        <div style="width: 500px; border: 1px solid #ddd; background: #f5f5f5; padding-top: 50px;">
+        <ui-box width="500px" border="1px solid #ddd" bgcolor="var(--ui-muted-background, #f5f5f5)" style="padding-top: 50px;">
             <ui-bottom-navigation
                 .value=${args.value}
                 ?show-labels=${args.showLabels}
@@ -55,7 +56,7 @@ export const Basic: Story = {
                     <span slot="icon">${icons.nearby}</span>
                 </ui-bottom-navigation-action>
             </ui-bottom-navigation>
-        </div>
+        </ui-box>
     `,
 };
 
@@ -73,7 +74,7 @@ export const ShiftLabels: Story = {
         label4: 'Folder',
     },
     render: (args) => html`
-        <div style="width: 500px; border: 1px solid #ddd; background: #f5f5f5; padding-top: 50px;">
+        <ui-box width="500px" border="1px solid #ddd" bgcolor="var(--ui-muted-background, #f5f5f5)" style="padding-top: 50px;">
             <ui-bottom-navigation
                 .value=${args.value}
                 ?show-labels=${args.showLabels}
@@ -91,7 +92,7 @@ export const ShiftLabels: Story = {
                     <span slot="icon">${icons.folder}</span>
                 </ui-bottom-navigation-action>
             </ui-bottom-navigation>
-        </div>
+        </ui-box>
     `,
 };
 
@@ -104,7 +105,7 @@ export const WithoutLabels: Story = {
         value: 'favs',
     },
     render: (args) => html`
-        <div style="width: 500px; border: 1px solid #ddd; background: #f5f5f5; padding-top: 50px;">
+        <ui-box width="500px" border="1px solid #ddd" bgcolor="var(--ui-muted-background, #f5f5f5)" style="padding-top: 50px;">
             <ui-bottom-navigation .value=${args.value}>
                 <ui-bottom-navigation-action value="recents">
                     <span slot="icon">${icons.restore}</span>
@@ -119,6 +120,6 @@ export const WithoutLabels: Story = {
                     <span slot="icon">${icons.folder}</span>
                 </ui-bottom-navigation-action>
             </ui-bottom-navigation>
-        </div>
+        </ui-box>
     `,
 };

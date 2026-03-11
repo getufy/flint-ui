@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './ui-tabs';
+import '../paper/ui-paper';
 
 const meta: Meta = {
     title: 'Navigation/Tabs',
@@ -21,10 +22,9 @@ type Story = StoryObj;
 
 /* ── design helpers ── */
 const wrap = (content: unknown) => html`
-    <div style="font-family:Inter,sans-serif;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;
-                box-shadow:0 2px 8px rgba(0,0,0,.06);background:#fff;">
+    <ui-paper elevation="2" style="font-family:Inter,sans-serif;overflow:hidden;">
         ${content}
-    </div>`;
+    </ui-paper>`;
 
 const panelContent = (title: string, body: string) => html`
     <div style="font-family:Inter,sans-serif;">

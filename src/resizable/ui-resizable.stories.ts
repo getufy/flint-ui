@@ -483,7 +483,7 @@ export const IDELayout: Story = {
 
               <!-- ── Editor ── -->
               <ui-resizable-panel .defaultSize=${70} .minSize=${20}>
-                <div style="height:100%;display:flex;flex-direction:column;overflow:hidden;background:var(--ui-background,#fff);">
+                <ui-box display="flex" flexDirection="column" bgcolor="var(--ui-background, #fff)" style="height:100%;overflow:hidden;">
                   <ui-tabs value="button" style="flex:1;overflow:hidden;min-height:0;display:flex;flex-direction:column;">
                     <ui-tab-list style="border-bottom:1px solid var(--ui-border-color,#e4e4e7);">
                       <ui-tab value="button">ui-button.ts</ui-tab>
@@ -526,7 +526,7 @@ export const IDELayout: Story = {
 }</code></pre>
                     </ui-tab-panel>
                   </ui-tabs>
-                </div>
+                </ui-box>
               </ui-resizable-panel>
               <ui-resizable-handle with-handle></ui-resizable-handle>
 
@@ -579,21 +579,21 @@ export const CustomTheme: Story = {
     ">
       <ui-resizable-group orientation="horizontal">
         <ui-resizable-panel .defaultSize=${33}>
-          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;background:#f8fafc;">
+          <ui-box display="flex" alignItems="center" justifyContent="center" p="24px" bgcolor="var(--ui-muted-background, #f8fafc)" style="height:100%;">
             <ui-typography variant="subtitle2">Panel A</ui-typography>
-          </div>
+          </ui-box>
         </ui-resizable-panel>
         <ui-resizable-handle with-handle></ui-resizable-handle>
         <ui-resizable-panel .defaultSize=${34}>
-          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;background:#f0f9ff;">
+          <ui-box display="flex" alignItems="center" justifyContent="center" p="24px" bgcolor="#f0f9ff" style="height:100%;">
             <ui-typography variant="subtitle2">Panel B</ui-typography>
-          </div>
+          </ui-box>
         </ui-resizable-panel>
         <ui-resizable-handle with-handle></ui-resizable-handle>
         <ui-resizable-panel .defaultSize=${33}>
-          <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;background:#fdf4ff;">
+          <ui-box display="flex" alignItems="center" justifyContent="center" p="24px" bgcolor="#fdf4ff" style="height:100%;">
             <ui-typography variant="subtitle2">Panel C</ui-typography>
-          </div>
+          </ui-box>
         </ui-resizable-panel>
       </ui-resizable-group>
     </div>

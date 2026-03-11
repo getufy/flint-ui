@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './ui-hover-card';
+import '../box/ui-box';
 
 const meta: Meta = {
     title: 'Data Display/Hover Card',
@@ -314,16 +315,16 @@ export const Events: Story = {
                     </ui-hover-card-content>
                 </ui-hover-card>
 
-                <div style="width: 320px; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;">
-                    <div style="padding: 8px 12px; background: #f9fafb; font-size: 0.75rem; font-weight: 600; color: #6b7280; border-bottom: 1px solid #e5e7eb;">
+                <ui-box border="1px solid #e5e7eb" borderRadius="8px" style="width: 320px; overflow: hidden;">
+                    <ui-box p="8px 12px" bgcolor="var(--ui-muted-background, #f9fafb)" style="font-size: 0.75rem; font-weight: 600; color: #6b7280; border-bottom: 1px solid #e5e7eb;">
                         Event log
-                    </div>
-                    <div id="hc-log" style="padding: 8px 12px; min-height: 80px;">
+                    </ui-box>
+                    <ui-box id="hc-log" p="8px 12px" style="min-height: 80px;">
                         <div style="font-size: 0.8125rem; color: #9ca3af; font-style: italic;">
                             Hover the button to see events…
                         </div>
-                    </div>
-                </div>
+                    </ui-box>
+                </ui-box>
             </div>
         `;
     },

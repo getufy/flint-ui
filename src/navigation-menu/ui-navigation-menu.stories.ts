@@ -6,6 +6,7 @@ import './ui-navigation-menu-item.js';
 import './ui-navigation-menu-trigger.js';
 import './ui-navigation-menu-content.js';
 import './ui-navigation-menu-link.js';
+import '../paper/ui-paper';
 
 type Story = StoryObj;
 
@@ -311,7 +312,7 @@ export const MegaMenu: Story = {
                             </div>
                             <div>
                                 <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #6b7280; margin-bottom: 8px;">Develop</div>
-                                <ui-navigation-menu-link href="#">React Library</ui-navigation-menu-link>
+                                <ui-navigation-menu-link href="#">Component Library</ui-navigation-menu-link>
                                 <ui-navigation-menu-link href="#">Web Components</ui-navigation-menu-link>
                                 <ui-navigation-menu-link href="#">CLI Tools</ui-navigation-menu-link>
                             </div>
@@ -418,12 +419,12 @@ export const ShadcnStyle: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Replicates the shadcn/ui NavigationMenu demo with Getting Started and Components dropdowns.',
+                story: 'Navigation menu with Getting Started and Components dropdowns in a modern design style.',
             },
         },
     },
     render: () => html`
-        <div style="padding: 24px; background: #fff; min-height: 120px;">
+        <ui-paper elevation="0" variant="flat" style="padding: 24px; min-height: 120px;">
             <ui-navigation-menu>
                 <ui-navigation-menu-list>
                     <ui-navigation-menu-item>
@@ -522,7 +523,7 @@ export const ShadcnStyle: Story = {
                     </ui-navigation-menu-item>
                 </ui-navigation-menu-list>
             </ui-navigation-menu>
-        </div>
+        </ui-paper>
     `,
 };
 

@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { UiPagination } from './ui-pagination';
 import './ui-pagination';
+import '../paper/ui-paper';
 
 const meta: Meta = {
     title: 'Navigation/Pagination',
@@ -35,9 +36,9 @@ const box = (title: string, content: unknown) => html`
 `;
 
 const section = (content: unknown) => html`
-    <div style="display:flex;flex-direction:column;gap:24px;padding:24px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-family:Inter,sans-serif;">
+    <ui-paper elevation="1" style="display:flex;flex-direction:column;gap:24px;padding:24px;font-family:Inter,sans-serif;">
         ${content}
-    </div>
+    </ui-paper>
 `;
 
 /* ================================================================== */
@@ -51,7 +52,7 @@ export const Playground: Story = {
         siblingCount: 1, boundaryCount: 1, disabled: false, label: '',
     },
     render: (args) => html`
-        <div style="padding:24px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-family:Inter,sans-serif;">
+        <ui-paper elevation="1" style="padding:24px;font-family:Inter,sans-serif;">
             <ui-pagination
                 count=${args.count}
                 page=${args.page}
@@ -71,7 +72,7 @@ export const Playground: Story = {
             (e.currentTarget as UiPagination).page = e.detail.page;
         }}
             ></ui-pagination>
-        </div>
+        </ui-paper>
     `,
 };
 

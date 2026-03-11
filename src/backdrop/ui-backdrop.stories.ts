@@ -3,6 +3,7 @@ import { html } from 'lit';
 import './ui-backdrop';
 import { UiBackdrop } from './ui-backdrop';
 import '../button/ui-button';
+import '../paper/ui-paper';
 
 const meta: Meta = {
   title: 'Feedback/Backdrop',
@@ -38,7 +39,7 @@ export const Basic: Story = {
       (e.target as UiBackdrop).open = false;
     }}"
       >
-        <div style="padding: 24px; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; flex-direction: column; align-items: center; gap: 16px;">
+        <ui-paper elevation="2" style="padding: 24px; display: flex; flex-direction: column; align-items: center; gap: 16px;">
           <h3 style="margin: 0; font-family: sans-serif;">Focused Content</h3>
           <p style="margin: 0; color: #666;">Click outside this box to close</p>
           <ui-button variant="secondary" @click="${(e: Event) => {
@@ -47,7 +48,7 @@ export const Basic: Story = {
     }}">
             Close Manually
           </ui-button>
-        </div>
+        </ui-paper>
       </ui-backdrop>
     </div>
   `,

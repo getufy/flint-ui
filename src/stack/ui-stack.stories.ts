@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './ui-stack';
 import '../divider/ui-divider';
+import '../box/ui-box';
 
 const meta: Meta = {
     title: 'Layout/Stack',
@@ -41,8 +42,11 @@ const meta: Meta = {
 export default meta;
 type Story = StoryObj;
 
-const item = (label: string) =>
-    `<div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">${label}</div>`;
+const item = (label: string) => html`
+    <ui-box bgcolor="#cfe8fc" border="1px solid #1976d2" p="16px" textAlign="center" color="#1976d2" borderRadius="4px" style="font-family: system-ui;">
+        ${label}
+    </ui-box>
+`;
 
 /* ── Playground ─────────────────────────────────────────────────────────── */
 
@@ -55,9 +59,9 @@ export const Playground: Story = {
             .justifyContent=${args.justifyContent}
             .useFlexGap=${args.useFlexGap}
         >
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 1</div>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 2</div>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 3</div>
+            ${item('Item 1')}
+            ${item('Item 2')}
+            ${item('Item 3')}
         </ui-stack>
     `,
 };
@@ -69,9 +73,9 @@ export const Vertical: Story = {
     args: { direction: 'column', spacing: 2 },
     render: (args) => html`
         <ui-stack .direction=${args.direction} .spacing=${args.spacing}>
-            <div .innerHTML=${item('Item 1')}></div>
-            <div .innerHTML=${item('Item 2')}></div>
-            <div .innerHTML=${item('Item 3')}></div>
+            ${item('Item 1')}
+            ${item('Item 2')}
+            ${item('Item 3')}
         </ui-stack>
     `,
 };
@@ -81,9 +85,9 @@ export const Horizontal: Story = {
     args: { direction: 'row', spacing: 2 },
     render: (args) => html`
         <ui-stack .direction=${args.direction} .spacing=${args.spacing}>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 1</div>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 2</div>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 3</div>
+            ${item('Item 1')}
+            ${item('Item 2')}
+            ${item('Item 3')}
         </ui-stack>
     `,
 };
@@ -93,9 +97,9 @@ export const ColumnReverse: Story = {
     args: { direction: 'column-reverse', spacing: 2 },
     render: (args) => html`
         <ui-stack .direction=${args.direction} .spacing=${args.spacing}>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">First in DOM</div>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Second in DOM</div>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Third in DOM (shows first)</div>
+            ${item('First in DOM')}
+            ${item('Second in DOM')}
+            ${item('Third in DOM (shows first)')}
         </ui-stack>
     `,
 };
@@ -105,9 +109,9 @@ export const RowReverse: Story = {
     args: { direction: 'row-reverse', spacing: 2 },
     render: (args) => html`
         <ui-stack .direction=${args.direction} .spacing=${args.spacing}>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">1</div>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">2</div>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">3</div>
+            ${item('1')}
+            ${item('2')}
+            ${item('3')}
         </ui-stack>
     `,
 };
@@ -123,9 +127,9 @@ export const SpacingScale: Story = {
                 <div>
                     <p style="margin:0 0 8px;color:#666;font-size:12px;">spacing=${s} → ${s * 8}px</p>
                     <ui-stack direction="row" .spacing=${s}>
-                        <div style="background:#cfe8fc;border:1px solid #1976d2;padding:12px;color:#1976d2;border-radius:4px;">A</div>
-                        <div style="background:#cfe8fc;border:1px solid #1976d2;padding:12px;color:#1976d2;border-radius:4px;">B</div>
-                        <div style="background:#cfe8fc;border:1px solid #1976d2;padding:12px;color:#1976d2;border-radius:4px;">C</div>
+                        ${item('A')}
+                        ${item('B')}
+                        ${item('C')}
                     </ui-stack>
                 </div>
             `)}
