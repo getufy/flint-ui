@@ -1612,3 +1612,305 @@ describe('ui-resizable-group — _handleKeyResize', () => {
     expect(resizeSpy).toHaveBeenCalledWith(handle, 100);
   });
 });
+
+/* ------------------------------------------------------------------ */
+/*  Before panel already-at-zero drag (lines 258–264)                 */
+/* ------------------------------------------------------------------ */
+
+describe('ui-resizable-group — before panel already-collapsed drag', () => {
+  it('transfers overshoot back to sibling when before panel is at 0 and dragged further left (lines 258-260)', async () => {
+    // Covers: before.size===0 && newBefore<=0 path
+    // Panel 0 is already collapsed; dragging left inflates sibling by delta,
+    // but lines 258-260 subtract the overshoot back so sibling stays correct.
+    const el = await fixture<UiResizableGroup>(html`
+      <ui-resizable-group>
+        <ui-resizable-panel .defaultSize=${70} .minSize=${20}><div>A</div></ui-resizable-panel>
+        <ui-resizable-handle></ui-resizable-handle>
+        <ui-resizable-panel .defaultSize=${30}><div>B</div></ui-resizable-panel>
+      </ui-resizable-group>
+    `);
+    await el.updateComplete;
+    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue(mockRect());
+
+    const handle = getHandles(el)[0];
+    const panels = getPanels(el);
+
+    // Manually set before panel to 0 (collapsed state)
+    panels[0].size = 0;
+    panels[1].size = 90;
+    panels[0]._applySize();
+    panels[1]._applySize();
+
+    // Drag left: newBefore = 0 + (-5%) = -5 → lines 258-260: newAfter += -5 → sibling stays 90
+    el._handleResize(handle, -50); // -5% on 1000px
+    expect(panels[0].size).toBe(0);
+    // Without lines 258-260 the sibling would gain 5% → 95; with them it stays at 90
+    expect(panels[1].size).toBe(90);
+  });
+
+  it('snaps before panel to minSize when dragging right slightly from zero (lines 262-264)', async () => {
+    // Covers: before.size===0 && newBefore>0 (partial snap-back) path
+    const el = await fixture<UiResizableGroup>(html`
+      <ui-resizable-group>
+        <ui-resizable-panel .defaultSize=${70} .minSize=${20}><div>A</div></ui-resizable-panel>
+        <ui-resizable-handle></ui-resizable-handle>
+        <ui-resizable-panel .defaultSize=${30}><div>B</div></ui-resizable-panel>
+      </ui-resizable-group>
+    `);
+    await el.updateComplete;
+    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue(mockRect());
+
+    const handle = getHandles(el)[0];
+    const panels = getPanels(el);
+
+    panels[0].size = 0;
+    panels[1].size = 100;
+    panels[0]._applySize();
+    panels[1]._applySize();
+
+    // Drag right +30px (+3%): newBefore = 0+3 = 3, which is 0 < 3 < 20 (minSize)
+    // lines 262-264: diff=17, newBefore=20, newAfter -= 17 → 80
+    el._handleResize(handle, 30);
+    expect(panels[0].size).toBe(20); // snapped to minSize
+    expect(panels[1].size).toBe(80); // 100 - 3(delta) - 17(snap diff) = 80
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/*  After panel already-at-zero drag (lines 290–296)                  */
+/* ------------------------------------------------------------------ */
+
+describe('ui-resizable-group — after panel already-collapsed drag', () => {
+  it('transfers overshoot back to sibling when after panel is at 0 and dragged further right (lines 290-292)', async () => {
+    // Covers: after.size===0 && newAfter<=0 path
+    const el = await fixture<UiResizableGroup>(html`
+      <ui-resizable-group>
+        <ui-resizable-panel .defaultSize=${30}><div>A</div></ui-resizable-panel>
+        <ui-resizable-handle></ui-resizable-handle>
+        <ui-resizable-panel .defaultSize=${70} .minSize=${20}><div>B</div></ui-resizable-panel>
+      </ui-resizable-group>
+    `);
+    await el.updateComplete;
+    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue(mockRect());
+
+    const handle = getHandles(el)[0];
+    const panels = getPanels(el);
+
+    panels[0].size = 90;
+    panels[1].size = 0;
+    panels[0]._applySize();
+    panels[1]._applySize();
+
+    // Drag right +50px (+5%): newAfter = 0-5 = -5 → lines 290-292: newBefore += -5 → before stays 90
+    el._handleResize(handle, 50);
+    expect(panels[1].size).toBe(0);
+    // Without lines 290-292 the sibling would gain 5% → 95; with them it stays at 90
+    expect(panels[0].size).toBe(90);
+  });
+
+  it('snaps after panel to minSize when dragging left slightly from zero (lines 294-296)', async () => {
+    // Covers: after.size===0 && newAfter>0 (partial snap-back) path
+    const el = await fixture<UiResizableGroup>(html`
+      <ui-resizable-group>
+        <ui-resizable-panel .defaultSize=${30}><div>A</div></ui-resizable-panel>
+        <ui-resizable-handle></ui-resizable-handle>
+        <ui-resizable-panel .defaultSize=${70} .minSize=${20}><div>B</div></ui-resizable-panel>
+      </ui-resizable-group>
+    `);
+    await el.updateComplete;
+    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue(mockRect());
+
+    const handle = getHandles(el)[0];
+    const panels = getPanels(el);
+
+    panels[0].size = 100;
+    panels[1].size = 0;
+    panels[0]._applySize();
+    panels[1]._applySize();
+
+    // Drag left -30px (-3%): newAfter = 0+3 = 3, which is 0 < 3 < 20 (minSize)
+    // lines 294-296: diff=17, newAfter=20, newBefore -= 17 → 80
+    el._handleResize(handle, -30);
+    expect(panels[1].size).toBe(20); // snapped to minSize
+    expect(panels[0].size).toBe(80); // 100 - 3(delta) - 17(snap diff) = 80
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/*  After panel collapsible overshoot accumulation (lines 305–308)    */
+/* ------------------------------------------------------------------ */
+
+describe('ui-resizable-group — after panel collapsible overshoot accumulation', () => {
+  it('clamps after panel to minSize when single-step overshoot is below threshold (lines 305-308)', async () => {
+    // after.size!=0, collapsible, overshoot < minSize/2 → accumulate & clamp (lines 305-308)
+    const el = await fixture<UiResizableGroup>(html`
+      <ui-resizable-group>
+        <ui-resizable-panel .defaultSize=${50}><div>A</div></ui-resizable-panel>
+        <ui-resizable-handle></ui-resizable-handle>
+        <ui-resizable-panel .defaultSize=${50} .minSize=${30} .collapsible=${true}><div>B</div></ui-resizable-panel>
+      </ui-resizable-group>
+    `);
+    await el.updateComplete;
+    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue(mockRect());
+
+    const handle = getHandles(el)[0];
+    const panels = getPanels(el);
+
+    el._startDrag();
+    // +250px (+25%): newAfter = 50-25=25 < minSize(30), overshoot=5 < threshold(15) → lines 305-308
+    el._handleResize(handle, 250);
+    expect(panels[1].size).toBe(30); // clamped to minSize, not collapsed
+    expect(panels[0].size).toBe(70); // before adjusted for diff
+    el._endDrag();
+  });
+
+  it('collapses after panel via accumulated overshoot across many small drag events', async () => {
+    const el = await fixture<UiResizableGroup>(html`
+      <ui-resizable-group>
+        <ui-resizable-panel .defaultSize=${50}><div>A</div></ui-resizable-panel>
+        <ui-resizable-handle></ui-resizable-handle>
+        <ui-resizable-panel .defaultSize=${50} .minSize=${20} .collapsible=${true}><div>B</div></ui-resizable-panel>
+      </ui-resizable-group>
+    `);
+    await el.updateComplete;
+    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue(mockRect());
+
+    const handle = getHandles(el)[0];
+    const panels = getPanels(el);
+
+    // Drag 1: bring panels[1] from 50% to minSize (20%) in 30 steps of 1%
+    el._startDrag();
+    for (let i = 0; i < 30; i++) el._handleResize(handle, 10);
+    expect(panels[1].size).toBe(20);
+    el._endDrag();
+
+    // Drag 2: start at minSize → in _collapsibleAtDragStart; 10 × 1% overshoot = 10% = minSize/2 → collapse
+    el._startDrag();
+    for (let i = 0; i < 10; i++) el._handleResize(handle, 10);
+    expect(panels[1].size).toBe(0);
+    el._endDrag();
+  });
+
+  it('resets after-panel overshoot when user drags back above minSize', async () => {
+    const el = await fixture<UiResizableGroup>(html`
+      <ui-resizable-group>
+        <ui-resizable-panel .defaultSize=${50}><div>A</div></ui-resizable-panel>
+        <ui-resizable-handle></ui-resizable-handle>
+        <ui-resizable-panel .defaultSize=${50} .minSize=${20} .collapsible=${true}><div>B</div></ui-resizable-panel>
+      </ui-resizable-group>
+    `);
+    await el.updateComplete;
+    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue(mockRect());
+
+    const handle = getHandles(el)[0];
+    const panels = getPanels(el);
+
+    el._startDrag();
+    // Bring panels[1] to minSize
+    for (let i = 0; i < 30; i++) el._handleResize(handle, 10);
+    expect(panels[1].size).toBe(20);
+
+    // Accumulate 5% overshoot (below threshold of 10%)
+    for (let i = 0; i < 5; i++) el._handleResize(handle, 10);
+    expect(panels[1].size).toBe(20); // still clamped, not collapsed
+
+    // Drag back above minSize → overshoot resets
+    el._handleResize(handle, -50); // +5% → panels[1] = 25
+    expect(panels[1].size).toBe(25);
+
+    // Need full threshold again from scratch (9 steps of 1% = 9% < 10% → no collapse)
+    for (let i = 0; i < 9; i++) el._handleResize(handle, 10);
+    expect(panels[1].size).toBe(20); // clamped to minSize, not collapsed
+    el._endDrag();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/*  Collapse overshoot — exact boundary tests (kills >= vs > mutants) */
+/* ------------------------------------------------------------------ */
+
+describe('ui-resizable-group — collapse overshoot >= boundary', () => {
+  it('collapses before panel when overshoot is exactly minSize/2 (tests >= not >)', async () => {
+    const el = await fixture<UiResizableGroup>(html`
+      <ui-resizable-group>
+        <ui-resizable-panel .defaultSize=${50} .minSize=${20} .collapsible=${true}><div>A</div></ui-resizable-panel>
+        <ui-resizable-handle></ui-resizable-handle>
+        <ui-resizable-panel .defaultSize=${50}><div>B</div></ui-resizable-panel>
+      </ui-resizable-group>
+    `);
+    await el.updateComplete;
+    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue(mockRect());
+
+    const handle = getHandles(el)[0];
+    const panels = getPanels(el);
+
+    el._startDrag();
+    // newBefore = 50 - 40 = 10, overshoot = 20 - 10 = 10 = minSize/2(10) → must collapse (>=)
+    el._handleResize(handle, -400);
+    expect(panels[0].size).toBe(0);
+    el._endDrag();
+  });
+
+  it('does NOT collapse before panel when overshoot is 1% below minSize/2', async () => {
+    const el = await fixture<UiResizableGroup>(html`
+      <ui-resizable-group>
+        <ui-resizable-panel .defaultSize=${50} .minSize=${20} .collapsible=${true}><div>A</div></ui-resizable-panel>
+        <ui-resizable-handle></ui-resizable-handle>
+        <ui-resizable-panel .defaultSize=${50}><div>B</div></ui-resizable-panel>
+      </ui-resizable-group>
+    `);
+    await el.updateComplete;
+    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue(mockRect());
+
+    const handle = getHandles(el)[0];
+    const panels = getPanels(el);
+
+    el._startDrag();
+    // newBefore = 50 - 39 = 11, overshoot = 20 - 11 = 9 < 10 → must NOT collapse
+    el._handleResize(handle, -390);
+    expect(panels[0].size).toBe(20); // clamped to minSize, not collapsed
+    el._endDrag();
+  });
+
+  it('collapses after panel when overshoot is exactly minSize/2 (tests >= not >)', async () => {
+    const el = await fixture<UiResizableGroup>(html`
+      <ui-resizable-group>
+        <ui-resizable-panel .defaultSize=${50}><div>A</div></ui-resizable-panel>
+        <ui-resizable-handle></ui-resizable-handle>
+        <ui-resizable-panel .defaultSize=${50} .minSize=${20} .collapsible=${true}><div>B</div></ui-resizable-panel>
+      </ui-resizable-group>
+    `);
+    await el.updateComplete;
+    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue(mockRect());
+
+    const handle = getHandles(el)[0];
+    const panels = getPanels(el);
+
+    el._startDrag();
+    // newAfter = 50 - 40 = 10, overshoot = 20 - 10 = 10 = minSize/2(10) → must collapse (>=)
+    el._handleResize(handle, 400);
+    expect(panels[1].size).toBe(0);
+    el._endDrag();
+  });
+
+  it('does NOT collapse after panel when overshoot is 1% below minSize/2', async () => {
+    const el = await fixture<UiResizableGroup>(html`
+      <ui-resizable-group>
+        <ui-resizable-panel .defaultSize=${50}><div>A</div></ui-resizable-panel>
+        <ui-resizable-handle></ui-resizable-handle>
+        <ui-resizable-panel .defaultSize=${50} .minSize=${20} .collapsible=${true}><div>B</div></ui-resizable-panel>
+      </ui-resizable-group>
+    `);
+    await el.updateComplete;
+    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue(mockRect());
+
+    const handle = getHandles(el)[0];
+    const panels = getPanels(el);
+
+    el._startDrag();
+    // newAfter = 50 - 39 = 11, overshoot = 20 - 11 = 9 < 10 → must NOT collapse
+    el._handleResize(handle, 390);
+    expect(panels[1].size).toBe(20); // clamped to minSize, not collapsed
+    el._endDrag();
+  });
+});
