@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './ui-paper';
+import '../box/ui-box';
 import '../button/ui-button';
 
 const meta: Meta = {
@@ -44,7 +45,7 @@ export const Playground: Story = {
         square: false,
     },
     render: (args) => html`
-        <div style="padding: 48px; background-color: #f5f5f5; display: flex; justify-content: center;">
+        <ui-box p="48px" bgcolor="var(--ui-muted-background, #f5f5f5)" display="flex" justifyContent="center">
             <ui-paper
                 .elevation=${args.elevation}
                 .variant=${args.variant}
@@ -64,11 +65,11 @@ export const Playground: Story = {
 
 export const Basic: Story = {
     render: () => html`
-        <div style="padding: 40px; background-color: #f5f5f5; display: flex; justify-content: center;">
+        <ui-box p="40px" bgcolor="var(--ui-muted-background, #f5f5f5)" display="flex" justifyContent="center">
             <ui-paper style="--ui-paper-padding: 24px; width: 200px; text-align: center;">
                 Elevated (default)
             </ui-paper>
-        </div>
+        </ui-box>
     `,
 };
 
@@ -76,7 +77,7 @@ export const Basic: Story = {
 
 export const Elevations: Story = {
     render: () => html`
-        <div style="padding: 40px; display: flex; flex-wrap: wrap; gap: 32px; background-color: #f5f5f5;">
+        <ui-box p="40px" display="flex" flexWrap="wrap" gap="32px" bgcolor="var(--ui-muted-background, #f5f5f5)">
             ${[0, 1, 2, 3, 4, 6, 8, 12, 16, 24].map(e => html`
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
                     <ui-paper
@@ -95,7 +96,7 @@ export const Elevations: Story = {
 
 export const Outlined: Story = {
     render: () => html`
-        <div style="padding: 40px; background-color: #fff; display: flex; gap: 24px; flex-wrap: wrap;">
+        <ui-box p="40px" bgcolor="var(--ui-background, #fff)" display="flex" gap="24px" flexWrap="wrap">
             <ui-paper variant="outlined" style="--ui-paper-padding: 20px; width: 140px; text-align: center;">
                 Outlined
             </ui-paper>
@@ -108,7 +109,7 @@ export const Outlined: Story = {
 
 export const Flat: Story = {
     render: () => html`
-        <div style="padding: 40px; background-color: #f0f0f0; display: flex; gap: 24px; flex-wrap: wrap;">
+        <ui-box p="40px" bgcolor="var(--ui-muted-background, #f0f0f0)" display="flex" gap="24px" flexWrap="wrap">
             <ui-paper variant="flat" style="--ui-paper-padding: 20px; width: 140px; text-align: center;">
                 Flat
             </ui-paper>
@@ -123,7 +124,7 @@ export const Flat: Story = {
 
 export const Square: Story = {
     render: () => html`
-        <div style="padding: 40px; background-color: #f5f5f5; display: flex; gap: 24px; flex-wrap: wrap;">
+        <ui-box p="40px" bgcolor="var(--ui-muted-background, #f5f5f5)" display="flex" gap="24px" flexWrap="wrap">
             <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 12px; color: #666;">
                 <ui-paper elevation="3" style="width: 100px; height: 80px; display: flex; align-items: center; justify-content: center;">Rounded</ui-paper>
                 rounded (default)
@@ -144,14 +145,14 @@ export const Square: Story = {
 
 export const CustomPadding: Story = {
     render: () => html`
-        <div style="padding: 40px; background-color: #f0f0f0; display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start;">
+        <ui-box p="40px" bgcolor="var(--ui-muted-background, #f0f0f0)" display="flex" gap="24px" flexWrap="wrap" alignItems="flex-start">
             ${[0, 8, 16, 24, 40].map(p => html`
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 12px; color: #666;">
                     <ui-paper
                         elevation="2"
                         style=${`--ui-paper-padding: ${p}px;`}
                     >
-                        <div style="background: rgba(59,130,246,0.15); font-size: 13px;">content</div>
+                        <ui-box bgcolor="rgba(59,130,246,0.15)" style="font-size: 13px;">content</ui-box>
                     </ui-paper>
                     padding: ${p}px
                 </div>
@@ -164,31 +165,31 @@ export const CustomPadding: Story = {
 
 export const Composed: Story = {
     render: () => html`
-        <div style="padding: 40px; background-color: #f5f5f5; display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start;">
+        <ui-box p="40px" bgcolor="var(--ui-muted-background, #f5f5f5)" display="flex" gap="24px" flexWrap="wrap" alignItems="flex-start">
             <!-- Card with header / body / footer -->
             <ui-paper elevation="2" style="max-width: 320px; overflow: hidden;">
-                <div style="padding: 16px 20px; border-bottom: 1px solid rgba(0,0,0,0.08); font-weight: 600; font-size: 15px;">
+                <ui-box p="16px 20px" borderBottom="1px solid rgba(0,0,0,0.08)" fontWeight="600" fontSize="15px">
                     Card Header
-                </div>
-                <div style="padding: 20px; font-size: 14px; line-height: 1.6; color: #444;">
+                </ui-box>
+                <ui-box p="20px" fontSize="14px" lineHeight="1.6" color="#444">
                     Paper used as a card surface. Slot any HTML inside — headers, body text,
                     images, or actions.
-                </div>
-                <div style="padding: 12px 20px; border-top: 1px solid rgba(0,0,0,0.08); display: flex; justify-content: flex-end; gap: 8px;">
+                </ui-box>
+                <ui-stack direction="row" p="12px 20px" borderTop="1px solid rgba(0,0,0,0.08)" justifyContent="flex-end" gap="8px">
                     <ui-button variant="outlined">Cancel</ui-button>
                     <ui-button variant="primary">Confirm</ui-button>
-                </div>
+                </ui-stack>
             </ui-paper>
 
             <!-- Outlined variant as a form panel -->
             <ui-paper variant="outlined" style="--ui-paper-padding: 20px; max-width: 280px;">
                 <p style="margin: 0 0 12px; font-weight: 600;">Settings Panel</p>
-                <label style="display: flex; align-items: center; gap: 8px; font-size: 14px;">
+                <ui-stack direction="row" alignItems="center" gap="8px" fontSize="14px">
                     <input type="checkbox" /> Enable notifications
-                </label>
-                <label style="display: flex; align-items: center; gap: 8px; font-size: 14px; margin-top: 8px;">
+                </ui-stack>
+                <ui-stack direction="row" alignItems="center" gap="8px" fontSize="14px" mt="8px">
                     <input type="checkbox" checked /> Auto-save
-                </label>
+                </ui-stack>
             </ui-paper>
         </div>
     `,
@@ -236,7 +237,7 @@ export const DarkMode: Story = {
 
 export const PaperWithPadding: Story = {
     render: () => html`
-        <div style="padding: 40px; background-color: #f0f0f0;">
+        <ui-box p="40px" bgcolor="var(--ui-muted-background, #f0f0f0)">
             <ui-paper elevation="3" style="--ui-paper-padding: 24px; max-width: 400px; line-height: 1.6;">
                 <h3 style="margin-top: 0;">Physical Surfaces</h3>
                 <p>The Paper component mimics physical surfaces. Higher elevation implies that the paper is closer to the viewer and casts a larger shadow.</p>

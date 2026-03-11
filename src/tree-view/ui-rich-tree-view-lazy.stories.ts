@@ -1,6 +1,8 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './ui-rich-tree-view.js';
+import '../button/ui-button';
+import '../stack/ui-stack.js';
 import type { UiRichTreeView, RichTreeItem, RichTreeViewDataSource } from './ui-rich-tree-view.js';
 
 const meta: Meta = {
@@ -177,7 +179,7 @@ export const AdjustableLatency: Story = {
         const onSliderEnd = () => rebuild();
 
         return html`
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;font-family:system-ui,sans-serif;font-size:14px;">
+      <ui-stack direction="row" alignItems="center" gap="12px" style="margin-bottom:16px;font-family:system-ui,sans-serif;font-size:14px;">
         <label style="display:flex;align-items:center;gap:8px;flex:1;max-width:360px;">
           <span style="white-space:nowrap;">Response latency</span>
           <input
@@ -195,11 +197,8 @@ export const AdjustableLatency: Story = {
             style="min-width:52px;text-align:right;font-variant-numeric:tabular-nums;"
           >${latency} ms</span>
         </label>
-        <button
-          @click=${rebuild}
-          style="padding:5px 12px;border-radius:4px;background:#3b82f6;color:white;border:none;cursor:pointer;font-size:13px;"
-        >Reload tree</button>
-      </div>
+        <ui-button @click=${rebuild} style="font-size:13px;">Reload tree</ui-button>
+      </ui-stack>
 
       <p style="font-size:13px;color:#6b7280;margin-bottom:12px;">
         Move the slider and click <strong>Reload tree</strong> to apply a new

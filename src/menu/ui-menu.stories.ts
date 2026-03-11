@@ -4,6 +4,7 @@ import { ref } from 'lit/directives/ref.js';
 import { UiMenu } from './ui-menu';
 import './ui-menu';
 import '../box/ui-box';
+import '../stack/ui-stack';
 import '../button/ui-button';
 import '../avatar/ui-avatar';
 
@@ -103,7 +104,7 @@ export const SelectedMenu: Story = {
     render: () => {
         const selected = 'Drafts';
         return html`
-            <div class="story-root" style="padding:48px 32px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;font-family:Inter,sans-serif;min-height:260px;">
+            <div class="story-root" style="padding:48px 32px;background:var(--ui-muted-background, #f8fafc);border:1px solid #e2e8f0;border-radius:8px;font-family:Inter,sans-serif;min-height:260px;">
                 <p style="margin-bottom:12px;font-size:.875rem;color:#6b7280;">
                     Selected: <strong>${selected}</strong>
                 </p>
@@ -140,9 +141,9 @@ export const SelectedMenu: Story = {
 /* ================================================================== */
 export const PositionedMenu: Story = {
     render: () => html`
-        <div class="story-root" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;padding:24px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;font-family:Inter,sans-serif;">
+        <div class="story-root" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;padding:24px;background:var(--ui-muted-background, #f8fafc);border:1px solid #e2e8f0;border-radius:8px;font-family:Inter,sans-serif;">
             ${(['bottom-start', 'bottom-end', 'top-start', 'top-end'] as const).map(placement => html`
-                <div style="display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:24px 0 0;">
+                <ui-stack direction="column" alignItems="flex-start" gap="8px" style="padding:24px 0 0;">
                     <span style="font-size:.7rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.06em;">${placement}</span>
                     <div data-menu-anchor style="position:relative;display:inline-block;margin-top:${placement.startsWith('top') ? '120px' : '0'}">
                         <ui-button variant="outlined" @click=${(e: Event) => {
@@ -157,7 +158,7 @@ export const PositionedMenu: Story = {
                             <ui-menu-item>Option 3</ui-menu-item>
                         </ui-menu>
                     </div>
-                </div>
+                </ui-stack>
             `)}
         </div>
     `,
@@ -213,7 +214,7 @@ export const DisabledItems: Story = {
 /* ================================================================== */
 export const DenseMode: Story = {
     render: () => wrap(html`
-        <div style="display:flex;gap:32px;align-items:flex-start;">
+        <ui-stack direction="row" gap="32px" alignItems="flex-start">
             <div>
                 <p style="margin:0 0 8px;font-size:.75rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;">Default</p>
                 <div style="position:relative;display:inline-block;">
@@ -226,7 +227,7 @@ export const DenseMode: Story = {
                 </div>
             </div>
 
-            <div>
+            <div style="flex: 1;">
                 <p style="margin:0 0 8px;font-size:.75rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;">Dense</p>
                 <div style="position:relative;display:inline-block;">
                     <ui-button @click=${(e: Event) => {
@@ -241,7 +242,7 @@ export const DenseMode: Story = {
                     </ui-menu>
                 </div>
             </div>
-        </div>
+        </ui-stack>
     `),
 };
 
@@ -319,13 +320,13 @@ export const AccountMenu: Story = {
             <!-- Menu is a sibling of the button, inside the same positioning context -->
             <ui-menu placement="bottom-end" @ui-menu-close=${close}>
                 <!-- Profile header -->
-                <div style="padding:16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #e5e7eb;min-width:220px;">
+                <ui-stack direction="row" alignItems="center" gap="12px" style="padding:16px;border-bottom:1px solid #e5e7eb;min-width:220px;">
                     <ui-avatar name="Jane Doe"></ui-avatar>
                     <div>
                         <div style="font-weight:600;font-size:.95rem;">Jane Doe</div>
                         <div style="font-size:.8rem;color:#6b7280;">jane@example.com</div>
                     </div>
-                </div>
+                </ui-stack>
 
                 <ui-menu-item>
                     <span slot="icon">👤</span>
@@ -387,15 +388,18 @@ export const ContextMenu: Story = {
         };
 
         return html`
-            <div
+            <ui-box
                 class="story-root"
-                style="padding:48px 32px;background:#f8fafc;border:2px dashed #cbd5e1;border-radius:8px;font-family:Inter,sans-serif;min-height:260px;display:flex;align-items:center;justify-content:center;cursor:context-menu;user-select:none;"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                style="padding:48px 32px;background:var(--ui-muted-background, #f8fafc);border:2px dashed #cbd5e1;border-radius:8px;font-family:Inter,sans-serif;min-height:260px;cursor:context-menu;user-select:none;"
                 @contextmenu=${onContextMenu}
             >
                 <p style="color:#94a3b8;font-size:.9rem;pointer-events:none;">
                     Right-click anywhere in this area
                 </p>
-            </div>
+            </ui-box>
 
             <ui-menu
                 placement="bottom-start"

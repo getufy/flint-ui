@@ -1,6 +1,9 @@
 import { Meta, StoryObj } from '@storybook/web-components';
+import '../button/ui-button';
 import { html } from 'lit';
+import '../box/ui-box';
 import './ui-textarea';
+import '../button/ui-button';
 
 const meta: Meta = {
     title: 'Inputs/Textarea',
@@ -174,9 +177,7 @@ export const WithButton: Story = {
     render: () => html`
     <div style="display: grid; gap: 8px; max-width: 400px; font-family: system-ui;">
       <ui-textarea placeholder="Type your message here."></ui-textarea>
-      <button
-        style="padding: 8px 16px; border-radius: 6px; background: #3b82f6; color: white; border: none; cursor: pointer; font-size: 14px;"
-      >Send message</button>
+      <ui-button>Send message</ui-button>
     </div>
   `,
 };
@@ -243,15 +244,13 @@ export const FormUsage: Story = {
             required
             rows="4"
           ></ui-textarea>
-          <button
-            type="submit"
-            style="padding: 8px 16px; border-radius: 6px; background: #3b82f6; color: white; border: none; cursor: pointer; font-size: 14px;"
-          >Submit</button>
+          <ui-button type="submit">Submit</ui-button>
         </div>
-        <pre
+        <ui-box
+          as="pre"
           class="form-output"
-          style="margin-top: 12px; font-size: 12px; background: #f9fafb; padding: 12px; border-radius: 6px; border: 1px solid #e5e7eb; min-height: 40px;"
-        ></pre>
+          bgcolor="var(--ui-muted-background, #f9fafb)" p="12px" borderRadius="6px" border="1px solid #e5e7eb" style="margin-top: 12px; font-size: 12px; min-height: 40px;"
+        ></ui-box>
       </form>
     `;
     },

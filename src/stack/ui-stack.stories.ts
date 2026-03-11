@@ -43,7 +43,7 @@ export default meta;
 type Story = StoryObj;
 
 const item = (label: string) => html`
-    <ui-box bgcolor="#cfe8fc" border="1px solid #1976d2" p="16px" textAlign="center" color="#1976d2" borderRadius="4px" style="font-family: system-ui;">
+    <ui-box bgcolor="var(--ui-demo-item-background, #cfe8fc)" border="1px solid #1976d2" p="16px" textAlign="center" color="#1976d2" borderRadius="4px" style="font-family: system-ui;">
         ${label}
     </ui-box>
 `;
@@ -121,7 +121,7 @@ export const RowReverse: Story = {
 export const SpacingScale: Story = {
     name: 'Spacing: Scale values',
     render: () => html`
-        <div style="display:flex;flex-direction:column;gap:32px;font-family:system-ui;">
+        <ui-stack direction="column" gap="32px" style="font-family:system-ui;">
             ${[0, 0.5, 1, 2, 3, 4].map(
                 (s) => html`
                 <div>
@@ -133,7 +133,7 @@ export const SpacingScale: Story = {
                     </ui-stack>
                 </div>
             `)}
-        </div>
+        </ui-stack>
     `,
 };
 
@@ -142,9 +142,9 @@ export const StringSpacing: Story = {
     render: () => html`
         <p style="font-family:system-ui;font-size:12px;color:#666;margin:0 0 8px;">spacing="2rem" — string values are passed directly to CSS gap</p>
         <ui-stack direction="row" .spacing=${'2rem'}>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;color:#1976d2;border-radius:4px;">Item 1</div>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;color:#1976d2;border-radius:4px;">Item 2</div>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;color:#1976d2;border-radius:4px;">Item 3</div>
+            <div style="background:var(--ui-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;color:#1976d2;border-radius:4px;">Item 1</div>
+            <div style="background:var(--ui-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;color:#1976d2;border-radius:4px;">Item 2</div>
+            <div style="background:var(--ui-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;color:#1976d2;border-radius:4px;">Item 3</div>
         </ui-stack>
     `,
 };
@@ -154,38 +154,38 @@ export const StringSpacing: Story = {
 export const AlignItems: Story = {
     name: 'Alignment: alignItems',
     render: () => html`
-        <div style="display:flex;flex-direction:column;gap:24px;font-family:system-ui;">
+        <ui-stack direction="column" gap="24px" style="font-family:system-ui;">
             ${(['flex-start', 'center', 'flex-end', 'stretch', 'baseline'] as const).map(
                 (a) => html`
                 <div>
                     <p style="margin:0 0 6px;font-size:12px;color:#666;">alignItems="${a}"</p>
-                    <ui-stack direction="row" .spacing=${2} .alignItems=${a} style="height:80px;background:#f5f5f5;border-radius:4px;">
-                        <div style="background:#cfe8fc;border:1px solid #1976d2;padding:8px 16px;color:#1976d2;border-radius:4px;">Short</div>
-                        <div style="background:#cfe8fc;border:1px solid #1976d2;padding:24px 16px;color:#1976d2;border-radius:4px;">Tall</div>
-                        <div style="background:#cfe8fc;border:1px solid #1976d2;padding:8px 16px;color:#1976d2;border-radius:4px;">Short</div>
+                    <ui-stack direction="row" .spacing=${2} .alignItems=${a} style="height:80px;background:var(--ui-muted-background, #f5f5f5);border-radius:4px;">
+                        <div style="background:var(--ui-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:8px 16px;color:#1976d2;border-radius:4px;">Short</div>
+                        <div style="background:var(--ui-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:24px 16px;color:#1976d2;border-radius:4px;">Tall</div>
+                        <div style="background:var(--ui-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:8px 16px;color:#1976d2;border-radius:4px;">Short</div>
                     </ui-stack>
                 </div>
             `)}
-        </div>
+        </ui-stack>
     `,
 };
 
 export const JustifyContent: Story = {
     name: 'Alignment: justifyContent',
     render: () => html`
-        <div style="display:flex;flex-direction:column;gap:24px;font-family:system-ui;">
+        <ui-stack direction="column" gap="24px" style="font-family:system-ui;">
             ${(['flex-start', 'center', 'flex-end', 'space-between', 'space-around', 'space-evenly'] as const).map(
                 (j) => html`
                 <div>
                     <p style="margin:0 0 6px;font-size:12px;color:#666;">justifyContent="${j}"</p>
-                    <ui-stack direction="row" .justifyContent=${j} style="background:#f5f5f5;border-radius:4px;padding:8px;">
-                        <div style="background:#cfe8fc;border:1px solid #1976d2;padding:8px 16px;color:#1976d2;border-radius:4px;">A</div>
-                        <div style="background:#cfe8fc;border:1px solid #1976d2;padding:8px 16px;color:#1976d2;border-radius:4px;">B</div>
-                        <div style="background:#cfe8fc;border:1px solid #1976d2;padding:8px 16px;color:#1976d2;border-radius:4px;">C</div>
+                    <ui-stack direction="row" .justifyContent=${j} style="background:var(--ui-muted-background, #f5f5f5);border-radius:4px;padding:8px;">
+                        <div style="background:var(--ui-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:8px 16px;color:#1976d2;border-radius:4px;">A</div>
+                        <div style="background:var(--ui-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:8px 16px;color:#1976d2;border-radius:4px;">B</div>
+                        <div style="background:var(--ui-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:8px 16px;color:#1976d2;border-radius:4px;">C</div>
                     </ui-stack>
                 </div>
             `)}
-        </div>
+        </ui-stack>
     `,
 };
 
@@ -196,11 +196,11 @@ export const WithDividers: Story = {
     args: { direction: 'column', spacing: 2 },
     render: (args) => html`
         <ui-stack .direction=${args.direction} .spacing=${args.spacing}>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 1</div>
+            <div style="background:var(--ui-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 1</div>
             <ui-divider></ui-divider>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 2</div>
+            <div style="background:var(--ui-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 2</div>
             <ui-divider></ui-divider>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 3</div>
+            <div style="background:var(--ui-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 3</div>
         </ui-stack>
     `,
 };
@@ -210,11 +210,11 @@ export const WithDividersRow: Story = {
     args: { direction: 'row', spacing: 2 },
     render: (args) => html`
         <ui-stack .direction=${args.direction} .spacing=${args.spacing}>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 1</div>
+            <div style="background:var(--ui-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 1</div>
             <ui-divider></ui-divider>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 2</div>
+            <div style="background:var(--ui-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 2</div>
             <ui-divider></ui-divider>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 3</div>
+            <div style="background:var(--ui-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 3</div>
         </ui-stack>
     `,
 };
@@ -229,9 +229,9 @@ export const NoFlexGap: Story = {
             Uses CSS margin instead of gap — useful when targeting older browsers.
         </p>
         <ui-stack .direction=${args.direction} .spacing=${args.spacing} .useFlexGap=${args.useFlexGap}>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 1</div>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 2</div>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 3</div>
+            <div style="background:var(--ui-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 1</div>
+            <div style="background:var(--ui-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 2</div>
+            <div style="background:var(--ui-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 3</div>
         </ui-stack>
     `,
 };
@@ -249,9 +249,9 @@ export const Responsive: Story = {
             Resize the viewport: column below 600px, row above.
         </p>
         <ui-stack .direction=${args.direction} .spacing=${args.spacing}>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Responsive 1</div>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Responsive 2</div>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Responsive 3</div>
+            <div style="background:var(--ui-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Responsive 1</div>
+            <div style="background:var(--ui-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Responsive 2</div>
+            <div style="background:var(--ui-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Responsive 3</div>
         </ui-stack>
     `,
 };
@@ -262,13 +262,13 @@ export const Nested: Story = {
     name: 'Nested stacks',
     render: () => html`
         <ui-stack .spacing=${3}>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Top item</div>
+            <div style="background:var(--ui-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Top item</div>
             <ui-stack direction="row" .spacing=${2}>
-                <div style="background:#e8f5e9;border:1px solid #388e3c;padding:16px;flex:1;text-align:center;color:#388e3c;font-family:system-ui;border-radius:4px;">Left</div>
-                <div style="background:#e8f5e9;border:1px solid #388e3c;padding:16px;flex:1;text-align:center;color:#388e3c;font-family:system-ui;border-radius:4px;">Center</div>
-                <div style="background:#e8f5e9;border:1px solid #388e3c;padding:16px;flex:1;text-align:center;color:#388e3c;font-family:system-ui;border-radius:4px;">Right</div>
+                <div style="background:var(--ui-demo-item-background-green, #e8f5e9);border:1px solid #388e3c;padding:16px;flex:1;text-align:center;color:#388e3c;font-family:system-ui;border-radius:4px;">Left</div>
+                <div style="background:var(--ui-demo-item-background-green, #e8f5e9);border:1px solid #388e3c;padding:16px;flex:1;text-align:center;color:#388e3c;font-family:system-ui;border-radius:4px;">Center</div>
+                <div style="background:var(--ui-demo-item-background-green, #e8f5e9);border:1px solid #388e3c;padding:16px;flex:1;text-align:center;color:#388e3c;font-family:system-ui;border-radius:4px;">Right</div>
             </ui-stack>
-            <div style="background:#cfe8fc;border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Bottom item</div>
+            <div style="background:var(--ui-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Bottom item</div>
         </ui-stack>
     `,
 };

@@ -1,6 +1,9 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './ui-date-field.js';
+import '../box/ui-box';
+import '../stack/ui-stack';
+import '../button/ui-button';
 import type { UiDateField } from './ui-date-field.js';
 
 const meta: Meta = {
@@ -28,9 +31,9 @@ export default meta;
 type Story = StoryObj;
 
 const wrap = (content: unknown) => html`
-  <div style="padding:48px;font-family:Inter,sans-serif;display:flex;flex-direction:column;gap:32px;">
+  <ui-stack direction="column" gap="32px" style="padding:48px;font-family:Inter,sans-serif;">
     ${content}
-  </div>
+  </ui-stack>
 `;
 
 // ── Basic ─────────────────────────────────────────────────────────────────────
@@ -102,7 +105,7 @@ export const ControlledVsUncontrolled: Story = {
 export const States: Story = {
     name: 'Disabled & ReadOnly',
     render: () => wrap(html`
-    <div style="display:flex;gap:32px;flex-wrap:wrap;">
+    <ui-stack direction="row" gap="32px" style="flex-wrap:wrap;">
       <div>
         <p style="margin:0 0 10px;font-size:.8rem;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.04em;">Enabled</p>
         <ui-date-field label="Date" value="2025-06-15"></ui-date-field>
@@ -115,7 +118,7 @@ export const States: Story = {
         <p style="margin:0 0 10px;font-size:.8rem;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.04em;">Read-only</p>
         <ui-date-field label="Date" value="2025-06-15" readonly></ui-date-field>
       </div>
-    </div>
+    </ui-stack>
   `),
 };
 
@@ -160,7 +163,7 @@ export const KeyboardShortcuts: Story = {
         ].map(([key, desc]) => html`
             <tr style="border-bottom:1px solid #f3f4f6;">
               <td style="padding:10px 12px;vertical-align:top;">
-                <kbd style="background:#f1f5f9;border:1px solid #cbd5e1;border-radius:4px;padding:2px 7px;font-family:monospace;font-size:.8rem;white-space:nowrap;">${key}</kbd>
+                <ui-box as="kbd" bgcolor="var(--ui-muted-background, #f1f5f9)" border="1px solid #cbd5e1" borderRadius="4px" p="2px 7px" style="font-family:monospace;font-size:.8rem;white-space:nowrap;display:inline-block;">${key}</ui-box>
               </td>
               <td style="padding:10px 12px;color:#374151;">${desc}</td>
             </tr>
@@ -217,22 +220,16 @@ export const InAForm: Story = {
                 out.textContent = JSON.stringify(Object.fromEntries(data.entries()), null, 2);
                 out.style.display = 'block';
             }
-        }} style="display:flex;flex-direction:column;gap:20px;">
+        }} style="">
 
-        <div style="display:flex;gap:16px;flex-wrap:wrap;">
+        <ui-stack direction="row" gap="16px" style="flex-wrap:wrap;">
           <ui-date-field name="start" label="Start Date" helper-text="First day of appointment"></ui-date-field>
           <ui-date-field name="end"   label="End Date"   helper-text="Last day of appointment"></ui-date-field>
-        </div>
+        </ui-stack>
 
-        <button type="submit" style="
-          align-self:flex-start;padding:10px 24px;
-          background:#3b82f6;color:#fff;border:none;
-          border-radius:8px;cursor:pointer;font-family:inherit;
-          font-size:.9375rem;font-weight:600;transition:background .12s;">
-          Book
-        </button>
+        <ui-button type="submit" style="align-self:flex-start;font-size:.9375rem;">Book</ui-button>
       </form>
-      <pre id="form-output" style="display:none;margin-top:20px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:16px;font-size:.8rem;color:#334155;"></pre>
+      <ui-box as="pre" id="form-output" bgcolor="var(--ui-muted-background, #f8fafc)" border="1px solid #e2e8f0" borderRadius="8px" p="16px" style="display:none;margin-top:20px;font-size:.8rem;color:#334155;"></ui-box>
     </div>
   `,
 };

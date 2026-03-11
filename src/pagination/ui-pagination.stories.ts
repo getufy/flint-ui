@@ -2,7 +2,9 @@ import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { UiPagination } from './ui-pagination';
 import './ui-pagination';
+import '../box/ui-box';
 import '../paper/ui-paper';
+import '../stack/ui-stack';
 
 const meta: Meta = {
     title: 'Navigation/Pagination',
@@ -29,15 +31,17 @@ export default meta;
 type Story = StoryObj;
 
 const box = (title: string, content: unknown) => html`
-    <div style="display:flex;flex-direction:column;gap:8px;padding:0 0 4px;">
+    <ui-stack direction="column" gap="8px" p="0 0 4px">
         <span style="font-size:.7rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.06em;">${title}</span>
         ${content}
-    </div>
+    </ui-stack>
 `;
 
 const section = (content: unknown) => html`
-    <ui-paper elevation="1" style="display:flex;flex-direction:column;gap:24px;padding:24px;font-family:Inter,sans-serif;">
-        ${content}
+    <ui-paper elevation="1">
+        <ui-stack direction="column" gap="24px" p="24px" style="font-family:Inter,sans-serif;">
+            ${content}
+        </ui-stack>
     </ui-paper>
 `;
 
@@ -255,13 +259,13 @@ export const Controlled: Story = {
         };
 
         return html`
-            <div style="display:flex;flex-direction:column;gap:16px;padding:24px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-family:Inter,sans-serif;"
-                @ui-pagination-change=${handleChange}>
-                <div style="display:flex;align-items:center;gap:12px;font-size:.875rem;color:#64748b;">
-                    <span>Current page:</span>
-                    <strong id="cp-label" style="font-size:1.1rem;color:#1e293b;">${page}</strong>
-                    <span style="color:#94a3b8;">/ 10</span>
-                </div>
+            <ui-paper elevation="1" @ui-pagination-change=${handleChange}>
+                <ui-stack direction="column" gap="16px" p="24px" style="font-family:Inter,sans-serif;">
+                    <ui-stack direction="row" alignItems="center" gap="12px" fontSize=".875rem" color="#64748b">
+                        <span>Current page:</span>
+                        <strong id="cp-label" style="font-size:1.1rem;color:#1e293b;">${page}</strong>
+                        <span style="color:#94a3b8;">/ 10</span>
+                    </ui-stack>
 
                 <ui-pagination
                     count="10"
@@ -271,10 +275,11 @@ export const Controlled: Story = {
                     show-last-button
                 ></ui-pagination>
 
-                <div style="padding:12px 16px;background:#f8fafc;border-radius:6px;font-size:.825rem;color:#64748b;border:1px solid #e2e8f0;">
-                    Showing items <strong id="cp-range">${(page - 1) * 10 + 1}–${Math.min(page * 10, 95)} of 95</strong>
-                </div>
-            </div>
+                    <ui-box bgcolor="var(--ui-muted-background, #f8fafc)" borderRadius="6px" p="12px 16px" style="font-size:.825rem;color:#64748b;border:1px solid #e2e8f0;">
+                        Showing items <strong id="cp-range">${(page - 1) * 10 + 1}–${Math.min(page * 10, 95)} of 95</strong>
+                    </ui-box>
+                </ui-stack>
+            </ui-paper>
         `;
     },
 };
@@ -417,11 +422,11 @@ export const TablePaginationStyle: Story = {
         }
 
         return html`
-            <div style="font-family:Inter,sans-serif;background:#fff;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;">
+            <ui-paper elevation="1" style="font-family:Inter,sans-serif;overflow:hidden;">
                 <!-- Table -->
                 <table style="width:100%;border-collapse:collapse;font-size:.875rem;">
                     <thead>
-                        <tr style="background:#f8fafc;border-bottom:1px solid #e2e8f0;">
+                        <tr style="background:var(--ui-muted-background, #f8fafc);border-bottom:1px solid #e2e8f0;">
                             <th style="padding:10px 16px;text-align:left;font-weight:600;color:#374151;">#</th>
                             <th style="padding:10px 16px;text-align:left;font-weight:600;color:#374151;">Name</th>
                             <th style="padding:10px 16px;text-align:left;font-weight:600;color:#374151;">Role</th>
@@ -439,11 +444,11 @@ export const TablePaginationStyle: Story = {
                 </table>
 
                 <!-- Pagination bar -->
-                <div style="display:flex;align-items:center;justify-content:flex-end;gap:16px;padding:10px 16px;border-top:1px solid #e2e8f0;font-size:.8rem;color:#6b7280;flex-wrap:wrap;">
-                    <div style="display:flex;align-items:center;gap:8px;">
+                <ui-stack direction="row" alignItems="center" justifyContent="flex-end" gap="16px" p="10px 16px" borderTop="1px solid #e2e8f0" fontSize=".8rem" color="#6b7280" style="flex-wrap:wrap;">
+                    <ui-stack direction="row" alignItems="center" gap="8px">
                         <span>Rows per page:</span>
                         <select
-                            style="border:1px solid #e2e8f0;border-radius:4px;padding:2px 6px;font-size:.8rem;outline:none;background:#fff;cursor:pointer;"
+                            style="border:1px solid #e2e8f0;border-radius:4px;padding:2px 6px;font-size:.8rem;outline:none;background:var(--ui-background, #fff);cursor:pointer;"
                             @change=${(e: Event) => {
                 rowsPerPage = parseInt((e.target as HTMLSelectElement).value);
                 page = 0;
@@ -452,7 +457,7 @@ export const TablePaginationStyle: Story = {
                         >
                             ${[5, 10, 25].map(n => html`<option value=${n} ?selected=${n === rowsPerPage}>${n}</option>`)}
                         </select>
-                    </div>
+                    </ui-stack>
 
                     <span id="tp-range">${page * rowsPerPage + 1}–${Math.min((page + 1) * rowsPerPage, totalRows)} of ${totalRows}</span>
 
@@ -469,7 +474,7 @@ export const TablePaginationStyle: Story = {
             }}
                     ></ui-pagination>
 
-                    <div style="display:flex;gap:2px;">
+                    <ui-stack direction="row" gap="2px">
                         <button
                             id="tp-prev"
                             style="background:none;border:none;cursor:pointer;padding:4px;border-radius:4px;display:flex;align-items:center;color:#374151;"
@@ -482,9 +487,9 @@ export const TablePaginationStyle: Story = {
                             ?disabled=${page >= totalPages() - 1}
                             @click=${() => { if (page < totalPages() - 1) { page++; syncAll(); } }}
                         ><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
-                    </div>
-                </div>
-            </div>
+                    </ui-stack>
+                </ui-stack>
+            </ui-paper>
         `;
     },
 };

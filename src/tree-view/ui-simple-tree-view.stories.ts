@@ -2,6 +2,8 @@ import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './ui-tree-item.js';
 import './ui-simple-tree-view.js';
+import '../button/ui-button';
+import '../stack/ui-stack.js';
 import type { UiSimpleTreeView } from './ui-simple-tree-view.js';
 
 const meta: Meta = {
@@ -108,12 +110,12 @@ export const FocusableDisabledItems: Story = {
         };
 
         return html`
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;font-size:14px;font-family:system-ui,sans-serif;">
+      <ui-stack direction="row" alignItems="center" gap="8px" style="margin-bottom:16px;font-size:14px;font-family:system-ui,sans-serif;">
         <label>
           <input type="checkbox" @change=${toggle} .checked=${args['disabledItemsFocusable'] as boolean} />
           disabledItemsFocusable
         </label>
-      </div>
+      </ui-stack>
       <ui-simple-tree-view id="focusable-tree" ?disabled-items-focusable=${args['disabledItemsFocusable']}>
         <ui-tree-item item-id="1" label="Alpha"></ui-tree-item>
         <ui-tree-item item-id="2" label="Beta" disabled></ui-tree-item>
@@ -197,20 +199,15 @@ export const GetItemDOMElement: Story = {
         };
 
         return html`
-      <div style="display:flex;gap:8px;align-items:center;margin-bottom:16px;font-size:14px;font-family:system-ui,sans-serif;">
+      <ui-stack direction="row" gap="8px" alignItems="center" style="margin-bottom:16px;font-size:14px;font-family:system-ui,sans-serif;">
         <input
           id="id-input"
           type="text"
           placeholder='Enter itemId (e.g. "node-2")'
           style="padding:6px 10px;border:1px solid #d1d5db;border-radius:4px;font-size:14px;width:220px;"
         />
-        <button
-          @click=${highlight}
-          style="padding:6px 14px;border-radius:4px;background:#3b82f6;color:white;border:none;cursor:pointer;font-size:14px;"
-        >
-          getItemDOMElement()
-        </button>
-      </div>
+        <ui-button @click=${highlight}>getItemDOMElement()</ui-button>
+      </ui-stack>
 
       <ui-simple-tree-view id="api-tree">
         <ui-tree-item item-id="node-1" label="Node 1">
@@ -311,16 +308,10 @@ export const ControlledExpansion: Story = {
         };
 
         return html`
-      <div style="display:flex;gap:8px;margin-bottom:12px;">
-        <button
-          @click=${expandAll}
-          style="padding:6px 14px;border-radius:4px;background:#3b82f6;color:white;border:none;cursor:pointer;font-size:14px;"
-        >Expand all</button>
-        <button
-          @click=${collapseAll}
-          style="padding:6px 14px;border-radius:4px;background:#6b7280;color:white;border:none;cursor:pointer;font-size:14px;"
-        >Collapse all</button>
-      </div>
+      <ui-stack direction="row" gap="8px" style="margin-bottom:12px;">
+        <ui-button @click=${expandAll}>Expand all</ui-button>
+        <ui-button @click=${collapseAll}>Collapse all</ui-button>
+      </ui-stack>
 
       <ui-simple-tree-view
         id="controlled-tree"

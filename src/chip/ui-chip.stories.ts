@@ -1,7 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
+import '../button/ui-button';
 import { html } from 'lit';
+import '../button/ui-button';
 import './ui-chip';
+import '../button/ui-button';
 import '../avatar/ui-avatar';
+import '../button/ui-button';
 
 const meta: Meta = {
     title: 'Data Display/Chip',
@@ -166,7 +170,7 @@ export const FilterExample: Story = {
                 <ui-chip label="In Stock Only" color="primary" clickable></ui-chip>
             </div>
             <div>
-                <button style="background: none; border: 1px dashed var(--ui-input-border-color, #d1d5db); padding: 4px 12px; border-radius: 16px; font-size: 14px; cursor: pointer;">+ Add Filter</button>
+                <ui-button variant="outlined" style="border-style: dashed;">+ Add Filter</ui-button>
             </div>
         </div>
     `

@@ -1,6 +1,8 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './ui-switch';
+import '../button/ui-button';
+import '../box/ui-box';
 
 const meta: Meta = {
     title: 'Inputs/Switch',
@@ -183,10 +185,8 @@ export const FormUsage: Story = {
             <ui-switch name="sms" value="yes" label="SMS alerts (required)" required></ui-switch>
           </div>
         </fieldset>
-        <button type="submit" style="margin-top: 16px; padding: 8px 16px; border-radius: 6px; background: #3b82f6; color: white; border: none; cursor: pointer; font-size: 14px;">
-          Save
-        </button>
-        <pre class="form-output" style="margin-top: 12px; font-size: 12px; background: #f9fafb; padding: 12px; border-radius: 6px; border: 1px solid #e5e7eb; min-height: 40px;"></pre>
+        <ui-button type="submit" style="margin-top: 16px;">Save</ui-button>
+        <ui-box as="pre" class="form-output" bgcolor="var(--ui-muted-background, #f9fafb)" p="12px" borderRadius="6px" border="1px solid #e5e7eb" style="margin-top: 12px; font-size: 12px; min-height: 40px;"></ui-box>
       </form>
     `;
     },

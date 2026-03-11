@@ -1,7 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
+import '../button/ui-button';
 import { html } from 'lit';
+import '../box/ui-box';
 import './ui-slider';
+import '../button/ui-button';
 import type { UiSlider } from './ui-slider';
+import '../button/ui-button';
 
 const meta: Meta = {
   title: 'Inputs/Slider',
@@ -171,8 +175,8 @@ export const FormIntegration: Story = {
     >
       <ui-slider name="volume" label="Volume" .value=${70} show-value></ui-slider>
       <ui-slider name="balance" label="Balance" .value=${50} show-value></ui-slider>
-      <button type="submit" style="padding: 8px 16px; cursor: pointer; width: fit-content;">Submit</button>
-      <pre id="form-output" style="background: #f9fafb; padding: 12px; border-radius: 6px; font-size: 12px;"></pre>
+      <ui-button type="submit">Submit</ui-button>
+      <ui-box as="pre" id="form-output" bgcolor="var(--ui-muted-background, #f9fafb)" p="12px" borderRadius="6px" style="font-size: 12px;"></ui-box>
     </form>
   `,
 };

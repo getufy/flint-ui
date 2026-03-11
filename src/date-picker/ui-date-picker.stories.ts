@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './ui-date-picker.js';
+import '../stack/ui-stack';
 import type { UiDatePicker } from './ui-date-picker.js';
 
 const meta: Meta = {
@@ -173,7 +174,7 @@ export const AllVariants: Story = {
     render: () => html`
     <div style="padding:32px;font-family:Inter,sans-serif;">
       <h3 style="margin:0 0 24px;font-size:1rem;font-weight:600;color:#374151;">Date Picker Variants</h3>
-      <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;">
+      <ui-stack direction="row" gap="40px" alignItems="flex-start" style="flex-wrap:wrap;">
 
         <div>
           <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;color:#6b7280;letter-spacing:.05em;margin:0 0 12px;">Desktop</p>
@@ -190,7 +191,7 @@ export const AllVariants: Story = {
           <ui-date-picker variant="static" @change=${onChange}></ui-date-picker>
         </div>
 
-      </div>
+      </ui-stack>
     </div>
   `,
 };

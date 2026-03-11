@@ -2,6 +2,8 @@ import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { UiSpeedDial } from './ui-speed-dial';
 import './ui-speed-dial';
+import '../stack/ui-stack';
+import '../box/ui-box';
 
 const meta: Meta = {
     title: 'Navigation/Speed Dial',
@@ -40,7 +42,7 @@ const stageCorner = (content: unknown, corner = 'bottom-right') => {
         <div style="
             position:relative;
             height:280px;
-            background:#f8fafc;
+            background:var(--ui-muted-background, #f8fafc);
             border:1px solid #e2e8f0;
             border-radius:8px;
             overflow:hidden;
@@ -105,17 +107,19 @@ export const Directions: Story = {
             font-family:Inter,sans-serif;
         ">
             ${(['up', 'down', 'left', 'right'] as const).map(dir => html`
-                <div style="
-                    position:relative;
-                    height:220px;
-                    background:#f8fafc;
-                    border:1px solid #e2e8f0;
-                    border-radius:8px;
-                    overflow:hidden;
-                    display:flex;
-                    align-items:center;
-                    justify-content:center;
-                ">
+                <ui-box
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    style="
+                        position:relative;
+                        height:220px;
+                        background:var(--ui-muted-background, #f8fafc);
+                        border:1px solid #e2e8f0;
+                        border-radius:8px;
+                        overflow:hidden;
+                    "
+                >
                     <span style="
                         position:absolute;
                         top:8px;left:12px;
@@ -131,7 +135,7 @@ export const Directions: Story = {
                         <ui-speed-dial-action tooltip-title="Print">🖨️</ui-speed-dial-action>
                         <ui-speed-dial-action tooltip-title="Share">🔗</ui-speed-dial-action>
                     </ui-speed-dial>
-                </div>
+                </ui-box>
             `)}
         </div>
     `,
@@ -153,21 +157,17 @@ export const Controlled: Story = {
         }
 
         return html`
-            <div style="display:flex;flex-direction:column;gap:16px;font-family:Inter,sans-serif;">
+            <ui-stack direction="column" gap="16px" style="font-family:Inter,sans-serif;">
 
                 <!-- External controls row -->
-                <div style="
-                    display:flex;align-items:center;gap:12px;
-                    padding:12px 16px;background:#fff;
-                    border:1px solid #e2e8f0;border-radius:8px;
-                ">
+                <ui-stack direction="row" alignItems="center" gap="12px" p="12px 16px" bgcolor="var(--ui-background, #fff)" border="1px solid #e2e8f0" borderRadius="8px">
                     <span style="font-size:.875rem;color:#64748b;">State:</span>
                     <strong id="sd-state-label" style="font-size:.875rem;color:#374151;">Closed</strong>
 
                     <!-- Open button -->
                     <button
                         style="padding:6px 14px;border-radius:6px;font-size:.8rem;font-family:inherit;
-                               background:#3b82f6;color:#fff;border:none;cursor:pointer;"
+                               background:var(--ui-primary-color, #3b82f6);color:#fff;border:none;cursor:pointer;"
                         @click=${() => {
                 const sd = getSD();
                 if (sd && !sd.open) { sd.open = true; syncLabel(true); }
@@ -177,18 +177,18 @@ export const Controlled: Story = {
                     <!-- Close button -->
                     <button
                         style="padding:6px 14px;border-radius:6px;font-size:.8rem;font-family:inherit;
-                               background:#fff;color:#374151;border:1px solid #e2e8f0;cursor:pointer;"
+                               background:var(--ui-background, #fff);color:#374151;border:1px solid #e2e8f0;cursor:pointer;"
                         @click=${() => {
                 const sd = getSD();
                 if (sd && sd.open) { sd.open = false; syncLabel(false); }
             }}
                     >Close</button>
-                </div>
+                </ui-stack>
 
                 <!-- Stage -->
                 <div style="
                     position:relative;height:280px;
-                    background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;
+                    background:var(--ui-muted-background, #f8fafc);border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;
                 ">
                     <div style="position:absolute;bottom:24px;right:24px;">
                         <ui-speed-dial
@@ -233,16 +233,16 @@ export const CustomCloseIcon: Story = {
 /* ================================================================== */
 export const PersistentTooltips: Story = {
     render: () => html`
-        <div style="display:flex;flex-direction:column;gap:16px;font-family:Inter,sans-serif;">
+        <ui-stack direction="column" gap="16px" style="font-family:Inter,sans-serif;">
             <div style="
-                padding:10px 14px;background:#eff6ff;border:1px solid #bfdbfe;
+                padding:10px 14px;background:var(--ui-info-background, #eff6ff);border:1px solid #bfdbfe;
                 border-radius:6px;font-size:.8rem;color:#1e40af;
             ">
                 ℹ️ Tooltips are always shown when <code>persistent-tooltips</code> or <code>is-touch</code> is set — ideal for touch / accessibility.
             </div>
             <div style="
                 position:relative;height:300px;
-                background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;
+                background:var(--ui-muted-background, #f8fafc);border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;
             ">
                 <div style="position:absolute;bottom:24px;right:80px;">
                     <ui-speed-dial
@@ -265,12 +265,12 @@ export const PersistentTooltips: Story = {
 /* ================================================================== */
 export const Hidden: Story = {
     render: () => html`
-        <div style="display:flex;flex-direction:column;gap:16px;font-family:Inter,sans-serif;">
-            <div style="display:flex;align-items:center;gap:10px;">
+        <ui-stack direction="column" gap="16px" style="font-family:Inter,sans-serif;">
+            <ui-stack direction="row" alignItems="center" gap="10px">
                 <button
                     style="
                         padding:6px 14px;border-radius:6px;font-size:.8rem;font-family:inherit;
-                        background:#3b82f6;color:#fff;border:none;cursor:pointer;
+                        background:var(--ui-primary-color, #3b82f6);color:#fff;border:none;cursor:pointer;
                     "
                     @click=${() => {
             const sd = document.getElementById('sd-hidden') as UiSpeedDial;
@@ -281,11 +281,11 @@ export const Hidden: Story = {
                     id="sd-hidden-toggle"
                 >Hide Speed Dial</button>
                 <span style="font-size:.8rem;color:#94a3b8;">Toggle the hidden state</span>
-            </div>
+            </ui-stack>
 
             <div style="
                 position:relative;height:280px;
-                background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;
+                background:var(--ui-muted-background, #f8fafc);border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;
             ">
                 <div style="position:absolute;bottom:24px;right:24px;">
                     <ui-speed-dial
@@ -338,9 +338,9 @@ export const DisabledDial: Story = {
 /* ================================================================== */
 export const TouchMode: Story = {
     render: () => html`
-        <div style="display:flex;flex-direction:column;gap:16px;font-family:Inter,sans-serif;">
+        <ui-stack direction="column" gap="16px" style="font-family:Inter,sans-serif;">
             <div style="
-                padding:10px 14px;background:#eff6ff;border:1px solid #bfdbfe;
+                padding:10px 14px;background:var(--ui-info-background, #eff6ff);border:1px solid #bfdbfe;
                 border-radius:6px;font-size:.8rem;color:#1e40af;
             ">
                 ℹ️ <code>is-touch</code> simulates a touch device — tooltips are always visible when open,
@@ -348,7 +348,7 @@ export const TouchMode: Story = {
             </div>
             <div style="
                 position:relative;height:300px;
-                background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;
+                background:var(--ui-muted-background, #f8fafc);border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;
             ">
                 <div style="position:absolute;bottom:24px;right:80px;">
                     <ui-speed-dial
@@ -390,16 +390,16 @@ export const CustomOpenIcon: Story = {
 /* ================================================================== */
 export const WithNames: Story = {
     render: () => html`
-        <div style="display:flex;flex-direction:column;gap:16px;font-family:Inter,sans-serif;">
+        <ui-stack direction="column" gap="16px" style="font-family:Inter,sans-serif;">
             <div style="
-                padding:10px 14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;
+                padding:10px 14px;background:var(--ui-muted-background, #f8fafc);border:1px solid #e2e8f0;border-radius:6px;
                 font-size:.8rem;color:#64748b;
             ">
                 Last action: <strong id="sd-last-action" style="color:#374151;">—</strong>
             </div>
             <div style="
                 position:relative;height:280px;
-                background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;
+                background:var(--ui-muted-background, #f8fafc);border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;
             ">
                 <div style="position:absolute;bottom:24px;right:24px;">
                     <ui-speed-dial
@@ -427,12 +427,12 @@ export const WithNames: Story = {
 /* ================================================================== */
 export const KeyboardNavigation: Story = {
     render: () => html`
-        <div style="display:flex;gap:24px;font-family:Inter,sans-serif;align-items:flex-start;flex-wrap:wrap;">
+        <ui-stack direction="row" gap="24px" alignItems="flex-start" style="font-family:Inter,sans-serif;flex-wrap:wrap;">
 
             <!-- Cheat sheet -->
             <div style="
                 flex:0 0 auto;padding:16px 20px;
-                background:#fff;border:1px solid #e2e8f0;border-radius:8px;
+                background:var(--ui-background, #fff);border:1px solid #e2e8f0;border-radius:8px;
                 font-size:.8rem;color:#374151;min-width:220px;
             ">
                 <div style="font-weight:600;margin-bottom:10px;color:#111827;">Keyboard shortcuts</div>
@@ -450,7 +450,7 @@ export const KeyboardNavigation: Story = {
                             <tr>
                                 <td style="padding:4px 8px 4px 0;white-space:nowrap;">
                                     <kbd style="
-                                        background:#f1f5f9;border:1px solid #cbd5e1;
+                                        background:var(--ui-muted-background-light, #f1f5f9);border:1px solid #cbd5e1;
                                         border-radius:4px;padding:1px 6px;font-size:.75rem;
                                         font-family:monospace;
                                     ">${key}</kbd>
@@ -466,7 +466,7 @@ export const KeyboardNavigation: Story = {
             <div style="flex:1 1 auto;">
                 <div style="
                     position:relative;height:280px;min-width:200px;
-                    background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;
+                    background:var(--ui-muted-background, #f8fafc);border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;
                 ">
                     <div style="position:absolute;bottom:24px;right:24px;">
                         <ui-speed-dial

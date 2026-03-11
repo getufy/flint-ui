@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './ui-carousel';
+import '../box/ui-box';
 import '../paper/ui-paper';
 
 const meta: Meta = {
@@ -373,7 +374,7 @@ const card = (d: typeof cardData[number]) => html`
 
 export const CardSlider: Story = {
   render: () => html`
-    <div style="max-width: 840px; padding: 24px; background: #f9fafb; border-radius: 16px;">
+    <ui-box style="max-width: 840px;" p="24px" bgcolor="var(--ui-muted-background, #f9fafb)" borderRadius="16px">
       <h3 style="margin: 0 0 16px; font-size: 1.25rem; font-family: system-ui; color: #111827;">
         Destinations
       </h3>
@@ -386,7 +387,7 @@ export const CardSlider: Story = {
           <ui-carousel-next></ui-carousel-next>
         </div>
       </ui-carousel>
-    </div>
+    </ui-box>
   `,
 };
 

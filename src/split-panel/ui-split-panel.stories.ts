@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './ui-split-panel.js';
+import '../stack/ui-stack';
+import '../box/ui-box';
 import type { UiSplitPanel, SnapFunction } from './ui-split-panel.js';
 
 const meta: Meta = {
@@ -275,18 +277,20 @@ export const CustomDivider: Story = {
             >
                 <div slot="start" style="${panelStyle}">Start</div>
                 <div slot="end" style="${panelStyle}">End</div>
-                <div
+                <ui-box
                     slot="divider"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
                     style="
                         width:20px;height:40px;
                         background:var(--ui-primary-color,#3b82f6);
                         border-radius:4px;
-                        display:flex;align-items:center;justify-content:center;
                         color:#fff;font-size:10px;letter-spacing:1px;
                     "
                 >
                     &#x2195;
-                </div>
+                </ui-box>
             </ui-split-panel>
         </div>
     `,
@@ -332,10 +336,10 @@ export const ThreePanes: Story = {
             style="height:250px;max-width:800px;border:1px solid var(--ui-border-color,#e4e4e7);border-radius:8px;overflow:hidden;"
         >
             <ui-split-panel position="33" style="height:100%;">
-                <div slot="start" style="${panelStyle}background:#eff6ff;">Panel 1</div>
+                <div slot="start" style="${panelStyle}background:var(--ui-demo-panel-blue, #eff6ff);">Panel 1</div>
                 <ui-split-panel slot="end" position="50" style="height:100%;width:100%;">
-                    <div slot="start" style="${panelStyle}background:#f0fdf4;">Panel 2</div>
-                    <div slot="end" style="${panelStyle}background:#fef3c7;">Panel 3</div>
+                    <div slot="start" style="${panelStyle}background:var(--ui-demo-panel-green, #f0fdf4);">Panel 2</div>
+                    <div slot="end" style="${panelStyle}background:var(--ui-demo-panel-yellow, #fef3c7);">Panel 3</div>
                 </ui-split-panel>
             </ui-split-panel>
         </div>
@@ -383,8 +387,8 @@ export const CustomStyling: Story = {
                     --ui-split-panel-divider-hover-color: #6366f1;
                 "
             >
-                <div slot="start" style="${panelStyle}background:#f5f3ff;">Start</div>
-                <div slot="end" style="${panelStyle}background:#fdf2f8;">End</div>
+                <div slot="start" style="${panelStyle}background:var(--ui-demo-panel-purple, #f5f3ff);">Start</div>
+                <div slot="end" style="${panelStyle}background:var(--ui-demo-panel-pink, #fdf2f8);">End</div>
             </ui-split-panel>
         </div>
     `,
@@ -408,7 +412,7 @@ export const CollapsibleSidebar: Story = {
                 primary="start"
                 style="height:100%; --ui-split-panel-min: 0;"
             >
-                <div slot="start" style="${panelStyle}background:#f0fdf4;font-size:13px;">
+                <div slot="start" style="${panelStyle}background:var(--ui-demo-panel-green, #f0fdf4);font-size:13px;">
                     Sidebar
                 </div>
                 <div slot="end" style="${panelStyle}">Main Content</div>
@@ -421,7 +425,7 @@ export const CollapsibleSidebar: Story = {
 
 export const Controlled: Story = {
     render: () => html`
-        <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+        <ui-stack direction="row" gap="8px" style="margin-bottom:12px;flex-wrap:wrap;">
             <button
                 style="padding:6px 14px;border:1px solid var(--ui-border-color,#e4e4e7);border-radius:6px;
                        background:var(--ui-background,#fff);cursor:pointer;font-family:system-ui;font-size:13px;"
@@ -452,7 +456,7 @@ export const Controlled: Story = {
             >
                 75%
             </button>
-        </div>
+        </ui-stack>
         <div style="${wrapStyle}">
             <ui-split-panel id="controlled-panel" style="height:100%;">
                 <div slot="start" style="${panelStyle}">Start</div>

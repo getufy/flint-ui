@@ -4,6 +4,7 @@ import { userEvent, expect, waitFor } from 'storybook/test';
 import './ui-command.js';
 import '../button/ui-button.js';
 import '../box/ui-box';
+import '../stack/ui-stack';
 import type { UiCommandDialog, UiCommandInput } from './ui-command.js';
 
 const meta: Meta = {
@@ -448,13 +449,15 @@ export const Dialog: Story = {
         };
 
         return html`
-            <div
-                style="display:flex;flex-direction:column;gap:12px;align-items:center;"
+            <ui-stack
+                direction="column"
+                gap="12px"
+                alignItems="center"
                 @keydown=${onGlobalKey}
             >
                 <ui-button variant="secondary" size="small" @click=${openDialog}>
                     Open Menu
-                    <kbd style="padding:2px 6px;background:#f3f4f6;border:1px solid #d1d5db;border-radius:4px;font-size:0.75rem;color:#6b7280;">⌘K</kbd>
+                    <kbd style="padding:2px 6px;background:var(--ui-muted-background, #f3f4f6);border:1px solid #d1d5db;border-radius:4px;font-size:0.75rem;color:#6b7280;">⌘K</kbd>
                 </ui-button>
 
                 <ui-command-dialog @ui-command-dialog-close=${closeDialog}>
@@ -485,7 +488,7 @@ export const Dialog: Story = {
                         </ui-command-list>
                     </ui-command>
                 </ui-command-dialog>
-            </div>
+            </ui-stack>
         `;
     },
 
