@@ -401,6 +401,26 @@
     --ui-breadcrumb-collapsed-hover-bg: var(--ui-active-color);
     --ui-breadcrumb-collapsed-radius:  var(--ui-border-radius-md);
 
+    /* ─── Pagination ────────────────────────────────────────────── */
+    --ui-pagination-gap:                   4px;
+    --ui-pagination-btn-size:              36px;
+    --ui-pagination-btn-size-sm:           28px;
+    --ui-pagination-btn-size-lg:           44px;
+    --ui-pagination-btn-font-size:         0.875rem;
+    --ui-pagination-btn-font-size-sm:      0.8125rem;
+    --ui-pagination-btn-font-size-lg:      0.9375rem;
+    --ui-pagination-btn-radius:            4px;
+    --ui-pagination-btn-radius-rounded:    8px;
+    --ui-pagination-disabled-opacity:      0.38;
+    --ui-pagination-active-bg:             var(--ui-primary-color);
+    --ui-pagination-active-bg-secondary:   var(--ui-secondary-color);
+    --ui-pagination-active-bg-standard:    var(--ui-text-color);
+    --ui-pagination-active-color:          var(--ui-text-color-on-primary);
+    --ui-pagination-outlined-border:       var(--ui-border-color);
+    --ui-pagination-outlined-hover-bg:     var(--ui-primary-color-light);
+    --ui-pagination-outlined-hover-border: var(--ui-primary-color);
+    --ui-pagination-focus-ring-color:      var(--ui-primary-color);
+
     /* ─── Box ───────────────────────────────────────────────────── */
     --ui-box-bg:             transparent;
     --ui-box-color:          inherit;
