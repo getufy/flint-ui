@@ -3,6 +3,7 @@
     .col {
       display:flex; flex-direction:column; overflow-y:auto; width:72px;
       max-height:var(--ui-msdc-height,240px); position:relative; scrollbar-width:none;
+      background:var(--ui-surface-1);
     }
     .col::-webkit-scrollbar { display:none; }
     .col + .col { border-left:1px solid var(--ui-border-color); }

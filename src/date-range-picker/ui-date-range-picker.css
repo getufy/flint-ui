@@ -77,6 +77,7 @@
       padding: 12px 8px;
       min-width: 148px;
       border-right: 1px solid var(--ui-border-color);
+      background: var(--ui-surface-1);
     }
     .shortcut-btn {
       text-align: left;
