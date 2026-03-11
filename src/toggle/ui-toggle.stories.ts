@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './ui-toggle';
+import '../paper/ui-paper';
 
 const meta: Meta = {
     title: 'Inputs/Toggle',
@@ -289,10 +290,12 @@ export const Toolbar: Story = {
             <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
                 A formatting toolbar with independent toggle states. Each button manages its own state.
             </p>
-            <div
+            <ui-paper
                 role="toolbar"
                 aria-label="Text formatting"
-                style="display: inline-flex; align-items: center; gap: 2px; padding: 4px; border: 1px solid #e5e7eb; border-radius: 8px; background: #fff;"
+                elevation="0"
+                variant="outlined"
+                style="display: inline-flex; align-items: center; gap: 2px; padding: 4px;"
             >
                 <ui-toggle variant="outline" aria-label="Bold">
                     ${boldIcon}
@@ -307,7 +310,7 @@ export const Toolbar: Story = {
                 <ui-toggle variant="outline" size="sm" aria-label="Bookmark">
                     ${bookmarkIcon} Save
                 </ui-toggle>
-            </div>
+            </ui-paper>
         </div>
     `,
 };

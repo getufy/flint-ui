@@ -195,7 +195,7 @@ export const WithActions: Story = {
             </p>
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
                 <h3 style="margin: 0; font-size: 0.9375rem; font-family: system-ui; color: #111827;">
-                    @peduarte starred 3 repos
+                    User starred 3 projects
                 </h3>
                 <ui-collapsible
                     @ui-collapsible-change=${(e: CustomEvent<{ open: boolean }>) => {
@@ -213,14 +213,14 @@ export const WithActions: Story = {
                                 padding: 10px 12px; background: #f9fafb; border: 1px solid #e5e7eb;
                                 border-radius: 6px; font-size: 0.8125rem; font-family: system-ui; color: #374151;
                             ">
-                                ${starIcon} radix-ui/primitives
+                                ${starIcon} component-system/core
                             </div>
                             <div style="
                                 display: flex; align-items: center; gap: 8px;
                                 padding: 10px 12px; background: #f9fafb; border: 1px solid #e5e7eb;
                                 border-radius: 6px; font-size: 0.8125rem; font-family: system-ui; color: #374151;
                             ">
-                                ${starIcon} radix-ui/colors
+                                ${starIcon} component-system/utilities
                             </div>
                         </div>
                     </ui-collapsible-content>
@@ -231,7 +231,7 @@ export const WithActions: Story = {
                 padding: 10px 12px; background: #f9fafb; border: 1px solid #e5e7eb;
                 border-radius: 6px; font-size: 0.8125rem; font-family: system-ui; color: #374151;
             ">
-                ${starIcon} stitches-css/stitches
+                ${starIcon} design-system/themes
             </div>
         </div>
     `,

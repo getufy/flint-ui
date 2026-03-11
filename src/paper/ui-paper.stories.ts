@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './ui-paper';
+import '../button/ui-button';
 
 const meta: Meta = {
     title: 'Surfaces/Paper',
@@ -174,8 +175,8 @@ export const Composed: Story = {
                     images, or actions.
                 </div>
                 <div style="padding: 12px 20px; border-top: 1px solid rgba(0,0,0,0.08); display: flex; justify-content: flex-end; gap: 8px;">
-                    <button style="padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius: 4px; cursor: pointer;">Cancel</button>
-                    <button style="padding: 6px 12px; border: none; background: #3b82f6; color: #fff; border-radius: 4px; cursor: pointer;">Confirm</button>
+                    <ui-button variant="outlined">Cancel</ui-button>
+                    <ui-button variant="primary">Confirm</ui-button>
                 </div>
             </ui-paper>
 

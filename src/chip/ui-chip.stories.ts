@@ -83,7 +83,7 @@ export const Deletable: Story = {
 export const ClickableAndDeletable: Story = {
     name: 'Clickable + Deletable',
     args: {
-        label: 'React',
+        label: 'Technology',
         clickable: true,
         deletable: true,
     },

@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './ui-empty';
 import '../button/ui-button.js';
+import '../box/ui-box';
 
 const meta: Meta = {
   title: 'Utilities/Empty',
@@ -97,7 +98,7 @@ const refreshIcon = html`
 /* ── Default ─────────────────────────────────────────────────────── */
 export const Default: Story = {
   render: () => html`
-    <div style="display: flex; align-items: center; justify-content: center; min-height: 300px; background: #f9fafb; border-radius: 12px;">
+    <ui-box display="flex" alignItems="center" justifyContent="center" bgcolor="var(--ui-muted-background, #f9fafb)" borderRadius="12px" style="min-height: 300px;">
       <ui-empty>
         <ui-empty-header>
           <ui-empty-media variant="icon">
@@ -114,7 +115,7 @@ export const Default: Story = {
         </ui-empty-content>
         <ui-button variant="secondary" size="small">Learn More ${arrowIcon}</ui-button>
       </ui-empty>
-    </div>
+    </ui-box>
   `,
 };
 
@@ -145,7 +146,7 @@ export const Outline: Story = {
 export const Background: Story = {
   name: 'Background',
   render: () => html`
-    <div style="min-height: 300px; background: #f9fafb; border-radius: 12px; padding: 24px; display: flex; align-items: center; justify-content: center;">
+    <ui-box display="flex" alignItems="center" justifyContent="center" p="24px" bgcolor="var(--ui-muted-background, #f9fafb)" borderRadius="12px" style="min-height: 300px;">
       <ui-empty style="--ui-empty-media-bg: #e5e7eb;">
         <ui-empty-header>
           <ui-empty-media variant="icon">
@@ -160,7 +161,7 @@ export const Background: Story = {
           <ui-button variant="secondary" size="small">${refreshIcon} Refresh</ui-button>
         </ui-empty-content>
       </ui-empty>
-    </div>
+    </ui-box>
   `,
 };
 
@@ -168,7 +169,7 @@ export const Background: Story = {
 export const WithAvatar: Story = {
   name: 'With Avatar',
   render: () => html`
-    <div style="display: flex; align-items: center; justify-content: center; min-height: 300px; background: #f9fafb; border-radius: 12px;">
+    <ui-box display="flex" alignItems="center" justifyContent="center" bgcolor="var(--ui-muted-background, #f9fafb)" borderRadius="12px" style="min-height: 300px;">
       <ui-empty>
         <ui-empty-header>
           <ui-empty-media variant="default">
@@ -189,7 +190,7 @@ export const WithAvatar: Story = {
           <ui-button variant="secondary" size="small">Leave Message</ui-button>
         </ui-empty-content>
       </ui-empty>
-    </div>
+    </ui-box>
   `,
 };
 
@@ -197,7 +198,7 @@ export const WithAvatar: Story = {
 export const AvatarGroup: Story = {
   name: 'Avatar Group',
   render: () => html`
-    <div style="display: flex; align-items: center; justify-content: center; min-height: 300px; background: #f9fafb; border-radius: 12px;">
+    <ui-box display="flex" alignItems="center" justifyContent="center" bgcolor="var(--ui-muted-background, #f9fafb)" borderRadius="12px" style="min-height: 300px;">
       <ui-empty>
         <ui-empty-header>
           <ui-empty-media variant="default">
@@ -223,7 +224,7 @@ export const AvatarGroup: Story = {
           <ui-button variant="secondary" size="small">${plusIcon} Invite Members</ui-button>
         </ui-empty-content>
       </ui-empty>
-    </div>
+    </ui-box>
   `,
 };
 
@@ -231,7 +232,7 @@ export const AvatarGroup: Story = {
 export const SearchEmpty: Story = {
   name: 'Search / 404',
   render: () => html`
-    <div style="display: flex; align-items: center; justify-content: center; min-height: 300px; background: #f9fafb; border-radius: 12px;">
+    <ui-box display="flex" alignItems="center" justifyContent="center" bgcolor="var(--ui-muted-background, #f9fafb)" borderRadius="12px" style="min-height: 300px;">
       <ui-empty>
         <ui-empty-header>
           <ui-empty-title>404 — Not Found</ui-empty-title>
@@ -240,11 +241,7 @@ export const SearchEmpty: Story = {
           </ui-empty-description>
         </ui-empty-header>
         <ui-empty-content>
-          <div style="
-            display: flex; align-items: center;
-            border: 1px solid #e5e7eb; border-radius: 6px;
-            overflow: hidden; width: 300px; background: #fff;
-          ">
+          <ui-box display="flex" alignItems="center" border="1px solid #e5e7eb" borderRadius="6px" bgcolor="#fff" style="overflow: hidden; width: 300px;">
             <span style="padding: 0 10px; color: #9ca3af; display: flex; align-items: center;">
               ${searchIcon}
             </span>
@@ -257,13 +254,13 @@ export const SearchEmpty: Story = {
                 color: var(--ui-text-color, #111827); background: transparent;
               "
             />
-          </div>
+          </ui-box>
           <p style="font-size: 0.8125rem; color: #6b7280; font-family: var(--ui-font-family, system-ui); margin: 0;">
             Need help? <a href="#" style="color: var(--ui-primary-color, #3b82f6);">Contact support</a>
           </p>
         </ui-empty-content>
       </ui-empty>
-    </div>
+    </ui-box>
   `,
 };
 
@@ -271,7 +268,7 @@ export const SearchEmpty: Story = {
 export const CustomStyles: Story = {
   name: 'Custom CSS Properties',
   render: () => html`
-    <div style="display: flex; align-items: center; justify-content: center; min-height: 300px; border-radius: 12px; background: linear-gradient(135deg, #ede9fe 0%, #dbeafe 100%);">
+    <ui-box display="flex" alignItems="center" justifyContent="center" borderRadius="12px" style="min-height: 300px; background: linear-gradient(135deg, #ede9fe 0%, #dbeafe 100%);">
       <ui-empty style="
         --ui-empty-padding: 48px;
         --ui-empty-gap: 24px;
@@ -292,6 +289,6 @@ export const CustomStyles: Story = {
           <ui-button variant="primary" size="small">Clear Filters</ui-button>
         </ui-empty-content>
       </ui-empty>
-    </div>
+    </ui-box>
   `,
 };

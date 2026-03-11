@@ -47,9 +47,9 @@ export const Basic: Story = {
 export const ActiveLast: Story = {
     render: () => html`
         <ui-breadcrumbs>
-            <a href="#">MUI</a>
-            <a href="#">Core</a>
-            <span aria-current="page">Breadcrumbs</span>
+            <a href="#">Platform</a>
+            <a href="#">Components</a>
+            <span aria-current="page">Navigation</span>
         </ui-breadcrumbs>
     `,
 };

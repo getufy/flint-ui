@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html, type TemplateResult } from 'lit';
 import './ui-time-picker.js';
+import '../paper/ui-paper';
 
 const meta: Meta = {
   title: 'Date & Time/Time Picker',
@@ -87,21 +88,21 @@ export const DigitalClock: Story = {
     <div style="padding:32px;font-family:Inter,sans-serif;display:flex;gap:32px;flex-wrap:wrap;align-items:flex-start;">
       <div>
         <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">30 min steps (default)</p>
-        <div style="border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;width:180px;">
+        <ui-paper elevation="0" variant="outlined" style="width: 180px; overflow: hidden;">
           <ui-digital-clock value="10:30:00" step=30></ui-digital-clock>
-        </div>
+        </ui-paper>
       </div>
       <div>
         <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">15 min steps</p>
-        <div style="border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;width:180px;">
+        <ui-paper elevation="0" variant="outlined" style="width: 180px; overflow: hidden;">
           <ui-digital-clock value="10:30:00" step=15></ui-digital-clock>
-        </div>
+        </ui-paper>
       </div>
       <div>
         <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">24-hour format</p>
-        <div style="border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;width:180px;">
+        <ui-paper elevation="0" variant="outlined" style="width: 180px; overflow: hidden;">
           <ui-digital-clock value="14:00:00" step=60 .ampm=${false}></ui-digital-clock>
-        </div>
+        </ui-paper>
       </div>
     </div>
   `,
@@ -114,15 +115,15 @@ export const MultiSectionDigitalClock: Story = {
     <div style="padding:32px;font-family:Inter,sans-serif;display:flex;gap:40px;flex-wrap:wrap;align-items:flex-start;">
       <div>
         <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">AM/PM (default)</p>
-        <div style="border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
+        <ui-paper elevation="0" variant="outlined" style="overflow: hidden;">
           <ui-multi-section-digital-clock value="02:45:00"></ui-multi-section-digital-clock>
-        </div>
+        </ui-paper>
       </div>
       <div>
         <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:0 0 10px;">24-hour + seconds</p>
-        <div style="border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
+        <ui-paper elevation="0" variant="outlined" style="overflow: hidden;">
           <ui-multi-section-digital-clock value="14:30:45" .ampm=${false} seconds></ui-multi-section-digital-clock>
-        </div>
+        </ui-paper>
       </div>
     </div>
   `,

@@ -3,6 +3,7 @@ import { html } from 'lit';
 import { userEvent, expect, waitFor } from 'storybook/test';
 import './ui-command.js';
 import '../button/ui-button.js';
+import '../box/ui-box';
 import type { UiCommandDialog, UiCommandInput } from './ui-command.js';
 
 const meta: Meta = {
@@ -56,17 +57,9 @@ const iconImage   = html`<svg slot="icon" width="16" height="16" viewBox="0 0 24
 /* ─────────────────────────────────────────────────────────────────── */
 
 const wrap = (content: unknown) => html`
-    <div style="
-        padding: 48px 32px;
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
-        border-radius: 8px;
-        font-family: system-ui, sans-serif;
-        min-height: 200px;
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
-    ">${content}</div>
+    <ui-box p="48px 32px" bgcolor="var(--ui-muted-background, #f8fafc)" border="1px solid #e2e8f0" borderRadius="8px" style="font-family: system-ui, sans-serif; min-height: 200px; display: flex; align-items: flex-start; justify-content: center;">
+        ${content}
+    </ui-box>
 `;
 
 /* ─────────────────────────────────────────────────────────────────── */

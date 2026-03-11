@@ -1,6 +1,8 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import './ui-stepper';
+import '../paper/ui-paper';
+import '../button/ui-button';
 import type { UiStepper, UiStep, UiMobileStepper, UiStepContent } from './ui-stepper';
 
 const meta: Meta = {
@@ -21,9 +23,9 @@ const panel = (inner: unknown) => html`
     <div style="font-family:Inter,sans-serif;max-width:760px;margin:0 auto;">${inner}</div>`;
 
 const card = (inner: unknown) => html`
-    <div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06);">
+    <ui-paper elevation="2" style="overflow:hidden;">
         ${inner}
-    </div>`;
+    </ui-paper>`;
 
 /* ================================================================== */
 /* Playground                                                           */

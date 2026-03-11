@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './ui-fab';
+import '../box/ui-box';
 
 const meta: Meta = {
   title: 'Inputs/FAB',
@@ -66,7 +67,7 @@ export const Floating: Story = {
     position: 'bottom-right',
   },
   render: (args) => html`
-    <div style="height: 300px; border: 1px dashed #ccc; position: relative; padding: 20px; background: #f9fafb;">
+    <ui-box height="300px" p="20px" bgcolor="var(--ui-muted-background, #f9fafb)" style="border: 1px dashed #ccc; position: relative;">
       <p style="font-family: sans-serif; color: #6b7280; font-size: 14px;">
         The FAB is fixed to the viewport corner specified by the <code>position</code> prop.
         Change the position using the controls panel.
@@ -74,7 +75,7 @@ export const Floating: Story = {
       <ui-fab .extended=${args.extended} .position=${args.position} label="Add">
         ${plusIcon}
       </ui-fab>
-    </div>
+    </ui-box>
   `,
 };
 

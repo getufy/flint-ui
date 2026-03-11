@@ -24,7 +24,7 @@ export const Basic: Story = {
         disabled: false,
     },
     render: (args) => html`
-        <div style="padding: 24px; background: #f9fafb;">
+        <div style="padding: 24px;">
             <ui-accordion ?expanded=${args.expanded} ?disabled=${args.disabled} @ui-accordion-change=${(e: Event) => ((e.target as UiAccordion).expanded = (e as CustomEvent).detail.expanded)}>
                 <ui-accordion-summary>
                     Accordion 1

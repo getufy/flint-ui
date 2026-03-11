@@ -3,6 +3,7 @@ import { html } from 'lit';
 import { ref } from 'lit/directives/ref.js';
 import { UiMenu } from './ui-menu';
 import './ui-menu';
+import '../box/ui-box';
 import '../button/ui-button';
 import '../avatar/ui-avatar';
 
@@ -33,9 +34,9 @@ function close(e: Event) {
 }
 
 const wrap = (content: unknown) => html`
-    <div class="story-root" style="padding:48px 32px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;font-family:Inter,sans-serif;min-height:220px;">
+    <ui-box class="story-root" p="48px 32px" bgcolor="var(--ui-muted-background, #f8fafc)" border="1px solid #e2e8f0" borderRadius="8px" style="font-family:Inter,sans-serif;min-height:220px;">
         ${content}
-    </div>
+    </ui-box>
 `;
 
 /* ================================================================== */
