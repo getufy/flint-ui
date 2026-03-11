@@ -95,6 +95,14 @@ describe('ui-select — rendering', () => {
     expect(msg!.textContent?.trim()).toBe('Required');
   });
 
+  it('renders error span with slot when error=true but errorMessage is empty', async () => {
+    const el = await fixture<UiSelect>(html`
+      <ui-select ?error=${true} .options=${opts}></ui-select>
+    `);
+    await el.updateComplete;
+    expect(el.shadowRoot!.querySelector('.error-message')).toBeTruthy();
+  });
+
   it('omits error message when error=false', async () => {
     const el = await fixture<UiSelect>(html`
       <ui-select error-message="Required" .options=${opts}></ui-select>
@@ -124,6 +132,24 @@ describe('ui-select — rendering', () => {
     await el.updateComplete;
     const btn = el.shadowRoot!.querySelector<HTMLButtonElement>('.chip-remove');
     expect(btn?.getAttribute('aria-label')).toBe('Remove Apple');
+  });
+
+  it('trigger has has-value class when value is set', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts} .value=${['apple']}></ui-select>`);
+    await el.updateComplete;
+    expect(getTrigger(el).classList.contains('has-value')).toBe(true);
+  });
+
+  it('trigger does not have has-value class when value is empty', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
+    expect(getTrigger(el).classList.contains('has-value')).toBe(false);
+  });
+
+  it('disabled option has aria-disabled attribute', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${optsWithDisabled}></ui-select>`);
+    const optEls = getOptions(el);
+    expect(optEls[1].getAttribute('aria-disabled')).toBe('true');
+    expect(optEls[0].getAttribute('aria-disabled')).toBeNull();
   });
 });
 
@@ -168,6 +194,16 @@ describe('ui-select — accessibility', () => {
     expect(getDropdown(el).getAttribute('role')).toBe('listbox');
   });
 
+  it('listbox has aria-multiselectable=false in single mode', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
+    expect(getDropdown(el).getAttribute('aria-multiselectable')).toBe('false');
+  });
+
+  it('listbox has aria-multiselectable=true in multiple mode', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select multiple .options=${opts}></ui-select>`);
+    expect(getDropdown(el).getAttribute('aria-multiselectable')).toBe('true');
+  });
+
   it('options have role=option and aria-selected', async () => {
     const el = await fixture<UiSelect>(html`<ui-select .options=${opts} .value=${['banana']}></ui-select>`);
     await el.updateComplete;
@@ -200,6 +236,11 @@ describe('ui-select — accessibility', () => {
     const btn = el.shadowRoot!.querySelector('.chip-remove');
     expect(btn?.tagName.toLowerCase()).toBe('button');
     expect(btn?.getAttribute('type')).toBe('button');
+  });
+
+  it('aria-activedescendant is absent when no highlight', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
+    expect(getTrigger(el).hasAttribute('aria-activedescendant')).toBe(false);
   });
 });
 
@@ -245,6 +286,41 @@ describe('ui-select — dropdown open/close', () => {
     outside.remove();
   });
 
+  it('falls back to contains() when composedPath is empty', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
+    await open(el);
+    const fakeEvent = {
+      composedPath: () => [] as EventTarget[],
+      target: document.body,
+    } as unknown as MouseEvent;
+    (el as unknown as { _handleOutsideClick: (e: MouseEvent) => void })._handleOutsideClick(fakeEvent);
+    await el.updateComplete;
+    expect(getDropdown(el).classList.contains('open')).toBe(false);
+  });
+
+  it('stays open when composedPath includes the element', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
+    await open(el);
+    const fakeEvent = {
+      composedPath: () => [el] as EventTarget[],
+      target: el,
+    } as unknown as MouseEvent;
+    (el as unknown as { _handleOutsideClick: (e: MouseEvent) => void })._handleOutsideClick(fakeEvent);
+    await el.updateComplete;
+    expect(getDropdown(el).classList.contains('open')).toBe(true);
+  });
+
+  it('outside click when closed does nothing', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
+    // dropdown is already closed — click outside should not throw
+    const outside = document.createElement('div');
+    document.body.appendChild(outside);
+    outside.click();
+    await el.updateComplete;
+    expect(getDropdown(el).classList.contains('open')).toBe(false);
+    outside.remove();
+  });
+
   it('single-select: closes dropdown after selecting an option', async () => {
     const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
     await open(el);
@@ -259,6 +335,27 @@ describe('ui-select — dropdown open/close', () => {
     getOptions(el)[0].click();
     await el.updateComplete;
     expect(getDropdown(el).classList.contains('open')).toBe(true);
+  });
+
+  it('reopening dropdown pre-highlights first selected option', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts} .value=${['banana']}></ui-select>`);
+    await open(el);
+    // banana is index 1
+    expect(getOptions(el)[1].classList.contains('highlighted')).toBe(true);
+  });
+
+  it('_opensUp is set when element is near bottom of viewport', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
+    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue({
+      bottom: window.innerHeight - 100,
+      top: window.innerHeight - 140,
+      left: 0, right: 400, width: 400, height: 40,
+      toJSON: () => ({}),
+    } as DOMRect);
+    getTrigger(el).click();
+    await el.updateComplete;
+    expect((el as unknown as { _opensUp: boolean })._opensUp).toBe(true);
+    vi.restoreAllMocks();
   });
 });
 
@@ -405,6 +502,13 @@ describe('ui-select — keyboard navigation', () => {
     expect(getDropdown(el).classList.contains('open')).toBe(false);
   });
 
+  it('Escape when closed does nothing', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
+    pressKey(el, 'Escape');
+    await el.updateComplete;
+    expect(getDropdown(el).classList.contains('open')).toBe(false);
+  });
+
   it('Tab closes dropdown', async () => {
     const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
     await open(el);
@@ -431,6 +535,22 @@ describe('ui-select — keyboard navigation', () => {
     expect(getOptions(el)[1].classList.contains('highlighted')).toBe(true);
   });
 
+  it('ArrowDown at last option does not move', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
+    await open(el);
+    // Move to last option (index 2)
+    pressKey(el, 'ArrowDown');
+    await el.updateComplete;
+    pressKey(el, 'ArrowDown');
+    await el.updateComplete;
+    pressKey(el, 'ArrowDown');
+    await el.updateComplete;
+    // One more ArrowDown should not move past the last
+    pressKey(el, 'ArrowDown');
+    await el.updateComplete;
+    expect(getOptions(el)[2].classList.contains('highlighted')).toBe(true);
+  });
+
   it('ArrowUp moves highlight to previous option', async () => {
     const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
     await open(el);
@@ -439,6 +559,23 @@ describe('ui-select — keyboard navigation', () => {
     pressKey(el, 'ArrowDown');
     await el.updateComplete;
     pressKey(el, 'ArrowUp');
+    await el.updateComplete;
+    expect(getOptions(el)[0].classList.contains('highlighted')).toBe(true);
+  });
+
+  it('ArrowUp when closed does nothing', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
+    pressKey(el, 'ArrowUp');
+    await el.updateComplete;
+    expect(getDropdown(el).classList.contains('open')).toBe(false);
+  });
+
+  it('ArrowUp at first option does not move', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
+    await open(el);
+    pressKey(el, 'ArrowDown'); // move to first
+    await el.updateComplete;
+    pressKey(el, 'ArrowUp'); // already at first — should not crash or wrap
     await el.updateComplete;
     expect(getOptions(el)[0].classList.contains('highlighted')).toBe(true);
   });
@@ -464,6 +601,66 @@ describe('ui-select — keyboard navigation', () => {
     pressKey(el, 'Enter');
     await el.updateComplete;
     expect(el.value).toEqual(['apple']);
+  });
+
+  it('Enter when open but no highlighted option does nothing', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
+    await open(el);
+    // No ArrowDown — highlightedIndex is -1
+    pressKey(el, 'Enter');
+    await el.updateComplete;
+    expect(el.value).toEqual([]);
+    // Dropdown should stay open
+    expect(getDropdown(el).classList.contains('open')).toBe(true);
+  });
+
+  it('Space when open but no highlighted option does nothing', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
+    await open(el);
+    pressKey(el, ' ');
+    await el.updateComplete;
+    expect(el.value).toEqual([]);
+  });
+
+  it('Home jumps to first enabled option', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
+    await open(el);
+    pressKey(el, 'ArrowDown');
+    await el.updateComplete;
+    pressKey(el, 'ArrowDown');
+    await el.updateComplete;
+    pressKey(el, 'Home');
+    await el.updateComplete;
+    expect(getOptions(el)[0].classList.contains('highlighted')).toBe(true);
+  });
+
+  it('End jumps to last enabled option', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
+    await open(el);
+    pressKey(el, 'End');
+    await el.updateComplete;
+    expect(getOptions(el)[2].classList.contains('highlighted')).toBe(true);
+  });
+
+  it('End skips disabled options at the end', async () => {
+    const optsEndDisabled = [
+      { label: 'Apple',  value: 'apple'  },
+      { label: 'Banana', value: 'banana' },
+      { label: 'Cherry', value: 'cherry', disabled: true },
+    ];
+    const el = await fixture<UiSelect>(html`<ui-select .options=${optsEndDisabled}></ui-select>`);
+    await open(el);
+    pressKey(el, 'End');
+    await el.updateComplete;
+    expect(getOptions(el)[1].classList.contains('highlighted')).toBe(true);
+  });
+
+  it('Home/End do nothing when dropdown is closed', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
+    pressKey(el, 'Home');
+    pressKey(el, 'End');
+    await el.updateComplete;
+    expect(getDropdown(el).classList.contains('open')).toBe(false);
   });
 
   it('sets aria-activedescendant when option is highlighted', async () => {
@@ -512,6 +709,178 @@ describe('ui-select — props', () => {
   });
 });
 
+// ── Focus / blur ─────────────────────────────────────────────────────────────
+
+describe('ui-select — focus / blur', () => {
+  it('focused class is applied on focus', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
+    getTrigger(el).dispatchEvent(new FocusEvent('focus', { bubbles: true }));
+    await el.updateComplete;
+    expect(getTrigger(el).classList.contains('focused')).toBe(true);
+  });
+
+  it('focused class is removed on blur', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
+    getTrigger(el).dispatchEvent(new FocusEvent('focus', { bubbles: true }));
+    await el.updateComplete;
+    getTrigger(el).dispatchEvent(new FocusEvent('blur', { bubbles: true }));
+    await el.updateComplete;
+    expect(getTrigger(el).classList.contains('focused')).toBe(false);
+  });
+});
+
+// ── Mouseenter ───────────────────────────────────────────────────────────────
+
+describe('ui-select — mouseenter', () => {
+  it('mouseenter on enabled option highlights it', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
+    await open(el);
+    const optEl = getOptions(el)[1];
+    optEl.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+    await el.updateComplete;
+    expect(optEl.classList.contains('highlighted')).toBe(true);
+  });
+
+  it('mouseenter on disabled option does not highlight it', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${optsWithDisabled}></ui-select>`);
+    await open(el);
+    const disabledOpt = getOptions(el)[1];
+    disabledOpt.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+    await el.updateComplete;
+    expect(disabledOpt.classList.contains('highlighted')).toBe(false);
+  });
+});
+
+// ── Form integration ─────────────────────────────────────────────────────────
+
+describe('ui-select — form integration', () => {
+  it('_updateFormValue: single — sets value string', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
+    const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
+    (el as unknown as { _internals: typeof mockInternals })._internals = mockInternals;
+    el.value = ['banana'];
+    el['_updateFormValue']();
+    expect(mockInternals.setFormValue).toHaveBeenCalledWith('banana');
+    expect(mockInternals.setValidity).toHaveBeenCalledWith({});
+  });
+
+  it('_updateFormValue: single — empty value sets empty string', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
+    const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
+    (el as unknown as { _internals: typeof mockInternals })._internals = mockInternals;
+    el.value = [];
+    el['_updateFormValue']();
+    expect(mockInternals.setFormValue).toHaveBeenCalledWith('');
+  });
+
+  it('_updateFormValue: multiple — sets FormData', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select multiple name="fruit" .options=${opts}></ui-select>`);
+    const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
+    (el as unknown as { _internals: typeof mockInternals })._internals = mockInternals;
+    el.value = ['apple', 'cherry'];
+    el['_updateFormValue']();
+    const fd: FormData = mockInternals.setFormValue.mock.calls[0][0];
+    expect(fd instanceof FormData).toBe(true);
+    expect(fd.getAll('fruit')).toEqual(['apple', 'cherry']);
+  });
+
+  it('_updateFormValue: multiple — uses "select" as key when name is empty', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select multiple .options=${opts}></ui-select>`);
+    const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
+    (el as unknown as { _internals: typeof mockInternals })._internals = mockInternals;
+    el.value = ['apple'];
+    el['_updateFormValue']();
+    const fd: FormData = mockInternals.setFormValue.mock.calls[0][0];
+    expect(fd.getAll('select')).toEqual(['apple']);
+  });
+
+  it('_updateFormValue: required + empty value sets valueMissing validity', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select ?required=${true} .options=${opts}></ui-select>`);
+    const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
+    (el as unknown as { _internals: typeof mockInternals })._internals = mockInternals;
+    el.value = [];
+    el['_updateFormValue']();
+    expect(mockInternals.setValidity).toHaveBeenCalledWith(
+      { valueMissing: true },
+      'Please select an option'
+    );
+  });
+
+  it('_updateFormValue: required + value present clears validity', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select ?required=${true} .options=${opts}></ui-select>`);
+    const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
+    (el as unknown as { _internals: typeof mockInternals })._internals = mockInternals;
+    el.value = ['apple'];
+    el['_updateFormValue']();
+    expect(mockInternals.setValidity).toHaveBeenCalledWith({});
+  });
+
+  it('_updateFormValue: no-op when _internals is undefined', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
+    (el as unknown as { _internals: undefined })._internals = undefined;
+    // Should not throw
+    expect(() => el['_updateFormValue']()).not.toThrow();
+  });
+
+  it('formResetCallback resets to defaultValue', async () => {
+    const el = await fixture<UiSelect>(html`
+      <ui-select default-value="banana" .options=${opts} .value=${['cherry']}></ui-select>
+    `);
+    await el.updateComplete;
+    el.formResetCallback();
+    await el.updateComplete;
+    expect(el.value).toEqual(['banana']);
+  });
+
+  it('formResetCallback resets to empty when no defaultValue', async () => {
+    const el = await fixture<UiSelect>(html`
+      <ui-select .options=${opts} .value=${['cherry']}></ui-select>
+    `);
+    await el.updateComplete;
+    el.formResetCallback();
+    await el.updateComplete;
+    expect(el.value).toEqual([]);
+  });
+});
+
+// ── scrollIntoView ───────────────────────────────────────────────────────────
+
+describe('ui-select — scrollIntoView', () => {
+  it('calls scrollIntoView when available on option element', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
+    await open(el);
+    // Highlight index 0 first (no scrollIntoView triggered on open → _highlightedIndex starts at -1)
+    pressKey(el, 'ArrowDown');
+    await el.updateComplete;
+    await new Promise(r => setTimeout(r, 0));
+
+    // Attach spy on option 1 — the next ArrowDown will call _scrollOptionIntoView(1)
+    const opt1 = getOptions(el)[1];
+    const scrollSpy = vi.fn();
+    opt1.scrollIntoView = scrollSpy;
+
+    pressKey(el, 'ArrowDown');
+    await el.updateComplete;
+    await new Promise(r => setTimeout(r, 0));
+
+    expect(scrollSpy).toHaveBeenCalledWith({ block: 'nearest' });
+  });
+
+  it('skips scrollIntoView when not a function', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
+    await open(el);
+    // Remove scrollIntoView from options to hit the guard branch
+    getOptions(el).forEach(o => {
+      (o as unknown as { scrollIntoView: unknown }).scrollIntoView = undefined;
+    });
+    // Should not throw
+    pressKey(el, 'ArrowDown');
+    await el.updateComplete;
+    await new Promise(r => setTimeout(r, 0));
+    expect(getOptions(el)[0].classList.contains('highlighted')).toBe(true);
+  });
+});
+
 // ── Lifecycle ────────────────────────────────────────────────────────────────
 
 describe('ui-select — lifecycle', () => {
@@ -533,7 +902,7 @@ describe('ui-select — lifecycle', () => {
 
 // ── Slot ────────────────────────────────────────────────────────────────────
 
-describe('ui-select — icon slot', () => {
+describe('ui-select — slots', () => {
   it('renders slotted icon content', async () => {
     const el = await fixture<UiSelect>(html`
       <ui-select .options=${opts}>
@@ -543,5 +912,18 @@ describe('ui-select — icon slot', () => {
     const slotted = el.querySelector('#test-icon');
     expect(slotted).toBeTruthy();
     expect(slotted!.textContent).toBe('★');
+  });
+
+  it('error-message slot is present in shadow DOM when error=true', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select ?error=${true} .options=${opts}></ui-select>`);
+    await el.updateComplete;
+    const slot = el.shadowRoot!.querySelector('slot[name="error-message"]');
+    expect(slot).toBeTruthy();
+  });
+
+  it('error-message slot is absent when error=false', async () => {
+    const el = await fixture<UiSelect>(html`<ui-select .options=${opts}></ui-select>`);
+    const slot = el.shadowRoot!.querySelector('slot[name="error-message"]');
+    expect(slot).toBeNull();
   });
 });

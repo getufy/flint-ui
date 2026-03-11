@@ -71,6 +71,12 @@ export class UiSelect extends LitElement {
     document.removeEventListener('click', this._handleOutsideClick);
   }
 
+  /** Called by the browser when the associated form is reset. */
+  formResetCallback() {
+    this.value = this.defaultValue ? [this.defaultValue] : [];
+    this._updateFormValue();
+  }
+
   willUpdate(changed: PropertyValues) {
     if (this._firstUpdate) {
       this._firstUpdate = false;
@@ -191,6 +197,22 @@ export class UiSelect extends LitElement {
             this._highlightedIndex = prev.i;
             this._scrollOptionIntoView(prev.i);
           }
+        }
+        break;
+      }
+      case 'Home': {
+        e.preventDefault();
+        if (this._isOpen && enabled.length > 0) {
+          this._highlightedIndex = enabled[0].i;
+          this._scrollOptionIntoView(enabled[0].i);
+        }
+        break;
+      }
+      case 'End': {
+        e.preventDefault();
+        if (this._isOpen && enabled.length > 0) {
+          this._highlightedIndex = enabled[enabled.length - 1].i;
+          this._scrollOptionIntoView(enabled[enabled.length - 1].i);
         }
         break;
       }
@@ -344,8 +366,11 @@ export class UiSelect extends LitElement {
           }
         </div>
 
-        ${this.error && this.errorMessage ? html`
-          <span class="error-message" role="alert">${this.errorMessage}</span>
+        ${this.error ? html`
+          <span class="error-message" role="alert">
+            ${this.errorMessage}
+            <slot name="error-message"></slot>
+          </span>
         ` : nothing}
       </div>
     `;

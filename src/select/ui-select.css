@@ -11,6 +11,16 @@
       --ui-select-focus-color: var(--ui-primary-color);
       --ui-select-error-color: var(--ui-error-color);
 
+      /* Option theming */
+      --ui-select-option-hover-bg: var(--ui-hover-color);
+      --ui-select-option-selected-bg: var(--ui-primary-color-light);
+      --ui-select-option-selected-color: var(--ui-primary-color);
+
+      /* Chip theming */
+      --ui-select-chip-bg: var(--ui-primary-color);
+      --ui-select-chip-color: var(--ui-text-color-on-primary);
+      --ui-select-chip-radius: 16px;
+
       font-family: var(--ui-font-family);
     }
 
@@ -101,10 +111,10 @@
     }
 
     .chip {
-      background-color: var(--ui-primary-color);
-      color: var(--ui-text-color-on-primary);
+      background-color: var(--ui-select-chip-bg);
+      color: var(--ui-select-chip-color);
       padding: 2px 8px 2px 10px;
-      border-radius: 16px;
+      border-radius: var(--ui-select-chip-radius);
       font-size: 0.75rem;
       font-weight: 600;
       display: flex;
@@ -194,12 +204,12 @@
     }
 
     .option.highlighted {
-      background-color: var(--ui-hover-color);
+      background-color: var(--ui-select-option-hover-bg);
     }
 
     .option.selected {
-      background-color: var(--ui-primary-color-light);
-      color: var(--ui-primary-color);
+      background-color: var(--ui-select-option-selected-bg);
+      color: var(--ui-select-option-selected-color);
       font-weight: 600;
     }
 
@@ -210,7 +220,7 @@
     }
 
     .check-icon {
-      color: var(--ui-primary-color);
+      color: var(--ui-select-option-selected-color);
       opacity: 0;
       transition: opacity 0.15s;
       flex-shrink: 0;
