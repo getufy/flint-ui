@@ -224,6 +224,20 @@
     --ui-checkbox-label-font-size-sm: 12px;
     --ui-checkbox-label-font-size-lg: 16px;
 
+    /* ─── Radio ──────────────────────────────────────────────────── */
+    --ui-radio-size:                18px;
+    --ui-radio-size-sm:             14px;
+    --ui-radio-size-lg:             22px;
+    --ui-radio-dot-size:            8px;
+    --ui-radio-dot-size-sm:         6px;
+    --ui-radio-dot-size-lg:         10px;
+    --ui-radio-gap:                 8px;
+    --ui-radio-group-gap:           8px;
+    --ui-radio-label-font-size:     14px;
+    --ui-radio-label-font-size-sm:  12px;
+    --ui-radio-label-font-size-lg:  16px;
+    --ui-radio-disabled-opacity:    0.5;
+
     /* ─── Input-specific ───────────────────────────────────────── */
     --ui-label-color:              var(--ui-color-zinc-700, #3f3f46);
     --ui-input-placeholder-color:  var(--ui-color-zinc-400);
