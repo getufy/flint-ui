@@ -1,8 +1,9 @@
 :host {
             display: block;
             font-family: var(--ui-font-family);
-            background: var(--ui-surface-1);
+            background: var(--ui-command-bg, var(--ui-surface-1));
             border-radius: var(--ui-border-radius-md);
+            border: 1px solid var(--ui-command-border-color, var(--ui-border-color));
             overflow: hidden;
         }
 

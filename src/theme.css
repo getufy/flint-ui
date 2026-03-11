@@ -488,6 +488,17 @@
     /* ─── Typography ───────────────────────────────────────────── */
     --ui-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 
+    /* ─── Command Menu ──────────────────────────────────────────── */
+    --ui-command-bg:                 var(--ui-surface-1);
+    --ui-command-border-color:       var(--ui-border-color);
+    --ui-command-highlight-bg:       var(--ui-hover-color);
+    --ui-command-highlight-color:    var(--ui-text-color);
+    --ui-command-z-index:            1400;
+    --ui-command-list-max-height:    300px;
+    --ui-command-dialog-width:       512px;
+    --ui-command-backdrop-bg:        rgba(0, 0, 0, 0.50);
+    --ui-command-panel-border-color: var(--ui-border-color);
+
     /* ─── Breakpoints (unitless px values, for use in JS) ──────── */
     --ui-breakpoint-xs: 0;
     --ui-breakpoint-sm: 600;
