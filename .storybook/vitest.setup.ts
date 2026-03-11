@@ -1,3 +1,6 @@
+// Suppress Lit dev mode warnings before Lit initializes
+(globalThis as any).litIssuedWarnings = new Set(['dev-mode', 'change-in-update', 'multiple-versions']);
+
 import * as a11yAddonAnnotations from "@storybook/addon-a11y/preview";
 import { setProjectAnnotations } from '@storybook/web-components-vite';
 import * as projectAnnotations from './preview';

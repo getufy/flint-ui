@@ -526,7 +526,7 @@ export class UiResizableHandle extends LitElement {
     }
     :host([disabled]) {
       pointer-events: none;
-      opacity: 0.5;
+      opacity: var(--ui-resizable-handle-disabled-opacity, 0.5);
     }
 
     .grip {

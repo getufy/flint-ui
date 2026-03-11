@@ -216,14 +216,24 @@ export class UiRichTreeView extends LitElement {
         this.shadowRoot!.removeEventListener('drop', this._handleDrop as EventListener);
     }
 
-    protected updated(_changedProperties: PropertyValues) {
-        super.updated(_changedProperties);
+    protected willUpdate(_changedProperties: PropertyValues) {
+        super.willUpdate(_changedProperties);
 
         // Reset lazy state when dataSource is replaced
         if (_changedProperties.has('dataSource')) {
             this._lazyChildren.clear();
             this._loading.clear();
         }
+
+        // Trigger root lazy load when dataSource is present and items is empty
+        if (this.dataSource && this.items.length === 0 &&
+            !this._lazyChildren.has(null) && !this._loading.has(null)) {
+            void this._loadChildren(null);
+        }
+    }
+
+    protected updated(_changedProperties: PropertyValues) {
+        super.updated(_changedProperties);
 
         if (_changedProperties.has('disabledItemsFocusable')) {
             this._initRovingTabindex();
@@ -238,12 +248,6 @@ export class UiRichTreeView extends LitElement {
                 this._syncExpansion();
                 this._initRovingTabindex();
             }
-        }
-
-        // Trigger root lazy load when dataSource is present and items is empty
-        if (this.dataSource && this.items.length === 0 &&
-            !this._lazyChildren.has(null) && !this._loading.has(null)) {
-            void this._loadChildren(null);
         }
 
         // Push draggable state into each item's inner row after every render.

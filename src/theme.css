@@ -278,9 +278,10 @@
     --ui-resizable-handle-bg:             var(--ui-border-color);
     --ui-resizable-handle-hover-bg:       var(--ui-primary-color);
     --ui-resizable-handle-focus-bg:       var(--ui-primary-color);
-    --ui-resizable-handle-transition:     150ms;
-    --ui-resizable-handle-border-radius:  0px;
-    --ui-resizable-grip-bg:              var(--ui-background);
+    --ui-resizable-handle-transition:        150ms;
+    --ui-resizable-handle-border-radius:     0px;
+    --ui-resizable-handle-disabled-opacity:  0.5;
+    --ui-resizable-grip-bg:                  var(--ui-background);
     --ui-resizable-grip-width:            12px;
     --ui-resizable-grip-height:           24px;
     --ui-resizable-grip-dot-color:        var(--ui-text-color-muted);
