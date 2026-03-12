@@ -548,6 +548,7 @@ describe('ui-relative-time — _formatText catch branch', () => {
             // catch branch returns '' → <time> has no text
             expect(shadowText(el)).toBe('');
         } finally {
+            // @ts-expect-error — restoring after mock
             Intl.RelativeTimeFormat = OriginalRTF;
         }
     });

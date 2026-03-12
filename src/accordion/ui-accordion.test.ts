@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeAll } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { fixture, html, oneEvent } from '@open-wc/testing';
 import './ui-accordion.js';
 import type { UiAccordion, UiAccordionSummary, UiAccordionDetails, UiAccordionActions } from './ui-accordion.js';

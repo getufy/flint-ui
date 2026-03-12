@@ -679,3 +679,303 @@ describe('ui-format-date — aria-label locale', () => {
         expect(labelEn).not.toBe(labelFr);
     });
 });
+
+/* ═══════════════════════════════════════════════════════════════════
+   Mutation kill — ID 4059: lang default '' → garbage string
+   If lang defaults to a non-empty garbage string, Intl throws → ''
+═══════════════════════════════════════════════════════════════════ */
+describe('ui-format-date — default lang produces valid output', () => {
+    it('renders non-empty text when no lang attribute is set', async () => {
+        const date = new Date('2024-06-15T12:00:00.000Z');
+        const el = await fixture<UiFormatDate>(html`
+            <ui-format-date .date=${date} year="numeric"></ui-format-date>
+        `);
+        expect(shadowText(el)).not.toBe('');
+        expect(shadowText(el)).toContain('2024');
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════
+   Mutation kill — ID 4065: if(timeZoneName) → false
+   timeZoneName is never added to options → abbreviation absent
+═══════════════════════════════════════════════════════════════════ */
+describe('ui-format-date — timeZoneName includes abbreviation', () => {
+    const date = new Date('2024-06-15T12:00:00.000Z');
+
+    it('time-zone-name="short" includes the UTC abbreviation in output', async () => {
+        const el = await fixture<UiFormatDate>(html`
+            <ui-format-date .date=${date} hour="numeric" minute="2-digit" time-zone="UTC" time-zone-name="short" lang="en"></ui-format-date>
+        `);
+        expect(shadowText(el)).toContain('UTC');
+    });
+
+    it('output with time-zone-name differs from output without', async () => {
+        const [noTzn, withTzn] = await Promise.all([
+            fixture<UiFormatDate>(html`<ui-format-date .date=${date} hour="numeric" minute="2-digit" time-zone="UTC" lang="en"></ui-format-date>`),
+            fixture<UiFormatDate>(html`<ui-format-date .date=${date} hour="numeric" minute="2-digit" time-zone="UTC" time-zone-name="short" lang="en"></ui-format-date>`),
+        ]);
+        expect(shadowText(withTzn)).not.toBe(shadowText(noTzn));
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════
+   Mutation kill — ID 4067: if(hourFormat==='12') → false
+   hour12=true never set; 12h not forced; 24h-default locale stays 24h
+═══════════════════════════════════════════════════════════════════ */
+describe('ui-format-date — hour-format="12" forces 12h in 24h-default locale', () => {
+    // 14:00 UTC; French locale defaults to 24h
+    const date = new Date('2024-06-15T14:00:00.000Z');
+
+    it('hour-format="12" output differs from hour-format="24" in fr locale', async () => {
+        const [h12, h24] = await Promise.all([
+            fixture<UiFormatDate>(html`<ui-format-date .date=${date} hour="numeric" minute="2-digit" hour-format="12" time-zone="UTC" lang="fr"></ui-format-date>`),
+            fixture<UiFormatDate>(html`<ui-format-date .date=${date} hour="numeric" minute="2-digit" hour-format="24" time-zone="UTC" lang="fr"></ui-format-date>`),
+        ]);
+        expect(shadowText(h12)).not.toBe(shadowText(h24));
+    });
+
+    it('hour-format="24" contains 14 in fr locale (24h output)', async () => {
+        const el = await fixture<UiFormatDate>(html`
+            <ui-format-date .date=${date} hour="numeric" minute="2-digit" hour-format="24" time-zone="UTC" lang="fr"></ui-format-date>
+        `);
+        expect(shadowText(el)).toContain('14');
+    });
+
+    it('hour-format="12" does not contain 14 in fr locale (12h output)', async () => {
+        const el = await fixture<UiFormatDate>(html`
+            <ui-format-date .date=${date} hour="numeric" minute="2-digit" hour-format="12" time-zone="UTC" lang="fr"></ui-format-date>
+        `);
+        expect(shadowText(el)).not.toContain('14');
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════
+   Mutation kill — ID 4071: else if(hourFormat==='24') → true
+   hour12=false always set; en locale's 12h default would be overridden
+═══════════════════════════════════════════════════════════════════ */
+describe('ui-format-date — hour-format="auto" does not force 24h', () => {
+    const date = new Date('2024-06-15T14:00:00.000Z');
+
+    it('hour-format="auto" shows AM/PM in en locale (12h default)', async () => {
+        const el = await fixture<UiFormatDate>(html`
+            <ui-format-date .date=${date} hour="numeric" minute="2-digit" hour-format="auto" time-zone="UTC" lang="en"></ui-format-date>
+        `);
+        expect(shadowText(el)).toMatch(/PM|pm/i);
+    });
+
+    it('hour-format="auto" and hour-format="24" produce different output in en locale', async () => {
+        const [auto, h24] = await Promise.all([
+            fixture<UiFormatDate>(html`<ui-format-date .date=${date} hour="numeric" minute="2-digit" hour-format="auto" time-zone="UTC" lang="en"></ui-format-date>`),
+            fixture<UiFormatDate>(html`<ui-format-date .date=${date} hour="numeric" minute="2-digit" hour-format="24" time-zone="UTC" lang="en"></ui-format-date>`),
+        ]);
+        expect(shadowText(auto)).not.toBe(shadowText(h24));
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════
+   Mutation kill — ID 4083: if(timeStyle) → false
+   timeStyle never added → Intl uses default date format, not time
+═══════════════════════════════════════════════════════════════════ */
+describe('ui-format-date — timeStyle includes time information', () => {
+    const date = new Date('2024-06-15T14:30:00.000Z');
+
+    it('time-style="short" includes minute digits in output', async () => {
+        const el = await fixture<UiFormatDate>(html`
+            <ui-format-date .date=${date} time-style="short" time-zone="UTC" lang="en"></ui-format-date>
+        `);
+        expect(shadowText(el)).toContain('30');
+    });
+
+    it('time-style="short" output differs from date-style="short" output', async () => {
+        const [timeOnly, dateOnly] = await Promise.all([
+            fixture<UiFormatDate>(html`<ui-format-date .date=${date} time-style="short" time-zone="UTC" lang="en"></ui-format-date>`),
+            fixture<UiFormatDate>(html`<ui-format-date .date=${date} date-style="short" lang="en"></ui-format-date>`),
+        ]);
+        expect(shadowText(timeOnly)).not.toBe(shadowText(dateOnly));
+    });
+
+    it('time-style="long" includes UTC abbreviation', async () => {
+        const el = await fixture<UiFormatDate>(html`
+            <ui-format-date .date=${date} time-style="long" time-zone="UTC" lang="en"></ui-format-date>
+        `);
+        expect(shadowText(el)).toContain('UTC');
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════
+   Mutation kill — ID 4088: if(era) → false
+   era never added to options → era label absent from output
+═══════════════════════════════════════════════════════════════════ */
+describe('ui-format-date — era label in output', () => {
+    const date = new Date('2024-06-15T00:00:00.000Z');
+
+    it('era="long" includes AD era label', async () => {
+        const el = await fixture<UiFormatDate>(html`
+            <ui-format-date .date=${date} era="long" year="numeric" lang="en"></ui-format-date>
+        `);
+        expect(shadowText(el)).toMatch(/AD|Anno Domini/i);
+    });
+
+    it('era="short" produces different output than year-only', async () => {
+        const [yearOnly, withEra] = await Promise.all([
+            fixture<UiFormatDate>(html`<ui-format-date .date=${date} year="numeric" lang="en"></ui-format-date>`),
+            fixture<UiFormatDate>(html`<ui-format-date .date=${date} era="short" year="numeric" lang="en"></ui-format-date>`),
+        ]);
+        expect(shadowText(withEra)).not.toBe(shadowText(yearOnly));
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════
+   Mutation kill — ID 4094: if(day) → false
+   day never added → Intl default format used instead of day-only
+═══════════════════════════════════════════════════════════════════ */
+describe('ui-format-date — day-only format', () => {
+    const date = new Date('2024-06-15T12:00:00.000Z');
+
+    it('day="numeric" alone shows only the day number', async () => {
+        const el = await fixture<UiFormatDate>(html`
+            <ui-format-date .date=${date} day="numeric" lang="en" time-zone="UTC"></ui-format-date>
+        `);
+        expect(shadowText(el)).toBe('15');
+    });
+
+    it('day="numeric" alone produces different output than no-field fallback', async () => {
+        const [dayOnly, noFields] = await Promise.all([
+            fixture<UiFormatDate>(html`<ui-format-date .date=${date} day="numeric" lang="en" time-zone="UTC"></ui-format-date>`),
+            fixture<UiFormatDate>(html`<ui-format-date .date=${date} lang="en" time-zone="UTC"></ui-format-date>`),
+        ]);
+        expect(shadowText(dayOnly)).not.toBe(shadowText(noFields));
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════
+   Mutation kill — ID 4098: if(minute) → false
+   minute never added → minute digits absent from output
+═══════════════════════════════════════════════════════════════════ */
+describe('ui-format-date — minute in output', () => {
+    const date = new Date('2024-06-15T14:30:45.000Z');
+
+    it('minute="2-digit" includes the minute value in output', async () => {
+        const el = await fixture<UiFormatDate>(html`
+            <ui-format-date .date=${date} hour="numeric" minute="2-digit" time-zone="UTC" lang="en"></ui-format-date>
+        `);
+        expect(shadowText(el)).toContain('30');
+    });
+
+    it('hour+minute produces different output than hour-only', async () => {
+        const [hourOnly, withMin] = await Promise.all([
+            fixture<UiFormatDate>(html`<ui-format-date .date=${date} hour="numeric" time-zone="UTC" lang="en"></ui-format-date>`),
+            fixture<UiFormatDate>(html`<ui-format-date .date=${date} hour="numeric" minute="2-digit" time-zone="UTC" lang="en"></ui-format-date>`),
+        ]);
+        expect(shadowText(withMin)).not.toBe(shadowText(hourOnly));
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════
+   Mutation kill — ID 4102: if(fractionalSecondDigits) → false
+   fractionalSecondDigits never added → sub-second digits absent
+═══════════════════════════════════════════════════════════════════ */
+describe('ui-format-date — fractionalSecondDigits in output', () => {
+    const date = new Date('2024-06-15T14:30:45.123Z');
+
+    it('fractionalSecondDigits=3 produces different output than without', async () => {
+        const fsd = 3 as const;
+        const [noFrac, withFrac] = await Promise.all([
+            fixture<UiFormatDate>(html`<ui-format-date .date=${date} hour="numeric" minute="2-digit" second="2-digit" time-zone="UTC" lang="en"></ui-format-date>`),
+            fixture<UiFormatDate>(html`<ui-format-date .date=${date} hour="numeric" minute="2-digit" second="2-digit" .fractionalSecondDigits=${fsd} time-zone="UTC" lang="en"></ui-format-date>`),
+        ]);
+        expect(shadowText(withFrac)).not.toBe(shadowText(noFrac));
+    });
+
+    it('fractionalSecondDigits=3 includes millisecond digits', async () => {
+        const fsd = 3 as const;
+        const el = await fixture<UiFormatDate>(html`
+            <ui-format-date .date=${date} hour="numeric" minute="2-digit" second="2-digit" .fractionalSecondDigits=${fsd} time-zone="UTC" lang="en"></ui-format-date>
+        `);
+        expect(shadowText(el)).toContain('123');
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════
+   Mutation kill — IDs 4118, 4119: hasDisplayField → false / || → &&
+   A single display field must prevent the year/month/day fallback
+═══════════════════════════════════════════════════════════════════ */
+describe('ui-format-date — hasDisplayField: single field prevents fallback', () => {
+    const date = new Date('2024-06-15T12:00:00.000Z'); // Saturday
+
+    it('weekday="long" alone does not include year from fallback', async () => {
+        const el = await fixture<UiFormatDate>(html`
+            <ui-format-date .date=${date} weekday="long" lang="en" time-zone="UTC"></ui-format-date>
+        `);
+        expect(shadowText(el)).toContain('Saturday');
+        expect(shadowText(el)).not.toContain('2024');
+    });
+
+    it('weekday="long" alone produces different output than no-field fallback', async () => {
+        const [weekdayOnly, fallback] = await Promise.all([
+            fixture<UiFormatDate>(html`<ui-format-date .date=${date} weekday="long" lang="en" time-zone="UTC"></ui-format-date>`),
+            fixture<UiFormatDate>(html`<ui-format-date .date=${date} lang="en" time-zone="UTC"></ui-format-date>`),
+        ]);
+        expect(shadowText(weekdayOnly)).not.toBe(shadowText(fallback));
+    });
+
+    // ID 4119: ||→&& makes year alone not count as hasDisplayField → fallback overrides year
+    it('year="numeric" alone shows only the year (not full date)', async () => {
+        const el = await fixture<UiFormatDate>(html`
+            <ui-format-date .date=${date} year="numeric" lang="en" time-zone="UTC"></ui-format-date>
+        `);
+        expect(shadowText(el)).toBe('2024');
+    });
+
+    it('year="numeric" alone differs from year+month+day', async () => {
+        const [yearOnly, fullDate] = await Promise.all([
+            fixture<UiFormatDate>(html`<ui-format-date .date=${date} year="numeric" lang="en" time-zone="UTC"></ui-format-date>`),
+            fixture<UiFormatDate>(html`<ui-format-date .date=${date} year="numeric" month="numeric" day="numeric" lang="en" time-zone="UTC"></ui-format-date>`),
+        ]);
+        expect(shadowText(yearOnly)).not.toBe(shadowText(fullDate));
+    });
+
+    it('month="long" alone shows only the month name (not full date)', async () => {
+        const el = await fixture<UiFormatDate>(html`
+            <ui-format-date .date=${date} month="long" lang="en" time-zone="UTC"></ui-format-date>
+        `);
+        expect(shadowText(el)).toBe('June');
+    });
+
+    it('hour="numeric" alone does not include year from fallback', async () => {
+        const dateWithTime = new Date('2024-06-15T14:30:00.000Z');
+        const el = await fixture<UiFormatDate>(html`
+            <ui-format-date .date=${dateWithTime} hour="numeric" lang="en" time-zone="UTC"></ui-format-date>
+        `);
+        expect(shadowText(el)).not.toContain('2024');
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════
+   Mutation kill — ID 4142: _localeString timeZone opts → {}
+   Empty opts means timeZone not passed to toLocaleString → wrong time in title
+═══════════════════════════════════════════════════════════════════ */
+describe('ui-format-date — title/aria-label reflects timeZone', () => {
+    it('title attribute differs for UTC vs America/New_York', async () => {
+        // 8 PM UTC = 4 PM NY; ensures they differ
+        const date = new Date('2024-06-15T20:00:00.000Z');
+        const [elUTC, elNY] = await Promise.all([
+            fixture<UiFormatDate>(html`<ui-format-date .date=${date} time-zone="UTC" lang="en"></ui-format-date>`),
+            fixture<UiFormatDate>(html`<ui-format-date .date=${date} time-zone="America/New_York" lang="en"></ui-format-date>`),
+        ]);
+        const titleUTC = elUTC.shadowRoot!.querySelector('time')!.getAttribute('title');
+        const titleNY = elNY.shadowRoot!.querySelector('time')!.getAttribute('title');
+        expect(titleUTC).not.toBe(titleNY);
+    });
+
+    it('aria-label attribute differs for UTC vs America/New_York', async () => {
+        const date = new Date('2024-06-15T20:00:00.000Z');
+        const [elUTC, elNY] = await Promise.all([
+            fixture<UiFormatDate>(html`<ui-format-date .date=${date} time-zone="UTC" lang="en"></ui-format-date>`),
+            fixture<UiFormatDate>(html`<ui-format-date .date=${date} time-zone="America/New_York" lang="en"></ui-format-date>`),
+        ]);
+        const labelUTC = elUTC.shadowRoot!.querySelector('time')!.getAttribute('aria-label');
+        const labelNY = elNY.shadowRoot!.querySelector('time')!.getAttribute('aria-label');
+        expect(labelUTC).not.toBe(labelNY);
+    });
+});

@@ -68,7 +68,9 @@
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --project components --coverage src/menubar/ui-menubar.test.ts)",
       "Bash(NODE_OPTIONS='--no-warnings' vitest run src/navigation-menu/ui-navigation-menu.test.ts --coverage --reporter=verbose)",
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/navigation-menu/ui-navigation-menu.test.ts --project components --reporter=verbose)",
-      "Bash(NODE_OPTIONS='--no-warnings' vitest run src/resizable/ui-resizable.test.ts --project components)"
+      "Bash(NODE_OPTIONS='--no-warnings' vitest run src/resizable/ui-resizable.test.ts --project components)",
+      "Bash(node -e \"\nconst fs = require\\('fs'\\);\nconst data = JSON.parse\\(fs.readFileSync\\('reports/stryker-incremental.json', 'utf8'\\)\\);\nconst dividerEntries = Object.entries\\(data\\).filter\\(\\([k]\\) => k.includes\\('divider'\\)\\);\nconsole.log\\(JSON.stringify\\(dividerEntries, null, 2\\)\\);\n\" 2>/dev/null || cat reports/stryker-incremental.json | python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); [print\\(k,'->',json.dumps\\(v,indent=2\\)\\) for k,v in d.items\\(\\) if 'divider' in k.lower\\(\\)]\")",
+      "Bash(jq '.files | keys[] | select\\(contains\\(\"format-date\"\\)\\)' /Users/algoassasin/storybook-lit/reports/stryker-incremental.json 2>/dev/null | head -20)"
     ]
   }
 }
