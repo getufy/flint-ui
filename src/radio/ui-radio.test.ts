@@ -588,9 +588,9 @@ describe('ui-radio-group', () => {
         el.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
         await el.updateComplete;
         expect(captured).not.toBeNull();
-        expect((captured as CustomEvent).bubbles).toBe(true);
-        expect((captured as CustomEvent).composed).toBe(true);
-        expect((captured as CustomEvent).detail.value).toBe('b');
+        expect((captured as unknown as CustomEvent).bubbles).toBe(true);
+        expect((captured as unknown as CustomEvent).composed).toBe(true);
+        expect((captured as unknown as CustomEvent).detail.value).toBe('b');
     });
 
     it('does not propagate name to children when group name is empty string', async () => {
@@ -687,9 +687,9 @@ describe('ui-radio', () => {
         // Trigger via direct change event (not click, to avoid browser disabled guard)
         getInput(el).dispatchEvent(new Event('change'));
         expect(captured).not.toBeNull();
-        expect((captured as CustomEvent).bubbles).toBe(true);
-        expect((captured as CustomEvent).composed).toBe(true);
-        expect((captured as CustomEvent).detail.value).toBe('x');
+        expect((captured as unknown as CustomEvent).bubbles).toBe(true);
+        expect((captured as unknown as CustomEvent).composed).toBe(true);
+        expect((captured as unknown as CustomEvent).detail.value).toBe('x');
     });
 
     // ── CSS classes ────────────────────────────────────────────────────────────

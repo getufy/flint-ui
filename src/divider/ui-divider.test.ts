@@ -40,4 +40,80 @@ describe('ui-divider', () => {
         const container = el.shadowRoot!.querySelector('.divider-container');
         expect(container?.classList.contains('variant-inset')).toBe(true);
     });
+
+    describe('divider-line rendering based on textAlign', () => {
+        it('textAlign=center renders two divider-line elements (default)', async () => {
+            const el = await fixture<UiDivider>(html`<ui-divider .textAlign=${'center'}><span>OR</span></ui-divider>`);
+            const lines = el.shadowRoot!.querySelectorAll('.divider-line');
+            expect(lines.length).toBe(2);
+            expect(lines[0].tagName.toLowerCase()).toBe('div');
+            expect(lines[1].tagName.toLowerCase()).toBe('div');
+        });
+
+        it('textAlign=left hides the leading divider-line, shows only the trailing line', async () => {
+            const el = await fixture<UiDivider>(html`<ui-divider .textAlign=${'left'}><span>Label</span></ui-divider>`);
+            const lines = el.shadowRoot!.querySelectorAll('.divider-line');
+            expect(lines.length).toBe(1);
+        });
+
+        it('textAlign=right hides the trailing divider-line, shows only the leading line', async () => {
+            const el = await fixture<UiDivider>(html`<ui-divider .textAlign=${'right'}><span>Label</span></ui-divider>`);
+            const lines = el.shadowRoot!.querySelectorAll('.divider-line');
+            expect(lines.length).toBe(1);
+        });
+
+        it('default (no text content) renders two divider-line elements', async () => {
+            const el = await fixture<UiDivider>(html`<ui-divider></ui-divider>`);
+            const lines = el.shadowRoot!.querySelectorAll('.divider-line');
+            expect(lines.length).toBe(2);
+        });
+    });
+
+    describe('vertical orientation overrides textAlign for divider-line rendering', () => {
+        it('vertical + textAlign=left still renders two divider-line elements', async () => {
+            const el = await fixture<UiDivider>(html`<ui-divider orientation="vertical" .textAlign=${'left'}><span>X</span></ui-divider>`);
+            const lines = el.shadowRoot!.querySelectorAll('.divider-line');
+            expect(lines.length).toBe(2);
+        });
+
+        it('vertical + textAlign=right still renders two divider-line elements', async () => {
+            const el = await fixture<UiDivider>(html`<ui-divider orientation="vertical" .textAlign=${'right'}><span>X</span></ui-divider>`);
+            const lines = el.shadowRoot!.querySelectorAll('.divider-line');
+            expect(lines.length).toBe(2);
+        });
+
+        it('vertical + textAlign=center renders two divider-line elements', async () => {
+            const el = await fixture<UiDivider>(html`<ui-divider orientation="vertical" .textAlign=${'center'}><span>X</span></ui-divider>`);
+            const lines = el.shadowRoot!.querySelectorAll('.divider-line');
+            expect(lines.length).toBe(2);
+        });
+    });
+
+    describe('weight variants', () => {
+        it('default weight is light', async () => {
+            const el = await fixture<UiDivider>(html`<ui-divider></ui-divider>`);
+            const container = el.shadowRoot!.querySelector('.divider-container');
+            expect(container?.classList.contains('weight-light')).toBe(true);
+        });
+
+        it('applies weight-medium class', async () => {
+            const el = await fixture<UiDivider>(html`<ui-divider weight="medium"></ui-divider>`);
+            const container = el.shadowRoot!.querySelector('.divider-container');
+            expect(container?.classList.contains('weight-medium')).toBe(true);
+        });
+    });
+
+    describe('variant rendering', () => {
+        it('default variant is full', async () => {
+            const el = await fixture<UiDivider>(html`<ui-divider></ui-divider>`);
+            const container = el.shadowRoot!.querySelector('.divider-container');
+            expect(container?.classList.contains('variant-full')).toBe(true);
+        });
+
+        it('applies variant-middle class', async () => {
+            const el = await fixture<UiDivider>(html`<ui-divider variant="middle"></ui-divider>`);
+            const container = el.shadowRoot!.querySelector('.divider-container');
+            expect(container?.classList.contains('variant-middle')).toBe(true);
+        });
+    });
 });
