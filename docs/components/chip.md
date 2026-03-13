@@ -1,22 +1,10 @@
 # Chip
 
-<Demo label="Variants">
+<Demo label="Variants" html="<ui-chip label=&quot;Filled&quot; variant=&quot;filled&quot;></ui-chip><ui-chip label=&quot;Outlined&quot; variant=&quot;outlined&quot;></ui-chip><ui-chip label=&quot;Primary&quot; variant=&quot;filled&quot; color=&quot;primary&quot;></ui-chip><ui-chip label=&quot;Secondary&quot; variant=&quot;filled&quot; color=&quot;secondary&quot;></ui-chip>" />
 
-<ui-chip variant="filled">Filled</ui-chip>
-<ui-chip variant="outlined">Outlined</ui-chip>
-<ui-chip variant="filled" color="primary">Primary</ui-chip>
-<ui-chip variant="filled" color="secondary">Secondary</ui-chip>
+<Demo label="Sizes" html="<ui-chip label=&quot;Small&quot; size=&quot;sm&quot;></ui-chip><ui-chip label=&quot;Medium&quot; size=&quot;md&quot;></ui-chip><ui-chip label=&quot;Large&quot; size=&quot;lg&quot;></ui-chip>" />
 
-</Demo>
-
-<Demo label="Interactive">
-
-<ui-chip clickable>Clickable</ui-chip>
-<ui-chip deletable>Deletable</ui-chip>
-<ui-chip clickable deletable>Both</ui-chip>
-<ui-chip disabled>Disabled</ui-chip>
-
-</Demo>
+<Demo label="Interactive" html="<ui-chip label=&quot;Clickable&quot; clickable></ui-chip><ui-chip label=&quot;Deletable&quot; deletable></ui-chip><ui-chip label=&quot;Both&quot; clickable deletable></ui-chip><ui-chip label=&quot;Disabled&quot; disabled></ui-chip>" />
 
 - **Tag**: `<ui-chip>`
 - **Class**: `UiChip`

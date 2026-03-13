@@ -1,10 +1,6 @@
 # Date Range Picker
 
-<Demo>
-
-<ui-date-range-picker label="Date range" style="width:340px"></ui-date-range-picker>
-
-</Demo>
+<Demo html="<ui-date-range-picker label=&quot;Date range&quot; style=&quot;width:340px&quot;></ui-date-range-picker>" />
 
 ## `<ui-date-range-calendar>`
 

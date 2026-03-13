@@ -1,14 +1,6 @@
 # Breadcrumbs
 
-<Demo>
-
-<ui-breadcrumbs>
-  <a href="#">Home</a>
-  <a href="#">Products</a>
-  <span>Current Page</span>
-</ui-breadcrumbs>
-
-</Demo>
+<Demo html="<ui-breadcrumbs>  <a href=&quot;#&quot;>Home</a>  <a href=&quot;#&quot;>Products</a>  <span>Current Page</span></ui-breadcrumbs>" />
 
 Breadcrumbs provide a navigational aid showing the current page's location within a site hierarchy, allowing users to navigate back up the trail.
 

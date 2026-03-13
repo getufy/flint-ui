@@ -1,13 +1,6 @@
 # Time Picker
 
-<Demo label="States">
-
-<div style="display:flex;gap:16px;flex-wrap:wrap">
-<ui-time-picker label="Time" style="width:200px"></ui-time-picker>
-<ui-time-picker label="Disabled" disabled style="width:200px"></ui-time-picker>
-</div>
-
-</Demo>
+<Demo label="States" html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><ui-time-picker label=&quot;Time&quot; style=&quot;width:200px&quot;></ui-time-picker><ui-time-picker label=&quot;Disabled&quot; disabled style=&quot;width:200px&quot;></ui-time-picker></div>" />
 
 ## `<ui-time-field>`
 

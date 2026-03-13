@@ -1,40 +1,8 @@
 # Resizable
 
-<Demo label="Horizontal">
+<Demo label="Horizontal" html="<div style=&quot;width:100%;max-width:500px&quot;><ui-resizable-group orientation=&quot;horizontal&quot; style=&quot;height:200px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden&quot;>  <ui-resizable-panel default-size=&quot;40&quot;>    <div style=&quot;padding:16px;height:100%;background:#f0f9ff;display:flex;align-items:center;justify-content:center&quot;>Panel A</div>  </ui-resizable-panel>  <ui-resizable-handle with-handle></ui-resizable-handle>  <ui-resizable-panel default-size=&quot;60&quot;>    <div style=&quot;padding:16px;height:100%;background:#fefce8;display:flex;align-items:center;justify-content:center&quot;>Panel B</div>  </ui-resizable-panel></ui-resizable-group></div>" />
 
-<div style="width:100%;max-width:500px">
-<ui-resizable-group orientation="horizontal" style="height:200px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden">
-  <ui-resizable-panel default-size="40">
-    <div style="padding:16px;height:100%;background:#f0f9ff;display:flex;align-items:center;justify-content:center">Panel A</div>
-  </ui-resizable-panel>
-  <ui-resizable-handle with-handle></ui-resizable-handle>
-  <ui-resizable-panel default-size="60">
-    <div style="padding:16px;height:100%;background:#fefce8;display:flex;align-items:center;justify-content:center">Panel B</div>
-  </ui-resizable-panel>
-</ui-resizable-group>
-</div>
-
-</Demo>
-
-<Demo label="Three Panels">
-
-<div style="width:100%;max-width:600px">
-<ui-resizable-group orientation="horizontal" style="height:180px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden">
-  <ui-resizable-panel default-size="25">
-    <div style="padding:12px;height:100%;background:#f0f9ff;display:flex;align-items:center;justify-content:center;font-size:14px">Sidebar</div>
-  </ui-resizable-panel>
-  <ui-resizable-handle with-handle></ui-resizable-handle>
-  <ui-resizable-panel default-size="50">
-    <div style="padding:12px;height:100%;display:flex;align-items:center;justify-content:center;font-size:14px">Main</div>
-  </ui-resizable-panel>
-  <ui-resizable-handle with-handle></ui-resizable-handle>
-  <ui-resizable-panel default-size="25">
-    <div style="padding:12px;height:100%;background:#fef3c7;display:flex;align-items:center;justify-content:center;font-size:14px">Detail</div>
-  </ui-resizable-panel>
-</ui-resizable-group>
-</div>
-
-</Demo>
+<Demo label="Three Panels" html="<div style=&quot;width:100%;max-width:600px&quot;><ui-resizable-group orientation=&quot;horizontal&quot; style=&quot;height:180px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden&quot;>  <ui-resizable-panel default-size=&quot;25&quot;>    <div style=&quot;padding:12px;height:100%;background:#f0f9ff;display:flex;align-items:center;justify-content:center;font-size:14px&quot;>Sidebar</div>  </ui-resizable-panel>  <ui-resizable-handle with-handle></ui-resizable-handle>  <ui-resizable-panel default-size=&quot;50&quot;>    <div style=&quot;padding:12px;height:100%;display:flex;align-items:center;justify-content:center;font-size:14px&quot;>Main</div>  </ui-resizable-panel>  <ui-resizable-handle with-handle></ui-resizable-handle>  <ui-resizable-panel default-size=&quot;25&quot;>    <div style=&quot;padding:12px;height:100%;background:#fef3c7;display:flex;align-items:center;justify-content:center;font-size:14px&quot;>Detail</div>  </ui-resizable-panel></ui-resizable-group></div>" />
 
 ## `<ui-resizable-group>`
 

@@ -1,34 +1,8 @@
 # Card
 
-<Demo label="Default">
+<Demo label="Default" html="<div style=&quot;max-width:360px;width:100%&quot;><ui-card>  <ui-card-header title=&quot;Card Title&quot; subtitle=&quot;Subtitle text&quot;></ui-card-header>  <ui-card-content>    <p style=&quot;margin:0;color:#374151&quot;>This is a card with header, content, and action buttons.</p>  </ui-card-content>  <ui-card-actions>    <ui-button variant=&quot;secondary&quot; size=&quot;small&quot;>Cancel</ui-button>    <ui-button size=&quot;small&quot;>Action</ui-button>  </ui-card-actions></ui-card></div>" />
 
-<div style="max-width:360px;width:100%">
-<ui-card>
-  <ui-card-header title="Card Title" subtitle="Subtitle text"></ui-card-header>
-  <ui-card-content>
-    <p style="margin:0;color:#374151">This is a card with header, content, and action buttons.</p>
-  </ui-card-content>
-  <ui-card-actions>
-    <ui-button variant="secondary" size="small">Cancel</ui-button>
-    <ui-button size="small">Action</ui-button>
-  </ui-card-actions>
-</ui-card>
-</div>
-
-</Demo>
-
-<Demo label="Outlined">
-
-<div style="max-width:360px;width:100%">
-<ui-card variant="outlined">
-  <ui-card-header title="Outlined Card" subtitle="With border instead of shadow"></ui-card-header>
-  <ui-card-content>
-    <p style="margin:0;color:#374151">Useful for less prominent content areas.</p>
-  </ui-card-content>
-</ui-card>
-</div>
-
-</Demo>
+<Demo label="Outlined" html="<div style=&quot;max-width:360px;width:100%&quot;><ui-card variant=&quot;outlined&quot;>  <ui-card-header title=&quot;Outlined Card&quot; subtitle=&quot;With border instead of shadow&quot;></ui-card-header>  <ui-card-content>    <p style=&quot;margin:0;color:#374151&quot;>Useful for less prominent content areas.</p>  </ui-card-content></ui-card></div>" />
 
 ## `<ui-card-action-area>`
 

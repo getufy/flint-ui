@@ -1,13 +1,6 @@
 # Textarea
 
-<Demo label="States">
-
-<div style="display:flex;flex-direction:column;gap:12px;width:100%;max-width:400px">
-<ui-textarea label="Message" placeholder="Type your message..."></ui-textarea>
-<ui-textarea label="Disabled" disabled value="This textarea is disabled"></ui-textarea>
-</div>
-
-</Demo>
+<Demo label="States" html="<div style=&quot;display:flex;flex-direction:column;gap:12px;width:100%;max-width:400px&quot;><ui-textarea label=&quot;Message&quot; placeholder=&quot;Type your message...&quot;></ui-textarea><ui-textarea label=&quot;Disabled&quot; disabled value=&quot;This textarea is disabled&quot;></ui-textarea></div>" />
 
 A Textarea component for multi-line text input.
 

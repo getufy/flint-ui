@@ -1,18 +1,6 @@
 # Empty
 
-<Demo>
-
-<div style="width:100%;max-width:400px">
-<ui-empty>
-  <ui-empty-title>No results found</ui-empty-title>
-  <ui-empty-description>Try adjusting your search or filter criteria.</ui-empty-description>
-  <ui-empty-content>
-    <ui-button variant="secondary" size="small">Clear Filters</ui-button>
-  </ui-empty-content>
-</ui-empty>
-</div>
-
-</Demo>
+<Demo html="<div style=&quot;width:100%;max-width:400px&quot;><ui-empty>  <ui-empty-title>No results found</ui-empty-title>  <ui-empty-description>Try adjusting your search or filter criteria.</ui-empty-description>  <ui-empty-content>    <ui-button variant=&quot;secondary&quot; size=&quot;small&quot;>Clear Filters</ui-button>  </ui-empty-content></ui-empty></div>" />
 
 ## `<ui-empty-title>`
 

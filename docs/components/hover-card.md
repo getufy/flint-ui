@@ -1,20 +1,6 @@
 # Hover Card
 
-<Demo>
-
-<ui-hover-card>
-  <ui-hover-card-trigger>
-    <ui-link href="#">Hover over me</ui-link>
-  </ui-hover-card-trigger>
-  <ui-hover-card-content>
-    <div style="padding:12px">
-      <p style="margin:0;font-weight:600">Hover Card</p>
-      <p style="margin:4px 0 0;color:#6b7280;font-size:14px">Additional information shown on hover.</p>
-    </div>
-  </ui-hover-card-content>
-</ui-hover-card>
-
-</Demo>
+<Demo html="<ui-hover-card>  <ui-hover-card-trigger>    <ui-link href=&quot;#&quot;>Hover over me</ui-link>  </ui-hover-card-trigger>  <ui-hover-card-content>    <div style=&quot;padding:12px&quot;>      <p style=&quot;margin:0;font-weight:600&quot;>Hover Card</p>      <p style=&quot;margin:4px 0 0;color:#6b7280;font-size:14px&quot;>Additional information shown on hover.</p>    </div>  </ui-hover-card-content></ui-hover-card>" />
 
 ## `<ui-hover-card-trigger>`
 

@@ -1,21 +1,6 @@
 # Tooltip
 
-<Demo label="Placements">
-
-<ui-tooltip content="Top tooltip">
-  <ui-button variant="secondary">Top</ui-button>
-</ui-tooltip>
-<ui-tooltip content="Bottom tooltip" placement="bottom">
-  <ui-button variant="secondary">Bottom</ui-button>
-</ui-tooltip>
-<ui-tooltip content="Left tooltip" placement="left">
-  <ui-button variant="secondary">Left</ui-button>
-</ui-tooltip>
-<ui-tooltip content="Right tooltip" placement="right">
-  <ui-button variant="secondary">Right</ui-button>
-</ui-tooltip>
-
-</Demo>
+<Demo label="Placements" html="<ui-tooltip label=&quot;Top tooltip&quot;>  <ui-button variant=&quot;secondary&quot;>Top</ui-button></ui-tooltip><ui-tooltip label=&quot;Bottom tooltip&quot; placement=&quot;bottom&quot;>  <ui-button variant=&quot;secondary&quot;>Bottom</ui-button></ui-tooltip><ui-tooltip label=&quot;Left tooltip&quot; placement=&quot;left&quot;>  <ui-button variant=&quot;secondary&quot;>Left</ui-button></ui-tooltip><ui-tooltip label=&quot;Right tooltip&quot; placement=&quot;right&quot;>  <ui-button variant=&quot;secondary&quot;>Right</ui-button></ui-tooltip>" />
 
 ui-tooltip A component that displays a text label when users hover over or focus on an element.
 

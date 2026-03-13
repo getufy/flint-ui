@@ -1,47 +1,14 @@
 # Button
 
-<Demo label="Variants">
+<Demo label="Variants" html="<ui-button variant=&quot;primary&quot;>Primary</ui-button><ui-button variant=&quot;secondary&quot;>Secondary</ui-button><ui-button variant=&quot;destructive&quot;>Destructive</ui-button>" />
 
-<ui-button variant="primary">Primary</ui-button>
-<ui-button variant="secondary">Secondary</ui-button>
-<ui-button variant="destructive">Destructive</ui-button>
+<Demo label="Sizes" html="<ui-button size=&quot;small&quot;>Small</ui-button><ui-button size=&quot;medium&quot;>Medium</ui-button><ui-button size=&quot;large&quot;>Large</ui-button>" />
 
-</Demo>
+<Demo label="States" html="<ui-button disabled>Disabled</ui-button><ui-button full-width>Full Width</ui-button>" />
 
-<Demo label="Sizes">
+<Demo label="Button Group" html="<ui-button-group>  <ui-button variant=&quot;secondary&quot;>Left</ui-button>  <ui-button variant=&quot;secondary&quot;>Center</ui-button>  <ui-button variant=&quot;secondary&quot;>Right</ui-button></ui-button-group>" />
 
-<ui-button size="small">Small</ui-button>
-<ui-button size="medium">Medium</ui-button>
-<ui-button size="large">Large</ui-button>
-
-</Demo>
-
-<Demo label="States">
-
-<ui-button disabled>Disabled</ui-button>
-<ui-button full-width>Full Width</ui-button>
-
-</Demo>
-
-<Demo label="Button Group">
-
-<ui-button-group>
-  <ui-button variant="secondary">Left</ui-button>
-  <ui-button variant="secondary">Center</ui-button>
-  <ui-button variant="secondary">Right</ui-button>
-</ui-button-group>
-
-</Demo>
-
-<Demo label="Toggle Buttons">
-
-<ui-toggle-button-group exclusive>
-  <ui-toggle-button value="left">Left</ui-toggle-button>
-  <ui-toggle-button value="center" selected>Center</ui-toggle-button>
-  <ui-toggle-button value="right">Right</ui-toggle-button>
-</ui-toggle-button-group>
-
-</Demo>
+<Demo label="Toggle Buttons" html="<ui-toggle-button-group exclusive>  <ui-toggle-button value=&quot;left&quot;>Left</ui-toggle-button>  <ui-toggle-button value=&quot;center&quot; selected>Center</ui-toggle-button>  <ui-toggle-button value=&quot;right&quot;>Right</ui-toggle-button></ui-toggle-button-group>" />
 
 ## `<ui-button-group>`
 

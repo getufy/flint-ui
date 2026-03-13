@@ -1,16 +1,6 @@
 # Kbd
 
-<Demo label="Combinations">
-
-<ui-kbd>Ctrl</ui-kbd> + <ui-kbd>C</ui-kbd>
-<span style="margin:0 16px"></span>
-<ui-kbd>Ctrl</ui-kbd> + <ui-kbd>V</ui-kbd>
-<span style="margin:0 16px"></span>
-<ui-kbd>Shift</ui-kbd> + <ui-kbd>Enter</ui-kbd>
-<span style="margin:0 16px"></span>
-<ui-kbd>Esc</ui-kbd>
-
-</Demo>
+<Demo label="Combinations" html="<ui-kbd>Ctrl</ui-kbd> + <ui-kbd>C</ui-kbd><span style=&quot;margin:0 16px&quot;></span><ui-kbd>Ctrl</ui-kbd> + <ui-kbd>V</ui-kbd><span style=&quot;margin:0 16px&quot;></span><ui-kbd>Shift</ui-kbd> + <ui-kbd>Enter</ui-kbd><span style=&quot;margin:0 16px&quot;></span><ui-kbd>Esc</ui-kbd>" />
 
 ## `<ui-kbd>`
 

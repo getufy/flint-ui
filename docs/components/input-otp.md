@@ -1,35 +1,8 @@
 # Input Otp
 
-<Demo label="6-digit code">
+<Demo label="6-digit code" html="<ui-input-otp length=&quot;6&quot;>  <ui-input-otp-group>    <ui-input-otp-slot index=&quot;0&quot;></ui-input-otp-slot>    <ui-input-otp-slot index=&quot;1&quot;></ui-input-otp-slot>    <ui-input-otp-slot index=&quot;2&quot;></ui-input-otp-slot>  </ui-input-otp-group>  <ui-input-otp-separator></ui-input-otp-separator>  <ui-input-otp-group>    <ui-input-otp-slot index=&quot;3&quot;></ui-input-otp-slot>    <ui-input-otp-slot index=&quot;4&quot;></ui-input-otp-slot>    <ui-input-otp-slot index=&quot;5&quot;></ui-input-otp-slot>  </ui-input-otp-group></ui-input-otp>" />
 
-<ui-input-otp length="6">
-  <ui-input-otp-group>
-    <ui-input-otp-slot index="0"></ui-input-otp-slot>
-    <ui-input-otp-slot index="1"></ui-input-otp-slot>
-    <ui-input-otp-slot index="2"></ui-input-otp-slot>
-  </ui-input-otp-group>
-  <ui-input-otp-separator></ui-input-otp-separator>
-  <ui-input-otp-group>
-    <ui-input-otp-slot index="3"></ui-input-otp-slot>
-    <ui-input-otp-slot index="4"></ui-input-otp-slot>
-    <ui-input-otp-slot index="5"></ui-input-otp-slot>
-  </ui-input-otp-group>
-</ui-input-otp>
-
-</Demo>
-
-<Demo label="4-digit code">
-
-<ui-input-otp length="4">
-  <ui-input-otp-group>
-    <ui-input-otp-slot index="0"></ui-input-otp-slot>
-    <ui-input-otp-slot index="1"></ui-input-otp-slot>
-    <ui-input-otp-slot index="2"></ui-input-otp-slot>
-    <ui-input-otp-slot index="3"></ui-input-otp-slot>
-  </ui-input-otp-group>
-</ui-input-otp>
-
-</Demo>
+<Demo label="4-digit code" html="<ui-input-otp length=&quot;4&quot;>  <ui-input-otp-group>    <ui-input-otp-slot index=&quot;0&quot;></ui-input-otp-slot>    <ui-input-otp-slot index=&quot;1&quot;></ui-input-otp-slot>    <ui-input-otp-slot index=&quot;2&quot;></ui-input-otp-slot>    <ui-input-otp-slot index=&quot;3&quot;></ui-input-otp-slot>  </ui-input-otp-group></ui-input-otp>" />
 
 ## `<ui-input-otp-group>`
 

@@ -1,14 +1,6 @@
 # Format Date
 
-<Demo label="Formats">
-
-<div style="display:flex;flex-direction:column;gap:8px">
-<span>Default: <ui-format-date></ui-format-date></span>
-<span>Long: <ui-format-date date-style="long"></ui-format-date></span>
-<span>Full: <ui-format-date date-style="full"></ui-format-date></span>
-</div>
-
-</Demo>
+<Demo label="Formats" html="<div style=&quot;display:flex;flex-direction:column;gap:8px&quot;><span>Default: <ui-format-date></ui-format-date></span><span>Long: <ui-format-date date-style=&quot;long&quot;></ui-format-date></span><span>Full: <ui-format-date date-style=&quot;full&quot;></ui-format-date></span></div>" />
 
 - **Tag**: `<ui-format-date>`
 - **Class**: `UiFormatDate`

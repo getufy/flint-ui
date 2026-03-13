@@ -1,24 +1,10 @@
 # Rating
 
-<Demo label="Interactive">
+<Demo label="Interactive" html="<ui-rating value=&quot;0&quot;></ui-rating>" />
 
-<ui-rating value="0"></ui-rating>
+<Demo label="Values" html="<ui-rating value=&quot;1&quot; readonly></ui-rating><ui-rating value=&quot;3&quot; readonly></ui-rating><ui-rating value=&quot;5&quot; readonly></ui-rating>" />
 
-</Demo>
-
-<Demo label="Values">
-
-<ui-rating value="1" readonly></ui-rating>
-<ui-rating value="3" readonly></ui-rating>
-<ui-rating value="5" readonly></ui-rating>
-
-</Demo>
-
-<Demo label="Disabled">
-
-<ui-rating value="3" disabled></ui-rating>
-
-</Demo>
+<Demo label="Disabled" html="<ui-rating value=&quot;3&quot; disabled></ui-rating>" />
 
 - **Tag**: `<ui-rating>`
 - **Class**: `UiRating`

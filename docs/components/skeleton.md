@@ -1,27 +1,8 @@
 # Skeleton
 
-<Demo label="Variants">
+<Demo label="Variants" html="<div style=&quot;display:flex;flex-direction:column;gap:8px;width:100%;max-width:300px&quot;><ui-skeleton variant=&quot;circular&quot; width=&quot;40px&quot; height=&quot;40px&quot;></ui-skeleton><ui-skeleton variant=&quot;text&quot; width=&quot;200px&quot;></ui-skeleton><ui-skeleton variant=&quot;text&quot; width=&quot;160px&quot;></ui-skeleton><ui-skeleton variant=&quot;rectangular&quot; width=&quot;100%&quot; height=&quot;120px&quot;></ui-skeleton></div>" />
 
-<div style="display:flex;flex-direction:column;gap:8px;width:100%;max-width:300px">
-<ui-skeleton variant="circular" width="40px" height="40px"></ui-skeleton>
-<ui-skeleton variant="text" width="200px"></ui-skeleton>
-<ui-skeleton variant="text" width="160px"></ui-skeleton>
-<ui-skeleton variant="rectangular" width="100%" height="120px"></ui-skeleton>
-</div>
-
-</Demo>
-
-<Demo label="Card Placeholder">
-
-<div style="display:flex;gap:12px;width:100%;max-width:300px">
-  <ui-skeleton variant="circular" width="48px" height="48px"></ui-skeleton>
-  <div style="flex:1;display:flex;flex-direction:column;gap:6px">
-    <ui-skeleton variant="text" width="80%"></ui-skeleton>
-    <ui-skeleton variant="text" width="60%"></ui-skeleton>
-  </div>
-</div>
-
-</Demo>
+<Demo label="Card Placeholder" html="<div style=&quot;display:flex;gap:12px;width:100%;max-width:300px&quot;>  <ui-skeleton variant=&quot;circular&quot; width=&quot;48px&quot; height=&quot;48px&quot;></ui-skeleton>  <div style=&quot;flex:1;display:flex;flex-direction:column;gap:6px&quot;>    <ui-skeleton variant=&quot;text&quot; width=&quot;80%&quot;></ui-skeleton>    <ui-skeleton variant=&quot;text&quot; width=&quot;60%&quot;></ui-skeleton>  </div></div>" />
 
 Skeletons display a placeholder preview of content before data gets loaded.
 

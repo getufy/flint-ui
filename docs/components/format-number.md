@@ -1,14 +1,6 @@
 # Format Number
 
-<Demo label="Formats">
-
-<div style="display:flex;flex-direction:column;gap:8px">
-<span>Currency: <ui-format-number value="1234567.89" style="currency" currency="USD"></ui-format-number></span>
-<span>Percent: <ui-format-number value="0.856" style="percent"></ui-format-number></span>
-<span>Decimal: <ui-format-number value="1234567.89" style="decimal"></ui-format-number></span>
-</div>
-
-</Demo>
+<Demo label="Formats" html="<div style=&quot;display:flex;flex-direction:column;gap:8px&quot;><span>Currency: <ui-format-number value=&quot;1234567.89&quot; style=&quot;currency&quot; currency=&quot;USD&quot;></ui-format-number></span><span>Percent: <ui-format-number value=&quot;0.856&quot; style=&quot;percent&quot;></ui-format-number></span><span>Decimal: <ui-format-number value=&quot;1234567.89&quot; style=&quot;decimal&quot;></ui-format-number></span></div>" />
 
 - **Tag**: `<ui-format-number>`
 - **Class**: `UiFormatNumber`

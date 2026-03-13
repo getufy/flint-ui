@@ -1,11 +1,6 @@
 # Copy Button
 
-<Demo>
-
-<ui-copy-button value="Hello, World!">Copy Text</ui-copy-button>
-<ui-copy-button value="npm install storybook-lit">Copy Command</ui-copy-button>
-
-</Demo>
+<Demo html="<ui-copy-button value=&quot;Hello, World!&quot;>Copy Text</ui-copy-button><ui-copy-button value=&quot;npm install storybook-lit&quot;>Copy Command</ui-copy-button>" />
 
 - **Tag**: `<ui-copy-button>`
 - **Class**: `UiCopyButton`

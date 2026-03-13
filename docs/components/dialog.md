@@ -1,36 +1,8 @@
 # Dialog
 
-<Demo label="Basic">
+<Demo label="Basic" html="<ui-button onclick=&quot;this.nextElementSibling.open=true&quot;>Open Dialog</ui-button><ui-dialog>  <ui-dialog-title>Confirm Action</ui-dialog-title>  <ui-dialog-content>    <ui-dialog-content-text>Are you sure you want to proceed? This action cannot be undone.</ui-dialog-content-text>  </ui-dialog-content>  <ui-dialog-actions>    <ui-button variant=&quot;secondary&quot; onclick=&quot;this.closest('ui-dialog').open=false&quot;>Cancel</ui-button>    <ui-button onclick=&quot;this.closest('ui-dialog').open=false&quot;>Confirm</ui-button>  </ui-dialog-actions></ui-dialog>" />
 
-<ui-button onclick="this.nextElementSibling.open=true">Open Dialog</ui-button>
-<ui-dialog>
-  <ui-dialog-title>Confirm Action</ui-dialog-title>
-  <ui-dialog-content>
-    <ui-dialog-content-text>Are you sure you want to proceed? This action cannot be undone.</ui-dialog-content-text>
-  </ui-dialog-content>
-  <ui-dialog-actions>
-    <ui-button variant="secondary" onclick="this.closest('ui-dialog').open=false">Cancel</ui-button>
-    <ui-button onclick="this.closest('ui-dialog').open=false">Confirm</ui-button>
-  </ui-dialog-actions>
-</ui-dialog>
-
-</Demo>
-
-<Demo label="Destructive">
-
-<ui-button variant="destructive" onclick="this.nextElementSibling.open=true">Delete Account</ui-button>
-<ui-dialog>
-  <ui-dialog-title>Delete Account?</ui-dialog-title>
-  <ui-dialog-content>
-    <ui-dialog-content-text>This will permanently delete your account and all associated data.</ui-dialog-content-text>
-  </ui-dialog-content>
-  <ui-dialog-actions>
-    <ui-button variant="secondary" onclick="this.closest('ui-dialog').open=false">Cancel</ui-button>
-    <ui-button variant="destructive" onclick="this.closest('ui-dialog').open=false">Delete</ui-button>
-  </ui-dialog-actions>
-</ui-dialog>
-
-</Demo>
+<Demo label="Destructive" html="<ui-button variant=&quot;destructive&quot; onclick=&quot;this.nextElementSibling.open=true&quot;>Delete Account</ui-button><ui-dialog>  <ui-dialog-title>Delete Account?</ui-dialog-title>  <ui-dialog-content>    <ui-dialog-content-text>This will permanently delete your account and all associated data.</ui-dialog-content-text>  </ui-dialog-content>  <ui-dialog-actions>    <ui-button variant=&quot;secondary&quot; onclick=&quot;this.closest('ui-dialog').open=false&quot;>Cancel</ui-button>    <ui-button variant=&quot;destructive&quot; onclick=&quot;this.closest('ui-dialog').open=false&quot;>Delete</ui-button>  </ui-dialog-actions></ui-dialog>" />
 
 ## `<ui-dialog>`
 

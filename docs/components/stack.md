@@ -1,24 +1,8 @@
 # Stack
 
-<Demo label="Row">
+<Demo label="Row" html="<ui-stack direction=&quot;row&quot; gap=&quot;2&quot; align-items=&quot;center&quot;>  <ui-paper elevation=&quot;1&quot; style=&quot;padding:12px&quot;>Item 1</ui-paper>  <ui-paper elevation=&quot;1&quot; style=&quot;padding:12px&quot;>Item 2</ui-paper>  <ui-paper elevation=&quot;1&quot; style=&quot;padding:12px&quot;>Item 3</ui-paper></ui-stack>" />
 
-<ui-stack direction="row" gap="2" align-items="center">
-  <ui-paper elevation="1" style="padding:12px">Item 1</ui-paper>
-  <ui-paper elevation="1" style="padding:12px">Item 2</ui-paper>
-  <ui-paper elevation="1" style="padding:12px">Item 3</ui-paper>
-</ui-stack>
-
-</Demo>
-
-<Demo label="Column">
-
-<ui-stack direction="column" gap="2" style="width:100%;max-width:200px">
-  <ui-paper elevation="1" style="padding:12px;text-align:center">Item 1</ui-paper>
-  <ui-paper elevation="1" style="padding:12px;text-align:center">Item 2</ui-paper>
-  <ui-paper elevation="1" style="padding:12px;text-align:center">Item 3</ui-paper>
-</ui-stack>
-
-</Demo>
+<Demo label="Column" html="<ui-stack direction=&quot;column&quot; gap=&quot;2&quot; style=&quot;width:100%;max-width:200px&quot;>  <ui-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>Item 1</ui-paper>  <ui-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>Item 2</ui-paper>  <ui-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>Item 3</ui-paper></ui-stack>" />
 
 - **Tag**: `<ui-stack>`
 - **Class**: `UiStack`

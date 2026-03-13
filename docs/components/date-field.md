@@ -1,14 +1,6 @@
 # Date Field
 
-<Demo label="States">
-
-<div style="display:flex;gap:16px;flex-wrap:wrap">
-<ui-date-field label="Date" value="2025-12-31" style="width:200px"></ui-date-field>
-<ui-date-field label="Empty" style="width:200px"></ui-date-field>
-<ui-date-field label="Disabled" disabled value="2025-06-15" style="width:200px"></ui-date-field>
-</div>
-
-</Demo>
+<Demo label="States" html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><ui-date-field label=&quot;Date&quot; value=&quot;2025-12-31&quot; style=&quot;width:200px&quot;></ui-date-field><ui-date-field label=&quot;Empty&quot; style=&quot;width:200px&quot;></ui-date-field><ui-date-field label=&quot;Disabled&quot; disabled value=&quot;2025-06-15&quot; style=&quot;width:200px&quot;></ui-date-field></div>" />
 
 — move between segments - **Backspace / Delete** — clear the current segment - **Escape / a** — clear all segments
 

@@ -1,13 +1,6 @@
 # Autocomplete
 
-<Demo>
-
-<div style="display:flex;gap:16px;flex-wrap:wrap">
-<ui-autocomplete label="Movie" placeholder="Search movies..." style="width:260px"></ui-autocomplete>
-<ui-autocomplete label="Disabled" disabled style="width:260px"></ui-autocomplete>
-</div>
-
-</Demo>
+<Demo html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><ui-autocomplete label=&quot;Movie&quot; placeholder=&quot;Search movies...&quot; style=&quot;width:260px&quot; data-options=&quot;shawshank:The Shawshank Redemption,godfather:The Godfather,dark-knight:The Dark Knight,pulp-fiction:Pulp Fiction,forrest-gump:Forrest Gump,inception:Inception,matrix:The Matrix,interstellar:Interstellar&quot;></ui-autocomplete><ui-autocomplete label=&quot;Disabled&quot; disabled placeholder=&quot;Disabled&quot; style=&quot;width:260px&quot;></ui-autocomplete></div>" />
 
 - **Tag**: `<ui-autocomplete>`
 - **Class**: `UiAutocomplete`

@@ -1,35 +1,10 @@
 # Input
 
-<Demo label="Types">
+<Demo label="Types" html="<div style=&quot;display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px&quot;><ui-input label=&quot;Text&quot; placeholder=&quot;Enter your name&quot;></ui-input><ui-input label=&quot;Email&quot; type=&quot;email&quot; placeholder=&quot;you@example.com&quot;></ui-input><ui-input label=&quot;Password&quot; type=&quot;password&quot; value=&quot;secret123&quot;></ui-input><ui-input label=&quot;Search&quot; type=&quot;search&quot; placeholder=&quot;Search...&quot;></ui-input></div>" />
 
-<div style="display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px">
-<ui-input label="Text" placeholder="Enter your name"></ui-input>
-<ui-input label="Email" type="email" placeholder="you@example.com"></ui-input>
-<ui-input label="Password" type="password" value="secret123"></ui-input>
-<ui-input label="Search" type="search" placeholder="Search..."></ui-input>
-</div>
+<Demo label="States" html="<div style=&quot;display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px&quot;><ui-input label=&quot;Disabled&quot; disabled value=&quot;Cannot edit&quot;></ui-input><ui-input label=&quot;Readonly&quot; readonly value=&quot;Read only value&quot;></ui-input><ui-input label=&quot;Error&quot; error value=&quot;Invalid input&quot; help-text=&quot;This field has an error&quot;></ui-input></div>" />
 
-</Demo>
-
-<Demo label="States">
-
-<div style="display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px">
-<ui-input label="Disabled" disabled value="Cannot edit"></ui-input>
-<ui-input label="Readonly" readonly value="Read only value"></ui-input>
-<ui-input label="Error" error value="Invalid input" help-text="This field has an error"></ui-input>
-</div>
-
-</Demo>
-
-<Demo label="Sizes">
-
-<div style="display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px">
-<ui-input label="Small" size="sm" placeholder="Small"></ui-input>
-<ui-input label="Default" placeholder="Default"></ui-input>
-<ui-input label="Large" size="lg" placeholder="Large"></ui-input>
-</div>
-
-</Demo>
+<Demo label="Sizes" html="<div style=&quot;display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px&quot;><ui-input label=&quot;Small&quot; size=&quot;sm&quot; placeholder=&quot;Small&quot;></ui-input><ui-input label=&quot;Default&quot; placeholder=&quot;Default&quot;></ui-input><ui-input label=&quot;Large&quot; size=&quot;lg&quot; placeholder=&quot;Large&quot;></ui-input></div>" />
 
 - **Tag**: `<ui-input>`
 - **Class**: `UiInput`

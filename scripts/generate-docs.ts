@@ -428,17 +428,23 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
   chip: [
     {
       label: 'Variants',
-      html: `<ui-chip variant="filled">Filled</ui-chip>
-<ui-chip variant="outlined">Outlined</ui-chip>
-<ui-chip variant="filled" color="primary">Primary</ui-chip>
-<ui-chip variant="filled" color="secondary">Secondary</ui-chip>`,
+      html: `<ui-chip label="Filled" variant="filled"></ui-chip>
+<ui-chip label="Outlined" variant="outlined"></ui-chip>
+<ui-chip label="Primary" variant="filled" color="primary"></ui-chip>
+<ui-chip label="Secondary" variant="filled" color="secondary"></ui-chip>`,
+    },
+    {
+      label: 'Sizes',
+      html: `<ui-chip label="Small" size="sm"></ui-chip>
+<ui-chip label="Medium" size="md"></ui-chip>
+<ui-chip label="Large" size="lg"></ui-chip>`,
     },
     {
       label: 'Interactive',
-      html: `<ui-chip clickable>Clickable</ui-chip>
-<ui-chip deletable>Deletable</ui-chip>
-<ui-chip clickable deletable>Both</ui-chip>
-<ui-chip disabled>Disabled</ui-chip>`,
+      html: `<ui-chip label="Clickable" clickable></ui-chip>
+<ui-chip label="Deletable" deletable></ui-chip>
+<ui-chip label="Both" clickable deletable></ui-chip>
+<ui-chip label="Disabled" disabled></ui-chip>`,
     },
   ],
   switch: [
@@ -726,16 +732,16 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
   tooltip: [
     {
       label: 'Placements',
-      html: `<ui-tooltip content="Top tooltip">
+      html: `<ui-tooltip label="Top tooltip">
   <ui-button variant="secondary">Top</ui-button>
 </ui-tooltip>
-<ui-tooltip content="Bottom tooltip" placement="bottom">
+<ui-tooltip label="Bottom tooltip" placement="bottom">
   <ui-button variant="secondary">Bottom</ui-button>
 </ui-tooltip>
-<ui-tooltip content="Left tooltip" placement="left">
+<ui-tooltip label="Left tooltip" placement="left">
   <ui-button variant="secondary">Left</ui-button>
 </ui-tooltip>
-<ui-tooltip content="Right tooltip" placement="right">
+<ui-tooltip label="Right tooltip" placement="right">
   <ui-button variant="secondary">Right</ui-button>
 </ui-tooltip>`,
     },
@@ -1169,8 +1175,8 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
   autocomplete: [
     {
       html: `<div style="display:flex;gap:16px;flex-wrap:wrap">
-<ui-autocomplete label="Movie" placeholder="Search movies..." style="width:260px"></ui-autocomplete>
-<ui-autocomplete label="Disabled" disabled style="width:260px"></ui-autocomplete>
+<ui-autocomplete label="Movie" placeholder="Search movies..." style="width:260px" data-options="shawshank:The Shawshank Redemption,godfather:The Godfather,dark-knight:The Dark Knight,pulp-fiction:Pulp Fiction,forrest-gump:Forrest Gump,inception:Inception,matrix:The Matrix,interstellar:Interstellar"></ui-autocomplete>
+<ui-autocomplete label="Disabled" disabled placeholder="Disabled" style="width:260px"></ui-autocomplete>
 </div>`,
     },
   ],
@@ -1500,7 +1506,7 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
   'transfer-list': [
     {
       html: `<div style="width:100%;max-width:550px">
-<ui-transfer-list left-title="Available" right-title="Selected" searchable></ui-transfer-list>
+<ui-transfer-list left-title="Available" right-title="Selected" searchable data-options="js:JavaScript,ts:TypeScript,py:Python,rust:Rust,go:Go,java:Java,cpp:C++,ruby:Ruby"></ui-transfer-list>
 </div>`,
     },
   ],
@@ -1550,14 +1556,17 @@ function generateMarkdown(dir: string, components: ComponentInfo[]): string {
   let md = `# ${title}\n\n`;
 
   // Insert live demos at the top of the page (before component details)
+  // HTML is passed as a prop (not slot) so Vue doesn't compile the custom elements.
+  // Demo.vue injects it via innerHTML, letting Lit fully own the DOM subtree.
   const demos = DEMOS[dir];
   if (demos) {
     for (const demo of demos) {
-      if (demo.label) {
-        md += `<Demo label="${demo.label}">\n\n${demo.html}\n\n</Demo>\n\n`;
-      } else {
-        md += `<Demo>\n\n${demo.html}\n\n</Demo>\n\n`;
-      }
+      const escapedHtml = demo.html
+        .replace(/\\/g, '\\\\')
+        .replace(/"/g, '&quot;')
+        .replace(/\n/g, '');
+      const labelAttr = demo.label ? ` label="${demo.label}"` : '';
+      md += `<Demo${labelAttr} html="${escapedHtml}" />\n\n`;
     }
   }
 

@@ -1,20 +1,6 @@
 # Scroll Area
 
-<Demo>
-
-<ui-scroll-area style="height:200px;width:100%;max-width:350px;border:1px solid #e5e7eb;border-radius:8px">
-  <div style="padding:16px">
-    <p style="margin:0 0 12px"><strong>Scrollable Content</strong></p>
-    <p style="margin:0 0 12px">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    <p style="margin:0 0 12px">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <p style="margin:0 0 12px">Ut enim ad minim veniam, quis nostrud exercitation.</p>
-    <p style="margin:0 0 12px">Duis aute irure dolor in reprehenderit in voluptate.</p>
-    <p style="margin:0 0 12px">Excepteur sint occaecat cupidatat non proident.</p>
-    <p style="margin:0">Sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-  </div>
-</ui-scroll-area>
-
-</Demo>
+<Demo html="<ui-scroll-area style=&quot;height:200px;width:100%;max-width:350px;border:1px solid #e5e7eb;border-radius:8px&quot;>  <div style=&quot;padding:16px&quot;>    <p style=&quot;margin:0 0 12px&quot;><strong>Scrollable Content</strong></p>    <p style=&quot;margin:0 0 12px&quot;>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>    <p style=&quot;margin:0 0 12px&quot;>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>    <p style=&quot;margin:0 0 12px&quot;>Ut enim ad minim veniam, quis nostrud exercitation.</p>    <p style=&quot;margin:0 0 12px&quot;>Duis aute irure dolor in reprehenderit in voluptate.</p>    <p style=&quot;margin:0 0 12px&quot;>Excepteur sint occaecat cupidatat non proident.</p>    <p style=&quot;margin:0&quot;>Sunt in culpa qui officia deserunt mollit anim id est laborum.</p>  </div></ui-scroll-area>" />
 
 ## `<ui-scroll-bar>`
 

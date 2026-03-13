@@ -1,34 +1,8 @@
 # Collapsible
 
-<Demo label="Default Closed">
+<Demo label="Default Closed" html="<div style=&quot;width:100%;max-width:400px&quot;><ui-collapsible>  <ui-collapsible-trigger>    <ui-button variant=&quot;secondary&quot; style=&quot;width:100%&quot;>Click to expand</ui-button>  </ui-collapsible-trigger>  <ui-collapsible-content>    <div style=&quot;padding:12px 0;color:#374151&quot;>This content is revealed when you click the trigger above.</div>  </ui-collapsible-content></ui-collapsible></div>" />
 
-<div style="width:100%;max-width:400px">
-<ui-collapsible>
-  <ui-collapsible-trigger>
-    <ui-button variant="secondary" style="width:100%">Click to expand</ui-button>
-  </ui-collapsible-trigger>
-  <ui-collapsible-content>
-    <div style="padding:12px 0;color:#374151">This content is revealed when you click the trigger above.</div>
-  </ui-collapsible-content>
-</ui-collapsible>
-</div>
-
-</Demo>
-
-<Demo label="Default Open">
-
-<div style="width:100%;max-width:400px">
-<ui-collapsible default-open>
-  <ui-collapsible-trigger>
-    <ui-button variant="secondary" style="width:100%">Click to collapse</ui-button>
-  </ui-collapsible-trigger>
-  <ui-collapsible-content>
-    <div style="padding:12px 0;color:#374151">This content starts visible and can be collapsed.</div>
-  </ui-collapsible-content>
-</ui-collapsible>
-</div>
-
-</Demo>
+<Demo label="Default Open" html="<div style=&quot;width:100%;max-width:400px&quot;><ui-collapsible default-open>  <ui-collapsible-trigger>    <ui-button variant=&quot;secondary&quot; style=&quot;width:100%&quot;>Click to collapse</ui-button>  </ui-collapsible-trigger>  <ui-collapsible-content>    <div style=&quot;padding:12px 0;color:#374151&quot;>This content starts visible and can be collapsed.</div>  </ui-collapsible-content></ui-collapsible></div>" />
 
 ## `<ui-collapsible-trigger>`
 
