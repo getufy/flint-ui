@@ -1,6 +1,0 @@
-{
-  "buildCommand": "npm run homepage:build",
-  "outputDirectory": "dist-homepage",
-  "installCommand": "npm install",
-  "framework": null
-}

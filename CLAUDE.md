@@ -8,7 +8,7 @@ Monorepo with npm workspaces:
 - `packages/core` — Lit web components library (`storybook-lit`)
 - `packages/react` — React wrappers using `@lit/react` (`storybook-lit-react`)
 - `scripts/` — Codegen scripts (build entries, React wrapper generation)
-- `homepage/` — React showcase site
+- `docs/` — VitePress documentation site
 
 ## Commands
 
@@ -34,9 +34,10 @@ npm run lint               # ESLint on src/**/*.ts (target: 0 errors, 0 warnings
 # React wrapper codegen
 npm run gen:react          # Regenerate React wrappers from Lit components
 
-# Homepage
-npm run homepage:dev       # Dev server on port 5174
-npm run homepage:build     # Build to dist-homepage/
+# Docs (VitePress)
+npm run docs:dev           # Dev server
+npm run docs:build         # Build docs site
+npm run docs:preview       # Preview built docs
 ```
 
 ## Architecture

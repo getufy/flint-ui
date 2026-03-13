@@ -119,7 +119,9 @@
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/speed-dial/ src/table/ src/breadcrumbs/ src/button/ src/backdrop/ src/app-bar/ src/pagination/ --project components 2>&1 | tail -20)",
       "Bash(npx tsx:*)",
       "Bash(git mv:*)",
-      "Bash(cd /Users/algoassasin/storybook-lit && npm install @lit/react --save -w packages/react 2>&1 | tail -5)"
+      "Bash(cd /Users/algoassasin/storybook-lit && npm install @lit/react --save -w packages/react 2>&1 | tail -5)",
+      "Bash(npm install:*)",
+      "Bash(npx vitepress:*)"
     ]
   }
 }

@@ -1,0 +1,124 @@
+# Speed Dial
+
+## `<ui-speed-dial-action>`
+
+A single action item inside a `ui-speed-dial`.
+
+- **Tag**: `<ui-speed-dial-action>`
+- **Class**: `UiSpeedDialAction`
+
+### Import
+
+```ts
+import 'storybook-lit'; // auto-registers all
+// or
+import { UiSpeedDialAction } from 'storybook-lit';
+```
+
+### Usage
+
+```html
+<ui-speed-dial-action></ui-speed-dial-action>
+```
+
+### Properties
+
+| Property | Attribute | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `name` | `name` | `string` | `''` | Programmatic identifier for this action, included in the click event detail. |
+| `tooltipTitle` | `tooltip-title` | `string` | `''` | Tooltip text shown alongside the action and used as aria-label. |
+| `tooltipOpen` | `tooltip-open` | `boolean` | `false` | Forces the tooltip to be visible regardless of hover state. |
+| `tooltipPlacement` | `tooltip-placement` | `'left' \| 'right' \| 'top' \| 'bottom'` | `'left'` | Tooltip placement relative to the action button. |
+| `disabled` | `disabled` | `boolean` | `false` | If true, the action button is disabled. |
+
+### Events
+
+| Event | Detail | Description |
+| --- | --- | --- |
+| `ui-speed-dial-action-click` | — | Fired when the action button is clicked. |
+
+### Slots
+
+| Name | Description |
+| --- | --- |
+| `(default)` | Icon content for the action button. |
+
+### CSS Custom Properties
+
+| Property | Default |
+| --- | --- |
+| `--ui-speed-dial-action-size` | — |
+| `--ui-speed-dial-action-gap` | — |
+| `--ui-surface-1` | — |
+| `--ui-text-color` | — |
+| `--ui-surface-2` | — |
+| `--ui-primary-color` | — |
+| `--ui-tooltip-bg` | — |
+| `--ui-tooltip-text-color` | — |
+| `--ui-font-family` | — |
+| `--ui-text-color-on-primary` | — |
+
+---
+
+## `<ui-speed-dial>`
+
+Speed Dial — a FAB that reveals 3-6 related actions when pressed.
+
+- **Tag**: `<ui-speed-dial>`
+- **Class**: `UiSpeedDial`
+
+### Import
+
+```ts
+import 'storybook-lit'; // auto-registers all
+// or
+import { UiSpeedDial } from 'storybook-lit';
+```
+
+### Usage
+
+```html
+<ui-speed-dial></ui-speed-dial>
+```
+
+### Properties
+
+| Property | Attribute | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `open` | `open` | `boolean` | `false` | Whether the speed dial is open (controlled). |
+| `defaultOpen` | `default-open` | `boolean` | `false` | Initial open state for uncontrolled usage. Sets `open` once on first render. |
+| `direction` | `direction` | `'up' \| 'down' \| 'left' \| 'right'` | `'up'` | Direction in which actions expand from the FAB (default 'up'). |
+| `hidden` | `hidden` | `boolean` | `false` | Hides the entire speed dial component. |
+| `disabled` | `disabled` | `boolean` | `false` | Disables the FAB and prevents opening. |
+| `persistentTooltips` | `persistent-tooltips` | `boolean` | `false` | When true, tooltips on all actions are always visible (good for touch/a11y). |
+| `closeIcon` | `close-icon` | `string` | `''` | Custom char/text rendered as the ✕ close icon on the FAB. Falls back to built-in SVG. |
+| `ariaLabel` | `aria-label` | `string` | `'Speed dial'` | ARIA label for the main FAB button. |
+| `isTouch` | `is-touch` | `boolean` | `false` | True on touch-only devices (auto-detected unless explicitly set). |
+
+### Events
+
+| Event | Detail | Description |
+| --- | --- | --- |
+| `ui-speed-dial-open` | — | Fired when the dial opens. |
+| `ui-speed-dial-close` | — | Fired when the dial closes. |
+
+### Slots
+
+| Name | Description |
+| --- | --- |
+| `(default)` | `ui-speed-dial-action` elements. |
+| `icon` | Icon shown on the FAB when closed (default: + SVG). |
+| `open-icon` | Icon shown on the FAB when open (default: ✕ SVG). |
+
+### CSS Custom Properties
+
+| Property | Default |
+| --- | --- |
+| `--ui-speed-dial-action-size` | — |
+| `--ui-speed-dial-action-gap` | — |
+| `--ui-speed-dial-size` | — |
+| `--ui-speed-dial-bg` | — |
+| `--ui-speed-dial-color` | — |
+| `--ui-speed-dial-bg-hover` | `var(--ui-primary-color-hover` |
+
+---
