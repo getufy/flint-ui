@@ -1,6 +1,6 @@
 # Badge
 
-<Demo>
+<Demo label="Content">
 
 <ui-badge content="4">
   <div style="width:40px;height:40px;border-radius:8px;background:#e5e7eb;display:flex;align-items:center;justify-content:center">
@@ -12,6 +12,23 @@
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
   </div>
 </ui-badge>
+
+</Demo>
+
+<Demo label="Variants">
+
+<ui-badge content="3" variant="primary"><div style="width:30px;height:30px;border-radius:6px;background:#e5e7eb"></div></ui-badge>
+<ui-badge content="3" variant="secondary"><div style="width:30px;height:30px;border-radius:6px;background:#e5e7eb"></div></ui-badge>
+<ui-badge content="3" variant="success"><div style="width:30px;height:30px;border-radius:6px;background:#e5e7eb"></div></ui-badge>
+<ui-badge content="3" variant="warning"><div style="width:30px;height:30px;border-radius:6px;background:#e5e7eb"></div></ui-badge>
+<ui-badge content="3" variant="error"><div style="width:30px;height:30px;border-radius:6px;background:#e5e7eb"></div></ui-badge>
+
+</Demo>
+
+<Demo label="Dot">
+
+<ui-badge dot><div style="width:30px;height:30px;border-radius:6px;background:#e5e7eb"></div></ui-badge>
+<ui-badge dot variant="error"><div style="width:30px;height:30px;border-radius:6px;background:#e5e7eb"></div></ui-badge>
 
 </Demo>
 

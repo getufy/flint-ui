@@ -1,11 +1,32 @@
 # Input
 
-<Demo>
+<Demo label="Types">
 
 <div style="display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px">
-<ui-input label="Name" placeholder="Enter your name"></ui-input>
+<ui-input label="Text" placeholder="Enter your name"></ui-input>
 <ui-input label="Email" type="email" placeholder="you@example.com"></ui-input>
+<ui-input label="Password" type="password" value="secret123"></ui-input>
+<ui-input label="Search" type="search" placeholder="Search..."></ui-input>
+</div>
+
+</Demo>
+
+<Demo label="States">
+
+<div style="display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px">
 <ui-input label="Disabled" disabled value="Cannot edit"></ui-input>
+<ui-input label="Readonly" readonly value="Read only value"></ui-input>
+<ui-input label="Error" error value="Invalid input" help-text="This field has an error"></ui-input>
+</div>
+
+</Demo>
+
+<Demo label="Sizes">
+
+<div style="display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px">
+<ui-input label="Small" size="sm" placeholder="Small"></ui-input>
+<ui-input label="Default" placeholder="Default"></ui-input>
+<ui-input label="Large" size="lg" placeholder="Large"></ui-input>
 </div>
 
 </Demo>

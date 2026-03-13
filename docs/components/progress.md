@@ -1,17 +1,35 @@
 # Progress
 
-<Demo label="Circular">
+<Demo label="Circular Indeterminate">
 
 <ui-circular-progress></ui-circular-progress>
-<ui-circular-progress value="25"></ui-circular-progress>
-<ui-circular-progress value="75"></ui-circular-progress>
 
 </Demo>
 
-<Demo label="Linear">
+<Demo label="Circular Determinate">
+
+<ui-circular-progress value="0"></ui-circular-progress>
+<ui-circular-progress value="25"></ui-circular-progress>
+<ui-circular-progress value="50"></ui-circular-progress>
+<ui-circular-progress value="75"></ui-circular-progress>
+<ui-circular-progress value="100"></ui-circular-progress>
+
+</Demo>
+
+<Demo label="Linear Indeterminate">
 
 <div style="width:100%;max-width:400px">
+<ui-linear-progress></ui-linear-progress>
+</div>
+
+</Demo>
+
+<Demo label="Linear Determinate">
+
+<div style="display:flex;flex-direction:column;gap:12px;width:100%;max-width:400px">
+<ui-linear-progress value="30"></ui-linear-progress>
 <ui-linear-progress value="60"></ui-linear-progress>
+<ui-linear-progress value="100"></ui-linear-progress>
 </div>
 
 </Demo>

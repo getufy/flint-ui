@@ -3,8 +3,8 @@
 <Demo>
 
 <ui-split-panel style="height:200px;width:100%;max-width:500px;border:1px solid #e5e7eb;border-radius:8px">
-  <div slot="start" style="padding:16px;background:#f0f9ff">Left Panel</div>
-  <div slot="end" style="padding:16px;background:#fef3c7">Right Panel</div>
+  <div slot="start" style="padding:16px;background:#f0f9ff;height:100%">Left Panel — Drag the divider</div>
+  <div slot="end" style="padding:16px;background:#fef3c7;height:100%">Right Panel</div>
 </ui-split-panel>
 
 </Demo>

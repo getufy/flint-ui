@@ -1,5 +1,15 @@
 # Container
 
+<Demo label="Max Widths">
+
+<div style="width:100%;display:flex;flex-direction:column;gap:8px">
+<ui-container max-width="sm"><ui-paper elevation="1" style="padding:12px;text-align:center">sm</ui-paper></ui-container>
+<ui-container max-width="md"><ui-paper elevation="1" style="padding:12px;text-align:center">md</ui-paper></ui-container>
+<ui-container max-width="lg"><ui-paper elevation="1" style="padding:12px;text-align:center">lg</ui-paper></ui-container>
+</div>
+
+</Demo>
+
 - **Tag**: `<ui-container>`
 - **Class**: `UiContainer`
 

@@ -1,8 +1,11 @@
 # Textarea
 
-<Demo>
+<Demo label="States">
 
-<ui-textarea label="Message" placeholder="Type your message..." style="width:100%;max-width:400px"></ui-textarea>
+<div style="display:flex;flex-direction:column;gap:12px;width:100%;max-width:400px">
+<ui-textarea label="Message" placeholder="Type your message..."></ui-textarea>
+<ui-textarea label="Disabled" disabled value="This textarea is disabled"></ui-textarea>
+</div>
 
 </Demo>
 

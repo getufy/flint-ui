@@ -1,5 +1,13 @@
 # Transfer List
 
+<Demo>
+
+<div style="width:100%;max-width:550px">
+<ui-transfer-list left-title="Available" right-title="Selected" searchable></ui-transfer-list>
+</div>
+
+</Demo>
+
 A premium Transfer List component for moving items between two lists.
 
 - **Tag**: `<ui-transfer-list>`

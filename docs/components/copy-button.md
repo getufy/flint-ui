@@ -3,6 +3,7 @@
 <Demo>
 
 <ui-copy-button value="Hello, World!">Copy Text</ui-copy-button>
+<ui-copy-button value="npm install storybook-lit">Copy Command</ui-copy-button>
 
 </Demo>
 

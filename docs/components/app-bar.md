@@ -1,5 +1,30 @@
 # App Bar
 
+<Demo label="Regular">
+
+<div style="width:100%;max-width:600px">
+<ui-app-bar title="My Application" position="static">
+  <span slot="navigation" style="font-size:20px;cursor:pointer">&#9776;</span>
+  <div slot="actions">
+    <ui-button variant="secondary" size="small">Login</ui-button>
+  </div>
+</ui-app-bar>
+</div>
+
+</Demo>
+
+<Demo label="Dense">
+
+<div style="width:100%;max-width:600px">
+<ui-app-bar title="Dense Bar" position="static" variant="dense">
+  <div slot="actions">
+    <ui-button variant="secondary" size="small">Action</ui-button>
+  </div>
+</ui-app-bar>
+</div>
+
+</Demo>
+
 ui-app-bar: The top App bar provides content and actions related to the current screen.
 
 - **Tag**: `<ui-app-bar>`

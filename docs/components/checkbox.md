@@ -1,10 +1,12 @@
 # Checkbox
 
-<Demo>
+<Demo label="States">
 
-<ui-checkbox label="Option A"></ui-checkbox>
-<ui-checkbox label="Option B" checked></ui-checkbox>
+<ui-checkbox label="Unchecked"></ui-checkbox>
+<ui-checkbox label="Checked" checked></ui-checkbox>
+<ui-checkbox label="Indeterminate" indeterminate></ui-checkbox>
 <ui-checkbox label="Disabled" disabled></ui-checkbox>
+<ui-checkbox label="Checked Disabled" checked disabled></ui-checkbox>
 
 </Demo>
 

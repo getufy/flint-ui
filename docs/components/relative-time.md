@@ -1,8 +1,12 @@
 # Relative Time
 
-<Demo>
+<Demo label="Dates">
 
-<ui-relative-time datetime="2025-01-01T00:00:00Z"></ui-relative-time>
+<div style="display:flex;flex-direction:column;gap:8px">
+<span>1 day ago: <ui-relative-time datetime="2026-03-12T20:40:38.331Z"></ui-relative-time></span>
+<span>1 week ago: <ui-relative-time datetime="2026-03-06T20:40:38.332Z"></ui-relative-time></span>
+<span>1 month ago: <ui-relative-time datetime="2026-02-11T20:40:38.332Z"></ui-relative-time></span>
+</div>
 
 </Demo>
 

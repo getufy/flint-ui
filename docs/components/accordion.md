@@ -1,19 +1,19 @@
 # Accordion
 
-<Demo>
+<Demo label="Basic">
 
 <div style="width:100%;max-width:500px">
-<ui-accordion>
-  <ui-accordion-summary>Accordion Item 1</ui-accordion-summary>
-  <ui-accordion-details>Content for the first item. Click the header to expand or collapse.</ui-accordion-details>
+<ui-accordion expanded>
+  <ui-accordion-summary>Expanded by default</ui-accordion-summary>
+  <ui-accordion-details>This accordion starts open. Click the header to collapse it.</ui-accordion-details>
 </ui-accordion>
 <ui-accordion>
-  <ui-accordion-summary>Accordion Item 2</ui-accordion-summary>
-  <ui-accordion-details>Content for the second item. Each accordion operates independently.</ui-accordion-details>
+  <ui-accordion-summary>Collapsed Item</ui-accordion-summary>
+  <ui-accordion-details>Click the header above to expand this content.</ui-accordion-details>
 </ui-accordion>
 <ui-accordion disabled>
   <ui-accordion-summary>Disabled Item</ui-accordion-summary>
-  <ui-accordion-details>This item cannot be expanded.</ui-accordion-details>
+  <ui-accordion-details>This item cannot be toggled.</ui-accordion-details>
 </ui-accordion>
 </div>
 

@@ -1,5 +1,33 @@
 # Navigation Menu
 
+<Demo>
+
+<ui-navigation-menu>
+  <ui-navigation-menu-list>
+    <ui-navigation-menu-item>
+      <ui-navigation-menu-link href="#">Home</ui-navigation-menu-link>
+    </ui-navigation-menu-item>
+    <ui-navigation-menu-item>
+      <ui-navigation-menu-trigger content-id="nav-docs">Documentation</ui-navigation-menu-trigger>
+      <ui-navigation-menu-content id="nav-docs">
+        <div style="padding:12px;display:flex;flex-direction:column;gap:4px">
+          <ui-navigation-menu-link href="#">Getting Started</ui-navigation-menu-link>
+          <ui-navigation-menu-link href="#">Components</ui-navigation-menu-link>
+          <ui-navigation-menu-link href="#">API Reference</ui-navigation-menu-link>
+        </div>
+      </ui-navigation-menu-content>
+    </ui-navigation-menu-item>
+    <ui-navigation-menu-item>
+      <ui-navigation-menu-link href="#">About</ui-navigation-menu-link>
+    </ui-navigation-menu-item>
+    <ui-navigation-menu-item>
+      <ui-navigation-menu-link href="#">Contact</ui-navigation-menu-link>
+    </ui-navigation-menu-item>
+  </ui-navigation-menu-list>
+</ui-navigation-menu>
+
+</Demo>
+
 ## `<ui-navigation-menu-content>`
 
 - **Tag**: `<ui-navigation-menu-content>`

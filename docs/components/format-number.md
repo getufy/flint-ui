@@ -1,8 +1,12 @@
 # Format Number
 
-<Demo>
+<Demo label="Formats">
 
-<ui-format-number value="1234567.89" style="currency" currency="USD"></ui-format-number>
+<div style="display:flex;flex-direction:column;gap:8px">
+<span>Currency: <ui-format-number value="1234567.89" style="currency" currency="USD"></ui-format-number></span>
+<span>Percent: <ui-format-number value="0.856" style="percent"></ui-format-number></span>
+<span>Decimal: <ui-format-number value="1234567.89" style="decimal"></ui-format-number></span>
+</div>
 
 </Demo>
 

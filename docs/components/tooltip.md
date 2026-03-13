@@ -1,9 +1,18 @@
 # Tooltip
 
-<Demo>
+<Demo label="Placements">
 
-<ui-tooltip content="This is a tooltip">
-  <ui-button>Hover me</ui-button>
+<ui-tooltip content="Top tooltip">
+  <ui-button variant="secondary">Top</ui-button>
+</ui-tooltip>
+<ui-tooltip content="Bottom tooltip" placement="bottom">
+  <ui-button variant="secondary">Bottom</ui-button>
+</ui-tooltip>
+<ui-tooltip content="Left tooltip" placement="left">
+  <ui-button variant="secondary">Left</ui-button>
+</ui-tooltip>
+<ui-tooltip content="Right tooltip" placement="right">
+  <ui-button variant="secondary">Right</ui-button>
 </ui-tooltip>
 
 </Demo>

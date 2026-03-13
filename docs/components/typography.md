@@ -1,11 +1,25 @@
 # Typography
 
-<Demo>
+<Demo label="Headings">
 
-<div style="display:flex;flex-direction:column;gap:8px;width:100%">
+<div style="display:flex;flex-direction:column;gap:4px;width:100%">
+<ui-typography variant="h1">Heading 1</ui-typography>
+<ui-typography variant="h2">Heading 2</ui-typography>
+<ui-typography variant="h3">Heading 3</ui-typography>
 <ui-typography variant="h4">Heading 4</ui-typography>
+<ui-typography variant="h5">Heading 5</ui-typography>
+<ui-typography variant="h6">Heading 6</ui-typography>
+</div>
+
+</Demo>
+
+<Demo label="Body & Caption">
+
+<div style="display:flex;flex-direction:column;gap:4px;width:100%">
 <ui-typography variant="body1">Body 1 — The quick brown fox jumps over the lazy dog.</ui-typography>
-<ui-typography variant="caption" color="secondary">Caption text</ui-typography>
+<ui-typography variant="body2">Body 2 — A smaller body text variant for secondary content.</ui-typography>
+<ui-typography variant="caption" color="secondary">Caption — Small helper text</ui-typography>
+<ui-typography variant="overline">OVERLINE TEXT</ui-typography>
 </div>
 
 </Demo>

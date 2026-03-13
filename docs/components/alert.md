@@ -1,12 +1,28 @@
 # Alert
 
-<Demo>
+<Demo label="Severities">
 
 <div style="display:flex;flex-direction:column;gap:12px;width:100%">
 <ui-alert severity="info" title="Info">This is an informational message.</ui-alert>
 <ui-alert severity="success" title="Success">Operation completed successfully.</ui-alert>
 <ui-alert severity="warning" title="Warning">Please review before continuing.</ui-alert>
 <ui-alert severity="error" title="Error">Something went wrong.</ui-alert>
+</div>
+
+</Demo>
+
+<Demo label="Dismissible">
+
+<div style="width:100%">
+<ui-alert severity="info" title="Dismissible" dismissible>Click the close button to dismiss this alert.</ui-alert>
+</div>
+
+</Demo>
+
+<Demo label="Without Title">
+
+<div style="width:100%">
+<ui-alert severity="success">A simple success alert without a title.</ui-alert>
 </div>
 
 </Demo>

@@ -4,17 +4,25 @@
 
 <div style="width:100%;max-width:400px">
 <ui-item-group>
+  <ui-item-header>Settings</ui-item-header>
   <ui-item>
     <ui-item-content>
-      <ui-item-title>Item Title</ui-item-title>
-      <ui-item-description>A short description of this item.</ui-item-description>
+      <ui-item-title>Profile</ui-item-title>
+      <ui-item-description>Update your personal information</ui-item-description>
     </ui-item-content>
   </ui-item>
   <ui-item-separator></ui-item-separator>
   <ui-item>
     <ui-item-content>
-      <ui-item-title>Another Item</ui-item-title>
-      <ui-item-description>Another description here.</ui-item-description>
+      <ui-item-title>Notifications</ui-item-title>
+      <ui-item-description>Manage your notification preferences</ui-item-description>
+    </ui-item-content>
+  </ui-item>
+  <ui-item-separator></ui-item-separator>
+  <ui-item>
+    <ui-item-content>
+      <ui-item-title>Security</ui-item-title>
+      <ui-item-description>Password and two-factor authentication</ui-item-description>
     </ui-item-content>
   </ui-item>
 </ui-item-group>

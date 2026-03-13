@@ -1,10 +1,18 @@
 # Avatar
 
-<Demo>
+<Demo label="Image">
 
 <ui-avatar src="https://i.pravatar.cc/150?img=1" alt="User 1"></ui-avatar>
 <ui-avatar src="https://i.pravatar.cc/150?img=2" alt="User 2"></ui-avatar>
+<ui-avatar src="https://i.pravatar.cc/150?img=3" alt="User 3"></ui-avatar>
+
+</Demo>
+
+<Demo label="Initials">
+
 <ui-avatar>AB</ui-avatar>
+<ui-avatar>CD</ui-avatar>
+<ui-avatar>EF</ui-avatar>
 
 </Demo>
 

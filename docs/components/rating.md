@@ -1,9 +1,22 @@
 # Rating
 
-<Demo>
+<Demo label="Interactive">
 
-<ui-rating value="3"></ui-rating>
-<ui-rating value="4" readonly></ui-rating>
+<ui-rating value="0"></ui-rating>
+
+</Demo>
+
+<Demo label="Values">
+
+<ui-rating value="1" readonly></ui-rating>
+<ui-rating value="3" readonly></ui-rating>
+<ui-rating value="5" readonly></ui-rating>
+
+</Demo>
+
+<Demo label="Disabled">
+
+<ui-rating value="3" disabled></ui-rating>
 
 </Demo>
 

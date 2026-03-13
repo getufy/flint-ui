@@ -6,7 +6,15 @@
 <ui-chip variant="outlined">Outlined</ui-chip>
 <ui-chip variant="filled" color="primary">Primary</ui-chip>
 <ui-chip variant="filled" color="secondary">Secondary</ui-chip>
+
+</Demo>
+
+<Demo label="Interactive">
+
+<ui-chip clickable>Clickable</ui-chip>
 <ui-chip deletable>Deletable</ui-chip>
+<ui-chip clickable deletable>Both</ui-chip>
+<ui-chip disabled>Disabled</ui-chip>
 
 </Demo>
 

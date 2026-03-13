@@ -1,5 +1,14 @@
 # Ui Range Slider
 
+<Demo>
+
+<div style="display:flex;flex-direction:column;gap:16px;width:100%;max-width:300px">
+<ui-range-slider min="0" max="100" label="Price range" show-value></ui-range-slider>
+<ui-range-slider min="0" max="100" label="Disabled" disabled show-value></ui-range-slider>
+</div>
+
+</Demo>
+
 - **Tag**: `<ui-range-slider>`
 - **Class**: `UiRangeSlider`
 

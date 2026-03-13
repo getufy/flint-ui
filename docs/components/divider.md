@@ -1,11 +1,21 @@
 # Divider
 
-<Demo>
+<Demo label="Horizontal">
 
 <div style="width:100%;max-width:400px">
 <p style="margin:0 0 8px">Content above</p>
 <ui-divider></ui-divider>
 <p style="margin:8px 0 0">Content below</p>
+</div>
+
+</Demo>
+
+<Demo label="Vertical">
+
+<div style="display:flex;align-items:center;gap:12px;height:40px">
+<span>Left</span>
+<ui-divider orientation="vertical"></ui-divider>
+<span>Right</span>
 </div>
 
 </Demo>

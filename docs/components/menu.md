@@ -1,5 +1,22 @@
 # Menu
 
+<Demo>
+
+<ui-button onclick="this.nextElementSibling.open=!this.nextElementSibling.open">Open Menu</ui-button>
+<ui-menu>
+  <ui-menu-item>Profile</ui-menu-item>
+  <ui-menu-item>Settings</ui-menu-item>
+  <ui-menu-divider></ui-menu-divider>
+  <ui-menu-group label="Actions">
+    <ui-menu-item>Export</ui-menu-item>
+    <ui-menu-item disabled>Delete</ui-menu-item>
+  </ui-menu-group>
+  <ui-menu-divider></ui-menu-divider>
+  <ui-menu-item>Logout</ui-menu-item>
+</ui-menu>
+
+</Demo>
+
 ## `<ui-menu-item>`
 
 A single option inside a `ui-menu`.

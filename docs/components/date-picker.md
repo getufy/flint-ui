@@ -1,5 +1,14 @@
 # Date Picker
 
+<Demo label="States">
+
+<div style="display:flex;gap:16px;flex-wrap:wrap">
+<ui-date-picker label="Pick a date" style="width:260px"></ui-date-picker>
+<ui-date-picker label="Disabled" disabled style="width:260px"></ui-date-picker>
+</div>
+
+</Demo>
+
 ## `<ui-date-picker-calendar>`
 
 A standalone calendar grid — the core date-selection view. Used internally by ui-date-picker, but can also be used on its own.

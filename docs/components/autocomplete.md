@@ -1,5 +1,14 @@
 # Autocomplete
 
+<Demo>
+
+<div style="display:flex;gap:16px;flex-wrap:wrap">
+<ui-autocomplete label="Movie" placeholder="Search movies..." style="width:260px"></ui-autocomplete>
+<ui-autocomplete label="Disabled" disabled style="width:260px"></ui-autocomplete>
+</div>
+
+</Demo>
+
 - **Tag**: `<ui-autocomplete>`
 - **Class**: `UiAutocomplete`
 

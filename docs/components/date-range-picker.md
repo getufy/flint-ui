@@ -1,5 +1,11 @@
 # Date Range Picker
 
+<Demo>
+
+<ui-date-range-picker label="Date range" style="width:340px"></ui-date-range-picker>
+
+</Demo>
+
 ## `<ui-date-range-calendar>`
 
 A dual-month calendar for range selection. Shows two months side-by-side (or stacked on narrow screens).

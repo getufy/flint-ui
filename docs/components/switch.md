@@ -8,9 +8,11 @@
 
 </Demo>
 
-<Demo label="Checked">
+<Demo label="States">
 
+<ui-switch></ui-switch>
 <ui-switch default-checked></ui-switch>
+<ui-switch disabled></ui-switch>
 <ui-switch default-checked disabled></ui-switch>
 
 </Demo>

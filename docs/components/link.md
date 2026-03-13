@@ -1,10 +1,18 @@
 # Link
 
-<Demo>
+<Demo label="Underline Styles">
 
-<ui-link href="#">Default Link</ui-link>
-<ui-link href="#" underline="always">Always Underline</ui-link>
+<ui-link href="#">Default</ui-link>
+<ui-link href="#" underline="always">Always</ui-link>
+<ui-link href="#" underline="none">None</ui-link>
+
+</Demo>
+
+<Demo label="Colors">
+
+<ui-link href="#" color="primary">Primary</ui-link>
 <ui-link href="#" color="secondary">Secondary</ui-link>
+<ui-link href="#" color="inherit">Inherit</ui-link>
 
 </Demo>
 

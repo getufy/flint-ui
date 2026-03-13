@@ -16,9 +16,30 @@
 
 </Demo>
 
-<Demo label="Disabled">
+<Demo label="States">
 
 <ui-button disabled>Disabled</ui-button>
+<ui-button full-width>Full Width</ui-button>
+
+</Demo>
+
+<Demo label="Button Group">
+
+<ui-button-group>
+  <ui-button variant="secondary">Left</ui-button>
+  <ui-button variant="secondary">Center</ui-button>
+  <ui-button variant="secondary">Right</ui-button>
+</ui-button-group>
+
+</Demo>
+
+<Demo label="Toggle Buttons">
+
+<ui-toggle-button-group exclusive>
+  <ui-toggle-button value="left">Left</ui-toggle-button>
+  <ui-toggle-button value="center" selected>Center</ui-toggle-button>
+  <ui-toggle-button value="right">Right</ui-toggle-button>
+</ui-toggle-button-group>
 
 </Demo>
 
