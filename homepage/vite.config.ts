@@ -11,6 +11,9 @@ export default defineConfig({
         jsxImportSource: 'react',
     },
     resolve: {
+        alias: {
+            'storybook-lit': resolve(__dirname, '../packages/core/src'),
+        },
         extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'],
     },
     build: {
