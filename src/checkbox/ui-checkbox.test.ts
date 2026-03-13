@@ -393,16 +393,166 @@ describe('ui-checkbox', () => {
 
     it('has _internals when attachInternals is available', async () => {
         const el = await fixture<UiCheckbox>(html`<ui-checkbox></ui-checkbox>`);
-        // Access private field via any cast for test purposes
         const internals = (el as unknown as Record<string, unknown>)['_internals'];
         // In jsdom attachInternals may or may not be present
         expect(internals === null || typeof internals === 'object').toBe(true);
     });
 
+    it('constructor sets _internals to null when attachInternals is unavailable', () => {
+        // Save original
+        const origAttachInternals = HTMLElement.prototype.attachInternals;
+        // Remove attachInternals to simulate unsupported environment
+        /* eslint-disable */
+        (HTMLElement.prototype as any).attachInternals = undefined;
+        /* eslint-enable */
+        const el = document.createElement('ui-checkbox') as UiCheckbox;
+        const internals = (el as unknown as Record<string, unknown>)['_internals'];
+        expect(internals).toBeNull();
+        // Restore
+        HTMLElement.prototype.attachInternals = origAttachInternals;
+    });
+
+    it('setFormValue is called with value when checked', async () => {
+        const el = await fixture<UiCheckbox>(html`<ui-checkbox value="yes"></ui-checkbox>`);
+        const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
+        (el as unknown as Record<string, unknown>)['_internals'] = mockInternals;
+        el.checked = true;
+        await el.updateComplete;
+        expect(mockInternals.setFormValue).toHaveBeenCalledWith('yes');
+    });
+
+    it('setFormValue is called with null when unchecked', async () => {
+        const el = await fixture<UiCheckbox>(html`<ui-checkbox checked value="yes"></ui-checkbox>`);
+        const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
+        (el as unknown as Record<string, unknown>)['_internals'] = mockInternals;
+        el.checked = false;
+        await el.updateComplete;
+        expect(mockInternals.setFormValue).toHaveBeenCalledWith(null);
+    });
+
+    it('setFormValue is called when value changes while checked', async () => {
+        const el = await fixture<UiCheckbox>(html`<ui-checkbox checked value="a"></ui-checkbox>`);
+        const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
+        (el as unknown as Record<string, unknown>)['_internals'] = mockInternals;
+        el.value = 'b';
+        await el.updateComplete;
+        expect(mockInternals.setFormValue).toHaveBeenCalledWith('b');
+    });
+
+    it('setValidity called with valueMissing when required and unchecked', async () => {
+        const el = await fixture<UiCheckbox>(html`<ui-checkbox></ui-checkbox>`);
+        const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
+        (el as unknown as Record<string, unknown>)['_internals'] = mockInternals;
+        el.required = true;
+        await el.updateComplete;
+        expect(mockInternals.setValidity).toHaveBeenCalledWith({ valueMissing: true }, 'Please check this box.');
+    });
+
+    it('setValidity called with empty object when required and checked', async () => {
+        const el = await fixture<UiCheckbox>(html`<ui-checkbox required checked></ui-checkbox>`);
+        const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
+        (el as unknown as Record<string, unknown>)['_internals'] = mockInternals;
+        // Trigger an update by toggling checked
+        el.checked = false;
+        await el.updateComplete;
+        el.checked = true;
+        await el.updateComplete;
+        expect(mockInternals.setValidity).toHaveBeenCalledWith({});
+    });
+
+    it('setValidity clears when required is removed', async () => {
+        const el = await fixture<UiCheckbox>(html`<ui-checkbox required></ui-checkbox>`);
+        const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
+        (el as unknown as Record<string, unknown>)['_internals'] = mockInternals;
+        el.required = false;
+        await el.updateComplete;
+        expect(mockInternals.setValidity).toHaveBeenCalledWith({});
+    });
+
+    it('updated is triggered by checked change (both setFormValue and setValidity)', async () => {
+        const el = await fixture<UiCheckbox>(html`<ui-checkbox></ui-checkbox>`);
+        const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
+        (el as unknown as Record<string, unknown>)['_internals'] = mockInternals;
+        el.checked = true;
+        await el.updateComplete;
+        expect(mockInternals.setFormValue).toHaveBeenCalled();
+        expect(mockInternals.setValidity).toHaveBeenCalled();
+    });
+
+    it('changing only value (not checked) triggers setFormValue', async () => {
+        const el = await fixture<UiCheckbox>(html`<ui-checkbox checked value="a"></ui-checkbox>`);
+        const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
+        (el as unknown as Record<string, unknown>)['_internals'] = mockInternals;
+        el.value = 'changed';
+        await el.updateComplete;
+        expect(mockInternals.setFormValue).toHaveBeenCalledWith('changed');
+    });
+
+    it('changing only required (not checked) triggers setValidity', async () => {
+        const el = await fixture<UiCheckbox>(html`<ui-checkbox></ui-checkbox>`);
+        const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
+        (el as unknown as Record<string, unknown>)['_internals'] = mockInternals;
+        el.required = true;
+        await el.updateComplete;
+        expect(mockInternals.setValidity).toHaveBeenCalledWith({ valueMissing: true }, 'Please check this box.');
+    });
+
+    it('setValidity with valueMissing: required=true && checked=false', async () => {
+        const el = await fixture<UiCheckbox>(html`<ui-checkbox></ui-checkbox>`);
+        const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
+        (el as unknown as Record<string, unknown>)['_internals'] = mockInternals;
+        el.required = true;
+        await el.updateComplete;
+        // Must be called with valueMissing, not empty
+        expect(mockInternals.setValidity).toHaveBeenCalledWith({ valueMissing: true }, 'Please check this box.');
+        // Must NOT have been called with empty object (the else branch)
+        expect(mockInternals.setValidity).not.toHaveBeenCalledWith({});
+    });
+
+    it('setValidity without valueMissing: required=false', async () => {
+        const el = await fixture<UiCheckbox>(html`<ui-checkbox required></ui-checkbox>`);
+        const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
+        (el as unknown as Record<string, unknown>)['_internals'] = mockInternals;
+        el.required = false;
+        await el.updateComplete;
+        // The else branch: setValidity({})
+        expect(mockInternals.setValidity).toHaveBeenCalledWith({});
+    });
+
+    it('setValidity without valueMissing: required=true but checked=true', async () => {
+        const el = await fixture<UiCheckbox>(html`<ui-checkbox></ui-checkbox>`);
+        const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
+        (el as unknown as Record<string, unknown>)['_internals'] = mockInternals;
+        el.required = true;
+        el.checked = true;
+        await el.updateComplete;
+        // required && !checked is false → else branch
+        expect(mockInternals.setValidity).toHaveBeenCalledWith({});
+    });
+
+    it('setFormValue not called when neither checked nor value changes', async () => {
+        const el = await fixture<UiCheckbox>(html`<ui-checkbox></ui-checkbox>`);
+        const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
+        (el as unknown as Record<string, unknown>)['_internals'] = mockInternals;
+        // Change label only — should not trigger setFormValue
+        el.label = 'new label';
+        await el.updateComplete;
+        expect(mockInternals.setFormValue).not.toHaveBeenCalled();
+    });
+
+    it('setValidity not called when neither checked nor required changes', async () => {
+        const el = await fixture<UiCheckbox>(html`<ui-checkbox></ui-checkbox>`);
+        const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
+        (el as unknown as Record<string, unknown>)['_internals'] = mockInternals;
+        // Change label only — should not trigger setValidity
+        el.label = 'new label';
+        await el.updateComplete;
+        expect(mockInternals.setValidity).not.toHaveBeenCalled();
+    });
+
     it('required + unchecked triggers validity', async () => {
         const el = await fixture<UiCheckbox>(html`<ui-checkbox required></ui-checkbox>`);
         await el.updateComplete;
-        // The validity state depends on internals support; just verify no error thrown
         expect(el.required).toBe(true);
         expect(el.checked).toBe(false);
     });

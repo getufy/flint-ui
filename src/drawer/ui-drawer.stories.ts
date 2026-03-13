@@ -17,6 +17,13 @@ const meta: Meta = {
         edge: { control: 'boolean' },
         container: { control: 'boolean' },
     },
+    args: {
+        open: false,
+        anchor: 'left',
+        variant: 'temporary',
+        edge: false,
+        container: false,
+    },
 };
 export default meta;
 

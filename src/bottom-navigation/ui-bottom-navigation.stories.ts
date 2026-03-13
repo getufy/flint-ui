@@ -15,6 +15,14 @@ const meta: Meta = {
         label3: { control: 'text', name: 'Item 3 Label' },
         label4: { control: 'text', name: 'Item 4 Label' },
     },
+    args: {
+        value: 'recents',
+        showLabels: true,
+        label1: 'Recents',
+        label2: 'Favorites',
+        label3: 'Nearby',
+        label4: 'Folder',
+    },
 };
 
 export default meta;
@@ -29,13 +37,6 @@ const icons = {
 };
 
 export const Basic: Story = {
-    args: {
-        value: 'recents',
-        showLabels: true,
-        label1: 'Recents',
-        label2: 'Favorites',
-        label3: 'Nearby',
-    },
     render: (args) => html`
         <ui-box width="500px" border="1px solid #ddd" bgcolor="var(--ui-muted-background, #f5f5f5)" style="padding-top: 50px;">
             <ui-bottom-navigation
@@ -66,12 +67,7 @@ export const Basic: Story = {
  */
 export const ShiftLabels: Story = {
     args: {
-        value: 'recents',
         showLabels: false,
-        label1: 'Recents',
-        label2: 'Favorites',
-        label3: 'Nearby',
-        label4: 'Folder',
     },
     render: (args) => html`
         <ui-box width="500px" border="1px solid #ddd" bgcolor="var(--ui-muted-background, #f5f5f5)" style="padding-top: 50px;">
@@ -103,10 +99,11 @@ export const ShiftLabels: Story = {
 export const WithoutLabels: Story = {
     args: {
         value: 'favs',
+        showLabels: false,
     },
     render: (args) => html`
         <ui-box width="500px" border="1px solid #ddd" bgcolor="var(--ui-muted-background, #f5f5f5)" style="padding-top: 50px;">
-            <ui-bottom-navigation .value=${args.value}>
+            <ui-bottom-navigation .value=${args.value} ?show-labels=${args.showLabels}>
                 <ui-bottom-navigation-action value="recents">
                     <span slot="icon">${icons.restore}</span>
                 </ui-bottom-navigation-action>

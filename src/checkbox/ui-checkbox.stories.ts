@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
-import '../button/ui-button';
 import { html } from 'lit';
-import '../button/ui-button';
 import './ui-checkbox';
 import '../button/ui-button';
 
@@ -69,14 +67,14 @@ export const Indeterminate: Story = {
 };
 
 export const Sizes: Story = {
-    render: () => html`
+    render: (args: Record<string, unknown>) => html`
         <div style="display: flex; flex-direction: column; gap: 12px;">
-            <ui-checkbox size="sm" label="Small checkbox"></ui-checkbox>
-            <ui-checkbox size="md" label="Medium checkbox (default)"></ui-checkbox>
-            <ui-checkbox size="lg" label="Large checkbox"></ui-checkbox>
-            <ui-checkbox size="sm" checked label="Small checked"></ui-checkbox>
-            <ui-checkbox size="md" checked label="Medium checked"></ui-checkbox>
-            <ui-checkbox size="lg" checked label="Large checked"></ui-checkbox>
+            <ui-checkbox size="sm" ?disabled=${args.disabled} label="Small checkbox"></ui-checkbox>
+            <ui-checkbox size="md" ?disabled=${args.disabled} label="Medium checkbox (default)"></ui-checkbox>
+            <ui-checkbox size="lg" ?disabled=${args.disabled} label="Large checkbox"></ui-checkbox>
+            <ui-checkbox size="sm" ?disabled=${args.disabled} checked label="Small checked"></ui-checkbox>
+            <ui-checkbox size="md" ?disabled=${args.disabled} checked label="Medium checked"></ui-checkbox>
+            <ui-checkbox size="lg" ?disabled=${args.disabled} checked label="Large checked"></ui-checkbox>
         </div>
     `
 };
@@ -84,12 +82,13 @@ export const Sizes: Story = {
 export const Disabled: Story = {
     args: {
         disabled: true,
+        label: 'Disabled checkbox',
     },
-    render: () => html`
+    render: (args: Record<string, unknown>) => html`
         <div style="display: flex; flex-direction: column; gap: 8px;">
-            <ui-checkbox disabled label="Disabled unchecked"></ui-checkbox>
-            <ui-checkbox disabled checked label="Disabled checked"></ui-checkbox>
-            <ui-checkbox disabled indeterminate label="Disabled indeterminate"></ui-checkbox>
+            <ui-checkbox ?disabled=${args.disabled} label="Disabled unchecked"></ui-checkbox>
+            <ui-checkbox ?disabled=${args.disabled} checked label="Disabled checked"></ui-checkbox>
+            <ui-checkbox ?disabled=${args.disabled} indeterminate label="Disabled indeterminate"></ui-checkbox>
         </div>
     `
 };

@@ -74,13 +74,18 @@ export const Desktop: Story = {
 // ── Mobile ────────────────────────────────────────────────────────────────────
 export const Mobile: Story = {
     name: 'Mobile Picker (Modal)',
-    render: () => wrap(html`
+    args: { variant: 'mobile' },
+    render: (args) => wrap(html`
     <p style="font-size:.85rem;color:#6b7280;margin-bottom:16px;">
       On mobile/touch devices the calendar opens in a full dialog with Cancel/OK buttons.
     </p>
     <ui-date-picker
-      variant="mobile"
-      label="Birthday"
+      .variant=${args.variant}
+      .label=${args.label ?? 'Birthday'}
+      ?disabled=${args.disabled}
+      ?readonly=${args.readonly}
+      ?error=${args.error}
+      helper-text=${args.helperText ?? ''}
       @change=${onChange}
     ></ui-date-picker>
   `),
@@ -89,37 +94,44 @@ export const Mobile: Story = {
 // ── Static ────────────────────────────────────────────────────────────────────
 export const Static: Story = {
     name: 'Static (Always Visible)',
-    render: () => html`
+    args: { variant: 'static' },
+    render: (args) => html`
     <div style="padding:32px;font-family:Inter,sans-serif;">
       <p style="font-size:.85rem;color:#6b7280;margin-bottom:16px;">
         The static variant renders the calendar inline — no popover/modal, no text field.
       </p>
-      <ui-date-picker variant="static" @change=${onChange}></ui-date-picker>
+      <ui-date-picker .variant=${args.variant} @change=${onChange}></ui-date-picker>
     </div>
   `,
 };
 
 // ── Disabled ──────────────────────────────────────────────────────────────────
 export const Disabled: Story = {
-    render: () => wrap(html`
+    args: { disabled: true, value: '2024-03-15' },
+    render: (args) => wrap(html`
     <ui-date-picker
-      label="Start Date"
-      value="2024-03-15"
-      disabled
+      .label=${args.label ?? 'Start Date'}
+      .value=${args.value ?? ''}
+      ?disabled=${args.disabled}
+      ?readonly=${args.readonly}
+      ?error=${args.error}
     ></ui-date-picker>
   `),
 };
 
 // ── ReadOnly ──────────────────────────────────────────────────────────────────
 export const ReadOnly: Story = {
-    render: () => wrap(html`
+    args: { readonly: true, value: '2024-06-21' },
+    render: (args) => wrap(html`
     <p style="font-size:.85rem;color:#6b7280;margin-bottom:16px;">
       Read-only: the text field cannot be typed in, but the calendar opens on click.
     </p>
     <ui-date-picker
-      label="Scheduled Date"
-      value="2024-06-21"
-      readonly
+      .label=${args.label ?? 'Scheduled Date'}
+      .value=${args.value ?? ''}
+      ?disabled=${args.disabled}
+      ?readonly=${args.readonly}
+      ?error=${args.error}
       @change=${onChange}
     ></ui-date-picker>
   `),
@@ -157,12 +169,13 @@ export const WithMinMax: Story = {
 
 // ── Error state ───────────────────────────────────────────────────────────────
 export const ErrorState: Story = {
-    render: () => wrap(html`
+    args: { error: true, value: '2024-01-01', helperText: 'End date must be after start date' },
+    render: (args) => wrap(html`
     <ui-date-picker
-      label="End Date"
-      value="2024-01-01"
-      error
-      helper-text="End date must be after start date"
+      .label=${args.label ?? 'End Date'}
+      .value=${args.value ?? ''}
+      ?error=${args.error}
+      helper-text=${args.helperText ?? ''}
       @change=${onChange}
     ></ui-date-picker>
   `),

@@ -15,6 +15,13 @@ const meta: Meta = {
         },
         max: { control: 'number' },
     },
+    args: {
+        content: '4',
+        dot: false,
+        invisible: false,
+        variant: 'primary',
+        max: 99,
+    },
 };
 
 export default meta;
@@ -31,13 +38,6 @@ const iconBox = html`
 `;
 
 export const Basic: Story = {
-    args: {
-        content: '4',
-        variant: 'primary',
-        dot: false,
-        invisible: false,
-        max: 99,
-    },
     render: (args) => html`
     <ui-badge
       .content=${args.content}
@@ -101,35 +101,35 @@ export const Invisible: Story = {
 };
 
 export const Variants: Story = {
-    render: () => html`
+    render: (args) => html`
     <div style="display: flex; gap: 32px; padding: 20px; flex-wrap: wrap; align-items: flex-end;">
       <div style="text-align: center;">
         <p style="font-size: 12px; margin: 0 0 12px; color: #666;">primary</p>
-        <ui-badge content="5" variant="primary">
+        <ui-badge .content=${args.content} variant="primary" .max=${args.max} ?dot=${args.dot} ?invisible=${args.invisible}>
           <div style="width: 30px; height: 30px; background: #f0f0f0;"></div>
         </ui-badge>
       </div>
       <div style="text-align: center;">
         <p style="font-size: 12px; margin: 0 0 12px; color: #666;">secondary</p>
-        <ui-badge content="2" variant="secondary">
+        <ui-badge .content=${args.content} variant="secondary" .max=${args.max} ?dot=${args.dot} ?invisible=${args.invisible}>
           <div style="width: 30px; height: 30px; background: #f0f0f0;"></div>
         </ui-badge>
       </div>
       <div style="text-align: center;">
         <p style="font-size: 12px; margin: 0 0 12px; color: #666;">success</p>
-        <ui-badge content="1" variant="success">
+        <ui-badge .content=${args.content} variant="success" .max=${args.max} ?dot=${args.dot} ?invisible=${args.invisible}>
           <div style="width: 30px; height: 30px; background: #f0f0f0;"></div>
         </ui-badge>
       </div>
       <div style="text-align: center;">
         <p style="font-size: 12px; margin: 0 0 12px; color: #666;">warning</p>
-        <ui-badge content="!" variant="warning">
+        <ui-badge .content=${args.content} variant="warning" .max=${args.max} ?dot=${args.dot} ?invisible=${args.invisible}>
           <div style="width: 30px; height: 30px; background: #f0f0f0;"></div>
         </ui-badge>
       </div>
       <div style="text-align: center;">
         <p style="font-size: 12px; margin: 0 0 12px; color: #666;">error</p>
-        <ui-badge content="99" variant="error">
+        <ui-badge .content=${args.content} variant="error" .max=${args.max} ?dot=${args.dot} ?invisible=${args.invisible}>
           <div style="width: 30px; height: 30px; background: #f0f0f0;"></div>
         </ui-badge>
       </div>

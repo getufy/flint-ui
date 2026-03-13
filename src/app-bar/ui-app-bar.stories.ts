@@ -17,6 +17,11 @@ const meta: Meta = {
             options: ['regular', 'outlined'],
         },
     },
+    args: {
+        title: 'News Feed',
+        position: 'static',
+        variant: 'regular',
+    },
 };
 
 export default meta;
@@ -24,13 +29,8 @@ export default meta;
 type Story = StoryObj;
 
 export const Basic: Story = {
-    args: {
-        title: 'News Feed',
-        position: 'static',
-        variant: 'regular',
-    },
     render: (args) => html`
-    <ui-app-bar .title="${args.title}" .position="${args.position}" .variant="${args.variant}">
+    <ui-app-bar .title=${args.title} .position=${args.position} .variant=${args.variant}>
       <ui-button slot="navigation" variant="secondary" style="--ui-secondary-color: transparent; color: white;">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -58,7 +58,7 @@ export const Outlined: Story = {
         variant: 'outlined',
     },
     render: (args) => html`
-    <ui-app-bar .title="${args.title}" .variant="${args.variant}">
+    <ui-app-bar .title=${args.title} .position=${args.position} .variant=${args.variant}>
       <ui-button slot="navigation" variant="secondary" style="--ui-secondary-color: transparent;">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <polyline points="15 18 9 12 15 6"></polyline>
@@ -88,9 +88,10 @@ export const WithTitleSlot: Story = {
 };
 
 export const Sticky: Story = {
-    render: () => html`
+    args: { title: 'Sticky App Bar', position: 'sticky' },
+    render: (args) => html`
     <div style="height: 300px; overflow-y: auto; border: 1px solid #ccc; position: relative;">
-      <ui-app-bar title="Sticky App Bar" position="sticky">
+      <ui-app-bar .title=${args.title} .position=${args.position} .variant=${args.variant}>
         <ui-button slot="navigation" variant="secondary" style="--ui-secondary-color: transparent; color: white;">Menu</ui-button>
       </ui-app-bar>
       <div style="padding: 16px; height: 1000px; background: linear-gradient(white, #f0f0f0);">

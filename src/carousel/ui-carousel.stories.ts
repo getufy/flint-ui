@@ -167,9 +167,10 @@ export const WithImages: Story = {
 
 /* ── Vertical ────────────────────────────────────────────────────────────── */
 export const Vertical: Story = {
-  render: () => html`
+  args: { orientation: 'vertical' },
+  render: (args: Record<string, unknown>) => html`
     <div style="max-width: 400px; padding: 24px;">
-      <ui-carousel orientation="vertical">
+      <ui-carousel .orientation=${String(args.orientation || 'vertical')} ?loop=${args.loop}>
         <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
           <ui-carousel-previous orientation="vertical"></ui-carousel-previous>
           <ui-carousel-content
@@ -187,14 +188,16 @@ export const Vertical: Story = {
 
 /* ── VerticalMultiple ────────────────────────────────────────────────────── */
 export const VerticalMultiple: Story = {
-  render: () => html`
+  args: { orientation: 'vertical', itemsPerView: 3 },
+  render: (args: Record<string, unknown>) => html`
     <div style="max-width: 400px; padding: 24px;">
       <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
         Vertical carousel with three slides visible at once.
       </p>
       <ui-carousel
-        orientation="vertical"
-        items-per-view="3"
+        .orientation=${String(args.orientation || 'vertical')}
+        .itemsPerView=${Number(args.itemsPerView) || 3}
+        ?loop=${args.loop}
         style="--ui-carousel-gap: 12px;"
       >
         <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
@@ -214,12 +217,13 @@ export const VerticalMultiple: Story = {
 
 /* ── Loop ────────────────────────────────────────────────────────────────── */
 export const Loop: Story = {
-  render: () => html`
+  args: { loop: true },
+  render: (args: Record<string, unknown>) => html`
     <div style="max-width: 560px; padding: 24px;">
       <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
         Loop is enabled — navigation wraps from the last slide back to the first.
       </p>
-      <ui-carousel loop>
+      <ui-carousel .loop=${Boolean(args.loop)}>
         <div style="display: flex; align-items: center; gap: 12px;">
           <ui-carousel-previous></ui-carousel-previous>
           <ui-carousel-content style="flex: 1 1 0%; min-width: 0;">
@@ -234,12 +238,13 @@ export const Loop: Story = {
 
 /* ── Autoplay ────────────────────────────────────────────────────────────── */
 export const Autoplay: Story = {
-  render: () => html`
+  args: { loop: true, autoplay: 2000 },
+  render: (args: Record<string, unknown>) => html`
     <div style="max-width: 560px; padding: 24px;">
       <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
         Slides advance automatically every 2 seconds (loop enabled).
       </p>
-      <ui-carousel loop autoplay="2000">
+      <ui-carousel .loop=${Boolean(args.loop)} .autoplay=${Number(args.autoplay) || 0}>
         <div style="display: flex; align-items: center; gap: 12px;">
           <ui-carousel-previous></ui-carousel-previous>
           <ui-carousel-content style="flex: 1 1 0%; min-width: 0;">
@@ -332,13 +337,14 @@ export const OverlayButtons: Story = {
 
 /* ── MultipleItems ───────────────────────────────────────────────────────── */
 export const MultipleItems: Story = {
-  render: () => html`
+  args: { itemsPerView: 3 },
+  render: (args: Record<string, unknown>) => html`
     <div style="max-width: 720px; padding: 24px;">
       <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
         Three slides visible at once. Each <code>next()</code> advances by one slide.
         Set <code>--ui-carousel-gap</code> for spacing.
       </p>
-      <ui-carousel items-per-view="3" style="--ui-carousel-gap: 12px;">
+      <ui-carousel .itemsPerView=${Number(args.itemsPerView) || 3} ?loop=${args.loop} style="--ui-carousel-gap: 12px;">
         <div style="display: flex; align-items: center; gap: 12px;">
           <ui-carousel-previous></ui-carousel-previous>
           <ui-carousel-content style="flex: 1 1 0%; min-width: 0;">

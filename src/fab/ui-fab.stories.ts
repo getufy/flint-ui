@@ -15,6 +15,12 @@ const meta: Meta = {
       options: ['bottom-right', 'bottom-left', 'top-right', 'top-left', 'static'],
     },
   },
+  args: {
+    extended: false,
+    disabled: false,
+    label: 'Add',
+    position: 'static',
+  },
 };
 
 export default meta;
@@ -80,11 +86,12 @@ export const Floating: Story = {
 };
 
 export const Positions: Story = {
-  render: () => html`
+  args: {},
+  render: (args) => html`
     <div style="display: flex; gap: 24px; flex-wrap: wrap; padding: 16px; align-items: center;">
       ${(['bottom-right', 'bottom-left', 'top-right', 'top-left'] as const).map(pos => html`
         <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
-          <ui-fab position="static" label="${pos}">
+          <ui-fab position="static" ?disabled=${args.disabled} label="${pos}">
             ${plusIcon}
           </ui-fab>
           <span style="font-size: 12px; font-family: sans-serif; color: #6b7280;">${pos}</span>
@@ -99,22 +106,23 @@ export const Positions: Story = {
 };
 
 export const Disabled: Story = {
-  render: () => html`
+  args: { disabled: true },
+  render: (args) => html`
     <div style="display: flex; gap: 24px; align-items: center; padding: 16px;">
       <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
-        <ui-fab position="static" label="Add">
+        <ui-fab position="static" ?disabled=${args.disabled} label="Add">
           ${plusIcon}
         </ui-fab>
         <span style="font-size: 12px; font-family: sans-serif; color: #6b7280;">enabled</span>
       </div>
       <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
-        <ui-fab position="static" disabled label="Add">
+        <ui-fab position="static" ?disabled=${args.disabled} label="Add">
           ${plusIcon}
         </ui-fab>
         <span style="font-size: 12px; font-family: sans-serif; color: #6b7280;">disabled</span>
       </div>
       <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
-        <ui-fab position="static" extended disabled>
+        <ui-fab position="static" extended ?disabled=${args.disabled}>
           ${editIcon}
           <span slot="label">Compose</span>
         </ui-fab>

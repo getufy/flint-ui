@@ -109,10 +109,11 @@ export const Default: Story = {
 /* ── Sides ───────────────────────────────────────────────────────── */
 export const Sides: Story = {
     name: 'Sides',
-    render: () => html`
+    args: { openDelay: 100, closeDelay: 100 },
+    render: (args) => html`
         <div style="padding: 160px 80px; display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; align-items: center;">
             ${(['bottom', 'top', 'right', 'left'] as const).map(side => html`
-                <ui-hover-card open-delay="100" close-delay="100">
+                <ui-hover-card .openDelay=${args['openDelay']} .closeDelay=${args['closeDelay']}>
                     <ui-hover-card-trigger>
                         <button style="${btnStyle} text-transform: capitalize;">${side}</button>
                     </ui-hover-card-trigger>

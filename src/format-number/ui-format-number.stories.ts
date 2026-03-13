@@ -94,13 +94,6 @@ you can target via CSS selectors or read from JS for additional styling logic.
         maximumSignificantDigits: { control: 'number', description: 'Maximum significant digits (1–21)' },
         lang: { control: 'text', description: 'BCP 47 locale (e.g. "en", "de", "ru")' },
     },
-};
-
-export default meta;
-type Story = StoryObj;
-
-/* ── Playground ──────────────────────────────────────────────────── */
-export const Playground: Story = {
     args: {
         value: 1000,
         type: 'decimal',
@@ -114,6 +107,13 @@ export const Playground: Story = {
         unitDisplay: 'short',
         lang: 'en',
     },
+};
+
+export default meta;
+type Story = StoryObj;
+
+/* ── Playground ──────────────────────────────────────────────────── */
+export const Playground: Story = {
     render: (args) => html`
         <ui-format-number
             .value=${args['value']}

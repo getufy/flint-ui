@@ -12,6 +12,10 @@ const meta: Meta = {
     open: { control: 'boolean' },
     invisible: { control: 'boolean' },
   },
+  args: {
+    open: false,
+    invisible: false,
+  },
 };
 
 export default meta;
@@ -19,10 +23,6 @@ export default meta;
 type Story = StoryObj;
 
 export const Basic: Story = {
-  args: {
-    open: false,
-    invisible: false,
-  },
   render: (args) => html`
     <div style="height: 300px; display: flex; align-items: center; justify-content: center;">
       <ui-button @click="${() => {
@@ -33,8 +33,8 @@ export const Basic: Story = {
       </ui-button>
 
       <ui-backdrop 
-        .open="${args.open}" 
-        .invisible="${args.invisible}"
+        .open=${args.open} 
+        .invisible=${args.invisible}
         @close="${(e: Event) => {
       (e.target as UiBackdrop).open = false;
     }}"
@@ -55,9 +55,6 @@ export const Basic: Story = {
 };
 
 export const LoadingIndicator: Story = {
-  args: {
-    open: false,
-  },
   render: (args) => html`
     <div style="height: 300px; display: flex; align-items: center; justify-content: center;">
       <ui-button @click="${() => {
@@ -72,7 +69,7 @@ export const LoadingIndicator: Story = {
         Start Loading (3s)
       </ui-button>
 
-      <ui-backdrop id="loading-bd" .open="${args.open}">
+      <ui-backdrop id="loading-bd" .open=${args.open}>
         <div style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
           <div style="width: 48px; height: 48px; border: 4px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 1s linear infinite;"></div>
           <span style="color: white; font-family: sans-serif; font-weight: 500;">Please wait...</span>
@@ -98,8 +95,8 @@ export const Invisible: Story = {
       
       <ui-backdrop
         container
-        .open="${args.open}"
-        .invisible="${args.invisible}"
+        .open=${args.open}
+        .invisible=${args.invisible}
         @close="${(e: Event) => {
       alert('Captured click on invisible backdrop!');
       (e.target as UiBackdrop).open = false;

@@ -12,6 +12,12 @@ const meta: Meta = {
         placeholder: { control: 'text' },
         value: { control: 'text', description: 'Currently selected value' },
     },
+    args: {
+        freeSolo: false,
+        disabled: false,
+        placeholder: 'Combo box',
+        value: '',
+    },
 };
 
 export default meta;
@@ -42,16 +48,13 @@ const captionStyle = 'margin-top: 200px; color: #6b7280; font-family: system-ui,
 
 export const ComboBox: Story = {
     args: {
-        freeSolo: false,
-        disabled: false,
         placeholder: 'Combo box',
-        options: top100Films,
     },
     render: (args: Record<string, unknown>) => html`
     <div style=${cardStyle}>
       <h3 style=${headingStyle}>Favorite Movie</h3>
       <ui-autocomplete
-        .options=${args['options']}
+        .options=${top100Films}
         .freeSolo=${args['freeSolo']}
         .disabled=${args['disabled']}
         placeholder=${args['placeholder']}
@@ -66,15 +69,13 @@ export const ComboBox: Story = {
 export const FreeSolo: Story = {
     args: {
         freeSolo: true,
-        disabled: false,
         placeholder: 'Free solo',
-        options: top100Films,
     },
     render: (args: Record<string, unknown>) => html`
     <div style=${cardStyle}>
       <h3 style=${headingStyle}>Search input</h3>
       <ui-autocomplete
-        .options=${args['options']}
+        .options=${top100Films}
         .freeSolo=${args['freeSolo']}
         .disabled=${args['disabled']}
         placeholder=${args['placeholder']}
@@ -87,13 +88,19 @@ export const FreeSolo: Story = {
 };
 
 export const WithInitialValue: Story = {
-    render: () => html`
+    args: {
+        value: '4',
+        placeholder: 'Select a movie',
+    },
+    render: (args: Record<string, unknown>) => html`
     <div style=${cardStyle}>
       <h3 style=${headingStyle}>Pre-selected Value</h3>
       <ui-autocomplete
         .options=${top100Films}
-        value="4"
-        placeholder="Select a movie"
+        .freeSolo=${args['freeSolo']}
+        .disabled=${args['disabled']}
+        .value=${args['value'] as string}
+        placeholder=${args['placeholder']}
         style="width: 300px;"
         @change=${(e: CustomEvent) => console.log('Changed:', e.detail)}
       ></ui-autocomplete>
@@ -103,14 +110,20 @@ export const WithInitialValue: Story = {
 };
 
 export const Disabled: Story = {
-    render: () => html`
+    args: {
+        disabled: true,
+        value: '1',
+        placeholder: 'Disabled input',
+    },
+    render: (args: Record<string, unknown>) => html`
     <div style=${cardStyle}>
       <h3 style=${headingStyle}>Disabled</h3>
       <ui-autocomplete
         .options=${top100Films}
-        value="1"
-        .disabled=${true}
-        placeholder="Disabled input"
+        .freeSolo=${args['freeSolo']}
+        .disabled=${args['disabled']}
+        .value=${args['value'] as string}
+        placeholder=${args['placeholder']}
         style="width: 300px;"
       ></ui-autocomplete>
       <p style=${captionStyle}>The input is non-interactive when <code>disabled</code> is set.</p>

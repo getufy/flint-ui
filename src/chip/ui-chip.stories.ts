@@ -1,11 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
-import '../button/ui-button';
 import { html } from 'lit';
-import '../button/ui-button';
 import './ui-chip';
 import '../button/ui-button';
 import '../avatar/ui-avatar';
-import '../button/ui-button';
 
 const meta: Meta = {
     title: 'Data Display/Chip',
@@ -106,26 +103,27 @@ export const ClickableAndDeletable: Story = {
 };
 
 export const Disabled: Story = {
-    render: () => html`
+    args: { disabled: true },
+    render: (args) => html`
         <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
-            <ui-chip label="Default" disabled></ui-chip>
-            <ui-chip label="Clickable" clickable disabled></ui-chip>
-            <ui-chip label="Deletable" deletable disabled></ui-chip>
-            <ui-chip label="Primary" color="primary" disabled></ui-chip>
-            <ui-chip label="Outlined" variant="outlined" disabled></ui-chip>
+            <ui-chip .label=${'Default'} .variant=${args.variant} ?disabled=${args.disabled}></ui-chip>
+            <ui-chip .label=${'Clickable'} .variant=${args.variant} ?clickable=${true} ?disabled=${args.disabled}></ui-chip>
+            <ui-chip .label=${'Deletable'} .variant=${args.variant} ?deletable=${true} ?disabled=${args.disabled}></ui-chip>
+            <ui-chip .label=${'Primary'} .variant=${args.variant} .color=${'primary'} ?disabled=${args.disabled}></ui-chip>
+            <ui-chip .label=${'Outlined'} variant="outlined" ?disabled=${args.disabled}></ui-chip>
         </div>
     `
 };
 
 export const Variants: Story = {
-    render: () => html`
+    render: (args) => html`
         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-            <ui-chip label="Default Filled"></ui-chip>
-            <ui-chip label="Default Outlined" variant="outlined"></ui-chip>
-            <ui-chip label="Primary Filled" color="primary"></ui-chip>
-            <ui-chip label="Primary Outlined" color="primary" variant="outlined"></ui-chip>
-            <ui-chip label="Secondary Filled" color="secondary"></ui-chip>
-            <ui-chip label="Secondary Outlined" color="secondary" variant="outlined"></ui-chip>
+            <ui-chip label="Default Filled" ?clickable=${args.clickable} ?deletable=${args.deletable} ?disabled=${args.disabled}></ui-chip>
+            <ui-chip label="Default Outlined" variant="outlined" ?clickable=${args.clickable} ?deletable=${args.deletable} ?disabled=${args.disabled}></ui-chip>
+            <ui-chip label="Primary Filled" color="primary" ?clickable=${args.clickable} ?deletable=${args.deletable} ?disabled=${args.disabled}></ui-chip>
+            <ui-chip label="Primary Outlined" color="primary" variant="outlined" ?clickable=${args.clickable} ?deletable=${args.deletable} ?disabled=${args.disabled}></ui-chip>
+            <ui-chip label="Secondary Filled" color="secondary" ?clickable=${args.clickable} ?deletable=${args.deletable} ?disabled=${args.disabled}></ui-chip>
+            <ui-chip label="Secondary Outlined" color="secondary" variant="outlined" ?clickable=${args.clickable} ?deletable=${args.deletable} ?disabled=${args.disabled}></ui-chip>
         </div>
     `
 };

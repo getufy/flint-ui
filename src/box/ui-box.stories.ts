@@ -52,6 +52,12 @@ const meta: Meta = {
         width:        { control: 'text' },
         height:       { control: 'text' },
     },
+    args: {
+        bgcolor: 'primary',
+        color: 'white',
+        p: '16px',
+        borderRadius: '8px',
+    },
 };
 
 export default meta;
@@ -60,12 +66,6 @@ type Story = StoryObj;
 // ── Playground ───────────────────────────────────────────────────────────────
 
 export const Playground: Story = {
-    args: {
-        bgcolor: 'primary',
-        color: 'white',
-        p: '16px',
-        borderRadius: '8px',
-    },
     render: (args) => html`
         <ui-box
             .component=${args.component || 'div'}
@@ -108,8 +108,17 @@ export const Playground: Story = {
 // ── Basic ────────────────────────────────────────────────────────────────────
 
 export const Basic: Story = {
-    render: () => html`
-        <ui-box bgcolor="primary" color="white" p="16px" borderRadius="8px">
+    render: (args) => html`
+        <ui-box
+            .bgcolor=${args.bgcolor || ''}
+            .color=${args.color || ''}
+            .p=${args.p || ''}
+            .borderRadius=${args.borderRadius || ''}
+            .display=${args.display || ''}
+            .border=${args.border || ''}
+            .width=${args.width || ''}
+            .height=${args.height || ''}
+        >
             Box with primary background, white text, padding, and rounded corners.
         </ui-box>
     `,
@@ -133,15 +142,16 @@ export const Nested: Story = {
 // ── Flex row ─────────────────────────────────────────────────────────────────
 
 export const FlexRow: Story = {
-    render: () => html`
+    args: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px', p: '16px', border: '1px solid #ddd', borderRadius: '8px', bgcolor: '', color: '' },
+    render: (args) => html`
         <ui-box
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            gap="12px"
-            p="16px"
-            border="1px solid #ddd"
-            borderRadius="8px"
+            .display=${args.display || ''}
+            .justifyContent=${args.justifyContent || ''}
+            .alignItems=${args.alignItems || ''}
+            .gap=${args.gap || ''}
+            .p=${args.p || ''}
+            .border=${args.border || ''}
+            .borderRadius=${args.borderRadius || ''}
         >
             <ui-box>Left</ui-box>
             <ui-box>Center</ui-box>

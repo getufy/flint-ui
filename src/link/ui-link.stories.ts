@@ -28,6 +28,13 @@ const meta: Meta = {
         download: { control: 'text' },
         disabled: { control: 'boolean' },
     },
+    args: {
+        href: '#',
+        color: 'primary',
+        underline: 'always',
+        variant: 'body1',
+        disabled: false,
+    },
 };
 export default meta;
 
@@ -45,13 +52,6 @@ const labelStyles = `font-size: 0.7rem; color: #94a3b8; text-transform: uppercas
 /* Basic                                                               */
 /* ================================================================== */
 export const Basic: Story = {
-    args: {
-        href: '#',
-        color: 'primary',
-        underline: 'always',
-        variant: 'body1',
-        disabled: false,
-    },
     render: (args) => html`
         <div style="${sectionStyles}">
             <p>Paragraph with a <ui-link

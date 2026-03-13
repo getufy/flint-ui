@@ -23,6 +23,12 @@ const meta: Meta = {
             options: ['left', 'center', 'right'],
         },
     },
+    args: {
+        orientation: 'horizontal',
+        variant: 'full',
+        weight: 'light',
+        textAlign: 'center',
+    },
 };
 
 export default meta;
@@ -84,16 +90,16 @@ export const Vertical: Story = {
 };
 
 export const WeightsAndVariants: Story = {
-    render: () => html`
+    render: (args) => html`
     <div style="width: 100%; max-width: 500px; padding: 20px; display: flex; flex-direction: column; gap: 16px;">
       <div style="font-size: 14px; color: #666;">Heavy weight</div>
-      <ui-divider weight="heavy"></ui-divider>
-      
+      <ui-divider .weight=${args.weight}></ui-divider>
+
       <div style="font-size: 14px; color: #666;">Middle variant</div>
-      <ui-divider variant="middle"></ui-divider>
-      
+      <ui-divider .variant=${args.variant}></ui-divider>
+
       <div style="font-size: 14px; color: #666;">Inset variant</div>
-      <ui-divider variant="inset"></ui-divider>
+      <ui-divider .variant=${args.variant}></ui-divider>
     </div>
   `,
 };
