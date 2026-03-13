@@ -1,10 +1,10 @@
 # Chip
 
-<Demo label="Variants" html="<ui-chip label=&quot;Filled&quot; variant=&quot;filled&quot;></ui-chip><ui-chip label=&quot;Outlined&quot; variant=&quot;outlined&quot;></ui-chip><ui-chip label=&quot;Primary&quot; variant=&quot;filled&quot; color=&quot;primary&quot;></ui-chip><ui-chip label=&quot;Secondary&quot; variant=&quot;filled&quot; color=&quot;secondary&quot;></ui-chip>" />
+<Demo label="Variants" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><ui-chip label=&quot;Filled&quot; variant=&quot;filled&quot;></ui-chip><ui-chip label=&quot;Outlined&quot; variant=&quot;outlined&quot;></ui-chip><ui-chip label=&quot;Primary&quot; variant=&quot;filled&quot; color=&quot;primary&quot;></ui-chip><ui-chip label=&quot;Secondary&quot; variant=&quot;filled&quot; color=&quot;secondary&quot;></ui-chip></div>" />
 
-<Demo label="Sizes" html="<ui-chip label=&quot;Small&quot; size=&quot;sm&quot;></ui-chip><ui-chip label=&quot;Medium&quot; size=&quot;md&quot;></ui-chip><ui-chip label=&quot;Large&quot; size=&quot;lg&quot;></ui-chip>" />
+<Demo label="Sizes" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap;align-items:center&quot;><ui-chip label=&quot;Small&quot; size=&quot;sm&quot;></ui-chip><ui-chip label=&quot;Medium&quot; size=&quot;md&quot;></ui-chip><ui-chip label=&quot;Large&quot; size=&quot;lg&quot;></ui-chip></div>" />
 
-<Demo label="Interactive" html="<ui-chip label=&quot;Clickable&quot; clickable></ui-chip><ui-chip label=&quot;Deletable&quot; deletable></ui-chip><ui-chip label=&quot;Both&quot; clickable deletable></ui-chip><ui-chip label=&quot;Disabled&quot; disabled></ui-chip>" />
+<Demo label="Interactive" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><ui-chip label=&quot;Clickable&quot; clickable></ui-chip><ui-chip label=&quot;Deletable&quot; deletable></ui-chip><ui-chip label=&quot;Both&quot; clickable deletable></ui-chip><ui-chip label=&quot;Disabled&quot; disabled></ui-chip></div>" />
 
 - **Tag**: `<ui-chip>`
 - **Class**: `UiChip`

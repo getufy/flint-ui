@@ -1,8 +1,8 @@
 # Avatar
 
-<Demo label="Image" html="<ui-avatar src=&quot;https://i.pravatar.cc/150?img=1&quot; alt=&quot;User 1&quot;></ui-avatar><ui-avatar src=&quot;https://i.pravatar.cc/150?img=2&quot; alt=&quot;User 2&quot;></ui-avatar><ui-avatar src=&quot;https://i.pravatar.cc/150?img=3&quot; alt=&quot;User 3&quot;></ui-avatar>" />
+<Demo label="Image" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><ui-avatar src=&quot;https://i.pravatar.cc/150?img=1&quot; alt=&quot;User 1&quot;></ui-avatar><ui-avatar src=&quot;https://i.pravatar.cc/150?img=2&quot; alt=&quot;User 2&quot;></ui-avatar><ui-avatar src=&quot;https://i.pravatar.cc/150?img=3&quot; alt=&quot;User 3&quot;></ui-avatar></div>" />
 
-<Demo label="Initials" html="<ui-avatar>AB</ui-avatar><ui-avatar>CD</ui-avatar><ui-avatar>EF</ui-avatar>" />
+<Demo label="Initials" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><ui-avatar>AB</ui-avatar><ui-avatar>CD</ui-avatar><ui-avatar>EF</ui-avatar></div>" />
 
 - **Tag**: `<ui-avatar>`
 - **Class**: `UiAvatar`

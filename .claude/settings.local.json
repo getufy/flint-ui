@@ -125,7 +125,9 @@
       "Bash(for comp:*)",
       "Bash(do echo:*)",
       "Read(//Users/algoassasin/storybook-lit/docs/components/**)",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(ls -d /Users/algoassasin/storybook-lit/packages/core/src/*/  | xargs -I{} basename {} | sort > /tmp/dirs.txt && grep \"^export\" /Users/algoassasin/storybook-lit/packages/core/src/index.ts | grep -oP \"from '\\\\./\\([^/]+\\)\" | sed \"s/from '.\\\\///\" | sort -u > /tmp/exports.txt && comm -23 /tmp/dirs.txt /tmp/exports.txt)",
+      "Bash(ls -d /Users/algoassasin/storybook-lit/packages/core/src/*/ | xargs -I{} basename {} | sort > /tmp/dirs.txt && grep \"from './\" /Users/algoassasin/storybook-lit/packages/core/src/index.ts | sed \"s/.*from '.\\\\///\" | sed \"s/\\\\/.*//\" | sort -u > /tmp/exports.txt && comm -23 /tmp/dirs.txt /tmp/exports.txt)"
     ]
   }
 }

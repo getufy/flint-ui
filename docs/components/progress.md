@@ -2,7 +2,7 @@
 
 <Demo label="Circular Indeterminate" html="<ui-circular-progress></ui-circular-progress>" />
 
-<Demo label="Circular Determinate" html="<ui-circular-progress value=&quot;0&quot;></ui-circular-progress><ui-circular-progress value=&quot;25&quot;></ui-circular-progress><ui-circular-progress value=&quot;50&quot;></ui-circular-progress><ui-circular-progress value=&quot;75&quot;></ui-circular-progress><ui-circular-progress value=&quot;100&quot;></ui-circular-progress>" />
+<Demo label="Circular Determinate" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap;align-items:center&quot;><ui-circular-progress value=&quot;0&quot;></ui-circular-progress><ui-circular-progress value=&quot;25&quot;></ui-circular-progress><ui-circular-progress value=&quot;50&quot;></ui-circular-progress><ui-circular-progress value=&quot;75&quot;></ui-circular-progress><ui-circular-progress value=&quot;100&quot;></ui-circular-progress></div>" />
 
 <Demo label="Linear Indeterminate" html="<div style=&quot;width:100%;max-width:400px&quot;><ui-linear-progress></ui-linear-progress></div>" />
 

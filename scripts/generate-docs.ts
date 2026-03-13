@@ -328,20 +328,26 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
   button: [
     {
       label: 'Variants',
-      html: `<ui-button variant="primary">Primary</ui-button>
+      html: `<div style="display:flex;gap:8px;flex-wrap:wrap">
+<ui-button variant="primary">Primary</ui-button>
 <ui-button variant="secondary">Secondary</ui-button>
-<ui-button variant="destructive">Destructive</ui-button>`,
+<ui-button variant="destructive">Destructive</ui-button>
+</div>`,
     },
     {
       label: 'Sizes',
-      html: `<ui-button size="small">Small</ui-button>
+      html: `<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+<ui-button size="small">Small</ui-button>
 <ui-button size="medium">Medium</ui-button>
-<ui-button size="large">Large</ui-button>`,
+<ui-button size="large">Large</ui-button>
+</div>`,
     },
     {
       label: 'States',
-      html: `<ui-button disabled>Disabled</ui-button>
-<ui-button full-width>Full Width</ui-button>`,
+      html: `<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+<ui-button disabled>Disabled</ui-button>
+<ui-button full-width>Full Width</ui-button>
+</div>`,
     },
     {
       label: 'Button Group',
@@ -386,7 +392,8 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
   badge: [
     {
       label: 'Content',
-      html: `<ui-badge content="4">
+      html: `<div style="display:flex;gap:8px;flex-wrap:wrap">
+<ui-badge content="4">
   <div style="width:40px;height:40px;border-radius:8px;background:#e5e7eb;display:flex;align-items:center;justify-content:center">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
   </div>
@@ -395,81 +402,84 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
   <div style="width:40px;height:40px;border-radius:8px;background:#e5e7eb;display:flex;align-items:center;justify-content:center">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
   </div>
-</ui-badge>`,
+</ui-badge>
+</div>`,
     },
     {
       label: 'Variants',
-      html: `<ui-badge content="3" variant="primary"><div style="width:30px;height:30px;border-radius:6px;background:#e5e7eb"></div></ui-badge>
+      html: `<div style="display:flex;gap:8px;flex-wrap:wrap">
+<ui-badge content="3" variant="primary"><div style="width:30px;height:30px;border-radius:6px;background:#e5e7eb"></div></ui-badge>
 <ui-badge content="3" variant="secondary"><div style="width:30px;height:30px;border-radius:6px;background:#e5e7eb"></div></ui-badge>
 <ui-badge content="3" variant="success"><div style="width:30px;height:30px;border-radius:6px;background:#e5e7eb"></div></ui-badge>
 <ui-badge content="3" variant="warning"><div style="width:30px;height:30px;border-radius:6px;background:#e5e7eb"></div></ui-badge>
-<ui-badge content="3" variant="error"><div style="width:30px;height:30px;border-radius:6px;background:#e5e7eb"></div></ui-badge>`,
+<ui-badge content="3" variant="error"><div style="width:30px;height:30px;border-radius:6px;background:#e5e7eb"></div></ui-badge>
+</div>`,
     },
     {
       label: 'Dot',
-      html: `<ui-badge dot><div style="width:30px;height:30px;border-radius:6px;background:#e5e7eb"></div></ui-badge>
-<ui-badge dot variant="error"><div style="width:30px;height:30px;border-radius:6px;background:#e5e7eb"></div></ui-badge>`,
+      html: `<div style="display:flex;gap:8px;flex-wrap:wrap"><ui-badge dot><div style="width:30px;height:30px;border-radius:6px;background:#e5e7eb"></div></ui-badge>
+<ui-badge dot variant="error"><div style="width:30px;height:30px;border-radius:6px;background:#e5e7eb"></div></ui-badge></div>`,
     },
   ],
   avatar: [
     {
       label: 'Image',
-      html: `<ui-avatar src="https://i.pravatar.cc/150?img=1" alt="User 1"></ui-avatar>
+      html: `<div style="display:flex;gap:8px;flex-wrap:wrap"><ui-avatar src="https://i.pravatar.cc/150?img=1" alt="User 1"></ui-avatar>
 <ui-avatar src="https://i.pravatar.cc/150?img=2" alt="User 2"></ui-avatar>
-<ui-avatar src="https://i.pravatar.cc/150?img=3" alt="User 3"></ui-avatar>`,
+<ui-avatar src="https://i.pravatar.cc/150?img=3" alt="User 3"></ui-avatar></div>`,
     },
     {
       label: 'Initials',
-      html: `<ui-avatar>AB</ui-avatar>
+      html: `<div style="display:flex;gap:8px;flex-wrap:wrap"><ui-avatar>AB</ui-avatar>
 <ui-avatar>CD</ui-avatar>
-<ui-avatar>EF</ui-avatar>`,
+<ui-avatar>EF</ui-avatar></div>`,
     },
   ],
   chip: [
     {
       label: 'Variants',
-      html: `<ui-chip label="Filled" variant="filled"></ui-chip>
+      html: `<div style="display:flex;gap:8px;flex-wrap:wrap"><ui-chip label="Filled" variant="filled"></ui-chip>
 <ui-chip label="Outlined" variant="outlined"></ui-chip>
 <ui-chip label="Primary" variant="filled" color="primary"></ui-chip>
-<ui-chip label="Secondary" variant="filled" color="secondary"></ui-chip>`,
+<ui-chip label="Secondary" variant="filled" color="secondary"></ui-chip></div>`,
     },
     {
       label: 'Sizes',
-      html: `<ui-chip label="Small" size="sm"></ui-chip>
+      html: `<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><ui-chip label="Small" size="sm"></ui-chip>
 <ui-chip label="Medium" size="md"></ui-chip>
-<ui-chip label="Large" size="lg"></ui-chip>`,
+<ui-chip label="Large" size="lg"></ui-chip></div>`,
     },
     {
       label: 'Interactive',
-      html: `<ui-chip label="Clickable" clickable></ui-chip>
+      html: `<div style="display:flex;gap:8px;flex-wrap:wrap"><ui-chip label="Clickable" clickable></ui-chip>
 <ui-chip label="Deletable" deletable></ui-chip>
 <ui-chip label="Both" clickable deletable></ui-chip>
-<ui-chip label="Disabled" disabled></ui-chip>`,
+<ui-chip label="Disabled" disabled></ui-chip></div>`,
     },
   ],
   switch: [
     {
       label: 'Sizes',
-      html: `<ui-switch size="sm"></ui-switch>
+      html: `<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><ui-switch size="sm"></ui-switch>
 <ui-switch size="md"></ui-switch>
-<ui-switch size="lg"></ui-switch>`,
+<ui-switch size="lg"></ui-switch></div>`,
     },
     {
       label: 'States',
-      html: `<ui-switch></ui-switch>
+      html: `<div style="display:flex;gap:8px;flex-wrap:wrap"><ui-switch></ui-switch>
 <ui-switch default-checked></ui-switch>
 <ui-switch disabled></ui-switch>
-<ui-switch default-checked disabled></ui-switch>`,
+<ui-switch default-checked disabled></ui-switch></div>`,
     },
   ],
   checkbox: [
     {
       label: 'States',
-      html: `<ui-checkbox label="Unchecked"></ui-checkbox>
+      html: `<div style="display:flex;gap:8px;flex-wrap:wrap"><ui-checkbox label="Unchecked"></ui-checkbox>
 <ui-checkbox label="Checked" checked></ui-checkbox>
 <ui-checkbox label="Indeterminate" indeterminate></ui-checkbox>
 <ui-checkbox label="Disabled" disabled></ui-checkbox>
-<ui-checkbox label="Checked Disabled" checked disabled></ui-checkbox>`,
+<ui-checkbox label="Checked Disabled" checked disabled></ui-checkbox></div>`,
     },
   ],
   radio: [
@@ -567,9 +577,9 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
     },
     {
       label: 'Values',
-      html: `<ui-rating value="1" readonly></ui-rating>
+      html: `<div style="display:flex;gap:8px;flex-wrap:wrap"><ui-rating value="1" readonly></ui-rating>
 <ui-rating value="3" readonly></ui-rating>
-<ui-rating value="5" readonly></ui-rating>`,
+<ui-rating value="5" readonly></ui-rating></div>`,
     },
     {
       label: 'Disabled',
@@ -583,11 +593,11 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
     },
     {
       label: 'Circular Determinate',
-      html: `<ui-circular-progress value="0"></ui-circular-progress>
+      html: `<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><ui-circular-progress value="0"></ui-circular-progress>
 <ui-circular-progress value="25"></ui-circular-progress>
 <ui-circular-progress value="50"></ui-circular-progress>
 <ui-circular-progress value="75"></ui-circular-progress>
-<ui-circular-progress value="100"></ui-circular-progress>`,
+<ui-circular-progress value="100"></ui-circular-progress></div>`,
     },
     {
       label: 'Linear Indeterminate',
@@ -656,11 +666,11 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
   paper: [
     {
       label: 'Elevations',
-      html: `<ui-paper elevation="0" style="padding:16px">Elevation 0</ui-paper>
+      html: `<div style="display:flex;gap:8px;flex-wrap:wrap"><ui-paper elevation="0" style="padding:16px">Elevation 0</ui-paper>
 <ui-paper elevation="1" style="padding:16px">Elevation 1</ui-paper>
 <ui-paper elevation="3" style="padding:16px">Elevation 3</ui-paper>
 <ui-paper elevation="6" style="padding:16px">Elevation 6</ui-paper>
-<ui-paper elevation="12" style="padding:16px">Elevation 12</ui-paper>`,
+<ui-paper elevation="12" style="padding:16px">Elevation 12</ui-paper></div>`,
     },
   ],
   accordion: [
@@ -735,7 +745,7 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
   tooltip: [
     {
       label: 'Placements',
-      html: `<ui-tooltip label="Top tooltip">
+      html: `<div style="display:flex;gap:8px;flex-wrap:wrap"><ui-tooltip label="Top tooltip">
   <ui-button variant="secondary">Top</ui-button>
 </ui-tooltip>
 <ui-tooltip label="Bottom tooltip" placement="bottom">
@@ -746,21 +756,21 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
 </ui-tooltip>
 <ui-tooltip label="Right tooltip" placement="right">
   <ui-button variant="secondary">Right</ui-button>
-</ui-tooltip>`,
+</ui-tooltip></div>`,
     },
   ],
   link: [
     {
       label: 'Underline Styles',
-      html: `<ui-link href="#">Default</ui-link>
+      html: `<div style="display:flex;gap:8px;flex-wrap:wrap"><ui-link href="#">Default</ui-link>
 <ui-link href="#" underline="always">Always</ui-link>
-<ui-link href="#" underline="none">None</ui-link>`,
+<ui-link href="#" underline="none">None</ui-link></div>`,
     },
     {
       label: 'Colors',
-      html: `<ui-link href="#" color="primary">Primary</ui-link>
+      html: `<div style="display:flex;gap:8px;flex-wrap:wrap"><ui-link href="#" color="primary">Primary</ui-link>
 <ui-link href="#" color="secondary">Secondary</ui-link>
-<ui-link href="#" color="inherit">Inherit</ui-link>`,
+<ui-link href="#" color="inherit">Inherit</ui-link></div>`,
     },
   ],
   typography: [
@@ -917,19 +927,16 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
   kbd: [
     {
       label: 'Combinations',
-      html: `<ui-kbd>Ctrl</ui-kbd> + <ui-kbd>C</ui-kbd>
-<span style="margin:0 16px"></span>
-<ui-kbd>Ctrl</ui-kbd> + <ui-kbd>V</ui-kbd>
-<span style="margin:0 16px"></span>
-<ui-kbd>Shift</ui-kbd> + <ui-kbd>Enter</ui-kbd>
-<span style="margin:0 16px"></span>
-<ui-kbd>Esc</ui-kbd>`,
+      html: `<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center"><span><ui-kbd>Ctrl</ui-kbd> + <ui-kbd>C</ui-kbd></span>
+<span><ui-kbd>Ctrl</ui-kbd> + <ui-kbd>V</ui-kbd></span>
+<span><ui-kbd>Shift</ui-kbd> + <ui-kbd>Enter</ui-kbd></span>
+<ui-kbd>Esc</ui-kbd></div>`,
     },
   ],
   'copy-button': [
     {
-      html: `<ui-copy-button value="Hello, World!">Copy Text</ui-copy-button>
-<ui-copy-button value="npm install storybook-lit">Copy Command</ui-copy-button>`,
+      html: `<div style="display:flex;gap:8px;flex-wrap:wrap"><ui-copy-button value="Hello, World!">Copy Text</ui-copy-button>
+<ui-copy-button value="npm install storybook-lit">Copy Command</ui-copy-button></div>`,
     },
   ],
   'hover-card': [
@@ -1031,15 +1038,15 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
   toggle: [
     {
       label: 'States',
-      html: `<ui-toggle>Default</ui-toggle>
+      html: `<div style="display:flex;gap:8px;flex-wrap:wrap"><ui-toggle>Default</ui-toggle>
 <ui-toggle pressed>Pressed</ui-toggle>
-<ui-toggle disabled>Disabled</ui-toggle>`,
+<ui-toggle disabled>Disabled</ui-toggle></div>`,
     },
   ],
   fab: [
     {
       label: 'Sizes',
-      html: `<ui-fab size="small">
+      html: `<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><ui-fab size="small">
   <svg slot="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
 </ui-fab>
 <ui-fab>
@@ -1047,7 +1054,7 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
 </ui-fab>
 <ui-fab size="large">
   <svg slot="icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-</ui-fab>`,
+</ui-fab></div>`,
     },
     {
       label: 'Extended',
@@ -1136,6 +1143,24 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
   </ui-step>
   <ui-step completed>
     <ui-step-label>Review</ui-step-label>
+  </ui-step>
+</ui-stepper>
+</div>`,
+    },
+    {
+      label: 'Vertical',
+      html: `<div style="width:100%;max-width:400px">
+<ui-stepper orientation="vertical" active-step="1">
+  <ui-step completed>
+    <ui-step-label>Create account</ui-step-label>
+    <p style="margin:0;color:#6b7280;font-size:14px">Account created successfully.</p>
+  </ui-step>
+  <ui-step>
+    <ui-step-label>Personal details</ui-step-label>
+    <p style="margin:0;color:#6b7280;font-size:14px">Fill in your name, email, and phone number.</p>
+  </ui-step>
+  <ui-step>
+    <ui-step-label>Review & submit</ui-step-label>
   </ui-step>
 </ui-stepper>
 </div>`,
@@ -1262,7 +1287,16 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
   ],
   'date-range-picker': [
     {
+      label: 'Basic',
       html: `<ui-date-range-picker label="Date range" style="width:340px"></ui-date-range-picker>`,
+    },
+    {
+      label: 'With Shortcuts',
+      html: `<ui-date-range-picker label="Date range" shortcuts style="width:340px"></ui-date-range-picker>`,
+    },
+    {
+      label: 'Static with Shortcuts',
+      html: `<ui-date-range-picker variant="static" shortcuts></ui-date-range-picker>`,
     },
   ],
   grid: [
@@ -1417,10 +1451,13 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
     {
       label: 'Toast Types',
       html: `<ui-toaster position="bottom-right"></ui-toaster>
-<ui-button onclick="import('storybook-lit').then(m=>m.toast('Default toast message'))">Default</ui-button>
-<ui-button onclick="import('storybook-lit').then(m=>m.toast.success('Operation successful!'))">Success</ui-button>
-<ui-button onclick="import('storybook-lit').then(m=>m.toast.error('Something went wrong'))">Error</ui-button>
-<ui-button onclick="import('storybook-lit').then(m=>m.toast.info('Here is some info'))">Info</ui-button>`,
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<ui-button variant="secondary" onclick="window.__storybook_lit.toast('Default toast message')">Default</ui-button>
+<ui-button variant="primary" onclick="window.__storybook_lit.toast.success('Operation successful!')">Success</ui-button>
+<ui-button variant="destructive" onclick="window.__storybook_lit.toast.error('Something went wrong')">Error</ui-button>
+<ui-button variant="secondary" onclick="window.__storybook_lit.toast.info('Here is some info')">Info</ui-button>
+<ui-button variant="secondary" onclick="window.__storybook_lit.toast.warning('Careful with that!')">Warning</ui-button>
+</div>`,
     },
   ],
   'speed-dial': [
@@ -1545,6 +1582,7 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
   ],
   'tree-view': [
     {
+      label: 'Simple Tree View',
       html: `<div style="width:100%;max-width:300px;border:1px solid #e5e7eb;border-radius:8px;padding:8px">
 <ui-simple-tree-view>
   <ui-tree-item item-id="1" label="Documents">
@@ -1558,6 +1596,18 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
   </ui-tree-item>
   <ui-tree-item item-id="3" label="Notes.txt"></ui-tree-item>
 </ui-simple-tree-view>
+</div>`,
+    },
+    {
+      label: 'Rich Tree View',
+      html: `<div style="width:100%;max-width:300px;border:1px solid #e5e7eb;border-radius:8px;padding:8px">
+<ui-rich-tree-view data-props='{"items":[{"id":"src","label":"src","children":[{"id":"components","label":"components","children":[{"id":"app","label":"App.tsx"},{"id":"header","label":"Header.tsx"},{"id":"footer","label":"Footer.tsx"}]},{"id":"utils","label":"utils","children":[{"id":"helpers","label":"helpers.ts"},{"id":"constants","label":"constants.ts"}]},{"id":"index","label":"index.ts"}]},{"id":"public","label":"public","children":[{"id":"favicon","label":"favicon.ico"},{"id":"robots","label":"robots.txt"}]},{"id":"pkg","label":"package.json"},{"id":"readme","label":"README.md"}],"defaultExpandedItems":["src","components"]}'></ui-rich-tree-view>
+</div>`,
+    },
+    {
+      label: 'Rich Tree View with Drag & Drop Reordering',
+      html: `<div style="width:100%;max-width:300px;border:1px solid #e5e7eb;border-radius:8px;padding:8px">
+<ui-rich-tree-view items-reordering items-reordering-handle data-props='{"items":[{"id":"todo","label":"To Do","children":[{"id":"t1","label":"Design homepage"},{"id":"t2","label":"Write tests"},{"id":"t3","label":"Fix bug #42"}]},{"id":"progress","label":"In Progress","children":[{"id":"p1","label":"API integration"},{"id":"p2","label":"Code review"}]},{"id":"done","label":"Done","children":[{"id":"d1","label":"Setup project"},{"id":"d2","label":"Create database schema"}]}],"defaultExpandedItems":["todo","progress","done"]}'></ui-rich-tree-view>
 </div>`,
     },
   ],

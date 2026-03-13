@@ -1,6 +1,6 @@
 # Sonner
 
-<Demo label="Toast Types" html="<ui-toaster position=&quot;bottom-right&quot;></ui-toaster><ui-button onclick=&quot;import('storybook-lit').then(m=>m.toast('Default toast message'))&quot;>Default</ui-button><ui-button onclick=&quot;import('storybook-lit').then(m=>m.toast.success('Operation successful!'))&quot;>Success</ui-button><ui-button onclick=&quot;import('storybook-lit').then(m=>m.toast.error('Something went wrong'))&quot;>Error</ui-button><ui-button onclick=&quot;import('storybook-lit').then(m=>m.toast.info('Here is some info'))&quot;>Info</ui-button>" />
+<Demo label="Toast Types" html="<ui-toaster position=&quot;bottom-right&quot;></ui-toaster><div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><ui-button variant=&quot;secondary&quot; onclick=&quot;window.__storybook_lit.toast('Default toast message')&quot;>Default</ui-button><ui-button variant=&quot;primary&quot; onclick=&quot;window.__storybook_lit.toast.success('Operation successful!')&quot;>Success</ui-button><ui-button variant=&quot;destructive&quot; onclick=&quot;window.__storybook_lit.toast.error('Something went wrong')&quot;>Error</ui-button><ui-button variant=&quot;secondary&quot; onclick=&quot;window.__storybook_lit.toast.info('Here is some info')&quot;>Info</ui-button><ui-button variant=&quot;secondary&quot; onclick=&quot;window.__storybook_lit.toast.warning('Careful with that!')&quot;>Warning</ui-button></div>" />
 
 - **Tag**: `<ui-toaster>`
 - **Class**: `UiToaster`

@@ -1,8 +1,8 @@
 # Link
 
-<Demo label="Underline Styles" html="<ui-link href=&quot;#&quot;>Default</ui-link><ui-link href=&quot;#&quot; underline=&quot;always&quot;>Always</ui-link><ui-link href=&quot;#&quot; underline=&quot;none&quot;>None</ui-link>" />
+<Demo label="Underline Styles" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><ui-link href=&quot;#&quot;>Default</ui-link><ui-link href=&quot;#&quot; underline=&quot;always&quot;>Always</ui-link><ui-link href=&quot;#&quot; underline=&quot;none&quot;>None</ui-link></div>" />
 
-<Demo label="Colors" html="<ui-link href=&quot;#&quot; color=&quot;primary&quot;>Primary</ui-link><ui-link href=&quot;#&quot; color=&quot;secondary&quot;>Secondary</ui-link><ui-link href=&quot;#&quot; color=&quot;inherit&quot;>Inherit</ui-link>" />
+<Demo label="Colors" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><ui-link href=&quot;#&quot; color=&quot;primary&quot;>Primary</ui-link><ui-link href=&quot;#&quot; color=&quot;secondary&quot;>Secondary</ui-link><ui-link href=&quot;#&quot; color=&quot;inherit&quot;>Inherit</ui-link></div>" />
 
 The Link component allows you to easily customize anchor elements with theme colors and typography styles.
 

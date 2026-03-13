@@ -1,6 +1,6 @@
 # Checkbox
 
-<Demo label="States" html="<ui-checkbox label=&quot;Unchecked&quot;></ui-checkbox><ui-checkbox label=&quot;Checked&quot; checked></ui-checkbox><ui-checkbox label=&quot;Indeterminate&quot; indeterminate></ui-checkbox><ui-checkbox label=&quot;Disabled&quot; disabled></ui-checkbox><ui-checkbox label=&quot;Checked Disabled&quot; checked disabled></ui-checkbox>" />
+<Demo label="States" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><ui-checkbox label=&quot;Unchecked&quot;></ui-checkbox><ui-checkbox label=&quot;Checked&quot; checked></ui-checkbox><ui-checkbox label=&quot;Indeterminate&quot; indeterminate></ui-checkbox><ui-checkbox label=&quot;Disabled&quot; disabled></ui-checkbox><ui-checkbox label=&quot;Checked Disabled&quot; checked disabled></ui-checkbox></div>" />
 
 - **Tag**: `<ui-checkbox>`
 - **Class**: `UiCheckbox`
