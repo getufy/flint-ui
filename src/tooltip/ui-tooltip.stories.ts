@@ -17,14 +17,6 @@ const meta: Meta = {
         openDelay: { control: 'number' },
         closeDelay: { control: 'number' },
     },
-};
-
-export default meta;
-
-type Story = StoryObj;
-
-/* ─── Playground ─────────────────────────────────────────── */
-export const Playground: Story = {
     args: {
         label: 'This is a tooltip',
         placement: 'top',
@@ -33,6 +25,14 @@ export const Playground: Story = {
         openDelay: 0,
         closeDelay: 0,
     },
+};
+
+export default meta;
+
+type Story = StoryObj;
+
+/* ─── Playground ─────────────────────────────────────────── */
+export const Playground: Story = {
     render: (args) => html`
         <div style="padding: 100px; display: flex; justify-content: center;">
             <ui-tooltip

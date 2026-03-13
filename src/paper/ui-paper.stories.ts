@@ -30,6 +30,11 @@ const meta: Meta = {
             description: 'If true, corners are square (border-radius: 0).',
         },
     },
+    args: {
+        elevation: 2,
+        variant: 'elevated',
+        square: false,
+    },
 };
 
 export default meta;
@@ -39,11 +44,6 @@ type Story = StoryObj;
 // ── Playground ────────────────────────────────────────────────────────────────
 
 export const Playground: Story = {
-    args: {
-        elevation: 2,
-        variant: 'elevated',
-        square: false,
-    },
     render: (args) => html`
         <ui-box p="48px" bgcolor="var(--ui-muted-background, #f5f5f5)" display="flex" justifyContent="center">
             <ui-paper

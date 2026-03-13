@@ -20,6 +20,12 @@ const meta: Meta = {
         closeOnSelect: { control: 'boolean' },
         scrollable: { control: 'boolean' },
     },
+    args: {
+        open: false,
+        placement: 'bottom-start',
+        closeOnSelect: true,
+        scrollable: false,
+    },
 };
 export default meta;
 type Story = StoryObj;
@@ -44,7 +50,6 @@ const wrap = (content: unknown) => html`
 /* Basic Menu                                                          */
 /* ================================================================== */
 export const Basic: Story = {
-    args: { open: false, placement: 'bottom-start', closeOnSelect: true },
     render: (args) => wrap(html`
         <div style="position:relative;display:inline-block;">
             <ui-button @click=${toggle}>Open Menu</ui-button>

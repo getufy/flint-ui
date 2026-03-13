@@ -18,6 +18,15 @@ const meta: Meta = {
         'indicator-color': { control: 'text', description: "'primary' | 'secondary' | CSS color" },
         'scroll-buttons': { control: { type: 'select' }, options: ['auto', 'false'] },
     },
+    args: {
+        value: 'tab1',
+        orientation: 'horizontal',
+        variant: 'standard',
+        centered: false,
+        'text-color': 'primary',
+        'indicator-color': 'primary',
+        'scroll-buttons': 'auto',
+    },
     parameters: { layout: 'padded' },
 };
 export default meta;
@@ -49,15 +58,6 @@ const iconFolder = html`<svg slot="icon" width="18" height="18" viewBox="0 0 24 
 /* Playground                                                           */
 /* ================================================================== */
 export const Playground: Story = {
-    args: {
-        value: 'tab1',
-        orientation: 'horizontal',
-        variant: 'standard',
-        centered: false,
-        'text-color': 'primary',
-        'indicator-color': 'primary',
-        'scroll-buttons': 'auto',
-    },
     render: (args) => html`
         ${wrap(html`
             <ui-tabs

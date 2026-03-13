@@ -16,13 +16,6 @@ const meta: Meta = {
         name: { control: 'text' },
         value: { control: 'text' },
     },
-};
-
-export default meta;
-
-type Story = StoryObj;
-
-export const Playground: Story = {
     args: {
         label: 'Enable Notifications',
         checked: false,
@@ -32,6 +25,13 @@ export const Playground: Story = {
         name: 'notifications',
         value: 'on',
     },
+};
+
+export default meta;
+
+type Story = StoryObj;
+
+export const Playground: Story = {
     render: (args) => html`
     <ui-switch
       .label=${args.label}

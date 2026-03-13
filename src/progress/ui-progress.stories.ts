@@ -20,6 +20,15 @@ const meta: Meta = {
         height: { control: 'number' },
         label: { control: 'text' },
     },
+    args: {
+        variant: 'indeterminate',
+        value: 60,
+        color: 'primary',
+        label: '',
+        size: 40,
+        thickness: 3.6,
+        height: 4,
+    },
 };
 
 export default meta;
@@ -30,14 +39,6 @@ type Story = StoryObj;
 
 export const CircularPlayground: Story = {
     name: 'Circular — Playground',
-    args: {
-        variant: 'indeterminate',
-        value: 60,
-        size: 40,
-        thickness: 3.6,
-        color: 'primary',
-        label: '',
-    },
     render: (args) => html`
     <ui-circular-progress
       .variant="${args.variant}"
@@ -52,13 +53,6 @@ export const CircularPlayground: Story = {
 
 export const LinearPlayground: Story = {
     name: 'Linear — Playground',
-    args: {
-        variant: 'indeterminate',
-        value: 60,
-        height: 4,
-        color: 'primary',
-        label: '',
-    },
     render: (args) => html`
     <div style="width: 100%; max-width: 400px; padding: 20px;">
       <ui-linear-progress

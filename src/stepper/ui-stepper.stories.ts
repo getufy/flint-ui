@@ -16,6 +16,12 @@ const meta: Meta = {
         alternativeLabel: { control: 'boolean' },
         nonLinear: { control: 'boolean' },
     },
+    args: {
+        activeStep: 1,
+        orientation: 'horizontal',
+        alternativeLabel: false,
+        nonLinear: false,
+    },
 };
 export default meta;
 type Story = StoryObj;
@@ -33,7 +39,6 @@ const card = (inner: unknown) => html`
 /* Playground                                                           */
 /* ================================================================== */
 export const Playground: Story = {
-    args: { activeStep: 1, orientation: 'horizontal', alternativeLabel: false, nonLinear: false },
     render: (args) => html`
         <ui-stepper
             .activeStep=${args['activeStep'] as number}

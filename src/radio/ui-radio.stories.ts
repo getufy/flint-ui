@@ -17,13 +17,6 @@ const meta: Meta = {
         orientation: { control: 'select', options: ['vertical', 'horizontal'] },
         size: { control: 'select', options: ['sm', 'md', 'lg'] },
     },
-};
-
-export default meta;
-
-type Story = StoryObj;
-
-export const Playground: Story = {
     args: {
         name: 'playground',
         value: 'b',
@@ -33,6 +26,13 @@ export const Playground: Story = {
         orientation: 'vertical',
         size: 'md',
     },
+};
+
+export default meta;
+
+type Story = StoryObj;
+
+export const Playground: Story = {
     render: (args) => html`
         <ui-radio-group
             .name=${args['name']}

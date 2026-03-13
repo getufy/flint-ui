@@ -23,12 +23,6 @@ const meta: Meta = {
         size:         { control: 'select', options: ['sm', 'default', 'lg'] },
         resize:       { control: 'select', options: ['none', 'both', 'horizontal', 'vertical', 'auto'] },
     },
-};
-
-export default meta;
-type Story = StoryObj;
-
-export const Playground: Story = {
     args: {
         placeholder: 'Type your message here.',
         label: 'Message',
@@ -42,6 +36,12 @@ export const Playground: Story = {
         size: 'default',
         resize: 'vertical',
     },
+};
+
+export default meta;
+type Story = StoryObj;
+
+export const Playground: Story = {
     render: (args) => html`
     <ui-textarea
       style="max-width: 400px;"

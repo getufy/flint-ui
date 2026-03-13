@@ -440,6 +440,28 @@ describe('ui-table-pagination', () => {
         el.shadowRoot!.querySelector<HTMLButtonElement>('button[aria-label="Previous page"]')!.click();
         expect(handler.mock.calls[0][0].detail.page).toBe(2);
     });
+
+    it('syncs _page when page prop changes after first render', async () => {
+        const el = await fixture<UiTablePagination>(html`
+            <ui-table-pagination .count=${100} .page=${0} .rowsPerPage=${10}></ui-table-pagination>
+        `);
+        await el.updateComplete;
+        expect(el.shadowRoot!.textContent).toContain('1-10 of 100');
+        el.page = 4;
+        await el.updateComplete;
+        expect(el.shadowRoot!.textContent).toContain('41-50 of 100');
+    });
+
+    it('syncs _rowsPerPage when rowsPerPage prop changes after first render', async () => {
+        const el = await fixture<UiTablePagination>(html`
+            <ui-table-pagination .count=${100} .page=${0} .rowsPerPage=${10}></ui-table-pagination>
+        `);
+        await el.updateComplete;
+        expect(el.shadowRoot!.textContent).toContain('1-10 of 100');
+        el.rowsPerPage = 25;
+        await el.updateComplete;
+        expect(el.shadowRoot!.textContent).toContain('1-25 of 100');
+    });
 });
 
 /* ------------------------------------------------------------------ */

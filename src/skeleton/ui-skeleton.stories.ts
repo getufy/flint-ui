@@ -21,13 +21,6 @@ const meta: Meta = {
         dark: { control: 'boolean', description: 'Force dark-mode styles regardless of OS preference.' },
         label: { control: 'text', description: 'aria-label on host for screen readers. Set to empty to silence.' },
     },
-};
-
-export default meta;
-
-type Story = StoryObj;
-
-export const Playground: Story = {
     args: {
         variant: 'text',
         animation: 'pulse',
@@ -36,6 +29,13 @@ export const Playground: Story = {
         dark: false,
         label: 'Loading...',
     },
+};
+
+export default meta;
+
+type Story = StoryObj;
+
+export const Playground: Story = {
     render: (args) => html`
         <ui-skeleton
             .variant=${args.variant}

@@ -26,6 +26,15 @@ const meta: Meta = {
             options: ['default', 'info', 'success', 'warning', 'error'],
         },
     },
+    args: {
+        open: false,
+        message: 'Note archived',
+        anchorOrigin: 'bottom-center',
+        autoHideDuration: 6000,
+        pauseOnHover: true,
+        closable: false,
+        variant: 'default',
+    },
 };
 
 export default meta;
@@ -36,15 +45,6 @@ type Story = StoryObj;
  * Basic snackbar with a message and an action button.
  */
 export const Basic: Story = {
-    args: {
-        open: false,
-        message: 'Note archived',
-        anchorOrigin: 'bottom-center',
-        autoHideDuration: 6000,
-        pauseOnHover: true,
-        closable: false,
-        variant: 'default',
-    },
     render: (args) => html`
         <div>
             <ui-button variant="secondary" @click=${(e: Event) => {

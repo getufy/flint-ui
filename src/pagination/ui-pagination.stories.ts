@@ -26,6 +26,22 @@ const meta: Meta = {
         boundaryCount: { control: { type: 'number', min: 0 } },
         disabled: { control: 'boolean' },
     },
+    args: {
+        count: 10,
+        page: 1,
+        variant: 'text',
+        shape: 'circular',
+        size: 'medium',
+        color: 'primary',
+        showFirstButton: false,
+        showLastButton: false,
+        hidePrevButton: false,
+        hideNextButton: false,
+        siblingCount: 1,
+        boundaryCount: 1,
+        disabled: false,
+        label: '',
+    },
 };
 export default meta;
 type Story = StoryObj;
@@ -49,12 +65,6 @@ const section = (content: unknown) => html`
 /* Playground                                                           */
 /* ================================================================== */
 export const Playground: Story = {
-    args: {
-        count: 10, page: 1, variant: 'text', shape: 'circular',
-        size: 'medium', color: 'primary', showFirstButton: false,
-        showLastButton: false, hidePrevButton: false, hideNextButton: false,
-        siblingCount: 1, boundaryCount: 1, disabled: false, label: '',
-    },
     render: (args) => html`
         <ui-paper elevation="1" style="padding:24px;font-family:Inter,sans-serif;">
             <ui-pagination

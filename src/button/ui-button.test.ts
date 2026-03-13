@@ -13,6 +13,10 @@ describe('ui-button', () => {
         const button = el.shadowRoot!.querySelector('button')!;
         expect(button.className).toContain('primary');
         expect(button.className).toContain('medium');
+        expect(button.className).not.toContain('secondary');
+        expect(button.className).not.toContain('destructive');
+        expect(button.className).not.toContain('small');
+        expect(button.className).not.toContain('large');
         expect(button.disabled).toBe(false);
     });
 
@@ -21,6 +25,10 @@ describe('ui-button', () => {
         const button = el.shadowRoot!.querySelector('button')!;
         expect(button.className).toContain('secondary');
         expect(button.className).toContain('small');
+        expect(button.className).not.toContain('primary');
+        expect(button.className).not.toContain('destructive');
+        expect(button.className).not.toContain('medium');
+        expect(button.className).not.toContain('large');
     });
 
     it('passes disabled state to native button', async () => {
@@ -39,6 +47,8 @@ describe('ui-button', () => {
         const el = await fixture<UiButton>(html`<ui-button size="large">Large</ui-button>`);
         const button = el.shadowRoot!.querySelector('button')!;
         expect(button.className).toContain('large');
+        expect(button.className).not.toContain('small');
+        expect(button.className).not.toContain('medium');
     });
 
     it('renders slotted content', async () => {
