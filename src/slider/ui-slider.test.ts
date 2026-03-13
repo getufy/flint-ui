@@ -309,3 +309,334 @@ describe('ui-slider — form association', () => {
     expect(el.value).toBe(80);
   });
 });
+
+// ── Safe value boundary computation ────────────────────────────────────────
+
+describe('ui-slider — safe value computation', () => {
+  it('uses min as safeMin when min < max', async () => {
+    const el = await fixture<UiSlider>(html`<ui-slider min="10" max="90" .value=${50}></ui-slider>`);
+    expect(input(el).min).toBe('10');
+  });
+
+  it('uses 0 as safeMin when min equals max', async () => {
+    // Kills mutations 8499/8500/8514: _safeMin returns 0, not min, when min >= max
+    const el = await fixture<UiSlider>(html`<ui-slider min="50" max="50" .value=${25}></ui-slider>`);
+    expect(input(el).min).toBe('0');
+  });
+
+  it('uses 0 as safeMin when min > max', async () => {
+    const el = await fixture<UiSlider>(html`<ui-slider min="80" max="20" .value=${50}></ui-slider>`);
+    expect(input(el).min).toBe('0');
+  });
+
+  it('uses max as safeMax when max > min', async () => {
+    const el = await fixture<UiSlider>(html`<ui-slider min="0" max="200" .value=${100}></ui-slider>`);
+    expect(input(el).max).toBe('200');
+  });
+
+  it('uses safeMin + 100 as safeMax when max equals min', async () => {
+    // Kills mutations 8512/8517/8519/8521: safeMax = 0 + 100 = 100
+    const el = await fixture<UiSlider>(html`<ui-slider min="50" max="50" .value=${25}></ui-slider>`);
+    expect(input(el).max).toBe('100');
+  });
+
+  it('uses safeMin + 100 as safeMax when max < min', async () => {
+    // safeMin=0 (because min>max), safeMax = 0 + 100 = 100 (not 0 - 100 or other arithmetic)
+    const el = await fixture<UiSlider>(html`<ui-slider min="80" max="20" .value=${50}></ui-slider>`);
+    expect(input(el).max).toBe('100');
+  });
+
+  it('clamps value to safeMax (100) when range is invalid and value is high', async () => {
+    const el = await fixture<UiSlider>(html`<ui-slider min="50" max="50" .value=${200}></ui-slider>`);
+    // safeMin=0, safeMax=100, value clamped to 100
+    expect(parseFloat(input(el).value)).toBe(100);
+  });
+
+  it('clamps value to safeMin (0) when range is invalid and value is negative', async () => {
+    const el = await fixture<UiSlider>(html`<ui-slider min="50" max="50" .value=${-10}></ui-slider>`);
+    // safeMin=0, value clamped to 0
+    expect(parseFloat(input(el).value)).toBe(0);
+  });
+});
+
+// ── Track gradient style ────────────────────────────────────────────────────
+
+describe('ui-slider — track gradient', () => {
+  it('uses "to right" gradient direction in horizontal mode', async () => {
+    // Kills mutation 8557: string 'to right' changed to ''
+    const el = await fixture<UiSlider>(html`<ui-slider .value=${50}></ui-slider>`);
+    const style = input(el).getAttribute('style') ?? '';
+    expect(style).toContain('to right');
+    expect(style).not.toContain('to left');
+  });
+
+  it('uses "to left" gradient direction in vertical mode', async () => {
+    // Kills mutation 8559: string 'to left' changed to ''
+    const el = await fixture<UiSlider>(html`<ui-slider vertical .value=${50}></ui-slider>`);
+    const style = input(el).getAttribute('style') ?? '';
+    expect(style).toContain('to left');
+    expect(style).not.toContain('to right');
+  });
+
+  it('calculates 25% fill for quarter-range value', async () => {
+    // Kills arithmetic mutations — use regex to avoid substring false positives
+    const el = await fixture<UiSlider>(html`<ui-slider min="0" max="100" .value=${25}></ui-slider>`);
+    const style = input(el).getAttribute('style') ?? '';
+    expect(style).toMatch(/\) 25%, /);
+  });
+
+  it('calculates 75% fill for three-quarter-range value', async () => {
+    const el = await fixture<UiSlider>(html`<ui-slider min="0" max="100" .value=${75}></ui-slider>`);
+    const style = input(el).getAttribute('style') ?? '';
+    expect(style).toMatch(/\) 75%, /);
+  });
+
+  it('calculates 50% fill precisely for mid-range with non-zero min', async () => {
+    // value=15, min=10, max=20: ((15-10)/(20-10))*100 = 50%
+    // Kills mutation 8552: safeVal + safeMin → gives 250%, NOT 50%
+    // Use regex so '250%' doesn't false-positively match '50%'
+    const el = await fixture<UiSlider>(html`<ui-slider min="10" max="20" .value=${15}></ui-slider>`);
+    const style = input(el).getAttribute('style') ?? '';
+    expect(style).toMatch(/\) 50%, /);
+    expect(style).not.toMatch(/\) 250%, /);
+  });
+
+  it('calculates 0% fill when value equals min', async () => {
+    const el = await fixture<UiSlider>(html`<ui-slider min="0" max="100" .value=${0}></ui-slider>`);
+    const style = input(el).getAttribute('style') ?? '';
+    // Both fill stops at 0%
+    expect(style).toMatch(/var\(--ui-primary-color.*?\) 0%.*?var\(--ui-primary-color.*?\) 0%/);
+  });
+
+  it('calculates 100% fill when value equals max', async () => {
+    const el = await fixture<UiSlider>(html`<ui-slider min="0" max="100" .value=${100}></ui-slider>`);
+    const style = input(el).getAttribute('style') ?? '';
+    expect(style).toContain('100%, var(--ui-input-border-color');
+  });
+
+  it('vertical gradient also encodes correct percentage', async () => {
+    const el = await fixture<UiSlider>(html`<ui-slider vertical min="0" max="100" .value=${30}></ui-slider>`);
+    const style = input(el).getAttribute('style') ?? '';
+    expect(style).toContain('30%');
+    expect(style).toContain('to left');
+  });
+});
+
+// ── Class names always present ──────────────────────────────────────────────
+
+describe('ui-slider — required class names', () => {
+  it('wrapper always has slider-wrapper class in horizontal mode', async () => {
+    // Kills mutation 8556: classMap object literal → {}
+    const el = await fixture<UiSlider>(html`<ui-slider></ui-slider>`);
+    expect(el.shadowRoot!.querySelector('.slider-wrapper')).not.toBeNull();
+  });
+
+  it('label-row always has label-row class', async () => {
+    // Kills mutation 8558: label-row classMap → {}
+    const el = await fixture<UiSlider>(html`<ui-slider></ui-slider>`);
+    expect(el.shadowRoot!.querySelector('.label-row')).not.toBeNull();
+  });
+
+  it('track container always has track-container class', async () => {
+    // Kills mutation 8562: track classMap → {}
+    const el = await fixture<UiSlider>(html`<ui-slider></ui-slider>`);
+    expect(el.shadowRoot!.querySelector('.track-container')).not.toBeNull();
+  });
+
+  it('wrapper does NOT have vertical class in horizontal mode', async () => {
+    // Kills mutation 8532: 'slider-wrapper': true → false
+    const el = await fixture<UiSlider>(html`<ui-slider></ui-slider>`);
+    const wrapper = el.shadowRoot!.querySelector('.slider-wrapper')!;
+    expect(wrapper.classList.contains('vertical')).toBe(false);
+  });
+
+  it('input does NOT have vertical class in horizontal mode', async () => {
+    const el = await fixture<UiSlider>(html`<ui-slider></ui-slider>`);
+    expect(input(el).classList.contains('vertical')).toBe(false);
+  });
+
+  it('label-row has vertical class in vertical mode', async () => {
+    const el = await fixture<UiSlider>(html`<ui-slider vertical></ui-slider>`);
+    const row = el.shadowRoot!.querySelector('.label-row')!;
+    expect(row.classList.contains('vertical')).toBe(true);
+  });
+
+  it('label-row does NOT have vertical class in horizontal mode', async () => {
+    const el = await fixture<UiSlider>(html`<ui-slider></ui-slider>`);
+    const row = el.shadowRoot!.querySelector('.label-row')!;
+    expect(row.classList.contains('vertical')).toBe(false);
+  });
+});
+
+// ── defaultValue — first-update flag ───────────────────────────────────────
+
+describe('ui-slider — defaultValue first-update guard', () => {
+  it('defaultValue does not re-apply after programmatic value update', async () => {
+    // Kills mutation 8504: _firstUpdate → true (always applies defaultValue)
+    const el = await fixture<UiSlider>(html`<ui-slider default-value="37"></ui-slider>`);
+    expect(el.value).toBe(37);
+    el.value = 80;
+    await el.updateComplete;
+    // If _firstUpdate always true, would reset back to 37
+    expect(el.value).toBe(80);
+    expect(input(el).value).toBe('80');
+  });
+
+  it('fires input then reflects new value, not defaultValue', async () => {
+    const el = await fixture<UiSlider>(html`<ui-slider default-value="20"></ui-slider>`);
+    fireInput(el, '55');
+    await el.updateComplete;
+    expect(el.value).toBe(55);
+    expect(input(el).value).toBe('55');
+  });
+});
+
+// ── Form sync — OR vs AND in willUpdate ────────────────────────────────────
+
+describe('ui-slider — form sync on prop change', () => {
+  it('re-renders correctly when only name changes (no value change)', async () => {
+    // Kills mutation 8535: || → && (form sync requires BOTH value and name to change)
+    const el = await fixture<UiSlider>(html`<ui-slider name="vol" .value=${60}></ui-slider>`);
+    el.name = 'volume';
+    await el.updateComplete;
+    // Element should still render the correct value after name-only change
+    expect(el.name).toBe('volume');
+    expect(input(el).value).toBe('60');
+  });
+
+  it('form value syncs when value changes without name change', async () => {
+    const el = await fixture<UiSlider>(html`<ui-slider name="vol" .value=${50}></ui-slider>`);
+    el.value = 90;
+    await el.updateComplete;
+    expect(input(el).value).toBe('90');
+  });
+});
+
+// ── aria-label fallback ─────────────────────────────────────────────────────
+
+describe('ui-slider — aria-label fallback', () => {
+  it('aria-label is exactly "Slider" (not empty) when no label given', async () => {
+    // Kills mutation 8509: 'Slider' → ''
+    const el = await fixture<UiSlider>(html`<ui-slider></ui-slider>`);
+    const ariaLabel = input(el).getAttribute('aria-label');
+    expect(ariaLabel).toBe('Slider');
+    expect(ariaLabel).not.toBe('');
+  });
+
+  it('aria-label uses label text when provided (not fallback)', async () => {
+    const el = await fixture<UiSlider>(html`<ui-slider label="Volume"></ui-slider>`);
+    expect(input(el).getAttribute('aria-label')).toBe('Volume');
+    expect(input(el).getAttribute('aria-label')).not.toBe('Slider');
+  });
+});
+
+// ── displayStr conditional & aria-valuetext ─────────────────────────────────
+
+describe('ui-slider — displayStr and aria-valuetext', () => {
+  it('value-display shows String(value) when no formatValue', async () => {
+    // Kills mutation 8533: always calls formatValue even when undefined
+    const el = await fixture<UiSlider>(html`<ui-slider .value=${42} show-value></ui-slider>`);
+    const display = el.shadowRoot!.querySelector('.value-display');
+    expect(display).not.toBeNull();
+    expect(display!.textContent).toBe('42');
+  });
+
+  it('value-display shows formatted string when formatValue is set', async () => {
+    const el = await fixture<UiSlider>(html`<ui-slider .value=${42} show-value></ui-slider>`);
+    el.formatValue = (v) => `${v} units`;
+    await el.updateComplete;
+    expect(el.shadowRoot!.querySelector('.value-display')!.textContent).toBe('42 units');
+  });
+
+  it('aria-valuetext is exactly empty string when formatValue absent', async () => {
+    // Kills mutation 8536/8563
+    const el = await fixture<UiSlider>(html`<ui-slider .value=${50}></ui-slider>`);
+    expect(input(el).getAttribute('aria-valuetext')).toBe('');
+  });
+
+  it('aria-valuetext is non-empty when formatValue is present', async () => {
+    // Kills mutation 8563: false → always empty
+    const el = await fixture<UiSlider>(html`<ui-slider .value=${50}></ui-slider>`);
+    el.formatValue = (v) => `$${v}`;
+    await el.updateComplete;
+    const ariaValuetext = input(el).getAttribute('aria-valuetext');
+    expect(ariaValuetext).toBe('$50');
+    expect(ariaValuetext).not.toBe('');
+  });
+
+  it('formatValue receives the clamped safe value, not raw value', async () => {
+    const el = await fixture<UiSlider>(html`<ui-slider min="0" max="100" .value=${150} show-value></ui-slider>`);
+    el.formatValue = (v) => `val:${v}`;
+    await el.updateComplete;
+    // value clamped to 100
+    expect(el.shadowRoot!.querySelector('.value-display')!.textContent).toBe('val:100');
+  });
+});
+
+// ── Default property values ────────────────────────────────────────────────
+
+describe('ui-slider — default property values', () => {
+  it('disabled is false by default', async () => {
+    // Kills mutation: disabled = false → true
+    const el = await fixture<UiSlider>(html`<ui-slider></ui-slider>`);
+    expect(el.disabled).toBe(false);
+    expect(input(el).disabled).toBe(false);
+  });
+
+  it('name is empty string by default', async () => {
+    // Kills mutation: name = '' → "Stryker was here!"
+    const el = await fixture<UiSlider>(html`<ui-slider></ui-slider>`);
+    expect(el.name).toBe('');
+  });
+});
+
+// ── Event properties ───────────────────────────────────────────────────────
+
+describe('ui-slider — event properties', () => {
+  it('dispatched event has composed: true', async () => {
+    // Kills mutation: composed: true → false
+    let evt: CustomEvent | null = null;
+    const el = await fixture<UiSlider>(html`
+      <ui-slider @ui-slider-change=${(e: CustomEvent) => { evt = e; }}></ui-slider>
+    `);
+    fireInput(el, '50');
+    expect(evt).not.toBeNull();
+    expect(evt!.composed).toBe(true);
+  });
+
+  it('dispatched event has bubbles: true', async () => {
+    let evt: Event | null = null;
+    const el = await fixture<UiSlider>(html`
+      <ui-slider @ui-slider-change=${(e: Event) => { evt = e; }}></ui-slider>
+    `);
+    fireInput(el, '50');
+    expect(evt!.bubbles).toBe(true);
+  });
+});
+
+// ── Label-row empty when no label or value display ──────────────────────────
+
+describe('ui-slider — label-row content', () => {
+  it('label-row has no text content when label is absent and show-value is off', async () => {
+    // Kills string mutations: '' → "Stryker was here!" fallbacks in template
+    const el = await fixture<UiSlider>(html`<ui-slider></ui-slider>`);
+    const row = el.shadowRoot!.querySelector('.label-row')!;
+    expect(row.textContent?.trim()).toBe('');
+    expect(row.children.length).toBe(0);
+  });
+
+  it('label-row has only label element when label is set but show-value is off', async () => {
+    const el = await fixture<UiSlider>(html`<ui-slider label="Volume"></ui-slider>`);
+    const row = el.shadowRoot!.querySelector('.label-row')!;
+    expect(row.children.length).toBe(1);
+    expect(row.querySelector('label')).not.toBeNull();
+    expect(row.querySelector('.value-display')).toBeNull();
+  });
+
+  it('label-row has only value-display when show-value is set but no label', async () => {
+    const el = await fixture<UiSlider>(html`<ui-slider show-value .value=${42}></ui-slider>`);
+    const row = el.shadowRoot!.querySelector('.label-row')!;
+    expect(row.querySelector('.value-display')).not.toBeNull();
+    expect(row.querySelector('label')).toBeNull();
+  });
+});
