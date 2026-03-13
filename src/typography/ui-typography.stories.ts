@@ -22,6 +22,14 @@ const meta: Meta = {
         gutterBottom: { control: 'boolean' },
         paragraph: { control: 'boolean' },
     },
+    args: {
+        variant: 'body1',
+        color: 'textPrimary',
+        align: 'left',
+        noWrap: false,
+        gutterBottom: false,
+        paragraph: false,
+    },
 };
 export default meta;
 
@@ -37,14 +45,6 @@ const sectionStyles = `
 /* Playground                                                          */
 /* ================================================================== */
 export const Playground: Story = {
-    args: {
-        variant: 'body1',
-        color: 'textPrimary',
-        align: 'left',
-        noWrap: false,
-        gutterBottom: false,
-        paragraph: false,
-    },
     render: (args) => html`
         <div style="${sectionStyles}">
             <ui-typography

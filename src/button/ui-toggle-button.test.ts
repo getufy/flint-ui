@@ -102,6 +102,11 @@ describe('ui-toggle-button', () => {
         expect(el.textContent?.trim()).toBe('Bold');
     });
 
+    it('has empty string as default value', async () => {
+        const el = await fixture<UiToggleButton>(html`<ui-toggle-button>X</ui-toggle-button>`);
+        expect(el.value).toBe('');
+    });
+
     describe('size prop', () => {
         it('defaults to md', async () => {
             const el = await fixture<UiToggleButton>(html`<ui-toggle-button>X</ui-toggle-button>`);

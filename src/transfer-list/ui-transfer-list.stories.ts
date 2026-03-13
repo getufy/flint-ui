@@ -11,6 +11,12 @@ const meta: Meta = {
         disabled: { control: 'boolean' },
         searchable: { control: 'boolean' },
     },
+    args: {
+        leftTitle: 'Available',
+        rightTitle: 'Chosen',
+        disabled: false,
+        searchable: false,
+    },
 };
 
 export default meta;
@@ -32,10 +38,6 @@ export const Playground: Story = {
     args: {
         options: defaultOptions,
         value: ['1', '3'],
-        leftTitle: 'Available',
-        rightTitle: 'Chosen',
-        disabled: false,
-        searchable: false,
     },
     render: (args) => html`
     <div style="padding: 20px;">

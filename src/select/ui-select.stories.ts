@@ -19,6 +19,17 @@ const meta: Meta = {
     errorMessage: { control: 'text' },
     size:         { control: 'select', options: ['sm', 'md', 'lg'] },
   },
+  args: {
+    label:        'Favorite Fruit',
+    placeholder:  'Pick a fruit',
+    multiple:     false,
+    disabled:     false,
+    readonly:     false,
+    required:     false,
+    error:        false,
+    errorMessage: '',
+    size:         'md',
+  },
 };
 
 export default meta;
@@ -37,15 +48,6 @@ const defaultOptions = [
 
 export const Playground: Story = {
   args: {
-    label:        'Favorite Fruit',
-    placeholder:  'Pick a fruit',
-    multiple:     false,
-    disabled:     false,
-    readonly:     false,
-    required:     false,
-    error:        false,
-    errorMessage: '',
-    size:         'md',
     options:      defaultOptions,
   },
   render: (args) => html`

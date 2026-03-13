@@ -90,7 +90,19 @@
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/date-range-picker/ui-date-range-picker.test.ts 2>&1 | tail -10)",
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --coverage src/sonner/ui-sonner.test.ts 2>&1 | tail -20)",
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/date-range-picker/ui-date-range-picker.test.ts 2>&1 | tail -20)",
-      "Bash(ls -d /Users/algoassasin/storybook-lit/src/*/  | sed 's|.*/src/||;s|/||' | sort)"
+      "Bash(ls -d /Users/algoassasin/storybook-lit/src/*/  | sed 's|.*/src/||;s|/||' | sort)",
+      "Bash(ls -d /Users/algoassasin/storybook-lit/src/*/ui-*.stories.ts)",
+      "Bash(ls -1 /Users/algoassasin/storybook-lit/src/*/ui-*.stories.ts | sort)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/input-otp/ui-input-otp.test.ts 2>&1 | tail -80)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --project components --coverage src/table/ 2>&1 | tail -40)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/input-otp/ui-input-otp.test.ts 2>&1 | tail -20)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --project components --coverage src/table/ 2>&1 | tail -20)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/date-range-picker/ui-date-range-picker.test.ts --coverage 2>&1 | tail -30)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/date-range-picker/ui-date-range-picker.test.ts 2>&1 | grep \"FAIL\\\\|Error\\\\|expected\\\\|AssertionError\" | head -20)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/button/ --project components 2>&1)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/date-range-picker/ui-date-range-picker.test.ts 2>&1 | tail -15)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/date-range-picker/ui-date-range-picker.test.ts --coverage 2>&1 | grep -A 10 \"Coverage report\")",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/date-range-picker/ui-date-range-picker.test.ts 2>&1 | tail -8)"
     ]
   }
 }

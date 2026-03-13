@@ -17,6 +17,15 @@ const meta: Meta = {
         isTouch: { control: 'boolean' },
         closeIcon: { control: 'text' },
     },
+    args: {
+        open: false,
+        direction: 'up',
+        hidden: false,
+        disabled: false,
+        persistentTooltips: false,
+        isTouch: false,
+        closeIcon: '',
+    },
 };
 export default meta;
 type Story = StoryObj;
@@ -59,10 +68,6 @@ const stageCorner = (content: unknown, corner = 'bottom-right') => {
 /* Playground                                                          */
 /* ================================================================== */
 export const Playground: Story = {
-    args: {
-        open: false, direction: 'up', hidden: false,
-        persistentTooltips: false, isTouch: false, closeIcon: '',
-    },
     render: (args) => stageCorner(html`
         <ui-speed-dial
             .open=${args.open}

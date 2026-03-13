@@ -46,6 +46,12 @@ Localization is handled by the browser's \`Intl.RelativeTimeFormat\` API — no 
         },
         sync: { control: 'boolean', description: 'Auto-update as time passes' },
     },
+    args: {
+        date: new Date(Date.now() - 3 * 60 * 1000).toISOString(),
+        format: 'long',
+        numeric: 'auto',
+        sync: false,
+    },
 };
 
 export default meta;
@@ -53,12 +59,6 @@ type Story = StoryObj;
 
 /* ── Playground ──────────────────────────────────────────────────── */
 export const Playground: Story = {
-    args: {
-        date: new Date(Date.now() - 3 * 60 * 1000).toISOString(),
-        format: 'long',
-        numeric: 'auto',
-        sync: false,
-    },
     render: (args) => html`
         <ui-relative-time
             .date=${args['date']}
