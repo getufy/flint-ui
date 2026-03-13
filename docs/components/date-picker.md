@@ -1,13 +1,6 @@
 # Date Picker
 
-<Demo label="States">
-
-<div style="display:flex;gap:16px;flex-wrap:wrap">
-<ui-date-picker label="Pick a date" style="width:260px"></ui-date-picker>
-<ui-date-picker label="Disabled" disabled style="width:260px"></ui-date-picker>
-</div>
-
-</Demo>
+<Demo label="States" html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><ui-date-picker label=&quot;Pick a date&quot; style=&quot;width:260px&quot;></ui-date-picker><ui-date-picker label=&quot;Disabled&quot; disabled style=&quot;width:260px&quot;></ui-date-picker></div>" />
 
 ## `<ui-date-picker-calendar>`
 

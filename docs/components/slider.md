@@ -1,22 +1,8 @@
 # Slider
 
-<Demo label="Values">
+<Demo label="Values" html="<div style=&quot;display:flex;flex-direction:column;gap:16px;width:100%;max-width:300px&quot;><ui-slider value=&quot;25&quot;></ui-slider><ui-slider value=&quot;50&quot;></ui-slider><ui-slider value=&quot;75&quot;></ui-slider></div>" />
 
-<div style="display:flex;flex-direction:column;gap:16px;width:100%;max-width:300px">
-<ui-slider value="25"></ui-slider>
-<ui-slider value="50"></ui-slider>
-<ui-slider value="75"></ui-slider>
-</div>
-
-</Demo>
-
-<Demo label="Disabled">
-
-<div style="width:100%;max-width:300px">
-<ui-slider value="40" disabled></ui-slider>
-</div>
-
-</Demo>
+<Demo label="Disabled" html="<div style=&quot;width:100%;max-width:300px&quot;><ui-slider value=&quot;40&quot; disabled></ui-slider></div>" />
 
 - **Tag**: `<ui-slider>`
 - **Class**: `UiSlider`

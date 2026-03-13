@@ -1,43 +1,6 @@
 # Menubar
 
-<Demo>
-
-<div style="width:100%;max-width:500px">
-<ui-menubar>
-  <ui-menubar-menu>
-    <ui-menubar-trigger>File</ui-menubar-trigger>
-    <ui-menubar-content>
-      <ui-menubar-item>New <ui-menubar-shortcut>Ctrl+N</ui-menubar-shortcut></ui-menubar-item>
-      <ui-menubar-item>Open <ui-menubar-shortcut>Ctrl+O</ui-menubar-shortcut></ui-menubar-item>
-      <ui-menubar-item>Save <ui-menubar-shortcut>Ctrl+S</ui-menubar-shortcut></ui-menubar-item>
-      <ui-menubar-separator></ui-menubar-separator>
-      <ui-menubar-item>Exit</ui-menubar-item>
-    </ui-menubar-content>
-  </ui-menubar-menu>
-  <ui-menubar-menu>
-    <ui-menubar-trigger>Edit</ui-menubar-trigger>
-    <ui-menubar-content>
-      <ui-menubar-item>Undo <ui-menubar-shortcut>Ctrl+Z</ui-menubar-shortcut></ui-menubar-item>
-      <ui-menubar-item>Redo <ui-menubar-shortcut>Ctrl+Y</ui-menubar-shortcut></ui-menubar-item>
-      <ui-menubar-separator></ui-menubar-separator>
-      <ui-menubar-item>Cut <ui-menubar-shortcut>Ctrl+X</ui-menubar-shortcut></ui-menubar-item>
-      <ui-menubar-item>Copy <ui-menubar-shortcut>Ctrl+C</ui-menubar-shortcut></ui-menubar-item>
-      <ui-menubar-item>Paste <ui-menubar-shortcut>Ctrl+V</ui-menubar-shortcut></ui-menubar-item>
-    </ui-menubar-content>
-  </ui-menubar-menu>
-  <ui-menubar-menu>
-    <ui-menubar-trigger>View</ui-menubar-trigger>
-    <ui-menubar-content>
-      <ui-menubar-item>Zoom In</ui-menubar-item>
-      <ui-menubar-item>Zoom Out</ui-menubar-item>
-      <ui-menubar-separator></ui-menubar-separator>
-      <ui-menubar-item>Full Screen</ui-menubar-item>
-    </ui-menubar-content>
-  </ui-menubar-menu>
-</ui-menubar>
-</div>
-
-</Demo>
+<Demo html="<div style=&quot;width:100%;max-width:500px&quot;><ui-menubar>  <ui-menubar-menu>    <ui-menubar-trigger>File</ui-menubar-trigger>    <ui-menubar-content>      <ui-menubar-item>New <ui-menubar-shortcut>Ctrl+N</ui-menubar-shortcut></ui-menubar-item>      <ui-menubar-item>Open <ui-menubar-shortcut>Ctrl+O</ui-menubar-shortcut></ui-menubar-item>      <ui-menubar-item>Save <ui-menubar-shortcut>Ctrl+S</ui-menubar-shortcut></ui-menubar-item>      <ui-menubar-separator></ui-menubar-separator>      <ui-menubar-item>Exit</ui-menubar-item>    </ui-menubar-content>  </ui-menubar-menu>  <ui-menubar-menu>    <ui-menubar-trigger>Edit</ui-menubar-trigger>    <ui-menubar-content>      <ui-menubar-item>Undo <ui-menubar-shortcut>Ctrl+Z</ui-menubar-shortcut></ui-menubar-item>      <ui-menubar-item>Redo <ui-menubar-shortcut>Ctrl+Y</ui-menubar-shortcut></ui-menubar-item>      <ui-menubar-separator></ui-menubar-separator>      <ui-menubar-item>Cut <ui-menubar-shortcut>Ctrl+X</ui-menubar-shortcut></ui-menubar-item>      <ui-menubar-item>Copy <ui-menubar-shortcut>Ctrl+C</ui-menubar-shortcut></ui-menubar-item>      <ui-menubar-item>Paste <ui-menubar-shortcut>Ctrl+V</ui-menubar-shortcut></ui-menubar-item>    </ui-menubar-content>  </ui-menubar-menu>  <ui-menubar-menu>    <ui-menubar-trigger>View</ui-menubar-trigger>    <ui-menubar-content>      <ui-menubar-item>Zoom In</ui-menubar-item>      <ui-menubar-item>Zoom Out</ui-menubar-item>      <ui-menubar-separator></ui-menubar-separator>      <ui-menubar-item>Full Screen</ui-menubar-item>    </ui-menubar-content>  </ui-menubar-menu></ui-menubar></div>" />
 
 ## `<ui-menubar-shortcut>`
 

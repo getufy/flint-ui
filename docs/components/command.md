@@ -1,27 +1,6 @@
 # Command
 
-<Demo>
-
-<div style="width:100%;max-width:400px">
-<ui-command style="border:1px solid #e5e7eb;border-radius:8px">
-  <ui-command-input placeholder="Type a command or search..."></ui-command-input>
-  <ui-command-list>
-    <ui-command-group heading="Suggestions">
-      <ui-command-item value="calendar">Calendar</ui-command-item>
-      <ui-command-item value="search">Search</ui-command-item>
-      <ui-command-item value="settings">Settings</ui-command-item>
-    </ui-command-group>
-    <ui-command-separator></ui-command-separator>
-    <ui-command-group heading="Actions">
-      <ui-command-item value="copy">Copy</ui-command-item>
-      <ui-command-item value="paste">Paste</ui-command-item>
-    </ui-command-group>
-    <ui-command-empty>No results found.</ui-command-empty>
-  </ui-command-list>
-</ui-command>
-</div>
-
-</Demo>
+<Demo html="<div style=&quot;width:100%;max-width:400px&quot;><ui-command style=&quot;border:1px solid #e5e7eb;border-radius:8px&quot;>  <ui-command-input placeholder=&quot;Type a command or search...&quot;></ui-command-input>  <ui-command-list>    <ui-command-group heading=&quot;Suggestions&quot;>      <ui-command-item value=&quot;calendar&quot;>Calendar</ui-command-item>      <ui-command-item value=&quot;search&quot;>Search</ui-command-item>      <ui-command-item value=&quot;settings&quot;>Settings</ui-command-item>    </ui-command-group>    <ui-command-separator></ui-command-separator>    <ui-command-group heading=&quot;Actions&quot;>      <ui-command-item value=&quot;copy&quot;>Copy</ui-command-item>      <ui-command-item value=&quot;paste&quot;>Paste</ui-command-item>    </ui-command-group>    <ui-command-empty>No results found.</ui-command-empty>  </ui-command-list></ui-command></div>" />
 
 ## `<ui-command-shortcut>`
 

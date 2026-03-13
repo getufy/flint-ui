@@ -1,34 +1,6 @@
 # Item
 
-<Demo>
-
-<div style="width:100%;max-width:400px">
-<ui-item-group>
-  <ui-item-header>Settings</ui-item-header>
-  <ui-item>
-    <ui-item-content>
-      <ui-item-title>Profile</ui-item-title>
-      <ui-item-description>Update your personal information</ui-item-description>
-    </ui-item-content>
-  </ui-item>
-  <ui-item-separator></ui-item-separator>
-  <ui-item>
-    <ui-item-content>
-      <ui-item-title>Notifications</ui-item-title>
-      <ui-item-description>Manage your notification preferences</ui-item-description>
-    </ui-item-content>
-  </ui-item>
-  <ui-item-separator></ui-item-separator>
-  <ui-item>
-    <ui-item-content>
-      <ui-item-title>Security</ui-item-title>
-      <ui-item-description>Password and two-factor authentication</ui-item-description>
-    </ui-item-content>
-  </ui-item>
-</ui-item-group>
-</div>
-
-</Demo>
+<Demo html="<div style=&quot;width:100%;max-width:400px&quot;><ui-item-group>  <ui-item-header>Settings</ui-item-header>  <ui-item>    <ui-item-content>      <ui-item-title>Profile</ui-item-title>      <ui-item-description>Update your personal information</ui-item-description>    </ui-item-content>  </ui-item>  <ui-item-separator></ui-item-separator>  <ui-item>    <ui-item-content>      <ui-item-title>Notifications</ui-item-title>      <ui-item-description>Manage your notification preferences</ui-item-description>    </ui-item-content>  </ui-item>  <ui-item-separator></ui-item-separator>  <ui-item>    <ui-item-content>      <ui-item-title>Security</ui-item-title>      <ui-item-description>Password and two-factor authentication</ui-item-description>    </ui-item-content>  </ui-item></ui-item-group></div>" />
 
 ## `<ui-item-title>`
 

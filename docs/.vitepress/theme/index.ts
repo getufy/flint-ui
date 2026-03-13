@@ -6,15 +6,13 @@ import type { Theme } from 'vitepress';
 // Import global theme tokens (CSS custom properties on :root)
 import '../../../packages/core/src/theme.css';
 
+// Kick off component registration (Demo.vue awaits this)
+import './register';
+
 const theme: Theme = {
   extends: DefaultTheme,
   enhanceApp({ app }) {
     app.component('Demo', Demo);
-
-    // Register Lit components client-side only
-    if (!import.meta.env.SSR) {
-      import('storybook-lit');
-    }
   },
 };
 

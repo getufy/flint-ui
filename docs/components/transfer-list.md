@@ -1,12 +1,6 @@
 # Transfer List
 
-<Demo>
-
-<div style="width:100%;max-width:550px">
-<ui-transfer-list left-title="Available" right-title="Selected" searchable></ui-transfer-list>
-</div>
-
-</Demo>
+<Demo html="<div style=&quot;width:100%;max-width:550px&quot;><ui-transfer-list left-title=&quot;Available&quot; right-title=&quot;Selected&quot; searchable data-options=&quot;js:JavaScript,ts:TypeScript,py:Python,rust:Rust,go:Go,java:Java,cpp:C++,ruby:Ruby&quot;></ui-transfer-list></div>" />
 
 A premium Transfer List component for moving items between two lists.
 

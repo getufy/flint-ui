@@ -1,15 +1,6 @@
 # Text Field
 
-<Demo label="States">
-
-<div style="display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px">
-<ui-text-field label="Name" placeholder="Enter your name"></ui-text-field>
-<ui-text-field label="With Help" help-text="This field is required"></ui-text-field>
-<ui-text-field label="Error" error help-text="Please enter a valid email"></ui-text-field>
-<ui-text-field label="Disabled" disabled value="Cannot edit"></ui-text-field>
-</div>
-
-</Demo>
+<Demo label="States" html="<div style=&quot;display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px&quot;><ui-text-field label=&quot;Name&quot; placeholder=&quot;Enter your name&quot;></ui-text-field><ui-text-field label=&quot;With Help&quot; help-text=&quot;This field is required&quot;></ui-text-field><ui-text-field label=&quot;Error&quot; error help-text=&quot;Please enter a valid email&quot;></ui-text-field><ui-text-field label=&quot;Disabled&quot; disabled value=&quot;Cannot edit&quot;></ui-text-field></div>" />
 
 - **Tag**: `<ui-text-field>`
 - **Class**: `UiTextField`

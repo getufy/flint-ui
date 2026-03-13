@@ -1,21 +1,8 @@
 # Switch
 
-<Demo label="Sizes">
+<Demo label="Sizes" html="<ui-switch size=&quot;sm&quot;></ui-switch><ui-switch size=&quot;md&quot;></ui-switch><ui-switch size=&quot;lg&quot;></ui-switch>" />
 
-<ui-switch size="sm"></ui-switch>
-<ui-switch size="md"></ui-switch>
-<ui-switch size="lg"></ui-switch>
-
-</Demo>
-
-<Demo label="States">
-
-<ui-switch></ui-switch>
-<ui-switch default-checked></ui-switch>
-<ui-switch disabled></ui-switch>
-<ui-switch default-checked disabled></ui-switch>
-
-</Demo>
+<Demo label="States" html="<ui-switch></ui-switch><ui-switch default-checked></ui-switch><ui-switch disabled></ui-switch><ui-switch default-checked disabled></ui-switch>" />
 
 A Switch component for toggling settings.
 

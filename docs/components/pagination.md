@@ -1,16 +1,8 @@
 # Pagination
 
-<Demo label="Pages">
+<Demo label="Pages" html="<ui-pagination count=&quot;10&quot; page=&quot;1&quot;></ui-pagination>" />
 
-<ui-pagination count="10" page="1"></ui-pagination>
-
-</Demo>
-
-<Demo label="Middle Page">
-
-<ui-pagination count="20" page="10"></ui-pagination>
-
-</Demo>
+<Demo label="Middle Page" html="<ui-pagination count=&quot;20&quot; page=&quot;10&quot;></ui-pagination>" />
 
 Pagination component enabling the user to select a specific page from a range of pages.
 

@@ -1,24 +1,8 @@
 # Divider
 
-<Demo label="Horizontal">
+<Demo label="Horizontal" html="<div style=&quot;width:100%;max-width:400px&quot;><p style=&quot;margin:0 0 8px&quot;>Content above</p><ui-divider></ui-divider><p style=&quot;margin:8px 0 0&quot;>Content below</p></div>" />
 
-<div style="width:100%;max-width:400px">
-<p style="margin:0 0 8px">Content above</p>
-<ui-divider></ui-divider>
-<p style="margin:8px 0 0">Content below</p>
-</div>
-
-</Demo>
-
-<Demo label="Vertical">
-
-<div style="display:flex;align-items:center;gap:12px;height:40px">
-<span>Left</span>
-<ui-divider orientation="vertical"></ui-divider>
-<span>Right</span>
-</div>
-
-</Demo>
+<Demo label="Vertical" html="<div style=&quot;display:flex;align-items:center;gap:12px;height:40px&quot;><span>Left</span><ui-divider orientation=&quot;vertical&quot;></ui-divider><span>Right</span></div>" />
 
 A divider component that provides a thin line for grouping elements.
 

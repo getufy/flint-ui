@@ -1,38 +1,12 @@
 # Progress
 
-<Demo label="Circular Indeterminate">
+<Demo label="Circular Indeterminate" html="<ui-circular-progress></ui-circular-progress>" />
 
-<ui-circular-progress></ui-circular-progress>
+<Demo label="Circular Determinate" html="<ui-circular-progress value=&quot;0&quot;></ui-circular-progress><ui-circular-progress value=&quot;25&quot;></ui-circular-progress><ui-circular-progress value=&quot;50&quot;></ui-circular-progress><ui-circular-progress value=&quot;75&quot;></ui-circular-progress><ui-circular-progress value=&quot;100&quot;></ui-circular-progress>" />
 
-</Demo>
+<Demo label="Linear Indeterminate" html="<div style=&quot;width:100%;max-width:400px&quot;><ui-linear-progress></ui-linear-progress></div>" />
 
-<Demo label="Circular Determinate">
-
-<ui-circular-progress value="0"></ui-circular-progress>
-<ui-circular-progress value="25"></ui-circular-progress>
-<ui-circular-progress value="50"></ui-circular-progress>
-<ui-circular-progress value="75"></ui-circular-progress>
-<ui-circular-progress value="100"></ui-circular-progress>
-
-</Demo>
-
-<Demo label="Linear Indeterminate">
-
-<div style="width:100%;max-width:400px">
-<ui-linear-progress></ui-linear-progress>
-</div>
-
-</Demo>
-
-<Demo label="Linear Determinate">
-
-<div style="display:flex;flex-direction:column;gap:12px;width:100%;max-width:400px">
-<ui-linear-progress value="30"></ui-linear-progress>
-<ui-linear-progress value="60"></ui-linear-progress>
-<ui-linear-progress value="100"></ui-linear-progress>
-</div>
-
-</Demo>
+<Demo label="Linear Determinate" html="<div style=&quot;display:flex;flex-direction:column;gap:12px;width:100%;max-width:400px&quot;><ui-linear-progress value=&quot;30&quot;></ui-linear-progress><ui-linear-progress value=&quot;60&quot;></ui-linear-progress><ui-linear-progress value=&quot;100&quot;></ui-linear-progress></div>" />
 
 ## `<ui-circular-progress>`
 

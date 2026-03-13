@@ -1,26 +1,6 @@
 # List
 
-<Demo>
-
-<div style="width:100%;max-width:360px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden">
-<ui-list>
-  <ui-list-subheader>Messages</ui-list-subheader>
-  <ui-list-item-button selected>
-    <ui-list-item-text primary="Inbox" secondary="5 new messages"></ui-list-item-text>
-  </ui-list-item-button>
-  <ui-list-item-button>
-    <ui-list-item-text primary="Drafts" secondary="2 drafts"></ui-list-item-text>
-  </ui-list-item-button>
-  <ui-list-item-button>
-    <ui-list-item-text primary="Sent" secondary="Last sent 2h ago"></ui-list-item-text>
-  </ui-list-item-button>
-  <ui-list-item-button disabled>
-    <ui-list-item-text primary="Spam" secondary="Disabled"></ui-list-item-text>
-  </ui-list-item-button>
-</ui-list>
-</div>
-
-</Demo>
+<Demo html="<div style=&quot;width:100%;max-width:360px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden&quot;><ui-list>  <ui-list-subheader>Messages</ui-list-subheader>  <ui-list-item-button selected>    <ui-list-item-text primary=&quot;Inbox&quot; secondary=&quot;5 new messages&quot;></ui-list-item-text>  </ui-list-item-button>  <ui-list-item-button>    <ui-list-item-text primary=&quot;Drafts&quot; secondary=&quot;2 drafts&quot;></ui-list-item-text>  </ui-list-item-button>  <ui-list-item-button>    <ui-list-item-text primary=&quot;Sent&quot; secondary=&quot;Last sent 2h ago&quot;></ui-list-item-text>  </ui-list-item-button>  <ui-list-item-button disabled>    <ui-list-item-text primary=&quot;Spam&quot; secondary=&quot;Disabled&quot;></ui-list-item-text>  </ui-list-item-button></ui-list></div>" />
 
 ## `<ui-list>`
 

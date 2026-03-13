@@ -1,14 +1,6 @@
 # Visually Hidden
 
-<Demo>
-
-<p style="margin:0;color:#374151">The link below has visually hidden text for screen readers:</p>
-<a href="#" style="color:var(--ui-primary-color)">
-  Download Report
-  <ui-visually-hidden>(opens in a new tab)</ui-visually-hidden>
-</a>
-
-</Demo>
+<Demo html="<p style=&quot;margin:0;color:#374151&quot;>The link below has visually hidden text for screen readers:</p><a href=&quot;#&quot; style=&quot;color:var(--ui-primary-color)&quot;>  Download Report  <ui-visually-hidden>(opens in a new tab)</ui-visually-hidden></a>" />
 
 - **Tag**: `<ui-visually-hidden>`
 - **Class**: `UiVisuallyHidden`

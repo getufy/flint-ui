@@ -1,16 +1,6 @@
 # Backdrop
 
-<Demo>
-
-<ui-button onclick="this.nextElementSibling.open=true">Show Backdrop</ui-button>
-<ui-backdrop>
-  <div style="background:white;padding:24px;border-radius:8px;text-align:center">
-    <p style="margin:0 0 16px">Click outside to close</p>
-    <ui-button onclick="this.closest('ui-backdrop').open=false">Close</ui-button>
-  </div>
-</ui-backdrop>
-
-</Demo>
+<Demo html="<ui-button onclick=&quot;this.nextElementSibling.open=true&quot;>Show Backdrop</ui-button><ui-backdrop>  <div style=&quot;background:white;padding:24px;border-radius:8px;text-align:center&quot;>    <p style=&quot;margin:0 0 16px&quot;>Click outside to close</p>    <ui-button onclick=&quot;this.closest('ui-backdrop').open=false&quot;>Close</ui-button>  </div></ui-backdrop>" />
 
 A backdrop component that narrows the user's focus to a particular element.
 

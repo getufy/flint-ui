@@ -1,23 +1,6 @@
 # Accordion
 
-<Demo label="Basic">
-
-<div style="width:100%;max-width:500px">
-<ui-accordion expanded>
-  <ui-accordion-summary>Expanded by default</ui-accordion-summary>
-  <ui-accordion-details>This accordion starts open. Click the header to collapse it.</ui-accordion-details>
-</ui-accordion>
-<ui-accordion>
-  <ui-accordion-summary>Collapsed Item</ui-accordion-summary>
-  <ui-accordion-details>Click the header above to expand this content.</ui-accordion-details>
-</ui-accordion>
-<ui-accordion disabled>
-  <ui-accordion-summary>Disabled Item</ui-accordion-summary>
-  <ui-accordion-details>This item cannot be toggled.</ui-accordion-details>
-</ui-accordion>
-</div>
-
-</Demo>
+<Demo label="Basic" html="<div style=&quot;width:100%;max-width:500px&quot;><ui-accordion expanded>  <ui-accordion-summary>Expanded by default</ui-accordion-summary>  <ui-accordion-details>This accordion starts open. Click the header to collapse it.</ui-accordion-details></ui-accordion><ui-accordion>  <ui-accordion-summary>Collapsed Item</ui-accordion-summary>  <ui-accordion-details>Click the header above to expand this content.</ui-accordion-details></ui-accordion><ui-accordion disabled>  <ui-accordion-summary>Disabled Item</ui-accordion-summary>  <ui-accordion-details>This item cannot be toggled.</ui-accordion-details></ui-accordion></div>" />
 
 ## `<ui-accordion>`
 

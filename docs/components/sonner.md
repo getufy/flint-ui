@@ -1,14 +1,6 @@
 # Sonner
 
-<Demo label="Toast Types">
-
-<ui-toaster position="bottom-right"></ui-toaster>
-<ui-button onclick="import('storybook-lit').then(m=>m.toast('Default toast message'))">Default</ui-button>
-<ui-button onclick="import('storybook-lit').then(m=>m.toast.success('Operation successful!'))">Success</ui-button>
-<ui-button onclick="import('storybook-lit').then(m=>m.toast.error('Something went wrong'))">Error</ui-button>
-<ui-button onclick="import('storybook-lit').then(m=>m.toast.info('Here is some info'))">Info</ui-button>
-
-</Demo>
+<Demo label="Toast Types" html="<ui-toaster position=&quot;bottom-right&quot;></ui-toaster><ui-button onclick=&quot;import('storybook-lit').then(m=>m.toast('Default toast message'))&quot;>Default</ui-button><ui-button onclick=&quot;import('storybook-lit').then(m=>m.toast.success('Operation successful!'))&quot;>Success</ui-button><ui-button onclick=&quot;import('storybook-lit').then(m=>m.toast.error('Something went wrong'))&quot;>Error</ui-button><ui-button onclick=&quot;import('storybook-lit').then(m=>m.toast.info('Here is some info'))&quot;>Info</ui-button>" />
 
 - **Tag**: `<ui-toaster>`
 - **Class**: `UiToaster`

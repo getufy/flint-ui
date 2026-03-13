@@ -1,13 +1,6 @@
 # Image Comparer
 
-<Demo>
-
-<ui-image-comparer position="50" style="width:100%;max-width:500px">
-  <div slot="before" style="width:100%;height:250px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;color:white;font-weight:600;font-size:18px">Before</div>
-  <div slot="after" style="width:100%;height:250px;background:linear-gradient(135deg,#f093fb,#f5576c);display:flex;align-items:center;justify-content:center;color:white;font-weight:600;font-size:18px">After</div>
-</ui-image-comparer>
-
-</Demo>
+<Demo html="<ui-image-comparer position=&quot;50&quot; style=&quot;width:100%;max-width:500px&quot;>  <div slot=&quot;before&quot; style=&quot;width:100%;height:250px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;color:white;font-weight:600;font-size:18px&quot;>Before</div>  <div slot=&quot;after&quot; style=&quot;width:100%;height:250px;background:linear-gradient(135deg,#f093fb,#f5576c);display:flex;align-items:center;justify-content:center;color:white;font-weight:600;font-size:18px&quot;>After</div></ui-image-comparer>" />
 
 - **Tag**: `<ui-image-comparer>`
 - **Class**: `UiImageComparer`

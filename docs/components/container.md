@@ -1,14 +1,6 @@
 # Container
 
-<Demo label="Max Widths">
-
-<div style="width:100%;display:flex;flex-direction:column;gap:8px">
-<ui-container max-width="sm"><ui-paper elevation="1" style="padding:12px;text-align:center">sm</ui-paper></ui-container>
-<ui-container max-width="md"><ui-paper elevation="1" style="padding:12px;text-align:center">md</ui-paper></ui-container>
-<ui-container max-width="lg"><ui-paper elevation="1" style="padding:12px;text-align:center">lg</ui-paper></ui-container>
-</div>
-
-</Demo>
+<Demo label="Max Widths" html="<div style=&quot;width:100%;display:flex;flex-direction:column;gap:8px&quot;><ui-container max-width=&quot;sm&quot;><ui-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>sm</ui-paper></ui-container><ui-container max-width=&quot;md&quot;><ui-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>md</ui-paper></ui-container><ui-container max-width=&quot;lg&quot;><ui-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>lg</ui-paper></ui-container></div>" />
 
 - **Tag**: `<ui-container>`
 - **Class**: `UiContainer`

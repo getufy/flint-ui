@@ -1,44 +1,6 @@
 # Table
 
-<Demo>
-
-<div style="width:100%;max-width:500px">
-<ui-table-container>
-  <ui-table>
-    <ui-table-head>
-      <ui-table-row>
-        <ui-table-cell header>Name</ui-table-cell>
-        <ui-table-cell header>Role</ui-table-cell>
-        <ui-table-cell header align="right">Score</ui-table-cell>
-      </ui-table-row>
-    </ui-table-head>
-    <ui-table-body>
-      <ui-table-row>
-        <ui-table-cell>Alice</ui-table-cell>
-        <ui-table-cell>Engineer</ui-table-cell>
-        <ui-table-cell align="right">92</ui-table-cell>
-      </ui-table-row>
-      <ui-table-row selected>
-        <ui-table-cell>Bob</ui-table-cell>
-        <ui-table-cell>Designer</ui-table-cell>
-        <ui-table-cell align="right">87</ui-table-cell>
-      </ui-table-row>
-      <ui-table-row>
-        <ui-table-cell>Carol</ui-table-cell>
-        <ui-table-cell>Manager</ui-table-cell>
-        <ui-table-cell align="right">95</ui-table-cell>
-      </ui-table-row>
-      <ui-table-row>
-        <ui-table-cell>Dave</ui-table-cell>
-        <ui-table-cell>Analyst</ui-table-cell>
-        <ui-table-cell align="right">78</ui-table-cell>
-      </ui-table-row>
-    </ui-table-body>
-  </ui-table>
-</ui-table-container>
-</div>
-
-</Demo>
+<Demo html="<div style=&quot;width:100%;max-width:500px&quot;><ui-table-container>  <ui-table>    <ui-table-head>      <ui-table-row>        <ui-table-cell header>Name</ui-table-cell>        <ui-table-cell header>Role</ui-table-cell>        <ui-table-cell header align=&quot;right&quot;>Score</ui-table-cell>      </ui-table-row>    </ui-table-head>    <ui-table-body>      <ui-table-row>        <ui-table-cell>Alice</ui-table-cell>        <ui-table-cell>Engineer</ui-table-cell>        <ui-table-cell align=&quot;right&quot;>92</ui-table-cell>      </ui-table-row>      <ui-table-row selected>        <ui-table-cell>Bob</ui-table-cell>        <ui-table-cell>Designer</ui-table-cell>        <ui-table-cell align=&quot;right&quot;>87</ui-table-cell>      </ui-table-row>      <ui-table-row>        <ui-table-cell>Carol</ui-table-cell>        <ui-table-cell>Manager</ui-table-cell>        <ui-table-cell align=&quot;right&quot;>95</ui-table-cell>      </ui-table-row>      <ui-table-row>        <ui-table-cell>Dave</ui-table-cell>        <ui-table-cell>Analyst</ui-table-cell>        <ui-table-cell align=&quot;right&quot;>78</ui-table-cell>      </ui-table-row>    </ui-table-body>  </ui-table></ui-table-container></div>" />
 
 ## `<ui-table-pagination>`
 

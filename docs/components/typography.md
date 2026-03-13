@@ -1,28 +1,8 @@
 # Typography
 
-<Demo label="Headings">
+<Demo label="Headings" html="<div style=&quot;display:flex;flex-direction:column;gap:4px;width:100%&quot;><ui-typography variant=&quot;h1&quot;>Heading 1</ui-typography><ui-typography variant=&quot;h2&quot;>Heading 2</ui-typography><ui-typography variant=&quot;h3&quot;>Heading 3</ui-typography><ui-typography variant=&quot;h4&quot;>Heading 4</ui-typography><ui-typography variant=&quot;h5&quot;>Heading 5</ui-typography><ui-typography variant=&quot;h6&quot;>Heading 6</ui-typography></div>" />
 
-<div style="display:flex;flex-direction:column;gap:4px;width:100%">
-<ui-typography variant="h1">Heading 1</ui-typography>
-<ui-typography variant="h2">Heading 2</ui-typography>
-<ui-typography variant="h3">Heading 3</ui-typography>
-<ui-typography variant="h4">Heading 4</ui-typography>
-<ui-typography variant="h5">Heading 5</ui-typography>
-<ui-typography variant="h6">Heading 6</ui-typography>
-</div>
-
-</Demo>
-
-<Demo label="Body & Caption">
-
-<div style="display:flex;flex-direction:column;gap:4px;width:100%">
-<ui-typography variant="body1">Body 1 — The quick brown fox jumps over the lazy dog.</ui-typography>
-<ui-typography variant="body2">Body 2 — A smaller body text variant for secondary content.</ui-typography>
-<ui-typography variant="caption" color="secondary">Caption — Small helper text</ui-typography>
-<ui-typography variant="overline">OVERLINE TEXT</ui-typography>
-</div>
-
-</Demo>
+<Demo label="Body & Caption" html="<div style=&quot;display:flex;flex-direction:column;gap:4px;width:100%&quot;><ui-typography variant=&quot;body1&quot;>Body 1 — The quick brown fox jumps over the lazy dog.</ui-typography><ui-typography variant=&quot;body2&quot;>Body 2 — A smaller body text variant for secondary content.</ui-typography><ui-typography variant=&quot;caption&quot; color=&quot;secondary&quot;>Caption — Small helper text</ui-typography><ui-typography variant=&quot;overline&quot;>OVERLINE TEXT</ui-typography></div>" />
 
 Typography component for displaying text with consistent theme styles.
 
