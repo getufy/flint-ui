@@ -1,7 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import '../../src/theme.css';
-import '../../src/theme-dark.css';
+import '../../packages/core/src/theme.css';
+import '../../packages/core/src/theme-dark.css';
 import { animationStyles } from './animations';
 import { App } from './App';
 

@@ -102,7 +102,24 @@
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/button/ --project components 2>&1)",
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/date-range-picker/ui-date-range-picker.test.ts 2>&1 | tail -15)",
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/date-range-picker/ui-date-range-picker.test.ts --coverage 2>&1 | grep -A 10 \"Coverage report\")",
-      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/date-range-picker/ui-date-range-picker.test.ts 2>&1 | tail -8)"
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/date-range-picker/ui-date-range-picker.test.ts 2>&1 | tail -8)",
+      "Bash(ls -d src/*/ui-*.ts 2>/dev/null | sed 's|src/||;s|/.*||' | sort -u)",
+      "Bash(tree -L 3 /Users/algoassasin/storybook-lit/homepage/src -I 'node_modules' 2>/dev/null || find /Users/algoassasin/storybook-lit/homepage/src -type f -name \"*.tsx\" -o -name \"*.ts\" | sort)",
+      "Bash(NODE_OPTIONS='--no-warnings' vitest run src/radio/ui-radio.test.ts 2>&1 | tail -15)",
+      "Bash(npx vitest:*)",
+      "Bash(npx vite:*)",
+      "Bash(find /Users/algoassasin/storybook-lit/src -maxdepth 1 -type d | grep -v \"^/Users/algoassasin/storybook-lit/src$\" | sort)",
+      "Bash(wc -l /Users/algoassasin/storybook-lit/src/*/ui-*.stories.ts | sort -n | head -20)",
+      "Bash(ls -1 /Users/algoassasin/storybook-lit/src/date-range-picker/ui-*.ts)",
+      "Bash(for component:*)",
+      "Bash(ls -la /Users/algoassasin/storybook-lit/src/tree-view/*.stories.ts\nls -la /Users/algoassasin/storybook-lit/src/ui-range-slider/*.stories.ts)",
+      "Bash(echo \"Checking for star exports and specific exports:\"\necho \"\"\necho \"Dialog:\"\ngrep -n \"dialog\" /Users/algoassasin/storybook-lit/src/index.ts -i\n\necho \"\"\necho \"List:\"\ngrep -n \"list\" /Users/algoassasin/storybook-lit/src/index.ts -i | head -5\n\necho \"\"\necho \"Table:\"\ngrep -n \"table\" /Users/algoassasin/storybook-lit/src/index.ts -i | head -5\n\necho \"\"\necho \"DateRange:\"\ngrep -n \"date.*range\\\\|range.*date\" /Users/algoassasin/storybook-lit/src/index.ts -i\n\necho \"\"\necho \"Range Slider specific:\"\ngrep -n \"range.*slider\" /Users/algoassasin/storybook-lit/src/index.ts -i)",
+      "Bash(grep -l \"export type SelectOption\\\\|export interface SelectOption\" /Users/algoassasin/storybook-lit/src/*/ui-*.ts)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/table/ src/radio/ src/input/ src/select/ src/grid/ src/image-list/ src/ui-range-slider/ --project components 2>&1 | tail -30)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/speed-dial/ src/table/ src/breadcrumbs/ src/button/ src/backdrop/ src/app-bar/ src/pagination/ --project components 2>&1 | tail -20)",
+      "Bash(npx tsx:*)",
+      "Bash(git mv:*)",
+      "Bash(cd /Users/algoassasin/storybook-lit && npm install @lit/react --save -w packages/react 2>&1 | tail -5)"
     ]
   }
 }

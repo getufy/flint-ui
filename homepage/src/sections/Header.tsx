@@ -3,59 +3,51 @@ import { useTheme } from '../ThemeContext';
 import { useBreakpoint } from '../useBreakpoint';
 import { getColors, row, maxW } from '../tokens';
 
+const navLinks = [
+    { label: 'Showcase', id: 's-components' },
+    { label: 'Features', id: 's-features' },
+    { label: 'Interactive', id: 's-interactive' },
+    { label: 'Components', id: 's-all-components' },
+];
+
 export function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
     const { dark, setDark } = useTheme();
-    const { isMobile, isTablet } = useBreakpoint();
+    const { isTablet } = useBreakpoint();
     const c = getColors(dark);
 
     const pathname = typeof window !== 'undefined' ? window.location.pathname : '/';
-    const isDocsPage = pathname === '/docs';
-    const isBlogPage = pathname === '/blog';
-    const isContactPage = pathname === '/contact';
-    const isAPIPage = pathname === '/api';
+    const isSubPage = pathname !== '/';
 
     return (
         <header style={{ position: 'sticky', top: 0, zIndex: 100, background: dark ? 'rgba(9,9,11,0.88)' : 'rgba(255,255,255,0.88)', backdropFilter: 'blur(12px)', borderBottom: `1px solid ${c.border}` }}>
-            <div style={{ ...maxW(), height: 60, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 clamp(16px,3vw,24px)' }}>
+            <div style={{ ...maxW(), height: 56, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 clamp(16px,3vw,24px)' }}>
                 {/* Logo */}
                 <a href="/" style={{ textDecoration: 'none', cursor: 'pointer' }}>
                     <div style={row(10)}>
                         <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill={c.primary} /><path d="M8 10l4 4-4 4M14 18h6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                         <span style={{ fontWeight: 700, fontSize: 16, color: c.text }}>lite</span>
-                        {!isMobile && (
-                            <span style={{ fontSize: 11, fontWeight: 600, background: c.primaryLight, color: c.primary, padding: '2px 8px', borderRadius: 20 }}>v1.0</span>
-                        )}
+                        <span style={{ fontSize: 11, fontWeight: 600, background: c.primaryLight, color: c.primary, padding: '2px 8px', borderRadius: 20 }}>v1.0</span>
                     </div>
                 </a>
 
                 {/* Nav */}
                 <nav style={row(4)}>
-                    {/* Nav links — hidden on mobile */}
                     {!isTablet && (
                         <>
-                            {!isDocsPage && !isBlogPage && ['Components', 'Forms', 'Data', 'Overlays', 'Flow'].map(l => (
-                                <a key={l} href={`#s-${l.toLowerCase()}`} onClick={e => {
+                            {!isSubPage && navLinks.map(l => (
+                                <a key={l.id} href={`#${l.id}`} onClick={e => {
                                     e.preventDefault();
-                                    document.getElementById(`s-${l.toLowerCase()}`)?.scrollIntoView({ behavior: 'smooth' });
-                                }} style={{ fontSize: 14, fontWeight: 500, color: c.muted, textDecoration: 'none', padding: '6px 12px', borderRadius: 6, cursor: 'pointer' }}>{l}</a>
+                                    document.getElementById(l.id)?.scrollIntoView({ behavior: 'smooth' });
+                                }} style={{ fontSize: 14, fontWeight: 500, color: c.muted, textDecoration: 'none', padding: '6px 12px', borderRadius: 6, cursor: 'pointer' }}>{l.label}</a>
                             ))}
-                            {(isDocsPage || isBlogPage) && (
-                                <a href="/" style={{ fontSize: 14, fontWeight: 500, color: c.muted, textDecoration: 'none', padding: '6px 12px', borderRadius: 6, cursor: 'pointer' }}>← Back Home</a>
-                            )}
-                            {!isBlogPage && (
-                                <a href="/blog" style={{ fontSize: 14, fontWeight: 500, color: c.muted, textDecoration: 'none', padding: '6px 12px', borderRadius: 6, cursor: 'pointer' }}>Blog</a>
-                            )}
-                            {!isContactPage && (
-                                <a href="/contact" style={{ fontSize: 14, fontWeight: 500, color: c.muted, textDecoration: 'none', padding: '6px 12px', borderRadius: 6, cursor: 'pointer' }}>Contact</a>
-                            )}
-                            {!isAPIPage && (
-                                <a href="/api" style={{ fontSize: 14, fontWeight: 500, color: c.muted, textDecoration: 'none', padding: '6px 12px', borderRadius: 6, cursor: 'pointer' }}>API</a>
+                            {isSubPage && (
+                                <a href="/" style={{ fontSize: 14, fontWeight: 500, color: c.muted, textDecoration: 'none', padding: '6px 12px', borderRadius: 6, cursor: 'pointer' }}>Home</a>
                             )}
                         </>
                     )}
 
-                    {/* Dark mode toggle — always visible */}
+                    {/* Dark mode toggle */}
                     <button
                         onClick={() => setDark(!dark)}
                         title={dark ? 'Switch to light mode' : 'Switch to dark mode'}
@@ -87,7 +79,7 @@ export function Header() {
                 {isTablet && mobileMenuOpen && (
                     <div style={{
                         position: 'absolute',
-                        top: 60,
+                        top: 56,
                         left: 0,
                         right: 0,
                         background: dark ? 'rgba(9,9,11,0.95)' : 'rgba(255,255,255,0.95)',
@@ -96,26 +88,17 @@ export function Header() {
                         padding: '16px 24px',
                         display: 'flex',
                         flexDirection: 'column',
-                        gap: 12
+                        gap: 12,
                     }}>
-                        {!isDocsPage && !isBlogPage && ['Components', 'Forms', 'Data', 'Overlays', 'Flow'].map(l => (
-                            <a key={l} href={`#s-${l.toLowerCase()}`} onClick={e => {
+                        {!isSubPage && navLinks.map(l => (
+                            <a key={l.id} href={`#${l.id}`} onClick={e => {
                                 e.preventDefault();
-                                document.getElementById(`s-${l.toLowerCase()}`)?.scrollIntoView({ behavior: 'smooth' });
+                                document.getElementById(l.id)?.scrollIntoView({ behavior: 'smooth' });
                                 setMobileMenuOpen(false);
-                            }} style={{ fontSize: 14, fontWeight: 500, color: c.text, textDecoration: 'none', padding: '8px 0' }}>{l}</a>
+                            }} style={{ fontSize: 14, fontWeight: 500, color: c.text, textDecoration: 'none', padding: '8px 0' }}>{l.label}</a>
                         ))}
-                        {(isDocsPage || isBlogPage) && (
-                            <a href="/" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: 14, fontWeight: 500, color: c.text, textDecoration: 'none', padding: '8px 0' }}>← Back Home</a>
-                        )}
-                        {!isBlogPage && (
-                            <a href="/blog" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: 14, fontWeight: 500, color: c.text, textDecoration: 'none', padding: '8px 0' }}>Blog</a>
-                        )}
-                        {!isContactPage && (
-                            <a href="/contact" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: 14, fontWeight: 500, color: c.text, textDecoration: 'none', padding: '8px 0' }}>Contact</a>
-                        )}
-                        {!isAPIPage && (
-                            <a href="/api" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: 14, fontWeight: 500, color: c.text, textDecoration: 'none', padding: '8px 0' }}>API</a>
+                        {isSubPage && (
+                            <a href="/" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: 14, fontWeight: 500, color: c.text, textDecoration: 'none', padding: '8px 0' }}>Home</a>
                         )}
                     </div>
                 )}

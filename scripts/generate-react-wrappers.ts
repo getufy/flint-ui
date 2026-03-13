@@ -1,12 +1,12 @@
 /**
  * generate-react-wrappers.ts
  *
- * Scans every Lit component source file in src/ and generates:
- *   react/src/components/<ClassName>.tsx  — React forwardRef wrapper
- *   react/src/events/<tagname>.ts         — Event name constants
- *   react/src/events/index.ts             — Re-exports all event constants
- *   react/src/index.ts                    — Re-exports all components + events
- *   react/src/custom-elements.d.ts        — JSX IntrinsicElements declarations
+ * Scans every Lit component source file in packages/core/src/ and generates:
+ *   packages/react/src/components/<ClassName>.tsx  — React forwardRef wrapper
+ *   packages/react/src/events/<tagname>.ts         — Event name constants
+ *   packages/react/src/events/index.ts             — Re-exports all event constants
+ *   packages/react/src/index.ts                    — Re-exports all components + events
+ *   packages/react/src/custom-elements.d.ts        — JSX IntrinsicElements declarations
  *
  * Run with:
  *   npx tsx scripts/generate-react-wrappers.ts
@@ -26,15 +26,12 @@ import type { ComponentMeta } from './lib/types.js';
 
 // ─── config ──────────────────────────────────────────────────────────────────
 
-const PROJECT_ROOT = resolve(new URL('.', import.meta.url).pathname, '..');
-const SRC_DIR = join(PROJECT_ROOT, 'src');
-const OUT_DIR = join(PROJECT_ROOT, 'react', 'src');
+const REPO_ROOT = resolve(new URL('.', import.meta.url).pathname, '..');
+const CORE_ROOT = join(REPO_ROOT, 'packages/core');
+const SRC_DIR = join(CORE_ROOT, 'src');
+const OUT_DIR = join(REPO_ROOT, 'packages/react/src');
 const COMPONENTS_OUT = join(OUT_DIR, 'components');
 const EVENTS_OUT = join(OUT_DIR, 'events');
-
-// Relative paths (from project root) used in generated import statements
-const COMPONENTS_OUT_REL = 'react/src/components';
-const EVENTS_OUT_REL = 'react/src/events';
 
 // ─── helpers ─────────────────────────────────────────────────────────────────
 
@@ -43,8 +40,8 @@ function ensureDir(dir: string) {
 }
 
 function write(filePath: string, content: string) {
+    const rel = filePath.replace(REPO_ROOT + '/', '');
     writeFileSync(filePath, content, 'utf-8');
-    const rel = filePath.replace(PROJECT_ROOT + '/', '');
     console.log(`  wrote  ${rel}`);
 }
 
@@ -81,7 +78,8 @@ function main() {
     console.log('\n--- Parsing Lit components ---');
 
     for (const absPath of sourceFiles) {
-        const rel = absPath.replace(PROJECT_ROOT + '/', '');
+        // sourceFile is relative to packages/core/ for the parser
+        const rel = absPath.replace(CORE_ROOT + '/', '');
         const components = parseComponentFile(absPath, rel);
         if (components.length > 0) {
             console.log(`  parsed ${rel}  →  ${components.map(c => c.className).join(', ')}`);
@@ -96,7 +94,7 @@ function main() {
 
     for (const meta of allComponents) {
         // Component wrapper
-        const wrapperContent = generateWrapper(meta, COMPONENTS_OUT_REL, EVENTS_OUT_REL);
+        const wrapperContent = generateWrapper(meta, COMPONENTS_OUT, EVENTS_OUT);
         write(join(COMPONENTS_OUT, `${meta.className}.tsx`), wrapperContent);
 
         // Event constants (one file per tag name; skip if already written)
@@ -111,30 +109,6 @@ function main() {
     write(join(OUT_DIR, 'index.ts'), generateIndex(allComponents));
     write(join(EVENTS_OUT, 'index.ts'), generateEventsIndex(allComponents));
     write(join(OUT_DIR, 'custom-elements.d.ts'), generateJsxDeclarations(allComponents));
-
-    // tsconfig for the react/ output
-    const tsconfig = {
-        compilerOptions: {
-            target: 'ES2020',
-            module: 'NodeNext',
-            moduleResolution: 'NodeNext',
-            jsx: 'react',
-            jsxFactory: 'React.createElement',
-            jsxFragmentFactory: 'React.Fragment',
-            strict: true,
-            esModuleInterop: true,
-            skipLibCheck: true,
-            declaration: true,
-            outDir: '../dist-react',
-        },
-        include: ['src/**/*.ts', 'src/**/*.tsx'],
-    };
-
-    const tsconfigPath = join(PROJECT_ROOT, 'react', 'tsconfig.json');
-    if (!existsSync(tsconfigPath)) {
-        writeFileSync(tsconfigPath, JSON.stringify(tsconfig, null, 2) + '\n', 'utf-8');
-        console.log('  wrote  react/tsconfig.json');
-    }
 
     console.log('\nDone!\n');
 }

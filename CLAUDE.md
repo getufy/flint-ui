@@ -2,38 +2,57 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Project Structure
+
+Monorepo with npm workspaces:
+- `packages/core` — Lit web components library (`storybook-lit`)
+- `packages/react` — React wrappers using `@lit/react` (`storybook-lit-react`)
+- `scripts/` — Codegen scripts (build entries, React wrapper generation)
+- `homepage/` — React showcase site
+
 ## Commands
 
 ```bash
 # Development
 npm run storybook          # Start Storybook dev server on port 6006
-npm run build              # tsc + vite build (outputs to dist/)
+npm run build              # Build both packages/core and packages/react
+npm run build:core         # Build core only (vite + tsc)
+npm run build:react        # Build React wrappers only (tsc)
 npm run build-storybook    # Build static Storybook
 
-# Testing
+# Testing (runs in packages/core)
 npm test                   # Run all tests (jsdom unit tests + Storybook browser tests)
 npm run test:watch         # Watch mode
 npm run build-coverage     # Run unit tests with coverage (--project components)
 
 # Run a single test file
-NODE_OPTIONS='--no-warnings' vitest run src/button/ui-button.test.ts
+NODE_OPTIONS='--no-warnings' vitest run src/button/ui-button.test.ts  # from packages/core/
 
 # Lint
 npm run lint               # ESLint on src/**/*.ts (target: 0 errors, 0 warnings)
+
+# React wrapper codegen
+npm run gen:react          # Regenerate React wrappers from Lit components
+
+# Homepage
+npm run homepage:dev       # Dev server on port 5174
+npm run homepage:build     # Build to dist-homepage/
 ```
 
 ## Architecture
 
-**Two test projects** (configured in `vite.config.ts`):
+**Two test projects** (configured in `packages/core/vite.config.ts`):
 - `components` — jsdom environment, runs `src/**/*.test.ts`
 - `storybook` — Chromium/Playwright browser, runs stories via `@storybook/addon-vitest`
 
-**Component structure**: one folder per component at `src/<name>/`:
+**Component structure**: one folder per component at `packages/core/src/<name>/`:
 - `ui-<name>.ts` — LitElement component(s)
 - `ui-<name>.stories.ts` — Storybook stories
 - `ui-<name>.test.ts` — Vitest unit tests
 
-All custom elements use the `ui-` tag prefix; classes use `UiPascalCase`. All public exports go through `src/index.ts`.
+All custom elements use the `ui-` tag prefix; classes use `UiPascalCase`. All public exports go through `packages/core/src/index.ts`.
+
+**React wrappers**: auto-generated via `scripts/generate-react-wrappers.ts` using `@lit/react`'s `createComponent()`. Run `npm run gen:react` after adding/changing components or events.
 
 **Inter-component communication pattern**: parent owns state; children call `this.closest('ui-parent')?.method()` to communicate upward. Parent uses `_syncChildren()` to push state down. Event listeners that must avoid shadow DOM retargeting go on `this.shadowRoot` (not `this`).
 

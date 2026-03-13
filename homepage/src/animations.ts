@@ -88,6 +88,15 @@ export const animations = {
             '0%, 100%': { transform: 'translateY(0)' },
             '50%': { transform: 'translateY(-10px)' }
         }
+    },
+
+    // Float animation for hero orbs
+    float: {
+        animation: 'float 6s ease-in-out infinite',
+        '@keyframes float': {
+            '0%, 100%': { transform: 'translateY(0) scale(1)' },
+            '50%': { transform: 'translateY(-20px) scale(1.05)' }
+        }
     }
 };
 
@@ -150,6 +159,21 @@ export const animationStyles = `
 @keyframes bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(1.05); }
+}
+
+@keyframes scrollUp {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+}
+
+@keyframes scrollDown {
+    0% { transform: translateY(-50%); }
+    100% { transform: translateY(0); }
 }
 
 /* Smooth scroll behavior */

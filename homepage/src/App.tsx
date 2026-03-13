@@ -5,13 +5,12 @@ import { Header } from './sections/Header';
 import { Hero } from './sections/Hero';
 import { Stats } from './sections/Stats';
 import { Showcase } from './sections/Showcase';
-import { Forms } from './sections/Forms';
-import { Data } from './sections/Data';
-import { Overlays } from './sections/Overlays';
-import { Flow } from './sections/Flow';
+import { Bento } from './sections/Bento';
 import { Interactive } from './sections/Interactive';
 import { ComponentList } from './sections/ComponentList';
+import { CTA } from './sections/CTA';
 import { Footer } from './sections/Footer';
+import { AnimatedSection } from './components/AnimatedSection';
 import { ComponentLibraryPage } from './pages/ComponentLibraryPage';
 import { BlogPage } from './pages/BlogPage';
 import { ContactPage } from './pages/ContactPage';
@@ -57,13 +56,19 @@ function AppInner() {
             <Header />
             <Hero />
             <Stats />
-            <Showcase />
-            <Forms />
-            <Data />
-            <Overlays />
-            <Flow />
-            <Interactive />
-            <ComponentList />
+            <AnimatedSection animation="slideUp">
+                <Showcase />
+            </AnimatedSection>
+            <AnimatedSection animation="slideUp">
+                <Bento />
+            </AnimatedSection>
+            <AnimatedSection animation="slideUp">
+                <Interactive />
+            </AnimatedSection>
+            <AnimatedSection animation="slideUp">
+                <ComponentList />
+            </AnimatedSection>
+            <CTA />
             <Footer />
         </div>
     );
