@@ -1,10 +1,10 @@
 
 I've done mutation testing for component : 
-file:///Users/algoassasin/storybook-lit/reports/mutation/mutation.html#mutant/slider/ui-slider.ts
+file:///Users/algoassasin/storybook-lit/reports/mutation/mutation.html#mutant/sonner/ui-sonner.ts
 
-We are currently writing a lit component. This component will be used by hundreds of people in different projects. Look into folder named "slider" and update the component, the css file and test files. Create tests. Look into theme.css or theme-dark.css for variables or add variables there if needed for component refinement
+We are currently writing a lit component. This component will be used by hundreds of people in different projects. Look into folder named "sonner" and update the component, the css file and test files. Create tests. Look into theme.css or theme-dark.css for variables or add variables there if needed for component refinement
 
-This component has already 100% coverage, i'm looking to raise the mutation test cases suite only !!!! But if you find mistakes please update the component.
+This component has already 100% coverage, i'm looking to raise the mutation test cases suite only !!!! But if you find mistakes please update the component. Also there is a css bug when displayed shuffled on the second notification.
 
 We are also interested to rise near 98-100% coverage for component.
 

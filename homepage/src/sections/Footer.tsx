@@ -1,23 +1,15 @@
 import React from 'react';
 import { useTheme } from '../ThemeContext';
 import { getColors, row, col, maxW } from '../tokens';
-import { NewsletterForm } from '../components/NewsletterForm';
 
 export function Footer() {
     const { dark } = useTheme();
     const c = getColors(dark);
 
     return (
-        <footer style={{ background: dark ? '#09090b' : '#0f172a', color: '#94a3b8', padding: 'clamp(32px,6vw,48px) clamp(16px,3vw,24px)', borderTop: `1px solid ${dark ? '#27272a' : '#1e293b'}` }}>
-            {/* Newsletter Section */}
-            <div style={{ ...maxW(), marginBottom: 48, paddingBottom: 32, borderBottom: `1px solid ${dark ? '#27272a' : '#1e293b'}` }}>
-                <div style={{ maxWidth: 400 }}>
-                    <NewsletterForm />
-                </div>
-            </div>
-
-            <div style={{ ...maxW(), display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 32 }}>
-                <div style={col(8)}>
+        <footer style={{ background: dark ? '#09090b' : '#0f172a', color: '#94a3b8', padding: 'clamp(24px,4vw,36px) clamp(16px,3vw,24px)' }}>
+            <div style={{ ...maxW(), display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 24 }}>
+                <div style={col(6)}>
                     <div style={row(10)}>
                         <svg width="22" height="22" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill={c.primary} /><path d="M8 10l4 4-4 4M14 18h6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                         <span style={{ fontWeight: 700, color: '#f1f5f9' }}>lite</span>

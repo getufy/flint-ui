@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { UiTextField } from '../../../react/src/components/UiTextField';
+import { UiTextField } from '../../../packages/react/src/components/UiTextField';
 import { useTheme } from '../ThemeContext';
-import { getColors, row, card, sect, maxW, grid3 } from '../tokens';
+import { getColors, row, getShadows, sect, maxW, grid3 } from '../tokens';
 import { Heading } from '../components/shared';
 
 const cats = [
@@ -18,7 +18,9 @@ const totalCount = cats.reduce((n, cat) => n + cat.items.length, 0);
 export function ComponentList() {
     const { dark } = useTheme();
     const c = getColors(dark);
+    const s = getShadows(dark);
     const [query, setQuery] = useState('');
+    const [hoveredCat, setHoveredCat] = useState<string | null>(null);
 
     const filtered = query.trim()
         ? cats
@@ -29,9 +31,9 @@ export function ComponentList() {
     const matchCount = filtered.reduce((n, cat) => n + cat.items.length, 0);
 
     return (
-        <section style={sect(undefined, c)}>
+        <section id="s-all-components" style={sect(undefined, c)}>
             <div style={maxW()}>
-                <Heading title={<>{totalCount}+ components across 6 categories</>} sub="Every component ships with its own React wrapper, TypeScript types, Storybook stories, and unit tests." />
+                <Heading title={<>{totalCount}+ components across 6 categories</>} sub="Every component ships with its own React wrapper, TypeScript types, Storybook stories, and unit tests." badge="Full Library" />
 
                 <div style={{ maxWidth: 360, margin: '0 auto 40px' }}>
                     <UiTextField
@@ -51,26 +53,40 @@ export function ComponentList() {
                 ) : (
                     <div style={grid3()}>
                         {filtered.map(cat => (
-                            <div key={cat.name} style={card({}, c)}>
+                            <div
+                                key={cat.name}
+                                onMouseEnter={() => setHoveredCat(cat.name)}
+                                onMouseLeave={() => setHoveredCat(null)}
+                                style={{
+                                    background: c.surface,
+                                    borderRadius: 12,
+                                    boxShadow: hoveredCat === cat.name ? s.lg : s.md,
+                                    padding: '20px 24px',
+                                    transform: hoveredCat === cat.name ? 'translateY(-2px)' : 'translateY(0)',
+                                    transition: 'box-shadow 0.2s, transform 0.2s',
+                                }}
+                            >
                                 <div style={{ ...row(8), marginBottom: 12, justifyContent: 'space-between' }}>
                                     <p style={{ fontWeight: 700, fontSize: 14 }}>{cat.name}</p>
                                     <span style={{ fontSize: 11, background: c.primaryLight, color: c.primary, padding: '2px 8px', borderRadius: 20, fontWeight: 700 }}>{cat.items.length}</span>
                                 </div>
                                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                                    {cat.items.map(it => (
-                                        <span
-                                            key={it}
-                                            style={{
-                                                fontSize: 12, fontFamily: 'monospace',
-                                                color: query && it.toLowerCase().includes(query.toLowerCase()) ? c.primary : c.muted,
-                                                background: query && it.toLowerCase().includes(query.toLowerCase()) ? c.primaryLight : c.bg,
-                                                border: `1px solid ${query && it.toLowerCase().includes(query.toLowerCase()) ? c.primary : c.border}`,
-                                                padding: '2px 8px', borderRadius: 4,
-                                            }}
-                                        >
-                                            {it}
-                                        </span>
-                                    ))}
+                                    {cat.items.map(it => {
+                                        const isMatch = query && it.toLowerCase().includes(query.toLowerCase());
+                                        return (
+                                            <span
+                                                key={it}
+                                                style={{
+                                                    fontSize: 12, fontFamily: 'monospace',
+                                                    color: isMatch ? c.primary : c.muted,
+                                                    background: isMatch ? c.primaryLight : `${c.bg}`,
+                                                    padding: '3px 10px', borderRadius: 6,
+                                                }}
+                                            >
+                                                {it}
+                                            </span>
+                                        );
+                                    })}
                                 </div>
                             </div>
                         ))}

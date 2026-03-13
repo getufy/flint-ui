@@ -1,7 +1,11 @@
 node_modules
 dist
+packages/*/dist
 storybook-static
 coverage
+
+# homepage build output
+dist-homepage
 
 # stryker temp files
 .stryker-tmp

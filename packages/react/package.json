@@ -1,0 +1,43 @@
+{
+  "name": "storybook-lit-react",
+  "version": "0.1.0",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "generate": "tsx ../../scripts/generate-react-wrappers.ts",
+    "build": "tsc -p tsconfig.json",
+    "prepublishOnly": "npm run generate && npm run build"
+  },
+  "keywords": [
+    "react",
+    "lit",
+    "web-components",
+    "ui",
+    "design-system"
+  ],
+  "license": "MIT",
+  "description": "React wrappers for storybook-lit web components",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@lit/react": "^1.0.8"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "storybook-lit": "^0.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "react": "^19.0.0",
+    "storybook-lit": "*",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,73 +1,24 @@
 {
-  "name": "storybook-lit",
-  "version": "1.0.0",
-  "type": "module",
-  "main": "./dist/storybook-lit-component.umd.js",
-  "module": "./dist/storybook-lit-component.es.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/storybook-lit-component.es.js",
-      "require": "./dist/storybook-lit-component.umd.js"
-    },
-    "./theme.css": "./src/theme.css",
-    "./theme-dark.css": "./src/theme-dark.css"
-  },
+  "private": true,
+  "workspaces": [
+    "packages/core",
+    "packages/react"
+  ],
   "scripts": {
-    "lint": "eslint \"src/**/*.ts\"",
-    "test": "NODE_OPTIONS='--no-warnings' vitest run",
-    "test:watch": "NODE_OPTIONS='--no-warnings' vitest",
-    "build": "tsc && vite build",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "build-coverage": "NODE_OPTIONS='--no-warnings' vitest run --project components --coverage",
+    "build": "npm run build -w packages/core && npm run build -w packages/react",
+    "build:core": "npm run build -w packages/core",
+    "build:react": "npm run build -w packages/react",
+    "lint": "npm run lint -w packages/core",
+    "test": "npm run test -w packages/core",
+    "test:watch": "npm run test:watch -w packages/core",
+    "storybook": "npm run storybook -w packages/core",
+    "build-storybook": "npm run build-storybook -w packages/core",
     "gen:react": "tsx scripts/generate-react-wrappers.ts",
     "homepage:dev": "vite --config homepage/vite.config.ts",
     "homepage:build": "vite build --config homepage/vite.config.ts",
     "homepage:preview": "vite preview --config homepage/vite.config.ts"
   },
-  "keywords": [
-    "lit",
-    "web-components",
-    "storybook"
-  ],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "files": [
-    "dist",
-    "src/theme.css",
-    "src/theme-dark.css"
-  ],
-  "dependencies": {
-    "lit": "^3.3.2"
-  },
   "devDependencies": {
-    "@chromatic-com/storybook": "^5.0.1",
-    "@open-wc/testing": "^4.0.0",
-    "@storybook/addon-a11y": "^10.2.13",
-    "@storybook/addon-docs": "^10.2.13",
-    "@storybook/addon-vitest": "^10.2.13",
-    "@storybook/web-components-vite": "^10.2.13",
-    "@stryker-mutator/core": "^9.6.0",
-    "@stryker-mutator/typescript-checker": "^9.6.0",
-    "@stryker-mutator/vitest-runner": "^9.6.0",
-    "@testing-library/dom": "^10.4.1",
-    "@types/node": "^25.3.2",
-    "@vitest/browser-playwright": "^4.0.18",
-    "@vitest/coverage-v8": "^4.0.18",
-    "eslint": "^9.39.3",
-    "eslint-plugin-lit": "^2.2.1",
-    "eslint-plugin-wc": "^3.1.0",
-    "jsdom": "^27.0.1",
-    "lit-element": "^4.2.2",
-    "lit-html": "^3.3.2",
-    "playwright": "^1.58.2",
-    "storybook": "^10.2.13",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.56.1",
-    "vite": "^7.3.1",
-    "vitest": "^4.0.18"
+    "tsx": "^4.0.0"
   }
 }
