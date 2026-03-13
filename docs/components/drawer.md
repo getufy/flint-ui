@@ -1,6 +1,6 @@
 # Drawer
 
-<Demo label="Left (default)" html="<ui-button onclick=&quot;this.nextElementSibling.open=true&quot;>Open Drawer</ui-button><ui-drawer>  <div style=&quot;padding:24px;width:280px&quot;>    <h3 style=&quot;margin:0 0 16px&quot;>Navigation</h3>    <ui-list>      <ui-list-item-button><ui-list-item-text primary=&quot;Home&quot;></ui-list-item-text></ui-list-item-button>      <ui-list-item-button><ui-list-item-text primary=&quot;Profile&quot;></ui-list-item-text></ui-list-item-button>      <ui-list-item-button><ui-list-item-text primary=&quot;Settings&quot;></ui-list-item-text></ui-list-item-button>    </ui-list>  </div></ui-drawer>" />
+<Demo label="Left (default)" html="<ui-button onclick=&quot;var d=this.nextElementSibling;d.open=true;d.addEventListener('ui-drawer-close',function(){d.open=false},{once:true})&quot;>Open Drawer</ui-button><ui-drawer>  <div style=&quot;padding:24px;width:280px&quot;>    <h3 style=&quot;margin:0 0 16px&quot;>Navigation</h3>    <ui-list>      <ui-list-item-button><ui-list-item-text primary=&quot;Home&quot;></ui-list-item-text></ui-list-item-button>      <ui-list-item-button><ui-list-item-text primary=&quot;Profile&quot;></ui-list-item-text></ui-list-item-button>      <ui-list-item-button><ui-list-item-text primary=&quot;Settings&quot;></ui-list-item-text></ui-list-item-button>    </ui-list>  </div></ui-drawer>" />
 
 Navigation drawers provide ergonomic access to destinations in a site or app.
 

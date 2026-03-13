@@ -1,6 +1,6 @@
 # Select
 
-<Demo html="<ui-select label=&quot;Fruit&quot; placeholder=&quot;Pick one&quot; style=&quot;width:200px&quot;></ui-select>" />
+<Demo html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><ui-select label=&quot;Fruit&quot; placeholder=&quot;Pick one&quot; style=&quot;width:220px&quot; data-options=&quot;apple:Apple,banana:Banana,cherry:Cherry,grape:Grape,mango:Mango&quot;></ui-select><ui-select label=&quot;Disabled&quot; disabled placeholder=&quot;Disabled&quot; style=&quot;width:220px&quot;></ui-select></div>" />
 
 A select component for choosing one or multiple options from a list.
 
