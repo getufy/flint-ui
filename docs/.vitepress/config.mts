@@ -14,6 +14,7 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Components', link: '/components/button' },
+      { text: 'React', link: '/react' },
     ],
     sidebar: {
       '/components/': sidebar,
