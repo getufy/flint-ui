@@ -538,7 +538,10 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
   ],
   select: [
     {
-      html: `<ui-select label="Fruit" placeholder="Pick one" style="width:200px"></ui-select>`,
+      html: `<div style="display:flex;gap:16px;flex-wrap:wrap">
+<ui-select label="Fruit" placeholder="Pick one" style="width:220px" data-options="apple:Apple,banana:Banana,cherry:Cherry,grape:Grape,mango:Mango"></ui-select>
+<ui-select label="Disabled" disabled placeholder="Disabled" style="width:220px"></ui-select>
+</div>`,
     },
   ],
   slider: [
@@ -683,30 +686,30 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
     {
       label: 'Basic',
       html: `<div style="width:100%;max-width:500px">
-<ui-tabs>
+<ui-tabs value="one">
   <ui-tab-list>
-    <ui-tab>Tab One</ui-tab>
-    <ui-tab>Tab Two</ui-tab>
-    <ui-tab>Tab Three</ui-tab>
+    <ui-tab value="one">Tab One</ui-tab>
+    <ui-tab value="two">Tab Two</ui-tab>
+    <ui-tab value="three">Tab Three</ui-tab>
   </ui-tab-list>
-  <ui-tab-panel><p style="padding:16px;margin:0">Content for Tab One</p></ui-tab-panel>
-  <ui-tab-panel><p style="padding:16px;margin:0">Content for Tab Two</p></ui-tab-panel>
-  <ui-tab-panel><p style="padding:16px;margin:0">Content for Tab Three</p></ui-tab-panel>
+  <ui-tab-panel value="one"><p style="padding:16px;margin:0">Content for Tab One</p></ui-tab-panel>
+  <ui-tab-panel value="two"><p style="padding:16px;margin:0">Content for Tab Two</p></ui-tab-panel>
+  <ui-tab-panel value="three"><p style="padding:16px;margin:0">Content for Tab Three</p></ui-tab-panel>
 </ui-tabs>
 </div>`,
     },
     {
       label: 'With Disabled Tab',
       html: `<div style="width:100%;max-width:500px">
-<ui-tabs>
+<ui-tabs value="first">
   <ui-tab-list>
-    <ui-tab>Active</ui-tab>
-    <ui-tab disabled>Disabled</ui-tab>
-    <ui-tab>Also Active</ui-tab>
+    <ui-tab value="first">Active</ui-tab>
+    <ui-tab value="second" disabled>Disabled</ui-tab>
+    <ui-tab value="third">Also Active</ui-tab>
   </ui-tab-list>
-  <ui-tab-panel><p style="padding:16px;margin:0">First panel content</p></ui-tab-panel>
-  <ui-tab-panel><p style="padding:16px;margin:0">Disabled panel</p></ui-tab-panel>
-  <ui-tab-panel><p style="padding:16px;margin:0">Third panel content</p></ui-tab-panel>
+  <ui-tab-panel value="first"><p style="padding:16px;margin:0">First panel content</p></ui-tab-panel>
+  <ui-tab-panel value="second"><p style="padding:16px;margin:0">Disabled panel</p></ui-tab-panel>
+  <ui-tab-panel value="third"><p style="padding:16px;margin:0">Third panel content</p></ui-tab-panel>
 </ui-tabs>
 </div>`,
     },
@@ -804,7 +807,7 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
   dialog: [
     {
       label: 'Basic',
-      html: `<ui-button onclick="this.nextElementSibling.open=true">Open Dialog</ui-button>
+      html: `<ui-button onclick="var d=this.nextElementSibling;d.open=true;d.addEventListener('close',function(){d.open=false},{once:true})">Open Dialog</ui-button>
 <ui-dialog>
   <ui-dialog-title>Confirm Action</ui-dialog-title>
   <ui-dialog-content>
@@ -818,7 +821,7 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
     },
     {
       label: 'Destructive',
-      html: `<ui-button variant="destructive" onclick="this.nextElementSibling.open=true">Delete Account</ui-button>
+      html: `<ui-button variant="destructive" onclick="var d=this.nextElementSibling;d.open=true;d.addEventListener('close',function(){d.open=false},{once:true})">Delete Account</ui-button>
 <ui-dialog>
   <ui-dialog-title>Delete Account?</ui-dialog-title>
   <ui-dialog-content>
@@ -834,7 +837,7 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
   drawer: [
     {
       label: 'Left (default)',
-      html: `<ui-button onclick="this.nextElementSibling.open=true">Open Drawer</ui-button>
+      html: `<ui-button onclick="var d=this.nextElementSibling;d.open=true;d.addEventListener('ui-drawer-close',function(){d.open=false},{once:true})">Open Drawer</ui-button>
 <ui-drawer>
   <div style="padding:24px;width:280px">
     <h3 style="margin:0 0 16px">Navigation</h3>
@@ -1140,10 +1143,10 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
   ],
   backdrop: [
     {
-      html: `<ui-button onclick="this.nextElementSibling.open=true">Show Backdrop</ui-button>
+      html: `<ui-button onclick="var b=this.nextElementSibling;b.open=true;b.addEventListener('close',function(){b.open=false},{once:true})">Show Backdrop</ui-button>
 <ui-backdrop>
   <div style="background:white;padding:24px;border-radius:8px;text-align:center">
-    <p style="margin:0 0 16px">Click outside to close</p>
+    <p style="margin:0 0 16px">Click outside or press Escape to close</p>
     <ui-button onclick="this.closest('ui-backdrop').open=false">Close</ui-button>
   </div>
 </ui-backdrop>`,
@@ -1297,7 +1300,8 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
   ],
   menu: [
     {
-      html: `<ui-button onclick="this.nextElementSibling.open=!this.nextElementSibling.open">Open Menu</ui-button>
+      html: `<div style="position:relative;display:inline-block">
+<ui-button onclick="var m=this.nextElementSibling;m.open=!m.open;if(m.open)m.addEventListener('ui-menu-close',function(){m.open=false},{once:true})">Open Menu</ui-button>
 <ui-menu>
   <ui-menu-item>Profile</ui-menu-item>
   <ui-menu-item>Settings</ui-menu-item>
@@ -1308,7 +1312,8 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
   </ui-menu-group>
   <ui-menu-divider></ui-menu-divider>
   <ui-menu-item>Logout</ui-menu-item>
-</ui-menu>`,
+</ui-menu>
+</div>`,
     },
   ],
   menubar: [
@@ -1359,11 +1364,9 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
     <ui-navigation-menu-item>
       <ui-navigation-menu-trigger content-id="nav-docs">Documentation</ui-navigation-menu-trigger>
       <ui-navigation-menu-content id="nav-docs">
-        <div style="padding:12px;display:flex;flex-direction:column;gap:4px">
-          <ui-navigation-menu-link href="#">Getting Started</ui-navigation-menu-link>
-          <ui-navigation-menu-link href="#">Components</ui-navigation-menu-link>
-          <ui-navigation-menu-link href="#">API Reference</ui-navigation-menu-link>
-        </div>
+        <ui-navigation-menu-link href="#">Getting Started</ui-navigation-menu-link>
+        <ui-navigation-menu-link href="#">Components</ui-navigation-menu-link>
+        <ui-navigation-menu-link href="#">API Reference</ui-navigation-menu-link>
       </ui-navigation-menu-content>
     </ui-navigation-menu-item>
     <ui-navigation-menu-item>

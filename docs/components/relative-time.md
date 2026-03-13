@@ -1,6 +1,6 @@
 # Relative Time
 
-<Demo label="Dates" html="<div style=&quot;display:flex;flex-direction:column;gap:8px&quot;><span>1 day ago: <ui-relative-time datetime=&quot;2026-03-12T20:55:12.464Z&quot;></ui-relative-time></span><span>1 week ago: <ui-relative-time datetime=&quot;2026-03-06T20:55:12.465Z&quot;></ui-relative-time></span><span>1 month ago: <ui-relative-time datetime=&quot;2026-02-11T20:55:12.465Z&quot;></ui-relative-time></span></div>" />
+<Demo label="Dates" html="<div style=&quot;display:flex;flex-direction:column;gap:8px&quot;><span>1 day ago: <ui-relative-time datetime=&quot;2026-03-12T21:03:09.465Z&quot;></ui-relative-time></span><span>1 week ago: <ui-relative-time datetime=&quot;2026-03-06T21:03:09.466Z&quot;></ui-relative-time></span><span>1 month ago: <ui-relative-time datetime=&quot;2026-02-11T21:03:09.466Z&quot;></ui-relative-time></span></div>" />
 
 Displays a localized time phrase relative to the current date and time. Uses the browser's `Intl.RelativeTimeFormat` API — no language packs needed.
 
