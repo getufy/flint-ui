@@ -38,6 +38,16 @@ onMounted(async () => {
       });
       (el as any).options = options;
     });
+
+    // Set arbitrary JS properties from data-props='{"prop": value}'
+    container.value.querySelectorAll('[data-props]').forEach((el) => {
+      try {
+        const props = JSON.parse(el.getAttribute('data-props') || '{}');
+        for (const [key, val] of Object.entries(props)) {
+          (el as any)[key] = val;
+        }
+      } catch { /* ignore parse errors */ }
+    });
   }
 });
 </script>

@@ -86,4 +86,24 @@ describe('ui-backdrop', () => {
         expect(el.container).toBe(true);
         expect(el.hasAttribute('container')).toBe(true);
     });
+
+    it('dispatches close event when Escape is pressed while open', async () => {
+        const el = await fixture<UiBackdrop>(html`<ui-backdrop open></ui-backdrop>`);
+        const closeSpy = vi.fn();
+        el.addEventListener('close', closeSpy);
+
+        document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+
+        expect(closeSpy).toHaveBeenCalled();
+    });
+
+    it('does not dispatch close event on Escape when closed', async () => {
+        const el = await fixture<UiBackdrop>(html`<ui-backdrop></ui-backdrop>`);
+        const closeSpy = vi.fn();
+        el.addEventListener('close', closeSpy);
+
+        document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+
+        expect(closeSpy).not.toHaveBeenCalled();
+    });
 });

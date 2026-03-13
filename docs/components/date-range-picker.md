@@ -1,6 +1,10 @@
 # Date Range Picker
 
-<Demo html="<ui-date-range-picker label=&quot;Date range&quot; style=&quot;width:340px&quot;></ui-date-range-picker>" />
+<Demo label="Basic" html="<ui-date-range-picker label=&quot;Date range&quot; style=&quot;width:340px&quot;></ui-date-range-picker>" />
+
+<Demo label="With Shortcuts" html="<ui-date-range-picker label=&quot;Date range&quot; shortcuts style=&quot;width:340px&quot;></ui-date-range-picker>" />
+
+<Demo label="Static with Shortcuts" html="<ui-date-range-picker variant=&quot;static&quot; shortcuts></ui-date-range-picker>" />
 
 ## `<ui-date-range-calendar>`
 

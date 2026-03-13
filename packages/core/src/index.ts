@@ -92,6 +92,9 @@ export { UiImageListItem } from './image-list/ui-image-list-item.js';
 export { UiImageListItemBar } from './image-list/ui-image-list-item-bar.js';
 export { UiDatePicker, UiDatePickerCalendar } from './date-picker/ui-date-picker.js';
 export { UiDateField } from './date-field/ui-date-field.js';
+export { UiDateRangePicker } from './date-range-picker/ui-date-range-picker.js';
+export { UiSingleInputDateRangeField } from './date-range-picker/ui-single-input-date-range-field.js';
+export { UiDateRangeCalendar } from './date-range-picker/ui-date-range-calendar.js';
 export {
     UiTimeField, UiDigitalClock, UiMultiSectionDigitalClock,
     UiTimeClock, UiDesktopTimePicker, UiMobileTimePicker,

@@ -1,10 +1,10 @@
 # Button
 
-<Demo label="Variants" html="<ui-button variant=&quot;primary&quot;>Primary</ui-button><ui-button variant=&quot;secondary&quot;>Secondary</ui-button><ui-button variant=&quot;destructive&quot;>Destructive</ui-button>" />
+<Demo label="Variants" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><ui-button variant=&quot;primary&quot;>Primary</ui-button><ui-button variant=&quot;secondary&quot;>Secondary</ui-button><ui-button variant=&quot;destructive&quot;>Destructive</ui-button></div>" />
 
-<Demo label="Sizes" html="<ui-button size=&quot;small&quot;>Small</ui-button><ui-button size=&quot;medium&quot;>Medium</ui-button><ui-button size=&quot;large&quot;>Large</ui-button>" />
+<Demo label="Sizes" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap;align-items:center&quot;><ui-button size=&quot;small&quot;>Small</ui-button><ui-button size=&quot;medium&quot;>Medium</ui-button><ui-button size=&quot;large&quot;>Large</ui-button></div>" />
 
-<Demo label="States" html="<ui-button disabled>Disabled</ui-button><ui-button full-width>Full Width</ui-button>" />
+<Demo label="States" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap;align-items:center&quot;><ui-button disabled>Disabled</ui-button><ui-button full-width>Full Width</ui-button></div>" />
 
 <Demo label="Button Group" html="<ui-button-group>  <ui-button variant=&quot;secondary&quot;>Left</ui-button>  <ui-button variant=&quot;secondary&quot;>Center</ui-button>  <ui-button variant=&quot;secondary&quot;>Right</ui-button></ui-button-group>" />
 

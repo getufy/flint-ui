@@ -1,6 +1,6 @@
 # Toggle
 
-<Demo label="States" html="<ui-toggle>Default</ui-toggle><ui-toggle pressed>Pressed</ui-toggle><ui-toggle disabled>Disabled</ui-toggle>" />
+<Demo label="States" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><ui-toggle>Default</ui-toggle><ui-toggle pressed>Pressed</ui-toggle><ui-toggle disabled>Disabled</ui-toggle></div>" />
 
 A two-state button that can be either on (pressed) or off.
 

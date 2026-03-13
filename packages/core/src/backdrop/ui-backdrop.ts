@@ -5,8 +5,8 @@ import uiBackdropStyles from './ui-backdrop.css?inline';
 
 /**
  * A backdrop component that narrows the user's focus to a particular element.
- * 
- * @fires close - Dispatched when the backdrop is clicked.
+ *
+ * @fires close - Dispatched when the backdrop is clicked or Escape is pressed.
  * @slot - Content to display in the foreground.
  */
 @customElement('ui-backdrop')
@@ -16,6 +16,24 @@ export class UiBackdrop extends LitElement {
   @property({ type: Boolean, reflect: true }) open = false;
   @property({ type: Boolean }) invisible = false;
   @property({ type: Boolean, reflect: true }) container = false;
+
+  private _boundKeydown = this._handleKeydown.bind(this);
+
+  connectedCallback() {
+    super.connectedCallback();
+    document.addEventListener('keydown', this._boundKeydown);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    document.removeEventListener('keydown', this._boundKeydown);
+  }
+
+  private _handleKeydown(e: KeyboardEvent) {
+    if (e.key === 'Escape' && this.open) {
+      this.dispatchEvent(new CustomEvent('close', { bubbles: true, composed: true }));
+    }
+  }
 
   private _handleClick(e: MouseEvent) {
     // Only trigger close if clicking directly on the backdrop, not the content

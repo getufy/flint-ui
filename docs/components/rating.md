@@ -2,7 +2,7 @@
 
 <Demo label="Interactive" html="<ui-rating value=&quot;0&quot;></ui-rating>" />
 
-<Demo label="Values" html="<ui-rating value=&quot;1&quot; readonly></ui-rating><ui-rating value=&quot;3&quot; readonly></ui-rating><ui-rating value=&quot;5&quot; readonly></ui-rating>" />
+<Demo label="Values" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><ui-rating value=&quot;1&quot; readonly></ui-rating><ui-rating value=&quot;3&quot; readonly></ui-rating><ui-rating value=&quot;5&quot; readonly></ui-rating></div>" />
 
 <Demo label="Disabled" html="<ui-rating value=&quot;3&quot; disabled></ui-rating>" />
 

@@ -33,7 +33,7 @@ import { UiBackdrop } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `close` | — | Dispatched when the backdrop is clicked. |
+| `close` | — | Dispatched when the backdrop is clicked or Escape is pressed. |
 
 ### Slots
 

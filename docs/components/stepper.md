@@ -4,6 +4,8 @@
 
 <Demo label="All Complete" html="<div style=&quot;width:100%;max-width:500px&quot;><ui-stepper active-step=&quot;3&quot;>  <ui-step completed>    <ui-step-label>Account</ui-step-label>  </ui-step>  <ui-step completed>    <ui-step-label>Details</ui-step-label>  </ui-step>  <ui-step completed>    <ui-step-label>Review</ui-step-label>  </ui-step></ui-stepper></div>" />
 
+<Demo label="Vertical" html="<div style=&quot;width:100%;max-width:400px&quot;><ui-stepper orientation=&quot;vertical&quot; active-step=&quot;1&quot;>  <ui-step completed>    <ui-step-label>Create account</ui-step-label>    <p style=&quot;margin:0;color:#6b7280;font-size:14px&quot;>Account created successfully.</p>  </ui-step>  <ui-step>    <ui-step-label>Personal details</ui-step-label>    <p style=&quot;margin:0;color:#6b7280;font-size:14px&quot;>Fill in your name, email, and phone number.</p>  </ui-step>  <ui-step>    <ui-step-label>Review & submit</ui-step-label>  </ui-step></ui-stepper></div>" />
+
 ## `<ui-step-connector>`
 
 - **Tag**: `<ui-step-connector>`
