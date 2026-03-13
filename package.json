@@ -14,11 +14,13 @@
     "storybook": "npm run storybook -w packages/core",
     "build-storybook": "npm run build-storybook -w packages/core",
     "gen:react": "tsx scripts/generate-react-wrappers.ts",
-    "homepage:dev": "vite --config homepage/vite.config.ts",
-    "homepage:build": "vite build --config homepage/vite.config.ts",
-    "homepage:preview": "vite preview --config homepage/vite.config.ts"
+    "gen:docs": "tsx scripts/generate-docs.ts",
+    "docs:dev": "npm run gen:docs && vitepress dev docs",
+    "docs:build": "npm run gen:docs && vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
-    "tsx": "^4.0.0"
+    "tsx": "^4.0.0",
+    "vitepress": "^1.6.4"
   }
 }

@@ -1,0 +1,326 @@
+[
+  {
+    "text": "Form Controls",
+    "collapsed": false,
+    "items": [
+      {
+        "text": "Button",
+        "link": "/components/button"
+      },
+      {
+        "text": "Checkbox",
+        "link": "/components/checkbox"
+      },
+      {
+        "text": "Input",
+        "link": "/components/input"
+      },
+      {
+        "text": "Input Otp",
+        "link": "/components/input-otp"
+      },
+      {
+        "text": "Radio",
+        "link": "/components/radio"
+      },
+      {
+        "text": "Rating",
+        "link": "/components/rating"
+      },
+      {
+        "text": "Select",
+        "link": "/components/select"
+      },
+      {
+        "text": "Slider",
+        "link": "/components/slider"
+      },
+      {
+        "text": "Switch",
+        "link": "/components/switch"
+      },
+      {
+        "text": "Text Field",
+        "link": "/components/text-field"
+      },
+      {
+        "text": "Textarea",
+        "link": "/components/textarea"
+      },
+      {
+        "text": "Toggle",
+        "link": "/components/toggle"
+      },
+      {
+        "text": "Ui Range Slider",
+        "link": "/components/ui-range-slider"
+      },
+      {
+        "text": "Date Field",
+        "link": "/components/date-field"
+      },
+      {
+        "text": "Date Picker",
+        "link": "/components/date-picker"
+      },
+      {
+        "text": "Date Range Picker",
+        "link": "/components/date-range-picker"
+      },
+      {
+        "text": "Time Picker",
+        "link": "/components/time-picker"
+      },
+      {
+        "text": "Autocomplete",
+        "link": "/components/autocomplete"
+      },
+      {
+        "text": "Transfer List",
+        "link": "/components/transfer-list"
+      }
+    ]
+  },
+  {
+    "text": "Data Display",
+    "collapsed": false,
+    "items": [
+      {
+        "text": "Avatar",
+        "link": "/components/avatar"
+      },
+      {
+        "text": "Badge",
+        "link": "/components/badge"
+      },
+      {
+        "text": "Chip",
+        "link": "/components/chip"
+      },
+      {
+        "text": "Empty",
+        "link": "/components/empty"
+      },
+      {
+        "text": "Image List",
+        "link": "/components/image-list"
+      },
+      {
+        "text": "Item",
+        "link": "/components/item"
+      },
+      {
+        "text": "List",
+        "link": "/components/list"
+      },
+      {
+        "text": "Table",
+        "link": "/components/table"
+      },
+      {
+        "text": "Tooltip",
+        "link": "/components/tooltip"
+      },
+      {
+        "text": "Tree View",
+        "link": "/components/tree-view"
+      },
+      {
+        "text": "Typography",
+        "link": "/components/typography"
+      },
+      {
+        "text": "Kbd",
+        "link": "/components/kbd"
+      },
+      {
+        "text": "Format Date",
+        "link": "/components/format-date"
+      },
+      {
+        "text": "Format Number",
+        "link": "/components/format-number"
+      },
+      {
+        "text": "Relative Time",
+        "link": "/components/relative-time"
+      }
+    ]
+  },
+  {
+    "text": "Navigation",
+    "collapsed": false,
+    "items": [
+      {
+        "text": "App Bar",
+        "link": "/components/app-bar"
+      },
+      {
+        "text": "Bottom Navigation",
+        "link": "/components/bottom-navigation"
+      },
+      {
+        "text": "Breadcrumbs",
+        "link": "/components/breadcrumbs"
+      },
+      {
+        "text": "Link",
+        "link": "/components/link"
+      },
+      {
+        "text": "Menu",
+        "link": "/components/menu"
+      },
+      {
+        "text": "Menubar",
+        "link": "/components/menubar"
+      },
+      {
+        "text": "Navigation Menu",
+        "link": "/components/navigation-menu"
+      },
+      {
+        "text": "Pagination",
+        "link": "/components/pagination"
+      },
+      {
+        "text": "Speed Dial",
+        "link": "/components/speed-dial"
+      },
+      {
+        "text": "Stepper",
+        "link": "/components/stepper"
+      },
+      {
+        "text": "Tabs",
+        "link": "/components/tabs"
+      }
+    ]
+  },
+  {
+    "text": "Feedback",
+    "collapsed": false,
+    "items": [
+      {
+        "text": "Alert",
+        "link": "/components/alert"
+      },
+      {
+        "text": "Dialog",
+        "link": "/components/dialog"
+      },
+      {
+        "text": "Drawer",
+        "link": "/components/drawer"
+      },
+      {
+        "text": "Progress",
+        "link": "/components/progress"
+      },
+      {
+        "text": "Skeleton",
+        "link": "/components/skeleton"
+      },
+      {
+        "text": "Snackbar",
+        "link": "/components/snackbar"
+      },
+      {
+        "text": "Sonner",
+        "link": "/components/sonner"
+      },
+      {
+        "text": "Backdrop",
+        "link": "/components/backdrop"
+      }
+    ]
+  },
+  {
+    "text": "Layout",
+    "collapsed": false,
+    "items": [
+      {
+        "text": "Accordion",
+        "link": "/components/accordion"
+      },
+      {
+        "text": "Box",
+        "link": "/components/box"
+      },
+      {
+        "text": "Card",
+        "link": "/components/card"
+      },
+      {
+        "text": "Carousel",
+        "link": "/components/carousel"
+      },
+      {
+        "text": "Collapsible",
+        "link": "/components/collapsible"
+      },
+      {
+        "text": "Command",
+        "link": "/components/command"
+      },
+      {
+        "text": "Container",
+        "link": "/components/container"
+      },
+      {
+        "text": "Divider",
+        "link": "/components/divider"
+      },
+      {
+        "text": "Grid",
+        "link": "/components/grid"
+      },
+      {
+        "text": "Hover Card",
+        "link": "/components/hover-card"
+      },
+      {
+        "text": "Image Comparer",
+        "link": "/components/image-comparer"
+      },
+      {
+        "text": "Paper",
+        "link": "/components/paper"
+      },
+      {
+        "text": "Resizable",
+        "link": "/components/resizable"
+      },
+      {
+        "text": "Scroll Area",
+        "link": "/components/scroll-area"
+      },
+      {
+        "text": "Split Panel",
+        "link": "/components/split-panel"
+      },
+      {
+        "text": "Stack",
+        "link": "/components/stack"
+      }
+    ]
+  },
+  {
+    "text": "Utility",
+    "collapsed": false,
+    "items": [
+      {
+        "text": "Copy Button",
+        "link": "/components/copy-button"
+      },
+      {
+        "text": "Fab",
+        "link": "/components/fab"
+      },
+      {
+        "text": "Visually Hidden",
+        "link": "/components/visually-hidden"
+      }
+    ]
+  }
+]
