@@ -36,15 +36,16 @@ const preview: Preview = {
   decorators: [
     (story, context) => {
       const theme = context.globals.theme || 'light';
+      const root = document.documentElement;
 
-      if (theme === 'system') {
-        // Remove explicit theme overrides — let @media (prefers-color-scheme) decide
-        document.documentElement.classList.remove('ui-theme-light', 'ui-theme-dark');
-        document.body.classList.remove('ui-theme-light', 'ui-theme-dark');
-      } else {
-        // Set explicit theme on <body> so .ui-theme-dark / .ui-theme-light selectors apply
-        document.body.classList.remove('ui-theme-light', 'ui-theme-dark');
-        document.body.classList.add(theme === 'dark' ? 'ui-theme-dark' : 'ui-theme-light');
+      // Always clear both classes first
+      root.classList.remove('ui-theme-light', 'ui-theme-dark');
+
+      if (theme !== 'system') {
+        // Explicit override — set on <html> so both the .ui-theme-dark selector
+        // and the @media (prefers-color-scheme: dark) { :root:not(.ui-theme-light) }
+        // fallback respond correctly.
+        root.classList.add(theme === 'dark' ? 'ui-theme-dark' : 'ui-theme-light');
       }
 
       return story();

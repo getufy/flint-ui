@@ -6,7 +6,7 @@ import { getColors, row, col, sect, maxW, glass, getShadows } from '../tokens';
 import { Heading } from '../components/shared';
 
 export function Interactive() {
-    const { dark, setDark } = useTheme();
+    const { dark, setMode } = useTheme();
     const c = getColors(dark);
     const s = getShadows(dark);
 
@@ -35,7 +35,7 @@ export function Interactive() {
                         </div>
                         <UiDivider />
                         <div style={col(16)}>
-                            <UiSwitch label="Dark mode" checked={dark} onUiSwitchChange={e => setDark((e as CustomEvent<{ checked: boolean }>).detail.checked)} />
+                            <UiSwitch label="Dark mode" checked={dark} onUiSwitchChange={e => setMode((e as CustomEvent<{ checked: boolean }>).detail.checked ? 'dark' : 'light')} />
                             <UiSwitch label="Notifications" checked={notifs} size="md" onUiSwitchChange={e => setNotifs((e as CustomEvent<{ checked: boolean }>).detail.checked)} />
                             <UiSwitch label="Auto-save" checked={save} size="sm" onUiSwitchChange={e => setSave((e as CustomEvent<{ checked: boolean }>).detail.checked)} />
                         </div>

@@ -37,7 +37,7 @@ export function ComponentPreview({
             <div style={{
                 padding: '24px',
                 borderBottom: `1px solid ${c.border}`,
-                background: dark ? '#18181b' : '#f8fafc'
+                background: dark ? c.surface : '#f8fafc'
             }}>
                 <h3 style={{
                     fontSize: 18,
@@ -104,8 +104,8 @@ export function ComponentPreview({
                     <pre style={{
                         padding: '16px 24px',
                         margin: 0,
-                        background: dark ? '#1e293b' : '#f8fafc',
-                        color: dark ? '#e2e8f0' : '#0f172a',
+                        background: dark ? c.surface : '#f8fafc',
+                        color: c.text,
                         fontSize: 13,
                         fontFamily: 'monospace',
                         overflow: 'auto',

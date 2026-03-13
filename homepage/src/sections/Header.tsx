@@ -12,7 +12,7 @@ const navLinks = [
 
 export function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
-    const { dark, setDark } = useTheme();
+    const { dark, setMode } = useTheme();
     const { isTablet } = useBreakpoint();
     const c = getColors(dark);
 
@@ -49,7 +49,7 @@ export function Header() {
 
                     {/* Dark mode toggle */}
                     <button
-                        onClick={() => setDark(!dark)}
+                        onClick={() => setMode(dark ? 'light' : 'dark')}
                         title={dark ? 'Switch to light mode' : 'Switch to dark mode'}
                         style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 34, height: 34, borderRadius: 8, border: `1px solid ${c.border}`, background: 'transparent', cursor: 'pointer', color: c.muted }}
                     >
