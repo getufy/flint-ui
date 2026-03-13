@@ -1,6 +1,6 @@
 # Input Otp
 
-<Demo>
+<Demo label="6-digit code">
 
 <ui-input-otp length="6">
   <ui-input-otp-group>
@@ -13,6 +13,19 @@
     <ui-input-otp-slot index="3"></ui-input-otp-slot>
     <ui-input-otp-slot index="4"></ui-input-otp-slot>
     <ui-input-otp-slot index="5"></ui-input-otp-slot>
+  </ui-input-otp-group>
+</ui-input-otp>
+
+</Demo>
+
+<Demo label="4-digit code">
+
+<ui-input-otp length="4">
+  <ui-input-otp-group>
+    <ui-input-otp-slot index="0"></ui-input-otp-slot>
+    <ui-input-otp-slot index="1"></ui-input-otp-slot>
+    <ui-input-otp-slot index="2"></ui-input-otp-slot>
+    <ui-input-otp-slot index="3"></ui-input-otp-slot>
   </ui-input-otp-group>
 </ui-input-otp>
 

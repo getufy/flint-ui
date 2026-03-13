@@ -1,6 +1,6 @@
 # Card
 
-<Demo>
+<Demo label="Default">
 
 <div style="max-width:360px;width:100%">
 <ui-card>
@@ -12,6 +12,19 @@
     <ui-button variant="secondary" size="small">Cancel</ui-button>
     <ui-button size="small">Action</ui-button>
   </ui-card-actions>
+</ui-card>
+</div>
+
+</Demo>
+
+<Demo label="Outlined">
+
+<div style="max-width:360px;width:100%">
+<ui-card variant="outlined">
+  <ui-card-header title="Outlined Card" subtitle="With border instead of shadow"></ui-card-header>
+  <ui-card-content>
+    <p style="margin:0;color:#374151">Useful for less prominent content areas.</p>
+  </ui-card-content>
 </ui-card>
 </div>
 

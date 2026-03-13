@@ -1,8 +1,14 @@
 # Pagination
 
-<Demo>
+<Demo label="Pages">
 
-<ui-pagination count="10" page="3"></ui-pagination>
+<ui-pagination count="10" page="1"></ui-pagination>
+
+</Demo>
+
+<Demo label="Middle Page">
+
+<ui-pagination count="20" page="10"></ui-pagination>
 
 </Demo>
 

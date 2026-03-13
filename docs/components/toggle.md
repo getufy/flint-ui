@@ -1,9 +1,10 @@
 # Toggle
 
-<Demo>
+<Demo label="States">
 
-<ui-toggle>Toggle</ui-toggle>
+<ui-toggle>Default</ui-toggle>
 <ui-toggle pressed>Pressed</ui-toggle>
+<ui-toggle disabled>Disabled</ui-toggle>
 
 </Demo>
 

@@ -6,6 +6,9 @@
 <ui-empty>
   <ui-empty-title>No results found</ui-empty-title>
   <ui-empty-description>Try adjusting your search or filter criteria.</ui-empty-description>
+  <ui-empty-content>
+    <ui-button variant="secondary" size="small">Clear Filters</ui-button>
+  </ui-empty-content>
 </ui-empty>
 </div>
 

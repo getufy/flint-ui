@@ -4,7 +4,7 @@
 
 <ui-scroll-area style="height:200px;width:100%;max-width:350px;border:1px solid #e5e7eb;border-radius:8px">
   <div style="padding:16px">
-    <p style="margin:0 0 12px">Scroll down to see more content.</p>
+    <p style="margin:0 0 12px"><strong>Scrollable Content</strong></p>
     <p style="margin:0 0 12px">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
     <p style="margin:0 0 12px">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     <p style="margin:0 0 12px">Ut enim ad minim veniam, quis nostrud exercitation.</p>

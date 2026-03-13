@@ -4,7 +4,8 @@
 
 <div style="width:100%;max-width:360px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden">
 <ui-list>
-  <ui-list-item-button>
+  <ui-list-subheader>Messages</ui-list-subheader>
+  <ui-list-item-button selected>
     <ui-list-item-text primary="Inbox" secondary="5 new messages"></ui-list-item-text>
   </ui-list-item-button>
   <ui-list-item-button>
@@ -12,6 +13,9 @@
   </ui-list-item-button>
   <ui-list-item-button>
     <ui-list-item-text primary="Sent" secondary="Last sent 2h ago"></ui-list-item-text>
+  </ui-list-item-button>
+  <ui-list-item-button disabled>
+    <ui-list-item-text primary="Spam" secondary="Disabled"></ui-list-item-text>
   </ui-list-item-button>
 </ui-list>
 </div>

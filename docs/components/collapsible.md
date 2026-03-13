@@ -1,14 +1,29 @@
 # Collapsible
 
-<Demo>
+<Demo label="Default Closed">
 
 <div style="width:100%;max-width:400px">
 <ui-collapsible>
   <ui-collapsible-trigger>
-    <ui-button variant="secondary" style="width:100%">Toggle Content</ui-button>
+    <ui-button variant="secondary" style="width:100%">Click to expand</ui-button>
   </ui-collapsible-trigger>
   <ui-collapsible-content>
-    <div style="padding:12px 0;color:#374151">This content can be expanded and collapsed.</div>
+    <div style="padding:12px 0;color:#374151">This content is revealed when you click the trigger above.</div>
+  </ui-collapsible-content>
+</ui-collapsible>
+</div>
+
+</Demo>
+
+<Demo label="Default Open">
+
+<div style="width:100%;max-width:400px">
+<ui-collapsible default-open>
+  <ui-collapsible-trigger>
+    <ui-button variant="secondary" style="width:100%">Click to collapse</ui-button>
+  </ui-collapsible-trigger>
+  <ui-collapsible-content>
+    <div style="padding:12px 0;color:#374151">This content starts visible and can be collapsed.</div>
   </ui-collapsible-content>
 </ui-collapsible>
 </div>

@@ -1,16 +1,32 @@
 # Dialog
 
-<Demo>
+<Demo label="Basic">
 
 <ui-button onclick="this.nextElementSibling.open=true">Open Dialog</ui-button>
 <ui-dialog>
-  <ui-dialog-title>Dialog Title</ui-dialog-title>
+  <ui-dialog-title>Confirm Action</ui-dialog-title>
   <ui-dialog-content>
-    <ui-dialog-content-text>This is a dialog. Click outside or press Escape to close.</ui-dialog-content-text>
+    <ui-dialog-content-text>Are you sure you want to proceed? This action cannot be undone.</ui-dialog-content-text>
   </ui-dialog-content>
   <ui-dialog-actions>
     <ui-button variant="secondary" onclick="this.closest('ui-dialog').open=false">Cancel</ui-button>
     <ui-button onclick="this.closest('ui-dialog').open=false">Confirm</ui-button>
+  </ui-dialog-actions>
+</ui-dialog>
+
+</Demo>
+
+<Demo label="Destructive">
+
+<ui-button variant="destructive" onclick="this.nextElementSibling.open=true">Delete Account</ui-button>
+<ui-dialog>
+  <ui-dialog-title>Delete Account?</ui-dialog-title>
+  <ui-dialog-content>
+    <ui-dialog-content-text>This will permanently delete your account and all associated data.</ui-dialog-content-text>
+  </ui-dialog-content>
+  <ui-dialog-actions>
+    <ui-button variant="secondary" onclick="this.closest('ui-dialog').open=false">Cancel</ui-button>
+    <ui-button variant="destructive" onclick="this.closest('ui-dialog').open=false">Delete</ui-button>
   </ui-dialog-actions>
 </ui-dialog>
 

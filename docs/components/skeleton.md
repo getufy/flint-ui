@@ -1,12 +1,24 @@
 # Skeleton
 
-<Demo>
+<Demo label="Variants">
 
 <div style="display:flex;flex-direction:column;gap:8px;width:100%;max-width:300px">
 <ui-skeleton variant="circular" width="40px" height="40px"></ui-skeleton>
 <ui-skeleton variant="text" width="200px"></ui-skeleton>
 <ui-skeleton variant="text" width="160px"></ui-skeleton>
 <ui-skeleton variant="rectangular" width="100%" height="120px"></ui-skeleton>
+</div>
+
+</Demo>
+
+<Demo label="Card Placeholder">
+
+<div style="display:flex;gap:12px;width:100%;max-width:300px">
+  <ui-skeleton variant="circular" width="48px" height="48px"></ui-skeleton>
+  <div style="flex:1;display:flex;flex-direction:column;gap:6px">
+    <ui-skeleton variant="text" width="80%"></ui-skeleton>
+    <ui-skeleton variant="text" width="60%"></ui-skeleton>
+  </div>
 </div>
 
 </Demo>

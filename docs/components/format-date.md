@@ -1,8 +1,12 @@
 # Format Date
 
-<Demo>
+<Demo label="Formats">
 
-<ui-format-date></ui-format-date>
+<div style="display:flex;flex-direction:column;gap:8px">
+<span>Default: <ui-format-date></ui-format-date></span>
+<span>Long: <ui-format-date date-style="long"></ui-format-date></span>
+<span>Full: <ui-format-date date-style="full"></ui-format-date></span>
+</div>
 
 </Demo>
 

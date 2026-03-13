@@ -1,6 +1,6 @@
 # Snackbar
 
-<Demo>
+<Demo label="Basic">
 
 <ui-button onclick="this.nextElementSibling.open=true">Show Snackbar</ui-button>
 <ui-snackbar message="This is a snackbar message" auto-hide-duration="3000"></ui-snackbar>

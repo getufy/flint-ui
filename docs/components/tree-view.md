@@ -1,5 +1,24 @@
 # Tree View
 
+<Demo>
+
+<div style="width:100%;max-width:300px;border:1px solid #e5e7eb;border-radius:8px;padding:8px">
+<ui-simple-tree-view>
+  <ui-tree-item item-id="1" label="Documents">
+    <ui-tree-item item-id="1-1" label="Resume.pdf"></ui-tree-item>
+    <ui-tree-item item-id="1-2" label="Cover Letter.pdf"></ui-tree-item>
+  </ui-tree-item>
+  <ui-tree-item item-id="2" label="Images">
+    <ui-tree-item item-id="2-1" label="photo.jpg"></ui-tree-item>
+    <ui-tree-item item-id="2-2" label="screenshot.png"></ui-tree-item>
+    <ui-tree-item item-id="2-3" label="icon.svg"></ui-tree-item>
+  </ui-tree-item>
+  <ui-tree-item item-id="3" label="Notes.txt"></ui-tree-item>
+</ui-simple-tree-view>
+</div>
+
+</Demo>
+
 ## `<ui-rich-tree-view>`
 
 - **Tag**: `<ui-rich-tree-view>`

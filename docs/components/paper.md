@@ -1,10 +1,12 @@
 # Paper
 
-<Demo>
+<Demo label="Elevations">
 
+<ui-paper elevation="0" style="padding:16px">Elevation 0</ui-paper>
 <ui-paper elevation="1" style="padding:16px">Elevation 1</ui-paper>
 <ui-paper elevation="3" style="padding:16px">Elevation 3</ui-paper>
 <ui-paper elevation="6" style="padding:16px">Elevation 6</ui-paper>
+<ui-paper elevation="12" style="padding:16px">Elevation 12</ui-paper>
 
 </Demo>
 

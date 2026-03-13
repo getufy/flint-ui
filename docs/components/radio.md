@@ -1,11 +1,20 @@
 # Radio
 
-<Demo>
+<Demo label="Basic">
 
 <ui-radio-group value="a">
   <ui-radio value="a" label="Option A"></ui-radio>
   <ui-radio value="b" label="Option B"></ui-radio>
   <ui-radio value="c" label="Option C"></ui-radio>
+</ui-radio-group>
+
+</Demo>
+
+<Demo label="Disabled">
+
+<ui-radio-group value="x">
+  <ui-radio value="x" label="Selected" disabled></ui-radio>
+  <ui-radio value="y" label="Disabled" disabled></ui-radio>
 </ui-radio-group>
 
 </Demo>

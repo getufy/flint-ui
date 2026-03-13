@@ -1,5 +1,15 @@
 # Sonner
 
+<Demo label="Toast Types">
+
+<ui-toaster position="bottom-right"></ui-toaster>
+<ui-button onclick="import('storybook-lit').then(m=>m.toast('Default toast message'))">Default</ui-button>
+<ui-button onclick="import('storybook-lit').then(m=>m.toast.success('Operation successful!'))">Success</ui-button>
+<ui-button onclick="import('storybook-lit').then(m=>m.toast.error('Something went wrong'))">Error</ui-button>
+<ui-button onclick="import('storybook-lit').then(m=>m.toast.info('Here is some info'))">Info</ui-button>
+
+</Demo>
+
 - **Tag**: `<ui-toaster>`
 - **Class**: `UiToaster`
 

@@ -121,7 +121,11 @@
       "Bash(git mv:*)",
       "Bash(cd /Users/algoassasin/storybook-lit && npm install @lit/react --save -w packages/react 2>&1 | tail -5)",
       "Bash(npm install:*)",
-      "Bash(npx vitepress:*)"
+      "Bash(npx vitepress:*)",
+      "Bash(for comp:*)",
+      "Bash(do echo:*)",
+      "Read(//Users/algoassasin/storybook-lit/docs/components/**)",
+      "Bash(done)"
     ]
   }
 }

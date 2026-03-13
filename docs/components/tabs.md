@@ -1,6 +1,6 @@
 # Tabs
 
-<Demo>
+<Demo label="Basic">
 
 <div style="width:100%;max-width:500px">
 <ui-tabs>
@@ -12,6 +12,23 @@
   <ui-tab-panel><p style="padding:16px;margin:0">Content for Tab One</p></ui-tab-panel>
   <ui-tab-panel><p style="padding:16px;margin:0">Content for Tab Two</p></ui-tab-panel>
   <ui-tab-panel><p style="padding:16px;margin:0">Content for Tab Three</p></ui-tab-panel>
+</ui-tabs>
+</div>
+
+</Demo>
+
+<Demo label="With Disabled Tab">
+
+<div style="width:100%;max-width:500px">
+<ui-tabs>
+  <ui-tab-list>
+    <ui-tab>Active</ui-tab>
+    <ui-tab disabled>Disabled</ui-tab>
+    <ui-tab>Also Active</ui-tab>
+  </ui-tab-list>
+  <ui-tab-panel><p style="padding:16px;margin:0">First panel content</p></ui-tab-panel>
+  <ui-tab-panel><p style="padding:16px;margin:0">Disabled panel</p></ui-tab-panel>
+  <ui-tab-panel><p style="padding:16px;margin:0">Third panel content</p></ui-tab-panel>
 </ui-tabs>
 </div>
 

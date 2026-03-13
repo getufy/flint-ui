@@ -1,16 +1,34 @@
 # Stepper
 
-<Demo>
+<Demo label="Step 2 of 3">
 
 <div style="width:100%;max-width:500px">
 <ui-stepper active-step="1">
-  <ui-step>
+  <ui-step completed>
     <ui-step-label>Account</ui-step-label>
   </ui-step>
   <ui-step>
     <ui-step-label>Details</ui-step-label>
   </ui-step>
   <ui-step>
+    <ui-step-label>Review</ui-step-label>
+  </ui-step>
+</ui-stepper>
+</div>
+
+</Demo>
+
+<Demo label="All Complete">
+
+<div style="width:100%;max-width:500px">
+<ui-stepper active-step="3">
+  <ui-step completed>
+    <ui-step-label>Account</ui-step-label>
+  </ui-step>
+  <ui-step completed>
+    <ui-step-label>Details</ui-step-label>
+  </ui-step>
+  <ui-step completed>
     <ui-step-label>Review</ui-step-label>
   </ui-step>
 </ui-stepper>

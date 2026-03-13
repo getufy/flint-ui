@@ -1,5 +1,28 @@
 # Command
 
+<Demo>
+
+<div style="width:100%;max-width:400px">
+<ui-command style="border:1px solid #e5e7eb;border-radius:8px">
+  <ui-command-input placeholder="Type a command or search..."></ui-command-input>
+  <ui-command-list>
+    <ui-command-group heading="Suggestions">
+      <ui-command-item value="calendar">Calendar</ui-command-item>
+      <ui-command-item value="search">Search</ui-command-item>
+      <ui-command-item value="settings">Settings</ui-command-item>
+    </ui-command-group>
+    <ui-command-separator></ui-command-separator>
+    <ui-command-group heading="Actions">
+      <ui-command-item value="copy">Copy</ui-command-item>
+      <ui-command-item value="paste">Paste</ui-command-item>
+    </ui-command-group>
+    <ui-command-empty>No results found.</ui-command-empty>
+  </ui-command-list>
+</ui-command>
+</div>
+
+</Demo>
+
 ## `<ui-command-shortcut>`
 
 Displays a keyboard shortcut hint inside a command item. Slot the shortcut string (e.g. `⌘P`) as default slot content.

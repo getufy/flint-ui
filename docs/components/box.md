@@ -1,5 +1,13 @@
 # Box
 
+<Demo label="Styles">
+
+<ui-box bgcolor="primary" color="white" p="16px" border-radius="8px">Primary Box</ui-box>
+<ui-box bgcolor="#f3f4f6" p="16px" border-radius="8px">Gray Box</ui-box>
+<ui-box p="16px" border-radius="8px" style="border:2px dashed #d1d5db">Dashed Border</ui-box>
+
+</Demo>
+
 - **Tag**: `<ui-box>`
 - **Class**: `UiBox`
 
