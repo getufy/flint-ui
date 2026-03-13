@@ -24,6 +24,12 @@ const meta: Meta = {
       options: ['nowrap', 'wrap', 'wrap-reverse']
     },
   },
+  args: {
+    container: true,
+    spacing: 2,
+    direction: 'row',
+    wrap: 'wrap',
+  },
 };
 
 export default meta;
@@ -38,8 +44,8 @@ const greenItemStyle = 'background-color: #e8f5e9; border: 1px solid #388e3c; pa
 // -----------------------------------------------------------------------------
 
 export const Basic: Story = {
-  render: () => html`
-        <ui-grid container spacing="2">
+  render: (args) => html`
+        <ui-grid ?container=${args.container} .spacing=${args.spacing} .direction=${args.direction} .wrap=${args.wrap}>
             <ui-grid xs="8">
                 <div style="${itemStyle}">xs=8</div>
             </ui-grid>

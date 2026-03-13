@@ -186,13 +186,14 @@ export const Confirmation: Story = {
 
 // ── Transitions ──────────────────────────────────────────────────────────────
 export const Transitions: Story = {
-  render: () => html`
+  args: { transition: 'slide-up' },
+  render: (args) => html`
     <ui-stack direction="row" gap="16px" alignItems="center" justifyContent="center" style="height:300px;">
       <ui-button @click=${() => openDialog('slide-up-dialog')}>Slide Up</ui-button>
       <ui-button @click=${() => openDialog('slide-down-dialog')}>Slide Down</ui-button>
       <ui-button @click=${() => openDialog('scale-dialog')}>Scale (default)</ui-button>
 
-      <ui-dialog id="slide-up-dialog" transition="slide-up" @close=${closeDialog}>
+      <ui-dialog id="slide-up-dialog" .transition=${args.transition} ?disable-backdrop-close=${args.disableBackdropClose} @close=${closeDialog}>
         <ui-dialog-title>Slide Up</ui-dialog-title>
         <ui-dialog-content>
           <ui-dialog-content-text>This dialog slides up from below.</ui-dialog-content-text>
@@ -413,11 +414,12 @@ export const Alert: Story = {
 
 // ── Disable Backdrop Close ────────────────────────────────────────────────
 export const DisableBackdropClose: Story = {
-  render: () => html`
+  args: { disableBackdropClose: true },
+  render: (args) => html`
     <ui-box display="flex" alignItems="center" justifyContent="center" height="300px">
       <ui-button @click=${() => openDialog('locked-dialog')}>Open Locked Dialog</ui-button>
 
-      <ui-dialog id="locked-dialog" disable-backdrop-close @close=${closeDialog}>
+      <ui-dialog id="locked-dialog" ?disable-backdrop-close=${args.disableBackdropClose} @close=${closeDialog}>
         <ui-dialog-title>Action Required</ui-dialog-title>
         <ui-dialog-content>
           <ui-dialog-content-text>

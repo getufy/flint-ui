@@ -137,13 +137,19 @@ export const Desktop: Story = {
 // ── Mobile ────────────────────────────────────────────────────────────────────
 export const Mobile: Story = {
     name: 'Mobile Picker (Modal)',
-    render: () => wrap(html`
+    args: { variant: 'mobile', label: 'Trip Dates' },
+    render: (args) => wrap(html`
     <p style="font-size:.85rem;color:#6b7280;margin:0 0 16px;">
       On touch devices the calendar opens in a full modal with Cancel / OK buttons.
     </p>
     <ui-date-range-picker
-      variant="mobile"
-      label="Trip Dates"
+      .variant=${args.variant}
+      .label=${args.label}
+      ?shortcuts=${args.shortcuts}
+      ?disabled=${args.disabled}
+      ?readonly=${args.readonly}
+      ?error=${args.error}
+      helper-text=${args.helperText ?? ''}
       @range-change=${onRangeChange}
     ></ui-date-range-picker>
   `),
@@ -195,13 +201,18 @@ export const Mobile: Story = {
 // ── Static ────────────────────────────────────────────────────────────────────
 export const Static: Story = {
     name: 'Static (Always Visible)',
-    render: () => html`
+    args: { variant: 'static' },
+    render: (args) => html`
     <div style="padding:32px;font-family:Inter,sans-serif;">
       <p style="font-size:.85rem;color:#6b7280;margin:0 0 16px;">
         The static variant renders both calendars inline — no popover, no text field.
       </p>
       <ui-date-range-picker
-        variant="static"
+        .variant=${args.variant}
+        ?shortcuts=${args.shortcuts}
+        ?disabled=${args.disabled}
+        ?readonly=${args.readonly}
+        ?error=${args.error}
         @range-change=${onRangeChange}
       ></ui-date-range-picker>
     </div>
@@ -254,13 +265,19 @@ export const Static: Story = {
 // ── With Shortcuts ────────────────────────────────────────────────────────────
 export const WithShortcuts: Story = {
     name: 'With Shortcuts',
-    render: () => wrap(html`
+    args: { shortcuts: true, label: 'Report Period' },
+    render: (args) => wrap(html`
     <p style="font-size:.85rem;color:#6b7280;margin:0 0 16px;">
       Predefined shortcuts let users select common ranges with a single click.
     </p>
     <ui-date-range-picker
-      label="Report Period"
-      shortcuts
+      .variant=${args.variant}
+      .label=${args.label}
+      ?shortcuts=${args.shortcuts}
+      ?disabled=${args.disabled}
+      ?readonly=${args.readonly}
+      ?error=${args.error}
+      helper-text=${args.helperText ?? ''}
       @range-change=${onRangeChange}
     ></ui-date-range-picker>
   `),
@@ -313,14 +330,18 @@ export const WithShortcuts: Story = {
 // ── Static + Shortcuts ────────────────────────────────────────────────────────
 export const StaticWithShortcuts: Story = {
     name: 'Static + Shortcuts',
-    render: () => html`
+    args: { variant: 'static', shortcuts: true },
+    render: (args) => html`
     <div style="padding:32px;font-family:Inter,sans-serif;">
       <p style="font-size:.85rem;color:#6b7280;margin:0 0 16px;">
         Static calendar with a shortcuts panel on the left.
       </p>
       <ui-date-range-picker
-        variant="static"
-        shortcuts
+        .variant=${args.variant}
+        ?shortcuts=${args.shortcuts}
+        ?disabled=${args.disabled}
+        ?readonly=${args.readonly}
+        ?error=${args.error}
         @range-change=${onRangeChange}
       ></ui-date-range-picker>
     </div>
@@ -453,11 +474,17 @@ export const Uncontrolled: Story = {
 
 // ── Disabled ──────────────────────────────────────────────────────────────────
 export const Disabled: Story = {
-    render: () => wrap(html`
+    args: { disabled: true, label: 'Booking Period' },
+    render: (args) => wrap(html`
     <ui-date-range-picker
-      label="Booking Period"
+      .variant=${args.variant}
+      .label=${args.label}
       .value=${['2025-03-10', '2025-03-17'] as DateRange}
-      disabled
+      ?shortcuts=${args.shortcuts}
+      ?disabled=${args.disabled}
+      ?readonly=${args.readonly}
+      ?error=${args.error}
+      helper-text=${args.helperText ?? ''}
     ></ui-date-range-picker>
   `),
 
@@ -484,11 +511,17 @@ export const Disabled: Story = {
 // ── ReadOnly ──────────────────────────────────────────────────────────────────
 export const ReadOnly: Story = {
     name: 'Read Only',
-    render: () => wrap(html`
+    args: { readonly: true, label: 'Confirmed Dates' },
+    render: (args) => wrap(html`
     <ui-date-range-picker
-      label="Confirmed Dates"
+      .variant=${args.variant}
+      .label=${args.label}
       .value=${['2025-08-01', '2025-08-15'] as DateRange}
-      readonly
+      ?shortcuts=${args.shortcuts}
+      ?disabled=${args.disabled}
+      ?readonly=${args.readonly}
+      ?error=${args.error}
+      helper-text=${args.helperText ?? ''}
       @range-change=${onRangeChange}
     ></ui-date-range-picker>
   `),
@@ -518,12 +551,17 @@ export const ReadOnly: Story = {
 // ── Error State ───────────────────────────────────────────────────────────────
 export const ErrorState: Story = {
     name: 'Error State',
-    render: () => wrap(html`
+    args: { error: true, label: 'Project Duration', helperText: 'End date must be after start date' },
+    render: (args) => wrap(html`
     <ui-date-range-picker
-      label="Project Duration"
+      .variant=${args.variant}
+      .label=${args.label}
       .value=${['2025-05-01', '2025-04-01'] as DateRange}
-      error
-      helper-text="End date must be after start date"
+      ?shortcuts=${args.shortcuts}
+      ?disabled=${args.disabled}
+      ?readonly=${args.readonly}
+      ?error=${args.error}
+      helper-text=${args.helperText ?? ''}
       @range-change=${onRangeChange}
     ></ui-date-range-picker>
   `),

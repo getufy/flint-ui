@@ -124,12 +124,13 @@ export const Default: Story = {
 /* ── DefaultOpen ─────────────────────────────────────────────────── */
 export const DefaultOpen: Story = {
     name: 'Default Open',
-    render: () => html`
+    args: { defaultOpen: true },
+    render: (args) => html`
         <div style="max-width: 480px; padding: 24px;">
             <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
                 Starts open via <code>default-open</code> attribute (uncontrolled).
             </p>
-            <ui-collapsible default-open
+            <ui-collapsible ?default-open=${args.defaultOpen} ?disabled=${args.disabled}
                 @ui-collapsible-change=${(e: CustomEvent<{ open: boolean }>) => {
                     const chevron = (e.currentTarget as HTMLElement).querySelector<HTMLElement>('svg');
                     if (chevron) chevron.style.transform = e.detail.open ? 'rotate(180deg)' : 'rotate(0deg)';
@@ -161,12 +162,13 @@ export const DefaultOpen: Story = {
 
 /* ── Disabled ────────────────────────────────────────────────────── */
 export const Disabled: Story = {
-    render: () => html`
+    args: { disabled: true },
+    render: (args) => html`
         <div style="max-width: 480px; padding: 24px;">
             <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
                 Trigger is inert when <code>disabled</code> is set.
             </p>
-            <ui-collapsible disabled>
+            <ui-collapsible ?disabled=${args.disabled}>
                 <div style=${cardStyle}>
                     <ui-collapsible-trigger>
                         <div style=${triggerRowStyle}>

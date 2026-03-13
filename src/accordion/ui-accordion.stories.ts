@@ -12,6 +12,10 @@ const meta: Meta = {
         expanded: { control: 'boolean' },
         disabled: { control: 'boolean' },
     },
+    args: {
+        expanded: false,
+        disabled: false,
+    },
 };
 
 export default meta;
@@ -19,13 +23,13 @@ export default meta;
 type Story = StoryObj;
 
 export const Basic: Story = {
-    args: {
-        expanded: false,
-        disabled: false,
-    },
     render: (args) => html`
         <div style="padding: 24px;">
-            <ui-accordion ?expanded=${args.expanded} ?disabled=${args.disabled} @ui-accordion-change=${(e: Event) => ((e.target as UiAccordion).expanded = (e as CustomEvent).detail.expanded)}>
+            <ui-accordion
+                .expanded=${args.expanded}
+                .disabled=${args.disabled}
+                @ui-accordion-change=${(e: Event) => ((e.target as UiAccordion).expanded = (e as CustomEvent).detail.expanded)}
+            >
                 <ui-accordion-summary>
                     Accordion 1
                 </ui-accordion-summary>
@@ -84,9 +88,13 @@ export const Basic: Story = {
 };
 
 export const ExpandIcon: Story = {
-    render: () => html`
+    render: (args) => html`
         <div style="padding: 24px;">
-            <ui-accordion @ui-accordion-change=${(e: Event) => ((e.target as UiAccordion).expanded = (e as CustomEvent).detail.expanded)}>
+            <ui-accordion
+                .expanded=${args.expanded}
+                .disabled=${args.disabled}
+                @ui-accordion-change=${(e: Event) => ((e.target as UiAccordion).expanded = (e as CustomEvent).detail.expanded)}
+            >
                 <ui-accordion-summary>
                     Custom Icon
                     <span slot="expandIcon">
@@ -113,9 +121,10 @@ export const ExpandIcon: Story = {
 };
 
 export const Actions: Story = {
-    render: () => html`
+    args: { expanded: true },
+    render: (args) => html`
         <div style="padding: 24px;">
-            <ui-accordion expanded @ui-accordion-change=${(e: Event) => ((e.target as UiAccordion).expanded = (e as CustomEvent).detail.expanded)}>
+            <ui-accordion .expanded=${args.expanded} .disabled=${args.disabled} @ui-accordion-change=${(e: Event) => ((e.target as UiAccordion).expanded = (e as CustomEvent).detail.expanded)}>
                 <ui-accordion-summary>
                     User Agreement
                 </ui-accordion-summary>

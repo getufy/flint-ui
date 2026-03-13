@@ -18,13 +18,6 @@ const meta: Meta = {
             options: ['top', 'right', 'bottom', 'left'],
         },
     },
-};
-
-export default meta;
-type Story = StoryObj;
-
-/* ─── Playground ─────────────────────────────────────────── */
-export const Playground: Story = {
     args: {
         value: 'Hello, World!',
         disabled: false,
@@ -34,6 +27,13 @@ export const Playground: Story = {
         feedbackDuration: 1000,
         tooltipPlacement: 'top',
     },
+};
+
+export default meta;
+type Story = StoryObj;
+
+/* ─── Playground ─────────────────────────────────────────── */
+export const Playground: Story = {
     render: (args) => html`
         <ui-copy-button
             .value=${args.value}
@@ -51,7 +51,16 @@ export const Playground: Story = {
 
 /* ─── Default ────────────────────────────────────────────── */
 export const Default: Story = {
-    render: () => html`<ui-copy-button value="Copy me!"></ui-copy-button>`,
+    args: { value: 'Copy me!' },
+    render: (args) => html`<ui-copy-button
+        .value=${args.value}
+        ?disabled=${args.disabled}
+        copy-label=${args.copyLabel}
+        success-label=${args.successLabel}
+        error-label=${args.errorLabel}
+        feedback-duration=${args.feedbackDuration}
+        tooltip-placement=${args.tooltipPlacement}
+    ></ui-copy-button>`,
 };
 
 /* ─── Custom Labels ──────────────────────────────────────── */

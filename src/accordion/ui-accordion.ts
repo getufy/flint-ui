@@ -49,6 +49,11 @@ export class UiAccordion extends LitElement {
         this.addEventListener('ui-accordion-toggle', this._handleToggle);
     }
 
+    override disconnectedCallback() {
+        super.disconnectedCallback();
+        this.removeEventListener('ui-accordion-toggle', this._handleToggle);
+    }
+
     render() {
         return html`
             <div class="accordion-container" role="region">
@@ -83,6 +88,12 @@ export class UiAccordionSummary extends LitElement {
         super();
         this.addEventListener('click', this._handleActivate);
         this.addEventListener('keydown', this._handleKeyDown);
+    }
+
+    override disconnectedCallback() {
+        super.disconnectedCallback();
+        this.removeEventListener('click', this._handleActivate);
+        this.removeEventListener('keydown', this._handleKeyDown);
     }
 
     override connectedCallback() {

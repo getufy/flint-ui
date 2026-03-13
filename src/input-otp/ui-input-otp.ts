@@ -135,22 +135,29 @@ export class UiInputOtp extends LitElement {
     private _cursorIndex = 0;
     private _firstUpdate = true;
 
+    private _handleClick = (e: Event) => {
+        if (this.disabled) return;
+        // Determine which slot was clicked so we can position the cursor there.
+        const target = e.target as HTMLElement;
+        const slot = target.closest('ui-input-otp-slot') as UiInputOtpSlot | null;
+
+        this._hiddenInput?.focus();
+        // focus() calls _handleFocus synchronously (sets cursor to end).
+        // Override with the clicked slot's index if applicable.
+        if (slot) {
+            this._cursorIndex = Math.min(slot.index, this._internalValue.length);
+            this._syncSlots();
+        }
+    };
+
     constructor() {
         super();
-        this.addEventListener('click', (e: Event) => {
-            if (this.disabled) return;
-            // Determine which slot was clicked so we can position the cursor there.
-            const target = e.target as HTMLElement;
-            const slot = target.closest('ui-input-otp-slot') as UiInputOtpSlot | null;
+        this.addEventListener('click', this._handleClick);
+    }
 
-            this._hiddenInput?.focus();
-            // focus() calls _handleFocus synchronously (sets cursor to end).
-            // Override with the clicked slot's index if applicable.
-            if (slot) {
-                this._cursorIndex = Math.min(slot.index, this._internalValue.length);
-                this._syncSlots();
-            }
-        });
+    override disconnectedCallback() {
+        super.disconnectedCallback();
+        this.removeEventListener('click', this._handleClick);
     }
 
     override willUpdate(changed: PropertyValues) {

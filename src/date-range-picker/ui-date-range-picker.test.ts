@@ -2829,3 +2829,942 @@ describe('ui-single-input-date-range-field — coverage gaps', () => {
         expect(segs[5].classList.contains('active')).toBe(true); // end-year
     });
 });
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// Mutation-killing tests — helpers
+// ═══════════════════════════════════════════════════════════════════════════════
+
+describe('date-range-helpers — mutation killers', () => {
+
+    // isBetween boundary precision: > vs >= and < vs <=
+    it('isBetween: date one ms after lo is between', () => {
+        const start = new Date(2025, 5, 1, 0, 0, 0, 0);
+        const end = new Date(2025, 5, 30, 0, 0, 0, 0);
+        const justAfterStart = new Date(2025, 5, 1, 0, 0, 0, 1);
+        expect(isBetween(justAfterStart, start, end)).toBe(true);
+    });
+
+    it('isBetween: date one ms before hi is between', () => {
+        const start = new Date(2025, 5, 1);
+        const end = new Date(2025, 5, 30);
+        const justBeforeEnd = new Date(2025, 5, 29, 23, 59, 59, 999);
+        expect(isBetween(justBeforeEnd, start, end)).toBe(true);
+    });
+
+    it('isBetween: date outside before start is not between', () => {
+        const start = new Date(2025, 5, 5);
+        const end = new Date(2025, 5, 10);
+        const before = new Date(2025, 5, 4);
+        expect(isBetween(before, start, end)).toBe(false);
+    });
+
+    it('isBetween: date outside after end is not between', () => {
+        const start = new Date(2025, 5, 5);
+        const end = new Date(2025, 5, 10);
+        const after = new Date(2025, 5, 11);
+        expect(isBetween(after, start, end)).toBe(false);
+    });
+
+    // sameDay: year, month, and date must all match
+    it('sameDay returns false for same day/month but different year', () => {
+        expect(sameDay(new Date(2024, 5, 15), new Date(2025, 5, 15))).toBe(false);
+    });
+
+    it('sameDay returns false for same year/day but different month', () => {
+        expect(sameDay(new Date(2025, 4, 15), new Date(2025, 5, 15))).toBe(false);
+    });
+
+    // isStartOrEnd: matches both
+    it('isStartOrEnd returns true when d matches both start and end (same-day range)', () => {
+        const d = new Date(2025, 5, 15);
+        expect(isStartOrEnd(d, new Date(2025, 5, 15), new Date(2025, 5, 15))).toBe(true);
+    });
+
+    // isoToDate: specific edge cases for the overflow check
+    it('isoToDate rejects Feb 29 on non-leap year (overflow → March)', () => {
+        expect(isoToDate('2023-02-29')).toBeNull();
+    });
+
+    it('isoToDate accepts Feb 29 on leap year', () => {
+        const d = isoToDate('2000-02-29');
+        expect(d).not.toBeNull();
+        expect(d!.getDate()).toBe(29);
+    });
+
+    // buildRangeMonthGrid: precise hover range behavior
+    it('buildRangeMonthGrid: hoverEnd cell itself is marked isHoverRange', () => {
+        const start = new Date(2025, 5, 5);
+        const hover = new Date(2025, 5, 8);
+        const cells = buildRangeMonthGrid(2025, 5, start, null, hover, null, null);
+        const hoverEndCell = cells.find(c => c.day === 8 && c.isCurrentMonth);
+        expect(hoverEndCell?.isHoverRange).toBe(true);
+    });
+
+    it('buildRangeMonthGrid: cell between start and hoverEnd is marked isHoverRange', () => {
+        const start = new Date(2025, 5, 5);
+        const hover = new Date(2025, 5, 10);
+        const cells = buildRangeMonthGrid(2025, 5, start, null, hover, null, null);
+        const midCell = cells.find(c => c.day === 7 && c.isCurrentMonth);
+        expect(midCell?.isHoverRange).toBe(true);
+    });
+
+    it('buildRangeMonthGrid: start cell is NOT hover range', () => {
+        const start = new Date(2025, 5, 5);
+        const hover = new Date(2025, 5, 10);
+        const cells = buildRangeMonthGrid(2025, 5, start, null, hover, null, null);
+        const startCell = cells.find(c => c.day === 5 && c.isCurrentMonth);
+        expect(startCell?.isHoverRange).toBe(false);
+    });
+
+    it('buildRangeMonthGrid: no hover range when hoverDate is null', () => {
+        const start = new Date(2025, 5, 5);
+        const cells = buildRangeMonthGrid(2025, 5, start, null, null, null, null);
+        expect(cells.filter(c => c.isHoverRange).length).toBe(0);
+    });
+
+    it('buildRangeMonthGrid: no hover range when no startDate', () => {
+        const hover = new Date(2025, 5, 10);
+        const cells = buildRangeMonthGrid(2025, 5, null, null, hover, null, null);
+        expect(cells.filter(c => c.isHoverRange).length).toBe(0);
+    });
+
+    it('buildRangeMonthGrid: isInRange is false when only startDate is set (no endDate)', () => {
+        const start = new Date(2025, 5, 5);
+        const cells = buildRangeMonthGrid(2025, 5, start, null, null, null, null);
+        expect(cells.filter(c => c.isInRange).length).toBe(0);
+    });
+
+    it('buildRangeMonthGrid: isInRange true between start and end', () => {
+        const start = new Date(2025, 5, 5);
+        const end = new Date(2025, 5, 10);
+        const cells = buildRangeMonthGrid(2025, 5, start, end, null, null, null);
+        const midCell = cells.find(c => c.day === 7 && c.isCurrentMonth);
+        expect(midCell?.isInRange).toBe(true);
+    });
+
+    it('buildRangeMonthGrid: start/end cells are NOT in-range (exclusive)', () => {
+        const start = new Date(2025, 5, 5);
+        const end = new Date(2025, 5, 10);
+        const cells = buildRangeMonthGrid(2025, 5, start, end, null, null, null);
+        const startCell = cells.find(c => c.day === 5 && c.isCurrentMonth);
+        const endCell = cells.find(c => c.day === 10 && c.isCurrentMonth);
+        expect(startCell?.isInRange).toBe(false);
+        expect(endCell?.isInRange).toBe(false);
+    });
+
+    it('buildRangeMonthGrid: min boundary — date equal to min is NOT disabled', () => {
+        const cells = buildRangeMonthGrid(2025, 5, null, null, null, '2025-06-10', null);
+        const minCell = cells.find(c => c.day === 10 && c.isCurrentMonth);
+        expect(minCell?.isDisabled).toBe(false);
+    });
+
+    it('buildRangeMonthGrid: max boundary — date equal to max is NOT disabled', () => {
+        const cells = buildRangeMonthGrid(2025, 5, null, null, null, null, '2025-06-20');
+        const maxCell = cells.find(c => c.day === 20 && c.isCurrentMonth);
+        expect(maxCell?.isDisabled).toBe(false);
+    });
+
+    it('buildRangeMonthGrid: date one day before min IS disabled', () => {
+        const cells = buildRangeMonthGrid(2025, 5, null, null, null, '2025-06-10', null);
+        const beforeMin = cells.find(c => c.day === 9 && c.isCurrentMonth);
+        expect(beforeMin?.isDisabled).toBe(true);
+    });
+
+    it('buildRangeMonthGrid: date one day after max IS disabled', () => {
+        const cells = buildRangeMonthGrid(2025, 5, null, null, null, null, '2025-06-20');
+        const afterMax = cells.find(c => c.day === 21 && c.isCurrentMonth);
+        expect(afterMax?.isDisabled).toBe(true);
+    });
+
+    it('buildRangeMonthGrid: isToday marks today cell correctly', () => {
+        const now = new Date();
+        const cells = buildRangeMonthGrid(now.getFullYear(), now.getMonth(), null, null, null, null, null);
+        const todayCell = cells.find(c => c.day === now.getDate() && c.isCurrentMonth);
+        expect(todayCell?.isToday).toBe(true);
+    });
+
+    it('buildRangeMonthGrid: non-today cell is not marked isToday', () => {
+        const now = new Date();
+        const otherDay = now.getDate() === 1 ? 2 : 1;
+        const cells = buildRangeMonthGrid(now.getFullYear(), now.getMonth(), null, null, null, null, null);
+        const otherCell = cells.find(c => c.day === otherDay && c.isCurrentMonth);
+        expect(otherCell?.isToday).toBe(false);
+    });
+
+    it('buildRangeMonthGrid: trailing cells from next month have isCurrentMonth=false', () => {
+        // June 2025 starts on Sunday → 30 days + 0 leading = 30, trailing = 42 - 30 = 12
+        const cells = buildRangeMonthGrid(2025, 5, null, null, null, null, null);
+        const trailing = cells.slice(30);
+        expect(trailing.length).toBeGreaterThan(0);
+        expect(trailing.every(c => !c.isCurrentMonth)).toBe(true);
+    });
+});
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// Mutation-killing tests — calendar
+// ═══════════════════════════════════════════════════════════════════════════════
+
+describe('ui-date-range-calendar — mutation killers', () => {
+
+    it('right panel shows month + 1 for non-December months', async () => {
+        const el = await fixture<UiDateRangeCalendar>(html`
+            <ui-date-range-calendar></ui-date-range-calendar>
+        `);
+        el.navigateTo('2025-03-01');
+        await el.updateComplete;
+        const labels = el.shadowRoot!.querySelectorAll('.header-label');
+        expect(labels[0].textContent?.trim()).toContain('March');
+        expect(labels[1].textContent?.trim()).toContain('April');
+    });
+
+    it('right panel wraps to January of next year when left is December', async () => {
+        const el = await fixture<UiDateRangeCalendar>(html`
+            <ui-date-range-calendar></ui-date-range-calendar>
+        `);
+        el.navigateTo('2025-12-01');
+        await el.updateComplete;
+        const labels = el.shadowRoot!.querySelectorAll('.header-label');
+        expect(labels[1].textContent?.trim()).toContain('January 2026');
+    });
+
+    it('right panel year equals left year for non-December months', async () => {
+        const el = await fixture<UiDateRangeCalendar>(html`
+            <ui-date-range-calendar></ui-date-range-calendar>
+        `);
+        el.navigateTo('2025-06-01');
+        await el.updateComplete;
+        const labels = el.shadowRoot!.querySelectorAll('.header-label');
+        expect(labels[0].textContent?.trim()).toContain('2025');
+        expect(labels[1].textContent?.trim()).toContain('2025');
+    });
+
+    it('cell click on same day as start (no end) restarts range with that date', async () => {
+        const el = await fixture<UiDateRangeCalendar>(html`
+            <ui-date-range-calendar
+              .value=${['2025-06-10', ''] as DateRange}
+            ></ui-date-range-calendar>
+        `);
+        await el.updateComplete;
+        const currentDays = el.shadowRoot!.querySelectorAll<HTMLElement>('.day-cell:not(.other-month)');
+        // Click day 10 again (same as start)
+        setTimeout(() => currentDays[9].click());
+        const event = await oneEvent(el, 'range-select') as CustomEvent;
+        const [start, end] = event.detail.value as DateRange;
+        // Clicking same day when only start is set → completes range (start <= clickDate → newRange = [start, cell.iso])
+        expect(start).toBe('2025-06-10');
+        expect(end).toBe('2025-06-10');
+    });
+
+    it('cell click after start sets end (normal order)', async () => {
+        const el = await fixture<UiDateRangeCalendar>(html`
+            <ui-date-range-calendar
+              .value=${['2025-06-05', ''] as DateRange}
+            ></ui-date-range-calendar>
+        `);
+        await el.updateComplete;
+        const currentDays = el.shadowRoot!.querySelectorAll<HTMLElement>('.day-cell:not(.other-month)');
+        setTimeout(() => currentDays[14].click()); // day 15
+        const event = await oneEvent(el, 'range-select') as CustomEvent;
+        const [start, end] = event.detail.value as DateRange;
+        expect(start).toBe('2025-06-05');
+        expect(end).toBe('2025-06-15');
+    });
+
+    it('aria-pressed is "true" on start and end cells, "false" on others', async () => {
+        const el = await fixture<UiDateRangeCalendar>(html`
+            <ui-date-range-calendar
+              .value=${['2025-06-05', '2025-06-10'] as DateRange}
+            ></ui-date-range-calendar>
+        `);
+        await el.updateComplete;
+        const starts = el.shadowRoot!.querySelectorAll('.range-start');
+        expect(starts[0].getAttribute('aria-pressed')).toBe('true');
+        const ends = el.shadowRoot!.querySelectorAll('.range-end');
+        expect(ends[0].getAttribute('aria-pressed')).toBe('true');
+        // A cell not start/end should have aria-pressed false
+        const normalCell = el.shadowRoot!.querySelector('.in-range') as HTMLElement;
+        if (normalCell) {
+            expect(normalCell.getAttribute('aria-pressed')).toBe('false');
+        }
+    });
+
+    it('disabled cells have aria-disabled="true" and tabindex="-1"', async () => {
+        const el = await fixture<UiDateRangeCalendar>(html`
+            <ui-date-range-calendar
+              .value=${['', ''] as DateRange}
+              min="2025-06-15"
+            ></ui-date-range-calendar>
+        `);
+        el.navigateTo('2025-06-01');
+        await el.updateComplete;
+        const disabledCell = el.shadowRoot!.querySelector('.day-cell.disabled') as HTMLElement;
+        expect(disabledCell).not.toBeNull();
+        expect(disabledCell.getAttribute('aria-disabled')).toBe('true');
+        expect(disabledCell.getAttribute('tabindex')).toBe('-1');
+    });
+
+    it('other-month cells have tabindex="-1"', async () => {
+        const el = await fixture<UiDateRangeCalendar>(html`
+            <ui-date-range-calendar></ui-date-range-calendar>
+        `);
+        await el.updateComplete;
+        const otherMonthCell = el.shadowRoot!.querySelector('.day-cell.other-month') as HTMLElement;
+        if (otherMonthCell) {
+            expect(otherMonthCell.getAttribute('tabindex')).toBe('-1');
+        }
+    });
+
+    it('current-month enabled cells have tabindex="0"', async () => {
+        const el = await fixture<UiDateRangeCalendar>(html`
+            <ui-date-range-calendar></ui-date-range-calendar>
+        `);
+        await el.updateComplete;
+        const currentMonthCells = el.shadowRoot!.querySelectorAll('.day-cell:not(.other-month):not(.disabled)');
+        expect(currentMonthCells.length).toBeGreaterThan(0);
+        expect(currentMonthCells[0].getAttribute('tabindex')).toBe('0');
+    });
+
+    it('_handleCellHover does not update _hoverIso when end date is set', async () => {
+        const el = await fixture<UiDateRangeCalendar>(html`
+            <ui-date-range-calendar
+              .value=${['2025-06-05', '2025-06-20'] as DateRange}
+            ></ui-date-range-calendar>
+        `);
+        await el.updateComplete;
+        const cells = el.shadowRoot!.querySelectorAll<HTMLElement>('.day-cell:not(.other-month)');
+        cells[9].dispatchEvent(new MouseEvent('mouseover', { bubbles: true }));
+        await el.updateComplete;
+        // No hover-range cells when end is already set
+        expect(el.shadowRoot!.querySelectorAll('.hover-range').length).toBe(0);
+    });
+
+    it('prev nav button is hidden on right panel, next on left panel', async () => {
+        const el = await fixture<UiDateRangeCalendar>(html`
+            <ui-date-range-calendar></ui-date-range-calendar>
+        `);
+        await el.updateComplete;
+        const panels = el.shadowRoot!.querySelectorAll('.month-panel');
+        // Left panel: prev visible (no .hidden), next hidden
+        const leftNavBtns = panels[0].querySelectorAll('.nav-btn');
+        expect(leftNavBtns[0].classList.contains('hidden')).toBe(false); // prev
+        expect(leftNavBtns[1].classList.contains('hidden')).toBe(true); // next
+        // Right panel: prev hidden, next visible
+        const rightNavBtns = panels[1].querySelectorAll('.nav-btn');
+        expect(rightNavBtns[0].classList.contains('hidden')).toBe(true); // prev
+        expect(rightNavBtns[1].classList.contains('hidden')).toBe(false); // next
+    });
+});
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// Mutation-killing tests — picker
+// ═══════════════════════════════════════════════════════════════════════════════
+
+describe('ui-date-range-picker — mutation killers', () => {
+
+    it('desktop: calendar select clears active shortcut class', async () => {
+        const el = await fixture<UiDateRangePicker>(
+            html`<ui-date-range-picker shortcuts></ui-date-range-picker>`,
+        );
+        await el.updateComplete;
+        // Open popover
+        const field = el.shadowRoot!.querySelector('ui-single-input-date-range-field') as HTMLElement;
+        field.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
+        await el.updateComplete;
+        // Click a shortcut to make it active
+        const btn = el.shadowRoot!.querySelector<HTMLButtonElement>('.shortcut-btn');
+        btn!.click();
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('.shortcut-btn.active')).not.toBeNull();
+        // Now select from calendar → should clear activeShortcut
+        const cal = el.shadowRoot!.querySelector('ui-date-range-calendar') as HTMLElement;
+        cal.dispatchEvent(new CustomEvent('range-select', {
+            detail: { value: ['2025-08-01', ''] as DateRange },
+            bubbles: true, composed: true,
+        }));
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('.shortcut-btn.active')).toBeNull();
+    });
+
+    it('desktop: partial range from calendar does NOT close popover', async () => {
+        const el = await fixture<UiDateRangePicker>(html`
+            <ui-date-range-picker></ui-date-range-picker>
+        `);
+        await el.updateComplete;
+        const field = el.shadowRoot!.querySelector('ui-single-input-date-range-field') as HTMLElement;
+        field.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
+        await el.updateComplete;
+        const cal = el.shadowRoot!.querySelector('ui-date-range-calendar') as HTMLElement;
+        cal.dispatchEvent(new CustomEvent('range-select', {
+            detail: { value: ['2025-06-01', ''] as DateRange },
+            bubbles: true, composed: true,
+        }));
+        await el.updateComplete;
+        // Partial range (no end) → should NOT auto-commit on desktop
+        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(true);
+    });
+
+    it('mobile: Cancel resets _activeShortcut (no active class after cancel)', async () => {
+        const el = await fixture<UiDateRangePicker>(
+            html`<ui-date-range-picker variant="mobile" shortcuts></ui-date-range-picker>`,
+        );
+        await el.updateComplete;
+        const mobileField = el.shadowRoot!.querySelector('.mobile-field') as HTMLElement;
+        mobileField.click();
+        await el.updateComplete;
+        // Click a shortcut
+        const btn = el.shadowRoot!.querySelector<HTMLButtonElement>('.shortcut-btn');
+        btn!.click();
+        await el.updateComplete;
+        // Cancel
+        const cancelBtn = el.shadowRoot!.querySelector<HTMLButtonElement>('.action-btn.cancel');
+        cancelBtn!.click();
+        await el.updateComplete;
+        // Re-open to check
+        mobileField.click();
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('.shortcut-btn.active')).toBeNull();
+    });
+
+    it('_openPicker does not open when already open', async () => {
+        const el = await fixture<UiDateRangePicker>(html`
+            <ui-date-range-picker></ui-date-range-picker>
+        `);
+        await el.updateComplete;
+        const field = el.shadowRoot!.querySelector('ui-single-input-date-range-field') as HTMLElement;
+        field.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(true);
+        // Focus again — should not throw or change state
+        field.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(true);
+    });
+
+    it('custom shortcutItems overrides default shortcuts', async () => {
+        const custom = [{ label: 'Custom', getValue: () => ['2025-01-01', '2025-01-31'] as DateRange }];
+        const el = await fixture<UiDateRangePicker>(html`
+            <ui-date-range-picker
+              variant="static"
+              shortcuts
+              .shortcutItems=${custom}
+            ></ui-date-range-picker>
+        `);
+        await el.updateComplete;
+        const btns = el.shadowRoot!.querySelectorAll('.shortcut-btn');
+        expect(btns.length).toBe(1);
+        expect(btns[0].textContent?.trim()).toBe('Custom');
+    });
+
+    it('empty shortcutItems array uses defaultShortcuts', async () => {
+        const el = await fixture<UiDateRangePicker>(html`
+            <ui-date-range-picker
+              variant="static"
+              shortcuts
+              .shortcutItems=${[]}
+            ></ui-date-range-picker>
+        `);
+        await el.updateComplete;
+        const btns = el.shadowRoot!.querySelectorAll('.shortcut-btn');
+        expect(btns.length).toBe(6); // 6 default shortcuts
+    });
+
+    it('desktop pending value: uses this.value when both pending parts are empty', async () => {
+        const el = await fixture<UiDateRangePicker>(html`
+            <ui-date-range-picker
+              .value=${['2025-06-01', '2025-06-15'] as DateRange}
+            ></ui-date-range-picker>
+        `);
+        await el.updateComplete;
+        const field = el.shadowRoot!.querySelector('ui-single-input-date-range-field') as HTMLElement;
+        field.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
+        await el.updateComplete;
+        // Calendar should show range from this.value (since _pendingValue is still EMPTY_RANGE at open → set to [...this.value])
+        const cal = el.shadowRoot!.querySelector('ui-date-range-calendar') as UiDateRangeCalendar;
+        const starts = cal.shadowRoot!.querySelectorAll('.range-start');
+        expect(starts.length).toBeGreaterThanOrEqual(1);
+    });
+
+    it('static without shortcuts: renders calendar directly (no flex wrapper)', async () => {
+        const el = await fixture<UiDateRangePicker>(html`
+            <ui-date-range-picker variant="static"></ui-date-range-picker>
+        `);
+        await el.updateComplete;
+        const staticWrapper = el.shadowRoot!.querySelector('.static-wrapper');
+        expect(staticWrapper).not.toBeNull();
+        // Should NOT have the flex div wrapping
+        const flexDiv = staticWrapper!.querySelector('div[style]');
+        expect(flexDiv).toBeNull();
+        // But should have the calendar
+        const cal = staticWrapper!.querySelector('ui-date-range-calendar');
+        expect(cal).not.toBeNull();
+    });
+
+    it('static with shortcuts: wraps in flex div', async () => {
+        const el = await fixture<UiDateRangePicker>(html`
+            <ui-date-range-picker variant="static" shortcuts></ui-date-range-picker>
+        `);
+        await el.updateComplete;
+        const staticWrapper = el.shadowRoot!.querySelector('.static-wrapper');
+        expect(staticWrapper).not.toBeNull();
+        const shortcuts = staticWrapper!.querySelector('.shortcuts-panel');
+        expect(shortcuts).not.toBeNull();
+    });
+
+    it('mobile placeholder: shows "Start date – End date" when no value', async () => {
+        const el = await fixture<UiDateRangePicker>(html`
+            <ui-date-range-picker variant="mobile"></ui-date-range-picker>
+        `);
+        await el.updateComplete;
+        const placeholder = el.shadowRoot!.querySelector('.mobile-field-placeholder');
+        expect(placeholder).not.toBeNull();
+        expect(placeholder!.textContent?.trim()).toContain('Start date');
+    });
+
+    it('mobile: formatted range replaces placeholder when value is set', async () => {
+        const el = await fixture<UiDateRangePicker>(html`
+            <ui-date-range-picker
+              variant="mobile"
+              .value=${['2025-06-01', '2025-06-30'] as DateRange}
+            ></ui-date-range-picker>
+        `);
+        await el.updateComplete;
+        const placeholder = el.shadowRoot!.querySelector('.mobile-field-placeholder');
+        expect(placeholder).toBeNull();
+        const mobileField = el.shadowRoot!.querySelector('.mobile-field') as HTMLElement;
+        expect(mobileField.textContent).toContain('06/01/2025');
+        expect(mobileField.textContent).toContain('06/30/2025');
+    });
+
+    it('mobile field has aria-haspopup="dialog"', async () => {
+        const el = await fixture<UiDateRangePicker>(html`
+            <ui-date-range-picker variant="mobile"></ui-date-range-picker>
+        `);
+        await el.updateComplete;
+        const mobileField = el.shadowRoot!.querySelector('.mobile-field');
+        expect(mobileField?.getAttribute('aria-haspopup')).toBe('dialog');
+    });
+
+    it('mobile field aria-expanded toggles', async () => {
+        const el = await fixture<UiDateRangePicker>(html`
+            <ui-date-range-picker variant="mobile"></ui-date-range-picker>
+        `);
+        await el.updateComplete;
+        const mobileField = el.shadowRoot!.querySelector('.mobile-field') as HTMLElement;
+        expect(mobileField.getAttribute('aria-expanded')).toBe('false');
+        mobileField.click();
+        await el.updateComplete;
+        expect(mobileField.getAttribute('aria-expanded')).toBe('true');
+    });
+
+    it('commit with identical range closes picker but fires no event', async () => {
+        const el = await fixture<UiDateRangePicker>(html`
+            <ui-date-range-picker
+              .value=${['2025-06-01', '2025-06-15'] as DateRange}
+            ></ui-date-range-picker>
+        `);
+        await el.updateComplete;
+        const field = el.shadowRoot!.querySelector('ui-single-input-date-range-field') as HTMLElement;
+        field.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(true);
+        const spy = vi.fn();
+        el.addEventListener('range-change', spy);
+        // Emit same range → _commit should be no-op (no event) but closes picker
+        const cal = el.shadowRoot!.querySelector('ui-date-range-calendar') as HTMLElement;
+        cal.dispatchEvent(new CustomEvent('range-select', {
+            detail: { value: ['2025-06-01', '2025-06-15'] as DateRange },
+            bubbles: true, composed: true,
+        }));
+        await el.updateComplete;
+        expect(spy).not.toHaveBeenCalled();
+        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(false);
+    });
+
+    it('desktop: shortcut navigates calendar to shortcut start month', async () => {
+        const el = await fixture<UiDateRangePicker>(html`
+            <ui-date-range-picker
+              shortcuts
+              .shortcutItems=${[{
+                label: 'Jan2020',
+                getValue: () => ['2020-01-01', '2020-01-31'] as DateRange
+              }]}
+            ></ui-date-range-picker>
+        `);
+        await el.updateComplete;
+        const field = el.shadowRoot!.querySelector('ui-single-input-date-range-field') as HTMLElement;
+        field.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
+        await el.updateComplete;
+        const btn = el.shadowRoot!.querySelector<HTMLButtonElement>('.shortcut-btn');
+        btn!.click();
+        await el.updateComplete;
+        await el.updateComplete;
+        // Calendar should have navigated to January 2020
+        // Re-open since shortcut may have closed it
+        field.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
+        await el.updateComplete;
+        const cal = el.shadowRoot!.querySelector('ui-date-range-calendar') as UiDateRangeCalendar;
+        await cal.updateComplete;
+        const labels = cal.shadowRoot!.querySelectorAll('.header-label');
+        expect(labels[0].textContent?.trim()).toContain('January');
+    });
+
+    it('mobile: does not open when disabled', async () => {
+        const el = await fixture<UiDateRangePicker>(html`
+            <ui-date-range-picker variant="mobile" disabled></ui-date-range-picker>
+        `);
+        await el.updateComplete;
+        const mobileField = el.shadowRoot!.querySelector('.mobile-field') as HTMLElement;
+        mobileField.click();
+        await el.updateComplete;
+        const dialog = el.shadowRoot!.querySelector('ui-dialog') as HTMLElement & { open: boolean };
+        expect(dialog?.open ?? false).toBe(false);
+    });
+
+    it('mobile: disabled field has tabindex=-1', async () => {
+        const el = await fixture<UiDateRangePicker>(html`
+            <ui-date-range-picker variant="mobile" disabled></ui-date-range-picker>
+        `);
+        await el.updateComplete;
+        const mobileField = el.shadowRoot!.querySelector('.mobile-field');
+        expect(mobileField?.getAttribute('tabindex')).toBe('-1');
+    });
+
+    it('mobile: enabled field has tabindex=0', async () => {
+        const el = await fixture<UiDateRangePicker>(html`
+            <ui-date-range-picker variant="mobile"></ui-date-range-picker>
+        `);
+        await el.updateComplete;
+        const mobileField = el.shadowRoot!.querySelector('.mobile-field');
+        expect(mobileField?.getAttribute('tabindex')).toBe('0');
+    });
+
+    it('field range-change goes through _handleFieldRangeChange → _commit', async () => {
+        const el = await fixture<UiDateRangePicker>(html`
+            <ui-date-range-picker></ui-date-range-picker>
+        `);
+        await el.updateComplete;
+        const spy = vi.fn();
+        el.addEventListener('range-change', spy);
+        const field = el.shadowRoot!.querySelector('ui-single-input-date-range-field') as HTMLElement;
+        field.dispatchEvent(new CustomEvent('range-change', {
+            detail: { value: ['2025-03-01', '2025-03-15'] as DateRange },
+            bubbles: true, composed: true,
+        }));
+        expect(spy).toHaveBeenCalled();
+        expect(el.value[0]).toBe('2025-03-01');
+        expect(el.value[1]).toBe('2025-03-15');
+    });
+
+    it('desktop: helper text renders below field', async () => {
+        const el = await fixture<UiDateRangePicker>(html`
+            <ui-date-range-picker helper-text="Required"></ui-date-range-picker>
+        `);
+        await el.updateComplete;
+        const helper = el.shadowRoot!.querySelector('.helper-text');
+        expect(helper?.textContent?.trim()).toBe('Required');
+    });
+
+    it('desktop: no helper-text renders no helper element', async () => {
+        const el = await fixture<UiDateRangePicker>(html`
+            <ui-date-range-picker></ui-date-range-picker>
+        `);
+        await el.updateComplete;
+        const helper = el.shadowRoot!.querySelector('.helper-text');
+        expect(helper).toBeNull();
+    });
+});
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// Mutation-killing tests — field
+// ═══════════════════════════════════════════════════════════════════════════════
+
+describe('ui-single-input-date-range-field — mutation killers', () => {
+
+    it('typing "12" for start-month commits month=12 and advances', async () => {
+        const el = await fixture<UiSingleInputDateRangeField>(html`
+            <ui-single-input-date-range-field></ui-single-input-date-range-field>
+        `);
+        await focusField(el);
+        key(el, '1'); // buf='1', waiting
+        key(el, '2'); // buf='12', 12<=12 → commits month=12, advances
+        await el.updateComplete;
+        const segs = el.shadowRoot!.querySelectorAll('.segment');
+        expect(segs[0].textContent?.trim()).toBe('12');
+        expect(segs[1].classList.contains('active')).toBe(true);
+    });
+
+    it('typing "13" for start-month: invalid, then falls back to 3 (in [2-9])', async () => {
+        const el = await fixture<UiSingleInputDateRangeField>(html`
+            <ui-single-input-date-range-field></ui-single-input-date-range-field>
+        `);
+        await focusField(el);
+        key(el, '1'); // buf='1'
+        key(el, '3'); // buf='13', 13>12 invalid → _buf='3', d=3 in [2-9] → commits 3
+        await el.updateComplete;
+        const segs = el.shadowRoot!.querySelectorAll('.segment');
+        expect(segs[0].textContent?.trim()).toBe('03');
+        expect(segs[1].classList.contains('active')).toBe(true);
+    });
+
+    it('typing "01" for start-month commits month=1', async () => {
+        const el = await fixture<UiSingleInputDateRangeField>(html`
+            <ui-single-input-date-range-field></ui-single-input-date-range-field>
+        `);
+        await focusField(el);
+        key(el, '0');
+        key(el, '1'); // buf='01', num=1, 1>=1 → commits
+        await el.updateComplete;
+        const segs = el.shadowRoot!.querySelectorAll('.segment');
+        expect(segs[0].textContent?.trim()).toBe('01');
+        expect(segs[1].classList.contains('active')).toBe(true);
+    });
+
+    it('typing "4" for start-day auto-advances (d >= 4)', async () => {
+        const el = await fixture<UiSingleInputDateRangeField>(html`
+            <ui-single-input-date-range-field></ui-single-input-date-range-field>
+        `);
+        await focusField(el);
+        key(el, 'ArrowRight'); // start-day
+        await el.updateComplete;
+        key(el, '4'); // d=4, >=4 → auto-commits, advances
+        await el.updateComplete;
+        const segs = el.shadowRoot!.querySelectorAll('.segment');
+        expect(segs[1].textContent?.trim()).toBe('04');
+        expect(segs[2].classList.contains('active')).toBe(true); // start-year
+    });
+
+    it('typing "3" then "1" for start-day commits day=31', async () => {
+        const el = await fixture<UiSingleInputDateRangeField>(html`
+            <ui-single-input-date-range-field></ui-single-input-date-range-field>
+        `);
+        await focusField(el);
+        key(el, 'ArrowRight'); // start-day
+        await el.updateComplete;
+        key(el, '3'); // d=3, <4 → buffered
+        key(el, '1'); // buf='31', maxD=daysInMonth(1,2000)=31, 31<=31 → commits
+        await el.updateComplete;
+        const segs = el.shadowRoot!.querySelectorAll('.segment');
+        expect(segs[1].textContent?.trim()).toBe('31');
+        expect(segs[2].classList.contains('active')).toBe(true);
+    });
+
+    it('typing "1" for start-day waits for second digit (< 4)', async () => {
+        const el = await fixture<UiSingleInputDateRangeField>(html`
+            <ui-single-input-date-range-field></ui-single-input-date-range-field>
+        `);
+        await focusField(el);
+        key(el, 'ArrowRight'); // start-day
+        await el.updateComplete;
+        key(el, '1'); // d=1, <4 → stays buffered
+        await el.updateComplete;
+        const segs = el.shadowRoot!.querySelectorAll('.segment');
+        expect(segs[1].textContent?.trim()).toBe('1_');
+        expect(segs[1].classList.contains('active')).toBe(true);
+    });
+
+    it('year digits accumulate: keeps last 4 chars', async () => {
+        const el = await fixture<UiSingleInputDateRangeField>(html`
+            <ui-single-input-date-range-field></ui-single-input-date-range-field>
+        `);
+        await focusField(el);
+        key(el, 'ArrowRight'); key(el, 'ArrowRight'); // start-year
+        await el.updateComplete;
+        key(el, '1');
+        await el.updateComplete;
+        const segs = el.shadowRoot!.querySelectorAll('.segment');
+        expect(segs[2].textContent?.trim()).toBe('1___');
+        key(el, '2');
+        await el.updateComplete;
+        expect(segs[2].textContent?.trim()).toBe('12__');
+        key(el, '3');
+        await el.updateComplete;
+        expect(segs[2].textContent?.trim()).toBe('123_');
+    });
+
+    it('_checkAndEmit does not fire when partial (only start month set)', async () => {
+        const el = await fixture<UiSingleInputDateRangeField>(html`
+            <ui-single-input-date-range-field></ui-single-input-date-range-field>
+        `);
+        await el.updateComplete;
+        const spy = vi.fn();
+        el.addEventListener('range-change', spy);
+        await focusField(el);
+        key(el, '6'); // sets month=6, auto-advance to day
+        await el.updateComplete;
+        // _checkAndEmit fires but startIso is '' (only month, not day/year)
+        // The event value should be ['', ''] since start is incomplete
+        // OR the event may not fire at all depending on code path
+        // Key assertion: no VALID range-change with both dates should occur
+        const validCalls = spy.mock.calls.filter((call: unknown[]) => {
+            const val = (call[0] as CustomEvent).detail.value as DateRange;
+            return val[0] !== '' && val[1] !== '';
+        });
+        expect(validCalls.length).toBe(0);
+    });
+
+    it('clear button not shown on readonly field', async () => {
+        const el = await fixture<UiSingleInputDateRangeField>(html`
+            <ui-single-input-date-range-field
+              .value=${['2025-01-01', '2025-01-31'] as DateRange}
+              readonly
+            ></ui-single-input-date-range-field>
+        `);
+        await el.updateComplete;
+        const btn = el.shadowRoot!.querySelector('.icon-btn');
+        expect(btn).toBeNull();
+    });
+
+    it('_hasAnyValue returns false when all segments are null', async () => {
+        const el = await fixture<UiSingleInputDateRangeField>(html`
+            <ui-single-input-date-range-field></ui-single-input-date-range-field>
+        `);
+        await el.updateComplete;
+        const btn = el.shadowRoot!.querySelector('.icon-btn');
+        expect(btn).toBeNull(); // no clear button when no value
+    });
+
+    it('_hasAnyValue returns true when only one segment is set', async () => {
+        const el = await fixture<UiSingleInputDateRangeField>(html`
+            <ui-single-input-date-range-field></ui-single-input-date-range-field>
+        `);
+        await focusField(el);
+        key(el, '6'); // sets start-month to 6
+        await el.updateComplete;
+        const btn = el.shadowRoot!.querySelector('.icon-btn');
+        expect(btn).not.toBeNull();
+    });
+
+    it('no hidden inputs rendered when name is empty', async () => {
+        const el = await fixture<UiSingleInputDateRangeField>(html`
+            <ui-single-input-date-range-field></ui-single-input-date-range-field>
+        `);
+        await el.updateComplete;
+        const hidden = el.shadowRoot!.querySelectorAll('input[type="hidden"]');
+        expect(hidden.length).toBe(0);
+    });
+
+    it('no label rendered when label prop is empty', async () => {
+        const el = await fixture<UiSingleInputDateRangeField>(html`
+            <ui-single-input-date-range-field></ui-single-input-date-range-field>
+        `);
+        await el.updateComplete;
+        const label = el.shadowRoot!.querySelector('.field-label');
+        expect(label).toBeNull();
+    });
+
+    it('no helper rendered when helperText is empty', async () => {
+        const el = await fixture<UiSingleInputDateRangeField>(html`
+            <ui-single-input-date-range-field></ui-single-input-date-range-field>
+        `);
+        await el.updateComplete;
+        const helper = el.shadowRoot!.querySelector('.helper');
+        expect(helper).toBeNull();
+    });
+
+    it('end-month typing "6" auto-advances (d in [2-9])', async () => {
+        const el = await fixture<UiSingleInputDateRangeField>(html`
+            <ui-single-input-date-range-field></ui-single-input-date-range-field>
+        `);
+        await focusField(el);
+        // Navigate to end-month
+        for (let i = 0; i < 3; i++) key(el, 'ArrowRight');
+        await el.updateComplete;
+        key(el, '6');
+        await el.updateComplete;
+        const segs = el.shadowRoot!.querySelectorAll('.segment');
+        expect(segs[3].textContent?.trim()).toBe('06');
+        expect(segs[4].classList.contains('active')).toBe(true); // end-day
+    });
+
+    it('_commitPartialBuffer commits valid start-day buffer on segment change', async () => {
+        const el = await fixture<UiSingleInputDateRangeField>(html`
+            <ui-single-input-date-range-field
+              .value=${['2025-06-01', '2025-06-30'] as DateRange}
+            ></ui-single-input-date-range-field>
+        `);
+        await focusField(el);
+        key(el, 'ArrowRight'); // start-day
+        await el.updateComplete;
+        key(el, '2'); // buf='2', <4 → waiting
+        await el.updateComplete;
+        // Navigate away → commits 2
+        key(el, 'ArrowRight');
+        await el.updateComplete;
+        const segs = el.shadowRoot!.querySelectorAll('.segment');
+        expect(segs[1].textContent?.trim()).toBe('02');
+    });
+
+    it('_commitPartialBuffer for end-month commits valid buffer', async () => {
+        const el = await fixture<UiSingleInputDateRangeField>(html`
+            <ui-single-input-date-range-field></ui-single-input-date-range-field>
+        `);
+        await focusField(el);
+        for (let i = 0; i < 3; i++) key(el, 'ArrowRight'); // end-month
+        await el.updateComplete;
+        key(el, '1'); // buf='1', waiting
+        await el.updateComplete;
+        key(el, 'ArrowRight'); // commits partial → _em=1
+        await el.updateComplete;
+        const segs = el.shadowRoot!.querySelectorAll('.segment');
+        expect(segs[3].textContent?.trim()).toBe('01');
+    });
+
+    it('_commitPartialBuffer does not commit month=13 (out of range)', async () => {
+        const el = await fixture<UiSingleInputDateRangeField>(html`
+            <ui-single-input-date-range-field></ui-single-input-date-range-field>
+        `);
+        await focusField(el);
+        // Set buffer to '13' manually would exceed normal flow, but we can test by setting _buf
+        (el as unknown as { _buf: string })._buf = '13';
+        key(el, 'ArrowRight'); // triggers _commitPartialBuffer with buf='13', num=13, 13>12 → not committed
+        await el.updateComplete;
+        const segs = el.shadowRoot!.querySelectorAll('.segment');
+        expect(segs[0].classList.contains('placeholder')).toBe(true);
+    });
+
+    it('_commitPartialBuffer for end-day with valid buffer commits', async () => {
+        const el = await fixture<UiSingleInputDateRangeField>(html`
+            <ui-single-input-date-range-field
+              .value=${['2025-06-01', '2025-07-01'] as DateRange}
+            ></ui-single-input-date-range-field>
+        `);
+        await focusField(el);
+        for (let i = 0; i < 4; i++) key(el, 'ArrowRight'); // end-day
+        await el.updateComplete;
+        key(el, '2'); // buf='2', <4 → waiting
+        await el.updateComplete;
+        key(el, 'ArrowRight'); // commits partial → _ed=2
+        await el.updateComplete;
+        const segs = el.shadowRoot!.querySelectorAll('.segment');
+        expect(segs[4].textContent?.trim()).toBe('02');
+    });
+
+    it('_commitPartialBuffer does not commit day=0', async () => {
+        const el = await fixture<UiSingleInputDateRangeField>(html`
+            <ui-single-input-date-range-field></ui-single-input-date-range-field>
+        `);
+        await focusField(el);
+        key(el, 'ArrowRight'); // start-day
+        await el.updateComplete;
+        (el as unknown as { _buf: string })._buf = '0';
+        key(el, 'ArrowRight'); // _commitPartialBuffer → num=0, 0<1 → not committed
+        await el.updateComplete;
+        const segs = el.shadowRoot!.querySelectorAll('.segment');
+        expect(segs[1].classList.contains('placeholder')).toBe(true);
+    });
+
+    it('typing digit with no active segment sets active to start-month first', async () => {
+        const el = await fixture<UiSingleInputDateRangeField>(html`
+            <ui-single-input-date-range-field></ui-single-input-date-range-field>
+        `);
+        await el.updateComplete;
+        // Don't focus first — dispatch key directly
+        const segments = el.shadowRoot!.querySelector('.segments') as HTMLElement;
+        segments.dispatchEvent(new KeyboardEvent('keydown', { key: '5', bubbles: true }));
+        await el.updateComplete;
+        const segs = el.shadowRoot!.querySelectorAll('.segment');
+        // 5 is in [2-9] → auto-commits month=5 and advances to start-day
+        expect(segs[0].textContent?.trim()).toBe('05');
+        expect(segs[1].classList.contains('active')).toBe(true);
+    });
+});

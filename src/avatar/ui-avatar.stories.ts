@@ -14,6 +14,8 @@ const meta: Meta = {
         size: { control: 'select', options: ['small', 'medium', 'large', 'xlarge'] },
     },
     args: {
+        src: '',
+        alt: '',
         variant: 'circle',
         size: 'medium',
         initials: '',
@@ -56,40 +58,43 @@ export const WithInitials: Story = {
 };
 
 export const Initials: Story = {
-    render: () => html`
+    args: { initials: 'JD' },
+    render: (args) => html`
         <div style="display: flex; gap: 1rem; align-items: center;">
-            <ui-avatar initials="JD" size="small" style="--ui-avatar-bg: #fee2e2; --ui-avatar-color: #ef4444;"></ui-avatar>
-            <ui-avatar initials="JD" size="medium" style="--ui-avatar-bg: #dcfce7; --ui-avatar-color: #22c55e;"></ui-avatar>
-            <ui-avatar initials="JD" size="large" style="--ui-avatar-bg: #dbeafe; --ui-avatar-color: #3b82f6;"></ui-avatar>
-            <ui-avatar initials="JD" size="xlarge" style="--ui-avatar-bg: #ede9fe; --ui-avatar-color: #7c3aed;"></ui-avatar>
+            <ui-avatar .initials=${args.initials ?? ''} size="small" .variant=${args.variant} style="--ui-avatar-bg: #fee2e2; --ui-avatar-color: #ef4444;"></ui-avatar>
+            <ui-avatar .initials=${args.initials ?? ''} size="medium" .variant=${args.variant} style="--ui-avatar-bg: #dcfce7; --ui-avatar-color: #22c55e;"></ui-avatar>
+            <ui-avatar .initials=${args.initials ?? ''} size="large" .variant=${args.variant} style="--ui-avatar-bg: #dbeafe; --ui-avatar-color: #3b82f6;"></ui-avatar>
+            <ui-avatar .initials=${args.initials ?? ''} size="xlarge" .variant=${args.variant} style="--ui-avatar-bg: #ede9fe; --ui-avatar-color: #7c3aed;"></ui-avatar>
         </div>
     `,
 };
 
 export const Sizes: Story = {
-    render: () => html`
+    args: { src: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop' },
+    render: (args) => html`
         <div style="display: flex; gap: 1rem; align-items: center;">
-            <ui-avatar size="small" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&amp;h=80&amp;fit=crop"></ui-avatar>
-            <ui-avatar size="medium" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&amp;h=100&amp;fit=crop"></ui-avatar>
-            <ui-avatar size="large" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&amp;h=150&amp;fit=crop"></ui-avatar>
-            <ui-avatar size="xlarge" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&amp;h=200&amp;fit=crop"></ui-avatar>
+            <ui-avatar size="small" .src=${args.src ?? ''} .variant=${args.variant}></ui-avatar>
+            <ui-avatar size="medium" .src=${args.src ?? ''} .variant=${args.variant}></ui-avatar>
+            <ui-avatar size="large" .src=${args.src ?? ''} .variant=${args.variant}></ui-avatar>
+            <ui-avatar size="xlarge" .src=${args.src ?? ''} .variant=${args.variant}></ui-avatar>
         </div>
     `,
 };
 
 export const Variants: Story = {
-    render: () => html`
+    args: { src: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=100&h=100&fit=crop' },
+    render: (args) => html`
         <div style="display: flex; gap: 1.5rem; align-items: center;">
             <div style="text-align: center; font-family: system-ui; font-size: 12px; color: #6b7280;">
-                <ui-avatar variant="circle" src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=100&amp;h=100&amp;fit=crop"></ui-avatar>
+                <ui-avatar variant="circle" .src=${args.src ?? ''} .size=${args.size}></ui-avatar>
                 <div style="margin-top: 6px;">circle</div>
             </div>
             <div style="text-align: center; font-family: system-ui; font-size: 12px; color: #6b7280;">
-                <ui-avatar variant="rounded" src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=100&amp;h=100&amp;fit=crop"></ui-avatar>
+                <ui-avatar variant="rounded" .src=${args.src ?? ''} .size=${args.size}></ui-avatar>
                 <div style="margin-top: 6px;">rounded</div>
             </div>
             <div style="text-align: center; font-family: system-ui; font-size: 12px; color: #6b7280;">
-                <ui-avatar variant="square" src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=100&amp;h=100&amp;fit=crop"></ui-avatar>
+                <ui-avatar variant="square" .src=${args.src ?? ''} .size=${args.size}></ui-avatar>
                 <div style="margin-top: 6px;">square</div>
             </div>
         </div>

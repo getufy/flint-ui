@@ -88,7 +88,7 @@ export const Outlined: Story = {
   args: { variant: 'outlined' },
   render: (args: Record<string, unknown>) => html`
     <div style="max-width: 400px; padding: 20px;">
-      <ui-card variant="outlined">
+      <ui-card variant=${args.variant} ?interactive=${args.interactive}>
         <ui-card-header title=${args.title} subtitle=${args.subtitle}></ui-card-header>
         <ui-card-media image=${args.image} alt="Card image"></ui-card-media>
         <ui-card-content>${args.content}</ui-card-content>
@@ -105,7 +105,7 @@ export const Flat: Story = {
   args: { variant: 'flat' },
   render: (args: Record<string, unknown>) => html`
     <div style="max-width: 400px; padding: 20px;">
-      <ui-card variant="flat">
+      <ui-card variant=${args.variant} ?interactive=${args.interactive}>
         <ui-card-header title=${args.title} subtitle=${args.subtitle}></ui-card-header>
         <ui-card-content>${args.content}</ui-card-content>
         <ui-card-actions>
@@ -121,7 +121,7 @@ export const Interactive: Story = {
   render: (args: Record<string, unknown>) => html`
     <div style="max-width: 400px; padding: 20px;">
       <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280;">Hover the card to see the elevated shadow.</p>
-      <ui-card variant="elevated" interactive>
+      <ui-card variant=${args.variant} ?interactive=${args.interactive}>
         <ui-card-header title=${args.title} subtitle=${args.subtitle}></ui-card-header>
         <ui-card-content>${args.content}</ui-card-content>
         <ui-card-actions>

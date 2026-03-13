@@ -99,6 +99,7 @@
 .toaster:not(.toaster--expanded) .toast[data-front-index="1"],
 .toaster:not(.toaster--expanded) .toast[data-front-index="2"] {
     position: absolute;
+    left: 0;
     width: 100%;
     /* no entry animation for toasts that are already in the stack */
     animation: none;

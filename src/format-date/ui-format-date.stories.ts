@@ -114,13 +114,6 @@ Localization is handled by the browser's \`Intl.DateTimeFormat\` API — no lang
         },
         lang: { control: 'text', description: 'BCP 47 locale (e.g. "en", "fr", "ru")' },
     },
-};
-
-export default meta;
-type Story = StoryObj;
-
-/* ── Playground ──────────────────────────────────────────────────── */
-export const Playground: Story = {
     args: {
         date: '2020-07-15T13:17:00.000Z',
         year: 'numeric',
@@ -128,6 +121,13 @@ export const Playground: Story = {
         day: 'numeric',
         hourFormat: 'auto',
     },
+};
+
+export default meta;
+type Story = StoryObj;
+
+/* ── Playground ──────────────────────────────────────────────────── */
+export const Playground: Story = {
     render: (args) => html`
         <ui-format-date
             .date=${args['date']}

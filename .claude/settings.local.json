@@ -74,7 +74,23 @@
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/slider/ui-slider.test.ts 2>&1)",
       "Bash(npx stryker:*)",
       "Bash(NODE_OPTIONS='--no-warnings' vitest run src/textarea/ui-textarea.test.ts 2>&1 | tail -60)",
-      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/textarea/ui-textarea.test.ts 2>&1 | tail -20)"
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/textarea/ui-textarea.test.ts 2>&1 | tail -20)",
+      "Bash(npx tsc:*)",
+      "Bash(find src:*)",
+      "Bash(npm outdated:*)",
+      "Bash(ls -la /Users/algoassasin/storybook-lit/*.md)",
+      "Bash(wc -l src/*/ui-*.ts | sort -rn | head -15)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/sonner/ui-sonner.test.ts 2>&1 | tail -15)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/sonner/ui-sonner.test.ts 2>&1 | grep 'FAIL\\\\|fail')",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/sonner/ui-sonner.test.ts 2>&1 | tail -10)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/accordion/ui-accordion.test.ts src/input-otp/ui-input-otp.test.ts 2>&1 | tail -20)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/sonner/ui-sonner.test.ts 2>&1 | grep 'FAIL')",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/accordion/ui-accordion.test.ts src/input-otp/ui-input-otp.test.ts src/time-picker/ui-time-picker.test.ts 2>&1 | tail -10)",
+      "Bash(ls -d /Users/algoassasin/storybook-lit/src/*/ui-*.stories.ts | sort | sed 's|.*/src/||' | sed 's|/.*||' | uniq)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/date-range-picker/ui-date-range-picker.test.ts 2>&1 | tail -10)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run --coverage src/sonner/ui-sonner.test.ts 2>&1 | tail -20)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/date-range-picker/ui-date-range-picker.test.ts 2>&1 | tail -20)",
+      "Bash(ls -d /Users/algoassasin/storybook-lit/src/*/  | sed 's|.*/src/||;s|/||' | sort)"
     ]
   }
 }

@@ -13,6 +13,11 @@ const meta: Meta = {
         fixed: { control: 'boolean' },
         disableGutters: { control: 'boolean' },
     },
+    args: {
+        maxWidth: 'sm',
+        fixed: false,
+        disableGutters: false,
+    },
 };
 
 export default meta;
@@ -31,11 +36,6 @@ const demoBox = (label: string) => html`
 `;
 
 export const Basic: Story = {
-    args: {
-        maxWidth: 'sm',
-        fixed: false,
-        disableGutters: false,
-    },
     render: (args) => html`
     <ui-container
       .maxWidth=${args.maxWidth}
@@ -48,96 +48,108 @@ export const Basic: Story = {
 };
 
 export const FluidXs: Story = {
-    render: () => html`
-    <ui-container max-width="xs">
+    args: { maxWidth: 'xs' },
+    render: (args) => html`
+    <ui-container .maxWidth=${args.maxWidth} ?fixed=${args.fixed} .disableGutters=${args.disableGutters}>
       ${demoBox('maxWidth="xs" — 444px')}
     </ui-container>
   `,
 };
 
 export const FluidSm: Story = {
-    render: () => html`
-    <ui-container max-width="sm">
+    args: { maxWidth: 'sm' },
+    render: (args) => html`
+    <ui-container .maxWidth=${args.maxWidth} ?fixed=${args.fixed} .disableGutters=${args.disableGutters}>
       ${demoBox('maxWidth="sm" — 600px')}
     </ui-container>
   `,
 };
 
 export const FluidMd: Story = {
-    render: () => html`
-    <ui-container max-width="md">
+    args: { maxWidth: 'md' },
+    render: (args) => html`
+    <ui-container .maxWidth=${args.maxWidth} ?fixed=${args.fixed} .disableGutters=${args.disableGutters}>
       ${demoBox('maxWidth="md" — 900px')}
     </ui-container>
   `,
 };
 
 export const FluidLg: Story = {
-    render: () => html`
-    <ui-container max-width="lg">
+    args: { maxWidth: 'lg' },
+    render: (args) => html`
+    <ui-container .maxWidth=${args.maxWidth} ?fixed=${args.fixed} .disableGutters=${args.disableGutters}>
       ${demoBox('maxWidth="lg" — 1200px (default)')}
     </ui-container>
   `,
 };
 
 export const FluidXl: Story = {
-    render: () => html`
-    <ui-container max-width="xl">
+    args: { maxWidth: 'xl' },
+    render: (args) => html`
+    <ui-container .maxWidth=${args.maxWidth} ?fixed=${args.fixed} .disableGutters=${args.disableGutters}>
       ${demoBox('maxWidth="xl" — 1536px')}
     </ui-container>
   `,
 };
 
 export const NoMaxWidth: Story = {
-    render: () => html`
-    <ui-container .maxWidth=${false}>
+    args: { maxWidth: false },
+    render: (args) => html`
+    <ui-container .maxWidth=${args.maxWidth} ?fixed=${args.fixed} .disableGutters=${args.disableGutters}>
       ${demoBox('maxWidth=false — fully fluid, no max-width constraint')}
     </ui-container>
   `,
 };
 
 export const Fixed: Story = {
-    render: () => html`
-    <ui-container fixed>
+    args: { fixed: true, maxWidth: 'xl' },
+    render: (args) => html`
+    <ui-container .maxWidth=${args.maxWidth} ?fixed=${args.fixed} .disableGutters=${args.disableGutters}>
       ${demoBox('fixed — steps through breakpoints up to xl')}
     </ui-container>
   `,
 };
 
 export const FixedXs: Story = {
-    render: () => html`
-    <ui-container fixed max-width="xs">
+    args: { fixed: true, maxWidth: 'xs' },
+    render: (args) => html`
+    <ui-container .maxWidth=${args.maxWidth} ?fixed=${args.fixed} .disableGutters=${args.disableGutters}>
       ${demoBox('fixed + maxWidth="xs" — caps at 444px regardless of viewport')}
     </ui-container>
   `,
 };
 
 export const FixedSm: Story = {
-    render: () => html`
-    <ui-container fixed max-width="sm">
+    args: { fixed: true, maxWidth: 'sm' },
+    render: (args) => html`
+    <ui-container .maxWidth=${args.maxWidth} ?fixed=${args.fixed} .disableGutters=${args.disableGutters}>
       ${demoBox('fixed + maxWidth="sm" — steps xs→sm, then caps at 600px')}
     </ui-container>
   `,
 };
 
 export const FixedMd: Story = {
-    render: () => html`
-    <ui-container fixed max-width="md">
+    args: { fixed: true, maxWidth: 'md' },
+    render: (args) => html`
+    <ui-container .maxWidth=${args.maxWidth} ?fixed=${args.fixed} .disableGutters=${args.disableGutters}>
       ${demoBox('fixed + maxWidth="md" — steps xs→sm→md, then caps at 900px')}
     </ui-container>
   `,
 };
 
 export const DisableGutters: Story = {
-    render: () => html`
-    <ui-container disable-gutters max-width="md">
+    args: { disableGutters: true, maxWidth: 'md' },
+    render: (args) => html`
+    <ui-container .maxWidth=${args.maxWidth} ?fixed=${args.fixed} .disableGutters=${args.disableGutters}>
       ${demoBox('disableGutters — padding removed')}
     </ui-container>
   `,
 };
 
 export const DisableGuttersFixed: Story = {
-    render: () => html`
-    <ui-container disable-gutters fixed max-width="md">
+    args: { disableGutters: true, fixed: true, maxWidth: 'md' },
+    render: (args) => html`
+    <ui-container .maxWidth=${args.maxWidth} ?fixed=${args.fixed} .disableGutters=${args.disableGutters}>
       ${demoBox('disableGutters + fixed — no gutters, snaps to breakpoints')}
     </ui-container>
   `,

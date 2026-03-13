@@ -27,6 +27,11 @@ const meta: Meta = {
             description: 'Whether the alert can be dismissed by the user.',
         },
     },
+    args: {
+        severity: 'info',
+        title: '',
+        dismissible: false,
+    },
 };
 
 export default meta;

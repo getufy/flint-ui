@@ -57,8 +57,9 @@ export const Default: Story = {
 };
 
 export const InitialPosition: Story = {
-    render: () => html`
-        <ui-image-comparer .position=${25}>
+    args: { position: 25 },
+    render: (args) => html`
+        <ui-image-comparer .position=${args.position} ?disabled=${args.disabled}>
             <img slot="before" src=${BEFORE} alt="Before" />
             <img slot="after" src=${AFTER} alt="After" />
         </ui-image-comparer>
@@ -66,8 +67,9 @@ export const InitialPosition: Story = {
 };
 
 export const Disabled: Story = {
-    render: () => html`
-        <ui-image-comparer disabled .position=${30}>
+    args: { disabled: true, position: 30 },
+    render: (args) => html`
+        <ui-image-comparer ?disabled=${args.disabled} .position=${args.position}>
             <img slot="before" src=${BEFORE} alt="Before" />
             <img slot="after" src=${AFTER} alt="After" />
         </ui-image-comparer>

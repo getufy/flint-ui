@@ -104,19 +104,20 @@ export const ControlledVsUncontrolled: Story = {
 // ── Disabled & ReadOnly ───────────────────────────────────────────────────────
 export const States: Story = {
     name: 'Disabled & ReadOnly',
-    render: () => wrap(html`
+    args: { disabled: false, readonly: false },
+    render: (args) => wrap(html`
     <ui-stack direction="row" gap="32px" style="flex-wrap:wrap;">
       <div>
         <p style="margin:0 0 10px;font-size:.8rem;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.04em;">Enabled</p>
-        <ui-date-field label="Date" value="2025-06-15"></ui-date-field>
+        <ui-date-field label="Date" value="2025-06-15" ?disabled=${args.disabled} ?readonly=${args.readonly}></ui-date-field>
       </div>
       <div>
         <p style="margin:0 0 10px;font-size:.8rem;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.04em;">Disabled</p>
-        <ui-date-field label="Date" value="2025-06-15" disabled></ui-date-field>
+        <ui-date-field label="Date" value="2025-06-15" ?disabled=${args.disabled} ?readonly=${args.readonly}></ui-date-field>
       </div>
       <div>
         <p style="margin:0 0 10px;font-size:.8rem;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.04em;">Read-only</p>
-        <ui-date-field label="Date" value="2025-06-15" readonly></ui-date-field>
+        <ui-date-field label="Date" value="2025-06-15" ?disabled=${args.disabled} ?readonly=${args.readonly}></ui-date-field>
       </div>
     </ui-stack>
   `),
@@ -125,12 +126,13 @@ export const States: Story = {
 // ── Error state ───────────────────────────────────────────────────────────────
 export const ErrorState: Story = {
     name: 'Error State',
-    render: () => wrap(html`
+    args: { error: true, helperText: 'This date is in the past. Please enter a future date.' },
+    render: (args) => wrap(html`
     <ui-date-field
       label="Expiry Date"
       value="2023-01-01"
-      error
-      helper-text="This date is in the past. Please enter a future date."
+      ?error=${args.error}
+      helper-text=${args.helperText ?? ''}
     ></ui-date-field>
   `),
 };

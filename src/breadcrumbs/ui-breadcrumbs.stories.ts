@@ -16,6 +16,17 @@ const meta: Meta = {
         label4: { control: 'text', name: 'Item 4' },
         label5: { control: 'text', name: 'Item 5' },
     },
+    args: {
+        separator: '/',
+        maxItems: 8,
+        itemsBefore: 1,
+        itemsAfter: 1,
+        label1: 'Home',
+        label2: 'Catalog',
+        label3: 'Accessories',
+        label4: 'New Collection',
+        label5: 'Belts',
+    },
 };
 
 export default meta;
@@ -29,12 +40,6 @@ const icons = {
 };
 
 export const Basic: Story = {
-    args: {
-        separator: '/',
-        label1: 'Home',
-        label2: 'Catalog',
-        label3: 'Accessories',
-    },
     render: (args) => html`
         <ui-breadcrumbs .separator=${args.separator}>
             <a href="#">${args.label1}</a>
@@ -45,19 +50,18 @@ export const Basic: Story = {
 };
 
 export const ActiveLast: Story = {
-    render: () => html`
-        <ui-breadcrumbs>
-            <a href="#">Platform</a>
-            <a href="#">Components</a>
-            <span aria-current="page">Navigation</span>
+    args: { label1: 'Platform', label2: 'Components', label3: 'Navigation' },
+    render: (args) => html`
+        <ui-breadcrumbs .separator=${args.separator}>
+            <a href="#">${args.label1}</a>
+            <a href="#">${args.label2}</a>
+            <span aria-current="page">${args.label3}</span>
         </ui-breadcrumbs>
     `,
 };
 
 export const CustomSeparator: Story = {
-    args: {
-        separator: '>',
-    },
+    args: { separator: '>' },
     render: (args) => html`
         <div style="display: flex; flex-direction: column; gap: 16px;">
             <p style="font-size: 0.8rem; color: #666;">Using 'separator' property:</p>
@@ -97,16 +101,7 @@ export const WithIcons: Story = {
 };
 
 export const Collapsed: Story = {
-    args: {
-        maxItems: 2,
-        itemsBefore: 1,
-        itemsAfter: 1,
-        label1: 'Home',
-        label2: 'Catalog',
-        label3: 'Accessories',
-        label4: 'New Collection',
-        label5: 'Belts',
-    },
+    args: { maxItems: 2 },
     render: (args) => html`
         <ui-breadcrumbs
             .maxItems=${args.maxItems}
