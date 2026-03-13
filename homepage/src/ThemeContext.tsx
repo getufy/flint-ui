@@ -1,43 +1,55 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
+type ThemeMode = 'system' | 'light' | 'dark';
+
 interface ThemeContextValue {
     dark: boolean;
-    setDark: (dark: boolean) => void;
+    mode: ThemeMode;
+    setMode: (mode: ThemeMode) => void;
 }
 
-export const ThemeContext = createContext<ThemeContextValue>({ dark: false, setDark: () => {} });
+export const ThemeContext = createContext<ThemeContextValue>({
+    dark: false,
+    mode: 'system',
+    setMode: () => {},
+});
 
 export function useTheme() {
     return useContext(ThemeContext);
 }
 
+/** Resolve system preference to a boolean. */
+function getSystemDark() {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-    const [dark, setDarkState] = useState<boolean>(() =>
-        window.matchMedia('(prefers-color-scheme: dark)').matches
-    );
-    const [userOverride, setUserOverride] = useState(false);
+    const [mode, setMode] = useState<ThemeMode>('system');
 
-    // Apply class to <html> whenever dark changes
-    useEffect(() => {
-        document.documentElement.classList.toggle('ui-theme-dark', dark);
-    }, [dark]);
+    // Resolved dark boolean — derived from mode + system preference
+    const [systemDark, setSystemDark] = useState(getSystemDark);
+    const dark = mode === 'dark' || (mode === 'system' && systemDark);
 
-    // Follow system pref unless user has manually toggled
+    // Follow live system preference changes (only matters when mode === 'system')
     useEffect(() => {
-        if (userOverride) return;
         const mq = window.matchMedia('(prefers-color-scheme: dark)');
-        const handler = (e: MediaQueryListEvent) => setDarkState(e.matches);
+        const handler = (e: MediaQueryListEvent) => setSystemDark(e.matches);
         mq.addEventListener('change', handler);
         return () => mq.removeEventListener('change', handler);
-    }, [userOverride]);
+    }, []);
 
-    function setDark(next: boolean) {
-        setUserOverride(true);
-        setDarkState(next);
-    }
+    // Sync classes on <html>.
+    //  - 'system': no classes — let the @media (prefers-color-scheme: dark) rule handle it
+    //  - 'dark':   .ui-theme-dark
+    //  - 'light':  .ui-theme-light — opts out of the @media dark fallback
+    useEffect(() => {
+        const cl = document.documentElement.classList;
+        cl.toggle('ui-theme-dark', mode === 'dark');
+        cl.toggle('ui-theme-light', mode === 'light');
+    }, [mode]);
 
     return (
-        <ThemeContext.Provider value={{ dark, setDark }}>
+        <ThemeContext.Provider value={{ dark, mode, setMode }}>
             {children}
         </ThemeContext.Provider>
     );

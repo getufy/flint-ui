@@ -60,10 +60,10 @@ function AppInner() {
                 <Showcase />
             </AnimatedSection>
             <AnimatedSection animation="slideUp">
-                <Bento />
+                <Interactive />
             </AnimatedSection>
             <AnimatedSection animation="slideUp">
-                <Interactive />
+                <Bento />
             </AnimatedSection>
             <AnimatedSection animation="slideUp">
                 <ComponentList />

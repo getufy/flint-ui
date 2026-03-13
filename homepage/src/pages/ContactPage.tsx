@@ -11,13 +11,13 @@ export function ContactPage() {
     const c = getColors(dark);
 
     return (
-        <div style={{ fontFamily: 'system-ui,-apple-system,sans-serif' }}>
+        <div style={{ fontFamily: 'system-ui,-apple-system,sans-serif', color: c.text, background: c.bg, minHeight: '100vh', transition: 'background 0.2s, color 0.2s' }}>
             <Header />
 
             {/* Hero */}
             <section style={{
                 padding: '80px 24px',
-                background: `linear-gradient(135deg, ${dark ? '#18181b' : '#f8fafc'} 0%, ${dark ? '#27272a' : '#f1f5f9'} 100%)`
+                background: `linear-gradient(135deg, ${dark ? c.bg : '#f8fafc'} 0%, ${dark ? c.surface : '#f1f5f9'} 100%)`
             }}>
                 <div style={maxW()}>
                     <AnimatedSection animation="slideUp">
