@@ -1499,11 +1499,41 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
   ],
   'time-picker': [
     {
-      label: 'States',
+      label: 'Desktop (Digital Clock Popover)',
       html: `<div style="display:flex;gap:16px;flex-wrap:wrap">
-<ui-time-picker label="Time" style="width:200px"></ui-time-picker>
-<ui-time-picker label="Disabled" disabled style="width:200px"></ui-time-picker>
+<ui-time-picker label="Time" value="14:30:00" style="width:200px"></ui-time-picker>
+<ui-time-picker label="With Seconds" value="09:15:45" seconds style="width:200px"></ui-time-picker>
+<ui-time-picker label="Disabled" disabled value="08:00:00" style="width:200px"></ui-time-picker>
 </div>`,
+    },
+    {
+      label: 'Mobile (Analog Clock Dialog)',
+      html: `<div style="display:flex;gap:16px;flex-wrap:wrap">
+<ui-time-picker label="Tap to open clock" variant="mobile" value="10:30:00" style="width:200px"></ui-time-picker>
+<ui-time-picker label="With Seconds" variant="mobile" value="15:45:30" seconds style="width:200px"></ui-time-picker>
+</div>`,
+    },
+    {
+      label: 'Analog Clock (Standalone)',
+      html: `<div style="display:flex;gap:24px;flex-wrap:wrap;align-items:start">
+<ui-time-clock value="10:10:00" ampm></ui-time-clock>
+<ui-time-clock value="15:45:00"></ui-time-clock>
+</div>`,
+    },
+    {
+      label: 'Digital Clock',
+      html: `<div style="display:flex;gap:16px;flex-wrap:wrap">
+<ui-digital-clock value="14:30:00" ampm></ui-digital-clock>
+<ui-digital-clock value="09:15:00"></ui-digital-clock>
+</div>`,
+    },
+    {
+      label: 'Multi-Section Digital Clock',
+      html: `<ui-multi-section-digital-clock value="14:30:00" ampm></ui-multi-section-digital-clock>`,
+    },
+    {
+      label: 'Static Time Picker',
+      html: `<ui-static-time-picker value="11:00:00" ampm></ui-static-time-picker>`,
     },
   ],
   'transfer-list': [

@@ -1,6 +1,16 @@
 # Time Picker
 
-<Demo label="States" html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><ui-time-picker label=&quot;Time&quot; style=&quot;width:200px&quot;></ui-time-picker><ui-time-picker label=&quot;Disabled&quot; disabled style=&quot;width:200px&quot;></ui-time-picker></div>" />
+<Demo label="Desktop (Digital Clock Popover)" html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><ui-time-picker label=&quot;Time&quot; value=&quot;14:30:00&quot; style=&quot;width:200px&quot;></ui-time-picker><ui-time-picker label=&quot;With Seconds&quot; value=&quot;09:15:45&quot; seconds style=&quot;width:200px&quot;></ui-time-picker><ui-time-picker label=&quot;Disabled&quot; disabled value=&quot;08:00:00&quot; style=&quot;width:200px&quot;></ui-time-picker></div>" />
+
+<Demo label="Mobile (Analog Clock Dialog)" html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><ui-time-picker label=&quot;Tap to open clock&quot; variant=&quot;mobile&quot; value=&quot;10:30:00&quot; style=&quot;width:200px&quot;></ui-time-picker><ui-time-picker label=&quot;With Seconds&quot; variant=&quot;mobile&quot; value=&quot;15:45:30&quot; seconds style=&quot;width:200px&quot;></ui-time-picker></div>" />
+
+<Demo label="Analog Clock (Standalone)" html="<div style=&quot;display:flex;gap:24px;flex-wrap:wrap;align-items:start&quot;><ui-time-clock value=&quot;10:10:00&quot; ampm></ui-time-clock><ui-time-clock value=&quot;15:45:00&quot;></ui-time-clock></div>" />
+
+<Demo label="Digital Clock" html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><ui-digital-clock value=&quot;14:30:00&quot; ampm></ui-digital-clock><ui-digital-clock value=&quot;09:15:00&quot;></ui-digital-clock></div>" />
+
+<Demo label="Multi-Section Digital Clock" html="<ui-multi-section-digital-clock value=&quot;14:30:00&quot; ampm></ui-multi-section-digital-clock>" />
+
+<Demo label="Static Time Picker" html="<ui-static-time-picker value=&quot;11:00:00&quot; ampm></ui-static-time-picker>" />
 
 ## `<ui-time-field>`
 
