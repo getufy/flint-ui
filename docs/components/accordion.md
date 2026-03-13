@@ -1,5 +1,24 @@
 # Accordion
 
+<Demo>
+
+<div style="width:100%;max-width:500px">
+<ui-accordion>
+  <ui-accordion-summary>Accordion Item 1</ui-accordion-summary>
+  <ui-accordion-details>Content for the first item. Click the header to expand or collapse.</ui-accordion-details>
+</ui-accordion>
+<ui-accordion>
+  <ui-accordion-summary>Accordion Item 2</ui-accordion-summary>
+  <ui-accordion-details>Content for the second item. Each accordion operates independently.</ui-accordion-details>
+</ui-accordion>
+<ui-accordion disabled>
+  <ui-accordion-summary>Disabled Item</ui-accordion-summary>
+  <ui-accordion-details>This item cannot be expanded.</ui-accordion-details>
+</ui-accordion>
+</div>
+
+</Demo>
+
 ## `<ui-accordion>`
 
 Accordion: the wrapper for grouping related components.

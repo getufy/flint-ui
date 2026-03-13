@@ -1,5 +1,16 @@
 # Empty
 
+<Demo>
+
+<div style="width:100%;max-width:400px">
+<ui-empty>
+  <ui-empty-title>No results found</ui-empty-title>
+  <ui-empty-description>Try adjusting your search or filter criteria.</ui-empty-description>
+</ui-empty>
+</div>
+
+</Demo>
+
 ## `<ui-empty-title>`
 
 Displays the heading of an empty state.

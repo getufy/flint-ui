@@ -1,5 +1,15 @@
 # Typography
 
+<Demo>
+
+<div style="display:flex;flex-direction:column;gap:8px;width:100%">
+<ui-typography variant="h4">Heading 4</ui-typography>
+<ui-typography variant="body1">Body 1 — The quick brown fox jumps over the lazy dog.</ui-typography>
+<ui-typography variant="caption" color="secondary">Caption text</ui-typography>
+</div>
+
+</Demo>
+
 Typography component for displaying text with consistent theme styles.
 
 - **Tag**: `<ui-typography>`

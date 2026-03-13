@@ -1,5 +1,27 @@
 # Button
 
+<Demo label="Variants">
+
+<ui-button variant="primary">Primary</ui-button>
+<ui-button variant="secondary">Secondary</ui-button>
+<ui-button variant="destructive">Destructive</ui-button>
+
+</Demo>
+
+<Demo label="Sizes">
+
+<ui-button size="small">Small</ui-button>
+<ui-button size="medium">Medium</ui-button>
+<ui-button size="large">Large</ui-button>
+
+</Demo>
+
+<Demo label="Disabled">
+
+<ui-button disabled>Disabled</ui-button>
+
+</Demo>
+
 ## `<ui-button-group>`
 
 - **Tag**: `<ui-button-group>`

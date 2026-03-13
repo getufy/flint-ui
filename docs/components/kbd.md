@@ -1,5 +1,13 @@
 # Kbd
 
+<Demo>
+
+<ui-kbd>Ctrl</ui-kbd> + <ui-kbd>C</ui-kbd>
+<span style="margin:0 12px"></span>
+<ui-kbd>Shift</ui-kbd> + <ui-kbd>Enter</ui-kbd>
+
+</Demo>
+
 ## `<ui-kbd>`
 
 Displays a single keyboard key or modifier symbol. Renders a semantic `<kbd>` element for accessibility.

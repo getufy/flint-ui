@@ -1,5 +1,15 @@
 # Input
 
+<Demo>
+
+<div style="display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px">
+<ui-input label="Name" placeholder="Enter your name"></ui-input>
+<ui-input label="Email" type="email" placeholder="you@example.com"></ui-input>
+<ui-input label="Disabled" disabled value="Cannot edit"></ui-input>
+</div>
+
+</Demo>
+
 - **Tag**: `<ui-input>`
 - **Class**: `UiInput`
 - **Form Associated**: Yes

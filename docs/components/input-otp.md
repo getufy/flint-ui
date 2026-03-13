@@ -1,5 +1,23 @@
 # Input Otp
 
+<Demo>
+
+<ui-input-otp length="6">
+  <ui-input-otp-group>
+    <ui-input-otp-slot index="0"></ui-input-otp-slot>
+    <ui-input-otp-slot index="1"></ui-input-otp-slot>
+    <ui-input-otp-slot index="2"></ui-input-otp-slot>
+  </ui-input-otp-group>
+  <ui-input-otp-separator></ui-input-otp-separator>
+  <ui-input-otp-group>
+    <ui-input-otp-slot index="3"></ui-input-otp-slot>
+    <ui-input-otp-slot index="4"></ui-input-otp-slot>
+    <ui-input-otp-slot index="5"></ui-input-otp-slot>
+  </ui-input-otp-group>
+</ui-input-otp>
+
+</Demo>
+
 ## `<ui-input-otp-group>`
 
 Visual grouping wrapper for `ui-input-otp-slot` elements. Renders slots inline with shared borders.

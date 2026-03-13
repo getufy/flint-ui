@@ -9,7 +9,6 @@ const sidebar = JSON.parse(readFileSync(resolve(__dirname, 'sidebar.json'), 'utf
 export default defineConfig({
   title: 'Storybook Lit',
   description: 'Documentation for Storybook Lit web components',
-  base: '/docs/',
   appearance: false,
   themeConfig: {
     nav: [
@@ -25,5 +24,19 @@ export default defineConfig({
     socialLinks: [
       { icon: 'github', link: 'https://github.com/nicosanma/storybook-lit' },
     ],
+  },
+  vite: {
+    resolve: {
+      alias: {
+        'storybook-lit': resolve(__dirname, '../../packages/core/src/index.ts'),
+      },
+    },
+  },
+  vue: {
+    template: {
+      compilerOptions: {
+        isCustomElement: (tag) => tag.startsWith('ui-'),
+      },
+    },
   },
 });

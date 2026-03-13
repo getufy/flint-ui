@@ -1,5 +1,11 @@
 # Format Number
 
+<Demo>
+
+<ui-format-number value="1234567.89" style="currency" currency="USD"></ui-format-number>
+
+</Demo>
+
 - **Tag**: `<ui-format-number>`
 - **Class**: `UiFormatNumber`
 

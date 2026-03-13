@@ -1,5 +1,13 @@
 # Link
 
+<Demo>
+
+<ui-link href="#">Default Link</ui-link>
+<ui-link href="#" underline="always">Always Underline</ui-link>
+<ui-link href="#" color="secondary">Secondary</ui-link>
+
+</Demo>
+
 The Link component allows you to easily customize anchor elements with theme colors and typography styles.
 
 - **Tag**: `<ui-link>`

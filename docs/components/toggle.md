@@ -1,5 +1,12 @@
 # Toggle
 
+<Demo>
+
+<ui-toggle>Toggle</ui-toggle>
+<ui-toggle pressed>Pressed</ui-toggle>
+
+</Demo>
+
 A two-state button that can be either on (pressed) or off.
 
 - **Tag**: `<ui-toggle>`

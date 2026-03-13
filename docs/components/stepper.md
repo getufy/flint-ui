@@ -1,5 +1,23 @@
 # Stepper
 
+<Demo>
+
+<div style="width:100%;max-width:500px">
+<ui-stepper active-step="1">
+  <ui-step>
+    <ui-step-label>Account</ui-step-label>
+  </ui-step>
+  <ui-step>
+    <ui-step-label>Details</ui-step-label>
+  </ui-step>
+  <ui-step>
+    <ui-step-label>Review</ui-step-label>
+  </ui-step>
+</ui-stepper>
+</div>
+
+</Demo>
+
 ## `<ui-step-connector>`
 
 - **Tag**: `<ui-step-connector>`

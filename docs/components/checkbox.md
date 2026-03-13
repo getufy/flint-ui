@@ -1,5 +1,13 @@
 # Checkbox
 
+<Demo>
+
+<ui-checkbox label="Option A"></ui-checkbox>
+<ui-checkbox label="Option B" checked></ui-checkbox>
+<ui-checkbox label="Disabled" disabled></ui-checkbox>
+
+</Demo>
+
 - **Tag**: `<ui-checkbox>`
 - **Class**: `UiCheckbox`
 - **Form Associated**: Yes

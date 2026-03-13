@@ -1,5 +1,15 @@
 # Divider
 
+<Demo>
+
+<div style="width:100%;max-width:400px">
+<p style="margin:0 0 8px">Content above</p>
+<ui-divider></ui-divider>
+<p style="margin:8px 0 0">Content below</p>
+</div>
+
+</Demo>
+
 A divider component that provides a thin line for grouping elements.
 
 - **Tag**: `<ui-divider>`

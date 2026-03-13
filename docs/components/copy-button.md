@@ -1,5 +1,11 @@
 # Copy Button
 
+<Demo>
+
+<ui-copy-button value="Hello, World!">Copy Text</ui-copy-button>
+
+</Demo>
+
 - **Tag**: `<ui-copy-button>`
 - **Class**: `UiCopyButton`
 

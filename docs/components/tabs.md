@@ -1,5 +1,22 @@
 # Tabs
 
+<Demo>
+
+<div style="width:100%;max-width:500px">
+<ui-tabs>
+  <ui-tab-list>
+    <ui-tab>Tab One</ui-tab>
+    <ui-tab>Tab Two</ui-tab>
+    <ui-tab>Tab Three</ui-tab>
+  </ui-tab-list>
+  <ui-tab-panel><p style="padding:16px;margin:0">Content for Tab One</p></ui-tab-panel>
+  <ui-tab-panel><p style="padding:16px;margin:0">Content for Tab Two</p></ui-tab-panel>
+  <ui-tab-panel><p style="padding:16px;margin:0">Content for Tab Three</p></ui-tab-panel>
+</ui-tabs>
+</div>
+
+</Demo>
+
 ## `<ui-tab>`
 
 - **Tag**: `<ui-tab>`

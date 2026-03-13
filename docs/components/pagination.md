@@ -1,5 +1,11 @@
 # Pagination
 
+<Demo>
+
+<ui-pagination count="10" page="3"></ui-pagination>
+
+</Demo>
+
 Pagination component enabling the user to select a specific page from a range of pages.
 
 - **Tag**: `<ui-pagination>`

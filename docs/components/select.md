@@ -1,5 +1,11 @@
 # Select
 
+<Demo>
+
+<ui-select label="Fruit" placeholder="Pick one" style="width:200px"></ui-select>
+
+</Demo>
+
 A select component for choosing one or multiple options from a list.
 
 - **Tag**: `<ui-select>`

@@ -321,6 +321,499 @@ function camelToKebab(str: string): string {
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 }
 
+// ─── Live Demo Snippets ─────────────────────────────────────────────
+// Hand-crafted HTML demos for components. Key = directory name.
+// Each entry is an array of { label?, html } for that page.
+const DEMOS: Record<string, { label?: string; html: string }[]> = {
+  button: [
+    {
+      label: 'Variants',
+      html: `<ui-button variant="primary">Primary</ui-button>
+<ui-button variant="secondary">Secondary</ui-button>
+<ui-button variant="destructive">Destructive</ui-button>`,
+    },
+    {
+      label: 'Sizes',
+      html: `<ui-button size="small">Small</ui-button>
+<ui-button size="medium">Medium</ui-button>
+<ui-button size="large">Large</ui-button>`,
+    },
+    {
+      label: 'Disabled',
+      html: `<ui-button disabled>Disabled</ui-button>`,
+    },
+  ],
+  alert: [
+    {
+      html: `<div style="display:flex;flex-direction:column;gap:12px;width:100%">
+<ui-alert severity="info" title="Info">This is an informational message.</ui-alert>
+<ui-alert severity="success" title="Success">Operation completed successfully.</ui-alert>
+<ui-alert severity="warning" title="Warning">Please review before continuing.</ui-alert>
+<ui-alert severity="error" title="Error">Something went wrong.</ui-alert>
+</div>`,
+    },
+  ],
+  badge: [
+    {
+      html: `<ui-badge content="4">
+  <div style="width:40px;height:40px;border-radius:8px;background:#e5e7eb;display:flex;align-items:center;justify-content:center">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+  </div>
+</ui-badge>
+<ui-badge content="99+" variant="error">
+  <div style="width:40px;height:40px;border-radius:8px;background:#e5e7eb;display:flex;align-items:center;justify-content:center">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+  </div>
+</ui-badge>`,
+    },
+  ],
+  avatar: [
+    {
+      html: `<ui-avatar src="https://i.pravatar.cc/150?img=1" alt="User 1"></ui-avatar>
+<ui-avatar src="https://i.pravatar.cc/150?img=2" alt="User 2"></ui-avatar>
+<ui-avatar>AB</ui-avatar>`,
+    },
+  ],
+  chip: [
+    {
+      label: 'Variants',
+      html: `<ui-chip variant="filled">Filled</ui-chip>
+<ui-chip variant="outlined">Outlined</ui-chip>
+<ui-chip variant="filled" color="primary">Primary</ui-chip>
+<ui-chip variant="filled" color="secondary">Secondary</ui-chip>
+<ui-chip deletable>Deletable</ui-chip>`,
+    },
+  ],
+  switch: [
+    {
+      label: 'Sizes',
+      html: `<ui-switch size="sm"></ui-switch>
+<ui-switch size="md"></ui-switch>
+<ui-switch size="lg"></ui-switch>`,
+    },
+    {
+      label: 'Checked',
+      html: `<ui-switch default-checked></ui-switch>
+<ui-switch default-checked disabled></ui-switch>`,
+    },
+  ],
+  checkbox: [
+    {
+      html: `<ui-checkbox label="Option A"></ui-checkbox>
+<ui-checkbox label="Option B" checked></ui-checkbox>
+<ui-checkbox label="Disabled" disabled></ui-checkbox>`,
+    },
+  ],
+  radio: [
+    {
+      html: `<ui-radio-group value="a">
+  <ui-radio value="a" label="Option A"></ui-radio>
+  <ui-radio value="b" label="Option B"></ui-radio>
+  <ui-radio value="c" label="Option C"></ui-radio>
+</ui-radio-group>`,
+    },
+  ],
+  input: [
+    {
+      html: `<div style="display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px">
+<ui-input label="Name" placeholder="Enter your name"></ui-input>
+<ui-input label="Email" type="email" placeholder="you@example.com"></ui-input>
+<ui-input label="Disabled" disabled value="Cannot edit"></ui-input>
+</div>`,
+    },
+  ],
+  'text-field': [
+    {
+      html: `<div style="display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px">
+<ui-text-field label="Name" placeholder="Enter your name"></ui-text-field>
+<ui-text-field label="With help" help-text="This field is required"></ui-text-field>
+</div>`,
+    },
+  ],
+  textarea: [
+    {
+      html: `<ui-textarea label="Message" placeholder="Type your message..." style="width:100%;max-width:400px"></ui-textarea>`,
+    },
+  ],
+  select: [
+    {
+      html: `<ui-select label="Fruit" placeholder="Pick one" style="width:200px"></ui-select>`,
+    },
+  ],
+  slider: [
+    {
+      html: `<div style="width:100%;max-width:300px">
+<ui-slider value="40"></ui-slider>
+</div>`,
+    },
+  ],
+  rating: [
+    {
+      html: `<ui-rating value="3"></ui-rating>
+<ui-rating value="4" readonly></ui-rating>`,
+    },
+  ],
+  progress: [
+    {
+      label: 'Circular',
+      html: `<ui-circular-progress></ui-circular-progress>
+<ui-circular-progress value="25"></ui-circular-progress>
+<ui-circular-progress value="75"></ui-circular-progress>`,
+    },
+    {
+      label: 'Linear',
+      html: `<div style="width:100%;max-width:400px">
+<ui-linear-progress value="60"></ui-linear-progress>
+</div>`,
+    },
+  ],
+  skeleton: [
+    {
+      html: `<div style="display:flex;flex-direction:column;gap:8px;width:100%;max-width:300px">
+<ui-skeleton variant="circular" width="40px" height="40px"></ui-skeleton>
+<ui-skeleton variant="text" width="200px"></ui-skeleton>
+<ui-skeleton variant="text" width="160px"></ui-skeleton>
+<ui-skeleton variant="rectangular" width="100%" height="120px"></ui-skeleton>
+</div>`,
+    },
+  ],
+  card: [
+    {
+      html: `<div style="max-width:360px;width:100%">
+<ui-card>
+  <ui-card-header title="Card Title" subtitle="Subtitle text"></ui-card-header>
+  <ui-card-content>
+    <p style="margin:0;color:#374151">This is a card with header, content, and action buttons.</p>
+  </ui-card-content>
+  <ui-card-actions>
+    <ui-button variant="secondary" size="small">Cancel</ui-button>
+    <ui-button size="small">Action</ui-button>
+  </ui-card-actions>
+</ui-card>
+</div>`,
+    },
+  ],
+  paper: [
+    {
+      html: `<ui-paper elevation="1" style="padding:16px">Elevation 1</ui-paper>
+<ui-paper elevation="3" style="padding:16px">Elevation 3</ui-paper>
+<ui-paper elevation="6" style="padding:16px">Elevation 6</ui-paper>`,
+    },
+  ],
+  accordion: [
+    {
+      html: `<div style="width:100%;max-width:500px">
+<ui-accordion>
+  <ui-accordion-summary>Accordion Item 1</ui-accordion-summary>
+  <ui-accordion-details>Content for the first item. Click the header to expand or collapse.</ui-accordion-details>
+</ui-accordion>
+<ui-accordion>
+  <ui-accordion-summary>Accordion Item 2</ui-accordion-summary>
+  <ui-accordion-details>Content for the second item. Each accordion operates independently.</ui-accordion-details>
+</ui-accordion>
+<ui-accordion disabled>
+  <ui-accordion-summary>Disabled Item</ui-accordion-summary>
+  <ui-accordion-details>This item cannot be expanded.</ui-accordion-details>
+</ui-accordion>
+</div>`,
+    },
+  ],
+  tabs: [
+    {
+      html: `<div style="width:100%;max-width:500px">
+<ui-tabs>
+  <ui-tab-list>
+    <ui-tab>Tab One</ui-tab>
+    <ui-tab>Tab Two</ui-tab>
+    <ui-tab>Tab Three</ui-tab>
+  </ui-tab-list>
+  <ui-tab-panel><p style="padding:16px;margin:0">Content for Tab One</p></ui-tab-panel>
+  <ui-tab-panel><p style="padding:16px;margin:0">Content for Tab Two</p></ui-tab-panel>
+  <ui-tab-panel><p style="padding:16px;margin:0">Content for Tab Three</p></ui-tab-panel>
+</ui-tabs>
+</div>`,
+    },
+  ],
+  divider: [
+    {
+      html: `<div style="width:100%;max-width:400px">
+<p style="margin:0 0 8px">Content above</p>
+<ui-divider></ui-divider>
+<p style="margin:8px 0 0">Content below</p>
+</div>`,
+    },
+  ],
+  tooltip: [
+    {
+      html: `<ui-tooltip content="This is a tooltip">
+  <ui-button>Hover me</ui-button>
+</ui-tooltip>`,
+    },
+  ],
+  link: [
+    {
+      html: `<ui-link href="#">Default Link</ui-link>
+<ui-link href="#" underline="always">Always Underline</ui-link>
+<ui-link href="#" color="secondary">Secondary</ui-link>`,
+    },
+  ],
+  typography: [
+    {
+      html: `<div style="display:flex;flex-direction:column;gap:8px;width:100%">
+<ui-typography variant="h4">Heading 4</ui-typography>
+<ui-typography variant="body1">Body 1 — The quick brown fox jumps over the lazy dog.</ui-typography>
+<ui-typography variant="caption" color="secondary">Caption text</ui-typography>
+</div>`,
+    },
+  ],
+  breadcrumbs: [
+    {
+      html: `<ui-breadcrumbs>
+  <a href="#">Home</a>
+  <a href="#">Products</a>
+  <span>Current Page</span>
+</ui-breadcrumbs>`,
+    },
+  ],
+  pagination: [
+    {
+      html: `<ui-pagination count="10" page="3"></ui-pagination>`,
+    },
+  ],
+  dialog: [
+    {
+      html: `<ui-button onclick="this.nextElementSibling.open=true">Open Dialog</ui-button>
+<ui-dialog>
+  <ui-dialog-title>Dialog Title</ui-dialog-title>
+  <ui-dialog-content>
+    <ui-dialog-content-text>This is a dialog. Click outside or press Escape to close.</ui-dialog-content-text>
+  </ui-dialog-content>
+  <ui-dialog-actions>
+    <ui-button variant="secondary" onclick="this.closest('ui-dialog').open=false">Cancel</ui-button>
+    <ui-button onclick="this.closest('ui-dialog').open=false">Confirm</ui-button>
+  </ui-dialog-actions>
+</ui-dialog>`,
+    },
+  ],
+  drawer: [
+    {
+      html: `<ui-button onclick="this.nextElementSibling.open=true">Open Drawer</ui-button>
+<ui-drawer>
+  <div style="padding:24px;width:280px">
+    <h3 style="margin:0 0 16px">Drawer Content</h3>
+    <p style="margin:0;color:#374151">Click outside to close.</p>
+  </div>
+</ui-drawer>`,
+    },
+  ],
+  snackbar: [
+    {
+      html: `<ui-button onclick="this.nextElementSibling.open=true">Show Snackbar</ui-button>
+<ui-snackbar message="This is a snackbar message" auto-hide-duration="3000"></ui-snackbar>`,
+    },
+  ],
+  collapsible: [
+    {
+      html: `<div style="width:100%;max-width:400px">
+<ui-collapsible>
+  <ui-collapsible-trigger>
+    <ui-button variant="secondary" style="width:100%">Toggle Content</ui-button>
+  </ui-collapsible-trigger>
+  <ui-collapsible-content>
+    <div style="padding:12px 0;color:#374151">This content can be expanded and collapsed.</div>
+  </ui-collapsible-content>
+</ui-collapsible>
+</div>`,
+    },
+  ],
+  'input-otp': [
+    {
+      html: `<ui-input-otp length="6">
+  <ui-input-otp-group>
+    <ui-input-otp-slot index="0"></ui-input-otp-slot>
+    <ui-input-otp-slot index="1"></ui-input-otp-slot>
+    <ui-input-otp-slot index="2"></ui-input-otp-slot>
+  </ui-input-otp-group>
+  <ui-input-otp-separator></ui-input-otp-separator>
+  <ui-input-otp-group>
+    <ui-input-otp-slot index="3"></ui-input-otp-slot>
+    <ui-input-otp-slot index="4"></ui-input-otp-slot>
+    <ui-input-otp-slot index="5"></ui-input-otp-slot>
+  </ui-input-otp-group>
+</ui-input-otp>`,
+    },
+  ],
+  kbd: [
+    {
+      html: `<ui-kbd>Ctrl</ui-kbd> + <ui-kbd>C</ui-kbd>
+<span style="margin:0 12px"></span>
+<ui-kbd>Shift</ui-kbd> + <ui-kbd>Enter</ui-kbd>`,
+    },
+  ],
+  'copy-button': [
+    {
+      html: `<ui-copy-button value="Hello, World!">Copy Text</ui-copy-button>`,
+    },
+  ],
+  'hover-card': [
+    {
+      html: `<ui-hover-card>
+  <ui-hover-card-trigger>
+    <ui-link href="#">Hover over me</ui-link>
+  </ui-hover-card-trigger>
+  <ui-hover-card-content>
+    <div style="padding:12px">
+      <p style="margin:0;font-weight:600">Hover Card</p>
+      <p style="margin:4px 0 0;color:#6b7280;font-size:14px">Additional information shown on hover.</p>
+    </div>
+  </ui-hover-card-content>
+</ui-hover-card>`,
+    },
+  ],
+  'relative-time': [
+    {
+      html: `<ui-relative-time datetime="2025-01-01T00:00:00Z"></ui-relative-time>`,
+    },
+  ],
+  'format-date': [
+    {
+      html: `<ui-format-date></ui-format-date>`,
+    },
+  ],
+  'format-number': [
+    {
+      html: `<ui-format-number value="1234567.89" style="currency" currency="USD"></ui-format-number>`,
+    },
+  ],
+  empty: [
+    {
+      html: `<div style="width:100%;max-width:400px">
+<ui-empty>
+  <ui-empty-title>No results found</ui-empty-title>
+  <ui-empty-description>Try adjusting your search or filter criteria.</ui-empty-description>
+</ui-empty>
+</div>`,
+    },
+  ],
+  carousel: [
+    {
+      html: `<div style="width:100%;max-width:500px">
+<ui-carousel>
+  <ui-carousel-content>
+    <ui-carousel-item><div style="background:#e0e7ff;border-radius:8px;height:200px;display:flex;align-items:center;justify-content:center;font-weight:600;color:#3730a3">Slide 1</div></ui-carousel-item>
+    <ui-carousel-item><div style="background:#dbeafe;border-radius:8px;height:200px;display:flex;align-items:center;justify-content:center;font-weight:600;color:#1e40af">Slide 2</div></ui-carousel-item>
+    <ui-carousel-item><div style="background:#e0f2fe;border-radius:8px;height:200px;display:flex;align-items:center;justify-content:center;font-weight:600;color:#0369a1">Slide 3</div></ui-carousel-item>
+  </ui-carousel-content>
+  <ui-carousel-previous></ui-carousel-previous>
+  <ui-carousel-next></ui-carousel-next>
+</ui-carousel>
+</div>`,
+    },
+  ],
+  'scroll-area': [
+    {
+      html: `<ui-scroll-area style="height:200px;width:100%;max-width:350px;border:1px solid #e5e7eb;border-radius:8px">
+  <div style="padding:16px">
+    <p style="margin:0 0 12px">Scroll down to see more content.</p>
+    <p style="margin:0 0 12px">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <p style="margin:0 0 12px">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <p style="margin:0 0 12px">Ut enim ad minim veniam, quis nostrud exercitation.</p>
+    <p style="margin:0 0 12px">Duis aute irure dolor in reprehenderit in voluptate.</p>
+    <p style="margin:0 0 12px">Excepteur sint occaecat cupidatat non proident.</p>
+    <p style="margin:0">Sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </div>
+</ui-scroll-area>`,
+    },
+  ],
+  'split-panel': [
+    {
+      html: `<ui-split-panel style="height:200px;width:100%;max-width:500px;border:1px solid #e5e7eb;border-radius:8px">
+  <div slot="start" style="padding:16px;background:#f0f9ff">Left Panel</div>
+  <div slot="end" style="padding:16px;background:#fef3c7">Right Panel</div>
+</ui-split-panel>`,
+    },
+  ],
+  toggle: [
+    {
+      html: `<ui-toggle>Toggle</ui-toggle>
+<ui-toggle pressed>Pressed</ui-toggle>`,
+    },
+  ],
+  fab: [
+    {
+      html: `<ui-fab>
+  <svg slot="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+</ui-fab>`,
+    },
+  ],
+  item: [
+    {
+      html: `<div style="width:100%;max-width:400px">
+<ui-item-group>
+  <ui-item>
+    <ui-item-content>
+      <ui-item-title>Item Title</ui-item-title>
+      <ui-item-description>A short description of this item.</ui-item-description>
+    </ui-item-content>
+  </ui-item>
+  <ui-item-separator></ui-item-separator>
+  <ui-item>
+    <ui-item-content>
+      <ui-item-title>Another Item</ui-item-title>
+      <ui-item-description>Another description here.</ui-item-description>
+    </ui-item-content>
+  </ui-item>
+</ui-item-group>
+</div>`,
+    },
+  ],
+  list: [
+    {
+      html: `<div style="width:100%;max-width:360px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden">
+<ui-list>
+  <ui-list-item-button>
+    <ui-list-item-text primary="Inbox" secondary="5 new messages"></ui-list-item-text>
+  </ui-list-item-button>
+  <ui-list-item-button>
+    <ui-list-item-text primary="Drafts" secondary="2 drafts"></ui-list-item-text>
+  </ui-list-item-button>
+  <ui-list-item-button>
+    <ui-list-item-text primary="Sent" secondary="Last sent 2h ago"></ui-list-item-text>
+  </ui-list-item-button>
+</ui-list>
+</div>`,
+    },
+  ],
+  stepper: [
+    {
+      html: `<div style="width:100%;max-width:500px">
+<ui-stepper active-step="1">
+  <ui-step>
+    <ui-step-label>Account</ui-step-label>
+  </ui-step>
+  <ui-step>
+    <ui-step-label>Details</ui-step-label>
+  </ui-step>
+  <ui-step>
+    <ui-step-label>Review</ui-step-label>
+  </ui-step>
+</ui-stepper>
+</div>`,
+    },
+  ],
+  backdrop: [
+    {
+      html: `<ui-button onclick="this.nextElementSibling.open=true">Show Backdrop</ui-button>
+<ui-backdrop>
+  <div style="background:white;padding:24px;border-radius:8px;text-align:center">
+    <p style="margin:0 0 16px">Click outside to close</p>
+    <ui-button onclick="this.closest('ui-backdrop').open=false">Close</ui-button>
+  </div>
+</ui-backdrop>`,
+    },
+  ],
+};
+
 function generateMarkdown(dir: string, components: ComponentInfo[]): string {
   const title = dir
     .split('-')
@@ -328,6 +821,18 @@ function generateMarkdown(dir: string, components: ComponentInfo[]): string {
     .join(' ');
 
   let md = `# ${title}\n\n`;
+
+  // Insert live demos at the top of the page (before component details)
+  const demos = DEMOS[dir];
+  if (demos) {
+    for (const demo of demos) {
+      if (demo.label) {
+        md += `<Demo label="${demo.label}">\n\n${demo.html}\n\n</Demo>\n\n`;
+      } else {
+        md += `<Demo>\n\n${demo.html}\n\n</Demo>\n\n`;
+      }
+    }
+  }
 
   for (const comp of components) {
     if (components.length > 1) {
@@ -347,7 +852,7 @@ function generateMarkdown(dir: string, components: ComponentInfo[]): string {
 
     // Import
     md += `### Import\n\n`;
-    md += `\`\`\`ts\nimport '${comp.tagName.startsWith('ui-') ? 'storybook-lit' : 'storybook-lit'}'; // auto-registers all\n`;
+    md += `\`\`\`ts\nimport 'storybook-lit'; // auto-registers all\n`;
     md += `// or\nimport { ${comp.className} } from 'storybook-lit';\n\`\`\`\n\n`;
 
     // Basic usage

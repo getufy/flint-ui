@@ -1,5 +1,23 @@
 # List
 
+<Demo>
+
+<div style="width:100%;max-width:360px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden">
+<ui-list>
+  <ui-list-item-button>
+    <ui-list-item-text primary="Inbox" secondary="5 new messages"></ui-list-item-text>
+  </ui-list-item-button>
+  <ui-list-item-button>
+    <ui-list-item-text primary="Drafts" secondary="2 drafts"></ui-list-item-text>
+  </ui-list-item-button>
+  <ui-list-item-button>
+    <ui-list-item-text primary="Sent" secondary="Last sent 2h ago"></ui-list-item-text>
+  </ui-list-item-button>
+</ui-list>
+</div>
+
+</Demo>
+
 ## `<ui-list>`
 
 ui-list: A wrapper for list items.

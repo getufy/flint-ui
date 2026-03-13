@@ -1,5 +1,16 @@
 # Alert
 
+<Demo>
+
+<div style="display:flex;flex-direction:column;gap:12px;width:100%">
+<ui-alert severity="info" title="Info">This is an informational message.</ui-alert>
+<ui-alert severity="success" title="Success">Operation completed successfully.</ui-alert>
+<ui-alert severity="warning" title="Warning">Please review before continuing.</ui-alert>
+<ui-alert severity="error" title="Error">Something went wrong.</ui-alert>
+</div>
+
+</Demo>
+
 Alerts display brief messages for the user without interrupting their use of the app.
 
 - **Tag**: `<ui-alert>`

@@ -1,5 +1,22 @@
 # Card
 
+<Demo>
+
+<div style="max-width:360px;width:100%">
+<ui-card>
+  <ui-card-header title="Card Title" subtitle="Subtitle text"></ui-card-header>
+  <ui-card-content>
+    <p style="margin:0;color:#374151">This is a card with header, content, and action buttons.</p>
+  </ui-card-content>
+  <ui-card-actions>
+    <ui-button variant="secondary" size="small">Cancel</ui-button>
+    <ui-button size="small">Action</ui-button>
+  </ui-card-actions>
+</ui-card>
+</div>
+
+</Demo>
+
 ## `<ui-card-action-area>`
 
 - **Tag**: `<ui-card-action-area>`

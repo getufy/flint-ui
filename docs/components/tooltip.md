@@ -1,5 +1,13 @@
 # Tooltip
 
+<Demo>
+
+<ui-tooltip content="This is a tooltip">
+  <ui-button>Hover me</ui-button>
+</ui-tooltip>
+
+</Demo>
+
 ui-tooltip A component that displays a text label when users hover over or focus on an element.
 
 - **Tag**: `<ui-tooltip>`
