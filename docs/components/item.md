@@ -1,5 +1,27 @@
 # Item
 
+<Demo>
+
+<div style="width:100%;max-width:400px">
+<ui-item-group>
+  <ui-item>
+    <ui-item-content>
+      <ui-item-title>Item Title</ui-item-title>
+      <ui-item-description>A short description of this item.</ui-item-description>
+    </ui-item-content>
+  </ui-item>
+  <ui-item-separator></ui-item-separator>
+  <ui-item>
+    <ui-item-content>
+      <ui-item-title>Another Item</ui-item-title>
+      <ui-item-description>Another description here.</ui-item-description>
+    </ui-item-content>
+  </ui-item>
+</ui-item-group>
+</div>
+
+</Demo>
+
 ## `<ui-item-title>`
 
 Displays the title of an item.

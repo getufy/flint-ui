@@ -1,5 +1,17 @@
 # Backdrop
 
+<Demo>
+
+<ui-button onclick="this.nextElementSibling.open=true">Show Backdrop</ui-button>
+<ui-backdrop>
+  <div style="background:white;padding:24px;border-radius:8px;text-align:center">
+    <p style="margin:0 0 16px">Click outside to close</p>
+    <ui-button onclick="this.closest('ui-backdrop').open=false">Close</ui-button>
+  </div>
+</ui-backdrop>
+
+</Demo>
+
 A backdrop component that narrows the user's focus to a particular element.
 
 - **Tag**: `<ui-backdrop>`

@@ -1,5 +1,13 @@
 # Avatar
 
+<Demo>
+
+<ui-avatar src="https://i.pravatar.cc/150?img=1" alt="User 1"></ui-avatar>
+<ui-avatar src="https://i.pravatar.cc/150?img=2" alt="User 2"></ui-avatar>
+<ui-avatar>AB</ui-avatar>
+
+</Demo>
+
 - **Tag**: `<ui-avatar>`
 - **Class**: `UiAvatar`
 

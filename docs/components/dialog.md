@@ -1,5 +1,21 @@
 # Dialog
 
+<Demo>
+
+<ui-button onclick="this.nextElementSibling.open=true">Open Dialog</ui-button>
+<ui-dialog>
+  <ui-dialog-title>Dialog Title</ui-dialog-title>
+  <ui-dialog-content>
+    <ui-dialog-content-text>This is a dialog. Click outside or press Escape to close.</ui-dialog-content-text>
+  </ui-dialog-content>
+  <ui-dialog-actions>
+    <ui-button variant="secondary" onclick="this.closest('ui-dialog').open=false">Cancel</ui-button>
+    <ui-button onclick="this.closest('ui-dialog').open=false">Confirm</ui-button>
+  </ui-dialog-actions>
+</ui-dialog>
+
+</Demo>
+
 ## `<ui-dialog>`
 
 ui-dialog: a modal dialog component.

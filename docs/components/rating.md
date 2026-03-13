@@ -1,5 +1,12 @@
 # Rating
 
+<Demo>
+
+<ui-rating value="3"></ui-rating>
+<ui-rating value="4" readonly></ui-rating>
+
+</Demo>
+
 - **Tag**: `<ui-rating>`
 - **Class**: `UiRating`
 

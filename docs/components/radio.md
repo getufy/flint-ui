@@ -1,5 +1,15 @@
 # Radio
 
+<Demo>
+
+<ui-radio-group value="a">
+  <ui-radio value="a" label="Option A"></ui-radio>
+  <ui-radio value="b" label="Option B"></ui-radio>
+  <ui-radio value="c" label="Option C"></ui-radio>
+</ui-radio-group>
+
+</Demo>
+
 ## `<ui-radio-group>`
 
 - **Tag**: `<ui-radio-group>`

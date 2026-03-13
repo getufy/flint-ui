@@ -1,5 +1,15 @@
 # Chip
 
+<Demo label="Variants">
+
+<ui-chip variant="filled">Filled</ui-chip>
+<ui-chip variant="outlined">Outlined</ui-chip>
+<ui-chip variant="filled" color="primary">Primary</ui-chip>
+<ui-chip variant="filled" color="secondary">Secondary</ui-chip>
+<ui-chip deletable>Deletable</ui-chip>
+
+</Demo>
+
 - **Tag**: `<ui-chip>`
 - **Class**: `UiChip`
 

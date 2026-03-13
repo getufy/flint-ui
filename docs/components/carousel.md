@@ -1,5 +1,21 @@
 # Carousel
 
+<Demo>
+
+<div style="width:100%;max-width:500px">
+<ui-carousel>
+  <ui-carousel-content>
+    <ui-carousel-item><div style="background:#e0e7ff;border-radius:8px;height:200px;display:flex;align-items:center;justify-content:center;font-weight:600;color:#3730a3">Slide 1</div></ui-carousel-item>
+    <ui-carousel-item><div style="background:#dbeafe;border-radius:8px;height:200px;display:flex;align-items:center;justify-content:center;font-weight:600;color:#1e40af">Slide 2</div></ui-carousel-item>
+    <ui-carousel-item><div style="background:#e0f2fe;border-radius:8px;height:200px;display:flex;align-items:center;justify-content:center;font-weight:600;color:#0369a1">Slide 3</div></ui-carousel-item>
+  </ui-carousel-content>
+  <ui-carousel-previous></ui-carousel-previous>
+  <ui-carousel-next></ui-carousel-next>
+</ui-carousel>
+</div>
+
+</Demo>
+
 ## `<ui-carousel-content>`
 
 - **Tag**: `<ui-carousel-content>`

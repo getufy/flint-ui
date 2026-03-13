@@ -1,5 +1,11 @@
 # Relative Time
 
+<Demo>
+
+<ui-relative-time datetime="2025-01-01T00:00:00Z"></ui-relative-time>
+
+</Demo>
+
 Displays a localized time phrase relative to the current date and time. Uses the browser's `Intl.RelativeTimeFormat` API — no language packs needed.
 
 - **Tag**: `<ui-relative-time>`

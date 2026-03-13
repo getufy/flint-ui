@@ -1,5 +1,20 @@
 # Collapsible
 
+<Demo>
+
+<div style="width:100%;max-width:400px">
+<ui-collapsible>
+  <ui-collapsible-trigger>
+    <ui-button variant="secondary" style="width:100%">Toggle Content</ui-button>
+  </ui-collapsible-trigger>
+  <ui-collapsible-content>
+    <div style="padding:12px 0;color:#374151">This content can be expanded and collapsed.</div>
+  </ui-collapsible-content>
+</ui-collapsible>
+</div>
+
+</Demo>
+
 ## `<ui-collapsible-trigger>`
 
 Toggle button for a collapsible. Place inside `ui-collapsible`. Automatically wires up to the nearest `ui-collapsible` ancestor.

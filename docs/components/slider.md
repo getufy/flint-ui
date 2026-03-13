@@ -1,5 +1,13 @@
 # Slider
 
+<Demo>
+
+<div style="width:100%;max-width:300px">
+<ui-slider value="40"></ui-slider>
+</div>
+
+</Demo>
+
 - **Tag**: `<ui-slider>`
 - **Class**: `UiSlider`
 - **Form Associated**: Yes

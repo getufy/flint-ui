@@ -1,5 +1,13 @@
 # Paper
 
+<Demo>
+
+<ui-paper elevation="1" style="padding:16px">Elevation 1</ui-paper>
+<ui-paper elevation="3" style="padding:16px">Elevation 3</ui-paper>
+<ui-paper elevation="6" style="padding:16px">Elevation 6</ui-paper>
+
+</Demo>
+
 The Paper component is a container for displaying content on an elevated surface. Shadow styles are influenced by real-world physical counterparts. Supported elevation values: 0, 1, 2, 3, 4, 6, 8, 12, 16, 24. Other numeric values are accepted but produce no visible shadow.
 
 - **Tag**: `<ui-paper>`

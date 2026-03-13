@@ -1,5 +1,21 @@
 # Progress
 
+<Demo label="Circular">
+
+<ui-circular-progress></ui-circular-progress>
+<ui-circular-progress value="25"></ui-circular-progress>
+<ui-circular-progress value="75"></ui-circular-progress>
+
+</Demo>
+
+<Demo label="Linear">
+
+<div style="width:100%;max-width:400px">
+<ui-linear-progress value="60"></ui-linear-progress>
+</div>
+
+</Demo>
+
 ## `<ui-circular-progress>`
 
 ui-circular-progress: a circular progress indicator (spinner).

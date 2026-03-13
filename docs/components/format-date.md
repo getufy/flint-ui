@@ -1,5 +1,11 @@
 # Format Date
 
+<Demo>
+
+<ui-format-date></ui-format-date>
+
+</Demo>
+
 - **Tag**: `<ui-format-date>`
 - **Class**: `UiFormatDate`
 

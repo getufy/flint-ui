@@ -1,5 +1,11 @@
 # Textarea
 
+<Demo>
+
+<ui-textarea label="Message" placeholder="Type your message..." style="width:100%;max-width:400px"></ui-textarea>
+
+</Demo>
+
 A Textarea component for multi-line text input.
 
 - **Tag**: `<ui-textarea>`
