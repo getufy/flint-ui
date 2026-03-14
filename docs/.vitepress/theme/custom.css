@@ -2,9 +2,15 @@
   --vp-c-brand-1: #3b82f6;
   --vp-c-brand-2: #2563eb;
   --vp-c-brand-3: #1d4ed8;
-  --vp-c-text-1: #111827;
-  --vp-c-text-2: #374151;
-  --vp-c-text-3: #6b7280;
+}
+
+/* Neutralize body styles from theme.css — let VitePress control page
+   background, text color, and font. The --flint-* tokens are scoped to
+   .flint-theme-dark (not .dark), so they don't adapt to VitePress dark mode. */
+body {
+  background-color: var(--vp-c-bg) !important;
+  color: var(--vp-c-text-1) !important;
+  font-family: var(--vp-font-family-base) !important;
 }
 
 /* Reset VitePress .vp-doc styles inside demo containers so they don't
@@ -47,31 +53,14 @@
   --flint-skeleton-bg: #d4d4d8;
 }
 
-/* Hero name gradient — scoped to .name.clip only */
+/* Hero name — solid brand color */
 .VPHero .name.clip {
-  color: transparent;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-  -webkit-background-clip: text;
-  background-clip: text;
+  color: var(--vp-c-brand-1);
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
 }
 
-/* Ensure hero text and tagline are visible */
-.VPHero .text {
-  color: var(--vp-c-text-1) !important;
-}
-
-.VPHero .tagline {
-  color: var(--vp-c-text-2) !important;
-}
-
-/* Ensure feature titles and details are visible */
-.VPFeature .title {
-  color: var(--vp-c-text-1) !important;
-}
-
-.VPFeature .details {
-  color: var(--vp-c-text-2) !important;
-}
 
 /* Brand button — gradient with hover lift */
 .VPHero .actions .VPButton.brand {
@@ -105,4 +94,31 @@
 .VPFeature:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* ===================== Dark Mode ===================== */
+.dark {
+  --vp-c-brand-1: #60a5fa;
+  --vp-c-brand-2: #3b82f6;
+  --vp-c-brand-3: #2563eb;
+}
+
+/* Brand button — lighter glow on dark backgrounds */
+.dark .VPHero .actions .VPButton.brand {
+  background: linear-gradient(135deg, #60a5fa, #818cf8);
+  box-shadow: 0 2px 8px rgba(96, 165, 250, 0.3);
+}
+
+.dark .VPHero .actions .VPButton.brand:hover {
+  box-shadow: 0 4px 14px rgba(96, 165, 250, 0.45);
+}
+
+/* Feature cards — darker shadow for dark backgrounds */
+.dark .VPFeature:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Skeleton fallback — darker in dark mode */
+.dark .vp-doc .demo-container flint-skeleton {
+  --flint-skeleton-bg: #3f3f46;
 }

@@ -9,13 +9,27 @@ const sidebar = JSON.parse(readFileSync(resolve(__dirname, 'sidebar.json'), 'utf
 export default defineConfig({
   title: 'Flint UI 🔥',
   description: 'Documentation for Flint UI web components',
-  appearance: false,
+  appearance: true,
+  lastUpdated: true,
+  head: [
+    ['meta', { name: 'theme-color', content: '#3b82f6' }],
+    ['meta', { property: 'og:title', content: 'Flint UI' }],
+    ['meta', { property: 'og:description', content: 'A comprehensive set of accessible, customizable web components built with LitElement.' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:url', content: 'https://flintui.vercel.app' }],
+    ['meta', { property: 'og:site_name', content: 'Flint UI' }],
+    ['meta', { name: 'twitter:card', content: 'summary' }],
+    ['meta', { name: 'twitter:title', content: 'Flint UI' }],
+    ['meta', { name: 'twitter:description', content: 'A comprehensive set of accessible, customizable web components built with LitElement.' }],
+  ],
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Components', link: '/components/button' },
+      { text: 'Theming', link: '/theming' },
       { text: 'React', link: '/react' },
-      { text: 'Storybook', link: 'https://lite-framework.vercel.app/storybook/' },
+      { text: 'Accessibility', link: '/accessibility' },
+      { text: 'Storybook', link: 'https://flintui.vercel.app/storybook/' },
     ],
     sidebar: {
       '/components/': sidebar,
