@@ -113,7 +113,7 @@ jobs:
         timeout-minutes: 10
         run: |
           cd packages/core
-          npx vitest run --project storybook 2>&1 | tee test-output.log
+          npx vitest run --project storybook --browser.connectTimeout=120000 2>&1 | tee test-output.log
           TEST_EXIT=$?
           if [ $TEST_EXIT -ne 0 ]; then
             # Check if all tests actually passed (teardown bug workaround)

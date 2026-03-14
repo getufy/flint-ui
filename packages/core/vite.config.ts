@@ -25,6 +25,9 @@ export default defineConfig({
         },
     },
     test: {
+        browser: {
+            connectTimeout: 120_000,
+        },
         coverage: {
             provider: 'v8',
             reporter: ['text', 'html', 'lcov'],
