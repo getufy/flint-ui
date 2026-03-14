@@ -33,12 +33,12 @@ import { FlintCircularProgress } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `variant` | `variant` | `'determinate' \| 'indeterminate'` | `'indeterminate'` | Whether the progress shows a specific value or an endless animation. |
-| `value` | `value` | `number` | `0` | Current progress percentage (0-100), used when variant is determinate. |
-| `size` | `size` | `number` | `40` | Diameter of the circular spinner in pixels. |
-| `thickness` | `thickness` | `number` | `3.6` | Stroke width of the circular track in pixels. |
-| `color` | `color` | `'primary' \| 'success' \| 'error' \| 'warning'` | `'primary'` | Color theme of the progress indicator. |
-| `label` | `label` | `string` | `''` | Accessible label applied as aria-label on the progressbar. |
+| `variant` | `variant` | `'determinate' \| 'indeterminate'` | `'indeterminate'` |  |
+| `value` | `value` | `number` | `0` |  |
+| `size` | `size` | `number` | `40` |  |
+| `thickness` | `thickness` | `number` | `3.6` |  |
+| `color` | `color` | `'primary' \| 'success' \| 'error' \| 'warning'` | `'primary'` |  |
+| `label` | `label` | `string` | `''` |  |
 
 ### CSS Custom Properties
 
@@ -77,11 +77,11 @@ import { FlintLinearProgress } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `variant` | `variant` | `'determinate' \| 'indeterminate'` | `'indeterminate'` | Whether the progress shows a specific value or an endless animation. |
-| `value` | `value` | `number` | `0` | Current progress percentage (0-100), used when variant is determinate. |
-| `height` | `height` | `number` | `4` | Height of the progress bar in pixels. |
-| `color` | `color` | `'primary' \| 'success' \| 'error' \| 'warning'` | `'primary'` | Color theme of the progress bar. |
-| `label` | `label` | `string` | `''` | Accessible label applied as aria-label on the progressbar. |
+| `variant` | `variant` | `'determinate' \| 'indeterminate'` | `'indeterminate'` |  |
+| `value` | `value` | `number` | `0` |  |
+| `height` | `height` | `number` | `4` |  |
+| `color` | `color` | `'primary' \| 'success' \| 'error' \| 'warning'` | `'primary'` |  |
+| `label` | `label` | `string` | `''` |  |
 
 ### CSS Custom Properties
 

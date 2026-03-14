@@ -6,7 +6,6 @@
 
 - **Tag**: `<flint-slider>`
 - **Class**: `FlintSlider`
-- **Form Associated**: Yes
 
 ### Import
 
@@ -26,24 +25,24 @@ import { FlintSlider } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `value` | `value` | `number` | `50` | Current slider value. |
-| `defaultValue` | `default-value` | `number \| undefined` | `undefined` | Initial value applied once on first update (uncontrolled mode). |
-| `min` | `min` | `number` | `0` | Minimum allowed value. |
-| `max` | `max` | `number` | `100` | Maximum allowed value. |
-| `step` | `step` | `number` | `1` | Step increment between values. |
-| `disabled` | `disabled` | `boolean` | `false` | Disable the slider, preventing interaction. |
-| `label` | `label` | `string` | `''` | Label text displayed above the slider. |
-| `showValue` | `show-value` | `boolean` | `false` | Show the current value next to the label. |
-| `vertical` | `vertical` | `boolean` | `false` | Render the slider vertically instead of horizontally. |
-| `size` | `size` | `Size` | `'md'` | Visual size of the slider: 'sm', 'md', or 'lg'. |
-| `name` | `name` | `string` | `''` | Form field name used when submitting form data. |
+| `value` | `value` | `number` | `50` |  |
+| `defaultValue` | `default-value` | `number \| undefined` | `undefined` |  |
+| `min` | `min` | `number` | `0` |  |
+| `max` | `max` | `number` | `100` |  |
+| `step` | `step` | `number` | `1` |  |
+| `disabled` | `disabled` | `boolean` | `false` |  |
+| `label` | `label` | `string` | `''` |  |
+| `showValue` | `show-value` | `boolean` | `false` |  |
+| `vertical` | `vertical` | `boolean` | `false` |  |
+| `size` | `size` | `Size` | `'md'` |  |
+| `name` | `name` | `string` | `''` |  |
 | `formatValue` | `format-value` | `((v: number)` | `> string) \| undefined = undefined` | Optional formatter: `(value: number) => string`. JS-only prop (not an attribute). |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-slider-change` | `{ value: this.value }` | Fired when the slider value changes via user interaction. |
+| `flint-slider-change` | `{ value: this.value }` |  |
 
 ### CSS Custom Properties
 

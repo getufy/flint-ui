@@ -10,7 +10,7 @@ export const FlintTimeField = createComponent({
     elementClass: FlintTimeFieldElement,
     react: React,
     events: {
-        onClear: 'clear' as EventName<CustomEvent>,
+        onFlintTimePickerClear: 'flint-time-picker-clear' as EventName<CustomEvent>,
         onChange: 'change' as EventName<CustomEvent>,
     },
 });

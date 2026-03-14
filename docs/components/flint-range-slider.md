@@ -23,20 +23,20 @@ import { FlintRangeSlider } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `value` | `value` | `[number, number]` | `[25, 75]` | Current start and end values of the range. |
-| `min` | `min` | `number` | `0` | Minimum allowed value. |
-| `max` | `max` | `number` | `100` | Maximum allowed value. |
-| `step` | `step` | `number` | `1` | Step increment between allowed values. |
-| `size` | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Visual size of the track and thumbs. |
-| `disabled` | `disabled` | `boolean` | `false` | Disables both thumbs so the slider cannot be adjusted. |
-| `label` | `label` | `string` | `''` | Label text displayed above the track. |
-| `showValue` | `show-value` | `boolean` | `false` | Displays the current start and end values next to the label. |
+| `value` | `value` | `[number, number]` | `[25, 75]` |  |
+| `min` | `min` | `number` | `0` |  |
+| `max` | `max` | `number` | `100` |  |
+| `step` | `step` | `number` | `1` |  |
+| `size` | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` |  |
+| `disabled` | `disabled` | `boolean` | `false` |  |
+| `label` | `label` | `string` | `''` |  |
+| `showValue` | `show-value` | `boolean` | `false` |  |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-range-slider-change` | `{ value: this.value }` | Fired when either thumb is moved. |
+| `flint-range-slider-change` | `{ value: this.value }` |  |
 
 ### CSS Custom Properties
 

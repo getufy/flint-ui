@@ -10,7 +10,7 @@ export const FlintAutocomplete = createComponent({
     elementClass: FlintAutocompleteElement,
     react: React,
     events: {
-        onChange: 'change' as EventName<CustomEvent>,
+        onFlintAutocompleteChange: 'flint-autocomplete-change' as EventName<CustomEvent>,
     },
 });
 

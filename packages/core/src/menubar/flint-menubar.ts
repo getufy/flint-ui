@@ -169,7 +169,7 @@ export class FlintMenubarRadioItem extends LitElement {
 
     select() {
         if (this.disabled) return;
-        this.dispatchEvent(new CustomEvent('_menubar-radio-select', {
+        this.dispatchEvent(new CustomEvent('flint-menubar-radio-select', {
             bubbles: true, composed: true,
             detail: { value: this.value },
         }));
@@ -215,12 +215,12 @@ export class FlintMenubarRadioGroup extends LitElement {
 
     connectedCallback() {
         super.connectedCallback();
-        this.addEventListener('_menubar-radio-select', this._handleRadioSelect);
+        this.addEventListener('flint-menubar-radio-select', this._handleRadioSelect);
     }
 
     disconnectedCallback() {
         super.disconnectedCallback();
-        this.removeEventListener('_menubar-radio-select', this._handleRadioSelect);
+        this.removeEventListener('flint-menubar-radio-select', this._handleRadioSelect);
     }
 
     override updated(changed: PropertyValues) {
@@ -546,7 +546,7 @@ export class FlintMenubarContent extends LitElement {
     }
 
     private _requestClose() {
-        this.dispatchEvent(new CustomEvent('_menubar-request-close', {
+        this.dispatchEvent(new CustomEvent('flint-menubar-request-close', {
             bubbles: true, composed: true,
         }));
     }
@@ -951,7 +951,7 @@ export class FlintMenubar extends LitElement {
         this.addEventListener('click', this._handleTriggerClick);
         this.addEventListener('mouseover', this._handleTriggerMouseEnter);
         this.addEventListener('keydown', this._handleKeyDown);
-        this.addEventListener('_menubar-request-close', this._handleRequestClose);
+        this.addEventListener('flint-menubar-request-close', this._handleRequestClose);
         document.addEventListener('click', this._handleOutsideClick, true);
     }
 
@@ -960,7 +960,7 @@ export class FlintMenubar extends LitElement {
         this.removeEventListener('click', this._handleTriggerClick);
         this.removeEventListener('mouseover', this._handleTriggerMouseEnter);
         this.removeEventListener('keydown', this._handleKeyDown);
-        this.removeEventListener('_menubar-request-close', this._handleRequestClose);
+        this.removeEventListener('flint-menubar-request-close', this._handleRequestClose);
         document.removeEventListener('click', this._handleOutsideClick, true);
     }
 

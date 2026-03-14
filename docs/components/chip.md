@@ -27,27 +27,27 @@ import { FlintChip } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `label` | `label` | `string` | `''` | Text displayed inside the chip. |
-| `variant` | `variant` | `'filled' \| 'outlined'` | `'filled'` | Visual style variant of the chip. |
-| `color` | `color` | `'default' \| 'primary' \| 'secondary'` | `'default'` | Color theme of the chip. |
-| `size` | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The size of the chip. |
-| `clickable` | `clickable` | `boolean` | `false` | Makes the chip interactive with hover and focus styles. |
-| `deletable` | `deletable` | `boolean` | `false` | Shows a delete icon and enables the `flint-chip-delete` event. |
-| `disabled` | `disabled` | `boolean` | `false` | Disables the chip, preventing click and delete interactions. |
+| `label` | `label` | `string` | `''` |  |
+| `variant` | `variant` | `'filled' \| 'outlined'` | `'filled'` |  |
+| `color` | `color` | `'default' \| 'primary' \| 'secondary'` | `'default'` |  |
+| `size` | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` |  |
+| `clickable` | `clickable` | `boolean` | `false` |  |
+| `deletable` | `deletable` | `boolean` | `false` |  |
+| `disabled` | `disabled` | `boolean` | `false` |  |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `click` | — | Fired when a clickable chip is activated. |
-| `flint-chip-delete` | — | Fired when the delete icon is clicked. |
+| `click` | — |  |
+| `flint-chip-delete` | — |  |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `avatar` | Slot for an avatar element displayed before the label. |
-| `icon` | Slot for a leading icon displayed before the label. |
+| `avatar` |  |
+| `icon` |  |
 
 ### CSS Custom Properties
 

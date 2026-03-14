@@ -15,7 +15,6 @@ A Switch component for toggling settings.
 
 - **Tag**: \`<flint-switch>\`
 - **Class**: \`FlintSwitch\`
-- **Form Associated**: Yes
 
 #### Properties
 

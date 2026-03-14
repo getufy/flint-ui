@@ -11,7 +11,6 @@ const meta: Meta = {
                 component: `
 - **Tag**: \`<flint-input>\`
 - **Class**: \`FlintInput\`
-- **Form Associated**: Yes
 
 #### Properties
 

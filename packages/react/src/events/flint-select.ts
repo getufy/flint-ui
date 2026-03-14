@@ -1,4 +1,4 @@
 // Auto-generated — do not edit
 export const FlintSelectEvents = {
-    CHANGE: 'change',
+    CHANGE: 'flint-select-change',
 } as const;

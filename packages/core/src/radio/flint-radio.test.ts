@@ -742,4 +742,67 @@ describe('flint-radio', () => {
         const el = await fixture<FlintRadio>(html`<flint-radio value="option-1" label="Option 1"></flint-radio>`);
         expect(getInput(el).value).toBe('option-1');
     });
+
+    it('renders slot content when label prop is empty string', async () => {
+        const el = await fixture<FlintRadio>(html`
+            <flint-radio value="a" label=""><span id="slotted">Fallback</span></flint-radio>
+        `);
+        // Empty string is falsy so the slot branch is taken
+        const slot = el.shadowRoot!.querySelector('slot');
+        expect(slot).not.toBeNull();
+    });
+});
+
+// ═══════════════════════════════════════════════════════════════════════
+// flint-radio-group — formResetCallback & edge cases
+// ═══════════════════════════════════════════════════════════════════════
+describe('flint-radio-group — formResetCallback', () => {
+    it('formResetCallback resets value to defaultValue', async () => {
+        const el = await fixture<FlintRadioGroup>(html`
+            <flint-radio-group name="reset" default-value="b">
+                <flint-radio value="a" label="A"></flint-radio>
+                <flint-radio value="b" label="B"></flint-radio>
+            </flint-radio-group>
+        `);
+        // Initial value set from defaultValue
+        expect(el.value).toBe('b');
+        // Change value
+        el.value = 'a';
+        await el.updateComplete;
+        expect(getRadios(el)[0].checked).toBe(true);
+
+        // Call formResetCallback directly (since jsdom can't do real form reset)
+        (el as unknown as { formResetCallback: () => void }).formResetCallback();
+        await el.updateComplete;
+        expect(el.value).toBe('b');
+        expect(getRadios(el)[1].checked).toBe(true);
+    });
+
+    it('formResetCallback resets to empty when no defaultValue', async () => {
+        const el = await fixture<FlintRadioGroup>(html`
+            <flint-radio-group name="reset2" value="a">
+                <flint-radio value="a" label="A"></flint-radio>
+                <flint-radio value="b" label="B"></flint-radio>
+            </flint-radio-group>
+        `);
+        (el as unknown as { formResetCallback: () => void }).formResetCallback();
+        await el.updateComplete;
+        expect(el.value).toBe('');
+        getRadios(el).forEach(r => expect(r.checked).toBe(false));
+    });
+
+    it('keyboard navigation with single enabled radio wraps to itself', async () => {
+        const el = await fixture<FlintRadioGroup>(html`
+            <flint-radio-group name="single" value="a">
+                <flint-radio value="a" label="A"></flint-radio>
+                <flint-radio value="b" label="B" disabled></flint-radio>
+                <flint-radio value="c" label="C" disabled></flint-radio>
+            </flint-radio-group>
+        `);
+        getInput(getRadios(el)[0]).focus();
+        el.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+        await el.updateComplete;
+        // Only one enabled radio, so it wraps to itself
+        expect(el.value).toBe('a');
+    });
 });

@@ -1,5 +1,5 @@
 // Auto-generated — do not edit
 export const FlintTablePaginationEvents = {
-    PAGE_CHANGE: 'page-change',
-    ROWS_PER_PAGE_CHANGE: 'rows-per-page-change',
+    PAGINATION_PAGE_CHANGE: 'flint-pagination-page-change',
+    PAGINATION_ROWS_PER_PAGE_CHANGE: 'flint-pagination-rows-per-page-change',
 } as const;

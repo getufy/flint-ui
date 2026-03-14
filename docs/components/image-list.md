@@ -79,8 +79,8 @@ import { FlintImageListItem } from 'flint-ui';
 | `cols` | `cols` | `number` | `1` | How many grid columns this item spans (quilted/woven only) |
 | `barPosition` | `bar-position` | `'overlay' \| 'below'` | `'overlay'` | Position of the title bar: 'overlay' (default) or 'below' |
 | `weave` | `weave` | `'odd' \| 'even'` | `'odd'` | Woven variant: 'odd' or 'even' identity for alternating height |
-| `aspectRatio` | `aspect-ratio` | `string` | `'auto'` | CSS aspect ratio for the cell (e.g. "1/1", "4/3"). |
-| `fit` | `fit` | `ImageFit` | `'cover'` | How the image fills the cell: 'cover' (crops to fill) or 'contain' (letterboxes). |
+| `aspectRatio` | `aspect-ratio` | `string` | `'auto'` |  |
+| `fit` | `fit` | `ImageFit` | `'cover'` |  |
 
 ### Slots
 

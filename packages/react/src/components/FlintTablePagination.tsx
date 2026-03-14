@@ -10,8 +10,8 @@ export const FlintTablePagination = createComponent({
     elementClass: FlintTablePaginationElement,
     react: React,
     events: {
-        onPageChange: 'page-change' as EventName<CustomEvent>,
-        onRowsPerPageChange: 'rows-per-page-change' as EventName<CustomEvent>,
+        onFlintPaginationPageChange: 'flint-pagination-page-change' as EventName<CustomEvent>,
+        onFlintPaginationRowsPerPageChange: 'flint-pagination-rows-per-page-change' as EventName<CustomEvent>,
     },
 });
 

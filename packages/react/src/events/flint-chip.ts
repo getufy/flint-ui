@@ -1,5 +1,5 @@
 // Auto-generated — do not edit
 export const FlintChipEvents = {
     CLICK: 'click',
-    DELETE: 'delete',
+    DELETE: 'flint-chip-delete',
 } as const;

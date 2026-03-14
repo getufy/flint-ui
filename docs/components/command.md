@@ -248,7 +248,7 @@ import { FlintCommandInput } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `_cmd-filter` | `{ query: input.value }` | Internal event dispatched on input to trigger filtering. |
+| `_cmd-filter` | `{ query: input.value }` |  |
 
 ### Methods
 

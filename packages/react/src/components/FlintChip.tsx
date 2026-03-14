@@ -11,7 +11,7 @@ export const FlintChip = createComponent({
     react: React,
     events: {
         onClick: 'click' as EventName<CustomEvent>,
-        onDelete: 'delete' as EventName<CustomEvent>,
+        onFlintChipDelete: 'flint-chip-delete' as EventName<CustomEvent>,
     },
 });
 

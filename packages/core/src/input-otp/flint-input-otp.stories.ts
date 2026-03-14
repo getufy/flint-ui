@@ -90,6 +90,8 @@ A single character cell in an OTP input. Place inside \`flint-input-otp-group\`.
 | \`maxLength\` | \`max-length\` | \`number\` | \`6\` |
 | \`pattern\` | \`pattern\` | \`string\` | \`''\` |
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`label\` | \`label\` | \`string\` | \`'One-time password'\` |
+| \`description\` | \`description\` | \`string\` | \`''\` |
 
 #### Events
 

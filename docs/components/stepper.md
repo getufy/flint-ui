@@ -29,8 +29,8 @@ import { FlintStepConnector } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout direction of the connector line. |
-| `completed` | `completed` | `boolean` | `false` | Renders the connector in the primary (completed) color. |
+| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` |  |
+| `completed` | `completed` | `boolean` | `false` |  |
 
 ### CSS Custom Properties
 
@@ -72,16 +72,16 @@ import { FlintStepLabel } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `active` | `active` | `boolean` | `false` | Whether the label is styled as active (current step). |
-| `disabled` | `disabled` | `boolean` | `false` | Whether the label is styled as disabled. |
-| `error` | `error` | `boolean` | `false` | Whether the label is styled as an error state. |
+| `active` | `active` | `boolean` | `false` |  |
+| `disabled` | `disabled` | `boolean` | `false` |  |
+| `error` | `error` | `boolean` | `false` |  |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
 | `(default)` | Default slot for content |
-| `optional` | Secondary text shown below the label (e.g. "Optional"). |
+| `optional` |  |
 
 ---
 
@@ -141,32 +141,32 @@ import { FlintStep } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `active` | `active` | `boolean` | `false` | Whether this step is the current active step. |
-| `completed` | `completed` | `boolean` | `false` | Whether this step has been completed. |
-| `disabled` | `disabled` | `boolean` | `false` | Whether this step is disabled and non-interactive. |
-| `optional` | `optional` | `boolean` | `false` | Marks this step as optional and shows the optional label. |
-| `error` | `error` | `boolean` | `false` | Displays the step in an error state with a warning icon. |
-| `last` | `last` | `boolean` | `false` | Whether this is the last step (hides trailing connector). |
-| `clickable` | `clickable` | `boolean` | `false` | Makes the step clickable to navigate directly to it. |
-| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout direction of the step (set by the parent stepper). |
-| `alternativeLabel` | `alternative-label` | `boolean` | `false` | Places labels below the step icons instead of beside them. |
-| `stepIndex` | `step-index` | `number` | `0` | Zero-based index of this step (set by the parent stepper). |
-| `optionalLabel` | `optional-label` | `string` | `'Optional'` | Text shown below the label when `optional` is true. |
-| `prevCompleted` | `prev-completed` | `boolean` | `false` | Whether the preceding step is completed (colors the leading connector). |
+| `active` | `active` | `boolean` | `false` |  |
+| `completed` | `completed` | `boolean` | `false` |  |
+| `disabled` | `disabled` | `boolean` | `false` |  |
+| `optional` | `optional` | `boolean` | `false` |  |
+| `error` | `error` | `boolean` | `false` |  |
+| `last` | `last` | `boolean` | `false` |  |
+| `clickable` | `clickable` | `boolean` | `false` |  |
+| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` |  |
+| `alternativeLabel` | `alternative-label` | `boolean` | `false` |  |
+| `stepIndex` | `step-index` | `number` | `0` |  |
+| `optionalLabel` | `optional-label` | `string` | `'Optional'` |  |
+| `prevCompleted` | `prev-completed` | `boolean` | `false` |  |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-step-click` | `{ index: this.stepIndex }` | Fired when a clickable step is clicked. |
+| `flint-step-click` | `{ index: this.stepIndex }` |  |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
 | `(default)` | Default slot for content |
-| `icon` | Custom icon to replace the default step number. |
-| `label` | Step label content (typically a `flint-step-label`). |
+| `icon` |  |
+| `label` |  |
 
 ### CSS Custom Properties
 
@@ -200,17 +200,17 @@ import { FlintStepper } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `activeStep` | `active-step` | `number` | `0` | Index of the currently active step (0-based). |
-| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout direction of the stepper. |
-| `alternativeLabel` | `alternative-label` | `boolean` | `false` | Places step labels below the icons instead of beside them. |
-| `nonLinear` | `non-linear` | `boolean` | `false` | Allows clicking any step to navigate (non-sequential). |
+| `activeStep` | `active-step` | `number` | `0` |  |
+| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` |  |
+| `alternativeLabel` | `alternative-label` | `boolean` | `false` |  |
+| `nonLinear` | `non-linear` | `boolean` | `false` |  |
 | `label` | `label` | `string` | `'steps'` | Accessible label for the stepper landmark (maps to aria-label on the list element). |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-step-change` | `{ step: e.detail.index }` | Fired when the active step changes via a step click. |
+| `flint-step-change` | `{ step: e.detail.index }` |  |
 
 ### Slots
 
@@ -250,10 +250,10 @@ import { FlintMobileStepper } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `steps` | `steps` | `number` | `0` | Total number of steps. |
-| `activeStep` | `active-step` | `number` | `0` | Index of the currently active step (0-based). |
-| `variant` | `variant` | `'text' \| 'dots' \| 'progress'` | `'dots'` | Progress indicator style: text label, dots, or progress bar. |
-| `position` | `position` | `'top' \| 'bottom' \| 'static'` | `'static'` | Fixed positioning of the stepper bar. |
+| `steps` | `steps` | `number` | `0` |  |
+| `activeStep` | `active-step` | `number` | `0` |  |
+| `variant` | `variant` | `'text' \| 'dots' \| 'progress'` | `'dots'` |  |
+| `position` | `position` | `'top' \| 'bottom' \| 'static'` | `'static'` |  |
 | `backLabel` | `back-label` | `string` | `'Back'` | Label text for the Back navigation button (supports i18n). |
 | `nextLabel` | `next-label` | `string` | `'Next'` | Label text for the Next navigation button (supports i18n). |
 
@@ -261,7 +261,7 @@ import { FlintMobileStepper } from 'flint-ui';
 
 | Name | Description |
 | --- | --- |
-| `back-button` | Custom back navigation button content. |
-| `next-button` | Custom next navigation button content. |
+| `back-button` |  |
+| `next-button` |  |
 
 ---

@@ -10,9 +10,10 @@ export const FlintRichTreeView = createComponent({
     elementClass: FlintRichTreeViewElement,
     react: React,
     events: {
-        onExpandedItemsChange: 'expanded-items-change' as EventName<CustomEvent>,
-        onItemClick: 'item-click' as EventName<CustomEvent>,
-        onItemPositionChange: 'item-position-change' as EventName<CustomEvent>,
+        onFlintTreeViewError: 'flint-tree-view-error' as EventName<CustomEvent>,
+        onFlintTreeViewExpandedItemsChange: 'flint-tree-view-expanded-items-change' as EventName<CustomEvent>,
+        onFlintTreeViewItemClick: 'flint-tree-view-item-click' as EventName<CustomEvent>,
+        onFlintTreeViewItemPositionChange: 'flint-tree-view-item-position-change' as EventName<CustomEvent>,
     },
 });
 

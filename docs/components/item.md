@@ -317,8 +317,8 @@ import { FlintItem } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `variant` | `variant` | `'default' \| 'outline' \| 'muted'` | `'default'` | Visual style: 'default' (transparent), 'outline' (bordered), or 'muted' (filled background). |
-| `size` | `size` | `'default' \| 'sm' \| 'xs'` | `'default'` | Size preset controlling internal padding and gap. |
+| `variant` | `variant` | `'default' \| 'outline' \| 'muted'` | `'default'` |  |
+| `size` | `size` | `'default' \| 'sm' \| 'xs'` | `'default'` |  |
 
 ### Slots
 

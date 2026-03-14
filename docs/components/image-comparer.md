@@ -30,15 +30,15 @@ import { FlintImageComparer } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-image-comparer-change` | `{ position: clamped }` | Fired when the divider position changes. |
+| `flint-image-comparer-change` | `{ position: clamped }` |  |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `after` | The after image (`<img>` or `<svg>`). |
-| `before` | The before image (`<img>` or `<svg>`). |
-| `handle` | Custom handle content (replaces the default arrows icon). |
+| `after` |  |
+| `before` |  |
+| `handle` |  |
 
 ### CSS Custom Properties
 

@@ -27,10 +27,10 @@ import { FlintDivider } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Direction of the divider line. |
-| `variant` | `variant` | `'full' \| 'middle' \| 'inset'` | `'full'` | Controls the inset spacing of the divider. |
-| `weight` | `weight` | `'light' \| 'medium' \| 'heavy'` | `'light'` | Thickness of the divider line. |
-| `textAlign` | `text-align` | `'left' \| 'center' \| 'right'` | `'center'` | Alignment of text content within the divider. |
+| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` |  |
+| `variant` | `variant` | `'full' \| 'middle' \| 'inset'` | `'full'` |  |
+| `weight` | `weight` | `'light' \| 'medium' \| 'heavy'` | `'light'` |  |
+| `textAlign` | `text-align` | `'left' \| 'center' \| 'right'` | `'center'` |  |
 
 ### Slots
 

@@ -27,8 +27,8 @@ import { FlintList } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `disablePadding` | `disable-padding` | `boolean` | `false` | Removes default vertical padding from the list. |
-| `dense` | `dense` | `boolean` | `false` | Reduces spacing for a more compact list layout. |
+| `disablePadding` | `disable-padding` | `boolean` | `false` |  |
+| `dense` | `dense` | `boolean` | `false` |  |
 
 ### Slots
 
@@ -114,8 +114,8 @@ import { FlintListItemButton } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `disabled` | `disabled` | `boolean` | `false` | Disables the button, making it non-interactive. |
-| `selected` | `selected` | `boolean` | `false` | Marks the button as the currently selected item. |
+| `disabled` | `disabled` | `boolean` | `false` |  |
+| `selected` | `selected` | `boolean` | `false` |  |
 
 ### Slots
 
@@ -208,15 +208,15 @@ import { FlintListItemText } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `primary` | `primary` | `string` | `''` | The main text content displayed on the first line. |
-| `secondary` | `secondary` | `string` | `''` | Secondary text displayed below the primary text. |
+| `primary` | `primary` | `string` | `''` |  |
+| `secondary` | `secondary` | `string` | `''` |  |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `primary` | Slot for custom primary text content. |
-| `secondary` | Slot for custom secondary text content. |
+| `primary` |  |
+| `secondary` |  |
 
 ---
 

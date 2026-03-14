@@ -27,7 +27,7 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | \`{ value: this.value, label: this.value }\` |  |
+| \`flint-autocomplete-change\` | \`{ value: this.value, label: this.value }\` |  |
 
 #### CSS Custom Properties
 
@@ -104,7 +104,7 @@ export const ComboBox: Story = {
         .disabled=${args['disabled']}
         placeholder=${args['placeholder']}
         style="width: 300px;"
-        @change=${(e: CustomEvent) => console.log('Selected:', e.detail)}
+        @flint-autocomplete-change=${(e: CustomEvent) => console.log('Selected:', e.detail)}
       ></flint-autocomplete>
       <p style=${captionStyle}>Value must be chosen from the predefined set.</p>
     </div>
@@ -125,7 +125,7 @@ export const FreeSolo: Story = {
         .disabled=${args['disabled']}
         placeholder=${args['placeholder']}
         style="width: 300px;"
-        @change=${(e: CustomEvent) => console.log('Typed/Selected:', e.detail)}
+        @flint-autocomplete-change=${(e: CustomEvent) => console.log('Typed/Selected:', e.detail)}
       ></flint-autocomplete>
       <p style=${captionStyle}>Textbox may contain any arbitrary value, but suggests possible values to the user.</p>
     </div>
@@ -147,7 +147,7 @@ export const WithInitialValue: Story = {
         .value=${args['value'] as string}
         placeholder=${args['placeholder']}
         style="width: 300px;"
-        @change=${(e: CustomEvent) => console.log('Changed:', e.detail)}
+        @flint-autocomplete-change=${(e: CustomEvent) => console.log('Changed:', e.detail)}
       ></flint-autocomplete>
       <p style=${captionStyle}>The Dark Knight is pre-selected via the <code>value</code> prop.</p>
     </div>
@@ -188,7 +188,7 @@ export const Controlled: Story = {
           .value=${currentValue}
           placeholder="Select a movie"
           style="width: 300px;"
-          @change=${(e: CustomEvent) => {
+          @flint-autocomplete-change=${(e: CustomEvent) => {
                 currentValue = e.detail.value;
                 const el = document.querySelector('#controlled-autocomplete') as HTMLElement & { value: string };
                 if (el) el.value = currentValue;
@@ -218,7 +218,7 @@ export const CustomTokens: Story = {
           --flint-autocomplete-option-padding: 8px 16px;
           --flint-primary-color: #8b5cf6;
         "
-        @change=${(e: CustomEvent) => console.log('Selected:', e.detail)}
+        @flint-autocomplete-change=${(e: CustomEvent) => console.log('Selected:', e.detail)}
       ></flint-autocomplete>
       <p style=${captionStyle}>
         Customized via <code>--flint-autocomplete-dropdown-max-height</code>,
@@ -236,7 +236,7 @@ export const DarkMode: Story = {
         .options=${top100Films}
         placeholder="Search movies…"
         style="width: 300px;"
-        @change=${(e: CustomEvent) => console.log('Selected:', e.detail)}
+        @flint-autocomplete-change=${(e: CustomEvent) => console.log('Selected:', e.detail)}
       ></flint-autocomplete>
       <br />
       <flint-autocomplete
@@ -244,7 +244,7 @@ export const DarkMode: Story = {
         .freeSolo=${true}
         placeholder="Free solo (dark)"
         style="width: 300px; margin-top: 12px;"
-        @change=${(e: CustomEvent) => console.log('Typed:', e.detail)}
+        @flint-autocomplete-change=${(e: CustomEvent) => console.log('Typed:', e.detail)}
       ></flint-autocomplete>
       <p style="margin-top: 200px; color: #9ca3af; font-family: system-ui; font-size: 14px;">
         Dark mode via <code>.flint-theme-dark</code> wrapper class — all tokens adapt automatically.
@@ -269,7 +269,7 @@ export const Accessibility: Story = {
         .options=${top100Films}
         placeholder="Type to search…"
         style="width: 300px;"
-        @change=${(e: CustomEvent) => console.log('Selected:', e.detail)}
+        @flint-autocomplete-change=${(e: CustomEvent) => console.log('Selected:', e.detail)}
       ></flint-autocomplete>
       <p style="margin-top: 8px; font-family: system-ui; font-size: 12px; color: #6b7280;">
         Use <kbd>↑</kbd> <kbd>↓</kbd> to navigate, <kbd>Enter</kbd> to select,

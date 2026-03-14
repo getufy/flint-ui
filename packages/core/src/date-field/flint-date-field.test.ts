@@ -170,7 +170,7 @@ describe('flint-date-field', () => {
         const el = await fixture<FlintDateField>(html`<flint-date-field></flint-date-field>`);
         await focus(el);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-date-field-change', spy);
         // Set month=3
         key(el, '3');
         await el.updateComplete;
@@ -269,7 +269,7 @@ describe('flint-date-field', () => {
         const el = await fixture<FlintDateField>(html`<flint-date-field disabled></flint-date-field>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-date-field-change', spy);
         key(el, '5');
         await el.updateComplete;
         expect(spy).not.toHaveBeenCalled();
@@ -375,7 +375,7 @@ describe('flint-date-field', () => {
         const el = await fixture<FlintDateField>(html`<flint-date-field readonly></flint-date-field>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-date-field-change', spy);
         key(el, '5');
         await el.updateComplete;
         expect(spy).not.toHaveBeenCalled();

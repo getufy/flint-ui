@@ -2,6 +2,7 @@ import { LitElement, unsafeCSS, html, nothing, PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { FormAssociated } from '../mixins/form-associated.js';
 import uiTextareaStyles from './flint-textarea.css?inline';
 
 let _uidCounter = 0;
@@ -13,9 +14,7 @@ let _uidCounter = 0;
  * @fires flint-textarea-change - Dispatched on blur/change. Detail: `{ value: string }`
  */
 @customElement('flint-textarea')
-export class FlintTextarea extends LitElement {
-    static formAssociated = true;
-
+export class FlintTextarea extends FormAssociated(LitElement) {
     static styles = unsafeCSS(uiTextareaStyles);
 
     @property({ type: String }) value = '';
@@ -42,8 +41,6 @@ export class FlintTextarea extends LitElement {
     @property({ type: String, attribute: 'default-value' }) defaultValue = '';
     @property({ type: String, attribute: 'aria-label' }) override ariaLabel: string | null = null;
 
-    private _internals: ElementInternals | null = null;
-    private _firstUpdate = true;
     private readonly _textareaId: string;
     private readonly _descId: string;
 
@@ -52,9 +49,6 @@ export class FlintTextarea extends LitElement {
         _uidCounter++;
         this._textareaId = `flint-textarea-${_uidCounter}`;
         this._descId = `flint-textarea-desc-${_uidCounter}`;
-        if (typeof this.attachInternals === 'function') {
-            this._internals = this.attachInternals();
-        }
     }
 
     /** Direct access to the internal <textarea> element. */
@@ -75,17 +69,13 @@ export class FlintTextarea extends LitElement {
     protected override updated(changed: PropertyValues) {
         super.updated(changed);
         if (changed.has('value')) {
-            this._internals?.setFormValue?.(this.value);
+            this._initFormValue(this.value);
             if (this.resize === 'auto') {
                 this._autoResize();
             }
         }
         if (changed.has('required') || changed.has('value')) {
-            if (this.required && !this.value) {
-                this._internals?.setValidity?.({ valueMissing: true }, 'Please fill in this field.');
-            } else {
-                this._internals?.setValidity?.({});
-            }
+            this._initFormValidity(this.required, !this.value, 'Please fill in this field.');
         }
     }
 

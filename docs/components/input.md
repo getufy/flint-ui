@@ -8,7 +8,6 @@
 
 - **Tag**: `<flint-input>`
 - **Class**: `FlintInput`
-- **Form Associated**: Yes
 
 ### Import
 
@@ -28,26 +27,26 @@ import { FlintInput } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `label` | `label` | `string` | `''` | Label text displayed above the input. |
-| `value` | `value` | `string` | `''` | Current value of the input. |
-| `type` | `type` | `string` | `'text'` | The HTML input type (e.g. 'text', 'email', 'password', 'search'). |
-| `placeholder` | `placeholder` | `string` | `''` | Placeholder text shown when the input is empty. |
-| `helpText` | `help-text` | `string` | `''` | Helper text displayed below the input. |
-| `error` | `error` | `boolean` | `false` | Whether the input is in an error state. |
-| `errorMessage` | `error-message` | `string` | `''` | Error message displayed below the input when in error state. |
-| `disabled` | `disabled` | `boolean` | `false` | Whether the input is disabled. |
-| `required` | `required` | `boolean` | `false` | Whether the input is required for form submission. |
-| `readonly` | `readonly` | `boolean` | `false` | Whether the input is read-only. |
-| `name` | `name` | `string` | `''` | Form control name for form submission. |
-| `autocomplete` | `autocomplete` | `string` | `''` | Hint for the browser's autocomplete behavior. |
+| `label` | `label` | `string` | `''` |  |
+| `value` | `value` | `string` | `''` |  |
+| `type` | `type` | `string` | `'text'` |  |
+| `placeholder` | `placeholder` | `string` | `''` |  |
+| `helpText` | `help-text` | `string` | `''` |  |
+| `error` | `error` | `boolean` | `false` |  |
+| `errorMessage` | `error-message` | `string` | `''` |  |
+| `disabled` | `disabled` | `boolean` | `false` |  |
+| `required` | `required` | `boolean` | `false` |  |
+| `readonly` | `readonly` | `boolean` | `false` |  |
+| `name` | `name` | `string` | `''` |  |
+| `autocomplete` | `autocomplete` | `string` | `''` |  |
 | `size` | `size` | `'sm' \| 'default' \| 'lg'` | `'default'` | 'sm' \| 'default' \| 'lg' |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-input-input` | `{ value: this.value }` | Fired on every keystroke as the user types. |
-| `flint-input-change` | `{ value: this.value }` | Fired when the input loses focus after its value has changed. |
+| `flint-input-input` | `{ value: this.value }` |  |
+| `flint-input-change` | `{ value: this.value }` |  |
 
 ### CSS Custom Properties
 
@@ -74,6 +73,6 @@ import { FlintInput } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `inputElement(): HTMLInputElement` | Returns the internal native `<input>` element for direct access. |
+| `inputElement(): HTMLInputElement` |  |
 
 ---

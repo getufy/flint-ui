@@ -25,13 +25,13 @@ import { FlintToggle } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `pressed` | `pressed` | `boolean` | `false` | Whether the toggle is currently pressed (on). |
-| `disabled` | `disabled` | `boolean` | `false` | Prevents user interaction with the toggle. |
-| `variant` | `variant` | `'default' \| 'outline'` | `'default'` | Visual style variant of the toggle. |
-| `size` | `size` | `'sm' \| 'default' \| 'lg'` | `'default'` | Size of the toggle button. |
-| `dir` | `dir` | `'ltr' \| 'rtl'` | `'ltr'` | Text direction for the toggle content. |
-| `defaultPressed` | `default-pressed` | `boolean` | `false` | Initial pressed state for uncontrolled mode. |
-| `ariaLabel` | `aria-label` | `string \| null` | `null` | Accessible label for icon-only toggles. |
+| `pressed` | `pressed` | `boolean` | `false` |  |
+| `disabled` | `disabled` | `boolean` | `false` |  |
+| `variant` | `variant` | `'default' \| 'outline'` | `'default'` |  |
+| `size` | `size` | `'sm' \| 'default' \| 'lg'` | `'default'` |  |
+| `dir` | `dir` | `'ltr' \| 'rtl'` | `'ltr'` |  |
+| `defaultPressed` | `default-pressed` | `boolean` | `false` |  |
+| `ariaLabel` | `aria-label` | `string \| null` | `null` |  |
 
 ### Events
 

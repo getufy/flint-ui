@@ -1,6 +1,7 @@
 import { LitElement, unsafeCSS, html, nothing, PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { FormAssociated } from '../mixins/form-associated.js';
 import uiSwitchStyles from './flint-switch.css?inline';
 
 let _uidCounter = 0;
@@ -14,9 +15,7 @@ let _uidCounter = 0;
  * @slot - Optional label content (used when the `label` prop is not set).
  */
 @customElement('flint-switch')
-export class FlintSwitch extends LitElement {
-    static formAssociated = true;
-
+export class FlintSwitch extends FormAssociated(LitElement) {
     static styles = unsafeCSS(uiSwitchStyles);
 
     @property({ type: Boolean, reflect: true }) checked = false;
@@ -29,17 +28,12 @@ export class FlintSwitch extends LitElement {
     @property({ type: Boolean, attribute: 'default-checked' }) defaultChecked = false;
     @property({ type: String, attribute: 'aria-label' }) override ariaLabel: string | null = null;
 
-    private _internals: ElementInternals | null = null;
-    private _firstUpdate = true;
     private readonly _labelId: string;
 
     constructor() {
         super();
         _uidCounter++;
         this._labelId = `flint-switch-label-${_uidCounter}`;
-        if (typeof this.attachInternals === 'function') {
-            this._internals = this.attachInternals();
-        }
     }
 
     protected override willUpdate(changed: PropertyValues) {
@@ -55,14 +49,10 @@ export class FlintSwitch extends LitElement {
     protected override updated(changed: PropertyValues) {
         super.updated(changed);
         if (changed.has('checked') || changed.has('value')) {
-            this._internals?.setFormValue?.(this.checked ? this.value : null);
+            this._initFormValue(this.checked ? this.value : null);
         }
         if (changed.has('checked') || changed.has('required')) {
-            if (this.required && !this.checked) {
-                this._internals?.setValidity?.({ valueMissing: true }, 'Please check this switch.');
-            } else {
-                this._internals?.setValidity?.({});
-            }
+            this._initFormValidity(this.required, !this.checked, 'Please check this switch.');
         }
     }
 

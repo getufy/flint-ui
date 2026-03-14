@@ -10,8 +10,8 @@ export const FlintSingleInputDateRangeField = createComponent({
     elementClass: FlintSingleInputDateRangeFieldElement,
     react: React,
     events: {
-        onRangeClear: 'flint-date-range-picker-clear' as EventName<CustomEvent>,
-        onRangeChange: 'flint-date-range-picker-change' as EventName<CustomEvent>,
+        onFlintDateRangePickerClear: 'flint-date-range-picker-clear' as EventName<CustomEvent>,
+        onFlintDateRangePickerChange: 'flint-date-range-picker-change' as EventName<CustomEvent>,
     },
 });
 

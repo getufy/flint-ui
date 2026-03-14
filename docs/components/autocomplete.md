@@ -23,17 +23,17 @@ import { FlintAutocomplete } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `options` | `options` | `AutocompleteOption[]` | `[]` | The list of selectable options with label and value. |
-| `freeSolo` | `free-solo` | `boolean` | `false` | If true, allows arbitrary input values not in the options list. |
-| `disabled` | `disabled` | `boolean` | `false` | If true, disables the autocomplete input. |
-| `value` | `value` | `string` | `''` | The currently selected option value. |
-| `placeholder` | `placeholder` | `string` | `''` | Placeholder text shown when the input is empty. |
+| `options` | `options` | `AutocompleteOption[]` | `[]` |  |
+| `freeSolo` | `free-solo` | `boolean` | `false` |  |
+| `disabled` | `disabled` | `boolean` | `false` |  |
+| `value` | `value` | `string` | `''` |  |
+| `placeholder` | `placeholder` | `string` | `''` |  |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `change` | `{ value: this.value, label: this.value }` | Fired when an option is selected or the value changes in free-solo mode. |
+| `flint-autocomplete-change` | `{ value: this.value, label: this.value }` |  |
 
 ### CSS Custom Properties
 

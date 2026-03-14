@@ -35,21 +35,21 @@ import { FlintTimeField } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `value` | `value` | `string` | `''` | Time value in HH:MM:SS format. |
-| `label` | `label` | `string` | `''` | Label text displayed above the field. |
-| `ampm` | `ampm` | `boolean` | `true` | Enables 12-hour format with AM/PM. |
-| `seconds` | `seconds` | `boolean` | `false` | Shows the seconds segment. |
-| `disabled` | `disabled` | `boolean` | `false` | Prevents user interaction. |
-| `readonly` | `readonly` | `boolean` | `false` | Makes the field read-only. |
-| `error` | `error` | `boolean` | `false` | Displays the field in an error state. |
-| `helperText` | `helper-text` | `string` | `''` | Help text displayed below the field. |
+| `value` | `value` | `string` | `''` |  |
+| `label` | `label` | `string` | `''` |  |
+| `ampm` | `ampm` | `boolean` | `true` |  |
+| `seconds` | `seconds` | `boolean` | `false` |  |
+| `disabled` | `disabled` | `boolean` | `false` |  |
+| `readonly` | `readonly` | `boolean` | `false` |  |
+| `error` | `error` | `boolean` | `false` |  |
+| `helperText` | `helper-text` | `string` | `''` |  |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-time-picker-clear` | — | Fired when the field value is cleared. |
-| `change` | `{ value: v }` | Fired when the time value changes. |
+| `flint-time-picker-clear` | — |  |
+| `change` | `{ value: v }` |  |
 
 ### CSS Custom Properties
 
@@ -77,7 +77,7 @@ import { FlintTimeField } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `clear()` | Clears the time field value and resets all segments. |
+| `clear()` |  |
 
 ---
 
@@ -104,15 +104,15 @@ import { FlintDigitalClock } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `value` | `value` | `string` | `''` | Selected time in HH:MM:SS format. |
-| `step` | `step` | `number` | `30` | Interval in minutes between each time option. |
-| `ampm` | `ampm` | `boolean` | `true` | Enables 12-hour format with AM/PM. |
+| `value` | `value` | `string` | `''` |  |
+| `step` | `step` | `number` | `30` |  |
+| `ampm` | `ampm` | `boolean` | `true` |  |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `change` | `{ value: v }` | Fired when a time option is selected. |
+| `change` | `{ value: v }` |  |
 
 ### CSS Custom Properties
 
@@ -145,15 +145,15 @@ import { FlintMultiSectionDigitalClock } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `value` | `value` | `string` | `''` | Selected time in HH:MM:SS format. |
-| `ampm` | `ampm` | `boolean` | `true` | Enables 12-hour format with AM/PM. |
-| `seconds` | `seconds` | `boolean` | `false` | Shows the seconds column. |
+| `value` | `value` | `string` | `''` |  |
+| `ampm` | `ampm` | `boolean` | `true` |  |
+| `seconds` | `seconds` | `boolean` | `false` |  |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `change` | `{ value: v }` | Fired when a time value is selected in any column. |
+| `change` | `{ value: v }` |  |
 
 ---
 
@@ -180,17 +180,17 @@ import { FlintTimeClock } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `value` | `value` | `string` | `''` | Selected time in HH:MM:SS format. |
-| `ampm` | `ampm` | `boolean` | `true` | Enables 12-hour format with AM/PM toggle. |
-| `seconds` | `seconds` | `boolean` | `false` | Enables the seconds dial on the clock face. |
-| `view` | `view` | `TimeView` | `'hours'` | Currently displayed clock face (hours, minutes, or seconds). |
+| `value` | `value` | `string` | `''` |  |
+| `ampm` | `ampm` | `boolean` | `true` |  |
+| `seconds` | `seconds` | `boolean` | `false` |  |
+| `view` | `view` | `TimeView` | `'hours'` |  |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `change` | `{ value: v }` | Fired when the selected time changes. |
-| `flint-time-clock-view-change` | `{ view: v }` | Fired when the clock face view changes. |
+| `change` | `{ value: v }` |  |
+| `flint-time-clock-view-change` | `{ view: v }` |  |
 
 ### CSS Custom Properties
 
@@ -229,20 +229,20 @@ import { FlintDesktopTimePicker } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `value` | `value` | `string` | `''` | Selected time in HH:MM:SS format. |
-| `label` | `label` | `string` | `'Time'` | Label text displayed above the time field. |
-| `ampm` | `ampm` | `boolean` | `true` | Enables 12-hour format with AM/PM. |
-| `seconds` | `seconds` | `boolean` | `false` | Shows the seconds segment. |
-| `disabled` | `disabled` | `boolean` | `false` | Prevents user interaction. |
-| `readonly` | `readonly` | `boolean` | `false` | Makes the field read-only. |
-| `error` | `error` | `boolean` | `false` | Displays the field in an error state. |
-| `helperText` | `helper-text` | `string` | `''` | Help text displayed below the field. |
+| `value` | `value` | `string` | `''` |  |
+| `label` | `label` | `string` | `'Time'` |  |
+| `ampm` | `ampm` | `boolean` | `true` |  |
+| `seconds` | `seconds` | `boolean` | `false` |  |
+| `disabled` | `disabled` | `boolean` | `false` |  |
+| `readonly` | `readonly` | `boolean` | `false` |  |
+| `error` | `error` | `boolean` | `false` |  |
+| `helperText` | `helper-text` | `string` | `''` |  |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `change` | `{ value: v }` | Fired when a time is confirmed via the OK button. |
+| `change` | `{ value: v }` |  |
 
 ---
 
@@ -269,19 +269,19 @@ import { FlintMobileTimePicker } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `value` | `value` | `string` | `''` | Selected time in HH:MM:SS format. |
-| `label` | `label` | `string` | `'Time'` | Label text displayed above the time field. |
-| `ampm` | `ampm` | `boolean` | `true` | Enables 12-hour format with AM/PM. |
-| `seconds` | `seconds` | `boolean` | `false` | Shows the seconds dial on the analog clock. |
-| `disabled` | `disabled` | `boolean` | `false` | Prevents user interaction. |
-| `error` | `error` | `boolean` | `false` | Displays the field in an error state. |
-| `helperText` | `helper-text` | `string` | `''` | Help text displayed below the field. |
+| `value` | `value` | `string` | `''` |  |
+| `label` | `label` | `string` | `'Time'` |  |
+| `ampm` | `ampm` | `boolean` | `true` |  |
+| `seconds` | `seconds` | `boolean` | `false` |  |
+| `disabled` | `disabled` | `boolean` | `false` |  |
+| `error` | `error` | `boolean` | `false` |  |
+| `helperText` | `helper-text` | `string` | `''` |  |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `change` | — | Fired when a time is confirmed via the OK button. |
+| `change` | — |  |
 
 ---
 
@@ -308,15 +308,15 @@ import { FlintStaticTimePicker } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `value` | `value` | `string` | `''` | Selected time in HH:MM:SS format. |
-| `ampm` | `ampm` | `boolean` | `true` | Enables 12-hour format with AM/PM. |
-| `seconds` | `seconds` | `boolean` | `false` | Shows the seconds column. |
+| `value` | `value` | `string` | `''` |  |
+| `ampm` | `ampm` | `boolean` | `true` |  |
+| `seconds` | `seconds` | `boolean` | `false` |  |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `change` | — | Fired when the selected time changes. |
+| `change` | — |  |
 
 ---
 
@@ -343,19 +343,19 @@ import { FlintTimePicker } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `value` | `value` | `string` | `''` | Selected time in HH:MM:SS format. |
-| `label` | `label` | `string` | `'Time'` | Label text displayed above the time field. |
-| `variant` | `variant` | `'desktop' \| 'mobile' \| 'static' \| 'auto'` | `'desktop'` | Picker variant; 'auto' selects based on pointer type. |
-| `ampm` | `ampm` | `boolean` | `true` | Enables 12-hour format with AM/PM. |
-| `seconds` | `seconds` | `boolean` | `false` | Shows the seconds segment. |
-| `disabled` | `disabled` | `boolean` | `false` | Prevents user interaction. |
-| `error` | `error` | `boolean` | `false` | Displays the field in an error state. |
-| `helperText` | `helper-text` | `string` | `''` | Help text displayed below the field. |
+| `value` | `value` | `string` | `''` |  |
+| `label` | `label` | `string` | `'Time'` |  |
+| `variant` | `variant` | `'desktop' \| 'mobile' \| 'static' \| 'auto'` | `'desktop'` |  |
+| `ampm` | `ampm` | `boolean` | `true` |  |
+| `seconds` | `seconds` | `boolean` | `false` |  |
+| `disabled` | `disabled` | `boolean` | `false` |  |
+| `error` | `error` | `boolean` | `false` |  |
+| `helperText` | `helper-text` | `string` | `''` |  |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `change` | — | Fired when the selected time changes. |
+| `change` | — |  |
 
 ---

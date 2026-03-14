@@ -19,6 +19,12 @@ const meta: Meta = {
 |---|---|---|---|
 | \`component\` | \`component\` | \`string\` | \`'div'\` |
 
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-box-warning\` | — | Dispatched when an unknown component tag is used and falls back to div. |
+
 #### Slots
 
 | Name | Description |

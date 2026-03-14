@@ -10,7 +10,7 @@ export const FlintCheckbox = createComponent({
     elementClass: FlintCheckboxElement,
     react: React,
     events: {
-        onChange: 'change' as EventName<CustomEvent>,
+        onFlintCheckboxChange: 'flint-checkbox-change' as EventName<CustomEvent>,
     },
 });
 

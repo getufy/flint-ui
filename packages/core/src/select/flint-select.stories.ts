@@ -16,7 +16,6 @@ A select component for choosing one or multiple options from a list.
 
 - **Tag**: \`<flint-select>\`
 - **Class**: \`FlintSelect\`
-- **Form Associated**: Yes
 
 #### Properties
 
@@ -40,7 +39,7 @@ A select component for choosing one or multiple options from a list.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | — | Dispatched when the selection changes. detail: { value: string \\| null } (single) or { value: string[] } (multiple) |
+| \`flint-select-change\` | — | Dispatched when the selection changes. detail: { value: string \\| null } (single) or { value: string[] } (multiple) |
 
 #### Slots
 
@@ -376,7 +375,7 @@ export const Controlled: Story = {
       </p>
       <div
         id="controlled-root"
-        @change=${(e: CustomEvent) => {
+        @flint-select-change=${(e: CustomEvent) => {
           const root = (e.currentTarget as HTMLElement);
           root.querySelector<HTMLElement>('#selected-display')!.textContent =
             `Selected: ${e.detail.value ?? '(none)'}`;
@@ -400,7 +399,7 @@ export const ControlledMulti: Story = {
     <div style="max-width: 400px; padding: 20px;">
       <div
         id="controlled-multi-root"
-        @change=${(e: CustomEvent) => {
+        @flint-select-change=${(e: CustomEvent) => {
           const root = (e.currentTarget as HTMLElement);
           const vals: string[] = e.detail.value ?? [];
           root.querySelector<HTMLElement>('#multi-display')!.textContent =

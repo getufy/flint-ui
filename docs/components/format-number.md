@@ -30,7 +30,7 @@ import { FlintFormatNumber } from 'flint-ui';
 | `currencyDisplay` | `currency-display` | `'symbol' \| 'narrowSymbol' \| 'code' \| 'name'` | `'symbol'` | How to display the currency. |
 | `notation` | `notation` | `'standard' \| 'scientific' \| 'engineering' \| 'compact'` | `'standard'` | Number notation style. 'compact' renders e.g. "1.2K" or "3.4M". |
 | `compactDisplay` | `compact-display` | `'short' \| 'long'` | `'short'` | How to display compact notation — 'short' (1K) or 'long' (1 thousand). |
-| `signDisplay` | `sign-display` | `'auto' \| 'never' \| 'always' \| 'exceptZero'` | `'auto'` | Controls when the positive/negative sign is displayed. |
+| `signDisplay` | `sign-display` | `'auto' \| 'never' \| 'always' \| 'exceptZero'` | `'auto'` |  |
 | `unit` | `unit` | `string` | `''` | ECMA-402 unit identifier (e.g. 'kilometer', 'kilogram', 'celsius'). Required when type='unit'. |
 | `unitDisplay` | `unit-display` | `'short' \| 'long' \| 'narrow'` | `'short'` | How to display the unit when type='unit'. |
 | `minimumIntegerDigits` | `minimum-integer-digits` | `number \| undefined` | `undefined` | The minimum number of integer digits (1–21). |
@@ -55,6 +55,6 @@ import { FlintFormatNumber } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `formattedValue(): string` | Returns the most recently formatted string value. |
+| `formattedValue(): string` |  |
 
 ---
