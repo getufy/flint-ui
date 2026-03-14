@@ -57,11 +57,17 @@ export default defineConfig({
                 browser: {
                     enabled: true,
                     headless: true,
+                    connectTimeout: 120_000,
                     provider: playwright(),
                     instances: [{
                         browser: 'chromium',
                         launch: {
-                            args: ['--no-sandbox', '--disable-setuid-sandbox'],
+                            args: [
+                                '--no-sandbox',
+                                '--disable-setuid-sandbox',
+                                '--disable-gpu',
+                                '--disable-dev-shm-usage',
+                            ],
                         },
                     }]
                 },

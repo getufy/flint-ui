@@ -110,6 +110,7 @@ jobs:
         if: steps.pw-cache.outputs.cache-hit == 'true'
         run: npx playwright install-deps chromium
       - name: Run Storybook browser tests
+        timeout-minutes: 10
         run: |
           cd packages/core
           npx vitest run --project storybook 2>&1 | tee test-output.log
