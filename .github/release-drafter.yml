@@ -1,0 +1,64 @@
+name-template: "v$RESOLVED_VERSION"
+tag-template: "v$RESOLVED_VERSION"
+template: |
+  ## What's Changed
+
+  $CHANGES
+
+  **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
+
+categories:
+  - title: "🚀 New Components"
+    labels:
+      - "new component"
+  - title: "✨ Enhancements"
+    labels:
+      - "enhancement"
+  - title: "🐛 Bug Fixes"
+    labels:
+      - "bug"
+  - title: "📖 Documentation"
+    labels:
+      - "docs"
+  - title: "🏗️ Infrastructure"
+    labels:
+      - "ci"
+      - "scripts"
+  - title: "📦 Dependencies"
+    labels:
+      - "dependencies"
+
+change-template: "- $TITLE (#$NUMBER) @$AUTHOR"
+change-title-escapes: '\<*_&'
+no-changes-template: "No changes since last release."
+
+version-resolver:
+  major:
+    labels:
+      - "breaking"
+  minor:
+    labels:
+      - "new component"
+      - "enhancement"
+  patch:
+    labels:
+      - "bug"
+      - "dependencies"
+  default: patch
+
+autolabeler:
+  - label: "new component"
+    branch:
+      - '/^feat\/new-/'
+  - label: "bug"
+    branch:
+      - '/^fix\//'
+  - label: "enhancement"
+    branch:
+      - '/^feat\//'
+  - label: "docs"
+    branch:
+      - '/^docs\//'
+
+exclude-labels:
+  - "skip-changelog"

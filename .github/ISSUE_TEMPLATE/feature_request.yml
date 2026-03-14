@@ -1,0 +1,66 @@
+name: Feature Request
+description: Suggest a new feature or enhancement
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      description: What kind of feature is this?
+      options:
+        - New component
+        - Enhancement to existing component
+        - New prop / API
+        - Accessibility improvement
+        - Theming / styling
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: component
+    attributes:
+      label: Component
+      description: Which component does this relate to? (leave blank for new components)
+      placeholder: e.g. flint-button
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the feature you'd like.
+      placeholder: A clear description of what you want to happen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use case
+      description: Why do you need this? What problem does it solve?
+      placeholder: I'm trying to build ... and I need ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-api
+    attributes:
+      label: Proposed API
+      description: If you have ideas on what the API could look like, share them here.
+      placeholder: |
+        ```html
+        <flint-button loading>Submit</flint-button>
+        ```
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Any workarounds or alternative approaches you've tried.
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Screenshots, mockups, links to similar implementations, etc.

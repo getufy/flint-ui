@@ -1,5 +1,9 @@
 # Flint UI Component Library
 
+[![CI](https://github.com/getufy/flint-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/getufy/flint-ui/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/@getufy/flint-ui)](https://www.npmjs.com/package/@getufy/flint-ui)
+[![license](https://img.shields.io/npm/l/@getufy/flint-ui)](https://github.com/getufy/flint-ui/blob/main/LICENSE)
+
 A comprehensive library of 70+ UI components built with [LitElement](https://lit.dev/) and [TypeScript](https://www.typescriptlang.org/), showcased with [Storybook](https://storybook.js.org/).
 
 ## Installation
@@ -114,4 +118,4 @@ docs/                            # VitePress documentation site
 
 ## License
 
-ISC
+[MIT](LICENSE)

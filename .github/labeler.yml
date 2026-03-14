@@ -1,0 +1,36 @@
+# Labels based on changed file paths
+# Used by actions/labeler
+
+"pkg: core":
+  - changed-files:
+      - any-glob-to-any-file: "packages/core/**"
+
+"pkg: react":
+  - changed-files:
+      - any-glob-to-any-file: "packages/react/**"
+
+"docs":
+  - changed-files:
+      - any-glob-to-any-file: "docs/**"
+
+"ci":
+  - changed-files:
+      - any-glob-to-any-file: ".github/**"
+
+"scripts":
+  - changed-files:
+      - any-glob-to-any-file: "scripts/**"
+
+"dependencies":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "package-lock.json"
+          - "**/package.json"
+
+"tests":
+  - changed-files:
+      - any-glob-to-any-file: "packages/core/src/**/*.test.ts"
+
+"stories":
+  - changed-files:
+      - any-glob-to-any-file: "packages/core/src/**/*.stories.ts"
