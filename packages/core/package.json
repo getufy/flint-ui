@@ -430,7 +430,7 @@
     "src/theme-dark.css"
   ],
   "dependencies": {
-    "lit": "^3.3.2"
+    "lit": "^3.0.0"
   },
   "peerDependencies": {
     "lit": "^3.0.0"
@@ -442,6 +442,7 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.0.1",
+    "@eslint/js": "^10.0.1",
     "@open-wc/testing": "^4.0.0",
     "@storybook/addon-a11y": "^10.2.19",
     "@storybook/addon-docs": "^10.2.19",
@@ -454,7 +455,7 @@
     "@types/node": "^25.5.0",
     "@vitest/browser-playwright": "^4.1.0",
     "@vitest/coverage-v8": "^4.1.0",
-    "eslint": "^9.39.4",
+    "eslint": "^10.0.3",
     "eslint-plugin-lit": "^2.2.1",
     "eslint-plugin-wc": "^3.1.0",
     "jsdom": "^27.0.1",

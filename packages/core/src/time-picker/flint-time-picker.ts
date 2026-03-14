@@ -526,7 +526,7 @@ export class FlintTimeClock extends LitElement {
 
     private _onClockKeyDown(e: KeyboardEvent) {
         const t = this._t;
-        let delta = 0;
+        let delta: number;
         if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { e.preventDefault(); delta = 1; }
         else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { e.preventDefault(); delta = -1; }
         else if (e.key === 'Enter' || e.key === ' ') {
@@ -592,7 +592,7 @@ export class FlintTimeClock extends LitElement {
         // FIX 2: Correct hand angle for 24h dual-ring mode.
         // Inner ring hours (0 and 13-23) must map to the same angular positions as 0 and 1-11.
         // Outer ring hours (1-12) map to positions 1-12 on the outer ring.
-        let handAngle = 0, handLen = 100;
+        let handAngle: number, handLen: number;
         if (this.view === 'hours') {
             let hPos: number;
             if (this.ampm) {

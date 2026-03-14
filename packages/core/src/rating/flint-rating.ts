@@ -95,7 +95,7 @@ export class FlintRating extends LitElement {
     private _handleKeydown(e: KeyboardEvent, starIndex: number) {
         if (!this._isInteractive()) return;
         const step = this.precision === 0.5 ? 0.5 : 1;
-        let next = this.value;
+        let next: number;
 
         switch (e.key) {
             case 'ArrowRight':

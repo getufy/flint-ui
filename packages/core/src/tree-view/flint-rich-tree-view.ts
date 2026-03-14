@@ -662,7 +662,7 @@ export class FlintRichTreeView extends LitElement {
 
         let children: RichTreeItem[] = [];
         let isLoading = false;
-        let knownHasChildren = false;
+        let knownHasChildren: boolean;
 
         if (this.dataSource) {
             if (this._lazyChildren.has(id)) {
@@ -894,8 +894,8 @@ export class FlintRichTreeView extends LitElement {
         sourceList.splice(fromResult.index, 1);
 
         // Calculate new position
-        let newParentId: string | null = null;
-        let newIndex = 0;
+        let newParentId: string | null;
+        let newIndex: number;
 
         if (position === 'inside') {
             const targetItem = toResult.item;
