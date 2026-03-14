@@ -57,9 +57,16 @@ export default defineConfig({
                 browser: {
                     enabled: true,
                     headless: true,
-                    provider: playwright({}),
+                    provider: playwright({
+                        connectOptions: {
+                            timeout: 60_000,
+                        },
+                    }),
                     instances: [{
-                        browser: 'chromium'
+                        browser: 'chromium',
+                        launch: {
+                            args: ['--no-sandbox', '--disable-setuid-sandbox'],
+                        },
                     }]
                 },
                 setupFiles: ['.storybook/vitest.setup.ts']
