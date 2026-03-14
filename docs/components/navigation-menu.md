@@ -245,7 +245,7 @@ import { FlintNavigationMenu } from 'flint-ui';
 | Method | Description |
 | --- | --- |
 | `openContentId(): unknown` | Get the currently open content item ID |
-| `openContent(contentId: string)` | Manually open a content item by ID |
+| `openContent(contentId: string)` | Manually open a content item by ID. No-ops silently if the ID doesn't match any content element. |
 | `closeAll()` | Close all open content |
 
 ---

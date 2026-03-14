@@ -112,3 +112,11 @@
       border-width: 5px 5px 5px 0;
       border-color: transparent var(--flint-tooltip-bg) transparent transparent;
     }
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

@@ -178,3 +178,11 @@
 
 .edge-handle { width:4px; height:32px; background:var(--flint-border-color); border-radius:2px; }
 .edge-top .edge-handle, .edge-bottom .edge-handle { width:32px; height:4px; }
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

@@ -7,3 +7,11 @@
         .line.completed { background: var(--flint-primary-color); }
         :host([orientation="horizontal"]) .line { height: 2px; width: 100%; }
         :host([orientation="vertical"])   .line { width: 2px; min-height: 24px; margin: 0 auto; }
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
