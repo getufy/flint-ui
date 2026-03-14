@@ -41,8 +41,3 @@ import { FlintStack } from 'flint-ui';
 | `--flint-stack-spacing` | `0px` |
 
 ---
-
-## Accessibility
-
-- **ARIA**: layout container, no ARIA roles.
-- **Screen reader**: content in reading order.

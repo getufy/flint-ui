@@ -51,9 +51,3 @@ import { FlintSplitPanel } from 'flint-ui';
 | `host([vertical])` |  |
 
 ---
-
-## Accessibility
-
-- **Keyboard**: Arrow keys move divider, Home/End for min/max.
-- **ARIA**: divider has `role="separator"` with `aria-valuenow`.
-- **Screen reader**: announces panel split percentage.

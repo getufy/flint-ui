@@ -13,11 +13,186 @@ type Story = StoryObj;
 const meta: Meta = {
     title: 'Navigation/Navigation Menu',
     component: 'flint-navigation-menu',
-    tags: ['autodocs'],
     parameters: {
         docs: {
             description: {
-                component: 'A comprehensive navigation menu component with support for nested menus, keyboard navigation, and accessibility features.',
+                component: `
+#### \`<flint-navigation-menu-content>\`
+
+- **Tag**: \`<flint-navigation-menu-content>\`
+- **Class**: \`FlintNavigationMenuContent\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`id\` | \`id\` | \`string\` | \`''\` |
+| \`open\` | \`open\` | \`boolean\` | \`false\` |
+| \`dir\` | \`dir\` | \`'ltr' \\| 'rtl'\` | \`'ltr'\` |
+| \`gap\` | \`gap\` | \`number\` | \`12\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-navigation-menu-content-toggle\` | \`{ contentId: this.id, open: false }\` |  |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`host([open])\` |  |
+| \`media(prefers-reduced-motion: reduce)\` |  |
+| \`slotted(*)\` |  |
+
+---
+
+#### \`<flint-navigation-menu-item>\`
+
+- **Tag**: \`<flint-navigation-menu-item>\`
+- **Class**: \`FlintNavigationMenuItem\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`itemId\` | \`item-id\` | \`string\` | \`''\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`openDelay\` | \`open-delay\` | \`number\` | \`100\` |
+| \`closeDelay\` | \`close-delay\` | \`number\` | \`150\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-navigation-menu-trigger-click\` | \`{ contentId, open: true }\` |  |
+| \`flint-navigation-menu-content-toggle\` | \`{ contentId, open: false }\` |  |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+| \`default\` | Item content (NavigationMenuTrigger and NavigationMenuContent) |
+
+---
+
+#### \`<flint-navigation-menu-link>\`
+
+- **Tag**: \`<flint-navigation-menu-link>\`
+- **Class**: \`FlintNavigationMenuLink\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`href\` | \`href\` | \`string\` | \`''\` |
+| \`target\` | \`target\` | \`string\` | \`''\` |
+| \`title\` | \`title\` | \`string\` | \`''\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`active\` | \`active\` | \`boolean\` | \`false\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`focus(options?: FocusOptions)\` | Delegate focus to the inner anchor element |
+
+---
+
+#### \`<flint-navigation-menu-list>\`
+
+- **Tag**: \`<flint-navigation-menu-list>\`
+- **Class**: \`FlintNavigationMenuList\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`gap\` | \`gap\` | \`number\` | \`4\` |
+| \`direction\` | \`direction\` | \`'row' \\| 'column'\` | \`'row'\` |
+| \`ariaLabel\` | \`aria-label\` | \`string\` | \`'Main navigation'\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+| \`default\` | Menu items (NavigationMenuItem elements) |
+
+---
+
+#### \`<flint-navigation-menu-trigger>\`
+
+- **Tag**: \`<flint-navigation-menu-trigger>\`
+- **Class**: \`FlintNavigationMenuTrigger\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`contentId\` | \`content-id\` | \`string\` | \`''\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-navigation-menu-trigger-click\` | — | Fired when trigger is clicked |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+| \`default\` | Trigger label/content |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`not(:disabled)\` |  |
+
+---
+
+#### \`<flint-navigation-menu>\`
+
+- **Tag**: \`<flint-navigation-menu>\`
+- **Class**: \`FlintNavigationMenu\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`dir\` | \`dir\` | \`'ltr' \\| 'rtl'\` | \`'ltr'\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+| \`default\` | The menu content (NavigationMenuList) |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`openContentId()\` |  |
+| \`openContent(contentId: string)\` | Manually open a content item by ID |
+| \`closeAll()\` | Close all open content |
+                `,
             },
         },
     },

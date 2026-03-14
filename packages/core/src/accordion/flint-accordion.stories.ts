@@ -8,6 +8,105 @@ import '../button/flint-button';
 const meta: Meta = {
     title: 'Surfaces/Accordion',
     component: 'flint-accordion',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+#### \`<flint-accordion>\`
+
+Accordion: the wrapper for grouping related components.
+
+- **Tag**: \`<flint-accordion>\`
+- **Class**: \`FlintAccordion\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`expanded\` | \`expanded\` | \`boolean\` | \`false\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-accordion-change\` | \`{ expanded: this.expanded }\` |  |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-border-color\` | — |
+| \`--flint-font-family\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-primary-color\` | — |
+| \`--flint-hover-color\` | — |
+| \`--flint-text-color-muted\` | — |
+| \`--flint-surface-1\` | — |
+| \`--flint-border-radius-md\` | — |
+| \`--flint-shadow-md\` | — |
+
+---
+
+#### \`<flint-accordion-summary>\`
+
+Accordion Summary: the wrapper for the Accordion header.
+
+- **Tag**: \`<flint-accordion-summary>\`
+- **Class**: \`FlintAccordionSummary\`
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-accordion-toggle\` | — |  |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+| \`expandIcon\` |  |
+
+---
+
+#### \`<flint-accordion-details>\`
+
+Accordion Details: the wrapper for the Accordion content.
+
+- **Tag**: \`<flint-accordion-details>\`
+- **Class**: \`FlintAccordionDetails\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+---
+
+#### \`<flint-accordion-actions>\`
+
+Accordion Actions: an optional wrapper that groups a set of buttons.
+
+- **Tag**: \`<flint-accordion-actions>\`
+- **Class**: \`FlintAccordionActions\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+                `,
+            },
+        },
+    },
     argTypes: {
         expanded: { control: 'boolean' },
         disabled: { control: 'boolean' },

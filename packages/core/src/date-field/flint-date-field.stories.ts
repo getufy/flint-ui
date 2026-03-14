@@ -9,6 +9,65 @@ import type { FlintDateField } from './flint-date-field.js';
 const meta: Meta = {
     title: 'Date & Time/Date Field',
     component: 'flint-date-field',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+— move between segments - **Backspace / Delete** — clear the current segment - **Escape / a** — clear all segments
+
+- **Tag**: \`<flint-date-field>\`
+- **Class**: \`FlintDateField\`
+- **Form Associated**: Yes
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` |
+| \`label\` | \`label\` | \`string\` | \`''\` |
+| \`name\` | \`name\` | \`string\` | \`''\` |
+| \`min\` | \`min\` | \`string\` | \`''\` |
+| \`max\` | \`max\` | \`string\` | \`''\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`readonly\` | \`readonly\` | \`boolean\` | \`false\` |
+| \`error\` | \`error\` | \`boolean\` | \`false\` |
+| \`helperText\` | \`helper-text\` | \`string\` | \`''\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`change\` | — | { detail: { value: string } } ISO date when all three segments are filled |
+| \`clear\` | — | Fired when all segments are cleared |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-font-family\` | — |
+| \`--flint-text-color-muted\` | — |
+| \`--flint-error-color\` | — |
+| \`--flint-primary-color\` | — |
+| \`--flint-input-bg\` | — |
+| \`--flint-border-color\` | — |
+| \`--flint-border-radius-md\` | — |
+| \`--flint-primary-focus-ring\` | — |
+| \`--flint-error-focus-ring\` | — |
+| \`--flint-input-disabled-bg\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-input-placeholder-color\` | — |
+| \`--flint-text-color-on-primary\` | — |
+| \`--flint-hover-color\` | — |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`clear()\` | Clears all three segments and fires 'clear'. |
+                `,
+            },
+        },
+    },
     argTypes: {
         value: { control: 'text', description: 'Controlled date value (YYYY-MM-DD).' },
         label: { control: 'text' },

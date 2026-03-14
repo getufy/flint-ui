@@ -371,8 +371,3 @@ import { FlintTableFooter } from 'flint-ui';
 | `(default)` | Default slot for content |
 
 ---
-
-## Accessibility
-
-- **ARIA**: uses native `<table>` semantics in shadow DOM.
-- **Screen reader**: announces row/column headers and cell content.

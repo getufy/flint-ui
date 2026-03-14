@@ -9,46 +9,200 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
-A versatile flex-row container for displaying content with media, title, description, and actions.
+#### \`<flint-item-title>\`
 
-### Components
-- **\`flint-item\`** — Root. Flex-row container with \`variant\` and \`size\` props.
-- **\`flint-item-group\`** — Flex-column wrapper for grouping items with consistent spacing.
-- **\`flint-item-separator\`** — Horizontal rule for use inside \`flint-item-group\`.
-- **\`flint-item-media\`** — Media area (icon, avatar, image). Use \`variant="icon"\` or \`variant="image"\`.
-- **\`flint-item-content\`** — Flex-column wrapper for title and description (grows to fill).
-- **\`flint-item-title\`** — Item heading text.
-- **\`flint-item-description\`** — Supporting descriptive text.
-- **\`flint-item-actions\`** — Trailing action buttons or icons.
-- **\`flint-item-header\`** — Full-bleed top section (always first child).
-- **\`flint-item-footer\`** — Full-bleed bottom section (always last child).
+Displays the title of an item.
 
-### Basic usage
-\`\`\`html
-<flint-item variant="outline">
-  <flint-item-media variant="icon">
-    <svg>...</svg>
-  </flint-item-media>
-  <flint-item-content>
-    <flint-item-title>Title</flint-item-title>
-    <flint-item-description>Description</flint-item-description>
-  </flint-item-content>
-  <flint-item-actions>
-    <button>Action</button>
-  </flint-item-actions>
-</flint-item>
-\`\`\`
+- **Tag**: \`<flint-item-title>\`
+- **Class**: \`FlintItemTitle\`
 
-### CSS Custom Properties
-| Property | Default | Description |
-|---|---|---|
-| \`--flint-item-padding\` | \`16px\` | Internal padding (auto-adjusted per size) |
-| \`--flint-item-gap\` | \`12px\` | Gap between flex children |
-| \`--flint-item-media-icon-bg\` | \`#f3f4f6\` | Icon variant background |
-| \`--flint-item-media-icon-color\` | \`#6b7280\` | Icon variant foreground |
-| \`--flint-border-color\` | \`#e5e7eb\` | Outline border + separator color |
-| \`--flint-muted-bg\` | \`#f9fafb\` | Muted variant background |
-| \`--flint-item-group-gap\` | \`4px\` | Gap between items in a group |
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Title text. |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-text-color-muted\` | — |
+| \`--flint-font-family\` | — |
+| \`--flint-border-color\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-muted-bg\` | \`var(--flint-muted-background\` |
+
+---
+
+#### \`<flint-item-description>\`
+
+Displays the description of an item.
+
+- **Tag**: \`<flint-item-description>\`
+- **Class**: \`FlintItemDescription\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Description text. |
+
+---
+
+#### \`<flint-item-media>\`
+
+Media container for an item (icon, avatar, or image).
+
+- **Tag**: \`<flint-item-media>\`
+- **Class**: \`FlintItemMedia\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`variant\` | \`variant\` | \`'default' \\| 'icon' \\| 'image'\` | \`'default'\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Media content: SVG icon, avatar element, or image. |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-item-media-icon-bg\` | \`var(--flint-surface-2\` |
+| \`--flint-item-media-icon-color\` | \`var(--flint-text-color-muted\` |
+
+---
+
+#### \`<flint-item-content>\`
+
+Flex-column wrapper for an item's title and description.
+
+- **Tag**: \`<flint-item-content>\`
+- **Class**: \`FlintItemContent\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Accepts \`flint-item-title\`, \`flint-item-description\`, or any content. |
+
+---
+
+#### \`<flint-item-actions>\`
+
+Container for action buttons or other interactive elements. Aligns itself to the trailing edge of the item row.
+
+- **Tag**: \`<flint-item-actions>\`
+- **Class**: \`FlintItemActions\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Buttons, icons, or any interactive elements. |
+
+---
+
+#### \`<flint-item-header>\`
+
+Full-bleed header that spans the top of the item, cancelling the item's padding so media (images) appear flush with the border. Always place as the first child of \`flint-item\`.
+
+- **Tag**: \`<flint-item-header>\`
+- **Class**: \`FlintItemHeader\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Header content, typically an image or decorative element. |
+
+---
+
+#### \`<flint-item-footer>\`
+
+Full-bleed footer that spans the bottom of the item, cancelling the item's padding so the footer appears flush with the border. Always place as the last child of \`flint-item\`.
+
+- **Tag**: \`<flint-item-footer>\`
+- **Class**: \`FlintItemFooter\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Footer content: metadata, links, supplementary actions. |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-item-footer-bg\` | \`transparent\` |
+
+---
+
+#### \`<flint-item-separator>\`
+
+Visual separator between items in a group.
+
+- **Tag**: \`<flint-item-separator>\`
+- **Class**: \`FlintItemSeparator\`
+
+---
+
+#### \`<flint-item-group>\`
+
+Container for grouping related items together.
+
+- **Tag**: \`<flint-item-group>\`
+- **Class**: \`FlintItemGroup\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Accepts \`flint-item\`, \`flint-item-separator\`, and any other elements. |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-item-group-gap\` | \`4px\` |
+
+---
+
+#### \`<flint-item>\`
+
+Root container for displaying content with media, title, description, and actions. A versatile flex row that adapts to icons, avatars, images, and action buttons.
+
+- **Tag**: \`<flint-item>\`
+- **Class**: \`FlintItem\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`variant\` | \`variant\` | \`'default' \\| 'outline' \\| 'muted'\` | \`'default'\` |
+| \`size\` | \`size\` | \`'default' \\| 'sm' \\| 'xs'\` | \`'default'\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Accepts \`flint-item-header\`, \`flint-item-media\`, \`flint-item-content\`, |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-item-padding\` | \`16px\` |
+| \`--flint-item-footer-bg\` | \`transparent\` |
+| \`--flint-item-group-gap\` | \`4px\` |
+| \`--flint-item-media-icon-bg\` | \`var(--flint-surface-2\` |
+| \`--flint-item-media-icon-color\` | \`var(--flint-text-color-muted\` |
+| \`--flint-item-gap\` | — |
                 `,
             },
         },

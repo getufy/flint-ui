@@ -5,6 +5,49 @@ import './flint-badge';
 const meta: Meta = {
     title: 'Data Display/Badge',
     component: 'flint-badge',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+A badge component that generates a small badge at the top-right of its children.
+
+- **Tag**: \`<flint-badge>\`
+- **Class**: \`FlintBadge\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`content\` | \`content\` | \`string\` | \`''\` |
+| \`dot\` | \`dot\` | \`boolean\` | \`false\` |
+| \`invisible\` | \`invisible\` | \`boolean\` | \`false\` |
+| \`variant\` | \`variant\` | \`'primary' \\| 'secondary' \\| 'error' \\| 'success' \\| 'warning'\` | \`'primary'\` |
+| \`max\` | \`max\` | \`number\` | \`99\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | The content to which the badge is attached. |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-badge-background\` | \`var(--flint-primary-color\` |
+| \`--flint-badge-color\` | \`var(--flint-text-color-on-primary\` |
+| \`--flint-font-family\` | — |
+| \`--flint-surface-1\` | — |
+| \`--flint-primary-color\` | — |
+| \`--flint-secondary-color\` | — |
+| \`--flint-error-color\` | — |
+| \`--flint-text-color-on-primary\` | — |
+| \`--flint-success-color\` | — |
+| \`--flint-warning-color\` | — |
+                `,
+            },
+        },
+    },
     argTypes: {
         content: { control: 'text' },
         dot: { control: 'boolean' },

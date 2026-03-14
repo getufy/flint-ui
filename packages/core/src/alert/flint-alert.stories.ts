@@ -8,7 +8,57 @@ const meta: Meta = {
     parameters: {
         docs: {
             description: {
-                component: 'Alerts display brief messages for the user without interrupting their use of the app.',
+                component: `
+Alerts display brief messages for the user without interrupting their use of the app.
+
+- **Tag**: \`<flint-alert>\`
+- **Class**: \`FlintAlert\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`severity\` | \`severity\` | \`'info' \\| 'success' \\| 'warning' \\| 'error'\` | \`'info'\` |
+| \`title\` | \`title\` | \`string\` | \`''\` |
+| \`dismissible\` | \`dismissible\` | \`boolean\` | \`false\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-alert-close\` | \`{ severity: this.severity }\` |  |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | The message content of the alert. |
+| \`icon\` | Optional icon to display instead of the default severity icon. |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-font-family\` | — |
+| \`--flint-border-radius-md\` | — |
+| \`--flint-info-bg\` | — |
+| \`--flint-info-border-color\` | — |
+| \`--flint-info-text-color\` | — |
+| \`--flint-info-icon-color\` | — |
+| \`--flint-success-bg\` | — |
+| \`--flint-success-border-color\` | — |
+| \`--flint-success-text-color\` | — |
+| \`--flint-success-icon-color\` | — |
+| \`--flint-warning-bg\` | — |
+| \`--flint-warning-border-color\` | — |
+| \`--flint-warning-text-color\` | — |
+| \`--flint-warning-icon-color\` | — |
+| \`--flint-error-bg\` | — |
+| \`--flint-error-border-color\` | — |
+| \`--flint-error-text-color\` | — |
+| \`--flint-error-icon-color\` | — |
+| \`--flint-active-color\` | — |
+                `,
             },
         },
     },

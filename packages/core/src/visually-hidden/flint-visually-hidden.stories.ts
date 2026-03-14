@@ -9,36 +9,20 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
-A utility component that hides content visually while keeping it accessible to assistive devices such as screen readers.
+- **Tag**: \`<flint-visually-hidden>\`
+- **Class**: \`FlintVisuallyHidden\`
 
-### When to use
-- **Skip links** — Let keyboard users jump past repeated navigation to the main content.
-- **New-tab / new-window warnings** — Silently announce "opens in a new tab" without cluttering the visible UI.
-- **Context labels** — Provide extra context for icons or abbreviated text that is obvious visually but ambiguous to screen readers.
-- **Breadcrumb separators** — Hide decorative separator characters (e.g. \`/\`) and replace with meaningful SR text.
-- **Status indicators** — Annotate dynamic states such as "currently selected" or "loading".
+#### Properties
 
-### Behaviour
-Content is clipped to a 1×1 px area and removed from the visual flow.
-When a focusable element inside (e.g. a skip link) receives keyboard focus, the host reverts to
-normal layout so sighted keyboard users can see the focus indicator.
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`notFocusable\` | \`not-focusable\` | \`boolean\` | \`false\` |
 
-To prevent the reveal entirely — for purely decorative SR annotations that should never appear visually —
-add the \`not-focusable\` attribute.
+#### Slots
 
-### Usage
-\`\`\`html
-<!-- Focus-reveal enabled (default) — for skip links -->
-<flint-visually-hidden>
-  <a href="#main">Skip to main content</a>
-</flint-visually-hidden>
-
-<!-- Focus-reveal disabled — for inline annotations -->
-<a href="/report" target="_blank">
-  Annual Report
-  <flint-visually-hidden not-focusable>opens in a new tab</flint-visually-hidden>
-</a>
-\`\`\`
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
                 `,
             },
         },

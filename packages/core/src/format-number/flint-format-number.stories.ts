@@ -9,45 +9,46 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
-Formats a number using the specified locale and options.
-Localization is handled by the browser's \`Intl.NumberFormat\` API — no language packs required.
+- **Tag**: \`<flint-format-number>\`
+- **Class**: \`FlintFormatNumber\`
 
-### Components
-- **\`flint-format-number\`** — Renders an inline \`<span>\` with a formatted number.
+#### Properties
 
-### Props
-| Prop | Attribute | Values | Default | Description |
-|---|---|---|---|---|
-| \`value\` | \`value\` | number | \`0\` | The number to format |
-| \`type\` | \`type\` | \`'currency'\` \`'decimal'\` \`'percent'\` \`'unit'\` | \`'decimal'\` | Formatting style |
-| \`noGrouping\` | \`no-grouping\` | boolean | \`false\` | Disable grouping separators |
-| \`currency\` | \`currency\` | ISO 4217 string | \`'USD'\` | Currency code (used when type='currency') |
-| \`currencyDisplay\` | \`currency-display\` | \`'symbol'\` \`'narrowSymbol'\` \`'code'\` \`'name'\` | \`'symbol'\` | How to display the currency |
-| \`notation\` | \`notation\` | \`'standard'\` \`'scientific'\` \`'engineering'\` \`'compact'\` | \`'standard'\` | Number notation |
-| \`compactDisplay\` | \`compact-display\` | \`'short'\` \`'long'\` | \`'short'\` | Compact form (used when notation='compact') |
-| \`signDisplay\` | \`sign-display\` | \`'auto'\` \`'never'\` \`'always'\` \`'exceptZero'\` | \`'auto'\` | When to show the sign |
-| \`unit\` | \`unit\` | ECMA-402 unit string | \`''\` | Unit identifier (used when type='unit') |
-| \`unitDisplay\` | \`unit-display\` | \`'short'\` \`'long'\` \`'narrow'\` | \`'short'\` | How to display the unit |
-| \`minimumIntegerDigits\` | \`minimum-integer-digits\` | 1–21 | — | Minimum integer digits |
-| \`minimumFractionDigits\` | \`minimum-fraction-digits\` | 0–20 | — | Minimum fraction digits |
-| \`maximumFractionDigits\` | \`maximum-fraction-digits\` | 0–20 | — | Maximum fraction digits |
-| \`minimumSignificantDigits\` | \`minimum-significant-digits\` | 1–21 | — | Minimum significant digits |
-| \`maximumSignificantDigits\` | \`maximum-significant-digits\` | 1–21 | — | Maximum significant digits |
-| \`lang\` | \`lang\` | BCP 47 string | document locale | Formatting locale |
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`value\` | \`value\` | \`number\` | \`0\` |
+| \`type\` | \`type\` | \`'currency' \\| 'decimal' \\| 'percent' \\| 'unit'\` | \`'decimal'\` |
+| \`noGrouping\` | \`no-grouping\` | \`boolean\` | \`false\` |
+| \`currency\` | \`currency\` | \`string\` | \`'USD'\` |
+| \`currencyDisplay\` | \`currency-display\` | \`'symbol' \\| 'narrowSymbol' \\| 'code' \\| 'name'\` | \`'symbol'\` |
+| \`notation\` | \`notation\` | \`'standard' \\| 'scientific' \\| 'engineering' \\| 'compact'\` | \`'standard'\` |
+| \`compactDisplay\` | \`compact-display\` | \`'short' \\| 'long'\` | \`'short'\` |
+| \`signDisplay\` | \`sign-display\` | \`'auto' \\| 'never' \\| 'always' \\| 'exceptZero'\` | \`'auto'\` |
+| \`unit\` | \`unit\` | \`string\` | \`''\` |
+| \`unitDisplay\` | \`unit-display\` | \`'short' \\| 'long' \\| 'narrow'\` | \`'short'\` |
+| \`minimumIntegerDigits\` | \`minimum-integer-digits\` | \`number \\| undefined\` | \`undefined\` |
+| \`minimumFractionDigits\` | \`minimum-fraction-digits\` | \`number \\| undefined\` | \`undefined\` |
+| \`maximumFractionDigits\` | \`maximum-fraction-digits\` | \`number \\| undefined\` | \`undefined\` |
+| \`minimumSignificantDigits\` | \`minimum-significant-digits\` | \`number \\| undefined\` | \`undefined\` |
+| \`maximumSignificantDigits\` | \`maximum-significant-digits\` | \`number \\| undefined\` | \`undefined\` |
+| \`lang\` | \`lang\` | \`string\` | \`''\` |
 
-### CSS Custom Properties
-| Property | Default | Description |
-|---|---|---|
-| \`--flint-format-number-color\` | \`inherit\` | Text color |
-| \`--flint-format-number-font-size\` | \`inherit\` | Font size |
-| \`--flint-format-number-font-weight\` | \`inherit\` | Font weight |
-| \`--flint-format-number-font-family\` | \`inherit\` | Font family |
-| \`--flint-format-number-positive-color\` | \`inherit\` | Color applied when value > 0 |
-| \`--flint-format-number-negative-color\` | \`inherit\` | Color applied when value < 0 |
+#### CSS Custom Properties
 
-### data-sign attribute
-The inner \`<span>\` receives a \`data-sign\` attribute (\`"positive"\`, \`"negative"\`, or \`"zero"\`) that
-you can target via CSS selectors or read from JS for additional styling logic.
+| Property | Default |
+|---|---|
+| \`--flint-format-number-color\` | \`inherit\` |
+| \`--flint-format-number-font-size\` | \`inherit\` |
+| \`--flint-format-number-font-weight\` | \`inherit\` |
+| \`--flint-format-number-font-family\` | \`inherit\` |
+| \`--flint-format-number-negative-color\` | \`var(--flint-format-number-color, inherit\` |
+| \`--flint-format-number-positive-color\` | \`var(--flint-format-number-color, inherit\` |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`formattedValue(): string\` |  |
                 `,
             },
         },

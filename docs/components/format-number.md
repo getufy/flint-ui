@@ -58,8 +58,3 @@ import { FlintFormatNumber } from 'flint-ui';
 | `formattedValue(): string` |  |
 
 ---
-
-## Accessibility
-
-- **ARIA**: plain text output.
-- **Screen reader**: announces formatted number.

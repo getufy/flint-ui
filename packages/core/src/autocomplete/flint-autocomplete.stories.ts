@@ -6,6 +6,51 @@ import type { AutocompleteOption } from './flint-autocomplete';
 const meta: Meta = {
     title: 'Inputs/Autocomplete',
     component: 'flint-autocomplete',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+- **Tag**: \`<flint-autocomplete>\`
+- **Class**: \`FlintAutocomplete\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`options\` | \`options\` | \`AutocompleteOption[]\` | \`[]\` |
+| \`freeSolo\` | \`free-solo\` | \`boolean\` | \`false\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`value\` | \`value\` | \`string\` | \`''\` |
+| \`placeholder\` | \`placeholder\` | \`string\` | \`''\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`change\` | \`{ value: this.value, label: this.value }\` |  |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-autocomplete-dropdown-max-height\` | \`250px\` |
+| \`--flint-autocomplete-z-index\` | \`10\` |
+| \`--flint-autocomplete-option-padding\` | \`10px 12px\` |
+| \`--flint-font-family\` | — |
+| \`--flint-input-border-color\` | — |
+| \`--flint-input-border-radius\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-input-bg\` | — |
+| \`--flint-primary-color\` | — |
+| \`--flint-input-disabled-bg\` | — |
+| \`--flint-text-color-subtle\` | — |
+| \`--flint-surface-1\` | — |
+| \`--flint-hover-color\` | — |
+| \`--flint-text-color-muted\` | — |
+                `,
+            },
+        },
+    },
     argTypes: {
         freeSolo: { control: 'boolean', description: 'Allow any typed value, not just predefined options' },
         disabled: { control: 'boolean', description: 'Disable the input' },

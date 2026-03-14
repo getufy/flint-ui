@@ -75,9 +75,3 @@ import { FlintTextarea } from 'flint-ui';
 | `--flint-help-text-color` | — |
 
 ---
-
-## Accessibility
-
-- **Keyboard**: standard multiline text input.
-- **ARIA**: native `<textarea>` in shadow DOM.
-- **Screen reader**: announces label and current value.

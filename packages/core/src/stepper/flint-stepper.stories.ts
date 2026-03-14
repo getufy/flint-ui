@@ -10,6 +10,187 @@ import type { FlintStepper, FlintStep, FlintMobileStepper, FlintStepContent } fr
 const meta: Meta = {
     title: 'Navigation/Stepper',
     component: 'flint-stepper',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+#### \`<flint-step-connector>\`
+
+- **Tag**: \`<flint-step-connector>\`
+- **Class**: \`FlintStepConnector\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` |
+| \`completed\` | \`completed\` | \`boolean\` | \`false\` |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-surface-1\` | — |
+| \`--flint-font-family\` | — |
+| \`--flint-border-color\` | — |
+| \`--flint-text-color-muted\` | — |
+| \`--flint-input-border-color\` | — |
+| \`--flint-primary-color\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-text-color-on-primary\` | — |
+| \`--flint-error-color\` | — |
+| \`--flint-primary-focus-ring\` | — |
+
+---
+
+#### \`<flint-step-label>\`
+
+- **Tag**: \`<flint-step-label>\`
+- **Class**: \`FlintStepLabel\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`active\` | \`active\` | \`boolean\` | \`false\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`error\` | \`error\` | \`boolean\` | \`false\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+| \`optional\` |  |
+
+---
+
+#### \`<flint-step-content>\`
+
+- **Tag**: \`<flint-step-content>\`
+- **Class**: \`FlintStepContent\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`open\` | \`open\` | \`boolean\` | \`true\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+---
+
+#### \`<flint-step>\`
+
+- **Tag**: \`<flint-step>\`
+- **Class**: \`FlintStep\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`active\` | \`active\` | \`boolean\` | \`false\` |
+| \`completed\` | \`completed\` | \`boolean\` | \`false\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`optional\` | \`optional\` | \`boolean\` | \`false\` |
+| \`error\` | \`error\` | \`boolean\` | \`false\` |
+| \`last\` | \`last\` | \`boolean\` | \`false\` |
+| \`clickable\` | \`clickable\` | \`boolean\` | \`false\` |
+| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` |
+| \`alternativeLabel\` | \`alternative-label\` | \`boolean\` | \`false\` |
+| \`stepIndex\` | \`step-index\` | \`number\` | \`0\` |
+| \`optionalLabel\` | \`optional-label\` | \`string\` | \`'Optional'\` |
+| \`prevCompleted\` | \`prev-completed\` | \`boolean\` | \`false\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-step-click\` | \`{ index: this.stepIndex }\` |  |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+| \`icon\` |  |
+| \`label\` |  |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-stepper-connector-color\` | — |
+| \`--flint-stepper-icon-size\` | \`32px\` |
+
+---
+
+#### \`<flint-stepper>\`
+
+- **Tag**: \`<flint-stepper>\`
+- **Class**: \`FlintStepper\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`activeStep\` | \`active-step\` | \`number\` | \`0\` |
+| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` |
+| \`alternativeLabel\` | \`alternative-label\` | \`boolean\` | \`false\` |
+| \`nonLinear\` | \`non-linear\` | \`boolean\` | \`false\` |
+| \`label\` | \`label\` | \`string\` | \`'steps'\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-step-change\` | \`{ step: e.detail.index }\` |  |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-stepper-connector-color\` | — |
+| \`--flint-stepper-icon-size\` | \`32px\` |
+
+---
+
+#### \`<flint-mobile-stepper>\`
+
+- **Tag**: \`<flint-mobile-stepper>\`
+- **Class**: \`FlintMobileStepper\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`steps\` | \`steps\` | \`number\` | \`0\` |
+| \`activeStep\` | \`active-step\` | \`number\` | \`0\` |
+| \`variant\` | \`variant\` | \`'text' \\| 'dots' \\| 'progress'\` | \`'dots'\` |
+| \`position\` | \`position\` | \`'top' \\| 'bottom' \\| 'static'\` | \`'static'\` |
+| \`backLabel\` | \`back-label\` | \`string\` | \`'Back'\` |
+| \`nextLabel\` | \`next-label\` | \`string\` | \`'Next'\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`back-button\` |  |
+| \`next-button\` |  |
+                `,
+            },
+        },
+    },
     argTypes: {
         activeStep: { control: { type: 'number', min: 0, max: 5 } },
         orientation: { control: { type: 'select' }, options: ['horizontal', 'vertical'] },

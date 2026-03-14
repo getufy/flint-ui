@@ -35,6 +35,255 @@ const products = [
 const meta: Meta = {
     title: 'Data Display/Table',
     component: 'flint-table',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+#### \`<flint-table-pagination>\`
+
+- **Tag**: \`<flint-table-pagination>\`
+- **Class**: \`FlintTablePagination\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`count\` | \`count\` | \`number\` | \`0\` |
+| \`page\` | \`page\` | \`number\` | \`0\` |
+| \`rowsPerPage\` | \`rows-per-page\` | \`number\` | \`10\` |
+| \`rowsPerPageOptions\` | \`rows-per-page-options\` | \`number[]\` | \`[5, 10, 25]\` |
+| \`defaultPage\` | \`default-page\` | \`number\` | \`0\` |
+| \`defaultRowsPerPage\` | \`default-rows-per-page\` | \`number\` | \`-1\` |
+| \`showFirstLast\` | \`show-first-last\` | \`boolean\` | \`false\` |
+| \`labelRowsPerPage\` | \`label-rows-per-page\` | \`string\` | \`'Rows per page:'\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`page-change\` | \`{ page: next }\` |  |
+| \`rows-per-page-change\` | \`{ rowsPerPage: val }\` |  |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-font-family\` | — |
+| \`--flint-text-color-muted\` | — |
+| \`--flint-border-color\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-hover-color\` | — |
+
+---
+
+#### \`<flint-table-sort-label>\`
+
+- **Tag**: \`<flint-table-sort-label>\`
+- **Class**: \`FlintTableSortLabel\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`active\` | \`active\` | \`boolean\` | \`false\` |
+| \`direction\` | \`direction\` | \`'asc' \\| 'desc'\` | \`'asc'\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+---
+
+#### \`<flint-table-container>\`
+
+flint-table-container
+
+- **Tag**: \`<flint-table-container>\`
+- **Class**: \`FlintTableContainer\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`shadow\` | \`shadow\` | \`boolean\` | \`false\` |
+| \`stickyHeader\` | \`sticky-header\` | \`boolean\` | \`false\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-table-container-bg\` | \`var(--flint-surface-background, white\` |
+
+---
+
+#### \`<flint-table>\`
+
+flint-table
+
+- **Tag**: \`<flint-table>\`
+- **Class**: \`FlintTable\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`size\` | \`size\` | \`'medium' \\| 'small'\` | \`'medium'\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-table-striped-bg\` | \`var(--flint-surface-2\` |
+| \`--flint-table-cell-padding-y\` | \`16px\` |
+| \`--flint-table-cell-padding-x\` | \`16px\` |
+| \`--flint-table-border-color\` | \`var(--flint-border-color\` |
+| \`--flint-table-header-bg\` | \`transparent\` |
+| \`--flint-table-header-color\` | \`var(--flint-text-color-muted\` |
+| \`--flint-table-container-bg\` | \`var(--flint-surface-background, white\` |
+| \`--flint-table-border-radius\` | \`var(--flint-border-radius-lg, 8px\` |
+| \`--flint-table-shadow\` | \`var(--flint-shadow-sm\` |
+| \`--flint-table-shadow-elevated\` | \`var(--flint-shadow-md\` |
+| \`--flint-table-row-hover-bg\` | \`var(--flint-hover-color, rgba(0, 0, 0, 0.04\` |
+| \`--flint-table-row-selected-bg\` | \`var(--flint-primary-color-light, rgba(59, 130, 246, 0.08\` |
+| \`--flint-table-cell-padding-y-dense\` | \`6px\` |
+| \`--flint-table-cell-padding-x-dense\` | \`16px\` |
+
+---
+
+#### \`<flint-table-head>\`
+
+flint-table-head
+
+- **Tag**: \`<flint-table-head>\`
+- **Class**: \`FlintTableHead\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-table-header-bg\` | \`transparent\` |
+| \`--flint-table-header-color\` | \`var(--flint-text-color-muted\` |
+
+---
+
+#### \`<flint-table-body>\`
+
+flint-table-body
+
+- **Tag**: \`<flint-table-body>\`
+- **Class**: \`FlintTableBody\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`striped\` | \`striped\` | \`boolean\` | \`false\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+---
+
+#### \`<flint-table-row>\`
+
+flint-table-row
+
+- **Tag**: \`<flint-table-row>\`
+- **Class**: \`FlintTableRow\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`selected\` | \`selected\` | \`boolean\` | \`false\` |
+| \`hover\` | \`hover\` | \`boolean\` | \`false\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-table-row-hover-bg\` | \`var(--flint-hover-color, rgba(0, 0, 0, 0.04\` |
+| \`--flint-table-row-selected-bg\` | \`var(--flint-primary-color-light, rgba(59, 130, 246, 0.08\` |
+
+---
+
+#### \`<flint-table-cell>\`
+
+flint-table-cell
+
+- **Tag**: \`<flint-table-cell>\`
+- **Class**: \`FlintTableCell\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`header\` | \`header\` | \`boolean\` | \`false\` |
+| \`align\` | \`align\` | \`'left' \\| 'right' \\| 'center'\` | \`'left'\` |
+| \`padding\` | \`padding\` | \`'normal' \\| 'checkbox' \\| 'none'\` | \`'normal'\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-table-cell-padding-y\` | \`16px\` |
+| \`--flint-table-cell-padding-x\` | \`16px\` |
+| \`--flint-table-cell-padding-y-dense\` | \`6px\` |
+| \`--flint-table-cell-padding-x-dense\` | \`16px\` |
+
+---
+
+#### \`<flint-table-footer>\`
+
+flint-table-footer
+
+- **Tag**: \`<flint-table-footer>\`
+- **Class**: \`FlintTableFooter\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+                `,
+            },
+        },
+    },
 };
 
 export default meta;

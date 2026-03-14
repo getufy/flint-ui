@@ -10,6 +10,54 @@ import '../button/flint-button';
 const meta: Meta = {
   title: 'Inputs/Slider',
   component: 'flint-slider',
+  parameters: {
+      docs: {
+            description: {
+                component: `
+- **Tag**: \`<flint-slider>\`
+- **Class**: \`FlintSlider\`
+- **Form Associated**: Yes
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`value\` | \`value\` | \`number\` | \`50\` |
+| \`defaultValue\` | \`default-value\` | \`number \\| undefined\` | \`undefined\` |
+| \`min\` | \`min\` | \`number\` | \`0\` |
+| \`max\` | \`max\` | \`number\` | \`100\` |
+| \`step\` | \`step\` | \`number\` | \`1\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`label\` | \`label\` | \`string\` | \`''\` |
+| \`showValue\` | \`show-value\` | \`boolean\` | \`false\` |
+| \`vertical\` | \`vertical\` | \`boolean\` | \`false\` |
+| \`size\` | \`size\` | \`Size\` | \`'md'\` |
+| \`name\` | \`name\` | \`string\` | \`''\` |
+| \`formatValue\` | \`format-value\` | \`((v: number)\` | \`> string) \\| undefined = undefined\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-slider-change\` | \`{ value: this.value }\` |  |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-slider-vertical-height\` | \`200px\` |
+| \`--flint-font-family\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-primary-color\` | — |
+| \`--flint-input-border-color\` | — |
+| \`--flint-surface-1\` | — |
+| \`--flint-shadow-sm\` | — |
+| \`--flint-shadow-md\` | — |
+| \`--flint-text-color-muted\` | — |
+                `,
+            },
+        },
+  },
   argTypes: {
     value: { control: { type: 'number' } },
     min: { control: { type: 'number' } },

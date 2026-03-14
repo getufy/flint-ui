@@ -172,9 +172,3 @@ import { FlintSingleInputDateRangeField } from 'flint-ui';
 | `clear()` |  |
 
 ---
-
-## Accessibility
-
-- **Keyboard**: Arrow keys navigate calendar, Enter selects start/end dates.
-- **ARIA**: same as date picker with range selection semantics.
-- **Screen reader**: announces selected range.

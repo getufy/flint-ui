@@ -50,8 +50,3 @@ import { FlintAvatar } from 'flint-ui';
 | `--flint-surface-3` | — |
 
 ---
-
-## Accessibility
-
-- **ARIA**: decorative avatars use `aria-hidden="true"`, meaningful ones accept `alt` text.
-- **Screen reader**: announces alt text when provided.

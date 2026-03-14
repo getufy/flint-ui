@@ -8,6 +8,104 @@ import '../button/flint-button';
 const meta: Meta = {
   title: 'Layout/Image List',
   component: 'flint-image-list',
+  parameters: {
+      docs: {
+            description: {
+                component: `
+#### \`<flint-image-list-item-bar>\`
+
+A title/subtitle bar for \`flint-image-list-item\`.
+
+- **Tag**: \`<flint-image-list-item-bar>\`
+- **Class**: \`FlintImageListItemBar\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`position\` | \`position\` | \`'bottom' \\| 'top' \\| 'below'\` | \`'bottom'\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Title text |
+| \`subtitle\` | Subtitle text |
+| \`action\` | An icon button or secondary action |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-image-bar-overlay-text\` | \`var(--flint-text-color-on-primary\` |
+| \`--flint-font-family\` | — |
+| \`--flint-surface-1\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-border-color\` | — |
+| \`--flint-image-fit\` | \`cover\` |
+
+---
+
+#### \`<flint-image-list-item>\`
+
+A single item inside a \`flint-image-list\`.
+
+- **Tag**: \`<flint-image-list-item>\`
+- **Class**: \`FlintImageListItem\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`rows\` | \`rows\` | \`number\` | \`1\` |
+| \`cols\` | \`cols\` | \`number\` | \`1\` |
+| \`barPosition\` | \`bar-position\` | \`'overlay' \\| 'below'\` | \`'overlay'\` |
+| \`weave\` | \`weave\` | \`'odd' \\| 'even'\` | \`'odd'\` |
+| \`aspectRatio\` | \`aspect-ratio\` | \`string\` | \`'auto'\` |
+| \`fit\` | \`fit\` | \`ImageFit\` | \`'cover'\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Place an \`<img>\` or any content here. |
+| \`bar\` | Place a \`flint-image-list-item-bar\` element here. |
+
+---
+
+#### \`<flint-image-list>\`
+
+A container that displays images in an organized grid layout. Supports standard, quilted, woven, and masonry variants.
+
+- **Tag**: \`<flint-image-list>\`
+- **Class**: \`FlintImageList\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`variant\` | \`variant\` | \`ImageListVariant\` | \`'standard'\` |
+| \`cols\` | \`cols\` | \`number\` | \`3\` |
+| \`gap\` | \`gap\` | \`number\` | \`4\` |
+| \`rowHeight\` | \`row-height\` | \`number\` | \`164\` |
+| \`autoRows\` | \`auto-rows\` | \`boolean\` | \`false\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Place \`flint-image-list-item\` elements here. |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-image-list-gap\` | \`4px\` |
+| \`--flint-image-list-row-height\` | \`164px\` |
+                `,
+            },
+        },
+  },
   argTypes: {
     variant: {
       control: 'select',

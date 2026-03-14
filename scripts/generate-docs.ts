@@ -1788,6 +1788,180 @@ function generateSidebar(dirs: string[]): object[] {
   return sidebar;
 }
 
+// ─── Storybook Docs Injection ────────────────────────────────────────
+
+function generateStoryDocs(components: ComponentInfo[]): string {
+  let md = '';
+
+  for (let i = 0; i < components.length; i++) {
+    const comp = components[i];
+
+    if (components.length > 1) {
+      md += `#### \`<${comp.tagName}>\`\n\n`;
+    }
+
+    if (comp.description) {
+      md += `${comp.description}\n\n`;
+    }
+
+    md += `- **Tag**: \`<${comp.tagName}>\`\n`;
+    md += `- **Class**: \`${comp.className}\`\n`;
+    if (comp.formAssociated) {
+      md += `- **Form Associated**: Yes\n`;
+    }
+    md += `\n`;
+
+    if (comp.props.length > 0) {
+      md += `#### Properties\n\n`;
+      md += `| Property | Attribute | Type | Default |\n`;
+      md += `|---|---|---|---|\n`;
+      for (const p of comp.props) {
+        const typeStr = `\`${escapeTable(p.type)}\``;
+        const defaultStr = p.default ? `\`${escapeTable(p.default)}\`` : '—';
+        md += `| \`${p.name}\` | \`${p.attribute}\` | ${typeStr} | ${defaultStr} |\n`;
+      }
+      md += `\n`;
+    }
+
+    if (comp.events.length > 0) {
+      md += `#### Events\n\n`;
+      md += `| Event | Detail | Description |\n`;
+      md += `|---|---|---|\n`;
+      for (const e of comp.events) {
+        md += `| \`${e.name}\` | ${e.detail ? `\`${escapeTable(e.detail)}\`` : '—'} | ${escapeTable(e.description)} |\n`;
+      }
+      md += `\n`;
+    }
+
+    if (comp.slots.length > 0) {
+      md += `#### Slots\n\n`;
+      md += `| Name | Description |\n`;
+      md += `|---|---|\n`;
+      for (const s of comp.slots) {
+        md += `| \`${s.name || '(default)'}\` | ${escapeTable(s.description)} |\n`;
+      }
+      md += `\n`;
+    }
+
+    if (comp.cssVars.length > 0) {
+      md += `#### CSS Custom Properties\n\n`;
+      md += `| Property | Default |\n`;
+      md += `|---|---|\n`;
+      for (const v of comp.cssVars) {
+        md += `| \`${v.name}\` | ${v.default ? `\`${escapeTable(v.default)}\`` : '—'} |\n`;
+      }
+      md += `\n`;
+    }
+
+    if (comp.methods.length > 0) {
+      md += `#### Methods\n\n`;
+      md += `| Method | Description |\n`;
+      md += `|---|---|\n`;
+      for (const m of comp.methods) {
+        md += `| \`${escapeTable(m.signature)}\` | ${escapeTable(m.description)} |\n`;
+      }
+      md += `\n`;
+    }
+
+    if (i < components.length - 1) {
+      md += `---\n\n`;
+    }
+  }
+
+  return md.trim();
+}
+
+function updateStoryFile(dirPath: string, components: ComponentInfo[]) {
+  const files = fs.readdirSync(dirPath).filter(f => f.endsWith('.stories.ts'));
+  if (files.length === 0) return;
+
+  const docsContent = generateStoryDocs(components);
+
+  // Escape for JS template literal
+  const escaped = docsContent
+    .replace(/\\/g, '\\\\')
+    .replace(/`/g, '\\`')
+    .replace(/\$\{/g, '\\${');
+
+  // Pick the main story file (matches dir name)
+  const dirName = path.basename(dirPath);
+  const mainFile = files.find(f => f === `flint-${dirName}.stories.ts`) || files[0];
+  const filePath = path.join(dirPath, mainFile);
+  let content = fs.readFileSync(filePath, 'utf-8');
+
+  const docsPropBlock = `docs: {\n            description: {\n                component: \`\n${escaped}\n                \`,\n            },\n        }`;
+
+  // Extract the meta object portion (between `const meta` and `export default meta`)
+  const metaStart = content.indexOf('const meta');
+  const metaEnd = content.indexOf('export default meta');
+  if (metaStart === -1 || metaEnd === -1) return;
+  const metaSection = content.slice(metaStart, metaEnd);
+
+  // Check if the meta parameters already has a docs.description.component (any format)
+  const hasDocsDescAny = /docs:\s*\{[\s\S]*?description:\s*\{[\s\S]*?component:/.test(metaSection);
+  // Check specifically for template literal format (which we can update in-place)
+  const hasDocsDescTemplateLiteral = /docs:\s*\{[\s\S]*?description:\s*\{[\s\S]*?component:\s*`/.test(metaSection);
+
+  // Case 1: Already has docs.description.component with template literal — replace content
+  if (hasDocsDescTemplateLiteral) {
+    // Find the component template literal within docs.description using manual scanning
+    // (regex can't reliably handle escaped backticks inside template literals)
+    const descIdx = metaSection.indexOf('description:');
+    const compIdx = descIdx !== -1 ? metaSection.indexOf('component:', descIdx) : -1;
+    const openBacktick = compIdx !== -1 ? metaSection.indexOf('`', compIdx + 10) : -1;
+    if (openBacktick !== -1) {
+      // Scan forward to find the matching closing backtick (skip escaped ones)
+      let i = openBacktick + 1;
+      while (i < metaSection.length) {
+        if (metaSection[i] === '\\') {
+          i += 2; // skip escaped character
+        } else if (metaSection[i] === '`') {
+          break; // found closing backtick
+        } else {
+          i++;
+        }
+      }
+      if (i < metaSection.length) {
+        const updatedMeta = metaSection.slice(0, openBacktick + 1) +
+          '\n' + escaped + '\n                ' +
+          metaSection.slice(i);
+        content = content.slice(0, metaStart) + updatedMeta + content.slice(metaEnd);
+      }
+    }
+  } else if (hasDocsDescAny) {
+    // Case 1b: Has docs.description.component but NOT as template literal (string/concat)
+    // Remove the old docs: block and add fresh one
+    let updatedMeta = metaSection.replace(
+      /(\s*)docs:\s*\{[\s\S]*?description:\s*\{[\s\S]*?\},?\s*\},?\n/,
+      `$1${docsPropBlock},\n`
+    );
+    content = content.slice(0, metaStart) + updatedMeta + content.slice(metaEnd);
+  } else if (/\n\s{2,4}parameters:\s*\{/.test(metaSection)) {
+    // Case 2: Has parameters in meta but no docs — add docs block
+    const updatedMeta = metaSection.replace(
+      /(\n(\s{2,4})parameters:\s*\{)\s*\n/,
+      `$1\n$2    ${docsPropBlock},\n`
+    );
+    content = content.slice(0, metaStart) + updatedMeta + content.slice(metaEnd);
+  } else if (/\n\s{2,4}component:\s*'/.test(metaSection)) {
+    // Case 3: Has component: but no parameters — add after component: line
+    const updatedMeta = metaSection.replace(
+      /(\n(\s{2,4})component:\s*'[^']+',?)\n/,
+      `$1\n$2parameters: {\n$2    ${docsPropBlock},\n$2},\n`
+    );
+    content = content.slice(0, metaStart) + updatedMeta + content.slice(metaEnd);
+  } else if (/\n\s{2,4}title:\s*'/.test(metaSection)) {
+    // Case 4: No component: line (e.g., progress) — add after title: line
+    const updatedMeta = metaSection.replace(
+      /(\n(\s{2,4})title:\s*'[^']+',?)\n/,
+      `$1\n$2parameters: {\n$2    ${docsPropBlock},\n$2},\n`
+    );
+    content = content.slice(0, metaStart) + updatedMeta + content.slice(metaEnd);
+  }
+
+  fs.writeFileSync(filePath, content);
+}
+
 // ─── Main ───────────────────────────────────────────────────────────
 
 function main() {
@@ -1827,6 +2001,9 @@ function main() {
     const markdown = generateMarkdown(dir, components);
     const outPath = path.join(DOCS_DIR, `${dir}.md`);
     fs.writeFileSync(outPath, markdown);
+    // Inject docs into Storybook story files
+    updateStoryFile(dirPath, components);
+
     processedDirs.push(dir);
     console.log(`  ✓ ${dir} (${components.length} component${components.length > 1 ? 's' : ''})`);
   }

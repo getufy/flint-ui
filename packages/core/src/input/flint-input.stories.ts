@@ -5,6 +5,69 @@ import './flint-input';
 const meta: Meta = {
     title: 'Inputs/Input',
     component: 'flint-input',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+- **Tag**: \`<flint-input>\`
+- **Class**: \`FlintInput\`
+- **Form Associated**: Yes
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`label\` | \`label\` | \`string\` | \`''\` |
+| \`value\` | \`value\` | \`string\` | \`''\` |
+| \`type\` | \`type\` | \`string\` | \`'text'\` |
+| \`placeholder\` | \`placeholder\` | \`string\` | \`''\` |
+| \`helpText\` | \`help-text\` | \`string\` | \`''\` |
+| \`error\` | \`error\` | \`boolean\` | \`false\` |
+| \`errorMessage\` | \`error-message\` | \`string\` | \`''\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`required\` | \`required\` | \`boolean\` | \`false\` |
+| \`readonly\` | \`readonly\` | \`boolean\` | \`false\` |
+| \`name\` | \`name\` | \`string\` | \`''\` |
+| \`autocomplete\` | \`autocomplete\` | \`string\` | \`''\` |
+| \`size\` | \`size\` | \`'sm' \\| 'default' \\| 'lg'\` | \`'default'\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-input-input\` | \`{ value: this.value }\` |  |
+| \`flint-input-change\` | \`{ value: this.value }\` |  |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-input-border-radius\` | — |
+| \`--flint-input-border-color\` | — |
+| \`--flint-input-bg\` | — |
+| \`--flint-input-placeholder-color\` | — |
+| \`--flint-input-border-hover-color\` | — |
+| \`--flint-input-disabled-bg\` | — |
+| \`--flint-input-disabled-color\` | — |
+| \`--flint-input-readonly-bg\` | — |
+| \`--flint-font-family\` | — |
+| \`--flint-label-color\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-primary-color\` | — |
+| \`--flint-primary-focus-ring\` | — |
+| \`--flint-error-color\` | — |
+| \`--flint-error-focus-ring\` | — |
+| \`--flint-help-text-color\` | — |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`inputElement(): HTMLInputElement\` |  |
+                `,
+            },
+        },
+    },
     argTypes: {
         label: { control: 'text' },
         value: { control: 'text' },

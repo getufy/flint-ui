@@ -55,8 +55,3 @@ import { FlintTypography } from 'flint-ui';
 | `--flint-text-color-muted` | — |
 
 ---
-
-## Accessibility
-
-- **ARIA**: renders semantic HTML elements (`h1`-`h6`, `p`, `span`).
-- **Screen reader**: announces heading level when applicable.

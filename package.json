@@ -17,9 +17,13 @@
     "gen:docs": "tsx scripts/generate-docs.ts",
     "docs:dev": "npm run gen:docs && vitepress dev docs",
     "docs:build": "npm run gen:docs && vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "size": "size-limit",
+    "size:check": "size-limit --limit"
   },
   "devDependencies": {
+    "@size-limit/file": "^11.2.0",
+    "size-limit": "^11.2.0",
     "tsx": "^4.0.0",
     "vitepress": "^1.6.4"
   }

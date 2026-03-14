@@ -55,8 +55,3 @@ import { FlintToaster } from 'flint-ui';
 | `--flint-text-color` | `#111827` |
 
 ---
-
-## Accessibility
-
-- **ARIA**: uses `aria-live` regions for toast announcements.
-- **Screen reader**: announces each toast message.

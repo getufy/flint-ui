@@ -6,6 +6,50 @@ import '../button/flint-button';
 const meta: Meta = {
     title: 'Navigation/App Bar',
     component: 'flint-app-bar',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+flint-app-bar: The top App bar provides content and actions related to the current screen.
+
+- **Tag**: \`<flint-app-bar>\`
+- **Class**: \`FlintAppBar\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`title\` | \`title\` | \`string\` | \`''\` |
+| \`position\` | \`position\` | \`'static' \\| 'fixed' \\| 'absolute' \\| 'sticky'\` | \`'static'\` |
+| \`variant\` | \`variant\` | \`'regular' \\| 'outlined'\` | \`'regular'\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`navigation\` |  |
+| \`title\` |  |
+| \`actions\` |  |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-app-bar-height\` | — |
+| \`--flint-app-bar-bg\` | — |
+| \`--flint-app-bar-color\` | — |
+| \`--flint-app-bar-shadow\` | — |
+| \`--flint-primary-color\` | — |
+| \`--flint-text-color-on-primary\` | — |
+| \`--flint-shadow-md\` | — |
+| \`--flint-surface-1\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-border-color\` | — |
+| \`--flint-font-family\` | — |
+                `,
+            },
+        },
+    },
     argTypes: {
         title: { control: 'text' },
         position: {

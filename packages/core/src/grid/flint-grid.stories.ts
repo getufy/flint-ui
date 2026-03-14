@@ -5,6 +5,32 @@ import './flint-grid';
 const meta: Meta = {
   title: 'Layout/Grid',
   component: 'flint-grid',
+  parameters: {
+      docs: {
+            description: {
+                component: `
+- **Tag**: \`<flint-grid>\`
+- **Class**: \`FlintGrid\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`container\` | \`container\` | \`boolean\` | \`false\` |
+| \`direction\` | \`direction\` | \`'row' \\| 'row-reverse' \\| 'column' \\| 'column-reverse'\` | \`'row'\` |
+| \`wrap\` | \`wrap\` | \`'nowrap' \\| 'wrap' \\| 'wrap-reverse'\` | \`'wrap'\` |
+| \`columns\` | \`columns\` | \`number\` | \`12\` |
+| \`spacing\` | \`spacing\` | \`ResponsiveValue<number \\| string>\` | \`0\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+                `,
+            },
+        },
+  },
   decorators: [
     (story) => html`
             <div style="padding: 0; width: 100%; box-sizing: border-box;">

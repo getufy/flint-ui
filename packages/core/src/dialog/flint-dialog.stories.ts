@@ -9,6 +9,128 @@ import '../stack/flint-stack.js';
 const meta: Meta = {
   title: 'Feedback/Dialog',
   component: 'flint-dialog',
+  parameters: {
+      docs: {
+            description: {
+                component: `
+#### \`<flint-dialog>\`
+
+flint-dialog: a modal dialog component.
+
+- **Tag**: \`<flint-dialog>\`
+- **Class**: \`FlintDialog\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`open\` | \`open\` | \`boolean\` | \`false\` |
+| \`transition\` | \`transition\` | \`'scale' \\| 'slide-up' \\| 'slide-down'\` | \`'scale'\` |
+| \`disableBackdropClose\` | \`disable-backdrop-close\` | \`boolean\` | \`false\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`close\` | — | Dispatched when the dialog requests to be closed (backdrop click or |
+| \`confirm\` | — | Dispatched by confirmation dialogs when the user clicked "confirm". |
+| \`cancel\` | — | Dispatched by confirmation dialogs when the user clicked "cancel". |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for dialog content (title, content, actions sub-components). |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-dialog-max-height\` | \`90vh\` |
+| \`--flint-dialog-width\` | \`444px\` |
+| \`--flint-border-color\` | — |
+| \`--flint-font-family\` | — |
+| \`--flint-text-color-muted\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-surface-background\` | \`white\` |
+| \`--flint-border-radius-xl\` | \`12px\` |
+| \`--flint-shadow-xl\` | \`0 20px 25px -5px rgba(0, 0, 0, 0.1\` |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`requestClose()\` | Programmatically request the dialog to close (fires the 'close' event). |
+
+---
+
+#### \`<flint-dialog-title>\`
+
+flint-dialog-title: heading area of a dialog. Automatically assigned id="dialog-title" for aria-labelledby.
+
+- **Tag**: \`<flint-dialog-title>\`
+- **Class**: \`FlintDialogTitle\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+---
+
+#### \`<flint-dialog-content>\`
+
+flint-dialog-content: scrollable content area of a dialog.
+
+- **Tag**: \`<flint-dialog-content>\`
+- **Class**: \`FlintDialogContent\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+---
+
+#### \`<flint-dialog-content-text>\`
+
+flint-dialog-content-text: body text inside a dialog content area.
+
+- **Tag**: \`<flint-dialog-content-text>\`
+- **Class**: \`FlintDialogContentText\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+---
+
+#### \`<flint-dialog-actions>\`
+
+flint-dialog-actions: footer button row for a dialog. Use the \`align\` prop to control button alignment.
+
+- **Tag**: \`<flint-dialog-actions>\`
+- **Class**: \`FlintDialogActions\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`align\` | \`align\` | \`'start' \\| 'center' \\| 'end' \\| 'space-between'\` | \`'end'\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+                `,
+            },
+        },
+  },
   argTypes: {
     open: { control: 'boolean' },
     transition: {

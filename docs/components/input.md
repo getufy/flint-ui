@@ -77,9 +77,3 @@ import { FlintInput } from 'flint-ui';
 | `inputElement(): HTMLInputElement` |  |
 
 ---
-
-## Accessibility
-
-- **Keyboard**: standard text input behavior.
-- **ARIA**: native `<input>` in shadow DOM.
-- **Screen reader**: announces label and current value.

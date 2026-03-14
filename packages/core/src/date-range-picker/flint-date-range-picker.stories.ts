@@ -35,6 +35,136 @@ function getSegments(pickerShadow: ShadowRoot): HTMLElement {
 const meta: Meta = {
     title: 'Date & Time/Date Range Picker',
     component: 'flint-date-range-picker',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+#### \`<flint-date-range-calendar>\`
+
+A dual-month calendar for range selection. Shows two months side-by-side (or stacked on narrow screens).
+
+- **Tag**: \`<flint-date-range-calendar>\`
+- **Class**: \`FlintDateRangeCalendar\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`value\` | \`value\` | \`DateRange\` | \`[...EMPTY_RANGE]\` |
+| \`min\` | \`min\` | \`string\` | \`''\` |
+| \`max\` | \`max\` | \`string\` | \`''\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`range-select\` | — | { detail: { value: DateRange } } on each click |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-font-family\` | — |
+| \`--flint-surface-1\` | — |
+| \`--flint-border-color\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-text-color-muted\` | — |
+| \`--flint-hover-color\` | — |
+| \`--flint-primary-color-light\` | — |
+| \`--flint-primary-color\` | — |
+| \`--flint-text-color-on-primary\` | — |
+| \`--flint-primary-color-hover\` | — |
+| \`--flint-input-bg\` | — |
+| \`--flint-border-radius-md\` | — |
+| \`--flint-input-disabled-bg\` | — |
+| \`--flint-input-placeholder-color\` | — |
+| \`--flint-border-radius-xl\` | — |
+| \`--flint-shadow-lg\` | — |
+| \`--flint-shadow-sm\` | — |
+| \`--flint-error-color\` | — |
+| \`--flint-primary-focus-ring\` | — |
+| \`--flint-error-focus-ring\` | — |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`navigateTo(iso: string)\` | Navigate the calendar view to the month containing the given ISO date. |
+
+---
+
+#### \`<flint-date-range-picker>\`
+
+A date range picker combining a segmented field and a dual-month calendar.
+
+- **Tag**: \`<flint-date-range-picker>\`
+- **Class**: \`FlintDateRangePicker\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`value\` | \`value\` | \`DateRange\` | \`[...EMPTY_RANGE]\` |
+| \`label\` | \`label\` | \`string\` | \`'Date Range'\` |
+| \`variant\` | \`variant\` | \`'desktop' \\| 'mobile' \\| 'static' \\| 'auto'\` | \`'desktop'\` |
+| \`multiInput\` | \`multi-input\` | \`boolean\` | \`false\` |
+| \`shortcuts\` | \`shortcuts\` | \`boolean\` | \`false\` |
+| \`shortcutItems\` | \`shortcut-items\` | \`Shortcut[]\` | \`[]\` |
+| \`min\` | \`min\` | \`string\` | \`''\` |
+| \`max\` | \`max\` | \`string\` | \`''\` |
+| \`name\` | \`name\` | \`string\` | \`''\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`readonly\` | \`readonly\` | \`boolean\` | \`false\` |
+| \`error\` | \`error\` | \`boolean\` | \`false\` |
+| \`helperText\` | \`helper-text\` | \`string\` | \`''\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`range-change\` | — | { detail: { value: DateRange } } when range is committed |
+
+---
+
+#### \`<flint-single-input-date-range-field>\`
+
+A single-input field for entering a date range (start → end). Renders as "MM/DD/YYYY – MM/DD/YYYY" with six independently editable segments.
+
+- **Tag**: \`<flint-single-input-date-range-field>\`
+- **Class**: \`FlintSingleInputDateRangeField\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`value\` | \`value\` | \`DateRange\` | \`[...EMPTY_RANGE]\` |
+| \`label\` | \`label\` | \`string\` | \`''\` |
+| \`name\` | \`name\` | \`string\` | \`''\` |
+| \`min\` | \`min\` | \`string\` | \`''\` |
+| \`max\` | \`max\` | \`string\` | \`''\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`readonly\` | \`readonly\` | \`boolean\` | \`false\` |
+| \`error\` | \`error\` | \`boolean\` | \`false\` |
+| \`helperText\` | \`helper-text\` | \`string\` | \`''\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`range-change\` | — | { detail: { value: DateRange } } when both dates are complete |
+| \`range-clear\` | — | fired when all segments are cleared |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`setRange(range: DateRange)\` |  |
+| \`clear()\` |  |
+                `,
+            },
+        },
+    },
     argTypes: {
         variant: {
             control: 'select',

@@ -6,6 +6,39 @@ import '../stack/flint-stack';
 const meta: Meta = {
     title: 'Layout/Box',
     component: 'flint-box',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+- **Tag**: \`<flint-box>\`
+- **Class**: \`FlintBox\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`component\` | \`component\` | \`string\` | \`'div'\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-box-bg\` | \`transparent\` |
+| \`--flint-box-color\` | \`inherit\` |
+| \`--flint-box-border\` | \`none\` |
+| \`--flint-box-border-radius\` | \`0\` |
+| \`--flint-box-shadow\` | \`none\` |
+| \`--flint-box-padding\` | \`0\` |
+                `,
+            },
+        },
+    },
     argTypes: {
         component: {
             control: 'select',

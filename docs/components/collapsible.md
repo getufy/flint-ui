@@ -130,9 +130,3 @@ import { FlintCollapsible } from 'flint-ui';
 | `toggle()` | Toggle the open state and fire `flint-collapsible-change`. |
 
 ---
-
-## Accessibility
-
-- **Keyboard**: Enter/Space toggles open/closed.
-- **ARIA**: trigger has `aria-expanded`, content has `role="region"`.
-- **Screen reader**: announces expanded/collapsed state.

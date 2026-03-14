@@ -6,6 +6,65 @@ import '../button/flint-button';
 const meta: Meta = {
     title: 'Inputs/Text Field',
     component: 'flint-text-field',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+- **Tag**: \`<flint-text-field>\`
+- **Class**: \`FlintTextField\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`label\` | \`label\` | \`string\` | \`''\` |
+| \`value\` | \`value\` | \`string\` | \`''\` |
+| \`placeholder\` | \`placeholder\` | \`string\` | \`''\` |
+| \`type\` | \`type\` | \`string\` | \`'text'\` |
+| \`variant\` | \`variant\` | \`'outlined' \\| 'filled'\` | \`'outlined'\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`error\` | \`error\` | \`boolean\` | \`false\` |
+| \`helperText\` | \`helper-text\` | \`string\` | \`''\` |
+| \`errorMessage\` | \`error-message\` | \`string\` | \`''\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`input\` | \`{ value: this.value }\` |  |
+| \`change\` | \`{ value: this.value }\` |  |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`leading\` |  |
+| \`trailing\` |  |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-font-family\` | — |
+| \`--flint-label-color\` | — |
+| \`--flint-input-bg\` | — |
+| \`--flint-input-border-color\` | — |
+| \`--flint-input-border-radius\` | — |
+| \`--flint-input-border-hover-color\` | — |
+| \`--flint-primary-color\` | — |
+| \`--flint-primary-focus-ring\` | — |
+| \`--flint-error-color\` | — |
+| \`--flint-error-focus-ring\` | — |
+| \`--flint-input-disabled-bg\` | — |
+| \`--flint-input-placeholder-color\` | — |
+| \`--flint-text-color-muted\` | — |
+| \`--flint-help-text-color\` | — |
+| \`--flint-surface-2\` | — |
+| \`--flint-hover-color\` | — |
+                `,
+            },
+        },
+    },
     argTypes: {
         label: { control: 'text' },
         value: { control: 'text' },

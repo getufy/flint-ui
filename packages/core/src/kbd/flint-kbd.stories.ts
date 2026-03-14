@@ -9,30 +9,60 @@ const meta: Meta = {
     docs: {
       description: {
         component: `
-Used to display textual user input from keyboard.
+#### \`<flint-kbd>\`
 
-### Components
-- **\`flint-kbd\`** — Single keyboard key. Wraps content in a semantic \`<kbd>\` element.
-- **\`flint-kbd-group\`** — Flex row that groups multiple \`flint-kbd\` elements for key combinations.
+Displays a single keyboard key or modifier symbol. Renders a semantic \`<kbd>\` element for accessibility.
 
-### Props
-| Prop | Values | Default | Description |
+- **Tag**: \`<flint-kbd>\`
+- **Class**: \`FlintKbd\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
 |---|---|---|---|
-| \`size\` | \`sm\` or \`default\` or \`lg\` | \`default\` | Visual size |
-| \`variant\` | \`raised\` or \`flat\` | \`raised\` | \`raised\` shows bottom border + shadow; \`flat\` removes them for inline/menu use |
-| \`label\` | string | — | Forwarded as \`aria-label\` on \`<kbd>\` — useful for symbol keys |
+| \`size\` | \`size\` | \`'sm' \\| 'default' \\| 'lg'\` | \`'default'\` |
+| \`variant\` | \`variant\` | \`'raised' \\| 'flat'\` | \`'raised'\` |
+| \`label\` | \`label\` | \`string\` | \`''\` |
 
-### CSS Custom Properties
-| Property | Default | Description |
-|---|---|---|
-| \`--flint-kbd-bg\` | \`#f9fafb\` | Background colour |
-| \`--flint-kbd-border-color\` | \`#e5e7eb\` | Border colour |
-| \`--flint-kbd-color\` | \`#374151\` | Text colour |
-| \`--flint-kbd-font-family\` | monospace | Font family |
-| \`--flint-kbd-radius\` | \`4px\` | Border radius |
-| \`--flint-kbd-shadow-color\` | \`#d1d5db\` | Bottom-shadow colour |
-| \`--flint-kbd-group-gap\` | \`4px\` | Gap between group items |
-        `,
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Key label: text, symbol (⌘ ⇧ ⌥ ⌃ ⏎), or any inline content. |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-kbd-group-gap\` | \`4px\` |
+| \`--flint-kbd-font-family\` | \`flint-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace\` |
+| \`--flint-kbd-color\` | \`var(--flint-label-color\` |
+| \`--flint-kbd-bg\` | \`var(--flint-surface-2\` |
+| \`--flint-kbd-border-color\` | \`var(--flint-border-color\` |
+| \`--flint-kbd-radius\` | \`var(--flint-border-radius-sm\` |
+| \`--flint-kbd-shadow-color\` | \`var(--flint-input-border-color\` |
+
+---
+
+#### \`<flint-kbd-group>\`
+
+Groups multiple \`flint-kbd\` elements in a row. Provides a flex container with tight spacing for key combos.
+
+- **Tag**: \`<flint-kbd-group>\`
+- **Class**: \`FlintKbdGroup\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | \`flint-kbd\` elements, separators (e.g. \`<span>+</span>\`), or text. |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-kbd-group-gap\` | \`4px\` |
+                `,
       },
     },
   },

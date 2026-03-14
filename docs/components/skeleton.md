@@ -47,8 +47,3 @@ import { FlintSkeleton } from 'flint-ui';
 | `--flint-border-radius-lg` | — |
 
 ---
-
-## Accessibility
-
-- **ARIA**: `aria-busy="true"` on loading region.
-- **Screen reader**: announces loading state.

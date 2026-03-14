@@ -5,6 +5,138 @@ import './flint-button';
 const meta: Meta = {
     title: 'Inputs/Button',
     component: 'flint-button',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+#### \`<flint-button-group>\`
+
+- **Tag**: \`<flint-button-group>\`
+- **Class**: \`FlintButtonGroup\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-border-radius-md\` | \`6px\` |
+| \`--flint-font-family\` | — |
+| \`--flint-shadow-sm\` | — |
+| \`--flint-primary-color\` | — |
+| \`--flint-text-color-on-primary\` | — |
+| \`--flint-primary-color-hover\` | — |
+| \`--flint-primary-color-active\` | — |
+| \`--flint-surface-1\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-input-border-color\` | — |
+| \`--flint-hover-color\` | — |
+| \`--flint-active-color\` | — |
+| \`--flint-destructive-color\` | — |
+| \`--flint-destructive-color-hover\` | — |
+| \`--flint-destructive-color-active\` | — |
+
+---
+
+#### \`<flint-button>\`
+
+- **Tag**: \`<flint-button>\`
+- **Class**: \`FlintButton\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`variant\` | \`variant\` | \`'primary' \\| 'secondary' \\| 'destructive'\` | \`'primary'\` |
+| \`size\` | \`size\` | \`'small' \\| 'medium' \\| 'large'\` | \`'medium'\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`fullWidth\` | \`full-width\` | \`boolean\` | \`false\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-button-border-radius\` | \`var(--flint-border-radius-md\` |
+
+---
+
+#### \`<flint-toggle-button-group>\`
+
+- **Tag**: \`<flint-toggle-button-group>\`
+- **Class**: \`FlintToggleButtonGroup\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`value\` | \`value\` | \`string \\| string[]\` | \`''\` |
+| \`exclusive\` | \`exclusive\` | \`boolean\` | \`true\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-toggle-button-group-change\` | \`{ value: this.value }\` |  |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+---
+
+#### \`<flint-toggle-button>\`
+
+- **Tag**: \`<flint-toggle-button>\`
+- **Class**: \`FlintToggleButton\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`selected\` | \`selected\` | \`boolean\` | \`false\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`value\` | \`value\` | \`string\` | \`''\` |
+| \`size\` | \`size\` | \`'sm' \\| 'md' \\| 'lg'\` | \`'md'\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-toggle-button-change\` | \`{ value: this.value, selected: !this.selected }\` |  |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-toggle-button-font-size\` | \`14px\` |
+| \`--flint-toggle-button-padding\` | \`8px 16px\` |
+| \`--flint-toggle-button-gap\` | \`8px\` |
+| \`--flint-toggle-button-border-radius\` | \`var(--flint-border-radius-md\` |
+| \`--flint-toggle-button-selected-bg\` | \`var(--flint-active-color\` |
+| \`--flint-toggle-button-selected-color\` | \`var(--flint-primary-color\` |
+| \`--flint-toggle-button-selected-border-color\` | \`var(--flint-primary-color\` |
+                `,
+            },
+        },
+    },
     argTypes: {
         variant: {
             control: 'select',

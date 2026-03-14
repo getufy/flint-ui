@@ -11,36 +11,60 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
-A two-state button that can be either on or off. Useful for formatting toolbars, settings panels, and any on/off action that lives in the UI without a separate label.
+A two-state button that can be either on (pressed) or off.
 
-### Usage
-\`\`\`html
-<flint-toggle>Bold</flint-toggle>
-<flint-toggle variant="outline" pressed>Italic</flint-toggle>
-\`\`\`
+- **Tag**: \`<flint-toggle>\`
+- **Class**: \`FlintToggle\`
 
-### Controlled usage
-\`\`\`html
-<flint-toggle .pressed=\${value} @flint-toggle-change=\${e => value = e.detail.pressed}>
-  Bold
-</flint-toggle>
-\`\`\`
+#### Properties
 
-### CSS Custom Properties
-| Property | Default | Description |
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`pressed\` | \`pressed\` | \`boolean\` | \`false\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`variant\` | \`variant\` | \`'default' \\| 'outline'\` | \`'default'\` |
+| \`size\` | \`size\` | \`'sm' \\| 'default' \\| 'lg'\` | \`'default'\` |
+| \`dir\` | \`dir\` | \`'ltr' \\| 'rtl'\` | \`'ltr'\` |
+| \`defaultPressed\` | \`default-pressed\` | \`boolean\` | \`false\` |
+| \`ariaLabel\` | \`aria-label\` | \`string \\| null\` | \`null\` |
+
+#### Events
+
+| Event | Detail | Description |
 |---|---|---|
-| \`--flint-toggle-bg\` | \`transparent\` | Default background |
-| \`--flint-toggle-bg-hover\` | muted background | Hover background |
-| \`--flint-toggle-bg-pressed\` | primary light | Pressed background |
-| \`--flint-toggle-bg-pressed-hover\` | primary light hover | Pressed + hover background |
-| \`--flint-toggle-color\` | text color | Default text/icon color |
-| \`--flint-toggle-color-pressed\` | primary color | Pressed text/icon color |
-| \`--flint-toggle-border-color\` | border color | Border (outline variant) |
-| \`--flint-toggle-border-pressed-color\` | primary light hover | Border when pressed (outline) |
-| \`--flint-toggle-border-radius\` | \`var(--flint-border-radius-md)\` | Border radius |
-| \`--flint-toggle-font-size\` | \`0.875rem\` | Font size |
-| \`--flint-toggle-padding-x\` | \`0.75rem\` | Horizontal padding |
-| \`--flint-toggle-padding-y\` | \`0.5rem\` | Vertical padding |
+| \`flint-toggle-change\` | — | Dispatched when the pressed state changes. Detail: \`{ pressed: boolean }\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Content to render inside the toggle (text, icons, or both). |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-toggle-border-radius\` | \`var(--flint-border-radius-md\` |
+| \`--flint-toggle-padding-y\` | \`0.5rem\` |
+| \`--flint-toggle-padding-x\` | \`0.75rem\` |
+| \`--flint-toggle-min-width\` | \`2.25rem\` |
+| \`--flint-toggle-min-height\` | \`2.25rem\` |
+| \`--flint-toggle-font-size\` | \`0.875rem\` |
+| \`--flint-toggle-color\` | \`var(--flint-text-color\` |
+| \`--flint-toggle-bg\` | \`transparent\` |
+| \`--flint-toggle-bg-hover\` | \`var(--flint-muted-background\` |
+| \`--flint-toggle-color-hover\` | \`var(--flint-text-color\` |
+| \`--flint-toggle-bg-pressed\` | \`var(--flint-primary-color-light\` |
+| \`--flint-toggle-color-pressed\` | \`var(--flint-primary-color\` |
+| \`--flint-toggle-bg-pressed-hover\` | \`var(--flint-primary-color-light-hover\` |
+| \`--flint-toggle-padding-y-sm\` | \`0.375rem\` |
+| \`--flint-toggle-padding-x-sm\` | \`0.625rem\` |
+| \`--flint-toggle-padding-y-lg\` | \`0.625rem\` |
+| \`--flint-toggle-padding-x-lg\` | \`1rem\` |
+| \`--flint-toggle-border-color\` | \`var(--flint-border-color\` |
+| \`--flint-toggle-border-pressed-color\` | \`var(--flint-primary-color-light-hover\` |
+| \`--flint-font-family\` | — |
+| \`--flint-primary-color\` | — |
                 `,
             },
         },

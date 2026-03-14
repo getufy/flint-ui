@@ -338,8 +338,3 @@ import { FlintItem } from 'flint-ui';
 | `--flint-item-gap` | — |
 
 ---
-
-## Accessibility
-
-- **ARIA**: structural component, no specific ARIA roles.
-- **Screen reader**: content announced in reading order.

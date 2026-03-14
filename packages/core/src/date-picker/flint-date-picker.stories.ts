@@ -7,6 +7,93 @@ import type { FlintDatePicker } from './flint-date-picker.js';
 const meta: Meta = {
     title: 'Date & Time/Date Picker',
     component: 'flint-date-picker',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+#### \`<flint-date-picker-calendar>\`
+
+A standalone calendar grid — the core date-selection view. Used internally by flint-date-picker, but can also be used on its own.
+
+- **Tag**: \`<flint-date-picker-calendar>\`
+- **Class**: \`FlintDatePickerCalendar\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`date-select\` | — | { detail: { value: string } } ISO date YYYY-MM-DD |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-font-family\` | — |
+| \`--flint-surface-1\` | — |
+| \`--flint-border-radius-xl\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-hover-color\` | — |
+| \`--flint-text-color-muted\` | — |
+| \`--flint-primary-color\` | — |
+| \`--flint-text-color-on-primary\` | — |
+| \`--flint-primary-color-hover\` | — |
+| \`--flint-input-bg\` | — |
+| \`--flint-border-color\` | — |
+| \`--flint-border-radius-md\` | — |
+| \`--flint-input-placeholder-color\` | — |
+| \`--flint-primary-focus-ring\` | — |
+| \`--flint-input-disabled-bg\` | — |
+| \`--flint-error-color\` | — |
+| \`--flint-error-focus-ring\` | — |
+| \`--flint-shadow-lg\` | — |
+| \`--flint-shadow-sm\` | — |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`navigateTo(iso: string)\` | Navigate to the month/year of a given ISO date programmatically. |
+
+---
+
+#### \`<flint-date-picker>\`
+
+A date picker with a text field and a calendar popover/modal. Variants: - 'desktop'  — calendar appears in a popover (default) - 'mobile'   — calendar appears in a full dialog/modal - 'static'   — calendar always visible, no field - 'auto'     — desktop on pointer:fine, mobile on pointer:coarse
+
+- **Tag**: \`<flint-date-picker>\`
+- **Class**: \`FlintDatePicker\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` |
+| \`label\` | \`label\` | \`string\` | \`'Date'\` |
+| \`placeholder\` | \`placeholder\` | \`string\` | \`'MM/DD/YYYY'\` |
+| \`name\` | \`name\` | \`string\` | \`''\` |
+| \`variant\` | \`variant\` | \`'desktop' \\| 'mobile' \\| 'static' \\| 'auto'\` | \`'desktop'\` |
+| \`min\` | \`min\` | \`string\` | \`''\` |
+| \`max\` | \`max\` | \`string\` | \`''\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`readonly\` | \`readonly\` | \`boolean\` | \`false\` |
+| \`error\` | \`error\` | \`boolean\` | \`false\` |
+| \`helperText\` | \`helper-text\` | \`string\` | \`''\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`change\` | — | { detail: { value: string } } when the date changes |
+                `,
+            },
+        },
+    },
     argTypes: {
         variant: {
             control: 'select',

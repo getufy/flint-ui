@@ -5,6 +5,49 @@ import './flint-typography';
 const meta: Meta = {
     title: 'Data Display/Typography',
     component: 'flint-typography',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+Typography component for displaying text with consistent theme styles.
+
+- **Tag**: \`<flint-typography>\`
+- **Class**: \`FlintTypography\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`variant\` | \`variant\` | \`\\| 'h1' \\| 'h2' \\| 'h3' \\| 'h4' \\| 'h5' \\| 'h6'         \\| 'subtitle1' \\| 'subtitle2'         \\| 'body1' \\| 'body2'         \\| 'caption' \\| 'overline'         \\| 'inherit'\` | \`'body1'\` |
+| \`color\` | \`color\` | \`\\| 'primary' \\| 'secondary' \\| 'success' \\| 'error' \\| 'warning' \\| 'info'         \\| 'textPrimary' \\| 'textSecondary' \\| 'inherit'\` | \`'textPrimary'\` |
+| \`align\` | \`align\` | \`'left' \\| 'center' \\| 'right' \\| 'justify'\` | \`'left'\` |
+| \`noWrap\` | \`no-wrap\` | \`boolean\` | \`false\` |
+| \`gutterBottom\` | \`gutter-bottom\` | \`boolean\` | \`false\` |
+| \`paragraph\` | \`paragraph\` | \`boolean\` | \`false\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | The text content. |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-font-family\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-primary-color\` | — |
+| \`--flint-secondary-color\` | — |
+| \`--flint-success-color\` | — |
+| \`--flint-error-color\` | — |
+| \`--flint-warning-color\` | — |
+| \`--flint-info-icon-color\` | — |
+| \`--flint-text-color-muted\` | — |
+                `,
+            },
+        },
+    },
     argTypes: {
         variant: {
             control: { type: 'select' },

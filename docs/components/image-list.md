@@ -136,8 +136,3 @@ import { FlintImageList } from 'flint-ui';
 | `--flint-image-list-row-height` | `164px` |
 
 ---
-
-## Accessibility
-
-- **ARIA**: images should include `alt` text.
-- **Screen reader**: navigates as a list of images.

@@ -28,9 +28,48 @@ const meta: Meta = {
     parameters: {
         docs: {
             description: {
-                component:
-                    'Compare visual differences between two images with a draggable slider. ' +
-                    'Use the `before` and `after` slots. Drag or use arrow keys to adjust position.',
+                component: `
+- **Tag**: \`<flint-image-comparer>\`
+- **Class**: \`FlintImageComparer\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`position\` | \`position\` | \`number\` | \`50\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-image-comparer-change\` | \`{ position: clamped }\` |  |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`after\` |  |
+| \`before\` |  |
+| \`handle\` |  |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-image-comparer-border-radius\` | \`var(--flint-border-radius-md\` |
+| \`--flint-image-comparer-aspect-ratio\` | \`16 / 9\` |
+| \`--flint-image-comparer-divider-width\` | \`2px\` |
+| \`--flint-image-comparer-divider-color\` | \`var(--flint-color-white\` |
+| \`--flint-image-comparer-handle-size\` | \`40px\` |
+| \`--flint-image-comparer-handle-bg\` | \`var(--flint-color-white\` |
+| \`--flint-image-comparer-handle-border-color\` | \`rgba(0, 0, 0, 0.15\` |
+| \`--flint-image-comparer-handle-icon-color\` | \`var(--flint-text-color-muted\` |
+| \`--flint-border-radius-full\` | — |
+| \`--flint-shadow-md\` | — |
+| \`--flint-primary-focus-ring\` | — |
+| \`--flint-shadow-lg\` | — |
+                `,
             },
         },
     },

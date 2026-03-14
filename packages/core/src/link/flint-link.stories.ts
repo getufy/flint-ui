@@ -8,6 +8,60 @@ import '../stack/flint-stack';
 const meta: Meta = {
     title: 'Navigation/Link',
     component: 'flint-link',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+The Link component allows you to easily customize anchor elements with theme colors and typography styles.
+
+- **Tag**: \`<flint-link>\`
+- **Class**: \`FlintLink\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`href\` | \`href\` | \`string\` | \`''\` |
+| \`target\` | \`target\` | \`'_self' \\| '_blank' \\| '_parent' \\| '_top'\` | \`'_self'\` |
+| \`rel\` | \`rel\` | \`string\` | \`''\` |
+| \`color\` | \`color\` | \`\\| 'primary' \\| 'secondary' \\| 'success' \\| 'error' \\| 'warning' \\| 'info'         \\| 'textPrimary' \\| 'textSecondary' \\| 'inherit'\` | \`'primary'\` |
+| \`underline\` | \`underline\` | \`'none' \\| 'hover' \\| 'always'\` | \`'always'\` |
+| \`variant\` | \`variant\` | \`\\| 'inherit' \\| 'h1' \\| 'h2' \\| 'h3' \\| 'h4' \\| 'h5' \\| 'h6'         \\| 'subtitle1' \\| 'subtitle2' \\| 'body1' \\| 'body2' \\| 'caption' \\| 'overline'\` | \`'inherit'\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`click\` | — | Native click event. |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Link text or content. |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-link-color\` | — |
+| \`--flint-link-color-visited\` | — |
+| \`--flint-link-color-hover\` | \`var(--flint-primary-color-hover)\` |
+| \`--flint-primary-color\` | — |
+| \`--flint-primary-color-hover\` | — |
+| \`--flint-secondary-color\` | — |
+| \`--flint-font-family\` | — |
+| \`--flint-success-color\` | — |
+| \`--flint-error-color\` | — |
+| \`--flint-warning-color\` | — |
+| \`--flint-info-icon-color\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-text-color-muted\` | — |
+                `,
+            },
+        },
+    },
     argTypes: {
         color: {
             control: { type: 'select' },

@@ -50,9 +50,3 @@ import { FlintTooltip } from 'flint-ui';
 | `--flint-shadow-sm` | — |
 
 ---
-
-## Accessibility
-
-- **Keyboard**: tooltip shows on focus, hides on Escape.
-- **ARIA**: `role="tooltip"` with `aria-describedby` linking trigger to tooltip.
-- **Screen reader**: announces tooltip content when trigger is focused.

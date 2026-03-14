@@ -6,6 +6,44 @@ import '../button/flint-button';
 const meta: Meta = {
     title: 'Data Display/Avatar',
     component: 'flint-avatar',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+- **Tag**: \`<flint-avatar>\`
+- **Class**: \`FlintAvatar\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`src\` | \`src\` | \`string\` | \`''\` |
+| \`alt\` | \`alt\` | \`string\` | \`''\` |
+| \`initials\` | \`initials\` | \`string\` | \`''\` |
+| \`variant\` | \`variant\` | \`'circle' \\| 'square' \\| 'rounded'\` | \`'circle'\` |
+| \`size\` | \`size\` | \`'small' \\| 'medium' \\| 'large' \\| 'xlarge'\` | \`'medium'\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-avatar-size\` | \`40px\` |
+| \`--flint-avatar-bg\` | \`var(--flint-surface-3\` |
+| \`--flint-avatar-color\` | \`var(--flint-text-color-muted\` |
+| \`--flint-font-family\` | — |
+| \`--flint-border-radius-md\` | — |
+| \`--flint-surface-2\` | — |
+| \`--flint-surface-3\` | — |
+                `,
+            },
+        },
+    },
     argTypes: {
         src: { control: 'text' },
         alt: { control: 'text' },

@@ -12,14 +12,97 @@ const meta: Meta = {
   title: 'Layout/Resizable',
   component: 'flint-resizable-group',
   parameters: {
-    docs: {
-      description: {
-        component:
-          'Accessible resizable panel groups and layouts with keyboard support. ' +
-          'Panels can be resized by dragging handles or using arrow keys. ' +
-          'Use `collapse()`, `expand()`, and `toggle()` on a panel for programmatic control.',
-      },
-    },
+      docs: {
+            description: {
+                component: `
+#### \`<flint-resizable-group>\`
+
+- **Tag**: \`<flint-resizable-group>\`
+- **Class**: \`FlintResizableGroup\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` |
+| \`dir\` | \`dir\` | \`'ltr' \\| 'rtl'\` | \`'ltr'\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-resizable-collapse\` | \`{ index: idx, layout: this.getLayout() }\` |  |
+| \`flint-resizable-expand\` | \`{ index: idx, layout: this.getLayout() }\` |  |
+| \`flint-resizable-change\` | \`{ layout: this.getLayout() }\` |  |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`host([orientation='vertical'])\` |  |
+| \`getLayout(): number[]\` | Returns a snapshot of panel sizes as percentages (0-100). |
+
+---
+
+#### \`<flint-resizable-panel>\`
+
+- **Tag**: \`<flint-resizable-panel>\`
+- **Class**: \`FlintResizablePanel\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`size\` | \`size\` | \`number\` | \`0\` |
+| \`defaultSize\` | \`default-size\` | \`number\` | \`0\` |
+| \`minSize\` | \`min-size\` | \`number\` | \`0\` |
+| \`maxSize\` | \`max-size\` | \`number\` | \`100\` |
+| \`collapsible\` | \`collapsible\` | \`boolean\` | \`false\` |
+| \`collapsed\` | \`collapsed\` | \`boolean\` | \`false\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`collapse()\` |  |
+| \`expand()\` |  |
+| \`toggle()\` | * Toggle between collapsed and expanded states. |
+
+---
+
+#### \`<flint-resizable-handle>\`
+
+- **Tag**: \`<flint-resizable-handle>\`
+- **Class**: \`FlintResizableHandle\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`withHandle\` | \`with-handle\` | \`boolean\` | \`false\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`host(:hover)\` |  |
+                `,
+            },
+        },
   },
   argTypes: {
     orientation: {

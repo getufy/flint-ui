@@ -16,51 +16,93 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
-Accessible one-time password input with copy/paste support.
+#### \`<flint-input-otp-group>\`
 
-### Components
-- **\`flint-input-otp\`** — Root. Manages a hidden native \`<input>\` and syncs character slots.
-  Fires \`flint-otp-change\` on every keystroke and \`flint-otp-complete\` when all slots are filled.
-- **\`flint-input-otp-group\`** — Visual wrapper that renders slots inline with shared borders.
-- **\`flint-input-otp-separator\`** — Horizontal bar divider placed between groups.
-- **\`flint-input-otp-slot\`** — Individual character cell. Set \`index\` to its position.
+Visual grouping wrapper for \`flint-input-otp-slot\` elements. Renders slots inline with shared borders.
 
-### Usage
-\`\`\`html
-<flint-input-otp max-length="6">
-  <flint-input-otp-group>
-    <flint-input-otp-slot index="0"></flint-input-otp-slot>
-    <flint-input-otp-slot index="1"></flint-input-otp-slot>
-    <flint-input-otp-slot index="2"></flint-input-otp-slot>
-  </flint-input-otp-group>
-  <flint-input-otp-separator></flint-input-otp-separator>
-  <flint-input-otp-group>
-    <flint-input-otp-slot index="3"></flint-input-otp-slot>
-    <flint-input-otp-slot index="4"></flint-input-otp-slot>
-    <flint-input-otp-slot index="5"></flint-input-otp-slot>
-  </flint-input-otp-group>
-</flint-input-otp>
-\`\`\`
+- **Tag**: \`<flint-input-otp-group>\`
+- **Class**: \`FlintInputOtpGroup\`
 
-### Controlled usage
-\`\`\`html
-<flint-input-otp value="123456" @flint-otp-change="\${e => el.value = e.detail.value}">
-  ...
-</flint-input-otp>
-\`\`\`
+#### Slots
 
-### Events
+| Name | Description |
+|---|---|
+| \`(default)\` | Accepts \`flint-input-otp-slot\` elements. |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-text-color\` | \`#111827\` |
+| \`--flint-otp-slot-width\` | \`40px\` |
+| \`--flint-otp-slot-height\` | \`48px\` |
+| \`--flint-otp-slot-font-size\` | \`1.25rem\` |
+| \`--flint-font-family\` | — |
+| \`--flint-input-bg\` | — |
+| \`--flint-input-border-color\` | — |
+| \`--flint-otp-slot-radius\` | \`6px\` |
+| \`--flint-primary-color\` | — |
+| \`--flint-primary-focus-ring\` | — |
+| \`--flint-error-color\` | — |
+| \`--flint-error-focus-ring\` | — |
+| \`--flint-otp-gap\` | \`8px\` |
+
+---
+
+#### \`<flint-input-otp-separator>\`
+
+Visual separator between \`flint-input-otp-group\` elements. Renders a short horizontal bar.
+
+- **Tag**: \`<flint-input-otp-separator>\`
+- **Class**: \`FlintInputOtpSeparator\`
+
+---
+
+#### \`<flint-input-otp-slot>\`
+
+A single character cell in an OTP input. Place inside \`flint-input-otp-group\`. State is managed by \`flint-input-otp\`.
+
+- **Tag**: \`<flint-input-otp-slot>\`
+- **Class**: \`FlintInputOtpSlot\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`index\` | \`index\` | \`number\` | \`0\` |
+| \`char\` | \`char\` | \`string\` | \`''\` |
+| \`active\` | \`active\` | \`boolean\` | \`false\` |
+| \`invalid\` | \`invalid\` | \`boolean\` | \`false\` |
+
+---
+
+#### \`<flint-input-otp>\`
+
+- **Tag**: \`<flint-input-otp>\`
+- **Class**: \`FlintInputOtp\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` |
+| \`defaultValue\` | \`default-value\` | \`string\` | \`''\` |
+| \`maxLength\` | \`max-length\` | \`number\` | \`6\` |
+| \`pattern\` | \`pattern\` | \`string\` | \`''\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+
+#### Events
+
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-otp-change\` | \`{ value: string }\` | Fired on every keystroke |
-| \`flint-otp-complete\` | \`{ value: string }\` | Fired when all slots are filled |
+| \`flint-otp-change\` | \`{ value: newVal }\` |  |
+| \`flint-otp-complete\` | \`{ value: newVal }\` |  |
 
-### CSS Custom Properties
-| Property | Default | Description |
-|---|---|---|
-| \`--flint-primary-color\` | \`#3b82f6\` | Active slot border / ring colour |
-| \`--flint-text-color\`    | \`#111827\` | Text and cursor colour |
-| \`--flint-font-family\`   | \`system-ui\` | Slot font family |
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
                 `,
             },
         },

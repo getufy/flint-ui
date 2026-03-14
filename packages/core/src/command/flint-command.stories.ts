@@ -14,20 +14,236 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
-A composable command menu for search and quick actions, built natively with LitElement.
+#### \`<flint-command-shortcut>\`
 
-**Components:**
-- \`flint-command\` — Root; manages filtering and keyboard navigation
-- \`flint-command-input\` — Search input
-- \`flint-command-list\` — Scrollable list container
-- \`flint-command-group\` — Labeled group of items
-- \`flint-command-item\` — Interactive option (slots: \`icon\`, \`shortcut\`)
-- \`flint-command-separator\` — Visual divider between groups
-- \`flint-command-empty\` — Shown when no items match
-- \`flint-command-shortcut\` — Keyboard shortcut hint
-- \`flint-command-dialog\` — Modal dialog wrapper
+Displays a keyboard shortcut hint inside a command item. Slot the shortcut string (e.g. \`⌘P\`) as default slot content.
 
-**Keyboard navigation:** ↑ ↓ Arrow keys, Enter to select, Escape to close dialog.
+- **Tag**: \`<flint-command-shortcut>\`
+- **Class**: \`FlintCommandShortcut\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Shortcut text, e.g. \`⌘P\` or \`Ctrl+K\`. |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-border-radius-md\` | — |
+| \`--flint-text-color-muted\` | — |
+| \`--flint-font-family\` | — |
+| \`--flint-border-color\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-hover-color\` | — |
+| \`--flint-primary-color\` | — |
+
+---
+
+#### \`<flint-command-separator>\`
+
+A hairline separator between command groups.
+
+- **Tag**: \`<flint-command-separator>\`
+- **Class**: \`FlintCommandSeparator\`
+
+---
+
+#### \`<flint-command-item>\`
+
+A single interactive option inside a command menu.
+
+- **Tag**: \`<flint-command-item>\`
+- **Class**: \`FlintCommandItem\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`highlighted\` | \`highlighted\` | \`boolean\` | \`false\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-command-item-select\` | — | Fired when the item is activated. |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Item label text. |
+| \`icon\` | Leading icon (16×16). |
+| \`shortcut\` | Trailing shortcut hint; prefer \`<flint-command-shortcut>\`. |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`scrollIntoViewIfNeeded()\` | Scroll this item into view (nearest ancestor scroll container). |
+
+---
+
+#### \`<flint-command-empty>\`
+
+Empty state message shown when no command items match the current query. Managed automatically by the parent \`flint-command\` element.
+
+- **Tag**: \`<flint-command-empty>\`
+- **Class**: \`FlintCommandEmpty\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Message text, e.g. "No results found." |
+
+---
+
+#### \`<flint-command-group>\`
+
+A labeled group of command items. The parent \`flint-command\` automatically hides the whole group when all its items are filtered out.
+
+- **Tag**: \`<flint-command-group>\`
+- **Class**: \`FlintCommandGroup\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`heading\` | \`heading\` | \`string\` | \`''\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | \`flint-command-item\` elements. |
+
+---
+
+#### \`<flint-command-list>\`
+
+Scrollable list container for command items and groups.
+
+- **Tag**: \`<flint-command-list>\`
+- **Class**: \`FlintCommandList\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | \`flint-command-group\`, \`flint-command-item\`, \`flint-command-empty\`, \`flint-command-separator\`. |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-command-list-max-height\` | \`300px\` |
+
+---
+
+#### \`<flint-command-input>\`
+
+Search input for the command menu. Dispatches \`_cmd-filter\` events that the parent \`flint-command\` intercepts to apply filtering.
+
+- **Tag**: \`<flint-command-input>\`
+- **Class**: \`FlintCommandInput\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`placeholder\` | \`placeholder\` | \`string\` | \`'Type a command or search...'\` |
+| \`value\` | \`value\` | \`string\` | \`''\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`_cmd-filter\` | \`{ query: input.value }\` |  |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`focus()\` | Focus the inner input element. |
+| \`reset()\` | Reset the input value and broadcast an empty filter. |
+
+---
+
+#### \`<flint-command>\`
+
+Root command menu component. Manages search filtering and keyboard navigation. Compose it with \`flint-command-input\`, \`flint-command-list\`, \`flint-command-group\`, \`flint-command-item\`, \`flint-command-separator\`, and \`flint-command-empty\`.
+
+- **Tag**: \`<flint-command>\`
+- **Class**: \`FlintCommand\`
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-command-item-select\` | — | Bubbles up from activated items. |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Command menu content. |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-command-backdrop-bg\` | \`rgba(0, 0, 0, 0.5\` |
+| \`--flint-command-z-index\` | \`1400\` |
+| \`--flint-command-dialog-width\` | \`512px\` |
+| \`--flint-command-bg\` | \`var(--flint-surface-1\` |
+| \`--flint-command-panel-border-color\` | \`var(--flint-border-color\` |
+| \`--flint-command-highlight-bg\` | \`var(--flint-hover-color\` |
+| \`--flint-command-highlight-color\` | \`var(--flint-text-color\` |
+| \`--flint-command-list-max-height\` | \`300px\` |
+| \`--flint-command-border-color\` | \`var(--flint-border-color\` |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`reset()\` | Reset search query and restore all items. |
+
+---
+
+#### \`<flint-command-dialog>\`
+
+Modal dialog wrapper for a command menu. Opens with a smooth backdrop + scale animation. Pressing \`Escape\` or clicking the backdrop fires \`flint-command-dialog-close\`.
+
+- **Tag**: \`<flint-command-dialog>\`
+- **Class**: \`FlintCommandDialog\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`open\` | \`open\` | \`boolean\` | \`false\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-command-dialog-close\` | — | Fired when the dialog should close. |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Place a \`flint-command\` element here. |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-command-dialog-width\` | \`512px\` |
                 `,
             },
         },

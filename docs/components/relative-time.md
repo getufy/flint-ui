@@ -1,6 +1,6 @@
 # Relative Time
 
-<Demo label="Dates" html="<div style=&quot;display:flex;flex-direction:column;gap:8px&quot;><span>1 day ago: <flint-relative-time datetime=&quot;2026-03-13T10:36:33.523Z&quot;></flint-relative-time></span><span>1 week ago: <flint-relative-time datetime=&quot;2026-03-07T10:36:33.524Z&quot;></flint-relative-time></span><span>1 month ago: <flint-relative-time datetime=&quot;2026-02-12T10:36:33.524Z&quot;></flint-relative-time></span></div>" />
+<Demo label="Dates" html="<div style=&quot;display:flex;flex-direction:column;gap:8px&quot;><span>1 day ago: <flint-relative-time datetime=&quot;2026-03-13T11:19:58.928Z&quot;></flint-relative-time></span><span>1 week ago: <flint-relative-time datetime=&quot;2026-03-07T11:19:58.930Z&quot;></flint-relative-time></span><span>1 month ago: <flint-relative-time datetime=&quot;2026-02-12T11:19:58.930Z&quot;></flint-relative-time></span></div>" />
 
 Displays a localized time phrase relative to the current date and time. Uses the browser's `Intl.RelativeTimeFormat` API — no language packs needed.
 
@@ -43,8 +43,3 @@ import { FlintRelativeTime } from 'flint-ui';
 | `--flint-relative-time-white-space` | `nowrap` |
 
 ---
-
-## Accessibility
-
-- **ARIA**: uses `<time>` element with `datetime` attribute.
-- **Screen reader**: announces relative time description.
