@@ -97,7 +97,7 @@ export class FlintNavigationMenu extends LitElement {
         return this._openContentId;
     }
 
-    /** Manually open a content item by ID */
+    /** Manually open a content item by ID. No-ops silently if the ID doesn't match any content element. */
     openContent(contentId: string) {
         this._closeAllContent();
         this._openContentId = contentId;

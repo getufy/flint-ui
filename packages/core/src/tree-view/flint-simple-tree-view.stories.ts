@@ -192,7 +192,7 @@ export const GetItemDOMElement: Story = {
             if (el) {
                 el.style.outline = '2px solid #3b82f6';
                 output.textContent = `Found: <flint-tree-item item-id="${id}"> at DOM element`;
-                el.scrollIntoView({ block: 'nearest' });
+                if (typeof el.scrollIntoView === 'function') el.scrollIntoView({ block: 'nearest' });
             } else {
                 output.textContent = `No item found with itemId="${id}"`;
             }
