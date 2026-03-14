@@ -5,7 +5,7 @@
     "packages/react"
   ],
   "scripts": {
-    "type-check": "tsc --noEmit -p packages/core/tsconfig.json && tsc --noEmit -p packages/react/tsconfig.json",
+    "type-check": "tsc --noEmit -p packages/core/tsconfig.json && tsc -p packages/core/tsconfig.build.json && tsc --noEmit -p packages/react/tsconfig.json",
     "clean": "rm -rf packages/core/dist packages/react/dist",
     "validate": "npm run type-check && npm run lint && npm run test",
     "build": "npm run build -w packages/core && npm run build -w packages/react",
@@ -13,6 +13,7 @@
     "build:react": "npm run build -w packages/react",
     "lint": "npm run lint -w packages/core",
     "test": "npm run test -w packages/core",
+    "build-coverage": "npm run build-coverage -w packages/core",
     "test:watch": "npm run test:watch -w packages/core",
     "storybook": "npm run storybook -w packages/core",
     "build-storybook": "npm run build-storybook -w packages/core",
