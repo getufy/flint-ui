@@ -1529,7 +1529,9 @@ describe('FlintRichTreeView — lazy loading (dataSource)', () => {
     });
 
     it('handles dataSource rejection gracefully (no crash)', async () => {
-        const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => { });
+        const errors: CustomEvent[] = [];
+        const handler = (e: Event) => errors.push(e as CustomEvent);
+        document.addEventListener('flint-tree-view-error', handler);
         const dataSource = {
             getTreeItems: async (): Promise<RichTreeItem[]> => {
                 throw new Error('Network error');
@@ -1542,8 +1544,9 @@ describe('FlintRichTreeView — lazy loading (dataSource)', () => {
         `);
         await settle(tree, 100);
 
-        expect(consoleSpy).toHaveBeenCalled();
-        consoleSpy.mockRestore();
+        document.removeEventListener('flint-tree-view-error', handler);
+        expect(errors.length).toBeGreaterThan(0);
+        expect(errors[0].detail.error).toBeInstanceOf(Error);
     });
 
     it('resets lazy state when dataSource prop is replaced', async () => {

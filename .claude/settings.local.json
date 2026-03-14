@@ -147,7 +147,11 @@
       "Bash(grep -l \"new CustomEvent\\('page-\\\\|new CustomEvent\\('rows-\\\\|new CustomEvent\\('expanded-\\\\|new CustomEvent\\('date-\\\\|new CustomEvent\\('view-'\" */flint-*.ts | grep -v test | grep -v stories)",
       "Bash(cd /Users/algoassasin/storybook-lit/packages/core && NODE_OPTIONS='--no-warnings' npx vitest run src/slider/flint-slider.test.ts src/tooltip/flint-tooltip.test.ts src/chip/flint-chip.test.ts src/select/flint-select.test.ts --project components 2>&1 | tail -80)",
       "Bash(cd /Users/algoassasin/storybook-lit/packages/core && NODE_OPTIONS='--no-warnings' npx vitest run src/tree-view/flint-simple-tree-view.test.ts 2>&1 | tail -30)",
-      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/tree-view/flint-rich-tree-view.test.ts 2>&1 | tail -15)"
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/tree-view/flint-rich-tree-view.test.ts 2>&1 | tail -15)",
+      "Bash(cd /Users/algoassasin/storybook-lit/packages/core && NODE_OPTIONS='--no-warnings' npx vitest run src/box/flint-box.test.ts --project components 2>&1 | tail -20)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/tree-view/flint-rich-tree-view.test.ts --project components 2>&1 | tail -10)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/tree-view/flint-rich-tree-view.test.ts --project components 2>&1 | grep -A 20 'FAIL\\\\|AssertionError\\\\|expected\\\\|Error:')",
+      "Bash(cd /Users/algoassasin/storybook-lit/packages/core && NODE_OPTIONS='--no-warnings' npx vitest run src/button/flint-button-group.test.ts src/app-bar/flint-app-bar.test.ts src/avatar/flint-avatar.test.ts src/backdrop/flint-backdrop.test.ts src/divider/flint-divider.test.ts --project components 2>&1 | tail -20)"
     ]
   }
 }

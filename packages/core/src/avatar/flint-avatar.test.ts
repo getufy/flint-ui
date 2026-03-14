@@ -103,4 +103,59 @@ describe('flint-avatar', () => {
         await el.updateComplete;
         expect(el.shadowRoot?.querySelector('img')).not.toBeNull();
     });
+
+    it('ARIA: role="img" on avatar container', async () => {
+        const el = await fixture<FlintAvatar>(html`<flint-avatar></flint-avatar>`);
+        const base = el.shadowRoot?.querySelector('.avatar');
+        expect(base?.getAttribute('role')).toBe('img');
+    });
+
+    it('ARIA: aria-label uses alt text', async () => {
+        const el = await fixture<FlintAvatar>(html`<flint-avatar alt="John"></flint-avatar>`);
+        const base = el.shadowRoot?.querySelector('.avatar');
+        expect(base?.getAttribute('aria-label')).toBe('John');
+    });
+
+    it('ARIA: aria-label falls back to initials', async () => {
+        const el = await fixture<FlintAvatar>(html`<flint-avatar initials="JD"></flint-avatar>`);
+        const base = el.shadowRoot?.querySelector('.avatar');
+        expect(base?.getAttribute('aria-label')).toBe('JD');
+    });
+
+    it('ARIA: aria-label falls back to "avatar"', async () => {
+        const el = await fixture<FlintAvatar>(html`<flint-avatar></flint-avatar>`);
+        const base = el.shadowRoot?.querySelector('.avatar');
+        expect(base?.getAttribute('aria-label')).toBe('avatar');
+    });
+
+    it('default size is medium', async () => {
+        const el = await fixture<FlintAvatar>(html`<flint-avatar></flint-avatar>`);
+        expect(el.size).toBe('medium');
+    });
+
+    it('supports xlarge size', async () => {
+        const el = await fixture<FlintAvatar>(html`<flint-avatar size="xlarge"></flint-avatar>`);
+        await el.updateComplete;
+        expect(el.getAttribute('size')).toBe('xlarge');
+    });
+
+    it('image has correct alt attribute', async () => {
+        const el = await fixture<FlintAvatar>(html`
+      <flint-avatar src="photo.jpg" alt="Profile photo"></flint-avatar>
+    `);
+        const img = el.shadowRoot?.querySelector('img');
+        expect(img?.alt).toBe('Profile photo');
+    });
+
+    it('renders custom slot content when no src or initials', async () => {
+        const el = await fixture<FlintAvatar>(html`
+      <flint-avatar><span class="custom-icon">★</span></flint-avatar>
+    `);
+        const slot = el.shadowRoot?.querySelector('slot');
+        const assigned = slot?.assignedNodes({ flatten: true });
+        expect(assigned?.length).toBeGreaterThan(0);
+        const custom = el.querySelector('.custom-icon');
+        expect(custom).not.toBeNull();
+        expect(custom?.textContent).toBe('★');
+    });
 });

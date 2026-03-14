@@ -6,6 +6,13 @@ import uiButtonGroupStyles from './flint-button-group.css?inline';
 export class FlintButtonGroup extends LitElement {
     static styles = unsafeCSS(uiButtonGroupStyles);
 
+    connectedCallback() {
+        super.connectedCallback();
+        if (!this.hasAttribute('role')) {
+            this.setAttribute('role', 'group');
+        }
+    }
+
     render() {
         return html`
       <slot></slot>

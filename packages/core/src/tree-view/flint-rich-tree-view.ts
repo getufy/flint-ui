@@ -37,6 +37,7 @@ export interface RichTreeViewDataSource {
  *
  * @fires flint-tree-view-item-click        - When a tree item is activated (detail: { itemId })
  * @fires flint-tree-view-expanded-items-change - When the expanded set changes (detail: { expandedItems })
+ * @fires flint-tree-view-error               - When a lazy-loading dataSource call fails (detail: { message, id, error })
  */
 @customElement('flint-rich-tree-view')
 export class FlintRichTreeView extends LitElement {
@@ -275,7 +276,11 @@ export class FlintRichTreeView extends LitElement {
             // For root loads (id=null) cache an empty result to break the retry loop in updated().
             // For child loads, don't cache — the next expand click triggers a fresh attempt.
             if (id === null) this._lazyChildren.set(null, []);
-            console.error('[flint-rich-tree-view] Failed to load children for', id, err);
+            this.dispatchEvent(new CustomEvent('flint-tree-view-error', {
+                bubbles: true,
+                composed: true,
+                detail: { message: `Failed to load children for ${id}`, id, error: err },
+            }));
         } finally {
             this._loading.delete(id);
             this.requestUpdate();
