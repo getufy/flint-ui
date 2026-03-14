@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintListItemAvatar as FlintListItemAvatarElement } from 'flint-ui/list/flint-list';
+import { FlintListItemAvatar as FlintListItemAvatarElement } from '@getufy/flint-ui/list/flint-list';
 
 export const FlintListItemAvatar = createComponent({
     tagName: 'flint-list-item-avatar',

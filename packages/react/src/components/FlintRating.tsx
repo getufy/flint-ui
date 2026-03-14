@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintRating as FlintRatingElement } from 'flint-ui/rating/flint-rating';
+import { FlintRating as FlintRatingElement } from '@getufy/flint-ui/rating/flint-rating';
 
 export const FlintRating = createComponent({
     tagName: 'flint-rating',

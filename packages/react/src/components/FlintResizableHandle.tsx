@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintResizableHandle as FlintResizableHandleElement } from 'flint-ui/resizable/flint-resizable';
+import { FlintResizableHandle as FlintResizableHandleElement } from '@getufy/flint-ui/resizable/flint-resizable';
 
 export const FlintResizableHandle = createComponent({
     tagName: 'flint-resizable-handle',

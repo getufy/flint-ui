@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintTableFooter as FlintTableFooterElement } from 'flint-ui/table/flint-table';
+import { FlintTableFooter as FlintTableFooterElement } from '@getufy/flint-ui/table/flint-table';
 
 export const FlintTableFooter = createComponent({
     tagName: 'flint-table-footer',

@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintResizableGroup as FlintResizableGroupElement } from 'flint-ui/resizable/flint-resizable';
+import { FlintResizableGroup as FlintResizableGroupElement } from '@getufy/flint-ui/resizable/flint-resizable';
 
 export const FlintResizableGroup = createComponent({
     tagName: 'flint-resizable-group',

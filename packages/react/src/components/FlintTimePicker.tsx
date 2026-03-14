@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintTimePicker as FlintTimePickerElement } from 'flint-ui/time-picker/flint-time-picker';
+import { FlintTimePicker as FlintTimePickerElement } from '@getufy/flint-ui/time-picker/flint-time-picker';
 
 export const FlintTimePicker = createComponent({
     tagName: 'flint-time-picker',

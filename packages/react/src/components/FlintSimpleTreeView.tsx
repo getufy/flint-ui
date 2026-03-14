@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintSimpleTreeView as FlintSimpleTreeViewElement } from 'flint-ui/tree-view/flint-simple-tree-view';
+import { FlintSimpleTreeView as FlintSimpleTreeViewElement } from '@getufy/flint-ui/tree-view/flint-simple-tree-view';
 
 export const FlintSimpleTreeView = createComponent({
     tagName: 'flint-simple-tree-view',

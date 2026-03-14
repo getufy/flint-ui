@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintDatePickerCalendar as FlintDatePickerCalendarElement } from 'flint-ui/date-picker/flint-date-picker';
+import { FlintDatePickerCalendar as FlintDatePickerCalendarElement } from '@getufy/flint-ui/date-picker/flint-date-picker';
 
 export const FlintDatePickerCalendar = createComponent({
     tagName: 'flint-date-picker-calendar',

@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintFormatNumber as FlintFormatNumberElement } from 'flint-ui/format-number/flint-format-number';
+import { FlintFormatNumber as FlintFormatNumberElement } from '@getufy/flint-ui/format-number/flint-format-number';
 
 export const FlintFormatNumber = createComponent({
     tagName: 'flint-format-number',

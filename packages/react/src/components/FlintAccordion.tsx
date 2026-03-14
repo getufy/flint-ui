@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintAccordion as FlintAccordionElement } from 'flint-ui/accordion/flint-accordion';
+import { FlintAccordion as FlintAccordionElement } from '@getufy/flint-ui/accordion/flint-accordion';
 
 export const FlintAccordion = createComponent({
     tagName: 'flint-accordion',

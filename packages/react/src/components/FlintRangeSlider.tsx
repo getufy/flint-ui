@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintRangeSlider as FlintRangeSliderElement } from 'flint-ui/flint-range-slider/flint-range-slider';
+import { FlintRangeSlider as FlintRangeSliderElement } from '@getufy/flint-ui/flint-range-slider/flint-range-slider';
 
 export const FlintRangeSlider = createComponent({
     tagName: 'flint-range-slider',

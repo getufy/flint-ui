@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintTextarea as FlintTextareaElement } from 'flint-ui/textarea/flint-textarea';
+import { FlintTextarea as FlintTextareaElement } from '@getufy/flint-ui/textarea/flint-textarea';
 
 export const FlintTextarea = createComponent({
     tagName: 'flint-textarea',

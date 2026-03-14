@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintMenubarCheckboxItem as FlintMenubarCheckboxItemElement } from 'flint-ui/menubar/flint-menubar';
+import { FlintMenubarCheckboxItem as FlintMenubarCheckboxItemElement } from '@getufy/flint-ui/menubar/flint-menubar';
 
 export const FlintMenubarCheckboxItem = createComponent({
     tagName: 'flint-menubar-checkbox-item',

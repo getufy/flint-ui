@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintPaper as FlintPaperElement } from 'flint-ui/paper/flint-paper';
+import { FlintPaper as FlintPaperElement } from '@getufy/flint-ui/paper/flint-paper';
 
 export const FlintPaper = createComponent({
     tagName: 'flint-paper',

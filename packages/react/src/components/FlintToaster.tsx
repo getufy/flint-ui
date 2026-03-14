@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintToaster as FlintToasterElement } from 'flint-ui/sonner/flint-sonner';
+import { FlintToaster as FlintToasterElement } from '@getufy/flint-ui/sonner/flint-sonner';
 
 export const FlintToaster = createComponent({
     tagName: 'flint-toaster',

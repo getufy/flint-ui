@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintTableSortLabel as FlintTableSortLabelElement } from 'flint-ui/table/flint-table-sort-label';
+import { FlintTableSortLabel as FlintTableSortLabelElement } from '@getufy/flint-ui/table/flint-table-sort-label';
 
 export const FlintTableSortLabel = createComponent({
     tagName: 'flint-table-sort-label',

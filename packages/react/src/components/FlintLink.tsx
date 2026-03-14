@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintLink as FlintLinkElement } from 'flint-ui/link/flint-link';
+import { FlintLink as FlintLinkElement } from '@getufy/flint-ui/link/flint-link';
 
 export const FlintLink = createComponent({
     tagName: 'flint-link',

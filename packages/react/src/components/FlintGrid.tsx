@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintGrid as FlintGridElement } from 'flint-ui/grid/flint-grid';
+import { FlintGrid as FlintGridElement } from '@getufy/flint-ui/grid/flint-grid';
 
 export const FlintGrid = createComponent({
     tagName: 'flint-grid',

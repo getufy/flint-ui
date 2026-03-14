@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintDrawer as FlintDrawerElement } from 'flint-ui/drawer/flint-drawer';
+import { FlintDrawer as FlintDrawerElement } from '@getufy/flint-ui/drawer/flint-drawer';
 
 export const FlintDrawer = createComponent({
     tagName: 'flint-drawer',

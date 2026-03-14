@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintMobileStepper as FlintMobileStepperElement } from 'flint-ui/stepper/flint-stepper';
+import { FlintMobileStepper as FlintMobileStepperElement } from '@getufy/flint-ui/stepper/flint-stepper';
 
 export const FlintMobileStepper = createComponent({
     tagName: 'flint-mobile-stepper',

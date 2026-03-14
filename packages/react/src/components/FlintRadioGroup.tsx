@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintRadioGroup as FlintRadioGroupElement } from 'flint-ui/radio/flint-radio';
+import { FlintRadioGroup as FlintRadioGroupElement } from '@getufy/flint-ui/radio/flint-radio';
 
 export const FlintRadioGroup = createComponent({
     tagName: 'flint-radio-group',

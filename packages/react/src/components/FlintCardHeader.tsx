@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintCardHeader as FlintCardHeaderElement } from 'flint-ui/card/flint-card-header';
+import { FlintCardHeader as FlintCardHeaderElement } from '@getufy/flint-ui/card/flint-card-header';
 
 export const FlintCardHeader = createComponent({
     tagName: 'flint-card-header',

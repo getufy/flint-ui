@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintVisuallyHidden as FlintVisuallyHiddenElement } from 'flint-ui/visually-hidden/flint-visually-hidden';
+import { FlintVisuallyHidden as FlintVisuallyHiddenElement } from '@getufy/flint-ui/visually-hidden/flint-visually-hidden';
 
 export const FlintVisuallyHidden = createComponent({
     tagName: 'flint-visually-hidden',

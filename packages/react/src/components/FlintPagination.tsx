@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintPagination as FlintPaginationElement } from 'flint-ui/pagination/flint-pagination';
+import { FlintPagination as FlintPaginationElement } from '@getufy/flint-ui/pagination/flint-pagination';
 
 export const FlintPagination = createComponent({
     tagName: 'flint-pagination',

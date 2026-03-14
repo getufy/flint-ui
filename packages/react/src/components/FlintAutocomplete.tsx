@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintAutocomplete as FlintAutocompleteElement } from 'flint-ui/autocomplete/flint-autocomplete';
+import { FlintAutocomplete as FlintAutocompleteElement } from '@getufy/flint-ui/autocomplete/flint-autocomplete';
 
 export const FlintAutocomplete = createComponent({
     tagName: 'flint-autocomplete',

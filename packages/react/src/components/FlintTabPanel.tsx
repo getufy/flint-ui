@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintTabPanel as FlintTabPanelElement } from 'flint-ui/tabs/flint-tabs';
+import { FlintTabPanel as FlintTabPanelElement } from '@getufy/flint-ui/tabs/flint-tabs';
 
 export const FlintTabPanel = createComponent({
     tagName: 'flint-tab-panel',

@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintMenubarSub as FlintMenubarSubElement } from 'flint-ui/menubar/flint-menubar';
+import { FlintMenubarSub as FlintMenubarSubElement } from '@getufy/flint-ui/menubar/flint-menubar';
 
 export const FlintMenubarSub = createComponent({
     tagName: 'flint-menubar-sub',

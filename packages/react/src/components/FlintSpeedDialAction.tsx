@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintSpeedDialAction as FlintSpeedDialActionElement } from 'flint-ui/speed-dial/flint-speed-dial';
+import { FlintSpeedDialAction as FlintSpeedDialActionElement } from '@getufy/flint-ui/speed-dial/flint-speed-dial';
 
 export const FlintSpeedDialAction = createComponent({
     tagName: 'flint-speed-dial-action',

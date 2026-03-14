@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintLinearProgress as FlintLinearProgressElement } from 'flint-ui/progress/flint-linear-progress';
+import { FlintLinearProgress as FlintLinearProgressElement } from '@getufy/flint-ui/progress/flint-linear-progress';
 
 export const FlintLinearProgress = createComponent({
     tagName: 'flint-linear-progress',

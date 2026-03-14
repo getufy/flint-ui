@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintCardActionArea as FlintCardActionAreaElement } from 'flint-ui/card/flint-card-action-area';
+import { FlintCardActionArea as FlintCardActionAreaElement } from '@getufy/flint-ui/card/flint-card-action-area';
 
 export const FlintCardActionArea = createComponent({
     tagName: 'flint-card-action-area',

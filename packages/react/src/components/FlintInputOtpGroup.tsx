@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintInputOtpGroup as FlintInputOtpGroupElement } from 'flint-ui/input-otp/flint-input-otp';
+import { FlintInputOtpGroup as FlintInputOtpGroupElement } from '@getufy/flint-ui/input-otp/flint-input-otp';
 
 export const FlintInputOtpGroup = createComponent({
     tagName: 'flint-input-otp-group',

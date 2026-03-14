@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintItemActions as FlintItemActionsElement } from 'flint-ui/item/flint-item';
+import { FlintItemActions as FlintItemActionsElement } from '@getufy/flint-ui/item/flint-item';
 
 export const FlintItemActions = createComponent({
     tagName: 'flint-item-actions',

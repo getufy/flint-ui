@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintSkeleton as FlintSkeletonElement } from 'flint-ui/skeleton/flint-skeleton';
+import { FlintSkeleton as FlintSkeletonElement } from '@getufy/flint-ui/skeleton/flint-skeleton';
 
 export const FlintSkeleton = createComponent({
     tagName: 'flint-skeleton',

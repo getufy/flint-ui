@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintStepper as FlintStepperElement } from 'flint-ui/stepper/flint-stepper';
+import { FlintStepper as FlintStepperElement } from '@getufy/flint-ui/stepper/flint-stepper';
 
 export const FlintStepper = createComponent({
     tagName: 'flint-stepper',

@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintImageList as FlintImageListElement } from 'flint-ui/image-list/flint-image-list';
+import { FlintImageList as FlintImageListElement } from '@getufy/flint-ui/image-list/flint-image-list';
 
 export const FlintImageList = createComponent({
     tagName: 'flint-image-list',

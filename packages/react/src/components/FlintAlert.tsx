@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintAlert as FlintAlertElement } from 'flint-ui/alert/flint-alert';
+import { FlintAlert as FlintAlertElement } from '@getufy/flint-ui/alert/flint-alert';
 
 export const FlintAlert = createComponent({
     tagName: 'flint-alert',

@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintSnackbar as FlintSnackbarElement } from 'flint-ui/snackbar/flint-snackbar';
+import { FlintSnackbar as FlintSnackbarElement } from '@getufy/flint-ui/snackbar/flint-snackbar';
 
 export const FlintSnackbar = createComponent({
     tagName: 'flint-snackbar',

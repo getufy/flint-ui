@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintCommandEmpty as FlintCommandEmptyElement } from 'flint-ui/command/flint-command';
+import { FlintCommandEmpty as FlintCommandEmptyElement } from '@getufy/flint-ui/command/flint-command';
 
 export const FlintCommandEmpty = createComponent({
     tagName: 'flint-command-empty',

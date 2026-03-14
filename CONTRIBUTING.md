@@ -11,7 +11,7 @@ Thanks for your interest in contributing to Flint UI! This guide will help you g
 
 ```bash
 # Clone the repository
-git clone https://github.com/go-mihai/storybook-lit.git
+git clone https://github.com/getufy/flint-ui.git
 cd storybook-lit
 
 # Install dependencies

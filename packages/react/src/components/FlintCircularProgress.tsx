@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintCircularProgress as FlintCircularProgressElement } from 'flint-ui/progress/flint-circular-progress';
+import { FlintCircularProgress as FlintCircularProgressElement } from '@getufy/flint-ui/progress/flint-circular-progress';
 
 export const FlintCircularProgress = createComponent({
     tagName: 'flint-circular-progress',

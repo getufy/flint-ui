@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintSlider as FlintSliderElement } from 'flint-ui/slider/flint-slider';
+import { FlintSlider as FlintSliderElement } from '@getufy/flint-ui/slider/flint-slider';
 
 export const FlintSlider = createComponent({
     tagName: 'flint-slider',

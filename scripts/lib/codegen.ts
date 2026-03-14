@@ -4,7 +4,7 @@
 import type { ComponentMeta } from './types.js';
 
 /** Core package name — React wrappers import from this package. */
-const CORE_PKG = 'flint-ui';
+const CORE_PKG = '@getufy/flint-ui';
 
 // ─── helpers ────────────────────────────────────────────────────────────────
 

@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintChip as FlintChipElement } from 'flint-ui/chip/flint-chip';
+import { FlintChip as FlintChipElement } from '@getufy/flint-ui/chip/flint-chip';
 
 export const FlintChip = createComponent({
     tagName: 'flint-chip',

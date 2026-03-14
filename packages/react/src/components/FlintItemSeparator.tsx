@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintItemSeparator as FlintItemSeparatorElement } from 'flint-ui/item/flint-item';
+import { FlintItemSeparator as FlintItemSeparatorElement } from '@getufy/flint-ui/item/flint-item';
 
 export const FlintItemSeparator = createComponent({
     tagName: 'flint-item-separator',

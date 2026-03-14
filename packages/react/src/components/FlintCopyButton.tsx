@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintCopyButton as FlintCopyButtonElement } from 'flint-ui/copy-button/flint-copy-button';
+import { FlintCopyButton as FlintCopyButtonElement } from '@getufy/flint-ui/copy-button/flint-copy-button';
 
 export const FlintCopyButton = createComponent({
     tagName: 'flint-copy-button',

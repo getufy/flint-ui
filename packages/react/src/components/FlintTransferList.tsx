@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintTransferList as FlintTransferListElement } from 'flint-ui/transfer-list/flint-transfer-list';
+import { FlintTransferList as FlintTransferListElement } from '@getufy/flint-ui/transfer-list/flint-transfer-list';
 
 export const FlintTransferList = createComponent({
     tagName: 'flint-transfer-list',

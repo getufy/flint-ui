@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintSpeedDial as FlintSpeedDialElement } from 'flint-ui/speed-dial/flint-speed-dial';
+import { FlintSpeedDial as FlintSpeedDialElement } from '@getufy/flint-ui/speed-dial/flint-speed-dial';
 
 export const FlintSpeedDial = createComponent({
     tagName: 'flint-speed-dial',

@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintBadge as FlintBadgeElement } from 'flint-ui/badge/flint-badge';
+import { FlintBadge as FlintBadgeElement } from '@getufy/flint-ui/badge/flint-badge';
 
 export const FlintBadge = createComponent({
     tagName: 'flint-badge',

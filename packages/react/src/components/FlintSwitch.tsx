@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintSwitch as FlintSwitchElement } from 'flint-ui/switch/flint-switch';
+import { FlintSwitch as FlintSwitchElement } from '@getufy/flint-ui/switch/flint-switch';
 
 export const FlintSwitch = createComponent({
     tagName: 'flint-switch',

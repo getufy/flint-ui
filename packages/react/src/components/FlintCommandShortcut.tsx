@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintCommandShortcut as FlintCommandShortcutElement } from 'flint-ui/command/flint-command';
+import { FlintCommandShortcut as FlintCommandShortcutElement } from '@getufy/flint-ui/command/flint-command';
 
 export const FlintCommandShortcut = createComponent({
     tagName: 'flint-command-shortcut',

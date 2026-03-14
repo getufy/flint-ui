@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintNavigationMenuLink as FlintNavigationMenuLinkElement } from 'flint-ui/navigation-menu/flint-navigation-menu-link';
+import { FlintNavigationMenuLink as FlintNavigationMenuLinkElement } from '@getufy/flint-ui/navigation-menu/flint-navigation-menu-link';
 
 export const FlintNavigationMenuLink = createComponent({
     tagName: 'flint-navigation-menu-link',

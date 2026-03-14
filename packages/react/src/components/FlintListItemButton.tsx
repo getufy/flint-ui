@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintListItemButton as FlintListItemButtonElement } from 'flint-ui/list/flint-list';
+import { FlintListItemButton as FlintListItemButtonElement } from '@getufy/flint-ui/list/flint-list';
 
 export const FlintListItemButton = createComponent({
     tagName: 'flint-list-item-button',
