@@ -17,6 +17,12 @@ const config: StorybookConfig = {
     config.build = config.build || {};
     config.build.rollupOptions = config.build.rollupOptions || {};
     config.build.rollupOptions.treeshake = false;
+
+    // Set base path for GitHub Pages deployment (/flint-ui/storybook/)
+    if (process.env.CI) {
+      config.base = '/flint-ui/storybook/';
+    }
+
     return config;
   },
 };
