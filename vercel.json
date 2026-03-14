@@ -1,5 +1,12 @@
 {
   "framework": null,
   "buildCommand": "npm run build-storybook && npm run docs:build && cp -r packages/core/storybook-static docs/.vitepress/dist/storybook",
-  "outputDirectory": "docs/.vitepress/dist"
+  "outputDirectory": "docs/.vitepress/dist",
+  "rewrites": [
+    { "source": "/sb-manager/:path*", "destination": "/storybook/sb-manager/:path*" },
+    { "source": "/sb-addons/:path*", "destination": "/storybook/sb-addons/:path*" },
+    { "source": "/sb-common-assets/:path*", "destination": "/storybook/sb-common-assets/:path*" },
+    { "source": "/addon-visual-tests-assets/:path*", "destination": "/storybook/addon-visual-tests-assets/:path*" }
+  ],
+  "trailingSlash": false
 }
