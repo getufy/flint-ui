@@ -1,5 +1,5 @@
 [
-{
+  {
     "text": "Form Controls",
     "collapsed": false,
     "items": [
@@ -52,7 +52,7 @@
         "link": "/components/toggle"
       },
       {
-        "text": "Ui Range Slider",
+        "text": "Flint Range Slider",
         "link": "/components/flint-range-slider"
       },
       {

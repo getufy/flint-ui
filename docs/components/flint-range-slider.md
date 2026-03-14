@@ -1,4 +1,4 @@
-# Ui Range Slider
+# Flint Range Slider
 
 <Demo html="<div style=&quot;display:flex;flex-direction:column;gap:16px;width:100%;max-width:300px&quot;><flint-range-slider min=&quot;0&quot; max=&quot;100&quot; label=&quot;Price range&quot; show-value></flint-range-slider><flint-range-slider min=&quot;0&quot; max=&quot;100&quot; label=&quot;Disabled&quot; disabled show-value></flint-range-slider></div>" />
 
