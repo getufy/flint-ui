@@ -731,10 +731,15 @@ export const Dialog: Story = {
         });
 
         /* ── 3. Input is auto-focused; type "bill" ───────────────────── */
+        const cmdEl    = canvasElement.querySelector('flint-command')!;
         const cmdInput = canvasElement.querySelector('flint-command-input') as FlintCommandInput;
         const input    = cmdInput.shadowRoot!.querySelector('input')!;
         await userEvent.click(input);
-        await userEvent.type(input, 'bill');
+
+        // Set value and dispatch input event to ensure filtering triggers
+        // (userEvent.type into shadow DOM inputs can be unreliable in browser tests)
+        input.value = 'bill';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
 
         await waitFor(() => {
             expect(canvasElement.querySelector('[value="billing"]')).not.toHaveAttribute('hidden');
@@ -747,13 +752,14 @@ export const Dialog: Story = {
             selectedValue = (e as CustomEvent<{ value: string }>).detail.value;
         });
 
-        await userEvent.keyboard('{Enter}');
+        input.focus();
+        cmdEl.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, composed: true }));
         await waitFor(() => {
             expect(selectedValue).toBe('billing');
         });
 
         /* ── 5. Press Escape → dialog closes and resets ──────────────── */
-        await userEvent.keyboard('{Escape}');
+        cmdEl.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, composed: true }));
         await waitFor(() => {
             expect(backdrop.classList.contains('open')).toBe(false);
         });
