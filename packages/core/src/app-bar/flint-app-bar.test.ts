@@ -59,4 +59,42 @@ describe('flint-app-bar', () => {
         const slottedTitle = el.querySelector('#custom-title');
         expect(slottedTitle?.textContent).toBe('Custom Title');
     });
+
+    it('renders a header element', async () => {
+        const el = await fixture<FlintAppBar>(html`<flint-app-bar></flint-app-bar>`);
+        const header = el.shadowRoot!.querySelector('header');
+        expect(header).not.toBeNull();
+    });
+
+    it('renders three sections (left, title, right)', async () => {
+        const el = await fixture<FlintAppBar>(html`<flint-app-bar></flint-app-bar>`);
+        const leftSection = el.shadowRoot!.querySelector('.left-section');
+        const titleSection = el.shadowRoot!.querySelector('.title');
+        const rightSection = el.shadowRoot!.querySelector('.right-section');
+        expect(leftSection).not.toBeNull();
+        expect(titleSection).not.toBeNull();
+        expect(rightSection).not.toBeNull();
+    });
+
+    it('reflects variant attribute on host', async () => {
+        const el = await fixture<FlintAppBar>(html`<flint-app-bar variant="outlined"></flint-app-bar>`);
+        expect(el.getAttribute('variant')).toBe('outlined');
+    });
+
+    it('updates title dynamically', async () => {
+        const el = await fixture<FlintAppBar>(html`<flint-app-bar title="Old"></flint-app-bar>`);
+        el.title = 'New';
+        await el.updateComplete;
+        const titleDiv = el.shadowRoot!.querySelector('.title');
+        expect(titleDiv?.textContent?.trim()).toBe('New');
+    });
+
+    it('supports all position values', async () => {
+        const el = await fixture<FlintAppBar>(html`<flint-app-bar></flint-app-bar>`);
+        for (const pos of ['fixed', 'absolute', 'sticky'] as const) {
+            el.position = pos;
+            await el.updateComplete;
+            expect(el.getAttribute('position')).toBe(pos);
+        }
+    });
 });

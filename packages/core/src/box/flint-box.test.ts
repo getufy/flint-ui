@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-box.js';
 import type { FlintBox } from './flint-box.js';
@@ -34,13 +34,16 @@ describe('flint-box', () => {
         }
     });
 
-    it('falls back to div and warns for an invalid component tag', async () => {
-        const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    it('falls back to div and dispatches warning event for an invalid component tag', async () => {
+        const events: CustomEvent[] = [];
+        const handler = (e: Event) => events.push(e as CustomEvent);
+        document.addEventListener('flint-box-warning', handler);
         const el = await fixture<FlintBox>(html`<flint-box component="script">Content</flint-box>`);
+        document.removeEventListener('flint-box-warning', handler);
         expect(el.shadowRoot?.querySelector('div')).toBeTruthy();
         expect(el.shadowRoot?.querySelector('script')).toBeNull();
-        expect(warn).toHaveBeenCalledWith(expect.stringContaining('"script"'));
-        warn.mockRestore();
+        expect(events.length).toBeGreaterThan(0);
+        expect(events[0].detail.message).toContain('"script"');
     });
 
     // ── Margin shorthands ────────────────────────────────────────────

@@ -25,6 +25,12 @@ import { FlintBox } from 'flint-ui';
 | --- | --- | --- | --- | --- |
 | `component` | `component` | `string` | `'div'` | The component tag to render |
 
+### Events
+
+| Event | Detail | Description |
+| --- | --- | --- |
+| `flint-box-warning` | `{ message }` | Fired when an unknown component tag is used and falls back to `div`. |
+
 ### Slots
 
 | Name | Description |

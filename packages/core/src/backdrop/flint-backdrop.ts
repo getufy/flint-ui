@@ -51,6 +51,7 @@ export class FlintBackdrop extends LitElement {
       invisible: this.invisible
     })}" 
         @click="${this._handleClick}"
+        role="presentation"
         aria-hidden="${this.open ? nothing : 'true'}"
       >
         <div class="content">

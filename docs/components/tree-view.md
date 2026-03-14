@@ -50,6 +50,7 @@ import { FlintRichTreeView } from 'flint-ui';
 | `flint-tree-view-expanded-items-change` | `{ expandedItems: newItems }` | Fired when the set of expanded items changes. |
 | `flint-tree-view-item-click` | `{ itemId }` | Fired when a tree item is clicked or activated via keyboard. |
 | `flint-tree-view-item-position-change` | `{ itemId, newParentId, newIndex }` | Fired when an item is moved to a new position via drag-and-drop. |
+| `flint-tree-view-error` | `{ message, id, error }` | Fired when a lazy-loading dataSource call fails. |
 
 ### CSS Custom Properties
 

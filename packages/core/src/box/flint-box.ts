@@ -1,4 +1,4 @@
-import { LitElement, unsafeCSS } from 'lit';
+import { LitElement, unsafeCSS, type PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { styleMap } from 'lit/directives/style-map.js';
@@ -11,6 +11,9 @@ const ALLOWED_TAGS = new Set([
     'details', 'summary', 'dialog',
 ]);
 
+/**
+ * @fires flint-box-warning - Dispatched when an unknown component tag is used and falls back to div.
+ */
 @customElement('flint-box')
 export class FlintBox extends LitElement {
     static styles = unsafeCSS(uiBoxStyles);
@@ -53,12 +56,21 @@ export class FlintBox extends LitElement {
     @property({ type: String }) width?: string;
     @property({ type: String }) height?: string;
 
-    private get _safeComponent(): string {
-        if (!ALLOWED_TAGS.has(this.component)) {
-            console.warn(`[flint-box] Unknown component tag "${this.component}", falling back to "div".`);
-            return 'div';
+    private _safeTag = 'div';
+
+    protected willUpdate(changedProperties: PropertyValues) {
+        if (changedProperties.has('component')) {
+            if (!ALLOWED_TAGS.has(this.component)) {
+                this._safeTag = 'div';
+                this.dispatchEvent(new CustomEvent('flint-box-warning', {
+                    bubbles: true,
+                    composed: true,
+                    detail: { message: `Unknown component tag "${this.component}", falling back to "div".` },
+                }));
+            } else {
+                this._safeTag = this.component;
+            }
         }
-        return this.component;
     }
 
     private _getStyles() {
@@ -114,7 +126,7 @@ export class FlintBox extends LitElement {
     }
 
     render() {
-        const tagName = unsafeStatic(this._safeComponent);
+        const tagName = unsafeStatic(this._safeTag);
         /* eslint-disable lit/binding-positions, lit/no-invalid-html */
         return html`
       <${tagName} style=${styleMap(this._getStyles())}>

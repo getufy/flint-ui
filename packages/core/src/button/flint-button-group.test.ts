@@ -43,4 +43,43 @@ describe('flint-button-group', () => {
         const el = await fixture(grouped);
         expect(el.children.length).toBe(2);
     });
+
+    it('is defined', () => {
+        const el = document.createElement('flint-button-group');
+        expect(el).toBeInstanceOf(HTMLElement);
+        expect(el.localName).toBe('flint-button-group');
+    });
+
+    it('has role="group" on the host', async () => {
+        const el = await fixture<FlintButtonGroup>(html`
+            <flint-button-group>
+                <flint-button>One</flint-button>
+            </flint-button-group>
+        `);
+
+        expect(el.getAttribute('role')).toBe('group');
+    });
+
+    it('renders with a single unnamed slot', async () => {
+        const el = await fixture<FlintButtonGroup>(html`
+            <flint-button-group></flint-button-group>
+        `);
+
+        const slot = el.shadowRoot!.querySelector('slot')!;
+        expect(slot).not.toBeNull();
+        expect(slot.hasAttribute('name')).toBe(false);
+    });
+
+    it('accepts non-button children gracefully', async () => {
+        const el = await fixture<FlintButtonGroup>(html`
+            <flint-button-group>
+                <span>Not a button</span>
+            </flint-button-group>
+        `);
+
+        const slot = el.shadowRoot!.querySelector('slot')!;
+        const assigned = slot.assignedElements();
+        expect(assigned.length).toBe(1);
+        expect(assigned[0].tagName.toLowerCase()).toBe('span');
+    });
 });

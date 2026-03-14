@@ -116,4 +116,35 @@ describe('flint-divider', () => {
             expect(container?.classList.contains('variant-middle')).toBe(true);
         });
     });
+
+    it('has role="separator" on container', async () => {
+        const el = await fixture<FlintDivider>(html`<flint-divider></flint-divider>`);
+        const container = el.shadowRoot!.querySelector('.divider-container');
+        expect(container?.getAttribute('role')).toBe('separator');
+    });
+
+    it('reflects orientation attribute on host', async () => {
+        const el = await fixture<FlintDivider>(html`<flint-divider orientation="vertical"></flint-divider>`);
+        expect(el.getAttribute('orientation')).toBe('vertical');
+    });
+
+    it('default variant is "full"', async () => {
+        const el = await fixture<FlintDivider>(html`<flint-divider></flint-divider>`);
+        expect(el.variant).toBe('full');
+    });
+
+    it('default textAlign is "center"', async () => {
+        const el = await fixture<FlintDivider>(html`<flint-divider></flint-divider>`);
+        expect(el.textAlign).toBe('center');
+    });
+
+    it('dynamic orientation change updates aria-orientation', async () => {
+        const el = await fixture<FlintDivider>(html`<flint-divider></flint-divider>`);
+        const container = el.shadowRoot!.querySelector('.divider-container');
+        expect(container?.getAttribute('aria-orientation')).toBe('horizontal');
+
+        el.orientation = 'vertical';
+        await el.updateComplete;
+        expect(container?.getAttribute('aria-orientation')).toBe('vertical');
+    });
 });

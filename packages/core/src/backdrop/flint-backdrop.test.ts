@@ -106,4 +106,58 @@ describe('flint-backdrop', () => {
 
         expect(closeSpy).not.toHaveBeenCalled();
     });
+
+    it('renders content slot', async () => {
+        const el = await fixture<FlintBackdrop>(html`
+            <flint-backdrop open>
+                <div id="slotted">Hello</div>
+            </flint-backdrop>
+        `);
+        const slot = el.shadowRoot!.querySelector('slot');
+        expect(slot).toBeDefined();
+        const assignedNodes = slot!.assignedNodes({ flatten: true });
+        const slottedDiv = assignedNodes.find(
+            (node) => node instanceof HTMLElement && node.id === 'slotted'
+        );
+        expect(slottedDiv).toBeDefined();
+    });
+
+    it('close event has bubbles and composed', async () => {
+        const el = await fixture<FlintBackdrop>(html`<flint-backdrop open></flint-backdrop>`);
+        const backdrop = el.shadowRoot!.querySelector('.backdrop') as HTMLElement;
+        let captured: Event | undefined;
+        el.addEventListener('flint-backdrop-close', (e) => {
+            captured = e;
+        });
+
+        backdrop.click();
+        await el.updateComplete;
+
+        expect(captured).toBeDefined();
+        expect(captured!.bubbles).toBe(true);
+        expect(captured!.composed).toBe(true);
+    });
+
+    it('backdrop overlay has role="presentation"', async () => {
+        const el = await fixture<FlintBackdrop>(html`<flint-backdrop></flint-backdrop>`);
+        const backdrop = el.shadowRoot!.querySelector('.backdrop');
+        expect(backdrop?.getAttribute('role')).toBe('presentation');
+    });
+
+    it('multiple open/close cycles work', async () => {
+        const el = await fixture<FlintBackdrop>(html`<flint-backdrop></flint-backdrop>`);
+        const backdrop = el.shadowRoot!.querySelector('.backdrop');
+
+        el.open = true;
+        await el.updateComplete;
+        expect(backdrop?.classList.contains('open')).toBe(true);
+
+        el.open = false;
+        await el.updateComplete;
+        expect(backdrop?.classList.contains('open')).toBe(false);
+
+        el.open = true;
+        await el.updateComplete;
+        expect(backdrop?.classList.contains('open')).toBe(true);
+    });
 });
