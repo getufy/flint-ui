@@ -1819,7 +1819,11 @@ function generateMarkdown(dir: string, components: ComponentInfo[]): string {
 }
 
 function escapeTable(s: string): string {
-  return s.replace(/\|/g, '\\|').replace(/\n/g, ' ');
+  return s
+    .replace(/\|/g, '\\|')
+    .replace(/\n/g, ' ')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
 }
 
 function generateSidebar(dirs: string[]): object[] {

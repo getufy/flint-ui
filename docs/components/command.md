@@ -107,7 +107,7 @@ import { FlintCommandItem } from 'flint-ui';
 | --- | --- |
 | `(default)` | Item label text. |
 | `icon` | Leading icon (16×16). |
-| `shortcut` | Trailing shortcut hint; prefer `<flint-command-shortcut>`. |
+| `shortcut` | Trailing shortcut hint; prefer `&lt;flint-command-shortcut&gt;`. |
 
 ### Methods
 

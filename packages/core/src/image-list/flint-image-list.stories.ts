@@ -68,7 +68,7 @@ A single item inside a \`flint-image-list\`.
 
 | Name | Description |
 |---|---|
-| \`(default)\` | Place an \`<img>\` or any content here. |
+| \`(default)\` | Place an \`&lt;img&gt;\` or any content here. |
 | \`bar\` | Place a \`flint-image-list-item-bar\` element here. |
 
 ---

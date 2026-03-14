@@ -139,7 +139,7 @@ import { FlintMenubarItem } from 'flint-ui';
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Item label text plus optional `<flint-menubar-shortcut>`. |
+| `(default)` | Item label text plus optional `&lt;flint-menubar-shortcut&gt;`. |
 
 ### Methods
 
@@ -587,7 +587,7 @@ import { FlintMenubar } from 'flint-ui';
 
 | Name | Description |
 | --- | --- |
-| `(default)` | One or more `<flint-menubar-menu>` elements. |
+| `(default)` | One or more `&lt;flint-menubar-menu&gt;` elements. |
 
 ### CSS Custom Properties
 

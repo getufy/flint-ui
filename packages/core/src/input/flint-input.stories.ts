@@ -62,7 +62,7 @@ const meta: Meta = {
 
 | Method | Description |
 |---|---|
-| \`inputElement(): HTMLInputElement\` | Expose the internal <input> for direct access |
+| \`inputElement(): HTMLInputElement\` | Expose the internal &lt;input&gt; for direct access |
                 `,
             },
         },

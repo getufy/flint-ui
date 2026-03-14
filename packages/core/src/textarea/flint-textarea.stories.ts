@@ -73,7 +73,7 @@ A Textarea component for multi-line text input.
 
 | Method | Description |
 |---|---|
-| \`textareaElement(): HTMLTextAreaElement \\| null\` | Direct access to the internal <textarea> element. |
+| \`textareaElement(): HTMLTextAreaElement \\| null\` | Direct access to the internal &lt;textarea&gt; element. |
                 `,
             },
         },
