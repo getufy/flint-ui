@@ -81,6 +81,7 @@
     "name": "React wrappers",
     "path": "packages/react/dist/index.js",
     "import": "*",
+    "ignore": ["react", "react-dom", "@lit/react", "@getufy/flint-ui"],
     "limit": "8 kB"
   }
 ]
