@@ -19,6 +19,11 @@ npm run build              # Build both packages/core and packages/react
 npm run build:core         # Build core only (vite + tsc)
 npm run build:react        # Build React wrappers only (tsc)
 npm run build-storybook    # Build static Storybook
+npm run clean              # Remove dist folders
+
+# Validation
+npm run validate           # Run type-check + lint + test (full CI check)
+npm run type-check         # TypeScript type checking (core + react)
 
 # Testing (runs in packages/core)
 npm test                   # Run all tests (jsdom unit tests + Storybook browser tests)
@@ -31,13 +36,19 @@ NODE_OPTIONS='--no-warnings' vitest run src/button/flint-button.test.ts  # from 
 # Lint
 npm run lint               # ESLint on src/**/*.ts (target: 0 errors, 0 warnings)
 
-# React wrapper codegen
+# Codegen
+npm run gen                # Regenerate React wrappers + docs
 npm run gen:react          # Regenerate React wrappers from Lit components
+npm run gen:docs           # Regenerate docs from components
 
 # Docs (VitePress)
-npm run docs:dev           # Dev server
-npm run docs:build         # Build docs site
+npm run docs:dev           # Dev server (auto-runs gen:docs)
+npm run docs:build         # Build docs site (auto-runs gen:docs)
 npm run docs:preview       # Preview built docs
+
+# Bundle size
+npm run size               # Check bundle sizes
+npm run size:check         # Check bundle sizes against limits
 ```
 
 ## Architecture
