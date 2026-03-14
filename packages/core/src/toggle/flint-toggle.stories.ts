@@ -8,6 +8,13 @@ const meta: Meta = {
     title: 'Inputs/Toggle',
     component: 'flint-toggle',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'color-contrast', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `

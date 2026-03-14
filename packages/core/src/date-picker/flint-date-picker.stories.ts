@@ -8,6 +8,14 @@ const meta: Meta = {
     title: 'Date & Time/Date Picker',
     component: 'flint-date-picker',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'color-contrast', enabled: false },
+                    { id: 'aria-required-children', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `

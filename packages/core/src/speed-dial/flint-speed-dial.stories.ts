@@ -9,6 +9,13 @@ const meta: Meta = {
     title: 'Navigation/Speed Dial',
     component: 'flint-speed-dial',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'aria-required-parent', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `

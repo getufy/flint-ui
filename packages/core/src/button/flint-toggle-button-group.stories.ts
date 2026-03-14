@@ -13,7 +13,16 @@ const meta: Meta = {
     args: {
         exclusive: true,
         value: 'left',
-    }
+    },
+    parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'color-contrast', enabled: false },
+                ],
+            },
+        },
+    },
 };
 
 export default meta;

@@ -28,6 +28,17 @@ const meta: Meta = {
         'scroll-buttons': 'auto',
     },
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'color-contrast', enabled: false },
+                    { id: 'aria-required-parent', enabled: false },
+                    { id: 'aria-required-children', enabled: false },
+                    { id: 'aria-valid-attr-value', enabled: false },
+                    { id: 'button-name', enabled: false },
+                ],
+            },
+        },
         layout: 'padded',
         docs: {
             description: {

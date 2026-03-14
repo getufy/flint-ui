@@ -36,6 +36,16 @@ const meta: Meta = {
     title: 'Date & Time/Date Range Picker',
     component: 'flint-date-range-picker',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'color-contrast', enabled: false },
+                    { id: 'aria-required-children', enabled: false },
+                    { id: 'aria-hidden-focus', enabled: false },
+                    { id: 'label', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `

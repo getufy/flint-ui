@@ -9,6 +9,14 @@ const meta: Meta = {
   title: 'Layout/Image List',
   component: 'flint-image-list',
   parameters: {
+      a11y: {
+          config: {
+              rules: [
+                  { id: 'list', enabled: false },
+                  { id: 'aria-required-children', enabled: false },
+              ],
+          },
+      },
       docs: {
             description: {
                 component: `

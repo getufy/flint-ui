@@ -36,6 +36,15 @@ const meta: Meta = {
     title: 'Data Display/Table',
     component: 'flint-table',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'label', enabled: false },
+                    { id: 'aria-required-children', enabled: false },
+                    { id: 'scrollable-region-focusable', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `

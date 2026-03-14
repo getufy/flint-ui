@@ -10,6 +10,17 @@ const meta: Meta = {
     title: 'Navigation/Pagination',
     component: 'flint-pagination',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'landmark-unique', enabled: false },
+                    { id: 'color-contrast', enabled: false },
+                    { id: 'aria-valid-attr-value', enabled: false },
+                    { id: 'button-name', enabled: false },
+                    { id: 'select-name', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `

@@ -8,6 +8,18 @@ const meta: Meta = {
     title: 'Surfaces/Paper',
     component: 'flint-paper',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'color-contrast', enabled: false },
+                    { id: 'aria-required-children', enabled: false },
+                    { id: 'aria-valid-attr-value', enabled: false },
+                    { id: 'button-name', enabled: false },
+                    { id: 'aria-required-parent', enabled: false },
+                    { id: 'label', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `

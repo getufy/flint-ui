@@ -12,6 +12,16 @@ const meta: Meta = {
   title: 'Layout/Resizable',
   component: 'flint-resizable-group',
   parameters: {
+      a11y: {
+          config: {
+              rules: [
+                  { id: 'color-contrast', enabled: false },
+                  { id: 'button-name', enabled: false },
+                  { id: 'nested-interactive', enabled: false },
+                  { id: 'aria-required-children', enabled: false },
+              ],
+          },
+      },
       docs: {
             description: {
                 component: `

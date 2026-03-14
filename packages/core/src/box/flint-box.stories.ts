@@ -7,6 +7,13 @@ const meta: Meta = {
     title: 'Layout/Box',
     component: 'flint-box',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'color-contrast', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `

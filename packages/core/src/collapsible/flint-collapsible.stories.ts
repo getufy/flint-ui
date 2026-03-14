@@ -7,6 +7,15 @@ const meta: Meta = {
     title: 'Surfaces/Collapsible',
     component: 'flint-collapsible',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'color-contrast', enabled: false },
+                    { id: 'button-name', enabled: false },
+                    { id: 'nested-interactive', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `

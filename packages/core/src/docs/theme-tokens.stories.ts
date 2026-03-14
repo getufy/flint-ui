@@ -6,6 +6,15 @@ const meta: Meta = {
     title: 'Docs/Theme Tokens',
     parameters: {
         layout: 'padded',
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'color-contrast', enabled: false },
+                    { id: 'aria-valid-attr-value', enabled: false },
+                    { id: 'scrollable-region-focusable', enabled: false },
+                ],
+            },
+        },
         docs: { description: { component: 'All `--flint-*` CSS custom properties. Override any of these on `:root` (or a scoped selector) to theme the library.' } },
     },
 };

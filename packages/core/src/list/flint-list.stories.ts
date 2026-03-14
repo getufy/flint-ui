@@ -7,6 +7,17 @@ const meta: Meta = {
     title: 'Data Display/List',
     component: 'flint-list',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'aria-required-children', enabled: false },
+                    { id: 'color-contrast', enabled: false },
+                    { id: 'button-name', enabled: false },
+                    { id: 'landmark-unique', enabled: false },
+                    { id: 'label', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `

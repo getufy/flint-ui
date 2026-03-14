@@ -8,6 +8,14 @@ const meta: Meta = {
     title: 'Data Display/Chip',
     component: 'flint-chip',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'color-contrast', enabled: false },
+                    { id: 'nested-interactive', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `

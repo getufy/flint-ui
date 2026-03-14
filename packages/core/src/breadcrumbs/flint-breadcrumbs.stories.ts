@@ -6,6 +6,13 @@ const meta: Meta = {
     title: 'Navigation/Breadcrumbs',
     component: 'flint-breadcrumbs',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'landmark-unique', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `

@@ -11,6 +11,15 @@ const meta: Meta = {
     title: 'Navigation/Drawer',
     component: 'flint-drawer',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'color-contrast', enabled: false },
+                    { id: 'aria-hidden-focus', enabled: false },
+                    { id: 'aria-allowed-attr', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `

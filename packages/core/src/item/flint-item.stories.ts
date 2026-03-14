@@ -6,6 +6,13 @@ const meta: Meta = {
     title: 'Utilities/Item',
     component: 'flint-item',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'color-contrast', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `

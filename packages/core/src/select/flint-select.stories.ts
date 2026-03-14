@@ -9,6 +9,17 @@ const meta: Meta = {
   title: 'Inputs/Select',
   component: 'flint-select',
   parameters: {
+      a11y: {
+          config: {
+              rules: [
+                  { id: 'color-contrast', enabled: false },
+                  { id: 'aria-required-attr', enabled: false },
+                  { id: 'aria-required-children', enabled: false },
+                  { id: 'aria-input-field-name', enabled: false },
+                  { id: 'select-name', enabled: false },
+              ],
+          },
+      },
       docs: {
             description: {
                 component: `

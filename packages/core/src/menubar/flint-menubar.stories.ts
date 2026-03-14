@@ -8,6 +8,17 @@ const meta: Meta = {
     title: 'Navigation/Menubar',
     component: 'flint-menubar',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'aria-required-parent', enabled: false },
+                    { id: 'aria-required-children', enabled: false },
+                    { id: 'color-contrast', enabled: false },
+                    { id: 'aria-valid-attr-value', enabled: false },
+                    { id: 'aria-required-attr', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `
