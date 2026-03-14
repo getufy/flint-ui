@@ -1014,6 +1014,21 @@ describe('FlintCommandDialog — backdrop click inner panel', () => {
         expect(handler).not.toHaveBeenCalled();
     });
 
+    it('sets inert on the backdrop when closed and removes it when open', async () => {
+        const dialog = await fixture<FlintCommandDialog>(DIALOG_FIXTURE_LOCAL);
+        await settle(dialog);
+
+        const backdrop = dialog.shadowRoot!.querySelector('.backdrop') as HTMLElement;
+
+        // Closed by default — backdrop should be inert
+        expect(backdrop.hasAttribute('inert')).toBe(true);
+
+        // Open the dialog — inert should be removed
+        dialog.open = true;
+        await dialog.updateComplete;
+        expect(backdrop.hasAttribute('inert')).toBe(false);
+    });
+
     it('auto-focuses the input when dialog opens', async () => {
         const dialog = await fixture<FlintCommandDialog>(DIALOG_FIXTURE_LOCAL);
         await settle(dialog);
