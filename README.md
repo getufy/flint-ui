@@ -2,9 +2,13 @@
 
 [![CI](https://github.com/getufy/flint-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/getufy/flint-ui/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/@getufy/flint-ui)](https://www.npmjs.com/package/@getufy/flint-ui)
-[![license](https://img.shields.io/npm/l/@getufy/flint-ui)](https://github.com/getufy/flint-ui/blob/main/LICENSE)
+[![npm downloads](https://img.shields.io/npm/dm/@getufy/flint-ui)](https://www.npmjs.com/package/@getufy/flint-ui)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/@getufy/flint-ui)](https://bundlephobia.com/package/@getufy/flint-ui)
 
 A comprehensive library of 70+ UI components built with [LitElement](https://lit.dev/) and [TypeScript](https://www.typescriptlang.org/), showcased with [Storybook](https://storybook.js.org/).
+
+Flint UI is built with TypeScript and ships type declarations out of the box.
 
 ## Installation
 
@@ -115,6 +119,17 @@ packages/
 scripts/                         # Codegen (React wrappers, docs)
 docs/                            # VitePress documentation site
 ```
+
+## Browser Support
+
+Flint UI supports all modern browsers:
+
+| Browser | Version |
+|---------|---------|
+| Chrome | 90+ |
+| Firefox | 90+ |
+| Safari | 15+ |
+| Edge | 90+ |
 
 ## License
 

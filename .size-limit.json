@@ -76,5 +76,11 @@
     "path": "packages/core/dist/stepper/flint-stepper.js",
     "import": "*",
     "limit": "11 kB"
+  },
+  {
+    "name": "React wrappers",
+    "path": "packages/react/dist/index.js",
+    "import": "*",
+    "limit": "8 kB"
   }
 ]

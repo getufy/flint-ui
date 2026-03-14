@@ -1,5 +1,12 @@
 {
   "private": true,
+  "description": "Flint UI — a Lit-based web component design system",
+  "author": "Getufy <https://github.com/getufy>",
+  "license": "MIT",
+  "homepage": "https://getufy.github.io/flint-ui/",
+  "bugs": {
+    "url": "https://github.com/getufy/flint-ui/issues"
+  },
   "workspaces": [
     "packages/core",
     "packages/react"
