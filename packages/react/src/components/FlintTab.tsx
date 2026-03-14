@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintTab as FlintTabElement } from 'flint-ui/tabs/flint-tabs';
+import { FlintTab as FlintTabElement } from '@getufy/flint-ui/tabs/flint-tabs';
 
 export const FlintTab = createComponent({
     tagName: 'flint-tab',

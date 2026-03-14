@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintTableBody as FlintTableBodyElement } from 'flint-ui/table/flint-table';
+import { FlintTableBody as FlintTableBodyElement } from '@getufy/flint-ui/table/flint-table';
 
 export const FlintTableBody = createComponent({
     tagName: 'flint-table-body',

@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintBackdrop as FlintBackdropElement } from 'flint-ui/backdrop/flint-backdrop';
+import { FlintBackdrop as FlintBackdropElement } from '@getufy/flint-ui/backdrop/flint-backdrop';
 
 export const FlintBackdrop = createComponent({
     tagName: 'flint-backdrop',

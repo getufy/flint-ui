@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintTextField as FlintTextFieldElement } from 'flint-ui/text-field/flint-text-field';
+import { FlintTextField as FlintTextFieldElement } from '@getufy/flint-ui/text-field/flint-text-field';
 
 export const FlintTextField = createComponent({
     tagName: 'flint-text-field',

@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintEmptyHeader as FlintEmptyHeaderElement } from 'flint-ui/empty/flint-empty';
+import { FlintEmptyHeader as FlintEmptyHeaderElement } from '@getufy/flint-ui/empty/flint-empty';
 
 export const FlintEmptyHeader = createComponent({
     tagName: 'flint-empty-header',

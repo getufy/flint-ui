@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintBox as FlintBoxElement } from 'flint-ui/box/flint-box';
+import { FlintBox as FlintBoxElement } from '@getufy/flint-ui/box/flint-box';
 
 export const FlintBox = createComponent({
     tagName: 'flint-box',

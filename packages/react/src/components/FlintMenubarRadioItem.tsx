@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintMenubarRadioItem as FlintMenubarRadioItemElement } from 'flint-ui/menubar/flint-menubar';
+import { FlintMenubarRadioItem as FlintMenubarRadioItemElement } from '@getufy/flint-ui/menubar/flint-menubar';
 
 export const FlintMenubarRadioItem = createComponent({
     tagName: 'flint-menubar-radio-item',

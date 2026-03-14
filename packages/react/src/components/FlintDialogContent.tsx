@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintDialogContent as FlintDialogContentElement } from 'flint-ui/dialog/flint-dialog';
+import { FlintDialogContent as FlintDialogContentElement } from '@getufy/flint-ui/dialog/flint-dialog';
 
 export const FlintDialogContent = createComponent({
     tagName: 'flint-dialog-content',

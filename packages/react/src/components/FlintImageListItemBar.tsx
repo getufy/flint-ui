@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintImageListItemBar as FlintImageListItemBarElement } from 'flint-ui/image-list/flint-image-list-item-bar';
+import { FlintImageListItemBar as FlintImageListItemBarElement } from '@getufy/flint-ui/image-list/flint-image-list-item-bar';
 
 export const FlintImageListItemBar = createComponent({
     tagName: 'flint-image-list-item-bar',

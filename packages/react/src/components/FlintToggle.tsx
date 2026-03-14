@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintToggle as FlintToggleElement } from 'flint-ui/toggle/flint-toggle';
+import { FlintToggle as FlintToggleElement } from '@getufy/flint-ui/toggle/flint-toggle';
 
 export const FlintToggle = createComponent({
     tagName: 'flint-toggle',

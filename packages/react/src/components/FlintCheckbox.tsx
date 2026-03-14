@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintCheckbox as FlintCheckboxElement } from 'flint-ui/checkbox/flint-checkbox';
+import { FlintCheckbox as FlintCheckboxElement } from '@getufy/flint-ui/checkbox/flint-checkbox';
 
 export const FlintCheckbox = createComponent({
     tagName: 'flint-checkbox',

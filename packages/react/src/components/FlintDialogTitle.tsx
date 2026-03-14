@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintDialogTitle as FlintDialogTitleElement } from 'flint-ui/dialog/flint-dialog';
+import { FlintDialogTitle as FlintDialogTitleElement } from '@getufy/flint-ui/dialog/flint-dialog';
 
 export const FlintDialogTitle = createComponent({
     tagName: 'flint-dialog-title',

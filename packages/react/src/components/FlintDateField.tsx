@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintDateField as FlintDateFieldElement } from 'flint-ui/date-field/flint-date-field';
+import { FlintDateField as FlintDateFieldElement } from '@getufy/flint-ui/date-field/flint-date-field';
 
 export const FlintDateField = createComponent({
     tagName: 'flint-date-field',

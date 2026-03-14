@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintCommandItem as FlintCommandItemElement } from 'flint-ui/command/flint-command';
+import { FlintCommandItem as FlintCommandItemElement } from '@getufy/flint-ui/command/flint-command';
 
 export const FlintCommandItem = createComponent({
     tagName: 'flint-command-item',

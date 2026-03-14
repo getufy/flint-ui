@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintDateRangeCalendar as FlintDateRangeCalendarElement } from 'flint-ui/date-range-picker/flint-date-range-calendar';
+import { FlintDateRangeCalendar as FlintDateRangeCalendarElement } from '@getufy/flint-ui/date-range-picker/flint-date-range-calendar';
 
 export const FlintDateRangeCalendar = createComponent({
     tagName: 'flint-date-range-calendar',

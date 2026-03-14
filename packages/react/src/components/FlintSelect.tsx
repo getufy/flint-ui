@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintSelect as FlintSelectElement } from 'flint-ui/select/flint-select';
+import { FlintSelect as FlintSelectElement } from '@getufy/flint-ui/select/flint-select';
 
 export const FlintSelect = createComponent({
     tagName: 'flint-select',

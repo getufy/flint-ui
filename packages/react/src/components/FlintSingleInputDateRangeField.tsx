@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintSingleInputDateRangeField as FlintSingleInputDateRangeFieldElement } from 'flint-ui/date-range-picker/flint-single-input-date-range-field';
+import { FlintSingleInputDateRangeField as FlintSingleInputDateRangeFieldElement } from '@getufy/flint-ui/date-range-picker/flint-single-input-date-range-field';
 
 export const FlintSingleInputDateRangeField = createComponent({
     tagName: 'flint-single-input-date-range-field',

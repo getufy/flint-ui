@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintStepLabel as FlintStepLabelElement } from 'flint-ui/stepper/flint-stepper';
+import { FlintStepLabel as FlintStepLabelElement } from '@getufy/flint-ui/stepper/flint-stepper';
 
 export const FlintStepLabel = createComponent({
     tagName: 'flint-step-label',

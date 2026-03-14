@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintStack as FlintStackElement } from 'flint-ui/stack/flint-stack';
+import { FlintStack as FlintStackElement } from '@getufy/flint-ui/stack/flint-stack';
 
 export const FlintStack = createComponent({
     tagName: 'flint-stack',

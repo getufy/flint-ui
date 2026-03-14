@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintCollapsibleTrigger as FlintCollapsibleTriggerElement } from 'flint-ui/collapsible/flint-collapsible';
+import { FlintCollapsibleTrigger as FlintCollapsibleTriggerElement } from '@getufy/flint-ui/collapsible/flint-collapsible';
 
 export const FlintCollapsibleTrigger = createComponent({
     tagName: 'flint-collapsible-trigger',

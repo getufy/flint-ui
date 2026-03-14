@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintResizablePanel as FlintResizablePanelElement } from 'flint-ui/resizable/flint-resizable';
+import { FlintResizablePanel as FlintResizablePanelElement } from '@getufy/flint-ui/resizable/flint-resizable';
 
 export const FlintResizablePanel = createComponent({
     tagName: 'flint-resizable-panel',

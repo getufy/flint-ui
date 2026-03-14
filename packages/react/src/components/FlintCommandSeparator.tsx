@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintCommandSeparator as FlintCommandSeparatorElement } from 'flint-ui/command/flint-command';
+import { FlintCommandSeparator as FlintCommandSeparatorElement } from '@getufy/flint-ui/command/flint-command';
 
 export const FlintCommandSeparator = createComponent({
     tagName: 'flint-command-separator',

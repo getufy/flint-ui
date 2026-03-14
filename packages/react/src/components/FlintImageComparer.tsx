@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintImageComparer as FlintImageComparerElement } from 'flint-ui/image-comparer/flint-image-comparer';
+import { FlintImageComparer as FlintImageComparerElement } from '@getufy/flint-ui/image-comparer/flint-image-comparer';
 
 export const FlintImageComparer = createComponent({
     tagName: 'flint-image-comparer',

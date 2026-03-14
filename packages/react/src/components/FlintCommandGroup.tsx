@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintCommandGroup as FlintCommandGroupElement } from 'flint-ui/command/flint-command';
+import { FlintCommandGroup as FlintCommandGroupElement } from '@getufy/flint-ui/command/flint-command';
 
 export const FlintCommandGroup = createComponent({
     tagName: 'flint-command-group',

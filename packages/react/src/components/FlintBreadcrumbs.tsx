@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintBreadcrumbs as FlintBreadcrumbsElement } from 'flint-ui/breadcrumbs/flint-breadcrumbs';
+import { FlintBreadcrumbs as FlintBreadcrumbsElement } from '@getufy/flint-ui/breadcrumbs/flint-breadcrumbs';
 
 export const FlintBreadcrumbs = createComponent({
     tagName: 'flint-breadcrumbs',

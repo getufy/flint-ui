@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintScrollBar as FlintScrollBarElement } from 'flint-ui/scroll-area/flint-scroll-area';
+import { FlintScrollBar as FlintScrollBarElement } from '@getufy/flint-ui/scroll-area/flint-scroll-area';
 
 export const FlintScrollBar = createComponent({
     tagName: 'flint-scroll-bar',

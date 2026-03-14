@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintCollapsibleContent as FlintCollapsibleContentElement } from 'flint-ui/collapsible/flint-collapsible';
+import { FlintCollapsibleContent as FlintCollapsibleContentElement } from '@getufy/flint-ui/collapsible/flint-collapsible';
 
 export const FlintCollapsibleContent = createComponent({
     tagName: 'flint-collapsible-content',

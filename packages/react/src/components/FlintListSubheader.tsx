@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintListSubheader as FlintListSubheaderElement } from 'flint-ui/list/flint-list';
+import { FlintListSubheader as FlintListSubheaderElement } from '@getufy/flint-ui/list/flint-list';
 
 export const FlintListSubheader = createComponent({
     tagName: 'flint-list-subheader',

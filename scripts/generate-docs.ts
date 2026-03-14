@@ -1012,7 +1012,7 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
   'copy-button': [
     {
       html: `<div style="display:flex;gap:8px;flex-wrap:wrap"><flint-copy-button value="Hello, World!">Copy Text</flint-copy-button>
-<flint-copy-button value="npm install flint-ui">Copy Command</flint-copy-button></div>`,
+<flint-copy-button value="npm install @getufy/flint-ui">Copy Command</flint-copy-button></div>`,
     },
   ],
   'hover-card': [
@@ -1747,8 +1747,8 @@ function generateMarkdown(dir: string, components: ComponentInfo[]): string {
 
     // Import
     md += `### Import\n\n`;
-    md += `\`\`\`ts\nimport 'flint-ui'; // auto-registers all\n`;
-    md += `// or\nimport { ${comp.className} } from 'flint-ui';\n\`\`\`\n\n`;
+    md += `\`\`\`ts\nimport '@getufy/flint-ui'; // auto-registers all\n`;
+    md += `// or\nimport { ${comp.className} } from '@getufy/flint-ui';\n\`\`\`\n\n`;
 
     // Basic usage
     md += `### Usage\n\n`;

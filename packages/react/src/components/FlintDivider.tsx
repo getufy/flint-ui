@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintDivider as FlintDividerElement } from 'flint-ui/divider/flint-divider';
+import { FlintDivider as FlintDividerElement } from '@getufy/flint-ui/divider/flint-divider';
 
 export const FlintDivider = createComponent({
     tagName: 'flint-divider',

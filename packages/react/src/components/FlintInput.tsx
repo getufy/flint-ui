@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintInput as FlintInputElement } from 'flint-ui/input/flint-input';
+import { FlintInput as FlintInputElement } from '@getufy/flint-ui/input/flint-input';
 
 export const FlintInput = createComponent({
     tagName: 'flint-input',

@@ -1,5 +1,5 @@
 {
-  "name": "flint-ui-react",
+  "name": "@getufy/flint-ui-react",
   "version": "0.1.0",
   "type": "module",
   "types": "./dist/index.d.ts",
@@ -26,13 +26,13 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/go-mihai/storybook-lit.git",
+    "url": "https://github.com/getufy/flint-ui.git",
     "directory": "packages/react"
   },
   "engines": {
     "node": ">=18.0.0"
   },
-  "description": "React wrappers for flint-ui web components",
+  "description": "React wrappers for @getufy/flint-ui web components",
   "files": [
     "dist"
   ],
@@ -41,12 +41,12 @@
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
-    "flint-ui": "^0.1.0"
+    "@getufy/flint-ui": "^0.1.0"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",
     "react": "^19.0.0",
-    "flint-ui": "*",
+    "@getufy/flint-ui": "*",
     "typescript": "^5.9.3"
   }
 }

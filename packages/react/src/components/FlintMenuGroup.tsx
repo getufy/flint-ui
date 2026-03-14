@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintMenuGroup as FlintMenuGroupElement } from 'flint-ui/menu/flint-menu';
+import { FlintMenuGroup as FlintMenuGroupElement } from '@getufy/flint-ui/menu/flint-menu';
 
 export const FlintMenuGroup = createComponent({
     tagName: 'flint-menu-group',

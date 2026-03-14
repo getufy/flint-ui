@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintKbdGroup as FlintKbdGroupElement } from 'flint-ui/kbd/flint-kbd';
+import { FlintKbdGroup as FlintKbdGroupElement } from '@getufy/flint-ui/kbd/flint-kbd';
 
 export const FlintKbdGroup = createComponent({
     tagName: 'flint-kbd-group',

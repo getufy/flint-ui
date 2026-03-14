@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintStepContent as FlintStepContentElement } from 'flint-ui/stepper/flint-stepper';
+import { FlintStepContent as FlintStepContentElement } from '@getufy/flint-ui/stepper/flint-stepper';
 
 export const FlintStepContent = createComponent({
     tagName: 'flint-step-content',

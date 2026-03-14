@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintFab as FlintFabElement } from 'flint-ui/fab/flint-fab';
+import { FlintFab as FlintFabElement } from '@getufy/flint-ui/fab/flint-fab';
 
 export const FlintFab = createComponent({
     tagName: 'flint-fab',

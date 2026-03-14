@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintRelativeTime as FlintRelativeTimeElement } from 'flint-ui/relative-time/flint-relative-time';
+import { FlintRelativeTime as FlintRelativeTimeElement } from '@getufy/flint-ui/relative-time/flint-relative-time';
 
 export const FlintRelativeTime = createComponent({
     tagName: 'flint-relative-time',

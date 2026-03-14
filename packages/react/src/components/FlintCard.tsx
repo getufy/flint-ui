@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintCard as FlintCardElement } from 'flint-ui/card/flint-card';
+import { FlintCard as FlintCardElement } from '@getufy/flint-ui/card/flint-card';
 
 export const FlintCard = createComponent({
     tagName: 'flint-card',

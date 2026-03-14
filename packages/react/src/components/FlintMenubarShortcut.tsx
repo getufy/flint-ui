@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintMenubarShortcut as FlintMenubarShortcutElement } from 'flint-ui/menubar/flint-menubar';
+import { FlintMenubarShortcut as FlintMenubarShortcutElement } from '@getufy/flint-ui/menubar/flint-menubar';
 
 export const FlintMenubarShortcut = createComponent({
     tagName: 'flint-menubar-shortcut',

@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintFormatDate as FlintFormatDateElement } from 'flint-ui/format-date/flint-format-date';
+import { FlintFormatDate as FlintFormatDateElement } from '@getufy/flint-ui/format-date/flint-format-date';
 
 export const FlintFormatDate = createComponent({
     tagName: 'flint-format-date',

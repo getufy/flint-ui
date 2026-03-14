@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintEmptyContent as FlintEmptyContentElement } from 'flint-ui/empty/flint-empty';
+import { FlintEmptyContent as FlintEmptyContentElement } from '@getufy/flint-ui/empty/flint-empty';
 
 export const FlintEmptyContent = createComponent({
     tagName: 'flint-empty-content',

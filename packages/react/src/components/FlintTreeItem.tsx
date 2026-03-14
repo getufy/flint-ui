@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintTreeItem as FlintTreeItemElement } from 'flint-ui/tree-view/flint-tree-item';
+import { FlintTreeItem as FlintTreeItemElement } from '@getufy/flint-ui/tree-view/flint-tree-item';
 
 export const FlintTreeItem = createComponent({
     tagName: 'flint-tree-item',

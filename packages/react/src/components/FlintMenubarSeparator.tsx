@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintMenubarSeparator as FlintMenubarSeparatorElement } from 'flint-ui/menubar/flint-menubar';
+import { FlintMenubarSeparator as FlintMenubarSeparatorElement } from '@getufy/flint-ui/menubar/flint-menubar';
 
 export const FlintMenubarSeparator = createComponent({
     tagName: 'flint-menubar-separator',

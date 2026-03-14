@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintTypography as FlintTypographyElement } from 'flint-ui/typography/flint-typography';
+import { FlintTypography as FlintTypographyElement } from '@getufy/flint-ui/typography/flint-typography';
 
 export const FlintTypography = createComponent({
     tagName: 'flint-typography',

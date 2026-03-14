@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintMultiSectionDigitalClock as FlintMultiSectionDigitalClockElement } from 'flint-ui/time-picker/flint-time-picker';
+import { FlintMultiSectionDigitalClock as FlintMultiSectionDigitalClockElement } from '@getufy/flint-ui/time-picker/flint-time-picker';
 
 export const FlintMultiSectionDigitalClock = createComponent({
     tagName: 'flint-multi-section-digital-clock',

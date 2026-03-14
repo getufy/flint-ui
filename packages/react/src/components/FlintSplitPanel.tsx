@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintSplitPanel as FlintSplitPanelElement } from 'flint-ui/split-panel/flint-split-panel';
+import { FlintSplitPanel as FlintSplitPanelElement } from '@getufy/flint-ui/split-panel/flint-split-panel';
 
 export const FlintSplitPanel = createComponent({
     tagName: 'flint-split-panel',

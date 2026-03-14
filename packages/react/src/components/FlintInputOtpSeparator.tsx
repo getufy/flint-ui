@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintInputOtpSeparator as FlintInputOtpSeparatorElement } from 'flint-ui/input-otp/flint-input-otp';
+import { FlintInputOtpSeparator as FlintInputOtpSeparatorElement } from '@getufy/flint-ui/input-otp/flint-input-otp';
 
 export const FlintInputOtpSeparator = createComponent({
     tagName: 'flint-input-otp-separator',

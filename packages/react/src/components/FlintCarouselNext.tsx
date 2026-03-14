@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintCarouselNext as FlintCarouselNextElement } from 'flint-ui/carousel/flint-carousel';
+import { FlintCarouselNext as FlintCarouselNextElement } from '@getufy/flint-ui/carousel/flint-carousel';
 
 export const FlintCarouselNext = createComponent({
     tagName: 'flint-carousel-next',

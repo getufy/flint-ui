@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintHoverCardContent as FlintHoverCardContentElement } from 'flint-ui/hover-card/flint-hover-card';
+import { FlintHoverCardContent as FlintHoverCardContentElement } from '@getufy/flint-ui/hover-card/flint-hover-card';
 
 export const FlintHoverCardContent = createComponent({
     tagName: 'flint-hover-card-content',

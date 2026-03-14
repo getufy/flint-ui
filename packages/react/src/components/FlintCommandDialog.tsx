@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintCommandDialog as FlintCommandDialogElement } from 'flint-ui/command/flint-command';
+import { FlintCommandDialog as FlintCommandDialogElement } from '@getufy/flint-ui/command/flint-command';
 
 export const FlintCommandDialog = createComponent({
     tagName: 'flint-command-dialog',

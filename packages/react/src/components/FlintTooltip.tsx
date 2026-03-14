@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintTooltip as FlintTooltipElement } from 'flint-ui/tooltip/flint-tooltip';
+import { FlintTooltip as FlintTooltipElement } from '@getufy/flint-ui/tooltip/flint-tooltip';
 
 export const FlintTooltip = createComponent({
     tagName: 'flint-tooltip',

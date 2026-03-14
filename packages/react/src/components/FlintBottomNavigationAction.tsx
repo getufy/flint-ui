@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintBottomNavigationAction as FlintBottomNavigationActionElement } from 'flint-ui/bottom-navigation/flint-bottom-navigation-action';
+import { FlintBottomNavigationAction as FlintBottomNavigationActionElement } from '@getufy/flint-ui/bottom-navigation/flint-bottom-navigation-action';
 
 export const FlintBottomNavigationAction = createComponent({
     tagName: 'flint-bottom-navigation-action',

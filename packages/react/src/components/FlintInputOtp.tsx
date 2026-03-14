@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
-import { FlintInputOtp as FlintInputOtpElement } from 'flint-ui/input-otp/flint-input-otp';
+import { FlintInputOtp as FlintInputOtpElement } from '@getufy/flint-ui/input-otp/flint-input-otp';
 
 export const FlintInputOtp = createComponent({
     tagName: 'flint-input-otp',

@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { createComponent } from '@lit/react';
-import { FlintAppBar as FlintAppBarElement } from 'flint-ui/app-bar/flint-app-bar';
+import { FlintAppBar as FlintAppBarElement } from '@getufy/flint-ui/app-bar/flint-app-bar';
 
 export const FlintAppBar = createComponent({
     tagName: 'flint-app-bar',
