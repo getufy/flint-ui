@@ -26,15 +26,26 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
+      { text: 'Guide', link: '/getting-started' },
       { text: 'Components', link: '/components/button' },
-      { text: 'Theming', link: '/theming' },
       { text: 'React', link: '/react' },
-      { text: 'Accessibility', link: '/accessibility' },
-      { text: 'Browser Support', link: '/browser-support' },
       { text: 'Storybook', link: 'https://getufy.github.io/flint-ui/storybook/' },
     ],
     sidebar: {
       '/components/': sidebar,
+      '/': [
+        {
+          text: 'Guide',
+          items: [
+            { text: 'Getting Started', link: '/getting-started' },
+            { text: 'Theming', link: '/theming' },
+            { text: 'React', link: '/react' },
+            { text: 'Accessibility', link: '/accessibility' },
+            { text: 'Browser Support', link: '/browser-support' },
+            { text: 'FAQ', link: '/faq' },
+          ],
+        },
+      ],
     },
     search: {
       provider: 'local',

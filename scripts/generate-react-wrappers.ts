@@ -12,7 +12,7 @@
  *   npx tsx scripts/generate-react-wrappers.ts
  */
 
-import { readdirSync, mkdirSync, writeFileSync, existsSync } from 'node:fs';
+import { readdirSync, readFileSync, mkdirSync, writeFileSync, existsSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { parseComponentFile } from './lib/parse-lit.js';
 import {
@@ -21,6 +21,9 @@ import {
     generateIndex,
     generateEventsIndex,
     generateJsxDeclarations,
+    groupByDirectory,
+    generateComponentBarrel,
+    generateExportsMap,
 } from './lib/codegen.js';
 import type { ComponentMeta } from './lib/types.js';
 
@@ -109,6 +112,21 @@ function main() {
     write(join(OUT_DIR, 'index.ts'), generateIndex(allComponents));
     write(join(EVENTS_OUT, 'index.ts'), generateEventsIndex(allComponents));
     write(join(OUT_DIR, 'custom-elements.d.ts'), generateJsxDeclarations(allComponents));
+
+    // Per-component barrel files for tree-shaking
+    console.log('\n--- Generating per-component barrels ---');
+    const groups = groupByDirectory(allComponents);
+    for (const [dir, components] of groups) {
+        write(join(OUT_DIR, `${dir}.ts`), generateComponentBarrel(components));
+    }
+
+    // Update package.json exports map
+    console.log('\n--- Updating package.json exports ---');
+    const pkgPath = join(REPO_ROOT, 'packages/react/package.json');
+    const pkg = JSON.parse(readFileSync(pkgPath, 'utf-8'));
+    pkg.exports = generateExportsMap(allComponents);
+    writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n', 'utf-8');
+    console.log('  updated packages/react/package.json exports');
 
     console.log('\nDone!\n');
 }
