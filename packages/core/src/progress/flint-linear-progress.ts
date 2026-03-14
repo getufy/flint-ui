@@ -17,10 +17,10 @@ export class FlintLinearProgress extends LitElement {
     @property({ type: String }) label = '';
 
     private static readonly _colorMap: Record<string, string> = {
-        primary: '#3b82f6',
-        success: '#22c55e',
-        error: '#ef4444',
-        warning: '#f59e0b',
+        primary: 'var(--flint-primary-color, #3b82f6)',
+        success: 'var(--flint-success-color, #22c55e)',
+        error: 'var(--flint-error-color, #ef4444)',
+        warning: 'var(--flint-warning-color, #f59e0b)',
     };
 
     private get _safeValue(): number {

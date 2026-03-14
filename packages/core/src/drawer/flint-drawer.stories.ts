@@ -165,7 +165,7 @@ export const Persistent: Story = {
                 <flint-stack direction="row" alignItems="center" justifyContent="space-between" mb="16px">
                     <h2 style="margin:0;font-size:1.25rem;">Persistent Drawer</h2>
                     <flint-button variant="outlined" @click=${toggleDrawer}>Toggle</flint-button>
-                </div>
+                </flint-stack>
                 <p>The persistent drawer sits on the same surface as the content.
                    It's closed by clicking Toggle — it does not use a backdrop.</p>
                 ${Array.from({ length: 6 }).map(() => html`
@@ -210,7 +210,7 @@ export const Mini: Story = {
                 <flint-stack direction="row" alignItems="center" justifyContent="space-between" mb="16px">
                     <h2 style="margin:0;font-size:1.25rem;">Mini Variant</h2>
                     <flint-button variant="outlined" @click=${toggleDrawer}>Toggle</flint-button>
-                </div>
+                </flint-stack>
                 <p>Icons are always visible. Expand to reveal full labels alongside them.</p>
                 ${Array.from({ length: 8 }).map(() => html`
                     <p style="color:#64748b;line-height:1.6;">

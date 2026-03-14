@@ -297,8 +297,8 @@ export class FlintTabs extends LitElement {
     }
 
     private _resolveColor(c: string) {
-        if (c === 'primary') return '#3b82f6';
-        if (c === 'secondary') return '#8b5cf6';
+        if (c === 'primary') return 'var(--flint-primary-color, #3b82f6)';
+        if (c === 'secondary') return 'var(--flint-accent-color, #8b5cf6)';
         if (c === 'inherit') return 'currentColor';
         return c;
     }
@@ -328,7 +328,7 @@ export class FlintTabs extends LitElement {
         }
 
         const activeClr = this._resolveColor(this.textColor);
-        const inactiveClr = this.textColor === 'inherit' ? 'currentColor' : '#6b7280';
+        const inactiveClr = this.textColor === 'inherit' ? 'currentColor' : 'var(--flint-text-color-muted, #6b7280)';
 
         // Sync tabs
         tabs.forEach(tab => {

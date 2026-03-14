@@ -31,8 +31,8 @@ export class FlintNavigationMenuTrigger extends LitElement {
             --flint-navigation-menu-trigger-font-size: 14px;
             --flint-navigation-menu-trigger-color: var(--flint-text-color, #111827);
             --flint-navigation-menu-trigger-bg: transparent;
-            --flint-navigation-menu-trigger-hover-bg: #f3f4f6;
-            --flint-navigation-menu-trigger-active-bg: #f3f4f6;
+            --flint-navigation-menu-trigger-hover-bg: var(--flint-hover-color, rgba(0, 0, 0, 0.04));
+            --flint-navigation-menu-trigger-active-bg: var(--flint-hover-color, rgba(0, 0, 0, 0.04));
             --flint-navigation-menu-trigger-border-radius: 6px;
         }
 

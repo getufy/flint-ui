@@ -129,7 +129,14 @@
       "Bash(ls -d /Users/algoassasin/flint-ui/packages/core/src/*/  | xargs -I{} basename {} | sort > /tmp/dirs.txt && grep \"^export\" /Users/algoassasin/flint-ui/packages/core/src/index.ts | grep -oP \"from '\\\\./\\([^/]+\\)\" | sed \"s/from '.\\\\///\" | sort -u > /tmp/exports.txt && comm -23 /tmp/dirs.txt /tmp/exports.txt)",
       "Bash(ls -d /Users/algoassasin/flint-ui/packages/core/src/*/ | xargs -I{} basename {} | sort > /tmp/dirs.txt && grep \"from './\" /Users/algoassasin/flint-ui/packages/core/src/index.ts | sed \"s/.*from '.\\\\///\" | sed \"s/\\\\/.*//\" | sort -u > /tmp/exports.txt && comm -23 /tmp/dirs.txt /tmp/exports.txt)",
       "WebFetch(domain:lite-framework.vercel.app)",
-      "Bash(curl -s \"https://lite-framework.vercel.app/assets/iframe-C9Ht0RMh.js\" | grep -oE \".{0,50}__STORYBOOK_MODULE_TEST__.{0,50}\" | head -5)"
+      "Bash(curl -s \"https://lite-framework.vercel.app/assets/iframe-C9Ht0RMh.js\" | grep -oE \".{0,50}__STORYBOOK_MODULE_TEST__.{0,50}\" | head -5)",
+      "Bash(/tmp/analyze_colors.txt:*)",
+      "Read(//tmp/**)",
+      "Bash(grep -n \"static.*css\\\\|css\\\\`\" /Users/algoassasin/storybook-lit/packages/core/src/time-picker/flint-time-picker.ts | head -5)",
+      "Bash(grep -r \"#[0-9a-fA-F]\\\\{3,6\\\\}\" packages/core/src/item/*.css packages/core/src/hover-card/*.css packages/core/src/kbd/*.css 2>/dev/null)",
+      "Bash(grep -r \"css\\\\`\" packages/core/src --include=\"*.ts\" --exclude-dir=\".test.ts\" | grep -v \".stories.ts\" | grep -v \".test.ts\" | head -20)",
+      "Bash(grep -A 50 \"static override styles = css\\\\`\" packages/core/src/split-panel/flint-split-panel.ts | grep \"#\" | head -10)",
+      "Bash(grep -B 5 -A 50 \"const navButtonStyles = css\\\\`\" packages/core/src/carousel/flint-carousel.ts | grep \"#\")"
     ]
   }
 }

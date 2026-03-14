@@ -347,7 +347,7 @@ export const CollapseAPI: Story = {
         }}
       >
         <flint-resizable-group orientation="horizontal">
-          <flint-resizable-panel data-sidebar-panel .defaultSize=${30} .minSize=${10}>
+          <flint-resizable-panel data-sidebar-panel .defaultSize=${30} .minSize=${10} .collapsible=${true}>
             <flint-box bgcolor="var(--flint-muted-background,#f4f4f5)" display="flex" alignItems="center" justifyContent="center" height="100%" p="24px">
               <flint-typography variant="subtitle2">Sidebar</flint-typography>
             </flint-box>
@@ -566,8 +566,8 @@ export const IDELayout: Story = {
           <flint-resizable-panel .defaultSize=${80}>
             <flint-resizable-group data-inner orientation="vertical">
 
-              <!-- ── Editor ── -->
-              <flint-resizable-panel .defaultSize=${70} .minSize=${20}>
+              <!-- ── Editor (maxSize 80 prevents terminal handle from going too low) ── -->
+              <flint-resizable-panel .defaultSize=${65} .minSize=${20} .maxSize=${80}>
                 <flint-stack direction="column" bgcolor="var(--flint-background, #fff)" style="height:100%;overflow:hidden;">
                   <flint-tabs value="button" style="flex:1;overflow:hidden;min-height:0;display:flex;flex-direction:column;">
                     <flint-tab-list style="border-bottom:1px solid var(--flint-border-color,#e4e4e7);">
@@ -615,19 +615,25 @@ export const IDELayout: Story = {
               </flint-resizable-panel>
               <flint-resizable-handle with-handle></flint-resizable-handle>
 
-              <!-- ── Terminal (collapsible) ── -->
-              <flint-resizable-panel data-terminal .defaultSize=${30} .minSize=${8} .collapsible=${true}>
-                <flint-stack direction="column" style="height:100%;background:var(--flint-demo-terminal-background, #0c0c0c);overflow:hidden;">
-                  <flint-stack direction="row" alignItems="center" gap="16px" style="padding:5px 12px;border-bottom:1px solid #27272a;flex-shrink:0;">
-                    <flint-typography variant="overline" style="color:#fff;letter-spacing:.05em;">Terminal</flint-typography>
-                    <flint-typography variant="caption" style="color:#a1a1aa;">Problems</flint-typography>
-                    <flint-typography variant="caption" style="color:#a1a1aa;">Output</flint-typography>
+              <!-- ── Terminal (collapsible: drag past minSize to fully collapse) ── -->
+              <flint-resizable-panel data-terminal .defaultSize=${35} .minSize=${20} .collapsible=${true}>
+                <flint-stack direction="column" style="height:100%;overflow:hidden;">
+                  <flint-stack direction="row" alignItems="center" gap="16px"
+                    style="padding:5px 12px;border-top:1px solid var(--flint-border-color,#e4e4e7);
+                           border-bottom:1px solid var(--flint-border-color,#e4e4e7);
+                           background:var(--flint-muted-background,#f4f4f5);flex-shrink:0;">
+                    <flint-typography variant="overline" color="textSecondary" style="letter-spacing:.05em;">Terminal</flint-typography>
+                    <flint-typography variant="caption" color="textSecondary">Problems</flint-typography>
+                    <flint-typography variant="caption" color="textSecondary">Output</flint-typography>
                   </flint-stack>
-                  <div style="flex:1;padding:10px 14px;font-family:monospace;font-size:12px;color:#d4d4d4;overflow:auto;line-height:1.6;">
-                    <div><span style="color:#4ade80">✔</span> Build complete in 312ms</div>
-                    <div><span style="color:#a1a1aa">$</span> npm test</div>
-                    <div><span style="color:#4ade80">✔</span> 59 tests passed</div>
-                    <div style="margin-top:4px;color:#a1a1aa">$ ▌</div>
+                  <div style="flex:1;padding:10px 14px;font-family:monospace;font-size:12px;
+                              color:var(--flint-text-color,#111827);
+                              background:var(--flint-background,#fff);
+                              overflow:auto;line-height:1.6;">
+                    <div><span style="color:var(--flint-success-color,#16a34a);">✔</span> Build complete in 312ms</div>
+                    <div><span style="color:var(--flint-text-color-muted,#71717a);">$</span> npm test</div>
+                    <div><span style="color:var(--flint-success-color,#16a34a);">✔</span> 59 tests passed</div>
+                    <div style="margin-top:4px;color:var(--flint-text-color-muted,#71717a);">$ ▌</div>
                   </div>
                 </flint-stack>
               </flint-resizable-panel>
@@ -640,7 +646,6 @@ export const IDELayout: Story = {
     </flint-stack>
     <flint-typography variant="caption" color="textSecondary" style="display:block;margin-top:8px;">
       Drag the Explorer handle left past its snap point to collapse it.
-      Drag the Terminal handle down past its snap point to collapse it.
       Drag back toward center to expand.
     </flint-typography>
   `,

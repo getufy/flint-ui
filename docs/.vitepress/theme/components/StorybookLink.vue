@@ -25,9 +25,9 @@ const storybookIds: Record<string, string> = {
   'command': 'navigation-command',
   'container': 'layout-container',
   'copy-button': 'utilities-copy-button',
-  'date-field': 'date---time-date-field',
-  'date-picker': 'date---time-date-picker',
-  'date-range-picker': 'date---time-date-range-picker',
+  'date-field': 'date-time-date-field',
+  'date-picker': 'date-time-date-picker',
+  'date-range-picker': 'date-time-date-range-picker',
   'dialog': 'feedback-dialog',
   'divider': 'data-display-divider',
   'drawer': 'navigation-drawer',
@@ -71,7 +71,7 @@ const storybookIds: Record<string, string> = {
   'tabs': 'navigation-tabs',
   'text-field': 'inputs-text-field',
   'textarea': 'inputs-textarea',
-  'time-picker': 'date---time-time-picker',
+  'time-picker': 'date-time-time-picker',
   'toggle': 'inputs-toggle',
   'tooltip': 'data-display-tooltip',
   'transfer-list': 'inputs-transfer-list',
@@ -88,7 +88,7 @@ const storybookUrl = computed(() => {
   const slug = match[1].replace(/\.html$/, '');
   const id = storybookIds[slug];
   if (!id) return null;
-  return `${STORYBOOK_BASE}?path=/story/${id}`;
+  return `${STORYBOOK_BASE}?path=/docs/${id}--docs`;
 });
 </script>
 

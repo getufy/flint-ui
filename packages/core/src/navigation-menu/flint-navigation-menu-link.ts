@@ -31,9 +31,9 @@ export class FlintNavigationMenuLink extends LitElement {
             --flint-navigation-menu-link-color: var(--flint-text-color, #111827);
             --flint-navigation-menu-link-text-decoration: none;
             --flint-navigation-menu-link-bg: transparent;
-            --flint-navigation-menu-link-hover-bg: #f3f4f6;
+            --flint-navigation-menu-link-hover-bg: var(--flint-hover-color, rgba(0, 0, 0, 0.04));
             --flint-navigation-menu-link-border-radius: 6px;
-            --flint-navigation-menu-link-active-bg: #eff6ff;
+            --flint-navigation-menu-link-active-bg: var(--flint-primary-color-light, rgba(59, 130, 246, 0.10));
             --flint-navigation-menu-link-active-color: var(--flint-primary-color, #3b82f6);
         }
 

@@ -1,6 +1,6 @@
 # Split Panel
 
-<Demo html="<flint-split-panel style=&quot;height:200px;width:100%;max-width:500px;border:1px solid #e5e7eb;border-radius:8px&quot;>  <div slot=&quot;start&quot; style=&quot;padding:16px;background:#f0f9ff;height:100%&quot;>Left Panel — Drag the divider</div>  <div slot=&quot;end&quot; style=&quot;padding:16px;background:#fef3c7;height:100%&quot;>Right Panel</div></flint-split-panel>" />
+<Demo html="<flint-split-panel style=&quot;height:200px;width:100%;max-width:500px;border:1px solid var(--flint-border-color, #e5e7eb);border-radius:8px&quot;>  <div slot=&quot;start&quot; style=&quot;padding:16px;background:var(--flint-primary-color-light, rgba(59,130,246,0.1));height:100%;color:var(--flint-text-color, #111827)&quot;>Left Panel — Drag the divider</div>  <div slot=&quot;end&quot; style=&quot;padding:16px;background:var(--flint-hover-color, rgba(0,0,0,0.04));height:100%;color:var(--flint-text-color, #111827)&quot;>Right Panel</div></flint-split-panel>" />
 
 - **Tag**: `<flint-split-panel>`
 - **Class**: `FlintSplitPanel`

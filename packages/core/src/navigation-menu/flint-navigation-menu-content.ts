@@ -38,8 +38,8 @@ export class FlintNavigationMenuContent extends LitElement {
         }
 
         .panel {
-            background: var(--flint-navigation-menu-content-bg, #ffffff);
-            border: var(--flint-navigation-menu-content-border, 1px solid #e5e7eb);
+            background: var(--flint-navigation-menu-content-bg, var(--flint-surface-1, #ffffff));
+            border: var(--flint-navigation-menu-content-border, 1px solid var(--flint-border-color, #e5e7eb));
             border-radius: var(--flint-navigation-menu-content-border-radius, 8px);
             padding: var(--flint-navigation-menu-content-padding, 12px);
             box-shadow: var(
