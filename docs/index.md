@@ -8,9 +8,6 @@ hero:
     - theme: brand
       text: Get Started
       link: /components/button
-    - theme: alt
-      text: View on GitHub
-      link: https://github.com/nicosanma/storybook-lit
 features:
   - title: 75+ Components
     details: From buttons to data tables, date pickers to tree views — everything you need to build modern UIs.
