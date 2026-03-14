@@ -322,9 +322,9 @@ import { FlintTableCell } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `header` | `header` | `boolean` | `false` |  |
-| `align` | `align` | `'left' \| 'right' \| 'center'` | `'left'` |  |
-| `padding` | `padding` | `'normal' \| 'checkbox' \| 'none'` | `'normal'` |  |
+| `header` | `header` | `boolean` | `false` | Renders the cell with header styling. |
+| `align` | `align` | `'left' \| 'right' \| 'center'` | `'left'` | Text alignment within the cell. |
+| `padding` | `padding` | `'normal' \| 'checkbox' \| 'none'` | `'normal'` | Padding preset for the cell. |
 
 ### Slots
 
