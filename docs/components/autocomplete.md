@@ -55,3 +55,9 @@ import { FlintAutocomplete } from 'flint-ui';
 | `--flint-text-color-muted` | — |
 
 ---
+
+## Accessibility
+
+- **Keyboard**: type to filter, Arrow keys navigate suggestions, Enter selects, Escape closes.
+- **ARIA**: `role="combobox"` with `aria-autocomplete="list"`, `aria-activedescendant`.
+- **Screen reader**: announces number of suggestions and active option.

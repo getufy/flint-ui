@@ -43,3 +43,8 @@ import { FlintBox } from 'flint-ui';
 | `--flint-box-padding` | `0` |
 
 ---
+
+## Accessibility
+
+- **ARIA**: generic container, no ARIA roles.
+- **Screen reader**: content announced in reading order.

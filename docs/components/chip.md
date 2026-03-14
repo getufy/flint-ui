@@ -79,3 +79,9 @@ import { FlintChip } from 'flint-ui';
 | `--flint-avatar-size` | `24px` |
 
 ---
+
+## Accessibility
+
+- **Keyboard**: Enter/Backspace to delete when deletable, Space to select when selectable.
+- **ARIA**: uses appropriate role based on mode.
+- **Screen reader**: announces chip label and state.

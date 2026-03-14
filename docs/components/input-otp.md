@@ -149,3 +149,9 @@ import { FlintInputOtp } from 'flint-ui';
 | `(default)` | Default slot for content |
 
 ---
+
+## Accessibility
+
+- **Keyboard**: digits auto-advance to next field, Backspace moves to previous.
+- **ARIA**: each segment is an input with `aria-label`.
+- **Screen reader**: announces position in sequence.

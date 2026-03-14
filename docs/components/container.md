@@ -45,3 +45,8 @@ import { FlintContainer } from 'flint-ui';
 | `--flint-container-xl` | `1536px` |
 
 ---
+
+## Accessibility
+
+- **ARIA**: generic container, no ARIA roles.
+- **Screen reader**: content in reading order.

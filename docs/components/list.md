@@ -248,3 +248,8 @@ import { FlintListSubheader } from 'flint-ui';
 | `(default)` | Default slot for content |
 
 ---
+
+## Accessibility
+
+- **ARIA**: `role="list"` on container, `role="listitem"` on children.
+- **Screen reader**: announces list and item count.

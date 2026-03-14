@@ -50,3 +50,8 @@ import { FlintBackdrop } from 'flint-ui';
 | `--flint-backdrop-z-index` | — |
 
 ---
+
+## Accessibility
+
+- **ARIA**: decorative overlay, no interactive role.
+- **Screen reader**: not announced.

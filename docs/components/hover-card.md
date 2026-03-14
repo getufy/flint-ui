@@ -130,3 +130,9 @@ import { FlintHoverCard } from 'flint-ui';
 | `isOpen(): boolean` |  |
 
 ---
+
+## Accessibility
+
+- **Keyboard**: card shows on focus, hides on Escape.
+- **ARIA**: trigger linked to content via `aria-describedby`.
+- **Screen reader**: announces hover card content on focus.

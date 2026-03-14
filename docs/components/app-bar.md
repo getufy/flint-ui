@@ -56,3 +56,8 @@ import { FlintAppBar } from 'flint-ui';
 | `--flint-font-family` | — |
 
 ---
+
+## Accessibility
+
+- **ARIA**: renders a `<header>` landmark.
+- **Screen reader**: announces as banner landmark.

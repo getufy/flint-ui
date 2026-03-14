@@ -56,3 +56,9 @@ import { FlintFab } from 'flint-ui';
 | `--flint-font-family` | — |
 
 ---
+
+## Accessibility
+
+- **Keyboard**: Enter/Space activates.
+- **ARIA**: `role="button"` with `aria-label`.
+- **Screen reader**: announces button label.

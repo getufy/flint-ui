@@ -359,3 +359,9 @@ import { FlintTimePicker } from 'flint-ui';
 | `change` | — |  |
 
 ---
+
+## Accessibility
+
+- **Keyboard**: Arrow keys adjust time segments, Tab moves between hour/minute/period.
+- **ARIA**: uses `role="spinbutton"` for segments, `role="listbox"` for period selector.
+- **Screen reader**: announces time value.

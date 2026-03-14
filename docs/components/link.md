@@ -66,3 +66,8 @@ import { FlintLink } from 'flint-ui';
 | `--flint-text-color-muted` | — |
 
 ---
+
+## Accessibility
+
+- **ARIA**: renders a native `<a>` element.
+- **Screen reader**: announces link text and destination.

@@ -133,3 +133,9 @@ import { FlintResizableHandle } from 'flint-ui';
 | `host(:hover)` |  |
 
 ---
+
+## Accessibility
+
+- **Keyboard**: Arrow keys resize panels, Home/End for min/max.
+- **ARIA**: resize handle has `role="separator"` with `aria-valuenow`.
+- **Screen reader**: announces panel size.

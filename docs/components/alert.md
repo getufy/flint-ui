@@ -71,3 +71,8 @@ import { FlintAlert } from 'flint-ui';
 | `--flint-active-color` | — |
 
 ---
+
+## Accessibility
+
+- **ARIA**: `role="alert"` for live announcements.
+- **Screen reader**: immediately announces alert content when rendered.

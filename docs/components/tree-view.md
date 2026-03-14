@@ -175,3 +175,9 @@ import { FlintTreeItem } from 'flint-ui';
 | `setDraggable(value: boolean, handleOnly = false)` |  |
 
 ---
+
+## Accessibility
+
+- **Keyboard**: Arrow keys navigate, Enter/Space expand/collapse, Home/End jump to first/last.
+- **ARIA**: `role="tree"`, `role="treeitem"` with `aria-expanded`.
+- **Screen reader**: announces tree level and expanded state.

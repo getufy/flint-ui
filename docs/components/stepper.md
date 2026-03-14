@@ -265,3 +265,8 @@ import { FlintMobileStepper } from 'flint-ui';
 | `next-button` |  |
 
 ---
+
+## Accessibility
+
+- **ARIA**: steps marked with `aria-current="step"` for the active step.
+- **Screen reader**: announces step labels and current position.
