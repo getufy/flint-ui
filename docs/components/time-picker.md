@@ -1,34 +1,34 @@
 # Time Picker
 
-<Demo label="Desktop (Digital Clock Popover)" html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><ui-time-picker label=&quot;Time&quot; value=&quot;14:30:00&quot; style=&quot;width:200px&quot;></ui-time-picker><ui-time-picker label=&quot;With Seconds&quot; value=&quot;09:15:45&quot; seconds style=&quot;width:200px&quot;></ui-time-picker><ui-time-picker label=&quot;Disabled&quot; disabled value=&quot;08:00:00&quot; style=&quot;width:200px&quot;></ui-time-picker></div>" />
+<Demo label="Desktop (Digital Clock Popover)" html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><flint-time-picker label=&quot;Time&quot; value=&quot;14:30:00&quot; style=&quot;width:200px&quot;></flint-time-picker><flint-time-picker label=&quot;With Seconds&quot; value=&quot;09:15:45&quot; seconds style=&quot;width:200px&quot;></flint-time-picker><flint-time-picker label=&quot;Disabled&quot; disabled value=&quot;08:00:00&quot; style=&quot;width:200px&quot;></flint-time-picker></div>" />
 
-<Demo label="Mobile (Analog Clock Dialog)" html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><ui-time-picker label=&quot;Tap to open clock&quot; variant=&quot;mobile&quot; value=&quot;10:30:00&quot; style=&quot;width:200px&quot;></ui-time-picker><ui-time-picker label=&quot;With Seconds&quot; variant=&quot;mobile&quot; value=&quot;15:45:30&quot; seconds style=&quot;width:200px&quot;></ui-time-picker></div>" />
+<Demo label="Mobile (Analog Clock Dialog)" html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><flint-time-picker label=&quot;Tap to open clock&quot; variant=&quot;mobile&quot; value=&quot;10:30:00&quot; style=&quot;width:200px&quot;></flint-time-picker><flint-time-picker label=&quot;With Seconds&quot; variant=&quot;mobile&quot; value=&quot;15:45:30&quot; seconds style=&quot;width:200px&quot;></flint-time-picker></div>" />
 
-<Demo label="Analog Clock (Standalone)" html="<div style=&quot;display:flex;gap:24px;flex-wrap:wrap;align-items:start&quot;><ui-time-clock value=&quot;10:10:00&quot; ampm></ui-time-clock><ui-time-clock value=&quot;15:45:00&quot;></ui-time-clock></div>" />
+<Demo label="Analog Clock (Standalone)" html="<div style=&quot;display:flex;gap:24px;flex-wrap:wrap;align-items:start&quot;><flint-time-clock value=&quot;10:10:00&quot; ampm></flint-time-clock><flint-time-clock value=&quot;15:45:00&quot;></flint-time-clock></div>" />
 
-<Demo label="Digital Clock" html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><ui-digital-clock value=&quot;14:30:00&quot; ampm></ui-digital-clock><ui-digital-clock value=&quot;09:15:00&quot;></ui-digital-clock></div>" />
+<Demo label="Digital Clock" html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><flint-digital-clock value=&quot;14:30:00&quot; ampm></flint-digital-clock><flint-digital-clock value=&quot;09:15:00&quot;></flint-digital-clock></div>" />
 
-<Demo label="Multi-Section Digital Clock" html="<ui-multi-section-digital-clock value=&quot;14:30:00&quot; ampm></ui-multi-section-digital-clock>" />
+<Demo label="Multi-Section Digital Clock" html="<flint-multi-section-digital-clock value=&quot;14:30:00&quot; ampm></flint-multi-section-digital-clock>" />
 
-<Demo label="Static Time Picker" html="<ui-static-time-picker value=&quot;11:00:00&quot; ampm></ui-static-time-picker>" />
+<Demo label="Static Time Picker" html="<flint-static-time-picker value=&quot;11:00:00&quot; ampm></flint-static-time-picker>" />
 
-## `<ui-time-field>`
+## `<flint-time-field>`
 
-- **Tag**: `<ui-time-field>`
-- **Class**: `UiTimeField`
+- **Tag**: `<flint-time-field>`
+- **Class**: `FlintTimeField`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiTimeField } from 'storybook-lit';
+import { FlintTimeField } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-time-field></ui-time-field>
+<flint-time-field></flint-time-field>
 ```
 
 ### Properties
@@ -55,23 +55,23 @@ import { UiTimeField } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-time-field-height` | `44px` |
-| `--ui-time-field-min-width` | `160px` |
-| `--ui-font-family` | — |
-| `--ui-text-color` | — |
-| `--ui-hover-color` | — |
-| `--ui-primary-color` | — |
-| `--ui-text-color-on-primary` | — |
-| `--ui-border-radius-xl` | — |
-| `--ui-msdc-height` | `240px` |
-| `--ui-surface-1` | — |
-| `--ui-border-color` | — |
-| `--ui-text-color-muted` | — |
-| `--ui-error-color` | — |
-| `--ui-input-bg` | — |
-| `--ui-border-radius-md` | — |
-| `--ui-primary-focus-ring` | — |
-| `--ui-input-disabled-bg` | — |
+| `--flint-time-field-height` | `44px` |
+| `--flint-time-field-min-width` | `160px` |
+| `--flint-font-family` | — |
+| `--flint-text-color` | — |
+| `--flint-hover-color` | — |
+| `--flint-primary-color` | — |
+| `--flint-text-color-on-primary` | — |
+| `--flint-border-radius-xl` | — |
+| `--flint-msdc-height` | `240px` |
+| `--flint-surface-1` | — |
+| `--flint-border-color` | — |
+| `--flint-text-color-muted` | — |
+| `--flint-error-color` | — |
+| `--flint-input-bg` | — |
+| `--flint-border-radius-md` | — |
+| `--flint-primary-focus-ring` | — |
+| `--flint-input-disabled-bg` | — |
 
 ### Methods
 
@@ -81,23 +81,23 @@ import { UiTimeField } from 'storybook-lit';
 
 ---
 
-## `<ui-digital-clock>`
+## `<flint-digital-clock>`
 
-- **Tag**: `<ui-digital-clock>`
-- **Class**: `UiDigitalClock`
+- **Tag**: `<flint-digital-clock>`
+- **Class**: `FlintDigitalClock`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiDigitalClock } from 'storybook-lit';
+import { FlintDigitalClock } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-digital-clock></ui-digital-clock>
+<flint-digital-clock></flint-digital-clock>
 ```
 
 ### Properties
@@ -118,27 +118,27 @@ import { UiDigitalClock } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-digital-clock-height` | `300px` |
+| `--flint-digital-clock-height` | `300px` |
 
 ---
 
-## `<ui-multi-section-digital-clock>`
+## `<flint-multi-section-digital-clock>`
 
-- **Tag**: `<ui-multi-section-digital-clock>`
-- **Class**: `UiMultiSectionDigitalClock`
+- **Tag**: `<flint-multi-section-digital-clock>`
+- **Class**: `FlintMultiSectionDigitalClock`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiMultiSectionDigitalClock } from 'storybook-lit';
+import { FlintMultiSectionDigitalClock } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-multi-section-digital-clock></ui-multi-section-digital-clock>
+<flint-multi-section-digital-clock></flint-multi-section-digital-clock>
 ```
 
 ### Properties
@@ -157,23 +157,23 @@ import { UiMultiSectionDigitalClock } from 'storybook-lit';
 
 ---
 
-## `<ui-time-clock>`
+## `<flint-time-clock>`
 
-- **Tag**: `<ui-time-clock>`
-- **Class**: `UiTimeClock`
+- **Tag**: `<flint-time-clock>`
+- **Class**: `FlintTimeClock`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiTimeClock } from 'storybook-lit';
+import { FlintTimeClock } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-time-clock></ui-time-clock>
+<flint-time-clock></flint-time-clock>
 ```
 
 ### Properties
@@ -196,33 +196,33 @@ import { UiTimeClock } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-time-clock-face-bg` | `var(--ui-surface-variant, #f1f5f9` |
-| `--ui-time-clock-inner-bg` | `rgba(0,0,0,.04` |
-| `--ui-time-clock-inner-border` | `var(--ui-border-color, #e5e7eb` |
-| `--ui-time-clock-hand-color` | `var(--ui-primary-color, #3b82f6` |
-| `--ui-time-clock-num-size` | `14px` |
-| `--ui-time-clock-inner-num-size` | `12px` |
-| `--ui-time-clock-ampm-radius` | `20px` |
+| `--flint-time-clock-face-bg` | `var(--flint-surface-variant, #f1f5f9` |
+| `--flint-time-clock-inner-bg` | `rgba(0,0,0,.04` |
+| `--flint-time-clock-inner-border` | `var(--flint-border-color, #e5e7eb` |
+| `--flint-time-clock-hand-color` | `var(--flint-primary-color, #3b82f6` |
+| `--flint-time-clock-num-size` | `14px` |
+| `--flint-time-clock-inner-num-size` | `12px` |
+| `--flint-time-clock-ampm-radius` | `20px` |
 
 ---
 
-## `<ui-desktop-time-picker>`
+## `<flint-desktop-time-picker>`
 
-- **Tag**: `<ui-desktop-time-picker>`
-- **Class**: `UiDesktopTimePicker`
+- **Tag**: `<flint-desktop-time-picker>`
+- **Class**: `FlintDesktopTimePicker`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiDesktopTimePicker } from 'storybook-lit';
+import { FlintDesktopTimePicker } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-desktop-time-picker></ui-desktop-time-picker>
+<flint-desktop-time-picker></flint-desktop-time-picker>
 ```
 
 ### Properties
@@ -246,23 +246,23 @@ import { UiDesktopTimePicker } from 'storybook-lit';
 
 ---
 
-## `<ui-mobile-time-picker>`
+## `<flint-mobile-time-picker>`
 
-- **Tag**: `<ui-mobile-time-picker>`
-- **Class**: `UiMobileTimePicker`
+- **Tag**: `<flint-mobile-time-picker>`
+- **Class**: `FlintMobileTimePicker`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiMobileTimePicker } from 'storybook-lit';
+import { FlintMobileTimePicker } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-mobile-time-picker></ui-mobile-time-picker>
+<flint-mobile-time-picker></flint-mobile-time-picker>
 ```
 
 ### Properties
@@ -285,23 +285,23 @@ import { UiMobileTimePicker } from 'storybook-lit';
 
 ---
 
-## `<ui-static-time-picker>`
+## `<flint-static-time-picker>`
 
-- **Tag**: `<ui-static-time-picker>`
-- **Class**: `UiStaticTimePicker`
+- **Tag**: `<flint-static-time-picker>`
+- **Class**: `FlintStaticTimePicker`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiStaticTimePicker } from 'storybook-lit';
+import { FlintStaticTimePicker } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-static-time-picker></ui-static-time-picker>
+<flint-static-time-picker></flint-static-time-picker>
 ```
 
 ### Properties
@@ -320,23 +320,23 @@ import { UiStaticTimePicker } from 'storybook-lit';
 
 ---
 
-## `<ui-time-picker>`
+## `<flint-time-picker>`
 
-- **Tag**: `<ui-time-picker>`
-- **Class**: `UiTimePicker`
+- **Tag**: `<flint-time-picker>`
+- **Class**: `FlintTimePicker`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiTimePicker } from 'storybook-lit';
+import { FlintTimePicker } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-time-picker></ui-time-picker>
+<flint-time-picker></flint-time-picker>
 ```
 
 ### Properties

@@ -1,24 +1,24 @@
 # Backdrop
 
-<Demo html="<ui-button onclick=&quot;var b=this.nextElementSibling;b.open=true;b.addEventListener('close',function(){b.open=false},{once:true})&quot;>Show Backdrop</ui-button><ui-backdrop>  <div style=&quot;background:white;padding:24px;border-radius:8px;text-align:center&quot;>    <p style=&quot;margin:0 0 16px&quot;>Click outside or press Escape to close</p>    <ui-button onclick=&quot;this.closest('ui-backdrop').open=false&quot;>Close</ui-button>  </div></ui-backdrop>" />
+<Demo html="<flint-button onclick=&quot;var b=this.nextElementSibling;b.open=true;b.addEventListener('close',function(){b.open=false},{once:true})&quot;>Show Backdrop</flint-button><flint-backdrop>  <div style=&quot;background:white;padding:24px;border-radius:8px;text-align:center&quot;>    <p style=&quot;margin:0 0 16px&quot;>Click outside or press Escape to close</p>    <flint-button onclick=&quot;this.closest('flint-backdrop').open=false&quot;>Close</flint-button>  </div></flint-backdrop>" />
 
 A backdrop component that narrows the user's focus to a particular element.
 
-- **Tag**: `<ui-backdrop>`
-- **Class**: `UiBackdrop`
+- **Tag**: `<flint-backdrop>`
+- **Class**: `FlintBackdrop`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiBackdrop } from 'storybook-lit';
+import { FlintBackdrop } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-backdrop></ui-backdrop>
+<flint-backdrop></flint-backdrop>
 ```
 
 ### Properties
@@ -45,8 +45,8 @@ import { UiBackdrop } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-backdrop-position` | `fixed` |
-| `--ui-backdrop-color` | — |
-| `--ui-backdrop-z-index` | — |
+| `--flint-backdrop-position` | `fixed` |
+| `--flint-backdrop-color` | — |
+| `--flint-backdrop-z-index` | — |
 
 ---

@@ -1,24 +1,24 @@
 # Navigation Menu
 
-<Demo html="<ui-navigation-menu>  <ui-navigation-menu-list>    <ui-navigation-menu-item>      <ui-navigation-menu-link href=&quot;#&quot;>Home</ui-navigation-menu-link>    </ui-navigation-menu-item>    <ui-navigation-menu-item>      <ui-navigation-menu-trigger content-id=&quot;nav-docs&quot;>Documentation</ui-navigation-menu-trigger>      <ui-navigation-menu-content id=&quot;nav-docs&quot;>        <ui-navigation-menu-link href=&quot;#&quot;>Getting Started</ui-navigation-menu-link>        <ui-navigation-menu-link href=&quot;#&quot;>Components</ui-navigation-menu-link>        <ui-navigation-menu-link href=&quot;#&quot;>API Reference</ui-navigation-menu-link>      </ui-navigation-menu-content>    </ui-navigation-menu-item>    <ui-navigation-menu-item>      <ui-navigation-menu-link href=&quot;#&quot;>About</ui-navigation-menu-link>    </ui-navigation-menu-item>    <ui-navigation-menu-item>      <ui-navigation-menu-link href=&quot;#&quot;>Contact</ui-navigation-menu-link>    </ui-navigation-menu-item>  </ui-navigation-menu-list></ui-navigation-menu>" />
+<Demo html="<flint-navigation-menu>  <flint-navigation-menu-list>    <flint-navigation-menu-item>      <flint-navigation-menu-link href=&quot;#&quot;>Home</flint-navigation-menu-link>    </flint-navigation-menu-item>    <flint-navigation-menu-item>      <flint-navigation-menu-trigger content-id=&quot;nav-docs&quot;>Documentation</flint-navigation-menu-trigger>      <flint-navigation-menu-content id=&quot;nav-docs&quot;>        <flint-navigation-menu-link href=&quot;#&quot;>Getting Started</flint-navigation-menu-link>        <flint-navigation-menu-link href=&quot;#&quot;>Components</flint-navigation-menu-link>        <flint-navigation-menu-link href=&quot;#&quot;>API Reference</flint-navigation-menu-link>      </flint-navigation-menu-content>    </flint-navigation-menu-item>    <flint-navigation-menu-item>      <flint-navigation-menu-link href=&quot;#&quot;>About</flint-navigation-menu-link>    </flint-navigation-menu-item>    <flint-navigation-menu-item>      <flint-navigation-menu-link href=&quot;#&quot;>Contact</flint-navigation-menu-link>    </flint-navigation-menu-item>  </flint-navigation-menu-list></flint-navigation-menu>" />
 
-## `<ui-navigation-menu-content>`
+## `<flint-navigation-menu-content>`
 
-- **Tag**: `<ui-navigation-menu-content>`
-- **Class**: `UiNavigationMenuContent`
+- **Tag**: `<flint-navigation-menu-content>`
+- **Class**: `FlintNavigationMenuContent`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiNavigationMenuContent } from 'storybook-lit';
+import { FlintNavigationMenuContent } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-navigation-menu-content></ui-navigation-menu-content>
+<flint-navigation-menu-content></flint-navigation-menu-content>
 ```
 
 ### Properties
@@ -34,7 +34,7 @@ import { UiNavigationMenuContent } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-navigation-menu-content-toggle` | `{ contentId: this.id, open: false }` |  |
+| `flint-navigation-menu-content-toggle` | `{ contentId: this.id, open: false }` |  |
 
 ### Slots
 
@@ -52,23 +52,23 @@ import { UiNavigationMenuContent } from 'storybook-lit';
 
 ---
 
-## `<ui-navigation-menu-item>`
+## `<flint-navigation-menu-item>`
 
-- **Tag**: `<ui-navigation-menu-item>`
-- **Class**: `UiNavigationMenuItem`
+- **Tag**: `<flint-navigation-menu-item>`
+- **Class**: `FlintNavigationMenuItem`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiNavigationMenuItem } from 'storybook-lit';
+import { FlintNavigationMenuItem } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-navigation-menu-item></ui-navigation-menu-item>
+<flint-navigation-menu-item></flint-navigation-menu-item>
 ```
 
 ### Properties
@@ -84,8 +84,8 @@ import { UiNavigationMenuItem } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-navigation-menu-trigger-click` | `{ contentId, open: true }` |  |
-| `ui-navigation-menu-content-toggle` | `{ contentId, open: false }` |  |
+| `flint-navigation-menu-trigger-click` | `{ contentId, open: true }` |  |
+| `flint-navigation-menu-content-toggle` | `{ contentId, open: false }` |  |
 
 ### Slots
 
@@ -96,23 +96,23 @@ import { UiNavigationMenuItem } from 'storybook-lit';
 
 ---
 
-## `<ui-navigation-menu-link>`
+## `<flint-navigation-menu-link>`
 
-- **Tag**: `<ui-navigation-menu-link>`
-- **Class**: `UiNavigationMenuLink`
+- **Tag**: `<flint-navigation-menu-link>`
+- **Class**: `FlintNavigationMenuLink`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiNavigationMenuLink } from 'storybook-lit';
+import { FlintNavigationMenuLink } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-navigation-menu-link></ui-navigation-menu-link>
+<flint-navigation-menu-link></flint-navigation-menu-link>
 ```
 
 ### Properties
@@ -139,23 +139,23 @@ import { UiNavigationMenuLink } from 'storybook-lit';
 
 ---
 
-## `<ui-navigation-menu-list>`
+## `<flint-navigation-menu-list>`
 
-- **Tag**: `<ui-navigation-menu-list>`
-- **Class**: `UiNavigationMenuList`
+- **Tag**: `<flint-navigation-menu-list>`
+- **Class**: `FlintNavigationMenuList`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiNavigationMenuList } from 'storybook-lit';
+import { FlintNavigationMenuList } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-navigation-menu-list></ui-navigation-menu-list>
+<flint-navigation-menu-list></flint-navigation-menu-list>
 ```
 
 ### Properties
@@ -175,23 +175,23 @@ import { UiNavigationMenuList } from 'storybook-lit';
 
 ---
 
-## `<ui-navigation-menu-trigger>`
+## `<flint-navigation-menu-trigger>`
 
-- **Tag**: `<ui-navigation-menu-trigger>`
-- **Class**: `UiNavigationMenuTrigger`
+- **Tag**: `<flint-navigation-menu-trigger>`
+- **Class**: `FlintNavigationMenuTrigger`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiNavigationMenuTrigger } from 'storybook-lit';
+import { FlintNavigationMenuTrigger } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-navigation-menu-trigger></ui-navigation-menu-trigger>
+<flint-navigation-menu-trigger></flint-navigation-menu-trigger>
 ```
 
 ### Properties
@@ -205,7 +205,7 @@ import { UiNavigationMenuTrigger } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-navigation-menu-trigger-click` | — | Fired when trigger is clicked |
+| `flint-navigation-menu-trigger-click` | — | Fired when trigger is clicked |
 
 ### Slots
 
@@ -222,23 +222,23 @@ import { UiNavigationMenuTrigger } from 'storybook-lit';
 
 ---
 
-## `<ui-navigation-menu>`
+## `<flint-navigation-menu>`
 
-- **Tag**: `<ui-navigation-menu>`
-- **Class**: `UiNavigationMenu`
+- **Tag**: `<flint-navigation-menu>`
+- **Class**: `FlintNavigationMenu`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiNavigationMenu } from 'storybook-lit';
+import { FlintNavigationMenu } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-navigation-menu></ui-navigation-menu>
+<flint-navigation-menu></flint-navigation-menu>
 ```
 
 ### Properties

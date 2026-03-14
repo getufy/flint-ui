@@ -1,22 +1,22 @@
 # Visually Hidden
 
-<Demo html="<p style=&quot;margin:0;color:#374151&quot;>The link below has visually hidden text for screen readers:</p><a href=&quot;#&quot; style=&quot;color:var(--ui-primary-color)&quot;>  Download Report  <ui-visually-hidden>(opens in a new tab)</ui-visually-hidden></a>" />
+<Demo html="<p style=&quot;margin:0;color:#374151&quot;>The link below has visually hidden text for screen readers:</p><a href=&quot;#&quot; style=&quot;color:var(--flint-primary-color)&quot;>  Download Report  <flint-visually-hidden>(opens in a new tab)</flint-visually-hidden></a>" />
 
-- **Tag**: `<ui-visually-hidden>`
-- **Class**: `UiVisuallyHidden`
+- **Tag**: `<flint-visually-hidden>`
+- **Class**: `FlintVisuallyHidden`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiVisuallyHidden } from 'storybook-lit';
+import { FlintVisuallyHidden } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-visually-hidden></ui-visually-hidden>
+<flint-visually-hidden></flint-visually-hidden>
 ```
 
 ### Properties

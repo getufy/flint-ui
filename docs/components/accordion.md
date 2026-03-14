@@ -1,26 +1,26 @@
 # Accordion
 
-<Demo label="Basic" html="<div style=&quot;width:100%;max-width:500px&quot;><ui-accordion expanded>  <ui-accordion-summary>Expanded by default</ui-accordion-summary>  <ui-accordion-details>This accordion starts open. Click the header to collapse it.</ui-accordion-details></ui-accordion><ui-accordion>  <ui-accordion-summary>Collapsed Item</ui-accordion-summary>  <ui-accordion-details>Click the header above to expand this content.</ui-accordion-details></ui-accordion><ui-accordion disabled>  <ui-accordion-summary>Disabled Item</ui-accordion-summary>  <ui-accordion-details>This item cannot be toggled.</ui-accordion-details></ui-accordion></div>" />
+<Demo label="Basic" html="<div style=&quot;width:100%;max-width:500px&quot;><flint-accordion expanded>  <flint-accordion-summary>Expanded by default</flint-accordion-summary>  <flint-accordion-details>This accordion starts open. Click the header to collapse it.</flint-accordion-details></flint-accordion><flint-accordion>  <flint-accordion-summary>Collapsed Item</flint-accordion-summary>  <flint-accordion-details>Click the header above to expand this content.</flint-accordion-details></flint-accordion><flint-accordion disabled>  <flint-accordion-summary>Disabled Item</flint-accordion-summary>  <flint-accordion-details>This item cannot be toggled.</flint-accordion-details></flint-accordion></div>" />
 
-## `<ui-accordion>`
+## `<flint-accordion>`
 
 Accordion: the wrapper for grouping related components.
 
-- **Tag**: `<ui-accordion>`
-- **Class**: `UiAccordion`
+- **Tag**: `<flint-accordion>`
+- **Class**: `FlintAccordion`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiAccordion } from 'storybook-lit';
+import { FlintAccordion } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-accordion></ui-accordion>
+<flint-accordion></flint-accordion>
 ```
 
 ### Properties
@@ -34,7 +34,7 @@ import { UiAccordion } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-accordion-change` | `{ expanded: this.expanded }` |  |
+| `flint-accordion-change` | `{ expanded: this.expanded }` |  |
 
 ### Slots
 
@@ -46,44 +46,44 @@ import { UiAccordion } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-border-color` | — |
-| `--ui-font-family` | — |
-| `--ui-text-color` | — |
-| `--ui-primary-color` | — |
-| `--ui-hover-color` | — |
-| `--ui-text-color-muted` | — |
-| `--ui-surface-1` | — |
-| `--ui-border-radius-md` | — |
-| `--ui-shadow-md` | — |
+| `--flint-border-color` | — |
+| `--flint-font-family` | — |
+| `--flint-text-color` | — |
+| `--flint-primary-color` | — |
+| `--flint-hover-color` | — |
+| `--flint-text-color-muted` | — |
+| `--flint-surface-1` | — |
+| `--flint-border-radius-md` | — |
+| `--flint-shadow-md` | — |
 
 ---
 
-## `<ui-accordion-summary>`
+## `<flint-accordion-summary>`
 
 Accordion Summary: the wrapper for the Accordion header.
 
-- **Tag**: `<ui-accordion-summary>`
-- **Class**: `UiAccordionSummary`
+- **Tag**: `<flint-accordion-summary>`
+- **Class**: `FlintAccordionSummary`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiAccordionSummary } from 'storybook-lit';
+import { FlintAccordionSummary } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-accordion-summary></ui-accordion-summary>
+<flint-accordion-summary></flint-accordion-summary>
 ```
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-accordion-toggle` | — |  |
+| `flint-accordion-toggle` | — |  |
 
 ### Slots
 
@@ -94,25 +94,25 @@ import { UiAccordionSummary } from 'storybook-lit';
 
 ---
 
-## `<ui-accordion-details>`
+## `<flint-accordion-details>`
 
 Accordion Details: the wrapper for the Accordion content.
 
-- **Tag**: `<ui-accordion-details>`
-- **Class**: `UiAccordionDetails`
+- **Tag**: `<flint-accordion-details>`
+- **Class**: `FlintAccordionDetails`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiAccordionDetails } from 'storybook-lit';
+import { FlintAccordionDetails } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-accordion-details></ui-accordion-details>
+<flint-accordion-details></flint-accordion-details>
 ```
 
 ### Slots
@@ -123,25 +123,25 @@ import { UiAccordionDetails } from 'storybook-lit';
 
 ---
 
-## `<ui-accordion-actions>`
+## `<flint-accordion-actions>`
 
 Accordion Actions: an optional wrapper that groups a set of buttons.
 
-- **Tag**: `<ui-accordion-actions>`
-- **Class**: `UiAccordionActions`
+- **Tag**: `<flint-accordion-actions>`
+- **Class**: `FlintAccordionActions`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiAccordionActions } from 'storybook-lit';
+import { FlintAccordionActions } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-accordion-actions></ui-accordion-actions>
+<flint-accordion-actions></flint-accordion-actions>
 ```
 
 ### Slots

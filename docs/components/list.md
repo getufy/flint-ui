@@ -1,26 +1,26 @@
 # List
 
-<Demo html="<div style=&quot;width:100%;max-width:360px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden&quot;><ui-list>  <ui-list-subheader>Messages</ui-list-subheader>  <ui-list-item-button selected>    <ui-list-item-text primary=&quot;Inbox&quot; secondary=&quot;5 new messages&quot;></ui-list-item-text>  </ui-list-item-button>  <ui-list-item-button>    <ui-list-item-text primary=&quot;Drafts&quot; secondary=&quot;2 drafts&quot;></ui-list-item-text>  </ui-list-item-button>  <ui-list-item-button>    <ui-list-item-text primary=&quot;Sent&quot; secondary=&quot;Last sent 2h ago&quot;></ui-list-item-text>  </ui-list-item-button>  <ui-list-item-button disabled>    <ui-list-item-text primary=&quot;Spam&quot; secondary=&quot;Disabled&quot;></ui-list-item-text>  </ui-list-item-button></ui-list></div>" />
+<Demo html="<div style=&quot;width:100%;max-width:360px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden&quot;><flint-list>  <flint-list-subheader>Messages</flint-list-subheader>  <flint-list-item-button selected>    <flint-list-item-text primary=&quot;Inbox&quot; secondary=&quot;5 new messages&quot;></flint-list-item-text>  </flint-list-item-button>  <flint-list-item-button>    <flint-list-item-text primary=&quot;Drafts&quot; secondary=&quot;2 drafts&quot;></flint-list-item-text>  </flint-list-item-button>  <flint-list-item-button>    <flint-list-item-text primary=&quot;Sent&quot; secondary=&quot;Last sent 2h ago&quot;></flint-list-item-text>  </flint-list-item-button>  <flint-list-item-button disabled>    <flint-list-item-text primary=&quot;Spam&quot; secondary=&quot;Disabled&quot;></flint-list-item-text>  </flint-list-item-button></flint-list></div>" />
 
-## `<ui-list>`
+## `<flint-list>`
 
-ui-list: A wrapper for list items.
+flint-list: A wrapper for list items.
 
-- **Tag**: `<ui-list>`
-- **Class**: `UiList`
+- **Tag**: `<flint-list>`
+- **Class**: `FlintList`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiList } from 'storybook-lit';
+import { FlintList } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-list></ui-list>
+<flint-list></flint-list>
 ```
 
 ### Properties
@@ -40,38 +40,38 @@ import { UiList } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-list-item-padding` | `8px 16px` |
-| `--ui-list-item-gap` | `16px` |
-| `--ui-hover-color` | — |
-| `--ui-active-color` | — |
-| `--ui-primary-color` | — |
-| `--ui-primary-color-light` | — |
-| `--ui-text-color-muted` | — |
-| `--ui-font-family` | — |
-| `--ui-text-color` | — |
-| `--ui-surface-background` | `white` |
+| `--flint-list-item-padding` | `8px 16px` |
+| `--flint-list-item-gap` | `16px` |
+| `--flint-hover-color` | — |
+| `--flint-active-color` | — |
+| `--flint-primary-color` | — |
+| `--flint-primary-color-light` | — |
+| `--flint-text-color-muted` | — |
+| `--flint-font-family` | — |
+| `--flint-text-color` | — |
+| `--flint-surface-background` | `white` |
 
 ---
 
-## `<ui-list-item>`
+## `<flint-list-item>`
 
-ui-list-item: A common list item.
+flint-list-item: A common list item.
 
-- **Tag**: `<ui-list-item>`
-- **Class**: `UiListItem`
+- **Tag**: `<flint-list-item>`
+- **Class**: `FlintListItem`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiListItem } from 'storybook-lit';
+import { FlintListItem } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-list-item></ui-list-item>
+<flint-list-item></flint-list-item>
 ```
 
 ### Slots
@@ -84,30 +84,30 @@ import { UiListItem } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-list-item-padding` | `8px 16px` |
-| `--ui-list-item-gap` | `16px` |
+| `--flint-list-item-padding` | `8px 16px` |
+| `--flint-list-item-gap` | `16px` |
 
 ---
 
-## `<ui-list-item-button>`
+## `<flint-list-item-button>`
 
-ui-list-item-button: An action element inside a list item.
+flint-list-item-button: An action element inside a list item.
 
-- **Tag**: `<ui-list-item-button>`
-- **Class**: `UiListItemButton`
+- **Tag**: `<flint-list-item-button>`
+- **Class**: `FlintListItemButton`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiListItemButton } from 'storybook-lit';
+import { FlintListItemButton } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-list-item-button></ui-list-item-button>
+<flint-list-item-button></flint-list-item-button>
 ```
 
 ### Properties
@@ -125,25 +125,25 @@ import { UiListItemButton } from 'storybook-lit';
 
 ---
 
-## `<ui-list-item-icon>`
+## `<flint-list-item-icon>`
 
-ui-list-item-icon: An icon wrapper inside a list item.
+flint-list-item-icon: An icon wrapper inside a list item.
 
-- **Tag**: `<ui-list-item-icon>`
-- **Class**: `UiListItemIcon`
+- **Tag**: `<flint-list-item-icon>`
+- **Class**: `FlintListItemIcon`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiListItemIcon } from 'storybook-lit';
+import { FlintListItemIcon } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-list-item-icon></ui-list-item-icon>
+<flint-list-item-icon></flint-list-item-icon>
 ```
 
 ### Slots
@@ -154,25 +154,25 @@ import { UiListItemIcon } from 'storybook-lit';
 
 ---
 
-## `<ui-list-item-avatar>`
+## `<flint-list-item-avatar>`
 
-ui-list-item-avatar: An avatar wrapper inside a list item.
+flint-list-item-avatar: An avatar wrapper inside a list item.
 
-- **Tag**: `<ui-list-item-avatar>`
-- **Class**: `UiListItemAvatar`
+- **Tag**: `<flint-list-item-avatar>`
+- **Class**: `FlintListItemAvatar`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiListItemAvatar } from 'storybook-lit';
+import { FlintListItemAvatar } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-list-item-avatar></ui-list-item-avatar>
+<flint-list-item-avatar></flint-list-item-avatar>
 ```
 
 ### Slots
@@ -183,25 +183,25 @@ import { UiListItemAvatar } from 'storybook-lit';
 
 ---
 
-## `<ui-list-item-text>`
+## `<flint-list-item-text>`
 
-ui-list-item-text: A container for text content.
+flint-list-item-text: A container for text content.
 
-- **Tag**: `<ui-list-item-text>`
-- **Class**: `UiListItemText`
+- **Tag**: `<flint-list-item-text>`
+- **Class**: `FlintListItemText`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiListItemText } from 'storybook-lit';
+import { FlintListItemText } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-list-item-text></ui-list-item-text>
+<flint-list-item-text></flint-list-item-text>
 ```
 
 ### Properties
@@ -220,25 +220,25 @@ import { UiListItemText } from 'storybook-lit';
 
 ---
 
-## `<ui-list-subheader>`
+## `<flint-list-subheader>`
 
-ui-list-subheader: A label for a nested list.
+flint-list-subheader: A label for a nested list.
 
-- **Tag**: `<ui-list-subheader>`
-- **Class**: `UiListSubheader`
+- **Tag**: `<flint-list-subheader>`
+- **Class**: `FlintListSubheader`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiListSubheader } from 'storybook-lit';
+import { FlintListSubheader } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-list-subheader></ui-list-subheader>
+<flint-list-subheader></flint-list-subheader>
 ```
 
 ### Slots

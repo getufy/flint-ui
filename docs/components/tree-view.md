@@ -1,28 +1,28 @@
 # Tree View
 
-<Demo label="Simple Tree View" html="<div style=&quot;width:100%;max-width:300px;border:1px solid #e5e7eb;border-radius:8px;padding:8px&quot;><ui-simple-tree-view>  <ui-tree-item item-id=&quot;1&quot; label=&quot;Documents&quot;>    <ui-tree-item item-id=&quot;1-1&quot; label=&quot;Resume.pdf&quot;></ui-tree-item>    <ui-tree-item item-id=&quot;1-2&quot; label=&quot;Cover Letter.pdf&quot;></ui-tree-item>  </ui-tree-item>  <ui-tree-item item-id=&quot;2&quot; label=&quot;Images&quot;>    <ui-tree-item item-id=&quot;2-1&quot; label=&quot;photo.jpg&quot;></ui-tree-item>    <ui-tree-item item-id=&quot;2-2&quot; label=&quot;screenshot.png&quot;></ui-tree-item>    <ui-tree-item item-id=&quot;2-3&quot; label=&quot;icon.svg&quot;></ui-tree-item>  </ui-tree-item>  <ui-tree-item item-id=&quot;3&quot; label=&quot;Notes.txt&quot;></ui-tree-item></ui-simple-tree-view></div>" />
+<Demo label="Simple Tree View" html="<div style=&quot;width:100%;max-width:300px;border:1px solid #e5e7eb;border-radius:8px;padding:8px&quot;><flint-simple-tree-view>  <flint-tree-item item-id=&quot;1&quot; label=&quot;Documents&quot;>    <flint-tree-item item-id=&quot;1-1&quot; label=&quot;Resume.pdf&quot;></flint-tree-item>    <flint-tree-item item-id=&quot;1-2&quot; label=&quot;Cover Letter.pdf&quot;></flint-tree-item>  </flint-tree-item>  <flint-tree-item item-id=&quot;2&quot; label=&quot;Images&quot;>    <flint-tree-item item-id=&quot;2-1&quot; label=&quot;photo.jpg&quot;></flint-tree-item>    <flint-tree-item item-id=&quot;2-2&quot; label=&quot;screenshot.png&quot;></flint-tree-item>    <flint-tree-item item-id=&quot;2-3&quot; label=&quot;icon.svg&quot;></flint-tree-item>  </flint-tree-item>  <flint-tree-item item-id=&quot;3&quot; label=&quot;Notes.txt&quot;></flint-tree-item></flint-simple-tree-view></div>" />
 
-<Demo label="Rich Tree View" html="<div style=&quot;width:100%;max-width:300px;border:1px solid #e5e7eb;border-radius:8px;padding:8px&quot;><ui-rich-tree-view data-props='{&quot;items&quot;:[{&quot;id&quot;:&quot;src&quot;,&quot;label&quot;:&quot;src&quot;,&quot;children&quot;:[{&quot;id&quot;:&quot;components&quot;,&quot;label&quot;:&quot;components&quot;,&quot;children&quot;:[{&quot;id&quot;:&quot;app&quot;,&quot;label&quot;:&quot;App.tsx&quot;},{&quot;id&quot;:&quot;header&quot;,&quot;label&quot;:&quot;Header.tsx&quot;},{&quot;id&quot;:&quot;footer&quot;,&quot;label&quot;:&quot;Footer.tsx&quot;}]},{&quot;id&quot;:&quot;utils&quot;,&quot;label&quot;:&quot;utils&quot;,&quot;children&quot;:[{&quot;id&quot;:&quot;helpers&quot;,&quot;label&quot;:&quot;helpers.ts&quot;},{&quot;id&quot;:&quot;constants&quot;,&quot;label&quot;:&quot;constants.ts&quot;}]},{&quot;id&quot;:&quot;index&quot;,&quot;label&quot;:&quot;index.ts&quot;}]},{&quot;id&quot;:&quot;public&quot;,&quot;label&quot;:&quot;public&quot;,&quot;children&quot;:[{&quot;id&quot;:&quot;favicon&quot;,&quot;label&quot;:&quot;favicon.ico&quot;},{&quot;id&quot;:&quot;robots&quot;,&quot;label&quot;:&quot;robots.txt&quot;}]},{&quot;id&quot;:&quot;pkg&quot;,&quot;label&quot;:&quot;package.json&quot;},{&quot;id&quot;:&quot;readme&quot;,&quot;label&quot;:&quot;README.md&quot;}],&quot;defaultExpandedItems&quot;:[&quot;src&quot;,&quot;components&quot;]}'></ui-rich-tree-view></div>" />
+<Demo label="Rich Tree View" html="<div style=&quot;width:100%;max-width:300px;border:1px solid #e5e7eb;border-radius:8px;padding:8px&quot;><flint-rich-tree-view data-props='{&quot;items&quot;:[{&quot;id&quot;:&quot;src&quot;,&quot;label&quot;:&quot;src&quot;,&quot;children&quot;:[{&quot;id&quot;:&quot;components&quot;,&quot;label&quot;:&quot;components&quot;,&quot;children&quot;:[{&quot;id&quot;:&quot;app&quot;,&quot;label&quot;:&quot;App.tsx&quot;},{&quot;id&quot;:&quot;header&quot;,&quot;label&quot;:&quot;Header.tsx&quot;},{&quot;id&quot;:&quot;footer&quot;,&quot;label&quot;:&quot;Footer.tsx&quot;}]},{&quot;id&quot;:&quot;utils&quot;,&quot;label&quot;:&quot;utils&quot;,&quot;children&quot;:[{&quot;id&quot;:&quot;helpers&quot;,&quot;label&quot;:&quot;helpers.ts&quot;},{&quot;id&quot;:&quot;constants&quot;,&quot;label&quot;:&quot;constants.ts&quot;}]},{&quot;id&quot;:&quot;index&quot;,&quot;label&quot;:&quot;index.ts&quot;}]},{&quot;id&quot;:&quot;public&quot;,&quot;label&quot;:&quot;public&quot;,&quot;children&quot;:[{&quot;id&quot;:&quot;favicon&quot;,&quot;label&quot;:&quot;favicon.ico&quot;},{&quot;id&quot;:&quot;robots&quot;,&quot;label&quot;:&quot;robots.txt&quot;}]},{&quot;id&quot;:&quot;pkg&quot;,&quot;label&quot;:&quot;package.json&quot;},{&quot;id&quot;:&quot;readme&quot;,&quot;label&quot;:&quot;README.md&quot;}],&quot;defaultExpandedItems&quot;:[&quot;src&quot;,&quot;components&quot;]}'></flint-rich-tree-view></div>" />
 
-<Demo label="Rich Tree View with Drag & Drop Reordering" html="<div style=&quot;width:100%;max-width:300px;border:1px solid #e5e7eb;border-radius:8px;padding:8px&quot;><ui-rich-tree-view items-reordering items-reordering-handle data-props='{&quot;items&quot;:[{&quot;id&quot;:&quot;todo&quot;,&quot;label&quot;:&quot;To Do&quot;,&quot;children&quot;:[{&quot;id&quot;:&quot;t1&quot;,&quot;label&quot;:&quot;Design homepage&quot;},{&quot;id&quot;:&quot;t2&quot;,&quot;label&quot;:&quot;Write tests&quot;},{&quot;id&quot;:&quot;t3&quot;,&quot;label&quot;:&quot;Fix bug #42&quot;}]},{&quot;id&quot;:&quot;progress&quot;,&quot;label&quot;:&quot;In Progress&quot;,&quot;children&quot;:[{&quot;id&quot;:&quot;p1&quot;,&quot;label&quot;:&quot;API integration&quot;},{&quot;id&quot;:&quot;p2&quot;,&quot;label&quot;:&quot;Code review&quot;}]},{&quot;id&quot;:&quot;done&quot;,&quot;label&quot;:&quot;Done&quot;,&quot;children&quot;:[{&quot;id&quot;:&quot;d1&quot;,&quot;label&quot;:&quot;Setup project&quot;},{&quot;id&quot;:&quot;d2&quot;,&quot;label&quot;:&quot;Create database schema&quot;}]}],&quot;defaultExpandedItems&quot;:[&quot;todo&quot;,&quot;progress&quot;,&quot;done&quot;]}'></ui-rich-tree-view></div>" />
+<Demo label="Rich Tree View with Drag & Drop Reordering" html="<div style=&quot;width:100%;max-width:300px;border:1px solid #e5e7eb;border-radius:8px;padding:8px&quot;><flint-rich-tree-view items-reordering items-reordering-handle data-props='{&quot;items&quot;:[{&quot;id&quot;:&quot;todo&quot;,&quot;label&quot;:&quot;To Do&quot;,&quot;children&quot;:[{&quot;id&quot;:&quot;t1&quot;,&quot;label&quot;:&quot;Design homepage&quot;},{&quot;id&quot;:&quot;t2&quot;,&quot;label&quot;:&quot;Write tests&quot;},{&quot;id&quot;:&quot;t3&quot;,&quot;label&quot;:&quot;Fix bug #42&quot;}]},{&quot;id&quot;:&quot;progress&quot;,&quot;label&quot;:&quot;In Progress&quot;,&quot;children&quot;:[{&quot;id&quot;:&quot;p1&quot;,&quot;label&quot;:&quot;API integration&quot;},{&quot;id&quot;:&quot;p2&quot;,&quot;label&quot;:&quot;Code review&quot;}]},{&quot;id&quot;:&quot;done&quot;,&quot;label&quot;:&quot;Done&quot;,&quot;children&quot;:[{&quot;id&quot;:&quot;d1&quot;,&quot;label&quot;:&quot;Setup project&quot;},{&quot;id&quot;:&quot;d2&quot;,&quot;label&quot;:&quot;Create database schema&quot;}]}],&quot;defaultExpandedItems&quot;:[&quot;todo&quot;,&quot;progress&quot;,&quot;done&quot;]}'></flint-rich-tree-view></div>" />
 
-## `<ui-rich-tree-view>`
+## `<flint-rich-tree-view>`
 
-- **Tag**: `<ui-rich-tree-view>`
-- **Class**: `UiRichTreeView`
+- **Tag**: `<flint-rich-tree-view>`
+- **Class**: `FlintRichTreeView`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiRichTreeView } from 'storybook-lit';
+import { FlintRichTreeView } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-rich-tree-view></ui-rich-tree-view>
+<flint-rich-tree-view></flint-rich-tree-view>
 ```
 
 ### Properties
@@ -55,14 +55,14 @@ import { UiRichTreeView } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-font-family` | — |
-| `--ui-text-color` | — |
-| `--ui-primary-color` | — |
-| `--ui-border-radius-sm` | — |
-| `--ui-hover-color` | — |
-| `--ui-active-color` | — |
-| `--ui-primary-color-light` | — |
-| `--ui-text-color-muted` | — |
+| `--flint-font-family` | — |
+| `--flint-text-color` | — |
+| `--flint-primary-color` | — |
+| `--flint-border-radius-sm` | — |
+| `--flint-hover-color` | — |
+| `--flint-active-color` | — |
+| `--flint-primary-color-light` | — |
+| `--flint-text-color-muted` | — |
 
 ### Methods
 
@@ -75,25 +75,25 @@ import { UiRichTreeView } from 'storybook-lit';
 
 ---
 
-## `<ui-simple-tree-view>`
+## `<flint-simple-tree-view>`
 
-A simple tree-view container that manages keyboard navigation, focus, and item selection/expansion for nested `ui-tree-item` elements.
+A simple tree-view container that manages keyboard navigation, focus, and item selection/expansion for nested `flint-tree-item` elements.
 
-- **Tag**: `<ui-simple-tree-view>`
-- **Class**: `UiSimpleTreeView`
+- **Tag**: `<flint-simple-tree-view>`
+- **Class**: `FlintSimpleTreeView`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiSimpleTreeView } from 'storybook-lit';
+import { FlintSimpleTreeView } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-simple-tree-view></ui-simple-tree-view>
+<flint-simple-tree-view></flint-simple-tree-view>
 ```
 
 ### Properties
@@ -117,29 +117,29 @@ import { UiSimpleTreeView } from 'storybook-lit';
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Place `ui-tree-item` elements here. |
+| `(default)` | Place `flint-tree-item` elements here. |
 
 ---
 
-## `<ui-tree-item>`
+## `<flint-tree-item>`
 
-A single item inside a `ui-simple-tree-view` or `ui-rich-tree-view`.
+A single item inside a `flint-simple-tree-view` or `flint-rich-tree-view`.
 
-- **Tag**: `<ui-tree-item>`
-- **Class**: `UiTreeItem`
+- **Tag**: `<flint-tree-item>`
+- **Class**: `FlintTreeItem`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiTreeItem } from 'storybook-lit';
+import { FlintTreeItem } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-tree-item></ui-tree-item>
+<flint-tree-item></flint-tree-item>
 ```
 
 ### Properties
@@ -158,14 +158,14 @@ import { UiTreeItem } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-tree-item-click` | — | Fired when the item is clicked (detail: { itemId }) |
-| `ui-tree-item-toggle` | — | Fired when expanded state changes (detail: { itemId, expanded }) |
+| `flint-tree-item-click` | — | Fired when the item is clicked (detail: { itemId }) |
+| `flint-tree-item-toggle` | — | Fired when expanded state changes (detail: { itemId, expanded }) |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Place child `ui-tree-item` elements here to create a nested tree. |
+| `(default)` | Place child `flint-tree-item` elements here to create a nested tree. |
 | `label` |  |
 
 ### Methods

@@ -1,22 +1,22 @@
 # Sonner
 
-<Demo label="Toast Types" html="<ui-toaster position=&quot;bottom-right&quot;></ui-toaster><div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><ui-button variant=&quot;secondary&quot; onclick=&quot;window.__storybook_lit.toast('Default toast message')&quot;>Default</ui-button><ui-button variant=&quot;primary&quot; onclick=&quot;window.__storybook_lit.toast.success('Operation successful!')&quot;>Success</ui-button><ui-button variant=&quot;destructive&quot; onclick=&quot;window.__storybook_lit.toast.error('Something went wrong')&quot;>Error</ui-button><ui-button variant=&quot;secondary&quot; onclick=&quot;window.__storybook_lit.toast.info('Here is some info')&quot;>Info</ui-button><ui-button variant=&quot;secondary&quot; onclick=&quot;window.__storybook_lit.toast.warning('Careful with that!')&quot;>Warning</ui-button></div>" />
+<Demo label="Toast Types" html="<flint-toaster position=&quot;bottom-right&quot;></flint-toaster><div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-button variant=&quot;secondary&quot; onclick=&quot;window.__storybook_lit.toast('Default toast message')&quot;>Default</flint-button><flint-button variant=&quot;primary&quot; onclick=&quot;window.__storybook_lit.toast.success('Operation successful!')&quot;>Success</flint-button><flint-button variant=&quot;destructive&quot; onclick=&quot;window.__storybook_lit.toast.error('Something went wrong')&quot;>Error</flint-button><flint-button variant=&quot;secondary&quot; onclick=&quot;window.__storybook_lit.toast.info('Here is some info')&quot;>Info</flint-button><flint-button variant=&quot;secondary&quot; onclick=&quot;window.__storybook_lit.toast.warning('Careful with that!')&quot;>Warning</flint-button></div>" />
 
-- **Tag**: `<ui-toaster>`
-- **Class**: `UiToaster`
+- **Tag**: `<flint-toaster>`
+- **Class**: `FlintToaster`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiToaster } from 'storybook-lit';
+import { FlintToaster } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-toaster></ui-toaster>
+<flint-toaster></flint-toaster>
 ```
 
 ### Properties
@@ -31,27 +31,27 @@ import { UiToaster } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-toast-z-index` | `9999` |
-| `--ui-toast-width` | `356px` |
-| `--ui-toast-padding` | `16px` |
-| `--ui-toast-bg` | `var(--ui-surface-1, #ffffff` |
-| `--ui-toast-border` | `1px solid var(--ui-border-color, #e4e4e7` |
-| `--ui-toast-radius` | `var(--ui-border-radius-lg, 0.5rem` |
-| `--ui-toast-shadow` | `var(--ui-shadow-lg, 0 10px 15px -3px rgba(0,0,0,.10` |
-| `--ui-toast-color` | `var(--ui-text-color, #111827` |
-| `--ui-font-family` | `system-ui, sans-serif` |
-| `--ui-toast-gap` | `8px` |
-| `--ui-toast-success-icon-color` | `var(--ui-success-color, #10b981` |
-| `--ui-toast-error-icon-color` | `var(--ui-error-color,   #ef4444` |
-| `--ui-toast-warning-icon-color` | `var(--ui-warning-color, #f59e0b` |
-| `--ui-toast-info-icon-color` | `var(--ui-primary-color, #3b82f6` |
-| `--ui-text-color-muted` | `#71717a` |
-| `--ui-border-color` | `#e4e4e7` |
-| `--ui-border-radius-md` | `0.375rem` |
-| `--ui-hover-color` | `rgba(0, 0, 0, 0.04` |
-| `--ui-primary-focus-ring` | `rgba(59, 130, 246, 0.5` |
-| `--ui-text-color-subtle` | `#a1a1aa` |
-| `--ui-border-radius-sm` | `0.125rem` |
-| `--ui-text-color` | `#111827` |
+| `--flint-toast-z-index` | `9999` |
+| `--flint-toast-width` | `356px` |
+| `--flint-toast-padding` | `16px` |
+| `--flint-toast-bg` | `var(--flint-surface-1, #ffffff` |
+| `--flint-toast-border` | `1px solid var(--flint-border-color, #e4e4e7` |
+| `--flint-toast-radius` | `var(--flint-border-radius-lg, 0.5rem` |
+| `--flint-toast-shadow` | `var(--flint-shadow-lg, 0 10px 15px -3px rgba(0,0,0,.10` |
+| `--flint-toast-color` | `var(--flint-text-color, #111827` |
+| `--flint-font-family` | `system-ui, sans-serif` |
+| `--flint-toast-gap` | `8px` |
+| `--flint-toast-success-icon-color` | `var(--flint-success-color, #10b981` |
+| `--flint-toast-error-icon-color` | `var(--flint-error-color,   #ef4444` |
+| `--flint-toast-warning-icon-color` | `var(--flint-warning-color, #f59e0b` |
+| `--flint-toast-info-icon-color` | `var(--flint-primary-color, #3b82f6` |
+| `--flint-text-color-muted` | `#71717a` |
+| `--flint-border-color` | `#e4e4e7` |
+| `--flint-border-radius-md` | `0.375rem` |
+| `--flint-hover-color` | `rgba(0, 0, 0, 0.04` |
+| `--flint-primary-focus-ring` | `rgba(59, 130, 246, 0.5` |
+| `--flint-text-color-subtle` | `#a1a1aa` |
+| `--flint-border-radius-sm` | `0.125rem` |
+| `--flint-text-color` | `#111827` |
 
 ---

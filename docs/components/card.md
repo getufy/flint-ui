@@ -1,26 +1,26 @@
 # Card
 
-<Demo label="Default" html="<div style=&quot;max-width:360px;width:100%&quot;><ui-card>  <ui-card-header title=&quot;Card Title&quot; subtitle=&quot;Subtitle text&quot;></ui-card-header>  <ui-card-content>    <p style=&quot;margin:0;color:#374151&quot;>This is a card with header, content, and action buttons.</p>  </ui-card-content>  <ui-card-actions>    <ui-button variant=&quot;secondary&quot; size=&quot;small&quot;>Cancel</ui-button>    <ui-button size=&quot;small&quot;>Action</ui-button>  </ui-card-actions></ui-card></div>" />
+<Demo label="Default" html="<div style=&quot;max-width:360px;width:100%&quot;><flint-card>  <flint-card-header title=&quot;Card Title&quot; subtitle=&quot;Subtitle text&quot;></flint-card-header>  <flint-card-content>    <p style=&quot;margin:0;color:#374151&quot;>This is a card with header, content, and action buttons.</p>  </flint-card-content>  <flint-card-actions>    <flint-button variant=&quot;secondary&quot; size=&quot;small&quot;>Cancel</flint-button>    <flint-button size=&quot;small&quot;>Action</flint-button>  </flint-card-actions></flint-card></div>" />
 
-<Demo label="Outlined" html="<div style=&quot;max-width:360px;width:100%&quot;><ui-card variant=&quot;outlined&quot;>  <ui-card-header title=&quot;Outlined Card&quot; subtitle=&quot;With border instead of shadow&quot;></ui-card-header>  <ui-card-content>    <p style=&quot;margin:0;color:#374151&quot;>Useful for less prominent content areas.</p>  </ui-card-content></ui-card></div>" />
+<Demo label="Outlined" html="<div style=&quot;max-width:360px;width:100%&quot;><flint-card variant=&quot;outlined&quot;>  <flint-card-header title=&quot;Outlined Card&quot; subtitle=&quot;With border instead of shadow&quot;></flint-card-header>  <flint-card-content>    <p style=&quot;margin:0;color:#374151&quot;>Useful for less prominent content areas.</p>  </flint-card-content></flint-card></div>" />
 
-## `<ui-card-action-area>`
+## `<flint-card-action-area>`
 
-- **Tag**: `<ui-card-action-area>`
-- **Class**: `UiCardActionArea`
+- **Tag**: `<flint-card-action-area>`
+- **Class**: `FlintCardActionArea`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiCardActionArea } from 'storybook-lit';
+import { FlintCardActionArea } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-card-action-area></ui-card-action-area>
+<flint-card-action-area></flint-card-action-area>
 ```
 
 ### Slots
@@ -33,31 +33,31 @@ import { UiCardActionArea } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-card-action-area-hover` | `var(--ui-hover-color` |
-| `--ui-card-action-area-active` | `var(--ui-active-color` |
-| `--ui-card-action-area-focus-ring` | `var(--ui-primary-color` |
-| `--ui-text-color-muted` | — |
-| `--ui-text-color` | — |
+| `--flint-card-action-area-hover` | `var(--flint-hover-color` |
+| `--flint-card-action-area-active` | `var(--flint-active-color` |
+| `--flint-card-action-area-focus-ring` | `var(--flint-primary-color` |
+| `--flint-text-color-muted` | — |
+| `--flint-text-color` | — |
 
 ---
 
-## `<ui-card-actions>`
+## `<flint-card-actions>`
 
-- **Tag**: `<ui-card-actions>`
-- **Class**: `UiCardActions`
+- **Tag**: `<flint-card-actions>`
+- **Class**: `FlintCardActions`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiCardActions } from 'storybook-lit';
+import { FlintCardActions } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-card-actions></ui-card-actions>
+<flint-card-actions></flint-card-actions>
 ```
 
 ### Slots
@@ -70,27 +70,27 @@ import { UiCardActions } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-card-actions-padding` | `8px 16px` |
+| `--flint-card-actions-padding` | `8px 16px` |
 
 ---
 
-## `<ui-card-content>`
+## `<flint-card-content>`
 
-- **Tag**: `<ui-card-content>`
-- **Class**: `UiCardContent`
+- **Tag**: `<flint-card-content>`
+- **Class**: `FlintCardContent`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiCardContent } from 'storybook-lit';
+import { FlintCardContent } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-card-content></ui-card-content>
+<flint-card-content></flint-card-content>
 ```
 
 ### Slots
@@ -103,28 +103,28 @@ import { UiCardContent } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-card-content-padding` | `16px 24px` |
-| `--ui-card-content-size` | `1rem` |
+| `--flint-card-content-padding` | `16px 24px` |
+| `--flint-card-content-size` | `1rem` |
 
 ---
 
-## `<ui-card-header>`
+## `<flint-card-header>`
 
-- **Tag**: `<ui-card-header>`
-- **Class**: `UiCardHeader`
+- **Tag**: `<flint-card-header>`
+- **Class**: `FlintCardHeader`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiCardHeader } from 'storybook-lit';
+import { FlintCardHeader } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-card-header></ui-card-header>
+<flint-card-header></flint-card-header>
 ```
 
 ### Properties
@@ -146,27 +146,27 @@ import { UiCardHeader } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-card-header-padding` | `16px 24px` |
+| `--flint-card-header-padding` | `16px 24px` |
 
 ---
 
-## `<ui-card-media>`
+## `<flint-card-media>`
 
-- **Tag**: `<ui-card-media>`
-- **Class**: `UiCardMedia`
+- **Tag**: `<flint-card-media>`
+- **Class**: `FlintCardMedia`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiCardMedia } from 'storybook-lit';
+import { FlintCardMedia } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-card-media></ui-card-media>
+<flint-card-media></flint-card-media>
 ```
 
 ### Properties
@@ -187,27 +187,27 @@ import { UiCardMedia } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-card-media-height` | `200px` |
+| `--flint-card-media-height` | `200px` |
 
 ---
 
-## `<ui-card>`
+## `<flint-card>`
 
-- **Tag**: `<ui-card>`
-- **Class**: `UiCard`
+- **Tag**: `<flint-card>`
+- **Class**: `FlintCard`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiCard } from 'storybook-lit';
+import { FlintCard } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-card></ui-card>
+<flint-card></flint-card>
 ```
 
 ### Properties
@@ -227,22 +227,22 @@ import { UiCard } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-card-action-area-hover` | `var(--ui-hover-color` |
-| `--ui-card-action-area-active` | `var(--ui-active-color` |
-| `--ui-card-action-area-focus-ring` | `var(--ui-primary-color` |
-| `--ui-card-actions-padding` | `8px 16px` |
-| `--ui-card-content-padding` | `16px 24px` |
-| `--ui-card-content-size` | `1rem` |
-| `--ui-card-header-padding` | `16px 24px` |
-| `--ui-card-title-size` | `1.25rem` |
-| `--ui-card-subtitle-size` | `0.875rem` |
-| `--ui-card-media-height` | `200px` |
-| `--ui-card-background` | — |
-| `--ui-card-border-radius` | — |
-| `--ui-card-shadow` | — |
-| `--ui-card-border-color` | — |
-| `--ui-card-padding` | `0` |
-| `--ui-card-shadow-hover` | — |
-| `--ui-card-background-flat` | — |
+| `--flint-card-action-area-hover` | `var(--flint-hover-color` |
+| `--flint-card-action-area-active` | `var(--flint-active-color` |
+| `--flint-card-action-area-focus-ring` | `var(--flint-primary-color` |
+| `--flint-card-actions-padding` | `8px 16px` |
+| `--flint-card-content-padding` | `16px 24px` |
+| `--flint-card-content-size` | `1rem` |
+| `--flint-card-header-padding` | `16px 24px` |
+| `--flint-card-title-size` | `1.25rem` |
+| `--flint-card-subtitle-size` | `0.875rem` |
+| `--flint-card-media-height` | `200px` |
+| `--flint-card-background` | — |
+| `--flint-card-border-radius` | — |
+| `--flint-card-shadow` | — |
+| `--flint-card-border-color` | — |
+| `--flint-card-padding` | `0` |
+| `--flint-card-shadow-hover` | — |
+| `--flint-card-background-flat` | — |
 
 ---

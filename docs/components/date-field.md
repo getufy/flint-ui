@@ -1,25 +1,25 @@
 # Date Field
 
-<Demo label="States" html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><ui-date-field label=&quot;Date&quot; value=&quot;2025-12-31&quot; style=&quot;width:200px&quot;></ui-date-field><ui-date-field label=&quot;Empty&quot; style=&quot;width:200px&quot;></ui-date-field><ui-date-field label=&quot;Disabled&quot; disabled value=&quot;2025-06-15&quot; style=&quot;width:200px&quot;></ui-date-field></div>" />
+<Demo label="States" html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><flint-date-field label=&quot;Date&quot; value=&quot;2025-12-31&quot; style=&quot;width:200px&quot;></flint-date-field><flint-date-field label=&quot;Empty&quot; style=&quot;width:200px&quot;></flint-date-field><flint-date-field label=&quot;Disabled&quot; disabled value=&quot;2025-06-15&quot; style=&quot;width:200px&quot;></flint-date-field></div>" />
 
 — move between segments - **Backspace / Delete** — clear the current segment - **Escape / a** — clear all segments
 
-- **Tag**: `<ui-date-field>`
-- **Class**: `UiDateField`
+- **Tag**: `<flint-date-field>`
+- **Class**: `FlintDateField`
 - **Form Associated**: Yes
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiDateField } from 'storybook-lit';
+import { FlintDateField } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-date-field></ui-date-field>
+<flint-date-field></flint-date-field>
 ```
 
 ### Properties
@@ -47,20 +47,20 @@ import { UiDateField } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-font-family` | — |
-| `--ui-text-color-muted` | — |
-| `--ui-error-color` | — |
-| `--ui-primary-color` | — |
-| `--ui-input-bg` | — |
-| `--ui-border-color` | — |
-| `--ui-border-radius-md` | — |
-| `--ui-primary-focus-ring` | — |
-| `--ui-error-focus-ring` | — |
-| `--ui-input-disabled-bg` | — |
-| `--ui-text-color` | — |
-| `--ui-input-placeholder-color` | — |
-| `--ui-text-color-on-primary` | — |
-| `--ui-hover-color` | — |
+| `--flint-font-family` | — |
+| `--flint-text-color-muted` | — |
+| `--flint-error-color` | — |
+| `--flint-primary-color` | — |
+| `--flint-input-bg` | — |
+| `--flint-border-color` | — |
+| `--flint-border-radius-md` | — |
+| `--flint-primary-focus-ring` | — |
+| `--flint-error-focus-ring` | — |
+| `--flint-input-disabled-bg` | — |
+| `--flint-text-color` | — |
+| `--flint-input-placeholder-color` | — |
+| `--flint-text-color-on-primary` | — |
+| `--flint-hover-color` | — |
 
 ### Methods
 

@@ -42,9 +42,9 @@
 
 /* Skeleton needs a visible fallback in the docs demos.
    Also force display:block in case shadow DOM styles fail to adopt. */
-.vp-doc .demo-container ui-skeleton {
+.vp-doc .demo-container flint-skeleton {
   display: block;
-  --ui-skeleton-bg: #d4d4d8;
+  --flint-skeleton-bg: #d4d4d8;
 }
 
 /* Hero name gradient — scoped to .name.clip only */

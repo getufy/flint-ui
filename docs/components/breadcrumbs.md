@@ -1,24 +1,24 @@
 # Breadcrumbs
 
-<Demo html="<ui-breadcrumbs>  <a href=&quot;#&quot;>Home</a>  <a href=&quot;#&quot;>Products</a>  <span>Current Page</span></ui-breadcrumbs>" />
+<Demo html="<flint-breadcrumbs>  <a href=&quot;#&quot;>Home</a>  <a href=&quot;#&quot;>Products</a>  <span>Current Page</span></flint-breadcrumbs>" />
 
 Breadcrumbs provide a navigational aid showing the current page's location within a site hierarchy, allowing users to navigate back up the trail.
 
-- **Tag**: `<ui-breadcrumbs>`
-- **Class**: `UiBreadcrumbs`
+- **Tag**: `<flint-breadcrumbs>`
+- **Class**: `FlintBreadcrumbs`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiBreadcrumbs } from 'storybook-lit';
+import { FlintBreadcrumbs } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-breadcrumbs></ui-breadcrumbs>
+<flint-breadcrumbs></flint-breadcrumbs>
 ```
 
 ### Properties
@@ -42,14 +42,14 @@ import { UiBreadcrumbs } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-breadcrumb-separator-margin` | `8px` |
-| `--ui-breadcrumb-color` | `var(--ui-text-color-muted` |
-| `--ui-font-family` | — |
-| `--ui-breadcrumb-font-size` | `0.875rem` |
-| `--ui-breadcrumb-color-active` | `var(--ui-text-color` |
-| `--ui-breadcrumb-collapsed-bg` | `var(--ui-hover-color` |
-| `--ui-breadcrumb-collapsed-radius` | `var(--ui-border-radius-md` |
-| `--ui-breadcrumb-collapsed-hover-bg` | `var(--ui-active-color` |
-| `--ui-primary-color` | — |
+| `--flint-breadcrumb-separator-margin` | `8px` |
+| `--flint-breadcrumb-color` | `var(--flint-text-color-muted` |
+| `--flint-font-family` | — |
+| `--flint-breadcrumb-font-size` | `0.875rem` |
+| `--flint-breadcrumb-color-active` | `var(--flint-text-color` |
+| `--flint-breadcrumb-collapsed-bg` | `var(--flint-hover-color` |
+| `--flint-breadcrumb-collapsed-radius` | `var(--flint-border-radius-md` |
+| `--flint-breadcrumb-collapsed-hover-bg` | `var(--flint-active-color` |
+| `--flint-primary-color` | — |
 
 ---

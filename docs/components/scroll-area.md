@@ -1,26 +1,26 @@
 # Scroll Area
 
-<Demo html="<ui-scroll-area style=&quot;height:200px;width:100%;max-width:350px;border:1px solid #e5e7eb;border-radius:8px&quot;>  <div style=&quot;padding:16px&quot;>    <p style=&quot;margin:0 0 12px&quot;><strong>Scrollable Content</strong></p>    <p style=&quot;margin:0 0 12px&quot;>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>    <p style=&quot;margin:0 0 12px&quot;>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>    <p style=&quot;margin:0 0 12px&quot;>Ut enim ad minim veniam, quis nostrud exercitation.</p>    <p style=&quot;margin:0 0 12px&quot;>Duis aute irure dolor in reprehenderit in voluptate.</p>    <p style=&quot;margin:0 0 12px&quot;>Excepteur sint occaecat cupidatat non proident.</p>    <p style=&quot;margin:0&quot;>Sunt in culpa qui officia deserunt mollit anim id est laborum.</p>  </div></ui-scroll-area>" />
+<Demo html="<flint-scroll-area style=&quot;height:200px;width:100%;max-width:350px;border:1px solid #e5e7eb;border-radius:8px&quot;>  <div style=&quot;padding:16px&quot;>    <p style=&quot;margin:0 0 12px&quot;><strong>Scrollable Content</strong></p>    <p style=&quot;margin:0 0 12px&quot;>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>    <p style=&quot;margin:0 0 12px&quot;>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>    <p style=&quot;margin:0 0 12px&quot;>Ut enim ad minim veniam, quis nostrud exercitation.</p>    <p style=&quot;margin:0 0 12px&quot;>Duis aute irure dolor in reprehenderit in voluptate.</p>    <p style=&quot;margin:0 0 12px&quot;>Excepteur sint occaecat cupidatat non proident.</p>    <p style=&quot;margin:0&quot;>Sunt in culpa qui officia deserunt mollit anim id est laborum.</p>  </div></flint-scroll-area>" />
 
-## `<ui-scroll-bar>`
+## `<flint-scroll-bar>`
 
-Custom overlay scrollbar. Place inside `ui-scroll-area` with `slot="scrollbar"` for an explicit horizontal or second-axis bar. The parent `ui-scroll-area` calls `setThumb()` and `setVisible()` to keep this element in sync with the viewport's scroll position.
+Custom overlay scrollbar. Place inside `flint-scroll-area` with `slot="scrollbar"` for an explicit horizontal or second-axis bar. The parent `flint-scroll-area` calls `setThumb()` and `setVisible()` to keep this element in sync with the viewport's scroll position.
 
-- **Tag**: `<ui-scroll-bar>`
-- **Class**: `UiScrollBar`
+- **Tag**: `<flint-scroll-bar>`
+- **Class**: `FlintScrollBar`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiScrollBar } from 'storybook-lit';
+import { FlintScrollBar } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-scroll-bar></ui-scroll-bar>
+<flint-scroll-bar></flint-scroll-bar>
 ```
 
 ### Properties
@@ -39,11 +39,11 @@ import { UiScrollBar } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-scrollbar-track-color` | `transparent` |
-| `--ui-scrollbar-thumb-radius` | `9999px` |
-| `--ui-scrollbar-size` | `8px` |
-| `--ui-scrollbar-thumb-color` | `rgba(0, 0, 0, 0.35` |
-| `--ui-scrollbar-thumb-hover-color` | `rgba(0, 0, 0, 0.5` |
+| `--flint-scrollbar-track-color` | `transparent` |
+| `--flint-scrollbar-thumb-radius` | `9999px` |
+| `--flint-scrollbar-size` | `8px` |
+| `--flint-scrollbar-thumb-color` | `rgba(0, 0, 0, 0.35` |
+| `--flint-scrollbar-thumb-hover-color` | `rgba(0, 0, 0, 0.5` |
 
 ### Methods
 
@@ -54,23 +54,23 @@ import { UiScrollBar } from 'storybook-lit';
 
 ---
 
-## `<ui-scroll-area>`
+## `<flint-scroll-area>`
 
-- **Tag**: `<ui-scroll-area>`
-- **Class**: `UiScrollArea`
+- **Tag**: `<flint-scroll-area>`
+- **Class**: `FlintScrollArea`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiScrollArea } from 'storybook-lit';
+import { FlintScrollArea } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-scroll-area></ui-scroll-area>
+<flint-scroll-area></flint-scroll-area>
 ```
 
 ### Properties

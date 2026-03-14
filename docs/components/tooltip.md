@@ -1,24 +1,24 @@
 # Tooltip
 
-<Demo label="Placements" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><ui-tooltip label=&quot;Top tooltip&quot;>  <ui-button variant=&quot;secondary&quot;>Top</ui-button></ui-tooltip><ui-tooltip label=&quot;Bottom tooltip&quot; placement=&quot;bottom&quot;>  <ui-button variant=&quot;secondary&quot;>Bottom</ui-button></ui-tooltip><ui-tooltip label=&quot;Left tooltip&quot; placement=&quot;left&quot;>  <ui-button variant=&quot;secondary&quot;>Left</ui-button></ui-tooltip><ui-tooltip label=&quot;Right tooltip&quot; placement=&quot;right&quot;>  <ui-button variant=&quot;secondary&quot;>Right</ui-button></ui-tooltip></div>" />
+<Demo label="Placements" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-tooltip label=&quot;Top tooltip&quot;>  <flint-button variant=&quot;secondary&quot;>Top</flint-button></flint-tooltip><flint-tooltip label=&quot;Bottom tooltip&quot; placement=&quot;bottom&quot;>  <flint-button variant=&quot;secondary&quot;>Bottom</flint-button></flint-tooltip><flint-tooltip label=&quot;Left tooltip&quot; placement=&quot;left&quot;>  <flint-button variant=&quot;secondary&quot;>Left</flint-button></flint-tooltip><flint-tooltip label=&quot;Right tooltip&quot; placement=&quot;right&quot;>  <flint-button variant=&quot;secondary&quot;>Right</flint-button></flint-tooltip></div>" />
 
-ui-tooltip A component that displays a text label when users hover over or focus on an element.
+flint-tooltip A component that displays a text label when users hover over or focus on an element.
 
-- **Tag**: `<ui-tooltip>`
-- **Class**: `UiTooltip`
+- **Tag**: `<flint-tooltip>`
+- **Class**: `FlintTooltip`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiTooltip } from 'storybook-lit';
+import { FlintTooltip } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-tooltip></ui-tooltip>
+<flint-tooltip></flint-tooltip>
 ```
 
 ### Properties
@@ -42,11 +42,11 @@ import { UiTooltip } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-tooltip-bg` | — |
-| `--ui-tooltip-color` | — |
-| `--ui-tooltip-max-width` | `300px` |
-| `--ui-border-radius-sm` | — |
-| `--ui-font-family` | — |
-| `--ui-shadow-sm` | — |
+| `--flint-tooltip-bg` | — |
+| `--flint-tooltip-color` | — |
+| `--flint-tooltip-max-width` | `300px` |
+| `--flint-border-radius-sm` | — |
+| `--flint-font-family` | — |
+| `--flint-shadow-sm` | — |
 
 ---

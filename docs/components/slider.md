@@ -1,25 +1,25 @@
 # Slider
 
-<Demo label="Values" html="<div style=&quot;display:flex;flex-direction:column;gap:16px;width:100%;max-width:300px&quot;><ui-slider value=&quot;25&quot;></ui-slider><ui-slider value=&quot;50&quot;></ui-slider><ui-slider value=&quot;75&quot;></ui-slider></div>" />
+<Demo label="Values" html="<div style=&quot;display:flex;flex-direction:column;gap:16px;width:100%;max-width:300px&quot;><flint-slider value=&quot;25&quot;></flint-slider><flint-slider value=&quot;50&quot;></flint-slider><flint-slider value=&quot;75&quot;></flint-slider></div>" />
 
-<Demo label="Disabled" html="<div style=&quot;width:100%;max-width:300px&quot;><ui-slider value=&quot;40&quot; disabled></ui-slider></div>" />
+<Demo label="Disabled" html="<div style=&quot;width:100%;max-width:300px&quot;><flint-slider value=&quot;40&quot; disabled></flint-slider></div>" />
 
-- **Tag**: `<ui-slider>`
-- **Class**: `UiSlider`
+- **Tag**: `<flint-slider>`
+- **Class**: `FlintSlider`
 - **Form Associated**: Yes
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiSlider } from 'storybook-lit';
+import { FlintSlider } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-slider></ui-slider>
+<flint-slider></flint-slider>
 ```
 
 ### Properties
@@ -43,20 +43,20 @@ import { UiSlider } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-slider-change` | `{ value: this.value }` |  |
+| `flint-slider-change` | `{ value: this.value }` |  |
 
 ### CSS Custom Properties
 
 | Property | Default |
 | --- | --- |
-| `--ui-slider-vertical-height` | `200px` |
-| `--ui-font-family` | — |
-| `--ui-text-color` | — |
-| `--ui-primary-color` | — |
-| `--ui-input-border-color` | — |
-| `--ui-surface-1` | — |
-| `--ui-shadow-sm` | — |
-| `--ui-shadow-md` | — |
-| `--ui-text-color-muted` | — |
+| `--flint-slider-vertical-height` | `200px` |
+| `--flint-font-family` | — |
+| `--flint-text-color` | — |
+| `--flint-primary-color` | — |
+| `--flint-input-border-color` | — |
+| `--flint-surface-1` | — |
+| `--flint-shadow-sm` | — |
+| `--flint-shadow-md` | — |
+| `--flint-text-color-muted` | — |
 
 ---

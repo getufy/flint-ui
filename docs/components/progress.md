@@ -1,32 +1,32 @@
 # Progress
 
-<Demo label="Circular Indeterminate" html="<ui-circular-progress></ui-circular-progress>" />
+<Demo label="Circular Indeterminate" html="<flint-circular-progress></flint-circular-progress>" />
 
-<Demo label="Circular Determinate" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap;align-items:center&quot;><ui-circular-progress value=&quot;0&quot;></ui-circular-progress><ui-circular-progress value=&quot;25&quot;></ui-circular-progress><ui-circular-progress value=&quot;50&quot;></ui-circular-progress><ui-circular-progress value=&quot;75&quot;></ui-circular-progress><ui-circular-progress value=&quot;100&quot;></ui-circular-progress></div>" />
+<Demo label="Circular Determinate" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap;align-items:center&quot;><flint-circular-progress value=&quot;0&quot;></flint-circular-progress><flint-circular-progress value=&quot;25&quot;></flint-circular-progress><flint-circular-progress value=&quot;50&quot;></flint-circular-progress><flint-circular-progress value=&quot;75&quot;></flint-circular-progress><flint-circular-progress value=&quot;100&quot;></flint-circular-progress></div>" />
 
-<Demo label="Linear Indeterminate" html="<div style=&quot;width:100%;max-width:400px&quot;><ui-linear-progress></ui-linear-progress></div>" />
+<Demo label="Linear Indeterminate" html="<div style=&quot;width:100%;max-width:400px&quot;><flint-linear-progress></flint-linear-progress></div>" />
 
-<Demo label="Linear Determinate" html="<div style=&quot;display:flex;flex-direction:column;gap:12px;width:100%;max-width:400px&quot;><ui-linear-progress value=&quot;30&quot;></ui-linear-progress><ui-linear-progress value=&quot;60&quot;></ui-linear-progress><ui-linear-progress value=&quot;100&quot;></ui-linear-progress></div>" />
+<Demo label="Linear Determinate" html="<div style=&quot;display:flex;flex-direction:column;gap:12px;width:100%;max-width:400px&quot;><flint-linear-progress value=&quot;30&quot;></flint-linear-progress><flint-linear-progress value=&quot;60&quot;></flint-linear-progress><flint-linear-progress value=&quot;100&quot;></flint-linear-progress></div>" />
 
-## `<ui-circular-progress>`
+## `<flint-circular-progress>`
 
-ui-circular-progress: a circular progress indicator (spinner).
+flint-circular-progress: a circular progress indicator (spinner).
 
-- **Tag**: `<ui-circular-progress>`
-- **Class**: `UiCircularProgress`
+- **Tag**: `<flint-circular-progress>`
+- **Class**: `FlintCircularProgress`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiCircularProgress } from 'storybook-lit';
+import { FlintCircularProgress } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-circular-progress></ui-circular-progress>
+<flint-circular-progress></flint-circular-progress>
 ```
 
 ### Properties
@@ -44,33 +44,33 @@ import { UiCircularProgress } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-circular-progress-size` | — |
-| `--ui-circular-progress-color` | — |
-| `--ui-circular-progress-thickness` | `3.6` |
-| `--ui-primary-color` | — |
-| `--ui-primary-color-light` | — |
+| `--flint-circular-progress-size` | — |
+| `--flint-circular-progress-color` | — |
+| `--flint-circular-progress-thickness` | `3.6` |
+| `--flint-primary-color` | — |
+| `--flint-primary-color-light` | — |
 
 ---
 
-## `<ui-linear-progress>`
+## `<flint-linear-progress>`
 
-ui-linear-progress: a horizontal progress bar.
+flint-linear-progress: a horizontal progress bar.
 
-- **Tag**: `<ui-linear-progress>`
-- **Class**: `UiLinearProgress`
+- **Tag**: `<flint-linear-progress>`
+- **Class**: `FlintLinearProgress`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiLinearProgress } from 'storybook-lit';
+import { FlintLinearProgress } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-linear-progress></ui-linear-progress>
+<flint-linear-progress></flint-linear-progress>
 ```
 
 ### Properties
@@ -87,8 +87,8 @@ import { UiLinearProgress } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-linear-progress-height` | — |
-| `--ui-linear-progress-bg` | — |
-| `--ui-linear-progress-color` | — |
+| `--flint-linear-progress-height` | — |
+| `--flint-linear-progress-bg` | — |
+| `--flint-linear-progress-color` | — |
 
 ---

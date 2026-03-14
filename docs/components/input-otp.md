@@ -1,98 +1,98 @@
 # Input Otp
 
-<Demo label="6-digit code" html="<ui-input-otp length=&quot;6&quot;>  <ui-input-otp-group>    <ui-input-otp-slot index=&quot;0&quot;></ui-input-otp-slot>    <ui-input-otp-slot index=&quot;1&quot;></ui-input-otp-slot>    <ui-input-otp-slot index=&quot;2&quot;></ui-input-otp-slot>  </ui-input-otp-group>  <ui-input-otp-separator></ui-input-otp-separator>  <ui-input-otp-group>    <ui-input-otp-slot index=&quot;3&quot;></ui-input-otp-slot>    <ui-input-otp-slot index=&quot;4&quot;></ui-input-otp-slot>    <ui-input-otp-slot index=&quot;5&quot;></ui-input-otp-slot>  </ui-input-otp-group></ui-input-otp>" />
+<Demo label="6-digit code" html="<flint-input-otp length=&quot;6&quot;>  <flint-input-otp-group>    <flint-input-otp-slot index=&quot;0&quot;></flint-input-otp-slot>    <flint-input-otp-slot index=&quot;1&quot;></flint-input-otp-slot>    <flint-input-otp-slot index=&quot;2&quot;></flint-input-otp-slot>  </flint-input-otp-group>  <flint-input-otp-separator></flint-input-otp-separator>  <flint-input-otp-group>    <flint-input-otp-slot index=&quot;3&quot;></flint-input-otp-slot>    <flint-input-otp-slot index=&quot;4&quot;></flint-input-otp-slot>    <flint-input-otp-slot index=&quot;5&quot;></flint-input-otp-slot>  </flint-input-otp-group></flint-input-otp>" />
 
-<Demo label="4-digit code" html="<ui-input-otp length=&quot;4&quot;>  <ui-input-otp-group>    <ui-input-otp-slot index=&quot;0&quot;></ui-input-otp-slot>    <ui-input-otp-slot index=&quot;1&quot;></ui-input-otp-slot>    <ui-input-otp-slot index=&quot;2&quot;></ui-input-otp-slot>    <ui-input-otp-slot index=&quot;3&quot;></ui-input-otp-slot>  </ui-input-otp-group></ui-input-otp>" />
+<Demo label="4-digit code" html="<flint-input-otp length=&quot;4&quot;>  <flint-input-otp-group>    <flint-input-otp-slot index=&quot;0&quot;></flint-input-otp-slot>    <flint-input-otp-slot index=&quot;1&quot;></flint-input-otp-slot>    <flint-input-otp-slot index=&quot;2&quot;></flint-input-otp-slot>    <flint-input-otp-slot index=&quot;3&quot;></flint-input-otp-slot>  </flint-input-otp-group></flint-input-otp>" />
 
-## `<ui-input-otp-group>`
+## `<flint-input-otp-group>`
 
-Visual grouping wrapper for `ui-input-otp-slot` elements. Renders slots inline with shared borders.
+Visual grouping wrapper for `flint-input-otp-slot` elements. Renders slots inline with shared borders.
 
-- **Tag**: `<ui-input-otp-group>`
-- **Class**: `UiInputOtpGroup`
+- **Tag**: `<flint-input-otp-group>`
+- **Class**: `FlintInputOtpGroup`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiInputOtpGroup } from 'storybook-lit';
+import { FlintInputOtpGroup } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-input-otp-group></ui-input-otp-group>
+<flint-input-otp-group></flint-input-otp-group>
 ```
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Accepts `ui-input-otp-slot` elements. |
+| `(default)` | Accepts `flint-input-otp-slot` elements. |
 
 ### CSS Custom Properties
 
 | Property | Default |
 | --- | --- |
-| `--ui-text-color` | `#111827` |
-| `--ui-otp-slot-width` | `40px` |
-| `--ui-otp-slot-height` | `48px` |
-| `--ui-otp-slot-font-size` | `1.25rem` |
-| `--ui-font-family` | — |
-| `--ui-input-bg` | — |
-| `--ui-input-border-color` | — |
-| `--ui-otp-slot-radius` | `6px` |
-| `--ui-primary-color` | — |
-| `--ui-primary-focus-ring` | — |
-| `--ui-error-color` | — |
-| `--ui-error-focus-ring` | — |
-| `--ui-otp-gap` | `8px` |
+| `--flint-text-color` | `#111827` |
+| `--flint-otp-slot-width` | `40px` |
+| `--flint-otp-slot-height` | `48px` |
+| `--flint-otp-slot-font-size` | `1.25rem` |
+| `--flint-font-family` | — |
+| `--flint-input-bg` | — |
+| `--flint-input-border-color` | — |
+| `--flint-otp-slot-radius` | `6px` |
+| `--flint-primary-color` | — |
+| `--flint-primary-focus-ring` | — |
+| `--flint-error-color` | — |
+| `--flint-error-focus-ring` | — |
+| `--flint-otp-gap` | `8px` |
 
 ---
 
-## `<ui-input-otp-separator>`
+## `<flint-input-otp-separator>`
 
-Visual separator between `ui-input-otp-group` elements. Renders a short horizontal bar.
+Visual separator between `flint-input-otp-group` elements. Renders a short horizontal bar.
 
-- **Tag**: `<ui-input-otp-separator>`
-- **Class**: `UiInputOtpSeparator`
+- **Tag**: `<flint-input-otp-separator>`
+- **Class**: `FlintInputOtpSeparator`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiInputOtpSeparator } from 'storybook-lit';
+import { FlintInputOtpSeparator } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-input-otp-separator></ui-input-otp-separator>
+<flint-input-otp-separator></flint-input-otp-separator>
 ```
 
 ---
 
-## `<ui-input-otp-slot>`
+## `<flint-input-otp-slot>`
 
-A single character cell in an OTP input. Place inside `ui-input-otp-group`. State is managed by `ui-input-otp`.
+A single character cell in an OTP input. Place inside `flint-input-otp-group`. State is managed by `flint-input-otp`.
 
-- **Tag**: `<ui-input-otp-slot>`
-- **Class**: `UiInputOtpSlot`
+- **Tag**: `<flint-input-otp-slot>`
+- **Class**: `FlintInputOtpSlot`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiInputOtpSlot } from 'storybook-lit';
+import { FlintInputOtpSlot } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-input-otp-slot></ui-input-otp-slot>
+<flint-input-otp-slot></flint-input-otp-slot>
 ```
 
 ### Properties
@@ -100,29 +100,29 @@ import { UiInputOtpSlot } from 'storybook-lit';
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | `index` | `index` | `number` | `0` | Zero-based position index of this slot. |
-| `char` | `char` | `string` | `''` | Character displayed. Set by the parent `ui-input-otp`. |
-| `active` | `active` | `boolean` | `false` | Whether the cursor is at this position. Set by the parent `ui-input-otp`. |
+| `char` | `char` | `string` | `''` | Character displayed. Set by the parent `flint-input-otp`. |
+| `active` | `active` | `boolean` | `false` | Whether the cursor is at this position. Set by the parent `flint-input-otp`. |
 | `invalid` | `invalid` | `boolean` | `false` | Error / invalid state. |
 
 ---
 
-## `<ui-input-otp>`
+## `<flint-input-otp>`
 
-- **Tag**: `<ui-input-otp>`
-- **Class**: `UiInputOtp`
+- **Tag**: `<flint-input-otp>`
+- **Class**: `FlintInputOtp`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiInputOtp } from 'storybook-lit';
+import { FlintInputOtp } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-input-otp></ui-input-otp>
+<flint-input-otp></flint-input-otp>
 ```
 
 ### Properties
@@ -139,8 +139,8 @@ import { UiInputOtp } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-otp-change` | `{ value: newVal }` |  |
-| `ui-otp-complete` | `{ value: newVal }` |  |
+| `flint-otp-change` | `{ value: newVal }` |  |
+| `flint-otp-complete` | `{ value: newVal }` |  |
 
 ### Slots
 

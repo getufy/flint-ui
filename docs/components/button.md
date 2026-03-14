@@ -1,32 +1,32 @@
 # Button
 
-<Demo label="Variants" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><ui-button variant=&quot;primary&quot;>Primary</ui-button><ui-button variant=&quot;secondary&quot;>Secondary</ui-button><ui-button variant=&quot;destructive&quot;>Destructive</ui-button></div>" />
+<Demo label="Variants" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-button variant=&quot;primary&quot;>Primary</flint-button><flint-button variant=&quot;secondary&quot;>Secondary</flint-button><flint-button variant=&quot;destructive&quot;>Destructive</flint-button></div>" />
 
-<Demo label="Sizes" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap;align-items:center&quot;><ui-button size=&quot;small&quot;>Small</ui-button><ui-button size=&quot;medium&quot;>Medium</ui-button><ui-button size=&quot;large&quot;>Large</ui-button></div>" />
+<Demo label="Sizes" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap;align-items:center&quot;><flint-button size=&quot;small&quot;>Small</flint-button><flint-button size=&quot;medium&quot;>Medium</flint-button><flint-button size=&quot;large&quot;>Large</flint-button></div>" />
 
-<Demo label="States" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap;align-items:center&quot;><ui-button disabled>Disabled</ui-button><ui-button full-width>Full Width</ui-button></div>" />
+<Demo label="States" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap;align-items:center&quot;><flint-button disabled>Disabled</flint-button><flint-button full-width>Full Width</flint-button></div>" />
 
-<Demo label="Button Group" html="<ui-button-group>  <ui-button variant=&quot;secondary&quot;>Left</ui-button>  <ui-button variant=&quot;secondary&quot;>Center</ui-button>  <ui-button variant=&quot;secondary&quot;>Right</ui-button></ui-button-group>" />
+<Demo label="Button Group" html="<flint-button-group>  <flint-button variant=&quot;secondary&quot;>Left</flint-button>  <flint-button variant=&quot;secondary&quot;>Center</flint-button>  <flint-button variant=&quot;secondary&quot;>Right</flint-button></flint-button-group>" />
 
-<Demo label="Toggle Buttons" html="<ui-toggle-button-group exclusive>  <ui-toggle-button value=&quot;left&quot;>Left</ui-toggle-button>  <ui-toggle-button value=&quot;center&quot; selected>Center</ui-toggle-button>  <ui-toggle-button value=&quot;right&quot;>Right</ui-toggle-button></ui-toggle-button-group>" />
+<Demo label="Toggle Buttons" html="<flint-toggle-button-group exclusive>  <flint-toggle-button value=&quot;left&quot;>Left</flint-toggle-button>  <flint-toggle-button value=&quot;center&quot; selected>Center</flint-toggle-button>  <flint-toggle-button value=&quot;right&quot;>Right</flint-toggle-button></flint-toggle-button-group>" />
 
-## `<ui-button-group>`
+## `<flint-button-group>`
 
-- **Tag**: `<ui-button-group>`
-- **Class**: `UiButtonGroup`
+- **Tag**: `<flint-button-group>`
+- **Class**: `FlintButtonGroup`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiButtonGroup } from 'storybook-lit';
+import { FlintButtonGroup } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-button-group></ui-button-group>
+<flint-button-group></flint-button-group>
 ```
 
 ### Slots
@@ -39,41 +39,41 @@ import { UiButtonGroup } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-border-radius-md` | `6px` |
-| `--ui-font-family` | — |
-| `--ui-shadow-sm` | — |
-| `--ui-primary-color` | — |
-| `--ui-text-color-on-primary` | — |
-| `--ui-primary-color-hover` | — |
-| `--ui-primary-color-active` | — |
-| `--ui-surface-1` | — |
-| `--ui-text-color` | — |
-| `--ui-input-border-color` | — |
-| `--ui-hover-color` | — |
-| `--ui-active-color` | — |
-| `--ui-destructive-color` | — |
-| `--ui-destructive-color-hover` | — |
-| `--ui-destructive-color-active` | — |
+| `--flint-border-radius-md` | `6px` |
+| `--flint-font-family` | — |
+| `--flint-shadow-sm` | — |
+| `--flint-primary-color` | — |
+| `--flint-text-color-on-primary` | — |
+| `--flint-primary-color-hover` | — |
+| `--flint-primary-color-active` | — |
+| `--flint-surface-1` | — |
+| `--flint-text-color` | — |
+| `--flint-input-border-color` | — |
+| `--flint-hover-color` | — |
+| `--flint-active-color` | — |
+| `--flint-destructive-color` | — |
+| `--flint-destructive-color-hover` | — |
+| `--flint-destructive-color-active` | — |
 
 ---
 
-## `<ui-button>`
+## `<flint-button>`
 
-- **Tag**: `<ui-button>`
-- **Class**: `UiButton`
+- **Tag**: `<flint-button>`
+- **Class**: `FlintButton`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiButton } from 'storybook-lit';
+import { FlintButton } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-button></ui-button>
+<flint-button></flint-button>
 ```
 
 ### Properties
@@ -95,27 +95,27 @@ import { UiButton } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-button-border-radius` | `var(--ui-border-radius-md` |
+| `--flint-button-border-radius` | `var(--flint-border-radius-md` |
 
 ---
 
-## `<ui-toggle-button-group>`
+## `<flint-toggle-button-group>`
 
-- **Tag**: `<ui-toggle-button-group>`
-- **Class**: `UiToggleButtonGroup`
+- **Tag**: `<flint-toggle-button-group>`
+- **Class**: `FlintToggleButtonGroup`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiToggleButtonGroup } from 'storybook-lit';
+import { FlintToggleButtonGroup } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-toggle-button-group></ui-toggle-button-group>
+<flint-toggle-button-group></flint-toggle-button-group>
 ```
 
 ### Properties
@@ -129,7 +129,7 @@ import { UiToggleButtonGroup } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-toggle-button-group-change` | `{ value: this.value }` |  |
+| `flint-toggle-button-group-change` | `{ value: this.value }` |  |
 
 ### Slots
 
@@ -139,23 +139,23 @@ import { UiToggleButtonGroup } from 'storybook-lit';
 
 ---
 
-## `<ui-toggle-button>`
+## `<flint-toggle-button>`
 
-- **Tag**: `<ui-toggle-button>`
-- **Class**: `UiToggleButton`
+- **Tag**: `<flint-toggle-button>`
+- **Class**: `FlintToggleButton`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiToggleButton } from 'storybook-lit';
+import { FlintToggleButton } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-toggle-button></ui-toggle-button>
+<flint-toggle-button></flint-toggle-button>
 ```
 
 ### Properties
@@ -171,7 +171,7 @@ import { UiToggleButton } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-toggle-button-change` | `{ value: this.value, selected: !this.selected }` |  |
+| `flint-toggle-button-change` | `{ value: this.value, selected: !this.selected }` |  |
 
 ### Slots
 
@@ -183,12 +183,12 @@ import { UiToggleButton } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-toggle-button-font-size` | `14px` |
-| `--ui-toggle-button-padding` | `8px 16px` |
-| `--ui-toggle-button-gap` | `8px` |
-| `--ui-toggle-button-border-radius` | `var(--ui-border-radius-md` |
-| `--ui-toggle-button-selected-bg` | `var(--ui-active-color` |
-| `--ui-toggle-button-selected-color` | `var(--ui-primary-color` |
-| `--ui-toggle-button-selected-border-color` | `var(--ui-primary-color` |
+| `--flint-toggle-button-font-size` | `14px` |
+| `--flint-toggle-button-padding` | `8px 16px` |
+| `--flint-toggle-button-gap` | `8px` |
+| `--flint-toggle-button-border-radius` | `var(--flint-border-radius-md` |
+| `--flint-toggle-button-selected-bg` | `var(--flint-active-color` |
+| `--flint-toggle-button-selected-color` | `var(--flint-primary-color` |
+| `--flint-toggle-button-selected-border-color` | `var(--flint-primary-color` |
 
 ---

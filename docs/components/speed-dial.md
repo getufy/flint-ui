@@ -1,26 +1,26 @@
 # Speed Dial
 
-<Demo html="<div style=&quot;position:relative;height:200px;width:100%&quot;><ui-speed-dial style=&quot;position:absolute;bottom:16px;right:16px&quot; aria-label=&quot;Actions&quot;>  <ui-speed-dial-action tooltip-title=&quot;Copy&quot;>    <svg width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;><rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot; ry=&quot;2&quot;></rect><path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;></path></svg>  </ui-speed-dial-action>  <ui-speed-dial-action tooltip-title=&quot;Share&quot;>    <svg width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;><circle cx=&quot;18&quot; cy=&quot;5&quot; r=&quot;3&quot;></circle><circle cx=&quot;6&quot; cy=&quot;12&quot; r=&quot;3&quot;></circle><circle cx=&quot;18&quot; cy=&quot;19&quot; r=&quot;3&quot;></circle><line x1=&quot;8.59&quot; y1=&quot;13.51&quot; x2=&quot;15.42&quot; y2=&quot;17.49&quot;></line><line x1=&quot;15.41&quot; y1=&quot;6.51&quot; x2=&quot;8.59&quot; y2=&quot;10.49&quot;></line></svg>  </ui-speed-dial-action>  <ui-speed-dial-action tooltip-title=&quot;Print&quot;>    <svg width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;><polyline points=&quot;6 9 6 2 18 2 18 9&quot;></polyline><path d=&quot;M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2&quot;></path><rect x=&quot;6&quot; y=&quot;14&quot; width=&quot;12&quot; height=&quot;8&quot;></rect></svg>  </ui-speed-dial-action></ui-speed-dial></div>" />
+<Demo html="<div style=&quot;position:relative;height:200px;width:100%&quot;><flint-speed-dial style=&quot;position:absolute;bottom:16px;right:16px&quot; aria-label=&quot;Actions&quot;>  <flint-speed-dial-action tooltip-title=&quot;Copy&quot;>    <svg width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;><rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot; ry=&quot;2&quot;></rect><path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;></path></svg>  </flint-speed-dial-action>  <flint-speed-dial-action tooltip-title=&quot;Share&quot;>    <svg width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;><circle cx=&quot;18&quot; cy=&quot;5&quot; r=&quot;3&quot;></circle><circle cx=&quot;6&quot; cy=&quot;12&quot; r=&quot;3&quot;></circle><circle cx=&quot;18&quot; cy=&quot;19&quot; r=&quot;3&quot;></circle><line x1=&quot;8.59&quot; y1=&quot;13.51&quot; x2=&quot;15.42&quot; y2=&quot;17.49&quot;></line><line x1=&quot;15.41&quot; y1=&quot;6.51&quot; x2=&quot;8.59&quot; y2=&quot;10.49&quot;></line></svg>  </flint-speed-dial-action>  <flint-speed-dial-action tooltip-title=&quot;Print&quot;>    <svg width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;><polyline points=&quot;6 9 6 2 18 2 18 9&quot;></polyline><path d=&quot;M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2&quot;></path><rect x=&quot;6&quot; y=&quot;14&quot; width=&quot;12&quot; height=&quot;8&quot;></rect></svg>  </flint-speed-dial-action></flint-speed-dial></div>" />
 
-## `<ui-speed-dial-action>`
+## `<flint-speed-dial-action>`
 
-A single action item inside a `ui-speed-dial`.
+A single action item inside a `flint-speed-dial`.
 
-- **Tag**: `<ui-speed-dial-action>`
-- **Class**: `UiSpeedDialAction`
+- **Tag**: `<flint-speed-dial-action>`
+- **Class**: `FlintSpeedDialAction`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiSpeedDialAction } from 'storybook-lit';
+import { FlintSpeedDialAction } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-speed-dial-action></ui-speed-dial-action>
+<flint-speed-dial-action></flint-speed-dial-action>
 ```
 
 ### Properties
@@ -37,7 +37,7 @@ import { UiSpeedDialAction } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-speed-dial-action-click` | — | Fired when the action button is clicked. |
+| `flint-speed-dial-action-click` | — | Fired when the action button is clicked. |
 
 ### Slots
 
@@ -49,38 +49,38 @@ import { UiSpeedDialAction } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-speed-dial-action-size` | — |
-| `--ui-speed-dial-action-gap` | — |
-| `--ui-surface-1` | — |
-| `--ui-text-color` | — |
-| `--ui-surface-2` | — |
-| `--ui-primary-color` | — |
-| `--ui-tooltip-bg` | — |
-| `--ui-tooltip-text-color` | — |
-| `--ui-font-family` | — |
-| `--ui-text-color-on-primary` | — |
+| `--flint-speed-dial-action-size` | — |
+| `--flint-speed-dial-action-gap` | — |
+| `--flint-surface-1` | — |
+| `--flint-text-color` | — |
+| `--flint-surface-2` | — |
+| `--flint-primary-color` | — |
+| `--flint-tooltip-bg` | — |
+| `--flint-tooltip-text-color` | — |
+| `--flint-font-family` | — |
+| `--flint-text-color-on-primary` | — |
 
 ---
 
-## `<ui-speed-dial>`
+## `<flint-speed-dial>`
 
 Speed Dial — a FAB that reveals 3-6 related actions when pressed.
 
-- **Tag**: `<ui-speed-dial>`
-- **Class**: `UiSpeedDial`
+- **Tag**: `<flint-speed-dial>`
+- **Class**: `FlintSpeedDial`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiSpeedDial } from 'storybook-lit';
+import { FlintSpeedDial } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-speed-dial></ui-speed-dial>
+<flint-speed-dial></flint-speed-dial>
 ```
 
 ### Properties
@@ -101,14 +101,14 @@ import { UiSpeedDial } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-speed-dial-open` | — | Fired when the dial opens. |
-| `ui-speed-dial-close` | — | Fired when the dial closes. |
+| `flint-speed-dial-open` | — | Fired when the dial opens. |
+| `flint-speed-dial-close` | — | Fired when the dial closes. |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `(default)` | `ui-speed-dial-action` elements. |
+| `(default)` | `flint-speed-dial-action` elements. |
 | `icon` | Icon shown on the FAB when closed (default: + SVG). |
 | `open-icon` | Icon shown on the FAB when open (default: ✕ SVG). |
 
@@ -116,11 +116,11 @@ import { UiSpeedDial } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-speed-dial-action-size` | — |
-| `--ui-speed-dial-action-gap` | — |
-| `--ui-speed-dial-size` | — |
-| `--ui-speed-dial-bg` | — |
-| `--ui-speed-dial-color` | — |
-| `--ui-speed-dial-bg-hover` | `var(--ui-primary-color-hover` |
+| `--flint-speed-dial-action-size` | — |
+| `--flint-speed-dial-action-gap` | — |
+| `--flint-speed-dial-size` | — |
+| `--flint-speed-dial-bg` | — |
+| `--flint-speed-dial-color` | — |
+| `--flint-speed-dial-bg-hover` | `var(--flint-primary-color-hover` |
 
 ---

@@ -1,26 +1,26 @@
 # Menu
 
-<Demo html="<div style=&quot;position:relative;display:inline-block&quot;><ui-button onclick=&quot;var m=this.nextElementSibling;m.open=!m.open;if(m.open)m.addEventListener('ui-menu-close',function(){m.open=false},{once:true})&quot;>Open Menu</ui-button><ui-menu>  <ui-menu-item>Profile</ui-menu-item>  <ui-menu-item>Settings</ui-menu-item>  <ui-menu-divider></ui-menu-divider>  <ui-menu-group label=&quot;Actions&quot;>    <ui-menu-item>Export</ui-menu-item>    <ui-menu-item disabled>Delete</ui-menu-item>  </ui-menu-group>  <ui-menu-divider></ui-menu-divider>  <ui-menu-item>Logout</ui-menu-item></ui-menu></div>" />
+<Demo html="<div style=&quot;position:relative;display:inline-block&quot;><flint-button onclick=&quot;var m=this.nextElementSibling;m.open=!m.open;if(m.open)m.addEventListener('flint-menu-close',function(){m.open=false},{once:true})&quot;>Open Menu</flint-button><flint-menu>  <flint-menu-item>Profile</flint-menu-item>  <flint-menu-item>Settings</flint-menu-item>  <flint-menu-divider></flint-menu-divider>  <flint-menu-group label=&quot;Actions&quot;>    <flint-menu-item>Export</flint-menu-item>    <flint-menu-item disabled>Delete</flint-menu-item>  </flint-menu-group>  <flint-menu-divider></flint-menu-divider>  <flint-menu-item>Logout</flint-menu-item></flint-menu></div>" />
 
-## `<ui-menu-item>`
+## `<flint-menu-item>`
 
-A single option inside a `ui-menu`.
+A single option inside a `flint-menu`.
 
-- **Tag**: `<ui-menu-item>`
-- **Class**: `UiMenuItem`
+- **Tag**: `<flint-menu-item>`
+- **Class**: `FlintMenuItem`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiMenuItem } from 'storybook-lit';
+import { FlintMenuItem } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-menu-item></ui-menu-item>
+<flint-menu-item></flint-menu-item>
 ```
 
 ### Properties
@@ -36,7 +36,7 @@ import { UiMenuItem } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-menu-item-select` | — | Fired when the item is activated. |
+| `flint-menu-item-select` | — | Fired when the item is activated. |
 
 ### Slots
 
@@ -50,64 +50,64 @@ import { UiMenuItem } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-border-color` | — |
-| `--ui-text-color-muted` | — |
-| `--ui-font-family` | — |
-| `--ui-text-color` | — |
-| `--ui-hover-color` | — |
-| `--ui-active-color` | — |
-| `--ui-primary-color` | — |
-| `--ui-primary-color-light` | — |
-| `--ui-primary-color-light-hover` | — |
-| `--ui-surface-1` | — |
-| `--ui-border-radius-md` | — |
-| `--ui-shadow-md` | — |
-| `--ui-shadow-lg` | — |
+| `--flint-border-color` | — |
+| `--flint-text-color-muted` | — |
+| `--flint-font-family` | — |
+| `--flint-text-color` | — |
+| `--flint-hover-color` | — |
+| `--flint-active-color` | — |
+| `--flint-primary-color` | — |
+| `--flint-primary-color-light` | — |
+| `--flint-primary-color-light-hover` | — |
+| `--flint-surface-1` | — |
+| `--flint-border-radius-md` | — |
+| `--flint-shadow-md` | — |
+| `--flint-shadow-lg` | — |
 
 ---
 
-## `<ui-menu-divider>`
+## `<flint-menu-divider>`
 
 A hairline separator for grouping items in a menu.
 
-- **Tag**: `<ui-menu-divider>`
-- **Class**: `UiMenuDivider`
+- **Tag**: `<flint-menu-divider>`
+- **Class**: `FlintMenuDivider`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiMenuDivider } from 'storybook-lit';
+import { FlintMenuDivider } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-menu-divider></ui-menu-divider>
+<flint-menu-divider></flint-menu-divider>
 ```
 
 ---
 
-## `<ui-menu-group>`
+## `<flint-menu-group>`
 
 A labelled group of menu items. Wraps items in a `role="group"` for screen-reader announcements.
 
-- **Tag**: `<ui-menu-group>`
-- **Class**: `UiMenuGroup`
+- **Tag**: `<flint-menu-group>`
+- **Class**: `FlintMenuGroup`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiMenuGroup } from 'storybook-lit';
+import { FlintMenuGroup } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-menu-group></ui-menu-group>
+<flint-menu-group></flint-menu-group>
 ```
 
 ### Properties
@@ -120,29 +120,29 @@ import { UiMenuGroup } from 'storybook-lit';
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Group items (ui-menu-item elements). |
+| `(default)` | Group items (flint-menu-item elements). |
 
 ---
 
-## `<ui-menu>`
+## `<flint-menu>`
 
 A menu displays a list of choices on a temporary surface. Place it as a sibling to its anchor element inside a `position:relative` container.
 
-- **Tag**: `<ui-menu>`
-- **Class**: `UiMenu`
+- **Tag**: `<flint-menu>`
+- **Class**: `FlintMenu`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiMenu } from 'storybook-lit';
+import { FlintMenu } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-menu></ui-menu>
+<flint-menu></flint-menu>
 ```
 
 ### Properties
@@ -151,27 +151,27 @@ import { UiMenu } from 'storybook-lit';
 | --- | --- | --- | --- | --- |
 | `open` | `open` | `boolean` | `false` | Whether the menu is open/visible. |
 | `placement` | `placement` | `string` | `'bottom-start'` |  |
-| `closeOnSelect` | `close-on-select` | `boolean` | `true` | When true, selecting an item automatically fires ui-menu-close. |
-| `scrollable` | `scrollable` | `boolean` | `false` | When true, constrains height to --ui-menu-max-height (default 300px) and enables scrolling. |
+| `closeOnSelect` | `close-on-select` | `boolean` | `true` | When true, selecting an item automatically fires flint-menu-close. |
+| `scrollable` | `scrollable` | `boolean` | `false` | When true, constrains height to --flint-menu-max-height (default 300px) and enables scrolling. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-menu-close` | — | Fired when the menu requests to be closed (backdrop click, Escape, or item select). |
+| `flint-menu-close` | — | Fired when the menu requests to be closed (backdrop click, Escape, or item select). |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Menu content (ui-menu-item elements). |
+| `(default)` | Menu content (flint-menu-item elements). |
 
 ### CSS Custom Properties
 
 | Property | Default |
 | --- | --- |
-| `--ui-menu-z-index` | — |
-| `--ui-menu-min-width` | — |
-| `--ui-menu-max-height` | `300px` |
+| `--flint-menu-z-index` | — |
+| `--flint-menu-min-width` | — |
+| `--flint-menu-max-height` | `300px` |
 
 ---

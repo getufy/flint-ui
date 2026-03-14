@@ -1,26 +1,26 @@
 # Tabs
 
-<Demo label="Basic" html="<div style=&quot;width:100%;max-width:500px&quot;><ui-tabs value=&quot;one&quot;>  <ui-tab-list>    <ui-tab value=&quot;one&quot;>Tab One</ui-tab>    <ui-tab value=&quot;two&quot;>Tab Two</ui-tab>    <ui-tab value=&quot;three&quot;>Tab Three</ui-tab>  </ui-tab-list>  <ui-tab-panel value=&quot;one&quot;><p style=&quot;padding:16px;margin:0&quot;>Content for Tab One</p></ui-tab-panel>  <ui-tab-panel value=&quot;two&quot;><p style=&quot;padding:16px;margin:0&quot;>Content for Tab Two</p></ui-tab-panel>  <ui-tab-panel value=&quot;three&quot;><p style=&quot;padding:16px;margin:0&quot;>Content for Tab Three</p></ui-tab-panel></ui-tabs></div>" />
+<Demo label="Basic" html="<div style=&quot;width:100%;max-width:500px&quot;><flint-tabs value=&quot;one&quot;>  <flint-tab-list>    <flint-tab value=&quot;one&quot;>Tab One</flint-tab>    <flint-tab value=&quot;two&quot;>Tab Two</flint-tab>    <flint-tab value=&quot;three&quot;>Tab Three</flint-tab>  </flint-tab-list>  <flint-tab-panel value=&quot;one&quot;><p style=&quot;padding:16px;margin:0&quot;>Content for Tab One</p></flint-tab-panel>  <flint-tab-panel value=&quot;two&quot;><p style=&quot;padding:16px;margin:0&quot;>Content for Tab Two</p></flint-tab-panel>  <flint-tab-panel value=&quot;three&quot;><p style=&quot;padding:16px;margin:0&quot;>Content for Tab Three</p></flint-tab-panel></flint-tabs></div>" />
 
-<Demo label="With Disabled Tab" html="<div style=&quot;width:100%;max-width:500px&quot;><ui-tabs value=&quot;first&quot;>  <ui-tab-list>    <ui-tab value=&quot;first&quot;>Active</ui-tab>    <ui-tab value=&quot;second&quot; disabled>Disabled</ui-tab>    <ui-tab value=&quot;third&quot;>Also Active</ui-tab>  </ui-tab-list>  <ui-tab-panel value=&quot;first&quot;><p style=&quot;padding:16px;margin:0&quot;>First panel content</p></ui-tab-panel>  <ui-tab-panel value=&quot;second&quot;><p style=&quot;padding:16px;margin:0&quot;>Disabled panel</p></ui-tab-panel>  <ui-tab-panel value=&quot;third&quot;><p style=&quot;padding:16px;margin:0&quot;>Third panel content</p></ui-tab-panel></ui-tabs></div>" />
+<Demo label="With Disabled Tab" html="<div style=&quot;width:100%;max-width:500px&quot;><flint-tabs value=&quot;first&quot;>  <flint-tab-list>    <flint-tab value=&quot;first&quot;>Active</flint-tab>    <flint-tab value=&quot;second&quot; disabled>Disabled</flint-tab>    <flint-tab value=&quot;third&quot;>Also Active</flint-tab>  </flint-tab-list>  <flint-tab-panel value=&quot;first&quot;><p style=&quot;padding:16px;margin:0&quot;>First panel content</p></flint-tab-panel>  <flint-tab-panel value=&quot;second&quot;><p style=&quot;padding:16px;margin:0&quot;>Disabled panel</p></flint-tab-panel>  <flint-tab-panel value=&quot;third&quot;><p style=&quot;padding:16px;margin:0&quot;>Third panel content</p></flint-tab-panel></flint-tabs></div>" />
 
-## `<ui-tab>`
+## `<flint-tab>`
 
-- **Tag**: `<ui-tab>`
-- **Class**: `UiTab`
+- **Tag**: `<flint-tab>`
+- **Class**: `FlintTab`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiTab } from 'storybook-lit';
+import { FlintTab } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-tab></ui-tab>
+<flint-tab></flint-tab>
 ```
 
 ### Properties
@@ -38,7 +38,7 @@ import { UiTab } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-tab-click` | `{ value: this.value }` |  |
+| `flint-tab-click` | `{ value: this.value }` |  |
 
 ### Slots
 
@@ -51,32 +51,32 @@ import { UiTab } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-tab-border-color` | `var(--ui-border-color` |
-| `--ui-tab-scroll-btn-size` | `40px` |
-| `--ui-tab-indicator-color` | `var(--ui-tabs-ind-color, var(--ui-primary-color` |
-| `--ui-tab-indicator-radius` | `3px` |
-| `--ui-tab-indicator-height` | `3px` |
-| `--ui-tab-indicator-width` | `3px` |
-| `--ui-tab-panel-padding` | `24px` |
-| `--ui-tab-padding-y` | `10px` |
-| `--ui-tab-padding-x` | `16px` |
-| `--ui-tab-min-height` | `48px` |
-| `--ui-tab-font-size` | `0.875rem` |
-| `--ui-tab-font-weight` | `500` |
-| `--ui-tab-inactive-color` | — |
-| `--ui-tab-active-color` | — |
-| `--ui-tab-hover-bg` | `var(--ui-primary-color-light` |
-| `--ui-tab-font-weight-active` | `600` |
-| `--ui-tab-disabled-opacity` | `0.38` |
-| `--ui-tab-icon-min-height` | `72px` |
-| `--ui-border-color` | — |
-| `--ui-primary-color` | — |
-| `--ui-background` | — |
-| `--ui-text-color-muted` | — |
-| `--ui-text-color` | — |
-| `--ui-hover-color` | — |
-| `--ui-font-family` | — |
-| `--ui-primary-color-light` | — |
+| `--flint-tab-border-color` | `var(--flint-border-color` |
+| `--flint-tab-scroll-btn-size` | `40px` |
+| `--flint-tab-indicator-color` | `var(--flint-tabs-ind-color, var(--flint-primary-color` |
+| `--flint-tab-indicator-radius` | `3px` |
+| `--flint-tab-indicator-height` | `3px` |
+| `--flint-tab-indicator-width` | `3px` |
+| `--flint-tab-panel-padding` | `24px` |
+| `--flint-tab-padding-y` | `10px` |
+| `--flint-tab-padding-x` | `16px` |
+| `--flint-tab-min-height` | `48px` |
+| `--flint-tab-font-size` | `0.875rem` |
+| `--flint-tab-font-weight` | `500` |
+| `--flint-tab-inactive-color` | — |
+| `--flint-tab-active-color` | — |
+| `--flint-tab-hover-bg` | `var(--flint-primary-color-light` |
+| `--flint-tab-font-weight-active` | `600` |
+| `--flint-tab-disabled-opacity` | `0.38` |
+| `--flint-tab-icon-min-height` | `72px` |
+| `--flint-border-color` | — |
+| `--flint-primary-color` | — |
+| `--flint-background` | — |
+| `--flint-text-color-muted` | — |
+| `--flint-text-color` | — |
+| `--flint-hover-color` | — |
+| `--flint-font-family` | — |
+| `--flint-primary-color-light` | — |
 
 ### Methods
 
@@ -87,23 +87,23 @@ import { UiTab } from 'storybook-lit';
 
 ---
 
-## `<ui-tab-panel>`
+## `<flint-tab-panel>`
 
-- **Tag**: `<ui-tab-panel>`
-- **Class**: `UiTabPanel`
+- **Tag**: `<flint-tab-panel>`
+- **Class**: `FlintTabPanel`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiTabPanel } from 'storybook-lit';
+import { FlintTabPanel } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-tab-panel></ui-tab-panel>
+<flint-tab-panel></flint-tab-panel>
 ```
 
 ### Properties
@@ -122,27 +122,27 @@ import { UiTabPanel } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-tab-panel-padding` | `24px` |
+| `--flint-tab-panel-padding` | `24px` |
 
 ---
 
-## `<ui-tab-list>`
+## `<flint-tab-list>`
 
-- **Tag**: `<ui-tab-list>`
-- **Class**: `UiTabList`
+- **Tag**: `<flint-tab-list>`
+- **Class**: `FlintTabList`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiTabList } from 'storybook-lit';
+import { FlintTabList } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-tab-list></ui-tab-list>
+<flint-tab-list></flint-tab-list>
 ```
 
 ### Properties
@@ -159,7 +159,7 @@ import { UiTabList } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-tab-click` | `{ value: tabs[idx].value }` |  |
+| `flint-tab-click` | `{ value: tabs[idx].value }` |  |
 
 ### Slots
 
@@ -175,23 +175,23 @@ import { UiTabList } from 'storybook-lit';
 
 ---
 
-## `<ui-tabs>`
+## `<flint-tabs>`
 
-- **Tag**: `<ui-tabs>`
-- **Class**: `UiTabs`
+- **Tag**: `<flint-tabs>`
+- **Class**: `FlintTabs`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiTabs } from 'storybook-lit';
+import { FlintTabs } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-tabs></ui-tabs>
+<flint-tabs></flint-tabs>
 ```
 
 ### Properties
@@ -211,7 +211,7 @@ import { UiTabs } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-tab-change` | `{ value: e.detail.value }` |  |
+| `flint-tab-change` | `{ value: e.detail.value }` |  |
 
 ### Slots
 

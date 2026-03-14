@@ -1,11 +1,11 @@
-# Storybook Lit Component Library
+# Flint UI Component Library
 
 A comprehensive library of 70+ UI components built with [LitElement](https://lit.dev/) and [TypeScript](https://www.typescriptlang.org/), showcased with [Storybook](https://storybook.js.org/).
 
 ## Installation
 
 ```bash
-npm install storybook-lit lit
+npm install flint-ui lit
 ```
 
 ## Usage
@@ -13,46 +13,46 @@ npm install storybook-lit lit
 Import the full bundle:
 
 ```ts
-import { UiButton, UiTabs } from 'storybook-lit';
+import { FlintButton, FlintTabs } from 'flint-ui';
 ```
 
 Or import individual components for better tree-shaking:
 
 ```ts
-import 'storybook-lit/button';
-import 'storybook-lit/tabs';
+import 'flint-ui/button';
+import 'flint-ui/tabs';
 ```
 
 Apply the theme by importing the CSS:
 
 ```ts
-import 'storybook-lit/theme.css';
+import 'flint-ui/theme.css';
 // optional dark mode
-import 'storybook-lit/theme-dark.css';
+import 'flint-ui/theme-dark.css';
 ```
 
 ## Components
 
 ### Inputs
-`ui-autocomplete` `ui-checkbox` `ui-date-field` `ui-date-picker` `ui-date-range-picker` `ui-input` `ui-input-otp` `ui-radio` `ui-rating` `ui-select` `ui-slider` `ui-switch` `ui-text-field` `ui-textarea` `ui-time-picker` `ui-toggle` `ui-toggle-button` `ui-transfer-list`
+`flint-autocomplete` `flint-checkbox` `flint-date-field` `flint-date-picker` `flint-date-range-picker` `flint-input` `flint-input-otp` `flint-radio` `flint-rating` `flint-select` `flint-slider` `flint-switch` `flint-text-field` `flint-textarea` `flint-time-picker` `flint-toggle` `flint-toggle-button` `flint-transfer-list`
 
 ### Data Display
-`ui-avatar` `ui-badge` `ui-chip` `ui-divider` `ui-format-date` `ui-format-number` `ui-image-list` `ui-item` `ui-kbd` `ui-list` `ui-relative-time` `ui-table` `ui-tooltip` `ui-typography`
+`flint-avatar` `flint-badge` `flint-chip` `flint-divider` `flint-format-date` `flint-format-number` `flint-image-list` `flint-item` `flint-kbd` `flint-list` `flint-relative-time` `flint-table` `flint-tooltip` `flint-typography`
 
 ### Feedback
-`ui-alert` `ui-backdrop` `ui-dialog` `ui-progress` `ui-skeleton` `ui-snackbar` `ui-sonner`
+`flint-alert` `flint-backdrop` `flint-dialog` `flint-progress` `flint-skeleton` `flint-snackbar` `flint-sonner`
 
 ### Surfaces
-`ui-accordion` `ui-card` `ui-paper`
+`flint-accordion` `flint-card` `flint-paper`
 
 ### Navigation
-`ui-bottom-navigation` `ui-breadcrumbs` `ui-command` `ui-drawer` `ui-link` `ui-menu` `ui-menubar` `ui-navigation-menu` `ui-pagination` `ui-speed-dial` `ui-stepper` `ui-tabs`
+`flint-bottom-navigation` `flint-breadcrumbs` `flint-command` `flint-drawer` `flint-link` `flint-menu` `flint-menubar` `flint-navigation-menu` `flint-pagination` `flint-speed-dial` `flint-stepper` `flint-tabs`
 
 ### Layout
-`ui-box` `ui-container` `ui-grid` `ui-stack` `ui-resizable` `ui-split-panel`
+`flint-box` `flint-container` `flint-grid` `flint-stack` `flint-resizable` `flint-split-panel`
 
 ### Utilities
-`ui-collapsible` `ui-copy-button` `ui-empty` `ui-hover-card` `ui-image-comparer` `ui-scroll-area` `ui-visually-hidden`
+`flint-collapsible` `flint-copy-button` `flint-empty` `flint-hover-card` `flint-image-comparer` `flint-scroll-area` `flint-visually-hidden`
 
 ## Theming
 
@@ -60,10 +60,10 @@ Override CSS custom properties to customize the look:
 
 ```css
 :root {
-  --ui-primary-color: #3b82f6;
-  --ui-text-color: #111827;
-  --ui-font-family: system-ui;
-  --ui-border-radius-md: 6px;
+  --flint-primary-color: #3b82f6;
+  --flint-text-color: #111827;
+  --flint-font-family: system-ui;
+  --flint-border-radius-md: 6px;
 }
 ```
 
@@ -84,10 +84,10 @@ npm run lint               # ESLint (0 errors, 0 warnings)
 ```
 src/
   <component>/
-    ui-<component>.ts          # LitElement component
-    ui-<component>.css         # Component styles
-    ui-<component>.stories.ts  # Storybook stories
-    ui-<component>.test.ts     # Vitest unit tests
+    flint-<component>.ts          # LitElement component
+    flint-<component>.css         # Component styles
+    flint-<component>.stories.ts  # Storybook stories
+    flint-<component>.test.ts     # Vitest unit tests
   index.ts                     # Public API exports
   theme.css                    # Light theme tokens
   theme-dark.css               # Dark theme tokens

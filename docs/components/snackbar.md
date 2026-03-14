@@ -1,22 +1,22 @@
 # Snackbar
 
-<Demo label="Basic" html="<ui-button onclick=&quot;this.nextElementSibling.open=true&quot;>Show Snackbar</ui-button><ui-snackbar message=&quot;This is a snackbar message&quot; auto-hide-duration=&quot;3000&quot;></ui-snackbar>" />
+<Demo label="Basic" html="<flint-button onclick=&quot;this.nextElementSibling.open=true&quot;>Show Snackbar</flint-button><flint-snackbar message=&quot;This is a snackbar message&quot; auto-hide-duration=&quot;3000&quot;></flint-snackbar>" />
 
-- **Tag**: `<ui-snackbar>`
-- **Class**: `UiSnackbar`
+- **Tag**: `<flint-snackbar>`
+- **Class**: `FlintSnackbar`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiSnackbar } from 'storybook-lit';
+import { FlintSnackbar } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-snackbar></ui-snackbar>
+<flint-snackbar></flint-snackbar>
 ```
 
 ### Properties
@@ -35,8 +35,8 @@ import { UiSnackbar } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-snackbar-open` | — |  |
-| `ui-snackbar-close` | — |  |
+| `flint-snackbar-open` | — |  |
+| `flint-snackbar-close` | — |  |
 
 ### Slots
 
@@ -49,19 +49,19 @@ import { UiSnackbar } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-snackbar-z-index` | `1400` |
-| `--ui-snackbar-offset` | `24px` |
-| `--ui-snackbar-bg` | `#313131` |
-| `--ui-snackbar-color` | `#ffffff` |
-| `--ui-snackbar-min-width` | `288px` |
-| `--ui-snackbar-max-width` | `560px` |
-| `--ui-snackbar-bg-info` | `#0288d1` |
-| `--ui-snackbar-bg-success` | `#2e7d32` |
-| `--ui-snackbar-bg-warning` | `#ed6c02` |
-| `--ui-snackbar-bg-error` | `#d32f2f` |
-| `--ui-font-family` | — |
-| `--ui-border-radius-md` | — |
-| `--ui-shadow-lg` | — |
+| `--flint-snackbar-z-index` | `1400` |
+| `--flint-snackbar-offset` | `24px` |
+| `--flint-snackbar-bg` | `#313131` |
+| `--flint-snackbar-color` | `#ffffff` |
+| `--flint-snackbar-min-width` | `288px` |
+| `--flint-snackbar-max-width` | `560px` |
+| `--flint-snackbar-bg-info` | `#0288d1` |
+| `--flint-snackbar-bg-success` | `#2e7d32` |
+| `--flint-snackbar-bg-warning` | `#ed6c02` |
+| `--flint-snackbar-bg-error` | `#d32f2f` |
+| `--flint-font-family` | — |
+| `--flint-border-radius-md` | — |
+| `--flint-shadow-lg` | — |
 
 ### Methods
 

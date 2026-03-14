@@ -1,26 +1,26 @@
 # Pagination
 
-<Demo label="Pages" html="<ui-pagination count=&quot;10&quot; page=&quot;1&quot;></ui-pagination>" />
+<Demo label="Pages" html="<flint-pagination count=&quot;10&quot; page=&quot;1&quot;></flint-pagination>" />
 
-<Demo label="Middle Page" html="<ui-pagination count=&quot;20&quot; page=&quot;10&quot;></ui-pagination>" />
+<Demo label="Middle Page" html="<flint-pagination count=&quot;20&quot; page=&quot;10&quot;></flint-pagination>" />
 
 Pagination component enabling the user to select a specific page from a range of pages.
 
-- **Tag**: `<ui-pagination>`
-- **Class**: `UiPagination`
+- **Tag**: `<flint-pagination>`
+- **Class**: `FlintPagination`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiPagination } from 'storybook-lit';
+import { FlintPagination } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-pagination></ui-pagination>
+<flint-pagination></flint-pagination>
 ```
 
 ### Properties
@@ -28,7 +28,7 @@ import { UiPagination } from 'storybook-lit';
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | `count` | `count` | `number` | `1` | Total number of pages. |
-| `page` | `page` | `number` | `1` | The current page (1-based). In controlled mode, update this from the ui-pagination-change event. |
+| `page` | `page` | `number` | `1` | The current page (1-based). In controlled mode, update this from the flint-pagination-change event. |
 | `defaultPage` | `default-page` | `number` | `1` | Initial page for uncontrolled mode. Ignored after first render. |
 | `label` | `label` | `string` | `''` | Accessible label for the nav landmark (aria-label). |
 | `variant` | `variant` | `'text' \| 'outlined'` | `'text'` | Variant. |
@@ -47,7 +47,7 @@ import { UiPagination } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-pagination-change` | — | { page: number } when the active page changes. |
+| `flint-pagination-change` | — | { page: number } when the active page changes. |
 
 ### Slots
 
@@ -63,28 +63,28 @@ import { UiPagination } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-pagination-gap` | `4px` |
-| `--ui-pagination-btn-size` | `36px` |
-| `--ui-pagination-btn-radius` | `4px` |
-| `--ui-pagination-btn-font-size` | `0.875rem` |
-| `--ui-pagination-focus-ring-color` | `var(--ui-primary-color` |
-| `--ui-pagination-active-bg` | `var(--ui-primary-color` |
-| `--ui-pagination-active-color` | `var(--ui-text-color-on-primary` |
-| `--ui-pagination-disabled-opacity` | `0.38` |
-| `--ui-pagination-outlined-border` | `var(--ui-border-color` |
-| `--ui-pagination-outlined-hover-bg` | `var(--ui-primary-color-light` |
-| `--ui-pagination-outlined-hover-border` | `var(--ui-primary-color` |
-| `--ui-pagination-active-bg-secondary` | `var(--ui-secondary-color` |
-| `--ui-pagination-active-bg-standard` | `var(--ui-text-color` |
-| `--ui-pagination-btn-radius-rounded` | `8px` |
-| `--ui-pagination-btn-size-sm` | `28px` |
-| `--ui-pagination-btn-font-size-sm` | `0.8125rem` |
-| `--ui-pagination-btn-size-lg` | `44px` |
-| `--ui-pagination-btn-font-size-lg` | `0.9375rem` |
-| `--ui-font-family` | — |
-| `--ui-text-color` | — |
-| `--ui-hover-color` | — |
-| `--ui-text-color-muted` | — |
+| `--flint-pagination-gap` | `4px` |
+| `--flint-pagination-btn-size` | `36px` |
+| `--flint-pagination-btn-radius` | `4px` |
+| `--flint-pagination-btn-font-size` | `0.875rem` |
+| `--flint-pagination-focus-ring-color` | `var(--flint-primary-color` |
+| `--flint-pagination-active-bg` | `var(--flint-primary-color` |
+| `--flint-pagination-active-color` | `var(--flint-text-color-on-primary` |
+| `--flint-pagination-disabled-opacity` | `0.38` |
+| `--flint-pagination-outlined-border` | `var(--flint-border-color` |
+| `--flint-pagination-outlined-hover-bg` | `var(--flint-primary-color-light` |
+| `--flint-pagination-outlined-hover-border` | `var(--flint-primary-color` |
+| `--flint-pagination-active-bg-secondary` | `var(--flint-secondary-color` |
+| `--flint-pagination-active-bg-standard` | `var(--flint-text-color` |
+| `--flint-pagination-btn-radius-rounded` | `8px` |
+| `--flint-pagination-btn-size-sm` | `28px` |
+| `--flint-pagination-btn-font-size-sm` | `0.8125rem` |
+| `--flint-pagination-btn-size-lg` | `44px` |
+| `--flint-pagination-btn-font-size-lg` | `0.9375rem` |
+| `--flint-font-family` | — |
+| `--flint-text-color` | — |
+| `--flint-hover-color` | — |
+| `--flint-text-color-muted` | — |
 
 ### Methods
 

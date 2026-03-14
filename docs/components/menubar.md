@@ -1,26 +1,26 @@
 # Menubar
 
-<Demo html="<div style=&quot;width:100%;max-width:500px&quot;><ui-menubar>  <ui-menubar-menu>    <ui-menubar-trigger>File</ui-menubar-trigger>    <ui-menubar-content>      <ui-menubar-item>New <ui-menubar-shortcut>Ctrl+N</ui-menubar-shortcut></ui-menubar-item>      <ui-menubar-item>Open <ui-menubar-shortcut>Ctrl+O</ui-menubar-shortcut></ui-menubar-item>      <ui-menubar-item>Save <ui-menubar-shortcut>Ctrl+S</ui-menubar-shortcut></ui-menubar-item>      <ui-menubar-separator></ui-menubar-separator>      <ui-menubar-item>Exit</ui-menubar-item>    </ui-menubar-content>  </ui-menubar-menu>  <ui-menubar-menu>    <ui-menubar-trigger>Edit</ui-menubar-trigger>    <ui-menubar-content>      <ui-menubar-item>Undo <ui-menubar-shortcut>Ctrl+Z</ui-menubar-shortcut></ui-menubar-item>      <ui-menubar-item>Redo <ui-menubar-shortcut>Ctrl+Y</ui-menubar-shortcut></ui-menubar-item>      <ui-menubar-separator></ui-menubar-separator>      <ui-menubar-item>Cut <ui-menubar-shortcut>Ctrl+X</ui-menubar-shortcut></ui-menubar-item>      <ui-menubar-item>Copy <ui-menubar-shortcut>Ctrl+C</ui-menubar-shortcut></ui-menubar-item>      <ui-menubar-item>Paste <ui-menubar-shortcut>Ctrl+V</ui-menubar-shortcut></ui-menubar-item>    </ui-menubar-content>  </ui-menubar-menu>  <ui-menubar-menu>    <ui-menubar-trigger>View</ui-menubar-trigger>    <ui-menubar-content>      <ui-menubar-item>Zoom In</ui-menubar-item>      <ui-menubar-item>Zoom Out</ui-menubar-item>      <ui-menubar-separator></ui-menubar-separator>      <ui-menubar-item>Full Screen</ui-menubar-item>    </ui-menubar-content>  </ui-menubar-menu></ui-menubar></div>" />
+<Demo html="<div style=&quot;width:100%;max-width:500px&quot;><flint-menubar>  <flint-menubar-menu>    <flint-menubar-trigger>File</flint-menubar-trigger>    <flint-menubar-content>      <flint-menubar-item>New <flint-menubar-shortcut>Ctrl+N</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-item>Open <flint-menubar-shortcut>Ctrl+O</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-item>Save <flint-menubar-shortcut>Ctrl+S</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-separator></flint-menubar-separator>      <flint-menubar-item>Exit</flint-menubar-item>    </flint-menubar-content>  </flint-menubar-menu>  <flint-menubar-menu>    <flint-menubar-trigger>Edit</flint-menubar-trigger>    <flint-menubar-content>      <flint-menubar-item>Undo <flint-menubar-shortcut>Ctrl+Z</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-item>Redo <flint-menubar-shortcut>Ctrl+Y</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-separator></flint-menubar-separator>      <flint-menubar-item>Cut <flint-menubar-shortcut>Ctrl+X</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-item>Copy <flint-menubar-shortcut>Ctrl+C</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-item>Paste <flint-menubar-shortcut>Ctrl+V</flint-menubar-shortcut></flint-menubar-item>    </flint-menubar-content>  </flint-menubar-menu>  <flint-menubar-menu>    <flint-menubar-trigger>View</flint-menubar-trigger>    <flint-menubar-content>      <flint-menubar-item>Zoom In</flint-menubar-item>      <flint-menubar-item>Zoom Out</flint-menubar-item>      <flint-menubar-separator></flint-menubar-separator>      <flint-menubar-item>Full Screen</flint-menubar-item>    </flint-menubar-content>  </flint-menubar-menu></flint-menubar></div>" />
 
-## `<ui-menubar-shortcut>`
+## `<flint-menubar-shortcut>`
 
 Displays a keyboard shortcut hint inside a menu item.
 
-- **Tag**: `<ui-menubar-shortcut>`
-- **Class**: `UiMenubarShortcut`
+- **Tag**: `<flint-menubar-shortcut>`
+- **Class**: `FlintMenubarShortcut`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiMenubarShortcut } from 'storybook-lit';
+import { FlintMenubarShortcut } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-menubar-shortcut></ui-menubar-shortcut>
+<flint-menubar-shortcut></flint-menubar-shortcut>
 ```
 
 ### Slots
@@ -33,56 +33,56 @@ import { UiMenubarShortcut } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-text-color` | — |
-| `--ui-font-family` | — |
-| `--ui-border-color` | — |
-| `--ui-text-color-muted` | — |
-| `--ui-primary-color` | — |
+| `--flint-text-color` | — |
+| `--flint-font-family` | — |
+| `--flint-border-color` | — |
+| `--flint-text-color-muted` | — |
+| `--flint-primary-color` | — |
 
 ---
 
-## `<ui-menubar-separator>`
+## `<flint-menubar-separator>`
 
 A hairline separator between menu groups.
 
-- **Tag**: `<ui-menubar-separator>`
-- **Class**: `UiMenubarSeparator`
+- **Tag**: `<flint-menubar-separator>`
+- **Class**: `FlintMenubarSeparator`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiMenubarSeparator } from 'storybook-lit';
+import { FlintMenubarSeparator } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-menubar-separator></ui-menubar-separator>
+<flint-menubar-separator></flint-menubar-separator>
 ```
 
 ---
 
-## `<ui-menubar-group>`
+## `<flint-menubar-group>`
 
 Groups related menu items. Optional `heading` shows a label.
 
-- **Tag**: `<ui-menubar-group>`
-- **Class**: `UiMenubarGroup`
+- **Tag**: `<flint-menubar-group>`
+- **Class**: `FlintMenubarGroup`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiMenubarGroup } from 'storybook-lit';
+import { FlintMenubarGroup } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-menubar-group></ui-menubar-group>
+<flint-menubar-group></flint-menubar-group>
 ```
 
 ### Properties
@@ -99,25 +99,25 @@ import { UiMenubarGroup } from 'storybook-lit';
 
 ---
 
-## `<ui-menubar-item>`
+## `<flint-menubar-item>`
 
 A single interactive option inside a menubar dropdown.
 
-- **Tag**: `<ui-menubar-item>`
-- **Class**: `UiMenubarItem`
+- **Tag**: `<flint-menubar-item>`
+- **Class**: `FlintMenubarItem`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiMenubarItem } from 'storybook-lit';
+import { FlintMenubarItem } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-menubar-item></ui-menubar-item>
+<flint-menubar-item></flint-menubar-item>
 ```
 
 ### Properties
@@ -133,13 +133,13 @@ import { UiMenubarItem } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-menubar-item-select` | — | Fired on activation. detail: `{ value: string }` |
+| `flint-menubar-item-select` | — | Fired on activation. detail: `{ value: string }` |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Item label text plus optional `<ui-menubar-shortcut>`. |
+| `(default)` | Item label text plus optional `<flint-menubar-shortcut>`. |
 
 ### Methods
 
@@ -149,25 +149,25 @@ import { UiMenubarItem } from 'storybook-lit';
 
 ---
 
-## `<ui-menubar-checkbox-item>`
+## `<flint-menubar-checkbox-item>`
 
 A toggleable checkbox menu item.
 
-- **Tag**: `<ui-menubar-checkbox-item>`
-- **Class**: `UiMenubarCheckboxItem`
+- **Tag**: `<flint-menubar-checkbox-item>`
+- **Class**: `FlintMenubarCheckboxItem`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiMenubarCheckboxItem } from 'storybook-lit';
+import { FlintMenubarCheckboxItem } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-menubar-checkbox-item></ui-menubar-checkbox-item>
+<flint-menubar-checkbox-item></flint-menubar-checkbox-item>
 ```
 
 ### Properties
@@ -183,7 +183,7 @@ import { UiMenubarCheckboxItem } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-menubar-checkbox-change` | — | detail: `{ checked: boolean, value: string }` |
+| `flint-menubar-checkbox-change` | — | detail: `{ checked: boolean, value: string }` |
 
 ### Slots
 
@@ -199,25 +199,25 @@ import { UiMenubarCheckboxItem } from 'storybook-lit';
 
 ---
 
-## `<ui-menubar-radio-item>`
+## `<flint-menubar-radio-item>`
 
-A radio option inside a `<ui-menubar-radio-group>`.
+A radio option inside a `<flint-menubar-radio-group>`.
 
-- **Tag**: `<ui-menubar-radio-item>`
-- **Class**: `UiMenubarRadioItem`
+- **Tag**: `<flint-menubar-radio-item>`
+- **Class**: `FlintMenubarRadioItem`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiMenubarRadioItem } from 'storybook-lit';
+import { FlintMenubarRadioItem } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-menubar-radio-item></ui-menubar-radio-item>
+<flint-menubar-radio-item></flint-menubar-radio-item>
 ```
 
 ### Properties
@@ -249,25 +249,25 @@ import { UiMenubarRadioItem } from 'storybook-lit';
 
 ---
 
-## `<ui-menubar-radio-group>`
+## `<flint-menubar-radio-group>`
 
 Manages single-select radio items.
 
-- **Tag**: `<ui-menubar-radio-group>`
-- **Class**: `UiMenubarRadioGroup`
+- **Tag**: `<flint-menubar-radio-group>`
+- **Class**: `FlintMenubarRadioGroup`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiMenubarRadioGroup } from 'storybook-lit';
+import { FlintMenubarRadioGroup } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-menubar-radio-group></ui-menubar-radio-group>
+<flint-menubar-radio-group></flint-menubar-radio-group>
 ```
 
 ### Properties
@@ -280,7 +280,7 @@ import { UiMenubarRadioGroup } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-menubar-radio-change` | — | detail: `{ value: string }` |
+| `flint-menubar-radio-change` | — | detail: `{ value: string }` |
 
 ### Slots
 
@@ -290,25 +290,25 @@ import { UiMenubarRadioGroup } from 'storybook-lit';
 
 ---
 
-## `<ui-menubar-sub-content>`
+## `<flint-menubar-sub-content>`
 
 The dropdown panel of a sub-menu. Positioned to the right of the trigger. Auto-flips left when the panel would overflow the viewport edge.
 
-- **Tag**: `<ui-menubar-sub-content>`
-- **Class**: `UiMenubarSubContent`
+- **Tag**: `<flint-menubar-sub-content>`
+- **Class**: `FlintMenubarSubContent`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiMenubarSubContent } from 'storybook-lit';
+import { FlintMenubarSubContent } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-menubar-sub-content></ui-menubar-sub-content>
+<flint-menubar-sub-content></flint-menubar-sub-content>
 ```
 
 ### Properties
@@ -325,25 +325,25 @@ import { UiMenubarSubContent } from 'storybook-lit';
 
 ---
 
-## `<ui-menubar-sub-trigger>`
+## `<flint-menubar-sub-trigger>`
 
 Trigger for a sub-menu. Shows an arrow indicator.
 
-- **Tag**: `<ui-menubar-sub-trigger>`
-- **Class**: `UiMenubarSubTrigger`
+- **Tag**: `<flint-menubar-sub-trigger>`
+- **Class**: `FlintMenubarSubTrigger`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiMenubarSubTrigger } from 'storybook-lit';
+import { FlintMenubarSubTrigger } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-menubar-sub-trigger></ui-menubar-sub-trigger>
+<flint-menubar-sub-trigger></flint-menubar-sub-trigger>
 ```
 
 ### Properties
@@ -353,7 +353,7 @@ import { UiMenubarSubTrigger } from 'storybook-lit';
 | `highlighted` | `highlighted` | `boolean` | `false` |  |
 | `disabled` | `disabled` | `boolean` | `false` |  |
 | `inset` | `inset` | `boolean` | `false` |  |
-| `expanded` | `expanded` | `boolean` | `false` | Set by the parent `ui-menubar-sub` to reflect open state for aria-expanded. |
+| `expanded` | `expanded` | `boolean` | `false` | Set by the parent `flint-menubar-sub` to reflect open state for aria-expanded. |
 
 ### Slots
 
@@ -363,25 +363,25 @@ import { UiMenubarSubTrigger } from 'storybook-lit';
 
 ---
 
-## `<ui-menubar-sub>`
+## `<flint-menubar-sub>`
 
 Wraps a sub-trigger and sub-content pair. Opens on hover/focus and ArrowRight; closes on ArrowLeft or blur.
 
-- **Tag**: `<ui-menubar-sub>`
-- **Class**: `UiMenubarSub`
+- **Tag**: `<flint-menubar-sub>`
+- **Class**: `FlintMenubarSub`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiMenubarSub } from 'storybook-lit';
+import { FlintMenubarSub } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-menubar-sub></ui-menubar-sub>
+<flint-menubar-sub></flint-menubar-sub>
 ```
 
 ### Slots
@@ -402,25 +402,25 @@ import { UiMenubarSub } from 'storybook-lit';
 
 ---
 
-## `<ui-menubar-content>`
+## `<flint-menubar-content>`
 
 The dropdown content panel for a menubar menu. Positioned absolutely below the trigger.
 
-- **Tag**: `<ui-menubar-content>`
-- **Class**: `UiMenubarContent`
+- **Tag**: `<flint-menubar-content>`
+- **Class**: `FlintMenubarContent`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiMenubarContent } from 'storybook-lit';
+import { FlintMenubarContent } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-menubar-content></ui-menubar-content>
+<flint-menubar-content></flint-menubar-content>
 ```
 
 ### Properties
@@ -445,7 +445,7 @@ import { UiMenubarContent } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-menubar-content-bg` | `var(--ui-surface-1` |
+| `--flint-menubar-content-bg` | `var(--flint-surface-1` |
 
 ### Methods
 
@@ -455,25 +455,25 @@ import { UiMenubarContent } from 'storybook-lit';
 
 ---
 
-## `<ui-menubar-trigger>`
+## `<flint-menubar-trigger>`
 
 The trigger button for a menubar menu.
 
-- **Tag**: `<ui-menubar-trigger>`
-- **Class**: `UiMenubarTrigger`
+- **Tag**: `<flint-menubar-trigger>`
+- **Class**: `FlintMenubarTrigger`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiMenubarTrigger } from 'storybook-lit';
+import { FlintMenubarTrigger } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-menubar-trigger></ui-menubar-trigger>
+<flint-menubar-trigger></flint-menubar-trigger>
 ```
 
 ### Properties
@@ -493,7 +493,7 @@ import { UiMenubarTrigger } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-menubar-trigger-hover-bg` | `var(--ui-hover-color` |
+| `--flint-menubar-trigger-hover-bg` | `var(--flint-hover-color` |
 
 ### Methods
 
@@ -503,25 +503,25 @@ import { UiMenubarTrigger } from 'storybook-lit';
 
 ---
 
-## `<ui-menubar-menu>`
+## `<flint-menubar-menu>`
 
 Wraps a trigger and content pair for a single menu in the menubar.
 
-- **Tag**: `<ui-menubar-menu>`
-- **Class**: `UiMenubarMenu`
+- **Tag**: `<flint-menubar-menu>`
+- **Class**: `FlintMenubarMenu`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiMenubarMenu } from 'storybook-lit';
+import { FlintMenubarMenu } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-menubar-menu></ui-menubar-menu>
+<flint-menubar-menu></flint-menubar-menu>
 ```
 
 ### Properties
@@ -546,25 +546,25 @@ import { UiMenubarMenu } from 'storybook-lit';
 
 ---
 
-## `<ui-menubar>`
+## `<flint-menubar>`
 
-A visually persistent horizontal menu bar, common in desktop applications. Hosts one or more `<ui-menubar-menu>` children.
+A visually persistent horizontal menu bar, common in desktop applications. Hosts one or more `<flint-menubar-menu>` children.
 
-- **Tag**: `<ui-menubar>`
-- **Class**: `UiMenubar`
+- **Tag**: `<flint-menubar>`
+- **Class**: `FlintMenubar`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiMenubar } from 'storybook-lit';
+import { FlintMenubar } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-menubar></ui-menubar>
+<flint-menubar></flint-menubar>
 ```
 
 ### Properties
@@ -577,24 +577,24 @@ import { UiMenubar } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-menubar-item-select` | — | Bubbles from items. |
-| `ui-menubar-checkbox-change` | — | Bubbles from checkbox items. |
-| `ui-menubar-radio-change` | — | Bubbles from radio groups. |
+| `flint-menubar-item-select` | — | Bubbles from items. |
+| `flint-menubar-checkbox-change` | — | Bubbles from checkbox items. |
+| `flint-menubar-radio-change` | — | Bubbles from radio groups. |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `(default)` | One or more `<ui-menubar-menu>` elements. |
+| `(default)` | One or more `<flint-menubar-menu>` elements. |
 
 ### CSS Custom Properties
 
 | Property | Default |
 | --- | --- |
-| `--ui-menubar-highlight-bg` | `var(--ui-hover-color` |
-| `--ui-menubar-content-bg` | `var(--ui-surface-1` |
-| `--ui-menubar-trigger-hover-bg` | `var(--ui-hover-color` |
-| `--ui-menubar-bg` | `var(--ui-surface-1` |
+| `--flint-menubar-highlight-bg` | `var(--flint-hover-color` |
+| `--flint-menubar-content-bg` | `var(--flint-surface-1` |
+| `--flint-menubar-trigger-hover-bg` | `var(--flint-hover-color` |
+| `--flint-menubar-bg` | `var(--flint-surface-1` |
 
 ### Methods
 

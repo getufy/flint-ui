@@ -1,26 +1,26 @@
 # Command
 
-<Demo html="<div style=&quot;width:100%;max-width:400px&quot;><ui-command style=&quot;border:1px solid #e5e7eb;border-radius:8px&quot;>  <ui-command-input placeholder=&quot;Type a command or search...&quot;></ui-command-input>  <ui-command-list>    <ui-command-group heading=&quot;Suggestions&quot;>      <ui-command-item value=&quot;calendar&quot;>Calendar</ui-command-item>      <ui-command-item value=&quot;search&quot;>Search</ui-command-item>      <ui-command-item value=&quot;settings&quot;>Settings</ui-command-item>    </ui-command-group>    <ui-command-separator></ui-command-separator>    <ui-command-group heading=&quot;Actions&quot;>      <ui-command-item value=&quot;copy&quot;>Copy</ui-command-item>      <ui-command-item value=&quot;paste&quot;>Paste</ui-command-item>    </ui-command-group>    <ui-command-empty>No results found.</ui-command-empty>  </ui-command-list></ui-command></div>" />
+<Demo html="<div style=&quot;width:100%;max-width:400px&quot;><flint-command style=&quot;border:1px solid #e5e7eb;border-radius:8px&quot;>  <flint-command-input placeholder=&quot;Type a command or search...&quot;></flint-command-input>  <flint-command-list>    <flint-command-group heading=&quot;Suggestions&quot;>      <flint-command-item value=&quot;calendar&quot;>Calendar</flint-command-item>      <flint-command-item value=&quot;search&quot;>Search</flint-command-item>      <flint-command-item value=&quot;settings&quot;>Settings</flint-command-item>    </flint-command-group>    <flint-command-separator></flint-command-separator>    <flint-command-group heading=&quot;Actions&quot;>      <flint-command-item value=&quot;copy&quot;>Copy</flint-command-item>      <flint-command-item value=&quot;paste&quot;>Paste</flint-command-item>    </flint-command-group>    <flint-command-empty>No results found.</flint-command-empty>  </flint-command-list></flint-command></div>" />
 
-## `<ui-command-shortcut>`
+## `<flint-command-shortcut>`
 
 Displays a keyboard shortcut hint inside a command item. Slot the shortcut string (e.g. `⌘P`) as default slot content.
 
-- **Tag**: `<ui-command-shortcut>`
-- **Class**: `UiCommandShortcut`
+- **Tag**: `<flint-command-shortcut>`
+- **Class**: `FlintCommandShortcut`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiCommandShortcut } from 'storybook-lit';
+import { FlintCommandShortcut } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-command-shortcut></ui-command-shortcut>
+<flint-command-shortcut></flint-command-shortcut>
 ```
 
 ### Slots
@@ -33,58 +33,58 @@ import { UiCommandShortcut } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-border-radius-md` | — |
-| `--ui-text-color-muted` | — |
-| `--ui-font-family` | — |
-| `--ui-border-color` | — |
-| `--ui-text-color` | — |
-| `--ui-hover-color` | — |
-| `--ui-primary-color` | — |
+| `--flint-border-radius-md` | — |
+| `--flint-text-color-muted` | — |
+| `--flint-font-family` | — |
+| `--flint-border-color` | — |
+| `--flint-text-color` | — |
+| `--flint-hover-color` | — |
+| `--flint-primary-color` | — |
 
 ---
 
-## `<ui-command-separator>`
+## `<flint-command-separator>`
 
 A hairline separator between command groups.
 
-- **Tag**: `<ui-command-separator>`
-- **Class**: `UiCommandSeparator`
+- **Tag**: `<flint-command-separator>`
+- **Class**: `FlintCommandSeparator`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiCommandSeparator } from 'storybook-lit';
+import { FlintCommandSeparator } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-command-separator></ui-command-separator>
+<flint-command-separator></flint-command-separator>
 ```
 
 ---
 
-## `<ui-command-item>`
+## `<flint-command-item>`
 
 A single interactive option inside a command menu.
 
-- **Tag**: `<ui-command-item>`
-- **Class**: `UiCommandItem`
+- **Tag**: `<flint-command-item>`
+- **Class**: `FlintCommandItem`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiCommandItem } from 'storybook-lit';
+import { FlintCommandItem } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-command-item></ui-command-item>
+<flint-command-item></flint-command-item>
 ```
 
 ### Properties
@@ -93,13 +93,13 @@ import { UiCommandItem } from 'storybook-lit';
 | --- | --- | --- | --- | --- |
 | `value` | `value` | `string` | `''` | Machine-readable value used for filter matching. Falls back to textContent. |
 | `disabled` | `disabled` | `boolean` | `false` | Disables the item — non-interactive and skipped in keyboard nav. |
-| `highlighted` | `highlighted` | `boolean` | `false` | Set by parent `ui-command` to indicate keyboard focus. |
+| `highlighted` | `highlighted` | `boolean` | `false` | Set by parent `flint-command` to indicate keyboard focus. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-command-item-select` | — | Fired when the item is activated. |
+| `flint-command-item-select` | — | Fired when the item is activated. |
 
 ### Slots
 
@@ -107,7 +107,7 @@ import { UiCommandItem } from 'storybook-lit';
 | --- | --- |
 | `(default)` | Item label text. |
 | `icon` | Leading icon (16×16). |
-| `shortcut` | Trailing shortcut hint; prefer `<ui-command-shortcut>`. |
+| `shortcut` | Trailing shortcut hint; prefer `<flint-command-shortcut>`. |
 
 ### Methods
 
@@ -117,25 +117,25 @@ import { UiCommandItem } from 'storybook-lit';
 
 ---
 
-## `<ui-command-empty>`
+## `<flint-command-empty>`
 
-Empty state message shown when no command items match the current query. Managed automatically by the parent `ui-command` element.
+Empty state message shown when no command items match the current query. Managed automatically by the parent `flint-command` element.
 
-- **Tag**: `<ui-command-empty>`
-- **Class**: `UiCommandEmpty`
+- **Tag**: `<flint-command-empty>`
+- **Class**: `FlintCommandEmpty`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiCommandEmpty } from 'storybook-lit';
+import { FlintCommandEmpty } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-command-empty></ui-command-empty>
+<flint-command-empty></flint-command-empty>
 ```
 
 ### Slots
@@ -146,25 +146,25 @@ import { UiCommandEmpty } from 'storybook-lit';
 
 ---
 
-## `<ui-command-group>`
+## `<flint-command-group>`
 
-A labeled group of command items. The parent `ui-command` automatically hides the whole group when all its items are filtered out.
+A labeled group of command items. The parent `flint-command` automatically hides the whole group when all its items are filtered out.
 
-- **Tag**: `<ui-command-group>`
-- **Class**: `UiCommandGroup`
+- **Tag**: `<flint-command-group>`
+- **Class**: `FlintCommandGroup`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiCommandGroup } from 'storybook-lit';
+import { FlintCommandGroup } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-command-group></ui-command-group>
+<flint-command-group></flint-command-group>
 ```
 
 ### Properties
@@ -177,64 +177,64 @@ import { UiCommandGroup } from 'storybook-lit';
 
 | Name | Description |
 | --- | --- |
-| `(default)` | `ui-command-item` elements. |
+| `(default)` | `flint-command-item` elements. |
 
 ---
 
-## `<ui-command-list>`
+## `<flint-command-list>`
 
 Scrollable list container for command items and groups.
 
-- **Tag**: `<ui-command-list>`
-- **Class**: `UiCommandList`
+- **Tag**: `<flint-command-list>`
+- **Class**: `FlintCommandList`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiCommandList } from 'storybook-lit';
+import { FlintCommandList } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-command-list></ui-command-list>
+<flint-command-list></flint-command-list>
 ```
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `(default)` | `ui-command-group`, `ui-command-item`, `ui-command-empty`, `ui-command-separator`. |
+| `(default)` | `flint-command-group`, `flint-command-item`, `flint-command-empty`, `flint-command-separator`. |
 
 ### CSS Custom Properties
 
 | Property | Default |
 | --- | --- |
-| `--ui-command-list-max-height` | `300px` |
+| `--flint-command-list-max-height` | `300px` |
 
 ---
 
-## `<ui-command-input>`
+## `<flint-command-input>`
 
-Search input for the command menu. Dispatches `_cmd-filter` events that the parent `ui-command` intercepts to apply filtering.
+Search input for the command menu. Dispatches `_cmd-filter` events that the parent `flint-command` intercepts to apply filtering.
 
-- **Tag**: `<ui-command-input>`
-- **Class**: `UiCommandInput`
+- **Tag**: `<flint-command-input>`
+- **Class**: `FlintCommandInput`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiCommandInput } from 'storybook-lit';
+import { FlintCommandInput } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-command-input></ui-command-input>
+<flint-command-input></flint-command-input>
 ```
 
 ### Properties
@@ -259,32 +259,32 @@ import { UiCommandInput } from 'storybook-lit';
 
 ---
 
-## `<ui-command>`
+## `<flint-command>`
 
-Root command menu component. Manages search filtering and keyboard navigation. Compose it with `ui-command-input`, `ui-command-list`, `ui-command-group`, `ui-command-item`, `ui-command-separator`, and `ui-command-empty`.
+Root command menu component. Manages search filtering and keyboard navigation. Compose it with `flint-command-input`, `flint-command-list`, `flint-command-group`, `flint-command-item`, `flint-command-separator`, and `flint-command-empty`.
 
-- **Tag**: `<ui-command>`
-- **Class**: `UiCommand`
+- **Tag**: `<flint-command>`
+- **Class**: `FlintCommand`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiCommand } from 'storybook-lit';
+import { FlintCommand } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-command></ui-command>
+<flint-command></flint-command>
 ```
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-command-item-select` | — | Bubbles up from activated items. |
+| `flint-command-item-select` | — | Bubbles up from activated items. |
 
 ### Slots
 
@@ -296,15 +296,15 @@ import { UiCommand } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-command-backdrop-bg` | `rgba(0, 0, 0, 0.5` |
-| `--ui-command-z-index` | `1400` |
-| `--ui-command-dialog-width` | `512px` |
-| `--ui-command-bg` | `var(--ui-surface-1` |
-| `--ui-command-panel-border-color` | `var(--ui-border-color` |
-| `--ui-command-highlight-bg` | `var(--ui-hover-color` |
-| `--ui-command-highlight-color` | `var(--ui-text-color` |
-| `--ui-command-list-max-height` | `300px` |
-| `--ui-command-border-color` | `var(--ui-border-color` |
+| `--flint-command-backdrop-bg` | `rgba(0, 0, 0, 0.5` |
+| `--flint-command-z-index` | `1400` |
+| `--flint-command-dialog-width` | `512px` |
+| `--flint-command-bg` | `var(--flint-surface-1` |
+| `--flint-command-panel-border-color` | `var(--flint-border-color` |
+| `--flint-command-highlight-bg` | `var(--flint-hover-color` |
+| `--flint-command-highlight-color` | `var(--flint-text-color` |
+| `--flint-command-list-max-height` | `300px` |
+| `--flint-command-border-color` | `var(--flint-border-color` |
 
 ### Methods
 
@@ -314,25 +314,25 @@ import { UiCommand } from 'storybook-lit';
 
 ---
 
-## `<ui-command-dialog>`
+## `<flint-command-dialog>`
 
-Modal dialog wrapper for a command menu. Opens with a smooth backdrop + scale animation. Pressing `Escape` or clicking the backdrop fires `ui-command-dialog-close`.
+Modal dialog wrapper for a command menu. Opens with a smooth backdrop + scale animation. Pressing `Escape` or clicking the backdrop fires `flint-command-dialog-close`.
 
-- **Tag**: `<ui-command-dialog>`
-- **Class**: `UiCommandDialog`
+- **Tag**: `<flint-command-dialog>`
+- **Class**: `FlintCommandDialog`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiCommandDialog } from 'storybook-lit';
+import { FlintCommandDialog } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-command-dialog></ui-command-dialog>
+<flint-command-dialog></flint-command-dialog>
 ```
 
 ### Properties
@@ -345,18 +345,18 @@ import { UiCommandDialog } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-command-dialog-close` | — | Fired when the dialog should close. |
+| `flint-command-dialog-close` | — | Fired when the dialog should close. |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Place a `ui-command` element here. |
+| `(default)` | Place a `flint-command` element here. |
 
 ### CSS Custom Properties
 
 | Property | Default |
 | --- | --- |
-| `--ui-command-dialog-width` | `512px` |
+| `--flint-command-dialog-width` | `512px` |
 
 ---

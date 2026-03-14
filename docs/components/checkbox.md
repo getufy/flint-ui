@@ -1,23 +1,23 @@
 # Checkbox
 
-<Demo label="States" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><ui-checkbox label=&quot;Unchecked&quot;></ui-checkbox><ui-checkbox label=&quot;Checked&quot; checked></ui-checkbox><ui-checkbox label=&quot;Indeterminate&quot; indeterminate></ui-checkbox><ui-checkbox label=&quot;Disabled&quot; disabled></ui-checkbox><ui-checkbox label=&quot;Checked Disabled&quot; checked disabled></ui-checkbox></div>" />
+<Demo label="States" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-checkbox label=&quot;Unchecked&quot;></flint-checkbox><flint-checkbox label=&quot;Checked&quot; checked></flint-checkbox><flint-checkbox label=&quot;Indeterminate&quot; indeterminate></flint-checkbox><flint-checkbox label=&quot;Disabled&quot; disabled></flint-checkbox><flint-checkbox label=&quot;Checked Disabled&quot; checked disabled></flint-checkbox></div>" />
 
-- **Tag**: `<ui-checkbox>`
-- **Class**: `UiCheckbox`
+- **Tag**: `<flint-checkbox>`
+- **Class**: `FlintCheckbox`
 - **Form Associated**: Yes
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiCheckbox } from 'storybook-lit';
+import { FlintCheckbox } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-checkbox></ui-checkbox>
+<flint-checkbox></flint-checkbox>
 ```
 
 ### Properties
@@ -45,22 +45,22 @@ import { UiCheckbox } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-checkbox-size` | `18px` |
-| `--ui-checkbox-border-radius` | `var(--ui-border-radius-sm` |
-| `--ui-checkbox-gap` | `8px` |
-| `--ui-checkbox-size-sm` | `14px` |
-| `--ui-checkbox-size-lg` | `22px` |
-| `--ui-checkbox-icon-size` | `12px` |
-| `--ui-checkbox-icon-size-sm` | `10px` |
-| `--ui-checkbox-icon-size-lg` | `16px` |
-| `--ui-checkbox-label-font-size` | `14px` |
-| `--ui-checkbox-label-font-size-sm` | `12px` |
-| `--ui-checkbox-label-font-size-lg` | `16px` |
-| `--ui-font-family` | — |
-| `--ui-text-color` | — |
-| `--ui-input-border-color` | — |
-| `--ui-surface-1` | — |
-| `--ui-primary-color` | — |
-| `--ui-text-color-on-primary` | — |
+| `--flint-checkbox-size` | `18px` |
+| `--flint-checkbox-border-radius` | `var(--flint-border-radius-sm` |
+| `--flint-checkbox-gap` | `8px` |
+| `--flint-checkbox-size-sm` | `14px` |
+| `--flint-checkbox-size-lg` | `22px` |
+| `--flint-checkbox-icon-size` | `12px` |
+| `--flint-checkbox-icon-size-sm` | `10px` |
+| `--flint-checkbox-icon-size-lg` | `16px` |
+| `--flint-checkbox-label-font-size` | `14px` |
+| `--flint-checkbox-label-font-size-sm` | `12px` |
+| `--flint-checkbox-label-font-size-lg` | `16px` |
+| `--flint-font-family` | — |
+| `--flint-text-color` | — |
+| `--flint-input-border-color` | — |
+| `--flint-surface-1` | — |
+| `--flint-primary-color` | — |
+| `--flint-text-color-on-primary` | — |
 
 ---

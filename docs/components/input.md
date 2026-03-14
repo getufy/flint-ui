@@ -1,27 +1,27 @@
 # Input
 
-<Demo label="Types" html="<div style=&quot;display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px&quot;><ui-input label=&quot;Text&quot; placeholder=&quot;Enter your name&quot;></ui-input><ui-input label=&quot;Email&quot; type=&quot;email&quot; placeholder=&quot;you@example.com&quot;></ui-input><ui-input label=&quot;Password&quot; type=&quot;password&quot; value=&quot;secret123&quot;></ui-input><ui-input label=&quot;Search&quot; type=&quot;search&quot; placeholder=&quot;Search...&quot;></ui-input></div>" />
+<Demo label="Types" html="<div style=&quot;display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px&quot;><flint-input label=&quot;Text&quot; placeholder=&quot;Enter your name&quot;></flint-input><flint-input label=&quot;Email&quot; type=&quot;email&quot; placeholder=&quot;you@example.com&quot;></flint-input><flint-input label=&quot;Password&quot; type=&quot;password&quot; value=&quot;secret123&quot;></flint-input><flint-input label=&quot;Search&quot; type=&quot;search&quot; placeholder=&quot;Search...&quot;></flint-input></div>" />
 
-<Demo label="States" html="<div style=&quot;display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px&quot;><ui-input label=&quot;Disabled&quot; disabled value=&quot;Cannot edit&quot;></ui-input><ui-input label=&quot;Readonly&quot; readonly value=&quot;Read only value&quot;></ui-input><ui-input label=&quot;Error&quot; error value=&quot;Invalid input&quot; help-text=&quot;This field has an error&quot;></ui-input></div>" />
+<Demo label="States" html="<div style=&quot;display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px&quot;><flint-input label=&quot;Disabled&quot; disabled value=&quot;Cannot edit&quot;></flint-input><flint-input label=&quot;Readonly&quot; readonly value=&quot;Read only value&quot;></flint-input><flint-input label=&quot;Error&quot; error value=&quot;Invalid input&quot; help-text=&quot;This field has an error&quot;></flint-input></div>" />
 
-<Demo label="Sizes" html="<div style=&quot;display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px&quot;><ui-input label=&quot;Small&quot; size=&quot;sm&quot; placeholder=&quot;Small&quot;></ui-input><ui-input label=&quot;Default&quot; placeholder=&quot;Default&quot;></ui-input><ui-input label=&quot;Large&quot; size=&quot;lg&quot; placeholder=&quot;Large&quot;></ui-input></div>" />
+<Demo label="Sizes" html="<div style=&quot;display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px&quot;><flint-input label=&quot;Small&quot; size=&quot;sm&quot; placeholder=&quot;Small&quot;></flint-input><flint-input label=&quot;Default&quot; placeholder=&quot;Default&quot;></flint-input><flint-input label=&quot;Large&quot; size=&quot;lg&quot; placeholder=&quot;Large&quot;></flint-input></div>" />
 
-- **Tag**: `<ui-input>`
-- **Class**: `UiInput`
+- **Tag**: `<flint-input>`
+- **Class**: `FlintInput`
 - **Form Associated**: Yes
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiInput } from 'storybook-lit';
+import { FlintInput } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-input></ui-input>
+<flint-input></flint-input>
 ```
 
 ### Properties
@@ -46,29 +46,29 @@ import { UiInput } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-input-input` | `{ value: this.value }` |  |
-| `ui-input-change` | `{ value: this.value }` |  |
+| `flint-input-input` | `{ value: this.value }` |  |
+| `flint-input-change` | `{ value: this.value }` |  |
 
 ### CSS Custom Properties
 
 | Property | Default |
 | --- | --- |
-| `--ui-input-border-radius` | — |
-| `--ui-input-border-color` | — |
-| `--ui-input-bg` | — |
-| `--ui-input-placeholder-color` | — |
-| `--ui-input-border-hover-color` | — |
-| `--ui-input-disabled-bg` | — |
-| `--ui-input-disabled-color` | — |
-| `--ui-input-readonly-bg` | — |
-| `--ui-font-family` | — |
-| `--ui-label-color` | — |
-| `--ui-text-color` | — |
-| `--ui-primary-color` | — |
-| `--ui-primary-focus-ring` | — |
-| `--ui-error-color` | — |
-| `--ui-error-focus-ring` | — |
-| `--ui-help-text-color` | — |
+| `--flint-input-border-radius` | — |
+| `--flint-input-border-color` | — |
+| `--flint-input-bg` | — |
+| `--flint-input-placeholder-color` | — |
+| `--flint-input-border-hover-color` | — |
+| `--flint-input-disabled-bg` | — |
+| `--flint-input-disabled-color` | — |
+| `--flint-input-readonly-bg` | — |
+| `--flint-font-family` | — |
+| `--flint-label-color` | — |
+| `--flint-text-color` | — |
+| `--flint-primary-color` | — |
+| `--flint-primary-focus-ring` | — |
+| `--flint-error-color` | — |
+| `--flint-error-focus-ring` | — |
+| `--flint-help-text-color` | — |
 
 ### Methods
 

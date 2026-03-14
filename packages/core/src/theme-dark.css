@@ -2,258 +2,258 @@
    DARK THEME
    Import this file after theme.css.
 
-   Activate by adding class="ui-theme-dark" to <html> or <body>.
-   To opt out of system auto-dark, add class="ui-theme-light".
+   Activate by adding class="flint-theme-dark" to <html> or <body>.
+   To opt out of system auto-dark, add class="flint-theme-light".
    ═══════════════════════════════════════════════════════════════ */
 
 /* ─── Shared dark values ────────────────────────────────────────
    Applied via explicit class OR system preference (see @media below).
    ────────────────────────────────────────────────────────────── */
-.ui-theme-dark {
+.flint-theme-dark {
     color-scheme: dark;
 
     /* ─── Primary ──────────────────────────────────────────────── */
-    --ui-primary-color:              var(--ui-color-blue-400);
-    --ui-primary-color-hover:        var(--ui-color-blue-500);
-    --ui-primary-color-active:       var(--ui-color-blue-600);
-    --ui-primary-color-light:        rgba(96, 165, 250, 0.15);
-    --ui-primary-color-light-hover:  rgba(96, 165, 250, 0.25);
-    --ui-primary-focus-ring:         rgba(96, 165, 250, 0.30);
+    --flint-primary-color:              var(--flint-color-blue-400);
+    --flint-primary-color-hover:        var(--flint-color-blue-500);
+    --flint-primary-color-active:       var(--flint-color-blue-600);
+    --flint-primary-color-light:        rgba(96, 165, 250, 0.15);
+    --flint-primary-color-light-hover:  rgba(96, 165, 250, 0.25);
+    --flint-primary-focus-ring:         rgba(96, 165, 250, 0.30);
 
     /* ─── Accent ───────────────────────────────────────────────── */
-    --ui-accent-color:        var(--ui-color-violet-400);
-    --ui-accent-color-hover:  var(--ui-color-violet-500);
-    --ui-accent-color-light:  rgba(167, 139, 250, 0.15);
+    --flint-accent-color:        var(--flint-color-violet-400);
+    --flint-accent-color-hover:  var(--flint-color-violet-500);
+    --flint-accent-color-light:  rgba(167, 139, 250, 0.15);
 
     /* ─── Secondary ────────────────────────────────────────────── */
-    --ui-secondary-color:        var(--ui-color-zinc-400);
-    --ui-secondary-color-hover:  var(--ui-color-zinc-300);
-    --ui-secondary-color-active: var(--ui-color-zinc-100);
+    --flint-secondary-color:        var(--flint-color-zinc-400);
+    --flint-secondary-color-hover:  var(--flint-color-zinc-300);
+    --flint-secondary-color-active: var(--flint-color-zinc-100);
 
     /* ─── Destructive / Error ──────────────────────────────────── */
-    --ui-destructive-color:        var(--ui-color-red-400);
-    --ui-destructive-color-hover:  var(--ui-color-red-500);
-    --ui-destructive-color-active: var(--ui-color-red-600);
-    --ui-error-color:              var(--ui-color-red-400);
-    --ui-error-focus-ring:         rgba(248, 113, 113, 0.30);
+    --flint-destructive-color:        var(--flint-color-red-400);
+    --flint-destructive-color-hover:  var(--flint-color-red-500);
+    --flint-destructive-color-active: var(--flint-color-red-600);
+    --flint-error-color:              var(--flint-color-red-400);
+    --flint-error-focus-ring:         rgba(248, 113, 113, 0.30);
 
     /* ─── Semantic status ──────────────────────────────────────── */
-    --ui-success-color: var(--ui-color-emerald-400);
-    --ui-warning-color: var(--ui-color-amber-400);
+    --flint-success-color: var(--flint-color-emerald-400);
+    --flint-warning-color: var(--flint-color-amber-400);
 
     /* Info */
-    --ui-info-bg:           #1e3a5f;
-    --ui-info-border-color: var(--ui-color-blue-700);
-    --ui-info-text-color:   #93c5fd;   /* blue-300 */
-    --ui-info-icon-color:   var(--ui-color-blue-400);
+    --flint-info-bg:           #1e3a5f;
+    --flint-info-border-color: var(--flint-color-blue-700);
+    --flint-info-text-color:   #93c5fd;   /* blue-300 */
+    --flint-info-icon-color:   var(--flint-color-blue-400);
 
     /* Success */
-    --ui-success-bg:           #14532d;
-    --ui-success-border-color: var(--ui-color-emerald-700);
-    --ui-success-text-color:   #86efac;   /* emerald-300 */
-    --ui-success-icon-color:   var(--ui-color-emerald-400);
+    --flint-success-bg:           #14532d;
+    --flint-success-border-color: var(--flint-color-emerald-700);
+    --flint-success-text-color:   #86efac;   /* emerald-300 */
+    --flint-success-icon-color:   var(--flint-color-emerald-400);
 
     /* Warning */
-    --ui-warning-bg:           #451a03;
-    --ui-warning-border-color: var(--ui-color-amber-800);
-    --ui-warning-text-color:   #fcd34d;   /* amber-300 */
-    --ui-warning-icon-color:   var(--ui-color-amber-400);
+    --flint-warning-bg:           #451a03;
+    --flint-warning-border-color: var(--flint-color-amber-800);
+    --flint-warning-text-color:   #fcd34d;   /* amber-300 */
+    --flint-warning-icon-color:   var(--flint-color-amber-400);
 
     /* Error */
-    --ui-error-bg:           #450a0a;
-    --ui-error-border-color: var(--ui-color-red-800);
-    --ui-error-text-color:   #fca5a5;   /* red-300 */
-    --ui-error-icon-color:   var(--ui-color-red-400);
+    --flint-error-bg:           #450a0a;
+    --flint-error-border-color: var(--flint-color-red-800);
+    --flint-error-text-color:   #fca5a5;   /* red-300 */
+    --flint-error-icon-color:   var(--flint-color-red-400);
 
     /* ─── Surfaces ─────────────────────────────────────────────── */
-    --ui-background:      var(--ui-color-zinc-950);   /* #09090b near-black */
-    --ui-surface-1:       var(--ui-color-zinc-900);   /* #18181b cards      */
-    --ui-surface-2:       var(--ui-color-zinc-800);   /* #27272a inputs     */
-    --ui-surface-3:       var(--ui-color-zinc-700);   /* #3f3f46 selected   */
-    --ui-surface-variant: #1e293b;                    /* slate-800 tint     */
+    --flint-background:      var(--flint-color-zinc-950);   /* #09090b near-black */
+    --flint-surface-1:       var(--flint-color-zinc-900);   /* #18181b cards      */
+    --flint-surface-2:       var(--flint-color-zinc-800);   /* #27272a inputs     */
+    --flint-surface-3:       var(--flint-color-zinc-700);   /* #3f3f46 selected   */
+    --flint-surface-variant: #1e293b;                    /* slate-800 tint     */
 
-    --ui-surface-background:      var(--ui-color-zinc-950);
-    --ui-surface-background-flat: var(--ui-color-zinc-800);
-    --ui-card-background:         var(--ui-color-zinc-900);
-    --ui-card-background-flat:    var(--ui-color-zinc-800);
-    --ui-input-bg:                var(--ui-color-zinc-800);
-    --ui-muted-background:        var(--ui-color-zinc-700);
+    --flint-surface-background:      var(--flint-color-zinc-950);
+    --flint-surface-background-flat: var(--flint-color-zinc-800);
+    --flint-card-background:         var(--flint-color-zinc-900);
+    --flint-card-background-flat:    var(--flint-color-zinc-800);
+    --flint-input-bg:                var(--flint-color-zinc-800);
+    --flint-muted-background:        var(--flint-color-zinc-700);
 
     /* ─── Text ─────────────────────────────────────────────────── */
-    --ui-text-color:            var(--ui-color-zinc-50);   /* #fafafa soft white */
-    --ui-text-color-muted:      var(--ui-color-zinc-400);
-    --ui-text-color-subtle:     var(--ui-color-zinc-500);
+    --flint-text-color:            var(--flint-color-zinc-50);   /* #fafafa soft white */
+    --flint-text-color-muted:      var(--flint-color-zinc-400);
+    --flint-text-color-subtle:     var(--flint-color-zinc-500);
 
     /* ─── Borders ──────────────────────────────────────────────── */
-    --ui-border-color:             var(--ui-color-zinc-800);
-    --ui-input-border-color:       var(--ui-color-zinc-700);
-    --ui-input-border-hover-color: var(--ui-color-zinc-600);
-    --ui-card-border-color:        var(--ui-color-zinc-700);
+    --flint-border-color:             var(--flint-color-zinc-800);
+    --flint-input-border-color:       var(--flint-color-zinc-700);
+    --flint-input-border-hover-color: var(--flint-color-zinc-600);
+    --flint-card-border-color:        var(--flint-color-zinc-700);
 
     /* ─── Interactive overlays ─────────────────────────────────── */
-    --ui-hover-color:  rgba(255, 255, 255, 0.06);
-    --ui-active-color: rgba(255, 255, 255, 0.12);
+    --flint-hover-color:  rgba(255, 255, 255, 0.06);
+    --flint-active-color: rgba(255, 255, 255, 0.12);
 
     /* ─── Backdrop ─────────────────────────────────────────────── */
-    --ui-backdrop-color: rgba(0, 0, 0, 0.70);
+    --flint-backdrop-color: rgba(0, 0, 0, 0.70);
 
     /* ─── Component-specific ───────────────────────────────────── */
-    --ui-stepper-connector-color: var(--ui-color-zinc-800);
+    --flint-stepper-connector-color: var(--flint-color-zinc-800);
 
-    --ui-tooltip-bg:         rgba(241, 245, 249, 0.92);
-    --ui-tooltip-text-color: var(--ui-color-slate-950);
-    --ui-tooltip-color:      var(--ui-color-slate-950);
+    --flint-tooltip-bg:         rgba(241, 245, 249, 0.92);
+    --flint-tooltip-text-color: var(--flint-color-slate-950);
+    --flint-tooltip-color:      var(--flint-color-slate-950);
 
     /* ─── Input-specific ───────────────────────────────────────── */
-    --ui-label-color:              var(--ui-color-zinc-300);
-    --ui-input-placeholder-color:  var(--ui-color-zinc-500);
-    --ui-input-disabled-bg:        var(--ui-color-zinc-900);
-    --ui-input-disabled-color:     var(--ui-color-zinc-600);
-    --ui-input-readonly-bg:        var(--ui-color-zinc-900);
-    --ui-help-text-color:          var(--ui-color-zinc-400);
+    --flint-label-color:              var(--flint-color-zinc-300);
+    --flint-input-placeholder-color:  var(--flint-color-zinc-500);
+    --flint-input-disabled-bg:        var(--flint-color-zinc-900);
+    --flint-input-disabled-color:     var(--flint-color-zinc-600);
+    --flint-input-readonly-bg:        var(--flint-color-zinc-900);
+    --flint-help-text-color:          var(--flint-color-zinc-400);
 
     /* ─── Copy Button ────────────────────────────────────────── */
-    --ui-copy-button-success-color: var(--ui-success-color);
-    --ui-copy-button-error-color:   var(--ui-error-color);
+    --flint-copy-button-success-color: var(--flint-success-color);
+    --flint-copy-button-error-color:   var(--flint-error-color);
 
     /* ─── Shadows ──────────────────────────────────────────────── */
-    --ui-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.50);
-    --ui-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.50), 0 2px 4px -1px rgba(0, 0, 0, 0.40);
-    --ui-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.50), 0 4px 6px -2px rgba(0, 0, 0, 0.40);
-    --ui-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.50), 0 10px 10px -5px rgba(0, 0, 0, 0.40);
+    --flint-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.50);
+    --flint-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.50), 0 2px 4px -1px rgba(0, 0, 0, 0.40);
+    --flint-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.50), 0 4px 6px -2px rgba(0, 0, 0, 0.40);
+    --flint-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.50), 0 10px 10px -5px rgba(0, 0, 0, 0.40);
 
-    --ui-card-shadow:       var(--ui-shadow-lg);
-    --ui-card-shadow-hover: var(--ui-shadow-xl);
+    --flint-card-shadow:       var(--flint-shadow-lg);
+    --flint-card-shadow-hover: var(--flint-shadow-xl);
 
     /* ─── Resizable ──────────────────────────────────────────── */
-    --ui-resizable-handle-bg:       var(--ui-border-color);
-    --ui-resizable-handle-hover-bg: var(--ui-primary-color);
-    --ui-resizable-grip-bg:         var(--ui-surface-1);
-    --ui-resizable-grip-dot-color:  var(--ui-text-color-muted);
+    --flint-resizable-handle-bg:       var(--flint-border-color);
+    --flint-resizable-handle-hover-bg: var(--flint-primary-color);
+    --flint-resizable-grip-bg:         var(--flint-surface-1);
+    --flint-resizable-grip-dot-color:  var(--flint-text-color-muted);
 
     /* ─── Time Picker ──────────────────────────────────────────── */
-    --ui-time-clock-face-bg:      var(--ui-surface-variant);
-    --ui-time-clock-inner-bg:     rgba(255, 255, 255, 0.06);
-    --ui-time-clock-inner-border: var(--ui-color-zinc-600);
-    --ui-time-clock-hand-color:   var(--ui-primary-color);
+    --flint-time-clock-face-bg:      var(--flint-surface-variant);
+    --flint-time-clock-inner-bg:     rgba(255, 255, 255, 0.06);
+    --flint-time-clock-inner-border: var(--flint-color-zinc-600);
+    --flint-time-clock-hand-color:   var(--flint-primary-color);
 
     /* ─── Command Menu ──────────────────────────────────────────── */
-    --ui-command-backdrop-bg: rgba(0, 0, 0, 0.70);
+    --flint-command-backdrop-bg: rgba(0, 0, 0, 0.70);
 }
 
 
 /* ═══════════════════════════════════════════════════════════════
    SYSTEM PREFERENCE: AUTO DARK
-   Activates when the OS is in dark mode AND no explicit .ui-theme-light
+   Activates when the OS is in dark mode AND no explicit .flint-theme-light
    class opts the page back to light.
    ═══════════════════════════════════════════════════════════════ */
 @media (prefers-color-scheme: dark) {
-    :root:not(.ui-theme-light) {
+    :root:not(.flint-theme-light) {
         color-scheme: dark;
 
-        --ui-primary-color:              var(--ui-color-blue-400);
-        --ui-primary-color-hover:        var(--ui-color-blue-500);
-        --ui-primary-color-active:       var(--ui-color-blue-600);
-        --ui-primary-color-light:        rgba(96, 165, 250, 0.15);
-        --ui-primary-color-light-hover:  rgba(96, 165, 250, 0.25);
-        --ui-primary-focus-ring:         rgba(96, 165, 250, 0.30);
+        --flint-primary-color:              var(--flint-color-blue-400);
+        --flint-primary-color-hover:        var(--flint-color-blue-500);
+        --flint-primary-color-active:       var(--flint-color-blue-600);
+        --flint-primary-color-light:        rgba(96, 165, 250, 0.15);
+        --flint-primary-color-light-hover:  rgba(96, 165, 250, 0.25);
+        --flint-primary-focus-ring:         rgba(96, 165, 250, 0.30);
 
-        --ui-accent-color:        var(--ui-color-violet-400);
-        --ui-accent-color-hover:  var(--ui-color-violet-500);
-        --ui-accent-color-light:  rgba(167, 139, 250, 0.15);
+        --flint-accent-color:        var(--flint-color-violet-400);
+        --flint-accent-color-hover:  var(--flint-color-violet-500);
+        --flint-accent-color-light:  rgba(167, 139, 250, 0.15);
 
-        --ui-secondary-color:        var(--ui-color-zinc-400);
-        --ui-secondary-color-hover:  var(--ui-color-zinc-300);
-        --ui-secondary-color-active: var(--ui-color-zinc-100);
+        --flint-secondary-color:        var(--flint-color-zinc-400);
+        --flint-secondary-color-hover:  var(--flint-color-zinc-300);
+        --flint-secondary-color-active: var(--flint-color-zinc-100);
 
-        --ui-destructive-color:        var(--ui-color-red-400);
-        --ui-destructive-color-hover:  var(--ui-color-red-500);
-        --ui-destructive-color-active: var(--ui-color-red-600);
-        --ui-error-color:              var(--ui-color-red-400);
-        --ui-error-focus-ring:         rgba(248, 113, 113, 0.30);
+        --flint-destructive-color:        var(--flint-color-red-400);
+        --flint-destructive-color-hover:  var(--flint-color-red-500);
+        --flint-destructive-color-active: var(--flint-color-red-600);
+        --flint-error-color:              var(--flint-color-red-400);
+        --flint-error-focus-ring:         rgba(248, 113, 113, 0.30);
 
-        --ui-success-color: var(--ui-color-emerald-400);
-        --ui-warning-color: var(--ui-color-amber-400);
+        --flint-success-color: var(--flint-color-emerald-400);
+        --flint-warning-color: var(--flint-color-amber-400);
 
-        --ui-info-bg:           #1e3a5f;
-        --ui-info-border-color: var(--ui-color-blue-700);
-        --ui-info-text-color:   #93c5fd;
-        --ui-info-icon-color:   var(--ui-color-blue-400);
+        --flint-info-bg:           #1e3a5f;
+        --flint-info-border-color: var(--flint-color-blue-700);
+        --flint-info-text-color:   #93c5fd;
+        --flint-info-icon-color:   var(--flint-color-blue-400);
 
-        --ui-success-bg:           #14532d;
-        --ui-success-border-color: var(--ui-color-emerald-700);
-        --ui-success-text-color:   #86efac;
-        --ui-success-icon-color:   var(--ui-color-emerald-400);
+        --flint-success-bg:           #14532d;
+        --flint-success-border-color: var(--flint-color-emerald-700);
+        --flint-success-text-color:   #86efac;
+        --flint-success-icon-color:   var(--flint-color-emerald-400);
 
-        --ui-warning-bg:           #451a03;
-        --ui-warning-border-color: var(--ui-color-amber-800);
-        --ui-warning-text-color:   #fcd34d;
-        --ui-warning-icon-color:   var(--ui-color-amber-400);
+        --flint-warning-bg:           #451a03;
+        --flint-warning-border-color: var(--flint-color-amber-800);
+        --flint-warning-text-color:   #fcd34d;
+        --flint-warning-icon-color:   var(--flint-color-amber-400);
 
-        --ui-error-bg:           #450a0a;
-        --ui-error-border-color: var(--ui-color-red-800);
-        --ui-error-text-color:   #fca5a5;
-        --ui-error-icon-color:   var(--ui-color-red-400);
+        --flint-error-bg:           #450a0a;
+        --flint-error-border-color: var(--flint-color-red-800);
+        --flint-error-text-color:   #fca5a5;
+        --flint-error-icon-color:   var(--flint-color-red-400);
 
-        --ui-background:      var(--ui-color-zinc-950);
-        --ui-surface-1:       var(--ui-color-zinc-900);
-        --ui-surface-2:       var(--ui-color-zinc-800);
-        --ui-surface-3:       var(--ui-color-zinc-700);
-        --ui-surface-variant: #1e293b;
+        --flint-background:      var(--flint-color-zinc-950);
+        --flint-surface-1:       var(--flint-color-zinc-900);
+        --flint-surface-2:       var(--flint-color-zinc-800);
+        --flint-surface-3:       var(--flint-color-zinc-700);
+        --flint-surface-variant: #1e293b;
 
-        --ui-surface-background:      var(--ui-color-zinc-950);
-        --ui-surface-background-flat: var(--ui-color-zinc-800);
-        --ui-card-background:         var(--ui-color-zinc-900);
-        --ui-card-background-flat:    var(--ui-color-zinc-800);
-        --ui-input-bg:                var(--ui-color-zinc-800);
-        --ui-muted-background:        var(--ui-color-zinc-700);
+        --flint-surface-background:      var(--flint-color-zinc-950);
+        --flint-surface-background-flat: var(--flint-color-zinc-800);
+        --flint-card-background:         var(--flint-color-zinc-900);
+        --flint-card-background-flat:    var(--flint-color-zinc-800);
+        --flint-input-bg:                var(--flint-color-zinc-800);
+        --flint-muted-background:        var(--flint-color-zinc-700);
 
-        --ui-text-color:            var(--ui-color-zinc-50);
-        --ui-text-color-muted:      var(--ui-color-zinc-400);
-        --ui-text-color-subtle:     var(--ui-color-zinc-500);
+        --flint-text-color:            var(--flint-color-zinc-50);
+        --flint-text-color-muted:      var(--flint-color-zinc-400);
+        --flint-text-color-subtle:     var(--flint-color-zinc-500);
 
-        --ui-border-color:             var(--ui-color-zinc-800);
-        --ui-input-border-color:       var(--ui-color-zinc-700);
-        --ui-input-border-hover-color: var(--ui-color-zinc-600);
-        --ui-card-border-color:        var(--ui-color-zinc-700);
+        --flint-border-color:             var(--flint-color-zinc-800);
+        --flint-input-border-color:       var(--flint-color-zinc-700);
+        --flint-input-border-hover-color: var(--flint-color-zinc-600);
+        --flint-card-border-color:        var(--flint-color-zinc-700);
 
-        --ui-hover-color:  rgba(255, 255, 255, 0.06);
-        --ui-active-color: rgba(255, 255, 255, 0.12);
+        --flint-hover-color:  rgba(255, 255, 255, 0.06);
+        --flint-active-color: rgba(255, 255, 255, 0.12);
 
-        --ui-backdrop-color: rgba(0, 0, 0, 0.70);
+        --flint-backdrop-color: rgba(0, 0, 0, 0.70);
 
-        --ui-stepper-connector-color: var(--ui-color-zinc-800);
+        --flint-stepper-connector-color: var(--flint-color-zinc-800);
 
-        --ui-tooltip-bg:         rgba(241, 245, 249, 0.92);
-        --ui-tooltip-text-color: var(--ui-color-slate-950);
-        --ui-tooltip-color:      var(--ui-color-slate-950);
+        --flint-tooltip-bg:         rgba(241, 245, 249, 0.92);
+        --flint-tooltip-text-color: var(--flint-color-slate-950);
+        --flint-tooltip-color:      var(--flint-color-slate-950);
 
-        --ui-label-color:              var(--ui-color-zinc-300);
-        --ui-input-placeholder-color:  var(--ui-color-zinc-500);
-        --ui-input-disabled-bg:        var(--ui-color-zinc-900);
-        --ui-input-disabled-color:     var(--ui-color-zinc-600);
-        --ui-input-readonly-bg:        var(--ui-color-zinc-900);
-        --ui-help-text-color:          var(--ui-color-zinc-400);
+        --flint-label-color:              var(--flint-color-zinc-300);
+        --flint-input-placeholder-color:  var(--flint-color-zinc-500);
+        --flint-input-disabled-bg:        var(--flint-color-zinc-900);
+        --flint-input-disabled-color:     var(--flint-color-zinc-600);
+        --flint-input-readonly-bg:        var(--flint-color-zinc-900);
+        --flint-help-text-color:          var(--flint-color-zinc-400);
 
         /* ─── Copy Button ────────────────────────────────────────── */
-        --ui-copy-button-success-color: var(--ui-success-color);
-        --ui-copy-button-error-color:   var(--ui-error-color);
+        --flint-copy-button-success-color: var(--flint-success-color);
+        --flint-copy-button-error-color:   var(--flint-error-color);
 
-        --ui-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.50);
-        --ui-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.50), 0 2px 4px -1px rgba(0, 0, 0, 0.40);
-        --ui-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.50), 0 4px 6px -2px rgba(0, 0, 0, 0.40);
-        --ui-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.50), 0 10px 10px -5px rgba(0, 0, 0, 0.40);
+        --flint-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.50);
+        --flint-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.50), 0 2px 4px -1px rgba(0, 0, 0, 0.40);
+        --flint-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.50), 0 4px 6px -2px rgba(0, 0, 0, 0.40);
+        --flint-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.50), 0 10px 10px -5px rgba(0, 0, 0, 0.40);
 
-        --ui-card-shadow:       var(--ui-shadow-lg);
-        --ui-card-shadow-hover: var(--ui-shadow-xl);
+        --flint-card-shadow:       var(--flint-shadow-lg);
+        --flint-card-shadow-hover: var(--flint-shadow-xl);
 
         /* ─── Time Picker ──────────────────────────────────────────── */
-        --ui-time-clock-face-bg:      var(--ui-surface-variant);
-        --ui-time-clock-inner-bg:     rgba(255, 255, 255, 0.06);
-        --ui-time-clock-inner-border: var(--ui-color-zinc-600);
-        --ui-time-clock-hand-color:   var(--ui-primary-color);
+        --flint-time-clock-face-bg:      var(--flint-surface-variant);
+        --flint-time-clock-inner-bg:     rgba(255, 255, 255, 0.06);
+        --flint-time-clock-inner-border: var(--flint-color-zinc-600);
+        --flint-time-clock-hand-color:   var(--flint-primary-color);
 
         /* ─── Command Menu ──────────────────────────────────────────── */
-        --ui-command-backdrop-bg: rgba(0, 0, 0, 0.70);
+        --flint-command-backdrop-bg: rgba(0, 0, 0, 0.70);
     }
 }

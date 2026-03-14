@@ -1,25 +1,25 @@
 # Textarea
 
-<Demo label="States" html="<div style=&quot;display:flex;flex-direction:column;gap:12px;width:100%;max-width:400px&quot;><ui-textarea label=&quot;Message&quot; placeholder=&quot;Type your message...&quot;></ui-textarea><ui-textarea label=&quot;Disabled&quot; disabled value=&quot;This textarea is disabled&quot;></ui-textarea></div>" />
+<Demo label="States" html="<div style=&quot;display:flex;flex-direction:column;gap:12px;width:100%;max-width:400px&quot;><flint-textarea label=&quot;Message&quot; placeholder=&quot;Type your message...&quot;></flint-textarea><flint-textarea label=&quot;Disabled&quot; disabled value=&quot;This textarea is disabled&quot;></flint-textarea></div>" />
 
 A Textarea component for multi-line text input.
 
-- **Tag**: `<ui-textarea>`
-- **Class**: `UiTextarea`
+- **Tag**: `<flint-textarea>`
+- **Class**: `FlintTextarea`
 - **Form Associated**: Yes
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiTextarea } from 'storybook-lit';
+import { FlintTextarea } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-textarea></ui-textarea>
+<flint-textarea></flint-textarea>
 ```
 
 ### Properties
@@ -49,29 +49,29 @@ import { UiTextarea } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-textarea-input` | — | Dispatched on every keystroke. Detail: `{ value: string }` |
-| `ui-textarea-change` | — | Dispatched on blur/change. Detail: `{ value: string }` |
+| `flint-textarea-input` | — | Dispatched on every keystroke. Detail: `{ value: string }` |
+| `flint-textarea-change` | — | Dispatched on blur/change. Detail: `{ value: string }` |
 
 ### CSS Custom Properties
 
 | Property | Default |
 | --- | --- |
-| `--ui-textarea-min-height` | `80px` |
-| `--ui-font-family` | — |
-| `--ui-label-color` | — |
-| `--ui-input-border-radius` | — |
-| `--ui-input-border-color` | — |
-| `--ui-input-bg` | — |
-| `--ui-text-color` | — |
-| `--ui-input-placeholder-color` | — |
-| `--ui-input-border-hover-color` | — |
-| `--ui-primary-color` | — |
-| `--ui-primary-focus-ring` | — |
-| `--ui-error-color` | — |
-| `--ui-error-focus-ring` | — |
-| `--ui-input-disabled-bg` | — |
-| `--ui-input-disabled-color` | — |
-| `--ui-input-readonly-bg` | — |
-| `--ui-help-text-color` | — |
+| `--flint-textarea-min-height` | `80px` |
+| `--flint-font-family` | — |
+| `--flint-label-color` | — |
+| `--flint-input-border-radius` | — |
+| `--flint-input-border-color` | — |
+| `--flint-input-bg` | — |
+| `--flint-text-color` | — |
+| `--flint-input-placeholder-color` | — |
+| `--flint-input-border-hover-color` | — |
+| `--flint-primary-color` | — |
+| `--flint-primary-focus-ring` | — |
+| `--flint-error-color` | — |
+| `--flint-error-focus-ring` | — |
+| `--flint-input-disabled-bg` | — |
+| `--flint-input-disabled-color` | — |
+| `--flint-input-readonly-bg` | — |
+| `--flint-help-text-color` | — |
 
 ---

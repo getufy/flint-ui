@@ -1,22 +1,22 @@
 # Format Number
 
-<Demo label="Formats" html="<div style=&quot;display:flex;flex-direction:column;gap:8px&quot;><span>Currency: <ui-format-number value=&quot;1234567.89&quot; style=&quot;currency&quot; currency=&quot;USD&quot;></ui-format-number></span><span>Percent: <ui-format-number value=&quot;0.856&quot; style=&quot;percent&quot;></ui-format-number></span><span>Decimal: <ui-format-number value=&quot;1234567.89&quot; style=&quot;decimal&quot;></ui-format-number></span></div>" />
+<Demo label="Formats" html="<div style=&quot;display:flex;flex-direction:column;gap:8px&quot;><span>Currency: <flint-format-number value=&quot;1234567.89&quot; style=&quot;currency&quot; currency=&quot;USD&quot;></flint-format-number></span><span>Percent: <flint-format-number value=&quot;0.856&quot; style=&quot;percent&quot;></flint-format-number></span><span>Decimal: <flint-format-number value=&quot;1234567.89&quot; style=&quot;decimal&quot;></flint-format-number></span></div>" />
 
-- **Tag**: `<ui-format-number>`
-- **Class**: `UiFormatNumber`
+- **Tag**: `<flint-format-number>`
+- **Class**: `FlintFormatNumber`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiFormatNumber } from 'storybook-lit';
+import { FlintFormatNumber } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-format-number></ui-format-number>
+<flint-format-number></flint-format-number>
 ```
 
 ### Properties
@@ -44,12 +44,12 @@ import { UiFormatNumber } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-format-number-color` | `inherit` |
-| `--ui-format-number-font-size` | `inherit` |
-| `--ui-format-number-font-weight` | `inherit` |
-| `--ui-format-number-font-family` | `inherit` |
-| `--ui-format-number-negative-color` | `var(--ui-format-number-color, inherit` |
-| `--ui-format-number-positive-color` | `var(--ui-format-number-color, inherit` |
+| `--flint-format-number-color` | `inherit` |
+| `--flint-format-number-font-size` | `inherit` |
+| `--flint-format-number-font-weight` | `inherit` |
+| `--flint-format-number-font-family` | `inherit` |
+| `--flint-format-number-negative-color` | `var(--flint-format-number-color, inherit` |
+| `--flint-format-number-positive-color` | `var(--flint-format-number-color, inherit` |
 
 ### Methods
 

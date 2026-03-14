@@ -1,27 +1,27 @@
 # Radio
 
-<Demo label="Basic" html="<ui-radio-group value=&quot;a&quot;>  <ui-radio value=&quot;a&quot; label=&quot;Option A&quot;></ui-radio>  <ui-radio value=&quot;b&quot; label=&quot;Option B&quot;></ui-radio>  <ui-radio value=&quot;c&quot; label=&quot;Option C&quot;></ui-radio></ui-radio-group>" />
+<Demo label="Basic" html="<flint-radio-group value=&quot;a&quot;>  <flint-radio value=&quot;a&quot; label=&quot;Option A&quot;></flint-radio>  <flint-radio value=&quot;b&quot; label=&quot;Option B&quot;></flint-radio>  <flint-radio value=&quot;c&quot; label=&quot;Option C&quot;></flint-radio></flint-radio-group>" />
 
-<Demo label="Disabled" html="<ui-radio-group value=&quot;x&quot;>  <ui-radio value=&quot;x&quot; label=&quot;Selected&quot; disabled></ui-radio>  <ui-radio value=&quot;y&quot; label=&quot;Disabled&quot; disabled></ui-radio></ui-radio-group>" />
+<Demo label="Disabled" html="<flint-radio-group value=&quot;x&quot;>  <flint-radio value=&quot;x&quot; label=&quot;Selected&quot; disabled></flint-radio>  <flint-radio value=&quot;y&quot; label=&quot;Disabled&quot; disabled></flint-radio></flint-radio-group>" />
 
-## `<ui-radio-group>`
+## `<flint-radio-group>`
 
-- **Tag**: `<ui-radio-group>`
-- **Class**: `UiRadioGroup`
+- **Tag**: `<flint-radio-group>`
+- **Class**: `FlintRadioGroup`
 - **Form Associated**: Yes
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiRadioGroup } from 'storybook-lit';
+import { FlintRadioGroup } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-radio-group></ui-radio-group>
+<flint-radio-group></flint-radio-group>
 ```
 
 ### Properties
@@ -41,7 +41,7 @@ import { UiRadioGroup } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-radio-group-change` | `{ value }` |  |
+| `flint-radio-group-change` | `{ value }` |  |
 
 ### Slots
 
@@ -53,33 +53,33 @@ import { UiRadioGroup } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-radio-group-gap` | `8px` |
-| `--ui-font-family` | — |
-| `--ui-text-color` | — |
-| `--ui-input-border-color` | — |
-| `--ui-surface-1` | — |
-| `--ui-primary-color` | — |
-| `--ui-primary-focus-ring` | — |
+| `--flint-radio-group-gap` | `8px` |
+| `--flint-font-family` | — |
+| `--flint-text-color` | — |
+| `--flint-input-border-color` | — |
+| `--flint-surface-1` | — |
+| `--flint-primary-color` | — |
+| `--flint-primary-focus-ring` | — |
 
 ---
 
-## `<ui-radio>`
+## `<flint-radio>`
 
-- **Tag**: `<ui-radio>`
-- **Class**: `UiRadio`
+- **Tag**: `<flint-radio>`
+- **Class**: `FlintRadio`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiRadio } from 'storybook-lit';
+import { FlintRadio } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-radio></ui-radio>
+<flint-radio></flint-radio>
 ```
 
 ### Properties
@@ -98,7 +98,7 @@ import { UiRadio } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-radio-select` | `{ value: this.value }` |  |
+| `flint-radio-select` | `{ value: this.value }` |  |
 
 ### Slots
 
@@ -110,18 +110,18 @@ import { UiRadio } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-radio-disabled-opacity` | `0.5` |
-| `--ui-radio-group-gap` | `8px` |
-| `--ui-radio-size` | `18px` |
-| `--ui-radio-gap` | `8px` |
-| `--ui-radio-size-sm` | `14px` |
-| `--ui-radio-size-lg` | `22px` |
-| `--ui-radio-dot-size` | `8px` |
-| `--ui-radio-dot-size-sm` | `6px` |
-| `--ui-radio-dot-size-lg` | `10px` |
-| `--ui-radio-label-font-size` | `14px` |
-| `--ui-radio-label-font-size-sm` | `12px` |
-| `--ui-radio-label-font-size-lg` | `16px` |
+| `--flint-radio-disabled-opacity` | `0.5` |
+| `--flint-radio-group-gap` | `8px` |
+| `--flint-radio-size` | `18px` |
+| `--flint-radio-gap` | `8px` |
+| `--flint-radio-size-sm` | `14px` |
+| `--flint-radio-size-lg` | `22px` |
+| `--flint-radio-dot-size` | `8px` |
+| `--flint-radio-dot-size-sm` | `6px` |
+| `--flint-radio-dot-size-lg` | `10px` |
+| `--flint-radio-label-font-size` | `14px` |
+| `--flint-radio-label-font-size-sm` | `12px` |
+| `--flint-radio-label-font-size-lg` | `16px` |
 
 ### Methods
 

@@ -1,6 +1,0 @@
-:host {
-      display: flex;
-      padding: var(--ui-card-actions-padding, 8px 16px);
-      align-items: center;
-      gap: 8px;
-    }

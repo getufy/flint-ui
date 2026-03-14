@@ -1,6 +1,0 @@
-:host { display:inline-block; font-family:var(--ui-font-family); }
-    .surface {
-      border-radius:var(--ui-border-radius-xl);
-      box-shadow:0 1px 4px rgba(0,0,0,.08),0 0 0 1px var(--ui-border-color);
-      overflow:hidden; display:inline-block;
-    }

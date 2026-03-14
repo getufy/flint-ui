@@ -1,22 +1,22 @@
 # Box
 
-<Demo label="Styles" html="<ui-box bgcolor=&quot;primary&quot; color=&quot;white&quot; p=&quot;16px&quot; border-radius=&quot;8px&quot;>Primary Box</ui-box><ui-box bgcolor=&quot;#f3f4f6&quot; p=&quot;16px&quot; border-radius=&quot;8px&quot;>Gray Box</ui-box><ui-box p=&quot;16px&quot; border-radius=&quot;8px&quot; style=&quot;border:2px dashed #d1d5db&quot;>Dashed Border</ui-box>" />
+<Demo label="Styles" html="<flint-box bgcolor=&quot;primary&quot; color=&quot;white&quot; p=&quot;16px&quot; border-radius=&quot;8px&quot;>Primary Box</flint-box><flint-box bgcolor=&quot;#f3f4f6&quot; p=&quot;16px&quot; border-radius=&quot;8px&quot;>Gray Box</flint-box><flint-box p=&quot;16px&quot; border-radius=&quot;8px&quot; style=&quot;border:2px dashed #d1d5db&quot;>Dashed Border</flint-box>" />
 
-- **Tag**: `<ui-box>`
-- **Class**: `UiBox`
+- **Tag**: `<flint-box>`
+- **Class**: `FlintBox`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiBox } from 'storybook-lit';
+import { FlintBox } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-box></ui-box>
+<flint-box></flint-box>
 ```
 
 ### Properties
@@ -35,11 +35,11 @@ import { UiBox } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-box-bg` | `transparent` |
-| `--ui-box-color` | `inherit` |
-| `--ui-box-border` | `none` |
-| `--ui-box-border-radius` | `0` |
-| `--ui-box-shadow` | `none` |
-| `--ui-box-padding` | `0` |
+| `--flint-box-bg` | `transparent` |
+| `--flint-box-color` | `inherit` |
+| `--flint-box-border` | `none` |
+| `--flint-box-border-radius` | `0` |
+| `--flint-box-shadow` | `none` |
+| `--flint-box-padding` | `0` |
 
 ---

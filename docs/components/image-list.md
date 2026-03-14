@@ -1,26 +1,26 @@
 # Image List
 
-<Demo html="<ui-image-list cols=&quot;3&quot; gap=&quot;8&quot; style=&quot;width:100%;max-width:500px&quot;>  <ui-image-list-item><div style=&quot;width:100%;height:120px;background:#dbeafe;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#1e40af;font-weight:600&quot;>1</div></ui-image-list-item>  <ui-image-list-item><div style=&quot;width:100%;height:120px;background:#e0e7ff;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#3730a3;font-weight:600&quot;>2</div></ui-image-list-item>  <ui-image-list-item><div style=&quot;width:100%;height:120px;background:#ede9fe;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#5b21b6;font-weight:600&quot;>3</div></ui-image-list-item>  <ui-image-list-item><div style=&quot;width:100%;height:120px;background:#fce7f3;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#9d174d;font-weight:600&quot;>4</div></ui-image-list-item>  <ui-image-list-item><div style=&quot;width:100%;height:120px;background:#fef3c7;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#92400e;font-weight:600&quot;>5</div></ui-image-list-item>  <ui-image-list-item><div style=&quot;width:100%;height:120px;background:#d1fae5;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#065f46;font-weight:600&quot;>6</div></ui-image-list-item></ui-image-list>" />
+<Demo html="<flint-image-list cols=&quot;3&quot; gap=&quot;8&quot; style=&quot;width:100%;max-width:500px&quot;>  <flint-image-list-item><div style=&quot;width:100%;height:120px;background:#dbeafe;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#1e40af;font-weight:600&quot;>1</div></flint-image-list-item>  <flint-image-list-item><div style=&quot;width:100%;height:120px;background:#e0e7ff;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#3730a3;font-weight:600&quot;>2</div></flint-image-list-item>  <flint-image-list-item><div style=&quot;width:100%;height:120px;background:#ede9fe;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#5b21b6;font-weight:600&quot;>3</div></flint-image-list-item>  <flint-image-list-item><div style=&quot;width:100%;height:120px;background:#fce7f3;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#9d174d;font-weight:600&quot;>4</div></flint-image-list-item>  <flint-image-list-item><div style=&quot;width:100%;height:120px;background:#fef3c7;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#92400e;font-weight:600&quot;>5</div></flint-image-list-item>  <flint-image-list-item><div style=&quot;width:100%;height:120px;background:#d1fae5;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#065f46;font-weight:600&quot;>6</div></flint-image-list-item></flint-image-list>" />
 
-## `<ui-image-list-item-bar>`
+## `<flint-image-list-item-bar>`
 
-A title/subtitle bar for `ui-image-list-item`.
+A title/subtitle bar for `flint-image-list-item`.
 
-- **Tag**: `<ui-image-list-item-bar>`
-- **Class**: `UiImageListItemBar`
+- **Tag**: `<flint-image-list-item-bar>`
+- **Class**: `FlintImageListItemBar`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiImageListItemBar } from 'storybook-lit';
+import { FlintImageListItemBar } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-image-list-item-bar></ui-image-list-item-bar>
+<flint-image-list-item-bar></flint-image-list-item-bar>
 ```
 
 ### Properties
@@ -41,34 +41,34 @@ import { UiImageListItemBar } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-image-bar-overlay-text` | `var(--ui-text-color-on-primary` |
-| `--ui-font-family` | — |
-| `--ui-surface-1` | — |
-| `--ui-text-color` | — |
-| `--ui-border-color` | — |
-| `--ui-image-fit` | `cover` |
+| `--flint-image-bar-overlay-text` | `var(--flint-text-color-on-primary` |
+| `--flint-font-family` | — |
+| `--flint-surface-1` | — |
+| `--flint-text-color` | — |
+| `--flint-border-color` | — |
+| `--flint-image-fit` | `cover` |
 
 ---
 
-## `<ui-image-list-item>`
+## `<flint-image-list-item>`
 
-A single item inside a `ui-image-list`.
+A single item inside a `flint-image-list`.
 
-- **Tag**: `<ui-image-list-item>`
-- **Class**: `UiImageListItem`
+- **Tag**: `<flint-image-list-item>`
+- **Class**: `FlintImageListItem`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiImageListItem } from 'storybook-lit';
+import { FlintImageListItem } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-image-list-item></ui-image-list-item>
+<flint-image-list-item></flint-image-list-item>
 ```
 
 ### Properties
@@ -87,29 +87,29 @@ import { UiImageListItem } from 'storybook-lit';
 | Name | Description |
 | --- | --- |
 | `(default)` | Place an `<img>` or any content here. |
-| `bar` | Place a `ui-image-list-item-bar` element here. |
+| `bar` | Place a `flint-image-list-item-bar` element here. |
 
 ---
 
-## `<ui-image-list>`
+## `<flint-image-list>`
 
 A container that displays images in an organized grid layout. Supports standard, quilted, woven, and masonry variants.
 
-- **Tag**: `<ui-image-list>`
-- **Class**: `UiImageList`
+- **Tag**: `<flint-image-list>`
+- **Class**: `FlintImageList`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiImageList } from 'storybook-lit';
+import { FlintImageList } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-image-list></ui-image-list>
+<flint-image-list></flint-image-list>
 ```
 
 ### Properties
@@ -126,13 +126,13 @@ import { UiImageList } from 'storybook-lit';
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Place `ui-image-list-item` elements here. |
+| `(default)` | Place `flint-image-list-item` elements here. |
 
 ### CSS Custom Properties
 
 | Property | Default |
 | --- | --- |
-| `--ui-image-list-gap` | `4px` |
-| `--ui-image-list-row-height` | `164px` |
+| `--flint-image-list-gap` | `4px` |
+| `--flint-image-list-row-height` | `164px` |
 
 ---

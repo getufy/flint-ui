@@ -2,9 +2,9 @@
 // Demo.vue awaits this before injecting HTML via innerHTML.
 export const componentsReady: Promise<void> =
   typeof window !== 'undefined'
-    ? import('storybook-lit').then((m) => {
+    ? import('flint-ui').then((m) => {
         // Expose toast on window so inline onclick handlers can use it
-        // (dynamic import('storybook-lit') in innerHTML doesn't resolve Vite aliases)
+        // (dynamic import('flint-ui') in innerHTML doesn't resolve Vite aliases)
         (window as any).__storybook_lit = m;
       })
     : Promise.resolve();

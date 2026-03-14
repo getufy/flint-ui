@@ -1,26 +1,26 @@
 # Date Picker
 
-<Demo label="States" html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><ui-date-picker label=&quot;Pick a date&quot; style=&quot;width:260px&quot;></ui-date-picker><ui-date-picker label=&quot;Disabled&quot; disabled style=&quot;width:260px&quot;></ui-date-picker></div>" />
+<Demo label="States" html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><flint-date-picker label=&quot;Pick a date&quot; style=&quot;width:260px&quot;></flint-date-picker><flint-date-picker label=&quot;Disabled&quot; disabled style=&quot;width:260px&quot;></flint-date-picker></div>" />
 
-## `<ui-date-picker-calendar>`
+## `<flint-date-picker-calendar>`
 
-A standalone calendar grid — the core date-selection view. Used internally by ui-date-picker, but can also be used on its own.
+A standalone calendar grid — the core date-selection view. Used internally by flint-date-picker, but can also be used on its own.
 
-- **Tag**: `<ui-date-picker-calendar>`
-- **Class**: `UiDatePickerCalendar`
+- **Tag**: `<flint-date-picker-calendar>`
+- **Class**: `FlintDatePickerCalendar`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiDatePickerCalendar } from 'storybook-lit';
+import { FlintDatePickerCalendar } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-date-picker-calendar></ui-date-picker-calendar>
+<flint-date-picker-calendar></flint-date-picker-calendar>
 ```
 
 ### Properties
@@ -39,25 +39,25 @@ import { UiDatePickerCalendar } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-font-family` | — |
-| `--ui-surface-1` | — |
-| `--ui-border-radius-xl` | — |
-| `--ui-text-color` | — |
-| `--ui-hover-color` | — |
-| `--ui-text-color-muted` | — |
-| `--ui-primary-color` | — |
-| `--ui-text-color-on-primary` | — |
-| `--ui-primary-color-hover` | — |
-| `--ui-input-bg` | — |
-| `--ui-border-color` | — |
-| `--ui-border-radius-md` | — |
-| `--ui-input-placeholder-color` | — |
-| `--ui-primary-focus-ring` | — |
-| `--ui-input-disabled-bg` | — |
-| `--ui-error-color` | — |
-| `--ui-error-focus-ring` | — |
-| `--ui-shadow-lg` | — |
-| `--ui-shadow-sm` | — |
+| `--flint-font-family` | — |
+| `--flint-surface-1` | — |
+| `--flint-border-radius-xl` | — |
+| `--flint-text-color` | — |
+| `--flint-hover-color` | — |
+| `--flint-text-color-muted` | — |
+| `--flint-primary-color` | — |
+| `--flint-text-color-on-primary` | — |
+| `--flint-primary-color-hover` | — |
+| `--flint-input-bg` | — |
+| `--flint-border-color` | — |
+| `--flint-border-radius-md` | — |
+| `--flint-input-placeholder-color` | — |
+| `--flint-primary-focus-ring` | — |
+| `--flint-input-disabled-bg` | — |
+| `--flint-error-color` | — |
+| `--flint-error-focus-ring` | — |
+| `--flint-shadow-lg` | — |
+| `--flint-shadow-sm` | — |
 
 ### Methods
 
@@ -67,25 +67,25 @@ import { UiDatePickerCalendar } from 'storybook-lit';
 
 ---
 
-## `<ui-date-picker>`
+## `<flint-date-picker>`
 
 A date picker with a text field and a calendar popover/modal. Variants: - 'desktop'  — calendar appears in a popover (default) - 'mobile'   — calendar appears in a full dialog/modal - 'static'   — calendar always visible, no field - 'auto'     — desktop on pointer:fine, mobile on pointer:coarse
 
-- **Tag**: `<ui-date-picker>`
-- **Class**: `UiDatePicker`
+- **Tag**: `<flint-date-picker>`
+- **Class**: `FlintDatePicker`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiDatePicker } from 'storybook-lit';
+import { FlintDatePicker } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-date-picker></ui-date-picker>
+<flint-date-picker></flint-date-picker>
 ```
 
 ### Properties

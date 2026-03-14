@@ -1,24 +1,24 @@
 # Avatar
 
-<Demo label="Image" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><ui-avatar src=&quot;https://i.pravatar.cc/150?img=1&quot; alt=&quot;User 1&quot;></ui-avatar><ui-avatar src=&quot;https://i.pravatar.cc/150?img=2&quot; alt=&quot;User 2&quot;></ui-avatar><ui-avatar src=&quot;https://i.pravatar.cc/150?img=3&quot; alt=&quot;User 3&quot;></ui-avatar></div>" />
+<Demo label="Image" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-avatar src=&quot;https://i.pravatar.cc/150?img=1&quot; alt=&quot;User 1&quot;></flint-avatar><flint-avatar src=&quot;https://i.pravatar.cc/150?img=2&quot; alt=&quot;User 2&quot;></flint-avatar><flint-avatar src=&quot;https://i.pravatar.cc/150?img=3&quot; alt=&quot;User 3&quot;></flint-avatar></div>" />
 
-<Demo label="Initials" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><ui-avatar>AB</ui-avatar><ui-avatar>CD</ui-avatar><ui-avatar>EF</ui-avatar></div>" />
+<Demo label="Initials" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-avatar>AB</flint-avatar><flint-avatar>CD</flint-avatar><flint-avatar>EF</flint-avatar></div>" />
 
-- **Tag**: `<ui-avatar>`
-- **Class**: `UiAvatar`
+- **Tag**: `<flint-avatar>`
+- **Class**: `FlintAvatar`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiAvatar } from 'storybook-lit';
+import { FlintAvatar } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-avatar></ui-avatar>
+<flint-avatar></flint-avatar>
 ```
 
 ### Properties
@@ -41,12 +41,12 @@ import { UiAvatar } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-avatar-size` | `40px` |
-| `--ui-avatar-bg` | `var(--ui-surface-3` |
-| `--ui-avatar-color` | `var(--ui-text-color-muted` |
-| `--ui-font-family` | — |
-| `--ui-border-radius-md` | — |
-| `--ui-surface-2` | — |
-| `--ui-surface-3` | — |
+| `--flint-avatar-size` | `40px` |
+| `--flint-avatar-bg` | `var(--flint-surface-3` |
+| `--flint-avatar-color` | `var(--flint-text-color-muted` |
+| `--flint-font-family` | — |
+| `--flint-border-radius-md` | — |
+| `--flint-surface-2` | — |
+| `--flint-surface-3` | — |
 
 ---
