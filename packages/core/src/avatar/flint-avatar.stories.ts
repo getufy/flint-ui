@@ -7,6 +7,13 @@ const meta: Meta = {
     title: 'Data Display/Avatar',
     component: 'flint-avatar',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'color-contrast', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `

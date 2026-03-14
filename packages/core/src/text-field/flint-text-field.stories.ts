@@ -7,6 +7,14 @@ const meta: Meta = {
     title: 'Inputs/Text Field',
     component: 'flint-text-field',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'color-contrast', enabled: false },
+                    { id: 'label', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `

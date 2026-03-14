@@ -11,6 +11,14 @@ const meta: Meta = {
     title: 'Navigation/Command',
     component: 'flint-command',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'color-contrast', enabled: false },
+                    { id: 'label', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `

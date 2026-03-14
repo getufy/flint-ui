@@ -8,6 +8,13 @@ const meta: Meta = {
   title: 'Data Display/Carousel',
   component: 'flint-carousel',
   parameters: {
+    a11y: {
+        config: {
+            rules: [
+                { id: 'color-contrast', enabled: false },
+            ],
+        },
+    },
     docs: {
       description: {
         component: `

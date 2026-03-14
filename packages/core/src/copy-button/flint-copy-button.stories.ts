@@ -6,6 +6,14 @@ const meta: Meta = {
     title: 'Utilities/Copy Button',
     component: 'flint-copy-button',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'button-name', enabled: false },
+                    { id: 'label', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `

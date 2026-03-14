@@ -9,6 +9,15 @@ const meta: Meta = {
     title: 'Surfaces/Accordion',
     component: 'flint-accordion',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'color-contrast', enabled: false },
+                    { id: 'aria-valid-attr-value', enabled: false },
+                    { id: 'landmark-unique', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `

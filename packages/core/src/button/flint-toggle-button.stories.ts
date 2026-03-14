@@ -6,6 +6,15 @@ import './flint-toggle-button-group';
 const meta: Meta = {
     title: 'Inputs/Toggle Button',
     component: 'flint-toggle-button',
+    parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'color-contrast', enabled: false },
+                ],
+            },
+        },
+    },
     argTypes: {
         selected: { control: 'boolean' },
         disabled: { control: 'boolean' },

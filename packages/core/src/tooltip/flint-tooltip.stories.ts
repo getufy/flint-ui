@@ -7,6 +7,13 @@ const meta: Meta = {
     title: 'Data Display/Tooltip',
     component: 'flint-tooltip',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'button-name', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `

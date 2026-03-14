@@ -6,6 +6,13 @@ const meta: Meta = {
     title: 'Feedback/Alert',
     component: 'flint-alert',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'color-contrast', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `

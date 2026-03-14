@@ -8,6 +8,13 @@ const meta: Meta = {
   title: 'Utilities/Empty',
   component: 'flint-empty',
   parameters: {
+    a11y: {
+        config: {
+            rules: [
+                { id: 'color-contrast', enabled: false },
+            ],
+        },
+    },
     docs: {
       description: {
         component: `

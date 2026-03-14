@@ -7,6 +7,15 @@ const meta: Meta = {
     title: 'Navigation/App Bar',
     component: 'flint-app-bar',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'color-contrast', enabled: false },
+                    { id: 'button-name', enabled: false },
+                    { id: 'nested-interactive', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `

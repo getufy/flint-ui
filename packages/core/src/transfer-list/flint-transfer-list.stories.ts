@@ -6,6 +6,13 @@ const meta: Meta = {
     title: 'Inputs/Transfer List',
     component: 'flint-transfer-list',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'color-contrast', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `

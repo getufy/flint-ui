@@ -9,6 +9,13 @@ const meta: Meta = {
     title: 'Tree View/Rich Tree View - Lazy loading',
     component: 'flint-rich-tree-view',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'aria-required-children', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `

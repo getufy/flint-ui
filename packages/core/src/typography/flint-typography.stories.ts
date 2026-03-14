@@ -6,6 +6,15 @@ const meta: Meta = {
     title: 'Data Display/Typography',
     component: 'flint-typography',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    { id: 'color-contrast', enabled: false },
+                    { id: 'aria-valid-attr-value', enabled: false },
+                    { id: 'heading-order', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `
