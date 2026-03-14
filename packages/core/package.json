@@ -256,6 +256,18 @@
       "types": "./dist/date-field/flint-date-field.d.ts",
       "import": "./dist/date-field/flint-date-field.js"
     },
+    "./date-range-picker/flint-date-range-picker": {
+      "types": "./dist/date-range-picker/flint-date-range-picker.d.ts",
+      "import": "./dist/date-range-picker/flint-date-range-picker.js"
+    },
+    "./date-range-picker/flint-single-input-date-range-field": {
+      "types": "./dist/date-range-picker/flint-single-input-date-range-field.d.ts",
+      "import": "./dist/date-range-picker/flint-single-input-date-range-field.js"
+    },
+    "./date-range-picker/flint-date-range-calendar": {
+      "types": "./dist/date-range-picker/flint-date-range-calendar.d.ts",
+      "import": "./dist/date-range-picker/flint-date-range-calendar.js"
+    },
     "./time-picker/flint-time-picker": {
       "types": "./dist/time-picker/flint-time-picker.d.ts",
       "import": "./dist/time-picker/flint-time-picker.js"
@@ -413,6 +425,14 @@
   ],
   "dependencies": {
     "lit": "^3.3.2"
+  },
+  "peerDependencies": {
+    "lit": "^3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "lit": {
+      "optional": false
+    }
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.0.1",
