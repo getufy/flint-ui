@@ -75,6 +75,11 @@ export class FlintStepContent extends LitElement {
 /* ================================================================== */
 /* FlintStep                                                               */
 /* ================================================================== */
+/**
+ * Step: an individual step within a stepper.
+ *
+ * @fires flint-step-click - Fired when a non-linear step is clicked.
+ */
 @customElement('flint-step')
 export class FlintStep extends LitElement {
     static styles = unsafeCSS(uiStepStyles);
@@ -184,6 +189,11 @@ export class FlintStep extends LitElement {
 /* ================================================================== */
 /* FlintStepper                                                            */
 /* ================================================================== */
+/**
+ * Stepper: a multi-step progress indicator.
+ *
+ * @fires flint-step-change - Fired when the active step changes via step click.
+ */
 @customElement('flint-stepper')
 export class FlintStepper extends LitElement {
     static styles = unsafeCSS(uiStepperStyles);

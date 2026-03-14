@@ -46,6 +46,11 @@ const iconDown = () => svgPath('M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.4
 /* ================================================================== */
 /* FlintTab                                                                */
 /* ================================================================== */
+/**
+ * Tab: an individual tab button within a tab list.
+ *
+ * @fires flint-tab-click - Fired when the tab is clicked or activated via keyboard.
+ */
 @customElement('flint-tab')
 export class FlintTab extends LitElement {
     static styles = unsafeCSS(uiTabStyles);
@@ -279,6 +284,11 @@ export class FlintTabList extends LitElement {
 /* ================================================================== */
 /* FlintTabs                                                               */
 /* ================================================================== */
+/**
+ * Tabs: container that coordinates tab selection and panel visibility.
+ *
+ * @fires flint-tab-change - Fired when the active tab changes.
+ */
 @customElement('flint-tabs')
 export class FlintTabs extends LitElement {
     static styles = unsafeCSS(uiTabsStyles);

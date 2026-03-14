@@ -14,6 +14,9 @@ import type { FlintNavigationMenuTrigger } from './flint-navigation-menu-trigger
  * @csspart root - The root item element
  *
  * @cssprop --flint-navigation-menu-item-padding - Item padding (default: 0)
+ *
+ * @fires flint-navigation-menu-trigger-click - Fired when the item's trigger is clicked.
+ * @fires flint-navigation-menu-content-toggle - Fired when content visibility changes.
  */
 @customElement('flint-navigation-menu-item')
 export class FlintNavigationMenuItem extends LitElement {

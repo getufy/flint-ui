@@ -5,6 +5,14 @@
   "types": "./dist/index.d.ts",
   "module": "./dist/index.js",
   "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/go-mihai/storybook-lit.git",
+    "directory": "packages/core"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

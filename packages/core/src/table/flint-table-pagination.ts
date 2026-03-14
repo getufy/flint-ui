@@ -3,6 +3,12 @@ import { customElement, property, state } from 'lit/decorators.js';
 import { PropertyValues } from 'lit';
 import uiTablePaginationStyles from './flint-table-pagination.css?inline';
 
+/**
+ * Table Pagination: pagination controls for tabular data.
+ *
+ * @fires flint-pagination-page-change - Fired when the current page changes.
+ * @fires flint-pagination-rows-per-page-change - Fired when rows per page changes.
+ */
 @customElement('flint-table-pagination')
 export class FlintTablePagination extends LitElement {
     static styles = unsafeCSS(uiTablePaginationStyles);

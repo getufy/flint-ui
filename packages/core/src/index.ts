@@ -20,6 +20,7 @@ export { FlintRating } from './rating/flint-rating.js';
 export { FlintSwitch } from './switch/flint-switch.js';
 export { FlintTextarea } from './textarea/flint-textarea.js';
 export { FlintTransferList } from './transfer-list/flint-transfer-list.js';
+export type { TransferOption } from './transfer-list/flint-transfer-list.js';
 export { FlintBadge } from './badge/flint-badge.js';
 export { FlintAlert } from './alert/flint-alert.js';
 export { FlintSkeleton } from './skeleton/flint-skeleton.js';
@@ -82,6 +83,7 @@ export { FlintStepper, FlintStep, FlintStepLabel, FlintStepContent, FlintStepCon
 export { FlintTab, FlintTabList, FlintTabPanel, FlintTabs } from './tabs/flint-tabs.js';
 export { FlintBox } from './box/flint-box.js';
 export { FlintContainer } from './container/flint-container.js';
+export type { ContainerMaxWidth } from './container/flint-container.js';
 export { FlintGrid } from './grid/flint-grid.js';
 export type { Breakpoint, GridSize, ResponsiveValue } from './grid/flint-grid.js';
 export { FlintStack } from './stack/flint-stack.js';
@@ -93,6 +95,7 @@ export { FlintImageListItemBar } from './image-list/flint-image-list-item-bar.js
 export { FlintDatePicker, FlintDatePickerCalendar } from './date-picker/flint-date-picker.js';
 export { FlintDateField } from './date-field/flint-date-field.js';
 export { FlintDateRangePicker } from './date-range-picker/flint-date-range-picker.js';
+export type { DateRange, Shortcut } from './date-range-picker/date-range-helpers.js';
 export { FlintSingleInputDateRangeField } from './date-range-picker/flint-single-input-date-range-field.js';
 export { FlintDateRangeCalendar } from './date-range-picker/flint-date-range-calendar.js';
 export {

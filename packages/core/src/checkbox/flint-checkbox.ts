@@ -4,6 +4,11 @@ import { classMap } from 'lit/directives/class-map.js';
 import { FormAssociated } from '../mixins/form-associated.js';
 import uiCheckboxStyles from './flint-checkbox.css?inline';
 
+/**
+ * Checkbox: a form control for boolean selection.
+ *
+ * @fires flint-checkbox-change - Fired when the checked state changes.
+ */
 @customElement('flint-checkbox')
 export class FlintCheckbox extends FormAssociated(LitElement) {
     static styles = unsafeCSS(uiCheckboxStyles);

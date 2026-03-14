@@ -3,6 +3,12 @@ import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import uiTextFieldStyles from './flint-text-field.css?inline';
 
+/**
+ * Text Field: a styled text input with outlined/filled variants.
+ *
+ * @fires input - Fired on each keystroke as the value changes.
+ * @fires change - Fired when the input loses focus after the value has changed.
+ */
 @customElement('flint-text-field')
 export class FlintTextField extends LitElement {
     static styles = unsafeCSS(uiTextFieldStyles);

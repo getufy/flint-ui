@@ -7,6 +7,8 @@ import uiAccordionActionsStyles from './flint-accordion-actions.css?inline';
 
 /**
  * Accordion: the wrapper for grouping related components.
+ *
+ * @fires flint-accordion-change - Fired when the accordion's expanded state changes.
  */
 @customElement('flint-accordion')
 export class FlintAccordion extends LitElement {
@@ -65,6 +67,8 @@ export class FlintAccordion extends LitElement {
 
 /**
  * Accordion Summary: the wrapper for the Accordion header.
+ *
+ * @fires flint-accordion-toggle - Fired when the summary is clicked or activated via keyboard.
  */
 @customElement('flint-accordion-summary')
 export class FlintAccordionSummary extends LitElement {

@@ -11,6 +11,12 @@ const copyIcon = svg`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
 const successIcon = svg`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3.5 8.5 6.5 11.5 12.5 4.5"></polyline></svg>`;
 const errorIcon = svg`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="4" x2="12" y2="12"></line><line x1="12" y1="4" x2="4" y2="12"></line></svg>`;
 
+/**
+ * Copy Button: copies text to the clipboard with visual feedback.
+ *
+ * @fires flint-copy - Fired after a successful copy operation.
+ * @fires flint-copy-error - Fired when the copy operation fails.
+ */
 @customElement('flint-copy-button')
 export class FlintCopyButton extends LitElement {
     static override styles = unsafeCSS(styles);

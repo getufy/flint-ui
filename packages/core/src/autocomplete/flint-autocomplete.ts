@@ -8,6 +8,11 @@ export interface AutocompleteOption {
     value: string;
 }
 
+/**
+ * Autocomplete: a text input with a dropdown of selectable suggestions.
+ *
+ * @fires flint-autocomplete-change - Fired when the selected value changes.
+ */
 @customElement('flint-autocomplete')
 export class FlintAutocomplete extends LitElement {
     static styles = unsafeCSS(uiAutocompleteStyles);

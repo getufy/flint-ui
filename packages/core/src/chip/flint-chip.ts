@@ -4,6 +4,11 @@ import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import uiChipStyles from './flint-chip.css?inline';
 
+/**
+ * Chip: a compact element representing an input, attribute, or action.
+ *
+ * @fires flint-chip-delete - Fired when the chip's delete icon is clicked.
+ */
 @customElement('flint-chip')
 export class FlintChip extends LitElement {
     static styles = unsafeCSS(uiChipStyles);

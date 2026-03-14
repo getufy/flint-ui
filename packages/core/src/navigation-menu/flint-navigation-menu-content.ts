@@ -20,6 +20,8 @@ import { customElement, property } from 'lit/decorators.js';
  * @cssprop --flint-navigation-menu-content-gap - Gap between items (default: 12px)
  * @cssprop --flint-navigation-menu-content-min-width - Minimum width (default: 200px)
  * @cssprop --flint-navigation-menu-content-z-index - Z-index (default: 1000)
+ *
+ * @fires flint-navigation-menu-content-toggle - Fired when the content panel opens or closes.
  */
 @customElement('flint-navigation-menu-content')
 export class FlintNavigationMenuContent extends LitElement {

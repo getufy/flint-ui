@@ -3,6 +3,11 @@ import { customElement, property } from 'lit/decorators.js';
 import { FlintToggleButton } from './flint-toggle-button.js';
 import uiToggleButtonGroupStyles from './flint-toggle-button-group.css?inline';
 
+/**
+ * Toggle Button Group: manages exclusive or multi-select toggle buttons.
+ *
+ * @fires flint-toggle-button-group-change - Fired when the group's selected value(s) change.
+ */
 @customElement('flint-toggle-button-group')
 export class FlintToggleButtonGroup extends LitElement {
     static styles = unsafeCSS(uiToggleButtonGroupStyles);

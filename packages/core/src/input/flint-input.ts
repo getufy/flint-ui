@@ -6,6 +6,12 @@ import uiInputStyles from './flint-input.css?inline';
 
 let idCounter = 0;
 
+/**
+ * Input: a styled text input with label, help text, and error states.
+ *
+ * @fires flint-input-input - Fired on each keystroke as the value changes.
+ * @fires flint-input-change - Fired when the input loses focus after the value has changed.
+ */
 @customElement('flint-input')
 export class FlintInput extends FormAssociated(LitElement) {
     static styles = unsafeCSS(uiInputStyles);
