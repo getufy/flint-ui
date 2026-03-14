@@ -4,7 +4,7 @@
 
         .skeleton {
             display: block;
-            background-color: var(--ui-skeleton-bg, var(--ui-surface-3));
+            background-color: var(--ui-skeleton-bg, var(--ui-surface-3, rgba(0, 0, 0, 0.11)));
             position: relative;
             overflow: hidden;
         }

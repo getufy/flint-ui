@@ -38,7 +38,7 @@ import { UiSkeleton } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-skeleton-bg` | `var(--ui-surface-3` |
+| `--ui-skeleton-bg` | `var(--ui-surface-3, rgba(0, 0, 0, 0.11` |
 | `--ui-skeleton-bg-dark` | `rgba(255, 255, 255, 0.13` |
 | `--ui-skeleton-animation-duration` | `1.5s` |
 | `--ui-skeleton-wave-color` | `rgba(255, 255, 255, 0.4` |

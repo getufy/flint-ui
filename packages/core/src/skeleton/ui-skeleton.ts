@@ -69,6 +69,10 @@ export class UiSkeleton extends LitElement {
         const animClass = this.animation !== 'none' ? this.animation : '';
 
         const styles = {
+            display: 'block',
+            backgroundColor: 'var(--ui-skeleton-bg, var(--ui-surface-3, rgba(0, 0, 0, 0.11)))',
+            position: 'relative' as const,
+            overflow: 'hidden',
             width: this.width || (isText ? '100%' : ''),
             height: this.height || (isText ? '0.8em' : ''),
             marginTop: isText ? '0.3em' : '',
