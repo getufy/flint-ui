@@ -25,11 +25,11 @@ import { FlintAvatar } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `src` | `src` | `string` | `''` |  |
-| `alt` | `alt` | `string` | `''` |  |
-| `initials` | `initials` | `string` | `''` |  |
-| `variant` | `variant` | `'circle' \| 'square' \| 'rounded'` | `'circle'` |  |
-| `size` | `size` | `'small' \| 'medium' \| 'large' \| 'xlarge'` | `'medium'` |  |
+| `src` | `src` | `string` | `''` | URL of the avatar image. |
+| `alt` | `alt` | `string` | `''` | Alt text for the avatar image. |
+| `initials` | `initials` | `string` | `''` | Up to two characters displayed when no image is provided. |
+| `variant` | `variant` | `'circle' \| 'square' \| 'rounded'` | `'circle'` | The shape of the avatar. |
+| `size` | `size` | `'small' \| 'medium' \| 'large' \| 'xlarge'` | `'medium'` | The size of the avatar. |
 
 ### Slots
 

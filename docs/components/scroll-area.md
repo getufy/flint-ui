@@ -77,7 +77,7 @@ import { FlintScrollArea } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `type` | `type` | `'auto' \| 'always' \| 'scroll' \| 'hover'` | `'hover'` |  |
+| `type` | `type` | `'auto' \| 'always' \| 'scroll' \| 'hover'` | `'hover'` | Controls when scrollbars appear: 'hover' on hover, 'auto' on overflow, 'always' always, 'scroll' while scrolling. |
 | `dir` | `dir` | `'ltr' \| 'rtl'` | `'ltr'` | Text direction. `'rtl'` flips the vertical bar to the left side. |
 
 ### Slots
@@ -85,13 +85,13 @@ import { FlintScrollArea } from 'flint-ui';
 | Name | Description |
 | --- | --- |
 | `(default)` | Default slot for content |
-| `scrollbar` |  |
+| `scrollbar` | Optional explicit `flint-scroll-bar` elements for additional axes. |
 
 ### Methods
 
 | Method | Description |
 | --- | --- |
-| `scrollTo(optionsOrX?: ScrollToOptions \| number, y?: number)` |  |
-| `scrollBy(optionsOrX?: ScrollToOptions \| number, y?: number)` |  |
+| `scrollTo(optionsOrX?: ScrollToOptions \| number, y?: number)` | Scroll the viewport to an absolute position. |
+| `scrollBy(optionsOrX?: ScrollToOptions \| number, y?: number)` | Scroll the viewport by a relative amount. |
 
 ---

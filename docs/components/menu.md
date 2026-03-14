@@ -150,7 +150,7 @@ import { FlintMenu } from 'flint-ui';
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | `open` | `open` | `boolean` | `false` | Whether the menu is open/visible. |
-| `placement` | `placement` | `string` | `'bottom-start'` |  |
+| `placement` | `placement` | `string` | `'bottom-start'` | Menu placement relative to its anchor (e.g. bottom-start, bottom-end, top-start). |
 | `closeOnSelect` | `close-on-select` | `boolean` | `true` | When true, selecting an item automatically fires flint-menu-close. |
 | `scrollable` | `scrollable` | `boolean` | `false` | When true, constrains height to --flint-menu-max-height (default 300px) and enables scrolling. |
 

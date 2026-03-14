@@ -23,11 +23,11 @@ import { FlintGrid } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `container` | `container` | `boolean` | `false` |  |
-| `direction` | `direction` | `'row' \| 'row-reverse' \| 'column' \| 'column-reverse'` | `'row'` |  |
-| `wrap` | `wrap` | `'nowrap' \| 'wrap' \| 'wrap-reverse'` | `'wrap'` |  |
+| `container` | `container` | `boolean` | `false` | Makes this element a flex grid container. |
+| `direction` | `direction` | `'row' \| 'row-reverse' \| 'column' \| 'column-reverse'` | `'row'` | Flex direction of the container's children. |
+| `wrap` | `wrap` | `'nowrap' \| 'wrap' \| 'wrap-reverse'` | `'wrap'` | Controls whether items wrap to new lines. |
 | `columns` | `columns` | `number` | `12` | Total number of columns. Default is 12. |
-| `spacing` | `spacing` | `ResponsiveValue<number \| string>` | `0` |  |
+| `spacing` | `spacing` | `ResponsiveValue<number \| string>` | `0` | Gap between items (1 unit = 8px); accepts a number or responsive object. |
 
 ### Slots
 

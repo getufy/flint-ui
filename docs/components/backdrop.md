@@ -25,9 +25,9 @@ import { FlintBackdrop } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `open` | `open` | `boolean` | `false` |  |
-| `invisible` | `invisible` | `boolean` | `false` |  |
-| `container` | `container` | `boolean` | `false` |  |
+| `open` | `open` | `boolean` | `false` | Whether the backdrop is visible. |
+| `invisible` | `invisible` | `boolean` | `false` | If true, the backdrop overlay is transparent. |
+| `container` | `container` | `boolean` | `false` | If true, scopes the backdrop to its parent container instead of the viewport. |
 
 ### Events
 

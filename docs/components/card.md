@@ -131,16 +131,16 @@ import { FlintCardHeader } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `title` | `title` | `string` | `''` |  |
-| `subtitle` | `subtitle` | `string` | `''` |  |
+| `title` | `title` | `string` | `''` | Title text displayed in the card header. |
+| `subtitle` | `subtitle` | `string` | `''` | Subtitle text displayed below the title. |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
 | `(default)` | Default slot for content |
-| `avatar` |  |
-| `action` |  |
+| `avatar` | Slot for an avatar or icon displayed before the title. |
+| `action` | Slot for action elements displayed at the end of the header. |
 
 ### CSS Custom Properties
 
@@ -173,9 +173,9 @@ import { FlintCardMedia } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `image` | `image` | `string` | `''` |  |
-| `alt` | `alt` | `string` | `''` |  |
-| `height` | `height` | `string` | `''` |  |
+| `image` | `image` | `string` | `''` | URL of the image to display. |
+| `alt` | `alt` | `string` | `''` | Alt text for the image. |
+| `height` | `height` | `string` | `''` | Height of the media area (accepts numbers or CSS values). |
 
 ### Slots
 
@@ -214,8 +214,8 @@ import { FlintCard } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `variant` | `variant` | `'elevated' \| 'outlined' \| 'flat'` | `'elevated'` |  |
-| `interactive` | `interactive` | `boolean` | `false` |  |
+| `variant` | `variant` | `'elevated' \| 'outlined' \| 'flat'` | `'elevated'` | Visual style variant of the card. |
+| `interactive` | `interactive` | `boolean` | `false` | When true, adds hover and focus styles for clickable cards. |
 
 ### Slots
 

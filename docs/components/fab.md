@@ -27,10 +27,10 @@ import { FlintFab } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `extended` | `extended` | `boolean` | `false` |  |
-| `disabled` | `disabled` | `boolean` | `false` |  |
+| `extended` | `extended` | `boolean` | `false` | Shows the label text alongside the icon. |
+| `disabled` | `disabled` | `boolean` | `false` | Disables the button so it cannot be clicked. |
 | `label` | `label` | `string` | `'Action'` | Accessible label for icon-only (non-extended) FABs. |
-| `position` | `position` | `'bottom-right' \| 'bottom-left' \| 'top-right' \| 'top-left' \| 'static'` | `'bottom-right'` |  |
+| `position` | `position` | `'bottom-right' \| 'bottom-left' \| 'top-right' \| 'top-left' \| 'static'` | `'bottom-right'` | Fixed screen position of the FAB, or 'static' for normal flow. |
 
 ### Slots
 

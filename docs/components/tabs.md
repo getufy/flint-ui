@@ -27,25 +27,25 @@ import { FlintTab } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `value` | `value` | `string` | `''` |  |
-| `disabled` | `disabled` | `boolean` | `false` |  |
-| `selected` | `selected` | `boolean` | `false` |  |
-| `iconPosition` | `icon-position` | `'top' \| 'bottom' \| 'start' \| 'end'` | `'start'` |  |
-| `href` | `href` | `string` | `''` |  |
-| `fullWidth` | `full-width` | `boolean` | `false` |  |
+| `value` | `value` | `string` | `''` | Unique identifier for this tab. |
+| `disabled` | `disabled` | `boolean` | `false` | Prevents the tab from being selected or focused. |
+| `selected` | `selected` | `boolean` | `false` | Whether this tab is currently active. |
+| `iconPosition` | `icon-position` | `'top' \| 'bottom' \| 'start' \| 'end'` | `'start'` | Position of the icon slot relative to the tab label. |
+| `href` | `href` | `string` | `''` | Renders the tab as a link instead of a button. |
+| `fullWidth` | `full-width` | `boolean` | `false` | Stretches the tab to fill available space. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-tab-click` | `{ value: this.value }` |  |
+| `flint-tab-click` | `{ value: this.value }` | Fired when the tab is clicked. |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
 | `(default)` | Default slot for content |
-| `icon` |  |
+| `icon` | Slot for an icon to display alongside the tab label. |
 
 ### CSS Custom Properties
 
@@ -82,8 +82,8 @@ import { FlintTab } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `setTabIndex(n: number)` |  |
-| `focusInner()` |  |
+| `setTabIndex(n: number)` | Sets the tabindex on the inner button or anchor element. |
+| `focusInner()` | Moves focus to the inner button or anchor element. |
 
 ---
 
@@ -110,7 +110,7 @@ import { FlintTabPanel } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `value` | `value` | `string` | `''` |  |
+| `value` | `value` | `string` | `''` | Identifier matching a tab value to show/hide this panel. |
 
 ### Slots
 
@@ -149,17 +149,17 @@ import { FlintTabList } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` |  |
-| `variant` | `variant` | `'standard' \| 'fullWidth' \| 'scrollable'` | `'standard'` |  |
-| `centered` | `centered` | `boolean` | `false` |  |
-| `scrollButtons` | `scroll-buttons` | `'auto' \| 'false'` | `'auto'` |  |
-| `ariaLabel` | `aria-label` | `string` | `''` |  |
+| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout direction of the tab list. |
+| `variant` | `variant` | `'standard' \| 'fullWidth' \| 'scrollable'` | `'standard'` | Display mode for the tab list layout. |
+| `centered` | `centered` | `boolean` | `false` | Centers the tabs within the tab list. |
+| `scrollButtons` | `scroll-buttons` | `'auto' \| 'false'` | `'auto'` | Controls visibility of scroll buttons in scrollable mode. |
+| `ariaLabel` | `aria-label` | `string` | `''` | Accessible label for the tablist role. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-tab-click` | `{ value: tabs[idx].value }` |  |
+| `flint-tab-click` | `{ value: tabs[idx].value }` | Fired when a tab in the list is activated via keyboard navigation. |
 
 ### Slots
 
@@ -171,7 +171,7 @@ import { FlintTabList } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `syncIndicator()` |  |
+| `syncIndicator()` | Repositions the active tab indicator to match the selected tab. |
 
 ---
 
@@ -198,11 +198,11 @@ import { FlintTabs } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `value` | `value` | `string` | `''` |  |
-| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` |  |
-| `variant` | `variant` | `'standard' \| 'fullWidth' \| 'scrollable'` | `'standard'` |  |
-| `centered` | `centered` | `boolean` | `false` |  |
-| `scrollButtons` | `scroll-buttons` | `'auto' \| 'false'` | `'auto'` |  |
+| `value` | `value` | `string` | `''` | The currently active tab value. |
+| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout direction of the tabs. |
+| `variant` | `variant` | `'standard' \| 'fullWidth' \| 'scrollable'` | `'standard'` | Display mode for the tab list layout. |
+| `centered` | `centered` | `boolean` | `false` | Centers the tabs within the tab list. |
+| `scrollButtons` | `scroll-buttons` | `'auto' \| 'false'` | `'auto'` | Controls visibility of scroll buttons in scrollable mode. |
 | `textColor` | `text-color` | `string` | `'primary'` | 'primary' \| 'secondary' \| 'inherit' \| any CSS color |
 | `indicatorColor` | `indicator-color` | `string` | `'primary'` | 'primary' \| 'secondary' \| any CSS color |
 | `defaultValue` | `default-value` | `string` | `''` | Uncontrolled mode: initial value if `value` not set |
@@ -211,7 +211,7 @@ import { FlintTabs } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-tab-change` | `{ value: e.detail.value }` |  |
+| `flint-tab-change` | `{ value: e.detail.value }` | Fired when the active tab changes. |
 
 ### Slots
 

@@ -90,6 +90,6 @@ import { FlintPagination } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `map(item => {             if (item === 'start-ellipsis' \|\| item === 'end-ellipsis')` |  |
+| `map(item => {             if (item === 'start-ellipsis' \|\| item === 'end-ellipsis')` | Builds the list of pagination items from the current state. |
 
 ---

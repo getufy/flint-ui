@@ -80,10 +80,10 @@ import { FlintButton } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `variant` | `variant` | `'primary' \| 'secondary' \| 'destructive'` | `'primary'` |  |
-| `size` | `size` | `'small' \| 'medium' \| 'large'` | `'medium'` |  |
-| `disabled` | `disabled` | `boolean` | `false` |  |
-| `fullWidth` | `full-width` | `boolean` | `false` |  |
+| `variant` | `variant` | `'primary' \| 'secondary' \| 'destructive'` | `'primary'` | Visual style variant of the button. |
+| `size` | `size` | `'small' \| 'medium' \| 'large'` | `'medium'` | Size of the button. |
+| `disabled` | `disabled` | `boolean` | `false` | When true, disables the button and prevents interaction. |
+| `fullWidth` | `full-width` | `boolean` | `false` | When true, the button expands to fill its container width. |
 
 ### Slots
 
@@ -122,14 +122,14 @@ import { FlintToggleButtonGroup } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `value` | `value` | `string \| string[]` | `''` |  |
-| `exclusive` | `exclusive` | `boolean` | `true` |  |
+| `value` | `value` | `string \| string[]` | `''` | Currently selected value(s). |
+| `exclusive` | `exclusive` | `boolean` | `true` | When true, only one button can be selected at a time. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-toggle-button-group-change` | `{ value: this.value }` |  |
+| `flint-toggle-button-group-change` | `{ value: this.value }` | Fired when the selected value changes. |
 
 ### Slots
 
@@ -162,16 +162,16 @@ import { FlintToggleButton } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `selected` | `selected` | `boolean` | `false` |  |
-| `disabled` | `disabled` | `boolean` | `false` |  |
-| `value` | `value` | `string` | `''` |  |
-| `size` | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` |  |
+| `selected` | `selected` | `boolean` | `false` | Whether the toggle button is currently selected. |
+| `disabled` | `disabled` | `boolean` | `false` | When true, disables the button and prevents interaction. |
+| `value` | `value` | `string` | `''` | Value associated with this toggle button. |
+| `size` | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of the toggle button. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-toggle-button-change` | `{ value: this.value, selected: !this.selected }` |  |
+| `flint-toggle-button-change` | `{ value: this.value, selected: !this.selected }` | Fired when the button is clicked, with the new selected state. |
 
 ### Slots
 

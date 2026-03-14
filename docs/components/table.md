@@ -38,8 +38,8 @@ import { FlintTablePagination } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `page-change` | `{ page: next }` |  |
-| `rows-per-page-change` | `{ rowsPerPage: val }` |  |
+| `page-change` | `{ page: next }` | Fired when the current page changes. |
+| `rows-per-page-change` | `{ rowsPerPage: val }` | Fired when the rows-per-page selection changes. |
 
 ### CSS Custom Properties
 
@@ -76,8 +76,8 @@ import { FlintTableSortLabel } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `active` | `active` | `boolean` | `false` |  |
-| `direction` | `direction` | `'asc' \| 'desc'` | `'asc'` |  |
+| `active` | `active` | `boolean` | `false` | Whether this column is the currently sorted column. |
+| `direction` | `direction` | `'asc' \| 'desc'` | `'asc'` | Sort direction indicator (ascending or descending). |
 
 ### Slots
 
@@ -112,8 +112,8 @@ import { FlintTableContainer } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `shadow` | `shadow` | `boolean` | `false` |  |
-| `stickyHeader` | `sticky-header` | `boolean` | `false` |  |
+| `shadow` | `shadow` | `boolean` | `false` | Applies a stronger box-shadow elevation. |
+| `stickyHeader` | `sticky-header` | `boolean` | `false` | Sticks the table header to the top on scroll. |
 
 ### Slots
 
@@ -154,7 +154,7 @@ import { FlintTable } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `size` | `size` | `'medium' \| 'small'` | `'medium'` |  |
+| `size` | `size` | `'medium' \| 'small'` | `'medium'` | Cell padding density. |
 
 ### Slots
 
@@ -244,7 +244,7 @@ import { FlintTableBody } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `striped` | `striped` | `boolean` | `false` |  |
+| `striped` | `striped` | `boolean` | `false` | Applies alternating row background shading. |
 
 ### Slots
 
@@ -279,8 +279,8 @@ import { FlintTableRow } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `selected` | `selected` | `boolean` | `false` |  |
-| `hover` | `hover` | `boolean` | `false` |  |
+| `selected` | `selected` | `boolean` | `false` | Highlights the row as selected. |
+| `hover` | `hover` | `boolean` | `false` | Forces the hover highlight on the row. |
 
 ### Slots
 

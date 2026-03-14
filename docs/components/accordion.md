@@ -34,7 +34,7 @@ import { FlintAccordion } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-accordion-change` | `{ expanded: this.expanded }` |  |
+| `flint-accordion-change` | `{ expanded: this.expanded }` | Fired when the accordion is toggled open or closed. |
 
 ### Slots
 
@@ -83,14 +83,14 @@ import { FlintAccordionSummary } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-accordion-toggle` | — |  |
+| `flint-accordion-toggle` | — | Fired when the summary header is clicked or activated via keyboard. |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
 | `(default)` | Default slot for content |
-| `expandIcon` |  |
+| `expandIcon` | Custom icon to replace the default expand/collapse chevron. |
 
 ---
 

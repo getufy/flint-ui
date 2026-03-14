@@ -25,10 +25,10 @@ import { FlintTooltip } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `label` | `label` | `string` | `''` |  |
-| `placement` | `placement` | `Placement` | `'top'` |  |
-| `arrow` | `arrow` | `boolean` | `false` |  |
-| `disabled` | `disabled` | `boolean` | `false` |  |
+| `label` | `label` | `string` | `''` | Text content displayed inside the tooltip. |
+| `placement` | `placement` | `Placement` | `'top'` | Preferred position of the tooltip relative to the trigger. |
+| `arrow` | `arrow` | `boolean` | `false` | Shows an arrow pointing toward the trigger element. |
+| `disabled` | `disabled` | `boolean` | `false` | Prevents the tooltip from appearing. |
 | `openDelay` | `open-delay` | `number` | `0` | Delay in ms before showing the tooltip. |
 | `closeDelay` | `close-delay` | `number` | `0` | Delay in ms before hiding the tooltip. |
 

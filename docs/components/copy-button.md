@@ -24,7 +24,7 @@ import { FlintCopyButton } from 'flint-ui';
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | `value` | `value` | `string` | `''` | The text value to copy. |
-| `from` | `from` | `string` | `''` |  |
+| `from` | `from` | `string` | `''` | ID reference to another element to copy text from. |
 | `disabled` | `disabled` | `boolean` | `false` | Disables the copy button. |
 | `copyLabel` | `copy-label` | `string` | `'Copy'` | Label shown in the tooltip (idle state). |
 | `successLabel` | `success-label` | `string` | `'Copied!'` | Label shown in the tooltip after successful copy. |
@@ -36,16 +36,16 @@ import { FlintCopyButton } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-copy-error` | `{ reason: 'empty' }` |  |
-| `flint-copy` | `{ value: text }` |  |
+| `flint-copy-error` | `{ reason: 'empty' }` | Fired when the copy operation fails or the value is empty. |
+| `flint-copy` | `{ value: text }` | Fired after a successful copy to the clipboard. |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `success-icon` |  |
-| `error-icon` |  |
-| `copy-icon` |  |
+| `success-icon` | Custom icon shown after a successful copy. |
+| `error-icon` | Custom icon shown when a copy error occurs. |
+| `copy-icon` | Custom icon shown in the idle state. |
 
 ### CSS Custom Properties
 

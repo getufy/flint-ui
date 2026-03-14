@@ -25,9 +25,9 @@ import { FlintPaper } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `elevation` | `elevation` | `number` | `1` |  |
+| `elevation` | `elevation` | `number` | `1` | Shadow depth; supported values are 0, 1, 2, 3, 4, 6, 8, 12, 16, 24. |
 | `square` | `square` | `boolean` | `false` | * If true, the paper will have square corners (border-radius: 0). |
-| `variant` | `variant` | `'elevated' \| 'outlined' \| 'flat'` | `'elevated'` |  |
+| `variant` | `variant` | `'elevated' \| 'outlined' \| 'flat'` | `'elevated'` | Visual style: elevated adds shadow, outlined adds a border, flat removes both. |
 
 ### Slots
 

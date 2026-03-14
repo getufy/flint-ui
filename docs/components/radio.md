@@ -28,20 +28,20 @@ import { FlintRadioGroup } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `label` | `label` | `string` | `''` |  |
-| `name` | `name` | `string` | `''` |  |
-| `value` | `value` | `string` | `''` |  |
-| `defaultValue` | `default-value` | `string` | `''` |  |
-| `disabled` | `disabled` | `boolean` | `false` |  |
-| `required` | `required` | `boolean` | `false` |  |
-| `orientation` | `orientation` | `RadioOrientation` | `'vertical'` |  |
-| `size` | `size` | `RadioSize` | `'md'` |  |
+| `label` | `label` | `string` | `''` | Accessible label for the radio group (aria-label). |
+| `name` | `name` | `string` | `''` | Form control name, propagated to child radios. |
+| `value` | `value` | `string` | `''` | Currently selected radio value. |
+| `defaultValue` | `default-value` | `string` | `''` | Initial value for uncontrolled mode; ignored after first render. |
+| `disabled` | `disabled` | `boolean` | `false` | Disables all radios in the group. |
+| `required` | `required` | `boolean` | `false` | Marks the group as required for form validation. |
+| `orientation` | `orientation` | `RadioOrientation` | `'vertical'` | Layout direction of the radio items. |
+| `size` | `size` | `RadioSize` | `'md'` | Size of the radio buttons (sm, md, or lg). |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-radio-group-change` | `{ value }` |  |
+| `flint-radio-group-change` | `{ value }` | Fired when the selected radio value changes. |
 
 ### Slots
 
@@ -86,19 +86,19 @@ import { FlintRadio } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `checked` | `checked` | `boolean` | `false` |  |
-| `disabled` | `disabled` | `boolean` | `false` |  |
-| `required` | `required` | `boolean` | `false` |  |
-| `name` | `name` | `string` | `''` |  |
-| `value` | `value` | `string` | `''` |  |
-| `label` | `label` | `string` | `''` |  |
-| `size` | `size` | `RadioSize` | `'md'` |  |
+| `checked` | `checked` | `boolean` | `false` | Whether this radio is currently selected. |
+| `disabled` | `disabled` | `boolean` | `false` | Disables this radio option. |
+| `required` | `required` | `boolean` | `false` | Marks this radio as required for form validation. |
+| `name` | `name` | `string` | `''` | Form control name for the underlying input. |
+| `value` | `value` | `string` | `''` | Value submitted when this radio is selected. |
+| `label` | `label` | `string` | `''` | Visible text label displayed next to the radio. |
+| `size` | `size` | `RadioSize` | `'md'` | Size of the radio button (sm, md, or lg). |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-radio-select` | `{ value: this.value }` |  |
+| `flint-radio-select` | `{ value: this.value }` | Fired when this radio is selected by the user. |
 
 ### Slots
 
@@ -127,6 +127,6 @@ import { FlintRadio } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `focus(options?: FocusOptions)` |  |
+| `focus(options?: FocusOptions)` | Moves focus to the internal radio input element. |
 
 ---

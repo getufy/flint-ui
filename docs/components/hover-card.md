@@ -127,6 +127,6 @@ import { FlintHoverCard } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `isOpen(): boolean` |  |
+| `isOpen(): boolean` | Returns whether the hover card is currently open. |
 
 ---

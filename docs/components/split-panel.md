@@ -24,30 +24,30 @@ import { FlintSplitPanel } from 'flint-ui';
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | `position` | `position` | `number` | `50` | Divider position as a percentage (0–100). Defaults to 50. |
-| `positionInPixels` | `position-in-pixels` | `number` | `-1` |  |
+| `positionInPixels` | `position-in-pixels` | `number` | `-1` | Divider position in pixels; takes precedence over `position` when >= 0. |
 | `vertical` | `vertical` | `boolean` | `false` | Vertical layout — start/end panels are stacked top/bottom. |
 | `disabled` | `disabled` | `boolean` | `false` | Prevent the divider from being repositioned. |
-| `snap` | `snap` | `string \| SnapFunction` | `''` |  |
+| `snap` | `snap` | `string \| SnapFunction` | `''` | Snap positions (e.g. `"100px 50%"` or `"repeat(100px)"`) or a custom snap function. |
 | `snapThreshold` | `snap-threshold` | `number` | `12` | How close (px) the divider must be to a snap point before snapping. Default: 12. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-split-panel-reposition` | — |  |
+| `flint-split-panel-reposition` | — | Fired when the divider position changes. Detail: `{ position, positionInPixels }`. |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `start` |  |
-| `divider` |  |
-| `end` |  |
+| `start` | Content for the start (left or top) panel. |
+| `divider` | Custom handle icon rendered inside the divider. |
+| `end` | Content for the end (right or bottom) panel. |
 
 ### Methods
 
 | Method | Description |
 | --- | --- |
-| `host([vertical])` |  |
+| `host([vertical])` | CSS host selector that switches the layout to vertical (top/bottom). |
 
 ---

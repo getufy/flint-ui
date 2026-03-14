@@ -36,7 +36,7 @@ import { FlintBreadcrumbs } from 'flint-ui';
 | --- | --- |
 | `(default)` | Breadcrumb items (links or text), distributed in order. |
 | `separator` | Custom separator element rendered between each item. |
-| `breadcrumb-item-${index}` |  |
+| `breadcrumb-item-${index}` | Named slot auto-assigned to each breadcrumb item by index. |
 
 ### CSS Custom Properties
 

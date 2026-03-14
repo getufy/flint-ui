@@ -26,18 +26,18 @@ import { FlintSelect } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `label` | `label` | `string` | `''` |  |
-| `options` | `options` | `SelectOption[]` | `[]` |  |
-| `value` | `value` | `string[]` | `[]` |  |
-| `multiple` | `multiple` | `boolean` | `false` |  |
-| `placeholder` | `placeholder` | `string` | `'Select an option'` |  |
-| `disabled` | `disabled` | `boolean` | `false` |  |
-| `readonly` | `readonly` | `boolean` | `false` |  |
-| `required` | `required` | `boolean` | `false` |  |
-| `error` | `error` | `boolean` | `false` |  |
-| `errorMessage` | `error-message` | `string` | `''` |  |
-| `name` | `name` | `string` | `''` |  |
-| `size` | `size` | `SelectSize` | `'md'` |  |
+| `label` | `label` | `string` | `''` | Label text displayed above the select trigger. |
+| `options` | `options` | `SelectOption[]` | `[]` | Array of selectable options, each with label, value, and optional disabled flag. |
+| `value` | `value` | `string[]` | `[]` | Currently selected value(s) as an array of option value strings. |
+| `multiple` | `multiple` | `boolean` | `false` | Allow selecting more than one option. |
+| `placeholder` | `placeholder` | `string` | `'Select an option'` | Placeholder text shown when no option is selected. |
+| `disabled` | `disabled` | `boolean` | `false` | Disable the select, preventing interaction. |
+| `readonly` | `readonly` | `boolean` | `false` | Make the select read-only, preventing changes. |
+| `required` | `required` | `boolean` | `false` | Mark the field as required for form validation. |
+| `error` | `error` | `boolean` | `false` | Display the select in an error state. |
+| `errorMessage` | `error-message` | `string` | `''` | Error message text shown below the select when in error state. |
+| `name` | `name` | `string` | `''` | Form field name used when submitting form data. |
+| `size` | `size` | `SelectSize` | `'md'` | Visual size of the select trigger: 'sm', 'md', or 'lg'. |
 | `defaultValue` | `default-value` | `string` | `''` | Sets the initial value in uncontrolled mode (single-select only). |
 
 ### Events
