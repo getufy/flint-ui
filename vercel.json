@@ -1,5 +1,5 @@
 {
   "framework": null,
-  "buildCommand": "npm run build-storybook && npm run docs:build && cp -r storybook-static docs/.vitepress/dist/storybook",
+  "buildCommand": "npm run build-storybook && npm run docs:build && cp -r packages/core/storybook-static docs/.vitepress/dist/storybook",
   "outputDirectory": "docs/.vitepress/dist"
 }
