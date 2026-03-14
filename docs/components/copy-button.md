@@ -69,3 +69,9 @@ import { FlintCopyButton } from 'flint-ui';
 | `--flint-tooltip-text-color` | — |
 
 ---
+
+## Accessibility
+
+- **Keyboard**: Enter/Space triggers copy.
+- **ARIA**: `role="button"` with status feedback.
+- **Screen reader**: announces copy success/failure.

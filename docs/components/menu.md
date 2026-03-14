@@ -175,3 +175,9 @@ import { FlintMenu } from 'flint-ui';
 | `--flint-menu-max-height` | `300px` |
 
 ---
+
+## Accessibility
+
+- **Keyboard**: Arrow keys navigate items, Enter selects, Escape closes.
+- **ARIA**: `role="menu"` on container, `role="menuitem"` on items.
+- **Screen reader**: announces menu items and state.

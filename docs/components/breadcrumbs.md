@@ -53,3 +53,8 @@ import { FlintBreadcrumbs } from 'flint-ui';
 | `--flint-primary-color` | — |
 
 ---
+
+## Accessibility
+
+- **ARIA**: `role="navigation"` with `aria-label="Breadcrumb"`, current page marked with `aria-current="page"`.
+- **Screen reader**: announces breadcrumb trail.

@@ -48,3 +48,8 @@ import { FlintFormatDate } from 'flint-ui';
 | `--flint-format-date-font-size` | `inherit` |
 
 ---
+
+## Accessibility
+
+- **ARIA**: uses `<time>` element with `datetime` attribute.
+- **Screen reader**: announces formatted date.

@@ -93,3 +93,9 @@ import { FlintPagination } from 'flint-ui';
 | `map(item => {             if (item === 'start-ellipsis' \|\| item === 'end-ellipsis')` |  |
 
 ---
+
+## Accessibility
+
+- **Keyboard**: Tab moves between page buttons, Enter activates.
+- **ARIA**: `role="navigation"` with `aria-label`, current page has `aria-current="page"`.
+- **Screen reader**: announces page numbers and current page.

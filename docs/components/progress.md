@@ -92,3 +92,8 @@ import { FlintLinearProgress } from 'flint-ui';
 | `--flint-linear-progress-color` | — |
 
 ---
+
+## Accessibility
+
+- **ARIA**: `role="progressbar"` with `aria-valuenow`, `aria-valuemin`, `aria-valuemax`. Indeterminate mode omits `aria-valuenow`.
+- **Screen reader**: announces progress percentage.

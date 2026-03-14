@@ -192,3 +192,9 @@ import { FlintToggleButton } from 'flint-ui';
 | `--flint-toggle-button-selected-border-color` | `var(--flint-primary-color` |
 
 ---
+
+## Accessibility
+
+- **Keyboard**: Space/Enter activates.
+- **ARIA**: native `<button>` in shadow DOM, `disabled` disables inner button.
+- **Screen reader**: announces as button with label from slot content.

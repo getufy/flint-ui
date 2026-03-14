@@ -190,3 +190,9 @@ import { FlintDialogActions } from 'flint-ui';
 | `(default)` | Default slot for content |
 
 ---
+
+## Accessibility
+
+- **Keyboard**: Escape closes (topmost in stack).
+- **ARIA**: `role="dialog"`, `aria-modal="true"`, `aria-labelledby` linked to title.
+- **Screen reader**: announces dialog title on open.

@@ -10,7 +10,7 @@ hero:
       link: /components/button
     - theme: alt
       text: Live Storybook
-      link: https://lite-framework.vercel.app/storybook/
+      link: https://flintui.vercel.app/storybook/
 features:
   - title: 75+ Components
     details: Buttons, data tables, date pickers, tree views, carousels, and more.

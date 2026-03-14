@@ -111,3 +111,9 @@ import { FlintDatePicker } from 'flint-ui';
 | `change` | — | { detail: { value: string } } when the date changes |
 
 ---
+
+## Accessibility
+
+- **Keyboard**: Arrow keys navigate calendar grid, Enter selects date, Escape closes popup.
+- **ARIA**: calendar grid uses `role="grid"` with `aria-selected` on chosen date.
+- **Screen reader**: announces month, year, and selected date.

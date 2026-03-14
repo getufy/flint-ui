@@ -70,3 +70,8 @@ import { FlintSnackbar } from 'flint-ui';
 | `close()` | Closes the snackbar. |
 
 ---
+
+## Accessibility
+
+- **ARIA**: `role="status"` with `aria-live="polite"`.
+- **Screen reader**: announces snackbar message without interrupting.

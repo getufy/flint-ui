@@ -47,3 +47,8 @@ import { FlintPaper } from 'flint-ui';
 | `--flint-surface-background-flat` | — |
 
 ---
+
+## Accessibility
+
+- **ARIA**: generic surface, no ARIA roles.
+- **Screen reader**: content in reading order.

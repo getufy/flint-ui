@@ -60,3 +60,9 @@ import { FlintDrawer } from 'flint-ui';
 | `--flint-border-color` | — |
 
 ---
+
+## Accessibility
+
+- **Keyboard**: Escape closes, Tab trapped within drawer.
+- **ARIA**: `role="dialog"` with `aria-modal="true"`.
+- **Screen reader**: announces drawer content.

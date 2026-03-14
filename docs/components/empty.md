@@ -206,3 +206,8 @@ import { FlintEmpty } from 'flint-ui';
 | `--flint-empty-max-width` | `480px` |
 
 ---
+
+## Accessibility
+
+- **ARIA**: uses `role="status"` to convey empty state.
+- **Screen reader**: announces the empty state message.

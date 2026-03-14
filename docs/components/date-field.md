@@ -69,3 +69,9 @@ import { FlintDateField } from 'flint-ui';
 | `clear()` | Clears all three segments and fires 'clear'. |
 
 ---
+
+## Accessibility
+
+- **Keyboard**: Arrow keys adjust date segments, Tab moves between segments.
+- **ARIA**: each segment has `role="spinbutton"`.
+- **Screen reader**: announces segment label and value.

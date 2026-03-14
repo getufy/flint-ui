@@ -60,3 +60,9 @@ import { FlintSlider } from 'flint-ui';
 | `--flint-text-color-muted` | — |
 
 ---
+
+## Accessibility
+
+- **Keyboard**: Arrow keys adjust value, Home/End for min/max.
+- **ARIA**: `role="slider"` with `aria-valuenow`, `aria-valuemin`, `aria-valuemax`.
+- **Screen reader**: announces current value.

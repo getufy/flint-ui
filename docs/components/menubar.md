@@ -604,3 +604,9 @@ import { FlintMenubar } from 'flint-ui';
 | `closeAll()` | Close all menus. |
 
 ---
+
+## Accessibility
+
+- **Keyboard**: Arrow keys navigate across menus, Enter opens submenus.
+- **ARIA**: `role="menubar"` with `role="menuitem"` children.
+- **Screen reader**: announces menu structure.

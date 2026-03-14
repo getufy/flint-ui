@@ -124,3 +124,9 @@ import { FlintSpeedDial } from 'flint-ui';
 | `--flint-speed-dial-bg-hover` | `var(--flint-primary-color-hover` |
 
 ---
+
+## Accessibility
+
+- **Keyboard**: Enter/Space opens dial, Arrow keys navigate actions, Escape closes.
+- **ARIA**: trigger has `aria-expanded`, actions have `role="menuitem"`.
+- **Screen reader**: announces expanded state and action labels.

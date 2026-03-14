@@ -85,3 +85,8 @@ import { FlintKbdGroup } from 'flint-ui';
 | `--flint-kbd-group-gap` | `4px` |
 
 ---
+
+## Accessibility
+
+- **ARIA**: semantic `<kbd>` element in shadow DOM.
+- **Screen reader**: announces keyboard shortcut text.

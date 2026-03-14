@@ -248,4 +248,4 @@ Many components expose their own `--flint-*` custom properties for fine-grained 
 
 These component-specific tokens are documented on each component's individual documentation page. Check the component page for the full list of available properties and their defaults.
 
-The full set of component-specific tokens can also be found in the [theme.css](https://github.com) source file under `packages/core/src/theme.css`.
+The full set of component-specific tokens can also be found in the `theme.css` source file under `packages/core/src/theme.css`.

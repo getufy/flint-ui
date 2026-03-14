@@ -207,3 +207,9 @@ import { FlintCarousel } from 'flint-ui';
 | `total()` |  |
 
 ---
+
+## Accessibility
+
+- **Keyboard**: Arrow keys navigate slides, dots are focusable.
+- **ARIA**: `role="region"` with `aria-roledescription="carousel"`, slides labeled with `aria-label`.
+- **Screen reader**: announces slide position.

@@ -58,3 +58,9 @@ import { FlintImageComparer } from 'flint-ui';
 | `--flint-shadow-lg` | — |
 
 ---
+
+## Accessibility
+
+- **Keyboard**: Arrow keys adjust comparison slider, Home/End for 0%/100%.
+- **ARIA**: slider has `role="slider"` with `aria-valuenow`.
+- **Screen reader**: announces comparison percentage.

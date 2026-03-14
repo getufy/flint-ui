@@ -29,6 +29,7 @@ export default defineConfig({
       { text: 'Theming', link: '/theming' },
       { text: 'React', link: '/react' },
       { text: 'Accessibility', link: '/accessibility' },
+      { text: 'Browser Support', link: '/browser-support' },
       { text: 'Storybook', link: 'https://flintui.vercel.app/storybook/' },
     ],
     sidebar: {

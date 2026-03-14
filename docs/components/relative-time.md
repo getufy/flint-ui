@@ -43,3 +43,8 @@ import { FlintRelativeTime } from 'flint-ui';
 | `--flint-relative-time-white-space` | `nowrap` |
 
 ---
+
+## Accessibility
+
+- **ARIA**: uses `<time>` element with `datetime` attribute.
+- **Screen reader**: announces relative time description.
