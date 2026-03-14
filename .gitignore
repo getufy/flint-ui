@@ -7,5 +7,9 @@ coverage
 # homepage build output
 dist-homepage
 
+# VitePress cache
+docs/.vitepress/cache
+docs/.vitepress/dist
+
 # stryker temp files
 .stryker-tmp
