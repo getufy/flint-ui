@@ -7,6 +7,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const sidebar = JSON.parse(readFileSync(resolve(__dirname, 'sidebar.json'), 'utf-8'));
 
 export default defineConfig({
+  base: '/flint-ui/',
   title: 'Flint UI 🔥',
   description: 'Documentation for Flint UI web components',
   appearance: true,
@@ -16,7 +17,7 @@ export default defineConfig({
     ['meta', { property: 'og:title', content: 'Flint UI' }],
     ['meta', { property: 'og:description', content: 'A comprehensive set of accessible, customizable web components built with LitElement.' }],
     ['meta', { property: 'og:type', content: 'website' }],
-    ['meta', { property: 'og:url', content: 'https://flintui.vercel.app' }],
+    ['meta', { property: 'og:url', content: 'https://getufy.github.io/flint-ui' }],
     ['meta', { property: 'og:site_name', content: 'Flint UI' }],
     ['meta', { name: 'twitter:card', content: 'summary' }],
     ['meta', { name: 'twitter:title', content: 'Flint UI' }],
@@ -30,7 +31,7 @@ export default defineConfig({
       { text: 'React', link: '/react' },
       { text: 'Accessibility', link: '/accessibility' },
       { text: 'Browser Support', link: '/browser-support' },
-      { text: 'Storybook', link: 'https://flintui.vercel.app/storybook/' },
+      { text: 'Storybook', link: 'https://getufy.github.io/flint-ui/storybook/' },
     ],
     sidebar: {
       '/components/': sidebar,
@@ -43,7 +44,7 @@ export default defineConfig({
   vite: {
     resolve: {
       alias: {
-        'flint-ui': resolve(__dirname, '../../packages/core/src/index.ts'),
+        '@getufy/flint-ui': resolve(__dirname, '../../packages/core/src/index.ts'),
       },
     },
   },
