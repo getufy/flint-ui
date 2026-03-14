@@ -2,5 +2,8 @@
   "framework": null,
   "buildCommand": "npm run build-storybook && npm run docs:build && cp -r packages/core/storybook-static docs/.vitepress/dist/storybook",
   "outputDirectory": "docs/.vitepress/dist",
-  "trailingSlash": true
+  "rewrites": [
+    { "source": "/storybook", "destination": "/storybook/index.html" },
+    { "source": "/storybook/", "destination": "/storybook/index.html" }
+  ]
 }

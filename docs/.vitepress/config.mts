@@ -15,7 +15,7 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       { text: 'Components', link: '/components/button' },
       { text: 'React', link: '/react' },
-      { text: 'Storybook', link: '/storybook/' },
+      { text: 'Storybook', link: '/storybook' },
     ],
     sidebar: {
       '/components/': sidebar,
