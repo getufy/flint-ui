@@ -11,7 +11,7 @@ const config: StorybookConfig = {
     "@storybook/addon-docs"
   ],
   "framework": "@storybook/web-components-vite",
-  viteFinal(config) {
+  viteFinal(config, { configType }) {
     // Disable tree-shaking so that customElements.define() calls from
     // @customElement decorators are preserved in the production build.
     config.build = config.build || {};
@@ -19,7 +19,8 @@ const config: StorybookConfig = {
     config.build.rollupOptions.treeshake = false;
 
     // Set base path for GitHub Pages deployment (/flint-ui/storybook/)
-    if (process.env.CI) {
+    // Only for production builds — not during dev/test serving, which needs root base path
+    if (process.env.CI && configType === 'PRODUCTION') {
       config.base = '/flint-ui/storybook/';
     }
 
