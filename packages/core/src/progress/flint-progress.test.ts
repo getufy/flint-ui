@@ -130,7 +130,7 @@ describe('flint-progress components', () => {
         it('color prop sets CSS custom property on root', async () => {
             const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress color="success"></flint-circular-progress>`);
             const root = el.shadowRoot!.querySelector('.circular-root') as HTMLElement;
-            expect(root.style.getPropertyValue('--flint-circular-progress-color')).toBe('#22c55e');
+            expect(root.style.getPropertyValue('--flint-circular-progress-color')).toBe('var(--flint-success-color, #22c55e)');
         });
 
         it('reflects variant and value as attributes', async () => {
@@ -234,7 +234,7 @@ describe('flint-progress components', () => {
         it('color prop sets CSS custom property on root', async () => {
             const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress color="error"></flint-linear-progress>`);
             const root = el.shadowRoot!.querySelector('.root') as HTMLElement;
-            expect(root.style.getPropertyValue('--flint-linear-progress-color')).toBe('#ef4444');
+            expect(root.style.getPropertyValue('--flint-linear-progress-color')).toBe('var(--flint-error-color, #ef4444)');
         });
 
         it('reflects variant and value as attributes', async () => {
