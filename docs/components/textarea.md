@@ -77,6 +77,6 @@ import { FlintTextarea } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `textareaElement(): HTMLTextAreaElement \| null` | Direct access to the internal <textarea> element. |
+| `textareaElement(): HTMLTextAreaElement \| null` | Direct access to the internal &lt;textarea&gt; element. |
 
 ---

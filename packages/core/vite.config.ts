@@ -14,7 +14,7 @@ export default defineConfig({
             entry: discoverEntries(),
             formats: ['es'],
         },
-        rollupOptions: {
+        rolldownOptions: {
             external: [/^lit/],
             output: {
                 entryFileNames: '[name].js',

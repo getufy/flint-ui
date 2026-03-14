@@ -22,16 +22,16 @@ const meta: Meta = {
 | \`alignItems\` | \`align-items\` | \`'flex-start' \\| 'center' \\| 'flex-end' \\| 'stretch' \\| 'baseline'\` | — | Cross-axis alignment of grid items. |
 | \`justifyContent\` | \`justify-content\` | \`'flex-start' \\| 'center' \\| 'flex-end' \\| 'space-between' \\| 'space-around' \\| 'space-evenly'\` | — | Main-axis alignment of grid items. |
 | \`columns\` | \`columns\` | \`number\` | \`12\` | Total number of columns. Default is 12. |
-| \`spacing\` | \`spacing\` | \`ResponsiveValue<number \\| string>\` | \`0\` | Spacing between items. 1 unit = 8px. Accepts a number, a string pixel value, or a responsive object. |
-| \`rowSpacing\` | \`row-spacing\` | \`ResponsiveValue<number \\| string>\` | — | Row spacing override; takes precedence over \`spacing\` for the row axis. |
-| \`columnSpacing\` | \`column-spacing\` | \`ResponsiveValue<number \\| string>\` | — | Column spacing override; takes precedence over \`spacing\` for the column axis. |
+| \`spacing\` | \`spacing\` | \`ResponsiveValue&lt;number \\| string&gt;\` | \`0\` | Spacing between items. 1 unit = 8px. Accepts a number, a string pixel value, or a responsive object. |
+| \`rowSpacing\` | \`row-spacing\` | \`ResponsiveValue&lt;number \\| string&gt;\` | — | Row spacing override; takes precedence over \`spacing\` for the row axis. |
+| \`columnSpacing\` | \`column-spacing\` | \`ResponsiveValue&lt;number \\| string&gt;\` | — | Column spacing override; takes precedence over \`spacing\` for the column axis. |
 | \`xs\` | \`xs\` | \`GridSize\` | — | Number of columns to span at the xs breakpoint. |
 | \`sm\` | \`sm\` | \`GridSize\` | — | Number of columns to span at the sm breakpoint. |
 | \`md\` | \`md\` | \`GridSize\` | — | Number of columns to span at the md breakpoint. |
 | \`lg\` | \`lg\` | \`GridSize\` | — | Number of columns to span at the lg breakpoint. |
 | \`xl\` | \`xl\` | \`GridSize\` | — | Number of columns to span at the xl breakpoint. |
-| \`offset\` | \`offset\` | \`Partial<Record<Breakpoint, number \\| 'auto'>>\` | — | Offset per breakpoint, expressed in column units or 'auto'. |
-| \`order\` | \`order\` | \`ResponsiveValue<number>\` | — | Flex order. Supports responsive values so items can be reordered at specific breakpoints (e.g. push a sidebar above content on mobile). |
+| \`offset\` | \`offset\` | \`Partial&lt;Record&lt;Breakpoint, number \\| 'auto'&gt;&gt;\` | — | Offset per breakpoint, expressed in column units or 'auto'. |
+| \`order\` | \`order\` | \`ResponsiveValue&lt;number&gt;\` | — | Flex order. Supports responsive values so items can be reordered at specific breakpoints (e.g. push a sidebar above content on mobile). |
 
 #### Slots
 

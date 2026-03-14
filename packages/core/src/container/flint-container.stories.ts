@@ -16,7 +16,7 @@ const meta: Meta = {
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`disableGutters\` | \`disable-gutters\` | \`boolean\` | \`false\` | Determine the max-width of the container. The container width grows with the size of the screen. Set to \`false\` to disable \`maxWidth\`. / attribute: 'max-width', reflect: true, converter: { fromAttribute: (value: string \\| null): ContainerMaxWidth => value === null \\|\\| value === 'false' ? false : value as ContainerMaxWidth, toAttribute: (value: ContainerMaxWidth): string \\| null => value === false ? null : value, }, }) maxWidth: ContainerMaxWidth = 'lg'; /** If \`true\`, the left and right padding is removed. |
+| \`disableGutters\` | \`disable-gutters\` | \`boolean\` | \`false\` | Determine the max-width of the container. The container width grows with the size of the screen. Set to \`false\` to disable \`maxWidth\`. / attribute: 'max-width', reflect: true, converter: { fromAttribute: (value: string \\| null): ContainerMaxWidth =&gt; value === null \\|\\| value === 'false' ? false : value as ContainerMaxWidth, toAttribute: (value: ContainerMaxWidth): string \\| null =&gt; value === false ? null : value, }, }) maxWidth: ContainerMaxWidth = 'lg'; /** If \`true\`, the left and right padding is removed. |
 | \`fixed\` | \`fixed\` | \`boolean\` | \`false\` | Set the max-width to match the min-width of the current breakpoint. This logic is handled via CSS media queries. |
 
 #### Slots

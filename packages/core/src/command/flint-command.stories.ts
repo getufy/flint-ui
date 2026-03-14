@@ -77,7 +77,7 @@ A single interactive option inside a command menu.
 |---|---|
 | \`(default)\` | Item label text. |
 | \`icon\` | Leading icon (16×16). |
-| \`shortcut\` | Trailing shortcut hint; prefer \`<flint-command-shortcut>\`. |
+| \`shortcut\` | Trailing shortcut hint; prefer \`&lt;flint-command-shortcut&gt;\`. |
 
 #### Methods
 

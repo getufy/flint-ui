@@ -92,7 +92,7 @@ A single interactive option inside a menubar dropdown.
 
 | Name | Description |
 |---|---|
-| \`(default)\` | Item label text plus optional \`<flint-menubar-shortcut>\`. |
+| \`(default)\` | Item label text plus optional \`&lt;flint-menubar-shortcut&gt;\`. |
 
 #### Methods
 
@@ -400,7 +400,7 @@ A visually persistent horizontal menu bar, common in desktop applications. Hosts
 
 | Name | Description |
 |---|---|
-| \`(default)\` | One or more \`<flint-menubar-menu>\` elements. |
+| \`(default)\` | One or more \`&lt;flint-menubar-menu&gt;\` elements. |
 
 #### CSS Custom Properties
 
