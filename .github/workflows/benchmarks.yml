@@ -1,0 +1,34 @@
+name: Performance Benchmarks
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "packages/core/src/**/*.ts"
+  workflow_dispatch:
+
+concurrency:
+  group: benchmarks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  benchmark:
+    name: Run Benchmarks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Run benchmarks
+        run: npm run bench
+      - name: Upload benchmark results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-results
+          path: packages/core/bench-results/
+          retention-days: 30

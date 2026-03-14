@@ -32,6 +32,12 @@
     "docs:preview": "vitepress preview docs",
     "size": "size-limit",
     "size:check": "size-limit --limit",
+    "bench": "npm run bench -w packages/core",
+    "test:snapshots": "npm run test:snapshots -w packages/core",
+    "mutation-test": "npm run stryker -w packages/core",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "changeset publish",
     "prepare": "husky"
   },
   "lint-staged": {
@@ -40,6 +46,8 @@
     ]
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.6.0",
+    "@changesets/cli": "^2.30.0",
     "@size-limit/esbuild": "^11.2.0",
     "@size-limit/file": "^11.2.0",
     "husky": "^9.1.7",

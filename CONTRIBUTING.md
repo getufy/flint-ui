@@ -244,6 +244,26 @@ The project uses ESLint with `@typescript-eslint`, `eslint-plugin-lit`, and `esl
 
 The project uses [Husky](https://typicode.github.io/husky/) with [lint-staged](https://github.com/lint-staged/lint-staged). On commit, ESLint runs automatically on staged `.ts` files in `packages/core/src/`.
 
+## Changesets
+
+This project uses [Changesets](https://github.com/changesets/changesets) to manage versioning and changelogs.
+
+After making changes that should be released, create a changeset:
+
+```bash
+npx changeset
+```
+
+This will prompt you to:
+
+1. **Select the affected packages** — choose `@getufy/flint-ui` and/or `@getufy/flint-ui-react` (both packages are versioned together).
+2. **Choose a semver bump type** — `patch` for bug fixes, `minor` for new features, `major` for breaking changes.
+3. **Write a summary** — a short description of the change that will appear in the changelog.
+
+This creates a markdown file in the `.changeset/` directory. **Commit this file along with your PR.** When the PR is merged, the changesets bot will automatically open a "Version Packages" PR that bumps versions and updates changelogs. Merging that PR triggers the npm publish.
+
+Not every PR needs a changeset — skip it for docs-only changes, test improvements, or internal refactors that don't affect the published packages.
+
 ## Pull Requests
 
 1. Create a feature branch from `main`.

@@ -1,4 +1,4 @@
-import { LitElement, unsafeCSS, html, nothing, type PropertyValues } from 'lit';
+import { LitElement, unsafeCSS, html, type PropertyValues } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import uiCommandShortcutStyles from './flint-command-shortcut.css?inline';
@@ -530,7 +530,7 @@ export class FlintCommandDialog extends LitElement {
         return html`
             <div
                 class=${classMap({ backdrop: true, open: this.open })}
-                aria-hidden=${this.open ? nothing : 'true'}
+                ?inert=${!this.open}
                 @click=${this._handleBackdropClick}
             >
                 <div
