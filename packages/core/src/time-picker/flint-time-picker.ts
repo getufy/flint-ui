@@ -315,7 +315,7 @@ export class FlintDigitalClock extends LitElement {
       <div class="clock" role="listbox" aria-label="Select time">
         ${repeat(items, v => v, v => html`
           <button class=${classMap({ item: true, selected: v === this.value })}
-            role="option" aria-selected=${v === this.value}
+            role="option" aria-selected=${v === this.value ? 'true' : nothing}
             @click=${() => this._select(v)}
             @keydown=${(e: KeyboardEvent) => this._onItemKeyDown(e, v)}
           >${this._label(v)}</button>
@@ -714,9 +714,9 @@ const FIELD_SHARED = css`
   }
   .btn { font-family:inherit; font-size:.875rem; font-weight:600; padding:6px 14px;
     border:none; border-radius:6px; cursor:pointer; transition:background .12s; }
-  .btn-cancel { background:transparent; color:var(--flint-text-color-muted,#6b7280); }
+  .btn-cancel { background:transparent; color:var(--flint-text-color-muted,#4b5563); }
   .btn-cancel:hover { background:var(--flint-hover-color, rgba(0,0,0,.06)); }
-  .btn-ok { background:var(--flint-primary-color,#3b82f6); color:var(--flint-text-color-on-primary, #fff); }
+  .btn-ok { background:var(--flint-primary-color,#2563eb); color:var(--flint-text-color-on-primary, #fff); }
   .btn-ok:hover { background:var(--flint-primary-color-hover,#2563eb); }
 `;
 

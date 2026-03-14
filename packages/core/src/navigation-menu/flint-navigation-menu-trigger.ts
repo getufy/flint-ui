@@ -228,7 +228,7 @@ export class FlintNavigationMenuTrigger extends LitElement {
                 class="trigger"
                 part="button"
                 ?disabled=${this.disabled}
-                aria-expanded=${this._isOpen}
+                aria-expanded=${this._isOpen ? 'true' : 'false'}
                 aria-haspopup="true"
                 aria-controls=${this.contentId}
             >

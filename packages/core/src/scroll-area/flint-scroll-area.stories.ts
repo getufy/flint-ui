@@ -133,7 +133,7 @@ export const Horizontal: Story = {
     name: 'Horizontal',
     render: () => html`
         <div style="padding: 24px; max-width: 640px;">
-            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563; font-family: system-ui;">
                 Add <code>flint-scroll-bar</code> with <code>orientation="horizontal"</code>
                 for a horizontal scrollbar.
             </p>
@@ -155,7 +155,7 @@ export const Horizontal: Story = {
                             </div>
                             <figcaption style="
                                 padding-top: 8px; font-size: 0.75rem;
-                                color: var(--flint-text-color-muted, #6b7280);
+                                color: var(--flint-text-color-muted, #4b5563);
                                 font-family: system-ui;
                             ">
                                 Photo by
@@ -177,7 +177,7 @@ export const AlwaysVisible: Story = {
     name: 'Always Visible',
     render: () => html`
         <div style="padding: 24px;">
-            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563; font-family: system-ui;">
                 <code>type="always"</code> — scrollbar is visible at all times.
             </p>
             <flint-scroll-area
@@ -209,7 +209,7 @@ export const TypeShowcase: Story = {
             <div style="display: flex; gap: 24px; flex-wrap: wrap; padding: 24px;">
                 ${types.map(type => html`
                     <div style="display: flex; flex-direction: column; gap: 8px;">
-                        <code style="font-size: 0.75rem; color: #6b7280; font-family: monospace;">
+                        <code style="font-size: 0.75rem; color: #4b5563; font-family: monospace;">
                             type="${type}"
                         </code>
                         <flint-scroll-area
@@ -237,7 +237,7 @@ export const RTL: Story = {
     name: 'RTL Direction',
     render: () => html`
         <div style="padding: 24px;">
-            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563; font-family: system-ui;">
                 <code>dir="rtl"</code> — vertical scrollbar moves to the left side.
             </p>
             <flint-scroll-area
@@ -266,7 +266,7 @@ export const CustomTokens: Story = {
     name: 'Custom Tokens',
     render: () => html`
         <div style="padding: 24px;">
-            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563; font-family: system-ui;">
                 Override <code>--flint-scrollbar-*</code> tokens on the host element.
             </p>
             <flint-scroll-area
@@ -302,7 +302,7 @@ export const BothAxes: Story = {
     name: 'Both Axes',
     render: () => html`
         <div style="padding: 24px;">
-            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563; font-family: system-ui;">
                 Horizontal overflow is detected automatically. Add a
                 <code>flint-scroll-bar[orientation="horizontal"]</code> to show a custom bar.
             </p>
@@ -332,7 +332,7 @@ export const Nested: Story = {
     name: 'Nested Scroll Areas',
     render: () => html`
         <div style="padding: 24px;">
-            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563; font-family: system-ui;">
                 Scroll areas can be nested. Each manages its own scrollbars independently.
             </p>
             <flint-scroll-area
@@ -361,7 +361,7 @@ export const Nested: Story = {
                                 Inner scroll area
                             </h5>
                             ${Array.from({ length: 20 }, (_, j) => html`
-                                <div style="font-size: 0.8125rem; font-family: system-ui; color: var(--flint-text-color-muted, #6b7280); padding: 2px 0;">
+                                <div style="font-size: 0.8125rem; font-family: system-ui; color: var(--flint-text-color-muted, #4b5563); padding: 2px 0;">
                                     Nested item ${j + 1}
                                 </div>
                             `)}
@@ -386,7 +386,7 @@ export const DarkMode: Story = {
             class="flint-theme-dark"
             style="
                 padding: 24px; background: #1a1a2e; border-radius: 8px;
-                --flint-text-color: #e5e7eb; --flint-text-color-muted: #9ca3af;
+                --flint-text-color: #9ca3af; --flint-text-color-muted: #9ca3af;
                 --flint-border-color: #374151; --flint-surface-3: #1f2937;
                 --flint-scrollbar-thumb-color: rgba(255,255,255,0.35);
                 --flint-scrollbar-thumb-hover-color: rgba(255,255,255,0.50);
@@ -420,7 +420,7 @@ export const ScrollType: Story = {
     name: 'Scroll Type (auto-hide)',
     render: () => html`
         <div style="padding: 24px;">
-            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563; font-family: system-ui;">
                 <code>type="scroll"</code> — scrollbar appears only while actively scrolling,
                 then fades after 600ms.
             </p>
@@ -464,7 +464,7 @@ export const ChatExample: Story = {
         ];
         return html`
             <div style="padding: 24px;">
-                <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+                <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563; font-family: system-ui;">
                     A chat window using <code>type="auto"</code> — scrollbar visible when content overflows.
                 </p>
                 <div style="width: 320px; border: 1px solid var(--flint-border-color, #e4e4e7); border-radius: 8px; overflow: hidden;">
@@ -477,7 +477,7 @@ export const ChatExample: Story = {
                                 <div style="display: flex; gap: 8px; align-items: flex-start;">
                                     <div style="
                                         flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
-                                        background: ${m.from === 'Alice' ? 'var(--flint-primary-color, #3b82f6)' : '#6b7280'};
+                                        background: ${m.from === 'Alice' ? 'var(--flint-primary-color, #2563eb)' : '#4b5563'};
                                         display: flex; align-items: center; justify-content: center;
                                         color: white; font-size: 0.6875rem; font-weight: 600; font-family: system-ui;
                                     ">${m.from[0]}</div>
@@ -486,7 +486,7 @@ export const ChatExample: Story = {
                                             <span style="font-size: 0.8125rem; font-weight: 600; font-family: system-ui; color: var(--flint-text-color, #111827);">
                                                 ${m.from}
                                             </span>
-                                            <span style="font-size: 0.6875rem; color: #9ca3af; font-family: system-ui;">
+                                            <span style="font-size: 0.6875rem; color: #4b5563; font-family: system-ui;">
                                                 ${m.time}
                                             </span>
                                         </div>

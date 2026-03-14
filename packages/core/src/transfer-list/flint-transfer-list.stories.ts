@@ -281,7 +281,7 @@ export const Controlled: Story = {
               if (output) output.textContent = JSON.stringify(e.detail.value);
           }}
         ></flint-transfer-list>
-        <div style="font-family: monospace; font-size: 0.875rem; color: #71717a;">
+        <div style="font-family: monospace; font-size: 0.875rem; color: #4b5563;">
           value: <span id="controlled-output">["1","3"]</span>
         </div>
       </div>
@@ -292,7 +292,7 @@ export const Controlled: Story = {
 export const Accessibility: Story = {
     render: () => html`
     <div style="padding: 20px;">
-      <p style="font-family: system-ui; font-size: 0.875rem; color: #71717a; margin: 0 0 16px;">
+      <p style="font-family: system-ui; font-size: 0.875rem; color: #4b5563; margin: 0 0 16px;">
         Lists use <code>role="listbox"</code>, items use <code>role="option"</code> with
         <code>aria-selected</code>. Action buttons have descriptive <code>aria-label</code> attributes.
       </p>

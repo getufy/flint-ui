@@ -382,7 +382,6 @@ describe('flint-single-input-date-range-field', () => {
         key(el, '3');
         await el.updateComplete;
 
-        const btn = el.shadowRoot!.querySelector('.icon-btn');
         // May or may not be visible depending on internal state; just check rendering
         // The button renders when _hasAnyValue() is true
         expect(el.value[0]).not.toBe('');

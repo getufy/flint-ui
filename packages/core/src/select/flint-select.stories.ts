@@ -370,7 +370,7 @@ export const LargeOptionList: Story = {
 export const Controlled: Story = {
   render: () => html`
     <div style="max-width: 400px; padding: 20px;">
-      <p style="font-size: 0.875rem; margin: 0 0 12px; color: #6b7280;">
+      <p style="font-size: 0.875rem; margin: 0 0 12px; color: #4b5563;">
         Parent owns state — selection reflected in the paragraph below.
       </p>
       <div
@@ -428,7 +428,7 @@ export const CustomStyling: Story = {
         placeholder="Pick a fruit"
         .options=${defaultOptions}
         style="
-          --flint-select-focus-color: #8b5cf6;
+          --flint-select-focus-color: #7c3aed;
           --flint-select-radius: 24px;
           --flint-select-border: #c4b5fd;
           --flint-font-family: Georgia, serif;
@@ -462,7 +462,7 @@ export const InForm: Story = {
           .options=${defaultOptions}
         ></flint-select>
         <flint-button type="submit">Submit</flint-button>
-        <p id="form-output" style="font-size: 0.875rem; color: #6b7280;"></p>
+        <p id="form-output" style="font-size: 0.875rem; color: #4b5563;"></p>
       </form>
     </div>
   `,

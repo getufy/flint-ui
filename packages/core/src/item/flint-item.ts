@@ -57,7 +57,7 @@ export class FlintItemDescription extends LitElement {
  *   - `image`   — fixed 40×40 clipping box for thumbnails.
  *
  * @cssprop --flint-item-media-icon-bg    - Icon variant background (default: `#f3f4f6`).
- * @cssprop --flint-item-media-icon-color - Icon variant foreground (default: `#6b7280`).
+ * @cssprop --flint-item-media-icon-color - Icon variant foreground (default: `#4b5563`).
  */
 @customElement('flint-item-media')
 export class FlintItemMedia extends LitElement {

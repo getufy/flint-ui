@@ -211,7 +211,7 @@ function onRangeChange(e: Event) {
 export const Desktop: Story = {
     name: 'Desktop Picker',
     render: (args) => wrap(html`
-    <p style="font-size:.85rem;color:#6b7280;margin:0 0 16px;">
+    <p style="font-size:.85rem;color:#4b5563;margin:0 0 16px;">
       Click the field to open the dual-month calendar popover.
       Select a start date, then an end date.
     </p>
@@ -269,7 +269,7 @@ export const Mobile: Story = {
     name: 'Mobile Picker (Modal)',
     args: { variant: 'mobile', label: 'Trip Dates' },
     render: (args) => wrap(html`
-    <p style="font-size:.85rem;color:#6b7280;margin:0 0 16px;">
+    <p style="font-size:.85rem;color:#4b5563;margin:0 0 16px;">
       On touch devices the calendar opens in a full modal with Cancel / OK buttons.
     </p>
     <flint-date-range-picker
@@ -334,7 +334,7 @@ export const Static: Story = {
     args: { variant: 'static' },
     render: (args) => html`
     <div style="padding:32px;font-family:Inter,sans-serif;">
-      <p style="font-size:.85rem;color:#6b7280;margin:0 0 16px;">
+      <p style="font-size:.85rem;color:#4b5563;margin:0 0 16px;">
         The static variant renders both calendars inline — no popover, no text field.
       </p>
       <flint-date-range-picker
@@ -397,7 +397,7 @@ export const WithShortcuts: Story = {
     name: 'With Shortcuts',
     args: { shortcuts: true, label: 'Report Period' },
     render: (args) => wrap(html`
-    <p style="font-size:.85rem;color:#6b7280;margin:0 0 16px;">
+    <p style="font-size:.85rem;color:#4b5563;margin:0 0 16px;">
       Predefined shortcuts let users select common ranges with a single click.
     </p>
     <flint-date-range-picker
@@ -463,7 +463,7 @@ export const StaticWithShortcuts: Story = {
     args: { variant: 'static', shortcuts: true },
     render: (args) => html`
     <div style="padding:32px;font-family:Inter,sans-serif;">
-      <p style="font-size:.85rem;color:#6b7280;margin:0 0 16px;">
+      <p style="font-size:.85rem;color:#4b5563;margin:0 0 16px;">
         Static calendar with a shortcuts panel on the left.
       </p>
       <flint-date-range-picker
@@ -529,7 +529,7 @@ export const ControlledValue: Story = {
         let currentRange: DateRange = ['2025-06-01', '2025-06-14'];
         return html`
       <div style="padding:48px;font-family:Inter,sans-serif;">
-        <p style="font-size:.85rem;color:#6b7280;margin:0 0 16px;">
+        <p style="font-size:.85rem;color:#4b5563;margin:0 0 16px;">
           The parent controls the value. Changing the range updates the display below.
         </p>
         <flint-date-range-picker
@@ -585,7 +585,7 @@ export const ControlledValue: Story = {
 export const Uncontrolled: Story = {
     name: 'Uncontrolled (No Initial Value)',
     render: () => wrap(html`
-    <p style="font-size:.85rem;color:#6b7280;margin:0 0 16px;">
+    <p style="font-size:.85rem;color:#4b5563;margin:0 0 16px;">
       The component manages its own state. The parent only reacts to <code>flint-date-range-picker-change</code> events.
     </p>
     <flint-date-range-picker
@@ -708,7 +708,7 @@ export const WithMinMax: Story = {
         const max = new Date(today);
         max.setDate(today.getDate() + 60);
         return wrap(html`
-      <p style="font-size:.85rem;color:#6b7280;margin:0 0 16px;">
+      <p style="font-size:.85rem;color:#4b5563;margin:0 0 16px;">
         Only dates from <strong>today</strong> to <strong>60 days ahead</strong> are selectable.
       </p>
       <flint-date-range-picker
@@ -731,22 +731,22 @@ export const AllVariants: Story = {
       <flint-stack direction="column" gap="48px" alignItems="flex-start">
 
         <div>
-          <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;color:#6b7280;letter-spacing:.05em;margin:0 0 12px;">Desktop (Popover)</p>
+          <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;color:#4b5563;letter-spacing:.05em;margin:0 0 12px;">Desktop (Popover)</p>
           <flint-date-range-picker label="Check-in / Check-out" @flint-date-range-picker-change=${onRangeChange}></flint-date-range-picker>
         </div>
 
         <div>
-          <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;color:#6b7280;letter-spacing:.05em;margin:0 0 12px;">Desktop + Shortcuts</p>
+          <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;color:#4b5563;letter-spacing:.05em;margin:0 0 12px;">Desktop + Shortcuts</p>
           <flint-date-range-picker label="Report Period" shortcuts @flint-date-range-picker-change=${onRangeChange}></flint-date-range-picker>
         </div>
 
         <div>
-          <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;color:#6b7280;letter-spacing:.05em;margin:0 0 12px;">Mobile (Modal)</p>
+          <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;color:#4b5563;letter-spacing:.05em;margin:0 0 12px;">Mobile (Modal)</p>
           <flint-date-range-picker label="Trip Dates" variant="mobile" @flint-date-range-picker-change=${onRangeChange}></flint-date-range-picker>
         </div>
 
         <div>
-          <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;color:#6b7280;letter-spacing:.05em;margin:0 0 12px;">Static</p>
+          <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;color:#4b5563;letter-spacing:.05em;margin:0 0 12px;">Static</p>
           <flint-date-range-picker variant="static" shortcuts @flint-date-range-picker-change=${onRangeChange}></flint-date-range-picker>
         </div>
 
@@ -764,7 +764,7 @@ export const SingleInputField: Story = {
         <h3 style="margin:0 0 16px;font-size:1rem;font-weight:600;color:#111827;">
           SingleInputDateRangeField
         </h3>
-        <p style="margin:0 0 16px;font-size:.85rem;color:#6b7280;">
+        <p style="margin:0 0 16px;font-size:.85rem;color:#4b5563;">
           Six independently-editable keyboard segments: month/day/year × 2.
           Use ↑↓ to increment, ←→ to navigate between segments, Esc to clear.
         </p>
@@ -781,7 +781,7 @@ export const SingleInputField: Story = {
       </div>
 
       <div>
-        <p style="margin:0 0 10px;font-size:.8rem;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.04em;">With value</p>
+        <p style="margin:0 0 10px;font-size:.8rem;font-weight:600;color:#4b5563;text-transform:uppercase;letter-spacing:.04em;">With value</p>
         <flint-single-input-date-range-field
           label="Pre-filled Range"
           .value=${['2025-06-01', '2025-06-28'] as DateRange}
@@ -790,14 +790,14 @@ export const SingleInputField: Story = {
 
       <flint-stack direction="row" gap="24px" style="flex-wrap:wrap;">
         <div>
-          <p style="margin:0 0 10px;font-size:.8rem;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.04em;">Disabled</p>
+          <p style="margin:0 0 10px;font-size:.8rem;font-weight:600;color:#4b5563;text-transform:uppercase;letter-spacing:.04em;">Disabled</p>
           <flint-single-input-date-range-field
             .value=${['2025-01-01', '2025-01-31'] as DateRange}
             disabled
           ></flint-single-input-date-range-field>
         </div>
         <div>
-          <p style="margin:0 0 10px;font-size:.8rem;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.04em;">Error</p>
+          <p style="margin:0 0 10px;font-size:.8rem;font-weight:600;color:#4b5563;text-transform:uppercase;letter-spacing:.04em;">Error</p>
           <flint-single-input-date-range-field
             label="Period"
             .value=${['2025-05-01', '2025-04-01'] as DateRange}
@@ -862,7 +862,7 @@ export const DateRangeCalendar: Story = {
     render: () => html`
     <div style="padding:32px;font-family:Inter,sans-serif;">
       <h3 style="margin:0 0 16px;font-size:1rem;font-weight:600;color:#111827;">DateRangeCalendar</h3>
-      <p style="margin:0 0 16px;font-size:.85rem;color:#6b7280;">
+      <p style="margin:0 0 16px;font-size:.85rem;color:#4b5563;">
         The core dual-month calendar. First click sets the start date,
         second click sets the end date. Hover shows the range preview.
       </p>
@@ -922,7 +922,7 @@ export const DateRangeCalendar: Story = {
 export const MobileWithShortcuts: Story = {
     name: 'Mobile + Shortcuts',
     render: () => wrap(html`
-    <p style="font-size:.85rem;color:#6b7280;margin:0 0 16px;">
+    <p style="font-size:.85rem;color:#4b5563;margin:0 0 16px;">
       Mobile modal with predefined shortcuts on the left side.
     </p>
     <flint-date-range-picker
@@ -979,7 +979,7 @@ export const MobileWithShortcuts: Story = {
 export const SameDayRange: Story = {
     name: 'Same-Day Range (Start = End)',
     render: () => wrap(html`
-    <p style="font-size:.85rem;color:#6b7280;margin:0 0 16px;">
+    <p style="font-size:.85rem;color:#4b5563;margin:0 0 16px;">
       When start and end are the same date both endpoints share a single cell (no stripe).
     </p>
     <flint-date-range-picker
@@ -1015,7 +1015,7 @@ export const CrossMonthRange: Story = {
     name: 'Cross-Month Range',
     render: () => html`
     <div style="padding:32px;font-family:Inter,sans-serif;">
-      <p style="font-size:.85rem;color:#6b7280;margin:0 0 16px;">
+      <p style="font-size:.85rem;color:#4b5563;margin:0 0 16px;">
         A range that spans across two months — the stripe connects across both panels.
       </p>
       <flint-date-range-picker
@@ -1057,7 +1057,7 @@ export const CrossYearRange: Story = {
     name: 'Cross-Year Range',
     render: () => html`
     <div style="padding:32px;font-family:Inter,sans-serif;">
-      <p style="font-size:.85rem;color:#6b7280;margin:0 0 16px;">
+      <p style="font-size:.85rem;color:#4b5563;margin:0 0 16px;">
         A range spanning the December → January year boundary (navigate with ‹ ›).
       </p>
       <flint-date-range-picker
@@ -1098,7 +1098,7 @@ export const CrossYearRange: Story = {
 export const ReadOnlyMobile: Story = {
     name: 'Read Only (Mobile)',
     render: () => wrap(html`
-    <p style="font-size:.85rem;color:#6b7280;margin:0 0 16px;">
+    <p style="font-size:.85rem;color:#4b5563;margin:0 0 16px;">
       In read-only mode, tapping the mobile field does <strong>not</strong> open the picker.
     </p>
     <flint-date-range-picker
@@ -1145,7 +1145,7 @@ export const StaticWithMinMax: Story = {
         max.setDate(today.getDate() + 30);
         return html`
       <div style="padding:32px;font-family:Inter,sans-serif;">
-        <p style="font-size:.85rem;color:#6b7280;margin:0 0 16px;">
+        <p style="font-size:.85rem;color:#4b5563;margin:0 0 16px;">
           Static calendar — only the next <strong>30 days</strong> are selectable.
         </p>
         <flint-date-range-picker
@@ -1165,7 +1165,7 @@ export const FieldReadOnly: Story = {
     render: () => html`
     <flint-stack direction="column" gap="24px" style="padding:48px;font-family:Inter,sans-serif;">
       <div>
-        <p style="margin:0 0 8px;font-size:.8rem;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.04em;">Read Only</p>
+        <p style="margin:0 0 8px;font-size:.8rem;font-weight:600;color:#4b5563;text-transform:uppercase;letter-spacing:.04em;">Read Only</p>
         <flint-single-input-date-range-field
           label="Confirmed Period"
           .value=${['2025-06-01', '2025-06-28'] as DateRange}
@@ -1173,7 +1173,7 @@ export const FieldReadOnly: Story = {
         ></flint-single-input-date-range-field>
       </div>
       <div>
-        <p style="margin:0 0 8px;font-size:.8rem;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.04em;">Read Only with Helper</p>
+        <p style="margin:0 0 8px;font-size:.8rem;font-weight:600;color:#4b5563;text-transform:uppercase;letter-spacing:.04em;">Read Only with Helper</p>
         <flint-single-input-date-range-field
           label="Locked Range"
           .value=${['2025-08-01', '2025-08-15'] as DateRange}
@@ -1191,18 +1191,18 @@ export const FieldStates: Story = {
     render: () => html`
     <flint-stack direction="column" gap="28px" style="padding:48px;font-family:Inter,sans-serif;">
       <div>
-        <p style="margin:0 0 8px;font-size:.8rem;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:.04em;">Default (empty)</p>
+        <p style="margin:0 0 8px;font-size:.8rem;font-weight:600;color:#4b5563;text-transform:uppercase;letter-spacing:.04em;">Default (empty)</p>
         <flint-single-input-date-range-field label="Select a range"></flint-single-input-date-range-field>
       </div>
       <div>
-        <p style="margin:0 0 8px;font-size:.8rem;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:.04em;">With value</p>
+        <p style="margin:0 0 8px;font-size:.8rem;font-weight:600;color:#4b5563;text-transform:uppercase;letter-spacing:.04em;">With value</p>
         <flint-single-input-date-range-field
           label="Vacation"
           .value=${['2025-07-01', '2025-07-14'] as DateRange}
         ></flint-single-input-date-range-field>
       </div>
       <div>
-        <p style="margin:0 0 8px;font-size:.8rem;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:.04em;">Error</p>
+        <p style="margin:0 0 8px;font-size:.8rem;font-weight:600;color:#4b5563;text-transform:uppercase;letter-spacing:.04em;">Error</p>
         <flint-single-input-date-range-field
           label="Project Window"
           .value=${['2025-05-15', '2025-05-01'] as DateRange}
@@ -1211,7 +1211,7 @@ export const FieldStates: Story = {
         ></flint-single-input-date-range-field>
       </div>
       <div>
-        <p style="margin:0 0 8px;font-size:.8rem;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:.04em;">Disabled</p>
+        <p style="margin:0 0 8px;font-size:.8rem;font-weight:600;color:#4b5563;text-transform:uppercase;letter-spacing:.04em;">Disabled</p>
         <flint-single-input-date-range-field
           label="Unavailable"
           .value=${['2025-01-01', '2025-01-31'] as DateRange}
@@ -1219,7 +1219,7 @@ export const FieldStates: Story = {
         ></flint-single-input-date-range-field>
       </div>
       <div>
-        <p style="margin:0 0 8px;font-size:.8rem;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:.04em;">Read Only</p>
+        <p style="margin:0 0 8px;font-size:.8rem;font-weight:600;color:#4b5563;text-transform:uppercase;letter-spacing:.04em;">Read Only</p>
         <flint-single-input-date-range-field
           label="Locked"
           .value=${['2025-03-01', '2025-03-31'] as DateRange}
@@ -1236,7 +1236,7 @@ export const CalendarPreSelected: Story = {
     render: () => html`
     <div style="padding:32px;font-family:Inter,sans-serif;">
       <h3 style="margin:0 0 16px;font-size:1rem;font-weight:600;color:#111827;">Pre-selected Range</h3>
-      <p style="margin:0 0 16px;font-size:.85rem;color:#6b7280;">
+      <p style="margin:0 0 16px;font-size:.85rem;color:#4b5563;">
         Calendar initialised with a range already selected. Click a date to start a new range.
       </p>
       <flint-date-range-calendar
@@ -1322,7 +1322,7 @@ export const CustomShortcuts: Story = {
         ];
 
         return wrap(html`
-      <p style="font-size:.85rem;color:#6b7280;margin:0 0 16px;">
+      <p style="font-size:.85rem;color:#4b5563;margin:0 0 16px;">
         Custom shortcut items — override the built-in set.
       </p>
       <flint-date-range-picker

@@ -514,11 +514,11 @@ export class FlintResizableHandle extends LitElement {
       transition: background var(--flint-resizable-handle-transition, 150ms) ease;
     }
     :host(:hover) {
-      background: var(--flint-resizable-handle-hover-bg, var(--flint-primary-color, #3b82f6));
+      background: var(--flint-resizable-handle-hover-bg, var(--flint-primary-color, #2563eb));
     }
     :host(:focus-visible) {
-      background: var(--flint-resizable-handle-focus-bg, var(--flint-primary-color, #3b82f6));
-      outline: 2px solid var(--flint-resizable-handle-focus-bg, var(--flint-primary-color, #3b82f6));
+      background: var(--flint-resizable-handle-focus-bg, var(--flint-primary-color, #2563eb));
+      outline: 2px solid var(--flint-resizable-handle-focus-bg, var(--flint-primary-color, #2563eb));
       outline-offset: 1px;
     }
     :host([orientation='horizontal']) {

@@ -338,7 +338,7 @@ export const AdjustableLatency: Story = {
         <flint-button @click=${rebuild} style="font-size:13px;">Reload tree</flint-button>
       </flint-stack>
 
-      <p style="font-size:13px;color:#6b7280;margin-bottom:12px;">
+      <p style="font-size:13px;color:#4b5563;margin-bottom:12px;">
         Move the slider and click <strong>Reload tree</strong> to apply a new
         latency. The lazy cache is cleared so every node re-fetches its children.
       </p>

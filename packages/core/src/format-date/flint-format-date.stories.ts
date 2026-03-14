@@ -157,27 +157,27 @@ export const DateTimeFormatting: Story = {
         return html`
             <div style="display: flex; flex-direction: column; gap: 8px; font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
                 <div style="display: flex; align-items: center; gap: 16px;">
-                    <code style="min-width: 220px; color: #6b7280;">year=numeric month=long day=numeric</code>
+                    <code style="min-width: 220px; color: #4b5563;">year=numeric month=long day=numeric</code>
                     <flint-format-date .date=${date} year="numeric" month="long" day="numeric"></flint-format-date>
                 </div>
                 <div style="display: flex; align-items: center; gap: 16px;">
-                    <code style="min-width: 220px; color: #6b7280;">hour=numeric minute=numeric</code>
+                    <code style="min-width: 220px; color: #4b5563;">hour=numeric minute=numeric</code>
                     <flint-format-date .date=${date} hour="numeric" minute="numeric"></flint-format-date>
                 </div>
                 <div style="display: flex; align-items: center; gap: 16px;">
-                    <code style="min-width: 220px; color: #6b7280;">weekday=long</code>
+                    <code style="min-width: 220px; color: #4b5563;">weekday=long</code>
                     <flint-format-date .date=${date} weekday="long"></flint-format-date>
                 </div>
                 <div style="display: flex; align-items: center; gap: 16px;">
-                    <code style="min-width: 220px; color: #6b7280;">month=long</code>
+                    <code style="min-width: 220px; color: #4b5563;">month=long</code>
                     <flint-format-date .date=${date} month="long"></flint-format-date>
                 </div>
                 <div style="display: flex; align-items: center; gap: 16px;">
-                    <code style="min-width: 220px; color: #6b7280;">year=numeric</code>
+                    <code style="min-width: 220px; color: #4b5563;">year=numeric</code>
                     <flint-format-date .date=${date} year="numeric"></flint-format-date>
                 </div>
                 <div style="display: flex; align-items: center; gap: 16px;">
-                    <code style="min-width: 220px; color: #6b7280;">(no options — numeric date)</code>
+                    <code style="min-width: 220px; color: #4b5563;">(no options — numeric date)</code>
                     <flint-format-date .date=${date}></flint-format-date>
                 </div>
             </div>
@@ -193,15 +193,15 @@ export const HourFormatting: Story = {
         return html`
             <div style="display: flex; flex-direction: column; gap: 8px; font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
                 <div style="display: flex; align-items: center; gap: 16px;">
-                    <code style="min-width: 140px; color: #6b7280;">hour-format="auto"</code>
+                    <code style="min-width: 140px; color: #4b5563;">hour-format="auto"</code>
                     <flint-format-date .date=${date} hour="numeric" minute="numeric" hour-format="auto"></flint-format-date>
                 </div>
                 <div style="display: flex; align-items: center; gap: 16px;">
-                    <code style="min-width: 140px; color: #6b7280;">hour-format="12"</code>
+                    <code style="min-width: 140px; color: #4b5563;">hour-format="12"</code>
                     <flint-format-date .date=${date} hour="numeric" minute="numeric" hour-format="12"></flint-format-date>
                 </div>
                 <div style="display: flex; align-items: center; gap: 16px;">
-                    <code style="min-width: 140px; color: #6b7280;">hour-format="24"</code>
+                    <code style="min-width: 140px; color: #4b5563;">hour-format="24"</code>
                     <flint-format-date .date=${date} hour="numeric" minute="numeric" hour-format="24"></flint-format-date>
                 </div>
             </div>
@@ -227,7 +227,7 @@ export const Localization: Story = {
             <div style="display: flex; flex-direction: column; gap: 8px; font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
                 ${locales.map(({ lang, label }) => html`
                     <div style="display: flex; align-items: center; gap: 16px;">
-                        <span style="min-width: 80px; color: #6b7280;">${label}:</span>
+                        <span style="min-width: 80px; color: #4b5563;">${label}:</span>
                         <flint-format-date .date=${date} lang=${lang}></flint-format-date>
                     </div>
                 `)}
@@ -244,15 +244,15 @@ export const FullDateTime: Story = {
         return html`
             <div style="display: flex; flex-direction: column; gap: 8px; font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
                 <div style="display: flex; align-items: center; gap: 16px;">
-                    <code style="min-width: 320px; color: #6b7280;">weekday=long, year=numeric, month=long, day=numeric</code>
+                    <code style="min-width: 320px; color: #4b5563;">weekday=long, year=numeric, month=long, day=numeric</code>
                     <flint-format-date .date=${date} weekday="long" year="numeric" month="long" day="numeric"></flint-format-date>
                 </div>
                 <div style="display: flex; align-items: center; gap: 16px;">
-                    <code style="min-width: 320px; color: #6b7280;">year=numeric, month=short, day=numeric, hour=numeric, minute=2-digit</code>
+                    <code style="min-width: 320px; color: #4b5563;">year=numeric, month=short, day=numeric, hour=numeric, minute=2-digit</code>
                     <flint-format-date .date=${date} year="numeric" month="short" day="numeric" hour="numeric" minute="2-digit"></flint-format-date>
                 </div>
                 <div style="display: flex; align-items: center; gap: 16px;">
-                    <code style="min-width: 320px; color: #6b7280;">hour=numeric, minute=2-digit, second=2-digit, timeZoneName=short</code>
+                    <code style="min-width: 320px; color: #4b5563;">hour=numeric, minute=2-digit, second=2-digit, timeZoneName=short</code>
                     <flint-format-date .date=${date} hour="numeric" minute="2-digit" second="2-digit" time-zone-name="short"></flint-format-date>
                 </div>
             </div>
@@ -268,23 +268,23 @@ export const CustomStyles: Story = {
         return html`
             <div style="display: flex; flex-direction: column; gap: 12px; font-family: system-ui; font-size: 0.875rem;">
                 <div>
-                    <span style="color: #6b7280; margin-right: 8px;">default:</span>
+                    <span style="color: #4b5563; margin-right: 8px;">default:</span>
                     <flint-format-date .date=${date} year="numeric" month="long" day="numeric"></flint-format-date>
                 </div>
                 <div>
-                    <span style="color: #6b7280; margin-right: 8px;">primary color:</span>
+                    <span style="color: #4b5563; margin-right: 8px;">primary color:</span>
                     <flint-format-date
                         .date=${date}
                         year="numeric" month="long" day="numeric"
-                        style="--flint-format-date-color: #3b82f6;"
+                        style="--flint-format-date-color: #2563eb;"
                     ></flint-format-date>
                 </div>
                 <div>
-                    <span style="color: #6b7280; margin-right: 8px;">large + accent:</span>
+                    <span style="color: #4b5563; margin-right: 8px;">large + accent:</span>
                     <flint-format-date
                         .date=${date}
                         year="numeric" month="long" day="numeric"
-                        style="--flint-format-date-color: #8b5cf6; --flint-format-date-font-size: 1.25rem; font-weight: 600;"
+                        style="--flint-format-date-color: #7c3aed; --flint-format-date-font-size: 1.25rem; font-weight: 600;"
                     ></flint-format-date>
                 </div>
             </div>
@@ -301,20 +301,20 @@ export const EdgeCases: Story = {
         return html`
             <div style="display: flex; flex-direction: column; gap: 8px; font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
                 <div style="display: flex; align-items: center; gap: 12px;">
-                    <span style="min-width: 180px; color: #6b7280;">invalid date string:</span>
+                    <span style="min-width: 180px; color: #4b5563;">invalid date string:</span>
                     <flint-format-date date="not-a-date" year="numeric" month="long" day="numeric"></flint-format-date>
-                    <span style="color: #9ca3af; font-size: 0.75rem;">(renders nothing)</span>
+                    <span style="color: #4b5563; font-size: 0.75rem;">(renders nothing)</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 12px;">
-                    <span style="min-width: 180px; color: #6b7280;">Unix epoch (1970):</span>
+                    <span style="min-width: 180px; color: #4b5563;">Unix epoch (1970):</span>
                     <flint-format-date .date=${epoch} year="numeric" month="long" day="numeric"></flint-format-date>
                 </div>
                 <div style="display: flex; align-items: center; gap: 12px;">
-                    <span style="min-width: 180px; color: #6b7280;">far future (2099):</span>
+                    <span style="min-width: 180px; color: #4b5563;">far future (2099):</span>
                     <flint-format-date .date=${farFuture} year="numeric" month="long" day="numeric"></flint-format-date>
                 </div>
                 <div style="display: flex; align-items: center; gap: 12px;">
-                    <span style="min-width: 180px; color: #6b7280;">no options (numeric fallback):</span>
+                    <span style="min-width: 180px; color: #4b5563;">no options (numeric fallback):</span>
                     <flint-format-date .date=${new Date('2024-03-15T10:30:00Z')}></flint-format-date>
                 </div>
             </div>
@@ -338,7 +338,7 @@ export const TimeZones: Story = {
             <div style="display: flex; flex-direction: column; gap: 8px; font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
                 ${zones.map(({ tz, label }) => html`
                     <div style="display: flex; align-items: center; gap: 16px;">
-                        <span style="min-width: 120px; color: #6b7280;">${label}:</span>
+                        <span style="min-width: 120px; color: #4b5563;">${label}:</span>
                         <flint-format-date
                             .date=${date}
                             hour="numeric"
@@ -362,15 +362,15 @@ export const Era: Story = {
         return html`
             <div style="display: flex; flex-direction: column; gap: 8px; font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
                 <div style="display: flex; align-items: center; gap: 16px;">
-                    <code style="min-width: 140px; color: #6b7280;">era="long"</code>
+                    <code style="min-width: 140px; color: #4b5563;">era="long"</code>
                     <flint-format-date .date=${adDate} era="long" year="numeric" month="long" day="numeric" lang="en"></flint-format-date>
                 </div>
                 <div style="display: flex; align-items: center; gap: 16px;">
-                    <code style="min-width: 140px; color: #6b7280;">era="short"</code>
+                    <code style="min-width: 140px; color: #4b5563;">era="short"</code>
                     <flint-format-date .date=${adDate} era="short" year="numeric" month="long" day="numeric" lang="en"></flint-format-date>
                 </div>
                 <div style="display: flex; align-items: center; gap: 16px;">
-                    <code style="min-width: 140px; color: #6b7280;">era="narrow"</code>
+                    <code style="min-width: 140px; color: #4b5563;">era="narrow"</code>
                     <flint-format-date .date=${adDate} era="narrow" year="numeric" month="long" day="numeric" lang="en"></flint-format-date>
                 </div>
             </div>
@@ -392,7 +392,7 @@ export const DateTimeStyle: Story = {
                     <div style="display: flex; flex-direction: column; gap: 6px;">
                         ${dateStyles.map(s => html`
                             <div style="display: flex; align-items: center; gap: 16px;">
-                                <code style="min-width: 100px; color: #6b7280;">${s}</code>
+                                <code style="min-width: 100px; color: #4b5563;">${s}</code>
                                 <flint-format-date .date=${date} date-style=${s} lang="en"></flint-format-date>
                             </div>
                         `)}
@@ -403,7 +403,7 @@ export const DateTimeStyle: Story = {
                     <div style="display: flex; flex-direction: column; gap: 6px;">
                         ${timeStyles.map(s => html`
                             <div style="display: flex; align-items: center; gap: 16px;">
-                                <code style="min-width: 100px; color: #6b7280;">${s}</code>
+                                <code style="min-width: 100px; color: #4b5563;">${s}</code>
                                 <flint-format-date .date=${date} time-style=${s} time-zone="UTC" lang="en"></flint-format-date>
                             </div>
                         `)}
@@ -413,11 +413,11 @@ export const DateTimeStyle: Story = {
                     <div style="font-weight: 600; margin-bottom: 8px; color: #374151;">dateStyle + timeStyle combined</div>
                     <div style="display: flex; flex-direction: column; gap: 6px;">
                         <div style="display: flex; align-items: center; gap: 16px;">
-                            <code style="min-width: 180px; color: #6b7280;">full + short</code>
+                            <code style="min-width: 180px; color: #4b5563;">full + short</code>
                             <flint-format-date .date=${date} date-style="full" time-style="short" time-zone="UTC" lang="en"></flint-format-date>
                         </div>
                         <div style="display: flex; align-items: center; gap: 16px;">
-                            <code style="min-width: 180px; color: #6b7280;">medium + medium</code>
+                            <code style="min-width: 180px; color: #4b5563;">medium + medium</code>
                             <flint-format-date .date=${date} date-style="medium" time-style="medium" time-zone="UTC" lang="en"></flint-format-date>
                         </div>
                     </div>
@@ -454,7 +454,7 @@ export const InContext: Story = {
                             day="numeric"
                             hour="numeric"
                             minute="2-digit"
-                            style="color: #6b7280; flex-shrink: 0; margin-left: 12px;"
+                            style="color: #4b5563; flex-shrink: 0; margin-left: 12px;"
                         ></flint-format-date>
                     </div>
                 `)}

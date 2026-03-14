@@ -1,4 +1,4 @@
-import { LitElement, unsafeCSS, html, PropertyValues } from 'lit';
+import { LitElement, unsafeCSS, html, nothing, PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import uiDrawerStyles from './flint-drawer.css?inline';
 import '../backdrop/flint-backdrop.js';
@@ -103,7 +103,7 @@ export class FlintDrawer extends LitElement {
                 aria-modal=${isTemporary ? String(this.open) : 'false'}
                 aria-label=${this.label}
                 aria-hidden=${ariaHidden}
-                tabindex="-1"
+                tabindex=${ariaHidden === 'false' ? '-1' : nothing}
             >
                 <slot></slot>
             </div>

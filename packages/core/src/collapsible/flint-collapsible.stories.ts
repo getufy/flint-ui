@@ -139,7 +139,7 @@ const triggerRowStyle = `
 `;
 const contentBodyStyle = `
     padding: 0 16px 14px; font-size: 0.875rem; line-height: 1.6;
-    color: var(--flint-text-color-muted, #6b7280);
+    color: var(--flint-text-color-muted, #4b5563);
 `;
 
 /* ── Default ─────────────────────────────────────────────────────── */
@@ -180,7 +180,7 @@ export const DefaultOpen: Story = {
     args: { defaultOpen: true },
     render: (args) => html`
         <div style="max-width: 480px; padding: 24px;">
-            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563; font-family: system-ui;">
                 Starts open via <code>default-open</code> attribute (uncontrolled).
             </p>
             <flint-collapsible ?default-open=${args.defaultOpen} ?disabled=${args.disabled}
@@ -218,7 +218,7 @@ export const Disabled: Story = {
     args: { disabled: true },
     render: (args) => html`
         <div style="max-width: 480px; padding: 24px;">
-            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563; font-family: system-ui;">
                 Trigger is inert when <code>disabled</code> is set.
             </p>
             <flint-collapsible ?disabled=${args.disabled}>
@@ -245,7 +245,7 @@ export const WithActions: Story = {
     name: 'With Actions',
     render: () => html`
         <div style="max-width: 480px; padding: 24px;">
-            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563; font-family: system-ui;">
                 Mix always-visible content with a collapsible section.
             </p>
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
@@ -296,7 +296,7 @@ export const WithActions: Story = {
 export const Nested: Story = {
     render: () => html`
         <div style="max-width: 480px; padding: 24px;">
-            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563; font-family: system-ui;">
                 Each collapsible is independent — outer state does not affect inner.
             </p>
             <flint-collapsible
@@ -316,7 +316,7 @@ export const Nested: Story = {
                     </flint-collapsible-trigger>
                     <flint-collapsible-content>
                         <div style="padding: 8px 16px 14px;">
-                            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+                            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563; font-family: system-ui;">
                                 Always-visible inner text. The nested collapsible below is independent.
                             </p>
                             <flint-collapsible
@@ -334,7 +334,7 @@ export const Nested: Story = {
                                         </div>
                                     </flint-collapsible-trigger>
                                     <flint-collapsible-content>
-                                        <div style="padding: 0 12px 10px; font-size: 0.8125rem; color: #6b7280; font-family: system-ui;">
+                                        <div style="padding: 0 12px 10px; font-size: 0.8125rem; color: #4b5563; font-family: system-ui;">
                                             Inner content, independently controlled.
                                         </div>
                                     </flint-collapsible-content>
@@ -364,7 +364,7 @@ export const Controlled: Story = {
 
         return html`
             <div style="max-width: 480px; padding: 24px; display: flex; flex-direction: column; gap: 12px;">
-                <p style="margin: 0; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+                <p style="margin: 0; font-size: 0.875rem; color: #4b5563; font-family: system-ui;">
                     Open state is controlled externally via the button below.
                     The trigger inside the collapsible is hidden.
                 </p>
@@ -428,7 +428,7 @@ export const FAQ: Story = {
                             </div>
                         </flint-collapsible-trigger>
                         <flint-collapsible-content>
-                            <p style="margin: 0 0 16px; font-size: 0.875rem; line-height: 1.6; color: #6b7280; font-family: system-ui;">
+                            <p style="margin: 0 0 16px; font-size: 0.875rem; line-height: 1.6; color: #4b5563; font-family: system-ui;">
                                 ${item.a}
                             </p>
                         </flint-collapsible-content>

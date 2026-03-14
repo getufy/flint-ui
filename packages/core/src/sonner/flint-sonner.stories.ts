@@ -107,7 +107,7 @@ export const Types: Story = {
     render: () => html`
         <flint-toaster position="bottom-right"></flint-toaster>
         <div style="display: flex; flex-direction: column; gap: 8px; padding: 24px; max-width: 320px; font-family: var(--flint-font-family, system-ui);">
-            <p style="margin: 0 0 8px; font-size: 0.875rem; color: #6b7280;">
+            <p style="margin: 0 0 8px; font-size: 0.875rem; color: #4b5563;">
                 Click each button to see the corresponding toast type.
             </p>
             <flint-button variant="secondary" @click=${() => toast('Event has been created')}>
@@ -344,7 +344,7 @@ export const Stacked: Story = {
     render: () => html`
         <flint-toaster position="bottom-right"></flint-toaster>
         <div style="padding: 24px; font-family: var(--flint-font-family, system-ui);">
-            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280;">
+            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563;">
                 When multiple toasts are active they collapse into a card deck.
                 Hover the stack in the bottom-right to expand all toasts.
             </p>
@@ -368,7 +368,7 @@ export const VisibleToastsLimit: Story = {
     render: () => html`
         <flint-toaster position="bottom-right" visible-toasts="2"></flint-toaster>
         <div style="padding: 24px; font-family: var(--flint-font-family, system-ui);">
-            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280;">
+            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563;">
                 <code>visible-toasts="2"</code> — only the 2 most recent toasts are displayed.
             </p>
             <flint-button

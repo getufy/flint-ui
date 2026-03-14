@@ -276,7 +276,7 @@ export const VerticalImages: Story = {
   name: 'Vertical (Portrait) Images',
   args: { variant: 'standard', cols: 4, gap: 6 },
   render: (args) => html`
-    <p style="margin:0 0 12px;font:14px system-ui;color:#6b7280;">
+    <p style="margin:0 0 12px;font:14px system-ui;color:#4b5563;">
       Portrait images using <code>aspect-ratio="3/4"</code> on items and <code>autoRows</code> on the list.
     </p>
     <flint-image-list variant="standard" .cols=${args.cols} .gap=${args.gap} ?autoRows=${true}>
@@ -298,7 +298,7 @@ export const MixedAspectRatios: Story = {
   name: 'Mixed Aspect Ratios',
   args: { variant: 'standard', cols: 3, gap: 6 },
   render: (args) => html`
-    <p style="margin:0 0 12px;font:14px system-ui;color:#6b7280;">
+    <p style="margin:0 0 12px;font:14px system-ui;color:#4b5563;">
       Mix of landscape (4/3), square (1/1), and portrait (3/4) cells with <code>autoRows</code>.
     </p>
     <flint-image-list variant="standard" .cols=${args.cols} .gap=${args.gap} ?autoRows=${true}>
@@ -404,7 +404,7 @@ export const MasonryPortrait: Story = {
   name: 'Masonry — Portrait Images',
   args: { variant: 'masonry', cols: 3, gap: 8 },
   render: (args) => html`
-    <p style="margin:0 0 12px;font:14px system-ui;color:#6b7280;">
+    <p style="margin:0 0 12px;font:14px system-ui;color:#4b5563;">
       Portrait images flow naturally in masonry — no fixed row height needed.
     </p>
     <flint-image-list variant="masonry" .cols=${args.cols} .gap=${args.gap}>
@@ -422,7 +422,7 @@ export const FitContain: Story = {
   name: 'Object Fit: Contain',
   args: { variant: 'standard', cols: 3, gap: 4, rowHeight: 220 },
   render: (args) => html`
-    <p style="margin:0 0 12px;font:14px system-ui;color:#6b7280;">
+    <p style="margin:0 0 12px;font:14px system-ui;color:#4b5563;">
       <code>fit="contain"</code> letterboxes images — the dark background reveals empty space around non-matching aspect ratios.
     </p>
     <flint-image-list variant="standard" .cols=${args.cols} .gap=${args.gap} .rowHeight=${args.rowHeight}>

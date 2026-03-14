@@ -34,7 +34,7 @@ export class FlintNavigationMenuLink extends LitElement {
             --flint-navigation-menu-link-hover-bg: var(--flint-hover-color, rgba(0, 0, 0, 0.04));
             --flint-navigation-menu-link-border-radius: 6px;
             --flint-navigation-menu-link-active-bg: var(--flint-primary-color-light, rgba(59, 130, 246, 0.10));
-            --flint-navigation-menu-link-active-color: var(--flint-primary-color, #3b82f6);
+            --flint-navigation-menu-link-active-color: var(--flint-primary-color, #2563eb);
         }
 
         .link {
@@ -104,6 +104,7 @@ export class FlintNavigationMenuLink extends LitElement {
 
     override connectedCallback() {
         super.connectedCallback();
+        if (!this.hasAttribute('role')) this.setAttribute('role', 'menuitem');
         this.addEventListener('click', this._handleClick);
         this.addEventListener('keydown', this._handleKeydown);
     }

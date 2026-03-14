@@ -422,7 +422,7 @@ export class FlintScrollArea extends LitElement {
 
         return html`
             <div class="root">
-                <div class="viewport" dir=${this.dir} @scroll=${this._onScroll}>
+                <div class="viewport" dir=${this.dir} tabindex="0" @scroll=${this._onScroll}>
                     <slot @slotchange=${this._onSlotChange}></slot>
                 </div>
 

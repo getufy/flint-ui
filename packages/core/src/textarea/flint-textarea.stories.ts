@@ -201,15 +201,15 @@ export const Sizes: Story = {
     render: () => html`
     <div style="display: flex; flex-direction: column; gap: 24px; max-width: 400px;">
       <div>
-        <p style="font-family: system-ui; font-size: 12px; color: #6b7280; margin: 0 0 6px 0;">size="sm"</p>
+        <p style="font-family: system-ui; font-size: 12px; color: #4b5563; margin: 0 0 6px 0;">size="sm"</p>
         <flint-textarea size="sm" placeholder="Small textarea"></flint-textarea>
       </div>
       <div>
-        <p style="font-family: system-ui; font-size: 12px; color: #6b7280; margin: 0 0 6px 0;">size="default"</p>
+        <p style="font-family: system-ui; font-size: 12px; color: #4b5563; margin: 0 0 6px 0;">size="default"</p>
         <flint-textarea size="default" placeholder="Default textarea"></flint-textarea>
       </div>
       <div>
-        <p style="font-family: system-ui; font-size: 12px; color: #6b7280; margin: 0 0 6px 0;">size="lg"</p>
+        <p style="font-family: system-ui; font-size: 12px; color: #4b5563; margin: 0 0 6px 0;">size="lg"</p>
         <flint-textarea size="lg" placeholder="Large textarea"></flint-textarea>
       </div>
     </div>
@@ -220,23 +220,23 @@ export const Resize: Story = {
     render: () => html`
     <div style="display: flex; flex-direction: column; gap: 24px; max-width: 400px;">
       <div>
-        <p style="font-family: system-ui; font-size: 12px; color: #6b7280; margin: 0 0 6px 0;">resize="none"</p>
+        <p style="font-family: system-ui; font-size: 12px; color: #4b5563; margin: 0 0 6px 0;">resize="none"</p>
         <flint-textarea resize="none" placeholder="Cannot be resized"></flint-textarea>
       </div>
       <div>
-        <p style="font-family: system-ui; font-size: 12px; color: #6b7280; margin: 0 0 6px 0;">resize="vertical" (default)</p>
+        <p style="font-family: system-ui; font-size: 12px; color: #4b5563; margin: 0 0 6px 0;">resize="vertical" (default)</p>
         <flint-textarea resize="vertical" placeholder="Resize vertically"></flint-textarea>
       </div>
       <div>
-        <p style="font-family: system-ui; font-size: 12px; color: #6b7280; margin: 0 0 6px 0;">resize="horizontal"</p>
+        <p style="font-family: system-ui; font-size: 12px; color: #4b5563; margin: 0 0 6px 0;">resize="horizontal"</p>
         <flint-textarea resize="horizontal" placeholder="Resize horizontally"></flint-textarea>
       </div>
       <div>
-        <p style="font-family: system-ui; font-size: 12px; color: #6b7280; margin: 0 0 6px 0;">resize="both"</p>
+        <p style="font-family: system-ui; font-size: 12px; color: #4b5563; margin: 0 0 6px 0;">resize="both"</p>
         <flint-textarea resize="both" placeholder="Resize both ways"></flint-textarea>
       </div>
       <div>
-        <p style="font-family: system-ui; font-size: 12px; color: #6b7280; margin: 0 0 6px 0;">resize="auto" (grows with content)</p>
+        <p style="font-family: system-ui; font-size: 12px; color: #4b5563; margin: 0 0 6px 0;">resize="auto" (grows with content)</p>
         <flint-textarea resize="auto" placeholder="Type to expand..."></flint-textarea>
       </div>
     </div>
@@ -257,7 +257,7 @@ export const Controlled: Story = {
         let value = '';
         return html`
       <div style="max-width: 400px; font-family: system-ui; display: flex; flex-direction: column; gap: 12px;">
-        <p style="font-size: 14px; color: #6b7280; margin: 0;">
+        <p style="font-size: 14px; color: #4b5563; margin: 0;">
           State is controlled externally.
         </p>
         <flint-textarea
@@ -284,7 +284,7 @@ export const Controlled: Story = {
 export const Uncontrolled: Story = {
     render: () => html`
     <div style="max-width: 400px; font-family: system-ui;">
-      <p style="font-size: 14px; color: #6b7280; margin: 0 0 12px 0;">
+      <p style="font-size: 14px; color: #4b5563; margin: 0 0 12px 0;">
         Uses <code>default-value</code> — starts pre-filled without controlling the prop.
       </p>
       <flint-textarea

@@ -29,7 +29,7 @@ const navButtonStyles = css`
     border-color: var(--flint-input-border-color, #d1d5db);
   }
   button:focus-visible {
-    outline: 2px solid var(--flint-primary-color, #3b82f6);
+    outline: 2px solid var(--flint-primary-color, #2563eb);
     outline-offset: 2px;
   }
   button:disabled {

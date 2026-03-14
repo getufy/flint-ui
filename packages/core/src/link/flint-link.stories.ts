@@ -102,7 +102,7 @@ const sectionStyles = `
     border: 1px solid #e2e8f0; border-radius: 8px; font-family: Inter, sans-serif;
 `;
 const rowStyles = `display: flex; flex-wrap: wrap; align-items: baseline; gap: 16px;`;
-const labelStyles = `font-size: 0.7rem; color: #94a3b8; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px;`;
+const labelStyles = `font-size: 0.7rem; color: #475569; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px;`;
 
 /* ================================================================== */
 /* Basic                                                               */
@@ -181,7 +181,7 @@ export const TypographyVariants: Story = {
                 <flint-stack direction="column" gap="12px">
                     ${(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1', 'subtitle2', 'body1', 'body2', 'caption', 'overline'] as const).map(v => html`
                         <div>
-                            <span style="font-size:.7rem;color:#94a3b8;width:90px;display:inline-block;">${v}</span>
+                            <span style="font-size:.7rem;color:#475569;width:90px;display:inline-block;">${v}</span>
                             <flint-link href="#" .variant=${v}>${v} link</flint-link>
                         </div>
                     `)}

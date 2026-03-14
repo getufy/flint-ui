@@ -189,28 +189,28 @@ export const MultipleComparers: Story = {
     render: () => html`
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
             <div>
-                <p style="margin: 0 0 8px; font: 600 13px/1 system-ui; color: #6b7280;">Dog — Color vs B&amp;W</p>
+                <p style="margin: 0 0 8px; font: 600 13px/1 system-ui; color: #4b5563;">Dog — Color vs B&amp;W</p>
                 <flint-image-comparer style="--flint-image-comparer-aspect-ratio: 4/3; width: 100%;" .position=${50}>
                     <img slot="before" src=${BEFORE} alt="Dog color" />
                     <img slot="after" src=${AFTER} alt="Dog grayscale" />
                 </flint-image-comparer>
             </div>
             <div>
-                <p style="margin: 0 0 8px; font: 600 13px/1 system-ui; color: #6b7280;">Forest — Original vs Contrast</p>
+                <p style="margin: 0 0 8px; font: 600 13px/1 system-ui; color: #4b5563;">Forest — Original vs Contrast</p>
                 <flint-image-comparer style="--flint-image-comparer-aspect-ratio: 4/3; width: 100%;" .position=${50}>
                     <img slot="before" src=${FOREST_COLOR} alt="Forest original" />
                     <img slot="after" src=${FOREST_CONTRAST} alt="Forest contrast" />
                 </flint-image-comparer>
             </div>
             <div>
-                <p style="margin: 0 0 8px; font: 600 13px/1 system-ui; color: #6b7280;">Portrait — Color vs Sepia</p>
+                <p style="margin: 0 0 8px; font: 600 13px/1 system-ui; color: #4b5563;">Portrait — Color vs Sepia</p>
                 <flint-image-comparer style="--flint-image-comparer-aspect-ratio: 4/3; width: 100%;" .position=${50}>
                     <img slot="before" src=${PORTRAIT_COLOR} alt="Portrait color" />
                     <img slot="after" src=${PORTRAIT_SEPIA} alt="Portrait sepia" />
                 </flint-image-comparer>
             </div>
             <div>
-                <p style="margin: 0 0 8px; font: 600 13px/1 system-ui; color: #6b7280;">Mountain Lake — Sharp vs Soft</p>
+                <p style="margin: 0 0 8px; font: 600 13px/1 system-ui; color: #4b5563;">Mountain Lake — Sharp vs Soft</p>
                 <flint-image-comparer style="--flint-image-comparer-aspect-ratio: 4/3; width: 100%;" .position=${50}>
                     <img slot="before" src=${LAKE_SHARP} alt="Lake sharp" />
                     <img slot="after" src=${LAKE_SOFT} alt="Lake soft" />

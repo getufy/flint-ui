@@ -213,19 +213,19 @@ export const Sizes: Story = {
                 <flint-toggle variant="outline" aria-label="Small toggle" size="sm">
                     ${italicIcon} Small
                 </flint-toggle>
-                <code style="font-size: 11px; color: #6b7280;">size="sm"</code>
+                <code style="font-size: 11px; color: #4b5563;">size="sm"</code>
             </div>
             <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
                 <flint-toggle variant="outline" aria-label="Default toggle" size="default">
                     ${italicIcon} Default
                 </flint-toggle>
-                <code style="font-size: 11px; color: #6b7280;">size="default"</code>
+                <code style="font-size: 11px; color: #4b5563;">size="default"</code>
             </div>
             <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
                 <flint-toggle variant="outline" aria-label="Large toggle" size="lg">
                     ${italicIcon} Large
                 </flint-toggle>
-                <code style="font-size: 11px; color: #6b7280;">size="lg"</code>
+                <code style="font-size: 11px; color: #4b5563;">size="lg"</code>
             </div>
         </div>
     `,
@@ -255,7 +255,7 @@ export const Uncontrolled: Story = {
     name: 'Uncontrolled (defaultPressed)',
     render: () => html`
         <div style="display: flex; align-items: center; gap: 8px; padding: 24px;">
-            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563; font-family: system-ui;">
                 Starts pressed via <code>default-pressed</code>. State is self-managed.
             </p>
         </div>
@@ -284,7 +284,7 @@ export const Controlled: Story = {
 
         return html`
             <div style="display: flex; flex-direction: column; gap: 12px; padding: 24px;">
-                <p style="margin: 0; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+                <p style="margin: 0; font-size: 0.875rem; color: #4b5563; font-family: system-ui;">
                     Pressed state is controlled externally by the button below.
                 </p>
                 <div style="display: flex; align-items: center; gap: 12px;">
@@ -309,7 +309,7 @@ export const Toolbar: Story = {
     name: 'Toolbar Example',
     render: () => html`
         <div style="padding: 24px;">
-            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563; font-family: system-ui;">
                 A formatting toolbar with independent toggle states. Each button manages its own state.
             </p>
             <flint-paper
@@ -343,7 +343,7 @@ export const RTL: Story = {
     name: 'RTL',
     render: () => html`
         <div style="padding: 24px;">
-            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+            <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563; font-family: system-ui;">
                 Right-to-left layout via <code>dir="rtl"</code>.
             </p>
             <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">

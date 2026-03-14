@@ -165,10 +165,10 @@
 }
 
 .toast__icon--success { color: var(--flint-toast-success-icon-color, var(--flint-success-color, #10b981)); }
-.toast__icon--error   { color: var(--flint-toast-error-icon-color,   var(--flint-error-color,   #ef4444)); }
+.toast__icon--error   { color: var(--flint-toast-error-icon-color,   var(--flint-error-color,   #dc2626)); }
 .toast__icon--warning { color: var(--flint-toast-warning-icon-color, var(--flint-warning-color, #f59e0b)); }
-.toast__icon--info    { color: var(--flint-toast-info-icon-color,    var(--flint-primary-color, #3b82f6)); }
-.toast__icon--loading { color: var(--flint-text-color-muted, #71717a); }
+.toast__icon--info    { color: var(--flint-toast-info-icon-color,    var(--flint-primary-color, #2563eb)); }
+.toast__icon--loading { color: var(--flint-text-color-muted, #4b5563); }
 
 /* ─── Spinner ─────────────────────────────────────────────────────── */
 .spinner {
@@ -200,7 +200,7 @@
 
 .toast__description {
     font-size: 0.8125rem;
-    color: var(--flint-text-color-muted, #71717a);
+    color: var(--flint-text-color-muted, #4b5563);
     line-height: 1.5;
     margin-top: 2px;
 }
@@ -242,7 +242,7 @@
     padding: 0;
     border: none;
     background: transparent;
-    color: var(--flint-text-color-subtle, #a1a1aa);
+    color: var(--flint-text-color-subtle, #4b5563);
     cursor: pointer;
     border-radius: var(--flint-border-radius-sm, 0.125rem);
     transition: background 120ms ease, color 120ms ease;

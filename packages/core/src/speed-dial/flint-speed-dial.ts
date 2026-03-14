@@ -36,6 +36,11 @@ export class FlintSpeedDialAction extends LitElement {
 
     @state() private _hovered = false;
 
+    connectedCallback() {
+        super.connectedCallback();
+        if (!this.hasAttribute('role')) this.setAttribute('role', 'menuitem');
+    }
+
     private _handleClick() {
         if (this.disabled) return;
         this.dispatchEvent(new CustomEvent('flint-speed-dial-action-click', {

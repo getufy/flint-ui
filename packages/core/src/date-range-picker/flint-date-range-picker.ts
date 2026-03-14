@@ -222,7 +222,7 @@ export class FlintDateRangePicker extends LitElement {
         tabindex=${this.disabled ? -1 : 0}
         aria-label="Select date range"
         aria-haspopup="dialog"
-        aria-expanded=${this._open}
+        aria-expanded=${this._open ? 'true' : 'false'}
         @click=${this._openPicker}
         @keydown=${(e: KeyboardEvent) => (e.key === 'Enter' || e.key === ' ') && this._openPicker()}
       >

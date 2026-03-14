@@ -150,7 +150,7 @@ export class FlintTransferList extends LitElement {
                 class="list-item ${classMap({ selected: this.leftChecked.includes(opt.value) })}"
                 role="option"
                 tabindex="0"
-                aria-selected=${this.leftChecked.includes(opt.value)}
+                aria-selected=${this.leftChecked.includes(opt.value) ? 'true' : 'false'}
                 @click=${() => this._toggleChecked(opt.value, 'left')}
                 @keydown=${(e: KeyboardEvent) => this._handleItemKeydown(e, opt.value, 'left')}
               >
@@ -225,7 +225,7 @@ export class FlintTransferList extends LitElement {
                 class="list-item ${classMap({ selected: this.rightChecked.includes(opt.value) })}"
                 role="option"
                 tabindex="0"
-                aria-selected=${this.rightChecked.includes(opt.value)}
+                aria-selected=${this.rightChecked.includes(opt.value) ? 'true' : 'false'}
                 @click=${() => this._toggleChecked(opt.value, 'right')}
                 @keydown=${(e: KeyboardEvent) => this._handleItemKeydown(e, opt.value, 'right')}
               >

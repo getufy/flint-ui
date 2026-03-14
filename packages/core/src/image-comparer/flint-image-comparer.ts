@@ -178,7 +178,7 @@ export class FlintImageComparer extends LitElement {
                     aria-valuemin="0"
                     aria-valuemax="100"
                     aria-valuenow="${pos}"
-                    aria-disabled="${this.disabled}"
+                    aria-disabled="${this.disabled ? 'true' : 'false'}"
                     style="left: ${pos}%"
                 >
                     <slot name="handle">

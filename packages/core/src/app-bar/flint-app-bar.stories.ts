@@ -121,11 +121,11 @@ export const WithTitleSlot: Story = {
         </svg>
       </flint-button>
       <div slot="title" style="display: flex; align-items: center; gap: 8px;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="#3b82f6">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#2563eb">
           <circle cx="12" cy="12" r="10"></circle>
         </svg>
         <span style="font-weight: 700; font-size: 1.1rem;">Brand</span>
-        <span style="font-size: 0.75rem; color: #6b7280; font-weight: 400;">v2.0</span>
+        <span style="font-size: 0.75rem; color: #4b5563; font-weight: 400;">v2.0</span>
       </div>
     </flint-app-bar>
   `,

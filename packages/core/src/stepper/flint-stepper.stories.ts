@@ -250,7 +250,7 @@ export const LinearHorizontal: Story = {
             if (content) {
                 content.innerHTML = step < steps.length
                     ? `<strong>Step ${step + 1}:</strong> ${steps[step]}`
-                    : `<span style="color:#22c55e;font-weight:600;">✅ All steps completed!</span>`;
+                    : `<span style="color:#15803d;font-weight:600;">✅ All steps completed!</span>`;
             }
         }
 
@@ -314,7 +314,7 @@ export const NonLinear: Story = {
             <div id="nl-info"
                 style="padding:24px;min-height:64px;font-size:.875rem;color:#374151;font-family:Inter,sans-serif;">
                 <strong>Active Step 1:</strong> ${steps[0]}
-                <span style="font-size:.75rem;color:#9ca3af;margin-left:8px;">(Click steps above to navigate freely)</span>
+                <span style="font-size:.75rem;color:#4b5563;margin-left:8px;">(Click steps above to navigate freely)</span>
             </div>
 
             <flint-stack direction="row" gap="8px" p="0 24px 16px" style="font-family:Inter,sans-serif;">
@@ -336,7 +336,7 @@ export const AlternativeLabel: Story = {
             <flint-step><span slot="label">Create an ad group</span></flint-step>
             <flint-step><span slot="label">Create an ad</span></flint-step>
         </flint-stepper>
-        <div style="padding:24px;font-size:.875rem;color:#9ca3af;font-family:Inter,sans-serif;text-align:center;">
+        <div style="padding:24px;font-size:.875rem;color:#4b5563;font-family:Inter,sans-serif;text-align:center;">
             Labels appear below the step icons
         </div>
     `)),
@@ -396,7 +396,7 @@ export const OptionalStep: Story = {
             <flint-step optional optional-label="Optional"><span slot="label">Create an ad group</span></flint-step>
             <flint-step><span slot="label">Create an ad</span></flint-step>
         </flint-stepper>
-        <div style="padding:16px 24px;font-size:.875rem;color:#6b7280;font-family:Inter,sans-serif;">
+        <div style="padding:16px 24px;font-size:.875rem;color:#4b5563;font-family:Inter,sans-serif;">
             Step 2 is marked as Optional — it can be skipped.
         </div>
     `)),
@@ -412,7 +412,7 @@ export const ErrorStep: Story = {
             <flint-step error><span slot="label">Create an ad group</span></flint-step>
             <flint-step disabled><span slot="label">Create an ad</span></flint-step>
         </flint-stepper>
-        <div style="padding:16px 24px;font-size:.875rem;color:#ef4444;font-family:Inter,sans-serif;">
+        <div style="padding:16px 24px;font-size:.875rem;color:#dc2626;font-family:Inter,sans-serif;">
             ⚠️ Step 2 has an error — fix it before continuing.
         </div>
     `)),
@@ -430,8 +430,8 @@ export const AllCompleted: Story = {
         </flint-stepper>
         <div style="padding:24px;text-align:center;font-family:Inter,sans-serif;">
             <div style="font-size:2rem;margin-bottom:8px;">🎉</div>
-            <div style="font-size:1rem;font-weight:600;color:#22c55e;">All steps completed!</div>
-            <div style="font-size:.875rem;color:#6b7280;margin-top:4px;">Your campaign is ready to go.</div>
+            <div style="font-size:1rem;font-weight:600;color:#15803d;">All steps completed!</div>
+            <div style="font-size:.875rem;color:#4b5563;margin-top:4px;">Your campaign is ready to go.</div>
         </div>
     `)),
 };
@@ -455,7 +455,7 @@ export const ErrorRecovery: Story = {
                 msg.textContent = hasError
                     ? '⚠️ There is a validation error in step 2. Fix it to continue.'
                     : '✅ Error resolved — you can now proceed to step 3.';
-                (msg as HTMLElement).style.color = hasError ? '#ef4444' : '#22c55e';
+                (msg as HTMLElement).style.color = hasError ? '#dc2626' : '#15803d';
             }
         }
 
@@ -467,7 +467,7 @@ export const ErrorRecovery: Story = {
             </flint-stepper>
 
             <div id="er-msg"
-                style="padding:16px 24px;font-size:.875rem;color:#ef4444;font-family:Inter,sans-serif;">
+                style="padding:16px 24px;font-size:.875rem;color:#dc2626;font-family:Inter,sans-serif;">
                 ⚠️ There is a validation error in step 2. Fix it to continue.
             </div>
 
@@ -498,7 +498,7 @@ export const CustomIcons: Story = {
                 <span slot="label">Confirm</span>
             </flint-step>
         </flint-stepper>
-        <div style="padding:16px 24px;font-size:.875rem;color:#6b7280;font-family:Inter,sans-serif;">
+        <div style="padding:16px 24px;font-size:.875rem;color:#4b5563;font-family:Inter,sans-serif;">
             Custom icon content via <code>&lt;span slot="icon"&gt;</code>. Overridden automatically when step is completed or has an error.
         </div>
     `)),
@@ -587,7 +587,7 @@ export const MobileStepperDots: Story = {
     render: () => {
         let step = 0;
         const steps = 4;
-        const colors = ['#3b82f6', '#8b5cf6', '#ec4899', '#f59e0b'];
+        const colors = ['#2563eb', '#7c3aed', '#be185d', '#b45309'];
         const labels = ['Ocean Blue', 'Deep Purple', 'Hot Pink', 'Amber'];
 
         return panel(html`
@@ -628,7 +628,7 @@ export const MobileStepperProgress: Story = {
             <div style="width:360px;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08);">
                 <div style="padding:20px 24px;background:var(--flint-muted-background, #f8fafc);font-family:Inter,sans-serif;">
                     <div id="ms-prog-label" style="font-weight:600;color:#374151;margin-bottom:4px;">Step 1 of ${steps}</div>
-                    <div style="font-size:.8rem;color:#6b7280;">Long installation wizard with many steps</div>
+                    <div style="font-size:.8rem;color:#4b5563;">Long installation wizard with many steps</div>
                 </div>
                 <flint-mobile-stepper id="ms-prog" variant="progress" .steps=${steps} .activeStep=${step} position="static"
                     @flint-mobile-step-back=${() => {
@@ -660,7 +660,7 @@ export const MobileStepperCustomButtons: Story = {
         const steps = 4;
 
         return panel(html`
-            <p style="font-family:Inter,sans-serif;font-size:.875rem;color:#6b7280;margin-bottom:12px;">
+            <p style="font-family:Inter,sans-serif;font-size:.875rem;color:#4b5563;margin-bottom:12px;">
                 Replace the default Back/Next buttons via <code>slot="back-button"</code> and <code>slot="next-button"</code>.
             </p>
             <div style="width:340px;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08);">

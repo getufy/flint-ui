@@ -277,7 +277,7 @@ export const WithAvatar: Story = {
               width: 56px; height: 56px; border-radius: 50%;
               background: #e5e7eb; overflow: hidden;
               display: flex; align-items: center; justify-content: center;
-              font-size: 1.25rem; font-weight: 700; color: #6b7280;
+              font-size: 1.25rem; font-weight: 700; color: #4b5563;
               font-family: var(--flint-font-family, system-ui);
             ">LR</div>
           </flint-empty-media>
@@ -303,7 +303,7 @@ export const AvatarGroup: Story = {
         <flint-empty-header>
           <flint-empty-media variant="default">
             <div style="display: flex;">
-              ${(['#3b82f6', '#8b5cf6', '#10b981'] as const).map((color, i) => html`
+              ${(['#2563eb', '#7c3aed', '#059669'] as const).map((color, i) => html`
                 <div style="
                   width: 44px; height: 44px; border-radius: 50%;
                   background: ${color}; border: 2px solid #f9fafb;
@@ -342,7 +342,7 @@ export const SearchEmpty: Story = {
         </flint-empty-header>
         <flint-empty-content>
           <flint-box display="flex" alignItems="center" border="1px solid #e5e7eb" borderRadius="6px" bgcolor="#fff" style="overflow: hidden; width: 300px;">
-            <span style="padding: 0 10px; color: #9ca3af; display: flex; align-items: center;">
+            <span style="padding: 0 10px; color: #4b5563; display: flex; align-items: center;">
               ${searchIcon}
             </span>
             <input
@@ -355,8 +355,8 @@ export const SearchEmpty: Story = {
               "
             />
           </flint-box>
-          <p style="font-size: 0.8125rem; color: #6b7280; font-family: var(--flint-font-family, system-ui); margin: 0;">
-            Need help? <a href="#" style="color: var(--flint-primary-color, #3b82f6);">Contact support</a>
+          <p style="font-size: 0.8125rem; color: #4b5563; font-family: var(--flint-font-family, system-ui); margin: 0;">
+            Need help? <a href="#" style="color: var(--flint-primary-color, #2563eb);">Contact support</a>
           </p>
         </flint-empty-content>
       </flint-empty>

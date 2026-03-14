@@ -123,7 +123,7 @@ type Story = StoryObj;
 
 const box = (title: string, content: unknown) => html`
     <flint-stack direction="column" gap="8px" p="0 0 4px">
-        <span style="font-size:.7rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.06em;">${title}</span>
+        <span style="font-size:.7rem;color:#475569;text-transform:uppercase;letter-spacing:.06em;">${title}</span>
         ${content}
     </flint-stack>
 `;
@@ -346,10 +346,10 @@ export const Controlled: Story = {
         return html`
             <flint-paper elevation="1" @flint-pagination-change=${handleChange}>
                 <flint-stack direction="column" gap="16px" p="24px" style="font-family:Inter,sans-serif;">
-                    <flint-stack direction="row" alignItems="center" gap="12px" fontSize=".875rem" color="#64748b">
+                    <flint-stack direction="row" alignItems="center" gap="12px" fontSize=".875rem" color="#475569">
                         <span>Current page:</span>
                         <strong id="cp-label" style="font-size:1.1rem;color:#1e293b;">${page}</strong>
-                        <span style="color:#94a3b8;">/ 10</span>
+                        <span style="color:#475569;">/ 10</span>
                     </flint-stack>
 
                 <flint-pagination
@@ -360,7 +360,7 @@ export const Controlled: Story = {
                     show-last-button
                 ></flint-pagination>
 
-                    <flint-box bgcolor="var(--flint-muted-background, #f8fafc)" borderRadius="6px" p="12px 16px" style="font-size:.825rem;color:#64748b;border:1px solid #e2e8f0;">
+                    <flint-box bgcolor="var(--flint-muted-background, #f8fafc)" borderRadius="6px" p="12px 16px" style="font-size:.825rem;color:#475569;border:1px solid #e2e8f0;">
                         Showing items <strong id="cp-range">${(page - 1) * 10 + 1}–${Math.min(page * 10, 95)} of 95</strong>
                     </flint-box>
                 </flint-stack>
@@ -495,9 +495,9 @@ export const TablePaginationStyle: Story = {
             const nextBtn = document.getElementById('tp-next') as HTMLButtonElement | null;
             const rowStr = getRows().map(r =>
                 `<tr style="border-bottom:1px solid #f1f5f9;">` +
-                `<td style="padding:10px 16px;color:#6b7280;">${r.id}</td>` +
+                `<td style="padding:10px 16px;color:#4b5563;">${r.id}</td>` +
                 `<td style="padding:10px 16px;color:#111827;">${r.name}</td>` +
-                `<td style="padding:10px 16px;color:#6b7280;">${r.role}</td></tr>`
+                `<td style="padding:10px 16px;color:#4b5563;">${r.role}</td></tr>`
             ).join('');
             if (pg) { pg.count = totalPages(); pg.page = page + 1; }
             if (range) range.textContent = `${page * rowsPerPage + 1}–${Math.min((page + 1) * rowsPerPage, totalRows)} of ${totalRows}`;
@@ -520,16 +520,16 @@ export const TablePaginationStyle: Story = {
                     <tbody id="tp-tbody">
                         ${getRows().map(row => html`
                             <tr style="border-bottom:1px solid #f1f5f9;">
-                                <td style="padding:10px 16px;color:#6b7280;">${row.id}</td>
+                                <td style="padding:10px 16px;color:#4b5563;">${row.id}</td>
                                 <td style="padding:10px 16px;color:#111827;">${row.name}</td>
-                                <td style="padding:10px 16px;color:#6b7280;">${row.role}</td>
+                                <td style="padding:10px 16px;color:#4b5563;">${row.role}</td>
                             </tr>
                         `)}
                     </tbody>
                 </table>
 
                 <!-- Pagination bar -->
-                <flint-stack direction="row" alignItems="center" justifyContent="flex-end" gap="16px" p="10px 16px" borderTop="1px solid #e2e8f0" fontSize=".8rem" color="#6b7280" style="flex-wrap:wrap;">
+                <flint-stack direction="row" alignItems="center" justifyContent="flex-end" gap="16px" p="10px 16px" borderTop="1px solid #e2e8f0" fontSize=".8rem" color="#4b5563" style="flex-wrap:wrap;">
                     <flint-stack direction="row" alignItems="center" gap="8px">
                         <span>Rows per page:</span>
                         <select

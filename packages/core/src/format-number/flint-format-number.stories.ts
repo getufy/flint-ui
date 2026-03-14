@@ -148,10 +148,10 @@ export const Notation: Story = {
         return html`
             <div style="font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
                 <div style="display: grid; grid-template-columns: 120px repeat(${notations.length}, 1fr); gap: 8px 16px; align-items: center;">
-                    <span style="color: #6b7280; font-weight: 600;">value</span>
-                    ${notations.map(n => html`<span style="color: #6b7280; font-weight: 600;">${n}</span>`)}
+                    <span style="color: #4b5563; font-weight: 600;">value</span>
+                    ${notations.map(n => html`<span style="color: #4b5563; font-weight: 600;">${n}</span>`)}
                     ${values.map(v => html`
-                        <code style="color: #6b7280;">${v}</code>
+                        <code style="color: #4b5563;">${v}</code>
                         ${notations.map(n => html`
                             <flint-format-number .value=${v} .notation=${n} lang="en"></flint-format-number>
                         `)}
@@ -170,11 +170,11 @@ export const CompactDisplay: Story = {
         return html`
             <div style="display: flex; flex-direction: column; gap: 8px; font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
                 <div style="display: grid; grid-template-columns: 140px 1fr 1fr; gap: 8px 16px;">
-                    <span style="color: #6b7280; font-weight: 600;">value</span>
-                    <span style="color: #6b7280; font-weight: 600;">short</span>
-                    <span style="color: #6b7280; font-weight: 600;">long</span>
+                    <span style="color: #4b5563; font-weight: 600;">value</span>
+                    <span style="color: #4b5563; font-weight: 600;">short</span>
+                    <span style="color: #4b5563; font-weight: 600;">long</span>
                     ${values.map(v => html`
-                        <code style="color: #6b7280;">${v.toLocaleString('en')}</code>
+                        <code style="color: #4b5563;">${v.toLocaleString('en')}</code>
                         <flint-format-number .value=${v} notation="compact" compact-display="short" lang="en"></flint-format-number>
                         <flint-format-number .value=${v} notation="compact" compact-display="long" lang="en"></flint-format-number>
                     `)}
@@ -195,10 +195,10 @@ export const SignDisplay: Story = {
         return html`
             <div style="font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
                 <div style="display: grid; grid-template-columns: 80px repeat(${modes.length}, 1fr); gap: 8px 16px; align-items: center;">
-                    <span style="color: #6b7280; font-weight: 600;">value</span>
-                    ${modes.map(m => html`<span style="color: #6b7280; font-weight: 600;">${m}</span>`)}
+                    <span style="color: #4b5563; font-weight: 600;">value</span>
+                    ${modes.map(m => html`<span style="color: #4b5563; font-weight: 600;">${m}</span>`)}
                     ${values.map(v => html`
-                        <code style="color: #6b7280;">${v}</code>
+                        <code style="color: #4b5563;">${v}</code>
                         ${modes.map(m => html`
                             <flint-format-number .value=${v} .signDisplay=${m} lang="en"></flint-format-number>
                         `)}
@@ -226,12 +226,12 @@ export const Units: Story = {
         return html`
             <div style="font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
                 <div style="display: grid; grid-template-columns: 120px 1fr 1fr 1fr; gap: 8px 16px; align-items: center;">
-                    <span style="color: #6b7280; font-weight: 600;">label</span>
-                    <span style="color: #6b7280; font-weight: 600;">short</span>
-                    <span style="color: #6b7280; font-weight: 600;">long</span>
-                    <span style="color: #6b7280; font-weight: 600;">narrow</span>
+                    <span style="color: #4b5563; font-weight: 600;">label</span>
+                    <span style="color: #4b5563; font-weight: 600;">short</span>
+                    <span style="color: #4b5563; font-weight: 600;">long</span>
+                    <span style="color: #4b5563; font-weight: 600;">narrow</span>
                     ${entries.map(({ value, unit, label }) => html`
-                        <span style="color: #6b7280;">${label}</span>
+                        <span style="color: #4b5563;">${label}</span>
                         <flint-format-number .value=${value} type="unit" .unit=${unit} unit-display="short" lang="en"></flint-format-number>
                         <flint-format-number .value=${value} type="unit" .unit=${unit} unit-display="long" lang="en"></flint-format-number>
                         <flint-format-number .value=${value} type="unit" .unit=${unit} unit-display="narrow" lang="en"></flint-format-number>
@@ -256,10 +256,10 @@ export const PositiveNegativeColors: Story = {
         return html`
             <div style="
                 font-family: system-ui; font-size: 0.875rem;
-                --flint-format-number-positive-color: #16a34a;
+                --flint-format-number-positive-color: #15803d;
                 --flint-format-number-negative-color: #dc2626;
             ">
-                <p style="color: #6b7280; margin: 0 0 12px 0; font-size: 0.75rem;">
+                <p style="color: #4b5563; margin: 0 0 12px 0; font-size: 0.75rem;">
                     Set <code>--flint-format-number-positive-color</code> and
                     <code>--flint-format-number-negative-color</code> on a parent.
                 </p>
@@ -290,7 +290,7 @@ export const Percentages: Story = {
         <div style="display: flex; flex-direction: column; gap: 8px; font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
             ${[0, 0.25, 0.5, 0.75, 1].map(v => html`
                 <div style="display: flex; align-items: center; gap: 16px;">
-                    <code style="min-width: 60px; color: #6b7280;">${v}</code>
+                    <code style="min-width: 60px; color: #4b5563;">${v}</code>
                     <flint-format-number .value=${v} type="percent" lang="en"></flint-format-number>
                 </div>
             `)}
@@ -316,7 +316,7 @@ export const Localization: Story = {
             <div style="display: flex; flex-direction: column; gap: 8px; font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
                 ${locales.map(({ lang, label }) => html`
                     <div style="display: flex; align-items: center; gap: 16px;">
-                        <span style="min-width: 80px; color: #6b7280;">${label}:</span>
+                        <span style="min-width: 80px; color: #4b5563;">${label}:</span>
                         <flint-format-number .value=${2000} .minimumFractionDigits=${2} lang=${lang}></flint-format-number>
                     </div>
                 `)}
@@ -341,7 +341,7 @@ export const Currency: Story = {
             <div style="display: flex; flex-direction: column; gap: 8px; font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
                 ${entries.map(({ currency, lang, label }) => html`
                     <div style="display: flex; align-items: center; gap: 16px;">
-                        <span style="min-width: 140px; color: #6b7280;">${label}:</span>
+                        <span style="min-width: 140px; color: #4b5563;">${label}:</span>
                         <flint-format-number .value=${2000} type="currency" .currency=${currency} lang=${lang}></flint-format-number>
                     </div>
                 `)}
@@ -359,7 +359,7 @@ export const CurrencyDisplay: Story = {
             <div style="display: flex; flex-direction: column; gap: 8px; font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
                 ${displays.map(d => html`
                     <div style="display: flex; align-items: center; gap: 16px;">
-                        <code style="min-width: 140px; color: #6b7280;">${d}</code>
+                        <code style="min-width: 140px; color: #4b5563;">${d}</code>
                         <flint-format-number .value=${2000} type="currency" currency="EUR" .currencyDisplay=${d} lang="en"></flint-format-number>
                     </div>
                 `)}
@@ -374,11 +374,11 @@ export const NoGrouping: Story = {
     render: () => html`
         <div style="display: flex; flex-direction: column; gap: 8px; font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
             <div style="display: flex; align-items: center; gap: 16px;">
-                <span style="min-width: 160px; color: #6b7280;">with grouping:</span>
+                <span style="min-width: 160px; color: #4b5563;">with grouping:</span>
                 <flint-format-number .value=${1000000} lang="en"></flint-format-number>
             </div>
             <div style="display: flex; align-items: center; gap: 16px;">
-                <span style="min-width: 160px; color: #6b7280;">no-grouping:</span>
+                <span style="min-width: 160px; color: #4b5563;">no-grouping:</span>
                 <flint-format-number .value=${1000000} no-grouping lang="en"></flint-format-number>
             </div>
         </div>
@@ -391,19 +391,19 @@ export const FractionDigits: Story = {
     render: () => html`
         <div style="display: flex; flex-direction: column; gap: 8px; font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
             <div style="display: flex; align-items: center; gap: 16px;">
-                <code style="min-width: 220px; color: #6b7280;">no fraction options</code>
+                <code style="min-width: 220px; color: #4b5563;">no fraction options</code>
                 <flint-format-number .value=${1234.5678} lang="en"></flint-format-number>
             </div>
             <div style="display: flex; align-items: center; gap: 16px;">
-                <code style="min-width: 220px; color: #6b7280;">minimum-fraction-digits=2</code>
+                <code style="min-width: 220px; color: #4b5563;">minimum-fraction-digits=2</code>
                 <flint-format-number .value=${1234.5} .minimumFractionDigits=${2} lang="en"></flint-format-number>
             </div>
             <div style="display: flex; align-items: center; gap: 16px;">
-                <code style="min-width: 220px; color: #6b7280;">maximum-fraction-digits=2</code>
+                <code style="min-width: 220px; color: #4b5563;">maximum-fraction-digits=2</code>
                 <flint-format-number .value=${1234.5678} .maximumFractionDigits=${2} lang="en"></flint-format-number>
             </div>
             <div style="display: flex; align-items: center; gap: 16px;">
-                <code style="min-width: 220px; color: #6b7280;">min=2 max=4</code>
+                <code style="min-width: 220px; color: #4b5563;">min=2 max=4</code>
                 <flint-format-number .value=${1234.5} .minimumFractionDigits=${2} .maximumFractionDigits=${4} lang="en"></flint-format-number>
             </div>
         </div>
@@ -416,15 +416,15 @@ export const SignificantDigits: Story = {
     render: () => html`
         <div style="display: flex; flex-direction: column; gap: 8px; font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
             <div style="display: flex; align-items: center; gap: 16px;">
-                <code style="min-width: 260px; color: #6b7280;">minimum-significant-digits=3</code>
+                <code style="min-width: 260px; color: #4b5563;">minimum-significant-digits=3</code>
                 <flint-format-number .value=${1.5} .minimumSignificantDigits=${3} lang="en"></flint-format-number>
             </div>
             <div style="display: flex; align-items: center; gap: 16px;">
-                <code style="min-width: 260px; color: #6b7280;">maximum-significant-digits=3</code>
+                <code style="min-width: 260px; color: #4b5563;">maximum-significant-digits=3</code>
                 <flint-format-number .value=${123456.789} .maximumSignificantDigits=${3} lang="en"></flint-format-number>
             </div>
             <div style="display: flex; align-items: center; gap: 16px;">
-                <code style="min-width: 260px; color: #6b7280;">min=2 max=4 significant</code>
+                <code style="min-width: 260px; color: #4b5563;">min=2 max=4 significant</code>
                 <flint-format-number .value=${0.00123} .minimumSignificantDigits=${2} .maximumSignificantDigits=${4} lang="en"></flint-format-number>
             </div>
         </div>
@@ -437,15 +437,15 @@ export const IntegerDigits: Story = {
     render: () => html`
         <div style="display: flex; flex-direction: column; gap: 8px; font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
             <div style="display: flex; align-items: center; gap: 16px;">
-                <code style="min-width: 220px; color: #6b7280;">minimum-integer-digits=1</code>
+                <code style="min-width: 220px; color: #4b5563;">minimum-integer-digits=1</code>
                 <flint-format-number .value=${7} .minimumIntegerDigits=${1} lang="en"></flint-format-number>
             </div>
             <div style="display: flex; align-items: center; gap: 16px;">
-                <code style="min-width: 220px; color: #6b7280;">minimum-integer-digits=3</code>
+                <code style="min-width: 220px; color: #4b5563;">minimum-integer-digits=3</code>
                 <flint-format-number .value=${7} .minimumIntegerDigits=${3} lang="en"></flint-format-number>
             </div>
             <div style="display: flex; align-items: center; gap: 16px;">
-                <code style="min-width: 220px; color: #6b7280;">minimum-integer-digits=5</code>
+                <code style="min-width: 220px; color: #4b5563;">minimum-integer-digits=5</code>
                 <flint-format-number .value=${42} .minimumIntegerDigits=${5} lang="en"></flint-format-number>
             </div>
         </div>
@@ -458,27 +458,27 @@ export const CustomStyles: Story = {
     render: () => html`
         <div style="display: flex; flex-direction: column; gap: 12px; font-family: system-ui; font-size: 0.875rem;">
             <div>
-                <span style="color: #6b7280; margin-right: 8px;">default:</span>
+                <span style="color: #4b5563; margin-right: 8px;">default:</span>
                 <flint-format-number .value=${1234567} lang="en"></flint-format-number>
             </div>
             <div>
-                <span style="color: #6b7280; margin-right: 8px;">primary color:</span>
+                <span style="color: #4b5563; margin-right: 8px;">primary color:</span>
                 <flint-format-number
                     .value=${1234567}
                     lang="en"
-                    style="--flint-format-number-color: #3b82f6;"
+                    style="--flint-format-number-color: #2563eb;"
                 ></flint-format-number>
             </div>
             <div>
-                <span style="color: #6b7280; margin-right: 8px;">large + accent:</span>
+                <span style="color: #4b5563; margin-right: 8px;">large + accent:</span>
                 <flint-format-number
                     .value=${1234567}
                     lang="en"
-                    style="--flint-format-number-color: #8b5cf6; --flint-format-number-font-size: 1.5rem; --flint-format-number-font-weight: 700;"
+                    style="--flint-format-number-color: #7c3aed; --flint-format-number-font-size: 1.5rem; --flint-format-number-font-weight: 700;"
                 ></flint-format-number>
             </div>
             <div>
-                <span style="color: #6b7280; margin-right: 8px;">monospace font:</span>
+                <span style="color: #4b5563; margin-right: 8px;">monospace font:</span>
                 <flint-format-number
                     .value=${9007199254740991}
                     lang="en"
@@ -495,31 +495,31 @@ export const EdgeCases: Story = {
     render: () => html`
         <div style="display: flex; flex-direction: column; gap: 8px; font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
             <div style="display: flex; align-items: center; gap: 12px;">
-                <span style="min-width: 200px; color: #6b7280;">zero:</span>
+                <span style="min-width: 200px; color: #4b5563;">zero:</span>
                 <flint-format-number .value=${0} lang="en"></flint-format-number>
             </div>
             <div style="display: flex; align-items: center; gap: 12px;">
-                <span style="min-width: 200px; color: #6b7280;">negative:</span>
+                <span style="min-width: 200px; color: #4b5563;">negative:</span>
                 <flint-format-number .value=${-1234.56} lang="en"></flint-format-number>
             </div>
             <div style="display: flex; align-items: center; gap: 12px;">
-                <span style="min-width: 200px; color: #6b7280;">very large:</span>
+                <span style="min-width: 200px; color: #4b5563;">very large:</span>
                 <flint-format-number .value=${9007199254740991} lang="en"></flint-format-number>
             </div>
             <div style="display: flex; align-items: center; gap: 12px;">
-                <span style="min-width: 200px; color: #6b7280;">very small (0.000001):</span>
+                <span style="min-width: 200px; color: #4b5563;">very small (0.000001):</span>
                 <flint-format-number .value=${0.000001} .maximumSignificantDigits=${3} lang="en"></flint-format-number>
             </div>
             <div style="display: flex; align-items: center; gap: 12px;">
-                <span style="min-width: 200px; color: #6b7280;">Infinity:</span>
+                <span style="min-width: 200px; color: #4b5563;">Infinity:</span>
                 <flint-format-number .value=${Infinity} lang="en"></flint-format-number>
             </div>
             <div style="display: flex; align-items: center; gap: 12px;">
-                <span style="min-width: 200px; color: #6b7280;">NaN:</span>
+                <span style="min-width: 200px; color: #4b5563;">NaN:</span>
                 <flint-format-number .value=${NaN} lang="en"></flint-format-number>
             </div>
             <div style="display: flex; align-items: center; gap: 12px;">
-                <span style="min-width: 200px; color: #6b7280;">negative zero:</span>
+                <span style="min-width: 200px; color: #4b5563;">negative zero:</span>
                 <flint-format-number .value=${-0} lang="en"></flint-format-number>
             </div>
         </div>
@@ -543,13 +543,13 @@ export const InContext: Story = {
                 display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
                 font-family: system-ui; max-width: 600px;
                 --flint-format-number-negative-color: #dc2626;
-                --flint-format-number-positive-color: #16a34a;
+                --flint-format-number-positive-color: #15803d;
             ">
                 ${stats.map(s => html`
                     <div style="
                         border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px;
                     ">
-                        <div style="font-size: 0.75rem; color: #6b7280; margin-bottom: 4px;">${s.label}</div>
+                        <div style="font-size: 0.75rem; color: #4b5563; margin-bottom: 4px;">${s.label}</div>
                         <div style="font-size: 1.25rem; font-weight: 600; color: #111827;">
                             ${s.percent
                                 ? html`<flint-format-number .value=${s.value} type="percent" .minimumFractionDigits=${1} sign-display="exceptZero" lang="en"></flint-format-number>`

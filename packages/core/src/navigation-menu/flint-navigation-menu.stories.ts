@@ -466,19 +466,19 @@ export const MegaMenu: Story = {
                         style="--flint-navigation-menu-content-min-width: 600px; --flint-navigation-menu-content-padding: 24px;">
                         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
                             <div>
-                                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #6b7280; margin-bottom: 8px;">Design</div>
+                                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #4b5563; margin-bottom: 8px;">Design</div>
                                 <flint-navigation-menu-link href="#">UI Components</flint-navigation-menu-link>
                                 <flint-navigation-menu-link href="#">Icon Library</flint-navigation-menu-link>
                                 <flint-navigation-menu-link href="#">Figma Plugin</flint-navigation-menu-link>
                             </div>
                             <div>
-                                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #6b7280; margin-bottom: 8px;">Develop</div>
+                                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #4b5563; margin-bottom: 8px;">Develop</div>
                                 <flint-navigation-menu-link href="#">Component Library</flint-navigation-menu-link>
                                 <flint-navigation-menu-link href="#">Web Components</flint-navigation-menu-link>
                                 <flint-navigation-menu-link href="#">CLI Tools</flint-navigation-menu-link>
                             </div>
                             <div>
-                                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #6b7280; margin-bottom: 8px;">Deploy</div>
+                                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #4b5563; margin-bottom: 8px;">Deploy</div>
                                 <flint-navigation-menu-link href="#">Hosting</flint-navigation-menu-link>
                                 <flint-navigation-menu-link href="#">CI/CD</flint-navigation-menu-link>
                                 <flint-navigation-menu-link href="#">Analytics</flint-navigation-menu-link>
@@ -493,13 +493,13 @@ export const MegaMenu: Story = {
                         style="--flint-navigation-menu-content-min-width: 400px; --flint-navigation-menu-content-padding: 24px;">
                         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
                             <div>
-                                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #6b7280; margin-bottom: 8px;">Learn</div>
+                                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #4b5563; margin-bottom: 8px;">Learn</div>
                                 <flint-navigation-menu-link href="#">Documentation</flint-navigation-menu-link>
                                 <flint-navigation-menu-link href="#">Tutorials</flint-navigation-menu-link>
                                 <flint-navigation-menu-link href="#">Blog</flint-navigation-menu-link>
                             </div>
                             <div>
-                                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #6b7280; margin-bottom: 8px;">Community</div>
+                                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #4b5563; margin-bottom: 8px;">Community</div>
                                 <flint-navigation-menu-link href="#">GitHub</flint-navigation-menu-link>
                                 <flint-navigation-menu-link href="#">Discord</flint-navigation-menu-link>
                                 <flint-navigation-menu-link href="#">Forum</flint-navigation-menu-link>
@@ -599,7 +599,7 @@ export const ShadcnStyle: Story = {
                                     style="--flint-navigation-menu-link-padding: 10px 12px; height: auto; --flint-navigation-menu-link-border-radius: 6px; align-items: flex-start;">
                                     <div>
                                         <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">Introduction</div>
-                                        <div style="font-size: 12px; color: #6b7280; line-height: 1.4;">
+                                        <div style="font-size: 12px; color: #4b5563; line-height: 1.4;">
                                             Re-usable components built using Lit and CSS.
                                         </div>
                                     </div>
@@ -608,7 +608,7 @@ export const ShadcnStyle: Story = {
                                     style="--flint-navigation-menu-link-padding: 10px 12px; height: auto; --flint-navigation-menu-link-border-radius: 6px; align-items: flex-start;">
                                     <div>
                                         <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">Installation</div>
-                                        <div style="font-size: 12px; color: #6b7280; line-height: 1.4;">
+                                        <div style="font-size: 12px; color: #4b5563; line-height: 1.4;">
                                             How to install dependencies and structure your app.
                                         </div>
                                     </div>
@@ -617,7 +617,7 @@ export const ShadcnStyle: Story = {
                                     style="--flint-navigation-menu-link-padding: 10px 12px; height: auto; --flint-navigation-menu-link-border-radius: 6px; align-items: flex-start;">
                                     <div>
                                         <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">Typography</div>
-                                        <div style="font-size: 12px; color: #6b7280; line-height: 1.4;">
+                                        <div style="font-size: 12px; color: #4b5563; line-height: 1.4;">
                                             Styles for headings, paragraphs, lists etc.
                                         </div>
                                     </div>
@@ -637,42 +637,42 @@ export const ShadcnStyle: Story = {
                                     style="--flint-navigation-menu-link-padding: 10px 12px; height: auto; --flint-navigation-menu-link-border-radius: 6px; align-items: flex-start;">
                                     <div>
                                         <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">Alert Dialog</div>
-                                        <div style="font-size: 12px; color: #6b7280; line-height: 1.4;">A modal dialog that interrupts the user with important content.</div>
+                                        <div style="font-size: 12px; color: #4b5563; line-height: 1.4;">A modal dialog that interrupts the user with important content.</div>
                                     </div>
                                 </flint-navigation-menu-link>
                                 <flint-navigation-menu-link href="/docs/hover-card"
                                     style="--flint-navigation-menu-link-padding: 10px 12px; height: auto; --flint-navigation-menu-link-border-radius: 6px; align-items: flex-start;">
                                     <div>
                                         <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">Hover Card</div>
-                                        <div style="font-size: 12px; color: #6b7280; line-height: 1.4;">For sighted users to preview content available behind a link.</div>
+                                        <div style="font-size: 12px; color: #4b5563; line-height: 1.4;">For sighted users to preview content available behind a link.</div>
                                     </div>
                                 </flint-navigation-menu-link>
                                 <flint-navigation-menu-link href="/docs/progress"
                                     style="--flint-navigation-menu-link-padding: 10px 12px; height: auto; --flint-navigation-menu-link-border-radius: 6px; align-items: flex-start;">
                                     <div>
                                         <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">Progress</div>
-                                        <div style="font-size: 12px; color: #6b7280; line-height: 1.4;">Displays an indicator showing the completion progress of a task.</div>
+                                        <div style="font-size: 12px; color: #4b5563; line-height: 1.4;">Displays an indicator showing the completion progress of a task.</div>
                                     </div>
                                 </flint-navigation-menu-link>
                                 <flint-navigation-menu-link href="/docs/scroll-area"
                                     style="--flint-navigation-menu-link-padding: 10px 12px; height: auto; --flint-navigation-menu-link-border-radius: 6px; align-items: flex-start;">
                                     <div>
                                         <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">Scroll-area</div>
-                                        <div style="font-size: 12px; color: #6b7280; line-height: 1.4;">Visually or semantically separates content.</div>
+                                        <div style="font-size: 12px; color: #4b5563; line-height: 1.4;">Visually or semantically separates content.</div>
                                     </div>
                                 </flint-navigation-menu-link>
                                 <flint-navigation-menu-link href="/docs/tabs"
                                     style="--flint-navigation-menu-link-padding: 10px 12px; height: auto; --flint-navigation-menu-link-border-radius: 6px; align-items: flex-start;">
                                     <div>
                                         <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">Tabs</div>
-                                        <div style="font-size: 12px; color: #6b7280; line-height: 1.4;">A set of layered sections of content displayed one at a time.</div>
+                                        <div style="font-size: 12px; color: #4b5563; line-height: 1.4;">A set of layered sections of content displayed one at a time.</div>
                                     </div>
                                 </flint-navigation-menu-link>
                                 <flint-navigation-menu-link href="/docs/tooltip"
                                     style="--flint-navigation-menu-link-padding: 10px 12px; height: auto; --flint-navigation-menu-link-border-radius: 6px; align-items: flex-start;">
                                     <div>
                                         <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">Tooltip</div>
-                                        <div style="font-size: 12px; color: #6b7280; line-height: 1.4;">A popup that displays information related to an element.</div>
+                                        <div style="font-size: 12px; color: #4b5563; line-height: 1.4;">A popup that displays information related to an element.</div>
                                     </div>
                                 </flint-navigation-menu-link>
                             </div>
@@ -872,7 +872,7 @@ export const AccessibilityShowcase: Story = {
     },
     render: () => html`
         <div style="padding: 24px; min-height: 200px;">
-            <p style="font-size: 13px; color: #6b7280; margin-bottom: 16px;">
+            <p style="font-size: 13px; color: #4b5563; margin-bottom: 16px;">
                 Tab → trigger → Enter/Space to open → ArrowDown into menu → ArrowUp/Down to navigate →
                 Home/End for first/last → Escape to close
             </p>

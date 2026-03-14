@@ -37,7 +37,7 @@ export const Playground: Story = {
     name: 'Playground',
     render: () => html`
         <div style="font-family: var(--flint-font-family, system-ui); padding: 24px; max-width: 480px;">
-            <p style="margin: 0 0 12px; font-size: 0.875rem; color: var(--flint-text-color-muted, #6b7280);">
+            <p style="margin: 0 0 12px; font-size: 0.875rem; color: var(--flint-text-color-muted, #4b5563);">
                 The component below is visually hidden but present in the accessibility tree.
                 Open your browser DevTools to inspect the DOM.
             </p>
@@ -60,7 +60,7 @@ export const SkipLink: Story = {
     name: 'Skip to Main Content',
     render: () => html`
         <div style="font-family: var(--flint-font-family, system-ui); padding: 24px;">
-            <p style="margin: 0 0 12px; font-size: 0.875rem; color: var(--flint-text-color-muted, #6b7280);">
+            <p style="margin: 0 0 12px; font-size: 0.875rem; color: var(--flint-text-color-muted, #4b5563);">
                 Press <kbd style="
                     display: inline-block; padding: 2px 6px; font-size: 0.75rem;
                     background: var(--flint-surface-3, #f3f4f6); border: 1px solid var(--flint-border-color, #e5e7eb);
@@ -73,7 +73,7 @@ export const SkipLink: Story = {
                         href="#demo-main"
                         style="
                             display: inline-block; padding: 8px 16px;
-                            background: var(--flint-primary-color, #3b82f6);
+                            background: var(--flint-primary-color, #2563eb);
                             color: #fff; border-radius: 4px;
                             font-size: 0.875rem; text-decoration: none;
                             outline-offset: 2px;
@@ -101,7 +101,7 @@ export const NewWindowLink: Story = {
     name: 'Links That Open in New Tabs',
     render: () => html`
         <div style="font-family: var(--flint-font-family, system-ui); padding: 24px;">
-            <p style="margin: 0 0 16px; font-size: 0.875rem; color: var(--flint-text-color-muted, #6b7280);">
+            <p style="margin: 0 0 16px; font-size: 0.875rem; color: var(--flint-text-color-muted, #4b5563);">
                 Screen readers will announce "opens in a new tab" even though the
                 text is invisible to sighted users. The <code>not-focusable</code> attribute
                 prevents the text from ever becoming visible.
@@ -113,7 +113,7 @@ export const NewWindowLink: Story = {
                     rel="noopener noreferrer"
                     style="
                         display: inline-flex; align-items: center; gap: 6px;
-                        font-size: 0.9375rem; color: var(--flint-primary-color, #3b82f6);
+                        font-size: 0.9375rem; color: var(--flint-primary-color, #2563eb);
                         text-decoration: underline;
                     "
                 >
@@ -134,7 +134,7 @@ export const NewWindowLink: Story = {
                     rel="noopener noreferrer"
                     style="
                         display: inline-flex; align-items: center; gap: 6px;
-                        font-size: 0.9375rem; color: var(--flint-primary-color, #3b82f6);
+                        font-size: 0.9375rem; color: var(--flint-primary-color, #2563eb);
                         text-decoration: underline;
                     "
                 >
@@ -159,7 +159,7 @@ export const FormLabels: Story = {
     name: 'Content Conveyed By Context',
     render: () => html`
         <div style="font-family: var(--flint-font-family, system-ui); padding: 24px; max-width: 360px;">
-            <p style="margin: 0 0 16px; font-size: 0.875rem; color: var(--flint-text-color-muted, #6b7280);">
+            <p style="margin: 0 0 16px; font-size: 0.875rem; color: var(--flint-text-color-muted, #4b5563);">
                 Labels are hidden from sighted users but announced by screen readers
                 to provide context for each field.
             </p>
@@ -219,7 +219,7 @@ export const IconButton: Story = {
     name: 'Icon-Only Buttons',
     render: () => html`
         <div style="font-family: var(--flint-font-family, system-ui); padding: 24px;">
-            <p style="margin: 0 0 16px; font-size: 0.875rem; color: var(--flint-text-color-muted, #6b7280);">
+            <p style="margin: 0 0 16px; font-size: 0.875rem; color: var(--flint-text-color-muted, #4b5563);">
                 Each icon button has a visually hidden label. Screen readers announce
                 the action; sighted users see only the icon.
             </p>
@@ -289,7 +289,7 @@ export const BreadcrumbSeparator: Story = {
     name: 'Breadcrumb Separators',
     render: () => html`
         <div style="font-family: var(--flint-font-family, system-ui); padding: 24px;">
-            <p style="margin: 0 0 16px; font-size: 0.875rem; color: var(--flint-text-color-muted, #6b7280);">
+            <p style="margin: 0 0 16px; font-size: 0.875rem; color: var(--flint-text-color-muted, #4b5563);">
                 Decorative separators are replaced with a meaningful SR-only label.
                 Screen readers announce "breadcrumb" and the separator meaning
                 without reading out slash characters.
@@ -301,13 +301,13 @@ export const BreadcrumbSeparator: Story = {
                     font-size: 0.875rem; color: var(--flint-text-color, #111827);
                 ">
                     <li>
-                        <a href="#" style="color: var(--flint-primary-color, #3b82f6); text-decoration: none;">Home</a>
+                        <a href="#" style="color: var(--flint-primary-color, #2563eb); text-decoration: none;">Home</a>
                     </li>
-                    <li aria-hidden="true" style="color: var(--flint-text-color-muted, #9ca3af); padding: 0 2px;">/</li>
+                    <li aria-hidden="true" style="color: var(--flint-text-color-muted, #4b5563); padding: 0 2px;">/</li>
                     <li>
-                        <a href="#" style="color: var(--flint-primary-color, #3b82f6); text-decoration: none;">Products</a>
+                        <a href="#" style="color: var(--flint-primary-color, #2563eb); text-decoration: none;">Products</a>
                     </li>
-                    <li aria-hidden="true" style="color: var(--flint-text-color-muted, #9ca3af); padding: 0 2px;">/</li>
+                    <li aria-hidden="true" style="color: var(--flint-text-color-muted, #4b5563); padding: 0 2px;">/</li>
                     <li>
                         <span style="font-weight: 500;">
                             Wireless Headphones
@@ -327,7 +327,7 @@ export const LiveAnnouncement: Story = {
         let count = 0;
         return html`
             <div style="font-family: var(--flint-font-family, system-ui); padding: 24px; max-width: 400px;">
-                <p style="margin: 0 0 16px; font-size: 0.875rem; color: var(--flint-text-color-muted, #6b7280);">
+                <p style="margin: 0 0 16px; font-size: 0.875rem; color: var(--flint-text-color-muted, #4b5563);">
                     A hidden live region announces status updates to screen readers
                     without disrupting the visual layout.
                 </p>
@@ -345,14 +345,14 @@ export const LiveAnnouncement: Story = {
                         }}
                         style="
                             padding: 8px 16px; font-size: 0.875rem; cursor: pointer;
-                            background: var(--flint-primary-color, #3b82f6); color: #fff;
+                            background: var(--flint-primary-color, #2563eb); color: #fff;
                             border: none; border-radius: 6px;
                         "
                     >
                         Add to Cart
                     </button>
                     <span id="cart-display" style="
-                        font-size: 0.875rem; color: var(--flint-text-color-muted, #6b7280);
+                        font-size: 0.875rem; color: var(--flint-text-color-muted, #4b5563);
                     ">
                         Click to add items
                     </span>
@@ -367,7 +367,7 @@ export const StatusIndicator: Story = {
     name: 'Status Indicators',
     render: () => html`
         <div style="font-family: var(--flint-font-family, system-ui); padding: 24px;">
-            <p style="margin: 0 0 16px; font-size: 0.875rem; color: var(--flint-text-color-muted, #6b7280);">
+            <p style="margin: 0 0 16px; font-size: 0.875rem; color: var(--flint-text-color-muted, #4b5563);">
                 Visual states (active, selected, online) are communicated to screen
                 readers via hidden text, not just colour or shape alone.
             </p>
@@ -377,7 +377,7 @@ export const StatusIndicator: Story = {
                     <span style="
                         position: relative; display: inline-flex;
                         width: 32px; height: 32px; border-radius: 50%;
-                        background: var(--flint-primary-color, #3b82f6);
+                        background: var(--flint-primary-color, #2563eb);
                         color: #fff; align-items: center; justify-content: center;
                         font-size: 0.8125rem; font-weight: 600; flex-shrink: 0;
                     ">
@@ -398,7 +398,7 @@ export const StatusIndicator: Story = {
                         position: relative; display: inline-flex;
                         width: 32px; height: 32px; border-radius: 50%;
                         background: var(--flint-surface-3, #f3f4f6);
-                        color: var(--flint-text-color-muted, #6b7280);
+                        color: var(--flint-text-color-muted, #4b5563);
                         align-items: center; justify-content: center;
                         font-size: 0.8125rem; font-weight: 600; flex-shrink: 0;
                     ">
@@ -419,7 +419,7 @@ export const StatusIndicator: Story = {
                         position: relative; display: inline-flex;
                         width: 32px; height: 32px; border-radius: 50%;
                         background: var(--flint-surface-3, #f3f4f6);
-                        color: var(--flint-text-color-muted, #9ca3af);
+                        color: var(--flint-text-color-muted, #4b5563);
                         align-items: center; justify-content: center;
                         font-size: 0.8125rem; font-weight: 600; flex-shrink: 0;
                     ">
@@ -427,7 +427,7 @@ export const StatusIndicator: Story = {
                         <span style="
                             position: absolute; bottom: 1px; right: 1px;
                             width: 9px; height: 9px; border-radius: 50%;
-                            background: #9ca3af;
+                            background: #4b5563;
                             border: 2px solid var(--flint-surface-1, #fff);
                         " aria-hidden="true"></span>
                     </span>
@@ -444,7 +444,7 @@ export const DataTable: Story = {
     name: 'Data Table Context',
     render: () => html`
         <div style="font-family: var(--flint-font-family, system-ui); padding: 24px;">
-            <p style="margin: 0 0 16px; font-size: 0.875rem; color: var(--flint-text-color-muted, #6b7280);">
+            <p style="margin: 0 0 16px; font-size: 0.875rem; color: var(--flint-text-color-muted, #4b5563);">
                 Sort direction and row context are conveyed to screen readers
                 without duplicating visible text.
             </p>
@@ -482,7 +482,7 @@ export const DataTable: Story = {
                         <td style="padding: 10px 12px;">Alex Johnson</td>
                         <td style="padding: 10px 12px;">Admin</td>
                         <td style="padding: 10px 12px;">
-                            <span style="color: #16a34a;">● <flint-visually-hidden not-focusable>Status:</flint-visually-hidden> Active</span>
+                            <span style="color: #15803d;">● <flint-visually-hidden not-focusable>Status:</flint-visually-hidden> Active</span>
                         </td>
                         <td style="padding: 10px 12px; text-align: right;">
                             <button style="
@@ -500,7 +500,7 @@ export const DataTable: Story = {
                         <td style="padding: 10px 12px;">Sam Kim</td>
                         <td style="padding: 10px 12px;">Editor</td>
                         <td style="padding: 10px 12px;">
-                            <span style="color: #ca8a04;">● <flint-visually-hidden not-focusable>Status:</flint-visually-hidden> Pending</span>
+                            <span style="color: #92400e;">● <flint-visually-hidden not-focusable>Status:</flint-visually-hidden> Pending</span>
                         </td>
                         <td style="padding: 10px 12px; text-align: right;">
                             <button style="

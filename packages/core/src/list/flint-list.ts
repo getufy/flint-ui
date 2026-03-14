@@ -49,6 +49,13 @@ export class FlintListItemButton extends LitElement {
     /** Whether the list item button is selected. */
     @property({ type: Boolean, reflect: true }) selected = false;
 
+    override connectedCallback() {
+        super.connectedCallback();
+        // Host acts as a listitem so ul[role="list"] sees a valid child,
+        // while the inner element carries the button semantics.
+        if (!this.hasAttribute('role')) this.setAttribute('role', 'listitem');
+    }
+
     private _handleKeydown = (e: KeyboardEvent) => {
         if (this.disabled) return;
         if (e.key === 'Enter' || e.key === ' ') {
@@ -59,13 +66,13 @@ export class FlintListItemButton extends LitElement {
 
     render() {
         return html`
-      <li
+      <div
         role="button"
         tabindex=${this.disabled ? '-1' : '0'}
         aria-disabled=${this.disabled ? 'true' : nothing}
         aria-current=${this.selected ? 'true' : nothing}
         @keydown=${this._handleKeydown}
-      ><slot></slot></li>
+      ><slot></slot></div>
     `;
     }
 }

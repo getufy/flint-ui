@@ -221,13 +221,13 @@ export const WithAvatar: Story = {
       <flint-list-subheader>Recent Chats</flint-list-subheader>
       <flint-list-item-button>
         <flint-list-item-avatar>
-          <div style="width: 40px; height: 40px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">A</div>
+          <div style="width: 40px; height: 40px; background: #2563eb; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">A</div>
         </flint-list-item-avatar>
         <flint-list-item-text primary="Alice Johnson" secondary="See you later!"></flint-list-item-text>
       </flint-list-item-button>
       <flint-list-item-button>
         <flint-list-item-avatar>
-           <div style="width: 40px; height: 40px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">B</div>
+           <div style="width: 40px; height: 40px; background: #059669; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">B</div>
         </flint-list-item-avatar>
         <flint-list-item-text primary="Bob Smith" secondary="The report is ready."></flint-list-item-text>
       </flint-list-item-button>
@@ -329,7 +329,7 @@ export const WithTrailingActions: Story = {
       <flint-list-item-button>
         <flint-list-item-text primary="Alice Johnson" secondary="alice@example.com"></flint-list-item-text>
         <flint-list-item-icon>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #6b7280;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #4b5563;">
             <polyline points="9 18 15 12 9 6"></polyline>
           </svg>
         </flint-list-item-icon>
@@ -337,7 +337,7 @@ export const WithTrailingActions: Story = {
       <flint-list-item-button>
         <flint-list-item-text primary="Bob Smith" secondary="bob@example.com"></flint-list-item-text>
         <flint-list-item-icon>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #6b7280;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #4b5563;">
             <polyline points="9 18 15 12 9 6"></polyline>
           </svg>
         </flint-list-item-icon>

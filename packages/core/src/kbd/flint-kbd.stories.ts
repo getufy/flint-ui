@@ -93,15 +93,15 @@ export const Sizes: Story = {
   render: () => html`
     <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center;">
       <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;">
-        <span style="font-size: 0.75rem; color: #6b7280; font-family: system-ui;">sm</span>
+        <span style="font-size: 0.75rem; color: #4b5563; font-family: system-ui;">sm</span>
         <flint-kbd size="sm">⌘</flint-kbd>
       </div>
       <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;">
-        <span style="font-size: 0.75rem; color: #6b7280; font-family: system-ui;">default</span>
+        <span style="font-size: 0.75rem; color: #4b5563; font-family: system-ui;">default</span>
         <flint-kbd>⌘</flint-kbd>
       </div>
       <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;">
-        <span style="font-size: 0.75rem; color: #6b7280; font-family: system-ui;">lg</span>
+        <span style="font-size: 0.75rem; color: #4b5563; font-family: system-ui;">lg</span>
         <flint-kbd size="lg">⌘</flint-kbd>
       </div>
     </div>
@@ -114,7 +114,7 @@ export const Variants: Story = {
   render: () => html`
     <div style="display: flex; flex-direction: column; gap: 20px; font-family: system-ui; font-size: 0.875rem; color: #374151;">
       <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;">
-        <span style="font-size: 0.75rem; color: #6b7280;">raised (default) — bottom border + shadow</span>
+        <span style="font-size: 0.75rem; color: #4b5563;">raised (default) — bottom border + shadow</span>
         <div style="display: flex; gap: 8px;">
           <flint-kbd>⌘</flint-kbd>
           <flint-kbd>⇧</flint-kbd>
@@ -122,7 +122,7 @@ export const Variants: Story = {
         </div>
       </div>
       <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;">
-        <span style="font-size: 0.75rem; color: #6b7280;">flat — no raised effect, suits inline/menu contexts</span>
+        <span style="font-size: 0.75rem; color: #4b5563;">flat — no raised effect, suits inline/menu contexts</span>
         <div style="display: flex; gap: 8px;">
           <flint-kbd variant="flat">⌘</flint-kbd>
           <flint-kbd variant="flat">⇧</flint-kbd>
@@ -130,7 +130,7 @@ export const Variants: Story = {
         </div>
       </div>
       <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;">
-        <span style="font-size: 0.75rem; color: #6b7280;">flat in a menu row</span>
+        <span style="font-size: 0.75rem; color: #4b5563;">flat in a menu row</span>
         <div style="border: 1px solid #e5e7eb; border-radius: 6px; overflow: hidden; width: 260px;">
           ${(['Bold', 'Italic', 'Underline'] as const).map((label, i) => html`
             <div style="
@@ -172,13 +172,13 @@ export const Group: Story = {
 
       <flint-kbd-group style="--flint-kbd-group-gap: ${args['gap']}">
         <flint-kbd>Ctrl</flint-kbd>
-        <span style="font-family: system-ui; font-size: 0.875rem; color: #6b7280;">+</span>
+        <span style="font-family: system-ui; font-size: 0.875rem; color: #4b5563;">+</span>
         <flint-kbd>B</flint-kbd>
       </flint-kbd-group>
 
       <flint-kbd-group style="--flint-kbd-group-gap: ${args['gap']}">
         <flint-kbd>Ctrl</flint-kbd>
-        <span style="font-family: system-ui; font-size: 0.875rem; color: #6b7280;">+</span>
+        <span style="font-family: system-ui; font-size: 0.875rem; color: #4b5563;">+</span>
         <flint-kbd>K</flint-kbd>
       </flint-kbd-group>
     </div>
@@ -196,7 +196,7 @@ export const InlineText: Story = {
       <p style="margin: 0;">
         Use <flint-kbd-group>
           <flint-kbd>Ctrl</flint-kbd>
-          <span style="color: #6b7280;">+</span>
+          <span style="color: #4b5563;">+</span>
           <flint-kbd>B</flint-kbd>
         </flint-kbd-group> to bold selected text.
       </p>
@@ -214,27 +214,27 @@ export const MacModifiers: Story = {
     <div style="display: flex; flex-direction: column; gap: 12px; align-items: flex-start; font-family: system-ui; font-size: 0.875rem;">
       <div style="display: flex; align-items: center; gap: 12px;">
         <flint-kbd label="Command">⌘</flint-kbd>
-        <span style="color: #6b7280;">Command</span>
+        <span style="color: #4b5563;">Command</span>
       </div>
       <div style="display: flex; align-items: center; gap: 12px;">
         <flint-kbd label="Shift">⇧</flint-kbd>
-        <span style="color: #6b7280;">Shift</span>
+        <span style="color: #4b5563;">Shift</span>
       </div>
       <div style="display: flex; align-items: center; gap: 12px;">
         <flint-kbd label="Option / Alt">⌥</flint-kbd>
-        <span style="color: #6b7280;">Option / Alt</span>
+        <span style="color: #4b5563;">Option / Alt</span>
       </div>
       <div style="display: flex; align-items: center; gap: 12px;">
         <flint-kbd label="Control">⌃</flint-kbd>
-        <span style="color: #6b7280;">Control</span>
+        <span style="color: #4b5563;">Control</span>
       </div>
       <div style="display: flex; align-items: center; gap: 12px;">
         <flint-kbd label="Return / Enter">⏎</flint-kbd>
-        <span style="color: #6b7280;">Return / Enter</span>
+        <span style="color: #4b5563;">Return / Enter</span>
       </div>
       <div style="display: flex; align-items: center; gap: 12px;">
         <flint-kbd label="Backspace / Delete">⌫</flint-kbd>
-        <span style="color: #6b7280;">Backspace / Delete</span>
+        <span style="color: #4b5563;">Backspace / Delete</span>
       </div>
     </div>
   `,
@@ -247,39 +247,39 @@ export const WindowsModifiers: Story = {
     <div style="display: flex; flex-direction: column; gap: 12px; align-items: flex-start; font-family: system-ui; font-size: 0.875rem;">
       <div style="display: flex; align-items: center; gap: 12px;">
         <flint-kbd>Ctrl</flint-kbd>
-        <span style="color: #6b7280;">Control</span>
+        <span style="color: #4b5563;">Control</span>
       </div>
       <div style="display: flex; align-items: center; gap: 12px;">
         <flint-kbd>Alt</flint-kbd>
-        <span style="color: #6b7280;">Alt</span>
+        <span style="color: #4b5563;">Alt</span>
       </div>
       <div style="display: flex; align-items: center; gap: 12px;">
         <flint-kbd>Shift</flint-kbd>
-        <span style="color: #6b7280;">Shift</span>
+        <span style="color: #4b5563;">Shift</span>
       </div>
       <div style="display: flex; align-items: center; gap: 12px;">
         <flint-kbd>Win</flint-kbd>
-        <span style="color: #6b7280;">Windows / Super</span>
+        <span style="color: #4b5563;">Windows / Super</span>
       </div>
       <div style="display: flex; align-items: center; gap: 12px;">
         <flint-kbd>Del</flint-kbd>
-        <span style="color: #6b7280;">Delete</span>
+        <span style="color: #4b5563;">Delete</span>
       </div>
       <div style="display: flex; align-items: center; gap: 12px;">
         <flint-kbd>PgUp</flint-kbd>
-        <span style="color: #6b7280;">Page Up</span>
+        <span style="color: #4b5563;">Page Up</span>
       </div>
       <div style="display: flex; align-items: center; gap: 12px;">
         <flint-kbd>PgDn</flint-kbd>
-        <span style="color: #6b7280;">Page Down</span>
+        <span style="color: #4b5563;">Page Down</span>
       </div>
       <div style="display: flex; align-items: center; gap: 12px;">
         <flint-kbd>Home</flint-kbd>
-        <span style="color: #6b7280;">Home</span>
+        <span style="color: #4b5563;">Home</span>
       </div>
       <div style="display: flex; align-items: center; gap: 12px;">
         <flint-kbd>End</flint-kbd>
-        <span style="color: #6b7280;">End</span>
+        <span style="color: #4b5563;">End</span>
       </div>
     </div>
   `,
@@ -292,7 +292,7 @@ export const ArrowKeys: Story = {
     <div style="display: flex; flex-direction: column; gap: 20px; font-family: system-ui; font-size: 0.875rem; color: #374151;">
       <!-- Individual arrows -->
       <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;">
-        <span style="font-size: 0.75rem; color: #6b7280;">Individual</span>
+        <span style="font-size: 0.75rem; color: #4b5563;">Individual</span>
         <div style="display: flex; gap: 8px; align-items: center;">
           <flint-kbd label="Up Arrow">↑</flint-kbd>
           <flint-kbd label="Down Arrow">↓</flint-kbd>
@@ -303,7 +303,7 @@ export const ArrowKeys: Story = {
 
       <!-- Cross layout -->
       <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;">
-        <span style="font-size: 0.75rem; color: #6b7280;">Cross layout</span>
+        <span style="font-size: 0.75rem; color: #4b5563;">Cross layout</span>
         <div style="display: grid; grid-template-columns: repeat(3, auto); grid-template-rows: repeat(2, auto); gap: 4px; width: fit-content;">
           <span></span>
           <flint-kbd label="Up Arrow">↑</flint-kbd>
@@ -316,7 +316,7 @@ export const ArrowKeys: Story = {
 
       <!-- In context -->
       <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;">
-        <span style="font-size: 0.75rem; color: #6b7280;">In context</span>
+        <span style="font-size: 0.75rem; color: #4b5563;">In context</span>
         <p style="margin: 0; line-height: 1.6;">
           Use <flint-kbd label="Left Arrow">←</flint-kbd> <flint-kbd label="Right Arrow">→</flint-kbd> to navigate between slides.
         </p>

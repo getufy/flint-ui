@@ -74,7 +74,7 @@ export default meta;
 type Story = StoryObj;
 
 const item = (label: string) => html`
-    <flint-box bgcolor="var(--flint-demo-item-background, #cfe8fc)" border="1px solid #1976d2" p="16px" textAlign="center" color="#1976d2" borderRadius="4px" style="font-family: system-ui;">
+    <flint-box bgcolor="var(--flint-demo-item-background, #dbeafe)" border="1px solid #1e40af" p="16px" textAlign="center" color="#1e40af" borderRadius="4px" style="font-family: system-ui;">
         ${label}
     </flint-box>
 `;
@@ -173,9 +173,9 @@ export const StringSpacing: Story = {
     render: () => html`
         <p style="font-family:system-ui;font-size:12px;color:#666;margin:0 0 8px;">spacing="2rem" — string values are passed directly to CSS gap</p>
         <flint-stack direction="row" .spacing=${'2rem'}>
-            <div style="background:var(--flint-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;color:#1976d2;border-radius:4px;">Item 1</div>
-            <div style="background:var(--flint-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;color:#1976d2;border-radius:4px;">Item 2</div>
-            <div style="background:var(--flint-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;color:#1976d2;border-radius:4px;">Item 3</div>
+            <div style="background:var(--flint-demo-item-background, #dbeafe);border:1px solid #1e40af;padding:16px;color:#1e40af;border-radius:4px;">Item 1</div>
+            <div style="background:var(--flint-demo-item-background, #dbeafe);border:1px solid #1e40af;padding:16px;color:#1e40af;border-radius:4px;">Item 2</div>
+            <div style="background:var(--flint-demo-item-background, #dbeafe);border:1px solid #1e40af;padding:16px;color:#1e40af;border-radius:4px;">Item 3</div>
         </flint-stack>
     `,
 };
@@ -191,9 +191,9 @@ export const AlignItems: Story = {
                 <div>
                     <p style="margin:0 0 6px;font-size:12px;color:#666;">alignItems="${a}"</p>
                     <flint-stack direction="row" .spacing=${2} .alignItems=${a} style="height:80px;background:var(--flint-muted-background, #f5f5f5);border-radius:4px;">
-                        <div style="background:var(--flint-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:8px 16px;color:#1976d2;border-radius:4px;">Short</div>
-                        <div style="background:var(--flint-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:24px 16px;color:#1976d2;border-radius:4px;">Tall</div>
-                        <div style="background:var(--flint-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:8px 16px;color:#1976d2;border-radius:4px;">Short</div>
+                        <div style="background:var(--flint-demo-item-background, #dbeafe);border:1px solid #1e40af;padding:8px 16px;color:#1e40af;border-radius:4px;">Short</div>
+                        <div style="background:var(--flint-demo-item-background, #dbeafe);border:1px solid #1e40af;padding:24px 16px;color:#1e40af;border-radius:4px;">Tall</div>
+                        <div style="background:var(--flint-demo-item-background, #dbeafe);border:1px solid #1e40af;padding:8px 16px;color:#1e40af;border-radius:4px;">Short</div>
                     </flint-stack>
                 </div>
             `)}
@@ -210,9 +210,9 @@ export const JustifyContent: Story = {
                 <div>
                     <p style="margin:0 0 6px;font-size:12px;color:#666;">justifyContent="${j}"</p>
                     <flint-stack direction="row" .justifyContent=${j} style="background:var(--flint-muted-background, #f5f5f5);border-radius:4px;padding:8px;">
-                        <div style="background:var(--flint-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:8px 16px;color:#1976d2;border-radius:4px;">A</div>
-                        <div style="background:var(--flint-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:8px 16px;color:#1976d2;border-radius:4px;">B</div>
-                        <div style="background:var(--flint-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:8px 16px;color:#1976d2;border-radius:4px;">C</div>
+                        <div style="background:var(--flint-demo-item-background, #dbeafe);border:1px solid #1e40af;padding:8px 16px;color:#1e40af;border-radius:4px;">A</div>
+                        <div style="background:var(--flint-demo-item-background, #dbeafe);border:1px solid #1e40af;padding:8px 16px;color:#1e40af;border-radius:4px;">B</div>
+                        <div style="background:var(--flint-demo-item-background, #dbeafe);border:1px solid #1e40af;padding:8px 16px;color:#1e40af;border-radius:4px;">C</div>
                     </flint-stack>
                 </div>
             `)}
@@ -227,11 +227,11 @@ export const WithDividers: Story = {
     args: { direction: 'column', spacing: 2 },
     render: (args) => html`
         <flint-stack .direction=${args.direction} .spacing=${args.spacing}>
-            <div style="background:var(--flint-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 1</div>
+            <div style="background:var(--flint-demo-item-background, #dbeafe);border:1px solid #1e40af;padding:16px;text-align:center;color:#1e40af;font-family:system-ui;border-radius:4px;">Item 1</div>
             <flint-divider></flint-divider>
-            <div style="background:var(--flint-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 2</div>
+            <div style="background:var(--flint-demo-item-background, #dbeafe);border:1px solid #1e40af;padding:16px;text-align:center;color:#1e40af;font-family:system-ui;border-radius:4px;">Item 2</div>
             <flint-divider></flint-divider>
-            <div style="background:var(--flint-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 3</div>
+            <div style="background:var(--flint-demo-item-background, #dbeafe);border:1px solid #1e40af;padding:16px;text-align:center;color:#1e40af;font-family:system-ui;border-radius:4px;">Item 3</div>
         </flint-stack>
     `,
 };
@@ -241,11 +241,11 @@ export const WithDividersRow: Story = {
     args: { direction: 'row', spacing: 2 },
     render: (args) => html`
         <flint-stack .direction=${args.direction} .spacing=${args.spacing}>
-            <div style="background:var(--flint-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 1</div>
+            <div style="background:var(--flint-demo-item-background, #dbeafe);border:1px solid #1e40af;padding:16px;text-align:center;color:#1e40af;font-family:system-ui;border-radius:4px;">Item 1</div>
             <flint-divider></flint-divider>
-            <div style="background:var(--flint-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 2</div>
+            <div style="background:var(--flint-demo-item-background, #dbeafe);border:1px solid #1e40af;padding:16px;text-align:center;color:#1e40af;font-family:system-ui;border-radius:4px;">Item 2</div>
             <flint-divider></flint-divider>
-            <div style="background:var(--flint-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 3</div>
+            <div style="background:var(--flint-demo-item-background, #dbeafe);border:1px solid #1e40af;padding:16px;text-align:center;color:#1e40af;font-family:system-ui;border-radius:4px;">Item 3</div>
         </flint-stack>
     `,
 };
@@ -260,9 +260,9 @@ export const NoFlexGap: Story = {
             Uses CSS margin instead of gap — useful when targeting older browsers.
         </p>
         <flint-stack .direction=${args.direction} .spacing=${args.spacing} .useFlexGap=${args.useFlexGap}>
-            <div style="background:var(--flint-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 1</div>
-            <div style="background:var(--flint-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 2</div>
-            <div style="background:var(--flint-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;color:#1976d2;font-family:system-ui;border-radius:4px;">Item 3</div>
+            <div style="background:var(--flint-demo-item-background, #dbeafe);border:1px solid #1e40af;padding:16px;color:#1e40af;font-family:system-ui;border-radius:4px;">Item 1</div>
+            <div style="background:var(--flint-demo-item-background, #dbeafe);border:1px solid #1e40af;padding:16px;color:#1e40af;font-family:system-ui;border-radius:4px;">Item 2</div>
+            <div style="background:var(--flint-demo-item-background, #dbeafe);border:1px solid #1e40af;padding:16px;color:#1e40af;font-family:system-ui;border-radius:4px;">Item 3</div>
         </flint-stack>
     `,
 };
@@ -280,9 +280,9 @@ export const Responsive: Story = {
             Resize the viewport: column below 600px, row above.
         </p>
         <flint-stack .direction=${args.direction} .spacing=${args.spacing}>
-            <div style="background:var(--flint-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Responsive 1</div>
-            <div style="background:var(--flint-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Responsive 2</div>
-            <div style="background:var(--flint-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Responsive 3</div>
+            <div style="background:var(--flint-demo-item-background, #dbeafe);border:1px solid #1e40af;padding:16px;text-align:center;color:#1e40af;font-family:system-ui;border-radius:4px;">Responsive 1</div>
+            <div style="background:var(--flint-demo-item-background, #dbeafe);border:1px solid #1e40af;padding:16px;text-align:center;color:#1e40af;font-family:system-ui;border-radius:4px;">Responsive 2</div>
+            <div style="background:var(--flint-demo-item-background, #dbeafe);border:1px solid #1e40af;padding:16px;text-align:center;color:#1e40af;font-family:system-ui;border-radius:4px;">Responsive 3</div>
         </flint-stack>
     `,
 };
@@ -293,13 +293,13 @@ export const Nested: Story = {
     name: 'Nested stacks',
     render: () => html`
         <flint-stack .spacing=${3}>
-            <div style="background:var(--flint-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Top item</div>
+            <div style="background:var(--flint-demo-item-background, #dbeafe);border:1px solid #1e40af;padding:16px;text-align:center;color:#1e40af;font-family:system-ui;border-radius:4px;">Top item</div>
             <flint-stack direction="row" .spacing=${2}>
-                <div style="background:var(--flint-demo-item-background-green, #e8f5e9);border:1px solid #388e3c;padding:16px;flex:1;text-align:center;color:#388e3c;font-family:system-ui;border-radius:4px;">Left</div>
-                <div style="background:var(--flint-demo-item-background-green, #e8f5e9);border:1px solid #388e3c;padding:16px;flex:1;text-align:center;color:#388e3c;font-family:system-ui;border-radius:4px;">Center</div>
-                <div style="background:var(--flint-demo-item-background-green, #e8f5e9);border:1px solid #388e3c;padding:16px;flex:1;text-align:center;color:#388e3c;font-family:system-ui;border-radius:4px;">Right</div>
+                <div style="background:var(--flint-demo-item-background-green, #dcfce7);border:1px solid #166534;padding:16px;flex:1;text-align:center;color:#166534;font-family:system-ui;border-radius:4px;">Left</div>
+                <div style="background:var(--flint-demo-item-background-green, #dcfce7);border:1px solid #166534;padding:16px;flex:1;text-align:center;color:#166534;font-family:system-ui;border-radius:4px;">Center</div>
+                <div style="background:var(--flint-demo-item-background-green, #dcfce7);border:1px solid #166534;padding:16px;flex:1;text-align:center;color:#166534;font-family:system-ui;border-radius:4px;">Right</div>
             </flint-stack>
-            <div style="background:var(--flint-demo-item-background, #cfe8fc);border:1px solid #1976d2;padding:16px;text-align:center;color:#1976d2;font-family:system-ui;border-radius:4px;">Bottom item</div>
+            <div style="background:var(--flint-demo-item-background, #dbeafe);border:1px solid #1e40af;padding:16px;text-align:center;color:#1e40af;font-family:system-ui;border-radius:4px;">Bottom item</div>
         </flint-stack>
     `,
 };

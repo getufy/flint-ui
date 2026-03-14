@@ -166,7 +166,7 @@ export const Mobile: Story = {
     name: 'Mobile Picker (Modal)',
     args: { variant: 'mobile' },
     render: (args) => wrap(html`
-    <p style="font-size:.85rem;color:#6b7280;margin-bottom:16px;">
+    <p style="font-size:.85rem;color:#4b5563;margin-bottom:16px;">
       On mobile/touch devices the calendar opens in a full dialog with Cancel/OK buttons.
     </p>
     <flint-date-picker
@@ -187,7 +187,7 @@ export const Static: Story = {
     args: { variant: 'static' },
     render: (args) => html`
     <div style="padding:32px;font-family:Inter,sans-serif;">
-      <p style="font-size:.85rem;color:#6b7280;margin-bottom:16px;">
+      <p style="font-size:.85rem;color:#4b5563;margin-bottom:16px;">
         The static variant renders the calendar inline — no popover/modal, no text field.
       </p>
       <flint-date-picker .variant=${args.variant} @change=${onChange}></flint-date-picker>
@@ -213,7 +213,7 @@ export const Disabled: Story = {
 export const ReadOnly: Story = {
     args: { readonly: true, value: '2024-06-21' },
     render: (args) => wrap(html`
-    <p style="font-size:.85rem;color:#6b7280;margin-bottom:16px;">
+    <p style="font-size:.85rem;color:#4b5563;margin-bottom:16px;">
       Read-only: the text field cannot be typed in, but the calendar opens on click.
     </p>
     <flint-date-picker
@@ -243,7 +243,7 @@ export const WithMinMax: Story = {
         const maxIso = `${maxDate.getFullYear()}-${String(maxDate.getMonth() + 1).padStart(2, '0')}-${String(maxDate.getDate()).padStart(2, '0')}`;
 
         return wrap(html`
-      <p style="font-size:.85rem;color:#6b7280;margin-bottom:16px;">
+      <p style="font-size:.85rem;color:#4b5563;margin-bottom:16px;">
         Only dates from <strong>today</strong> to <strong>30 days ahead</strong> are selectable.
       </p>
       <flint-date-picker
@@ -280,17 +280,17 @@ export const AllVariants: Story = {
       <flint-stack direction="row" gap="40px" alignItems="flex-start" style="flex-wrap:wrap;">
 
         <div>
-          <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;color:#6b7280;letter-spacing:.05em;margin:0 0 12px;">Desktop</p>
+          <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;color:#4b5563;letter-spacing:.05em;margin:0 0 12px;">Desktop</p>
           <flint-date-picker variant="desktop" label="Check-in" @change=${onChange}></flint-date-picker>
         </div>
 
         <div>
-          <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;color:#6b7280;letter-spacing:.05em;margin:0 0 12px;">Mobile (Modal)</p>
+          <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;color:#4b5563;letter-spacing:.05em;margin:0 0 12px;">Mobile (Modal)</p>
           <flint-date-picker variant="mobile" label="Check-out" @change=${onChange}></flint-date-picker>
         </div>
 
         <div>
-          <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;color:#6b7280;letter-spacing:.05em;margin:0 0 12px;">Static</p>
+          <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;color:#4b5563;letter-spacing:.05em;margin:0 0 12px;">Static</p>
           <flint-date-picker variant="static" @change=${onChange}></flint-date-picker>
         </div>
 
@@ -306,7 +306,7 @@ export const ControlledValue: Story = {
         let currentValue = '2025-07-04';
         return html`
       <div style="padding:48px;font-family:Inter,sans-serif;">
-        <p style="font-size:.85rem;color:#6b7280;margin-bottom:16px;">
+        <p style="font-size:.85rem;color:#4b5563;margin-bottom:16px;">
           Selecting a date updates the displayed value below.
         </p>
         <flint-date-picker

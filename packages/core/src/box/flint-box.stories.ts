@@ -412,7 +412,7 @@ export const DarkMode: Story = {
                     borderRadius="8px"
                     boxShadow="0 4px 12px rgba(0,0,0,0.5)"
                     bgcolor="#111827"
-                    color="#e5e7eb"
+                    color="#4b5563"
                     border="1px solid #374151"
                 >
                     With shadow

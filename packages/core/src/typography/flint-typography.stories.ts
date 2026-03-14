@@ -154,13 +154,13 @@ export const Alignment: Story = {
 export const NoWrap: Story = {
     render: () => html`
         <div style="${sectionStyles}">
-            <p style="margin:0 0 4px; font-size:12px; color:#64748b;">noWrap=true (truncated)</p>
+            <p style="margin:0 0 4px; font-size:12px; color:#475569;">noWrap=true (truncated)</p>
             <div style="width: 300px; border: 1px dashed #e2e8f0; padding: 8px; border-radius: 4px;">
                 <flint-typography noWrap>
                     This text is very long and should be truncated with an ellipsis when noWrap is true.
                 </flint-typography>
             </div>
-            <p style="margin:8px 0 4px; font-size:12px; color:#64748b;">noWrap=false (wraps normally)</p>
+            <p style="margin:8px 0 4px; font-size:12px; color:#475569;">noWrap=false (wraps normally)</p>
             <div style="width: 300px; border: 1px dashed #e2e8f0; padding: 8px; border-radius: 4px;">
                 <flint-typography>
                     This text is very long and will wrap normally when noWrap is false.
@@ -176,12 +176,12 @@ export const NoWrap: Story = {
 export const GutterBottom: Story = {
     render: () => html`
         <div style="${sectionStyles}">
-            <p style="margin:0 0 4px; font-size:12px; color:#64748b;">gutterBottom=true adds 0.35em margin below each item</p>
+            <p style="margin:0 0 4px; font-size:12px; color:#475569;">gutterBottom=true adds 0.35em margin below each item</p>
             <flint-typography variant="h4" gutterBottom>Heading with gutterBottom</flint-typography>
             <flint-typography variant="body1" gutterBottom>Paragraph text with gutterBottom.</flint-typography>
             <flint-typography variant="body2" gutterBottom>Smaller body text with gutterBottom.</flint-typography>
             <flint-typography variant="caption" gutterBottom>Caption text with gutterBottom.</flint-typography>
-            <p style="margin:8px 0 4px; font-size:12px; color:#64748b;">gutterBottom=false (default)</p>
+            <p style="margin:8px 0 4px; font-size:12px; color:#475569;">gutterBottom=false (default)</p>
             <flint-typography variant="h4">Heading without gutterBottom</flint-typography>
             <flint-typography variant="body1">Paragraph text without gutterBottom.</flint-typography>
         </div>
@@ -194,7 +194,7 @@ export const GutterBottom: Story = {
 export const Paragraph: Story = {
     render: () => html`
         <div style="${sectionStyles}">
-            <p style="margin:0 0 8px; font-size:12px; color:#64748b;">paragraph=true adds 16px bottom margin</p>
+            <p style="margin:0 0 8px; font-size:12px; color:#475569;">paragraph=true adds 16px bottom margin</p>
             <flint-typography paragraph>
                 This is the first paragraph. The <code>paragraph</code> prop adds a 16px bottom margin,
                 making it easy to stack text blocks with natural vertical rhythm.
@@ -216,7 +216,7 @@ export const Paragraph: Story = {
 export const ComponentOverride: Story = {
     render: () => html`
         <div style="${sectionStyles}">
-            <p style="margin:0 0 8px; font-size:12px; color:#64748b;">
+            <p style="margin:0 0 8px; font-size:12px; color:#475569;">
                 The <code>component</code> prop overrides the rendered HTML tag while keeping the
                 variant styling. Useful for SEO or accessibility when semantic tag must differ from visual style.
             </p>
@@ -242,11 +242,11 @@ export const ComponentOverride: Story = {
 export const InheritVariant: Story = {
     render: () => html`
         <div style="${sectionStyles}">
-            <p style="margin:0 0 8px; font-size:12px; color:#64748b;">
+            <p style="margin:0 0 8px; font-size:12px; color:#475569;">
                 <code>variant="inherit"</code> renders a &lt;p&gt; tag with no variant class,
                 inheriting font size and weight from the parent.
             </p>
-            <div style="font-size: 24px; font-weight: 700; color: #3b82f6;">
+            <div style="font-size: 24px; font-weight: 700; color: #2563eb;">
                 Parent with large bold blue text —
                 <flint-typography variant="inherit" color="inherit">
                     this child inherits everything.
@@ -300,7 +300,7 @@ export const WithLinks: Story = {
 export const Accessibility: Story = {
     render: () => html`
         <div style="${sectionStyles}">
-            <p style="margin:0 0 8px; font-size:12px; color:#64748b;">
+            <p style="margin:0 0 8px; font-size:12px; color:#475569;">
                 Proper semantic heading hierarchy — h1 → h2 → h3 for screen readers and SEO.
             </p>
             <flint-typography variant="h1">Page Title (h1)</flint-typography>
