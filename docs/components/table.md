@@ -38,8 +38,8 @@ import { FlintTablePagination } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `page-change` | `{ page: next }` | Fired when the current page changes. |
-| `rows-per-page-change` | `{ rowsPerPage: val }` | Fired when the rows-per-page selection changes. |
+| `flint-pagination-page-change` | `{ page: next }` | Fired when the current page changes. |
+| `flint-pagination-rows-per-page-change` | `{ rowsPerPage: val }` | Fired when the rows-per-page selection changes. |
 
 ### CSS Custom Properties
 

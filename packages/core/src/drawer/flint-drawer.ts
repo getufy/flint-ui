@@ -81,6 +81,7 @@ export class FlintDrawer extends LitElement {
                 <div
                     class="backdrop ${this.open ? 'open' : ''}"
                     @click=${this._close}
+                    role="presentation"
                     aria-hidden="true"
                 ></div>
             ` : ''}

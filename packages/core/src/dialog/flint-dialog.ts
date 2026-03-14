@@ -74,7 +74,7 @@ export class FlintDialog extends LitElement {
   }
 
   private _handleBackdropClose(e: Event) {
-    // Prevent the backdrop's own 'close' event from escaping the shadow root —
+    // Prevent the backdrop's own 'flint-backdrop-close' event from escaping the shadow root —
     // the dialog will re-dispatch its own fresh 'close' event from the host.
     e.stopPropagation();
     if (!this.disableBackdropClose) {
@@ -90,7 +90,7 @@ export class FlintDialog extends LitElement {
     });
 
     return html`
-      <flint-backdrop .open=${this.open} @close=${this._handleBackdropClose}>
+      <flint-backdrop .open=${this.open} @flint-backdrop-close=${this._handleBackdropClose}>
         <div
           class=${panelClasses}
           role="dialog"

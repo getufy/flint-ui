@@ -1,4 +1,4 @@
 // Auto-generated — do not edit
 export const FlintDateRangePickerEvents = {
-    RANGE_CHANGE: 'range-change',
+    RANGE_CHANGE: 'flint-date-range-picker-change',
 } as const;

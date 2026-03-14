@@ -31,7 +31,7 @@ const meta: Meta = {
 | Event | Detail | Description |
 |---|---|---|
 | \`click\` | — |  |
-| \`delete\` | — |  |
+| \`flint-chip-delete\` | — |  |
 
 #### Slots
 
@@ -141,7 +141,7 @@ export const Deletable: Story = {
             ?clickable=${args.clickable}
             ?deletable=${args.deletable}
             ?disabled=${args.disabled}
-            @delete=${() => console.log('Delete clicked!')}
+            @flint-chip-delete=${() => console.log('Delete clicked!')}
         ></flint-chip>
     `
 };
@@ -162,7 +162,7 @@ export const ClickableAndDeletable: Story = {
             ?deletable=${args.deletable}
             ?disabled=${args.disabled}
             @click=${() => console.log('Chip clicked!')}
-            @delete=${() => console.log('Chip deleted!')}
+            @flint-chip-delete=${() => console.log('Chip deleted!')}
         ></flint-chip>
     `
 };
@@ -227,9 +227,9 @@ export const FilterExample: Story = {
         <div style="display: flex; flex-direction: column; gap: 16px; font-family: var(--flint-font-family);">
             <h4 style="margin: 0;">Selected Filters</h4>
             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <flint-chip label="Price: $10 - $50" deletable clickable @delete=${() => console.log('removed price filter')}></flint-chip>
-                <flint-chip label="Size: Medium" deletable clickable @delete=${() => console.log('removed size filter')}></flint-chip>
-                <flint-chip label="Color: Blue" deletable clickable @delete=${() => console.log('removed color filter')}></flint-chip>
+                <flint-chip label="Price: $10 - $50" deletable clickable @flint-chip-delete=${() => console.log('removed price filter')}></flint-chip>
+                <flint-chip label="Size: Medium" deletable clickable @flint-chip-delete=${() => console.log('removed size filter')}></flint-chip>
+                <flint-chip label="Color: Blue" deletable clickable @flint-chip-delete=${() => console.log('removed color filter')}></flint-chip>
                 <flint-chip label="In Stock Only" color="primary" clickable></flint-chip>
             </div>
             <div>
@@ -248,8 +248,8 @@ export const KeyboardNavigation: Story = {
             </p>
             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                 <flint-chip label="Click me" clickable color="primary" @click=${() => console.log('clicked')}></flint-chip>
-                <flint-chip label="Delete me" deletable @delete=${() => console.log('deleted')}></flint-chip>
-                <flint-chip label="Both" clickable deletable color="primary" @click=${() => console.log('clicked')} @delete=${() => console.log('deleted')}></flint-chip>
+                <flint-chip label="Delete me" deletable @flint-chip-delete=${() => console.log('deleted')}></flint-chip>
+                <flint-chip label="Both" clickable deletable color="primary" @click=${() => console.log('clicked')} @flint-chip-delete=${() => console.log('deleted')}></flint-chip>
                 <flint-chip label="Disabled" clickable disabled></flint-chip>
             </div>
         </div>

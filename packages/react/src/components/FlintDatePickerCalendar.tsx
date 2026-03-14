@@ -10,7 +10,7 @@ export const FlintDatePickerCalendar = createComponent({
     elementClass: FlintDatePickerCalendarElement,
     react: React,
     events: {
-        onDateSelect: 'date-select' as EventName<CustomEvent>,
+        onDateSelect: 'flint-date-picker-select' as EventName<CustomEvent>,
     },
 });
 

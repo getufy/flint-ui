@@ -38,7 +38,7 @@ const meta: Meta = {
 | Event | Detail | Description |
 |---|---|---|
 | \`change\` | — | { detail: { value: string } } ISO date when all three segments are filled |
-| \`clear\` | — | Fired when all segments are cleared |
+| \`flint-date-field-clear\` | — | Fired when all segments are cleared |
 
 #### CSS Custom Properties
 
@@ -63,7 +63,7 @@ const meta: Meta = {
 
 | Method | Description |
 |---|---|
-| \`clear()\` | Clears all three segments and fires 'clear'. |
+| \`clear()\` | Clears all three segments and fires 'flint-date-field-clear'. |
                 `,
             },
         },

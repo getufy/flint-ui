@@ -1333,3 +1333,73 @@ describe('flint-input-otp — _insertChar boundary', () => {
         expect(getSlot(el, 5).active).toBe(true); // cursor clamped to maxLength-1
     });
 });
+
+/* ═══════════════════════════════════════════════════════════════════
+   flint-input-otp — ARIA accessibility
+══════════════════════════════════════════════════════════════════════ */
+describe('flint-input-otp — ARIA accessibility', () => {
+    it('host has role="group"', async () => {
+        const el = await make();
+        expect(el.getAttribute('role')).toBe('group');
+    });
+
+    it('hidden input has default aria-label "One-time password"', async () => {
+        const el = await make();
+        const input = getHiddenInput(el);
+        expect(input.getAttribute('aria-label')).toBe('One-time password');
+    });
+
+    it('hidden input uses custom label when label property is set', async () => {
+        const el = await fixture<FlintInputOtp>(html`
+            <flint-input-otp .label=${'Enter verification code'}>
+                <flint-input-otp-group>
+                    <flint-input-otp-slot .index=${0}></flint-input-otp-slot>
+                </flint-input-otp-group>
+            </flint-input-otp>
+        `);
+        await el.updateComplete;
+        const input = getHiddenInput(el);
+        expect(input.getAttribute('aria-label')).toBe('Enter verification code');
+    });
+
+    it('hidden input has no aria-describedby when description is empty', async () => {
+        const el = await make();
+        const input = getHiddenInput(el);
+        expect(input.hasAttribute('aria-describedby')).toBe(false);
+    });
+
+    it('hidden input has aria-describedby when description is set', async () => {
+        const el = await fixture<FlintInputOtp>(html`
+            <flint-input-otp .description=${'Enter the 6-digit code sent to your phone'}>
+                <flint-input-otp-group>
+                    <flint-input-otp-slot .index=${0}></flint-input-otp-slot>
+                </flint-input-otp-group>
+            </flint-input-otp>
+        `);
+        await el.updateComplete;
+        const input = getHiddenInput(el);
+        const descId = input.getAttribute('aria-describedby')!;
+        expect(descId).toBeTruthy();
+        const desc = el.shadowRoot!.querySelector(`#${descId}`);
+        expect(desc).not.toBeNull();
+        expect(desc!.textContent).toBe('Enter the 6-digit code sent to your phone');
+    });
+
+    it('does not render description span when description is empty', async () => {
+        const el = await make();
+        const span = el.shadowRoot!.querySelector('.sr-only');
+        expect(span).toBeNull();
+    });
+
+    it('does not override role if already set on host', async () => {
+        const el = await fixture<FlintInputOtp>(html`
+            <flint-input-otp role="radiogroup">
+                <flint-input-otp-group>
+                    <flint-input-otp-slot .index=${0}></flint-input-otp-slot>
+                </flint-input-otp-group>
+            </flint-input-otp>
+        `);
+        await el.updateComplete;
+        expect(el.getAttribute('role')).toBe('radiogroup');
+    });
+});

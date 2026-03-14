@@ -126,10 +126,14 @@ export class FlintSlider extends LitElement {
             .step=${this.step.toString()}
             .value=${safeVal.toString()}
             ?disabled=${this.disabled}
+            aria-disabled=${this.disabled ? 'true' : 'false'}
             @input=${this._handleInput}
             style=${styleMap(trackStyle)}
             aria-label=${this.label || 'Slider'}
             aria-orientation=${this.vertical ? 'vertical' : 'horizontal'}
+            aria-valuemin=${safeMin}
+            aria-valuemax=${safeMax}
+            aria-valuenow=${safeVal}
             aria-valuetext=${this.formatValue ? displayStr : ''}
           >
         </div>

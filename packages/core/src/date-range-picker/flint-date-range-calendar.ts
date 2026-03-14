@@ -15,7 +15,7 @@ import uiDateRangeCalendarStyles from './flint-date-range-calendar.css?inline';
  * A dual-month calendar for range selection.
  * Shows two months side-by-side (or stacked on narrow screens).
  *
- * @fires range-select - { detail: { value: DateRange } } on each click
+ * @fires flint-date-range-picker-select - { detail: { value: DateRange } } on each click
  */
 @customElement('flint-date-range-calendar')
 export class FlintDateRangeCalendar extends LitElement {
@@ -91,7 +91,7 @@ export class FlintDateRangeCalendar extends LitElement {
         }
 
         this.value = newRange;
-        this.dispatchEvent(new CustomEvent('range-select', {
+        this.dispatchEvent(new CustomEvent('flint-date-range-picker-select', {
             detail: { value: newRange }, bubbles: true, composed: true,
         }));
     }

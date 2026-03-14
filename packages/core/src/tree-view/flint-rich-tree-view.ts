@@ -35,8 +35,8 @@ export interface RichTreeViewDataSource {
  * @prop {(item) => RichTreeItem[] | undefined}  getItemChildren  - Extract children (default: `item.children`).
  * @prop {(item) => boolean}                     isItemDisabled   - Return true to disable an item.
  *
- * @fires item-click            - When a tree item is activated (detail: { itemId })
- * @fires expanded-items-change - When the expanded set changes (detail: { expandedItems })
+ * @fires flint-tree-view-item-click        - When a tree item is activated (detail: { itemId })
+ * @fires flint-tree-view-expanded-items-change - When the expanded set changes (detail: { expandedItems })
  */
 @customElement('flint-rich-tree-view')
 export class FlintRichTreeView extends LitElement {
@@ -443,7 +443,7 @@ export class FlintRichTreeView extends LitElement {
             else current.delete(item.itemId);
             const newItems = Array.from(current);
             this.onExpandedItemsChange?.(newItems);
-            this.dispatchEvent(new CustomEvent('expanded-items-change', {
+            this.dispatchEvent(new CustomEvent('flint-tree-view-expanded-items-change', {
                 detail: { expandedItems: newItems },
                 bubbles: false,
             }));
@@ -505,7 +505,7 @@ export class FlintRichTreeView extends LitElement {
         }
 
         this.onItemClick?.(itemId);
-        this.dispatchEvent(new CustomEvent('item-click', {
+        this.dispatchEvent(new CustomEvent('flint-tree-view-item-click', {
             detail: { itemId },
             bubbles: false,
         }));
@@ -578,7 +578,7 @@ export class FlintRichTreeView extends LitElement {
                     this._handleToggle(focusedItem, !focusedItem.expanded);
                 }
                 this.onItemClick?.(focusedItem.itemId);
-                this.dispatchEvent(new CustomEvent('item-click', {
+                this.dispatchEvent(new CustomEvent('flint-tree-view-item-click', {
                     detail: { itemId: focusedItem.itemId },
                     bubbles: false,
                 }));
@@ -926,7 +926,7 @@ export class FlintRichTreeView extends LitElement {
             newIndex
         });
 
-        this.dispatchEvent(new CustomEvent('item-position-change', {
+        this.dispatchEvent(new CustomEvent('flint-tree-view-item-position-change', {
             detail: { itemId, newParentId, newIndex },
             bubbles: true,
             composed: true

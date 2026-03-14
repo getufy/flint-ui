@@ -260,7 +260,7 @@ describe('flint-date-field', () => {
         const el = await fixture<FlintDateField>(html`<flint-date-field value="2025-03-10"></flint-date-field>`);
         await el.updateComplete;
         setTimeout(() => el.clear());
-        const event = await oneEvent(el, 'clear');
+        const event = await oneEvent(el, 'flint-date-field-clear');
         expect(event).toBeDefined();
     });
 

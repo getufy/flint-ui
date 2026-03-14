@@ -374,6 +374,14 @@ describe('flint-drawer', () => {
         expect(document.activeElement).toBe(trigger);
     });
 
+    // ── Backdrop role="presentation" ────────────────────────────────────────
+
+    it('backdrop has role="presentation"', async () => {
+        const el = await fixture<FlintDrawer>(html`<flint-drawer open></flint-drawer>`);
+        const backdrop = el.shadowRoot!.querySelector('.backdrop');
+        expect(backdrop?.getAttribute('role')).toBe('presentation');
+    });
+
     // ── Backdrop/paper closed state ──────────────────────────────────────────
 
     it('backdrop does not have open class when drawer is closed', async () => {

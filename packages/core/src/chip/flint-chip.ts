@@ -41,7 +41,7 @@ export class FlintChip extends LitElement {
     private _handleDelete(e: Event) {
         e.stopPropagation();
         if (this.disabled) return;
-        this.dispatchEvent(new CustomEvent('delete', {
+        this.dispatchEvent(new CustomEvent('flint-chip-delete', {
             bubbles: true,
             composed: true
         }));
@@ -52,7 +52,7 @@ export class FlintChip extends LitElement {
         e.preventDefault();
         e.stopPropagation();
         if (!this.disabled) {
-            this.dispatchEvent(new CustomEvent('delete', {
+            this.dispatchEvent(new CustomEvent('flint-chip-delete', {
                 bubbles: true,
                 composed: true
             }));

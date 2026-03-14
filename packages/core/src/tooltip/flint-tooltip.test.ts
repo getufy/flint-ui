@@ -203,6 +203,15 @@ describe('flint-tooltip', () => {
         expect(popup.getAttribute('aria-hidden')).toBe('false');
     });
 
+    it('has aria-describedby on trigger wrapper pointing to tooltip popup id', async () => {
+        const el = await fixture<FlintTooltip>(html`
+            <flint-tooltip label="A11y link"><button>B</button></flint-tooltip>
+        `);
+        const wrapper = el.shadowRoot!.querySelector('.trigger-wrapper')!;
+        const popup = el.shadowRoot!.querySelector('.tooltip-popup')!;
+        expect(wrapper.getAttribute('aria-describedby')).toBe(popup.id);
+    });
+
     // ── Escape key ───────────────────────────────────────────────
     it('hides tooltip on Escape key', async () => {
         const el = await fixture<FlintTooltip>(html`

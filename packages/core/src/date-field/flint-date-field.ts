@@ -41,7 +41,7 @@ const SEGMENT_ORDER: Segment[] = ['month', 'day', 'year'];
  * - **Escape / a** — clear all segments
  *
  * @fires change - { detail: { value: string } } ISO date when all three segments are filled
- * @fires clear  - Fired when all segments are cleared
+ * @fires flint-date-field-clear  - Fired when all segments are cleared
  *
  * @attr {string}  value        - Controlled value (YYYY-MM-DD)
  * @attr {string}  label        - Field label
@@ -108,12 +108,12 @@ export class FlintDateField extends LitElement {
 
     // ── Public API ───────────────────────────────────────────────────────────
 
-    /** Clears all three segments and fires 'clear'. */
+    /** Clears all three segments and fires 'flint-date-field-clear'. */
     clear() {
         this._month = null; this._day = null; this._year = null;
         this._buf = '';
         (this._internals as { setFormValue?(v: null): void }).setFormValue?.(null);
-        this.dispatchEvent(new CustomEvent('clear', { bubbles: true, composed: true }));
+        this.dispatchEvent(new CustomEvent('flint-date-field-clear', { bubbles: true, composed: true }));
     }
 
     // ── Form value sync ──────────────────────────────────────────────────────

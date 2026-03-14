@@ -39,9 +39,9 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`expanded-items-change\` | \`{ expandedItems: newItems }\` |  |
-| \`item-click\` | \`{ itemId }\` |  |
-| \`item-position-change\` | \`{ itemId, newParentId, newIndex }\` |  |
+| \`flint-tree-view-expanded-items-change\` | \`{ expandedItems: newItems }\` |  |
+| \`flint-tree-view-item-click\` | \`{ itemId }\` |  |
+| \`flint-tree-view-item-position-change\` | \`{ itemId, newParentId, newIndex }\` |  |
 
 #### CSS Custom Properties
 
@@ -88,8 +88,8 @@ A simple tree-view container that manages keyboard navigation, focus, and item s
 
 | Event | Detail | Description |
 |---|---|---|
-| \`item-click\` | — | When a tree item is activated (detail: { itemId }) |
-| \`expanded-items-change\` | — | When the expanded set changes (detail: { expandedItems }) |
+| \`flint-tree-view-item-click\` | — | When a tree item is activated (detail: { itemId }) |
+| \`flint-tree-view-expanded-items-change\` | — | When the expanded set changes (detail: { expandedItems }) |
 
 #### Slots
 

@@ -102,6 +102,7 @@ export class FlintInput extends LitElement {
           ?disabled=${this.disabled}
           ?readonly=${this.readonly}
           ?required=${this.required}
+          aria-required=${this.required ? 'true' : 'false'}
           aria-invalid=${errorState ? 'true' : 'false'}
           aria-describedby=${descId ?? ''}
           name=${this.name}

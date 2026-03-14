@@ -97,6 +97,28 @@ describe('flint-input', () => {
         expect(alert.textContent).toBe('Oops');
     });
 
+    // ─── aria-required ──────────────────────────────────────────────────────
+
+    it('sets aria-required="false" by default', async () => {
+        const el = await fixture<FlintInput>(html`<flint-input></flint-input>`);
+        expect(el.shadowRoot!.querySelector('input')!.getAttribute('aria-required')).toBe('false');
+    });
+
+    it('sets aria-required="true" when required', async () => {
+        const el = await fixture<FlintInput>(html`<flint-input required></flint-input>`);
+        expect(el.shadowRoot!.querySelector('input')!.getAttribute('aria-required')).toBe('true');
+    });
+
+    it('updates aria-required when required changes', async () => {
+        const el = await fixture<FlintInput>(html`<flint-input></flint-input>`);
+        el.required = true;
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('input')!.getAttribute('aria-required')).toBe('true');
+        el.required = false;
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('input')!.getAttribute('aria-required')).toBe('false');
+    });
+
     // ─── help text / error text display ──────────────────────────────────────
 
     it('displays help text', async () => {

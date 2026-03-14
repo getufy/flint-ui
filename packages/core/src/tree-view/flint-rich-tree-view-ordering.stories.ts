@@ -49,7 +49,7 @@ export const BasicReordering: Story = {
     <flint-rich-tree-view
       .items=${ORDERING_ITEMS}
       ?items-reordering=${args['itemsReordering']}
-      @item-position-change=${(e: CustomEvent) => console.log('Position changed:', e.detail)}
+      @flint-tree-view-item-position-change=${(e: CustomEvent) => console.log('Position changed:', e.detail)}
     ></flint-rich-tree-view>
   `,
 };
@@ -162,7 +162,7 @@ export const SyncTwoTrees: Story = {
             id="tree-sync-1"
             .items=${ORDERING_ITEMS}
             items-reordering
-            @item-position-change=${handlePositionChange}
+            @flint-tree-view-item-position-change=${handlePositionChange}
           ></flint-rich-tree-view>
         </div>
         <div>

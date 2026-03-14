@@ -33,7 +33,7 @@ import { FlintDatePickerCalendar } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `date-select` | — | { detail: { value: string } } ISO date YYYY-MM-DD |
+| `flint-date-picker-select` | — | { detail: { value: string } } ISO date YYYY-MM-DD |
 
 ### CSS Custom Properties
 

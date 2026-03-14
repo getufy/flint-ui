@@ -97,7 +97,7 @@ export class FlintTimeField extends LitElement {
 
     clear() {
         this._h = null; this._m = null; this._s = null; this._buf = '';
-        this.dispatchEvent(new CustomEvent('clear', { bubbles: true, composed: true }));
+        this.dispatchEvent(new CustomEvent('flint-time-picker-clear', { bubbles: true, composed: true }));
     }
 
     private _emit() {
@@ -448,7 +448,7 @@ export class FlintTimeClock extends LitElement {
 
     private _switchView(v: TimeView) {
         this.view = v;
-        this.dispatchEvent(new CustomEvent('view-change', { detail: { view: v }, bubbles: true, composed: true }));
+        this.dispatchEvent(new CustomEvent('flint-time-clock-view-change', { detail: { view: v }, bubbles: true, composed: true }));
     }
 
     private _getSvgCoords(e: PointerEvent): { mx: number; my: number } {
@@ -754,7 +754,7 @@ export class FlintMobileTimePicker extends LitElement {
         <flint-dialog-content style="padding:12px;display:flex;justify-content:center;">
           <flint-time-clock .value=${this._pending || this.value || buildTime(12, 0)} .ampm=${this.ampm} ?seconds=${this.seconds} .view=${this._view}
             @change=${(e: CustomEvent) => { this._pending = e.detail.value; }}
-            @view-change=${(e: CustomEvent) => { this._view = e.detail.view; }}
+            @flint-time-clock-view-change=${(e: CustomEvent) => { this._view = e.detail.view; }}
           ></flint-time-clock>
         </flint-dialog-content>
         <flint-dialog-actions>

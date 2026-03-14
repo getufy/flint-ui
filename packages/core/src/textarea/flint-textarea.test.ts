@@ -212,6 +212,30 @@ describe('flint-textarea', () => {
         expect(ta.getAttribute('aria-invalid')).toBe('false');
     });
 
+    // ── aria-required ─────────────────────────────────────────────────────────
+
+    it('sets aria-required="false" by default', async () => {
+        const el = await fixture<FlintTextarea>(html`<flint-textarea></flint-textarea>`);
+        const ta = el.shadowRoot!.querySelector('textarea')!;
+        expect(ta.getAttribute('aria-required')).toBe('false');
+    });
+
+    it('sets aria-required="true" when required', async () => {
+        const el = await fixture<FlintTextarea>(html`<flint-textarea required></flint-textarea>`);
+        const ta = el.shadowRoot!.querySelector('textarea')!;
+        expect(ta.getAttribute('aria-required')).toBe('true');
+    });
+
+    it('updates aria-required when required changes', async () => {
+        const el = await fixture<FlintTextarea>(html`<flint-textarea></flint-textarea>`);
+        el.required = true;
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('textarea')!.getAttribute('aria-required')).toBe('true');
+        el.required = false;
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('textarea')!.getAttribute('aria-required')).toBe('false');
+    });
+
     // ── Help text ────────────────────────────────────────────────────────────
 
     it('renders help text', async () => {

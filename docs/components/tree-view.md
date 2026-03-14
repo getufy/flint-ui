@@ -47,9 +47,9 @@ import { FlintRichTreeView } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `expanded-items-change` | `{ expandedItems: newItems }` | Fired when the set of expanded items changes. |
-| `item-click` | `{ itemId }` | Fired when a tree item is clicked or activated via keyboard. |
-| `item-position-change` | `{ itemId, newParentId, newIndex }` | Fired when an item is moved to a new position via drag-and-drop. |
+| `flint-tree-view-expanded-items-change` | `{ expandedItems: newItems }` | Fired when the set of expanded items changes. |
+| `flint-tree-view-item-click` | `{ itemId }` | Fired when a tree item is clicked or activated via keyboard. |
+| `flint-tree-view-item-position-change` | `{ itemId, newParentId, newIndex }` | Fired when an item is moved to a new position via drag-and-drop. |
 
 ### CSS Custom Properties
 
@@ -110,8 +110,8 @@ import { FlintSimpleTreeView } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `item-click` | — | When a tree item is activated (detail: { itemId }) |
-| `expanded-items-change` | — | When the expanded set changes (detail: { expandedItems }) |
+| `flint-tree-view-item-click` | — | When a tree item is activated (detail: { itemId }) |
+| `flint-tree-view-expanded-items-change` | — | When the expanded set changes (detail: { expandedItems }) |
 
 ### Slots
 

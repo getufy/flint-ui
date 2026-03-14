@@ -20,7 +20,7 @@ import uiDateRangePickerStyles from './flint-date-range-picker.css?inline';
  * - `static`   — always-visible calendar, no field
  * - `auto`     — desktop on pointer:fine, mobile on pointer:coarse
  *
- * @fires range-change - { detail: { value: DateRange } } when range is committed
+ * @fires flint-date-range-picker-change - { detail: { value: DateRange } } when range is committed
  */
 @customElement('flint-date-range-picker')
 export class FlintDateRangePicker extends LitElement {
@@ -134,7 +134,7 @@ export class FlintDateRangePicker extends LitElement {
         const [ns, ne] = range;
         if (ns === ps && ne === pe) { this._closePicker(); return; }
         this.value = range;
-        this.dispatchEvent(new CustomEvent('range-change', {
+        this.dispatchEvent(new CustomEvent('flint-date-range-picker-change', {
             detail: { value: range }, bubbles: true, composed: true,
         }));
         if (range[0] && range[1]) this._closePicker();
@@ -183,7 +183,7 @@ export class FlintDateRangePicker extends LitElement {
         .min=${this.min}
         .max=${this.max}
         ?disabled=${this.disabled}
-        @range-select=${onSelect}
+        @flint-date-range-picker-select=${onSelect}
       ></flint-date-range-calendar>
     `;
     }
@@ -199,7 +199,7 @@ export class FlintDateRangePicker extends LitElement {
         ?disabled=${this.disabled}
         ?readonly=${this.readonly}
         ?error=${this.error}
-        @range-change=${this._handleFieldRangeChange}
+        @flint-date-range-picker-change=${this._handleFieldRangeChange}
         @focus=${this._openPicker}
       ></flint-single-input-date-range-field>
       ${this.helperText ? html`<p class="helper-text">${this.helperText}</p>` : nothing}

@@ -28,7 +28,7 @@ A standalone calendar grid — the core date-selection view. Used internally by 
 
 | Event | Detail | Description |
 |---|---|---|
-| \`date-select\` | — | { detail: { value: string } } ISO date YYYY-MM-DD |
+| \`flint-date-picker-select\` | — | { detail: { value: string } } ISO date YYYY-MM-DD |
 
 #### CSS Custom Properties
 

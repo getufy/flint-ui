@@ -36,7 +36,7 @@ describe('flint-date-picker-calendar', () => {
         expect((selected[0] as HTMLElement).textContent?.trim()).toBe('15');
     });
 
-    it('fires date-select when a day cell is clicked', async () => {
+    it('fires flint-date-picker-select when a day cell is clicked', async () => {
         const el = await fixture<FlintDatePickerCalendar>(html`
             <flint-date-picker-calendar value="2025-06-01"></flint-date-picker-calendar>
         `);
@@ -44,19 +44,19 @@ describe('flint-date-picker-calendar', () => {
         // Click the first current-month day
         const currentMonthDays = el.shadowRoot!.querySelectorAll('.day-cell:not(.other-month)');
         const spy = vi.fn();
-        el.addEventListener('date-select', spy);
+        el.addEventListener('flint-date-picker-select', spy);
         (currentMonthDays[0] as HTMLElement).click();
         expect(spy).toHaveBeenCalledOnce();
     });
 
-    it('date-select event detail contains ISO value', async () => {
+    it('flint-date-picker-select event detail contains ISO value', async () => {
         const el = await fixture<FlintDatePickerCalendar>(html`
             <flint-date-picker-calendar value="2025-06-01"></flint-date-picker-calendar>
         `);
         await el.updateComplete;
         const currentDays = el.shadowRoot!.querySelectorAll<HTMLElement>('.day-cell:not(.other-month)');
         setTimeout(() => currentDays[0].click());
-        const event = await oneEvent(el, 'date-select') as CustomEvent;
+        const event = await oneEvent(el, 'flint-date-picker-select') as CustomEvent;
         expect(event.detail.value).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     });
 
@@ -69,7 +69,7 @@ describe('flint-date-picker-calendar', () => {
         `);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('date-select', spy);
+        el.addEventListener('flint-date-picker-select', spy);
         const currentDays = el.shadowRoot!.querySelectorAll<HTMLElement>('.day-cell:not(.other-month)');
         currentDays[0].click();
         expect(spy).not.toHaveBeenCalled();
@@ -440,11 +440,11 @@ describe('flint-date-picker-calendar — full coverage', () => {
     });
 
     // _selectDay: this.disabled branch (in addition to cell.isDisabled already tested)
-    it('calendar disabled prop prevents date-select even on non-disabled cells', async () => {
+    it('calendar disabled prop prevents flint-date-picker-select even on non-disabled cells', async () => {
         const el = await fixture<FlintDatePickerCalendar>(html`<flint-date-picker-calendar disabled></flint-date-picker-calendar>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('date-select', spy);
+        el.addEventListener('flint-date-picker-select', spy);
         (el.shadowRoot!.querySelector<HTMLElement>('.day-cell:not(.other-month)'))?.click();
         expect(spy).not.toHaveBeenCalled();
     });

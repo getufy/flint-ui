@@ -33,7 +33,7 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`clear\` | — |  |
+| \`flint-time-picker-clear\` | — |  |
 | \`change\` | \`{ value: v }\` |  |
 
 #### CSS Custom Properties
@@ -133,7 +133,7 @@ const meta: Meta = {
 | Event | Detail | Description |
 |---|---|---|
 | \`change\` | \`{ value: v }\` |  |
-| \`view-change\` | \`{ view: v }\` |  |
+| \`flint-time-clock-view-change\` | \`{ view: v }\` |  |
 
 #### CSS Custom Properties
 

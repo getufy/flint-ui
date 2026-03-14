@@ -44,7 +44,7 @@ export class FlintTablePagination extends LitElement {
     private _go(delta: number) {
         const next = this._page + delta;
         this._page = next;
-        this.dispatchEvent(new CustomEvent('page-change', {
+        this.dispatchEvent(new CustomEvent('flint-pagination-page-change', {
             detail: { page: next },
             bubbles: true,
             composed: true
@@ -53,7 +53,7 @@ export class FlintTablePagination extends LitElement {
 
     private _goTo(p: number) {
         this._page = p;
-        this.dispatchEvent(new CustomEvent('page-change', {
+        this.dispatchEvent(new CustomEvent('flint-pagination-page-change', {
             detail: { page: p },
             bubbles: true,
             composed: true
@@ -64,7 +64,7 @@ export class FlintTablePagination extends LitElement {
         const val = parseInt((e.target as HTMLSelectElement).value);
         this._rowsPerPage = val;
         this._page = 0;
-        this.dispatchEvent(new CustomEvent('rows-per-page-change', {
+        this.dispatchEvent(new CustomEvent('flint-pagination-rows-per-page-change', {
             detail: { rowsPerPage: val },
             bubbles: true,
             composed: true

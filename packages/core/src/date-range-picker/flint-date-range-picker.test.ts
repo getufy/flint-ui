@@ -247,7 +247,7 @@ describe('flint-single-input-date-range-field', () => {
 
     // ── Public API ────────────────────────────────────────────────────────────
 
-    it('clear() fires range-clear event', async () => {
+    it('clear() fires flint-date-range-picker-clear event', async () => {
         const el = await fixture<FlintSingleInputDateRangeField>(html`
             <flint-single-input-date-range-field
               .value=${['2025-03-01', '2025-03-31'] as DateRange}
@@ -255,7 +255,7 @@ describe('flint-single-input-date-range-field', () => {
         `);
         await el.updateComplete;
         setTimeout(() => el.clear());
-        const event = await oneEvent(el, 'range-clear');
+        const event = await oneEvent(el, 'flint-date-range-picker-clear');
         expect(event).toBeDefined();
     });
 
@@ -301,7 +301,7 @@ describe('flint-single-input-date-range-field', () => {
         );
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-change', spy);
+        el.addEventListener('flint-date-range-picker-change', spy);
         key(el, '5');
         await el.updateComplete;
         expect(spy).not.toHaveBeenCalled();
@@ -369,7 +369,7 @@ describe('flint-date-range-calendar', () => {
         expect(inRange.length).toBeGreaterThan(0);
     });
 
-    it('fires range-select with DateRange on cell click (first click = start)', async () => {
+    it('fires flint-date-range-picker-select with DateRange on cell click (first click = start)', async () => {
         const el = await fixture<FlintDateRangeCalendar>(html`
             <flint-date-range-calendar
               .value=${['', ''] as DateRange}
@@ -379,13 +379,13 @@ describe('flint-date-range-calendar', () => {
         const currentDays = el.shadowRoot!.querySelectorAll<HTMLElement>('.day-cell:not(.other-month)');
 
         setTimeout(() => currentDays[0].click());
-        const event = await oneEvent(el, 'range-select') as CustomEvent;
+        const event = await oneEvent(el, 'flint-date-range-picker-select') as CustomEvent;
         expect(event.detail.value).toHaveLength(2);
         expect(event.detail.value[0]).toMatch(/^\d{4}-\d{2}-\d{2}$/);
         expect(event.detail.value[1]).toBe(''); // no end yet
     });
 
-    it('fires range-select with both dates after second click', async () => {
+    it('fires flint-date-range-picker-select with both dates after second click', async () => {
         const el = await fixture<FlintDateRangeCalendar>(html`
             <flint-date-range-calendar
               .value=${['2025-06-01', ''] as DateRange}
@@ -395,7 +395,7 @@ describe('flint-date-range-calendar', () => {
         const currentDays = el.shadowRoot!.querySelectorAll<HTMLElement>('.day-cell:not(.other-month)');
 
         setTimeout(() => currentDays[9].click()); // click 10th day
-        const event = await oneEvent(el, 'range-select') as CustomEvent;
+        const event = await oneEvent(el, 'flint-date-range-picker-select') as CustomEvent;
         const [start, end] = event.detail.value as DateRange;
         expect(start).toMatch(/^\d{4}-\d{2}-\d{2}$/);
         expect(end).toMatch(/^\d{4}-\d{2}-\d{2}$/);
@@ -442,7 +442,7 @@ describe('flint-date-range-calendar', () => {
         // Click day 1 (before day 15)
         const currentDays = el.shadowRoot!.querySelectorAll<HTMLElement>('.day-cell:not(.other-month)');
         setTimeout(() => currentDays[0].click());
-        const event = await oneEvent(el, 'range-select') as CustomEvent;
+        const event = await oneEvent(el, 'flint-date-range-picker-select') as CustomEvent;
         const [start, end] = event.detail.value as DateRange;
         // start should be day 1, end should be 2025-06-15
         expect(end).toBe('2025-06-15');
@@ -459,7 +459,7 @@ describe('flint-date-range-calendar', () => {
         `);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-select', spy);
+        el.addEventListener('flint-date-range-picker-select', spy);
         const currentDays = el.shadowRoot!.querySelectorAll<HTMLElement>('.day-cell:not(.other-month)');
         currentDays[0].click();
         expect(spy).not.toHaveBeenCalled();
@@ -568,7 +568,7 @@ describe('flint-date-range-picker', () => {
         expect(btns.length).toBeGreaterThanOrEqual(1);
     });
 
-    it('fires range-change event on static calendar select', async () => {
+    it('fires flint-date-range-picker-change event on static calendar select', async () => {
         const el = await fixture<FlintDateRangePicker>(html`
             <flint-date-range-picker
               variant="static"
@@ -584,18 +584,18 @@ describe('flint-date-range-picker', () => {
             const days = cal.shadowRoot!.querySelectorAll<HTMLElement>('.day-cell:not(.other-month)');
             days[9].click();
         });
-        const event = await oneEvent(el, 'range-change') as CustomEvent;
+        const event = await oneEvent(el, 'flint-date-range-picker-change') as CustomEvent;
         expect(event.detail.value).toHaveLength(2);
     });
 
-    it('clicking a shortcut fires range-change on static variant', async () => {
+    it('clicking a shortcut fires flint-date-range-picker-change on static variant', async () => {
         const el = await fixture<FlintDateRangePicker>(
             html`<flint-date-range-picker shortcuts variant="static"></flint-date-range-picker>`,
         );
         await el.updateComplete;
 
         const spy = vi.fn();
-        el.addEventListener('range-change', spy);
+        el.addEventListener('flint-date-range-picker-change', spy);
 
         const btn = el.shadowRoot!.querySelector<HTMLButtonElement>('.shortcut-btn');
         btn!.click();
@@ -674,7 +674,7 @@ describe('flint-date-range-picker', () => {
 
     // ── Desktop: shortcut → commit + close ───────────────────────────────────
 
-    it('clicking a shortcut on desktop commits range and fires range-change', async () => {
+    it('clicking a shortcut on desktop commits range and fires flint-date-range-picker-change', async () => {
         const el = await fixture<FlintDateRangePicker>(
             html`<flint-date-range-picker shortcuts></flint-date-range-picker>`,
         );
@@ -684,7 +684,7 @@ describe('flint-date-range-picker', () => {
         field.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-change', spy);
+        el.addEventListener('flint-date-range-picker-change', spy);
         const btn = el.shadowRoot!.querySelector<HTMLButtonElement>('.shortcut-btn');
         btn!.click();
         // Shortcut handler is async, wait a tick
@@ -708,7 +708,7 @@ describe('flint-date-range-picker', () => {
         await el.updateComplete;
         // Simulate the calendar emitting a full range
         const cal = el.shadowRoot!.querySelector('flint-date-range-calendar') as HTMLElement;
-        cal.dispatchEvent(new CustomEvent('range-select', {
+        cal.dispatchEvent(new CustomEvent('flint-date-range-picker-select', {
             detail: { value: ['2025-06-01', '2025-06-15'] as DateRange },
             bubbles: true, composed: true,
         }));
@@ -716,20 +716,20 @@ describe('flint-date-range-picker', () => {
         expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(false);
     });
 
-    it('range-change event carries both dates when field is typed into', async () => {
+    it('flint-date-range-picker-change event carries both dates when field is typed into', async () => {
         const el = await fixture<FlintDateRangePicker>(
             html`<flint-date-range-picker></flint-date-range-picker>`,
         );
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-change', spy);
+        el.addEventListener('flint-date-range-picker-change', spy);
         const field = el.shadowRoot!.querySelector('flint-single-input-date-range-field') as HTMLElement;
-        field.dispatchEvent(new CustomEvent('range-change', {
+        field.dispatchEvent(new CustomEvent('flint-date-range-picker-change', {
             detail: { value: ['2025-09-01', '2025-09-30'] as DateRange },
             bubbles: true, composed: true,
         }));
         expect(spy).toHaveBeenCalled();
-        // Use last call — picker re-fires its own range-change on top of the field's bubbled event
+        // Use last call — picker re-fires its own flint-date-range-picker-change on top of the field's bubbled event
         const { value } = (spy.mock.calls[spy.mock.calls.length - 1][0] as CustomEvent).detail as { value: DateRange };
         expect(value[0]).toBe('2025-09-01');
         expect(value[1]).toBe('2025-09-30');
@@ -766,7 +766,7 @@ describe('flint-date-range-picker', () => {
         expect(okBtn!.disabled).toBe(false);
     });
 
-    it('mobile: Cancel restores original value and fires no range-change', async () => {
+    it('mobile: Cancel restores original value and fires no flint-date-range-picker-change', async () => {
         const el = await fixture<FlintDateRangePicker>(html`
             <flint-date-range-picker
               variant="mobile"
@@ -775,14 +775,14 @@ describe('flint-date-range-picker', () => {
         `);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-change', spy);
+        el.addEventListener('flint-date-range-picker-change', spy);
         // Open
         const mobileField = el.shadowRoot!.querySelector('.mobile-field') as HTMLElement;
         mobileField.click();
         await el.updateComplete;
         // Simulate selecting a new start date only (pending becomes incomplete)
         const cal = el.shadowRoot!.querySelector('flint-date-range-calendar') as HTMLElement;
-        cal.dispatchEvent(new CustomEvent('range-select', {
+        cal.dispatchEvent(new CustomEvent('flint-date-range-picker-select', {
             detail: { value: ['2025-07-01', ''] as DateRange },
             bubbles: true, composed: true,
         }));
@@ -795,7 +795,7 @@ describe('flint-date-range-picker', () => {
         expect(el.value).toEqual(['2025-06-01', '2025-06-15']);
     });
 
-    it('mobile: OK commits pending range and fires range-change', async () => {
+    it('mobile: OK commits pending range and fires flint-date-range-picker-change', async () => {
         const el = await fixture<FlintDateRangePicker>(html`
             <flint-date-range-picker
               variant="mobile"
@@ -804,14 +804,14 @@ describe('flint-date-range-picker', () => {
         `);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-change', spy);
+        el.addEventListener('flint-date-range-picker-change', spy);
         // Open
         const mobileField = el.shadowRoot!.querySelector('.mobile-field') as HTMLElement;
         mobileField.click();
         await el.updateComplete;
         // Select a new full range via calendar
         const cal = el.shadowRoot!.querySelector('flint-date-range-calendar') as HTMLElement;
-        cal.dispatchEvent(new CustomEvent('range-select', {
+        cal.dispatchEvent(new CustomEvent('flint-date-range-picker-select', {
             detail: { value: ['2025-07-01', '2025-07-14'] as DateRange },
             bubbles: true, composed: true,
         }));
@@ -835,14 +835,14 @@ describe('flint-date-range-picker', () => {
         `);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-change', spy);
+        el.addEventListener('flint-date-range-picker-change', spy);
         // Open
         const mobileField = el.shadowRoot!.querySelector('.mobile-field') as HTMLElement;
         mobileField.click();
         await el.updateComplete;
         // Simulate an incomplete pending range being set (only start)
         const cal = el.shadowRoot!.querySelector('flint-date-range-calendar') as HTMLElement;
-        cal.dispatchEvent(new CustomEvent('range-select', {
+        cal.dispatchEvent(new CustomEvent('flint-date-range-picker-select', {
             detail: { value: ['2025-07-01', ''] as DateRange },
             bubbles: true, composed: true,
         }));
@@ -967,15 +967,15 @@ describe('flint-date-range-picker', () => {
         `);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-change', spy);
+        el.addEventListener('flint-date-range-picker-change', spy);
         const cal = el.shadowRoot!.querySelector('flint-date-range-calendar') as FlintDateRangeCalendar;
         await cal.updateComplete;
-        // Click day 10 to complete the range → fires range-select → _handleStaticSelect
+        // Click day 10 to complete the range → fires flint-date-range-picker-select → _handleStaticSelect
         setTimeout(() => {
             const days = cal.shadowRoot!.querySelectorAll<HTMLElement>('.day-cell:not(.other-month)');
             days[9].click();
         });
-        await oneEvent(el, 'range-change');
+        await oneEvent(el, 'flint-date-range-picker-change');
         expect(spy).toHaveBeenCalled();
     });
 
@@ -1021,7 +1021,7 @@ describe('flint-date-range-picker', () => {
 
     // ── mobile shortcut does NOT auto-commit (line 115 false branch) ─────────
 
-    it('mobile picker: clicking shortcut sets pending but does not immediately fire range-change', async () => {
+    it('mobile picker: clicking shortcut sets pending but does not immediately fire flint-date-range-picker-change', async () => {
         const el = await fixture<FlintDateRangePicker>(
             html`<flint-date-range-picker variant="mobile" shortcuts></flint-date-range-picker>`,
         );
@@ -1031,12 +1031,12 @@ describe('flint-date-range-picker', () => {
         mobileField.click();
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-change', spy);
+        el.addEventListener('flint-date-range-picker-change', spy);
         const btn = el.shadowRoot!.querySelector<HTMLButtonElement>('.shortcut-btn');
         btn!.click();
         await el.updateComplete;
         // On mobile, shortcut sets _pendingValue but doesn't commit until OK
-        // So no range-change event fired yet
+        // So no flint-date-range-picker-change event fired yet
         expect(spy).not.toHaveBeenCalled();
         // OK button should now be enabled
         const okBtn = el.shadowRoot!.querySelector<HTMLButtonElement>('.action-btn.ok');
@@ -1055,11 +1055,11 @@ describe('flint-date-range-picker', () => {
         `);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-change', spy);
+        el.addEventListener('flint-date-range-picker-change', spy);
         const btn = el.shadowRoot!.querySelector<HTMLButtonElement>('.shortcut-btn');
         btn!.click();
         await el.updateComplete;
-        // No error thrown; no range-change fired since range is same (both empty)
+        // No error thrown; no flint-date-range-picker-change fired since range is same (both empty)
         // Picker just processes the empty range without navigating calendar
         expect(btn).not.toBeNull(); // sanity check
     });
@@ -1076,8 +1076,8 @@ describe('flint-date-range-picker', () => {
         field.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
         await el.updateComplete;
         expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(true);
-        // Dispatch a partial range-change (start only, no end)
-        field.dispatchEvent(new CustomEvent('range-change', {
+        // Dispatch a partial flint-date-range-picker-change (start only, no end)
+        field.dispatchEvent(new CustomEvent('flint-date-range-picker-change', {
             detail: { value: ['2025-06-01', ''] as DateRange },
             bubbles: true, composed: true,
         }));
@@ -1125,10 +1125,10 @@ describe('flint-date-range-picker', () => {
         `);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-change', spy);
+        el.addEventListener('flint-date-range-picker-change', spy);
         // Emit the same range from the calendar → should be no-op
         const cal = el.shadowRoot!.querySelector('flint-date-range-calendar') as HTMLElement;
-        cal.dispatchEvent(new CustomEvent('range-select', {
+        cal.dispatchEvent(new CustomEvent('flint-date-range-picker-select', {
             detail: { value: ['2025-06-01', '2025-06-14'] as DateRange },
             bubbles: true, composed: true,
         }));
@@ -1379,27 +1379,27 @@ describe('flint-single-input-date-range-field — extended', () => {
         expect(segs[0].textContent?.trim()).toBe('01');
     });
 
-    // ── range-change fires when both segments complete ─────────────────────────
+    // ── flint-date-range-picker-change fires when both segments complete ─────────────────────────
 
-    it('fires range-change only when both dates are fully entered', async () => {
+    it('fires flint-date-range-picker-change only when both dates are fully entered', async () => {
         const el = await fixture<FlintSingleInputDateRangeField>(
             html`<flint-single-input-date-range-field></flint-single-input-date-range-field>`,
         );
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-change', spy);
+        el.addEventListener('flint-date-range-picker-change', spy);
         await focusField(el);
         // Enter start: month=6 day=1 year=2025
         key(el, '6'); await el.updateComplete; // auto-advances to start-day
         key(el, '1'); await el.updateComplete; // single digit, waiting for 2nd
         key(el, 'ArrowRight'); await el.updateComplete; // commit partial → start-year
         key(el, '2'); key(el, '0'); key(el, '2'); key(el, '5'); await el.updateComplete;
-        // At this point start is complete; range-change fires with incomplete end
+        // At this point start is complete; flint-date-range-picker-change fires with incomplete end
         // Enter end: month=7 day=15 year=2025
         key(el, '7'); await el.updateComplete; // auto-advance
         key(el, '1'); key(el, '5'); await el.updateComplete; // end-day
         key(el, '2'); key(el, '0'); key(el, '2'); key(el, '5'); await el.updateComplete;
-        // At least one range-change should have fired once year was completed
+        // At least one flint-date-range-picker-change should have fired once year was completed
         expect(spy).toHaveBeenCalled();
         const lastCall = spy.mock.calls[spy.mock.calls.length - 1][0] as CustomEvent;
         const [s, e] = lastCall.detail.value as DateRange;
@@ -1409,13 +1409,13 @@ describe('flint-single-input-date-range-field — extended', () => {
 
     // ── readonly field ────────────────────────────────────────────────────────
 
-    it('readonly field does not emit range-change on keyboard input', async () => {
+    it('readonly field does not emit flint-date-range-picker-change on keyboard input', async () => {
         const el = await fixture<FlintSingleInputDateRangeField>(
             html`<flint-single-input-date-range-field readonly></flint-single-input-date-range-field>`,
         );
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-change', spy);
+        el.addEventListener('flint-date-range-picker-change', spy);
         key(el, '5');
         await el.updateComplete;
         expect(spy).not.toHaveBeenCalled();
@@ -1423,7 +1423,7 @@ describe('flint-single-input-date-range-field — extended', () => {
 
     // ── clear button ─────────────────────────────────────────────────────────
 
-    it('clicking the clear button fires range-clear and resets segments', async () => {
+    it('clicking the clear button fires flint-date-range-picker-clear and resets segments', async () => {
         const el = await fixture<FlintSingleInputDateRangeField>(html`
             <flint-single-input-date-range-field
               .value=${['2025-06-01', '2025-06-30'] as DateRange}
@@ -1431,7 +1431,7 @@ describe('flint-single-input-date-range-field — extended', () => {
         `);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-clear', spy);
+        el.addEventListener('flint-date-range-picker-clear', spy);
         const btn = el.shadowRoot!.querySelector<HTMLButtonElement>('.icon-btn');
         btn!.click();
         await el.updateComplete;
@@ -1527,7 +1527,7 @@ describe('flint-date-range-calendar — extended', () => {
         const currentDays = el.shadowRoot!.querySelectorAll<HTMLElement>('.day-cell:not(.other-month)');
         // Click day 5 (before 20)
         setTimeout(() => currentDays[4].click());
-        const event = await oneEvent(el, 'range-select') as CustomEvent;
+        const event = await oneEvent(el, 'flint-date-range-picker-select') as CustomEvent;
         const [start, end] = event.detail.value as DateRange;
         expect(end).toBe('2025-06-20');
         expect(start).toBe('2025-06-05');
@@ -1544,7 +1544,7 @@ describe('flint-date-range-calendar — extended', () => {
         await el.updateComplete;
         const currentDays = el.shadowRoot!.querySelectorAll<HTMLElement>('.day-cell:not(.other-month)');
         setTimeout(() => currentDays[14].click()); // click day 15
-        const event = await oneEvent(el, 'range-select') as CustomEvent;
+        const event = await oneEvent(el, 'flint-date-range-picker-select') as CustomEvent;
         const [start, end] = event.detail.value as DateRange;
         expect(start).toBe('2025-06-15');
         expect(end).toBe('');
@@ -1836,7 +1836,7 @@ describe('flint-date-range-calendar — coverage gaps', () => {
         expect(labels.length).toBe(2);
     });
 
-    it('disabled calendar does not fire range-select on cell click', async () => {
+    it('disabled calendar does not fire flint-date-range-picker-select on cell click', async () => {
         const el = await fixture<FlintDateRangeCalendar>(html`
             <flint-date-range-calendar
               .value=${['', ''] as DateRange}
@@ -1845,7 +1845,7 @@ describe('flint-date-range-calendar — coverage gaps', () => {
         `);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-select', spy);
+        el.addEventListener('flint-date-range-picker-select', spy);
         const cells = el.shadowRoot!.querySelectorAll<HTMLElement>('.day-cell:not(.other-month)');
         cells[0].click();
         expect(spy).not.toHaveBeenCalled();
@@ -3048,7 +3048,7 @@ describe('flint-date-range-calendar — mutation killers', () => {
         const currentDays = el.shadowRoot!.querySelectorAll<HTMLElement>('.day-cell:not(.other-month)');
         // Click day 10 again (same as start)
         setTimeout(() => currentDays[9].click());
-        const event = await oneEvent(el, 'range-select') as CustomEvent;
+        const event = await oneEvent(el, 'flint-date-range-picker-select') as CustomEvent;
         const [start, end] = event.detail.value as DateRange;
         // Clicking same day when only start is set → completes range (start <= clickDate → newRange = [start, cell.iso])
         expect(start).toBe('2025-06-10');
@@ -3064,7 +3064,7 @@ describe('flint-date-range-calendar — mutation killers', () => {
         await el.updateComplete;
         const currentDays = el.shadowRoot!.querySelectorAll<HTMLElement>('.day-cell:not(.other-month)');
         setTimeout(() => currentDays[14].click()); // day 15
-        const event = await oneEvent(el, 'range-select') as CustomEvent;
+        const event = await oneEvent(el, 'flint-date-range-picker-select') as CustomEvent;
         const [start, end] = event.detail.value as DateRange;
         expect(start).toBe('2025-06-05');
         expect(end).toBe('2025-06-15');
@@ -3177,7 +3177,7 @@ describe('flint-date-range-picker — mutation killers', () => {
         expect(el.shadowRoot!.querySelector('.shortcut-btn.active')).not.toBeNull();
         // Now select from calendar → should clear activeShortcut
         const cal = el.shadowRoot!.querySelector('flint-date-range-calendar') as HTMLElement;
-        cal.dispatchEvent(new CustomEvent('range-select', {
+        cal.dispatchEvent(new CustomEvent('flint-date-range-picker-select', {
             detail: { value: ['2025-08-01', ''] as DateRange },
             bubbles: true, composed: true,
         }));
@@ -3194,7 +3194,7 @@ describe('flint-date-range-picker — mutation killers', () => {
         field.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
         await el.updateComplete;
         const cal = el.shadowRoot!.querySelector('flint-date-range-calendar') as HTMLElement;
-        cal.dispatchEvent(new CustomEvent('range-select', {
+        cal.dispatchEvent(new CustomEvent('flint-date-range-picker-select', {
             detail: { value: ['2025-06-01', ''] as DateRange },
             bubbles: true, composed: true,
         }));
@@ -3368,10 +3368,10 @@ describe('flint-date-range-picker — mutation killers', () => {
         await el.updateComplete;
         expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(true);
         const spy = vi.fn();
-        el.addEventListener('range-change', spy);
+        el.addEventListener('flint-date-range-picker-change', spy);
         // Emit same range → _commit should be no-op (no event) but closes picker
         const cal = el.shadowRoot!.querySelector('flint-date-range-calendar') as HTMLElement;
-        cal.dispatchEvent(new CustomEvent('range-select', {
+        cal.dispatchEvent(new CustomEvent('flint-date-range-picker-select', {
             detail: { value: ['2025-06-01', '2025-06-15'] as DateRange },
             bubbles: true, composed: true,
         }));
@@ -3438,15 +3438,15 @@ describe('flint-date-range-picker — mutation killers', () => {
         expect(mobileField?.getAttribute('tabindex')).toBe('0');
     });
 
-    it('field range-change goes through _handleFieldRangeChange → _commit', async () => {
+    it('field flint-date-range-picker-change goes through _handleFieldRangeChange → _commit', async () => {
         const el = await fixture<FlintDateRangePicker>(html`
             <flint-date-range-picker></flint-date-range-picker>
         `);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-change', spy);
+        el.addEventListener('flint-date-range-picker-change', spy);
         const field = el.shadowRoot!.querySelector('flint-single-input-date-range-field') as HTMLElement;
-        field.dispatchEvent(new CustomEvent('range-change', {
+        field.dispatchEvent(new CustomEvent('flint-date-range-picker-change', {
             detail: { value: ['2025-03-01', '2025-03-15'] as DateRange },
             bubbles: true, composed: true,
         }));
@@ -3587,14 +3587,14 @@ describe('flint-single-input-date-range-field — mutation killers', () => {
         `);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-change', spy);
+        el.addEventListener('flint-date-range-picker-change', spy);
         await focusField(el);
         key(el, '6'); // sets month=6, auto-advance to day
         await el.updateComplete;
         // _checkAndEmit fires but startIso is '' (only month, not day/year)
         // The event value should be ['', ''] since start is incomplete
         // OR the event may not fire at all depending on code path
-        // Key assertion: no VALID range-change with both dates should occur
+        // Key assertion: no VALID flint-date-range-picker-change with both dates should occur
         const validCalls = spy.mock.calls.filter((call: unknown[]) => {
             const val = (call[0] as CustomEvent).detail.value as DateRange;
             return val[0] !== '' && val[1] !== '';
@@ -4112,7 +4112,7 @@ describe('flint-date-range-calendar — precise mutation killers', () => {
         await el.updateComplete;
         const days = el.shadowRoot!.querySelectorAll<HTMLElement>('.day-cell:not(.other-month)');
         setTimeout(() => days[14].click()); // day 15
-        const event = await oneEvent(el, 'range-select') as CustomEvent;
+        const event = await oneEvent(el, 'flint-date-range-picker-select') as CustomEvent;
         const [start, end] = event.detail.value as DateRange;
         // clickDate (June 15) >= startDate (June 15) → newRange = [start, cell.iso]
         expect(start).toBe('2025-06-15');
@@ -4128,7 +4128,7 @@ describe('flint-date-range-calendar — precise mutation killers', () => {
         await el.updateComplete;
         const days = el.shadowRoot!.querySelectorAll<HTMLElement>('.day-cell:not(.other-month)');
         setTimeout(() => days[10].click()); // day 11
-        const event = await oneEvent(el, 'range-select') as CustomEvent;
+        const event = await oneEvent(el, 'flint-date-range-picker-select') as CustomEvent;
         expect(event.detail.value[0]).toBe('2025-06-10');
         expect(event.detail.value[1]).toBe('2025-06-11');
     });
@@ -4142,7 +4142,7 @@ describe('flint-date-range-calendar — precise mutation killers', () => {
         await el.updateComplete;
         const days = el.shadowRoot!.querySelectorAll<HTMLElement>('.day-cell:not(.other-month)');
         setTimeout(() => days[8].click()); // day 9
-        const event = await oneEvent(el, 'range-select') as CustomEvent;
+        const event = await oneEvent(el, 'flint-date-range-picker-select') as CustomEvent;
         expect(event.detail.value[0]).toBe('2025-06-09');
         expect(event.detail.value[1]).toBe('2025-06-10');
     });
@@ -4201,10 +4201,10 @@ describe('flint-date-range-picker — precise mutation killers', () => {
         `);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-change', spy);
+        el.addEventListener('flint-date-range-picker-change', spy);
         const cal = el.shadowRoot!.querySelector('flint-date-range-calendar') as HTMLElement;
         // Same end, different start
-        cal.dispatchEvent(new CustomEvent('range-select', {
+        cal.dispatchEvent(new CustomEvent('flint-date-range-picker-select', {
             detail: { value: ['2025-06-02', '2025-06-15'] as DateRange },
             bubbles: true, composed: true,
         }));
@@ -4223,10 +4223,10 @@ describe('flint-date-range-picker — precise mutation killers', () => {
         `);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-change', spy);
+        el.addEventListener('flint-date-range-picker-change', spy);
         const cal = el.shadowRoot!.querySelector('flint-date-range-calendar') as HTMLElement;
         // Same start, different end
-        cal.dispatchEvent(new CustomEvent('range-select', {
+        cal.dispatchEvent(new CustomEvent('flint-date-range-picker-select', {
             detail: { value: ['2025-06-01', '2025-06-20'] as DateRange },
             bubbles: true, composed: true,
         }));
@@ -4244,9 +4244,9 @@ describe('flint-date-range-picker — precise mutation killers', () => {
         `);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-change', spy);
+        el.addEventListener('flint-date-range-picker-change', spy);
         const cal = el.shadowRoot!.querySelector('flint-date-range-calendar') as HTMLElement;
-        cal.dispatchEvent(new CustomEvent('range-select', {
+        cal.dispatchEvent(new CustomEvent('flint-date-range-picker-select', {
             detail: { value: ['2025-06-01', '2025-06-15'] as DateRange },
             bubbles: true, composed: true,
         }));
@@ -4263,14 +4263,14 @@ describe('flint-date-range-picker — precise mutation killers', () => {
         field.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
         await el.updateComplete;
         // Partial range → stays open
-        field.dispatchEvent(new CustomEvent('range-change', {
+        field.dispatchEvent(new CustomEvent('flint-date-range-picker-change', {
             detail: { value: ['2025-06-01', ''] as DateRange },
             bubbles: true, composed: true,
         }));
         await el.updateComplete;
         expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(true);
         // Full range → closes
-        field.dispatchEvent(new CustomEvent('range-change', {
+        field.dispatchEvent(new CustomEvent('flint-date-range-picker-change', {
             detail: { value: ['2025-06-01', '2025-06-15'] as DateRange },
             bubbles: true, composed: true,
         }));
@@ -4287,9 +4287,9 @@ describe('flint-date-range-picker — precise mutation killers', () => {
         field.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-change', spy);
+        el.addEventListener('flint-date-range-picker-change', spy);
         const cal = el.shadowRoot!.querySelector('flint-date-range-calendar') as HTMLElement;
-        cal.dispatchEvent(new CustomEvent('range-select', {
+        cal.dispatchEvent(new CustomEvent('flint-date-range-picker-select', {
             detail: { value: ['2025-06-01', '2025-06-15'] as DateRange },
             bubbles: true, composed: true,
         }));
@@ -4306,9 +4306,9 @@ describe('flint-date-range-picker — precise mutation killers', () => {
         field.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-change', spy);
+        el.addEventListener('flint-date-range-picker-change', spy);
         const cal = el.shadowRoot!.querySelector('flint-date-range-calendar') as HTMLElement;
-        cal.dispatchEvent(new CustomEvent('range-select', {
+        cal.dispatchEvent(new CustomEvent('flint-date-range-picker-select', {
             detail: { value: ['2025-06-01', ''] as DateRange },
             bubbles: true, composed: true,
         }));
@@ -4348,7 +4348,7 @@ describe('flint-date-range-picker — precise mutation killers', () => {
         expect(el.shadowRoot!.querySelector('.shortcut-btn.active')).not.toBeNull();
         // Calendar select clears it (partial range, no auto-close)
         const cal = el.shadowRoot!.querySelector('flint-date-range-calendar') as HTMLElement;
-        cal.dispatchEvent(new CustomEvent('range-select', {
+        cal.dispatchEvent(new CustomEvent('flint-date-range-picker-select', {
             detail: { value: ['2025-08-01', ''] as DateRange },
             bubbles: true, composed: true,
         }));
@@ -4366,13 +4366,13 @@ describe('flint-date-range-picker — precise mutation killers', () => {
         await el.updateComplete;
         // Simulate full range selection
         const cal = el.shadowRoot!.querySelector('flint-date-range-calendar') as HTMLElement;
-        cal.dispatchEvent(new CustomEvent('range-select', {
+        cal.dispatchEvent(new CustomEvent('flint-date-range-picker-select', {
             detail: { value: ['2025-07-01', '2025-07-14'] as DateRange },
             bubbles: true, composed: true,
         }));
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-change', spy);
+        el.addEventListener('flint-date-range-picker-change', spy);
         const okBtn = el.shadowRoot!.querySelector<HTMLButtonElement>('.action-btn.ok');
         okBtn!.click();
         await el.updateComplete;
@@ -4390,7 +4390,7 @@ describe('flint-date-range-picker — precise mutation killers', () => {
         mobileField.click();
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-change', spy);
+        el.addEventListener('flint-date-range-picker-change', spy);
         el.shadowRoot!.querySelector<HTMLButtonElement>('.shortcut-btn')!.click();
         await el.updateComplete;
         expect(spy).not.toHaveBeenCalled();
@@ -4441,7 +4441,7 @@ describe('flint-date-range-picker — precise mutation killers', () => {
         // _pendingValue is now [...this.value] = ['2025-01-01', '2025-01-31']
         // Select partial range → _pendingValue = ['2025-06-01', '']
         const cal = el.shadowRoot!.querySelector('flint-date-range-calendar') as HTMLElement;
-        cal.dispatchEvent(new CustomEvent('range-select', {
+        cal.dispatchEvent(new CustomEvent('flint-date-range-picker-select', {
             detail: { value: ['2025-06-01', ''] as DateRange },
             bubbles: true, composed: true,
         }));
@@ -4473,7 +4473,7 @@ describe('flint-single-input-date-range-field — precise mutation killers', () 
         `);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-change', spy);
+        el.addEventListener('flint-date-range-picker-change', spy);
         await focusField(el);
         // Type full start date: 06/15/2025
         key(el, '6'); // month=6, advances
@@ -4503,7 +4503,7 @@ describe('flint-single-input-date-range-field — precise mutation killers', () 
         `);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-change', spy);
+        el.addEventListener('flint-date-range-picker-change', spy);
         // Trigger _checkAndEmit without changing any values (ArrowUp then ArrowDown)
         await focusField(el); // start-month=6
         key(el, 'ArrowUp'); // month=7
@@ -4739,7 +4739,7 @@ describe('flint-single-input-date-range-field — precise mutation killers', () 
         expect(segs[4].classList.contains('active')).toBe(true);
     });
 
-    it('range-change event has bubbles:true and composed:true', async () => {
+    it('flint-date-range-picker-change event has bubbles:true and composed:true', async () => {
         const el = await fixture<FlintSingleInputDateRangeField>(html`
             <flint-single-input-date-range-field
               .value=${['2025-06-15', '2025-07-20'] as DateRange}
@@ -4747,9 +4747,9 @@ describe('flint-single-input-date-range-field — precise mutation killers', () 
         `);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('range-change', spy);
+        el.addEventListener('flint-date-range-picker-change', spy);
         await focusField(el); // start-month=6
-        key(el, 'ArrowUp'); // changes month from 6 to 7 → fires range-change
+        key(el, 'ArrowUp'); // changes month from 6 to 7 → fires flint-date-range-picker-change
         await el.updateComplete;
         expect(spy).toHaveBeenCalled();
         const event = spy.mock.calls[0][0] as CustomEvent;
@@ -4757,7 +4757,7 @@ describe('flint-single-input-date-range-field — precise mutation killers', () 
         expect(event.composed).toBe(true);
     });
 
-    it('range-clear event has bubbles:true and composed:true', async () => {
+    it('flint-date-range-picker-clear event has bubbles:true and composed:true', async () => {
         const el = await fixture<FlintSingleInputDateRangeField>(html`
             <flint-single-input-date-range-field
               .value=${['2025-06-01', '2025-06-30'] as DateRange}
@@ -4765,7 +4765,7 @@ describe('flint-single-input-date-range-field — precise mutation killers', () 
         `);
         await el.updateComplete;
         const promise = new Promise<CustomEvent>(resolve => {
-            el.addEventListener('range-clear', (e) => resolve(e as CustomEvent), { once: true });
+            el.addEventListener('flint-date-range-picker-clear', (e) => resolve(e as CustomEvent), { once: true });
         });
         el.clear();
         const event = await promise;
