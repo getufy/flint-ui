@@ -12,7 +12,6 @@ const meta: Meta = {
                 component: `
 - **Tag**: \`<flint-checkbox>\`
 - **Class**: \`FlintCheckbox\`
-- **Form Associated**: Yes
 
 #### Properties
 
@@ -33,7 +32,7 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | \`{ checked: this.checked, value: this.value, indeterminate: false }\` |  |
+| \`flint-checkbox-change\` | \`{ checked: this.checked, value: this.value, indeterminate: false }\` |  |
 
 #### CSS Custom Properties
 
@@ -95,7 +94,7 @@ export const Default: Story = {
             size=${args.size}
             label=${args.label}
             value=${args.value}
-            @change=${(e: CustomEvent) => console.log('Checked:', e.detail.checked, 'Value:', e.detail.value)}
+            @flint-checkbox-change=${(e: CustomEvent) => console.log('Checked:', e.detail.checked, 'Value:', e.detail.value)}
         ></flint-checkbox>
     `
 };

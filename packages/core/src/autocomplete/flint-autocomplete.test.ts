@@ -186,7 +186,7 @@ describe('flint-autocomplete', () => {
     it('dispatches change event with value and label on selection', async () => {
         const el = await fixture<FlintAutocomplete>(html`<flint-autocomplete .options=${options}></flint-autocomplete>`);
         const handler = vi.fn();
-        el.addEventListener('change', handler);
+        el.addEventListener('flint-autocomplete-change', handler);
 
         const input = el.shadowRoot!.querySelector('input')!;
         input.dispatchEvent(new Event('focus'));
@@ -459,7 +459,7 @@ describe('flint-autocomplete', () => {
     it('freeSolo: typing updates value and dispatches change event', async () => {
         const el = await fixture<FlintAutocomplete>(html`<flint-autocomplete freeSolo></flint-autocomplete>`);
         const handler = vi.fn();
-        el.addEventListener('change', handler);
+        el.addEventListener('flint-autocomplete-change', handler);
 
         const input = el.shadowRoot!.querySelector('input')!;
         input.value = 'Custom Value';

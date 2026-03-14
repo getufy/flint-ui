@@ -25,8 +25,8 @@ import { FlintStack } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `spacing` | `spacing` | `ResponsiveValue<number \| string>` | `0` | Gap between children; numbers are multiplied by 8px. |
-| `useFlexGap` | `use-flex-gap` | `boolean` | `true` | Use CSS `gap` for spacing instead of margin-based fallback. |
+| `spacing` | `spacing` | `ResponsiveValue<number \| string>` | `0` |  |
+| `useFlexGap` | `use-flex-gap` | `boolean` | `true` |  |
 
 ### Slots
 

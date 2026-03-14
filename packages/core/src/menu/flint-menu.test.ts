@@ -380,6 +380,36 @@ describe('flint-menu', () => {
         window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
         expect(spy).not.toHaveBeenCalled();
     });
+
+    // ── scrollIntoView guard ─────────────────────────────────────────────
+    it('does not throw when scrollIntoView is not available on focus target', async () => {
+        const el = await fixture<FlintMenu>(html`
+            <flint-menu>
+                <flint-menu-item id="no-scroll">Item</flint-menu-item>
+            </flint-menu>
+        `);
+        const item = el.querySelector<FlintMenuItem>('#no-scroll')!;
+        await item.updateComplete;
+
+        // Remove scrollIntoView from the inner .item div to test the guard
+        const innerItem = item.shadowRoot!.querySelector<HTMLElement>('.item')!;
+        (innerItem as Record<string, unknown>).scrollIntoView = undefined;
+
+        el.open = true;
+        await settle(el);
+
+        // Should not throw — the guard skips scrollIntoView when it's not a function
+        expect(item).toBeDefined();
+    });
+
+    // ── open with no items ───────────────────────────────────────────────
+    it('does not throw when opening with no items', async () => {
+        const el = await fixture<FlintMenu>(html`<flint-menu></flint-menu>`);
+        el.open = true;
+        await settle(el);
+        // No items → items.length is 0 → no focus happens
+        expect(el.open).toBe(true);
+    });
 });
 
 // ═══════════════════════════════════════════════════════════════════════

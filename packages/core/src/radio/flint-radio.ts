@@ -2,6 +2,7 @@ import { LitElement, unsafeCSS, html, PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { FormAssociated } from '../mixins/form-associated.js';
 import uiRadioGroupStyles from './flint-radio-group.css?inline';
 import uiRadioStyles from './flint-radio.css?inline';
 
@@ -9,9 +10,7 @@ export type RadioSize = 'sm' | 'md' | 'lg';
 export type RadioOrientation = 'horizontal' | 'vertical';
 
 @customElement('flint-radio-group')
-export class FlintRadioGroup extends LitElement {
-    static formAssociated = true;
-
+export class FlintRadioGroup extends FormAssociated(LitElement) {
     static styles = unsafeCSS(uiRadioGroupStyles);
 
     @property({ type: String }) label = '';
@@ -22,16 +21,6 @@ export class FlintRadioGroup extends LitElement {
     @property({ type: Boolean, reflect: true }) required = false;
     @property({ type: String, reflect: true }) orientation: RadioOrientation = 'vertical';
     @property({ type: String, reflect: true }) size: RadioSize = 'md';
-
-    private _internals: ElementInternals | null = null;
-    private _firstUpdate = true;
-
-    constructor() {
-        super();
-        if (typeof this.attachInternals === 'function') {
-            this._internals = this.attachInternals();
-        }
-    }
 
     private _handleRadioSelect = (e: Event) => {
         this._onRadioSelect(e as CustomEvent);
@@ -77,13 +66,8 @@ export class FlintRadioGroup extends LitElement {
     }
 
     private _updateFormValue() {
-        if (!this._internals || typeof this._internals.setFormValue !== 'function') return;
-        this._internals.setFormValue(this.value || null);
-        if (this.required && !this.value) {
-            this._internals.setValidity({ valueMissing: true }, 'Please select an option.');
-        } else {
-            this._internals.setValidity({});
-        }
+        this._initFormValue(this.value || null);
+        this._initFormValidity(this.required, !this.value, 'Please select an option.');
     }
 
     private _getRadios(): FlintRadio[] {

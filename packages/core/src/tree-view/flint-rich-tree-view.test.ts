@@ -2473,3 +2473,148 @@ describe('FlintRichTreeView — _isControlled detection', () => {
         expect(getItem(tree, '1')?.expanded).toBe(false);
     });
 });
+
+// ─── Additional branch coverage tests ──────────────────────────────────────────
+
+describe('FlintRichTreeView — _moveItem edge cases', () => {
+    it('dropping inside a target that has no children key creates children array', async () => {
+        // Target item has no 'children' key at all — _moveItem should create one
+        const items: RichTreeItem[] = [
+            { id: 'target', label: 'Target' },
+            { id: 'movable', label: 'Movable' },
+        ];
+        const tree = await fixture<FlintRichTreeView>(html`
+            <flint-rich-tree-view .items=${items} items-reordering></flint-rich-tree-view>
+        `);
+        await settle(tree);
+
+        simulateDrop(tree, 'movable', 'target', 'inside');
+        await settle(tree);
+
+        const target = tree.getItemTree().find(i => i['id'] === 'target')!;
+        const children = target['children'] as RichTreeItem[];
+        expect(children).toBeDefined();
+        expect(children.map(c => c['id'])).toContain('movable');
+    });
+
+    it('dragstart does nothing when itemsReordering is false', async () => {
+        const tree = await fixture<FlintRichTreeView>(html`
+            <flint-rich-tree-view .items=${FLAT_ITEMS}></flint-rich-tree-view>
+        `);
+        await settle(tree);
+
+        const handler = vi.fn();
+        tree.addEventListener('flint-tree-view-item-position-change', handler);
+
+        const fromEl = getItem(tree, 'a')!;
+        fromEl.dispatchEvent(new DragEvent('dragstart', { bubbles: true, composed: true }));
+        await settle(tree);
+
+        expect(handler).not.toHaveBeenCalled();
+    });
+
+    it('dragover does nothing when no item is being dragged', async () => {
+        const tree = await fixture<FlintRichTreeView>(html`
+            <flint-rich-tree-view .items=${FLAT_ITEMS} items-reordering></flint-rich-tree-view>
+        `);
+        await settle(tree);
+
+        const toEl = getItem(tree, 'b')!;
+        // No dragstart first — so _draggedItemId is null
+        toEl.dispatchEvent(new DragEvent('dragover', { bubbles: true, composed: true, clientY: 100 }));
+        await settle(tree);
+
+        // No drop target should be set
+        expect(tree.getItemTree()).toBe(FLAT_ITEMS);
+    });
+});
+
+describe('FlintRichTreeView — keyboard Enter/Space on parent items', () => {
+    it('Enter toggles expansion on parent item and fires onItemClick', async () => {
+        const handler = vi.fn();
+        const tree = await fixture<FlintRichTreeView>(html`
+            <flint-rich-tree-view .items=${BASIC_ITEMS} .onItemClick=${handler}></flint-rich-tree-view>
+        `);
+        await settle(tree);
+
+        const parent = getItem(tree, '1')!;
+        parent.focus();
+        expect(parent.expanded).toBe(false);
+
+        parent.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+        await tree.updateComplete;
+
+        expect(parent.expanded).toBe(true);
+        expect(handler).toHaveBeenCalledWith('1');
+    });
+
+    it('Space toggles expansion on parent item', async () => {
+        const tree = await fixture<FlintRichTreeView>(html`
+            <flint-rich-tree-view .items=${BASIC_ITEMS}></flint-rich-tree-view>
+        `);
+        await settle(tree);
+
+        const parent = getItem(tree, '1')!;
+        parent.focus();
+        expect(parent.expanded).toBe(false);
+
+        parent.dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true }));
+        await tree.updateComplete;
+
+        expect(parent.expanded).toBe(true);
+    });
+
+    it('Enter on disabled item does not toggle expansion or fire callback', async () => {
+        const handler = vi.fn();
+        const items: RichTreeItem[] = [
+            { id: '1', label: 'Alpha', children: [{ id: '1-1', label: 'Beta' }] },
+        ];
+        const tree = await fixture<FlintRichTreeView>(html`
+            <flint-rich-tree-view
+                .items=${items}
+                .isItemDisabled=${() => true}
+                disabled-items-focusable
+                .onItemClick=${handler}
+            ></flint-rich-tree-view>
+        `);
+        await settle(tree);
+
+        const parent = getItem(tree, '1')!;
+        parent.focus();
+        parent.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+        await tree.updateComplete;
+
+        expect(parent.expanded).toBe(false);
+        expect(handler).not.toHaveBeenCalled();
+    });
+});
+
+describe('FlintRichTreeView — content expansion trigger', () => {
+    it('clicking row on parent item toggles expansion when expansionTrigger is content', async () => {
+        const tree = await fixture<FlintRichTreeView>(html`
+            <flint-rich-tree-view .items=${BASIC_ITEMS} expansion-trigger="content"></flint-rich-tree-view>
+        `);
+        await settle(tree);
+
+        const parent = getItem(tree, '1')!;
+        expect(parent.expanded).toBe(false);
+
+        parent.shadowRoot!.querySelector<HTMLElement>('.item-row')!.click();
+        await tree.updateComplete;
+
+        expect(parent.expanded).toBe(true);
+    });
+
+    it('clicking row on leaf item does NOT change expansion when expansionTrigger is content', async () => {
+        const tree = await fixture<FlintRichTreeView>(html`
+            <flint-rich-tree-view .items=${FLAT_ITEMS} expansion-trigger="content"></flint-rich-tree-view>
+        `);
+        await settle(tree);
+
+        const leaf = getItem(tree, 'a')!;
+        leaf.shadowRoot!.querySelector<HTMLElement>('.item-row')!.click();
+        await tree.updateComplete;
+
+        expect(leaf.expanded).toBe(false);
+    });
+});

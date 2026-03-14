@@ -4,7 +4,6 @@
 
 - **Tag**: `<flint-checkbox>`
 - **Class**: `FlintCheckbox`
-- **Form Associated**: Yes
 
 ### Import
 
@@ -24,22 +23,22 @@ import { FlintCheckbox } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `checked` | `checked` | `boolean` | `false` | Whether the checkbox is checked. |
-| `indeterminate` | `indeterminate` | `boolean` | `false` | Whether the checkbox is in an indeterminate state. |
-| `disabled` | `disabled` | `boolean` | `false` | Disables the checkbox, preventing user interaction. |
-| `required` | `required` | `boolean` | `false` | Marks the checkbox as required for form validation. |
-| `size` | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The size of the checkbox. |
-| `label` | `label` | `string` | `''` | Text label displayed next to the checkbox. |
-| `name` | `name` | `string` | `''` | Form control name submitted with the form data. |
-| `value` | `value` | `string` | `'on'` | The value submitted with form data when checked. |
-| `defaultChecked` | `default-checked` | `boolean` | `false` | Sets the initial checked state on first render. |
-| `ariaLabel` | `aria-label` | `string \| null` | `null` | Accessible label for the checkbox input. |
+| `checked` | `checked` | `boolean` | `false` |  |
+| `indeterminate` | `indeterminate` | `boolean` | `false` |  |
+| `disabled` | `disabled` | `boolean` | `false` |  |
+| `required` | `required` | `boolean` | `false` |  |
+| `size` | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` |  |
+| `label` | `label` | `string` | `''` |  |
+| `name` | `name` | `string` | `''` |  |
+| `value` | `value` | `string` | `'on'` |  |
+| `defaultChecked` | `default-checked` | `boolean` | `false` |  |
+| `ariaLabel` | `aria-label` | `string \| null` | `null` |  |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `change` | `{ checked: this.checked, value: this.value, indeterminate: false }` | Fired when the checked state changes. |
+| `flint-checkbox-change` | `{ checked: this.checked, value: this.value, indeterminate: false }` |  |
 
 ### CSS Custom Properties
 

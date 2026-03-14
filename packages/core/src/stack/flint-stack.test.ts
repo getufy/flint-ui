@@ -523,4 +523,56 @@ describe('flint-stack', () => {
         await el.updateComplete;
         expect(el.querySelector('flint-divider')!.getAttribute('orientation')).toBe('vertical');
     });
+
+    // ── _resolveResponsive edge: xs key defined but no match at higher bp ──
+
+    it('_resolveResponsive returns xs value when only xs is defined and bp is higher', () => {
+        const el = document.createElement('flint-stack') as unknown as StackInternal;
+        // Only xs defined; requesting md — loop walks md,sm,xs and finds xs
+        expect(el._resolveResponsive({ xs: 'column' }, 'md')).toBe('column');
+    });
+
+    it('_resolveResponsive returns xs fallback when xs is defined and bp is xs', () => {
+        const el = document.createElement('flint-stack') as unknown as StackInternal;
+        expect(el._resolveResponsive({ xs: 'row', lg: 'column' }, 'xs')).toBe('row');
+    });
+
+    // ── _updateDividers early return when direction resolves to null ──
+
+    it('_updateDividers handles null/undefined resolved direction gracefully', async () => {
+        const el = await fixture<FlintStack>(html`
+            <flint-stack .direction=${{}} >
+                <flint-divider></flint-divider>
+            </flint-stack>
+        `);
+        // With an empty responsive object, resolvedDirection may be undefined
+        // _updateDividers should early-return without throwing
+        await el.updateComplete;
+        expect(el).toBeDefined();
+    });
+
+    // ── direction fallback via ?? 'column' when resolvedDirection is undefined ──
+
+    it('falls back to column default when direction resolves to undefined', async () => {
+        const el = await fixture<FlintStack>(html`
+            <flint-stack .direction=${{}}></flint-stack>
+        `);
+        await el.updateComplete;
+        const wrapper = el.shadowRoot!.querySelector('.stack-wrapper') as HTMLElement;
+        // The ?? 'column' fallback ensures 'column' is used
+        expect(wrapper.style.flexDirection).toBe('column');
+        expect(wrapper.style.alignItems).toBe('stretch');
+    });
+
+    // ── _getBreakpointValue with empty CSS var ──
+
+    it('_getBreakpointValue returns fallback when CSS var is empty string', () => {
+        vi.spyOn(window, 'getComputedStyle').mockReturnValue({
+            getPropertyValue: () => '',
+        } as unknown as CSSStyleDeclaration);
+
+        const el = document.createElement('flint-stack') as unknown as StackInternal;
+        const result = el._getBreakpointValue('empty-var', 999);
+        expect(result).toBe(999);
+    });
 });

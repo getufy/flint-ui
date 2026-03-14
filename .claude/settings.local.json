@@ -151,7 +151,10 @@
       "Bash(cd /Users/algoassasin/storybook-lit/packages/core && NODE_OPTIONS='--no-warnings' npx vitest run src/box/flint-box.test.ts --project components 2>&1 | tail -20)",
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/tree-view/flint-rich-tree-view.test.ts --project components 2>&1 | tail -10)",
       "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/tree-view/flint-rich-tree-view.test.ts --project components 2>&1 | grep -A 20 'FAIL\\\\|AssertionError\\\\|expected\\\\|Error:')",
-      "Bash(cd /Users/algoassasin/storybook-lit/packages/core && NODE_OPTIONS='--no-warnings' npx vitest run src/button/flint-button-group.test.ts src/app-bar/flint-app-bar.test.ts src/avatar/flint-avatar.test.ts src/backdrop/flint-backdrop.test.ts src/divider/flint-divider.test.ts --project components 2>&1 | tail -20)"
+      "Bash(cd /Users/algoassasin/storybook-lit/packages/core && NODE_OPTIONS='--no-warnings' npx vitest run src/button/flint-button-group.test.ts src/app-bar/flint-app-bar.test.ts src/avatar/flint-avatar.test.ts src/backdrop/flint-backdrop.test.ts src/divider/flint-divider.test.ts --project components 2>&1 | tail -20)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/dialog/flint-dialog.test.ts src/autocomplete/flint-autocomplete.test.ts src/date-field/flint-date-field.test.ts src/select/flint-select.test.ts src/checkbox/flint-checkbox.test.ts --project components 2>&1 | tail -40)",
+      "Bash(cd /Users/algoassasin/storybook-lit && NODE_OPTIONS='--no-warnings' npx vitest run packages/core/src/stack/flint-stack.test.ts --project components 2>&1 | tail -30)",
+      "Bash(NODE_OPTIONS='--no-warnings' npx vitest run src/stack/flint-stack.test.ts --project components 2>&1 | tail -30)"
     ]
   }
 }

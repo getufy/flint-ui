@@ -1,5 +1,5 @@
 // Auto-generated — do not edit
 export const FlintTimeFieldEvents = {
-    CLEAR: 'clear',
+    TIME_PICKER_CLEAR: 'flint-time-picker-clear',
     CHANGE: 'change',
 } as const;

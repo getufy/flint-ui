@@ -3,8 +3,9 @@
  * API and extract metadata for every class decorated with @customElement.
  */
 import ts from 'typescript';
-import { readFileSync } from 'node:fs';
-import type { ComponentMeta, EventMeta, PropMeta } from './types.js';
+import { readFileSync, existsSync } from 'node:fs';
+import { join, dirname } from 'node:path';
+import type { ComponentMeta, EventMeta, PropMeta, SlotMeta, CssPropertyMeta, MethodMeta } from './types.js';
 
 // ─── string helpers ──────────────────────────────────────────────────────────
 
@@ -60,6 +61,185 @@ function getDecoratorsOf(node: ts.Node): readonly ts.Decorator[] {
     ) as ts.Decorator[];
 }
 
+// ─── JSDoc helpers ───────────────────────────────────────────────────────────
+
+/** Extract the first line of a JSDoc comment on a node. */
+function getJsDocDescription(node: ts.Node): string {
+    const jsDocs = (node as unknown as { jsDoc?: ts.JSDoc[] }).jsDoc;
+    if (!jsDocs || jsDocs.length === 0) return '';
+    const doc = jsDocs[0];
+    if (!doc.comment) return '';
+    if (typeof doc.comment === 'string') return doc.comment.split('\n')[0].trim();
+    // NodeArray<JSDocText | JSDocLink>
+    return doc.comment
+        .map(c => ('text' in c ? c.text : ''))
+        .join('')
+        .split('\n')[0]
+        .trim();
+}
+
+/** Extract @fires tags from a class JSDoc → EventMeta descriptions. */
+function getFiresTags(node: ts.ClassDeclaration): Map<string, string> {
+    const map = new Map<string, string>();
+    const jsDocs = (node as unknown as { jsDoc?: ts.JSDoc[] }).jsDoc;
+    if (!jsDocs) return map;
+    for (const doc of jsDocs) {
+        if (!doc.tags) continue;
+        for (const tag of doc.tags) {
+            if (tag.tagName.text !== 'fires') continue;
+            const text = typeof tag.comment === 'string'
+                ? tag.comment
+                : (tag.comment?.map(c => ('text' in c ? c.text : '')).join('') ?? '');
+            // Format: "event-name - Description" or just "event-name"
+            const trimmed = text.trim();
+            const dashIdx = trimmed.indexOf(' - ');
+            if (dashIdx >= 0) {
+                const evName = trimmed.slice(0, dashIdx).trim();
+                const desc = trimmed.slice(dashIdx + 3).trim();
+                map.set(evName, desc);
+            } else {
+                map.set(trimmed.split(/\s/)[0], '');
+            }
+        }
+    }
+    return map;
+}
+
+/** Extract @slot tags from a class JSDoc. */
+function getSlotTags(node: ts.ClassDeclaration): SlotMeta[] {
+    const slots: SlotMeta[] = [];
+    const jsDocs = (node as unknown as { jsDoc?: ts.JSDoc[] }).jsDoc;
+    if (!jsDocs) return slots;
+    for (const doc of jsDocs) {
+        if (!doc.tags) continue;
+        for (const tag of doc.tags) {
+            if (tag.tagName.text !== 'slot') continue;
+            const text = typeof tag.comment === 'string'
+                ? tag.comment
+                : (tag.comment?.map(c => ('text' in c ? c.text : '')).join('') ?? '');
+            const trimmed = text.trim();
+            const dashIdx = trimmed.indexOf(' - ');
+            if (dashIdx >= 0) {
+                slots.push({
+                    name: trimmed.slice(0, dashIdx).trim(),
+                    description: trimmed.slice(dashIdx + 3).trim(),
+                });
+            } else if (trimmed) {
+                slots.push({ name: trimmed, description: '' });
+            }
+        }
+    }
+    return slots;
+}
+
+/** Extract class-level description (non-tag text) from JSDoc. */
+function getClassDescription(node: ts.ClassDeclaration): string {
+    const jsDocs = (node as unknown as { jsDoc?: ts.JSDoc[] }).jsDoc;
+    if (!jsDocs || jsDocs.length === 0) return '';
+    const doc = jsDocs[0];
+    if (!doc.comment) return '';
+    const text = typeof doc.comment === 'string'
+        ? doc.comment
+        : doc.comment.map(c => ('text' in c ? c.text : '')).join('');
+    // Take the first paragraph (up to double newline or @tag)
+    return text.split(/\n\n/)[0].trim();
+}
+
+// ─── CSS custom properties ──────────────────────────────────────────────────
+
+/** Scan CSS file(s) next to the source for --flint-* custom properties. */
+function extractCssProperties(absoluteTsPath: string): CssPropertyMeta[] {
+    const dir = dirname(absoluteTsPath);
+    const baseName = absoluteTsPath.replace(/\.ts$/, '');
+
+    // Try to find CSS file(s) with matching name patterns
+    const cssFiles: string[] = [];
+    const possibleNames = [
+        baseName + '.css',
+        // Some components import multiple CSS files
+    ];
+    for (const f of possibleNames) {
+        if (existsSync(f)) cssFiles.push(f);
+    }
+
+    // Also check for any CSS imports in the TS file
+    const tsContent = readFileSync(absoluteTsPath, 'utf-8');
+    const cssImportRe = /from\s+['"]\.\/([\w-]+\.css)\?inline['"]/g;
+    let m;
+    while ((m = cssImportRe.exec(tsContent)) !== null) {
+        const cssPath = join(dir, m[1]);
+        if (existsSync(cssPath) && !cssFiles.includes(cssPath)) {
+            cssFiles.push(cssPath);
+        }
+    }
+
+    const seen = new Set<string>();
+    const props: CssPropertyMeta[] = [];
+
+    for (const cssFile of cssFiles) {
+        const css = readFileSync(cssFile, 'utf-8');
+        // Match var(--flint-*) references
+        const varRe = /var\(\s*(--flint-[\w-]+)(?:\s*,\s*([^)]+))?\)/g;
+        let vm;
+        while ((vm = varRe.exec(css)) !== null) {
+            const name = vm[1];
+            if (seen.has(name)) continue;
+            seen.add(name);
+            props.push({ name, defaultValue: '—' });
+        }
+    }
+
+    return props;
+}
+
+// ─── public methods parser ──────────────────────────────────────────────────
+
+function extractPublicMethods(node: ts.ClassDeclaration, sf: ts.SourceFile): MethodMeta[] {
+    const methods: MethodMeta[] = [];
+    for (const member of node.members) {
+        // Check getters (public accessors like `get inputElement()`)
+        if (ts.isGetAccessorDeclaration(member)) {
+            const name = ts.isIdentifier(member.name) ? member.name.text : '';
+            if (!name || name.startsWith('_')) continue;
+            // Skip if private/protected
+            if (member.modifiers?.some(m =>
+                m.kind === ts.SyntaxKind.PrivateKeyword || m.kind === ts.SyntaxKind.ProtectedKeyword
+            )) continue;
+            const returnType = member.type ? member.type.getText(sf) : 'unknown';
+            methods.push({
+                signature: `${name}(): ${returnType}`,
+                description: getJsDocDescription(member),
+            });
+        }
+        // Check regular methods
+        if (ts.isMethodDeclaration(member)) {
+            const name = ts.isIdentifier(member.name) ? member.name.text : '';
+            if (!name || name.startsWith('_')) continue;
+            // Skip private/protected and lifecycle methods
+            if (member.modifiers?.some(m =>
+                m.kind === ts.SyntaxKind.PrivateKeyword || m.kind === ts.SyntaxKind.ProtectedKeyword
+            )) continue;
+            // Skip Lit lifecycle and standard overrides
+            if (['render', 'connectedCallback', 'disconnectedCallback', 'willUpdate',
+                 'updated', 'firstUpdated', 'focus', 'blur',
+                 'formResetCallback', 'formStateRestoreCallback'].includes(name)) continue;
+            const params = member.parameters
+                .map(p => {
+                    const pName = p.name.getText(sf);
+                    const pType = p.type ? p.type.getText(sf) : 'unknown';
+                    return `${pName}: ${pType}`;
+                })
+                .join(', ');
+            const returnType = member.type ? member.type.getText(sf) : 'void';
+            methods.push({
+                signature: `${name}(${params}): ${returnType}`,
+                description: getJsDocDescription(member),
+            });
+        }
+    }
+    return methods;
+}
+
 // ─── public API ─────────────────────────────────────────────────────────────
 
 export function parseComponentFile(
@@ -78,7 +258,7 @@ export function parseComponentFile(
 
     function visit(node: ts.Node) {
         if (ts.isClassDeclaration(node)) {
-            const meta = parseClass(node, sf, relativeSourcePath);
+            const meta = parseClass(node, sf, absolutePath, relativeSourcePath);
             if (meta) components.push(meta);
         }
         ts.forEachChild(node, visit);
@@ -93,6 +273,7 @@ export function parseComponentFile(
 function parseClass(
     node: ts.ClassDeclaration,
     sf: ts.SourceFile,
+    absolutePath: string,
     sourceFile: string,
 ): ComponentMeta | null {
     // 1. Require @customElement('tag-name') decorator
@@ -116,7 +297,12 @@ function parseClass(
 
     const className = node.name?.text ?? '';
 
-    // 2. Collect @property decorated members
+    // 2. Extract class-level JSDoc
+    const description = getClassDescription(node);
+    const firesMap = getFiresTags(node);
+    const slots = getSlotTags(node);
+
+    // 3. Collect @property decorated members
     const props: PropMeta[] = [];
 
     for (const member of node.members) {
@@ -176,10 +362,22 @@ function parseClass(
             tsType = 'string';
         }
 
-        props.push({ name: propName, tsType, attribute, reflect, isBoolean, isNumber });
+        // Extract default value from initializer
+        let defaultValue = '';
+        if (member.initializer) {
+            defaultValue = member.initializer.getText(sf);
+        }
+
+        // Extract JSDoc description
+        const propDescription = getJsDocDescription(member);
+
+        props.push({
+            name: propName, tsType, attribute, reflect, isBoolean, isNumber,
+            defaultValue, description: propDescription,
+        });
     }
 
-    // 3. Find CustomEvent instantiations within this class body only
+    // 4. Find CustomEvent instantiations within this class body only
     const seenEvents = new Set<string>();
     const events: EventMeta[] = [];
 
@@ -200,6 +398,7 @@ function parseClass(
                     domName,
                     reactProp: domEventToReactProp(domName),
                     constKey: eventConstKey(tagName!, domName),
+                    description: firesMap.get(domName) ?? '',
                 });
             }
         }
@@ -209,5 +408,14 @@ function parseClass(
     // Walk only within the class body to avoid cross-class pollution
     ts.forEachChild(node, findEvents);
 
-    return { tagName, className, props, events, sourceFile };
+    // 5. Extract CSS custom properties
+    const cssProperties = extractCssProperties(absolutePath);
+
+    // 6. Extract public methods
+    const methods = extractPublicMethods(node, sf);
+
+    return {
+        tagName, className, description, props, events, slots,
+        cssProperties, methods, sourceFile,
+    };
 }

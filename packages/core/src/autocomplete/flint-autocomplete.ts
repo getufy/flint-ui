@@ -69,7 +69,7 @@ export class FlintAutocomplete extends LitElement {
 
         if (this.freeSolo) {
             this.value = this._inputValue;
-            this.dispatchEvent(new CustomEvent('change', { detail: { value: this.value, label: this.value } }));
+            this.dispatchEvent(new CustomEvent('flint-autocomplete-change', { detail: { value: this.value, label: this.value } }));
         }
 
         this._filterOptions();
@@ -154,7 +154,7 @@ export class FlintAutocomplete extends LitElement {
         this._inputValue = option.label;
         this._isOpen = false;
         this._activeIndex = -1;
-        this.dispatchEvent(new CustomEvent('change', { detail: { value: option.value, label: option.label } }));
+        this.dispatchEvent(new CustomEvent('flint-autocomplete-change', { detail: { value: option.value, label: option.label } }));
     }
 
     render() {

@@ -29,7 +29,7 @@ import { FlintBox } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-box-warning` | `{ message }` | Fired when an unknown component tag is used and falls back to `div`. |
+| `flint-box-warning` | — | Dispatched when an unknown component tag is used and falls back to div. |
 
 ### Slots
 

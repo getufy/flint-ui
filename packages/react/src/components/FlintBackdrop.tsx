@@ -10,7 +10,7 @@ export const FlintBackdrop = createComponent({
     elementClass: FlintBackdropElement,
     react: React,
     events: {
-        onClose: 'close' as EventName<CustomEvent>,
+        onFlintBackdropClose: 'flint-backdrop-close' as EventName<CustomEvent>,
     },
 });
 

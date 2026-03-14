@@ -39,6 +39,7 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
+| \`flint-tree-view-error\` | \`{ message: \`Failed to load children for \${id }\` |  |
 | \`flint-tree-view-expanded-items-change\` | \`{ expandedItems: newItems }\` |  |
 | \`flint-tree-view-item-click\` | \`{ itemId }\` |  |
 | \`flint-tree-view-item-position-change\` | \`{ itemId, newParentId, newIndex }\` |  |

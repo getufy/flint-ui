@@ -27,22 +27,22 @@ import { FlintRating } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `value` | `value` | `number` | `0` | Current rating value. |
-| `max` | `max` | `number` | `5` | Maximum number of stars displayed. |
-| `readonly` | `readonly` | `boolean` | `false` | Displays the rating without allowing interaction. |
-| `disabled` | `disabled` | `boolean` | `false` | Disables the rating control. |
-| `clearable` | `clearable` | `boolean` | `false` | Allows clicking the current value again to reset it to 0. |
-| `defaultValue` | `default-value` | `number` | `0` | Initial value for uncontrolled mode; ignored after first render. |
-| `size` | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of the star icons. |
-| `name` | `name` | `string` | `''` | Form control name for the hidden input. |
-| `label` | `label` | `string` | `'Rating'` | Accessible label for the rating group (aria-label). |
-| `precision` | `precision` | `1 \| 0.5` | `1` | Rating step; set to 0.5 to allow half-star values. |
+| `value` | `value` | `number` | `0` |  |
+| `max` | `max` | `number` | `5` |  |
+| `readonly` | `readonly` | `boolean` | `false` |  |
+| `disabled` | `disabled` | `boolean` | `false` |  |
+| `clearable` | `clearable` | `boolean` | `false` |  |
+| `defaultValue` | `default-value` | `number` | `0` |  |
+| `size` | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` |  |
+| `name` | `name` | `string` | `''` |  |
+| `label` | `label` | `string` | `'Rating'` |  |
+| `precision` | `precision` | `1 \| 0.5` | `1` |  |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-rating-change` | `{ value: this.value }` | Fired when the rating value changes via user interaction. |
+| `flint-rating-change` | `{ value: this.value }` |  |
 
 ### CSS Custom Properties
 

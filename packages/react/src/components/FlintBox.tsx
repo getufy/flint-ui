@@ -2,13 +2,16 @@
 // Source: src/box/flint-box.ts
 
 import React from 'react';
-import { createComponent } from '@lit/react';
+import { createComponent, type EventName } from '@lit/react';
 import { FlintBox as FlintBoxElement } from 'flint-ui/box/flint-box';
 
 export const FlintBox = createComponent({
     tagName: 'flint-box',
     elementClass: FlintBoxElement,
     react: React,
+    events: {
+        onFlintBoxWarning: 'flint-box-warning' as EventName<CustomEvent>,
+    },
 });
 
 export type FlintBoxProps = React.ComponentProps<typeof FlintBox>;

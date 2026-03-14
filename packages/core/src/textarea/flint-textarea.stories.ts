@@ -16,7 +16,6 @@ A Textarea component for multi-line text input.
 
 - **Tag**: \`<flint-textarea>\`
 - **Class**: \`FlintTextarea\`
-- **Form Associated**: Yes
 
 #### Properties
 

@@ -10,8 +10,8 @@ export const FlintSimpleTreeView = createComponent({
     elementClass: FlintSimpleTreeViewElement,
     react: React,
     events: {
-        onExpandedItemsChange: 'expanded-items-change' as EventName<CustomEvent>,
-        onItemClick: 'item-click' as EventName<CustomEvent>,
+        onFlintTreeViewExpandedItemsChange: 'flint-tree-view-expanded-items-change' as EventName<CustomEvent>,
+        onFlintTreeViewItemClick: 'flint-tree-view-item-click' as EventName<CustomEvent>,
     },
 });
 

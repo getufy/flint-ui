@@ -54,7 +54,7 @@ describe('flint-checkbox', () => {
     it('dispatches change event', async () => {
         let eventTriggered = false;
         const el = await fixture<FlintCheckbox>(html`
-            <flint-checkbox @change=${() => eventTriggered = true}></flint-checkbox>
+            <flint-checkbox @flint-checkbox-change=${() => eventTriggered = true}></flint-checkbox>
         `);
 
         const input = el.shadowRoot!.querySelector('input')!;
@@ -102,7 +102,7 @@ describe('flint-checkbox', () => {
 
     it('change event detail has correct checked=true value', async () => {
         const spy = vi.fn();
-        const el = await fixture<FlintCheckbox>(html`<flint-checkbox value="my-val" @change=${spy}></flint-checkbox>`);
+        const el = await fixture<FlintCheckbox>(html`<flint-checkbox value="my-val" @flint-checkbox-change=${spy}></flint-checkbox>`);
         const input = el.shadowRoot!.querySelector('input')!;
         input.click();
         expect(spy).toHaveBeenCalledOnce();
@@ -114,7 +114,7 @@ describe('flint-checkbox', () => {
 
     it('change event detail has correct checked=false after unchecking', async () => {
         const spy = vi.fn();
-        const el = await fixture<FlintCheckbox>(html`<flint-checkbox checked value="x" @change=${spy}></flint-checkbox>`);
+        const el = await fixture<FlintCheckbox>(html`<flint-checkbox checked value="x" @flint-checkbox-change=${spy}></flint-checkbox>`);
         const input = el.shadowRoot!.querySelector('input')!;
         input.click();
         await el.updateComplete;
@@ -135,7 +135,7 @@ describe('flint-checkbox', () => {
 
     it('change event detail.indeterminate is always false after change', async () => {
         const spy = vi.fn();
-        const el = await fixture<FlintCheckbox>(html`<flint-checkbox indeterminate @change=${spy}></flint-checkbox>`);
+        const el = await fixture<FlintCheckbox>(html`<flint-checkbox indeterminate @flint-checkbox-change=${spy}></flint-checkbox>`);
         const input = el.shadowRoot!.querySelector('input')!;
         input.click();
         const detail = (spy.mock.calls[0][0] as CustomEvent).detail;
@@ -145,7 +145,7 @@ describe('flint-checkbox', () => {
     it('change event has bubbles=true', async () => {
         let event: CustomEvent | null = null;
         const el = await fixture<FlintCheckbox>(html`
-            <flint-checkbox @change=${(e: CustomEvent) => { event = e; }}></flint-checkbox>
+            <flint-checkbox @flint-checkbox-change=${(e: CustomEvent) => { event = e; }}></flint-checkbox>
         `);
         el.shadowRoot!.querySelector('input')!.click();
         expect(event!.bubbles).toBe(true);
@@ -154,7 +154,7 @@ describe('flint-checkbox', () => {
     it('change event has composed=true', async () => {
         let event: CustomEvent | null = null;
         const el = await fixture<FlintCheckbox>(html`
-            <flint-checkbox @change=${(e: CustomEvent) => { event = e; }}></flint-checkbox>
+            <flint-checkbox @flint-checkbox-change=${(e: CustomEvent) => { event = e; }}></flint-checkbox>
         `);
         el.shadowRoot!.querySelector('input')!.click();
         expect(event!.composed).toBe(true);
@@ -163,7 +163,7 @@ describe('flint-checkbox', () => {
     it('change event detail is not empty', async () => {
         let event: CustomEvent | null = null;
         const el = await fixture<FlintCheckbox>(html`
-            <flint-checkbox @change=${(e: CustomEvent) => { event = e; }}></flint-checkbox>
+            <flint-checkbox @flint-checkbox-change=${(e: CustomEvent) => { event = e; }}></flint-checkbox>
         `);
         el.shadowRoot!.querySelector('input')!.click();
         expect(Object.keys(event!.detail).length).toBeGreaterThan(0);
@@ -174,7 +174,7 @@ describe('flint-checkbox', () => {
 
     it('disabled prevents change event when input dispatches change directly', async () => {
         const spy = vi.fn();
-        const el = await fixture<FlintCheckbox>(html`<flint-checkbox disabled @change=${spy}></flint-checkbox>`);
+        const el = await fixture<FlintCheckbox>(html`<flint-checkbox disabled @flint-checkbox-change=${spy}></flint-checkbox>`);
         const input = el.shadowRoot!.querySelector('input')!;
         // Simulate native change event on the (disabled) input
         input.dispatchEvent(new Event('change', { bubbles: true }));
@@ -330,7 +330,7 @@ describe('flint-checkbox', () => {
     it('change event bubbles and is composed', async () => {
         const spy = vi.fn();
         const container = await fixture<HTMLDivElement>(html`
-            <div @change=${spy}><flint-checkbox></flint-checkbox></div>
+            <div @flint-checkbox-change=${spy}><flint-checkbox></flint-checkbox></div>
         `);
         const el = container.querySelector('flint-checkbox')!;
         const input = el.shadowRoot!.querySelector('input')!;

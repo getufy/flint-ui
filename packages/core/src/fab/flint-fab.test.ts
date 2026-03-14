@@ -18,7 +18,7 @@ describe('FlintFab', () => {
         expect(el.label).toBe('Action');
     });
 
-    // ── aria-label (BUG 2 fix) ──────────────────────────────────────────────
+    // ── aria-label ─────────────────────────────────────────────────────────
 
     it('sets aria-label from label prop on non-extended FAB', async () => {
         const el = await fixture<FlintFab>(html`<flint-fab position="static"></flint-fab>`);
@@ -39,7 +39,7 @@ describe('FlintFab', () => {
         expect(button.hasAttribute('aria-label')).toBe(false);
     });
 
-    // ── position applied to :host (BUG 1 fix) ─────────────────────────────
+    // ── position applied to :host ──────────────────────────────────────────
 
     it('applies bottom-right position to host by default', async () => {
         const el = await fixture<FlintFab>(html`<flint-fab></flint-fab>`);

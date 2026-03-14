@@ -1,5 +1,5 @@
 // Auto-generated — do not edit
 export const FlintSimpleTreeViewEvents = {
-    EXPANDED_ITEMS_CHANGE: 'expanded-items-change',
-    ITEM_CLICK: 'item-click',
+    TREE_VIEW_EXPANDED_ITEMS_CHANGE: 'flint-tree-view-expanded-items-change',
+    TREE_VIEW_ITEM_CLICK: 'flint-tree-view-item-click',
 } as const;

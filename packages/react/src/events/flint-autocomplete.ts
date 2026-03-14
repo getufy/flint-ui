@@ -1,4 +1,4 @@
 // Auto-generated — do not edit
 export const FlintAutocompleteEvents = {
-    CHANGE: 'change',
+    CHANGE: 'flint-autocomplete-change',
 } as const;

@@ -158,7 +158,7 @@ A radio option inside a \`<flint-menubar-radio-group>\`.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`_menubar-radio-select\` | \`{ value: this.value }\` |  |
+| \`flint-menubar-radio-select\` | \`{ value: this.value }\` |  |
 
 #### Slots
 
@@ -288,7 +288,7 @@ The dropdown content panel for a menubar menu. Positioned absolutely below the t
 
 | Event | Detail | Description |
 |---|---|---|
-| \`_menubar-request-close\` | — |  |
+| \`flint-menubar-request-close\` | — |  |
 
 #### Slots
 

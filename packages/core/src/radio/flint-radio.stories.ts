@@ -16,7 +16,6 @@ const meta: Meta = {
 
 - **Tag**: \`<flint-radio-group>\`
 - **Class**: \`FlintRadioGroup\`
-- **Form Associated**: Yes
 
 #### Properties
 

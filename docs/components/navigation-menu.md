@@ -34,7 +34,7 @@ import { FlintNavigationMenuContent } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-navigation-menu-content-toggle` | `{ contentId: this.id, open: false }` | Fired when the content panel closes (via Escape, Tab, or external close). |
+| `flint-navigation-menu-content-toggle` | `{ contentId: this.id, open: false }` |  |
 
 ### Slots
 
@@ -46,9 +46,9 @@ import { FlintNavigationMenuContent } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `host([open])` | Displays the content panel when the open attribute is set. |
-| `media(prefers-reduced-motion: reduce)` | Disables slide-in animation when reduced motion is preferred. |
-| `slotted(*)` | Sets slotted children to display block. |
+| `host([open])` |  |
+| `media(prefers-reduced-motion: reduce)` |  |
+| `slotted(*)` |  |
 
 ---
 
@@ -84,8 +84,8 @@ import { FlintNavigationMenuItem } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-navigation-menu-trigger-click` | `{ contentId, open: true }` | Fired on hover to open the associated content panel. |
-| `flint-navigation-menu-content-toggle` | `{ contentId, open: false }` | Fired on mouse leave to close the associated content panel. |
+| `flint-navigation-menu-trigger-click` | `{ contentId, open: true }` |  |
+| `flint-navigation-menu-content-toggle` | `{ contentId, open: false }` |  |
 
 ### Slots
 
@@ -123,7 +123,7 @@ import { FlintNavigationMenuLink } from 'flint-ui';
 | `target` | `target` | `string` | `''` | The link target (e.g., '_blank') |
 | `title` | `title` | `string` | `''` | Link title/tooltip |
 | `disabled` | `disabled` | `boolean` | `false` | Whether the link is disabled |
-| `active` | `active` | `boolean` | `false` | Marks this link as the current page and applies active styles. |
+| `active` | `active` | `boolean` | `false` |  |
 
 ### Slots
 
@@ -164,7 +164,7 @@ import { FlintNavigationMenuList } from 'flint-ui';
 | --- | --- | --- | --- | --- |
 | `gap` | `gap` | `number` | `4` | Gap between menu items |
 | `direction` | `direction` | `'row' \| 'column'` | `'row'` | Flex direction for the list |
-| `ariaLabel` | `aria-label` | `string` | `'Main navigation'` | Accessible label for the navigation landmark. |
+| `ariaLabel` | `aria-label` | `string` | `'Main navigation'` |  |
 
 ### Slots
 
@@ -218,7 +218,7 @@ import { FlintNavigationMenuTrigger } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `not(:disabled)` | CSS selector style applied to enabled trigger buttons for hover effects. |
+| `not(:disabled)` |  |
 
 ---
 
@@ -258,7 +258,7 @@ import { FlintNavigationMenu } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `openContentId()` | Returns the ID of the currently open content panel, or null. |
+| `openContentId()` |  |
 | `openContent(contentId: string)` | Manually open a content item by ID |
 | `closeAll()` | Close all open content |
 

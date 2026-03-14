@@ -2,13 +2,16 @@
 // Source: src/menubar/flint-menubar.ts
 
 import React from 'react';
-import { createComponent } from '@lit/react';
+import { createComponent, type EventName } from '@lit/react';
 import { FlintMenubarRadioItem as FlintMenubarRadioItemElement } from 'flint-ui/menubar/flint-menubar';
 
 export const FlintMenubarRadioItem = createComponent({
     tagName: 'flint-menubar-radio-item',
     elementClass: FlintMenubarRadioItemElement,
     react: React,
+    events: {
+        onFlintMenubarRadioSelect: 'flint-menubar-radio-select' as EventName<CustomEvent>,
+    },
 });
 
 export type FlintMenubarRadioItemProps = React.ComponentProps<typeof FlintMenubarRadioItem>;

@@ -1,8 +1,8 @@
 # Resizable
 
-<Demo label="Horizontal" html="<div style=&quot;width:100%;max-width:500px&quot;><flint-resizable-group orientation=&quot;horizontal&quot; style=&quot;height:200px;border:1px solid var(--flint-border-color, #e5e7eb);border-radius:8px;overflow:hidden&quot;>  <flint-resizable-panel default-size=&quot;40&quot;>    <div style=&quot;padding:16px;height:100%;background:var(--flint-primary-color-light, rgba(59,130,246,0.1));display:flex;align-items:center;justify-content:center;color:var(--flint-text-color, #111827)&quot;>Panel A</div>  </flint-resizable-panel>  <flint-resizable-handle with-handle></flint-resizable-handle>  <flint-resizable-panel default-size=&quot;60&quot;>    <div style=&quot;padding:16px;height:100%;background:var(--flint-hover-color, rgba(0,0,0,0.04));display:flex;align-items:center;justify-content:center;color:var(--flint-text-color, #111827)&quot;>Panel B</div>  </flint-resizable-panel></flint-resizable-group></div>" />
+<Demo label="Horizontal" html="<div style=&quot;width:100%;max-width:500px&quot;><flint-resizable-group orientation=&quot;horizontal&quot; style=&quot;height:200px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden&quot;>  <flint-resizable-panel default-size=&quot;40&quot;>    <div style=&quot;padding:16px;height:100%;background:#f0f9ff;display:flex;align-items:center;justify-content:center&quot;>Panel A</div>  </flint-resizable-panel>  <flint-resizable-handle with-handle></flint-resizable-handle>  <flint-resizable-panel default-size=&quot;60&quot;>    <div style=&quot;padding:16px;height:100%;background:#fefce8;display:flex;align-items:center;justify-content:center&quot;>Panel B</div>  </flint-resizable-panel></flint-resizable-group></div>" />
 
-<Demo label="Three Panels" html="<div style=&quot;width:100%;max-width:600px&quot;><flint-resizable-group orientation=&quot;horizontal&quot; style=&quot;height:180px;border:1px solid var(--flint-border-color, #e5e7eb);border-radius:8px;overflow:hidden&quot;>  <flint-resizable-panel default-size=&quot;25&quot;>    <div style=&quot;padding:12px;height:100%;background:var(--flint-primary-color-light, rgba(59,130,246,0.1));display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--flint-text-color, #111827)&quot;>Sidebar</div>  </flint-resizable-panel>  <flint-resizable-handle with-handle></flint-resizable-handle>  <flint-resizable-panel default-size=&quot;50&quot;>    <div style=&quot;padding:12px;height:100%;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--flint-text-color, #111827)&quot;>Main</div>  </flint-resizable-panel>  <flint-resizable-handle with-handle></flint-resizable-handle>  <flint-resizable-panel default-size=&quot;25&quot;>    <div style=&quot;padding:12px;height:100%;background:var(--flint-hover-color, rgba(0,0,0,0.04));display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--flint-text-color, #111827)&quot;>Detail</div>  </flint-resizable-panel></flint-resizable-group></div>" />
+<Demo label="Three Panels" html="<div style=&quot;width:100%;max-width:600px&quot;><flint-resizable-group orientation=&quot;horizontal&quot; style=&quot;height:180px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden&quot;>  <flint-resizable-panel default-size=&quot;25&quot;>    <div style=&quot;padding:12px;height:100%;background:#f0f9ff;display:flex;align-items:center;justify-content:center;font-size:14px&quot;>Sidebar</div>  </flint-resizable-panel>  <flint-resizable-handle with-handle></flint-resizable-handle>  <flint-resizable-panel default-size=&quot;50&quot;>    <div style=&quot;padding:12px;height:100%;display:flex;align-items:center;justify-content:center;font-size:14px&quot;>Main</div>  </flint-resizable-panel>  <flint-resizable-handle with-handle></flint-resizable-handle>  <flint-resizable-panel default-size=&quot;25&quot;>    <div style=&quot;padding:12px;height:100%;background:#fef3c7;display:flex;align-items:center;justify-content:center;font-size:14px&quot;>Detail</div>  </flint-resizable-panel></flint-resizable-group></div>" />
 
 ## `<flint-resizable-group>`
 
@@ -34,9 +34,9 @@ import { FlintResizableGroup } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-resizable-collapse` | `{ index: idx, layout: this.getLayout() }` | Fired when a panel is collapsed to zero size. |
-| `flint-resizable-expand` | `{ index: idx, layout: this.getLayout() }` | Fired when a collapsed panel is expanded back to its previous size. |
-| `flint-resizable-change` | `{ layout: this.getLayout() }` | Fired whenever any panel size changes during a resize. |
+| `flint-resizable-collapse` | `{ index: idx, layout: this.getLayout() }` |  |
+| `flint-resizable-expand` | `{ index: idx, layout: this.getLayout() }` |  |
+| `flint-resizable-change` | `{ layout: this.getLayout() }` |  |
 
 ### Slots
 
@@ -48,7 +48,7 @@ import { FlintResizableGroup } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `host([orientation='vertical'])` | CSS-only: switches the group to column layout when orientation is vertical. |
+| `host([orientation='vertical'])` |  |
 | `getLayout(): number[]` | Returns a snapshot of panel sizes as percentages (0-100). |
 
 ---
@@ -81,7 +81,7 @@ import { FlintResizablePanel } from 'flint-ui';
 | `minSize` | `min-size` | `number` | `0` | Minimum size percentage (0–100). |
 | `maxSize` | `max-size` | `number` | `100` | Maximum size percentage (0–100). |
 | `collapsible` | `collapsible` | `boolean` | `false` | Whether the panel can collapse to zero size via drag. |
-| `collapsed` | `collapsed` | `boolean` | `false` | Whether the panel is currently collapsed (set automatically by collapse/expand/toggle). |
+| `collapsed` | `collapsed` | `boolean` | `false` |  |
 
 ### Slots
 
@@ -93,8 +93,8 @@ import { FlintResizablePanel } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `collapse()` | Collapse this panel to zero size, transferring space to the adjacent sibling. |
-| `expand()` | Expand this panel back to its previous size (or defaultSize as fallback). |
+| `collapse()` |  |
+| `expand()` |  |
 | `toggle()` | * Toggle between collapsed and expanded states. |
 
 ---
@@ -130,6 +130,6 @@ import { FlintResizableHandle } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `host(:hover)` | CSS-only: applies the hover background color to the handle. |
+| `host(:hover)` |  |
 
 ---

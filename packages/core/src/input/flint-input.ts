@@ -1,25 +1,16 @@
 import { LitElement, unsafeCSS, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { FormAssociated } from '../mixins/form-associated.js';
 import uiInputStyles from './flint-input.css?inline';
 
 let idCounter = 0;
 
 @customElement('flint-input')
-export class FlintInput extends LitElement {
-    static formAssociated = true;
-
+export class FlintInput extends FormAssociated(LitElement) {
     static styles = unsafeCSS(uiInputStyles);
 
     private _inputId = `flint-input-${++idCounter}`;
-    private _internals: ElementInternals | null = null;
-
-    constructor() {
-        super();
-        if (typeof this.attachInternals === 'function') {
-            this._internals = this.attachInternals();
-        }
-    }
 
     @property({ type: String })
     label = '';
@@ -72,13 +63,8 @@ export class FlintInput extends LitElement {
     }
 
     private _updateFormValue() {
-        if (!this._internals || typeof this._internals.setFormValue !== 'function') return;
-        this._internals.setFormValue(this.value || null);
-        if (this.required && !this.value) {
-            this._internals.setValidity({ valueMissing: true }, 'Please fill out this field.');
-        } else {
-            this._internals.setValidity({});
-        }
+        this._initFormValue(this.value || null);
+        this._initFormValidity(this.required, !this.value, 'Please fill out this field.');
     }
 
     render() {

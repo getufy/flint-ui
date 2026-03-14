@@ -2056,7 +2056,7 @@ describe('FlintMenubarContent — ArrowRight with empty sub-content', () => {
 });
 
 describe('FlintMenubarRadioGroup — disconnectedCallback', () => {
-    it('disconnectedCallback removes _menubar-radio-select listener', async () => {
+    it('disconnectedCallback removes flint-menubar-radio-select listener', async () => {
         const bar = await fixture<FlintMenubar>(RADIO_FIXTURE);
         await settle(bar);
 
@@ -2387,7 +2387,7 @@ describe('FlintMenubar — _handleRequestClose via item click', () => {
         const menus = getMenus(bar);
 
         const spy = vi.fn();
-        bar.addEventListener('_menubar-request-close', spy);
+        bar.addEventListener('flint-menubar-request-close', spy);
 
         getTriggerButton(getTrigger(menus[0])).click();
         await settle(bar);
@@ -2410,7 +2410,7 @@ describe('FlintMenubar — _handleRequestClose via item click', () => {
         await settle(bar);
 
         // Fire _menubar-request-close directly — simulates content requesting close
-        bar.dispatchEvent(new CustomEvent('_menubar-request-close', { bubbles: true, composed: true }));
+        bar.dispatchEvent(new CustomEvent('flint-menubar-request-close', { bubbles: true, composed: true }));
         await settle(bar);
 
         expect(getContent(menus[0]).open).toBe(false);
@@ -2504,7 +2504,7 @@ describe('FlintMenubarContent — handleKeyDown called directly', () => {
         await settle(bar);
 
         const spy = vi.fn();
-        bar.addEventListener('_menubar-request-close', spy);
+        bar.addEventListener('flint-menubar-request-close', spy);
 
         content.handleKeyDown(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
         await settle(bar);
@@ -3103,7 +3103,7 @@ describe('FlintMenubar — _handleRequestClose calls btn.focus()', () => {
         const btn = getTriggerButton(getTrigger(menus[0]));
         const focusSpy = vi.spyOn(btn, 'focus');
 
-        bar.dispatchEvent(new CustomEvent('_menubar-request-close', { bubbles: true, composed: true }));
+        bar.dispatchEvent(new CustomEvent('flint-menubar-request-close', { bubbles: true, composed: true }));
         await settle(bar);
 
         expect(getContent(menus[0]).open).toBe(false);

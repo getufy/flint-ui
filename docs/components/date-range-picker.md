@@ -32,9 +32,9 @@ import { FlintDateRangeCalendar } from 'flint-ui';
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | `value` | `value` | `DateRange` | `[...EMPTY_RANGE]` | Current selected range [startISO, endISO]. |
-| `min` | `min` | `string` | `''` | Minimum selectable date (ISO). |
-| `max` | `max` | `string` | `''` | Maximum selectable date (ISO). |
-| `disabled` | `disabled` | `boolean` | `false` | Disables all calendar interaction. |
+| `min` | `min` | `string` | `''` |  |
+| `max` | `max` | `string` | `''` |  |
+| `disabled` | `disabled` | `boolean` | `false` |  |
 
 ### Events
 
@@ -106,13 +106,13 @@ import { FlintDateRangePicker } from 'flint-ui';
 | `multiInput` | `multi-input` | `boolean` | `false` | Use a multi-input field (two separate fields) instead of single-input. Currently shows two simple text displays. |
 | `shortcuts` | `shortcuts` | `boolean` | `false` | Show shortcuts panel. |
 | `shortcutItems` | `shortcut-items` | `Shortcut[]` | `[]` | Custom shortcuts list. Defaults to built-in shortcuts when shortcuts=true. |
-| `min` | `min` | `string` | `''` | Minimum selectable date (ISO). |
-| `max` | `max` | `string` | `''` | Maximum selectable date (ISO). |
-| `name` | `name` | `string` | `''` | Form field name attribute. |
-| `disabled` | `disabled` | `boolean` | `false` | Disables the picker and prevents interaction. |
-| `readonly` | `readonly` | `boolean` | `false` | Makes the field read-only. |
-| `error` | `error` | `boolean` | `false` | Shows error styling on the field. |
-| `helperText` | `helper-text` | `string` | `''` | Helper or error text displayed below the field. |
+| `min` | `min` | `string` | `''` |  |
+| `max` | `max` | `string` | `''` |  |
+| `name` | `name` | `string` | `''` |  |
+| `disabled` | `disabled` | `boolean` | `false` |  |
+| `readonly` | `readonly` | `boolean` | `false` |  |
+| `error` | `error` | `boolean` | `false` |  |
+| `helperText` | `helper-text` | `string` | `''` |  |
 
 ### Events
 
@@ -148,14 +148,14 @@ import { FlintSingleInputDateRangeField } from 'flint-ui';
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | `value` | `value` | `DateRange` | `[...EMPTY_RANGE]` | Controlled range value [startISO, endISO]. |
-| `label` | `label` | `string` | `''` | Field label displayed above the input. |
-| `name` | `name` | `string` | `''` | Form field name for hidden inputs (generates name-start and name-end). |
-| `min` | `min` | `string` | `''` | Minimum allowed date (ISO). |
-| `max` | `max` | `string` | `''` | Maximum allowed date (ISO). |
-| `disabled` | `disabled` | `boolean` | `false` | Disables the field and prevents interaction. |
-| `readonly` | `readonly` | `boolean` | `false` | Makes the field read-only. |
-| `error` | `error` | `boolean` | `false` | Shows error styling on the field. |
-| `helperText` | `helper-text` | `string` | `''` | Helper or error text displayed below the field. |
+| `label` | `label` | `string` | `''` |  |
+| `name` | `name` | `string` | `''` |  |
+| `min` | `min` | `string` | `''` |  |
+| `max` | `max` | `string` | `''` |  |
+| `disabled` | `disabled` | `boolean` | `false` |  |
+| `readonly` | `readonly` | `boolean` | `false` |  |
+| `error` | `error` | `boolean` | `false` |  |
+| `helperText` | `helper-text` | `string` | `''` |  |
 
 ### Events
 
@@ -168,7 +168,7 @@ import { FlintSingleInputDateRangeField } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `setRange(range: DateRange)` | Programmatically sets the date range value. |
-| `clear()` | Clears all segments and fires 'flint-date-range-picker-clear'. |
+| `setRange(range: DateRange)` |  |
+| `clear()` |  |
 
 ---

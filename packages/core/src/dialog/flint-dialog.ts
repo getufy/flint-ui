@@ -29,6 +29,8 @@ export class FlintDialog extends LitElement {
   /** Controls the open / closed state of the dialog. */
   @property({ type: Boolean, reflect: true }) open = false;
 
+  private _lastFocused: HTMLElement | null = null;
+
   /** Animation style: 'scale' (default), 'slide-up', or 'slide-down'. */
   @property({ type: String }) transition: 'scale' | 'slide-up' | 'slide-down' = 'scale';
 
@@ -48,9 +50,15 @@ export class FlintDialog extends LitElement {
     if (changed.has('open')) {
       if (this.open) {
         if (!_openDialogs.includes(this)) _openDialogs.push(this);
+        this._lastFocused = document.activeElement as HTMLElement | null;
+        this.updateComplete.then(() => {
+          this.shadowRoot?.querySelector<HTMLElement>('.dialog-panel')?.focus();
+        });
       } else {
         const idx = _openDialogs.indexOf(this);
         if (idx !== -1) _openDialogs.splice(idx, 1);
+        this._lastFocused?.focus();
+        this._lastFocused = null;
       }
     }
   }
@@ -60,6 +68,7 @@ export class FlintDialog extends LitElement {
     window.removeEventListener('keydown', this._handleKeyDown);
     const idx = _openDialogs.indexOf(this);
     if (idx !== -1) _openDialogs.splice(idx, 1);
+    this._lastFocused = null;
   }
 
   private readonly _handleKeyDown = (e: KeyboardEvent) => {
@@ -93,6 +102,7 @@ export class FlintDialog extends LitElement {
       <flint-backdrop .open=${this.open} @flint-backdrop-close=${this._handleBackdropClose}>
         <div
           class=${panelClasses}
+          tabindex="-1"
           role="dialog"
           aria-modal="true"
           aria-labelledby="dialog-title"

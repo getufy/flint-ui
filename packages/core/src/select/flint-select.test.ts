@@ -435,7 +435,7 @@ describe('flint-select — change event', () => {
   it('fires change with string value in single mode', async () => {
     const el = await fixture<FlintSelect>(html`<flint-select .options=${opts}></flint-select>`);
     const spy = vi.fn();
-    el.addEventListener('change', spy);
+    el.addEventListener('flint-select-change', spy);
     await open(el);
     getOptions(el)[0].click();
     await el.updateComplete;
@@ -446,7 +446,7 @@ describe('flint-select — change event', () => {
   it('fires change with array value in multi mode', async () => {
     const el = await fixture<FlintSelect>(html`<flint-select multiple .options=${opts}></flint-select>`);
     const spy = vi.fn();
-    el.addEventListener('change', spy);
+    el.addEventListener('flint-select-change', spy);
     await open(el);
     getOptions(el)[0].click();
     await el.updateComplete;
@@ -456,7 +456,7 @@ describe('flint-select — change event', () => {
   it('fires change with null when single-select is cleared', async () => {
     const el = await fixture<FlintSelect>(html`<flint-select .options=${opts}></flint-select>`);
     const spy = vi.fn();
-    el.addEventListener('change', spy);
+    el.addEventListener('flint-select-change', spy);
     // Manually set value then clear it to test detail = null
     el.value = [];
     el['_dispatchChange']();
@@ -469,7 +469,7 @@ describe('flint-select — change event', () => {
     `);
     await el.updateComplete;
     const spy = vi.fn();
-    el.addEventListener('change', spy);
+    el.addEventListener('flint-select-change', spy);
     el.shadowRoot!.querySelector<HTMLElement>('.chip-remove')!.click();
     await el.updateComplete;
     expect(spy).toHaveBeenCalledOnce();

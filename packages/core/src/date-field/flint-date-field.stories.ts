@@ -37,7 +37,7 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | — | { detail: { value: string } } ISO date when all three segments are filled |
+| \`flint-date-field-change\` | — | { detail: { value: string } } ISO date when all three segments are filled |
 | \`flint-date-field-clear\` | — | Fired when all segments are cleared |
 
 #### CSS Custom Properties
@@ -110,7 +110,7 @@ export const Basic: Story = {
         ?disabled=${args.disabled}
         ?readonly=${args.readonly}
         ?error=${args.error}
-        @change=${(e: CustomEvent) => console.log('[date-field] change →', e.detail.value)}
+        @flint-date-field-change=${(e: CustomEvent) => console.log('[date-field] change →', e.detail.value)}
       ></flint-date-field>
     </div>
   `),
@@ -127,7 +127,7 @@ export const ControlledVsUncontrolled: Story = {
         <p style="margin:0 0 16px;font-size:.8rem;color:#6b7280;">
           The field manages its own state internally. The consumer reacts to <code>change</code> events.
         </p>
-        <flint-date-field label="Start Date" @change=${(e: CustomEvent) => {
+        <flint-date-field label="Start Date" @flint-date-field-change=${(e: CustomEvent) => {
             const out = document.getElementById('uncontrolled-out');
             if (out) out.textContent = e.detail.value;
         }}></flint-date-field>
@@ -145,7 +145,7 @@ export const ControlledVsUncontrolled: Story = {
           id="controlled-df"
           label="End Date"
           value="2025-12-31"
-          @change=${(e: Event) => {
+          @flint-date-field-change=${(e: Event) => {
             const el = document.getElementById('controlled-df') as FlintDateField;
             el.value = (e as CustomEvent).detail.value;
             const out = document.getElementById('controlled-out');
@@ -251,7 +251,7 @@ export const ConsumerValidation: Story = {
         id="val-field"
         label="Appointment Date"
         helper-text="Must be a future date (after today)"
-        @change=${(e: CustomEvent) => {
+        @flint-date-field-change=${(e: CustomEvent) => {
             const field = document.getElementById('val-field') as HTMLElement & { error: boolean; helperText: string };
             const chosen = new Date(e.detail.value + 'T00:00:00');
             const today = new Date();

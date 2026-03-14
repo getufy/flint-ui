@@ -335,6 +335,31 @@ describe('flint-dialog', () => {
         expect(closeSpy).toHaveBeenCalledOnce();
     });
 
+    // ── Focus management ────────────────────────────────────────────────────────
+
+    it('moves focus into dialog panel when opened', async () => {
+        const trigger = document.createElement('button');
+        document.body.appendChild(trigger);
+        trigger.focus();
+        const el = await fixture<FlintDialog>(html`<flint-dialog .open=${true}><p>Content</p></flint-dialog>`);
+        await el.updateComplete;
+        const panel = el.shadowRoot!.querySelector('.dialog-panel');
+        expect(el.shadowRoot!.activeElement).toBe(panel);
+        trigger.remove();
+    });
+
+    it('restores focus to trigger when closed', async () => {
+        const trigger = document.createElement('button');
+        document.body.appendChild(trigger);
+        trigger.focus();
+        const el = await fixture<FlintDialog>(html`<flint-dialog .open=${true}><p>Content</p></flint-dialog>`);
+        await el.updateComplete;
+        el.open = false;
+        await el.updateComplete;
+        expect(document.activeElement).toBe(trigger);
+        trigger.remove();
+    });
+
     // ── Sub-component rendering ───────────────────────────────────────────────
     it('dialog-title renders an h2 inside shadow root', async () => {
         const el = await fixture(html`<flint-dialog-title>Hello</flint-dialog-title>`);

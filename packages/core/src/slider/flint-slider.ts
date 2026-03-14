@@ -2,25 +2,14 @@ import { LitElement, unsafeCSS, html, PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { styleMap } from 'lit/directives/style-map.js';
+import { FormAssociated } from '../mixins/form-associated.js';
 import uiSliderStyles from './flint-slider.css?inline';
 
 type Size = 'sm' | 'md' | 'lg';
 
 @customElement('flint-slider')
-export class FlintSlider extends LitElement {
-  static formAssociated = true;
-
+export class FlintSlider extends FormAssociated(LitElement) {
   static styles = unsafeCSS(uiSliderStyles);
-
-  // ── Form association ──────────────────────────────────────────────────────
-  private _internals: ElementInternals | null = null;
-
-  constructor() {
-    super();
-    if (typeof this.attachInternals === 'function') {
-      this._internals = this.attachInternals();
-    }
-  }
 
   // ── Props ─────────────────────────────────────────────────────────────────
   @property({ type: Number }) value = 50;
@@ -38,7 +27,6 @@ export class FlintSlider extends LitElement {
   @property({ attribute: false }) formatValue: ((v: number) => string) | undefined = undefined;
 
   // ── Internals ─────────────────────────────────────────────────────────────
-  private _firstUpdate = true;
 
   // ── Safe value getters ────────────────────────────────────────────────────
   private get _safeMin() {
@@ -63,9 +51,7 @@ export class FlintSlider extends LitElement {
 
     // Keep form value in sync with any prop change
     if (changed.has('value') || changed.has('name')) {
-      if (typeof this._internals?.setFormValue === 'function') {
-        this._internals.setFormValue(this._safeValue.toString());
-      }
+      this._initFormValue(this._safeValue.toString());
     }
   }
 

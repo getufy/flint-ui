@@ -13,6 +13,7 @@
     "test:watch": "npm run test:watch -w packages/core",
     "storybook": "npm run storybook -w packages/core",
     "build-storybook": "npm run build-storybook -w packages/core",
+    "gen": "tsx scripts/generate-react-wrappers.ts && tsx scripts/generate-docs.ts",
     "gen:react": "tsx scripts/generate-react-wrappers.ts",
     "gen:docs": "tsx scripts/generate-docs.ts",
     "docs:dev": "npm run gen:docs && vitepress dev docs",

@@ -10,7 +10,7 @@ export const FlintSelect = createComponent({
     elementClass: FlintSelectElement,
     react: React,
     events: {
-        onChange: 'change' as EventName<CustomEvent>,
+        onFlintSelectChange: 'flint-select-change' as EventName<CustomEvent>,
     },
 });
 

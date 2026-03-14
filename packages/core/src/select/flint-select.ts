@@ -3,6 +3,7 @@ import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { repeat } from 'lit/directives/repeat.js';
 import { PropertyValues } from 'lit';
+import { FormAssociated } from '../mixins/form-associated.js';
 import uiSelectStyles from './flint-select.css?inline';
 
 export interface SelectOption {
@@ -18,14 +19,12 @@ let _uidCounter = 0;
 /**
  * A select component for choosing one or multiple options from a list.
  *
- * @fires change - Dispatched when the selection changes. detail: { value: string | null } (single) or { value: string[] } (multiple)
+ * @fires flint-select-change - Dispatched when the selection changes. detail: { value: string | null } (single) or { value: string[] } (multiple)
  * @slot icon - Optional icon shown at the start of the trigger.
  * @slot error-message - Optional slot for error message content (use error-message prop for simple text).
  */
 @customElement('flint-select')
-export class FlintSelect extends LitElement {
-  static formAssociated = true;
-
+export class FlintSelect extends FormAssociated(LitElement) {
   static styles = unsafeCSS(uiSelectStyles);
 
   @property({ type: String }) label = '';
@@ -48,18 +47,7 @@ export class FlintSelect extends LitElement {
   @state() private _isFocused = false;
   @state() private _opensUp = false;
 
-  private _internals: ElementInternals | undefined;
   private readonly _uid = `flint-select-${++_uidCounter}`;
-  private _firstUpdate = true;
-
-  constructor() {
-    super();
-    try {
-      this._internals = this.attachInternals();
-    } catch {
-      // ElementInternals not supported in this environment
-    }
-  }
 
   connectedCallback() {
     super.connectedCallback();
@@ -90,19 +78,14 @@ export class FlintSelect extends LitElement {
   }
 
   private _updateFormValue() {
-    if (!this._internals || typeof this._internals.setFormValue !== 'function') return;
     if (this.multiple) {
       const fd = new FormData();
       this.value.forEach(v => fd.append(this.name || 'select', v));
-      this._internals.setFormValue(fd);
+      this._initFormValue(fd);
     } else {
-      this._internals.setFormValue(this.value[0] ?? '');
+      this._initFormValue(this.value[0] ?? '');
     }
-    if (this.required && this.value.length === 0) {
-      this._internals.setValidity({ valueMissing: true }, 'Please select an option');
-    } else {
-      this._internals.setValidity({});
-    }
+    this._initFormValidity(this.required, this.value.length === 0, 'Please select an option');
   }
 
   private _handleOutsideClick = (e: MouseEvent) => {
@@ -160,7 +143,7 @@ export class FlintSelect extends LitElement {
   }
 
   private _dispatchChange() {
-    this.dispatchEvent(new CustomEvent('change', {
+    this.dispatchEvent(new CustomEvent('flint-select-change', {
       detail: { value: this.multiple ? this.value : (this.value[0] ?? null) },
       bubbles: true,
       composed: true,

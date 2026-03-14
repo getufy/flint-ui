@@ -25,8 +25,8 @@ import { FlintSnackbar } from 'flint-ui';
 | --- | --- | --- | --- | --- |
 | `open` | `open` | `boolean` | `false` | Whether the snackbar is open. |
 | `message` | `message` | `string` | `''` | The message to display (slot fallback). |
-| `autoHideDuration` | `auto-hide-duration` | `number` | `5000` | Duration in ms before auto-close; set to 0 to disable. |
-| `anchorOrigin` | `anchor-origin` | `'top-left' \| 'top-center' \| 'top-right' \|         'bottom-left' \| 'bottom-center' \| 'bottom-right'` | `'bottom-center'` | Position of the snackbar on screen. |
+| `autoHideDuration` | `auto-hide-duration` | `number` | `5000` |  |
+| `anchorOrigin` | `anchor-origin` | `'top-left' \| 'top-center' \| 'top-right' \|         'bottom-left' \| 'bottom-center' \| 'bottom-right'` | `'bottom-center'` |  |
 | `pauseOnHover` | `pause-on-hover` | `boolean` | `true` | Pause the auto-hide timer while the user hovers over the snackbar. |
 | `closable` | `closable` | `boolean` | `false` | Show a dismiss (✕) button. |
 | `variant` | `variant` | `'default' \| 'info' \| 'success' \| 'warning' \| 'error'` | `'default'` | Visual style variant. |
@@ -35,15 +35,15 @@ import { FlintSnackbar } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-snackbar-open` | — | Fired when the snackbar opens. |
-| `flint-snackbar-close` | — | Fired when the snackbar closes. |
+| `flint-snackbar-open` | — |  |
+| `flint-snackbar-close` | — |  |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
 | `(default)` | Default slot for content |
-| `action` | Action content (e.g. a button) displayed inside the snackbar. |
+| `action` |  |
 
 ### CSS Custom Properties
 

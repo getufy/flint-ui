@@ -24,7 +24,7 @@ import { FlintContainer } from 'flint-ui';
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | `disableGutters` | `disable-gutters` | `boolean` | `false` | * If `true`, the left and right padding is removed. |
-| `fixed` | `fixed` | `boolean` | `false` | Sets max-width to match the min-width of the current breakpoint. |
+| `fixed` | `fixed` | `boolean` | `false` |  |
 
 ### Slots
 

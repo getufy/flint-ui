@@ -10,8 +10,8 @@ export const FlintDateField = createComponent({
     elementClass: FlintDateFieldElement,
     react: React,
     events: {
-        onClear: 'clear' as EventName<CustomEvent>,
-        onChange: 'change' as EventName<CustomEvent>,
+        onFlintDateFieldClear: 'flint-date-field-clear' as EventName<CustomEvent>,
+        onFlintDateFieldChange: 'flint-date-field-change' as EventName<CustomEvent>,
     },
 });
 

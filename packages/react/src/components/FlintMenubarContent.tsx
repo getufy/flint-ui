@@ -2,13 +2,16 @@
 // Source: src/menubar/flint-menubar.ts
 
 import React from 'react';
-import { createComponent } from '@lit/react';
+import { createComponent, type EventName } from '@lit/react';
 import { FlintMenubarContent as FlintMenubarContentElement } from 'flint-ui/menubar/flint-menubar';
 
 export const FlintMenubarContent = createComponent({
     tagName: 'flint-menubar-content',
     elementClass: FlintMenubarContentElement,
     react: React,
+    events: {
+        onFlintMenubarRequestClose: 'flint-menubar-request-close' as EventName<CustomEvent>,
+    },
 });
 
 export type FlintMenubarContentProps = React.ComponentProps<typeof FlintMenubarContent>;

@@ -132,15 +132,17 @@ import { FlintInputOtp } from 'flint-ui';
 | `value` | `value` | `string` | `''` | Current OTP value. Reflects to attribute for external observation. |
 | `defaultValue` | `default-value` | `string` | `''` | Initial uncontrolled value. Has no effect after the first render. |
 | `maxLength` | `max-length` | `number` | `6` | Total number of character slots. |
-| `pattern` | `pattern` | `string` | `''` | Per-character regex pattern to validate input (e.g. `"\\d"` for digits only). |
+| `pattern` | `pattern` | `string` | `''` |  |
 | `disabled` | `disabled` | `boolean` | `false` | Disables the OTP input. |
+| `label` | `label` | `string` | `'One-time password'` | Accessible label for the hidden input (used as aria-label). |
+| `description` | `description` | `string` | `''` | Optional description text for the hidden input (used as aria-describedby). |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-otp-change` | `{ value: newVal }` | Fired on every value change. |
-| `flint-otp-complete` | `{ value: newVal }` | Fired when all character slots have been filled. |
+| `flint-otp-change` | `{ value: newVal }` |  |
+| `flint-otp-complete` | `{ value: newVal }` |  |
 
 ### Slots
 

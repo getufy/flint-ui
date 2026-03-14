@@ -16,7 +16,6 @@ const meta: Meta = {
                 component: `
 - **Tag**: \`<flint-slider>\`
 - **Class**: \`FlintSlider\`
-- **Form Associated**: Yes
 
 #### Properties
 

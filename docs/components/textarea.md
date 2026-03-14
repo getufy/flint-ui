@@ -6,7 +6,6 @@ A Textarea component for multi-line text input.
 
 - **Tag**: `<flint-textarea>`
 - **Class**: `FlintTextarea`
-- **Form Associated**: Yes
 
 ### Import
 
@@ -26,24 +25,24 @@ import { FlintTextarea } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `value` | `value` | `string` | `''` | Current value of the textarea. |
-| `placeholder` | `placeholder` | `string` | `''` | Placeholder text shown when the textarea is empty. |
-| `disabled` | `disabled` | `boolean` | `false` | Prevents user interaction with the textarea. |
-| `readonly` | `readonly` | `boolean` | `false` | Makes the textarea read-only. |
-| `required` | `required` | `boolean` | `false` | Marks the textarea as required for form validation. |
-| `error` | `error` | `boolean` | `false` | Displays the textarea in an error state. |
-| `errorMessage` | `error-message` | `string` | `''` | Error message displayed below the textarea. |
-| `helpText` | `help-text` | `string` | `''` | Help text displayed below the textarea. |
-| `label` | `label` | `string` | `''` | Label text displayed above the textarea. |
-| `size` | `size` | `'sm' \| 'default' \| 'lg'` | `'default'` | Controls the size of the textarea. |
-| `rows` | `rows` | `number` | `3` | Number of visible text rows. |
-| `maxlength` | `maxlength` | `number \| undefined` | `undefined` | Maximum number of characters allowed. |
-| `minlength` | `minlength` | `number \| undefined` | `undefined` | Minimum number of characters required. |
-| `name` | `name` | `string` | `''` | Form field name for form submission. |
-| `autocomplete` | `autocomplete` | `string` | `''` | Browser autocomplete hint. |
-| `resize` | `resize` | `'none' \| 'both' \| 'horizontal' \| 'vertical' \| 'auto'` | `'vertical'` | Controls the resize handle; 'auto' enables automatic height expansion. |
-| `defaultValue` | `default-value` | `string` | `''` | Initial value for uncontrolled mode. |
-| `ariaLabel` | `aria-label` | `string \| null` | `null` | Accessible label for the textarea element. |
+| `value` | `value` | `string` | `''` |  |
+| `placeholder` | `placeholder` | `string` | `''` |  |
+| `disabled` | `disabled` | `boolean` | `false` |  |
+| `readonly` | `readonly` | `boolean` | `false` |  |
+| `required` | `required` | `boolean` | `false` |  |
+| `error` | `error` | `boolean` | `false` |  |
+| `errorMessage` | `error-message` | `string` | `''` |  |
+| `helpText` | `help-text` | `string` | `''` |  |
+| `label` | `label` | `string` | `''` |  |
+| `size` | `size` | `'sm' \| 'default' \| 'lg'` | `'default'` |  |
+| `rows` | `rows` | `number` | `3` |  |
+| `maxlength` | `maxlength` | `number \| undefined` | `undefined` |  |
+| `minlength` | `minlength` | `number \| undefined` | `undefined` |  |
+| `name` | `name` | `string` | `''` |  |
+| `autocomplete` | `autocomplete` | `string` | `''` |  |
+| `resize` | `resize` | `'none' \| 'both' \| 'horizontal' \| 'vertical' \| 'auto'` | `'vertical'` |  |
+| `defaultValue` | `default-value` | `string` | `''` |  |
+| `ariaLabel` | `aria-label` | `string \| null` | `null` |  |
 
 ### Events
 

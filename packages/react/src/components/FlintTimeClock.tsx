@@ -11,7 +11,7 @@ export const FlintTimeClock = createComponent({
     react: React,
     events: {
         onChange: 'change' as EventName<CustomEvent>,
-        onViewChange: 'view-change' as EventName<CustomEvent>,
+        onFlintTimeClockViewChange: 'flint-time-clock-view-change' as EventName<CustomEvent>,
     },
 });
 
