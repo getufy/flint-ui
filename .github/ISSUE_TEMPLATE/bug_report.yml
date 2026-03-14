@@ -1,0 +1,150 @@
+name: Bug Report
+description: Report a bug in a Flint UI component
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      description: Which component is affected?
+      options:
+        - Accordion
+        - Alert
+        - App Bar
+        - Autocomplete
+        - Avatar
+        - Backdrop
+        - Badge
+        - Bottom Navigation
+        - Box
+        - Breadcrumbs
+        - Button
+        - Card
+        - Carousel
+        - Checkbox
+        - Chip
+        - Collapsible
+        - Command
+        - Container
+        - Copy Button
+        - Date Field
+        - Date Picker
+        - Date Range Picker
+        - Dialog
+        - Divider
+        - Drawer
+        - Empty
+        - Fab
+        - Format Date
+        - Format Number
+        - Grid
+        - Hover Card
+        - Image Comparer
+        - Image List
+        - Input
+        - Input OTP
+        - Item
+        - Kbd
+        - Link
+        - List
+        - Menu
+        - Menubar
+        - Navigation Menu
+        - Pagination
+        - Paper
+        - Progress
+        - Radio
+        - Range Slider
+        - Rating
+        - Relative Time
+        - Resizable
+        - Scroll Area
+        - Select
+        - Skeleton
+        - Slider
+        - Snackbar
+        - Sonner
+        - Speed Dial
+        - Split Panel
+        - Stack
+        - Stepper
+        - Switch
+        - Table
+        - Tabs
+        - Text Field
+        - Textarea
+        - Time Picker
+        - Toggle
+        - Tooltip
+        - Transfer List
+        - Tree View
+        - Typography
+        - Visually Hidden
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear description of the bug.
+      placeholder: What happened? What did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Minimal steps to reproduce the issue.
+      placeholder: |
+        1. Create a `<flint-button>` with ...
+        2. Click on ...
+        3. See error ...
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Which version of `@getufy/flint-ui` are you using?
+      placeholder: "0.1.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: framework
+    attributes:
+      label: Framework
+      description: How are you consuming the components?
+      options:
+        - Vanilla (no framework)
+        - React (@getufy/flint-ui-react)
+        - Vue
+        - Angular
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser
+      description: Which browser(s) are affected?
+      multiple: true
+      options:
+        - Chrome
+        - Firefox
+        - Safari
+        - Edge
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Screenshots, code snippets, error messages, or anything else that helps.
