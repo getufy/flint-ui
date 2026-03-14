@@ -25,11 +25,21 @@ export default tseslint.config(
             parserOptions: {
                 ecmaVersion: 'latest',
                 sourceType: 'module',
+                projectService: true,
                 tsconfigRootDir: import.meta.dirname,
             },
         },
         rules: {
             '@typescript-eslint/no-explicit-any': 'error',
+            '@typescript-eslint/no-floating-promises': ['error', {
+                ignoreVoid: true,
+            }],
+        }
+    },
+    {
+        files: ['src/**/*.stories.ts', 'src/**/*.test.ts'],
+        rules: {
+            '@typescript-eslint/no-floating-promises': 'off',
         }
     }
 );

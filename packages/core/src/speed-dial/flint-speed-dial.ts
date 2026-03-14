@@ -242,7 +242,7 @@ export class FlintSpeedDial extends LitElement {
                 // depends on key: Down/Right → first action, Up/Left → last action.
                 const toFirst = key === 'ArrowDown' || key === 'ArrowRight';
                 this._setOpen(true);
-                this.updateComplete.then(() => {
+                void this.updateComplete.then(() => {
                     const btns = this._actionButtons();
                     btns[toFirst ? 0 : btns.length - 1]?.focus();
                 });
@@ -284,7 +284,7 @@ export class FlintSpeedDial extends LitElement {
         this._setOpen(false);
         this._focusFab();
         // Reset flag after the synchronous focus event has fired.
-        Promise.resolve().then(() => { this._suppressNextOpen = false; });
+        void Promise.resolve().then(() => { this._suppressNextOpen = false; });
     }
 
     /* ── Focus-out → close ───────────────────────────────────────── */

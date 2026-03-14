@@ -641,3 +641,11 @@ body {
     --flint-time-clock-inner-border: var(--flint-color-zinc-600);
     --flint-time-clock-hand-color:   var(--flint-primary-color);
 }
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms \!important;
+        animation-iteration-count: 1 \!important;
+        transition-duration: 0.01ms \!important;
+    }
+}

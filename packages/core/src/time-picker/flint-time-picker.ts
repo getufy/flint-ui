@@ -283,7 +283,7 @@ export class FlintDigitalClock extends LitElement {
         else return;
         if (target >= 0 && target !== idx) {
             this._select(items[target]);
-            this.updateComplete.then(() => {
+            void this.updateComplete.then(() => {
                 const btn = this.shadowRoot?.querySelectorAll<HTMLButtonElement>('.item')[target];
                 btn?.focus();
                 if (btn && typeof btn.scrollIntoView === 'function') btn.scrollIntoView({ block: 'nearest' });

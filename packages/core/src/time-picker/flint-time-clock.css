@@ -39,3 +39,11 @@
       border-color:var(--flint-primary-color, #3b82f6);
     }
     .am-pm-btn:hover:not(.sel) { background:var(--flint-hover-color, rgba(0,0,0,.06)); }
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

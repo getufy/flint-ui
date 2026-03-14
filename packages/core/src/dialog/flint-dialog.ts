@@ -51,7 +51,7 @@ export class FlintDialog extends LitElement {
       if (this.open) {
         if (!_openDialogs.includes(this)) _openDialogs.push(this);
         this._lastFocused = document.activeElement as HTMLElement | null;
-        this.updateComplete.then(() => {
+        void this.updateComplete.then(() => {
           this.shadowRoot?.querySelector<HTMLElement>('.dialog-panel')?.focus();
         });
       } else {

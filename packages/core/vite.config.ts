@@ -10,6 +10,8 @@ const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(file
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
     build: {
+        target: 'es2022',
+        reportCompressedSize: true,
         lib: {
             entry: discoverEntries(),
             formats: ['es'],
@@ -24,8 +26,14 @@ export default defineConfig({
     },
     test: {
         coverage: {
-            provider: 'v8', // or 'istanbul'
-            reporter: ['text', 'html'], // include 'html' to generate HTML report
+            provider: 'v8',
+            reporter: ['text', 'html', 'lcov'],
+            thresholds: {
+                lines: 80,
+                functions: 80,
+                branches: 75,
+                statements: 80,
+            },
             exclude: [
                 '.storybook/**',
                 '**/*.css',      // Exclude plain CSS files
