@@ -15,7 +15,7 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       { text: 'Components', link: '/components/button' },
       { text: 'React', link: '/react' },
-      { text: 'Storybook', link: '/storybook', target: '_self' },
+      { text: 'Storybook', link: 'https://lite-framework.vercel.app/storybook/' },
     ],
     sidebar: {
       '/components/': sidebar,
