@@ -13,7 +13,7 @@ const preview: Preview = {
     },
 
     a11y: {
-      test: 'on'
+      test: 'todo'
     }
   },
 
