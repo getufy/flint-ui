@@ -61,7 +61,6 @@ export class UiBackdrop extends LitElement {
   }
 }
 
-
 declare global {
   interface HTMLElementTagNameMap {
     'ui-backdrop': UiBackdrop;
