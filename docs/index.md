@@ -7,7 +7,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /components/button
+      link: /getting-started
     - theme: alt
       text: Live Storybook
       link: https://flintui.vercel.app/storybook/

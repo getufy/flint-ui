@@ -426,12 +426,21 @@
   },
   "keywords": [
     "lit",
+    "lit-element",
     "web-components",
+    "custom-elements",
     "ui",
-    "design-system"
+    "ui-components",
+    "design-system",
+    "component-library",
+    "typescript",
+    "storybook",
+    "accessible",
+    "shadow-dom",
+    "theming"
   ],
   "license": "MIT",
-  "description": "A Lit-based web component library",
+  "description": "A Lit-based web component library with 75+ accessible, themeable UI components",
   "files": [
     "dist",
     "src/theme.css",

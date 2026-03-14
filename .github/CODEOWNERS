@@ -1,0 +1,7 @@
+# Default owners for everything in the repo
+* @getufy/maintainers
+
+# Package-specific ownership
+packages/core/ @getufy/maintainers
+packages/react/ @getufy/maintainers
+docs/ @getufy/maintainers
