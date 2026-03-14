@@ -8,6 +8,12 @@ A comprehensive library of 70+ UI components built with [LitElement](https://lit
 npm install flint-ui lit
 ```
 
+### React
+
+```bash
+npm install flint-ui-react flint-ui lit
+```
+
 ## Usage
 
 Import the full bundle:
@@ -31,28 +37,34 @@ import 'flint-ui/theme.css';
 import 'flint-ui/theme-dark.css';
 ```
 
+### React
+
+```tsx
+import { FlintButton, FlintTabs } from 'flint-ui-react';
+```
+
 ## Components
 
 ### Inputs
-`flint-autocomplete` `flint-checkbox` `flint-date-field` `flint-date-picker` `flint-date-range-picker` `flint-input` `flint-input-otp` `flint-radio` `flint-rating` `flint-select` `flint-slider` `flint-switch` `flint-text-field` `flint-textarea` `flint-time-picker` `flint-toggle` `flint-toggle-button` `flint-transfer-list`
+`flint-autocomplete` `flint-checkbox` `flint-date-field` `flint-date-picker` `flint-date-range-picker` `flint-input` `flint-input-otp` `flint-radio` `flint-range-slider` `flint-rating` `flint-select` `flint-slider` `flint-switch` `flint-text-field` `flint-textarea` `flint-time-picker` `flint-toggle` `flint-toggle-button` `flint-transfer-list`
 
 ### Data Display
-`flint-avatar` `flint-badge` `flint-chip` `flint-divider` `flint-format-date` `flint-format-number` `flint-image-list` `flint-item` `flint-kbd` `flint-list` `flint-relative-time` `flint-table` `flint-tooltip` `flint-typography`
+`flint-avatar` `flint-badge` `flint-carousel` `flint-chip` `flint-divider` `flint-format-date` `flint-format-number` `flint-image-list` `flint-item` `flint-kbd` `flint-list` `flint-relative-time` `flint-table` `flint-tooltip` `flint-tree-view` `flint-typography`
 
 ### Feedback
-`flint-alert` `flint-backdrop` `flint-dialog` `flint-progress` `flint-skeleton` `flint-snackbar` `flint-sonner`
+`flint-alert` `flint-backdrop` `flint-dialog` `flint-empty` `flint-progress` `flint-skeleton` `flint-snackbar` `flint-sonner`
 
 ### Surfaces
-`flint-accordion` `flint-card` `flint-paper`
+`flint-accordion` `flint-app-bar` `flint-card` `flint-paper`
 
 ### Navigation
-`flint-bottom-navigation` `flint-breadcrumbs` `flint-command` `flint-drawer` `flint-link` `flint-menu` `flint-menubar` `flint-navigation-menu` `flint-pagination` `flint-speed-dial` `flint-stepper` `flint-tabs`
+`flint-bottom-navigation` `flint-breadcrumbs` `flint-button` `flint-command` `flint-drawer` `flint-fab` `flint-link` `flint-menu` `flint-menubar` `flint-navigation-menu` `flint-pagination` `flint-speed-dial` `flint-stepper` `flint-tabs`
 
 ### Layout
-`flint-box` `flint-container` `flint-grid` `flint-stack` `flint-resizable` `flint-split-panel`
+`flint-box` `flint-container` `flint-grid` `flint-resizable` `flint-scroll-area` `flint-split-panel` `flint-stack`
 
 ### Utilities
-`flint-collapsible` `flint-copy-button` `flint-empty` `flint-hover-card` `flint-image-comparer` `flint-scroll-area` `flint-visually-hidden`
+`flint-collapsible` `flint-copy-button` `flint-hover-card` `flint-image-comparer` `flint-visually-hidden`
 
 ## Theming
 
@@ -73,30 +85,32 @@ See `theme.css` for the full list of tokens. Import `theme-dark.css` for dark mo
 
 ```bash
 npm run storybook          # Start Storybook on port 6006
-npm run build              # tsc + vite build
+npm run build              # Build core + React packages
 npm test                   # Unit tests (jsdom) + browser tests (Playwright)
 npm run build-coverage     # Unit tests with coverage report
 npm run lint               # ESLint (0 errors, 0 warnings)
+npm run validate           # Type-check + lint + test
+npm run gen:react          # Regenerate React wrappers
+npm run docs:dev           # Start docs dev server
 ```
 
 ## Project Structure
 
 ```
-src/
-  <component>/
-    flint-<component>.ts          # LitElement component
-    flint-<component>.css         # Component styles
-    flint-<component>.stories.ts  # Storybook stories
-    flint-<component>.test.ts     # Vitest unit tests
-  index.ts                     # Public API exports
-  theme.css                    # Light theme tokens
-  theme-dark.css               # Dark theme tokens
+packages/
+  core/                          # Lit web components (flint-ui)
+    src/
+      <component>/
+        flint-<component>.ts          # LitElement component
+        flint-<component>.stories.ts  # Storybook stories
+        flint-<component>.test.ts     # Vitest unit tests
+      index.ts                        # Public API exports
+      theme.css                       # Light theme tokens
+      theme-dark.css                  # Dark theme tokens
+  react/                         # React wrappers (flint-ui-react)
+scripts/                         # Codegen (React wrappers, docs)
+docs/                            # VitePress documentation site
 ```
-
-## Roadmap
-
-- [ ] Structured theme system (SCSS variables)
-- [ ] Published npm package for Lit
 
 ## License
 
