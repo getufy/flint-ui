@@ -1,26 +1,26 @@
 # Link
 
-<Demo label="Underline Styles" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><ui-link href=&quot;#&quot;>Default</ui-link><ui-link href=&quot;#&quot; underline=&quot;always&quot;>Always</ui-link><ui-link href=&quot;#&quot; underline=&quot;none&quot;>None</ui-link></div>" />
+<Demo label="Underline Styles" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-link href=&quot;#&quot;>Default</flint-link><flint-link href=&quot;#&quot; underline=&quot;always&quot;>Always</flint-link><flint-link href=&quot;#&quot; underline=&quot;none&quot;>None</flint-link></div>" />
 
-<Demo label="Colors" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><ui-link href=&quot;#&quot; color=&quot;primary&quot;>Primary</ui-link><ui-link href=&quot;#&quot; color=&quot;secondary&quot;>Secondary</ui-link><ui-link href=&quot;#&quot; color=&quot;inherit&quot;>Inherit</ui-link></div>" />
+<Demo label="Colors" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-link href=&quot;#&quot; color=&quot;primary&quot;>Primary</flint-link><flint-link href=&quot;#&quot; color=&quot;secondary&quot;>Secondary</flint-link><flint-link href=&quot;#&quot; color=&quot;inherit&quot;>Inherit</flint-link></div>" />
 
 The Link component allows you to easily customize anchor elements with theme colors and typography styles.
 
-- **Tag**: `<ui-link>`
-- **Class**: `UiLink`
+- **Tag**: `<flint-link>`
+- **Class**: `FlintLink`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiLink } from 'storybook-lit';
+import { FlintLink } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-link></ui-link>
+<flint-link></flint-link>
 ```
 
 ### Properties
@@ -51,18 +51,18 @@ import { UiLink } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-link-color` | — |
-| `--ui-link-color-visited` | — |
-| `--ui-link-color-hover` | `var(--ui-primary-color-hover)` |
-| `--ui-primary-color` | — |
-| `--ui-primary-color-hover` | — |
-| `--ui-secondary-color` | — |
-| `--ui-font-family` | — |
-| `--ui-success-color` | — |
-| `--ui-error-color` | — |
-| `--ui-warning-color` | — |
-| `--ui-info-icon-color` | — |
-| `--ui-text-color` | — |
-| `--ui-text-color-muted` | — |
+| `--flint-link-color` | — |
+| `--flint-link-color-visited` | — |
+| `--flint-link-color-hover` | `var(--flint-primary-color-hover)` |
+| `--flint-primary-color` | — |
+| `--flint-primary-color-hover` | — |
+| `--flint-secondary-color` | — |
+| `--flint-font-family` | — |
+| `--flint-success-color` | — |
+| `--flint-error-color` | — |
+| `--flint-warning-color` | — |
+| `--flint-info-icon-color` | — |
+| `--flint-text-color` | — |
+| `--flint-text-color-muted` | — |
 
 ---

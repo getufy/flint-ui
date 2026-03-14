@@ -7,8 +7,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const sidebar = JSON.parse(readFileSync(resolve(__dirname, 'sidebar.json'), 'utf-8'));
 
 export default defineConfig({
-  title: 'Storybook Lit',
-  description: 'Documentation for Storybook Lit web components',
+  title: 'Flint UI',
+  description: 'Documentation for Flint UI web components',
   appearance: false,
   themeConfig: {
     nav: [
@@ -28,14 +28,14 @@ export default defineConfig({
   vite: {
     resolve: {
       alias: {
-        'storybook-lit': resolve(__dirname, '../../packages/core/src/index.ts'),
+        'flint-ui': resolve(__dirname, '../../packages/core/src/index.ts'),
       },
     },
   },
   vue: {
     template: {
       compilerOptions: {
-        isCustomElement: (tag) => tag.startsWith('ui-'),
+        isCustomElement: (tag) => tag.startsWith('flint-'),
       },
     },
   },

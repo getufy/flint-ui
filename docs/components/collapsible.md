@@ -1,36 +1,36 @@
 # Collapsible
 
-<Demo label="Default Closed" html="<div style=&quot;width:100%;max-width:400px&quot;><ui-collapsible>  <ui-collapsible-trigger>    <ui-button variant=&quot;secondary&quot; style=&quot;width:100%&quot;>Click to expand</ui-button>  </ui-collapsible-trigger>  <ui-collapsible-content>    <div style=&quot;padding:12px 0;color:#374151&quot;>This content is revealed when you click the trigger above.</div>  </ui-collapsible-content></ui-collapsible></div>" />
+<Demo label="Default Closed" html="<div style=&quot;width:100%;max-width:400px&quot;><flint-collapsible>  <flint-collapsible-trigger>    <flint-button variant=&quot;secondary&quot; style=&quot;width:100%&quot;>Click to expand</flint-button>  </flint-collapsible-trigger>  <flint-collapsible-content>    <div style=&quot;padding:12px 0;color:#374151&quot;>This content is revealed when you click the trigger above.</div>  </flint-collapsible-content></flint-collapsible></div>" />
 
-<Demo label="Default Open" html="<div style=&quot;width:100%;max-width:400px&quot;><ui-collapsible default-open>  <ui-collapsible-trigger>    <ui-button variant=&quot;secondary&quot; style=&quot;width:100%&quot;>Click to collapse</ui-button>  </ui-collapsible-trigger>  <ui-collapsible-content>    <div style=&quot;padding:12px 0;color:#374151&quot;>This content starts visible and can be collapsed.</div>  </ui-collapsible-content></ui-collapsible></div>" />
+<Demo label="Default Open" html="<div style=&quot;width:100%;max-width:400px&quot;><flint-collapsible default-open>  <flint-collapsible-trigger>    <flint-button variant=&quot;secondary&quot; style=&quot;width:100%&quot;>Click to collapse</flint-button>  </flint-collapsible-trigger>  <flint-collapsible-content>    <div style=&quot;padding:12px 0;color:#374151&quot;>This content starts visible and can be collapsed.</div>  </flint-collapsible-content></flint-collapsible></div>" />
 
-## `<ui-collapsible-trigger>`
+## `<flint-collapsible-trigger>`
 
-Toggle button for a collapsible. Place inside `ui-collapsible`. Automatically wires up to the nearest `ui-collapsible` ancestor.
+Toggle button for a collapsible. Place inside `flint-collapsible`. Automatically wires up to the nearest `flint-collapsible` ancestor.
 
-- **Tag**: `<ui-collapsible-trigger>`
-- **Class**: `UiCollapsibleTrigger`
+- **Tag**: `<flint-collapsible-trigger>`
+- **Class**: `FlintCollapsibleTrigger`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiCollapsibleTrigger } from 'storybook-lit';
+import { FlintCollapsibleTrigger } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-collapsible-trigger></ui-collapsible-trigger>
+<flint-collapsible-trigger></flint-collapsible-trigger>
 ```
 
 ### Properties
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `expanded` | `expanded` | `boolean` | `false` | Reflects the parent collapsible's open state. Set by `ui-collapsible`. |
-| `disabled` | `disabled` | `boolean` | `false` | Disables the trigger. Set by `ui-collapsible` or directly. |
+| `expanded` | `expanded` | `boolean` | `false` | Reflects the parent collapsible's open state. Set by `flint-collapsible`. |
+| `disabled` | `disabled` | `boolean` | `false` | Disables the trigger. Set by `flint-collapsible` or directly. |
 
 ### Slots
 
@@ -40,32 +40,32 @@ import { UiCollapsibleTrigger } from 'storybook-lit';
 
 ---
 
-## `<ui-collapsible-content>`
+## `<flint-collapsible-content>`
 
-The collapsible panel. Animates open/closed with a CSS grid transition. Place inside `ui-collapsible`; its `open` state is managed automatically.
+The collapsible panel. Animates open/closed with a CSS grid transition. Place inside `flint-collapsible`; its `open` state is managed automatically.
 
-- **Tag**: `<ui-collapsible-content>`
-- **Class**: `UiCollapsibleContent`
+- **Tag**: `<flint-collapsible-content>`
+- **Class**: `FlintCollapsibleContent`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiCollapsibleContent } from 'storybook-lit';
+import { FlintCollapsibleContent } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-collapsible-content></ui-collapsible-content>
+<flint-collapsible-content></flint-collapsible-content>
 ```
 
 ### Properties
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `open` | `open` | `boolean` | `false` | Whether the panel is visible. Managed by the parent `ui-collapsible`. |
+| `open` | `open` | `boolean` | `false` | Whether the panel is visible. Managed by the parent `flint-collapsible`. |
 
 ### Slots
 
@@ -75,25 +75,25 @@ import { UiCollapsibleContent } from 'storybook-lit';
 
 ---
 
-## `<ui-collapsible>`
+## `<flint-collapsible>`
 
 Root container for a collapsible panel. Manages open/closed state and coordinates child trigger and content.
 
-- **Tag**: `<ui-collapsible>`
-- **Class**: `UiCollapsible`
+- **Tag**: `<flint-collapsible>`
+- **Class**: `FlintCollapsible`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiCollapsible } from 'storybook-lit';
+import { FlintCollapsible } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-collapsible></ui-collapsible>
+<flint-collapsible></flint-collapsible>
 ```
 
 ### Properties
@@ -108,25 +108,25 @@ import { UiCollapsible } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-collapsible-change` | — | Fired when the open state changes. |
+| `flint-collapsible-change` | — | Fired when the open state changes. |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Accepts `ui-collapsible-trigger`, `ui-collapsible-content`, and any |
+| `(default)` | Accepts `flint-collapsible-trigger`, `flint-collapsible-content`, and any |
 
 ### CSS Custom Properties
 
 | Property | Default |
 | --- | --- |
-| `--ui-collapsible-duration` | `200ms` |
-| `--ui-collapsible-easing` | `ease` |
+| `--flint-collapsible-duration` | `200ms` |
+| `--flint-collapsible-easing` | `ease` |
 
 ### Methods
 
 | Method | Description |
 | --- | --- |
-| `toggle()` | Toggle the open state and fire `ui-collapsible-change`. |
+| `toggle()` | Toggle the open state and fire `flint-collapsible-change`. |
 
 ---

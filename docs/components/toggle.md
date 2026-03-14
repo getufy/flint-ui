@@ -1,24 +1,24 @@
 # Toggle
 
-<Demo label="States" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><ui-toggle>Default</ui-toggle><ui-toggle pressed>Pressed</ui-toggle><ui-toggle disabled>Disabled</ui-toggle></div>" />
+<Demo label="States" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-toggle>Default</flint-toggle><flint-toggle pressed>Pressed</flint-toggle><flint-toggle disabled>Disabled</flint-toggle></div>" />
 
 A two-state button that can be either on (pressed) or off.
 
-- **Tag**: `<ui-toggle>`
-- **Class**: `UiToggle`
+- **Tag**: `<flint-toggle>`
+- **Class**: `FlintToggle`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiToggle } from 'storybook-lit';
+import { FlintToggle } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-toggle></ui-toggle>
+<flint-toggle></flint-toggle>
 ```
 
 ### Properties
@@ -37,7 +37,7 @@ import { UiToggle } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-toggle-change` | — | Dispatched when the pressed state changes. Detail: `{ pressed: boolean }` |
+| `flint-toggle-change` | — | Dispatched when the pressed state changes. Detail: `{ pressed: boolean }` |
 
 ### Slots
 
@@ -49,26 +49,26 @@ import { UiToggle } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-toggle-border-radius` | `var(--ui-border-radius-md` |
-| `--ui-toggle-padding-y` | `0.5rem` |
-| `--ui-toggle-padding-x` | `0.75rem` |
-| `--ui-toggle-min-width` | `2.25rem` |
-| `--ui-toggle-min-height` | `2.25rem` |
-| `--ui-toggle-font-size` | `0.875rem` |
-| `--ui-toggle-color` | `var(--ui-text-color` |
-| `--ui-toggle-bg` | `transparent` |
-| `--ui-toggle-bg-hover` | `var(--ui-muted-background` |
-| `--ui-toggle-color-hover` | `var(--ui-text-color` |
-| `--ui-toggle-bg-pressed` | `var(--ui-primary-color-light` |
-| `--ui-toggle-color-pressed` | `var(--ui-primary-color` |
-| `--ui-toggle-bg-pressed-hover` | `var(--ui-primary-color-light-hover` |
-| `--ui-toggle-padding-y-sm` | `0.375rem` |
-| `--ui-toggle-padding-x-sm` | `0.625rem` |
-| `--ui-toggle-padding-y-lg` | `0.625rem` |
-| `--ui-toggle-padding-x-lg` | `1rem` |
-| `--ui-toggle-border-color` | `var(--ui-border-color` |
-| `--ui-toggle-border-pressed-color` | `var(--ui-primary-color-light-hover` |
-| `--ui-font-family` | — |
-| `--ui-primary-color` | — |
+| `--flint-toggle-border-radius` | `var(--flint-border-radius-md` |
+| `--flint-toggle-padding-y` | `0.5rem` |
+| `--flint-toggle-padding-x` | `0.75rem` |
+| `--flint-toggle-min-width` | `2.25rem` |
+| `--flint-toggle-min-height` | `2.25rem` |
+| `--flint-toggle-font-size` | `0.875rem` |
+| `--flint-toggle-color` | `var(--flint-text-color` |
+| `--flint-toggle-bg` | `transparent` |
+| `--flint-toggle-bg-hover` | `var(--flint-muted-background` |
+| `--flint-toggle-color-hover` | `var(--flint-text-color` |
+| `--flint-toggle-bg-pressed` | `var(--flint-primary-color-light` |
+| `--flint-toggle-color-pressed` | `var(--flint-primary-color` |
+| `--flint-toggle-bg-pressed-hover` | `var(--flint-primary-color-light-hover` |
+| `--flint-toggle-padding-y-sm` | `0.375rem` |
+| `--flint-toggle-padding-x-sm` | `0.625rem` |
+| `--flint-toggle-padding-y-lg` | `0.625rem` |
+| `--flint-toggle-padding-x-lg` | `1rem` |
+| `--flint-toggle-border-color` | `var(--flint-border-color` |
+| `--flint-toggle-border-pressed-color` | `var(--flint-primary-color-light-hover` |
+| `--flint-font-family` | — |
+| `--flint-primary-color` | — |
 
 ---

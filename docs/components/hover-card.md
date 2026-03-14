@@ -1,26 +1,26 @@
 # Hover Card
 
-<Demo html="<ui-hover-card>  <ui-hover-card-trigger>    <ui-link href=&quot;#&quot;>Hover over me</ui-link>  </ui-hover-card-trigger>  <ui-hover-card-content>    <div style=&quot;padding:12px&quot;>      <p style=&quot;margin:0;font-weight:600&quot;>Hover Card</p>      <p style=&quot;margin:4px 0 0;color:#6b7280;font-size:14px&quot;>Additional information shown on hover.</p>    </div>  </ui-hover-card-content></ui-hover-card>" />
+<Demo html="<flint-hover-card>  <flint-hover-card-trigger>    <flint-link href=&quot;#&quot;>Hover over me</flint-link>  </flint-hover-card-trigger>  <flint-hover-card-content>    <div style=&quot;padding:12px&quot;>      <p style=&quot;margin:0;font-weight:600&quot;>Hover Card</p>      <p style=&quot;margin:4px 0 0;color:#6b7280;font-size:14px&quot;>Additional information shown on hover.</p>    </div>  </flint-hover-card-content></flint-hover-card>" />
 
-## `<ui-hover-card-trigger>`
+## `<flint-hover-card-trigger>`
 
-Trigger element for a hover card. Place inside `ui-hover-card`. Automatically wires up to the nearest `ui-hover-card` ancestor.
+Trigger element for a hover card. Place inside `flint-hover-card`. Automatically wires up to the nearest `flint-hover-card` ancestor.
 
-- **Tag**: `<ui-hover-card-trigger>`
-- **Class**: `UiHoverCardTrigger`
+- **Tag**: `<flint-hover-card-trigger>`
+- **Class**: `FlintHoverCardTrigger`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiHoverCardTrigger } from 'storybook-lit';
+import { FlintHoverCardTrigger } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-hover-card-trigger></ui-hover-card-trigger>
+<flint-hover-card-trigger></flint-hover-card-trigger>
 ```
 
 ### Slots
@@ -33,37 +33,37 @@ import { UiHoverCardTrigger } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-hovercard-z-index` | `1000` |
-| `--ui-hovercard-duration` | `150ms` |
-| `--ui-hovercard-bg` | `var(--ui-surface-1` |
-| `--ui-hovercard-border-color` | `var(--ui-border-color` |
-| `--ui-hovercard-radius` | `8px` |
-| `--ui-hovercard-shadow` | `0 4px 16px rgba(0, 0, 0, 0.12` |
-| `--ui-hovercard-padding` | `16px` |
-| `--ui-hovercard-min-width` | `200px` |
-| `--ui-font-family` | — |
-| `--ui-hovercard-font-size` | `0.875rem` |
-| `--ui-hovercard-color` | `var(--ui-text-color` |
+| `--flint-hovercard-z-index` | `1000` |
+| `--flint-hovercard-duration` | `150ms` |
+| `--flint-hovercard-bg` | `var(--flint-surface-1` |
+| `--flint-hovercard-border-color` | `var(--flint-border-color` |
+| `--flint-hovercard-radius` | `8px` |
+| `--flint-hovercard-shadow` | `0 4px 16px rgba(0, 0, 0, 0.12` |
+| `--flint-hovercard-padding` | `16px` |
+| `--flint-hovercard-min-width` | `200px` |
+| `--flint-font-family` | — |
+| `--flint-hovercard-font-size` | `0.875rem` |
+| `--flint-hovercard-color` | `var(--flint-text-color` |
 
 ---
 
-## `<ui-hover-card-content>`
+## `<flint-hover-card-content>`
 
-- **Tag**: `<ui-hover-card-content>`
-- **Class**: `UiHoverCardContent`
+- **Tag**: `<flint-hover-card-content>`
+- **Class**: `FlintHoverCardContent`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiHoverCardContent } from 'storybook-lit';
+import { FlintHoverCardContent } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-hover-card-content></ui-hover-card-content>
+<flint-hover-card-content></flint-hover-card-content>
 ```
 
 ### Properties
@@ -72,7 +72,7 @@ import { UiHoverCardContent } from 'storybook-lit';
 | --- | --- | --- | --- | --- |
 | `side` | `side` | `'top' \| 'right' \| 'bottom' \| 'left'` | `'bottom'` | Which side of the trigger to display the card on. |
 | `align` | `align` | `'start' \| 'center' \| 'end'` | `'center'` | Alignment of the card along the cross axis relative to the trigger. |
-| `open` | `open` | `boolean` | `false` | Whether the card is visible. Managed by the parent `ui-hover-card`. |
+| `open` | `open` | `boolean` | `false` | Whether the card is visible. Managed by the parent `flint-hover-card`. |
 
 ### Slots
 
@@ -82,25 +82,25 @@ import { UiHoverCardContent } from 'storybook-lit';
 
 ---
 
-## `<ui-hover-card>`
+## `<flint-hover-card>`
 
 Root container for a hover card. Manages open/closed state with configurable open and close delays.
 
-- **Tag**: `<ui-hover-card>`
-- **Class**: `UiHoverCard`
+- **Tag**: `<flint-hover-card>`
+- **Class**: `FlintHoverCard`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiHoverCard } from 'storybook-lit';
+import { FlintHoverCard } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-hover-card></ui-hover-card>
+<flint-hover-card></flint-hover-card>
 ```
 
 ### Properties
@@ -114,14 +114,14 @@ import { UiHoverCard } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-hover-card-open` | — | Fired when the card becomes visible. |
-| `ui-hover-card-close` | — | Fired when the card is dismissed. |
+| `flint-hover-card-open` | — | Fired when the card becomes visible. |
+| `flint-hover-card-close` | — | Fired when the card is dismissed. |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Accepts `ui-hover-card-trigger` and `ui-hover-card-content`. |
+| `(default)` | Accepts `flint-hover-card-trigger` and `flint-hover-card-content`. |
 
 ### Methods
 

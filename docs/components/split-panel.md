@@ -1,22 +1,22 @@
 # Split Panel
 
-<Demo html="<ui-split-panel style=&quot;height:200px;width:100%;max-width:500px;border:1px solid #e5e7eb;border-radius:8px&quot;>  <div slot=&quot;start&quot; style=&quot;padding:16px;background:#f0f9ff;height:100%&quot;>Left Panel — Drag the divider</div>  <div slot=&quot;end&quot; style=&quot;padding:16px;background:#fef3c7;height:100%&quot;>Right Panel</div></ui-split-panel>" />
+<Demo html="<flint-split-panel style=&quot;height:200px;width:100%;max-width:500px;border:1px solid #e5e7eb;border-radius:8px&quot;>  <div slot=&quot;start&quot; style=&quot;padding:16px;background:#f0f9ff;height:100%&quot;>Left Panel — Drag the divider</div>  <div slot=&quot;end&quot; style=&quot;padding:16px;background:#fef3c7;height:100%&quot;>Right Panel</div></flint-split-panel>" />
 
-- **Tag**: `<ui-split-panel>`
-- **Class**: `UiSplitPanel`
+- **Tag**: `<flint-split-panel>`
+- **Class**: `FlintSplitPanel`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiSplitPanel } from 'storybook-lit';
+import { FlintSplitPanel } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-split-panel></ui-split-panel>
+<flint-split-panel></flint-split-panel>
 ```
 
 ### Properties
@@ -34,7 +34,7 @@ import { UiSplitPanel } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-split-panel-reposition` | — |  |
+| `flint-split-panel-reposition` | — |  |
 
 ### Slots
 

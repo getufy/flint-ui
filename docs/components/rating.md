@@ -1,26 +1,26 @@
 # Rating
 
-<Demo label="Interactive" html="<ui-rating value=&quot;0&quot;></ui-rating>" />
+<Demo label="Interactive" html="<flint-rating value=&quot;0&quot;></flint-rating>" />
 
-<Demo label="Values" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><ui-rating value=&quot;1&quot; readonly></ui-rating><ui-rating value=&quot;3&quot; readonly></ui-rating><ui-rating value=&quot;5&quot; readonly></ui-rating></div>" />
+<Demo label="Values" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-rating value=&quot;1&quot; readonly></flint-rating><flint-rating value=&quot;3&quot; readonly></flint-rating><flint-rating value=&quot;5&quot; readonly></flint-rating></div>" />
 
-<Demo label="Disabled" html="<ui-rating value=&quot;3&quot; disabled></ui-rating>" />
+<Demo label="Disabled" html="<flint-rating value=&quot;3&quot; disabled></flint-rating>" />
 
-- **Tag**: `<ui-rating>`
-- **Class**: `UiRating`
+- **Tag**: `<flint-rating>`
+- **Class**: `FlintRating`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiRating } from 'storybook-lit';
+import { FlintRating } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-rating></ui-rating>
+<flint-rating></flint-rating>
 ```
 
 ### Properties
@@ -42,15 +42,15 @@ import { UiRating } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-rating-change` | `{ value: this.value }` |  |
+| `flint-rating-change` | `{ value: this.value }` |  |
 
 ### CSS Custom Properties
 
 | Property | Default |
 | --- | --- |
-| `--ui-rating-size` | — |
-| `--ui-rating-color` | — |
-| `--ui-rating-empty-color` | — |
-| `--ui-font-family` | — |
+| `--flint-rating-size` | — |
+| `--flint-rating-color` | — |
+| `--flint-rating-empty-color` | — |
+| `--flint-font-family` | — |
 
 ---

@@ -39,13 +39,13 @@ const preview: Preview = {
       const root = document.documentElement;
 
       // Always clear both classes first
-      root.classList.remove('ui-theme-light', 'ui-theme-dark');
+      root.classList.remove('flint-theme-light', 'flint-theme-dark');
 
       if (theme !== 'system') {
-        // Explicit override — set on <html> so both the .ui-theme-dark selector
-        // and the @media (prefers-color-scheme: dark) { :root:not(.ui-theme-light) }
+        // Explicit override — set on <html> so both the .flint-theme-dark selector
+        // and the @media (prefers-color-scheme: dark) { :root:not(.flint-theme-light) }
         // fallback respond correctly.
-        root.classList.add(theme === 'dark' ? 'ui-theme-dark' : 'ui-theme-light');
+        root.classList.add(theme === 'dark' ? 'flint-theme-dark' : 'flint-theme-light');
       }
 
       return story();

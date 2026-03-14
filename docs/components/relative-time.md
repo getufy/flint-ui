@@ -1,24 +1,24 @@
 # Relative Time
 
-<Demo label="Dates" html="<div style=&quot;display:flex;flex-direction:column;gap:8px&quot;><span>1 day ago: <ui-relative-time datetime=&quot;2026-03-13T08:34:53.114Z&quot;></ui-relative-time></span><span>1 week ago: <ui-relative-time datetime=&quot;2026-03-07T08:34:53.114Z&quot;></ui-relative-time></span><span>1 month ago: <ui-relative-time datetime=&quot;2026-02-12T08:34:53.114Z&quot;></ui-relative-time></span></div>" />
+<Demo label="Dates" html="<div style=&quot;display:flex;flex-direction:column;gap:8px&quot;><span>1 day ago: <flint-relative-time datetime=&quot;2026-03-13T08:34:53.114Z&quot;></flint-relative-time></span><span>1 week ago: <flint-relative-time datetime=&quot;2026-03-07T08:34:53.114Z&quot;></flint-relative-time></span><span>1 month ago: <flint-relative-time datetime=&quot;2026-02-12T08:34:53.114Z&quot;></flint-relative-time></span></div>" />
 
 Displays a localized time phrase relative to the current date and time. Uses the browser's `Intl.RelativeTimeFormat` API — no language packs needed.
 
-- **Tag**: `<ui-relative-time>`
-- **Class**: `UiRelativeTime`
+- **Tag**: `<flint-relative-time>`
+- **Class**: `FlintRelativeTime`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiRelativeTime } from 'storybook-lit';
+import { FlintRelativeTime } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-relative-time></ui-relative-time>
+<flint-relative-time></flint-relative-time>
 ```
 
 ### Properties
@@ -35,11 +35,11 @@ import { UiRelativeTime } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-relative-time-cursor` | `text` |
-| `--ui-relative-time-color` | `inherit` |
-| `--ui-relative-time-font-size` | `inherit` |
-| `--ui-relative-time-font-weight` | `inherit` |
-| `--ui-relative-time-text-decoration` | `none` |
-| `--ui-relative-time-white-space` | `nowrap` |
+| `--flint-relative-time-cursor` | `text` |
+| `--flint-relative-time-color` | `inherit` |
+| `--flint-relative-time-font-size` | `inherit` |
+| `--flint-relative-time-font-weight` | `inherit` |
+| `--flint-relative-time-text-decoration` | `none` |
+| `--flint-relative-time-white-space` | `nowrap` |
 
 ---

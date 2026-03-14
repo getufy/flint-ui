@@ -1,24 +1,24 @@
 # Carousel
 
-<Demo html="<div style=&quot;width:100%;max-width:500px&quot;><ui-carousel>  <ui-carousel-content>    <ui-carousel-item><div style=&quot;background:#e0e7ff;border-radius:8px;height:200px;display:flex;align-items:center;justify-content:center;font-weight:600;color:#3730a3&quot;>Slide 1</div></ui-carousel-item>    <ui-carousel-item><div style=&quot;background:#dbeafe;border-radius:8px;height:200px;display:flex;align-items:center;justify-content:center;font-weight:600;color:#1e40af&quot;>Slide 2</div></ui-carousel-item>    <ui-carousel-item><div style=&quot;background:#e0f2fe;border-radius:8px;height:200px;display:flex;align-items:center;justify-content:center;font-weight:600;color:#0369a1&quot;>Slide 3</div></ui-carousel-item>  </ui-carousel-content>  <ui-carousel-previous></ui-carousel-previous>  <ui-carousel-next></ui-carousel-next></ui-carousel></div>" />
+<Demo html="<div style=&quot;width:100%;max-width:500px&quot;><flint-carousel>  <flint-carousel-content>    <flint-carousel-item><div style=&quot;background:#e0e7ff;border-radius:8px;height:200px;display:flex;align-items:center;justify-content:center;font-weight:600;color:#3730a3&quot;>Slide 1</div></flint-carousel-item>    <flint-carousel-item><div style=&quot;background:#dbeafe;border-radius:8px;height:200px;display:flex;align-items:center;justify-content:center;font-weight:600;color:#1e40af&quot;>Slide 2</div></flint-carousel-item>    <flint-carousel-item><div style=&quot;background:#e0f2fe;border-radius:8px;height:200px;display:flex;align-items:center;justify-content:center;font-weight:600;color:#0369a1&quot;>Slide 3</div></flint-carousel-item>  </flint-carousel-content>  <flint-carousel-previous></flint-carousel-previous>  <flint-carousel-next></flint-carousel-next></flint-carousel></div>" />
 
-## `<ui-carousel-content>`
+## `<flint-carousel-content>`
 
-- **Tag**: `<ui-carousel-content>`
-- **Class**: `UiCarouselContent`
+- **Tag**: `<flint-carousel-content>`
+- **Class**: `FlintCarouselContent`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiCarouselContent } from 'storybook-lit';
+import { FlintCarouselContent } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-carousel-content></ui-carousel-content>
+<flint-carousel-content></flint-carousel-content>
 ```
 
 ### Properties
@@ -39,28 +39,28 @@ import { UiCarouselContent } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-primary-color` | — |
-| `--ui-border-radius-md` | — |
+| `--flint-primary-color` | — |
+| `--flint-border-radius-md` | — |
 
 ---
 
-## `<ui-carousel-item>`
+## `<flint-carousel-item>`
 
-- **Tag**: `<ui-carousel-item>`
-- **Class**: `UiCarouselItem`
+- **Tag**: `<flint-carousel-item>`
+- **Class**: `FlintCarouselItem`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiCarouselItem } from 'storybook-lit';
+import { FlintCarouselItem } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-carousel-item></ui-carousel-item>
+<flint-carousel-item></flint-carousel-item>
 ```
 
 ### Slots
@@ -73,27 +73,27 @@ import { UiCarouselItem } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-carousel-items-per-view` | `1` |
+| `--flint-carousel-items-per-view` | `1` |
 
 ---
 
-## `<ui-carousel-previous>`
+## `<flint-carousel-previous>`
 
-- **Tag**: `<ui-carousel-previous>`
-- **Class**: `UiCarouselPrevious`
+- **Tag**: `<flint-carousel-previous>`
+- **Class**: `FlintCarouselPrevious`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiCarouselPrevious } from 'storybook-lit';
+import { FlintCarouselPrevious } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-carousel-previous></ui-carousel-previous>
+<flint-carousel-previous></flint-carousel-previous>
 ```
 
 ### Properties
@@ -111,23 +111,23 @@ import { UiCarouselPrevious } from 'storybook-lit';
 
 ---
 
-## `<ui-carousel-next>`
+## `<flint-carousel-next>`
 
-- **Tag**: `<ui-carousel-next>`
-- **Class**: `UiCarouselNext`
+- **Tag**: `<flint-carousel-next>`
+- **Class**: `FlintCarouselNext`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiCarouselNext } from 'storybook-lit';
+import { FlintCarouselNext } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-carousel-next></ui-carousel-next>
+<flint-carousel-next></flint-carousel-next>
 ```
 
 ### Properties
@@ -145,23 +145,23 @@ import { UiCarouselNext } from 'storybook-lit';
 
 ---
 
-## `<ui-carousel>`
+## `<flint-carousel>`
 
-- **Tag**: `<ui-carousel>`
-- **Class**: `UiCarousel`
+- **Tag**: `<flint-carousel>`
+- **Class**: `FlintCarousel`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiCarousel } from 'storybook-lit';
+import { FlintCarousel } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-carousel></ui-carousel>
+<flint-carousel></flint-carousel>
 ```
 
 ### Properties
@@ -178,7 +178,7 @@ import { UiCarousel } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-carousel-change` | `{ index: this._currentIndex, total: this._total }` |  |
+| `flint-carousel-change` | `{ index: this._currentIndex, total: this._total }` |  |
 
 ### Slots
 
@@ -190,11 +190,11 @@ import { UiCarousel } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-carousel-gap` | `0px` |
-| `--ui-carousel-duration` | `0.35s` |
-| `--ui-carousel-ease` | `cubic-bezier(0.25, 0.1, 0.25, 1` |
-| `--ui-carousel-height` | `320px` |
-| `--ui-carousel-items-per-view` | `1` |
+| `--flint-carousel-gap` | `0px` |
+| `--flint-carousel-duration` | `0.35s` |
+| `--flint-carousel-ease` | `cubic-bezier(0.25, 0.1, 0.25, 1` |
+| `--flint-carousel-height` | `320px` |
+| `--flint-carousel-items-per-view` | `1` |
 
 ### Methods
 

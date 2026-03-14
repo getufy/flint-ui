@@ -1,26 +1,26 @@
 # Typography
 
-<Demo label="Headings" html="<div style=&quot;display:flex;flex-direction:column;gap:4px;width:100%&quot;><ui-typography variant=&quot;h1&quot;>Heading 1</ui-typography><ui-typography variant=&quot;h2&quot;>Heading 2</ui-typography><ui-typography variant=&quot;h3&quot;>Heading 3</ui-typography><ui-typography variant=&quot;h4&quot;>Heading 4</ui-typography><ui-typography variant=&quot;h5&quot;>Heading 5</ui-typography><ui-typography variant=&quot;h6&quot;>Heading 6</ui-typography></div>" />
+<Demo label="Headings" html="<div style=&quot;display:flex;flex-direction:column;gap:4px;width:100%&quot;><flint-typography variant=&quot;h1&quot;>Heading 1</flint-typography><flint-typography variant=&quot;h2&quot;>Heading 2</flint-typography><flint-typography variant=&quot;h3&quot;>Heading 3</flint-typography><flint-typography variant=&quot;h4&quot;>Heading 4</flint-typography><flint-typography variant=&quot;h5&quot;>Heading 5</flint-typography><flint-typography variant=&quot;h6&quot;>Heading 6</flint-typography></div>" />
 
-<Demo label="Body & Caption" html="<div style=&quot;display:flex;flex-direction:column;gap:4px;width:100%&quot;><ui-typography variant=&quot;body1&quot;>Body 1 — The quick brown fox jumps over the lazy dog.</ui-typography><ui-typography variant=&quot;body2&quot;>Body 2 — A smaller body text variant for secondary content.</ui-typography><ui-typography variant=&quot;caption&quot; color=&quot;secondary&quot;>Caption — Small helper text</ui-typography><ui-typography variant=&quot;overline&quot;>OVERLINE TEXT</ui-typography></div>" />
+<Demo label="Body & Caption" html="<div style=&quot;display:flex;flex-direction:column;gap:4px;width:100%&quot;><flint-typography variant=&quot;body1&quot;>Body 1 — The quick brown fox jumps over the lazy dog.</flint-typography><flint-typography variant=&quot;body2&quot;>Body 2 — A smaller body text variant for secondary content.</flint-typography><flint-typography variant=&quot;caption&quot; color=&quot;secondary&quot;>Caption — Small helper text</flint-typography><flint-typography variant=&quot;overline&quot;>OVERLINE TEXT</flint-typography></div>" />
 
 Typography component for displaying text with consistent theme styles.
 
-- **Tag**: `<ui-typography>`
-- **Class**: `UiTypography`
+- **Tag**: `<flint-typography>`
+- **Class**: `FlintTypography`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiTypography } from 'storybook-lit';
+import { FlintTypography } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-typography></ui-typography>
+<flint-typography></flint-typography>
 ```
 
 ### Properties
@@ -44,14 +44,14 @@ import { UiTypography } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-font-family` | — |
-| `--ui-text-color` | — |
-| `--ui-primary-color` | — |
-| `--ui-secondary-color` | — |
-| `--ui-success-color` | — |
-| `--ui-error-color` | — |
-| `--ui-warning-color` | — |
-| `--ui-info-icon-color` | — |
-| `--ui-text-color-muted` | — |
+| `--flint-font-family` | — |
+| `--flint-text-color` | — |
+| `--flint-primary-color` | — |
+| `--flint-secondary-color` | — |
+| `--flint-success-color` | — |
+| `--flint-error-color` | — |
+| `--flint-warning-color` | — |
+| `--flint-info-icon-color` | — |
+| `--flint-text-color-muted` | — |
 
 ---

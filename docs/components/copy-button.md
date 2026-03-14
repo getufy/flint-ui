@@ -1,22 +1,22 @@
 # Copy Button
 
-<Demo html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><ui-copy-button value=&quot;Hello, World!&quot;>Copy Text</ui-copy-button><ui-copy-button value=&quot;npm install storybook-lit&quot;>Copy Command</ui-copy-button></div>" />
+<Demo html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-copy-button value=&quot;Hello, World!&quot;>Copy Text</flint-copy-button><flint-copy-button value=&quot;npm install flint-ui&quot;>Copy Command</flint-copy-button></div>" />
 
-- **Tag**: `<ui-copy-button>`
-- **Class**: `UiCopyButton`
+- **Tag**: `<flint-copy-button>`
+- **Class**: `FlintCopyButton`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiCopyButton } from 'storybook-lit';
+import { FlintCopyButton } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-copy-button></ui-copy-button>
+<flint-copy-button></flint-copy-button>
 ```
 
 ### Properties
@@ -36,8 +36,8 @@ import { UiCopyButton } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-copy-error` | `{ reason: 'empty' }` |  |
-| `ui-copy` | `{ value: text }` |  |
+| `flint-copy-error` | `{ reason: 'empty' }` |  |
+| `flint-copy` | `{ value: text }` |  |
 
 ### Slots
 
@@ -51,21 +51,21 @@ import { UiCopyButton } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-copy-button-size` | — |
-| `--ui-copy-button-icon-size` | — |
-| `--ui-copy-button-success-color` | `var(--ui-success-color` |
-| `--ui-copy-button-error-color` | `var(--ui-error-color` |
-| `--ui-font-family` | — |
-| `--ui-border-color` | — |
-| `--ui-border-radius-md` | — |
-| `--ui-surface-1` | — |
-| `--ui-text-color-muted` | — |
-| `--ui-hover-color` | — |
-| `--ui-text-color` | — |
-| `--ui-active-color` | — |
-| `--ui-primary-color` | — |
-| `--ui-border-radius-sm` | — |
-| `--ui-tooltip-bg` | — |
-| `--ui-tooltip-text-color` | — |
+| `--flint-copy-button-size` | — |
+| `--flint-copy-button-icon-size` | — |
+| `--flint-copy-button-success-color` | `var(--flint-success-color` |
+| `--flint-copy-button-error-color` | `var(--flint-error-color` |
+| `--flint-font-family` | — |
+| `--flint-border-color` | — |
+| `--flint-border-radius-md` | — |
+| `--flint-surface-1` | — |
+| `--flint-text-color-muted` | — |
+| `--flint-hover-color` | — |
+| `--flint-text-color` | — |
+| `--flint-active-color` | — |
+| `--flint-primary-color` | — |
+| `--flint-border-radius-sm` | — |
+| `--flint-tooltip-bg` | — |
+| `--flint-tooltip-text-color` | — |
 
 ---

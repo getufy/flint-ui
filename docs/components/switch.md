@@ -1,27 +1,27 @@
 # Switch
 
-<Demo label="Sizes" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap;align-items:center&quot;><ui-switch size=&quot;sm&quot;></ui-switch><ui-switch size=&quot;md&quot;></ui-switch><ui-switch size=&quot;lg&quot;></ui-switch></div>" />
+<Demo label="Sizes" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap;align-items:center&quot;><flint-switch size=&quot;sm&quot;></flint-switch><flint-switch size=&quot;md&quot;></flint-switch><flint-switch size=&quot;lg&quot;></flint-switch></div>" />
 
-<Demo label="States" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><ui-switch></ui-switch><ui-switch default-checked></ui-switch><ui-switch disabled></ui-switch><ui-switch default-checked disabled></ui-switch></div>" />
+<Demo label="States" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-switch></flint-switch><flint-switch default-checked></flint-switch><flint-switch disabled></flint-switch><flint-switch default-checked disabled></flint-switch></div>" />
 
 A Switch component for toggling settings.
 
-- **Tag**: `<ui-switch>`
-- **Class**: `UiSwitch`
+- **Tag**: `<flint-switch>`
+- **Class**: `FlintSwitch`
 - **Form Associated**: Yes
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiSwitch } from 'storybook-lit';
+import { FlintSwitch } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-switch></ui-switch>
+<flint-switch></flint-switch>
 ```
 
 ### Properties
@@ -42,7 +42,7 @@ import { UiSwitch } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-switch-change` | — | Dispatched when the switch state changes. Detail: `{ checked: boolean }` |
+| `flint-switch-change` | — | Dispatched when the switch state changes. Detail: `{ checked: boolean }` |
 
 ### Slots
 
@@ -56,19 +56,19 @@ import { UiSwitch } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-switch-thumb-color` | — |
-| `--ui-switch-width` | — |
-| `--ui-switch-height` | — |
-| `--ui-switch-bg` | — |
-| `--ui-switch-bg-on` | — |
-| `--ui-switch-thumb-offset` | — |
-| `--ui-switch-thumb-size` | — |
-| `--ui-switch-thumb-bg` | — |
-| `--ui-secondary-color` | — |
-| `--ui-primary-color` | — |
-| `--ui-font-family` | — |
-| `--ui-shadow-sm` | — |
-| `--ui-text-color-muted` | — |
-| `--ui-text-color` | — |
+| `--flint-switch-thumb-color` | — |
+| `--flint-switch-width` | — |
+| `--flint-switch-height` | — |
+| `--flint-switch-bg` | — |
+| `--flint-switch-bg-on` | — |
+| `--flint-switch-thumb-offset` | — |
+| `--flint-switch-thumb-size` | — |
+| `--flint-switch-thumb-bg` | — |
+| `--flint-secondary-color` | — |
+| `--flint-primary-color` | — |
+| `--flint-font-family` | — |
+| `--flint-shadow-sm` | — |
+| `--flint-text-color-muted` | — |
+| `--flint-text-color` | — |
 
 ---

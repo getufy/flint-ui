@@ -1,24 +1,24 @@
 # Transfer List
 
-<Demo html="<div style=&quot;width:100%;max-width:550px&quot;><ui-transfer-list left-title=&quot;Available&quot; right-title=&quot;Selected&quot; searchable data-options=&quot;js:JavaScript,ts:TypeScript,py:Python,rust:Rust,go:Go,java:Java,cpp:C++,ruby:Ruby&quot;></ui-transfer-list></div>" />
+<Demo html="<div style=&quot;width:100%;max-width:550px&quot;><flint-transfer-list left-title=&quot;Available&quot; right-title=&quot;Selected&quot; searchable data-options=&quot;js:JavaScript,ts:TypeScript,py:Python,rust:Rust,go:Go,java:Java,cpp:C++,ruby:Ruby&quot;></flint-transfer-list></div>" />
 
 A premium Transfer List component for moving items between two lists.
 
-- **Tag**: `<ui-transfer-list>`
-- **Class**: `UiTransferList`
+- **Tag**: `<flint-transfer-list>`
+- **Class**: `FlintTransferList`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiTransferList } from 'storybook-lit';
+import { FlintTransferList } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-transfer-list></ui-transfer-list>
+<flint-transfer-list></flint-transfer-list>
 ```
 
 ### Properties
@@ -43,22 +43,22 @@ import { UiTransferList } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-transfer-list-width` | — |
-| `--ui-transfer-list-height` | — |
-| `--ui-font-family` | — |
-| `--ui-text-color` | — |
-| `--ui-text-color-muted` | — |
-| `--ui-text-color-on-primary` | — |
-| `--ui-primary-color` | — |
-| `--ui-surface-2` | — |
-| `--ui-border-color` | — |
-| `--ui-border-radius-md` | `6px` |
-| `--ui-primary-focus-ring` | — |
-| `--ui-surface-1` | — |
-| `--ui-border-radius-lg` | — |
-| `--ui-shadow-sm` | — |
-| `--ui-hover-color` | — |
-| `--ui-primary-color-light` | — |
-| `--ui-shadow-md` | — |
+| `--flint-transfer-list-width` | — |
+| `--flint-transfer-list-height` | — |
+| `--flint-font-family` | — |
+| `--flint-text-color` | — |
+| `--flint-text-color-muted` | — |
+| `--flint-text-color-on-primary` | — |
+| `--flint-primary-color` | — |
+| `--flint-surface-2` | — |
+| `--flint-border-color` | — |
+| `--flint-border-radius-md` | `6px` |
+| `--flint-primary-focus-ring` | — |
+| `--flint-surface-1` | — |
+| `--flint-border-radius-lg` | — |
+| `--flint-shadow-sm` | — |
+| `--flint-hover-color` | — |
+| `--flint-primary-color-light` | — |
+| `--flint-shadow-md` | — |
 
 ---

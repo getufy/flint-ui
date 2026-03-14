@@ -1,26 +1,26 @@
 # Empty
 
-<Demo html="<div style=&quot;width:100%;max-width:400px&quot;><ui-empty>  <ui-empty-title>No results found</ui-empty-title>  <ui-empty-description>Try adjusting your search or filter criteria.</ui-empty-description>  <ui-empty-content>    <ui-button variant=&quot;secondary&quot; size=&quot;small&quot;>Clear Filters</ui-button>  </ui-empty-content></ui-empty></div>" />
+<Demo html="<div style=&quot;width:100%;max-width:400px&quot;><flint-empty>  <flint-empty-title>No results found</flint-empty-title>  <flint-empty-description>Try adjusting your search or filter criteria.</flint-empty-description>  <flint-empty-content>    <flint-button variant=&quot;secondary&quot; size=&quot;small&quot;>Clear Filters</flint-button>  </flint-empty-content></flint-empty></div>" />
 
-## `<ui-empty-title>`
+## `<flint-empty-title>`
 
 Displays the heading of an empty state.
 
-- **Tag**: `<ui-empty-title>`
-- **Class**: `UiEmptyTitle`
+- **Tag**: `<flint-empty-title>`
+- **Class**: `FlintEmptyTitle`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiEmptyTitle } from 'storybook-lit';
+import { FlintEmptyTitle } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-empty-title></ui-empty-title>
+<flint-empty-title></flint-empty-title>
 ```
 
 ### Slots
@@ -33,31 +33,31 @@ import { UiEmptyTitle } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-text-color-muted` | — |
-| `--ui-font-family` | — |
-| `--ui-text-color` | — |
+| `--flint-text-color-muted` | — |
+| `--flint-font-family` | — |
+| `--flint-text-color` | — |
 
 ---
 
-## `<ui-empty-description>`
+## `<flint-empty-description>`
 
 Displays the descriptive text of an empty state.
 
-- **Tag**: `<ui-empty-description>`
-- **Class**: `UiEmptyDescription`
+- **Tag**: `<flint-empty-description>`
+- **Class**: `FlintEmptyDescription`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiEmptyDescription } from 'storybook-lit';
+import { FlintEmptyDescription } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-empty-description></ui-empty-description>
+<flint-empty-description></flint-empty-description>
 ```
 
 ### Slots
@@ -68,25 +68,25 @@ import { UiEmptyDescription } from 'storybook-lit';
 
 ---
 
-## `<ui-empty-media>`
+## `<flint-empty-media>`
 
 Displays the media area of an empty state (icon, image, or avatar).
 
-- **Tag**: `<ui-empty-media>`
-- **Class**: `UiEmptyMedia`
+- **Tag**: `<flint-empty-media>`
+- **Class**: `FlintEmptyMedia`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiEmptyMedia } from 'storybook-lit';
+import { FlintEmptyMedia } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-empty-media></ui-empty-media>
+<flint-empty-media></flint-empty-media>
 ```
 
 ### Properties
@@ -105,59 +105,59 @@ import { UiEmptyMedia } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-empty-media-bg` | `var(--ui-surface-2` |
-| `--ui-empty-media-color` | `var(--ui-text-color-muted` |
+| `--flint-empty-media-bg` | `var(--flint-surface-2` |
+| `--flint-empty-media-color` | `var(--flint-text-color-muted` |
 
 ---
 
-## `<ui-empty-header>`
+## `<flint-empty-header>`
 
 Groups the media, title, and description of an empty state.
 
-- **Tag**: `<ui-empty-header>`
-- **Class**: `UiEmptyHeader`
+- **Tag**: `<flint-empty-header>`
+- **Class**: `FlintEmptyHeader`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiEmptyHeader } from 'storybook-lit';
+import { FlintEmptyHeader } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-empty-header></ui-empty-header>
+<flint-empty-header></flint-empty-header>
 ```
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Accepts `ui-empty-media`, `ui-empty-title`, `ui-empty-description`. |
+| `(default)` | Accepts `flint-empty-media`, `flint-empty-title`, `flint-empty-description`. |
 
 ---
 
-## `<ui-empty-content>`
+## `<flint-empty-content>`
 
 Displays action content for an empty state (buttons, inputs, links).
 
-- **Tag**: `<ui-empty-content>`
-- **Class**: `UiEmptyContent`
+- **Tag**: `<flint-empty-content>`
+- **Class**: `FlintEmptyContent`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiEmptyContent } from 'storybook-lit';
+import { FlintEmptyContent } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-empty-content></ui-empty-content>
+<flint-empty-content></flint-empty-content>
 ```
 
 ### Slots
@@ -168,41 +168,41 @@ import { UiEmptyContent } from 'storybook-lit';
 
 ---
 
-## `<ui-empty>`
+## `<flint-empty>`
 
-Root container for an empty state. Wraps `ui-empty-header` and `ui-empty-content` in a vertically centred flex column.
+Root container for an empty state. Wraps `flint-empty-header` and `flint-empty-content` in a vertically centred flex column.
 
-- **Tag**: `<ui-empty>`
-- **Class**: `UiEmpty`
+- **Tag**: `<flint-empty>`
+- **Class**: `FlintEmpty`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiEmpty } from 'storybook-lit';
+import { FlintEmpty } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-empty></ui-empty>
+<flint-empty></flint-empty>
 ```
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Accepts `ui-empty-header`, `ui-empty-content`, and any extra |
+| `(default)` | Accepts `flint-empty-header`, `flint-empty-content`, and any extra |
 
 ### CSS Custom Properties
 
 | Property | Default |
 | --- | --- |
-| `--ui-empty-media-bg` | `var(--ui-surface-2` |
-| `--ui-empty-media-color` | `var(--ui-text-color-muted` |
-| `--ui-empty-gap` | `16px` |
-| `--ui-empty-padding` | `32px` |
-| `--ui-empty-max-width` | `480px` |
+| `--flint-empty-media-bg` | `var(--flint-surface-2` |
+| `--flint-empty-media-color` | `var(--flint-text-color-muted` |
+| `--flint-empty-gap` | `16px` |
+| `--flint-empty-padding` | `32px` |
+| `--flint-empty-max-width` | `480px` |
 
 ---

@@ -1,24 +1,24 @@
 # Paper
 
-<Demo label="Elevations" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><ui-paper elevation=&quot;0&quot; style=&quot;padding:16px&quot;>Elevation 0</ui-paper><ui-paper elevation=&quot;1&quot; style=&quot;padding:16px&quot;>Elevation 1</ui-paper><ui-paper elevation=&quot;3&quot; style=&quot;padding:16px&quot;>Elevation 3</ui-paper><ui-paper elevation=&quot;6&quot; style=&quot;padding:16px&quot;>Elevation 6</ui-paper><ui-paper elevation=&quot;12&quot; style=&quot;padding:16px&quot;>Elevation 12</ui-paper></div>" />
+<Demo label="Elevations" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-paper elevation=&quot;0&quot; style=&quot;padding:16px&quot;>Elevation 0</flint-paper><flint-paper elevation=&quot;1&quot; style=&quot;padding:16px&quot;>Elevation 1</flint-paper><flint-paper elevation=&quot;3&quot; style=&quot;padding:16px&quot;>Elevation 3</flint-paper><flint-paper elevation=&quot;6&quot; style=&quot;padding:16px&quot;>Elevation 6</flint-paper><flint-paper elevation=&quot;12&quot; style=&quot;padding:16px&quot;>Elevation 12</flint-paper></div>" />
 
 The Paper component is a container for displaying content on an elevated surface. Shadow styles are influenced by real-world physical counterparts. Supported elevation values: 0, 1, 2, 3, 4, 6, 8, 12, 16, 24. Other numeric values are accepted but produce no visible shadow.
 
-- **Tag**: `<ui-paper>`
-- **Class**: `UiPaper`
+- **Tag**: `<flint-paper>`
+- **Class**: `FlintPaper`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiPaper } from 'storybook-lit';
+import { FlintPaper } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-paper></ui-paper>
+<flint-paper></flint-paper>
 ```
 
 ### Properties
@@ -39,11 +39,11 @@ import { UiPaper } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-paper-padding` | `0` |
-| `--ui-surface-1` | — |
-| `--ui-text-color` | — |
-| `--ui-border-radius-md` | — |
-| `--ui-border-color` | — |
-| `--ui-surface-background-flat` | — |
+| `--flint-paper-padding` | `0` |
+| `--flint-surface-1` | — |
+| `--flint-text-color` | — |
+| `--flint-border-radius-md` | — |
+| `--flint-border-color` | — |
+| `--flint-surface-background-flat` | — |
 
 ---

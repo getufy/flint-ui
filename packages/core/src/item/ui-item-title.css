@@ -1,8 +1,0 @@
-:host {
-            display: block;
-            font-size: 0.875rem;
-            font-weight: 500;
-            line-height: 1.4;
-            color: var(--ui-text-color);
-            font-family: var(--ui-font-family);
-        }

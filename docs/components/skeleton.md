@@ -1,26 +1,26 @@
 # Skeleton
 
-<Demo label="Variants" html="<div style=&quot;display:flex;flex-direction:column;gap:8px;width:100%;max-width:300px&quot;><ui-skeleton variant=&quot;circular&quot; width=&quot;40px&quot; height=&quot;40px&quot;></ui-skeleton><ui-skeleton variant=&quot;text&quot; width=&quot;200px&quot;></ui-skeleton><ui-skeleton variant=&quot;text&quot; width=&quot;160px&quot;></ui-skeleton><ui-skeleton variant=&quot;rectangular&quot; width=&quot;100%&quot; height=&quot;120px&quot;></ui-skeleton></div>" />
+<Demo label="Variants" html="<div style=&quot;display:flex;flex-direction:column;gap:8px;width:100%;max-width:300px&quot;><flint-skeleton variant=&quot;circular&quot; width=&quot;40px&quot; height=&quot;40px&quot;></flint-skeleton><flint-skeleton variant=&quot;text&quot; width=&quot;200px&quot;></flint-skeleton><flint-skeleton variant=&quot;text&quot; width=&quot;160px&quot;></flint-skeleton><flint-skeleton variant=&quot;rectangular&quot; width=&quot;100%&quot; height=&quot;120px&quot;></flint-skeleton></div>" />
 
-<Demo label="Card Placeholder" html="<div style=&quot;display:flex;gap:12px;width:100%;max-width:300px&quot;>  <ui-skeleton variant=&quot;circular&quot; width=&quot;48px&quot; height=&quot;48px&quot;></ui-skeleton>  <div style=&quot;flex:1;display:flex;flex-direction:column;gap:6px&quot;>    <ui-skeleton variant=&quot;text&quot; width=&quot;80%&quot;></ui-skeleton>    <ui-skeleton variant=&quot;text&quot; width=&quot;60%&quot;></ui-skeleton>  </div></div>" />
+<Demo label="Card Placeholder" html="<div style=&quot;display:flex;gap:12px;width:100%;max-width:300px&quot;>  <flint-skeleton variant=&quot;circular&quot; width=&quot;48px&quot; height=&quot;48px&quot;></flint-skeleton>  <div style=&quot;flex:1;display:flex;flex-direction:column;gap:6px&quot;>    <flint-skeleton variant=&quot;text&quot; width=&quot;80%&quot;></flint-skeleton>    <flint-skeleton variant=&quot;text&quot; width=&quot;60%&quot;></flint-skeleton>  </div></div>" />
 
 Skeletons display a placeholder preview of content before data gets loaded.
 
-- **Tag**: `<ui-skeleton>`
-- **Class**: `UiSkeleton`
+- **Tag**: `<flint-skeleton>`
+- **Class**: `FlintSkeleton`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiSkeleton } from 'storybook-lit';
+import { FlintSkeleton } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-skeleton></ui-skeleton>
+<flint-skeleton></flint-skeleton>
 ```
 
 ### Properties
@@ -38,12 +38,12 @@ import { UiSkeleton } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-skeleton-bg` | `var(--ui-surface-3, rgba(0, 0, 0, 0.11` |
-| `--ui-skeleton-bg-dark` | `rgba(255, 255, 255, 0.13` |
-| `--ui-skeleton-animation-duration` | `1.5s` |
-| `--ui-skeleton-wave-color` | `rgba(255, 255, 255, 0.4` |
-| `--ui-border-radius-sm` | — |
-| `--ui-border-radius-md` | — |
-| `--ui-border-radius-lg` | — |
+| `--flint-skeleton-bg` | `var(--flint-surface-3, rgba(0, 0, 0, 0.11` |
+| `--flint-skeleton-bg-dark` | `rgba(255, 255, 255, 0.13` |
+| `--flint-skeleton-animation-duration` | `1.5s` |
+| `--flint-skeleton-wave-color` | `rgba(255, 255, 255, 0.4` |
+| `--flint-border-radius-sm` | — |
+| `--flint-border-radius-md` | — |
+| `--flint-border-radius-lg` | — |
 
 ---

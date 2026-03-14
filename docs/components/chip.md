@@ -1,26 +1,26 @@
 # Chip
 
-<Demo label="Variants" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><ui-chip label=&quot;Filled&quot; variant=&quot;filled&quot;></ui-chip><ui-chip label=&quot;Outlined&quot; variant=&quot;outlined&quot;></ui-chip><ui-chip label=&quot;Primary&quot; variant=&quot;filled&quot; color=&quot;primary&quot;></ui-chip><ui-chip label=&quot;Secondary&quot; variant=&quot;filled&quot; color=&quot;secondary&quot;></ui-chip></div>" />
+<Demo label="Variants" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-chip label=&quot;Filled&quot; variant=&quot;filled&quot;></flint-chip><flint-chip label=&quot;Outlined&quot; variant=&quot;outlined&quot;></flint-chip><flint-chip label=&quot;Primary&quot; variant=&quot;filled&quot; color=&quot;primary&quot;></flint-chip><flint-chip label=&quot;Secondary&quot; variant=&quot;filled&quot; color=&quot;secondary&quot;></flint-chip></div>" />
 
-<Demo label="Sizes" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap;align-items:center&quot;><ui-chip label=&quot;Small&quot; size=&quot;sm&quot;></ui-chip><ui-chip label=&quot;Medium&quot; size=&quot;md&quot;></ui-chip><ui-chip label=&quot;Large&quot; size=&quot;lg&quot;></ui-chip></div>" />
+<Demo label="Sizes" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap;align-items:center&quot;><flint-chip label=&quot;Small&quot; size=&quot;sm&quot;></flint-chip><flint-chip label=&quot;Medium&quot; size=&quot;md&quot;></flint-chip><flint-chip label=&quot;Large&quot; size=&quot;lg&quot;></flint-chip></div>" />
 
-<Demo label="Interactive" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><ui-chip label=&quot;Clickable&quot; clickable></ui-chip><ui-chip label=&quot;Deletable&quot; deletable></ui-chip><ui-chip label=&quot;Both&quot; clickable deletable></ui-chip><ui-chip label=&quot;Disabled&quot; disabled></ui-chip></div>" />
+<Demo label="Interactive" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-chip label=&quot;Clickable&quot; clickable></flint-chip><flint-chip label=&quot;Deletable&quot; deletable></flint-chip><flint-chip label=&quot;Both&quot; clickable deletable></flint-chip><flint-chip label=&quot;Disabled&quot; disabled></flint-chip></div>" />
 
-- **Tag**: `<ui-chip>`
-- **Class**: `UiChip`
+- **Tag**: `<flint-chip>`
+- **Class**: `FlintChip`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiChip } from 'storybook-lit';
+import { FlintChip } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-chip></ui-chip>
+<flint-chip></flint-chip>
 ```
 
 ### Properties
@@ -53,29 +53,29 @@ import { UiChip } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-chip-height` | `32px` |
-| `--ui-chip-padding-x` | `12px` |
-| `--ui-chip-border-radius` | `16px` |
-| `--ui-chip-font-size` | `0.875rem` |
-| `--ui-chip-gap` | `8px` |
-| `--ui-chip-height-sm` | `24px` |
-| `--ui-chip-padding-x-sm` | `8px` |
-| `--ui-chip-font-size-sm` | `0.75rem` |
-| `--ui-chip-border-radius-sm` | `12px` |
-| `--ui-chip-height-lg` | `40px` |
-| `--ui-chip-padding-x-lg` | `16px` |
-| `--ui-chip-font-size-lg` | `1rem` |
-| `--ui-chip-border-radius-lg` | `20px` |
-| `--ui-font-family` | — |
-| `--ui-surface-2` | — |
-| `--ui-text-color` | — |
-| `--ui-hover-color` | — |
-| `--ui-active-color` | — |
-| `--ui-input-border-color` | — |
-| `--ui-primary-color` | — |
-| `--ui-text-color-on-primary` | — |
-| `--ui-secondary-color` | — |
-| `--ui-shadow-sm` | — |
-| `--ui-avatar-size` | `24px` |
+| `--flint-chip-height` | `32px` |
+| `--flint-chip-padding-x` | `12px` |
+| `--flint-chip-border-radius` | `16px` |
+| `--flint-chip-font-size` | `0.875rem` |
+| `--flint-chip-gap` | `8px` |
+| `--flint-chip-height-sm` | `24px` |
+| `--flint-chip-padding-x-sm` | `8px` |
+| `--flint-chip-font-size-sm` | `0.75rem` |
+| `--flint-chip-border-radius-sm` | `12px` |
+| `--flint-chip-height-lg` | `40px` |
+| `--flint-chip-padding-x-lg` | `16px` |
+| `--flint-chip-font-size-lg` | `1rem` |
+| `--flint-chip-border-radius-lg` | `20px` |
+| `--flint-font-family` | — |
+| `--flint-surface-2` | — |
+| `--flint-text-color` | — |
+| `--flint-hover-color` | — |
+| `--flint-active-color` | — |
+| `--flint-input-border-color` | — |
+| `--flint-primary-color` | — |
+| `--flint-text-color-on-primary` | — |
+| `--flint-secondary-color` | — |
+| `--flint-shadow-sm` | — |
+| `--flint-avatar-size` | `24px` |
 
 ---

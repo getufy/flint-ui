@@ -1,25 +1,25 @@
 # Select
 
-<Demo html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><ui-select label=&quot;Fruit&quot; placeholder=&quot;Pick one&quot; style=&quot;width:220px&quot; data-options=&quot;apple:Apple,banana:Banana,cherry:Cherry,grape:Grape,mango:Mango&quot;></ui-select><ui-select label=&quot;Disabled&quot; disabled placeholder=&quot;Disabled&quot; style=&quot;width:220px&quot;></ui-select></div>" />
+<Demo html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><flint-select label=&quot;Fruit&quot; placeholder=&quot;Pick one&quot; style=&quot;width:220px&quot; data-options=&quot;apple:Apple,banana:Banana,cherry:Cherry,grape:Grape,mango:Mango&quot;></flint-select><flint-select label=&quot;Disabled&quot; disabled placeholder=&quot;Disabled&quot; style=&quot;width:220px&quot;></flint-select></div>" />
 
 A select component for choosing one or multiple options from a list.
 
-- **Tag**: `<ui-select>`
-- **Class**: `UiSelect`
+- **Tag**: `<flint-select>`
+- **Class**: `FlintSelect`
 - **Form Associated**: Yes
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiSelect } from 'storybook-lit';
+import { FlintSelect } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-select></ui-select>
+<flint-select></flint-select>
 ```
 
 ### Properties
@@ -57,36 +57,36 @@ import { UiSelect } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-select-bg` | — |
-| `--ui-select-border` | — |
-| `--ui-select-radius` | — |
-| `--ui-select-focus-color` | — |
-| `--ui-select-error-color` | — |
-| `--ui-select-chip-bg` | — |
-| `--ui-select-chip-color` | — |
-| `--ui-select-chip-radius` | — |
-| `--ui-select-option-hover-bg` | — |
-| `--ui-select-option-selected-bg` | — |
-| `--ui-select-option-selected-color` | — |
-| `--ui-input-bg` | — |
-| `--ui-input-border-color` | — |
-| `--ui-input-border-radius` | — |
-| `--ui-primary-color` | — |
-| `--ui-error-color` | — |
-| `--ui-hover-color` | — |
-| `--ui-primary-color-light` | — |
-| `--ui-text-color-on-primary` | — |
-| `--ui-font-family` | — |
-| `--ui-label-color` | — |
-| `--ui-input-border-hover-color` | — |
-| `--ui-primary-focus-ring` | — |
-| `--ui-error-focus-ring` | — |
-| `--ui-input-disabled-bg` | — |
-| `--ui-input-readonly-bg` | — |
-| `--ui-input-placeholder-color` | — |
-| `--ui-text-color` | — |
-| `--ui-text-color-muted` | — |
-| `--ui-shadow-lg` | — |
-| `--ui-border-color` | — |
+| `--flint-select-bg` | — |
+| `--flint-select-border` | — |
+| `--flint-select-radius` | — |
+| `--flint-select-focus-color` | — |
+| `--flint-select-error-color` | — |
+| `--flint-select-chip-bg` | — |
+| `--flint-select-chip-color` | — |
+| `--flint-select-chip-radius` | — |
+| `--flint-select-option-hover-bg` | — |
+| `--flint-select-option-selected-bg` | — |
+| `--flint-select-option-selected-color` | — |
+| `--flint-input-bg` | — |
+| `--flint-input-border-color` | — |
+| `--flint-input-border-radius` | — |
+| `--flint-primary-color` | — |
+| `--flint-error-color` | — |
+| `--flint-hover-color` | — |
+| `--flint-primary-color-light` | — |
+| `--flint-text-color-on-primary` | — |
+| `--flint-font-family` | — |
+| `--flint-label-color` | — |
+| `--flint-input-border-hover-color` | — |
+| `--flint-primary-focus-ring` | — |
+| `--flint-error-focus-ring` | — |
+| `--flint-input-disabled-bg` | — |
+| `--flint-input-readonly-bg` | — |
+| `--flint-input-placeholder-color` | — |
+| `--flint-text-color` | — |
+| `--flint-text-color-muted` | — |
+| `--flint-shadow-lg` | — |
+| `--flint-border-color` | — |
 
 ---

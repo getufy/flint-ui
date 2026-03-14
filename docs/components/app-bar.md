@@ -1,26 +1,26 @@
 # App Bar
 
-<Demo label="Regular" html="<div style=&quot;width:100%;max-width:600px&quot;><ui-app-bar title=&quot;My Application&quot; position=&quot;static&quot;>  <span slot=&quot;navigation&quot; style=&quot;font-size:20px;cursor:pointer&quot;>&#9776;</span>  <div slot=&quot;actions&quot;>    <ui-button variant=&quot;secondary&quot; size=&quot;small&quot;>Login</ui-button>  </div></ui-app-bar></div>" />
+<Demo label="Regular" html="<div style=&quot;width:100%;max-width:600px&quot;><flint-app-bar title=&quot;My Application&quot; position=&quot;static&quot;>  <span slot=&quot;navigation&quot; style=&quot;font-size:20px;cursor:pointer&quot;>&#9776;</span>  <div slot=&quot;actions&quot;>    <flint-button variant=&quot;secondary&quot; size=&quot;small&quot;>Login</flint-button>  </div></flint-app-bar></div>" />
 
-<Demo label="Dense" html="<div style=&quot;width:100%;max-width:600px&quot;><ui-app-bar title=&quot;Dense Bar&quot; position=&quot;static&quot; variant=&quot;dense&quot;>  <div slot=&quot;actions&quot;>    <ui-button variant=&quot;secondary&quot; size=&quot;small&quot;>Action</ui-button>  </div></ui-app-bar></div>" />
+<Demo label="Dense" html="<div style=&quot;width:100%;max-width:600px&quot;><flint-app-bar title=&quot;Dense Bar&quot; position=&quot;static&quot; variant=&quot;dense&quot;>  <div slot=&quot;actions&quot;>    <flint-button variant=&quot;secondary&quot; size=&quot;small&quot;>Action</flint-button>  </div></flint-app-bar></div>" />
 
-ui-app-bar: The top App bar provides content and actions related to the current screen.
+flint-app-bar: The top App bar provides content and actions related to the current screen.
 
-- **Tag**: `<ui-app-bar>`
-- **Class**: `UiAppBar`
+- **Tag**: `<flint-app-bar>`
+- **Class**: `FlintAppBar`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiAppBar } from 'storybook-lit';
+import { FlintAppBar } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-app-bar></ui-app-bar>
+<flint-app-bar></flint-app-bar>
 ```
 
 ### Properties
@@ -43,16 +43,16 @@ import { UiAppBar } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-app-bar-height` | — |
-| `--ui-app-bar-bg` | — |
-| `--ui-app-bar-color` | — |
-| `--ui-app-bar-shadow` | — |
-| `--ui-primary-color` | — |
-| `--ui-text-color-on-primary` | — |
-| `--ui-shadow-md` | — |
-| `--ui-surface-1` | — |
-| `--ui-text-color` | — |
-| `--ui-border-color` | — |
-| `--ui-font-family` | — |
+| `--flint-app-bar-height` | — |
+| `--flint-app-bar-bg` | — |
+| `--flint-app-bar-color` | — |
+| `--flint-app-bar-shadow` | — |
+| `--flint-primary-color` | — |
+| `--flint-text-color-on-primary` | — |
+| `--flint-shadow-md` | — |
+| `--flint-surface-1` | — |
+| `--flint-text-color` | — |
+| `--flint-border-color` | — |
+| `--flint-font-family` | — |
 
 ---

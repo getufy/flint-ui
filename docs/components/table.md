@@ -1,24 +1,24 @@
 # Table
 
-<Demo html="<div style=&quot;width:100%;max-width:500px&quot;><ui-table-container>  <ui-table>    <ui-table-head>      <ui-table-row>        <ui-table-cell header>Name</ui-table-cell>        <ui-table-cell header>Role</ui-table-cell>        <ui-table-cell header align=&quot;right&quot;>Score</ui-table-cell>      </ui-table-row>    </ui-table-head>    <ui-table-body>      <ui-table-row>        <ui-table-cell>Alice</ui-table-cell>        <ui-table-cell>Engineer</ui-table-cell>        <ui-table-cell align=&quot;right&quot;>92</ui-table-cell>      </ui-table-row>      <ui-table-row selected>        <ui-table-cell>Bob</ui-table-cell>        <ui-table-cell>Designer</ui-table-cell>        <ui-table-cell align=&quot;right&quot;>87</ui-table-cell>      </ui-table-row>      <ui-table-row>        <ui-table-cell>Carol</ui-table-cell>        <ui-table-cell>Manager</ui-table-cell>        <ui-table-cell align=&quot;right&quot;>95</ui-table-cell>      </ui-table-row>      <ui-table-row>        <ui-table-cell>Dave</ui-table-cell>        <ui-table-cell>Analyst</ui-table-cell>        <ui-table-cell align=&quot;right&quot;>78</ui-table-cell>      </ui-table-row>    </ui-table-body>  </ui-table></ui-table-container></div>" />
+<Demo html="<div style=&quot;width:100%;max-width:500px&quot;><flint-table-container>  <flint-table>    <flint-table-head>      <flint-table-row>        <flint-table-cell header>Name</flint-table-cell>        <flint-table-cell header>Role</flint-table-cell>        <flint-table-cell header align=&quot;right&quot;>Score</flint-table-cell>      </flint-table-row>    </flint-table-head>    <flint-table-body>      <flint-table-row>        <flint-table-cell>Alice</flint-table-cell>        <flint-table-cell>Engineer</flint-table-cell>        <flint-table-cell align=&quot;right&quot;>92</flint-table-cell>      </flint-table-row>      <flint-table-row selected>        <flint-table-cell>Bob</flint-table-cell>        <flint-table-cell>Designer</flint-table-cell>        <flint-table-cell align=&quot;right&quot;>87</flint-table-cell>      </flint-table-row>      <flint-table-row>        <flint-table-cell>Carol</flint-table-cell>        <flint-table-cell>Manager</flint-table-cell>        <flint-table-cell align=&quot;right&quot;>95</flint-table-cell>      </flint-table-row>      <flint-table-row>        <flint-table-cell>Dave</flint-table-cell>        <flint-table-cell>Analyst</flint-table-cell>        <flint-table-cell align=&quot;right&quot;>78</flint-table-cell>      </flint-table-row>    </flint-table-body>  </flint-table></flint-table-container></div>" />
 
-## `<ui-table-pagination>`
+## `<flint-table-pagination>`
 
-- **Tag**: `<ui-table-pagination>`
-- **Class**: `UiTablePagination`
+- **Tag**: `<flint-table-pagination>`
+- **Class**: `FlintTablePagination`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiTablePagination } from 'storybook-lit';
+import { FlintTablePagination } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-table-pagination></ui-table-pagination>
+<flint-table-pagination></flint-table-pagination>
 ```
 
 ### Properties
@@ -45,31 +45,31 @@ import { UiTablePagination } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-font-family` | — |
-| `--ui-text-color-muted` | — |
-| `--ui-border-color` | — |
-| `--ui-text-color` | — |
-| `--ui-hover-color` | — |
+| `--flint-font-family` | — |
+| `--flint-text-color-muted` | — |
+| `--flint-border-color` | — |
+| `--flint-text-color` | — |
+| `--flint-hover-color` | — |
 
 ---
 
-## `<ui-table-sort-label>`
+## `<flint-table-sort-label>`
 
-- **Tag**: `<ui-table-sort-label>`
-- **Class**: `UiTableSortLabel`
+- **Tag**: `<flint-table-sort-label>`
+- **Class**: `FlintTableSortLabel`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiTableSortLabel } from 'storybook-lit';
+import { FlintTableSortLabel } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-table-sort-label></ui-table-sort-label>
+<flint-table-sort-label></flint-table-sort-label>
 ```
 
 ### Properties
@@ -87,25 +87,25 @@ import { UiTableSortLabel } from 'storybook-lit';
 
 ---
 
-## `<ui-table-container>`
+## `<flint-table-container>`
 
-ui-table-container
+flint-table-container
 
-- **Tag**: `<ui-table-container>`
-- **Class**: `UiTableContainer`
+- **Tag**: `<flint-table-container>`
+- **Class**: `FlintTableContainer`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiTableContainer } from 'storybook-lit';
+import { FlintTableContainer } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-table-container></ui-table-container>
+<flint-table-container></flint-table-container>
 ```
 
 ### Properties
@@ -125,29 +125,29 @@ import { UiTableContainer } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-table-container-bg` | `var(--ui-surface-background, white` |
+| `--flint-table-container-bg` | `var(--flint-surface-background, white` |
 
 ---
 
-## `<ui-table>`
+## `<flint-table>`
 
-ui-table
+flint-table
 
-- **Tag**: `<ui-table>`
-- **Class**: `UiTable`
+- **Tag**: `<flint-table>`
+- **Class**: `FlintTable`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiTable } from 'storybook-lit';
+import { FlintTable } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-table></ui-table>
+<flint-table></flint-table>
 ```
 
 ### Properties
@@ -166,42 +166,42 @@ import { UiTable } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-table-striped-bg` | `var(--ui-surface-2` |
-| `--ui-table-cell-padding-y` | `16px` |
-| `--ui-table-cell-padding-x` | `16px` |
-| `--ui-table-border-color` | `var(--ui-border-color` |
-| `--ui-table-header-bg` | `transparent` |
-| `--ui-table-header-color` | `var(--ui-text-color-muted` |
-| `--ui-table-container-bg` | `var(--ui-surface-background, white` |
-| `--ui-table-border-radius` | `var(--ui-border-radius-lg, 8px` |
-| `--ui-table-shadow` | `var(--ui-shadow-sm` |
-| `--ui-table-shadow-elevated` | `var(--ui-shadow-md` |
-| `--ui-table-row-hover-bg` | `var(--ui-hover-color, rgba(0, 0, 0, 0.04` |
-| `--ui-table-row-selected-bg` | `var(--ui-primary-color-light, rgba(59, 130, 246, 0.08` |
-| `--ui-table-cell-padding-y-dense` | `6px` |
-| `--ui-table-cell-padding-x-dense` | `16px` |
+| `--flint-table-striped-bg` | `var(--flint-surface-2` |
+| `--flint-table-cell-padding-y` | `16px` |
+| `--flint-table-cell-padding-x` | `16px` |
+| `--flint-table-border-color` | `var(--flint-border-color` |
+| `--flint-table-header-bg` | `transparent` |
+| `--flint-table-header-color` | `var(--flint-text-color-muted` |
+| `--flint-table-container-bg` | `var(--flint-surface-background, white` |
+| `--flint-table-border-radius` | `var(--flint-border-radius-lg, 8px` |
+| `--flint-table-shadow` | `var(--flint-shadow-sm` |
+| `--flint-table-shadow-elevated` | `var(--flint-shadow-md` |
+| `--flint-table-row-hover-bg` | `var(--flint-hover-color, rgba(0, 0, 0, 0.04` |
+| `--flint-table-row-selected-bg` | `var(--flint-primary-color-light, rgba(59, 130, 246, 0.08` |
+| `--flint-table-cell-padding-y-dense` | `6px` |
+| `--flint-table-cell-padding-x-dense` | `16px` |
 
 ---
 
-## `<ui-table-head>`
+## `<flint-table-head>`
 
-ui-table-head
+flint-table-head
 
-- **Tag**: `<ui-table-head>`
-- **Class**: `UiTableHead`
+- **Tag**: `<flint-table-head>`
+- **Class**: `FlintTableHead`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiTableHead } from 'storybook-lit';
+import { FlintTableHead } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-table-head></ui-table-head>
+<flint-table-head></flint-table-head>
 ```
 
 ### Slots
@@ -214,30 +214,30 @@ import { UiTableHead } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-table-header-bg` | `transparent` |
-| `--ui-table-header-color` | `var(--ui-text-color-muted` |
+| `--flint-table-header-bg` | `transparent` |
+| `--flint-table-header-color` | `var(--flint-text-color-muted` |
 
 ---
 
-## `<ui-table-body>`
+## `<flint-table-body>`
 
-ui-table-body
+flint-table-body
 
-- **Tag**: `<ui-table-body>`
-- **Class**: `UiTableBody`
+- **Tag**: `<flint-table-body>`
+- **Class**: `FlintTableBody`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiTableBody } from 'storybook-lit';
+import { FlintTableBody } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-table-body></ui-table-body>
+<flint-table-body></flint-table-body>
 ```
 
 ### Properties
@@ -254,25 +254,25 @@ import { UiTableBody } from 'storybook-lit';
 
 ---
 
-## `<ui-table-row>`
+## `<flint-table-row>`
 
-ui-table-row
+flint-table-row
 
-- **Tag**: `<ui-table-row>`
-- **Class**: `UiTableRow`
+- **Tag**: `<flint-table-row>`
+- **Class**: `FlintTableRow`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiTableRow } from 'storybook-lit';
+import { FlintTableRow } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-table-row></ui-table-row>
+<flint-table-row></flint-table-row>
 ```
 
 ### Properties
@@ -292,30 +292,30 @@ import { UiTableRow } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-table-row-hover-bg` | `var(--ui-hover-color, rgba(0, 0, 0, 0.04` |
-| `--ui-table-row-selected-bg` | `var(--ui-primary-color-light, rgba(59, 130, 246, 0.08` |
+| `--flint-table-row-hover-bg` | `var(--flint-hover-color, rgba(0, 0, 0, 0.04` |
+| `--flint-table-row-selected-bg` | `var(--flint-primary-color-light, rgba(59, 130, 246, 0.08` |
 
 ---
 
-## `<ui-table-cell>`
+## `<flint-table-cell>`
 
-ui-table-cell
+flint-table-cell
 
-- **Tag**: `<ui-table-cell>`
-- **Class**: `UiTableCell`
+- **Tag**: `<flint-table-cell>`
+- **Class**: `FlintTableCell`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiTableCell } from 'storybook-lit';
+import { FlintTableCell } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-table-cell></ui-table-cell>
+<flint-table-cell></flint-table-cell>
 ```
 
 ### Properties
@@ -336,32 +336,32 @@ import { UiTableCell } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-table-cell-padding-y` | `16px` |
-| `--ui-table-cell-padding-x` | `16px` |
-| `--ui-table-cell-padding-y-dense` | `6px` |
-| `--ui-table-cell-padding-x-dense` | `16px` |
+| `--flint-table-cell-padding-y` | `16px` |
+| `--flint-table-cell-padding-x` | `16px` |
+| `--flint-table-cell-padding-y-dense` | `6px` |
+| `--flint-table-cell-padding-x-dense` | `16px` |
 
 ---
 
-## `<ui-table-footer>`
+## `<flint-table-footer>`
 
-ui-table-footer
+flint-table-footer
 
-- **Tag**: `<ui-table-footer>`
-- **Class**: `UiTableFooter`
+- **Tag**: `<flint-table-footer>`
+- **Class**: `FlintTableFooter`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiTableFooter } from 'storybook-lit';
+import { FlintTableFooter } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-table-footer></ui-table-footer>
+<flint-table-footer></flint-table-footer>
 ```
 
 ### Slots

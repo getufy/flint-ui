@@ -1,30 +1,30 @@
 # Date Range Picker
 
-<Demo label="Basic" html="<ui-date-range-picker label=&quot;Date range&quot; style=&quot;width:340px&quot;></ui-date-range-picker>" />
+<Demo label="Basic" html="<flint-date-range-picker label=&quot;Date range&quot; style=&quot;width:340px&quot;></flint-date-range-picker>" />
 
-<Demo label="With Shortcuts" html="<ui-date-range-picker label=&quot;Date range&quot; shortcuts style=&quot;width:340px&quot;></ui-date-range-picker>" />
+<Demo label="With Shortcuts" html="<flint-date-range-picker label=&quot;Date range&quot; shortcuts style=&quot;width:340px&quot;></flint-date-range-picker>" />
 
-<Demo label="Static with Shortcuts" html="<ui-date-range-picker variant=&quot;static&quot; shortcuts></ui-date-range-picker>" />
+<Demo label="Static with Shortcuts" html="<flint-date-range-picker variant=&quot;static&quot; shortcuts></flint-date-range-picker>" />
 
-## `<ui-date-range-calendar>`
+## `<flint-date-range-calendar>`
 
 A dual-month calendar for range selection. Shows two months side-by-side (or stacked on narrow screens).
 
-- **Tag**: `<ui-date-range-calendar>`
-- **Class**: `UiDateRangeCalendar`
+- **Tag**: `<flint-date-range-calendar>`
+- **Class**: `FlintDateRangeCalendar`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiDateRangeCalendar } from 'storybook-lit';
+import { FlintDateRangeCalendar } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-date-range-calendar></ui-date-range-calendar>
+<flint-date-range-calendar></flint-date-range-calendar>
 ```
 
 ### Properties
@@ -46,26 +46,26 @@ import { UiDateRangeCalendar } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-font-family` | — |
-| `--ui-surface-1` | — |
-| `--ui-border-color` | — |
-| `--ui-text-color` | — |
-| `--ui-text-color-muted` | — |
-| `--ui-hover-color` | — |
-| `--ui-primary-color-light` | — |
-| `--ui-primary-color` | — |
-| `--ui-text-color-on-primary` | — |
-| `--ui-primary-color-hover` | — |
-| `--ui-input-bg` | — |
-| `--ui-border-radius-md` | — |
-| `--ui-input-disabled-bg` | — |
-| `--ui-input-placeholder-color` | — |
-| `--ui-border-radius-xl` | — |
-| `--ui-shadow-lg` | — |
-| `--ui-shadow-sm` | — |
-| `--ui-error-color` | — |
-| `--ui-primary-focus-ring` | — |
-| `--ui-error-focus-ring` | — |
+| `--flint-font-family` | — |
+| `--flint-surface-1` | — |
+| `--flint-border-color` | — |
+| `--flint-text-color` | — |
+| `--flint-text-color-muted` | — |
+| `--flint-hover-color` | — |
+| `--flint-primary-color-light` | — |
+| `--flint-primary-color` | — |
+| `--flint-text-color-on-primary` | — |
+| `--flint-primary-color-hover` | — |
+| `--flint-input-bg` | — |
+| `--flint-border-radius-md` | — |
+| `--flint-input-disabled-bg` | — |
+| `--flint-input-placeholder-color` | — |
+| `--flint-border-radius-xl` | — |
+| `--flint-shadow-lg` | — |
+| `--flint-shadow-sm` | — |
+| `--flint-error-color` | — |
+| `--flint-primary-focus-ring` | — |
+| `--flint-error-focus-ring` | — |
 
 ### Methods
 
@@ -75,25 +75,25 @@ import { UiDateRangeCalendar } from 'storybook-lit';
 
 ---
 
-## `<ui-date-range-picker>`
+## `<flint-date-range-picker>`
 
 A date range picker combining a segmented field and a dual-month calendar.
 
-- **Tag**: `<ui-date-range-picker>`
-- **Class**: `UiDateRangePicker`
+- **Tag**: `<flint-date-range-picker>`
+- **Class**: `FlintDateRangePicker`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiDateRangePicker } from 'storybook-lit';
+import { FlintDateRangePicker } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-date-range-picker></ui-date-range-picker>
+<flint-date-range-picker></flint-date-range-picker>
 ```
 
 ### Properties
@@ -122,25 +122,25 @@ import { UiDateRangePicker } from 'storybook-lit';
 
 ---
 
-## `<ui-single-input-date-range-field>`
+## `<flint-single-input-date-range-field>`
 
 A single-input field for entering a date range (start → end). Renders as "MM/DD/YYYY – MM/DD/YYYY" with six independently editable segments.
 
-- **Tag**: `<ui-single-input-date-range-field>`
-- **Class**: `UiSingleInputDateRangeField`
+- **Tag**: `<flint-single-input-date-range-field>`
+- **Class**: `FlintSingleInputDateRangeField`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiSingleInputDateRangeField } from 'storybook-lit';
+import { FlintSingleInputDateRangeField } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-single-input-date-range-field></ui-single-input-date-range-field>
+<flint-single-input-date-range-field></flint-single-input-date-range-field>
 ```
 
 ### Properties

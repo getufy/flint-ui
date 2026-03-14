@@ -1,26 +1,26 @@
 # Resizable
 
-<Demo label="Horizontal" html="<div style=&quot;width:100%;max-width:500px&quot;><ui-resizable-group orientation=&quot;horizontal&quot; style=&quot;height:200px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden&quot;>  <ui-resizable-panel default-size=&quot;40&quot;>    <div style=&quot;padding:16px;height:100%;background:#f0f9ff;display:flex;align-items:center;justify-content:center&quot;>Panel A</div>  </ui-resizable-panel>  <ui-resizable-handle with-handle></ui-resizable-handle>  <ui-resizable-panel default-size=&quot;60&quot;>    <div style=&quot;padding:16px;height:100%;background:#fefce8;display:flex;align-items:center;justify-content:center&quot;>Panel B</div>  </ui-resizable-panel></ui-resizable-group></div>" />
+<Demo label="Horizontal" html="<div style=&quot;width:100%;max-width:500px&quot;><flint-resizable-group orientation=&quot;horizontal&quot; style=&quot;height:200px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden&quot;>  <flint-resizable-panel default-size=&quot;40&quot;>    <div style=&quot;padding:16px;height:100%;background:#f0f9ff;display:flex;align-items:center;justify-content:center&quot;>Panel A</div>  </flint-resizable-panel>  <flint-resizable-handle with-handle></flint-resizable-handle>  <flint-resizable-panel default-size=&quot;60&quot;>    <div style=&quot;padding:16px;height:100%;background:#fefce8;display:flex;align-items:center;justify-content:center&quot;>Panel B</div>  </flint-resizable-panel></flint-resizable-group></div>" />
 
-<Demo label="Three Panels" html="<div style=&quot;width:100%;max-width:600px&quot;><ui-resizable-group orientation=&quot;horizontal&quot; style=&quot;height:180px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden&quot;>  <ui-resizable-panel default-size=&quot;25&quot;>    <div style=&quot;padding:12px;height:100%;background:#f0f9ff;display:flex;align-items:center;justify-content:center;font-size:14px&quot;>Sidebar</div>  </ui-resizable-panel>  <ui-resizable-handle with-handle></ui-resizable-handle>  <ui-resizable-panel default-size=&quot;50&quot;>    <div style=&quot;padding:12px;height:100%;display:flex;align-items:center;justify-content:center;font-size:14px&quot;>Main</div>  </ui-resizable-panel>  <ui-resizable-handle with-handle></ui-resizable-handle>  <ui-resizable-panel default-size=&quot;25&quot;>    <div style=&quot;padding:12px;height:100%;background:#fef3c7;display:flex;align-items:center;justify-content:center;font-size:14px&quot;>Detail</div>  </ui-resizable-panel></ui-resizable-group></div>" />
+<Demo label="Three Panels" html="<div style=&quot;width:100%;max-width:600px&quot;><flint-resizable-group orientation=&quot;horizontal&quot; style=&quot;height:180px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden&quot;>  <flint-resizable-panel default-size=&quot;25&quot;>    <div style=&quot;padding:12px;height:100%;background:#f0f9ff;display:flex;align-items:center;justify-content:center;font-size:14px&quot;>Sidebar</div>  </flint-resizable-panel>  <flint-resizable-handle with-handle></flint-resizable-handle>  <flint-resizable-panel default-size=&quot;50&quot;>    <div style=&quot;padding:12px;height:100%;display:flex;align-items:center;justify-content:center;font-size:14px&quot;>Main</div>  </flint-resizable-panel>  <flint-resizable-handle with-handle></flint-resizable-handle>  <flint-resizable-panel default-size=&quot;25&quot;>    <div style=&quot;padding:12px;height:100%;background:#fef3c7;display:flex;align-items:center;justify-content:center;font-size:14px&quot;>Detail</div>  </flint-resizable-panel></flint-resizable-group></div>" />
 
-## `<ui-resizable-group>`
+## `<flint-resizable-group>`
 
-- **Tag**: `<ui-resizable-group>`
-- **Class**: `UiResizableGroup`
+- **Tag**: `<flint-resizable-group>`
+- **Class**: `FlintResizableGroup`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiResizableGroup } from 'storybook-lit';
+import { FlintResizableGroup } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-resizable-group></ui-resizable-group>
+<flint-resizable-group></flint-resizable-group>
 ```
 
 ### Properties
@@ -34,9 +34,9 @@ import { UiResizableGroup } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-resizable-collapse` | `{ index: idx, layout: this.getLayout() }` |  |
-| `ui-resizable-expand` | `{ index: idx, layout: this.getLayout() }` |  |
-| `ui-resizable-change` | `{ layout: this.getLayout() }` |  |
+| `flint-resizable-collapse` | `{ index: idx, layout: this.getLayout() }` |  |
+| `flint-resizable-expand` | `{ index: idx, layout: this.getLayout() }` |  |
+| `flint-resizable-change` | `{ layout: this.getLayout() }` |  |
 
 ### Slots
 
@@ -53,23 +53,23 @@ import { UiResizableGroup } from 'storybook-lit';
 
 ---
 
-## `<ui-resizable-panel>`
+## `<flint-resizable-panel>`
 
-- **Tag**: `<ui-resizable-panel>`
-- **Class**: `UiResizablePanel`
+- **Tag**: `<flint-resizable-panel>`
+- **Class**: `FlintResizablePanel`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiResizablePanel } from 'storybook-lit';
+import { FlintResizablePanel } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-resizable-panel></ui-resizable-panel>
+<flint-resizable-panel></flint-resizable-panel>
 ```
 
 ### Properties
@@ -99,23 +99,23 @@ import { UiResizablePanel } from 'storybook-lit';
 
 ---
 
-## `<ui-resizable-handle>`
+## `<flint-resizable-handle>`
 
-- **Tag**: `<ui-resizable-handle>`
-- **Class**: `UiResizableHandle`
+- **Tag**: `<flint-resizable-handle>`
+- **Class**: `FlintResizableHandle`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiResizableHandle } from 'storybook-lit';
+import { FlintResizableHandle } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-resizable-handle></ui-resizable-handle>
+<flint-resizable-handle></flint-resizable-handle>
 ```
 
 ### Properties

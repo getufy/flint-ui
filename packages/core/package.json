@@ -1,5 +1,5 @@
 {
-  "name": "storybook-lit",
+  "name": "flint-ui",
   "version": "0.1.0",
   "type": "module",
   "types": "./dist/index.d.ts",
@@ -12,373 +12,373 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./button/ui-button": {
-      "types": "./dist/button/ui-button.d.ts",
-      "import": "./dist/button/ui-button.js"
-    },
-    "./button/ui-button-group": {
-      "types": "./dist/button/ui-button-group.d.ts",
-      "import": "./dist/button/ui-button-group.js"
-    },
-    "./card/ui-card": {
-      "types": "./dist/card/ui-card.d.ts",
-      "import": "./dist/card/ui-card.js"
-    },
-    "./card/ui-card-header": {
-      "types": "./dist/card/ui-card-header.d.ts",
-      "import": "./dist/card/ui-card-header.js"
-    },
-    "./card/ui-card-content": {
-      "types": "./dist/card/ui-card-content.d.ts",
-      "import": "./dist/card/ui-card-content.js"
-    },
-    "./card/ui-card-media": {
-      "types": "./dist/card/ui-card-media.d.ts",
-      "import": "./dist/card/ui-card-media.js"
-    },
-    "./card/ui-card-actions": {
-      "types": "./dist/card/ui-card-actions.d.ts",
-      "import": "./dist/card/ui-card-actions.js"
-    },
-    "./card/ui-card-action-area": {
-      "types": "./dist/card/ui-card-action-area.d.ts",
-      "import": "./dist/card/ui-card-action-area.js"
-    },
-    "./paper/ui-paper": {
-      "types": "./dist/paper/ui-paper.d.ts",
-      "import": "./dist/paper/ui-paper.js"
-    },
-    "./input/ui-input": {
-      "types": "./dist/input/ui-input.d.ts",
-      "import": "./dist/input/ui-input.js"
-    },
-    "./select/ui-select": {
-      "types": "./dist/select/ui-select.d.ts",
-      "import": "./dist/select/ui-select.js"
-    },
-    "./fab/ui-fab": {
-      "types": "./dist/fab/ui-fab.d.ts",
-      "import": "./dist/fab/ui-fab.js"
-    },
-    "./autocomplete/ui-autocomplete": {
-      "types": "./dist/autocomplete/ui-autocomplete.d.ts",
-      "import": "./dist/autocomplete/ui-autocomplete.js"
-    },
-    "./checkbox/ui-checkbox": {
-      "types": "./dist/checkbox/ui-checkbox.d.ts",
-      "import": "./dist/checkbox/ui-checkbox.js"
-    },
-    "./radio/ui-radio": {
-      "types": "./dist/radio/ui-radio.d.ts",
-      "import": "./dist/radio/ui-radio.js"
-    },
-    "./rating/ui-rating": {
-      "types": "./dist/rating/ui-rating.d.ts",
-      "import": "./dist/rating/ui-rating.js"
-    },
-    "./switch/ui-switch": {
-      "types": "./dist/switch/ui-switch.d.ts",
-      "import": "./dist/switch/ui-switch.js"
-    },
-    "./textarea/ui-textarea": {
-      "types": "./dist/textarea/ui-textarea.d.ts",
-      "import": "./dist/textarea/ui-textarea.js"
-    },
-    "./transfer-list/ui-transfer-list": {
-      "types": "./dist/transfer-list/ui-transfer-list.d.ts",
-      "import": "./dist/transfer-list/ui-transfer-list.js"
-    },
-    "./badge/ui-badge": {
-      "types": "./dist/badge/ui-badge.d.ts",
-      "import": "./dist/badge/ui-badge.js"
-    },
-    "./alert/ui-alert": {
-      "types": "./dist/alert/ui-alert.d.ts",
-      "import": "./dist/alert/ui-alert.js"
-    },
-    "./skeleton/ui-skeleton": {
-      "types": "./dist/skeleton/ui-skeleton.d.ts",
-      "import": "./dist/skeleton/ui-skeleton.js"
-    },
-    "./snackbar/ui-snackbar": {
-      "types": "./dist/snackbar/ui-snackbar.d.ts",
-      "import": "./dist/snackbar/ui-snackbar.js"
-    },
-    "./divider/ui-divider": {
-      "types": "./dist/divider/ui-divider.d.ts",
-      "import": "./dist/divider/ui-divider.js"
-    },
-    "./slider/ui-slider": {
-      "types": "./dist/slider/ui-slider.d.ts",
-      "import": "./dist/slider/ui-slider.js"
-    },
-    "./text-field/ui-text-field": {
-      "types": "./dist/text-field/ui-text-field.d.ts",
-      "import": "./dist/text-field/ui-text-field.js"
-    },
-    "./button/ui-toggle-button": {
-      "types": "./dist/button/ui-toggle-button.d.ts",
-      "import": "./dist/button/ui-toggle-button.js"
-    },
-    "./button/ui-toggle-button-group": {
-      "types": "./dist/button/ui-toggle-button-group.d.ts",
-      "import": "./dist/button/ui-toggle-button-group.js"
-    },
-    "./avatar/ui-avatar": {
-      "types": "./dist/avatar/ui-avatar.d.ts",
-      "import": "./dist/avatar/ui-avatar.js"
-    },
-    "./chip/ui-chip": {
-      "types": "./dist/chip/ui-chip.d.ts",
-      "import": "./dist/chip/ui-chip.js"
-    },
-    "./list/ui-list": {
-      "types": "./dist/list/ui-list.d.ts",
-      "import": "./dist/list/ui-list.js"
-    },
-    "./table/ui-table": {
-      "types": "./dist/table/ui-table.d.ts",
-      "import": "./dist/table/ui-table.js"
-    },
-    "./table/ui-table-sort-label": {
-      "types": "./dist/table/ui-table-sort-label.d.ts",
-      "import": "./dist/table/ui-table-sort-label.js"
-    },
-    "./table/ui-table-pagination": {
-      "types": "./dist/table/ui-table-pagination.d.ts",
-      "import": "./dist/table/ui-table-pagination.js"
-    },
-    "./tooltip/ui-tooltip": {
-      "types": "./dist/tooltip/ui-tooltip.d.ts",
-      "import": "./dist/tooltip/ui-tooltip.js"
-    },
-    "./backdrop/ui-backdrop": {
-      "types": "./dist/backdrop/ui-backdrop.d.ts",
-      "import": "./dist/backdrop/ui-backdrop.js"
-    },
-    "./dialog/ui-dialog": {
-      "types": "./dist/dialog/ui-dialog.d.ts",
-      "import": "./dist/dialog/ui-dialog.js"
-    },
-    "./progress/ui-circular-progress": {
-      "types": "./dist/progress/ui-circular-progress.d.ts",
-      "import": "./dist/progress/ui-circular-progress.js"
-    },
-    "./progress/ui-linear-progress": {
-      "types": "./dist/progress/ui-linear-progress.d.ts",
-      "import": "./dist/progress/ui-linear-progress.js"
-    },
-    "./accordion/ui-accordion": {
-      "types": "./dist/accordion/ui-accordion.d.ts",
-      "import": "./dist/accordion/ui-accordion.js"
-    },
-    "./app-bar/ui-app-bar": {
-      "types": "./dist/app-bar/ui-app-bar.d.ts",
-      "import": "./dist/app-bar/ui-app-bar.js"
-    },
-    "./bottom-navigation/ui-bottom-navigation": {
-      "types": "./dist/bottom-navigation/ui-bottom-navigation.d.ts",
-      "import": "./dist/bottom-navigation/ui-bottom-navigation.js"
-    },
-    "./bottom-navigation/ui-bottom-navigation-action": {
-      "types": "./dist/bottom-navigation/ui-bottom-navigation-action.d.ts",
-      "import": "./dist/bottom-navigation/ui-bottom-navigation-action.js"
-    },
-    "./breadcrumbs/ui-breadcrumbs": {
-      "types": "./dist/breadcrumbs/ui-breadcrumbs.d.ts",
-      "import": "./dist/breadcrumbs/ui-breadcrumbs.js"
-    },
-    "./drawer/ui-drawer": {
-      "types": "./dist/drawer/ui-drawer.d.ts",
-      "import": "./dist/drawer/ui-drawer.js"
-    },
-    "./link/ui-link": {
-      "types": "./dist/link/ui-link.d.ts",
-      "import": "./dist/link/ui-link.js"
-    },
-    "./typography/ui-typography": {
-      "types": "./dist/typography/ui-typography.d.ts",
-      "import": "./dist/typography/ui-typography.js"
-    },
-    "./menu/ui-menu": {
-      "types": "./dist/menu/ui-menu.d.ts",
-      "import": "./dist/menu/ui-menu.js"
-    },
-    "./pagination/ui-pagination": {
-      "types": "./dist/pagination/ui-pagination.d.ts",
-      "import": "./dist/pagination/ui-pagination.js"
-    },
-    "./speed-dial/ui-speed-dial": {
-      "types": "./dist/speed-dial/ui-speed-dial.d.ts",
-      "import": "./dist/speed-dial/ui-speed-dial.js"
-    },
-    "./stepper/ui-stepper": {
-      "types": "./dist/stepper/ui-stepper.d.ts",
-      "import": "./dist/stepper/ui-stepper.js"
-    },
-    "./tabs/ui-tabs": {
-      "types": "./dist/tabs/ui-tabs.d.ts",
-      "import": "./dist/tabs/ui-tabs.js"
-    },
-    "./box/ui-box": {
-      "types": "./dist/box/ui-box.d.ts",
-      "import": "./dist/box/ui-box.js"
-    },
-    "./container/ui-container": {
-      "types": "./dist/container/ui-container.d.ts",
-      "import": "./dist/container/ui-container.js"
-    },
-    "./grid/ui-grid": {
-      "types": "./dist/grid/ui-grid.d.ts",
-      "import": "./dist/grid/ui-grid.js"
-    },
-    "./stack/ui-stack": {
-      "types": "./dist/stack/ui-stack.d.ts",
-      "import": "./dist/stack/ui-stack.js"
-    },
-    "./image-list/ui-image-list": {
-      "types": "./dist/image-list/ui-image-list.d.ts",
-      "import": "./dist/image-list/ui-image-list.js"
-    },
-    "./image-list/ui-image-list-item": {
-      "types": "./dist/image-list/ui-image-list-item.d.ts",
-      "import": "./dist/image-list/ui-image-list-item.js"
-    },
-    "./image-list/ui-image-list-item-bar": {
-      "types": "./dist/image-list/ui-image-list-item-bar.d.ts",
-      "import": "./dist/image-list/ui-image-list-item-bar.js"
-    },
-    "./date-picker/ui-date-picker": {
-      "types": "./dist/date-picker/ui-date-picker.d.ts",
-      "import": "./dist/date-picker/ui-date-picker.js"
-    },
-    "./date-field/ui-date-field": {
-      "types": "./dist/date-field/ui-date-field.d.ts",
-      "import": "./dist/date-field/ui-date-field.js"
-    },
-    "./time-picker/ui-time-picker": {
-      "types": "./dist/time-picker/ui-time-picker.d.ts",
-      "import": "./dist/time-picker/ui-time-picker.js"
-    },
-    "./tree-view/ui-tree-item": {
-      "types": "./dist/tree-view/ui-tree-item.d.ts",
-      "import": "./dist/tree-view/ui-tree-item.js"
-    },
-    "./tree-view/ui-simple-tree-view": {
-      "types": "./dist/tree-view/ui-simple-tree-view.d.ts",
-      "import": "./dist/tree-view/ui-simple-tree-view.js"
-    },
-    "./tree-view/ui-rich-tree-view": {
-      "types": "./dist/tree-view/ui-rich-tree-view.d.ts",
-      "import": "./dist/tree-view/ui-rich-tree-view.js"
-    },
-    "./command/ui-command": {
-      "types": "./dist/command/ui-command.d.ts",
-      "import": "./dist/command/ui-command.js"
-    },
-    "./carousel/ui-carousel": {
-      "types": "./dist/carousel/ui-carousel.d.ts",
-      "import": "./dist/carousel/ui-carousel.js"
-    },
-    "./empty/ui-empty": {
-      "types": "./dist/empty/ui-empty.d.ts",
-      "import": "./dist/empty/ui-empty.js"
-    },
-    "./collapsible/ui-collapsible": {
-      "types": "./dist/collapsible/ui-collapsible.d.ts",
-      "import": "./dist/collapsible/ui-collapsible.js"
-    },
-    "./hover-card/ui-hover-card": {
-      "types": "./dist/hover-card/ui-hover-card.d.ts",
-      "import": "./dist/hover-card/ui-hover-card.js"
-    },
-    "./input-otp/ui-input-otp": {
-      "types": "./dist/input-otp/ui-input-otp.d.ts",
-      "import": "./dist/input-otp/ui-input-otp.js"
-    },
-    "./item/ui-item": {
-      "types": "./dist/item/ui-item.d.ts",
-      "import": "./dist/item/ui-item.js"
-    },
-    "./kbd/ui-kbd": {
-      "types": "./dist/kbd/ui-kbd.d.ts",
-      "import": "./dist/kbd/ui-kbd.js"
-    },
-    "./menubar/ui-menubar": {
-      "types": "./dist/menubar/ui-menubar.d.ts",
-      "import": "./dist/menubar/ui-menubar.js"
-    },
-    "./scroll-area/ui-scroll-area": {
-      "types": "./dist/scroll-area/ui-scroll-area.d.ts",
-      "import": "./dist/scroll-area/ui-scroll-area.js"
-    },
-    "./navigation-menu/ui-navigation-menu": {
-      "types": "./dist/navigation-menu/ui-navigation-menu.d.ts",
-      "import": "./dist/navigation-menu/ui-navigation-menu.js"
-    },
-    "./navigation-menu/ui-navigation-menu-list": {
-      "types": "./dist/navigation-menu/ui-navigation-menu-list.d.ts",
-      "import": "./dist/navigation-menu/ui-navigation-menu-list.js"
-    },
-    "./navigation-menu/ui-navigation-menu-item": {
-      "types": "./dist/navigation-menu/ui-navigation-menu-item.d.ts",
-      "import": "./dist/navigation-menu/ui-navigation-menu-item.js"
-    },
-    "./navigation-menu/ui-navigation-menu-trigger": {
-      "types": "./dist/navigation-menu/ui-navigation-menu-trigger.d.ts",
-      "import": "./dist/navigation-menu/ui-navigation-menu-trigger.js"
-    },
-    "./navigation-menu/ui-navigation-menu-content": {
-      "types": "./dist/navigation-menu/ui-navigation-menu-content.d.ts",
-      "import": "./dist/navigation-menu/ui-navigation-menu-content.js"
-    },
-    "./navigation-menu/ui-navigation-menu-link": {
-      "types": "./dist/navigation-menu/ui-navigation-menu-link.d.ts",
-      "import": "./dist/navigation-menu/ui-navigation-menu-link.js"
-    },
-    "./copy-button/ui-copy-button": {
-      "types": "./dist/copy-button/ui-copy-button.d.ts",
-      "import": "./dist/copy-button/ui-copy-button.js"
-    },
-    "./sonner/ui-sonner": {
-      "types": "./dist/sonner/ui-sonner.d.ts",
-      "import": "./dist/sonner/ui-sonner.js"
-    },
-    "./toggle/ui-toggle": {
-      "types": "./dist/toggle/ui-toggle.d.ts",
-      "import": "./dist/toggle/ui-toggle.js"
-    },
-    "./resizable/ui-resizable": {
-      "types": "./dist/resizable/ui-resizable.d.ts",
-      "import": "./dist/resizable/ui-resizable.js"
-    },
-    "./image-comparer/ui-image-comparer": {
-      "types": "./dist/image-comparer/ui-image-comparer.d.ts",
-      "import": "./dist/image-comparer/ui-image-comparer.js"
-    },
-    "./split-panel/ui-split-panel": {
-      "types": "./dist/split-panel/ui-split-panel.d.ts",
-      "import": "./dist/split-panel/ui-split-panel.js"
-    },
-    "./relative-time/ui-relative-time": {
-      "types": "./dist/relative-time/ui-relative-time.d.ts",
-      "import": "./dist/relative-time/ui-relative-time.js"
-    },
-    "./format-date/ui-format-date": {
-      "types": "./dist/format-date/ui-format-date.d.ts",
-      "import": "./dist/format-date/ui-format-date.js"
-    },
-    "./format-number/ui-format-number": {
-      "types": "./dist/format-number/ui-format-number.d.ts",
-      "import": "./dist/format-number/ui-format-number.js"
-    },
-    "./visually-hidden/ui-visually-hidden": {
-      "types": "./dist/visually-hidden/ui-visually-hidden.d.ts",
-      "import": "./dist/visually-hidden/ui-visually-hidden.js"
-    },
-    "./ui-range-slider/ui-range-slider": {
-      "types": "./dist/ui-range-slider/ui-range-slider.d.ts",
-      "import": "./dist/ui-range-slider/ui-range-slider.js"
+    "./button/flint-button": {
+      "types": "./dist/button/flint-button.d.ts",
+      "import": "./dist/button/flint-button.js"
+    },
+    "./button/flint-button-group": {
+      "types": "./dist/button/flint-button-group.d.ts",
+      "import": "./dist/button/flint-button-group.js"
+    },
+    "./card/flint-card": {
+      "types": "./dist/card/flint-card.d.ts",
+      "import": "./dist/card/flint-card.js"
+    },
+    "./card/flint-card-header": {
+      "types": "./dist/card/flint-card-header.d.ts",
+      "import": "./dist/card/flint-card-header.js"
+    },
+    "./card/flint-card-content": {
+      "types": "./dist/card/flint-card-content.d.ts",
+      "import": "./dist/card/flint-card-content.js"
+    },
+    "./card/flint-card-media": {
+      "types": "./dist/card/flint-card-media.d.ts",
+      "import": "./dist/card/flint-card-media.js"
+    },
+    "./card/flint-card-actions": {
+      "types": "./dist/card/flint-card-actions.d.ts",
+      "import": "./dist/card/flint-card-actions.js"
+    },
+    "./card/flint-card-action-area": {
+      "types": "./dist/card/flint-card-action-area.d.ts",
+      "import": "./dist/card/flint-card-action-area.js"
+    },
+    "./paper/flint-paper": {
+      "types": "./dist/paper/flint-paper.d.ts",
+      "import": "./dist/paper/flint-paper.js"
+    },
+    "./input/flint-input": {
+      "types": "./dist/input/flint-input.d.ts",
+      "import": "./dist/input/flint-input.js"
+    },
+    "./select/flint-select": {
+      "types": "./dist/select/flint-select.d.ts",
+      "import": "./dist/select/flint-select.js"
+    },
+    "./fab/flint-fab": {
+      "types": "./dist/fab/flint-fab.d.ts",
+      "import": "./dist/fab/flint-fab.js"
+    },
+    "./autocomplete/flint-autocomplete": {
+      "types": "./dist/autocomplete/flint-autocomplete.d.ts",
+      "import": "./dist/autocomplete/flint-autocomplete.js"
+    },
+    "./checkbox/flint-checkbox": {
+      "types": "./dist/checkbox/flint-checkbox.d.ts",
+      "import": "./dist/checkbox/flint-checkbox.js"
+    },
+    "./radio/flint-radio": {
+      "types": "./dist/radio/flint-radio.d.ts",
+      "import": "./dist/radio/flint-radio.js"
+    },
+    "./rating/flint-rating": {
+      "types": "./dist/rating/flint-rating.d.ts",
+      "import": "./dist/rating/flint-rating.js"
+    },
+    "./switch/flint-switch": {
+      "types": "./dist/switch/flint-switch.d.ts",
+      "import": "./dist/switch/flint-switch.js"
+    },
+    "./textarea/flint-textarea": {
+      "types": "./dist/textarea/flint-textarea.d.ts",
+      "import": "./dist/textarea/flint-textarea.js"
+    },
+    "./transfer-list/flint-transfer-list": {
+      "types": "./dist/transfer-list/flint-transfer-list.d.ts",
+      "import": "./dist/transfer-list/flint-transfer-list.js"
+    },
+    "./badge/flint-badge": {
+      "types": "./dist/badge/flint-badge.d.ts",
+      "import": "./dist/badge/flint-badge.js"
+    },
+    "./alert/flint-alert": {
+      "types": "./dist/alert/flint-alert.d.ts",
+      "import": "./dist/alert/flint-alert.js"
+    },
+    "./skeleton/flint-skeleton": {
+      "types": "./dist/skeleton/flint-skeleton.d.ts",
+      "import": "./dist/skeleton/flint-skeleton.js"
+    },
+    "./snackbar/flint-snackbar": {
+      "types": "./dist/snackbar/flint-snackbar.d.ts",
+      "import": "./dist/snackbar/flint-snackbar.js"
+    },
+    "./divider/flint-divider": {
+      "types": "./dist/divider/flint-divider.d.ts",
+      "import": "./dist/divider/flint-divider.js"
+    },
+    "./slider/flint-slider": {
+      "types": "./dist/slider/flint-slider.d.ts",
+      "import": "./dist/slider/flint-slider.js"
+    },
+    "./text-field/flint-text-field": {
+      "types": "./dist/text-field/flint-text-field.d.ts",
+      "import": "./dist/text-field/flint-text-field.js"
+    },
+    "./button/flint-toggle-button": {
+      "types": "./dist/button/flint-toggle-button.d.ts",
+      "import": "./dist/button/flint-toggle-button.js"
+    },
+    "./button/flint-toggle-button-group": {
+      "types": "./dist/button/flint-toggle-button-group.d.ts",
+      "import": "./dist/button/flint-toggle-button-group.js"
+    },
+    "./avatar/flint-avatar": {
+      "types": "./dist/avatar/flint-avatar.d.ts",
+      "import": "./dist/avatar/flint-avatar.js"
+    },
+    "./chip/flint-chip": {
+      "types": "./dist/chip/flint-chip.d.ts",
+      "import": "./dist/chip/flint-chip.js"
+    },
+    "./list/flint-list": {
+      "types": "./dist/list/flint-list.d.ts",
+      "import": "./dist/list/flint-list.js"
+    },
+    "./table/flint-table": {
+      "types": "./dist/table/flint-table.d.ts",
+      "import": "./dist/table/flint-table.js"
+    },
+    "./table/flint-table-sort-label": {
+      "types": "./dist/table/flint-table-sort-label.d.ts",
+      "import": "./dist/table/flint-table-sort-label.js"
+    },
+    "./table/flint-table-pagination": {
+      "types": "./dist/table/flint-table-pagination.d.ts",
+      "import": "./dist/table/flint-table-pagination.js"
+    },
+    "./tooltip/flint-tooltip": {
+      "types": "./dist/tooltip/flint-tooltip.d.ts",
+      "import": "./dist/tooltip/flint-tooltip.js"
+    },
+    "./backdrop/flint-backdrop": {
+      "types": "./dist/backdrop/flint-backdrop.d.ts",
+      "import": "./dist/backdrop/flint-backdrop.js"
+    },
+    "./dialog/flint-dialog": {
+      "types": "./dist/dialog/flint-dialog.d.ts",
+      "import": "./dist/dialog/flint-dialog.js"
+    },
+    "./progress/flint-circular-progress": {
+      "types": "./dist/progress/flint-circular-progress.d.ts",
+      "import": "./dist/progress/flint-circular-progress.js"
+    },
+    "./progress/flint-linear-progress": {
+      "types": "./dist/progress/flint-linear-progress.d.ts",
+      "import": "./dist/progress/flint-linear-progress.js"
+    },
+    "./accordion/flint-accordion": {
+      "types": "./dist/accordion/flint-accordion.d.ts",
+      "import": "./dist/accordion/flint-accordion.js"
+    },
+    "./app-bar/flint-app-bar": {
+      "types": "./dist/app-bar/flint-app-bar.d.ts",
+      "import": "./dist/app-bar/flint-app-bar.js"
+    },
+    "./bottom-navigation/flint-bottom-navigation": {
+      "types": "./dist/bottom-navigation/flint-bottom-navigation.d.ts",
+      "import": "./dist/bottom-navigation/flint-bottom-navigation.js"
+    },
+    "./bottom-navigation/flint-bottom-navigation-action": {
+      "types": "./dist/bottom-navigation/flint-bottom-navigation-action.d.ts",
+      "import": "./dist/bottom-navigation/flint-bottom-navigation-action.js"
+    },
+    "./breadcrumbs/flint-breadcrumbs": {
+      "types": "./dist/breadcrumbs/flint-breadcrumbs.d.ts",
+      "import": "./dist/breadcrumbs/flint-breadcrumbs.js"
+    },
+    "./drawer/flint-drawer": {
+      "types": "./dist/drawer/flint-drawer.d.ts",
+      "import": "./dist/drawer/flint-drawer.js"
+    },
+    "./link/flint-link": {
+      "types": "./dist/link/flint-link.d.ts",
+      "import": "./dist/link/flint-link.js"
+    },
+    "./typography/flint-typography": {
+      "types": "./dist/typography/flint-typography.d.ts",
+      "import": "./dist/typography/flint-typography.js"
+    },
+    "./menu/flint-menu": {
+      "types": "./dist/menu/flint-menu.d.ts",
+      "import": "./dist/menu/flint-menu.js"
+    },
+    "./pagination/flint-pagination": {
+      "types": "./dist/pagination/flint-pagination.d.ts",
+      "import": "./dist/pagination/flint-pagination.js"
+    },
+    "./speed-dial/flint-speed-dial": {
+      "types": "./dist/speed-dial/flint-speed-dial.d.ts",
+      "import": "./dist/speed-dial/flint-speed-dial.js"
+    },
+    "./stepper/flint-stepper": {
+      "types": "./dist/stepper/flint-stepper.d.ts",
+      "import": "./dist/stepper/flint-stepper.js"
+    },
+    "./tabs/flint-tabs": {
+      "types": "./dist/tabs/flint-tabs.d.ts",
+      "import": "./dist/tabs/flint-tabs.js"
+    },
+    "./box/flint-box": {
+      "types": "./dist/box/flint-box.d.ts",
+      "import": "./dist/box/flint-box.js"
+    },
+    "./container/flint-container": {
+      "types": "./dist/container/flint-container.d.ts",
+      "import": "./dist/container/flint-container.js"
+    },
+    "./grid/flint-grid": {
+      "types": "./dist/grid/flint-grid.d.ts",
+      "import": "./dist/grid/flint-grid.js"
+    },
+    "./stack/flint-stack": {
+      "types": "./dist/stack/flint-stack.d.ts",
+      "import": "./dist/stack/flint-stack.js"
+    },
+    "./image-list/flint-image-list": {
+      "types": "./dist/image-list/flint-image-list.d.ts",
+      "import": "./dist/image-list/flint-image-list.js"
+    },
+    "./image-list/flint-image-list-item": {
+      "types": "./dist/image-list/flint-image-list-item.d.ts",
+      "import": "./dist/image-list/flint-image-list-item.js"
+    },
+    "./image-list/flint-image-list-item-bar": {
+      "types": "./dist/image-list/flint-image-list-item-bar.d.ts",
+      "import": "./dist/image-list/flint-image-list-item-bar.js"
+    },
+    "./date-picker/flint-date-picker": {
+      "types": "./dist/date-picker/flint-date-picker.d.ts",
+      "import": "./dist/date-picker/flint-date-picker.js"
+    },
+    "./date-field/flint-date-field": {
+      "types": "./dist/date-field/flint-date-field.d.ts",
+      "import": "./dist/date-field/flint-date-field.js"
+    },
+    "./time-picker/flint-time-picker": {
+      "types": "./dist/time-picker/flint-time-picker.d.ts",
+      "import": "./dist/time-picker/flint-time-picker.js"
+    },
+    "./tree-view/flint-tree-item": {
+      "types": "./dist/tree-view/flint-tree-item.d.ts",
+      "import": "./dist/tree-view/flint-tree-item.js"
+    },
+    "./tree-view/flint-simple-tree-view": {
+      "types": "./dist/tree-view/flint-simple-tree-view.d.ts",
+      "import": "./dist/tree-view/flint-simple-tree-view.js"
+    },
+    "./tree-view/flint-rich-tree-view": {
+      "types": "./dist/tree-view/flint-rich-tree-view.d.ts",
+      "import": "./dist/tree-view/flint-rich-tree-view.js"
+    },
+    "./command/flint-command": {
+      "types": "./dist/command/flint-command.d.ts",
+      "import": "./dist/command/flint-command.js"
+    },
+    "./carousel/flint-carousel": {
+      "types": "./dist/carousel/flint-carousel.d.ts",
+      "import": "./dist/carousel/flint-carousel.js"
+    },
+    "./empty/flint-empty": {
+      "types": "./dist/empty/flint-empty.d.ts",
+      "import": "./dist/empty/flint-empty.js"
+    },
+    "./collapsible/flint-collapsible": {
+      "types": "./dist/collapsible/flint-collapsible.d.ts",
+      "import": "./dist/collapsible/flint-collapsible.js"
+    },
+    "./hover-card/flint-hover-card": {
+      "types": "./dist/hover-card/flint-hover-card.d.ts",
+      "import": "./dist/hover-card/flint-hover-card.js"
+    },
+    "./input-otp/flint-input-otp": {
+      "types": "./dist/input-otp/flint-input-otp.d.ts",
+      "import": "./dist/input-otp/flint-input-otp.js"
+    },
+    "./item/flint-item": {
+      "types": "./dist/item/flint-item.d.ts",
+      "import": "./dist/item/flint-item.js"
+    },
+    "./kbd/flint-kbd": {
+      "types": "./dist/kbd/flint-kbd.d.ts",
+      "import": "./dist/kbd/flint-kbd.js"
+    },
+    "./menubar/flint-menubar": {
+      "types": "./dist/menubar/flint-menubar.d.ts",
+      "import": "./dist/menubar/flint-menubar.js"
+    },
+    "./scroll-area/flint-scroll-area": {
+      "types": "./dist/scroll-area/flint-scroll-area.d.ts",
+      "import": "./dist/scroll-area/flint-scroll-area.js"
+    },
+    "./navigation-menu/flint-navigation-menu": {
+      "types": "./dist/navigation-menu/flint-navigation-menu.d.ts",
+      "import": "./dist/navigation-menu/flint-navigation-menu.js"
+    },
+    "./navigation-menu/flint-navigation-menu-list": {
+      "types": "./dist/navigation-menu/flint-navigation-menu-list.d.ts",
+      "import": "./dist/navigation-menu/flint-navigation-menu-list.js"
+    },
+    "./navigation-menu/flint-navigation-menu-item": {
+      "types": "./dist/navigation-menu/flint-navigation-menu-item.d.ts",
+      "import": "./dist/navigation-menu/flint-navigation-menu-item.js"
+    },
+    "./navigation-menu/flint-navigation-menu-trigger": {
+      "types": "./dist/navigation-menu/flint-navigation-menu-trigger.d.ts",
+      "import": "./dist/navigation-menu/flint-navigation-menu-trigger.js"
+    },
+    "./navigation-menu/flint-navigation-menu-content": {
+      "types": "./dist/navigation-menu/flint-navigation-menu-content.d.ts",
+      "import": "./dist/navigation-menu/flint-navigation-menu-content.js"
+    },
+    "./navigation-menu/flint-navigation-menu-link": {
+      "types": "./dist/navigation-menu/flint-navigation-menu-link.d.ts",
+      "import": "./dist/navigation-menu/flint-navigation-menu-link.js"
+    },
+    "./copy-button/flint-copy-button": {
+      "types": "./dist/copy-button/flint-copy-button.d.ts",
+      "import": "./dist/copy-button/flint-copy-button.js"
+    },
+    "./sonner/flint-sonner": {
+      "types": "./dist/sonner/flint-sonner.d.ts",
+      "import": "./dist/sonner/flint-sonner.js"
+    },
+    "./toggle/flint-toggle": {
+      "types": "./dist/toggle/flint-toggle.d.ts",
+      "import": "./dist/toggle/flint-toggle.js"
+    },
+    "./resizable/flint-resizable": {
+      "types": "./dist/resizable/flint-resizable.d.ts",
+      "import": "./dist/resizable/flint-resizable.js"
+    },
+    "./image-comparer/flint-image-comparer": {
+      "types": "./dist/image-comparer/flint-image-comparer.d.ts",
+      "import": "./dist/image-comparer/flint-image-comparer.js"
+    },
+    "./split-panel/flint-split-panel": {
+      "types": "./dist/split-panel/flint-split-panel.d.ts",
+      "import": "./dist/split-panel/flint-split-panel.js"
+    },
+    "./relative-time/flint-relative-time": {
+      "types": "./dist/relative-time/flint-relative-time.d.ts",
+      "import": "./dist/relative-time/flint-relative-time.js"
+    },
+    "./format-date/flint-format-date": {
+      "types": "./dist/format-date/flint-format-date.d.ts",
+      "import": "./dist/format-date/flint-format-date.js"
+    },
+    "./format-number/flint-format-number": {
+      "types": "./dist/format-number/flint-format-number.d.ts",
+      "import": "./dist/format-number/flint-format-number.js"
+    },
+    "./visually-hidden/flint-visually-hidden": {
+      "types": "./dist/visually-hidden/flint-visually-hidden.d.ts",
+      "import": "./dist/visually-hidden/flint-visually-hidden.js"
+    },
+    "./flint-range-slider/flint-range-slider": {
+      "types": "./dist/flint-range-slider/flint-range-slider.d.ts",
+      "import": "./dist/flint-range-slider/flint-range-slider.js"
     },
     "./*": {
       "types": "./dist/*.d.ts",

@@ -1,26 +1,26 @@
 # Fab
 
-<Demo label="Sizes" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap;align-items:center&quot;><ui-fab size=&quot;small&quot;>  <svg slot=&quot;icon&quot; width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;><line x1=&quot;12&quot; y1=&quot;5&quot; x2=&quot;12&quot; y2=&quot;19&quot;></line><line x1=&quot;5&quot; y1=&quot;12&quot; x2=&quot;19&quot; y2=&quot;12&quot;></line></svg></ui-fab><ui-fab>  <svg slot=&quot;icon&quot; width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;><line x1=&quot;12&quot; y1=&quot;5&quot; x2=&quot;12&quot; y2=&quot;19&quot;></line><line x1=&quot;5&quot; y1=&quot;12&quot; x2=&quot;19&quot; y2=&quot;12&quot;></line></svg></ui-fab><ui-fab size=&quot;large&quot;>  <svg slot=&quot;icon&quot; width=&quot;28&quot; height=&quot;28&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;><line x1=&quot;12&quot; y1=&quot;5&quot; x2=&quot;12&quot; y2=&quot;19&quot;></line><line x1=&quot;5&quot; y1=&quot;12&quot; x2=&quot;19&quot; y2=&quot;12&quot;></line></svg></ui-fab></div>" />
+<Demo label="Sizes" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap;align-items:center&quot;><flint-fab size=&quot;small&quot;>  <svg slot=&quot;icon&quot; width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;><line x1=&quot;12&quot; y1=&quot;5&quot; x2=&quot;12&quot; y2=&quot;19&quot;></line><line x1=&quot;5&quot; y1=&quot;12&quot; x2=&quot;19&quot; y2=&quot;12&quot;></line></svg></flint-fab><flint-fab>  <svg slot=&quot;icon&quot; width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;><line x1=&quot;12&quot; y1=&quot;5&quot; x2=&quot;12&quot; y2=&quot;19&quot;></line><line x1=&quot;5&quot; y1=&quot;12&quot; x2=&quot;19&quot; y2=&quot;12&quot;></line></svg></flint-fab><flint-fab size=&quot;large&quot;>  <svg slot=&quot;icon&quot; width=&quot;28&quot; height=&quot;28&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;><line x1=&quot;12&quot; y1=&quot;5&quot; x2=&quot;12&quot; y2=&quot;19&quot;></line><line x1=&quot;5&quot; y1=&quot;12&quot; x2=&quot;19&quot; y2=&quot;12&quot;></line></svg></flint-fab></div>" />
 
-<Demo label="Extended" html="<ui-fab extended>  <svg slot=&quot;icon&quot; width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;><line x1=&quot;12&quot; y1=&quot;5&quot; x2=&quot;12&quot; y2=&quot;19&quot;></line><line x1=&quot;5&quot; y1=&quot;12&quot; x2=&quot;19&quot; y2=&quot;12&quot;></line></svg>  Add Item</ui-fab>" />
+<Demo label="Extended" html="<flint-fab extended>  <svg slot=&quot;icon&quot; width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;><line x1=&quot;12&quot; y1=&quot;5&quot; x2=&quot;12&quot; y2=&quot;19&quot;></line><line x1=&quot;5&quot; y1=&quot;12&quot; x2=&quot;19&quot; y2=&quot;12&quot;></line></svg>  Add Item</flint-fab>" />
 
 A floating action button (FAB) represents the primary action of a screen.
 
-- **Tag**: `<ui-fab>`
-- **Class**: `UiFab`
+- **Tag**: `<flint-fab>`
+- **Class**: `FlintFab`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiFab } from 'storybook-lit';
+import { FlintFab } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-fab></ui-fab>
+<flint-fab></flint-fab>
 ```
 
 ### Properties
@@ -44,15 +44,15 @@ import { UiFab } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-fab-size` | — |
-| `--ui-fab-radius` | — |
-| `--ui-fab-background` | — |
-| `--ui-fab-color` | — |
-| `--ui-fab-shadow` | — |
-| `--ui-primary-color` | — |
-| `--ui-text-color-on-primary` | — |
-| `--ui-shadow-lg` | — |
-| `--ui-shadow-xl` | — |
-| `--ui-font-family` | — |
+| `--flint-fab-size` | — |
+| `--flint-fab-radius` | — |
+| `--flint-fab-background` | — |
+| `--flint-fab-color` | — |
+| `--flint-fab-shadow` | — |
+| `--flint-primary-color` | — |
+| `--flint-text-color-on-primary` | — |
+| `--flint-shadow-lg` | — |
+| `--flint-shadow-xl` | — |
+| `--flint-font-family` | — |
 
 ---

@@ -1,22 +1,22 @@
 # Image Comparer
 
-<Demo html="<ui-image-comparer position=&quot;50&quot; style=&quot;width:100%;max-width:500px&quot;>  <div slot=&quot;before&quot; style=&quot;width:100%;height:250px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;color:white;font-weight:600;font-size:18px&quot;>Before</div>  <div slot=&quot;after&quot; style=&quot;width:100%;height:250px;background:linear-gradient(135deg,#f093fb,#f5576c);display:flex;align-items:center;justify-content:center;color:white;font-weight:600;font-size:18px&quot;>After</div></ui-image-comparer>" />
+<Demo html="<flint-image-comparer position=&quot;50&quot; style=&quot;width:100%;max-width:500px&quot;>  <div slot=&quot;before&quot; style=&quot;width:100%;height:250px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;color:white;font-weight:600;font-size:18px&quot;>Before</div>  <div slot=&quot;after&quot; style=&quot;width:100%;height:250px;background:linear-gradient(135deg,#f093fb,#f5576c);display:flex;align-items:center;justify-content:center;color:white;font-weight:600;font-size:18px&quot;>After</div></flint-image-comparer>" />
 
-- **Tag**: `<ui-image-comparer>`
-- **Class**: `UiImageComparer`
+- **Tag**: `<flint-image-comparer>`
+- **Class**: `FlintImageComparer`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiImageComparer } from 'storybook-lit';
+import { FlintImageComparer } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-image-comparer></ui-image-comparer>
+<flint-image-comparer></flint-image-comparer>
 ```
 
 ### Properties
@@ -30,7 +30,7 @@ import { UiImageComparer } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-image-comparer-change` | `{ position: clamped }` |  |
+| `flint-image-comparer-change` | `{ position: clamped }` |  |
 
 ### Slots
 
@@ -44,17 +44,17 @@ import { UiImageComparer } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-image-comparer-border-radius` | `var(--ui-border-radius-md` |
-| `--ui-image-comparer-aspect-ratio` | `16 / 9` |
-| `--ui-image-comparer-divider-width` | `2px` |
-| `--ui-image-comparer-divider-color` | `var(--ui-color-white` |
-| `--ui-image-comparer-handle-size` | `40px` |
-| `--ui-image-comparer-handle-bg` | `var(--ui-color-white` |
-| `--ui-image-comparer-handle-border-color` | `rgba(0, 0, 0, 0.15` |
-| `--ui-image-comparer-handle-icon-color` | `var(--ui-text-color-muted` |
-| `--ui-border-radius-full` | — |
-| `--ui-shadow-md` | — |
-| `--ui-primary-focus-ring` | — |
-| `--ui-shadow-lg` | — |
+| `--flint-image-comparer-border-radius` | `var(--flint-border-radius-md` |
+| `--flint-image-comparer-aspect-ratio` | `16 / 9` |
+| `--flint-image-comparer-divider-width` | `2px` |
+| `--flint-image-comparer-divider-color` | `var(--flint-color-white` |
+| `--flint-image-comparer-handle-size` | `40px` |
+| `--flint-image-comparer-handle-bg` | `var(--flint-color-white` |
+| `--flint-image-comparer-handle-border-color` | `rgba(0, 0, 0, 0.15` |
+| `--flint-image-comparer-handle-icon-color` | `var(--flint-text-color-muted` |
+| `--flint-border-radius-full` | — |
+| `--flint-shadow-md` | — |
+| `--flint-primary-focus-ring` | — |
+| `--flint-shadow-lg` | — |
 
 ---

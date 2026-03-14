@@ -1,28 +1,28 @@
 # Stepper
 
-<Demo label="Step 2 of 3" html="<div style=&quot;width:100%;max-width:500px&quot;><ui-stepper active-step=&quot;1&quot;>  <ui-step completed>    <ui-step-label>Account</ui-step-label>  </ui-step>  <ui-step>    <ui-step-label>Details</ui-step-label>  </ui-step>  <ui-step>    <ui-step-label>Review</ui-step-label>  </ui-step></ui-stepper></div>" />
+<Demo label="Step 2 of 3" html="<div style=&quot;width:100%;max-width:500px&quot;><flint-stepper active-step=&quot;1&quot;>  <flint-step completed>    <flint-step-label>Account</flint-step-label>  </flint-step>  <flint-step>    <flint-step-label>Details</flint-step-label>  </flint-step>  <flint-step>    <flint-step-label>Review</flint-step-label>  </flint-step></flint-stepper></div>" />
 
-<Demo label="All Complete" html="<div style=&quot;width:100%;max-width:500px&quot;><ui-stepper active-step=&quot;3&quot;>  <ui-step completed>    <ui-step-label>Account</ui-step-label>  </ui-step>  <ui-step completed>    <ui-step-label>Details</ui-step-label>  </ui-step>  <ui-step completed>    <ui-step-label>Review</ui-step-label>  </ui-step></ui-stepper></div>" />
+<Demo label="All Complete" html="<div style=&quot;width:100%;max-width:500px&quot;><flint-stepper active-step=&quot;3&quot;>  <flint-step completed>    <flint-step-label>Account</flint-step-label>  </flint-step>  <flint-step completed>    <flint-step-label>Details</flint-step-label>  </flint-step>  <flint-step completed>    <flint-step-label>Review</flint-step-label>  </flint-step></flint-stepper></div>" />
 
-<Demo label="Vertical" html="<div style=&quot;width:100%;max-width:400px&quot;><ui-stepper orientation=&quot;vertical&quot; active-step=&quot;1&quot;>  <ui-step completed>    <ui-step-label>Create account</ui-step-label>    <p style=&quot;margin:0;color:#6b7280;font-size:14px&quot;>Account created successfully.</p>  </ui-step>  <ui-step>    <ui-step-label>Personal details</ui-step-label>    <p style=&quot;margin:0;color:#6b7280;font-size:14px&quot;>Fill in your name, email, and phone number.</p>  </ui-step>  <ui-step>    <ui-step-label>Review & submit</ui-step-label>  </ui-step></ui-stepper></div>" />
+<Demo label="Vertical" html="<div style=&quot;width:100%;max-width:400px&quot;><flint-stepper orientation=&quot;vertical&quot; active-step=&quot;1&quot;>  <flint-step completed>    <flint-step-label>Create account</flint-step-label>    <p style=&quot;margin:0;color:#6b7280;font-size:14px&quot;>Account created successfully.</p>  </flint-step>  <flint-step>    <flint-step-label>Personal details</flint-step-label>    <p style=&quot;margin:0;color:#6b7280;font-size:14px&quot;>Fill in your name, email, and phone number.</p>  </flint-step>  <flint-step>    <flint-step-label>Review & submit</flint-step-label>  </flint-step></flint-stepper></div>" />
 
-## `<ui-step-connector>`
+## `<flint-step-connector>`
 
-- **Tag**: `<ui-step-connector>`
-- **Class**: `UiStepConnector`
+- **Tag**: `<flint-step-connector>`
+- **Class**: `FlintStepConnector`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiStepConnector } from 'storybook-lit';
+import { FlintStepConnector } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-step-connector></ui-step-connector>
+<flint-step-connector></flint-step-connector>
 ```
 
 ### Properties
@@ -36,36 +36,36 @@ import { UiStepConnector } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-surface-1` | — |
-| `--ui-font-family` | — |
-| `--ui-border-color` | — |
-| `--ui-text-color-muted` | — |
-| `--ui-input-border-color` | — |
-| `--ui-primary-color` | — |
-| `--ui-text-color` | — |
-| `--ui-text-color-on-primary` | — |
-| `--ui-error-color` | — |
-| `--ui-primary-focus-ring` | — |
+| `--flint-surface-1` | — |
+| `--flint-font-family` | — |
+| `--flint-border-color` | — |
+| `--flint-text-color-muted` | — |
+| `--flint-input-border-color` | — |
+| `--flint-primary-color` | — |
+| `--flint-text-color` | — |
+| `--flint-text-color-on-primary` | — |
+| `--flint-error-color` | — |
+| `--flint-primary-focus-ring` | — |
 
 ---
 
-## `<ui-step-label>`
+## `<flint-step-label>`
 
-- **Tag**: `<ui-step-label>`
-- **Class**: `UiStepLabel`
+- **Tag**: `<flint-step-label>`
+- **Class**: `FlintStepLabel`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiStepLabel } from 'storybook-lit';
+import { FlintStepLabel } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-step-label></ui-step-label>
+<flint-step-label></flint-step-label>
 ```
 
 ### Properties
@@ -85,23 +85,23 @@ import { UiStepLabel } from 'storybook-lit';
 
 ---
 
-## `<ui-step-content>`
+## `<flint-step-content>`
 
-- **Tag**: `<ui-step-content>`
-- **Class**: `UiStepContent`
+- **Tag**: `<flint-step-content>`
+- **Class**: `FlintStepContent`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiStepContent } from 'storybook-lit';
+import { FlintStepContent } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-step-content></ui-step-content>
+<flint-step-content></flint-step-content>
 ```
 
 ### Properties
@@ -118,23 +118,23 @@ import { UiStepContent } from 'storybook-lit';
 
 ---
 
-## `<ui-step>`
+## `<flint-step>`
 
-- **Tag**: `<ui-step>`
-- **Class**: `UiStep`
+- **Tag**: `<flint-step>`
+- **Class**: `FlintStep`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiStep } from 'storybook-lit';
+import { FlintStep } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-step></ui-step>
+<flint-step></flint-step>
 ```
 
 ### Properties
@@ -158,7 +158,7 @@ import { UiStep } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-step-click` | `{ index: this.stepIndex }` |  |
+| `flint-step-click` | `{ index: this.stepIndex }` |  |
 
 ### Slots
 
@@ -172,28 +172,28 @@ import { UiStep } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-stepper-connector-color` | — |
-| `--ui-stepper-icon-size` | `32px` |
+| `--flint-stepper-connector-color` | — |
+| `--flint-stepper-icon-size` | `32px` |
 
 ---
 
-## `<ui-stepper>`
+## `<flint-stepper>`
 
-- **Tag**: `<ui-stepper>`
-- **Class**: `UiStepper`
+- **Tag**: `<flint-stepper>`
+- **Class**: `FlintStepper`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiStepper } from 'storybook-lit';
+import { FlintStepper } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-stepper></ui-stepper>
+<flint-stepper></flint-stepper>
 ```
 
 ### Properties
@@ -210,7 +210,7 @@ import { UiStepper } from 'storybook-lit';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `ui-step-change` | `{ step: e.detail.index }` |  |
+| `flint-step-change` | `{ step: e.detail.index }` |  |
 
 ### Slots
 
@@ -222,28 +222,28 @@ import { UiStepper } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-stepper-connector-color` | — |
-| `--ui-stepper-icon-size` | `32px` |
+| `--flint-stepper-connector-color` | — |
+| `--flint-stepper-icon-size` | `32px` |
 
 ---
 
-## `<ui-mobile-stepper>`
+## `<flint-mobile-stepper>`
 
-- **Tag**: `<ui-mobile-stepper>`
-- **Class**: `UiMobileStepper`
+- **Tag**: `<flint-mobile-stepper>`
+- **Class**: `FlintMobileStepper`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiMobileStepper } from 'storybook-lit';
+import { FlintMobileStepper } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-mobile-stepper></ui-mobile-stepper>
+<flint-mobile-stepper></flint-mobile-stepper>
 ```
 
 ### Properties

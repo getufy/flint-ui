@@ -4,11 +4,11 @@
    Everything else cascades from them automatically.
    ═══════════════════════════════════════════════════════════════
 
-   --ui-primary-color:        #your-brand;
-   --ui-primary-color-hover:  #your-brand-dark;
-   --ui-primary-color-active: #your-brand-darker;
-   --ui-border-radius-md:     0.375rem;   (try 0 for sharp, 0.5rem for rounder)
-   --ui-font-family:          'Your Font', sans-serif;
+   --flint-primary-color:        #your-brand;
+   --flint-primary-color-hover:  #your-brand-dark;
+   --flint-primary-color-active: #your-brand-darker;
+   --flint-border-radius-md:     0.375rem;   (try 0 for sharp, 0.5rem for rounder)
+   --flint-font-family:          'Your Font', sans-serif;
 
    ═══════════════════════════════════════════════════════════════ */
 
@@ -20,69 +20,69 @@
    ═══════════════════════════════════════════════════════════════ */
 :root {
     /* Blue */
-    --ui-color-blue-50:  #eff6ff;
-    --ui-color-blue-100: #dbeafe;
-    --ui-color-blue-200: #bfdbfe;
-    --ui-color-blue-400: #60a5fa;
-    --ui-color-blue-500: #3b82f6;
-    --ui-color-blue-600: #2563eb;
-    --ui-color-blue-700: #1d4ed8;
-    --ui-color-blue-800: #1e40af;
+    --flint-color-blue-50:  #eff6ff;
+    --flint-color-blue-100: #dbeafe;
+    --flint-color-blue-200: #bfdbfe;
+    --flint-color-blue-400: #60a5fa;
+    --flint-color-blue-500: #3b82f6;
+    --flint-color-blue-600: #2563eb;
+    --flint-color-blue-700: #1d4ed8;
+    --flint-color-blue-800: #1e40af;
 
     /* Zinc — used for neutral surfaces and dark mode */
-    --ui-color-zinc-50:  #fafafa;
-    --ui-color-zinc-100: #f4f4f5;
-    --ui-color-zinc-200: #e4e4e7;
-    --ui-color-zinc-300: #d4d4d8;
-    --ui-color-zinc-400: #a1a1aa;
-    --ui-color-zinc-500: #71717a;
-    --ui-color-zinc-600: #52525b;
-    --ui-color-zinc-700: #3f3f46;
-    --ui-color-zinc-800: #27272a;
-    --ui-color-zinc-900: #18181b;
-    --ui-color-zinc-950: #09090b;
+    --flint-color-zinc-50:  #fafafa;
+    --flint-color-zinc-100: #f4f4f5;
+    --flint-color-zinc-200: #e4e4e7;
+    --flint-color-zinc-300: #d4d4d8;
+    --flint-color-zinc-400: #a1a1aa;
+    --flint-color-zinc-500: #71717a;
+    --flint-color-zinc-600: #52525b;
+    --flint-color-zinc-700: #3f3f46;
+    --flint-color-zinc-800: #27272a;
+    --flint-color-zinc-900: #18181b;
+    --flint-color-zinc-950: #09090b;
 
     /* Slate — used for primary text (cooler, deeper than zinc) */
-    --ui-color-slate-50:  #f8fafc;
-    --ui-color-slate-900: #0f172a;
-    --ui-color-slate-950: #020617;
+    --flint-color-slate-50:  #f8fafc;
+    --flint-color-slate-900: #0f172a;
+    --flint-color-slate-950: #020617;
 
     /* Red */
-    --ui-color-red-50:  #fef2f2;
-    --ui-color-red-100: #fee2e2;
-    --ui-color-red-400: #f87171;
-    --ui-color-red-500: #ef4444;
-    --ui-color-red-600: #dc2626;
-    --ui-color-red-700: #b91c1c;
-    --ui-color-red-800: #991b1b;
+    --flint-color-red-50:  #fef2f2;
+    --flint-color-red-100: #fee2e2;
+    --flint-color-red-400: #f87171;
+    --flint-color-red-500: #ef4444;
+    --flint-color-red-600: #dc2626;
+    --flint-color-red-700: #b91c1c;
+    --flint-color-red-800: #991b1b;
 
     /* Emerald */
-    --ui-color-emerald-50:  #f0fdf4;
-    --ui-color-emerald-100: #dcfce7;
-    --ui-color-emerald-400: #34d399;
-    --ui-color-emerald-500: #10b981;
-    --ui-color-emerald-700: #15803d;
-    --ui-color-emerald-800: #166534;
+    --flint-color-emerald-50:  #f0fdf4;
+    --flint-color-emerald-100: #dcfce7;
+    --flint-color-emerald-400: #34d399;
+    --flint-color-emerald-500: #10b981;
+    --flint-color-emerald-700: #15803d;
+    --flint-color-emerald-800: #166534;
 
     /* Amber */
-    --ui-color-amber-50:  #fffbeb;
-    --ui-color-amber-100: #fef3c7;
-    --ui-color-amber-400: #fbbf24;
-    --ui-color-amber-500: #f59e0b;
-    --ui-color-amber-800: #92400e;
+    --flint-color-amber-50:  #fffbeb;
+    --flint-color-amber-100: #fef3c7;
+    --flint-color-amber-400: #fbbf24;
+    --flint-color-amber-500: #f59e0b;
+    --flint-color-amber-800: #92400e;
 
     /* Violet — accent scale */
-    --ui-color-violet-100: #ede9fe;
-    --ui-color-violet-200: #ddd6fe;
-    --ui-color-violet-400: #a78bfa;
-    --ui-color-violet-500: #8b5cf6;
-    --ui-color-violet-600: #7c3aed;
-    --ui-color-violet-700: #6d28d9;
-    --ui-color-violet-800: #5b21b6;
+    --flint-color-violet-100: #ede9fe;
+    --flint-color-violet-200: #ddd6fe;
+    --flint-color-violet-400: #a78bfa;
+    --flint-color-violet-500: #8b5cf6;
+    --flint-color-violet-600: #7c3aed;
+    --flint-color-violet-700: #6d28d9;
+    --flint-color-violet-800: #5b21b6;
 
     /* White / Black */
-    --ui-color-white: #ffffff;
-    --ui-color-black: #000000;
+    --flint-color-white: #ffffff;
+    --flint-color-black: #000000;
 }
 
 
@@ -92,552 +92,552 @@
    ═══════════════════════════════════════════════════════════════ */
 :root {
     /* ─── Primary ──────────────────────────────────────────────── */
-    --ui-primary-color:        var(--ui-color-blue-500);
-    --ui-primary-color-hover:  var(--ui-color-blue-600);
-    --ui-primary-color-active: var(--ui-color-blue-700);
-    --ui-primary-color-light:       rgba(59, 130, 246, 0.10);
-    --ui-primary-color-light-hover: rgba(59, 130, 246, 0.18);
-    --ui-primary-focus-ring:        rgba(59, 130, 246, 0.20);
+    --flint-primary-color:        var(--flint-color-blue-500);
+    --flint-primary-color-hover:  var(--flint-color-blue-600);
+    --flint-primary-color-active: var(--flint-color-blue-700);
+    --flint-primary-color-light:       rgba(59, 130, 246, 0.10);
+    --flint-primary-color-light-hover: rgba(59, 130, 246, 0.18);
+    --flint-primary-focus-ring:        rgba(59, 130, 246, 0.20);
 
     /* ─── Accent (non-primary tint — violet by default) ────────── */
-    --ui-accent-color:        var(--ui-color-violet-600);
-    --ui-accent-color-hover:  var(--ui-color-violet-700);
-    --ui-accent-color-light:  rgba(124, 58, 237, 0.10);
-    --ui-accent-foreground:   var(--ui-color-white);
+    --flint-accent-color:        var(--flint-color-violet-600);
+    --flint-accent-color-hover:  var(--flint-color-violet-700);
+    --flint-accent-color-light:  rgba(124, 58, 237, 0.10);
+    --flint-accent-foreground:   var(--flint-color-white);
 
     /* ─── Secondary ────────────────────────────────────────────── */
-    --ui-secondary-color:        var(--ui-color-zinc-500);
-    --ui-secondary-color-hover:  var(--ui-color-zinc-600);
-    --ui-secondary-color-active: var(--ui-color-zinc-700);
+    --flint-secondary-color:        var(--flint-color-zinc-500);
+    --flint-secondary-color-hover:  var(--flint-color-zinc-600);
+    --flint-secondary-color-active: var(--flint-color-zinc-700);
 
     /* ─── Destructive / Error ──────────────────────────────────── */
-    --ui-destructive-color:        var(--ui-color-red-500);
-    --ui-destructive-color-hover:  var(--ui-color-red-600);
-    --ui-destructive-color-active: var(--ui-color-red-700);
-    --ui-error-color:              var(--ui-color-red-500);
-    --ui-error-focus-ring:         rgba(239, 68, 68, 0.20);
+    --flint-destructive-color:        var(--flint-color-red-500);
+    --flint-destructive-color-hover:  var(--flint-color-red-600);
+    --flint-destructive-color-active: var(--flint-color-red-700);
+    --flint-error-color:              var(--flint-color-red-500);
+    --flint-error-focus-ring:         rgba(239, 68, 68, 0.20);
 
     /* ─── Semantic status ──────────────────────────────────────── */
-    --ui-success-color: var(--ui-color-emerald-500);
-    --ui-warning-color: var(--ui-color-amber-500);
+    --flint-success-color: var(--flint-color-emerald-500);
+    --flint-warning-color: var(--flint-color-amber-500);
 
     /* Info */
-    --ui-info-bg:           var(--ui-color-blue-50);
-    --ui-info-border-color: var(--ui-color-blue-200);
-    --ui-info-text-color:   var(--ui-color-blue-800);
-    --ui-info-icon-color:   var(--ui-color-blue-500);
+    --flint-info-bg:           var(--flint-color-blue-50);
+    --flint-info-border-color: var(--flint-color-blue-200);
+    --flint-info-text-color:   var(--flint-color-blue-800);
+    --flint-info-icon-color:   var(--flint-color-blue-500);
 
     /* Success */
-    --ui-success-bg:           var(--ui-color-emerald-50);
-    --ui-success-border-color: var(--ui-color-emerald-100);
-    --ui-success-text-color:   var(--ui-color-emerald-800);
-    --ui-success-icon-color:   var(--ui-color-emerald-500);
+    --flint-success-bg:           var(--flint-color-emerald-50);
+    --flint-success-border-color: var(--flint-color-emerald-100);
+    --flint-success-text-color:   var(--flint-color-emerald-800);
+    --flint-success-icon-color:   var(--flint-color-emerald-500);
 
     /* Warning */
-    --ui-warning-bg:           var(--ui-color-amber-50);
-    --ui-warning-border-color: var(--ui-color-amber-100);
-    --ui-warning-text-color:   var(--ui-color-amber-800);
-    --ui-warning-icon-color:   var(--ui-color-amber-500);
+    --flint-warning-bg:           var(--flint-color-amber-50);
+    --flint-warning-border-color: var(--flint-color-amber-100);
+    --flint-warning-text-color:   var(--flint-color-amber-800);
+    --flint-warning-icon-color:   var(--flint-color-amber-500);
 
     /* Error */
-    --ui-error-bg:           var(--ui-color-red-50);
-    --ui-error-border-color: var(--ui-color-red-100);
-    --ui-error-text-color:   var(--ui-color-red-800);
-    --ui-error-icon-color:   var(--ui-color-red-500);
+    --flint-error-bg:           var(--flint-color-red-50);
+    --flint-error-border-color: var(--flint-color-red-100);
+    --flint-error-text-color:   var(--flint-color-red-800);
+    --flint-error-icon-color:   var(--flint-color-red-500);
 
     /* ─── Surfaces ─────────────────────────────────────────────── */
     /* Elevation layers: background < surface-1 < surface-2 < surface-3  */
-    --ui-background:      var(--ui-color-white);           /* page / app shell     */
-    --ui-surface-1:       var(--ui-color-white);           /* cards, panels        */
-    --ui-surface-2:       var(--ui-color-zinc-50);         /* inputs, subtle bg    */
-    --ui-surface-3:       var(--ui-color-zinc-100);        /* selected, active bg  */
-    --ui-surface-variant: var(--ui-color-slate-50);        /* tinted bg (SVG, etc) */
+    --flint-background:      var(--flint-color-white);           /* page / app shell     */
+    --flint-surface-1:       var(--flint-color-white);           /* cards, panels        */
+    --flint-surface-2:       var(--flint-color-zinc-50);         /* inputs, subtle bg    */
+    --flint-surface-3:       var(--flint-color-zinc-100);        /* selected, active bg  */
+    --flint-surface-variant: var(--flint-color-slate-50);        /* tinted bg (SVG, etc) */
 
     /* Backward-compat aliases */
-    --ui-surface-background:      var(--ui-background);
-    --ui-surface-background-flat: var(--ui-surface-2);
-    --ui-card-background:         var(--ui-surface-1);
-    --ui-card-background-flat:    var(--ui-surface-2);
-    --ui-input-bg:                var(--ui-background);
-    --ui-muted-background:        var(--ui-surface-3);
+    --flint-surface-background:      var(--flint-background);
+    --flint-surface-background-flat: var(--flint-surface-2);
+    --flint-card-background:         var(--flint-surface-1);
+    --flint-card-background-flat:    var(--flint-surface-2);
+    --flint-input-bg:                var(--flint-background);
+    --flint-muted-background:        var(--flint-surface-3);
 
     /* ─── Text ─────────────────────────────────────────────────── */
-    --ui-text-color:            var(--ui-color-slate-900);  /* primary text   */
-    --ui-text-color-muted:      var(--ui-color-zinc-500);   /* secondary text */
-    --ui-text-color-subtle:     var(--ui-color-zinc-400);   /* hints, disabled labels */
-    --ui-text-color-on-primary: var(--ui-color-white);
+    --flint-text-color:            var(--flint-color-slate-900);  /* primary text   */
+    --flint-text-color-muted:      var(--flint-color-zinc-500);   /* secondary text */
+    --flint-text-color-subtle:     var(--flint-color-zinc-400);   /* hints, disabled labels */
+    --flint-text-color-on-primary: var(--flint-color-white);
 
     /* ─── Borders ──────────────────────────────────────────────── */
-    --ui-border-color:             var(--ui-color-zinc-200);
-    --ui-input-border-color:       var(--ui-color-zinc-300);
-    --ui-input-border-hover-color: var(--ui-color-zinc-400);
-    --ui-card-border-color:        var(--ui-color-zinc-100);
+    --flint-border-color:             var(--flint-color-zinc-200);
+    --flint-input-border-color:       var(--flint-color-zinc-300);
+    --flint-input-border-hover-color: var(--flint-color-zinc-400);
+    --flint-card-border-color:        var(--flint-color-zinc-100);
 
     /* ─── Interactive overlays ─────────────────────────────────── */
-    --ui-hover-color:  rgba(0, 0, 0, 0.04);
-    --ui-active-color: rgba(0, 0, 0, 0.08);
+    --flint-hover-color:  rgba(0, 0, 0, 0.04);
+    --flint-active-color: rgba(0, 0, 0, 0.08);
 
     /* ─── Focus rings ──────────────────────────────────────────── */
-    /* see --ui-primary-focus-ring and --ui-error-focus-ring above */
+    /* see --flint-primary-focus-ring and --flint-error-focus-ring above */
 
     /* ─── Backdrop ─────────────────────────────────────────────── */
-    --ui-backdrop-color: rgba(0, 0, 0, 0.50);
+    --flint-backdrop-color: rgba(0, 0, 0, 0.50);
 
     /* ─── Component-specific ───────────────────────────────────── */
-    --ui-tab-inactive-color:    var(--ui-text-color-muted);
-    --ui-tab-active-color:      var(--ui-primary-color);
-    --ui-tab-indicator-color:   var(--ui-primary-color);
-    --ui-tab-indicator-height:  3px;
-    --ui-tab-indicator-width:   3px;
-    --ui-tab-indicator-radius:  3px;
-    --ui-tab-min-height:        48px;
-    --ui-tab-icon-min-height:   72px;
-    --ui-tab-padding-x:         16px;
-    --ui-tab-padding-y:         10px;
-    --ui-tab-font-size:         0.875rem;
-    --ui-tab-font-weight:       500;
-    --ui-tab-font-weight-active: 600;
-    --ui-tab-panel-padding:     24px;
-    --ui-tab-border-color:      var(--ui-border-color);
-    --ui-tab-scroll-btn-size:   40px;
-    --ui-tab-disabled-opacity:  0.38;
-    --ui-tab-hover-bg:          var(--ui-primary-color-light);
+    --flint-tab-inactive-color:    var(--flint-text-color-muted);
+    --flint-tab-active-color:      var(--flint-primary-color);
+    --flint-tab-indicator-color:   var(--flint-primary-color);
+    --flint-tab-indicator-height:  3px;
+    --flint-tab-indicator-width:   3px;
+    --flint-tab-indicator-radius:  3px;
+    --flint-tab-min-height:        48px;
+    --flint-tab-icon-min-height:   72px;
+    --flint-tab-padding-x:         16px;
+    --flint-tab-padding-y:         10px;
+    --flint-tab-font-size:         0.875rem;
+    --flint-tab-font-weight:       500;
+    --flint-tab-font-weight-active: 600;
+    --flint-tab-panel-padding:     24px;
+    --flint-tab-border-color:      var(--flint-border-color);
+    --flint-tab-scroll-btn-size:   40px;
+    --flint-tab-disabled-opacity:  0.38;
+    --flint-tab-hover-bg:          var(--flint-primary-color-light);
 
-    --ui-tooltip-bg:         rgba(15, 23, 42, 0.88);
-    --ui-tooltip-text-color: var(--ui-color-white);
-    --ui-tooltip-color:      var(--ui-color-white);
-    --ui-tooltip-max-width:  300px;
+    --flint-tooltip-bg:         rgba(15, 23, 42, 0.88);
+    --flint-tooltip-text-color: var(--flint-color-white);
+    --flint-tooltip-color:      var(--flint-color-white);
+    --flint-tooltip-max-width:  300px;
 
-    --ui-stepper-connector-color: var(--ui-border-color);
-    --ui-switch-thumb-color:      var(--ui-color-white);
+    --flint-stepper-connector-color: var(--flint-border-color);
+    --flint-switch-thumb-color:      var(--flint-color-white);
 
     /* ─── Checkbox ──────────────────────────────────────────────── */
-    --ui-checkbox-size:              18px;
-    --ui-checkbox-size-sm:           14px;
-    --ui-checkbox-size-lg:           22px;
-    --ui-checkbox-icon-size:         12px;
-    --ui-checkbox-icon-size-sm:      10px;
-    --ui-checkbox-icon-size-lg:      16px;
-    --ui-checkbox-border-radius:     var(--ui-border-radius-sm);
-    --ui-checkbox-gap:               8px;
-    --ui-checkbox-label-font-size:   14px;
-    --ui-checkbox-label-font-size-sm: 12px;
-    --ui-checkbox-label-font-size-lg: 16px;
+    --flint-checkbox-size:              18px;
+    --flint-checkbox-size-sm:           14px;
+    --flint-checkbox-size-lg:           22px;
+    --flint-checkbox-icon-size:         12px;
+    --flint-checkbox-icon-size-sm:      10px;
+    --flint-checkbox-icon-size-lg:      16px;
+    --flint-checkbox-border-radius:     var(--flint-border-radius-sm);
+    --flint-checkbox-gap:               8px;
+    --flint-checkbox-label-font-size:   14px;
+    --flint-checkbox-label-font-size-sm: 12px;
+    --flint-checkbox-label-font-size-lg: 16px;
 
     /* ─── Radio ──────────────────────────────────────────────────── */
-    --ui-radio-size:                18px;
-    --ui-radio-size-sm:             14px;
-    --ui-radio-size-lg:             22px;
-    --ui-radio-dot-size:            8px;
-    --ui-radio-dot-size-sm:         6px;
-    --ui-radio-dot-size-lg:         10px;
-    --ui-radio-gap:                 8px;
-    --ui-radio-group-gap:           8px;
-    --ui-radio-label-font-size:     14px;
-    --ui-radio-label-font-size-sm:  12px;
-    --ui-radio-label-font-size-lg:  16px;
-    --ui-radio-disabled-opacity:    0.5;
+    --flint-radio-size:                18px;
+    --flint-radio-size-sm:             14px;
+    --flint-radio-size-lg:             22px;
+    --flint-radio-dot-size:            8px;
+    --flint-radio-dot-size-sm:         6px;
+    --flint-radio-dot-size-lg:         10px;
+    --flint-radio-gap:                 8px;
+    --flint-radio-group-gap:           8px;
+    --flint-radio-label-font-size:     14px;
+    --flint-radio-label-font-size-sm:  12px;
+    --flint-radio-label-font-size-lg:  16px;
+    --flint-radio-disabled-opacity:    0.5;
 
     /* ─── Input-specific ───────────────────────────────────────── */
-    --ui-label-color:              var(--ui-color-zinc-700, #3f3f46);
-    --ui-input-placeholder-color:  var(--ui-color-zinc-400);
-    --ui-input-disabled-bg:        var(--ui-color-zinc-100);
-    --ui-input-disabled-color:     var(--ui-color-zinc-400);
-    --ui-input-readonly-bg:        var(--ui-color-zinc-50);
-    --ui-help-text-color:          var(--ui-text-color-muted);
-    --ui-textarea-min-height:      80px;
+    --flint-label-color:              var(--flint-color-zinc-700, #3f3f46);
+    --flint-input-placeholder-color:  var(--flint-color-zinc-400);
+    --flint-input-disabled-bg:        var(--flint-color-zinc-100);
+    --flint-input-disabled-color:     var(--flint-color-zinc-400);
+    --flint-input-readonly-bg:        var(--flint-color-zinc-50);
+    --flint-help-text-color:          var(--flint-text-color-muted);
+    --flint-textarea-min-height:      80px;
 
     /* ─── Toast (Sonner) ───────────────────────────────────────── */
-    --ui-toast-z-index:   9999;
-    --ui-toast-width:     356px;
-    --ui-toast-gap:       8px;
-    --ui-toast-padding:   16px;
-    --ui-toast-bg:        var(--ui-surface-1);
-    --ui-toast-color:     var(--ui-text-color);
-    --ui-toast-border:    1px solid var(--ui-border-color);
-    --ui-toast-radius:    var(--ui-border-radius-lg);
-    --ui-toast-shadow:    var(--ui-shadow-lg);
-    --ui-toast-success-icon-color: var(--ui-success-color);
-    --ui-toast-error-icon-color:   var(--ui-error-color);
-    --ui-toast-warning-icon-color: var(--ui-warning-color);
-    --ui-toast-info-icon-color:    var(--ui-primary-color);
+    --flint-toast-z-index:   9999;
+    --flint-toast-width:     356px;
+    --flint-toast-gap:       8px;
+    --flint-toast-padding:   16px;
+    --flint-toast-bg:        var(--flint-surface-1);
+    --flint-toast-color:     var(--flint-text-color);
+    --flint-toast-border:    1px solid var(--flint-border-color);
+    --flint-toast-radius:    var(--flint-border-radius-lg);
+    --flint-toast-shadow:    var(--flint-shadow-lg);
+    --flint-toast-success-icon-color: var(--flint-success-color);
+    --flint-toast-error-icon-color:   var(--flint-error-color);
+    --flint-toast-warning-icon-color: var(--flint-warning-color);
+    --flint-toast-info-icon-color:    var(--flint-primary-color);
 
     /* ─── Scroll Area ──────────────────────────────────────────── */
-    --ui-scrollbar-size:              8px;
-    --ui-scrollbar-thumb-color:       rgba(0, 0, 0, 0.35);
-    --ui-scrollbar-thumb-hover-color: rgba(0, 0, 0, 0.50);
-    --ui-scrollbar-thumb-radius:      9999px;
-    --ui-scrollbar-track-color:       transparent;
+    --flint-scrollbar-size:              8px;
+    --flint-scrollbar-thumb-color:       rgba(0, 0, 0, 0.35);
+    --flint-scrollbar-thumb-hover-color: rgba(0, 0, 0, 0.50);
+    --flint-scrollbar-thumb-radius:      9999px;
+    --flint-scrollbar-track-color:       transparent;
 
     /* ─── Transfer List ──────────────────────────────────────── */
-    --ui-transfer-list-height:        300px;
-    --ui-transfer-list-width:         200px;
+    --flint-transfer-list-height:        300px;
+    --flint-transfer-list-width:         200px;
 
     /* ─── Copy Button ────────────────────────────────────────── */
-    --ui-copy-button-success-color: var(--ui-success-color);
-    --ui-copy-button-error-color:   var(--ui-error-color);
+    --flint-copy-button-success-color: var(--flint-success-color);
+    --flint-copy-button-error-color:   var(--flint-error-color);
 
     /* ─── Image Comparer ─────────────────────────────────────── */
-    --ui-image-comparer-divider-width:      2px;
-    --ui-image-comparer-divider-color:      var(--ui-color-white);
-    --ui-image-comparer-handle-size:        40px;
-    --ui-image-comparer-handle-bg:          var(--ui-color-white);
-    --ui-image-comparer-handle-border-color: rgba(0, 0, 0, 0.15);
-    --ui-image-comparer-handle-icon-color:  var(--ui-text-color-muted);
-    --ui-image-comparer-border-radius:      var(--ui-border-radius-md);
+    --flint-image-comparer-divider-width:      2px;
+    --flint-image-comparer-divider-color:      var(--flint-color-white);
+    --flint-image-comparer-handle-size:        40px;
+    --flint-image-comparer-handle-bg:          var(--flint-color-white);
+    --flint-image-comparer-handle-border-color: rgba(0, 0, 0, 0.15);
+    --flint-image-comparer-handle-icon-color:  var(--flint-text-color-muted);
+    --flint-image-comparer-border-radius:      var(--flint-border-radius-md);
 
     /* ─── Resizable ───────────────────────────────────────────── */
-    --ui-resizable-handle-size:           4px;
-    --ui-resizable-handle-active-size:    12px;
-    --ui-resizable-handle-bg:             var(--ui-border-color);
-    --ui-resizable-handle-hover-bg:       var(--ui-primary-color);
-    --ui-resizable-handle-focus-bg:       var(--ui-primary-color);
-    --ui-resizable-handle-transition:        150ms;
-    --ui-resizable-handle-border-radius:     0px;
-    --ui-resizable-handle-disabled-opacity:  0.5;
-    --ui-resizable-grip-bg:                  var(--ui-background);
-    --ui-resizable-grip-width:            12px;
-    --ui-resizable-grip-height:           24px;
-    --ui-resizable-grip-dot-color:        var(--ui-text-color-muted);
-    --ui-resizable-grip-dot-size:         2px;
-    --ui-resizable-grip-dot-gap:          1px;
-    --ui-resizable-step:                  5;
+    --flint-resizable-handle-size:           4px;
+    --flint-resizable-handle-active-size:    12px;
+    --flint-resizable-handle-bg:             var(--flint-border-color);
+    --flint-resizable-handle-hover-bg:       var(--flint-primary-color);
+    --flint-resizable-handle-focus-bg:       var(--flint-primary-color);
+    --flint-resizable-handle-transition:        150ms;
+    --flint-resizable-handle-border-radius:     0px;
+    --flint-resizable-handle-disabled-opacity:  0.5;
+    --flint-resizable-grip-bg:                  var(--flint-background);
+    --flint-resizable-grip-width:            12px;
+    --flint-resizable-grip-height:           24px;
+    --flint-resizable-grip-dot-color:        var(--flint-text-color-muted);
+    --flint-resizable-grip-dot-size:         2px;
+    --flint-resizable-grip-dot-gap:          1px;
+    --flint-resizable-step:                  5;
 
     /* ─── Autocomplete ────────────────────────────────────────── */
-    --ui-autocomplete-dropdown-max-height: 250px;
-    --ui-autocomplete-option-padding:      10px 12px;
-    --ui-autocomplete-z-index:             10;
+    --flint-autocomplete-dropdown-max-height: 250px;
+    --flint-autocomplete-option-padding:      10px 12px;
+    --flint-autocomplete-z-index:             10;
 
     /* ─── Toggle ───────────────────────────────────────────────── */
-    --ui-toggle-border-radius:        var(--ui-border-radius-md);
-    --ui-toggle-font-size:            0.875rem;
-    --ui-toggle-padding-x:            0.75rem;
-    --ui-toggle-padding-y:            0.5rem;
-    --ui-toggle-padding-x-sm:         0.625rem;
-    --ui-toggle-padding-y-sm:         0.375rem;
-    --ui-toggle-padding-x-lg:         1rem;
-    --ui-toggle-padding-y-lg:         0.625rem;
-    --ui-toggle-min-width:            2.25rem;
-    --ui-toggle-min-height:           2.25rem;
-    --ui-toggle-color:                var(--ui-text-color);
-    --ui-toggle-color-hover:          var(--ui-text-color);
-    --ui-toggle-bg:                   transparent;
-    --ui-toggle-bg-hover:             var(--ui-muted-background);
-    --ui-toggle-bg-pressed:           var(--ui-primary-color-light);
-    --ui-toggle-color-pressed:        var(--ui-primary-color);
-    --ui-toggle-bg-pressed-hover:     var(--ui-primary-color-light-hover);
-    --ui-toggle-border-color:         var(--ui-border-color);
-    --ui-toggle-border-pressed-color: var(--ui-primary-color-light-hover);
+    --flint-toggle-border-radius:        var(--flint-border-radius-md);
+    --flint-toggle-font-size:            0.875rem;
+    --flint-toggle-padding-x:            0.75rem;
+    --flint-toggle-padding-y:            0.5rem;
+    --flint-toggle-padding-x-sm:         0.625rem;
+    --flint-toggle-padding-y-sm:         0.375rem;
+    --flint-toggle-padding-x-lg:         1rem;
+    --flint-toggle-padding-y-lg:         0.625rem;
+    --flint-toggle-min-width:            2.25rem;
+    --flint-toggle-min-height:           2.25rem;
+    --flint-toggle-color:                var(--flint-text-color);
+    --flint-toggle-color-hover:          var(--flint-text-color);
+    --flint-toggle-bg:                   transparent;
+    --flint-toggle-bg-hover:             var(--flint-muted-background);
+    --flint-toggle-bg-pressed:           var(--flint-primary-color-light);
+    --flint-toggle-color-pressed:        var(--flint-primary-color);
+    --flint-toggle-bg-pressed-hover:     var(--flint-primary-color-light-hover);
+    --flint-toggle-border-color:         var(--flint-border-color);
+    --flint-toggle-border-pressed-color: var(--flint-primary-color-light-hover);
 
     /* ─── Range Slider ────────────────────────────────────────── */
-    --ui-range-slider-track-height:  6px;
-    --ui-range-slider-thumb-size:    20px;
-    --ui-range-slider-track-color:   var(--ui-input-border-color);
-    --ui-range-slider-fill-color:    var(--ui-primary-color);
-    --ui-range-slider-thumb-color:   var(--ui-surface-1);
-    --ui-range-slider-thumb-border:  var(--ui-primary-color);
+    --flint-range-slider-track-height:  6px;
+    --flint-range-slider-thumb-size:    20px;
+    --flint-range-slider-track-color:   var(--flint-input-border-color);
+    --flint-range-slider-fill-color:    var(--flint-primary-color);
+    --flint-range-slider-thumb-color:   var(--flint-surface-1);
+    --flint-range-slider-thumb-border:  var(--flint-primary-color);
 
     /* ─── Input OTP ────────────────────────────────────────────── */
-    --ui-otp-slot-width:     40px;
-    --ui-otp-slot-height:    48px;
-    --ui-otp-slot-font-size: 1.25rem;
-    --ui-otp-slot-radius:    var(--ui-border-radius-md);
-    --ui-otp-gap:            8px;
+    --flint-otp-slot-width:     40px;
+    --flint-otp-slot-height:    48px;
+    --flint-otp-slot-font-size: 1.25rem;
+    --flint-otp-slot-radius:    var(--flint-border-radius-md);
+    --flint-otp-gap:            8px;
 
     /* ─── Chip ─────────────────────────────────────────────────── */
-    --ui-chip-height:            32px;
-    --ui-chip-height-sm:         24px;
-    --ui-chip-height-lg:         40px;
-    --ui-chip-border-radius:     16px;
-    --ui-chip-border-radius-sm:  12px;
-    --ui-chip-border-radius-lg:  20px;
-    --ui-chip-font-size:         0.875rem;
-    --ui-chip-font-size-sm:      0.75rem;
-    --ui-chip-font-size-lg:      1rem;
-    --ui-chip-padding-x:         12px;
-    --ui-chip-padding-x-sm:      8px;
-    --ui-chip-padding-x-lg:      16px;
-    --ui-chip-gap:               8px;
+    --flint-chip-height:            32px;
+    --flint-chip-height-sm:         24px;
+    --flint-chip-height-lg:         40px;
+    --flint-chip-border-radius:     16px;
+    --flint-chip-border-radius-sm:  12px;
+    --flint-chip-border-radius-lg:  20px;
+    --flint-chip-font-size:         0.875rem;
+    --flint-chip-font-size-sm:      0.75rem;
+    --flint-chip-font-size-lg:      1rem;
+    --flint-chip-padding-x:         12px;
+    --flint-chip-padding-x-sm:      8px;
+    --flint-chip-padding-x-lg:      16px;
+    --flint-chip-gap:               8px;
 
     /* ─── Carousel ────────────────────────────────────────────── */
-    --ui-carousel-gap:             0px;
-    --ui-carousel-height:          320px;
-    --ui-carousel-duration:        0.35s;
-    --ui-carousel-ease:            cubic-bezier(0.25, 0.1, 0.25, 1);
-    --ui-carousel-nav-button-size: 36px;
+    --flint-carousel-gap:             0px;
+    --flint-carousel-height:          320px;
+    --flint-carousel-duration:        0.35s;
+    --flint-carousel-ease:            cubic-bezier(0.25, 0.1, 0.25, 1);
+    --flint-carousel-nav-button-size: 36px;
 
     /* ─── Drawer ───────────────────────────────────────────────── */
-    --ui-drawer-width:      250px;
-    --ui-drawer-mini-width: 72px;
-    --ui-drawer-height:     auto;
-    --ui-drawer-bg:         var(--ui-surface-1);
-    --ui-drawer-z-index:    1200;
-    --ui-drawer-shadow:     0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12);
-    --ui-drawer-transition: .225s cubic-bezier(0, 0, .2, 1);
-    --ui-drawer-edge-width: 16px;
+    --flint-drawer-width:      250px;
+    --flint-drawer-mini-width: 72px;
+    --flint-drawer-height:     auto;
+    --flint-drawer-bg:         var(--flint-surface-1);
+    --flint-drawer-z-index:    1200;
+    --flint-drawer-shadow:     0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12);
+    --flint-drawer-transition: .225s cubic-bezier(0, 0, .2, 1);
+    --flint-drawer-edge-width: 16px;
 
     /* ─── Split Panel ─────────────────────────────────────────── */
-    --ui-split-panel-divider-width:      4px;
-    --ui-split-panel-divider-hit-area:   12px;
-    --ui-split-panel-divider-color:      var(--ui-border-color);
-    --ui-split-panel-divider-hover-color: var(--ui-primary-color);
-    --ui-split-panel-min:                0;
-    --ui-split-panel-max:                100%;
+    --flint-split-panel-divider-width:      4px;
+    --flint-split-panel-divider-hit-area:   12px;
+    --flint-split-panel-divider-color:      var(--flint-border-color);
+    --flint-split-panel-divider-hover-color: var(--flint-primary-color);
+    --flint-split-panel-min:                0;
+    --flint-split-panel-max:                100%;
 
     /* ─── Relative Time ─────────────────────────────────────────── */
-    --ui-relative-time-color:           inherit;
-    --ui-relative-time-font-size:       inherit;
-    --ui-relative-time-font-weight:     inherit;
-    --ui-relative-time-text-decoration: none;
-    --ui-relative-time-cursor:          text;
-    --ui-relative-time-white-space:     nowrap;
+    --flint-relative-time-color:           inherit;
+    --flint-relative-time-font-size:       inherit;
+    --flint-relative-time-font-weight:     inherit;
+    --flint-relative-time-text-decoration: none;
+    --flint-relative-time-cursor:          text;
+    --flint-relative-time-white-space:     nowrap;
 
     /* ─── Breadcrumbs ───────────────────────────────────────────── */
-    --ui-breadcrumb-font-size:         0.875rem;
-    --ui-breadcrumb-color:             var(--ui-text-color-muted);
-    --ui-breadcrumb-color-active:      var(--ui-text-color);
-    --ui-breadcrumb-separator-margin:  8px;
-    --ui-breadcrumb-collapsed-bg:      var(--ui-hover-color);
-    --ui-breadcrumb-collapsed-hover-bg: var(--ui-active-color);
-    --ui-breadcrumb-collapsed-radius:  var(--ui-border-radius-md);
+    --flint-breadcrumb-font-size:         0.875rem;
+    --flint-breadcrumb-color:             var(--flint-text-color-muted);
+    --flint-breadcrumb-color-active:      var(--flint-text-color);
+    --flint-breadcrumb-separator-margin:  8px;
+    --flint-breadcrumb-collapsed-bg:      var(--flint-hover-color);
+    --flint-breadcrumb-collapsed-hover-bg: var(--flint-active-color);
+    --flint-breadcrumb-collapsed-radius:  var(--flint-border-radius-md);
 
     /* ─── Pagination ────────────────────────────────────────────── */
-    --ui-pagination-gap:                   4px;
-    --ui-pagination-btn-size:              36px;
-    --ui-pagination-btn-size-sm:           28px;
-    --ui-pagination-btn-size-lg:           44px;
-    --ui-pagination-btn-font-size:         0.875rem;
-    --ui-pagination-btn-font-size-sm:      0.8125rem;
-    --ui-pagination-btn-font-size-lg:      0.9375rem;
-    --ui-pagination-btn-radius:            4px;
-    --ui-pagination-btn-radius-rounded:    8px;
-    --ui-pagination-disabled-opacity:      0.38;
-    --ui-pagination-active-bg:             var(--ui-primary-color);
-    --ui-pagination-active-bg-secondary:   var(--ui-secondary-color);
-    --ui-pagination-active-bg-standard:    var(--ui-text-color);
-    --ui-pagination-active-color:          var(--ui-text-color-on-primary);
-    --ui-pagination-outlined-border:       var(--ui-border-color);
-    --ui-pagination-outlined-hover-bg:     var(--ui-primary-color-light);
-    --ui-pagination-outlined-hover-border: var(--ui-primary-color);
-    --ui-pagination-focus-ring-color:      var(--ui-primary-color);
+    --flint-pagination-gap:                   4px;
+    --flint-pagination-btn-size:              36px;
+    --flint-pagination-btn-size-sm:           28px;
+    --flint-pagination-btn-size-lg:           44px;
+    --flint-pagination-btn-font-size:         0.875rem;
+    --flint-pagination-btn-font-size-sm:      0.8125rem;
+    --flint-pagination-btn-font-size-lg:      0.9375rem;
+    --flint-pagination-btn-radius:            4px;
+    --flint-pagination-btn-radius-rounded:    8px;
+    --flint-pagination-disabled-opacity:      0.38;
+    --flint-pagination-active-bg:             var(--flint-primary-color);
+    --flint-pagination-active-bg-secondary:   var(--flint-secondary-color);
+    --flint-pagination-active-bg-standard:    var(--flint-text-color);
+    --flint-pagination-active-color:          var(--flint-text-color-on-primary);
+    --flint-pagination-outlined-border:       var(--flint-border-color);
+    --flint-pagination-outlined-hover-bg:     var(--flint-primary-color-light);
+    --flint-pagination-outlined-hover-border: var(--flint-primary-color);
+    --flint-pagination-focus-ring-color:      var(--flint-primary-color);
 
     /* ─── Box ───────────────────────────────────────────────────── */
-    --ui-box-bg:             transparent;
-    --ui-box-color:          inherit;
-    --ui-box-border-radius:  0;
-    --ui-box-border:         none;
-    --ui-box-shadow:         none;
-    --ui-box-padding:        0;
+    --flint-box-bg:             transparent;
+    --flint-box-color:          inherit;
+    --flint-box-border-radius:  0;
+    --flint-box-border:         none;
+    --flint-box-shadow:         none;
+    --flint-box-padding:        0;
 
     /* ─── Table ─────────────────────────────────────────────────── */
-    --ui-table-border-color:         var(--ui-border-color);
-    --ui-table-border-radius:        var(--ui-border-radius-lg);
-    --ui-table-shadow:               var(--ui-shadow-sm);
-    --ui-table-shadow-elevated:      var(--ui-shadow-md);
-    --ui-table-container-bg:         var(--ui-surface-background);
-    --ui-table-header-bg:            transparent;
-    --ui-table-header-color:         var(--ui-text-color-muted);
-    --ui-table-row-hover-bg:         var(--ui-hover-color);
-    --ui-table-row-selected-bg:      var(--ui-primary-color-light);
-    --ui-table-striped-bg:           var(--ui-surface-2);
-    --ui-table-cell-padding-y:       16px;
-    --ui-table-cell-padding-x:       16px;
-    --ui-table-cell-padding-y-dense: 6px;
-    --ui-table-cell-padding-x-dense: 16px;
+    --flint-table-border-color:         var(--flint-border-color);
+    --flint-table-border-radius:        var(--flint-border-radius-lg);
+    --flint-table-shadow:               var(--flint-shadow-sm);
+    --flint-table-shadow-elevated:      var(--flint-shadow-md);
+    --flint-table-container-bg:         var(--flint-surface-background);
+    --flint-table-header-bg:            transparent;
+    --flint-table-header-color:         var(--flint-text-color-muted);
+    --flint-table-row-hover-bg:         var(--flint-hover-color);
+    --flint-table-row-selected-bg:      var(--flint-primary-color-light);
+    --flint-table-striped-bg:           var(--flint-surface-2);
+    --flint-table-cell-padding-y:       16px;
+    --flint-table-cell-padding-x:       16px;
+    --flint-table-cell-padding-y-dense: 6px;
+    --flint-table-cell-padding-x-dense: 16px;
 
     /* ─── Format Number ─────────────────────────────────────────── */
-    --ui-format-number-color:          inherit;
-    --ui-format-number-font-size:      inherit;
-    --ui-format-number-font-weight:    inherit;
-    --ui-format-number-font-family:    inherit;
-    --ui-format-number-positive-color: inherit;
-    --ui-format-number-negative-color: inherit;
+    --flint-format-number-color:          inherit;
+    --flint-format-number-font-size:      inherit;
+    --flint-format-number-font-weight:    inherit;
+    --flint-format-number-font-family:    inherit;
+    --flint-format-number-positive-color: inherit;
+    --flint-format-number-negative-color: inherit;
 
     /* ─── Time Picker ──────────────────────────────────────────── */
-    --ui-time-field-height:         44px;
-    --ui-time-field-min-width:      160px;
-    --ui-time-clock-face-bg:        var(--ui-surface-variant);
-    --ui-time-clock-inner-bg:       rgba(0, 0, 0, 0.04);
-    --ui-time-clock-inner-border:   var(--ui-border-color);
-    --ui-time-clock-hand-color:     var(--ui-primary-color);
-    --ui-time-clock-num-size:       14px;
-    --ui-time-clock-inner-num-size: 12px;
-    --ui-time-clock-ampm-radius:    20px;
-    --ui-digital-clock-height:      300px;
-    --ui-msdc-height:               240px;
+    --flint-time-field-height:         44px;
+    --flint-time-field-min-width:      160px;
+    --flint-time-clock-face-bg:        var(--flint-surface-variant);
+    --flint-time-clock-inner-bg:       rgba(0, 0, 0, 0.04);
+    --flint-time-clock-inner-border:   var(--flint-border-color);
+    --flint-time-clock-hand-color:     var(--flint-primary-color);
+    --flint-time-clock-num-size:       14px;
+    --flint-time-clock-inner-num-size: 12px;
+    --flint-time-clock-ampm-radius:    20px;
+    --flint-digital-clock-height:      300px;
+    --flint-msdc-height:               240px;
 
     /* ─── Shadows ──────────────────────────────────────────────── */
-    --ui-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --ui-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --ui-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.10), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --ui-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.10), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --flint-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --flint-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --flint-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.10), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --flint-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.10), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 
-    --ui-card-shadow:       var(--ui-shadow-lg);
-    --ui-card-shadow-hover: var(--ui-shadow-xl);
+    --flint-card-shadow:       var(--flint-shadow-lg);
+    --flint-card-shadow-hover: var(--flint-shadow-xl);
 
     /* ─── Radii ────────────────────────────────────────────────── */
-    --ui-border-radius-sm:   0.125rem;   /*  2px */
-    --ui-border-radius-md:   0.375rem;   /*  6px */
-    --ui-border-radius-lg:   0.500rem;   /*  8px */
-    --ui-border-radius-xl:   0.750rem;   /* 12px */
-    --ui-border-radius-full: 9999px;     /* pill / circle */
+    --flint-border-radius-sm:   0.125rem;   /*  2px */
+    --flint-border-radius-md:   0.375rem;   /*  6px */
+    --flint-border-radius-lg:   0.500rem;   /*  8px */
+    --flint-border-radius-xl:   0.750rem;   /* 12px */
+    --flint-border-radius-full: 9999px;     /* pill / circle */
 
-    --ui-card-border-radius:  var(--ui-border-radius-xl);
-    --ui-input-border-radius: var(--ui-border-radius-md);
+    --flint-card-border-radius:  var(--flint-border-radius-xl);
+    --flint-input-border-radius: var(--flint-border-radius-md);
 
     /* ─── Typography ───────────────────────────────────────────── */
-    --ui-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --flint-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 
     /* ─── Command Menu ──────────────────────────────────────────── */
-    --ui-command-bg:                 var(--ui-surface-1);
-    --ui-command-border-color:       var(--ui-border-color);
-    --ui-command-highlight-bg:       var(--ui-hover-color);
-    --ui-command-highlight-color:    var(--ui-text-color);
-    --ui-command-z-index:            1400;
-    --ui-command-list-max-height:    300px;
-    --ui-command-dialog-width:       512px;
-    --ui-command-backdrop-bg:        rgba(0, 0, 0, 0.50);
-    --ui-command-panel-border-color: var(--ui-border-color);
+    --flint-command-bg:                 var(--flint-surface-1);
+    --flint-command-border-color:       var(--flint-border-color);
+    --flint-command-highlight-bg:       var(--flint-hover-color);
+    --flint-command-highlight-color:    var(--flint-text-color);
+    --flint-command-z-index:            1400;
+    --flint-command-list-max-height:    300px;
+    --flint-command-dialog-width:       512px;
+    --flint-command-backdrop-bg:        rgba(0, 0, 0, 0.50);
+    --flint-command-panel-border-color: var(--flint-border-color);
 
     /* ─── Breakpoints (unitless px values, for use in JS) ──────── */
-    --ui-breakpoint-xs: 0;
-    --ui-breakpoint-sm: 600;
-    --ui-breakpoint-md: 900;
-    --ui-breakpoint-lg: 1200;
-    --ui-breakpoint-xl: 1536;
+    --flint-breakpoint-xs: 0;
+    --flint-breakpoint-sm: 600;
+    --flint-breakpoint-md: 900;
+    --flint-breakpoint-lg: 1200;
+    --flint-breakpoint-xl: 1536;
 
     /* ─── Container max-widths ─────────────────────────────────── */
-    --ui-container-xs:  444px;
-    --ui-container-sm:  601px;
-    --ui-container-md:  901px;
-    --ui-container-lg: 1201px;
-    --ui-container-xl: 1537px;
+    --flint-container-xs:  444px;
+    --flint-container-sm:  601px;
+    --flint-container-md:  901px;
+    --flint-container-lg: 1201px;
+    --flint-container-xl: 1537px;
 }
 
 
 
 body {
-    background-color: var(--ui-background);
-    color: var(--ui-text-color);
-    font-family: var(--ui-font-family);
+    background-color: var(--flint-background);
+    color: var(--flint-text-color);
+    font-family: var(--flint-font-family);
 }
 
 
 /* ═══════════════════════════════════════════════════════════════
    LAYER 3 — Dark mode overrides
-   Applied when <html class="ui-theme-dark"> or via @media.
+   Applied when <html class="flint-theme-dark"> or via @media.
    ═══════════════════════════════════════════════════════════════ */
 
 /* Applied by JS when system pref is dark and no manual override is set */
-.ui-theme-dark {
+.flint-theme-dark {
     /* ─── Surfaces ────────────────────────────────────────────── */
-    --ui-background:      var(--ui-color-zinc-950);
-    --ui-surface-1:       var(--ui-color-zinc-900);
-    --ui-surface-2:       var(--ui-color-zinc-800);
-    --ui-surface-3:       var(--ui-color-zinc-700);
-    --ui-surface-variant: var(--ui-color-zinc-900);
+    --flint-background:      var(--flint-color-zinc-950);
+    --flint-surface-1:       var(--flint-color-zinc-900);
+    --flint-surface-2:       var(--flint-color-zinc-800);
+    --flint-surface-3:       var(--flint-color-zinc-700);
+    --flint-surface-variant: var(--flint-color-zinc-900);
 
-    --ui-surface-background:      var(--ui-background);
-    --ui-surface-background-flat: var(--ui-surface-2);
-    --ui-card-background:         var(--ui-surface-1);
-    --ui-card-background-flat:    var(--ui-surface-2);
-    --ui-input-bg:                var(--ui-surface-1);
-    --ui-muted-background:        var(--ui-surface-3);
+    --flint-surface-background:      var(--flint-background);
+    --flint-surface-background-flat: var(--flint-surface-2);
+    --flint-card-background:         var(--flint-surface-1);
+    --flint-card-background-flat:    var(--flint-surface-2);
+    --flint-input-bg:                var(--flint-surface-1);
+    --flint-muted-background:        var(--flint-surface-3);
 
     /* ─── Text ────────────────────────────────────────────────── */
-    --ui-text-color:        var(--ui-color-zinc-50);
-    --ui-text-color-muted:  var(--ui-color-zinc-400);
-    --ui-text-color-subtle: var(--ui-color-zinc-500);
+    --flint-text-color:        var(--flint-color-zinc-50);
+    --flint-text-color-muted:  var(--flint-color-zinc-400);
+    --flint-text-color-subtle: var(--flint-color-zinc-500);
 
     /* ─── Borders ─────────────────────────────────────────────── */
-    --ui-border-color:             var(--ui-color-zinc-700);
-    --ui-input-border-color:       var(--ui-color-zinc-600);
-    --ui-input-border-hover-color: var(--ui-color-zinc-500);
-    --ui-card-border-color:        var(--ui-color-zinc-800);
+    --flint-border-color:             var(--flint-color-zinc-700);
+    --flint-input-border-color:       var(--flint-color-zinc-600);
+    --flint-input-border-hover-color: var(--flint-color-zinc-500);
+    --flint-card-border-color:        var(--flint-color-zinc-800);
 
     /* ─── Interactive overlays ────────────────────────────────── */
-    --ui-hover-color:  rgba(255, 255, 255, 0.06);
-    --ui-active-color: rgba(255, 255, 255, 0.10);
+    --flint-hover-color:  rgba(255, 255, 255, 0.06);
+    --flint-active-color: rgba(255, 255, 255, 0.10);
 
     /* ─── Input-specific ──────────────────────────────────────── */
-    --ui-label-color:             var(--ui-color-zinc-300);
-    --ui-input-placeholder-color: var(--ui-color-zinc-500);
-    --ui-input-disabled-bg:       var(--ui-color-zinc-800);
-    --ui-input-disabled-color:    var(--ui-color-zinc-600);
-    --ui-input-readonly-bg:       var(--ui-color-zinc-900);
-    --ui-help-text-color:         var(--ui-color-zinc-400);
+    --flint-label-color:             var(--flint-color-zinc-300);
+    --flint-input-placeholder-color: var(--flint-color-zinc-500);
+    --flint-input-disabled-bg:       var(--flint-color-zinc-800);
+    --flint-input-disabled-color:    var(--flint-color-zinc-600);
+    --flint-input-readonly-bg:       var(--flint-color-zinc-900);
+    --flint-help-text-color:         var(--flint-color-zinc-400);
 
     /* ─── Primary ─────────────────────────────────────────────── */
-    --ui-primary-color:        var(--ui-color-blue-400);
-    --ui-primary-color-hover:  var(--ui-color-blue-500);
-    --ui-primary-color-active: var(--ui-color-blue-600);
-    --ui-primary-color-light:       rgba(96, 165, 250, 0.15);
-    --ui-primary-color-light-hover: rgba(96, 165, 250, 0.25);
-    --ui-primary-focus-ring:        rgba(96, 165, 250, 0.25);
+    --flint-primary-color:        var(--flint-color-blue-400);
+    --flint-primary-color-hover:  var(--flint-color-blue-500);
+    --flint-primary-color-active: var(--flint-color-blue-600);
+    --flint-primary-color-light:       rgba(96, 165, 250, 0.15);
+    --flint-primary-color-light-hover: rgba(96, 165, 250, 0.25);
+    --flint-primary-focus-ring:        rgba(96, 165, 250, 0.25);
 
     /* ─── Semantic status ─────────────────────────────────────── */
-    --ui-info-bg:           rgba(59, 130, 246, 0.12);
-    --ui-info-border-color: rgba(59, 130, 246, 0.30);
-    --ui-info-text-color:   var(--ui-color-blue-200);
+    --flint-info-bg:           rgba(59, 130, 246, 0.12);
+    --flint-info-border-color: rgba(59, 130, 246, 0.30);
+    --flint-info-text-color:   var(--flint-color-blue-200);
 
-    --ui-success-bg:           rgba(16, 185, 129, 0.12);
-    --ui-success-border-color: rgba(16, 185, 129, 0.30);
-    --ui-success-text-color:   var(--ui-color-emerald-400);
+    --flint-success-bg:           rgba(16, 185, 129, 0.12);
+    --flint-success-border-color: rgba(16, 185, 129, 0.30);
+    --flint-success-text-color:   var(--flint-color-emerald-400);
 
-    --ui-warning-bg:           rgba(245, 158, 11, 0.12);
-    --ui-warning-border-color: rgba(245, 158, 11, 0.30);
-    --ui-warning-text-color:   var(--ui-color-amber-400);
+    --flint-warning-bg:           rgba(245, 158, 11, 0.12);
+    --flint-warning-border-color: rgba(245, 158, 11, 0.30);
+    --flint-warning-text-color:   var(--flint-color-amber-400);
 
-    --ui-error-bg:           rgba(239, 68, 68, 0.12);
-    --ui-error-border-color: rgba(239, 68, 68, 0.30);
-    --ui-error-text-color:   var(--ui-color-red-400);
+    --flint-error-bg:           rgba(239, 68, 68, 0.12);
+    --flint-error-border-color: rgba(239, 68, 68, 0.30);
+    --flint-error-text-color:   var(--flint-color-red-400);
 
     /* ─── Tabs ────────────────────────────────────────────────── */
-    --ui-tab-inactive-color: var(--ui-text-color-muted);
+    --flint-tab-inactive-color: var(--flint-text-color-muted);
 
     /* ─── Stepper ─────────────────────────────────────────────── */
-    --ui-stepper-connector-color: var(--ui-border-color);
+    --flint-stepper-connector-color: var(--flint-border-color);
 
     /* ─── Toast (Sonner) ──────────────────────────────────────── */
-    --ui-toast-bg:     var(--ui-surface-1);
-    --ui-toast-color:  var(--ui-text-color);
-    --ui-toast-border: 1px solid var(--ui-border-color);
+    --flint-toast-bg:     var(--flint-surface-1);
+    --flint-toast-color:  var(--flint-text-color);
+    --flint-toast-border: 1px solid var(--flint-border-color);
 
     /* ─── Scroll Area ──────────────────────────────────────────── */
-    --ui-scrollbar-thumb-color:       rgba(255, 255, 255, 0.35);
-    --ui-scrollbar-thumb-hover-color: rgba(255, 255, 255, 0.50);
+    --flint-scrollbar-thumb-color:       rgba(255, 255, 255, 0.35);
+    --flint-scrollbar-thumb-hover-color: rgba(255, 255, 255, 0.50);
 
     /* ─── Image Comparer ─────────────────────────────────────── */
-    --ui-image-comparer-divider-color:      var(--ui-color-zinc-300);
-    --ui-image-comparer-handle-bg:          var(--ui-color-zinc-800);
-    --ui-image-comparer-handle-border-color: rgba(255, 255, 255, 0.20);
-    --ui-image-comparer-handle-icon-color:  var(--ui-color-zinc-300);
+    --flint-image-comparer-divider-color:      var(--flint-color-zinc-300);
+    --flint-image-comparer-handle-bg:          var(--flint-color-zinc-800);
+    --flint-image-comparer-handle-border-color: rgba(255, 255, 255, 0.20);
+    --flint-image-comparer-handle-icon-color:  var(--flint-color-zinc-300);
 
     /* ─── Resizable ──────────────────────────────────────────── */
-    --ui-resizable-handle-bg:        var(--ui-border-color);
-    --ui-resizable-handle-hover-bg:  var(--ui-primary-color);
-    --ui-resizable-handle-focus-bg:  var(--ui-primary-color);
-    --ui-resizable-grip-bg:          var(--ui-surface-1);
-    --ui-resizable-grip-dot-color:   var(--ui-text-color-muted);
+    --flint-resizable-handle-bg:        var(--flint-border-color);
+    --flint-resizable-handle-hover-bg:  var(--flint-primary-color);
+    --flint-resizable-handle-focus-bg:  var(--flint-primary-color);
+    --flint-resizable-grip-bg:          var(--flint-surface-1);
+    --flint-resizable-grip-dot-color:   var(--flint-text-color-muted);
 
     /* ─── Toggle ──────────────────────────────────────────────── */
-    --ui-toggle-bg-hover:             var(--ui-muted-background);
-    --ui-toggle-bg-pressed:           var(--ui-primary-color-light);
-    --ui-toggle-color-pressed:        var(--ui-primary-color);
-    --ui-toggle-bg-pressed-hover:     var(--ui-primary-color-light-hover);
-    --ui-toggle-border-color:         var(--ui-border-color);
-    --ui-toggle-border-pressed-color: var(--ui-primary-color-light-hover);
+    --flint-toggle-bg-hover:             var(--flint-muted-background);
+    --flint-toggle-bg-pressed:           var(--flint-primary-color-light);
+    --flint-toggle-color-pressed:        var(--flint-primary-color);
+    --flint-toggle-bg-pressed-hover:     var(--flint-primary-color-light-hover);
+    --flint-toggle-border-color:         var(--flint-border-color);
+    --flint-toggle-border-pressed-color: var(--flint-primary-color-light-hover);
 
     /* ─── Split Panel ─────────────────────────────────────────── */
-    --ui-split-panel-divider-color:       var(--ui-border-color);
-    --ui-split-panel-divider-hover-color: var(--ui-primary-color);
+    --flint-split-panel-divider-color:       var(--flint-border-color);
+    --flint-split-panel-divider-hover-color: var(--flint-primary-color);
 
     /* ─── Drawer ──────────────────────────────────────────────── */
-    --ui-drawer-shadow: 0 8px 10px -5px rgba(0,0,0,.4), 0 16px 24px 2px rgba(0,0,0,.3), 0 6px 30px 5px rgba(0,0,0,.25);
+    --flint-drawer-shadow: 0 8px 10px -5px rgba(0,0,0,.4), 0 16px 24px 2px rgba(0,0,0,.3), 0 6px 30px 5px rgba(0,0,0,.25);
 
     /* ─── Time Picker ──────────────────────────────────────────── */
-    --ui-time-clock-face-bg:      var(--ui-surface-variant);
-    --ui-time-clock-inner-bg:     rgba(255, 255, 255, 0.06);
-    --ui-time-clock-inner-border: var(--ui-color-zinc-600);
-    --ui-time-clock-hand-color:   var(--ui-primary-color);
+    --flint-time-clock-face-bg:      var(--flint-surface-variant);
+    --flint-time-clock-inner-bg:     rgba(255, 255, 255, 0.06);
+    --flint-time-clock-inner-border: var(--flint-color-zinc-600);
+    --flint-time-clock-hand-color:   var(--flint-primary-color);
 }

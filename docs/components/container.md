@@ -1,22 +1,22 @@
 # Container
 
-<Demo label="Max Widths" html="<div style=&quot;width:100%;display:flex;flex-direction:column;gap:8px&quot;><ui-container max-width=&quot;sm&quot;><ui-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>sm</ui-paper></ui-container><ui-container max-width=&quot;md&quot;><ui-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>md</ui-paper></ui-container><ui-container max-width=&quot;lg&quot;><ui-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>lg</ui-paper></ui-container></div>" />
+<Demo label="Max Widths" html="<div style=&quot;width:100%;display:flex;flex-direction:column;gap:8px&quot;><flint-container max-width=&quot;sm&quot;><flint-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>sm</flint-paper></flint-container><flint-container max-width=&quot;md&quot;><flint-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>md</flint-paper></flint-container><flint-container max-width=&quot;lg&quot;><flint-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>lg</flint-paper></flint-container></div>" />
 
-- **Tag**: `<ui-container>`
-- **Class**: `UiContainer`
+- **Tag**: `<flint-container>`
+- **Class**: `FlintContainer`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiContainer } from 'storybook-lit';
+import { FlintContainer } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-container></ui-container>
+<flint-container></flint-container>
 ```
 
 ### Properties
@@ -36,12 +36,12 @@ import { UiContainer } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-container-padding` | `16px` |
-| `--ui-container-padding-sm` | `24px` |
-| `--ui-container-xs` | `444px` |
-| `--ui-container-sm` | `600px` |
-| `--ui-container-md` | `900px` |
-| `--ui-container-lg` | `1200px` |
-| `--ui-container-xl` | `1536px` |
+| `--flint-container-padding` | `16px` |
+| `--flint-container-padding-sm` | `24px` |
+| `--flint-container-xs` | `444px` |
+| `--flint-container-sm` | `600px` |
+| `--flint-container-md` | `900px` |
+| `--flint-container-lg` | `1200px` |
+| `--flint-container-xl` | `1536px` |
 
 ---

@@ -1,24 +1,24 @@
 # Stack
 
-<Demo label="Row" html="<ui-stack direction=&quot;row&quot; gap=&quot;2&quot; align-items=&quot;center&quot;>  <ui-paper elevation=&quot;1&quot; style=&quot;padding:12px&quot;>Item 1</ui-paper>  <ui-paper elevation=&quot;1&quot; style=&quot;padding:12px&quot;>Item 2</ui-paper>  <ui-paper elevation=&quot;1&quot; style=&quot;padding:12px&quot;>Item 3</ui-paper></ui-stack>" />
+<Demo label="Row" html="<flint-stack direction=&quot;row&quot; gap=&quot;2&quot; align-items=&quot;center&quot;>  <flint-paper elevation=&quot;1&quot; style=&quot;padding:12px&quot;>Item 1</flint-paper>  <flint-paper elevation=&quot;1&quot; style=&quot;padding:12px&quot;>Item 2</flint-paper>  <flint-paper elevation=&quot;1&quot; style=&quot;padding:12px&quot;>Item 3</flint-paper></flint-stack>" />
 
-<Demo label="Column" html="<ui-stack direction=&quot;column&quot; gap=&quot;2&quot; style=&quot;width:100%;max-width:200px&quot;>  <ui-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>Item 1</ui-paper>  <ui-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>Item 2</ui-paper>  <ui-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>Item 3</ui-paper></ui-stack>" />
+<Demo label="Column" html="<flint-stack direction=&quot;column&quot; gap=&quot;2&quot; style=&quot;width:100%;max-width:200px&quot;>  <flint-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>Item 1</flint-paper>  <flint-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>Item 2</flint-paper>  <flint-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>Item 3</flint-paper></flint-stack>" />
 
-- **Tag**: `<ui-stack>`
-- **Class**: `UiStack`
+- **Tag**: `<flint-stack>`
+- **Class**: `FlintStack`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiStack } from 'storybook-lit';
+import { FlintStack } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-stack></ui-stack>
+<flint-stack></flint-stack>
 ```
 
 ### Properties
@@ -38,6 +38,6 @@ import { UiStack } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-stack-spacing` | `0px` |
+| `--flint-stack-spacing` | `0px` |
 
 ---

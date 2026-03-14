@@ -1,5 +1,0 @@
-:host {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--ui-kbd-group-gap, 4px);
-        }

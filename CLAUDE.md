@@ -5,8 +5,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Project Structure
 
 Monorepo with npm workspaces:
-- `packages/core` — Lit web components library (`storybook-lit`)
-- `packages/react` — React wrappers using `@lit/react` (`storybook-lit-react`)
+- `packages/core` — Lit web components library (`flint-ui`)
+- `packages/react` — React wrappers using `@lit/react` (`flint-ui-react`)
 - `scripts/` — Codegen scripts (build entries, React wrapper generation)
 - `docs/` — VitePress documentation site
 
@@ -26,7 +26,7 @@ npm run test:watch         # Watch mode
 npm run build-coverage     # Run unit tests with coverage (--project components)
 
 # Run a single test file
-NODE_OPTIONS='--no-warnings' vitest run src/button/ui-button.test.ts  # from packages/core/
+NODE_OPTIONS='--no-warnings' vitest run src/button/flint-button.test.ts  # from packages/core/
 
 # Lint
 npm run lint               # ESLint on src/**/*.ts (target: 0 errors, 0 warnings)
@@ -47,19 +47,19 @@ npm run docs:preview       # Preview built docs
 - `storybook` — Chromium/Playwright browser, runs stories via `@storybook/addon-vitest`
 
 **Component structure**: one folder per component at `packages/core/src/<name>/`:
-- `ui-<name>.ts` — LitElement component(s)
-- `ui-<name>.stories.ts` — Storybook stories
-- `ui-<name>.test.ts` — Vitest unit tests
+- `flint-<name>.ts` — LitElement component(s)
+- `flint-<name>.stories.ts` — Storybook stories
+- `flint-<name>.test.ts` — Vitest unit tests
 
-All custom elements use the `ui-` tag prefix; classes use `UiPascalCase`. All public exports go through `packages/core/src/index.ts`.
+All custom elements use the `flint-` tag prefix; classes use `FlintPascalCase`. All public exports go through `packages/core/src/index.ts`.
 
 **React wrappers**: auto-generated via `scripts/generate-react-wrappers.ts` using `@lit/react`'s `createComponent()`. Run `npm run gen:react` after adding/changing components or events.
 
-**Inter-component communication pattern**: parent owns state; children call `this.closest('ui-parent')?.method()` to communicate upward. Parent uses `_syncChildren()` to push state down. Event listeners that must avoid shadow DOM retargeting go on `this.shadowRoot` (not `this`).
+**Inter-component communication pattern**: parent owns state; children call `this.closest('flint-parent')?.method()` to communicate upward. Parent uses `_syncChildren()` to push state down. Event listeners that must avoid shadow DOM retargeting go on `this.shadowRoot` (not `this`).
 
 **State initialization**: use `willUpdate()` with a `_firstUpdate` flag for `defaultX` props — this batches into the current Lit update cycle and avoids "update after update" warnings.
 
-**CSS**: all custom properties use `--ui-*` prefix. Key tokens: `--ui-primary-color: #3b82f6`, `--ui-text-color: #111827`, `--ui-font-family: system-ui`. CSS custom properties and `:host` shadow styles don't compute in jsdom/happy-dom — test structure, not computed values.
+**CSS**: all custom properties use `--flint-*` prefix. Key tokens: `--flint-primary-color: #3b82f6`, `--flint-text-color: #111827`, `--flint-font-family: system-ui`. CSS custom properties and `:host` shadow styles don't compute in jsdom/happy-dom — test structure, not computed values.
 
 ## ESLint Gotchas
 
@@ -72,9 +72,9 @@ All custom elements use the `ui-` tag prefix; classes use `UiPascalCase`. All pu
 ## Test Gotchas
 
 - `${attrs}` in element position in lit-html is silently ignored — use `.prop=${val}` or `?attr=${bool}` bindings
-- String HTML interpolated into `` html`...` `` is escaped — use real `` html`<ui-x>...</ui-x>` `` nodes, not string concatenation
+- String HTML interpolated into `` html`...` `` is escaped — use real `` html`<flint-x>...</flint-x>` `` nodes, not string concatenation
 - `shadowRoot.textContent` includes `<style>` content — filter to `TEXT_NODE` nodes only for text assertions
 - `scrollIntoView` must be guarded: `if (typeof this.scrollIntoView === 'function')`
 - `style.setProperty('left', '0')` → happy-dom stores as `'0px'`, not `'0'`
 - `reflect: true` attribute updates need `await el.updateComplete` before checking `hasAttribute()`
-- For `ui-rich-tree-view`: query items via `tree.shadowRoot!.querySelector(...)`, and check focus via `tree.shadowRoot!.activeElement`
+- For `flint-rich-tree-view`: query items via `tree.shadowRoot!.querySelector(...)`, and check focus via `tree.shadowRoot!.activeElement`

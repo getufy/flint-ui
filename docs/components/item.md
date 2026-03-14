@@ -1,26 +1,26 @@
 # Item
 
-<Demo html="<div style=&quot;width:100%;max-width:400px&quot;><ui-item-group>  <ui-item-header>Settings</ui-item-header>  <ui-item>    <ui-item-content>      <ui-item-title>Profile</ui-item-title>      <ui-item-description>Update your personal information</ui-item-description>    </ui-item-content>  </ui-item>  <ui-item-separator></ui-item-separator>  <ui-item>    <ui-item-content>      <ui-item-title>Notifications</ui-item-title>      <ui-item-description>Manage your notification preferences</ui-item-description>    </ui-item-content>  </ui-item>  <ui-item-separator></ui-item-separator>  <ui-item>    <ui-item-content>      <ui-item-title>Security</ui-item-title>      <ui-item-description>Password and two-factor authentication</ui-item-description>    </ui-item-content>  </ui-item></ui-item-group></div>" />
+<Demo html="<div style=&quot;width:100%;max-width:400px&quot;><flint-item-group>  <flint-item-header>Settings</flint-item-header>  <flint-item>    <flint-item-content>      <flint-item-title>Profile</flint-item-title>      <flint-item-description>Update your personal information</flint-item-description>    </flint-item-content>  </flint-item>  <flint-item-separator></flint-item-separator>  <flint-item>    <flint-item-content>      <flint-item-title>Notifications</flint-item-title>      <flint-item-description>Manage your notification preferences</flint-item-description>    </flint-item-content>  </flint-item>  <flint-item-separator></flint-item-separator>  <flint-item>    <flint-item-content>      <flint-item-title>Security</flint-item-title>      <flint-item-description>Password and two-factor authentication</flint-item-description>    </flint-item-content>  </flint-item></flint-item-group></div>" />
 
-## `<ui-item-title>`
+## `<flint-item-title>`
 
 Displays the title of an item.
 
-- **Tag**: `<ui-item-title>`
-- **Class**: `UiItemTitle`
+- **Tag**: `<flint-item-title>`
+- **Class**: `FlintItemTitle`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiItemTitle } from 'storybook-lit';
+import { FlintItemTitle } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-item-title></ui-item-title>
+<flint-item-title></flint-item-title>
 ```
 
 ### Slots
@@ -33,33 +33,33 @@ import { UiItemTitle } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-text-color-muted` | — |
-| `--ui-font-family` | — |
-| `--ui-border-color` | — |
-| `--ui-text-color` | — |
-| `--ui-muted-bg` | `var(--ui-muted-background` |
+| `--flint-text-color-muted` | — |
+| `--flint-font-family` | — |
+| `--flint-border-color` | — |
+| `--flint-text-color` | — |
+| `--flint-muted-bg` | `var(--flint-muted-background` |
 
 ---
 
-## `<ui-item-description>`
+## `<flint-item-description>`
 
 Displays the description of an item.
 
-- **Tag**: `<ui-item-description>`
-- **Class**: `UiItemDescription`
+- **Tag**: `<flint-item-description>`
+- **Class**: `FlintItemDescription`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiItemDescription } from 'storybook-lit';
+import { FlintItemDescription } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-item-description></ui-item-description>
+<flint-item-description></flint-item-description>
 ```
 
 ### Slots
@@ -70,25 +70,25 @@ import { UiItemDescription } from 'storybook-lit';
 
 ---
 
-## `<ui-item-media>`
+## `<flint-item-media>`
 
 Media container for an item (icon, avatar, or image).
 
-- **Tag**: `<ui-item-media>`
-- **Class**: `UiItemMedia`
+- **Tag**: `<flint-item-media>`
+- **Class**: `FlintItemMedia`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiItemMedia } from 'storybook-lit';
+import { FlintItemMedia } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-item-media></ui-item-media>
+<flint-item-media></flint-item-media>
 ```
 
 ### Properties
@@ -107,59 +107,59 @@ import { UiItemMedia } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-item-media-icon-bg` | `var(--ui-surface-2` |
-| `--ui-item-media-icon-color` | `var(--ui-text-color-muted` |
+| `--flint-item-media-icon-bg` | `var(--flint-surface-2` |
+| `--flint-item-media-icon-color` | `var(--flint-text-color-muted` |
 
 ---
 
-## `<ui-item-content>`
+## `<flint-item-content>`
 
 Flex-column wrapper for an item's title and description.
 
-- **Tag**: `<ui-item-content>`
-- **Class**: `UiItemContent`
+- **Tag**: `<flint-item-content>`
+- **Class**: `FlintItemContent`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiItemContent } from 'storybook-lit';
+import { FlintItemContent } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-item-content></ui-item-content>
+<flint-item-content></flint-item-content>
 ```
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Accepts `ui-item-title`, `ui-item-description`, or any content. |
+| `(default)` | Accepts `flint-item-title`, `flint-item-description`, or any content. |
 
 ---
 
-## `<ui-item-actions>`
+## `<flint-item-actions>`
 
 Container for action buttons or other interactive elements. Aligns itself to the trailing edge of the item row.
 
-- **Tag**: `<ui-item-actions>`
-- **Class**: `UiItemActions`
+- **Tag**: `<flint-item-actions>`
+- **Class**: `FlintItemActions`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiItemActions } from 'storybook-lit';
+import { FlintItemActions } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-item-actions></ui-item-actions>
+<flint-item-actions></flint-item-actions>
 ```
 
 ### Slots
@@ -170,25 +170,25 @@ import { UiItemActions } from 'storybook-lit';
 
 ---
 
-## `<ui-item-header>`
+## `<flint-item-header>`
 
-Full-bleed header that spans the top of the item, cancelling the item's padding so media (images) appear flush with the border. Always place as the first child of `ui-item`.
+Full-bleed header that spans the top of the item, cancelling the item's padding so media (images) appear flush with the border. Always place as the first child of `flint-item`.
 
-- **Tag**: `<ui-item-header>`
-- **Class**: `UiItemHeader`
+- **Tag**: `<flint-item-header>`
+- **Class**: `FlintItemHeader`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiItemHeader } from 'storybook-lit';
+import { FlintItemHeader } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-item-header></ui-item-header>
+<flint-item-header></flint-item-header>
 ```
 
 ### Slots
@@ -199,25 +199,25 @@ import { UiItemHeader } from 'storybook-lit';
 
 ---
 
-## `<ui-item-footer>`
+## `<flint-item-footer>`
 
-Full-bleed footer that spans the bottom of the item, cancelling the item's padding so the footer appears flush with the border. Always place as the last child of `ui-item`.
+Full-bleed footer that spans the bottom of the item, cancelling the item's padding so the footer appears flush with the border. Always place as the last child of `flint-item`.
 
-- **Tag**: `<ui-item-footer>`
-- **Class**: `UiItemFooter`
+- **Tag**: `<flint-item-footer>`
+- **Class**: `FlintItemFooter`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiItemFooter } from 'storybook-lit';
+import { FlintItemFooter } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-item-footer></ui-item-footer>
+<flint-item-footer></flint-item-footer>
 ```
 
 ### Slots
@@ -230,87 +230,87 @@ import { UiItemFooter } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-item-footer-bg` | `transparent` |
+| `--flint-item-footer-bg` | `transparent` |
 
 ---
 
-## `<ui-item-separator>`
+## `<flint-item-separator>`
 
 Visual separator between items in a group.
 
-- **Tag**: `<ui-item-separator>`
-- **Class**: `UiItemSeparator`
+- **Tag**: `<flint-item-separator>`
+- **Class**: `FlintItemSeparator`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiItemSeparator } from 'storybook-lit';
+import { FlintItemSeparator } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-item-separator></ui-item-separator>
+<flint-item-separator></flint-item-separator>
 ```
 
 ---
 
-## `<ui-item-group>`
+## `<flint-item-group>`
 
 Container for grouping related items together.
 
-- **Tag**: `<ui-item-group>`
-- **Class**: `UiItemGroup`
+- **Tag**: `<flint-item-group>`
+- **Class**: `FlintItemGroup`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiItemGroup } from 'storybook-lit';
+import { FlintItemGroup } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-item-group></ui-item-group>
+<flint-item-group></flint-item-group>
 ```
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Accepts `ui-item`, `ui-item-separator`, and any other elements. |
+| `(default)` | Accepts `flint-item`, `flint-item-separator`, and any other elements. |
 
 ### CSS Custom Properties
 
 | Property | Default |
 | --- | --- |
-| `--ui-item-group-gap` | `4px` |
+| `--flint-item-group-gap` | `4px` |
 
 ---
 
-## `<ui-item>`
+## `<flint-item>`
 
 Root container for displaying content with media, title, description, and actions. A versatile flex row that adapts to icons, avatars, images, and action buttons.
 
-- **Tag**: `<ui-item>`
-- **Class**: `UiItem`
+- **Tag**: `<flint-item>`
+- **Class**: `FlintItem`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiItem } from 'storybook-lit';
+import { FlintItem } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-item></ui-item>
+<flint-item></flint-item>
 ```
 
 ### Properties
@@ -324,17 +324,17 @@ import { UiItem } from 'storybook-lit';
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Accepts `ui-item-header`, `ui-item-media`, `ui-item-content`, |
+| `(default)` | Accepts `flint-item-header`, `flint-item-media`, `flint-item-content`, |
 
 ### CSS Custom Properties
 
 | Property | Default |
 | --- | --- |
-| `--ui-item-padding` | `16px` |
-| `--ui-item-footer-bg` | `transparent` |
-| `--ui-item-group-gap` | `4px` |
-| `--ui-item-media-icon-bg` | `var(--ui-surface-2` |
-| `--ui-item-media-icon-color` | `var(--ui-text-color-muted` |
-| `--ui-item-gap` | — |
+| `--flint-item-padding` | `16px` |
+| `--flint-item-footer-bg` | `transparent` |
+| `--flint-item-group-gap` | `4px` |
+| `--flint-item-media-icon-bg` | `var(--flint-surface-2` |
+| `--flint-item-media-icon-color` | `var(--flint-text-color-muted` |
+| `--flint-item-gap` | — |
 
 ---

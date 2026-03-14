@@ -1,17 +1,17 @@
 # React Usage
 
-All components are available as React wrappers via the `storybook-lit-react` package, auto-generated with [`@lit/react`](https://lit.dev/docs/frameworks/react/).
+All components are available as React wrappers via the `flint-ui-react` package, auto-generated with [`@lit/react`](https://lit.dev/docs/frameworks/react/).
 
 ## Installation
 
 ```bash
-npm install storybook-lit storybook-lit-react
+npm install flint-ui flint-ui-react
 ```
 
 ## Import
 
 ```tsx
-import { UiButton, UiCard, UiDialog } from 'storybook-lit-react';
+import { FlintButton, FlintCard, FlintDialog } from 'flint-ui-react';
 ```
 
 ## Props
@@ -20,10 +20,10 @@ Props map 1:1 with the Lit component attributes. Use camelCase in JSX — the wr
 
 ```tsx
 // HTML
-// <ui-button variant="primary" disabled>Click me</ui-button>
+// <flint-button variant="primary" disabled>Click me</flint-button>
 
 // React
-<UiButton variant="primary" disabled>Click me</UiButton>
+<FlintButton variant="primary" disabled>Click me</FlintButton>
 ```
 
 ## Events
@@ -32,29 +32,29 @@ Custom events use `onEventName` props. The naming convention converts the Lit ev
 
 | Lit event | React prop |
 |-----------|-----------|
-| `ui-change` | `onUiChange` |
-| `ui-menu-close` | `onUiMenuClose` |
+| `flint-change` | `onFlintChange` |
+| `flint-menu-close` | `onFlintMenuClose` |
 | `close` | `onClose` |
-| `ui-drawer-close` | `onUiDrawerClose` |
+| `flint-drawer-close` | `onFlintDrawerClose` |
 
 ```tsx
-<UiSelect
+<FlintSelect
   label="Fruit"
-  onUiChange={(e) => console.log(e.detail.value)}
+  onFlintChange={(e) => console.log(e.detail.value)}
 />
 
-<UiDialog open onClose={() => setOpen(false)}>
-  <UiDialogTitle>Title</UiDialogTitle>
-  <UiDialogContent>Content</UiDialogContent>
-</UiDialog>
+<FlintDialog open onClose={() => setOpen(false)}>
+  <FlintDialogTitle>Title</FlintDialogTitle>
+  <FlintDialogContent>Content</FlintDialogContent>
+</FlintDialog>
 ```
 
 ## Complex properties
 
-Properties that accept objects or arrays (like `options` on `UiSelect` or `items` on `UiRichTreeView`) can be passed directly as JSX props — no `data-options` workaround needed.
+Properties that accept objects or arrays (like `options` on `FlintSelect` or `items` on `FlintRichTreeView`) can be passed directly as JSX props — no `data-options` workaround needed.
 
 ```tsx
-<UiSelect
+<FlintSelect
   label="Fruit"
   options={[
     { value: 'apple', label: 'Apple' },
@@ -65,12 +65,12 @@ Properties that accept objects or arrays (like `options` on `UiSelect` or `items
 
 ## Styling
 
-CSS custom properties work the same way. Use the `--ui-*` prefix:
+CSS custom properties work the same way. Use the `--flint-*` prefix:
 
 ```tsx
-<UiButton style={{ '--ui-primary-color': '#8b5cf6' } as React.CSSProperties}>
+<FlintButton style={{ '--flint-primary-color': '#8b5cf6' } as React.CSSProperties}>
   Purple
-</UiButton>
+</FlintButton>
 ```
 
 ## Component reference

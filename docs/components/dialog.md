@@ -1,28 +1,28 @@
 # Dialog
 
-<Demo label="Basic" html="<ui-button onclick=&quot;var d=this.nextElementSibling;d.open=true;d.addEventListener('close',function(){d.open=false},{once:true})&quot;>Open Dialog</ui-button><ui-dialog>  <ui-dialog-title>Confirm Action</ui-dialog-title>  <ui-dialog-content>    <ui-dialog-content-text>Are you sure you want to proceed? This action cannot be undone.</ui-dialog-content-text>  </ui-dialog-content>  <ui-dialog-actions>    <ui-button variant=&quot;secondary&quot; onclick=&quot;this.closest('ui-dialog').open=false&quot;>Cancel</ui-button>    <ui-button onclick=&quot;this.closest('ui-dialog').open=false&quot;>Confirm</ui-button>  </ui-dialog-actions></ui-dialog>" />
+<Demo label="Basic" html="<flint-button onclick=&quot;var d=this.nextElementSibling;d.open=true;d.addEventListener('close',function(){d.open=false},{once:true})&quot;>Open Dialog</flint-button><flint-dialog>  <flint-dialog-title>Confirm Action</flint-dialog-title>  <flint-dialog-content>    <flint-dialog-content-text>Are you sure you want to proceed? This action cannot be undone.</flint-dialog-content-text>  </flint-dialog-content>  <flint-dialog-actions>    <flint-button variant=&quot;secondary&quot; onclick=&quot;this.closest('flint-dialog').open=false&quot;>Cancel</flint-button>    <flint-button onclick=&quot;this.closest('flint-dialog').open=false&quot;>Confirm</flint-button>  </flint-dialog-actions></flint-dialog>" />
 
-<Demo label="Destructive" html="<ui-button variant=&quot;destructive&quot; onclick=&quot;var d=this.nextElementSibling;d.open=true;d.addEventListener('close',function(){d.open=false},{once:true})&quot;>Delete Account</ui-button><ui-dialog>  <ui-dialog-title>Delete Account?</ui-dialog-title>  <ui-dialog-content>    <ui-dialog-content-text>This will permanently delete your account and all associated data.</ui-dialog-content-text>  </ui-dialog-content>  <ui-dialog-actions>    <ui-button variant=&quot;secondary&quot; onclick=&quot;this.closest('ui-dialog').open=false&quot;>Cancel</ui-button>    <ui-button variant=&quot;destructive&quot; onclick=&quot;this.closest('ui-dialog').open=false&quot;>Delete</ui-button>  </ui-dialog-actions></ui-dialog>" />
+<Demo label="Destructive" html="<flint-button variant=&quot;destructive&quot; onclick=&quot;var d=this.nextElementSibling;d.open=true;d.addEventListener('close',function(){d.open=false},{once:true})&quot;>Delete Account</flint-button><flint-dialog>  <flint-dialog-title>Delete Account?</flint-dialog-title>  <flint-dialog-content>    <flint-dialog-content-text>This will permanently delete your account and all associated data.</flint-dialog-content-text>  </flint-dialog-content>  <flint-dialog-actions>    <flint-button variant=&quot;secondary&quot; onclick=&quot;this.closest('flint-dialog').open=false&quot;>Cancel</flint-button>    <flint-button variant=&quot;destructive&quot; onclick=&quot;this.closest('flint-dialog').open=false&quot;>Delete</flint-button>  </flint-dialog-actions></flint-dialog>" />
 
-## `<ui-dialog>`
+## `<flint-dialog>`
 
-ui-dialog: a modal dialog component.
+flint-dialog: a modal dialog component.
 
-- **Tag**: `<ui-dialog>`
-- **Class**: `UiDialog`
+- **Tag**: `<flint-dialog>`
+- **Class**: `FlintDialog`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiDialog } from 'storybook-lit';
+import { FlintDialog } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-dialog></ui-dialog>
+<flint-dialog></flint-dialog>
 ```
 
 ### Properties
@@ -51,15 +51,15 @@ import { UiDialog } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-dialog-max-height` | `90vh` |
-| `--ui-dialog-width` | `444px` |
-| `--ui-border-color` | — |
-| `--ui-font-family` | — |
-| `--ui-text-color-muted` | — |
-| `--ui-text-color` | — |
-| `--ui-surface-background` | `white` |
-| `--ui-border-radius-xl` | `12px` |
-| `--ui-shadow-xl` | `0 20px 25px -5px rgba(0, 0, 0, 0.1` |
+| `--flint-dialog-max-height` | `90vh` |
+| `--flint-dialog-width` | `444px` |
+| `--flint-border-color` | — |
+| `--flint-font-family` | — |
+| `--flint-text-color-muted` | — |
+| `--flint-text-color` | — |
+| `--flint-surface-background` | `white` |
+| `--flint-border-radius-xl` | `12px` |
+| `--flint-shadow-xl` | `0 20px 25px -5px rgba(0, 0, 0, 0.1` |
 
 ### Methods
 
@@ -69,25 +69,25 @@ import { UiDialog } from 'storybook-lit';
 
 ---
 
-## `<ui-dialog-title>`
+## `<flint-dialog-title>`
 
-ui-dialog-title: heading area of a dialog. Automatically assigned id="dialog-title" for aria-labelledby.
+flint-dialog-title: heading area of a dialog. Automatically assigned id="dialog-title" for aria-labelledby.
 
-- **Tag**: `<ui-dialog-title>`
-- **Class**: `UiDialogTitle`
+- **Tag**: `<flint-dialog-title>`
+- **Class**: `FlintDialogTitle`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiDialogTitle } from 'storybook-lit';
+import { FlintDialogTitle } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-dialog-title></ui-dialog-title>
+<flint-dialog-title></flint-dialog-title>
 ```
 
 ### Slots
@@ -98,25 +98,25 @@ import { UiDialogTitle } from 'storybook-lit';
 
 ---
 
-## `<ui-dialog-content>`
+## `<flint-dialog-content>`
 
-ui-dialog-content: scrollable content area of a dialog.
+flint-dialog-content: scrollable content area of a dialog.
 
-- **Tag**: `<ui-dialog-content>`
-- **Class**: `UiDialogContent`
+- **Tag**: `<flint-dialog-content>`
+- **Class**: `FlintDialogContent`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiDialogContent } from 'storybook-lit';
+import { FlintDialogContent } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-dialog-content></ui-dialog-content>
+<flint-dialog-content></flint-dialog-content>
 ```
 
 ### Slots
@@ -127,25 +127,25 @@ import { UiDialogContent } from 'storybook-lit';
 
 ---
 
-## `<ui-dialog-content-text>`
+## `<flint-dialog-content-text>`
 
-ui-dialog-content-text: body text inside a dialog content area.
+flint-dialog-content-text: body text inside a dialog content area.
 
-- **Tag**: `<ui-dialog-content-text>`
-- **Class**: `UiDialogContentText`
+- **Tag**: `<flint-dialog-content-text>`
+- **Class**: `FlintDialogContentText`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiDialogContentText } from 'storybook-lit';
+import { FlintDialogContentText } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-dialog-content-text></ui-dialog-content-text>
+<flint-dialog-content-text></flint-dialog-content-text>
 ```
 
 ### Slots
@@ -156,25 +156,25 @@ import { UiDialogContentText } from 'storybook-lit';
 
 ---
 
-## `<ui-dialog-actions>`
+## `<flint-dialog-actions>`
 
-ui-dialog-actions: footer button row for a dialog. Use the `align` prop to control button alignment.
+flint-dialog-actions: footer button row for a dialog. Use the `align` prop to control button alignment.
 
-- **Tag**: `<ui-dialog-actions>`
-- **Class**: `UiDialogActions`
+- **Tag**: `<flint-dialog-actions>`
+- **Class**: `FlintDialogActions`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiDialogActions } from 'storybook-lit';
+import { FlintDialogActions } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-dialog-actions></ui-dialog-actions>
+<flint-dialog-actions></flint-dialog-actions>
 ```
 
 ### Properties

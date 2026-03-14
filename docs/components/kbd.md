@@ -1,26 +1,26 @@
 # Kbd
 
-<Demo label="Combinations" html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap;align-items:center&quot;><span><ui-kbd>Ctrl</ui-kbd> + <ui-kbd>C</ui-kbd></span><span><ui-kbd>Ctrl</ui-kbd> + <ui-kbd>V</ui-kbd></span><span><ui-kbd>Shift</ui-kbd> + <ui-kbd>Enter</ui-kbd></span><ui-kbd>Esc</ui-kbd></div>" />
+<Demo label="Combinations" html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap;align-items:center&quot;><span><flint-kbd>Ctrl</flint-kbd> + <flint-kbd>C</flint-kbd></span><span><flint-kbd>Ctrl</flint-kbd> + <flint-kbd>V</flint-kbd></span><span><flint-kbd>Shift</flint-kbd> + <flint-kbd>Enter</flint-kbd></span><flint-kbd>Esc</flint-kbd></div>" />
 
-## `<ui-kbd>`
+## `<flint-kbd>`
 
 Displays a single keyboard key or modifier symbol. Renders a semantic `<kbd>` element for accessibility.
 
-- **Tag**: `<ui-kbd>`
-- **Class**: `UiKbd`
+- **Tag**: `<flint-kbd>`
+- **Class**: `FlintKbd`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiKbd } from 'storybook-lit';
+import { FlintKbd } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-kbd></ui-kbd>
+<flint-kbd></flint-kbd>
 ```
 
 ### Properties
@@ -41,47 +41,47 @@ import { UiKbd } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-kbd-group-gap` | `4px` |
-| `--ui-kbd-font-family` | `ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace` |
-| `--ui-kbd-color` | `var(--ui-label-color` |
-| `--ui-kbd-bg` | `var(--ui-surface-2` |
-| `--ui-kbd-border-color` | `var(--ui-border-color` |
-| `--ui-kbd-radius` | `var(--ui-border-radius-sm` |
-| `--ui-kbd-shadow-color` | `var(--ui-input-border-color` |
+| `--flint-kbd-group-gap` | `4px` |
+| `--flint-kbd-font-family` | `flint-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace` |
+| `--flint-kbd-color` | `var(--flint-label-color` |
+| `--flint-kbd-bg` | `var(--flint-surface-2` |
+| `--flint-kbd-border-color` | `var(--flint-border-color` |
+| `--flint-kbd-radius` | `var(--flint-border-radius-sm` |
+| `--flint-kbd-shadow-color` | `var(--flint-input-border-color` |
 
 ---
 
-## `<ui-kbd-group>`
+## `<flint-kbd-group>`
 
-Groups multiple `ui-kbd` elements in a row. Provides a flex container with tight spacing for key combos.
+Groups multiple `flint-kbd` elements in a row. Provides a flex container with tight spacing for key combos.
 
-- **Tag**: `<ui-kbd-group>`
-- **Class**: `UiKbdGroup`
+- **Tag**: `<flint-kbd-group>`
+- **Class**: `FlintKbdGroup`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiKbdGroup } from 'storybook-lit';
+import { FlintKbdGroup } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-kbd-group></ui-kbd-group>
+<flint-kbd-group></flint-kbd-group>
 ```
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `(default)` | `ui-kbd` elements, separators (e.g. `<span>+</span>`), or text. |
+| `(default)` | `flint-kbd` elements, separators (e.g. `<span>+</span>`), or text. |
 
 ### CSS Custom Properties
 
 | Property | Default |
 | --- | --- |
-| `--ui-kbd-group-gap` | `4px` |
+| `--flint-kbd-group-gap` | `4px` |
 
 ---

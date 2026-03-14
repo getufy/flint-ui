@@ -1,7 +1,7 @@
 ---
 layout: home
 hero:
-  name: Storybook Lit
+  name: Flint UI
   text: Web Components Library
   tagline: A comprehensive set of accessible, customizable web components built with LitElement.
   actions:
@@ -16,5 +16,5 @@ features:
   - title: React Wrappers
     details: Auto-generated React wrappers via @lit/react for seamless React integration.
   - title: Fully Customizable
-    details: Style with CSS custom properties using the --ui-* prefix. No build step required.
+    details: Style with CSS custom properties using the --flint-* prefix. No build step required.
 ---

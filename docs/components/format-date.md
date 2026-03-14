@@ -1,22 +1,22 @@
 # Format Date
 
-<Demo label="Formats" html="<div style=&quot;display:flex;flex-direction:column;gap:8px&quot;><span>Default: <ui-format-date></ui-format-date></span><span>Long: <ui-format-date date-style=&quot;long&quot;></ui-format-date></span><span>Full: <ui-format-date date-style=&quot;full&quot;></ui-format-date></span></div>" />
+<Demo label="Formats" html="<div style=&quot;display:flex;flex-direction:column;gap:8px&quot;><span>Default: <flint-format-date></flint-format-date></span><span>Long: <flint-format-date date-style=&quot;long&quot;></flint-format-date></span><span>Full: <flint-format-date date-style=&quot;full&quot;></flint-format-date></span></div>" />
 
-- **Tag**: `<ui-format-date>`
-- **Class**: `UiFormatDate`
+- **Tag**: `<flint-format-date>`
+- **Class**: `FlintFormatDate`
 
 ### Import
 
 ```ts
-import 'storybook-lit'; // auto-registers all
+import 'flint-ui'; // auto-registers all
 // or
-import { UiFormatDate } from 'storybook-lit';
+import { FlintFormatDate } from 'flint-ui';
 ```
 
 ### Usage
 
 ```html
-<ui-format-date></ui-format-date>
+<flint-format-date></flint-format-date>
 ```
 
 ### Properties
@@ -44,7 +44,7 @@ import { UiFormatDate } from 'storybook-lit';
 
 | Property | Default |
 | --- | --- |
-| `--ui-format-date-color` | `inherit` |
-| `--ui-format-date-font-size` | `inherit` |
+| `--flint-format-date-color` | `inherit` |
+| `--flint-format-date-font-size` | `inherit` |
 
 ---
