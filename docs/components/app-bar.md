@@ -27,17 +27,17 @@ import { FlintAppBar } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `title` | `title` | `string` | `''` |  |
-| `position` | `position` | `'static' \| 'fixed' \| 'absolute' \| 'sticky'` | `'static'` |  |
-| `variant` | `variant` | `'regular' \| 'outlined'` | `'regular'` |  |
+| `title` | `title` | `string` | `''` | The title text displayed in the app bar. |
+| `position` | `position` | `'static' \| 'fixed' \| 'absolute' \| 'sticky'` | `'static'` | The CSS positioning strategy for the app bar. |
+| `variant` | `variant` | `'regular' \| 'outlined'` | `'regular'` | The visual style variant of the app bar. |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `navigation` |  |
-| `title` |  |
-| `actions` |  |
+| `navigation` | Left-side content, typically a menu or back button. |
+| `title` | Custom title content to replace the title property text. |
+| `actions` | Right-side content, typically action buttons or icons. |
 
 ### CSS Custom Properties
 

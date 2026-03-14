@@ -34,9 +34,9 @@ import { FlintResizableGroup } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-resizable-collapse` | `{ index: idx, layout: this.getLayout() }` |  |
-| `flint-resizable-expand` | `{ index: idx, layout: this.getLayout() }` |  |
-| `flint-resizable-change` | `{ layout: this.getLayout() }` |  |
+| `flint-resizable-collapse` | `{ index: idx, layout: this.getLayout() }` | Fired when a panel is collapsed to zero size. |
+| `flint-resizable-expand` | `{ index: idx, layout: this.getLayout() }` | Fired when a collapsed panel is expanded back to its previous size. |
+| `flint-resizable-change` | `{ layout: this.getLayout() }` | Fired whenever any panel size changes during a resize. |
 
 ### Slots
 
@@ -48,7 +48,7 @@ import { FlintResizableGroup } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `host([orientation='vertical'])` |  |
+| `host([orientation='vertical'])` | CSS-only: switches the group to column layout when orientation is vertical. |
 | `getLayout(): number[]` | Returns a snapshot of panel sizes as percentages (0-100). |
 
 ---
@@ -81,7 +81,7 @@ import { FlintResizablePanel } from 'flint-ui';
 | `minSize` | `min-size` | `number` | `0` | Minimum size percentage (0–100). |
 | `maxSize` | `max-size` | `number` | `100` | Maximum size percentage (0–100). |
 | `collapsible` | `collapsible` | `boolean` | `false` | Whether the panel can collapse to zero size via drag. |
-| `collapsed` | `collapsed` | `boolean` | `false` |  |
+| `collapsed` | `collapsed` | `boolean` | `false` | Whether the panel is currently collapsed (set automatically by collapse/expand/toggle). |
 
 ### Slots
 
@@ -93,8 +93,8 @@ import { FlintResizablePanel } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `collapse()` |  |
-| `expand()` |  |
+| `collapse()` | Collapse this panel to zero size, transferring space to the adjacent sibling. |
+| `expand()` | Expand this panel back to its previous size (or defaultSize as fallback). |
 | `toggle()` | * Toggle between collapsed and expanded states. |
 
 ---
@@ -130,6 +130,6 @@ import { FlintResizableHandle } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `host(:hover)` |  |
+| `host(:hover)` | CSS-only: applies the hover background color to the handle. |
 
 ---

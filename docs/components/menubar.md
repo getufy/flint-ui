@@ -89,7 +89,7 @@ import { FlintMenubarGroup } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `heading` | `heading` | `string` | `''` |  |
+| `heading` | `heading` | `string` | `''` | Visible label displayed above the grouped items. |
 
 ### Slots
 
@@ -124,9 +124,9 @@ import { FlintMenubarItem } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `disabled` | `disabled` | `boolean` | `false` |  |
-| `highlighted` | `highlighted` | `boolean` | `false` |  |
-| `inset` | `inset` | `boolean` | `false` |  |
+| `disabled` | `disabled` | `boolean` | `false` | Disables the item, making it non-interactive. |
+| `highlighted` | `highlighted` | `boolean` | `false` | Whether this item is visually highlighted via keyboard navigation. |
+| `inset` | `inset` | `boolean` | `false` | Adds left padding to align with items that have a check/radio indicator. |
 | `value` | `value` | `string` | `''` | Explicit value for the select event. Falls back to label text (excludes shortcut). |
 
 ### Events
@@ -174,9 +174,9 @@ import { FlintMenubarCheckboxItem } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `checked` | `checked` | `boolean` | `false` |  |
-| `disabled` | `disabled` | `boolean` | `false` |  |
-| `highlighted` | `highlighted` | `boolean` | `false` |  |
+| `checked` | `checked` | `boolean` | `false` | Whether the checkbox is currently checked. |
+| `disabled` | `disabled` | `boolean` | `false` | Disables the checkbox item, making it non-interactive. |
+| `highlighted` | `highlighted` | `boolean` | `false` | Whether this item is visually highlighted via keyboard navigation. |
 | `value` | `value` | `string` | `''` | Explicit value for the change event. Falls back to label text (excludes shortcut). |
 
 ### Events
@@ -195,7 +195,7 @@ import { FlintMenubarCheckboxItem } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `toggle()` |  |
+| `toggle()` | Toggles the checked state and fires the change event. |
 
 ---
 
@@ -224,16 +224,16 @@ import { FlintMenubarRadioItem } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `value` | `value` | `string` | `''` |  |
-| `checked` | `checked` | `boolean` | `false` |  |
-| `disabled` | `disabled` | `boolean` | `false` |  |
-| `highlighted` | `highlighted` | `boolean` | `false` |  |
+| `value` | `value` | `string` | `''` | The value associated with this radio option. |
+| `checked` | `checked` | `boolean` | `false` | Whether this radio item is currently selected. |
+| `disabled` | `disabled` | `boolean` | `false` | Disables the radio item, making it non-interactive. |
+| `highlighted` | `highlighted` | `boolean` | `false` | Whether this item is visually highlighted via keyboard navigation. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `_menubar-radio-select` | `{ value: this.value }` |  |
+| `_menubar-radio-select` | `{ value: this.value }` | Internal event fired when the radio item is selected. |
 
 ### Slots
 
@@ -245,7 +245,7 @@ import { FlintMenubarRadioItem } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `select()` |  |
+| `select()` | Activates the radio item and fires the internal select event. |
 
 ---
 
@@ -274,7 +274,7 @@ import { FlintMenubarRadioGroup } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `value` | `value` | `string` | `''` |  |
+| `value` | `value` | `string` | `''` | The currently selected radio value in the group. |
 
 ### Events
 
@@ -315,7 +315,7 @@ import { FlintMenubarSubContent } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `open` | `open` | `boolean` | `false` |  |
+| `open` | `open` | `boolean` | `false` | Whether the sub-content panel is visible. |
 
 ### Slots
 
@@ -350,9 +350,9 @@ import { FlintMenubarSubTrigger } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `highlighted` | `highlighted` | `boolean` | `false` |  |
-| `disabled` | `disabled` | `boolean` | `false` |  |
-| `inset` | `inset` | `boolean` | `false` |  |
+| `highlighted` | `highlighted` | `boolean` | `false` | Whether this trigger is visually highlighted via keyboard navigation. |
+| `disabled` | `disabled` | `boolean` | `false` | Disables the sub-trigger, making it non-interactive. |
+| `inset` | `inset` | `boolean` | `false` | Adds left padding to align with items that have a check/radio indicator. |
 | `expanded` | `expanded` | `boolean` | `false` | Set by the parent `flint-menubar-sub` to reflect open state for aria-expanded. |
 
 ### Slots
@@ -394,11 +394,11 @@ import { FlintMenubarSub } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `open()` |  |
-| `show()` |  |
+| `open()` | Returns whether the sub-menu is currently open. |
+| `show()` | Opens the sub-menu after a short hover delay. |
 | `showImmediate()` | Opens the sub-menu immediately without the hover delay. Use for keyboard interactions. |
-| `hide()` |  |
-| `hideImmediate()` |  |
+| `hide()` | Closes the sub-menu after a short delay. |
+| `hideImmediate()` | Closes the sub-menu immediately without any delay. |
 
 ---
 
@@ -427,13 +427,13 @@ import { FlintMenubarContent } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `open` | `open` | `boolean` | `false` |  |
+| `open` | `open` | `boolean` | `false` | Whether the dropdown content panel is visible. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `_menubar-request-close` | — |  |
+| `_menubar-request-close` | — | Internal event requesting the parent menubar to close this menu. |
 
 ### Slots
 
@@ -451,7 +451,7 @@ import { FlintMenubarContent } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `resetHighlight()` |  |
+| `resetHighlight()` | Clears all item highlighting in the content panel. |
 
 ---
 
@@ -480,8 +480,8 @@ import { FlintMenubarTrigger } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `active` | `active` | `boolean` | `false` |  |
-| `disabled` | `disabled` | `boolean` | `false` |  |
+| `active` | `active` | `boolean` | `false` | Whether the trigger's associated menu is currently open. |
+| `disabled` | `disabled` | `boolean` | `false` | Disables the trigger button. |
 
 ### Slots
 
@@ -499,7 +499,7 @@ import { FlintMenubarTrigger } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `setFocusable(v: boolean)` |  |
+| `setFocusable(v: boolean)` | Sets whether this trigger is reachable via Tab (roving tabindex). |
 
 ---
 
@@ -540,9 +540,9 @@ import { FlintMenubarMenu } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `open()` |  |
-| `close()` |  |
-| `isOpen(): boolean` |  |
+| `open()` | Opens this menu's dropdown content. |
+| `close()` | Closes this menu's dropdown content and any open sub-menus. |
+| `isOpen(): boolean` | Returns whether this menu's content is currently open. |
 
 ---
 
@@ -600,7 +600,7 @@ import { FlintMenubar } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `activeIndex(): number` |  |
+| `activeIndex(): number` | Returns the index of the currently open menu, or -1 if all closed. |
 | `closeAll()` | Close all menus. |
 
 ---

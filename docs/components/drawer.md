@@ -25,11 +25,11 @@ import { FlintDrawer } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `open` | `open` | `boolean` | `false` |  |
-| `anchor` | `anchor` | `'left' \| 'right' \| 'top' \| 'bottom'` | `'left'` |  |
-| `variant` | `variant` | `'temporary' \| 'persistent' \| 'mini'` | `'temporary'` |  |
-| `edge` | `edge` | `boolean` | `false` |  |
-| `container` | `container` | `boolean` | `false` |  |
+| `open` | `open` | `boolean` | `false` | Controls whether the drawer is open or closed. |
+| `anchor` | `anchor` | `'left' \| 'right' \| 'top' \| 'bottom'` | `'left'` | Which edge of the viewport the drawer slides in from. |
+| `variant` | `variant` | `'temporary' \| 'persistent' \| 'mini'` | `'temporary'` | Drawer behavior: temporary (overlay), persistent (push content), or mini (collapsed icon rail). |
+| `edge` | `edge` | `boolean` | `false` | Shows a small edge handle when the temporary drawer is closed. |
+| `container` | `container` | `boolean` | `false` | Scopes the drawer to its parent container instead of the viewport. |
 | `label` | `label` | `string` | `'Drawer'` | Accessible label for the drawer panel (used as aria-label on the panel). |
 
 ### Events

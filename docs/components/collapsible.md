@@ -101,7 +101,7 @@ import { FlintCollapsible } from 'flint-ui';
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | `open` | `open` | `boolean` | `false` | Whether the panel is open. Reflects to attribute for CSS targeting. |
-| `defaultOpen` | `default-open` | `boolean` | `false` |  |
+| `defaultOpen` | `default-open` | `boolean` | `false` | Sets the initial open state on first render. |
 | `disabled` | `disabled` | `boolean` | `false` | Disables the trigger, preventing user interaction. |
 
 ### Events

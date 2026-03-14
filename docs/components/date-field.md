@@ -31,10 +31,10 @@ import { FlintDateField } from 'flint-ui';
 | `name` | `name` | `string` | `''` | Form field name. Reflected so the browser picks it up for form data collection. |
 | `min` | `min` | `string` | `''` | Minimum allowed date (ISO). |
 | `max` | `max` | `string` | `''` | Maximum allowed date (ISO). |
-| `disabled` | `disabled` | `boolean` | `false` |  |
-| `readonly` | `readonly` | `boolean` | `false` |  |
-| `error` | `error` | `boolean` | `false` |  |
-| `helperText` | `helper-text` | `string` | `''` |  |
+| `disabled` | `disabled` | `boolean` | `false` | Disables the field and prevents interaction. |
+| `readonly` | `readonly` | `boolean` | `false` | Makes the field read-only, preventing edits. |
+| `error` | `error` | `boolean` | `false` | Shows error styling on the field. |
+| `helperText` | `helper-text` | `string` | `''` | Helper or error text displayed below the field. |
 
 ### Events
 

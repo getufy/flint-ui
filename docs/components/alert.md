@@ -37,7 +37,7 @@ import { FlintAlert } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-alert-close` | `{ severity: this.severity }` |  |
+| `flint-alert-close` | `{ severity: this.severity }` | Fired when the dismiss button is clicked. |
 
 ### Slots
 

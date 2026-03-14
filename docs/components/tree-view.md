@@ -34,22 +34,22 @@ import { FlintRichTreeView } from 'flint-ui';
 | `getItemLabel` | `get-item-label` | `(item: RichTreeItem)` | `> string = (item) => item['label'] as string` | Returns the display label for an item. Defaults to `item.label`. |
 | `getItemChildren` | `get-item-children` | `(item: RichTreeItem)` | `> RichTreeItem[] \| undefined = (item) =>         item['children'] as RichTreeItem[] \| undefined` | Returns the children array for an item. Defaults to `item.children`. |
 | `isItemDisabled` | `is-item-disabled` | `(item: RichTreeItem)` | `> boolean = () => false` | Returns `true` if the given item should be disabled. |
-| `disabledItemsFocusable` | `disabled-items-focusable` | `boolean` | `false` |  |
+| `disabledItemsFocusable` | `disabled-items-focusable` | `boolean` | `false` | When true, disabled items can receive keyboard focus. |
 | `onItemClick` | `on-item-click` | `: (itemId: string)` | `> void` | Callback invoked when a tree item is clicked or activated via keyboard. |
-| `expansionTrigger` | `expansion-trigger` | `'content' \| 'iconContainer'` | `'content'` |  |
+| `expansionTrigger` | `expansion-trigger` | `'content' \| 'iconContainer'` | `'content'` | Whether clicking the entire row or only the icon triggers expand/collapse. |
 | `defaultExpandedItems` | `default-expanded-items` | `string[]` | `[]` | * **Uncontrolled mode.** Item IDs to expand on initial mount. |
 | `onExpandedItemsChange` | `on-expanded-items-change` | `: (itemIds: string[])` | `> void` | Callback fired when the user toggles an item's expansion. |
 | `itemsReordering` | `items-reordering` | `boolean` | `false` | * When `true`, enables drag-and-drop reordering of items. |
-| `isItemReorderable` | `is-item-reorderable` | `: (itemId: string)` | `> boolean` |  |
-| `itemsReorderingHandle` | `items-reordering-handle` | `boolean` | `false` |  |
+| `isItemReorderable` | `is-item-reorderable` | `: (itemId: string)` | `> boolean` | Returns whether a specific item can be reordered via drag-and-drop. |
+| `itemsReorderingHandle` | `items-reordering-handle` | `boolean` | `false` | When true, only the drag handle icon initiates reordering instead of the whole row. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `expanded-items-change` | `{ expandedItems: newItems }` |  |
-| `item-click` | `{ itemId }` |  |
-| `item-position-change` | `{ itemId, newParentId, newIndex }` |  |
+| `expanded-items-change` | `{ expandedItems: newItems }` | Fired when the set of expanded items changes. |
+| `item-click` | `{ itemId }` | Fired when a tree item is clicked or activated via keyboard. |
+| `item-position-change` | `{ itemId, newParentId, newIndex }` | Fired when an item is moved to a new position via drag-and-drop. |
 
 ### CSS Custom Properties
 
@@ -70,8 +70,8 @@ import { FlintRichTreeView } from 'flint-ui';
 | --- | --- |
 | `getItemTree(): RichTreeItem[]` | * Returns the current items tree. Returns the reordered tree if reordering is active. |
 | `getItemOrderedChildrenIds(itemId: string \| null): string[]` | * Returns the ordered child IDs for an item, or root items if null. |
-| `setIsItemDisabled(id: string, disabled: boolean)` |  |
-| `forEach(item => {             if (item.itemId === this._dropTargetId)` |  |
+| `setIsItemDisabled(id: string, disabled: boolean)` | Imperatively toggles the disabled state of an item, overriding `isItemDisabled`. |
+| `forEach(item => {             if (item.itemId === this._dropTargetId)` | Updates the visual drop position indicator on all tree items during drag-and-drop. |
 
 ---
 
@@ -100,11 +100,11 @@ import { FlintSimpleTreeView } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `disabledItemsFocusable` | `disabled-items-focusable` | `boolean` | `false` |  |
-| `onItemClick` | `on-item-click` | `: (itemId: string)` | `> void` |  |
-| `defaultExpandedItems` | `default-expanded-items` | `string[]` | `[]` |  |
-| `onExpandedItemsChange` | `on-expanded-items-change` | `: (itemIds: string[])` | `> void` |  |
-| `expansionTrigger` | `expansion-trigger` | `'content' \| 'iconContainer'` | `'content'` |  |
+| `disabledItemsFocusable` | `disabled-items-focusable` | `boolean` | `false` | When true, disabled items can receive keyboard focus. |
+| `onItemClick` | `on-item-click` | `: (itemId: string)` | `> void` | Callback invoked when a tree item is clicked or activated via keyboard. |
+| `defaultExpandedItems` | `default-expanded-items` | `string[]` | `[]` | Item IDs to expand on initial mount (uncontrolled mode). |
+| `onExpandedItemsChange` | `on-expanded-items-change` | `: (itemIds: string[])` | `> void` | Callback fired when the user toggles an item's expansion. |
+| `expansionTrigger` | `expansion-trigger` | `'content' \| 'iconContainer'` | `'content'` | Whether clicking the entire row or only the icon triggers expand/collapse. |
 
 ### Events
 
@@ -150,7 +150,7 @@ import { FlintTreeItem } from 'flint-ui';
 | `label` | `label` | `string` | `''` | Label text displayed for this item |
 | `disabled` | `disabled` | `boolean` | `false` | Whether this item is disabled (non-interactive) |
 | `expanded` | `expanded` | `boolean` | `false` | Whether this item's children are visible |
-| `hasChildren` | `has-children` | `boolean` | `false` |  |
+| `hasChildren` | `has-children` | `boolean` | `false` | Forces the expand button to render even without slotted children (used for lazy loading). |
 | `dropPosition` | `drop-position` | `'before' \| 'after' \| 'inside' \| null` | `null` | Visual drop position indicator — reflected so CSS :host selectors match |
 | `showDragHandle` | `show-drag-handle` | `boolean` | `false` | Whether to show a dedicated drag handle icon |
 
@@ -166,12 +166,12 @@ import { FlintTreeItem } from 'flint-ui';
 | Name | Description |
 | --- | --- |
 | `(default)` | Place child `flint-tree-item` elements here to create a nested tree. |
-| `label` |  |
+| `label` | Custom content to display as the item label instead of the `label` property. |
 
 ### Methods
 
 | Method | Description |
 | --- | --- |
-| `setDraggable(value: boolean, handleOnly = false)` |  |
+| `setDraggable(value: boolean, handleOnly = false)` | Sets whether this item is draggable, optionally restricting drag to the handle icon only. |
 
 ---

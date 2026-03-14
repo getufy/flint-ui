@@ -27,7 +27,7 @@ import { FlintRelativeTime } from 'flint-ui';
 | --- | --- | --- | --- | --- |
 | `date` | `date` | `Date \| string \| number` | `new Date()` | The date to calculate time from. Accepts a Date, ISO string, or Unix ms timestamp. Defaults to the current date/time. |
 | `format` | `format` | `'long' \| 'short' \| 'narrow'` | `'long'` | The formatting style to use. |
-| `numeric` | `numeric` | `'always' \| 'auto'` | `'auto'` |  |
+| `numeric` | `numeric` | `'always' \| 'auto'` | `'auto'` | When `auto`, uses phrases like "yesterday"; when `always`, uses "1 day ago". |
 | `sync` | `sync` | `boolean` | `false` | Keep the displayed value up to date as time passes. |
 | `lang` | `lang` | `string` | `''` | BCP 47 language tag for formatting (e.g. "en", "de", "ja"). Inherits from the document when unset. |
 

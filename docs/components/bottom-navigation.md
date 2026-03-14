@@ -36,7 +36,7 @@ import { FlintBottomNavigationAction } from 'flint-ui';
 | Name | Description |
 | --- | --- |
 | `(default)` | Default slot for content |
-| `icon` |  |
+| `icon` | Slot for the navigation action icon. |
 
 ### CSS Custom Properties
 

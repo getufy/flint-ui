@@ -25,13 +25,13 @@ import { FlintTransferList } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `options` | `options` | `TransferOption[]` | `[]` |  |
-| `value` | `value` | `string[]` | `[]` |  |
+| `options` | `options` | `TransferOption[]` | `[]` | Array of available items with `label` and `value` properties. |
+| `value` | `value` | `string[]` | `[]` | Array of selected item values currently in the right list. |
 | `defaultValue` | `default-value` | `string[]` | `[]` | Initial value for uncontrolled usage. Applied once on first render. |
-| `leftTitle` | `left-title` | `string` | `'Options'` |  |
-| `rightTitle` | `right-title` | `string` | `'Selected'` |  |
-| `disabled` | `disabled` | `boolean` | `false` |  |
-| `searchable` | `searchable` | `boolean` | `false` |  |
+| `leftTitle` | `left-title` | `string` | `'Options'` | Header title for the left (available) list. |
+| `rightTitle` | `right-title` | `string` | `'Selected'` | Header title for the right (selected) list. |
+| `disabled` | `disabled` | `boolean` | `false` | Disables all interaction with the transfer list. |
+| `searchable` | `searchable` | `boolean` | `false` | Shows a search input above each list for filtering items. |
 
 ### Events
 

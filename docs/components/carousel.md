@@ -25,9 +25,9 @@ import { FlintCarouselContent } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `index` | `index` | `number` | `0` |  |
+| `index` | `index` | `number` | `0` | Current slide index (managed by parent carousel). |
 | `itemsPerView` | `items-per-view` | `number` | `1` | Number of slides visible at once. |
-| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` |  |
+| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Slide direction axis (managed by parent carousel). |
 
 ### Slots
 
@@ -100,8 +100,8 @@ import { FlintCarouselPrevious } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `disabled` | `disabled` | `boolean` | `false` |  |
-| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` |  |
+| `disabled` | `disabled` | `boolean` | `false` | When true, disables the previous button. |
+| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Arrow direction axis (managed by parent carousel). |
 
 ### Slots
 
@@ -134,8 +134,8 @@ import { FlintCarouselNext } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `disabled` | `disabled` | `boolean` | `false` |  |
-| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` |  |
+| `disabled` | `disabled` | `boolean` | `false` | When true, disables the next button. |
+| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Arrow direction axis (managed by parent carousel). |
 
 ### Slots
 
@@ -178,7 +178,7 @@ import { FlintCarousel } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-carousel-change` | `{ index: this._currentIndex, total: this._total }` |  |
+| `flint-carousel-change` | `{ index: this._currentIndex, total: this._total }` | Fired when the active slide changes. |
 
 ### Slots
 
@@ -203,7 +203,7 @@ import { FlintCarousel } from 'flint-ui';
 | `next()` | Advance to the next slide. |
 | `previous()` | Go to the previous slide. |
 | `goTo(index: number)` | Jump to a specific slide (0-based index). |
-| `currentIndex()` |  |
-| `total()` |  |
+| `currentIndex()` | Returns the current slide index (read-only). |
+| `total()` | Returns the total number of slides (read-only). |
 
 ---
