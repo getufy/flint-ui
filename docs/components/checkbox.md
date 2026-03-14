@@ -64,9 +64,3 @@ import { FlintCheckbox } from 'flint-ui';
 | `--flint-text-color-on-primary` | — |
 
 ---
-
-## Accessibility
-
-- **Keyboard**: Space toggles checked state.
-- **ARIA**: `role="checkbox"`, `aria-checked` reflects state.
-- **Screen reader**: announces checked/unchecked state.

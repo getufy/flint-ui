@@ -58,9 +58,3 @@ import { FlintRangeSlider } from 'flint-ui';
 | `--flint-shadow-md` | — |
 
 ---
-
-## Accessibility
-
-- **Keyboard**: Arrow keys adjust each thumb independently, Tab moves between thumbs.
-- **ARIA**: each thumb has `role="slider"` with `aria-valuenow`.
-- **Screen reader**: announces min and max thumb values.

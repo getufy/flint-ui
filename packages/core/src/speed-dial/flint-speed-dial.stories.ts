@@ -8,6 +8,106 @@ import '../box/flint-box';
 const meta: Meta = {
     title: 'Navigation/Speed Dial',
     component: 'flint-speed-dial',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+#### \`<flint-speed-dial-action>\`
+
+A single action item inside a \`flint-speed-dial\`.
+
+- **Tag**: \`<flint-speed-dial-action>\`
+- **Class**: \`FlintSpeedDialAction\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`name\` | \`name\` | \`string\` | \`''\` |
+| \`tooltipTitle\` | \`tooltip-title\` | \`string\` | \`''\` |
+| \`tooltipOpen\` | \`tooltip-open\` | \`boolean\` | \`false\` |
+| \`tooltipPlacement\` | \`tooltip-placement\` | \`'left' \\| 'right' \\| 'top' \\| 'bottom'\` | \`'left'\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-speed-dial-action-click\` | — | Fired when the action button is clicked. |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Icon content for the action button. |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-speed-dial-action-size\` | — |
+| \`--flint-speed-dial-action-gap\` | — |
+| \`--flint-surface-1\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-surface-2\` | — |
+| \`--flint-primary-color\` | — |
+| \`--flint-tooltip-bg\` | — |
+| \`--flint-tooltip-text-color\` | — |
+| \`--flint-font-family\` | — |
+| \`--flint-text-color-on-primary\` | — |
+
+---
+
+#### \`<flint-speed-dial>\`
+
+Speed Dial — a FAB that reveals 3-6 related actions when pressed.
+
+- **Tag**: \`<flint-speed-dial>\`
+- **Class**: \`FlintSpeedDial\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`open\` | \`open\` | \`boolean\` | \`false\` |
+| \`defaultOpen\` | \`default-open\` | \`boolean\` | \`false\` |
+| \`direction\` | \`direction\` | \`'up' \\| 'down' \\| 'left' \\| 'right'\` | \`'up'\` |
+| \`hidden\` | \`hidden\` | \`boolean\` | \`false\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`persistentTooltips\` | \`persistent-tooltips\` | \`boolean\` | \`false\` |
+| \`closeIcon\` | \`close-icon\` | \`string\` | \`''\` |
+| \`ariaLabel\` | \`aria-label\` | \`string\` | \`'Speed dial'\` |
+| \`isTouch\` | \`is-touch\` | \`boolean\` | \`false\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-speed-dial-open\` | — | Fired when the dial opens. |
+| \`flint-speed-dial-close\` | — | Fired when the dial closes. |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | \`flint-speed-dial-action\` elements. |
+| \`icon\` | Icon shown on the FAB when closed (default: + SVG). |
+| \`open-icon\` | Icon shown on the FAB when open (default: ✕ SVG). |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-speed-dial-action-size\` | — |
+| \`--flint-speed-dial-action-gap\` | — |
+| \`--flint-speed-dial-size\` | — |
+| \`--flint-speed-dial-bg\` | — |
+| \`--flint-speed-dial-color\` | — |
+| \`--flint-speed-dial-bg-hover\` | \`var(--flint-primary-color-hover\` |
+                `,
+            },
+        },
+    },
     argTypes: {
         open: { control: 'boolean' },
         direction: { control: { type: 'select' }, options: ['up', 'down', 'left', 'right'] },

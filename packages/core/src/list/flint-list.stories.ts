@@ -6,6 +6,160 @@ import '../divider/flint-divider';
 const meta: Meta = {
     title: 'Data Display/List',
     component: 'flint-list',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+#### \`<flint-list>\`
+
+flint-list: A wrapper for list items.
+
+- **Tag**: \`<flint-list>\`
+- **Class**: \`FlintList\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`disablePadding\` | \`disable-padding\` | \`boolean\` | \`false\` |
+| \`dense\` | \`dense\` | \`boolean\` | \`false\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-list-item-padding\` | \`8px 16px\` |
+| \`--flint-list-item-gap\` | \`16px\` |
+| \`--flint-hover-color\` | — |
+| \`--flint-active-color\` | — |
+| \`--flint-primary-color\` | — |
+| \`--flint-primary-color-light\` | — |
+| \`--flint-text-color-muted\` | — |
+| \`--flint-font-family\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-surface-background\` | \`white\` |
+
+---
+
+#### \`<flint-list-item>\`
+
+flint-list-item: A common list item.
+
+- **Tag**: \`<flint-list-item>\`
+- **Class**: \`FlintListItem\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-list-item-padding\` | \`8px 16px\` |
+| \`--flint-list-item-gap\` | \`16px\` |
+
+---
+
+#### \`<flint-list-item-button>\`
+
+flint-list-item-button: An action element inside a list item.
+
+- **Tag**: \`<flint-list-item-button>\`
+- **Class**: \`FlintListItemButton\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`selected\` | \`selected\` | \`boolean\` | \`false\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+---
+
+#### \`<flint-list-item-icon>\`
+
+flint-list-item-icon: An icon wrapper inside a list item.
+
+- **Tag**: \`<flint-list-item-icon>\`
+- **Class**: \`FlintListItemIcon\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+---
+
+#### \`<flint-list-item-avatar>\`
+
+flint-list-item-avatar: An avatar wrapper inside a list item.
+
+- **Tag**: \`<flint-list-item-avatar>\`
+- **Class**: \`FlintListItemAvatar\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+---
+
+#### \`<flint-list-item-text>\`
+
+flint-list-item-text: A container for text content.
+
+- **Tag**: \`<flint-list-item-text>\`
+- **Class**: \`FlintListItemText\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`primary\` | \`primary\` | \`string\` | \`''\` |
+| \`secondary\` | \`secondary\` | \`string\` | \`''\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`primary\` |  |
+| \`secondary\` |  |
+
+---
+
+#### \`<flint-list-subheader>\`
+
+flint-list-subheader: A label for a nested list.
+
+- **Tag**: \`<flint-list-subheader>\`
+- **Class**: \`FlintListSubheader\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+                `,
+            },
+        },
+    },
 };
 
 export default meta;

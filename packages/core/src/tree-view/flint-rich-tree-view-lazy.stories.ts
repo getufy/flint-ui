@@ -8,6 +8,139 @@ import type { FlintRichTreeView, RichTreeItem, RichTreeViewDataSource } from './
 const meta: Meta = {
     title: 'Tree View/Rich Tree View - Lazy loading',
     component: 'flint-rich-tree-view',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+#### \`<flint-rich-tree-view>\`
+
+- **Tag**: \`<flint-rich-tree-view>\`
+- **Class**: \`FlintRichTreeView\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`items\` | \`items\` | \`RichTreeItem[]\` | \`[]\` |
+| \`getItemId\` | \`get-item-id\` | \`(item: RichTreeItem)\` | \`> string = (item) => item['id'] as string\` |
+| \`getItemLabel\` | \`get-item-label\` | \`(item: RichTreeItem)\` | \`> string = (item) => item['label'] as string\` |
+| \`getItemChildren\` | \`get-item-children\` | \`(item: RichTreeItem)\` | \`> RichTreeItem[] \\| undefined = (item) =>         item['children'] as RichTreeItem[] \\| undefined\` |
+| \`isItemDisabled\` | \`is-item-disabled\` | \`(item: RichTreeItem)\` | \`> boolean = () => false\` |
+| \`disabledItemsFocusable\` | \`disabled-items-focusable\` | \`boolean\` | \`false\` |
+| \`onItemClick\` | \`on-item-click\` | \`: (itemId: string)\` | \`> void\` |
+| \`expansionTrigger\` | \`expansion-trigger\` | \`'content' \\| 'iconContainer'\` | \`'content'\` |
+| \`defaultExpandedItems\` | \`default-expanded-items\` | \`string[]\` | \`[]\` |
+| \`onExpandedItemsChange\` | \`on-expanded-items-change\` | \`: (itemIds: string[])\` | \`> void\` |
+| \`itemsReordering\` | \`items-reordering\` | \`boolean\` | \`false\` |
+| \`isItemReorderable\` | \`is-item-reorderable\` | \`: (itemId: string)\` | \`> boolean\` |
+| \`itemsReorderingHandle\` | \`items-reordering-handle\` | \`boolean\` | \`false\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`expanded-items-change\` | \`{ expandedItems: newItems }\` |  |
+| \`item-click\` | \`{ itemId }\` |  |
+| \`item-position-change\` | \`{ itemId, newParentId, newIndex }\` |  |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-font-family\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-primary-color\` | — |
+| \`--flint-border-radius-sm\` | — |
+| \`--flint-hover-color\` | — |
+| \`--flint-active-color\` | — |
+| \`--flint-primary-color-light\` | — |
+| \`--flint-text-color-muted\` | — |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`getItemTree(): RichTreeItem[]\` | * Returns the current items tree. Returns the reordered tree if reordering is active. |
+| \`getItemOrderedChildrenIds(itemId: string \\| null): string[]\` | * Returns the ordered child IDs for an item, or root items if null. |
+| \`setIsItemDisabled(id: string, disabled: boolean)\` |  |
+| \`forEach(item => {             if (item.itemId === this._dropTargetId)\` |  |
+
+---
+
+#### \`<flint-simple-tree-view>\`
+
+A simple tree-view container that manages keyboard navigation, focus, and item selection/expansion for nested \`flint-tree-item\` elements.
+
+- **Tag**: \`<flint-simple-tree-view>\`
+- **Class**: \`FlintSimpleTreeView\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`disabledItemsFocusable\` | \`disabled-items-focusable\` | \`boolean\` | \`false\` |
+| \`onItemClick\` | \`on-item-click\` | \`: (itemId: string)\` | \`> void\` |
+| \`defaultExpandedItems\` | \`default-expanded-items\` | \`string[]\` | \`[]\` |
+| \`onExpandedItemsChange\` | \`on-expanded-items-change\` | \`: (itemIds: string[])\` | \`> void\` |
+| \`expansionTrigger\` | \`expansion-trigger\` | \`'content' \\| 'iconContainer'\` | \`'content'\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`item-click\` | — | When a tree item is activated (detail: { itemId }) |
+| \`expanded-items-change\` | — | When the expanded set changes (detail: { expandedItems }) |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Place \`flint-tree-item\` elements here. |
+
+---
+
+#### \`<flint-tree-item>\`
+
+A single item inside a \`flint-simple-tree-view\` or \`flint-rich-tree-view\`.
+
+- **Tag**: \`<flint-tree-item>\`
+- **Class**: \`FlintTreeItem\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`itemId\` | \`item-id\` | \`string\` | \`''\` |
+| \`label\` | \`label\` | \`string\` | \`''\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`expanded\` | \`expanded\` | \`boolean\` | \`false\` |
+| \`hasChildren\` | \`has-children\` | \`boolean\` | \`false\` |
+| \`dropPosition\` | \`drop-position\` | \`'before' \\| 'after' \\| 'inside' \\| null\` | \`null\` |
+| \`showDragHandle\` | \`show-drag-handle\` | \`boolean\` | \`false\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-tree-item-click\` | — | Fired when the item is clicked (detail: { itemId }) |
+| \`flint-tree-item-toggle\` | — | Fired when expanded state changes (detail: { itemId, expanded }) |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Place child \`flint-tree-item\` elements here to create a nested tree. |
+| \`label\` |  |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`setDraggable(value: boolean, handleOnly = false)\` |  |
+                `,
+            },
+        },
+    },
 };
 
 export default meta;

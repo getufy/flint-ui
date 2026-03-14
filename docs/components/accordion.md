@@ -151,9 +151,3 @@ import { FlintAccordionActions } from 'flint-ui';
 | `(default)` | Default slot for content |
 
 ---
-
-## Accessibility
-
-- **Keyboard**: Enter/Space toggles panels, Arrow keys navigate between headers.
-- **ARIA**: headers use `role="button"` with `aria-expanded`, panels use `role="region"`.
-- **Screen reader**: announces expanded/collapsed state.

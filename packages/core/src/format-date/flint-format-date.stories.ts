@@ -9,37 +9,36 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
-Formats a date/time using the specified locale and options.
-Localization is handled by the browser's \`Intl.DateTimeFormat\` API — no language packs required.
+- **Tag**: \`<flint-format-date>\`
+- **Class**: \`FlintFormatDate\`
 
-### Components
-- **\`flint-format-date\`** — Renders a semantic \`<time>\` element with formatted date/time text.
+#### Properties
 
-### Props
-| Prop | Attribute | Values | Default | Description |
-|---|---|---|---|---|
-| \`date\` | \`date\` | \`Date\` or ISO string | \`new Date()\` | The date/time to format |
-| \`weekday\` | \`weekday\` | \`'narrow'\` | \`'short'\` | \`'long'\` | — | Weekday format |
-| \`era\` | \`era\` | \`'narrow'\` | \`'short'\` | \`'long'\` | — | Era format |
-| \`year\` | \`year\` | \`'numeric'\` | \`'2-digit'\` | — | Year format |
-| \`month\` | \`month\` | \`'numeric'\` | \`'2-digit'\` | \`'narrow'\` | \`'short'\` | \`'long'\` | — | Month format |
-| \`day\` | \`day\` | \`'numeric'\` | \`'2-digit'\` | — | Day format |
-| \`hour\` | \`hour\` | \`'numeric'\` | \`'2-digit'\` | — | Hour format |
-| \`minute\` | \`minute\` | \`'numeric'\` | \`'2-digit'\` | — | Minute format |
-| \`second\` | \`second\` | \`'numeric'\` | \`'2-digit'\` | — | Second format |
-| \`timeZoneName\` | \`time-zone-name\` | \`'short'\` | \`'long'\` | \`'shortOffset'\` | \`'longOffset'\` | \`'shortGeneric'\` | \`'longGeneric'\` | — | Time zone name format |
-| \`timeZone\` | \`time-zone\` | string | — | Time zone (e.g. \`"UTC"\`, \`"America/New_York"\`) |
-| \`fractionalSecondDigits\` | \`fractional-second-digits\` | \`1\` | \`2\` | \`3\` | — | Sub-second digits |
-| \`dateStyle\` | \`date-style\` | \`'full'\` | \`'long'\` | \`'medium'\` | \`'short'\` | — | Shorthand date style (cannot mix with individual date fields) |
-| \`timeStyle\` | \`time-style\` | \`'full'\` | \`'long'\` | \`'medium'\` | \`'short'\` | — | Shorthand time style (cannot mix with individual time fields) |
-| \`hourFormat\` | \`hour-format\` | \`'auto'\` | \`'12'\` | \`'24'\` | \`'auto'\` | Force 12/24-hour clock |
-| \`lang\` | \`lang\` | BCP 47 string | document locale | Formatting locale |
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`date\` | \`date\` | \`Date \\| string\` | \`new Date()\` |
+| \`weekday\` | \`weekday\` | \`'narrow' \\| 'short' \\| 'long' \\| undefined\` | \`undefined\` |
+| \`era\` | \`era\` | \`'narrow' \\| 'short' \\| 'long' \\| undefined\` | \`undefined\` |
+| \`year\` | \`year\` | \`'numeric' \\| '2-digit' \\| undefined\` | \`undefined\` |
+| \`month\` | \`month\` | \`'numeric' \\| '2-digit' \\| 'narrow' \\| 'short' \\| 'long' \\| undefined\` | \`undefined\` |
+| \`day\` | \`day\` | \`'numeric' \\| '2-digit' \\| undefined\` | \`undefined\` |
+| \`hour\` | \`hour\` | \`'numeric' \\| '2-digit' \\| undefined\` | \`undefined\` |
+| \`minute\` | \`minute\` | \`'numeric' \\| '2-digit' \\| undefined\` | \`undefined\` |
+| \`second\` | \`second\` | \`'numeric' \\| '2-digit' \\| undefined\` | \`undefined\` |
+| \`timeZoneName\` | \`time-zone-name\` | \`'short' \\| 'long' \\| 'shortOffset' \\| 'longOffset' \\| 'shortGeneric' \\| 'longGeneric' \\| undefined\` | \`undefined\` |
+| \`timeZone\` | \`time-zone\` | \`string \\| undefined\` | \`undefined\` |
+| \`fractionalSecondDigits\` | \`fractional-second-digits\` | \`1 \\| 2 \\| 3 \\| undefined\` | \`undefined\` |
+| \`dateStyle\` | \`date-style\` | \`'full' \\| 'long' \\| 'medium' \\| 'short' \\| undefined\` | \`undefined\` |
+| \`timeStyle\` | \`time-style\` | \`'full' \\| 'long' \\| 'medium' \\| 'short' \\| undefined\` | \`undefined\` |
+| \`hourFormat\` | \`hour-format\` | \`'auto' \\| '12' \\| '24'\` | \`'auto'\` |
+| \`lang\` | \`lang\` | \`string\` | \`''\` |
 
-### CSS Custom Properties
-| Property | Default | Description |
-|---|---|---|
-| \`--flint-format-date-color\` | \`inherit\` | Text color |
-| \`--flint-format-date-font-size\` | \`inherit\` | Font size |
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-format-date-color\` | \`inherit\` |
+| \`--flint-format-date-font-size\` | \`inherit\` |
                 `,
             },
         },

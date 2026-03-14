@@ -62,9 +62,3 @@ import { FlintTransferList } from 'flint-ui';
 | `--flint-shadow-md` | — |
 
 ---
-
-## Accessibility
-
-- **Keyboard**: Arrow keys navigate items, Space toggles selection, transfer buttons move items.
-- **ARIA**: dual `role="listbox"` panels with `aria-selected`.
-- **Screen reader**: announces list labels and selected items.

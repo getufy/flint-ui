@@ -130,9 +130,3 @@ import { FlintRadio } from 'flint-ui';
 | `focus(options?: FocusOptions)` |  |
 
 ---
-
-## Accessibility
-
-- **Keyboard**: Arrow keys navigate between options, Space selects.
-- **ARIA**: `role="radiogroup"` on group, `role="radio"` with `aria-checked` on items.
-- **Screen reader**: announces selected state and group label.

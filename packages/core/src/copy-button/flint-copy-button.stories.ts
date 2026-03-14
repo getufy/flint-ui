@@ -5,6 +5,65 @@ import './flint-copy-button';
 const meta: Meta = {
     title: 'Utilities/Copy Button',
     component: 'flint-copy-button',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+- **Tag**: \`<flint-copy-button>\`
+- **Class**: \`FlintCopyButton\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` |
+| \`from\` | \`from\` | \`string\` | \`''\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`copyLabel\` | \`copy-label\` | \`string\` | \`'Copy'\` |
+| \`successLabel\` | \`success-label\` | \`string\` | \`'Copied!'\` |
+| \`errorLabel\` | \`error-label\` | \`string\` | \`'Error'\` |
+| \`feedbackDuration\` | \`feedback-duration\` | \`number\` | \`1000\` |
+| \`tooltipPlacement\` | \`tooltip-placement\` | \`'top' \\| 'right' \\| 'bottom' \\| 'left'\` | \`'top'\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-copy-error\` | \`{ reason: 'empty' }\` |  |
+| \`flint-copy\` | \`{ value: text }\` |  |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`success-icon\` |  |
+| \`error-icon\` |  |
+| \`copy-icon\` |  |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-copy-button-size\` | — |
+| \`--flint-copy-button-icon-size\` | — |
+| \`--flint-copy-button-success-color\` | \`var(--flint-success-color\` |
+| \`--flint-copy-button-error-color\` | \`var(--flint-error-color\` |
+| \`--flint-font-family\` | — |
+| \`--flint-border-color\` | — |
+| \`--flint-border-radius-md\` | — |
+| \`--flint-surface-1\` | — |
+| \`--flint-text-color-muted\` | — |
+| \`--flint-hover-color\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-active-color\` | — |
+| \`--flint-primary-color\` | — |
+| \`--flint-border-radius-sm\` | — |
+| \`--flint-tooltip-bg\` | — |
+| \`--flint-tooltip-text-color\` | — |
+                `,
+            },
+        },
+    },
     argTypes: {
         value: { control: 'text' },
         from: { control: 'text' },

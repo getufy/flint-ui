@@ -10,35 +10,88 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
-An interactive panel that expands and collapses, built from three composable sub-components.
+#### \`<flint-collapsible-trigger>\`
 
-### Components
-- **\`flint-collapsible\`** — Root. Manages open/closed state. Fires \`flint-collapsible-change\`.
-- **\`flint-collapsible-trigger\`** — Toggle button. Wires up to the nearest \`flint-collapsible\` ancestor automatically.
-- **\`flint-collapsible-content\`** — Animated panel. Collapses to zero height using a CSS grid transition.
+Toggle button for a collapsible. Place inside \`flint-collapsible\`. Automatically wires up to the nearest \`flint-collapsible\` ancestor.
 
-### Usage
-\`\`\`html
-<flint-collapsible>
-  <flint-collapsible-trigger>Click to expand</flint-collapsible-trigger>
-  <flint-collapsible-content>
-    <p>Hidden content revealed on click.</p>
-  </flint-collapsible-content>
-</flint-collapsible>
-\`\`\`
+- **Tag**: \`<flint-collapsible-trigger>\`
+- **Class**: \`FlintCollapsibleTrigger\`
 
-### Controlled usage
-\`\`\`html
-<flint-collapsible open @flint-collapsible-change="\${e => el.open = e.detail.open}">
-  ...
-</flint-collapsible>
-\`\`\`
+#### Properties
 
-### CSS Custom Properties
-| Property | Default | Description |
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`expanded\` | \`expanded\` | \`boolean\` | \`false\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Trigger label or any content (icon, text, avatar…). |
+
+---
+
+#### \`<flint-collapsible-content>\`
+
+The collapsible panel. Animates open/closed with a CSS grid transition. Place inside \`flint-collapsible\`; its \`open\` state is managed automatically.
+
+- **Tag**: \`<flint-collapsible-content>\`
+- **Class**: \`FlintCollapsibleContent\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`open\` | \`open\` | \`boolean\` | \`false\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Content to reveal when expanded. |
+
+---
+
+#### \`<flint-collapsible>\`
+
+Root container for a collapsible panel. Manages open/closed state and coordinates child trigger and content.
+
+- **Tag**: \`<flint-collapsible>\`
+- **Class**: \`FlintCollapsible\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`open\` | \`open\` | \`boolean\` | \`false\` |
+| \`defaultOpen\` | \`default-open\` | \`boolean\` | \`false\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+
+#### Events
+
+| Event | Detail | Description |
 |---|---|---|
-| \`--flint-collapsible-duration\` | \`200ms\` | Expand/collapse animation duration |
-| \`--flint-collapsible-easing\`   | \`ease\`   | Animation easing function |
+| \`flint-collapsible-change\` | — | Fired when the open state changes. |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Accepts \`flint-collapsible-trigger\`, \`flint-collapsible-content\`, and any |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-collapsible-duration\` | \`200ms\` |
+| \`--flint-collapsible-easing\` | \`ease\` |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`toggle()\` | Toggle the open state and fire \`flint-collapsible-change\`. |
                 `,
             },
         },

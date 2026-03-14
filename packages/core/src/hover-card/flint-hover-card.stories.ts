@@ -10,44 +10,90 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
-For sighted users to preview content available behind a link or interactive element.
+#### \`<flint-hover-card-trigger>\`
 
-### Components
-- **\`flint-hover-card\`** — Root. Manages open/close state with configurable delays. Fires \`flint-hover-card-open\` / \`flint-hover-card-close\`.
-- **\`flint-hover-card-trigger\`** — The element that activates the card on hover or focus.
-- **\`flint-hover-card-content\`** — The floating card panel. Positioned via \`side\` and \`align\` props.
+Trigger element for a hover card. Place inside \`flint-hover-card\`. Automatically wires up to the nearest \`flint-hover-card\` ancestor.
 
-### Usage
-\`\`\`html
-<flint-hover-card open-delay="700" close-delay="300">
-  <flint-hover-card-trigger>
-    <a href="#">@nextjs</a>
-  </flint-hover-card-trigger>
-  <flint-hover-card-content side="bottom" align="center">
-    <p>Rich preview content</p>
-  </flint-hover-card-content>
-</flint-hover-card>
-\`\`\`
+- **Tag**: \`<flint-hover-card-trigger>\`
+- **Class**: \`FlintHoverCardTrigger\`
 
-### Delays
-Use \`open-delay\` and \`close-delay\` to control timing.
-The close delay gives the user time to move from the trigger to the card.
+#### Slots
 
-### Positioning
-Use \`side\` (\`top\` | \`right\` | \`bottom\` | \`left\`) and \`align\` (\`start\` | \`center\` | \`end\`) on \`flint-hover-card-content\`.
+| Name | Description |
+|---|---|
+| \`(default)\` | The element that activates the hover card (link, button, avatar…). |
 
-### CSS Custom Properties
-| Property | Default | Description |
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-hovercard-z-index\` | \`1000\` |
+| \`--flint-hovercard-duration\` | \`150ms\` |
+| \`--flint-hovercard-bg\` | \`var(--flint-surface-1\` |
+| \`--flint-hovercard-border-color\` | \`var(--flint-border-color\` |
+| \`--flint-hovercard-radius\` | \`8px\` |
+| \`--flint-hovercard-shadow\` | \`0 4px 16px rgba(0, 0, 0, 0.12\` |
+| \`--flint-hovercard-padding\` | \`16px\` |
+| \`--flint-hovercard-min-width\` | \`200px\` |
+| \`--flint-font-family\` | — |
+| \`--flint-hovercard-font-size\` | \`0.875rem\` |
+| \`--flint-hovercard-color\` | \`var(--flint-text-color\` |
+
+---
+
+#### \`<flint-hover-card-content>\`
+
+- **Tag**: \`<flint-hover-card-content>\`
+- **Class**: \`FlintHoverCardContent\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`side\` | \`side\` | \`'top' \\| 'right' \\| 'bottom' \\| 'left'\` | \`'bottom'\` |
+| \`align\` | \`align\` | \`'start' \\| 'center' \\| 'end'\` | \`'center'\` |
+| \`open\` | \`open\` | \`boolean\` | \`false\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+---
+
+#### \`<flint-hover-card>\`
+
+Root container for a hover card. Manages open/closed state with configurable open and close delays.
+
+- **Tag**: \`<flint-hover-card>\`
+- **Class**: \`FlintHoverCard\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`openDelay\` | \`open-delay\` | \`number\` | \`700\` |
+| \`closeDelay\` | \`close-delay\` | \`number\` | \`300\` |
+
+#### Events
+
+| Event | Detail | Description |
 |---|---|---|
-| \`--flint-hovercard-bg\` | \`#fff\` | Card background |
-| \`--flint-hovercard-border-color\` | \`#e5e7eb\` | Card border color |
-| \`--flint-hovercard-radius\` | \`8px\` | Card corner radius |
-| \`--flint-hovercard-shadow\` | \`0 4px 16px rgba(0,0,0,.12)\` | Card shadow |
-| \`--flint-hovercard-padding\` | \`16px\` | Inner padding |
-| \`--flint-hovercard-min-width\` | \`200px\` | Minimum card width |
-| \`--flint-hovercard-offset\` | \`8px\` | Gap between trigger and card |
-| \`--flint-hovercard-duration\` | \`150ms\` | Fade-in/out duration |
-| \`--flint-hovercard-z-index\` | \`1000\` | Stack order |
+| \`flint-hover-card-open\` | — | Fired when the card becomes visible. |
+| \`flint-hover-card-close\` | — | Fired when the card is dismissed. |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Accepts \`flint-hover-card-trigger\` and \`flint-hover-card-content\`. |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`isOpen(): boolean\` |  |
                 `,
             },
         },

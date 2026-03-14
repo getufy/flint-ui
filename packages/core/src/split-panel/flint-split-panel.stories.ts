@@ -11,9 +11,41 @@ const meta: Meta = {
     parameters: {
         docs: {
             description: {
-                component:
-                    'Split panels display two adjacent panels, allowing the user to ' +
-                    'reposition the divider by dragging or using keyboard arrow keys.',
+                component: `
+- **Tag**: \`<flint-split-panel>\`
+- **Class**: \`FlintSplitPanel\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`position\` | \`position\` | \`number\` | \`50\` |
+| \`positionInPixels\` | \`position-in-pixels\` | \`number\` | \`-1\` |
+| \`vertical\` | \`vertical\` | \`boolean\` | \`false\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`snap\` | \`snap\` | \`string \\| SnapFunction\` | \`''\` |
+| \`snapThreshold\` | \`snap-threshold\` | \`number\` | \`12\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-split-panel-reposition\` | — |  |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`start\` |  |
+| \`divider\` |  |
+| \`end\` |  |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`host([vertical])\` |  |
+                `,
             },
         },
     },

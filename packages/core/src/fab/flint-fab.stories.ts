@@ -6,6 +6,50 @@ import '../box/flint-box';
 const meta: Meta = {
   title: 'Inputs/FAB',
   component: 'flint-fab',
+  parameters: {
+      docs: {
+            description: {
+                component: `
+A floating action button (FAB) represents the primary action of a screen.
+
+- **Tag**: \`<flint-fab>\`
+- **Class**: \`FlintFab\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`extended\` | \`extended\` | \`boolean\` | \`false\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`label\` | \`label\` | \`string\` | \`'Action'\` |
+| \`position\` | \`position\` | \`'bottom-right' \\| 'bottom-left' \\| 'top-right' \\| 'top-left' \\| 'static'\` | \`'bottom-right'\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`icon\` | The icon to display inside the FAB. |
+| \`(default)\` | Default slot for icon content (icon-only FAB). |
+| \`label\` | The label to display in the extended FAB. |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-fab-size\` | — |
+| \`--flint-fab-radius\` | — |
+| \`--flint-fab-background\` | — |
+| \`--flint-fab-color\` | — |
+| \`--flint-fab-shadow\` | — |
+| \`--flint-primary-color\` | — |
+| \`--flint-text-color-on-primary\` | — |
+| \`--flint-shadow-lg\` | — |
+| \`--flint-shadow-xl\` | — |
+| \`--flint-font-family\` | — |
+                `,
+            },
+        },
+  },
   argTypes: {
     extended: { control: 'boolean' },
     disabled: { control: 'boolean' },

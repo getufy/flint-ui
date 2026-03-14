@@ -16,16 +16,163 @@ const meta: Meta = {
     docs: {
       description: {
         component: `
-Cards contain content and actions about a single subject.
+#### \`<flint-card-action-area>\`
 
-### Components
-- **Card**: a surface-level container for grouping related components.
-- **Card Content**: the wrapper for the Card content.
-- **Card Header**: an optional wrapper for the Card header.
-- **Card Media**: an optional container for displaying images, videos, etc.
-- **Card Actions**: an optional wrapper that groups a set of buttons.
-- **Card Action Area**: an optional wrapper that allows users to interact with the specified area of the Card.
-        `,
+- **Tag**: \`<flint-card-action-area>\`
+- **Class**: \`FlintCardActionArea\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-card-action-area-hover\` | \`var(--flint-hover-color\` |
+| \`--flint-card-action-area-active\` | \`var(--flint-active-color\` |
+| \`--flint-card-action-area-focus-ring\` | \`var(--flint-primary-color\` |
+| \`--flint-text-color-muted\` | — |
+| \`--flint-text-color\` | — |
+
+---
+
+#### \`<flint-card-actions>\`
+
+- **Tag**: \`<flint-card-actions>\`
+- **Class**: \`FlintCardActions\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-card-actions-padding\` | \`8px 16px\` |
+
+---
+
+#### \`<flint-card-content>\`
+
+- **Tag**: \`<flint-card-content>\`
+- **Class**: \`FlintCardContent\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-card-content-padding\` | \`16px 24px\` |
+| \`--flint-card-content-size\` | \`1rem\` |
+
+---
+
+#### \`<flint-card-header>\`
+
+- **Tag**: \`<flint-card-header>\`
+- **Class**: \`FlintCardHeader\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`title\` | \`title\` | \`string\` | \`''\` |
+| \`subtitle\` | \`subtitle\` | \`string\` | \`''\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+| \`avatar\` |  |
+| \`action\` |  |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-card-header-padding\` | \`16px 24px\` |
+
+---
+
+#### \`<flint-card-media>\`
+
+- **Tag**: \`<flint-card-media>\`
+- **Class**: \`FlintCardMedia\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`image\` | \`image\` | \`string\` | \`''\` |
+| \`alt\` | \`alt\` | \`string\` | \`''\` |
+| \`height\` | \`height\` | \`string\` | \`''\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-card-media-height\` | \`200px\` |
+
+---
+
+#### \`<flint-card>\`
+
+- **Tag**: \`<flint-card>\`
+- **Class**: \`FlintCard\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`variant\` | \`variant\` | \`'elevated' \\| 'outlined' \\| 'flat'\` | \`'elevated'\` |
+| \`interactive\` | \`interactive\` | \`boolean\` | \`false\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-card-action-area-hover\` | \`var(--flint-hover-color\` |
+| \`--flint-card-action-area-active\` | \`var(--flint-active-color\` |
+| \`--flint-card-action-area-focus-ring\` | \`var(--flint-primary-color\` |
+| \`--flint-card-actions-padding\` | \`8px 16px\` |
+| \`--flint-card-content-padding\` | \`16px 24px\` |
+| \`--flint-card-content-size\` | \`1rem\` |
+| \`--flint-card-header-padding\` | \`16px 24px\` |
+| \`--flint-card-title-size\` | \`1.25rem\` |
+| \`--flint-card-subtitle-size\` | \`0.875rem\` |
+| \`--flint-card-media-height\` | \`200px\` |
+| \`--flint-card-background\` | — |
+| \`--flint-card-border-radius\` | — |
+| \`--flint-card-shadow\` | — |
+| \`--flint-card-border-color\` | — |
+| \`--flint-card-padding\` | \`0\` |
+| \`--flint-card-shadow-hover\` | — |
+| \`--flint-card-background-flat\` | — |
+                `,
       },
     },
   },

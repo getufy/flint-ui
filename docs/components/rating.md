@@ -54,9 +54,3 @@ import { FlintRating } from 'flint-ui';
 | `--flint-font-family` | — |
 
 ---
-
-## Accessibility
-
-- **Keyboard**: Arrow keys change value, Tab moves to/from component.
-- **ARIA**: `role="slider"` with `aria-valuenow`, `aria-valuemin`, `aria-valuemax`.
-- **Screen reader**: announces current rating value.

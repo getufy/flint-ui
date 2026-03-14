@@ -6,6 +6,46 @@ import '../button/flint-button.js';
 const meta: Meta = {
     title: 'Data Display/Tooltip',
     component: 'flint-tooltip',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+flint-tooltip A component that displays a text label when users hover over or focus on an element.
+
+- **Tag**: \`<flint-tooltip>\`
+- **Class**: \`FlintTooltip\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`label\` | \`label\` | \`string\` | \`''\` |
+| \`placement\` | \`placement\` | \`Placement\` | \`'top'\` |
+| \`arrow\` | \`arrow\` | \`boolean\` | \`false\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`openDelay\` | \`open-delay\` | \`number\` | \`0\` |
+| \`closeDelay\` | \`close-delay\` | \`number\` | \`0\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-tooltip-bg\` | — |
+| \`--flint-tooltip-color\` | — |
+| \`--flint-tooltip-max-width\` | \`300px\` |
+| \`--flint-border-radius-sm\` | — |
+| \`--flint-font-family\` | — |
+| \`--flint-shadow-sm\` | — |
+                `,
+            },
+        },
+    },
     argTypes: {
         label: { control: 'text' },
         placement: {

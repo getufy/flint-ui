@@ -57,8 +57,3 @@ import { FlintBadge } from 'flint-ui';
 | `--flint-warning-color` | — |
 
 ---
-
-## Accessibility
-
-- **ARIA**: badge content is wrapped in a visually hidden element for screen readers.
-- **Screen reader**: announces badge count.

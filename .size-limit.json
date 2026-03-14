@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Full bundle (ESM)",
+    "path": "packages/core/dist/index.js",
+    "limit": "5 kB"
+  },
+  {
+    "name": "Button",
+    "path": "packages/core/dist/button/flint-button.js",
+    "limit": "2 kB"
+  },
+  {
+    "name": "Dialog",
+    "path": "packages/core/dist/dialog/flint-dialog.js",
+    "limit": "3 kB"
+  },
+  {
+    "name": "Tabs",
+    "path": "packages/core/dist/tabs/flint-tabs.js",
+    "limit": "6 kB"
+  },
+  {
+    "name": "Date Picker",
+    "path": "packages/core/dist/date-picker/flint-date-picker.js",
+    "limit": "7 kB"
+  },
+  {
+    "name": "Table",
+    "path": "packages/core/dist/table/flint-table.js",
+    "limit": "3 kB"
+  },
+  {
+    "name": "Tree View",
+    "path": "packages/core/dist/tree-view/flint-rich-tree-view.js",
+    "limit": "7 kB"
+  }
+]

@@ -30,17 +30,121 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
-A composable dropdown menu built with LitElement.
+#### \`<flint-menu-item>\`
 
-**Components:**
-- \`flint-menu\` — Root; manages open/close state, keyboard navigation, and positioning
-- \`flint-menu-item\` — Interactive option (slots: \`icon\`, \`shortcut\`). Supports \`disabled\`
-- \`flint-menu-group\` — Labeled group of items (set \`label\` for group heading)
-- \`flint-menu-divider\` — Visual separator between items or groups
+A single option inside a \`flint-menu\`.
 
-**Composition:** \`flint-menu\` > (\`flint-menu-item\` | \`flint-menu-group\` > \`flint-menu-item\`* | \`flint-menu-divider\`)*
+- **Tag**: \`<flint-menu-item>\`
+- **Class**: \`FlintMenuItem\`
 
-**Keyboard navigation:** ↑ ↓ Arrow keys, Enter to select, Escape to close.
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`selected\` | \`selected\` | \`boolean\` | \`false\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`dense\` | \`dense\` | \`boolean\` | \`false\` |
+| \`divider\` | \`divider\` | \`boolean\` | \`false\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-menu-item-select\` | — | Fired when the item is activated. |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Item label text. |
+| \`icon\` | Leading icon. |
+| \`end-icon\` | Trailing icon or shortcut hint. |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-border-color\` | — |
+| \`--flint-text-color-muted\` | — |
+| \`--flint-font-family\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-hover-color\` | — |
+| \`--flint-active-color\` | — |
+| \`--flint-primary-color\` | — |
+| \`--flint-primary-color-light\` | — |
+| \`--flint-primary-color-light-hover\` | — |
+| \`--flint-surface-1\` | — |
+| \`--flint-border-radius-md\` | — |
+| \`--flint-shadow-md\` | — |
+| \`--flint-shadow-lg\` | — |
+
+---
+
+#### \`<flint-menu-divider>\`
+
+A hairline separator for grouping items in a menu.
+
+- **Tag**: \`<flint-menu-divider>\`
+- **Class**: \`FlintMenuDivider\`
+
+---
+
+#### \`<flint-menu-group>\`
+
+A labelled group of menu items. Wraps items in a \`role="group"\` for screen-reader announcements.
+
+- **Tag**: \`<flint-menu-group>\`
+- **Class**: \`FlintMenuGroup\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`label\` | \`label\` | \`string\` | \`''\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Group items (flint-menu-item elements). |
+
+---
+
+#### \`<flint-menu>\`
+
+A menu displays a list of choices on a temporary surface. Place it as a sibling to its anchor element inside a \`position:relative\` container.
+
+- **Tag**: \`<flint-menu>\`
+- **Class**: \`FlintMenu\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`open\` | \`open\` | \`boolean\` | \`false\` |
+| \`placement\` | \`placement\` | \`string\` | \`'bottom-start'\` |
+| \`closeOnSelect\` | \`close-on-select\` | \`boolean\` | \`true\` |
+| \`scrollable\` | \`scrollable\` | \`boolean\` | \`false\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-menu-close\` | — | Fired when the menu requests to be closed (backdrop click, Escape, or item select). |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Menu content (flint-menu-item elements). |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-menu-z-index\` | — |
+| \`--flint-menu-min-width\` | — |
+| \`--flint-menu-max-height\` | \`300px\` |
                 `,
             },
         },

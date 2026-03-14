@@ -360,9 +360,3 @@ import { FlintCommandDialog } from 'flint-ui';
 | `--flint-command-dialog-width` | `512px` |
 
 ---
-
-## Accessibility
-
-- **Keyboard**: Arrow keys navigate items, Enter selects, typing filters.
-- **ARIA**: `role="combobox"` with `role="listbox"` for results.
-- **Screen reader**: announces matching results count and active item.

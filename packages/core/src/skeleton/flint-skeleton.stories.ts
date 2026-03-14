@@ -5,6 +5,41 @@ import './flint-skeleton';
 const meta: Meta = {
     title: 'Feedback/Skeleton',
     component: 'flint-skeleton',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+Skeletons display a placeholder preview of content before data gets loaded.
+
+- **Tag**: \`<flint-skeleton>\`
+- **Class**: \`FlintSkeleton\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`dark\` | \`dark\` | \`boolean\` | \`false\` |
+| \`animation\` | \`animation\` | \`'pulse' \\| 'wave' \\| 'none'\` | \`'pulse'\` |
+| \`variant\` | \`variant\` | \`'text' \\| 'circular' \\| 'rectangular' \\| 'rounded'\` | \`'text'\` |
+| \`width\` | \`width\` | \`string\` | \`''\` |
+| \`height\` | \`height\` | \`string\` | \`''\` |
+| \`label\` | \`label\` | \`string\` | \`'Loading...'\` |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-skeleton-bg\` | \`var(--flint-surface-3, rgba(0, 0, 0, 0.11\` |
+| \`--flint-skeleton-bg-dark\` | \`rgba(255, 255, 255, 0.13\` |
+| \`--flint-skeleton-animation-duration\` | \`1.5s\` |
+| \`--flint-skeleton-wave-color\` | \`rgba(255, 255, 255, 0.4\` |
+| \`--flint-border-radius-sm\` | — |
+| \`--flint-border-radius-md\` | — |
+| \`--flint-border-radius-lg\` | — |
+                `,
+            },
+        },
+    },
     argTypes: {
         variant: {
             control: 'select',

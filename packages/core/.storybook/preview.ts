@@ -3,6 +3,7 @@ import '../src/theme.css';
 import '../src/theme-dark.css';
 
 const preview: Preview = {
+  tags: ['autodocs'],
   parameters: {
     controls: {
       matchers: {

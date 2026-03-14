@@ -91,9 +91,3 @@ import { FlintBottomNavigation } from 'flint-ui';
 | `(default)` | destinations (flint-bottom-navigation-action). |
 
 ---
-
-## Accessibility
-
-- **Keyboard**: Arrow keys navigate between actions.
-- **ARIA**: `role="navigation"` on container.
-- **Screen reader**: announces navigation landmark and active item.

@@ -10,6 +10,56 @@ import '../stack/flint-stack';
 const meta: Meta = {
     title: 'Navigation/Drawer',
     component: 'flint-drawer',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+Navigation drawers provide ergonomic access to destinations in a site or app.
+
+- **Tag**: \`<flint-drawer>\`
+- **Class**: \`FlintDrawer\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`open\` | \`open\` | \`boolean\` | \`false\` |
+| \`anchor\` | \`anchor\` | \`'left' \\| 'right' \\| 'top' \\| 'bottom'\` | \`'left'\` |
+| \`variant\` | \`variant\` | \`'temporary' \\| 'persistent' \\| 'mini'\` | \`'temporary'\` |
+| \`edge\` | \`edge\` | \`boolean\` | \`false\` |
+| \`container\` | \`container\` | \`boolean\` | \`false\` |
+| \`label\` | \`label\` | \`string\` | \`'Drawer'\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-drawer-close\` | — | Dispatched when the drawer requests to be closed (backdrop click or Escape). |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Drawer content. |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-drawer-z-index\` | \`1200\` |
+| \`--flint-drawer-bg\` | \`var(--flint-surface-1\` |
+| \`--flint-drawer-width\` | \`250px\` |
+| \`--flint-drawer-shadow\` | — |
+| \`--flint-drawer-transition\` | \`.225s cubic-bezier(0, 0, .2, 1\` |
+| \`--flint-drawer-height\` | \`auto\` |
+| \`--flint-drawer-mini-width\` | \`72px\` |
+| \`--flint-drawer-edge-width\` | \`16px\` |
+| \`--flint-backdrop-color\` | — |
+| \`--flint-border-color\` | — |
+                `,
+            },
+        },
+    },
     argTypes: {
         open: { control: 'boolean' },
         anchor: { control: { type: 'select' }, options: ['left', 'right', 'top', 'bottom'] },

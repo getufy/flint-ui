@@ -32,8 +32,3 @@ import { FlintVisuallyHidden } from 'flint-ui';
 | `(default)` | Default slot for content |
 
 ---
-
-## Accessibility
-
-- Hides content visually while keeping it accessible to screen readers.
-- Useful for providing additional context that sighted users don't need.

@@ -32,17 +32,164 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
-A composable tabbed interface built with LitElement.
+#### \`<flint-tab>\`
 
-**Components:**
-- \`flint-tabs\` — Root; manages selected tab state, keyboard navigation, and scroll buttons
-- \`flint-tab-list\` — Container for tab triggers (renders the tab bar with active indicator)
-- \`flint-tab\` — Individual tab trigger (slots: \`icon\`). Set \`value\` to identify it
-- \`flint-tab-panel\` — Content panel; matched to a tab via \`value\`
+- **Tag**: \`<flint-tab>\`
+- **Class**: \`FlintTab\`
 
-**Composition:** \`flint-tabs\` > \`flint-tab-list\` > \`flint-tab\`* + \`flint-tab-panel\`*
+#### Properties
 
-**Keyboard navigation:** Arrow keys move between tabs, Home/End jump to first/last, Enter/Space activates.
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`selected\` | \`selected\` | \`boolean\` | \`false\` |
+| \`iconPosition\` | \`icon-position\` | \`'top' \\| 'bottom' \\| 'start' \\| 'end'\` | \`'start'\` |
+| \`href\` | \`href\` | \`string\` | \`''\` |
+| \`fullWidth\` | \`full-width\` | \`boolean\` | \`false\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-tab-click\` | \`{ value: this.value }\` |  |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+| \`icon\` |  |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-tab-border-color\` | \`var(--flint-border-color\` |
+| \`--flint-tab-scroll-btn-size\` | \`40px\` |
+| \`--flint-tab-indicator-color\` | \`var(--flint-tabs-ind-color, var(--flint-primary-color\` |
+| \`--flint-tab-indicator-radius\` | \`3px\` |
+| \`--flint-tab-indicator-height\` | \`3px\` |
+| \`--flint-tab-indicator-width\` | \`3px\` |
+| \`--flint-tab-panel-padding\` | \`24px\` |
+| \`--flint-tab-padding-y\` | \`10px\` |
+| \`--flint-tab-padding-x\` | \`16px\` |
+| \`--flint-tab-min-height\` | \`48px\` |
+| \`--flint-tab-font-size\` | \`0.875rem\` |
+| \`--flint-tab-font-weight\` | \`500\` |
+| \`--flint-tab-inactive-color\` | — |
+| \`--flint-tab-active-color\` | — |
+| \`--flint-tab-hover-bg\` | \`var(--flint-primary-color-light\` |
+| \`--flint-tab-font-weight-active\` | \`600\` |
+| \`--flint-tab-disabled-opacity\` | \`0.38\` |
+| \`--flint-tab-icon-min-height\` | \`72px\` |
+| \`--flint-border-color\` | — |
+| \`--flint-primary-color\` | — |
+| \`--flint-background\` | — |
+| \`--flint-text-color-muted\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-hover-color\` | — |
+| \`--flint-font-family\` | — |
+| \`--flint-primary-color-light\` | — |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`setTabIndex(n: number)\` |  |
+| \`focusInner()\` |  |
+
+---
+
+#### \`<flint-tab-panel>\`
+
+- **Tag**: \`<flint-tab-panel>\`
+- **Class**: \`FlintTabPanel\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-tab-panel-padding\` | \`24px\` |
+
+---
+
+#### \`<flint-tab-list>\`
+
+- **Tag**: \`<flint-tab-list>\`
+- **Class**: \`FlintTabList\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` |
+| \`variant\` | \`variant\` | \`'standard' \\| 'fullWidth' \\| 'scrollable'\` | \`'standard'\` |
+| \`centered\` | \`centered\` | \`boolean\` | \`false\` |
+| \`scrollButtons\` | \`scroll-buttons\` | \`'auto' \\| 'false'\` | \`'auto'\` |
+| \`ariaLabel\` | \`aria-label\` | \`string\` | \`''\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-tab-click\` | \`{ value: tabs[idx].value }\` |  |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`syncIndicator()\` |  |
+
+---
+
+#### \`<flint-tabs>\`
+
+- **Tag**: \`<flint-tabs>\`
+- **Class**: \`FlintTabs\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` |
+| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` |
+| \`variant\` | \`variant\` | \`'standard' \\| 'fullWidth' \\| 'scrollable'\` | \`'standard'\` |
+| \`centered\` | \`centered\` | \`boolean\` | \`false\` |
+| \`scrollButtons\` | \`scroll-buttons\` | \`'auto' \\| 'false'\` | \`'auto'\` |
+| \`textColor\` | \`text-color\` | \`string\` | \`'primary'\` |
+| \`indicatorColor\` | \`indicator-color\` | \`string\` | \`'primary'\` |
+| \`defaultValue\` | \`default-value\` | \`string\` | \`''\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-tab-change\` | \`{ value: e.detail.value }\` |  |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
                 `,
             },
         },

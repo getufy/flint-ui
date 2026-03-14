@@ -7,6 +7,71 @@ import '../avatar/flint-avatar';
 const meta: Meta = {
     title: 'Data Display/Chip',
     component: 'flint-chip',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+- **Tag**: \`<flint-chip>\`
+- **Class**: \`FlintChip\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`label\` | \`label\` | \`string\` | \`''\` |
+| \`variant\` | \`variant\` | \`'filled' \\| 'outlined'\` | \`'filled'\` |
+| \`color\` | \`color\` | \`'default' \\| 'primary' \\| 'secondary'\` | \`'default'\` |
+| \`size\` | \`size\` | \`'sm' \\| 'md' \\| 'lg'\` | \`'md'\` |
+| \`clickable\` | \`clickable\` | \`boolean\` | \`false\` |
+| \`deletable\` | \`deletable\` | \`boolean\` | \`false\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`click\` | — |  |
+| \`delete\` | — |  |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`avatar\` |  |
+| \`icon\` |  |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-chip-height\` | \`32px\` |
+| \`--flint-chip-padding-x\` | \`12px\` |
+| \`--flint-chip-border-radius\` | \`16px\` |
+| \`--flint-chip-font-size\` | \`0.875rem\` |
+| \`--flint-chip-gap\` | \`8px\` |
+| \`--flint-chip-height-sm\` | \`24px\` |
+| \`--flint-chip-padding-x-sm\` | \`8px\` |
+| \`--flint-chip-font-size-sm\` | \`0.75rem\` |
+| \`--flint-chip-border-radius-sm\` | \`12px\` |
+| \`--flint-chip-height-lg\` | \`40px\` |
+| \`--flint-chip-padding-x-lg\` | \`16px\` |
+| \`--flint-chip-font-size-lg\` | \`1rem\` |
+| \`--flint-chip-border-radius-lg\` | \`20px\` |
+| \`--flint-font-family\` | — |
+| \`--flint-surface-2\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-hover-color\` | — |
+| \`--flint-active-color\` | — |
+| \`--flint-input-border-color\` | — |
+| \`--flint-primary-color\` | — |
+| \`--flint-text-color-on-primary\` | — |
+| \`--flint-secondary-color\` | — |
+| \`--flint-shadow-sm\` | — |
+| \`--flint-avatar-size\` | \`24px\` |
+                `,
+            },
+        },
+    },
     argTypes: {
         label: { control: 'text' },
         variant: { control: 'select', options: ['filled', 'outlined'] },

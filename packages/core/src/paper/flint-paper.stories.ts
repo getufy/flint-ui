@@ -10,7 +10,37 @@ const meta: Meta = {
     parameters: {
         docs: {
             description: {
-                component: 'The Paper component is a container for displaying content on an elevated surface. Shadow styles are heavily influenced by their real-world physical counterparts.',
+                component: `
+The Paper component is a container for displaying content on an elevated surface. Shadow styles are influenced by real-world physical counterparts. Supported elevation values: 0, 1, 2, 3, 4, 6, 8, 12, 16, 24. Other numeric values are accepted but produce no visible shadow.
+
+- **Tag**: \`<flint-paper>\`
+- **Class**: \`FlintPaper\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`elevation\` | \`elevation\` | \`number\` | \`1\` |
+| \`square\` | \`square\` | \`boolean\` | \`false\` |
+| \`variant\` | \`variant\` | \`'elevated' \\| 'outlined' \\| 'flat'\` | \`'elevated'\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-paper-padding\` | \`0\` |
+| \`--flint-surface-1\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-border-radius-md\` | — |
+| \`--flint-border-color\` | — |
+| \`--flint-surface-background-flat\` | — |
+                `,
             },
         },
     },

@@ -7,6 +7,35 @@ import '../box/flint-box';
 const meta: Meta = {
     title: 'Layout/Stack',
     component: 'flint-stack',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+- **Tag**: \`<flint-stack>\`
+- **Class**: \`FlintStack\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`spacing\` | \`spacing\` | \`ResponsiveValue<number \\| string>\` | \`0\` |
+| \`useFlexGap\` | \`use-flex-gap\` | \`boolean\` | \`true\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-stack-spacing\` | \`0px\` |
+                `,
+            },
+        },
+    },
     argTypes: {
         direction: {
             control: 'select',

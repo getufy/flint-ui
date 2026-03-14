@@ -5,6 +5,68 @@ import './flint-linear-progress';
 
 const meta: Meta = {
     title: 'Feedback/Progress',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+#### \`<flint-circular-progress>\`
+
+flint-circular-progress: a circular progress indicator (spinner).
+
+- **Tag**: \`<flint-circular-progress>\`
+- **Class**: \`FlintCircularProgress\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`variant\` | \`variant\` | \`'determinate' \\| 'indeterminate'\` | \`'indeterminate'\` |
+| \`value\` | \`value\` | \`number\` | \`0\` |
+| \`size\` | \`size\` | \`number\` | \`40\` |
+| \`thickness\` | \`thickness\` | \`number\` | \`3.6\` |
+| \`color\` | \`color\` | \`'primary' \\| 'success' \\| 'error' \\| 'warning'\` | \`'primary'\` |
+| \`label\` | \`label\` | \`string\` | \`''\` |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-circular-progress-size\` | — |
+| \`--flint-circular-progress-color\` | — |
+| \`--flint-circular-progress-thickness\` | \`3.6\` |
+| \`--flint-primary-color\` | — |
+| \`--flint-primary-color-light\` | — |
+
+---
+
+#### \`<flint-linear-progress>\`
+
+flint-linear-progress: a horizontal progress bar.
+
+- **Tag**: \`<flint-linear-progress>\`
+- **Class**: \`FlintLinearProgress\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`variant\` | \`variant\` | \`'determinate' \\| 'indeterminate'\` | \`'indeterminate'\` |
+| \`value\` | \`value\` | \`number\` | \`0\` |
+| \`height\` | \`height\` | \`number\` | \`4\` |
+| \`color\` | \`color\` | \`'primary' \\| 'success' \\| 'error' \\| 'warning'\` | \`'primary'\` |
+| \`label\` | \`label\` | \`string\` | \`''\` |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-linear-progress-height\` | — |
+| \`--flint-linear-progress-bg\` | — |
+| \`--flint-linear-progress-color\` | — |
+                `,
+            },
+        },
+    },
     argTypes: {
         variant: {
             control: 'select',

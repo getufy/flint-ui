@@ -8,6 +8,46 @@ import type { FlintRating } from './flint-rating';
 const meta: Meta = {
     title: 'Inputs/Rating',
     component: 'flint-rating',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+- **Tag**: \`<flint-rating>\`
+- **Class**: \`FlintRating\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`value\` | \`value\` | \`number\` | \`0\` |
+| \`max\` | \`max\` | \`number\` | \`5\` |
+| \`readonly\` | \`readonly\` | \`boolean\` | \`false\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`clearable\` | \`clearable\` | \`boolean\` | \`false\` |
+| \`defaultValue\` | \`default-value\` | \`number\` | \`0\` |
+| \`size\` | \`size\` | \`'sm' \\| 'md' \\| 'lg'\` | \`'md'\` |
+| \`name\` | \`name\` | \`string\` | \`''\` |
+| \`label\` | \`label\` | \`string\` | \`'Rating'\` |
+| \`precision\` | \`precision\` | \`1 \\| 0.5\` | \`1\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-rating-change\` | \`{ value: this.value }\` |  |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-rating-size\` | — |
+| \`--flint-rating-color\` | — |
+| \`--flint-rating-empty-color\` | — |
+| \`--flint-font-family\` | — |
+                `,
+            },
+        },
+    },
     argTypes: {
         value:        { control: { type: 'number', min: 0, max: 10, step: 0.5 } },
         max:          { control: { type: 'number', min: 1, max: 10 } },

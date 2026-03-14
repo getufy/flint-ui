@@ -11,25 +11,125 @@ const meta: Meta = {
     docs: {
       description: {
         component: `
-An empty-state component composed of six sub-elements.
+#### \`<flint-empty-title>\`
 
-### Components
-- **\`flint-empty\`** — Root container. Centred flex-column with configurable padding and gap.
-- **\`flint-empty-header\`** — Groups media, title and description in a centred column.
-- **\`flint-empty-media\`** — Media wrapper. Use \`variant="icon"\` for a rounded-background icon badge, or the default for avatars and images.
-- **\`flint-empty-title\`** — Heading text for the empty state.
-- **\`flint-empty-description\`** — Supporting descriptive text.
-- **\`flint-empty-content\`** — Area for actions such as buttons or inputs.
+Displays the heading of an empty state.
 
-### CSS Custom Properties
-| Property | Default | Description |
-|---|---|---|
-| \`--flint-empty-padding\` | \`32px\` | Inner padding |
-| \`--flint-empty-gap\` | \`16px\` | Gap between sections |
-| \`--flint-empty-max-width\` | \`480px\` | Max container width |
-| \`--flint-empty-media-bg\` | \`#f3f4f6\` | Icon variant background |
-| \`--flint-empty-media-color\` | \`#6b7280\` | Icon variant icon colour |
-        `,
+- **Tag**: \`<flint-empty-title>\`
+- **Class**: \`FlintEmptyTitle\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Title text. |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-text-color-muted\` | — |
+| \`--flint-font-family\` | — |
+| \`--flint-text-color\` | — |
+
+---
+
+#### \`<flint-empty-description>\`
+
+Displays the descriptive text of an empty state.
+
+- **Tag**: \`<flint-empty-description>\`
+- **Class**: \`FlintEmptyDescription\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Description text. |
+
+---
+
+#### \`<flint-empty-media>\`
+
+Displays the media area of an empty state (icon, image, or avatar).
+
+- **Tag**: \`<flint-empty-media>\`
+- **Class**: \`FlintEmptyMedia\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`variant\` | \`variant\` | \`'default' \\| 'icon'\` | \`'default'\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Media content: icon, image, or avatar elements. |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-empty-media-bg\` | \`var(--flint-surface-2\` |
+| \`--flint-empty-media-color\` | \`var(--flint-text-color-muted\` |
+
+---
+
+#### \`<flint-empty-header>\`
+
+Groups the media, title, and description of an empty state.
+
+- **Tag**: \`<flint-empty-header>\`
+- **Class**: \`FlintEmptyHeader\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Accepts \`flint-empty-media\`, \`flint-empty-title\`, \`flint-empty-description\`. |
+
+---
+
+#### \`<flint-empty-content>\`
+
+Displays action content for an empty state (buttons, inputs, links).
+
+- **Tag**: \`<flint-empty-content>\`
+- **Class**: \`FlintEmptyContent\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Action elements such as buttons or inputs. |
+
+---
+
+#### \`<flint-empty>\`
+
+Root container for an empty state. Wraps \`flint-empty-header\` and \`flint-empty-content\` in a vertically centred flex column.
+
+- **Tag**: \`<flint-empty>\`
+- **Class**: \`FlintEmpty\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Accepts \`flint-empty-header\`, \`flint-empty-content\`, and any extra |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-empty-media-bg\` | \`var(--flint-surface-2\` |
+| \`--flint-empty-media-color\` | \`var(--flint-text-color-muted\` |
+| \`--flint-empty-gap\` | \`16px\` |
+| \`--flint-empty-padding\` | \`32px\` |
+| \`--flint-empty-max-width\` | \`480px\` |
+                `,
       },
     },
   },

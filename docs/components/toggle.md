@@ -72,9 +72,3 @@ import { FlintToggle } from 'flint-ui';
 | `--flint-primary-color` | — |
 
 ---
-
-## Accessibility
-
-- **Keyboard**: Space/Enter toggles pressed state.
-- **ARIA**: `aria-pressed` reflects toggle state.
-- **Screen reader**: announces pressed/not pressed.

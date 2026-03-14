@@ -50,8 +50,3 @@ import { FlintDivider } from 'flint-ui';
 | `--flint-text-color-muted` | — |
 
 ---
-
-## Accessibility
-
-- **ARIA**: `role="separator"`.
-- **Screen reader**: announced as separator.

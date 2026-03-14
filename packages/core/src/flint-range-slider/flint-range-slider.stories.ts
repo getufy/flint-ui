@@ -6,6 +6,54 @@ import '../stack/flint-stack';
 const meta: Meta = {
     title: 'Inputs/Range Slider',
     component: 'flint-range-slider',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+- **Tag**: \`<flint-range-slider>\`
+- **Class**: \`FlintRangeSlider\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`value\` | \`value\` | \`[number, number]\` | \`[25, 75]\` |
+| \`min\` | \`min\` | \`number\` | \`0\` |
+| \`max\` | \`max\` | \`number\` | \`100\` |
+| \`step\` | \`step\` | \`number\` | \`1\` |
+| \`size\` | \`size\` | \`'sm' \\| 'md' \\| 'lg'\` | \`'md'\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`label\` | \`label\` | \`string\` | \`''\` |
+| \`showValue\` | \`show-value\` | \`boolean\` | \`false\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-range-slider-change\` | \`{ value: this.value }\` |  |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-range-slider-fill-color\` | — |
+| \`--flint-range-slider-track-height\` | — |
+| \`--flint-range-slider-track-color\` | — |
+| \`--flint-range-slider-thumb-size\` | — |
+| \`--flint-range-slider-thumb-color\` | — |
+| \`--flint-range-slider-thumb-border\` | — |
+| \`--flint-font-family\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-input-border-color\` | — |
+| \`--flint-primary-color\` | — |
+| \`--flint-surface-1\` | — |
+| \`--flint-text-color-muted\` | — |
+| \`--flint-shadow-sm\` | — |
+| \`--flint-shadow-md\` | — |
+                `,
+            },
+        },
+    },
     argTypes: {
         value: {
             control: 'object',

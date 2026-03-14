@@ -7,6 +7,66 @@ import '../box/flint-box';
 const meta: Meta = {
     title: 'Inputs/Switch',
     component: 'flint-switch',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+A Switch component for toggling settings.
+
+- **Tag**: \`<flint-switch>\`
+- **Class**: \`FlintSwitch\`
+- **Form Associated**: Yes
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`checked\` | \`checked\` | \`boolean\` | \`false\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`required\` | \`required\` | \`boolean\` | \`false\` |
+| \`size\` | \`size\` | \`'sm' \\| 'md' \\| 'lg'\` | \`'md'\` |
+| \`label\` | \`label\` | \`string\` | \`''\` |
+| \`name\` | \`name\` | \`string\` | \`''\` |
+| \`value\` | \`value\` | \`string\` | \`'on'\` |
+| \`defaultChecked\` | \`default-checked\` | \`boolean\` | \`false\` |
+| \`ariaLabel\` | \`aria-label\` | \`string \\| null\` | \`null\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-switch-change\` | — | Dispatched when the switch state changes. Detail: \`{ checked: boolean }\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`icon-on\` | Optional icon to show when the switch is ON. |
+| \`icon-off\` | Optional icon to show when the switch is OFF. |
+| \`(default)\` | Optional label content (used when the \`label\` prop is not set). |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-switch-thumb-color\` | — |
+| \`--flint-switch-width\` | — |
+| \`--flint-switch-height\` | — |
+| \`--flint-switch-bg\` | — |
+| \`--flint-switch-bg-on\` | — |
+| \`--flint-switch-thumb-offset\` | — |
+| \`--flint-switch-thumb-size\` | — |
+| \`--flint-switch-thumb-bg\` | — |
+| \`--flint-secondary-color\` | — |
+| \`--flint-primary-color\` | — |
+| \`--flint-font-family\` | — |
+| \`--flint-shadow-sm\` | — |
+| \`--flint-text-color-muted\` | — |
+| \`--flint-text-color\` | — |
+                `,
+            },
+        },
+    },
     argTypes: {
         checked: { control: 'boolean' },
         disabled: { control: 'boolean' },

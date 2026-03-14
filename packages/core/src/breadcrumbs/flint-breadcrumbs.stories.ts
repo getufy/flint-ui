@@ -5,6 +5,49 @@ import './flint-breadcrumbs';
 const meta: Meta = {
     title: 'Navigation/Breadcrumbs',
     component: 'flint-breadcrumbs',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+Breadcrumbs provide a navigational aid showing the current page's location within a site hierarchy, allowing users to navigate back up the trail.
+
+- **Tag**: \`<flint-breadcrumbs>\`
+- **Class**: \`FlintBreadcrumbs\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`maxItems\` | \`max-items\` | \`number\` | \`8\` |
+| \`itemsBefore\` | \`items-before\` | \`number\` | \`1\` |
+| \`itemsAfter\` | \`items-after\` | \`number\` | \`1\` |
+| \`separator\` | \`separator\` | \`string\` | \`'/'\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Breadcrumb items (links or text), distributed in order. |
+| \`separator\` | Custom separator element rendered between each item. |
+| \`breadcrumb-item-\${index}\` |  |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-breadcrumb-separator-margin\` | \`8px\` |
+| \`--flint-breadcrumb-color\` | \`var(--flint-text-color-muted\` |
+| \`--flint-font-family\` | — |
+| \`--flint-breadcrumb-font-size\` | \`0.875rem\` |
+| \`--flint-breadcrumb-color-active\` | \`var(--flint-text-color\` |
+| \`--flint-breadcrumb-collapsed-bg\` | \`var(--flint-hover-color\` |
+| \`--flint-breadcrumb-collapsed-radius\` | \`var(--flint-border-radius-md\` |
+| \`--flint-breadcrumb-collapsed-hover-bg\` | \`var(--flint-active-color\` |
+| \`--flint-primary-color\` | — |
+                `,
+            },
+        },
+    },
     argTypes: {
         separator: { control: 'text' },
         maxItems: { control: 'number' },

@@ -246,8 +246,3 @@ import { FlintCard } from 'flint-ui';
 | `--flint-card-background-flat` | — |
 
 ---
-
-## Accessibility
-
-- **ARIA**: semantic grouping. Cards with action areas are keyboard-focusable.
-- **Screen reader**: content announced in reading order.

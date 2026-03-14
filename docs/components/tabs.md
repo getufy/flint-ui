@@ -220,9 +220,3 @@ import { FlintTabs } from 'flint-ui';
 | `(default)` | Default slot for content |
 
 ---
-
-## Accessibility
-
-- **Keyboard**: Arrow keys navigate tabs, Home/End jump to first/last.
-- **ARIA**: `role="tablist"`, `role="tab"` with `aria-selected`, `role="tabpanel"`. Roving tabindex pattern.
-- **Screen reader**: announces tab label and selected state.

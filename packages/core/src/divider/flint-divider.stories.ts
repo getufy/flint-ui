@@ -5,6 +5,44 @@ import './flint-divider';
 const meta: Meta = {
     title: 'Data Display/Divider',
     component: 'flint-divider',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+A divider component that provides a thin line for grouping elements.
+
+- **Tag**: \`<flint-divider>\`
+- **Class**: \`FlintDivider\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` |
+| \`variant\` | \`variant\` | \`'full' \\| 'middle' \\| 'inset'\` | \`'full'\` |
+| \`weight\` | \`weight\` | \`'light' \\| 'medium' \\| 'heavy'\` | \`'light'\` |
+| \`textAlign\` | \`text-align\` | \`'left' \\| 'center' \\| 'right'\` | \`'center'\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Optional text or content to display within the divider. |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-divider-margin\` | — |
+| \`--flint-divider-thickness\` | — |
+| \`--flint-divider-color\` | — |
+| \`--flint-border-color\` | — |
+| \`--flint-font-family\` | — |
+| \`--flint-text-color-muted\` | — |
+                `,
+            },
+        },
+    },
     argTypes: {
         orientation: {
             control: 'select',

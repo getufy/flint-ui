@@ -8,6 +8,66 @@ import '../alert/flint-alert';
 const meta: Meta = {
     title: 'Feedback/Snackbar',
     component: 'flint-snackbar',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+- **Tag**: \`<flint-snackbar>\`
+- **Class**: \`FlintSnackbar\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`open\` | \`open\` | \`boolean\` | \`false\` |
+| \`message\` | \`message\` | \`string\` | \`''\` |
+| \`autoHideDuration\` | \`auto-hide-duration\` | \`number\` | \`5000\` |
+| \`anchorOrigin\` | \`anchor-origin\` | \`'top-left' \\| 'top-center' \\| 'top-right' \\|         'bottom-left' \\| 'bottom-center' \\| 'bottom-right'\` | \`'bottom-center'\` |
+| \`pauseOnHover\` | \`pause-on-hover\` | \`boolean\` | \`true\` |
+| \`closable\` | \`closable\` | \`boolean\` | \`false\` |
+| \`variant\` | \`variant\` | \`'default' \\| 'info' \\| 'success' \\| 'warning' \\| 'error'\` | \`'default'\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-snackbar-open\` | — |  |
+| \`flint-snackbar-close\` | — |  |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+| \`action\` |  |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-snackbar-z-index\` | \`1400\` |
+| \`--flint-snackbar-offset\` | \`24px\` |
+| \`--flint-snackbar-bg\` | \`#313131\` |
+| \`--flint-snackbar-color\` | \`#ffffff\` |
+| \`--flint-snackbar-min-width\` | \`288px\` |
+| \`--flint-snackbar-max-width\` | \`560px\` |
+| \`--flint-snackbar-bg-info\` | \`#0288d1\` |
+| \`--flint-snackbar-bg-success\` | \`#2e7d32\` |
+| \`--flint-snackbar-bg-warning\` | \`#ed6c02\` |
+| \`--flint-snackbar-bg-error\` | \`#d32f2f\` |
+| \`--flint-font-family\` | — |
+| \`--flint-border-radius-md\` | — |
+| \`--flint-shadow-lg\` | — |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`close()\` | Closes the snackbar. |
+                `,
+            },
+        },
+    },
     argTypes: {
         open: { control: 'boolean' },
         message: { control: 'text' },

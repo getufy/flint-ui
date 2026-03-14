@@ -69,9 +69,3 @@ import { FlintTextField } from 'flint-ui';
 | `--flint-hover-color` | — |
 
 ---
-
-## Accessibility
-
-- **Keyboard**: standard text input.
-- **ARIA**: native `<input>` with associated label.
-- **Screen reader**: announces label, value, and validation state.

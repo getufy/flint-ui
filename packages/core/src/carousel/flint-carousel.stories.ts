@@ -11,18 +11,140 @@ const meta: Meta = {
     docs: {
       description: {
         component: `
-A composable carousel (slideshow) component built from five sub-components.
+#### \`<flint-carousel-content>\`
 
-### Components
-- **\`flint-carousel\`** — Root container. Owns navigation state, keyboard handling and autoplay.
-- **\`flint-carousel-content\`** — The scrolling viewport. Place all slides inside here.
-- **\`flint-carousel-item\`** — An individual slide wrapper.
-- **\`flint-carousel-previous\`** — "Go back" button. Auto-connects to the nearest \`flint-carousel\` ancestor.
-- **\`flint-carousel-next\`** — "Go forward" button. Auto-connects to the nearest \`flint-carousel\` ancestor.
+- **Tag**: \`<flint-carousel-content>\`
+- **Class**: \`FlintCarouselContent\`
 
-### Keyboard navigation
-When the carousel container is focused, use **ArrowLeft / ArrowRight** (horizontal) or **ArrowUp / ArrowDown** (vertical) to navigate slides.
-        `,
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`index\` | \`index\` | \`number\` | \`0\` |
+| \`itemsPerView\` | \`items-per-view\` | \`number\` | \`1\` |
+| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-primary-color\` | — |
+| \`--flint-border-radius-md\` | — |
+
+---
+
+#### \`<flint-carousel-item>\`
+
+- **Tag**: \`<flint-carousel-item>\`
+- **Class**: \`FlintCarouselItem\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-carousel-items-per-view\` | \`1\` |
+
+---
+
+#### \`<flint-carousel-previous>\`
+
+- **Tag**: \`<flint-carousel-previous>\`
+- **Class**: \`FlintCarouselPrevious\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+---
+
+#### \`<flint-carousel-next>\`
+
+- **Tag**: \`<flint-carousel-next>\`
+- **Class**: \`FlintCarouselNext\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+---
+
+#### \`<flint-carousel>\`
+
+- **Tag**: \`<flint-carousel>\`
+- **Class**: \`FlintCarousel\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`loop\` | \`loop\` | \`boolean\` | \`false\` |
+| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` |
+| \`autoplay\` | \`autoplay\` | \`number\` | \`0\` |
+| \`itemsPerView\` | \`items-per-view\` | \`number\` | \`1\` |
+| \`label\` | \`label\` | \`string\` | \`'Carousel'\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-carousel-change\` | \`{ index: this._currentIndex, total: this._total }\` |  |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-carousel-gap\` | \`0px\` |
+| \`--flint-carousel-duration\` | \`0.35s\` |
+| \`--flint-carousel-ease\` | \`cubic-bezier(0.25, 0.1, 0.25, 1\` |
+| \`--flint-carousel-height\` | \`320px\` |
+| \`--flint-carousel-items-per-view\` | \`1\` |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`next()\` | Advance to the next slide. |
+| \`previous()\` | Go to the previous slide. |
+| \`goTo(index: number)\` | Jump to a specific slide (0-based index). |
+| \`currentIndex()\` |  |
+| \`total()\` |  |
+                `,
       },
     },
   },

@@ -90,9 +90,3 @@ import { FlintSelect } from 'flint-ui';
 | `--flint-border-color` | — |
 
 ---
-
-## Accessibility
-
-- **Keyboard**: Space/Enter opens dropdown, Arrow keys navigate options, Escape closes.
-- **ARIA**: `role="combobox"` with `aria-expanded`, `aria-activedescendant`.
-- **Screen reader**: announces selected value and expanded state.

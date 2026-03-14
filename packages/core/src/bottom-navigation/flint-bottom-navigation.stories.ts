@@ -7,6 +7,73 @@ import '../box/flint-box';
 const meta: Meta = {
     title: 'Navigation/Bottom Navigation',
     component: 'flint-bottom-navigation',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+#### \`<flint-bottom-navigation-action>\`
+
+Bottom Navigation Action: Individual navigation item.
+
+- **Tag**: \`<flint-bottom-navigation-action>\`
+- **Class**: \`FlintBottomNavigationAction\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`label\` | \`label\` | \`string\` | \`''\` |
+| \`active\` | \`active\` | \`boolean\` | \`false\` |
+| \`showLabel\` | \`show-label\` | \`boolean\` | \`true\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+| \`icon\` |  |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-text-color-muted\` | — |
+| \`--flint-hover-color\` | — |
+| \`--flint-primary-color\` | — |
+| \`--flint-font-family\` | — |
+| \`--flint-surface-1\` | — |
+| \`--flint-shadow-lg\` | — |
+
+---
+
+#### \`<flint-bottom-navigation>\`
+
+Bottom Navigation bars allow movement between primary destinations in an app.
+
+- **Tag**: \`<flint-bottom-navigation>\`
+- **Class**: \`FlintBottomNavigation\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`showLabels\` | \`show-labels\` | \`boolean\` | \`false\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-bottom-navigation-change\` | — | Dispatched when the selected value changes. |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | destinations (flint-bottom-navigation-action). |
+                `,
+            },
+        },
+    },
     argTypes: {
         value: { control: 'text' },
         showLabels: { control: 'boolean' },

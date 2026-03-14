@@ -72,9 +72,3 @@ import { FlintSwitch } from 'flint-ui';
 | `--flint-text-color` | — |
 
 ---
-
-## Accessibility
-
-- **Keyboard**: Space/Enter toggles.
-- **ARIA**: `role="switch"` with `aria-checked`. Form-associated via `ElementInternals`.
-- **Screen reader**: announces on/off state.

@@ -95,9 +95,3 @@ import { FlintScrollArea } from 'flint-ui';
 | `scrollBy(optionsOrX?: ScrollToOptions \| number, y?: number)` |  |
 
 ---
-
-## Accessibility
-
-- **Keyboard**: standard scroll behavior with Arrow keys.
-- **ARIA**: scrollable region.
-- **Screen reader**: content scrollable, announced in reading order.

@@ -263,9 +263,3 @@ import { FlintNavigationMenu } from 'flint-ui';
 | `closeAll()` | Close all open content |
 
 ---
-
-## Accessibility
-
-- **Keyboard**: Tab navigates between menu items, Enter/Space opens submenus, Escape closes.
-- **ARIA**: `role="navigation"` landmark.
-- **Screen reader**: announces as navigation.

@@ -36,8 +36,3 @@ import { FlintGrid } from 'flint-ui';
 | `(default)` | Default slot for content |
 
 ---
-
-## Accessibility
-
-- **ARIA**: layout container, no ARIA roles.
-- **Screen reader**: content in reading order.

@@ -9,25 +9,31 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
-Outputs a localized time phrase relative to the current date and time.
-Localization is handled by the browser's \`Intl.RelativeTimeFormat\` API — no language packs required.
+Displays a localized time phrase relative to the current date and time. Uses the browser's \`Intl.RelativeTimeFormat\` API — no language packs needed.
 
-### Components
-- **\`flint-relative-time\`** — Single element that renders a semantic \`<time>\` element.
+- **Tag**: \`<flint-relative-time>\`
+- **Class**: \`FlintRelativeTime\`
 
-### Props
-| Prop | Values | Default | Description |
+#### Properties
+
+| Property | Attribute | Type | Default |
 |---|---|---|---|
-| \`date\` | \`Date\` or ISO string | \`new Date()\` | The date to calculate from |
-| \`format\` | \`long\` | \`short\` | \`narrow\` | \`long\` | Formatting style |
-| \`numeric\` | \`always\` | \`auto\` | \`auto\` | \`auto\` shows "yesterday/tomorrow"; \`always\` shows "1 day ago/in 1 day" |
-| \`sync\` | boolean | \`false\` | Keep the value up to date as time passes |
+| \`date\` | \`date\` | \`Date \\| string \\| number\` | \`new Date()\` |
+| \`format\` | \`format\` | \`'long' \\| 'short' \\| 'narrow'\` | \`'long'\` |
+| \`numeric\` | \`numeric\` | \`'always' \\| 'auto'\` | \`'auto'\` |
+| \`sync\` | \`sync\` | \`boolean\` | \`false\` |
+| \`lang\` | \`lang\` | \`string\` | \`''\` |
 
-### CSS Custom Properties
-| Property | Default | Description |
-|---|---|---|
-| \`--flint-relative-time-color\` | \`inherit\` | Text color |
-| \`--flint-relative-time-font-size\` | \`inherit\` | Font size |
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-relative-time-cursor\` | \`text\` |
+| \`--flint-relative-time-color\` | \`inherit\` |
+| \`--flint-relative-time-font-size\` | \`inherit\` |
+| \`--flint-relative-time-font-weight\` | \`inherit\` |
+| \`--flint-relative-time-text-decoration\` | \`none\` |
+| \`--flint-relative-time-white-space\` | \`nowrap\` |
                 `,
             },
         },

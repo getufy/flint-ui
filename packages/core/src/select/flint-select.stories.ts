@@ -8,6 +8,86 @@ import '../button/flint-button';
 const meta: Meta = {
   title: 'Inputs/Select',
   component: 'flint-select',
+  parameters: {
+      docs: {
+            description: {
+                component: `
+A select component for choosing one or multiple options from a list.
+
+- **Tag**: \`<flint-select>\`
+- **Class**: \`FlintSelect\`
+- **Form Associated**: Yes
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`label\` | \`label\` | \`string\` | \`''\` |
+| \`options\` | \`options\` | \`SelectOption[]\` | \`[]\` |
+| \`value\` | \`value\` | \`string[]\` | \`[]\` |
+| \`multiple\` | \`multiple\` | \`boolean\` | \`false\` |
+| \`placeholder\` | \`placeholder\` | \`string\` | \`'Select an option'\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`readonly\` | \`readonly\` | \`boolean\` | \`false\` |
+| \`required\` | \`required\` | \`boolean\` | \`false\` |
+| \`error\` | \`error\` | \`boolean\` | \`false\` |
+| \`errorMessage\` | \`error-message\` | \`string\` | \`''\` |
+| \`name\` | \`name\` | \`string\` | \`''\` |
+| \`size\` | \`size\` | \`SelectSize\` | \`'md'\` |
+| \`defaultValue\` | \`default-value\` | \`string\` | \`''\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`change\` | — | Dispatched when the selection changes. detail: { value: string \\| null } (single) or { value: string[] } (multiple) |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`icon\` | Optional icon shown at the start of the trigger. |
+| \`error-message\` | Optional slot for error message content (use error-message prop for simple text). |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-select-bg\` | — |
+| \`--flint-select-border\` | — |
+| \`--flint-select-radius\` | — |
+| \`--flint-select-focus-color\` | — |
+| \`--flint-select-error-color\` | — |
+| \`--flint-select-chip-bg\` | — |
+| \`--flint-select-chip-color\` | — |
+| \`--flint-select-chip-radius\` | — |
+| \`--flint-select-option-hover-bg\` | — |
+| \`--flint-select-option-selected-bg\` | — |
+| \`--flint-select-option-selected-color\` | — |
+| \`--flint-input-bg\` | — |
+| \`--flint-input-border-color\` | — |
+| \`--flint-input-border-radius\` | — |
+| \`--flint-primary-color\` | — |
+| \`--flint-error-color\` | — |
+| \`--flint-hover-color\` | — |
+| \`--flint-primary-color-light\` | — |
+| \`--flint-text-color-on-primary\` | — |
+| \`--flint-font-family\` | — |
+| \`--flint-label-color\` | — |
+| \`--flint-input-border-hover-color\` | — |
+| \`--flint-primary-focus-ring\` | — |
+| \`--flint-error-focus-ring\` | — |
+| \`--flint-input-disabled-bg\` | — |
+| \`--flint-input-readonly-bg\` | — |
+| \`--flint-input-placeholder-color\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-text-color-muted\` | — |
+| \`--flint-shadow-lg\` | — |
+| \`--flint-border-color\` | — |
+                `,
+            },
+        },
+  },
   argTypes: {
     label:        { control: 'text' },
     placeholder:  { control: 'text' },

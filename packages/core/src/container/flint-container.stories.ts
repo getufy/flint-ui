@@ -5,6 +5,41 @@ import './flint-container';
 const meta: Meta = {
     title: 'Layout/Container',
     component: 'flint-container',
+    parameters: {
+        docs: {
+            description: {
+                component: `
+- **Tag**: \`<flint-container>\`
+- **Class**: \`FlintContainer\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`disableGutters\` | \`disable-gutters\` | \`boolean\` | \`false\` |
+| \`fixed\` | \`fixed\` | \`boolean\` | \`false\` |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot for content |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-container-padding\` | \`16px\` |
+| \`--flint-container-padding-sm\` | \`24px\` |
+| \`--flint-container-xs\` | \`444px\` |
+| \`--flint-container-sm\` | \`600px\` |
+| \`--flint-container-md\` | \`900px\` |
+| \`--flint-container-lg\` | \`1200px\` |
+| \`--flint-container-xl\` | \`1536px\` |
+                `,
+            },
+        },
+    },
     argTypes: {
         maxWidth: {
             control: { type: 'select' },

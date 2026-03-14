@@ -11,44 +11,43 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
-An opinionated, imperative toast notification system built on LitElement.
+- **Tag**: \`<flint-toaster>\`
+- **Class**: \`FlintToaster\`
 
-### Setup
-Place \`<flint-toaster>\` **once** in your app shell (e.g. at the end of \`<body>\`):
+#### Properties
 
-\`\`\`html
-<flint-toaster position="bottom-right"></flint-toaster>
-\`\`\`
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`position\` | \`position\` | \`ToastPosition\` | \`'bottom-right'\` |
+| \`duration\` | \`duration\` | \`number\` | \`4000\` |
+| \`visibleToasts\` | \`visible-toasts\` | \`number\` | \`3\` |
 
-### Triggering toasts
-\`\`\`ts
-import { toast } from '@your-lib/flint-sonner';
+#### CSS Custom Properties
 
-toast('Event created');
-toast.success('Profile saved', { description: 'All changes applied.' });
-toast.error('Upload failed', { action: { label: 'Retry', onClick: retry } });
-toast.promise(fetch('/api/save'), {
-  loading: 'Saving…',
-  success: (data) => \`Saved \${data.name}!\`,
-  error: 'Save failed',
-});
-\`\`\`
-
-### Components
-- **\`<flint-toaster>\`** — Fixed-position container. One per app.
-
-### CSS Custom Properties
-| Property | Default | Description |
-|---|---|---|
-| \`--flint-toast-z-index\`   | \`9999\`    | Stack order |
-| \`--flint-toast-width\`     | \`356px\`   | Max width of toaster |
-| \`--flint-toast-gap\`       | \`8px\`     | Gap between toasts |
-| \`--flint-toast-padding\`   | \`16px\`    | Outer padding |
-| \`--flint-toast-bg\`        | surface-1   | Toast background |
-| \`--flint-toast-color\`     | text-color  | Toast text color |
-| \`--flint-toast-border\`    | border-color| Toast border |
-| \`--flint-toast-radius\`    | radius-lg   | Border radius |
-| \`--flint-toast-shadow\`    | shadow-lg   | Box shadow |
+| Property | Default |
+|---|---|
+| \`--flint-toast-z-index\` | \`9999\` |
+| \`--flint-toast-width\` | \`356px\` |
+| \`--flint-toast-padding\` | \`16px\` |
+| \`--flint-toast-bg\` | \`var(--flint-surface-1, #ffffff\` |
+| \`--flint-toast-border\` | \`1px solid var(--flint-border-color, #e4e4e7\` |
+| \`--flint-toast-radius\` | \`var(--flint-border-radius-lg, 0.5rem\` |
+| \`--flint-toast-shadow\` | \`var(--flint-shadow-lg, 0 10px 15px -3px rgba(0,0,0,.10\` |
+| \`--flint-toast-color\` | \`var(--flint-text-color, #111827\` |
+| \`--flint-font-family\` | \`system-ui, sans-serif\` |
+| \`--flint-toast-gap\` | \`8px\` |
+| \`--flint-toast-success-icon-color\` | \`var(--flint-success-color, #10b981\` |
+| \`--flint-toast-error-icon-color\` | \`var(--flint-error-color,   #ef4444\` |
+| \`--flint-toast-warning-icon-color\` | \`var(--flint-warning-color, #f59e0b\` |
+| \`--flint-toast-info-icon-color\` | \`var(--flint-primary-color, #3b82f6\` |
+| \`--flint-text-color-muted\` | \`#71717a\` |
+| \`--flint-border-color\` | \`#e4e4e7\` |
+| \`--flint-border-radius-md\` | \`0.375rem\` |
+| \`--flint-hover-color\` | \`rgba(0, 0, 0, 0.04\` |
+| \`--flint-primary-focus-ring\` | \`rgba(59, 130, 246, 0.5\` |
+| \`--flint-text-color-subtle\` | \`#a1a1aa\` |
+| \`--flint-border-radius-sm\` | \`0.125rem\` |
+| \`--flint-text-color\` | \`#111827\` |
                 `,
             },
         },

@@ -7,6 +7,247 @@ import '../stack/flint-stack.js';
 const meta: Meta = {
   title: 'Date & Time/Time Picker',
   component: 'flint-time-picker',
+  parameters: {
+      docs: {
+            description: {
+                component: `
+#### \`<flint-time-field>\`
+
+- **Tag**: \`<flint-time-field>\`
+- **Class**: \`FlintTimeField\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` |
+| \`label\` | \`label\` | \`string\` | \`''\` |
+| \`ampm\` | \`ampm\` | \`boolean\` | \`true\` |
+| \`seconds\` | \`seconds\` | \`boolean\` | \`false\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`readonly\` | \`readonly\` | \`boolean\` | \`false\` |
+| \`error\` | \`error\` | \`boolean\` | \`false\` |
+| \`helperText\` | \`helper-text\` | \`string\` | \`''\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`clear\` | — |  |
+| \`change\` | \`{ value: v }\` |  |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-time-field-height\` | \`44px\` |
+| \`--flint-time-field-min-width\` | \`160px\` |
+| \`--flint-font-family\` | — |
+| \`--flint-text-color\` | — |
+| \`--flint-hover-color\` | — |
+| \`--flint-primary-color\` | — |
+| \`--flint-text-color-on-primary\` | — |
+| \`--flint-border-radius-xl\` | — |
+| \`--flint-msdc-height\` | \`240px\` |
+| \`--flint-surface-1\` | — |
+| \`--flint-border-color\` | — |
+| \`--flint-text-color-muted\` | — |
+| \`--flint-error-color\` | — |
+| \`--flint-input-bg\` | — |
+| \`--flint-border-radius-md\` | — |
+| \`--flint-primary-focus-ring\` | — |
+| \`--flint-input-disabled-bg\` | — |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`clear()\` |  |
+
+---
+
+#### \`<flint-digital-clock>\`
+
+- **Tag**: \`<flint-digital-clock>\`
+- **Class**: \`FlintDigitalClock\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` |
+| \`step\` | \`step\` | \`number\` | \`30\` |
+| \`ampm\` | \`ampm\` | \`boolean\` | \`true\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`change\` | \`{ value: v }\` |  |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-digital-clock-height\` | \`300px\` |
+
+---
+
+#### \`<flint-multi-section-digital-clock>\`
+
+- **Tag**: \`<flint-multi-section-digital-clock>\`
+- **Class**: \`FlintMultiSectionDigitalClock\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` |
+| \`ampm\` | \`ampm\` | \`boolean\` | \`true\` |
+| \`seconds\` | \`seconds\` | \`boolean\` | \`false\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`change\` | \`{ value: v }\` |  |
+
+---
+
+#### \`<flint-time-clock>\`
+
+- **Tag**: \`<flint-time-clock>\`
+- **Class**: \`FlintTimeClock\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` |
+| \`ampm\` | \`ampm\` | \`boolean\` | \`true\` |
+| \`seconds\` | \`seconds\` | \`boolean\` | \`false\` |
+| \`view\` | \`view\` | \`TimeView\` | \`'hours'\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`change\` | \`{ value: v }\` |  |
+| \`view-change\` | \`{ view: v }\` |  |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-time-clock-face-bg\` | \`var(--flint-surface-variant, #f1f5f9\` |
+| \`--flint-time-clock-inner-bg\` | \`rgba(0,0,0,.04\` |
+| \`--flint-time-clock-inner-border\` | \`var(--flint-border-color, #e5e7eb\` |
+| \`--flint-time-clock-hand-color\` | \`var(--flint-primary-color, #3b82f6\` |
+| \`--flint-time-clock-num-size\` | \`14px\` |
+| \`--flint-time-clock-inner-num-size\` | \`12px\` |
+| \`--flint-time-clock-ampm-radius\` | \`20px\` |
+
+---
+
+#### \`<flint-desktop-time-picker>\`
+
+- **Tag**: \`<flint-desktop-time-picker>\`
+- **Class**: \`FlintDesktopTimePicker\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` |
+| \`label\` | \`label\` | \`string\` | \`'Time'\` |
+| \`ampm\` | \`ampm\` | \`boolean\` | \`true\` |
+| \`seconds\` | \`seconds\` | \`boolean\` | \`false\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`readonly\` | \`readonly\` | \`boolean\` | \`false\` |
+| \`error\` | \`error\` | \`boolean\` | \`false\` |
+| \`helperText\` | \`helper-text\` | \`string\` | \`''\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`change\` | \`{ value: v }\` |  |
+
+---
+
+#### \`<flint-mobile-time-picker>\`
+
+- **Tag**: \`<flint-mobile-time-picker>\`
+- **Class**: \`FlintMobileTimePicker\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` |
+| \`label\` | \`label\` | \`string\` | \`'Time'\` |
+| \`ampm\` | \`ampm\` | \`boolean\` | \`true\` |
+| \`seconds\` | \`seconds\` | \`boolean\` | \`false\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`error\` | \`error\` | \`boolean\` | \`false\` |
+| \`helperText\` | \`helper-text\` | \`string\` | \`''\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`change\` | — |  |
+
+---
+
+#### \`<flint-static-time-picker>\`
+
+- **Tag**: \`<flint-static-time-picker>\`
+- **Class**: \`FlintStaticTimePicker\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` |
+| \`ampm\` | \`ampm\` | \`boolean\` | \`true\` |
+| \`seconds\` | \`seconds\` | \`boolean\` | \`false\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`change\` | — |  |
+
+---
+
+#### \`<flint-time-picker>\`
+
+- **Tag**: \`<flint-time-picker>\`
+- **Class**: \`FlintTimePicker\`
+
+#### Properties
+
+| Property | Attribute | Type | Default |
+|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` |
+| \`label\` | \`label\` | \`string\` | \`'Time'\` |
+| \`variant\` | \`variant\` | \`'desktop' \\| 'mobile' \\| 'static' \\| 'auto'\` | \`'desktop'\` |
+| \`ampm\` | \`ampm\` | \`boolean\` | \`true\` |
+| \`seconds\` | \`seconds\` | \`boolean\` | \`false\` |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| \`error\` | \`error\` | \`boolean\` | \`false\` |
+| \`helperText\` | \`helper-text\` | \`string\` | \`''\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`change\` | — |  |
+                `,
+            },
+        },
+  },
   argTypes: {
     variant: { control: 'select', options: ['desktop', 'mobile', 'static', 'auto'] },
     value: { control: 'text' },
