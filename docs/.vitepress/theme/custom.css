@@ -40,10 +40,11 @@
   list-style: none;
 }
 
-/* Skeleton needs an explicit fallback because --ui-surface-3 can be
-   too close to white in light mode. */
+/* Skeleton needs a visible fallback in the docs demos.
+   Also force display:block in case shadow DOM styles fail to adopt. */
 .vp-doc .demo-container ui-skeleton {
-  --ui-skeleton-bg: rgba(0, 0, 0, 0.11);
+  display: block;
+  --ui-skeleton-bg: #d4d4d8;
 }
 
 /* Hero name gradient — scoped to .name.clip only */
