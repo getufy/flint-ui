@@ -50,6 +50,8 @@ const meta: Meta = {
                 component: `
 #### \`<flint-table-pagination>\`
 
+Table Pagination: pagination controls for tabular data.
+
 - **Tag**: \`<flint-table-pagination>\`
 - **Class**: \`FlintTablePagination\`
 
@@ -70,8 +72,8 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-pagination-page-change\` | \`{ page: next }\` |  |
-| \`flint-pagination-rows-per-page-change\` | \`{ rowsPerPage: val }\` |  |
+| \`flint-pagination-page-change\` | — | Fired when the current page changes. |
+| \`flint-pagination-rows-per-page-change\` | — | Fired when rows per page changes. |
 
 #### CSS Custom Properties
 

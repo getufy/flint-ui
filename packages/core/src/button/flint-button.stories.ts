@@ -72,6 +72,8 @@ const meta: Meta = {
 
 #### \`<flint-toggle-button-group>\`
 
+Toggle Button Group: manages exclusive or multi-select toggle buttons.
+
 - **Tag**: \`<flint-toggle-button-group>\`
 - **Class**: \`FlintToggleButtonGroup\`
 
@@ -86,7 +88,7 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-toggle-button-group-change\` | \`{ value: this.value }\` |  |
+| \`flint-toggle-button-group-change\` | — | Fired when the group's selected value(s) change. |
 
 #### Slots
 
@@ -97,6 +99,8 @@ const meta: Meta = {
 ---
 
 #### \`<flint-toggle-button>\`
+
+Toggle Button: a button that can be toggled on/off.
 
 - **Tag**: \`<flint-toggle-button>\`
 - **Class**: \`FlintToggleButton\`
@@ -114,7 +118,7 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-toggle-button-change\` | \`{ value: this.value, selected: !this.selected }\` |  |
+| \`flint-toggle-button-change\` | — | Fired when the button's selected state changes. |
 
 #### Slots
 

@@ -37,15 +37,15 @@ const meta: Meta = {
 | \`--flint-font-family\` | \`system-ui, sans-serif\` |
 | \`--flint-toast-gap\` | \`8px\` |
 | \`--flint-toast-success-icon-color\` | \`var(--flint-success-color, #10b981\` |
-| \`--flint-toast-error-icon-color\` | \`var(--flint-error-color,   #ef4444\` |
+| \`--flint-toast-error-icon-color\` | \`var(--flint-error-color,   #dc2626\` |
 | \`--flint-toast-warning-icon-color\` | \`var(--flint-warning-color, #f59e0b\` |
-| \`--flint-toast-info-icon-color\` | \`var(--flint-primary-color, #3b82f6\` |
-| \`--flint-text-color-muted\` | \`#71717a\` |
+| \`--flint-toast-info-icon-color\` | \`var(--flint-primary-color, #2563eb\` |
+| \`--flint-text-color-muted\` | \`#4b5563\` |
 | \`--flint-border-color\` | \`#e4e4e7\` |
 | \`--flint-border-radius-md\` | \`0.375rem\` |
 | \`--flint-hover-color\` | \`rgba(0, 0, 0, 0.04\` |
 | \`--flint-primary-focus-ring\` | \`rgba(59, 130, 246, 0.5\` |
-| \`--flint-text-color-subtle\` | \`#a1a1aa\` |
+| \`--flint-text-color-subtle\` | \`#4b5563\` |
 | \`--flint-border-radius-sm\` | \`0.125rem\` |
 | \`--flint-text-color\` | \`#111827\` |
                 `,

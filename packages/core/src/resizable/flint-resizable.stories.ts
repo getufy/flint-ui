@@ -27,6 +27,8 @@ const meta: Meta = {
                 component: `
 #### \`<flint-resizable-group>\`
 
+Resizable Group: a container that enables resizable panels with draggable handles.
+
 - **Tag**: \`<flint-resizable-group>\`
 - **Class**: \`FlintResizableGroup\`
 
@@ -41,9 +43,9 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-resizable-collapse\` | \`{ index: idx, layout: this.getLayout() }\` |  |
-| \`flint-resizable-expand\` | \`{ index: idx, layout: this.getLayout() }\` |  |
-| \`flint-resizable-change\` | \`{ layout: this.getLayout() }\` |  |
+| \`flint-resizable-change\` | — | Fired when panel sizes change via drag or keyboard. |
+| \`flint-resizable-collapse\` | — | Fired when a panel is collapsed. |
+| \`flint-resizable-expand\` | — | Fired when a collapsed panel is expanded. |
 
 #### Slots
 

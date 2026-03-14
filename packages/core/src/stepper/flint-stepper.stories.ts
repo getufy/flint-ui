@@ -86,6 +86,8 @@ const meta: Meta = {
 
 #### \`<flint-step>\`
 
+Step: an individual step within a stepper.
+
 - **Tag**: \`<flint-step>\`
 - **Class**: \`FlintStep\`
 
@@ -110,7 +112,7 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-step-click\` | \`{ index: this.stepIndex }\` |  |
+| \`flint-step-click\` | — | Fired when a non-linear step is clicked. |
 
 #### Slots
 
@@ -131,6 +133,8 @@ const meta: Meta = {
 
 #### \`<flint-stepper>\`
 
+Stepper: a multi-step progress indicator.
+
 - **Tag**: \`<flint-stepper>\`
 - **Class**: \`FlintStepper\`
 
@@ -148,7 +152,7 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-step-change\` | \`{ step: e.detail.index }\` |  |
+| \`flint-step-change\` | — | Fired when the active step changes via step click. |
 
 #### Slots
 

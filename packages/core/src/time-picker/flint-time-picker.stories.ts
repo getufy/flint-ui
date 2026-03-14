@@ -21,6 +21,8 @@ const meta: Meta = {
                 component: `
 #### \`<flint-time-field>\`
 
+Time Field: a segmented time input with keyboard navigation.
+
 - **Tag**: \`<flint-time-field>\`
 - **Class**: \`FlintTimeField\`
 
@@ -41,8 +43,8 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-time-picker-clear\` | — |  |
-| \`change\` | \`{ value: v }\` |  |
+| \`change\` | — | Fired when the time value changes. |
+| \`flint-time-picker-clear\` | — | Fired when the clear button is clicked. |
 
 #### CSS Custom Properties
 
@@ -76,6 +78,8 @@ const meta: Meta = {
 
 #### \`<flint-digital-clock>\`
 
+Digital Clock: a scrollable time-slot picker.
+
 - **Tag**: \`<flint-digital-clock>\`
 - **Class**: \`FlintDigitalClock\`
 
@@ -91,7 +95,7 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | \`{ value: v }\` |  |
+| \`change\` | — | Fired when a time slot is selected. |
 
 #### CSS Custom Properties
 
@@ -102,6 +106,8 @@ const meta: Meta = {
 ---
 
 #### \`<flint-multi-section-digital-clock>\`
+
+Multi Section Digital Clock: hours, minutes, and optional seconds columns.
 
 - **Tag**: \`<flint-multi-section-digital-clock>\`
 - **Class**: \`FlintMultiSectionDigitalClock\`
@@ -118,11 +124,13 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | \`{ value: v }\` |  |
+| \`change\` | — | Fired when the time value changes. |
 
 ---
 
 #### \`<flint-time-clock>\`
+
+Time Clock: an analog clock face for selecting hours, minutes, and seconds.
 
 - **Tag**: \`<flint-time-clock>\`
 - **Class**: \`FlintTimeClock\`
@@ -140,8 +148,8 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | \`{ value: v }\` |  |
-| \`flint-time-clock-view-change\` | \`{ view: v }\` |  |
+| \`change\` | — | Fired when the time value changes. |
+| \`flint-time-clock-view-change\` | — | Fired when the clock face view switches. |
 
 #### CSS Custom Properties
 
@@ -150,7 +158,7 @@ const meta: Meta = {
 | \`--flint-time-clock-face-bg\` | \`var(--flint-surface-variant, #f1f5f9\` |
 | \`--flint-time-clock-inner-bg\` | \`rgba(0,0,0,.04\` |
 | \`--flint-time-clock-inner-border\` | \`var(--flint-border-color, #e5e7eb\` |
-| \`--flint-time-clock-hand-color\` | \`var(--flint-primary-color, #3b82f6\` |
+| \`--flint-time-clock-hand-color\` | \`var(--flint-primary-color, #2563eb\` |
 | \`--flint-time-clock-num-size\` | \`14px\` |
 | \`--flint-time-clock-inner-num-size\` | \`12px\` |
 | \`--flint-time-clock-ampm-radius\` | \`20px\` |
@@ -158,6 +166,8 @@ const meta: Meta = {
 ---
 
 #### \`<flint-desktop-time-picker>\`
+
+Desktop Time Picker: a time field with a dropdown clock.
 
 - **Tag**: \`<flint-desktop-time-picker>\`
 - **Class**: \`FlintDesktopTimePicker\`
@@ -179,11 +189,13 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | \`{ value: v }\` |  |
+| \`change\` | — | Fired when the time value changes. |
 
 ---
 
 #### \`<flint-mobile-time-picker>\`
+
+Mobile Time Picker: a time field with a modal clock dialog.
 
 - **Tag**: \`<flint-mobile-time-picker>\`
 - **Class**: \`FlintMobileTimePicker\`
@@ -204,11 +216,13 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | — |  |
+| \`change\` | — | Fired when the time value changes. |
 
 ---
 
 #### \`<flint-static-time-picker>\`
+
+Static Time Picker: an always-visible inline clock.
 
 - **Tag**: \`<flint-static-time-picker>\`
 - **Class**: \`FlintStaticTimePicker\`
@@ -225,11 +239,13 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | — |  |
+| \`change\` | — | Fired when the time value changes. |
 
 ---
 
 #### \`<flint-time-picker>\`
+
+Time Picker: a configurable time input supporting desktop, mobile, and static variants.
 
 - **Tag**: \`<flint-time-picker>\`
 - **Class**: \`FlintTimePicker\`
@@ -251,7 +267,7 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | — |  |
+| \`change\` | — | Fired when the time value changes. |
                 `,
             },
         },

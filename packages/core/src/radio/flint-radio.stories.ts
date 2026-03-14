@@ -14,6 +14,8 @@ const meta: Meta = {
                 component: `
 #### \`<flint-radio-group>\`
 
+Radio Group: manages a set of radio buttons with single selection.
+
 - **Tag**: \`<flint-radio-group>\`
 - **Class**: \`FlintRadioGroup\`
 
@@ -34,7 +36,7 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-radio-group-change\` | \`{ value }\` |  |
+| \`flint-radio-group-change\` | — | Fired when the selected radio value changes. |
 
 #### Slots
 
@@ -58,6 +60,8 @@ const meta: Meta = {
 
 #### \`<flint-radio>\`
 
+Radio: a single radio button within a radio group.
+
 - **Tag**: \`<flint-radio>\`
 - **Class**: \`FlintRadio\`
 
@@ -77,7 +81,7 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-radio-select\` | \`{ value: this.value }\` |  |
+| \`flint-radio-select\` | — | Fired when this radio is selected. |
 
 #### Slots
 

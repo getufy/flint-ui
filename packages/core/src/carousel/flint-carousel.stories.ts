@@ -107,6 +107,8 @@ const meta: Meta = {
 
 #### \`<flint-carousel>\`
 
+Carousel: a slideshow component for cycling through content.
+
 - **Tag**: \`<flint-carousel>\`
 - **Class**: \`FlintCarousel\`
 
@@ -124,7 +126,7 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-carousel-change\` | \`{ index: this._currentIndex, total: this._total }\` |  |
+| \`flint-carousel-change\` | — | Fired when the active slide changes. |
 
 #### Slots
 

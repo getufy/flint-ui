@@ -9,6 +9,8 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
+Input: a styled text input with label, help text, and error states.
+
 - **Tag**: \`<flint-input>\`
 - **Class**: \`FlintInput\`
 
@@ -34,8 +36,8 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-input-input\` | \`{ value: this.value }\` |  |
-| \`flint-input-change\` | \`{ value: this.value }\` |  |
+| \`flint-input-input\` | — | Fired on each keystroke as the value changes. |
+| \`flint-input-change\` | — | Fired when the input loses focus after the value has changed. |
 
 #### CSS Custom Properties
 

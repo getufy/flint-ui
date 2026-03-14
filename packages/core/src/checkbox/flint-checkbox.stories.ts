@@ -10,6 +10,8 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
+Checkbox: a form control for boolean selection.
+
 - **Tag**: \`<flint-checkbox>\`
 - **Class**: \`FlintCheckbox\`
 
@@ -32,7 +34,7 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-checkbox-change\` | \`{ checked: this.checked, value: this.value, indeterminate: false }\` |  |
+| \`flint-checkbox-change\` | — | Fired when the checked state changes. |
 
 #### CSS Custom Properties
 

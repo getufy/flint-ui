@@ -29,7 +29,7 @@
   },
   "lint-staged": {
     "packages/core/src/**/*.ts": [
-      "eslint --no-warn-ignored"
+      "eslint --no-warn-ignored --config packages/core/eslint.config.js"
     ]
   },
   "devDependencies": {

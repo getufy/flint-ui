@@ -73,8 +73,8 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-navigation-menu-trigger-click\` | \`{ contentId, open: true }\` |  |
-| \`flint-navigation-menu-content-toggle\` | \`{ contentId, open: false }\` |  |
+| \`flint-navigation-menu-trigger-click\` | — | Fired when the item's trigger is clicked. |
+| \`flint-navigation-menu-content-toggle\` | — | Fired when content visibility changes. |
 
 #### Slots
 
