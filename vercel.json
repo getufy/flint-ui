@@ -1,8 +1,0 @@
-{
-  "framework": null,
-  "buildCommand": "npm run build-storybook && npm run docs:build && cp -r packages/core/storybook-static docs/.vitepress/dist/storybook",
-  "outputDirectory": "docs/.vitepress/dist",
-  "redirects": [
-    { "source": "/storybook", "destination": "/storybook/", "statusCode": 301 }
-  ]
-}
