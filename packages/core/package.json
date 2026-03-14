@@ -10,6 +10,11 @@
     "url": "https://github.com/getufy/flint-ui.git",
     "directory": "packages/core"
   },
+  "author": "Getufy <https://github.com/getufy>",
+  "homepage": "https://getufy.github.io/flint-ui/",
+  "bugs": {
+    "url": "https://github.com/getufy/flint-ui/issues"
+  },
   "engines": {
     "node": ">=18.0.0"
   },

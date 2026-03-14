@@ -57,11 +57,7 @@ export default defineConfig({
                 browser: {
                     enabled: true,
                     headless: true,
-                    provider: playwright({
-                        connectOptions: {
-                            timeout: 60_000,
-                        },
-                    }),
+                    provider: playwright(),
                     instances: [{
                         browser: 'chromium',
                         launch: {
