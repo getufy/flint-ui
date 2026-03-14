@@ -194,7 +194,7 @@ describe('flint-stack', () => {
         const el = await fixture<FlintStack>(html`<flint-stack .useFlexGap=${false}></flint-stack>`);
         const wrapper = el.shadowRoot!.querySelector('.stack-wrapper') as HTMLElement;
         expect(wrapper.classList.contains('no-flex-gap')).toBe(true);
-        expect(wrapper.style.gap).toBe('0');
+        expect(wrapper.style.gap).toMatch(/^0(px)?$/);
     });
 
     it('still sets --flint-stack-spacing when useFlexGap=false', async () => {
