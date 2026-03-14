@@ -1,0 +1,170 @@
+:host {
+      display: block;
+      padding: 12px 0;
+      font-family: var(--flint-font-family);
+      color: var(--flint-text-color);
+
+      /* Size tokens — overridden per size below */
+      --_track-height: 6px;
+      --_thumb-size: 20px;
+      --_font-size: 14px;
+    }
+
+    :host([size='sm']) {
+      --_track-height: 4px;
+      --_thumb-size: 14px;
+      --_font-size: 12px;
+    }
+
+    :host([size='lg']) {
+      --_track-height: 8px;
+      --_thumb-size: 24px;
+      --_font-size: 16px;
+    }
+
+    :host([vertical]) {
+      padding: 0 12px;
+      display: inline-flex;
+      height: var(--flint-slider-vertical-height, 200px);
+    }
+
+    .slider-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .slider-wrapper.vertical {
+      flex-direction: column-reverse;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      height: 100%;
+      justify-content: flex-end;
+    }
+
+    .label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: var(--_font-size);
+      font-weight: 500;
+    }
+
+    .label-row.vertical {
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      flex-shrink: 0;
+    }
+
+    .value-display {
+      font-weight: 600;
+      color: var(--flint-primary-color);
+    }
+
+    .track-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .track-container.vertical {
+      flex: 1;
+      min-height: 0;
+      width: auto;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    input[type='range'] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: var(--_track-height);
+      background: var(--flint-input-border-color);
+      border-radius: 3px;
+      outline: none;
+      margin: 10px 0;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    input[type='range'].vertical {
+      writing-mode: vertical-lr;
+      direction: rtl;
+      width: var(--_track-height);
+      height: 100%;
+      margin: 0;
+      appearance: slider-vertical;
+      -webkit-appearance: slider-vertical;
+    }
+
+    @supports not (appearance: slider-vertical) {
+      input[type='range'].vertical {
+        writing-mode: vertical-lr;
+        direction: rtl;
+        width: var(--_track-height);
+        height: 100%;
+        margin: 0;
+      }
+    }
+
+    input[type='range']:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    /* Thumb — WebKit */
+    input[type='range']::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: var(--_thumb-size);
+      height: var(--_thumb-size);
+      border-radius: 50%;
+      background: var(--flint-surface-1);
+      border: 2px solid var(--flint-primary-color);
+      box-shadow: var(--flint-shadow-sm);
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+
+    /* Thumb — Firefox */
+    input[type='range']::-moz-range-thumb {
+      width: calc(var(--_thumb-size) - 2px);
+      height: calc(var(--_thumb-size) - 2px);
+      border-radius: 50%;
+      background: var(--flint-surface-1);
+      border: 2px solid var(--flint-primary-color);
+      box-shadow: var(--flint-shadow-sm);
+      cursor: pointer;
+    }
+
+    /* Firefox fill track */
+    input[type='range']::-moz-range-progress {
+      background: var(--flint-primary-color);
+      height: var(--_track-height);
+      border-radius: 3px;
+    }
+
+    input[type='range']:focus-visible::-webkit-slider-thumb {
+      outline: 2px solid var(--flint-primary-color);
+      outline-offset: 4px;
+    }
+
+    input[type='range']:not(:disabled):hover::-webkit-slider-thumb {
+      transform: scale(1.1);
+      box-shadow: var(--flint-shadow-md);
+    }
+
+    input[type='range']:active::-webkit-slider-thumb {
+      transform: scale(0.95);
+    }
+
+    .disabled-label {
+      color: var(--flint-text-color-muted);
+    }

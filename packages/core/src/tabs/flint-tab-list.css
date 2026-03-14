@@ -1,0 +1,81 @@
+/* Customizable properties:
+   --flint-tab-border-color: var(--flint-border-color)
+   --flint-tab-scroll-btn-size: 40px
+   --flint-tab-indicator-color: var(--flint-primary-color)
+   --flint-tab-indicator-height: 3px (horizontal mode)
+   --flint-tab-indicator-width: 3px (vertical mode)
+   --flint-tab-indicator-radius: 3px
+   --flint-text-color-muted: for inactive tab text
+   --flint-hover-color: for button hover state
+ */
+:host { display: block; position: relative; background: var(--flint-background); }
+        /* In vertical mode the host must fill the height that flex-stretching gives it
+           so .scroll-area has a bounded height and overflow:auto actually fires. */
+        :host([orientation="vertical"]) { height: 100%; }
+        :host([orientation="vertical"]) .container { height: 100%; }
+
+        .container {
+            display: flex; align-items: center; position: relative;
+            border-bottom: 1px solid var(--flint-tab-border-color, var(--flint-border-color));
+        }
+        :host([orientation="vertical"]) .container {
+            flex-direction: column; border-bottom: none;
+            border-right: 1px solid var(--flint-tab-border-color, var(--flint-border-color)); align-items: stretch;
+        }
+
+        /* scroll buttons */
+        .scroll-btn {
+            flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+            border: none; background: none; cursor: pointer;
+            color: var(--flint-text-color-muted);
+            border-radius: 4px; padding: 0;
+            transition: color .15s, background .15s;
+        }
+        /* Horizontal: fixed square on left/right of the scroll area */
+        :host(:not([orientation="vertical"])) .scroll-btn { width: var(--flint-tab-scroll-btn-size, 40px); height: var(--flint-tab-scroll-btn-size, 40px); }
+        /* Vertical: full-width bar on top/bottom — centres the chevron across the sidebar */
+        :host([orientation="vertical"]) .scroll-btn     { width: 100%; height: var(--flint-tab-scroll-btn-size, 40px); }
+        .scroll-btn:hover:not(:disabled) {
+            color: var(--flint-text-color);
+            background: var(--flint-hover-color);
+        }
+        .scroll-btn:disabled { opacity: .38; cursor: default; }
+
+        /* scroll area – axis-locked so scroll events don't bleed to the page */
+        .scroll-area {
+            flex: 1; position: relative; min-height: 0;
+            scrollbar-width: none; -ms-overflow-style: none;
+        }
+        .scroll-area::-webkit-scrollbar { display: none; }
+        :host(:not([orientation="vertical"])) .scroll-area {
+            overflow-x: auto; overflow-y: hidden;
+        }
+        :host([orientation="vertical"]) .scroll-area {
+            overflow-y: auto; overflow-x: hidden;
+        }
+
+        /* tabs row */
+        .tabs-row {
+            display: flex; position: relative;
+            min-width: max-content;
+        }
+        :host([orientation="vertical"]) .tabs-row {
+            flex-direction: column; min-width: unset; min-height: max-content;
+        }
+        :host([variant="fullWidth"]) .tabs-row  { min-width: 100%; }
+        :host([variant="fullWidth"]) ::slotted(flint-tab) { flex: 1; }
+        :host([centered]) .tabs-row { justify-content: center; min-width: 100%; }
+
+        /* indicator */
+        .indicator {
+            position: absolute; pointer-events: none; opacity: 0;
+            background: var(--flint-tab-indicator-color, var(--flint-tabs-ind-color, var(--flint-primary-color))); border-radius: var(--flint-tab-indicator-radius, 3px);
+            transition:
+                left   .25s cubic-bezier(.4,0,.2,1),
+                width  .25s cubic-bezier(.4,0,.2,1),
+                top    .25s cubic-bezier(.4,0,.2,1),
+                height .25s cubic-bezier(.4,0,.2,1),
+                opacity .15s;
+        }
+        :host(:not([orientation="vertical"])) .indicator { bottom: 0; height: var(--flint-tab-indicator-height, 3px); }
+        :host([orientation="vertical"])       .indicator { right: 0;  width: var(--flint-tab-indicator-width, 3px); }

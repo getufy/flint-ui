@@ -1,0 +1,180 @@
+/*
+ * Architecture for temporary drawers:
+ *   :host itself becomes a full-screen fixed (or absolute) overlay with
+ *   overflow: hidden. Children use position: absolute within it.
+ *   This is the only reliable way to prevent off-screen paper elements
+ *   from triggering scrollbars — positive transforms (right/bottom anchors)
+ *   push the layout box beyond the viewport edge, and display:contents on
+ *   the shadow host causes some browsers to include those boxes in the
+ *   document scroll extent.
+ */
+
+/* ── Temporary: host is the full-screen overlay ─────────────── */
+:host,
+:host([variant="temporary"]) {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: var(--flint-drawer-z-index, 1200);
+    pointer-events: none;   /* pass-through when nothing is open */
+    overflow: hidden;        /* clips off-screen paper — no scrollbars */
+}
+/* Container mode: scope to nearest positioned ancestor */
+:host([container]),
+:host([container][variant="temporary"]) {
+    position: absolute;
+}
+
+/* ── Persistent: transparent wrapper ───────────────────────── */
+:host([variant="persistent"]) {
+    /*
+     * display:contents generates no box, so position/overflow/z-index
+     * set above are effectively ignored by the layout engine.
+     */
+    display: contents;
+}
+
+/* ── Mini: flex wrapper ─────────────────────────────────────── */
+:host([variant="mini"]) {
+    display: flex;
+    position: static;   /* un-fix from the temporary rule */
+    inset: auto;
+    overflow: visible;
+    pointer-events: auto;
+    z-index: auto;
+}
+
+/* ── Backdrop ───────────────────────────────────────────────── */
+.backdrop {
+    position: absolute;     /* within the host overlay */
+    inset: 0;
+    background: var(--flint-backdrop-color);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s;
+}
+.backdrop.open { opacity: 1; pointer-events: auto; }
+
+/* ── Paper ──────────────────────────────────────────────────── */
+.paper {
+    position: absolute;     /* within the host overlay */
+    background: var(--flint-drawer-bg, var(--flint-surface-1));
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    outline: none;
+    pointer-events: auto;   /* paper is always interactive */
+}
+
+/* Temporary – left (default) */
+:host(:not([variant])) .paper,
+:host([variant="temporary"]) .paper {
+    top: 0; bottom: 0; left: 0;
+    width: var(--flint-drawer-width, 250px);
+    box-shadow: var(--flint-drawer-shadow);
+    transform: translateX(-100%);
+    transition: transform var(--flint-drawer-transition, .225s cubic-bezier(0, 0, .2, 1));
+}
+:host(:not([variant])[open]) .paper,
+:host([variant="temporary"][open]) .paper {
+    transform: translateX(0);
+}
+
+/* Temporary – right */
+:host([variant="temporary"][anchor="right"]) .paper {
+    left: auto; right: 0;
+    transform: translateX(100%);
+}
+:host([variant="temporary"][anchor="right"][open]) .paper {
+    transform: translateX(0);
+}
+
+/* Temporary – top */
+:host([variant="temporary"][anchor="top"]) .paper {
+    top: 0; left: 0; right: 0; bottom: auto;
+    width: auto;
+    height: var(--flint-drawer-height, auto);
+    transform: translateY(-100%);
+}
+:host([variant="temporary"][anchor="top"][open]) .paper {
+    transform: translateY(0);
+}
+
+/* Temporary – bottom */
+:host([variant="temporary"][anchor="bottom"]) .paper {
+    top: auto; bottom: 0; left: 0; right: 0;
+    width: auto;
+    height: var(--flint-drawer-height, auto);
+    transform: translateY(100%);
+}
+:host([variant="temporary"][anchor="bottom"][open]) .paper {
+    transform: translateY(0);
+}
+
+/* ── Persistent ─────────────────────────────────────────────── */
+:host([variant="persistent"]) .paper {
+    position: relative;
+    transform: none;
+    box-shadow: none;
+    transition: none;
+    border-right: 1px solid var(--flint-border-color);
+    pointer-events: auto;
+}
+:host([variant="persistent"][anchor="right"]) .paper {
+    border-right: none;
+    border-left: 1px solid var(--flint-border-color);
+}
+:host([variant="persistent"]) .paper:not(.open) {
+    display: none;
+}
+
+/* ── Mini ───────────────────────────────────────────────────── */
+:host([variant="mini"]) .paper {
+    position: relative;
+    transform: none;
+    box-shadow: none;
+    border-right: 1px solid var(--flint-border-color);
+    width: var(--flint-drawer-mini-width, 72px);
+    overflow-x: hidden;
+    white-space: nowrap;
+    transition: width var(--flint-drawer-transition, .225s cubic-bezier(0, 0, .2, 1));
+    flex-shrink: 0;
+    pointer-events: auto;
+}
+:host([variant="mini"][anchor="right"]) .paper {
+    border-right: none;
+    border-left: 1px solid var(--flint-border-color);
+}
+:host([variant="mini"][open]) .paper {
+    width: var(--flint-drawer-width, 250px);
+}
+/* Fade out labels when mini is collapsed */
+:host([variant="mini"]:not([open])) ::slotted([data-drawer-hide-mini]) {
+    opacity: 0;
+    pointer-events: none;
+}
+::slotted([data-drawer-hide-mini]) { transition: opacity .18s; }
+
+/* ── Edge handle ─────────────────────────────────────────────── */
+.edge {
+    display: none;
+    position: absolute;     /* within the host overlay */
+    background: var(--flint-drawer-bg, var(--flint-surface-1));
+    border: 1px solid var(--flint-border-color);
+    box-shadow: 0 1px 3px rgba(0,0,0,.12);
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;   /* edge handle is always interactive */
+}
+/* Only show edge for temporary variant */
+:host([edge]:not([variant])) .edge,
+:host([edge][variant="temporary"]) .edge { display: flex; }
+
+.edge-left   { left:0; top:0; bottom:0; width:var(--flint-drawer-edge-width, 16px); border-radius:0 8px 8px 0; }
+.edge-right  { right:0; top:0; bottom:0; width:var(--flint-drawer-edge-width, 16px); border-radius:8px 0 0 8px; }
+.edge-top    { top:0; left:0; right:0; height:var(--flint-drawer-edge-width, 16px); border-radius:0 0 8px 8px; }
+.edge-bottom { bottom:0; left:0; right:0; height:var(--flint-drawer-edge-width, 16px); border-radius:8px 8px 0 0; }
+
+.edge-handle { width:4px; height:32px; background:var(--flint-border-color); border-radius:2px; }
+.edge-top .edge-handle, .edge-bottom .edge-handle { width:32px; height:4px; }

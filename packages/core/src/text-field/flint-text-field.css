@@ -1,0 +1,113 @@
+:host {
+      display: block;
+      font-family: var(--flint-font-family);
+      margin-bottom: 1rem;
+    }
+
+    .field-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--flint-label-color);
+      transition: color 0.2s;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      background-color: var(--flint-input-bg);
+      border: 1px solid var(--flint-input-border-color);
+      border-radius: var(--flint-input-border-radius);
+      transition: all 0.2s ease;
+      overflow: hidden;
+    }
+
+    .input-wrapper:hover:not(.disabled):not(.error) {
+      border-color: var(--flint-input-border-hover-color);
+    }
+
+    .input-wrapper.focused:not(.error) {
+      border-color: var(--flint-primary-color);
+      box-shadow: 0 0 0 3px var(--flint-primary-focus-ring);
+    }
+
+    .input-wrapper.error {
+      border-color: var(--flint-error-color);
+    }
+
+    .input-wrapper.error.focused {
+      box-shadow: 0 0 0 3px var(--flint-error-focus-ring);
+    }
+
+    .input-wrapper.disabled {
+      background-color: var(--flint-input-disabled-bg);
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    input {
+      flex: 1;
+      width: 100%;
+      padding: 0.625rem 0.875rem;
+      font-size: 1rem;
+      font-family: inherit;
+      color: inherit;
+      background: transparent;
+      border: none;
+      outline: none;
+    }
+
+    input:disabled {
+      cursor: not-allowed;
+    }
+
+    input::placeholder {
+      color: var(--flint-input-placeholder-color);
+    }
+
+    .icon-leading, .icon-trailing {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--flint-text-color-muted);
+      padding: 0 0.75rem;
+    }
+
+    .icon-leading {
+      padding-right: 0;
+    }
+
+    .icon-trailing {
+      padding-left: 0;
+    }
+
+    .helper-text {
+      font-size: 0.75rem;
+      color: var(--flint-help-text-color);
+    }
+
+    .error-text {
+      color: var(--flint-error-color);
+    }
+
+    /* Outlined variant (default) */
+    /* Filled variant */
+    .filled .input-wrapper {
+      background-color: var(--flint-surface-2);
+      border-bottom: 2px solid var(--flint-input-border-color);
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      border-radius: 4px 4px 0 0;
+    }
+
+    .filled .input-wrapper.focused {
+      border-bottom-color: var(--flint-primary-color);
+      background-color: var(--flint-hover-color);
+    }

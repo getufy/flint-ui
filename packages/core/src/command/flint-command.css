@@ -1,0 +1,13 @@
+:host {
+            display: block;
+            font-family: var(--flint-font-family);
+            background: var(--flint-command-bg, var(--flint-surface-1));
+            border-radius: var(--flint-border-radius-md);
+            border: 1px solid var(--flint-command-border-color, var(--flint-border-color));
+            overflow: hidden;
+        }
+
+        .command {
+            display: flex;
+            flex-direction: column;
+        }

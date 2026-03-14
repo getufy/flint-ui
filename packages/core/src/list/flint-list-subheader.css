@@ -1,0 +1,11 @@
+:host {
+      display: block;
+      padding: 16px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--flint-text-color-muted);
+      font-family: var(--flint-font-family);
+      line-height: 1;
+    }

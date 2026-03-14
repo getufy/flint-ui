@@ -1,0 +1,34 @@
+:host {
+      display: block;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .card {
+      background: var(--flint-card-background);
+      border-radius: var(--flint-card-border-radius);
+      box-shadow: var(--flint-card-shadow);
+      border: 1px solid var(--flint-card-border-color);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+      padding: var(--flint-card-padding, 0); /* Cards usually don't have padding at the root level if using content blocks */
+    }
+
+    /* Interactive Hover effect */
+    .card.interactive:hover {
+      box-shadow: var(--flint-card-shadow-hover);
+      cursor: pointer;
+    }
+
+    /* Variants */
+    .card.variant-outlined {
+      box-shadow: none;
+      border: 1px solid var(--flint-card-border-color);
+    }
+
+    .card.variant-flat {
+      box-shadow: none;
+      border: none;
+      background: var(--flint-card-background-flat);
+    }

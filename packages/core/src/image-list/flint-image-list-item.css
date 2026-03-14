@@ -1,0 +1,66 @@
+:host {
+      display: block;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* bar-position below: host becomes column-flex so bar sits below image */
+    :host([bar-position="below"]) {
+      display: flex;
+      flex-direction: column;
+      overflow: visible;
+    }
+
+    /* Masonry: let height follow image, avoid column breaks */
+    :host(.masonry) {
+      break-inside: avoid;
+      margin-bottom: var(--flint-image-list-gap, 4px);
+    }
+
+    .item-wrapper {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    :host([bar-position="below"]) .item-wrapper {
+      flex: 1 1 auto;
+      overflow: hidden;
+    }
+
+    /* Masonry: wrapper height follows content */
+    :host(.masonry) .item-wrapper {
+      height: auto;
+    }
+
+    ::slotted(img) {
+      width: 100%;
+      height: 100%;
+      object-fit: var(--flint-image-fit, cover);
+      display: block;
+    }
+
+    /* Masonry images: natural height */
+    :host(.masonry) ::slotted(img) {
+      height: auto;
+    }
+
+    /* Bar overlay: pinned to bottom of :host (not wrapper) */
+    ::slotted(flint-image-list-item-bar) {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    /* Bar at top of image */
+    ::slotted(flint-image-list-item-bar[position="top"]) {
+      bottom: auto;
+      top: 0;
+    }
+
+    /* Bar below image: static flow */
+    :host([bar-position="below"]) ::slotted(flint-image-list-item-bar) {
+      position: static;
+    }

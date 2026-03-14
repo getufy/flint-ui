@@ -1,0 +1,250 @@
+:host {
+      display: block;
+      /* Size tokens — override per [size] attribute */
+      --_h: 40px;
+      --_px: 12px;
+      --_font: 0.875rem;
+
+      --flint-select-bg: var(--flint-input-bg);
+      --flint-select-border: var(--flint-input-border-color);
+      --flint-select-radius: var(--flint-input-border-radius);
+      --flint-select-focus-color: var(--flint-primary-color);
+      --flint-select-error-color: var(--flint-error-color);
+
+      /* Option theming */
+      --flint-select-option-hover-bg: var(--flint-hover-color);
+      --flint-select-option-selected-bg: var(--flint-primary-color-light);
+      --flint-select-option-selected-color: var(--flint-primary-color);
+
+      /* Chip theming */
+      --flint-select-chip-bg: var(--flint-primary-color);
+      --flint-select-chip-color: var(--flint-text-color-on-primary);
+      --flint-select-chip-radius: 16px;
+
+      font-family: var(--flint-font-family);
+    }
+
+    :host([size='sm']) { --_h: 32px; --_px: 8px;  --_font: 0.8125rem; }
+    :host([size='md']) { --_h: 40px; --_px: 12px; --_font: 0.875rem;  }
+    :host([size='lg']) { --_h: 48px; --_px: 16px; --_font: 0.9375rem; }
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+    }
+
+    label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--flint-label-color);
+      margin-left: 2px;
+    }
+
+    .select-trigger {
+      display: flex;
+      align-items: center;
+      min-height: var(--_h);
+      padding: 0 var(--_px);
+      background-color: var(--flint-select-bg);
+      border: 1.5px solid var(--flint-select-border);
+      border-radius: var(--flint-select-radius);
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      position: relative;
+      gap: 10px;
+      user-select: none;
+      outline: none;
+    }
+
+    .select-trigger:hover:not(.disabled):not(.readonly) {
+      border-color: var(--flint-input-border-hover-color);
+    }
+
+    .select-trigger.focused {
+      border-color: var(--flint-select-focus-color);
+      box-shadow: 0 0 0 3px var(--flint-primary-focus-ring);
+    }
+
+    :host([error]) .select-trigger {
+      border-color: var(--flint-select-error-color);
+    }
+
+    :host([error]) .select-trigger.focused {
+      box-shadow: 0 0 0 3px var(--flint-error-focus-ring);
+    }
+
+    .select-trigger.disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      background-color: var(--flint-input-disabled-bg);
+    }
+
+    .select-trigger.readonly {
+      cursor: default;
+      background-color: var(--flint-input-readonly-bg);
+    }
+
+    .value-container {
+      flex: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 6px 0;
+      min-height: 24px;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .placeholder {
+      color: var(--flint-input-placeholder-color);
+      font-size: var(--_font);
+    }
+
+    .single-value {
+      color: var(--flint-text-color);
+      font-size: var(--_font);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .chip {
+      background-color: var(--flint-select-chip-bg);
+      color: var(--flint-select-chip-color);
+      padding: 2px 8px 2px 10px;
+      border-radius: var(--flint-select-chip-radius);
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      animation: chip-in 0.2s ease-out;
+    }
+
+    @keyframes chip-in {
+      from { transform: scale(0.8); opacity: 0; }
+      to   { transform: scale(1);   opacity: 1; }
+    }
+
+    .chip-remove {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+      background: none;
+      border: none;
+      padding: 0;
+      color: inherit;
+      line-height: 0;
+    }
+
+    .chip-remove:hover { opacity: 1; }
+
+    .arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+      color: var(--flint-text-color-muted);
+      flex-shrink: 0;
+    }
+
+    .select-trigger.open .arrow {
+      transform: rotate(180deg);
+      color: var(--flint-select-focus-color);
+    }
+
+    /* Dropdown */
+    .dropdown {
+      position: absolute;
+      left: 0;
+      right: 0;
+      background-color: var(--flint-select-bg);
+      border-radius: var(--flint-select-radius);
+      box-shadow: var(--flint-shadow-lg);
+      border: 1px solid var(--flint-border-color);
+      z-index: 1000;
+      max-height: 260px;
+      overflow-y: auto;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+
+    .dropdown.below {
+      top: calc(100% + 6px);
+      transform: translateY(-8px);
+    }
+
+    .dropdown.above {
+      bottom: calc(100% + 6px);
+      transform: translateY(8px);
+    }
+
+    .dropdown.open {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    /* Options */
+    .option {
+      padding: 10px 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--flint-text-color);
+      transition: background-color 0.15s;
+      font-size: var(--_font);
+    }
+
+    .option.highlighted {
+      background-color: var(--flint-select-option-hover-bg);
+    }
+
+    .option.selected {
+      background-color: var(--flint-select-option-selected-bg);
+      color: var(--flint-select-option-selected-color);
+      font-weight: 600;
+    }
+
+    .option.option-disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .check-icon {
+      color: var(--flint-select-option-selected-color);
+      opacity: 0;
+      transition: opacity 0.15s;
+      flex-shrink: 0;
+    }
+
+    .option.selected .check-icon { opacity: 1; }
+
+    .no-options {
+      padding: 12px 16px;
+      color: var(--flint-text-color-muted);
+      font-size: 0.875rem;
+      cursor: default;
+    }
+
+    .error-message {
+      font-size: 0.75rem;
+      color: var(--flint-select-error-color);
+      margin-left: 2px;
+    }
+
+    /* Scrollbar */
+    .dropdown::-webkit-scrollbar { width: 6px; }
+    .dropdown::-webkit-scrollbar-track { background: transparent; }
+    .dropdown::-webkit-scrollbar-thumb {
+      background: var(--flint-border-color);
+      border-radius: 3px;
+    }

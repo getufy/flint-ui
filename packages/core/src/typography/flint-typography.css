@@ -1,0 +1,54 @@
+:host {
+            display: block;
+            font-family: var(--flint-font-family);
+            color: var(--flint-text-color);
+        }
+
+        .typography {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Variants */
+        .h1 { font-size: 6rem;    font-weight: 300; letter-spacing: -1.5px; line-height: 1.167; }
+        .h2 { font-size: 3.75rem; font-weight: 300; letter-spacing: -0.5px; line-height: 1.2;   }
+        .h3 { font-size: 3rem;    font-weight: 400; line-height: 1.167; }
+        .h4 { font-size: 2.125rem; font-weight: 400; letter-spacing: 0.25px; line-height: 1.235; }
+        .h5 { font-size: 1.5rem;  font-weight: 400; line-height: 1.334; }
+        .h6 { font-size: 1.25rem; font-weight: 500; letter-spacing: 0.15px; line-height: 1.6;   }
+        .subtitle1 { font-size: 1rem;    font-weight: 400; letter-spacing: 0.15px; line-height: 1.75; }
+        .subtitle2 { font-size: 0.875rem; font-weight: 500; letter-spacing: 0.1px;  line-height: 1.57; }
+        .body1 { font-size: 1rem;    font-weight: 400; letter-spacing: 0.15px; line-height: 1.5;  }
+        .body2 { font-size: 0.875rem; font-weight: 400; letter-spacing: 0.15px; line-height: 1.43; }
+        .caption  { font-size: 0.75rem; font-weight: 400; letter-spacing: 0.4px; line-height: 1.66; }
+        .overline { font-size: 0.75rem; font-weight: 400; letter-spacing: 1px;   line-height: 2.66; text-transform: uppercase; }
+
+        /* Colors */
+        :host([color="primary"])       .typography { color: var(--flint-primary-color); }
+        :host([color="secondary"])     .typography { color: var(--flint-secondary-color); }
+        :host([color="success"])       .typography { color: var(--flint-success-color); }
+        :host([color="error"])         .typography { color: var(--flint-error-color); }
+        :host([color="warning"])       .typography { color: var(--flint-warning-color); }
+        :host([color="info"])          .typography { color: var(--flint-info-icon-color); }
+        :host([color="textPrimary"])   .typography { color: var(--flint-text-color); }
+        :host([color="textSecondary"]) .typography { color: var(--flint-text-color-muted); }
+        :host([color="inherit"])       .typography { color: inherit; }
+
+        /* Alignment */
+        :host([align="left"])    .typography { text-align: left; }
+        :host([align="center"])  .typography { text-align: center; }
+        :host([align="right"])   .typography { text-align: right; }
+        :host([align="justify"]) .typography { text-align: justify; }
+
+        /* No wrapping */
+        :host([noWrap]) .typography {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* Gutter bottom — matches MUI spacing */
+        :host([gutterBottom]) .typography { margin-bottom: 0.35em; }
+
+        /* Paragraph adds bottom margin */
+        :host([paragraph]) .typography { margin-bottom: 16px; }

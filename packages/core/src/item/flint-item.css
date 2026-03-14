@@ -1,0 +1,35 @@
+:host {
+            /* Sizing custom properties — read by sub-components too */
+            --flint-item-padding: 16px;
+            --flint-item-gap: 12px;
+
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: var(--flint-item-gap);
+            padding: var(--flint-item-padding);
+            border-radius: 8px;
+            box-sizing: border-box;
+            overflow: hidden;
+            font-family: var(--flint-font-family);
+        }
+
+        /* Size variants — override sizing custom properties */
+        :host([size='sm']) {
+            --flint-item-padding: 12px;
+            --flint-item-gap: 8px;
+        }
+
+        :host([size='xs']) {
+            --flint-item-padding: 8px;
+            --flint-item-gap: 6px;
+        }
+
+        /* Visual variants */
+        :host([variant='outline']) {
+            border: 1px solid var(--flint-border-color);
+        }
+
+        :host([variant='muted']) {
+            background: var(--flint-muted-bg, var(--flint-muted-background));
+        }

@@ -1,0 +1,11 @@
+:host {
+      display: block;
+      box-sizing: border-box;
+    }
+    li {
+      display: flex;
+      align-items: center;
+      padding: var(--flint-list-item-padding, 8px 16px);
+      gap: var(--flint-list-item-gap, 16px);
+      list-style: none;
+    }

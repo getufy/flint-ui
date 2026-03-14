@@ -1,0 +1,16 @@
+:host {
+            display: block;
+            font-family: var(--flint-font-family);
+        }
+        :host([hidden]) { display: none !important; }
+
+        .heading {
+            padding: 6px 8px 2px;
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--flint-text-color-muted);
+        }
+
+        .heading:empty { display: none; }

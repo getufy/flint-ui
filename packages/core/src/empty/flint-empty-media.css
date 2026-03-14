@@ -1,0 +1,25 @@
+:host {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .media {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .media--icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--flint-empty-media-bg, var(--flint-surface-2));
+            color: var(--flint-empty-media-color, var(--flint-text-color-muted));
+        }
+
+        ::slotted(svg),
+        ::slotted([data-icon]) {
+            width: 24px;
+            height: 24px;
+        }

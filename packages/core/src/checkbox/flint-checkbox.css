@@ -1,0 +1,111 @@
+:host {
+      display: inline-block;
+      font-family: var(--flint-font-family);
+      color: var(--flint-text-color);
+    }
+
+    .wrapper {
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .wrapper.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .checkbox {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: var(--flint-checkbox-size, 18px);
+      height: var(--flint-checkbox-size, 18px);
+      border: 2px solid var(--flint-input-border-color);
+      border-radius: var(--flint-checkbox-border-radius, var(--flint-border-radius-sm));
+      background-color: var(--flint-surface-1);
+      transition: all 0.2s ease;
+      margin-right: var(--flint-checkbox-gap, 8px);
+    }
+
+    :host([size="sm"]) .checkbox {
+      width: var(--flint-checkbox-size-sm, 14px);
+      height: var(--flint-checkbox-size-sm, 14px);
+    }
+
+    :host([size="lg"]) .checkbox {
+      width: var(--flint-checkbox-size-lg, 22px);
+      height: var(--flint-checkbox-size-lg, 22px);
+    }
+
+    .wrapper:hover:not(.disabled) .checkbox {
+      border-color: var(--flint-primary-color);
+    }
+
+    .checkbox.checked, .checkbox.indeterminate {
+      background-color: var(--flint-primary-color);
+      border-color: var(--flint-primary-color);
+    }
+
+    .icon {
+      fill: none;
+      stroke: var(--flint-text-color-on-primary);
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      width: var(--flint-checkbox-icon-size, 12px);
+      height: var(--flint-checkbox-icon-size, 12px);
+      opacity: 0;
+      transform: scale(0.5);
+      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    :host([size="sm"]) .icon {
+      width: var(--flint-checkbox-icon-size-sm, 10px);
+      height: var(--flint-checkbox-icon-size-sm, 10px);
+    }
+
+    :host([size="lg"]) .icon {
+      width: var(--flint-checkbox-icon-size-lg, 16px);
+      height: var(--flint-checkbox-icon-size-lg, 16px);
+    }
+
+    .checked .icon, .indeterminate .icon {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      margin: 0;
+    }
+
+    /* Focus ring for accessibility */
+    input:focus-visible + .checkbox {
+      outline: 2px solid var(--flint-primary-color);
+      outline-offset: 2px;
+    }
+
+    .label {
+      font-size: var(--flint-checkbox-label-font-size, 14px);
+      line-height: 1.5;
+      user-select: none;
+    }
+
+    :host([size="sm"]) .label {
+      font-size: var(--flint-checkbox-label-font-size-sm, 12px);
+    }
+
+    :host([size="lg"]) .label {
+      font-size: var(--flint-checkbox-label-font-size-lg, 16px);
+    }
+
+    /* Style when no label and no slot text is passed */
+    ::slotted(*), .label {
+      cursor: inherit;
+    }

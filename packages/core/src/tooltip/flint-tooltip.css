@@ -1,0 +1,114 @@
+:host {
+      display: inline-block;
+      position: relative;
+    }
+
+    .tooltip-container {
+      display: inline-block;
+    }
+
+    .tooltip-popup {
+      position: absolute;
+      background-color: var(--flint-tooltip-bg);
+      color: var(--flint-tooltip-color);
+      padding: 4px 8px;
+      border-radius: var(--flint-border-radius-sm);
+      font-size: 0.75rem;
+      font-family: var(--flint-font-family);
+      line-height: 1.4;
+      max-width: var(--flint-tooltip-max-width, 300px);
+      white-space: nowrap;
+      overflow-wrap: break-word;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+      pointer-events: none;
+      box-shadow: var(--flint-shadow-sm);
+    }
+
+    /* Placements */
+    .tooltip-popup.top {
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(0);
+      margin-bottom: 8px;
+    }
+    .tooltip-popup.top.visible {
+      transform: translateX(-50%) translateY(-4px);
+    }
+
+    .tooltip-popup.bottom {
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(0);
+      margin-top: 8px;
+    }
+    .tooltip-popup.bottom.visible {
+      transform: translateX(-50%) translateY(4px);
+    }
+
+    .tooltip-popup.left {
+      right: 100%;
+      top: 50%;
+      transform: translateY(-50%) translateX(0);
+      margin-right: 8px;
+    }
+    .tooltip-popup.left.visible {
+      transform: translateY(-50%) translateX(-4px);
+    }
+
+    .tooltip-popup.right {
+      left: 100%;
+      top: 50%;
+      transform: translateY(-50%) translateX(0);
+      margin-left: 8px;
+    }
+    .tooltip-popup.right.visible {
+      transform: translateY(-50%) translateX(4px);
+    }
+
+    .tooltip-popup.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Arrow */
+    .arrow {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-style: solid;
+    }
+
+    .tooltip-popup.top .arrow {
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px 5px 0 5px;
+      border-color: var(--flint-tooltip-bg) transparent transparent transparent;
+    }
+
+    .tooltip-popup.bottom .arrow {
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 0 5px 5px 5px;
+      border-color: transparent transparent var(--flint-tooltip-bg) transparent;
+    }
+
+    .tooltip-popup.left .arrow {
+      left: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      border-width: 5px 0 5px 5px;
+      border-color: transparent transparent transparent var(--flint-tooltip-bg);
+    }
+
+    .tooltip-popup.right .arrow {
+      right: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      border-width: 5px 5px 5px 0;
+      border-color: transparent var(--flint-tooltip-bg) transparent transparent;
+    }

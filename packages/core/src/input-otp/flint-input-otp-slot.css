@@ -1,0 +1,55 @@
+:host {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: var(--flint-otp-slot-width, 40px);
+            height: var(--flint-otp-slot-height, 48px);
+            font-size: var(--flint-otp-slot-font-size, 1.25rem);
+            font-family: var(--flint-font-family);
+            font-weight: 500;
+            color: var(--flint-text-color);
+            background: var(--flint-input-bg);
+            border: 1px solid var(--flint-input-border-color);
+            margin-left: -1px;
+            cursor: text;
+            user-select: none;
+            transition: border-color 150ms ease, box-shadow 150ms ease;
+        }
+
+        :host(:first-child) {
+            margin-left: 0;
+            border-radius: var(--flint-otp-slot-radius, 6px) 0 0 var(--flint-otp-slot-radius, 6px);
+        }
+
+        :host(:last-child) {
+            border-radius: 0 var(--flint-otp-slot-radius, 6px) var(--flint-otp-slot-radius, 6px) 0;
+        }
+
+        :host([active]) {
+            z-index: 1;
+            border-color: var(--flint-primary-color);
+            box-shadow: 0 0 0 2px var(--flint-primary-focus-ring);
+        }
+
+        :host([invalid]) {
+            border-color: var(--flint-error-color);
+        }
+
+        :host([invalid][active]) {
+            border-color: var(--flint-error-color);
+            box-shadow: 0 0 0 2px var(--flint-error-focus-ring);
+        }
+
+        .cursor {
+            width: 2px;
+            height: 1.2em;
+            background: var(--flint-text-color);
+            border-radius: 1px;
+            animation: otp-blink 1.2s step-end infinite;
+        }
+
+        @keyframes otp-blink {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0; }
+        }

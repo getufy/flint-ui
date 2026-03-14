@@ -1,0 +1,130 @@
+:host {
+      display: inline-block;
+      font-family: var(--flint-font-family);
+    }
+
+    /* ── Label ────────────────────────────────────────────────────────── */
+    .field-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      color: var(--flint-text-color-muted);
+      margin-bottom: 5px;
+      transition: color 0.15s;
+    }
+    :host([error]) .field-label { color: var(--flint-error-color); }
+    .field-label.focused { color: var(--flint-primary-color); }
+    :host([error]) .field-label.focused { color: var(--flint-error-color); }
+
+    /* ── Field container ─────────────────────────────────────────────── */
+    .field-container {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--flint-input-bg);
+      border: 1.5px solid var(--flint-border-color);
+      border-radius: var(--flint-border-radius-md);
+      padding: 0 10px;
+      height: 44px;
+      min-width: 200px;
+      cursor: text;
+      box-sizing: border-box;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      position: relative;
+    }
+    .field-container.focused {
+      border-color: var(--flint-primary-color);
+      box-shadow: 0 0 0 3px var(--flint-primary-focus-ring);
+    }
+    :host([error]) .field-container {
+      border-color: var(--flint-error-color);
+    }
+    :host([error]) .field-container.focused {
+      box-shadow: 0 0 0 3px var(--flint-error-focus-ring);
+    }
+    :host([disabled]) .field-container {
+      background: var(--flint-input-disabled-bg);
+      border-color: var(--flint-border-color);
+      cursor: not-allowed;
+    }
+    :host([readonly]) .field-container { cursor: default; }
+
+    /* ── Segments row ────────────────────────────────────────────────── */
+    .segments {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      gap: 1px;
+      outline: none;
+      min-height: 100%;
+    }
+
+    .segment {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      padding: 2px 4px;
+      font-size: 0.9375rem;
+      font-variant-numeric: tabular-nums;
+      color: var(--flint-text-color);
+      min-width: 2ch;
+      line-height: 1;
+      transition: background 0.1s;
+      cursor: text;
+      user-select: none;
+    }
+    .segment.placeholder { color: var(--flint-input-placeholder-color); }
+    .segment.active {
+      background: var(--flint-primary-color);
+      color: var(--flint-text-color-on-primary);
+      border-radius: 3px;
+    }
+    :host([disabled]) .segment {
+      color: var(--flint-text-color-muted);
+    }
+    :host([disabled]) .segment.active {
+      background: var(--flint-border-color);
+      color: var(--flint-text-color-muted);
+    }
+
+    .segment-year { min-width: 4ch; }
+
+    .separator {
+      color: var(--flint-text-color-muted);
+      font-size: 0.9375rem;
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    /* ── Clear + Calendar icon ───────────────────────────────────────── */
+    .field-actions {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      margin-left: auto;
+    }
+
+    .icon-btn {
+      display: flex; align-items: center; justify-content: center;
+      width: 24px; height: 24px;
+      border: none; background: transparent; cursor: pointer;
+      border-radius: 50%;
+      color: var(--flint-text-color-muted);
+      font-size: 0.875rem;
+      transition: background 0.12s, color 0.12s;
+      flex-shrink: 0;
+      padding: 0;
+    }
+    .icon-btn:hover { background: var(--flint-hover-color); color: var(--flint-text-color); }
+    :host([disabled]) .icon-btn { pointer-events: none; opacity: 0; }
+
+    /* ── Helper text ─────────────────────────────────────────────────── */
+    .helper {
+      display: block;
+      font-size: 0.75rem;
+      margin-top: 5px;
+      color: var(--flint-text-color-muted);
+    }
+    :host([error]) .helper { color: var(--flint-error-color); }

@@ -1,0 +1,6 @@
+:host { display:inline-block; font-family:var(--flint-font-family); }
+    .surface {
+      border-radius:var(--flint-border-radius-xl);
+      box-shadow:0 1px 4px rgba(0,0,0,.08),0 0 0 1px var(--flint-border-color);
+      overflow:hidden; display:inline-block;
+    }

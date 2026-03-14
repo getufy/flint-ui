@@ -1,0 +1,23 @@
+:host {
+      display: block;
+      width: 100%;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .action-area {
+      transition: background-color 0.2s;
+    }
+
+    .action-area:hover {
+      background-color: var(--flint-card-action-area-hover, var(--flint-hover-color));
+    }
+
+    .action-area:active {
+      background-color: var(--flint-card-action-area-active, var(--flint-active-color));
+    }
+
+    .action-area:focus-visible {
+      outline: 2px solid var(--flint-card-action-area-focus-ring, var(--flint-primary-color));
+      outline-offset: -2px;
+    }

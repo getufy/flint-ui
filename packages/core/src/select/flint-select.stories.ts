@@ -1,0 +1,390 @@
+import { Meta, StoryObj } from '@storybook/web-components';
+import '../button/flint-button';
+import { html } from 'lit';
+import '../button/flint-button';
+import './flint-select';
+import '../button/flint-button';
+
+const meta: Meta = {
+  title: 'Inputs/Select',
+  component: 'flint-select',
+  argTypes: {
+    label:        { control: 'text' },
+    placeholder:  { control: 'text' },
+    multiple:     { control: 'boolean' },
+    disabled:     { control: 'boolean' },
+    readonly:     { control: 'boolean' },
+    required:     { control: 'boolean' },
+    error:        { control: 'boolean' },
+    errorMessage: { control: 'text' },
+    size:         { control: 'select', options: ['sm', 'md', 'lg'] },
+  },
+  args: {
+    label:        'Favorite Fruit',
+    placeholder:  'Pick a fruit',
+    multiple:     false,
+    disabled:     false,
+    readonly:     false,
+    required:     false,
+    error:        false,
+    errorMessage: '',
+    size:         'md',
+  },
+};
+
+export default meta;
+
+type Story = StoryObj;
+
+const defaultOptions = [
+  { label: 'Apple',       value: 'apple'       },
+  { label: 'Banana',      value: 'banana'      },
+  { label: 'Cherry',      value: 'cherry'      },
+  { label: 'Dragonfruit', value: 'dragonfruit' },
+  { label: 'Elderberry',  value: 'elderberry'  },
+];
+
+// ── Playground ───────────────────────────────────────────────────────────────
+
+export const Playground: Story = {
+  args: {
+    options:      defaultOptions,
+  },
+  render: (args) => html`
+    <div style="max-width: 400px; padding: 20px;">
+      <flint-select
+        .label=${args.label}
+        .placeholder=${args.placeholder}
+        .options=${args.options}
+        .size=${args.size}
+        ?multiple=${args.multiple}
+        ?disabled=${args.disabled}
+        ?readonly=${args.readonly}
+        ?required=${args.required}
+        ?error=${args.error}
+        .errorMessage=${args.errorMessage}
+      ></flint-select>
+    </div>
+  `,
+};
+
+// ── Basic ────────────────────────────────────────────────────────────────────
+
+export const Basic: Story = {
+  args: {
+    label:       'Favorite Fruit',
+    placeholder: 'Pick a fruit',
+    options:     defaultOptions,
+  },
+  render: (args) => html`
+    <div style="max-width: 400px; padding: 20px;">
+      <flint-select
+        .label=${args.label}
+        .placeholder=${args.placeholder}
+        .options=${args.options}
+      ></flint-select>
+    </div>
+  `,
+};
+
+// ── With preselected value ───────────────────────────────────────────────────
+
+export const WithPreselectedValue: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px;">
+      <flint-select
+        label="Favourite Fruit"
+        .options=${defaultOptions}
+        .value=${['cherry']}
+      ></flint-select>
+    </div>
+  `,
+};
+
+// ── Default value (uncontrolled) ─────────────────────────────────────────────
+
+export const UncontrolledDefaultValue: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px;">
+      <flint-select
+        label="Uncontrolled (default-value)"
+        default-value="banana"
+        .options=${defaultOptions}
+      ></flint-select>
+    </div>
+  `,
+};
+
+// ── Multi-select ─────────────────────────────────────────────────────────────
+
+export const MultiSelect: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px;">
+      <flint-select
+        label="Select Multiple Fruits"
+        placeholder="Select items..."
+        multiple
+        .options=${defaultOptions}
+        .value=${['apple', 'cherry']}
+      ></flint-select>
+    </div>
+  `,
+};
+
+// ── With icon slot ────────────────────────────────────────────────────────────
+
+export const WithIcon: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px;">
+      <flint-select
+        label="Country"
+        placeholder="Select country"
+        .options=${[
+          { label: 'United States', value: 'us' },
+          { label: 'United Kingdom', value: 'uk' },
+          { label: 'Germany',        value: 'de' },
+          { label: 'France',         value: 'fr' },
+        ]}
+      >
+        <svg slot="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="2" y1="12" x2="22" y2="12"></line>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+        </svg>
+      </flint-select>
+    </div>
+  `,
+};
+
+// ── Sizes ─────────────────────────────────────────────────────────────────────
+
+export const Sizes: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px; display: flex; flex-direction: column; gap: 16px;">
+      <flint-select label="Small"  size="sm" placeholder="sm"  .options=${defaultOptions}></flint-select>
+      <flint-select label="Medium" size="md" placeholder="md"  .options=${defaultOptions}></flint-select>
+      <flint-select label="Large"  size="lg" placeholder="lg"  .options=${defaultOptions}></flint-select>
+    </div>
+  `,
+};
+
+// ── Disabled ─────────────────────────────────────────────────────────────────
+
+export const Disabled: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px; display: flex; flex-direction: column; gap: 16px;">
+      <flint-select
+        label="Disabled (empty)"
+        placeholder="Cannot open this"
+        ?disabled=${true}
+        .options=${defaultOptions}
+      ></flint-select>
+      <flint-select
+        label="Disabled (with value)"
+        ?disabled=${true}
+        .options=${defaultOptions}
+        .value=${['banana']}
+      ></flint-select>
+    </div>
+  `,
+};
+
+// ── Readonly ──────────────────────────────────────────────────────────────────
+
+export const Readonly: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px;">
+      <flint-select
+        label="Read-only"
+        ?readonly=${true}
+        .options=${defaultOptions}
+        .value=${['cherry']}
+      ></flint-select>
+    </div>
+  `,
+};
+
+// ── Error state ───────────────────────────────────────────────────────────────
+
+export const ErrorState: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px; display: flex; flex-direction: column; gap: 16px;">
+      <flint-select
+        label="Required field"
+        placeholder="Select an option"
+        ?error=${true}
+        error-message="This field is required."
+        .options=${defaultOptions}
+      ></flint-select>
+      <flint-select
+        label="Invalid selection"
+        ?error=${true}
+        error-message="Selected value is no longer available."
+        .options=${defaultOptions}
+        .value=${['apple']}
+      ></flint-select>
+    </div>
+  `,
+};
+
+// ── Disabled options ──────────────────────────────────────────────────────────
+
+export const WithDisabledOptions: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px;">
+      <flint-select
+        label="Availability"
+        placeholder="Choose a slot"
+        .options=${[
+          { label: 'Morning (available)',   value: 'morning'   },
+          { label: 'Afternoon (booked)',    value: 'afternoon', disabled: true },
+          { label: 'Evening (available)',   value: 'evening'   },
+          { label: 'Night (unavailable)',   value: 'night',     disabled: true },
+        ]}
+      ></flint-select>
+    </div>
+  `,
+};
+
+// ── Without label ─────────────────────────────────────────────────────────────
+
+export const WithoutLabel: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px;">
+      <flint-select placeholder="Pick a fruit" .options=${defaultOptions}></flint-select>
+    </div>
+  `,
+};
+
+// ── Empty options ─────────────────────────────────────────────────────────────
+
+export const EmptyOptions: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px;">
+      <flint-select label="No items yet" placeholder="Nothing to pick" .options=${[]}></flint-select>
+    </div>
+  `,
+};
+
+// ── Large option list ─────────────────────────────────────────────────────────
+
+export const LargeOptionList: Story = {
+  render: () => {
+    const countries = [
+      'Afghanistan', 'Albania', 'Algeria', 'Argentina', 'Australia',
+      'Austria', 'Belgium', 'Brazil', 'Canada', 'Chile',
+      'China', 'Colombia', 'Croatia', 'Czech Republic', 'Denmark',
+      'Egypt', 'Finland', 'France', 'Germany', 'Greece',
+      'Hungary', 'India', 'Indonesia', 'Iran', 'Iraq',
+      'Ireland', 'Israel', 'Italy', 'Japan', 'Jordan',
+    ].map(c => ({ label: c, value: c.toLowerCase().replace(/\s/g, '-') }));
+    return html`
+      <div style="max-width: 400px; padding: 20px;">
+        <flint-select label="Country" placeholder="Select a country" .options=${countries}></flint-select>
+      </div>
+    `;
+  },
+};
+
+// ── Controlled ───────────────────────────────────────────────────────────────
+
+export const Controlled: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px;">
+      <p style="font-size: 0.875rem; margin: 0 0 12px; color: #6b7280;">
+        Parent owns state — selection reflected in the paragraph below.
+      </p>
+      <div
+        id="controlled-root"
+        @change=${(e: CustomEvent) => {
+          const root = (e.currentTarget as HTMLElement);
+          root.querySelector<HTMLElement>('#selected-display')!.textContent =
+            `Selected: ${e.detail.value ?? '(none)'}`;
+        }}
+      >
+        <flint-select
+          label="Controlled Fruit"
+          placeholder="Pick a fruit"
+          .options=${defaultOptions}
+        ></flint-select>
+        <p id="selected-display" style="font-size: 0.875rem; margin-top: 8px;">Selected: (none)</p>
+      </div>
+    </div>
+  `,
+};
+
+// ── Controlled multi-select ───────────────────────────────────────────────────
+
+export const ControlledMulti: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px;">
+      <div
+        id="controlled-multi-root"
+        @change=${(e: CustomEvent) => {
+          const root = (e.currentTarget as HTMLElement);
+          const vals: string[] = e.detail.value ?? [];
+          root.querySelector<HTMLElement>('#multi-display')!.textContent =
+            vals.length ? `Selected: ${vals.join(', ')}` : 'Selected: (none)';
+        }}
+      >
+        <flint-select
+          label="Controlled Multi"
+          placeholder="Pick fruits..."
+          multiple
+          .options=${defaultOptions}
+        ></flint-select>
+        <p id="multi-display" style="font-size: 0.875rem; margin-top: 8px;">Selected: (none)</p>
+      </div>
+    </div>
+  `,
+};
+
+// ── Custom styling ────────────────────────────────────────────────────────────
+
+export const CustomStyling: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px;">
+      <flint-select
+        label="Custom Style"
+        placeholder="Pick a fruit"
+        .options=${defaultOptions}
+        style="
+          --flint-select-focus-color: #8b5cf6;
+          --flint-select-radius: 24px;
+          --flint-select-border: #c4b5fd;
+          --flint-font-family: Georgia, serif;
+        "
+      ></flint-select>
+    </div>
+  `,
+};
+
+// ── In a form ─────────────────────────────────────────────────────────────────
+
+export const InForm: Story = {
+  render: () => html`
+    <div style="max-width: 400px; padding: 20px;">
+      <form
+        id="demo-form"
+        @submit=${(e: Event) => {
+          e.preventDefault();
+          const fd = new FormData(e.target as HTMLFormElement);
+          const root = (e.target as HTMLElement).closest('div')!;
+          root.querySelector<HTMLElement>('#form-output')!.textContent =
+            `Submitted: fruit = ${fd.get('fruit') ?? '(none)'}`;
+        }}
+        style="display: flex; flex-direction: column; gap: 12px;"
+      >
+        <flint-select
+          name="fruit"
+          label="Favourite Fruit"
+          placeholder="Required"
+          ?required=${true}
+          .options=${defaultOptions}
+        ></flint-select>
+        <flint-button type="submit">Submit</flint-button>
+        <p id="form-output" style="font-size: 0.875rem; color: #6b7280;"></p>
+      </form>
+    </div>
+  `,
+};

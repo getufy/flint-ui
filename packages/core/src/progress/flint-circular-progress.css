@@ -1,0 +1,44 @@
+:host {
+      display: inline-block;
+      --flint-circular-progress-size: 40px;
+      --flint-circular-progress-color: var(--flint-primary-color);
+      --flint-circular-progress-thickness: 3.6;
+    }
+
+    .circular-root {
+      width: var(--flint-circular-progress-size);
+      height: var(--flint-circular-progress-size);
+      display: inline-block;
+      animation: rotate 1.4s linear infinite;
+    }
+
+    .circular-root.determinate {
+      animation: none;
+      transform: rotate(-90deg);
+    }
+
+    svg {
+      display: block;
+    }
+
+    circle {
+      stroke: var(--flint-circular-progress-color);
+      stroke-linecap: round;
+      transition: stroke-dashoffset 0.3s ease;
+    }
+
+    .indeterminate circle {
+      animation: dash 1.4s ease-in-out infinite;
+      stroke-dasharray: 80, 200;
+      stroke-dashoffset: 0;
+    }
+
+    @keyframes rotate {
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes dash {
+      0% { stroke-dasharray: 1, 200; stroke-dashoffset: 0; }
+      50% { stroke-dasharray: 89, 200; stroke-dashoffset: -35px; }
+      100% { stroke-dasharray: 89, 200; stroke-dashoffset: -124px; }
+    }

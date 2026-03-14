@@ -1,0 +1,91 @@
+:host {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+    border-radius: var(--flint-image-comparer-border-radius, var(--flint-border-radius-md));
+    aspect-ratio: var(--flint-image-comparer-aspect-ratio, 16 / 9);
+}
+
+.base {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.before,
+.after {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.after ::slotted(img),
+.after ::slotted(svg),
+.before ::slotted(img),
+.before ::slotted(svg) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-width: none;
+    pointer-events: none;
+}
+
+.before {
+    z-index: 1;
+}
+
+.divider {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    z-index: 2;
+    width: var(--flint-image-comparer-divider-width, 2px);
+    background: var(--flint-image-comparer-divider-color, var(--flint-color-white));
+    transform: translateX(-50%);
+    pointer-events: none;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+.handle {
+    position: absolute;
+    top: 50%;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--flint-image-comparer-handle-size, 40px);
+    height: var(--flint-image-comparer-handle-size, 40px);
+    border-radius: var(--flint-border-radius-full);
+    background: var(--flint-image-comparer-handle-bg, var(--flint-color-white));
+    border: 2px solid var(--flint-image-comparer-handle-border-color, rgba(0, 0, 0, 0.15));
+    box-shadow: var(--flint-shadow-md);
+    transform: translate(-50%, -50%);
+    cursor: ew-resize;
+    outline: none;
+    transition: box-shadow 150ms ease;
+}
+
+.handle:focus-visible {
+    box-shadow: var(--flint-shadow-md), 0 0 0 3px var(--flint-primary-focus-ring);
+}
+
+.handle:hover {
+    box-shadow: var(--flint-shadow-lg);
+}
+
+.handle svg {
+    width: 20px;
+    height: 20px;
+    color: var(--flint-image-comparer-handle-icon-color, var(--flint-text-color-muted));
+    flex-shrink: 0;
+}
+
+:host([disabled]) {
+    opacity: 0.5;
+    pointer-events: none;
+}

@@ -1,0 +1,51 @@
+:host { display: block; }
+        :host([hidden]) { display: none !important; }
+
+        .item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            color: var(--flint-text-color);
+            font-family: var(--flint-font-family);
+            outline: none;
+            user-select: none;
+            transition: background 0.1s;
+        }
+
+        :host([highlighted]) .item {
+            background: var(--flint-command-highlight-bg, var(--flint-hover-color));
+            color: var(--flint-command-highlight-color, var(--flint-text-color));
+        }
+
+        .item:hover {
+            background: var(--flint-hover-color);
+        }
+
+        :host([highlighted]) .item:hover {
+            background: var(--flint-command-highlight-bg, var(--flint-hover-color));
+        }
+
+        :host([disabled]) .item {
+            opacity: 0.38;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            color: var(--flint-text-color-muted);
+        }
+
+        .label { flex: 1; }
+
+        [hidden] { display: none !important; }

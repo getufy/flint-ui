@@ -1,0 +1,21 @@
+:host {
+            display: block;
+            font-family: var(--flint-font-family);
+            color: var(--flint-text-color);
+        }
+
+        :host([disabled]) {
+            opacity: var(--flint-radio-disabled-opacity, 0.5);
+            pointer-events: none;
+        }
+
+        .group-container {
+            display: flex;
+            flex-direction: column;
+            gap: var(--flint-radio-group-gap, 8px);
+        }
+
+        :host([orientation="horizontal"]) .group-container {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }

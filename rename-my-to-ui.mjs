@@ -16,7 +16,7 @@ function processDirectory(dir) {
             let content = fs.readFileSync(fullPath, 'utf-8');
 
             let newContent = content
-                .replace(/my-/g, 'ui-')
+                .replace(/my-/g, 'flint-')
                 .replace(/My(?=[A-Z])/g, 'Ui');
 
             if (newContent !== content) {
@@ -25,7 +25,7 @@ function processDirectory(dir) {
             }
 
             if (entry.name.startsWith('my-')) {
-                const newName = entry.name.replace(/^my-/, 'ui-');
+                const newName = entry.name.replace(/^my-/, 'flint-');
                 const newFullPath = path.join(dir, newName);
                 fs.renameSync(fullPath, newFullPath);
                 console.log(`Renamed: ${fullPath} -> ${newFullPath}`);

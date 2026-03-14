@@ -1,0 +1,94 @@
+:host {
+    display: block;
+    font-family: var(--flint-font-family);
+}
+
+.textarea-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--flint-label-color);
+}
+
+textarea {
+    font-family: inherit;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 14px;
+    font-size: 14px;
+    line-height: 1.5;
+    border-radius: var(--flint-input-border-radius);
+    border: 1px solid var(--flint-input-border-color);
+    background-color: var(--flint-input-bg);
+    color: var(--flint-text-color);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    resize: vertical;
+    min-height: var(--flint-textarea-min-height, 80px);
+}
+
+/* Resize variants */
+:host([resize="none"])       textarea { resize: none; }
+:host([resize="both"])       textarea { resize: both; }
+:host([resize="horizontal"]) textarea { resize: horizontal; }
+:host([resize="vertical"])   textarea { resize: vertical; }
+:host([resize="auto"])       textarea { resize: none; overflow: hidden; }
+
+/* Size variants */
+:host([size="sm"]) textarea {
+    padding: 6px 10px;
+    font-size: 13px;
+}
+
+:host([size="lg"]) textarea {
+    padding: 12px 16px;
+    font-size: 16px;
+}
+
+textarea::placeholder {
+    color: var(--flint-input-placeholder-color);
+}
+
+textarea:hover:not(:disabled):not(.error-textarea) {
+    border-color: var(--flint-input-border-hover-color);
+}
+
+textarea:focus-visible {
+    border-color: var(--flint-primary-color);
+    box-shadow: 0 0 0 3px var(--flint-primary-focus-ring);
+}
+
+textarea[aria-invalid="true"] {
+    border-color: var(--flint-error-color);
+}
+
+textarea[aria-invalid="true"]:focus-visible {
+    box-shadow: 0 0 0 3px var(--flint-error-focus-ring);
+}
+
+textarea:disabled {
+    background-color: var(--flint-input-disabled-bg);
+    color: var(--flint-input-disabled-color);
+    cursor: not-allowed;
+    opacity: 1;
+}
+
+textarea[readonly] {
+    background-color: var(--flint-input-readonly-bg);
+    cursor: default;
+}
+
+.help-text {
+    font-size: 12px;
+    color: var(--flint-help-text-color);
+    margin: 0;
+}
+
+.error-text {
+    color: var(--flint-error-color);
+}

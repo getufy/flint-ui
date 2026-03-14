@@ -1,0 +1,38 @@
+:host {
+      display: block;
+      overflow: hidden;
+      width: 100%;
+    }
+    .track {
+      display: flex;
+      flex-wrap: nowrap;
+      height: 100%;
+      gap: var(--flint-carousel-gap, 0px);
+      will-change: transform;
+      transition:
+        transform var(--flint-carousel-duration, 0.35s)
+        var(--flint-carousel-ease, cubic-bezier(0.25, 0.1, 0.25, 1));
+    }
+    :host([orientation='vertical']) {
+      height: var(--flint-carousel-height, 320px);
+    }
+    :host([orientation='vertical']) .track {
+      flex-direction: column;
+    }
+    ::slotted(flint-carousel-item) {
+      /* Width = (viewport - gaps between visible items) / items-per-view */
+      flex: 0 0 calc(
+        (100% - (var(--flint-carousel-items-per-view, 1) - 1) * var(--flint-carousel-gap, 0px))
+        / var(--flint-carousel-items-per-view, 1)
+      );
+      min-width: 0;
+      min-height: 0;
+    }
+    :host([orientation='vertical']) ::slotted(flint-carousel-item) {
+      /* Height = (viewport - gaps between visible items) / items-per-view */
+      flex: 0 0 calc(
+        (var(--flint-carousel-height, 320px) - (var(--flint-carousel-items-per-view, 1) - 1) * var(--flint-carousel-gap, 0px))
+        / var(--flint-carousel-items-per-view, 1)
+      );
+      min-height: 0;
+    }

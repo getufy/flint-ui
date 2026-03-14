@@ -1,0 +1,9 @@
+:host {
+    display: inline;
+}
+
+time {
+    font: inherit;
+    color: var(--flint-format-date-color, inherit);
+    font-size: var(--flint-format-date-font-size, inherit);
+}

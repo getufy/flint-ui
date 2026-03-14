@@ -1,0 +1,74 @@
+:host {
+      display: inline-block;
+      position: relative;
+      font-family: var(--flint-font-family);
+      width: 100%;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid var(--flint-input-border-color);
+      border-radius: var(--flint-input-border-radius);
+      font-size: 14px;
+      box-sizing: border-box;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      font-family: inherit;
+      color: var(--flint-text-color);
+      background: var(--flint-input-bg);
+    }
+
+    input:focus {
+      border-color: var(--flint-primary-color);
+      box-shadow: 0 0 0 1px var(--flint-primary-color);
+    }
+
+    input:disabled {
+      background-color: var(--flint-input-disabled-bg);
+      color: var(--flint-text-color-subtle);
+      cursor: not-allowed;
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      max-height: var(--flint-autocomplete-dropdown-max-height, 250px);
+      overflow-y: auto;
+      background: var(--flint-surface-1);
+      border: 1px solid var(--flint-input-border-color);
+      border-radius: var(--flint-input-border-radius);
+      margin-top: 4px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      z-index: var(--flint-autocomplete-z-index, 10);
+      display: none;
+    }
+
+    .dropdown.open {
+      display: block;
+    }
+
+    .option {
+      padding: var(--flint-autocomplete-option-padding, 10px 12px);
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.15s;
+      color: var(--flint-text-color);
+    }
+
+    .option:hover,
+    .option.active {
+      background-color: var(--flint-hover-color);
+    }
+
+    .no-options {
+      padding: var(--flint-autocomplete-option-padding, 10px 12px);
+      font-size: 14px;
+      color: var(--flint-text-color-muted);
+    }

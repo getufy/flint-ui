@@ -1,0 +1,37 @@
+:host { display: block; }
+
+        .item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            color: var(--flint-text-color);
+            font-family: var(--flint-font-family);
+            outline: none;
+            user-select: none;
+            transition: background 0.1s;
+        }
+
+        :host([inset]) .item {
+            padding-left: 32px;
+        }
+
+        :host([highlighted]) .item {
+            background: var(--flint-menubar-highlight-bg, var(--flint-hover-color));
+        }
+
+        :host([disabled]) .item {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .arrow {
+            margin-left: auto;
+            width: 14px;
+            height: 14px;
+            color: var(--flint-text-color-muted);
+        }

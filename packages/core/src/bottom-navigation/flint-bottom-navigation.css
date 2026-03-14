@@ -1,0 +1,15 @@
+:host {
+            display: flex;
+            justify-content: center;
+            height: 56px;
+            background-color: var(--flint-surface-1);
+            box-shadow: var(--flint-shadow-lg);
+            position: relative;
+            width: 100%;
+        }
+
+        .container {
+            display: flex;
+            flex: 1;
+            max-width: 100%;
+        }

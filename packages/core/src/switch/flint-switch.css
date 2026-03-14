@@ -1,0 +1,101 @@
+:host {
+      display: inline-block;
+      --flint-switch-width: 52px;
+      --flint-switch-height: 32px;
+      --flint-switch-thumb-size: 24px;
+      --flint-switch-thumb-offset: 4px;
+      --flint-switch-bg: var(--flint-secondary-color);
+      --flint-switch-bg-on: var(--flint-primary-color);
+      --flint-switch-thumb-bg: var(--flint-switch-thumb-color);
+
+      font-family: var(--flint-font-family);
+      cursor: pointer;
+    }
+
+    :host([disabled]) {
+      cursor: not-allowed;
+    }
+
+    :host([size="sm"]) {
+      --flint-switch-width: 36px;
+      --flint-switch-height: 22px;
+      --flint-switch-thumb-size: 16px;
+      --flint-switch-thumb-offset: 3px;
+    }
+
+    :host([size="lg"]) {
+      --flint-switch-width: 64px;
+      --flint-switch-height: 38px;
+      --flint-switch-thumb-size: 30px;
+      --flint-switch-thumb-offset: 4px;
+    }
+
+    .wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      user-select: none;
+    }
+
+    .switch {
+      position: relative;
+      width: var(--flint-switch-width);
+      height: var(--flint-switch-height);
+      background-color: var(--flint-switch-bg);
+      border-radius: calc(var(--flint-switch-height) / 2);
+      transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      flex-shrink: 0;
+    }
+
+    .switch.checked {
+      background-color: var(--flint-switch-bg-on);
+    }
+
+    .thumb {
+      position: absolute;
+      top: var(--flint-switch-thumb-offset);
+      left: var(--flint-switch-thumb-offset);
+      width: var(--flint-switch-thumb-size);
+      height: var(--flint-switch-thumb-size);
+      background-color: var(--flint-switch-thumb-bg);
+      border-radius: 50%;
+      box-shadow: var(--flint-shadow-sm);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--flint-text-color-muted);
+    }
+
+    .switch.checked .thumb {
+      transform: translateX(calc(var(--flint-switch-width) - var(--flint-switch-thumb-size) - (var(--flint-switch-thumb-offset) * 2)));
+      color: var(--flint-primary-color);
+    }
+
+    .label {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--flint-text-color);
+    }
+
+    .label.disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    .switch.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .switch:focus-visible {
+      outline: 2px solid var(--flint-primary-color);
+      outline-offset: 2px;
+    }
+
+    .icon-wrapper {
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }

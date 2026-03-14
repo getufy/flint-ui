@@ -4,13 +4,13 @@
 import type { ComponentMeta } from './types.js';
 
 /** Core package name — React wrappers import from this package. */
-const CORE_PKG = 'storybook-lit';
+const CORE_PKG = 'flint-ui';
 
 // ─── helpers ────────────────────────────────────────────────────────────────
 
 /**
- * Convert a source file path (e.g. 'src/button/ui-button.ts') to a
- * package sub-path import (e.g. 'storybook-lit/button/ui-button').
+ * Convert a source file path (e.g. 'src/button/flint-button.ts') to a
+ * package sub-path import (e.g. 'flint-ui/button/flint-button').
  * Strips 'src/' prefix and '.ts' suffix.
  */
 function packageImport(sourceFile: string): string {
@@ -25,8 +25,8 @@ function packageImport(sourceFile: string): string {
  * Contains a const object mapping short keys → DOM event name strings.
  *
  * Example output:
- *   export const UiSwitchEvents = {
- *     CHANGE: 'ui-switch-change',
+ *   export const FlintSwitchEvents = {
+ *     CHANGE: 'flint-switch-change',
  *   } as const;
  */
 export function generateEventsFile(meta: ComponentMeta): string {

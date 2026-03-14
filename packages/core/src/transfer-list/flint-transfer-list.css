@@ -1,0 +1,195 @@
+:host {
+      display: block;
+      --flint-transfer-list-height: 300px;
+      --flint-transfer-list-width: 200px;
+
+      font-family: var(--flint-font-family);
+      color: var(--flint-text-color);
+    }
+
+    :host([disabled]) {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .container {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .list-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .list-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      min-height: 24px;
+    }
+
+    .list-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--flint-text-color-muted);
+    }
+
+    .list-count {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--flint-text-color-on-primary);
+      background: var(--flint-primary-color);
+      border-radius: 999px;
+      min-width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 6px;
+      line-height: 1;
+    }
+
+    .list-search {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 6px 10px;
+      font-size: 0.875rem;
+      font-family: var(--flint-font-family);
+      color: var(--flint-text-color);
+      background: var(--flint-surface-2);
+      border: 1.5px solid var(--flint-border-color);
+      border-radius: var(--flint-border-radius-md, 6px);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .list-search:focus {
+      border-color: var(--flint-primary-color);
+      box-shadow: 0 0 0 3px var(--flint-primary-focus-ring);
+    }
+
+    .list-search:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .list-box {
+      width: var(--flint-transfer-list-width);
+      height: var(--flint-transfer-list-height);
+      background: var(--flint-surface-1);
+      border: 1.5px solid var(--flint-border-color);
+      border-radius: var(--flint-border-radius-lg);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--flint-shadow-sm);
+    }
+
+    .list-item {
+      display: flex;
+      align-items: center;
+      padding: 10px 12px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      gap: 10px;
+      user-select: none;
+    }
+
+    :host([disabled]) .list-item {
+      cursor: not-allowed;
+    }
+
+    .list-item:hover {
+      background-color: var(--flint-hover-color);
+    }
+
+    .list-item.selected {
+      background-color: var(--flint-primary-color-light);
+    }
+
+    .checkbox {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--flint-border-color);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .list-item.selected .checkbox {
+      background-color: var(--flint-primary-color);
+      border-color: var(--flint-primary-color);
+    }
+
+    .check-icon {
+      color: var(--flint-text-color-on-primary);
+      opacity: 0;
+      transform: scale(0.5);
+      transition: all 0.2s;
+    }
+
+    .list-item.selected .check-icon {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .item-label {
+      font-size: 0.9375rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-top: 32px;
+    }
+
+    .action-button {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid var(--flint-border-color);
+      background: var(--flint-surface-1);
+      border-radius: 8px;
+      cursor: pointer;
+      color: var(--flint-text-color);
+      transition: all 0.2s;
+    }
+
+    .action-button:hover:not(:disabled) {
+      border-color: var(--flint-primary-color);
+      color: var(--flint-primary-color);
+      box-shadow: var(--flint-shadow-md);
+      transform: translateY(-1px);
+    }
+
+    .action-button:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    .action-button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      background-color: var(--flint-surface-2);
+    }
+
+    /* Scrollbar */
+    .list-box::-webkit-scrollbar {
+      width: 6px;
+    }
+    .list-box::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .list-box::-webkit-scrollbar-thumb {
+      background: var(--flint-border-color);
+      border-radius: 3px;
+    }

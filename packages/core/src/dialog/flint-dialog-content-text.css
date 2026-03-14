@@ -1,0 +1,8 @@
+:host {
+      display: block;
+      font-family: var(--flint-font-family);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: var(--flint-text-color-muted);
+      margin-bottom: 8px;
+    }
