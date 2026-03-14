@@ -388,7 +388,7 @@ describe('flint-checkbox', () => {
     // ── form association ──────────────────────────────────────────────────────
 
     it('is form-associated', () => {
-        expect(FlintCheckbox.formAssociated).toBe(true);
+        expect((FlintCheckbox as unknown as Record<string, unknown>).formAssociated).toBe(true);
     });
 
     it('has _internals when attachInternals is available', async () => {

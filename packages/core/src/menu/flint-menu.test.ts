@@ -393,7 +393,7 @@ describe('flint-menu', () => {
 
         // Remove scrollIntoView from the inner .item div to test the guard
         const innerItem = item.shadowRoot!.querySelector<HTMLElement>('.item')!;
-        (innerItem as Record<string, unknown>).scrollIntoView = undefined;
+        (innerItem as unknown as Record<string, unknown>).scrollIntoView = undefined;
 
         el.open = true;
         await settle(el);
