@@ -97,10 +97,10 @@ describe('FlintLinearProgress', () => {
         expect(root.getAttribute('aria-label')).to.equal('Upload progress');
     });
 
-    it('omits aria-label when label is empty', async () => {
+    it('uses default aria-label "Progress" when label is empty', async () => {
         const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress></flint-linear-progress>`);
         const root = el.shadowRoot!.querySelector('.root')!;
-        expect(root.hasAttribute('aria-label')).to.equal(false);
+        expect(root.getAttribute('aria-label')).to.equal('Progress');
     });
 
     // --- Color property ---
@@ -286,10 +286,10 @@ describe('FlintCircularProgress', () => {
         expect(root.getAttribute('aria-label')).to.equal('Loading data');
     });
 
-    it('omits aria-label when label is empty', async () => {
+    it('uses default aria-label "Progress" when label is empty', async () => {
         const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress></flint-circular-progress>`);
         const root = el.shadowRoot!.querySelector('.circular-root')!;
-        expect(root.hasAttribute('aria-label')).to.equal(false);
+        expect(root.getAttribute('aria-label')).to.equal('Progress');
     });
 
     // --- Color property ---

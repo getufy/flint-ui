@@ -329,7 +329,7 @@ export class FlintTabs extends LitElement {
     }
 
     private _resolveColor(c: string) {
-        if (c === 'primary') return 'var(--flint-primary-color, #2563eb)';
+        if (c === 'primary') return 'var(--flint-primary-color, #3b82f6)';
         if (c === 'secondary') return 'var(--flint-accent-color, #8b5cf6)';
         if (c === 'inherit') return 'currentColor';
         return c;

@@ -61,17 +61,17 @@ describe('flint-list-item-button', () => {
 
     it('renders with role=button and tabindex=0', async () => {
         const el = await fixture(html`<flint-list-item-button>Action</flint-list-item-button>`);
-        const li = el.shadowRoot!.querySelector('li');
-        expect(li?.getAttribute('role')).toBe('button');
-        expect(li?.getAttribute('tabindex')).toBe('0');
+        const inner = el.shadowRoot!.querySelector('div[role="button"]');
+        expect(inner?.getAttribute('role')).toBe('button');
+        expect(inner?.getAttribute('tabindex')).toBe('0');
     });
 
     it('Enter key fires click on host', async () => {
         const el = await fixture<FlintListItemButton>(html`<flint-list-item-button>Action</flint-list-item-button>`);
         const handler = vi.fn();
         el.addEventListener('click', handler);
-        const li = el.shadowRoot!.querySelector('li')!;
-        li.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, composed: true }));
+        const inner = el.shadowRoot!.querySelector('div[role="button"]')!;
+        inner.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, composed: true }));
         expect(handler).toHaveBeenCalledOnce();
     });
 
@@ -79,25 +79,25 @@ describe('flint-list-item-button', () => {
         const el = await fixture<FlintListItemButton>(html`<flint-list-item-button>Action</flint-list-item-button>`);
         const handler = vi.fn();
         el.addEventListener('click', handler);
-        const li = el.shadowRoot!.querySelector('li')!;
-        li.dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true, composed: true }));
+        const inner = el.shadowRoot!.querySelector('div[role="button"]')!;
+        inner.dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true, composed: true }));
         expect(handler).toHaveBeenCalledOnce();
     });
 
     it('disabled sets tabindex=-1 and aria-disabled', async () => {
         const el = await fixture<FlintListItemButton>(html`<flint-list-item-button disabled></flint-list-item-button>`);
         await el.updateComplete;
-        const li = el.shadowRoot!.querySelector('li')!;
-        expect(li.getAttribute('tabindex')).toBe('-1');
-        expect(li.getAttribute('aria-disabled')).toBe('true');
+        const inner = el.shadowRoot!.querySelector('div[role="button"]')!;
+        expect(inner.getAttribute('tabindex')).toBe('-1');
+        expect(inner.getAttribute('aria-disabled')).toBe('true');
     });
 
     it('disabled suppresses keyboard click', async () => {
         const el = await fixture<FlintListItemButton>(html`<flint-list-item-button disabled></flint-list-item-button>`);
         const handler = vi.fn();
         el.addEventListener('click', handler);
-        const li = el.shadowRoot!.querySelector('li')!;
-        li.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, composed: true }));
+        const inner = el.shadowRoot!.querySelector('div[role="button"]')!;
+        inner.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, composed: true }));
         expect(handler).not.toHaveBeenCalled();
     });
 
@@ -105,20 +105,20 @@ describe('flint-list-item-button', () => {
         const el = await fixture<FlintListItemButton>(html`<flint-list-item-button selected></flint-list-item-button>`);
         await el.updateComplete;
         expect(el.hasAttribute('selected')).toBe(true);
-        const li = el.shadowRoot!.querySelector('li')!;
-        expect(li.getAttribute('aria-current')).toBe('true');
+        const inner = el.shadowRoot!.querySelector('div[role="button"]')!;
+        expect(inner.getAttribute('aria-current')).toBe('true');
     });
 
     it('non-selected has no aria-current', async () => {
         const el = await fixture<FlintListItemButton>(html`<flint-list-item-button></flint-list-item-button>`);
-        const li = el.shadowRoot!.querySelector('li')!;
-        expect(li.getAttribute('aria-current')).toBeNull();
+        const inner = el.shadowRoot!.querySelector('div[role="button"]')!;
+        expect(inner.getAttribute('aria-current')).toBeNull();
     });
 
     it('non-disabled has no aria-disabled', async () => {
         const el = await fixture<FlintListItemButton>(html`<flint-list-item-button></flint-list-item-button>`);
-        const li = el.shadowRoot!.querySelector('li')!;
-        expect(li.getAttribute('aria-disabled')).toBeNull();
+        const inner = el.shadowRoot!.querySelector('div[role="button"]')!;
+        expect(inner.getAttribute('aria-disabled')).toBeNull();
     });
 });
 
