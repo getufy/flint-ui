@@ -23,10 +23,18 @@
     "docs:build": "npm run gen:docs && vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "size": "size-limit",
-    "size:check": "size-limit --limit"
+    "size:check": "size-limit --limit",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "packages/core/src/**/*.ts": [
+      "eslint --no-warn-ignored"
+    ]
   },
   "devDependencies": {
     "@size-limit/file": "^11.2.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
     "size-limit": "^11.2.0",
     "tsx": "^4.0.0",
     "vitepress": "^1.6.4"
