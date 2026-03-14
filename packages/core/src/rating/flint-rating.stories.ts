@@ -12,6 +12,8 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
+Rating: a star-based rating input.
+
 - **Tag**: \`<flint-rating>\`
 - **Class**: \`FlintRating\`
 
@@ -34,7 +36,7 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-rating-change\` | \`{ value: this.value }\` |  |
+| \`flint-rating-change\` | — | Fired when the rating value changes. |
 
 #### CSS Custom Properties
 

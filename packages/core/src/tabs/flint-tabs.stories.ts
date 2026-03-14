@@ -45,6 +45,8 @@ const meta: Meta = {
                 component: `
 #### \`<flint-tab>\`
 
+Tab: an individual tab button within a tab list.
+
 - **Tag**: \`<flint-tab>\`
 - **Class**: \`FlintTab\`
 
@@ -63,7 +65,7 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-tab-click\` | \`{ value: this.value }\` |  |
+| \`flint-tab-click\` | — | Fired when the tab is clicked or activated via keyboard. |
 
 #### Slots
 
@@ -174,6 +176,8 @@ const meta: Meta = {
 
 #### \`<flint-tabs>\`
 
+Tabs: container that coordinates tab selection and panel visibility.
+
 - **Tag**: \`<flint-tabs>\`
 - **Class**: \`FlintTabs\`
 
@@ -194,7 +198,7 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-tab-change\` | \`{ value: e.detail.value }\` |  |
+| \`flint-tab-change\` | — | Fired when the active tab changes. |
 
 #### Slots
 

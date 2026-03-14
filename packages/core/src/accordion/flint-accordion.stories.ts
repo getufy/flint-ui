@@ -39,7 +39,7 @@ Accordion: the wrapper for grouping related components.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-accordion-change\` | \`{ expanded: this.expanded }\` |  |
+| \`flint-accordion-change\` | — | Fired when the accordion's expanded state changes. |
 
 #### Slots
 
@@ -74,7 +74,7 @@ Accordion Summary: the wrapper for the Accordion header.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-accordion-toggle\` | — |  |
+| \`flint-accordion-toggle\` | — | Fired when the summary is clicked or activated via keyboard. |
 
 #### Slots
 

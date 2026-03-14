@@ -18,6 +18,8 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
+Text Field: a styled text input with outlined/filled variants.
+
 - **Tag**: \`<flint-text-field>\`
 - **Class**: \`FlintTextField\`
 
@@ -39,8 +41,8 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`input\` | \`{ value: this.value }\` |  |
-| \`change\` | \`{ value: this.value }\` |  |
+| \`input\` | — | Fired on each keystroke as the value changes. |
+| \`change\` | — | Fired when the input loses focus after the value has changed. |
 
 #### Slots
 

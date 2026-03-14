@@ -19,6 +19,8 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
+Chip: a compact element representing an input, attribute, or action.
+
 - **Tag**: \`<flint-chip>\`
 - **Class**: \`FlintChip\`
 
@@ -38,8 +40,8 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
+| \`flint-chip-delete\` | — | Fired when the chip's delete icon is clicked. |
 | \`click\` | — |  |
-| \`flint-chip-delete\` | — |  |
 
 #### Slots
 

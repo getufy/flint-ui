@@ -10,6 +10,8 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
+Autocomplete: a text input with a dropdown of selectable suggestions.
+
 - **Tag**: \`<flint-autocomplete>\`
 - **Class**: \`FlintAutocomplete\`
 
@@ -27,7 +29,7 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-autocomplete-change\` | \`{ value: this.value, label: this.value }\` |  |
+| \`flint-autocomplete-change\` | — | Fired when the selected value changes. |
 
 #### CSS Custom Properties
 

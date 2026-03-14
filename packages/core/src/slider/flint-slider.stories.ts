@@ -14,6 +14,8 @@ const meta: Meta = {
       docs: {
             description: {
                 component: `
+Slider: a range input for selecting a numeric value.
+
 - **Tag**: \`<flint-slider>\`
 - **Class**: \`FlintSlider\`
 
@@ -38,7 +40,7 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-slider-change\` | \`{ value: this.value }\` |  |
+| \`flint-slider-change\` | — | Fired when the slider value changes. |
 
 #### CSS Custom Properties
 

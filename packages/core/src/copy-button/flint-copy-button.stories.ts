@@ -17,6 +17,8 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
+Copy Button: copies text to the clipboard with visual feedback.
+
 - **Tag**: \`<flint-copy-button>\`
 - **Class**: \`FlintCopyButton\`
 
@@ -37,8 +39,8 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-copy-error\` | \`{ reason: 'empty' }\` |  |
-| \`flint-copy\` | \`{ value: text }\` |  |
+| \`flint-copy\` | — | Fired after a successful copy operation. |
+| \`flint-copy-error\` | — | Fired when the copy operation fails. |
 
 #### Slots
 
