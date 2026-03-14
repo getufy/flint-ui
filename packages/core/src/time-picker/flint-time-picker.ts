@@ -675,9 +675,9 @@ const FIELD_SHARED = css`
   .btn { font-family:inherit; font-size:.875rem; font-weight:600; padding:6px 14px;
     border:none; border-radius:6px; cursor:pointer; transition:background .12s; }
   .btn-cancel { background:transparent; color:var(--flint-text-color-muted,#6b7280); }
-  .btn-cancel:hover { background:rgba(0,0,0,.06); }
-  .btn-ok { background:var(--flint-primary-color,#3b82f6); color:#fff; }
-  .btn-ok:hover { background:var(--flint-primary-color-dark,#2563eb); }
+  .btn-cancel:hover { background:var(--flint-hover-color, rgba(0,0,0,.06)); }
+  .btn-ok { background:var(--flint-primary-color,#3b82f6); color:var(--flint-text-color-on-primary, #fff); }
+  .btn-ok:hover { background:var(--flint-primary-color-hover,#2563eb); }
 `;
 
 // ─── flint-desktop-time-picker ───────────────────────────────────────────────────
