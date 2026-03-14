@@ -12,9 +12,9 @@ A floating action button (FAB) represents the primary action of a screen.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintFab } from 'flint-ui';
+import { FlintFab } from '@getufy/flint-ui';
 ```
 
 ### Usage

@@ -8,9 +8,9 @@
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintSplitPanel } from 'flint-ui';
+import { FlintSplitPanel } from '@getufy/flint-ui';
 ```
 
 ### Usage

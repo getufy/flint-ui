@@ -6,15 +6,17 @@
 
 <Demo label="Interactive" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-chip label=&quot;Clickable&quot; clickable></flint-chip><flint-chip label=&quot;Deletable&quot; deletable></flint-chip><flint-chip label=&quot;Both&quot; clickable deletable></flint-chip><flint-chip label=&quot;Disabled&quot; disabled></flint-chip></div>" />
 
+Chip: a compact element representing an input, attribute, or action.
+
 - **Tag**: `<flint-chip>`
 - **Class**: `FlintChip`
 
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintChip } from 'flint-ui';
+import { FlintChip } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -39,8 +41,8 @@ import { FlintChip } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
+| `flint-chip-delete` | — | Fired when the chip's delete icon is clicked. |
 | `click` | — |  |
-| `flint-chip-delete` | — |  |
 
 ### Slots
 

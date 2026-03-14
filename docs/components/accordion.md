@@ -12,9 +12,9 @@ Accordion: the wrapper for grouping related components.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintAccordion } from 'flint-ui';
+import { FlintAccordion } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -34,7 +34,7 @@ import { FlintAccordion } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-accordion-change` | `{ expanded: this.expanded }` |  |
+| `flint-accordion-change` | — | Fired when the accordion's expanded state changes. |
 
 ### Slots
 
@@ -68,9 +68,9 @@ Accordion Summary: the wrapper for the Accordion header.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintAccordionSummary } from 'flint-ui';
+import { FlintAccordionSummary } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -83,7 +83,7 @@ import { FlintAccordionSummary } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-accordion-toggle` | — |  |
+| `flint-accordion-toggle` | — | Fired when the summary is clicked or activated via keyboard. |
 
 ### Slots
 
@@ -104,9 +104,9 @@ Accordion Details: the wrapper for the Accordion content.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintAccordionDetails } from 'flint-ui';
+import { FlintAccordionDetails } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -133,9 +133,9 @@ Accordion Actions: an optional wrapper that groups a set of buttons.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintAccordionActions } from 'flint-ui';
+import { FlintAccordionActions } from '@getufy/flint-ui';
 ```
 
 ### Usage

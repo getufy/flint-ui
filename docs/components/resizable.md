@@ -6,15 +6,17 @@
 
 ## `<flint-resizable-group>`
 
+Resizable Group: a container that enables resizable panels with draggable handles.
+
 - **Tag**: `<flint-resizable-group>`
 - **Class**: `FlintResizableGroup`
 
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintResizableGroup } from 'flint-ui';
+import { FlintResizableGroup } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -34,9 +36,9 @@ import { FlintResizableGroup } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-resizable-collapse` | `{ index: idx, layout: this.getLayout() }` |  |
-| `flint-resizable-expand` | `{ index: idx, layout: this.getLayout() }` |  |
-| `flint-resizable-change` | `{ layout: this.getLayout() }` |  |
+| `flint-resizable-change` | — | Fired when panel sizes change via drag or keyboard. |
+| `flint-resizable-collapse` | — | Fired when a panel is collapsed. |
+| `flint-resizable-expand` | — | Fired when a collapsed panel is expanded. |
 
 ### Slots
 
@@ -60,9 +62,9 @@ import { FlintResizableGroup } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintResizablePanel } from 'flint-ui';
+import { FlintResizablePanel } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -106,9 +108,9 @@ import { FlintResizablePanel } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintResizableHandle } from 'flint-ui';
+import { FlintResizableHandle } from '@getufy/flint-ui';
 ```
 
 ### Usage

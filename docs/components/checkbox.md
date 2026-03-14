@@ -2,15 +2,17 @@
 
 <Demo label="States" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-checkbox label=&quot;Unchecked&quot;></flint-checkbox><flint-checkbox label=&quot;Checked&quot; checked></flint-checkbox><flint-checkbox label=&quot;Indeterminate&quot; indeterminate></flint-checkbox><flint-checkbox label=&quot;Disabled&quot; disabled></flint-checkbox><flint-checkbox label=&quot;Checked Disabled&quot; checked disabled></flint-checkbox></div>" />
 
+Checkbox: a form control for boolean selection.
+
 - **Tag**: `<flint-checkbox>`
 - **Class**: `FlintCheckbox`
 
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintCheckbox } from 'flint-ui';
+import { FlintCheckbox } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -38,7 +40,7 @@ import { FlintCheckbox } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-checkbox-change` | `{ checked: this.checked, value: this.value, indeterminate: false }` |  |
+| `flint-checkbox-change` | — | Fired when the checked state changes. |
 
 ### CSS Custom Properties
 

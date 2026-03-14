@@ -1,6 +1,6 @@
 # Relative Time
 
-<Demo label="Dates" html="<div style=&quot;display:flex;flex-direction:column;gap:8px&quot;><span>1 day ago: <flint-relative-time datetime=&quot;2026-03-13T14:16:06.468Z&quot;></flint-relative-time></span><span>1 week ago: <flint-relative-time datetime=&quot;2026-03-07T14:16:06.468Z&quot;></flint-relative-time></span><span>1 month ago: <flint-relative-time datetime=&quot;2026-02-12T14:16:06.468Z&quot;></flint-relative-time></span></div>" />
+<Demo label="Dates" html="<div style=&quot;display:flex;flex-direction:column;gap:8px&quot;><span>1 day ago: <flint-relative-time datetime=&quot;2026-03-13T19:32:29.539Z&quot;></flint-relative-time></span><span>1 week ago: <flint-relative-time datetime=&quot;2026-03-07T19:32:29.540Z&quot;></flint-relative-time></span><span>1 month ago: <flint-relative-time datetime=&quot;2026-02-12T19:32:29.540Z&quot;></flint-relative-time></span></div>" />
 
 Displays a localized time phrase relative to the current date and time. Uses the browser's `Intl.RelativeTimeFormat` API — no language packs needed.
 
@@ -10,9 +10,9 @@ Displays a localized time phrase relative to the current date and time. Uses the
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintRelativeTime } from 'flint-ui';
+import { FlintRelativeTime } from '@getufy/flint-ui';
 ```
 
 ### Usage

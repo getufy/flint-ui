@@ -10,9 +10,9 @@ A Textarea component for multi-line text input.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintTextarea } from 'flint-ui';
+import { FlintTextarea } from '@getufy/flint-ui';
 ```
 
 ### Usage

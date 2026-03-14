@@ -4,15 +4,17 @@
 
 <Demo label="Disabled" html="<div style=&quot;width:100%;max-width:300px&quot;><flint-slider value=&quot;40&quot; disabled></flint-slider></div>" />
 
+Slider: a range input for selecting a numeric value.
+
 - **Tag**: `<flint-slider>`
 - **Class**: `FlintSlider`
 
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintSlider } from 'flint-ui';
+import { FlintSlider } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -42,7 +44,7 @@ import { FlintSlider } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-slider-change` | `{ value: this.value }` |  |
+| `flint-slider-change` | — | Fired when the slider value changes. |
 
 ### CSS Custom Properties
 

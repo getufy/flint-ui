@@ -14,9 +14,9 @@ Visual grouping wrapper for `flint-input-otp-slot` elements. Renders slots inlin
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintInputOtpGroup } from 'flint-ui';
+import { FlintInputOtpGroup } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -61,9 +61,9 @@ Visual separator between `flint-input-otp-group` elements. Renders a short horiz
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintInputOtpSeparator } from 'flint-ui';
+import { FlintInputOtpSeparator } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -84,9 +84,9 @@ A single character cell in an OTP input. Place inside `flint-input-otp-group`. S
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintInputOtpSlot } from 'flint-ui';
+import { FlintInputOtpSlot } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -114,9 +114,9 @@ import { FlintInputOtpSlot } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintInputOtp } from 'flint-ui';
+import { FlintInputOtp } from '@getufy/flint-ui';
 ```
 
 ### Usage

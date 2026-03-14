@@ -12,9 +12,9 @@ A title/subtitle bar for `flint-image-list-item`.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintImageListItemBar } from 'flint-ui';
+import { FlintImageListItemBar } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -60,9 +60,9 @@ A single item inside a `flint-image-list`.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintImageListItem } from 'flint-ui';
+import { FlintImageListItem } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -101,9 +101,9 @@ A container that displays images in an organized grid layout. Supports standard,
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintImageList } from 'flint-ui';
+import { FlintImageList } from '@getufy/flint-ui';
 ```
 
 ### Usage

@@ -1,6 +1,8 @@
 # Copy Button
 
-<Demo html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-copy-button value=&quot;Hello, World!&quot;>Copy Text</flint-copy-button><flint-copy-button value=&quot;npm install flint-ui&quot;>Copy Command</flint-copy-button></div>" />
+<Demo html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-copy-button value=&quot;Hello, World!&quot;>Copy Text</flint-copy-button><flint-copy-button value=&quot;npm install @getufy/flint-ui&quot;>Copy Command</flint-copy-button></div>" />
+
+Copy Button: copies text to the clipboard with visual feedback.
 
 - **Tag**: `<flint-copy-button>`
 - **Class**: `FlintCopyButton`
@@ -8,9 +10,9 @@
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintCopyButton } from 'flint-ui';
+import { FlintCopyButton } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -36,8 +38,8 @@ import { FlintCopyButton } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-copy-error` | `{ reason: 'empty' }` |  |
-| `flint-copy` | `{ value: text }` |  |
+| `flint-copy` | — | Fired after a successful copy operation. |
+| `flint-copy-error` | — | Fired when the copy operation fails. |
 
 ### Slots
 

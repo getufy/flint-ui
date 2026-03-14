@@ -6,15 +6,17 @@
 
 <Demo label="Sizes" html="<div style=&quot;display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px&quot;><flint-input label=&quot;Small&quot; size=&quot;sm&quot; placeholder=&quot;Small&quot;></flint-input><flint-input label=&quot;Default&quot; placeholder=&quot;Default&quot;></flint-input><flint-input label=&quot;Large&quot; size=&quot;lg&quot; placeholder=&quot;Large&quot;></flint-input></div>" />
 
+Input: a styled text input with label, help text, and error states.
+
 - **Tag**: `<flint-input>`
 - **Class**: `FlintInput`
 
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintInput } from 'flint-ui';
+import { FlintInput } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -45,8 +47,8 @@ import { FlintInput } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-input-input` | `{ value: this.value }` |  |
-| `flint-input-change` | `{ value: this.value }` |  |
+| `flint-input-input` | — | Fired on each keystroke as the value changes. |
+| `flint-input-change` | — | Fired when the input loses focus after the value has changed. |
 
 ### CSS Custom Properties
 

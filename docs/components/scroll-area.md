@@ -12,9 +12,9 @@ Custom overlay scrollbar. Place inside `flint-scroll-area` with `slot="scrollbar
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintScrollBar } from 'flint-ui';
+import { FlintScrollBar } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -62,9 +62,9 @@ import { FlintScrollBar } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintScrollArea } from 'flint-ui';
+import { FlintScrollArea } from '@getufy/flint-ui';
 ```
 
 ### Usage

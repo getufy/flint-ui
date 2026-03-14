@@ -12,9 +12,9 @@ Trigger element for a hover card. Place inside `flint-hover-card`. Automatically
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintHoverCardTrigger } from 'flint-ui';
+import { FlintHoverCardTrigger } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -55,9 +55,9 @@ import { FlintHoverCardTrigger } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintHoverCardContent } from 'flint-ui';
+import { FlintHoverCardContent } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -92,9 +92,9 @@ Root container for a hover card. Manages open/closed state with configurable ope
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintHoverCard } from 'flint-ui';
+import { FlintHoverCard } from '@getufy/flint-ui';
 ```
 
 ### Usage

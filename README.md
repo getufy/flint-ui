@@ -5,13 +5,13 @@ A comprehensive library of 70+ UI components built with [LitElement](https://lit
 ## Installation
 
 ```bash
-npm install flint-ui lit
+npm install @getufy/flint-ui lit
 ```
 
 ### React
 
 ```bash
-npm install flint-ui-react flint-ui lit
+npm install @getufy/flint-ui-react @getufy/flint-ui lit
 ```
 
 ## Usage
@@ -19,28 +19,28 @@ npm install flint-ui-react flint-ui lit
 Import the full bundle:
 
 ```ts
-import { FlintButton, FlintTabs } from 'flint-ui';
+import { FlintButton, FlintTabs } from '@getufy/flint-ui';
 ```
 
 Or import individual components for better tree-shaking:
 
 ```ts
-import 'flint-ui/button';
-import 'flint-ui/tabs';
+import '@getufy/flint-ui/button';
+import '@getufy/flint-ui/tabs';
 ```
 
 Apply the theme by importing the CSS:
 
 ```ts
-import 'flint-ui/theme.css';
+import '@getufy/flint-ui/theme.css';
 // optional dark mode
-import 'flint-ui/theme-dark.css';
+import '@getufy/flint-ui/theme-dark.css';
 ```
 
 ### React
 
 ```tsx
-import { FlintButton, FlintTabs } from 'flint-ui-react';
+import { FlintButton, FlintTabs } from '@getufy/flint-ui-react';
 ```
 
 ## Components
@@ -98,7 +98,7 @@ npm run docs:dev           # Start docs dev server
 
 ```
 packages/
-  core/                          # Lit web components (flint-ui)
+  core/                          # Lit web components (@getufy/flint-ui)
     src/
       <component>/
         flint-<component>.ts          # LitElement component
@@ -107,7 +107,7 @@ packages/
       index.ts                        # Public API exports
       theme.css                       # Light theme tokens
       theme-dark.css                  # Dark theme tokens
-  react/                         # React wrappers (flint-ui-react)
+  react/                         # React wrappers (@getufy/flint-ui-react)
 scripts/                         # Codegen (React wrappers, docs)
 docs/                            # VitePress documentation site
 ```

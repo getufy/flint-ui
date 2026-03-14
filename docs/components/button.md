@@ -18,9 +18,9 @@
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintButtonGroup } from 'flint-ui';
+import { FlintButtonGroup } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -65,9 +65,9 @@ import { FlintButtonGroup } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintButton } from 'flint-ui';
+import { FlintButton } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -101,15 +101,17 @@ import { FlintButton } from 'flint-ui';
 
 ## `<flint-toggle-button-group>`
 
+Toggle Button Group: manages exclusive or multi-select toggle buttons.
+
 - **Tag**: `<flint-toggle-button-group>`
 - **Class**: `FlintToggleButtonGroup`
 
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintToggleButtonGroup } from 'flint-ui';
+import { FlintToggleButtonGroup } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -129,7 +131,7 @@ import { FlintToggleButtonGroup } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-toggle-button-group-change` | `{ value: this.value }` |  |
+| `flint-toggle-button-group-change` | — | Fired when the group's selected value(s) change. |
 
 ### Slots
 
@@ -141,15 +143,17 @@ import { FlintToggleButtonGroup } from 'flint-ui';
 
 ## `<flint-toggle-button>`
 
+Toggle Button: a button that can be toggled on/off.
+
 - **Tag**: `<flint-toggle-button>`
 - **Class**: `FlintToggleButton`
 
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintToggleButton } from 'flint-ui';
+import { FlintToggleButton } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -171,7 +175,7 @@ import { FlintToggleButton } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-toggle-button-change` | `{ value: this.value, selected: !this.selected }` |  |
+| `flint-toggle-button-change` | — | Fired when the button's selected state changes. |
 
 ### Slots
 

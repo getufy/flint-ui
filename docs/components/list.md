@@ -12,9 +12,9 @@ flint-list: A wrapper for list items.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintList } from 'flint-ui';
+import { FlintList } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -63,9 +63,9 @@ flint-list-item: A common list item.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintListItem } from 'flint-ui';
+import { FlintListItem } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -99,9 +99,9 @@ flint-list-item-button: An action element inside a list item.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintListItemButton } from 'flint-ui';
+import { FlintListItemButton } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -135,9 +135,9 @@ flint-list-item-icon: An icon wrapper inside a list item.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintListItemIcon } from 'flint-ui';
+import { FlintListItemIcon } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -164,9 +164,9 @@ flint-list-item-avatar: An avatar wrapper inside a list item.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintListItemAvatar } from 'flint-ui';
+import { FlintListItemAvatar } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -193,9 +193,9 @@ flint-list-item-text: A container for text content.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintListItemText } from 'flint-ui';
+import { FlintListItemText } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -230,9 +230,9 @@ flint-list-subheader: A label for a nested list.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintListSubheader } from 'flint-ui';
+import { FlintListSubheader } from '@getufy/flint-ui';
 ```
 
 ### Usage

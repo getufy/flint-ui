@@ -12,9 +12,9 @@ A single action item inside a `flint-speed-dial`.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintSpeedDialAction } from 'flint-ui';
+import { FlintSpeedDialAction } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -72,9 +72,9 @@ Speed Dial — a FAB that reveals 3-6 related actions when pressed.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintSpeedDial } from 'flint-ui';
+import { FlintSpeedDial } from '@getufy/flint-ui';
 ```
 
 ### Usage

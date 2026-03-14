@@ -14,9 +14,9 @@
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintStepConnector } from 'flint-ui';
+import { FlintStepConnector } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -57,9 +57,9 @@ import { FlintStepConnector } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintStepLabel } from 'flint-ui';
+import { FlintStepLabel } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -93,9 +93,9 @@ import { FlintStepLabel } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintStepContent } from 'flint-ui';
+import { FlintStepContent } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -120,15 +120,17 @@ import { FlintStepContent } from 'flint-ui';
 
 ## `<flint-step>`
 
+Step: an individual step within a stepper.
+
 - **Tag**: `<flint-step>`
 - **Class**: `FlintStep`
 
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintStep } from 'flint-ui';
+import { FlintStep } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -158,7 +160,7 @@ import { FlintStep } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-step-click` | `{ index: this.stepIndex }` |  |
+| `flint-step-click` | — | Fired when a non-linear step is clicked. |
 
 ### Slots
 
@@ -179,15 +181,17 @@ import { FlintStep } from 'flint-ui';
 
 ## `<flint-stepper>`
 
+Stepper: a multi-step progress indicator.
+
 - **Tag**: `<flint-stepper>`
 - **Class**: `FlintStepper`
 
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintStepper } from 'flint-ui';
+import { FlintStepper } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -210,7 +214,7 @@ import { FlintStepper } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-step-change` | `{ step: e.detail.index }` |  |
+| `flint-step-change` | — | Fired when the active step changes via step click. |
 
 ### Slots
 
@@ -235,9 +239,9 @@ import { FlintStepper } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintMobileStepper } from 'flint-ui';
+import { FlintMobileStepper } from '@getufy/flint-ui';
 ```
 
 ### Usage

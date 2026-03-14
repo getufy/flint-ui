@@ -12,9 +12,9 @@ Displays a single keyboard key or modifier symbol. Renders a semantic `<kbd>` el
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintKbd } from 'flint-ui';
+import { FlintKbd } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -61,9 +61,9 @@ Groups multiple `flint-kbd` elements in a row. Provides a flex container with ti
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintKbdGroup } from 'flint-ui';
+import { FlintKbdGroup } from '@getufy/flint-ui';
 ```
 
 ### Usage

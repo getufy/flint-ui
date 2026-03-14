@@ -10,9 +10,9 @@ A backdrop component that narrows the user's focus to a particular element.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintBackdrop } from 'flint-ui';
+import { FlintBackdrop } from '@getufy/flint-ui';
 ```
 
 ### Usage

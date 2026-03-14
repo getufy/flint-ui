@@ -12,9 +12,9 @@ Displays the title of an item.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintItemTitle } from 'flint-ui';
+import { FlintItemTitle } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -51,9 +51,9 @@ Displays the description of an item.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintItemDescription } from 'flint-ui';
+import { FlintItemDescription } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -80,9 +80,9 @@ Media container for an item (icon, avatar, or image).
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintItemMedia } from 'flint-ui';
+import { FlintItemMedia } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -122,9 +122,9 @@ Flex-column wrapper for an item's title and description.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintItemContent } from 'flint-ui';
+import { FlintItemContent } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -151,9 +151,9 @@ Container for action buttons or other interactive elements. Aligns itself to the
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintItemActions } from 'flint-ui';
+import { FlintItemActions } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -180,9 +180,9 @@ Full-bleed header that spans the top of the item, cancelling the item's padding 
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintItemHeader } from 'flint-ui';
+import { FlintItemHeader } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -209,9 +209,9 @@ Full-bleed footer that spans the bottom of the item, cancelling the item's paddi
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintItemFooter } from 'flint-ui';
+import { FlintItemFooter } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -244,9 +244,9 @@ Visual separator between items in a group.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintItemSeparator } from 'flint-ui';
+import { FlintItemSeparator } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -267,9 +267,9 @@ Container for grouping related items together.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintItemGroup } from 'flint-ui';
+import { FlintItemGroup } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -302,9 +302,9 @@ Root container for displaying content with media, title, description, and action
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintItem } from 'flint-ui';
+import { FlintItem } from '@getufy/flint-ui';
 ```
 
 ### Usage

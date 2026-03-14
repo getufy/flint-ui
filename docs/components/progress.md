@@ -18,9 +18,9 @@ flint-circular-progress: a circular progress indicator (spinner).
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintCircularProgress } from 'flint-ui';
+import { FlintCircularProgress } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -62,9 +62,9 @@ flint-linear-progress: a horizontal progress bar.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintLinearProgress } from 'flint-ui';
+import { FlintLinearProgress } from '@getufy/flint-ui';
 ```
 
 ### Usage

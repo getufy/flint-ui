@@ -2,15 +2,17 @@
 
 <Demo label="States" html="<div style=&quot;display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px&quot;><flint-text-field label=&quot;Name&quot; placeholder=&quot;Enter your name&quot;></flint-text-field><flint-text-field label=&quot;With Help&quot; help-text=&quot;This field is required&quot;></flint-text-field><flint-text-field label=&quot;Error&quot; error help-text=&quot;Please enter a valid email&quot;></flint-text-field><flint-text-field label=&quot;Disabled&quot; disabled value=&quot;Cannot edit&quot;></flint-text-field></div>" />
 
+Text Field: a styled text input with outlined/filled variants.
+
 - **Tag**: `<flint-text-field>`
 - **Class**: `FlintTextField`
 
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintTextField } from 'flint-ui';
+import { FlintTextField } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -37,8 +39,8 @@ import { FlintTextField } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `input` | `{ value: this.value }` |  |
-| `change` | `{ value: this.value }` |  |
+| `input` | — | Fired on each keystroke as the value changes. |
+| `change` | — | Fired when the input loses focus after the value has changed. |
 
 ### Slots
 

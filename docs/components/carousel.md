@@ -10,9 +10,9 @@
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintCarouselContent } from 'flint-ui';
+import { FlintCarouselContent } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -52,9 +52,9 @@ import { FlintCarouselContent } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintCarouselItem } from 'flint-ui';
+import { FlintCarouselItem } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -85,9 +85,9 @@ import { FlintCarouselItem } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintCarouselPrevious } from 'flint-ui';
+import { FlintCarouselPrevious } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -119,9 +119,9 @@ import { FlintCarouselPrevious } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintCarouselNext } from 'flint-ui';
+import { FlintCarouselNext } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -147,15 +147,17 @@ import { FlintCarouselNext } from 'flint-ui';
 
 ## `<flint-carousel>`
 
+Carousel: a slideshow component for cycling through content.
+
 - **Tag**: `<flint-carousel>`
 - **Class**: `FlintCarousel`
 
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintCarousel } from 'flint-ui';
+import { FlintCarousel } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -178,7 +180,7 @@ import { FlintCarousel } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-carousel-change` | `{ index: this._currentIndex, total: this._total }` |  |
+| `flint-carousel-change` | — | Fired when the active slide changes. |
 
 ### Slots
 

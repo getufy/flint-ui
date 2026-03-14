@@ -14,9 +14,9 @@ Alerts display brief messages for the user without interrupting their use of the
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintAlert } from 'flint-ui';
+import { FlintAlert } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -37,7 +37,7 @@ import { FlintAlert } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-alert-close` | `{ severity: this.severity }` |  |
+| `flint-alert-close` | — | Fired when the alert's close button is clicked. |
 
 ### Slots
 

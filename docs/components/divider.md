@@ -12,9 +12,9 @@ A divider component that provides a thin line for grouping elements.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintDivider } from 'flint-ui';
+import { FlintDivider } from '@getufy/flint-ui';
 ```
 
 ### Usage

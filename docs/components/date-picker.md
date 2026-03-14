@@ -12,9 +12,9 @@ A standalone calendar grid — the core date-selection view. Used internally by 
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintDatePickerCalendar } from 'flint-ui';
+import { FlintDatePickerCalendar } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -80,9 +80,9 @@ A date picker with a text field and a calendar popover/modal. Variants: - 'deskt
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintDatePicker } from 'flint-ui';
+import { FlintDatePicker } from '@getufy/flint-ui';
 ```
 
 ### Usage

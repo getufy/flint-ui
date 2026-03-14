@@ -8,9 +8,9 @@
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintBox } from 'flint-ui';
+import { FlintBox } from '@getufy/flint-ui';
 ```
 
 ### Usage

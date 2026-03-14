@@ -4,15 +4,17 @@
 
 ## `<flint-table-pagination>`
 
+Table Pagination: pagination controls for tabular data.
+
 - **Tag**: `<flint-table-pagination>`
 - **Class**: `FlintTablePagination`
 
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintTablePagination } from 'flint-ui';
+import { FlintTablePagination } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -38,8 +40,8 @@ import { FlintTablePagination } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-pagination-page-change` | `{ page: next }` |  |
-| `flint-pagination-rows-per-page-change` | `{ rowsPerPage: val }` |  |
+| `flint-pagination-page-change` | — | Fired when the current page changes. |
+| `flint-pagination-rows-per-page-change` | — | Fired when rows per page changes. |
 
 ### CSS Custom Properties
 
@@ -61,9 +63,9 @@ import { FlintTablePagination } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintTableSortLabel } from 'flint-ui';
+import { FlintTableSortLabel } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -97,9 +99,9 @@ flint-table-container
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintTableContainer } from 'flint-ui';
+import { FlintTableContainer } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -139,9 +141,9 @@ flint-table
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintTable } from 'flint-ui';
+import { FlintTable } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -193,9 +195,9 @@ flint-table-head
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintTableHead } from 'flint-ui';
+import { FlintTableHead } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -229,9 +231,9 @@ flint-table-body
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintTableBody } from 'flint-ui';
+import { FlintTableBody } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -264,9 +266,9 @@ flint-table-row
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintTableRow } from 'flint-ui';
+import { FlintTableRow } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -307,9 +309,9 @@ flint-table-cell
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintTableCell } from 'flint-ui';
+import { FlintTableCell } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -353,9 +355,9 @@ flint-table-footer
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintTableFooter } from 'flint-ui';
+import { FlintTableFooter } from '@getufy/flint-ui';
 ```
 
 ### Usage

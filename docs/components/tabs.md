@@ -6,15 +6,17 @@
 
 ## `<flint-tab>`
 
+Tab: an individual tab button within a tab list.
+
 - **Tag**: `<flint-tab>`
 - **Class**: `FlintTab`
 
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintTab } from 'flint-ui';
+import { FlintTab } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -38,7 +40,7 @@ import { FlintTab } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-tab-click` | `{ value: this.value }` |  |
+| `flint-tab-click` | — | Fired when the tab is clicked or activated via keyboard. |
 
 ### Slots
 
@@ -95,9 +97,9 @@ import { FlintTab } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintTabPanel } from 'flint-ui';
+import { FlintTabPanel } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -134,9 +136,9 @@ import { FlintTabPanel } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintTabList } from 'flint-ui';
+import { FlintTabList } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -177,15 +179,17 @@ import { FlintTabList } from 'flint-ui';
 
 ## `<flint-tabs>`
 
+Tabs: container that coordinates tab selection and panel visibility.
+
 - **Tag**: `<flint-tabs>`
 - **Class**: `FlintTabs`
 
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintTabs } from 'flint-ui';
+import { FlintTabs } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -211,7 +215,7 @@ import { FlintTabs } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-tab-change` | `{ value: e.detail.value }` |  |
+| `flint-tab-change` | — | Fired when the active tab changes. |
 
 ### Slots
 

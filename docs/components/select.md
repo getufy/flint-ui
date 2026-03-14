@@ -10,9 +10,9 @@ A select component for choosing one or multiple options from a list.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintSelect } from 'flint-ui';
+import { FlintSelect } from '@getufy/flint-ui';
 ```
 
 ### Usage

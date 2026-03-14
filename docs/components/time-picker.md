@@ -14,15 +14,17 @@
 
 ## `<flint-time-field>`
 
+Time Field: a segmented time input with keyboard navigation.
+
 - **Tag**: `<flint-time-field>`
 - **Class**: `FlintTimeField`
 
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintTimeField } from 'flint-ui';
+import { FlintTimeField } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -48,8 +50,8 @@ import { FlintTimeField } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-time-picker-clear` | — |  |
-| `change` | `{ value: v }` |  |
+| `change` | — | Fired when the time value changes. |
+| `flint-time-picker-clear` | — | Fired when the clear button is clicked. |
 
 ### CSS Custom Properties
 
@@ -83,15 +85,17 @@ import { FlintTimeField } from 'flint-ui';
 
 ## `<flint-digital-clock>`
 
+Digital Clock: a scrollable time-slot picker.
+
 - **Tag**: `<flint-digital-clock>`
 - **Class**: `FlintDigitalClock`
 
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintDigitalClock } from 'flint-ui';
+import { FlintDigitalClock } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -112,7 +116,7 @@ import { FlintDigitalClock } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `change` | `{ value: v }` |  |
+| `change` | — | Fired when a time slot is selected. |
 
 ### CSS Custom Properties
 
@@ -124,15 +128,17 @@ import { FlintDigitalClock } from 'flint-ui';
 
 ## `<flint-multi-section-digital-clock>`
 
+Multi Section Digital Clock: hours, minutes, and optional seconds columns.
+
 - **Tag**: `<flint-multi-section-digital-clock>`
 - **Class**: `FlintMultiSectionDigitalClock`
 
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintMultiSectionDigitalClock } from 'flint-ui';
+import { FlintMultiSectionDigitalClock } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -153,11 +159,13 @@ import { FlintMultiSectionDigitalClock } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `change` | `{ value: v }` |  |
+| `change` | — | Fired when the time value changes. |
 
 ---
 
 ## `<flint-time-clock>`
+
+Time Clock: an analog clock face for selecting hours, minutes, and seconds.
 
 - **Tag**: `<flint-time-clock>`
 - **Class**: `FlintTimeClock`
@@ -165,9 +173,9 @@ import { FlintMultiSectionDigitalClock } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintTimeClock } from 'flint-ui';
+import { FlintTimeClock } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -189,8 +197,8 @@ import { FlintTimeClock } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `change` | `{ value: v }` |  |
-| `flint-time-clock-view-change` | `{ view: v }` |  |
+| `change` | — | Fired when the time value changes. |
+| `flint-time-clock-view-change` | — | Fired when the clock face view switches. |
 
 ### CSS Custom Properties
 
@@ -199,7 +207,7 @@ import { FlintTimeClock } from 'flint-ui';
 | `--flint-time-clock-face-bg` | `var(--flint-surface-variant, #f1f5f9` |
 | `--flint-time-clock-inner-bg` | `rgba(0,0,0,.04` |
 | `--flint-time-clock-inner-border` | `var(--flint-border-color, #e5e7eb` |
-| `--flint-time-clock-hand-color` | `var(--flint-primary-color, #3b82f6` |
+| `--flint-time-clock-hand-color` | `var(--flint-primary-color, #2563eb` |
 | `--flint-time-clock-num-size` | `14px` |
 | `--flint-time-clock-inner-num-size` | `12px` |
 | `--flint-time-clock-ampm-radius` | `20px` |
@@ -208,15 +216,17 @@ import { FlintTimeClock } from 'flint-ui';
 
 ## `<flint-desktop-time-picker>`
 
+Desktop Time Picker: a time field with a dropdown clock.
+
 - **Tag**: `<flint-desktop-time-picker>`
 - **Class**: `FlintDesktopTimePicker`
 
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintDesktopTimePicker } from 'flint-ui';
+import { FlintDesktopTimePicker } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -242,11 +252,13 @@ import { FlintDesktopTimePicker } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `change` | `{ value: v }` |  |
+| `change` | — | Fired when the time value changes. |
 
 ---
 
 ## `<flint-mobile-time-picker>`
+
+Mobile Time Picker: a time field with a modal clock dialog.
 
 - **Tag**: `<flint-mobile-time-picker>`
 - **Class**: `FlintMobileTimePicker`
@@ -254,9 +266,9 @@ import { FlintDesktopTimePicker } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintMobileTimePicker } from 'flint-ui';
+import { FlintMobileTimePicker } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -281,11 +293,13 @@ import { FlintMobileTimePicker } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `change` | — |  |
+| `change` | — | Fired when the time value changes. |
 
 ---
 
 ## `<flint-static-time-picker>`
+
+Static Time Picker: an always-visible inline clock.
 
 - **Tag**: `<flint-static-time-picker>`
 - **Class**: `FlintStaticTimePicker`
@@ -293,9 +307,9 @@ import { FlintMobileTimePicker } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintStaticTimePicker } from 'flint-ui';
+import { FlintStaticTimePicker } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -316,11 +330,13 @@ import { FlintStaticTimePicker } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `change` | — |  |
+| `change` | — | Fired when the time value changes. |
 
 ---
 
 ## `<flint-time-picker>`
+
+Time Picker: a configurable time input supporting desktop, mobile, and static variants.
 
 - **Tag**: `<flint-time-picker>`
 - **Class**: `FlintTimePicker`
@@ -328,9 +344,9 @@ import { FlintStaticTimePicker } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintTimePicker } from 'flint-ui';
+import { FlintTimePicker } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -356,6 +372,6 @@ import { FlintTimePicker } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `change` | — |  |
+| `change` | — | Fired when the time value changes. |
 
 ---

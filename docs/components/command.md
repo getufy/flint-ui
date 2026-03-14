@@ -12,9 +12,9 @@ Displays a keyboard shortcut hint inside a command item. Slot the shortcut strin
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintCommandShortcut } from 'flint-ui';
+import { FlintCommandShortcut } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -53,9 +53,9 @@ A hairline separator between command groups.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintCommandSeparator } from 'flint-ui';
+import { FlintCommandSeparator } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -76,9 +76,9 @@ A single interactive option inside a command menu.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintCommandItem } from 'flint-ui';
+import { FlintCommandItem } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -127,9 +127,9 @@ Empty state message shown when no command items match the current query. Managed
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintCommandEmpty } from 'flint-ui';
+import { FlintCommandEmpty } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -156,9 +156,9 @@ A labeled group of command items. The parent `flint-command` automatically hides
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintCommandGroup } from 'flint-ui';
+import { FlintCommandGroup } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -191,9 +191,9 @@ Scrollable list container for command items and groups.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintCommandList } from 'flint-ui';
+import { FlintCommandList } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -226,9 +226,9 @@ Search input for the command menu. Dispatches `_cmd-filter` events that the pare
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintCommandInput } from 'flint-ui';
+import { FlintCommandInput } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -269,9 +269,9 @@ Root command menu component. Manages search filtering and keyboard navigation. C
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintCommand } from 'flint-ui';
+import { FlintCommand } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -324,9 +324,9 @@ Modal dialog wrapper for a command menu. Opens with a smooth backdrop + scale an
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintCommandDialog } from 'flint-ui';
+import { FlintCommandDialog } from '@getufy/flint-ui';
 ```
 
 ### Usage
