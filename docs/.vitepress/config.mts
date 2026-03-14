@@ -15,7 +15,7 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       { text: 'Components', link: '/components/button' },
       { text: 'React', link: '/react' },
-      { text: 'Storybook', link: '/storybook' },
+      { text: 'Storybook', link: '/storybook', target: '_self' },
     ],
     sidebar: {
       '/components/': sidebar,
@@ -23,9 +23,7 @@ export default defineConfig({
     search: {
       provider: 'local',
     },
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/nicosanma/storybook-lit' },
-    ],
+    socialLinks: [],
   },
   vite: {
     resolve: {
