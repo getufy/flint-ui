@@ -110,9 +110,9 @@ export class FlintAccordionSummary extends LitElement {
         if (!this.hasAttribute('role')) this.setAttribute('role', 'button');
         if (!this.hasAttribute('tabindex')) this.setAttribute('tabindex', '0');
         // Link to parent accordion's region for landmark-unique fix
-        const accordion = this.closest('flint-accordion') as (FlintAccordion & { _uid: string }) | null;
+        const accordion = this.closest('flint-accordion') as (FlintAccordion & { _uid: string; }) | null;
         if (accordion && !this.hasAttribute('id')) {
-            this.setAttribute('id', accordion._uid + '-summary');
+            this.setAttribute('id', (accordion as unknown as { _uid: string })._uid + '-summary');
         }
     }
 

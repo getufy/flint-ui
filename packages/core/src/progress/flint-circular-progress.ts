@@ -1,4 +1,4 @@
-import { LitElement, unsafeCSS, html, PropertyValues } from 'lit';
+import { LitElement, unsafeCSS, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import uiCircularProgressStyles from './flint-circular-progress.css?inline';
@@ -22,30 +22,6 @@ export class FlintCircularProgress extends LitElement {
     @property({ type: String, reflect: true }) color: 'primary' | 'success' | 'error' | 'warning' = 'primary';
     /** Accessible label for the progress indicator. */
     @property({ type: String }) label = '';
-
-    connectedCallback() {
-        super.connectedCallback();
-        // Set role and ARIA attrs on the host so axe can see them
-        if (!this.hasAttribute('role')) this.setAttribute('role', 'progressbar');
-        if (!this.hasAttribute('aria-label') && !this.label) {
-            this.setAttribute('aria-label', 'Progress');
-        }
-        this.setAttribute('aria-valuemin', '0');
-        this.setAttribute('aria-valuemax', '100');
-    }
-
-    override updated(changed: PropertyValues) {
-        if (changed.has('variant') || changed.has('value')) {
-            if (this.variant === 'determinate') {
-                this.setAttribute('aria-valuenow', String(this._safeValue));
-            } else {
-                this.removeAttribute('aria-valuenow');
-            }
-        }
-        if (changed.has('label') && this.label) {
-            this.setAttribute('aria-label', this.label);
-        }
-    }
 
     private static readonly _colorMap: Record<string, string> = {
         primary: 'var(--flint-primary-color, #2563eb)',
@@ -71,8 +47,11 @@ export class FlintCircularProgress extends LitElement {
       <div
         class="circular-root ${classMap({ determinate: isDeterminate, indeterminate: !isDeterminate })}"
         style="--flint-circular-progress-size: ${this.size}px; --flint-circular-progress-thickness: ${this.thickness}; --flint-circular-progress-color: ${colorVal}"
-        role="presentation"
-        aria-hidden="true"
+        role="progressbar"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="${isDeterminate ? this._safeValue : nothing}"
+        aria-label="${this.label || 'Progress'}"
       >
         <svg viewBox="22 22 44 44">
           <circle
