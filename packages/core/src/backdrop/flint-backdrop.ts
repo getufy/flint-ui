@@ -13,8 +13,11 @@ import uiBackdropStyles from './flint-backdrop.css?inline';
 export class FlintBackdrop extends LitElement {
   static styles = unsafeCSS(uiBackdropStyles);
 
+  /** Whether the backdrop is visible and active. */
   @property({ type: Boolean, reflect: true }) open = false;
+  /** When true, the backdrop overlay is transparent. */
   @property({ type: Boolean }) invisible = false;
+  /** When true, the backdrop is scoped to its parent container instead of the viewport. */
   @property({ type: Boolean, reflect: true }) container = false;
 
   private _boundKeydown = this._handleKeydown.bind(this);

@@ -16,11 +16,11 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`position\` | \`position\` | \`ToastPosition\` | \`'bottom-right'\` |
-| \`duration\` | \`duration\` | \`number\` | \`4000\` |
-| \`visibleToasts\` | \`visible-toasts\` | \`number\` | \`3\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`position\` | \`position\` | \`ToastPosition\` | \`'bottom-right'\` | Position of the toast stack relative to the viewport. |
+| \`duration\` | \`duration\` | \`number\` | \`4000\` | Default auto-dismiss duration in milliseconds. |
+| \`visibleToasts\` | \`visible-toasts\` | \`number\` | \`3\` | Maximum number of toasts visible simultaneously. |
 
 #### CSS Custom Properties
 

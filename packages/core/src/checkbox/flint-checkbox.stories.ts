@@ -15,18 +15,18 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`checked\` | \`checked\` | \`boolean\` | \`false\` |
-| \`indeterminate\` | \`indeterminate\` | \`boolean\` | \`false\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`required\` | \`required\` | \`boolean\` | \`false\` |
-| \`size\` | \`size\` | \`'sm' \\| 'md' \\| 'lg'\` | \`'md'\` |
-| \`label\` | \`label\` | \`string\` | \`''\` |
-| \`name\` | \`name\` | \`string\` | \`''\` |
-| \`value\` | \`value\` | \`string\` | \`'on'\` |
-| \`defaultChecked\` | \`default-checked\` | \`boolean\` | \`false\` |
-| \`ariaLabel\` | \`aria-label\` | \`string \\| null\` | \`null\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`checked\` | \`checked\` | \`boolean\` | \`false\` | Whether the checkbox is checked. |
+| \`indeterminate\` | \`indeterminate\` | \`boolean\` | \`false\` | Displays the checkbox in an indeterminate state. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the checkbox and prevents interaction. |
+| \`required\` | \`required\` | \`boolean\` | \`false\` | Marks the checkbox as required for form validation. |
+| \`size\` | \`size\` | \`'sm' \\| 'md' \\| 'lg'\` | \`'md'\` | Size of the checkbox control. |
+| \`label\` | \`label\` | \`string\` | \`''\` | Visible label text displayed next to the checkbox. |
+| \`name\` | \`name\` | \`string\` | \`''\` | Form field name used when submitting form data. |
+| \`value\` | \`value\` | \`string\` | \`'on'\` | Value submitted with form data when checked. |
+| \`defaultChecked\` | \`default-checked\` | \`boolean\` | \`false\` | Initial checked state for uncontrolled usage. |
+| \`ariaLabel\` | \`aria-label\` | \`string \\| null\` | \`null\` | Accessible label for screen readers when no visible label is provided. |
 
 #### Events
 

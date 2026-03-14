@@ -39,12 +39,13 @@ A single option inside a \`flint-menu\`.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`selected\` | \`selected\` | \`boolean\` | \`false\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`dense\` | \`dense\` | \`boolean\` | \`false\` |
-| \`divider\` | \`divider\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`selected\` | \`selected\` | \`boolean\` | \`false\` | Marks this item as the currently selected option. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the item — it becomes non-interactive. |
+| \`dense\` | \`dense\` | \`boolean\` | \`false\` | Dense padding mode (for desktop-density menus). |
+| \`divider\` | \`divider\` | \`boolean\` | \`false\` | Renders a hairline separator below this item. |
+| \`value\` | \`value\` | \`string\` | — | The machine-readable value carried in the \`flint-menu-item-select\` event detail. Falls back to the item's visible label text if not set. |
 
 #### Events
 
@@ -98,9 +99,9 @@ A labelled group of menu items. Wraps items in a \`role="group"\` for screen-rea
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`label\` | \`label\` | \`string\` | \`''\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`label\` | \`label\` | \`string\` | \`''\` | Visible heading rendered above the group items. |
 
 #### Slots
 
@@ -119,12 +120,13 @@ A menu displays a list of choices on a temporary surface. Place it as a sibling 
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`open\` | \`open\` | \`boolean\` | \`false\` |
-| \`placement\` | \`placement\` | \`string\` | \`'bottom-start'\` |
-| \`closeOnSelect\` | \`close-on-select\` | \`boolean\` | \`true\` |
-| \`scrollable\` | \`scrollable\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`open\` | \`open\` | \`boolean\` | \`false\` | Whether the menu is open/visible. |
+| \`placement\` | \`placement\` | \`string\` | \`'bottom-start'\` | Menu placement relative to its anchor container. 'bottom-start' \\| 'bottom-end' \\| 'top-start' \\| 'top-end' \\| 'right-start' \\| 'left-start' |
+| \`closeOnSelect\` | \`close-on-select\` | \`boolean\` | \`true\` | When true, selecting an item automatically fires flint-menu-close. |
+| \`scrollable\` | \`scrollable\` | \`boolean\` | \`false\` | When true, constrains height to --flint-menu-max-height (default 300px) and enables scrolling. |
+| \`label\` | \`label\` | \`string\` | — | Accessible label for the menu surface (aria-label on role="menu"). |
 
 #### Events
 

@@ -34,10 +34,10 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`position\` | \`position\` | \`number\` | \`50\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`position\` | \`position\` | \`number\` | \`50\` | The position of the divider as a percentage (0–100). |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Whether the comparer is disabled. |
 
 #### Events
 

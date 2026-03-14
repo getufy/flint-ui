@@ -39,14 +39,14 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`value\` | \`value\` | \`string\` | \`''\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`selected\` | \`selected\` | \`boolean\` | \`false\` |
-| \`iconPosition\` | \`icon-position\` | \`'top' \\| 'bottom' \\| 'start' \\| 'end'\` | \`'start'\` |
-| \`href\` | \`href\` | \`string\` | \`''\` |
-| \`fullWidth\` | \`full-width\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` | Unique identifier for this tab. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Whether the tab is disabled. |
+| \`selected\` | \`selected\` | \`boolean\` | \`false\` | Whether the tab is currently selected. |
+| \`iconPosition\` | \`icon-position\` | \`'top' \\| 'bottom' \\| 'start' \\| 'end'\` | \`'start'\` | Position of the icon slot relative to the label. |
+| \`href\` | \`href\` | \`string\` | \`''\` | URL to navigate to, renders the tab as a link. |
+| \`fullWidth\` | \`full-width\` | \`boolean\` | \`false\` | Whether the tab stretches to fill available width. |
 
 #### Events
 
@@ -108,9 +108,9 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`value\` | \`value\` | \`string\` | \`''\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` | Identifier linking this panel to its corresponding tab. |
 
 #### Slots
 
@@ -133,13 +133,13 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` |
-| \`variant\` | \`variant\` | \`'standard' \\| 'fullWidth' \\| 'scrollable'\` | \`'standard'\` |
-| \`centered\` | \`centered\` | \`boolean\` | \`false\` |
-| \`scrollButtons\` | \`scroll-buttons\` | \`'auto' \\| 'false'\` | \`'auto'\` |
-| \`ariaLabel\` | \`aria-label\` | \`string\` | \`''\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` | Layout direction of the tab list. |
+| \`variant\` | \`variant\` | \`'standard' \\| 'fullWidth' \\| 'scrollable'\` | \`'standard'\` | Display variant controlling tab sizing and scrollability. |
+| \`centered\` | \`centered\` | \`boolean\` | \`false\` | Whether to center the tabs within the tab list. |
+| \`scrollButtons\` | \`scroll-buttons\` | \`'auto' \\| 'false'\` | \`'auto'\` | Whether to show scroll buttons in scrollable mode. |
+| \`ariaLabel\` | \`aria-label\` | \`string\` | \`''\` | Accessible label for the tab list. |
 
 #### Events
 
@@ -168,16 +168,16 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`value\` | \`value\` | \`string\` | \`''\` |
-| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` |
-| \`variant\` | \`variant\` | \`'standard' \\| 'fullWidth' \\| 'scrollable'\` | \`'standard'\` |
-| \`centered\` | \`centered\` | \`boolean\` | \`false\` |
-| \`scrollButtons\` | \`scroll-buttons\` | \`'auto' \\| 'false'\` | \`'auto'\` |
-| \`textColor\` | \`text-color\` | \`string\` | \`'primary'\` |
-| \`indicatorColor\` | \`indicator-color\` | \`string\` | \`'primary'\` |
-| \`defaultValue\` | \`default-value\` | \`string\` | \`''\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` | The currently active tab value. |
+| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` | Layout direction of the tabs. |
+| \`variant\` | \`variant\` | \`'standard' \\| 'fullWidth' \\| 'scrollable'\` | \`'standard'\` | Display variant controlling tab sizing and scrollability. |
+| \`centered\` | \`centered\` | \`boolean\` | \`false\` | Whether to center the tabs. |
+| \`scrollButtons\` | \`scroll-buttons\` | \`'auto' \\| 'false'\` | \`'auto'\` | Whether to show scroll buttons in scrollable mode. |
+| \`textColor\` | \`text-color\` | \`string\` | \`'primary'\` | 'primary' \\| 'secondary' \\| 'inherit' \\| any CSS color |
+| \`indicatorColor\` | \`indicator-color\` | \`string\` | \`'primary'\` | 'primary' \\| 'secondary' \\| any CSS color |
+| \`defaultValue\` | \`default-value\` | \`string\` | \`''\` | Uncontrolled mode: initial value if \`value\` not set |
 
 #### Events
 

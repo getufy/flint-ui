@@ -159,16 +159,49 @@ function extractDescription(jsdoc: string): string {
 
 function extractProperties(classBody: string): PropInfo[] {
   const props: PropInfo[] = [];
-  // Match @property with optional JSDoc comment before it
-  const propRegex = /(?:\/\*\*\s*(.*?)\s*\*\/\s*)?@property\(\s*(\{[^}]*\})?\s*\)\s*(?:override\s+)?(\w+)(?:\s*[:?]\s*([^=;]+))?\s*=\s*([^;]+);/g;
+  // Match @property with optional JSDoc comment before it (supports multi-line JSDoc)
+  // Capture the entire tail after the prop name (type + default) as one group, then split later
+  const propRegex = /(?:\/\*\*([\s\S]*?)\*\/\s*)?@property\(\s*(\{[^}]*\})?\s*\)\s*(?:override\s+)?(\w+)\??([\s\S]*?);/g;
   let m;
 
   while ((m = propRegex.exec(classBody)) !== null) {
-    const description = m[1]?.replace(/\*\//g, '').trim() || '';
+    // Clean multi-line JSDoc: strip leading * and join into one line
+    const rawDoc = m[1] || '';
+    const description = rawDoc
+      .split('\n')
+      .map(line => line.replace(/^\s*\*\s?/, '').trim())
+      .filter(line => line && !line.startsWith('@'))
+      .join(' ')
+      .trim();
     const opts = m[2] || '{}';
     const name = m[3];
-    const typeAnnotation = m[4]?.trim() || '';
-    const defaultVal = m[5]?.trim() || '';
+
+    // Parse the tail: could be `: Type = default` or `= default` or just `: Type`
+    const tail = m[4]?.trim() || '';
+    let typeAnnotation = '';
+    let defaultVal = '';
+
+    if (tail.includes('=')) {
+      // Find the last top-level `=` (not inside parens/generics)
+      let depth = 0;
+      let lastEqIdx = -1;
+      for (let i = 0; i < tail.length; i++) {
+        const ch = tail[i];
+        if (ch === '(' || ch === '<') depth++;
+        else if (ch === ')' || ch === '>') depth--;
+        else if (ch === '=' && depth === 0 && tail[i + 1] !== '>') {
+          lastEqIdx = i;
+        }
+      }
+      if (lastEqIdx >= 0) {
+        const beforeEq = tail.slice(0, lastEqIdx).trim();
+        defaultVal = tail.slice(lastEqIdx + 1).trim();
+        // Strip leading `:` or `?:` from the type annotation
+        typeAnnotation = beforeEq.replace(/^[:?]+\s*/, '').trim();
+      }
+    } else if (tail.startsWith(':')) {
+      typeAnnotation = tail.slice(1).trim();
+    }
 
     const reflect = opts.includes('reflect: true') || opts.includes('reflect:true');
     const attrMatch = opts.match(/attribute:\s*'([^']+)'/);
@@ -292,26 +325,69 @@ function extractMethods(classBody: string): MethodInfo[] {
     'if', 'else', 'for', 'while', 'switch', 'catch', 'return', 'throw', 'new', 'delete', 'typeof', 'void', 'super', 'constructor',
   ]);
 
-  // Public methods: no private/protected, not starting with _
-  const methodRegex = /(?:\/\*\*\s*(.*?)\s*\*\/\s*)?(?:override\s+)?(\w+)\s*\(([^)]*)\)(?:\s*:\s*([^\s{]+))?\s*\{/g;
-  let m;
-  while ((m = methodRegex.exec(classBody)) !== null) {
-    const description = m[1]?.replace(/\*\//g, '').replace(/@\w+.*/g, '').trim() || '';
-    const name = m[2];
-    const params = m[3]?.trim() || '';
-    const returnType = m[4]?.trim() || 'void';
+  // Public methods and getters: line-by-line approach with JSDoc tracking
+  const lines = classBody.split('\n');
+  let pendingDoc = '';
 
-    // Skip private, underscore-prefixed, lifecycle, event handlers, and keywords
-    if (name.startsWith('_') || skipMethods.has(name) || description.includes('@internal')) continue;
-    if (name.startsWith('handle') || name.startsWith('on')) continue;
-    if (seen.has(name)) continue;
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
 
-    seen.add(name);
-    methods.push({
-      name,
-      signature: `${name}(${params})${returnType !== 'void' ? `: ${returnType}` : ''}`,
-      description,
-    });
+    // Collect single-line JSDoc: /** text */
+    const singleJsDoc = line.match(/^\/\*\*\s*(.*?)\s*\*\/$/);
+    if (singleJsDoc) {
+      pendingDoc = singleJsDoc[1].replace(/@\w+.*/g, '').trim();
+      continue;
+    }
+
+    // Detect start of multi-line JSDoc: /**
+    if (line.startsWith('/**')) {
+      const docLines: string[] = [];
+      for (let j = i + 1; j < lines.length; j++) {
+        const dl = lines[j].trim();
+        if (dl.endsWith('*/') || dl === '*/') break;
+        const cleaned = dl.replace(/^\*\s?/, '').trim();
+        if (cleaned && !cleaned.startsWith('@')) docLines.push(cleaned);
+      }
+      pendingDoc = docLines.join(' ').trim();
+      continue;
+    }
+
+    // Match getter: get name(): ReturnType {
+    const getterMatch = line.match(/^(?:override\s+)?get\s+(\w+)\s*\(\s*\)(?:\s*:\s*(.+?))?\s*\{/);
+    if (getterMatch) {
+      const name = getterMatch[1];
+      const returnType = getterMatch[2]?.trim() || 'unknown';
+      if (!name.startsWith('_') && !skipMethods.has(name) && !seen.has(name)) {
+        seen.add(name);
+        methods.push({ name, signature: `${name}(): ${returnType}`, description: pendingDoc });
+      }
+      pendingDoc = '';
+      continue;
+    }
+
+    // Match method: name(params): ReturnType {
+    const methodMatch = line.match(/^(?:override\s+)?(\w+)\s*\(([^)]*)\)(?:\s*:\s*([^\s{]+))?\s*\{/);
+    if (methodMatch) {
+      const name = methodMatch[1];
+      const params = methodMatch[2]?.trim() || '';
+      const returnType = methodMatch[3]?.trim() || 'void';
+      if (!name.startsWith('_') && !skipMethods.has(name) && !seen.has(name)
+          && !name.startsWith('handle') && !name.startsWith('on')) {
+        seen.add(name);
+        methods.push({
+          name,
+          signature: `${name}(${params})${returnType !== 'void' ? `: ${returnType}` : ''}`,
+          description: pendingDoc,
+        });
+      }
+      pendingDoc = '';
+      continue;
+    }
+
+    // Reset pending doc if line is not JSDoc continuation
+    if (!line.startsWith('*') && line !== '') {
+      pendingDoc = '';
+    }
   }
 
   return methods;
@@ -1813,12 +1889,13 @@ function generateStoryDocs(components: ComponentInfo[]): string {
 
     if (comp.props.length > 0) {
       md += `#### Properties\n\n`;
-      md += `| Property | Attribute | Type | Default |\n`;
-      md += `|---|---|---|---|\n`;
+      md += `| Property | Attribute | Type | Default | Description |\n`;
+      md += `|---|---|---|---|---|\n`;
       for (const p of comp.props) {
         const typeStr = `\`${escapeTable(p.type)}\``;
         const defaultStr = p.default ? `\`${escapeTable(p.default)}\`` : '—';
-        md += `| \`${p.name}\` | \`${p.attribute}\` | ${typeStr} | ${defaultStr} |\n`;
+        const desc = escapeTable(p.description);
+        md += `| \`${p.name}\` | \`${p.attribute}\` | ${typeStr} | ${defaultStr} | ${desc} |\n`;
       }
       md += `\n`;
     }

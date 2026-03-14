@@ -20,11 +20,12 @@ Bottom Navigation Action: Individual navigation item.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`label\` | \`label\` | \`string\` | \`''\` |
-| \`active\` | \`active\` | \`boolean\` | \`false\` |
-| \`showLabel\` | \`show-label\` | \`boolean\` | \`true\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`label\` | \`label\` | \`string\` | \`''\` | Label text for the action. |
+| \`value\` | \`value\` | \`unknown\` | — | Unique value for this action. |
+| \`active\` | \`active\` | \`boolean\` | \`false\` | If true, this action is currently selected. (Internal property managed by parent) |
+| \`showLabel\` | \`show-label\` | \`boolean\` | \`true\` | Controls label visibility. (Internal property managed by parent) |
 
 #### Slots
 
@@ -55,9 +56,10 @@ Bottom Navigation bars allow movement between primary destinations in an app.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`showLabels\` | \`show-labels\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`value\` | \`value\` | \`unknown\` | — | The value of the currently selected action. |
+| \`showLabels\` | \`show-labels\` | \`boolean\` | \`false\` | If true, all labels are shown at all times. |
 
 #### Events
 

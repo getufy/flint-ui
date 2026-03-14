@@ -18,14 +18,23 @@ let _uidCounter = 0;
 export class FlintSwitch extends FormAssociated(LitElement) {
     static styles = unsafeCSS(uiSwitchStyles);
 
+    /** Whether the switch is toggled on. */
     @property({ type: Boolean, reflect: true }) checked = false;
+    /** Disables the switch and prevents interaction. */
     @property({ type: Boolean, reflect: true }) disabled = false;
+    /** Marks the switch as required for form validation. */
     @property({ type: Boolean, reflect: true }) required = false;
+    /** Size of the switch control. */
     @property({ type: String, reflect: true }) size: 'sm' | 'md' | 'lg' = 'md';
+    /** Visible label text displayed next to the switch. */
     @property({ type: String }) label = '';
+    /** Form field name used when submitting form data. */
     @property({ type: String }) name = '';
+    /** Value submitted with form data when checked. */
     @property({ type: String }) value = 'on';
+    /** Initial checked state for uncontrolled usage. */
     @property({ type: Boolean, attribute: 'default-checked' }) defaultChecked = false;
+    /** Accessible label for screen readers when no visible label is provided. */
     @property({ type: String, attribute: 'aria-label' }) override ariaLabel: string | null = null;
 
     private readonly _labelId: string;

@@ -12,10 +12,15 @@ export type ResponsiveValue<T> = T | Partial<Record<Breakpoint, T>>;
 export class FlintGrid extends LitElement {
     static styles = unsafeCSS(uiGridStyles);
 
+    /** Whether this element acts as a grid container. */
     @property({ type: Boolean, reflect: true }) container = false;
+    /** Flex direction of the grid container. */
     @property({ type: String, reflect: true }) direction: 'row' | 'row-reverse' | 'column' | 'column-reverse' = 'row';
+    /** Flex wrap behavior of the grid container. */
     @property({ type: String, reflect: true }) wrap: 'nowrap' | 'wrap' | 'wrap-reverse' = 'wrap';
+    /** Cross-axis alignment of grid items. */
     @property({ type: String, attribute: 'align-items', reflect: true }) alignItems?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
+    /** Main-axis alignment of grid items. */
     @property({ type: String, attribute: 'justify-content', reflect: true }) justifyContent?: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly';
 
     /** Total number of columns. Default is 12. */
@@ -27,23 +32,23 @@ export class FlintGrid extends LitElement {
      */
     @property({ type: Object }) spacing: ResponsiveValue<number | string> = 0;
 
-    /**
-     * Row spacing override. When explicitly set to a non-undefined value it
-     * takes precedence over `spacing` for the row axis.
-     * FIX: previously `rowSpacing !== 0` was used as the guard, which meant
-     * an intentional `rowSpacing="0"` (remove row gap) was impossible.
-     */
+    /** Row spacing override; takes precedence over `spacing` for the row axis. */
     @property({ type: Object }) rowSpacing?: ResponsiveValue<number | string>;
+    /** Column spacing override; takes precedence over `spacing` for the column axis. */
     @property({ type: Object }) columnSpacing?: ResponsiveValue<number | string>;
 
-    /** Breakpoint sizes */
+    /** Number of columns to span at the xs breakpoint. */
     @property() xs?: GridSize;
+    /** Number of columns to span at the sm breakpoint. */
     @property() sm?: GridSize;
+    /** Number of columns to span at the md breakpoint. */
     @property() md?: GridSize;
+    /** Number of columns to span at the lg breakpoint. */
     @property() lg?: GridSize;
+    /** Number of columns to span at the xl breakpoint. */
     @property() xl?: GridSize;
 
-    /** Offsets per breakpoint */
+    /** Offset per breakpoint, expressed in column units or 'auto'. */
     @property({ type: Object }) offset?: Partial<Record<Breakpoint, number | 'auto'>>;
 
     /**

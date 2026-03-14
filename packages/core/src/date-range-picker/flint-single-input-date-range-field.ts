@@ -33,14 +33,22 @@ export class FlintSingleInputDateRangeField extends LitElement {
     /** Controlled range value [startISO, endISO]. */
     @property({ type: Array }) value: DateRange = [...EMPTY_RANGE];
 
+    /** Field label text. */
     @property({ type: String }) label = '';
+    /** Form field name used for hidden inputs. */
     @property({ type: String }) name = '';
+    /** Minimum allowed date (ISO YYYY-MM-DD). */
     @property({ type: String }) min = '';
+    /** Maximum allowed date (ISO YYYY-MM-DD). */
     @property({ type: String }) max = '';
 
+    /** Disables the field and prevents interaction. */
     @property({ type: Boolean, reflect: true }) disabled = false;
+    /** Makes the field read-only (visible but not editable). */
     @property({ type: Boolean, reflect: true }) readonly = false;
+    /** Displays the field in an error state. */
     @property({ type: Boolean, reflect: true }) error = false;
+    /** Helper text shown below the field. */
     @property({ type: String, attribute: 'helper-text' }) helperText = '';
 
     // ── Internal segment state ────────────────────────────────────────────────

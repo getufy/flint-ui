@@ -15,16 +15,16 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`value\` | \`value\` | \`[number, number]\` | \`[25, 75]\` |
-| \`min\` | \`min\` | \`number\` | \`0\` |
-| \`max\` | \`max\` | \`number\` | \`100\` |
-| \`step\` | \`step\` | \`number\` | \`1\` |
-| \`size\` | \`size\` | \`'sm' \\| 'md' \\| 'lg'\` | \`'md'\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`label\` | \`label\` | \`string\` | \`''\` |
-| \`showValue\` | \`show-value\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`value\` | \`value\` | \`[number, number]\` | \`[25, 75]\` |  |
+| \`min\` | \`min\` | \`number\` | \`0\` | Minimum allowed value. |
+| \`max\` | \`max\` | \`number\` | \`100\` | Maximum allowed value. |
+| \`step\` | \`step\` | \`number\` | \`1\` | Step increment between values. |
+| \`size\` | \`size\` | \`'sm' \\| 'md' \\| 'lg'\` | \`'md'\` | Visual size of the track and thumbs. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Whether the slider is disabled. |
+| \`label\` | \`label\` | \`string\` | \`''\` | Label text displayed above the slider. |
+| \`showValue\` | \`show-value\` | \`boolean\` | \`false\` | Whether to display the current start and end values. |
 
 #### Events
 

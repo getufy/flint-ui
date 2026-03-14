@@ -19,26 +19,26 @@ A Textarea component for multi-line text input.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`value\` | \`value\` | \`string\` | \`''\` |
-| \`placeholder\` | \`placeholder\` | \`string\` | \`''\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`readonly\` | \`readonly\` | \`boolean\` | \`false\` |
-| \`required\` | \`required\` | \`boolean\` | \`false\` |
-| \`error\` | \`error\` | \`boolean\` | \`false\` |
-| \`errorMessage\` | \`error-message\` | \`string\` | \`''\` |
-| \`helpText\` | \`help-text\` | \`string\` | \`''\` |
-| \`label\` | \`label\` | \`string\` | \`''\` |
-| \`size\` | \`size\` | \`'sm' \\| 'default' \\| 'lg'\` | \`'default'\` |
-| \`rows\` | \`rows\` | \`number\` | \`3\` |
-| \`maxlength\` | \`maxlength\` | \`number \\| undefined\` | \`undefined\` |
-| \`minlength\` | \`minlength\` | \`number \\| undefined\` | \`undefined\` |
-| \`name\` | \`name\` | \`string\` | \`''\` |
-| \`autocomplete\` | \`autocomplete\` | \`string\` | \`''\` |
-| \`resize\` | \`resize\` | \`'none' \\| 'both' \\| 'horizontal' \\| 'vertical' \\| 'auto'\` | \`'vertical'\` |
-| \`defaultValue\` | \`default-value\` | \`string\` | \`''\` |
-| \`ariaLabel\` | \`aria-label\` | \`string \\| null\` | \`null\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` | Current textarea value. |
+| \`placeholder\` | \`placeholder\` | \`string\` | \`''\` | Placeholder text shown when empty. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the textarea and prevents interaction. |
+| \`readonly\` | \`readonly\` | \`boolean\` | \`false\` | Makes the textarea read-only. |
+| \`required\` | \`required\` | \`boolean\` | \`false\` | Marks the textarea as required for form validation. |
+| \`error\` | \`error\` | \`boolean\` | \`false\` | Whether the textarea is in an error state. |
+| \`errorMessage\` | \`error-message\` | \`string\` | \`''\` | Error message displayed below the textarea. |
+| \`helpText\` | \`help-text\` | \`string\` | \`''\` | Help text displayed below the textarea. |
+| \`label\` | \`label\` | \`string\` | \`''\` | Label text displayed above the textarea. |
+| \`size\` | \`size\` | \`'sm' \\| 'default' \\| 'lg'\` | \`'default'\` | Size variant of the textarea. |
+| \`rows\` | \`rows\` | \`number\` | \`3\` | Number of visible text rows. |
+| \`maxlength\` | \`maxlength\` | \`number \\| undefined\` | \`undefined\` | Maximum number of characters allowed. |
+| \`minlength\` | \`minlength\` | \`number \\| undefined\` | \`undefined\` | Minimum number of characters required. |
+| \`name\` | \`name\` | \`string\` | \`''\` | Form field name used when submitting form data. |
+| \`autocomplete\` | \`autocomplete\` | \`string\` | \`''\` | Browser autocomplete hint. |
+| \`resize\` | \`resize\` | \`'none' \\| 'both' \\| 'horizontal' \\| 'vertical' \\| 'auto'\` | \`'vertical'\` | Controls the resize handle. 'auto' enables automatic height expansion as the user types. |
+| \`defaultValue\` | \`default-value\` | \`string\` | \`''\` | Initial value for uncontrolled usage. |
+| \`ariaLabel\` | \`aria-label\` | \`string \\| null\` | \`null\` | Accessible label for screen readers when no visible label is provided. |
 
 #### Events
 
@@ -68,6 +68,12 @@ A Textarea component for multi-line text input.
 | \`--flint-input-disabled-color\` | — |
 | \`--flint-input-readonly-bg\` | — |
 | \`--flint-help-text-color\` | — |
+
+#### Methods
+
+| Method | Description |
+|---|---|
+| \`textareaElement(): HTMLTextAreaElement \\| null\` | Direct access to the internal <textarea> element. |
                 `,
             },
         },

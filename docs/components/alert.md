@@ -29,9 +29,9 @@ import { FlintAlert } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `severity` | `severity` | `'info' \| 'success' \| 'warning' \| 'error'` | `'info'` | * The severity level of the alert. |
-| `title` | `title` | `string` | `''` | * An optional title for the alert. |
-| `dismissible` | `dismissible` | `boolean` | `false` | * Whether the alert can be dismissed by the user. |
+| `severity` | `severity` | `'info' \| 'success' \| 'warning' \| 'error'` | `'info'` | The severity level of the alert. |
+| `title` | `title` | `string` | `''` | An optional title for the alert. |
+| `dismissible` | `dismissible` | `boolean` | `false` | Whether the alert can be dismissed by the user. |
 
 ### Events
 

@@ -26,8 +26,11 @@ export class FlintDateRangeCalendar extends LitElement {
     /** Current selected range [startISO, endISO]. */
     @property({ type: Array }) value: DateRange = [...EMPTY_RANGE];
 
+    /** Minimum selectable date (ISO YYYY-MM-DD). */
     @property({ type: String }) min = '';
+    /** Maximum selectable date (ISO YYYY-MM-DD). */
     @property({ type: String }) max = '';
+    /** Disables the calendar and prevents date selection. */
     @property({ type: Boolean }) disabled = false;
 
     // ── State ─────────────────────────────────────────────────────────────────

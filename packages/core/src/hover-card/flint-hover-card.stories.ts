@@ -48,11 +48,11 @@ Trigger element for a hover card. Place inside \`flint-hover-card\`. Automatical
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`side\` | \`side\` | \`'top' \\| 'right' \\| 'bottom' \\| 'left'\` | \`'bottom'\` |
-| \`align\` | \`align\` | \`'start' \\| 'center' \\| 'end'\` | \`'center'\` |
-| \`open\` | \`open\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`side\` | \`side\` | \`'top' \\| 'right' \\| 'bottom' \\| 'left'\` | \`'bottom'\` | Which side of the trigger to display the card on. |
+| \`align\` | \`align\` | \`'start' \\| 'center' \\| 'end'\` | \`'center'\` | Alignment of the card along the cross axis relative to the trigger. |
+| \`open\` | \`open\` | \`boolean\` | \`false\` | Whether the card is visible. Managed by the parent \`flint-hover-card\`. |
 
 #### Slots
 
@@ -71,10 +71,10 @@ Root container for a hover card. Manages open/closed state with configurable ope
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`openDelay\` | \`open-delay\` | \`number\` | \`700\` |
-| \`closeDelay\` | \`close-delay\` | \`number\` | \`300\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`openDelay\` | \`open-delay\` | \`number\` | \`700\` | Delay in milliseconds before the hover card opens. |
+| \`closeDelay\` | \`close-delay\` | \`number\` | \`300\` | Delay in milliseconds before the hover card closes. |
 
 #### Events
 
@@ -93,7 +93,7 @@ Root container for a hover card. Manages open/closed state with configurable ope
 
 | Method | Description |
 |---|---|
-| \`isOpen(): boolean\` |  |
+| \`isOpen(): boolean\` | Whether the card is currently open. |
                 `,
             },
         },

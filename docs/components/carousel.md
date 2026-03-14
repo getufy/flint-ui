@@ -25,9 +25,9 @@ import { FlintCarouselContent } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `index` | `index` | `number` | `0` |  |
+| `index` | `index` | `number` | `0` | Zero-based index of the first visible slide. |
 | `itemsPerView` | `items-per-view` | `number` | `1` | Number of slides visible at once. |
-| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` |  |
+| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Slide direction axis. |
 
 ### Slots
 
@@ -100,8 +100,8 @@ import { FlintCarouselPrevious } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `disabled` | `disabled` | `boolean` | `false` |  |
-| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` |  |
+| `disabled` | `disabled` | `boolean` | `false` | Whether the previous button is disabled. |
+| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Slide direction axis, inherited from the parent carousel. |
 
 ### Slots
 
@@ -134,8 +134,8 @@ import { FlintCarouselNext } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `disabled` | `disabled` | `boolean` | `false` |  |
-| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` |  |
+| `disabled` | `disabled` | `boolean` | `false` | Whether the next button is disabled. |
+| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Slide direction axis, inherited from the parent carousel. |
 
 ### Slots
 
@@ -203,7 +203,7 @@ import { FlintCarousel } from 'flint-ui';
 | `next()` | Advance to the next slide. |
 | `previous()` | Go to the previous slide. |
 | `goTo(index: number)` | Jump to a specific slide (0-based index). |
-| `currentIndex()` |  |
-| `total()` |  |
+| `currentIndex(): unknown` | Current slide index (read-only). |
+| `total(): unknown` | Total number of slides (read-only). |
 
 ---

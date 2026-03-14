@@ -13,10 +13,15 @@ import '../backdrop/flint-backdrop.js';
 export class FlintDrawer extends LitElement {
     static styles = unsafeCSS(uiDrawerStyles);
 
+    /** Whether the drawer is open. */
     @property({ type: Boolean, reflect: true }) open = false;
+    /** Side from which the drawer slides in. */
     @property({ type: String, reflect: true }) anchor: 'left' | 'right' | 'top' | 'bottom' = 'left';
+    /** Drawer behavior mode. */
     @property({ type: String, reflect: true }) variant: 'temporary' | 'persistent' | 'mini' = 'temporary';
+    /** Whether the drawer uses edge spacing. */
     @property({ type: Boolean, reflect: true }) edge = false;
+    /** Whether the drawer is contained within its parent. */
     @property({ type: Boolean, reflect: true }) container = false;
     /** Accessible label for the drawer panel (used as aria-label on the panel). */
     @property({ type: String }) label = 'Drawer';

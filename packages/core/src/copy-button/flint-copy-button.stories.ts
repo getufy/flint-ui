@@ -14,16 +14,16 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`value\` | \`value\` | \`string\` | \`''\` |
-| \`from\` | \`from\` | \`string\` | \`''\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`copyLabel\` | \`copy-label\` | \`string\` | \`'Copy'\` |
-| \`successLabel\` | \`success-label\` | \`string\` | \`'Copied!'\` |
-| \`errorLabel\` | \`error-label\` | \`string\` | \`'Error'\` |
-| \`feedbackDuration\` | \`feedback-duration\` | \`number\` | \`1000\` |
-| \`tooltipPlacement\` | \`tooltip-placement\` | \`'top' \\| 'right' \\| 'bottom' \\| 'left'\` | \`'top'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` | The text value to copy. |
+| \`from\` | \`from\` | \`string\` | \`''\` | An id referencing another element to copy from. - \`from="el"\` copies \`textContent\` - \`from="el[attr]"\` copies an attribute value - \`from="el.prop"\` copies a property value |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the copy button. |
+| \`copyLabel\` | \`copy-label\` | \`string\` | \`'Copy'\` | Label shown in the tooltip (idle state). |
+| \`successLabel\` | \`success-label\` | \`string\` | \`'Copied!'\` | Label shown in the tooltip after successful copy. |
+| \`errorLabel\` | \`error-label\` | \`string\` | \`'Error'\` | Label shown in the tooltip on copy error. |
+| \`feedbackDuration\` | \`feedback-duration\` | \`number\` | \`1000\` | Duration (ms) to show feedback before returning to idle. |
+| \`tooltipPlacement\` | \`tooltip-placement\` | \`'top' \\| 'right' \\| 'bottom' \\| 'left'\` | \`'top'\` | Tooltip placement. |
 
 #### Events
 

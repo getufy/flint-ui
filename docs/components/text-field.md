@@ -23,15 +23,15 @@ import { FlintTextField } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `label` | `label` | `string` | `''` |  |
-| `value` | `value` | `string` | `''` |  |
-| `placeholder` | `placeholder` | `string` | `''` |  |
-| `type` | `type` | `string` | `'text'` |  |
-| `variant` | `variant` | `'outlined' \| 'filled'` | `'outlined'` |  |
-| `disabled` | `disabled` | `boolean` | `false` |  |
-| `error` | `error` | `boolean` | `false` |  |
-| `helperText` | `helper-text` | `string` | `''` |  |
-| `errorMessage` | `error-message` | `string` | `''` |  |
+| `label` | `label` | `string` | `''` | Label text displayed above the input. |
+| `value` | `value` | `string` | `''` | Current value of the text field. |
+| `placeholder` | `placeholder` | `string` | `''` | Placeholder text shown when the input is empty. |
+| `type` | `type` | `string` | `'text'` | HTML input type (e.g. 'text', 'password', 'email'). |
+| `variant` | `variant` | `'outlined' \| 'filled'` | `'outlined'` | Visual style variant of the text field. |
+| `disabled` | `disabled` | `boolean` | `false` | Whether the text field is disabled. |
+| `error` | `error` | `boolean` | `false` | Whether the text field is in an error state. |
+| `helperText` | `helper-text` | `string` | `''` | Helper text displayed below the input. |
+| `errorMessage` | `error-message` | `string` | `''` | Error message displayed below the input when in error state. |
 
 ### Events
 

@@ -7,14 +7,23 @@ import uiTextFieldStyles from './flint-text-field.css?inline';
 export class FlintTextField extends LitElement {
     static styles = unsafeCSS(uiTextFieldStyles);
 
+    /** Label text displayed above the input. */
     @property({ type: String }) label = '';
+    /** Current value of the text field. */
     @property({ type: String }) value = '';
+    /** Placeholder text shown when the input is empty. */
     @property({ type: String }) placeholder = '';
+    /** HTML input type (e.g. 'text', 'password', 'email'). */
     @property({ type: String }) type = 'text';
+    /** Visual style variant of the text field. */
     @property({ type: String }) variant: 'outlined' | 'filled' = 'outlined';
+    /** Whether the text field is disabled. */
     @property({ type: Boolean }) disabled = false;
+    /** Whether the text field is in an error state. */
     @property({ type: Boolean }) error = false;
+    /** Helper text displayed below the input. */
     @property({ type: String }) helperText = '';
+    /** Error message displayed below the input when in error state. */
     @property({ type: String }) errorMessage = '';
 
     @state() private _focused = false;

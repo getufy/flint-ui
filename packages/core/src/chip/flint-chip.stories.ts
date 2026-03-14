@@ -16,15 +16,15 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`label\` | \`label\` | \`string\` | \`''\` |
-| \`variant\` | \`variant\` | \`'filled' \\| 'outlined'\` | \`'filled'\` |
-| \`color\` | \`color\` | \`'default' \\| 'primary' \\| 'secondary'\` | \`'default'\` |
-| \`size\` | \`size\` | \`'sm' \\| 'md' \\| 'lg'\` | \`'md'\` |
-| \`clickable\` | \`clickable\` | \`boolean\` | \`false\` |
-| \`deletable\` | \`deletable\` | \`boolean\` | \`false\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`label\` | \`label\` | \`string\` | \`''\` | Text content displayed inside the chip. |
+| \`variant\` | \`variant\` | \`'filled' \\| 'outlined'\` | \`'filled'\` | Visual style variant of the chip. |
+| \`color\` | \`color\` | \`'default' \\| 'primary' \\| 'secondary'\` | \`'default'\` | Color theme applied to the chip. |
+| \`size\` | \`size\` | \`'sm' \\| 'md' \\| 'lg'\` | \`'md'\` | Size of the chip. |
+| \`clickable\` | \`clickable\` | \`boolean\` | \`false\` | Whether the chip responds to click interactions. |
+| \`deletable\` | \`deletable\` | \`boolean\` | \`false\` | Whether the chip shows a delete icon. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the chip and prevents interaction. |
 
 #### Events
 

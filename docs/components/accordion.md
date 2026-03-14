@@ -27,8 +27,8 @@ import { FlintAccordion } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `expanded` | `expanded` | `boolean` | `false` | * If true, expands the accordion by default. |
-| `disabled` | `disabled` | `boolean` | `false` | * If true, the accordion is disabled. |
+| `expanded` | `expanded` | `boolean` | `false` | If true, expands the accordion by default. |
+| `disabled` | `disabled` | `boolean` | `false` | If true, the accordion is disabled. |
 
 ### Events
 

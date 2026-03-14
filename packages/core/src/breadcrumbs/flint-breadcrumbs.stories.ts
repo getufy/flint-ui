@@ -16,12 +16,12 @@ Breadcrumbs provide a navigational aid showing the current page's location withi
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`maxItems\` | \`max-items\` | \`number\` | \`8\` |
-| \`itemsBefore\` | \`items-before\` | \`number\` | \`1\` |
-| \`itemsAfter\` | \`items-after\` | \`number\` | \`1\` |
-| \`separator\` | \`separator\` | \`string\` | \`'/'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`maxItems\` | \`max-items\` | \`number\` | \`8\` | Max number of items to display before collapsing. |
+| \`itemsBefore\` | \`items-before\` | \`number\` | \`1\` | Number of items to show before the ellipsis. |
+| \`itemsAfter\` | \`items-after\` | \`number\` | \`1\` | Number of items to show after the ellipsis. |
+| \`separator\` | \`separator\` | \`string\` | \`'/'\` | The character or string used as a separator (fallback when no separator slot is provided). |
 
 #### Slots
 

@@ -46,9 +46,11 @@ const navButtonStyles = css`
 export class FlintCarouselContent extends LitElement {
   static styles = unsafeCSS(uiCarouselContentStyles);
 
+  /** Zero-based index of the first visible slide. */
   @property({ type: Number }) index = 0;
   /** Number of slides visible at once. */
   @property({ type: Number, attribute: 'items-per-view' }) itemsPerView = 1;
+  /** Slide direction axis. */
   @property({ reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
 
   updated(changed: PropertyValues) {
@@ -107,7 +109,9 @@ export class FlintCarouselItem extends LitElement {
 export class FlintCarouselPrevious extends LitElement {
   static styles = navButtonStyles;
 
+  /** Whether the previous button is disabled. */
   @property({ type: Boolean, reflect: true }) disabled = false;
+  /** Slide direction axis, inherited from the parent carousel. */
   @property({ reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
 
   private readonly _handleClick = () => {
@@ -141,7 +145,9 @@ export class FlintCarouselPrevious extends LitElement {
 export class FlintCarouselNext extends LitElement {
   static styles = navButtonStyles;
 
+  /** Whether the next button is disabled. */
   @property({ type: Boolean, reflect: true }) disabled = false;
+  /** Slide direction axis, inherited from the parent carousel. */
   @property({ reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
 
   private readonly _handleClick = () => {

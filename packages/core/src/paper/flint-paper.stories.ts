@@ -18,11 +18,11 @@ The Paper component is a container for displaying content on an elevated surface
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`elevation\` | \`elevation\` | \`number\` | \`1\` |
-| \`square\` | \`square\` | \`boolean\` | \`false\` |
-| \`variant\` | \`variant\` | \`'elevated' \\| 'outlined' \\| 'flat'\` | \`'elevated'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`elevation\` | \`elevation\` | \`number\` | \`1\` | Shadow depth. Supported values: 0, 1, 2, 3, 4, 6, 8, 12, 16, 24. Other numeric values are accepted but produce no visible shadow. |
+| \`square\` | \`square\` | \`boolean\` | \`false\` | If true, the paper will have square corners (border-radius: 0). |
+| \`variant\` | \`variant\` | \`'elevated' \\| 'outlined' \\| 'flat'\` | \`'elevated'\` | Visual variant. - \`elevated\`: raises the surface with a box-shadow (default) - \`outlined\`: flat surface with a visible border and no shadow - \`flat\`: flat surface with no shadow and no border |
 
 #### Slots
 

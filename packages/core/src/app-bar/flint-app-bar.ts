@@ -10,8 +10,11 @@ import uiAppBarStyles from './flint-app-bar.css?inline';
 export class FlintAppBar extends LitElement {
   static styles = unsafeCSS(uiAppBarStyles);
 
+  /** Title text displayed in the center of the app bar. */
   @property({ type: String }) title = '';
+  /** CSS positioning behavior of the app bar. */
   @property({ type: String, reflect: true }) position: 'static' | 'fixed' | 'absolute' | 'sticky' = 'static';
+  /** Visual style variant of the app bar. */
   @property({ type: String, reflect: true }) variant: 'regular' | 'outlined' = 'regular';
 
   render() {

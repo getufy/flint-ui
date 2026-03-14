@@ -76,8 +76,8 @@ import { FlintTableSortLabel } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `active` | `active` | `boolean` | `false` |  |
-| `direction` | `direction` | `'asc' \| 'desc'` | `'asc'` |  |
+| `active` | `active` | `boolean` | `false` | Whether this column is currently sorted. |
+| `direction` | `direction` | `'asc' \| 'desc'` | `'asc'` | Sort direction when active. |
 
 ### Slots
 
@@ -112,8 +112,8 @@ import { FlintTableContainer } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `shadow` | `shadow` | `boolean` | `false` |  |
-| `stickyHeader` | `sticky-header` | `boolean` | `false` |  |
+| `shadow` | `shadow` | `boolean` | `false` | Applies a stronger box-shadow elevation. |
+| `stickyHeader` | `sticky-header` | `boolean` | `false` | Sticks the table header to the top on scroll. |
 
 ### Slots
 
@@ -154,7 +154,7 @@ import { FlintTable } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `size` | `size` | `'medium' \| 'small'` | `'medium'` |  |
+| `size` | `size` | `'medium' \| 'small'` | `'medium'` | Cell padding density. |
 
 ### Slots
 
@@ -244,7 +244,7 @@ import { FlintTableBody } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `striped` | `striped` | `boolean` | `false` |  |
+| `striped` | `striped` | `boolean` | `false` | Enables alternating row shading. |
 
 ### Slots
 
@@ -279,8 +279,8 @@ import { FlintTableRow } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `selected` | `selected` | `boolean` | `false` |  |
-| `hover` | `hover` | `boolean` | `false` |  |
+| `selected` | `selected` | `boolean` | `false` | Highlights the row as selected. |
+| `hover` | `hover` | `boolean` | `false` | Forces hover highlight on the row. |
 
 ### Slots
 
@@ -322,9 +322,9 @@ import { FlintTableCell } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `header` | `header` | `boolean` | `false` |  |
-| `align` | `align` | `'left' \| 'right' \| 'center'` | `'left'` |  |
-| `padding` | `padding` | `'normal' \| 'checkbox' \| 'none'` | `'normal'` |  |
+| `header` | `header` | `boolean` | `false` | Renders the cell with header styling. |
+| `align` | `align` | `'left' \| 'right' \| 'center'` | `'left'` | Text alignment within the cell. |
+| `padding` | `padding` | `'normal' \| 'checkbox' \| 'none'` | `'normal'` | Padding preset for the cell. |
 
 ### Slots
 

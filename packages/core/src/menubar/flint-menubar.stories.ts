@@ -54,9 +54,9 @@ Groups related menu items. Optional \`heading\` shows a label.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`heading\` | \`heading\` | \`string\` | \`''\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`heading\` | \`heading\` | \`string\` | \`''\` | Label text displayed above the group. |
 
 #### Slots
 
@@ -75,12 +75,12 @@ A single interactive option inside a menubar dropdown.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`highlighted\` | \`highlighted\` | \`boolean\` | \`false\` |
-| \`inset\` | \`inset\` | \`boolean\` | \`false\` |
-| \`value\` | \`value\` | \`string\` | \`''\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Whether the item is non-interactive. |
+| \`highlighted\` | \`highlighted\` | \`boolean\` | \`false\` | Whether the item is visually highlighted (e.g. via keyboard or hover). |
+| \`inset\` | \`inset\` | \`boolean\` | \`false\` | Whether the item label is inset to align with checkbox/radio items. |
+| \`value\` | \`value\` | \`string\` | \`''\` | Explicit value for the select event. Falls back to label text (excludes shortcut). |
 
 #### Events
 
@@ -111,12 +111,12 @@ A toggleable checkbox menu item.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`checked\` | \`checked\` | \`boolean\` | \`false\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`highlighted\` | \`highlighted\` | \`boolean\` | \`false\` |
-| \`value\` | \`value\` | \`string\` | \`''\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`checked\` | \`checked\` | \`boolean\` | \`false\` | Whether the checkbox item is currently checked. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Whether the item is non-interactive. |
+| \`highlighted\` | \`highlighted\` | \`boolean\` | \`false\` | Whether the item is visually highlighted (e.g. via keyboard or hover). |
+| \`value\` | \`value\` | \`string\` | \`''\` | Explicit value for the change event. Falls back to label text (excludes shortcut). |
 
 #### Events
 
@@ -147,12 +147,12 @@ A radio option inside a \`<flint-menubar-radio-group>\`.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`value\` | \`value\` | \`string\` | \`''\` |
-| \`checked\` | \`checked\` | \`boolean\` | \`false\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`highlighted\` | \`highlighted\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` | Value identifying this radio option within its group. |
+| \`checked\` | \`checked\` | \`boolean\` | \`false\` | Whether this radio item is currently selected. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Whether the item is non-interactive. |
+| \`highlighted\` | \`highlighted\` | \`boolean\` | \`false\` | Whether the item is visually highlighted (e.g. via keyboard or hover). |
 
 #### Events
 
@@ -183,9 +183,9 @@ Manages single-select radio items.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`value\` | \`value\` | \`string\` | \`''\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` | The value of the currently selected radio item. |
 
 #### Events
 
@@ -210,9 +210,9 @@ The dropdown panel of a sub-menu. Positioned to the right of the trigger. Auto-f
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`open\` | \`open\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`open\` | \`open\` | \`boolean\` | \`false\` | Whether the sub-menu dropdown panel is visible. |
 
 #### Slots
 
@@ -231,12 +231,12 @@ Trigger for a sub-menu. Shows an arrow indicator.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`highlighted\` | \`highlighted\` | \`boolean\` | \`false\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`inset\` | \`inset\` | \`boolean\` | \`false\` |
-| \`expanded\` | \`expanded\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`highlighted\` | \`highlighted\` | \`boolean\` | \`false\` | Whether the trigger is visually highlighted (e.g. via keyboard or hover). |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Whether the trigger is non-interactive. |
+| \`inset\` | \`inset\` | \`boolean\` | \`false\` | Whether the trigger label is inset to align with checkbox/radio items. |
+| \`expanded\` | \`expanded\` | \`boolean\` | \`false\` | Set by the parent \`flint-menubar-sub\` to reflect open state for aria-expanded. |
 
 #### Slots
 
@@ -263,7 +263,7 @@ Wraps a sub-trigger and sub-content pair. Opens on hover/focus and ArrowRight; c
 
 | Method | Description |
 |---|---|
-| \`open()\` |  |
+| \`open(): unknown\` |  |
 | \`show()\` |  |
 | \`showImmediate()\` | Opens the sub-menu immediately without the hover delay. Use for keyboard interactions. |
 | \`hide()\` |  |
@@ -280,9 +280,9 @@ The dropdown content panel for a menubar menu. Positioned absolutely below the t
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`open\` | \`open\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`open\` | \`open\` | \`boolean\` | \`false\` | Whether the content dropdown panel is visible. |
 
 #### Events
 
@@ -319,10 +319,10 @@ The trigger button for a menubar menu.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`active\` | \`active\` | \`boolean\` | \`false\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`active\` | \`active\` | \`boolean\` | \`false\` | Whether the trigger's associated menu is currently open. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Whether the trigger is non-interactive. |
 
 #### Slots
 
@@ -353,9 +353,9 @@ Wraps a trigger and content pair for a single menu in the menubar.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables this menu: the trigger is non-interactive and keyboard nav skips it. |
 
 #### Slots
 
@@ -367,6 +367,8 @@ Wraps a trigger and content pair for a single menu in the menubar.
 
 | Method | Description |
 |---|---|
+| \`trigger(): FlintMenubarTrigger \\| null\` |  |
+| \`content(): FlintMenubarContent \\| null\` |  |
 | \`open()\` |  |
 | \`close()\` |  |
 | \`isOpen(): boolean\` |  |
@@ -382,9 +384,9 @@ A visually persistent horizontal menu bar, common in desktop applications. Hosts
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`label\` | \`label\` | \`string\` | \`''\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`label\` | \`label\` | \`string\` | \`''\` | Which menu (by index) is currently open. -1 = all closed. */ private _activeIndex = -1; /** Accessible label for the menubar region. Defaults to "Menu bar". |
 
 #### Events
 
@@ -413,7 +415,7 @@ A visually persistent horizontal menu bar, common in desktop applications. Hosts
 
 | Method | Description |
 |---|---|
-| \`activeIndex(): number\` |  |
+| \`activeIndex(): number\` | Index of the currently open menu, or -1 if all closed. |
 | \`closeAll()\` | Close all menus. |
                 `,
             },

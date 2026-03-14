@@ -7,15 +7,19 @@ import uiButtonStyles from './flint-button.css?inline';
 export class FlintButton extends LitElement {
   static styles = unsafeCSS(uiButtonStyles);
 
+  /** Visual style variant of the button. */
   @property({ type: String })
   variant: 'primary' | 'secondary' | 'destructive' = 'primary';
 
+  /** Size of the button. */
   @property({ type: String })
   size: 'small' | 'medium' | 'large' = 'medium';
 
+  /** Disables the button and prevents interaction. */
   @property({ type: Boolean })
   disabled = false;
 
+  /** Whether the button stretches to fill its container width. */
   @property({ type: Boolean, reflect: true, attribute: 'full-width' })
   fullWidth = false;
 

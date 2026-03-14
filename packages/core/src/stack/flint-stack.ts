@@ -10,6 +10,7 @@ export type ResponsiveValue<T> = T | Partial<Record<Breakpoint, T>>;
 export class FlintStack extends LitElement {
     static styles = unsafeCSS(uiStackStyles);
 
+    /** Flex direction of the stack layout. */
     @property({
         converter: {
             fromAttribute: (value: string | null) => {
@@ -19,11 +20,15 @@ export class FlintStack extends LitElement {
         }
     }) direction: ResponsiveValue<'row' | 'row-reverse' | 'column' | 'column-reverse'> = 'column';
 
+    /** Space between child items (1 unit = 8px). */
     @property({ type: Object }) spacing: ResponsiveValue<number | string> = 0;
 
+    /** Cross-axis alignment of stack children. */
     @property({ type: String }) alignItems?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
+    /** Main-axis alignment of stack children. */
     @property({ type: String }) justifyContent?: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly';
 
+    /** Whether to use CSS flex gap for spacing. */
     @property({ type: Boolean }) useFlexGap = true;
 
     @state() private _currentWidth = typeof window !== 'undefined' ? window.innerWidth : 1200;

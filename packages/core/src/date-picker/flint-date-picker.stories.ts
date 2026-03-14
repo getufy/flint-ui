@@ -20,9 +20,12 @@ A standalone calendar grid — the core date-selection view. Used internally by 
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | — | Currently selected value as ISO string (YYYY-MM-DD). |
+| \`min\` | \`min\` | \`string\` | — | Minimum selectable date (ISO). |
+| \`max\` | \`max\` | \`string\` | — | Maximum selectable date (ISO). |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disable all interaction. |
 
 #### Events
 
@@ -71,19 +74,19 @@ A date picker with a text field and a calendar popover/modal. Variants: - 'deskt
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`value\` | \`value\` | \`string\` | \`''\` |
-| \`label\` | \`label\` | \`string\` | \`'Date'\` |
-| \`placeholder\` | \`placeholder\` | \`string\` | \`'MM/DD/YYYY'\` |
-| \`name\` | \`name\` | \`string\` | \`''\` |
-| \`variant\` | \`variant\` | \`'desktop' \\| 'mobile' \\| 'static' \\| 'auto'\` | \`'desktop'\` |
-| \`min\` | \`min\` | \`string\` | \`''\` |
-| \`max\` | \`max\` | \`string\` | \`''\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`readonly\` | \`readonly\` | \`boolean\` | \`false\` |
-| \`error\` | \`error\` | \`boolean\` | \`false\` |
-| \`helperText\` | \`helper-text\` | \`string\` | \`''\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` | Selected date as ISO string (YYYY-MM-DD). |
+| \`label\` | \`label\` | \`string\` | \`'Date'\` | Label shown above the field. |
+| \`placeholder\` | \`placeholder\` | \`string\` | \`'MM/DD/YYYY'\` | Placeholder shown in the empty field. |
+| \`name\` | \`name\` | \`string\` | \`''\` | Form field name attribute. |
+| \`variant\` | \`variant\` | \`'desktop' \\| 'mobile' \\| 'static' \\| 'auto'\` | \`'desktop'\` | Variant: 'desktop' \\| 'mobile' \\| 'static' \\| 'auto'. |
+| \`min\` | \`min\` | \`string\` | \`''\` | Minimum selectable date (ISO). |
+| \`max\` | \`max\` | \`string\` | \`''\` | Maximum selectable date (ISO). |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the picker. |
+| \`readonly\` | \`readonly\` | \`boolean\` | \`false\` | Makes the field read-only (auto-opens a picker when clicked). |
+| \`error\` | \`error\` | \`boolean\` | \`false\` | Shows error styling. |
+| \`helperText\` | \`helper-text\` | \`string\` | \`''\` | Helper/error text below the field. |
 
 #### Events
 

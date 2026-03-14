@@ -23,7 +23,7 @@ import { FlintVisuallyHidden } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `notFocusable` | `not-focusable` | `boolean` | `false` |  |
+| `notFocusable` | `not-focusable` | `boolean` | `false` | When `true`, the focus-reveal behaviour is disabled. The content stays hidden even if a focusable child receives keyboard focus. Set the `not-focusable` attribute (no value) to activate this mode. |
 
 ### Slots
 

@@ -18,11 +18,11 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`index\` | \`index\` | \`number\` | \`0\` |
-| \`itemsPerView\` | \`items-per-view\` | \`number\` | \`1\` |
-| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`index\` | \`index\` | \`number\` | \`0\` | Zero-based index of the first visible slide. |
+| \`itemsPerView\` | \`items-per-view\` | \`number\` | \`1\` | Number of slides visible at once. |
+| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` | Slide direction axis. |
 
 #### Slots
 
@@ -65,10 +65,10 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Whether the previous button is disabled. |
+| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` | Slide direction axis, inherited from the parent carousel. |
 
 #### Slots
 
@@ -85,10 +85,10 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Whether the next button is disabled. |
+| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` | Slide direction axis, inherited from the parent carousel. |
 
 #### Slots
 
@@ -105,13 +105,13 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`loop\` | \`loop\` | \`boolean\` | \`false\` |
-| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` |
-| \`autoplay\` | \`autoplay\` | \`number\` | \`0\` |
-| \`itemsPerView\` | \`items-per-view\` | \`number\` | \`1\` |
-| \`label\` | \`label\` | \`string\` | \`'Carousel'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`loop\` | \`loop\` | \`boolean\` | \`false\` | When true, navigation wraps from last slide back to first and vice versa. |
+| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` | Slide direction axis. |
+| \`autoplay\` | \`autoplay\` | \`number\` | \`0\` | Auto-advance interval in milliseconds. Set to 0 to disable. |
+| \`itemsPerView\` | \`items-per-view\` | \`number\` | \`1\` | Number of slides visible simultaneously. |
+| \`label\` | \`label\` | \`string\` | \`'Carousel'\` | Accessible label for the carousel region. |
 
 #### Events
 
@@ -142,8 +142,8 @@ const meta: Meta = {
 | \`next()\` | Advance to the next slide. |
 | \`previous()\` | Go to the previous slide. |
 | \`goTo(index: number)\` | Jump to a specific slide (0-based index). |
-| \`currentIndex()\` |  |
-| \`total()\` |  |
+| \`currentIndex(): unknown\` | Current slide index (read-only). |
+| \`total(): unknown\` | Total number of slides (read-only). |
                 `,
       },
     },

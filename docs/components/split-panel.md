@@ -24,10 +24,11 @@ import { FlintSplitPanel } from 'flint-ui';
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | `position` | `position` | `number` | `50` | Divider position as a percentage (0–100). Defaults to 50. |
-| `positionInPixels` | `position-in-pixels` | `number` | `-1` |  |
+| `positionInPixels` | `position-in-pixels` | `number` | `-1` | Divider position in pixels from the primary panel's edge. Takes precedence over `position` when ≥ 0. |
 | `vertical` | `vertical` | `boolean` | `false` | Vertical layout — start/end panels are stacked top/bottom. |
 | `disabled` | `disabled` | `boolean` | `false` | Prevent the divider from being repositioned. |
-| `snap` | `snap` | `string \| SnapFunction` | `''` |  |
+| `primary` | `primary` | `'start' \| 'end'` | — | Designates a primary panel that maintains its pixel size when the host element is resized. The other panel grows or shrinks to fill. If unset, both panels resize proportionally. |
+| `snap` | `snap` | `string \| SnapFunction` | `''` | Space-separated snap positions (`Npx`, `N%`, `repeat(Npx)`, `repeat(N%)`), e.g. `"100px 50%"` or `"repeat(100px) 50%"`. Can also be a `SnapFunction` for custom snapping logic. |
 | `snapThreshold` | `snap-threshold` | `number` | `12` | How close (px) the divider must be to a snap point before snapping. Default: 12. |
 
 ### Events
@@ -43,11 +44,5 @@ import { FlintSplitPanel } from 'flint-ui';
 | `start` |  |
 | `divider` |  |
 | `end` |  |
-
-### Methods
-
-| Method | Description |
-| --- | --- |
-| `host([vertical])` |  |
 
 ---

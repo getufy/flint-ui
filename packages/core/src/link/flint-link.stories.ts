@@ -19,15 +19,17 @@ The Link component allows you to easily customize anchor elements with theme col
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`href\` | \`href\` | \`string\` | \`''\` |
-| \`target\` | \`target\` | \`'_self' \\| '_blank' \\| '_parent' \\| '_top'\` | \`'_self'\` |
-| \`rel\` | \`rel\` | \`string\` | \`''\` |
-| \`color\` | \`color\` | \`\\| 'primary' \\| 'secondary' \\| 'success' \\| 'error' \\| 'warning' \\| 'info'         \\| 'textPrimary' \\| 'textSecondary' \\| 'inherit'\` | \`'primary'\` |
-| \`underline\` | \`underline\` | \`'none' \\| 'hover' \\| 'always'\` | \`'always'\` |
-| \`variant\` | \`variant\` | \`\\| 'inherit' \\| 'h1' \\| 'h2' \\| 'h3' \\| 'h4' \\| 'h5' \\| 'h6'         \\| 'subtitle1' \\| 'subtitle2' \\| 'body1' \\| 'body2' \\| 'caption' \\| 'overline'\` | \`'inherit'\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`href\` | \`href\` | \`string\` | \`''\` | The URL of the link. |
+| \`target\` | \`target\` | \`'_self' \\| '_blank' \\| '_parent' \\| '_top'\` | \`'_self'\` | Where to open the link. |
+| \`rel\` | \`rel\` | \`string\` | \`''\` | Specifies the relationship of the target object. |
+| \`color\` | \`color\` | \`\\| 'primary' \\| 'secondary' \\| 'success' \\| 'error' \\| 'warning' \\| 'info'         \\| 'textPrimary' \\| 'textSecondary' \\| 'inherit'\` | \`'primary'\` | The color of the link. |
+| \`underline\` | \`underline\` | \`'none' \\| 'hover' \\| 'always'\` | \`'always'\` | Controls the underline behavior. |
+| \`variant\` | \`variant\` | \`\\| 'inherit' \\| 'h1' \\| 'h2' \\| 'h3' \\| 'h4' \\| 'h5' \\| 'h6'         \\| 'subtitle1' \\| 'subtitle2' \\| 'body1' \\| 'body2' \\| 'caption' \\| 'overline'\` | \`'inherit'\` | Applies typography variant styles. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | If true, the link is disabled. |
+| \`download\` | \`download\` | \`string\` | — | The download attribute. |
+| \`label\` | \`label\` | \`string\` | — | The ARIA label. |
 
 #### Events
 

@@ -50,12 +50,18 @@ const iconDown = () => svgPath('M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.4
 export class FlintTab extends LitElement {
     static styles = unsafeCSS(uiTabStyles);
 
+    /** Unique identifier for this tab. */
     @property({ reflect: true }) value = '';
+    /** Whether the tab is disabled. */
     @property({ type: Boolean, reflect: true }) disabled = false;
+    /** Whether the tab is currently selected. */
     @property({ type: Boolean, reflect: true }) selected = false;
+    /** Position of the icon slot relative to the label. */
     @property({ attribute: 'icon-position', reflect: true })
     iconPosition: 'top' | 'bottom' | 'start' | 'end' = 'start';
+    /** URL to navigate to, renders the tab as a link. */
     @property() href = '';
+    /** Whether the tab stretches to fill available width. */
     @property({ type: Boolean, reflect: true, attribute: 'full-width' }) fullWidth = false;
 
     /** @internal – called by FlintTabs */
@@ -106,6 +112,7 @@ export class FlintTab extends LitElement {
 @customElement('flint-tab-panel')
 export class FlintTabPanel extends LitElement {
     static styles = unsafeCSS(uiTabPanelStyles);
+    /** Identifier linking this panel to its corresponding tab. */
     @property({ reflect: true }) value = '';
     render() { return html`<div class="panel" role="tabpanel"><slot></slot></div>`; }
 }
@@ -117,10 +124,15 @@ export class FlintTabPanel extends LitElement {
 export class FlintTabList extends LitElement {
     static styles = unsafeCSS(uiTabListStyles);
 
+    /** Layout direction of the tab list. */
     @property({ reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
+    /** Display variant controlling tab sizing and scrollability. */
     @property({ reflect: true }) variant: 'standard' | 'fullWidth' | 'scrollable' = 'standard';
+    /** Whether to center the tabs within the tab list. */
     @property({ type: Boolean, reflect: true }) centered = false;
+    /** Whether to show scroll buttons in scrollable mode. */
     @property({ attribute: 'scroll-buttons' }) scrollButtons: 'auto' | 'false' = 'auto';
+    /** Accessible label for the tab list. */
     @property({ attribute: 'aria-label' }) override ariaLabel = '';
 
     @state() private _canBack = false;
@@ -266,10 +278,15 @@ export class FlintTabList extends LitElement {
 export class FlintTabs extends LitElement {
     static styles = unsafeCSS(uiTabsStyles);
 
+    /** The currently active tab value. */
     @property({ reflect: true }) value = '';
+    /** Layout direction of the tabs. */
     @property({ reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
+    /** Display variant controlling tab sizing and scrollability. */
     @property() variant: 'standard' | 'fullWidth' | 'scrollable' = 'standard';
+    /** Whether to center the tabs. */
     @property({ type: Boolean }) centered = false;
+    /** Whether to show scroll buttons in scrollable mode. */
     @property({ attribute: 'scroll-buttons' }) scrollButtons: 'auto' | 'false' = 'auto';
     /** 'primary' | 'secondary' | 'inherit' | any CSS color */
     @property({ attribute: 'text-color' }) textColor = 'primary';

@@ -10,10 +10,15 @@ import uiLinearProgressStyles from './flint-linear-progress.css?inline';
 export class FlintLinearProgress extends LitElement {
     static styles = unsafeCSS(uiLinearProgressStyles);
 
+    /** Progress variant: determinate shows a specific value, indeterminate shows an animation. */
     @property({ type: String, reflect: true }) variant: 'determinate' | 'indeterminate' = 'indeterminate';
+    /** Current progress value (0-100). */
     @property({ type: Number, reflect: true }) value = 0; // 0-100
+    /** Height of the progress bar in pixels. */
     @property({ type: Number }) height = 4;
+    /** Color theme of the progress bar. */
     @property({ type: String, reflect: true }) color: 'primary' | 'success' | 'error' | 'warning' = 'primary';
+    /** Accessible label for the progress bar. */
     @property({ type: String }) label = '';
 
     private static readonly _colorMap: Record<string, string> = {

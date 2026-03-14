@@ -19,10 +19,10 @@ Toggle button for a collapsible. Place inside \`flint-collapsible\`. Automatical
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`expanded\` | \`expanded\` | \`boolean\` | \`false\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`expanded\` | \`expanded\` | \`boolean\` | \`false\` | Reflects the parent collapsible's open state. Set by \`flint-collapsible\`. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the trigger. Set by \`flint-collapsible\` or directly. |
 
 #### Slots
 
@@ -41,9 +41,9 @@ The collapsible panel. Animates open/closed with a CSS grid transition. Place in
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`open\` | \`open\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`open\` | \`open\` | \`boolean\` | \`false\` | Whether the panel is visible. Managed by the parent \`flint-collapsible\`. |
 
 #### Slots
 
@@ -62,11 +62,11 @@ Root container for a collapsible panel. Manages open/closed state and coordinate
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`open\` | \`open\` | \`boolean\` | \`false\` |
-| \`defaultOpen\` | \`default-open\` | \`boolean\` | \`false\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`open\` | \`open\` | \`boolean\` | \`false\` | Whether the panel is open. Reflects to attribute for CSS targeting. |
+| \`defaultOpen\` | \`default-open\` | \`boolean\` | \`false\` | Initial open state for uncontrolled usage. Has no effect after the element has connected to the DOM. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the trigger, preventing user interaction. |
 
 #### Events
 

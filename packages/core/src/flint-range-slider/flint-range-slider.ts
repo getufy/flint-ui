@@ -35,12 +35,19 @@ export class FlintRangeSlider extends LitElement {
     @property({ attribute: false })
     value: [number, number] = [25, 75];
 
+    /** Minimum allowed value. */
     @property({ type: Number }) min = 0;
+    /** Maximum allowed value. */
     @property({ type: Number }) max = 100;
+    /** Step increment between values. */
     @property({ type: Number }) step = 1;
+    /** Visual size of the track and thumbs. */
     @property({ type: String, reflect: true }) size: 'sm' | 'md' | 'lg' = 'md';
+    /** Whether the slider is disabled. */
     @property({ type: Boolean, reflect: true }) disabled = false;
+    /** Label text displayed above the slider. */
     @property({ type: String }) label = '';
+    /** Whether to display the current start and end values. */
     @property({ type: Boolean, attribute: 'show-value' }) showValue = false;
 
     // ─── Internal state ───────────────────────────────────────────────────────

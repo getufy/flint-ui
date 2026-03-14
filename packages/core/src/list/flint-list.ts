@@ -15,7 +15,9 @@ import uiListSubheaderStyles from './flint-list-subheader.css?inline';
 export class FlintList extends LitElement {
     static styles = unsafeCSS(uiListStyles);
 
+    /** Whether to disable the default padding on the list. */
     @property({ type: Boolean, reflect: true, attribute: 'disable-padding' }) disablePadding = false;
+    /** Whether to use compact spacing for list items. */
     @property({ type: Boolean, reflect: true }) dense = false;
 
     render() {
@@ -42,7 +44,9 @@ export class FlintListItem extends LitElement {
 export class FlintListItemButton extends LitElement {
     static styles = unsafeCSS(uiListItemButtonStyles);
 
+    /** Whether the list item button is disabled. */
     @property({ type: Boolean, reflect: true }) disabled = false;
+    /** Whether the list item button is selected. */
     @property({ type: Boolean, reflect: true }) selected = false;
 
     private _handleKeydown = (e: KeyboardEvent) => {
@@ -97,7 +101,9 @@ export class FlintListItemAvatar extends LitElement {
 export class FlintListItemText extends LitElement {
     static styles = unsafeCSS(uiListItemTextStyles);
 
+    /** Primary text content of the list item. */
     @property({ type: String }) primary = '';
+    /** Secondary text content of the list item. */
     @property({ type: String }) secondary = '';
 
     @state() private _hasSecondarySlot = false;

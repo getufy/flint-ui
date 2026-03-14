@@ -12,9 +12,13 @@ import uiDividerStyles from './flint-divider.css?inline';
 export class FlintDivider extends LitElement {
   static styles = unsafeCSS(uiDividerStyles);
 
+  /** Orientation of the divider line. */
   @property({ type: String, reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
+  /** Inset variant controlling how far the divider extends. */
   @property({ type: String }) variant: 'full' | 'middle' | 'inset' = 'full';
+  /** Thickness of the divider line. */
   @property({ type: String }) weight: 'light' | 'medium' | 'heavy' = 'light';
+  /** Alignment of text content within the divider. */
   @property({ type: String }) textAlign: 'left' | 'center' | 'right' = 'center';
 
   render() {

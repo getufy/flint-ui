@@ -27,14 +27,14 @@ import { FlintRadioGroup } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `label` | `label` | `string` | `''` |  |
-| `name` | `name` | `string` | `''` |  |
-| `value` | `value` | `string` | `''` |  |
-| `defaultValue` | `default-value` | `string` | `''` |  |
-| `disabled` | `disabled` | `boolean` | `false` |  |
-| `required` | `required` | `boolean` | `false` |  |
-| `orientation` | `orientation` | `RadioOrientation` | `'vertical'` |  |
-| `size` | `size` | `RadioSize` | `'md'` |  |
+| `label` | `label` | `string` | `''` | Accessible label for the radio group. |
+| `name` | `name` | `string` | `''` | Form field name for all radios in the group. |
+| `value` | `value` | `string` | `''` | Currently selected radio value. |
+| `defaultValue` | `default-value` | `string` | `''` | Initial value for uncontrolled usage. |
+| `disabled` | `disabled` | `boolean` | `false` | Disables all radios in the group. |
+| `required` | `required` | `boolean` | `false` | Marks the group as required for form validation. |
+| `orientation` | `orientation` | `RadioOrientation` | `'vertical'` | Layout direction of the radio buttons. |
+| `size` | `size` | `RadioSize` | `'md'` | Size of the radio buttons. |
 
 ### Events
 
@@ -85,13 +85,13 @@ import { FlintRadio } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `checked` | `checked` | `boolean` | `false` |  |
-| `disabled` | `disabled` | `boolean` | `false` |  |
-| `required` | `required` | `boolean` | `false` |  |
-| `name` | `name` | `string` | `''` |  |
-| `value` | `value` | `string` | `''` |  |
-| `label` | `label` | `string` | `''` |  |
-| `size` | `size` | `RadioSize` | `'md'` |  |
+| `checked` | `checked` | `boolean` | `false` | Whether this radio is selected. |
+| `disabled` | `disabled` | `boolean` | `false` | Disables this radio and prevents interaction. |
+| `required` | `required` | `boolean` | `false` | Whether this radio is required. |
+| `name` | `name` | `string` | `''` | Form field name (usually set by the parent group). |
+| `value` | `value` | `string` | `''` | Value associated with this radio option. |
+| `label` | `label` | `string` | `''` | Visible label text for this radio option. |
+| `size` | `size` | `RadioSize` | `'md'` | Size of the radio button. |
 
 ### Events
 

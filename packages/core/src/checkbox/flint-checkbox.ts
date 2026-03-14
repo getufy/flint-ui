@@ -8,15 +8,25 @@ import uiCheckboxStyles from './flint-checkbox.css?inline';
 export class FlintCheckbox extends FormAssociated(LitElement) {
     static styles = unsafeCSS(uiCheckboxStyles);
 
+    /** Whether the checkbox is checked. */
     @property({ type: Boolean, reflect: true }) checked = false;
+    /** Displays the checkbox in an indeterminate state. */
     @property({ type: Boolean }) indeterminate = false;
+    /** Disables the checkbox and prevents interaction. */
     @property({ type: Boolean, reflect: true }) disabled = false;
+    /** Marks the checkbox as required for form validation. */
     @property({ type: Boolean, reflect: true }) required = false;
+    /** Size of the checkbox control. */
     @property({ type: String, reflect: true }) size: 'sm' | 'md' | 'lg' = 'md';
+    /** Visible label text displayed next to the checkbox. */
     @property({ type: String }) label = '';
+    /** Form field name used when submitting form data. */
     @property({ type: String }) name = '';
+    /** Value submitted with form data when checked. */
     @property({ type: String }) value = 'on';
+    /** Initial checked state for uncontrolled usage. */
     @property({ type: Boolean, attribute: 'default-checked' }) defaultChecked = false;
+    /** Accessible label for screen readers when no visible label is provided. */
     @property({ type: String, attribute: 'aria-label' }) override ariaLabel: string | null = null;
 
     protected override willUpdate(changed: PropertyValues) {

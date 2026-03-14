@@ -16,11 +16,11 @@ Alerts display brief messages for the user without interrupting their use of the
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`severity\` | \`severity\` | \`'info' \\| 'success' \\| 'warning' \\| 'error'\` | \`'info'\` |
-| \`title\` | \`title\` | \`string\` | \`''\` |
-| \`dismissible\` | \`dismissible\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`severity\` | \`severity\` | \`'info' \\| 'success' \\| 'warning' \\| 'error'\` | \`'info'\` | The severity level of the alert. |
+| \`title\` | \`title\` | \`string\` | \`''\` | An optional title for the alert. |
+| \`dismissible\` | \`dismissible\` | \`boolean\` | \`false\` | Whether the alert can be dismissed by the user. |
 
 #### Events
 

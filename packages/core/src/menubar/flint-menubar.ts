@@ -47,6 +47,7 @@ export class FlintMenubarSeparator extends LitElement {
 /** Groups related menu items. Optional `heading` shows a label. */
 @customElement('flint-menubar-group')
 export class FlintMenubarGroup extends LitElement {
+    /** Label text displayed above the group. */
     @property({ reflect: true }) heading = '';
 
     static styles = unsafeCSS(uiMenubarGroupStyles);
@@ -72,8 +73,11 @@ export class FlintMenubarGroup extends LitElement {
  */
 @customElement('flint-menubar-item')
 export class FlintMenubarItem extends LitElement {
+    /** Whether the item is non-interactive. */
     @property({ reflect: true, type: Boolean }) disabled = false;
+    /** Whether the item is visually highlighted (e.g. via keyboard or hover). */
     @property({ reflect: true, type: Boolean }) highlighted = false;
+    /** Whether the item label is inset to align with checkbox/radio items. */
     @property({ reflect: true, type: Boolean }) inset = false;
     /** Explicit value for the select event. Falls back to label text (excludes shortcut). */
     @property({ reflect: true }) value = '';
@@ -114,8 +118,11 @@ export class FlintMenubarItem extends LitElement {
  */
 @customElement('flint-menubar-checkbox-item')
 export class FlintMenubarCheckboxItem extends LitElement {
+    /** Whether the checkbox item is currently checked. */
     @property({ reflect: true, type: Boolean }) checked = false;
+    /** Whether the item is non-interactive. */
     @property({ reflect: true, type: Boolean }) disabled = false;
+    /** Whether the item is visually highlighted (e.g. via keyboard or hover). */
     @property({ reflect: true, type: Boolean }) highlighted = false;
     /** Explicit value for the change event. Falls back to label text (excludes shortcut). */
     @property({ reflect: true }) value = '';
@@ -160,9 +167,13 @@ export class FlintMenubarCheckboxItem extends LitElement {
  */
 @customElement('flint-menubar-radio-item')
 export class FlintMenubarRadioItem extends LitElement {
+    /** Value identifying this radio option within its group. */
     @property({ reflect: true }) value = '';
+    /** Whether this radio item is currently selected. */
     @property({ reflect: true, type: Boolean }) checked = false;
+    /** Whether the item is non-interactive. */
     @property({ reflect: true, type: Boolean }) disabled = false;
+    /** Whether the item is visually highlighted (e.g. via keyboard or hover). */
     @property({ reflect: true, type: Boolean }) highlighted = false;
 
     static styles = unsafeCSS(uiMenubarRadioItemStyles);
@@ -198,6 +209,7 @@ export class FlintMenubarRadioItem extends LitElement {
  */
 @customElement('flint-menubar-radio-group')
 export class FlintMenubarRadioGroup extends LitElement {
+    /** The value of the currently selected radio item. */
     @property({ reflect: true }) value = '';
 
     static styles = unsafeCSS(uiMenubarRadioGroupStyles);
@@ -253,6 +265,7 @@ export class FlintMenubarRadioGroup extends LitElement {
  */
 @customElement('flint-menubar-sub-content')
 export class FlintMenubarSubContent extends LitElement {
+    /** Whether the sub-menu dropdown panel is visible. */
     @property({ reflect: true, type: Boolean }) open = false;
 
     static styles = unsafeCSS(uiMenubarSubContentStyles);
@@ -287,8 +300,11 @@ export class FlintMenubarSubContent extends LitElement {
  */
 @customElement('flint-menubar-sub-trigger')
 export class FlintMenubarSubTrigger extends LitElement {
+    /** Whether the trigger is visually highlighted (e.g. via keyboard or hover). */
     @property({ reflect: true, type: Boolean }) highlighted = false;
+    /** Whether the trigger is non-interactive. */
     @property({ reflect: true, type: Boolean }) disabled = false;
+    /** Whether the trigger label is inset to align with checkbox/radio items. */
     @property({ reflect: true, type: Boolean }) inset = false;
     /** Set by the parent `flint-menubar-sub` to reflect open state for aria-expanded. */
     @property({ reflect: true, type: Boolean }) expanded = false;
@@ -402,6 +418,7 @@ export class FlintMenubarSub extends LitElement {
  */
 @customElement('flint-menubar-content')
 export class FlintMenubarContent extends LitElement {
+    /** Whether the content dropdown panel is visible. */
     @property({ reflect: true, type: Boolean }) open = false;
 
     /** Currently highlighted item index for keyboard nav */
@@ -614,7 +631,9 @@ export class FlintMenubarContent extends LitElement {
  */
 @customElement('flint-menubar-trigger')
 export class FlintMenubarTrigger extends LitElement {
+    /** Whether the trigger's associated menu is currently open. */
     @property({ reflect: true, type: Boolean }) active = false;
+    /** Whether the trigger is non-interactive. */
     @property({ reflect: true, type: Boolean }) disabled = false;
 
     /**

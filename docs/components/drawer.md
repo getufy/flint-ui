@@ -25,11 +25,11 @@ import { FlintDrawer } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `open` | `open` | `boolean` | `false` |  |
-| `anchor` | `anchor` | `'left' \| 'right' \| 'top' \| 'bottom'` | `'left'` |  |
-| `variant` | `variant` | `'temporary' \| 'persistent' \| 'mini'` | `'temporary'` |  |
-| `edge` | `edge` | `boolean` | `false` |  |
-| `container` | `container` | `boolean` | `false` |  |
+| `open` | `open` | `boolean` | `false` | Whether the drawer is open. |
+| `anchor` | `anchor` | `'left' \| 'right' \| 'top' \| 'bottom'` | `'left'` | Side from which the drawer slides in. |
+| `variant` | `variant` | `'temporary' \| 'persistent' \| 'mini'` | `'temporary'` | Drawer behavior mode. |
+| `edge` | `edge` | `boolean` | `false` | Whether the drawer uses edge spacing. |
+| `container` | `container` | `boolean` | `false` | Whether the drawer is contained within its parent. |
 | `label` | `label` | `string` | `'Drawer'` | Accessible label for the drawer panel (used as aria-label on the panel). |
 
 ### Events

@@ -58,9 +58,9 @@ Displays the media area of an empty state (icon, image, or avatar).
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`variant\` | \`variant\` | \`'default' \\| 'icon'\` | \`'default'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`variant\` | \`variant\` | \`'default' \\| 'icon'\` | \`'default'\` | Visual treatment for the media container. |
 
 #### Slots
 

@@ -18,11 +18,11 @@ Displays a single keyboard key or modifier symbol. Renders a semantic \`<kbd>\` 
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`size\` | \`size\` | \`'sm' \\| 'default' \\| 'lg'\` | \`'default'\` |
-| \`variant\` | \`variant\` | \`'raised' \\| 'flat'\` | \`'raised'\` |
-| \`label\` | \`label\` | \`string\` | \`''\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`size\` | \`size\` | \`'sm' \\| 'default' \\| 'lg'\` | \`'default'\` | Visual size of the key. |
+| \`variant\` | \`variant\` | \`'raised' \\| 'flat'\` | \`'raised'\` | Visual style: \`raised\` (default, bottom border + shadow) or \`flat\` (no raised effect). |
+| \`label\` | \`label\` | \`string\` | \`''\` | Accessible label forwarded as \`aria-label\` on the inner \`<kbd>\` element. Useful for symbol keys like ⌘. |
 
 #### Slots
 
