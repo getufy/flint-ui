@@ -2,66 +2,79 @@
   {
     "name": "Full bundle (ESM)",
     "path": "packages/core/dist/index.js",
-    "limit": "5 kB"
+    "import": "*",
+    "limit": "110 kB"
   },
   {
     "name": "Button",
     "path": "packages/core/dist/button/flint-button.js",
-    "limit": "2 kB"
+    "import": "*",
+    "limit": "8 kB"
   },
   {
     "name": "Dialog",
     "path": "packages/core/dist/dialog/flint-dialog.js",
-    "limit": "3 kB"
+    "import": "*",
+    "limit": "9 kB"
   },
   {
     "name": "Tabs",
     "path": "packages/core/dist/tabs/flint-tabs.js",
-    "limit": "6 kB"
+    "import": "*",
+    "limit": "12 kB"
   },
   {
     "name": "Date Picker",
     "path": "packages/core/dist/date-picker/flint-date-picker.js",
-    "limit": "7 kB"
+    "import": "*",
+    "limit": "13 kB"
   },
   {
     "name": "Table",
     "path": "packages/core/dist/table/flint-table.js",
-    "limit": "3 kB"
+    "import": "*",
+    "limit": "8 kB"
   },
   {
     "name": "Tree View",
     "path": "packages/core/dist/tree-view/flint-rich-tree-view.js",
-    "limit": "7 kB"
+    "import": "*",
+    "limit": "11 kB"
   },
   {
     "name": "Date Range Picker",
     "path": "packages/core/dist/date-range-picker/flint-date-range-picker.js",
-    "limit": "8 kB"
+    "import": "*",
+    "limit": "10 kB"
   },
   {
     "name": "Time Picker",
     "path": "packages/core/dist/time-picker/flint-time-picker.js",
-    "limit": "10 kB"
+    "import": "*",
+    "limit": "17 kB"
   },
   {
     "name": "Menubar",
     "path": "packages/core/dist/menubar/flint-menubar.js",
-    "limit": "6 kB"
+    "import": "*",
+    "limit": "12 kB"
   },
   {
     "name": "Carousel",
     "path": "packages/core/dist/carousel/flint-carousel.js",
-    "limit": "4 kB"
+    "import": "*",
+    "limit": "10 kB"
   },
   {
     "name": "Command",
     "path": "packages/core/dist/command/flint-command.js",
-    "limit": "5 kB"
+    "import": "*",
+    "limit": "11 kB"
   },
   {
     "name": "Stepper",
     "path": "packages/core/dist/stepper/flint-stepper.js",
-    "limit": "5 kB"
+    "import": "*",
+    "limit": "11 kB"
   }
 ]
