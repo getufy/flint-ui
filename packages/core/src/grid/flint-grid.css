@@ -1,0 +1,29 @@
+:host {
+      display: block;
+    }
+
+    .grid-wrapper {
+      box-sizing: border-box;
+      display: block;
+    }
+
+    .grid-wrapper.container {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    /* Direction */
+    .direction-row { flex-direction: row; }
+    .direction-row-reverse { flex-direction: row-reverse; }
+    .direction-column { flex-direction: column; }
+    .direction-column-reverse { flex-direction: column-reverse; }
+
+    /* Wrap */
+    .wrap-nowrap { flex-wrap: nowrap; }
+    .wrap-wrap-reverse { flex-wrap: wrap-reverse; }
+
+    .grid-item {
+      box-sizing: border-box;
+      margin: 0;
+    }

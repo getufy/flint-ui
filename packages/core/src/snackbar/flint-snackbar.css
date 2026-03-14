@@ -1,0 +1,93 @@
+:host {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            position: fixed;
+            z-index: var(--flint-snackbar-z-index, 1400);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Positions */
+        :host([anchor-origin*="bottom"]) { bottom: var(--flint-snackbar-offset, 24px); }
+        :host([anchor-origin*="top"])    { top: var(--flint-snackbar-offset, 24px); }
+        :host([anchor-origin*="left"])   { left: var(--flint-snackbar-offset, 24px); }
+        :host([anchor-origin*="right"])  { right: var(--flint-snackbar-offset, 24px); }
+        :host([anchor-origin*="center"]) {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .snackbar {
+            /* Intentionally dark regardless of theme — standard snackbar pattern */
+            background-color: var(--flint-snackbar-bg, #313131);
+            color: var(--flint-snackbar-color, #ffffff);
+            font-family: var(--flint-font-family);
+            font-size: 0.875rem;
+            line-height: 1.43;
+            letter-spacing: 0.01071em;
+            display: flex;
+            align-items: center;
+            padding: 6px 16px;
+            border-radius: var(--flint-border-radius-md);
+            box-shadow: var(--flint-shadow-lg);
+            min-width: var(--flint-snackbar-min-width, 288px);
+            max-width: var(--flint-snackbar-max-width, 560px);
+            pointer-events: auto;
+            opacity: 0;
+            transform: scale(0.85);
+            transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1), transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            visibility: hidden;
+        }
+
+        .snackbar.open {
+            opacity: 1;
+            transform: scale(1);
+            visibility: visible;
+        }
+
+        /* Variants — intentional brand colors, not theme tokens */
+        :host([variant="info"])    .snackbar { background-color: var(--flint-snackbar-bg-info, #0288d1); }
+        :host([variant="success"]) .snackbar { background-color: var(--flint-snackbar-bg-success, #2e7d32); }
+        :host([variant="warning"]) .snackbar { background-color: var(--flint-snackbar-bg-warning, #ed6c02); }
+        :host([variant="error"])   .snackbar { background-color: var(--flint-snackbar-bg-error, #d32f2f); }
+
+        .message {
+            padding: 8px 0;
+            flex-grow: 1;
+        }
+
+        .action {
+            display: flex;
+            align-items: center;
+            margin-left: 8px;
+            margin-right: -8px;
+            padding-left: 16px;
+        }
+
+        .action.hidden {
+            display: none;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: inherit;
+            cursor: pointer;
+            padding: 4px 8px;
+            margin-left: 8px;
+            margin-right: -8px;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            border-radius: 2px;
+            line-height: 0;
+        }
+
+        .close-btn:hover { opacity: 1; }
+
+        ::slotted(flint-alert) {
+            margin-bottom: 0 !important;
+            width: 100%;
+            min-width: 288px;
+        }

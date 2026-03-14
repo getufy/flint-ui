@@ -9,7 +9,7 @@
  * Usage:
  *   node scripts/extract-css.mjs              # process all components
  *   node scripts/extract-css.mjs --dry-run    # preview without writing
- *   node scripts/extract-css.mjs src/button/ui-button.ts  # single file
+ *   node scripts/extract-css.mjs src/button/flint-button.ts  # single file
  */
 
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'fs';
@@ -34,7 +34,7 @@ function getFiles() {
     if (!entry.isDirectory()) continue;
     const dir = path.join(srcDir, entry.name);
     for (const f of readdirSync(dir)) {
-      if (f.startsWith('ui-') && f.endsWith('.ts') && !f.includes('.stories.') && !f.includes('.test.')) {
+      if (f.startsWith('flint-') && f.endsWith('.ts') && !f.includes('.stories.') && !f.includes('.test.')) {
         results.push(path.join(dir, f));
       }
     }
@@ -86,7 +86,7 @@ function extractStyleBlocks(content) {
 // ── Element name extraction ───────────────────────────────────────────────────
 
 /**
- * Return all @customElement('ui-...') tag names in the file, in document order,
+ * Return all @customElement('flint-...') tag names in the file, in document order,
  * paired with the char index where they appear.
  */
 function getElementNames(content) {
@@ -112,7 +112,7 @@ function resolveElementName(elementNames, markerStart, fallback) {
 
 // ── Import variable naming ────────────────────────────────────────────────────
 
-/** 'ui-button-group' → 'uiButtonGroupStyles' */
+/** 'flint-button-group' → 'uiButtonGroupStyles' */
 function toImportVar(elementName) {
   return (
     elementName

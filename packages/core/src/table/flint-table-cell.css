@@ -1,0 +1,22 @@
+:host {
+      display: table-cell;
+      padding: var(--flint-table-cell-padding-y, 16px) var(--flint-table-cell-padding-x, 16px);
+      font-size: 0.875rem;
+      text-align: left;
+      vertical-align: middle;
+      border-bottom: 1px solid var(--flint-table-border-color, var(--flint-border-color));
+    }
+    :host([header]) {
+      background-color: var(--flint-table-header-bg, transparent);
+      color: var(--flint-table-header-color, var(--flint-text-color-muted));
+      font-weight: 600;
+      line-height: 1.5rem;
+      white-space: nowrap;
+    }
+    :host([align="right"])  { text-align: right; }
+    :host([align="center"]) { text-align: center; }
+    :host([padding="checkbox"]) {
+      width: 48px;
+      padding: 0 0 0 4px;
+    }
+    :host([padding="none"]) { padding: 0; }

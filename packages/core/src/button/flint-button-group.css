@@ -1,0 +1,38 @@
+:host {
+      display: inline-flex;
+      border-radius: var(--flint-border-radius-md, 6px);
+    }
+    
+    ::slotted(flint-button) {
+      position: relative;
+    }
+
+    ::slotted(flint-button:hover),
+    ::slotted(flint-button:focus-within),
+    ::slotted(flint-button:active) {
+      z-index: 1;
+    }
+
+    ::slotted(flint-button:not(:first-child)) {
+      margin-left: -1px;
+    }
+
+    /* Base state for grouped buttons - 0 border radius internally */
+    ::slotted(flint-button) {
+      --flint-button-border-radius: 0;
+    }
+
+    /* First child */
+    ::slotted(flint-button:first-child) {
+      --flint-button-border-radius: var(--flint-border-radius-md, 6px) 0 0 var(--flint-border-radius-md, 6px);
+    }
+
+    /* Last child */
+    ::slotted(flint-button:last-child) {
+      --flint-button-border-radius: 0 var(--flint-border-radius-md, 6px) var(--flint-border-radius-md, 6px) 0;
+    }
+
+    /* Only child - reset to full radius */
+    ::slotted(flint-button:first-child:last-child) {
+      --flint-button-border-radius: var(--flint-border-radius-md, 6px);
+    }

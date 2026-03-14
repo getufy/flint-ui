@@ -1,0 +1,7 @@
+:host {
+      display: table-row-group;
+    }
+    /* Striped: every even slotted flint-table-row */
+    :host([striped]) ::slotted(flint-table-row:nth-child(even)) {
+      background-color: var(--flint-table-striped-bg, var(--flint-surface-2));
+    }

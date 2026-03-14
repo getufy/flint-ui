@@ -1,0 +1,15 @@
+:host {
+            display: block;
+            overflow-y: auto;
+            max-height: var(--flint-command-list-max-height, 300px);
+        }
+
+        .list {
+            padding: 4px;
+            outline: none;
+        }
+
+        .list:focus-visible {
+            outline: 2px solid var(--flint-primary-color);
+            outline-offset: -2px;
+        }

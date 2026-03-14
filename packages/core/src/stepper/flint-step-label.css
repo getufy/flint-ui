@@ -1,0 +1,6 @@
+:host { display: block; }
+        .label { font-size: .875rem; font-weight: 500; color: var(--flint-text-color); font-family: var(--flint-font-family); line-height: 1.4; }
+        .optional { font-size: .75rem; color: var(--flint-text-color-muted); font-style: italic; }
+        :host([active])   .label { color: var(--flint-primary-color); font-weight: 600; }
+        :host([disabled]) .label { color: var(--flint-text-color-muted); }
+        :host([error])    .label { color: var(--flint-error-color); }

@@ -1,0 +1,10 @@
+:host {
+            display: inline-flex;
+            align-items: center;
+            background: var(--flint-menubar-bg, var(--flint-surface-1));
+            border: 1px solid var(--flint-border-color);
+            border-radius: 6px;
+            padding: 3px;
+            gap: 2px;
+            font-family: var(--flint-font-family);
+        }

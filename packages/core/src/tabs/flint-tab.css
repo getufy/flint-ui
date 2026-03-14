@@ -1,0 +1,46 @@
+/* Customizable properties:
+   --flint-tab-padding-x: 16px
+   --flint-tab-padding-y: 10px
+   --flint-tab-min-height: 48px
+   --flint-tab-font-size: 0.875rem
+   --flint-tab-font-weight: 500
+   --flint-tab-font-weight-active: 600
+   --flint-tab-icon-min-height: 72px (for icon-top/bottom)
+   --flint-tab-inactive-color: var(--flint-text-color-muted)
+   --flint-tab-active-color: var(--flint-primary-color)
+   --flint-tab-disabled-opacity: 0.38
+   --flint-tab-hover-bg: var(--flint-primary-color-light)
+ */
+:host { display: inline-flex; position: relative; background: var(--flint-background); }
+        :host([full-width]) { flex: 1; }
+
+        .tab {
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 6px; padding: var(--flint-tab-padding-y, 10px) var(--flint-tab-padding-x, 16px); min-height: var(--flint-tab-min-height, 48px);
+            border: none; background: none; cursor: pointer;
+            font-family: var(--flint-font-family);
+            font-size: var(--flint-tab-font-size, 0.875rem); font-weight: var(--flint-tab-font-weight, 500); line-height: 1.25;
+            color: var(--flint-tab-inactive-color);
+            white-space: nowrap; border-radius: 0; outline: none;
+            transition: color .2s, background .15s;
+            box-sizing: border-box; width: 100%;
+            text-decoration: none; -webkit-tap-highlight-color: transparent;
+        }
+        .tab:hover:not(:disabled):not([aria-disabled="true"]) {
+            color: var(--flint-tab-active-color);
+            background: var(--flint-tab-hover-bg, var(--flint-primary-color-light));
+        }
+        .tab:focus-visible {
+            outline: 2px solid var(--flint-tab-active-color);
+            outline-offset: -2px;
+        }
+        :host([selected]) .tab { color: var(--flint-tab-active-color); font-weight: var(--flint-tab-font-weight-active, 600); }
+        .tab:disabled { opacity: var(--flint-tab-disabled-opacity, 0.38); cursor: not-allowed; }
+
+        /* icon positions */
+        .icon-top    { flex-direction: column; min-height: var(--flint-tab-icon-min-height, 72px); }
+        .icon-bottom { flex-direction: column-reverse; min-height: var(--flint-tab-icon-min-height, 72px); }
+        .icon-start  { flex-direction: row; }
+        .icon-end    { flex-direction: row-reverse; }
+
+        .icon-slot { display: contents; line-height: 0; }

@@ -20,8 +20,8 @@ exports.generateJsxDeclarations = generateJsxDeclarations;
  * Build the relative path from an output file to the source file.
  *
  * outDir:    'react/src/components'
- * sourceFile: 'src/switch/ui-switch.ts'  (relative to project root)
- * → '../../../src/switch/ui-switch.js'
+ * sourceFile: 'src/switch/flint-switch.ts'  (relative to project root)
+ * → '../../../src/switch/flint-switch.js'
  */
 function relativeImport(fromDir, toFile) {
     var fromParts = fromDir.split('/');
@@ -43,8 +43,8 @@ function relativeImport(fromDir, toFile) {
  * Contains a const object mapping short keys → DOM event name strings.
  *
  * Example output:
- *   export const UiSwitchEvents = {
- *     CHANGE: 'ui-switch-change',
+ *   export const FlintSwitchEvents = {
+ *     CHANGE: 'flint-switch-change',
  *   } as const;
  */
 function generateEventsFile(meta) {

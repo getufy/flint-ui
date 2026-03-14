@@ -1,0 +1,77 @@
+:host {
+      display: inline-block;
+      font-family: var(--flint-font-family);
+      /* Star colors are intentional yellow — not theme tokens */
+      --flint-rating-color: #ffb400;
+      --flint-rating-empty-color: #faaf0033;
+      --flint-rating-size: 2rem;
+      font-size: var(--flint-rating-size);
+    }
+
+    :host([size="sm"]) { --flint-rating-size: 1.25rem; }
+    :host([size="md"]) { --flint-rating-size: 2rem; }
+    :host([size="lg"]) { --flint-rating-size: 2.75rem; }
+
+    :host([disabled]) {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    :host([readonly]) .rating-container {
+      cursor: default;
+    }
+
+    .rating-container {
+      display: inline-flex;
+      position: relative;
+      cursor: pointer;
+      font-size: 1em;
+      line-height: 1;
+      gap: 0.1em;
+    }
+
+    .rating-container:focus {
+      outline: none;
+    }
+
+    .star-wrapper {
+      position: relative;
+      display: inline-flex;
+      transition: transform 0.1s ease;
+      outline: none;
+    }
+
+    .star-wrapper:focus-visible {
+      border-radius: 2px;
+      box-shadow: 0 0 0 2px var(--flint-rating-color);
+    }
+
+    .star-wrapper:not(.readonly):not(.disabled):hover {
+      transform: scale(1.1);
+    }
+
+    svg {
+      width: 1em;
+      height: 1em;
+      fill: var(--flint-rating-empty-color);
+      stroke: var(--flint-rating-color);
+      stroke-width: 1;
+      transition: fill 0.2s ease, stroke 0.2s ease;
+      overflow: visible;
+    }
+
+    .active svg { fill: var(--flint-rating-color); }
+    .hover svg  { fill: var(--flint-rating-color); opacity: 0.7; }
+
+    .half svg .star-full  { display: none; }
+    .half svg .star-half  { display: block; }
+    .star-half            { display: none; }
+
+    .hidden-input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      margin: 0;
+      pointer-events: none;
+    }

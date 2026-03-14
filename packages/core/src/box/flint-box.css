@@ -1,0 +1,9 @@
+:host {
+    display: block;
+    background-color: var(--flint-box-bg, transparent);
+    color: var(--flint-box-color, inherit);
+    border: var(--flint-box-border, none);
+    border-radius: var(--flint-box-border-radius, 0);
+    box-shadow: var(--flint-box-shadow, none);
+    padding: var(--flint-box-padding, 0);
+}

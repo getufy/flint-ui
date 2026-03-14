@@ -1,0 +1,12 @@
+:host {
+      display: table;
+      width: 100%;
+      border-collapse: collapse;
+      border-spacing: 0;
+      font-family: var(--flint-font-family);
+      color: var(--flint-text-color);
+    }
+    :host([size="small"]) {
+      --flint-table-cell-padding-y: var(--flint-table-cell-padding-y-dense, 6px);
+      --flint-table-cell-padding-x: var(--flint-table-cell-padding-x-dense, 16px);
+    }

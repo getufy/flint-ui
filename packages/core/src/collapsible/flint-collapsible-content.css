@@ -1,0 +1,17 @@
+:host { display: block; }
+
+        .panel {
+            display: grid;
+            grid-template-rows: 0fr;
+            overflow: hidden;
+            transition:
+                grid-template-rows var(--flint-collapsible-duration, 200ms) var(--flint-collapsible-easing, ease);
+        }
+
+        :host([open]) .panel {
+            grid-template-rows: 1fr;
+        }
+
+        .panel-inner {
+            overflow: hidden;
+        }

@@ -8,7 +8,7 @@ exports.parseComponentFile = parseComponentFile;
 var typescript_1 = require("typescript");
 var node_fs_1 = require("node:fs");
 // ─── string helpers ──────────────────────────────────────────────────────────
-/** 'ui-switch-change' → 'onUiSwitchChange' */
+/** 'flint-switch-change' → 'onFlintSwitchChange' */
 function domEventToReactProp(name) {
     return ('on' +
         name
@@ -21,9 +21,9 @@ function domEventToReactProp(name) {
  *
  * Strategy:
  *   - If the event name starts with `<tagName>-`, strip that prefix:
- *       tag='ui-switch'  event='ui-switch-change'  → 'CHANGE'
- *   - Otherwise strip a leading 'ui-':
- *       event='ui-otp-change'  → 'OTP_CHANGE'
+ *       tag='flint-switch'  event='flint-switch-change'  → 'CHANGE'
+ *   - Otherwise strip a leading 'flint-':
+ *       event='flint-otp-change'  → 'OTP_CHANGE'
  *       event='change'         → 'CHANGE'
  */
 function eventConstKey(tagName, domName) {
@@ -32,8 +32,8 @@ function eventConstKey(tagName, domName) {
     if (domName.startsWith(tagPrefix)) {
         stripped = domName.slice(tagPrefix.length);
     }
-    else if (domName.startsWith('ui-')) {
-        stripped = domName.slice('ui-'.length);
+    else if (domName.startsWith('flint-')) {
+        stripped = domName.slice('flint-'.length);
     }
     return stripped.replace(/-/g, '_').toUpperCase();
 }

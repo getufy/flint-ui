@@ -32,7 +32,7 @@ function discoverEntries(): Record<string, string> {
 
     const seen = new Set<string>();
     while ((match = importRe.exec(indexContent)) !== null) {
-        const modulePath = match[1]; // e.g. "button/ui-button"
+        const modulePath = match[1]; // e.g. "button/flint-button"
         if (seen.has(modulePath)) continue;
         seen.add(modulePath);
 

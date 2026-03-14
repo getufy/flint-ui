@@ -1,0 +1,30 @@
+:host {
+            display: block;
+            position: absolute;
+            z-index: var(--flint-hovercard-z-index, 1000);
+            opacity: 0;
+            visibility: hidden;
+            transition:
+                opacity var(--flint-hovercard-duration, 150ms) ease,
+                visibility var(--flint-hovercard-duration, 150ms) ease;
+            pointer-events: none;
+        }
+
+        :host([open]) {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .card {
+            background: var(--flint-hovercard-bg, var(--flint-surface-1));
+            border: 1px solid var(--flint-hovercard-border-color, var(--flint-border-color));
+            border-radius: var(--flint-hovercard-radius, 8px);
+            box-shadow: var(--flint-hovercard-shadow, 0 4px 16px rgba(0, 0, 0, 0.12));
+            padding: var(--flint-hovercard-padding, 16px);
+            min-width: var(--flint-hovercard-min-width, 200px);
+            font-family: var(--flint-font-family);
+            font-size: var(--flint-hovercard-font-size, 0.875rem);
+            color: var(--flint-hovercard-color, var(--flint-text-color));
+            line-height: 1.5;
+        }

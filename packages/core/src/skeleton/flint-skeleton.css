@@ -1,0 +1,65 @@
+:host {
+            display: block;
+        }
+
+        .skeleton {
+            display: block;
+            background-color: var(--flint-skeleton-bg, var(--flint-surface-3, rgba(0, 0, 0, 0.11)));
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            .skeleton {
+                background-color: var(--flint-skeleton-bg-dark, rgba(255, 255, 255, 0.13));
+            }
+        }
+
+        /* Explicit dark attribute support */
+        :host([dark]) .skeleton {
+            background-color: var(--flint-skeleton-bg-dark, rgba(255, 255, 255, 0.13));
+        }
+
+        .skeleton.pulse {
+            animation: pulse var(--flint-skeleton-animation-duration, 1.5s) ease-in-out 0.5s infinite;
+        }
+
+        .skeleton.wave::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                var(--flint-skeleton-wave-color, rgba(255, 255, 255, 0.4)),
+                transparent
+            );
+            animation: wave var(--flint-skeleton-animation-duration, 1.6s) linear infinite;
+            transform: translateX(-100%);
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes wave {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .text        { border-radius: var(--flint-border-radius-sm); }
+        .circular    { border-radius: 50%; }
+        .rectangular { border-radius: var(--flint-border-radius-md); }
+        .rounded     { border-radius: var(--flint-border-radius-lg); }
+
+        /* Respect user reduced-motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            .skeleton.pulse { animation: none; }
+            .skeleton.wave::after { display: none; }
+        }

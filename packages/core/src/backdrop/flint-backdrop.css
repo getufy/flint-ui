@@ -1,0 +1,36 @@
+:host {
+      display: block;
+      --flint-backdrop-color: rgba(0, 0, 0, 0.5);
+      --flint-backdrop-z-index: 1200;
+    }
+
+    .backdrop {
+      position: var(--flint-backdrop-position, fixed);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      inset: 0;
+      background-color: var(--flint-backdrop-color);
+      z-index: var(--flint-backdrop-z-index);
+      -webkit-tap-highlight-color: transparent;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s;
+    }
+
+    :host([container]) {
+      --flint-backdrop-position: absolute;
+    }
+
+    .backdrop.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .backdrop.invisible {
+      background-color: transparent;
+    }
+
+    .content {
+      z-index: calc(var(--flint-backdrop-z-index) + 1);
+    }

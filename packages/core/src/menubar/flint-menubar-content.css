@@ -1,0 +1,24 @@
+:host {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1000;
+            padding-top: 4px;
+        }
+        :host([open]) {
+            display: block;
+        }
+        .panel {
+            min-width: 200px;
+            background: var(--flint-menubar-content-bg, var(--flint-surface-1));
+            border: 1px solid var(--flint-border-color);
+            border-radius: 6px;
+            padding: 4px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+            animation: menubar-in 0.12s ease-out;
+        }
+        @keyframes menubar-in {
+            from { opacity: 0; transform: translateY(-4px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }

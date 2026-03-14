@@ -1,0 +1,58 @@
+:host {
+      display: block;
+      font-family: var(--flint-font-family);
+    }
+
+    .tree-root {
+      padding: 4px 0;
+    }
+
+    /* ── Lazy loading indicators ───────────────────────────────── */
+
+    .lazy-indicator {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 32px;
+      font-size: 14px;
+      color: var(--flint-text-color);
+    }
+
+    .lazy-root {
+      padding: 8px 8px;
+    }
+
+    @keyframes flint-spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .lazy-spinner {
+      width: 14px;
+      height: 14px;
+      border: 2px solid currentColor;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: flint-spin 0.7s linear infinite;
+      flex-shrink: 0;
+      opacity: 0.55;
+    }
+
+    /* ── Drag & Drop indicators ────────────────────────────────── */
+
+    flint-tree-item[dragging] {
+      opacity: 0.4;
+    }
+
+    flint-tree-item[drop-position="before"] {
+      box-shadow: 0 -2px 0 0 var(--flint-primary-color);
+    }
+
+    flint-tree-item[drop-position="after"] {
+      box-shadow: 0 2px 0 0 var(--flint-primary-color);
+    }
+
+    flint-tree-item[drop-position="inside"] {
+      outline: 2px solid var(--flint-primary-color);
+      outline-offset: -1px;
+      border-radius: 4px;
+    }

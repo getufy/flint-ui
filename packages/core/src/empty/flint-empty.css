@@ -1,0 +1,19 @@
+:host {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--flint-empty-gap, 16px);
+            padding: var(--flint-empty-padding, 32px);
+            max-width: var(--flint-empty-max-width, 480px);
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+            font-family: var(--flint-font-family, system-ui, sans-serif);
+        }

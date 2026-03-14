@@ -1,0 +1,159 @@
+:host {
+      display: inline-block;
+      font-family: var(--flint-font-family);
+    }
+
+    /* ── Field wrapper ───────────────────────────────────────────────── */
+    .field-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--flint-text-color-muted);
+      margin-bottom: 4px;
+    }
+
+    /* ── Mobile field ────────────────────────────────────────────────── */
+    .mobile-field {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--flint-input-bg);
+      border: 1.5px solid var(--flint-border-color);
+      border-radius: var(--flint-border-radius-md);
+      padding: 10px 44px 10px 14px;
+      font-size: 0.9375rem;
+      color: var(--flint-text-color);
+      position: relative;
+      min-width: 260px;
+      cursor: pointer;
+      box-sizing: border-box;
+      transition: border-color 0.15s;
+    }
+    .mobile-field:hover { border-color: var(--flint-primary-color); }
+    :host([disabled]) .mobile-field {
+      background: var(--flint-input-disabled-bg);
+      color: var(--flint-text-color-muted);
+      cursor: not-allowed;
+      border-color: var(--flint-border-color);
+    }
+    .mobile-field-placeholder { color: var(--flint-input-placeholder-color); }
+    .mobile-field-icon {
+      position: absolute; right: 12px;
+      font-size: 1rem; color: var(--flint-text-color-muted);
+    }
+
+    /* ── Popover ─────────────────────────────────────────────────────── */
+    .popover-anchor { position: relative; display: inline-block; }
+
+    .popover {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      z-index: 1400;
+      background: var(--flint-surface-1);
+      border-radius: var(--flint-border-radius-xl);
+      box-shadow: var(--flint-shadow-lg);
+      transform-origin: top left;
+      transform: scale(0.94) translateY(-4px);
+      opacity: 0;
+      visibility: hidden;
+      transition: transform 0.15s cubic-bezier(0.4,0,.2,1),
+                  opacity 0.15s, visibility 0.15s;
+      pointer-events: none;
+      display: flex;
+    }
+    .popover.open {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    /* ── Shortcuts panel ─────────────────────────────────────────────── */
+    .shortcuts-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding: 12px 8px;
+      min-width: 148px;
+      border-right: 1px solid var(--flint-border-color);
+      background: var(--flint-surface-1);
+    }
+    .shortcut-btn {
+      text-align: left;
+      font-family: inherit;
+      font-size: 0.8125rem;
+      padding: 8px 12px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      border-radius: 6px;
+      color: var(--flint-text-color);
+      transition: background 0.12s, color 0.12s;
+      white-space: nowrap;
+    }
+    .shortcut-btn:hover {
+      background: var(--flint-primary-color-light);
+      color: var(--flint-primary-color);
+    }
+    .shortcut-btn.active {
+      background: var(--flint-primary-color);
+      color: var(--flint-text-color-on-primary);
+    }
+
+    /* ── Popover body ────────────────────────────────────────────────── */
+    .popover-body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Popover actions ─────────────────────────────────────────────── */
+    .popover-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      padding: 4px 12px 12px;
+      border-top: 1px solid var(--flint-border-color);
+    }
+    .action-btn {
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border: none; border-radius: 6px; cursor: pointer;
+      transition: background 0.12s;
+    }
+    .action-btn.cancel {
+      background: transparent;
+      color: var(--flint-text-color-muted);
+    }
+    .action-btn.cancel:hover { background: var(--flint-hover-color); }
+    .action-btn.ok {
+      background: var(--flint-primary-color);
+      color: var(--flint-text-color-on-primary);
+    }
+    .action-btn.ok:hover { background: var(--flint-primary-color-hover); }
+
+    /* ── Click-away backdrop ─────────────────────────────────────────── */
+    .click-away {
+      display: none;
+      position: fixed; inset: 0; z-index: 1399;
+    }
+    .click-away.open { display: block; }
+
+    /* ── Static wrapper ──────────────────────────────────────────────── */
+    .static-wrapper {
+      display: inline-block;
+      border-radius: var(--flint-border-radius-xl);
+      box-shadow: var(--flint-shadow-sm), 0 0 0 1px var(--flint-border-color);
+      overflow: hidden;
+    }
+
+    /* ── Helper text ─────────────────────────────────────────────────── */
+    .helper-text {
+      font-size: 0.75rem;
+      margin-top: 4px;
+      color: var(--flint-text-color-muted);
+    }
+    :host([error]) .helper-text { color: var(--flint-error-color); }
+    :host([error]) flint-single-input-date-range-field { --flint-border-color: var(--flint-error-color); }

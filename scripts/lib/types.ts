@@ -11,24 +11,24 @@ export interface PropMeta {
 }
 
 export interface EventMeta {
-    /** DOM event name, e.g. 'ui-switch-change' */
+    /** DOM event name, e.g. 'flint-switch-change' */
     domName: string;
-    /** React event-handler prop name, e.g. 'onUiSwitchChange' */
+    /** React event-handler prop name, e.g. 'onFlintSwitchChange' */
     reactProp: string;
     /** Key for the events constants object, e.g. 'CHANGE' */
     constKey: string;
 }
 
 export interface ComponentMeta {
-    /** Custom-element tag name, e.g. 'ui-switch' */
+    /** Custom-element tag name, e.g. 'flint-switch' */
     tagName: string;
-    /** Class name, e.g. 'UiSwitch' */
+    /** Class name, e.g. 'FlintSwitch' */
     className: string;
     props: PropMeta[];
     events: EventMeta[];
     /**
      * Source file path relative to project root (forward slashes),
-     * e.g. 'src/switch/ui-switch.ts'
+     * e.g. 'src/switch/flint-switch.ts'
      */
     sourceFile: string;
 }

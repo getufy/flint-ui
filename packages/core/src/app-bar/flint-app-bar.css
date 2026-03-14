@@ -1,0 +1,67 @@
+:host {
+      display: block;
+      position: relative;
+      --flint-app-bar-height: 64px;
+      --flint-app-bar-bg: var(--flint-primary-color);
+      --flint-app-bar-color: var(--flint-text-color-on-primary);
+      --flint-app-bar-shadow: var(--flint-shadow-md);
+      z-index: 1100;
+    }
+
+    :host([position="fixed"]) {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+
+    :host([position="absolute"]) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+
+    :host([position="sticky"]) {
+      position: sticky;
+      top: 0;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+      width: 100%;
+      height: var(--flint-app-bar-height);
+      padding: 0 16px;
+      background-color: var(--flint-app-bar-bg);
+      color: var(--flint-app-bar-color);
+      box-shadow: var(--flint-app-bar-shadow);
+      position: relative;
+    }
+
+    header.variant-outlined {
+      background-color: var(--flint-surface-1);
+      color: var(--flint-text-color);
+      border-bottom: 1px solid var(--flint-border-color);
+      box-shadow: none;
+    }
+
+    .title {
+      flex-grow: 1;
+      min-width: 0;
+      margin: 0 16px;
+      font-family: var(--flint-font-family);
+      font-size: 1.25rem;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .left-section, .right-section {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      gap: 8px;
+    }

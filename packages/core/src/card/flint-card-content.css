@@ -1,0 +1,7 @@
+:host {
+      display: block;
+      padding: var(--flint-card-content-padding, 16px 24px);
+      font-size: var(--flint-card-content-size, 1rem);
+      color: var(--flint-text-color-muted);
+      line-height: 1.5;
+    }

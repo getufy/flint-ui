@@ -1,0 +1,148 @@
+:host {
+      display: inline-block;
+      vertical-align: middle;
+      font-family: var(--flint-font-family);
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      height: var(--flint-chip-height, 32px);
+      padding: 0 var(--flint-chip-padding-x, 12px);
+      border-radius: var(--flint-chip-border-radius, 16px);
+      font-size: var(--flint-chip-font-size, 0.875rem);
+      font-weight: 500;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      background-color: var(--flint-surface-2);
+      color: var(--flint-text-color);
+      border: 1px solid transparent;
+      user-select: none;
+      gap: var(--flint-chip-gap, 8px);
+      outline: none;
+      overflow: hidden;
+    }
+
+    /* ── Size variants ───────────────────────────────────────── */
+    .chip.size-sm {
+      height: var(--flint-chip-height-sm, 24px);
+      padding: 0 var(--flint-chip-padding-x-sm, 8px);
+      font-size: var(--flint-chip-font-size-sm, 0.75rem);
+      border-radius: var(--flint-chip-border-radius-sm, 12px);
+    }
+
+    .chip.size-lg {
+      height: var(--flint-chip-height-lg, 40px);
+      padding: 0 var(--flint-chip-padding-x-lg, 16px);
+      font-size: var(--flint-chip-font-size-lg, 1rem);
+      border-radius: var(--flint-chip-border-radius-lg, 20px);
+    }
+
+    .chip.clickable {
+      cursor: pointer;
+    }
+
+    .chip.clickable:hover:not(.disabled) {
+      background-color: var(--flint-hover-color);
+    }
+
+    .chip.clickable:active:not(.disabled) {
+      background-color: var(--flint-active-color);
+    }
+
+    .chip.outlined {
+      background-color: transparent;
+      border-color: var(--flint-input-border-color);
+    }
+
+    .chip.primary:not(.outlined) {
+      background-color: var(--flint-primary-color);
+      color: var(--flint-text-color-on-primary);
+    }
+
+    .chip.secondary:not(.outlined) {
+      background-color: var(--flint-secondary-color);
+      color: var(--flint-text-color-on-primary);
+    }
+
+    .chip.outlined.primary {
+      color: var(--flint-primary-color);
+      border-color: var(--flint-primary-color);
+    }
+
+    .chip.outlined.secondary {
+      color: var(--flint-secondary-color);
+      border-color: var(--flint-secondary-color);
+    }
+
+    .chip.primary.clickable:hover:not(.disabled) {
+      filter: brightness(0.9);
+      box-shadow: var(--flint-shadow-sm);
+    }
+
+    .chip.secondary.clickable:hover:not(.disabled) {
+      filter: brightness(0.9);
+      box-shadow: var(--flint-shadow-sm);
+    }
+
+    .chip.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .chip:focus-visible {
+      outline: 2px solid var(--flint-primary-color);
+      outline-offset: 2px;
+    }
+
+    .delete-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      margin-right: -4px;
+      cursor: pointer;
+      color: inherit;
+      opacity: 0.7;
+      transition: opacity 0.2s, background-color 0.2s;
+      outline: none;
+    }
+
+    .delete-icon:hover {
+      opacity: 1;
+      background-color: var(--flint-active-color);
+    }
+
+    .delete-icon:focus-visible {
+      opacity: 1;
+      outline: 2px solid currentColor;
+      outline-offset: 1px;
+    }
+
+    .chip.disabled .delete-icon {
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    ::slotted([slot="avatar"]) {
+      --flint-avatar-size: 24px;
+      width: 24px;
+      height: 24px;
+      margin-left: -8px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    ::slotted([slot="icon"]) {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      margin-left: -4px;
+      flex-shrink: 0;
+      line-height: 1;
+    }

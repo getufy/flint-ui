@@ -1,0 +1,86 @@
+:host {
+    display: inline-block;
+}
+
+button {
+    font-family: var(--flint-font-family);
+    font-weight: 500;
+    font-size: var(--flint-toggle-button-font-size, 14px);
+    padding: var(--flint-toggle-button-padding, 8px 16px);
+    border: 1px solid var(--flint-input-border-color);
+    background-color: var(--flint-surface-1);
+    color: var(--flint-text-color);
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--flint-toggle-button-gap, 8px);
+    outline: none;
+    /* Standalone default: fully rounded */
+    border-radius: var(--flint-toggle-button-border-radius, var(--flint-border-radius-md));
+    line-height: 1;
+}
+
+button:hover:not(:disabled) {
+    background-color: var(--flint-hover-color);
+}
+
+button.selected {
+    background-color: var(--flint-toggle-button-selected-bg, var(--flint-active-color));
+    color: var(--flint-toggle-button-selected-color, var(--flint-primary-color));
+    border-color: var(--flint-toggle-button-selected-border-color, var(--flint-primary-color));
+    z-index: 1;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+button:focus-visible {
+    box-shadow: 0 0 0 2px var(--flint-primary-color);
+    z-index: 2;
+}
+
+/* ─── Size variants ───────────────────────────────── */
+:host([size='sm']) button {
+    font-size: 12px;
+    padding: 4px 10px;
+    gap: 4px;
+}
+
+:host([size='lg']) button {
+    font-size: 16px;
+    padding: 12px 20px;
+    gap: 10px;
+}
+
+/* ─── Group context (set by flint-toggle-button-group) ── */
+/* Reset radius for group members; group controls corners via data-first/data-last */
+:host([data-first]) button,
+:host([data-last]) button,
+:host([data-first][data-last]) button {
+    border-radius: 0;
+}
+
+:host([data-first]) button {
+    border-top-left-radius: var(--flint-border-radius-md);
+    border-bottom-left-radius: var(--flint-border-radius-md);
+}
+
+:host([data-last]) button {
+    border-top-right-radius: var(--flint-border-radius-md);
+    border-bottom-right-radius: var(--flint-border-radius-md);
+}
+
+/* Single child in group gets full radius */
+:host([data-first][data-last]) button {
+    border-radius: var(--flint-border-radius-md);
+}
+
+/* Overlap borders between group items */
+:host([data-last]:not([data-first])) button,
+:host(:not([data-first]):not([data-last])) button {
+    margin-left: -1px;
+}

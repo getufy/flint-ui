@@ -1,0 +1,13 @@
+:host {
+    display: inline;
+    cursor: var(--flint-relative-time-cursor, text);
+}
+
+time {
+    font: inherit;
+    color: var(--flint-relative-time-color, inherit);
+    font-size: var(--flint-relative-time-font-size, inherit);
+    font-weight: var(--flint-relative-time-font-weight, inherit);
+    text-decoration: var(--flint-relative-time-text-decoration, none);
+    white-space: var(--flint-relative-time-white-space, nowrap);
+}

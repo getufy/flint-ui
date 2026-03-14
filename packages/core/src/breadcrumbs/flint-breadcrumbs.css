@@ -1,0 +1,69 @@
+:host {
+    display: block;
+}
+
+.breadcrumbs-ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.breadcrumb-li {
+    display: flex;
+    align-items: center;
+}
+
+.separator {
+    display: flex;
+    user-select: none;
+    margin-left: var(--flint-breadcrumb-separator-margin, 8px);
+    margin-right: var(--flint-breadcrumb-separator-margin, 8px);
+    color: var(--flint-breadcrumb-color, var(--flint-text-color-muted));
+}
+
+::slotted(*) {
+    font-family: var(--flint-font-family);
+    font-size: var(--flint-breadcrumb-font-size, 0.875rem);
+    color: var(--flint-breadcrumb-color, var(--flint-text-color-muted));
+    text-decoration: none;
+    transition: color 200ms;
+}
+
+::slotted(a:hover) {
+    text-decoration: underline;
+    color: var(--flint-breadcrumb-color-active, var(--flint-text-color));
+}
+
+::slotted([aria-current="page"]),
+::slotted(.active) {
+    color: var(--flint-breadcrumb-color-active, var(--flint-text-color));
+    font-weight: 500;
+    pointer-events: none;
+}
+
+.collapsed-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--flint-breadcrumb-collapsed-bg, var(--flint-hover-color));
+    border: none;
+    border-radius: var(--flint-breadcrumb-collapsed-radius, var(--flint-border-radius-md));
+    cursor: pointer;
+    padding: 2px 8px;
+    font-size: var(--flint-breadcrumb-font-size, 0.875rem);
+    line-height: 1.5;
+    color: var(--flint-breadcrumb-color, var(--flint-text-color-muted));
+    transition: background-color 200ms;
+}
+
+.collapsed-button:hover {
+    background-color: var(--flint-breadcrumb-collapsed-hover-bg, var(--flint-active-color));
+}
+
+.collapsed-button:focus-visible {
+    outline: 2px solid var(--flint-primary-color);
+    outline-offset: 2px;
+}

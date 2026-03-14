@@ -1,0 +1,9 @@
+/* Customizable properties:
+   --flint-tab-panel-padding: 24px
+   --flint-font-family: inherited from root
+   --flint-text-color: inherited from root
+ */
+:host         { display: block; background: var(--flint-background); }
+        :host([hidden]){ display: none !important; }
+        .panel        { padding: var(--flint-tab-panel-padding, 24px); font-family: var(--flint-font-family);
+                        font-size: .875rem; color: var(--flint-text-color); line-height: 1.6; }
