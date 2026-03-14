@@ -12,7 +12,7 @@
   },
   "scripts": {
     "generate": "tsx ../../scripts/generate-react-wrappers.ts",
-    "build": "tsc -p tsconfig.json",
+    "build": "node build.mjs",
     "prepublishOnly": "npm run generate && npm run build"
   },
   "keywords": [
