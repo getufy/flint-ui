@@ -274,7 +274,7 @@ describe('flint-switch', () => {
     // These tests verify the API surface; FormData behaviour is verified in browser tests.
 
     it('is form-associated', () => {
-        expect(FlintSwitch.formAssociated).toBe(true);
+        expect((FlintSwitch as unknown as Record<string, unknown>).formAssociated).toBe(true);
     });
 
     it('has name prop', async () => {

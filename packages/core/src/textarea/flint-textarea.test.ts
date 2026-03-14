@@ -11,7 +11,7 @@ describe('flint-textarea', () => {
     });
 
     it('is form-associated', () => {
-        expect(FlintTextarea.formAssociated).toBe(true);
+        expect((FlintTextarea as unknown as Record<string, unknown>).formAssociated).toBe(true);
     });
 
     // ── Default rendering ────────────────────────────────────────────────────
