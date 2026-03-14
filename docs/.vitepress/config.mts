@@ -39,7 +39,10 @@ export default defineConfig({
     search: {
       provider: 'local',
     },
-    socialLinks: [],
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/getufy/flint-ui' },
+      { icon: 'npm', link: 'https://www.npmjs.com/package/@getufy/flint-ui' },
+    ],
   },
   vite: {
     resolve: {
