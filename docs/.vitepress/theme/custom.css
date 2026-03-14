@@ -72,3 +72,37 @@
 .VPFeature .details {
   color: var(--vp-c-text-2) !important;
 }
+
+/* Brand button — gradient with hover lift */
+.VPHero .actions .VPButton.brand {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  border: none;
+  color: #fff !important;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.VPHero .actions .VPButton.brand:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.45);
+}
+
+/* Alt button — border highlight on hover */
+.VPHero .actions .VPButton.alt {
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.VPHero .actions .VPButton.alt:hover {
+  border-color: var(--vp-c-brand-1);
+  color: var(--vp-c-brand-1);
+}
+
+/* Feature cards — hover lift with shadow */
+.VPFeature {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.VPFeature:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
