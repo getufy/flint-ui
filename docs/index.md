@@ -1,20 +1,27 @@
 ---
 layout: home
 hero:
-  name: Flint UI
+  name: Flint UI 🔥
   text: Web Components Library
   tagline: A comprehensive set of accessible, customizable web components built with LitElement.
   actions:
     - theme: brand
       text: Get Started
       link: /components/button
+    - theme: alt
+      text: Live Storybook
+      link: https://lite-framework.vercel.app/storybook/
 features:
   - title: 75+ Components
-    details: From buttons to data tables, date pickers to tree views — everything you need to build modern UIs.
+    details: Buttons, data tables, date pickers, tree views, carousels, and more.
   - title: Framework Agnostic
-    details: Built with LitElement as standard web components. Works with any framework or vanilla HTML.
+    details: Standard web components — React, Vue, Angular, Svelte, or plain HTML.
   - title: React Wrappers
-    details: Auto-generated React wrappers via @lit/react for seamless React integration.
-  - title: Fully Customizable
-    details: Style with CSS custom properties using the --flint-* prefix. No build step required.
+    details: Auto-generated bindings via @lit/react with full event and ref support.
+  - title: Fully Themeable
+    details: Customize with --flint-* CSS custom properties. No build step required.
+  - title: 99.4% Test Coverage
+    details: Thoroughly tested with Vitest — every component has unit and integration tests with near-complete coverage.
+  - title: Mutation Tested
+    details: 80% Stryker mutation score ensures tests detect real bugs, not just execute code paths.
 ---

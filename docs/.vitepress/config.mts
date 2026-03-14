@@ -7,7 +7,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const sidebar = JSON.parse(readFileSync(resolve(__dirname, 'sidebar.json'), 'utf-8'));
 
 export default defineConfig({
-  title: 'Flint UI',
+  title: 'Flint UI 🔥',
   description: 'Documentation for Flint UI web components',
   appearance: false,
   themeConfig: {
