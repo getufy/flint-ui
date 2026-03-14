@@ -144,6 +144,7 @@ export class FlintTabList extends LitElement {
     @query('slot') private _slot!: HTMLSlotElement;
 
     private _ro?: ResizeObserver;
+    private _onScroll = () => this._checkScroll();
 
     connectedCallback() { super.connectedCallback(); }
 
@@ -152,12 +153,16 @@ export class FlintTabList extends LitElement {
             this._ro = new ResizeObserver(() => { this._checkScroll(); this.syncIndicator(); });
             this._ro.observe(this._area);
         }
-        this._area.addEventListener('scroll', () => this._checkScroll(), { passive: true });
+        this._area.addEventListener('scroll', this._onScroll, { passive: true });
         this._checkScroll();
         requestAnimationFrame(() => this.syncIndicator());
     }
 
-    disconnectedCallback() { this._ro?.disconnect(); super.disconnectedCallback(); }
+    disconnectedCallback() {
+        this._ro?.disconnect();
+        this._area?.removeEventListener('scroll', this._onScroll);
+        super.disconnectedCallback();
+    }
 
     private _tabs(): FlintTab[] {
         if (!this._slot) return [];

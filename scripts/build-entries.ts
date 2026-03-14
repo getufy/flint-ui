@@ -8,7 +8,7 @@
  *   tsx scripts/build-entries.ts --write-exports  # patch packages/core/package.json exports
  */
 
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -79,9 +79,34 @@ function buildExportsMap(entries: Record<string, string>): Record<string, unknow
     return exportsMap;
 }
 
-// ── 3. Main ─────────────────────────────────────────────────────────────────
+// ── 3. Validate: warn about component dirs not exported from index.ts ────
+
+function validateEntries(entries: Record<string, string>) {
+    const srcDir = resolve(coreRoot, 'src');
+    const exportedDirs = new Set(
+        Object.values(entries).map(p => p.split('/')[1]) // e.g. "button" from "src/button/flint-button.ts"
+    );
+    // Directories to skip (not components)
+    const ignore = new Set(['mixins', 'utils', 'helpers', 'shared', 'styles', 'types']);
+
+    const dirs = readdirSync(srcDir).filter(name => {
+        if (ignore.has(name)) return false;
+        const full = resolve(srcDir, name);
+        return statSync(full).isDirectory() && existsSync(resolve(full, `flint-${name}.ts`));
+    });
+
+    const missing = dirs.filter(d => !exportedDirs.has(d));
+    if (missing.length > 0) {
+        console.warn(`\n⚠  Component directories not exported from index.ts:`);
+        missing.forEach(d => console.warn(`   - src/${d}/`));
+        console.warn(`   Add exports to src/index.ts or this component won't be in the bundle.\n`);
+    }
+}
+
+// ── 4. Main ─────────────────────────────────────────────────────────────────
 
 const entries = discoverEntries();
+validateEntries(entries);
 const exportsMap = buildExportsMap(entries);
 
 if (process.argv.includes('--write-exports')) {
