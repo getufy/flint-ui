@@ -118,7 +118,7 @@ export const Floating: Story = {
   },
   render: (args) => html`
     <flint-box height="300px" p="20px" bgcolor="var(--flint-muted-background, #f9fafb)" style="border: 1px dashed #ccc; position: relative;">
-      <p style="font-family: sans-serif; color: #6b7280; font-size: 14px;">
+      <p style="font-family: sans-serif; color: #4b5563; font-size: 14px;">
         The FAB is fixed to the viewport corner specified by the <code>position</code> prop.
         Change the position using the controls panel.
       </p>
@@ -138,11 +138,11 @@ export const Positions: Story = {
           <flint-fab position="static" ?disabled=${args.disabled} label="${pos}">
             ${plusIcon}
           </flint-fab>
-          <span style="font-size: 12px; font-family: sans-serif; color: #6b7280;">${pos}</span>
+          <span style="font-size: 12px; font-family: sans-serif; color: #4b5563;">${pos}</span>
         </div>
       `)}
     </div>
-    <p style="font-size: 12px; font-family: sans-serif; color: #9ca3af; margin-top: 16px; padding: 0 16px;">
+    <p style="font-size: 12px; font-family: sans-serif; color: #4b5563; margin-top: 16px; padding: 0 16px;">
       Shown as <code>position="static"</code> for demo purposes.
       In production, each value pins the FAB to that corner of the viewport.
     </p>
@@ -157,20 +157,20 @@ export const Disabled: Story = {
         <flint-fab position="static" ?disabled=${args.disabled} label="Add">
           ${plusIcon}
         </flint-fab>
-        <span style="font-size: 12px; font-family: sans-serif; color: #6b7280;">enabled</span>
+        <span style="font-size: 12px; font-family: sans-serif; color: #4b5563;">enabled</span>
       </div>
       <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
         <flint-fab position="static" ?disabled=${args.disabled} label="Add">
           ${plusIcon}
         </flint-fab>
-        <span style="font-size: 12px; font-family: sans-serif; color: #6b7280;">disabled</span>
+        <span style="font-size: 12px; font-family: sans-serif; color: #4b5563;">disabled</span>
       </div>
       <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
         <flint-fab position="static" extended ?disabled=${args.disabled}>
           ${editIcon}
           <span slot="label">Compose</span>
         </flint-fab>
-        <span style="font-size: 12px; font-family: sans-serif; color: #6b7280;">extended + disabled</span>
+        <span style="font-size: 12px; font-family: sans-serif; color: #4b5563;">extended + disabled</span>
       </div>
     </div>
   `,
@@ -181,31 +181,31 @@ export const CustomColors: Story = {
     <div style="display: flex; gap: 24px; flex-wrap: wrap; padding: 16px; align-items: center;">
       <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
         <flint-fab position="static" label="Add"
-          style="--flint-fab-background: #10b981; --flint-fab-color: white;">
+          style="--flint-fab-background: #059669; --flint-fab-color: white;">
           ${plusIcon}
         </flint-fab>
-        <span style="font-size: 12px; font-family: sans-serif; color: #6b7280;">green</span>
+        <span style="font-size: 12px; font-family: sans-serif; color: #4b5563;">green</span>
       </div>
       <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
         <flint-fab position="static" label="Add"
           style="--flint-fab-background: #f59e0b; --flint-fab-color: #1f2937;">
           ${plusIcon}
         </flint-fab>
-        <span style="font-size: 12px; font-family: sans-serif; color: #6b7280;">amber</span>
+        <span style="font-size: 12px; font-family: sans-serif; color: #4b5563;">amber</span>
       </div>
       <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
         <flint-fab position="static" label="Add"
-          style="--flint-fab-background: #ef4444; --flint-fab-color: white;">
+          style="--flint-fab-background: #dc2626; --flint-fab-color: white;">
           ${plusIcon}
         </flint-fab>
-        <span style="font-size: 12px; font-family: sans-serif; color: #6b7280;">red</span>
+        <span style="font-size: 12px; font-family: sans-serif; color: #4b5563;">red</span>
       </div>
       <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
         <flint-fab position="static" label="Add"
           style="--flint-fab-background: #1f2937; --flint-fab-color: white;">
           ${plusIcon}
         </flint-fab>
-        <span style="font-size: 12px; font-family: sans-serif; color: #6b7280;">dark</span>
+        <span style="font-size: 12px; font-family: sans-serif; color: #4b5563;">dark</span>
       </div>
     </div>
   `,

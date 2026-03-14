@@ -5,6 +5,8 @@ import uiAccordionSummaryStyles from './flint-accordion-summary.css?inline';
 import uiAccordionDetailsStyles from './flint-accordion-details.css?inline';
 import uiAccordionActionsStyles from './flint-accordion-actions.css?inline';
 
+let _accordionCounter = 0;
+
 /**
  * Accordion: the wrapper for grouping related components.
  *
@@ -23,6 +25,9 @@ export class FlintAccordion extends LitElement {
      * If true, the accordion is disabled.
      */
     @property({ type: Boolean, reflect: true }) disabled = false;
+
+    /** Unique ID used to link the region to its summary heading. */
+    private readonly _uid = `flint-accordion-${++_accordionCounter}`;
 
     override updated(changed: PropertyValues) {
         if (changed.has('expanded') || changed.has('disabled')) {
@@ -58,7 +63,7 @@ export class FlintAccordion extends LitElement {
 
     render() {
         return html`
-            <div class="accordion-container" role="region">
+            <div class="accordion-container" role="region" aria-labelledby=${this._uid + '-summary'}>
                 <slot></slot>
             </div>
         `;
@@ -104,6 +109,11 @@ export class FlintAccordionSummary extends LitElement {
         super.connectedCallback();
         if (!this.hasAttribute('role')) this.setAttribute('role', 'button');
         if (!this.hasAttribute('tabindex')) this.setAttribute('tabindex', '0');
+        // Link to parent accordion's region for landmark-unique fix
+        const accordion = this.closest('flint-accordion') as (FlintAccordion & { _uid: string }) | null;
+        if (accordion && !this.hasAttribute('id')) {
+            this.setAttribute('id', accordion._uid + '-summary');
+        }
     }
 
     render() {

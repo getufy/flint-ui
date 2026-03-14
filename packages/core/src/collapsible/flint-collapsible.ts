@@ -37,7 +37,7 @@ export class FlintCollapsibleTrigger extends LitElement {
         return html`
             <button
                 class="trigger"
-                aria-expanded=${this.expanded}
+                aria-expanded=${this.expanded ? 'true' : 'false'}
                 ?disabled=${this.disabled}
                 @click=${this._handleClick}
             >
@@ -68,6 +68,15 @@ export class FlintCollapsibleContent extends LitElement {
 
     /** Whether the panel is visible. Managed by the parent `flint-collapsible`. */
     @property({ type: Boolean, reflect: true }) open = false;
+
+    override updated() {
+        // inert prevents focus on hidden content, fixing aria-hidden-focus
+        if (this.open) {
+            this.removeAttribute('inert');
+        } else {
+            this.setAttribute('inert', '');
+        }
+    }
 
     render() {
         return html`

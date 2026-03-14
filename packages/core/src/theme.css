@@ -92,12 +92,12 @@
    ═══════════════════════════════════════════════════════════════ */
 :root {
     /* ─── Primary ──────────────────────────────────────────────── */
-    --flint-primary-color:        var(--flint-color-blue-500);
-    --flint-primary-color-hover:  var(--flint-color-blue-600);
-    --flint-primary-color-active: var(--flint-color-blue-700);
-    --flint-primary-color-light:       rgba(59, 130, 246, 0.10);
-    --flint-primary-color-light-hover: rgba(59, 130, 246, 0.18);
-    --flint-primary-focus-ring:        rgba(59, 130, 246, 0.20);
+    --flint-primary-color:        var(--flint-color-blue-600);
+    --flint-primary-color-hover:  var(--flint-color-blue-700);
+    --flint-primary-color-active: var(--flint-color-blue-800);
+    --flint-primary-color-light:       rgba(37, 99, 235, 0.10);
+    --flint-primary-color-light-hover: rgba(37, 99, 235, 0.18);
+    --flint-primary-focus-ring:        rgba(37, 99, 235, 0.20);
 
     /* ─── Accent (non-primary tint — violet by default) ────────── */
     --flint-accent-color:        var(--flint-color-violet-600);
@@ -111,27 +111,27 @@
     --flint-secondary-color-active: var(--flint-color-zinc-700);
 
     /* ─── Destructive / Error ──────────────────────────────────── */
-    --flint-destructive-color:        var(--flint-color-red-500);
-    --flint-destructive-color-hover:  var(--flint-color-red-600);
-    --flint-destructive-color-active: var(--flint-color-red-700);
-    --flint-error-color:              var(--flint-color-red-500);
+    --flint-destructive-color:        var(--flint-color-red-600);
+    --flint-destructive-color-hover:  var(--flint-color-red-700);
+    --flint-destructive-color-active: var(--flint-color-red-800);
+    --flint-error-color:              var(--flint-color-red-600);
     --flint-error-focus-ring:         rgba(239, 68, 68, 0.20);
 
     /* ─── Semantic status ──────────────────────────────────────── */
-    --flint-success-color: var(--flint-color-emerald-500);
-    --flint-warning-color: var(--flint-color-amber-500);
+    --flint-success-color: var(--flint-color-emerald-700);
+    --flint-warning-color: var(--flint-color-amber-800);
 
     /* Info */
     --flint-info-bg:           var(--flint-color-blue-50);
     --flint-info-border-color: var(--flint-color-blue-200);
     --flint-info-text-color:   var(--flint-color-blue-800);
-    --flint-info-icon-color:   var(--flint-color-blue-500);
+    --flint-info-icon-color:   var(--flint-color-blue-600);
 
     /* Success */
     --flint-success-bg:           var(--flint-color-emerald-50);
     --flint-success-border-color: var(--flint-color-emerald-100);
     --flint-success-text-color:   var(--flint-color-emerald-800);
-    --flint-success-icon-color:   var(--flint-color-emerald-500);
+    --flint-success-icon-color:   var(--flint-color-emerald-700);
 
     /* Warning */
     --flint-warning-bg:           var(--flint-color-amber-50);
@@ -163,8 +163,8 @@
 
     /* ─── Text ─────────────────────────────────────────────────── */
     --flint-text-color:            var(--flint-color-slate-900);  /* primary text   */
-    --flint-text-color-muted:      var(--flint-color-zinc-500);   /* secondary text */
-    --flint-text-color-subtle:     var(--flint-color-zinc-400);   /* hints, disabled labels */
+    --flint-text-color-muted:      var(--flint-color-zinc-600);   /* secondary text */
+    --flint-text-color-subtle:     var(--flint-color-zinc-500);   /* hints, disabled labels */
     --flint-text-color-on-primary: var(--flint-color-white);
 
     /* ─── Borders ──────────────────────────────────────────────── */
@@ -240,7 +240,7 @@
 
     /* ─── Input-specific ───────────────────────────────────────── */
     --flint-label-color:              var(--flint-color-zinc-700, #3f3f46);
-    --flint-input-placeholder-color:  var(--flint-color-zinc-400);
+    --flint-input-placeholder-color:  var(--flint-color-zinc-500);
     --flint-input-disabled-bg:        var(--flint-color-zinc-100);
     --flint-input-disabled-color:     var(--flint-color-zinc-400);
     --flint-input-readonly-bg:        var(--flint-color-zinc-50);

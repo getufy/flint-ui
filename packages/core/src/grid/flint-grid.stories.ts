@@ -72,9 +72,9 @@ const meta: Meta = {
 export default meta;
 type Story = StoryObj;
 
-const itemStyle = 'background-color: #cfe8fc; border: 1px solid #1976d2; padding: 16px; text-align: center; color: #1976d2; font-family: monospace; box-sizing: border-box;';
-const altItemStyle = 'background-color: #fce4ec; border: 1px solid #d81b60; padding: 16px; text-align: center; color: #d81b60; font-family: monospace; box-sizing: border-box;';
-const greenItemStyle = 'background-color: #e8f5e9; border: 1px solid #388e3c; padding: 16px; text-align: center; color: #388e3c; font-family: monospace; box-sizing: border-box;';
+const itemStyle = 'background-color: #dbeafe; border: 1px solid #1e40af; padding: 16px; text-align: center; color: #1e40af; font-family: monospace; box-sizing: border-box;';
+const altItemStyle = 'background-color: #fce7f3; border: 1px solid #9d174d; padding: 16px; text-align: center; color: #9d174d; font-family: monospace; box-sizing: border-box;';
+const greenItemStyle = 'background-color: #dcfce7; border: 1px solid #166534; padding: 16px; text-align: center; color: #166534; font-family: monospace; box-sizing: border-box;';
 
 // -----------------------------------------------------------------------------
 // Basic

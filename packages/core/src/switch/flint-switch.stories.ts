@@ -136,15 +136,15 @@ export const Sizes: Story = {
     <div style="display: flex; flex-direction: column; gap: 20px;">
       <div style="display: flex; align-items: center; gap: 16px;">
         <flint-switch size="sm" label="Small"></flint-switch>
-        <code style="font-size: 12px; color: #6b7280;">size="sm"</code>
+        <code style="font-size: 12px; color: #4b5563;">size="sm"</code>
       </div>
       <div style="display: flex; align-items: center; gap: 16px;">
         <flint-switch size="md" label="Medium (default)"></flint-switch>
-        <code style="font-size: 12px; color: #6b7280;">size="md"</code>
+        <code style="font-size: 12px; color: #4b5563;">size="md"</code>
       </div>
       <div style="display: flex; align-items: center; gap: 16px;">
         <flint-switch size="lg" label="Large"></flint-switch>
-        <code style="font-size: 12px; color: #6b7280;">size="lg"</code>
+        <code style="font-size: 12px; color: #4b5563;">size="lg"</code>
       </div>
       <div style="display: flex; align-items: center; gap: 16px;">
         <flint-switch size="sm" label="Small checked" checked></flint-switch>
@@ -194,7 +194,7 @@ export const Disabled: Story = {
 export const Controlled: Story = {
     render: () => html`
     <div id="controlled-demo">
-      <p style="font-family: system-ui; font-size: 14px; color: #6b7280; margin: 0 0 12px 0;">
+      <p style="font-family: system-ui; font-size: 14px; color: #4b5563; margin: 0 0 12px 0;">
         State is controlled externally. The switch reflects the parent value.
       </p>
       <flint-switch
@@ -217,7 +217,7 @@ export const Controlled: Story = {
 export const Uncontrolled: Story = {
     render: () => html`
     <div>
-      <p style="font-family: system-ui; font-size: 14px; color: #6b7280; margin: 0 0 12px 0;">
+      <p style="font-family: system-ui; font-size: 14px; color: #4b5563; margin: 0 0 12px 0;">
         Uses <code>default-checked</code> — starts ON without controlling the prop.
       </p>
       <flint-switch label="Start enabled" default-checked></flint-switch>

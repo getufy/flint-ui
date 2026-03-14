@@ -89,7 +89,7 @@ const top100Films: AutocompleteOption[] = [
 
 const cardStyle = 'background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);';
 const headingStyle = 'margin-top: 0; margin-bottom: 16px; font-family: system-ui, sans-serif;';
-const captionStyle = 'margin-top: 200px; color: #6b7280; font-family: system-ui, sans-serif; font-size: 14px;';
+const captionStyle = 'margin-top: 200px; color: #4b5563; font-family: system-ui, sans-serif; font-size: 14px;';
 
 export const ComboBox: Story = {
     args: {
@@ -216,7 +216,7 @@ export const CustomTokens: Story = {
           width: 300px;
           --flint-autocomplete-dropdown-max-height: 150px;
           --flint-autocomplete-option-padding: 8px 16px;
-          --flint-primary-color: #8b5cf6;
+          --flint-primary-color: #7c3aed;
         "
         @flint-autocomplete-change=${(e: CustomEvent) => console.log('Selected:', e.detail)}
       ></flint-autocomplete>
@@ -271,7 +271,7 @@ export const Accessibility: Story = {
         style="width: 300px;"
         @flint-autocomplete-change=${(e: CustomEvent) => console.log('Selected:', e.detail)}
       ></flint-autocomplete>
-      <p style="margin-top: 8px; font-family: system-ui; font-size: 12px; color: #6b7280;">
+      <p style="margin-top: 8px; font-family: system-ui; font-size: 12px; color: #4b5563;">
         Use <kbd>↑</kbd> <kbd>↓</kbd> to navigate, <kbd>Enter</kbd> to select,
         <kbd>Esc</kbd> to dismiss, <kbd>Tab</kbd> to close without selecting.
       </p>

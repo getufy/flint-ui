@@ -572,16 +572,16 @@ export const IDELayout: Story = {
                       <pre style="margin:0;padding:16px;font-family:monospace;font-size:12px;
                                   line-height:1.7;color:var(--flint-text-color,#111827);
                                   background:var(--flint-background,#fff);"><code
-><span style="color:#7c3aed">import</span> <span style="color:#059669">{ LitElement, html, css }</span> <span style="color:#7c3aed">from</span> <span style="color:#d97706">'lit'</span>;
-<span style="color:#7c3aed">import</span> <span style="color:#059669">{ customElement, property }</span> <span style="color:#7c3aed">from</span> <span style="color:#d97706">'lit/decorators.js'</span>;
+><span style="color:#7c3aed">import</span> <span style="color:#059669">{ LitElement, html, css }</span> <span style="color:#7c3aed">from</span> <span style="color:#92400e">'lit'</span>;
+<span style="color:#7c3aed">import</span> <span style="color:#059669">{ customElement, property }</span> <span style="color:#7c3aed">from</span> <span style="color:#92400e">'lit/decorators.js'</span>;
 
-<span style="color:#7c3aed">@customElement</span>(<span style="color:#d97706">'flint-button'</span>)
+<span style="color:#7c3aed">@customElement</span>(<span style="color:#92400e">'flint-button'</span>)
 <span style="color:#7c3aed">export class</span> <span style="color:#0369a1">FlintButton</span> <span style="color:#7c3aed">extends</span> LitElement {
-  <span style="color:#7c3aed">@property</span>({ reflect: <span style="color:#16a34a">true</span> }) variant = <span style="color:#d97706">'default'</span>;
-  <span style="color:#7c3aed">@property</span>({ type: <span style="color:#16a34a">Boolean</span>, reflect: <span style="color:#16a34a">true</span> }) disabled = <span style="color:#16a34a">false</span>;
+  <span style="color:#7c3aed">@property</span>({ reflect: <span style="color:#15803d">true</span> }) variant = <span style="color:#92400e">'default'</span>;
+  <span style="color:#7c3aed">@property</span>({ type: <span style="color:#15803d">Boolean</span>, reflect: <span style="color:#15803d">true</span> }) disabled = <span style="color:#15803d">false</span>;
 
   <span style="color:#7c3aed">override</span> render() {
-    <span style="color:#7c3aed">return</span> html<span style="color:#d97706">\`
+    <span style="color:#7c3aed">return</span> html<span style="color:#92400e">\`
       &lt;button class="btn" ?disabled=\${this.disabled}&gt;
         &lt;slot&gt;&lt;/slot&gt;
       &lt;/button&gt;\`</span>;
@@ -593,14 +593,14 @@ export const IDELayout: Story = {
                       <pre style="margin:0;padding:16px;font-family:monospace;font-size:12px;
                                   line-height:1.7;color:var(--flint-text-color,#111827);
                                   background:var(--flint-background,#fff);"><code
-><span style="color:#7c3aed">import</span> <span style="color:#059669">{ LitElement, html }</span> <span style="color:#7c3aed">from</span> <span style="color:#d97706">'lit'</span>;
-<span style="color:#7c3aed">import</span> <span style="color:#059669">{ customElement, property }</span> <span style="color:#7c3aed">from</span> <span style="color:#d97706">'lit/decorators.js'</span>;
+><span style="color:#7c3aed">import</span> <span style="color:#059669">{ LitElement, html }</span> <span style="color:#7c3aed">from</span> <span style="color:#92400e">'lit'</span>;
+<span style="color:#7c3aed">import</span> <span style="color:#059669">{ customElement, property }</span> <span style="color:#7c3aed">from</span> <span style="color:#92400e">'lit/decorators.js'</span>;
 
-<span style="color:#7c3aed">@customElement</span>(<span style="color:#d97706">'flint-input'</span>)
+<span style="color:#7c3aed">@customElement</span>(<span style="color:#92400e">'flint-input'</span>)
 <span style="color:#7c3aed">export class</span> <span style="color:#0369a1">FlintInput</span> <span style="color:#7c3aed">extends</span> LitElement {
-  <span style="color:#7c3aed">@property</span>() value = <span style="color:#d97706">''</span>;
-  <span style="color:#7c3aed">@property</span>() placeholder = <span style="color:#d97706">''</span>;
-  <span style="color:#7c3aed">@property</span>({ type: <span style="color:#16a34a">Boolean</span>, reflect: <span style="color:#16a34a">true</span> }) disabled = <span style="color:#16a34a">false</span>;
+  <span style="color:#7c3aed">@property</span>() value = <span style="color:#92400e">''</span>;
+  <span style="color:#7c3aed">@property</span>() placeholder = <span style="color:#92400e">''</span>;
+  <span style="color:#7c3aed">@property</span>({ type: <span style="color:#15803d">Boolean</span>, reflect: <span style="color:#15803d">true</span> }) disabled = <span style="color:#15803d">false</span>;
 }</code></pre>
                     </flint-tab-panel>
                   </flint-tabs>
@@ -623,10 +623,10 @@ export const IDELayout: Story = {
                               color:var(--flint-text-color,#111827);
                               background:var(--flint-background,#fff);
                               overflow:auto;line-height:1.6;">
-                    <div><span style="color:var(--flint-success-color,#16a34a);">✔</span> Build complete in 312ms</div>
-                    <div><span style="color:var(--flint-text-color-muted,#71717a);">$</span> npm test</div>
-                    <div><span style="color:var(--flint-success-color,#16a34a);">✔</span> 59 tests passed</div>
-                    <div style="margin-top:4px;color:var(--flint-text-color-muted,#71717a);">$ ▌</div>
+                    <div><span style="color:var(--flint-success-color,#15803d);">✔</span> Build complete in 312ms</div>
+                    <div><span style="color:var(--flint-text-color-muted,#4b5563);">$</span> npm test</div>
+                    <div><span style="color:var(--flint-success-color,#15803d);">✔</span> 59 tests passed</div>
+                    <div style="margin-top:4px;color:var(--flint-text-color-muted,#4b5563);">$ ▌</div>
                   </div>
                 </flint-stack>
               </flint-resizable-panel>
@@ -657,7 +657,7 @@ export const CustomTheme: Story = {
       --flint-resizable-handle-bg: #e2e8f0;
       --flint-resizable-handle-hover-bg: #6366f1;
       --flint-resizable-grip-bg: #f1f5f9;
-      --flint-resizable-grip-dot-color: #94a3b8;
+      --flint-resizable-grip-dot-color: #475569;
       --flint-resizable-handle-transition: 250ms;
     ">
       <flint-resizable-group orientation="horizontal">

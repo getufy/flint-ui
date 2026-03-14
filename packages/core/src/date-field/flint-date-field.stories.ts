@@ -99,7 +99,7 @@ const wrap = (content: unknown) => html`
 export const Basic: Story = {
     render: (args) => wrap(html`
     <div>
-      <p style="font-size:.85rem;color:#6b7280;margin:0 0 16px;">
+      <p style="font-size:.85rem;color:#4b5563;margin:0 0 16px;">
         Click the field and start typing digits. The field automatically advances between
         month → day → year as you type. Use ↑↓ arrows to increment/decrement any segment.
       </p>
@@ -124,7 +124,7 @@ export const ControlledVsUncontrolled: Story = {
 
       <div>
         <h4 style="margin:0 0 6px;font-size:.875rem;font-weight:600;color:#374151;">Uncontrolled</h4>
-        <p style="margin:0 0 16px;font-size:.8rem;color:#6b7280;">
+        <p style="margin:0 0 16px;font-size:.8rem;color:#4b5563;">
           The field manages its own state internally. The consumer reacts to <code>change</code> events.
         </p>
         <flint-date-field label="Start Date" @flint-date-field-change=${(e: CustomEvent) => {
@@ -138,7 +138,7 @@ export const ControlledVsUncontrolled: Story = {
 
       <div>
         <h4 style="margin:0 0 6px;font-size:.875rem;font-weight:600;color:#374151;">Controlled</h4>
-        <p style="margin:0 0 16px;font-size:.8rem;color:#6b7280;">
+        <p style="margin:0 0 16px;font-size:.8rem;color:#4b5563;">
           The consumer owns the value and updates it on every <code>change</code> event.
         </p>
         <flint-date-field
@@ -167,15 +167,15 @@ export const States: Story = {
     render: (args) => wrap(html`
     <flint-stack direction="row" gap="32px" style="flex-wrap:wrap;">
       <div>
-        <p style="margin:0 0 10px;font-size:.8rem;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.04em;">Enabled</p>
+        <p style="margin:0 0 10px;font-size:.8rem;font-weight:600;color:#4b5563;text-transform:uppercase;letter-spacing:.04em;">Enabled</p>
         <flint-date-field label="Date" value="2025-06-15" ?disabled=${args.disabled} ?readonly=${args.readonly}></flint-date-field>
       </div>
       <div>
-        <p style="margin:0 0 10px;font-size:.8rem;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.04em;">Disabled</p>
+        <p style="margin:0 0 10px;font-size:.8rem;font-weight:600;color:#4b5563;text-transform:uppercase;letter-spacing:.04em;">Disabled</p>
         <flint-date-field label="Date" value="2025-06-15" ?disabled=${args.disabled} ?readonly=${args.readonly}></flint-date-field>
       </div>
       <div>
-        <p style="margin:0 0 10px;font-size:.8rem;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.04em;">Read-only</p>
+        <p style="margin:0 0 10px;font-size:.8rem;font-weight:600;color:#4b5563;text-transform:uppercase;letter-spacing:.04em;">Read-only</p>
         <flint-date-field label="Date" value="2025-06-15" ?disabled=${args.disabled} ?readonly=${args.readonly}></flint-date-field>
       </div>
     </flint-stack>
@@ -208,8 +208,8 @@ export const KeyboardShortcuts: Story = {
       <table style="border-collapse:collapse;width:100%;font-size:.875rem;">
         <thead>
           <tr style="border-bottom:1px solid #e5e7eb;">
-            <th style="text-align:left;padding:8px 12px;color:#6b7280;font-weight:600;">Key</th>
-            <th style="text-align:left;padding:8px 12px;color:#6b7280;font-weight:600;">Action</th>
+            <th style="text-align:left;padding:8px 12px;color:#4b5563;font-weight:600;">Key</th>
+            <th style="text-align:left;padding:8px 12px;color:#4b5563;font-weight:600;">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -241,7 +241,7 @@ export const ConsumerValidation: Story = {
     render: () => html`
     <div style="padding:48px;font-family:Inter,sans-serif;max-width:420px;">
       <h3 style="margin:0 0 6px;font-size:1rem;font-weight:700;color:#111827;">Date validation</h3>
-      <p style="margin:0 0 20px;font-size:.8rem;color:#6b7280;">
+      <p style="margin:0 0 20px;font-size:.8rem;color:#4b5563;">
         The component dispatches a <code>change</code> event with the ISO value whenever all
         three segments are filled. The consumer is responsible for validating the value and
         toggling the <code>error</code> attribute / <code>helper-text</code>.

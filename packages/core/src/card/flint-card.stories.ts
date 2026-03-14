@@ -267,7 +267,7 @@ export const Interactive: Story = {
   args: { interactive: true, image: '' },
   render: (args: Record<string, unknown>) => html`
     <div style="max-width: 400px; padding: 20px;">
-      <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280;">Hover the card to see the elevated shadow.</p>
+      <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563;">Hover the card to see the elevated shadow.</p>
       <flint-card variant=${args.variant} ?interactive=${args.interactive}>
         <flint-card-header title=${args.title} subtitle=${args.subtitle}></flint-card-header>
         <flint-card-content>${args.content}</flint-card-content>

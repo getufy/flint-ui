@@ -1,4 +1,4 @@
-import { LitElement, unsafeCSS, html, PropertyValues } from 'lit';
+import { LitElement, unsafeCSS, html, nothing, PropertyValues } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -42,6 +42,11 @@ export class FlintMenuItem extends LitElement {
      * Falls back to the item's visible label text if not set.
      */
     @property({ type: String, reflect: true }) value?: string;
+
+    connectedCallback() {
+        super.connectedCallback();
+        if (!this.hasAttribute('role')) this.setAttribute('role', 'menuitem');
+    }
 
     @state() private _hasIcon = false;
     @state() private _hasEndIcon = false;
@@ -320,6 +325,7 @@ export class FlintMenu extends LitElement {
             <div
                 class=${paperClasses}
                 role="menu"
+                tabindex=${this.scrollable ? '0' : nothing}
                 aria-label=${ifDefined(this.label)}
                 aria-hidden=${this.open ? 'false' : 'true'}
                 @flint-menu-item-select=${this._handleItemSelect}

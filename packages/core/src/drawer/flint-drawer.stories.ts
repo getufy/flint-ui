@@ -142,7 +142,7 @@ export const Temporary: Story = {
             </flint-drawer>
 
             <flint-button @click=${openDrawer}>Open Drawer</flint-button>
-            <p style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:.8rem;color:#94a3b8;margin:0;">
+            <p style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:.8rem;color:#475569;margin:0;">
                 Click the button · click the overlay or press Esc to close
             </p>
         </flint-box>
@@ -169,7 +169,7 @@ export const Persistent: Story = {
                 <p>The persistent drawer sits on the same surface as the content.
                    It's closed by clicking Toggle — it does not use a backdrop.</p>
                 ${Array.from({ length: 6 }).map(() => html`
-                    <p style="color:#64748b;line-height:1.6;">
+                    <p style="color:#475569;line-height:1.6;">
                         Content adapts and shifts width as the drawer opens and closes.
                         This is the recommended pattern for desktop-sized layouts.
                     </p>
@@ -213,7 +213,7 @@ export const Mini: Story = {
                 </flint-stack>
                 <p>Icons are always visible. Expand to reveal full labels alongside them.</p>
                 ${Array.from({ length: 8 }).map(() => html`
-                    <p style="color:#64748b;line-height:1.6;">
+                    <p style="color:#475569;line-height:1.6;">
                         Content stays visible at all times and the drawer width animates smoothly.
                     </p>
                 `)}
@@ -230,7 +230,7 @@ export const EdgeDrawer: Story = {
     render: (args) => html`
         <flint-box class="story-root" display="flex" alignItems="center" justifyContent="center" bgcolor="var(--flint-muted-background, #f8fafc)" border="1px solid #e2e8f0" borderRadius="8px" style="position:relative;height:360px;overflow:hidden;">
 
-            <p style="text-align:center;color:#64748b;">↓ Click the edge handle at the bottom to open</p>
+            <p style="text-align:center;color:#475569;">↓ Click the edge handle at the bottom to open</p>
 
             <flint-drawer
                 .open=${args.open}
@@ -279,7 +279,7 @@ export const Anchors: Story = {
                 </flint-drawer>
             `)}
 
-            <p style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:.8rem;color:#94a3b8;margin:0;">
+            <p style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:.8rem;color:#475569;margin:0;">
                 All four anchors demonstrated — drawers are scoped to this container
             </p>
         </flint-box>

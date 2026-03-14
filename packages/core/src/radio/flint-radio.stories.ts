@@ -168,7 +168,7 @@ export const Orientation: Story = {
     render: () => html`
         <div style="display: flex; flex-direction: column; gap: 24px;">
             <div>
-                <p style="margin: 0 0 8px; font-size: 12px; color: #6b7280;">Vertical (default)</p>
+                <p style="margin: 0 0 8px; font-size: 12px; color: #4b5563;">Vertical (default)</p>
                 <flint-radio-group name="vert" value="1">
                     <flint-radio value="1" label="Option 1"></flint-radio>
                     <flint-radio value="2" label="Option 2"></flint-radio>
@@ -176,7 +176,7 @@ export const Orientation: Story = {
                 </flint-radio-group>
             </div>
             <div>
-                <p style="margin: 0 0 8px; font-size: 12px; color: #6b7280;">Horizontal</p>
+                <p style="margin: 0 0 8px; font-size: 12px; color: #4b5563;">Horizontal</p>
                 <flint-radio-group name="horiz" value="1" orientation="horizontal">
                     <flint-radio value="1" label="Option 1"></flint-radio>
                     <flint-radio value="2" label="Option 2"></flint-radio>
@@ -191,21 +191,21 @@ export const Sizes: Story = {
     render: () => html`
         <div style="display: flex; flex-direction: column; gap: 24px;">
             <div>
-                <p style="margin: 0 0 8px; font-size: 12px; color: #6b7280;">Small</p>
+                <p style="margin: 0 0 8px; font-size: 12px; color: #4b5563;">Small</p>
                 <flint-radio-group name="sm" value="1" size="sm">
                     <flint-radio value="1" label="Option 1"></flint-radio>
                     <flint-radio value="2" label="Option 2"></flint-radio>
                 </flint-radio-group>
             </div>
             <div>
-                <p style="margin: 0 0 8px; font-size: 12px; color: #6b7280;">Medium (default)</p>
+                <p style="margin: 0 0 8px; font-size: 12px; color: #4b5563;">Medium (default)</p>
                 <flint-radio-group name="md" value="1" size="md">
                     <flint-radio value="1" label="Option 1"></flint-radio>
                     <flint-radio value="2" label="Option 2"></flint-radio>
                 </flint-radio-group>
             </div>
             <div>
-                <p style="margin: 0 0 8px; font-size: 12px; color: #6b7280;">Large</p>
+                <p style="margin: 0 0 8px; font-size: 12px; color: #4b5563;">Large</p>
                 <flint-radio-group name="lg" value="1" size="lg">
                     <flint-radio value="1" label="Option 1"></flint-radio>
                     <flint-radio value="2" label="Option 2"></flint-radio>
@@ -286,13 +286,13 @@ export const CustomLabel: Story = {
             <flint-radio value="basic">
                 <div style="display: flex; flex-direction: column;">
                     <span style="font-weight: 600;">Basic Plan</span>
-                    <span style="font-size: 12px; color: var(--flint-text-color-muted, #6b7280);">Free for individuals</span>
+                    <span style="font-size: 12px; color: var(--flint-text-color-muted, #4b5563);">Free for individuals</span>
                 </div>
             </flint-radio>
             <flint-radio value="pro">
                 <div style="display: flex; flex-direction: column;">
                     <span style="font-weight: 600;">Pro Plan</span>
-                    <span style="font-size: 12px; color: var(--flint-text-color-muted, #6b7280);">$19/month for teams</span>
+                    <span style="font-size: 12px; color: var(--flint-text-color-muted, #4b5563);">$19/month for teams</span>
                 </div>
             </flint-radio>
         </flint-radio-group>

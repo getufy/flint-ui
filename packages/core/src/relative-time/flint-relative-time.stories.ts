@@ -82,12 +82,12 @@ export const Basic: Story = {
         const now = Date.now();
         return html`
             <div style="display: flex; flex-direction: column; gap: 8px; font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
-                <div><flint-relative-time .date=${new Date(now - 20 * 1000)}></flint-relative-time> <span style="color: #6b7280;">(20 seconds ago)</span></div>
-                <div><flint-relative-time .date=${new Date(now - 3 * 60 * 1000)}></flint-relative-time> <span style="color: #6b7280;">(3 minutes ago)</span></div>
-                <div><flint-relative-time .date=${new Date(now - 2 * 3600 * 1000)}></flint-relative-time> <span style="color: #6b7280;">(2 hours ago)</span></div>
-                <div><flint-relative-time .date=${new Date(now - 3 * 86400 * 1000)}></flint-relative-time> <span style="color: #6b7280;">(3 days ago)</span></div>
-                <div><flint-relative-time .date=${new Date(now - 45 * 86400 * 1000)}></flint-relative-time> <span style="color: #6b7280;">(45 days ago)</span></div>
-                <div><flint-relative-time .date=${new Date(now - 400 * 86400 * 1000)}></flint-relative-time> <span style="color: #6b7280;">(~1 year ago)</span></div>
+                <div><flint-relative-time .date=${new Date(now - 20 * 1000)}></flint-relative-time> <span style="color: #4b5563;">(20 seconds ago)</span></div>
+                <div><flint-relative-time .date=${new Date(now - 3 * 60 * 1000)}></flint-relative-time> <span style="color: #4b5563;">(3 minutes ago)</span></div>
+                <div><flint-relative-time .date=${new Date(now - 2 * 3600 * 1000)}></flint-relative-time> <span style="color: #4b5563;">(2 hours ago)</span></div>
+                <div><flint-relative-time .date=${new Date(now - 3 * 86400 * 1000)}></flint-relative-time> <span style="color: #4b5563;">(3 days ago)</span></div>
+                <div><flint-relative-time .date=${new Date(now - 45 * 86400 * 1000)}></flint-relative-time> <span style="color: #4b5563;">(45 days ago)</span></div>
+                <div><flint-relative-time .date=${new Date(now - 400 * 86400 * 1000)}></flint-relative-time> <span style="color: #4b5563;">(~1 year ago)</span></div>
             </div>
         `;
     },
@@ -100,12 +100,12 @@ export const Future: Story = {
         const now = Date.now();
         return html`
             <div style="display: flex; flex-direction: column; gap: 8px; font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
-                <div><flint-relative-time .date=${new Date(now + 30 * 1000)}></flint-relative-time> <span style="color: #6b7280;">(in 30 seconds)</span></div>
-                <div><flint-relative-time .date=${new Date(now + 5 * 60 * 1000)}></flint-relative-time> <span style="color: #6b7280;">(in 5 minutes)</span></div>
-                <div><flint-relative-time .date=${new Date(now + 3 * 3600 * 1000)}></flint-relative-time> <span style="color: #6b7280;">(in 3 hours)</span></div>
-                <div><flint-relative-time .date=${new Date(now + 2 * 86400 * 1000)}></flint-relative-time> <span style="color: #6b7280;">(in 2 days)</span></div>
-                <div><flint-relative-time .date=${new Date(now + 60 * 86400 * 1000)}></flint-relative-time> <span style="color: #6b7280;">(in 60 days)</span></div>
-                <div><flint-relative-time .date=${new Date(now + 500 * 86400 * 1000)}></flint-relative-time> <span style="color: #6b7280;">(in ~1.5 years)</span></div>
+                <div><flint-relative-time .date=${new Date(now + 30 * 1000)}></flint-relative-time> <span style="color: #4b5563;">(in 30 seconds)</span></div>
+                <div><flint-relative-time .date=${new Date(now + 5 * 60 * 1000)}></flint-relative-time> <span style="color: #4b5563;">(in 5 minutes)</span></div>
+                <div><flint-relative-time .date=${new Date(now + 3 * 3600 * 1000)}></flint-relative-time> <span style="color: #4b5563;">(in 3 hours)</span></div>
+                <div><flint-relative-time .date=${new Date(now + 2 * 86400 * 1000)}></flint-relative-time> <span style="color: #4b5563;">(in 2 days)</span></div>
+                <div><flint-relative-time .date=${new Date(now + 60 * 86400 * 1000)}></flint-relative-time> <span style="color: #4b5563;">(in 60 days)</span></div>
+                <div><flint-relative-time .date=${new Date(now + 500 * 86400 * 1000)}></flint-relative-time> <span style="color: #4b5563;">(in ~1.5 years)</span></div>
             </div>
         `;
     },
@@ -118,7 +118,7 @@ export const Sync: Story = {
         const date = new Date(Date.now() - 60_000);
         return html`
             <div style="font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
-                <p style="margin: 0 0 8px; color: #6b7280;">This value updates automatically as time passes:</p>
+                <p style="margin: 0 0 8px; color: #4b5563;">This value updates automatically as time passes:</p>
                 <flint-relative-time .date=${date} sync></flint-relative-time>
             </div>
         `;
@@ -133,15 +133,15 @@ export const Format: Story = {
         return html`
             <div style="display: flex; flex-direction: column; gap: 12px; font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
                 <div style="display: flex; align-items: center; gap: 12px;">
-                    <code style="min-width: 72px; color: #6b7280;">narrow</code>
+                    <code style="min-width: 72px; color: #4b5563;">narrow</code>
                     <flint-relative-time .date=${date} format="narrow"></flint-relative-time>
                 </div>
                 <div style="display: flex; align-items: center; gap: 12px;">
-                    <code style="min-width: 72px; color: #6b7280;">short</code>
+                    <code style="min-width: 72px; color: #4b5563;">short</code>
                     <flint-relative-time .date=${date} format="short"></flint-relative-time>
                 </div>
                 <div style="display: flex; align-items: center; gap: 12px;">
-                    <code style="min-width: 72px; color: #6b7280;">long</code>
+                    <code style="min-width: 72px; color: #4b5563;">long</code>
                     <flint-relative-time .date=${date} format="long"></flint-relative-time>
                 </div>
             </div>
@@ -195,7 +195,7 @@ export const Localization: Story = {
             <div style="display: flex; flex-direction: column; gap: 8px; font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
                 ${locales.map(({ lang, label }) => html`
                     <div style="display: flex; align-items: center; gap: 12px;">
-                        <span style="min-width: 80px; color: #6b7280;">${label}:</span>
+                        <span style="min-width: 80px; color: #4b5563;">${label}:</span>
                         <flint-relative-time .date=${date} lang=${lang}></flint-relative-time>
                     </div>
                 `)}
@@ -227,12 +227,12 @@ export const InContext: Story = {
                     ">
                         <div>
                             <span style="font-weight: 600; color: #111827;">${item.user}</span>
-                            <span style="color: #6b7280;"> ${item.action}</span>
+                            <span style="color: #4b5563;"> ${item.action}</span>
                         </div>
                         <flint-relative-time
                             .date=${new Date(now - item.ago)}
                             format="short"
-                            style="color: #9ca3af; flex-shrink: 0; margin-left: 12px;"
+                            style="color: #4b5563; flex-shrink: 0; margin-left: 12px;"
                         ></flint-relative-time>
                     </div>
                 `)}
@@ -249,21 +249,21 @@ export const CustomStyles: Story = {
         return html`
             <div style="display: flex; flex-direction: column; gap: 12px; font-family: system-ui; font-size: 0.875rem;">
                 <div>
-                    <span style="color: #6b7280; margin-right: 8px;">default:</span>
+                    <span style="color: #4b5563; margin-right: 8px;">default:</span>
                     <flint-relative-time .date=${date}></flint-relative-time>
                 </div>
                 <div>
-                    <span style="color: #6b7280; margin-right: 8px;">primary color:</span>
+                    <span style="color: #4b5563; margin-right: 8px;">primary color:</span>
                     <flint-relative-time
                         .date=${date}
-                        style="--flint-relative-time-color: #3b82f6;"
+                        style="--flint-relative-time-color: #2563eb;"
                     ></flint-relative-time>
                 </div>
                 <div>
-                    <span style="color: #6b7280; margin-right: 8px;">large + accent:</span>
+                    <span style="color: #4b5563; margin-right: 8px;">large + accent:</span>
                     <flint-relative-time
                         .date=${date}
-                        style="--flint-relative-time-color: #8b5cf6; --flint-relative-time-font-size: 1.25rem; font-weight: 600;"
+                        style="--flint-relative-time-color: #7c3aed; --flint-relative-time-font-size: 1.25rem; font-weight: 600;"
                     ></flint-relative-time>
                 </div>
             </div>
@@ -281,22 +281,22 @@ export const EdgeCases: Story = {
         return html`
             <div style="display: flex; flex-direction: column; gap: 8px; font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
                 <div style="display: flex; align-items: center; gap: 12px;">
-                    <span style="min-width: 160px; color: #6b7280;">invalid date string:</span>
+                    <span style="min-width: 160px; color: #4b5563;">invalid date string:</span>
                     <flint-relative-time date="not-a-date"></flint-relative-time>
-                    <span style="color: #9ca3af; font-size: 0.75rem;">(renders nothing)</span>
+                    <span style="color: #4b5563; font-size: 0.75rem;">(renders nothing)</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 12px;">
-                    <span style="min-width: 160px; color: #6b7280;">Unix epoch (1970):</span>
+                    <span style="min-width: 160px; color: #4b5563;">Unix epoch (1970):</span>
                     <flint-relative-time .date=${epoch}></flint-relative-time>
                 </div>
                 <div style="display: flex; align-items: center; gap: 12px;">
-                    <span style="min-width: 160px; color: #6b7280;">far future (2099):</span>
+                    <span style="min-width: 160px; color: #4b5563;">far future (2099):</span>
                     <flint-relative-time .date=${farFuture}></flint-relative-time>
                 </div>
                 <div style="display: flex; align-items: center; gap: 12px;">
-                    <span style="min-width: 160px; color: #6b7280;">number timestamp:</span>
+                    <span style="min-width: 160px; color: #4b5563;">number timestamp:</span>
                     <flint-relative-time .date=${unixTs}></flint-relative-time>
-                    <span style="color: #9ca3af; font-size: 0.75rem;">(10 min ago)</span>
+                    <span style="color: #4b5563; font-size: 0.75rem;">(10 min ago)</span>
                 </div>
             </div>
         `;
@@ -310,7 +310,7 @@ export const LiveCountdown: Story = {
         const target = new Date(Date.now() + 90 * 1000); // 90 seconds from now
         return html`
             <div style="font-family: system-ui; font-size: 0.875rem; color: var(--flint-text-color, #111827);">
-                <p style="margin: 0 0 12px; color: #6b7280;">
+                <p style="margin: 0 0 12px; color: #4b5563;">
                     Counting down to <strong>${target.toLocaleTimeString()}</strong> — updates automatically:
                 </p>
                 <div style="
@@ -347,7 +347,7 @@ export const InlineText: Story = {
                     The next scheduled review is
                     <flint-relative-time .date=${new Date(now + 3 * 86400 * 1000)} style="font-weight: 600;"></flint-relative-time>.
                 </p>
-                <p style="margin: 0; color: #6b7280; font-size: 0.75rem;">
+                <p style="margin: 0; color: #4b5563; font-size: 0.75rem;">
                     Component uses <code>display: inline</code> — flows naturally inside prose.
                 </p>
             </div>

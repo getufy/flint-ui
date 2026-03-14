@@ -103,15 +103,15 @@ export const Sizes: Story = {
     render: () => html`
         <div style="display: flex; flex-direction: column; gap: 20px; font-family: var(--flint-font-family);">
             <div style="display: flex; align-items: center; gap: 16px;">
-                <span style="width: 32px; font-size: 12px; color: #6b7280;">sm</span>
+                <span style="width: 32px; font-size: 12px; color: #4b5563;">sm</span>
                 <flint-rating size="sm" .value=${3}></flint-rating>
             </div>
             <div style="display: flex; align-items: center; gap: 16px;">
-                <span style="width: 32px; font-size: 12px; color: #6b7280;">md</span>
+                <span style="width: 32px; font-size: 12px; color: #4b5563;">md</span>
                 <flint-rating size="md" .value=${3}></flint-rating>
             </div>
             <div style="display: flex; align-items: center; gap: 16px;">
-                <span style="width: 32px; font-size: 12px; color: #6b7280;">lg</span>
+                <span style="width: 32px; font-size: 12px; color: #4b5563;">lg</span>
                 <flint-rating size="lg" .value=${3}></flint-rating>
             </div>
         </div>
@@ -133,11 +133,11 @@ export const Disabled: Story = {
     render: () => html`
         <div style="display: flex; flex-direction: column; gap: 16px; font-family: var(--flint-font-family);">
             <div>
-                <p style="font-size: 13px; color: #6b7280; margin: 0 0 8px;">Disabled (has value)</p>
+                <p style="font-size: 13px; color: #4b5563; margin: 0 0 8px;">Disabled (has value)</p>
                 <flint-rating disabled .value=${3}></flint-rating>
             </div>
             <div>
-                <p style="font-size: 13px; color: #6b7280; margin: 0 0 8px;">Disabled (no value)</p>
+                <p style="font-size: 13px; color: #4b5563; margin: 0 0 8px;">Disabled (no value)</p>
                 <flint-rating disabled .value=${0}></flint-rating>
             </div>
         </div>
@@ -149,7 +149,7 @@ export const Disabled: Story = {
 export const Clearable: Story = {
     render: () => html`
         <div style="font-family: var(--flint-font-family);">
-            <p style="font-size: 13px; color: #6b7280; margin: 0 0 12px;">Click a selected star again to clear the rating.</p>
+            <p style="font-size: 13px; color: #4b5563; margin: 0 0 12px;">Click a selected star again to clear the rating.</p>
             <flint-rating .value=${3} clearable size="lg"
                 @flint-rating-change=${(e: CustomEvent) => console.log('value:', e.detail.value)}
             ></flint-rating>
@@ -163,7 +163,7 @@ export const HalfStar: Story = {
     render: () => html`
         <div style="display: flex; flex-direction: column; gap: 16px; font-family: var(--flint-font-family);">
             <div>
-                <p style="font-size: 13px; color: #6b7280; margin: 0 0 8px;">precision=0.5, readonly display values</p>
+                <p style="font-size: 13px; color: #4b5563; margin: 0 0 8px;">precision=0.5, readonly display values</p>
                 <div style="display: flex; flex-direction: column; gap: 8px;">
                     ${[1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5].map(v => html`
                         <div style="display: flex; align-items: center; gap: 12px;">
@@ -174,7 +174,7 @@ export const HalfStar: Story = {
                 </div>
             </div>
             <div>
-                <p style="font-size: 13px; color: #6b7280; margin: 0 0 8px;">precision=0.5, interactive (hover left/right half)</p>
+                <p style="font-size: 13px; color: #4b5563; margin: 0 0 8px;">precision=0.5, interactive (hover left/right half)</p>
                 <flint-rating .value=${2.5} .precision=${0.5 as const} size="lg"
                     @flint-rating-change=${(e: CustomEvent) => console.log('value:', e.detail.value)}
                 ></flint-rating>
@@ -198,15 +198,15 @@ export const CustomColors: Story = {
     render: () => html`
         <div style="display: flex; flex-direction: column; gap: 16px; font-family: var(--flint-font-family);">
             <div>
-                <p style="font-size: 13px; color: #6b7280; margin: 0 0 8px;">Red / Love</p>
-                <flint-rating .value=${3} style="--flint-rating-color: #ef4444;" size="lg"></flint-rating>
+                <p style="font-size: 13px; color: #4b5563; margin: 0 0 8px;">Red / Love</p>
+                <flint-rating .value=${3} style="--flint-rating-color: #dc2626;" size="lg"></flint-rating>
             </div>
             <div>
-                <p style="font-size: 13px; color: #6b7280; margin: 0 0 8px;">Green / Success</p>
-                <flint-rating .value=${5} style="--flint-rating-color: #22c55e;" size="lg"></flint-rating>
+                <p style="font-size: 13px; color: #4b5563; margin: 0 0 8px;">Green / Success</p>
+                <flint-rating .value=${5} style="--flint-rating-color: #15803d;" size="lg"></flint-rating>
             </div>
             <div>
-                <p style="font-size: 13px; color: #6b7280; margin: 0 0 8px;">Purple</p>
+                <p style="font-size: 13px; color: #4b5563; margin: 0 0 8px;">Purple</p>
                 <flint-rating .value=${4} style="--flint-rating-color: #a855f7;" size="lg"></flint-rating>
             </div>
         </div>
@@ -251,7 +251,7 @@ export const Controlled: Story = {
 export const Uncontrolled: Story = {
     render: () => html`
         <div style="font-family: var(--flint-font-family);">
-            <p style="font-size: 13px; color: #6b7280; margin: 0 0 12px;">
+            <p style="font-size: 13px; color: #4b5563; margin: 0 0 12px;">
                 Uses <code>defaultValue</code> — no external state management needed.
             </p>
             <flint-rating .defaultValue=${2} size="lg"

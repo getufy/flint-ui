@@ -235,7 +235,7 @@ export const SelectedMenu: Story = {
         const selected = 'Drafts';
         return html`
             <div class="story-root" style="padding:48px 32px;background:var(--flint-muted-background, #f8fafc);border:1px solid #e2e8f0;border-radius:8px;font-family:Inter,sans-serif;min-height:260px;">
-                <p style="margin-bottom:12px;font-size:.875rem;color:#6b7280;">
+                <p style="margin-bottom:12px;font-size:.875rem;color:#4b5563;">
                     Selected: <strong>${selected}</strong>
                 </p>
                 <div style="position:relative;display:inline-block;">
@@ -274,7 +274,7 @@ export const PositionedMenu: Story = {
         <div class="story-root" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;padding:24px;background:var(--flint-muted-background, #f8fafc);border:1px solid #e2e8f0;border-radius:8px;font-family:Inter,sans-serif;">
             ${(['bottom-start', 'bottom-end', 'top-start', 'top-end'] as const).map(placement => html`
                 <flint-stack direction="column" alignItems="flex-start" gap="8px" style="padding:24px 0 0;">
-                    <span style="font-size:.7rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.06em;">${placement}</span>
+                    <span style="font-size:.7rem;color:#475569;text-transform:uppercase;letter-spacing:.06em;">${placement}</span>
                     <div data-menu-anchor style="position:relative;display:inline-block;margin-top:${placement.startsWith('top') ? '120px' : '0'}">
                         <flint-button variant="outlined" @click=${(e: Event) => {
             /* find the menu within THIS button's own anchor wrapper */
@@ -333,7 +333,7 @@ export const DisabledItems: Story = {
             </flint-menu>
         </div>
 
-        <p style="margin-top:200px;font-size:.8rem;color:#94a3b8;">
+        <p style="margin-top:200px;font-size:.8rem;color:#475569;">
             Disabled items are non-interactive and skipped during keyboard navigation.
         </p>
     `),
@@ -346,7 +346,7 @@ export const DenseMode: Story = {
     render: () => wrap(html`
         <flint-stack direction="row" gap="32px" alignItems="flex-start">
             <div>
-                <p style="margin:0 0 8px;font-size:.75rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;">Default</p>
+                <p style="margin:0 0 8px;font-size:.75rem;color:#475569;text-transform:uppercase;letter-spacing:.05em;">Default</p>
                 <div style="position:relative;display:inline-block;">
                     <flint-button @click=${toggle}>Open</flint-button>
                     <flint-menu open placement="bottom-start" @flint-menu-close=${close}>
@@ -358,7 +358,7 @@ export const DenseMode: Story = {
             </div>
 
             <div style="flex: 1;">
-                <p style="margin:0 0 8px;font-size:.75rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;">Dense</p>
+                <p style="margin:0 0 8px;font-size:.75rem;color:#475569;text-transform:uppercase;letter-spacing:.05em;">Dense</p>
                 <div style="position:relative;display:inline-block;">
                     <flint-button @click=${(e: Event) => {
         const anchor = (e.currentTarget as HTMLElement).closest('div');
@@ -454,7 +454,7 @@ export const AccountMenu: Story = {
                     <flint-avatar name="Jane Doe"></flint-avatar>
                     <div>
                         <div style="font-weight:600;font-size:.95rem;">Jane Doe</div>
-                        <div style="font-size:.8rem;color:#6b7280;">jane@example.com</div>
+                        <div style="font-size:.8rem;color:#4b5563;">jane@example.com</div>
                     </div>
                 </flint-stack>
 
@@ -526,7 +526,7 @@ export const ContextMenu: Story = {
                 style="padding:48px 32px;background:var(--flint-muted-background, #f8fafc);border:2px dashed #cbd5e1;border-radius:8px;font-family:Inter,sans-serif;min-height:260px;cursor:context-menu;user-select:none;"
                 @contextmenu=${onContextMenu}
             >
-                <p style="color:#94a3b8;font-size:.9rem;pointer-events:none;">
+                <p style="color:#475569;font-size:.9rem;pointer-events:none;">
                     Right-click anywhere in this area
                 </p>
             </flint-box>

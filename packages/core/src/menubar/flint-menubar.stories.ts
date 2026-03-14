@@ -977,7 +977,7 @@ export const ClickToOpen: Story = {
 
 export const HoverSwitching: Story = {
     render: () => wrap(html`
-        <p style="margin-bottom: 16px; color: #64748b; font-size: 0.875rem;">
+        <p style="margin-bottom: 16px; color: #475569; font-size: 0.875rem;">
             Click File to open, then hover over Edit to switch menus.
         </p>
         <flint-menubar>
@@ -1012,7 +1012,7 @@ export const HoverSwitching: Story = {
 
 export const KeyboardNavigation: Story = {
     render: () => wrap(html`
-        <p style="margin-bottom: 16px; color: #64748b; font-size: 0.875rem;">
+        <p style="margin-bottom: 16px; color: #475569; font-size: 0.875rem;">
             Click File, then use ← → to switch menus and ↑ ↓ to navigate items.
         </p>
         <flint-menubar>
@@ -1264,7 +1264,7 @@ export const EmptyMenu: Story = {
 
 export const CustomLabel: Story = {
     render: () => wrap(html`
-        <p style="margin-bottom: 16px; color: #64748b; font-size: 0.875rem;">
+        <p style="margin-bottom: 16px; color: #475569; font-size: 0.875rem;">
             This menubar has <code>label="Application Menu"</code> — inspect the
             <code>role="menubar"</code> div to see the custom <code>aria-label</code>.
         </p>
@@ -1299,7 +1299,7 @@ export const CustomLabel: Story = {
 
 export const DisabledMenu: Story = {
     render: () => wrap(html`
-        <p style="margin-bottom: 16px; color: #64748b; font-size: 0.875rem;">
+        <p style="margin-bottom: 16px; color: #475569; font-size: 0.875rem;">
             The <strong>Edit</strong> menu is disabled. Keyboard navigation skips it.
         </p>
         <flint-menubar>
@@ -1343,7 +1343,7 @@ export const DisabledMenu: Story = {
 
 export const TypeaheadJump: Story = {
     render: () => wrap(html`
-        <p style="margin-bottom: 16px; color: #64748b; font-size: 0.875rem;">
+        <p style="margin-bottom: 16px; color: #475569; font-size: 0.875rem;">
             Open the File menu, then press <kbd>P</kbd> to jump to <strong>Print</strong>
             or <kbd>N</kbd> to jump to <strong>New Tab</strong>.
         </p>
@@ -1387,7 +1387,7 @@ export const TypeaheadJump: Story = {
 
 export const AccessibilityDemo: Story = {
     render: () => wrap(html`
-        <p style="margin-bottom: 16px; color: #64748b; font-size: 0.875rem;">
+        <p style="margin-bottom: 16px; color: #475569; font-size: 0.875rem;">
             ARIA roles and attributes: <code>role="menubar"</code>,
             <code>role="menuitem"</code>, <code>aria-haspopup</code>,
             <code>aria-expanded</code>, <code>aria-checked</code>,

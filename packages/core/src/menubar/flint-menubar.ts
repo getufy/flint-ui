@@ -84,6 +84,11 @@ export class FlintMenubarItem extends LitElement {
 
     static styles = unsafeCSS(uiMenubarItemStyles);
 
+    connectedCallback() {
+        super.connectedCallback();
+        if (!this.hasAttribute('role')) this.setAttribute('role', 'menuitem');
+    }
+
     /** Returns label text from direct text nodes only (excludes shortcut element content). */
     private _labelText(): string {
         return Array.from(this.childNodes)
@@ -103,7 +108,7 @@ export class FlintMenubarItem extends LitElement {
     }
 
     render() {
-        return html`<div class="item" role="menuitem" aria-disabled=${this.disabled}><slot></slot></div>`;
+        return html`<div class="item" role="menuitem" aria-disabled=${this.disabled ? 'true' : nothing}><slot></slot></div>`;
     }
 }
 
@@ -129,6 +134,11 @@ export class FlintMenubarCheckboxItem extends LitElement {
 
     static styles = unsafeCSS(uiMenubarCheckboxItemStyles);
 
+    connectedCallback() {
+        super.connectedCallback();
+        if (!this.hasAttribute('role')) this.setAttribute('role', 'menuitemcheckbox');
+    }
+
     private _labelText(): string {
         return Array.from(this.childNodes)
             .filter(n => n.nodeType === Node.TEXT_NODE)
@@ -148,7 +158,7 @@ export class FlintMenubarCheckboxItem extends LitElement {
 
     render() {
         return html`
-            <div class="item" role="menuitemcheckbox" aria-checked=${this.checked} aria-disabled=${this.disabled}>
+            <div class="item" role="menuitemcheckbox" aria-checked=${this.checked ? 'true' : 'false'} aria-disabled=${this.disabled ? 'true' : nothing}>
                 <span class="check">
                     ${this.checked ? html`<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11.5 3.5L5.5 9.5L2.5 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>` : nothing}
                 </span>
@@ -178,6 +188,11 @@ export class FlintMenubarRadioItem extends LitElement {
 
     static styles = unsafeCSS(uiMenubarRadioItemStyles);
 
+    connectedCallback() {
+        super.connectedCallback();
+        if (!this.hasAttribute('role')) this.setAttribute('role', 'menuitemradio');
+    }
+
     select() {
         if (this.disabled) return;
         this.dispatchEvent(new CustomEvent('flint-menubar-radio-select', {
@@ -188,7 +203,7 @@ export class FlintMenubarRadioItem extends LitElement {
 
     render() {
         return html`
-            <div class="item" role="menuitemradio" aria-checked=${this.checked} aria-disabled=${this.disabled}>
+            <div class="item" role="menuitemradio" aria-checked=${this.checked ? 'true' : 'false'} aria-disabled=${this.disabled ? 'true' : nothing}>
                 <span class="dot">
                     ${this.checked ? html`<svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"></circle></svg>` : nothing}
                 </span>
@@ -311,13 +326,18 @@ export class FlintMenubarSubTrigger extends LitElement {
 
     static styles = unsafeCSS(uiMenubarSubTriggerStyles);
 
+    connectedCallback() {
+        super.connectedCallback();
+        if (!this.hasAttribute('role')) this.setAttribute('role', 'menuitem');
+    }
+
     render() {
         return html`
             <div class="item"
                 role="menuitem"
                 aria-haspopup="menu"
-                aria-expanded=${this.expanded}
-                aria-disabled=${this.disabled}>
+                aria-expanded=${this.expanded ? 'true' : 'false'}
+                aria-disabled=${this.disabled ? 'true' : nothing}>
                 <slot></slot>
                 <svg class="arrow" viewBox="0 0 14 14" fill="none">
                     <path d="M5 3L9 7L5 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -648,12 +668,17 @@ export class FlintMenubarTrigger extends LitElement {
 
     static styles = unsafeCSS(uiMenubarTriggerStyles);
 
+    connectedCallback() {
+        super.connectedCallback();
+        if (!this.hasAttribute('role')) this.setAttribute('role', 'menuitem');
+    }
+
     render() {
         return html`
             <button class="trigger"
                 role="menuitem"
                 aria-haspopup="true"
-                aria-expanded=${this.active}
+                aria-expanded=${this.active ? 'true' : 'false'}
                 ?disabled=${this.disabled}
                 tabindex=${this._focusable ? '0' : '-1'}>
                 <slot></slot>
@@ -675,6 +700,11 @@ export class FlintMenubarMenu extends LitElement {
     @property({ reflect: true, type: Boolean }) disabled = false;
 
     static styles = unsafeCSS(uiMenubarMenuStyles);
+
+    connectedCallback() {
+        super.connectedCallback();
+        if (!this.hasAttribute('role')) this.setAttribute('role', 'none');
+    }
 
     get trigger(): FlintMenubarTrigger | null {
         return this.querySelector<FlintMenubarTrigger>(':scope > flint-menubar-trigger');

@@ -59,7 +59,7 @@ export default meta;
 type Story = StoryObj;
 
 const placeholderContent = html`
-  <div style="background-color: #cfe8fc; height: 100vh; padding: 24px; border: 1px solid #3b82f6; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-family: Inter, sans-serif; font-size: 1.25rem;">
+  <div style="background-color: #dbeafe; height: 100vh; padding: 24px; border: 1px solid #3b82f6; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-family: Inter, sans-serif; font-size: 1.25rem;">
     Content inside Container
   </div>
 `;

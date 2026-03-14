@@ -16,7 +16,7 @@ describe('FlintLinearProgress', () => {
     it('renders with indeterminate variant by default', async () => {
         const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress></flint-linear-progress>`);
         const root = el.shadowRoot!.querySelector('.root')!;
-        expect(root).to.exist;
+        expect(root).to.not.equal(null);
         expect(root.classList.contains('indeterminate')).to.equal(true);
         expect(root.classList.contains('determinate')).to.equal(false);
         expect(el.variant).to.equal('indeterminate');
@@ -24,8 +24,8 @@ describe('FlintLinearProgress', () => {
 
     it('renders two bars (bar1 and bar2) in indeterminate mode', async () => {
         const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress></flint-linear-progress>`);
-        expect(el.shadowRoot!.querySelector('.bar1')).to.not.be.null;
-        expect(el.shadowRoot!.querySelector('.bar2')).to.not.be.null;
+        expect(el.shadowRoot!.querySelector('.bar1') !== null).to.equal(true);
+        expect(el.shadowRoot!.querySelector('.bar2') !== null).to.equal(true);
         const bars = el.shadowRoot!.querySelectorAll('.bar');
         expect(bars.length).to.equal(2);
     });
@@ -49,8 +49,8 @@ describe('FlintLinearProgress', () => {
         const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress variant="determinate" .value=${50}></flint-linear-progress>`);
         const bars = el.shadowRoot!.querySelectorAll('.bar');
         expect(bars.length).to.equal(1);
-        expect(el.shadowRoot!.querySelector('.bar1')).to.be.null;
-        expect(el.shadowRoot!.querySelector('.bar2')).to.be.null;
+        expect(el.shadowRoot!.querySelector('.bar1')).to.equal(null);
+        expect(el.shadowRoot!.querySelector('.bar2')).to.equal(null);
     });
 
     it('applies correct scaleX transform based on value', async () => {
@@ -115,25 +115,25 @@ describe('FlintLinearProgress', () => {
     it('sets CSS custom property for primary color', async () => {
         const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress></flint-linear-progress>`);
         const root = el.shadowRoot!.querySelector('.root') as HTMLElement;
-        expect(root.style.getPropertyValue('--flint-linear-progress-color')).to.equal('var(--flint-primary-color, #3b82f6)');
+        expect(root.style.getPropertyValue('--flint-linear-progress-color')).to.equal('var(--flint-primary-color, #2563eb)');
     });
 
     it('sets CSS custom property for success color', async () => {
         const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress color="success"></flint-linear-progress>`);
         const root = el.shadowRoot!.querySelector('.root') as HTMLElement;
-        expect(root.style.getPropertyValue('--flint-linear-progress-color')).to.equal('var(--flint-success-color, #22c55e)');
+        expect(root.style.getPropertyValue('--flint-linear-progress-color')).to.equal('var(--flint-success-color, #15803d)');
     });
 
     it('sets CSS custom property for error color', async () => {
         const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress color="error"></flint-linear-progress>`);
         const root = el.shadowRoot!.querySelector('.root') as HTMLElement;
-        expect(root.style.getPropertyValue('--flint-linear-progress-color')).to.equal('var(--flint-error-color, #ef4444)');
+        expect(root.style.getPropertyValue('--flint-linear-progress-color')).to.equal('var(--flint-error-color, #dc2626)');
     });
 
     it('sets CSS custom property for warning color', async () => {
         const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress color="warning"></flint-linear-progress>`);
         const root = el.shadowRoot!.querySelector('.root') as HTMLElement;
-        expect(root.style.getPropertyValue('--flint-linear-progress-color')).to.equal('var(--flint-warning-color, #f59e0b)');
+        expect(root.style.getPropertyValue('--flint-linear-progress-color')).to.equal('var(--flint-warning-color, #92400e)');
     });
 
     // --- Value clamping ---
@@ -189,7 +189,7 @@ describe('FlintCircularProgress', () => {
     it('renders with indeterminate variant by default', async () => {
         const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress></flint-circular-progress>`);
         const root = el.shadowRoot!.querySelector('.circular-root')!;
-        expect(root).to.exist;
+        expect(root).to.not.equal(null);
         expect(root.classList.contains('indeterminate')).to.equal(true);
         expect(root.classList.contains('determinate')).to.equal(false);
         expect(el.variant).to.equal('indeterminate');
@@ -198,9 +198,9 @@ describe('FlintCircularProgress', () => {
     it('renders an SVG with a circle element', async () => {
         const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress></flint-circular-progress>`);
         const svg = el.shadowRoot!.querySelector('svg');
-        expect(svg).to.exist;
+        expect(svg).to.not.equal(null);
         const circle = svg!.querySelector('circle');
-        expect(circle).to.exist;
+        expect(circle).to.not.equal(null);
     });
 
     it('does not set aria-valuenow in indeterminate mode', async () => {
@@ -304,25 +304,25 @@ describe('FlintCircularProgress', () => {
     it('sets CSS custom property for primary color', async () => {
         const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress></flint-circular-progress>`);
         const root = el.shadowRoot!.querySelector('.circular-root') as HTMLElement;
-        expect(root.style.getPropertyValue('--flint-circular-progress-color')).to.equal('var(--flint-primary-color, #3b82f6)');
+        expect(root.style.getPropertyValue('--flint-circular-progress-color')).to.equal('var(--flint-primary-color, #2563eb)');
     });
 
     it('sets CSS custom property for success color', async () => {
         const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress color="success"></flint-circular-progress>`);
         const root = el.shadowRoot!.querySelector('.circular-root') as HTMLElement;
-        expect(root.style.getPropertyValue('--flint-circular-progress-color')).to.equal('var(--flint-success-color, #22c55e)');
+        expect(root.style.getPropertyValue('--flint-circular-progress-color')).to.equal('var(--flint-success-color, #15803d)');
     });
 
     it('sets CSS custom property for error color', async () => {
         const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress color="error"></flint-circular-progress>`);
         const root = el.shadowRoot!.querySelector('.circular-root') as HTMLElement;
-        expect(root.style.getPropertyValue('--flint-circular-progress-color')).to.equal('var(--flint-error-color, #ef4444)');
+        expect(root.style.getPropertyValue('--flint-circular-progress-color')).to.equal('var(--flint-error-color, #dc2626)');
     });
 
     it('sets CSS custom property for warning color', async () => {
         const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress color="warning"></flint-circular-progress>`);
         const root = el.shadowRoot!.querySelector('.circular-root') as HTMLElement;
-        expect(root.style.getPropertyValue('--flint-circular-progress-color')).to.equal('var(--flint-warning-color, #f59e0b)');
+        expect(root.style.getPropertyValue('--flint-circular-progress-color')).to.equal('var(--flint-warning-color, #92400e)');
     });
 
     // --- Value clamping ---

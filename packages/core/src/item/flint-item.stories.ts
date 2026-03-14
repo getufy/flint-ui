@@ -323,7 +323,7 @@ export const Variants: Story = {
     name: 'Variant',
     render: () => html`
         <div style="max-width: 480px; padding: 24px; display: flex; flex-direction: column; gap: 12px;">
-            <p style="margin: 0 0 4px; font-size: 0.8125rem; color: #6b7280; font-family: system-ui;">
+            <p style="margin: 0 0 4px; font-size: 0.8125rem; color: #4b5563; font-family: system-ui;">
                 Three visual variants: default, outline, muted.
             </p>
             <flint-item>
@@ -356,7 +356,7 @@ export const Sizes: Story = {
     name: 'Size',
     render: () => html`
         <div style="max-width: 480px; padding: 24px; display: flex; flex-direction: column; gap: 12px;">
-            <p style="margin: 0 0 4px; font-size: 0.8125rem; color: #6b7280; font-family: system-ui;">
+            <p style="margin: 0 0 4px; font-size: 0.8125rem; color: #4b5563; font-family: system-ui;">
                 Three size presets: default (16px), sm (12px), xs (8px).
             </p>
             <flint-item variant="outline">
@@ -398,7 +398,7 @@ export const WithMedia: Story = {
             </flint-item>
             <flint-item variant="outline">
                 <flint-item-media>
-                    <div style=${avatarStyle('ER', '#3b82f6')}>ER</div>
+                    <div style=${avatarStyle('ER', '#2563eb')}>ER</div>
                 </flint-item-media>
                 <flint-item-content>
                     <flint-item-title>Avatar Media</flint-item-title>
@@ -446,7 +446,7 @@ export const LinkItem: Story = {
     name: 'As Link',
     render: () => html`
         <div style="max-width: 480px; padding: 24px; display: flex; flex-direction: column; gap: 8px;">
-            <p style="margin: 0 0 8px; font-size: 0.8125rem; color: #6b7280; font-family: system-ui;">
+            <p style="margin: 0 0 8px; font-size: 0.8125rem; color: #4b5563; font-family: system-ui;">
                 Wrap <code>flint-item</code> in an anchor for link behaviour.
             </p>
             <a href="#" style="text-decoration: none; display: block;">
@@ -476,7 +476,7 @@ export const WithHeader: Story = {
     name: 'With Header',
     render: () => html`
         <div style="max-width: 360px; padding: 24px; display: flex; flex-direction: column; gap: 16px;">
-            <p style="margin: 0 0 4px; font-size: 0.8125rem; color: #6b7280; font-family: system-ui;">
+            <p style="margin: 0 0 4px; font-size: 0.8125rem; color: #4b5563; font-family: system-ui;">
                 <code>flint-item-header</code> bleeds to the item edges (top, left, right).
             </p>
             <flint-item variant="outline">
@@ -496,7 +496,7 @@ export const WithHeader: Story = {
                 <flint-item-header>
                     <div style="
                         width: 100%; height: 80px;
-                        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+                        background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
                         display: flex; align-items: center; justify-content: center;
                     ">
                         ${bellIcon}
@@ -526,7 +526,7 @@ export const WithFooter: Story = {
                     <button style=${btnStyle}>Play</button>
                 </flint-item-actions>
                 <flint-item-footer>
-                    <span style="font-size:0.75rem;color:#9ca3af;">Added 3 days ago · 3:45</span>
+                    <span style="font-size:0.75rem;color:#4b5563;">Added 3 days ago · 3:45</span>
                 </flint-item-footer>
             </flint-item>
             <flint-item variant="outline">
@@ -536,7 +536,7 @@ export const WithFooter: Story = {
                     <flint-item-description>Unlimited projects, priority support.</flint-item-description>
                 </flint-item-content>
                 <flint-item-footer>
-                    <span style="font-size:0.75rem;color:#9ca3af;">Renews on March 15, 2026</span>
+                    <span style="font-size:0.75rem;color:#4b5563;">Renews on March 15, 2026</span>
                 </flint-item-footer>
             </flint-item>
         </div>
@@ -548,9 +548,9 @@ export const Group: Story = {
     name: 'Item Group',
     render: () => {
         const people = [
-            { initials: 'CN', name: 'shadcn', email: 'shadcn@vercel.com',     color: '#3b82f6' },
-            { initials: 'LR', name: 'maxleiter', email: 'max@vercel.com',     color: '#8b5cf6' },
-            { initials: 'ER', name: 'evilrabbit', email: 'evil@vercel.com',   color: '#10b981' },
+            { initials: 'CN', name: 'shadcn', email: 'shadcn@vercel.com',     color: '#2563eb' },
+            { initials: 'LR', name: 'maxleiter', email: 'max@vercel.com',     color: '#7c3aed' },
+            { initials: 'ER', name: 'evilrabbit', email: 'evil@vercel.com',   color: '#059669' },
         ];
 
         return html`
@@ -582,9 +582,9 @@ export const MusicList: Story = {
     name: 'Music List',
     render: () => {
         const songs = [
-            { title: 'Midnight City Lights', artist: 'Neon Dreams',     duration: '3:45', color: '#3b82f6' },
-            { title: 'Coffee Shop Conversations', artist: 'Morning Brew', duration: '4:05', color: '#8b5cf6' },
-            { title: 'Digital Rain',         artist: 'Cyber Symphony',   duration: '3:30', color: '#10b981' },
+            { title: 'Midnight City Lights', artist: 'Neon Dreams',     duration: '3:45', color: '#2563eb' },
+            { title: 'Coffee Shop Conversations', artist: 'Morning Brew', duration: '4:05', color: '#7c3aed' },
+            { title: 'Digital Rain',         artist: 'Cyber Symphony',   duration: '3:30', color: '#047857' },
         ];
 
         return html`
@@ -619,9 +619,9 @@ export const Notifications: Story = {
     name: 'Notifications',
     render: () => {
         const items = [
-            { icon: shieldIcon, color: '#ef4444', title: 'Security Alert', desc: 'Unusual login from Berlin, DE.', time: '2m ago' },
-            { icon: bellIcon,   color: '#f59e0b', title: 'Reminder',       desc: 'Team standup starts in 5 minutes.', time: '5m ago' },
-            { icon: inboxIcon,  color: '#3b82f6', title: 'New Message',    desc: 'You have 3 unread messages.', time: '12m ago' },
+            { icon: shieldIcon, color: '#dc2626', title: 'Security Alert', desc: 'Unusual login from Berlin, DE.', time: '2m ago' },
+            { icon: bellIcon,   color: '#92400e', title: 'Reminder',       desc: 'Team standup starts in 5 minutes.', time: '5m ago' },
+            { icon: inboxIcon,  color: '#2563eb', title: 'New Message',    desc: 'You have 3 unread messages.', time: '12m ago' },
         ];
 
         return html`
@@ -640,7 +640,7 @@ export const Notifications: Story = {
                                 <flint-item-description>${n.desc}</flint-item-description>
                             </flint-item-content>
                             <flint-item-actions>
-                                <span style="font-size:0.75rem;color:#9ca3af;white-space:nowrap;">${n.time}</span>
+                                <span style="font-size:0.75rem;color:#4b5563;white-space:nowrap;">${n.time}</span>
                             </flint-item-actions>
                         </flint-item>
                     `)}
@@ -655,7 +655,7 @@ export const CustomProperties: Story = {
     name: 'CSS Custom Properties',
     render: () => html`
         <div style="max-width: 480px; padding: 24px; display: flex; flex-direction: column; gap: 12px;">
-            <p style="margin: 0 0 4px; font-size: 0.8125rem; color: #6b7280; font-family: system-ui;">
+            <p style="margin: 0 0 4px; font-size: 0.8125rem; color: #4b5563; font-family: system-ui;">
                 Override CSS custom properties for theming.
             </p>
             <flint-item variant="outline" style="

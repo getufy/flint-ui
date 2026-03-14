@@ -207,7 +207,7 @@ const wrap = (content: unknown) => html`
 const panelContent = (title: string, body: string) => html`
     <div style="font-family:Inter,sans-serif;">
         <h3 style="margin:0 0 8px;font-size:1rem;font-weight:600;color:#111827;">${title}</h3>
-        <p  style="margin:0;font-size:.875rem;color:#6b7280;line-height:1.6;">${body}</p>
+        <p  style="margin:0;font-size:.875rem;color:#4b5563;line-height:1.6;">${body}</p>
     </div>`;
 
 /* SVG icons used in icon stories */
@@ -301,12 +301,12 @@ export const Colored: Story = {
             { label: 'Primary (default)', text: 'primary', ind: 'primary' },
             { label: 'Secondary', text: 'secondary', ind: 'secondary' },
             { label: 'Inherit (from parent)', text: 'inherit', ind: 'primary' },
-            { label: 'Custom — #f59e0b amber', text: '#f59e0b', ind: '#f59e0b' },
-            { label: 'Custom — #10b981 emerald', text: '#10b981', ind: '#10b981' },
-            { label: 'Custom — #ef4444 red', text: '#ef4444', ind: '#ef4444' },
+            { label: 'Custom — #b45309 amber', text: '#b45309', ind: '#b45309' },
+            { label: 'Custom — #047857 emerald', text: '#047857', ind: '#047857' },
+            { label: 'Custom — #dc2626 red', text: '#dc2626', ind: '#dc2626' },
         ].map(c => html`
                 <div>
-                    <p style="margin:0 0 6px;font-size:.75rem;color:#6b7280;font-weight:600;
+                    <p style="margin:0 0 6px;font-size:.75rem;color:#4b5563;font-weight:600;
                                text-transform:uppercase;letter-spacing:.06em;font-family:Inter,sans-serif;">
                         ${c.label}
                     </p>
@@ -358,7 +358,7 @@ export const FullWidth: Story = {
     render: () => html`
         <flint-stack direction="column" gap="24px">
             <div>
-                <p style="font-family:Inter,sans-serif;font-size:.75rem;color:#6b7280;font-weight:600;
+                <p style="font-family:Inter,sans-serif;font-size:.75rem;color:#4b5563;font-weight:600;
                            text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px;">
                     variant="fullWidth" — 3 tabs
                 </p>
@@ -376,7 +376,7 @@ export const FullWidth: Story = {
                 `)}
             </div>
             <div>
-                <p style="font-family:Inter,sans-serif;font-size:.75rem;color:#6b7280;font-weight:600;
+                <p style="font-family:Inter,sans-serif;font-size:.75rem;color:#4b5563;font-weight:600;
                            text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px;">
                     variant="fullWidth" — 2 tabs
                 </p>
@@ -438,7 +438,7 @@ export const ScrollButtons: Story = {
     render: () => html`
         <flint-stack direction="column" gap="24px" style="font-family:Inter,sans-serif;">
             <div>
-                <p style="margin:0 0 6px;font-size:.75rem;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">
+                <p style="margin:0 0 6px;font-size:.75rem;color:#4b5563;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">
                     scroll-buttons="auto" — arrow buttons appear when tabs overflow
                 </p>
                 ${wrap(html`
@@ -455,7 +455,7 @@ export const ScrollButtons: Story = {
             </div>
 
             <div>
-                <p style="margin:0 0 6px;font-size:.75rem;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">
+                <p style="margin:0 0 6px;font-size:.75rem;color:#4b5563;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">
                     scroll-buttons="false" — no buttons; scroll via swipe or shift+scroll-wheel
                 </p>
                 ${wrap(html`
@@ -561,7 +561,7 @@ export const IconPosition: Story = {
         <flint-stack direction="column" gap="24px">
             ${(['top', 'bottom', 'start', 'end'] as const).map(pos => html`
                 <div>
-                    <p style="font-family:Inter,sans-serif;margin:0 0 6px;font-size:.75rem;color:#6b7280;
+                    <p style="font-family:Inter,sans-serif;margin:0 0 6px;font-size:.75rem;color:#4b5563;
                                font-weight:600;text-transform:uppercase;letter-spacing:.06em;">
                         icon-position="${pos}"
                     </p>
@@ -724,7 +724,7 @@ export const DarkMode: Story = {
                     </flint-tab-panel>
                 </flint-tabs>
             </div>
-            <p style="font-family:Inter,sans-serif;margin:0;font-size:.875rem;color:#6b7280;">
+            <p style="font-family:Inter,sans-serif;margin:0;font-size:.875rem;color:#4b5563;">
                 Light mode (default) for comparison:
             </p>
             ${wrap(html`
@@ -771,7 +771,7 @@ export const Accessibility: Story = {
 export const TabListOnly: Story = {
     render: () => html`
         <div style="font-family:Inter,sans-serif;">
-            <p style="margin:0 0 12px;font-size:.875rem;color:#6b7280;">
+            <p style="margin:0 0 12px;font-size:.875rem;color:#4b5563;">
                 <code style="background:var(--flint-muted-background, #f3f4f6);padding:2px 5px;border-radius:4px;">&lt;flint-tab-list&gt;</code>
                 can be used standalone for filter chips, button groups, or other tab-like patterns (no panels needed).
                 A <code style="background:var(--flint-muted-background, #f3f4f6);padding:2px 5px;border-radius:4px;">flint-tab-click</code> event
@@ -814,7 +814,7 @@ export const DynamicTabs: Story = {
                             newTab.textContent = `Tab ${count}`;
                             const newPanel = document.createElement('flint-tab-panel');
                             newPanel.setAttribute('value', `tab-${count}`);
-                            newPanel.innerHTML = `<div style="font-family:Inter,sans-serif;padding:24px;"><h3 style="margin:0 0 8px;font-size:1rem;font-weight:600;color:#111827;">Dynamic Tab ${count}</h3><p style="margin:0;font-size:.875rem;color:#6b7280;">Added at runtime to demonstrate dynamic tab creation.</p></div>`;
+                            newPanel.innerHTML = `<div style="font-family:Inter,sans-serif;padding:24px;"><h3 style="margin:0 0 8px;font-size:1rem;font-weight:600;color:#111827;">Dynamic Tab ${count}</h3><p style="margin:0;font-size:.875rem;color:#4b5563;">Added at runtime to demonstrate dynamic tab creation.</p></div>`;
                             tabs.querySelector('flint-tab-list')?.appendChild(newTab);
                             tabs.appendChild(newPanel);
                         }}>Add Tab</flint-button>
@@ -862,7 +862,7 @@ export const Responsive: Story = {
                 Two common patterns for adapting tabs across screen sizes — choose the one that fits your layout.
             </p>
             <div>
-                <p style="margin:0 0 6px;font-size:.75rem;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">
+                <p style="margin:0 0 6px;font-size:.75rem;color:#4b5563;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">
                     variant="scrollable" — natural on mobile, works at any width
                 </p>
                 ${wrap(html`
@@ -883,7 +883,7 @@ export const Responsive: Story = {
                 `)}
             </div>
             <div>
-                <p style="margin:0 0 6px;font-size:.75rem;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">
+                <p style="margin:0 0 6px;font-size:.75rem;color:#4b5563;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">
                     variant="fullWidth" — each tab expands to fill equal space
                 </p>
                 ${wrap(html`
@@ -909,7 +909,7 @@ export const MultiColorTheme: Story = {
     render: () => html`
         <flint-stack direction="column" gap="32px" style="font-family:Inter,sans-serif;">
             <div>
-                <p style="margin:0 0 6px;font-size:.75rem;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">
+                <p style="margin:0 0 6px;font-size:.75rem;color:#4b5563;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">
                     Interactive Dashboard Tabs
                 </p>
                 ${wrap(html`
@@ -929,7 +929,7 @@ export const MultiColorTheme: Story = {
             </div>
 
             <div>
-                <p style="margin:0 0 6px;font-size:.75rem;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">
+                <p style="margin:0 0 6px;font-size:.75rem;color:#4b5563;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">
                     Accent Color Tabs
                 </p>
                 ${wrap(html`
@@ -955,7 +955,7 @@ export const ErrorStates: Story = {
     render: () => html`
         <flint-stack direction="column" gap="24px" style="font-family:Inter,sans-serif;">
             <div>
-                <p style="margin:0 0 6px;font-size:.75rem;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">
+                <p style="margin:0 0 6px;font-size:.75rem;color:#4b5563;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">
                     Form Tabs with Validation States
                 </p>
                 ${wrap(html`

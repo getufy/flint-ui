@@ -176,11 +176,11 @@ type Story = StoryObj;
 
 /* ── slide helpers ──────────────────────────────────────────────────────── */
 const slideColors = [
-  { bg: '#3b82f6', label: 'Slide 1', color: '#fff' },
-  { bg: '#8b5cf6', label: 'Slide 2', color: '#fff' },
-  { bg: '#10b981', label: 'Slide 3', color: '#fff' },
-  { bg: '#f59e0b', label: 'Slide 4', color: '#fff' },
-  { bg: '#ef4444', label: 'Slide 5', color: '#fff' },
+  { bg: '#2563eb', label: 'Slide 1', color: '#fff' },
+  { bg: '#7c3aed', label: 'Slide 2', color: '#fff' },
+  { bg: '#059669', label: 'Slide 3', color: '#fff' },
+  { bg: '#b45309', label: 'Slide 4', color: '#fff' },
+  { bg: '#dc2626', label: 'Slide 5', color: '#fff' },
 ];
 
 const colorSlide = (s: (typeof slideColors)[number]) => html`
@@ -313,7 +313,7 @@ export const VerticalMultiple: Story = {
   args: { orientation: 'vertical', itemsPerView: 3 },
   render: (args: Record<string, unknown>) => html`
     <div style="max-width: 400px; padding: 24px;">
-      <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+      <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563; font-family: system-ui;">
         Vertical carousel with three slides visible at once.
       </p>
       <flint-carousel
@@ -342,7 +342,7 @@ export const Loop: Story = {
   args: { loop: true },
   render: (args: Record<string, unknown>) => html`
     <div style="max-width: 560px; padding: 24px;">
-      <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+      <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563; font-family: system-ui;">
         Loop is enabled — navigation wraps from the last slide back to the first.
       </p>
       <flint-carousel .loop=${Boolean(args.loop)}>
@@ -363,7 +363,7 @@ export const Autoplay: Story = {
   args: { loop: true, autoplay: 2000 },
   render: (args: Record<string, unknown>) => html`
     <div style="max-width: 560px; padding: 24px;">
-      <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+      <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563; font-family: system-ui;">
         Slides advance automatically every 2 seconds (loop enabled).
       </p>
       <flint-carousel .loop=${Boolean(args.loop)} .autoplay=${Number(args.autoplay) || 0}>
@@ -390,7 +390,7 @@ export const WithIndicators: Story = {
         carousel.parentElement?.querySelectorAll<HTMLElement>('.dot') ?? [];
       dots.forEach((d, i) => {
         d.style.background =
-          i === currentIndex ? '#3b82f6' : 'rgba(0,0,0,0.2)';
+          i === currentIndex ? '#2563eb' : 'rgba(0,0,0,0.2)';
       });
     };
 
@@ -418,7 +418,7 @@ export const WithIndicators: Story = {
                 aria-label="Go to slide ${i + 1}"
                 style="
                   width: 8px; height: 8px; border-radius: 50%; border: none;
-                  background: ${i === 0 ? '#3b82f6' : 'rgba(0,0,0,0.2)'};
+                  background: ${i === 0 ? '#2563eb' : 'rgba(0,0,0,0.2)'};
                   cursor: pointer; padding: 0; transition: background 0.2s;
                 "
                 @click=${(e: Event) => {
@@ -439,7 +439,7 @@ export const WithIndicators: Story = {
 export const OverlayButtons: Story = {
   render: () => html`
     <div style="max-width: 560px; padding: 24px;">
-      <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+      <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563; font-family: system-ui;">
         Navigation buttons positioned absolutely over the content.
       </p>
       <flint-carousel loop style="position: relative;">
@@ -462,7 +462,7 @@ export const MultipleItems: Story = {
   args: { itemsPerView: 3 },
   render: (args: Record<string, unknown>) => html`
     <div style="max-width: 720px; padding: 24px;">
-      <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+      <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563; font-family: system-ui;">
         Three slides visible at once. Each <code>next()</code> advances by one slide.
         Set <code>--flint-carousel-gap</code> for spacing.
       </p>
@@ -482,12 +482,12 @@ export const MultipleItems: Story = {
 /* ── CardSlider ──────────────────────────────────────────────────────────── */
 
 const cardData = [
-  { title: 'Mountains', desc: 'Explore alpine trails and breathtaking peaks.', emoji: '🏔️', accent: '#3b82f6' },
-  { title: 'Ocean', desc: 'Dive into crystal-clear waters and coral reefs.', emoji: '🌊', accent: '#0ea5e9' },
-  { title: 'Forest', desc: 'Wander through ancient woodland and wildlife.', emoji: '🌲', accent: '#10b981' },
-  { title: 'Desert', desc: 'Discover vast dunes and starlit nights.', emoji: '🏜️', accent: '#f59e0b' },
-  { title: 'City', desc: 'Uncover culture, architecture and street food.', emoji: '🏙️', accent: '#8b5cf6' },
-  { title: 'Island', desc: 'Relax on white-sand beaches under the sun.', emoji: '🏝️', accent: '#ec4899' },
+  { title: 'Mountains', desc: 'Explore alpine trails and breathtaking peaks.', emoji: '🏔️', accent: '#2563eb' },
+  { title: 'Ocean', desc: 'Dive into crystal-clear waters and coral reefs.', emoji: '🌊', accent: '#0284c7' },
+  { title: 'Forest', desc: 'Wander through ancient woodland and wildlife.', emoji: '🌲', accent: '#047857' },
+  { title: 'Desert', desc: 'Discover vast dunes and starlit nights.', emoji: '🏜️', accent: '#b45309' },
+  { title: 'City', desc: 'Uncover culture, architecture and street food.', emoji: '🏙️', accent: '#7c3aed' },
+  { title: 'Island', desc: 'Relax on white-sand beaches under the sun.', emoji: '🏝️', accent: '#be185d' },
 ];
 
 const card = (d: typeof cardData[number]) => html`
@@ -495,7 +495,7 @@ const card = (d: typeof cardData[number]) => html`
     <flint-paper elevation="1" style="padding: 20px; height: 200px; display: flex; flex-direction: column; gap: 8px; font-family: var(--flint-font-family, system-ui);">
       <div style="font-size: 2rem; line-height: 1;">${d.emoji}</div>
       <div style="font-weight: 700; font-size: 1rem; color: ${d.accent};">${d.title}</div>
-      <div style="font-size: 0.8rem; color: #6b7280; line-height: 1.4;">${d.desc}</div>
+      <div style="font-size: 0.8rem; color: #4b5563; line-height: 1.4;">${d.desc}</div>
     </flint-paper>
   </flint-carousel-item>
 `;
@@ -523,7 +523,7 @@ export const CardSlider: Story = {
 export const TwoItemGrid: Story = {
   render: () => html`
     <div style="max-width: 640px; padding: 24px;">
-      <p style="margin: 0 0 12px; font-size: 0.875rem; color: #6b7280; font-family: system-ui;">
+      <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563; font-family: system-ui;">
         Two slides side-by-side with overlay navigation.
       </p>
       <flint-carousel

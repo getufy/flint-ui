@@ -1,4 +1,4 @@
-import { LitElement, unsafeCSS, html, nothing } from 'lit';
+import { LitElement, unsafeCSS, html, nothing, PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import uiLinearProgressStyles from './flint-linear-progress.css?inline';
@@ -21,11 +21,35 @@ export class FlintLinearProgress extends LitElement {
     /** Accessible label for the progress bar. */
     @property({ type: String }) label = '';
 
+    connectedCallback() {
+        super.connectedCallback();
+        // Set role and ARIA attrs on the host so axe can see them
+        if (!this.hasAttribute('role')) this.setAttribute('role', 'progressbar');
+        if (!this.hasAttribute('aria-label') && !this.label) {
+            this.setAttribute('aria-label', 'Progress');
+        }
+        this.setAttribute('aria-valuemin', '0');
+        this.setAttribute('aria-valuemax', '100');
+    }
+
+    override updated(changed: PropertyValues) {
+        if (changed.has('variant') || changed.has('value')) {
+            if (this.variant === 'determinate') {
+                this.setAttribute('aria-valuenow', String(this._safeValue));
+            } else {
+                this.removeAttribute('aria-valuenow');
+            }
+        }
+        if (changed.has('label') && this.label) {
+            this.setAttribute('aria-label', this.label);
+        }
+    }
+
     private static readonly _colorMap: Record<string, string> = {
-        primary: 'var(--flint-primary-color, #3b82f6)',
-        success: 'var(--flint-success-color, #22c55e)',
-        error: 'var(--flint-error-color, #ef4444)',
-        warning: 'var(--flint-warning-color, #f59e0b)',
+        primary: 'var(--flint-primary-color, #2563eb)',
+        success: 'var(--flint-success-color, #15803d)',
+        error: 'var(--flint-error-color, #dc2626)',
+        warning: 'var(--flint-warning-color, #92400e)',
     };
 
     private get _safeValue(): number {
@@ -43,11 +67,8 @@ export class FlintLinearProgress extends LitElement {
         return html`
       <div
         class="root ${classMap({ determinate: isDeterminate, indeterminate: !isDeterminate })}"
-        role="progressbar"
-        aria-valuenow="${isDeterminate ? this._safeValue : nothing}"
-        aria-valuemin="0"
-        aria-valuemax="100"
-        aria-label="${this.label || nothing}"
+        role="presentation"
+        aria-hidden="true"
         style="${inlineStyle}"
       >
         ${isDeterminate ? html`

@@ -228,7 +228,7 @@ export const Directions: Story = {
                     <span style="
                         position:absolute;
                         top:8px;left:12px;
-                        font-size:.7rem;color:#94a3b8;
+                        font-size:.7rem;color:#475569;
                         text-transform:uppercase;letter-spacing:.06em;
                     ">${dir}</span>
                     <flint-speed-dial
@@ -266,13 +266,13 @@ export const Controlled: Story = {
 
                 <!-- External controls row -->
                 <flint-stack direction="row" alignItems="center" gap="12px" p="12px 16px" bgcolor="var(--flint-background, #fff)" border="1px solid #e2e8f0" borderRadius="8px">
-                    <span style="font-size:.875rem;color:#64748b;">State:</span>
+                    <span style="font-size:.875rem;color:#475569;">State:</span>
                     <strong id="sd-state-label" style="font-size:.875rem;color:#374151;">Closed</strong>
 
                     <!-- Open button -->
                     <button
                         style="padding:6px 14px;border-radius:6px;font-size:.8rem;font-family:inherit;
-                               background:var(--flint-primary-color, #3b82f6);color:#fff;border:none;cursor:pointer;"
+                               background:var(--flint-primary-color, #2563eb);color:#fff;border:none;cursor:pointer;"
                         @click=${() => {
                 const sd = getSD();
                 if (sd && !sd.open) { sd.open = true; syncLabel(true); }
@@ -375,7 +375,7 @@ export const Hidden: Story = {
                 <button
                     style="
                         padding:6px 14px;border-radius:6px;font-size:.8rem;font-family:inherit;
-                        background:var(--flint-primary-color, #3b82f6);color:#fff;border:none;cursor:pointer;
+                        background:var(--flint-primary-color, #2563eb);color:#fff;border:none;cursor:pointer;
                     "
                     @click=${() => {
             const sd = document.getElementById('sd-hidden') as FlintSpeedDial;
@@ -385,7 +385,7 @@ export const Hidden: Story = {
         }}
                     id="sd-hidden-toggle"
                 >Hide Speed Dial</button>
-                <span style="font-size:.8rem;color:#94a3b8;">Toggle the hidden state</span>
+                <span style="font-size:.8rem;color:#475569;">Toggle the hidden state</span>
             </flint-stack>
 
             <div style="
@@ -498,7 +498,7 @@ export const WithNames: Story = {
         <flint-stack direction="column" gap="16px" style="font-family:Inter,sans-serif;">
             <div style="
                 padding:10px 14px;background:var(--flint-muted-background, #f8fafc);border:1px solid #e2e8f0;border-radius:6px;
-                font-size:.8rem;color:#64748b;
+                font-size:.8rem;color:#475569;
             ">
                 Last action: <strong id="sd-last-action" style="color:#374151;">—</strong>
             </div>
@@ -560,7 +560,7 @@ export const KeyboardNavigation: Story = {
                                         font-family:monospace;
                                     ">${key}</kbd>
                                 </td>
-                                <td style="padding:4px 0;color:#64748b;">${desc}</td>
+                                <td style="padding:4px 0;color:#475569;">${desc}</td>
                             </tr>
                         `)}
                     </tbody>

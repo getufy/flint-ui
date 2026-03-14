@@ -158,7 +158,7 @@ export const PrimaryPanel: Story = {
     name: 'Primary Panel',
     render: () => html`
         <p
-            style="font-family:system-ui;font-size:13px;color:var(--flint-text-color-muted,#71717a);margin-bottom:12px;"
+            style="font-family:system-ui;font-size:13px;color:var(--flint-text-color-muted,#4b5563);margin-bottom:12px;"
         >
             Resize your browser window. The primary start panel keeps its pixel size.
         </p>
@@ -169,7 +169,7 @@ export const PrimaryPanel: Story = {
             </flint-split-panel>
         </div>
         <p
-            style="font-family:system-ui;font-size:13px;color:var(--flint-text-color-muted,#71717a);margin:16px 0 8px;"
+            style="font-family:system-ui;font-size:13px;color:var(--flint-text-color-muted,#4b5563);margin:16px 0 8px;"
         >
             Primary end — the end panel keeps its size.
         </p>
@@ -188,7 +188,7 @@ export const MinMax: Story = {
     name: 'Min & Max',
     render: () => html`
         <p
-            style="font-family:system-ui;font-size:13px;color:var(--flint-text-color-muted,#71717a);margin-bottom:12px;"
+            style="font-family:system-ui;font-size:13px;color:var(--flint-text-color-muted,#4b5563);margin-bottom:12px;"
         >
             Both panels have a minimum of 150px via <code>--flint-split-panel-min</code> and
             <code>--flint-split-panel-max</code>.
@@ -210,7 +210,7 @@ export const MinMax: Story = {
 export const Snapping: Story = {
     render: () => html`
         <p
-            style="font-family:system-ui;font-size:13px;color:var(--flint-text-color-muted,#71717a);margin-bottom:12px;"
+            style="font-family:system-ui;font-size:13px;color:var(--flint-text-color-muted,#4b5563);margin-bottom:12px;"
         >
             Snaps at 100px and 50% — <code>snap="100px 50%"</code>.
         </p>
@@ -227,7 +227,7 @@ export const SnappingRepeat: Story = {
     name: 'Snapping (repeat)',
     render: () => html`
         <p
-            style="font-family:system-ui;font-size:13px;color:var(--flint-text-color-muted,#71717a);margin-bottom:12px;"
+            style="font-family:system-ui;font-size:13px;color:var(--flint-text-color-muted,#4b5563);margin-bottom:12px;"
         >
             Snaps every 100px and at 50% — <code>snap="repeat(100px) 50%"</code>.
         </p>
@@ -248,7 +248,7 @@ export const CustomSnapFunction: Story = {
 
         return html`
             <p
-                style="font-family:system-ui;font-size:13px;color:var(--flint-text-color-muted,#71717a);margin-bottom:12px;"
+                style="font-family:system-ui;font-size:13px;color:var(--flint-text-color-muted,#4b5563);margin-bottom:12px;"
             >
                 Snaps to either 100px from the left or 100px from the right.
             </p>
@@ -289,7 +289,7 @@ export const CustomDivider: Story = {
     name: 'Custom Divider',
     render: () => html`
         <p
-            style="font-family:system-ui;font-size:13px;color:var(--flint-text-color-muted,#71717a);margin-bottom:12px;"
+            style="font-family:system-ui;font-size:13px;color:var(--flint-text-color-muted,#4b5563);margin-bottom:12px;"
         >
             Custom handle via the <code>divider</code> slot and CSS custom properties.
         </p>
@@ -311,7 +311,7 @@ export const CustomDivider: Story = {
                     justifyContent="center"
                     style="
                         width:20px;height:40px;
-                        background:var(--flint-primary-color,#3b82f6);
+                        background:var(--flint-primary-color,#2563eb);
                         border-radius:4px;
                         color:#fff;font-size:10px;letter-spacing:1px;
                     "
@@ -379,7 +379,7 @@ export const VerticalSnapping: Story = {
     name: 'Vertical with Snapping',
     render: () => html`
         <p
-            style="font-family:system-ui;font-size:13px;color:var(--flint-text-color-muted,#71717a);margin-bottom:12px;"
+            style="font-family:system-ui;font-size:13px;color:var(--flint-text-color-muted,#4b5563);margin-bottom:12px;"
         >
             Vertical layout snapping at 33% and 66%.
         </p>
@@ -400,7 +400,7 @@ export const CustomStyling: Story = {
     name: 'Custom Styling',
     render: () => html`
         <p
-            style="font-family:system-ui;font-size:13px;color:var(--flint-text-color-muted,#71717a);margin-bottom:12px;"
+            style="font-family:system-ui;font-size:13px;color:var(--flint-text-color-muted,#4b5563);margin-bottom:12px;"
         >
             Demonstrates CSS custom properties for divider customization.
         </p>
@@ -427,7 +427,7 @@ export const CollapsibleSidebar: Story = {
     name: 'Collapsible Sidebar',
     render: () => html`
         <p
-            style="font-family:system-ui;font-size:13px;color:var(--flint-text-color-muted,#71717a);margin-bottom:12px;"
+            style="font-family:system-ui;font-size:13px;color:var(--flint-text-color-muted,#4b5563);margin-bottom:12px;"
         >
             Snaps to 0px or 200px — drag past the midpoint to collapse or expand.
         </p>

@@ -673,7 +673,7 @@ export const Dialog: Story = {
             >
                 <flint-button variant="secondary" size="small" @click=${openDialog}>
                     Open Menu
-                    <kbd style="padding:2px 6px;background:var(--flint-muted-background, #f3f4f6);border:1px solid #d1d5db;border-radius:4px;font-size:0.75rem;color:#6b7280;">⌘K</kbd>
+                    <kbd style="padding:2px 6px;background:var(--flint-muted-background, #f3f4f6);border:1px solid #d1d5db;border-radius:4px;font-size:0.75rem;color:#4b5563;">⌘K</kbd>
                 </flint-button>
 
                 <flint-command-dialog @flint-command-dialog-close=${closeDialog}>

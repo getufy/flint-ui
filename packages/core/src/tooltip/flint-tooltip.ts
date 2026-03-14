@@ -151,7 +151,7 @@ export class FlintTooltip extends LitElement {
         <div
           id=${this._tooltipId}
           role="tooltip"
-          aria-hidden=${!this._visible}
+          aria-hidden=${this._visible ? 'false' : 'true'}
           class=${classMap({
             'tooltip-popup': true,
             [placement]: true,

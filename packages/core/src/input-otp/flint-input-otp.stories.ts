@@ -118,7 +118,7 @@ type Story = StoryObj;
 
 const wrapStyle = 'padding: 32px; font-family: system-ui, sans-serif;';
 const labelStyle = 'display: block; margin-bottom: 12px; font-size: 0.875rem; font-weight: 500; color: #111827;';
-const noteStyle  = 'margin: 0 0 16px; font-size: 0.875rem; color: #6b7280;';
+const noteStyle  = 'margin: 0 0 16px; font-size: 0.875rem; color: #4b5563;';
 
 /* ── Default ─────────────────────────────────────────────────────── */
 export const Default: Story = {
@@ -310,7 +310,7 @@ export const Controlled: Story = {
                         <flint-input-otp-slot index="5"></flint-input-otp-slot>
                     </flint-input-otp-group>
                 </flint-input-otp>
-                <p id="otp-display" style="margin: 16px 0 0; font-size: 0.875rem; color: #6b7280; text-align: center;">
+                <p id="otp-display" style="margin: 16px 0 0; font-size: 0.875rem; color: #4b5563; text-align: center;">
                     Enter your one-time password.
                 </p>
             </div>
@@ -338,7 +338,7 @@ export const Invalid: Story = {
                     <flint-input-otp-slot index="5" invalid></flint-input-otp-slot>
                 </flint-input-otp-group>
             </flint-input-otp>
-            <p style="margin: 12px 0 0; font-size: 0.8125rem; color: #ef4444;">
+            <p style="margin: 12px 0 0; font-size: 0.8125rem; color: #dc2626;">
                 Invalid verification code. Please try again.
             </p>
         </div>
@@ -353,12 +353,12 @@ export const AutoSubmit: Story = {
             const root = (e.currentTarget as HTMLElement).closest('div')!;
             const status = root.querySelector<HTMLElement>('#auto-status')!;
             status.textContent = 'Verifying…';
-            status.style.color = '#6b7280';
+            status.style.color = '#4b5563';
             setTimeout(() => {
                 status.textContent = e.detail.value === '123456'
                     ? '✓ Code verified!'
                     : '✗ Invalid code. Try again.';
-                status.style.color = e.detail.value === '123456' ? '#16a34a' : '#ef4444';
+                status.style.color = e.detail.value === '123456' ? '#15803d' : '#dc2626';
             }, 800);
         };
 
@@ -379,7 +379,7 @@ export const AutoSubmit: Story = {
                         <flint-input-otp-slot index="5"></flint-input-otp-slot>
                     </flint-input-otp-group>
                 </flint-input-otp>
-                <p id="auto-status" style="margin: 16px 0 0; font-size: 0.875rem; color: #6b7280;">
+                <p id="auto-status" style="margin: 16px 0 0; font-size: 0.875rem; color: #4b5563;">
                     Waiting for input…
                 </p>
             </div>
@@ -443,7 +443,7 @@ export const InteractiveError: Story = {
                     </flint-input-otp-group>
                 </flint-input-otp>
                 <flint-button @click=${handleVerify} style="margin-top: 16px;">Verify</flint-button>
-                <p id="err-msg" style="display: none; margin: 10px 0 0; font-size: 0.8125rem; color: #ef4444;"></p>
+                <p id="err-msg" style="display: none; margin: 10px 0 0; font-size: 0.8125rem; color: #dc2626;"></p>
             </div>
         `;
     },

@@ -189,8 +189,8 @@ export class FlintDatePickerCalendar extends LitElement {
             'disabled': c.isDisabled,
         })}
             aria-label=${c.date.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}
-            aria-selected=${c.isSelected}
-            aria-disabled=${c.isDisabled}
+            aria-selected=${c.isSelected ? 'true' : nothing}
+            aria-disabled=${c.isDisabled ? 'true' : nothing}
             tabindex=${c.isCurrentMonth && !c.isDisabled ? 0 : -1}
             @click=${() => this._selectDay(c)}
           >${c.day}</button>
@@ -377,7 +377,7 @@ export class FlintDatePicker extends LitElement {
           ?readonly=${this.readonly}
           aria-label=${this.label || 'Date'}
           aria-haspopup="true"
-          aria-expanded=${this._open}
+          aria-expanded=${this._open ? 'true' : nothing}
           @input=${this._handleFieldInput}
           @focus=${() => { if (this.readonly) this._openPicker(); }}
         />

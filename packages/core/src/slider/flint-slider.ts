@@ -94,10 +94,10 @@ export class FlintSlider extends FormAssociated(LitElement) {
 
     const trackStyle = this.vertical
       ? {
-          background: `linear-gradient(to left, var(--flint-primary-color, #3b82f6) 0%, var(--flint-primary-color, #3b82f6) ${percentage}%, var(--flint-input-border-color, #d1d5db) ${percentage}%, var(--flint-input-border-color, #d1d5db) 100%)`,
+          background: `linear-gradient(to left, var(--flint-primary-color, #2563eb) 0%, var(--flint-primary-color, #2563eb) ${percentage}%, var(--flint-input-border-color, #d1d5db) ${percentage}%, var(--flint-input-border-color, #d1d5db) 100%)`,
         }
       : {
-          background: `linear-gradient(to right, var(--flint-primary-color, #3b82f6) 0%, var(--flint-primary-color, #3b82f6) ${percentage}%, var(--flint-input-border-color, #d1d5db) ${percentage}%, var(--flint-input-border-color, #d1d5db) 100%)`,
+          background: `linear-gradient(to right, var(--flint-primary-color, #2563eb) 0%, var(--flint-primary-color, #2563eb) ${percentage}%, var(--flint-input-border-color, #d1d5db) ${percentage}%, var(--flint-input-border-color, #d1d5db) 100%)`,
         };
 
     const wrapperClasses = { 'slider-wrapper': true, vertical: this.vertical };

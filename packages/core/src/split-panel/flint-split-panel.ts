@@ -511,7 +511,7 @@ export class FlintSplitPanel extends LitElement {
         const startStyle = this.vertical ? `height: ${posSize};` : `width: ${posSize};`;
 
         return html`
-            <div class="start" part="panel start" style="${startStyle}">
+            <div class="start" part="panel start" style="${startStyle}" tabindex="0">
                 <slot name="start"></slot>
             </div>
 
@@ -531,7 +531,7 @@ export class FlintSplitPanel extends LitElement {
                 <slot name="divider"></slot>
             </div>
 
-            <div class="end" part="panel end">
+            <div class="end" part="panel end" tabindex="0">
                 <slot name="end"></slot>
             </div>
         `;

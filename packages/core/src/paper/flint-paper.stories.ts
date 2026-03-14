@@ -244,7 +244,7 @@ export const DarkMode: Story = {
                         .elevation=${e}
                         style="
                             --flint-surface-background: #1e1e1e;
-                            --flint-text-color: #e5e7eb;
+                            --flint-text-color: #e2e8f0;
                             width: 80px;
                             height: 80px;
                             display: flex;

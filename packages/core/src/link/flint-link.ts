@@ -1,4 +1,4 @@
-import { LitElement, unsafeCSS, html } from 'lit';
+import { LitElement, unsafeCSS, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import uiLinkStyles from './flint-link.css?inline';
@@ -80,7 +80,7 @@ export class FlintLink extends LitElement {
                 rel=${ifDefined(this._computedRel())}
                 aria-label=${ifDefined(this.label)}
                 download=${ifDefined(this.download)}
-                aria-disabled=${this.disabled}
+                aria-disabled=${this.disabled ? 'true' : nothing}
                 tabindex=${this.disabled ? '-1' : '0'}
                 @click=${this._handleClick}
             >

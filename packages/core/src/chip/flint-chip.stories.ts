@@ -243,7 +243,7 @@ export const KeyboardNavigation: Story = {
     name: 'Keyboard Navigation',
     render: () => html`
         <div style="display: flex; flex-direction: column; gap: 16px; font-family: var(--flint-font-family);">
-            <p style="margin: 0; font-size: 14px; color: #6b7280;">
+            <p style="margin: 0; font-size: 14px; color: #4b5563;">
                 Tab to focus chips. Press <kbd>Enter</kbd> or <kbd>Space</kbd> to activate. The delete button (✕) is separately focusable via Tab.
             </p>
             <div style="display: flex; gap: 8px; flex-wrap: wrap;">

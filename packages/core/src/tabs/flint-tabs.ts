@@ -98,7 +98,7 @@ export class FlintTab extends LitElement {
             return html`<a class=${cls} href=${this.href}
                 role="tab"
                 aria-selected=${this.selected ? 'true' : 'false'}
-                aria-disabled=${this.disabled ? 'true' : 'false'}
+                aria-disabled=${this.disabled ? 'true' : nothing}
                 tabindex=${this.selected ? '0' : '-1'}
                 @click=${this._fire}>${this._inner()}</a>`;
         }
@@ -329,7 +329,7 @@ export class FlintTabs extends LitElement {
     }
 
     private _resolveColor(c: string) {
-        if (c === 'primary') return 'var(--flint-primary-color, #3b82f6)';
+        if (c === 'primary') return 'var(--flint-primary-color, #2563eb)';
         if (c === 'secondary') return 'var(--flint-accent-color, #8b5cf6)';
         if (c === 'inherit') return 'currentColor';
         return c;
@@ -360,7 +360,7 @@ export class FlintTabs extends LitElement {
         }
 
         const activeClr = this._resolveColor(this.textColor);
-        const inactiveClr = this.textColor === 'inherit' ? 'currentColor' : 'var(--flint-text-color-muted, #6b7280)';
+        const inactiveClr = this.textColor === 'inherit' ? 'currentColor' : 'var(--flint-text-color-muted, #4b5563)';
 
         // Sync tabs
         tabs.forEach(tab => {
