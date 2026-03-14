@@ -32,7 +32,7 @@ import { FlintChip } from 'flint-ui';
 | `color` | `color` | `'default' \| 'primary' \| 'secondary'` | `'default'` | Color theme of the chip. |
 | `size` | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The size of the chip. |
 | `clickable` | `clickable` | `boolean` | `false` | Makes the chip interactive with hover and focus styles. |
-| `deletable` | `deletable` | `boolean` | `false` | Shows a delete icon and enables the `delete` event. |
+| `deletable` | `deletable` | `boolean` | `false` | Shows a delete icon and enables the `flint-chip-delete` event. |
 | `disabled` | `disabled` | `boolean` | `false` | Disables the chip, preventing click and delete interactions. |
 
 ### Events
@@ -40,7 +40,7 @@ import { FlintChip } from 'flint-ui';
 | Event | Detail | Description |
 | --- | --- | --- |
 | `click` | — | Fired when a clickable chip is activated. |
-| `delete` | — | Fired when the delete icon is clicked. |
+| `flint-chip-delete` | — | Fired when the delete icon is clicked. |
 
 ### Slots
 

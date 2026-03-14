@@ -29,7 +29,7 @@ A backdrop component that narrows the user's focus to a particular element.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`close\` | — | Dispatched when the backdrop is clicked or Escape is pressed. |
+| \`flint-backdrop-close\` | — | Dispatched when the backdrop is clicked or Escape is pressed. |
 
 #### Slots
 
@@ -75,7 +75,7 @@ export const Basic: Story = {
       <flint-backdrop 
         .open=${args.open} 
         .invisible=${args.invisible}
-        @close="${(e: Event) => {
+        @flint-backdrop-close="${(e: Event) => {
       (e.target as FlintBackdrop).open = false;
     }}"
       >
@@ -137,7 +137,7 @@ export const Invisible: Story = {
         container
         .open=${args.open}
         .invisible=${args.invisible}
-        @close="${(e: Event) => {
+        @flint-backdrop-close="${(e: Event) => {
       alert('Captured click on invisible backdrop!');
       (e.target as FlintBackdrop).open = false;
     }}"
@@ -155,7 +155,7 @@ export const ContainedBackdrop: Story = {
       <flint-backdrop
         container
         open
-        @close="${(e: Event) => { (e.target as FlintBackdrop).open = false; }}"
+        @flint-backdrop-close="${(e: Event) => { (e.target as FlintBackdrop).open = false; }}"
       >
         <flint-paper elevation="2" style="padding: 24px;">
           <p style="margin: 0; font-family: sans-serif;">Contained content</p>
@@ -171,7 +171,7 @@ export const OpenByDefault: Story = {
     <div style="height: 300px; display: flex; align-items: center; justify-content: center;">
       <flint-backdrop
         .open=${args.open}
-        @close="${(e: Event) => { (e.target as FlintBackdrop).open = false; }}"
+        @flint-backdrop-close="${(e: Event) => { (e.target as FlintBackdrop).open = false; }}"
       >
         <flint-paper elevation="2" style="padding: 32px; text-align: center;">
           <h3 style="margin: 0 0 8px; font-family: sans-serif;">Welcome</h3>

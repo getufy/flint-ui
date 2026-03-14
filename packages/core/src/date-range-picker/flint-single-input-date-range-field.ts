@@ -21,8 +21,8 @@ function daysInMonth(month: number, year: number): number {
  * A single-input field for entering a date range (start → end).
  * Renders as "MM/DD/YYYY – MM/DD/YYYY" with six independently editable segments.
  *
- * @fires range-change - { detail: { value: DateRange } } when both dates are complete
- * @fires range-clear  - fired when all segments are cleared
+ * @fires flint-date-range-picker-change - { detail: { value: DateRange } } when both dates are complete
+ * @fires flint-date-range-picker-clear  - fired when all segments are cleared
  */
 @customElement('flint-single-input-date-range-field')
 export class FlintSingleInputDateRangeField extends LitElement {
@@ -82,7 +82,7 @@ export class FlintSingleInputDateRangeField extends LitElement {
         this._em = null; this._ed = null; this._ey = null;
         this._buf = '';
         this.value = [...EMPTY_RANGE];
-        this.dispatchEvent(new CustomEvent('range-clear', { bubbles: true, composed: true }));
+        this.dispatchEvent(new CustomEvent('flint-date-range-picker-clear', { bubbles: true, composed: true }));
     }
 
     // ── Segment helpers ───────────────────────────────────────────────────────
@@ -231,7 +231,7 @@ export class FlintSingleInputDateRangeField extends LitElement {
         const [ps, pe] = this.value;
         if (next[0] !== ps || next[1] !== pe) {
             this.value = next;
-            this.dispatchEvent(new CustomEvent('range-change', {
+            this.dispatchEvent(new CustomEvent('flint-date-range-picker-change', {
                 detail: { value: next }, bubbles: true, composed: true,
             }));
         }

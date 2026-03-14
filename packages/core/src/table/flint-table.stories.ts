@@ -61,8 +61,8 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`page-change\` | \`{ page: next }\` |  |
-| \`rows-per-page-change\` | \`{ rowsPerPage: val }\` |  |
+| \`flint-pagination-page-change\` | \`{ page: next }\` |  |
+| \`flint-pagination-rows-per-page-change\` | \`{ rowsPerPage: val }\` |  |
 
 #### CSS Custom Properties
 
@@ -636,8 +636,8 @@ export const Interactive: Story = {
                     .page=${0}
                     .rowsPerPage=${10}
                     show-first-last
-                    @page-change=${(e: CustomEvent) => console.log('page', e.detail.page)}
-                    @rows-per-page-change=${(e: CustomEvent) => console.log('rowsPerPage', e.detail.rowsPerPage)}
+                    @flint-pagination-page-change=${(e: CustomEvent) => console.log('page', e.detail.page)}
+                    @flint-pagination-rows-per-page-change=${(e: CustomEvent) => console.log('rowsPerPage', e.detail.rowsPerPage)}
                 ></flint-table-pagination>
             </flint-table-container>
         `;
@@ -678,7 +678,7 @@ export const ControlledPagination: Story = {
                         .rowsPerPageOptions=${[5, 10, 20]}
                         label-rows-per-page="Per page:"
                         show-first-last
-                        @page-change=${(e: CustomEvent) => {
+                        @flint-pagination-page-change=${(e: CustomEvent) => {
                             const pg = document.getElementById('ctrl-pg') as HTMLElement & { page: number };
                             if (pg) pg.page = e.detail.page;
                         }}

@@ -21,8 +21,8 @@ import uiSimpleTreeViewStyles from './flint-simple-tree-view.css?inline';
  *
  * @slot - Place `flint-tree-item` elements here.
  *
- * @fires item-click            - When a tree item is activated (detail: { itemId })
- * @fires expanded-items-change - When the expanded set changes (detail: { expandedItems })
+ * @fires flint-tree-view-item-click        - When a tree item is activated (detail: { itemId })
+ * @fires flint-tree-view-expanded-items-change - When the expanded set changes (detail: { expandedItems })
  */
 @customElement('flint-simple-tree-view')
 export class FlintSimpleTreeView extends LitElement {
@@ -192,7 +192,7 @@ export class FlintSimpleTreeView extends LitElement {
             else current.delete(item.itemId);
             const newItems = Array.from(current);
             this.onExpandedItemsChange?.(newItems);
-            this.dispatchEvent(new CustomEvent('expanded-items-change', {
+            this.dispatchEvent(new CustomEvent('flint-tree-view-expanded-items-change', {
                 detail: { expandedItems: newItems },
                 bubbles: false,
             }));
@@ -256,7 +256,7 @@ export class FlintSimpleTreeView extends LitElement {
         }
 
         this.onItemClick?.(itemId);
-        this.dispatchEvent(new CustomEvent('item-click', {
+        this.dispatchEvent(new CustomEvent('flint-tree-view-item-click', {
             detail: { itemId },
             bubbles: false,
         }));
@@ -333,7 +333,7 @@ export class FlintSimpleTreeView extends LitElement {
                     this._handleToggle(focusedItem, !focusedItem.expanded);
                 }
                 this.onItemClick?.(focusedItem.itemId);
-                this.dispatchEvent(new CustomEvent('item-click', {
+                this.dispatchEvent(new CustomEvent('flint-tree-view-item-click', {
                     detail: { itemId: focusedItem.itemId },
                     bubbles: false,
                 }));

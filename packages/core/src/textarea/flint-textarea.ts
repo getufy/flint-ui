@@ -133,6 +133,7 @@ export class FlintTextarea extends LitElement {
           ?disabled=${this.disabled}
           ?readonly=${this.readonly}
           ?required=${this.required}
+          aria-required=${this.required ? 'true' : 'false'}
           rows=${this.rows}
           maxlength=${ifDefined(this.maxlength)}
           minlength=${ifDefined(this.minlength)}

@@ -191,9 +191,9 @@ describe('FlintSimpleTreeView', () => {
         expect(handler).not.toHaveBeenCalled();
     });
 
-    it('dispatches item-click event on the tree', async () => {
+    it('dispatches flint-tree-view-item-click event on the tree', async () => {
         const handler = vi.fn();
-        tree.addEventListener('item-click', handler);
+        tree.addEventListener('flint-tree-view-item-click', handler);
 
         const item = tree.querySelector('flint-tree-item[item-id="3"]') as FlintTreeItem;
         item.shadowRoot!.querySelector<HTMLElement>('.item-row')!.click();
@@ -455,7 +455,7 @@ describe('FlintSimpleTreeView — expandedItems (controlled)', () => {
         expect(handler).toHaveBeenCalledWith(['1']);
     });
 
-    it('dispatches expanded-items-change event', async () => {
+    it('dispatches flint-tree-view-expanded-items-change event', async () => {
         const handler = vi.fn();
         const tree = await fixture<FlintSimpleTreeView>(html`
       <flint-simple-tree-view .expandedItems=${[] as string[]}>
@@ -466,7 +466,7 @@ describe('FlintSimpleTreeView — expandedItems (controlled)', () => {
     `);
         await tree.updateComplete;
         await new Promise(r => setTimeout(r, 20));
-        tree.addEventListener('expanded-items-change', handler);
+        tree.addEventListener('flint-tree-view-expanded-items-change', handler);
 
         const item1 = tree.querySelector('flint-tree-item[item-id="1"]') as FlintTreeItem;
         item1.shadowRoot!.querySelector<HTMLElement>('.expand-btn')!.click();

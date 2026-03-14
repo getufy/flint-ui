@@ -96,11 +96,7 @@ src/
 ## Roadmap
 
 - [ ] Structured theme system (SCSS variables)
-- [ ] Dark mode toggle component
-- [ ] Monorepo structure
 - [ ] Published npm package for Lit
-- [ ] React wrapper package (`gen:react` script exists)
-- [ ] Name the framework
 
 ## License
 

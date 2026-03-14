@@ -10,7 +10,7 @@ export const FlintDateRangeCalendar = createComponent({
     elementClass: FlintDateRangeCalendarElement,
     react: React,
     events: {
-        onRangeSelect: 'range-select' as EventName<CustomEvent>,
+        onRangeSelect: 'flint-date-range-picker-select' as EventName<CustomEvent>,
     },
 });
 

@@ -219,20 +219,20 @@ describe('flint-table-sort-label', () => {
 /* ------------------------------------------------------------------ */
 
 describe('flint-table-pagination', () => {
-    it('dispatches page-change on next click', async () => {
+    it('dispatches flint-pagination-page-change on next click', async () => {
         const pageHandler = vi.fn();
         const el = await fixture<FlintTablePagination>(html`
-            <flint-table-pagination .count=${100} .page=${1} @page-change=${pageHandler}></flint-table-pagination>
+            <flint-table-pagination .count=${100} .page=${1} @flint-pagination-page-change=${pageHandler}></flint-table-pagination>
         `);
         el.shadowRoot!.querySelector<HTMLButtonElement>('button[aria-label="Next page"]')!.click();
         expect(pageHandler).toHaveBeenCalled();
         expect(pageHandler.mock.calls[0][0].detail.page).toBe(2);
     });
 
-    it('dispatches page-change on previous click', async () => {
+    it('dispatches flint-pagination-page-change on previous click', async () => {
         const handler = vi.fn();
         const el = await fixture<FlintTablePagination>(html`
-            <flint-table-pagination .count=${100} .page=${3} @page-change=${handler}></flint-table-pagination>
+            <flint-table-pagination .count=${100} .page=${3} @flint-pagination-page-change=${handler}></flint-table-pagination>
         `);
         el.shadowRoot!.querySelector<HTMLButtonElement>('button[aria-label="Previous page"]')!.click();
         expect(handler).toHaveBeenCalled();
@@ -255,10 +255,10 @@ describe('flint-table-pagination', () => {
         expect(next.disabled).toBe(true);
     });
 
-    it('dispatches rows-per-page-change when select changes', async () => {
+    it('dispatches flint-pagination-rows-per-page-change when select changes', async () => {
         const handler = vi.fn();
         const el = await fixture<FlintTablePagination>(html`
-            <flint-table-pagination .count=${100} .page=${0} @rows-per-page-change=${handler}></flint-table-pagination>
+            <flint-table-pagination .count=${100} .page=${0} @flint-pagination-rows-per-page-change=${handler}></flint-table-pagination>
         `);
         const select = el.shadowRoot!.querySelector<HTMLSelectElement>('select')!;
         select.value = '25';
@@ -282,19 +282,19 @@ describe('flint-table-pagination', () => {
         expect(el.shadowRoot!.querySelector('button[aria-label="Last page"]')).toBeTruthy();
     });
 
-    it('first page button dispatches page-change with 0', async () => {
+    it('first page button dispatches flint-pagination-page-change with 0', async () => {
         const handler = vi.fn();
         const el = await fixture<FlintTablePagination>(html`
-            <flint-table-pagination .count=${100} .page=${5} show-first-last @page-change=${handler}></flint-table-pagination>
+            <flint-table-pagination .count=${100} .page=${5} show-first-last @flint-pagination-page-change=${handler}></flint-table-pagination>
         `);
         el.shadowRoot!.querySelector<HTMLButtonElement>('button[aria-label="First page"]')!.click();
         expect(handler.mock.calls[0][0].detail.page).toBe(0);
     });
 
-    it('last page button dispatches page-change with last page index', async () => {
+    it('last page button dispatches flint-pagination-page-change with last page index', async () => {
         const handler = vi.fn();
         const el = await fixture<FlintTablePagination>(html`
-            <flint-table-pagination .count=${100} .page=${0} .rowsPerPage=${10} show-first-last @page-change=${handler}></flint-table-pagination>
+            <flint-table-pagination .count=${100} .page=${0} .rowsPerPage=${10} show-first-last @flint-pagination-page-change=${handler}></flint-table-pagination>
         `);
         el.shadowRoot!.querySelector<HTMLButtonElement>('button[aria-label="Last page"]')!.click();
         expect(handler.mock.calls[0][0].detail.page).toBe(9);
@@ -372,10 +372,10 @@ describe('flint-table-pagination', () => {
         expect(next.disabled).toBe(false);
     });
 
-    it('rows-per-page change resets page to 0 and fires event', async () => {
+    it('flint-pagination-rows-per-page-change resets page to 0 and fires event', async () => {
         const handler = vi.fn();
         const el = await fixture<FlintTablePagination>(html`
-            <flint-table-pagination .count=${100} .page=${5} @rows-per-page-change=${handler}></flint-table-pagination>
+            <flint-table-pagination .count=${100} .page=${5} @flint-pagination-rows-per-page-change=${handler}></flint-table-pagination>
         `);
         const select = el.shadowRoot!.querySelector<HTMLSelectElement>('select')!;
         select.value = '25';
@@ -388,7 +388,7 @@ describe('flint-table-pagination', () => {
     it('_lastPage: last page button dispatches correct page for non-round count', async () => {
         const handler = vi.fn();
         const el = await fixture<FlintTablePagination>(html`
-            <flint-table-pagination .count=${95} .page=${0} .rowsPerPage=${10} show-first-last @page-change=${handler}></flint-table-pagination>
+            <flint-table-pagination .count=${95} .page=${0} .rowsPerPage=${10} show-first-last @flint-pagination-page-change=${handler}></flint-table-pagination>
         `);
         el.shadowRoot!.querySelector<HTMLButtonElement>('button[aria-label="Last page"]')!.click();
         // ceil(95/10) - 1 = 10 - 1 = 9
@@ -423,19 +423,19 @@ describe('flint-table-pagination', () => {
         expect(el.shadowRoot!.textContent).toContain('1-5 of 100');
     });
 
-    it('page-change event detail has correct value for _go(1)', async () => {
+    it('flint-pagination-page-change event detail has correct value for _go(1)', async () => {
         const handler = vi.fn();
         const el = await fixture<FlintTablePagination>(html`
-            <flint-table-pagination .count=${100} .page=${3} @page-change=${handler}></flint-table-pagination>
+            <flint-table-pagination .count=${100} .page=${3} @flint-pagination-page-change=${handler}></flint-table-pagination>
         `);
         el.shadowRoot!.querySelector<HTMLButtonElement>('button[aria-label="Next page"]')!.click();
         expect(handler.mock.calls[0][0].detail.page).toBe(4);
     });
 
-    it('page-change event detail has correct value for _go(-1)', async () => {
+    it('flint-pagination-page-change event detail has correct value for _go(-1)', async () => {
         const handler = vi.fn();
         const el = await fixture<FlintTablePagination>(html`
-            <flint-table-pagination .count=${100} .page=${3} @page-change=${handler}></flint-table-pagination>
+            <flint-table-pagination .count=${100} .page=${3} @flint-pagination-page-change=${handler}></flint-table-pagination>
         `);
         el.shadowRoot!.querySelector<HTMLButtonElement>('button[aria-label="Previous page"]')!.click();
         expect(handler.mock.calls[0][0].detail.page).toBe(2);

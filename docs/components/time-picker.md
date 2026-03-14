@@ -48,7 +48,7 @@ import { FlintTimeField } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `clear` | — | Fired when the field value is cleared. |
+| `flint-time-picker-clear` | — | Fired when the field value is cleared. |
 | `change` | `{ value: v }` | Fired when the time value changes. |
 
 ### CSS Custom Properties
@@ -190,7 +190,7 @@ import { FlintTimeClock } from 'flint-ui';
 | Event | Detail | Description |
 | --- | --- | --- |
 | `change` | `{ value: v }` | Fired when the selected time changes. |
-| `view-change` | `{ view: v }` | Fired when the clock face view changes. |
+| `flint-time-clock-view-change` | `{ view: v }` | Fired when the clock face view changes. |
 
 ### CSS Custom Properties
 

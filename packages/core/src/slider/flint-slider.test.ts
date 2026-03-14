@@ -573,6 +573,53 @@ describe('flint-slider — displayStr and aria-valuetext', () => {
   });
 });
 
+// ── ARIA attributes ─────────────────────────────────────────────────────────
+
+describe('flint-slider — ARIA attributes', () => {
+  it('has aria-valuemin matching safeMin', async () => {
+    const el = await fixture<FlintSlider>(html`<flint-slider min="10" max="90" .value=${50}></flint-slider>`);
+    expect(input(el).getAttribute('aria-valuemin')).toBe('10');
+  });
+
+  it('has aria-valuemax matching safeMax', async () => {
+    const el = await fixture<FlintSlider>(html`<flint-slider min="10" max="90" .value=${50}></flint-slider>`);
+    expect(input(el).getAttribute('aria-valuemax')).toBe('90');
+  });
+
+  it('has aria-valuenow matching clamped value', async () => {
+    const el = await fixture<FlintSlider>(html`<flint-slider min="0" max="100" .value=${75}></flint-slider>`);
+    expect(input(el).getAttribute('aria-valuenow')).toBe('75');
+  });
+
+  it('aria-valuenow reflects clamped value when out of range', async () => {
+    const el = await fixture<FlintSlider>(html`<flint-slider min="0" max="100" .value=${200}></flint-slider>`);
+    expect(input(el).getAttribute('aria-valuenow')).toBe('100');
+  });
+
+  it('has aria-disabled="true" when disabled', async () => {
+    const el = await fixture<FlintSlider>(html`<flint-slider disabled></flint-slider>`);
+    expect(input(el).getAttribute('aria-disabled')).toBe('true');
+  });
+
+  it('has aria-disabled="false" when not disabled', async () => {
+    const el = await fixture<FlintSlider>(html`<flint-slider></flint-slider>`);
+    expect(input(el).getAttribute('aria-disabled')).toBe('false');
+  });
+
+  it('updates aria-valuenow after input event', async () => {
+    const el = await fixture<FlintSlider>(html`<flint-slider .value=${50}></flint-slider>`);
+    fireInput(el, '80');
+    await el.updateComplete;
+    expect(input(el).getAttribute('aria-valuenow')).toBe('80');
+  });
+
+  it('aria-valuemin uses fallback when min >= max', async () => {
+    const el = await fixture<FlintSlider>(html`<flint-slider min="50" max="50" .value=${25}></flint-slider>`);
+    expect(input(el).getAttribute('aria-valuemin')).toBe('0');
+    expect(input(el).getAttribute('aria-valuemax')).toBe('100');
+  });
+});
+
 // ── Default property values ────────────────────────────────────────────────
 
 describe('flint-slider — default property values', () => {

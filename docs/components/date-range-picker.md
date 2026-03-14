@@ -40,7 +40,7 @@ import { FlintDateRangeCalendar } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `range-select` | — | { detail: { value: DateRange } } on each click |
+| `flint-date-range-picker-select` | — | { detail: { value: DateRange } } on each click |
 
 ### CSS Custom Properties
 
@@ -118,7 +118,7 @@ import { FlintDateRangePicker } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `range-change` | — | { detail: { value: DateRange } } when range is committed |
+| `flint-date-range-picker-change` | — | { detail: { value: DateRange } } when range is committed |
 
 ---
 
@@ -161,14 +161,14 @@ import { FlintSingleInputDateRangeField } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `range-change` | — | { detail: { value: DateRange } } when both dates are complete |
-| `range-clear` | — | fired when all segments are cleared |
+| `flint-date-range-picker-change` | — | { detail: { value: DateRange } } when both dates are complete |
+| `flint-date-range-picker-clear` | — | fired when all segments are cleared |
 
 ### Methods
 
 | Method | Description |
 | --- | --- |
 | `setRange(range: DateRange)` | Programmatically sets the date range value. |
-| `clear()` | Clears all segments and fires 'range-clear'. |
+| `clear()` | Clears all segments and fires 'flint-date-range-picker-clear'. |
 
 ---

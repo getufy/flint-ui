@@ -364,9 +364,9 @@ describe('FlintRichTreeView — onItemClick', () => {
         expect(handler).toHaveBeenCalledWith('b');
     });
 
-    it('dispatches item-click event on the host', async () => {
+    it('dispatches flint-tree-view-item-click event on the host', async () => {
         const handler = vi.fn();
-        tree.addEventListener('item-click', handler);
+        tree.addEventListener('flint-tree-view-item-click', handler);
 
         const item = getItem(tree, 'a')!;
         item.shadowRoot!.querySelector<HTMLElement>('.item-row')!.click();
@@ -468,13 +468,13 @@ describe('FlintRichTreeView — expansion (controlled)', () => {
         expect(handler).toHaveBeenCalledWith(['1']);
     });
 
-    it('dispatches expanded-items-change event', async () => {
+    it('dispatches flint-tree-view-expanded-items-change event', async () => {
         const handler = vi.fn();
         const tree = await fixture<FlintRichTreeView>(html`
       <flint-rich-tree-view .items=${BASIC_ITEMS} .expandedItems=${[] as string[]}></flint-rich-tree-view>
     `);
         await settle(tree);
-        tree.addEventListener('expanded-items-change', handler);
+        tree.addEventListener('flint-tree-view-expanded-items-change', handler);
 
         getItem(tree, '1')!.shadowRoot!.querySelector<HTMLElement>('.expand-btn')!.click();
         await tree.updateComplete;
@@ -863,9 +863,9 @@ describe('FlintRichTreeView — basic reordering', () => {
     });
 });
 
-// ─── item-position-change event ───────────────────────────────────────────────
+// ─── flint-tree-view-item-position-change event ───────────────────────────────────────────────
 
-describe('FlintRichTreeView — item-position-change event', () => {
+describe('FlintRichTreeView — flint-tree-view-item-position-change event', () => {
     let tree: FlintRichTreeView;
 
     beforeEach(async () => {
@@ -875,9 +875,9 @@ describe('FlintRichTreeView — item-position-change event', () => {
         await settle(tree);
     });
 
-    it('fires item-position-change with correct itemId and newIndex', async () => {
+    it('fires flint-tree-view-item-position-change with correct itemId and newIndex', async () => {
         const handler = vi.fn();
-        tree.addEventListener('item-position-change', handler);
+        tree.addEventListener('flint-tree-view-item-position-change', handler);
 
         simulateDrop(tree, 'a', 'c', 'after');
         await settle(tree);
@@ -911,7 +911,7 @@ describe('FlintRichTreeView — item-position-change event', () => {
         await settle(innerTree);
 
         const handler = vi.fn();
-        innerTree.addEventListener('item-position-change', handler);
+        innerTree.addEventListener('flint-tree-view-item-position-change', handler);
 
         simulateDrop(innerTree, 'file', 'folder', 'inside');
         await settle(innerTree);
@@ -921,7 +921,7 @@ describe('FlintRichTreeView — item-position-change event', () => {
 
     it('does not fire when drag is cancelled (dragend with no drop)', async () => {
         const handler = vi.fn();
-        tree.addEventListener('item-position-change', handler);
+        tree.addEventListener('flint-tree-view-item-position-change', handler);
 
         const fromEl = getItem(tree, 'a')!;
         fromEl.dispatchEvent(new DragEvent('dragstart', { bubbles: true, composed: true }));
@@ -1991,16 +1991,16 @@ describe('FlintRichTreeView — dragover position thresholds (before / inside)',
     });
 });
 
-// ─── Exact newIndex in item-position-change ───────────────────────────────────
+// ─── Exact newIndex in flint-tree-view-item-position-change ───────────────────────────────────
 
-describe('FlintRichTreeView — item-position-change exact newIndex', () => {
+describe('FlintRichTreeView — flint-tree-view-item-position-change exact newIndex', () => {
     it('reports newIndex=2 when moving "a" after "c" (last slot)', async () => {
         const tree = await fixture<FlintRichTreeView>(html`
             <flint-rich-tree-view .items=${FLAT_ITEMS} items-reordering></flint-rich-tree-view>
         `);
         await settle(tree);
         const handler = vi.fn();
-        tree.addEventListener('item-position-change', handler);
+        tree.addEventListener('flint-tree-view-item-position-change', handler);
 
         simulateDrop(tree, 'a', 'c', 'after');
         await settle(tree);
@@ -2015,7 +2015,7 @@ describe('FlintRichTreeView — item-position-change exact newIndex', () => {
         `);
         await settle(tree);
         const handler = vi.fn();
-        tree.addEventListener('item-position-change', handler);
+        tree.addEventListener('flint-tree-view-item-position-change', handler);
 
         simulateDrop(tree, 'c', 'a', 'before');
         await settle(tree);
@@ -2030,7 +2030,7 @@ describe('FlintRichTreeView — item-position-change exact newIndex', () => {
         `);
         await settle(tree);
         const handler = vi.fn();
-        tree.addEventListener('item-position-change', handler);
+        tree.addEventListener('flint-tree-view-item-position-change', handler);
 
         simulateDrop(tree, 'a', 'b', 'after');
         await settle(tree);
@@ -2049,7 +2049,7 @@ describe('FlintRichTreeView — item-position-change exact newIndex', () => {
         `);
         await settle(tree);
         const handler = vi.fn();
-        tree.addEventListener('item-position-change', handler);
+        tree.addEventListener('flint-tree-view-item-position-change', handler);
 
         simulateDrop(tree, 'file', 'folder', 'inside');
         await settle(tree);
@@ -2350,13 +2350,13 @@ describe('FlintRichTreeView — _expansionInitialized prevents re-application', 
     });
 });
 
-// ─── item-click and expanded-items-change do NOT bubble ──────────────────────
+// ─── flint-tree-view-item-click and flint-tree-view-expanded-items-change do NOT bubble ──────────────────────
 
 describe('FlintRichTreeView — event bubbling (bubbles=false)', () => {
-    it('item-click event does not bubble to parent container', async () => {
+    it('flint-tree-view-item-click event does not bubble to parent container', async () => {
         const spy = vi.fn();
         const container = await fixture<HTMLDivElement>(html`
-            <div @item-click=${spy}>
+            <div @flint-tree-view-item-click=${spy}>
                 <flint-rich-tree-view .items=${FLAT_ITEMS}></flint-rich-tree-view>
             </div>
         `);
@@ -2368,10 +2368,10 @@ describe('FlintRichTreeView — event bubbling (bubbles=false)', () => {
         expect(spy).not.toHaveBeenCalled();
     });
 
-    it('expanded-items-change event does not bubble to parent container', async () => {
+    it('flint-tree-view-expanded-items-change event does not bubble to parent container', async () => {
         const spy = vi.fn();
         const container = await fixture<HTMLDivElement>(html`
-            <div @expanded-items-change=${spy}>
+            <div @flint-tree-view-expanded-items-change=${spy}>
                 <flint-rich-tree-view
                     .items=${BASIC_ITEMS}
                     .expandedItems=${[] as string[]}
@@ -2387,13 +2387,13 @@ describe('FlintRichTreeView — event bubbling (bubbles=false)', () => {
         expect(spy).not.toHaveBeenCalled();
     });
 
-    it('item-click event is still dispatched on the tree host itself', async () => {
+    it('flint-tree-view-item-click event is still dispatched on the tree host itself', async () => {
         const spy = vi.fn();
         const tree = await fixture<FlintRichTreeView>(html`
             <flint-rich-tree-view .items=${FLAT_ITEMS}></flint-rich-tree-view>
         `);
         await settle(tree);
-        tree.addEventListener('item-click', spy);
+        tree.addEventListener('flint-tree-view-item-click', spy);
 
         getItem(tree, 'b')!.shadowRoot!.querySelector<HTMLElement>('.item-row')!.click();
 
@@ -2459,7 +2459,7 @@ describe('FlintRichTreeView — _isControlled detection', () => {
             ></flint-rich-tree-view>
         `);
         await settle(tree);
-        tree.addEventListener('expanded-items-change', spy);
+        tree.addEventListener('flint-tree-view-expanded-items-change', spy);
 
         getItem(tree, '1')!.shadowRoot!.querySelector<HTMLElement>('.expand-btn')!.click();
         await tree.updateComplete;

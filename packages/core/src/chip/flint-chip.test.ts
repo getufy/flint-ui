@@ -278,14 +278,14 @@ describe('flint-chip', () => {
 
     it('dispatches delete event when delete icon is clicked', async () => {
         const handler = vi.fn();
-        const el = await fixture<FlintChip>(html`<flint-chip label="Delete" deletable @delete=${handler}></flint-chip>`);
+        const el = await fixture<FlintChip>(html`<flint-chip label="Delete" deletable @flint-chip-delete=${handler}></flint-chip>`);
         el.shadowRoot!.querySelector('.delete-icon')!.dispatchEvent(new MouseEvent('click', { bubbles: true, composed: true }));
         expect(handler).toHaveBeenCalledTimes(1);
     });
 
     it('does not dispatch delete when chip is disabled', async () => {
         const handler = vi.fn();
-        const el = await fixture<FlintChip>(html`<flint-chip label="Delete" deletable disabled @delete=${handler}></flint-chip>`);
+        const el = await fixture<FlintChip>(html`<flint-chip label="Delete" deletable disabled @flint-chip-delete=${handler}></flint-chip>`);
         // pointer-events: none on delete-icon in CSS, but test the handler guard directly
         el.shadowRoot!.querySelector('.delete-icon')!.dispatchEvent(new MouseEvent('click', { bubbles: true, composed: true }));
         expect(handler).not.toHaveBeenCalled();
@@ -295,7 +295,7 @@ describe('flint-chip', () => {
         const clickHandler = vi.fn();
         const deleteHandler = vi.fn();
         const el = await fixture<FlintChip>(html`
-            <flint-chip label="Both" clickable deletable @click=${clickHandler} @delete=${deleteHandler}></flint-chip>
+            <flint-chip label="Both" clickable deletable @click=${clickHandler} @flint-chip-delete=${deleteHandler}></flint-chip>
         `);
         el.shadowRoot!.querySelector('.delete-icon')!.dispatchEvent(new MouseEvent('click', { bubbles: true, composed: true }));
         expect(deleteHandler).toHaveBeenCalledTimes(1);
@@ -306,7 +306,7 @@ describe('flint-chip', () => {
         const wrapper = document.createElement('div');
         document.body.appendChild(wrapper);
         const handler = vi.fn();
-        wrapper.addEventListener('delete', handler);
+        wrapper.addEventListener('flint-chip-delete', handler);
         const el = await fixture<FlintChip>(html`<flint-chip label="Delete Bubble" deletable></flint-chip>`, { parentNode: wrapper });
         el.shadowRoot!.querySelector('.delete-icon')!.dispatchEvent(new MouseEvent('click', { bubbles: true, composed: true }));
         expect(handler).toHaveBeenCalledTimes(1);
@@ -315,35 +315,35 @@ describe('flint-chip', () => {
 
     it('dispatches delete on Enter key on delete icon', async () => {
         const handler = vi.fn();
-        const el = await fixture<FlintChip>(html`<flint-chip label="Delete" deletable @delete=${handler}></flint-chip>`);
+        const el = await fixture<FlintChip>(html`<flint-chip label="Delete" deletable @flint-chip-delete=${handler}></flint-chip>`);
         el.shadowRoot!.querySelector('.delete-icon')!.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, composed: true }));
         expect(handler).toHaveBeenCalledTimes(1);
     });
 
     it('dispatches delete on Space key on delete icon', async () => {
         const handler = vi.fn();
-        const el = await fixture<FlintChip>(html`<flint-chip label="Delete" deletable @delete=${handler}></flint-chip>`);
+        const el = await fixture<FlintChip>(html`<flint-chip label="Delete" deletable @flint-chip-delete=${handler}></flint-chip>`);
         el.shadowRoot!.querySelector('.delete-icon')!.dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true, composed: true }));
         expect(handler).toHaveBeenCalledTimes(1);
     });
 
     it('does not dispatch delete on Enter key when chip is disabled', async () => {
         const handler = vi.fn();
-        const el = await fixture<FlintChip>(html`<flint-chip label="Delete" deletable disabled @delete=${handler}></flint-chip>`);
+        const el = await fixture<FlintChip>(html`<flint-chip label="Delete" deletable disabled @flint-chip-delete=${handler}></flint-chip>`);
         el.shadowRoot!.querySelector('.delete-icon')!.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, composed: true }));
         expect(handler).not.toHaveBeenCalled();
     });
 
     it('does not dispatch delete on Space key when chip is disabled', async () => {
         const handler = vi.fn();
-        const el = await fixture<FlintChip>(html`<flint-chip label="Delete" deletable disabled @delete=${handler}></flint-chip>`);
+        const el = await fixture<FlintChip>(html`<flint-chip label="Delete" deletable disabled @flint-chip-delete=${handler}></flint-chip>`);
         el.shadowRoot!.querySelector('.delete-icon')!.dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true, composed: true }));
         expect(handler).not.toHaveBeenCalled();
     });
 
     it('does not dispatch delete on ArrowDown key on delete icon', async () => {
         const handler = vi.fn();
-        const el = await fixture<FlintChip>(html`<flint-chip label="Delete" deletable @delete=${handler}></flint-chip>`);
+        const el = await fixture<FlintChip>(html`<flint-chip label="Delete" deletable @flint-chip-delete=${handler}></flint-chip>`);
         el.shadowRoot!.querySelector('.delete-icon')!.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true, composed: true }));
         expect(handler).not.toHaveBeenCalled();
     });
@@ -352,7 +352,7 @@ describe('flint-chip', () => {
         const clickHandler = vi.fn();
         const deleteHandler = vi.fn();
         const el = await fixture<FlintChip>(html`
-            <flint-chip label="Both" clickable deletable @click=${clickHandler} @delete=${deleteHandler}></flint-chip>
+            <flint-chip label="Both" clickable deletable @click=${clickHandler} @flint-chip-delete=${deleteHandler}></flint-chip>
         `);
         el.shadowRoot!.querySelector('.delete-icon')!.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, composed: true }));
         expect(deleteHandler).toHaveBeenCalledTimes(1);

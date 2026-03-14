@@ -102,7 +102,7 @@ function buildMonthGrid(year: number, month: number, selected: string | null, mi
  * A standalone calendar grid — the core date-selection view.
  * Used internally by flint-date-picker, but can also be used on its own.
  *
- * @fires date-select  - { detail: { value: string } } ISO date YYYY-MM-DD
+ * @fires flint-date-picker-select  - { detail: { value: string } } ISO date YYYY-MM-DD
  */
 @customElement('flint-date-picker-calendar')
 export class FlintDatePickerCalendar extends LitElement {
@@ -150,7 +150,7 @@ export class FlintDatePickerCalendar extends LitElement {
 
     private _selectDay(cell: CalendarDay) {
         if (cell.isDisabled || this.disabled) return;
-        this.dispatchEvent(new CustomEvent('date-select', {
+        this.dispatchEvent(new CustomEvent('flint-date-picker-select', {
             detail: { value: cell.iso }, bubbles: true, composed: true
         }));
     }
@@ -409,7 +409,7 @@ export class FlintDatePicker extends LitElement {
               .min=${this.min}
               .max=${this.max}
               ?disabled=${this.disabled}
-              @date-select=${this._handleCalendarSelect}
+              @flint-date-picker-select=${this._handleCalendarSelect}
             ></flint-date-picker-calendar>
           </div>
         </div>
@@ -435,7 +435,7 @@ export class FlintDatePicker extends LitElement {
               .min=${this.min}
               .max=${this.max}
               ?disabled=${this.disabled}
-              @date-select=${this._handleCalendarSelect}
+              @flint-date-picker-select=${this._handleCalendarSelect}
             ></flint-date-picker-calendar>
           </flint-dialog-content>
           <flint-dialog-actions>
@@ -456,7 +456,7 @@ export class FlintDatePicker extends LitElement {
           .min=${this.min}
           .max=${this.max}
           ?disabled=${this.disabled}
-          @date-select=${this._handleStaticSelect}
+          @flint-date-picker-select=${this._handleStaticSelect}
         ></flint-date-picker-calendar>
       </div>
     `;

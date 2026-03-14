@@ -27,7 +27,7 @@ describe('flint-backdrop', () => {
         const el = await fixture<FlintBackdrop>(html`<flint-backdrop open></flint-backdrop>`);
         const backdrop = el.shadowRoot!.querySelector('.backdrop') as HTMLElement;
         const closeSpy = vi.fn();
-        el.addEventListener('close', closeSpy);
+        el.addEventListener('flint-backdrop-close', closeSpy);
 
         backdrop.click();
         await el.updateComplete;
@@ -43,7 +43,7 @@ describe('flint-backdrop', () => {
         `);
         const content = el.querySelector('#inner-content') as HTMLElement;
         const closeSpy = vi.fn();
-        el.addEventListener('close', closeSpy);
+        el.addEventListener('flint-backdrop-close', closeSpy);
 
         content.click();
         await el.updateComplete;
@@ -90,7 +90,7 @@ describe('flint-backdrop', () => {
     it('dispatches close event when Escape is pressed while open', async () => {
         const el = await fixture<FlintBackdrop>(html`<flint-backdrop open></flint-backdrop>`);
         const closeSpy = vi.fn();
-        el.addEventListener('close', closeSpy);
+        el.addEventListener('flint-backdrop-close', closeSpy);
 
         document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 
@@ -100,7 +100,7 @@ describe('flint-backdrop', () => {
     it('does not dispatch close event on Escape when closed', async () => {
         const el = await fixture<FlintBackdrop>(html`<flint-backdrop></flint-backdrop>`);
         const closeSpy = vi.fn();
-        el.addEventListener('close', closeSpy);
+        el.addEventListener('flint-backdrop-close', closeSpy);
 
         document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 

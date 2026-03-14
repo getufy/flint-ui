@@ -59,7 +59,7 @@ A dual-month calendar for range selection. Shows two months side-by-side (or sta
 
 | Event | Detail | Description |
 |---|---|---|
-| \`range-select\` | — | { detail: { value: DateRange } } on each click |
+| \`flint-date-range-picker-select\` | — | { detail: { value: DateRange } } on each click |
 
 #### CSS Custom Properties
 
@@ -123,7 +123,7 @@ A date range picker combining a segmented field and a dual-month calendar.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`range-change\` | — | { detail: { value: DateRange } } when range is committed |
+| \`flint-date-range-picker-change\` | — | { detail: { value: DateRange } } when range is committed |
 
 ---
 
@@ -152,8 +152,8 @@ A single-input field for entering a date range (start → end). Renders as "MM/D
 
 | Event | Detail | Description |
 |---|---|---|
-| \`range-change\` | — | { detail: { value: DateRange } } when both dates are complete |
-| \`range-clear\` | — | fired when all segments are cleared |
+| \`flint-date-range-picker-change\` | — | { detail: { value: DateRange } } when both dates are complete |
+| \`flint-date-range-picker-clear\` | — | fired when all segments are cleared |
 
 #### Methods
 
@@ -225,7 +225,7 @@ export const Desktop: Story = {
       ?readonly=${args.readonly}
       ?error=${args.error}
       helper-text=${args.helperText ?? ''}
-      @range-change=${onRangeChange}
+      @flint-date-range-picker-change=${onRangeChange}
     ></flint-date-range-picker>
   `),
 
@@ -280,7 +280,7 @@ export const Mobile: Story = {
       ?readonly=${args.readonly}
       ?error=${args.error}
       helper-text=${args.helperText ?? ''}
-      @range-change=${onRangeChange}
+      @flint-date-range-picker-change=${onRangeChange}
     ></flint-date-range-picker>
   `),
 
@@ -288,7 +288,7 @@ export const Mobile: Story = {
      * Interaction test:
      * 1. Tap the mobile field → dialog opens, OK is disabled (no dates yet).
      * 2. Click a start + end date → OK becomes enabled.
-     * 3. Click OK → range-change fires with both ISO dates.
+     * 3. Click OK → flint-date-range-picker-change fires with both ISO dates.
      */
     play: async ({ canvasElement }) => {
         const picker = getPicker(canvasElement);
@@ -313,9 +313,9 @@ export const Mobile: Story = {
             expect(shadow.querySelector<HTMLButtonElement>('.action-btn.ok')!.disabled).toBe(false);
         });
 
-        // 3 ── Click OK and verify range-change fires
+        // 3 ── Click OK and verify flint-date-range-picker-change fires
         let firedEvent: CustomEvent | null = null;
-        canvasElement.addEventListener('range-change', (e) => { firedEvent = e as CustomEvent; }, { once: true });
+        canvasElement.addEventListener('flint-date-range-picker-change', (e) => { firedEvent = e as CustomEvent; }, { once: true });
 
         await userEvent.click(shadow.querySelector('.action-btn.ok') as HTMLElement);
 
@@ -343,7 +343,7 @@ export const Static: Story = {
         ?disabled=${args.disabled}
         ?readonly=${args.readonly}
         ?error=${args.error}
-        @range-change=${onRangeChange}
+        @flint-date-range-picker-change=${onRangeChange}
       ></flint-date-range-picker>
     </div>
   `,
@@ -352,14 +352,14 @@ export const Static: Story = {
      * Interaction test:
      * 1. First click → range-start is set, no end yet.
      * 2. Second click → full range: start, end, and in-range stripe appear.
-     * 3. range-change fires with valid ISO dates.
+     * 3. flint-date-range-picker-change fires with valid ISO dates.
      */
     play: async ({ canvasElement }) => {
         const picker = getPicker(canvasElement);
         const shadow = picker.shadowRoot;
 
         let firedRange: DateRange | null = null;
-        canvasElement.addEventListener('range-change', (e) => {
+        canvasElement.addEventListener('flint-date-range-picker-change', (e) => {
             firedRange = (e as CustomEvent).detail.value as DateRange;
         });
 
@@ -408,14 +408,14 @@ export const WithShortcuts: Story = {
       ?readonly=${args.readonly}
       ?error=${args.error}
       helper-text=${args.helperText ?? ''}
-      @range-change=${onRangeChange}
+      @flint-date-range-picker-change=${onRangeChange}
     ></flint-date-range-picker>
   `),
 
     /**
      * Interaction test:
      * 1. Open the popover.
-     * 2. Click the "Today" shortcut → range-change fires with today's ISO date as both start and end.
+     * 2. Click the "Today" shortcut → flint-date-range-picker-change fires with today's ISO date as both start and end.
      * 3. The shortcut button gains the `active` class.
      * 4. Popover closes automatically (complete range).
      */
@@ -424,7 +424,7 @@ export const WithShortcuts: Story = {
         const shadow = picker.shadowRoot;
 
         let firedEvent: CustomEvent | null = null;
-        canvasElement.addEventListener('range-change', (e) => { firedEvent = e as CustomEvent; }, { once: true });
+        canvasElement.addEventListener('flint-date-range-picker-change', (e) => { firedEvent = e as CustomEvent; }, { once: true });
 
         // 1 ── Open the popover
         await userEvent.click(getSegments(shadow));
@@ -437,7 +437,7 @@ export const WithShortcuts: Story = {
         const todayBtn = shadow.querySelector('.shortcut-btn') as HTMLElement;
         await userEvent.click(todayBtn);
 
-        // 3 ── range-change fires; "Today" gives start === end
+        // 3 ── flint-date-range-picker-change fires; "Today" gives start === end
         await waitFor(() => {
             expect(firedEvent).not.toBeNull();
             const [start, end] = firedEvent!.detail.value as DateRange;
@@ -472,7 +472,7 @@ export const StaticWithShortcuts: Story = {
         ?disabled=${args.disabled}
         ?readonly=${args.readonly}
         ?error=${args.error}
-        @range-change=${onRangeChange}
+        @flint-date-range-picker-change=${onRangeChange}
       ></flint-date-range-picker>
     </div>
   `,
@@ -480,7 +480,7 @@ export const StaticWithShortcuts: Story = {
     /**
      * Interaction test:
      * 1. Click the "Last 7 Days" shortcut (index 3).
-     * 2. range-change fires with start < end.
+     * 2. flint-date-range-picker-change fires with start < end.
      * 3. That shortcut button has the `active` class.
      * 4. Calendar shows range-start, range-end, and in-range stripe.
      */
@@ -489,7 +489,7 @@ export const StaticWithShortcuts: Story = {
         const shadow = picker.shadowRoot;
 
         let firedEvent: CustomEvent | null = null;
-        canvasElement.addEventListener('range-change', (e) => { firedEvent = e as CustomEvent; }, { once: true });
+        canvasElement.addEventListener('flint-date-range-picker-change', (e) => { firedEvent = e as CustomEvent; }, { once: true });
 
         // Shortcuts panel is always visible on the static variant
         const btns = shadow.querySelectorAll<HTMLElement>('.shortcut-btn');
@@ -499,7 +499,7 @@ export const StaticWithShortcuts: Story = {
         const last7Btn = btns[3];
         await userEvent.click(last7Btn);
 
-        // 2 ── range-change fires with a multi-day range
+        // 2 ── flint-date-range-picker-change fires with a multi-day range
         await waitFor(() => {
             expect(firedEvent).not.toBeNull();
             const [start, end] = firedEvent!.detail.value as DateRange;
@@ -536,7 +536,7 @@ export const ControlledValue: Story = {
           id="controlled-drp"
           label="Vacation Dates"
           .value=${currentRange}
-          @range-change=${(e: Event) => {
+          @flint-date-range-picker-change=${(e: Event) => {
                 const range = (e as CustomEvent).detail.value as DateRange;
                 currentRange = range;
                 (document.getElementById('controlled-drp') as FlintDateRangePicker).value = range;
@@ -586,11 +586,11 @@ export const Uncontrolled: Story = {
     name: 'Uncontrolled (No Initial Value)',
     render: () => wrap(html`
     <p style="font-size:.85rem;color:#6b7280;margin:0 0 16px;">
-      The component manages its own state. The parent only reacts to <code>range-change</code> events.
+      The component manages its own state. The parent only reacts to <code>flint-date-range-picker-change</code> events.
     </p>
     <flint-date-range-picker
       label="Select Period"
-      @range-change=${(e: Event) => {
+      @flint-date-range-picker-change=${(e: Event) => {
             const range = (e as CustomEvent).detail.value as DateRange;
             const out = document.getElementById('uncontrolled-out');
             if (out) out.textContent = range[0] && range[1] ? `${range[0]} → ${range[1]}` : '—';
@@ -652,7 +652,7 @@ export const ReadOnly: Story = {
       ?readonly=${args.readonly}
       ?error=${args.error}
       helper-text=${args.helperText ?? ''}
-      @range-change=${onRangeChange}
+      @flint-date-range-picker-change=${onRangeChange}
     ></flint-date-range-picker>
   `),
 
@@ -692,7 +692,7 @@ export const ErrorState: Story = {
       ?readonly=${args.readonly}
       ?error=${args.error}
       helper-text=${args.helperText ?? ''}
-      @range-change=${onRangeChange}
+      @flint-date-range-picker-change=${onRangeChange}
     ></flint-date-range-picker>
   `),
 };
@@ -716,7 +716,7 @@ export const WithMinMax: Story = {
         .min=${min}
         .max=${fmt(max)}
         helper-text="Select within the next 60 days"
-        @range-change=${onRangeChange}
+        @flint-date-range-picker-change=${onRangeChange}
       ></flint-date-range-picker>
     `);
     },
@@ -732,22 +732,22 @@ export const AllVariants: Story = {
 
         <div>
           <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;color:#6b7280;letter-spacing:.05em;margin:0 0 12px;">Desktop (Popover)</p>
-          <flint-date-range-picker label="Check-in / Check-out" @range-change=${onRangeChange}></flint-date-range-picker>
+          <flint-date-range-picker label="Check-in / Check-out" @flint-date-range-picker-change=${onRangeChange}></flint-date-range-picker>
         </div>
 
         <div>
           <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;color:#6b7280;letter-spacing:.05em;margin:0 0 12px;">Desktop + Shortcuts</p>
-          <flint-date-range-picker label="Report Period" shortcuts @range-change=${onRangeChange}></flint-date-range-picker>
+          <flint-date-range-picker label="Report Period" shortcuts @flint-date-range-picker-change=${onRangeChange}></flint-date-range-picker>
         </div>
 
         <div>
           <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;color:#6b7280;letter-spacing:.05em;margin:0 0 12px;">Mobile (Modal)</p>
-          <flint-date-range-picker label="Trip Dates" variant="mobile" @range-change=${onRangeChange}></flint-date-range-picker>
+          <flint-date-range-picker label="Trip Dates" variant="mobile" @flint-date-range-picker-change=${onRangeChange}></flint-date-range-picker>
         </div>
 
         <div>
           <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;color:#6b7280;letter-spacing:.05em;margin:0 0 12px;">Static</p>
-          <flint-date-range-picker variant="static" shortcuts @range-change=${onRangeChange}></flint-date-range-picker>
+          <flint-date-range-picker variant="static" shortcuts @flint-date-range-picker-change=${onRangeChange}></flint-date-range-picker>
         </div>
 
       </div>
@@ -770,7 +770,7 @@ export const SingleInputField: Story = {
         </p>
         <flint-single-input-date-range-field
           label="Date Range"
-          @range-change=${(e: CustomEvent) => {
+          @flint-date-range-picker-change=${(e: CustomEvent) => {
             const out = document.getElementById('single-out');
             if (out) out.textContent = `${e.detail.value[0]} → ${e.detail.value[1]}`;
         }}
@@ -868,7 +868,7 @@ export const DateRangeCalendar: Story = {
       </p>
       <flint-date-range-calendar
         id="standalone-cal"
-        @range-select=${(e: CustomEvent) => {
+        @flint-date-range-picker-select=${(e: CustomEvent) => {
             const range = e.detail.value as DateRange;
             const out = document.getElementById('cal-out');
             if (out) out.textContent = `${range[0] || '?'} → ${range[1] || '?'}`;
@@ -929,14 +929,14 @@ export const MobileWithShortcuts: Story = {
       variant="mobile"
       label="Report Period"
       shortcuts
-      @range-change=${onRangeChange}
+      @flint-date-range-picker-change=${onRangeChange}
     ></flint-date-range-picker>
   `),
 
     /**
      * Interaction test:
      * 1. Tap the mobile field to open the dialog.
-     * 2. Click "Yesterday" shortcut (index 1) → range-change fires immediately.
+     * 2. Click "Yesterday" shortcut (index 1) → flint-date-range-picker-change fires immediately.
      * 3. OK button becomes enabled (shortcut gives a complete range).
      * 4. Click OK → dialog closes, range committed.
      */
@@ -945,7 +945,7 @@ export const MobileWithShortcuts: Story = {
         const shadow = picker.shadowRoot;
 
         let firedEvent: CustomEvent | null = null;
-        canvasElement.addEventListener('range-change', (e) => { firedEvent = e as CustomEvent; }, { once: true });
+        canvasElement.addEventListener('flint-date-range-picker-change', (e) => { firedEvent = e as CustomEvent; }, { once: true });
 
         // 1 ── Open dialog
         await userEvent.click(shadow.querySelector('.mobile-field') as HTMLElement);
@@ -963,7 +963,7 @@ export const MobileWithShortcuts: Story = {
             expect(shadow.querySelector<HTMLButtonElement>('.action-btn.ok')!.disabled).toBe(false);
         });
 
-        // 4 ── Click OK → range-change fires
+        // 4 ── Click OK → flint-date-range-picker-change fires
         await userEvent.click(shadow.querySelector('.action-btn.ok') as HTMLElement);
 
         await waitFor(() => {
@@ -985,7 +985,7 @@ export const SameDayRange: Story = {
     <flint-date-range-picker
       variant="static"
       .value=${['2025-07-15', '2025-07-15'] as DateRange}
-      @range-change=${onRangeChange}
+      @flint-date-range-picker-change=${onRangeChange}
     ></flint-date-range-picker>
   `),
 
@@ -1021,7 +1021,7 @@ export const CrossMonthRange: Story = {
       <flint-date-range-picker
         variant="static"
         .value=${['2025-06-20', '2025-07-10'] as DateRange}
-        @range-change=${onRangeChange}
+        @flint-date-range-picker-change=${onRangeChange}
       ></flint-date-range-picker>
     </div>
   `,
@@ -1063,7 +1063,7 @@ export const CrossYearRange: Story = {
       <flint-date-range-picker
         variant="static"
         .value=${['2025-12-20', '2026-01-05'] as DateRange}
-        @range-change=${onRangeChange}
+        @flint-date-range-picker-change=${onRangeChange}
       ></flint-date-range-picker>
     </div>
   `,
@@ -1152,7 +1152,7 @@ export const StaticWithMinMax: Story = {
           variant="static"
           .min=${fmt(today)}
           .max=${fmt(max)}
-          @range-change=${onRangeChange}
+          @flint-date-range-picker-change=${onRangeChange}
         ></flint-date-range-picker>
       </div>
     `;
@@ -1242,7 +1242,7 @@ export const CalendarPreSelected: Story = {
       <flint-date-range-calendar
         id="preselected-cal"
         .value=${['2025-06-05', '2025-06-20'] as DateRange}
-        @range-select=${(e: CustomEvent) => {
+        @flint-date-range-picker-select=${(e: CustomEvent) => {
             const range = e.detail.value as DateRange;
             const out = document.getElementById('presel-out');
             if (out) out.textContent = `${range[0] || '?'} → ${range[1] || '?'}`;
@@ -1329,7 +1329,7 @@ export const CustomShortcuts: Story = {
         label="Analytics Period"
         shortcuts
         .shortcutItems=${myShortcuts}
-        @range-change=${onRangeChange}
+        @flint-date-range-picker-change=${onRangeChange}
       ></flint-date-range-picker>
     `);
     },
@@ -1338,7 +1338,7 @@ export const CustomShortcuts: Story = {
      * Interaction test:
      * 1. Open the popover.
      * 2. Verify 4 custom shortcut buttons are rendered (not the 6 default ones).
-     * 3. Click "Q1 2025" (index 2) → range-change fires with start='2025-01-01', end='2025-03-31'.
+     * 3. Click "Q1 2025" (index 2) → flint-date-range-picker-change fires with start='2025-01-01', end='2025-03-31'.
      * 4. That button gets the `active` class.
      */
     play: async ({ canvasElement }) => {
@@ -1346,7 +1346,7 @@ export const CustomShortcuts: Story = {
         const shadow = picker.shadowRoot;
 
         let firedEvent: CustomEvent | null = null;
-        canvasElement.addEventListener('range-change', (e) => { firedEvent = e as CustomEvent; }, { once: true });
+        canvasElement.addEventListener('flint-date-range-picker-change', (e) => { firedEvent = e as CustomEvent; }, { once: true });
 
         // 1 ── Open popover
         await userEvent.click(getSegments(shadow));

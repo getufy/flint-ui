@@ -55,7 +55,7 @@ describe('flint-dialog', () => {
         const closeSpy = vi.fn();
         el.addEventListener('close', closeSpy);
 
-        backdrop.dispatchEvent(new CustomEvent('close', { bubbles: true, composed: true }));
+        backdrop.dispatchEvent(new CustomEvent('flint-backdrop-close', { bubbles: true, composed: true }));
         await el.updateComplete;
 
         expect(closeSpy).toHaveBeenCalledOnce();
@@ -77,8 +77,8 @@ describe('flint-dialog', () => {
         const closeSpy = vi.fn();
         el.addEventListener('close', closeSpy);
 
-        // Simulate backdrop firing close
-        backdrop.dispatchEvent(new CustomEvent('close', { bubbles: true, composed: true }));
+        // Simulate backdrop firing flint-backdrop-close
+        backdrop.dispatchEvent(new CustomEvent('flint-backdrop-close', { bubbles: true, composed: true }));
         await el.updateComplete;
 
         expect(closeSpy).not.toHaveBeenCalled();

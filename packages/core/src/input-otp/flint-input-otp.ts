@@ -1,4 +1,4 @@
-import { LitElement, unsafeCSS, html, type PropertyValues } from 'lit';
+import { LitElement, unsafeCSS, html, nothing, type PropertyValues } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import uiInputOtpGroupStyles from './flint-input-otp-group.css?inline';
 import uiInputOtpSeparatorStyles from './flint-input-otp-separator.css?inline';
@@ -128,6 +128,12 @@ export class FlintInputOtp extends LitElement {
     /** Disables the OTP input. */
     @property({ type: Boolean, reflect: true }) disabled = false;
 
+    /** Accessible label for the hidden input (used as aria-label). */
+    @property({ type: String }) label = 'One-time password';
+
+    /** Optional description text for the hidden input (used as aria-describedby). */
+    @property({ type: String }) description = '';
+
     @query('.hidden-input') private _hiddenInput!: HTMLInputElement;
 
     private _internalValue = '';
@@ -150,9 +156,19 @@ export class FlintInputOtp extends LitElement {
         }
     };
 
+    private readonly _descId = `flint-input-otp-desc-${FlintInputOtp._uidCounter++}`;
+    private static _uidCounter = 0;
+
     constructor() {
         super();
         this.addEventListener('click', this._handleClick);
+    }
+
+    override connectedCallback() {
+        super.connectedCallback();
+        if (!this.hasAttribute('role')) {
+            this.setAttribute('role', 'group');
+        }
     }
 
     override disconnectedCallback() {
@@ -366,6 +382,8 @@ export class FlintInputOtp extends LitElement {
                 class="hidden-input"
                 type="text"
                 autocomplete="one-time-code"
+                aria-label=${this.label}
+                aria-describedby=${this.description ? this._descId : nothing}
                 .inputMode=${this._computedInputMode}
                 .maxLength=${this.maxLength}
                 .value=${this._internalValue}
@@ -375,6 +393,7 @@ export class FlintInputOtp extends LitElement {
                 @focus=${this._handleFocus}
                 @blur=${this._handleBlur}
             />
+            ${this.description ? html`<span id=${this._descId} class="sr-only">${this.description}</span>` : nothing}
             <slot @slotchange=${this._handleSlotChange}></slot>
         `;
     }

@@ -141,7 +141,9 @@ export class FlintTooltip extends LitElement {
         @focusout=${this._hide}
         @keydown=${this._handleKeydown}
       >
-        <slot></slot>
+        <span class="trigger-wrapper" aria-describedby=${this._tooltipId}>
+          <slot></slot>
+        </span>
         <div
           id=${this._tooltipId}
           role="tooltip"
