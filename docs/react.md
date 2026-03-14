@@ -1,17 +1,17 @@
 # React Usage
 
-All components are available as React wrappers via the `flint-ui-react` package, auto-generated with [`@lit/react`](https://lit.dev/docs/frameworks/react/).
+All components are available as React wrappers via the `@getufy/flint-ui-react` package, auto-generated with [`@lit/react`](https://lit.dev/docs/frameworks/react/).
 
 ## Installation
 
 ```bash
-npm install flint-ui flint-ui-react
+npm install @getufy/flint-ui @getufy/flint-ui-react
 ```
 
 ## Import
 
 ```tsx
-import { FlintButton, FlintCard, FlintDialog } from 'flint-ui-react';
+import { FlintButton, FlintCard, FlintDialog } from '@getufy/flint-ui-react';
 ```
 
 ## Props

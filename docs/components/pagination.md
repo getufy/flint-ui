@@ -12,9 +12,9 @@ Pagination component enabling the user to select a specific page from a range of
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintPagination } from 'flint-ui';
+import { FlintPagination } from '@getufy/flint-ui';
 ```
 
 ### Usage

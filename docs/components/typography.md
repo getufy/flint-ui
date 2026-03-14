@@ -12,9 +12,9 @@ Typography component for displaying text with consistent theme styles.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintTypography } from 'flint-ui';
+import { FlintTypography } from '@getufy/flint-ui';
 ```
 
 ### Usage

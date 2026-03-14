@@ -10,9 +10,9 @@ flint-tooltip A component that displays a text label when users hover over or fo
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintTooltip } from 'flint-ui';
+import { FlintTooltip } from '@getufy/flint-ui';
 ```
 
 ### Usage

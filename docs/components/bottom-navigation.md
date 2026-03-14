@@ -12,9 +12,9 @@ Bottom Navigation Action: Individual navigation item.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintBottomNavigationAction } from 'flint-ui';
+import { FlintBottomNavigationAction } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -62,9 +62,9 @@ Bottom Navigation bars allow movement between primary destinations in an app.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintBottomNavigation } from 'flint-ui';
+import { FlintBottomNavigation } from '@getufy/flint-ui';
 ```
 
 ### Usage

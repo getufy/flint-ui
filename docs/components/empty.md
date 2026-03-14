@@ -12,9 +12,9 @@ Displays the heading of an empty state.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintEmptyTitle } from 'flint-ui';
+import { FlintEmptyTitle } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -49,9 +49,9 @@ Displays the descriptive text of an empty state.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintEmptyDescription } from 'flint-ui';
+import { FlintEmptyDescription } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -78,9 +78,9 @@ Displays the media area of an empty state (icon, image, or avatar).
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintEmptyMedia } from 'flint-ui';
+import { FlintEmptyMedia } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -120,9 +120,9 @@ Groups the media, title, and description of an empty state.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintEmptyHeader } from 'flint-ui';
+import { FlintEmptyHeader } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -149,9 +149,9 @@ Displays action content for an empty state (buttons, inputs, links).
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintEmptyContent } from 'flint-ui';
+import { FlintEmptyContent } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -178,9 +178,9 @@ Root container for an empty state. Wraps `flint-empty-header` and `flint-empty-c
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintEmpty } from 'flint-ui';
+import { FlintEmpty } from '@getufy/flint-ui';
 ```
 
 ### Usage

@@ -12,9 +12,9 @@ Displays a keyboard shortcut hint inside a menu item.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintMenubarShortcut } from 'flint-ui';
+import { FlintMenubarShortcut } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -51,9 +51,9 @@ A hairline separator between menu groups.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintMenubarSeparator } from 'flint-ui';
+import { FlintMenubarSeparator } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -74,9 +74,9 @@ Groups related menu items. Optional `heading` shows a label.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintMenubarGroup } from 'flint-ui';
+import { FlintMenubarGroup } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -109,9 +109,9 @@ A single interactive option inside a menubar dropdown.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintMenubarItem } from 'flint-ui';
+import { FlintMenubarItem } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -159,9 +159,9 @@ A toggleable checkbox menu item.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintMenubarCheckboxItem } from 'flint-ui';
+import { FlintMenubarCheckboxItem } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -209,9 +209,9 @@ A radio option inside a `<flint-menubar-radio-group>`.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintMenubarRadioItem } from 'flint-ui';
+import { FlintMenubarRadioItem } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -259,9 +259,9 @@ Manages single-select radio items.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintMenubarRadioGroup } from 'flint-ui';
+import { FlintMenubarRadioGroup } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -300,9 +300,9 @@ The dropdown panel of a sub-menu. Positioned to the right of the trigger. Auto-f
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintMenubarSubContent } from 'flint-ui';
+import { FlintMenubarSubContent } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -335,9 +335,9 @@ Trigger for a sub-menu. Shows an arrow indicator.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintMenubarSubTrigger } from 'flint-ui';
+import { FlintMenubarSubTrigger } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -373,9 +373,9 @@ Wraps a sub-trigger and sub-content pair. Opens on hover/focus and ArrowRight; c
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintMenubarSub } from 'flint-ui';
+import { FlintMenubarSub } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -412,9 +412,9 @@ The dropdown content panel for a menubar menu. Positioned absolutely below the t
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintMenubarContent } from 'flint-ui';
+import { FlintMenubarContent } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -465,9 +465,9 @@ The trigger button for a menubar menu.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintMenubarTrigger } from 'flint-ui';
+import { FlintMenubarTrigger } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -513,9 +513,9 @@ Wraps a trigger and content pair for a single menu in the menubar.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintMenubarMenu } from 'flint-ui';
+import { FlintMenubarMenu } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -558,9 +558,9 @@ A visually persistent horizontal menu bar, common in desktop applications. Hosts
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintMenubar } from 'flint-ui';
+import { FlintMenubar } from '@getufy/flint-ui';
 ```
 
 ### Usage

@@ -16,9 +16,9 @@ A dual-month calendar for range selection. Shows two months side-by-side (or sta
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintDateRangeCalendar } from 'flint-ui';
+import { FlintDateRangeCalendar } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -85,9 +85,9 @@ A date range picker combining a segmented field and a dual-month calendar.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintDateRangePicker } from 'flint-ui';
+import { FlintDateRangePicker } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -132,9 +132,9 @@ A single-input field for entering a date range (start → end). Renders as "MM/D
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintSingleInputDateRangeField } from 'flint-ui';
+import { FlintSingleInputDateRangeField } from '@getufy/flint-ui';
 ```
 
 ### Usage

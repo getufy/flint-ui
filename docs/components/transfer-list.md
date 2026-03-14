@@ -10,9 +10,9 @@ A premium Transfer List component for moving items between two lists.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintTransferList } from 'flint-ui';
+import { FlintTransferList } from '@getufy/flint-ui';
 ```
 
 ### Usage

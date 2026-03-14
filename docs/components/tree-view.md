@@ -14,9 +14,9 @@
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintRichTreeView } from 'flint-ui';
+import { FlintRichTreeView } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -89,9 +89,9 @@ A simple tree-view container that manages keyboard navigation, focus, and item s
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintSimpleTreeView } from 'flint-ui';
+import { FlintSimpleTreeView } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -136,9 +136,9 @@ A single item inside a `flint-simple-tree-view` or `flint-rich-tree-view`.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintTreeItem } from 'flint-ui';
+import { FlintTreeItem } from '@getufy/flint-ui';
 ```
 
 ### Usage

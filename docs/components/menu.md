@@ -12,9 +12,9 @@ A single option inside a `flint-menu`.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintMenuItem } from 'flint-ui';
+import { FlintMenuItem } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -77,9 +77,9 @@ A hairline separator for grouping items in a menu.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintMenuDivider } from 'flint-ui';
+import { FlintMenuDivider } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -100,9 +100,9 @@ A labelled group of menu items. Wraps items in a `role="group"` for screen-reade
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintMenuGroup } from 'flint-ui';
+import { FlintMenuGroup } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -135,9 +135,9 @@ A menu displays a list of choices on a temporary surface. Place it as a sibling 
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintMenu } from 'flint-ui';
+import { FlintMenu } from '@getufy/flint-ui';
 ```
 
 ### Usage

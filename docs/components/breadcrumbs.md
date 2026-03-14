@@ -10,9 +10,9 @@ Breadcrumbs provide a navigational aid showing the current page's location withi
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintBreadcrumbs } from 'flint-ui';
+import { FlintBreadcrumbs } from '@getufy/flint-ui';
 ```
 
 ### Usage

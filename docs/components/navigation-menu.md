@@ -10,9 +10,9 @@
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintNavigationMenuContent } from 'flint-ui';
+import { FlintNavigationMenuContent } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -52,9 +52,9 @@ import { FlintNavigationMenuContent } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintNavigationMenuItem } from 'flint-ui';
+import { FlintNavigationMenuItem } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -76,8 +76,8 @@ import { FlintNavigationMenuItem } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-navigation-menu-trigger-click` | `{ contentId, open: true }` |  |
-| `flint-navigation-menu-content-toggle` | `{ contentId, open: false }` |  |
+| `flint-navigation-menu-trigger-click` | — | Fired when the item's trigger is clicked. |
+| `flint-navigation-menu-content-toggle` | — | Fired when content visibility changes. |
 
 ### Slots
 
@@ -96,9 +96,9 @@ import { FlintNavigationMenuItem } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintNavigationMenuLink } from 'flint-ui';
+import { FlintNavigationMenuLink } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -139,9 +139,9 @@ import { FlintNavigationMenuLink } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintNavigationMenuList } from 'flint-ui';
+import { FlintNavigationMenuList } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -175,9 +175,9 @@ import { FlintNavigationMenuList } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintNavigationMenuTrigger } from 'flint-ui';
+import { FlintNavigationMenuTrigger } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -216,9 +216,9 @@ import { FlintNavigationMenuTrigger } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintNavigationMenu } from 'flint-ui';
+import { FlintNavigationMenu } from '@getufy/flint-ui';
 ```
 
 ### Usage

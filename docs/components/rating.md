@@ -6,15 +6,17 @@
 
 <Demo label="Disabled" html="<flint-rating value=&quot;3&quot; disabled></flint-rating>" />
 
+Rating: a star-based rating input.
+
 - **Tag**: `<flint-rating>`
 - **Class**: `FlintRating`
 
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintRating } from 'flint-ui';
+import { FlintRating } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -42,7 +44,7 @@ import { FlintRating } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-rating-change` | `{ value: this.value }` |  |
+| `flint-rating-change` | — | Fired when the rating value changes. |
 
 ### CSS Custom Properties
 

@@ -2,15 +2,17 @@
 
 <Demo html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><flint-autocomplete label=&quot;Movie&quot; placeholder=&quot;Search movies...&quot; style=&quot;width:260px&quot; data-options=&quot;shawshank:The Shawshank Redemption,godfather:The Godfather,dark-knight:The Dark Knight,pulp-fiction:Pulp Fiction,forrest-gump:Forrest Gump,inception:Inception,matrix:The Matrix,interstellar:Interstellar&quot;></flint-autocomplete><flint-autocomplete label=&quot;Disabled&quot; disabled placeholder=&quot;Disabled&quot; style=&quot;width:260px&quot;></flint-autocomplete></div>" />
 
+Autocomplete: a text input with a dropdown of selectable suggestions.
+
 - **Tag**: `<flint-autocomplete>`
 - **Class**: `FlintAutocomplete`
 
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintAutocomplete } from 'flint-ui';
+import { FlintAutocomplete } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -33,7 +35,7 @@ import { FlintAutocomplete } from 'flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-autocomplete-change` | `{ value: this.value, label: this.value }` |  |
+| `flint-autocomplete-change` | — | Fired when the selected value changes. |
 
 ### CSS Custom Properties
 

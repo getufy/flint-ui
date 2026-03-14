@@ -12,9 +12,9 @@ Skeletons display a placeholder preview of content before data gets loaded.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintSkeleton } from 'flint-ui';
+import { FlintSkeleton } from '@getufy/flint-ui';
 ```
 
 ### Usage

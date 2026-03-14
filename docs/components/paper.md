@@ -10,9 +10,9 @@ The Paper component is a container for displaying content on an elevated surface
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintPaper } from 'flint-ui';
+import { FlintPaper } from '@getufy/flint-ui';
 ```
 
 ### Usage

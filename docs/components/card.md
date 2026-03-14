@@ -12,9 +12,9 @@
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintCardActionArea } from 'flint-ui';
+import { FlintCardActionArea } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -49,9 +49,9 @@ import { FlintCardActionArea } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintCardActions } from 'flint-ui';
+import { FlintCardActions } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -82,9 +82,9 @@ import { FlintCardActions } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintCardContent } from 'flint-ui';
+import { FlintCardContent } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -116,9 +116,9 @@ import { FlintCardContent } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintCardHeader } from 'flint-ui';
+import { FlintCardHeader } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -158,9 +158,9 @@ import { FlintCardHeader } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintCardMedia } from 'flint-ui';
+import { FlintCardMedia } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -199,9 +199,9 @@ import { FlintCardMedia } from 'flint-ui';
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintCard } from 'flint-ui';
+import { FlintCard } from '@getufy/flint-ui';
 ```
 
 ### Usage

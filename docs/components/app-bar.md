@@ -12,9 +12,9 @@ flint-app-bar: The top App bar provides content and actions related to the curre
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintAppBar } from 'flint-ui';
+import { FlintAppBar } from '@getufy/flint-ui';
 ```
 
 ### Usage

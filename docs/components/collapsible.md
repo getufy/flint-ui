@@ -14,9 +14,9 @@ Toggle button for a collapsible. Place inside `flint-collapsible`. Automatically
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintCollapsibleTrigger } from 'flint-ui';
+import { FlintCollapsibleTrigger } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -50,9 +50,9 @@ The collapsible panel. Animates open/closed with a CSS grid transition. Place in
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintCollapsibleContent } from 'flint-ui';
+import { FlintCollapsibleContent } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -85,9 +85,9 @@ Root container for a collapsible panel. Manages open/closed state and coordinate
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintCollapsible } from 'flint-ui';
+import { FlintCollapsible } from '@getufy/flint-ui';
 ```
 
 ### Usage

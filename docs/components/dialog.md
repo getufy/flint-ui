@@ -14,9 +14,9 @@ flint-dialog: a modal dialog component.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintDialog } from 'flint-ui';
+import { FlintDialog } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -79,9 +79,9 @@ flint-dialog-title: heading area of a dialog. Automatically assigned id="dialog-
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintDialogTitle } from 'flint-ui';
+import { FlintDialogTitle } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -108,9 +108,9 @@ flint-dialog-content: scrollable content area of a dialog.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintDialogContent } from 'flint-ui';
+import { FlintDialogContent } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -137,9 +137,9 @@ flint-dialog-content-text: body text inside a dialog content area.
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintDialogContentText } from 'flint-ui';
+import { FlintDialogContentText } from '@getufy/flint-ui';
 ```
 
 ### Usage
@@ -166,9 +166,9 @@ flint-dialog-actions: footer button row for a dialog. Use the `align` prop to co
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintDialogActions } from 'flint-ui';
+import { FlintDialogActions } from '@getufy/flint-ui';
 ```
 
 ### Usage

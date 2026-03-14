@@ -11,9 +11,9 @@
 ### Import
 
 ```ts
-import 'flint-ui'; // auto-registers all
+import '@getufy/flint-ui'; // auto-registers all
 // or
-import { FlintDateField } from 'flint-ui';
+import { FlintDateField } from '@getufy/flint-ui';
 ```
 
 ### Usage
