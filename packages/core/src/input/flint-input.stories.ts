@@ -14,21 +14,21 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`label\` | \`label\` | \`string\` | \`''\` |
-| \`value\` | \`value\` | \`string\` | \`''\` |
-| \`type\` | \`type\` | \`string\` | \`'text'\` |
-| \`placeholder\` | \`placeholder\` | \`string\` | \`''\` |
-| \`helpText\` | \`help-text\` | \`string\` | \`''\` |
-| \`error\` | \`error\` | \`boolean\` | \`false\` |
-| \`errorMessage\` | \`error-message\` | \`string\` | \`''\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`required\` | \`required\` | \`boolean\` | \`false\` |
-| \`readonly\` | \`readonly\` | \`boolean\` | \`false\` |
-| \`name\` | \`name\` | \`string\` | \`''\` |
-| \`autocomplete\` | \`autocomplete\` | \`string\` | \`''\` |
-| \`size\` | \`size\` | \`'sm' \\| 'default' \\| 'lg'\` | \`'default'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`label\` | \`label\` | \`string\` | \`''\` | Label text displayed above the input. |
+| \`value\` | \`value\` | \`string\` | \`''\` | Current input value. |
+| \`type\` | \`type\` | \`string\` | \`'text'\` | HTML input type (text, email, password, etc.). |
+| \`placeholder\` | \`placeholder\` | \`string\` | \`''\` | Placeholder text shown when the input is empty. |
+| \`helpText\` | \`help-text\` | \`string\` | \`''\` | Help text displayed below the input. |
+| \`error\` | \`error\` | \`boolean\` | \`false\` | Whether the input is in an error state. |
+| \`errorMessage\` | \`error-message\` | \`string\` | \`''\` | Error message displayed below the input. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the input and prevents interaction. |
+| \`required\` | \`required\` | \`boolean\` | \`false\` | Marks the input as required for form validation. |
+| \`readonly\` | \`readonly\` | \`boolean\` | \`false\` | Makes the input read-only. |
+| \`name\` | \`name\` | \`string\` | \`''\` | Form field name used when submitting form data. |
+| \`autocomplete\` | \`autocomplete\` | \`string\` | \`''\` | Browser autocomplete hint. |
+| \`size\` | \`size\` | \`'sm' \\| 'default' \\| 'lg'\` | \`'default'\` | 'sm' \\| 'default' \\| 'lg' |
 
 #### Events
 
@@ -62,7 +62,7 @@ const meta: Meta = {
 
 | Method | Description |
 |---|---|
-| \`inputElement(): HTMLInputElement\` |  |
+| \`inputElement(): HTMLInputElement\` | Expose the internal <input> for direct access |
                 `,
             },
         },

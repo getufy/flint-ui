@@ -19,7 +19,9 @@ const iconWarn = html`<svg width="18" height="18" viewBox="0 0 24 24" fill="curr
 export class FlintStepConnector extends LitElement {
     static styles = unsafeCSS(uiStepConnectorStyles);
 
+    /** Layout direction of the connector line. */
     @property({ reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
+    /** Whether the connector represents a completed step transition. */
     @property({ type: Boolean }) completed = false;
 
     render() { return html`<div class="line ${classMap({ completed: this.completed })}"></div>`; }
@@ -32,8 +34,11 @@ export class FlintStepConnector extends LitElement {
 export class FlintStepLabel extends LitElement {
     static styles = unsafeCSS(uiStepLabelStyles);
 
+    /** Whether the label's step is currently active. */
     @property({ type: Boolean, reflect: true }) active = false;
+    /** Whether the label's step is disabled. */
     @property({ type: Boolean, reflect: true }) disabled = false;
+    /** Whether the label's step is in an error state. */
     @property({ type: Boolean, reflect: true }) error = false;
 
     render() {
@@ -74,16 +79,27 @@ export class FlintStepContent extends LitElement {
 export class FlintStep extends LitElement {
     static styles = unsafeCSS(uiStepStyles);
 
+    /** Whether this step is the currently active step. */
     @property({ type: Boolean, reflect: true }) active = false;
+    /** Whether this step has been completed. */
     @property({ type: Boolean, reflect: true }) completed = false;
+    /** Whether this step is disabled and non-interactive. */
     @property({ type: Boolean, reflect: true }) disabled = false;
+    /** Whether this step is optional. */
     @property({ type: Boolean, reflect: true }) optional = false;
+    /** Whether this step is in an error state. */
     @property({ type: Boolean, reflect: true }) error = false;
+    /** Whether this is the last step in the stepper. */
     @property({ type: Boolean, reflect: true }) last = false;
+    /** Whether this step can be clicked to navigate to it. */
     @property({ type: Boolean, reflect: true }) clickable = false;
+    /** Layout direction of the step. */
     @property({ type: String, reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
+    /** Whether to display the label below the step icon instead of beside it. */
     @property({ type: Boolean, reflect: true, attribute: 'alternative-label' }) alternativeLabel = false;
+    /** Zero-based index of this step within the stepper. */
     @property({ type: Number, attribute: 'step-index' }) stepIndex = 0;
+    /** Text shown below the label when the step is optional. */
     @property({ type: String, attribute: 'optional-label' }) optionalLabel = 'Optional';
     /**
      * Set by FlintStepper — true when the immediately preceding step is completed.
@@ -172,9 +188,13 @@ export class FlintStep extends LitElement {
 export class FlintStepper extends LitElement {
     static styles = unsafeCSS(uiStepperStyles);
 
+    /** Zero-based index of the currently active step. */
     @property({ type: Number, attribute: 'active-step' }) activeStep = 0;
+    /** Layout direction of the stepper. */
     @property({ type: String, reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
+    /** Whether to display step labels below the icons instead of beside them. */
     @property({ type: Boolean, attribute: 'alternative-label' }) alternativeLabel = false;
+    /** Whether steps can be navigated in any order (enables clickable steps). */
     @property({ type: Boolean, attribute: 'non-linear' }) nonLinear = false;
     /** Accessible label for the stepper landmark (maps to aria-label on the list element). */
     @property({ type: String }) label = 'steps';
@@ -240,9 +260,13 @@ export class FlintStepper extends LitElement {
 export class FlintMobileStepper extends LitElement {
     static styles = unsafeCSS(uiMobileStepperStyles);
 
+    /** Total number of steps. */
     @property({ type: Number }) steps = 0;
+    /** Zero-based index of the currently active step. */
     @property({ type: Number, attribute: 'active-step' }) activeStep = 0;
+    /** Progress indicator style: text counter, dot indicators, or a progress bar. */
     @property({ type: String }) variant: 'text' | 'dots' | 'progress' = 'dots';
+    /** Positioning of the mobile stepper within its container. */
     @property({ type: String, reflect: true }) position: 'top' | 'bottom' | 'static' = 'static';
     /** Label text for the Back navigation button (supports i18n). */
     @property({ type: String, attribute: 'back-label' }) backLabel = 'Back';

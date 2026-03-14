@@ -10,11 +10,17 @@ import uiCircularProgressStyles from './flint-circular-progress.css?inline';
 export class FlintCircularProgress extends LitElement {
     static styles = unsafeCSS(uiCircularProgressStyles);
 
+    /** Progress variant: determinate shows a specific value, indeterminate shows an animation. */
     @property({ type: String, reflect: true }) variant: 'determinate' | 'indeterminate' = 'indeterminate';
+    /** Current progress percentage (0-100) for determinate mode. */
     @property({ type: Number, reflect: true }) value = 0; // percentage for determinate 0-100
+    /** Diameter of the circular indicator in pixels. */
     @property({ type: Number }) size = 40;
+    /** Stroke width of the circle in pixels. */
     @property({ type: Number }) thickness = 3.6;
+    /** Color theme of the progress indicator. */
     @property({ type: String, reflect: true }) color: 'primary' | 'success' | 'error' | 'warning' = 'primary';
+    /** Accessible label for the progress indicator. */
     @property({ type: String }) label = '';
 
     private static readonly _colorMap: Record<string, string> = {

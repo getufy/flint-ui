@@ -58,9 +58,9 @@ Media container for an item (icon, avatar, or image).
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`variant\` | \`variant\` | \`'default' \\| 'icon' \\| 'image'\` | \`'default'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`variant\` | \`variant\` | \`'default' \\| 'icon' \\| 'image'\` | \`'default'\` | Visual treatment for the media container. |
 
 #### Slots
 
@@ -182,10 +182,10 @@ Root container for displaying content with media, title, description, and action
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`variant\` | \`variant\` | \`'default' \\| 'outline' \\| 'muted'\` | \`'default'\` |
-| \`size\` | \`size\` | \`'default' \\| 'sm' \\| 'xs'\` | \`'default'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`variant\` | \`variant\` | \`'default' \\| 'outline' \\| 'muted'\` | \`'default'\` | Visual style of the item. - \`default\`  — no border, transparent background. - \`outline\`  — visible border. - \`muted\`    — muted background fill. |
+| \`size\` | \`size\` | \`'default' \\| 'sm' \\| 'xs'\` | \`'default'\` | Size preset controlling padding and gap. - \`default\` — 16px padding, 12px gap. - \`sm\`      — 12px padding, 8px gap. - \`xs\`      — 8px padding, 6px gap. |
 
 #### Slots
 

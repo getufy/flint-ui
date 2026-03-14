@@ -21,13 +21,13 @@ A single action item inside a \`flint-speed-dial\`.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`name\` | \`name\` | \`string\` | \`''\` |
-| \`tooltipTitle\` | \`tooltip-title\` | \`string\` | \`''\` |
-| \`tooltipOpen\` | \`tooltip-open\` | \`boolean\` | \`false\` |
-| \`tooltipPlacement\` | \`tooltip-placement\` | \`'left' \\| 'right' \\| 'top' \\| 'bottom'\` | \`'left'\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`name\` | \`name\` | \`string\` | \`''\` | Programmatic identifier for this action, included in the click event detail. |
+| \`tooltipTitle\` | \`tooltip-title\` | \`string\` | \`''\` | Tooltip text shown alongside the action and used as aria-label. |
+| \`tooltipOpen\` | \`tooltip-open\` | \`boolean\` | \`false\` | Forces the tooltip to be visible regardless of hover state. |
+| \`tooltipPlacement\` | \`tooltip-placement\` | \`'left' \\| 'right' \\| 'top' \\| 'bottom'\` | \`'left'\` | Tooltip placement relative to the action button. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | If true, the action button is disabled. |
 
 #### Events
 
@@ -67,17 +67,17 @@ Speed Dial — a FAB that reveals 3-6 related actions when pressed.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`open\` | \`open\` | \`boolean\` | \`false\` |
-| \`defaultOpen\` | \`default-open\` | \`boolean\` | \`false\` |
-| \`direction\` | \`direction\` | \`'up' \\| 'down' \\| 'left' \\| 'right'\` | \`'up'\` |
-| \`hidden\` | \`hidden\` | \`boolean\` | \`false\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`persistentTooltips\` | \`persistent-tooltips\` | \`boolean\` | \`false\` |
-| \`closeIcon\` | \`close-icon\` | \`string\` | \`''\` |
-| \`ariaLabel\` | \`aria-label\` | \`string\` | \`'Speed dial'\` |
-| \`isTouch\` | \`is-touch\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`open\` | \`open\` | \`boolean\` | \`false\` | Whether the speed dial is open (controlled). |
+| \`defaultOpen\` | \`default-open\` | \`boolean\` | \`false\` | Initial open state for uncontrolled usage. Sets \`open\` once on first render. |
+| \`direction\` | \`direction\` | \`'up' \\| 'down' \\| 'left' \\| 'right'\` | \`'up'\` | Direction in which actions expand from the FAB (default 'up'). |
+| \`hidden\` | \`hidden\` | \`boolean\` | \`false\` | Hides the entire speed dial component. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the FAB and prevents opening. |
+| \`persistentTooltips\` | \`persistent-tooltips\` | \`boolean\` | \`false\` | When true, tooltips on all actions are always visible (good for touch/a11y). |
+| \`closeIcon\` | \`close-icon\` | \`string\` | \`''\` | Custom char/text rendered as the ✕ close icon on the FAB. Falls back to built-in SVG. |
+| \`ariaLabel\` | \`aria-label\` | \`string\` | \`'Speed dial'\` | ARIA label for the main FAB button. |
+| \`isTouch\` | \`is-touch\` | \`boolean\` | \`false\` | True on touch-only devices (auto-detected unless explicitly set). |
 
 #### Events
 

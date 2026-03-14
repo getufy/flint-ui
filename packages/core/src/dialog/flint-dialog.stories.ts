@@ -22,11 +22,11 @@ flint-dialog: a modal dialog component.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`open\` | \`open\` | \`boolean\` | \`false\` |
-| \`transition\` | \`transition\` | \`'scale' \\| 'slide-up' \\| 'slide-down'\` | \`'scale'\` |
-| \`disableBackdropClose\` | \`disable-backdrop-close\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`open\` | \`open\` | \`boolean\` | \`false\` | Controls the open / closed state of the dialog. |
+| \`transition\` | \`transition\` | \`'scale' \\| 'slide-up' \\| 'slide-down'\` | \`'scale'\` | Animation style: 'scale' (default), 'slide-up', or 'slide-down'. |
+| \`disableBackdropClose\` | \`disable-backdrop-close\` | \`boolean\` | \`false\` | When true, clicking the backdrop will NOT close the dialog. Useful for confirmation dialogs where the user must make a deliberate choice. |
 
 #### Events
 
@@ -118,9 +118,9 @@ flint-dialog-actions: footer button row for a dialog. Use the \`align\` prop to 
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`align\` | \`align\` | \`'start' \\| 'center' \\| 'end' \\| 'space-between'\` | \`'end'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`align\` | \`align\` | \`'start' \\| 'center' \\| 'end' \\| 'space-between'\` | \`'end'\` | Alignment of action buttons: 'end' (default), 'start', 'center', 'space-between'. |
 
 #### Slots
 

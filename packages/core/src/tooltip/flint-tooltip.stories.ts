@@ -17,14 +17,14 @@ flint-tooltip A component that displays a text label when users hover over or fo
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`label\` | \`label\` | \`string\` | \`''\` |
-| \`placement\` | \`placement\` | \`Placement\` | \`'top'\` |
-| \`arrow\` | \`arrow\` | \`boolean\` | \`false\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`openDelay\` | \`open-delay\` | \`number\` | \`0\` |
-| \`closeDelay\` | \`close-delay\` | \`number\` | \`0\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`label\` | \`label\` | \`string\` | \`''\` | Text content displayed inside the tooltip. |
+| \`placement\` | \`placement\` | \`Placement\` | \`'top'\` | Preferred placement of the tooltip relative to the trigger element. |
+| \`arrow\` | \`arrow\` | \`boolean\` | \`false\` | Show a small arrow pointing toward the trigger element. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the tooltip so it never appears. |
+| \`openDelay\` | \`open-delay\` | \`number\` | \`0\` | Delay in ms before showing the tooltip. |
+| \`closeDelay\` | \`close-delay\` | \`number\` | \`0\` | Delay in ms before hiding the tooltip. |
 
 #### Slots
 

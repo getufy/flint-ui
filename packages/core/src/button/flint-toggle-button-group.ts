@@ -7,7 +7,9 @@ import uiToggleButtonGroupStyles from './flint-toggle-button-group.css?inline';
 export class FlintToggleButtonGroup extends LitElement {
     static styles = unsafeCSS(uiToggleButtonGroupStyles);
 
+    /** Currently selected value(s). A string when exclusive, an array otherwise. */
     @property({ type: String }) value: string | string[] = '';
+    /** Whether only one button can be selected at a time. */
     @property({ type: Boolean }) exclusive = true;
 
     connectedCallback() {

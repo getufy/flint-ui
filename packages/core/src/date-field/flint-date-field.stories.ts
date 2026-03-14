@@ -21,17 +21,17 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`value\` | \`value\` | \`string\` | \`''\` |
-| \`label\` | \`label\` | \`string\` | \`''\` |
-| \`name\` | \`name\` | \`string\` | \`''\` |
-| \`min\` | \`min\` | \`string\` | \`''\` |
-| \`max\` | \`max\` | \`string\` | \`''\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`readonly\` | \`readonly\` | \`boolean\` | \`false\` |
-| \`error\` | \`error\` | \`boolean\` | \`false\` |
-| \`helperText\` | \`helper-text\` | \`string\` | \`''\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` | Opts the element into form participation via the Form-Associated Custom Elements API. */ static formAssociated = true; static styles = unsafeCSS(uiDateFieldStyles); // ── Props ──────────────────────────────────────────────────────────────── /** Controlled date value (ISO YYYY-MM-DD). Set to '' for uncontrolled. |
+| \`label\` | \`label\` | \`string\` | \`''\` | Field label. |
+| \`name\` | \`name\` | \`string\` | \`''\` | Form field name. Reflected so the browser picks it up for form data collection. |
+| \`min\` | \`min\` | \`string\` | \`''\` | Minimum allowed date (ISO). |
+| \`max\` | \`max\` | \`string\` | \`''\` | Maximum allowed date (ISO). |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the field and prevents interaction. |
+| \`readonly\` | \`readonly\` | \`boolean\` | \`false\` | Makes the field read-only (visible but not editable). |
+| \`error\` | \`error\` | \`boolean\` | \`false\` | Displays the field in an error state. |
+| \`helperText\` | \`helper-text\` | \`string\` | \`''\` | Helper text shown below the field. |
 
 #### Events
 

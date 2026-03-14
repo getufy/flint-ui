@@ -85,10 +85,10 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`title\` | \`title\` | \`string\` | \`''\` |
-| \`subtitle\` | \`subtitle\` | \`string\` | \`''\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`title\` | \`title\` | \`string\` | \`''\` |  |
+| \`subtitle\` | \`subtitle\` | \`string\` | \`''\` |  |
 
 #### Slots
 
@@ -113,11 +113,11 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`image\` | \`image\` | \`string\` | \`''\` |
-| \`alt\` | \`alt\` | \`string\` | \`''\` |
-| \`height\` | \`height\` | \`string\` | \`''\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`image\` | \`image\` | \`string\` | \`''\` |  |
+| \`alt\` | \`alt\` | \`string\` | \`''\` |  |
+| \`height\` | \`height\` | \`string\` | \`''\` |  |
 
 #### Slots
 
@@ -140,10 +140,10 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`variant\` | \`variant\` | \`'elevated' \\| 'outlined' \\| 'flat'\` | \`'elevated'\` |
-| \`interactive\` | \`interactive\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`variant\` | \`variant\` | \`'elevated' \\| 'outlined' \\| 'flat'\` | \`'elevated'\` |  |
+| \`interactive\` | \`interactive\` | \`boolean\` | \`false\` |  |
 
 #### Slots
 

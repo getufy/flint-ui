@@ -15,13 +15,13 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`src\` | \`src\` | \`string\` | \`''\` |
-| \`alt\` | \`alt\` | \`string\` | \`''\` |
-| \`initials\` | \`initials\` | \`string\` | \`''\` |
-| \`variant\` | \`variant\` | \`'circle' \\| 'square' \\| 'rounded'\` | \`'circle'\` |
-| \`size\` | \`size\` | \`'small' \\| 'medium' \\| 'large' \\| 'xlarge'\` | \`'medium'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`src\` | \`src\` | \`string\` | \`''\` | Image source URL for the avatar. |
+| \`alt\` | \`alt\` | \`string\` | \`''\` | Alt text for the avatar image. |
+| \`initials\` | \`initials\` | \`string\` | \`''\` | Initials to display when no image is provided. |
+| \`variant\` | \`variant\` | \`'circle' \\| 'square' \\| 'rounded'\` | \`'circle'\` | Shape variant of the avatar. |
+| \`size\` | \`size\` | \`'small' \\| 'medium' \\| 'large' \\| 'xlarge'\` | \`'medium'\` | Size of the avatar. |
 
 #### Slots
 

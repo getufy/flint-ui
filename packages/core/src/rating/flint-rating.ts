@@ -8,15 +8,25 @@ import uiRatingStyles from './flint-rating.css?inline';
 export class FlintRating extends LitElement {
     static styles = unsafeCSS(uiRatingStyles);
 
+    /** Current rating value. */
     @property({ type: Number }) value = 0;
+    /** Maximum number of stars. */
     @property({ type: Number }) max = 5;
+    /** Whether the rating is read-only. */
     @property({ type: Boolean, reflect: true }) readonly = false;
+    /** Whether the rating is disabled. */
     @property({ type: Boolean, reflect: true }) disabled = false;
+    /** Whether clicking the current value clears the rating. */
     @property({ type: Boolean }) clearable = false;
+    /** Initial rating value for uncontrolled mode. */
     @property({ type: Number }) defaultValue = 0;
+    /** Size of the rating stars. */
     @property({ type: String, reflect: true }) size: 'sm' | 'md' | 'lg' = 'md';
+    /** Form field name for the hidden input. */
     @property({ type: String }) name = '';
+    /** Accessible label for the rating group. */
     @property({ type: String }) label = 'Rating';
+    /** Rating step precision (1 for full stars, 0.5 for half stars). */
     @property({ type: Number }) precision: 1 | 0.5 = 1;
 
     @state() private _hoverValue = -1;

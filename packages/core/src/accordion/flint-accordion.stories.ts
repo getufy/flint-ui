@@ -21,10 +21,10 @@ Accordion: the wrapper for grouping related components.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`expanded\` | \`expanded\` | \`boolean\` | \`false\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`expanded\` | \`expanded\` | \`boolean\` | \`false\` | If true, expands the accordion by default. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | If true, the accordion is disabled. |
 
 #### Events
 

@@ -21,9 +21,9 @@ A title/subtitle bar for \`flint-image-list-item\`.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`position\` | \`position\` | \`'bottom' \\| 'top' \\| 'below'\` | \`'bottom'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`position\` | \`position\` | \`'bottom' \\| 'top' \\| 'below'\` | \`'bottom'\` | Position hint for styling: 'bottom' (default overlay), 'top' (overlay), or 'below' (solid) |
 
 #### Slots
 
@@ -55,14 +55,14 @@ A single item inside a \`flint-image-list\`.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`rows\` | \`rows\` | \`number\` | \`1\` |
-| \`cols\` | \`cols\` | \`number\` | \`1\` |
-| \`barPosition\` | \`bar-position\` | \`'overlay' \\| 'below'\` | \`'overlay'\` |
-| \`weave\` | \`weave\` | \`'odd' \\| 'even'\` | \`'odd'\` |
-| \`aspectRatio\` | \`aspect-ratio\` | \`string\` | \`'auto'\` |
-| \`fit\` | \`fit\` | \`ImageFit\` | \`'cover'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`rows\` | \`rows\` | \`number\` | \`1\` | How many grid rows this item spans (quilted/woven only) |
+| \`cols\` | \`cols\` | \`number\` | \`1\` | How many grid columns this item spans (quilted/woven only) |
+| \`barPosition\` | \`bar-position\` | \`'overlay' \\| 'below'\` | \`'overlay'\` | Position of the title bar: 'overlay' (default) or 'below' |
+| \`weave\` | \`weave\` | \`'odd' \\| 'even'\` | \`'odd'\` | Woven variant: 'odd' or 'even' identity for alternating height |
+| \`aspectRatio\` | \`aspect-ratio\` | \`string\` | \`'auto'\` | CSS aspect-ratio for the cell (e.g. "1/1", "4/3", "3/4", "16/9", "9/16"). Set to "auto" (default) to let the grid row height control cell size. |
+| \`fit\` | \`fit\` | \`ImageFit\` | \`'cover'\` | How the image fills the cell: 'cover' (default, crops to fill) or 'contain' (letterboxes to fit without cropping). |
 
 #### Slots
 
@@ -82,13 +82,13 @@ A container that displays images in an organized grid layout. Supports standard,
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`variant\` | \`variant\` | \`ImageListVariant\` | \`'standard'\` |
-| \`cols\` | \`cols\` | \`number\` | \`3\` |
-| \`gap\` | \`gap\` | \`number\` | \`4\` |
-| \`rowHeight\` | \`row-height\` | \`number\` | \`164\` |
-| \`autoRows\` | \`auto-rows\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`variant\` | \`variant\` | \`ImageListVariant\` | \`'standard'\` | Layout variant |
+| \`cols\` | \`cols\` | \`number\` | \`3\` | Number of columns |
+| \`gap\` | \`gap\` | \`number\` | \`4\` | Gap between items (in px) |
+| \`rowHeight\` | \`row-height\` | \`number\` | \`164\` | Row height for non-masonry variants (in px). Ignored when autoRows=true. |
+| \`autoRows\` | \`auto-rows\` | \`boolean\` | \`false\` | When true, row height is automatic (use with bar-position="below") |
 
 #### Slots
 

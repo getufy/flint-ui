@@ -17,12 +17,12 @@ A floating action button (FAB) represents the primary action of a screen.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`extended\` | \`extended\` | \`boolean\` | \`false\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`label\` | \`label\` | \`string\` | \`'Action'\` |
-| \`position\` | \`position\` | \`'bottom-right' \\| 'bottom-left' \\| 'top-right' \\| 'top-left' \\| 'static'\` | \`'bottom-right'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`extended\` | \`extended\` | \`boolean\` | \`false\` |  |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |  |
+| \`label\` | \`label\` | \`string\` | \`'Action'\` | Accessible label for icon-only (non-extended) FABs. |
+| \`position\` | \`position\` | \`'bottom-right' \\| 'bottom-left' \\| 'top-right' \\| 'top-left' \\| 'static'\` | \`'bottom-right'\` |  |
 
 #### Slots
 

@@ -48,7 +48,6 @@ import { FlintResizableGroup } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `host([orientation='vertical'])` |  |
 | `getLayout(): number[]` | Returns a snapshot of panel sizes as percentages (0-100). |
 
 ---
@@ -81,7 +80,7 @@ import { FlintResizablePanel } from 'flint-ui';
 | `minSize` | `min-size` | `number` | `0` | Minimum size percentage (0–100). |
 | `maxSize` | `max-size` | `number` | `100` | Maximum size percentage (0–100). |
 | `collapsible` | `collapsible` | `boolean` | `false` | Whether the panel can collapse to zero size via drag. |
-| `collapsed` | `collapsed` | `boolean` | `false` |  |
+| `collapsed` | `collapsed` | `boolean` | `false` | Whether the panel is currently collapsed via the programmatic API. Set automatically by `collapse()` / `expand()` / `toggle()`. |
 
 ### Slots
 
@@ -93,9 +92,9 @@ import { FlintResizablePanel } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `collapse()` |  |
-| `expand()` |  |
-| `toggle()` | * Toggle between collapsed and expanded states. |
+| `collapse()` | Collapse this panel to zero size, transferring its space to the adjacent sibling. Sets `collapsed = true` and stores the current size for `expand()`. No-op if already collapsed. |
+| `expand()` | Expand this panel back to its previous size (or `defaultSize` as fallback). Sets `collapsed = false`. No-op if not currently collapsed. |
+| `toggle()` | Toggle between collapsed and expanded states. |
 
 ---
 
@@ -124,12 +123,6 @@ import { FlintResizableHandle } from 'flint-ui';
 | --- | --- | --- | --- | --- |
 | `withHandle` | `with-handle` | `boolean` | `false` | Show a visible drag grip. |
 | `disabled` | `disabled` | `boolean` | `false` | Disable interaction. |
-| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | @internal – set by parent group, reflects to attribute for CSS. |
-
-### Methods
-
-| Method | Description |
-| --- | --- |
-| `host(:hover)` |  |
+| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` |  |
 
 ---

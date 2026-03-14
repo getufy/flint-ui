@@ -77,7 +77,7 @@ import { FlintScrollArea } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `type` | `type` | `'auto' \| 'always' \| 'scroll' \| 'hover'` | `'hover'` |  |
+| `type` | `type` | `'auto' \| 'always' \| 'scroll' \| 'hover'` | `'hover'` | Controls when the scrollbars appear. - `'hover'`  (default) — on hover, when content overflows - `'auto'`             — when content overflows - `'always'`           — always - `'scroll'`           — briefly while scrolling |
 | `dir` | `dir` | `'ltr' \| 'rtl'` | `'ltr'` | Text direction. `'rtl'` flips the vertical bar to the left side. |
 
 ### Slots

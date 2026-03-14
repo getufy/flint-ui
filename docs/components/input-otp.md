@@ -132,7 +132,7 @@ import { FlintInputOtp } from 'flint-ui';
 | `value` | `value` | `string` | `''` | Current OTP value. Reflects to attribute for external observation. |
 | `defaultValue` | `default-value` | `string` | `''` | Initial uncontrolled value. Has no effect after the first render. |
 | `maxLength` | `max-length` | `number` | `6` | Total number of character slots. |
-| `pattern` | `pattern` | `string` | `''` |  |
+| `pattern` | `pattern` | `string` | `''` | Per-character regex pattern string. Characters failing the test are silently rejected on input and paste. E.g. `"\\d"` accepts digits only; `"[a-zA-Z0-9]"` accepts alphanumeric. |
 | `disabled` | `disabled` | `boolean` | `false` | Disables the OTP input. |
 | `label` | `label` | `string` | `'One-time password'` | Accessible label for the hidden input (used as aria-label). |
 | `description` | `description` | `string` | `''` | Optional description text for the hidden input (used as aria-describedby). |

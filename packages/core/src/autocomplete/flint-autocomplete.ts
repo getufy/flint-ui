@@ -12,10 +12,15 @@ export interface AutocompleteOption {
 export class FlintAutocomplete extends LitElement {
     static styles = unsafeCSS(uiAutocompleteStyles);
 
+    /** The list of selectable options. */
     @property({ type: Array }) options: AutocompleteOption[] = [];
+    /** When true, allows arbitrary values that are not in the options list. */
     @property({ type: Boolean }) freeSolo = false;
+    /** Whether the autocomplete input is disabled. */
     @property({ type: Boolean }) disabled = false;
+    /** The current selected value. */
     @property({ type: String }) value = '';
+    /** Placeholder text shown when the input is empty. */
     @property({ type: String }) placeholder = '';
 
     @state() private _isOpen = false;

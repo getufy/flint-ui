@@ -59,13 +59,21 @@ type TimeView = 'hours' | 'minutes' | 'seconds';
 export class FlintTimeField extends LitElement {
     static styles = unsafeCSS(uiTimeFieldStyles);
 
+    /** Time value in HH:MM:SS format. */
     @property({ type: String }) value = '';
+    /** Field label text. */
     @property({ type: String }) label = '';
+    /** Whether to use 12-hour (AM/PM) format instead of 24-hour. */
     @property({ type: Boolean }) ampm = true;
+    /** Whether to show a seconds segment. */
     @property({ type: Boolean }) seconds = false;
+    /** Disables the field and prevents interaction. */
     @property({ type: Boolean, reflect: true }) disabled = false;
+    /** Makes the field read-only (visible but not editable). */
     @property({ type: Boolean, reflect: true }) readonly = false;
+    /** Displays the field in an error state. */
     @property({ type: Boolean, reflect: true }) error = false;
+    /** Helper text shown below the field. */
     @property({ type: String, attribute: 'helper-text' }) helperText = '';
 
     @state() private _h: number | null = null;
@@ -242,8 +250,11 @@ export class FlintTimeField extends LitElement {
 export class FlintDigitalClock extends LitElement {
     static styles = unsafeCSS(uiDigitalClockStyles);
 
+    /** Time value in HH:MM:SS format. */
     @property({ type: String }) value = '';
+    /** Step interval in minutes between selectable times. */
     @property({ type: Number }) step = 30;
+    /** Whether to use 12-hour (AM/PM) format instead of 24-hour. */
     @property({ type: Boolean }) ampm = true;
 
     private _items(): string[] {
@@ -308,8 +319,11 @@ export class FlintDigitalClock extends LitElement {
 export class FlintMultiSectionDigitalClock extends LitElement {
     static styles = unsafeCSS(uiMultiSectionDigitalClockStyles);
 
+    /** Time value in HH:MM:SS format. */
     @property({ type: String }) value = '';
+    /** Whether to use 12-hour (AM/PM) format instead of 24-hour. */
     @property({ type: Boolean }) ampm = true;
+    /** Whether to show a seconds column. */
     @property({ type: Boolean }) seconds = false;
 
     private _t() { return parseTime(this.value) ?? { h: 0, m: 0, s: 0 }; }
@@ -425,9 +439,13 @@ export class FlintMultiSectionDigitalClock extends LitElement {
 export class FlintTimeClock extends LitElement {
     static styles = unsafeCSS(uiTimeClockStyles);
 
+    /** Time value in HH:MM:SS format. */
     @property({ type: String }) value = '';
+    /** Whether to use 12-hour (AM/PM) format instead of 24-hour. */
     @property({ type: Boolean }) ampm = true;
+    /** Whether to show a seconds face on the clock. */
     @property({ type: Boolean }) seconds = false;
+    /** Currently active clock face view. */
     @property({ type: String }) view: TimeView = 'hours';
 
     @state() private _isDragging = false;
@@ -685,13 +703,21 @@ const FIELD_SHARED = css`
 export class FlintDesktopTimePicker extends LitElement {
     static styles = [FIELD_SHARED];
 
+    /** Time value in HH:MM:SS format. */
     @property({ type: String }) value = '';
+    /** Field label text. */
     @property({ type: String }) label = 'Time';
+    /** Whether to use 12-hour (AM/PM) format instead of 24-hour. */
     @property({ type: Boolean }) ampm = true;
+    /** Whether to show a seconds segment. */
     @property({ type: Boolean }) seconds = false;
+    /** Disables the picker and prevents interaction. */
     @property({ type: Boolean, reflect: true }) disabled = false;
+    /** Makes the field read-only (visible but not editable). */
     @property({ type: Boolean, reflect: true }) readonly = false;
+    /** Displays the field in an error state. */
     @property({ type: Boolean, reflect: true }) error = false;
+    /** Helper text shown below the field. */
     @property({ type: String, attribute: 'helper-text' }) helperText = '';
 
     @state() private _open = false;
@@ -730,12 +756,19 @@ export class FlintDesktopTimePicker extends LitElement {
 export class FlintMobileTimePicker extends LitElement {
     static styles = [FIELD_SHARED];
 
+    /** Time value in HH:MM:SS format. */
     @property({ type: String }) value = '';
+    /** Field label text. */
     @property({ type: String }) label = 'Time';
+    /** Whether to use 12-hour (AM/PM) format instead of 24-hour. */
     @property({ type: Boolean }) ampm = true;
+    /** Whether to show a seconds segment. */
     @property({ type: Boolean }) seconds = false;
+    /** Disables the picker and prevents interaction. */
     @property({ type: Boolean, reflect: true }) disabled = false;
+    /** Displays the picker in an error state. */
     @property({ type: Boolean, reflect: true }) error = false;
+    /** Helper text shown below the field. */
     @property({ type: String, attribute: 'helper-text' }) helperText = '';
 
     @state() private _open = false;
@@ -771,8 +804,11 @@ export class FlintMobileTimePicker extends LitElement {
 export class FlintStaticTimePicker extends LitElement {
     static styles = unsafeCSS(uiStaticTimePickerStyles);
 
+    /** Time value in HH:MM:SS format. */
     @property({ type: String }) value = '';
+    /** Whether to use 12-hour (AM/PM) format instead of 24-hour. */
     @property({ type: Boolean }) ampm = true;
+    /** Whether to show a seconds section. */
     @property({ type: Boolean }) seconds = false;
 
     render() {
@@ -794,13 +830,21 @@ export class FlintStaticTimePicker extends LitElement {
 export class FlintTimePicker extends LitElement {
     static styles = unsafeCSS(uiTimePickerStyles);
 
+    /** Time value in HH:MM:SS format. */
     @property({ type: String }) value = '';
+    /** Field label text. */
     @property({ type: String }) label = 'Time';
+    /** Picker variant controlling the UI style. */
     @property({ type: String }) variant: 'desktop' | 'mobile' | 'static' | 'auto' = 'desktop';
+    /** Whether to use 12-hour (AM/PM) format instead of 24-hour. */
     @property({ type: Boolean }) ampm = true;
+    /** Whether to show a seconds segment. */
     @property({ type: Boolean }) seconds = false;
+    /** Disables the picker and prevents interaction. */
     @property({ type: Boolean, reflect: true }) disabled = false;
+    /** Displays the picker in an error state. */
     @property({ type: Boolean, reflect: true }) error = false;
+    /** Helper text shown below the field. */
     @property({ type: String, attribute: 'helper-text' }) helperText = '';
 
     private get _v() {

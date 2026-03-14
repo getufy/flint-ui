@@ -31,6 +31,7 @@ import { FlintMenuItem } from 'flint-ui';
 | `disabled` | `disabled` | `boolean` | `false` | Disables the item — it becomes non-interactive. |
 | `dense` | `dense` | `boolean` | `false` | Dense padding mode (for desktop-density menus). |
 | `divider` | `divider` | `boolean` | `false` | Renders a hairline separator below this item. |
+| `value` | `value` | `string` | — | The machine-readable value carried in the `flint-menu-item-select` event detail. Falls back to the item's visible label text if not set. |
 
 ### Events
 
@@ -150,9 +151,10 @@ import { FlintMenu } from 'flint-ui';
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | `open` | `open` | `boolean` | `false` | Whether the menu is open/visible. |
-| `placement` | `placement` | `string` | `'bottom-start'` |  |
+| `placement` | `placement` | `string` | `'bottom-start'` | Menu placement relative to its anchor container. 'bottom-start' \| 'bottom-end' \| 'top-start' \| 'top-end' \| 'right-start' \| 'left-start' |
 | `closeOnSelect` | `close-on-select` | `boolean` | `true` | When true, selecting an item automatically fires flint-menu-close. |
 | `scrollable` | `scrollable` | `boolean` | `false` | When true, constrains height to --flint-menu-max-height (default 300px) and enables scrolling. |
+| `label` | `label` | `string` | — | Accessible label for the menu surface (aria-label on role="menu"). |
 
 ### Events
 

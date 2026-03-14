@@ -46,13 +46,20 @@ export class FlintDateRangePicker extends LitElement {
     /** Custom shortcuts list. Defaults to built-in shortcuts when shortcuts=true. */
     @property({ type: Array }) shortcutItems: Shortcut[] = [];
 
+    /** Minimum selectable date (ISO YYYY-MM-DD). */
     @property({ type: String }) min = '';
+    /** Maximum selectable date (ISO YYYY-MM-DD). */
     @property({ type: String }) max = '';
+    /** Form field name for hidden inputs. */
     @property({ type: String }) name = '';
 
+    /** Disables the picker and prevents interaction. */
     @property({ type: Boolean, reflect: true }) disabled = false;
+    /** Makes the picker read-only (visible but not editable). */
     @property({ type: Boolean, reflect: true }) readonly = false;
+    /** Displays the picker in an error state. */
     @property({ type: Boolean, reflect: true }) error = false;
+    /** Helper text shown below the field. */
     @property({ type: String, attribute: 'helper-text' }) helperText = '';
 
     // ── State ─────────────────────────────────────────────────────────────────

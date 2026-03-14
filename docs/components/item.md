@@ -317,8 +317,8 @@ import { FlintItem } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `variant` | `variant` | `'default' \| 'outline' \| 'muted'` | `'default'` |  |
-| `size` | `size` | `'default' \| 'sm' \| 'xs'` | `'default'` |  |
+| `variant` | `variant` | `'default' \| 'outline' \| 'muted'` | `'default'` | Visual style of the item. - `default`  — no border, transparent background. - `outline`  — visible border. - `muted`    — muted background fill. |
+| `size` | `size` | `'default' \| 'sm' \| 'xs'` | `'default'` | Size preset controlling padding and gap. - `default` — 16px padding, 12px gap. - `sm`      — 12px padding, 8px gap. - `xs`      — 8px padding, 6px gap. |
 
 ### Slots
 

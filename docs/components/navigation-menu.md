@@ -42,14 +42,6 @@ import { FlintNavigationMenuContent } from 'flint-ui';
 | --- | --- |
 | `(default)` | Default slot for content |
 
-### Methods
-
-| Method | Description |
-| --- | --- |
-| `host([open])` |  |
-| `media(prefers-reduced-motion: reduce)` |  |
-| `slotted(*)` |  |
-
 ---
 
 ## `<flint-navigation-menu-item>`
@@ -123,7 +115,7 @@ import { FlintNavigationMenuLink } from 'flint-ui';
 | `target` | `target` | `string` | `''` | The link target (e.g., '_blank') |
 | `title` | `title` | `string` | `''` | Link title/tooltip |
 | `disabled` | `disabled` | `boolean` | `false` | Whether the link is disabled |
-| `active` | `active` | `boolean` | `false` |  |
+| `active` | `active` | `boolean` | `false` | Whether this link represents the current page. Sets aria-current="page" and applies active styles. |
 
 ### Slots
 
@@ -164,7 +156,7 @@ import { FlintNavigationMenuList } from 'flint-ui';
 | --- | --- | --- | --- | --- |
 | `gap` | `gap` | `number` | `4` | Gap between menu items |
 | `direction` | `direction` | `'row' \| 'column'` | `'row'` | Flex direction for the list |
-| `ariaLabel` | `aria-label` | `string` | `'Main navigation'` |  |
+| `ariaLabel` | `aria-label` | `string` | `'Main navigation'` | Accessible label for the navigation landmark. Required when multiple nav elements are on the same page. |
 
 ### Slots
 
@@ -214,12 +206,6 @@ import { FlintNavigationMenuTrigger } from 'flint-ui';
 | `(default)` | Default slot for content |
 | `default` | Trigger label/content |
 
-### Methods
-
-| Method | Description |
-| --- | --- |
-| `not(:disabled)` |  |
-
 ---
 
 ## `<flint-navigation-menu>`
@@ -258,7 +244,7 @@ import { FlintNavigationMenu } from 'flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `openContentId()` |  |
+| `openContentId(): unknown` | Get the currently open content item ID |
 | `openContent(contentId: string)` | Manually open a content item by ID |
 | `closeAll()` | Close all open content |
 

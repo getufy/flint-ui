@@ -12,39 +12,51 @@ export class FlintInput extends FormAssociated(LitElement) {
 
     private _inputId = `flint-input-${++idCounter}`;
 
+    /** Label text displayed above the input. */
     @property({ type: String })
     label = '';
 
+    /** Current input value. */
     @property({ type: String })
     value = '';
 
+    /** HTML input type (text, email, password, etc.). */
     @property({ type: String })
     type: string = 'text';
 
+    /** Placeholder text shown when the input is empty. */
     @property({ type: String })
     placeholder = '';
 
+    /** Help text displayed below the input. */
     @property({ type: String, attribute: 'help-text' })
     helpText = '';
 
+    /** Whether the input is in an error state. */
     @property({ type: Boolean })
     error = false;
 
+    /** Error message displayed below the input. */
     @property({ type: String, attribute: 'error-message' })
     errorMessage = '';
 
+    /** Disables the input and prevents interaction. */
     @property({ type: Boolean, reflect: true })
     disabled = false;
 
+    /** Marks the input as required for form validation. */
     @property({ type: Boolean, reflect: true })
     required = false;
 
+    /** Makes the input read-only. */
     @property({ type: Boolean, reflect: true })
     readonly = false;
 
+    /** Form field name used when submitting form data. */
     @property({ type: String })
     name = '';
 
+    /** Browser autocomplete hint. */
     @property({ type: String })
     autocomplete = '';
 

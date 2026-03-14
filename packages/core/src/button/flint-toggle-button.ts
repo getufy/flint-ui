@@ -7,9 +7,13 @@ import uiToggleButtonStyles from './flint-toggle-button.css?inline';
 export class FlintToggleButton extends LitElement {
     static styles = unsafeCSS(uiToggleButtonStyles);
 
+    /** Whether the button is currently selected (pressed). */
     @property({ type: Boolean, reflect: true }) selected = false;
+    /** Whether the button is disabled. */
     @property({ type: Boolean, reflect: true }) disabled = false;
+    /** Value associated with this toggle button. */
     @property({ type: String }) value = '';
+    /** Size variant of the toggle button. */
     @property({ type: String, reflect: true }) size: 'sm' | 'md' | 'lg' = 'md';
 
     private _handleClick() {

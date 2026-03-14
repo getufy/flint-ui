@@ -25,8 +25,8 @@ import { FlintSnackbar } from 'flint-ui';
 | --- | --- | --- | --- | --- |
 | `open` | `open` | `boolean` | `false` | Whether the snackbar is open. |
 | `message` | `message` | `string` | `''` | The message to display (slot fallback). |
-| `autoHideDuration` | `auto-hide-duration` | `number` | `5000` |  |
-| `anchorOrigin` | `anchor-origin` | `'top-left' \| 'top-center' \| 'top-right' \|         'bottom-left' \| 'bottom-center' \| 'bottom-right'` | `'bottom-center'` |  |
+| `autoHideDuration` | `auto-hide-duration` | `number` | `5000` | Duration in milliseconds before the snackbar auto-closes. Set to 0 to disable auto-close. |
+| `anchorOrigin` | `anchor-origin` | `'top-left' \| 'top-center' \| 'top-right' \|         'bottom-left' \| 'bottom-center' \| 'bottom-right'` | `'bottom-center'` | Position of the snackbar. Format: 'vertical-horizontal' e.g. 'bottom-center', 'top-right' |
 | `pauseOnHover` | `pause-on-hover` | `boolean` | `true` | Pause the auto-hide timer while the user hovers over the snackbar. |
 | `closable` | `closable` | `boolean` | `false` | Show a dismiss (✕) button. |
 | `variant` | `variant` | `'default' \| 'info' \| 'success' \| 'warning' \| 'error'` | `'default'` | Visual style variant. |

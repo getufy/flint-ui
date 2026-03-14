@@ -24,12 +24,12 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`id\` | \`id\` | \`string\` | \`''\` |
-| \`open\` | \`open\` | \`boolean\` | \`false\` |
-| \`dir\` | \`dir\` | \`'ltr' \\| 'rtl'\` | \`'ltr'\` |
-| \`gap\` | \`gap\` | \`number\` | \`12\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`id\` | \`id\` | \`string\` | \`''\` | Unique identifier for this content panel |
+| \`open\` | \`open\` | \`boolean\` | \`false\` | Whether the content is open/visible |
+| \`dir\` | \`dir\` | \`'ltr' \\| 'rtl'\` | \`'ltr'\` | The direction (ltr or rtl) |
+| \`gap\` | \`gap\` | \`number\` | \`12\` | Gap between items in the content |
 
 #### Events
 
@@ -43,14 +43,6 @@ const meta: Meta = {
 |---|---|
 | \`(default)\` | Default slot for content |
 
-#### Methods
-
-| Method | Description |
-|---|---|
-| \`host([open])\` |  |
-| \`media(prefers-reduced-motion: reduce)\` |  |
-| \`slotted(*)\` |  |
-
 ---
 
 #### \`<flint-navigation-menu-item>\`
@@ -60,12 +52,12 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`itemId\` | \`item-id\` | \`string\` | \`''\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`openDelay\` | \`open-delay\` | \`number\` | \`100\` |
-| \`closeDelay\` | \`close-delay\` | \`number\` | \`150\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`itemId\` | \`item-id\` | \`string\` | \`''\` | Unique identifier for this menu item |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Whether this item is disabled |
+| \`openDelay\` | \`open-delay\` | \`number\` | \`100\` | Delay in ms before opening on hover |
+| \`closeDelay\` | \`close-delay\` | \`number\` | \`150\` | Delay in ms before closing after mouse leaves |
 
 #### Events
 
@@ -90,13 +82,13 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`href\` | \`href\` | \`string\` | \`''\` |
-| \`target\` | \`target\` | \`string\` | \`''\` |
-| \`title\` | \`title\` | \`string\` | \`''\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`active\` | \`active\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`href\` | \`href\` | \`string\` | \`''\` | The link URL |
+| \`target\` | \`target\` | \`string\` | \`''\` | The link target (e.g., '_blank') |
+| \`title\` | \`title\` | \`string\` | \`''\` | Link title/tooltip |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Whether the link is disabled |
+| \`active\` | \`active\` | \`boolean\` | \`false\` | Whether this link represents the current page. Sets aria-current="page" and applies active styles. |
 
 #### Slots
 
@@ -119,11 +111,11 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`gap\` | \`gap\` | \`number\` | \`4\` |
-| \`direction\` | \`direction\` | \`'row' \\| 'column'\` | \`'row'\` |
-| \`ariaLabel\` | \`aria-label\` | \`string\` | \`'Main navigation'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`gap\` | \`gap\` | \`number\` | \`4\` | Gap between menu items |
+| \`direction\` | \`direction\` | \`'row' \\| 'column'\` | \`'row'\` | Flex direction for the list |
+| \`ariaLabel\` | \`aria-label\` | \`string\` | \`'Main navigation'\` | Accessible label for the navigation landmark. Required when multiple nav elements are on the same page. |
 
 #### Slots
 
@@ -141,10 +133,10 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`contentId\` | \`content-id\` | \`string\` | \`''\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`contentId\` | \`content-id\` | \`string\` | \`''\` | The ID of the associated content element |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Whether the trigger is disabled |
 
 #### Events
 
@@ -159,12 +151,6 @@ const meta: Meta = {
 | \`(default)\` | Default slot for content |
 | \`default\` | Trigger label/content |
 
-#### Methods
-
-| Method | Description |
-|---|---|
-| \`not(:disabled)\` |  |
-
 ---
 
 #### \`<flint-navigation-menu>\`
@@ -174,9 +160,9 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`dir\` | \`dir\` | \`'ltr' \\| 'rtl'\` | \`'ltr'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`dir\` | \`dir\` | \`'ltr' \\| 'rtl'\` | \`'ltr'\` | The direction of the menu (ltr or rtl) |
 
 #### Slots
 
@@ -189,7 +175,7 @@ const meta: Meta = {
 
 | Method | Description |
 |---|---|
-| \`openContentId()\` |  |
+| \`openContentId(): unknown\` | Get the currently open content item ID |
 | \`openContent(contentId: string)\` | Manually open a content item by ID |
 | \`closeAll()\` | Close all open content |
                 `,

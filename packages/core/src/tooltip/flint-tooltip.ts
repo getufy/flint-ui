@@ -22,9 +22,13 @@ let instanceCounter = 0;
 export class FlintTooltip extends LitElement {
     static override styles = unsafeCSS(uiTooltipStyles);
 
+    /** Text content displayed inside the tooltip. */
     @property({ type: String }) label = '';
+    /** Preferred placement of the tooltip relative to the trigger element. */
     @property({ type: String }) placement: Placement = 'top';
+    /** Show a small arrow pointing toward the trigger element. */
     @property({ type: Boolean }) arrow = false;
+    /** Disables the tooltip so it never appears. */
     @property({ type: Boolean, reflect: true }) disabled = false;
 
     /** Delay in ms before showing the tooltip. */

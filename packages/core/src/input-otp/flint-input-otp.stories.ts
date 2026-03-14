@@ -67,12 +67,12 @@ A single character cell in an OTP input. Place inside \`flint-input-otp-group\`.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`index\` | \`index\` | \`number\` | \`0\` |
-| \`char\` | \`char\` | \`string\` | \`''\` |
-| \`active\` | \`active\` | \`boolean\` | \`false\` |
-| \`invalid\` | \`invalid\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`index\` | \`index\` | \`number\` | \`0\` | Zero-based position index of this slot. |
+| \`char\` | \`char\` | \`string\` | \`''\` | Character displayed. Set by the parent \`flint-input-otp\`. |
+| \`active\` | \`active\` | \`boolean\` | \`false\` | Whether the cursor is at this position. Set by the parent \`flint-input-otp\`. |
+| \`invalid\` | \`invalid\` | \`boolean\` | \`false\` | Error / invalid state. |
 
 ---
 
@@ -83,15 +83,15 @@ A single character cell in an OTP input. Place inside \`flint-input-otp-group\`.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`value\` | \`value\` | \`string\` | \`''\` |
-| \`defaultValue\` | \`default-value\` | \`string\` | \`''\` |
-| \`maxLength\` | \`max-length\` | \`number\` | \`6\` |
-| \`pattern\` | \`pattern\` | \`string\` | \`''\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`label\` | \`label\` | \`string\` | \`'One-time password'\` |
-| \`description\` | \`description\` | \`string\` | \`''\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` | Current OTP value. Reflects to attribute for external observation. |
+| \`defaultValue\` | \`default-value\` | \`string\` | \`''\` | Initial uncontrolled value. Has no effect after the first render. |
+| \`maxLength\` | \`max-length\` | \`number\` | \`6\` | Total number of character slots. |
+| \`pattern\` | \`pattern\` | \`string\` | \`''\` | Per-character regex pattern string. Characters failing the test are silently rejected on input and paste. E.g. \`"\\\\d"\` accepts digits only; \`"[a-zA-Z0-9]"\` accepts alphanumeric. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the OTP input. |
+| \`label\` | \`label\` | \`string\` | \`'One-time password'\` | Accessible label for the hidden input (used as aria-label). |
+| \`description\` | \`description\` | \`string\` | \`''\` | Optional description text for the hidden input (used as aria-describedby). |
 
 #### Events
 

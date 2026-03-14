@@ -18,9 +18,9 @@ Custom overlay scrollbar. Place inside \`flint-scroll-area\` with \`slot="scroll
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`orientation\` | \`orientation\` | \`'vertical' \\| 'horizontal'\` | \`'vertical'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`orientation\` | \`orientation\` | \`'vertical' \\| 'horizontal'\` | \`'vertical'\` | Which axis this scrollbar controls. Reflects to attribute. |
 
 #### Slots
 
@@ -54,10 +54,10 @@ Custom overlay scrollbar. Place inside \`flint-scroll-area\` with \`slot="scroll
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`type\` | \`type\` | \`'auto' \\| 'always' \\| 'scroll' \\| 'hover'\` | \`'hover'\` |
-| \`dir\` | \`dir\` | \`'ltr' \\| 'rtl'\` | \`'ltr'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`type\` | \`type\` | \`'auto' \\| 'always' \\| 'scroll' \\| 'hover'\` | \`'hover'\` | Controls when the scrollbars appear. - \`'hover'\`  (default) — on hover, when content overflows - \`'auto'\`             — when content overflows - \`'always'\`           — always - \`'scroll'\`           — briefly while scrolling |
+| \`dir\` | \`dir\` | \`'ltr' \\| 'rtl'\` | \`'ltr'\` | Text direction. \`'rtl'\` flips the vertical bar to the left side. |
 
 #### Slots
 

@@ -20,23 +20,23 @@ Pagination component enabling the user to select a specific page from a range of
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`count\` | \`count\` | \`number\` | \`1\` |
-| \`page\` | \`page\` | \`number\` | \`1\` |
-| \`defaultPage\` | \`default-page\` | \`number\` | \`1\` |
-| \`label\` | \`label\` | \`string\` | \`''\` |
-| \`variant\` | \`variant\` | \`'text' \\| 'outlined'\` | \`'text'\` |
-| \`shape\` | \`shape\` | \`'circular' \\| 'rounded' \\| 'square'\` | \`'circular'\` |
-| \`size\` | \`size\` | \`'small' \\| 'medium' \\| 'large'\` | \`'medium'\` |
-| \`color\` | \`color\` | \`'primary' \\| 'secondary' \\| 'standard'\` | \`'primary'\` |
-| \`showFirstButton\` | \`show-first-button\` | \`boolean\` | \`false\` |
-| \`showLastButton\` | \`show-last-button\` | \`boolean\` | \`false\` |
-| \`hidePrevButton\` | \`hide-prev-button\` | \`boolean\` | \`false\` |
-| \`hideNextButton\` | \`hide-next-button\` | \`boolean\` | \`false\` |
-| \`siblingCount\` | \`sibling-count\` | \`number\` | \`1\` |
-| \`boundaryCount\` | \`boundary-count\` | \`number\` | \`1\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`count\` | \`count\` | \`number\` | \`1\` | Total number of pages. |
+| \`page\` | \`page\` | \`number\` | \`1\` | The current page (1-based). In controlled mode, update this from the flint-pagination-change event. |
+| \`defaultPage\` | \`default-page\` | \`number\` | \`1\` | Initial page for uncontrolled mode. Ignored after first render. |
+| \`label\` | \`label\` | \`string\` | \`''\` | Accessible label for the nav landmark (aria-label). |
+| \`variant\` | \`variant\` | \`'text' \\| 'outlined'\` | \`'text'\` | Variant. |
+| \`shape\` | \`shape\` | \`'circular' \\| 'rounded' \\| 'square'\` | \`'circular'\` | Shape. |
+| \`size\` | \`size\` | \`'small' \\| 'medium' \\| 'large'\` | \`'medium'\` | Size. |
+| \`color\` | \`color\` | \`'primary' \\| 'secondary' \\| 'standard'\` | \`'primary'\` | Color. |
+| \`showFirstButton\` | \`show-first-button\` | \`boolean\` | \`false\` | Show first-page button. |
+| \`showLastButton\` | \`show-last-button\` | \`boolean\` | \`false\` | Show last-page button. |
+| \`hidePrevButton\` | \`hide-prev-button\` | \`boolean\` | \`false\` | Hide previous button. |
+| \`hideNextButton\` | \`hide-next-button\` | \`boolean\` | \`false\` | Hide next button. |
+| \`siblingCount\` | \`sibling-count\` | \`number\` | \`1\` | Number of sibling pages around the current page. |
+| \`boundaryCount\` | \`boundary-count\` | \`number\` | \`1\` | Number of pages always shown at start and end. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disable the whole component. |
 
 #### Events
 
@@ -80,12 +80,6 @@ Pagination component enabling the user to select a specific page from a range of
 | \`--flint-text-color\` | — |
 | \`--flint-hover-color\` | — |
 | \`--flint-text-color-muted\` | — |
-
-#### Methods
-
-| Method | Description |
-|---|---|
-| \`map(item => {             if (item === 'start-ellipsis' \\|\\| item === 'end-ellipsis')\` |  |
                 `,
             },
         },

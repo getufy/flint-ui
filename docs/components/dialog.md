@@ -31,7 +31,7 @@ import { FlintDialog } from 'flint-ui';
 | --- | --- | --- | --- | --- |
 | `open` | `open` | `boolean` | `false` | Controls the open / closed state of the dialog. |
 | `transition` | `transition` | `'scale' \| 'slide-up' \| 'slide-down'` | `'scale'` | Animation style: 'scale' (default), 'slide-up', or 'slide-down'. |
-| `disableBackdropClose` | `disable-backdrop-close` | `boolean` | `false` |  |
+| `disableBackdropClose` | `disable-backdrop-close` | `boolean` | `false` | When true, clicking the backdrop will NOT close the dialog. Useful for confirmation dialogs where the user must make a deliberate choice. |
 
 ### Events
 

@@ -18,16 +18,16 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`value\` | \`value\` | \`string\` | \`''\` |
-| \`label\` | \`label\` | \`string\` | \`''\` |
-| \`ampm\` | \`ampm\` | \`boolean\` | \`true\` |
-| \`seconds\` | \`seconds\` | \`boolean\` | \`false\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`readonly\` | \`readonly\` | \`boolean\` | \`false\` |
-| \`error\` | \`error\` | \`boolean\` | \`false\` |
-| \`helperText\` | \`helper-text\` | \`string\` | \`''\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` | Time value in HH:MM:SS format. |
+| \`label\` | \`label\` | \`string\` | \`''\` | Field label text. |
+| \`ampm\` | \`ampm\` | \`boolean\` | \`true\` | Whether to use 12-hour (AM/PM) format instead of 24-hour. |
+| \`seconds\` | \`seconds\` | \`boolean\` | \`false\` | Whether to show a seconds segment. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the field and prevents interaction. |
+| \`readonly\` | \`readonly\` | \`boolean\` | \`false\` | Makes the field read-only (visible but not editable). |
+| \`error\` | \`error\` | \`boolean\` | \`false\` | Displays the field in an error state. |
+| \`helperText\` | \`helper-text\` | \`string\` | \`''\` | Helper text shown below the field. |
 
 #### Events
 
@@ -73,11 +73,11 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`value\` | \`value\` | \`string\` | \`''\` |
-| \`step\` | \`step\` | \`number\` | \`30\` |
-| \`ampm\` | \`ampm\` | \`boolean\` | \`true\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` | Time value in HH:MM:SS format. |
+| \`step\` | \`step\` | \`number\` | \`30\` | Step interval in minutes between selectable times. |
+| \`ampm\` | \`ampm\` | \`boolean\` | \`true\` | Whether to use 12-hour (AM/PM) format instead of 24-hour. |
 
 #### Events
 
@@ -100,11 +100,11 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`value\` | \`value\` | \`string\` | \`''\` |
-| \`ampm\` | \`ampm\` | \`boolean\` | \`true\` |
-| \`seconds\` | \`seconds\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` | Time value in HH:MM:SS format. |
+| \`ampm\` | \`ampm\` | \`boolean\` | \`true\` | Whether to use 12-hour (AM/PM) format instead of 24-hour. |
+| \`seconds\` | \`seconds\` | \`boolean\` | \`false\` | Whether to show a seconds column. |
 
 #### Events
 
@@ -121,12 +121,12 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`value\` | \`value\` | \`string\` | \`''\` |
-| \`ampm\` | \`ampm\` | \`boolean\` | \`true\` |
-| \`seconds\` | \`seconds\` | \`boolean\` | \`false\` |
-| \`view\` | \`view\` | \`TimeView\` | \`'hours'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` | Time value in HH:MM:SS format. |
+| \`ampm\` | \`ampm\` | \`boolean\` | \`true\` | Whether to use 12-hour (AM/PM) format instead of 24-hour. |
+| \`seconds\` | \`seconds\` | \`boolean\` | \`false\` | Whether to show a seconds face on the clock. |
+| \`view\` | \`view\` | \`TimeView\` | \`'hours'\` | Currently active clock face view. |
 
 #### Events
 
@@ -156,16 +156,16 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`value\` | \`value\` | \`string\` | \`''\` |
-| \`label\` | \`label\` | \`string\` | \`'Time'\` |
-| \`ampm\` | \`ampm\` | \`boolean\` | \`true\` |
-| \`seconds\` | \`seconds\` | \`boolean\` | \`false\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`readonly\` | \`readonly\` | \`boolean\` | \`false\` |
-| \`error\` | \`error\` | \`boolean\` | \`false\` |
-| \`helperText\` | \`helper-text\` | \`string\` | \`''\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` | Time value in HH:MM:SS format. |
+| \`label\` | \`label\` | \`string\` | \`'Time'\` | Field label text. |
+| \`ampm\` | \`ampm\` | \`boolean\` | \`true\` | Whether to use 12-hour (AM/PM) format instead of 24-hour. |
+| \`seconds\` | \`seconds\` | \`boolean\` | \`false\` | Whether to show a seconds segment. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the picker and prevents interaction. |
+| \`readonly\` | \`readonly\` | \`boolean\` | \`false\` | Makes the field read-only (visible but not editable). |
+| \`error\` | \`error\` | \`boolean\` | \`false\` | Displays the field in an error state. |
+| \`helperText\` | \`helper-text\` | \`string\` | \`''\` | Helper text shown below the field. |
 
 #### Events
 
@@ -182,15 +182,15 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`value\` | \`value\` | \`string\` | \`''\` |
-| \`label\` | \`label\` | \`string\` | \`'Time'\` |
-| \`ampm\` | \`ampm\` | \`boolean\` | \`true\` |
-| \`seconds\` | \`seconds\` | \`boolean\` | \`false\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`error\` | \`error\` | \`boolean\` | \`false\` |
-| \`helperText\` | \`helper-text\` | \`string\` | \`''\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` | Time value in HH:MM:SS format. |
+| \`label\` | \`label\` | \`string\` | \`'Time'\` | Field label text. |
+| \`ampm\` | \`ampm\` | \`boolean\` | \`true\` | Whether to use 12-hour (AM/PM) format instead of 24-hour. |
+| \`seconds\` | \`seconds\` | \`boolean\` | \`false\` | Whether to show a seconds segment. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the picker and prevents interaction. |
+| \`error\` | \`error\` | \`boolean\` | \`false\` | Displays the picker in an error state. |
+| \`helperText\` | \`helper-text\` | \`string\` | \`''\` | Helper text shown below the field. |
 
 #### Events
 
@@ -207,11 +207,11 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`value\` | \`value\` | \`string\` | \`''\` |
-| \`ampm\` | \`ampm\` | \`boolean\` | \`true\` |
-| \`seconds\` | \`seconds\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` | Time value in HH:MM:SS format. |
+| \`ampm\` | \`ampm\` | \`boolean\` | \`true\` | Whether to use 12-hour (AM/PM) format instead of 24-hour. |
+| \`seconds\` | \`seconds\` | \`boolean\` | \`false\` | Whether to show a seconds section. |
 
 #### Events
 
@@ -228,16 +228,16 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`value\` | \`value\` | \`string\` | \`''\` |
-| \`label\` | \`label\` | \`string\` | \`'Time'\` |
-| \`variant\` | \`variant\` | \`'desktop' \\| 'mobile' \\| 'static' \\| 'auto'\` | \`'desktop'\` |
-| \`ampm\` | \`ampm\` | \`boolean\` | \`true\` |
-| \`seconds\` | \`seconds\` | \`boolean\` | \`false\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`error\` | \`error\` | \`boolean\` | \`false\` |
-| \`helperText\` | \`helper-text\` | \`string\` | \`''\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` | Time value in HH:MM:SS format. |
+| \`label\` | \`label\` | \`string\` | \`'Time'\` | Field label text. |
+| \`variant\` | \`variant\` | \`'desktop' \\| 'mobile' \\| 'static' \\| 'auto'\` | \`'desktop'\` | Picker variant controlling the UI style. |
+| \`ampm\` | \`ampm\` | \`boolean\` | \`true\` | Whether to use 12-hour (AM/PM) format instead of 24-hour. |
+| \`seconds\` | \`seconds\` | \`boolean\` | \`false\` | Whether to show a seconds segment. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the picker and prevents interaction. |
+| \`error\` | \`error\` | \`boolean\` | \`false\` | Displays the picker in an error state. |
+| \`helperText\` | \`helper-text\` | \`string\` | \`''\` | Helper text shown below the field. |
 
 #### Events
 

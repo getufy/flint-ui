@@ -7,7 +7,9 @@ import uiTableSortLabelStyles from './flint-table-sort-label.css?inline';
 export class FlintTableSortLabel extends LitElement {
     static styles = unsafeCSS(uiTableSortLabelStyles);
 
+    /** Whether this column is currently sorted. */
     @property({ type: Boolean, reflect: true }) active = false;
+    /** Sort direction when active. */
     @property({ type: String }) direction: 'asc' | 'desc' = 'asc';
 
     updated(changed: PropertyValues) {

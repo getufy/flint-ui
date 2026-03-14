@@ -18,15 +18,15 @@ A two-state button that can be either on (pressed) or off.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`pressed\` | \`pressed\` | \`boolean\` | \`false\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`variant\` | \`variant\` | \`'default' \\| 'outline'\` | \`'default'\` |
-| \`size\` | \`size\` | \`'sm' \\| 'default' \\| 'lg'\` | \`'default'\` |
-| \`dir\` | \`dir\` | \`'ltr' \\| 'rtl'\` | \`'ltr'\` |
-| \`defaultPressed\` | \`default-pressed\` | \`boolean\` | \`false\` |
-| \`ariaLabel\` | \`aria-label\` | \`string \\| null\` | \`null\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`pressed\` | \`pressed\` | \`boolean\` | \`false\` | Whether the toggle is currently pressed (on). |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Whether the toggle is disabled. |
+| \`variant\` | \`variant\` | \`'default' \\| 'outline'\` | \`'default'\` | Visual variant of the toggle. |
+| \`size\` | \`size\` | \`'sm' \\| 'default' \\| 'lg'\` | \`'default'\` | Size of the toggle. |
+| \`dir\` | \`dir\` | \`'ltr' \\| 'rtl'\` | \`'ltr'\` | Text direction for the toggle. |
+| \`defaultPressed\` | \`default-pressed\` | \`boolean\` | \`false\` | Initial pressed state for uncontrolled mode. |
+| \`ariaLabel\` | \`aria-label\` | \`string \\| null\` | \`null\` | Accessible label for icon-only toggles. |
 
 #### Events
 

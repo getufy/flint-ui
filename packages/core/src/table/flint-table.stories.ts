@@ -46,16 +46,16 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`count\` | \`count\` | \`number\` | \`0\` |
-| \`page\` | \`page\` | \`number\` | \`0\` |
-| \`rowsPerPage\` | \`rows-per-page\` | \`number\` | \`10\` |
-| \`rowsPerPageOptions\` | \`rows-per-page-options\` | \`number[]\` | \`[5, 10, 25]\` |
-| \`defaultPage\` | \`default-page\` | \`number\` | \`0\` |
-| \`defaultRowsPerPage\` | \`default-rows-per-page\` | \`number\` | \`-1\` |
-| \`showFirstLast\` | \`show-first-last\` | \`boolean\` | \`false\` |
-| \`labelRowsPerPage\` | \`label-rows-per-page\` | \`string\` | \`'Rows per page:'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`count\` | \`count\` | \`number\` | \`0\` | Total number of rows. |
+| \`page\` | \`page\` | \`number\` | \`0\` | Controlled current page (0-indexed). |
+| \`rowsPerPage\` | \`rows-per-page\` | \`number\` | \`10\` | Controlled rows per page. |
+| \`rowsPerPageOptions\` | \`rows-per-page-options\` | \`number[]\` | \`[5, 10, 25]\` | Available rows-per-page options. |
+| \`defaultPage\` | \`default-page\` | \`number\` | \`0\` | Uncontrolled default page (applied on first render). |
+| \`defaultRowsPerPage\` | \`default-rows-per-page\` | \`number\` | \`-1\` | Uncontrolled default rows per page. |
+| \`showFirstLast\` | \`show-first-last\` | \`boolean\` | \`false\` | Show First/Last page buttons. |
+| \`labelRowsPerPage\` | \`label-rows-per-page\` | \`string\` | \`'Rows per page:'\` | Label for the rows-per-page selector. |
 
 #### Events
 
@@ -83,10 +83,10 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`active\` | \`active\` | \`boolean\` | \`false\` |
-| \`direction\` | \`direction\` | \`'asc' \\| 'desc'\` | \`'asc'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`active\` | \`active\` | \`boolean\` | \`false\` | Whether this column is currently sorted. |
+| \`direction\` | \`direction\` | \`'asc' \\| 'desc'\` | \`'asc'\` | Sort direction when active. |
 
 #### Slots
 
@@ -105,10 +105,10 @@ flint-table-container
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`shadow\` | \`shadow\` | \`boolean\` | \`false\` |
-| \`stickyHeader\` | \`sticky-header\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`shadow\` | \`shadow\` | \`boolean\` | \`false\` | Applies a stronger box-shadow elevation. |
+| \`stickyHeader\` | \`sticky-header\` | \`boolean\` | \`false\` | Sticks the table header to the top on scroll. |
 
 #### Slots
 
@@ -133,9 +133,9 @@ flint-table
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`size\` | \`size\` | \`'medium' \\| 'small'\` | \`'medium'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`size\` | \`size\` | \`'medium' \\| 'small'\` | \`'medium'\` | Cell padding density. |
 
 #### Slots
 
@@ -195,9 +195,9 @@ flint-table-body
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`striped\` | \`striped\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`striped\` | \`striped\` | \`boolean\` | \`false\` | Enables alternating row shading. |
 
 #### Slots
 
@@ -216,10 +216,10 @@ flint-table-row
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`selected\` | \`selected\` | \`boolean\` | \`false\` |
-| \`hover\` | \`hover\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`selected\` | \`selected\` | \`boolean\` | \`false\` | Highlights the row as selected. |
+| \`hover\` | \`hover\` | \`boolean\` | \`false\` | Forces hover highlight on the row. |
 
 #### Slots
 
@@ -245,11 +245,11 @@ flint-table-cell
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`header\` | \`header\` | \`boolean\` | \`false\` |
-| \`align\` | \`align\` | \`'left' \\| 'right' \\| 'center'\` | \`'left'\` |
-| \`padding\` | \`padding\` | \`'normal' \\| 'checkbox' \\| 'none'\` | \`'normal'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`header\` | \`header\` | \`boolean\` | \`false\` | Renders the cell with header styling. |
+| \`align\` | \`align\` | \`'left' \\| 'right' \\| 'center'\` | \`'left'\` | Text alignment within the cell. |
+| \`padding\` | \`padding\` | \`'normal' \\| 'checkbox' \\| 'none'\` | \`'normal'\` | Padding preset for the cell. |
 
 #### Slots
 

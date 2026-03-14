@@ -27,6 +27,9 @@ import { FlintDatePickerCalendar } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
+| `value` | `value` | `string` | — | Currently selected value as ISO string (YYYY-MM-DD). |
+| `min` | `min` | `string` | — | Minimum selectable date (ISO). |
+| `max` | `max` | `string` | — | Maximum selectable date (ISO). |
 | `disabled` | `disabled` | `boolean` | `false` | Disable all interaction. |
 
 ### Events

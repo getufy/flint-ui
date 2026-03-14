@@ -16,14 +16,15 @@ Typography component for displaying text with consistent theme styles.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`variant\` | \`variant\` | \`\\| 'h1' \\| 'h2' \\| 'h3' \\| 'h4' \\| 'h5' \\| 'h6'         \\| 'subtitle1' \\| 'subtitle2'         \\| 'body1' \\| 'body2'         \\| 'caption' \\| 'overline'         \\| 'inherit'\` | \`'body1'\` |
-| \`color\` | \`color\` | \`\\| 'primary' \\| 'secondary' \\| 'success' \\| 'error' \\| 'warning' \\| 'info'         \\| 'textPrimary' \\| 'textSecondary' \\| 'inherit'\` | \`'textPrimary'\` |
-| \`align\` | \`align\` | \`'left' \\| 'center' \\| 'right' \\| 'justify'\` | \`'left'\` |
-| \`noWrap\` | \`no-wrap\` | \`boolean\` | \`false\` |
-| \`gutterBottom\` | \`gutter-bottom\` | \`boolean\` | \`false\` |
-| \`paragraph\` | \`paragraph\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`variant\` | \`variant\` | \`\\| 'h1' \\| 'h2' \\| 'h3' \\| 'h4' \\| 'h5' \\| 'h6'         \\| 'subtitle1' \\| 'subtitle2'         \\| 'body1' \\| 'body2'         \\| 'caption' \\| 'overline'         \\| 'inherit'\` | \`'body1'\` | Variant of the typography. |
+| \`color\` | \`color\` | \`\\| 'primary' \\| 'secondary' \\| 'success' \\| 'error' \\| 'warning' \\| 'info'         \\| 'textPrimary' \\| 'textSecondary' \\| 'inherit'\` | \`'textPrimary'\` | The color of the text. |
+| \`component\` | \`component\` | \`string\` | — | Override the rendered HTML tag. |
+| \`align\` | \`align\` | \`'left' \\| 'center' \\| 'right' \\| 'justify'\` | \`'left'\` | Text alignment. |
+| \`noWrap\` | \`no-wrap\` | \`boolean\` | \`false\` | If true, text is truncated with an ellipsis. |
+| \`gutterBottom\` | \`gutter-bottom\` | \`boolean\` | \`false\` | If true, adds a bottom margin. |
+| \`paragraph\` | \`paragraph\` | \`boolean\` | \`false\` | If true, adds paragraph margin bottom. |
 
 #### Slots
 

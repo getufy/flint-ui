@@ -19,21 +19,21 @@ A select component for choosing one or multiple options from a list.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`label\` | \`label\` | \`string\` | \`''\` |
-| \`options\` | \`options\` | \`SelectOption[]\` | \`[]\` |
-| \`value\` | \`value\` | \`string[]\` | \`[]\` |
-| \`multiple\` | \`multiple\` | \`boolean\` | \`false\` |
-| \`placeholder\` | \`placeholder\` | \`string\` | \`'Select an option'\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`readonly\` | \`readonly\` | \`boolean\` | \`false\` |
-| \`required\` | \`required\` | \`boolean\` | \`false\` |
-| \`error\` | \`error\` | \`boolean\` | \`false\` |
-| \`errorMessage\` | \`error-message\` | \`string\` | \`''\` |
-| \`name\` | \`name\` | \`string\` | \`''\` |
-| \`size\` | \`size\` | \`SelectSize\` | \`'md'\` |
-| \`defaultValue\` | \`default-value\` | \`string\` | \`''\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`label\` | \`label\` | \`string\` | \`''\` | Label text displayed above the select. |
+| \`options\` | \`options\` | \`SelectOption[]\` | \`[]\` | Array of selectable options. |
+| \`value\` | \`value\` | \`string[]\` | \`[]\` | Currently selected value(s). |
+| \`multiple\` | \`multiple\` | \`boolean\` | \`false\` | Allow multiple selections. |
+| \`placeholder\` | \`placeholder\` | \`string\` | \`'Select an option'\` | Placeholder text when no value is selected. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the select and prevents interaction. |
+| \`readonly\` | \`readonly\` | \`boolean\` | \`false\` | Makes the select read-only. |
+| \`required\` | \`required\` | \`boolean\` | \`false\` | Marks the select as required for form validation. |
+| \`error\` | \`error\` | \`boolean\` | \`false\` | Whether the select is in an error state. |
+| \`errorMessage\` | \`error-message\` | \`string\` | \`''\` | Error message displayed below the select. |
+| \`name\` | \`name\` | \`string\` | \`''\` | Form field name used when submitting form data. |
+| \`size\` | \`size\` | \`SelectSize\` | \`'md'\` | Size variant of the select. |
+| \`defaultValue\` | \`default-value\` | \`string\` | \`''\` | Sets the initial value in uncontrolled mode (single-select only). |
 
 #### Events
 

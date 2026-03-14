@@ -19,10 +19,10 @@ flint-list: A wrapper for list items.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`disablePadding\` | \`disable-padding\` | \`boolean\` | \`false\` |
-| \`dense\` | \`dense\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`disablePadding\` | \`disable-padding\` | \`boolean\` | \`false\` | Whether to disable the default padding on the list. |
+| \`dense\` | \`dense\` | \`boolean\` | \`false\` | Whether to use compact spacing for list items. |
 
 #### Slots
 
@@ -78,10 +78,10 @@ flint-list-item-button: An action element inside a list item.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`selected\` | \`selected\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Whether the list item button is disabled. |
+| \`selected\` | \`selected\` | \`boolean\` | \`false\` | Whether the list item button is selected. |
 
 #### Slots
 
@@ -130,10 +130,10 @@ flint-list-item-text: A container for text content.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`primary\` | \`primary\` | \`string\` | \`''\` |
-| \`secondary\` | \`secondary\` | \`string\` | \`''\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`primary\` | \`primary\` | \`string\` | \`''\` | Primary text content of the list item. |
+| \`secondary\` | \`secondary\` | \`string\` | \`''\` | Secondary text content of the list item. |
 
 #### Slots
 

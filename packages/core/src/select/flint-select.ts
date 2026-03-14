@@ -27,17 +27,29 @@ let _uidCounter = 0;
 export class FlintSelect extends FormAssociated(LitElement) {
   static styles = unsafeCSS(uiSelectStyles);
 
+  /** Label text displayed above the select. */
   @property({ type: String }) label = '';
+  /** Array of selectable options. */
   @property({ type: Array }) options: SelectOption[] = [];
+  /** Currently selected value(s). */
   @property({ type: Array }) value: string[] = [];
+  /** Allow multiple selections. */
   @property({ type: Boolean }) multiple = false;
+  /** Placeholder text when no value is selected. */
   @property({ type: String }) placeholder = 'Select an option';
+  /** Disables the select and prevents interaction. */
   @property({ type: Boolean, reflect: true }) disabled = false;
+  /** Makes the select read-only. */
   @property({ type: Boolean, reflect: true }) readonly = false;
+  /** Marks the select as required for form validation. */
   @property({ type: Boolean, reflect: true }) required = false;
+  /** Whether the select is in an error state. */
   @property({ type: Boolean, reflect: true }) error = false;
+  /** Error message displayed below the select. */
   @property({ type: String, attribute: 'error-message' }) errorMessage = '';
+  /** Form field name used when submitting form data. */
   @property({ type: String }) name = '';
+  /** Size variant of the select. */
   @property({ type: String, reflect: true }) size: SelectSize = 'md';
   /** Sets the initial value in uncontrolled mode (single-select only). */
   @property({ type: String, attribute: 'default-value' }) defaultValue = '';

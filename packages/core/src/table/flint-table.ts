@@ -16,7 +16,9 @@ import uiTableFooterStyles from './flint-table-footer.css?inline';
 @customElement('flint-table-container')
 export class FlintTableContainer extends LitElement {
   static styles = unsafeCSS(uiTableContainerStyles);
+  /** Applies a stronger box-shadow elevation. */
   @property({ type: Boolean, reflect: true }) shadow = false;
+  /** Sticks the table header to the top on scroll. */
   @property({ type: Boolean, reflect: true, attribute: 'sticky-header' }) stickyHeader = false;
   render() { return html`<slot></slot>`; }
 }
@@ -28,6 +30,7 @@ export class FlintTableContainer extends LitElement {
 @customElement('flint-table')
 export class FlintTable extends LitElement {
   static styles = unsafeCSS(uiTableStyles);
+  /** Cell padding density. */
   @property({ type: String, reflect: true }) size: 'medium' | 'small' = 'medium';
   render() { return html`<slot></slot>`; }
 }
@@ -48,6 +51,7 @@ export class FlintTableHead extends LitElement {
 @customElement('flint-table-body')
 export class FlintTableBody extends LitElement {
   static styles = unsafeCSS(uiTableBodyStyles);
+  /** Enables alternating row shading. */
   @property({ type: Boolean, reflect: true }) striped = false;
   render() { return html`<slot></slot>`; }
 }
@@ -60,7 +64,9 @@ export class FlintTableBody extends LitElement {
 @customElement('flint-table-row')
 export class FlintTableRow extends LitElement {
   static styles = unsafeCSS(uiTableRowStyles);
+  /** Highlights the row as selected. */
   @property({ type: Boolean, reflect: true }) selected = false;
+  /** Forces hover highlight on the row. */
   @property({ type: Boolean, reflect: true }) hover = false;
   render() { return html`<slot></slot>`; }
 }
@@ -74,8 +80,11 @@ export class FlintTableRow extends LitElement {
 @customElement('flint-table-cell')
 export class FlintTableCell extends LitElement {
   static styles = unsafeCSS(uiTableCellStyles);
+  /** Renders the cell with header styling. */
   @property({ type: Boolean, reflect: true }) header = false;
+  /** Text alignment within the cell. */
   @property({ type: String, reflect: true }) align: 'left' | 'right' | 'center' = 'left';
+  /** Padding preset for the cell. */
   @property({ type: String, reflect: true }) padding: 'normal' | 'checkbox' | 'none' = 'normal';
 
   render() { return html`<slot></slot>`; }

@@ -27,16 +27,16 @@ import { FlintRating } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `value` | `value` | `number` | `0` |  |
-| `max` | `max` | `number` | `5` |  |
-| `readonly` | `readonly` | `boolean` | `false` |  |
-| `disabled` | `disabled` | `boolean` | `false` |  |
-| `clearable` | `clearable` | `boolean` | `false` |  |
-| `defaultValue` | `default-value` | `number` | `0` |  |
-| `size` | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` |  |
-| `name` | `name` | `string` | `''` |  |
-| `label` | `label` | `string` | `'Rating'` |  |
-| `precision` | `precision` | `1 \| 0.5` | `1` |  |
+| `value` | `value` | `number` | `0` | Current rating value. |
+| `max` | `max` | `number` | `5` | Maximum number of stars. |
+| `readonly` | `readonly` | `boolean` | `false` | Whether the rating is read-only. |
+| `disabled` | `disabled` | `boolean` | `false` | Whether the rating is disabled. |
+| `clearable` | `clearable` | `boolean` | `false` | Whether clicking the current value clears the rating. |
+| `defaultValue` | `default-value` | `number` | `0` | Initial rating value for uncontrolled mode. |
+| `size` | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of the rating stars. |
+| `name` | `name` | `string` | `''` | Form field name for the hidden input. |
+| `label` | `label` | `string` | `'Rating'` | Accessible label for the rating group. |
+| `precision` | `precision` | `1 \| 0.5` | `1` | Rating step precision (1 for full stars, 0.5 for half stars). |
 
 ### Events
 

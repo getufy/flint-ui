@@ -86,10 +86,4 @@ import { FlintPagination } from 'flint-ui';
 | `--flint-hover-color` | — |
 | `--flint-text-color-muted` | — |
 
-### Methods
-
-| Method | Description |
-| --- | --- |
-| `map(item => {             if (item === 'start-ellipsis' \|\| item === 'end-ellipsis')` |  |
-
 ---

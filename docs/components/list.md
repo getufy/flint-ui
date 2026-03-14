@@ -27,8 +27,8 @@ import { FlintList } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `disablePadding` | `disable-padding` | `boolean` | `false` |  |
-| `dense` | `dense` | `boolean` | `false` |  |
+| `disablePadding` | `disable-padding` | `boolean` | `false` | Whether to disable the default padding on the list. |
+| `dense` | `dense` | `boolean` | `false` | Whether to use compact spacing for list items. |
 
 ### Slots
 
@@ -114,8 +114,8 @@ import { FlintListItemButton } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `disabled` | `disabled` | `boolean` | `false` |  |
-| `selected` | `selected` | `boolean` | `false` |  |
+| `disabled` | `disabled` | `boolean` | `false` | Whether the list item button is disabled. |
+| `selected` | `selected` | `boolean` | `false` | Whether the list item button is selected. |
 
 ### Slots
 
@@ -208,8 +208,8 @@ import { FlintListItemText } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `primary` | `primary` | `string` | `''` |  |
-| `secondary` | `secondary` | `string` | `''` |  |
+| `primary` | `primary` | `string` | `''` | Primary text content of the list item. |
+| `secondary` | `secondary` | `string` | `''` | Secondary text content of the list item. |
 
 ### Slots
 

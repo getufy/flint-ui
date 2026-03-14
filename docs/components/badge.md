@@ -29,11 +29,11 @@ import { FlintBadge } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `content` | `content` | `string` | `''` |  |
-| `dot` | `dot` | `boolean` | `false` |  |
-| `invisible` | `invisible` | `boolean` | `false` |  |
-| `variant` | `variant` | `'primary' \| 'secondary' \| 'error' \| 'success' \| 'warning'` | `'primary'` |  |
-| `max` | `max` | `number` | `99` |  |
+| `content` | `content` | `string` | `''` | Text content displayed inside the badge. |
+| `dot` | `dot` | `boolean` | `false` | Whether to display a small dot instead of content. |
+| `invisible` | `invisible` | `boolean` | `false` | Whether the badge is hidden. |
+| `variant` | `variant` | `'primary' \| 'secondary' \| 'error' \| 'success' \| 'warning'` | `'primary'` | Color variant of the badge. |
+| `max` | `max` | `number` | `99` | Maximum numeric value before displaying "max+". |
 
 ### Slots
 

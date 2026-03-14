@@ -8,12 +8,19 @@ import uiChipStyles from './flint-chip.css?inline';
 export class FlintChip extends LitElement {
     static styles = unsafeCSS(uiChipStyles);
 
+    /** Text content displayed inside the chip. */
     @property({ type: String }) label = '';
+    /** Visual style variant of the chip. */
     @property({ type: String }) variant: 'filled' | 'outlined' = 'filled';
+    /** Color theme applied to the chip. */
     @property({ type: String }) color: 'default' | 'primary' | 'secondary' = 'default';
+    /** Size of the chip. */
     @property({ type: String, reflect: true }) size: 'sm' | 'md' | 'lg' = 'md';
+    /** Whether the chip responds to click interactions. */
     @property({ type: Boolean }) clickable = false;
+    /** Whether the chip shows a delete icon. */
     @property({ type: Boolean }) deletable = false;
+    /** Disables the chip and prevents interaction. */
     @property({ type: Boolean, reflect: true }) disabled = false;
 
     private _handleClick(e: Event) {

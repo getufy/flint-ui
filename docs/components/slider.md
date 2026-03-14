@@ -25,18 +25,18 @@ import { FlintSlider } from 'flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `value` | `value` | `number` | `50` |  |
-| `defaultValue` | `default-value` | `number \| undefined` | `undefined` |  |
-| `min` | `min` | `number` | `0` |  |
-| `max` | `max` | `number` | `100` |  |
-| `step` | `step` | `number` | `1` |  |
-| `disabled` | `disabled` | `boolean` | `false` |  |
-| `label` | `label` | `string` | `''` |  |
-| `showValue` | `show-value` | `boolean` | `false` |  |
-| `vertical` | `vertical` | `boolean` | `false` |  |
-| `size` | `size` | `Size` | `'md'` |  |
-| `name` | `name` | `string` | `''` |  |
-| `formatValue` | `format-value` | `((v: number)` | `> string) \| undefined = undefined` | Optional formatter: `(value: number) => string`. JS-only prop (not an attribute). |
+| `value` | `value` | `number` | `50` | Current slider value. |
+| `defaultValue` | `default-value` | `number \| undefined` | `undefined` | Initial value for uncontrolled usage. |
+| `min` | `min` | `number` | `0` | Minimum allowed value. |
+| `max` | `max` | `number` | `100` | Maximum allowed value. |
+| `step` | `step` | `number` | `1` | Step increment between values. |
+| `disabled` | `disabled` | `boolean` | `false` | Disables the slider and prevents interaction. |
+| `label` | `label` | `string` | `''` | Label text displayed above the slider. |
+| `showValue` | `show-value` | `boolean` | `false` | Whether to display the current value. |
+| `vertical` | `vertical` | `boolean` | `false` | Renders the slider vertically. |
+| `size` | `size` | `Size` | `'md'` | Size variant of the slider. |
+| `name` | `name` | `string` | `''` | Form field name used when submitting form data. |
+| `formatValue` | `format-value` | `number` | — | Optional formatter: `(value: number) => string`. JS-only prop (not an attribute). |
 
 ### Events
 

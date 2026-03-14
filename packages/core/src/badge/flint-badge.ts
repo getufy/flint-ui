@@ -12,10 +12,15 @@ import uiBadgeStyles from './flint-badge.css?inline';
 export class FlintBadge extends LitElement {
     static styles = unsafeCSS(uiBadgeStyles);
 
+    /** Text content displayed inside the badge. */
     @property({ type: String }) content = '';
+    /** Whether to display a small dot instead of content. */
     @property({ type: Boolean }) dot = false;
+    /** Whether the badge is hidden. */
     @property({ type: Boolean }) invisible = false;
+    /** Color variant of the badge. */
     @property({ type: String }) variant: 'primary' | 'secondary' | 'error' | 'success' | 'warning' = 'primary';
+    /** Maximum numeric value before displaying "max+". */
     @property({ type: Number }) max = 99;
 
     private get _displayContent() {

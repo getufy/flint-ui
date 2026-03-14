@@ -59,11 +59,11 @@ A single interactive option inside a command menu.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`value\` | \`value\` | \`string\` | \`''\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`highlighted\` | \`highlighted\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`value\` | \`value\` | \`string\` | \`''\` | Machine-readable value used for filter matching. Falls back to textContent. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the item — non-interactive and skipped in keyboard nav. |
+| \`highlighted\` | \`highlighted\` | \`boolean\` | \`false\` | Set by parent \`flint-command\` to indicate keyboard focus. |
 
 #### Events
 
@@ -111,9 +111,9 @@ A labeled group of command items. The parent \`flint-command\` automatically hid
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`heading\` | \`heading\` | \`string\` | \`''\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`heading\` | \`heading\` | \`string\` | \`''\` | Label rendered above the group items. |
 
 #### Slots
 
@@ -153,10 +153,10 @@ Search input for the command menu. Dispatches \`_cmd-filter\` events that the pa
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`placeholder\` | \`placeholder\` | \`string\` | \`'Type a command or search...'\` |
-| \`value\` | \`value\` | \`string\` | \`''\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`placeholder\` | \`placeholder\` | \`string\` | \`'Type a command or search...'\` | Placeholder text shown when input is empty. |
+| \`value\` | \`value\` | \`string\` | \`''\` | Current input value. |
 
 #### Events
 
@@ -223,9 +223,9 @@ Modal dialog wrapper for a command menu. Opens with a smooth backdrop + scale an
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`open\` | \`open\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`open\` | \`open\` | \`boolean\` | \`false\` | Controls the open/closed state of the dialog. |
 
 #### Events
 

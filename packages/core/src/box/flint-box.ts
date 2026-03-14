@@ -22,38 +22,69 @@ export class FlintBox extends LitElement {
     @property({ type: String }) component = 'div';
 
     /* CSS Utility Properties */
+
+    /** Margin on all sides. */
     @property({ type: String }) m?: string;
+    /** Margin top. */
     @property({ type: String }) mt?: string;
+    /** Margin right. */
     @property({ type: String }) mr?: string;
+    /** Margin bottom. */
     @property({ type: String }) mb?: string;
+    /** Margin left. */
     @property({ type: String }) ml?: string;
+    /** Margin on the horizontal (left and right) axis. */
     @property({ type: String }) mx?: string;
+    /** Margin on the vertical (top and bottom) axis. */
     @property({ type: String }) my?: string;
 
+    /** Padding on all sides. */
     @property({ type: String }) p?: string;
+    /** Padding top. */
     @property({ type: String }) pt?: string;
+    /** Padding right. */
     @property({ type: String }) pr?: string;
+    /** Padding bottom. */
     @property({ type: String }) pb?: string;
+    /** Padding left. */
     @property({ type: String }) pl?: string;
+    /** Padding on the horizontal (left and right) axis. */
     @property({ type: String }) px?: string;
+    /** Padding on the vertical (top and bottom) axis. */
     @property({ type: String }) py?: string;
 
+    /** CSS display value. */
     @property({ type: String }) display?: string;
+    /** CSS flex-direction value. */
     @property({ type: String }) flexDirection?: string;
+    /** CSS align-items value. */
     @property({ type: String }) alignItems?: string;
+    /** CSS justify-content value. */
     @property({ type: String }) justifyContent?: string;
+    /** CSS flex-wrap value. */
     @property({ type: String }) flexWrap?: string;
+    /** CSS flex-basis value. */
     @property({ type: String }) flexBasis?: string;
+    /** CSS flex-grow value. */
     @property({ type: String }) flexGrow?: string;
+    /** CSS flex-shrink value. */
     @property({ type: String }) flexShrink?: string;
+    /** CSS gap between flex or grid items. */
     @property({ type: String }) gap?: string;
 
+    /** Background color. Supports theme tokens 'primary' and 'secondary'. */
     @property({ type: String }) bgcolor?: string;
+    /** Text color. Supports theme tokens 'primary' and 'secondary'. */
     @property({ type: String }) color?: string;
+    /** CSS border shorthand value. */
     @property({ type: String }) border?: string;
+    /** CSS border-radius value. */
     @property({ type: String }) borderRadius?: string;
+    /** CSS box-shadow value. */
     @property({ type: String }) boxShadow?: string;
+    /** CSS width value. */
     @property({ type: String }) width?: string;
+    /** CSS height value. */
     @property({ type: String }) height?: string;
 
     private _safeTag = 'div';

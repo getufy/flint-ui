@@ -22,10 +22,10 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` |
-| \`dir\` | \`dir\` | \`'ltr' \\| 'rtl'\` | \`'ltr'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` | Layout direction — 'horizontal' (row) or 'vertical' (column). |
+| \`dir\` | \`dir\` | \`'ltr' \\| 'rtl'\` | \`'ltr'\` | Text direction for RTL support. |
 
 #### Events
 
@@ -45,7 +45,6 @@ const meta: Meta = {
 
 | Method | Description |
 |---|---|
-| \`host([orientation='vertical'])\` |  |
 | \`getLayout(): number[]\` | Returns a snapshot of panel sizes as percentages (0-100). |
 
 ---
@@ -57,14 +56,14 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`size\` | \`size\` | \`number\` | \`0\` |
-| \`defaultSize\` | \`default-size\` | \`number\` | \`0\` |
-| \`minSize\` | \`min-size\` | \`number\` | \`0\` |
-| \`maxSize\` | \`max-size\` | \`number\` | \`100\` |
-| \`collapsible\` | \`collapsible\` | \`boolean\` | \`false\` |
-| \`collapsed\` | \`collapsed\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`size\` | \`size\` | \`number\` | \`0\` | Current size as percentage (0–100). |
+| \`defaultSize\` | \`default-size\` | \`number\` | \`0\` | Default size — applied once on first update. |
+| \`minSize\` | \`min-size\` | \`number\` | \`0\` | Minimum size percentage (0–100). |
+| \`maxSize\` | \`max-size\` | \`number\` | \`100\` | Maximum size percentage (0–100). |
+| \`collapsible\` | \`collapsible\` | \`boolean\` | \`false\` | Whether the panel can collapse to zero size via drag. |
+| \`collapsed\` | \`collapsed\` | \`boolean\` | \`false\` | Whether the panel is currently collapsed via the programmatic API. Set automatically by \`collapse()\` / \`expand()\` / \`toggle()\`. |
 
 #### Slots
 
@@ -76,9 +75,9 @@ const meta: Meta = {
 
 | Method | Description |
 |---|---|
-| \`collapse()\` |  |
-| \`expand()\` |  |
-| \`toggle()\` | * Toggle between collapsed and expanded states. |
+| \`collapse()\` | Collapse this panel to zero size, transferring its space to the adjacent sibling. Sets \`collapsed = true\` and stores the current size for \`expand()\`. No-op if already collapsed. |
+| \`expand()\` | Expand this panel back to its previous size (or \`defaultSize\` as fallback). Sets \`collapsed = false\`. No-op if not currently collapsed. |
+| \`toggle()\` | Toggle between collapsed and expanded states. |
 
 ---
 
@@ -89,17 +88,11 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`withHandle\` | \`with-handle\` | \`boolean\` | \`false\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` |
-
-#### Methods
-
-| Method | Description |
-|---|---|
-| \`host(:hover)\` |  |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`withHandle\` | \`with-handle\` | \`boolean\` | \`false\` | Show a visible drag grip. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disable interaction. |
+| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` |  |
                 `,
             },
         },

@@ -20,12 +20,19 @@ import uiToggleStyles from './flint-toggle.css?inline';
 export class FlintToggle extends LitElement {
     static styles = unsafeCSS(uiToggleStyles);
 
+    /** Whether the toggle is currently pressed (on). */
     @property({ type: Boolean, reflect: true }) pressed = false;
+    /** Whether the toggle is disabled. */
     @property({ type: Boolean, reflect: true }) disabled = false;
+    /** Visual variant of the toggle. */
     @property({ type: String, reflect: true }) variant: 'default' | 'outline' = 'default';
+    /** Size of the toggle. */
     @property({ type: String, reflect: true }) size: 'sm' | 'default' | 'lg' = 'default';
+    /** Text direction for the toggle. */
     @property({ type: String, reflect: true }) dir: 'ltr' | 'rtl' = 'ltr';
+    /** Initial pressed state for uncontrolled mode. */
     @property({ type: Boolean, attribute: 'default-pressed' }) defaultPressed = false;
+    /** Accessible label for icon-only toggles. */
     @property({ attribute: 'aria-label' }) ariaLabel: string | null = null;
 
     private _firstUpdate = true;

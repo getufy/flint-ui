@@ -16,10 +16,12 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`spacing\` | \`spacing\` | \`ResponsiveValue<number \\| string>\` | \`0\` |
-| \`useFlexGap\` | \`use-flex-gap\` | \`boolean\` | \`true\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`spacing\` | \`spacing\` | \`ResponsiveValue<number \\| string>\` | \`0\` | Flex direction of the stack layout. */ converter: { fromAttribute: (value: string \\| null) => { if (!value) return 'column'; try { return JSON.parse(value); } catch { return value; } } } }) direction: ResponsiveValue<'row' \\| 'row-reverse' \\| 'column' \\| 'column-reverse'> = 'column'; /** Space between child items (1 unit = 8px). |
+| \`alignItems\` | \`align-items\` | \`'flex-start' \\| 'center' \\| 'flex-end' \\| 'stretch' \\| 'baseline'\` | — | Cross-axis alignment of stack children. |
+| \`justifyContent\` | \`justify-content\` | \`'flex-start' \\| 'center' \\| 'flex-end' \\| 'space-between' \\| 'space-around' \\| 'space-evenly'\` | — | Main-axis alignment of stack children. |
+| \`useFlexGap\` | \`use-flex-gap\` | \`boolean\` | \`true\` | Whether to use CSS flex gap for spacing. |
 
 #### Slots
 

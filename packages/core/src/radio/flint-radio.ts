@@ -13,13 +13,21 @@ export type RadioOrientation = 'horizontal' | 'vertical';
 export class FlintRadioGroup extends FormAssociated(LitElement) {
     static styles = unsafeCSS(uiRadioGroupStyles);
 
+    /** Accessible label for the radio group. */
     @property({ type: String }) label = '';
+    /** Form field name for all radios in the group. */
     @property({ type: String }) name = '';
+    /** Currently selected radio value. */
     @property({ type: String }) value = '';
+    /** Initial value for uncontrolled usage. */
     @property({ type: String, attribute: 'default-value' }) defaultValue = '';
+    /** Disables all radios in the group. */
     @property({ type: Boolean, reflect: true }) disabled = false;
+    /** Marks the group as required for form validation. */
     @property({ type: Boolean, reflect: true }) required = false;
+    /** Layout direction of the radio buttons. */
     @property({ type: String, reflect: true }) orientation: RadioOrientation = 'vertical';
+    /** Size of the radio buttons. */
     @property({ type: String, reflect: true }) size: RadioSize = 'md';
 
     private _handleRadioSelect = (e: Event) => {
@@ -152,12 +160,19 @@ export class FlintRadioGroup extends FormAssociated(LitElement) {
 export class FlintRadio extends LitElement {
     static styles = unsafeCSS(uiRadioStyles);
 
+    /** Whether this radio is selected. */
     @property({ type: Boolean, reflect: true }) checked = false;
+    /** Disables this radio and prevents interaction. */
     @property({ type: Boolean, reflect: true }) disabled = false;
+    /** Whether this radio is required. */
     @property({ type: Boolean, reflect: true }) required = false;
+    /** Form field name (usually set by the parent group). */
     @property({ type: String }) name = '';
+    /** Value associated with this radio option. */
     @property({ type: String }) value = '';
+    /** Visible label text for this radio option. */
     @property({ type: String }) label = '';
+    /** Size of the radio button. */
     @property({ type: String, reflect: true }) size: RadioSize = 'md';
 
     override focus(options?: FocusOptions) {

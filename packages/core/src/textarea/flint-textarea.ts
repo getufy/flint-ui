@@ -17,20 +17,35 @@ let _uidCounter = 0;
 export class FlintTextarea extends FormAssociated(LitElement) {
     static styles = unsafeCSS(uiTextareaStyles);
 
+    /** Current textarea value. */
     @property({ type: String }) value = '';
+    /** Placeholder text shown when empty. */
     @property({ type: String }) placeholder = '';
+    /** Disables the textarea and prevents interaction. */
     @property({ type: Boolean, reflect: true }) disabled = false;
+    /** Makes the textarea read-only. */
     @property({ type: Boolean, reflect: true }) readonly = false;
+    /** Marks the textarea as required for form validation. */
     @property({ type: Boolean, reflect: true }) required = false;
+    /** Whether the textarea is in an error state. */
     @property({ type: Boolean }) error = false;
+    /** Error message displayed below the textarea. */
     @property({ type: String, attribute: 'error-message' }) errorMessage = '';
+    /** Help text displayed below the textarea. */
     @property({ type: String, attribute: 'help-text' }) helpText = '';
+    /** Label text displayed above the textarea. */
     @property({ type: String }) label = '';
+    /** Size variant of the textarea. */
     @property({ type: String, reflect: true }) size: 'sm' | 'default' | 'lg' = 'default';
+    /** Number of visible text rows. */
     @property({ type: Number }) rows = 3;
+    /** Maximum number of characters allowed. */
     @property({ type: Number }) maxlength: number | undefined = undefined;
+    /** Minimum number of characters required. */
     @property({ type: Number }) minlength: number | undefined = undefined;
+    /** Form field name used when submitting form data. */
     @property({ type: String }) name = '';
+    /** Browser autocomplete hint. */
     @property({ type: String }) autocomplete = '';
     /**
      * Controls the resize handle.
@@ -38,7 +53,9 @@ export class FlintTextarea extends FormAssociated(LitElement) {
      */
     @property({ type: String, reflect: true })
     resize: 'none' | 'both' | 'horizontal' | 'vertical' | 'auto' = 'vertical';
+    /** Initial value for uncontrolled usage. */
     @property({ type: String, attribute: 'default-value' }) defaultValue = '';
+    /** Accessible label for screen readers when no visible label is provided. */
     @property({ type: String, attribute: 'aria-label' }) override ariaLabel: string | null = null;
 
     private readonly _textareaId: string;

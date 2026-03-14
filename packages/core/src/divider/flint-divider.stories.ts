@@ -16,12 +16,12 @@ A divider component that provides a thin line for grouping elements.
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` |
-| \`variant\` | \`variant\` | \`'full' \\| 'middle' \\| 'inset'\` | \`'full'\` |
-| \`weight\` | \`weight\` | \`'light' \\| 'medium' \\| 'heavy'\` | \`'light'\` |
-| \`textAlign\` | \`text-align\` | \`'left' \\| 'center' \\| 'right'\` | \`'center'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` | Orientation of the divider line. |
+| \`variant\` | \`variant\` | \`'full' \\| 'middle' \\| 'inset'\` | \`'full'\` | Inset variant controlling how far the divider extends. |
+| \`weight\` | \`weight\` | \`'light' \\| 'medium' \\| 'heavy'\` | \`'light'\` | Thickness of the divider line. |
+| \`textAlign\` | \`text-align\` | \`'left' \\| 'center' \\| 'right'\` | \`'center'\` | Alignment of text content within the divider. |
 
 #### Slots
 

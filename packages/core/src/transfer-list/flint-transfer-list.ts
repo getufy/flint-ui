@@ -19,13 +19,19 @@ export interface TransferOption {
 export class FlintTransferList extends LitElement {
     static styles = unsafeCSS(uiTransferListStyles);
 
+    /** Available options to display in the transfer list. */
     @property({ type: Array }) options: TransferOption[] = [];
+    /** Currently selected values (items in the right list). */
     @property({ type: Array }) value: string[] = [];
     /** Initial value for uncontrolled usage. Applied once on first render. */
     @property({ type: Array, attribute: 'default-value' }) defaultValue: string[] = [];
+    /** Title displayed above the left (available) list. */
     @property({ type: String }) leftTitle = 'Options';
+    /** Title displayed above the right (selected) list. */
     @property({ type: String }) rightTitle = 'Selected';
+    /** Whether the transfer list is disabled. */
     @property({ type: Boolean, reflect: true }) disabled = false;
+    /** Whether to show search inputs for filtering each list. */
     @property({ type: Boolean }) searchable = false;
 
     @state() private leftChecked: string[] = [];

@@ -14,13 +14,24 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`container\` | \`container\` | \`boolean\` | \`false\` |
-| \`direction\` | \`direction\` | \`'row' \\| 'row-reverse' \\| 'column' \\| 'column-reverse'\` | \`'row'\` |
-| \`wrap\` | \`wrap\` | \`'nowrap' \\| 'wrap' \\| 'wrap-reverse'\` | \`'wrap'\` |
-| \`columns\` | \`columns\` | \`number\` | \`12\` |
-| \`spacing\` | \`spacing\` | \`ResponsiveValue<number \\| string>\` | \`0\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`container\` | \`container\` | \`boolean\` | \`false\` | Whether this element acts as a grid container. |
+| \`direction\` | \`direction\` | \`'row' \\| 'row-reverse' \\| 'column' \\| 'column-reverse'\` | \`'row'\` | Flex direction of the grid container. |
+| \`wrap\` | \`wrap\` | \`'nowrap' \\| 'wrap' \\| 'wrap-reverse'\` | \`'wrap'\` | Flex wrap behavior of the grid container. |
+| \`alignItems\` | \`align-items\` | \`'flex-start' \\| 'center' \\| 'flex-end' \\| 'stretch' \\| 'baseline'\` | — | Cross-axis alignment of grid items. |
+| \`justifyContent\` | \`justify-content\` | \`'flex-start' \\| 'center' \\| 'flex-end' \\| 'space-between' \\| 'space-around' \\| 'space-evenly'\` | — | Main-axis alignment of grid items. |
+| \`columns\` | \`columns\` | \`number\` | \`12\` | Total number of columns. Default is 12. |
+| \`spacing\` | \`spacing\` | \`ResponsiveValue<number \\| string>\` | \`0\` | Spacing between items. 1 unit = 8px. Accepts a number, a string pixel value, or a responsive object. |
+| \`rowSpacing\` | \`row-spacing\` | \`ResponsiveValue<number \\| string>\` | — | Row spacing override; takes precedence over \`spacing\` for the row axis. |
+| \`columnSpacing\` | \`column-spacing\` | \`ResponsiveValue<number \\| string>\` | — | Column spacing override; takes precedence over \`spacing\` for the column axis. |
+| \`xs\` | \`xs\` | \`GridSize\` | — | Number of columns to span at the xs breakpoint. |
+| \`sm\` | \`sm\` | \`GridSize\` | — | Number of columns to span at the sm breakpoint. |
+| \`md\` | \`md\` | \`GridSize\` | — | Number of columns to span at the md breakpoint. |
+| \`lg\` | \`lg\` | \`GridSize\` | — | Number of columns to span at the lg breakpoint. |
+| \`xl\` | \`xl\` | \`GridSize\` | — | Number of columns to span at the xl breakpoint. |
+| \`offset\` | \`offset\` | \`Partial<Record<Breakpoint, number \\| 'auto'>>\` | — | Offset per breakpoint, expressed in column units or 'auto'. |
+| \`order\` | \`order\` | \`ResponsiveValue<number>\` | — | Flex order. Supports responsive values so items can be reordered at specific breakpoints (e.g. push a sidebar above content on mobile). |
 
 #### Slots
 

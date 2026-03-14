@@ -17,11 +17,11 @@ flint-app-bar: The top App bar provides content and actions related to the curre
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`title\` | \`title\` | \`string\` | \`''\` |
-| \`position\` | \`position\` | \`'static' \\| 'fixed' \\| 'absolute' \\| 'sticky'\` | \`'static'\` |
-| \`variant\` | \`variant\` | \`'regular' \\| 'outlined'\` | \`'regular'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`title\` | \`title\` | \`string\` | \`''\` | Title text displayed in the center of the app bar. |
+| \`position\` | \`position\` | \`'static' \\| 'fixed' \\| 'absolute' \\| 'sticky'\` | \`'static'\` | CSS positioning behavior of the app bar. |
+| \`variant\` | \`variant\` | \`'regular' \\| 'outlined'\` | \`'regular'\` | Visual style variant of the app bar. |
 
 #### Slots
 

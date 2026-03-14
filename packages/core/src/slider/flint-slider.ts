@@ -12,16 +12,27 @@ export class FlintSlider extends FormAssociated(LitElement) {
   static styles = unsafeCSS(uiSliderStyles);
 
   // ── Props ─────────────────────────────────────────────────────────────────
+  /** Current slider value. */
   @property({ type: Number }) value = 50;
+  /** Initial value for uncontrolled usage. */
   @property({ type: Number, attribute: 'default-value' }) defaultValue: number | undefined = undefined;
+  /** Minimum allowed value. */
   @property({ type: Number }) min = 0;
+  /** Maximum allowed value. */
   @property({ type: Number }) max = 100;
+  /** Step increment between values. */
   @property({ type: Number }) step = 1;
+  /** Disables the slider and prevents interaction. */
   @property({ type: Boolean, reflect: true }) disabled = false;
+  /** Label text displayed above the slider. */
   @property({ type: String }) label = '';
+  /** Whether to display the current value. */
   @property({ type: Boolean, attribute: 'show-value' }) showValue = false;
+  /** Renders the slider vertically. */
   @property({ type: Boolean, reflect: true }) vertical = false;
+  /** Size variant of the slider. */
   @property({ type: String, reflect: true }) size: Size = 'md';
+  /** Form field name used when submitting form data. */
   @property({ type: String }) name = '';
   /** Optional formatter: `(value: number) => string`. JS-only prop (not an attribute). */
   @property({ attribute: false }) formatValue: ((v: number) => string) | undefined = undefined;

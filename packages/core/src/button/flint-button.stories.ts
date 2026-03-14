@@ -49,12 +49,12 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`variant\` | \`variant\` | \`'primary' \\| 'secondary' \\| 'destructive'\` | \`'primary'\` |
-| \`size\` | \`size\` | \`'small' \\| 'medium' \\| 'large'\` | \`'medium'\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`fullWidth\` | \`full-width\` | \`boolean\` | \`false\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`variant\` | \`variant\` | \`'primary' \\| 'secondary' \\| 'destructive'\` | \`'primary'\` | Visual style variant of the button. |
+| \`size\` | \`size\` | \`'small' \\| 'medium' \\| 'large'\` | \`'medium'\` | Size of the button. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the button and prevents interaction. |
+| \`fullWidth\` | \`full-width\` | \`boolean\` | \`false\` | Whether the button stretches to fill its container width. |
 
 #### Slots
 
@@ -77,10 +77,10 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`value\` | \`value\` | \`string \\| string[]\` | \`''\` |
-| \`exclusive\` | \`exclusive\` | \`boolean\` | \`true\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`value\` | \`value\` | \`string \\| string[]\` | \`''\` | Currently selected value(s). A string when exclusive, an array otherwise. |
+| \`exclusive\` | \`exclusive\` | \`boolean\` | \`true\` | Whether only one button can be selected at a time. |
 
 #### Events
 
@@ -103,12 +103,12 @@ const meta: Meta = {
 
 #### Properties
 
-| Property | Attribute | Type | Default |
-|---|---|---|---|
-| \`selected\` | \`selected\` | \`boolean\` | \`false\` |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` |
-| \`value\` | \`value\` | \`string\` | \`''\` |
-| \`size\` | \`size\` | \`'sm' \\| 'md' \\| 'lg'\` | \`'md'\` |
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`selected\` | \`selected\` | \`boolean\` | \`false\` | Whether the button is currently selected (pressed). |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Whether the button is disabled. |
+| \`value\` | \`value\` | \`string\` | \`''\` | Value associated with this toggle button. |
+| \`size\` | \`size\` | \`'sm' \\| 'md' \\| 'lg'\` | \`'md'\` | Size variant of the toggle button. |
 
 #### Events
 

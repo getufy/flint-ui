@@ -7,10 +7,15 @@ import uiAvatarStyles from './flint-avatar.css?inline';
 export class FlintAvatar extends LitElement {
     static styles = unsafeCSS(uiAvatarStyles);
 
+    /** Image source URL for the avatar. */
     @property({ type: String }) src = '';
+    /** Alt text for the avatar image. */
     @property({ type: String }) alt = '';
+    /** Initials to display when no image is provided. */
     @property({ type: String }) initials = '';
+    /** Shape variant of the avatar. */
     @property({ type: String }) variant: 'circle' | 'square' | 'rounded' = 'circle';
+    /** Size of the avatar. */
     @property({ type: String, reflect: true }) size: 'small' | 'medium' | 'large' | 'xlarge' = 'medium';
 
     @state() private _hasError = false;
