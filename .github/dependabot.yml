@@ -26,9 +26,22 @@ updates:
           - "@eslint/*"
           - "eslint-*"
           - "@typescript-eslint/*"
+      size-limit:
+        patterns:
+          - "size-limit"
+          - "@size-limit/*"
+      testing:
+        patterns:
+          - "jsdom"
+          - "happy-dom"
+          - "playwright*"
 
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: weekly
       day: monday
+    groups:
+      actions:
+        patterns:
+          - "*"
