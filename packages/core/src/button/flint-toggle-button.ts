@@ -3,6 +3,11 @@ import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import uiToggleButtonStyles from './flint-toggle-button.css?inline';
 
+/**
+ * Toggle Button: a button that can be toggled on/off.
+ *
+ * @fires flint-toggle-button-change - Fired when the button's selected state changes.
+ */
 @customElement('flint-toggle-button')
 export class FlintToggleButton extends LitElement {
     static styles = unsafeCSS(uiToggleButtonStyles);

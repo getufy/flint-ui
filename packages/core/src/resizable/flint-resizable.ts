@@ -5,6 +5,13 @@ import { customElement, property } from 'lit/decorators.js';
 /*  flint-resizable-group                                                */
 /* ------------------------------------------------------------------ */
 
+/**
+ * Resizable Group: a container that enables resizable panels with draggable handles.
+ *
+ * @fires flint-resizable-change - Fired when panel sizes change via drag or keyboard.
+ * @fires flint-resizable-collapse - Fired when a panel is collapsed.
+ * @fires flint-resizable-expand - Fired when a collapsed panel is expanded.
+ */
 @customElement('flint-resizable-group')
 export class FlintResizableGroup extends LitElement {
   static override styles = css`

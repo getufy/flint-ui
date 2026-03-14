@@ -177,6 +177,11 @@ export class FlintCarouselNext extends LitElement {
 /* ═══════════════════════════════════════════════════════════════════════════
    FlintCarousel
 ═══════════════════════════════════════════════════════════════════════════ */
+/**
+ * Carousel: a slideshow component for cycling through content.
+ *
+ * @fires flint-carousel-change - Fired when the active slide changes.
+ */
 @customElement('flint-carousel')
 export class FlintCarousel extends LitElement {
   static styles = unsafeCSS(uiCarouselStyles);

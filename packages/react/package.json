@@ -23,6 +23,15 @@
     "design-system"
   ],
   "license": "MIT",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/go-mihai/storybook-lit.git",
+    "directory": "packages/react"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "description": "React wrappers for flint-ui web components",
   "files": [
     "dist"

@@ -55,6 +55,12 @@ function clockAngle(mx: number, my: number, cx = 140, cy = 140) {
 type TimeView = 'hours' | 'minutes' | 'seconds';
 
 // ─── flint-time-field ────────────────────────────────────────────────────────────
+/**
+ * Time Field: a segmented time input with keyboard navigation.
+ *
+ * @fires change - Fired when the time value changes.
+ * @fires flint-time-picker-clear - Fired when the clear button is clicked.
+ */
 @customElement('flint-time-field')
 export class FlintTimeField extends LitElement {
     static styles = unsafeCSS(uiTimeFieldStyles);
@@ -246,6 +252,11 @@ export class FlintTimeField extends LitElement {
 }
 
 // ─── flint-digital-clock ─────────────────────────────────────────────────────────
+/**
+ * Digital Clock: a scrollable time-slot picker.
+ *
+ * @fires change - Fired when a time slot is selected.
+ */
 @customElement('flint-digital-clock')
 export class FlintDigitalClock extends LitElement {
     static styles = unsafeCSS(uiDigitalClockStyles);
@@ -315,6 +326,11 @@ export class FlintDigitalClock extends LitElement {
 }
 
 // ─── flint-multi-section-digital-clock ──────────────────────────────────────────
+/**
+ * Multi Section Digital Clock: hours, minutes, and optional seconds columns.
+ *
+ * @fires change - Fired when the time value changes.
+ */
 @customElement('flint-multi-section-digital-clock')
 export class FlintMultiSectionDigitalClock extends LitElement {
     static styles = unsafeCSS(uiMultiSectionDigitalClockStyles);
@@ -435,6 +451,12 @@ export class FlintMultiSectionDigitalClock extends LitElement {
 }
 
 // ─── flint-time-clock ────────────────────────────────────────────────────────────
+/**
+ * Time Clock: an analog clock face for selecting hours, minutes, and seconds.
+ *
+ * @fires change - Fired when the time value changes.
+ * @fires flint-time-clock-view-change - Fired when the clock face view switches.
+ */
 @customElement('flint-time-clock')
 export class FlintTimeClock extends LitElement {
     static styles = unsafeCSS(uiTimeClockStyles);
@@ -699,6 +721,11 @@ const FIELD_SHARED = css`
 `;
 
 // ─── flint-desktop-time-picker ───────────────────────────────────────────────────
+/**
+ * Desktop Time Picker: a time field with a dropdown clock.
+ *
+ * @fires change - Fired when the time value changes.
+ */
 @customElement('flint-desktop-time-picker')
 export class FlintDesktopTimePicker extends LitElement {
     static styles = [FIELD_SHARED];
@@ -752,6 +779,11 @@ export class FlintDesktopTimePicker extends LitElement {
 }
 
 // ─── flint-mobile-time-picker ────────────────────────────────────────────────────
+/**
+ * Mobile Time Picker: a time field with a modal clock dialog.
+ *
+ * @fires change - Fired when the time value changes.
+ */
 @customElement('flint-mobile-time-picker')
 export class FlintMobileTimePicker extends LitElement {
     static styles = [FIELD_SHARED];
@@ -800,6 +832,11 @@ export class FlintMobileTimePicker extends LitElement {
 }
 
 // ─── flint-static-time-picker ────────────────────────────────────────────────────
+/**
+ * Static Time Picker: an always-visible inline clock.
+ *
+ * @fires change - Fired when the time value changes.
+ */
 @customElement('flint-static-time-picker')
 export class FlintStaticTimePicker extends LitElement {
     static styles = unsafeCSS(uiStaticTimePickerStyles);
@@ -826,6 +863,11 @@ export class FlintStaticTimePicker extends LitElement {
 }
 
 // ─── flint-time-picker ───────────────────────────────────────────────────────────
+/**
+ * Time Picker: a configurable time input supporting desktop, mobile, and static variants.
+ *
+ * @fires change - Fired when the time value changes.
+ */
 @customElement('flint-time-picker')
 export class FlintTimePicker extends LitElement {
     static styles = unsafeCSS(uiTimePickerStyles);

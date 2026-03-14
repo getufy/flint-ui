@@ -8,6 +8,8 @@ import uiAlertStyles from './flint-alert.css?inline';
  * 
  * @slot - The message content of the alert.
  * @slot icon - Optional icon to display instead of the default severity icon.
+ *
+ * @fires flint-alert-close - Fired when the alert's close button is clicked.
  */
 @customElement('flint-alert')
 export class FlintAlert extends LitElement {

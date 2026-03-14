@@ -4,6 +4,11 @@ import { classMap } from 'lit/directives/class-map.js';
 import type { PropertyValues } from 'lit';
 import uiRatingStyles from './flint-rating.css?inline';
 
+/**
+ * Rating: a star-based rating input.
+ *
+ * @fires flint-rating-change - Fired when the rating value changes.
+ */
 @customElement('flint-rating')
 export class FlintRating extends LitElement {
     static styles = unsafeCSS(uiRatingStyles);

@@ -7,6 +7,11 @@ import uiSliderStyles from './flint-slider.css?inline';
 
 type Size = 'sm' | 'md' | 'lg';
 
+/**
+ * Slider: a range input for selecting a numeric value.
+ *
+ * @fires flint-slider-change - Fired when the slider value changes.
+ */
 @customElement('flint-slider')
 export class FlintSlider extends FormAssociated(LitElement) {
   static styles = unsafeCSS(uiSliderStyles);
