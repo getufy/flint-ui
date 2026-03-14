@@ -25,9 +25,6 @@ export default defineConfig({
         },
     },
     test: {
-        browser: {
-            connectTimeout: 120_000,
-        },
         coverage: {
             provider: 'v8',
             reporter: ['text', 'html', 'lcov'],
@@ -70,9 +67,6 @@ export default defineConfig({
                                 '--disable-setuid-sandbox',
                                 '--disable-gpu',
                                 '--disable-dev-shm-usage',
-                                '--disable-software-rasterizer',
-                                '--enable-logging=stderr',
-                                '--log-level=0',
                             ],
                         },
                     }]
