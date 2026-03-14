@@ -24,7 +24,9 @@ jobs:
       - run: npm ci
       - uses: actions/cache/save@v5
         with:
-          path: node_modules
+          path: |
+            node_modules
+            packages/*/node_modules
           key: node-modules-${{ hashFiles('package-lock.json') }}
 
   type-check:
@@ -38,7 +40,9 @@ jobs:
           node-version: 20
       - uses: actions/cache/restore@v5
         with:
-          path: node_modules
+          path: |
+            node_modules
+            packages/*/node_modules
           key: node-modules-${{ hashFiles('package-lock.json') }}
       - run: npm run type-check
 
@@ -53,7 +57,9 @@ jobs:
           node-version: 20
       - uses: actions/cache/restore@v5
         with:
-          path: node_modules
+          path: |
+            node_modules
+            packages/*/node_modules
           key: node-modules-${{ hashFiles('package-lock.json') }}
       - run: npm run lint
 
@@ -68,7 +74,9 @@ jobs:
           node-version: 20
       - uses: actions/cache/restore@v5
         with:
-          path: node_modules
+          path: |
+            node_modules
+            packages/*/node_modules
           key: node-modules-${{ hashFiles('package-lock.json') }}
       - run: cd packages/core && npx vitest run --project components
 
@@ -83,7 +91,9 @@ jobs:
           node-version: 20
       - uses: actions/cache/restore@v5
         with:
-          path: node_modules
+          path: |
+            node_modules
+            packages/*/node_modules
           key: node-modules-${{ hashFiles('package-lock.json') }}
       - name: Get Playwright version
         id: pw-version
@@ -124,7 +134,9 @@ jobs:
           node-version: 20
       - uses: actions/cache/restore@v5
         with:
-          path: node_modules
+          path: |
+            node_modules
+            packages/*/node_modules
           key: node-modules-${{ hashFiles('package-lock.json') }}
       - run: npm run build
       - run: npm run docs:build
