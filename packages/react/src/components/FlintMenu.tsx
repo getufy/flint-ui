@@ -5,6 +5,10 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintMenu as FlintMenuElement } from '@getufy/flint-ui/menu/flint-menu';
 
+export interface FlintMenuCloseDetail {
+    open: boolean;
+}
+
 /**
  * A menu displays a list of choices on a temporary surface.
 Place it as a sibling to its anchor element inside a `position:relative` container.
@@ -22,8 +26,8 @@ export interface FlintMenuProps extends React.HTMLAttributes<FlintMenuElement> {
     scrollable?: boolean;
     /** Accessible label for the menu surface (aria-label on role="menu"). */
     label?: string;
-    /** Fired when the menu requests to be closed (backdrop click, Escape, or item select). */
-    onFlintMenuClose?: (event: CustomEvent) => void;
+    /** Fired when the menu requests to be closed (backdrop click, Escape, or item select). detail: `{ open: false }` */
+    onFlintMenuClose?: (event: CustomEvent<FlintMenuCloseDetail>) => void;
 }
 
 export const FlintMenu = createComponent({
@@ -31,6 +35,6 @@ export const FlintMenu = createComponent({
     elementClass: FlintMenuElement,
     react: React,
     events: {
-        onFlintMenuClose: 'flint-menu-close' as EventName<CustomEvent>,
+        onFlintMenuClose: 'flint-menu-close' as EventName<CustomEvent<FlintMenuCloseDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintMenuProps & React.RefAttributes<FlintMenuElement>>;

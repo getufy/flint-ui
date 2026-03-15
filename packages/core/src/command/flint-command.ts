@@ -461,7 +461,7 @@ export class FlintCommand extends LitElement {
  *
  * @slot - Place a `flint-command` element here.
  *
- * @fires flint-command-dialog-close - Fired when the dialog should close.
+ * @fires flint-command-dialog-close - Fired when the dialog should close. detail: `{ open: false }`
  *   The host is responsible for setting `open = false` in response.
  *
  * @attr {boolean} open - Controls dialog visibility.
@@ -519,6 +519,7 @@ export class FlintCommandDialog extends LitElement {
         this.dispatchEvent(new CustomEvent('flint-command-dialog-close', {
             bubbles: true,
             composed: true,
+            detail: { open: false },
         }));
     }
 

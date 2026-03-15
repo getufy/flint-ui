@@ -23,8 +23,8 @@ import uiSnackbarStyles from './flint-snackbar.css?inline';
  * @cssprop --flint-snackbar-bg-warning    - Background for warning variant (default: #ed6c02)
  * @cssprop --flint-snackbar-bg-error      - Background for error variant (default: #d32f2f)
  *
- * @fires flint-snackbar-open  - Fired when the snackbar opens (bubbles, composed)
- * @fires flint-snackbar-close - Fired when the snackbar closes (bubbles, composed)
+ * @fires flint-snackbar-open  - Fired when the snackbar opens (bubbles, composed). detail: `{ open: true }`
+ * @fires flint-snackbar-close - Fired when the snackbar closes (bubbles, composed). detail: `{ open: false }`
  */
 @customElement('flint-snackbar')
 export class FlintSnackbar extends LitElement {
@@ -89,10 +89,10 @@ export class FlintSnackbar extends LitElement {
             if (this.open) {
                 this._remainingTime = this.autoHideDuration;
                 this._startTimer(this._remainingTime);
-                this.dispatchEvent(new CustomEvent('flint-snackbar-open', { bubbles: true, composed: true }));
+                this.dispatchEvent(new CustomEvent('flint-snackbar-open', { bubbles: true, composed: true, detail: { open: true } }));
             } else {
                 this._clearTimer();
-                this.dispatchEvent(new CustomEvent('flint-snackbar-close', { bubbles: true, composed: true }));
+                this.dispatchEvent(new CustomEvent('flint-snackbar-close', { bubbles: true, composed: true, detail: { open: false } }));
             }
         }
     }

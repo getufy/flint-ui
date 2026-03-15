@@ -7,7 +7,7 @@ import '../backdrop/flint-backdrop.js';
  * Navigation drawers provide ergonomic access to destinations in a site or app.
  *
  * @slot - Drawer content.
- * @fires flint-drawer-close - Dispatched when the drawer requests to be closed (backdrop click or Escape).
+ * @fires flint-drawer-close - Dispatched when the drawer requests to be closed (backdrop click or Escape). detail: `{ open: false }`
  */
 @customElement('flint-drawer')
 export class FlintDrawer extends LitElement {
@@ -82,7 +82,7 @@ export class FlintDrawer extends LitElement {
     }
 
     private _close() {
-        this.dispatchEvent(new CustomEvent('flint-drawer-close', { bubbles: true, composed: true }));
+        this.dispatchEvent(new CustomEvent('flint-drawer-close', { bubbles: true, composed: true, detail: { open: false } }));
     }
 
     render() {

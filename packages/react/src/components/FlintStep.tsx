@@ -6,7 +6,7 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintStep as FlintStepElement } from '@getufy/flint-ui/stepper/flint-stepper';
 
 export interface FlintStepClickDetail {
-    index: number;
+    step: number;
 }
 
 /**
@@ -41,7 +41,7 @@ export interface FlintStepProps extends React.HTMLAttributes<FlintStepElement> {
     optionalLabel?: string;
     /** Set by FlintStepper — true when the immediately preceding step is completed. */
     prevCompleted?: boolean;
-    /** Fired when a non-linear step is clicked. */
+    /** Fired when a non-linear step is clicked. detail: `{ step: number }` */
     onFlintStepClick?: (event: CustomEvent<FlintStepClickDetail>) => void;
 }
 

@@ -35,8 +35,8 @@ export class FlintInput extends FormAssociated(LitElement) {
     placeholder = '';
 
     /** Help text displayed below the input. */
-    @property({ type: String, attribute: 'help-text' })
-    helpText = '';
+    @property({ type: String, attribute: 'helper-text' })
+    helperText = '';
 
     /** Whether the input is in an error state. */
     @property({ type: Boolean })
@@ -101,7 +101,7 @@ export class FlintInput extends FormAssociated(LitElement) {
 
     render() {
         const errorState = this.error || !!this.errorMessage;
-        const descId = (errorState && this.errorMessage) || this.helpText
+        const descId = (errorState && this.errorMessage) || this.helperText
             ? `${this._inputId}-desc`
             : undefined;
 
@@ -132,8 +132,8 @@ export class FlintInput extends FormAssociated(LitElement) {
 
         ${errorState && this.errorMessage
                 ? html`<p id=${descId} class="help-text error-text" part="error-text" role="alert">${this.errorMessage}</p>`
-                : this.helpText
-                    ? html`<p id=${descId} class="help-text" part="help-text">${this.helpText}</p>`
+                : this.helperText
+                    ? html`<p id=${descId} class="help-text" part="help-text">${this.helperText}</p>`
                     : ''}
       </div>
     `;

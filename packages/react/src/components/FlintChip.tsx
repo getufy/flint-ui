@@ -5,6 +5,10 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintChip as FlintChipElement } from '@getufy/flint-ui/chip/flint-chip';
 
+export interface FlintChipDeleteDetail {
+    value: string;
+}
+
 /**
  * Chip: a compact element representing an input, attribute, or action.
  *
@@ -27,8 +31,8 @@ export interface FlintChipProps extends Omit<React.HTMLAttributes<FlintChipEleme
     /** Disables the chip and prevents interaction. */
     disabled?: boolean;
     onClick?: (event: CustomEvent) => void;
-    /** Fired when the chip's delete icon is clicked. */
-    onFlintChipDelete?: (event: CustomEvent) => void;
+    /** Fired when the chip's delete icon is clicked. detail: `{ value: string }` */
+    onFlintChipDelete?: (event: CustomEvent<FlintChipDeleteDetail>) => void;
 }
 
 export const FlintChip = createComponent({
@@ -37,6 +41,6 @@ export const FlintChip = createComponent({
     react: React,
     events: {
         onClick: 'click' as EventName<CustomEvent>,
-        onFlintChipDelete: 'flint-chip-delete' as EventName<CustomEvent>,
+        onFlintChipDelete: 'flint-chip-delete' as EventName<CustomEvent<FlintChipDeleteDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintChipProps & React.RefAttributes<FlintChipElement>>;

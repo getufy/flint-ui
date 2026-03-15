@@ -50,6 +50,8 @@ export class FlintSingleInputDateRangeField extends LitElement {
     @property({ type: Boolean, reflect: true }) error = false;
     /** Helper text shown below the field. */
     @property({ type: String, attribute: 'helper-text' }) helperText = '';
+    /** Error message displayed below the field when in error state. */
+    @property({ type: String, attribute: 'error-message' }) errorMessage = '';
 
     // ── Internal segment state ────────────────────────────────────────────────
 
@@ -406,7 +408,11 @@ export class FlintSingleInputDateRangeField extends LitElement {
         </div>
       </div>
 
-      ${this.helperText ? html`<small class="helper">${this.helperText}</small>` : nothing}
+      ${this.error && this.errorMessage
+          ? html`<small class="helper error-text" role="alert">${this.errorMessage}</small>`
+          : this.helperText
+              ? html`<small class="helper">${this.helperText}</small>`
+              : nothing}
 
       ${this.name ? html`
         <input type="hidden" name="${this.name}-start" .value=${this.value[0]}>

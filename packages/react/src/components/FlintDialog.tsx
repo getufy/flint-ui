@@ -5,6 +5,10 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintDialog as FlintDialogElement } from '@getufy/flint-ui/dialog/flint-dialog';
 
+export interface CloseDetail {
+    open: boolean;
+}
+
 /**
  * flint-dialog: a modal dialog component.
  *
@@ -21,8 +25,8 @@ export interface FlintDialogProps extends React.HTMLAttributes<FlintDialogElemen
     disableBackdropClose?: boolean;
     /** Dispatched when the dialog requests to be closed (backdrop click or
        an explicit call to `requestClose()`). The host is responsible for
-       setting `open = false` in response. */
-    onClose?: (event: CustomEvent) => void;
+       setting `open = false` in response. detail: `{ open: false }` */
+    onClose?: (event: CustomEvent<CloseDetail>) => void;
 }
 
 export const FlintDialog = createComponent({
@@ -30,6 +34,6 @@ export const FlintDialog = createComponent({
     elementClass: FlintDialogElement,
     react: React,
     events: {
-        onClose: 'close' as EventName<CustomEvent>,
+        onClose: 'close' as EventName<CustomEvent<CloseDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintDialogProps & React.RefAttributes<FlintDialogElement>>;

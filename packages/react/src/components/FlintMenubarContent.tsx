@@ -5,6 +5,10 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintMenubarContent as FlintMenubarContentElement } from '@getufy/flint-ui/menubar/flint-menubar';
 
+export interface FlintMenubarRequestCloseDetail {
+    open: boolean;
+}
+
 /**
  * The dropdown content panel for a menubar menu.
 Positioned absolutely below the trigger.
@@ -12,7 +16,7 @@ Positioned absolutely below the trigger.
 export interface FlintMenubarContentProps extends React.HTMLAttributes<FlintMenubarContentElement> {
     /** Whether the content dropdown panel is visible. */
     open?: boolean;
-    onFlintMenubarRequestClose?: (event: CustomEvent) => void;
+    onFlintMenubarRequestClose?: (event: CustomEvent<FlintMenubarRequestCloseDetail>) => void;
 }
 
 export const FlintMenubarContent = createComponent({
@@ -20,6 +24,6 @@ export const FlintMenubarContent = createComponent({
     elementClass: FlintMenubarContentElement,
     react: React,
     events: {
-        onFlintMenubarRequestClose: 'flint-menubar-request-close' as EventName<CustomEvent>,
+        onFlintMenubarRequestClose: 'flint-menubar-request-close' as EventName<CustomEvent<FlintMenubarRequestCloseDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintMenubarContentProps & React.RefAttributes<FlintMenubarContentElement>>;

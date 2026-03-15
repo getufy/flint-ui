@@ -35,6 +35,8 @@ export interface FlintDateRangePickerProps extends React.HTMLAttributes<FlintDat
     error?: boolean;
     /** Helper text shown below the field. */
     helperText?: string;
+    /** Error message displayed below the field when in error state. */
+    errorMessage?: string;
     /** { detail: { value: DateRange } } when range is committed */
     onFlintDateRangePickerChange?: (event: CustomEvent) => void;
 }

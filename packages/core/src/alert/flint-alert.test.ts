@@ -114,7 +114,7 @@ describe('FlintAlert — dismissible', () => {
 
         expect(handler).toHaveBeenCalledOnce();
         const evt = handler.mock.calls[0][0] as CustomEvent;
-        expect(evt.detail).toEqual({ severity: 'warning' });
+        expect(evt.detail).toEqual({ open: false, severity: 'warning' });
     });
 
     it('flint-alert-close event bubbles and is composed', async () => {

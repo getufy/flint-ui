@@ -157,7 +157,7 @@ export class FlintMenuGroup extends LitElement {
  * Place it as a sibling to its anchor element inside a `position:relative` container.
  *
  * @slot - Menu content (flint-menu-item elements).
- * @fires flint-menu-close - Fired when the menu requests to be closed (backdrop click, Escape, or item select).
+ * @fires flint-menu-close - Fired when the menu requests to be closed (backdrop click, Escape, or item select). detail: `{ open: false }`
  *
  * @example
  * <div style="position:relative;display:inline-block;">
@@ -302,7 +302,7 @@ export class FlintMenu extends LitElement {
 
     // ── Event dispatch ─────────────────────────────────────────────────────
     private _close() {
-        this.dispatchEvent(new CustomEvent('flint-menu-close', { bubbles: true, composed: true }));
+        this.dispatchEvent(new CustomEvent('flint-menu-close', { bubbles: true, composed: true, detail: { open: false } }));
     }
 
     private _handleItemSelect() {

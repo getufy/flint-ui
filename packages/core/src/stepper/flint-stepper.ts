@@ -93,7 +93,7 @@ export class FlintStepContent extends LitElement {
  * @slot label - Custom label content.
  * @slot - Step content.
  *
- * @fires flint-step-click - Fired when a non-linear step is clicked.
+ * @fires flint-step-click - Fired when a non-linear step is clicked. detail: `{ step: number }`
  */
 @customElement('flint-step')
 export class FlintStep extends LitElement {
@@ -135,7 +135,7 @@ export class FlintStep extends LitElement {
 
     private _fire() {
         if (this.disabled) return;
-        this.dispatchEvent(new CustomEvent('flint-step-click', { detail: { index: this.stepIndex }, bubbles: true, composed: true }));
+        this.dispatchEvent(new CustomEvent('flint-step-click', { detail: { step: this.stepIndex }, bubbles: true, composed: true }));
     }
 
     private _icon() {
@@ -281,8 +281,8 @@ export class FlintStepper extends LitElement {
     }
 
     private _onStepClick = (e: CustomEvent) => {
-        this.activeStep = e.detail.index;
-        this.dispatchEvent(new CustomEvent('flint-step-change', { detail: { step: e.detail.index }, bubbles: true, composed: true }));
+        this.activeStep = e.detail.step;
+        this.dispatchEvent(new CustomEvent('flint-step-change', { detail: { step: e.detail.step }, bubbles: true, composed: true }));
         this._syncSteps();
     };
 

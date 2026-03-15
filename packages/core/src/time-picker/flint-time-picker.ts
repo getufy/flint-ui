@@ -81,6 +81,8 @@ export class FlintTimeField extends LitElement {
     @property({ type: Boolean, reflect: true }) error = false;
     /** Helper text shown below the field. */
     @property({ type: String, attribute: 'helper-text' }) helperText = '';
+    /** Error message displayed below the field when in error state. */
+    @property({ type: String, attribute: 'error-message' }) errorMessage = '';
 
     @state() private _h: number | null = null;
     @state() private _m: number | null = null;
@@ -246,7 +248,11 @@ export class FlintTimeField extends LitElement {
         </div>
         ${hasVal && !this.disabled ? html`<button class="icon-btn" tabindex="-1" aria-label="Clear" @click=${(e: MouseEvent) => { e.stopPropagation(); this.clear(); }}>✕</button>` : nothing}
       </div>
-      ${this.helperText ? html`<small class="helper">${this.helperText}</small>` : nothing}
+      ${this.error && this.errorMessage
+          ? html`<small class="helper error-text" role="alert">${this.errorMessage}</small>`
+          : this.helperText
+              ? html`<small class="helper">${this.helperText}</small>`
+              : nothing}
     `;
     }
 }
@@ -746,6 +752,8 @@ export class FlintDesktopTimePicker extends LitElement {
     @property({ type: Boolean, reflect: true }) error = false;
     /** Helper text shown below the field. */
     @property({ type: String, attribute: 'helper-text' }) helperText = '';
+    /** Error message displayed below the field when in error state. */
+    @property({ type: String, attribute: 'error-message' }) errorMessage = '';
 
     @state() private _open = false;
 
@@ -759,7 +767,7 @@ export class FlintDesktopTimePicker extends LitElement {
         return html`
       <div class="popover-anchor">
         <flint-time-field .value=${this.value} .label=${this.label} .ampm=${this.ampm} ?seconds=${this.seconds}
-          ?disabled=${this.disabled} ?readonly=${this.readonly} ?error=${this.error} helper-text=${this.helperText}
+          ?disabled=${this.disabled} ?readonly=${this.readonly} ?error=${this.error} helper-text=${this.helperText} error-message=${this.errorMessage}
           @change=${(e: CustomEvent) => this._commit(e.detail.value)}
           @focus=${() => { if (!this.disabled && !this.readonly) this._open = true; }}
         ></flint-time-field>
@@ -802,6 +810,8 @@ export class FlintMobileTimePicker extends LitElement {
     @property({ type: Boolean, reflect: true }) error = false;
     /** Helper text shown below the field. */
     @property({ type: String, attribute: 'helper-text' }) helperText = '';
+    /** Error message displayed below the field when in error state. */
+    @property({ type: String, attribute: 'error-message' }) errorMessage = '';
 
     @state() private _open = false;
     @state() private _pending = '';
@@ -810,7 +820,7 @@ export class FlintMobileTimePicker extends LitElement {
     render() {
         return html`
       <flint-time-field .value=${this.value} .label=${this.label} .ampm=${this.ampm} ?seconds=${this.seconds}
-        ?disabled=${this.disabled} ?error=${this.error} helper-text=${this.helperText} readonly
+        ?disabled=${this.disabled} ?error=${this.error} helper-text=${this.helperText} error-message=${this.errorMessage} readonly
         @focus=${() => { if (!this.disabled) { this._pending = this.value; this._view = 'hours'; this._open = true; } }}
         @change=${(e: CustomEvent) => { this.value = e.detail.value; this.dispatchEvent(new CustomEvent('change', { detail: e.detail, bubbles: true, composed: true })); }}
       ></flint-time-field>
@@ -888,6 +898,8 @@ export class FlintTimePicker extends LitElement {
     @property({ type: Boolean, reflect: true }) error = false;
     /** Helper text shown below the field. */
     @property({ type: String, attribute: 'helper-text' }) helperText = '';
+    /** Error message displayed below the field when in error state. */
+    @property({ type: String, attribute: 'error-message' }) errorMessage = '';
 
     private get _v() {
         if (this.variant === 'auto')
@@ -903,8 +915,8 @@ export class FlintTimePicker extends LitElement {
     render() {
         const v = this._v;
         if (v === 'static') return html`<flint-static-time-picker .value=${this.value} .ampm=${this.ampm} ?seconds=${this.seconds} @change=${this._onChange}></flint-static-time-picker>`;
-        if (v === 'mobile') return html`<flint-mobile-time-picker .value=${this.value} .label=${this.label} .ampm=${this.ampm} ?seconds=${this.seconds} ?disabled=${this.disabled} ?error=${this.error} helper-text=${this.helperText} @change=${this._onChange}></flint-mobile-time-picker>`;
-        return html`<flint-desktop-time-picker .value=${this.value} .label=${this.label} .ampm=${this.ampm} ?seconds=${this.seconds} ?disabled=${this.disabled} ?error=${this.error} helper-text=${this.helperText} @change=${this._onChange}></flint-desktop-time-picker>`;
+        if (v === 'mobile') return html`<flint-mobile-time-picker .value=${this.value} .label=${this.label} .ampm=${this.ampm} ?seconds=${this.seconds} ?disabled=${this.disabled} ?error=${this.error} helper-text=${this.helperText} error-message=${this.errorMessage} @change=${this._onChange}></flint-mobile-time-picker>`;
+        return html`<flint-desktop-time-picker .value=${this.value} .label=${this.label} .ampm=${this.ampm} ?seconds=${this.seconds} ?disabled=${this.disabled} ?error=${this.error} helper-text=${this.helperText} error-message=${this.errorMessage} @change=${this._onChange}></flint-desktop-time-picker>`;
     }
 }
 

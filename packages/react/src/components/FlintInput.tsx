@@ -26,7 +26,7 @@ export interface FlintInputProps extends Omit<React.HTMLAttributes<FlintInputEle
     /** Placeholder text shown when the input is empty. */
     placeholder?: string;
     /** Help text displayed below the input. */
-    helpText?: string;
+    helperText?: string;
     /** Whether the input is in an error state. */
     error?: boolean;
     /** Error message displayed below the input. */

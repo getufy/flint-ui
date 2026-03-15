@@ -29,6 +29,8 @@ export interface FlintTimeFieldProps extends Omit<React.HTMLAttributes<FlintTime
     error?: boolean;
     /** Helper text shown below the field. */
     helperText?: string;
+    /** Error message displayed below the field when in error state. */
+    errorMessage?: string;
     /** Fired when the clear button is clicked. */
     onFlintTimePickerClear?: (event: CustomEvent) => void;
     /** Fired when the time value changes. */
