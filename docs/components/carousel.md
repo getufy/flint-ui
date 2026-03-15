@@ -79,6 +79,8 @@ import { FlintCarouselItem } from '@getufy/flint-ui';
 
 ## `<flint-carousel-previous>`
 
+Carousel Previous: navigation button to go to the previous slide.
+
 - **Tag**: `<flint-carousel-previous>`
 - **Class**: `FlintCarouselPrevious`
 
@@ -107,11 +109,13 @@ import { FlintCarouselPrevious } from '@getufy/flint-ui';
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Default slot for content |
+| `(default)` | Custom icon content, replaces default chevron. |
 
 ---
 
 ## `<flint-carousel-next>`
+
+Carousel Next: navigation button to go to the next slide.
 
 - **Tag**: `<flint-carousel-next>`
 - **Class**: `FlintCarouselNext`
@@ -141,7 +145,7 @@ import { FlintCarouselNext } from '@getufy/flint-ui';
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Default slot for content |
+| `(default)` | Custom icon content, replaces default chevron. |
 
 ---
 
@@ -186,7 +190,7 @@ import { FlintCarousel } from '@getufy/flint-ui';
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Default slot for content |
+| `(default)` | Carousel content: flint-carousel-content, flint-carousel-previous, flint-carousel-next. |
 
 ### CSS Custom Properties
 

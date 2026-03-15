@@ -19,7 +19,7 @@ export class FlintResizableGroup extends LitElement {
       display: flex;
       height: 100%;
       width: 100%;
-      overflow: hidden;
+      overflow: clip;
       /* Internal: total pixel width/height of all handles — set by JS. */
       --_rg-handle-total: 0px;
     }
@@ -389,7 +389,7 @@ export class FlintResizablePanel extends LitElement {
   static override styles = css`
     :host {
       position: relative;
-      overflow: hidden;
+      overflow: clip;
       flex-shrink: 0;
       flex-grow: 0;
       min-width: 0;

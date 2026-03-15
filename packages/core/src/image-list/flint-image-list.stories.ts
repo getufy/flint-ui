@@ -37,9 +37,10 @@ A title/subtitle bar for \`flint-image-list-item\`.
 
 | Name | Description |
 |---|---|
-| \`(default)\` | Title text |
-| \`subtitle\` | Subtitle text |
-| \`action\` | An icon button or secondary action |
+| \`title\` | Title text. |
+| \`subtitle\` | Subtitle text. |
+| \`(default)\` | Action content. |
+| \`action\` |  |
 
 #### CSS Custom Properties
 

@@ -17,7 +17,7 @@ export interface FlintBottomNavigationProps extends Omit<React.HTMLAttributes<Fl
     defaultValue?: unknown;
     /** If true, all labels are shown at all times. */
     showLabels?: boolean;
-    /** Dispatched when the selected value changes. */
+    /** Dispatched when the selected value changes. detail: `{ value: number | string }` */
     onFlintBottomNavigationChange?: (event: CustomEvent) => void;
 }
 

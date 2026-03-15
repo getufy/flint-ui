@@ -170,7 +170,8 @@ import { FlintTreeItem } from '@getufy/flint-ui';
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Place child `flint-tree-item` elements here to create a nested tree. |
+| `lead` | Leading icon or content. |
+| `(default)` | Item label text. |
 | `label` |  |
 
 ### Methods

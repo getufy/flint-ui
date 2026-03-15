@@ -5,11 +5,15 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintRangeSlider as FlintRangeSliderElement } from '@getufy/flint-ui/flint-range-slider/flint-range-slider';
 
+export interface FlintRangeSliderChangeDetail {
+    value: [number, number];
+}
+
 /**
  * A range slider that lets users select a start and end value within a range.
  */
 export interface FlintRangeSliderProps extends React.HTMLAttributes<FlintRangeSliderElement> {
-    value?: FlintRangeSliderElement['value'];
+    value?: [number, number];
     /** Minimum allowed value. */
     min?: number;
     /** Maximum allowed value. */
@@ -25,7 +29,7 @@ export interface FlintRangeSliderProps extends React.HTMLAttributes<FlintRangeSl
     /** Whether to display the current start and end values. */
     showValue?: boolean;
     /** When either thumb moves. detail: { value: [number, number] } */
-    onFlintRangeSliderChange?: (event: CustomEvent) => void;
+    onFlintRangeSliderChange?: (event: CustomEvent<FlintRangeSliderChangeDetail>) => void;
 }
 
 export const FlintRangeSlider = createComponent({
@@ -33,6 +37,6 @@ export const FlintRangeSlider = createComponent({
     elementClass: FlintRangeSliderElement,
     react: React,
     events: {
-        onFlintRangeSliderChange: 'flint-range-slider-change' as EventName<CustomEvent>,
+        onFlintRangeSliderChange: 'flint-range-slider-change' as EventName<CustomEvent<FlintRangeSliderChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintRangeSliderProps & React.RefAttributes<FlintRangeSliderElement>>;

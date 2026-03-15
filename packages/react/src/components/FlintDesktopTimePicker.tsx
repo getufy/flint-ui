@@ -5,14 +5,14 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintDesktopTimePicker as FlintDesktopTimePickerElement } from '@getufy/flint-ui/time-picker/flint-time-picker';
 
-export interface ChangeDetail {
+export interface FlintDesktopTimePickerChangeDetail {
     value: string;
 }
 
 /**
  * Desktop Time Picker: a time field with a dropdown clock.
  */
-export interface FlintDesktopTimePickerProps extends Omit<React.HTMLAttributes<FlintDesktopTimePickerElement>, 'onChange'> {
+export interface FlintDesktopTimePickerProps extends React.HTMLAttributes<FlintDesktopTimePickerElement> {
     /** Time value in HH:MM:SS format. */
     value?: string;
     /** Field label text. */
@@ -31,8 +31,8 @@ export interface FlintDesktopTimePickerProps extends Omit<React.HTMLAttributes<F
     helperText?: string;
     /** Error message displayed below the field when in error state. */
     errorMessage?: string;
-    /** Fired when the time value changes. */
-    onChange?: (event: CustomEvent<ChangeDetail>) => void;
+    /** Fired when the time value changes. detail: `{ value: string }` */
+    onFlintDesktopTimePickerChange?: (event: CustomEvent<FlintDesktopTimePickerChangeDetail>) => void;
 }
 
 export const FlintDesktopTimePicker = createComponent({
@@ -40,6 +40,6 @@ export const FlintDesktopTimePicker = createComponent({
     elementClass: FlintDesktopTimePickerElement,
     react: React,
     events: {
-        onChange: 'change' as EventName<CustomEvent<ChangeDetail>>,
+        onFlintDesktopTimePickerChange: 'flint-desktop-time-picker-change' as EventName<CustomEvent<FlintDesktopTimePickerChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintDesktopTimePickerProps & React.RefAttributes<FlintDesktopTimePickerElement>>;

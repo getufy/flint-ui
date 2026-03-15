@@ -37,7 +37,7 @@ A premium Transfer List component for moving items between two lists.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | — | Dispatched when items are moved between lists. Detail: \`{ value: string[] }\` |
+| \`flint-transfer-list-change\` | — | Dispatched when items are moved between lists. detail: \`{ value: string[] }\` |
 
 #### CSS Custom Properties
 
@@ -107,7 +107,7 @@ export const Playground: Story = {
         .rightTitle=${args.rightTitle}
         ?disabled=${args.disabled}
         ?searchable=${args.searchable}
-        @change=${(e: CustomEvent) => console.log('Transfer List Value:', e.detail.value)}
+        @flint-transfer-list-change=${(e: CustomEvent) => console.log('Transfer List Value:', e.detail.value)}
       ></flint-transfer-list>
     </div>
   `,
@@ -127,7 +127,7 @@ export const Default: Story = {
         .value=${args.value}
         .leftTitle=${args.leftTitle}
         .rightTitle=${args.rightTitle}
-        @change=${(e: CustomEvent) => console.log('Transfer List Value:', e.detail.value)}
+        @flint-transfer-list-change=${(e: CustomEvent) => console.log('Transfer List Value:', e.detail.value)}
       ></flint-transfer-list>
     </div>
   `,
@@ -149,7 +149,7 @@ export const Searchable: Story = {
         .leftTitle=${args.leftTitle}
         .rightTitle=${args.rightTitle}
         ?searchable=${args.searchable}
-        @change=${(e: CustomEvent) => console.log('Transfer List Value:', e.detail.value)}
+        @flint-transfer-list-change=${(e: CustomEvent) => console.log('Transfer List Value:', e.detail.value)}
       ></flint-transfer-list>
     </div>
   `,
@@ -264,7 +264,7 @@ export const DarkMode: Story = {
         .value=${args.value}
         .leftTitle=${args.leftTitle}
         .rightTitle=${args.rightTitle}
-        @change=${(e: CustomEvent) => console.log('Transfer List Value:', e.detail.value)}
+        @flint-transfer-list-change=${(e: CustomEvent) => console.log('Transfer List Value:', e.detail.value)}
       ></flint-transfer-list>
     </div>
   `,
@@ -281,8 +281,8 @@ export const Controlled: Story = {
           .value=${['1', '3']}
           leftTitle="Available"
           rightTitle="Chosen"
-          @change=${(e: CustomEvent) => {
-              const list = (e.currentTarget as HTMLElement).querySelector('#controlled-list') as HTMLElement & { value: string[] };
+          @flint-transfer-list-change=${(e: CustomEvent) => {
+              const list = e.currentTarget as HTMLElement & { value: string[] };
               if (list) list.value = e.detail.value;
               const output = document.querySelector('#controlled-output');
               if (output) output.textContent = JSON.stringify(e.detail.value);

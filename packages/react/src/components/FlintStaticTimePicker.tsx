@@ -8,15 +8,15 @@ import { FlintStaticTimePicker as FlintStaticTimePickerElement } from '@getufy/f
 /**
  * Static Time Picker: an always-visible inline clock.
  */
-export interface FlintStaticTimePickerProps extends Omit<React.HTMLAttributes<FlintStaticTimePickerElement>, 'onChange'> {
+export interface FlintStaticTimePickerProps extends React.HTMLAttributes<FlintStaticTimePickerElement> {
     /** Time value in HH:MM:SS format. */
     value?: string;
     /** Whether to use 12-hour (AM/PM) format instead of 24-hour. */
     ampm?: boolean;
     /** Whether to show a seconds section. */
     seconds?: boolean;
-    /** Fired when the time value changes. */
-    onChange?: (event: CustomEvent) => void;
+    /** Fired when the time value changes. detail: `{ value: string }` */
+    onFlintStaticTimePickerChange?: (event: CustomEvent) => void;
 }
 
 export const FlintStaticTimePicker = createComponent({
@@ -24,6 +24,6 @@ export const FlintStaticTimePicker = createComponent({
     elementClass: FlintStaticTimePickerElement,
     react: React,
     events: {
-        onChange: 'change' as EventName<CustomEvent>,
+        onFlintStaticTimePickerChange: 'flint-static-time-picker-change' as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintStaticTimePickerProps & React.RefAttributes<FlintStaticTimePickerElement>>;

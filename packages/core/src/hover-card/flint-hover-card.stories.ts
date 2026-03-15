@@ -80,8 +80,8 @@ Root container for a hover card. Manages open/closed state with configurable ope
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-hover-card-open\` | — | Fired when the card becomes visible. |
-| \`flint-hover-card-close\` | — | Fired when the card is dismissed. |
+| \`flint-hover-card-open\` | — | Fired when the card becomes visible. detail: \`{ open: true }\` |
+| \`flint-hover-card-close\` | — | Fired when the card is dismissed. detail: \`{ open: false }\` |
 
 #### Slots
 

@@ -3,5 +3,5 @@
 export { FlintInputOtpGroup, type FlintInputOtpGroupProps } from './components/FlintInputOtpGroup.js';
 export { FlintInputOtpSeparator, type FlintInputOtpSeparatorProps } from './components/FlintInputOtpSeparator.js';
 export { FlintInputOtpSlot, type FlintInputOtpSlotProps } from './components/FlintInputOtpSlot.js';
-export { FlintInputOtp, type FlintInputOtpProps } from './components/FlintInputOtp.js';
+export { FlintInputOtp, type FlintInputOtpProps, type FlintOtpChangeDetail, type FlintOtpCompleteDetail } from './components/FlintInputOtp.js';
 export { FlintInputOtpEvents } from './events/flint-input-otp.js';

@@ -2,8 +2,16 @@
 // Source: src/speed-dial/flint-speed-dial.ts
 
 import React from 'react';
-import { createComponent } from '@lit/react';
+import { createComponent, type EventName } from '@lit/react';
 import { FlintSpeedDial as FlintSpeedDialElement } from '@getufy/flint-ui/speed-dial/flint-speed-dial';
+
+export interface FlintSpeedDialOpenDetail {
+    open: true;
+}
+
+export interface FlintSpeedDialCloseDetail {
+    open: false;
+}
 
 /**
  * Speed Dial — a FAB that reveals 3-6 related actions when pressed.
@@ -31,10 +39,18 @@ export interface FlintSpeedDialProps extends Omit<React.HTMLAttributes<FlintSpee
     ariaLabel?: string;
     /** True on touch-only devices (auto-detected unless explicitly set). */
     isTouch?: boolean;
+    /** Fired when the dial opens. detail: `{ open: true }` */
+    onFlintSpeedDialOpen?: (event: CustomEvent<FlintSpeedDialOpenDetail>) => void;
+    /** Fired when the dial closes. detail: `{ open: false }` */
+    onFlintSpeedDialClose?: (event: CustomEvent<FlintSpeedDialCloseDetail>) => void;
 }
 
 export const FlintSpeedDial = createComponent({
     tagName: 'flint-speed-dial',
     elementClass: FlintSpeedDialElement,
     react: React,
+    events: {
+        onFlintSpeedDialOpen: 'flint-speed-dial-open' as EventName<CustomEvent<FlintSpeedDialOpenDetail>>,
+        onFlintSpeedDialClose: 'flint-speed-dial-close' as EventName<CustomEvent<FlintSpeedDialCloseDetail>>,
+    },
 }) as unknown as React.ForwardRefExoticComponent<FlintSpeedDialProps & React.RefAttributes<FlintSpeedDialElement>>;

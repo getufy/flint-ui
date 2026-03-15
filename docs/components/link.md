@@ -41,7 +41,7 @@ import { FlintLink } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `click` | — | Native click event. |
+| `{MouseEvent}` | — | click - Native click event (not a custom event; standard anchor click propagated from shadow DOM). |
 
 ### Slots
 

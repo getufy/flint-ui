@@ -43,7 +43,7 @@ import { FlintSelect } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-select-change` | — | Dispatched when the selection changes. detail: { value: string \| null } (single) or { value: string[] } (multiple) |
+| `flint-select-change` | — | Dispatched when the selection changes. detail: `{ value: string[] }` |
 
 ### Slots
 

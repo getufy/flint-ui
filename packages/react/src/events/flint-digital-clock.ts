@@ -1,4 +1,4 @@
 // Auto-generated — do not edit
 export const FlintDigitalClockEvents = {
-    CHANGE: 'change',
+    CHANGE: 'flint-digital-clock-change',
 } as const;

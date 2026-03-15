@@ -37,7 +37,7 @@ import { FlintAlert } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-alert-close` | — | Fired when the alert's close button is clicked. |
+| `flint-alert-close` | — | Fired when the alert's close button is clicked. detail: `{ open: false, severity: string }` |
 
 ### Slots
 

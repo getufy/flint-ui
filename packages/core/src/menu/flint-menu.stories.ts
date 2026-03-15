@@ -132,7 +132,7 @@ A menu displays a list of choices on a temporary surface. Place it as a sibling 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
 | \`open\` | \`open\` | \`boolean\` | \`false\` | Whether the menu is open/visible. |
-| \`placement\` | \`placement\` | \`string\` | \`'bottom-start'\` | Menu placement relative to its anchor container. 'bottom-start' \\| 'bottom-end' \\| 'top-start' \\| 'top-end' \\| 'right-start' \\| 'left-start' |
+| \`placement\` | \`placement\` | \`'bottom-start' \\| 'bottom-end' \\| 'top-start' \\| 'top-end' \\| 'right-start' \\| 'left-start'\` | \`'bottom-start'\` | Menu placement relative to its anchor container. 'bottom-start' \\| 'bottom-end' \\| 'top-start' \\| 'top-end' \\| 'right-start' \\| 'left-start' |
 | \`closeOnSelect\` | \`close-on-select\` | \`boolean\` | \`true\` | When true, selecting an item automatically fires flint-menu-close. |
 | \`scrollable\` | \`scrollable\` | \`boolean\` | \`false\` | When true, constrains height to --flint-menu-max-height (default 300px) and enables scrolling. |
 | \`label\` | \`label\` | \`string\` | — | Accessible label for the menu surface (aria-label on role="menu"). |
@@ -141,7 +141,7 @@ A menu displays a list of choices on a temporary surface. Place it as a sibling 
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-menu-close\` | — | Fired when the menu requests to be closed (backdrop click, Escape, or item select). |
+| \`flint-menu-close\` | — | Fired when the menu requests to be closed (backdrop click, Escape, or item select). detail: \`{ open: false }\` |
 
 #### Slots
 
@@ -155,6 +155,7 @@ A menu displays a list of choices on a temporary surface. Place it as a sibling 
 |---|---|
 | \`--flint-menu-z-index\` | — |
 | \`--flint-menu-min-width\` | — |
+| \`--flint-menu-max-width\` | \`360px\` |
 | \`--flint-menu-max-height\` | \`300px\` |
                 `,
             },

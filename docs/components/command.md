@@ -345,7 +345,7 @@ import { FlintCommandDialog } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-command-dialog-close` | — | Fired when the dialog should close. |
+| `flint-command-dialog-close` | — | Fired when the dialog should close. detail: `{ open: false }` |
 
 ### Slots
 

@@ -31,6 +31,7 @@ Input: a styled text input with label, help text, and error states.
 | \`name\` | \`name\` | \`string\` | \`''\` | Form field name used when submitting form data. |
 | \`autocomplete\` | \`autocomplete\` | \`string\` | \`''\` | Browser autocomplete hint. |
 | \`size\` | \`size\` | \`'sm' \\| 'default' \\| 'lg'\` | \`'default'\` | 'sm' \\| 'default' \\| 'lg' |
+| \`defaultValue\` | \`default-value\` | \`string\` | — | Initial value for uncontrolled usage. |
 
 #### Events
 

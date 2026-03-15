@@ -41,15 +41,15 @@ import { FlintChip } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-chip-delete` | — | Fired when the chip's delete icon is clicked. |
-| `click` | — |  |
+| `flint-chip-click` | — | Fired when a clickable chip is clicked. |
+| `flint-chip-delete` | — | Fired when the chip's delete icon is clicked. detail: `{ value: string }` |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `avatar` |  |
-| `icon` |  |
+| `avatar` | Avatar element shown at start. |
+| `icon` | Icon shown at start when no avatar. |
 
 ### CSS Custom Properties
 

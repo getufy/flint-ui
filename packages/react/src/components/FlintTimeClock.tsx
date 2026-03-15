@@ -5,14 +5,14 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintTimeClock as FlintTimeClockElement } from '@getufy/flint-ui/time-picker/flint-time-picker';
 
-export interface ChangeDetail {
+export interface FlintTimeClockChangeDetail {
     value: string;
 }
 
 /**
  * Time Clock: an analog clock face for selecting hours, minutes, and seconds.
  */
-export interface FlintTimeClockProps extends Omit<React.HTMLAttributes<FlintTimeClockElement>, 'onChange'> {
+export interface FlintTimeClockProps extends React.HTMLAttributes<FlintTimeClockElement> {
     /** Time value in HH:MM:SS format. */
     value?: string;
     /** Whether to use 12-hour (AM/PM) format instead of 24-hour. */
@@ -21,8 +21,8 @@ export interface FlintTimeClockProps extends Omit<React.HTMLAttributes<FlintTime
     seconds?: boolean;
     /** Currently active clock face view. */
     view?: FlintTimeClockElement['view'];
-    /** Fired when the time value changes. */
-    onChange?: (event: CustomEvent<ChangeDetail>) => void;
+    /** Fired when the time value changes. detail: `{ value: string }` */
+    onFlintTimeClockChange?: (event: CustomEvent<FlintTimeClockChangeDetail>) => void;
     /** Fired when the clock face view switches. */
     onFlintTimeClockViewChange?: (event: CustomEvent) => void;
 }
@@ -32,7 +32,7 @@ export const FlintTimeClock = createComponent({
     elementClass: FlintTimeClockElement,
     react: React,
     events: {
-        onChange: 'change' as EventName<CustomEvent<ChangeDetail>>,
+        onFlintTimeClockChange: 'flint-time-clock-change' as EventName<CustomEvent<FlintTimeClockChangeDetail>>,
         onFlintTimeClockViewChange: 'flint-time-clock-view-change' as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintTimeClockProps & React.RefAttributes<FlintTimeClockElement>>;

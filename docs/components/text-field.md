@@ -34,13 +34,14 @@ import { FlintTextField } from '@getufy/flint-ui';
 | `error` | `error` | `boolean` | `false` | Whether the text field is in an error state. |
 | `helperText` | `helper-text` | `string` | `''` | Helper text displayed below the input. |
 | `errorMessage` | `error-message` | `string` | `''` | Error message displayed below the input when in error state. |
+| `defaultValue` | `default-value` | `string` | `''` | Initial value for uncontrolled usage. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `input` | — | Fired on each keystroke as the value changes. |
-| `change` | — | Fired when the input loses focus after the value has changed. |
+| `flint-text-field-input` | — | Fired on each keystroke as the value changes. detail: `{ value: string }` |
+| `flint-text-field-change` | — | Fired when the input loses focus after the value has changed. detail: `{ value: string }` |
 
 ### Slots
 
@@ -53,6 +54,7 @@ import { FlintTextField } from '@getufy/flint-ui';
 
 | Property | Default |
 | --- | --- |
+| `--flint-text-field-margin-bottom` | `0` |
 | `--flint-font-family` | — |
 | `--flint-label-color` | — |
 | `--flint-input-bg` | — |

@@ -82,6 +82,7 @@ Toggle Button Group: manages exclusive or multi-select toggle buttons.
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
 | \`value\` | \`value\` | \`string \\| string[]\` | \`''\` | Currently selected value(s). A string when exclusive, an array otherwise. |
+| \`defaultValue\` | \`default-value\` | \`string \\| string[]\` | \`''\` | Initial selected value(s) for uncontrolled usage. Has no effect after the element has connected to the DOM. |
 | \`exclusive\` | \`exclusive\` | \`boolean\` | \`true\` | Whether only one button can be selected at a time. |
 
 #### Events

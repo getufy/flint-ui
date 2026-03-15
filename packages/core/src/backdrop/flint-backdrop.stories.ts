@@ -29,7 +29,7 @@ A backdrop component that narrows the user's focus to a particular element.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-backdrop-close\` | — | Dispatched when the backdrop is clicked or Escape is pressed. |
+| \`flint-backdrop-close\` | — | Dispatched when the backdrop is clicked or Escape is pressed. detail: \`{ open: false }\` |
 
 #### Slots
 

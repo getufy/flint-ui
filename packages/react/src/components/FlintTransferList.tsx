@@ -5,14 +5,14 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintTransferList as FlintTransferListElement } from '@getufy/flint-ui/transfer-list/flint-transfer-list';
 
-export interface ChangeDetail {
+export interface FlintTransferListChangeDetail {
     value: string[];
 }
 
 /**
  * A premium Transfer List component for moving items between two lists.
  */
-export interface FlintTransferListProps extends Omit<React.HTMLAttributes<FlintTransferListElement>, 'onChange' | 'defaultValue'> {
+export interface FlintTransferListProps extends Omit<React.HTMLAttributes<FlintTransferListElement>, 'defaultValue'> {
     /** Available options to display in the transfer list. */
     options?: FlintTransferListElement['options'];
     /** Currently selected values (items in the right list). */
@@ -27,8 +27,8 @@ export interface FlintTransferListProps extends Omit<React.HTMLAttributes<FlintT
     disabled?: boolean;
     /** Whether to show search inputs for filtering each list. */
     searchable?: boolean;
-    /** Dispatched when items are moved between lists. Detail: `{ value: string[] }` */
-    onChange?: (event: CustomEvent<ChangeDetail>) => void;
+    /** Dispatched when items are moved between lists. detail: `{ value: string[] }` */
+    onFlintTransferListChange?: (event: CustomEvent<FlintTransferListChangeDetail>) => void;
 }
 
 export const FlintTransferList = createComponent({
@@ -36,6 +36,6 @@ export const FlintTransferList = createComponent({
     elementClass: FlintTransferListElement,
     react: React,
     events: {
-        onChange: 'change' as EventName<CustomEvent<ChangeDetail>>,
+        onFlintTransferListChange: 'flint-transfer-list-change' as EventName<CustomEvent<FlintTransferListChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintTransferListProps & React.RefAttributes<FlintTransferListElement>>;

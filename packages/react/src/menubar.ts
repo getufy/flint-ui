@@ -3,14 +3,14 @@
 export { FlintMenubarShortcut, type FlintMenubarShortcutProps } from './components/FlintMenubarShortcut.js';
 export { FlintMenubarSeparator, type FlintMenubarSeparatorProps } from './components/FlintMenubarSeparator.js';
 export { FlintMenubarGroup, type FlintMenubarGroupProps } from './components/FlintMenubarGroup.js';
-export { FlintMenubarItem, type FlintMenubarItemProps } from './components/FlintMenubarItem.js';
-export { FlintMenubarCheckboxItem, type FlintMenubarCheckboxItemProps } from './components/FlintMenubarCheckboxItem.js';
-export { FlintMenubarRadioItem, type FlintMenubarRadioItemProps } from './components/FlintMenubarRadioItem.js';
-export { FlintMenubarRadioGroup, type FlintMenubarRadioGroupProps } from './components/FlintMenubarRadioGroup.js';
+export { FlintMenubarItem, type FlintMenubarItemProps, type FlintMenubarItemSelectDetail } from './components/FlintMenubarItem.js';
+export { FlintMenubarCheckboxItem, type FlintMenubarCheckboxItemProps, type FlintMenubarCheckboxChangeDetail } from './components/FlintMenubarCheckboxItem.js';
+export { FlintMenubarRadioItem, type FlintMenubarRadioItemProps, type FlintMenubarRadioSelectDetail } from './components/FlintMenubarRadioItem.js';
+export { FlintMenubarRadioGroup, type FlintMenubarRadioGroupProps, type FlintMenubarRadioChangeDetail } from './components/FlintMenubarRadioGroup.js';
 export { FlintMenubarSubContent, type FlintMenubarSubContentProps } from './components/FlintMenubarSubContent.js';
 export { FlintMenubarSubTrigger, type FlintMenubarSubTriggerProps } from './components/FlintMenubarSubTrigger.js';
 export { FlintMenubarSub, type FlintMenubarSubProps } from './components/FlintMenubarSub.js';
-export { FlintMenubarContent, type FlintMenubarContentProps } from './components/FlintMenubarContent.js';
+export { FlintMenubarContent, type FlintMenubarContentProps, type FlintMenubarRequestCloseDetail } from './components/FlintMenubarContent.js';
 export { FlintMenubarTrigger, type FlintMenubarTriggerProps } from './components/FlintMenubarTrigger.js';
 export { FlintMenubarMenu, type FlintMenubarMenuProps } from './components/FlintMenubarMenu.js';
 export { FlintMenubar, type FlintMenubarProps } from './components/FlintMenubar.js';
@@ -19,3 +19,4 @@ export { FlintMenubarCheckboxItemEvents } from './events/flint-menubar-checkbox-
 export { FlintMenubarRadioItemEvents } from './events/flint-menubar-radio-item.js';
 export { FlintMenubarRadioGroupEvents } from './events/flint-menubar-radio-group.js';
 export { FlintMenubarContentEvents } from './events/flint-menubar-content.js';
+export { FlintMenubarEvents } from './events/flint-menubar.js';

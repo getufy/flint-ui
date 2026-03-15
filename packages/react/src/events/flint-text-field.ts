@@ -1,5 +1,5 @@
 // Auto-generated — do not edit
 export const FlintTextFieldEvents = {
-    INPUT: 'input',
-    CHANGE: 'change',
+    INPUT: 'flint-text-field-input',
+    CHANGE: 'flint-text-field-change',
 } as const;

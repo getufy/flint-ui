@@ -8,7 +8,7 @@ import { FlintMobileTimePicker as FlintMobileTimePickerElement } from '@getufy/f
 /**
  * Mobile Time Picker: a time field with a modal clock dialog.
  */
-export interface FlintMobileTimePickerProps extends Omit<React.HTMLAttributes<FlintMobileTimePickerElement>, 'onChange'> {
+export interface FlintMobileTimePickerProps extends React.HTMLAttributes<FlintMobileTimePickerElement> {
     /** Time value in HH:MM:SS format. */
     value?: string;
     /** Field label text. */
@@ -25,8 +25,8 @@ export interface FlintMobileTimePickerProps extends Omit<React.HTMLAttributes<Fl
     helperText?: string;
     /** Error message displayed below the field when in error state. */
     errorMessage?: string;
-    /** Fired when the time value changes. */
-    onChange?: (event: CustomEvent) => void;
+    /** Fired when the time value changes. detail: `{ value: string }` */
+    onFlintMobileTimePickerChange?: (event: CustomEvent) => void;
 }
 
 export const FlintMobileTimePicker = createComponent({
@@ -34,6 +34,6 @@ export const FlintMobileTimePicker = createComponent({
     elementClass: FlintMobileTimePickerElement,
     react: React,
     events: {
-        onChange: 'change' as EventName<CustomEvent>,
+        onFlintMobileTimePickerChange: 'flint-mobile-time-picker-change' as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintMobileTimePickerProps & React.RefAttributes<FlintMobileTimePickerElement>>;

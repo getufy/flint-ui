@@ -40,15 +40,15 @@ Chip: a compact element representing an input, attribute, or action.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-chip-delete\` | — | Fired when the chip's delete icon is clicked. |
-| \`click\` | — |  |
+| \`flint-chip-click\` | — | Fired when a clickable chip is clicked. |
+| \`flint-chip-delete\` | — | Fired when the chip's delete icon is clicked. detail: \`{ value: string }\` |
 
 #### Slots
 
 | Name | Description |
 |---|---|
-| \`avatar\` |  |
-| \`icon\` |  |
+| \`avatar\` | Avatar element shown at start. |
+| \`icon\` | Icon shown at start when no avatar. |
 
 #### CSS Custom Properties
 
@@ -133,7 +133,7 @@ export const Clickable: Story = {
             ?clickable=${args.clickable}
             ?deletable=${args.deletable}
             ?disabled=${args.disabled}
-            @click=${() => console.log('Chip clicked!')}
+            @flint-chip-click=${() => console.log('Chip clicked!')}
         ></flint-chip>
     `
 };
@@ -171,7 +171,7 @@ export const ClickableAndDeletable: Story = {
             ?clickable=${args.clickable}
             ?deletable=${args.deletable}
             ?disabled=${args.disabled}
-            @click=${() => console.log('Chip clicked!')}
+            @flint-chip-click=${() => console.log('Chip clicked!')}
             @flint-chip-delete=${() => console.log('Chip deleted!')}
         ></flint-chip>
     `
@@ -257,9 +257,9 @@ export const KeyboardNavigation: Story = {
                 Tab to focus chips. Press <kbd>Enter</kbd> or <kbd>Space</kbd> to activate. The delete button (✕) is separately focusable via Tab.
             </p>
             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <flint-chip label="Click me" clickable color="primary" @click=${() => console.log('clicked')}></flint-chip>
+                <flint-chip label="Click me" clickable color="primary" @flint-chip-click=${() => console.log('clicked')}></flint-chip>
                 <flint-chip label="Delete me" deletable @flint-chip-delete=${() => console.log('deleted')}></flint-chip>
-                <flint-chip label="Both" clickable deletable color="primary" @click=${() => console.log('clicked')} @flint-chip-delete=${() => console.log('deleted')}></flint-chip>
+                <flint-chip label="Both" clickable deletable color="primary" @flint-chip-click=${() => console.log('clicked')} @flint-chip-delete=${() => console.log('deleted')}></flint-chip>
                 <flint-chip label="Disabled" clickable disabled></flint-chip>
             </div>
         </div>

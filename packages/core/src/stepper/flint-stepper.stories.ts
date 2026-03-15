@@ -45,6 +45,8 @@ const meta: Meta = {
 
 #### \`<flint-step-label>\`
 
+Step Label: the label for a step.
+
 - **Tag**: \`<flint-step-label>\`
 - **Class**: \`FlintStepLabel\`
 
@@ -60,12 +62,14 @@ const meta: Meta = {
 
 | Name | Description |
 |---|---|
-| \`(default)\` | Default slot for content |
-| \`optional\` |  |
+| \`(default)\` | Label text. |
+| \`optional\` | Optional step text. |
 
 ---
 
 #### \`<flint-step-content>\`
+
+Step Content: the collapsible content area for a step.
 
 - **Tag**: \`<flint-step-content>\`
 - **Class**: \`FlintStepContent\`
@@ -80,7 +84,7 @@ const meta: Meta = {
 
 | Name | Description |
 |---|---|
-| \`(default)\` | Default slot for content |
+| \`(default)\` | Step content. |
 
 ---
 
@@ -112,15 +116,15 @@ Step: an individual step within a stepper.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-step-click\` | — | Fired when a non-linear step is clicked. |
+| \`flint-step-click\` | — | Fired when a non-linear step is clicked. detail: \`{ step: number }\` |
 
 #### Slots
 
 | Name | Description |
 |---|---|
-| \`(default)\` | Default slot for content |
-| \`icon\` |  |
-| \`label\` |  |
+| \`icon\` | Custom step icon. |
+| \`label\` | Custom label content. |
+| \`(default)\` | Step content. |
 
 #### CSS Custom Properties
 
@@ -143,6 +147,7 @@ Stepper: a multi-step progress indicator.
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
 | \`activeStep\` | \`active-step\` | \`number\` | \`0\` | Zero-based index of the currently active step. |
+| \`defaultActiveStep\` | \`default-active-step\` | \`number\` | — | Initial active step for uncontrolled usage. Has no effect after the element has connected to the DOM. |
 | \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` | Layout direction of the stepper. |
 | \`alternativeLabel\` | \`alternative-label\` | \`boolean\` | \`false\` | Whether to display step labels below the icons instead of beside them. |
 | \`nonLinear\` | \`non-linear\` | \`boolean\` | \`false\` | Whether steps can be navigated in any order (enables clickable steps). |
@@ -171,6 +176,8 @@ Stepper: a multi-step progress indicator.
 
 #### \`<flint-mobile-stepper>\`
 
+Mobile Stepper: a compact stepper for mobile layouts.
+
 - **Tag**: \`<flint-mobile-stepper>\`
 - **Class**: \`FlintMobileStepper\`
 
@@ -185,12 +192,19 @@ Stepper: a multi-step progress indicator.
 | \`backLabel\` | \`back-label\` | \`string\` | \`'Back'\` | Label text for the Back navigation button (supports i18n). |
 | \`nextLabel\` | \`next-label\` | \`string\` | \`'Next'\` | Label text for the Next navigation button (supports i18n). |
 
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-mobile-step-back\` | — | Fired when the back button is clicked. |
+| \`flint-mobile-step-next\` | — | Fired when the next button is clicked. |
+
 #### Slots
 
 | Name | Description |
 |---|---|
-| \`back-button\` |  |
-| \`next-button\` |  |
+| \`back-button\` | Back navigation button. |
+| \`next-button\` | Next navigation button. |
                 `,
             },
         },

@@ -179,7 +179,7 @@ export class FlintMenu extends LitElement {
      * Menu placement relative to its anchor container.
      * 'bottom-start' | 'bottom-end' | 'top-start' | 'top-end' | 'right-start' | 'left-start'
      */
-    @property({ type: String, reflect: true }) placement = 'bottom-start';
+    @property({ type: String, reflect: true }) placement: 'bottom-start' | 'bottom-end' | 'top-start' | 'top-end' | 'right-start' | 'left-start' = 'bottom-start';
 
     /** When true, selecting an item automatically fires flint-menu-close. */
     @property({ type: Boolean, attribute: 'close-on-select' }) closeOnSelect = true;

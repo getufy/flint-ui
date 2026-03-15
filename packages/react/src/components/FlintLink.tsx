@@ -10,6 +10,7 @@ import { FlintLink as FlintLinkElement } from '@getufy/flint-ui/link/flint-link'
 with theme colors and typography styles.
  *
  * @slot - Link text or content.
+Native click events propagate from the shadow DOM anchor element.
  */
 export interface FlintLinkProps extends Omit<React.HTMLAttributes<FlintLinkElement>, 'color'> {
     /** The URL of the link. */

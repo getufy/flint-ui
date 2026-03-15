@@ -1,4 +1,4 @@
 // Auto-generated — do not edit
 export const FlintMobileTimePickerEvents = {
-    CHANGE: 'change',
+    CHANGE: 'flint-mobile-time-picker-change',
 } as const;

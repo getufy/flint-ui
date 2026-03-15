@@ -239,7 +239,7 @@ Modal dialog wrapper for a command menu. Opens with a smooth backdrop + scale an
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-command-dialog-close\` | — | Fired when the dialog should close. |
+| \`flint-command-dialog-close\` | — | Fired when the dialog should close. detail: \`{ open: false }\` |
 
 #### Slots
 

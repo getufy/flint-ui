@@ -80,6 +80,8 @@ const meta: Meta = {
 
 #### \`<flint-card-header>\`
 
+Card Header: the header section of a card.
+
 - **Tag**: \`<flint-card-header>\`
 - **Class**: \`FlintCardHeader\`
 
@@ -94,9 +96,9 @@ const meta: Meta = {
 
 | Name | Description |
 |---|---|
-| \`(default)\` | Default slot for content |
-| \`avatar\` |  |
-| \`action\` |  |
+| \`avatar\` | Avatar or icon element. |
+| \`action\` | Action element like an icon button. |
+| \`(default)\` | Header text content. |
 
 #### CSS Custom Properties
 

@@ -2,7 +2,7 @@
 // Source: src/stepper/flint-stepper.ts
 
 import React from 'react';
-import { createComponent } from '@lit/react';
+import { createComponent, type EventName } from '@lit/react';
 import { FlintMobileStepper as FlintMobileStepperElement } from '@getufy/flint-ui/stepper/flint-stepper';
 
 /**
@@ -24,10 +24,18 @@ export interface FlintMobileStepperProps extends React.HTMLAttributes<FlintMobil
     backLabel?: string;
     /** Label text for the Next navigation button (supports i18n). */
     nextLabel?: string;
+    /** Fired when the back button is clicked. */
+    onFlintMobileStepBack?: (event: CustomEvent) => void;
+    /** Fired when the next button is clicked. */
+    onFlintMobileStepNext?: (event: CustomEvent) => void;
 }
 
 export const FlintMobileStepper = createComponent({
     tagName: 'flint-mobile-stepper',
     elementClass: FlintMobileStepperElement,
     react: React,
+    events: {
+        onFlintMobileStepBack: 'flint-mobile-step-back' as EventName<CustomEvent>,
+        onFlintMobileStepNext: 'flint-mobile-step-next' as EventName<CustomEvent>,
+    },
 }) as unknown as React.ForwardRefExoticComponent<FlintMobileStepperProps & React.RefAttributes<FlintMobileStepperElement>>;

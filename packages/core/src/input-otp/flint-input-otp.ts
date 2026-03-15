@@ -159,21 +159,17 @@ export class FlintInputOtp extends LitElement {
     private readonly _descId = `flint-input-otp-desc-${FlintInputOtp._uidCounter++}`;
     private static _uidCounter = 0;
 
-    constructor() {
-        super();
-        this.addEventListener('click', this._handleClick);
-    }
-
     override connectedCallback() {
         super.connectedCallback();
         if (!this.hasAttribute('role')) {
             this.setAttribute('role', 'group');
         }
+        this.addEventListener('click', this._handleClick);
     }
 
     override disconnectedCallback() {
-        super.disconnectedCallback();
         this.removeEventListener('click', this._handleClick);
+        super.disconnectedCallback();
     }
 
     override willUpdate(changed: PropertyValues) {

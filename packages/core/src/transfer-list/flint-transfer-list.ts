@@ -13,7 +13,7 @@ export interface TransferOption {
 /**
  * A premium Transfer List component for moving items between two lists.
  *
- * @fires change - Dispatched when items are moved between lists. Detail: `{ value: string[] }`
+ * @fires flint-transfer-list-change - Dispatched when items are moved between lists. detail: `{ value: string[] }`
  */
 @customElement('flint-transfer-list')
 export class FlintTransferList extends LitElement {
@@ -108,7 +108,7 @@ export class FlintTransferList extends LitElement {
     }
 
     private _dispatchChange() {
-        this.dispatchEvent(new CustomEvent('change', {
+        this.dispatchEvent(new CustomEvent('flint-transfer-list-change', {
             detail: { value: this.value },
             bubbles: true,
             composed: true

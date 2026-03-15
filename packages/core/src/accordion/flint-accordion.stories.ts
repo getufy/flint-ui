@@ -33,6 +33,7 @@ Accordion: the wrapper for grouping related components.
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
 | \`expanded\` | \`expanded\` | \`boolean\` | \`false\` | If true, expands the accordion by default. |
+| \`defaultExpanded\` | \`default-expanded\` | \`boolean\` | \`false\` | Initial expanded state for uncontrolled usage. Has no effect after the element has connected to the DOM. |
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | If true, the accordion is disabled. |
 
 #### Events
@@ -45,7 +46,7 @@ Accordion: the wrapper for grouping related components.
 
 | Name | Description |
 |---|---|
-| \`(default)\` | Default slot for content |
+| \`(default)\` | FlintAccordionSummary and FlintAccordionDetails. |
 
 #### CSS Custom Properties
 
@@ -80,8 +81,8 @@ Accordion Summary: the wrapper for the Accordion header.
 
 | Name | Description |
 |---|---|
-| \`(default)\` | Default slot for content |
-| \`expandIcon\` |  |
+| \`expandIcon\` | Custom expand/collapse icon. |
+| \`(default)\` | Summary content. |
 
 ---
 
@@ -96,7 +97,7 @@ Accordion Details: the wrapper for the Accordion content.
 
 | Name | Description |
 |---|---|
-| \`(default)\` | Default slot for content |
+| \`(default)\` | Detail content. |
 
 ---
 

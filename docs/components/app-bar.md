@@ -35,9 +35,9 @@ import { FlintAppBar } from '@getufy/flint-ui';
 
 | Name | Description |
 | --- | --- |
-| `navigation` |  |
-| `title` |  |
-| `actions` |  |
+| `navigation` | Left section, e.g. menu button. |
+| `title` | Center section next to the title prop. |
+| `actions` | Right section, e.g. action buttons. |
 
 ### CSS Custom Properties
 

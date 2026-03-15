@@ -5,18 +5,18 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintTextField as FlintTextFieldElement } from '@getufy/flint-ui/text-field/flint-text-field';
 
-export interface InputDetail {
+export interface FlintTextFieldInputDetail {
     value: string;
 }
 
-export interface ChangeDetail {
+export interface FlintTextFieldChangeDetail {
     value: string;
 }
 
 /**
  * Text Field: a styled text input with outlined/filled variants.
  */
-export interface FlintTextFieldProps extends Omit<React.HTMLAttributes<FlintTextFieldElement>, 'onInput' | 'onChange' | 'defaultValue'> {
+export interface FlintTextFieldProps extends Omit<React.HTMLAttributes<FlintTextFieldElement>, 'defaultValue'> {
     /** Label text displayed above the input. */
     label?: string;
     /** Current value of the text field. */
@@ -37,10 +37,10 @@ export interface FlintTextFieldProps extends Omit<React.HTMLAttributes<FlintText
     errorMessage?: string;
     /** Initial value for uncontrolled usage. */
     defaultValue?: string;
-    /** Fired on each keystroke as the value changes. */
-    onInput?: (event: CustomEvent<InputDetail>) => void;
-    /** Fired when the input loses focus after the value has changed. */
-    onChange?: (event: CustomEvent<ChangeDetail>) => void;
+    /** Fired on each keystroke as the value changes. detail: `{ value: string }` */
+    onFlintTextFieldInput?: (event: CustomEvent<FlintTextFieldInputDetail>) => void;
+    /** Fired when the input loses focus after the value has changed. detail: `{ value: string }` */
+    onFlintTextFieldChange?: (event: CustomEvent<FlintTextFieldChangeDetail>) => void;
 }
 
 export const FlintTextField = createComponent({
@@ -48,7 +48,7 @@ export const FlintTextField = createComponent({
     elementClass: FlintTextFieldElement,
     react: React,
     events: {
-        onInput: 'input' as EventName<CustomEvent<InputDetail>>,
-        onChange: 'change' as EventName<CustomEvent<ChangeDetail>>,
+        onFlintTextFieldInput: 'flint-text-field-input' as EventName<CustomEvent<FlintTextFieldInputDetail>>,
+        onFlintTextFieldChange: 'flint-text-field-change' as EventName<CustomEvent<FlintTextFieldChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintTextFieldProps & React.RefAttributes<FlintTextFieldElement>>;

@@ -19,7 +19,7 @@ export interface FlintMenuProps extends React.HTMLAttributes<FlintMenuElement> {
     /** Whether the menu is open/visible. */
     open?: boolean;
     /** Menu placement relative to its anchor container. */
-    placement?: string;
+    placement?: 'bottom-start' | 'bottom-end' | 'top-start' | 'top-end' | 'right-start' | 'left-start';
     /** When true, selecting an item automatically fires flint-menu-close. */
     closeOnSelect?: boolean;
     /** When true, constrains height to --flint-menu-max-height (default 300px) and enables scrolling. */

@@ -37,7 +37,7 @@ import { FlintTransferList } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `change` | — | Dispatched when items are moved between lists. Detail: `{ value: string[] }` |
+| `flint-transfer-list-change` | — | Dispatched when items are moved between lists. detail: `{ value: string[] }` |
 
 ### CSS Custom Properties
 

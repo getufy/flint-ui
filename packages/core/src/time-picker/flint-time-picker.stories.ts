@@ -38,12 +38,13 @@ Time Field: a segmented time input with keyboard navigation.
 | \`readonly\` | \`readonly\` | \`boolean\` | \`false\` | Makes the field read-only (visible but not editable). |
 | \`error\` | \`error\` | \`boolean\` | \`false\` | Displays the field in an error state. |
 | \`helperText\` | \`helper-text\` | \`string\` | \`''\` | Helper text shown below the field. |
+| \`errorMessage\` | \`error-message\` | \`string\` | \`''\` | Error message displayed below the field when in error state. |
 
 #### Events
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | — | Fired when the time value changes. |
+| \`flint-time-field-change\` | — | Fired when the time value changes. detail: \`{ value: string }\` |
 | \`flint-time-picker-clear\` | — | Fired when the clear button is clicked. |
 
 #### CSS Custom Properties
@@ -95,7 +96,7 @@ Digital Clock: a scrollable time-slot picker.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | — | Fired when a time slot is selected. |
+| \`flint-digital-clock-change\` | — | Fired when a time slot is selected. detail: \`{ value: string }\` |
 
 #### CSS Custom Properties
 
@@ -124,7 +125,7 @@ Multi Section Digital Clock: hours, minutes, and optional seconds columns.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | — | Fired when the time value changes. |
+| \`flint-multi-section-digital-clock-change\` | — | Fired when the time value changes. detail: \`{ value: string }\` |
 
 ---
 
@@ -148,7 +149,7 @@ Time Clock: an analog clock face for selecting hours, minutes, and seconds.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | — | Fired when the time value changes. |
+| \`flint-time-clock-change\` | — | Fired when the time value changes. detail: \`{ value: string }\` |
 | \`flint-time-clock-view-change\` | — | Fired when the clock face view switches. |
 
 #### CSS Custom Properties
@@ -184,12 +185,13 @@ Desktop Time Picker: a time field with a dropdown clock.
 | \`readonly\` | \`readonly\` | \`boolean\` | \`false\` | Makes the field read-only (visible but not editable). |
 | \`error\` | \`error\` | \`boolean\` | \`false\` | Displays the field in an error state. |
 | \`helperText\` | \`helper-text\` | \`string\` | \`''\` | Helper text shown below the field. |
+| \`errorMessage\` | \`error-message\` | \`string\` | \`''\` | Error message displayed below the field when in error state. |
 
 #### Events
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | — | Fired when the time value changes. |
+| \`flint-desktop-time-picker-change\` | — | Fired when the time value changes. detail: \`{ value: string }\` |
 
 ---
 
@@ -211,12 +213,13 @@ Mobile Time Picker: a time field with a modal clock dialog.
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the picker and prevents interaction. |
 | \`error\` | \`error\` | \`boolean\` | \`false\` | Displays the picker in an error state. |
 | \`helperText\` | \`helper-text\` | \`string\` | \`''\` | Helper text shown below the field. |
+| \`errorMessage\` | \`error-message\` | \`string\` | \`''\` | Error message displayed below the field when in error state. |
 
 #### Events
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | — | Fired when the time value changes. |
+| \`flint-mobile-time-picker-change\` | — | Fired when the time value changes. detail: \`{ value: string }\` |
 
 ---
 
@@ -239,7 +242,7 @@ Static Time Picker: an always-visible inline clock.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | — | Fired when the time value changes. |
+| \`flint-static-time-picker-change\` | — | Fired when the time value changes. detail: \`{ value: string }\` |
 
 ---
 
@@ -262,12 +265,13 @@ Time Picker: a configurable time input supporting desktop, mobile, and static va
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the picker and prevents interaction. |
 | \`error\` | \`error\` | \`boolean\` | \`false\` | Displays the picker in an error state. |
 | \`helperText\` | \`helper-text\` | \`string\` | \`''\` | Helper text shown below the field. |
+| \`errorMessage\` | \`error-message\` | \`string\` | \`''\` | Error message displayed below the field when in error state. |
 
 #### Events
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | — | Fired when the time value changes. |
+| \`flint-time-picker-change\` | — | Fired when the time value changes. detail: \`{ value: string }\` |
                 `,
             },
         },
@@ -298,7 +302,7 @@ export const Default: Story = {
     <flint-time-picker
       .variant=${args.variant} .value=${args.value ?? ''} .label=${args.label}
       ?ampm=${args.ampm} ?seconds=${args.seconds} ?disabled=${args.disabled} ?error=${args.error}
-      @change=${(e: CustomEvent) => console.log('change →', e.detail.value)}
+      @flint-time-picker-change=${(e: CustomEvent) => console.log('change →', e.detail.value)}
     ></flint-time-picker>
   `),
 };
@@ -312,7 +316,7 @@ export const Desktop: Story = {
         Calendar icon opens a <strong>multi-section digital clock</strong> popover with scrollable Hr / Min / AM/PM columns.
       </p>
       <flint-desktop-time-picker label="Appointment Time" value="14:30:00"
-        @change=${(e: CustomEvent) => console.log(e.detail.value)}
+        @flint-desktop-time-picker-change=${(e: CustomEvent) => console.log(e.detail.value)}
       ></flint-desktop-time-picker>
     </div>
   `,
@@ -328,7 +332,7 @@ export const Mobile: Story = {
         Tap hours → then minutes auto-advances.
       </p>
       <flint-mobile-time-picker label="Meeting Time" value="09:00:00"
-        @change=${(e: CustomEvent) => console.log(e.detail.value)}
+        @flint-mobile-time-picker-change=${(e: CustomEvent) => console.log(e.detail.value)}
       ></flint-mobile-time-picker>
     </div>
   `,
@@ -402,15 +406,15 @@ export const TimeClock: Story = {
     <flint-stack direction="row" gap="48px" alignItems="flex-start" style="padding:32px;font-family:Inter,sans-serif;flex-wrap:wrap;">
       <div>
         <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#4b5563;margin:0 0 10px;">12-hour (AM/PM)</p>
-        <flint-time-clock value="10:30:00" view="hours" @change=${clockHandler}></flint-time-clock>
+        <flint-time-clock value="10:30:00" view="hours" @flint-time-clock-change=${clockHandler}></flint-time-clock>
       </div>
       <div>
         <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#4b5563;margin:0 0 10px;">24-hour (dual ring)</p>
-        <flint-time-clock value="14:00:00" .ampm=${false} view="hours" @change=${clockHandler}></flint-time-clock>
+        <flint-time-clock value="14:00:00" .ampm=${false} view="hours" @flint-time-clock-change=${clockHandler}></flint-time-clock>
       </div>
       <div>
         <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#4b5563;margin:0 0 10px;">24-hour midnight</p>
-        <flint-time-clock value="00:00:00" .ampm=${false} view="hours" @change=${clockHandler}></flint-time-clock>
+        <flint-time-clock value="00:00:00" .ampm=${false} view="hours" @flint-time-clock-change=${clockHandler}></flint-time-clock>
       </div>
     </flint-stack>
   `,
@@ -423,11 +427,11 @@ export const TimeClockMinutes: Story = {
     <flint-stack direction="row" gap="48px" alignItems="flex-start" style="padding:32px;font-family:Inter,sans-serif;flex-wrap:wrap;">
       <div>
         <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#4b5563;margin:0 0 10px;">Minutes view</p>
-        <flint-time-clock value="10:15:00" view="minutes" @change=${clockHandler}></flint-time-clock>
+        <flint-time-clock value="10:15:00" view="minutes" @flint-time-clock-change=${clockHandler}></flint-time-clock>
       </div>
       <div>
         <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#4b5563;margin:0 0 10px;">Seconds view</p>
-        <flint-time-clock value="10:30:45" view="seconds" seconds @change=${clockHandler}></flint-time-clock>
+        <flint-time-clock value="10:30:45" view="seconds" seconds @flint-time-clock-change=${clockHandler}></flint-time-clock>
       </div>
     </flint-stack>
   `,
@@ -504,11 +508,11 @@ export const TwentyFourHour: Story = {
       </div>
       <div>
         <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#4b5563;margin:0 0 10px;">Clock 24h (inner: 13-23, 00)</p>
-        <flint-time-clock value="00:00:00" .ampm=${false} view="hours" @change=${clockHandler}></flint-time-clock>
+        <flint-time-clock value="00:00:00" .ampm=${false} view="hours" @flint-time-clock-change=${clockHandler}></flint-time-clock>
       </div>
       <div>
         <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#4b5563;margin:0 0 10px;">Clock 24h (outer: 1-12)</p>
-        <flint-time-clock value="03:00:00" .ampm=${false} view="hours" @change=${clockHandler}></flint-time-clock>
+        <flint-time-clock value="03:00:00" .ampm=${false} view="hours" @flint-time-clock-change=${clockHandler}></flint-time-clock>
       </div>
     </flint-stack>
   `,
@@ -547,19 +551,19 @@ export const AllClockViews: Story = {
       <flint-stack direction="row" gap="48px" alignItems="flex-start" style="flex-wrap:wrap;">
         <div>
           <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#4b5563;margin:0 0 10px;">Hours (12h)</p>
-          <flint-time-clock value="10:30:00" view="hours" @change=${clockHandler}></flint-time-clock>
+          <flint-time-clock value="10:30:00" view="hours" @flint-time-clock-change=${clockHandler}></flint-time-clock>
         </div>
         <div>
           <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#4b5563;margin:0 0 10px;">Hours (24h)</p>
-          <flint-time-clock value="14:00:00" .ampm=${false} view="hours" @change=${clockHandler}></flint-time-clock>
+          <flint-time-clock value="14:00:00" .ampm=${false} view="hours" @flint-time-clock-change=${clockHandler}></flint-time-clock>
         </div>
         <div>
           <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#4b5563;margin:0 0 10px;">Minutes</p>
-          <flint-time-clock value="10:15:00" view="minutes" @change=${clockHandler}></flint-time-clock>
+          <flint-time-clock value="10:15:00" view="minutes" @flint-time-clock-change=${clockHandler}></flint-time-clock>
         </div>
         <div>
           <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#4b5563;margin:0 0 10px;">Seconds</p>
-          <flint-time-clock value="10:30:45" view="seconds" seconds @change=${clockHandler}></flint-time-clock>
+          <flint-time-clock value="10:30:45" view="seconds" seconds @flint-time-clock-change=${clockHandler}></flint-time-clock>
         </div>
       </flint-stack>
     </div>
@@ -593,28 +597,28 @@ export const Controlled: Story = {
   render: () => {
     /* eslint-disable @typescript-eslint/no-explicit-any */
     const onChangeDesktop = (e: CustomEvent) => {
-      const picker = (e.currentTarget as any).querySelector('flint-desktop-time-picker');
+      const picker = e.currentTarget as any;
       if (picker) picker.value = e.detail.value;
-      const display = (e.currentTarget as any).querySelector('.val-display');
+      const display = picker?.parentElement?.querySelector('.val-display');
       if (display) display.textContent = e.detail.value;
     };
     const onChangeStatic = (e: CustomEvent) => {
-      const display = (e.currentTarget as any).querySelector('.val-static');
+      const display = (e.currentTarget as any)?.parentElement?.querySelector('.val-static');
       if (display) display.textContent = e.detail.value;
     };
     /* eslint-enable @typescript-eslint/no-explicit-any */
     return html`
       <flint-stack direction="row" gap="48px" style="padding:48px;font-family:Inter,sans-serif;flex-wrap:wrap;padding-bottom:320px;">
-        <div @change=${onChangeDesktop}>
+        <div>
           <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#4b5563;margin:0 0 10px;">Desktop – Controlled</p>
-          <flint-desktop-time-picker label="Controlled Time" value="09:30:00"></flint-desktop-time-picker>
+          <flint-desktop-time-picker label="Controlled Time" value="09:30:00" @flint-desktop-time-picker-change=${onChangeDesktop}></flint-desktop-time-picker>
           <p style="margin:10px 0 0;font-size:.8rem;color:#374151;">
             Selected: <code class="val-display" style="background:var(--flint-muted-background, #f1f5f9);padding:2px 6px;border-radius:4px;">09:30:00</code>
           </p>
         </div>
-        <div @change=${onChangeStatic}>
+        <div>
           <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#4b5563;margin:0 0 10px;">Static – Controlled</p>
-          <flint-static-time-picker value="12:00:00"></flint-static-time-picker>
+          <flint-static-time-picker value="12:00:00" @flint-static-time-picker-change=${onChangeStatic}></flint-static-time-picker>
           <p style="margin:10px 0 0;font-size:.8rem;color:#374151;">
             Selected: <code class="val-static" style="background:var(--flint-muted-background, #f1f5f9);padding:2px 6px;border-radius:4px;">12:00:00</code>
           </p>
@@ -674,7 +678,7 @@ export const DarkMode: Story = {
       </div>
       <div>
         <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:0 0 10px;">Analog Clock</p>
-        <flint-time-clock value="14:30:00" view="hours" @change=${clockHandler}></flint-time-clock>
+        <flint-time-clock value="14:30:00" view="hours" @flint-time-clock-change=${clockHandler}></flint-time-clock>
       </div>
     </flint-stack>
   `,

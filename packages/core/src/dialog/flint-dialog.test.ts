@@ -53,7 +53,7 @@ describe('flint-dialog', () => {
         const el = await fixture<FlintDialog>(html`<flint-dialog open></flint-dialog>`);
         const backdrop = el.shadowRoot!.querySelector('flint-backdrop') as FlintBackdrop;
         const closeSpy = vi.fn();
-        el.addEventListener('close', closeSpy);
+        el.addEventListener('flint-dialog-close', closeSpy);
 
         backdrop.dispatchEvent(new CustomEvent('flint-backdrop-close', { bubbles: true, composed: true }));
         await el.updateComplete;
@@ -64,7 +64,7 @@ describe('flint-dialog', () => {
     it('requestClose() fires close event', async () => {
         const el = await fixture<FlintDialog>(html`<flint-dialog open></flint-dialog>`);
         const closeSpy = vi.fn();
-        el.addEventListener('close', closeSpy);
+        el.addEventListener('flint-dialog-close', closeSpy);
 
         el.requestClose();
 
@@ -75,7 +75,7 @@ describe('flint-dialog', () => {
         const el = await fixture<FlintDialog>(html`<flint-dialog open disable-backdrop-close></flint-dialog>`);
         const backdrop = el.shadowRoot!.querySelector('flint-backdrop') as FlintBackdrop;
         const closeSpy = vi.fn();
-        el.addEventListener('close', closeSpy);
+        el.addEventListener('flint-dialog-close', closeSpy);
 
         // Simulate backdrop firing flint-backdrop-close
         backdrop.dispatchEvent(new CustomEvent('flint-backdrop-close', { bubbles: true, composed: true }));
@@ -162,7 +162,7 @@ describe('flint-dialog', () => {
     it('Escape fires close event when open', async () => {
         const el = await fixture<FlintDialog>(html`<flint-dialog open></flint-dialog>`);
         const closeSpy = vi.fn();
-        el.addEventListener('close', closeSpy);
+        el.addEventListener('flint-dialog-close', closeSpy);
 
         window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
         await el.updateComplete;
@@ -173,7 +173,7 @@ describe('flint-dialog', () => {
     it('Escape does NOT fire close when dialog is closed', async () => {
         const el = await fixture<FlintDialog>(html`<flint-dialog></flint-dialog>`);
         const closeSpy = vi.fn();
-        el.addEventListener('close', closeSpy);
+        el.addEventListener('flint-dialog-close', closeSpy);
 
         window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
         await el.updateComplete;
@@ -184,7 +184,7 @@ describe('flint-dialog', () => {
     it('Escape fires close even when disableBackdropClose=true', async () => {
         const el = await fixture<FlintDialog>(html`<flint-dialog open disable-backdrop-close></flint-dialog>`);
         const closeSpy = vi.fn();
-        el.addEventListener('close', closeSpy);
+        el.addEventListener('flint-dialog-close', closeSpy);
 
         window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
         await el.updateComplete;
@@ -195,7 +195,7 @@ describe('flint-dialog', () => {
     it('removes keydown listener when disconnected', async () => {
         const el = await fixture<FlintDialog>(html`<flint-dialog open></flint-dialog>`);
         const closeSpy = vi.fn();
-        el.addEventListener('close', closeSpy);
+        el.addEventListener('flint-dialog-close', closeSpy);
 
         el.remove();
 
@@ -207,7 +207,7 @@ describe('flint-dialog', () => {
     it('clicking inside the dialog panel does NOT fire close', async () => {
         const el = await fixture<FlintDialog>(html`<flint-dialog open></flint-dialog>`);
         const closeSpy = vi.fn();
-        el.addEventListener('close', closeSpy);
+        el.addEventListener('flint-dialog-close', closeSpy);
 
         const panel = el.shadowRoot!.querySelector('.dialog-panel') as HTMLElement;
         panel.dispatchEvent(new MouseEvent('click', { bubbles: true, composed: true }));
@@ -239,8 +239,8 @@ describe('flint-dialog', () => {
 
         const parentSpy = vi.fn();
         const childSpy = vi.fn();
-        parent.addEventListener('close', parentSpy);
-        child.addEventListener('close', childSpy);
+        parent.addEventListener('flint-dialog-close', parentSpy);
+        child.addEventListener('flint-dialog-close', childSpy);
 
         window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
         await parent.updateComplete;
@@ -257,7 +257,7 @@ describe('flint-dialog', () => {
         await child.updateComplete;
 
         const parentSpy = vi.fn();
-        parent.addEventListener('close', parentSpy);
+        parent.addEventListener('flint-dialog-close', parentSpy);
 
         // Simulate host closing the child (host sets open=false on close event)
         child.open = false;
@@ -276,7 +276,7 @@ describe('flint-dialog', () => {
         await child.updateComplete;
 
         const parentSpy = vi.fn();
-        parent.addEventListener('close', parentSpy);
+        parent.addEventListener('flint-dialog-close', parentSpy);
 
         // First Escape: closes child only
         window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
@@ -294,7 +294,7 @@ describe('flint-dialog', () => {
         await child.updateComplete;
 
         const parentSpy = vi.fn();
-        parent.addEventListener('close', parentSpy);
+        parent.addEventListener('flint-dialog-close', parentSpy);
 
         child.requestClose();
 
@@ -313,7 +313,7 @@ describe('flint-dialog', () => {
     it('updating a non-open prop does not alter dialog stack', async () => {
         const el = await fixture<FlintDialog>(html`<flint-dialog open></flint-dialog>`);
         const closeSpy = vi.fn();
-        el.addEventListener('close', closeSpy);
+        el.addEventListener('flint-dialog-close', closeSpy);
 
         // Change transition (not open) — should not affect stack
         el.transition = 'slide-up';
@@ -330,7 +330,7 @@ describe('flint-dialog', () => {
         await el.updateComplete;
 
         const closeSpy = vi.fn();
-        el.addEventListener('close', closeSpy);
+        el.addEventListener('flint-dialog-close', closeSpy);
         window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
         expect(closeSpy).toHaveBeenCalledOnce();
     });

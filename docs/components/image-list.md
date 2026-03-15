@@ -33,9 +33,10 @@ import { FlintImageListItemBar } from '@getufy/flint-ui';
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Title text |
-| `subtitle` | Subtitle text |
-| `action` | An icon button or secondary action |
+| `title` | Title text. |
+| `subtitle` | Subtitle text. |
+| `(default)` | Action content. |
+| `action` |  |
 
 ### CSS Custom Properties
 

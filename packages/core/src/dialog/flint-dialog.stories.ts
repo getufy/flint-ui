@@ -25,6 +25,7 @@ flint-dialog: a modal dialog component.
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
 | \`open\` | \`open\` | \`boolean\` | \`false\` | Controls the open / closed state of the dialog. |
+| \`defaultOpen\` | \`default-open\` | \`boolean\` | \`false\` | Initial open state for uncontrolled usage. Has no effect after the element has connected to the DOM. |
 | \`transition\` | \`transition\` | \`'scale' \\| 'slide-up' \\| 'slide-down'\` | \`'scale'\` | Animation style: 'scale' (default), 'slide-up', or 'slide-down'. |
 | \`disableBackdropClose\` | \`disable-backdrop-close\` | \`boolean\` | \`false\` | When true, clicking the backdrop will NOT close the dialog. Useful for confirmation dialogs where the user must make a deliberate choice. |
 
@@ -32,7 +33,7 @@ flint-dialog: a modal dialog component.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`close\` | — | Dispatched when the dialog requests to be closed (backdrop click or |
+| \`flint-dialog-close\` | — | Dispatched when the dialog requests to be closed (backdrop click or |
 | \`confirm\` | — | Dispatched by confirmation dialogs when the user clicked "confirm". |
 | \`cancel\` | — | Dispatched by confirmation dialogs when the user clicked "cancel". |
 
@@ -60,7 +61,7 @@ flint-dialog: a modal dialog component.
 
 | Method | Description |
 |---|---|
-| \`requestClose()\` | Programmatically request the dialog to close (fires the 'close' event). |
+| \`requestClose()\` | Programmatically request the dialog to close (fires the 'flint-dialog-close' event). |
 
 ---
 
@@ -167,7 +168,7 @@ export const Basic: Story = {
         id="basic-dialog"
         .open=${args.open}
         .transition=${args.transition}
-        @close=${closeDialog}
+        @flint-dialog-close=${closeDialog}
       >
         <flint-dialog-title>Discard draft?</flint-dialog-title>
         <flint-dialog-content>
@@ -315,7 +316,7 @@ export const Transitions: Story = {
       <flint-button @click=${() => openDialog('slide-down-dialog')}>Slide Down</flint-button>
       <flint-button @click=${() => openDialog('scale-dialog')}>Scale (default)</flint-button>
 
-      <flint-dialog id="slide-up-dialog" .transition=${args.transition} ?disable-backdrop-close=${args.disableBackdropClose} @close=${closeDialog}>
+      <flint-dialog id="slide-up-dialog" .transition=${args.transition} ?disable-backdrop-close=${args.disableBackdropClose} @flint-dialog-close=${closeDialog}>
         <flint-dialog-title>Slide Up</flint-dialog-title>
         <flint-dialog-content>
           <flint-dialog-content-text>This dialog slides up from below.</flint-dialog-content-text>
@@ -328,7 +329,7 @@ export const Transitions: Story = {
         </flint-dialog-actions>
       </flint-dialog>
 
-      <flint-dialog id="slide-down-dialog" transition="slide-down" @close=${closeDialog}>
+      <flint-dialog id="slide-down-dialog" transition="slide-down" @flint-dialog-close=${closeDialog}>
         <flint-dialog-title>Slide Down</flint-dialog-title>
         <flint-dialog-content>
           <flint-dialog-content-text>This dialog slides down from above.</flint-dialog-content-text>
@@ -341,7 +342,7 @@ export const Transitions: Story = {
         </flint-dialog-actions>
       </flint-dialog>
 
-      <flint-dialog id="scale-dialog" transition="scale" @close=${closeDialog}>
+      <flint-dialog id="scale-dialog" transition="scale" @flint-dialog-close=${closeDialog}>
         <flint-dialog-title>Scale In</flint-dialog-title>
         <flint-dialog-content>
           <flint-dialog-content-text>This dialog scales in from the centre.</flint-dialog-content-text>
@@ -363,7 +364,7 @@ export const LargeContent: Story = {
     <flint-box display="flex" alignItems="center" justifyContent="center" height="300px">
       <flint-button @click=${() => openDialog('scroll-dialog')}>Privacy Policy</flint-button>
 
-      <flint-dialog id="scroll-dialog" @close=${closeDialog}>
+      <flint-dialog id="scroll-dialog" @flint-dialog-close=${closeDialog}>
         <flint-dialog-title>Privacy Policy</flint-dialog-title>
         <flint-dialog-content>
           ${Array.from({ length: 12 }).map((_, i) => html`
@@ -403,7 +404,7 @@ export const NestedDialog: Story = {
       <!-- Parent dialog -->
       <flint-dialog
         id="nested-parent-dialog"
-        @close=${(e: Event) => { (e.target as FlintDialog).open = false; }}
+        @flint-dialog-close=${(e: Event) => { (e.target as FlintDialog).open = false; }}
       >
         <flint-dialog-title>Account Settings</flint-dialog-title>
         <flint-dialog-content>
@@ -470,7 +471,7 @@ export const FormDialog: Story = {
     <flint-box display="flex" alignItems="center" justifyContent="center" height="360px">
       <flint-button @click=${() => openDialog('form-dialog')}>Edit Profile</flint-button>
 
-      <flint-dialog id="form-dialog" @close=${closeDialog}>
+      <flint-dialog id="form-dialog" @flint-dialog-close=${closeDialog}>
         <flint-dialog-title>Edit Profile</flint-dialog-title>
         <flint-dialog-content>
           <flint-stack direction="column" gap="12px" style="padding-top:4px;">
@@ -516,7 +517,7 @@ export const Alert: Story = {
         Show Alert
       </flint-button>
 
-      <flint-dialog id="alert-dialog" disable-backdrop-close @close=${closeDialog}>
+      <flint-dialog id="alert-dialog" disable-backdrop-close @flint-dialog-close=${closeDialog}>
         <flint-dialog-title>Session Expired</flint-dialog-title>
         <flint-dialog-content>
           <flint-dialog-content-text>
@@ -541,7 +542,7 @@ export const DisableBackdropClose: Story = {
     <flint-box display="flex" alignItems="center" justifyContent="center" height="300px">
       <flint-button @click=${() => openDialog('locked-dialog')}>Open Locked Dialog</flint-button>
 
-      <flint-dialog id="locked-dialog" ?disable-backdrop-close=${args.disableBackdropClose} @close=${closeDialog}>
+      <flint-dialog id="locked-dialog" ?disable-backdrop-close=${args.disableBackdropClose} @flint-dialog-close=${closeDialog}>
         <flint-dialog-title>Action Required</flint-dialog-title>
         <flint-dialog-content>
           <flint-dialog-content-text>

@@ -20,6 +20,7 @@ const meta: Meta = {
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
 | \`open\` | \`open\` | \`boolean\` | \`false\` | Whether the snackbar is open. |
+| \`defaultOpen\` | \`default-open\` | \`boolean\` | \`false\` | Initial open state for uncontrolled usage. Has no effect after the element has connected to the DOM. |
 | \`message\` | \`message\` | \`string\` | \`''\` | The message to display (slot fallback). |
 | \`autoHideDuration\` | \`auto-hide-duration\` | \`number\` | \`5000\` | Duration in milliseconds before the snackbar auto-closes. Set to 0 to disable auto-close. |
 | \`anchorOrigin\` | \`anchor-origin\` | \`'top-left' \\| 'top-center' \\| 'top-right' \\|         'bottom-left' \\| 'bottom-center' \\| 'bottom-right'\` | \`'bottom-center'\` | Position of the snackbar. Format: 'vertical-horizontal' e.g. 'bottom-center', 'top-right' |
@@ -31,8 +32,8 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-snackbar-open\` | — |  |
-| \`flint-snackbar-close\` | — |  |
+| \`flint-snackbar-open\` | \`{ open: true }\` |  |
+| \`flint-snackbar-close\` | \`{ open: false }\` |  |
 
 #### Slots
 

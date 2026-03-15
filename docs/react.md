@@ -50,7 +50,7 @@ Custom events use `onEventName` props. The naming convention converts the Lit ev
 |-----------|-----------|
 | `flint-change` | `onFlintChange` |
 | `flint-menu-close` | `onFlintMenuClose` |
-| `close` | `onClose` |
+| `flint-dialog-close` | `onFlintDialogClose` |
 | `flint-drawer-close` | `onFlintDrawerClose` |
 
 ```tsx

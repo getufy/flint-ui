@@ -1,4 +1,4 @@
 // Auto-generated — do not edit
 export const FlintDialogEvents = {
-    CLOSE: 'close',
+    CLOSE: 'flint-dialog-close',
 } as const;

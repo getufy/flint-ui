@@ -45,12 +45,13 @@ import { FlintTimeField } from '@getufy/flint-ui';
 | `readonly` | `readonly` | `boolean` | `false` | Makes the field read-only (visible but not editable). |
 | `error` | `error` | `boolean` | `false` | Displays the field in an error state. |
 | `helperText` | `helper-text` | `string` | `''` | Helper text shown below the field. |
+| `errorMessage` | `error-message` | `string` | `''` | Error message displayed below the field when in error state. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `change` | — | Fired when the time value changes. |
+| `flint-time-field-change` | — | Fired when the time value changes. detail: `{ value: string }` |
 | `flint-time-picker-clear` | — | Fired when the clear button is clicked. |
 
 ### CSS Custom Properties
@@ -116,7 +117,7 @@ import { FlintDigitalClock } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `change` | — | Fired when a time slot is selected. |
+| `flint-digital-clock-change` | — | Fired when a time slot is selected. detail: `{ value: string }` |
 
 ### CSS Custom Properties
 
@@ -159,7 +160,7 @@ import { FlintMultiSectionDigitalClock } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `change` | — | Fired when the time value changes. |
+| `flint-multi-section-digital-clock-change` | — | Fired when the time value changes. detail: `{ value: string }` |
 
 ---
 
@@ -197,7 +198,7 @@ import { FlintTimeClock } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `change` | — | Fired when the time value changes. |
+| `flint-time-clock-change` | — | Fired when the time value changes. detail: `{ value: string }` |
 | `flint-time-clock-view-change` | — | Fired when the clock face view switches. |
 
 ### CSS Custom Properties
@@ -247,12 +248,13 @@ import { FlintDesktopTimePicker } from '@getufy/flint-ui';
 | `readonly` | `readonly` | `boolean` | `false` | Makes the field read-only (visible but not editable). |
 | `error` | `error` | `boolean` | `false` | Displays the field in an error state. |
 | `helperText` | `helper-text` | `string` | `''` | Helper text shown below the field. |
+| `errorMessage` | `error-message` | `string` | `''` | Error message displayed below the field when in error state. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `change` | — | Fired when the time value changes. |
+| `flint-desktop-time-picker-change` | — | Fired when the time value changes. detail: `{ value: string }` |
 
 ---
 
@@ -288,12 +290,13 @@ import { FlintMobileTimePicker } from '@getufy/flint-ui';
 | `disabled` | `disabled` | `boolean` | `false` | Disables the picker and prevents interaction. |
 | `error` | `error` | `boolean` | `false` | Displays the picker in an error state. |
 | `helperText` | `helper-text` | `string` | `''` | Helper text shown below the field. |
+| `errorMessage` | `error-message` | `string` | `''` | Error message displayed below the field when in error state. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `change` | — | Fired when the time value changes. |
+| `flint-mobile-time-picker-change` | — | Fired when the time value changes. detail: `{ value: string }` |
 
 ---
 
@@ -330,7 +333,7 @@ import { FlintStaticTimePicker } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `change` | — | Fired when the time value changes. |
+| `flint-static-time-picker-change` | — | Fired when the time value changes. detail: `{ value: string }` |
 
 ---
 
@@ -367,11 +370,12 @@ import { FlintTimePicker } from '@getufy/flint-ui';
 | `disabled` | `disabled` | `boolean` | `false` | Disables the picker and prevents interaction. |
 | `error` | `error` | `boolean` | `false` | Displays the picker in an error state. |
 | `helperText` | `helper-text` | `string` | `''` | Helper text shown below the field. |
+| `errorMessage` | `error-message` | `string` | `''` | Error message displayed below the field when in error state. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `change` | — | Fired when the time value changes. |
+| `flint-time-picker-change` | — | Fired when the time value changes. detail: `{ value: string }` |
 
 ---

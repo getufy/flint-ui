@@ -2,5 +2,5 @@
 
 export { FlintCollapsibleTrigger, type FlintCollapsibleTriggerProps } from './components/FlintCollapsibleTrigger.js';
 export { FlintCollapsibleContent, type FlintCollapsibleContentProps } from './components/FlintCollapsibleContent.js';
-export { FlintCollapsible, type FlintCollapsibleProps } from './components/FlintCollapsible.js';
+export { FlintCollapsible, type FlintCollapsibleProps, type FlintCollapsibleChangeDetail } from './components/FlintCollapsible.js';
 export { FlintCollapsibleEvents } from './events/flint-collapsible.js';

@@ -2,7 +2,7 @@
 
 export { FlintButtonGroup, type FlintButtonGroupProps } from './components/FlintButtonGroup.js';
 export { FlintButton, type FlintButtonProps } from './components/FlintButton.js';
-export { FlintToggleButtonGroup, type FlintToggleButtonGroupProps } from './components/FlintToggleButtonGroup.js';
-export { FlintToggleButton, type FlintToggleButtonProps } from './components/FlintToggleButton.js';
+export { FlintToggleButtonGroup, type FlintToggleButtonGroupProps, type FlintToggleButtonGroupChangeDetail } from './components/FlintToggleButtonGroup.js';
+export { FlintToggleButton, type FlintToggleButtonProps, type FlintToggleButtonChangeDetail } from './components/FlintToggleButton.js';
 export { FlintToggleButtonGroupEvents } from './events/flint-toggle-button-group.js';
 export { FlintToggleButtonEvents } from './events/flint-toggle-button.js';

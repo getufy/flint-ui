@@ -3,6 +3,6 @@
 export { FlintMenuItem, type FlintMenuItemProps } from './components/FlintMenuItem.js';
 export { FlintMenuDivider, type FlintMenuDividerProps } from './components/FlintMenuDivider.js';
 export { FlintMenuGroup, type FlintMenuGroupProps } from './components/FlintMenuGroup.js';
-export { FlintMenu, type FlintMenuProps } from './components/FlintMenu.js';
+export { FlintMenu, type FlintMenuProps, type FlintMenuCloseDetail } from './components/FlintMenu.js';
 export { FlintMenuItemEvents } from './events/flint-menu-item.js';
 export { FlintMenuEvents } from './events/flint-menu.js';

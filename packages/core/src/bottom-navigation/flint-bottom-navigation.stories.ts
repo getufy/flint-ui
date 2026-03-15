@@ -31,8 +31,8 @@ Bottom Navigation Action: Individual navigation item.
 
 | Name | Description |
 |---|---|
-| \`(default)\` | Default slot for content |
-| \`icon\` |  |
+| \`icon\` | Icon element. |
+| \`(default)\` | Label text. |
 
 #### CSS Custom Properties
 
@@ -59,13 +59,14 @@ Bottom Navigation bars allow movement between primary destinations in an app.
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
 | \`value\` | \`value\` | \`unknown\` | — | The value of the currently selected action. |
+| \`defaultValue\` | \`default-value\` | \`unknown\` | — | Initial selected value for uncontrolled usage. Has no effect after the element has connected to the DOM. |
 | \`showLabels\` | \`show-labels\` | \`boolean\` | \`false\` | If true, all labels are shown at all times. |
 
 #### Events
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-bottom-navigation-change\` | — | Dispatched when the selected value changes. |
+| \`flint-bottom-navigation-change\` | — | Dispatched when the selected value changes. detail: \`{ value: number \\| string }\` |
 
 #### Slots
 
