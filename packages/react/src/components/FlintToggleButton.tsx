@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintToggleButton as FlintToggleButtonElement } from '@getufy/flint-ui/button/flint-toggle-button';
+import { FlintToggleButtonEvents } from '../events/flint-toggle-button.js';
 
 /**
  * Toggle Button: a button that can be toggled on/off.
@@ -26,6 +27,6 @@ export const FlintToggleButton = createComponent({
     elementClass: FlintToggleButtonElement,
     react: React,
     events: {
-        onFlintToggleButtonChange: 'flint-toggle-button-change' as EventName<CustomEvent>,
+        onFlintToggleButtonChange: FlintToggleButtonEvents.CHANGE as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintToggleButtonProps & React.RefAttributes<FlintToggleButtonElement>>;

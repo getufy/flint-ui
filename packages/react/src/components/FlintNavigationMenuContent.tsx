@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintNavigationMenuContent as FlintNavigationMenuContentElement } from '@getufy/flint-ui/navigation-menu/flint-navigation-menu-content';
+import { FlintNavigationMenuContentEvents } from '../events/flint-navigation-menu-content.js';
 
 /**
  * @slot default - Menu content items
@@ -26,6 +27,6 @@ export const FlintNavigationMenuContent = createComponent({
     elementClass: FlintNavigationMenuContentElement,
     react: React,
     events: {
-        onFlintNavigationMenuContentToggle: 'flint-navigation-menu-content-toggle' as EventName<CustomEvent>,
+        onFlintNavigationMenuContentToggle: FlintNavigationMenuContentEvents.TOGGLE as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintNavigationMenuContentProps & React.RefAttributes<FlintNavigationMenuContentElement>>;

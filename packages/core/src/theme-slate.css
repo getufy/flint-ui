@@ -1,0 +1,21 @@
+/* ═══════════════════════════════════════════════════════════════
+   SLATE THEME PRESET
+   Activate by adding class="flint-theme-slate" or
+   data-theme="slate" to <html>, <body>, or any container.
+   ═══════════════════════════════════════════════════════════════ */
+
+.flint-theme-slate,
+[data-theme="slate"] {
+    --flint-primary-color:              #475569;
+    --flint-primary-color-hover:        #334155;
+    --flint-primary-color-active:       #1e293b;
+    --flint-primary-color-light:        rgba(71, 85, 105, 0.1);
+    --flint-primary-color-light-hover:  rgba(71, 85, 105, 0.2);
+    --flint-primary-focus-ring:         rgba(71, 85, 105, 0.35);
+
+    --flint-accent-color:        #64748b;
+    --flint-accent-color-hover:  #475569;
+    --flint-accent-color-light:  rgba(100, 116, 139, 0.1);
+
+    --flint-text-color-on-primary: #ffffff;
+}

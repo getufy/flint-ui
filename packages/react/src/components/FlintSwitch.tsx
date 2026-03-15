@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintSwitch as FlintSwitchElement } from '@getufy/flint-ui/switch/flint-switch';
+import { FlintSwitchEvents } from '../events/flint-switch.js';
 
 export interface FlintSwitchChangeDetail {
     checked: boolean;
@@ -44,6 +45,6 @@ export const FlintSwitch = createComponent({
     elementClass: FlintSwitchElement,
     react: React,
     events: {
-        onFlintSwitchChange: 'flint-switch-change' as EventName<CustomEvent<FlintSwitchChangeDetail>>,
+        onFlintSwitchChange: FlintSwitchEvents.CHANGE as EventName<CustomEvent<FlintSwitchChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintSwitchProps & React.RefAttributes<FlintSwitchElement>>;

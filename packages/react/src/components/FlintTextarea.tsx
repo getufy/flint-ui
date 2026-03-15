@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintTextarea as FlintTextareaElement } from '@getufy/flint-ui/textarea/flint-textarea';
+import { FlintTextareaEvents } from '../events/flint-textarea.js';
 
 export interface FlintTextareaInputDetail {
     value: string;
@@ -64,7 +65,7 @@ export const FlintTextarea = createComponent({
     elementClass: FlintTextareaElement,
     react: React,
     events: {
-        onFlintTextareaInput: 'flint-textarea-input' as EventName<CustomEvent<FlintTextareaInputDetail>>,
-        onFlintTextareaChange: 'flint-textarea-change' as EventName<CustomEvent<FlintTextareaChangeDetail>>,
+        onFlintTextareaInput: FlintTextareaEvents.INPUT as EventName<CustomEvent<FlintTextareaInputDetail>>,
+        onFlintTextareaChange: FlintTextareaEvents.CHANGE as EventName<CustomEvent<FlintTextareaChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintTextareaProps & React.RefAttributes<FlintTextareaElement>>;

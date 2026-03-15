@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintRangeSlider as FlintRangeSliderElement } from '@getufy/flint-ui/flint-range-slider/flint-range-slider';
+import { FlintRangeSliderEvents } from '../events/flint-range-slider.js';
 
 /**
  * A range slider that lets users select a start and end value within a range.
@@ -34,6 +35,6 @@ export const FlintRangeSlider = createComponent({
     elementClass: FlintRangeSliderElement,
     react: React,
     events: {
-        onFlintRangeSliderChange: 'flint-range-slider-change' as EventName<CustomEvent>,
+        onFlintRangeSliderChange: FlintRangeSliderEvents.CHANGE as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintRangeSliderProps & React.RefAttributes<FlintRangeSliderElement>>;

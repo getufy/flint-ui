@@ -2,13 +2,13 @@
 
 exports[`DOM snapshots > flint-alert — default 1`] = `
 "<!---->
-            <div role="alert" class="alert  info ">
-                <div class="icon">
+            <div part="base" role="alert" class="alert  info ">
+                <div class="icon" part="icon">
                     <slot name="icon"><!--?lit$[hash]$--><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></slot>
                 </div>
                 <div class="content">
                     <!--?lit$[hash]$-->
-                    <div class="message">
+                    <div class="message" part="message">
                         <slot></slot>
                     </div>
                 </div>
@@ -19,13 +19,13 @@ exports[`DOM snapshots > flint-alert — default 1`] = `
 
 exports[`DOM snapshots > flint-alert — severity error 1`] = `
 "<!---->
-            <div role="alert" class="alert  error ">
-                <div class="icon">
+            <div part="base" role="alert" class="alert  error ">
+                <div class="icon" part="icon">
                     <slot name="icon"><!--?lit$[hash]$--><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg></slot>
                 </div>
                 <div class="content">
                     <!--?lit$[hash]$-->
-                    <div class="message">
+                    <div class="message" part="message">
                         <slot></slot>
                     </div>
                 </div>
@@ -45,7 +45,7 @@ exports[`DOM snapshots > flint-avatar — with text 1`] = `
 exports[`DOM snapshots > flint-badge — default 1`] = `
 "<!---->
       <slot></slot>
-      <span role="status" class="badge  primary " aria-hidden="false">
+      <span part="base" role="status" class="badge  primary " aria-hidden="false">
         <!--?lit$[hash]$-->5
       </span>
     <style></style>"
@@ -77,21 +77,21 @@ exports[`DOM snapshots > flint-button — variant outlined 1`] = `
 
 exports[`DOM snapshots > flint-checkbox — default 1`] = `
 "<!---->
-      <label class=" wrapper ">
+      <label part="base" class=" wrapper ">
         <input type="checkbox" value="on">
-        <div class=" checkbox ">
+        <div part="control" class=" checkbox ">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
             <!--?lit$[hash]$--><polyline points="20 6 9 17 4 12"></polyline>
           </svg>
         </div>
-        <!--?lit$[hash]$--><slot class="label"></slot>
+        <!--?lit$[hash]$--><slot class="label" part="label"></slot>
       </label>
     <style></style>"
 `;
 
 exports[`DOM snapshots > flint-chip — default 1`] = `
 "<!---->
-      <div class=" chip " tabindex="-1" aria-disabled="false">
+      <div part="base" class=" chip " tabindex="-1" aria-disabled="false">
         <slot name="avatar"></slot>
         <slot name="icon"></slot>
         <span class="label"><!--?lit$[hash]$-->Tag</span>
@@ -102,7 +102,7 @@ exports[`DOM snapshots > flint-chip — default 1`] = `
 
 exports[`DOM snapshots > flint-chip — deletable 1`] = `
 "<!---->
-      <div class=" chip " tabindex="-1" aria-disabled="false">
+      <div part="base" class=" chip " tabindex="-1" aria-disabled="false">
         <slot name="avatar"></slot>
         <slot name="icon"></slot>
         <span class="label"><!--?lit$[hash]$-->Tag</span>
@@ -171,49 +171,49 @@ exports[`DOM snapshots > flint-link — default 1`] = `
 
 exports[`DOM snapshots > flint-pagination — default 1`] = `
 "<!---->
-            <nav aria-label="pagination navigation">
+            <nav part="base" aria-label="pagination navigation">
                 <ol>
                     <!--?lit$[hash]$-->
                     <!--?lit$[hash]$-->
             <li>
-                <button class="page-btn" aria-label="Go to previous page" disabled=""><slot name="prev-icon"><!--?lit$[hash]$--><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></svg></slot></button>
+                <button class="page-btn" part="button" aria-label="Previous page" disabled=""><slot name="prev-icon"><!--?lit$[hash]$--><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></svg></slot></button>
             </li>
         
 
                     <!--?lit$[hash]$--><!---->
                         <li>
-                            <button class=" page-btn active " aria-label="Page 1" aria-current="page"><!--?lit$[hash]$-->1</button>
+                            <button part="button" class=" page-btn active " aria-label="Page 1" aria-current="page"><!--?lit$[hash]$-->1</button>
                         </li>
                     <!----><!---->
                         <li>
-                            <button class=" page-btn " aria-label="Page 2"><!--?lit$[hash]$-->2</button>
+                            <button part="button" class=" page-btn " aria-label="Page 2"><!--?lit$[hash]$-->2</button>
                         </li>
                     <!----><!---->
                         <li>
-                            <button class=" page-btn " aria-label="Page 3"><!--?lit$[hash]$-->3</button>
+                            <button part="button" class=" page-btn " aria-label="Page 3"><!--?lit$[hash]$-->3</button>
                         </li>
                     <!----><!---->
                         <li>
-                            <button class=" page-btn " aria-label="Page 4"><!--?lit$[hash]$-->4</button>
+                            <button part="button" class=" page-btn " aria-label="Page 4"><!--?lit$[hash]$-->4</button>
                         </li>
                     <!----><!---->
                         <li>
-                            <button class=" page-btn " aria-label="Page 5"><!--?lit$[hash]$-->5</button>
+                            <button part="button" class=" page-btn " aria-label="Page 5"><!--?lit$[hash]$-->5</button>
                         </li>
                     <!----><!---->
                             <li>
-                                <button class="page-btn ellipsis" tabindex="-1" aria-hidden="true">
+                                <button class="page-btn ellipsis" part="button" tabindex="-1" aria-hidden="true">
                                     <slot name="ellipsis-icon"><!--?lit$[hash]$--><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg></slot>
                                 </button>
                             </li><!----><!---->
                         <li>
-                            <button class=" page-btn " aria-label="Page 10"><!--?lit$[hash]$-->10</button>
+                            <button part="button" class=" page-btn " aria-label="Page 10"><!--?lit$[hash]$-->10</button>
                         </li>
                     <!---->
 
                     <!--?lit$[hash]$-->
             <li>
-                <button class="page-btn" aria-label="Go to next page"><slot name="next-icon"><!--?lit$[hash]$--><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg></slot></button>
+                <button class="page-btn" part="button" aria-label="Next page"><slot name="next-icon"><!--?lit$[hash]$--><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg></slot></button>
             </li>
         
                     <!--?lit$[hash]$-->
@@ -354,9 +354,9 @@ exports[`DOM snapshots > flint-skeleton — default 1`] = `
 
 exports[`DOM snapshots > flint-switch — default 1`] = `
 "<!---->
-      <div class="wrapper">
-        <div role="switch" class=" switch " aria-checked="false" aria-disabled="false" aria-required="false" tabindex="0">
-          <div class="thumb">
+      <div class="wrapper" part="base">
+        <div part="control" role="switch" class=" switch " aria-checked="false" aria-disabled="false" aria-required="false" tabindex="0">
+          <div class="thumb" part="thumb">
             <div class="icon-wrapper">
               <!--?lit$[hash]$--><slot name="icon-off"></slot>
             </div>
@@ -369,11 +369,11 @@ exports[`DOM snapshots > flint-switch — default 1`] = `
 
 exports[`DOM snapshots > flint-tooltip — default 1`] = `
 "<!---->
-      <div class="tooltip-container">
+      <div class="tooltip-container" part="base">
         <span class="trigger-wrapper" aria-describedby="flint-tooltip-[id]">
           <slot></slot>
         </span>
-        <div role="tooltip" id="flint-tooltip-[id]" aria-hidden="true" class=" tooltip-popup top ">
+        <div part="body" role="tooltip" id="flint-tooltip-[id]" aria-hidden="true" class=" tooltip-popup top ">
           <!--?lit$[hash]$-->Tip
           <!--?lit$[hash]$-->
         </div>

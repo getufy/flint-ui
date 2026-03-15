@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintSplitPanel as FlintSplitPanelElement } from '@getufy/flint-ui/split-panel/flint-split-panel';
+import { FlintSplitPanelEvents } from '../events/flint-split-panel.js';
 
 export interface FlintSplitPanelRepositionDetail {
     position: number;
@@ -41,6 +42,6 @@ export const FlintSplitPanel = createComponent({
     elementClass: FlintSplitPanelElement,
     react: React,
     events: {
-        onFlintSplitPanelReposition: 'flint-split-panel-reposition' as EventName<CustomEvent<FlintSplitPanelRepositionDetail>>,
+        onFlintSplitPanelReposition: FlintSplitPanelEvents.REPOSITION as EventName<CustomEvent<FlintSplitPanelRepositionDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintSplitPanelProps & React.RefAttributes<FlintSplitPanelElement>>;

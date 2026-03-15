@@ -3,6 +3,7 @@ import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
 import { FormAssociated } from '../mixins/form-associated.js';
+import { FormControlController } from '../controllers/form-control.js';
 import uiInputStyles from './flint-input.css?inline';
 
 let idCounter = 0;
@@ -16,6 +17,7 @@ let idCounter = 0;
 export class FlintInput extends FormAssociated(FlintElement) {
     static styles = unsafeCSS(uiInputStyles);
 
+    private _formControl = new FormControlController(this);
     private _inputId = `flint-input-${++idCounter}`;
 
     /** Label text displayed above the input. */
@@ -92,11 +94,13 @@ export class FlintInput extends FormAssociated(FlintElement) {
     formResetCallback() {
         this.value = this.defaultValue ?? '';
         this._updateFormValue();
+        this._formControl.reset();
     }
 
     private _updateFormValue() {
         this._initFormValue(this.value || null);
         this._initFormValidity(this.required, !this.value, 'Please fill out this field.');
+        this._formControl.updateDataAttributes();
     }
 
     render() {

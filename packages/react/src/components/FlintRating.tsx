@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintRating as FlintRatingElement } from '@getufy/flint-ui/rating/flint-rating';
+import { FlintRatingEvents } from '../events/flint-rating.js';
 
 /**
  * Rating: a star-based rating input.
@@ -38,6 +39,6 @@ export const FlintRating = createComponent({
     elementClass: FlintRatingElement,
     react: React,
     events: {
-        onFlintRatingChange: 'flint-rating-change' as EventName<CustomEvent>,
+        onFlintRatingChange: FlintRatingEvents.CHANGE as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintRatingProps & React.RefAttributes<FlintRatingElement>>;

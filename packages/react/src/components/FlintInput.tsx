@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintInput as FlintInputElement } from '@getufy/flint-ui/input/flint-input';
+import { FlintInputEvents } from '../events/flint-input.js';
 
 /**
  * Input: a styled text input with label, help text, and error states.
@@ -48,7 +49,7 @@ export const FlintInput = createComponent({
     elementClass: FlintInputElement,
     react: React,
     events: {
-        onFlintInputInput: 'flint-input-input' as EventName<CustomEvent>,
-        onFlintInputChange: 'flint-input-change' as EventName<CustomEvent>,
+        onFlintInputInput: FlintInputEvents.INPUT as EventName<CustomEvent>,
+        onFlintInputChange: FlintInputEvents.CHANGE as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintInputProps & React.RefAttributes<FlintInputElement>>;

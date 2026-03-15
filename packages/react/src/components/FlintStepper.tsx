@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintStepper as FlintStepperElement } from '@getufy/flint-ui/stepper/flint-stepper';
+import { FlintStepperEvents } from '../events/flint-stepper.js';
 
 /**
  * Stepper: a multi-step progress indicator.
@@ -30,6 +31,6 @@ export const FlintStepper = createComponent({
     elementClass: FlintStepperElement,
     react: React,
     events: {
-        onFlintStepChange: 'flint-step-change' as EventName<CustomEvent>,
+        onFlintStepChange: FlintStepperEvents.STEP_CHANGE as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintStepperProps & React.RefAttributes<FlintStepperElement>>;

@@ -3,6 +3,7 @@ import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { repeat } from 'lit/directives/repeat.js';
 import { FlintElement } from '../flint-element.js';
+import { LocalizeController } from '../utilities/localize.js';
 import {
     DAYS_SHORT, MONTHS,
     isoToDate,
@@ -20,6 +21,8 @@ import uiDateRangeCalendarStyles from './flint-date-range-calendar.css?inline';
  */
 export class FlintDateRangeCalendar extends FlintElement {
     static styles = unsafeCSS(uiDateRangeCalendarStyles);
+
+    private _localize = new LocalizeController(this);
 
     // ── Props ─────────────────────────────────────────────────────────────────
 
@@ -125,10 +128,10 @@ export class FlintDateRangeCalendar extends FlintElement {
       <div class="month-panel">
         <div class="header">
           <button class="nav-btn ${!isLeft ? 'hidden' : ''}"
-            @click=${this._prevMonth} aria-label="Previous month">‹</button>
+            @click=${this._prevMonth} aria-label=${this._localize.term('previousMonth')}>‹</button>
           <span class="header-label">${MONTHS[month]} ${year}</span>
           <button class="nav-btn ${isLeft ? 'hidden' : ''}"
-            @click=${this._nextMonth} aria-label="Next month">›</button>
+            @click=${this._nextMonth} aria-label=${this._localize.term('nextMonth')}>›</button>
         </div>
 
         <div class="dow-row">

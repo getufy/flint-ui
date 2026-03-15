@@ -1,0 +1,21 @@
+/* ═══════════════════════════════════════════════════════════════
+   VIOLET THEME PRESET
+   Activate by adding class="flint-theme-violet" or
+   data-theme="violet" to <html>, <body>, or any container.
+   ═══════════════════════════════════════════════════════════════ */
+
+.flint-theme-violet,
+[data-theme="violet"] {
+    --flint-primary-color:              #8b5cf6;
+    --flint-primary-color-hover:        #7c3aed;
+    --flint-primary-color-active:       #6d28d9;
+    --flint-primary-color-light:        rgba(139, 92, 246, 0.1);
+    --flint-primary-color-light-hover:  rgba(139, 92, 246, 0.2);
+    --flint-primary-focus-ring:         rgba(139, 92, 246, 0.35);
+
+    --flint-accent-color:        #d946ef;
+    --flint-accent-color-hover:  #c026d3;
+    --flint-accent-color-light:  rgba(217, 70, 239, 0.1);
+
+    --flint-text-color-on-primary: #ffffff;
+}

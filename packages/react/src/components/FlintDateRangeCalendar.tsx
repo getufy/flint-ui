@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintDateRangeCalendar as FlintDateRangeCalendarElement } from '@getufy/flint-ui/date-range-picker/flint-date-range-calendar';
+import { FlintDateRangeCalendarEvents } from '../events/flint-date-range-calendar.js';
 
 /**
  * A dual-month calendar for range selection.
@@ -27,6 +28,6 @@ export const FlintDateRangeCalendar = createComponent({
     elementClass: FlintDateRangeCalendarElement,
     react: React,
     events: {
-        onFlintDateRangePickerSelect: 'flint-date-range-picker-select' as EventName<CustomEvent>,
+        onFlintDateRangePickerSelect: FlintDateRangeCalendarEvents.DATE_RANGE_PICKER_SELECT as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintDateRangeCalendarProps & React.RefAttributes<FlintDateRangeCalendarElement>>;

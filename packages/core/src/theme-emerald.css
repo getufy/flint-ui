@@ -1,0 +1,21 @@
+/* ═══════════════════════════════════════════════════════════════
+   EMERALD THEME PRESET
+   Activate by adding class="flint-theme-emerald" or
+   data-theme="emerald" to <html>, <body>, or any container.
+   ═══════════════════════════════════════════════════════════════ */
+
+.flint-theme-emerald,
+[data-theme="emerald"] {
+    --flint-primary-color:              #10b981;
+    --flint-primary-color-hover:        #059669;
+    --flint-primary-color-active:       #047857;
+    --flint-primary-color-light:        rgba(16, 185, 129, 0.1);
+    --flint-primary-color-light-hover:  rgba(16, 185, 129, 0.2);
+    --flint-primary-focus-ring:         rgba(16, 185, 129, 0.35);
+
+    --flint-accent-color:        #84cc16;
+    --flint-accent-color-hover:  #65a30d;
+    --flint-accent-color-light:  rgba(132, 204, 22, 0.1);
+
+    --flint-text-color-on-primary: #ffffff;
+}

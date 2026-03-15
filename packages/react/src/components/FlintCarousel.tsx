@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintCarousel as FlintCarouselElement } from '@getufy/flint-ui/carousel/flint-carousel';
+import { FlintCarouselEvents } from '../events/flint-carousel.js';
 
 /**
  * Carousel: a slideshow component for cycling through content.
@@ -30,6 +31,6 @@ export const FlintCarousel = createComponent({
     elementClass: FlintCarouselElement,
     react: React,
     events: {
-        onFlintCarouselChange: 'flint-carousel-change' as EventName<CustomEvent>,
+        onFlintCarouselChange: FlintCarouselEvents.CHANGE as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintCarouselProps & React.RefAttributes<FlintCarouselElement>>;

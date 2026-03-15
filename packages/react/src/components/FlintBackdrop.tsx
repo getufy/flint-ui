@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintBackdrop as FlintBackdropElement } from '@getufy/flint-ui/backdrop/flint-backdrop';
+import { FlintBackdropEvents } from '../events/flint-backdrop.js';
 
 export interface FlintBackdropCloseDetail {
     open: false;
@@ -30,6 +31,6 @@ export const FlintBackdrop = createComponent({
     elementClass: FlintBackdropElement,
     react: React,
     events: {
-        onFlintBackdropClose: 'flint-backdrop-close' as EventName<CustomEvent<FlintBackdropCloseDetail>>,
+        onFlintBackdropClose: FlintBackdropEvents.CLOSE as EventName<CustomEvent<FlintBackdropCloseDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintBackdropProps & React.RefAttributes<FlintBackdropElement>>;

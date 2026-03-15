@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintToggleButtonGroup as FlintToggleButtonGroupElement } from '@getufy/flint-ui/button/flint-toggle-button-group';
+import { FlintToggleButtonGroupEvents } from '../events/flint-toggle-button-group.js';
 
 /**
  * Toggle Button Group: manages exclusive or multi-select toggle buttons.
@@ -25,6 +26,6 @@ export const FlintToggleButtonGroup = createComponent({
     elementClass: FlintToggleButtonGroupElement,
     react: React,
     events: {
-        onFlintToggleButtonGroupChange: 'flint-toggle-button-group-change' as EventName<CustomEvent>,
+        onFlintToggleButtonGroupChange: FlintToggleButtonGroupEvents.CHANGE as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintToggleButtonGroupProps & React.RefAttributes<FlintToggleButtonGroupElement>>;

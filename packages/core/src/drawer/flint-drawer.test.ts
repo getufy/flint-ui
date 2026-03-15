@@ -180,6 +180,8 @@ describe('flint-drawer', () => {
         const el = await fixture<FlintDrawer>(html`<flint-drawer></flint-drawer>`);
         el.open = true;
         await el.updateComplete;
+        await new Promise(r => setTimeout(r, 0));
+        await el.updateComplete;
         const paper = el.shadowRoot!.querySelector<HTMLElement>('.paper');
         expect(document.activeElement).toBe(el);
         // The paper inside the shadow root should be the active element
@@ -450,6 +452,8 @@ describe('flint-drawer', () => {
         const el = await fixture<FlintDrawer>(html`<flint-drawer open></flint-drawer>`);
         el.open = false;
         await el.updateComplete;
+        await new Promise(r => setTimeout(r, 0));
+        await el.updateComplete;
         const backdrop = el.shadowRoot!.querySelector('.backdrop');
         expect(backdrop?.classList.contains('open')).toBe(false);
     });
@@ -457,6 +461,8 @@ describe('flint-drawer', () => {
     it('closing an open drawer removes open class from paper', async () => {
         const el = await fixture<FlintDrawer>(html`<flint-drawer open></flint-drawer>`);
         el.open = false;
+        await el.updateComplete;
+        await new Promise(r => setTimeout(r, 0));
         await el.updateComplete;
         const paper = el.shadowRoot!.querySelector('.paper');
         expect(paper?.classList.contains('open')).toBe(false);

@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintSlider as FlintSliderElement } from '@getufy/flint-ui/slider/flint-slider';
+import { FlintSliderEvents } from '../events/flint-slider.js';
 
 /**
  * Slider: a range input for selecting a numeric value.
@@ -42,6 +43,6 @@ export const FlintSlider = createComponent({
     elementClass: FlintSliderElement,
     react: React,
     events: {
-        onFlintSliderChange: 'flint-slider-change' as EventName<CustomEvent>,
+        onFlintSliderChange: FlintSliderEvents.CHANGE as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintSliderProps & React.RefAttributes<FlintSliderElement>>;

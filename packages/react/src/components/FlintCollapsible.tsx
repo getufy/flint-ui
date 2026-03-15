@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintCollapsible as FlintCollapsibleElement } from '@getufy/flint-ui/collapsible/flint-collapsible';
+import { FlintCollapsibleEvents } from '../events/flint-collapsible.js';
 
 export interface FlintCollapsibleChangeDetail {
     open: boolean;
@@ -31,6 +32,6 @@ export const FlintCollapsible = createComponent({
     elementClass: FlintCollapsibleElement,
     react: React,
     events: {
-        onFlintCollapsibleChange: 'flint-collapsible-change' as EventName<CustomEvent<FlintCollapsibleChangeDetail>>,
+        onFlintCollapsibleChange: FlintCollapsibleEvents.CHANGE as EventName<CustomEvent<FlintCollapsibleChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintCollapsibleProps & React.RefAttributes<FlintCollapsibleElement>>;

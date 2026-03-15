@@ -307,6 +307,10 @@ export const Mobile: Story = {
     play: async ({ canvasElement }) => {
         const picker = getPicker(canvasElement);
         const shadow = picker.shadowRoot;
+        // Shadow DOM nesting (picker → dialog → backdrop → calendar) causes false
+        // positives in userEvent's pointer-events ancestor walk.  Skip the check
+        // for interactions inside the dialog.
+        const dialogUser = userEvent.setup({ pointerEventsCheck: 0 });
 
         // 1 ── Tap the mobile-field trigger
         await userEvent.click(shadow.querySelector('.mobile-field') as HTMLElement);
@@ -320,8 +324,8 @@ export const Mobile: Story = {
         // 2 ── Select start and end dates in the calendar
         const calShadow = getCalShadow(shadow);
         const days = activeDays(calShadow);
-        await userEvent.click(days[4]);
-        await userEvent.click(days[19]);
+        await dialogUser.click(days[4]);
+        await dialogUser.click(days[19]);
 
         await waitFor(() => {
             expect(shadow.querySelector<HTMLButtonElement>('.action-btn.ok')!.disabled).toBe(false);
@@ -331,7 +335,7 @@ export const Mobile: Story = {
         let firedEvent: CustomEvent | null = null;
         canvasElement.addEventListener('flint-date-range-picker-change', (e) => { firedEvent = e as CustomEvent; }, { once: true });
 
-        await userEvent.click(shadow.querySelector('.action-btn.ok') as HTMLElement);
+        await dialogUser.click(shadow.querySelector('.action-btn.ok') as HTMLElement);
 
         await waitFor(() => {
             expect(firedEvent).not.toBeNull();
@@ -957,6 +961,7 @@ export const MobileWithShortcuts: Story = {
     play: async ({ canvasElement }) => {
         const picker = getPicker(canvasElement);
         const shadow = picker.shadowRoot;
+        const dialogUser = userEvent.setup({ pointerEventsCheck: 0 });
 
         let firedEvent: CustomEvent | null = null;
         canvasElement.addEventListener('flint-date-range-picker-change', (e) => { firedEvent = e as CustomEvent; }, { once: true });
@@ -970,7 +975,7 @@ export const MobileWithShortcuts: Story = {
 
         // 2 ── Click "Yesterday" shortcut (index 1 in default list)
         const btns = shadow.querySelectorAll<HTMLElement>('.shortcut-btn');
-        await userEvent.click(btns[1]);
+        await dialogUser.click(btns[1]);
 
         // 3 ── OK button is now enabled (shortcut produces a complete range)
         await waitFor(() => {
@@ -978,7 +983,7 @@ export const MobileWithShortcuts: Story = {
         });
 
         // 4 ── Click OK → flint-date-range-picker-change fires
-        await userEvent.click(shadow.querySelector('.action-btn.ok') as HTMLElement);
+        await dialogUser.click(shadow.querySelector('.action-btn.ok') as HTMLElement);
 
         await waitFor(() => {
             expect(firedEvent).not.toBeNull();

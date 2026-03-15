@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintTabs as FlintTabsElement } from '@getufy/flint-ui/tabs/flint-tabs';
+import { FlintTabsEvents } from '../events/flint-tabs.js';
 
 /**
  * Tabs: container that coordinates tab selection and panel visibility.
@@ -34,6 +35,6 @@ export const FlintTabs = createComponent({
     elementClass: FlintTabsElement,
     react: React,
     events: {
-        onFlintTabChange: 'flint-tab-change' as EventName<CustomEvent>,
+        onFlintTabChange: FlintTabsEvents.TAB_CHANGE as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintTabsProps & React.RefAttributes<FlintTabsElement>>;

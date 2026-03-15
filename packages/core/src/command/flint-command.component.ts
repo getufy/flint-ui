@@ -11,6 +11,7 @@ import uiCommandInputStyles from './flint-command-input.css?inline';
 import uiCommandStyles from './flint-command.css?inline';
 import uiCommandDialogStyles from './flint-command-dialog.css?inline';
 import { FlintElement } from '../flint-element.js';
+import { LocalizeController } from '../utilities/localize.js';
 
 /* ─────────────────────────────────────────────────────────────────── */
 /*  flint-command-shortcut                                                 */
@@ -162,9 +163,11 @@ export class FlintCommandGroup extends FlintElement {
 export class FlintCommandList extends FlintElement {
     static styles = unsafeCSS(uiCommandListStyles);
 
+    private _localize = new LocalizeController(this);
+
     render() {
         return html`
-            <div class="list" role="listbox" tabindex="0" aria-label="Command results">
+            <div class="list" role="listbox" tabindex="0" aria-label=${this._localize.term('commandResults')}>
                 <slot></slot>
             </div>
         `;
@@ -185,8 +188,10 @@ export class FlintCommandList extends FlintElement {
 export class FlintCommandInput extends FlintElement {
     static styles = unsafeCSS(uiCommandInputStyles);
 
+    private _localize = new LocalizeController(this);
+
     /** Placeholder text shown when input is empty. */
-    @property({ type: String }) placeholder = 'Type a command or search...';
+    @property({ type: String }) placeholder = '';
 
     /** Current input value. */
     @property({ type: String, reflect: true }) value = '';
@@ -232,8 +237,8 @@ export class FlintCommandInput extends FlintElement {
                 <input
                     type="search"
                     .value=${this.value}
-                    placeholder=${this.placeholder}
-                    aria-label="Search commands"
+                    placeholder=${this.placeholder || this._localize.term('typeCommandOrSearch')}
+                    aria-label=${this._localize.term('searchCommands')}
                     @input=${this._handleInput}
                     autocomplete="off"
                     spellcheck="false"
@@ -470,6 +475,8 @@ export class FlintCommand extends FlintElement {
 export class FlintCommandDialog extends FlintElement {
     static styles = unsafeCSS(uiCommandDialogStyles);
 
+    private _localize = new LocalizeController(this);
+
     /** Controls the open/closed state of the dialog. */
     @property({ type: Boolean, reflect: true }) open = false;
 
@@ -530,7 +537,7 @@ export class FlintCommandDialog extends FlintElement {
                     class="panel"
                     role="dialog"
                     aria-modal="true"
-                    aria-label="Command menu"
+                    aria-label=${this._localize.term('commandMenu')}
                 >
                     <slot></slot>
                 </div>

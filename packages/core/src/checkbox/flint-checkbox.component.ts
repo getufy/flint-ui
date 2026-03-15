@@ -3,6 +3,7 @@ import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
 import { FormAssociated } from '../mixins/form-associated.js';
+import { FormControlController } from '../controllers/form-control.js';
 import uiCheckboxStyles from './flint-checkbox.css?inline';
 
 /**
@@ -12,6 +13,8 @@ import uiCheckboxStyles from './flint-checkbox.css?inline';
  */
 export class FlintCheckbox extends FormAssociated(FlintElement) {
     static styles = unsafeCSS(uiCheckboxStyles);
+
+    private _formControl = new FormControlController(this);
 
     /** Whether the checkbox is checked. */
     @property({ type: Boolean, reflect: true }) checked = false;
@@ -52,6 +55,7 @@ export class FlintCheckbox extends FormAssociated(FlintElement) {
         if (changed.has('checked') || changed.has('required')) {
             this._initFormValidity(this.required, !this.checked, 'Please check this box.');
         }
+        this._formControl.updateDataAttributes();
     }
 
     private _handleChange(e: Event) {
@@ -70,7 +74,7 @@ export class FlintCheckbox extends FormAssociated(FlintElement) {
 
     render() {
         return html`
-      <label class=${classMap({ wrapper: true, disabled: this.disabled })}>
+      <label class=${classMap({ wrapper: true, disabled: this.disabled })} part="base">
         <input
           type="checkbox"
           .checked=${this.checked}
@@ -82,7 +86,7 @@ export class FlintCheckbox extends FormAssociated(FlintElement) {
           aria-label=${this.ariaLabel ?? nothing}
           @change=${this._handleChange}
         >
-        <div class=${classMap({ checkbox: true, checked: this.checked, indeterminate: this.indeterminate })}>
+        <div class=${classMap({ checkbox: true, checked: this.checked, indeterminate: this.indeterminate })} part="control">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
             ${this.indeterminate
                 ? html`<line x1="4" y1="12" x2="20" y2="12"></line>`
@@ -90,7 +94,7 @@ export class FlintCheckbox extends FormAssociated(FlintElement) {
             }
           </svg>
         </div>
-        ${this.label ? html`<span class="label">${this.label}</span>` : html`<slot class="label"></slot>`}
+        ${this.label ? html`<span class="label" part="label">${this.label}</span>` : html`<slot class="label" part="label"></slot>`}
       </label>
     `;
     }

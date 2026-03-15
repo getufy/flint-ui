@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintMenuItem as FlintMenuItemElement } from '@getufy/flint-ui/menu/flint-menu';
+import { FlintMenuItemEvents } from '../events/flint-menu-item.js';
 
 export interface FlintMenuItemSelectDetail {
     value: string | null, label: string;
@@ -36,6 +37,6 @@ export const FlintMenuItem = createComponent({
     elementClass: FlintMenuItemElement,
     react: React,
     events: {
-        onFlintMenuItemSelect: 'flint-menu-item-select' as EventName<CustomEvent<FlintMenuItemSelectDetail>>,
+        onFlintMenuItemSelect: FlintMenuItemEvents.SELECT as EventName<CustomEvent<FlintMenuItemSelectDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintMenuItemProps & React.RefAttributes<FlintMenuItemElement>>;

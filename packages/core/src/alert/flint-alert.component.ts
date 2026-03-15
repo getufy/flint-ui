@@ -69,13 +69,13 @@ export class FlintAlert extends FlintElement {
 
     render() {
         return html`
-            <div class="alert ${classMap({ [this.severity]: true })}" role="alert">
-                <div class="icon">
+            <div class="alert ${classMap({ [this.severity]: true })}" part="base" role="alert">
+                <div class="icon" part="icon">
                     <slot name="icon">${this._getIcon()}</slot>
                 </div>
                 <div class="content">
                     ${this.title ? html`<div class="title">${this.title}</div>` : ''}
-                    <div class="message">
+                    <div class="message" part="message">
                         <slot></slot>
                     </div>
                 </div>

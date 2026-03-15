@@ -51,7 +51,6 @@
     background: var(--flint-backdrop-color);
     opacity: 0;
     pointer-events: none;
-    transition: opacity .25s;
 }
 .backdrop.open { opacity: 1; pointer-events: auto; }
 
@@ -73,7 +72,6 @@
     width: var(--flint-drawer-width, 250px);
     box-shadow: var(--flint-drawer-shadow);
     transform: translateX(-100%);
-    transition: transform var(--flint-drawer-transition, .225s cubic-bezier(0, 0, .2, 1));
 }
 :host(:not([variant])[open]) .paper,
 :host([variant="temporary"][open]) .paper {

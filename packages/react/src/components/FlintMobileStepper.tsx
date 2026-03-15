@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintMobileStepper as FlintMobileStepperElement } from '@getufy/flint-ui/stepper/flint-stepper';
+import { FlintMobileStepperEvents } from '../events/flint-mobile-stepper.js';
 
 /**
  * Mobile Stepper: a compact stepper for mobile layouts.
@@ -35,7 +36,7 @@ export const FlintMobileStepper = createComponent({
     elementClass: FlintMobileStepperElement,
     react: React,
     events: {
-        onFlintMobileStepBack: 'flint-mobile-step-back' as EventName<CustomEvent>,
-        onFlintMobileStepNext: 'flint-mobile-step-next' as EventName<CustomEvent>,
+        onFlintMobileStepBack: FlintMobileStepperEvents.MOBILE_STEP_BACK as EventName<CustomEvent>,
+        onFlintMobileStepNext: FlintMobileStepperEvents.MOBILE_STEP_NEXT as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintMobileStepperProps & React.RefAttributes<FlintMobileStepperElement>>;

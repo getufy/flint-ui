@@ -118,7 +118,7 @@ describe('flint-pagination', () => {
 
     it('fires flint-pagination-change on next click', async () => {
         const el = await fixture<FlintPagination>(html`<flint-pagination count="5" page="2"></flint-pagination>`);
-        const next = el.shadowRoot!.querySelector('.page-btn[aria-label="Go to next page"]') as HTMLButtonElement;
+        const next = el.shadowRoot!.querySelector('.page-btn[aria-label="Next page"]') as HTMLButtonElement;
         setTimeout(() => next.click());
         const event = await oneEvent(el, 'flint-pagination-change') as CustomEvent;
         expect(event.detail.page).toBe(3);
@@ -126,27 +126,27 @@ describe('flint-pagination', () => {
 
     it('prev button is disabled on page 1', async () => {
         const el = await fixture<FlintPagination>(html`<flint-pagination count="5" page="1"></flint-pagination>`);
-        const prev = el.shadowRoot!.querySelector('.page-btn[aria-label="Go to previous page"]') as HTMLButtonElement;
+        const prev = el.shadowRoot!.querySelector('.page-btn[aria-label="Previous page"]') as HTMLButtonElement;
         expect(prev.disabled).toBe(true);
     });
 
     it('next button is disabled on last page', async () => {
         const el = await fixture<FlintPagination>(html`<flint-pagination count="5" page="5"></flint-pagination>`);
-        const next = el.shadowRoot!.querySelector('.page-btn[aria-label="Go to next page"]') as HTMLButtonElement;
+        const next = el.shadowRoot!.querySelector('.page-btn[aria-label="Next page"]') as HTMLButtonElement;
         expect(next.disabled).toBe(true);
     });
 
     it('shows first/last buttons when showFirstButton/showLastButton are set', async () => {
         const el = await fixture<FlintPagination>(html`<flint-pagination count="5" page="3" show-first-button show-last-button></flint-pagination>`);
-        const first = el.shadowRoot!.querySelector('.page-btn[aria-label="Go to first page"]');
-        const last = el.shadowRoot!.querySelector('.page-btn[aria-label="Go to last page"]');
+        const first = el.shadowRoot!.querySelector('.page-btn[aria-label="First page"]');
+        const last = el.shadowRoot!.querySelector('.page-btn[aria-label="Last page"]');
         expect(first).not.toBeNull();
         expect(last).not.toBeNull();
     });
 
     it('first button fires event with page=1', async () => {
         const el = await fixture<FlintPagination>(html`<flint-pagination count="10" page="7" show-first-button></flint-pagination>`);
-        const first = el.shadowRoot!.querySelector<HTMLButtonElement>('.page-btn[aria-label="Go to first page"]')!;
+        const first = el.shadowRoot!.querySelector<HTMLButtonElement>('.page-btn[aria-label="First page"]')!;
         setTimeout(() => first.click());
         const event = await oneEvent(el, 'flint-pagination-change') as CustomEvent;
         expect(event.detail.page).toBe(1);
@@ -154,7 +154,7 @@ describe('flint-pagination', () => {
 
     it('last button fires event with page=count', async () => {
         const el = await fixture<FlintPagination>(html`<flint-pagination count="10" page="3" show-last-button></flint-pagination>`);
-        const last = el.shadowRoot!.querySelector<HTMLButtonElement>('.page-btn[aria-label="Go to last page"]')!;
+        const last = el.shadowRoot!.querySelector<HTMLButtonElement>('.page-btn[aria-label="Last page"]')!;
         setTimeout(() => last.click());
         const event = await oneEvent(el, 'flint-pagination-change') as CustomEvent;
         expect(event.detail.page).toBe(10);
@@ -162,20 +162,20 @@ describe('flint-pagination', () => {
 
     it('first button is disabled on page 1', async () => {
         const el = await fixture<FlintPagination>(html`<flint-pagination count="5" page="1" show-first-button></flint-pagination>`);
-        const first = el.shadowRoot!.querySelector<HTMLButtonElement>('.page-btn[aria-label="Go to first page"]')!;
+        const first = el.shadowRoot!.querySelector<HTMLButtonElement>('.page-btn[aria-label="First page"]')!;
         expect(first.disabled).toBe(true);
     });
 
     it('last button is disabled on last page', async () => {
         const el = await fixture<FlintPagination>(html`<flint-pagination count="5" page="5" show-last-button></flint-pagination>`);
-        const last = el.shadowRoot!.querySelector<HTMLButtonElement>('.page-btn[aria-label="Go to last page"]')!;
+        const last = el.shadowRoot!.querySelector<HTMLButtonElement>('.page-btn[aria-label="Last page"]')!;
         expect(last.disabled).toBe(true);
     });
 
     it('hides prev/next when hidePrevButton/hideNextButton are set', async () => {
         const el = await fixture<FlintPagination>(html`<flint-pagination count="5" page="3" hide-prev-button hide-next-button></flint-pagination>`);
-        const prev = el.shadowRoot!.querySelector('.page-btn[aria-label="Go to previous page"]');
-        const next = el.shadowRoot!.querySelector('.page-btn[aria-label="Go to next page"]');
+        const prev = el.shadowRoot!.querySelector('.page-btn[aria-label="Previous page"]');
+        const next = el.shadowRoot!.querySelector('.page-btn[aria-label="Next page"]');
         expect(prev).toBeNull();
         expect(next).toBeNull();
     });
@@ -368,7 +368,7 @@ describe('flint-pagination', () => {
 
     it('fires flint-pagination-change on prev click', async () => {
         const el = await fixture<FlintPagination>(html`<flint-pagination count="5" page="3"></flint-pagination>`);
-        const prev = el.shadowRoot!.querySelector('.page-btn[aria-label="Go to previous page"]') as HTMLButtonElement;
+        const prev = el.shadowRoot!.querySelector('.page-btn[aria-label="Previous page"]') as HTMLButtonElement;
         setTimeout(() => prev.click());
         const event = await oneEvent(el, 'flint-pagination-change') as CustomEvent;
         expect(event.detail.page).toBe(2);

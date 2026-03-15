@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintTab as FlintTabElement } from '@getufy/flint-ui/tabs/flint-tabs';
+import { FlintTabEvents } from '../events/flint-tab.js';
 
 /**
  * Tab: an individual tab button within a tab list.
@@ -30,6 +31,6 @@ export const FlintTab = createComponent({
     elementClass: FlintTabElement,
     react: React,
     events: {
-        onFlintTabClick: 'flint-tab-click' as EventName<CustomEvent>,
+        onFlintTabClick: FlintTabEvents.CLICK as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintTabProps & React.RefAttributes<FlintTabElement>>;

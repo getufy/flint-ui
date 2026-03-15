@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintChip as FlintChipElement } from '@getufy/flint-ui/chip/flint-chip';
+import { FlintChipEvents } from '../events/flint-chip.js';
 
 export interface FlintChipDeleteDetail {
     value: string;
@@ -41,7 +42,7 @@ export const FlintChip = createComponent({
     elementClass: FlintChipElement,
     react: React,
     events: {
-        onFlintChipClick: 'flint-chip-click' as EventName<CustomEvent>,
-        onFlintChipDelete: 'flint-chip-delete' as EventName<CustomEvent<FlintChipDeleteDetail>>,
+        onFlintChipClick: FlintChipEvents.CLICK as EventName<CustomEvent>,
+        onFlintChipDelete: FlintChipEvents.DELETE as EventName<CustomEvent<FlintChipDeleteDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintChipProps & React.RefAttributes<FlintChipElement>>;

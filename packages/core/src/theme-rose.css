@@ -1,0 +1,21 @@
+/* ═══════════════════════════════════════════════════════════════
+   ROSE THEME PRESET
+   Activate by adding class="flint-theme-rose" or
+   data-theme="rose" to <html>, <body>, or any container.
+   ═══════════════════════════════════════════════════════════════ */
+
+.flint-theme-rose,
+[data-theme="rose"] {
+    --flint-primary-color:              #f43f5e;
+    --flint-primary-color-hover:        #e11d48;
+    --flint-primary-color-active:       #be123c;
+    --flint-primary-color-light:        rgba(244, 63, 94, 0.1);
+    --flint-primary-color-light-hover:  rgba(244, 63, 94, 0.2);
+    --flint-primary-focus-ring:         rgba(244, 63, 94, 0.35);
+
+    --flint-accent-color:        #ec4899;
+    --flint-accent-color-hover:  #db2777;
+    --flint-accent-color-light:  rgba(236, 72, 153, 0.1);
+
+    --flint-text-color-on-primary: #ffffff;
+}

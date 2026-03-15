@@ -1,0 +1,21 @@
+/* ═══════════════════════════════════════════════════════════════
+   TEAL THEME PRESET
+   Activate by adding class="flint-theme-teal" or
+   data-theme="teal" to <html>, <body>, or any container.
+   ═══════════════════════════════════════════════════════════════ */
+
+.flint-theme-teal,
+[data-theme="teal"] {
+    --flint-primary-color:              #14b8a6;
+    --flint-primary-color-hover:        #0d9488;
+    --flint-primary-color-active:       #0f766e;
+    --flint-primary-color-light:        rgba(20, 184, 166, 0.1);
+    --flint-primary-color-light-hover:  rgba(20, 184, 166, 0.2);
+    --flint-primary-focus-ring:         rgba(20, 184, 166, 0.35);
+
+    --flint-accent-color:        #06b6d4;
+    --flint-accent-color-hover:  #0891b2;
+    --flint-accent-color-light:  rgba(6, 182, 212, 0.1);
+
+    --flint-text-color-on-primary: #ffffff;
+}

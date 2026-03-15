@@ -38,6 +38,7 @@ export class FlintBadge extends FlintElement {
         return html`
       <slot></slot>
       <span
+        part="base"
         class="badge ${classMap({
             hidden: !showBadge,
             dot: this.dot,

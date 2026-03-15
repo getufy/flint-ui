@@ -158,6 +158,8 @@ export class FormControlController implements ReactiveController {
     }
 
     private _toggleData(el: HTMLElement, name: string, value: boolean): void {
+        // Guard: dataset is not available during SSR
+        if (!el.dataset) return;
         if (value) {
             el.dataset[name] = '';
         } else {

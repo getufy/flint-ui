@@ -22,7 +22,6 @@
       z-index: 1000;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
       pointer-events: none;
       box-shadow: var(--flint-shadow-sm);
     }

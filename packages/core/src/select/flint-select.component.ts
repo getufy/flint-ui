@@ -5,7 +5,10 @@ import { repeat } from 'lit/directives/repeat.js';
 import { PropertyValues } from 'lit';
 import { FlintElement } from '../flint-element.js';
 import { FormAssociated } from '../mixins/form-associated.js';
+import { FormControlController } from '../controllers/form-control.js';
 import { LocalizeController } from '../utilities/localize.js';
+import { getAnimation, animateTo, stopAnimations, resolveKeyframes } from '../utilities/animation-registry.js';
+import '../utilities/animation-presets.js';
 import uiSelectStyles from './flint-select.css?inline';
 
 export interface SelectOption {
@@ -68,6 +71,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
    */
   @property({ type: Boolean }) hoist = true;
 
+  private _formControl = new FormControlController(this);
   private _localize = new LocalizeController(this);
 
   @state() private _isOpen = false;
@@ -92,6 +96,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
   formResetCallback() {
     this.value = this.defaultValue ? [this.defaultValue] : [];
     this._updateFormValue();
+    this._formControl.reset();
   }
 
   willUpdate(changed: PropertyValues) {
@@ -115,6 +120,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
       this._initFormValue(this.value[0] ?? '');
     }
     this._initFormValidity(this.required, this.value.length === 0, 'Please select an option');
+    this._formControl.updateDataAttributes();
   }
 
   private _handleReposition = () => {
@@ -159,14 +165,40 @@ export class FlintSelect extends FormAssociated(FlintElement) {
     }
   }
 
+  private async _runShowAnimation() {
+    const dropdown = this.shadowRoot?.querySelector<HTMLElement>('.dropdown');
+    if (!dropdown) return;
+    const animation = getAnimation(this, 'dropdown.show');
+    if (!animation) return;
+    await stopAnimations(dropdown);
+    const keyframes = resolveKeyframes(this, animation);
+    await animateTo(dropdown, keyframes, animation.options);
+  }
+
+  private async _runHideAnimation() {
+    const dropdown = this.shadowRoot?.querySelector<HTMLElement>('.dropdown');
+    if (!dropdown) return;
+    const animation = getAnimation(this, 'dropdown.hide');
+    if (!animation) return;
+    await stopAnimations(dropdown);
+    const keyframes = resolveKeyframes(this, animation);
+    await animateTo(dropdown, keyframes, animation.options);
+  }
+
+  /** Close the dropdown with animation, then clean up state. */
+  private async _closeDropdown() {
+    this._highlightedIndex = -1;
+    await this._runHideAnimation();
+    this._isOpen = false;
+    if (this.hoist) this._cleanupHoist();
+  }
+
   private _handleOutsideClick = (e: MouseEvent) => {
     if (!this._isOpen) return;
     const path = e.composedPath();
     const inside = path.length > 0 ? path.includes(this) : this.contains(e.target as Node);
     if (!inside) {
-      this._isOpen = false;
-      this._highlightedIndex = -1;
-      if (this.hoist) this._cleanupHoist();
+      void this._closeDropdown();
     }
   };
 
@@ -181,10 +213,9 @@ export class FlintSelect extends FormAssociated(FlintElement) {
         : -1;
       this._isOpen = true;
       if (this.hoist) this._startHoist();
+      void this._runShowAnimation();
     } else {
-      this._highlightedIndex = -1;
-      this._isOpen = false;
-      if (this.hoist) this._cleanupHoist();
+      void this._closeDropdown();
     }
   }
 
@@ -203,9 +234,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
       this.value = next;
     } else {
       this.value = [option.value];
-      this._isOpen = false;
-      this._highlightedIndex = -1;
-      if (this.hoist) this._cleanupHoist();
+      void this._closeDropdown();
     }
     this._dispatchChange();
   }
@@ -288,17 +317,13 @@ export class FlintSelect extends FormAssociated(FlintElement) {
       case 'Escape': {
         if (this._isOpen) {
           e.preventDefault();
-          this._isOpen = false;
-          this._highlightedIndex = -1;
-          if (this.hoist) this._cleanupHoist();
+          void this._closeDropdown();
         }
         break;
       }
       case 'Tab': {
         if (this._isOpen) {
-          this._isOpen = false;
-          this._highlightedIndex = -1;
-          if (this.hoist) this._cleanupHoist();
+          void this._closeDropdown();
         }
         break;
       }

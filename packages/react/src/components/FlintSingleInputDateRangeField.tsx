@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintSingleInputDateRangeField as FlintSingleInputDateRangeFieldElement } from '@getufy/flint-ui/date-range-picker/flint-single-input-date-range-field';
+import { FlintSingleInputDateRangeFieldEvents } from '../events/flint-single-input-date-range-field.js';
 
 /**
  * A single-input field for entering a date range (start → end).
@@ -41,7 +42,7 @@ export const FlintSingleInputDateRangeField = createComponent({
     elementClass: FlintSingleInputDateRangeFieldElement,
     react: React,
     events: {
-        onFlintDateRangePickerClear: 'flint-date-range-picker-clear' as EventName<CustomEvent>,
-        onFlintDateRangePickerChange: 'flint-date-range-picker-change' as EventName<CustomEvent>,
+        onFlintDateRangePickerClear: FlintSingleInputDateRangeFieldEvents.DATE_RANGE_PICKER_CLEAR as EventName<CustomEvent>,
+        onFlintDateRangePickerChange: FlintSingleInputDateRangeFieldEvents.DATE_RANGE_PICKER_CHANGE as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintSingleInputDateRangeFieldProps & React.RefAttributes<FlintSingleInputDateRangeFieldElement>>;

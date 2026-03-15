@@ -108,17 +108,17 @@ export class FlintSlider extends FormAssociated(FlintElement) {
     const inputId = 'slider-input';
 
     return html`
-      <div class=${classMap(wrapperClasses)}>
+      <div class=${classMap(wrapperClasses)} part="base">
         <div class=${classMap(labelRowClasses)}>
           ${this.label
             ? html`<label
                 for=${inputId}
                 class=${classMap({ 'disabled-label': this.disabled })}
-              >${this.label}</label>`
+              part="label">${this.label}</label>`
             : ''}
           ${this.showValue ? html`<span class="value-display">${displayStr}</span>` : ''}
         </div>
-        <div class=${classMap(trackClasses)}>
+        <div class=${classMap(trackClasses)} part="track">
           <input
             id=${inputId}
             type="range"

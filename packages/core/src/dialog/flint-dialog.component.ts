@@ -1,4 +1,4 @@
-import { unsafeCSS, html, type PropertyValues } from 'lit';
+import { unsafeCSS, html, nothing, type PropertyValues } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
@@ -48,6 +48,9 @@ export class FlintDialog extends FlintElement {
    * can play before the CSS `.open` class is removed.
    */
   @state() private _visuallyOpen = false;
+
+  /** Resolved accessible name from the slotted `<flint-dialog-title>`. */
+  @state() private _titleLabel = '';
 
   /** Animation style: 'scale' (default), 'slide-up', or 'slide-down'. */
   @property({ type: String }) transition: 'scale' | 'slide-up' | 'slide-down' = 'scale';
@@ -181,6 +184,11 @@ export class FlintDialog extends FlintElement {
     }
   }
 
+  private _handleSlotChange() {
+    const title = this.querySelector('flint-dialog-title');
+    this._titleLabel = title?.textContent?.trim() ?? '';
+  }
+
   render() {
     const panelClasses = classMap({
       'dialog-panel': true,
@@ -196,10 +204,10 @@ export class FlintDialog extends FlintElement {
           tabindex="-1"
           role="dialog"
           aria-modal="true"
-          aria-labelledby="dialog-title"
+          aria-label=${this._titleLabel || nothing}
           @click=${(e: Event) => e.stopPropagation()}
         >
-          <slot></slot>
+          <slot @slotchange=${this._handleSlotChange}></slot>
         </div>
       </flint-backdrop>
     `;
@@ -208,13 +216,14 @@ export class FlintDialog extends FlintElement {
 
 /**
  * flint-dialog-title: heading area of a dialog.
- * Automatically assigned id="dialog-title" for aria-labelledby.
+ * The parent `<flint-dialog>` reads this element's text content via slotchange
+ * to set `aria-label` on the dialog panel.
  */
 export class FlintDialogTitle extends FlintElement {
   static styles = unsafeCSS(uiDialogTitleStyles);
 
   render() {
-    return html`<h2 id="dialog-title" style="margin:0;font-size:inherit;font-weight:inherit;"><slot></slot></h2>`;
+    return html`<h2 style="margin:0;font-size:inherit;font-weight:inherit;"><slot></slot></h2>`;
   }
 }
 

@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintMenubarRadioGroup as FlintMenubarRadioGroupElement } from '@getufy/flint-ui/menubar/flint-menubar';
+import { FlintMenubarRadioGroupEvents } from '../events/flint-menubar-radio-group.js';
 
 export interface FlintMenubarRadioChangeDetail {
     value: string;
@@ -24,6 +25,6 @@ export const FlintMenubarRadioGroup = createComponent({
     elementClass: FlintMenubarRadioGroupElement,
     react: React,
     events: {
-        onFlintMenubarRadioChange: 'flint-menubar-radio-change' as EventName<CustomEvent<FlintMenubarRadioChangeDetail>>,
+        onFlintMenubarRadioChange: FlintMenubarRadioGroupEvents.MENUBAR_RADIO_CHANGE as EventName<CustomEvent<FlintMenubarRadioChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintMenubarRadioGroupProps & React.RefAttributes<FlintMenubarRadioGroupElement>>;

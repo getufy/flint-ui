@@ -1,0 +1,21 @@
+/* ═══════════════════════════════════════════════════════════════
+   AMBER THEME PRESET
+   Activate by adding class="flint-theme-amber" or
+   data-theme="amber" to <html>, <body>, or any container.
+   ═══════════════════════════════════════════════════════════════ */
+
+.flint-theme-amber,
+[data-theme="amber"] {
+    --flint-primary-color:              #f59e0b;
+    --flint-primary-color-hover:        #d97706;
+    --flint-primary-color-active:       #b45309;
+    --flint-primary-color-light:        rgba(245, 158, 11, 0.1);
+    --flint-primary-color-light-hover:  rgba(245, 158, 11, 0.2);
+    --flint-primary-focus-ring:         rgba(245, 158, 11, 0.35);
+
+    --flint-accent-color:        #f97316;
+    --flint-accent-color-hover:  #ea580c;
+    --flint-accent-color-light:  rgba(249, 115, 22, 0.1);
+
+    --flint-text-color-on-primary: #09090b;
+}

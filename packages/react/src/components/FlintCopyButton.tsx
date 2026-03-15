@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintCopyButton as FlintCopyButtonElement } from '@getufy/flint-ui/copy-button/flint-copy-button';
+import { FlintCopyButtonEvents } from '../events/flint-copy-button.js';
 
 /**
  * Copy Button: copies text to the clipboard with visual feedback.
@@ -36,7 +37,7 @@ export const FlintCopyButton = createComponent({
     elementClass: FlintCopyButtonElement,
     react: React,
     events: {
-        onFlintCopyError: 'flint-copy-error' as EventName<CustomEvent>,
-        onFlintCopy: 'flint-copy' as EventName<CustomEvent>,
+        onFlintCopyError: FlintCopyButtonEvents.COPY_ERROR as EventName<CustomEvent>,
+        onFlintCopy: FlintCopyButtonEvents.COPY as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintCopyButtonProps & React.RefAttributes<FlintCopyButtonElement>>;

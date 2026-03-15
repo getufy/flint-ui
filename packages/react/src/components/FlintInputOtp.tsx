@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintInputOtp as FlintInputOtpElement } from '@getufy/flint-ui/input-otp/flint-input-otp';
+import { FlintInputOtpEvents } from '../events/flint-input-otp.js';
 
 export interface FlintOtpChangeDetail {
     value: string;
@@ -46,7 +47,7 @@ export const FlintInputOtp = createComponent({
     elementClass: FlintInputOtpElement,
     react: React,
     events: {
-        onFlintOtpChange: 'flint-otp-change' as EventName<CustomEvent<FlintOtpChangeDetail>>,
-        onFlintOtpComplete: 'flint-otp-complete' as EventName<CustomEvent<FlintOtpCompleteDetail>>,
+        onFlintOtpChange: FlintInputOtpEvents.OTP_CHANGE as EventName<CustomEvent<FlintOtpChangeDetail>>,
+        onFlintOtpComplete: FlintInputOtpEvents.OTP_COMPLETE as EventName<CustomEvent<FlintOtpCompleteDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintInputOtpProps & React.RefAttributes<FlintInputOtpElement>>;

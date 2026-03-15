@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintBottomNavigation as FlintBottomNavigationElement } from '@getufy/flint-ui/bottom-navigation/flint-bottom-navigation';
+import { FlintBottomNavigationEvents } from '../events/flint-bottom-navigation.js';
 
 export interface FlintBottomNavigationChangeDetail {
     value: number | string;
@@ -30,6 +31,6 @@ export const FlintBottomNavigation = createComponent({
     elementClass: FlintBottomNavigationElement,
     react: React,
     events: {
-        onFlintBottomNavigationChange: 'flint-bottom-navigation-change' as EventName<CustomEvent<FlintBottomNavigationChangeDetail>>,
+        onFlintBottomNavigationChange: FlintBottomNavigationEvents.CHANGE as EventName<CustomEvent<FlintBottomNavigationChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintBottomNavigationProps & React.RefAttributes<FlintBottomNavigationElement>>;

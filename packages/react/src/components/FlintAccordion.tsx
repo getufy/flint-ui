@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintAccordion as FlintAccordionElement } from '@getufy/flint-ui/accordion/flint-accordion';
+import { FlintAccordionEvents } from '../events/flint-accordion.js';
 
 /**
  * Accordion: the wrapper for grouping related components.
@@ -26,6 +27,6 @@ export const FlintAccordion = createComponent({
     elementClass: FlintAccordionElement,
     react: React,
     events: {
-        onFlintAccordionChange: 'flint-accordion-change' as EventName<CustomEvent>,
+        onFlintAccordionChange: FlintAccordionEvents.CHANGE as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintAccordionProps & React.RefAttributes<FlintAccordionElement>>;

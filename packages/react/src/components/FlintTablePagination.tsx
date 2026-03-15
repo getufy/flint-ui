@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintTablePagination as FlintTablePaginationElement } from '@getufy/flint-ui/table/flint-table-pagination';
+import { FlintTablePaginationEvents } from '../events/flint-table-pagination.js';
 
 /**
  * Table Pagination: pagination controls for tabular data.
@@ -36,7 +37,7 @@ export const FlintTablePagination = createComponent({
     elementClass: FlintTablePaginationElement,
     react: React,
     events: {
-        onFlintPaginationPageChange: 'flint-pagination-page-change' as EventName<CustomEvent>,
-        onFlintPaginationRowsPerPageChange: 'flint-pagination-rows-per-page-change' as EventName<CustomEvent>,
+        onFlintPaginationPageChange: FlintTablePaginationEvents.PAGINATION_PAGE_CHANGE as EventName<CustomEvent>,
+        onFlintPaginationRowsPerPageChange: FlintTablePaginationEvents.PAGINATION_ROWS_PER_PAGE_CHANGE as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintTablePaginationProps & React.RefAttributes<FlintTablePaginationElement>>;

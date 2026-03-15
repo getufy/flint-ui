@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintDialog as FlintDialogElement } from '@getufy/flint-ui/dialog/flint-dialog';
+import { FlintDialogEvents } from '../events/flint-dialog.js';
 
 export interface FlintDialogCloseDetail {
     open: false;
@@ -33,6 +34,6 @@ export const FlintDialog = createComponent({
     elementClass: FlintDialogElement,
     react: React,
     events: {
-        onFlintDialogClose: 'flint-dialog-close' as EventName<CustomEvent<FlintDialogCloseDetail>>,
+        onFlintDialogClose: FlintDialogEvents.CLOSE as EventName<CustomEvent<FlintDialogCloseDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintDialogProps & React.RefAttributes<FlintDialogElement>>;

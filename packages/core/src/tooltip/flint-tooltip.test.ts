@@ -60,6 +60,8 @@ describe('flint-tooltip', () => {
 
         container.dispatchEvent(new MouseEvent('mouseleave', { bubbles: true }));
         await el.updateComplete;
+        await new Promise(r => setTimeout(r, 0));
+        await el.updateComplete;
         expect(popup.classList.contains('visible')).toBe(false);
     });
 
@@ -76,6 +78,8 @@ describe('flint-tooltip', () => {
         expect(popup.classList.contains('visible')).toBe(true);
 
         container.dispatchEvent(new Event('focusout', { bubbles: true }));
+        await el.updateComplete;
+        await new Promise(r => setTimeout(r, 0));
         await el.updateComplete;
         expect(popup.classList.contains('visible')).toBe(false);
     });
@@ -226,6 +230,8 @@ describe('flint-tooltip', () => {
         expect(popup.classList.contains('visible')).toBe(true);
 
         container.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+        await el.updateComplete;
+        await new Promise(r => setTimeout(r, 0));
         await el.updateComplete;
         expect(popup.classList.contains('visible')).toBe(false);
     });
@@ -850,6 +856,8 @@ describe('flint-tooltip', () => {
         // Hide
         container.dispatchEvent(new MouseEvent('mouseleave', { bubbles: true }));
         await el.updateComplete;
+        await new Promise(r => setTimeout(r, 0));
+        await el.updateComplete;
 
         const popup = el.shadowRoot!.querySelector('.tooltip-popup') as HTMLElement;
         expect(popup.classList.contains('visible')).toBe(false);
@@ -867,6 +875,8 @@ describe('flint-tooltip', () => {
 
         // Escape
         container.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+        await el.updateComplete;
+        await new Promise(r => setTimeout(r, 0));
         await el.updateComplete;
 
         const popup = el.shadowRoot!.querySelector('.tooltip-popup') as HTMLElement;

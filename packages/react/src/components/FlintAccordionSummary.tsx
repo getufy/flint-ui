@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintAccordionSummary as FlintAccordionSummaryElement } from '@getufy/flint-ui/accordion/flint-accordion';
+import { FlintAccordionSummaryEvents } from '../events/flint-accordion-summary.js';
 
 /**
  * Accordion Summary: the wrapper for the Accordion header.
@@ -21,6 +22,6 @@ export const FlintAccordionSummary = createComponent({
     elementClass: FlintAccordionSummaryElement,
     react: React,
     events: {
-        onFlintAccordionToggle: 'flint-accordion-toggle' as EventName<CustomEvent>,
+        onFlintAccordionToggle: FlintAccordionSummaryEvents.ACCORDION_TOGGLE as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintAccordionSummaryProps & React.RefAttributes<FlintAccordionSummaryElement>>;

@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintStep as FlintStepElement } from '@getufy/flint-ui/stepper/flint-stepper';
+import { FlintStepEvents } from '../events/flint-step.js';
 
 export interface FlintStepClickDetail {
     step: number;
@@ -50,6 +51,6 @@ export const FlintStep = createComponent({
     elementClass: FlintStepElement,
     react: React,
     events: {
-        onFlintStepClick: 'flint-step-click' as EventName<CustomEvent<FlintStepClickDetail>>,
+        onFlintStepClick: FlintStepEvents.CLICK as EventName<CustomEvent<FlintStepClickDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintStepProps & React.RefAttributes<FlintStepElement>>;

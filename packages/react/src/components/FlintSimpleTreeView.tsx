@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintSimpleTreeView as FlintSimpleTreeViewElement } from '@getufy/flint-ui/tree-view/flint-simple-tree-view';
+import { FlintSimpleTreeViewEvents } from '../events/flint-simple-tree-view.js';
 
 /**
  * A simple tree-view container that manages keyboard navigation, focus,
@@ -35,7 +36,7 @@ export const FlintSimpleTreeView = createComponent({
     elementClass: FlintSimpleTreeViewElement,
     react: React,
     events: {
-        onFlintTreeViewExpandedItemsChange: 'flint-tree-view-expanded-items-change' as EventName<CustomEvent>,
-        onFlintTreeViewItemClick: 'flint-tree-view-item-click' as EventName<CustomEvent>,
+        onFlintTreeViewExpandedItemsChange: FlintSimpleTreeViewEvents.TREE_VIEW_EXPANDED_ITEMS_CHANGE as EventName<CustomEvent>,
+        onFlintTreeViewItemClick: FlintSimpleTreeViewEvents.TREE_VIEW_ITEM_CLICK as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintSimpleTreeViewProps & React.RefAttributes<FlintSimpleTreeViewElement>>;

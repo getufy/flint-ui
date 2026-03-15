@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintImageComparer as FlintImageComparerElement } from '@getufy/flint-ui/image-comparer/flint-image-comparer';
+import { FlintImageComparerEvents } from '../events/flint-image-comparer.js';
 
 export interface FlintImageComparerChangeDetail {
     position: number;
@@ -30,6 +31,6 @@ export const FlintImageComparer = createComponent({
     elementClass: FlintImageComparerElement,
     react: React,
     events: {
-        onFlintImageComparerChange: 'flint-image-comparer-change' as EventName<CustomEvent<FlintImageComparerChangeDetail>>,
+        onFlintImageComparerChange: FlintImageComparerEvents.CHANGE as EventName<CustomEvent<FlintImageComparerChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintImageComparerProps & React.RefAttributes<FlintImageComparerElement>>;

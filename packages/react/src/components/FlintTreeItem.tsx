@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintTreeItem as FlintTreeItemElement } from '@getufy/flint-ui/tree-view/flint-tree-item';
+import { FlintTreeItemEvents } from '../events/flint-tree-item.js';
 
 /**
  * A single item inside a `flint-simple-tree-view` or `flint-rich-tree-view`.
@@ -37,7 +38,7 @@ export const FlintTreeItem = createComponent({
     elementClass: FlintTreeItemElement,
     react: React,
     events: {
-        onFlintTreeItemToggle: 'flint-tree-item-toggle' as EventName<CustomEvent>,
-        onFlintTreeItemClick: 'flint-tree-item-click' as EventName<CustomEvent>,
+        onFlintTreeItemToggle: FlintTreeItemEvents.TOGGLE as EventName<CustomEvent>,
+        onFlintTreeItemClick: FlintTreeItemEvents.CLICK as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintTreeItemProps & React.RefAttributes<FlintTreeItemElement>>;

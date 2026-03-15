@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintMenubarCheckboxItem as FlintMenubarCheckboxItemElement } from '@getufy/flint-ui/menubar/flint-menubar';
+import { FlintMenubarCheckboxItemEvents } from '../events/flint-menubar-checkbox-item.js';
 
 export interface FlintMenubarCheckboxChangeDetail {
     checked: boolean, value: string;
@@ -30,6 +31,6 @@ export const FlintMenubarCheckboxItem = createComponent({
     elementClass: FlintMenubarCheckboxItemElement,
     react: React,
     events: {
-        onFlintMenubarCheckboxChange: 'flint-menubar-checkbox-change' as EventName<CustomEvent<FlintMenubarCheckboxChangeDetail>>,
+        onFlintMenubarCheckboxChange: FlintMenubarCheckboxItemEvents.MENUBAR_CHECKBOX_CHANGE as EventName<CustomEvent<FlintMenubarCheckboxChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintMenubarCheckboxItemProps & React.RefAttributes<FlintMenubarCheckboxItemElement>>;

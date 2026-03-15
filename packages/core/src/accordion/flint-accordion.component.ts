@@ -86,7 +86,7 @@ export class FlintAccordion extends FlintElement {
 
     render() {
         return html`
-            <div class="accordion-container" role="region" aria-labelledby=${this._uid + '-summary'}>
+            <div class="accordion-container" part="base" role="region" aria-labelledby=${this._uid + '-summary'}>
                 <slot></slot>
             </div>
         `;
@@ -143,10 +143,10 @@ export class FlintAccordionSummary extends FlintElement {
 
     render() {
         return html`
-            <div class="content">
+            <div class="content" part="content">
                 <slot></slot>
             </div>
-            <div class="expand-icon">
+            <div class="expand-icon" part="expand-icon">
                 <slot name="expandIcon">
                     <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="6 9 12 15 18 9"></polyline>
@@ -167,8 +167,8 @@ export class FlintAccordionDetails extends FlintElement {
 
     render() {
         return html`
-            <div class="details-inner">
-                <div class="content">
+            <div class="details-inner" part="base">
+                <div class="content" part="content">
                     <slot></slot>
                 </div>
             </div>

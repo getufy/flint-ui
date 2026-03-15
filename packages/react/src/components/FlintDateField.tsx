@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintDateField as FlintDateFieldElement } from '@getufy/flint-ui/date-field/flint-date-field';
+import { FlintDateFieldEvents } from '../events/flint-date-field.js';
 
 export interface FlintDateFieldChangeDetail {
     value: string;
@@ -47,7 +48,7 @@ export const FlintDateField = createComponent({
     elementClass: FlintDateFieldElement,
     react: React,
     events: {
-        onFlintDateFieldClear: 'flint-date-field-clear' as EventName<CustomEvent>,
-        onFlintDateFieldChange: 'flint-date-field-change' as EventName<CustomEvent<FlintDateFieldChangeDetail>>,
+        onFlintDateFieldClear: FlintDateFieldEvents.CLEAR as EventName<CustomEvent>,
+        onFlintDateFieldChange: FlintDateFieldEvents.CHANGE as EventName<CustomEvent<FlintDateFieldChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintDateFieldProps & React.RefAttributes<FlintDateFieldElement>>;

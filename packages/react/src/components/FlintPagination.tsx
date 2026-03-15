@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintPagination as FlintPaginationElement } from '@getufy/flint-ui/pagination/flint-pagination';
+import { FlintPaginationEvents } from '../events/flint-pagination.js';
 
 /**
  * Pagination component enabling the user to select a specific page from
@@ -55,6 +56,6 @@ export const FlintPagination = createComponent({
     elementClass: FlintPaginationElement,
     react: React,
     events: {
-        onFlintPaginationChange: 'flint-pagination-change' as EventName<CustomEvent>,
+        onFlintPaginationChange: FlintPaginationEvents.CHANGE as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintPaginationProps & React.RefAttributes<FlintPaginationElement>>;

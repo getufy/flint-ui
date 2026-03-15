@@ -150,6 +150,7 @@ export class FlintRadioGroup extends FormAssociated(FlintElement) {
         return html`
             <div
                 class="group-container"
+                part="base"
                 role="radiogroup"
                 aria-label=${ifDefined(this.label || undefined)}
                 aria-disabled=${ifDefined(this.disabled ? 'true' : undefined)}
@@ -199,7 +200,7 @@ export class FlintRadio extends FlintElement {
 
     render() {
         return html`
-            <label class=${classMap({ wrapper: true, disabled: this.disabled })}>
+            <label class=${classMap({ wrapper: true, disabled: this.disabled })} part="base">
                 <input
                     type="radio"
                     .name=${this.name}
@@ -209,8 +210,8 @@ export class FlintRadio extends FlintElement {
                     ?required=${this.required}
                     @change=${this._handleChange}
                 >
-                <div class=${classMap({ 'radio-circle': true, checked: this.checked })}></div>
-                <span class="label">
+                <div class=${classMap({ 'radio-circle': true, checked: this.checked })} part="control"></div>
+                <span class="label" part="label">
                     ${this.label ? this.label : html`<slot></slot>`}
                 </span>
             </label>

@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintRadio as FlintRadioElement } from '@getufy/flint-ui/radio/flint-radio';
+import { FlintRadioEvents } from '../events/flint-radio.js';
 
 /**
  * Radio: a single radio button within a radio group.
@@ -32,6 +33,6 @@ export const FlintRadio = createComponent({
     elementClass: FlintRadioElement,
     react: React,
     events: {
-        onFlintRadioSelect: 'flint-radio-select' as EventName<CustomEvent>,
+        onFlintRadioSelect: FlintRadioEvents.SELECT as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintRadioProps & React.RefAttributes<FlintRadioElement>>;

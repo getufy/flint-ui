@@ -39,6 +39,23 @@ const translation: Translation = {
   lastPage: 'Last page',
   previousPage: 'Previous page',
   nextPage: 'Next page',
+  pageLabel: (page: number) => `Page ${page}`,
+
+  // Actions
+  cancel: 'Cancel',
+  ok: 'OK',
+
+  // Command menu
+  typeCommandOrSearch: 'Type a command or search...',
+  searchCommands: 'Search commands',
+  noResultsFound: 'No results found',
+  commandMenu: 'Command menu',
+  commandResults: 'Command results',
+
+  // Date picker
+  selectDate: 'Select Date',
+  selectDateRange: 'Select Date Range',
+  openDatePicker: 'Open date picker',
 };
 
 export default translation;

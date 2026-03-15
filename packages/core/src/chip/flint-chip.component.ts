@@ -92,6 +92,7 @@ export class FlintChip extends FlintElement {
         return html`
       <div
         class=${classMap(classes)}
+        part="base"
         @click=${this._handleClick}
         @keydown=${this._handleKeyDown}
         role=${ifDefined(this.clickable ? 'button' : undefined)}

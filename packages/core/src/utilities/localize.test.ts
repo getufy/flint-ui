@@ -50,6 +50,17 @@ const es: Translation = {
   lastPage: 'Ultima pagina',
   previousPage: 'Pagina anterior',
   nextPage: 'Pagina siguiente',
+  pageLabel: (page: number) => `Pagina ${page}`,
+  cancel: 'Cancelar',
+  ok: 'Aceptar',
+  typeCommandOrSearch: 'Escribe un comando o busca...',
+  searchCommands: 'Buscar comandos',
+  noResultsFound: 'No se encontraron resultados',
+  commandMenu: 'Menu de comandos',
+  commandResults: 'Resultados de comandos',
+  selectDate: 'Seleccionar fecha',
+  selectDateRange: 'Seleccionar rango de fechas',
+  openDatePicker: 'Abrir selector de fecha',
 };
 
 // ── Helpers ──────────────────────────────────────────────────────────────────

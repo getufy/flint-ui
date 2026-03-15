@@ -2,6 +2,8 @@ import { unsafeCSS, html, PropertyValues } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import { getAnimation, animateTo, stopAnimations, resolveKeyframes } from '../utilities/animation-registry.js';
+import '../utilities/animation-presets.js';
 import uiSnackbarStyles from './flint-snackbar.css?inline';
 
 /**
@@ -68,6 +70,7 @@ export class FlintSnackbar extends FlintElement {
 
     private _firstUpdate = true;
 
+    @state() private _visuallyOpen = false;
     @state() private _hasAction = false;
 
     private _timer: ReturnType<typeof setTimeout> | null = null;
@@ -81,7 +84,10 @@ export class FlintSnackbar extends FlintElement {
                 this.open = true;
             }
         }
-        void changed;
+        // Batch _visuallyOpen into the current render cycle when opening
+        if (changed.has('open') && this.open) {
+            this._visuallyOpen = true;
+        }
     }
 
     updated(changed: PropertyValues) {
@@ -89,9 +95,13 @@ export class FlintSnackbar extends FlintElement {
             if (this.open) {
                 this._remainingTime = this.autoHideDuration;
                 this._startTimer(this._remainingTime);
+                void this._runOpenAnimation();
                 this.dispatchEvent(new CustomEvent('flint-snackbar-open', { bubbles: true, composed: true, detail: { open: true } }));
             } else {
                 this._clearTimer();
+                void this._runCloseAnimation().then(() => {
+                    this._visuallyOpen = false;
+                });
                 this.dispatchEvent(new CustomEvent('flint-snackbar-close', { bubbles: true, composed: true, detail: { open: false } }));
             }
         }
@@ -115,6 +125,26 @@ export class FlintSnackbar extends FlintElement {
             clearTimeout(this._timer);
             this._timer = null;
         }
+    }
+
+    private async _runOpenAnimation() {
+        const snackbar = this.shadowRoot?.querySelector<HTMLElement>('.snackbar');
+        if (!snackbar) return;
+        const animation = getAnimation(this, 'snackbar.show');
+        if (!animation) return;
+        await stopAnimations(snackbar);
+        const keyframes = resolveKeyframes(this, animation);
+        await animateTo(snackbar, keyframes, animation.options);
+    }
+
+    private async _runCloseAnimation() {
+        const snackbar = this.shadowRoot?.querySelector<HTMLElement>('.snackbar');
+        if (!snackbar) return;
+        const animation = getAnimation(this, 'snackbar.hide');
+        if (!animation) return;
+        await stopAnimations(snackbar);
+        const keyframes = resolveKeyframes(this, animation);
+        await animateTo(snackbar, keyframes, animation.options);
     }
 
     private _handleMouseEnter() {
@@ -141,7 +171,7 @@ export class FlintSnackbar extends FlintElement {
     }
 
     render() {
-        const classes = { snackbar: true, open: this.open };
+        const classes = { snackbar: true, open: this._visuallyOpen };
         const actionClasses = { action: true, hidden: !this._hasAction };
 
         return html`

@@ -87,6 +87,7 @@ export class FlintMenuItem extends FlintElement {
         return html`
             <div
                 class="item"
+                part="base"
                 role="menuitem"
                 aria-disabled=${this.disabled ? 'true' : 'false'}
                 tabindex=${this.disabled ? -1 : 0}
@@ -101,7 +102,7 @@ export class FlintMenuItem extends FlintElement {
                 <span class="icon-wrap" ?hidden=${!this._hasIcon}>
                     <slot name="icon" @slotchange=${this._onIconSlotChange}></slot>
                 </span>
-                <span class="label"><slot></slot></span>
+                <span class="label" part="label"><slot></slot></span>
                 <span class="end-icon-wrap" ?hidden=${!this._hasEndIcon}>
                     <slot name="end-icon" @slotchange=${this._onEndIconSlotChange}></slot>
                 </span>
@@ -138,8 +139,8 @@ export class FlintMenuGroup extends FlintElement {
 
     render() {
         return html`
-            <div role="group" aria-label=${ifDefined(this.label || undefined)}>
-                ${this.label ? html`<div class="group-label">${this.label}</div>` : ''}
+            <div role="group" part="base" aria-label=${ifDefined(this.label || undefined)}>
+                ${this.label ? html`<div class="group-label" part="label">${this.label}</div>` : ''}
                 <slot></slot>
             </div>
         `;
@@ -318,9 +319,10 @@ export class FlintMenu extends FlintElement {
         const backdropClasses = classMap({ backdrop: true, open: this.open });
 
         return html`
-            <div class=${backdropClasses} @click=${this._close} aria-hidden="true"></div>
+            <div class=${backdropClasses} part="backdrop" @click=${this._close} aria-hidden="true"></div>
             <div
                 class=${paperClasses}
+                part="base"
                 role="menu"
                 tabindex=${this.scrollable ? '0' : nothing}
                 aria-label=${ifDefined(this.label)}

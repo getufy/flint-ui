@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintSnackbar as FlintSnackbarElement } from '@getufy/flint-ui/snackbar/flint-snackbar';
+import { FlintSnackbarEvents } from '../events/flint-snackbar.js';
 
 export interface FlintSnackbarOpenDetail {
     open: true;
@@ -49,7 +50,7 @@ export const FlintSnackbar = createComponent({
     elementClass: FlintSnackbarElement,
     react: React,
     events: {
-        onFlintSnackbarOpen: 'flint-snackbar-open' as EventName<CustomEvent<FlintSnackbarOpenDetail>>,
-        onFlintSnackbarClose: 'flint-snackbar-close' as EventName<CustomEvent<FlintSnackbarCloseDetail>>,
+        onFlintSnackbarOpen: FlintSnackbarEvents.OPEN as EventName<CustomEvent<FlintSnackbarOpenDetail>>,
+        onFlintSnackbarClose: FlintSnackbarEvents.CLOSE as EventName<CustomEvent<FlintSnackbarCloseDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintSnackbarProps & React.RefAttributes<FlintSnackbarElement>>;

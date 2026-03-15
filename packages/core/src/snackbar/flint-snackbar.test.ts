@@ -105,6 +105,8 @@ describe('flint-snackbar', () => {
         const el = await make({ open: true });
         el.open = false;
         await el.updateComplete;
+        await vi.advanceTimersByTimeAsync(0);
+        await el.updateComplete;
         expect(snackbarDiv(el).classList.contains('open')).toBe(false);
     });
 

@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintBox as FlintBoxElement } from '@getufy/flint-ui/box/flint-box';
+import { FlintBoxEvents } from '../events/flint-box.js';
 
 export interface FlintBoxProps extends Omit<React.HTMLAttributes<FlintBoxElement>, 'color'> {
     /** The component tag to render */
@@ -77,6 +78,6 @@ export const FlintBox = createComponent({
     elementClass: FlintBoxElement,
     react: React,
     events: {
-        onFlintBoxWarning: 'flint-box-warning' as EventName<CustomEvent>,
+        onFlintBoxWarning: FlintBoxEvents.WARNING as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintBoxProps & React.RefAttributes<FlintBoxElement>>;

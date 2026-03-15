@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintStaticTimePicker as FlintStaticTimePickerElement } from '@getufy/flint-ui/time-picker/flint-time-picker';
+import { FlintStaticTimePickerEvents } from '../events/flint-static-time-picker.js';
 
 export interface FlintStaticTimePickerChangeDetail {
     value: string;
@@ -28,6 +29,6 @@ export const FlintStaticTimePicker = createComponent({
     elementClass: FlintStaticTimePickerElement,
     react: React,
     events: {
-        onFlintStaticTimePickerChange: 'flint-static-time-picker-change' as EventName<CustomEvent<FlintStaticTimePickerChangeDetail>>,
+        onFlintStaticTimePickerChange: FlintStaticTimePickerEvents.CHANGE as EventName<CustomEvent<FlintStaticTimePickerChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintStaticTimePickerProps & React.RefAttributes<FlintStaticTimePickerElement>>;

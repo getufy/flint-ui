@@ -30,6 +30,7 @@ export class FlintHoverCardTrigger extends FlintElement {
     render() {
         return html`
             <div
+                part="base"
                 @mouseenter=${this._handleMouseEnter}
                 @mouseleave=${this._handleMouseLeave}
                 @focusin=${this._handleFocusIn}
@@ -235,6 +236,7 @@ export class FlintHoverCardContent extends FlintElement {
         return html`
             <div
                 class="card"
+                part="content"
                 @mouseenter=${this._handleMouseEnter}
                 @mouseleave=${this._handleMouseLeave}
             >

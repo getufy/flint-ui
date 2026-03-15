@@ -259,6 +259,8 @@ describe('flint-select — dropdown open/close', () => {
     await open(el);
     getTrigger(el).click();
     await el.updateComplete;
+    await new Promise(r => setTimeout(r, 0));
+    await el.updateComplete;
     expect(getDropdown(el).classList.contains('open')).toBe(false);
   });
 
@@ -282,6 +284,8 @@ describe('flint-select — dropdown open/close', () => {
     document.body.appendChild(outside);
     outside.click();
     await el.updateComplete;
+    await new Promise(r => setTimeout(r, 0));
+    await el.updateComplete;
 
     expect(getDropdown(el).classList.contains('open')).toBe(false);
     outside.remove();
@@ -295,6 +299,8 @@ describe('flint-select — dropdown open/close', () => {
       target: document.body,
     } as unknown as MouseEvent;
     (el as unknown as { _handleOutsideClick: (e: MouseEvent) => void })._handleOutsideClick(fakeEvent);
+    await el.updateComplete;
+    await new Promise(r => setTimeout(r, 0));
     await el.updateComplete;
     expect(getDropdown(el).classList.contains('open')).toBe(false);
   });
@@ -326,6 +332,8 @@ describe('flint-select — dropdown open/close', () => {
     const el = await fixture<FlintSelect>(html`<flint-select .options=${opts}></flint-select>`);
     await open(el);
     getOptions(el)[0].click();
+    await el.updateComplete;
+    await new Promise(r => setTimeout(r, 0));
     await el.updateComplete;
     expect(getDropdown(el).classList.contains('open')).toBe(false);
   });
@@ -500,6 +508,8 @@ describe('flint-select — keyboard navigation', () => {
     await open(el);
     pressKey(el, 'Escape');
     await el.updateComplete;
+    await new Promise(r => setTimeout(r, 0));
+    await el.updateComplete;
     expect(getDropdown(el).classList.contains('open')).toBe(false);
   });
 
@@ -514,6 +524,8 @@ describe('flint-select — keyboard navigation', () => {
     const el = await fixture<FlintSelect>(html`<flint-select .options=${opts}></flint-select>`);
     await open(el);
     pressKey(el, 'Tab');
+    await el.updateComplete;
+    await new Promise(r => setTimeout(r, 0));
     await el.updateComplete;
     expect(getDropdown(el).classList.contains('open')).toBe(false);
   });
@@ -916,6 +928,8 @@ describe('flint-select — hoist', () => {
     await new Promise(r => setTimeout(r, 0));
     getTrigger(el).click();
     await el.updateComplete;
+    await new Promise(r => setTimeout(r, 0));
+    await el.updateComplete;
     const dropdown = getDropdown(el);
     expect(dropdown.style.position).toBe('');
     expect(dropdown.style.left).toBe('');
@@ -927,6 +941,8 @@ describe('flint-select — hoist', () => {
     await new Promise(r => setTimeout(r, 0));
     pressKey(el, 'Escape');
     await el.updateComplete;
+    await new Promise(r => setTimeout(r, 0));
+    await el.updateComplete;
     expect(getDropdown(el).style.position).toBe('');
   });
 
@@ -935,6 +951,8 @@ describe('flint-select — hoist', () => {
     await open(el);
     await new Promise(r => setTimeout(r, 0));
     pressKey(el, 'Tab');
+    await el.updateComplete;
+    await new Promise(r => setTimeout(r, 0));
     await el.updateComplete;
     expect(getDropdown(el).style.position).toBe('');
   });
@@ -947,6 +965,8 @@ describe('flint-select — hoist', () => {
     document.body.appendChild(outside);
     outside.click();
     await el.updateComplete;
+    await new Promise(r => setTimeout(r, 0));
+    await el.updateComplete;
     expect(getDropdown(el).style.position).toBe('');
     outside.remove();
   });
@@ -956,6 +976,8 @@ describe('flint-select — hoist', () => {
     await open(el);
     await new Promise(r => setTimeout(r, 0));
     getOptions(el)[0].click();
+    await el.updateComplete;
+    await new Promise(r => setTimeout(r, 0));
     await el.updateComplete;
     expect(getDropdown(el).style.position).toBe('');
   });

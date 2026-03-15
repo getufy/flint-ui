@@ -37,6 +37,7 @@ export class FlintCollapsibleTrigger extends FlintElement {
         return html`
             <button
                 class="trigger"
+                part="base"
                 aria-expanded=${this.expanded ? 'true' : 'false'}
                 ?disabled=${this.disabled}
                 @click=${this._handleClick}
@@ -78,8 +79,8 @@ export class FlintCollapsibleContent extends FlintElement {
 
     render() {
         return html`
-            <div class="panel" aria-hidden=${!this.open}>
-                <div class="panel-inner">
+            <div class="panel" part="base" aria-hidden=${!this.open}>
+                <div class="panel-inner" part="content">
                     <slot></slot>
                 </div>
             </div>

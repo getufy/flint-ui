@@ -1,7 +1,9 @@
 import { unsafeCSS, html, PropertyValues } from 'lit';
-import { property } from 'lit/decorators.js';
+import { property, state } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
 import { FlintBackdrop } from '../backdrop/flint-backdrop.js';
+import { getAnimation, animateTo, stopAnimations, resolveKeyframes } from '../utilities/animation-registry.js';
+import '../utilities/animation-presets.js';
 import uiDrawerStyles from './flint-drawer.css?inline';
 
 /**
@@ -33,6 +35,8 @@ export class FlintDrawer extends FlintElement {
     /** Accessible label for the drawer panel (used as aria-label on the panel). */
     @property({ type: String }) label = 'Drawer';
 
+    @state() private _visuallyOpen = false;
+
     private _firstUpdate = true;
 
     /** Element that had focus before the drawer opened; restored on close. */
@@ -54,7 +58,10 @@ export class FlintDrawer extends FlintElement {
                 this.open = true;
             }
         }
-        void changed;
+        // Batch _visuallyOpen into the current render cycle when opening
+        if (changed.has('open') && this.open) {
+            this._visuallyOpen = true;
+        }
     }
 
     connectedCallback() {
@@ -68,18 +75,82 @@ export class FlintDrawer extends FlintElement {
 
     updated(changed: PropertyValues) {
         if (!changed.has('open')) return;
-        // Focus management only for temporary (overlay dialog behaviour)
-        if (this.variant !== 'temporary') return;
 
         if (this.open) {
-            this._lastFocused = document.activeElement as HTMLElement | null;
-            // Move focus into the drawer so keyboard/AT users are oriented
-            this.shadowRoot?.querySelector<HTMLElement>('.paper')?.focus();
+            // Focus management only for temporary (overlay dialog behaviour)
+            if (this.variant === 'temporary') {
+                this._lastFocused = document.activeElement as HTMLElement | null;
+            }
+            void this._runOpenAnimation().then(() => {
+                if (this.variant === 'temporary') {
+                    this.shadowRoot?.querySelector<HTMLElement>('.paper')?.focus();
+                }
+            });
         } else {
-            // Return focus to the element that triggered the open
-            this._lastFocused?.focus();
-            this._lastFocused = null;
+            void this._runCloseAnimation().then(() => {
+                this._visuallyOpen = false;
+                if (this.variant === 'temporary') {
+                    this._lastFocused?.focus();
+                    this._lastFocused = null;
+                }
+            });
         }
+    }
+
+    /** Resolve the animation name suffix based on the anchor direction. */
+    private _getAnimationSuffix(): string {
+        switch (this.anchor) {
+            case 'right': return '.right';
+            case 'top': return '.top';
+            case 'bottom': return '.bottom';
+            default: return '';
+        }
+    }
+
+    private async _runOpenAnimation() {
+        const paper = this.shadowRoot?.querySelector<HTMLElement>('.paper');
+        const backdrop = this.shadowRoot?.querySelector<HTMLElement>('.backdrop');
+        const suffix = this._getAnimationSuffix();
+        const promises: Promise<unknown>[] = [];
+
+        const panelAnim = getAnimation(this, `drawer.show${suffix}`);
+        if (panelAnim && paper) {
+            await stopAnimations(paper);
+            const keyframes = resolveKeyframes(this, panelAnim);
+            promises.push(animateTo(paper, keyframes, panelAnim.options));
+        }
+
+        const overlayAnim = getAnimation(this, 'drawer.overlay.show');
+        if (overlayAnim && backdrop) {
+            await stopAnimations(backdrop);
+            const keyframes = resolveKeyframes(this, overlayAnim);
+            promises.push(animateTo(backdrop, keyframes, overlayAnim.options));
+        }
+
+        await Promise.all(promises);
+    }
+
+    private async _runCloseAnimation() {
+        const paper = this.shadowRoot?.querySelector<HTMLElement>('.paper');
+        const backdrop = this.shadowRoot?.querySelector<HTMLElement>('.backdrop');
+        const suffix = this._getAnimationSuffix();
+        const promises: Promise<unknown>[] = [];
+
+        const panelAnim = getAnimation(this, `drawer.hide${suffix}`);
+        if (panelAnim && paper) {
+            await stopAnimations(paper);
+            const keyframes = resolveKeyframes(this, panelAnim);
+            promises.push(animateTo(paper, keyframes, panelAnim.options));
+        }
+
+        const overlayAnim = getAnimation(this, 'drawer.overlay.hide');
+        if (overlayAnim && backdrop) {
+            await stopAnimations(backdrop);
+            const keyframes = resolveKeyframes(this, overlayAnim);
+            promises.push(animateTo(backdrop, keyframes, overlayAnim.options));
+        }
+
+        await Promise.all(promises);
     }
 
     private _close() {
@@ -103,7 +174,8 @@ export class FlintDrawer extends FlintElement {
         return html`
             ${isTemporary ? html`
                 <div
-                    class="backdrop ${this.open ? 'open' : ''}"
+                    class="backdrop ${this._visuallyOpen ? 'open' : ''}"
+                    part="backdrop"
                     @click=${this._close}
                     role="presentation"
                     aria-hidden="true"
@@ -117,7 +189,8 @@ export class FlintDrawer extends FlintElement {
             ` : ''}
 
             <div
-                class="paper ${this.open ? 'open' : ''}"
+                class="paper ${this._visuallyOpen ? 'open' : ''}"
+                part="panel"
                 role=${isTemporary ? 'dialog' : 'complementary'}
                 aria-modal=${isTemporary ? String(this.open) : 'false'}
                 aria-label=${this.label}

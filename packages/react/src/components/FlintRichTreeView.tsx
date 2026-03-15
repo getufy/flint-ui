@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintRichTreeView as FlintRichTreeViewElement } from '@getufy/flint-ui/tree-view/flint-rich-tree-view';
+import { FlintRichTreeViewEvents } from '../events/flint-rich-tree-view.js';
 
 /**
  * A data-driven tree view that renders its structure from an `items` array.
@@ -58,9 +59,9 @@ export const FlintRichTreeView = createComponent({
     elementClass: FlintRichTreeViewElement,
     react: React,
     events: {
-        onFlintTreeViewError: 'flint-tree-view-error' as EventName<CustomEvent>,
-        onFlintTreeViewExpandedItemsChange: 'flint-tree-view-expanded-items-change' as EventName<CustomEvent>,
-        onFlintTreeViewItemPositionChange: 'flint-tree-view-item-position-change' as EventName<CustomEvent>,
-        onFlintTreeViewItemClick: 'flint-tree-view-item-click' as EventName<CustomEvent>,
+        onFlintTreeViewError: FlintRichTreeViewEvents.TREE_VIEW_ERROR as EventName<CustomEvent>,
+        onFlintTreeViewExpandedItemsChange: FlintRichTreeViewEvents.TREE_VIEW_EXPANDED_ITEMS_CHANGE as EventName<CustomEvent>,
+        onFlintTreeViewItemPositionChange: FlintRichTreeViewEvents.TREE_VIEW_ITEM_POSITION_CHANGE as EventName<CustomEvent>,
+        onFlintTreeViewItemClick: FlintRichTreeViewEvents.TREE_VIEW_ITEM_CLICK as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintRichTreeViewProps & React.RefAttributes<FlintRichTreeViewElement>>;

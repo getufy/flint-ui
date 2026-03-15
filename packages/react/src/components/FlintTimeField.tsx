@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintTimeField as FlintTimeFieldElement } from '@getufy/flint-ui/time-picker/flint-time-picker';
+import { FlintTimeFieldEvents } from '../events/flint-time-field.js';
 
 export interface FlintTimeFieldChangeDetail {
     value: string;
@@ -42,7 +43,7 @@ export const FlintTimeField = createComponent({
     elementClass: FlintTimeFieldElement,
     react: React,
     events: {
-        onFlintTimePickerClear: 'flint-time-picker-clear' as EventName<CustomEvent>,
-        onFlintTimeFieldChange: 'flint-time-field-change' as EventName<CustomEvent<FlintTimeFieldChangeDetail>>,
+        onFlintTimePickerClear: FlintTimeFieldEvents.TIME_PICKER_CLEAR as EventName<CustomEvent>,
+        onFlintTimeFieldChange: FlintTimeFieldEvents.CHANGE as EventName<CustomEvent<FlintTimeFieldChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintTimeFieldProps & React.RefAttributes<FlintTimeFieldElement>>;

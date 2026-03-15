@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintMenu as FlintMenuElement } from '@getufy/flint-ui/menu/flint-menu';
+import { FlintMenuEvents } from '../events/flint-menu.js';
 
 export interface FlintMenuCloseDetail {
     open: false;
@@ -35,6 +36,6 @@ export const FlintMenu = createComponent({
     elementClass: FlintMenuElement,
     react: React,
     events: {
-        onFlintMenuClose: 'flint-menu-close' as EventName<CustomEvent<FlintMenuCloseDetail>>,
+        onFlintMenuClose: FlintMenuEvents.CLOSE as EventName<CustomEvent<FlintMenuCloseDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintMenuProps & React.RefAttributes<FlintMenuElement>>;

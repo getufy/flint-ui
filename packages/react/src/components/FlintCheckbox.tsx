@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintCheckbox as FlintCheckboxElement } from '@getufy/flint-ui/checkbox/flint-checkbox';
+import { FlintCheckboxEvents } from '../events/flint-checkbox.js';
 
 /**
  * Checkbox: a form control for boolean selection.
@@ -38,6 +39,6 @@ export const FlintCheckbox = createComponent({
     elementClass: FlintCheckboxElement,
     react: React,
     events: {
-        onFlintCheckboxChange: 'flint-checkbox-change' as EventName<CustomEvent>,
+        onFlintCheckboxChange: FlintCheckboxEvents.CHANGE as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintCheckboxProps & React.RefAttributes<FlintCheckboxElement>>;

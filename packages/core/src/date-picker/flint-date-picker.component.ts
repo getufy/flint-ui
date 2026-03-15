@@ -4,6 +4,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { repeat } from 'lit/directives/repeat.js';
 import { FlintElement } from '../flint-element.js';
 import { FlintDialog, FlintDialogTitle, FlintDialogContent, FlintDialogActions } from '../dialog/flint-dialog.component.js';
+import { LocalizeController } from '../utilities/localize.js';
 import uiDatePickerCalendarStyles from './flint-date-picker-calendar.css?inline';
 import uiDatePickerStyles from './flint-date-picker.css?inline';
 
@@ -108,6 +109,8 @@ function buildMonthGrid(year: number, month: number, selected: string | null, mi
 export class FlintDatePickerCalendar extends FlintElement {
     static styles = unsafeCSS(uiDatePickerCalendarStyles);
 
+    private _localize = new LocalizeController(this);
+
     /** Currently selected value as ISO string (YYYY-MM-DD). */
     @property({ type: String }) value?: string;
 
@@ -169,13 +172,13 @@ export class FlintDatePickerCalendar extends FlintElement {
         const grid = buildMonthGrid(this._viewYear, this._viewMonth, this.value ?? null, this.min ?? null, this.max ?? null);
         return html`
       <div class="header">
-        <button class="nav-btn" @click=${this._prevMonth} aria-label="Previous month">‹</button>
+        <button class="nav-btn" @click=${this._prevMonth} aria-label=${this._localize.term('previousMonth')}>‹</button>
         <span class="header-label" @click=${() => this._mode = 'month'} role="button" tabindex="0"
           @keydown=${(e: KeyboardEvent) => e.key === 'Enter' && (this._mode = 'month')}
         >
           ${MONTHS[this._viewMonth]} ${this._viewYear}
         </span>
-        <button class="nav-btn" @click=${this._nextMonth} aria-label="Next month">›</button>
+        <button class="nav-btn" @click=${this._nextMonth} aria-label=${this._localize.term('nextMonth')}>›</button>
       </div>
       <div class="dow-row">${DAYS_SHORT.map(d => html`<span class="dow-cell">${d}</span>`)}</div>
       <div class="day-grid" role="grid" aria-label="Calendar">
@@ -257,6 +260,7 @@ export class FlintDatePickerCalendar extends FlintElement {
  */
 export class FlintDatePicker extends FlintElement {
     static styles = unsafeCSS(uiDatePickerStyles);
+    private _localize = new LocalizeController(this);
     static dependencies = {
         'flint-dialog': FlintDialog as unknown as typeof FlintElement,
         'flint-dialog-title': FlintDialogTitle as unknown as typeof FlintElement,
@@ -443,7 +447,7 @@ export class FlintDatePicker extends FlintElement {
         />
         <button
           class="calendar-icon-btn"
-          aria-label="Open date picker"
+          aria-label=${this._localize.term('openDatePicker')}
           aria-haspopup="true"
           tabindex=${this.disabled ? -1 : 0}
           @click=${this._openPicker}
@@ -492,7 +496,7 @@ export class FlintDatePicker extends FlintElement {
           @flint-dialog-close=${this._closePicker}
           style="--flint-dialog-width:320px"
         >
-          <flint-dialog-title>Select Date</flint-dialog-title>
+          <flint-dialog-title>${this._localize.term('selectDate')}</flint-dialog-title>
           <flint-dialog-content style="padding:0 12px 4px;">
             <flint-date-picker-calendar
               .value=${this._pendingValue || this.value}
@@ -503,8 +507,8 @@ export class FlintDatePicker extends FlintElement {
             ></flint-date-picker-calendar>
           </flint-dialog-content>
           <flint-dialog-actions>
-            <button class="action-btn cancel" @click=${this._handleMobileCancel}>Cancel</button>
-            <button class="action-btn ok" @click=${this._handleMobileOk}>OK</button>
+            <button class="action-btn cancel" @click=${this._handleMobileCancel}>${this._localize.term('cancel')}</button>
+            <button class="action-btn ok" @click=${this._handleMobileOk}>${this._localize.term('ok')}</button>
           </flint-dialog-actions>
         </flint-dialog>
       </div>

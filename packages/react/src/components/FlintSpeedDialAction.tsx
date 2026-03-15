@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintSpeedDialAction as FlintSpeedDialActionElement } from '@getufy/flint-ui/speed-dial/flint-speed-dial';
+import { FlintSpeedDialActionEvents } from '../events/flint-speed-dial-action.js';
 
 /**
  * A single action item inside a `flint-speed-dial`.
@@ -30,6 +31,6 @@ export const FlintSpeedDialAction = createComponent({
     elementClass: FlintSpeedDialActionElement,
     react: React,
     events: {
-        onFlintSpeedDialActionClick: 'flint-speed-dial-action-click' as EventName<CustomEvent>,
+        onFlintSpeedDialActionClick: FlintSpeedDialActionEvents.CLICK as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintSpeedDialActionProps & React.RefAttributes<FlintSpeedDialActionElement>>;

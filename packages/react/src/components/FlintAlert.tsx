@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintAlert as FlintAlertElement } from '@getufy/flint-ui/alert/flint-alert';
+import { FlintAlertEvents } from '../events/flint-alert.js';
 
 export interface FlintAlertCloseDetail {
     open: false, severity: string;
@@ -31,6 +32,6 @@ export const FlintAlert = createComponent({
     elementClass: FlintAlertElement,
     react: React,
     events: {
-        onFlintAlertClose: 'flint-alert-close' as EventName<CustomEvent<FlintAlertCloseDetail>>,
+        onFlintAlertClose: FlintAlertEvents.CLOSE as EventName<CustomEvent<FlintAlertCloseDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintAlertProps & React.RefAttributes<FlintAlertElement>>;

@@ -2,6 +2,8 @@ import { unsafeCSS, html, nothing } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import { getAnimation, animateTo, stopAnimations, resolveKeyframes } from '../utilities/animation-registry.js';
+import '../utilities/animation-presets.js';
 import uiTooltipStyles from './flint-tooltip.css?inline';
 
 type Placement = 'top' | 'bottom' | 'left' | 'right';
@@ -80,11 +82,13 @@ export class FlintTooltip extends FlintElement {
                 this._applyAutoFlip();
                 this._visible = true;
                 if (this.hoist) this._startHoist();
+                void this._runShowAnimation();
             }, this.openDelay);
         } else {
             this._applyAutoFlip();
             this._visible = true;
             if (this.hoist) this._startHoist();
+            void this._runShowAnimation();
         }
     }
 
@@ -97,20 +101,26 @@ export class FlintTooltip extends FlintElement {
             if (this._closeTimer !== null) return;
             this._closeTimer = setTimeout(() => {
                 this._closeTimer = null;
-                this._visible = false;
-                this._cleanupHoist();
+                void this._runHideAnimation().then(() => {
+                    this._visible = false;
+                    this._cleanupHoist();
+                });
             }, this.closeDelay);
         } else {
-            this._visible = false;
-            this._cleanupHoist();
+            void this._runHideAnimation().then(() => {
+                this._visible = false;
+                this._cleanupHoist();
+            });
         }
     }
 
     private _handleKeydown(e: KeyboardEvent): void {
         if (e.key === 'Escape' && this._visible) {
             this._clearTimers();
-            this._visible = false;
-            this._cleanupHoist();
+            void this._runHideAnimation().then(() => {
+                this._visible = false;
+                this._cleanupHoist();
+            });
         }
     }
 
@@ -178,6 +188,26 @@ export class FlintTooltip extends FlintElement {
         }
     }
 
+    private async _runShowAnimation() {
+        const popup = this.shadowRoot?.querySelector<HTMLElement>('.tooltip-popup');
+        if (!popup) return;
+        const animation = getAnimation(this, 'tooltip.show');
+        if (!animation) return;
+        await stopAnimations(popup);
+        const keyframes = resolveKeyframes(this, animation);
+        await animateTo(popup, keyframes, animation.options);
+    }
+
+    private async _runHideAnimation() {
+        const popup = this.shadowRoot?.querySelector<HTMLElement>('.tooltip-popup');
+        if (!popup) return;
+        const animation = getAnimation(this, 'tooltip.hide');
+        if (!animation) return;
+        await stopAnimations(popup);
+        const keyframes = resolveKeyframes(this, animation);
+        await animateTo(popup, keyframes, animation.options);
+    }
+
     /** Check if the tooltip fits within the viewport, flip if not. */
     private _applyAutoFlip(): void {
         const rect = this.getBoundingClientRect();
@@ -215,6 +245,7 @@ export class FlintTooltip extends FlintElement {
         return html`
       <div
         class="tooltip-container"
+        part="base"
         @mouseenter=${this._show}
         @mouseleave=${this._hide}
         @focusin=${this._show}
@@ -226,6 +257,7 @@ export class FlintTooltip extends FlintElement {
         </span>
         <div
           id=${this._tooltipId}
+          part="body"
           role="tooltip"
           aria-hidden=${this._visible ? 'false' : 'true'}
           class=${classMap({

@@ -4,6 +4,7 @@ import uiCarouselContentStyles from './flint-carousel-content.css?inline';
 import uiCarouselItemStyles from './flint-carousel-item.css?inline';
 import uiCarouselStyles from './flint-carousel.css?inline';
 import { FlintElement } from '../flint-element.js';
+import { LocalizeController } from '../utilities/localize.js';
 
 /* ── Shared nav-button styles ─────────────────────────────────────────────── */
 const navButtonStyles = css`
@@ -117,6 +118,8 @@ export class FlintCarouselPrevious extends FlintElement {
   /** Slide direction axis, inherited from the parent carousel. */
   @property({ reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
 
+  private _localize = new LocalizeController(this);
+
   private readonly _handleClick = () => {
     (this.closest('flint-carousel') as FlintCarousel | null)?.previous();
   };
@@ -132,7 +135,7 @@ export class FlintCarouselPrevious extends FlintElement {
         type="button"
         part="button"
         ?disabled=${this.disabled}
-        aria-label="Go to previous slide"
+        aria-label=${this._localize.term('previousSlide')}
         @click=${this._handleClick}
       >
         <slot>${icon}</slot>
@@ -157,6 +160,8 @@ export class FlintCarouselNext extends FlintElement {
   /** Slide direction axis, inherited from the parent carousel. */
   @property({ reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
 
+  private _localize = new LocalizeController(this);
+
   private readonly _handleClick = () => {
     (this.closest('flint-carousel') as FlintCarousel | null)?.next();
   };
@@ -172,7 +177,7 @@ export class FlintCarouselNext extends FlintElement {
         type="button"
         part="button"
         ?disabled=${this.disabled}
-        aria-label="Go to next slide"
+        aria-label=${this._localize.term('nextSlide')}
         @click=${this._handleClick}
       >
         <slot>${icon}</slot>

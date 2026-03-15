@@ -3,6 +3,7 @@ import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
 import { FormAssociated } from '../mixins/form-associated.js';
+import { FormControlController } from '../controllers/form-control.js';
 import uiSwitchStyles from './flint-switch.css?inline';
 
 let _uidCounter = 0;
@@ -37,6 +38,8 @@ export class FlintSwitch extends FormAssociated(FlintElement) {
     /** Accessible label for screen readers when no visible label is provided. */
     @property({ type: String, attribute: 'aria-label' }) override ariaLabel: string | null = null;
 
+    private _formControl = new FormControlController(this);
+
     private readonly _labelId: string;
 
     constructor() {
@@ -63,6 +66,7 @@ export class FlintSwitch extends FormAssociated(FlintElement) {
         if (changed.has('checked') || changed.has('required')) {
             this._initFormValidity(this.required, !this.checked, 'Please check this switch.');
         }
+        this._formControl.updateDataAttributes();
     }
 
     private _handleClick() {
@@ -78,9 +82,10 @@ export class FlintSwitch extends FormAssociated(FlintElement) {
     override render() {
         const hasLabel = Boolean(this.label);
         return html`
-      <div class="wrapper" @click=${this._handleClick}>
+      <div class="wrapper" part="base" @click=${this._handleClick}>
         <div
           class=${classMap({ switch: true, checked: this.checked, disabled: this.disabled })}
+          part="control"
           role="switch"
           aria-checked=${this.checked ? 'true' : 'false'}
           aria-disabled=${this.disabled ? 'true' : 'false'}
@@ -90,14 +95,14 @@ export class FlintSwitch extends FormAssociated(FlintElement) {
           .tabIndex=${this.disabled ? -1 : 0}
           @keydown=${(e: KeyboardEvent) => (e.key === ' ' || e.key === 'Enter') && this._handleClick()}
         >
-          <div class="thumb">
+          <div class="thumb" part="thumb">
             <div class="icon-wrapper">
               ${this.checked ? html`<slot name="icon-on"></slot>` : html`<slot name="icon-off"></slot>`}
             </div>
           </div>
         </div>
         ${hasLabel
-            ? html`<span id=${this._labelId} class=${classMap({ label: true, disabled: this.disabled })}>${this.label}</span>`
+            ? html`<span id=${this._labelId} class=${classMap({ label: true, disabled: this.disabled })} part="label">${this.label}</span>`
             : html`<slot></slot>`}
       </div>
     `;

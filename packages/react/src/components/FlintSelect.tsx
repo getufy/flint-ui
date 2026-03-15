@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintSelect as FlintSelectElement } from '@getufy/flint-ui/select/flint-select';
+import { FlintSelectEvents } from '../events/flint-select.js';
 
 export interface FlintSelectChangeDetail {
     value: string[];
@@ -53,6 +54,6 @@ export const FlintSelect = createComponent({
     elementClass: FlintSelectElement,
     react: React,
     events: {
-        onFlintSelectChange: 'flint-select-change' as EventName<CustomEvent<FlintSelectChangeDetail>>,
+        onFlintSelectChange: FlintSelectEvents.CHANGE as EventName<CustomEvent<FlintSelectChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintSelectProps & React.RefAttributes<FlintSelectElement>>;

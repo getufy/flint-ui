@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintMenubarItem as FlintMenubarItemElement } from '@getufy/flint-ui/menubar/flint-menubar';
+import { FlintMenubarItemEvents } from '../events/flint-menubar-item.js';
 
 export interface FlintMenubarItemSelectDetail {
     value: string;
@@ -32,6 +33,6 @@ export const FlintMenubarItem = createComponent({
     elementClass: FlintMenubarItemElement,
     react: React,
     events: {
-        onFlintMenubarItemSelect: 'flint-menubar-item-select' as EventName<CustomEvent<FlintMenubarItemSelectDetail>>,
+        onFlintMenubarItemSelect: FlintMenubarItemEvents.SELECT as EventName<CustomEvent<FlintMenubarItemSelectDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintMenubarItemProps & React.RefAttributes<FlintMenubarItemElement>>;

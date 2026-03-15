@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintMobileTimePicker as FlintMobileTimePickerElement } from '@getufy/flint-ui/time-picker/flint-time-picker';
+import { FlintMobileTimePickerEvents } from '../events/flint-mobile-time-picker.js';
 
 export interface FlintMobileTimePickerChangeDetail {
     value: string;
@@ -39,6 +40,6 @@ export const FlintMobileTimePicker = createComponent({
     elementClass: FlintMobileTimePickerElement,
     react: React,
     events: {
-        onFlintMobileTimePickerChange: 'flint-mobile-time-picker-change' as EventName<CustomEvent<FlintMobileTimePickerChangeDetail>>,
+        onFlintMobileTimePickerChange: FlintMobileTimePickerEvents.CHANGE as EventName<CustomEvent<FlintMobileTimePickerChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintMobileTimePickerProps & React.RefAttributes<FlintMobileTimePickerElement>>;

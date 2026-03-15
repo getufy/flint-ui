@@ -117,11 +117,15 @@ describe('flint-dialog', () => {
         expect(panel.getAttribute('aria-modal')).toBe('true');
     });
 
-    it('panel has aria-labelledby (aria-describedby removed – no target element exists)', async () => {
-        const el = await fixture<FlintDialog>(html`<flint-dialog open></flint-dialog>`);
+    it('panel gets aria-label from slotted flint-dialog-title', async () => {
+        const el = await fixture<FlintDialog>(html`
+            <flint-dialog open>
+                <flint-dialog-title>My Dialog</flint-dialog-title>
+            </flint-dialog>
+        `);
         await el.updateComplete;
         const panel = el.shadowRoot!.querySelector('.dialog-panel') as HTMLElement;
-        expect(panel.hasAttribute('aria-labelledby')).toBe(true);
+        expect(panel.getAttribute('aria-label')).toBe('My Dialog');
         expect(panel.hasAttribute('aria-describedby')).toBe(false);
     });
 
@@ -373,7 +377,6 @@ describe('flint-dialog', () => {
         await (el as LitElement).updateComplete;
         const h2 = el.shadowRoot!.querySelector('h2');
         expect(h2).not.toBeNull();
-        expect(h2!.id).toBe('dialog-title');
     });
 
     it('dialog-content renders a slot', async () => {
@@ -399,7 +402,7 @@ describe('flint-dialog', () => {
 
     it('should pass automated a11y checks', async () => {
         const el = await fixture<FlintDialog>(html`
-            <flint-dialog open aria-label="Test dialog">
+            <flint-dialog open>
                 <flint-dialog-title>Title</flint-dialog-title>
                 <flint-dialog-content>Content</flint-dialog-content>
                 <flint-dialog-actions>
@@ -408,7 +411,6 @@ describe('flint-dialog', () => {
             </flint-dialog>
         `);
         await el.updateComplete;
-        // aria-labelledby references a shadow DOM ID for the title slot — axe can't resolve cross-boundary
-        await expectAccessible(el, { rules: { 'aria-dialog-name': { enabled: false } } });
+        await expectAccessible(el);
     }, 15000);
 });

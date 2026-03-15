@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintResizableGroup as FlintResizableGroupElement } from '@getufy/flint-ui/resizable/flint-resizable';
+import { FlintResizableGroupEvents } from '../events/flint-resizable-group.js';
 
 /**
  * Resizable Group: a container that enables resizable panels with draggable handles.
@@ -26,8 +27,8 @@ export const FlintResizableGroup = createComponent({
     elementClass: FlintResizableGroupElement,
     react: React,
     events: {
-        onFlintResizableCollapse: 'flint-resizable-collapse' as EventName<CustomEvent>,
-        onFlintResizableExpand: 'flint-resizable-expand' as EventName<CustomEvent>,
-        onFlintResizableChange: 'flint-resizable-change' as EventName<CustomEvent>,
+        onFlintResizableCollapse: FlintResizableGroupEvents.RESIZABLE_COLLAPSE as EventName<CustomEvent>,
+        onFlintResizableExpand: FlintResizableGroupEvents.RESIZABLE_EXPAND as EventName<CustomEvent>,
+        onFlintResizableChange: FlintResizableGroupEvents.RESIZABLE_CHANGE as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintResizableGroupProps & React.RefAttributes<FlintResizableGroupElement>>;

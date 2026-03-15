@@ -2,6 +2,7 @@ import { unsafeCSS, html, nothing } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
 import { FlintDialog, FlintDialogTitle, FlintDialogContent, FlintDialogActions } from '../dialog/flint-dialog.component.js';
+import { LocalizeController } from '../utilities/localize.js';
 import { FlintSingleInputDateRangeField } from './flint-single-input-date-range-field.component.js';
 import { FlintDateRangeCalendar } from './flint-date-range-calendar.component.js';
 import {
@@ -25,6 +26,7 @@ import uiDateRangePickerStyles from './flint-date-range-picker.css?inline';
  */
 export class FlintDateRangePicker extends FlintElement {
     static styles = unsafeCSS(uiDateRangePickerStyles);
+    private _localize = new LocalizeController(this);
     static dependencies = {
         'flint-dialog': FlintDialog as unknown as typeof FlintElement,
         'flint-dialog-title': FlintDialogTitle as unknown as typeof FlintElement,
@@ -290,16 +292,16 @@ export class FlintDateRangePicker extends FlintElement {
           @flint-dialog-close=${this._closePicker}
           style="--flint-dialog-width:640px"
         >
-          <flint-dialog-title>Select Date Range</flint-dialog-title>
+          <flint-dialog-title>${this._localize.term('selectDateRange')}</flint-dialog-title>
           <flint-dialog-content style="padding:0 12px 4px;display:flex;">
             ${this._renderShortcuts()}
             ${this._renderCalendar(pending, (e: CustomEvent) => this._handleCalendarSelect(e))}
           </flint-dialog-content>
           <flint-dialog-actions>
-            <button class="action-btn cancel" @click=${this._handleMobileCancel}>Cancel</button>
+            <button class="action-btn cancel" @click=${this._handleMobileCancel}>${this._localize.term('cancel')}</button>
             <button class="action-btn ok"
               ?disabled=${!this._pendingValue[0] || !this._pendingValue[1]}
-              @click=${this._handleMobileOk}>OK</button>
+              @click=${this._handleMobileOk}>${this._localize.term('ok')}</button>
           </flint-dialog-actions>
         </flint-dialog>
       </div>

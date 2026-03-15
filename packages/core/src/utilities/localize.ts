@@ -49,6 +49,23 @@ export interface Translation {
   lastPage: string;
   previousPage: string;
   nextPage: string;
+  pageLabel: (page: number) => string;
+
+  // Actions
+  cancel: string;
+  ok: string;
+
+  // Command menu
+  typeCommandOrSearch: string;
+  searchCommands: string;
+  noResultsFound: string;
+  commandMenu: string;
+  commandResults: string;
+
+  // Date picker
+  selectDate: string;
+  selectDateRange: string;
+  openDatePicker: string;
 }
 
 // Module-level translation registry

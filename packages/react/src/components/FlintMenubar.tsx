@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintMenubar as FlintMenubarElement } from '@getufy/flint-ui/menubar/flint-menubar';
+import { FlintMenubarEvents } from '../events/flint-menubar.js';
 
 /**
  * A visually persistent horizontal menu bar, common in desktop applications.
@@ -27,8 +28,8 @@ export const FlintMenubar = createComponent({
     elementClass: FlintMenubarElement,
     react: React,
     events: {
-        onFlintMenubarItemSelect: 'flint-menubar-item-select' as EventName<CustomEvent>,
-        onFlintMenubarCheckboxChange: 'flint-menubar-checkbox-change' as EventName<CustomEvent>,
-        onFlintMenubarRadioChange: 'flint-menubar-radio-change' as EventName<CustomEvent>,
+        onFlintMenubarItemSelect: FlintMenubarEvents.ITEM_SELECT as EventName<CustomEvent>,
+        onFlintMenubarCheckboxChange: FlintMenubarEvents.CHECKBOX_CHANGE as EventName<CustomEvent>,
+        onFlintMenubarRadioChange: FlintMenubarEvents.RADIO_CHANGE as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintMenubarProps & React.RefAttributes<FlintMenubarElement>>;

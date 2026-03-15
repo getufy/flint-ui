@@ -408,6 +408,12 @@
     },
     "./theme.css": "./src/theme.css",
     "./theme-dark.css": "./src/theme-dark.css",
+    "./theme-teal.css": "./src/theme-teal.css",
+    "./theme-violet.css": "./src/theme-violet.css",
+    "./theme-rose.css": "./src/theme-rose.css",
+    "./theme-amber.css": "./src/theme-amber.css",
+    "./theme-emerald.css": "./src/theme-emerald.css",
+    "./theme-slate.css": "./src/theme-slate.css",
     "./suppress-warnings": {
       "types": "./dist/suppress-warnings.d.ts",
       "import": "./dist/suppress-warnings.js"
@@ -450,7 +456,13 @@
   "files": [
     "dist",
     "src/theme.css",
-    "src/theme-dark.css"
+    "src/theme-dark.css",
+    "src/theme-teal.css",
+    "src/theme-violet.css",
+    "src/theme-rose.css",
+    "src/theme-amber.css",
+    "src/theme-emerald.css",
+    "src/theme-slate.css"
   ],
   "dependencies": {
     "lit": "^3.0.0"

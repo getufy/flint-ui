@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintAutocomplete as FlintAutocompleteElement } from '@getufy/flint-ui/autocomplete/flint-autocomplete';
+import { FlintAutocompleteEvents } from '../events/flint-autocomplete.js';
 
 /**
  * Autocomplete: a text input with a dropdown of selectable suggestions.
@@ -28,6 +29,6 @@ export const FlintAutocomplete = createComponent({
     elementClass: FlintAutocompleteElement,
     react: React,
     events: {
-        onFlintAutocompleteChange: 'flint-autocomplete-change' as EventName<CustomEvent>,
+        onFlintAutocompleteChange: FlintAutocompleteEvents.CHANGE as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintAutocompleteProps & React.RefAttributes<FlintAutocompleteElement>>;

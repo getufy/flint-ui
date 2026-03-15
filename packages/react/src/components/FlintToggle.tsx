@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintToggle as FlintToggleElement } from '@getufy/flint-ui/toggle/flint-toggle';
+import { FlintToggleEvents } from '../events/flint-toggle.js';
 
 export interface FlintToggleChangeDetail {
     pressed: boolean;
@@ -38,6 +39,6 @@ export const FlintToggle = createComponent({
     elementClass: FlintToggleElement,
     react: React,
     events: {
-        onFlintToggleChange: 'flint-toggle-change' as EventName<CustomEvent<FlintToggleChangeDetail>>,
+        onFlintToggleChange: FlintToggleEvents.CHANGE as EventName<CustomEvent<FlintToggleChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintToggleProps & React.RefAttributes<FlintToggleElement>>;

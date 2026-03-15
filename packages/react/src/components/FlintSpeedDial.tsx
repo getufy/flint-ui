@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintSpeedDial as FlintSpeedDialElement } from '@getufy/flint-ui/speed-dial/flint-speed-dial';
+import { FlintSpeedDialEvents } from '../events/flint-speed-dial.js';
 
 export interface FlintSpeedDialOpenDetail {
     open: true;
@@ -50,7 +51,7 @@ export const FlintSpeedDial = createComponent({
     elementClass: FlintSpeedDialElement,
     react: React,
     events: {
-        onFlintSpeedDialOpen: 'flint-speed-dial-open' as EventName<CustomEvent<FlintSpeedDialOpenDetail>>,
-        onFlintSpeedDialClose: 'flint-speed-dial-close' as EventName<CustomEvent<FlintSpeedDialCloseDetail>>,
+        onFlintSpeedDialOpen: FlintSpeedDialEvents.OPEN as EventName<CustomEvent<FlintSpeedDialOpenDetail>>,
+        onFlintSpeedDialClose: FlintSpeedDialEvents.CLOSE as EventName<CustomEvent<FlintSpeedDialCloseDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintSpeedDialProps & React.RefAttributes<FlintSpeedDialElement>>;

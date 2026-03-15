@@ -2,6 +2,7 @@ import { unsafeCSS, html, nothing } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import { LocalizeController } from '../utilities/localize.js';
 import uiPaginationStyles from './flint-pagination.css?inline';
 
 /* ── SVG icon helpers ─────────────────────────────────────────────── */
@@ -80,6 +81,8 @@ export function buildPages(
  */
 export class FlintPagination extends FlintElement {
     static styles = unsafeCSS(uiPaginationStyles);
+
+    private _localize = new LocalizeController(this);
 
     /** Total number of pages. */
     @property({ type: Number }) count = 1;
@@ -172,6 +175,7 @@ export class FlintPagination extends FlintElement {
             <li>
                 <button
                     class="page-btn"
+                    part="button"
                     aria-label=${label}
                     ?disabled=${disabled || this.disabled}
                     @click=${onClick}
@@ -187,16 +191,16 @@ export class FlintPagination extends FlintElement {
         const navLabel = this.label || 'pagination navigation';
 
         return html`
-            <nav aria-label=${navLabel}>
+            <nav part="base" aria-label=${navLabel}>
                 <ol>
-                    ${this._renderNavBtn('Go to first page', 'first-icon', iconFirst, () => this._go(1), page === 1, !this.showFirstButton)}
-                    ${this._renderNavBtn('Go to previous page', 'prev-icon', iconPrev, () => this._go(page - 1), page === 1, this.hidePrevButton)}
+                    ${this._renderNavBtn(this._localize.term('firstPage'), 'first-icon', iconFirst, () => this._go(1), page === 1, !this.showFirstButton)}
+                    ${this._renderNavBtn(this._localize.term('previousPage'), 'prev-icon', iconPrev, () => this._go(page - 1), page === 1, this.hidePrevButton)}
 
                     ${pages.map(item => {
             if (item === 'start-ellipsis' || item === 'end-ellipsis') {
                 return html`
                             <li>
-                                <button class="page-btn ellipsis" tabindex="-1" aria-hidden="true">
+                                <button class="page-btn ellipsis" part="button" tabindex="-1" aria-hidden="true">
                                     <slot name="ellipsis-icon">${iconEllipsis}</slot>
                                 </button>
                             </li>`;
@@ -206,7 +210,8 @@ export class FlintPagination extends FlintElement {
                         <li>
                             <button
                                 class=${classMap({ 'page-btn': true, active })}
-                                aria-label=${'Page ' + item}
+                                part="button"
+                                aria-label=${this._localize.term('pageLabel', item as number)}
                                 aria-current=${active ? 'page' : nothing}
                                 ?disabled=${this.disabled}
                                 @click=${() => this._go(item as number)}
@@ -215,8 +220,8 @@ export class FlintPagination extends FlintElement {
                     `;
         })}
 
-                    ${this._renderNavBtn('Go to next page', 'next-icon', iconNext, () => this._go(page + 1), page === count, this.hideNextButton)}
-                    ${this._renderNavBtn('Go to last page', 'last-icon', iconLast, () => this._go(count), page === count, !this.showLastButton)}
+                    ${this._renderNavBtn(this._localize.term('nextPage'), 'next-icon', iconNext, () => this._go(page + 1), page === count, this.hideNextButton)}
+                    ${this._renderNavBtn(this._localize.term('lastPage'), 'last-icon', iconLast, () => this._go(count), page === count, !this.showLastButton)}
                 </ol>
             </nav>
         `;

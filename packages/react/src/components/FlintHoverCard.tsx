@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintHoverCard as FlintHoverCardElement } from '@getufy/flint-ui/hover-card/flint-hover-card';
+import { FlintHoverCardEvents } from '../events/flint-hover-card.js';
 
 export interface FlintHoverCardOpenDetail {
     open: true;
@@ -37,7 +38,7 @@ export const FlintHoverCard = createComponent({
     elementClass: FlintHoverCardElement,
     react: React,
     events: {
-        onFlintHoverCardOpen: 'flint-hover-card-open' as EventName<CustomEvent<FlintHoverCardOpenDetail>>,
-        onFlintHoverCardClose: 'flint-hover-card-close' as EventName<CustomEvent<FlintHoverCardCloseDetail>>,
+        onFlintHoverCardOpen: FlintHoverCardEvents.OPEN as EventName<CustomEvent<FlintHoverCardOpenDetail>>,
+        onFlintHoverCardClose: FlintHoverCardEvents.CLOSE as EventName<CustomEvent<FlintHoverCardCloseDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintHoverCardProps & React.RefAttributes<FlintHoverCardElement>>;

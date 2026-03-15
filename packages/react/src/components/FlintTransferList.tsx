@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintTransferList as FlintTransferListElement } from '@getufy/flint-ui/transfer-list/flint-transfer-list';
+import { FlintTransferListEvents } from '../events/flint-transfer-list.js';
 
 export interface FlintTransferListChangeDetail {
     value: string[];
@@ -36,6 +37,6 @@ export const FlintTransferList = createComponent({
     elementClass: FlintTransferListElement,
     react: React,
     events: {
-        onFlintTransferListChange: 'flint-transfer-list-change' as EventName<CustomEvent<FlintTransferListChangeDetail>>,
+        onFlintTransferListChange: FlintTransferListEvents.CHANGE as EventName<CustomEvent<FlintTransferListChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintTransferListProps & React.RefAttributes<FlintTransferListElement>>;

@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintTextField as FlintTextFieldElement } from '@getufy/flint-ui/text-field/flint-text-field';
+import { FlintTextFieldEvents } from '../events/flint-text-field.js';
 
 export interface FlintTextFieldInputDetail {
     value: string;
@@ -48,7 +49,7 @@ export const FlintTextField = createComponent({
     elementClass: FlintTextFieldElement,
     react: React,
     events: {
-        onFlintTextFieldInput: 'flint-text-field-input' as EventName<CustomEvent<FlintTextFieldInputDetail>>,
-        onFlintTextFieldChange: 'flint-text-field-change' as EventName<CustomEvent<FlintTextFieldChangeDetail>>,
+        onFlintTextFieldInput: FlintTextFieldEvents.INPUT as EventName<CustomEvent<FlintTextFieldInputDetail>>,
+        onFlintTextFieldChange: FlintTextFieldEvents.CHANGE as EventName<CustomEvent<FlintTextFieldChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintTextFieldProps & React.RefAttributes<FlintTextFieldElement>>;

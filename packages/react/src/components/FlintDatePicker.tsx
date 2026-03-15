@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintDatePicker as FlintDatePickerElement } from '@getufy/flint-ui/date-picker/flint-date-picker';
+import { FlintDatePickerEvents } from '../events/flint-date-picker.js';
 
 export interface FlintDatePickerChangeDetail {
     value: string;
@@ -49,6 +50,6 @@ export const FlintDatePicker = createComponent({
     elementClass: FlintDatePickerElement,
     react: React,
     events: {
-        onFlintDatePickerChange: 'flint-date-picker-change' as EventName<CustomEvent<FlintDatePickerChangeDetail>>,
+        onFlintDatePickerChange: FlintDatePickerEvents.CHANGE as EventName<CustomEvent<FlintDatePickerChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintDatePickerProps & React.RefAttributes<FlintDatePickerElement>>;

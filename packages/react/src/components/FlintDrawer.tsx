@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintDrawer as FlintDrawerElement } from '@getufy/flint-ui/drawer/flint-drawer';
+import { FlintDrawerEvents } from '../events/flint-drawer.js';
 
 export interface FlintDrawerCloseDetail {
     open: false;
@@ -39,6 +40,6 @@ export const FlintDrawer = createComponent({
     elementClass: FlintDrawerElement,
     react: React,
     events: {
-        onFlintDrawerClose: 'flint-drawer-close' as EventName<CustomEvent<FlintDrawerCloseDetail>>,
+        onFlintDrawerClose: FlintDrawerEvents.CLOSE as EventName<CustomEvent<FlintDrawerCloseDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintDrawerProps & React.RefAttributes<FlintDrawerElement>>;

@@ -4,6 +4,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintMultiSectionDigitalClock as FlintMultiSectionDigitalClockElement } from '@getufy/flint-ui/time-picker/flint-time-picker';
+import { FlintMultiSectionDigitalClockEvents } from '../events/flint-multi-section-digital-clock.js';
 
 export interface FlintMultiSectionDigitalClockChangeDetail {
     value: string;
@@ -28,6 +29,6 @@ export const FlintMultiSectionDigitalClock = createComponent({
     elementClass: FlintMultiSectionDigitalClockElement,
     react: React,
     events: {
-        onFlintMultiSectionDigitalClockChange: 'flint-multi-section-digital-clock-change' as EventName<CustomEvent<FlintMultiSectionDigitalClockChangeDetail>>,
+        onFlintMultiSectionDigitalClockChange: FlintMultiSectionDigitalClockEvents.CHANGE as EventName<CustomEvent<FlintMultiSectionDigitalClockChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintMultiSectionDigitalClockProps & React.RefAttributes<FlintMultiSectionDigitalClockElement>>;

@@ -170,9 +170,10 @@ export class FlintAutocomplete extends FlintElement {
     render() {
         const dropdownOpen = this._isOpen && (this._filteredOptions.length > 0 || !this.freeSolo);
         return html`
-      <div class="input-wrapper">
+      <div class="input-wrapper" part="base">
         <input
           type="text"
+          part="input"
           role="combobox"
           aria-expanded=${dropdownOpen ? 'true' : 'false'}
           aria-autocomplete="list"
@@ -187,6 +188,7 @@ export class FlintAutocomplete extends FlintElement {
         />
         <div
           role="listbox"
+          part="dropdown"
           class=${classMap({ dropdown: true, open: dropdownOpen })}
         >
           ${this._filteredOptions.length > 0

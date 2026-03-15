@@ -114,6 +114,9 @@ export function generateWrapper(
     lines.push(`import React from 'react';`);
     lines.push(`import { createComponent${hasEvents ? ', type EventName' : ''} } from '@lit/react';`);
     lines.push(`import { ${className} as ${className}Element } from '${srcImport}';`);
+    if (hasEvents) {
+        lines.push(`import { ${className}Events } from '../events/${tagName}.js';`);
+    }
     lines.push('');
 
     // ── Event detail interfaces ──
@@ -198,7 +201,7 @@ export function generateWrapper(
     if (hasEvents) {
         lines.push(`    events: {`);
         for (const e of events) {
-            lines.push(`        ${e.reactProp}: '${e.domName}' as EventName<${eventTypeRef(e)}>,`);
+            lines.push(`        ${e.reactProp}: ${className}Events.${e.constKey} as EventName<${eventTypeRef(e)}>,`);
         }
         lines.push(`    },`);
     }
