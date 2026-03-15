@@ -53,6 +53,11 @@ export class FlintSelect extends FormAssociated(FlintElement) {
   @property({ type: String, reflect: true }) size: SelectSize = 'md';
   /** Sets the initial value in uncontrolled mode (single-select only). */
   @property({ type: String, attribute: 'default-value' }) defaultValue = '';
+  /**
+   * When true, the dropdown uses `position: fixed` so it can escape
+   * containers with `overflow: hidden/clip` (e.g. dialogs, cards).
+   */
+  @property({ type: Boolean }) hoist = false;
 
   @state() private _isOpen = false;
   @state() private _highlightedIndex = -1;
@@ -69,6 +74,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
   disconnectedCallback() {
     super.disconnectedCallback();
     document.removeEventListener('click', this._handleOutsideClick);
+    this._cleanupHoist();
   }
 
   /** Called by the browser when the associated form is reset. */
@@ -100,6 +106,48 @@ export class FlintSelect extends FormAssociated(FlintElement) {
     this._initFormValidity(this.required, this.value.length === 0, 'Please select an option');
   }
 
+  private _handleReposition = () => {
+    if (!this._isOpen || !this.hoist) return;
+    void this.updateComplete.then(() => {
+      const dropdown = this.shadowRoot?.querySelector<HTMLElement>('.dropdown');
+      if (!dropdown) return;
+      const trigger = this.shadowRoot?.querySelector<HTMLElement>('.select-trigger');
+      if (!trigger) return;
+      const rect = trigger.getBoundingClientRect();
+      const spaceBelow = window.innerHeight - rect.bottom;
+      const opensUp = spaceBelow < 280;
+      dropdown.style.position = 'fixed';
+      dropdown.style.left = `${rect.left}px`;
+      dropdown.style.width = `${rect.width}px`;
+      if (opensUp) {
+        dropdown.style.bottom = `${window.innerHeight - rect.top + 6}px`;
+        dropdown.style.top = '';
+      } else {
+        dropdown.style.top = `${rect.bottom + 6}px`;
+        dropdown.style.bottom = '';
+      }
+    });
+  };
+
+  private _startHoist() {
+    window.addEventListener('scroll', this._handleReposition, true);
+    window.addEventListener('resize', this._handleReposition);
+    this._handleReposition();
+  }
+
+  private _cleanupHoist() {
+    window.removeEventListener('scroll', this._handleReposition, true);
+    window.removeEventListener('resize', this._handleReposition);
+    const dropdown = this.shadowRoot?.querySelector<HTMLElement>('.dropdown');
+    if (dropdown) {
+      dropdown.style.position = '';
+      dropdown.style.left = '';
+      dropdown.style.width = '';
+      dropdown.style.top = '';
+      dropdown.style.bottom = '';
+    }
+  }
+
   private _handleOutsideClick = (e: MouseEvent) => {
     if (!this._isOpen) return;
     const path = e.composedPath();
@@ -107,6 +155,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
     if (!inside) {
       this._isOpen = false;
       this._highlightedIndex = -1;
+      if (this.hoist) this._cleanupHoist();
     }
   };
 
@@ -119,10 +168,13 @@ export class FlintSelect extends FormAssociated(FlintElement) {
       this._highlightedIndex = this.value.length > 0
         ? this.options.findIndex(o => o.value === this.value[0])
         : -1;
+      this._isOpen = true;
+      if (this.hoist) this._startHoist();
     } else {
       this._highlightedIndex = -1;
+      this._isOpen = false;
+      if (this.hoist) this._cleanupHoist();
     }
-    this._isOpen = !this._isOpen;
   }
 
   private _handleOptionClick(option: SelectOption, e: Event) {
@@ -142,6 +194,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
       this.value = [option.value];
       this._isOpen = false;
       this._highlightedIndex = -1;
+      if (this.hoist) this._cleanupHoist();
     }
     this._dispatchChange();
   }
@@ -226,6 +279,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
           e.preventDefault();
           this._isOpen = false;
           this._highlightedIndex = -1;
+          if (this.hoist) this._cleanupHoist();
         }
         break;
       }
@@ -233,6 +287,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
         if (this._isOpen) {
           this._isOpen = false;
           this._highlightedIndex = -1;
+          if (this.hoist) this._cleanupHoist();
         }
         break;
       }
@@ -326,6 +381,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
             open: this._isOpen,
             above: this._opensUp,
             below: !this._opensUp,
+            hoisted: this.hoist,
           })}
           role="listbox"
           aria-multiselectable=${this.multiple ? 'true' : 'false'}

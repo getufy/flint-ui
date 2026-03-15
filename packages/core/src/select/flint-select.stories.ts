@@ -449,6 +449,38 @@ export const CustomStyling: Story = {
   `,
 };
 
+// ── Hoisted (inside overflow container) ──────────────────────────────────────
+
+export const HoistedInOverflowContainer: Story = {
+  render: () => html`
+    <div style="max-width: 500px; padding: 20px;">
+      <p style="font-size: 0.875rem; color: #4b5563; margin: 0 0 12px;">
+        Without <code>hoist</code>, the dropdown is clipped by the card's <code>overflow: hidden</code>.
+        With <code>hoist</code>, the dropdown escapes the container.
+      </p>
+      <div style="display: flex; gap: 24px; align-items: flex-start;">
+        <div style="overflow: hidden; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; width: 220px; height: 120px;">
+          <p style="font-size: 0.75rem; color: #9ca3af; margin: 0 0 8px;">Clipped (no hoist)</p>
+          <flint-select
+            label="Fruit"
+            placeholder="Pick one"
+            .options=${defaultOptions}
+          ></flint-select>
+        </div>
+        <div style="overflow: hidden; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; width: 220px; height: 120px;">
+          <p style="font-size: 0.75rem; color: #9ca3af; margin: 0 0 8px;">Hoisted (escapes)</p>
+          <flint-select
+            label="Fruit"
+            placeholder="Pick one"
+            hoist
+            .options=${defaultOptions}
+          ></flint-select>
+        </div>
+      </div>
+    </div>
+  `,
+};
+
 // ── In a form ─────────────────────────────────────────────────────────────────
 
 export const InForm: Story = {

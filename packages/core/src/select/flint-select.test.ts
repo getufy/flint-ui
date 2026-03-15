@@ -881,6 +881,90 @@ describe('flint-select — scrollIntoView', () => {
   });
 });
 
+// ── Hoist ───────────────────────────────────────────────────────────────────
+
+describe('flint-select — hoist', () => {
+  it('hoist property defaults to false', async () => {
+    const el = await fixture<FlintSelect>(html`<flint-select .options=${opts}></flint-select>`);
+    expect(el.hoist).toBe(false);
+  });
+
+  it('dropdown gets hoisted class when hoist=true', async () => {
+    const el = await fixture<FlintSelect>(html`<flint-select hoist .options=${opts}></flint-select>`);
+    expect(getDropdown(el).classList.contains('hoisted')).toBe(true);
+  });
+
+  it('opening with hoist applies fixed position styles', async () => {
+    const el = await fixture<FlintSelect>(html`<flint-select hoist .options=${opts}></flint-select>`);
+    await open(el);
+    await new Promise(r => setTimeout(r, 0));
+    const dropdown = getDropdown(el);
+    expect(dropdown.style.position).toBe('fixed');
+    expect(dropdown.style.left).toBeTruthy();
+    expect(dropdown.style.width).toBeTruthy();
+  });
+
+  it('closing with hoist clears fixed position styles', async () => {
+    const el = await fixture<FlintSelect>(html`<flint-select hoist .options=${opts}></flint-select>`);
+    await open(el);
+    await new Promise(r => setTimeout(r, 0));
+    getTrigger(el).click();
+    await el.updateComplete;
+    const dropdown = getDropdown(el);
+    expect(dropdown.style.position).toBe('');
+    expect(dropdown.style.left).toBe('');
+  });
+
+  it('Escape with hoist clears position styles', async () => {
+    const el = await fixture<FlintSelect>(html`<flint-select hoist .options=${opts}></flint-select>`);
+    await open(el);
+    await new Promise(r => setTimeout(r, 0));
+    pressKey(el, 'Escape');
+    await el.updateComplete;
+    expect(getDropdown(el).style.position).toBe('');
+  });
+
+  it('Tab with hoist clears position styles', async () => {
+    const el = await fixture<FlintSelect>(html`<flint-select hoist .options=${opts}></flint-select>`);
+    await open(el);
+    await new Promise(r => setTimeout(r, 0));
+    pressKey(el, 'Tab');
+    await el.updateComplete;
+    expect(getDropdown(el).style.position).toBe('');
+  });
+
+  it('outside click with hoist clears position styles', async () => {
+    const el = await fixture<FlintSelect>(html`<flint-select hoist .options=${opts}></flint-select>`);
+    await open(el);
+    await new Promise(r => setTimeout(r, 0));
+    const outside = document.createElement('div');
+    document.body.appendChild(outside);
+    outside.click();
+    await el.updateComplete;
+    expect(getDropdown(el).style.position).toBe('');
+    outside.remove();
+  });
+
+  it('single-select close with hoist clears position styles', async () => {
+    const el = await fixture<FlintSelect>(html`<flint-select hoist .options=${opts}></flint-select>`);
+    await open(el);
+    await new Promise(r => setTimeout(r, 0));
+    getOptions(el)[0].click();
+    await el.updateComplete;
+    expect(getDropdown(el).style.position).toBe('');
+  });
+
+  it('disconnect cleans up hoist listeners', async () => {
+    const removeSpy = vi.spyOn(window, 'removeEventListener');
+    const el = await fixture<FlintSelect>(html`<flint-select hoist .options=${opts}></flint-select>`);
+    await open(el);
+    await new Promise(r => setTimeout(r, 0));
+    el.remove();
+    expect(removeSpy).toHaveBeenCalledWith('resize', expect.any(Function));
+    removeSpy.mockRestore();
+  });
+});
+
 // ── Lifecycle ────────────────────────────────────────────────────────────────
 
 describe('flint-select — lifecycle', () => {

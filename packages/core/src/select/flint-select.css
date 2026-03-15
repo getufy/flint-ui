@@ -191,6 +191,11 @@
       pointer-events: auto;
     }
 
+    .dropdown.hoisted {
+      /* position/top/left/width/bottom set via inline styles in _handleReposition */
+      right: auto;
+    }
+
     /* Options */
     .option {
       padding: 10px 14px;
