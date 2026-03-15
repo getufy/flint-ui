@@ -5,10 +5,19 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintMenubar as FlintMenubarElement } from '@getufy/flint-ui/menubar/flint-menubar';
 
+/**
+ * A visually persistent horizontal menu bar, common in desktop applications.
+Hosts one or more `<flint-menubar-menu>` children.
+ *
+ * @slot - One or more `<flint-menubar-menu>` elements.
+ */
+export interface FlintMenubarProps extends React.HTMLAttributes<FlintMenubarElement> {
+    /** Accessible label for the menubar region. Defaults to "Menu bar". */
+    label?: string;
+}
+
 export const FlintMenubar = createComponent({
     tagName: 'flint-menubar',
     elementClass: FlintMenubarElement,
     react: React,
-});
-
-export type FlintMenubarProps = React.ComponentProps<typeof FlintMenubar>;
+}) as unknown as React.ForwardRefExoticComponent<FlintMenubarProps & React.RefAttributes<FlintMenubarElement>>;

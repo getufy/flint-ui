@@ -5,6 +5,10 @@ import uiAppBarStyles from './flint-app-bar.css?inline';
 
 /**
  * flint-app-bar: The top App bar provides content and actions related to the current screen.
+ *
+ * @slot navigation - Left section, e.g. menu button.
+ * @slot title - Center section next to the title prop.
+ * @slot actions - Right section, e.g. action buttons.
  */
 @customElement('flint-app-bar')
 export class FlintAppBar extends LitElement {

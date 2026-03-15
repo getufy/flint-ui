@@ -5,6 +5,17 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintCommand as FlintCommandElement } from '@getufy/flint-ui/command/flint-command';
 
+/**
+ * Root command menu component. Manages search filtering and keyboard navigation.
+ *
+ * @slot - Command menu content.
+ */
+export interface FlintCommandProps extends React.HTMLAttributes<FlintCommandElement> {
+    /** Bubbles up from activated items.
+detail: `{ value: string }` */
+    onFlintCommandItemSelect?: (event: CustomEvent) => void;
+}
+
 export const FlintCommand = createComponent({
     tagName: 'flint-command',
     elementClass: FlintCommandElement,
@@ -12,6 +23,4 @@ export const FlintCommand = createComponent({
     events: {
         onFlintCommandItemSelect: 'flint-command-item-select' as EventName<CustomEvent>,
     },
-});
-
-export type FlintCommandProps = React.ComponentProps<typeof FlintCommand>;
+}) as unknown as React.ForwardRefExoticComponent<FlintCommandProps & React.RefAttributes<FlintCommandElement>>;

@@ -5,10 +5,17 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintCommandShortcut as FlintCommandShortcutElement } from '@getufy/flint-ui/command/flint-command';
 
+/**
+ * Displays a keyboard shortcut hint inside a command item.
+Slot the shortcut string (e.g. `⌘P`) as default slot content.
+ *
+ * @slot - Shortcut text, e.g. `⌘P` or `Ctrl+K`.
+ */
+export interface FlintCommandShortcutProps extends React.HTMLAttributes<FlintCommandShortcutElement> {
+}
+
 export const FlintCommandShortcut = createComponent({
     tagName: 'flint-command-shortcut',
     elementClass: FlintCommandShortcutElement,
     react: React,
-});
-
-export type FlintCommandShortcutProps = React.ComponentProps<typeof FlintCommandShortcut>;
+}) as unknown as React.ForwardRefExoticComponent<FlintCommandShortcutProps & React.RefAttributes<FlintCommandShortcutElement>>;

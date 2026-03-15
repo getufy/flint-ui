@@ -5,13 +5,37 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintRadio as FlintRadioElement } from '@getufy/flint-ui/radio/flint-radio';
 
+export interface FlintRadioSelectDetail {
+    value: string;
+}
+
+/**
+ * Radio: a single radio button within a radio group.
+ */
+export interface FlintRadioProps extends React.HTMLAttributes<FlintRadioElement> {
+    /** Whether this radio is selected. */
+    checked?: boolean;
+    /** Disables this radio and prevents interaction. */
+    disabled?: boolean;
+    /** Whether this radio is required. */
+    required?: boolean;
+    /** Form field name (usually set by the parent group). */
+    name?: string;
+    /** Value associated with this radio option. */
+    value?: string;
+    /** Visible label text for this radio option. */
+    label?: string;
+    /** Size of the radio button. */
+    size?: FlintRadioElement['size'];
+    /** Fired when this radio is selected. */
+    onFlintRadioSelect?: (event: CustomEvent<FlintRadioSelectDetail>) => void;
+}
+
 export const FlintRadio = createComponent({
     tagName: 'flint-radio',
     elementClass: FlintRadioElement,
     react: React,
     events: {
-        onFlintRadioSelect: 'flint-radio-select' as EventName<CustomEvent>,
+        onFlintRadioSelect: 'flint-radio-select' as EventName<CustomEvent<FlintRadioSelectDetail>>,
     },
-});
-
-export type FlintRadioProps = React.ComponentProps<typeof FlintRadio>;
+}) as unknown as React.ForwardRefExoticComponent<FlintRadioProps & React.RefAttributes<FlintRadioElement>>;

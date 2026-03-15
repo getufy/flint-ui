@@ -5,13 +5,34 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintCollapsible as FlintCollapsibleElement } from '@getufy/flint-ui/collapsible/flint-collapsible';
 
+export interface FlintCollapsibleChangeDetail {
+    open: boolean;
+}
+
+/**
+ * Root container for a collapsible panel.
+Manages open/closed state and coordinates child trigger and content.
+ *
+ * @slot - Accepts `flint-collapsible-trigger`, `flint-collapsible-content`, and any
+  other elements that should always be visible.
+ */
+export interface FlintCollapsibleProps extends React.HTMLAttributes<FlintCollapsibleElement> {
+    /** Whether the panel is open. Reflects to attribute for CSS targeting. */
+    open?: boolean;
+    /** Initial open state for uncontrolled usage. */
+    defaultOpen?: boolean;
+    /** Disables the trigger, preventing user interaction. */
+    disabled?: boolean;
+    /** Fired when the open state changes.
+`detail: { open: boolean }` */
+    onFlintCollapsibleChange?: (event: CustomEvent<FlintCollapsibleChangeDetail>) => void;
+}
+
 export const FlintCollapsible = createComponent({
     tagName: 'flint-collapsible',
     elementClass: FlintCollapsibleElement,
     react: React,
     events: {
-        onFlintCollapsibleChange: 'flint-collapsible-change' as EventName<CustomEvent>,
+        onFlintCollapsibleChange: 'flint-collapsible-change' as EventName<CustomEvent<FlintCollapsibleChangeDetail>>,
     },
-});
-
-export type FlintCollapsibleProps = React.ComponentProps<typeof FlintCollapsible>;
+}) as unknown as React.ForwardRefExoticComponent<FlintCollapsibleProps & React.RefAttributes<FlintCollapsibleElement>>;

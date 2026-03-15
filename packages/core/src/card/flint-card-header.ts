@@ -2,6 +2,13 @@ import { LitElement, unsafeCSS, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import uiCardHeaderStyles from './flint-card-header.css?inline';
 
+/**
+ * Card Header: the header section of a card.
+ *
+ * @slot avatar - Avatar or icon element.
+ * @slot action - Action element like an icon button.
+ * @slot - Header text content.
+ */
 @customElement('flint-card-header')
 export class FlintCardHeader extends LitElement {
     static styles = unsafeCSS(uiCardHeaderStyles);

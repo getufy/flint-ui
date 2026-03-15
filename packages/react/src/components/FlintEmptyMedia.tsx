@@ -5,10 +5,18 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintEmptyMedia as FlintEmptyMediaElement } from '@getufy/flint-ui/empty/flint-empty';
 
+/**
+ * Displays the media area of an empty state (icon, image, or avatar).
+ *
+ * @slot - Media content: icon, image, or avatar elements.
+ */
+export interface FlintEmptyMediaProps extends React.HTMLAttributes<FlintEmptyMediaElement> {
+    /** Visual treatment for the media container. */
+    variant?: 'default' | 'icon';
+}
+
 export const FlintEmptyMedia = createComponent({
     tagName: 'flint-empty-media',
     elementClass: FlintEmptyMediaElement,
     react: React,
-});
-
-export type FlintEmptyMediaProps = React.ComponentProps<typeof FlintEmptyMedia>;
+}) as unknown as React.ForwardRefExoticComponent<FlintEmptyMediaProps & React.RefAttributes<FlintEmptyMediaElement>>;

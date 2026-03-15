@@ -5,10 +5,16 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintMenubarMenu as FlintMenubarMenuElement } from '@getufy/flint-ui/menubar/flint-menubar';
 
+/**
+ * Wraps a trigger and content pair for a single menu in the menubar.
+ */
+export interface FlintMenubarMenuProps extends React.HTMLAttributes<FlintMenubarMenuElement> {
+    /** Disables this menu: the trigger is non-interactive and keyboard nav skips it. */
+    disabled?: boolean;
+}
+
 export const FlintMenubarMenu = createComponent({
     tagName: 'flint-menubar-menu',
     elementClass: FlintMenubarMenuElement,
     react: React,
-});
-
-export type FlintMenubarMenuProps = React.ComponentProps<typeof FlintMenubarMenu>;
+}) as unknown as React.ForwardRefExoticComponent<FlintMenubarMenuProps & React.RefAttributes<FlintMenubarMenuElement>>;

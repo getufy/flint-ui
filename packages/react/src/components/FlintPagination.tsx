@@ -5,13 +5,60 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintPagination as FlintPaginationElement } from '@getufy/flint-ui/pagination/flint-pagination';
 
+export interface FlintPaginationChangeDetail {
+    page: number;
+}
+
+/**
+ * Pagination component enabling the user to select a specific page from
+a range of pages.
+ *
+ * @slot prev-icon - Icon for the previous button (default: chevron left SVG).
+ * @slot next-icon - Icon for the next button (default: chevron right SVG).
+ * @slot first-icon - Icon for the first button (default: skip-to-start SVG).
+ * @slot last-icon - Icon for the last button (default: skip-to-end SVG).
+ * @slot ellipsis-icon - Icon for ellipsis items (default: three-dot SVG).
+ */
+export interface FlintPaginationProps extends Omit<React.HTMLAttributes<FlintPaginationElement>, 'color'> {
+    /** Total number of pages. */
+    count?: number;
+    /** The current page (1-based). In controlled mode, update this from the flint-pagination-change event. */
+    page?: number;
+    /** Initial page for uncontrolled mode. Ignored after first render. */
+    defaultPage?: number;
+    /** Accessible label for the nav landmark (aria-label). */
+    label?: string;
+    /** Variant. */
+    variant?: 'text' | 'outlined';
+    /** Shape. */
+    shape?: 'circular' | 'rounded' | 'square';
+    /** Size. */
+    size?: 'small' | 'medium' | 'large';
+    /** Color. */
+    color?: 'primary' | 'secondary' | 'standard';
+    /** Show first-page button. */
+    showFirstButton?: boolean;
+    /** Show last-page button. */
+    showLastButton?: boolean;
+    /** Hide previous button. */
+    hidePrevButton?: boolean;
+    /** Hide next button. */
+    hideNextButton?: boolean;
+    /** Number of sibling pages around the current page. */
+    siblingCount?: number;
+    /** Number of pages always shown at start and end. */
+    boundaryCount?: number;
+    /** Disable the whole component. */
+    disabled?: boolean;
+    /** { page: number } when the active page changes. */
+    onFlintPaginationChange?: (event: CustomEvent<FlintPaginationChangeDetail>) => void;
+}
+
 export const FlintPagination = createComponent({
     tagName: 'flint-pagination',
     elementClass: FlintPaginationElement,
     react: React,
     events: {
-        onFlintPaginationChange: 'flint-pagination-change' as EventName<CustomEvent>,
+        onFlintPaginationChange: 'flint-pagination-change' as EventName<CustomEvent<FlintPaginationChangeDetail>>,
     },
-});
-
-export type FlintPaginationProps = React.ComponentProps<typeof FlintPagination>;
+}) as unknown as React.ForwardRefExoticComponent<FlintPaginationProps & React.RefAttributes<FlintPaginationElement>>;

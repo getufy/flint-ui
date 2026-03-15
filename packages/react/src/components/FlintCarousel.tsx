@@ -5,13 +5,36 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintCarousel as FlintCarouselElement } from '@getufy/flint-ui/carousel/flint-carousel';
 
+export interface FlintCarouselChangeDetail {
+    index: number;
+    total: number;
+}
+
+/**
+ * Carousel: a slideshow component for cycling through content.
+ *
+ * @slot - Carousel content: flint-carousel-content, flint-carousel-previous, flint-carousel-next.
+ */
+export interface FlintCarouselProps extends React.HTMLAttributes<FlintCarouselElement> {
+    /** When true, navigation wraps from last slide back to first and vice versa. */
+    loop?: boolean;
+    /** Slide direction axis. */
+    orientation?: 'horizontal' | 'vertical';
+    /** Auto-advance interval in milliseconds. Set to 0 to disable. */
+    autoplay?: number;
+    /** Number of slides visible simultaneously. */
+    itemsPerView?: number;
+    /** Accessible label for the carousel region. */
+    label?: string;
+    /** Fired when the active slide changes. */
+    onFlintCarouselChange?: (event: CustomEvent<FlintCarouselChangeDetail>) => void;
+}
+
 export const FlintCarousel = createComponent({
     tagName: 'flint-carousel',
     elementClass: FlintCarouselElement,
     react: React,
     events: {
-        onFlintCarouselChange: 'flint-carousel-change' as EventName<CustomEvent>,
+        onFlintCarouselChange: 'flint-carousel-change' as EventName<CustomEvent<FlintCarouselChangeDetail>>,
     },
-});
-
-export type FlintCarouselProps = React.ComponentProps<typeof FlintCarousel>;
+}) as unknown as React.ForwardRefExoticComponent<FlintCarouselProps & React.RefAttributes<FlintCarouselElement>>;

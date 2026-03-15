@@ -5,10 +5,16 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintResizableHandle as FlintResizableHandleElement } from '@getufy/flint-ui/resizable/flint-resizable';
 
+export interface FlintResizableHandleProps extends React.HTMLAttributes<FlintResizableHandleElement> {
+    /** Show a visible drag grip. */
+    withHandle?: boolean;
+    /** Disable interaction. */
+    disabled?: boolean;
+    orientation?: 'horizontal' | 'vertical';
+}
+
 export const FlintResizableHandle = createComponent({
     tagName: 'flint-resizable-handle',
     elementClass: FlintResizableHandleElement,
     react: React,
-});
-
-export type FlintResizableHandleProps = React.ComponentProps<typeof FlintResizableHandle>;
+}) as unknown as React.ForwardRefExoticComponent<FlintResizableHandleProps & React.RefAttributes<FlintResizableHandleElement>>;

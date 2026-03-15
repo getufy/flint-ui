@@ -5,10 +5,17 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintCarouselContent as FlintCarouselContentElement } from '@getufy/flint-ui/carousel/flint-carousel';
 
+export interface FlintCarouselContentProps extends React.HTMLAttributes<FlintCarouselContentElement> {
+    /** Zero-based index of the first visible slide. */
+    index?: number;
+    /** Number of slides visible at once. */
+    itemsPerView?: number;
+    /** Slide direction axis. */
+    orientation?: 'horizontal' | 'vertical';
+}
+
 export const FlintCarouselContent = createComponent({
     tagName: 'flint-carousel-content',
     elementClass: FlintCarouselContentElement,
     react: React,
-});
-
-export type FlintCarouselContentProps = React.ComponentProps<typeof FlintCarouselContent>;
+}) as unknown as React.ForwardRefExoticComponent<FlintCarouselContentProps & React.RefAttributes<FlintCarouselContentElement>>;

@@ -5,10 +5,16 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintTable as FlintTableElement } from '@getufy/flint-ui/table/flint-table';
 
+/**
+ * flint-table
+ */
+export interface FlintTableProps extends React.HTMLAttributes<FlintTableElement> {
+    /** Cell padding density. */
+    size?: 'medium' | 'small';
+}
+
 export const FlintTable = createComponent({
     tagName: 'flint-table',
     elementClass: FlintTableElement,
     react: React,
-});
-
-export type FlintTableProps = React.ComponentProps<typeof FlintTable>;
+}) as unknown as React.ForwardRefExoticComponent<FlintTableProps & React.RefAttributes<FlintTableElement>>;

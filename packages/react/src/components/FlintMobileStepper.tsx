@@ -5,10 +5,29 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintMobileStepper as FlintMobileStepperElement } from '@getufy/flint-ui/stepper/flint-stepper';
 
+/**
+ * Mobile Stepper: a compact stepper for mobile layouts.
+ *
+ * @slot back-button - Back navigation button.
+ * @slot next-button - Next navigation button.
+ */
+export interface FlintMobileStepperProps extends React.HTMLAttributes<FlintMobileStepperElement> {
+    /** Total number of steps. */
+    steps?: number;
+    /** Zero-based index of the currently active step. */
+    activeStep?: number;
+    /** Progress indicator style: text counter, dot indicators, or a progress bar. */
+    variant?: 'text' | 'dots' | 'progress';
+    /** Positioning of the mobile stepper within its container. */
+    position?: 'top' | 'bottom' | 'static';
+    /** Label text for the Back navigation button (supports i18n). */
+    backLabel?: string;
+    /** Label text for the Next navigation button (supports i18n). */
+    nextLabel?: string;
+}
+
 export const FlintMobileStepper = createComponent({
     tagName: 'flint-mobile-stepper',
     elementClass: FlintMobileStepperElement,
     react: React,
-});
-
-export type FlintMobileStepperProps = React.ComponentProps<typeof FlintMobileStepper>;
+}) as unknown as React.ForwardRefExoticComponent<FlintMobileStepperProps & React.RefAttributes<FlintMobileStepperElement>>;

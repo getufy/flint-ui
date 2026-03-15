@@ -5,6 +5,22 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintResizableGroup as FlintResizableGroupElement } from '@getufy/flint-ui/resizable/flint-resizable';
 
+/**
+ * Resizable Group: a container that enables resizable panels with draggable handles.
+ */
+export interface FlintResizableGroupProps extends Omit<React.HTMLAttributes<FlintResizableGroupElement>, 'dir'> {
+    /** Layout direction — 'horizontal' (row) or 'vertical' (column). */
+    orientation?: 'horizontal' | 'vertical';
+    /** Text direction for RTL support. */
+    dir?: 'ltr' | 'rtl';
+    /** Fired when a panel is collapsed. */
+    onFlintResizableCollapse?: (event: CustomEvent) => void;
+    /** Fired when a collapsed panel is expanded. */
+    onFlintResizableExpand?: (event: CustomEvent) => void;
+    /** Fired when panel sizes change via drag or keyboard. */
+    onFlintResizableChange?: (event: CustomEvent) => void;
+}
+
 export const FlintResizableGroup = createComponent({
     tagName: 'flint-resizable-group',
     elementClass: FlintResizableGroupElement,
@@ -14,6 +30,4 @@ export const FlintResizableGroup = createComponent({
         onFlintResizableExpand: 'flint-resizable-expand' as EventName<CustomEvent>,
         onFlintResizableChange: 'flint-resizable-change' as EventName<CustomEvent>,
     },
-});
-
-export type FlintResizableGroupProps = React.ComponentProps<typeof FlintResizableGroup>;
+}) as unknown as React.ForwardRefExoticComponent<FlintResizableGroupProps & React.RefAttributes<FlintResizableGroupElement>>;

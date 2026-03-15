@@ -5,13 +5,34 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintAutocomplete as FlintAutocompleteElement } from '@getufy/flint-ui/autocomplete/flint-autocomplete';
 
+export interface FlintAutocompleteChangeDetail {
+    value: string;
+    label: string;
+}
+
+/**
+ * Autocomplete: a text input with a dropdown of selectable suggestions.
+ */
+export interface FlintAutocompleteProps extends React.HTMLAttributes<FlintAutocompleteElement> {
+    /** The list of selectable options. */
+    options?: FlintAutocompleteElement['options'];
+    /** When true, allows arbitrary values that are not in the options list. */
+    freeSolo?: boolean;
+    /** Whether the autocomplete input is disabled. */
+    disabled?: boolean;
+    /** The current selected value. */
+    value?: string;
+    /** Placeholder text shown when the input is empty. */
+    placeholder?: string;
+    /** Fired when the selected value changes. */
+    onFlintAutocompleteChange?: (event: CustomEvent<FlintAutocompleteChangeDetail>) => void;
+}
+
 export const FlintAutocomplete = createComponent({
     tagName: 'flint-autocomplete',
     elementClass: FlintAutocompleteElement,
     react: React,
     events: {
-        onFlintAutocompleteChange: 'flint-autocomplete-change' as EventName<CustomEvent>,
+        onFlintAutocompleteChange: 'flint-autocomplete-change' as EventName<CustomEvent<FlintAutocompleteChangeDetail>>,
     },
-});
-
-export type FlintAutocompleteProps = React.ComponentProps<typeof FlintAutocomplete>;
+}) as unknown as React.ForwardRefExoticComponent<FlintAutocompleteProps & React.RefAttributes<FlintAutocompleteElement>>;

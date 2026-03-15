@@ -5,10 +5,21 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintCollapsibleTrigger as FlintCollapsibleTriggerElement } from '@getufy/flint-ui/collapsible/flint-collapsible';
 
+/**
+ * Toggle button for a collapsible. Place inside `flint-collapsible`.
+Automatically wires up to the nearest `flint-collapsible` ancestor.
+ *
+ * @slot - Trigger label or any content (icon, text, avatar…).
+ */
+export interface FlintCollapsibleTriggerProps extends React.HTMLAttributes<FlintCollapsibleTriggerElement> {
+    /** Reflects the parent collapsible's open state. Set by `flint-collapsible`. */
+    expanded?: boolean;
+    /** Disables the trigger. Set by `flint-collapsible` or directly. */
+    disabled?: boolean;
+}
+
 export const FlintCollapsibleTrigger = createComponent({
     tagName: 'flint-collapsible-trigger',
     elementClass: FlintCollapsibleTriggerElement,
     react: React,
-});
-
-export type FlintCollapsibleTriggerProps = React.ComponentProps<typeof FlintCollapsibleTrigger>;
+}) as unknown as React.ForwardRefExoticComponent<FlintCollapsibleTriggerProps & React.RefAttributes<FlintCollapsibleTriggerElement>>;

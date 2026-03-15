@@ -33,6 +33,12 @@ export class FlintSnackbar extends LitElement {
     /** Whether the snackbar is open. */
     @property({ type: Boolean, reflect: true }) open = false;
 
+    /**
+     * Initial open state for uncontrolled usage.
+     * Has no effect after the element has connected to the DOM.
+     */
+    @property({ type: Boolean, attribute: 'default-open' }) defaultOpen = false;
+
     /** The message to display (slot fallback). */
     @property({ type: String }) message = '';
 
@@ -60,11 +66,23 @@ export class FlintSnackbar extends LitElement {
     @property({ type: String, reflect: true }) variant:
         'default' | 'info' | 'success' | 'warning' | 'error' = 'default';
 
+    private _firstUpdate = true;
+
     @state() private _hasAction = false;
 
     private _timer: ReturnType<typeof setTimeout> | null = null;
     private _remainingTime = 0;
     private _timerStartedAt = 0;
+
+    override willUpdate(changed: PropertyValues) {
+        if (this._firstUpdate) {
+            this._firstUpdate = false;
+            if (this.defaultOpen && !this.open) {
+                this.open = true;
+            }
+        }
+        void changed;
+    }
 
     updated(changed: PropertyValues) {
         if (changed.has('open')) {

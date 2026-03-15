@@ -5,13 +5,32 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintNavigationMenuContent as FlintNavigationMenuContentElement } from '@getufy/flint-ui/navigation-menu/flint-navigation-menu-content';
 
+export interface FlintNavigationMenuContentToggleDetail {
+    contentId: string;
+    open: boolean;
+}
+
+/**
+ * @slot default - Menu content items
+ */
+export interface FlintNavigationMenuContentProps extends Omit<React.HTMLAttributes<FlintNavigationMenuContentElement>, 'id' | 'dir'> {
+    /** Unique identifier for this content panel */
+    id?: string;
+    /** Whether the content is open/visible */
+    open?: boolean;
+    /** The direction (ltr or rtl) */
+    dir?: 'ltr' | 'rtl';
+    /** Gap between items in the content */
+    gap?: number;
+    /** Fired when the content panel opens or closes. */
+    onFlintNavigationMenuContentToggle?: (event: CustomEvent<FlintNavigationMenuContentToggleDetail>) => void;
+}
+
 export const FlintNavigationMenuContent = createComponent({
     tagName: 'flint-navigation-menu-content',
     elementClass: FlintNavigationMenuContentElement,
     react: React,
     events: {
-        onFlintNavigationMenuContentToggle: 'flint-navigation-menu-content-toggle' as EventName<CustomEvent>,
+        onFlintNavigationMenuContentToggle: 'flint-navigation-menu-content-toggle' as EventName<CustomEvent<FlintNavigationMenuContentToggleDetail>>,
     },
-});
-
-export type FlintNavigationMenuContentProps = React.ComponentProps<typeof FlintNavigationMenuContent>;
+}) as unknown as React.ForwardRefExoticComponent<FlintNavigationMenuContentProps & React.RefAttributes<FlintNavigationMenuContentElement>>;

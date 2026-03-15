@@ -5,10 +5,26 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintCircularProgress as FlintCircularProgressElement } from '@getufy/flint-ui/progress/flint-circular-progress';
 
+/**
+ * flint-circular-progress: a circular progress indicator (spinner).
+ */
+export interface FlintCircularProgressProps extends Omit<React.HTMLAttributes<FlintCircularProgressElement>, 'color'> {
+    /** Progress variant: determinate shows a specific value, indeterminate shows an animation. */
+    variant?: 'determinate' | 'indeterminate';
+    /** Current progress percentage (0-100) for determinate mode. */
+    value?: number;
+    /** Diameter of the circular indicator in pixels. */
+    size?: number;
+    /** Stroke width of the circle in pixels. */
+    thickness?: number;
+    /** Color theme of the progress indicator. */
+    color?: 'primary' | 'success' | 'error' | 'warning';
+    /** Accessible label for the progress indicator. */
+    label?: string;
+}
+
 export const FlintCircularProgress = createComponent({
     tagName: 'flint-circular-progress',
     elementClass: FlintCircularProgressElement,
     react: React,
-});
-
-export type FlintCircularProgressProps = React.ComponentProps<typeof FlintCircularProgress>;
+}) as unknown as React.ForwardRefExoticComponent<FlintCircularProgressProps & React.RefAttributes<FlintCircularProgressElement>>;

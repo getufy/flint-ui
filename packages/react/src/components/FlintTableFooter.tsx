@@ -5,10 +5,14 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintTableFooter as FlintTableFooterElement } from '@getufy/flint-ui/table/flint-table';
 
+/**
+ * flint-table-footer
+ */
+export interface FlintTableFooterProps extends React.HTMLAttributes<FlintTableFooterElement> {
+}
+
 export const FlintTableFooter = createComponent({
     tagName: 'flint-table-footer',
     elementClass: FlintTableFooterElement,
     react: React,
-});
-
-export type FlintTableFooterProps = React.ComponentProps<typeof FlintTableFooter>;
+}) as unknown as React.ForwardRefExoticComponent<FlintTableFooterProps & React.RefAttributes<FlintTableFooterElement>>;

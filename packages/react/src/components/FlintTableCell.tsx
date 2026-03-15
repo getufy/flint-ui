@@ -5,10 +5,20 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintTableCell as FlintTableCellElement } from '@getufy/flint-ui/table/flint-table';
 
+/**
+ * flint-table-cell
+ */
+export interface FlintTableCellProps extends React.HTMLAttributes<FlintTableCellElement> {
+    /** Renders the cell with header styling. */
+    header?: boolean;
+    /** Text alignment within the cell. */
+    align?: 'left' | 'right' | 'center';
+    /** Padding preset for the cell. */
+    padding?: 'normal' | 'checkbox' | 'none';
+}
+
 export const FlintTableCell = createComponent({
     tagName: 'flint-table-cell',
     elementClass: FlintTableCellElement,
     react: React,
-});
-
-export type FlintTableCellProps = React.ComponentProps<typeof FlintTableCell>;
+}) as unknown as React.ForwardRefExoticComponent<FlintTableCellProps & React.RefAttributes<FlintTableCellElement>>;

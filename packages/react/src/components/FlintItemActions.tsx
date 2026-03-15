@@ -5,10 +5,17 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintItemActions as FlintItemActionsElement } from '@getufy/flint-ui/item/flint-item';
 
+/**
+ * Container for action buttons or other interactive elements.
+Aligns itself to the trailing edge of the item row.
+ *
+ * @slot - Buttons, icons, or any interactive elements.
+ */
+export interface FlintItemActionsProps extends React.HTMLAttributes<FlintItemActionsElement> {
+}
+
 export const FlintItemActions = createComponent({
     tagName: 'flint-item-actions',
     elementClass: FlintItemActionsElement,
     react: React,
-});
-
-export type FlintItemActionsProps = React.ComponentProps<typeof FlintItemActions>;
+}) as unknown as React.ForwardRefExoticComponent<FlintItemActionsProps & React.RefAttributes<FlintItemActionsElement>>;

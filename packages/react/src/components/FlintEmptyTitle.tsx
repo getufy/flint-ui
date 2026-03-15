@@ -5,10 +5,16 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintEmptyTitle as FlintEmptyTitleElement } from '@getufy/flint-ui/empty/flint-empty';
 
+/**
+ * Displays the heading of an empty state.
+ *
+ * @slot - Title text.
+ */
+export interface FlintEmptyTitleProps extends React.HTMLAttributes<FlintEmptyTitleElement> {
+}
+
 export const FlintEmptyTitle = createComponent({
     tagName: 'flint-empty-title',
     elementClass: FlintEmptyTitleElement,
     react: React,
-});
-
-export type FlintEmptyTitleProps = React.ComponentProps<typeof FlintEmptyTitle>;
+}) as unknown as React.ForwardRefExoticComponent<FlintEmptyTitleProps & React.RefAttributes<FlintEmptyTitleElement>>;

@@ -5,14 +5,46 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintTablePagination as FlintTablePaginationElement } from '@getufy/flint-ui/table/flint-table-pagination';
 
+export interface FlintPaginationPageChangeDetail {
+    page: number;
+}
+
+export interface FlintPaginationRowsPerPageChangeDetail {
+    rowsPerPage: number;
+}
+
+/**
+ * Table Pagination: pagination controls for tabular data.
+ */
+export interface FlintTablePaginationProps extends React.HTMLAttributes<FlintTablePaginationElement> {
+    /** Total number of rows. */
+    count?: number;
+    /** Controlled current page (0-indexed). */
+    page?: number;
+    /** Controlled rows per page. */
+    rowsPerPage?: number;
+    /** Available rows-per-page options. */
+    rowsPerPageOptions?: number[];
+    /** Uncontrolled default page (applied on first render). */
+    defaultPage?: number;
+    /** Uncontrolled default rows per page. */
+    defaultRowsPerPage?: number;
+    /** Show First/Last page buttons. */
+    showFirstLast?: boolean;
+    /** Label for the rows-per-page selector. */
+    labelRowsPerPage?: string;
+    /** Fired when the current page changes. */
+    onFlintPaginationPageChange?: (event: CustomEvent<FlintPaginationPageChangeDetail>) => void;
+    /** Fired when rows per page changes. */
+    onFlintPaginationRowsPerPageChange?: (event: CustomEvent<FlintPaginationRowsPerPageChangeDetail>) => void;
+}
+
 export const FlintTablePagination = createComponent({
     tagName: 'flint-table-pagination',
     elementClass: FlintTablePaginationElement,
     react: React,
     events: {
-        onFlintPaginationPageChange: 'flint-pagination-page-change' as EventName<CustomEvent>,
-        onFlintPaginationRowsPerPageChange: 'flint-pagination-rows-per-page-change' as EventName<CustomEvent>,
+        onFlintPaginationPageChange: 'flint-pagination-page-change' as EventName<CustomEvent<FlintPaginationPageChangeDetail>>,
+        onFlintPaginationRowsPerPageChange: 'flint-pagination-rows-per-page-change' as EventName<CustomEvent<FlintPaginationRowsPerPageChangeDetail>>,
     },
-});
-
-export type FlintTablePaginationProps = React.ComponentProps<typeof FlintTablePagination>;
+}) as unknown as React.ForwardRefExoticComponent<FlintTablePaginationProps & React.RefAttributes<FlintTablePaginationElement>>;

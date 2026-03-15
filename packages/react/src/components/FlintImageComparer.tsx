@@ -5,13 +5,31 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintImageComparer as FlintImageComparerElement } from '@getufy/flint-ui/image-comparer/flint-image-comparer';
 
+export interface FlintImageComparerChangeDetail {
+    position: number;
+}
+
+/**
+ * `flint-image-comparer` — Compare two images side-by-side with a draggable slider.
+ *
+ * @slot before - The before image (`<img>` or `<svg>`).
+ * @slot after - The after image (`<img>` or `<svg>`).
+ * @slot handle - Custom handle content (replaces the default arrows icon).
+ */
+export interface FlintImageComparerProps extends React.HTMLAttributes<FlintImageComparerElement> {
+    /** The position of the divider as a percentage (0–100). */
+    position?: number;
+    /** Whether the comparer is disabled. */
+    disabled?: boolean;
+    /** Fired when the position changes. Detail: `{ position: number }`. */
+    onFlintImageComparerChange?: (event: CustomEvent<FlintImageComparerChangeDetail>) => void;
+}
+
 export const FlintImageComparer = createComponent({
     tagName: 'flint-image-comparer',
     elementClass: FlintImageComparerElement,
     react: React,
     events: {
-        onFlintImageComparerChange: 'flint-image-comparer-change' as EventName<CustomEvent>,
+        onFlintImageComparerChange: 'flint-image-comparer-change' as EventName<CustomEvent<FlintImageComparerChangeDetail>>,
     },
-});
-
-export type FlintImageComparerProps = React.ComponentProps<typeof FlintImageComparer>;
+}) as unknown as React.ForwardRefExoticComponent<FlintImageComparerProps & React.RefAttributes<FlintImageComparerElement>>;

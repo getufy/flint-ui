@@ -5,6 +5,73 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintBox as FlintBoxElement } from '@getufy/flint-ui/box/flint-box';
 
+export interface FlintBoxProps extends Omit<React.HTMLAttributes<FlintBoxElement>, 'color'> {
+    /** The component tag to render */
+    component?: string;
+    /** Margin on all sides. */
+    m?: string;
+    /** Margin top. */
+    mt?: string;
+    /** Margin right. */
+    mr?: string;
+    /** Margin bottom. */
+    mb?: string;
+    /** Margin left. */
+    ml?: string;
+    /** Margin on the horizontal (left and right) axis. */
+    mx?: string;
+    /** Margin on the vertical (top and bottom) axis. */
+    my?: string;
+    /** Padding on all sides. */
+    p?: string;
+    /** Padding top. */
+    pt?: string;
+    /** Padding right. */
+    pr?: string;
+    /** Padding bottom. */
+    pb?: string;
+    /** Padding left. */
+    pl?: string;
+    /** Padding on the horizontal (left and right) axis. */
+    px?: string;
+    /** Padding on the vertical (top and bottom) axis. */
+    py?: string;
+    /** CSS display value. */
+    display?: string;
+    /** CSS flex-direction value. */
+    flexDirection?: string;
+    /** CSS align-items value. */
+    alignItems?: string;
+    /** CSS justify-content value. */
+    justifyContent?: string;
+    /** CSS flex-wrap value. */
+    flexWrap?: string;
+    /** CSS flex-basis value. */
+    flexBasis?: string;
+    /** CSS flex-grow value. */
+    flexGrow?: string;
+    /** CSS flex-shrink value. */
+    flexShrink?: string;
+    /** CSS gap between flex or grid items. */
+    gap?: string;
+    /** Background color. Supports theme tokens 'primary' and 'secondary'. */
+    bgcolor?: string;
+    /** Text color. Supports theme tokens 'primary' and 'secondary'. */
+    color?: string;
+    /** CSS border shorthand value. */
+    border?: string;
+    /** CSS border-radius value. */
+    borderRadius?: string;
+    /** CSS box-shadow value. */
+    boxShadow?: string;
+    /** CSS width value. */
+    width?: string;
+    /** CSS height value. */
+    height?: string;
+    /** Dispatched when an unknown component tag is used and falls back to div. */
+    onFlintBoxWarning?: (event: CustomEvent) => void;
+}
+
 export const FlintBox = createComponent({
     tagName: 'flint-box',
     elementClass: FlintBoxElement,
@@ -12,6 +79,4 @@ export const FlintBox = createComponent({
     events: {
         onFlintBoxWarning: 'flint-box-warning' as EventName<CustomEvent>,
     },
-});
-
-export type FlintBoxProps = React.ComponentProps<typeof FlintBox>;
+}) as unknown as React.ForwardRefExoticComponent<FlintBoxProps & React.RefAttributes<FlintBoxElement>>;

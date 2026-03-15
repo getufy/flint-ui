@@ -5,10 +5,23 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintStepLabel as FlintStepLabelElement } from '@getufy/flint-ui/stepper/flint-stepper';
 
+/**
+ * Step Label: the label for a step.
+ *
+ * @slot - Label text.
+ * @slot optional - Optional step text.
+ */
+export interface FlintStepLabelProps extends React.HTMLAttributes<FlintStepLabelElement> {
+    /** Whether the label's step is currently active. */
+    active?: boolean;
+    /** Whether the label's step is disabled. */
+    disabled?: boolean;
+    /** Whether the label's step is in an error state. */
+    error?: boolean;
+}
+
 export const FlintStepLabel = createComponent({
     tagName: 'flint-step-label',
     elementClass: FlintStepLabelElement,
     react: React,
-});
-
-export type FlintStepLabelProps = React.ComponentProps<typeof FlintStepLabel>;
+}) as unknown as React.ForwardRefExoticComponent<FlintStepLabelProps & React.RefAttributes<FlintStepLabelElement>>;

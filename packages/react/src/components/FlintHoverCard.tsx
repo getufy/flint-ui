@@ -5,10 +5,21 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintHoverCard as FlintHoverCardElement } from '@getufy/flint-ui/hover-card/flint-hover-card';
 
+/**
+ * Root container for a hover card.
+Manages open/closed state with configurable open and close delays.
+ *
+ * @slot - Accepts `flint-hover-card-trigger` and `flint-hover-card-content`.
+ */
+export interface FlintHoverCardProps extends React.HTMLAttributes<FlintHoverCardElement> {
+    /** Delay in milliseconds before the hover card opens. */
+    openDelay?: number;
+    /** Delay in milliseconds before the hover card closes. */
+    closeDelay?: number;
+}
+
 export const FlintHoverCard = createComponent({
     tagName: 'flint-hover-card',
     elementClass: FlintHoverCardElement,
     react: React,
-});
-
-export type FlintHoverCardProps = React.ComponentProps<typeof FlintHoverCard>;
+}) as unknown as React.ForwardRefExoticComponent<FlintHoverCardProps & React.RefAttributes<FlintHoverCardElement>>;

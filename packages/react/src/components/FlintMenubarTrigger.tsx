@@ -5,10 +5,20 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintMenubarTrigger as FlintMenubarTriggerElement } from '@getufy/flint-ui/menubar/flint-menubar';
 
+/**
+ * The trigger button for a menubar menu.
+ *
+ * @slot - Trigger label text.
+ */
+export interface FlintMenubarTriggerProps extends React.HTMLAttributes<FlintMenubarTriggerElement> {
+    /** Whether the trigger's associated menu is currently open. */
+    active?: boolean;
+    /** Whether the trigger is non-interactive. */
+    disabled?: boolean;
+}
+
 export const FlintMenubarTrigger = createComponent({
     tagName: 'flint-menubar-trigger',
     elementClass: FlintMenubarTriggerElement,
     react: React,
-});
-
-export type FlintMenubarTriggerProps = React.ComponentProps<typeof FlintMenubarTrigger>;
+}) as unknown as React.ForwardRefExoticComponent<FlintMenubarTriggerProps & React.RefAttributes<FlintMenubarTriggerElement>>;

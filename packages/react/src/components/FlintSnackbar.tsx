@@ -5,6 +5,37 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintSnackbar as FlintSnackbarElement } from '@getufy/flint-ui/snackbar/flint-snackbar';
 
+/**
+ * Snackbars (also known as toasts) are used for brief notifications.
+They appear temporarily and float above the UI.
+ *
+ * @slot action - The action to display inside the snackbar.
+ * @slot - Optional content to display inside the snackbar, such as a message or a flint-alert.
+ */
+export interface FlintSnackbarProps extends React.HTMLAttributes<FlintSnackbarElement> {
+    /** Whether the snackbar is open. */
+    open?: boolean;
+    /** Initial open state for uncontrolled usage. */
+    defaultOpen?: boolean;
+    /** The message to display (slot fallback). */
+    message?: string;
+    /** Duration in milliseconds before the snackbar auto-closes. */
+    autoHideDuration?: number;
+    /** Position of the snackbar. */
+    anchorOrigin?: 'top-left' | 'top-center' | 'top-right' |
+        'bottom-left' | 'bottom-center' | 'bottom-right';
+    /** Pause the auto-hide timer while the user hovers over the snackbar. */
+    pauseOnHover?: boolean;
+    /** Show a dismiss (✕) button. */
+    closable?: boolean;
+    /** Visual style variant. */
+    variant?: 'default' | 'info' | 'success' | 'warning' | 'error';
+    /** Fired when the snackbar opens (bubbles, composed) */
+    onFlintSnackbarOpen?: (event: CustomEvent) => void;
+    /** Fired when the snackbar closes (bubbles, composed) */
+    onFlintSnackbarClose?: (event: CustomEvent) => void;
+}
+
 export const FlintSnackbar = createComponent({
     tagName: 'flint-snackbar',
     elementClass: FlintSnackbarElement,
@@ -13,6 +44,4 @@ export const FlintSnackbar = createComponent({
         onFlintSnackbarOpen: 'flint-snackbar-open' as EventName<CustomEvent>,
         onFlintSnackbarClose: 'flint-snackbar-close' as EventName<CustomEvent>,
     },
-});
-
-export type FlintSnackbarProps = React.ComponentProps<typeof FlintSnackbar>;
+}) as unknown as React.ForwardRefExoticComponent<FlintSnackbarProps & React.RefAttributes<FlintSnackbarElement>>;

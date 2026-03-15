@@ -5,10 +5,19 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintCollapsibleContent as FlintCollapsibleContentElement } from '@getufy/flint-ui/collapsible/flint-collapsible';
 
+/**
+ * The collapsible panel. Animates open/closed with a CSS grid transition.
+Place inside `flint-collapsible`; its `open` state is managed automatically.
+ *
+ * @slot - Content to reveal when expanded.
+ */
+export interface FlintCollapsibleContentProps extends React.HTMLAttributes<FlintCollapsibleContentElement> {
+    /** Whether the panel is visible. Managed by the parent `flint-collapsible`. */
+    open?: boolean;
+}
+
 export const FlintCollapsibleContent = createComponent({
     tagName: 'flint-collapsible-content',
     elementClass: FlintCollapsibleContentElement,
     react: React,
-});
-
-export type FlintCollapsibleContentProps = React.ComponentProps<typeof FlintCollapsibleContent>;
+}) as unknown as React.ForwardRefExoticComponent<FlintCollapsibleContentProps & React.RefAttributes<FlintCollapsibleContentElement>>;

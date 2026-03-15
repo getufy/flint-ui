@@ -5,6 +5,32 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintChip as FlintChipElement } from '@getufy/flint-ui/chip/flint-chip';
 
+/**
+ * Chip: a compact element representing an input, attribute, or action.
+ *
+ * @slot avatar - Avatar element shown at start.
+ * @slot icon - Icon shown at start when no avatar.
+ */
+export interface FlintChipProps extends Omit<React.HTMLAttributes<FlintChipElement>, 'onClick' | 'color'> {
+    /** Text content displayed inside the chip. */
+    label?: string;
+    /** Visual style variant of the chip. */
+    variant?: 'filled' | 'outlined';
+    /** Color theme applied to the chip. */
+    color?: 'default' | 'primary' | 'secondary';
+    /** Size of the chip. */
+    size?: 'sm' | 'md' | 'lg';
+    /** Whether the chip responds to click interactions. */
+    clickable?: boolean;
+    /** Whether the chip shows a delete icon. */
+    deletable?: boolean;
+    /** Disables the chip and prevents interaction. */
+    disabled?: boolean;
+    onClick?: (event: CustomEvent) => void;
+    /** Fired when the chip's delete icon is clicked. */
+    onFlintChipDelete?: (event: CustomEvent) => void;
+}
+
 export const FlintChip = createComponent({
     tagName: 'flint-chip',
     elementClass: FlintChipElement,
@@ -13,6 +39,4 @@ export const FlintChip = createComponent({
         onClick: 'click' as EventName<CustomEvent>,
         onFlintChipDelete: 'flint-chip-delete' as EventName<CustomEvent>,
     },
-});
-
-export type FlintChipProps = React.ComponentProps<typeof FlintChip>;
+}) as unknown as React.ForwardRefExoticComponent<FlintChipProps & React.RefAttributes<FlintChipElement>>;

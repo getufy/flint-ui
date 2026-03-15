@@ -5,10 +5,15 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintStepConnector as FlintStepConnectorElement } from '@getufy/flint-ui/stepper/flint-stepper';
 
+export interface FlintStepConnectorProps extends React.HTMLAttributes<FlintStepConnectorElement> {
+    /** Layout direction of the connector line. */
+    orientation?: 'horizontal' | 'vertical';
+    /** Whether the connector represents a completed step transition. */
+    completed?: boolean;
+}
+
 export const FlintStepConnector = createComponent({
     tagName: 'flint-step-connector',
     elementClass: FlintStepConnectorElement,
     react: React,
-});
-
-export type FlintStepConnectorProps = React.ComponentProps<typeof FlintStepConnector>;
+}) as unknown as React.ForwardRefExoticComponent<FlintStepConnectorProps & React.RefAttributes<FlintStepConnectorElement>>;

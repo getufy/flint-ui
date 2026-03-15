@@ -5,10 +5,16 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintTableBody as FlintTableBodyElement } from '@getufy/flint-ui/table/flint-table';
 
+/**
+ * flint-table-body
+ */
+export interface FlintTableBodyProps extends React.HTMLAttributes<FlintTableBodyElement> {
+    /** Enables alternating row shading. */
+    striped?: boolean;
+}
+
 export const FlintTableBody = createComponent({
     tagName: 'flint-table-body',
     elementClass: FlintTableBodyElement,
     react: React,
-});
-
-export type FlintTableBodyProps = React.ComponentProps<typeof FlintTableBody>;
+}) as unknown as React.ForwardRefExoticComponent<FlintTableBodyProps & React.RefAttributes<FlintTableBodyElement>>;

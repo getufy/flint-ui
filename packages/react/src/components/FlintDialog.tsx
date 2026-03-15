@@ -5,6 +5,26 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintDialog as FlintDialogElement } from '@getufy/flint-ui/dialog/flint-dialog';
 
+/**
+ * flint-dialog: a modal dialog component.
+ *
+ * @slot - Default slot for dialog content (title, content, actions sub-components).
+ */
+export interface FlintDialogProps extends React.HTMLAttributes<FlintDialogElement> {
+    /** Controls the open / closed state of the dialog. */
+    open?: boolean;
+    /** Initial open state for uncontrolled usage. */
+    defaultOpen?: boolean;
+    /** Animation style: 'scale' (default), 'slide-up', or 'slide-down'. */
+    transition?: 'scale' | 'slide-up' | 'slide-down';
+    /** When true, clicking the backdrop will NOT close the dialog. */
+    disableBackdropClose?: boolean;
+    /** Dispatched when the dialog requests to be closed (backdrop click or
+       an explicit call to `requestClose()`). The host is responsible for
+       setting `open = false` in response. */
+    onClose?: (event: CustomEvent) => void;
+}
+
 export const FlintDialog = createComponent({
     tagName: 'flint-dialog',
     elementClass: FlintDialogElement,
@@ -12,6 +32,4 @@ export const FlintDialog = createComponent({
     events: {
         onClose: 'close' as EventName<CustomEvent>,
     },
-});
-
-export type FlintDialogProps = React.ComponentProps<typeof FlintDialog>;
+}) as unknown as React.ForwardRefExoticComponent<FlintDialogProps & React.RefAttributes<FlintDialogElement>>;

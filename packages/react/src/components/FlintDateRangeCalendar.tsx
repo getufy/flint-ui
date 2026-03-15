@@ -5,6 +5,23 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintDateRangeCalendar as FlintDateRangeCalendarElement } from '@getufy/flint-ui/date-range-picker/flint-date-range-calendar';
 
+/**
+ * A dual-month calendar for range selection.
+Shows two months side-by-side (or stacked on narrow screens).
+ */
+export interface FlintDateRangeCalendarProps extends React.HTMLAttributes<FlintDateRangeCalendarElement> {
+    /** Current selected range [startISO, endISO]. */
+    value?: FlintDateRangeCalendarElement['value'];
+    /** Minimum selectable date (ISO YYYY-MM-DD). */
+    min?: string;
+    /** Maximum selectable date (ISO YYYY-MM-DD). */
+    max?: string;
+    /** Disables the calendar and prevents date selection. */
+    disabled?: boolean;
+    /** { detail: { value: DateRange } } on each click */
+    onFlintDateRangePickerSelect?: (event: CustomEvent) => void;
+}
+
 export const FlintDateRangeCalendar = createComponent({
     tagName: 'flint-date-range-calendar',
     elementClass: FlintDateRangeCalendarElement,
@@ -12,6 +29,4 @@ export const FlintDateRangeCalendar = createComponent({
     events: {
         onFlintDateRangePickerSelect: 'flint-date-range-picker-select' as EventName<CustomEvent>,
     },
-});
-
-export type FlintDateRangeCalendarProps = React.ComponentProps<typeof FlintDateRangeCalendar>;
+}) as unknown as React.ForwardRefExoticComponent<FlintDateRangeCalendarProps & React.RefAttributes<FlintDateRangeCalendarElement>>;

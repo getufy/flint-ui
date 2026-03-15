@@ -5,10 +5,43 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintGrid as FlintGridElement } from '@getufy/flint-ui/grid/flint-grid';
 
+export interface FlintGridProps extends React.HTMLAttributes<FlintGridElement> {
+    /** Whether this element acts as a grid container. */
+    container?: boolean;
+    /** Flex direction of the grid container. */
+    direction?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
+    /** Flex wrap behavior of the grid container. */
+    wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
+    /** Cross-axis alignment of grid items. */
+    alignItems?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
+    /** Main-axis alignment of grid items. */
+    justifyContent?: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly';
+    /** Total number of columns. Default is 12. */
+    columns?: number;
+    /** Spacing between items. 1 unit = 8px. */
+    spacing?: FlintGridElement['spacing'];
+    /** Row spacing override; takes precedence over `spacing` for the row axis. */
+    rowSpacing?: FlintGridElement['rowSpacing'];
+    /** Column spacing override; takes precedence over `spacing` for the column axis. */
+    columnSpacing?: FlintGridElement['columnSpacing'];
+    /** Number of columns to span at the xs breakpoint. */
+    xs?: FlintGridElement['xs'];
+    /** Number of columns to span at the sm breakpoint. */
+    sm?: FlintGridElement['sm'];
+    /** Number of columns to span at the md breakpoint. */
+    md?: FlintGridElement['md'];
+    /** Number of columns to span at the lg breakpoint. */
+    lg?: FlintGridElement['lg'];
+    /** Number of columns to span at the xl breakpoint. */
+    xl?: FlintGridElement['xl'];
+    /** Offset per breakpoint, expressed in column units or 'auto'. */
+    offset?: FlintGridElement['offset'];
+    /** Flex order. Supports responsive values so items can be reordered at */
+    order?: FlintGridElement['order'];
+}
+
 export const FlintGrid = createComponent({
     tagName: 'flint-grid',
     elementClass: FlintGridElement,
     react: React,
-});
-
-export type FlintGridProps = React.ComponentProps<typeof FlintGrid>;
+}) as unknown as React.ForwardRefExoticComponent<FlintGridProps & React.RefAttributes<FlintGridElement>>;

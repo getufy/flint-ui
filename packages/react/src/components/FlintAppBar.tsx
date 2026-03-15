@@ -5,10 +5,24 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintAppBar as FlintAppBarElement } from '@getufy/flint-ui/app-bar/flint-app-bar';
 
+/**
+ * flint-app-bar: The top App bar provides content and actions related to the current screen.
+ *
+ * @slot navigation - Left section, e.g. menu button.
+ * @slot title - Center section next to the title prop.
+ * @slot actions - Right section, e.g. action buttons.
+ */
+export interface FlintAppBarProps extends Omit<React.HTMLAttributes<FlintAppBarElement>, 'title'> {
+    /** Title text displayed in the center of the app bar. */
+    title?: string;
+    /** CSS positioning behavior of the app bar. */
+    position?: 'static' | 'fixed' | 'absolute' | 'sticky';
+    /** Visual style variant of the app bar. */
+    variant?: 'regular' | 'outlined';
+}
+
 export const FlintAppBar = createComponent({
     tagName: 'flint-app-bar',
     elementClass: FlintAppBarElement,
     react: React,
-});
-
-export type FlintAppBarProps = React.ComponentProps<typeof FlintAppBar>;
+}) as unknown as React.ForwardRefExoticComponent<FlintAppBarProps & React.RefAttributes<FlintAppBarElement>>;

@@ -5,10 +5,15 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintMenubarSub as FlintMenubarSubElement } from '@getufy/flint-ui/menubar/flint-menubar';
 
+/**
+ * Wraps a sub-trigger and sub-content pair.
+Opens on hover/focus and ArrowRight; closes on ArrowLeft or blur.
+ */
+export interface FlintMenubarSubProps extends React.HTMLAttributes<FlintMenubarSubElement> {
+}
+
 export const FlintMenubarSub = createComponent({
     tagName: 'flint-menubar-sub',
     elementClass: FlintMenubarSubElement,
     react: React,
-});
-
-export type FlintMenubarSubProps = React.ComponentProps<typeof FlintMenubarSub>;
+}) as unknown as React.ForwardRefExoticComponent<FlintMenubarSubProps & React.RefAttributes<FlintMenubarSubElement>>;

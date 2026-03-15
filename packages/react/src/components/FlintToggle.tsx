@@ -5,13 +5,39 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintToggle as FlintToggleElement } from '@getufy/flint-ui/toggle/flint-toggle';
 
+export interface FlintToggleChangeDetail {
+    pressed: boolean;
+}
+
+/**
+ * A two-state button that can be either on (pressed) or off.
+ *
+ * @slot - Content to render inside the toggle (text, icons, or both).
+ */
+export interface FlintToggleProps extends Omit<React.HTMLAttributes<FlintToggleElement>, 'dir'> {
+    /** Whether the toggle is currently pressed (on). */
+    pressed?: boolean;
+    /** Whether the toggle is disabled. */
+    disabled?: boolean;
+    /** Visual variant of the toggle. */
+    variant?: 'default' | 'outline';
+    /** Size of the toggle. */
+    size?: 'sm' | 'default' | 'lg';
+    /** Text direction for the toggle. */
+    dir?: 'ltr' | 'rtl';
+    /** Initial pressed state for uncontrolled mode. */
+    defaultPressed?: boolean;
+    /** Accessible label for icon-only toggles. */
+    ariaLabel?: string | null;
+    /** Dispatched when the pressed state changes. Detail: `{ pressed: boolean }` */
+    onFlintToggleChange?: (event: CustomEvent<FlintToggleChangeDetail>) => void;
+}
+
 export const FlintToggle = createComponent({
     tagName: 'flint-toggle',
     elementClass: FlintToggleElement,
     react: React,
     events: {
-        onFlintToggleChange: 'flint-toggle-change' as EventName<CustomEvent>,
+        onFlintToggleChange: 'flint-toggle-change' as EventName<CustomEvent<FlintToggleChangeDetail>>,
     },
-});
-
-export type FlintToggleProps = React.ComponentProps<typeof FlintToggle>;
+}) as unknown as React.ForwardRefExoticComponent<FlintToggleProps & React.RefAttributes<FlintToggleElement>>;

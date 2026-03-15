@@ -5,10 +5,16 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintMenubarShortcut as FlintMenubarShortcutElement } from '@getufy/flint-ui/menubar/flint-menubar';
 
+/**
+ * Displays a keyboard shortcut hint inside a menu item.
+ *
+ * @slot - Shortcut text, e.g. `⌘T` or `Ctrl+N`.
+ */
+export interface FlintMenubarShortcutProps extends React.HTMLAttributes<FlintMenubarShortcutElement> {
+}
+
 export const FlintMenubarShortcut = createComponent({
     tagName: 'flint-menubar-shortcut',
     elementClass: FlintMenubarShortcutElement,
     react: React,
-});
-
-export type FlintMenubarShortcutProps = React.ComponentProps<typeof FlintMenubarShortcut>;
+}) as unknown as React.ForwardRefExoticComponent<FlintMenubarShortcutProps & React.RefAttributes<FlintMenubarShortcutElement>>;

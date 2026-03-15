@@ -5,10 +5,18 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintItemFooter as FlintItemFooterElement } from '@getufy/flint-ui/item/flint-item';
 
+/**
+ * Full-bleed footer that spans the bottom of the item, cancelling the
+item's padding so the footer appears flush with the border.
+Always place as the last child of `flint-item`.
+ *
+ * @slot - Footer content: metadata, links, supplementary actions.
+ */
+export interface FlintItemFooterProps extends React.HTMLAttributes<FlintItemFooterElement> {
+}
+
 export const FlintItemFooter = createComponent({
     tagName: 'flint-item-footer',
     elementClass: FlintItemFooterElement,
     react: React,
-});
-
-export type FlintItemFooterProps = React.ComponentProps<typeof FlintItemFooter>;
+}) as unknown as React.ForwardRefExoticComponent<FlintItemFooterProps & React.RefAttributes<FlintItemFooterElement>>;

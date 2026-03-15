@@ -5,13 +5,43 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintRating as FlintRatingElement } from '@getufy/flint-ui/rating/flint-rating';
 
+export interface FlintRatingChangeDetail {
+    value: number;
+}
+
+/**
+ * Rating: a star-based rating input.
+ */
+export interface FlintRatingProps extends Omit<React.HTMLAttributes<FlintRatingElement>, 'defaultValue'> {
+    /** Current rating value. */
+    value?: number;
+    /** Maximum number of stars. */
+    max?: number;
+    /** Whether the rating is read-only. */
+    readonly?: boolean;
+    /** Whether the rating is disabled. */
+    disabled?: boolean;
+    /** Whether clicking the current value clears the rating. */
+    clearable?: boolean;
+    /** Initial rating value for uncontrolled mode. */
+    defaultValue?: number;
+    /** Size of the rating stars. */
+    size?: 'sm' | 'md' | 'lg';
+    /** Form field name for the hidden input. */
+    name?: string;
+    /** Accessible label for the rating group. */
+    label?: string;
+    /** Rating step precision (1 for full stars, 0.5 for half stars). */
+    precision?: FlintRatingElement['precision'];
+    /** Fired when the rating value changes. */
+    onFlintRatingChange?: (event: CustomEvent<FlintRatingChangeDetail>) => void;
+}
+
 export const FlintRating = createComponent({
     tagName: 'flint-rating',
     elementClass: FlintRatingElement,
     react: React,
     events: {
-        onFlintRatingChange: 'flint-rating-change' as EventName<CustomEvent>,
+        onFlintRatingChange: 'flint-rating-change' as EventName<CustomEvent<FlintRatingChangeDetail>>,
     },
-});
-
-export type FlintRatingProps = React.ComponentProps<typeof FlintRating>;
+}) as unknown as React.ForwardRefExoticComponent<FlintRatingProps & React.RefAttributes<FlintRatingElement>>;

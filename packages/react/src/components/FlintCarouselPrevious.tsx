@@ -5,10 +5,20 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintCarouselPrevious as FlintCarouselPreviousElement } from '@getufy/flint-ui/carousel/flint-carousel';
 
+/**
+ * Carousel Previous: navigation button to go to the previous slide.
+ *
+ * @slot - Custom icon content, replaces default chevron.
+ */
+export interface FlintCarouselPreviousProps extends React.HTMLAttributes<FlintCarouselPreviousElement> {
+    /** Whether the previous button is disabled. */
+    disabled?: boolean;
+    /** Slide direction axis, inherited from the parent carousel. */
+    orientation?: 'horizontal' | 'vertical';
+}
+
 export const FlintCarouselPrevious = createComponent({
     tagName: 'flint-carousel-previous',
     elementClass: FlintCarouselPreviousElement,
     react: React,
-});
-
-export type FlintCarouselPreviousProps = React.ComponentProps<typeof FlintCarouselPrevious>;
+}) as unknown as React.ForwardRefExoticComponent<FlintCarouselPreviousProps & React.RefAttributes<FlintCarouselPreviousElement>>;

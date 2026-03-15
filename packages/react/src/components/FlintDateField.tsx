@@ -5,14 +5,45 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintDateField as FlintDateFieldElement } from '@getufy/flint-ui/date-field/flint-date-field';
 
+export interface FlintDateFieldChangeDetail {
+    value: string;
+}
+
+/**
+ * A segmented keyboard-driven date input.
+Each section (month, day, year) is independently editable via keyboard.
+ */
+export interface FlintDateFieldProps extends React.HTMLAttributes<FlintDateFieldElement> {
+    /** Controlled date value (ISO YYYY-MM-DD). Set to '' for uncontrolled. */
+    value?: string;
+    /** Field label. */
+    label?: string;
+    /** Form field name. Reflected so the browser picks it up for form data collection. */
+    name?: string;
+    /** Minimum allowed date (ISO). */
+    min?: string;
+    /** Maximum allowed date (ISO). */
+    max?: string;
+    /** Disables the field and prevents interaction. */
+    disabled?: boolean;
+    /** Makes the field read-only (visible but not editable). */
+    readonly?: boolean;
+    /** Displays the field in an error state. */
+    error?: boolean;
+    /** Helper text shown below the field. */
+    helperText?: string;
+    /** Fired when all segments are cleared */
+    onFlintDateFieldClear?: (event: CustomEvent) => void;
+    /** { detail: { value: string } } ISO date when all three segments are filled */
+    onFlintDateFieldChange?: (event: CustomEvent<FlintDateFieldChangeDetail>) => void;
+}
+
 export const FlintDateField = createComponent({
     tagName: 'flint-date-field',
     elementClass: FlintDateFieldElement,
     react: React,
     events: {
         onFlintDateFieldClear: 'flint-date-field-clear' as EventName<CustomEvent>,
-        onFlintDateFieldChange: 'flint-date-field-change' as EventName<CustomEvent>,
+        onFlintDateFieldChange: 'flint-date-field-change' as EventName<CustomEvent<FlintDateFieldChangeDetail>>,
     },
-});
-
-export type FlintDateFieldProps = React.ComponentProps<typeof FlintDateField>;
+}) as unknown as React.ForwardRefExoticComponent<FlintDateFieldProps & React.RefAttributes<FlintDateFieldElement>>;

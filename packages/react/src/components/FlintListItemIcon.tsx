@@ -5,10 +5,14 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintListItemIcon as FlintListItemIconElement } from '@getufy/flint-ui/list/flint-list';
 
+/**
+ * flint-list-item-icon: An icon wrapper inside a list item.
+ */
+export interface FlintListItemIconProps extends React.HTMLAttributes<FlintListItemIconElement> {
+}
+
 export const FlintListItemIcon = createComponent({
     tagName: 'flint-list-item-icon',
     elementClass: FlintListItemIconElement,
     react: React,
-});
-
-export type FlintListItemIconProps = React.ComponentProps<typeof FlintListItemIcon>;
+}) as unknown as React.ForwardRefExoticComponent<FlintListItemIconProps & React.RefAttributes<FlintListItemIconElement>>;

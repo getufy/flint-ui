@@ -5,10 +5,23 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintFab as FlintFabElement } from '@getufy/flint-ui/fab/flint-fab';
 
+/**
+ * A floating action button (FAB) represents the primary action of a screen.
+ *
+ * @slot icon - The icon to display inside the FAB.
+ * @slot - Default slot for icon content (icon-only FAB).
+ * @slot label - The label to display in the extended FAB.
+ */
+export interface FlintFabProps extends React.HTMLAttributes<FlintFabElement> {
+    extended?: boolean;
+    disabled?: boolean;
+    /** Accessible label for icon-only (non-extended) FABs. */
+    label?: string;
+    position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left' | 'static';
+}
+
 export const FlintFab = createComponent({
     tagName: 'flint-fab',
     elementClass: FlintFabElement,
     react: React,
-});
-
-export type FlintFabProps = React.ComponentProps<typeof FlintFab>;
+}) as unknown as React.ForwardRefExoticComponent<FlintFabProps & React.RefAttributes<FlintFabElement>>;

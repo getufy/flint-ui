@@ -5,10 +5,17 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintKbdGroup as FlintKbdGroupElement } from '@getufy/flint-ui/kbd/flint-kbd';
 
+/**
+ * Groups multiple `flint-kbd` elements in a row.
+Provides a flex container with tight spacing for key combos.
+ *
+ * @slot - `flint-kbd` elements, separators (e.g. `<span>+</span>`), or text.
+ */
+export interface FlintKbdGroupProps extends React.HTMLAttributes<FlintKbdGroupElement> {
+}
+
 export const FlintKbdGroup = createComponent({
     tagName: 'flint-kbd-group',
     elementClass: FlintKbdGroupElement,
     react: React,
-});
-
-export type FlintKbdGroupProps = React.ComponentProps<typeof FlintKbdGroup>;
+}) as unknown as React.ForwardRefExoticComponent<FlintKbdGroupProps & React.RefAttributes<FlintKbdGroupElement>>;

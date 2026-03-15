@@ -6,7 +6,8 @@ import uiTreeItemStyles from './flint-tree-item.css?inline';
 /**
  * A single item inside a `flint-simple-tree-view` or `flint-rich-tree-view`.
  *
- * @slot - Place child `flint-tree-item` elements here to create a nested tree.
+ * @slot lead - Leading icon or content.
+ * @slot - Item label text.
  *
  * @fires flint-tree-item-click  - Fired when the item is clicked (detail: { itemId })
  * @fires flint-tree-item-toggle - Fired when expanded state changes (detail: { itemId, expanded })

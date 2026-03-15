@@ -5,10 +5,47 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintFormatDate as FlintFormatDateElement } from '@getufy/flint-ui/format-date/flint-format-date';
 
+/**
+ * Formats a date/time using the specified locale and options.
+Localization is handled by the browser's `Intl.DateTimeFormat` API — no language packs required.
+ */
+export interface FlintFormatDateProps extends Omit<React.HTMLAttributes<FlintFormatDateElement>, 'lang'> {
+    /** The date/time to format. Accepts a `Date` object or any string accepted by `new Date()`. */
+    date?: FlintFormatDateElement['date'];
+    /** The format for displaying the weekday. */
+    weekday?: 'narrow' | 'short' | 'long' | undefined;
+    /** The format for displaying the era. */
+    era?: 'narrow' | 'short' | 'long' | undefined;
+    /** The format for displaying the year. */
+    year?: 'numeric' | '2-digit' | undefined;
+    /** The format for displaying the month. */
+    month?: 'numeric' | '2-digit' | 'narrow' | 'short' | 'long' | undefined;
+    /** The format for displaying the day. */
+    day?: 'numeric' | '2-digit' | undefined;
+    /** The format for displaying the hour. */
+    hour?: 'numeric' | '2-digit' | undefined;
+    /** The format for displaying the minute. */
+    minute?: 'numeric' | '2-digit' | undefined;
+    /** The format for displaying the second. */
+    second?: 'numeric' | '2-digit' | undefined;
+    /** The format for displaying the time zone name. */
+    timeZoneName?: 'short' | 'long' | 'shortOffset' | 'longOffset' | 'shortGeneric' | 'longGeneric' | undefined;
+    /** The time zone to express the time in (e.g. "UTC", "America/New_York"). */
+    timeZone?: string | undefined;
+    /** Number of fractional second digits to display (1–3). */
+    fractionalSecondDigits?: 1 | 2 | 3 | undefined;
+    /** Shorthand date format style. Cannot be combined with individual date field props */
+    dateStyle?: 'full' | 'long' | 'medium' | 'short' | undefined;
+    /** Shorthand time format style. Cannot be combined with individual time field props */
+    timeStyle?: 'full' | 'long' | 'medium' | 'short' | undefined;
+    /** The hour format to use. `'auto'` uses the browser/locale default. */
+    hourFormat?: 'auto' | '12' | '24';
+    /** BCP 47 language tag for formatting locale (e.g. "en", "fr", "ru"). Inherits from the document when unset. */
+    lang?: string;
+}
+
 export const FlintFormatDate = createComponent({
     tagName: 'flint-format-date',
     elementClass: FlintFormatDateElement,
     react: React,
-});
-
-export type FlintFormatDateProps = React.ComponentProps<typeof FlintFormatDate>;
+}) as unknown as React.ForwardRefExoticComponent<FlintFormatDateProps & React.RefAttributes<FlintFormatDateElement>>;

@@ -5,10 +5,23 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintScrollArea as FlintScrollAreaElement } from '@getufy/flint-ui/scroll-area/flint-scroll-area';
 
+/**
+ * Augments native scroll with custom, cross-browser overlay scrollbars.
+Native scrollbars are hidden; lightweight custom thumbs are rendered in
+shadow DOM and synced to the viewport via scroll + ResizeObserver events.
+ *
+ * @slot - Scrollable content.
+ * @slot scrollbar - Optional explicit `flint-scroll-bar` elements (e.g. horizontal).
+ */
+export interface FlintScrollAreaProps extends Omit<React.HTMLAttributes<FlintScrollAreaElement>, 'dir'> {
+    /** Controls when the scrollbars appear. */
+    type?: 'auto' | 'always' | 'scroll' | 'hover';
+    /** Text direction. `'rtl'` flips the vertical bar to the left side. */
+    dir?: 'ltr' | 'rtl';
+}
+
 export const FlintScrollArea = createComponent({
     tagName: 'flint-scroll-area',
     elementClass: FlintScrollAreaElement,
     react: React,
-});
-
-export type FlintScrollAreaProps = React.ComponentProps<typeof FlintScrollArea>;
+}) as unknown as React.ForwardRefExoticComponent<FlintScrollAreaProps & React.RefAttributes<FlintScrollAreaElement>>;

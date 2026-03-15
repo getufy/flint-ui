@@ -5,10 +5,17 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintMenubarSubContent as FlintMenubarSubContentElement } from '@getufy/flint-ui/menubar/flint-menubar';
 
+/**
+ * The dropdown panel of a sub-menu. Positioned to the right of the trigger.
+Auto-flips left when the panel would overflow the viewport edge.
+ */
+export interface FlintMenubarSubContentProps extends React.HTMLAttributes<FlintMenubarSubContentElement> {
+    /** Whether the sub-menu dropdown panel is visible. */
+    open?: boolean;
+}
+
 export const FlintMenubarSubContent = createComponent({
     tagName: 'flint-menubar-sub-content',
     elementClass: FlintMenubarSubContentElement,
     react: React,
-});
-
-export type FlintMenubarSubContentProps = React.ComponentProps<typeof FlintMenubarSubContent>;
+}) as unknown as React.ForwardRefExoticComponent<FlintMenubarSubContentProps & React.RefAttributes<FlintMenubarSubContentElement>>;
