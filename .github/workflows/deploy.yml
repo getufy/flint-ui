@@ -27,6 +27,7 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
+      - run: npm run build
       - run: npm run build-storybook
       - run: npm run docs:build
       - run: cp -r packages/core/storybook-static docs/.vitepress/dist/storybook
