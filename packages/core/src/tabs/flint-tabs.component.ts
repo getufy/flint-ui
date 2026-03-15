@@ -402,12 +402,3 @@ export class FlintTabs extends FlintElement {
             </div>`;
     }
 }
-
-declare global {
-    interface HTMLElementTagNameMap {
-        'flint-tab': FlintTab;
-        'flint-tab-list': FlintTabList;
-        'flint-tab-panel': FlintTabPanel;
-        'flint-tabs': FlintTabs;
-    }
-}

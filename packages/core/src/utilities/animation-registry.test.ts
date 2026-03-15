@@ -25,8 +25,10 @@ beforeEach(() => {
     mockAnimate = vi.fn(() => mockAnimation);
     mockGetAnimations = vi.fn(() => []);
 
-    HTMLElement.prototype.animate = mockAnimate;
-    HTMLElement.prototype.getAnimations = mockGetAnimations;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    HTMLElement.prototype.animate = mockAnimate as any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    HTMLElement.prototype.getAnimations = mockGetAnimations as any;
 });
 
 afterEach(() => {

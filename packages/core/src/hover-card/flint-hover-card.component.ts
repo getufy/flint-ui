@@ -235,8 +235,8 @@ export class FlintHoverCard extends FlintElement {
 
     private _syncChildren() {
         this.querySelectorAll('flint-hover-card-content').forEach(el => {
-            if (el.closest('flint-hover-card') === this) {
-                (el as FlintHoverCardContent).open = this._isOpen;
+            if ((el.closest('flint-hover-card') as unknown) === this) {
+                (el as unknown as FlintHoverCardContent).open = this._isOpen;
             }
         });
     }
@@ -249,13 +249,5 @@ export class FlintHoverCard extends FlintElement {
 
     render() {
         return html`<slot @slotchange=${() => this._syncChildren()}></slot>`;
-    }
-}
-
-declare global {
-    interface HTMLElementTagNameMap {
-        'flint-hover-card': FlintHoverCard;
-        'flint-hover-card-trigger': FlintHoverCardTrigger;
-        'flint-hover-card-content': FlintHoverCardContent;
     }
 }

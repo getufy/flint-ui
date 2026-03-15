@@ -481,10 +481,3 @@ export class FlintDatePicker extends FlintElement {
         return this._renderDesktop();
     }
 }
-
-declare global {
-    interface HTMLElementTagNameMap {
-        'flint-date-picker': FlintDatePicker;
-        'flint-date-picker-calendar': FlintDatePickerCalendar;
-    }
-}

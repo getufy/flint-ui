@@ -29,7 +29,7 @@ const JSDOM_DISABLED_RULES: string[] = [
  * ```
  */
 export async function expectAccessible(
-    el: HTMLElement,
+    el: Element,
     overrides: RunOptions = {},
 ): Promise<void> {
     // Build the disabled-rules map from our defaults + any caller overrides.

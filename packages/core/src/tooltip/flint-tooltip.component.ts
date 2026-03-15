@@ -165,9 +165,3 @@ export class FlintTooltip extends FlintElement {
     `;
     }
 }
-
-declare global {
-    interface HTMLElementTagNameMap {
-        'flint-tooltip': FlintTooltip;
-    }
-}
