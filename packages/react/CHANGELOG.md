@@ -1,5 +1,25 @@
 # @getufy/flint-ui-react
 
+## 1.0.0
+
+### Minor Changes
+
+- [#21](https://github.com/getufy/flint-ui/pull/21) [`051f9a4`](https://github.com/getufy/flint-ui/commit/051f9a4e2fe07ba66b2cd7e76b5e61d4a5050e49) Thanks [@mihai-ufy](https://github.com/mihai-ufy)! - Add SSR support via Lit SSR + Declarative Shadow DOM
+
+  - SSR-safe locale resolution (`resolveLocale()`) for format components
+  - Guard browser-only APIs in grid, stack, autoloader, and `FlintElement.define()`
+  - Custom Elements Manifest (CEM) with VS Code and JetBrains IDE support
+  - Animation registry, localize controller, and form controller
+  - `::part()` exposure on high-use components
+  - `hoist` property on tooltip, hover card, and date picker
+  - axe-core automated accessibility testing
+  - SSR smoke tests and documentation
+
+### Patch Changes
+
+- Updated dependencies [[`051f9a4`](https://github.com/getufy/flint-ui/commit/051f9a4e2fe07ba66b2cd7e76b5e61d4a5050e49)]:
+  - @getufy/flint-ui@1.0.0
+
 ## 0.4.0
 
 ### Minor Changes (BREAKING)
