@@ -528,6 +528,84 @@ describe('flint-hover-card — disconnect cleanup', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════════════════════
+   flint-hover-card — hoist
+═══════════════════════════════════════════════════════════════════════════ */
+describe('flint-hover-card — hoist', () => {
+    beforeEach(() => vi.useFakeTimers());
+    afterEach(() => vi.useRealTimers());
+
+    it('hoist defaults to false', async () => {
+        const el = await make();
+        expect(el.hoist).toBe(false);
+    });
+
+    it('syncs hoist to content when opening', async () => {
+        const el = await fixture<FlintHoverCard>(html`
+            <flint-hover-card .openDelay=${50} .closeDelay=${50} hoist>
+                <flint-hover-card-trigger>Hover me</flint-hover-card-trigger>
+                <flint-hover-card-content>Card content</flint-hover-card-content>
+            </flint-hover-card>
+        `);
+        await el.updateComplete;
+        enter(getTriggerDiv(el));
+        vi.advanceTimersByTime(50);
+        const content = getContent(el);
+        expect(content.hoist).toBe(true);
+        expect(content.hasAttribute('hoist')).toBe(true);
+    });
+
+    it('content reflects hoist attribute', async () => {
+        const el = await fixture<FlintHoverCard>(html`
+            <flint-hover-card .openDelay=${50} .closeDelay=${50} hoist>
+                <flint-hover-card-trigger>T</flint-hover-card-trigger>
+                <flint-hover-card-content>C</flint-hover-card-content>
+            </flint-hover-card>
+        `);
+        await el.updateComplete;
+        enter(getTriggerDiv(el));
+        vi.advanceTimersByTime(50);
+        const content = getContent(el);
+        await content.updateComplete;
+        expect(content.hasAttribute('hoist')).toBe(true);
+    });
+
+    it('cleans up hoist listeners on close', async () => {
+        const el = await fixture<FlintHoverCard>(html`
+            <flint-hover-card .openDelay=${50} .closeDelay=${50} hoist>
+                <flint-hover-card-trigger>T</flint-hover-card-trigger>
+                <flint-hover-card-content>C</flint-hover-card-content>
+            </flint-hover-card>
+        `);
+        await el.updateComplete;
+
+        // Open
+        enter(getTriggerDiv(el));
+        vi.advanceTimersByTime(50);
+        expect(getContent(el).open).toBe(true);
+
+        // Close
+        leave(getTriggerDiv(el));
+        vi.advanceTimersByTime(50);
+        expect(getContent(el).open).toBe(false);
+    });
+
+    it('cleans up hoist listeners on disconnect', async () => {
+        const el = await fixture<FlintHoverCard>(html`
+            <flint-hover-card .openDelay=${50} .closeDelay=${50} hoist>
+                <flint-hover-card-trigger>T</flint-hover-card-trigger>
+                <flint-hover-card-content>C</flint-hover-card-content>
+            </flint-hover-card>
+        `);
+        await el.updateComplete;
+        enter(getTriggerDiv(el));
+        vi.advanceTimersByTime(50);
+        el.remove();
+        // Should not throw
+        expect(() => vi.advanceTimersByTime(1000)).not.toThrow();
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
    flint-hover-card — nested isolation
 ═══════════════════════════════════════════════════════════════════════════ */
 describe('flint-hover-card — nested isolation', () => {

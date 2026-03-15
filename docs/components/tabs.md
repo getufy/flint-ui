@@ -1,8 +1,8 @@
 # Tabs
 
-<Demo label="Basic" html="<div style=&quot;width:100%;max-width:500px&quot;><flint-tabs value=&quot;one&quot;>  <flint-tab-list>    <flint-tab value=&quot;one&quot;>Tab One</flint-tab>    <flint-tab value=&quot;two&quot;>Tab Two</flint-tab>    <flint-tab value=&quot;three&quot;>Tab Three</flint-tab>  </flint-tab-list>  <flint-tab-panel value=&quot;one&quot;><p style=&quot;padding:16px;margin:0&quot;>Content for Tab One</p></flint-tab-panel>  <flint-tab-panel value=&quot;two&quot;><p style=&quot;padding:16px;margin:0&quot;>Content for Tab Two</p></flint-tab-panel>  <flint-tab-panel value=&quot;three&quot;><p style=&quot;padding:16px;margin:0&quot;>Content for Tab Three</p></flint-tab-panel></flint-tabs></div>" />
+<Demo label="Basic" html='<div style="width:100%;max-width:500px"><flint-tabs value="one">  <flint-tab-list>    <flint-tab value="one">Tab One</flint-tab>    <flint-tab value="two">Tab Two</flint-tab>    <flint-tab value="three">Tab Three</flint-tab>  </flint-tab-list>  <flint-tab-panel value="one"><p style="padding:16px;margin:0">Content for Tab One</p></flint-tab-panel>  <flint-tab-panel value="two"><p style="padding:16px;margin:0">Content for Tab Two</p></flint-tab-panel>  <flint-tab-panel value="three"><p style="padding:16px;margin:0">Content for Tab Three</p></flint-tab-panel></flint-tabs></div>' />
 
-<Demo label="With Disabled Tab" html="<div style=&quot;width:100%;max-width:500px&quot;><flint-tabs value=&quot;first&quot;>  <flint-tab-list>    <flint-tab value=&quot;first&quot;>Active</flint-tab>    <flint-tab value=&quot;second&quot; disabled>Disabled</flint-tab>    <flint-tab value=&quot;third&quot;>Also Active</flint-tab>  </flint-tab-list>  <flint-tab-panel value=&quot;first&quot;><p style=&quot;padding:16px;margin:0&quot;>First panel content</p></flint-tab-panel>  <flint-tab-panel value=&quot;second&quot;><p style=&quot;padding:16px;margin:0&quot;>Disabled panel</p></flint-tab-panel>  <flint-tab-panel value=&quot;third&quot;><p style=&quot;padding:16px;margin:0&quot;>Third panel content</p></flint-tab-panel></flint-tabs></div>" />
+<Demo label="With Disabled Tab" html='<div style="width:100%;max-width:500px"><flint-tabs value="first">  <flint-tab-list>    <flint-tab value="first">Active</flint-tab>    <flint-tab value="second" disabled>Disabled</flint-tab>    <flint-tab value="third">Also Active</flint-tab>  </flint-tab-list>  <flint-tab-panel value="first"><p style="padding:16px;margin:0">First panel content</p></flint-tab-panel>  <flint-tab-panel value="second"><p style="padding:16px;margin:0">Disabled panel</p></flint-tab-panel>  <flint-tab-panel value="third"><p style="padding:16px;margin:0">Third panel content</p></flint-tab-panel></flint-tabs></div>' />
 
 ## `<flint-tab>`
 
@@ -42,13 +42,6 @@ import { FlintTab } from '@getufy/flint-ui';
 | --- | --- | --- |
 | `flint-tab-click` | — | Fired when the tab is clicked or activated via keyboard. |
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
-| `icon` |  |
-
 ### CSS Custom Properties
 
 | Property | Default |
@@ -84,14 +77,13 @@ import { FlintTab } from '@getufy/flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `setTabIndex(n: number)` |  |
-| `focusInner()` |  |
+| `focusInner(): void` |  |
 
 ---
 
-## `<flint-tab-panel>`
+## `<flint-tab>`
 
-- **Tag**: `<flint-tab-panel>`
+- **Tag**: `<flint-tab>`
 - **Class**: `FlintTabPanel`
 
 ### Import
@@ -105,7 +97,7 @@ import { FlintTabPanel } from '@getufy/flint-ui';
 ### Usage
 
 ```html
-<flint-tab-panel></flint-tab-panel>
+<flint-tab></flint-tab>
 ```
 
 ### Properties
@@ -114,23 +106,34 @@ import { FlintTabPanel } from '@getufy/flint-ui';
 | --- | --- | --- | --- | --- |
 | `value` | `value` | `string` | `''` | Identifier linking this panel to its corresponding tab. |
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
-
 ### CSS Custom Properties
 
 | Property | Default |
 | --- | --- |
+| `--flint-tab-border-color` | `var(--flint-border-color` |
+| `--flint-tab-scroll-btn-size` | `40px` |
+| `--flint-tab-indicator-color` | `var(--flint-tabs-ind-color, var(--flint-primary-color` |
+| `--flint-tab-indicator-radius` | `3px` |
+| `--flint-tab-indicator-height` | `3px` |
+| `--flint-tab-indicator-width` | `3px` |
 | `--flint-tab-panel-padding` | `24px` |
+| `--flint-tab-padding-y` | `10px` |
+| `--flint-tab-padding-x` | `16px` |
+| `--flint-tab-min-height` | `48px` |
+| `--flint-tab-font-size` | `0.875rem` |
+| `--flint-tab-font-weight` | `500` |
+| `--flint-tab-inactive-color` | — |
+| `--flint-tab-active-color` | — |
+| `--flint-tab-hover-bg` | `var(--flint-primary-color-light` |
+| `--flint-tab-font-weight-active` | `600` |
+| `--flint-tab-disabled-opacity` | `0.38` |
+| `--flint-tab-icon-min-height` | `72px` |
 
 ---
 
-## `<flint-tab-list>`
+## `<flint-tab>`
 
-- **Tag**: `<flint-tab-list>`
+- **Tag**: `<flint-tab>`
 - **Class**: `FlintTabList`
 
 ### Import
@@ -144,7 +147,7 @@ import { FlintTabList } from '@getufy/flint-ui';
 ### Usage
 
 ```html
-<flint-tab-list></flint-tab-list>
+<flint-tab></flint-tab>
 ```
 
 ### Properties
@@ -157,31 +160,42 @@ import { FlintTabList } from '@getufy/flint-ui';
 | `scrollButtons` | `scroll-buttons` | `'auto' \| 'false'` | `'auto'` | Whether to show scroll buttons in scrollable mode. |
 | `ariaLabel` | `aria-label` | `string` | `''` | Accessible label for the tab list. |
 
-### Events
+### CSS Custom Properties
 
-| Event | Detail | Description |
-| --- | --- | --- |
-| `flint-tab-click` | `{ value: tabs[idx].value }` |  |
-
-### Slots
-
-| Name | Description |
+| Property | Default |
 | --- | --- |
-| `(default)` | Default slot for content |
+| `--flint-tab-border-color` | `var(--flint-border-color` |
+| `--flint-tab-scroll-btn-size` | `40px` |
+| `--flint-tab-indicator-color` | `var(--flint-tabs-ind-color, var(--flint-primary-color` |
+| `--flint-tab-indicator-radius` | `3px` |
+| `--flint-tab-indicator-height` | `3px` |
+| `--flint-tab-indicator-width` | `3px` |
+| `--flint-tab-panel-padding` | `24px` |
+| `--flint-tab-padding-y` | `10px` |
+| `--flint-tab-padding-x` | `16px` |
+| `--flint-tab-min-height` | `48px` |
+| `--flint-tab-font-size` | `0.875rem` |
+| `--flint-tab-font-weight` | `500` |
+| `--flint-tab-inactive-color` | — |
+| `--flint-tab-active-color` | — |
+| `--flint-tab-hover-bg` | `var(--flint-primary-color-light` |
+| `--flint-tab-font-weight-active` | `600` |
+| `--flint-tab-disabled-opacity` | `0.38` |
+| `--flint-tab-icon-min-height` | `72px` |
 
 ### Methods
 
 | Method | Description |
 | --- | --- |
-| `syncIndicator()` |  |
+| `syncIndicator(): void` |  |
 
 ---
 
-## `<flint-tabs>`
+## `<flint-tab>`
 
 Tabs: container that coordinates tab selection and panel visibility.
 
-- **Tag**: `<flint-tabs>`
+- **Tag**: `<flint-tab>`
 - **Class**: `FlintTabs`
 
 ### Import
@@ -195,7 +209,7 @@ import { FlintTabs } from '@getufy/flint-ui';
 ### Usage
 
 ```html
-<flint-tabs></flint-tabs>
+<flint-tab></flint-tab>
 ```
 
 ### Properties
@@ -217,10 +231,27 @@ import { FlintTabs } from '@getufy/flint-ui';
 | --- | --- | --- |
 | `flint-tab-change` | — | Fired when the active tab changes. |
 
-### Slots
+### CSS Custom Properties
 
-| Name | Description |
+| Property | Default |
 | --- | --- |
-| `(default)` | Default slot for content |
+| `--flint-tab-border-color` | `var(--flint-border-color` |
+| `--flint-tab-scroll-btn-size` | `40px` |
+| `--flint-tab-indicator-color` | `var(--flint-tabs-ind-color, var(--flint-primary-color` |
+| `--flint-tab-indicator-radius` | `3px` |
+| `--flint-tab-indicator-height` | `3px` |
+| `--flint-tab-indicator-width` | `3px` |
+| `--flint-tab-panel-padding` | `24px` |
+| `--flint-tab-padding-y` | `10px` |
+| `--flint-tab-padding-x` | `16px` |
+| `--flint-tab-min-height` | `48px` |
+| `--flint-tab-font-size` | `0.875rem` |
+| `--flint-tab-font-weight` | `500` |
+| `--flint-tab-inactive-color` | — |
+| `--flint-tab-active-color` | — |
+| `--flint-tab-hover-bg` | `var(--flint-primary-color-light` |
+| `--flint-tab-font-weight-active` | `600` |
+| `--flint-tab-disabled-opacity` | `0.38` |
+| `--flint-tab-icon-min-height` | `72px` |
 
 ---

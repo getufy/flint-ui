@@ -1,16 +1,16 @@
 # Time Picker
 
-<Demo label="Desktop (Digital Clock Popover)" html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><flint-time-picker label=&quot;Time&quot; value=&quot;14:30:00&quot; style=&quot;width:200px&quot;></flint-time-picker><flint-time-picker label=&quot;With Seconds&quot; value=&quot;09:15:45&quot; seconds style=&quot;width:200px&quot;></flint-time-picker><flint-time-picker label=&quot;Disabled&quot; disabled value=&quot;08:00:00&quot; style=&quot;width:200px&quot;></flint-time-picker></div>" />
+<Demo label="Desktop (Digital Clock Popover)" html='<div style="display:flex;gap:16px;flex-wrap:wrap"><flint-time-picker label="Time" value="14:30:00" style="width:200px"></flint-time-picker><flint-time-picker label="With Seconds" value="09:15:45" seconds style="width:200px"></flint-time-picker><flint-time-picker label="Disabled" disabled value="08:00:00" style="width:200px"></flint-time-picker></div>' />
 
-<Demo label="Mobile (Analog Clock Dialog)" html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><flint-time-picker label=&quot;Tap to open clock&quot; variant=&quot;mobile&quot; value=&quot;10:30:00&quot; style=&quot;width:200px&quot;></flint-time-picker><flint-time-picker label=&quot;With Seconds&quot; variant=&quot;mobile&quot; value=&quot;15:45:30&quot; seconds style=&quot;width:200px&quot;></flint-time-picker></div>" />
+<Demo label="Mobile (Analog Clock Dialog)" html='<div style="display:flex;gap:16px;flex-wrap:wrap"><flint-time-picker label="Tap to open clock" variant="mobile" value="10:30:00" style="width:200px"></flint-time-picker><flint-time-picker label="With Seconds" variant="mobile" value="15:45:30" seconds style="width:200px"></flint-time-picker></div>' />
 
-<Demo label="Analog Clock (Standalone)" html="<div style=&quot;display:flex;gap:24px;flex-wrap:wrap;align-items:start&quot;><flint-time-clock value=&quot;10:10:00&quot; ampm></flint-time-clock><flint-time-clock value=&quot;15:45:00&quot;></flint-time-clock></div>" />
+<Demo label="Analog Clock (Standalone)" html='<div style="display:flex;gap:24px;flex-wrap:wrap;align-items:start"><flint-time-clock value="10:10:00" ampm></flint-time-clock><flint-time-clock value="15:45:00"></flint-time-clock></div>' />
 
-<Demo label="Digital Clock" html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><flint-digital-clock value=&quot;14:30:00&quot; ampm></flint-digital-clock><flint-digital-clock value=&quot;09:15:00&quot;></flint-digital-clock></div>" />
+<Demo label="Digital Clock" html='<div style="display:flex;gap:16px;flex-wrap:wrap"><flint-digital-clock value="14:30:00" ampm></flint-digital-clock><flint-digital-clock value="09:15:00"></flint-digital-clock></div>' />
 
-<Demo label="Multi-Section Digital Clock" html="<flint-multi-section-digital-clock value=&quot;14:30:00&quot; ampm></flint-multi-section-digital-clock>" />
+<Demo label="Multi-Section Digital Clock" html='<flint-multi-section-digital-clock value="14:30:00" ampm></flint-multi-section-digital-clock>' />
 
-<Demo label="Static Time Picker" html="<flint-static-time-picker value=&quot;11:00:00&quot; ampm></flint-static-time-picker>" />
+<Demo label="Static Time Picker" html='<flint-static-time-picker value="11:00:00" ampm></flint-static-time-picker>' />
 
 ## `<flint-time-field>`
 
@@ -51,8 +51,8 @@ import { FlintTimeField } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-time-field-change` | — | Fired when the time value changes. detail: `{ value: string }` |
 | `flint-time-picker-clear` | — | Fired when the clear button is clicked. |
+| `flint-time-field-change` | `&#123; value: string &#125;` | Fired when the time value changes. detail: `&#123; value: string &#125;` |
 
 ### CSS Custom Properties
 
@@ -80,7 +80,7 @@ import { FlintTimeField } from '@getufy/flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `clear()` |  |
+| `clear(): void` |  |
 
 ---
 
@@ -117,7 +117,7 @@ import { FlintDigitalClock } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-digital-clock-change` | — | Fired when a time slot is selected. detail: `{ value: string }` |
+| `flint-digital-clock-change` | `&#123; value: string &#125;` | Fired when a time slot is selected. detail: `&#123; value: string &#125;` |
 
 ### CSS Custom Properties
 
@@ -160,7 +160,7 @@ import { FlintMultiSectionDigitalClock } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-multi-section-digital-clock-change` | — | Fired when the time value changes. detail: `{ value: string }` |
+| `flint-multi-section-digital-clock-change` | `&#123; value: string &#125;` | Fired when the time value changes. detail: `&#123; value: string &#125;` |
 
 ---
 
@@ -198,7 +198,7 @@ import { FlintTimeClock } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-time-clock-change` | — | Fired when the time value changes. detail: `{ value: string }` |
+| `flint-time-clock-change` | `&#123; value: string &#125;` | Fired when the time value changes. detail: `&#123; value: string &#125;` |
 | `flint-time-clock-view-change` | — | Fired when the clock face view switches. |
 
 ### CSS Custom Properties
@@ -254,7 +254,7 @@ import { FlintDesktopTimePicker } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-desktop-time-picker-change` | — | Fired when the time value changes. detail: `{ value: string }` |
+| `flint-desktop-time-picker-change` | `&#123; value: string &#125;` | Fired when the time value changes. detail: `&#123; value: string &#125;` |
 
 ---
 
@@ -296,7 +296,7 @@ import { FlintMobileTimePicker } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-mobile-time-picker-change` | — | Fired when the time value changes. detail: `{ value: string }` |
+| `flint-mobile-time-picker-change` | `&#123; value: string &#125;` | Fired when the time value changes. detail: `&#123; value: string &#125;` |
 
 ---
 
@@ -333,7 +333,7 @@ import { FlintStaticTimePicker } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-static-time-picker-change` | — | Fired when the time value changes. detail: `{ value: string }` |
+| `flint-static-time-picker-change` | `&#123; value: string &#125;` | Fired when the time value changes. detail: `&#123; value: string &#125;` |
 
 ---
 
@@ -376,6 +376,6 @@ import { FlintTimePicker } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-time-picker-change` | — | Fired when the time value changes. detail: `{ value: string }` |
+| `flint-time-picker-change` | `&#123; value: string &#125;` | Fired when the time value changes. detail: `&#123; value: string &#125;` |
 
 ---

@@ -11,6 +11,9 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
+Toast container. Place **once** in your application (typically in \`<body>\`).
+Toasts are created imperatively via the \`toast()\` function.
+
 - **Tag**: \`<flint-toaster>\`
 - **Class**: \`FlintToaster\`
 
@@ -26,20 +29,21 @@ const meta: Meta = {
 
 | Property | Default |
 |---|---|
-| \`--flint-toast-z-index\` | \`9999\` |
-| \`--flint-toast-width\` | \`356px\` |
-| \`--flint-toast-padding\` | \`16px\` |
-| \`--flint-toast-bg\` | \`var(--flint-surface-1, #ffffff\` |
-| \`--flint-toast-border\` | \`1px solid var(--flint-border-color, #e4e4e7\` |
-| \`--flint-toast-radius\` | \`var(--flint-border-radius-lg, 0.5rem\` |
-| \`--flint-toast-shadow\` | \`var(--flint-shadow-lg, 0 10px 15px -3px rgba(0,0,0,.10\` |
-| \`--flint-toast-color\` | \`var(--flint-text-color, #111827\` |
+| \`--flint-toast-z-index\` | — |
+| \`--flint-toast-width\` | — |
+| \`--flint-toast-gap\` | — |
+| \`--flint-toast-padding\` | — |
+| \`--flint-toast-bg\` | — |
+| \`--flint-toast-color\` | — |
+| \`--flint-toast-border\` | — |
+| \`--flint-toast-radius\` | — |
+| \`--flint-toast-shadow\` | — |
+| \`--flint-toast-stack-gap\` | — |
+| \`--flint-toast-success-icon-color\` | — |
+| \`--flint-toast-error-icon-color\` | — |
+| \`--flint-toast-warning-icon-color\` | — |
+| \`--flint-toast-info-icon-color\` | — |
 | \`--flint-font-family\` | \`system-ui, sans-serif\` |
-| \`--flint-toast-gap\` | \`8px\` |
-| \`--flint-toast-success-icon-color\` | \`var(--flint-success-color, #10b981\` |
-| \`--flint-toast-error-icon-color\` | \`var(--flint-error-color,   #dc2626\` |
-| \`--flint-toast-warning-icon-color\` | \`var(--flint-warning-color, #f59e0b\` |
-| \`--flint-toast-info-icon-color\` | \`var(--flint-primary-color, #2563eb\` |
 | \`--flint-text-color-muted\` | \`#4b5563\` |
 | \`--flint-border-color\` | \`#e4e4e7\` |
 | \`--flint-border-radius-md\` | \`0.375rem\` |

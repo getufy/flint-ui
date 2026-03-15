@@ -1,10 +1,10 @@
 # Stepper
 
-<Demo label="Step 2 of 3" html="<div style=&quot;width:100%;max-width:500px&quot;><flint-stepper active-step=&quot;1&quot;>  <flint-step completed>    <flint-step-label>Account</flint-step-label>  </flint-step>  <flint-step>    <flint-step-label>Details</flint-step-label>  </flint-step>  <flint-step>    <flint-step-label>Review</flint-step-label>  </flint-step></flint-stepper></div>" />
+<Demo label="Step 2 of 3" html='<div style="width:100%;max-width:500px"><flint-stepper active-step="1">  <flint-step completed>    <flint-step-label>Account</flint-step-label>  </flint-step>  <flint-step>    <flint-step-label>Details</flint-step-label>  </flint-step>  <flint-step>    <flint-step-label>Review</flint-step-label>  </flint-step></flint-stepper></div>' />
 
-<Demo label="All Complete" html="<div style=&quot;width:100%;max-width:500px&quot;><flint-stepper active-step=&quot;3&quot;>  <flint-step completed>    <flint-step-label>Account</flint-step-label>  </flint-step>  <flint-step completed>    <flint-step-label>Details</flint-step-label>  </flint-step>  <flint-step completed>    <flint-step-label>Review</flint-step-label>  </flint-step></flint-stepper></div>" />
+<Demo label="All Complete" html='<div style="width:100%;max-width:500px"><flint-stepper active-step="3">  <flint-step completed>    <flint-step-label>Account</flint-step-label>  </flint-step>  <flint-step completed>    <flint-step-label>Details</flint-step-label>  </flint-step>  <flint-step completed>    <flint-step-label>Review</flint-step-label>  </flint-step></flint-stepper></div>' />
 
-<Demo label="Vertical" html="<div style=&quot;width:100%;max-width:400px&quot;><flint-stepper orientation=&quot;vertical&quot; active-step=&quot;1&quot;>  <flint-step completed>    <flint-step-label>Create account</flint-step-label>    <p style=&quot;margin:0;color:#6b7280;font-size:14px&quot;>Account created successfully.</p>  </flint-step>  <flint-step>    <flint-step-label>Personal details</flint-step-label>    <p style=&quot;margin:0;color:#6b7280;font-size:14px&quot;>Fill in your name, email, and phone number.</p>  </flint-step>  <flint-step>    <flint-step-label>Review & submit</flint-step-label>  </flint-step></flint-stepper></div>" />
+<Demo label="Vertical" html='<div style="width:100%;max-width:400px"><flint-stepper orientation="vertical" active-step="1">  <flint-step completed>    <flint-step-label>Create account</flint-step-label>    <p style="margin:0;color:#6b7280;font-size:14px">Account created successfully.</p>  </flint-step>  <flint-step>    <flint-step-label>Personal details</flint-step-label>    <p style="margin:0;color:#6b7280;font-size:14px">Fill in your name, email, and phone number.</p>  </flint-step>  <flint-step>    <flint-step-label>Review & submit</flint-step-label>  </flint-step></flint-stepper></div>' />
 
 ## `<flint-step-connector>`
 
@@ -158,13 +158,13 @@ import { FlintStep } from '@getufy/flint-ui';
 | `alternativeLabel` | `alternative-label` | `boolean` | `false` | Whether to display the label below the step icon instead of beside it. |
 | `stepIndex` | `step-index` | `number` | `0` | Zero-based index of this step within the stepper. |
 | `optionalLabel` | `optional-label` | `string` | `'Optional'` | Text shown below the label when the step is optional. |
-| `prevCompleted` | `prev-completed` | `boolean` | `false` | Set by FlintStepper — true when the immediately preceding step is completed. Controls whether the leading connector is rendered in the primary colour. |
+| `prevCompleted` | `prev-completed` | `boolean` | `false` | Set by FlintStepper — true when the immediately preceding step is completed. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-step-click` | — | Fired when a non-linear step is clicked. detail: `{ step: number }` |
+| `flint-step-click` | `&#123; step: number &#125;` | Fired when a non-linear step is clicked. detail: `&#123; step: number &#125;` |
 
 ### Slots
 
@@ -209,7 +209,7 @@ import { FlintStepper } from '@getufy/flint-ui';
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | `activeStep` | `active-step` | `number` | `0` | Zero-based index of the currently active step. |
-| `defaultActiveStep` | `default-active-step` | `number` | — | Initial active step for uncontrolled usage. Has no effect after the element has connected to the DOM. |
+| `defaultActiveStep` | `default-active-step` | `number \| undefined` | — | Initial active step for uncontrolled usage. |
 | `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout direction of the stepper. |
 | `alternativeLabel` | `alternative-label` | `boolean` | `false` | Whether to display step labels below the icons instead of beside them. |
 | `nonLinear` | `non-linear` | `boolean` | `false` | Whether steps can be navigated in any order (enables clickable steps). |
@@ -220,12 +220,6 @@ import { FlintStepper } from '@getufy/flint-ui';
 | Event | Detail | Description |
 | --- | --- | --- |
 | `flint-step-change` | — | Fired when the active step changes via step click. |
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
 
 ### CSS Custom Properties
 

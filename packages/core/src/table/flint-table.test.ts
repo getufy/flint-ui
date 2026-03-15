@@ -6,6 +6,7 @@ import './flint-table-pagination.js';
 import type { FlintTable, FlintTableRow, FlintTableCell, FlintTableBody, FlintTableContainer } from './flint-table';
 import type { FlintTablePagination } from './flint-table-pagination';
 import type { FlintTableSortLabel } from './flint-table-sort-label';
+import { expectAccessible } from '../test-utils/axe';
 
 /* ------------------------------------------------------------------ */
 /*  FlintTableContainer                                                     */
@@ -610,4 +611,30 @@ describe('flint-table-cell programmatic changes', () => {
         await el.updateComplete;
         expect(el.getAttribute('padding')).toBe('normal');
     });
+});
+
+// ── Accessibility ─────────────────────────────────────────────────────────
+
+describe('flint-table a11y', () => {
+    it('should pass automated a11y checks', async () => {
+        const el = await fixture(html`
+            <flint-table-container>
+                <flint-table>
+                    <flint-table-head>
+                        <flint-table-row>
+                            <flint-table-cell>Name</flint-table-cell>
+                            <flint-table-cell>Value</flint-table-cell>
+                        </flint-table-row>
+                    </flint-table-head>
+                    <flint-table-body>
+                        <flint-table-row>
+                            <flint-table-cell>Item</flint-table-cell>
+                            <flint-table-cell>123</flint-table-cell>
+                        </flint-table-row>
+                    </flint-table-body>
+                </flint-table>
+            </flint-table-container>
+        `);
+        await expectAccessible(el);
+    }, 15000);
 });

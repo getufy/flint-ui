@@ -1,6 +1,6 @@
 # Table
 
-<Demo html="<div style=&quot;width:100%;max-width:500px&quot;><flint-table-container>  <flint-table>    <flint-table-head>      <flint-table-row>        <flint-table-cell header>Name</flint-table-cell>        <flint-table-cell header>Role</flint-table-cell>        <flint-table-cell header align=&quot;right&quot;>Score</flint-table-cell>      </flint-table-row>    </flint-table-head>    <flint-table-body>      <flint-table-row>        <flint-table-cell>Alice</flint-table-cell>        <flint-table-cell>Engineer</flint-table-cell>        <flint-table-cell align=&quot;right&quot;>92</flint-table-cell>      </flint-table-row>      <flint-table-row selected>        <flint-table-cell>Bob</flint-table-cell>        <flint-table-cell>Designer</flint-table-cell>        <flint-table-cell align=&quot;right&quot;>87</flint-table-cell>      </flint-table-row>      <flint-table-row>        <flint-table-cell>Carol</flint-table-cell>        <flint-table-cell>Manager</flint-table-cell>        <flint-table-cell align=&quot;right&quot;>95</flint-table-cell>      </flint-table-row>      <flint-table-row>        <flint-table-cell>Dave</flint-table-cell>        <flint-table-cell>Analyst</flint-table-cell>        <flint-table-cell align=&quot;right&quot;>78</flint-table-cell>      </flint-table-row>    </flint-table-body>  </flint-table></flint-table-container></div>" />
+<Demo html='<div style="width:100%;max-width:500px"><flint-table-container>  <flint-table>    <flint-table-head>      <flint-table-row>        <flint-table-cell header>Name</flint-table-cell>        <flint-table-cell header>Role</flint-table-cell>        <flint-table-cell header align="right">Score</flint-table-cell>      </flint-table-row>    </flint-table-head>    <flint-table-body>      <flint-table-row>        <flint-table-cell>Alice</flint-table-cell>        <flint-table-cell>Engineer</flint-table-cell>        <flint-table-cell align="right">92</flint-table-cell>      </flint-table-row>      <flint-table-row selected>        <flint-table-cell>Bob</flint-table-cell>        <flint-table-cell>Designer</flint-table-cell>        <flint-table-cell align="right">87</flint-table-cell>      </flint-table-row>      <flint-table-row>        <flint-table-cell>Carol</flint-table-cell>        <flint-table-cell>Manager</flint-table-cell>        <flint-table-cell align="right">95</flint-table-cell>      </flint-table-row>      <flint-table-row>        <flint-table-cell>Dave</flint-table-cell>        <flint-table-cell>Analyst</flint-table-cell>        <flint-table-cell align="right">78</flint-table-cell>      </flint-table-row>    </flint-table-body>  </flint-table></flint-table-container></div>' />
 
 ## `<flint-table-pagination>`
 
@@ -29,8 +29,8 @@ import { FlintTablePagination } from '@getufy/flint-ui';
 | --- | --- | --- | --- | --- |
 | `count` | `count` | `number` | `0` | Total number of rows. |
 | `page` | `page` | `number` | `0` | Controlled current page (0-indexed). |
-| `rowsPerPage` | `rows-per-page` | `number` | `10` | Controlled rows per page. |
-| `rowsPerPageOptions` | `rows-per-page-options` | `number[]` | `[5, 10, 25]` | Available rows-per-page options. |
+| `rowsPerPage` | `rowsPerPage` | `number` | `10` | Controlled rows per page. |
+| `rowsPerPageOptions` | `rowsPerPageOptions` | `number[]` | `[5, 10, 25]` | Available rows-per-page options. |
 | `defaultPage` | `default-page` | `number` | `0` | Uncontrolled default page (applied on first render). |
 | `defaultRowsPerPage` | `default-rows-per-page` | `number` | `-1` | Uncontrolled default rows per page. |
 | `showFirstLast` | `show-first-last` | `boolean` | `false` | Show First/Last page buttons. |
@@ -81,12 +81,6 @@ import { FlintTableSortLabel } from '@getufy/flint-ui';
 | `active` | `active` | `boolean` | `false` | Whether this column is currently sorted. |
 | `direction` | `direction` | `'asc' \| 'desc'` | `'asc'` | Sort direction when active. |
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
-
 ---
 
 ## `<flint-table-container>`
@@ -114,14 +108,8 @@ import { FlintTableContainer } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `shadow` | `shadow` | `boolean` | `false` | Applies a stronger box-shadow elevation. |
+| `shadow` | `shadow` | `boolean` | `false` | Stronger box-shadow elevation. |
 | `stickyHeader` | `sticky-header` | `boolean` | `false` | Sticks the table header to the top on scroll. |
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
 
 ### CSS Custom Properties
 
@@ -156,13 +144,7 @@ import { FlintTable } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `size` | `size` | `'medium' \| 'small'` | `'medium'` | Cell padding density. |
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
+| `size` | `size` | `'medium'\|'small'` | `'medium'` | Cell padding density. |
 
 ### CSS Custom Properties
 
@@ -206,12 +188,6 @@ import { FlintTableHead } from '@getufy/flint-ui';
 <flint-table-head></flint-table-head>
 ```
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
-
 ### CSS Custom Properties
 
 | Property | Default |
@@ -246,13 +222,7 @@ import { FlintTableBody } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `striped` | `striped` | `boolean` | `false` | Enables alternating row shading. |
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
+| `striped` | `striped` | `boolean` | `false` | Alternating row shading. |
 
 ---
 
@@ -281,14 +251,8 @@ import { FlintTableRow } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `selected` | `selected` | `boolean` | `false` | Highlights the row as selected. |
-| `hover` | `hover` | `boolean` | `false` | Forces hover highlight on the row. |
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
+| `selected` | `selected` | `boolean` | `false` | Selected row highlight. |
+| `hover` | `hover` | `boolean` | `false` | Force hover highlight. |
 
 ### CSS Custom Properties
 
@@ -324,15 +288,9 @@ import { FlintTableCell } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `header` | `header` | `boolean` | `false` | Renders the cell with header styling. |
-| `align` | `align` | `'left' \| 'right' \| 'center'` | `'left'` | Text alignment within the cell. |
-| `padding` | `padding` | `'normal' \| 'checkbox' \| 'none'` | `'normal'` | Padding preset for the cell. |
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
+| `header` | `header` | `boolean` | `false` | Header cell styling. |
+| `align` | `align` | `'left'\|'right'\|'center'` | `'left'` | Text alignment. |
+| `padding` | `padding` | `'normal'\|'checkbox'\|'none'` | `'normal'` | Padding preset. |
 
 ### CSS Custom Properties
 
@@ -365,11 +323,5 @@ import { FlintTableFooter } from '@getufy/flint-ui';
 ```html
 <flint-table-footer></flint-table-footer>
 ```
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
 
 ---

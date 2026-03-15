@@ -1,10 +1,11 @@
 # Pagination
 
-<Demo label="Pages" html="<flint-pagination count=&quot;10&quot; page=&quot;1&quot;></flint-pagination>" />
+<Demo label="Pages" html='<flint-pagination count="10" page="1"></flint-pagination>' />
 
-<Demo label="Middle Page" html="<flint-pagination count=&quot;20&quot; page=&quot;10&quot;></flint-pagination>" />
+<Demo label="Middle Page" html='<flint-pagination count="20" page="10"></flint-pagination>' />
 
-Pagination component enabling the user to select a specific page from a range of pages.
+Pagination component enabling the user to select a specific page from
+a range of pages.
 
 - **Tag**: `<flint-pagination>`
 - **Class**: `FlintPagination`
@@ -47,7 +48,7 @@ import { FlintPagination } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-pagination-change` | — | { page: number } when the active page changes. |
+| `flint-pagination-change` | — | &#123; page: number &#125; when the active page changes. |
 
 ### Slots
 

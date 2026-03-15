@@ -3,6 +3,12 @@ import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import uiButtonStyles from './flint-button.css?inline';
 
+/**
+ * A styled button element.
+ *
+ * @csspart base - The native `<button>` element.
+ * @csspart label - The wrapper around the button's label content (default slot).
+ */
 @customElement('flint-button')
 export class FlintButton extends LitElement {
   static styles = unsafeCSS(uiButtonStyles);
@@ -38,9 +44,9 @@ export class FlintButton extends LitElement {
         type="button"
         class=${classMap(classes)}
         ?disabled=${this.disabled}
-        part="button"
+        part="base"
       >
-        <slot></slot>
+        <span part="label"><slot></slot></span>
       </button>
     `;
   }

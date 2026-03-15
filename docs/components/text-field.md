@@ -1,6 +1,6 @@
 # Text Field
 
-<Demo label="States" html="<div style=&quot;display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px&quot;><flint-text-field label=&quot;Name&quot; placeholder=&quot;Enter your name&quot;></flint-text-field><flint-text-field label=&quot;With Help&quot; help-text=&quot;This field is required&quot;></flint-text-field><flint-text-field label=&quot;Error&quot; error help-text=&quot;Please enter a valid email&quot;></flint-text-field><flint-text-field label=&quot;Disabled&quot; disabled value=&quot;Cannot edit&quot;></flint-text-field></div>" />
+<Demo label="States" html='<div style="display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px"><flint-text-field label="Name" placeholder="Enter your name"></flint-text-field><flint-text-field label="With Help" help-text="This field is required"></flint-text-field><flint-text-field label="Error" error help-text="Please enter a valid email"></flint-text-field><flint-text-field label="Disabled" disabled value="Cannot edit"></flint-text-field></div>' />
 
 Text Field: a styled text input with outlined/filled variants.
 
@@ -32,23 +32,16 @@ import { FlintTextField } from '@getufy/flint-ui';
 | `variant` | `variant` | `'outlined' \| 'filled'` | `'outlined'` | Visual style variant of the text field. |
 | `disabled` | `disabled` | `boolean` | `false` | Whether the text field is disabled. |
 | `error` | `error` | `boolean` | `false` | Whether the text field is in an error state. |
-| `helperText` | `helper-text` | `string` | `''` | Helper text displayed below the input. |
-| `errorMessage` | `error-message` | `string` | `''` | Error message displayed below the input when in error state. |
+| `helperText` | `helperText` | `string` | `''` | Helper text displayed below the input. |
+| `errorMessage` | `errorMessage` | `string` | `''` | Error message displayed below the input when in error state. |
 | `defaultValue` | `default-value` | `string` | `''` | Initial value for uncontrolled usage. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-text-field-input` | — | Fired on each keystroke as the value changes. detail: `{ value: string }` |
-| `flint-text-field-change` | — | Fired when the input loses focus after the value has changed. detail: `{ value: string }` |
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `leading` |  |
-| `trailing` |  |
+| `flint-text-field-input` | `&#123; value: string &#125;` | Fired on each keystroke as the value changes. detail: `&#123; value: string &#125;` |
+| `flint-text-field-change` | `&#123; value: string &#125;` | Fired when the input loses focus after the value has changed. detail: `&#123; value: string &#125;` |
 
 ### CSS Custom Properties
 

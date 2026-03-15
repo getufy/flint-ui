@@ -31,12 +31,6 @@ const meta: Meta = {
 | \`itemsPerView\` | \`items-per-view\` | \`number\` | \`1\` | Number of slides visible at once. |
 | \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` | Slide direction axis. |
 
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
-
 #### CSS Custom Properties
 
 | Property | Default |
@@ -50,12 +44,6 @@ const meta: Meta = {
 
 - **Tag**: \`<flint-carousel-item>\`
 - **Class**: \`FlintCarouselItem\`
-
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
 
 #### CSS Custom Properties
 
@@ -152,11 +140,9 @@ Carousel: a slideshow component for cycling through content.
 
 | Method | Description |
 |---|---|
-| \`next()\` | Advance to the next slide. |
-| \`previous()\` | Go to the previous slide. |
-| \`goTo(index: number)\` | Jump to a specific slide (0-based index). |
-| \`currentIndex(): unknown\` | Current slide index (read-only). |
-| \`total(): unknown\` | Total number of slides (read-only). |
+| \`next(): void\` | Advance to the next slide. |
+| \`previous(): void\` | Go to the previous slide. |
+| \`goTo(index: number): void\` | Jump to a specific slide (0-based index). |
                 `,
       },
     },

@@ -1,10 +1,11 @@
 # Hover Card
 
-<Demo html="<flint-hover-card>  <flint-hover-card-trigger>    <flint-link href=&quot;#&quot;>Hover over me</flint-link>  </flint-hover-card-trigger>  <flint-hover-card-content>    <div style=&quot;padding:12px&quot;>      <p style=&quot;margin:0;font-weight:600&quot;>Hover Card</p>      <p style=&quot;margin:4px 0 0;color:#6b7280;font-size:14px&quot;>Additional information shown on hover.</p>    </div>  </flint-hover-card-content></flint-hover-card>" />
+<Demo html='<flint-hover-card>  <flint-hover-card-trigger>    <flint-link href="#">Hover over me</flint-link>  </flint-hover-card-trigger>  <flint-hover-card-content>    <div style="padding:12px">      <p style="margin:0;font-weight:600">Hover Card</p>      <p style="margin:4px 0 0;color:#6b7280;font-size:14px">Additional information shown on hover.</p>    </div>  </flint-hover-card-content></flint-hover-card>' />
 
 ## `<flint-hover-card-trigger>`
 
-Trigger element for a hover card. Place inside `flint-hover-card`. Automatically wires up to the nearest `flint-hover-card` ancestor.
+Trigger element for a hover card. Place inside `flint-hover-card`.
+Automatically wires up to the nearest `flint-hover-card` ancestor.
 
 - **Tag**: `<flint-hover-card-trigger>`
 - **Class**: `FlintHoverCardTrigger`
@@ -33,23 +34,16 @@ import { FlintHoverCardTrigger } from '@getufy/flint-ui';
 
 | Property | Default |
 | --- | --- |
-| `--flint-hovercard-z-index` | `1000` |
-| `--flint-hovercard-duration` | `150ms` |
-| `--flint-hovercard-bg` | `var(--flint-surface-1` |
-| `--flint-hovercard-border-color` | `var(--flint-border-color` |
-| `--flint-hovercard-radius` | `8px` |
-| `--flint-hovercard-shadow` | `0 4px 16px rgba(0, 0, 0, 0.12` |
-| `--flint-hovercard-padding` | `16px` |
-| `--flint-hovercard-min-width` | `200px` |
 | `--flint-font-family` | — |
-| `--flint-hovercard-font-size` | `0.875rem` |
-| `--flint-hovercard-color` | `var(--flint-text-color` |
 
 ---
 
-## `<flint-hover-card-content>`
+## `<flint-hover-card-trigger>`
 
-- **Tag**: `<flint-hover-card-content>`
+The floating card panel. Position is controlled via `side` and `align`.
+Place inside `flint-hover-card`; its `open` state is managed by the parent.
+
+- **Tag**: `<flint-hover-card-trigger>`
 - **Class**: `FlintHoverCardContent`
 
 ### Import
@@ -63,7 +57,7 @@ import { FlintHoverCardContent } from '@getufy/flint-ui';
 ### Usage
 
 ```html
-<flint-hover-card-content></flint-hover-card-content>
+<flint-hover-card-trigger></flint-hover-card-trigger>
 ```
 
 ### Properties
@@ -78,15 +72,32 @@ import { FlintHoverCardContent } from '@getufy/flint-ui';
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Default slot for content |
+| `(default)` | Rich content displayed inside the card. |
+
+### CSS Custom Properties
+
+| Property | Default |
+| --- | --- |
+| `--flint-hovercard-bg` | — |
+| `--flint-hovercard-border-color` | — |
+| `--flint-hovercard-radius` | — |
+| `--flint-hovercard-shadow` | — |
+| `--flint-hovercard-padding` | — |
+| `--flint-hovercard-min-width` | — |
+| `--flint-hovercard-font-size` | — |
+| `--flint-hovercard-color` | — |
+| `--flint-hovercard-offset` | — |
+| `--flint-hovercard-duration` | — |
+| `--flint-hovercard-z-index` | — |
 
 ---
 
-## `<flint-hover-card>`
+## `<flint-hover-card-trigger>`
 
-Root container for a hover card. Manages open/closed state with configurable open and close delays.
+Root container for a hover card.
+Manages open/closed state with configurable open and close delays.
 
-- **Tag**: `<flint-hover-card>`
+- **Tag**: `<flint-hover-card-trigger>`
 - **Class**: `FlintHoverCard`
 
 ### Import
@@ -100,7 +111,7 @@ import { FlintHoverCard } from '@getufy/flint-ui';
 ### Usage
 
 ```html
-<flint-hover-card></flint-hover-card>
+<flint-hover-card-trigger></flint-hover-card-trigger>
 ```
 
 ### Properties
@@ -114,8 +125,8 @@ import { FlintHoverCard } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-hover-card-open` | — | Fired when the card becomes visible. detail: `{ open: true }` |
-| `flint-hover-card-close` | — | Fired when the card is dismissed. detail: `{ open: false }` |
+| `flint-hover-card-open` | `&#123; open: true &#125;` | Fired when the card becomes visible. detail: `&#123; open: true &#125;` |
+| `flint-hover-card-close` | `&#123; open: false &#125;` | Fired when the card is dismissed. detail: `&#123; open: false &#125;` |
 
 ### Slots
 
@@ -127,6 +138,9 @@ import { FlintHoverCard } from '@getufy/flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `isOpen(): boolean` | Whether the card is currently open. |
+| `handleTriggerEnter(): void` | Called by `flint-hover-card-trigger` when the pointer/focus enters. |
+| `handleTriggerLeave(): void` | Called by `flint-hover-card-trigger` when the pointer/focus leaves. |
+| `handleContentEnter(): void` | Called by `flint-hover-card-content` when the pointer enters the card. |
+| `handleContentLeave(): void` | Called by `flint-hover-card-content` when the pointer leaves the card. |
 
 ---

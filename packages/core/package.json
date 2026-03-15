@@ -4,7 +4,6 @@
   "type": "module",
   "types": "./dist/index.d.ts",
   "module": "./dist/index.js",
-  "sideEffects": ["*.css"],
   "repository": {
     "type": "git",
     "url": "https://github.com/getufy/flint-ui.git",
@@ -414,11 +413,14 @@
       "import": "./dist/suppress-warnings.js"
     }
   },
+  "customElements": "dist/custom-elements.json",
+  "web-types": "dist/web-types.json",
   "scripts": {
     "lint": "eslint \"src/**/*.ts\"",
     "test": "NODE_OPTIONS='--no-warnings' vitest run",
     "test:watch": "NODE_OPTIONS='--no-warnings' vitest",
-    "build": "vite build && tsc -p tsconfig.build.json",
+    "cem": "custom-elements-manifest analyze --config custom-elements-manifest.config.mjs",
+    "build": "vite build && tsc -p tsconfig.build.json && npm run cem",
     "build:exports": "tsx ../../scripts/build-entries.ts --write-exports",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
@@ -464,6 +466,7 @@
   "devDependencies": {
     "@chromatic-com/storybook": "^5.0.1",
     "@eslint/js": "^10.0.1",
+    "@lit-labs/ssr": "^4.0.0",
     "@open-wc/testing": "^4.0.0",
     "@storybook/addon-a11y": "^10.2.19",
     "@storybook/addon-docs": "^10.2.19",
@@ -476,6 +479,7 @@
     "@types/node": "^25.5.0",
     "@vitest/browser-playwright": "^4.1.0",
     "@vitest/coverage-v8": "^4.1.0",
+    "axe-core": "^4.11.1",
     "eslint": "^10.0.3",
     "eslint-plugin-lit": "^2.2.1",
     "eslint-plugin-wc": "^3.1.0",

@@ -1,8 +1,8 @@
 # Stack
 
-<Demo label="Row" html="<flint-stack direction=&quot;row&quot; gap=&quot;2&quot; align-items=&quot;center&quot;>  <flint-paper elevation=&quot;1&quot; style=&quot;padding:12px&quot;>Item 1</flint-paper>  <flint-paper elevation=&quot;1&quot; style=&quot;padding:12px&quot;>Item 2</flint-paper>  <flint-paper elevation=&quot;1&quot; style=&quot;padding:12px&quot;>Item 3</flint-paper></flint-stack>" />
+<Demo label="Row" html='<flint-stack direction="row" gap="2" align-items="center">  <flint-paper elevation="1" style="padding:12px">Item 1</flint-paper>  <flint-paper elevation="1" style="padding:12px">Item 2</flint-paper>  <flint-paper elevation="1" style="padding:12px">Item 3</flint-paper></flint-stack>' />
 
-<Demo label="Column" html="<flint-stack direction=&quot;column&quot; gap=&quot;2&quot; style=&quot;width:100%;max-width:200px&quot;>  <flint-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>Item 1</flint-paper>  <flint-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>Item 2</flint-paper>  <flint-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>Item 3</flint-paper></flint-stack>" />
+<Demo label="Column" html='<flint-stack direction="column" gap="2" style="width:100%;max-width:200px">  <flint-paper elevation="1" style="padding:12px;text-align:center">Item 1</flint-paper>  <flint-paper elevation="1" style="padding:12px;text-align:center">Item 2</flint-paper>  <flint-paper elevation="1" style="padding:12px;text-align:center">Item 3</flint-paper></flint-stack>' />
 
 - **Tag**: `<flint-stack>`
 - **Class**: `FlintStack`
@@ -25,16 +25,11 @@ import { FlintStack } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `spacing` | `spacing` | `ResponsiveValue&lt;number \| string&gt;` | `0` | Flex direction of the stack layout. */ converter: { fromAttribute: (value: string \| null) =&gt; { if (!value) return 'column'; try { return JSON.parse(value); } catch { return value; } } } }) direction: ResponsiveValue&lt;'row' \| 'row-reverse' \| 'column' \| 'column-reverse'&gt; = 'column'; /** Space between child items (1 unit = 8px). |
-| `alignItems` | `align-items` | `'flex-start' \| 'center' \| 'flex-end' \| 'stretch' \| 'baseline'` | — | Cross-axis alignment of stack children. |
-| `justifyContent` | `justify-content` | `'flex-start' \| 'center' \| 'flex-end' \| 'space-between' \| 'space-around' \| 'space-evenly'` | — | Main-axis alignment of stack children. |
-| `useFlexGap` | `use-flex-gap` | `boolean` | `true` | Whether to use CSS flex gap for spacing. |
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
+| `direction` | `direction` | `ResponsiveValue&lt;'row' \| 'row-reverse' \| 'column' \| 'column-reverse'&gt;` | `'column'` | Flex direction of the stack layout. |
+| `spacing` | `spacing` | `ResponsiveValue&lt;number \| string&gt;` | `0` | Space between child items (1 unit = 8px). |
+| `alignItems` | `alignItems` | `'flex-start' \| 'center' \| 'flex-end' \| 'stretch' \| 'baseline' \| undefined` | — | Cross-axis alignment of stack children. |
+| `justifyContent` | `justifyContent` | `'flex-start' \| 'center' \| 'flex-end' \| 'space-between' \| 'space-around' \| 'space-evenly' \| undefined` | — | Main-axis alignment of stack children. |
+| `useFlexGap` | `useFlexGap` | `boolean` | `true` | Whether to use CSS flex gap for spacing. |
 
 ### CSS Custom Properties
 

@@ -1,12 +1,16 @@
 /**
- * Generates markdown documentation for each component by parsing source files.
+ * Generates markdown documentation for each component.
+ * Data source: Custom Elements Manifest (packages/core/dist/custom-elements.json)
  * Usage: npx tsx scripts/generate-docs.ts
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { parseCem } from './lib/parse-cem.js';
+import type { ComponentMeta } from './lib/types.js';
 
 const SRC_DIR = path.resolve('packages/core/src');
 const DOCS_DIR = path.resolve('docs/components');
+const CEM_PATH = path.resolve('packages/core/dist/custom-elements.json');
 
 // Directories to skip (not components)
 const SKIP = new Set(['docs', 'vite-env.d.ts', 'index.ts', 'theme.css', 'theme-dark.css']);
@@ -54,7 +58,124 @@ interface ComponentInfo {
   formAssociated: boolean;
 }
 
-function extractComponents(tsContent: string, cssContent: string): ComponentInfo[] {
+/**
+ * Convert CEM-derived ComponentMeta to the docs generator's ComponentInfo format.
+ */
+function cemToComponentInfo(meta: ComponentMeta): ComponentInfo {
+  return {
+    tagName: meta.tagName,
+    className: meta.className,
+    description: meta.description,
+    props: meta.props.map(p => ({
+      name: p.name,
+      type: p.tsType,
+      default: p.defaultValue,
+      reflect: p.reflect,
+      attribute: p.attribute,
+      description: p.description,
+    })),
+    events: meta.events.map(e => ({
+      name: e.domName,
+      detail: e.detailType ?? '',
+      description: e.description,
+    })),
+    slots: meta.slots.map(s => ({
+      name: s.name,
+      description: s.description,
+    })),
+    cssVars: meta.cssProperties.map(c => ({
+      name: c.name,
+      default: c.defaultValue === '—' ? '' : c.defaultValue,
+    })),
+    methods: meta.methods.map(m => ({
+      name: m.signature.split('(')[0],
+      signature: m.signature,
+      description: m.description,
+    })),
+    formAssociated: false, // Could be derived from CEM if needed
+  };
+}
+
+/**
+ * Read all component metadata from CEM, grouped by source directory.
+ * Returns Map<dirName, ComponentInfo[]>.
+ */
+function readComponentsFromCem(): Map<string, ComponentInfo[]> {
+  const allMeta = parseCem({ cemPath: CEM_PATH });
+  const groups = new Map<string, ComponentInfo[]>();
+
+  for (const meta of allMeta) {
+    // Extract directory from source path: "src/button/flint-button.component.ts" → "button"
+    const dir = meta.sourceFile.replace(/^src\//, '').split('/')[0];
+    if (!groups.has(dir)) groups.set(dir, []);
+    groups.get(dir)!.push(cemToComponentInfo(meta));
+  }
+
+  // Also augment with CSS vars from actual CSS files (CEM may not capture all)
+  for (const [dir, components] of groups) {
+    const dirPath = path.join(SRC_DIR, dir);
+    if (!fs.existsSync(dirPath)) continue;
+    const cssFiles = fs.readdirSync(dirPath).filter(f => f.endsWith('.css'));
+    if (cssFiles.length === 0) continue;
+
+    let cssContent = '';
+    for (const f of cssFiles) {
+      cssContent += fs.readFileSync(path.join(dirPath, f), 'utf-8') + '\n';
+    }
+
+    const cssVars = extractCssVars(cssContent);
+    if (cssVars.length === 0) continue;
+
+    // Distribute CSS vars to components by tag-name prefix
+    for (const comp of components) {
+      const prefix = `--${comp.tagName}`;
+      const matching = cssVars.filter(v => v.name.startsWith(prefix));
+      if (matching.length > 0) {
+        // Merge with existing, avoiding duplicates
+        const existing = new Set(comp.cssVars.map(v => v.name));
+        for (const v of matching) {
+          if (!existing.has(v.name)) comp.cssVars.push(v);
+        }
+      }
+    }
+    // Unmatched vars go to first component
+    const assigned = new Set(components.flatMap(c => c.cssVars.map(v => v.name)));
+    const unassigned = cssVars.filter(v => !assigned.has(v.name));
+    if (unassigned.length > 0 && components.length > 0) {
+      const existing = new Set(components[0].cssVars.map(v => v.name));
+      for (const v of unassigned) {
+        if (!existing.has(v.name)) components[0].cssVars.push(v);
+      }
+    }
+  }
+
+  return groups;
+}
+
+// Keep for CSS var augmentation
+function extractCssVars(cssContent: string): CssVarInfo[] {
+  const vars: CssVarInfo[] = [];
+  const seen = new Set<string>();
+  const varRegex = /var\(\s*(--flint-[a-z0-9-]+)(?:\s*,\s*([^)]+))?\s*\)/g;
+  let m;
+  while ((m = varRegex.exec(cssContent)) !== null) {
+    if (!seen.has(m[1])) {
+      seen.add(m[1]);
+      vars.push({ name: m[1], default: m[2]?.trim() || '' });
+    }
+  }
+  const declRegex = /(--flint-[a-z0-9-]+)\s*:\s*([^;]+);/g;
+  while ((m = declRegex.exec(cssContent)) !== null) {
+    if (!seen.has(m[1])) {
+      seen.add(m[1]);
+      vars.push({ name: m[1], default: m[2].trim() });
+    }
+  }
+  return vars;
+}
+
+// Legacy function kept for reference but no longer called from main
+function _extractComponents(tsContent: string, cssContent: string): ComponentInfo[] {
   const components: ComponentInfo[] = [];
 
   // Find all @customElement declarations
@@ -283,32 +404,6 @@ function extractSlots(classBody: string, jsdoc: string): SlotInfo[] {
   }
 
   return slots;
-}
-
-function extractCssVars(cssContent: string): CssVarInfo[] {
-  const vars: CssVarInfo[] = [];
-  const seen = new Set<string>();
-
-  // Match var(--flint-xxx, default) and --flint-xxx: value
-  const varRegex = /var\(\s*(--flint-[a-z0-9-]+)(?:\s*,\s*([^)]+))?\s*\)/g;
-  let m;
-  while ((m = varRegex.exec(cssContent)) !== null) {
-    if (!seen.has(m[1])) {
-      seen.add(m[1]);
-      vars.push({ name: m[1], default: m[2]?.trim() || '' });
-    }
-  }
-
-  // Also match direct declarations: --flint-xxx: value
-  const declRegex = /(--flint-[a-z0-9-]+)\s*:\s*([^;]+);/g;
-  while ((m = declRegex.exec(cssContent)) !== null) {
-    if (!seen.has(m[1])) {
-      seen.add(m[1]);
-      vars.push({ name: m[1], default: m[2].trim() });
-    }
-  }
-
-  return vars;
 }
 
 function extractMethods(classBody: string): MethodInfo[] {
@@ -1720,12 +1815,15 @@ function generateMarkdown(dir: string, components: ComponentInfo[]): string {
   const demos = DEMOS[dir];
   if (demos) {
     for (const demo of demos) {
+      // Use single-quoted attribute to avoid Vue's parser decoding &quot; entities
+      // inside double-quoted attributes, which breaks the attribute boundary
+      // for HTML content containing nested quotes (e.g. style="..." or onclick="...").
       const escapedHtml = demo.html
         .replace(/\\/g, '\\\\')
-        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
         .replace(/\n/g, '');
       const labelAttr = demo.label ? ` label="${demo.label}"` : '';
-      md += `<Demo${labelAttr} html="${escapedHtml}" />\n\n`;
+      md += `<Demo${labelAttr} html='${escapedHtml}' />\n\n`;
     }
   }
 
@@ -1823,7 +1921,9 @@ function escapeTable(s: string): string {
     .replace(/\|/g, '\\|')
     .replace(/\n/g, ' ')
     .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
+    .replace(/>/g, '&gt;')
+    .replace(/\{/g, '&#123;')
+    .replace(/\}/g, '&#125;');
 }
 
 function generateSidebar(dirs: string[]): object[] {
@@ -2049,41 +2149,24 @@ function main() {
   // Ensure output dir
   fs.mkdirSync(DOCS_DIR, { recursive: true });
 
-  const entries = fs.readdirSync(SRC_DIR).filter(e => {
-    if (SKIP.has(e)) return false;
-    const full = path.join(SRC_DIR, e);
-    return fs.statSync(full).isDirectory();
-  });
+  // Read component metadata from CEM (single source of truth)
+  console.log('Reading Custom Elements Manifest...');
+  const componentGroups = readComponentsFromCem();
 
   const processedDirs: string[] = [];
 
-  for (const dir of entries) {
-    const dirPath = path.join(SRC_DIR, dir);
-
-    // Read all .ts files (excluding test and stories)
-    const tsFiles = fs.readdirSync(dirPath).filter(f =>
-      f.endsWith('.ts') && !f.includes('.test.') && !f.includes('.stories.')
-    );
-    const cssFiles = fs.readdirSync(dirPath).filter(f => f.endsWith('.css'));
-
-    let tsContent = '';
-    for (const f of tsFiles) {
-      tsContent += fs.readFileSync(path.join(dirPath, f), 'utf-8') + '\n';
-    }
-
-    let cssContent = '';
-    for (const f of cssFiles) {
-      cssContent += fs.readFileSync(path.join(dirPath, f), 'utf-8') + '\n';
-    }
-
-    const components = extractComponents(tsContent, cssContent);
+  for (const [dir, components] of componentGroups) {
     if (components.length === 0) continue;
 
     const markdown = generateMarkdown(dir, components);
     const outPath = path.join(DOCS_DIR, `${dir}.md`);
     fs.writeFileSync(outPath, markdown);
+
     // Inject docs into Storybook story files
-    updateStoryFile(dirPath, components);
+    const dirPath = path.join(SRC_DIR, dir);
+    if (fs.existsSync(dirPath)) {
+      updateStoryFile(dirPath, components);
+    }
 
     processedDirs.push(dir);
     console.log(`  ✓ ${dir} (${components.length} component${components.length > 1 ? 's' : ''})`);

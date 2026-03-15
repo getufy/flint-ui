@@ -73,6 +73,14 @@
       visibility: visible;
     }
 
+    /* Hoist: use fixed positioning to escape overflow containers */
+    .tooltip-popup.hoisted {
+      position: fixed;
+      right: auto;
+      bottom: auto;
+      margin: 0;
+    }
+
     /* Arrow */
     .arrow {
       position: absolute;

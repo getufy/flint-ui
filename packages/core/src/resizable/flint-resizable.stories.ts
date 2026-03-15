@@ -43,15 +43,9 @@ Resizable Group: a container that enables resizable panels with draggable handle
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-resizable-change\` | — | Fired when panel sizes change via drag or keyboard. |
 | \`flint-resizable-collapse\` | — | Fired when a panel is collapsed. |
 | \`flint-resizable-expand\` | — | Fired when a collapsed panel is expanded. |
-
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
+| \`flint-resizable-change\` | — | Fired when panel sizes change via drag or keyboard. |
 
 #### Methods
 
@@ -75,21 +69,15 @@ Resizable Group: a container that enables resizable panels with draggable handle
 | \`minSize\` | \`min-size\` | \`number\` | \`0\` | Minimum size percentage (0–100). |
 | \`maxSize\` | \`max-size\` | \`number\` | \`100\` | Maximum size percentage (0–100). |
 | \`collapsible\` | \`collapsible\` | \`boolean\` | \`false\` | Whether the panel can collapse to zero size via drag. |
-| \`collapsed\` | \`collapsed\` | \`boolean\` | \`false\` | Whether the panel is currently collapsed via the programmatic API. Set automatically by \`collapse()\` / \`expand()\` / \`toggle()\`. |
-
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
+| \`collapsed\` | \`collapsed\` | \`boolean\` | \`false\` | Whether the panel is currently collapsed via the programmatic API. |
 
 #### Methods
 
 | Method | Description |
 |---|---|
-| \`collapse()\` | Collapse this panel to zero size, transferring its space to the adjacent sibling. Sets \`collapsed = true\` and stores the current size for \`expand()\`. No-op if already collapsed. |
-| \`expand()\` | Expand this panel back to its previous size (or \`defaultSize\` as fallback). Sets \`collapsed = false\`. No-op if not currently collapsed. |
-| \`toggle()\` | Toggle between collapsed and expanded states. |
+| \`collapse(): void\` | Collapse this panel to zero size, transferring its space to the adjacent |
+| \`expand(): void\` | Expand this panel back to its previous size (or \`defaultSize\` as fallback). |
+| \`toggle(): void\` | Toggle between collapsed and expanded states. |
 
 ---
 
@@ -104,7 +92,6 @@ Resizable Group: a container that enables resizable panels with draggable handle
 |---|---|---|---|---|
 | \`withHandle\` | \`with-handle\` | \`boolean\` | \`false\` | Show a visible drag grip. |
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disable interaction. |
-| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` |  |
                 `,
             },
         },

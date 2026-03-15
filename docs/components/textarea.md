@@ -1,6 +1,6 @@
 # Textarea
 
-<Demo label="States" html="<div style=&quot;display:flex;flex-direction:column;gap:12px;width:100%;max-width:400px&quot;><flint-textarea label=&quot;Message&quot; placeholder=&quot;Type your message...&quot;></flint-textarea><flint-textarea label=&quot;Disabled&quot; disabled value=&quot;This textarea is disabled&quot;></flint-textarea></div>" />
+<Demo label="States" html='<div style="display:flex;flex-direction:column;gap:12px;width:100%;max-width:400px"><flint-textarea label="Message" placeholder="Type your message..."></flint-textarea><flint-textarea label="Disabled" disabled value="This textarea is disabled"></flint-textarea></div>' />
 
 A Textarea component for multi-line text input.
 
@@ -40,7 +40,7 @@ import { FlintTextarea } from '@getufy/flint-ui';
 | `minlength` | `minlength` | `number \| undefined` | `undefined` | Minimum number of characters required. |
 | `name` | `name` | `string` | `''` | Form field name used when submitting form data. |
 | `autocomplete` | `autocomplete` | `string` | `''` | Browser autocomplete hint. |
-| `resize` | `resize` | `'none' \| 'both' \| 'horizontal' \| 'vertical' \| 'auto'` | `'vertical'` | Controls the resize handle. 'auto' enables automatic height expansion as the user types. |
+| `resize` | `resize` | `'none' \| 'both' \| 'horizontal' \| 'vertical' \| 'auto'` | `'vertical'` | Controls the resize handle. |
 | `defaultValue` | `default-value` | `string` | `''` | Initial value for uncontrolled usage. |
 | `ariaLabel` | `aria-label` | `string \| null` | `null` | Accessible label for screen readers when no visible label is provided. |
 
@@ -48,8 +48,8 @@ import { FlintTextarea } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-textarea-input` | — | Dispatched on every keystroke. Detail: `{ value: string }` |
-| `flint-textarea-change` | — | Dispatched on blur/change. Detail: `{ value: string }` |
+| `flint-textarea-input` | `&#123; value: string &#125;` | Dispatched on every keystroke. Detail: `&#123; value: string &#125;` |
+| `flint-textarea-change` | `&#123; value: string &#125;` | Dispatched on blur/change. Detail: `&#123; value: string &#125;` |
 
 ### CSS Custom Properties
 
@@ -72,11 +72,5 @@ import { FlintTextarea } from '@getufy/flint-ui';
 | `--flint-input-disabled-color` | — |
 | `--flint-input-readonly-bg` | — |
 | `--flint-help-text-color` | — |
-
-### Methods
-
-| Method | Description |
-| --- | --- |
-| `textareaElement(): HTMLTextAreaElement \| null` | Direct access to the internal &lt;textarea&gt; element. |
 
 ---

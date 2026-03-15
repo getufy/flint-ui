@@ -1,8 +1,8 @@
 # Radio
 
-<Demo label="Basic" html="<flint-radio-group value=&quot;a&quot;>  <flint-radio value=&quot;a&quot; label=&quot;Option A&quot;></flint-radio>  <flint-radio value=&quot;b&quot; label=&quot;Option B&quot;></flint-radio>  <flint-radio value=&quot;c&quot; label=&quot;Option C&quot;></flint-radio></flint-radio-group>" />
+<Demo label="Basic" html='<flint-radio-group value="a">  <flint-radio value="a" label="Option A"></flint-radio>  <flint-radio value="b" label="Option B"></flint-radio>  <flint-radio value="c" label="Option C"></flint-radio></flint-radio-group>' />
 
-<Demo label="Disabled" html="<flint-radio-group value=&quot;x&quot;>  <flint-radio value=&quot;x&quot; label=&quot;Selected&quot; disabled></flint-radio>  <flint-radio value=&quot;y&quot; label=&quot;Disabled&quot; disabled></flint-radio></flint-radio-group>" />
+<Demo label="Disabled" html='<flint-radio-group value="x">  <flint-radio value="x" label="Selected" disabled></flint-radio>  <flint-radio value="y" label="Disabled" disabled></flint-radio></flint-radio-group>' />
 
 ## `<flint-radio-group>`
 
@@ -43,12 +43,6 @@ import { FlintRadioGroup } from '@getufy/flint-ui';
 | Event | Detail | Description |
 | --- | --- | --- |
 | `flint-radio-group-change` | — | Fired when the selected radio value changes. |
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
 
 ### CSS Custom Properties
 
@@ -103,12 +97,6 @@ import { FlintRadio } from '@getufy/flint-ui';
 | --- | --- | --- |
 | `flint-radio-select` | — | Fired when this radio is selected. |
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
-
 ### CSS Custom Properties
 
 | Property | Default |
@@ -125,11 +113,5 @@ import { FlintRadio } from '@getufy/flint-ui';
 | `--flint-radio-label-font-size` | `14px` |
 | `--flint-radio-label-font-size-sm` | `12px` |
 | `--flint-radio-label-font-size-lg` | `16px` |
-
-### Methods
-
-| Method | Description |
-| --- | --- |
-| `focus(options?: FocusOptions)` |  |
 
 ---

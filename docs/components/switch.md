@@ -1,8 +1,8 @@
 # Switch
 
-<Demo label="Sizes" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap;align-items:center&quot;><flint-switch size=&quot;sm&quot;></flint-switch><flint-switch size=&quot;md&quot;></flint-switch><flint-switch size=&quot;lg&quot;></flint-switch></div>" />
+<Demo label="Sizes" html='<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><flint-switch size="sm"></flint-switch><flint-switch size="md"></flint-switch><flint-switch size="lg"></flint-switch></div>' />
 
-<Demo label="States" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-switch></flint-switch><flint-switch default-checked></flint-switch><flint-switch disabled></flint-switch><flint-switch default-checked disabled></flint-switch></div>" />
+<Demo label="States" html='<div style="display:flex;gap:8px;flex-wrap:wrap"><flint-switch></flint-switch><flint-switch default-checked></flint-switch><flint-switch disabled></flint-switch><flint-switch default-checked disabled></flint-switch></div>' />
 
 A Switch component for toggling settings.
 
@@ -41,7 +41,7 @@ import { FlintSwitch } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-switch-change` | — | Dispatched when the switch state changes. Detail: `{ checked: boolean }` |
+| `flint-switch-change` | `&#123; checked: boolean &#125;` | Dispatched when the switch state changes. Detail: `&#123; checked: boolean &#125;` |
 
 ### Slots
 

@@ -24,7 +24,8 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
-Pagination component enabling the user to select a specific page from a range of pages.
+Pagination component enabling the user to select a specific page from
+a range of pages.
 
 - **Tag**: \`<flint-pagination>\`
 - **Class**: \`FlintPagination\`
@@ -53,7 +54,7 @@ Pagination component enabling the user to select a specific page from a range of
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-pagination-change\` | — | { page: number } when the active page changes. |
+| \`flint-pagination-change\` | — | &#123; page: number &#125; when the active page changes. |
 
 #### Slots
 

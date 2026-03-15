@@ -1,8 +1,8 @@
 # Avatar
 
-<Demo label="Image" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-avatar src=&quot;https://i.pravatar.cc/150?img=1&quot; alt=&quot;User 1&quot;></flint-avatar><flint-avatar src=&quot;https://i.pravatar.cc/150?img=2&quot; alt=&quot;User 2&quot;></flint-avatar><flint-avatar src=&quot;https://i.pravatar.cc/150?img=3&quot; alt=&quot;User 3&quot;></flint-avatar></div>" />
+<Demo label="Image" html='<div style="display:flex;gap:8px;flex-wrap:wrap"><flint-avatar src="https://i.pravatar.cc/150?img=1" alt="User 1"></flint-avatar><flint-avatar src="https://i.pravatar.cc/150?img=2" alt="User 2"></flint-avatar><flint-avatar src="https://i.pravatar.cc/150?img=3" alt="User 3"></flint-avatar></div>' />
 
-<Demo label="Initials" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-avatar>AB</flint-avatar><flint-avatar>CD</flint-avatar><flint-avatar>EF</flint-avatar></div>" />
+<Demo label="Initials" html='<div style="display:flex;gap:8px;flex-wrap:wrap"><flint-avatar>AB</flint-avatar><flint-avatar>CD</flint-avatar><flint-avatar>EF</flint-avatar></div>' />
 
 - **Tag**: `<flint-avatar>`
 - **Class**: `FlintAvatar`
@@ -30,12 +30,6 @@ import { FlintAvatar } from '@getufy/flint-ui';
 | `initials` | `initials` | `string` | `''` | Initials to display when no image is provided. |
 | `variant` | `variant` | `'circle' \| 'square' \| 'rounded'` | `'circle'` | Shape variant of the avatar. |
 | `size` | `size` | `'small' \| 'medium' \| 'large' \| 'xlarge'` | `'medium'` | Size of the avatar. |
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
 
 ### CSS Custom Properties
 

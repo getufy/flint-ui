@@ -35,9 +35,7 @@ Displays the title of an item.
 |---|---|
 | \`--flint-text-color-muted\` | — |
 | \`--flint-font-family\` | — |
-| \`--flint-border-color\` | — |
 | \`--flint-text-color\` | — |
-| \`--flint-muted-bg\` | \`var(--flint-muted-background\` |
 
 ---
 
@@ -79,8 +77,8 @@ Media container for an item (icon, avatar, or image).
 
 | Property | Default |
 |---|---|
-| \`--flint-item-media-icon-bg\` | \`var(--flint-surface-2\` |
-| \`--flint-item-media-icon-color\` | \`var(--flint-text-color-muted\` |
+| \`--flint-item-media-icon-bg\` | — |
+| \`--flint-item-media-icon-color\` | — |
 
 ---
 
@@ -101,7 +99,8 @@ Flex-column wrapper for an item's title and description.
 
 #### \`<flint-item-actions>\`
 
-Container for action buttons or other interactive elements. Aligns itself to the trailing edge of the item row.
+Container for action buttons or other interactive elements.
+Aligns itself to the trailing edge of the item row.
 
 - **Tag**: \`<flint-item-actions>\`
 - **Class**: \`FlintItemActions\`
@@ -116,7 +115,9 @@ Container for action buttons or other interactive elements. Aligns itself to the
 
 #### \`<flint-item-header>\`
 
-Full-bleed header that spans the top of the item, cancelling the item's padding so media (images) appear flush with the border. Always place as the first child of \`flint-item\`.
+Full-bleed header that spans the top of the item, cancelling the
+item's padding so media (images) appear flush with the border.
+Always place as the first child of \`flint-item\`.
 
 - **Tag**: \`<flint-item-header>\`
 - **Class**: \`FlintItemHeader\`
@@ -131,7 +132,9 @@ Full-bleed header that spans the top of the item, cancelling the item's padding 
 
 #### \`<flint-item-footer>\`
 
-Full-bleed footer that spans the bottom of the item, cancelling the item's padding so the footer appears flush with the border. Always place as the last child of \`flint-item\`.
+Full-bleed footer that spans the bottom of the item, cancelling the
+item's padding so the footer appears flush with the border.
+Always place as the last child of \`flint-item\`.
 
 - **Tag**: \`<flint-item-footer>\`
 - **Class**: \`FlintItemFooter\`
@@ -157,6 +160,12 @@ Visual separator between items in a group.
 - **Tag**: \`<flint-item-separator>\`
 - **Class**: \`FlintItemSeparator\`
 
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-border-color\` | — |
+
 ---
 
 #### \`<flint-item-group>\`
@@ -176,13 +185,15 @@ Container for grouping related items together.
 
 | Property | Default |
 |---|---|
-| \`--flint-item-group-gap\` | \`4px\` |
+| \`--flint-item-group-gap\` | — |
 
 ---
 
 #### \`<flint-item>\`
 
-Root container for displaying content with media, title, description, and actions. A versatile flex row that adapts to icons, avatars, images, and action buttons.
+Root container for displaying content with media, title,
+description, and actions. A versatile flex row that adapts to
+icons, avatars, images, and action buttons.
 
 - **Tag**: \`<flint-item>\`
 - **Class**: \`FlintItem\`
@@ -191,25 +202,27 @@ Root container for displaying content with media, title, description, and action
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`variant\` | \`variant\` | \`'default' \\| 'outline' \\| 'muted'\` | \`'default'\` | Visual style of the item. - \`default\`  — no border, transparent background. - \`outline\`  — visible border. - \`muted\`    — muted background fill. |
-| \`size\` | \`size\` | \`'default' \\| 'sm' \\| 'xs'\` | \`'default'\` | Size preset controlling padding and gap. - \`default\` — 16px padding, 12px gap. - \`sm\`      — 12px padding, 8px gap. - \`xs\`      — 8px padding, 6px gap. |
+| \`variant\` | \`variant\` | \`'default' \\| 'outline' \\| 'muted'\` | \`'default'\` | Visual style of the item. |
+| \`size\` | \`size\` | \`'default' \\| 'sm' \\| 'xs'\` | \`'default'\` | Size preset controlling padding and gap. |
 
 #### Slots
 
 | Name | Description |
 |---|---|
-| \`(default)\` | Accepts \`flint-item-header\`, \`flint-item-media\`, \`flint-item-content\`, |
+| \`(default)\` | Accepts \`flint-item-header\`, \`flint-item-media\`, \`flint-item-content\`, \`flint-item-actions\`, \`flint-item-footer\`, and any other elements. |
 
 #### CSS Custom Properties
 
 | Property | Default |
 |---|---|
-| \`--flint-item-padding\` | \`16px\` |
+| \`--flint-item-padding\` | — |
+| \`--flint-item-gap\` | — |
+| \`--flint-item-media-icon-bg\` | — |
+| \`--flint-item-media-icon-color\` | — |
+| \`--flint-border-color\` | — |
+| \`--flint-muted-bg\` | — |
 | \`--flint-item-footer-bg\` | \`transparent\` |
 | \`--flint-item-group-gap\` | \`4px\` |
-| \`--flint-item-media-icon-bg\` | \`var(--flint-surface-2\` |
-| \`--flint-item-media-icon-color\` | \`var(--flint-text-color-muted\` |
-| \`--flint-item-gap\` | — |
                 `,
             },
         },

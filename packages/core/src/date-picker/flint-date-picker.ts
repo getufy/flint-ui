@@ -290,6 +290,13 @@ export class FlintDatePicker extends LitElement {
     /** Shows error styling. */
     @property({ type: Boolean, reflect: true }) error = false;
 
+    /**
+     * When true, the calendar popover uses `position: fixed` instead of `position: absolute`
+     * so it can escape containers with `overflow: hidden` or `overflow: clip`.
+     * Only applies to the 'desktop' variant.
+     */
+    @property({ type: Boolean }) hoist = false;
+
     /** Helper/error text below the field. */
     @property({ type: String, attribute: 'helper-text' }) helperText = '';
 
@@ -308,14 +315,59 @@ export class FlintDatePicker extends LitElement {
         return this.variant as 'desktop' | 'mobile' | 'static';
     }
 
+    /* ── Hoist (fixed positioning) ─────────────────────────────────── */
+
+    private _scrollHandler = () => this._handleReposition();
+    private _resizeHandler = () => this._handleReposition();
+
+    /** Recalculates fixed position for the popover based on the field's bounding rect. */
+    private _handleReposition(): void {
+        const popover = this.shadowRoot?.querySelector('.popover') as HTMLElement | null;
+        const fieldWrapper = this.shadowRoot?.querySelector('.field-wrapper') as HTMLElement | null;
+        if (!popover || !fieldWrapper) return;
+
+        const rect = fieldWrapper.getBoundingClientRect();
+        popover.style.setProperty('position', 'fixed');
+        popover.style.setProperty('top', `${rect.bottom + 6}px`);
+        popover.style.setProperty('left', `${rect.left}px`);
+        popover.style.setProperty('width', 'auto');
+    }
+
+    /** Starts listening for scroll/resize to keep the hoisted popover in position. */
+    private _startHoist(): void {
+        void this.updateComplete.then(() => {
+            this._handleReposition();
+            window.addEventListener('scroll', this._scrollHandler, true);
+            window.addEventListener('resize', this._resizeHandler);
+        });
+    }
+
+    /** Removes scroll/resize listeners and clears inline styles from the popover. */
+    private _cleanupHoist(): void {
+        window.removeEventListener('scroll', this._scrollHandler, true);
+        window.removeEventListener('resize', this._resizeHandler);
+
+        const popover = this.shadowRoot?.querySelector('.popover') as HTMLElement | null;
+        if (popover) {
+            popover.style.removeProperty('position');
+            popover.style.removeProperty('top');
+            popover.style.removeProperty('left');
+            popover.style.removeProperty('width');
+        }
+    }
+
     private _openPicker() {
         if (this.disabled || this._open) return;
         this._pendingValue = this.value;
         this._open = true;
+        if (this.hoist && this._resolvedVariant === 'desktop') {
+            this._startHoist();
+        }
     }
 
     private _closePicker() {
         this._open = false;
+        this._cleanupHoist();
     }
 
     private _handleCalendarSelect(e: CustomEvent) {
@@ -410,7 +462,7 @@ export class FlintDatePicker extends LitElement {
         <div class="popover-anchor">
           ${this._renderField()}
           <div class="click-away ${this._open ? 'open' : ''}" @click=${this._closePicker}></div>
-          <div class="popover ${this._open ? 'open' : ''}" role="dialog" aria-label="Date picker">
+          <div class="popover ${this._open ? 'open' : ''} ${this.hoist ? 'hoisted' : ''}" role="dialog" aria-label="Date picker">
             <flint-date-picker-calendar
               .value=${this.value}
               .min=${this.min}

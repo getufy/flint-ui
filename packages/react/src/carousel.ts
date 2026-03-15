@@ -4,5 +4,5 @@ export { FlintCarouselContent, type FlintCarouselContentProps } from './componen
 export { FlintCarouselItem, type FlintCarouselItemProps } from './components/FlintCarouselItem.js';
 export { FlintCarouselPrevious, type FlintCarouselPreviousProps } from './components/FlintCarouselPrevious.js';
 export { FlintCarouselNext, type FlintCarouselNextProps } from './components/FlintCarouselNext.js';
-export { FlintCarousel, type FlintCarouselProps, type FlintCarouselChangeDetail } from './components/FlintCarousel.js';
+export { FlintCarousel, type FlintCarouselProps } from './components/FlintCarousel.js';
 export { FlintCarouselEvents } from './events/flint-carousel.js';

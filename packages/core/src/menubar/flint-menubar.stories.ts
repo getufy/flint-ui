@@ -69,12 +69,6 @@ Groups related menu items. Optional \`heading\` shows a label.
 |---|---|---|---|---|
 | \`heading\` | \`heading\` | \`string\` | \`''\` | Label text displayed above the group. |
 
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
-
 ---
 
 #### \`<flint-menubar-item>\`
@@ -97,7 +91,7 @@ A single interactive option inside a menubar dropdown.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-menubar-item-select\` | — | Fired on activation. detail: \`{ value: string }\` |
+| \`flint-menubar-item-select\` | \`&#123; value: string &#125;\` | Fired on activation. detail: \`&#123; value: string &#125;\` |
 
 #### Slots
 
@@ -109,7 +103,7 @@ A single interactive option inside a menubar dropdown.
 
 | Method | Description |
 |---|---|
-| \`select()\` | Activate the item — fires select event. |
+| \`select(): void\` | Activate the item — fires select event. |
 
 ---
 
@@ -133,19 +127,13 @@ A toggleable checkbox menu item.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-menubar-checkbox-change\` | — | detail: \`{ checked: boolean, value: string }\` |
-
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
+| \`flint-menubar-checkbox-change\` | \`&#123; checked: boolean, value: string &#125;\` | detail: \`&#123; checked: boolean, value: string &#125;\` |
 
 #### Methods
 
 | Method | Description |
 |---|---|
-| \`toggle()\` |  |
+| \`toggle(): void\` |  |
 
 ---
 
@@ -169,19 +157,13 @@ A radio option inside a \`<flint-menubar-radio-group>\`.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-menubar-radio-select\` | \`{ value: this.value }\` |  |
-
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
+| \`flint-menubar-radio-select\` | — |  |
 
 #### Methods
 
 | Method | Description |
 |---|---|
-| \`select()\` |  |
+| \`select(): void\` |  |
 
 ---
 
@@ -202,19 +184,14 @@ Manages single-select radio items.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-menubar-radio-change\` | — | detail: \`{ value: string }\` |
-
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
+| \`flint-menubar-radio-change\` | \`&#123; value: string &#125;\` | detail: \`&#123; value: string &#125;\` |
 
 ---
 
 #### \`<flint-menubar-sub-content>\`
 
-The dropdown panel of a sub-menu. Positioned to the right of the trigger. Auto-flips left when the panel would overflow the viewport edge.
+The dropdown panel of a sub-menu. Positioned to the right of the trigger.
+Auto-flips left when the panel would overflow the viewport edge.
 
 - **Tag**: \`<flint-menubar-sub-content>\`
 - **Class**: \`FlintMenubarSubContent\`
@@ -224,12 +201,6 @@ The dropdown panel of a sub-menu. Positioned to the right of the trigger. Auto-f
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
 | \`open\` | \`open\` | \`boolean\` | \`false\` | Whether the sub-menu dropdown panel is visible. |
-
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
 
 ---
 
@@ -249,42 +220,31 @@ Trigger for a sub-menu. Shows an arrow indicator.
 | \`inset\` | \`inset\` | \`boolean\` | \`false\` | Whether the trigger label is inset to align with checkbox/radio items. |
 | \`expanded\` | \`expanded\` | \`boolean\` | \`false\` | Set by the parent \`flint-menubar-sub\` to reflect open state for aria-expanded. |
 
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
-
 ---
 
 #### \`<flint-menubar-sub>\`
 
-Wraps a sub-trigger and sub-content pair. Opens on hover/focus and ArrowRight; closes on ArrowLeft or blur.
+Wraps a sub-trigger and sub-content pair.
+Opens on hover/focus and ArrowRight; closes on ArrowLeft or blur.
 
 - **Tag**: \`<flint-menubar-sub>\`
 - **Class**: \`FlintMenubarSub\`
-
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
 
 #### Methods
 
 | Method | Description |
 |---|---|
-| \`open(): unknown\` |  |
-| \`show()\` |  |
-| \`showImmediate()\` | Opens the sub-menu immediately without the hover delay. Use for keyboard interactions. |
-| \`hide()\` |  |
-| \`hideImmediate()\` |  |
+| \`show(): void\` |  |
+| \`showImmediate(): void\` | Opens the sub-menu immediately without the hover delay. Use for keyboard interactions. |
+| \`hide(): void\` |  |
+| \`hideImmediate(): void\` |  |
 
 ---
 
 #### \`<flint-menubar-content>\`
 
-The dropdown content panel for a menubar menu. Positioned absolutely below the trigger.
+The dropdown content panel for a menubar menu.
+Positioned absolutely below the trigger.
 
 - **Tag**: \`<flint-menubar-content>\`
 - **Class**: \`FlintMenubarContent\`
@@ -299,13 +259,7 @@ The dropdown content panel for a menubar menu. Positioned absolutely below the t
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-menubar-request-close\` | \`{ open: false }\` |  |
-
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
+| \`flint-menubar-request-close\` | — |  |
 
 #### CSS Custom Properties
 
@@ -317,7 +271,8 @@ The dropdown content panel for a menubar menu. Positioned absolutely below the t
 
 | Method | Description |
 |---|---|
-| \`resetHighlight()\` |  |
+| \`handleKeyDown(e: KeyboardEvent): void\` | Handle keyboard navigation inside the content panel. |
+| \`resetHighlight(): void\` |  |
 
 ---
 
@@ -351,7 +306,7 @@ The trigger button for a menubar menu.
 
 | Method | Description |
 |---|---|
-| \`setFocusable(v: boolean)\` |  |
+| \`setFocusable(v: boolean): void\` |  |
 
 ---
 
@@ -368,27 +323,19 @@ Wraps a trigger and content pair for a single menu in the menubar.
 |---|---|---|---|---|
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables this menu: the trigger is non-interactive and keyboard nav skips it. |
 
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
-
 #### Methods
 
 | Method | Description |
 |---|---|
-| \`trigger(): FlintMenubarTrigger \\| null\` |  |
-| \`content(): FlintMenubarContent \\| null\` |  |
-| \`open()\` |  |
-| \`close()\` |  |
-| \`isOpen(): boolean\` |  |
+| \`open(): void\` |  |
+| \`close(): void\` |  |
 
 ---
 
 #### \`<flint-menubar>\`
 
-A visually persistent horizontal menu bar, common in desktop applications. Hosts one or more \`<flint-menubar-menu>\` children.
+A visually persistent horizontal menu bar, common in desktop applications.
+Hosts one or more \`<flint-menubar-menu>\` children.
 
 - **Tag**: \`<flint-menubar>\`
 - **Class**: \`FlintMenubar\`
@@ -397,7 +344,7 @@ A visually persistent horizontal menu bar, common in desktop applications. Hosts
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`label\` | \`label\` | \`string\` | \`''\` | Which menu (by index) is currently open. -1 = all closed. */ private _activeIndex = -1; /** Accessible label for the menubar region. Defaults to "Menu bar". |
+| \`label\` | \`label\` | \`string\` | \`''\` | Accessible label for the menubar region. Defaults to "Menu bar". |
 
 #### Events
 
@@ -426,8 +373,7 @@ A visually persistent horizontal menu bar, common in desktop applications. Hosts
 
 | Method | Description |
 |---|---|
-| \`activeIndex(): number\` | Index of the currently open menu, or -1 if all closed. |
-| \`closeAll()\` | Close all menus. |
+| \`closeAll(): void\` | Close all menus. |
                 `,
             },
         },

@@ -5,6 +5,7 @@ import './flint-dialog.js';
 import type { FlintDialog } from './flint-dialog.js';
 import type { FlintDialogActions } from './flint-dialog.js';
 import { FlintBackdrop } from '../backdrop/flint-backdrop.js';
+import { expectAccessible } from '../test-utils/axe';
 
 describe('flint-dialog', () => {
 
@@ -356,6 +357,8 @@ describe('flint-dialog', () => {
         await el.updateComplete;
         el.open = false;
         await el.updateComplete;
+        // Focus restore is deferred after close animation (async even in jsdom)
+        await new Promise(r => setTimeout(r, 0));
         expect(document.activeElement).toBe(trigger);
         trigger.remove();
     });
@@ -380,4 +383,28 @@ describe('flint-dialog', () => {
         await (el as LitElement).updateComplete;
         expect(el.shadowRoot!.querySelector('slot')).not.toBeNull();
     });
+
+    // ── CSS parts ────────────────────────────────────────────────────────────
+    it('exposes CSS parts for external styling', async () => {
+        const el = await fixture<FlintDialog>(html`<flint-dialog open></flint-dialog>`);
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('[part="panel"]')).not.toBeNull();
+    });
+
+    // ── Accessibility ─────────────────────────────────────────────────────────
+
+    it('should pass automated a11y checks', async () => {
+        const el = await fixture<FlintDialog>(html`
+            <flint-dialog open aria-label="Test dialog">
+                <flint-dialog-title>Title</flint-dialog-title>
+                <flint-dialog-content>Content</flint-dialog-content>
+                <flint-dialog-actions>
+                    <button>OK</button>
+                </flint-dialog-actions>
+            </flint-dialog>
+        `);
+        await el.updateComplete;
+        // aria-labelledby references a shadow DOM ID for the title slot — axe can't resolve cross-boundary
+        await expectAccessible(el, { rules: { 'aria-dialog-name': { enabled: false } } });
+    }, 15000);
 });

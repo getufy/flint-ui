@@ -11,6 +11,12 @@ let idCounter = 0;
  *
  * @fires flint-input-input - Fired on each keystroke as the value changes.
  * @fires flint-input-change - Fired when the input loses focus after the value has changed.
+ *
+ * @csspart base - The outer wrapper `<div>`.
+ * @csspart label - The `<label>` element.
+ * @csspart input - The native `<input>` element.
+ * @csspart help-text - The helper text `<p>`.
+ * @csspart error-message - The error message `<p>`.
  */
 @customElement('flint-input')
 export class FlintInput extends FormAssociated(LitElement) {
@@ -106,7 +112,7 @@ export class FlintInput extends FormAssociated(LitElement) {
             : undefined;
 
         return html`
-      <div class="input-wrapper" part="wrapper">
+      <div class="input-wrapper" part="base">
         ${this.label
                 ? html`<label for=${this._inputId} part="label">${this.label}</label>`
                 : ''}
@@ -131,7 +137,7 @@ export class FlintInput extends FormAssociated(LitElement) {
         />
 
         ${errorState && this.errorMessage
-                ? html`<p id=${descId} class="help-text error-text" part="error-text" role="alert">${this.errorMessage}</p>`
+                ? html`<p id=${descId} class="help-text error-text" part="error-message" role="alert">${this.errorMessage}</p>`
                 : this.helperText
                     ? html`<p id=${descId} class="help-text" part="help-text">${this.helperText}</p>`
                     : ''}

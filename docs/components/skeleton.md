@@ -1,8 +1,8 @@
 # Skeleton
 
-<Demo label="Variants" html="<div style=&quot;display:flex;flex-direction:column;gap:8px;width:100%;max-width:300px&quot;><flint-skeleton variant=&quot;circular&quot; width=&quot;40px&quot; height=&quot;40px&quot;></flint-skeleton><flint-skeleton variant=&quot;text&quot; width=&quot;200px&quot;></flint-skeleton><flint-skeleton variant=&quot;text&quot; width=&quot;160px&quot;></flint-skeleton><flint-skeleton variant=&quot;rectangular&quot; width=&quot;100%&quot; height=&quot;120px&quot;></flint-skeleton></div>" />
+<Demo label="Variants" html='<div style="display:flex;flex-direction:column;gap:8px;width:100%;max-width:300px"><flint-skeleton variant="circular" width="40px" height="40px"></flint-skeleton><flint-skeleton variant="text" width="200px"></flint-skeleton><flint-skeleton variant="text" width="160px"></flint-skeleton><flint-skeleton variant="rectangular" width="100%" height="120px"></flint-skeleton></div>' />
 
-<Demo label="Card Placeholder" html="<div style=&quot;display:flex;gap:12px;width:100%;max-width:300px&quot;>  <flint-skeleton variant=&quot;circular&quot; width=&quot;48px&quot; height=&quot;48px&quot;></flint-skeleton>  <div style=&quot;flex:1;display:flex;flex-direction:column;gap:6px&quot;>    <flint-skeleton variant=&quot;text&quot; width=&quot;80%&quot;></flint-skeleton>    <flint-skeleton variant=&quot;text&quot; width=&quot;60%&quot;></flint-skeleton>  </div></div>" />
+<Demo label="Card Placeholder" html='<div style="display:flex;gap:12px;width:100%;max-width:300px">  <flint-skeleton variant="circular" width="48px" height="48px"></flint-skeleton>  <div style="flex:1;display:flex;flex-direction:column;gap:6px">    <flint-skeleton variant="text" width="80%"></flint-skeleton>    <flint-skeleton variant="text" width="60%"></flint-skeleton>  </div></div>' />
 
 Skeletons display a placeholder preview of content before data gets loaded.
 
@@ -38,10 +38,10 @@ import { FlintSkeleton } from '@getufy/flint-ui';
 
 | Property | Default |
 | --- | --- |
-| `--flint-skeleton-bg` | `var(--flint-surface-3, rgba(0, 0, 0, 0.11` |
-| `--flint-skeleton-bg-dark` | `rgba(255, 255, 255, 0.13` |
-| `--flint-skeleton-animation-duration` | `1.5s` |
-| `--flint-skeleton-wave-color` | `rgba(255, 255, 255, 0.4` |
+| `--flint-skeleton-bg` | — |
+| `--flint-skeleton-bg-dark` | — |
+| `--flint-skeleton-wave-color` | — |
+| `--flint-skeleton-animation-duration` | — |
 | `--flint-border-radius-sm` | — |
 | `--flint-border-radius-md` | — |
 | `--flint-border-radius-lg` | — |

@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-select';
 import type { FlintSelect } from './flint-select';
+import { expectAccessible } from '../test-utils/axe';
 
 const opts = [
   { label: 'Apple',  value: 'apple'  },
@@ -881,6 +882,90 @@ describe('flint-select — scrollIntoView', () => {
   });
 });
 
+// ── Hoist ───────────────────────────────────────────────────────────────────
+
+describe('flint-select — hoist', () => {
+  it('hoist property defaults to false', async () => {
+    const el = await fixture<FlintSelect>(html`<flint-select .options=${opts}></flint-select>`);
+    expect(el.hoist).toBe(false);
+  });
+
+  it('dropdown gets hoisted class when hoist=true', async () => {
+    const el = await fixture<FlintSelect>(html`<flint-select hoist .options=${opts}></flint-select>`);
+    expect(getDropdown(el).classList.contains('hoisted')).toBe(true);
+  });
+
+  it('opening with hoist applies fixed position styles', async () => {
+    const el = await fixture<FlintSelect>(html`<flint-select hoist .options=${opts}></flint-select>`);
+    await open(el);
+    await new Promise(r => setTimeout(r, 0));
+    const dropdown = getDropdown(el);
+    expect(dropdown.style.position).toBe('fixed');
+    expect(dropdown.style.left).toBeTruthy();
+    expect(dropdown.style.width).toBeTruthy();
+  });
+
+  it('closing with hoist clears fixed position styles', async () => {
+    const el = await fixture<FlintSelect>(html`<flint-select hoist .options=${opts}></flint-select>`);
+    await open(el);
+    await new Promise(r => setTimeout(r, 0));
+    getTrigger(el).click();
+    await el.updateComplete;
+    const dropdown = getDropdown(el);
+    expect(dropdown.style.position).toBe('');
+    expect(dropdown.style.left).toBe('');
+  });
+
+  it('Escape with hoist clears position styles', async () => {
+    const el = await fixture<FlintSelect>(html`<flint-select hoist .options=${opts}></flint-select>`);
+    await open(el);
+    await new Promise(r => setTimeout(r, 0));
+    pressKey(el, 'Escape');
+    await el.updateComplete;
+    expect(getDropdown(el).style.position).toBe('');
+  });
+
+  it('Tab with hoist clears position styles', async () => {
+    const el = await fixture<FlintSelect>(html`<flint-select hoist .options=${opts}></flint-select>`);
+    await open(el);
+    await new Promise(r => setTimeout(r, 0));
+    pressKey(el, 'Tab');
+    await el.updateComplete;
+    expect(getDropdown(el).style.position).toBe('');
+  });
+
+  it('outside click with hoist clears position styles', async () => {
+    const el = await fixture<FlintSelect>(html`<flint-select hoist .options=${opts}></flint-select>`);
+    await open(el);
+    await new Promise(r => setTimeout(r, 0));
+    const outside = document.createElement('div');
+    document.body.appendChild(outside);
+    outside.click();
+    await el.updateComplete;
+    expect(getDropdown(el).style.position).toBe('');
+    outside.remove();
+  });
+
+  it('single-select close with hoist clears position styles', async () => {
+    const el = await fixture<FlintSelect>(html`<flint-select hoist .options=${opts}></flint-select>`);
+    await open(el);
+    await new Promise(r => setTimeout(r, 0));
+    getOptions(el)[0].click();
+    await el.updateComplete;
+    expect(getDropdown(el).style.position).toBe('');
+  });
+
+  it('disconnect cleans up hoist listeners', async () => {
+    const removeSpy = vi.spyOn(window, 'removeEventListener');
+    const el = await fixture<FlintSelect>(html`<flint-select hoist .options=${opts}></flint-select>`);
+    await open(el);
+    await new Promise(r => setTimeout(r, 0));
+    el.remove();
+    expect(removeSpy).toHaveBeenCalledWith('resize', expect.any(Function));
+    removeSpy.mockRestore();
+  });
+});
+
 // ── Lifecycle ────────────────────────────────────────────────────────────────
 
 describe('flint-select — lifecycle', () => {
@@ -925,5 +1010,46 @@ describe('flint-select — slots', () => {
     const el = await fixture<FlintSelect>(html`<flint-select .options=${opts}></flint-select>`);
     const slot = el.shadowRoot!.querySelector('slot[name="error-message"]');
     expect(slot).toBeNull();
+  });
+
+  // ── Accessibility ─────────────────────────────────────────────────────────
+
+  it('should pass automated a11y checks', async () => {
+    const el = await fixture<FlintSelect>(html`<flint-select label="Fruit" .options=${opts}></flint-select>`);
+    await el.updateComplete;
+    await expectAccessible(el);
+  }, 15000);
+});
+
+// ── CSS parts ────────────────────────────────────────────────────────────────
+
+describe('flint-select — CSS parts', () => {
+  it('exposes trigger, dropdown, placeholder, and option parts', async () => {
+    const el = await fixture<FlintSelect>(html`<flint-select .options=${opts} placeholder="Pick"></flint-select>`);
+    expect(el.shadowRoot!.querySelector('[part="trigger"]')).not.toBeNull();
+    expect(el.shadowRoot!.querySelector('[part="dropdown"]')).not.toBeNull();
+    expect(el.shadowRoot!.querySelector('[part="placeholder"]')).not.toBeNull();
+    expect(el.shadowRoot!.querySelectorAll('[part="option"]').length).toBe(3);
+  });
+
+  it('exposes label part when label is provided', async () => {
+    const el = await fixture<FlintSelect>(html`<flint-select .options=${opts} label="Fruit"></flint-select>`);
+    expect(el.shadowRoot!.querySelector('[part="label"]')).not.toBeNull();
+  });
+
+  it('exposes chip parts in multiple mode', async () => {
+    const el = await fixture<FlintSelect>(html`
+      <flint-select multiple .options=${opts} .value=${['apple', 'cherry']}></flint-select>
+    `);
+    await el.updateComplete;
+    expect(el.shadowRoot!.querySelectorAll('[part="chip"]').length).toBe(2);
+  });
+
+  it('exposes error-message part when in error state', async () => {
+    const el = await fixture<FlintSelect>(html`
+      <flint-select ?error=${true} error-message="Required" .options=${opts}></flint-select>
+    `);
+    await el.updateComplete;
+    expect(el.shadowRoot!.querySelector('[part="error-message"]')).not.toBeNull();
   });
 });

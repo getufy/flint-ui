@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeAll } from 'vitest';
 import { fixture, html, oneEvent } from '@open-wc/testing';
 import './flint-tabs.js';
 import type { FlintTab, FlintTabList, FlintTabPanel, FlintTabs } from './flint-tabs.js';
+import { expectAccessible } from '../test-utils/axe';
 
 /* ── ResizeObserver polyfill for tests ── */
 beforeAll(() => {
@@ -1223,5 +1224,45 @@ describe('flint-tab-list scrollIntoView when available', () => {
         await el.updateComplete;
 
         expect(scrollSpy).toHaveBeenCalledWith({ block: 'nearest', inline: 'nearest' });
+    });
+
+    // ── Accessibility ─────────────────────────────────────────────────────────
+
+    it('should pass automated a11y checks', async () => {
+        const el = await makeTabs();
+        // axe doesn't recognize slotted flint-tab custom elements as valid role="tab" children
+        await expectAccessible(el, { rules: { 'aria-required-children': { enabled: false } } });
+    }, 15000);
+});
+
+/* ================================================================== */
+describe('CSS parts', () => {
+    it('flint-tabs exposes part="base"', async () => {
+        const el = await makeTabs();
+        expect(el.shadowRoot!.querySelector('[part="base"]')).not.toBeNull();
+    });
+
+    it('flint-tab exposes part="tab" on button', async () => {
+        const tab = await fixture<FlintTab>(html`<flint-tab value="x">Label</flint-tab>`);
+        expect(tab.shadowRoot!.querySelector('[part="tab"]')).not.toBeNull();
+    });
+
+    it('flint-tab exposes part="tab" on anchor when href is set', async () => {
+        const tab = await fixture<FlintTab>(html`<flint-tab value="x" href="#x">Link</flint-tab>`);
+        expect(tab.shadowRoot!.querySelector('a[part="tab"]')).not.toBeNull();
+    });
+
+    it('flint-tab-panel exposes part="panel"', async () => {
+        const panel = await fixture<FlintTabPanel>(html`<flint-tab-panel value="x">Content</flint-tab-panel>`);
+        expect(panel.shadowRoot!.querySelector('[part="panel"]')).not.toBeNull();
+    });
+
+    it('flint-tab-list exposes part="nav" and part="indicator"', async () => {
+        const el = await fixture<FlintTabList>(html`
+            <flint-tab-list>
+                <flint-tab value="a">A</flint-tab>
+            </flint-tab-list>`);
+        expect(el.shadowRoot!.querySelector('[part="nav"]')).not.toBeNull();
+        expect(el.shadowRoot!.querySelector('[part="indicator"]')).not.toBeNull();
     });
 });

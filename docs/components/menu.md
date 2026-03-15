@@ -1,6 +1,6 @@
 # Menu
 
-<Demo html="<div style=&quot;position:relative;display:inline-block&quot;><flint-button onclick=&quot;var m=this.nextElementSibling;m.open=!m.open;if(m.open)m.addEventListener('flint-menu-close',function(){m.open=false},{once:true})&quot;>Open Menu</flint-button><flint-menu>  <flint-menu-item>Profile</flint-menu-item>  <flint-menu-item>Settings</flint-menu-item>  <flint-menu-divider></flint-menu-divider>  <flint-menu-group label=&quot;Actions&quot;>    <flint-menu-item>Export</flint-menu-item>    <flint-menu-item disabled>Delete</flint-menu-item>  </flint-menu-group>  <flint-menu-divider></flint-menu-divider>  <flint-menu-item>Logout</flint-menu-item></flint-menu></div>" />
+<Demo html='<div style="position:relative;display:inline-block"><flint-button onclick="var m=this.nextElementSibling;m.open=!m.open;if(m.open)m.addEventListener(&#39;flint-menu-close&#39;,function(){m.open=false},{once:true})">Open Menu</flint-button><flint-menu>  <flint-menu-item>Profile</flint-menu-item>  <flint-menu-item>Settings</flint-menu-item>  <flint-menu-divider></flint-menu-divider>  <flint-menu-group label="Actions">    <flint-menu-item>Export</flint-menu-item>    <flint-menu-item disabled>Delete</flint-menu-item>  </flint-menu-group>  <flint-menu-divider></flint-menu-divider>  <flint-menu-item>Logout</flint-menu-item></flint-menu></div>' />
 
 ## `<flint-menu-item>`
 
@@ -31,13 +31,13 @@ import { FlintMenuItem } from '@getufy/flint-ui';
 | `disabled` | `disabled` | `boolean` | `false` | Disables the item — it becomes non-interactive. |
 | `dense` | `dense` | `boolean` | `false` | Dense padding mode (for desktop-density menus). |
 | `divider` | `divider` | `boolean` | `false` | Renders a hairline separator below this item. |
-| `value` | `value` | `string` | — | The machine-readable value carried in the `flint-menu-item-select` event detail. Falls back to the item's visible label text if not set. |
+| `value` | `value` | `string \| undefined` | — | The machine-readable value carried in the `flint-menu-item-select` event detail. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-menu-item-select` | — | Fired when the item is activated. |
+| `flint-menu-item-select` | `&#123; value: string \| null, label: string &#125;` | Fired when the item is activated. detail: &#123; value: string \| null, label: string &#125; |
 
 ### Slots
 
@@ -92,7 +92,8 @@ import { FlintMenuDivider } from '@getufy/flint-ui';
 
 ## `<flint-menu-group>`
 
-A labelled group of menu items. Wraps items in a `role="group"` for screen-reader announcements.
+A labelled group of menu items. Wraps items in a `role="group"` for
+screen-reader announcements.
 
 - **Tag**: `<flint-menu-group>`
 - **Class**: `FlintMenuGroup`
@@ -127,7 +128,8 @@ import { FlintMenuGroup } from '@getufy/flint-ui';
 
 ## `<flint-menu>`
 
-A menu displays a list of choices on a temporary surface. Place it as a sibling to its anchor element inside a `position:relative` container.
+A menu displays a list of choices on a temporary surface.
+Place it as a sibling to its anchor element inside a `position:relative` container.
 
 - **Tag**: `<flint-menu>`
 - **Class**: `FlintMenu`
@@ -151,16 +153,16 @@ import { FlintMenu } from '@getufy/flint-ui';
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | `open` | `open` | `boolean` | `false` | Whether the menu is open/visible. |
-| `placement` | `placement` | `'bottom-start' \| 'bottom-end' \| 'top-start' \| 'top-end' \| 'right-start' \| 'left-start'` | `'bottom-start'` | Menu placement relative to its anchor container. 'bottom-start' \| 'bottom-end' \| 'top-start' \| 'top-end' \| 'right-start' \| 'left-start' |
+| `placement` | `placement` | `'bottom-start' \| 'bottom-end' \| 'top-start' \| 'top-end' \| 'right-start' \| 'left-start'` | `'bottom-start'` | Menu placement relative to its anchor container. |
 | `closeOnSelect` | `close-on-select` | `boolean` | `true` | When true, selecting an item automatically fires flint-menu-close. |
 | `scrollable` | `scrollable` | `boolean` | `false` | When true, constrains height to --flint-menu-max-height (default 300px) and enables scrolling. |
-| `label` | `label` | `string` | — | Accessible label for the menu surface (aria-label on role="menu"). |
+| `label` | `label` | `string \| undefined` | — | Accessible label for the menu surface (aria-label on role="menu"). |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-menu-close` | — | Fired when the menu requests to be closed (backdrop click, Escape, or item select). detail: `{ open: false }` |
+| `flint-menu-close` | `&#123; open: false &#125;` | Fired when the menu requests to be closed (backdrop click, Escape, or item select). detail: `&#123; open: false &#125;` |
 
 ### Slots
 

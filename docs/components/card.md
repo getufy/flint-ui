@@ -1,8 +1,8 @@
 # Card
 
-<Demo label="Default" html="<div style=&quot;max-width:360px;width:100%&quot;><flint-card>  <flint-card-header title=&quot;Card Title&quot; subtitle=&quot;Subtitle text&quot;></flint-card-header>  <flint-card-content>    <p style=&quot;margin:0;color:#374151&quot;>This is a card with header, content, and action buttons.</p>  </flint-card-content>  <flint-card-actions>    <flint-button variant=&quot;secondary&quot; size=&quot;small&quot;>Cancel</flint-button>    <flint-button size=&quot;small&quot;>Action</flint-button>  </flint-card-actions></flint-card></div>" />
+<Demo label="Default" html='<div style="max-width:360px;width:100%"><flint-card>  <flint-card-header title="Card Title" subtitle="Subtitle text"></flint-card-header>  <flint-card-content>    <p style="margin:0;color:#374151">This is a card with header, content, and action buttons.</p>  </flint-card-content>  <flint-card-actions>    <flint-button variant="secondary" size="small">Cancel</flint-button>    <flint-button size="small">Action</flint-button>  </flint-card-actions></flint-card></div>' />
 
-<Demo label="Outlined" html="<div style=&quot;max-width:360px;width:100%&quot;><flint-card variant=&quot;outlined&quot;>  <flint-card-header title=&quot;Outlined Card&quot; subtitle=&quot;With border instead of shadow&quot;></flint-card-header>  <flint-card-content>    <p style=&quot;margin:0;color:#374151&quot;>Useful for less prominent content areas.</p>  </flint-card-content></flint-card></div>" />
+<Demo label="Outlined" html='<div style="max-width:360px;width:100%"><flint-card variant="outlined">  <flint-card-header title="Outlined Card" subtitle="With border instead of shadow"></flint-card-header>  <flint-card-content>    <p style="margin:0;color:#374151">Useful for less prominent content areas.</p>  </flint-card-content></flint-card></div>' />
 
 ## `<flint-card-action-area>`
 
@@ -22,12 +22,6 @@ import { FlintCardActionArea } from '@getufy/flint-ui';
 ```html
 <flint-card-action-area></flint-card-action-area>
 ```
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
 
 ### CSS Custom Properties
 
@@ -60,12 +54,6 @@ import { FlintCardActions } from '@getufy/flint-ui';
 <flint-card-actions></flint-card-actions>
 ```
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
-
 ### CSS Custom Properties
 
 | Property | Default |
@@ -92,12 +80,6 @@ import { FlintCardContent } from '@getufy/flint-ui';
 ```html
 <flint-card-content></flint-card-content>
 ```
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
 
 ### CSS Custom Properties
 
@@ -179,12 +161,6 @@ import { FlintCardMedia } from '@getufy/flint-ui';
 | `alt` | `alt` | `string` | `''` |  |
 | `height` | `height` | `string` | `''` |  |
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
-
 ### CSS Custom Properties
 
 | Property | Default |
@@ -218,12 +194,6 @@ import { FlintCard } from '@getufy/flint-ui';
 | --- | --- | --- | --- | --- |
 | `variant` | `variant` | `'elevated' \| 'outlined' \| 'flat'` | `'elevated'` |  |
 | `interactive` | `interactive` | `boolean` | `false` |  |
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
 
 ### CSS Custom Properties
 

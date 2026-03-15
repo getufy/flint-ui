@@ -13,17 +13,17 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
-— move between segments - **Backspace / Delete** — clear the current segment - **Escape / a** — clear all segments
+A segmented keyboard-driven date input.
+Each section (month, day, year) is independently editable via keyboard.
 
 - **Tag**: \`<flint-date-field>\`
 - **Class**: \`FlintDateField\`
-- **Form Associated**: Yes
 
 #### Properties
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`value\` | \`value\` | \`string\` | \`''\` | Opts the element into form participation via the Form-Associated Custom Elements API. */ static formAssociated = true; static styles = unsafeCSS(uiDateFieldStyles); // ── Props ──────────────────────────────────────────────────────────────── /** Controlled date value (ISO YYYY-MM-DD). Set to '' for uncontrolled. |
+| \`value\` | \`value\` | \`string\` | \`''\` | Controlled date value (ISO YYYY-MM-DD). Set to '' for uncontrolled. |
 | \`label\` | \`label\` | \`string\` | \`''\` | Field label. |
 | \`name\` | \`name\` | \`string\` | \`''\` | Form field name. Reflected so the browser picks it up for form data collection. |
 | \`min\` | \`min\` | \`string\` | \`''\` | Minimum allowed date (ISO). |
@@ -38,8 +38,8 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-date-field-change\` | — | { detail: { value: string } } ISO date when all three segments are filled |
 | \`flint-date-field-clear\` | — | Fired when all segments are cleared |
+| \`flint-date-field-change\` | \`&#123; value: string &#125;\` | &#123; detail: &#123; value: string &#125; &#125; ISO date when all three segments are filled |
 
 #### CSS Custom Properties
 
@@ -64,7 +64,7 @@ const meta: Meta = {
 
 | Method | Description |
 |---|---|
-| \`clear()\` | Clears all three segments and fires 'flint-date-field-clear'. |
+| \`clear(): void\` | Clears all three segments and fires 'flint-date-field-clear'. |
                 `,
             },
         },

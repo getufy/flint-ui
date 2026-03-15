@@ -1,12 +1,13 @@
 # Input Otp
 
-<Demo label="6-digit code" html="<flint-input-otp length=&quot;6&quot;>  <flint-input-otp-group>    <flint-input-otp-slot index=&quot;0&quot;></flint-input-otp-slot>    <flint-input-otp-slot index=&quot;1&quot;></flint-input-otp-slot>    <flint-input-otp-slot index=&quot;2&quot;></flint-input-otp-slot>  </flint-input-otp-group>  <flint-input-otp-separator></flint-input-otp-separator>  <flint-input-otp-group>    <flint-input-otp-slot index=&quot;3&quot;></flint-input-otp-slot>    <flint-input-otp-slot index=&quot;4&quot;></flint-input-otp-slot>    <flint-input-otp-slot index=&quot;5&quot;></flint-input-otp-slot>  </flint-input-otp-group></flint-input-otp>" />
+<Demo label="6-digit code" html='<flint-input-otp length="6">  <flint-input-otp-group>    <flint-input-otp-slot index="0"></flint-input-otp-slot>    <flint-input-otp-slot index="1"></flint-input-otp-slot>    <flint-input-otp-slot index="2"></flint-input-otp-slot>  </flint-input-otp-group>  <flint-input-otp-separator></flint-input-otp-separator>  <flint-input-otp-group>    <flint-input-otp-slot index="3"></flint-input-otp-slot>    <flint-input-otp-slot index="4"></flint-input-otp-slot>    <flint-input-otp-slot index="5"></flint-input-otp-slot>  </flint-input-otp-group></flint-input-otp>' />
 
-<Demo label="4-digit code" html="<flint-input-otp length=&quot;4&quot;>  <flint-input-otp-group>    <flint-input-otp-slot index=&quot;0&quot;></flint-input-otp-slot>    <flint-input-otp-slot index=&quot;1&quot;></flint-input-otp-slot>    <flint-input-otp-slot index=&quot;2&quot;></flint-input-otp-slot>    <flint-input-otp-slot index=&quot;3&quot;></flint-input-otp-slot>  </flint-input-otp-group></flint-input-otp>" />
+<Demo label="4-digit code" html='<flint-input-otp length="4">  <flint-input-otp-group>    <flint-input-otp-slot index="0"></flint-input-otp-slot>    <flint-input-otp-slot index="1"></flint-input-otp-slot>    <flint-input-otp-slot index="2"></flint-input-otp-slot>    <flint-input-otp-slot index="3"></flint-input-otp-slot>  </flint-input-otp-group></flint-input-otp>' />
 
 ## `<flint-input-otp-group>`
 
-Visual grouping wrapper for `flint-input-otp-slot` elements. Renders slots inline with shared borders.
+Visual grouping wrapper for `flint-input-otp-slot` elements.
+Renders slots inline with shared borders.
 
 - **Tag**: `<flint-input-otp-group>`
 - **Class**: `FlintInputOtpGroup`
@@ -53,7 +54,8 @@ import { FlintInputOtpGroup } from '@getufy/flint-ui';
 
 ## `<flint-input-otp-separator>`
 
-Visual separator between `flint-input-otp-group` elements. Renders a short horizontal bar.
+Visual separator between `flint-input-otp-group` elements.
+Renders a short horizontal bar.
 
 - **Tag**: `<flint-input-otp-separator>`
 - **Class**: `FlintInputOtpSeparator`
@@ -76,7 +78,8 @@ import { FlintInputOtpSeparator } from '@getufy/flint-ui';
 
 ## `<flint-input-otp-slot>`
 
-A single character cell in an OTP input. Place inside `flint-input-otp-group`. State is managed by `flint-input-otp`.
+A single character cell in an OTP input.
+Place inside `flint-input-otp-group`. State is managed by `flint-input-otp`.
 
 - **Tag**: `<flint-input-otp-slot>`
 - **Class**: `FlintInputOtpSlot`
@@ -108,6 +111,10 @@ import { FlintInputOtpSlot } from '@getufy/flint-ui';
 
 ## `<flint-input-otp>`
 
+Accessible one-time password input with copy/paste support.
+Manages a hidden native `<input>` and syncs each `flint-input-otp-slot`
+with the appropriate character and active-cursor state.
+
 - **Tag**: `<flint-input-otp>`
 - **Class**: `FlintInputOtp`
 
@@ -132,7 +139,7 @@ import { FlintInputOtp } from '@getufy/flint-ui';
 | `value` | `value` | `string` | `''` | Current OTP value. Reflects to attribute for external observation. |
 | `defaultValue` | `default-value` | `string` | `''` | Initial uncontrolled value. Has no effect after the first render. |
 | `maxLength` | `max-length` | `number` | `6` | Total number of character slots. |
-| `pattern` | `pattern` | `string` | `''` | Per-character regex pattern string. Characters failing the test are silently rejected on input and paste. E.g. `"\\d"` accepts digits only; `"[a-zA-Z0-9]"` accepts alphanumeric. |
+| `pattern` | `pattern` | `string` | `''` | Per-character regex pattern string. Characters failing the test are |
 | `disabled` | `disabled` | `boolean` | `false` | Disables the OTP input. |
 | `label` | `label` | `string` | `'One-time password'` | Accessible label for the hidden input (used as aria-label). |
 | `description` | `description` | `string` | `''` | Optional description text for the hidden input (used as aria-describedby). |
@@ -141,13 +148,13 @@ import { FlintInputOtp } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-otp-change` | `{ value: newVal }` |  |
-| `flint-otp-complete` | `{ value: newVal }` |  |
+| `flint-otp-change` | `&#123; value: string &#125;` | Fired on every value change. `detail: &#123; value: string &#125;`. |
+| `flint-otp-complete` | `&#123; value: string &#125;` | Fired when `maxLength` chars have been entered. `detail: &#123; value: string &#125;`. |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Default slot for content |
+| `(default)` | Accepts `flint-input-otp-group`, `flint-input-otp-separator`, and `flint-input-otp-slot` elements. |
 
 ---

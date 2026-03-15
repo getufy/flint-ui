@@ -2,6 +2,7 @@ import { LitElement, unsafeCSS, html, nothing, PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FormAssociated } from '../mixins/form-associated.js';
+import { FormControlController } from '../controllers/form-control.js';
 import uiSwitchStyles from './flint-switch.css?inline';
 
 let _uidCounter = 0;
@@ -38,6 +39,7 @@ export class FlintSwitch extends FormAssociated(LitElement) {
     @property({ type: String, attribute: 'aria-label' }) override ariaLabel: string | null = null;
 
     private readonly _labelId: string;
+    private readonly _formControl = new FormControlController(this);
 
     constructor() {
         super();
@@ -58,10 +60,10 @@ export class FlintSwitch extends FormAssociated(LitElement) {
     protected override updated(changed: PropertyValues) {
         super.updated(changed);
         if (changed.has('checked') || changed.has('value')) {
-            this._initFormValue(this.checked ? this.value : null);
+            this._formControl.setValue(this.checked ? this.value : null);
         }
-        if (changed.has('checked') || changed.has('required')) {
-            this._initFormValidity(this.required, !this.checked, 'Please check this switch.');
+        if (changed.has('checked') || changed.has('required') || changed.has('disabled')) {
+            this._formControl.validateRequired(!this.checked, 'Please check this switch.');
         }
     }
 

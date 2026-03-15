@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import { FlintCheckbox } from './flint-checkbox';
+import { expectAccessible } from '../test-utils/axe';
 
 describe('flint-checkbox', () => {
     it('renders correctly with label', async () => {
@@ -579,4 +580,11 @@ describe('flint-checkbox', () => {
         const input = el.shadowRoot!.querySelector('input')!;
         expect(input.getAttribute('aria-label')).toBeNull();
     });
+
+    // ── Accessibility ─────────────────────────────────────────────────────────
+
+    it('should pass automated a11y checks', async () => {
+        const el = await fixture(html`<flint-checkbox label="Accept terms"></flint-checkbox>`);
+        await expectAccessible(el);
+    }, 15000);
 });

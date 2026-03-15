@@ -34,7 +34,7 @@ A Switch component for toggling settings.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-switch-change\` | — | Dispatched when the switch state changes. Detail: \`{ checked: boolean }\` |
+| \`flint-switch-change\` | \`&#123; checked: boolean &#125;\` | Dispatched when the switch state changes. Detail: \`&#123; checked: boolean &#125;\` |
 
 #### Slots
 

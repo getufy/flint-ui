@@ -50,6 +50,8 @@ const iconDown = () => svgPath('M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.4
  * Tab: an individual tab button within a tab list.
  *
  * @fires flint-tab-click - Fired when the tab is clicked or activated via keyboard.
+ *
+ * @csspart tab - The inner `<button>` or `<a>` element.
  */
 @customElement('flint-tab')
 export class FlintTab extends LitElement {
@@ -95,14 +97,14 @@ export class FlintTab extends LitElement {
     render() {
         const cls = classMap({ tab: true, [`icon-${this.iconPosition}`]: true });
         if (this.href) {
-            return html`<a class=${cls} href=${this.href}
+            return html`<a class=${cls} part="tab" href=${this.href}
                 role="tab"
                 aria-selected=${this.selected ? 'true' : 'false'}
                 aria-disabled=${this.disabled ? 'true' : nothing}
                 tabindex=${this.selected ? '0' : '-1'}
                 @click=${this._fire}>${this._inner()}</a>`;
         }
-        return html`<button class=${cls}
+        return html`<button class=${cls} part="tab"
             role="tab"
             ?disabled=${this.disabled}
             aria-selected=${this.selected ? 'true' : 'false'}
@@ -114,17 +116,28 @@ export class FlintTab extends LitElement {
 /* ================================================================== */
 /* FlintTabPanel                                                           */
 /* ================================================================== */
+/**
+ * Tab Panel: content container shown when its corresponding tab is active.
+ *
+ * @csspart panel - The panel wrapper `<div>`.
+ */
 @customElement('flint-tab-panel')
 export class FlintTabPanel extends LitElement {
     static styles = unsafeCSS(uiTabPanelStyles);
     /** Identifier linking this panel to its corresponding tab. */
     @property({ reflect: true }) value = '';
-    render() { return html`<div class="panel" role="tabpanel"><slot></slot></div>`; }
+    render() { return html`<div class="panel" part="panel" role="tabpanel"><slot></slot></div>`; }
 }
 
 /* ================================================================== */
 /* FlintTabList                                                            */
 /* ================================================================== */
+/**
+ * Tab List: container for tab elements with optional scroll buttons.
+ *
+ * @csspart nav - The outer container `<div>`.
+ * @csspart indicator - The active tab indicator `<div>`.
+ */
 @customElement('flint-tab-list')
 export class FlintTabList extends LitElement {
     static styles = unsafeCSS(uiTabListStyles);
@@ -268,12 +281,12 @@ export class FlintTabList extends LitElement {
             </button>` : nothing;
 
         return html`
-            <div class="container">
+            <div class="container" part="nav">
                 ${backBtn}
                 <div class="scroll-area" @keydown=${this._onKey}>
                     <div class="tabs-row" role="tablist" aria-label=${this.ariaLabel || nothing}>
                         <slot @slotchange=${this._onSlotChange}></slot>
-                        <div class="indicator"></div>
+                        <div class="indicator" part="indicator"></div>
                     </div>
                 </div>
                 ${fwdBtn}
@@ -288,6 +301,8 @@ export class FlintTabList extends LitElement {
  * Tabs: container that coordinates tab selection and panel visibility.
  *
  * @fires flint-tab-change - Fired when the active tab changes.
+ *
+ * @csspart base - The root container `<div>`.
  */
 @customElement('flint-tabs')
 export class FlintTabs extends LitElement {
@@ -400,7 +415,7 @@ export class FlintTabs extends LitElement {
 
     render() {
         return html`
-            <div class="root">
+            <div class="root" part="base">
                 <slot @slotchange=${() => this._syncAll()}></slot>
             </div>`;
     }

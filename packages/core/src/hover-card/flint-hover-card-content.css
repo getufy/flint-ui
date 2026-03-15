@@ -16,6 +16,13 @@
             pointer-events: auto;
         }
 
+        /* Hoist: use fixed positioning to escape overflow containers */
+        :host([hoist]) {
+            position: fixed;
+            right: auto;
+            bottom: auto;
+        }
+
         .card {
             background: var(--flint-hovercard-bg, var(--flint-surface-1));
             border: 1px solid var(--flint-hovercard-border-color, var(--flint-border-color));

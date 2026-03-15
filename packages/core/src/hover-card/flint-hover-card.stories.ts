@@ -12,7 +12,8 @@ const meta: Meta = {
                 component: `
 #### \`<flint-hover-card-trigger>\`
 
-Trigger element for a hover card. Place inside \`flint-hover-card\`. Automatically wires up to the nearest \`flint-hover-card\` ancestor.
+Trigger element for a hover card. Place inside \`flint-hover-card\`.
+Automatically wires up to the nearest \`flint-hover-card\` ancestor.
 
 - **Tag**: \`<flint-hover-card-trigger>\`
 - **Class**: \`FlintHoverCardTrigger\`
@@ -27,23 +28,16 @@ Trigger element for a hover card. Place inside \`flint-hover-card\`. Automatical
 
 | Property | Default |
 |---|---|
-| \`--flint-hovercard-z-index\` | \`1000\` |
-| \`--flint-hovercard-duration\` | \`150ms\` |
-| \`--flint-hovercard-bg\` | \`var(--flint-surface-1\` |
-| \`--flint-hovercard-border-color\` | \`var(--flint-border-color\` |
-| \`--flint-hovercard-radius\` | \`8px\` |
-| \`--flint-hovercard-shadow\` | \`0 4px 16px rgba(0, 0, 0, 0.12\` |
-| \`--flint-hovercard-padding\` | \`16px\` |
-| \`--flint-hovercard-min-width\` | \`200px\` |
 | \`--flint-font-family\` | — |
-| \`--flint-hovercard-font-size\` | \`0.875rem\` |
-| \`--flint-hovercard-color\` | \`var(--flint-text-color\` |
 
 ---
 
-#### \`<flint-hover-card-content>\`
+#### \`<flint-hover-card-trigger>\`
 
-- **Tag**: \`<flint-hover-card-content>\`
+The floating card panel. Position is controlled via \`side\` and \`align\`.
+Place inside \`flint-hover-card\`; its \`open\` state is managed by the parent.
+
+- **Tag**: \`<flint-hover-card-trigger>\`
 - **Class**: \`FlintHoverCardContent\`
 
 #### Properties
@@ -58,15 +52,32 @@ Trigger element for a hover card. Place inside \`flint-hover-card\`. Automatical
 
 | Name | Description |
 |---|---|
-| \`(default)\` | Default slot for content |
+| \`(default)\` | Rich content displayed inside the card. |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-hovercard-bg\` | — |
+| \`--flint-hovercard-border-color\` | — |
+| \`--flint-hovercard-radius\` | — |
+| \`--flint-hovercard-shadow\` | — |
+| \`--flint-hovercard-padding\` | — |
+| \`--flint-hovercard-min-width\` | — |
+| \`--flint-hovercard-font-size\` | — |
+| \`--flint-hovercard-color\` | — |
+| \`--flint-hovercard-offset\` | — |
+| \`--flint-hovercard-duration\` | — |
+| \`--flint-hovercard-z-index\` | — |
 
 ---
 
-#### \`<flint-hover-card>\`
+#### \`<flint-hover-card-trigger>\`
 
-Root container for a hover card. Manages open/closed state with configurable open and close delays.
+Root container for a hover card.
+Manages open/closed state with configurable open and close delays.
 
-- **Tag**: \`<flint-hover-card>\`
+- **Tag**: \`<flint-hover-card-trigger>\`
 - **Class**: \`FlintHoverCard\`
 
 #### Properties
@@ -80,8 +91,8 @@ Root container for a hover card. Manages open/closed state with configurable ope
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-hover-card-open\` | — | Fired when the card becomes visible. detail: \`{ open: true }\` |
-| \`flint-hover-card-close\` | — | Fired when the card is dismissed. detail: \`{ open: false }\` |
+| \`flint-hover-card-open\` | \`&#123; open: true &#125;\` | Fired when the card becomes visible. detail: \`&#123; open: true &#125;\` |
+| \`flint-hover-card-close\` | \`&#123; open: false &#125;\` | Fired when the card is dismissed. detail: \`&#123; open: false &#125;\` |
 
 #### Slots
 
@@ -93,7 +104,10 @@ Root container for a hover card. Manages open/closed state with configurable ope
 
 | Method | Description |
 |---|---|
-| \`isOpen(): boolean\` | Whether the card is currently open. |
+| \`handleTriggerEnter(): void\` | Called by \`flint-hover-card-trigger\` when the pointer/focus enters. |
+| \`handleTriggerLeave(): void\` | Called by \`flint-hover-card-trigger\` when the pointer/focus leaves. |
+| \`handleContentEnter(): void\` | Called by \`flint-hover-card-content\` when the pointer enters the card. |
+| \`handleContentLeave(): void\` | Called by \`flint-hover-card-content\` when the pointer leaves the card. |
                 `,
             },
         },
@@ -324,6 +338,43 @@ export const KeyboardFocus: Story = {
                     </div>
                 </flint-hover-card-content>
             </flint-hover-card>
+        </div>
+    `,
+};
+
+/* ── Hoist (overflow container) ──────────────────────────────────── */
+export const Hoist: Story = {
+    name: 'Hoist (Overflow Container)',
+    render: () => html`
+        <div style="padding: 120px 80px; display: flex; gap: 40px; justify-content: center; align-items: flex-start;">
+            <div style="overflow: hidden; border: 2px dashed #e5e7eb; padding: 24px; border-radius: 8px; width: 200px; height: 80px;">
+                <p style="font-size: 0.75rem; color: #6b7280; margin: 0 0 8px;">overflow: hidden (no hoist)</p>
+                <flint-hover-card open-delay="100" close-delay="100">
+                    <flint-hover-card-trigger>
+                        <a href="#" style=${linkStyle}>@clipped</a>
+                    </flint-hover-card-trigger>
+                    <flint-hover-card-content style="width: 200px;">
+                        <div style="font-family: system-ui, sans-serif;">
+                            <div style="font-weight: 600; margin-bottom: 4px; color: #111827;">Clipped Card</div>
+                            <div style="font-size: 0.8125rem; color: #4b5563;">This card is clipped by the container.</div>
+                        </div>
+                    </flint-hover-card-content>
+                </flint-hover-card>
+            </div>
+            <div style="overflow: hidden; border: 2px dashed #2563eb; padding: 24px; border-radius: 8px; width: 200px; height: 80px;">
+                <p style="font-size: 0.75rem; color: #2563eb; margin: 0 0 8px;">overflow: hidden (with hoist)</p>
+                <flint-hover-card open-delay="100" close-delay="100" hoist>
+                    <flint-hover-card-trigger>
+                        <a href="#" style=${linkStyle}>@hoisted</a>
+                    </flint-hover-card-trigger>
+                    <flint-hover-card-content style="width: 200px;">
+                        <div style="font-family: system-ui, sans-serif;">
+                            <div style="font-weight: 600; margin-bottom: 4px; color: #111827;">Hoisted Card</div>
+                            <div style="font-size: 0.8125rem; color: #4b5563;">This card escapes the overflow container.</div>
+                        </div>
+                    </flint-hover-card-content>
+                </flint-hover-card>
+            </div>
         </div>
     `,
 };

@@ -5,9 +5,9 @@ export { FlintDigitalClock, type FlintDigitalClockProps, type FlintDigitalClockC
 export { FlintMultiSectionDigitalClock, type FlintMultiSectionDigitalClockProps, type FlintMultiSectionDigitalClockChangeDetail } from './components/FlintMultiSectionDigitalClock.js';
 export { FlintTimeClock, type FlintTimeClockProps, type FlintTimeClockChangeDetail } from './components/FlintTimeClock.js';
 export { FlintDesktopTimePicker, type FlintDesktopTimePickerProps, type FlintDesktopTimePickerChangeDetail } from './components/FlintDesktopTimePicker.js';
-export { FlintMobileTimePicker, type FlintMobileTimePickerProps } from './components/FlintMobileTimePicker.js';
-export { FlintStaticTimePicker, type FlintStaticTimePickerProps } from './components/FlintStaticTimePicker.js';
-export { FlintTimePicker, type FlintTimePickerProps } from './components/FlintTimePicker.js';
+export { FlintMobileTimePicker, type FlintMobileTimePickerProps, type FlintMobileTimePickerChangeDetail } from './components/FlintMobileTimePicker.js';
+export { FlintStaticTimePicker, type FlintStaticTimePickerProps, type FlintStaticTimePickerChangeDetail } from './components/FlintStaticTimePicker.js';
+export { FlintTimePicker, type FlintTimePickerProps, type FlintTimePickerChangeDetail } from './components/FlintTimePicker.js';
 export { FlintTimeFieldEvents } from './events/flint-time-field.js';
 export { FlintDigitalClockEvents } from './events/flint-digital-clock.js';
 export { FlintMultiSectionDigitalClockEvents } from './events/flint-multi-section-digital-clock.js';

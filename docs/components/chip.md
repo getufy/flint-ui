@@ -1,10 +1,10 @@
 # Chip
 
-<Demo label="Variants" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-chip label=&quot;Filled&quot; variant=&quot;filled&quot;></flint-chip><flint-chip label=&quot;Outlined&quot; variant=&quot;outlined&quot;></flint-chip><flint-chip label=&quot;Primary&quot; variant=&quot;filled&quot; color=&quot;primary&quot;></flint-chip><flint-chip label=&quot;Secondary&quot; variant=&quot;filled&quot; color=&quot;secondary&quot;></flint-chip></div>" />
+<Demo label="Variants" html='<div style="display:flex;gap:8px;flex-wrap:wrap"><flint-chip label="Filled" variant="filled"></flint-chip><flint-chip label="Outlined" variant="outlined"></flint-chip><flint-chip label="Primary" variant="filled" color="primary"></flint-chip><flint-chip label="Secondary" variant="filled" color="secondary"></flint-chip></div>' />
 
-<Demo label="Sizes" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap;align-items:center&quot;><flint-chip label=&quot;Small&quot; size=&quot;sm&quot;></flint-chip><flint-chip label=&quot;Medium&quot; size=&quot;md&quot;></flint-chip><flint-chip label=&quot;Large&quot; size=&quot;lg&quot;></flint-chip></div>" />
+<Demo label="Sizes" html='<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><flint-chip label="Small" size="sm"></flint-chip><flint-chip label="Medium" size="md"></flint-chip><flint-chip label="Large" size="lg"></flint-chip></div>' />
 
-<Demo label="Interactive" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-chip label=&quot;Clickable&quot; clickable></flint-chip><flint-chip label=&quot;Deletable&quot; deletable></flint-chip><flint-chip label=&quot;Both&quot; clickable deletable></flint-chip><flint-chip label=&quot;Disabled&quot; disabled></flint-chip></div>" />
+<Demo label="Interactive" html='<div style="display:flex;gap:8px;flex-wrap:wrap"><flint-chip label="Clickable" clickable></flint-chip><flint-chip label="Deletable" deletable></flint-chip><flint-chip label="Both" clickable deletable></flint-chip><flint-chip label="Disabled" disabled></flint-chip></div>' />
 
 Chip: a compact element representing an input, attribute, or action.
 
@@ -42,7 +42,7 @@ import { FlintChip } from '@getufy/flint-ui';
 | Event | Detail | Description |
 | --- | --- | --- |
 | `flint-chip-click` | — | Fired when a clickable chip is clicked. |
-| `flint-chip-delete` | — | Fired when the chip's delete icon is clicked. detail: `{ value: string }` |
+| `flint-chip-delete` | `&#123; value: string &#125;` | Fired when the chip's delete icon is clicked. detail: `&#123; value: string &#125;` |
 
 ### Slots
 

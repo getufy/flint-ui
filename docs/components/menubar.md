@@ -1,6 +1,6 @@
 # Menubar
 
-<Demo html="<div style=&quot;width:100%;max-width:500px&quot;><flint-menubar>  <flint-menubar-menu>    <flint-menubar-trigger>File</flint-menubar-trigger>    <flint-menubar-content>      <flint-menubar-item>New <flint-menubar-shortcut>Ctrl+N</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-item>Open <flint-menubar-shortcut>Ctrl+O</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-item>Save <flint-menubar-shortcut>Ctrl+S</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-separator></flint-menubar-separator>      <flint-menubar-item>Exit</flint-menubar-item>    </flint-menubar-content>  </flint-menubar-menu>  <flint-menubar-menu>    <flint-menubar-trigger>Edit</flint-menubar-trigger>    <flint-menubar-content>      <flint-menubar-item>Undo <flint-menubar-shortcut>Ctrl+Z</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-item>Redo <flint-menubar-shortcut>Ctrl+Y</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-separator></flint-menubar-separator>      <flint-menubar-item>Cut <flint-menubar-shortcut>Ctrl+X</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-item>Copy <flint-menubar-shortcut>Ctrl+C</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-item>Paste <flint-menubar-shortcut>Ctrl+V</flint-menubar-shortcut></flint-menubar-item>    </flint-menubar-content>  </flint-menubar-menu>  <flint-menubar-menu>    <flint-menubar-trigger>View</flint-menubar-trigger>    <flint-menubar-content>      <flint-menubar-item>Zoom In</flint-menubar-item>      <flint-menubar-item>Zoom Out</flint-menubar-item>      <flint-menubar-separator></flint-menubar-separator>      <flint-menubar-item>Full Screen</flint-menubar-item>    </flint-menubar-content>  </flint-menubar-menu></flint-menubar></div>" />
+<Demo html='<div style="width:100%;max-width:500px"><flint-menubar>  <flint-menubar-menu>    <flint-menubar-trigger>File</flint-menubar-trigger>    <flint-menubar-content>      <flint-menubar-item>New <flint-menubar-shortcut>Ctrl+N</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-item>Open <flint-menubar-shortcut>Ctrl+O</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-item>Save <flint-menubar-shortcut>Ctrl+S</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-separator></flint-menubar-separator>      <flint-menubar-item>Exit</flint-menubar-item>    </flint-menubar-content>  </flint-menubar-menu>  <flint-menubar-menu>    <flint-menubar-trigger>Edit</flint-menubar-trigger>    <flint-menubar-content>      <flint-menubar-item>Undo <flint-menubar-shortcut>Ctrl+Z</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-item>Redo <flint-menubar-shortcut>Ctrl+Y</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-separator></flint-menubar-separator>      <flint-menubar-item>Cut <flint-menubar-shortcut>Ctrl+X</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-item>Copy <flint-menubar-shortcut>Ctrl+C</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-item>Paste <flint-menubar-shortcut>Ctrl+V</flint-menubar-shortcut></flint-menubar-item>    </flint-menubar-content>  </flint-menubar-menu>  <flint-menubar-menu>    <flint-menubar-trigger>View</flint-menubar-trigger>    <flint-menubar-content>      <flint-menubar-item>Zoom In</flint-menubar-item>      <flint-menubar-item>Zoom Out</flint-menubar-item>      <flint-menubar-separator></flint-menubar-separator>      <flint-menubar-item>Full Screen</flint-menubar-item>    </flint-menubar-content>  </flint-menubar-menu></flint-menubar></div>' />
 
 ## `<flint-menubar-shortcut>`
 
@@ -91,12 +91,6 @@ import { FlintMenubarGroup } from '@getufy/flint-ui';
 | --- | --- | --- | --- | --- |
 | `heading` | `heading` | `string` | `''` | Label text displayed above the group. |
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
-
 ---
 
 ## `<flint-menubar-item>`
@@ -133,7 +127,7 @@ import { FlintMenubarItem } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-menubar-item-select` | — | Fired on activation. detail: `{ value: string }` |
+| `flint-menubar-item-select` | `&#123; value: string &#125;` | Fired on activation. detail: `&#123; value: string &#125;` |
 
 ### Slots
 
@@ -145,7 +139,7 @@ import { FlintMenubarItem } from '@getufy/flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `select()` | Activate the item — fires select event. |
+| `select(): void` | Activate the item — fires select event. |
 
 ---
 
@@ -183,19 +177,13 @@ import { FlintMenubarCheckboxItem } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-menubar-checkbox-change` | — | detail: `{ checked: boolean, value: string }` |
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
+| `flint-menubar-checkbox-change` | `&#123; checked: boolean, value: string &#125;` | detail: `&#123; checked: boolean, value: string &#125;` |
 
 ### Methods
 
 | Method | Description |
 | --- | --- |
-| `toggle()` |  |
+| `toggle(): void` |  |
 
 ---
 
@@ -233,19 +221,13 @@ import { FlintMenubarRadioItem } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-menubar-radio-select` | `{ value: this.value }` |  |
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
+| `flint-menubar-radio-select` | — |  |
 
 ### Methods
 
 | Method | Description |
 | --- | --- |
-| `select()` |  |
+| `select(): void` |  |
 
 ---
 
@@ -280,19 +262,14 @@ import { FlintMenubarRadioGroup } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-menubar-radio-change` | — | detail: `{ value: string }` |
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
+| `flint-menubar-radio-change` | `&#123; value: string &#125;` | detail: `&#123; value: string &#125;` |
 
 ---
 
 ## `<flint-menubar-sub-content>`
 
-The dropdown panel of a sub-menu. Positioned to the right of the trigger. Auto-flips left when the panel would overflow the viewport edge.
+The dropdown panel of a sub-menu. Positioned to the right of the trigger.
+Auto-flips left when the panel would overflow the viewport edge.
 
 - **Tag**: `<flint-menubar-sub-content>`
 - **Class**: `FlintMenubarSubContent`
@@ -316,12 +293,6 @@ import { FlintMenubarSubContent } from '@getufy/flint-ui';
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | `open` | `open` | `boolean` | `false` | Whether the sub-menu dropdown panel is visible. |
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
 
 ---
 
@@ -355,17 +326,12 @@ import { FlintMenubarSubTrigger } from '@getufy/flint-ui';
 | `inset` | `inset` | `boolean` | `false` | Whether the trigger label is inset to align with checkbox/radio items. |
 | `expanded` | `expanded` | `boolean` | `false` | Set by the parent `flint-menubar-sub` to reflect open state for aria-expanded. |
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
-
 ---
 
 ## `<flint-menubar-sub>`
 
-Wraps a sub-trigger and sub-content pair. Opens on hover/focus and ArrowRight; closes on ArrowLeft or blur.
+Wraps a sub-trigger and sub-content pair.
+Opens on hover/focus and ArrowRight; closes on ArrowLeft or blur.
 
 - **Tag**: `<flint-menubar-sub>`
 - **Class**: `FlintMenubarSub`
@@ -384,27 +350,21 @@ import { FlintMenubarSub } from '@getufy/flint-ui';
 <flint-menubar-sub></flint-menubar-sub>
 ```
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
-
 ### Methods
 
 | Method | Description |
 | --- | --- |
-| `open(): unknown` |  |
-| `show()` |  |
-| `showImmediate()` | Opens the sub-menu immediately without the hover delay. Use for keyboard interactions. |
-| `hide()` |  |
-| `hideImmediate()` |  |
+| `show(): void` |  |
+| `showImmediate(): void` | Opens the sub-menu immediately without the hover delay. Use for keyboard interactions. |
+| `hide(): void` |  |
+| `hideImmediate(): void` |  |
 
 ---
 
 ## `<flint-menubar-content>`
 
-The dropdown content panel for a menubar menu. Positioned absolutely below the trigger.
+The dropdown content panel for a menubar menu.
+Positioned absolutely below the trigger.
 
 - **Tag**: `<flint-menubar-content>`
 - **Class**: `FlintMenubarContent`
@@ -433,13 +393,7 @@ import { FlintMenubarContent } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-menubar-request-close` | `{ open: false }` |  |
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
+| `flint-menubar-request-close` | — |  |
 
 ### CSS Custom Properties
 
@@ -451,7 +405,8 @@ import { FlintMenubarContent } from '@getufy/flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `resetHighlight()` |  |
+| `handleKeyDown(e: KeyboardEvent): void` | Handle keyboard navigation inside the content panel. |
+| `resetHighlight(): void` |  |
 
 ---
 
@@ -499,7 +454,7 @@ import { FlintMenubarTrigger } from '@getufy/flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `setFocusable(v: boolean)` |  |
+| `setFocusable(v: boolean): void` |  |
 
 ---
 
@@ -530,27 +485,19 @@ import { FlintMenubarMenu } from '@getufy/flint-ui';
 | --- | --- | --- | --- | --- |
 | `disabled` | `disabled` | `boolean` | `false` | Disables this menu: the trigger is non-interactive and keyboard nav skips it. |
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
-
 ### Methods
 
 | Method | Description |
 | --- | --- |
-| `trigger(): FlintMenubarTrigger \| null` |  |
-| `content(): FlintMenubarContent \| null` |  |
-| `open()` |  |
-| `close()` |  |
-| `isOpen(): boolean` |  |
+| `open(): void` |  |
+| `close(): void` |  |
 
 ---
 
 ## `<flint-menubar>`
 
-A visually persistent horizontal menu bar, common in desktop applications. Hosts one or more `<flint-menubar-menu>` children.
+A visually persistent horizontal menu bar, common in desktop applications.
+Hosts one or more `<flint-menubar-menu>` children.
 
 - **Tag**: `<flint-menubar>`
 - **Class**: `FlintMenubar`
@@ -573,7 +520,7 @@ import { FlintMenubar } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `label` | `label` | `string` | `''` | Which menu (by index) is currently open. -1 = all closed. */ private _activeIndex = -1; /** Accessible label for the menubar region. Defaults to "Menu bar". |
+| `label` | `label` | `string` | `''` | Accessible label for the menubar region. Defaults to "Menu bar". |
 
 ### Events
 
@@ -602,7 +549,6 @@ import { FlintMenubar } from '@getufy/flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `activeIndex(): number` | Index of the currently open menu, or -1 if all closed. |
-| `closeAll()` | Close all menus. |
+| `closeAll(): void` | Close all menus. |
 
 ---

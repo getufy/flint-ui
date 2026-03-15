@@ -36,7 +36,7 @@ A select component for choosing one or multiple options from a list.
 | \`options\` | \`options\` | \`SelectOption[]\` | \`[]\` | Array of selectable options. |
 | \`value\` | \`value\` | \`string[]\` | \`[]\` | Currently selected value(s). |
 | \`multiple\` | \`multiple\` | \`boolean\` | \`false\` | Allow multiple selections. |
-| \`placeholder\` | \`placeholder\` | \`string\` | \`'Select an option'\` | Placeholder text when no value is selected. |
+| \`placeholder\` | \`placeholder\` | \`string\` | \`''\` | Placeholder text when no value is selected. |
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the select and prevents interaction. |
 | \`readonly\` | \`readonly\` | \`boolean\` | \`false\` | Makes the select read-only. |
 | \`required\` | \`required\` | \`boolean\` | \`false\` | Marks the select as required for form validation. |
@@ -45,12 +45,13 @@ A select component for choosing one or multiple options from a list.
 | \`name\` | \`name\` | \`string\` | \`''\` | Form field name used when submitting form data. |
 | \`size\` | \`size\` | \`SelectSize\` | \`'md'\` | Size variant of the select. |
 | \`defaultValue\` | \`default-value\` | \`string\` | \`''\` | Sets the initial value in uncontrolled mode (single-select only). |
+| \`hoist\` | \`hoist\` | \`boolean\` | \`false\` | When true, the dropdown uses \`position: fixed\` so it can escape |
 
 #### Events
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-select-change\` | — | Dispatched when the selection changes. detail: \`{ value: string[] }\` |
+| \`flint-select-change\` | \`&#123; value: string[] &#125;\` | Dispatched when the selection changes. detail: \`&#123; value: string[] &#125;\` |
 
 #### Slots
 
@@ -445,6 +446,38 @@ export const CustomStyling: Story = {
           --flint-font-family: Georgia, serif;
         "
       ></flint-select>
+    </div>
+  `,
+};
+
+// ── Hoisted (inside overflow container) ──────────────────────────────────────
+
+export const HoistedInOverflowContainer: Story = {
+  render: () => html`
+    <div style="max-width: 500px; padding: 20px;">
+      <p style="font-size: 0.875rem; color: #4b5563; margin: 0 0 12px;">
+        Without <code>hoist</code>, the dropdown is clipped by the card's <code>overflow: hidden</code>.
+        With <code>hoist</code>, the dropdown escapes the container.
+      </p>
+      <div style="display: flex; gap: 24px; align-items: flex-start;">
+        <div style="overflow: hidden; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; width: 220px; height: 120px;">
+          <p style="font-size: 0.75rem; color: #9ca3af; margin: 0 0 8px;">Clipped (no hoist)</p>
+          <flint-select
+            label="Fruit"
+            placeholder="Pick one"
+            .options=${defaultOptions}
+          ></flint-select>
+        </div>
+        <div style="overflow: hidden; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; width: 220px; height: 120px;">
+          <p style="font-size: 0.75rem; color: #9ca3af; margin: 0 0 8px;">Hoisted (escapes)</p>
+          <flint-select
+            label="Fruit"
+            placeholder="Pick one"
+            hoist
+            .options=${defaultOptions}
+          ></flint-select>
+        </div>
+      </div>
     </div>
   `,
 };

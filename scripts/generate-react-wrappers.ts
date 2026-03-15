@@ -1,12 +1,15 @@
 /**
  * generate-react-wrappers.ts
  *
- * Scans every Lit component source file in packages/core/src/ and generates:
+ * Reads the Custom Elements Manifest (CEM) and generates:
  *   packages/react/src/components/<ClassName>.tsx  — React forwardRef wrapper
  *   packages/react/src/events/<tagname>.ts         — Event name constants
  *   packages/react/src/events/index.ts             — Re-exports all event constants
  *   packages/react/src/index.ts                    — Re-exports all components + events
  *   packages/react/src/custom-elements.d.ts        — JSX IntrinsicElements declarations
+ *
+ * Data source: packages/core/dist/custom-elements.json (run `npm run cem` first)
+ * Event detail types are augmented via AST analysis of .component.ts files.
  *
  * Run with:
  *   npx tsx scripts/generate-react-wrappers.ts
@@ -14,7 +17,7 @@
 
 import { readdirSync, readFileSync, mkdirSync, writeFileSync, existsSync, unlinkSync } from 'node:fs';
 import { join, resolve } from 'node:path';
-import { parseComponentFile } from './lib/parse-lit.js';
+import { parseCem, augmentDetailTypes } from './lib/parse-cem.js';
 import {
     generateEventsFile,
     generateWrapper,
@@ -25,13 +28,12 @@ import {
     generateComponentBarrel,
     generateExportsMap,
 } from './lib/codegen.js';
-import type { ComponentMeta } from './lib/types.js';
 
 // ─── config ──────────────────────────────────────────────────────────────────
 
 const REPO_ROOT = resolve(new URL('.', import.meta.url).pathname, '..');
 const CORE_ROOT = join(REPO_ROOT, 'packages/core');
-const SRC_DIR = join(CORE_ROOT, 'src');
+const CEM_PATH = join(CORE_ROOT, 'dist/custom-elements.json');
 const OUT_DIR = join(REPO_ROOT, 'packages/react/src');
 const COMPONENTS_OUT = join(OUT_DIR, 'components');
 const EVENTS_OUT = join(OUT_DIR, 'events');
@@ -48,47 +50,18 @@ function write(filePath: string, content: string) {
     console.log(`  wrote  ${rel}`);
 }
 
-/** Recursively collect all component source files (exclude test/stories). */
-function collectSourceFiles(dir: string): string[] {
-    const result: string[] = [];
-    for (const entry of readdirSync(dir, { withFileTypes: true })) {
-        const full = join(dir, entry.name);
-        if (entry.isDirectory()) {
-            result.push(...collectSourceFiles(full));
-        } else if (
-            entry.isFile() &&
-            entry.name.endsWith('.ts') &&
-            !entry.name.endsWith('.test.ts') &&
-            !entry.name.endsWith('.stories.ts') &&
-            // exclude helper/non-component files that have no @customElement
-            !entry.name.startsWith('date-range-helpers')
-        ) {
-            result.push(full);
-        }
-    }
-    return result;
-}
-
 // ─── main ────────────────────────────────────────────────────────────────────
 
 function main() {
     ensureDir(COMPONENTS_OUT);
     ensureDir(EVENTS_OUT);
 
-    const sourceFiles = collectSourceFiles(SRC_DIR);
-    const allComponents: ComponentMeta[] = [];
+    console.log('\n--- Reading Custom Elements Manifest ---');
+    const allComponents = parseCem({ cemPath: CEM_PATH });
+    console.log(`  found ${allComponents.length} components in CEM`);
 
-    console.log('\n--- Parsing Lit components ---');
-
-    for (const absPath of sourceFiles) {
-        // sourceFile is relative to packages/core/ for the parser
-        const rel = absPath.replace(CORE_ROOT + '/', '');
-        const components = parseComponentFile(absPath, rel);
-        if (components.length > 0) {
-            console.log(`  parsed ${rel}  →  ${components.map(c => c.className).join(', ')}`);
-            allComponents.push(...components);
-        }
-    }
+    console.log('\n--- Augmenting event detail types via AST ---');
+    augmentDetailTypes(allComponents, CORE_ROOT);
 
     console.log(`\n--- Generating React wrappers (${allComponents.length} components) ---`);
 

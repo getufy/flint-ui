@@ -17,7 +17,8 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
-flint-tooltip A component that displays a text label when users hover over or focus on an element.
+flint-tooltip
+A component that displays a text label when users hover over or focus on an element.
 
 - **Tag**: \`<flint-tooltip>\`
 - **Class**: \`FlintTooltip\`
@@ -32,12 +33,6 @@ flint-tooltip A component that displays a text label when users hover over or fo
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the tooltip so it never appears. |
 | \`openDelay\` | \`open-delay\` | \`number\` | \`0\` | Delay in ms before showing the tooltip. |
 | \`closeDelay\` | \`close-delay\` | \`number\` | \`0\` | Delay in ms before hiding the tooltip. |
-
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
 
 #### CSS Custom Properties
 
@@ -196,6 +191,26 @@ export const AutoFlip: Story = {
             <div style="display: flex; justify-content: flex-end;">
                 <flint-tooltip label="Right tooltip flips to left near edge" placement="right" arrow>
                     <flint-button>Right edge</flint-button>
+                </flint-tooltip>
+            </div>
+        </div>
+    `,
+};
+
+/* ─── Hoist (overflow container) ─────────────────────────── */
+export const Hoist: Story = {
+    render: () => html`
+        <div style="padding: 100px; display: flex; gap: 40px; justify-content: center;">
+            <div style="overflow: hidden; border: 2px dashed #e5e7eb; padding: 24px; border-radius: 8px; width: 200px;">
+                <p style="font-size: 0.75rem; color: #6b7280; margin: 0 0 12px;">overflow: hidden (no hoist)</p>
+                <flint-tooltip label="This tooltip is clipped" placement="bottom" arrow>
+                    <flint-button>Clipped</flint-button>
+                </flint-tooltip>
+            </div>
+            <div style="overflow: hidden; border: 2px dashed #2563eb; padding: 24px; border-radius: 8px; width: 200px;">
+                <p style="font-size: 0.75rem; color: #2563eb; margin: 0 0 12px;">overflow: hidden (with hoist)</p>
+                <flint-tooltip label="This tooltip escapes the container" placement="bottom" arrow hoist>
+                    <flint-button variant="primary">Hoisted</flint-button>
                 </flint-tooltip>
             </div>
         </div>

@@ -1,6 +1,6 @@
 # Carousel
 
-<Demo html="<div style=&quot;width:100%;max-width:500px&quot;><flint-carousel>  <flint-carousel-content>    <flint-carousel-item><div style=&quot;background:#e0e7ff;border-radius:8px;height:200px;display:flex;align-items:center;justify-content:center;font-weight:600;color:#3730a3&quot;>Slide 1</div></flint-carousel-item>    <flint-carousel-item><div style=&quot;background:#dbeafe;border-radius:8px;height:200px;display:flex;align-items:center;justify-content:center;font-weight:600;color:#1e40af&quot;>Slide 2</div></flint-carousel-item>    <flint-carousel-item><div style=&quot;background:#e0f2fe;border-radius:8px;height:200px;display:flex;align-items:center;justify-content:center;font-weight:600;color:#0369a1&quot;>Slide 3</div></flint-carousel-item>  </flint-carousel-content>  <flint-carousel-previous></flint-carousel-previous>  <flint-carousel-next></flint-carousel-next></flint-carousel></div>" />
+<Demo html='<div style="width:100%;max-width:500px"><flint-carousel>  <flint-carousel-content>    <flint-carousel-item><div style="background:#e0e7ff;border-radius:8px;height:200px;display:flex;align-items:center;justify-content:center;font-weight:600;color:#3730a3">Slide 1</div></flint-carousel-item>    <flint-carousel-item><div style="background:#dbeafe;border-radius:8px;height:200px;display:flex;align-items:center;justify-content:center;font-weight:600;color:#1e40af">Slide 2</div></flint-carousel-item>    <flint-carousel-item><div style="background:#e0f2fe;border-radius:8px;height:200px;display:flex;align-items:center;justify-content:center;font-weight:600;color:#0369a1">Slide 3</div></flint-carousel-item>  </flint-carousel-content>  <flint-carousel-previous></flint-carousel-previous>  <flint-carousel-next></flint-carousel-next></flint-carousel></div>' />
 
 ## `<flint-carousel-content>`
 
@@ -29,12 +29,6 @@ import { FlintCarouselContent } from '@getufy/flint-ui';
 | `itemsPerView` | `items-per-view` | `number` | `1` | Number of slides visible at once. |
 | `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Slide direction axis. |
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
-
 ### CSS Custom Properties
 
 | Property | Default |
@@ -62,12 +56,6 @@ import { FlintCarouselItem } from '@getufy/flint-ui';
 ```html
 <flint-carousel-item></flint-carousel-item>
 ```
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
 
 ### CSS Custom Properties
 
@@ -206,10 +194,8 @@ import { FlintCarousel } from '@getufy/flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `next()` | Advance to the next slide. |
-| `previous()` | Go to the previous slide. |
-| `goTo(index: number)` | Jump to a specific slide (0-based index). |
-| `currentIndex(): unknown` | Current slide index (read-only). |
-| `total(): unknown` | Total number of slides (read-only). |
+| `next(): void` | Advance to the next slide. |
+| `previous(): void` | Go to the previous slide. |
+| `goTo(index: number): void` | Jump to a specific slide (0-based index). |
 
 ---

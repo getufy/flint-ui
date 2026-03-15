@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-input';
 import type { FlintInput } from './flint-input';
+import { expectAccessible } from '../test-utils/axe';
 
 describe('flint-input', () => {
     // ─── Default rendering ───────────────────────────────────────────────────
@@ -274,4 +275,26 @@ describe('flint-input', () => {
         const el = await fixture<FlintInput>(html`<flint-input></flint-input>`);
         expect(el.inputElement).toBeInstanceOf(HTMLInputElement);
     });
+
+    // ─── CSS parts ───────────────────────────────────────────────────────────
+
+    it('exposes CSS parts for external styling', async () => {
+        const el = await fixture<FlintInput>(html`<flint-input label="Name" helper-text="Hint"></flint-input>`);
+        expect(el.shadowRoot!.querySelector('[part="base"]')).not.toBeNull();
+        expect(el.shadowRoot!.querySelector('[part="label"]')).not.toBeNull();
+        expect(el.shadowRoot!.querySelector('[part="input"]')).not.toBeNull();
+        expect(el.shadowRoot!.querySelector('[part="help-text"]')).not.toBeNull();
+    });
+
+    it('exposes error-message CSS part when in error state', async () => {
+        const el = await fixture<FlintInput>(html`<flint-input error-message="Bad"></flint-input>`);
+        expect(el.shadowRoot!.querySelector('[part="error-message"]')).not.toBeNull();
+    });
+
+    // ── Accessibility ─────────────────────────────────────────────────────────
+
+    it('should pass automated a11y checks', async () => {
+        const el = await fixture(html`<flint-input label="Username"></flint-input>`);
+        await expectAccessible(el);
+    }, 15000);
 });

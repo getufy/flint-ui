@@ -29,6 +29,8 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
+\`flint-image-comparer\` — Compare two images side-by-side with a draggable slider.
+
 - **Tag**: \`<flint-image-comparer>\`
 - **Class**: \`FlintImageComparer\`
 
@@ -43,28 +45,28 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-image-comparer-change\` | \`{ position: clamped }\` |  |
+| \`flint-image-comparer-change\` | \`&#123; position: number &#125;\` | Fired when the position changes. Detail: \`&#123; position: number &#125;\`. |
 
 #### Slots
 
 | Name | Description |
 |---|---|
-| \`after\` |  |
-| \`before\` |  |
-| \`handle\` |  |
+| \`before\` | The before image (\`&lt;img&gt;\` or \`&lt;svg&gt;\`). |
+| \`after\` | The after image (\`&lt;img&gt;\` or \`&lt;svg&gt;\`). |
+| \`handle\` | Custom handle content (replaces the default arrows icon). |
 
 #### CSS Custom Properties
 
 | Property | Default |
 |---|---|
-| \`--flint-image-comparer-border-radius\` | \`var(--flint-border-radius-md\` |
-| \`--flint-image-comparer-aspect-ratio\` | \`16 / 9\` |
-| \`--flint-image-comparer-divider-width\` | \`2px\` |
-| \`--flint-image-comparer-divider-color\` | \`var(--flint-color-white\` |
-| \`--flint-image-comparer-handle-size\` | \`40px\` |
-| \`--flint-image-comparer-handle-bg\` | \`var(--flint-color-white\` |
-| \`--flint-image-comparer-handle-border-color\` | \`rgba(0, 0, 0, 0.15\` |
-| \`--flint-image-comparer-handle-icon-color\` | \`var(--flint-text-color-muted\` |
+| \`--flint-image-comparer-divider-width\` | — |
+| \`--flint-image-comparer-divider-color\` | — |
+| \`--flint-image-comparer-handle-size\` | — |
+| \`--flint-image-comparer-handle-bg\` | — |
+| \`--flint-image-comparer-handle-border-color\` | — |
+| \`--flint-image-comparer-handle-icon-color\` | — |
+| \`--flint-image-comparer-border-radius\` | — |
+| \`--flint-image-comparer-aspect-ratio\` | — |
 | \`--flint-border-radius-full\` | — |
 | \`--flint-shadow-md\` | — |
 | \`--flint-primary-focus-ring\` | — |

@@ -1,6 +1,6 @@
 # Image List
 
-<Demo html="<flint-image-list cols=&quot;3&quot; gap=&quot;8&quot; style=&quot;width:100%;max-width:500px&quot;>  <flint-image-list-item><div style=&quot;width:100%;height:120px;background:#dbeafe;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#1e40af;font-weight:600&quot;>1</div></flint-image-list-item>  <flint-image-list-item><div style=&quot;width:100%;height:120px;background:#e0e7ff;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#3730a3;font-weight:600&quot;>2</div></flint-image-list-item>  <flint-image-list-item><div style=&quot;width:100%;height:120px;background:#ede9fe;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#5b21b6;font-weight:600&quot;>3</div></flint-image-list-item>  <flint-image-list-item><div style=&quot;width:100%;height:120px;background:#fce7f3;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#9d174d;font-weight:600&quot;>4</div></flint-image-list-item>  <flint-image-list-item><div style=&quot;width:100%;height:120px;background:#fef3c7;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#92400e;font-weight:600&quot;>5</div></flint-image-list-item>  <flint-image-list-item><div style=&quot;width:100%;height:120px;background:#d1fae5;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#065f46;font-weight:600&quot;>6</div></flint-image-list-item></flint-image-list>" />
+<Demo html='<flint-image-list cols="3" gap="8" style="width:100%;max-width:500px">  <flint-image-list-item><div style="width:100%;height:120px;background:#dbeafe;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#1e40af;font-weight:600">1</div></flint-image-list-item>  <flint-image-list-item><div style="width:100%;height:120px;background:#e0e7ff;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#3730a3;font-weight:600">2</div></flint-image-list-item>  <flint-image-list-item><div style="width:100%;height:120px;background:#ede9fe;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#5b21b6;font-weight:600">3</div></flint-image-list-item>  <flint-image-list-item><div style="width:100%;height:120px;background:#fce7f3;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#9d174d;font-weight:600">4</div></flint-image-list-item>  <flint-image-list-item><div style="width:100%;height:120px;background:#fef3c7;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#92400e;font-weight:600">5</div></flint-image-list-item>  <flint-image-list-item><div style="width:100%;height:120px;background:#d1fae5;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#065f46;font-weight:600">6</div></flint-image-list-item></flint-image-list>' />
 
 ## `<flint-image-list-item-bar>`
 
@@ -36,7 +36,6 @@ import { FlintImageListItemBar } from '@getufy/flint-ui';
 | `title` | Title text. |
 | `subtitle` | Subtitle text. |
 | `(default)` | Action content. |
-| `action` |  |
 
 ### CSS Custom Properties
 
@@ -80,8 +79,8 @@ import { FlintImageListItem } from '@getufy/flint-ui';
 | `cols` | `cols` | `number` | `1` | How many grid columns this item spans (quilted/woven only) |
 | `barPosition` | `bar-position` | `'overlay' \| 'below'` | `'overlay'` | Position of the title bar: 'overlay' (default) or 'below' |
 | `weave` | `weave` | `'odd' \| 'even'` | `'odd'` | Woven variant: 'odd' or 'even' identity for alternating height |
-| `aspectRatio` | `aspect-ratio` | `string` | `'auto'` | CSS aspect-ratio for the cell (e.g. "1/1", "4/3", "3/4", "16/9", "9/16"). Set to "auto" (default) to let the grid row height control cell size. |
-| `fit` | `fit` | `ImageFit` | `'cover'` | How the image fills the cell: 'cover' (default, crops to fill) or 'contain' (letterboxes to fit without cropping). |
+| `aspectRatio` | `aspect-ratio` | `string` | `'auto'` | CSS aspect-ratio for the cell (e.g. "1/1", "4/3", "3/4", "16/9", "9/16"). |
+| `fit` | `fit` | `ImageFit` | `'cover'` | How the image fills the cell: 'cover' (default, crops to fill) |
 
 ### Slots
 
@@ -94,7 +93,8 @@ import { FlintImageListItem } from '@getufy/flint-ui';
 
 ## `<flint-image-list>`
 
-A container that displays images in an organized grid layout. Supports standard, quilted, woven, and masonry variants.
+A container that displays images in an organized grid layout.
+Supports standard, quilted, woven, and masonry variants.
 
 - **Tag**: `<flint-image-list>`
 - **Class**: `FlintImageList`
@@ -120,8 +120,8 @@ import { FlintImageList } from '@getufy/flint-ui';
 | `variant` | `variant` | `ImageListVariant` | `'standard'` | Layout variant |
 | `cols` | `cols` | `number` | `3` | Number of columns |
 | `gap` | `gap` | `number` | `4` | Gap between items (in px) |
-| `rowHeight` | `row-height` | `number` | `164` | Row height for non-masonry variants (in px). Ignored when autoRows=true. |
-| `autoRows` | `auto-rows` | `boolean` | `false` | When true, row height is automatic (use with bar-position="below") |
+| `rowHeight` | `rowHeight` | `number` | `164` | Row height for non-masonry variants (in px). Ignored when autoRows=true. |
+| `autoRows` | `autoRows` | `boolean` | `false` | When true, row height is automatic (use with bar-position="below") |
 
 ### Slots
 

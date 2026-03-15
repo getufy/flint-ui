@@ -1,10 +1,10 @@
 # Alert
 
-<Demo label="Severities" html="<div style=&quot;display:flex;flex-direction:column;gap:12px;width:100%&quot;><flint-alert severity=&quot;info&quot; title=&quot;Info&quot;>This is an informational message.</flint-alert><flint-alert severity=&quot;success&quot; title=&quot;Success&quot;>Operation completed successfully.</flint-alert><flint-alert severity=&quot;warning&quot; title=&quot;Warning&quot;>Please review before continuing.</flint-alert><flint-alert severity=&quot;error&quot; title=&quot;Error&quot;>Something went wrong.</flint-alert></div>" />
+<Demo label="Severities" html='<div style="display:flex;flex-direction:column;gap:12px;width:100%"><flint-alert severity="info" title="Info">This is an informational message.</flint-alert><flint-alert severity="success" title="Success">Operation completed successfully.</flint-alert><flint-alert severity="warning" title="Warning">Please review before continuing.</flint-alert><flint-alert severity="error" title="Error">Something went wrong.</flint-alert></div>' />
 
-<Demo label="Dismissible" html="<div style=&quot;width:100%&quot;><flint-alert severity=&quot;info&quot; title=&quot;Dismissible&quot; dismissible>Click the close button to dismiss this alert.</flint-alert></div>" />
+<Demo label="Dismissible" html='<div style="width:100%"><flint-alert severity="info" title="Dismissible" dismissible>Click the close button to dismiss this alert.</flint-alert></div>' />
 
-<Demo label="Without Title" html="<div style=&quot;width:100%&quot;><flint-alert severity=&quot;success&quot;>A simple success alert without a title.</flint-alert></div>" />
+<Demo label="Without Title" html='<div style="width:100%"><flint-alert severity="success">A simple success alert without a title.</flint-alert></div>' />
 
 Alerts display brief messages for the user without interrupting their use of the app.
 
@@ -37,7 +37,7 @@ import { FlintAlert } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-alert-close` | — | Fired when the alert's close button is clicked. detail: `{ open: false, severity: string }` |
+| `flint-alert-close` | `&#123; open: false, severity: string &#125;` | Fired when the alert's close button is clicked. detail: `&#123; open: false, severity: string &#125;` |
 
 ### Slots
 

@@ -1,6 +1,6 @@
 # List
 
-<Demo html="<div style=&quot;width:100%;max-width:360px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden&quot;><flint-list>  <flint-list-subheader>Messages</flint-list-subheader>  <flint-list-item-button selected>    <flint-list-item-text primary=&quot;Inbox&quot; secondary=&quot;5 new messages&quot;></flint-list-item-text>  </flint-list-item-button>  <flint-list-item-button>    <flint-list-item-text primary=&quot;Drafts&quot; secondary=&quot;2 drafts&quot;></flint-list-item-text>  </flint-list-item-button>  <flint-list-item-button>    <flint-list-item-text primary=&quot;Sent&quot; secondary=&quot;Last sent 2h ago&quot;></flint-list-item-text>  </flint-list-item-button>  <flint-list-item-button disabled>    <flint-list-item-text primary=&quot;Spam&quot; secondary=&quot;Disabled&quot;></flint-list-item-text>  </flint-list-item-button></flint-list></div>" />
+<Demo html='<div style="width:100%;max-width:360px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden"><flint-list>  <flint-list-subheader>Messages</flint-list-subheader>  <flint-list-item-button selected>    <flint-list-item-text primary="Inbox" secondary="5 new messages"></flint-list-item-text>  </flint-list-item-button>  <flint-list-item-button>    <flint-list-item-text primary="Drafts" secondary="2 drafts"></flint-list-item-text>  </flint-list-item-button>  <flint-list-item-button>    <flint-list-item-text primary="Sent" secondary="Last sent 2h ago"></flint-list-item-text>  </flint-list-item-button>  <flint-list-item-button disabled>    <flint-list-item-text primary="Spam" secondary="Disabled"></flint-list-item-text>  </flint-list-item-button></flint-list></div>' />
 
 ## `<flint-list>`
 
@@ -29,12 +29,6 @@ import { FlintList } from '@getufy/flint-ui';
 | --- | --- | --- | --- | --- |
 | `disablePadding` | `disable-padding` | `boolean` | `false` | Whether to disable the default padding on the list. |
 | `dense` | `dense` | `boolean` | `false` | Whether to use compact spacing for list items. |
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
 
 ### CSS Custom Properties
 
@@ -74,12 +68,6 @@ import { FlintListItem } from '@getufy/flint-ui';
 <flint-list-item></flint-list-item>
 ```
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
-
 ### CSS Custom Properties
 
 | Property | Default |
@@ -117,12 +105,6 @@ import { FlintListItemButton } from '@getufy/flint-ui';
 | `disabled` | `disabled` | `boolean` | `false` | Whether the list item button is disabled. |
 | `selected` | `selected` | `boolean` | `false` | Whether the list item button is selected. |
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
-
 ---
 
 ## `<flint-list-item-icon>`
@@ -146,12 +128,6 @@ import { FlintListItemIcon } from '@getufy/flint-ui';
 <flint-list-item-icon></flint-list-item-icon>
 ```
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
-
 ---
 
 ## `<flint-list-item-avatar>`
@@ -174,12 +150,6 @@ import { FlintListItemAvatar } from '@getufy/flint-ui';
 ```html
 <flint-list-item-avatar></flint-list-item-avatar>
 ```
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
 
 ---
 
@@ -211,13 +181,6 @@ import { FlintListItemText } from '@getufy/flint-ui';
 | `primary` | `primary` | `string` | `''` | Primary text content of the list item. |
 | `secondary` | `secondary` | `string` | `''` | Secondary text content of the list item. |
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `primary` |  |
-| `secondary` |  |
-
 ---
 
 ## `<flint-list-subheader>`
@@ -240,11 +203,5 @@ import { FlintListSubheader } from '@getufy/flint-ui';
 ```html
 <flint-list-subheader></flint-list-subheader>
 ```
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
 
 ---

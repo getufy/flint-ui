@@ -39,7 +39,7 @@ A two-state button that can be either on (pressed) or off.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-toggle-change\` | — | Dispatched when the pressed state changes. Detail: \`{ pressed: boolean }\` |
+| \`flint-toggle-change\` | \`&#123; pressed: boolean &#125;\` | Dispatched when the pressed state changes. Detail: \`&#123; pressed: boolean &#125;\` |
 
 #### Slots
 

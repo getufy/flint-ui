@@ -53,24 +53,24 @@ exports[`DOM snapshots > flint-badge — default 1`] = `
 
 exports[`DOM snapshots > flint-button — default 1`] = `
 "<!---->
-      <button type="button" part="button" class=" primary medium ">
-        <slot></slot>
+      <button type="button" part="base" class=" primary medium ">
+        <span part="label"><slot></slot></span>
       </button>
     <style></style>"
 `;
 
 exports[`DOM snapshots > flint-button — disabled 1`] = `
 "<!---->
-      <button type="button" part="button" class=" primary medium " disabled="">
-        <slot></slot>
+      <button type="button" part="base" class=" primary medium " disabled="">
+        <span part="label"><slot></slot></span>
       </button>
     <style></style>"
 `;
 
 exports[`DOM snapshots > flint-button — variant outlined 1`] = `
 "<!---->
-      <button type="button" part="button" class=" medium ">
-        <slot></slot>
+      <button type="button" part="base" class=" medium ">
+        <span part="label"><slot></slot></span>
       </button>
     <style></style>"
 `;
@@ -121,9 +121,9 @@ exports[`DOM snapshots > flint-divider — default 1`] = `
 "<!---->
       <div role="separator" class="divider-container  variant-full weight-light " aria-orientation="horizontal">
         <!--?lit$[hash]$--><div class="divider-line"></div>
-        
+
         <slot class="divider-content"></slot>
-        
+
         <!--?lit$[hash]$--><div class="divider-line"></div>
       </div>
     <style></style>"
@@ -131,7 +131,7 @@ exports[`DOM snapshots > flint-divider — default 1`] = `
 
 exports[`DOM snapshots > flint-input — default 1`] = `
 "<!---->
-      <div class="input-wrapper" part="wrapper">
+      <div class="input-wrapper" part="base">
         <!--?lit$[hash]$--><label part="label" for="flint-input-[id]"><!--?lit$[hash]$-->Name</label>
 
         <input part="input" id="flint-input-[id]" type="text" placeholder="" aria-required="false" aria-invalid="false" aria-describedby="" name="" autocomplete="" class="  ">
@@ -143,7 +143,7 @@ exports[`DOM snapshots > flint-input — default 1`] = `
 
 exports[`DOM snapshots > flint-input — with placeholder 1`] = `
 "<!---->
-      <div class="input-wrapper" part="wrapper">
+      <div class="input-wrapper" part="base">
         <!--?lit$[hash]$--><label part="label" for="flint-input-[id]"><!--?lit$[hash]$-->Email</label>
 
         <input part="input" id="flint-input-[id]" type="text" placeholder="you@example.com" aria-required="false" aria-invalid="false" aria-describedby="" name="" autocomplete="" class="  ">

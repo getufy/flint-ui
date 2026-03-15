@@ -116,7 +116,8 @@ Displays action content for an empty state (buttons, inputs, links).
 
 #### \`<flint-empty>\`
 
-Root container for an empty state. Wraps \`flint-empty-header\` and \`flint-empty-content\` in a vertically centred flex column.
+Root container for an empty state. Wraps \`flint-empty-header\` and
+\`flint-empty-content\` in a vertically centred flex column.
 
 - **Tag**: \`<flint-empty>\`
 - **Class**: \`FlintEmpty\`
@@ -125,17 +126,17 @@ Root container for an empty state. Wraps \`flint-empty-header\` and \`flint-empt
 
 | Name | Description |
 |---|---|
-| \`(default)\` | Accepts \`flint-empty-header\`, \`flint-empty-content\`, and any extra |
+| \`(default)\` | Accepts \`flint-empty-header\`, \`flint-empty-content\`, and any extra elements (e.g. a "Learn More" link). |
 
 #### CSS Custom Properties
 
 | Property | Default |
 |---|---|
+| \`--flint-empty-padding\` | — |
+| \`--flint-empty-gap\` | — |
+| \`--flint-empty-max-width\` | — |
 | \`--flint-empty-media-bg\` | \`var(--flint-surface-2\` |
 | \`--flint-empty-media-color\` | \`var(--flint-text-color-muted\` |
-| \`--flint-empty-gap\` | \`16px\` |
-| \`--flint-empty-padding\` | \`32px\` |
-| \`--flint-empty-max-width\` | \`480px\` |
                 `,
       },
     },

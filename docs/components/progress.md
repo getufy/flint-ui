@@ -1,12 +1,12 @@
 # Progress
 
-<Demo label="Circular Indeterminate" html="<flint-circular-progress></flint-circular-progress>" />
+<Demo label="Circular Indeterminate" html='<flint-circular-progress></flint-circular-progress>' />
 
-<Demo label="Circular Determinate" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap;align-items:center&quot;><flint-circular-progress value=&quot;0&quot;></flint-circular-progress><flint-circular-progress value=&quot;25&quot;></flint-circular-progress><flint-circular-progress value=&quot;50&quot;></flint-circular-progress><flint-circular-progress value=&quot;75&quot;></flint-circular-progress><flint-circular-progress value=&quot;100&quot;></flint-circular-progress></div>" />
+<Demo label="Circular Determinate" html='<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><flint-circular-progress value="0"></flint-circular-progress><flint-circular-progress value="25"></flint-circular-progress><flint-circular-progress value="50"></flint-circular-progress><flint-circular-progress value="75"></flint-circular-progress><flint-circular-progress value="100"></flint-circular-progress></div>' />
 
-<Demo label="Linear Indeterminate" html="<div style=&quot;width:100%;max-width:400px&quot;><flint-linear-progress></flint-linear-progress></div>" />
+<Demo label="Linear Indeterminate" html='<div style="width:100%;max-width:400px"><flint-linear-progress></flint-linear-progress></div>' />
 
-<Demo label="Linear Determinate" html="<div style=&quot;display:flex;flex-direction:column;gap:12px;width:100%;max-width:400px&quot;><flint-linear-progress value=&quot;30&quot;></flint-linear-progress><flint-linear-progress value=&quot;60&quot;></flint-linear-progress><flint-linear-progress value=&quot;100&quot;></flint-linear-progress></div>" />
+<Demo label="Linear Determinate" html='<div style="display:flex;flex-direction:column;gap:12px;width:100%;max-width:400px"><flint-linear-progress value="30"></flint-linear-progress><flint-linear-progress value="60"></flint-linear-progress><flint-linear-progress value="100"></flint-linear-progress></div>' />
 
 ## `<flint-circular-progress>`
 

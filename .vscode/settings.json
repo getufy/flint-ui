@@ -1,0 +1,3 @@
+{
+  "html.customData": ["./packages/core/dist/vscode.html-custom-data.json"]
+}

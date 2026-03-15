@@ -1,12 +1,12 @@
 # Date Field
 
-<Demo label="States" html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><flint-date-field label=&quot;Date&quot; value=&quot;2025-12-31&quot; style=&quot;width:200px&quot;></flint-date-field><flint-date-field label=&quot;Empty&quot; style=&quot;width:200px&quot;></flint-date-field><flint-date-field label=&quot;Disabled&quot; disabled value=&quot;2025-06-15&quot; style=&quot;width:200px&quot;></flint-date-field></div>" />
+<Demo label="States" html='<div style="display:flex;gap:16px;flex-wrap:wrap"><flint-date-field label="Date" value="2025-12-31" style="width:200px"></flint-date-field><flint-date-field label="Empty" style="width:200px"></flint-date-field><flint-date-field label="Disabled" disabled value="2025-06-15" style="width:200px"></flint-date-field></div>' />
 
-— move between segments - **Backspace / Delete** — clear the current segment - **Escape / a** — clear all segments
+A segmented keyboard-driven date input.
+Each section (month, day, year) is independently editable via keyboard.
 
 - **Tag**: `<flint-date-field>`
 - **Class**: `FlintDateField`
-- **Form Associated**: Yes
 
 ### Import
 
@@ -26,7 +26,7 @@ import { FlintDateField } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `value` | `value` | `string` | `''` | Opts the element into form participation via the Form-Associated Custom Elements API. */ static formAssociated = true; static styles = unsafeCSS(uiDateFieldStyles); // ── Props ──────────────────────────────────────────────────────────────── /** Controlled date value (ISO YYYY-MM-DD). Set to '' for uncontrolled. |
+| `value` | `value` | `string` | `''` | Controlled date value (ISO YYYY-MM-DD). Set to '' for uncontrolled. |
 | `label` | `label` | `string` | `''` | Field label. |
 | `name` | `name` | `string` | `''` | Form field name. Reflected so the browser picks it up for form data collection. |
 | `min` | `min` | `string` | `''` | Minimum allowed date (ISO). |
@@ -41,8 +41,8 @@ import { FlintDateField } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-date-field-change` | — | { detail: { value: string } } ISO date when all three segments are filled |
 | `flint-date-field-clear` | — | Fired when all segments are cleared |
+| `flint-date-field-change` | `&#123; value: string &#125;` | &#123; detail: &#123; value: string &#125; &#125; ISO date when all three segments are filled |
 
 ### CSS Custom Properties
 
@@ -67,6 +67,6 @@ import { FlintDateField } from '@getufy/flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `clear()` | Clears all three segments and fires 'flint-date-field-clear'. |
+| `clear(): void` | Clears all three segments and fires 'flint-date-field-clear'. |
 
 ---

@@ -3,6 +3,11 @@ import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import uiCardStyles from './flint-card.css?inline';
 
+/**
+ * Card: a surface container for grouping related content.
+ *
+ * @csspart base - The outer card wrapper `<div>`.
+ */
 @customElement('flint-card')
 export class FlintCard extends LitElement {
   static styles = unsafeCSS(uiCardStyles);
@@ -21,7 +26,7 @@ export class FlintCard extends LitElement {
     };
 
     return html`
-      <div class=${classMap(classes)} part="card">
+      <div class=${classMap(classes)} part="base">
         <slot></slot>
       </div>
     `;

@@ -3,4 +3,3 @@
 export { FlintDatePickerCalendar, type FlintDatePickerCalendarProps, type FlintDatePickerSelectDetail } from './components/FlintDatePickerCalendar.js';
 export { FlintDatePicker, type FlintDatePickerProps, type FlintDatePickerChangeDetail } from './components/FlintDatePicker.js';
 export { FlintDatePickerCalendarEvents } from './events/flint-date-picker-calendar.js';
-export { FlintDatePickerEvents } from './events/flint-date-picker.js';
