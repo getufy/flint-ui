@@ -60,7 +60,7 @@ A single option inside a \`flint-menu\`.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-menu-item-select\` | \`{ value: string \\| null, label: string }\` | Fired when the item is activated. detail: { value: string \\| null, label: string } |
+| \`flint-menu-item-select\` | \`&#123; value: string \\| null, label: string &#125;\` | Fired when the item is activated. detail: &#123; value: string \\| null, label: string &#125; |
 
 #### Slots
 
@@ -143,7 +143,7 @@ Place it as a sibling to its anchor element inside a \`position:relative\` conta
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-menu-close\` | \`{ open: false }\` | Fired when the menu requests to be closed (backdrop click, Escape, or item select). detail: \`{ open: false }\` |
+| \`flint-menu-close\` | \`&#123; open: false &#125;\` | Fired when the menu requests to be closed (backdrop click, Escape, or item select). detail: \`&#123; open: false &#125;\` |
 
 #### Slots
 

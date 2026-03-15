@@ -91,7 +91,7 @@ A single interactive option inside a menubar dropdown.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-menubar-item-select\` | \`{ value: string }\` | Fired on activation. detail: \`{ value: string }\` |
+| \`flint-menubar-item-select\` | \`&#123; value: string &#125;\` | Fired on activation. detail: \`&#123; value: string &#125;\` |
 
 #### Slots
 
@@ -127,7 +127,7 @@ A toggleable checkbox menu item.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-menubar-checkbox-change\` | \`{ checked: boolean, value: string }\` | detail: \`{ checked: boolean, value: string }\` |
+| \`flint-menubar-checkbox-change\` | \`&#123; checked: boolean, value: string &#125;\` | detail: \`&#123; checked: boolean, value: string &#125;\` |
 
 #### Methods
 
@@ -184,7 +184,7 @@ Manages single-select radio items.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-menubar-radio-change\` | \`{ value: string }\` | detail: \`{ value: string }\` |
+| \`flint-menubar-radio-change\` | \`&#123; value: string &#125;\` | detail: \`&#123; value: string &#125;\` |
 
 ---
 

@@ -1,6 +1,6 @@
 # Visually Hidden
 
-<Demo html="<p style=&quot;margin:0;color:#374151&quot;>The link below has visually hidden text for screen readers:</p><a href=&quot;#&quot; style=&quot;color:var(--flint-primary-color)&quot;>  Download Report  <flint-visually-hidden>(opens in a new tab)</flint-visually-hidden></a>" />
+<Demo html='<p style="margin:0;color:#374151">The link below has visually hidden text for screen readers:</p><a href="#" style="color:var(--flint-primary-color)">  Download Report  <flint-visually-hidden>(opens in a new tab)</flint-visually-hidden></a>' />
 
 Makes content accessible to assistive devices (screen readers) without
 displaying it visually on screen.

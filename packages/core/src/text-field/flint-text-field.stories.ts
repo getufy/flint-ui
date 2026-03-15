@@ -42,8 +42,8 @@ Text Field: a styled text input with outlined/filled variants.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-text-field-input\` | \`{ value: string }\` | Fired on each keystroke as the value changes. detail: \`{ value: string }\` |
-| \`flint-text-field-change\` | \`{ value: string }\` | Fired when the input loses focus after the value has changed. detail: \`{ value: string }\` |
+| \`flint-text-field-input\` | \`&#123; value: string &#125;\` | Fired on each keystroke as the value changes. detail: \`&#123; value: string &#125;\` |
+| \`flint-text-field-change\` | \`&#123; value: string &#125;\` | Fired when the input loses focus after the value has changed. detail: \`&#123; value: string &#125;\` |
 
 #### CSS Custom Properties
 

@@ -33,7 +33,7 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-split-panel-reposition\` | \`{ position: number; positionInPixels: number }\` | Emitted when the divider position changes. Detail: \`{ position: number; positionInPixels: number }\`. |
+| \`flint-split-panel-reposition\` | \`&#123; position: number; positionInPixels: number &#125;\` | Emitted when the divider position changes. Detail: \`&#123; position: number; positionInPixels: number &#125;\`. |
 
 #### Slots
 

@@ -78,7 +78,7 @@ A single interactive option inside a command menu.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-command-item-select\` | \`{ value: string }\` | Fired when the item is activated. detail: \`{ value: string }\` |
+| \`flint-command-item-select\` | \`&#123; value: string &#125;\` | Fired when the item is activated. detail: \`&#123; value: string &#125;\` |
 
 #### Slots
 
@@ -189,7 +189,7 @@ Root command menu component. Manages search filtering and keyboard navigation.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-command-item-select\` | \`{ value: string }\` | Bubbles up from activated items. detail: \`{ value: string }\` |
+| \`flint-command-item-select\` | \`&#123; value: string &#125;\` | Bubbles up from activated items. detail: \`&#123; value: string &#125;\` |
 
 #### Slots
 
@@ -237,7 +237,7 @@ animation. Pressing \`Escape\` or clicking the backdrop fires \`flint-command-di
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-command-dialog-close\` | \`{ open: false }\` | Fired when the dialog should close. detail: \`{ open: false }\` The host is responsible for setting \`open = false\` in response. |
+| \`flint-command-dialog-close\` | \`&#123; open: false &#125;\` | Fired when the dialog should close. detail: \`&#123; open: false &#125;\` The host is responsible for setting \`open = false\` in response. |
 
 #### Slots
 

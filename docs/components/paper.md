@@ -1,6 +1,6 @@
 # Paper
 
-<Demo label="Elevations" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-paper elevation=&quot;0&quot; style=&quot;padding:16px&quot;>Elevation 0</flint-paper><flint-paper elevation=&quot;1&quot; style=&quot;padding:16px&quot;>Elevation 1</flint-paper><flint-paper elevation=&quot;3&quot; style=&quot;padding:16px&quot;>Elevation 3</flint-paper><flint-paper elevation=&quot;6&quot; style=&quot;padding:16px&quot;>Elevation 6</flint-paper><flint-paper elevation=&quot;12&quot; style=&quot;padding:16px&quot;>Elevation 12</flint-paper></div>" />
+<Demo label="Elevations" html='<div style="display:flex;gap:8px;flex-wrap:wrap"><flint-paper elevation="0" style="padding:16px">Elevation 0</flint-paper><flint-paper elevation="1" style="padding:16px">Elevation 1</flint-paper><flint-paper elevation="3" style="padding:16px">Elevation 3</flint-paper><flint-paper elevation="6" style="padding:16px">Elevation 6</flint-paper><flint-paper elevation="12" style="padding:16px">Elevation 12</flint-paper></div>' />
 
 The Paper component is a container for displaying content on an elevated surface.
 Shadow styles are influenced by real-world physical counterparts.

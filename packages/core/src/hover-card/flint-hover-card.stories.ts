@@ -91,8 +91,8 @@ Manages open/closed state with configurable open and close delays.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-hover-card-open\` | \`{ open: true }\` | Fired when the card becomes visible. detail: \`{ open: true }\` |
-| \`flint-hover-card-close\` | \`{ open: false }\` | Fired when the card is dismissed. detail: \`{ open: false }\` |
+| \`flint-hover-card-open\` | \`&#123; open: true &#125;\` | Fired when the card becomes visible. detail: \`&#123; open: true &#125;\` |
+| \`flint-hover-card-close\` | \`&#123; open: false &#125;\` | Fired when the card is dismissed. detail: \`&#123; open: false &#125;\` |
 
 #### Slots
 

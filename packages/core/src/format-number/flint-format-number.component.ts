@@ -2,6 +2,7 @@ import { unsafeCSS, html } from 'lit';
 import { property } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { FlintElement } from '../flint-element.js';
+import { resolveLocale } from '../utilities/localize.js';
 import styles from './flint-format-number.css?inline';
 
 /**
@@ -154,7 +155,7 @@ export class FlintFormatNumber extends FlintElement {
             if (this.maximumFractionDigits !== undefined) options.maximumFractionDigits = this.maximumFractionDigits;
         }
 
-        const locale = this.lang || document.documentElement.lang || navigator.language || 'en';
+        const locale = resolveLocale(this.lang);
 
         try {
             return new Intl.NumberFormat(locale, options).format(this.value);

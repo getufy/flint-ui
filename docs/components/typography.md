@@ -1,8 +1,8 @@
 # Typography
 
-<Demo label="Headings" html="<div style=&quot;display:flex;flex-direction:column;gap:4px;width:100%&quot;><flint-typography variant=&quot;h1&quot;>Heading 1</flint-typography><flint-typography variant=&quot;h2&quot;>Heading 2</flint-typography><flint-typography variant=&quot;h3&quot;>Heading 3</flint-typography><flint-typography variant=&quot;h4&quot;>Heading 4</flint-typography><flint-typography variant=&quot;h5&quot;>Heading 5</flint-typography><flint-typography variant=&quot;h6&quot;>Heading 6</flint-typography></div>" />
+<Demo label="Headings" html='<div style="display:flex;flex-direction:column;gap:4px;width:100%"><flint-typography variant="h1">Heading 1</flint-typography><flint-typography variant="h2">Heading 2</flint-typography><flint-typography variant="h3">Heading 3</flint-typography><flint-typography variant="h4">Heading 4</flint-typography><flint-typography variant="h5">Heading 5</flint-typography><flint-typography variant="h6">Heading 6</flint-typography></div>' />
 
-<Demo label="Body & Caption" html="<div style=&quot;display:flex;flex-direction:column;gap:4px;width:100%&quot;><flint-typography variant=&quot;body1&quot;>Body 1 — The quick brown fox jumps over the lazy dog.</flint-typography><flint-typography variant=&quot;body2&quot;>Body 2 — A smaller body text variant for secondary content.</flint-typography><flint-typography variant=&quot;caption&quot; color=&quot;secondary&quot;>Caption — Small helper text</flint-typography><flint-typography variant=&quot;overline&quot;>OVERLINE TEXT</flint-typography></div>" />
+<Demo label="Body & Caption" html='<div style="display:flex;flex-direction:column;gap:4px;width:100%"><flint-typography variant="body1">Body 1 — The quick brown fox jumps over the lazy dog.</flint-typography><flint-typography variant="body2">Body 2 — A smaller body text variant for secondary content.</flint-typography><flint-typography variant="caption" color="secondary">Caption — Small helper text</flint-typography><flint-typography variant="overline">OVERLINE TEXT</flint-typography></div>' />
 
 Typography component for displaying text with consistent theme styles.
 

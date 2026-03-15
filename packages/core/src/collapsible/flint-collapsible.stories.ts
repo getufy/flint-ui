@@ -91,7 +91,7 @@ Manages open/closed state and coordinates child trigger and content.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-collapsible-change\` | \`{ open: boolean }\` | Fired when the open state changes. \`detail: { open: boolean }\` |
+| \`flint-collapsible-change\` | \`&#123; open: boolean &#125;\` | Fired when the open state changes. \`detail: &#123; open: boolean &#125;\` |
 
 #### Slots
 

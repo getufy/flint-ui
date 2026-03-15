@@ -1,6 +1,6 @@
 # Menu
 
-<Demo html="<div style=&quot;position:relative;display:inline-block&quot;><flint-button onclick=&quot;var m=this.nextElementSibling;m.open=!m.open;if(m.open)m.addEventListener('flint-menu-close',function(){m.open=false},{once:true})&quot;>Open Menu</flint-button><flint-menu>  <flint-menu-item>Profile</flint-menu-item>  <flint-menu-item>Settings</flint-menu-item>  <flint-menu-divider></flint-menu-divider>  <flint-menu-group label=&quot;Actions&quot;>    <flint-menu-item>Export</flint-menu-item>    <flint-menu-item disabled>Delete</flint-menu-item>  </flint-menu-group>  <flint-menu-divider></flint-menu-divider>  <flint-menu-item>Logout</flint-menu-item></flint-menu></div>" />
+<Demo html='<div style="position:relative;display:inline-block"><flint-button onclick="var m=this.nextElementSibling;m.open=!m.open;if(m.open)m.addEventListener(&#39;flint-menu-close&#39;,function(){m.open=false},{once:true})">Open Menu</flint-button><flint-menu>  <flint-menu-item>Profile</flint-menu-item>  <flint-menu-item>Settings</flint-menu-item>  <flint-menu-divider></flint-menu-divider>  <flint-menu-group label="Actions">    <flint-menu-item>Export</flint-menu-item>    <flint-menu-item disabled>Delete</flint-menu-item>  </flint-menu-group>  <flint-menu-divider></flint-menu-divider>  <flint-menu-item>Logout</flint-menu-item></flint-menu></div>' />
 
 ## `<flint-menu-item>`
 
@@ -37,7 +37,7 @@ import { FlintMenuItem } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-menu-item-select` | `{ value: string \| null, label: string }` | Fired when the item is activated. detail: { value: string \| null, label: string } |
+| `flint-menu-item-select` | `&#123; value: string \| null, label: string &#125;` | Fired when the item is activated. detail: &#123; value: string \| null, label: string &#125; |
 
 ### Slots
 
@@ -162,7 +162,7 @@ import { FlintMenu } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-menu-close` | `{ open: false }` | Fired when the menu requests to be closed (backdrop click, Escape, or item select). detail: `{ open: false }` |
+| `flint-menu-close` | `&#123; open: false &#125;` | Fired when the menu requests to be closed (backdrop click, Escape, or item select). detail: `&#123; open: false &#125;` |
 
 ### Slots
 

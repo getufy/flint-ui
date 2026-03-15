@@ -1,6 +1,6 @@
 # Command
 
-<Demo html="<div style=&quot;width:100%;max-width:400px&quot;><flint-command style=&quot;border:1px solid #e5e7eb;border-radius:8px&quot;>  <flint-command-input placeholder=&quot;Type a command or search...&quot;></flint-command-input>  <flint-command-list>    <flint-command-group heading=&quot;Suggestions&quot;>      <flint-command-item value=&quot;calendar&quot;>Calendar</flint-command-item>      <flint-command-item value=&quot;search&quot;>Search</flint-command-item>      <flint-command-item value=&quot;settings&quot;>Settings</flint-command-item>    </flint-command-group>    <flint-command-separator></flint-command-separator>    <flint-command-group heading=&quot;Actions&quot;>      <flint-command-item value=&quot;copy&quot;>Copy</flint-command-item>      <flint-command-item value=&quot;paste&quot;>Paste</flint-command-item>    </flint-command-group>    <flint-command-empty>No results found.</flint-command-empty>  </flint-command-list></flint-command></div>" />
+<Demo html='<div style="width:100%;max-width:400px"><flint-command style="border:1px solid #e5e7eb;border-radius:8px">  <flint-command-input placeholder="Type a command or search..."></flint-command-input>  <flint-command-list>    <flint-command-group heading="Suggestions">      <flint-command-item value="calendar">Calendar</flint-command-item>      <flint-command-item value="search">Search</flint-command-item>      <flint-command-item value="settings">Settings</flint-command-item>    </flint-command-group>    <flint-command-separator></flint-command-separator>    <flint-command-group heading="Actions">      <flint-command-item value="copy">Copy</flint-command-item>      <flint-command-item value="paste">Paste</flint-command-item>    </flint-command-group>    <flint-command-empty>No results found.</flint-command-empty>  </flint-command-list></flint-command></div>' />
 
 ## `<flint-command-shortcut>`
 
@@ -100,7 +100,7 @@ import { FlintCommandItem } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-command-item-select` | `{ value: string }` | Fired when the item is activated. detail: `{ value: string }` |
+| `flint-command-item-select` | `&#123; value: string &#125;` | Fired when the item is activated. detail: `&#123; value: string &#125;` |
 
 ### Slots
 
@@ -281,7 +281,7 @@ import { FlintCommand } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-command-item-select` | `{ value: string }` | Bubbles up from activated items. detail: `{ value: string }` |
+| `flint-command-item-select` | `&#123; value: string &#125;` | Bubbles up from activated items. detail: `&#123; value: string &#125;` |
 
 ### Slots
 
@@ -343,7 +343,7 @@ import { FlintCommandDialog } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-command-dialog-close` | `{ open: false }` | Fired when the dialog should close. detail: `{ open: false }` The host is responsible for setting `open = false` in response. |
+| `flint-command-dialog-close` | `&#123; open: false &#125;` | Fired when the dialog should close. detail: `&#123; open: false &#125;` The host is responsible for setting `open = false` in response. |
 
 ### Slots
 

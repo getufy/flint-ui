@@ -1,6 +1,6 @@
 # Format Date
 
-<Demo label="Formats" html="<div style=&quot;display:flex;flex-direction:column;gap:8px&quot;><span>Default: <flint-format-date></flint-format-date></span><span>Long: <flint-format-date date-style=&quot;long&quot;></flint-format-date></span><span>Full: <flint-format-date date-style=&quot;full&quot;></flint-format-date></span></div>" />
+<Demo label="Formats" html='<div style="display:flex;flex-direction:column;gap:8px"><span>Default: <flint-format-date></flint-format-date></span><span>Long: <flint-format-date date-style="long"></flint-format-date></span><span>Full: <flint-format-date date-style="full"></flint-format-date></span></div>' />
 
 Formats a date/time using the specified locale and options.
 Localization is handled by the browser's `Intl.DateTimeFormat` API — no language packs required.

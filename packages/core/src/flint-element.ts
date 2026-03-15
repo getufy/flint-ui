@@ -8,6 +8,7 @@ export class FlintElement extends LitElement {
     elementClass: typeof FlintElement = this as unknown as typeof FlintElement,
     options?: ElementDefinitionOptions
   ) {
+    if (typeof customElements === 'undefined') return;
     const currentlyRegisteredClass = customElements.get(name);
     if (!currentlyRegisteredClass) {
       try {

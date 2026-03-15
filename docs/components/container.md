@@ -1,6 +1,6 @@
 # Container
 
-<Demo label="Max Widths" html="<div style=&quot;width:100%;display:flex;flex-direction:column;gap:8px&quot;><flint-container max-width=&quot;sm&quot;><flint-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>sm</flint-paper></flint-container><flint-container max-width=&quot;md&quot;><flint-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>md</flint-paper></flint-container><flint-container max-width=&quot;lg&quot;><flint-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>lg</flint-paper></flint-container></div>" />
+<Demo label="Max Widths" html='<div style="width:100%;display:flex;flex-direction:column;gap:8px"><flint-container max-width="sm"><flint-paper elevation="1" style="padding:12px;text-align:center">sm</flint-paper></flint-container><flint-container max-width="md"><flint-paper elevation="1" style="padding:12px;text-align:center">md</flint-paper></flint-container><flint-container max-width="lg"><flint-paper elevation="1" style="padding:12px;text-align:center">lg</flint-paper></flint-container></div>' />
 
 - **Tag**: `<flint-container>`
 - **Class**: `FlintContainer`

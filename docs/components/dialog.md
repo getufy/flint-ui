@@ -1,8 +1,8 @@
 # Dialog
 
-<Demo label="Basic" html="<flint-button onclick=&quot;var d=this.nextElementSibling;d.open=true;d.addEventListener('flint-dialog-close',function(){d.open=false},{once:true})&quot;>Open Dialog</flint-button><flint-dialog>  <flint-dialog-title>Confirm Action</flint-dialog-title>  <flint-dialog-content>    <flint-dialog-content-text>Are you sure you want to proceed? This action cannot be undone.</flint-dialog-content-text>  </flint-dialog-content>  <flint-dialog-actions>    <flint-button variant=&quot;secondary&quot; onclick=&quot;this.closest('flint-dialog').open=false&quot;>Cancel</flint-button>    <flint-button onclick=&quot;this.closest('flint-dialog').open=false&quot;>Confirm</flint-button>  </flint-dialog-actions></flint-dialog>" />
+<Demo label="Basic" html='<flint-button onclick="var d=this.nextElementSibling;d.open=true;d.addEventListener(&#39;flint-dialog-close&#39;,function(){d.open=false},{once:true})">Open Dialog</flint-button><flint-dialog>  <flint-dialog-title>Confirm Action</flint-dialog-title>  <flint-dialog-content>    <flint-dialog-content-text>Are you sure you want to proceed? This action cannot be undone.</flint-dialog-content-text>  </flint-dialog-content>  <flint-dialog-actions>    <flint-button variant="secondary" onclick="this.closest(&#39;flint-dialog&#39;).open=false">Cancel</flint-button>    <flint-button onclick="this.closest(&#39;flint-dialog&#39;).open=false">Confirm</flint-button>  </flint-dialog-actions></flint-dialog>' />
 
-<Demo label="Destructive" html="<flint-button variant=&quot;destructive&quot; onclick=&quot;var d=this.nextElementSibling;d.open=true;d.addEventListener('flint-dialog-close',function(){d.open=false},{once:true})&quot;>Delete Account</flint-button><flint-dialog>  <flint-dialog-title>Delete Account?</flint-dialog-title>  <flint-dialog-content>    <flint-dialog-content-text>This will permanently delete your account and all associated data.</flint-dialog-content-text>  </flint-dialog-content>  <flint-dialog-actions>    <flint-button variant=&quot;secondary&quot; onclick=&quot;this.closest('flint-dialog').open=false&quot;>Cancel</flint-button>    <flint-button variant=&quot;destructive&quot; onclick=&quot;this.closest('flint-dialog').open=false&quot;>Delete</flint-button>  </flint-dialog-actions></flint-dialog>" />
+<Demo label="Destructive" html='<flint-button variant="destructive" onclick="var d=this.nextElementSibling;d.open=true;d.addEventListener(&#39;flint-dialog-close&#39;,function(){d.open=false},{once:true})">Delete Account</flint-button><flint-dialog>  <flint-dialog-title>Delete Account?</flint-dialog-title>  <flint-dialog-content>    <flint-dialog-content-text>This will permanently delete your account and all associated data.</flint-dialog-content-text>  </flint-dialog-content>  <flint-dialog-actions>    <flint-button variant="secondary" onclick="this.closest(&#39;flint-dialog&#39;).open=false">Cancel</flint-button>    <flint-button variant="destructive" onclick="this.closest(&#39;flint-dialog&#39;).open=false">Delete</flint-button>  </flint-dialog-actions></flint-dialog>' />
 
 ## `<flint-dialog>`
 
@@ -38,7 +38,7 @@ import { FlintDialog } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-dialog-close` | `{ open: false }` | Dispatched when the dialog requests to be closed (backdrop click or an explicit call to `requestClose()`). The host is responsible for setting `open = false` in response. detail: `{ open: false }` |
+| `flint-dialog-close` | `&#123; open: false &#125;` | Dispatched when the dialog requests to be closed (backdrop click or an explicit call to `requestClose()`). The host is responsible for setting `open = false` in response. detail: `&#123; open: false &#125;` |
 
 ### Slots
 

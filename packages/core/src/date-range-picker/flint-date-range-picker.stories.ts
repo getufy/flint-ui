@@ -70,7 +70,7 @@ Shows two months side-by-side (or stacked on narrow screens).
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-date-range-picker-select\` | \`{ value: DateRange }\` | { detail: { value: DateRange } } on each click |
+| \`flint-date-range-picker-select\` | \`&#123; value: DateRange &#125;\` | &#123; detail: &#123; value: DateRange &#125; &#125; on each click |
 
 #### CSS Custom Properties
 
@@ -135,7 +135,7 @@ A date range picker combining a segmented field and a dual-month calendar.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-date-range-picker-change\` | \`{ value: DateRange }\` | { detail: { value: DateRange } } when range is committed |
+| \`flint-date-range-picker-change\` | \`&#123; value: DateRange &#125;\` | &#123; detail: &#123; value: DateRange &#125; &#125; when range is committed |
 
 ---
 
@@ -167,7 +167,7 @@ Renders as "MM/DD/YYYY – MM/DD/YYYY" with six independently editable segments.
 | Event | Detail | Description |
 |---|---|---|
 | \`flint-date-range-picker-clear\` | — | fired when all segments are cleared |
-| \`flint-date-range-picker-change\` | \`{ value: DateRange }\` | { detail: { value: DateRange } } when both dates are complete |
+| \`flint-date-range-picker-change\` | \`&#123; value: DateRange &#125;\` | &#123; detail: &#123; value: DateRange &#125; &#125; when both dates are complete |
 
 #### Methods
 

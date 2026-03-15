@@ -1,6 +1,6 @@
 # Transfer List
 
-<Demo html="<div style=&quot;width:100%;max-width:550px&quot;><flint-transfer-list left-title=&quot;Available&quot; right-title=&quot;Selected&quot; searchable data-options=&quot;js:JavaScript,ts:TypeScript,py:Python,rust:Rust,go:Go,java:Java,cpp:C++,ruby:Ruby&quot;></flint-transfer-list></div>" />
+<Demo html='<div style="width:100%;max-width:550px"><flint-transfer-list left-title="Available" right-title="Selected" searchable data-options="js:JavaScript,ts:TypeScript,py:Python,rust:Rust,go:Go,java:Java,cpp:C++,ruby:Ruby"></flint-transfer-list></div>' />
 
 A premium Transfer List component for moving items between two lists.
 
@@ -37,7 +37,7 @@ import { FlintTransferList } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-transfer-list-change` | `{ value: string[] }` | Dispatched when items are moved between lists. detail: `{ value: string[] }` |
+| `flint-transfer-list-change` | `&#123; value: string[] &#125;` | Dispatched when items are moved between lists. detail: `&#123; value: string[] &#125;` |
 
 ### CSS Custom Properties
 

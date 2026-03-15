@@ -1,6 +1,6 @@
 # Kbd
 
-<Demo label="Combinations" html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap;align-items:center&quot;><span><flint-kbd>Ctrl</flint-kbd> + <flint-kbd>C</flint-kbd></span><span><flint-kbd>Ctrl</flint-kbd> + <flint-kbd>V</flint-kbd></span><span><flint-kbd>Shift</flint-kbd> + <flint-kbd>Enter</flint-kbd></span><flint-kbd>Esc</flint-kbd></div>" />
+<Demo label="Combinations" html='<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center"><span><flint-kbd>Ctrl</flint-kbd> + <flint-kbd>C</flint-kbd></span><span><flint-kbd>Ctrl</flint-kbd> + <flint-kbd>V</flint-kbd></span><span><flint-kbd>Shift</flint-kbd> + <flint-kbd>Enter</flint-kbd></span><flint-kbd>Esc</flint-kbd></div>' />
 
 ## `<flint-kbd>`
 

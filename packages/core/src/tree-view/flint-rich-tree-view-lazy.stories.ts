@@ -39,10 +39,10 @@ A data-driven tree view that renders its structure from an \`items\` array.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-tree-view-error\` | \`{ message, id, error }\` | When a lazy-loading dataSource call fails (detail: { message, id, error }) |
-| \`flint-tree-view-expanded-items-change\` | \`{ expandedItems }\` | When the expanded set changes (detail: { expandedItems }) |
+| \`flint-tree-view-error\` | \`&#123; message, id, error &#125;\` | When a lazy-loading dataSource call fails (detail: &#123; message, id, error &#125;) |
+| \`flint-tree-view-expanded-items-change\` | \`&#123; expandedItems &#125;\` | When the expanded set changes (detail: &#123; expandedItems &#125;) |
 | \`flint-tree-view-item-position-change\` | — |  |
-| \`flint-tree-view-item-click\` | \`{ itemId }\` | When a tree item is activated (detail: { itemId }) |
+| \`flint-tree-view-item-click\` | \`&#123; itemId &#125;\` | When a tree item is activated (detail: &#123; itemId &#125;) |
 
 #### CSS Custom Properties
 
@@ -88,8 +88,8 @@ and item selection/expansion for nested \`flint-tree-item\` elements.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-tree-view-expanded-items-change\` | \`{ expandedItems }\` | When the expanded set changes (detail: { expandedItems }) |
-| \`flint-tree-view-item-click\` | \`{ itemId }\` | When a tree item is activated (detail: { itemId }) |
+| \`flint-tree-view-expanded-items-change\` | \`&#123; expandedItems &#125;\` | When the expanded set changes (detail: &#123; expandedItems &#125;) |
+| \`flint-tree-view-item-click\` | \`&#123; itemId &#125;\` | When a tree item is activated (detail: &#123; itemId &#125;) |
 
 #### Slots
 
@@ -128,8 +128,8 @@ A single item inside a \`flint-simple-tree-view\` or \`flint-rich-tree-view\`.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-tree-item-toggle\` | \`{ itemId, expanded }\` | Fired when expanded state changes (detail: { itemId, expanded }) |
-| \`flint-tree-item-click\` | \`{ itemId }\` | Fired when the item is clicked (detail: { itemId }) |
+| \`flint-tree-item-toggle\` | \`&#123; itemId, expanded &#125;\` | Fired when expanded state changes (detail: &#123; itemId, expanded &#125;) |
+| \`flint-tree-item-click\` | \`&#123; itemId &#125;\` | Fired when the item is clicked (detail: &#123; itemId &#125;) |
 
 #### Slots
 

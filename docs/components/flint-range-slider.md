@@ -1,6 +1,6 @@
 # Flint Range Slider
 
-<Demo html="<div style=&quot;display:flex;flex-direction:column;gap:16px;width:100%;max-width:300px&quot;><flint-range-slider min=&quot;0&quot; max=&quot;100&quot; label=&quot;Price range&quot; show-value></flint-range-slider><flint-range-slider min=&quot;0&quot; max=&quot;100&quot; label=&quot;Disabled&quot; disabled show-value></flint-range-slider></div>" />
+<Demo html='<div style="display:flex;flex-direction:column;gap:16px;width:100%;max-width:300px"><flint-range-slider min="0" max="100" label="Price range" show-value></flint-range-slider><flint-range-slider min="0" max="100" label="Disabled" disabled show-value></flint-range-slider></div>' />
 
 A range slider that lets users select a start and end value within a range.
 
@@ -37,7 +37,7 @@ import { FlintRangeSlider } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-range-slider-change` | `{ value: [number, number] }` | When either thumb moves. detail: { value: [number, number] } |
+| `flint-range-slider-change` | `&#123; value: [number, number] &#125;` | When either thumb moves. detail: &#123; value: [number, number] &#125; |
 
 ### CSS Custom Properties
 

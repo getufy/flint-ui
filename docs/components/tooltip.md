@@ -1,6 +1,6 @@
 # Tooltip
 
-<Demo label="Placements" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-tooltip label=&quot;Top tooltip&quot;>  <flint-button variant=&quot;secondary&quot;>Top</flint-button></flint-tooltip><flint-tooltip label=&quot;Bottom tooltip&quot; placement=&quot;bottom&quot;>  <flint-button variant=&quot;secondary&quot;>Bottom</flint-button></flint-tooltip><flint-tooltip label=&quot;Left tooltip&quot; placement=&quot;left&quot;>  <flint-button variant=&quot;secondary&quot;>Left</flint-button></flint-tooltip><flint-tooltip label=&quot;Right tooltip&quot; placement=&quot;right&quot;>  <flint-button variant=&quot;secondary&quot;>Right</flint-button></flint-tooltip></div>" />
+<Demo label="Placements" html='<div style="display:flex;gap:8px;flex-wrap:wrap"><flint-tooltip label="Top tooltip">  <flint-button variant="secondary">Top</flint-button></flint-tooltip><flint-tooltip label="Bottom tooltip" placement="bottom">  <flint-button variant="secondary">Bottom</flint-button></flint-tooltip><flint-tooltip label="Left tooltip" placement="left">  <flint-button variant="secondary">Left</flint-button></flint-tooltip><flint-tooltip label="Right tooltip" placement="right">  <flint-button variant="secondary">Right</flint-button></flint-tooltip></div>' />
 
 flint-tooltip
 A component that displays a text label when users hover over or focus on an element.

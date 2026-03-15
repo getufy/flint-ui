@@ -116,7 +116,7 @@ Step: an individual step within a stepper.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-step-click\` | \`{ step: number }\` | Fired when a non-linear step is clicked. detail: \`{ step: number }\` |
+| \`flint-step-click\` | \`&#123; step: number &#125;\` | Fired when a non-linear step is clicked. detail: \`&#123; step: number &#125;\` |
 
 #### Slots
 

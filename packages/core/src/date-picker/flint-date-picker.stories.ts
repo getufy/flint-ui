@@ -40,7 +40,7 @@ Used internally by flint-date-picker, but can also be used on its own.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-date-picker-select\` | \`{ value: string }\` | { detail: { value: string } } ISO date YYYY-MM-DD |
+| \`flint-date-picker-select\` | \`&#123; value: string &#125;\` | &#123; detail: &#123; value: string &#125; &#125; ISO date YYYY-MM-DD |
 
 #### CSS Custom Properties
 
@@ -102,7 +102,7 @@ A date picker with a text field and a calendar popover/modal.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-date-picker-change\` | \`{ value: string }\` | Fired when the date changes. detail: \`{ value: string }\` |
+| \`flint-date-picker-change\` | \`&#123; value: string &#125;\` | Fired when the date changes. detail: \`&#123; value: string &#125;\` |
                 `,
             },
         },

@@ -37,7 +37,7 @@ A premium Transfer List component for moving items between two lists.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-transfer-list-change\` | \`{ value: string[] }\` | Dispatched when items are moved between lists. detail: \`{ value: string[] }\` |
+| \`flint-transfer-list-change\` | \`&#123; value: string[] &#125;\` | Dispatched when items are moved between lists. detail: \`&#123; value: string[] &#125;\` |
 
 #### CSS Custom Properties
 

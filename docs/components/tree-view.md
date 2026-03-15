@@ -1,10 +1,10 @@
 # Tree View
 
-<Demo label="Simple Tree View" html="<div style=&quot;width:100%;max-width:300px;border:1px solid #e5e7eb;border-radius:8px;padding:8px&quot;><flint-simple-tree-view>  <flint-tree-item item-id=&quot;1&quot; label=&quot;Documents&quot;>    <flint-tree-item item-id=&quot;1-1&quot; label=&quot;Resume.pdf&quot;></flint-tree-item>    <flint-tree-item item-id=&quot;1-2&quot; label=&quot;Cover Letter.pdf&quot;></flint-tree-item>  </flint-tree-item>  <flint-tree-item item-id=&quot;2&quot; label=&quot;Images&quot;>    <flint-tree-item item-id=&quot;2-1&quot; label=&quot;photo.jpg&quot;></flint-tree-item>    <flint-tree-item item-id=&quot;2-2&quot; label=&quot;screenshot.png&quot;></flint-tree-item>    <flint-tree-item item-id=&quot;2-3&quot; label=&quot;icon.svg&quot;></flint-tree-item>  </flint-tree-item>  <flint-tree-item item-id=&quot;3&quot; label=&quot;Notes.txt&quot;></flint-tree-item></flint-simple-tree-view></div>" />
+<Demo label="Simple Tree View" html='<div style="width:100%;max-width:300px;border:1px solid #e5e7eb;border-radius:8px;padding:8px"><flint-simple-tree-view>  <flint-tree-item item-id="1" label="Documents">    <flint-tree-item item-id="1-1" label="Resume.pdf"></flint-tree-item>    <flint-tree-item item-id="1-2" label="Cover Letter.pdf"></flint-tree-item>  </flint-tree-item>  <flint-tree-item item-id="2" label="Images">    <flint-tree-item item-id="2-1" label="photo.jpg"></flint-tree-item>    <flint-tree-item item-id="2-2" label="screenshot.png"></flint-tree-item>    <flint-tree-item item-id="2-3" label="icon.svg"></flint-tree-item>  </flint-tree-item>  <flint-tree-item item-id="3" label="Notes.txt"></flint-tree-item></flint-simple-tree-view></div>' />
 
-<Demo label="Rich Tree View" html="<div style=&quot;width:100%;max-width:300px;border:1px solid #e5e7eb;border-radius:8px;padding:8px&quot;><flint-rich-tree-view data-props='{&quot;items&quot;:[{&quot;id&quot;:&quot;src&quot;,&quot;label&quot;:&quot;src&quot;,&quot;children&quot;:[{&quot;id&quot;:&quot;components&quot;,&quot;label&quot;:&quot;components&quot;,&quot;children&quot;:[{&quot;id&quot;:&quot;app&quot;,&quot;label&quot;:&quot;App.tsx&quot;},{&quot;id&quot;:&quot;header&quot;,&quot;label&quot;:&quot;Header.tsx&quot;},{&quot;id&quot;:&quot;footer&quot;,&quot;label&quot;:&quot;Footer.tsx&quot;}]},{&quot;id&quot;:&quot;utils&quot;,&quot;label&quot;:&quot;utils&quot;,&quot;children&quot;:[{&quot;id&quot;:&quot;helpers&quot;,&quot;label&quot;:&quot;helpers.ts&quot;},{&quot;id&quot;:&quot;constants&quot;,&quot;label&quot;:&quot;constants.ts&quot;}]},{&quot;id&quot;:&quot;index&quot;,&quot;label&quot;:&quot;index.ts&quot;}]},{&quot;id&quot;:&quot;public&quot;,&quot;label&quot;:&quot;public&quot;,&quot;children&quot;:[{&quot;id&quot;:&quot;favicon&quot;,&quot;label&quot;:&quot;favicon.ico&quot;},{&quot;id&quot;:&quot;robots&quot;,&quot;label&quot;:&quot;robots.txt&quot;}]},{&quot;id&quot;:&quot;pkg&quot;,&quot;label&quot;:&quot;package.json&quot;},{&quot;id&quot;:&quot;readme&quot;,&quot;label&quot;:&quot;README.md&quot;}],&quot;defaultExpandedItems&quot;:[&quot;src&quot;,&quot;components&quot;]}'></flint-rich-tree-view></div>" />
+<Demo label="Rich Tree View" html='<div style="width:100%;max-width:300px;border:1px solid #e5e7eb;border-radius:8px;padding:8px"><flint-rich-tree-view data-props=&#39;{"items":[{"id":"src","label":"src","children":[{"id":"components","label":"components","children":[{"id":"app","label":"App.tsx"},{"id":"header","label":"Header.tsx"},{"id":"footer","label":"Footer.tsx"}]},{"id":"utils","label":"utils","children":[{"id":"helpers","label":"helpers.ts"},{"id":"constants","label":"constants.ts"}]},{"id":"index","label":"index.ts"}]},{"id":"public","label":"public","children":[{"id":"favicon","label":"favicon.ico"},{"id":"robots","label":"robots.txt"}]},{"id":"pkg","label":"package.json"},{"id":"readme","label":"README.md"}],"defaultExpandedItems":["src","components"]}&#39;></flint-rich-tree-view></div>' />
 
-<Demo label="Rich Tree View with Drag & Drop Reordering" html="<div style=&quot;width:100%;max-width:300px;border:1px solid #e5e7eb;border-radius:8px;padding:8px&quot;><flint-rich-tree-view items-reordering items-reordering-handle data-props='{&quot;items&quot;:[{&quot;id&quot;:&quot;todo&quot;,&quot;label&quot;:&quot;To Do&quot;,&quot;children&quot;:[{&quot;id&quot;:&quot;t1&quot;,&quot;label&quot;:&quot;Design homepage&quot;},{&quot;id&quot;:&quot;t2&quot;,&quot;label&quot;:&quot;Write tests&quot;},{&quot;id&quot;:&quot;t3&quot;,&quot;label&quot;:&quot;Fix bug #42&quot;}]},{&quot;id&quot;:&quot;progress&quot;,&quot;label&quot;:&quot;In Progress&quot;,&quot;children&quot;:[{&quot;id&quot;:&quot;p1&quot;,&quot;label&quot;:&quot;API integration&quot;},{&quot;id&quot;:&quot;p2&quot;,&quot;label&quot;:&quot;Code review&quot;}]},{&quot;id&quot;:&quot;done&quot;,&quot;label&quot;:&quot;Done&quot;,&quot;children&quot;:[{&quot;id&quot;:&quot;d1&quot;,&quot;label&quot;:&quot;Setup project&quot;},{&quot;id&quot;:&quot;d2&quot;,&quot;label&quot;:&quot;Create database schema&quot;}]}],&quot;defaultExpandedItems&quot;:[&quot;todo&quot;,&quot;progress&quot;,&quot;done&quot;]}'></flint-rich-tree-view></div>" />
+<Demo label="Rich Tree View with Drag & Drop Reordering" html='<div style="width:100%;max-width:300px;border:1px solid #e5e7eb;border-radius:8px;padding:8px"><flint-rich-tree-view items-reordering items-reordering-handle data-props=&#39;{"items":[{"id":"todo","label":"To Do","children":[{"id":"t1","label":"Design homepage"},{"id":"t2","label":"Write tests"},{"id":"t3","label":"Fix bug #42"}]},{"id":"progress","label":"In Progress","children":[{"id":"p1","label":"API integration"},{"id":"p2","label":"Code review"}]},{"id":"done","label":"Done","children":[{"id":"d1","label":"Setup project"},{"id":"d2","label":"Create database schema"}]}],"defaultExpandedItems":["todo","progress","done"]}&#39;></flint-rich-tree-view></div>' />
 
 ## `<flint-rich-tree-view>`
 
@@ -40,10 +40,10 @@ import { FlintRichTreeView } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-tree-view-error` | `{ message, id, error }` | When a lazy-loading dataSource call fails (detail: { message, id, error }) |
-| `flint-tree-view-expanded-items-change` | `{ expandedItems }` | When the expanded set changes (detail: { expandedItems }) |
+| `flint-tree-view-error` | `&#123; message, id, error &#125;` | When a lazy-loading dataSource call fails (detail: &#123; message, id, error &#125;) |
+| `flint-tree-view-expanded-items-change` | `&#123; expandedItems &#125;` | When the expanded set changes (detail: &#123; expandedItems &#125;) |
 | `flint-tree-view-item-position-change` | — |  |
-| `flint-tree-view-item-click` | `{ itemId }` | When a tree item is activated (detail: { itemId }) |
+| `flint-tree-view-item-click` | `&#123; itemId &#125;` | When a tree item is activated (detail: &#123; itemId &#125;) |
 
 ### CSS Custom Properties
 
@@ -103,8 +103,8 @@ import { FlintSimpleTreeView } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-tree-view-expanded-items-change` | `{ expandedItems }` | When the expanded set changes (detail: { expandedItems }) |
-| `flint-tree-view-item-click` | `{ itemId }` | When a tree item is activated (detail: { itemId }) |
+| `flint-tree-view-expanded-items-change` | `&#123; expandedItems &#125;` | When the expanded set changes (detail: &#123; expandedItems &#125;) |
+| `flint-tree-view-item-click` | `&#123; itemId &#125;` | When a tree item is activated (detail: &#123; itemId &#125;) |
 
 ### Slots
 
@@ -157,8 +157,8 @@ import { FlintTreeItem } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-tree-item-toggle` | `{ itemId, expanded }` | Fired when expanded state changes (detail: { itemId, expanded }) |
-| `flint-tree-item-click` | `{ itemId }` | Fired when the item is clicked (detail: { itemId }) |
+| `flint-tree-item-toggle` | `&#123; itemId, expanded &#125;` | Fired when expanded state changes (detail: &#123; itemId, expanded &#125;) |
+| `flint-tree-item-click` | `&#123; itemId &#125;` | Fired when the item is clicked (detail: &#123; itemId &#125;) |
 
 ### Slots
 

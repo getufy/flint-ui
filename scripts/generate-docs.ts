@@ -1815,12 +1815,15 @@ function generateMarkdown(dir: string, components: ComponentInfo[]): string {
   const demos = DEMOS[dir];
   if (demos) {
     for (const demo of demos) {
+      // Use single-quoted attribute to avoid Vue's parser decoding &quot; entities
+      // inside double-quoted attributes, which breaks the attribute boundary
+      // for HTML content containing nested quotes (e.g. style="..." or onclick="...").
       const escapedHtml = demo.html
         .replace(/\\/g, '\\\\')
-        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
         .replace(/\n/g, '');
       const labelAttr = demo.label ? ` label="${demo.label}"` : '';
-      md += `<Demo${labelAttr} html="${escapedHtml}" />\n\n`;
+      md += `<Demo${labelAttr} html='${escapedHtml}' />\n\n`;
     }
   }
 
@@ -1918,7 +1921,9 @@ function escapeTable(s: string): string {
     .replace(/\|/g, '\\|')
     .replace(/\n/g, ' ')
     .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
+    .replace(/>/g, '&gt;')
+    .replace(/\{/g, '&#123;')
+    .replace(/\}/g, '&#125;');
 }
 
 function generateSidebar(dirs: string[]): object[] {

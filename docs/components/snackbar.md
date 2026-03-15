@@ -1,6 +1,6 @@
 # Snackbar
 
-<Demo label="Basic" html="<flint-button onclick=&quot;this.nextElementSibling.open=true&quot;>Show Snackbar</flint-button><flint-snackbar message=&quot;This is a snackbar message&quot; auto-hide-duration=&quot;3000&quot;></flint-snackbar>" />
+<Demo label="Basic" html='<flint-button onclick="this.nextElementSibling.open=true">Show Snackbar</flint-button><flint-snackbar message="This is a snackbar message" auto-hide-duration="3000"></flint-snackbar>' />
 
 Snackbars (also known as toasts) are used for brief notifications.
 They appear temporarily and float above the UI.
@@ -39,8 +39,8 @@ import { FlintSnackbar } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-snackbar-open` | `{ open: true }` | Fired when the snackbar opens (bubbles, composed). detail: `{ open: true }` |
-| `flint-snackbar-close` | `{ open: false }` | Fired when the snackbar closes (bubbles, composed). detail: `{ open: false }` |
+| `flint-snackbar-open` | `&#123; open: true &#125;` | Fired when the snackbar opens (bubbles, composed). detail: `&#123; open: true &#125;` |
+| `flint-snackbar-close` | `&#123; open: false &#125;` | Fired when the snackbar closes (bubbles, composed). detail: `&#123; open: false &#125;` |
 
 ### Slots
 

@@ -1,8 +1,8 @@
 # Input Otp
 
-<Demo label="6-digit code" html="<flint-input-otp length=&quot;6&quot;>  <flint-input-otp-group>    <flint-input-otp-slot index=&quot;0&quot;></flint-input-otp-slot>    <flint-input-otp-slot index=&quot;1&quot;></flint-input-otp-slot>    <flint-input-otp-slot index=&quot;2&quot;></flint-input-otp-slot>  </flint-input-otp-group>  <flint-input-otp-separator></flint-input-otp-separator>  <flint-input-otp-group>    <flint-input-otp-slot index=&quot;3&quot;></flint-input-otp-slot>    <flint-input-otp-slot index=&quot;4&quot;></flint-input-otp-slot>    <flint-input-otp-slot index=&quot;5&quot;></flint-input-otp-slot>  </flint-input-otp-group></flint-input-otp>" />
+<Demo label="6-digit code" html='<flint-input-otp length="6">  <flint-input-otp-group>    <flint-input-otp-slot index="0"></flint-input-otp-slot>    <flint-input-otp-slot index="1"></flint-input-otp-slot>    <flint-input-otp-slot index="2"></flint-input-otp-slot>  </flint-input-otp-group>  <flint-input-otp-separator></flint-input-otp-separator>  <flint-input-otp-group>    <flint-input-otp-slot index="3"></flint-input-otp-slot>    <flint-input-otp-slot index="4"></flint-input-otp-slot>    <flint-input-otp-slot index="5"></flint-input-otp-slot>  </flint-input-otp-group></flint-input-otp>' />
 
-<Demo label="4-digit code" html="<flint-input-otp length=&quot;4&quot;>  <flint-input-otp-group>    <flint-input-otp-slot index=&quot;0&quot;></flint-input-otp-slot>    <flint-input-otp-slot index=&quot;1&quot;></flint-input-otp-slot>    <flint-input-otp-slot index=&quot;2&quot;></flint-input-otp-slot>    <flint-input-otp-slot index=&quot;3&quot;></flint-input-otp-slot>  </flint-input-otp-group></flint-input-otp>" />
+<Demo label="4-digit code" html='<flint-input-otp length="4">  <flint-input-otp-group>    <flint-input-otp-slot index="0"></flint-input-otp-slot>    <flint-input-otp-slot index="1"></flint-input-otp-slot>    <flint-input-otp-slot index="2"></flint-input-otp-slot>    <flint-input-otp-slot index="3"></flint-input-otp-slot>  </flint-input-otp-group></flint-input-otp>' />
 
 ## `<flint-input-otp-group>`
 
@@ -148,8 +148,8 @@ import { FlintInputOtp } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-otp-change` | `{ value: string }` | Fired on every value change. `detail: { value: string }`. |
-| `flint-otp-complete` | `{ value: string }` | Fired when `maxLength` chars have been entered. `detail: { value: string }`. |
+| `flint-otp-change` | `&#123; value: string &#125;` | Fired on every value change. `detail: &#123; value: string &#125;`. |
+| `flint-otp-complete` | `&#123; value: string &#125;` | Fired when `maxLength` chars have been entered. `detail: &#123; value: string &#125;`. |
 
 ### Slots
 

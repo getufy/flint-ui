@@ -1,6 +1,6 @@
 # Hover Card
 
-<Demo html="<flint-hover-card>  <flint-hover-card-trigger>    <flint-link href=&quot;#&quot;>Hover over me</flint-link>  </flint-hover-card-trigger>  <flint-hover-card-content>    <div style=&quot;padding:12px&quot;>      <p style=&quot;margin:0;font-weight:600&quot;>Hover Card</p>      <p style=&quot;margin:4px 0 0;color:#6b7280;font-size:14px&quot;>Additional information shown on hover.</p>    </div>  </flint-hover-card-content></flint-hover-card>" />
+<Demo html='<flint-hover-card>  <flint-hover-card-trigger>    <flint-link href="#">Hover over me</flint-link>  </flint-hover-card-trigger>  <flint-hover-card-content>    <div style="padding:12px">      <p style="margin:0;font-weight:600">Hover Card</p>      <p style="margin:4px 0 0;color:#6b7280;font-size:14px">Additional information shown on hover.</p>    </div>  </flint-hover-card-content></flint-hover-card>' />
 
 ## `<flint-hover-card-trigger>`
 
@@ -125,8 +125,8 @@ import { FlintHoverCard } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-hover-card-open` | `{ open: true }` | Fired when the card becomes visible. detail: `{ open: true }` |
-| `flint-hover-card-close` | `{ open: false }` | Fired when the card is dismissed. detail: `{ open: false }` |
+| `flint-hover-card-open` | `&#123; open: true &#125;` | Fired when the card becomes visible. detail: `&#123; open: true &#125;` |
+| `flint-hover-card-close` | `&#123; open: false &#125;` | Fired when the card is dismissed. detail: `&#123; open: false &#125;` |
 
 ### Slots
 

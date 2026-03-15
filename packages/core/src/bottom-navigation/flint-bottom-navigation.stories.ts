@@ -66,7 +66,7 @@ Bottom Navigation bars allow movement between primary destinations in an app.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-bottom-navigation-change\` | \`{ value: number \\| string }\` | Dispatched when the selected value changes. detail: \`{ value: number \\| string }\` |
+| \`flint-bottom-navigation-change\` | \`&#123; value: number \\| string &#125;\` | Dispatched when the selected value changes. detail: \`&#123; value: number \\| string &#125;\` |
 
 #### Slots
 

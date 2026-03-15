@@ -1,6 +1,7 @@
 import { unsafeCSS, html, nothing } from 'lit';
 import { property } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
+import { resolveLocale } from '../utilities/localize.js';
 import styles from './flint-relative-time.css?inline';
 
 /* ─────────────────────────────────────────────────────────────────── */
@@ -128,7 +129,7 @@ export class FlintRelativeTime extends FlintElement {
         const { unit, seconds } = pickUnit(absDiff);
         const value = Math.round(diffSeconds / seconds);
 
-        const lang = this.lang || document.documentElement.lang || navigator.language || 'en';
+        const lang = resolveLocale(this.lang);
         try {
             const rtf = new Intl.RelativeTimeFormat(lang, {
                 numeric: this.numeric,

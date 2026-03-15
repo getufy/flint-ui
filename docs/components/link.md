@@ -1,8 +1,8 @@
 # Link
 
-<Demo label="Underline Styles" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-link href=&quot;#&quot;>Default</flint-link><flint-link href=&quot;#&quot; underline=&quot;always&quot;>Always</flint-link><flint-link href=&quot;#&quot; underline=&quot;none&quot;>None</flint-link></div>" />
+<Demo label="Underline Styles" html='<div style="display:flex;gap:8px;flex-wrap:wrap"><flint-link href="#">Default</flint-link><flint-link href="#" underline="always">Always</flint-link><flint-link href="#" underline="none">None</flint-link></div>' />
 
-<Demo label="Colors" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-link href=&quot;#&quot; color=&quot;primary&quot;>Primary</flint-link><flint-link href=&quot;#&quot; color=&quot;secondary&quot;>Secondary</flint-link><flint-link href=&quot;#&quot; color=&quot;inherit&quot;>Inherit</flint-link></div>" />
+<Demo label="Colors" html='<div style="display:flex;gap:8px;flex-wrap:wrap"><flint-link href="#" color="primary">Primary</flint-link><flint-link href="#" color="secondary">Secondary</flint-link><flint-link href="#" color="inherit">Inherit</flint-link></div>' />
 
 The Link component allows you to easily customize anchor elements
 with theme colors and typography styles.

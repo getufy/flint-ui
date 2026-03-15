@@ -1,8 +1,8 @@
 # Stack
 
-<Demo label="Row" html="<flint-stack direction=&quot;row&quot; gap=&quot;2&quot; align-items=&quot;center&quot;>  <flint-paper elevation=&quot;1&quot; style=&quot;padding:12px&quot;>Item 1</flint-paper>  <flint-paper elevation=&quot;1&quot; style=&quot;padding:12px&quot;>Item 2</flint-paper>  <flint-paper elevation=&quot;1&quot; style=&quot;padding:12px&quot;>Item 3</flint-paper></flint-stack>" />
+<Demo label="Row" html='<flint-stack direction="row" gap="2" align-items="center">  <flint-paper elevation="1" style="padding:12px">Item 1</flint-paper>  <flint-paper elevation="1" style="padding:12px">Item 2</flint-paper>  <flint-paper elevation="1" style="padding:12px">Item 3</flint-paper></flint-stack>' />
 
-<Demo label="Column" html="<flint-stack direction=&quot;column&quot; gap=&quot;2&quot; style=&quot;width:100%;max-width:200px&quot;>  <flint-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>Item 1</flint-paper>  <flint-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>Item 2</flint-paper>  <flint-paper elevation=&quot;1&quot; style=&quot;padding:12px;text-align:center&quot;>Item 3</flint-paper></flint-stack>" />
+<Demo label="Column" html='<flint-stack direction="column" gap="2" style="width:100%;max-width:200px">  <flint-paper elevation="1" style="padding:12px;text-align:center">Item 1</flint-paper>  <flint-paper elevation="1" style="padding:12px;text-align:center">Item 2</flint-paper>  <flint-paper elevation="1" style="padding:12px;text-align:center">Item 3</flint-paper></flint-stack>' />
 
 - **Tag**: `<flint-stack>`
 - **Class**: `FlintStack`

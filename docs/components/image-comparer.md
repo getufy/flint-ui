@@ -1,6 +1,6 @@
 # Image Comparer
 
-<Demo html="<flint-image-comparer position=&quot;50&quot; style=&quot;width:100%;max-width:500px&quot;>  <div slot=&quot;before&quot; style=&quot;width:100%;height:250px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;color:white;font-weight:600;font-size:18px&quot;>Before</div>  <div slot=&quot;after&quot; style=&quot;width:100%;height:250px;background:linear-gradient(135deg,#f093fb,#f5576c);display:flex;align-items:center;justify-content:center;color:white;font-weight:600;font-size:18px&quot;>After</div></flint-image-comparer>" />
+<Demo html='<flint-image-comparer position="50" style="width:100%;max-width:500px">  <div slot="before" style="width:100%;height:250px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;color:white;font-weight:600;font-size:18px">Before</div>  <div slot="after" style="width:100%;height:250px;background:linear-gradient(135deg,#f093fb,#f5576c);display:flex;align-items:center;justify-content:center;color:white;font-weight:600;font-size:18px">After</div></flint-image-comparer>' />
 
 `flint-image-comparer` — Compare two images side-by-side with a draggable slider.
 
@@ -32,7 +32,7 @@ import { FlintImageComparer } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-image-comparer-change` | `{ position: number }` | Fired when the position changes. Detail: `{ position: number }`. |
+| `flint-image-comparer-change` | `&#123; position: number &#125;` | Fired when the position changes. Detail: `&#123; position: number &#125;`. |
 
 ### Slots
 

@@ -1,6 +1,6 @@
 # Format Number
 
-<Demo label="Formats" html="<div style=&quot;display:flex;flex-direction:column;gap:8px&quot;><span>Currency: <flint-format-number value=&quot;1234567.89&quot; style=&quot;currency&quot; currency=&quot;USD&quot;></flint-format-number></span><span>Percent: <flint-format-number value=&quot;0.856&quot; style=&quot;percent&quot;></flint-format-number></span><span>Decimal: <flint-format-number value=&quot;1234567.89&quot; style=&quot;decimal&quot;></flint-format-number></span></div>" />
+<Demo label="Formats" html='<div style="display:flex;flex-direction:column;gap:8px"><span>Currency: <flint-format-number value="1234567.89" style="currency" currency="USD"></flint-format-number></span><span>Percent: <flint-format-number value="0.856" style="percent"></flint-format-number></span><span>Decimal: <flint-format-number value="1234567.89" style="decimal"></flint-format-number></span></div>' />
 
 Formats a number using the specified locale and options.
 Localization is handled by the browser's `Intl.NumberFormat` API — no language packs required.

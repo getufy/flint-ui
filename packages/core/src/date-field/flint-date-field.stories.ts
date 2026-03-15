@@ -39,7 +39,7 @@ Each section (month, day, year) is independently editable via keyboard.
 | Event | Detail | Description |
 |---|---|---|
 | \`flint-date-field-clear\` | — | Fired when all segments are cleared |
-| \`flint-date-field-change\` | \`{ value: string }\` | { detail: { value: string } } ISO date when all three segments are filled |
+| \`flint-date-field-change\` | \`&#123; value: string &#125;\` | &#123; detail: &#123; value: string &#125; &#125; ISO date when all three segments are filled |
 
 #### CSS Custom Properties
 

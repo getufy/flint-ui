@@ -31,7 +31,7 @@ A range slider that lets users select a start and end value within a range.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-range-slider-change\` | \`{ value: [number, number] }\` | When either thumb moves. detail: { value: [number, number] } |
+| \`flint-range-slider-change\` | \`&#123; value: [number, number] &#125;\` | When either thumb moves. detail: &#123; value: [number, number] &#125; |
 
 #### CSS Custom Properties
 

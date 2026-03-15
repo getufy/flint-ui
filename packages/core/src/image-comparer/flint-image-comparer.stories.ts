@@ -45,7 +45,7 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-image-comparer-change\` | \`{ position: number }\` | Fired when the position changes. Detail: \`{ position: number }\`. |
+| \`flint-image-comparer-change\` | \`&#123; position: number &#125;\` | Fired when the position changes. Detail: \`&#123; position: number &#125;\`. |
 
 #### Slots
 

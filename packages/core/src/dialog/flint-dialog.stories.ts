@@ -33,7 +33,7 @@ flint-dialog: a modal dialog component.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-dialog-close\` | \`{ open: false }\` | Dispatched when the dialog requests to be closed (backdrop click or an explicit call to \`requestClose()\`). The host is responsible for setting \`open = false\` in response. detail: \`{ open: false }\` |
+| \`flint-dialog-close\` | \`&#123; open: false &#125;\` | Dispatched when the dialog requests to be closed (backdrop click or an explicit call to \`requestClose()\`). The host is responsible for setting \`open = false\` in response. detail: \`&#123; open: false &#125;\` |
 
 #### Slots
 

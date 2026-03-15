@@ -1,10 +1,10 @@
 # Input
 
-<Demo label="Types" html="<div style=&quot;display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px&quot;><flint-input label=&quot;Text&quot; placeholder=&quot;Enter your name&quot;></flint-input><flint-input label=&quot;Email&quot; type=&quot;email&quot; placeholder=&quot;you@example.com&quot;></flint-input><flint-input label=&quot;Password&quot; type=&quot;password&quot; value=&quot;secret123&quot;></flint-input><flint-input label=&quot;Search&quot; type=&quot;search&quot; placeholder=&quot;Search...&quot;></flint-input></div>" />
+<Demo label="Types" html='<div style="display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px"><flint-input label="Text" placeholder="Enter your name"></flint-input><flint-input label="Email" type="email" placeholder="you@example.com"></flint-input><flint-input label="Password" type="password" value="secret123"></flint-input><flint-input label="Search" type="search" placeholder="Search..."></flint-input></div>' />
 
-<Demo label="States" html="<div style=&quot;display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px&quot;><flint-input label=&quot;Disabled&quot; disabled value=&quot;Cannot edit&quot;></flint-input><flint-input label=&quot;Readonly&quot; readonly value=&quot;Read only value&quot;></flint-input><flint-input label=&quot;Error&quot; error value=&quot;Invalid input&quot; help-text=&quot;This field has an error&quot;></flint-input></div>" />
+<Demo label="States" html='<div style="display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px"><flint-input label="Disabled" disabled value="Cannot edit"></flint-input><flint-input label="Readonly" readonly value="Read only value"></flint-input><flint-input label="Error" error value="Invalid input" help-text="This field has an error"></flint-input></div>' />
 
-<Demo label="Sizes" html="<div style=&quot;display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px&quot;><flint-input label=&quot;Small&quot; size=&quot;sm&quot; placeholder=&quot;Small&quot;></flint-input><flint-input label=&quot;Default&quot; placeholder=&quot;Default&quot;></flint-input><flint-input label=&quot;Large&quot; size=&quot;lg&quot; placeholder=&quot;Large&quot;></flint-input></div>" />
+<Demo label="Sizes" html='<div style="display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px"><flint-input label="Small" size="sm" placeholder="Small"></flint-input><flint-input label="Default" placeholder="Default"></flint-input><flint-input label="Large" size="lg" placeholder="Large"></flint-input></div>' />
 
 Input: a styled text input with label, help text, and error states.
 

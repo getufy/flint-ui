@@ -79,7 +79,15 @@ export default defineConfig({
                 name: 'components',
                 environment: 'jsdom',
                 include: ['src/**/*.test.ts'],
+                exclude: ['src/ssr/**'],
                 setupFiles: ['./vitest.setup.ts']
+            }
+        },
+        {
+            test: {
+                name: 'ssr',
+                environment: 'node',
+                include: ['src/ssr/**/*.test.ts'],
             }
         }]
     }

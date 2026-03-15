@@ -44,7 +44,7 @@ Navigation drawers provide ergonomic access to destinations in a site or app.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-drawer-close\` | \`{ open: false }\` | Dispatched when the drawer requests to be closed (backdrop click or Escape). detail: \`{ open: false }\` |
+| \`flint-drawer-close\` | \`&#123; open: false &#125;\` | Dispatched when the drawer requests to be closed (backdrop click or Escape). detail: \`&#123; open: false &#125;\` |
 
 #### Slots
 

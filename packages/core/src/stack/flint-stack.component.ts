@@ -34,7 +34,7 @@ export class FlintStack extends FlintElement {
     @state() private _currentWidth = typeof window !== 'undefined' ? window.innerWidth : 1200;
 
     private _onResize = () => {
-        this._currentWidth = window.innerWidth;
+        if (typeof window !== 'undefined') this._currentWidth = window.innerWidth;
         this.requestUpdate();
     };
 

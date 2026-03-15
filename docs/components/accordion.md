@@ -1,6 +1,6 @@
 # Accordion
 
-<Demo label="Basic" html="<div style=&quot;width:100%;max-width:500px&quot;><flint-accordion expanded>  <flint-accordion-summary>Expanded by default</flint-accordion-summary>  <flint-accordion-details>This accordion starts open. Click the header to collapse it.</flint-accordion-details></flint-accordion><flint-accordion>  <flint-accordion-summary>Collapsed Item</flint-accordion-summary>  <flint-accordion-details>Click the header above to expand this content.</flint-accordion-details></flint-accordion><flint-accordion disabled>  <flint-accordion-summary>Disabled Item</flint-accordion-summary>  <flint-accordion-details>This item cannot be toggled.</flint-accordion-details></flint-accordion></div>" />
+<Demo label="Basic" html='<div style="width:100%;max-width:500px"><flint-accordion expanded>  <flint-accordion-summary>Expanded by default</flint-accordion-summary>  <flint-accordion-details>This accordion starts open. Click the header to collapse it.</flint-accordion-details></flint-accordion><flint-accordion>  <flint-accordion-summary>Collapsed Item</flint-accordion-summary>  <flint-accordion-details>Click the header above to expand this content.</flint-accordion-details></flint-accordion><flint-accordion disabled>  <flint-accordion-summary>Disabled Item</flint-accordion-summary>  <flint-accordion-details>This item cannot be toggled.</flint-accordion-details></flint-accordion></div>' />
 
 ## `<flint-accordion>`
 

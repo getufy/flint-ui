@@ -1,6 +1,6 @@
 # Relative Time
 
-<Demo label="Dates" html="<div style=&quot;display:flex;flex-direction:column;gap:8px&quot;><span>1 day ago: <flint-relative-time datetime=&quot;2026-03-14T15:51:48.194Z&quot;></flint-relative-time></span><span>1 week ago: <flint-relative-time datetime=&quot;2026-03-08T15:51:48.195Z&quot;></flint-relative-time></span><span>1 month ago: <flint-relative-time datetime=&quot;2026-02-13T15:51:48.195Z&quot;></flint-relative-time></span></div>" />
+<Demo label="Dates" html='<div style="display:flex;flex-direction:column;gap:8px"><span>1 day ago: <flint-relative-time datetime="2026-03-14T16:33:24.742Z"></flint-relative-time></span><span>1 week ago: <flint-relative-time datetime="2026-03-08T16:33:24.742Z"></flint-relative-time></span><span>1 month ago: <flint-relative-time datetime="2026-02-13T16:33:24.742Z"></flint-relative-time></span></div>' />
 
 Displays a localized time phrase relative to the current date and time.
 Uses the browser's `Intl.RelativeTimeFormat` API — no language packs needed.

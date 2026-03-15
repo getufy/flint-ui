@@ -1,6 +1,6 @@
 # Date Picker
 
-<Demo label="States" html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><flint-date-picker label=&quot;Pick a date&quot; style=&quot;width:260px&quot;></flint-date-picker><flint-date-picker label=&quot;Disabled&quot; disabled style=&quot;width:260px&quot;></flint-date-picker></div>" />
+<Demo label="States" html='<div style="display:flex;gap:16px;flex-wrap:wrap"><flint-date-picker label="Pick a date" style="width:260px"></flint-date-picker><flint-date-picker label="Disabled" disabled style="width:260px"></flint-date-picker></div>' />
 
 ## `<flint-date-picker-calendar>`
 
@@ -37,7 +37,7 @@ import { FlintDatePickerCalendar } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-date-picker-select` | `{ value: string }` | { detail: { value: string } } ISO date YYYY-MM-DD |
+| `flint-date-picker-select` | `&#123; value: string &#125;` | &#123; detail: &#123; value: string &#125; &#125; ISO date YYYY-MM-DD |
 
 ### CSS Custom Properties
 
@@ -113,6 +113,6 @@ import { FlintDatePicker } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-date-picker-change` | `{ value: string }` | Fired when the date changes. detail: `{ value: string }` |
+| `flint-date-picker-change` | `&#123; value: string &#125;` | Fired when the date changes. detail: `&#123; value: string &#125;` |
 
 ---

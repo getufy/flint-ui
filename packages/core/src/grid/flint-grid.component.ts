@@ -60,7 +60,7 @@ export class FlintGrid extends FlintElement {
     @state() private _currentWidth = typeof window !== 'undefined' ? window.innerWidth : 1200;
 
     private _onResize = () => {
-        this._currentWidth = window.innerWidth;
+        if (typeof window !== 'undefined') this._currentWidth = window.innerWidth;
     };
 
     /**
@@ -193,7 +193,7 @@ export class FlintGrid extends FlintElement {
     private _getEffectiveColumns(): number {
         // Read inherited column count from nearest ancestor container via CSS variable,
         // but only if this element is NOT itself a container (containers define the column grid).
-        if (this.container) return this.columns;
+        if (this.container || typeof window === 'undefined') return this.columns;
         const inherited = getComputedStyle(this).getPropertyValue('--flint-grid-columns').trim();
         if (inherited && !isNaN(Number(inherited))) return Number(inherited);
         return this.columns;

@@ -104,8 +104,8 @@ with the appropriate character and active-cursor state.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-otp-change\` | \`{ value: string }\` | Fired on every value change. \`detail: { value: string }\`. |
-| \`flint-otp-complete\` | \`{ value: string }\` | Fired when \`maxLength\` chars have been entered. \`detail: { value: string }\`. |
+| \`flint-otp-change\` | \`&#123; value: string &#125;\` | Fired on every value change. \`detail: &#123; value: string &#125;\`. |
+| \`flint-otp-complete\` | \`&#123; value: string &#125;\` | Fired when \`maxLength\` chars have been entered. \`detail: &#123; value: string &#125;\`. |
 
 #### Slots
 

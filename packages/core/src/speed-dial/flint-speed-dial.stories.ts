@@ -90,8 +90,8 @@ Speed Dial — a FAB that reveals 3-6 related actions when pressed.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-speed-dial-open\` | \`{ open: true }\` | Fired when the dial opens. detail: \`{ open: true }\` |
-| \`flint-speed-dial-close\` | \`{ open: false }\` | Fired when the dial closes. detail: \`{ open: false }\` |
+| \`flint-speed-dial-open\` | \`&#123; open: true &#125;\` | Fired when the dial opens. detail: \`&#123; open: true &#125;\` |
+| \`flint-speed-dial-close\` | \`&#123; open: false &#125;\` | Fired when the dial closes. detail: \`&#123; open: false &#125;\` |
 
 #### Slots
 

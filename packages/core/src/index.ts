@@ -209,7 +209,7 @@ export { FlintVisuallyHidden } from './visually-hidden/flint-visually-hidden.js'
 export { FlintRangeSlider } from './flint-range-slider/flint-range-slider.js';
 
 // ── Utilities & Controllers ─────────────────────────────────────────────────
-export { LocalizeController, registerTranslation } from './utilities/localize.js';
+export { LocalizeController, registerTranslation, resolveLocale } from './utilities/localize.js';
 export type { Translation } from './utilities/localize.js';
 export { FormControlController } from './controllers/form-control.js';
 export type { FormControlHost, FormControlOptions } from './controllers/form-control.js';

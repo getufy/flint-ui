@@ -54,7 +54,7 @@ a range of pages.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-pagination-change\` | — | { page: number } when the active page changes. |
+| \`flint-pagination-change\` | — | &#123; page: number &#125; when the active page changes. |
 
 #### Slots
 

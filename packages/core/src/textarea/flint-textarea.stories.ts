@@ -44,8 +44,8 @@ A Textarea component for multi-line text input.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-textarea-input\` | \`{ value: string }\` | Dispatched on every keystroke. Detail: \`{ value: string }\` |
-| \`flint-textarea-change\` | \`{ value: string }\` | Dispatched on blur/change. Detail: \`{ value: string }\` |
+| \`flint-textarea-input\` | \`&#123; value: string &#125;\` | Dispatched on every keystroke. Detail: \`&#123; value: string &#125;\` |
+| \`flint-textarea-change\` | \`&#123; value: string &#125;\` | Dispatched on blur/change. Detail: \`&#123; value: string &#125;\` |
 
 #### CSS Custom Properties
 

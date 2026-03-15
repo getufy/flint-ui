@@ -1,6 +1,6 @@
 # Box
 
-<Demo label="Styles" html="<flint-box bgcolor=&quot;primary&quot; color=&quot;white&quot; p=&quot;16px&quot; border-radius=&quot;8px&quot;>Primary Box</flint-box><flint-box bgcolor=&quot;#f3f4f6&quot; p=&quot;16px&quot; border-radius=&quot;8px&quot;>Gray Box</flint-box><flint-box p=&quot;16px&quot; border-radius=&quot;8px&quot; style=&quot;border:2px dashed #d1d5db&quot;>Dashed Border</flint-box>" />
+<Demo label="Styles" html='<flint-box bgcolor="primary" color="white" p="16px" border-radius="8px">Primary Box</flint-box><flint-box bgcolor="#f3f4f6" p="16px" border-radius="8px">Gray Box</flint-box><flint-box p="16px" border-radius="8px" style="border:2px dashed #d1d5db">Dashed Border</flint-box>' />
 
 - **Tag**: `<flint-box>`
 - **Class**: `FlintBox`

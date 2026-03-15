@@ -1,6 +1,6 @@
 # Menubar
 
-<Demo html="<div style=&quot;width:100%;max-width:500px&quot;><flint-menubar>  <flint-menubar-menu>    <flint-menubar-trigger>File</flint-menubar-trigger>    <flint-menubar-content>      <flint-menubar-item>New <flint-menubar-shortcut>Ctrl+N</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-item>Open <flint-menubar-shortcut>Ctrl+O</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-item>Save <flint-menubar-shortcut>Ctrl+S</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-separator></flint-menubar-separator>      <flint-menubar-item>Exit</flint-menubar-item>    </flint-menubar-content>  </flint-menubar-menu>  <flint-menubar-menu>    <flint-menubar-trigger>Edit</flint-menubar-trigger>    <flint-menubar-content>      <flint-menubar-item>Undo <flint-menubar-shortcut>Ctrl+Z</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-item>Redo <flint-menubar-shortcut>Ctrl+Y</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-separator></flint-menubar-separator>      <flint-menubar-item>Cut <flint-menubar-shortcut>Ctrl+X</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-item>Copy <flint-menubar-shortcut>Ctrl+C</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-item>Paste <flint-menubar-shortcut>Ctrl+V</flint-menubar-shortcut></flint-menubar-item>    </flint-menubar-content>  </flint-menubar-menu>  <flint-menubar-menu>    <flint-menubar-trigger>View</flint-menubar-trigger>    <flint-menubar-content>      <flint-menubar-item>Zoom In</flint-menubar-item>      <flint-menubar-item>Zoom Out</flint-menubar-item>      <flint-menubar-separator></flint-menubar-separator>      <flint-menubar-item>Full Screen</flint-menubar-item>    </flint-menubar-content>  </flint-menubar-menu></flint-menubar></div>" />
+<Demo html='<div style="width:100%;max-width:500px"><flint-menubar>  <flint-menubar-menu>    <flint-menubar-trigger>File</flint-menubar-trigger>    <flint-menubar-content>      <flint-menubar-item>New <flint-menubar-shortcut>Ctrl+N</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-item>Open <flint-menubar-shortcut>Ctrl+O</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-item>Save <flint-menubar-shortcut>Ctrl+S</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-separator></flint-menubar-separator>      <flint-menubar-item>Exit</flint-menubar-item>    </flint-menubar-content>  </flint-menubar-menu>  <flint-menubar-menu>    <flint-menubar-trigger>Edit</flint-menubar-trigger>    <flint-menubar-content>      <flint-menubar-item>Undo <flint-menubar-shortcut>Ctrl+Z</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-item>Redo <flint-menubar-shortcut>Ctrl+Y</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-separator></flint-menubar-separator>      <flint-menubar-item>Cut <flint-menubar-shortcut>Ctrl+X</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-item>Copy <flint-menubar-shortcut>Ctrl+C</flint-menubar-shortcut></flint-menubar-item>      <flint-menubar-item>Paste <flint-menubar-shortcut>Ctrl+V</flint-menubar-shortcut></flint-menubar-item>    </flint-menubar-content>  </flint-menubar-menu>  <flint-menubar-menu>    <flint-menubar-trigger>View</flint-menubar-trigger>    <flint-menubar-content>      <flint-menubar-item>Zoom In</flint-menubar-item>      <flint-menubar-item>Zoom Out</flint-menubar-item>      <flint-menubar-separator></flint-menubar-separator>      <flint-menubar-item>Full Screen</flint-menubar-item>    </flint-menubar-content>  </flint-menubar-menu></flint-menubar></div>' />
 
 ## `<flint-menubar-shortcut>`
 
@@ -127,7 +127,7 @@ import { FlintMenubarItem } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-menubar-item-select` | `{ value: string }` | Fired on activation. detail: `{ value: string }` |
+| `flint-menubar-item-select` | `&#123; value: string &#125;` | Fired on activation. detail: `&#123; value: string &#125;` |
 
 ### Slots
 
@@ -177,7 +177,7 @@ import { FlintMenubarCheckboxItem } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-menubar-checkbox-change` | `{ checked: boolean, value: string }` | detail: `{ checked: boolean, value: string }` |
+| `flint-menubar-checkbox-change` | `&#123; checked: boolean, value: string &#125;` | detail: `&#123; checked: boolean, value: string &#125;` |
 
 ### Methods
 
@@ -262,7 +262,7 @@ import { FlintMenubarRadioGroup } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-menubar-radio-change` | `{ value: string }` | detail: `{ value: string }` |
+| `flint-menubar-radio-change` | `&#123; value: string &#125;` | detail: `&#123; value: string &#125;` |
 
 ---
 

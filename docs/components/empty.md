@@ -1,6 +1,6 @@
 # Empty
 
-<Demo html="<div style=&quot;width:100%;max-width:400px&quot;><flint-empty>  <flint-empty-title>No results found</flint-empty-title>  <flint-empty-description>Try adjusting your search or filter criteria.</flint-empty-description>  <flint-empty-content>    <flint-button variant=&quot;secondary&quot; size=&quot;small&quot;>Clear Filters</flint-button>  </flint-empty-content></flint-empty></div>" />
+<Demo html='<div style="width:100%;max-width:400px"><flint-empty>  <flint-empty-title>No results found</flint-empty-title>  <flint-empty-description>Try adjusting your search or filter criteria.</flint-empty-description>  <flint-empty-content>    <flint-button variant="secondary" size="small">Clear Filters</flint-button>  </flint-empty-content></flint-empty></div>' />
 
 ## `<flint-empty-title>`
 

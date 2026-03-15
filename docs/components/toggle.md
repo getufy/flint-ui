@@ -1,6 +1,6 @@
 # Toggle
 
-<Demo label="States" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-toggle>Default</flint-toggle><flint-toggle pressed>Pressed</flint-toggle><flint-toggle disabled>Disabled</flint-toggle></div>" />
+<Demo label="States" html='<div style="display:flex;gap:8px;flex-wrap:wrap"><flint-toggle>Default</flint-toggle><flint-toggle pressed>Pressed</flint-toggle><flint-toggle disabled>Disabled</flint-toggle></div>' />
 
 A two-state button that can be either on (pressed) or off.
 
@@ -37,7 +37,7 @@ import { FlintToggle } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-toggle-change` | `{ pressed: boolean }` | Dispatched when the pressed state changes. Detail: `{ pressed: boolean }` |
+| `flint-toggle-change` | `&#123; pressed: boolean &#125;` | Dispatched when the pressed state changes. Detail: `&#123; pressed: boolean &#125;` |
 
 ### Slots
 

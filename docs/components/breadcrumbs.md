@@ -1,6 +1,6 @@
 # Breadcrumbs
 
-<Demo html="<flint-breadcrumbs>  <a href=&quot;#&quot;>Home</a>  <a href=&quot;#&quot;>Products</a>  <span>Current Page</span></flint-breadcrumbs>" />
+<Demo html='<flint-breadcrumbs>  <a href="#">Home</a>  <a href="#">Products</a>  <span>Current Page</span></flint-breadcrumbs>' />
 
 Breadcrumbs provide a navigational aid showing the current page's location
 within a site hierarchy, allowing users to navigate back up the trail.

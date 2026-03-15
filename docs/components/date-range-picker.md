@@ -1,10 +1,10 @@
 # Date Range Picker
 
-<Demo label="Basic" html="<flint-date-range-picker label=&quot;Date range&quot; style=&quot;width:340px&quot;></flint-date-range-picker>" />
+<Demo label="Basic" html='<flint-date-range-picker label="Date range" style="width:340px"></flint-date-range-picker>' />
 
-<Demo label="With Shortcuts" html="<flint-date-range-picker label=&quot;Date range&quot; shortcuts style=&quot;width:340px&quot;></flint-date-range-picker>" />
+<Demo label="With Shortcuts" html='<flint-date-range-picker label="Date range" shortcuts style="width:340px"></flint-date-range-picker>' />
 
-<Demo label="Static with Shortcuts" html="<flint-date-range-picker variant=&quot;static&quot; shortcuts></flint-date-range-picker>" />
+<Demo label="Static with Shortcuts" html='<flint-date-range-picker variant="static" shortcuts></flint-date-range-picker>' />
 
 ## `<flint-date-range-calendar>`
 
@@ -41,7 +41,7 @@ import { FlintDateRangeCalendar } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-date-range-picker-select` | `{ value: DateRange }` | { detail: { value: DateRange } } on each click |
+| `flint-date-range-picker-select` | `&#123; value: DateRange &#125;` | &#123; detail: &#123; value: DateRange &#125; &#125; on each click |
 
 ### CSS Custom Properties
 
@@ -120,7 +120,7 @@ import { FlintDateRangePicker } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-date-range-picker-change` | `{ value: DateRange }` | { detail: { value: DateRange } } when range is committed |
+| `flint-date-range-picker-change` | `&#123; value: DateRange &#125;` | &#123; detail: &#123; value: DateRange &#125; &#125; when range is committed |
 
 ---
 
@@ -166,7 +166,7 @@ import { FlintSingleInputDateRangeField } from '@getufy/flint-ui';
 | Event | Detail | Description |
 | --- | --- | --- |
 | `flint-date-range-picker-clear` | — | fired when all segments are cleared |
-| `flint-date-range-picker-change` | `{ value: DateRange }` | { detail: { value: DateRange } } when both dates are complete |
+| `flint-date-range-picker-change` | `&#123; value: DateRange &#125;` | &#123; detail: &#123; value: DateRange &#125; &#125; when both dates are complete |
 
 ### Methods
 

@@ -1,8 +1,8 @@
 # Collapsible
 
-<Demo label="Default Closed" html="<div style=&quot;width:100%;max-width:400px&quot;><flint-collapsible>  <flint-collapsible-trigger>    <flint-button variant=&quot;secondary&quot; style=&quot;width:100%&quot;>Click to expand</flint-button>  </flint-collapsible-trigger>  <flint-collapsible-content>    <div style=&quot;padding:12px 0;color:#374151&quot;>This content is revealed when you click the trigger above.</div>  </flint-collapsible-content></flint-collapsible></div>" />
+<Demo label="Default Closed" html='<div style="width:100%;max-width:400px"><flint-collapsible>  <flint-collapsible-trigger>    <flint-button variant="secondary" style="width:100%">Click to expand</flint-button>  </flint-collapsible-trigger>  <flint-collapsible-content>    <div style="padding:12px 0;color:#374151">This content is revealed when you click the trigger above.</div>  </flint-collapsible-content></flint-collapsible></div>' />
 
-<Demo label="Default Open" html="<div style=&quot;width:100%;max-width:400px&quot;><flint-collapsible default-open>  <flint-collapsible-trigger>    <flint-button variant=&quot;secondary&quot; style=&quot;width:100%&quot;>Click to collapse</flint-button>  </flint-collapsible-trigger>  <flint-collapsible-content>    <div style=&quot;padding:12px 0;color:#374151&quot;>This content starts visible and can be collapsed.</div>  </flint-collapsible-content></flint-collapsible></div>" />
+<Demo label="Default Open" html='<div style="width:100%;max-width:400px"><flint-collapsible default-open>  <flint-collapsible-trigger>    <flint-button variant="secondary" style="width:100%">Click to collapse</flint-button>  </flint-collapsible-trigger>  <flint-collapsible-content>    <div style="padding:12px 0;color:#374151">This content starts visible and can be collapsed.</div>  </flint-collapsible-content></flint-collapsible></div>' />
 
 ## `<flint-collapsible-trigger>`
 
@@ -118,7 +118,7 @@ import { FlintCollapsible } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-collapsible-change` | `{ open: boolean }` | Fired when the open state changes. `detail: { open: boolean }` |
+| `flint-collapsible-change` | `&#123; open: boolean &#125;` | Fired when the open state changes. `detail: &#123; open: boolean &#125;` |
 
 ### Slots
 

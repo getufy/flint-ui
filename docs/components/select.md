@@ -1,6 +1,6 @@
 # Select
 
-<Demo html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><flint-select label=&quot;Fruit&quot; placeholder=&quot;Pick one&quot; style=&quot;width:220px&quot; data-options=&quot;apple:Apple,banana:Banana,cherry:Cherry,grape:Grape,mango:Mango&quot;></flint-select><flint-select label=&quot;Disabled&quot; disabled placeholder=&quot;Disabled&quot; style=&quot;width:220px&quot;></flint-select></div>" />
+<Demo html='<div style="display:flex;gap:16px;flex-wrap:wrap"><flint-select label="Fruit" placeholder="Pick one" style="width:220px" data-options="apple:Apple,banana:Banana,cherry:Cherry,grape:Grape,mango:Mango"></flint-select><flint-select label="Disabled" disabled placeholder="Disabled" style="width:220px"></flint-select></div>' />
 
 A select component for choosing one or multiple options from a list.
 
@@ -44,7 +44,7 @@ import { FlintSelect } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-select-change` | `{ value: string[] }` | Dispatched when the selection changes. detail: `{ value: string[] }` |
+| `flint-select-change` | `&#123; value: string[] &#125;` | Dispatched when the selection changes. detail: `&#123; value: string[] &#125;` |
 
 ### Slots
 

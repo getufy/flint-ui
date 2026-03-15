@@ -7,15 +7,6 @@
  *   // Then just use <flint-button>, <flint-card>, etc. in your HTML
  */
 
-const observer = new MutationObserver((mutations) => {
-  for (const { addedNodes } of mutations) {
-    for (const node of addedNodes) {
-      if (node.nodeType !== Node.ELEMENT_NODE) continue;
-      discover(node as Element);
-    }
-  }
-});
-
 // Track pending imports to avoid duplicate requests
 const pendingImports = new Set<string>();
 
@@ -66,10 +57,22 @@ async function register(tagName: string) {
   }
 }
 
-// Discover any flint-* elements already in the DOM
-discover(document.body);
+// SSR guard: autoloader is browser-only
+if (typeof document !== 'undefined') {
+  const observer = new MutationObserver((mutations) => {
+    for (const { addedNodes } of mutations) {
+      for (const node of addedNodes) {
+        if (node.nodeType !== Node.ELEMENT_NODE) continue;
+        discover(node as Element);
+      }
+    }
+  });
 
-// Watch for future additions
-observer.observe(document.body, { childList: true, subtree: true });
+  // Discover any flint-* elements already in the DOM
+  discover(document.body);
+
+  // Watch for future additions
+  observer.observe(document.body, { childList: true, subtree: true });
+}
 
 export { discover };

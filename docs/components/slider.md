@@ -1,8 +1,8 @@
 # Slider
 
-<Demo label="Values" html="<div style=&quot;display:flex;flex-direction:column;gap:16px;width:100%;max-width:300px&quot;><flint-slider value=&quot;25&quot;></flint-slider><flint-slider value=&quot;50&quot;></flint-slider><flint-slider value=&quot;75&quot;></flint-slider></div>" />
+<Demo label="Values" html='<div style="display:flex;flex-direction:column;gap:16px;width:100%;max-width:300px"><flint-slider value="25"></flint-slider><flint-slider value="50"></flint-slider><flint-slider value="75"></flint-slider></div>' />
 
-<Demo label="Disabled" html="<div style=&quot;width:100%;max-width:300px&quot;><flint-slider value=&quot;40&quot; disabled></flint-slider></div>" />
+<Demo label="Disabled" html='<div style="width:100%;max-width:300px"><flint-slider value="40" disabled></flint-slider></div>' />
 
 Slider: a range input for selecting a numeric value.
 

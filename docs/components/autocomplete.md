@@ -1,6 +1,6 @@
 # Autocomplete
 
-<Demo html="<div style=&quot;display:flex;gap:16px;flex-wrap:wrap&quot;><flint-autocomplete label=&quot;Movie&quot; placeholder=&quot;Search movies...&quot; style=&quot;width:260px&quot; data-options=&quot;shawshank:The Shawshank Redemption,godfather:The Godfather,dark-knight:The Dark Knight,pulp-fiction:Pulp Fiction,forrest-gump:Forrest Gump,inception:Inception,matrix:The Matrix,interstellar:Interstellar&quot;></flint-autocomplete><flint-autocomplete label=&quot;Disabled&quot; disabled placeholder=&quot;Disabled&quot; style=&quot;width:260px&quot;></flint-autocomplete></div>" />
+<Demo html='<div style="display:flex;gap:16px;flex-wrap:wrap"><flint-autocomplete label="Movie" placeholder="Search movies..." style="width:260px" data-options="shawshank:The Shawshank Redemption,godfather:The Godfather,dark-knight:The Dark Knight,pulp-fiction:Pulp Fiction,forrest-gump:Forrest Gump,inception:Inception,matrix:The Matrix,interstellar:Interstellar"></flint-autocomplete><flint-autocomplete label="Disabled" disabled placeholder="Disabled" style="width:260px"></flint-autocomplete></div>' />
 
 Autocomplete: a text input with a dropdown of selectable suggestions.
 

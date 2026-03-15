@@ -1,6 +1,12 @@
 import type { ReactiveController, ReactiveControllerHost } from 'lit';
 import en from '../translations/en.js';
 
+/**
+ * SSR-safe browser detection. Cannot use Lit's `isServer` here because
+ * it resolves to `true` in all Node processes (including jsdom test envs).
+ */
+const isBrowser = typeof document !== 'undefined' && typeof document.documentElement !== 'undefined';
+
 export interface Translation {
   $code: string;   // BCP 47 language code, e.g. 'en', 'es', 'fr'
   $name: string;   // Human-readable name, e.g. 'English', 'Espanol'
@@ -89,6 +95,17 @@ export function registerTranslation(...args: Translation[]): void {
 registerTranslation(en);
 
 /**
+ * Resolves the effective locale from a component's `lang` attribute,
+ * falling back through `document.documentElement.lang` and `navigator.language`.
+ * SSR-safe: returns `lang` or `'en'` on the server.
+ */
+export function resolveLocale(lang: string): string {
+    if (lang) return lang;
+    if (!isBrowser) return 'en';
+    return document.documentElement.lang || navigator.language || 'en';
+}
+
+/**
  * Resolve a language code to a Translation, walking up the hierarchy.
  * e.g. 'es-PE' → 'es' → 'en'
  */
@@ -142,6 +159,8 @@ export class LocalizeController implements ReactiveController {
   lang(): string {
     // Check the host element's own lang
     if (this.host.lang) return this.host.lang;
+    // SSR: no DOM tree to walk, fall back to 'en'
+    if (!isBrowser) return 'en';
     // Walk ancestors
     const closest = this.host.closest<HTMLElement>('[lang]');
     if (closest?.lang) return closest.lang;

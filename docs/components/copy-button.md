@@ -1,6 +1,6 @@
 # Copy Button
 
-<Demo html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-copy-button value=&quot;Hello, World!&quot;>Copy Text</flint-copy-button><flint-copy-button value=&quot;npm install @getufy/flint-ui&quot;>Copy Command</flint-copy-button></div>" />
+<Demo html='<div style="display:flex;gap:8px;flex-wrap:wrap"><flint-copy-button value="Hello, World!">Copy Text</flint-copy-button><flint-copy-button value="npm install @getufy/flint-ui">Copy Command</flint-copy-button></div>' />
 
 Copy Button: copies text to the clipboard with visual feedback.
 

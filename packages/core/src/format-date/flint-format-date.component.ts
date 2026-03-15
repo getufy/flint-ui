@@ -1,6 +1,7 @@
 import { unsafeCSS, html, nothing } from 'lit';
 import { property } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
+import { resolveLocale } from '../utilities/localize.js';
 import styles from './flint-format-date.css?inline';
 
 /* ─────────────────────────────────────────────────────────────────── */
@@ -168,7 +169,7 @@ export class FlintFormatDate extends FlintElement {
             }
         }
 
-        const locale = this.lang || document.documentElement.lang || navigator.language || 'en';
+        const locale = resolveLocale(this.lang);
         try {
             return new Intl.DateTimeFormat(locale, options).format(date);
         } catch {

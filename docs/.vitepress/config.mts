@@ -40,6 +40,7 @@ export default defineConfig({
             { text: 'Getting Started', link: '/getting-started' },
             { text: 'Theming', link: '/theming' },
             { text: 'React', link: '/react' },
+            { text: 'SSR', link: '/ssr' },
             { text: 'Accessibility', link: '/accessibility' },
             { text: 'Browser Support', link: '/browser-support' },
             { text: 'FAQ', link: '/faq' },
