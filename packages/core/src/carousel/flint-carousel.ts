@@ -105,6 +105,11 @@ export class FlintCarouselItem extends LitElement {
 /* ═══════════════════════════════════════════════════════════════════════════
    FlintCarouselPrevious
 ═══════════════════════════════════════════════════════════════════════════ */
+/**
+ * Carousel Previous: navigation button to go to the previous slide.
+ *
+ * @slot - Custom icon content, replaces default chevron.
+ */
 @customElement('flint-carousel-previous')
 export class FlintCarouselPrevious extends LitElement {
   static styles = navButtonStyles;
@@ -141,6 +146,11 @@ export class FlintCarouselPrevious extends LitElement {
 /* ═══════════════════════════════════════════════════════════════════════════
    FlintCarouselNext
 ═══════════════════════════════════════════════════════════════════════════ */
+/**
+ * Carousel Next: navigation button to go to the next slide.
+ *
+ * @slot - Custom icon content, replaces default chevron.
+ */
 @customElement('flint-carousel-next')
 export class FlintCarouselNext extends LitElement {
   static styles = navButtonStyles;
@@ -179,6 +189,8 @@ export class FlintCarouselNext extends LitElement {
 ═══════════════════════════════════════════════════════════════════════════ */
 /**
  * Carousel: a slideshow component for cycling through content.
+ *
+ * @slot - Carousel content: flint-carousel-content, flint-carousel-previous, flint-carousel-next.
  *
  * @fires flint-carousel-change - Fired when the active slide changes.
  */

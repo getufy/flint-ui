@@ -5,10 +5,18 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintListItemText as FlintListItemTextElement } from '@getufy/flint-ui/list/flint-list';
 
+/**
+ * flint-list-item-text: A container for text content.
+ */
+export interface FlintListItemTextProps extends React.HTMLAttributes<FlintListItemTextElement> {
+    /** Primary text content of the list item. */
+    primary?: string;
+    /** Secondary text content of the list item. */
+    secondary?: string;
+}
+
 export const FlintListItemText = createComponent({
     tagName: 'flint-list-item-text',
     elementClass: FlintListItemTextElement,
     react: React,
-});
-
-export type FlintListItemTextProps = React.ComponentProps<typeof FlintListItemText>;
+}) as unknown as React.ForwardRefExoticComponent<FlintListItemTextProps & React.RefAttributes<FlintListItemTextElement>>;

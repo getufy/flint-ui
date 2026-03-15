@@ -5,13 +5,36 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintSpeedDialAction as FlintSpeedDialActionElement } from '@getufy/flint-ui/speed-dial/flint-speed-dial';
 
+export interface FlintSpeedDialActionClickDetail {
+    name: string;
+    tooltipTitle: string;
+}
+
+/**
+ * A single action item inside a `flint-speed-dial`.
+ *
+ * @slot - Icon content for the action button.
+ */
+export interface FlintSpeedDialActionProps extends React.HTMLAttributes<FlintSpeedDialActionElement> {
+    /** Programmatic identifier for this action, included in the click event detail. */
+    name?: string;
+    /** Tooltip text shown alongside the action and used as aria-label. */
+    tooltipTitle?: string;
+    /** Forces the tooltip to be visible regardless of hover state. */
+    tooltipOpen?: boolean;
+    /** Tooltip placement relative to the action button. */
+    tooltipPlacement?: 'left' | 'right' | 'top' | 'bottom';
+    /** If true, the action button is disabled. */
+    disabled?: boolean;
+    /** Fired when the action button is clicked. */
+    onFlintSpeedDialActionClick?: (event: CustomEvent<FlintSpeedDialActionClickDetail>) => void;
+}
+
 export const FlintSpeedDialAction = createComponent({
     tagName: 'flint-speed-dial-action',
     elementClass: FlintSpeedDialActionElement,
     react: React,
     events: {
-        onFlintSpeedDialActionClick: 'flint-speed-dial-action-click' as EventName<CustomEvent>,
+        onFlintSpeedDialActionClick: 'flint-speed-dial-action-click' as EventName<CustomEvent<FlintSpeedDialActionClickDetail>>,
     },
-});
-
-export type FlintSpeedDialActionProps = React.ComponentProps<typeof FlintSpeedDialAction>;
+}) as unknown as React.ForwardRefExoticComponent<FlintSpeedDialActionProps & React.RefAttributes<FlintSpeedDialActionElement>>;

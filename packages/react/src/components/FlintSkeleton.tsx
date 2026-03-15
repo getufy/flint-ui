@@ -5,10 +5,26 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintSkeleton as FlintSkeletonElement } from '@getufy/flint-ui/skeleton/flint-skeleton';
 
+/**
+ * Skeletons display a placeholder preview of content before data gets loaded.
+ */
+export interface FlintSkeletonProps extends React.HTMLAttributes<FlintSkeletonElement> {
+    /** If true, applies dark-theme styles regardless of OS preference. */
+    dark?: boolean;
+    /** The animation type. */
+    animation?: 'pulse' | 'wave' | 'none';
+    /** The shape of the skeleton. */
+    variant?: 'text' | 'circular' | 'rectangular' | 'rounded';
+    /** The width of the skeleton. Accepts any CSS length value (e.g. '200px', '50%'). */
+    width?: string;
+    /** The height of the skeleton. Accepts any CSS length value. */
+    height?: string;
+    /** Accessible label announced by screen readers. Set to '' to silence. */
+    label?: string;
+}
+
 export const FlintSkeleton = createComponent({
     tagName: 'flint-skeleton',
     elementClass: FlintSkeletonElement,
     react: React,
-});
-
-export type FlintSkeletonProps = React.ComponentProps<typeof FlintSkeleton>;
+}) as unknown as React.ForwardRefExoticComponent<FlintSkeletonProps & React.RefAttributes<FlintSkeletonElement>>;

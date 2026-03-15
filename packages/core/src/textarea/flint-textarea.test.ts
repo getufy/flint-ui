@@ -239,7 +239,7 @@ describe('flint-textarea', () => {
     // ── Help text ────────────────────────────────────────────────────────────
 
     it('renders help text', async () => {
-        const el = await fixture<FlintTextarea>(html`<flint-textarea help-text="Enter a message."></flint-textarea>`);
+        const el = await fixture<FlintTextarea>(html`<flint-textarea helper-text="Enter a message."></flint-textarea>`);
         const p = el.shadowRoot!.querySelector('.help-text');
         expect(p).toBeTruthy();
         expect(p!.textContent?.trim()).toBe('Enter a message.');
@@ -247,7 +247,7 @@ describe('flint-textarea', () => {
 
     it('error message takes precedence over help text', async () => {
         const el = await fixture<FlintTextarea>(html`
-      <flint-textarea help-text="Hint" error-message="Error occurred"></flint-textarea>
+      <flint-textarea helper-text="Hint" error-message="Error occurred"></flint-textarea>
     `);
         const alert = el.shadowRoot!.querySelector('[role="alert"]');
         expect(alert).toBeTruthy();
@@ -367,7 +367,7 @@ describe('flint-textarea', () => {
     });
 
     it('aria-describedby points to the description element id', async () => {
-        const el = await fixture<FlintTextarea>(html`<flint-textarea help-text="hint"></flint-textarea>`);
+        const el = await fixture<FlintTextarea>(html`<flint-textarea helper-text="hint"></flint-textarea>`);
         const ta = el.shadowRoot!.querySelector('textarea')!;
         const desc = el.shadowRoot!.querySelector('.help-text')!;
         expect(desc.id).toMatch(/^flint-textarea-desc-\d+$/);
@@ -678,19 +678,19 @@ describe('flint-textarea', () => {
     });
 
     it('aria-describedby is present when helpText is set', async () => {
-        const el = await fixture<FlintTextarea>(html`<flint-textarea help-text="Hint"></flint-textarea>`);
+        const el = await fixture<FlintTextarea>(html`<flint-textarea helper-text="Hint"></flint-textarea>`);
         const ta = el.shadowRoot!.querySelector('textarea')!;
         expect(ta.hasAttribute('aria-describedby')).toBe(true);
     });
 
     it('aria-describedby is present when error=true and helpText only', async () => {
-        const el = await fixture<FlintTextarea>(html`<flint-textarea error help-text="Hint"></flint-textarea>`);
+        const el = await fixture<FlintTextarea>(html`<flint-textarea error helper-text="Hint"></flint-textarea>`);
         const ta = el.shadowRoot!.querySelector('textarea')!;
         expect(ta.hasAttribute('aria-describedby')).toBe(true);
     });
 
     it('aria-describedby is present when both errorMessage and helpText are set', async () => {
-        const el = await fixture<FlintTextarea>(html`<flint-textarea error-message="Err" help-text="Hint"></flint-textarea>`);
+        const el = await fixture<FlintTextarea>(html`<flint-textarea error-message="Err" helper-text="Hint"></flint-textarea>`);
         const ta = el.shadowRoot!.querySelector('textarea')!;
         expect(ta.hasAttribute('aria-describedby')).toBe(true);
     });
@@ -721,7 +721,7 @@ describe('flint-textarea', () => {
     // ── helpText-only renders without role=alert ─────────────────────────────
 
     it('helpText renders without role=alert', async () => {
-        const el = await fixture<FlintTextarea>(html`<flint-textarea help-text="Helpful hint"></flint-textarea>`);
+        const el = await fixture<FlintTextarea>(html`<flint-textarea helper-text="Helpful hint"></flint-textarea>`);
         const p = el.shadowRoot!.querySelector('.help-text')!;
         expect(p).toBeTruthy();
         expect(p.getAttribute('role')).toBeNull();

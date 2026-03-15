@@ -1,10 +1,28 @@
 /**
  * Code generators for React wrappers using @lit/react's createComponent().
  */
-import type { ComponentMeta } from './types.js';
+import type { ComponentMeta, EventMeta } from './types.js';
+import { isSimpleType } from './parse-lit.js';
 
 /** Core package name — React wrappers import from this package. */
 const CORE_PKG = '@getufy/flint-ui';
+
+/**
+ * React HTML event handler prop names that exist on React.HTMLAttributes.
+ * If a Lit event maps to one of these, the explicit interface must use Omit
+ * to avoid TS2430 (interface incorrectly extends).
+ */
+const REACT_HTML_EVENT_PROPS = new Set([
+    'onCopy', 'onCut', 'onPaste', 'onCompositionEnd', 'onCompositionStart', 'onCompositionUpdate',
+    'onFocus', 'onBlur', 'onChange', 'onInput', 'onSubmit', 'onReset', 'onInvalid',
+    'onClick', 'onContextMenu', 'onDoubleClick', 'onDrag', 'onDragEnd', 'onDragEnter',
+    'onDragLeave', 'onDragOver', 'onDragStart', 'onDrop', 'onMouseDown', 'onMouseEnter',
+    'onMouseLeave', 'onMouseMove', 'onMouseOut', 'onMouseOver', 'onMouseUp',
+    'onSelect', 'onTouchCancel', 'onTouchEnd', 'onTouchMove', 'onTouchStart',
+    'onScroll', 'onWheel', 'onKeyDown', 'onKeyPress', 'onKeyUp',
+    'onAnimationStart', 'onAnimationEnd', 'onAnimationIteration',
+    'onTransitionEnd', 'onLoad', 'onError', 'onAbort',
+]);
 
 // ─── helpers ────────────────────────────────────────────────────────────────
 
@@ -45,6 +63,22 @@ export function generateEventsFile(meta: ComponentMeta): string {
 
 // ─── React wrapper component (using @lit/react) ────────────────────────────
 
+/** Compute the detail interface name for a React event prop. */
+function detailInterfaceName(reactProp: string): string {
+    return reactProp.replace(/^on/, '') + 'Detail';
+}
+
+/** Get the event type annotation string for a given event. */
+function eventTypeRef(e: EventMeta): string {
+    if (e.detailType && e.detailType !== 'unknown') {
+        if (e.detailType.startsWith('{')) {
+            return `CustomEvent<${detailInterfaceName(e.reactProp)}>`;
+        }
+        return `CustomEvent<${e.detailType}>`;
+    }
+    return 'CustomEvent';
+}
+
 /**
  * Generate the content of `react/src/components/<ClassName>.tsx`.
  *
@@ -53,6 +87,9 @@ export function generateEventsFile(meta: ComponentMeta): string {
  * - Event forwarding with proper typing
  * - Ref forwarding
  * - React 18 + 19 compatibility
+ *
+ * Generates explicit prop interfaces for full IDE IntelliSense and
+ * typed event detail generics for type-safe event handlers.
  */
 export function generateWrapper(
     meta: ComponentMeta,
@@ -61,7 +98,7 @@ export function generateWrapper(
     /** Absolute path to the events output dir */
     _eventsDir: string,
 ): string {
-    const { tagName, className, events, sourceFile } = meta;
+    const { tagName, className, events, sourceFile, props, slots, description } = meta;
 
     const srcImport = packageImport(sourceFile);
     const hasEvents = events.length > 0;
@@ -76,7 +113,80 @@ export function generateWrapper(
     lines.push(`import { ${className} as ${className}Element } from '${srcImport}';`);
     lines.push('');
 
-    // Build the createComponent call
+    // ── Event detail interfaces ──
+    for (const e of events) {
+        if (e.detailType && e.detailType !== 'unknown' && e.detailType.startsWith('{')) {
+            const name = detailInterfaceName(e.reactProp);
+            const body = e.detailType
+                .slice(1, -1) // strip outer { }
+                .split(';')
+                .filter(s => s.trim())
+                .map(s => `    ${s.trim()};`)
+                .join('\n');
+            lines.push(`export interface ${name} {`);
+            lines.push(body);
+            lines.push(`}`);
+            lines.push('');
+        }
+    }
+
+    // ── Explicit props interface ──
+    // JSDoc with description and slot documentation
+    const jsdocLines: string[] = [];
+    if (description) jsdocLines.push(` * ${description}`);
+    if (slots.length > 0) {
+        if (jsdocLines.length > 0) jsdocLines.push(` *`);
+        for (const s of slots) {
+            const slotDisplay = s.name || '(default)';
+            jsdocLines.push(` * @slot ${slotDisplay}${s.description ? ` - ${s.description}` : ''}`);
+        }
+    }
+    if (jsdocLines.length > 0) {
+        lines.push(`/**`);
+        for (const l of jsdocLines) lines.push(l);
+        lines.push(` */`);
+    }
+
+    // Determine if any event props conflict with React.HTMLAttributes
+    const conflictingProps = events
+        .map(e => e.reactProp)
+        .filter(p => REACT_HTML_EVENT_PROPS.has(p));
+    // Also check component props that might conflict with HTMLAttributes
+    const htmlAttrConflicts = props
+        .map(p => p.name)
+        .filter(p => ['className', 'style', 'id', 'title', 'lang', 'dir', 'hidden', 'role', 'slot', 'tabIndex', 'color', 'defaultValue', 'defaultChecked'].includes(p));
+    const allConflicts = [...new Set([...conflictingProps, ...htmlAttrConflicts])];
+
+    if (allConflicts.length > 0) {
+        const omitKeys = allConflicts.map(k => `'${k}'`).join(' | ');
+        lines.push(`export interface ${className}Props extends Omit<React.HTMLAttributes<${className}Element>, ${omitKeys}> {`);
+    } else {
+        lines.push(`export interface ${className}Props extends React.HTMLAttributes<${className}Element> {`);
+    }
+
+    // Component-specific props
+    for (const p of props) {
+        if (p.description) {
+            lines.push(`    /** ${p.description} */`);
+        }
+        const type = isSimpleType(p.tsType)
+            ? p.tsType
+            : `${className}Element['${p.name}']`;
+        lines.push(`    ${p.name}?: ${type};`);
+    }
+
+    // Event handler props
+    for (const e of events) {
+        if (e.description) {
+            lines.push(`    /** ${e.description} */`);
+        }
+        lines.push(`    ${e.reactProp}?: (event: ${eventTypeRef(e)}) => void;`);
+    }
+
+    lines.push(`}`);
+    lines.push('');
+
+    // ── createComponent call with type cast ──
     lines.push(`export const ${className} = createComponent({`);
     lines.push(`    tagName: '${tagName}',`);
     lines.push(`    elementClass: ${className}Element,`);
@@ -85,14 +195,14 @@ export function generateWrapper(
     if (hasEvents) {
         lines.push(`    events: {`);
         for (const e of events) {
-            lines.push(`        ${e.reactProp}: '${e.domName}' as EventName<CustomEvent>,`);
+            lines.push(`        ${e.reactProp}: '${e.domName}' as EventName<${eventTypeRef(e)}>,`);
         }
         lines.push(`    },`);
     }
 
-    lines.push(`});`);
-    lines.push('');
-    lines.push(`export type ${className}Props = React.ComponentProps<typeof ${className}>;`);
+    lines.push(
+        `}) as unknown as React.ForwardRefExoticComponent<${className}Props & React.RefAttributes<${className}Element>>;`,
+    );
     lines.push('');
 
     return lines.join('\n');

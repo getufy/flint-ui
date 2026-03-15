@@ -11,6 +11,12 @@ A modern, lightweight web component library built with [Lit](https://lit.dev). 5
 npm install @getufy/flint-ui lit
 ```
 
+## Resources
+
+- **[Documentation](https://getufy.github.io/flint-ui/)** — full component docs, guides, and examples
+- **[Live Storybook](https://getufy.github.io/flint-ui/storybook/)** — interactive component playground
+- **[React wrappers](https://www.npmjs.com/package/@getufy/flint-ui-react)** — `@getufy/flint-ui-react` for React projects
+
 ## Usage
 
 ```html

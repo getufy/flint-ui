@@ -5,10 +5,21 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintToaster as FlintToasterElement } from '@getufy/flint-ui/sonner/flint-sonner';
 
+/**
+ * Toast container. Place **once** in your application (typically in `<body>`).
+Toasts are created imperatively via the `toast()` function.
+ */
+export interface FlintToasterProps extends React.HTMLAttributes<FlintToasterElement> {
+    /** Position of the toast stack relative to the viewport. */
+    position?: FlintToasterElement['position'];
+    /** Default auto-dismiss duration in milliseconds. */
+    duration?: number;
+    /** Maximum number of toasts visible simultaneously. */
+    visibleToasts?: number;
+}
+
 export const FlintToaster = createComponent({
     tagName: 'flint-toaster',
     elementClass: FlintToasterElement,
     react: React,
-});
-
-export type FlintToasterProps = React.ComponentProps<typeof FlintToaster>;
+}) as unknown as React.ForwardRefExoticComponent<FlintToasterProps & React.RefAttributes<FlintToasterElement>>;

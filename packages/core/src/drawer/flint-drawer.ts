@@ -7,7 +7,7 @@ import '../backdrop/flint-backdrop.js';
  * Navigation drawers provide ergonomic access to destinations in a site or app.
  *
  * @slot - Drawer content.
- * @fires flint-drawer-close - Dispatched when the drawer requests to be closed (backdrop click or Escape).
+ * @fires flint-drawer-close - Dispatched when the drawer requests to be closed (backdrop click or Escape). detail: `{ open: false }`
  */
 @customElement('flint-drawer')
 export class FlintDrawer extends LitElement {
@@ -15,6 +15,12 @@ export class FlintDrawer extends LitElement {
 
     /** Whether the drawer is open. */
     @property({ type: Boolean, reflect: true }) open = false;
+
+    /**
+     * Initial open state for uncontrolled usage.
+     * Has no effect after the element has connected to the DOM.
+     */
+    @property({ type: Boolean, attribute: 'default-open' }) defaultOpen = false;
     /** Side from which the drawer slides in. */
     @property({ type: String, reflect: true }) anchor: 'left' | 'right' | 'top' | 'bottom' = 'left';
     /** Drawer behavior mode. */
@@ -25,6 +31,8 @@ export class FlintDrawer extends LitElement {
     @property({ type: Boolean, reflect: true }) container = false;
     /** Accessible label for the drawer panel (used as aria-label on the panel). */
     @property({ type: String }) label = 'Drawer';
+
+    private _firstUpdate = true;
 
     /** Element that had focus before the drawer opened; restored on close. */
     private _lastFocused: HTMLElement | null = null;
@@ -37,6 +45,16 @@ export class FlintDrawer extends LitElement {
             this._close();
         }
     };
+
+    override willUpdate(changed: PropertyValues) {
+        if (this._firstUpdate) {
+            this._firstUpdate = false;
+            if (this.defaultOpen && !this.open) {
+                this.open = true;
+            }
+        }
+        void changed;
+    }
 
     connectedCallback() {
         super.connectedCallback();
@@ -64,7 +82,7 @@ export class FlintDrawer extends LitElement {
     }
 
     private _close() {
-        this.dispatchEvent(new CustomEvent('flint-drawer-close', { bubbles: true, composed: true }));
+        this.dispatchEvent(new CustomEvent('flint-drawer-close', { bubbles: true, composed: true, detail: { open: false } }));
     }
 
     render() {

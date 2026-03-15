@@ -240,6 +240,172 @@ function extractPublicMethods(node: ts.ClassDeclaration, sf: ts.SourceFile): Met
     return methods;
 }
 
+// ─── event detail type extraction ───────────────────────────────────────────
+
+/** Check whether a TS type string is a "simple" type that needs no imports. */
+function isSimpleType(t: string): boolean {
+    const trimmed = t.trim();
+    const primitives = ['string', 'number', 'boolean', 'void', 'null', 'undefined', 'unknown', 'any', 'never', 'object'];
+
+    if (primitives.includes(trimmed)) return true;
+    if (trimmed.endsWith('[]') && isSimpleType(trimmed.slice(0, -2))) return true;
+    if (/^'[^']*'$/.test(trimmed) || /^"[^"]*"$/.test(trimmed) || /^\d+$/.test(trimmed)) return true;
+    if (trimmed === 'true' || trimmed === 'false') return true;
+    if (trimmed.includes('|')) {
+        return trimmed.split('|').every(part => isSimpleType(part.trim()));
+    }
+    // Object type literals are safe (they contain their own types)
+    if (trimmed.startsWith('{') && trimmed.endsWith('}')) return true;
+    return false;
+}
+
+/** Resolve the TypeScript type of `this.propName` from class members. */
+function resolveThisPropertyType(
+    propName: string,
+    props: PropMeta[],
+    classNode: ts.ClassDeclaration,
+    sf: ts.SourceFile,
+): string {
+    // Check @property props first
+    const prop = props.find(p => p.name === propName);
+    if (prop) return prop.tsType;
+
+    // Check class fields (including private ones)
+    for (const member of classNode.members) {
+        if (ts.isPropertyDeclaration(member) &&
+            ts.isIdentifier(member.name) &&
+            member.name.text === propName) {
+            if (member.type) return member.type.getText(sf);
+            if (member.initializer) {
+                if (ts.isStringLiteral(member.initializer)) return 'string';
+                if (ts.isNumericLiteral(member.initializer)) return 'number';
+                if (member.initializer.kind === ts.SyntaxKind.TrueKeyword ||
+                    member.initializer.kind === ts.SyntaxKind.FalseKeyword) return 'boolean';
+                if (ts.isArrayLiteralExpression(member.initializer)) return 'unknown[]';
+            }
+        }
+    }
+    return 'unknown';
+}
+
+/** Resolve a TS expression to its approximate type string. */
+function resolveExprType(
+    expr: ts.Expression,
+    props: PropMeta[],
+    classNode: ts.ClassDeclaration,
+    sf: ts.SourceFile,
+): string {
+    // this.propName
+    if (ts.isPropertyAccessExpression(expr) &&
+        expr.expression.kind === ts.SyntaxKind.ThisKeyword) {
+        return resolveThisPropertyType(expr.name.text, props, classNode, sf);
+    }
+
+    // Object literal
+    if (ts.isObjectLiteralExpression(expr)) {
+        const entries: string[] = [];
+        for (const prop of expr.properties) {
+            if (ts.isPropertyAssignment(prop) && ts.isIdentifier(prop.name)) {
+                const type = resolveExprType(prop.initializer, props, classNode, sf);
+                entries.push(`${prop.name.text}: ${type}`);
+            } else if (ts.isShorthandPropertyAssignment(prop)) {
+                const type = resolveThisPropertyType(prop.name.text, props, classNode, sf);
+                entries.push(`${prop.name.text}: ${type}`);
+            }
+        }
+        return entries.length > 0 ? `{ ${entries.join('; ')} }` : 'unknown';
+    }
+
+    // Literals
+    if (ts.isStringLiteral(expr) || ts.isNoSubstitutionTemplateLiteral(expr)) return 'string';
+    if (ts.isNumericLiteral(expr)) return 'number';
+    if (expr.kind === ts.SyntaxKind.TrueKeyword || expr.kind === ts.SyntaxKind.FalseKeyword) return 'boolean';
+    if (expr.kind === ts.SyntaxKind.NullKeyword) return 'null';
+    if (expr.kind === ts.SyntaxKind.UndefinedKeyword) return 'undefined';
+
+    // Array literal
+    if (ts.isArrayLiteralExpression(expr)) {
+        if (expr.elements.length === 1 && ts.isSpreadElement(expr.elements[0])) {
+            const spreadType = resolveExprType(expr.elements[0].expression, props, classNode, sf);
+            if (spreadType.endsWith('[]')) return spreadType;
+        }
+        return 'unknown[]';
+    }
+
+    return 'unknown';
+}
+
+/**
+ * Resolve the type of an expression with a fallback: if the expression is
+ * unresolvable but the property key matches a known @property name, use that
+ * property's type.
+ */
+function resolveExprTypeWithKeyHint(
+    expr: ts.Expression,
+    keyName: string,
+    props: PropMeta[],
+    classNode: ts.ClassDeclaration,
+    sf: ts.SourceFile,
+): string {
+    const resolved = resolveExprType(expr, props, classNode, sf);
+    if (resolved !== 'unknown') return resolved;
+    // Fallback: match the detail key name to a known @property or class field
+    return resolveThisPropertyType(keyName, props, classNode, sf);
+}
+
+/**
+ * Extract the detail type from a `new CustomEvent(name, { detail: ... })` call.
+ * Returns a type string like `{ value: number }` or undefined.
+ */
+function extractDetailType(
+    newExpr: ts.NewExpression,
+    props: PropMeta[],
+    classNode: ts.ClassDeclaration,
+    sf: ts.SourceFile,
+): string | undefined {
+    if (!newExpr.arguments || newExpr.arguments.length < 2) return undefined;
+    const optionsArg = newExpr.arguments[1];
+    if (!ts.isObjectLiteralExpression(optionsArg)) return undefined;
+
+    const detailProp = optionsArg.properties.find(p =>
+        ts.isPropertyAssignment(p) &&
+        ts.isIdentifier(p.name) &&
+        p.name.text === 'detail'
+    );
+    if (!detailProp || !ts.isPropertyAssignment(detailProp)) return undefined;
+
+    const detailValue = detailProp.initializer;
+
+    // Special handling: if detail is an object literal, use key-name heuristic
+    if (ts.isObjectLiteralExpression(detailValue)) {
+        const entries: string[] = [];
+        for (const prop of detailValue.properties) {
+            if (ts.isPropertyAssignment(prop) && ts.isIdentifier(prop.name)) {
+                const key = prop.name.text;
+                let type = resolveExprTypeWithKeyHint(prop.initializer, key, props, classNode, sf);
+                // Reject custom type references that would need imports
+                if (!isSimpleType(type)) type = 'unknown';
+                entries.push(`${key}: ${type}`);
+            } else if (ts.isShorthandPropertyAssignment(prop)) {
+                const key = prop.name.text;
+                let type = resolveThisPropertyType(key, props, classNode, sf);
+                if (!isSimpleType(type)) type = 'unknown';
+                entries.push(`${key}: ${type}`);
+            }
+        }
+        if (entries.length > 0) {
+            const hasUnknown = entries.some(e => e.endsWith(': unknown'));
+            return hasUnknown ? undefined : `{ ${entries.join('; ')} }`;
+        }
+        return undefined;
+    }
+
+    const type = resolveExprType(detailValue, props, classNode, sf);
+    return type !== 'unknown' ? type : undefined;
+}
+
+export { isSimpleType };
+
 // ─── public API ─────────────────────────────────────────────────────────────
 
 export function parseComponentFile(
@@ -394,11 +560,13 @@ function parseClass(
             // Skip internal events (prefixed with _)
             if (!domName.startsWith('_') && !seenEvents.has(domName)) {
                 seenEvents.add(domName);
+                const detailType = extractDetailType(n, props, node, sf);
                 events.push({
                     domName,
                     reactProp: domEventToReactProp(domName),
                     constKey: eventConstKey(tagName!, domName),
                     description: firesMap.get(domName) ?? '',
+                    detailType,
                 });
             }
         }

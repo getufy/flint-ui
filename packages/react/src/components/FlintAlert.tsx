@@ -5,13 +5,33 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintAlert as FlintAlertElement } from '@getufy/flint-ui/alert/flint-alert';
 
+export interface FlintAlertCloseDetail {
+    open: boolean;
+    severity: 'info' | 'success' | 'warning' | 'error';
+}
+
+/**
+ * Alerts display brief messages for the user without interrupting their use of the app.
+ *
+ * @slot - The message content of the alert.
+ * @slot icon - Optional icon to display instead of the default severity icon.
+ */
+export interface FlintAlertProps extends Omit<React.HTMLAttributes<FlintAlertElement>, 'title'> {
+    /** The severity level of the alert. */
+    severity?: 'info' | 'success' | 'warning' | 'error';
+    /** An optional title for the alert. */
+    title?: string;
+    /** Whether the alert can be dismissed by the user. */
+    dismissible?: boolean;
+    /** Fired when the alert's close button is clicked. detail: `{ open: false, severity: string }` */
+    onFlintAlertClose?: (event: CustomEvent<FlintAlertCloseDetail>) => void;
+}
+
 export const FlintAlert = createComponent({
     tagName: 'flint-alert',
     elementClass: FlintAlertElement,
     react: React,
     events: {
-        onFlintAlertClose: 'flint-alert-close' as EventName<CustomEvent>,
+        onFlintAlertClose: 'flint-alert-close' as EventName<CustomEvent<FlintAlertCloseDetail>>,
     },
-});
-
-export type FlintAlertProps = React.ComponentProps<typeof FlintAlert>;
+}) as unknown as React.ForwardRefExoticComponent<FlintAlertProps & React.RefAttributes<FlintAlertElement>>;

@@ -5,14 +5,46 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintCopyButton as FlintCopyButtonElement } from '@getufy/flint-ui/copy-button/flint-copy-button';
 
+export interface FlintCopyErrorDetail {
+    reason: string;
+}
+
+export interface FlintCopyDetail {
+    value: string;
+}
+
+/**
+ * Copy Button: copies text to the clipboard with visual feedback.
+ */
+export interface FlintCopyButtonProps extends React.HTMLAttributes<FlintCopyButtonElement> {
+    /** The text value to copy. */
+    value?: string;
+    /** An id referencing another element to copy from. */
+    from?: string;
+    /** Disables the copy button. */
+    disabled?: boolean;
+    /** Label shown in the tooltip (idle state). */
+    copyLabel?: string;
+    /** Label shown in the tooltip after successful copy. */
+    successLabel?: string;
+    /** Label shown in the tooltip on copy error. */
+    errorLabel?: string;
+    /** Duration (ms) to show feedback before returning to idle. */
+    feedbackDuration?: number;
+    /** Tooltip placement. */
+    tooltipPlacement?: 'top' | 'right' | 'bottom' | 'left';
+    /** Fired when the copy operation fails. */
+    onFlintCopyError?: (event: CustomEvent<FlintCopyErrorDetail>) => void;
+    /** Fired after a successful copy operation. */
+    onFlintCopy?: (event: CustomEvent<FlintCopyDetail>) => void;
+}
+
 export const FlintCopyButton = createComponent({
     tagName: 'flint-copy-button',
     elementClass: FlintCopyButtonElement,
     react: React,
     events: {
-        onFlintCopyError: 'flint-copy-error' as EventName<CustomEvent>,
-        onFlintCopy: 'flint-copy' as EventName<CustomEvent>,
+        onFlintCopyError: 'flint-copy-error' as EventName<CustomEvent<FlintCopyErrorDetail>>,
+        onFlintCopy: 'flint-copy' as EventName<CustomEvent<FlintCopyDetail>>,
     },
-});
-
-export type FlintCopyButtonProps = React.ComponentProps<typeof FlintCopyButton>;
+}) as unknown as React.ForwardRefExoticComponent<FlintCopyButtonProps & React.RefAttributes<FlintCopyButtonElement>>;

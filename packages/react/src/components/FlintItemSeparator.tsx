@@ -5,10 +5,14 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintItemSeparator as FlintItemSeparatorElement } from '@getufy/flint-ui/item/flint-item';
 
+/**
+ * Visual separator between items in a group.
+ */
+export interface FlintItemSeparatorProps extends React.HTMLAttributes<FlintItemSeparatorElement> {
+}
+
 export const FlintItemSeparator = createComponent({
     tagName: 'flint-item-separator',
     elementClass: FlintItemSeparatorElement,
     react: React,
-});
-
-export type FlintItemSeparatorProps = React.ComponentProps<typeof FlintItemSeparator>;
+}) as unknown as React.ForwardRefExoticComponent<FlintItemSeparatorProps & React.RefAttributes<FlintItemSeparatorElement>>;

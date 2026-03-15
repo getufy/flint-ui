@@ -5,10 +5,19 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintButton as FlintButtonElement } from '@getufy/flint-ui/button/flint-button';
 
+export interface FlintButtonProps extends React.HTMLAttributes<FlintButtonElement> {
+    /** Visual style variant of the button. */
+    variant?: 'primary' | 'secondary' | 'destructive';
+    /** Size of the button. */
+    size?: 'small' | 'medium' | 'large';
+    /** Disables the button and prevents interaction. */
+    disabled?: boolean;
+    /** Whether the button stretches to fill its container width. */
+    fullWidth?: boolean;
+}
+
 export const FlintButton = createComponent({
     tagName: 'flint-button',
     elementClass: FlintButtonElement,
     react: React,
-});
-
-export type FlintButtonProps = React.ComponentProps<typeof FlintButton>;
+}) as unknown as React.ForwardRefExoticComponent<FlintButtonProps & React.RefAttributes<FlintButtonElement>>;

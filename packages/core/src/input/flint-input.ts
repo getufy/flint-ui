@@ -1,4 +1,4 @@
-import { LitElement, unsafeCSS, html } from 'lit';
+import { LitElement, unsafeCSS, html, PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FormAssociated } from '../mixins/form-associated.js';
@@ -35,8 +35,8 @@ export class FlintInput extends FormAssociated(LitElement) {
     placeholder = '';
 
     /** Help text displayed below the input. */
-    @property({ type: String, attribute: 'help-text' })
-    helpText = '';
+    @property({ type: String, attribute: 'helper-text' })
+    helperText = '';
 
     /** Whether the input is in an error state. */
     @property({ type: Boolean })
@@ -70,13 +70,27 @@ export class FlintInput extends FormAssociated(LitElement) {
     @property({ type: String, reflect: true })
     size: 'sm' | 'default' | 'lg' = 'default';
 
+    /** Initial value for uncontrolled usage. */
+    @property({ type: String, attribute: 'default-value' })
+    defaultValue?: string;
+
     /** Expose the internal <input> for direct access */
     get inputElement(): HTMLInputElement {
         return this.shadowRoot!.querySelector('input')!;
     }
 
+    protected override willUpdate(changed: PropertyValues) {
+        super.willUpdate(changed);
+        if (this._firstUpdate) {
+            this._firstUpdate = false;
+            if (this.defaultValue && !this.value) {
+                this.value = this.defaultValue;
+            }
+        }
+    }
+
     formResetCallback() {
-        this.value = '';
+        this.value = this.defaultValue ?? '';
         this._updateFormValue();
     }
 
@@ -87,7 +101,7 @@ export class FlintInput extends FormAssociated(LitElement) {
 
     render() {
         const errorState = this.error || !!this.errorMessage;
-        const descId = (errorState && this.errorMessage) || this.helpText
+        const descId = (errorState && this.errorMessage) || this.helperText
             ? `${this._inputId}-desc`
             : undefined;
 
@@ -118,8 +132,8 @@ export class FlintInput extends FormAssociated(LitElement) {
 
         ${errorState && this.errorMessage
                 ? html`<p id=${descId} class="help-text error-text" part="error-text" role="alert">${this.errorMessage}</p>`
-                : this.helpText
-                    ? html`<p id=${descId} class="help-text" part="help-text">${this.helpText}</p>`
+                : this.helperText
+                    ? html`<p id=${descId} class="help-text" part="help-text">${this.helperText}</p>`
                     : ''}
       </div>
     `;

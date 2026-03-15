@@ -5,10 +5,30 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintTypography as FlintTypographyElement } from '@getufy/flint-ui/typography/flint-typography';
 
+/**
+ * Typography component for displaying text with consistent theme styles.
+ *
+ * @slot - The text content.
+ */
+export interface FlintTypographyProps extends Omit<React.HTMLAttributes<FlintTypographyElement>, 'color'> {
+    /** Variant of the typography. */
+    variant?: FlintTypographyElement['variant'];
+    /** The color of the text. */
+    color?: FlintTypographyElement['color'];
+    /** Override the rendered HTML tag. */
+    component?: string;
+    /** Text alignment. */
+    align?: 'left' | 'center' | 'right' | 'justify';
+    /** If true, text is truncated with an ellipsis. */
+    noWrap?: boolean;
+    /** If true, adds a bottom margin. */
+    gutterBottom?: boolean;
+    /** If true, adds paragraph margin bottom. */
+    paragraph?: boolean;
+}
+
 export const FlintTypography = createComponent({
     tagName: 'flint-typography',
     elementClass: FlintTypographyElement,
     react: React,
-});
-
-export type FlintTypographyProps = React.ComponentProps<typeof FlintTypography>;
+}) as unknown as React.ForwardRefExoticComponent<FlintTypographyProps & React.RefAttributes<FlintTypographyElement>>;

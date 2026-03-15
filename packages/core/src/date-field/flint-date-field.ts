@@ -83,6 +83,8 @@ export class FlintDateField extends LitElement {
     @property({ type: Boolean, reflect: true }) error = false;
     /** Helper text shown below the field. */
     @property({ type: String, attribute: 'helper-text' }) helperText = '';
+    /** Error message displayed below the field when in error state. */
+    @property({ type: String, attribute: 'error-message' }) errorMessage = '';
 
     // Form-association internals — lets the element participate in HTMLFormElement / FormData
     private readonly _internals: ElementInternals = this.attachInternals();
@@ -461,7 +463,11 @@ export class FlintDateField extends LitElement {
         </div>
       </div>
 
-      ${this.helperText ? html`<small class="helper">${this.helperText}</small>` : nothing}
+      ${this.error && this.errorMessage
+          ? html`<small class="helper error-text" role="alert">${this.errorMessage}</small>`
+          : this.helperText
+              ? html`<small class="helper">${this.helperText}</small>`
+              : nothing}
     `;
     }
 }

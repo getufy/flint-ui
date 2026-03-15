@@ -5,10 +5,15 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintInputOtpSeparator as FlintInputOtpSeparatorElement } from '@getufy/flint-ui/input-otp/flint-input-otp';
 
+/**
+ * Visual separator between `flint-input-otp-group` elements.
+Renders a short horizontal bar.
+ */
+export interface FlintInputOtpSeparatorProps extends React.HTMLAttributes<FlintInputOtpSeparatorElement> {
+}
+
 export const FlintInputOtpSeparator = createComponent({
     tagName: 'flint-input-otp-separator',
     elementClass: FlintInputOtpSeparatorElement,
     react: React,
-});
-
-export type FlintInputOtpSeparatorProps = React.ComponentProps<typeof FlintInputOtpSeparator>;
+}) as unknown as React.ForwardRefExoticComponent<FlintInputOtpSeparatorProps & React.RefAttributes<FlintInputOtpSeparatorElement>>;

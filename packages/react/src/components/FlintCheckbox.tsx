@@ -5,13 +5,45 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintCheckbox as FlintCheckboxElement } from '@getufy/flint-ui/checkbox/flint-checkbox';
 
+export interface FlintCheckboxChangeDetail {
+    checked: boolean;
+    value: string;
+    indeterminate: boolean;
+}
+
+/**
+ * Checkbox: a form control for boolean selection.
+ */
+export interface FlintCheckboxProps extends Omit<React.HTMLAttributes<FlintCheckboxElement>, 'defaultChecked'> {
+    /** Whether the checkbox is checked. */
+    checked?: boolean;
+    /** Displays the checkbox in an indeterminate state. */
+    indeterminate?: boolean;
+    /** Disables the checkbox and prevents interaction. */
+    disabled?: boolean;
+    /** Marks the checkbox as required for form validation. */
+    required?: boolean;
+    /** Size of the checkbox control. */
+    size?: 'sm' | 'md' | 'lg';
+    /** Visible label text displayed next to the checkbox. */
+    label?: string;
+    /** Form field name used when submitting form data. */
+    name?: string;
+    /** Value submitted with form data when checked. */
+    value?: string;
+    /** Initial checked state for uncontrolled usage. */
+    defaultChecked?: boolean;
+    /** Accessible label for screen readers when no visible label is provided. */
+    ariaLabel?: string | null;
+    /** Fired when the checked state changes. */
+    onFlintCheckboxChange?: (event: CustomEvent<FlintCheckboxChangeDetail>) => void;
+}
+
 export const FlintCheckbox = createComponent({
     tagName: 'flint-checkbox',
     elementClass: FlintCheckboxElement,
     react: React,
     events: {
-        onFlintCheckboxChange: 'flint-checkbox-change' as EventName<CustomEvent>,
+        onFlintCheckboxChange: 'flint-checkbox-change' as EventName<CustomEvent<FlintCheckboxChangeDetail>>,
     },
-});
-
-export type FlintCheckboxProps = React.ComponentProps<typeof FlintCheckbox>;
+}) as unknown as React.ForwardRefExoticComponent<FlintCheckboxProps & React.RefAttributes<FlintCheckboxElement>>;

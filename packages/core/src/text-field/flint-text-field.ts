@@ -1,4 +1,4 @@
-import { LitElement, unsafeCSS, html } from 'lit';
+import { LitElement, unsafeCSS, html, PropertyValues } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import uiTextFieldStyles from './flint-text-field.css?inline';
@@ -31,9 +31,22 @@ export class FlintTextField extends LitElement {
     @property({ type: String }) helperText = '';
     /** Error message displayed below the input when in error state. */
     @property({ type: String }) errorMessage = '';
+    /** Initial value for uncontrolled usage. */
+    @property({ type: String, attribute: 'default-value' }) defaultValue = '';
 
     @state() private _focused = false;
+    private _firstUpdate = true;
 
+
+    protected override willUpdate(changed: PropertyValues) {
+        super.willUpdate(changed);
+        if (this._firstUpdate) {
+            this._firstUpdate = false;
+            if (this.defaultValue && !this.value) {
+                this.value = this.defaultValue;
+            }
+        }
+    }
 
     private _handleInput(e: InputEvent) {
         this.value = (e.target as HTMLInputElement).value;

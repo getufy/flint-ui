@@ -5,10 +5,23 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintInputOtpSlot as FlintInputOtpSlotElement } from '@getufy/flint-ui/input-otp/flint-input-otp';
 
+/**
+ * A single character cell in an OTP input.
+Place inside `flint-input-otp-group`. State is managed by `flint-input-otp`.
+ */
+export interface FlintInputOtpSlotProps extends React.HTMLAttributes<FlintInputOtpSlotElement> {
+    /** Zero-based position index of this slot. */
+    index?: number;
+    /** Character displayed. Set by the parent `flint-input-otp`. */
+    char?: string;
+    /** Whether the cursor is at this position. Set by the parent `flint-input-otp`. */
+    active?: boolean;
+    /** Error / invalid state. */
+    invalid?: boolean;
+}
+
 export const FlintInputOtpSlot = createComponent({
     tagName: 'flint-input-otp-slot',
     elementClass: FlintInputOtpSlotElement,
     react: React,
-});
-
-export type FlintInputOtpSlotProps = React.ComponentProps<typeof FlintInputOtpSlot>;
+}) as unknown as React.ForwardRefExoticComponent<FlintInputOtpSlotProps & React.RefAttributes<FlintInputOtpSlotElement>>;

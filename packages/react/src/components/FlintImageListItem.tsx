@@ -5,10 +5,29 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintImageListItem as FlintImageListItemElement } from '@getufy/flint-ui/image-list/flint-image-list-item';
 
+/**
+ * A single item inside a `flint-image-list`.
+ *
+ * @slot - Place an `<img>` or any content here.
+ * @slot bar - Place a `flint-image-list-item-bar` element here.
+ */
+export interface FlintImageListItemProps extends React.HTMLAttributes<FlintImageListItemElement> {
+    /** How many grid rows this item spans (quilted/woven only) */
+    rows?: number;
+    /** How many grid columns this item spans (quilted/woven only) */
+    cols?: number;
+    /** Position of the title bar: 'overlay' (default) or 'below' */
+    barPosition?: 'overlay' | 'below';
+    /** Woven variant: 'odd' or 'even' identity for alternating height */
+    weave?: 'odd' | 'even';
+    /** CSS aspect-ratio for the cell (e.g. "1/1", "4/3", "3/4", "16/9", "9/16"). */
+    aspectRatio?: string;
+    /** How the image fills the cell: 'cover' (default, crops to fill) */
+    fit?: FlintImageListItemElement['fit'];
+}
+
 export const FlintImageListItem = createComponent({
     tagName: 'flint-image-list-item',
     elementClass: FlintImageListItemElement,
     react: React,
-});
-
-export type FlintImageListItemProps = React.ComponentProps<typeof FlintImageListItem>;
+}) as unknown as React.ForwardRefExoticComponent<FlintImageListItemProps & React.RefAttributes<FlintImageListItemElement>>;

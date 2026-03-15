@@ -5,10 +5,11 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintButtonGroup as FlintButtonGroupElement } from '@getufy/flint-ui/button/flint-button-group';
 
+export interface FlintButtonGroupProps extends React.HTMLAttributes<FlintButtonGroupElement> {
+}
+
 export const FlintButtonGroup = createComponent({
     tagName: 'flint-button-group',
     elementClass: FlintButtonGroupElement,
     react: React,
-});
-
-export type FlintButtonGroupProps = React.ComponentProps<typeof FlintButtonGroup>;
+}) as unknown as React.ForwardRefExoticComponent<FlintButtonGroupProps & React.RefAttributes<FlintButtonGroupElement>>;

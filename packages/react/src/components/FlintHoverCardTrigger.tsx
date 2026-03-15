@@ -5,10 +5,17 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintHoverCardTrigger as FlintHoverCardTriggerElement } from '@getufy/flint-ui/hover-card/flint-hover-card';
 
+/**
+ * Trigger element for a hover card. Place inside `flint-hover-card`.
+Automatically wires up to the nearest `flint-hover-card` ancestor.
+ *
+ * @slot - The element that activates the hover card (link, button, avatar…).
+ */
+export interface FlintHoverCardTriggerProps extends React.HTMLAttributes<FlintHoverCardTriggerElement> {
+}
+
 export const FlintHoverCardTrigger = createComponent({
     tagName: 'flint-hover-card-trigger',
     elementClass: FlintHoverCardTriggerElement,
     react: React,
-});
-
-export type FlintHoverCardTriggerProps = React.ComponentProps<typeof FlintHoverCardTrigger>;
+}) as unknown as React.ForwardRefExoticComponent<FlintHoverCardTriggerProps & React.RefAttributes<FlintHoverCardTriggerElement>>;

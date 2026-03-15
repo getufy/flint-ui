@@ -7,7 +7,10 @@ import uiChipStyles from './flint-chip.css?inline';
 /**
  * Chip: a compact element representing an input, attribute, or action.
  *
- * @fires flint-chip-delete - Fired when the chip's delete icon is clicked.
+ * @slot avatar - Avatar element shown at start.
+ * @slot icon - Icon shown at start when no avatar.
+ *
+ * @fires flint-chip-delete - Fired when the chip's delete icon is clicked. detail: `{ value: string }`
  */
 @customElement('flint-chip')
 export class FlintChip extends LitElement {
@@ -55,7 +58,8 @@ export class FlintChip extends LitElement {
         if (this.disabled) return;
         this.dispatchEvent(new CustomEvent('flint-chip-delete', {
             bubbles: true,
-            composed: true
+            composed: true,
+            detail: { value: this.label }
         }));
     }
 
@@ -66,7 +70,8 @@ export class FlintChip extends LitElement {
         if (!this.disabled) {
             this.dispatchEvent(new CustomEvent('flint-chip-delete', {
                 bubbles: true,
-                composed: true
+                composed: true,
+                detail: { value: this.label }
             }));
         }
     }

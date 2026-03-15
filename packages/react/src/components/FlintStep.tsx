@@ -5,13 +5,51 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintStep as FlintStepElement } from '@getufy/flint-ui/stepper/flint-stepper';
 
+export interface FlintStepClickDetail {
+    step: number;
+}
+
+/**
+ * Step: an individual step within a stepper.
+ *
+ * @slot icon - Custom step icon.
+ * @slot label - Custom label content.
+ * @slot - Step content.
+ */
+export interface FlintStepProps extends React.HTMLAttributes<FlintStepElement> {
+    /** Whether this step is the currently active step. */
+    active?: boolean;
+    /** Whether this step has been completed. */
+    completed?: boolean;
+    /** Whether this step is disabled and non-interactive. */
+    disabled?: boolean;
+    /** Whether this step is optional. */
+    optional?: boolean;
+    /** Whether this step is in an error state. */
+    error?: boolean;
+    /** Whether this is the last step in the stepper. */
+    last?: boolean;
+    /** Whether this step can be clicked to navigate to it. */
+    clickable?: boolean;
+    /** Layout direction of the step. */
+    orientation?: 'horizontal' | 'vertical';
+    /** Whether to display the label below the step icon instead of beside it. */
+    alternativeLabel?: boolean;
+    /** Zero-based index of this step within the stepper. */
+    stepIndex?: number;
+    /** Text shown below the label when the step is optional. */
+    optionalLabel?: string;
+    /** Set by FlintStepper — true when the immediately preceding step is completed. */
+    prevCompleted?: boolean;
+    /** Fired when a non-linear step is clicked. detail: `{ step: number }` */
+    onFlintStepClick?: (event: CustomEvent<FlintStepClickDetail>) => void;
+}
+
 export const FlintStep = createComponent({
     tagName: 'flint-step',
     elementClass: FlintStepElement,
     react: React,
     events: {
-        onFlintStepClick: 'flint-step-click' as EventName<CustomEvent>,
+        onFlintStepClick: 'flint-step-click' as EventName<CustomEvent<FlintStepClickDetail>>,
     },
-});
-
-export type FlintStepProps = React.ComponentProps<typeof FlintStep>;
+}) as unknown as React.ForwardRefExoticComponent<FlintStepProps & React.RefAttributes<FlintStepElement>>;

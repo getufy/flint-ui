@@ -5,6 +5,22 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintBottomNavigation as FlintBottomNavigationElement } from '@getufy/flint-ui/bottom-navigation/flint-bottom-navigation';
 
+/**
+ * Bottom Navigation bars allow movement between primary destinations in an app.
+ *
+ * @slot - destinations (flint-bottom-navigation-action).
+ */
+export interface FlintBottomNavigationProps extends Omit<React.HTMLAttributes<FlintBottomNavigationElement>, 'defaultValue'> {
+    /** The value of the currently selected action. */
+    value?: unknown;
+    /** Initial selected value for uncontrolled usage. */
+    defaultValue?: unknown;
+    /** If true, all labels are shown at all times. */
+    showLabels?: boolean;
+    /** Dispatched when the selected value changes. */
+    onFlintBottomNavigationChange?: (event: CustomEvent) => void;
+}
+
 export const FlintBottomNavigation = createComponent({
     tagName: 'flint-bottom-navigation',
     elementClass: FlintBottomNavigationElement,
@@ -12,6 +28,4 @@ export const FlintBottomNavigation = createComponent({
     events: {
         onFlintBottomNavigationChange: 'flint-bottom-navigation-change' as EventName<CustomEvent>,
     },
-});
-
-export type FlintBottomNavigationProps = React.ComponentProps<typeof FlintBottomNavigation>;
+}) as unknown as React.ForwardRefExoticComponent<FlintBottomNavigationProps & React.RefAttributes<FlintBottomNavigationElement>>;

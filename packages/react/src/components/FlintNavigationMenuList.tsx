@@ -5,10 +5,20 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintNavigationMenuList as FlintNavigationMenuListElement } from '@getufy/flint-ui/navigation-menu/flint-navigation-menu-list';
 
+/**
+ * @slot default - Menu items (NavigationMenuItem elements)
+ */
+export interface FlintNavigationMenuListProps extends React.HTMLAttributes<FlintNavigationMenuListElement> {
+    /** Gap between menu items */
+    gap?: number;
+    /** Flex direction for the list */
+    direction?: 'row' | 'column';
+    /** Accessible label for the navigation landmark. */
+    ariaLabel?: string;
+}
+
 export const FlintNavigationMenuList = createComponent({
     tagName: 'flint-navigation-menu-list',
     elementClass: FlintNavigationMenuListElement,
     react: React,
-});
-
-export type FlintNavigationMenuListProps = React.ComponentProps<typeof FlintNavigationMenuList>;
+}) as unknown as React.ForwardRefExoticComponent<FlintNavigationMenuListProps & React.RefAttributes<FlintNavigationMenuListElement>>;

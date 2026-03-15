@@ -5,10 +5,24 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintDivider as FlintDividerElement } from '@getufy/flint-ui/divider/flint-divider';
 
+/**
+ * A divider component that provides a thin line for grouping elements.
+ *
+ * @slot - Optional text or content to display within the divider.
+ */
+export interface FlintDividerProps extends React.HTMLAttributes<FlintDividerElement> {
+    /** Orientation of the divider line. */
+    orientation?: 'horizontal' | 'vertical';
+    /** Inset variant controlling how far the divider extends. */
+    variant?: 'full' | 'middle' | 'inset';
+    /** Thickness of the divider line. */
+    weight?: 'light' | 'medium' | 'heavy';
+    /** Alignment of text content within the divider. */
+    textAlign?: 'left' | 'center' | 'right';
+}
+
 export const FlintDivider = createComponent({
     tagName: 'flint-divider',
     elementClass: FlintDividerElement,
     react: React,
-});
-
-export type FlintDividerProps = React.ComponentProps<typeof FlintDivider>;
+}) as unknown as React.ForwardRefExoticComponent<FlintDividerProps & React.RefAttributes<FlintDividerElement>>;

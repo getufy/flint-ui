@@ -5,10 +5,16 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintNavigationMenu as FlintNavigationMenuElement } from '@getufy/flint-ui/navigation-menu/flint-navigation-menu';
 
+/**
+ * @slot default - The menu content (NavigationMenuList)
+ */
+export interface FlintNavigationMenuProps extends Omit<React.HTMLAttributes<FlintNavigationMenuElement>, 'dir'> {
+    /** The direction of the menu (ltr or rtl) */
+    dir?: 'ltr' | 'rtl';
+}
+
 export const FlintNavigationMenu = createComponent({
     tagName: 'flint-navigation-menu',
     elementClass: FlintNavigationMenuElement,
     react: React,
-});
-
-export type FlintNavigationMenuProps = React.ComponentProps<typeof FlintNavigationMenu>;
+}) as unknown as React.ForwardRefExoticComponent<FlintNavigationMenuProps & React.RefAttributes<FlintNavigationMenuElement>>;

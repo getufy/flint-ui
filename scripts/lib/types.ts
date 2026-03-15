@@ -23,6 +23,8 @@ export interface EventMeta {
     constKey: string;
     /** Description from @fires JSDoc tag */
     description: string;
+    /** TypeScript type for CustomEvent.detail, e.g. '{ value: number }' */
+    detailType?: string;
 }
 
 export interface SlotMeta {

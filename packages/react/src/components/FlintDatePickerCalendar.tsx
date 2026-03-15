@@ -5,13 +5,32 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintDatePickerCalendar as FlintDatePickerCalendarElement } from '@getufy/flint-ui/date-picker/flint-date-picker';
 
+export interface FlintDatePickerSelectDetail {
+    value: string;
+}
+
+/**
+ * A standalone calendar grid — the core date-selection view.
+Used internally by flint-date-picker, but can also be used on its own.
+ */
+export interface FlintDatePickerCalendarProps extends React.HTMLAttributes<FlintDatePickerCalendarElement> {
+    /** Currently selected value as ISO string (YYYY-MM-DD). */
+    value?: string;
+    /** Minimum selectable date (ISO). */
+    min?: string;
+    /** Maximum selectable date (ISO). */
+    max?: string;
+    /** Disable all interaction. */
+    disabled?: boolean;
+    /** { detail: { value: string } } ISO date YYYY-MM-DD */
+    onFlintDatePickerSelect?: (event: CustomEvent<FlintDatePickerSelectDetail>) => void;
+}
+
 export const FlintDatePickerCalendar = createComponent({
     tagName: 'flint-date-picker-calendar',
     elementClass: FlintDatePickerCalendarElement,
     react: React,
     events: {
-        onFlintDatePickerSelect: 'flint-date-picker-select' as EventName<CustomEvent>,
+        onFlintDatePickerSelect: 'flint-date-picker-select' as EventName<CustomEvent<FlintDatePickerSelectDetail>>,
     },
-});
-
-export type FlintDatePickerCalendarProps = React.ComponentProps<typeof FlintDatePickerCalendar>;
+}) as unknown as React.ForwardRefExoticComponent<FlintDatePickerCalendarProps & React.RefAttributes<FlintDatePickerCalendarElement>>;

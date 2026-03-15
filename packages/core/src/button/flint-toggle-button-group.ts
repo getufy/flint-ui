@@ -14,8 +14,25 @@ export class FlintToggleButtonGroup extends LitElement {
 
     /** Currently selected value(s). A string when exclusive, an array otherwise. */
     @property({ type: String }) value: string | string[] = '';
+    /**
+     * Initial selected value(s) for uncontrolled usage.
+     * Has no effect after the element has connected to the DOM.
+     */
+    @property({ attribute: 'default-value' }) defaultValue: string | string[] = '';
     /** Whether only one button can be selected at a time. */
     @property({ type: Boolean }) exclusive = true;
+
+    private _firstUpdate = true;
+
+    override willUpdate(changed: PropertyValues) {
+        if (this._firstUpdate) {
+            this._firstUpdate = false;
+            if (this.defaultValue !== '') {
+                this.value = this.defaultValue;
+            }
+        }
+        void changed;
+    }
 
     connectedCallback() {
         super.connectedCallback();

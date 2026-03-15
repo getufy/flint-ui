@@ -19,9 +19,27 @@ export class FlintBottomNavigation extends LitElement {
     @property() value: unknown;
 
     /**
+     * Initial selected value for uncontrolled usage.
+     * Has no effect after the element has connected to the DOM.
+     */
+    @property({ attribute: 'default-value' }) defaultValue?: unknown;
+
+    /**
      * If true, all labels are shown at all times.
      */
     @property({ type: Boolean, attribute: 'show-labels' }) showLabels = false;
+
+    private _firstUpdate = true;
+
+    protected override willUpdate(changed: PropertyValues) {
+        if (this._firstUpdate) {
+            this._firstUpdate = false;
+            if (this.defaultValue !== undefined) {
+                this.value = this.defaultValue;
+            }
+        }
+        void changed;
+    }
 
     @queryAssignedElements({ selector: 'flint-bottom-navigation-action' })
     private _actions!: Array<FlintBottomNavigationAction>;

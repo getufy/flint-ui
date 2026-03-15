@@ -5,10 +5,18 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintStepContent as FlintStepContentElement } from '@getufy/flint-ui/stepper/flint-stepper';
 
+/**
+ * Step Content: the collapsible content area for a step.
+ *
+ * @slot - Step content.
+ */
+export interface FlintStepContentProps extends React.HTMLAttributes<FlintStepContentElement> {
+    /** Whether the content is visible. Defaults true so standalone usage always shows. */
+    open?: boolean;
+}
+
 export const FlintStepContent = createComponent({
     tagName: 'flint-step-content',
     elementClass: FlintStepContentElement,
     react: React,
-});
-
-export type FlintStepContentProps = React.ComponentProps<typeof FlintStepContent>;
+}) as unknown as React.ForwardRefExoticComponent<FlintStepContentProps & React.RefAttributes<FlintStepContentElement>>;

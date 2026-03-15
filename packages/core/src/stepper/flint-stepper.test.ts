@@ -104,7 +104,7 @@ describe('flint-stepper', () => {
         `);
         const step1 = el.querySelectorAll<FlintStep>('flint-step')[1];
         setTimeout(() => step1.dispatchEvent(new CustomEvent('flint-step-click', {
-            detail: { index: 1 }, bubbles: true, composed: true,
+            detail: { step: 1 }, bubbles: true, composed: true,
         })));
         const event = await oneEvent(el, 'flint-step-change') as CustomEvent;
         expect(event.detail.step).toBe(1);
@@ -176,7 +176,7 @@ describe('flint-stepper', () => {
         const spy = vi.fn();
         el.addEventListener('flint-step-change', spy);
         el.remove(); /* disconnects */
-        el.dispatchEvent(new CustomEvent('flint-step-click', { detail: { index: 0 }, bubbles: true }));
+        el.dispatchEvent(new CustomEvent('flint-step-click', { detail: { step: 0 }, bubbles: true }));
         expect(spy).not.toHaveBeenCalled();
     });
 
@@ -240,7 +240,7 @@ describe('flint-step', () => {
         expect(btn).toBeTruthy();
         setTimeout(() => btn!.click());
         const event = await oneEvent(el, 'flint-step-click') as CustomEvent;
-        expect(event.detail.index).toBe(2);
+        expect(event.detail.step).toBe(2);
     });
 
     it('does NOT fire flint-step-click when disabled', async () => {

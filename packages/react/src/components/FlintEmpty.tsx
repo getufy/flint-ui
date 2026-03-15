@@ -5,10 +5,18 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintEmpty as FlintEmptyElement } from '@getufy/flint-ui/empty/flint-empty';
 
+/**
+ * Root container for an empty state. Wraps `flint-empty-header` and
+`flint-empty-content` in a vertically centred flex column.
+ *
+ * @slot - Accepts `flint-empty-header`, `flint-empty-content`, and any extra
+  elements (e.g. a "Learn More" link).
+ */
+export interface FlintEmptyProps extends React.HTMLAttributes<FlintEmptyElement> {
+}
+
 export const FlintEmpty = createComponent({
     tagName: 'flint-empty',
     elementClass: FlintEmptyElement,
     react: React,
-});
-
-export type FlintEmptyProps = React.ComponentProps<typeof FlintEmpty>;
+}) as unknown as React.ForwardRefExoticComponent<FlintEmptyProps & React.RefAttributes<FlintEmptyElement>>;

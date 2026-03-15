@@ -5,10 +5,14 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintAccordionActions as FlintAccordionActionsElement } from '@getufy/flint-ui/accordion/flint-accordion';
 
+/**
+ * Accordion Actions: an optional wrapper that groups a set of buttons.
+ */
+export interface FlintAccordionActionsProps extends React.HTMLAttributes<FlintAccordionActionsElement> {
+}
+
 export const FlintAccordionActions = createComponent({
     tagName: 'flint-accordion-actions',
     elementClass: FlintAccordionActionsElement,
     react: React,
-});
-
-export type FlintAccordionActionsProps = React.ComponentProps<typeof FlintAccordionActions>;
+}) as unknown as React.ForwardRefExoticComponent<FlintAccordionActionsProps & React.RefAttributes<FlintAccordionActionsElement>>;

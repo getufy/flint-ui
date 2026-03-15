@@ -5,13 +5,32 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintMenubarCheckboxItem as FlintMenubarCheckboxItemElement } from '@getufy/flint-ui/menubar/flint-menubar';
 
+export interface FlintMenubarCheckboxChangeDetail {
+    checked: boolean;
+    value: string;
+}
+
+/**
+ * A toggleable checkbox menu item.
+ */
+export interface FlintMenubarCheckboxItemProps extends React.HTMLAttributes<FlintMenubarCheckboxItemElement> {
+    /** Whether the checkbox item is currently checked. */
+    checked?: boolean;
+    /** Whether the item is non-interactive. */
+    disabled?: boolean;
+    /** Whether the item is visually highlighted (e.g. via keyboard or hover). */
+    highlighted?: boolean;
+    /** Explicit value for the change event. Falls back to label text (excludes shortcut). */
+    value?: string;
+    /** detail: `{ checked: boolean, value: string }` */
+    onFlintMenubarCheckboxChange?: (event: CustomEvent<FlintMenubarCheckboxChangeDetail>) => void;
+}
+
 export const FlintMenubarCheckboxItem = createComponent({
     tagName: 'flint-menubar-checkbox-item',
     elementClass: FlintMenubarCheckboxItemElement,
     react: React,
     events: {
-        onFlintMenubarCheckboxChange: 'flint-menubar-checkbox-change' as EventName<CustomEvent>,
+        onFlintMenubarCheckboxChange: 'flint-menubar-checkbox-change' as EventName<CustomEvent<FlintMenubarCheckboxChangeDetail>>,
     },
-});
-
-export type FlintMenubarCheckboxItemProps = React.ComponentProps<typeof FlintMenubarCheckboxItem>;
+}) as unknown as React.ForwardRefExoticComponent<FlintMenubarCheckboxItemProps & React.RefAttributes<FlintMenubarCheckboxItemElement>>;

@@ -5,10 +5,17 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintInputOtpGroup as FlintInputOtpGroupElement } from '@getufy/flint-ui/input-otp/flint-input-otp';
 
+/**
+ * Visual grouping wrapper for `flint-input-otp-slot` elements.
+Renders slots inline with shared borders.
+ *
+ * @slot - Accepts `flint-input-otp-slot` elements.
+ */
+export interface FlintInputOtpGroupProps extends React.HTMLAttributes<FlintInputOtpGroupElement> {
+}
+
 export const FlintInputOtpGroup = createComponent({
     tagName: 'flint-input-otp-group',
     elementClass: FlintInputOtpGroupElement,
     react: React,
-});
-
-export type FlintInputOtpGroupProps = React.ComponentProps<typeof FlintInputOtpGroup>;
+}) as unknown as React.ForwardRefExoticComponent<FlintInputOtpGroupProps & React.RefAttributes<FlintInputOtpGroupElement>>;
