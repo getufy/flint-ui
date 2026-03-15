@@ -7,7 +7,8 @@ import { FlintDialogTitle as FlintDialogTitleElement } from '@getufy/flint-ui/di
 
 /**
  * flint-dialog-title: heading area of a dialog.
-Automatically assigned id="dialog-title" for aria-labelledby.
+The parent `<flint-dialog>` reads this element's text content via slotchange
+to set `aria-label` on the dialog panel.
  */
 export interface FlintDialogTitleProps extends React.HTMLAttributes<FlintDialogTitleElement> {
 }

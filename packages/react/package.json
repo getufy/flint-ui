@@ -1,6 +1,6 @@
 {
   "name": "@getufy/flint-ui-react",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "type": "module",
   "types": "./dist/index.d.ts",
   "module": "./dist/index.js",
@@ -120,6 +120,10 @@
     "./flint-range-slider": {
       "types": "./dist/flint-range-slider.d.ts",
       "import": "./dist/flint-range-slider.js"
+    },
+    "./form-field": {
+      "types": "./dist/form-field.d.ts",
+      "import": "./dist/form-field.js"
     },
     "./format-date": {
       "types": "./dist/format-date.d.ts",
@@ -338,7 +342,7 @@
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
-    "@getufy/flint-ui": "^0.5.0"
+    "@getufy/flint-ui": "^0.6.0"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",

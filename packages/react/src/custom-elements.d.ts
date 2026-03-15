@@ -9,8 +9,8 @@ declare module 'react' {
             'flint-accordion-summary': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-accordion-details': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-accordion-actions': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-            'flint-alert': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-app-bar': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+            'flint-alert': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-autocomplete': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-avatar': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-backdrop': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
@@ -56,12 +56,12 @@ declare module 'react' {
             'flint-date-range-calendar': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-date-range-picker': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-single-input-date-range-field': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+            'flint-divider': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-dialog': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-dialog-title': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-dialog-content': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-dialog-content-text': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-dialog-actions': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-            'flint-divider': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-drawer': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-empty-title': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-empty-description': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
@@ -71,12 +71,14 @@ declare module 'react' {
             'flint-empty': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-fab': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-range-slider': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+            'flint-form-field': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-format-date': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-format-number': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-grid': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-hover-card-trigger': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-hover-card-content': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-hover-card': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+            'flint-image-comparer': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-image-list-item-bar': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-image-list-item': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-image-list': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
@@ -123,7 +125,6 @@ declare module 'react' {
             'flint-menubar-trigger': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-menubar-menu': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-menubar': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-            'flint-image-comparer': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-navigation-menu-content': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-navigation-menu-item': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-navigation-menu-link': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
@@ -134,6 +135,8 @@ declare module 'react' {
             'flint-paper': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-circular-progress': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-linear-progress': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+            'flint-radio-group': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+            'flint-radio': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-rating': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-relative-time': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-resizable-group': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
@@ -143,13 +146,11 @@ declare module 'react' {
             'flint-scroll-area': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-select': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-skeleton': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-            'flint-radio-group': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-            'flint-radio': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-slider': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-toaster': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+            'flint-snackbar': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-speed-dial-action': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-speed-dial': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-            'flint-snackbar': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-split-panel': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-stack': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-step-connector': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
@@ -172,7 +173,6 @@ declare module 'react' {
             'flint-tab-panel': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-tab-list': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-tabs': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-            'flint-text-field': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-textarea': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-time-field': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-digital-clock': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
@@ -184,11 +184,12 @@ declare module 'react' {
             'flint-time-picker': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-toggle': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-tooltip': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+            'flint-text-field': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-transfer-list': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+            'flint-typography': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-rich-tree-view': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-simple-tree-view': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-tree-item': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-            'flint-typography': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
             'flint-visually-hidden': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
         }
     }
