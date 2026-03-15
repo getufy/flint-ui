@@ -5,6 +5,9 @@ import uiBottomNavigationActionStyles from './flint-bottom-navigation-action.css
 
 /**
  * Bottom Navigation Action: Individual navigation item.
+ *
+ * @slot icon - Icon element.
+ * @slot - Label text.
  */
 @customElement('flint-bottom-navigation-action')
 export class FlintBottomNavigationAction extends LitElement {

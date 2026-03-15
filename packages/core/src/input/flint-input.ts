@@ -1,4 +1,4 @@
-import { LitElement, unsafeCSS, html } from 'lit';
+import { LitElement, unsafeCSS, html, PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FormAssociated } from '../mixins/form-associated.js';
@@ -70,13 +70,27 @@ export class FlintInput extends FormAssociated(LitElement) {
     @property({ type: String, reflect: true })
     size: 'sm' | 'default' | 'lg' = 'default';
 
+    /** Initial value for uncontrolled usage. */
+    @property({ type: String, attribute: 'default-value' })
+    defaultValue?: string;
+
     /** Expose the internal <input> for direct access */
     get inputElement(): HTMLInputElement {
         return this.shadowRoot!.querySelector('input')!;
     }
 
+    protected override willUpdate(changed: PropertyValues) {
+        super.willUpdate(changed);
+        if (this._firstUpdate) {
+            this._firstUpdate = false;
+            if (this.defaultValue && !this.value) {
+                this.value = this.defaultValue;
+            }
+        }
+    }
+
     formResetCallback() {
-        this.value = '';
+        this.value = this.defaultValue ?? '';
         this._updateFormValue();
     }
 

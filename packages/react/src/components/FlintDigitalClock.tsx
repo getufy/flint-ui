@@ -5,13 +5,29 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintDigitalClock as FlintDigitalClockElement } from '@getufy/flint-ui/time-picker/flint-time-picker';
 
+export interface ChangeDetail {
+    value: string;
+}
+
+/**
+ * Digital Clock: a scrollable time-slot picker.
+ */
+export interface FlintDigitalClockProps extends Omit<React.HTMLAttributes<FlintDigitalClockElement>, 'onChange'> {
+    /** Time value in HH:MM:SS format. */
+    value?: string;
+    /** Step interval in minutes between selectable times. */
+    step?: number;
+    /** Whether to use 12-hour (AM/PM) format instead of 24-hour. */
+    ampm?: boolean;
+    /** Fired when a time slot is selected. */
+    onChange?: (event: CustomEvent<ChangeDetail>) => void;
+}
+
 export const FlintDigitalClock = createComponent({
     tagName: 'flint-digital-clock',
     elementClass: FlintDigitalClockElement,
     react: React,
     events: {
-        onChange: 'change' as EventName<CustomEvent>,
+        onChange: 'change' as EventName<CustomEvent<ChangeDetail>>,
     },
-});
-
-export type FlintDigitalClockProps = React.ComponentProps<typeof FlintDigitalClock>;
+}) as unknown as React.ForwardRefExoticComponent<FlintDigitalClockProps & React.RefAttributes<FlintDigitalClockElement>>;

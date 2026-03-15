@@ -5,10 +5,23 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintItem as FlintItemElement } from '@getufy/flint-ui/item/flint-item';
 
+/**
+ * Root container for displaying content with media, title,
+description, and actions. A versatile flex row that adapts to
+icons, avatars, images, and action buttons.
+ *
+ * @slot - Accepts `flint-item-header`, `flint-item-media`, `flint-item-content`,
+  `flint-item-actions`, `flint-item-footer`, and any other elements.
+ */
+export interface FlintItemProps extends React.HTMLAttributes<FlintItemElement> {
+    /** Visual style of the item. */
+    variant?: 'default' | 'outline' | 'muted';
+    /** Size preset controlling padding and gap. */
+    size?: 'default' | 'sm' | 'xs';
+}
+
 export const FlintItem = createComponent({
     tagName: 'flint-item',
     elementClass: FlintItemElement,
     react: React,
-});
-
-export type FlintItemProps = React.ComponentProps<typeof FlintItem>;
+}) as unknown as React.ForwardRefExoticComponent<FlintItemProps & React.RefAttributes<FlintItemElement>>;

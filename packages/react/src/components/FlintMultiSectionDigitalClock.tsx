@@ -5,13 +5,29 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintMultiSectionDigitalClock as FlintMultiSectionDigitalClockElement } from '@getufy/flint-ui/time-picker/flint-time-picker';
 
+export interface ChangeDetail {
+    value: string;
+}
+
+/**
+ * Multi Section Digital Clock: hours, minutes, and optional seconds columns.
+ */
+export interface FlintMultiSectionDigitalClockProps extends Omit<React.HTMLAttributes<FlintMultiSectionDigitalClockElement>, 'onChange'> {
+    /** Time value in HH:MM:SS format. */
+    value?: string;
+    /** Whether to use 12-hour (AM/PM) format instead of 24-hour. */
+    ampm?: boolean;
+    /** Whether to show a seconds column. */
+    seconds?: boolean;
+    /** Fired when the time value changes. */
+    onChange?: (event: CustomEvent<ChangeDetail>) => void;
+}
+
 export const FlintMultiSectionDigitalClock = createComponent({
     tagName: 'flint-multi-section-digital-clock',
     elementClass: FlintMultiSectionDigitalClockElement,
     react: React,
     events: {
-        onChange: 'change' as EventName<CustomEvent>,
+        onChange: 'change' as EventName<CustomEvent<ChangeDetail>>,
     },
-});
-
-export type FlintMultiSectionDigitalClockProps = React.ComponentProps<typeof FlintMultiSectionDigitalClock>;
+}) as unknown as React.ForwardRefExoticComponent<FlintMultiSectionDigitalClockProps & React.RefAttributes<FlintMultiSectionDigitalClockElement>>;

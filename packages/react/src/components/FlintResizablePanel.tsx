@@ -5,10 +5,23 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintResizablePanel as FlintResizablePanelElement } from '@getufy/flint-ui/resizable/flint-resizable';
 
+export interface FlintResizablePanelProps extends React.HTMLAttributes<FlintResizablePanelElement> {
+    /** Current size as percentage (0–100). */
+    size?: number;
+    /** Default size — applied once on first update. */
+    defaultSize?: number;
+    /** Minimum size percentage (0–100). */
+    minSize?: number;
+    /** Maximum size percentage (0–100). */
+    maxSize?: number;
+    /** Whether the panel can collapse to zero size via drag. */
+    collapsible?: boolean;
+    /** Whether the panel is currently collapsed via the programmatic API. */
+    collapsed?: boolean;
+}
+
 export const FlintResizablePanel = createComponent({
     tagName: 'flint-resizable-panel',
     elementClass: FlintResizablePanelElement,
     react: React,
-});
-
-export type FlintResizablePanelProps = React.ComponentProps<typeof FlintResizablePanel>;
+}) as unknown as React.ForwardRefExoticComponent<FlintResizablePanelProps & React.RefAttributes<FlintResizablePanelElement>>;

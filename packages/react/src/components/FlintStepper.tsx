@@ -5,6 +5,26 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintStepper as FlintStepperElement } from '@getufy/flint-ui/stepper/flint-stepper';
 
+/**
+ * Stepper: a multi-step progress indicator.
+ */
+export interface FlintStepperProps extends React.HTMLAttributes<FlintStepperElement> {
+    /** Zero-based index of the currently active step. */
+    activeStep?: number;
+    /** Initial active step for uncontrolled usage. */
+    defaultActiveStep?: number;
+    /** Layout direction of the stepper. */
+    orientation?: 'horizontal' | 'vertical';
+    /** Whether to display step labels below the icons instead of beside them. */
+    alternativeLabel?: boolean;
+    /** Whether steps can be navigated in any order (enables clickable steps). */
+    nonLinear?: boolean;
+    /** Accessible label for the stepper landmark (maps to aria-label on the list element). */
+    label?: string;
+    /** Fired when the active step changes via step click. */
+    onFlintStepChange?: (event: CustomEvent) => void;
+}
+
 export const FlintStepper = createComponent({
     tagName: 'flint-stepper',
     elementClass: FlintStepperElement,
@@ -12,6 +32,4 @@ export const FlintStepper = createComponent({
     events: {
         onFlintStepChange: 'flint-step-change' as EventName<CustomEvent>,
     },
-});
-
-export type FlintStepperProps = React.ComponentProps<typeof FlintStepper>;
+}) as unknown as React.ForwardRefExoticComponent<FlintStepperProps & React.RefAttributes<FlintStepperElement>>;

@@ -5,6 +5,17 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintAccordionSummary as FlintAccordionSummaryElement } from '@getufy/flint-ui/accordion/flint-accordion';
 
+/**
+ * Accordion Summary: the wrapper for the Accordion header.
+ *
+ * @slot expandIcon - Custom expand/collapse icon.
+ * @slot - Summary content.
+ */
+export interface FlintAccordionSummaryProps extends React.HTMLAttributes<FlintAccordionSummaryElement> {
+    /** Fired when the summary is clicked or activated via keyboard. */
+    onFlintAccordionToggle?: (event: CustomEvent) => void;
+}
+
 export const FlintAccordionSummary = createComponent({
     tagName: 'flint-accordion-summary',
     elementClass: FlintAccordionSummaryElement,
@@ -12,6 +23,4 @@ export const FlintAccordionSummary = createComponent({
     events: {
         onFlintAccordionToggle: 'flint-accordion-toggle' as EventName<CustomEvent>,
     },
-});
-
-export type FlintAccordionSummaryProps = React.ComponentProps<typeof FlintAccordionSummary>;
+}) as unknown as React.ForwardRefExoticComponent<FlintAccordionSummaryProps & React.RefAttributes<FlintAccordionSummaryElement>>;

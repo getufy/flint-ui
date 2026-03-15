@@ -5,10 +5,13 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintTabPanel as FlintTabPanelElement } from '@getufy/flint-ui/tabs/flint-tabs';
 
+export interface FlintTabPanelProps extends React.HTMLAttributes<FlintTabPanelElement> {
+    /** Identifier linking this panel to its corresponding tab. */
+    value?: string;
+}
+
 export const FlintTabPanel = createComponent({
     tagName: 'flint-tab-panel',
     elementClass: FlintTabPanelElement,
     react: React,
-});
-
-export type FlintTabPanelProps = React.ComponentProps<typeof FlintTabPanel>;
+}) as unknown as React.ForwardRefExoticComponent<FlintTabPanelProps & React.RefAttributes<FlintTabPanelElement>>;

@@ -5,10 +5,18 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintItemHeader as FlintItemHeaderElement } from '@getufy/flint-ui/item/flint-item';
 
+/**
+ * Full-bleed header that spans the top of the item, cancelling the
+item's padding so media (images) appear flush with the border.
+Always place as the first child of `flint-item`.
+ *
+ * @slot - Header content, typically an image or decorative element.
+ */
+export interface FlintItemHeaderProps extends React.HTMLAttributes<FlintItemHeaderElement> {
+}
+
 export const FlintItemHeader = createComponent({
     tagName: 'flint-item-header',
     elementClass: FlintItemHeaderElement,
     react: React,
-});
-
-export type FlintItemHeaderProps = React.ComponentProps<typeof FlintItemHeader>;
+}) as unknown as React.ForwardRefExoticComponent<FlintItemHeaderProps & React.RefAttributes<FlintItemHeaderElement>>;

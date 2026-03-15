@@ -5,10 +5,20 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintCarouselNext as FlintCarouselNextElement } from '@getufy/flint-ui/carousel/flint-carousel';
 
+/**
+ * Carousel Next: navigation button to go to the next slide.
+ *
+ * @slot - Custom icon content, replaces default chevron.
+ */
+export interface FlintCarouselNextProps extends React.HTMLAttributes<FlintCarouselNextElement> {
+    /** Whether the next button is disabled. */
+    disabled?: boolean;
+    /** Slide direction axis, inherited from the parent carousel. */
+    orientation?: 'horizontal' | 'vertical';
+}
+
 export const FlintCarouselNext = createComponent({
     tagName: 'flint-carousel-next',
     elementClass: FlintCarouselNextElement,
     react: React,
-});
-
-export type FlintCarouselNextProps = React.ComponentProps<typeof FlintCarouselNext>;
+}) as unknown as React.ForwardRefExoticComponent<FlintCarouselNextProps & React.RefAttributes<FlintCarouselNextElement>>;

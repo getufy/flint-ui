@@ -7,6 +7,9 @@ import uiChipStyles from './flint-chip.css?inline';
 /**
  * Chip: a compact element representing an input, attribute, or action.
  *
+ * @slot avatar - Avatar element shown at start.
+ * @slot icon - Icon shown at start when no avatar.
+ *
  * @fires flint-chip-delete - Fired when the chip's delete icon is clicked.
  */
 @customElement('flint-chip')

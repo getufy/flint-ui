@@ -5,10 +5,47 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintFormatNumber as FlintFormatNumberElement } from '@getufy/flint-ui/format-number/flint-format-number';
 
+/**
+ * Formats a number using the specified locale and options.
+Localization is handled by the browser's `Intl.NumberFormat` API — no language packs required.
+ */
+export interface FlintFormatNumberProps extends Omit<React.HTMLAttributes<FlintFormatNumberElement>, 'lang'> {
+    /** The number to format. */
+    value?: number;
+    /** The formatting style to use. */
+    type?: 'currency' | 'decimal' | 'percent' | 'unit';
+    /** Turns off grouping separators (e.g. thousands separator). */
+    noGrouping?: boolean;
+    /** The ISO 4217 currency code to use when formatting (e.g. 'USD', 'EUR', 'GBP'). */
+    currency?: string;
+    /** How to display the currency. */
+    currencyDisplay?: 'symbol' | 'narrowSymbol' | 'code' | 'name';
+    /** Number notation style. 'compact' renders e.g. "1.2K" or "3.4M". */
+    notation?: 'standard' | 'scientific' | 'engineering' | 'compact';
+    /** How to display compact notation — 'short' (1K) or 'long' (1 thousand). */
+    compactDisplay?: 'short' | 'long';
+    /** When to show the sign. */
+    signDisplay?: 'auto' | 'never' | 'always' | 'exceptZero';
+    /** ECMA-402 unit identifier (e.g. 'kilometer', 'kilogram', 'celsius'). Required when type='unit'. */
+    unit?: string;
+    /** How to display the unit when type='unit'. */
+    unitDisplay?: 'short' | 'long' | 'narrow';
+    /** The minimum number of integer digits (1–21). */
+    minimumIntegerDigits?: number | undefined;
+    /** The minimum number of fraction digits (0–20). */
+    minimumFractionDigits?: number | undefined;
+    /** The maximum number of fraction digits (0–20). */
+    maximumFractionDigits?: number | undefined;
+    /** The minimum number of significant digits (1–21). */
+    minimumSignificantDigits?: number | undefined;
+    /** The maximum number of significant digits (1–21). */
+    maximumSignificantDigits?: number | undefined;
+    /** BCP 47 language tag for formatting locale. Inherits from the document when unset. */
+    lang?: string;
+}
+
 export const FlintFormatNumber = createComponent({
     tagName: 'flint-format-number',
     elementClass: FlintFormatNumberElement,
     react: React,
-});
-
-export type FlintFormatNumberProps = React.ComponentProps<typeof FlintFormatNumber>;
+}) as unknown as React.ForwardRefExoticComponent<FlintFormatNumberProps & React.RefAttributes<FlintFormatNumberElement>>;

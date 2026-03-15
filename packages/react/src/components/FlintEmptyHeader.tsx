@@ -5,10 +5,16 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintEmptyHeader as FlintEmptyHeaderElement } from '@getufy/flint-ui/empty/flint-empty';
 
+/**
+ * Groups the media, title, and description of an empty state.
+ *
+ * @slot - Accepts `flint-empty-media`, `flint-empty-title`, `flint-empty-description`.
+ */
+export interface FlintEmptyHeaderProps extends React.HTMLAttributes<FlintEmptyHeaderElement> {
+}
+
 export const FlintEmptyHeader = createComponent({
     tagName: 'flint-empty-header',
     elementClass: FlintEmptyHeaderElement,
     react: React,
-});
-
-export type FlintEmptyHeaderProps = React.ComponentProps<typeof FlintEmptyHeader>;
+}) as unknown as React.ForwardRefExoticComponent<FlintEmptyHeaderProps & React.RefAttributes<FlintEmptyHeaderElement>>;

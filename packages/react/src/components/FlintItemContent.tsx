@@ -5,10 +5,16 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintItemContent as FlintItemContentElement } from '@getufy/flint-ui/item/flint-item';
 
+/**
+ * Flex-column wrapper for an item's title and description.
+ *
+ * @slot - Accepts `flint-item-title`, `flint-item-description`, or any content.
+ */
+export interface FlintItemContentProps extends React.HTMLAttributes<FlintItemContentElement> {
+}
+
 export const FlintItemContent = createComponent({
     tagName: 'flint-item-content',
     elementClass: FlintItemContentElement,
     react: React,
-});
-
-export type FlintItemContentProps = React.ComponentProps<typeof FlintItemContent>;
+}) as unknown as React.ForwardRefExoticComponent<FlintItemContentProps & React.RefAttributes<FlintItemContentElement>>;

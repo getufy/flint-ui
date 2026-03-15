@@ -5,14 +5,50 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintInputOtp as FlintInputOtpElement } from '@getufy/flint-ui/input-otp/flint-input-otp';
 
+export interface FlintOtpChangeDetail {
+    value: string;
+}
+
+export interface FlintOtpCompleteDetail {
+    value: string;
+}
+
+/**
+ * Accessible one-time password input with copy/paste support.
+Manages a hidden native `<input>` and syncs each `flint-input-otp-slot`
+with the appropriate character and active-cursor state.
+ *
+ * @slot - Accepts `flint-input-otp-group`, `flint-input-otp-separator`, and
+  `flint-input-otp-slot` elements.
+ */
+export interface FlintInputOtpProps extends Omit<React.HTMLAttributes<FlintInputOtpElement>, 'defaultValue'> {
+    /** Current OTP value. Reflects to attribute for external observation. */
+    value?: string;
+    /** Initial uncontrolled value. Has no effect after the first render. */
+    defaultValue?: string;
+    /** Total number of character slots. */
+    maxLength?: number;
+    /** Per-character regex pattern string. Characters failing the test are */
+    pattern?: string;
+    /** Disables the OTP input. */
+    disabled?: boolean;
+    /** Accessible label for the hidden input (used as aria-label). */
+    label?: string;
+    /** Optional description text for the hidden input (used as aria-describedby). */
+    description?: string;
+    /** Fired on every value change. `detail: { value: string }`. */
+    onFlintOtpChange?: (event: CustomEvent<FlintOtpChangeDetail>) => void;
+    /** Fired when `maxLength` chars have been entered.
+                  `detail: { value: string }`. */
+    onFlintOtpComplete?: (event: CustomEvent<FlintOtpCompleteDetail>) => void;
+}
+
 export const FlintInputOtp = createComponent({
     tagName: 'flint-input-otp',
     elementClass: FlintInputOtpElement,
     react: React,
     events: {
-        onFlintOtpChange: 'flint-otp-change' as EventName<CustomEvent>,
-        onFlintOtpComplete: 'flint-otp-complete' as EventName<CustomEvent>,
+        onFlintOtpChange: 'flint-otp-change' as EventName<CustomEvent<FlintOtpChangeDetail>>,
+        onFlintOtpComplete: 'flint-otp-complete' as EventName<CustomEvent<FlintOtpCompleteDetail>>,
     },
-});
-
-export type FlintInputOtpProps = React.ComponentProps<typeof FlintInputOtp>;
+}) as unknown as React.ForwardRefExoticComponent<FlintInputOtpProps & React.RefAttributes<FlintInputOtpElement>>;

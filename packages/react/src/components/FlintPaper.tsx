@@ -5,10 +5,21 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintPaper as FlintPaperElement } from '@getufy/flint-ui/paper/flint-paper';
 
+/**
+ * The Paper component is a container for displaying content on an elevated surface.
+Shadow styles are influenced by real-world physical counterparts.
+ */
+export interface FlintPaperProps extends React.HTMLAttributes<FlintPaperElement> {
+    /** Shadow depth. Supported values: 0, 1, 2, 3, 4, 6, 8, 12, 16, 24. */
+    elevation?: number;
+    /** If true, the paper will have square corners (border-radius: 0). */
+    square?: boolean;
+    /** Visual variant. */
+    variant?: 'elevated' | 'outlined' | 'flat';
+}
+
 export const FlintPaper = createComponent({
     tagName: 'flint-paper',
     elementClass: FlintPaperElement,
     react: React,
-});
-
-export type FlintPaperProps = React.ComponentProps<typeof FlintPaper>;
+}) as unknown as React.ForwardRefExoticComponent<FlintPaperProps & React.RefAttributes<FlintPaperElement>>;

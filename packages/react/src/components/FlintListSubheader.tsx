@@ -5,10 +5,14 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintListSubheader as FlintListSubheaderElement } from '@getufy/flint-ui/list/flint-list';
 
+/**
+ * flint-list-subheader: A label for a nested list.
+ */
+export interface FlintListSubheaderProps extends React.HTMLAttributes<FlintListSubheaderElement> {
+}
+
 export const FlintListSubheader = createComponent({
     tagName: 'flint-list-subheader',
     elementClass: FlintListSubheaderElement,
     react: React,
-});
-
-export type FlintListSubheaderProps = React.ComponentProps<typeof FlintListSubheader>;
+}) as unknown as React.ForwardRefExoticComponent<FlintListSubheaderProps & React.RefAttributes<FlintListSubheaderElement>>;

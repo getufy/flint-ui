@@ -5,10 +5,26 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintBadge as FlintBadgeElement } from '@getufy/flint-ui/badge/flint-badge';
 
+/**
+ * A badge component that generates a small badge at the top-right of its children.
+ *
+ * @slot - The content to which the badge is attached.
+ */
+export interface FlintBadgeProps extends React.HTMLAttributes<FlintBadgeElement> {
+    /** Text content displayed inside the badge. */
+    content?: string;
+    /** Whether to display a small dot instead of content. */
+    dot?: boolean;
+    /** Whether the badge is hidden. */
+    invisible?: boolean;
+    /** Color variant of the badge. */
+    variant?: 'primary' | 'secondary' | 'error' | 'success' | 'warning';
+    /** Maximum numeric value before displaying "max+". */
+    max?: number;
+}
+
 export const FlintBadge = createComponent({
     tagName: 'flint-badge',
     elementClass: FlintBadgeElement,
     react: React,
-});
-
-export type FlintBadgeProps = React.ComponentProps<typeof FlintBadge>;
+}) as unknown as React.ForwardRefExoticComponent<FlintBadgeProps & React.RefAttributes<FlintBadgeElement>>;

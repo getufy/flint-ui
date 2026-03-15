@@ -5,10 +5,21 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintStack as FlintStackElement } from '@getufy/flint-ui/stack/flint-stack';
 
+export interface FlintStackProps extends React.HTMLAttributes<FlintStackElement> {
+    /** Flex direction of the stack layout. */
+    direction?: FlintStackElement['direction'];
+    /** Space between child items (1 unit = 8px). */
+    spacing?: FlintStackElement['spacing'];
+    /** Cross-axis alignment of stack children. */
+    alignItems?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
+    /** Main-axis alignment of stack children. */
+    justifyContent?: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly';
+    /** Whether to use CSS flex gap for spacing. */
+    useFlexGap?: boolean;
+}
+
 export const FlintStack = createComponent({
     tagName: 'flint-stack',
     elementClass: FlintStackElement,
     react: React,
-});
-
-export type FlintStackProps = React.ComponentProps<typeof FlintStack>;
+}) as unknown as React.ForwardRefExoticComponent<FlintStackProps & React.RefAttributes<FlintStackElement>>;

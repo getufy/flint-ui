@@ -5,10 +5,17 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintDialogActions as FlintDialogActionsElement } from '@getufy/flint-ui/dialog/flint-dialog';
 
+/**
+ * flint-dialog-actions: footer button row for a dialog.
+Use the `align` prop to control button alignment.
+ */
+export interface FlintDialogActionsProps extends React.HTMLAttributes<FlintDialogActionsElement> {
+    /** Alignment of action buttons: 'end' (default), 'start', 'center', 'space-between'. */
+    align?: 'start' | 'center' | 'end' | 'space-between';
+}
+
 export const FlintDialogActions = createComponent({
     tagName: 'flint-dialog-actions',
     elementClass: FlintDialogActionsElement,
     react: React,
-});
-
-export type FlintDialogActionsProps = React.ComponentProps<typeof FlintDialogActions>;
+}) as unknown as React.ForwardRefExoticComponent<FlintDialogActionsProps & React.RefAttributes<FlintDialogActionsElement>>;

@@ -5,10 +5,36 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintSpeedDial as FlintSpeedDialElement } from '@getufy/flint-ui/speed-dial/flint-speed-dial';
 
+/**
+ * Speed Dial — a FAB that reveals 3-6 related actions when pressed.
+ *
+ * @slot - `flint-speed-dial-action` elements.
+ * @slot icon - Icon shown on the FAB when closed (default: + SVG).
+ * @slot open-icon - Icon shown on the FAB when open (default: ✕ SVG).
+ */
+export interface FlintSpeedDialProps extends Omit<React.HTMLAttributes<FlintSpeedDialElement>, 'hidden'> {
+    /** Whether the speed dial is open (controlled). */
+    open?: boolean;
+    /** Initial open state for uncontrolled usage. Sets `open` once on first render. */
+    defaultOpen?: boolean;
+    /** Direction in which actions expand from the FAB (default 'up'). */
+    direction?: 'up' | 'down' | 'left' | 'right';
+    /** Hides the entire speed dial component. */
+    hidden?: boolean;
+    /** Disables the FAB and prevents opening. */
+    disabled?: boolean;
+    /** When true, tooltips on all actions are always visible (good for touch/a11y). */
+    persistentTooltips?: boolean;
+    /** Custom char/text rendered as the ✕ close icon on the FAB. Falls back to built-in SVG. */
+    closeIcon?: string;
+    /** ARIA label for the main FAB button. */
+    ariaLabel?: string;
+    /** True on touch-only devices (auto-detected unless explicitly set). */
+    isTouch?: boolean;
+}
+
 export const FlintSpeedDial = createComponent({
     tagName: 'flint-speed-dial',
     elementClass: FlintSpeedDialElement,
     react: React,
-});
-
-export type FlintSpeedDialProps = React.ComponentProps<typeof FlintSpeedDial>;
+}) as unknown as React.ForwardRefExoticComponent<FlintSpeedDialProps & React.RefAttributes<FlintSpeedDialElement>>;

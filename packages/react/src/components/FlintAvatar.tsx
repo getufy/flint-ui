@@ -5,10 +5,21 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintAvatar as FlintAvatarElement } from '@getufy/flint-ui/avatar/flint-avatar';
 
+export interface FlintAvatarProps extends React.HTMLAttributes<FlintAvatarElement> {
+    /** Image source URL for the avatar. */
+    src?: string;
+    /** Alt text for the avatar image. */
+    alt?: string;
+    /** Initials to display when no image is provided. */
+    initials?: string;
+    /** Shape variant of the avatar. */
+    variant?: 'circle' | 'square' | 'rounded';
+    /** Size of the avatar. */
+    size?: 'small' | 'medium' | 'large' | 'xlarge';
+}
+
 export const FlintAvatar = createComponent({
     tagName: 'flint-avatar',
     elementClass: FlintAvatarElement,
     react: React,
-});
-
-export type FlintAvatarProps = React.ComponentProps<typeof FlintAvatar>;
+}) as unknown as React.ForwardRefExoticComponent<FlintAvatarProps & React.RefAttributes<FlintAvatarElement>>;

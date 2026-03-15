@@ -5,10 +5,25 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintBottomNavigationAction as FlintBottomNavigationActionElement } from '@getufy/flint-ui/bottom-navigation/flint-bottom-navigation-action';
 
+/**
+ * Bottom Navigation Action: Individual navigation item.
+ *
+ * @slot icon - Icon element.
+ * @slot - Label text.
+ */
+export interface FlintBottomNavigationActionProps extends React.HTMLAttributes<FlintBottomNavigationActionElement> {
+    /** Label text for the action. */
+    label?: string;
+    /** Unique value for this action. */
+    value?: unknown;
+    /** If true, this action is currently selected. (Internal property managed by parent) */
+    active?: boolean;
+    /** Controls label visibility. (Internal property managed by parent) */
+    showLabel?: boolean;
+}
+
 export const FlintBottomNavigationAction = createComponent({
     tagName: 'flint-bottom-navigation-action',
     elementClass: FlintBottomNavigationActionElement,
     react: React,
-});
-
-export type FlintBottomNavigationActionProps = React.ComponentProps<typeof FlintBottomNavigationAction>;
+}) as unknown as React.ForwardRefExoticComponent<FlintBottomNavigationActionProps & React.RefAttributes<FlintBottomNavigationActionElement>>;

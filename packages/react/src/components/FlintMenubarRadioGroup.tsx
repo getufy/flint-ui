@@ -5,13 +5,25 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintMenubarRadioGroup as FlintMenubarRadioGroupElement } from '@getufy/flint-ui/menubar/flint-menubar';
 
+export interface FlintMenubarRadioChangeDetail {
+    value: string;
+}
+
+/**
+ * Manages single-select radio items.
+ */
+export interface FlintMenubarRadioGroupProps extends React.HTMLAttributes<FlintMenubarRadioGroupElement> {
+    /** The value of the currently selected radio item. */
+    value?: string;
+    /** detail: `{ value: string }` */
+    onFlintMenubarRadioChange?: (event: CustomEvent<FlintMenubarRadioChangeDetail>) => void;
+}
+
 export const FlintMenubarRadioGroup = createComponent({
     tagName: 'flint-menubar-radio-group',
     elementClass: FlintMenubarRadioGroupElement,
     react: React,
     events: {
-        onFlintMenubarRadioChange: 'flint-menubar-radio-change' as EventName<CustomEvent>,
+        onFlintMenubarRadioChange: 'flint-menubar-radio-change' as EventName<CustomEvent<FlintMenubarRadioChangeDetail>>,
     },
-});
-
-export type FlintMenubarRadioGroupProps = React.ComponentProps<typeof FlintMenubarRadioGroup>;
+}) as unknown as React.ForwardRefExoticComponent<FlintMenubarRadioGroupProps & React.RefAttributes<FlintMenubarRadioGroupElement>>;

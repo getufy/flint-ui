@@ -1,4 +1,4 @@
-import { LitElement, unsafeCSS, html, nothing } from 'lit';
+import { LitElement, unsafeCSS, html, nothing, type PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import uiStepConnectorStyles from './flint-step-connector.css?inline';
@@ -30,6 +30,12 @@ export class FlintStepConnector extends LitElement {
 /* ================================================================== */
 /* FlintStepLabel                                                          */
 /* ================================================================== */
+/**
+ * Step Label: the label for a step.
+ *
+ * @slot - Label text.
+ * @slot optional - Optional step text.
+ */
 @customElement('flint-step-label')
 export class FlintStepLabel extends LitElement {
     static styles = unsafeCSS(uiStepLabelStyles);
@@ -52,6 +58,11 @@ export class FlintStepLabel extends LitElement {
 /* ================================================================== */
 /* FlintStepContent                                                        */
 /* ================================================================== */
+/**
+ * Step Content: the collapsible content area for a step.
+ *
+ * @slot - Step content.
+ */
 @customElement('flint-step-content')
 export class FlintStepContent extends LitElement {
     static styles = unsafeCSS(uiStepContentStyles);
@@ -77,6 +88,10 @@ export class FlintStepContent extends LitElement {
 /* ================================================================== */
 /**
  * Step: an individual step within a stepper.
+ *
+ * @slot icon - Custom step icon.
+ * @slot label - Custom label content.
+ * @slot - Step content.
  *
  * @fires flint-step-click - Fired when a non-linear step is clicked.
  */
@@ -200,6 +215,11 @@ export class FlintStepper extends LitElement {
 
     /** Zero-based index of the currently active step. */
     @property({ type: Number, attribute: 'active-step' }) activeStep = 0;
+    /**
+     * Initial active step for uncontrolled usage.
+     * Has no effect after the element has connected to the DOM.
+     */
+    @property({ type: Number, attribute: 'default-active-step' }) defaultActiveStep?: number;
     /** Layout direction of the stepper. */
     @property({ type: String, reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
     /** Whether to display step labels below the icons instead of beside them. */
@@ -208,6 +228,18 @@ export class FlintStepper extends LitElement {
     @property({ type: Boolean, attribute: 'non-linear' }) nonLinear = false;
     /** Accessible label for the stepper landmark (maps to aria-label on the list element). */
     @property({ type: String }) label = 'steps';
+
+    private _firstUpdate = true;
+
+    override willUpdate(changed: PropertyValues) {
+        if (this._firstUpdate) {
+            this._firstUpdate = false;
+            if (this.defaultActiveStep !== undefined) {
+                this.activeStep = this.defaultActiveStep;
+            }
+        }
+        void changed;
+    }
 
     private _syncSteps() {
         const steps = Array.from(this.querySelectorAll<FlintStep>(':scope > flint-step'));
@@ -266,6 +298,12 @@ export class FlintStepper extends LitElement {
 /* ================================================================== */
 /* FlintMobileStepper                                                      */
 /* ================================================================== */
+/**
+ * Mobile Stepper: a compact stepper for mobile layouts.
+ *
+ * @slot back-button - Back navigation button.
+ * @slot next-button - Next navigation button.
+ */
 @customElement('flint-mobile-stepper')
 export class FlintMobileStepper extends LitElement {
     static styles = unsafeCSS(uiMobileStepperStyles);

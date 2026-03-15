@@ -5,10 +5,19 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintMenuGroup as FlintMenuGroupElement } from '@getufy/flint-ui/menu/flint-menu';
 
+/**
+ * A labelled group of menu items. Wraps items in a `role="group"` for
+screen-reader announcements.
+ *
+ * @slot - Group items (flint-menu-item elements).
+ */
+export interface FlintMenuGroupProps extends React.HTMLAttributes<FlintMenuGroupElement> {
+    /** Visible heading rendered above the group items. */
+    label?: string;
+}
+
 export const FlintMenuGroup = createComponent({
     tagName: 'flint-menu-group',
     elementClass: FlintMenuGroupElement,
     react: React,
-});
-
-export type FlintMenuGroupProps = React.ComponentProps<typeof FlintMenuGroup>;
+}) as unknown as React.ForwardRefExoticComponent<FlintMenuGroupProps & React.RefAttributes<FlintMenuGroupElement>>;

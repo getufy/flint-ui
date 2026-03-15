@@ -5,10 +5,14 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintListItem as FlintListItemElement } from '@getufy/flint-ui/list/flint-list';
 
+/**
+ * flint-list-item: A common list item.
+ */
+export interface FlintListItemProps extends React.HTMLAttributes<FlintListItemElement> {
+}
+
 export const FlintListItem = createComponent({
     tagName: 'flint-list-item',
     elementClass: FlintListItemElement,
     react: React,
-});
-
-export type FlintListItemProps = React.ComponentProps<typeof FlintListItem>;
+}) as unknown as React.ForwardRefExoticComponent<FlintListItemProps & React.RefAttributes<FlintListItemElement>>;

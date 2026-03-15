@@ -5,10 +5,17 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintCommandEmpty as FlintCommandEmptyElement } from '@getufy/flint-ui/command/flint-command';
 
+/**
+ * Empty state message shown when no command items match the current query.
+Managed automatically by the parent `flint-command` element.
+ *
+ * @slot - Message text, e.g. "No results found."
+ */
+export interface FlintCommandEmptyProps extends React.HTMLAttributes<FlintCommandEmptyElement> {
+}
+
 export const FlintCommandEmpty = createComponent({
     tagName: 'flint-command-empty',
     elementClass: FlintCommandEmptyElement,
     react: React,
-});
-
-export type FlintCommandEmptyProps = React.ComponentProps<typeof FlintCommandEmpty>;
+}) as unknown as React.ForwardRefExoticComponent<FlintCommandEmptyProps & React.RefAttributes<FlintCommandEmptyElement>>;

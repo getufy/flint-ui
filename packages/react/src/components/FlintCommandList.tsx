@@ -5,10 +5,16 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintCommandList as FlintCommandListElement } from '@getufy/flint-ui/command/flint-command';
 
+/**
+ * Scrollable list container for command items and groups.
+ *
+ * @slot - `flint-command-group`, `flint-command-item`, `flint-command-empty`, `flint-command-separator`.
+ */
+export interface FlintCommandListProps extends React.HTMLAttributes<FlintCommandListElement> {
+}
+
 export const FlintCommandList = createComponent({
     tagName: 'flint-command-list',
     elementClass: FlintCommandListElement,
     react: React,
-});
-
-export type FlintCommandListProps = React.ComponentProps<typeof FlintCommandList>;
+}) as unknown as React.ForwardRefExoticComponent<FlintCommandListProps & React.RefAttributes<FlintCommandListElement>>;

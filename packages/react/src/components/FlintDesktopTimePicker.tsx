@@ -5,13 +5,39 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintDesktopTimePicker as FlintDesktopTimePickerElement } from '@getufy/flint-ui/time-picker/flint-time-picker';
 
+export interface ChangeDetail {
+    value: string;
+}
+
+/**
+ * Desktop Time Picker: a time field with a dropdown clock.
+ */
+export interface FlintDesktopTimePickerProps extends Omit<React.HTMLAttributes<FlintDesktopTimePickerElement>, 'onChange'> {
+    /** Time value in HH:MM:SS format. */
+    value?: string;
+    /** Field label text. */
+    label?: string;
+    /** Whether to use 12-hour (AM/PM) format instead of 24-hour. */
+    ampm?: boolean;
+    /** Whether to show a seconds segment. */
+    seconds?: boolean;
+    /** Disables the picker and prevents interaction. */
+    disabled?: boolean;
+    /** Makes the field read-only (visible but not editable). */
+    readonly?: boolean;
+    /** Displays the field in an error state. */
+    error?: boolean;
+    /** Helper text shown below the field. */
+    helperText?: string;
+    /** Fired when the time value changes. */
+    onChange?: (event: CustomEvent<ChangeDetail>) => void;
+}
+
 export const FlintDesktopTimePicker = createComponent({
     tagName: 'flint-desktop-time-picker',
     elementClass: FlintDesktopTimePickerElement,
     react: React,
     events: {
-        onChange: 'change' as EventName<CustomEvent>,
+        onChange: 'change' as EventName<CustomEvent<ChangeDetail>>,
     },
-});
-
-export type FlintDesktopTimePickerProps = React.ComponentProps<typeof FlintDesktopTimePicker>;
+}) as unknown as React.ForwardRefExoticComponent<FlintDesktopTimePickerProps & React.RefAttributes<FlintDesktopTimePickerElement>>;

@@ -5,10 +5,14 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintMenubarSeparator as FlintMenubarSeparatorElement } from '@getufy/flint-ui/menubar/flint-menubar';
 
+/**
+ * A hairline separator between menu groups.
+ */
+export interface FlintMenubarSeparatorProps extends React.HTMLAttributes<FlintMenubarSeparatorElement> {
+}
+
 export const FlintMenubarSeparator = createComponent({
     tagName: 'flint-menubar-separator',
     elementClass: FlintMenubarSeparatorElement,
     react: React,
-});
-
-export type FlintMenubarSeparatorProps = React.ComponentProps<typeof FlintMenubarSeparator>;
+}) as unknown as React.ForwardRefExoticComponent<FlintMenubarSeparatorProps & React.RefAttributes<FlintMenubarSeparatorElement>>;

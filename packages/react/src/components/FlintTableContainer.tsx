@@ -5,10 +5,18 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintTableContainer as FlintTableContainerElement } from '@getufy/flint-ui/table/flint-table';
 
+/**
+ * flint-table-container
+ */
+export interface FlintTableContainerProps extends React.HTMLAttributes<FlintTableContainerElement> {
+    /** Applies a stronger box-shadow elevation. */
+    shadow?: boolean;
+    /** Sticks the table header to the top on scroll. */
+    stickyHeader?: boolean;
+}
+
 export const FlintTableContainer = createComponent({
     tagName: 'flint-table-container',
     elementClass: FlintTableContainerElement,
     react: React,
-});
-
-export type FlintTableContainerProps = React.ComponentProps<typeof FlintTableContainer>;
+}) as unknown as React.ForwardRefExoticComponent<FlintTableContainerProps & React.RefAttributes<FlintTableContainerElement>>;

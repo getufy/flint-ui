@@ -5,10 +5,11 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintCardContent as FlintCardContentElement } from '@getufy/flint-ui/card/flint-card-content';
 
+export interface FlintCardContentProps extends React.HTMLAttributes<FlintCardContentElement> {
+}
+
 export const FlintCardContent = createComponent({
     tagName: 'flint-card-content',
     elementClass: FlintCardContentElement,
     react: React,
-});
-
-export type FlintCardContentProps = React.ComponentProps<typeof FlintCardContent>;
+}) as unknown as React.ForwardRefExoticComponent<FlintCardContentProps & React.RefAttributes<FlintCardContentElement>>;

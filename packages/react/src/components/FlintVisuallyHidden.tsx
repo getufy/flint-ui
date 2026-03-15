@@ -5,10 +5,19 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintVisuallyHidden as FlintVisuallyHiddenElement } from '@getufy/flint-ui/visually-hidden/flint-visually-hidden';
 
+/**
+ * Makes content accessible to assistive devices (screen readers) without
+displaying it visually on screen.
+ *
+ * @slot - The content to be visually hidden.
+ */
+export interface FlintVisuallyHiddenProps extends React.HTMLAttributes<FlintVisuallyHiddenElement> {
+    /** When `true`, the focus-reveal behaviour is disabled. */
+    notFocusable?: boolean;
+}
+
 export const FlintVisuallyHidden = createComponent({
     tagName: 'flint-visually-hidden',
     elementClass: FlintVisuallyHiddenElement,
     react: React,
-});
-
-export type FlintVisuallyHiddenProps = React.ComponentProps<typeof FlintVisuallyHidden>;
+}) as unknown as React.ForwardRefExoticComponent<FlintVisuallyHiddenProps & React.RefAttributes<FlintVisuallyHiddenElement>>;

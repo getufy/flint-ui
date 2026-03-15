@@ -5,10 +5,24 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintNavigationMenuLink as FlintNavigationMenuLinkElement } from '@getufy/flint-ui/navigation-menu/flint-navigation-menu-link';
 
+/**
+ * @slot default - Link text/content
+ */
+export interface FlintNavigationMenuLinkProps extends Omit<React.HTMLAttributes<FlintNavigationMenuLinkElement>, 'title'> {
+    /** The link URL */
+    href?: string;
+    /** The link target (e.g., '_blank') */
+    target?: string;
+    /** Link title/tooltip */
+    title?: string;
+    /** Whether the link is disabled */
+    disabled?: boolean;
+    /** Whether this link represents the current page. */
+    active?: boolean;
+}
+
 export const FlintNavigationMenuLink = createComponent({
     tagName: 'flint-navigation-menu-link',
     elementClass: FlintNavigationMenuLinkElement,
     react: React,
-});
-
-export type FlintNavigationMenuLinkProps = React.ComponentProps<typeof FlintNavigationMenuLink>;
+}) as unknown as React.ForwardRefExoticComponent<FlintNavigationMenuLinkProps & React.RefAttributes<FlintNavigationMenuLinkElement>>;

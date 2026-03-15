@@ -5,10 +5,18 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintList as FlintListElement } from '@getufy/flint-ui/list/flint-list';
 
+/**
+ * flint-list: A wrapper for list items.
+ */
+export interface FlintListProps extends React.HTMLAttributes<FlintListElement> {
+    /** Whether to disable the default padding on the list. */
+    disablePadding?: boolean;
+    /** Whether to use compact spacing for list items. */
+    dense?: boolean;
+}
+
 export const FlintList = createComponent({
     tagName: 'flint-list',
     elementClass: FlintListElement,
     react: React,
-});
-
-export type FlintListProps = React.ComponentProps<typeof FlintList>;
+}) as unknown as React.ForwardRefExoticComponent<FlintListProps & React.RefAttributes<FlintListElement>>;

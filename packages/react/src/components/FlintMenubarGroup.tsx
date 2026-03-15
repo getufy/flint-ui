@@ -5,10 +5,16 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintMenubarGroup as FlintMenubarGroupElement } from '@getufy/flint-ui/menubar/flint-menubar';
 
+/**
+ * Groups related menu items. Optional `heading` shows a label.
+ */
+export interface FlintMenubarGroupProps extends React.HTMLAttributes<FlintMenubarGroupElement> {
+    /** Label text displayed above the group. */
+    heading?: string;
+}
+
 export const FlintMenubarGroup = createComponent({
     tagName: 'flint-menubar-group',
     elementClass: FlintMenubarGroupElement,
     react: React,
-});
-
-export type FlintMenubarGroupProps = React.ComponentProps<typeof FlintMenubarGroup>;
+}) as unknown as React.ForwardRefExoticComponent<FlintMenubarGroupProps & React.RefAttributes<FlintMenubarGroupElement>>;

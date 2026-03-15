@@ -5,6 +5,29 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintMenuItem as FlintMenuItemElement } from '@getufy/flint-ui/menu/flint-menu';
 
+/**
+ * A single option inside a `flint-menu`.
+ *
+ * @slot - Item label text.
+ * @slot icon - Leading icon.
+ * @slot end-icon - Trailing icon or shortcut hint.
+ */
+export interface FlintMenuItemProps extends React.HTMLAttributes<FlintMenuItemElement> {
+    /** Marks this item as the currently selected option. */
+    selected?: boolean;
+    /** Disables the item — it becomes non-interactive. */
+    disabled?: boolean;
+    /** Dense padding mode (for desktop-density menus). */
+    dense?: boolean;
+    /** Renders a hairline separator below this item. */
+    divider?: boolean;
+    /** The machine-readable value carried in the `flint-menu-item-select` event detail. */
+    value?: string;
+    /** Fired when the item is activated.
+detail: { value: string | null, label: string } */
+    onFlintMenuItemSelect?: (event: CustomEvent) => void;
+}
+
 export const FlintMenuItem = createComponent({
     tagName: 'flint-menu-item',
     elementClass: FlintMenuItemElement,
@@ -12,6 +35,4 @@ export const FlintMenuItem = createComponent({
     events: {
         onFlintMenuItemSelect: 'flint-menu-item-select' as EventName<CustomEvent>,
     },
-});
-
-export type FlintMenuItemProps = React.ComponentProps<typeof FlintMenuItem>;
+}) as unknown as React.ForwardRefExoticComponent<FlintMenuItemProps & React.RefAttributes<FlintMenuItemElement>>;

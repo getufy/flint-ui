@@ -5,6 +5,28 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintMobileTimePicker as FlintMobileTimePickerElement } from '@getufy/flint-ui/time-picker/flint-time-picker';
 
+/**
+ * Mobile Time Picker: a time field with a modal clock dialog.
+ */
+export interface FlintMobileTimePickerProps extends Omit<React.HTMLAttributes<FlintMobileTimePickerElement>, 'onChange'> {
+    /** Time value in HH:MM:SS format. */
+    value?: string;
+    /** Field label text. */
+    label?: string;
+    /** Whether to use 12-hour (AM/PM) format instead of 24-hour. */
+    ampm?: boolean;
+    /** Whether to show a seconds segment. */
+    seconds?: boolean;
+    /** Disables the picker and prevents interaction. */
+    disabled?: boolean;
+    /** Displays the picker in an error state. */
+    error?: boolean;
+    /** Helper text shown below the field. */
+    helperText?: string;
+    /** Fired when the time value changes. */
+    onChange?: (event: CustomEvent) => void;
+}
+
 export const FlintMobileTimePicker = createComponent({
     tagName: 'flint-mobile-time-picker',
     elementClass: FlintMobileTimePickerElement,
@@ -12,6 +34,4 @@ export const FlintMobileTimePicker = createComponent({
     events: {
         onChange: 'change' as EventName<CustomEvent>,
     },
-});
-
-export type FlintMobileTimePickerProps = React.ComponentProps<typeof FlintMobileTimePicker>;
+}) as unknown as React.ForwardRefExoticComponent<FlintMobileTimePickerProps & React.RefAttributes<FlintMobileTimePickerElement>>;

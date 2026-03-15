@@ -5,10 +5,19 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintScrollBar as FlintScrollBarElement } from '@getufy/flint-ui/scroll-area/flint-scroll-area';
 
+/**
+ * Custom overlay scrollbar. Place inside `flint-scroll-area` with
+`slot="scrollbar"` for an explicit horizontal or second-axis bar.
+ *
+ * @slot — none (fully shadow DOM)
+ */
+export interface FlintScrollBarProps extends React.HTMLAttributes<FlintScrollBarElement> {
+    /** Which axis this scrollbar controls. Reflects to attribute. */
+    orientation?: 'vertical' | 'horizontal';
+}
+
 export const FlintScrollBar = createComponent({
     tagName: 'flint-scroll-bar',
     elementClass: FlintScrollBarElement,
     react: React,
-});
-
-export type FlintScrollBarProps = React.ComponentProps<typeof FlintScrollBar>;
+}) as unknown as React.ForwardRefExoticComponent<FlintScrollBarProps & React.RefAttributes<FlintScrollBarElement>>;

@@ -11,9 +11,9 @@ import uiImageListItemBarStyles from './flint-image-list-item-bar.css?inline';
  * Positioning relative to the image is controlled by `bar-position` on
  * the parent `flint-image-list-item`; `position` on the bar controls styling.
  *
- * @slot          - Title text
- * @slot subtitle - Subtitle text
- * @slot action   - An icon button or secondary action
+ * @slot title - Title text.
+ * @slot subtitle - Subtitle text.
+ * @slot - Action content.
  */
 @customElement('flint-image-list-item-bar')
 export class FlintImageListItemBar extends LitElement {

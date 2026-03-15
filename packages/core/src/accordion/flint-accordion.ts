@@ -10,6 +10,8 @@ let _accordionCounter = 0;
 /**
  * Accordion: the wrapper for grouping related components.
  *
+ * @slot - FlintAccordionSummary and FlintAccordionDetails.
+ *
  * @fires flint-accordion-change - Fired when the accordion's expanded state changes.
  */
 @customElement('flint-accordion')
@@ -22,12 +24,33 @@ export class FlintAccordion extends LitElement {
     @property({ type: Boolean, reflect: true }) expanded = false;
 
     /**
+     * Initial expanded state for uncontrolled usage.
+     * Has no effect after the element has connected to the DOM.
+     */
+    @property({ type: Boolean, attribute: 'default-expanded' }) defaultExpanded = false;
+
+    /**
      * If true, the accordion is disabled.
      */
     @property({ type: Boolean, reflect: true }) disabled = false;
 
     /** Unique ID used to link the region to its summary heading. */
     private readonly _uid = `flint-accordion-${++_accordionCounter}`;
+
+    private _firstUpdate = true;
+
+    override willUpdate(changed: PropertyValues) {
+        // Honour defaultExpanded on first render, but only when `expanded` was not
+        // explicitly provided. willUpdate() batches this into the current
+        // update cycle, so no extra round-trip or Lit warning is triggered.
+        if (this._firstUpdate) {
+            this._firstUpdate = false;
+            if (this.defaultExpanded && !this.expanded) {
+                this.expanded = true;
+            }
+        }
+        void changed;
+    }
 
     override updated(changed: PropertyValues) {
         if (changed.has('expanded') || changed.has('disabled')) {
@@ -72,6 +95,9 @@ export class FlintAccordion extends LitElement {
 
 /**
  * Accordion Summary: the wrapper for the Accordion header.
+ *
+ * @slot expandIcon - Custom expand/collapse icon.
+ * @slot - Summary content.
  *
  * @fires flint-accordion-toggle - Fired when the summary is clicked or activated via keyboard.
  */
@@ -134,6 +160,8 @@ export class FlintAccordionSummary extends LitElement {
 
 /**
  * Accordion Details: the wrapper for the Accordion content.
+ *
+ * @slot - Detail content.
  */
 @customElement('flint-accordion-details')
 export class FlintAccordionDetails extends LitElement {

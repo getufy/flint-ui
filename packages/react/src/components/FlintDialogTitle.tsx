@@ -5,10 +5,15 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintDialogTitle as FlintDialogTitleElement } from '@getufy/flint-ui/dialog/flint-dialog';
 
+/**
+ * flint-dialog-title: heading area of a dialog.
+Automatically assigned id="dialog-title" for aria-labelledby.
+ */
+export interface FlintDialogTitleProps extends React.HTMLAttributes<FlintDialogTitleElement> {
+}
+
 export const FlintDialogTitle = createComponent({
     tagName: 'flint-dialog-title',
     elementClass: FlintDialogTitleElement,
     react: React,
-});
-
-export type FlintDialogTitleProps = React.ComponentProps<typeof FlintDialogTitle>;
+}) as unknown as React.ForwardRefExoticComponent<FlintDialogTitleProps & React.RefAttributes<FlintDialogTitleElement>>;

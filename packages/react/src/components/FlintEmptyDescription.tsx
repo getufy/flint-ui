@@ -5,10 +5,16 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintEmptyDescription as FlintEmptyDescriptionElement } from '@getufy/flint-ui/empty/flint-empty';
 
+/**
+ * Displays the descriptive text of an empty state.
+ *
+ * @slot - Description text.
+ */
+export interface FlintEmptyDescriptionProps extends React.HTMLAttributes<FlintEmptyDescriptionElement> {
+}
+
 export const FlintEmptyDescription = createComponent({
     tagName: 'flint-empty-description',
     elementClass: FlintEmptyDescriptionElement,
     react: React,
-});
-
-export type FlintEmptyDescriptionProps = React.ComponentProps<typeof FlintEmptyDescription>;
+}) as unknown as React.ForwardRefExoticComponent<FlintEmptyDescriptionProps & React.RefAttributes<FlintEmptyDescriptionElement>>;

@@ -5,10 +5,20 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintCardHeader as FlintCardHeaderElement } from '@getufy/flint-ui/card/flint-card-header';
 
+/**
+ * Card Header: the header section of a card.
+ *
+ * @slot avatar - Avatar or icon element.
+ * @slot action - Action element like an icon button.
+ * @slot - Header text content.
+ */
+export interface FlintCardHeaderProps extends Omit<React.HTMLAttributes<FlintCardHeaderElement>, 'title'> {
+    title?: string;
+    subtitle?: string;
+}
+
 export const FlintCardHeader = createComponent({
     tagName: 'flint-card-header',
     elementClass: FlintCardHeaderElement,
     react: React,
-});
-
-export type FlintCardHeaderProps = React.ComponentProps<typeof FlintCardHeader>;
+}) as unknown as React.ForwardRefExoticComponent<FlintCardHeaderProps & React.RefAttributes<FlintCardHeaderElement>>;

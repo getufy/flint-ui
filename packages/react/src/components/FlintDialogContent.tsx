@@ -5,10 +5,14 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintDialogContent as FlintDialogContentElement } from '@getufy/flint-ui/dialog/flint-dialog';
 
+/**
+ * flint-dialog-content: scrollable content area of a dialog.
+ */
+export interface FlintDialogContentProps extends React.HTMLAttributes<FlintDialogContentElement> {
+}
+
 export const FlintDialogContent = createComponent({
     tagName: 'flint-dialog-content',
     elementClass: FlintDialogContentElement,
     react: React,
-});
-
-export type FlintDialogContentProps = React.ComponentProps<typeof FlintDialogContent>;
+}) as unknown as React.ForwardRefExoticComponent<FlintDialogContentProps & React.RefAttributes<FlintDialogContentElement>>;

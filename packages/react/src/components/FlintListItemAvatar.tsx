@@ -5,10 +5,14 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintListItemAvatar as FlintListItemAvatarElement } from '@getufy/flint-ui/list/flint-list';
 
+/**
+ * flint-list-item-avatar: An avatar wrapper inside a list item.
+ */
+export interface FlintListItemAvatarProps extends React.HTMLAttributes<FlintListItemAvatarElement> {
+}
+
 export const FlintListItemAvatar = createComponent({
     tagName: 'flint-list-item-avatar',
     elementClass: FlintListItemAvatarElement,
     react: React,
-});
-
-export type FlintListItemAvatarProps = React.ComponentProps<typeof FlintListItemAvatar>;
+}) as unknown as React.ForwardRefExoticComponent<FlintListItemAvatarProps & React.RefAttributes<FlintListItemAvatarElement>>;
