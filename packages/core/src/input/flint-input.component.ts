@@ -106,7 +106,7 @@ export class FlintInput extends FormAssociated(FlintElement) {
             : undefined;
 
         return html`
-      <div class="input-wrapper" part="wrapper">
+      <div class="input-wrapper" part="base">
         ${this.label
                 ? html`<label for=${this._inputId} part="label">${this.label}</label>`
                 : ''}
@@ -131,7 +131,7 @@ export class FlintInput extends FormAssociated(FlintElement) {
         />
 
         ${errorState && this.errorMessage
-                ? html`<p id=${descId} class="help-text error-text" part="error-text" role="alert">${this.errorMessage}</p>`
+                ? html`<p id=${descId} class="help-text error-text" part="error-message" role="alert">${this.errorMessage}</p>`
                 : this.helperText
                     ? html`<p id=${descId} class="help-text" part="help-text">${this.helperText}</p>`
                     : ''}

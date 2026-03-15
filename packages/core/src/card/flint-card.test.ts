@@ -55,9 +55,9 @@ describe('Card Components', () => {
             expect(el.hasAttribute('interactive')).toBe(true);
         });
 
-        it('exposes part="card" on inner div', async () => {
+        it('exposes part="base" on inner div', async () => {
             const el = await fixture<FlintCard>(html`<flint-card></flint-card>`);
-            expect(el.shadowRoot!.querySelector('[part="card"]')).not.toBeNull();
+            expect(el.shadowRoot!.querySelector('[part="base"]')).not.toBeNull();
         });
     });
 

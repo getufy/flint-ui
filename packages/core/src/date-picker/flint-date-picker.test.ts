@@ -666,6 +666,48 @@ describe('flint-date-picker — full coverage', () => {
         expect(popover?.classList.contains('open')).toBe(false);
     });
 
+    // ── Hoist ───────────────────────────────────────────────────────
+
+    it('hoist defaults to false', async () => {
+        const el = await fixture<FlintDatePicker>(html`<flint-date-picker></flint-date-picker>`);
+        expect(el.hoist).toBe(false);
+    });
+
+    it('adds hoisted class to popover when hoist is true', async () => {
+        const el = await fixture<FlintDatePicker>(html`<flint-date-picker hoist></flint-date-picker>`);
+        await el.updateComplete;
+        const popover = el.shadowRoot!.querySelector('.popover');
+        expect(popover?.classList.contains('hoisted')).toBe(true);
+    });
+
+    it('does not add hoisted class when hoist is false', async () => {
+        const el = await fixture<FlintDatePicker>(html`<flint-date-picker></flint-date-picker>`);
+        await el.updateComplete;
+        const popover = el.shadowRoot!.querySelector('.popover');
+        expect(popover?.classList.contains('hoisted')).toBe(false);
+    });
+
+    it('cleans up hoist on popover close', async () => {
+        const el = await fixture<FlintDatePicker>(html`<flint-date-picker hoist></flint-date-picker>`);
+        await el.updateComplete;
+        // Open
+        el.shadowRoot!.querySelector<HTMLButtonElement>('.calendar-icon-btn')!.click();
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(true);
+        // Close via click-away
+        el.shadowRoot!.querySelector<HTMLElement>('.click-away')!.click();
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(false);
+    });
+
+    it('hoist does not apply to static variant', async () => {
+        const el = await fixture<FlintDatePicker>(html`<flint-date-picker variant="static" hoist></flint-date-picker>`);
+        await el.updateComplete;
+        const popover = el.shadowRoot!.querySelector('.popover');
+        // Static variant has no popover
+        expect(popover).toBeNull();
+    });
+
     // auto variant: pointer fine → desktop
     it('auto variant resolves to desktop when pointer is fine', async () => {
         Object.defineProperty(window, 'matchMedia', {

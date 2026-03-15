@@ -280,6 +280,23 @@ export const ErrorState: Story = {
   `),
 };
 
+// ── Hoist (overflow container) ────────────────────────────────────────────────
+export const Hoist: Story = {
+    name: 'Hoist (Overflow Container)',
+    render: () => html`
+    <div style="padding:48px;font-family:Inter,sans-serif;display:flex;gap:40px;">
+      <div style="overflow:hidden;border:2px dashed #e5e7eb;padding:24px;border-radius:8px;width:260px;height:100px;">
+        <p style="font-size:.75rem;color:#6b7280;margin:0 0 8px;">overflow: hidden (no hoist)</p>
+        <flint-date-picker label="Clipped" @flint-date-picker-change=${onChange}></flint-date-picker>
+      </div>
+      <div style="overflow:hidden;border:2px dashed #3b82f6;padding:24px;border-radius:8px;width:260px;height:100px;">
+        <p style="font-size:.75rem;color:#3b82f6;margin:0 0 8px;">overflow: hidden (with hoist)</p>
+        <flint-date-picker label="Hoisted" hoist @flint-date-picker-change=${onChange}></flint-date-picker>
+      </div>
+    </div>
+  `,
+};
+
 // ── All four variants side-by-side ────────────────────────────────────────────
 export const AllVariants: Story = {
     name: 'All Variants',

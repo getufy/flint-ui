@@ -38,9 +38,9 @@ export class FlintButton extends FlintElement {
         type="button"
         class=${classMap(classes)}
         ?disabled=${this.disabled}
-        part="button"
+        part="base"
       >
-        <slot></slot>
+        <span part="label"><slot></slot></span>
       </button>
     `;
   }

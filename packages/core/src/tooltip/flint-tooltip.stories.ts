@@ -202,6 +202,26 @@ export const AutoFlip: Story = {
     `,
 };
 
+/* ─── Hoist (overflow container) ─────────────────────────── */
+export const Hoist: Story = {
+    render: () => html`
+        <div style="padding: 100px; display: flex; gap: 40px; justify-content: center;">
+            <div style="overflow: hidden; border: 2px dashed #e5e7eb; padding: 24px; border-radius: 8px; width: 200px;">
+                <p style="font-size: 0.75rem; color: #6b7280; margin: 0 0 12px;">overflow: hidden (no hoist)</p>
+                <flint-tooltip label="This tooltip is clipped" placement="bottom" arrow>
+                    <flint-button>Clipped</flint-button>
+                </flint-tooltip>
+            </div>
+            <div style="overflow: hidden; border: 2px dashed #3b82f6; padding: 24px; border-radius: 8px; width: 200px;">
+                <p style="font-size: 0.75rem; color: #3b82f6; margin: 0 0 12px;">overflow: hidden (with hoist)</p>
+                <flint-tooltip label="This tooltip escapes the container" placement="bottom" arrow hoist>
+                    <flint-button variant="primary">Hoisted</flint-button>
+                </flint-tooltip>
+            </div>
+        </div>
+    `,
+};
+
 /* ─── Long Text (max-width) ──────────────────────────────── */
 export const LongText: Story = {
     render: () => html`

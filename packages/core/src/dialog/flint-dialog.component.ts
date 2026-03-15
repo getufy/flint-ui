@@ -8,6 +8,8 @@ import uiDialogTitleStyles from './flint-dialog-title.css?inline';
 import uiDialogContentStyles from './flint-dialog-content.css?inline';
 import uiDialogContentTextStyles from './flint-dialog-content-text.css?inline';
 import uiDialogActionsStyles from './flint-dialog-actions.css?inline';
+import { getAnimation, animateTo, stopAnimations, resolveKeyframes } from '../utilities/animation-registry.js';
+import '../utilities/animation-presets.js';
 
 // Tracks open dialogs in activation order so only the topmost handles Escape.
 const _openDialogs: FlintDialog[] = [];
@@ -22,6 +24,8 @@ const _openDialogs: FlintDialog[] = [];
  * @fires cancel  - Dispatched by confirmation dialogs when the user clicked "cancel".
  *
  * @slot - Default slot for dialog content (title, content, actions sub-components).
+ *
+ * @csspart panel - The dialog panel container.
  */
 export class FlintDialog extends FlintElement {
   static styles = unsafeCSS(uiDialogStyles);
@@ -69,15 +73,68 @@ export class FlintDialog extends FlintElement {
       if (this.open) {
         if (!_openDialogs.includes(this)) _openDialogs.push(this);
         this._lastFocused = document.activeElement as HTMLElement | null;
-        void this.updateComplete.then(() => {
-          this.shadowRoot?.querySelector<HTMLElement>('.dialog-panel')?.focus();
-        });
+        void this._runOpenAnimation();
       } else {
         const idx = _openDialogs.indexOf(this);
         if (idx !== -1) _openDialogs.splice(idx, 1);
-        this._lastFocused?.focus();
-        this._lastFocused = null;
+        // Run close animation, then restore focus.
+        // Focus restoration happens synchronously after animation completes
+        // (or immediately if no Web Animations API is available).
+        void this._runCloseAnimation().then(() => {
+          this._lastFocused?.focus();
+          this._lastFocused = null;
+        });
       }
+    }
+  }
+
+  /**
+   * Run the open animation using the registry if available, then focus the panel.
+   * Falls back to CSS transitions if no registry animation is registered.
+   */
+  private async _runOpenAnimation() {
+    const panel = this.shadowRoot?.querySelector<HTMLElement>('.dialog-panel');
+    const overlay = this.shadowRoot?.querySelector<HTMLElement>('flint-backdrop');
+
+    const panelAnim = getAnimation(this, 'dialog.show');
+    const overlayAnim = getAnimation(this, 'dialog.overlay.show');
+
+    if (panelAnim && panel) {
+      await stopAnimations(panel);
+      const keyframes = resolveKeyframes(this, panelAnim);
+      await animateTo(panel, keyframes, panelAnim.options);
+    }
+
+    if (overlayAnim && overlay) {
+      await stopAnimations(overlay);
+      const keyframes = resolveKeyframes(this, overlayAnim);
+      void animateTo(overlay, keyframes, overlayAnim.options);
+    }
+
+    panel?.focus();
+  }
+
+  /**
+   * Run the close animation using the registry if available.
+   * Falls back to CSS transitions if no registry animation is registered.
+   */
+  private async _runCloseAnimation() {
+    const panel = this.shadowRoot?.querySelector<HTMLElement>('.dialog-panel');
+    const overlay = this.shadowRoot?.querySelector<HTMLElement>('flint-backdrop');
+
+    const panelAnim = getAnimation(this, 'dialog.hide');
+    const overlayAnim = getAnimation(this, 'dialog.overlay.hide');
+
+    if (panelAnim && panel) {
+      await stopAnimations(panel);
+      const keyframes = resolveKeyframes(this, panelAnim);
+      await animateTo(panel, keyframes, panelAnim.options);
+    }
+
+    if (overlayAnim && overlay) {
+      await stopAnimations(overlay);
+      const keyframes = resolveKeyframes(this, overlayAnim);
+      void animateTo(overlay, keyframes, overlayAnim.options);
     }
   }
 
@@ -120,6 +177,7 @@ export class FlintDialog extends FlintElement {
       <flint-backdrop .open=${this.open} @flint-backdrop-close=${this._handleBackdropClose}>
         <div
           class=${panelClasses}
+          part="panel"
           tabindex="-1"
           role="dialog"
           aria-modal="true"

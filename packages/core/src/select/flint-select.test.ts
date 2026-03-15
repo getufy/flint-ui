@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-select';
 import type { FlintSelect } from './flint-select';
+import { expectAccessible } from '../test-utils/axe';
 
 const opts = [
   { label: 'Apple',  value: 'apple'  },
@@ -1009,5 +1010,46 @@ describe('flint-select — slots', () => {
     const el = await fixture<FlintSelect>(html`<flint-select .options=${opts}></flint-select>`);
     const slot = el.shadowRoot!.querySelector('slot[name="error-message"]');
     expect(slot).toBeNull();
+  });
+
+  // ── Accessibility ─────────────────────────────────────────────────────────
+
+  it('should pass automated a11y checks', async () => {
+    const el = await fixture<FlintSelect>(html`<flint-select label="Fruit" .options=${opts}></flint-select>`);
+    await el.updateComplete;
+    await expectAccessible(el);
+  });
+});
+
+// ── CSS parts ────────────────────────────────────────────────────────────────
+
+describe('flint-select — CSS parts', () => {
+  it('exposes trigger, dropdown, placeholder, and option parts', async () => {
+    const el = await fixture<FlintSelect>(html`<flint-select .options=${opts} placeholder="Pick"></flint-select>`);
+    expect(el.shadowRoot!.querySelector('[part="trigger"]')).not.toBeNull();
+    expect(el.shadowRoot!.querySelector('[part="dropdown"]')).not.toBeNull();
+    expect(el.shadowRoot!.querySelector('[part="placeholder"]')).not.toBeNull();
+    expect(el.shadowRoot!.querySelectorAll('[part="option"]').length).toBe(3);
+  });
+
+  it('exposes label part when label is provided', async () => {
+    const el = await fixture<FlintSelect>(html`<flint-select .options=${opts} label="Fruit"></flint-select>`);
+    expect(el.shadowRoot!.querySelector('[part="label"]')).not.toBeNull();
+  });
+
+  it('exposes chip parts in multiple mode', async () => {
+    const el = await fixture<FlintSelect>(html`
+      <flint-select multiple .options=${opts} .value=${['apple', 'cherry']}></flint-select>
+    `);
+    await el.updateComplete;
+    expect(el.shadowRoot!.querySelectorAll('[part="chip"]').length).toBe(2);
+  });
+
+  it('exposes error-message part when in error state', async () => {
+    const el = await fixture<FlintSelect>(html`
+      <flint-select ?error=${true} error-message="Required" .options=${opts}></flint-select>
+    `);
+    await el.updateComplete;
+    expect(el.shadowRoot!.querySelector('[part="error-message"]')).not.toBeNull();
   });
 });

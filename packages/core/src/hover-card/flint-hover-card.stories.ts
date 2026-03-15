@@ -328,6 +328,43 @@ export const KeyboardFocus: Story = {
     `,
 };
 
+/* ── Hoist (overflow container) ──────────────────────────────────── */
+export const Hoist: Story = {
+    name: 'Hoist (Overflow Container)',
+    render: () => html`
+        <div style="padding: 120px 80px; display: flex; gap: 40px; justify-content: center; align-items: flex-start;">
+            <div style="overflow: hidden; border: 2px dashed #e5e7eb; padding: 24px; border-radius: 8px; width: 200px; height: 80px;">
+                <p style="font-size: 0.75rem; color: #6b7280; margin: 0 0 8px;">overflow: hidden (no hoist)</p>
+                <flint-hover-card open-delay="100" close-delay="100">
+                    <flint-hover-card-trigger>
+                        <a href="#" style=${linkStyle}>@clipped</a>
+                    </flint-hover-card-trigger>
+                    <flint-hover-card-content style="width: 200px;">
+                        <div style="font-family: system-ui, sans-serif;">
+                            <div style="font-weight: 600; margin-bottom: 4px; color: #111827;">Clipped Card</div>
+                            <div style="font-size: 0.8125rem; color: #4b5563;">This card is clipped by the container.</div>
+                        </div>
+                    </flint-hover-card-content>
+                </flint-hover-card>
+            </div>
+            <div style="overflow: hidden; border: 2px dashed #3b82f6; padding: 24px; border-radius: 8px; width: 200px; height: 80px;">
+                <p style="font-size: 0.75rem; color: #3b82f6; margin: 0 0 8px;">overflow: hidden (with hoist)</p>
+                <flint-hover-card open-delay="100" close-delay="100" hoist>
+                    <flint-hover-card-trigger>
+                        <a href="#" style=${linkStyle}>@hoisted</a>
+                    </flint-hover-card-trigger>
+                    <flint-hover-card-content style="width: 200px;">
+                        <div style="font-family: system-ui, sans-serif;">
+                            <div style="font-weight: 600; margin-bottom: 4px; color: #111827;">Hoisted Card</div>
+                            <div style="font-size: 0.8125rem; color: #4b5563;">This card escapes the overflow container.</div>
+                        </div>
+                    </flint-hover-card-content>
+                </flint-hover-card>
+            </div>
+        </div>
+    `,
+};
+
 /* ── Events ──────────────────────────────────────────────────────── */
 export const Events: Story = {
     name: 'Events',

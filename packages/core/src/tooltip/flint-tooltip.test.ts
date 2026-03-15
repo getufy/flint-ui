@@ -794,4 +794,137 @@ describe('flint-tooltip', () => {
 
         vi.unstubAllGlobals();
     });
+
+    // ── Hoist ─────────────────────────────────────────────────────
+
+    it('hoist defaults to false', async () => {
+        const el = await fixture<FlintTooltip>(html`
+            <flint-tooltip label="Tip"><button>B</button></flint-tooltip>
+        `);
+        expect(el.hoist).toBe(false);
+    });
+
+    it('adds hoisted class when hoist is true', async () => {
+        const el = await fixture<FlintTooltip>(html`
+            <flint-tooltip label="Tip" hoist><button>B</button></flint-tooltip>
+        `);
+        const popup = el.shadowRoot!.querySelector('.tooltip-popup')!;
+        expect(popup.classList.contains('hoisted')).toBe(true);
+    });
+
+    it('does not add hoisted class when hoist is false', async () => {
+        const el = await fixture<FlintTooltip>(html`
+            <flint-tooltip label="Tip"><button>B</button></flint-tooltip>
+        `);
+        const popup = el.shadowRoot!.querySelector('.tooltip-popup')!;
+        expect(popup.classList.contains('hoisted')).toBe(false);
+    });
+
+    it('applies inline fixed positioning when hoist is true and tooltip shows', async () => {
+        const el = await fixture<FlintTooltip>(html`
+            <flint-tooltip label="Hoisted" hoist><button>B</button></flint-tooltip>
+        `);
+        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        await el.updateComplete;
+        // Wait for _startHoist's updateComplete.then
+        await el.updateComplete;
+
+        const popup = el.shadowRoot!.querySelector('.tooltip-popup') as HTMLElement;
+        expect(popup.classList.contains('visible')).toBe(true);
+        expect(popup.classList.contains('hoisted')).toBe(true);
+    });
+
+    it('cleans up inline styles when hoist tooltip hides', async () => {
+        const el = await fixture<FlintTooltip>(html`
+            <flint-tooltip label="Hoisted" hoist><button>B</button></flint-tooltip>
+        `);
+        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+
+        // Show
+        container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        await el.updateComplete;
+        await el.updateComplete;
+
+        // Hide
+        container.dispatchEvent(new MouseEvent('mouseleave', { bubbles: true }));
+        await el.updateComplete;
+
+        const popup = el.shadowRoot!.querySelector('.tooltip-popup') as HTMLElement;
+        expect(popup.classList.contains('visible')).toBe(false);
+    });
+
+    it('cleans up hoist listeners on Escape key', async () => {
+        const el = await fixture<FlintTooltip>(html`
+            <flint-tooltip label="Hoisted" hoist><button>B</button></flint-tooltip>
+        `);
+        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+
+        // Show
+        container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        await el.updateComplete;
+
+        // Escape
+        container.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+        await el.updateComplete;
+
+        const popup = el.shadowRoot!.querySelector('.tooltip-popup') as HTMLElement;
+        expect(popup.classList.contains('visible')).toBe(false);
+    });
+
+    it('cleans up hoist on disconnect', async () => {
+        const el = await fixture<FlintTooltip>(html`
+            <flint-tooltip label="Hoisted" hoist><button>B</button></flint-tooltip>
+        `);
+        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+
+        container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        await el.updateComplete;
+
+        // Should not throw when removed
+        el.remove();
+        expect(el.shadowRoot!.querySelector('.tooltip-popup')).toBeTruthy();
+    });
+
+    it('applies hoist with open-delay', async () => {
+        vi.useFakeTimers();
+
+        const el = await fixture<FlintTooltip>(html`
+            <flint-tooltip label="Delayed hoist" hoist open-delay="100"><button>B</button></flint-tooltip>
+        `);
+        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        const popup = el.shadowRoot!.querySelector('.tooltip-popup') as HTMLElement;
+
+        container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        await el.updateComplete;
+        expect(popup.classList.contains('visible')).toBe(false);
+
+        await vi.advanceTimersByTimeAsync(150);
+        await el.updateComplete;
+        expect(popup.classList.contains('visible')).toBe(true);
+        expect(popup.classList.contains('hoisted')).toBe(true);
+
+        vi.useRealTimers();
+    });
+
+    it('cleans up hoist with close-delay', async () => {
+        vi.useFakeTimers();
+
+        const el = await fixture<FlintTooltip>(html`
+            <flint-tooltip label="Delayed hoist" hoist close-delay="100"><button>B</button></flint-tooltip>
+        `);
+        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+
+        container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+        await el.updateComplete;
+
+        container.dispatchEvent(new MouseEvent('mouseleave', { bubbles: true }));
+        await vi.advanceTimersByTimeAsync(150);
+        await el.updateComplete;
+
+        const popup = el.shadowRoot!.querySelector('.tooltip-popup') as HTMLElement;
+        expect(popup.classList.contains('visible')).toBe(false);
+
+        vi.useRealTimers();
+    });
 });

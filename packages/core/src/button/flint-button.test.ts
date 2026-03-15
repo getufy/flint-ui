@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-button';
 import type { FlintButton } from './flint-button';
+import { expectAccessible } from '../test-utils/axe';
 
 describe('flint-button', () => {
     it('renders with default properties', async () => {
@@ -56,10 +57,10 @@ describe('flint-button', () => {
         expect(el.textContent?.trim()).toBe('Hello World');
     });
 
-    it('exposes part="button" for external styling', async () => {
+    it('exposes CSS parts for external styling', async () => {
         const el = await fixture<FlintButton>(html`<flint-button>Click</flint-button>`);
-        const button = el.shadowRoot!.querySelector('button')!;
-        expect(button.getAttribute('part')).toBe('button');
+        expect(el.shadowRoot!.querySelector('[part="base"]')).not.toBeNull();
+        expect(el.shadowRoot!.querySelector('[part="label"]')).not.toBeNull();
     });
 
     it('applies destructive variant class', async () => {
@@ -79,5 +80,17 @@ describe('flint-button', () => {
         const el = await fixture<FlintButton>(html`<flint-button>Default</flint-button>`);
         expect(el.hasAttribute('full-width')).toBe(false);
         expect(el.fullWidth).toBe(false);
+    });
+
+    // ── Accessibility ─────────────────────────────────────────────────────────
+
+    it('should pass automated a11y checks', async () => {
+        const el = await fixture(html`<flint-button>Click me</flint-button>`);
+        await expectAccessible(el);
+    });
+
+    it('should pass a11y checks when disabled', async () => {
+        const el = await fixture(html`<flint-button disabled>Disabled</flint-button>`);
+        await expectAccessible(el);
     });
 });

@@ -102,6 +102,12 @@
       pointer-events: auto;
     }
 
+    /* Hoist: use fixed positioning to escape overflow containers */
+    .popover.hoisted {
+      position: fixed;
+      right: auto;
+    }
+
     /* Popover actions row */
     .popover-actions {
       display: flex;

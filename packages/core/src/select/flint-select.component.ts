@@ -5,6 +5,7 @@ import { repeat } from 'lit/directives/repeat.js';
 import { PropertyValues } from 'lit';
 import { FlintElement } from '../flint-element.js';
 import { FormAssociated } from '../mixins/form-associated.js';
+import { LocalizeController } from '../utilities/localize.js';
 import uiSelectStyles from './flint-select.css?inline';
 
 export interface SelectOption {
@@ -23,6 +24,14 @@ let _uidCounter = 0;
  * @fires flint-select-change - Dispatched when the selection changes. detail: `{ value: string[] }`
  * @slot icon - Optional icon shown at the start of the trigger.
  * @slot error-message - Optional slot for error message content (use error-message prop for simple text).
+ *
+ * @csspart label - The `<label>` element.
+ * @csspart trigger - The combobox trigger container.
+ * @csspart placeholder - The placeholder text `<span>`.
+ * @csspart chip - A selected-value chip (multiple mode).
+ * @csspart dropdown - The dropdown listbox container.
+ * @csspart option - An individual option element.
+ * @csspart error-message - The error message `<span>`.
  */
 export class FlintSelect extends FormAssociated(FlintElement) {
   static styles = unsafeCSS(uiSelectStyles);
@@ -36,7 +45,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
   /** Allow multiple selections. */
   @property({ type: Boolean }) multiple = false;
   /** Placeholder text when no value is selected. */
-  @property({ type: String }) placeholder = 'Select an option';
+  @property({ type: String }) placeholder = '';
   /** Disables the select and prevents interaction. */
   @property({ type: Boolean, reflect: true }) disabled = false;
   /** Makes the select read-only. */
@@ -58,6 +67,8 @@ export class FlintSelect extends FormAssociated(FlintElement) {
    * containers with `overflow: hidden/clip` (e.g. dialogs, cards).
    */
   @property({ type: Boolean }) hoist = false;
+
+  private _localize = new LocalizeController(this);
 
   @state() private _isOpen = false;
   @state() private _highlightedIndex = -1;
@@ -313,9 +324,10 @@ export class FlintSelect extends FormAssociated(FlintElement) {
 
     return html`
       <div class="wrapper">
-        ${this.label ? html`<label id=${labelId}>${this.label}</label>` : nothing}
+        ${this.label ? html`<label id=${labelId} part="label">${this.label}</label>` : nothing}
 
         <div
+          part="trigger"
           class=${classMap({
             'select-trigger': true,
             focused: this._isOpen || this._isFocused,
@@ -342,12 +354,12 @@ export class FlintSelect extends FormAssociated(FlintElement) {
 
           <div class="value-container">
             ${selectedOptions.length === 0 ? html`
-              <span class="placeholder">${this.placeholder}</span>
+              <span class="placeholder" part="placeholder">${this.placeholder || this._localize.term('selectOption')}</span>
             ` : nothing}
 
             ${this.multiple
               ? repeat(selectedOptions, opt => opt.value, opt => html`
-                  <span class="chip">
+                  <span class="chip" part="chip">
                     ${opt.label}
                     <button
                       type="button"
@@ -376,6 +388,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
 
         <div
           id=${listboxId}
+          part="dropdown"
           class=${classMap({
             dropdown: true,
             open: this._isOpen,
@@ -387,12 +400,13 @@ export class FlintSelect extends FormAssociated(FlintElement) {
           aria-multiselectable=${this.multiple ? 'true' : 'false'}
         >
           ${this.options.length === 0
-            ? html`<div class="no-options">No options available</div>`
+            ? html`<div class="no-options">${this._localize.term('noOptions')}</div>`
             : repeat(this.options, opt => opt.value, (opt, i) => {
                 const isSelected = this.value.includes(opt.value);
                 return html`
                   <div
                     id=${`${this._uid}-opt-${i}`}
+                    part="option"
                     class=${classMap({
                       option: true,
                       selected: isSelected,
@@ -418,7 +432,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
         </div>
 
         ${this.error ? html`
-          <span class="error-message" role="alert">
+          <span class="error-message" part="error-message" role="alert">
             ${this.errorMessage}
             <slot name="error-message"></slot>
           </span>

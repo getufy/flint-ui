@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import { FlintSwitch } from './flint-switch';
+import { expectAccessible } from '../test-utils/axe';
 
 describe('flint-switch', () => {
     // ── Definition ──────────────────────────────────────────────────────────
@@ -290,5 +291,12 @@ describe('flint-switch', () => {
     it('value prop can be customised', async () => {
         const el = await fixture<FlintSwitch>(html`<flint-switch value="yes"></flint-switch>`);
         expect(el.value).toBe('yes');
+    });
+
+    // ── Accessibility ─────────────────────────────────────────────────────────
+
+    it('should pass automated a11y checks', async () => {
+        const el = await fixture(html`<flint-switch aria-label="Toggle notifications"></flint-switch>`);
+        await expectAccessible(el);
     });
 });

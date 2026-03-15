@@ -95,14 +95,14 @@ export class FlintTab extends FlintElement {
     render() {
         const cls = classMap({ tab: true, [`icon-${this.iconPosition}`]: true });
         if (this.href) {
-            return html`<a class=${cls} href=${this.href}
+            return html`<a class=${cls} part="tab" href=${this.href}
                 role="tab"
                 aria-selected=${this.selected ? 'true' : 'false'}
                 aria-disabled=${this.disabled ? 'true' : nothing}
                 tabindex=${this.selected ? '0' : '-1'}
                 @click=${this._fire}>${this._inner()}</a>`;
         }
-        return html`<button class=${cls}
+        return html`<button class=${cls} part="tab"
             role="tab"
             ?disabled=${this.disabled}
             aria-selected=${this.selected ? 'true' : 'false'}
@@ -118,7 +118,7 @@ export class FlintTabPanel extends FlintElement {
     static styles = unsafeCSS(uiTabPanelStyles);
     /** Identifier linking this panel to its corresponding tab. */
     @property({ reflect: true }) value = '';
-    render() { return html`<div class="panel" role="tabpanel"><slot></slot></div>`; }
+    render() { return html`<div class="panel" part="panel" role="tabpanel"><slot></slot></div>`; }
 }
 
 /* ================================================================== */
@@ -266,12 +266,12 @@ export class FlintTabList extends FlintElement {
             </button>` : nothing;
 
         return html`
-            <div class="container">
+            <div class="container" part="nav">
                 ${backBtn}
                 <div class="scroll-area" @keydown=${this._onKey}>
                     <div class="tabs-row" role="tablist" aria-label=${this.ariaLabel || nothing}>
                         <slot @slotchange=${this._onSlotChange}></slot>
-                        <div class="indicator"></div>
+                        <div class="indicator" part="indicator"></div>
                     </div>
                 </div>
                 ${fwdBtn}
@@ -397,7 +397,7 @@ export class FlintTabs extends FlintElement {
 
     render() {
         return html`
-            <div class="root">
+            <div class="root" part="base">
                 <slot @slotchange=${() => this._syncAll()}></slot>
             </div>`;
     }
