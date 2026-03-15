@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { fixture, html, oneEvent } from '@open-wc/testing';
 import './flint-date-picker.js';
 import type { FlintDatePicker, FlintDatePickerCalendar } from './flint-date-picker.js';
+import { expectAccessible } from '../test-utils/axe';
 
 // ═══════════════════════════════════════════════════════════════════════
 // flint-date-picker-calendar
@@ -726,4 +727,13 @@ describe('flint-date-picker — full coverage', () => {
         Object.defineProperty(window, 'matchMedia', { writable: true, configurable: true, value: undefined });
         expect(hasPopover).toBe(true);
     });
+});
+
+// ── Accessibility ─────────────────────────────────────────────────────────
+
+describe('flint-date-picker — accessibility', () => {
+    it('should pass automated a11y checks', async () => {
+        const el = await fixture(html`<flint-date-picker label="Date"></flint-date-picker>`);
+        await expectAccessible(el, { rules: { 'aria-required-children': { enabled: false } } });
+    }, 15000);
 });

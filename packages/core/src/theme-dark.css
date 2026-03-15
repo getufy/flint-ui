@@ -2,14 +2,18 @@
    DARK THEME
    Import this file after theme.css.
 
-   Activate by adding class="flint-theme-dark" to <html> or <body>.
-   To opt out of system auto-dark, add class="flint-theme-light".
+   Activate by adding class="flint-theme-dark" or data-theme="dark"
+   to <html> or <body>.
+   To opt out of system auto-dark, add class="flint-theme-light"
+   or data-theme="light".
    ═══════════════════════════════════════════════════════════════ */
 
 /* ─── Shared dark values ────────────────────────────────────────
-   Applied via explicit class OR system preference (see @media below).
+   Applied via explicit class, data attribute, or system preference
+   (see @media below).
    ────────────────────────────────────────────────────────────── */
-.flint-theme-dark {
+.flint-theme-dark,
+[data-theme="dark"] {
     color-scheme: dark;
 
     /* ─── Primary ──────────────────────────────────────────────── */
@@ -149,7 +153,7 @@
    class opts the page back to light.
    ═══════════════════════════════════════════════════════════════ */
 @media (prefers-color-scheme: dark) {
-    :root:not(.flint-theme-light) {
+    :root:not(.flint-theme-light):not([data-theme="light"]) {
         color-scheme: dark;
 
         --flint-primary-color:              var(--flint-color-blue-400);

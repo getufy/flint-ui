@@ -1,6 +1,7 @@
 import { html } from 'lit';
 import { expect, describe, it, vi } from 'vitest';
 import { fixture } from '@open-wc/testing';
+import { expectAccessible } from '../test-utils/axe';
 import './flint-navigation-menu.js';
 import './flint-navigation-menu-list.js';
 import './flint-navigation-menu-item.js';
@@ -1504,4 +1505,27 @@ describe('flint-navigation-menu-trigger _getContent edge cases', () => {
 
         expect(content2.open).toBe(true);
     });
+});
+
+// ── Accessibility ─────────────────────────────────────────────────────────
+
+describe('flint-navigation-menu — accessibility', () => {
+    it('should pass automated a11y checks', async () => {
+        const el = await fixture(html`
+            <flint-navigation-menu>
+                <flint-navigation-menu-list>
+                    <flint-navigation-menu-item>
+                        <flint-navigation-menu-trigger content-id="a11y-c1">Menu 1</flint-navigation-menu-trigger>
+                        <flint-navigation-menu-content id="a11y-c1">
+                            <flint-navigation-menu-link href="#">Item 1</flint-navigation-menu-link>
+                        </flint-navigation-menu-content>
+                    </flint-navigation-menu-item>
+                    <flint-navigation-menu-item>
+                        <flint-navigation-menu-link href="#">Link</flint-navigation-menu-link>
+                    </flint-navigation-menu-item>
+                </flint-navigation-menu-list>
+            </flint-navigation-menu>
+        `);
+        await expectAccessible(el, { rules: { 'aria-required-children': { enabled: false }, 'aria-required-parent': { enabled: false } } });
+    }, 15000);
 });

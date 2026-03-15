@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
+import { expectAccessible } from '../test-utils/axe';
 import './flint-empty';
 import type { FlintEmpty, FlintEmptyHeader, FlintEmptyMedia, FlintEmptyContent } from './flint-empty';
 
@@ -254,4 +255,13 @@ describe('flint-empty — shadow DOM structure', () => {
         const wrapper = el.shadowRoot!.querySelector('.media')!;
         expect(wrapper.querySelector('slot')).not.toBeNull();
     });
+});
+
+// ── Accessibility ─────────────────────────────────────────────────────────
+
+describe('flint-empty — accessibility', () => {
+    it('should pass automated a11y checks', async () => {
+        const el = await fixture<FlintEmpty>(html`<flint-empty></flint-empty>`);
+        await expectAccessible(el);
+    }, 15000);
 });

@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import { FlintTextarea } from './flint-textarea';
+import { expectAccessible } from '../test-utils/axe';
 
 describe('flint-textarea', () => {
     // ── Definition ──────────────────────────────────────────────────────────
@@ -740,4 +741,13 @@ describe('flint-textarea', () => {
         expect(el.resize).toBe('horizontal');
         expect(el.getAttribute('resize')).toBe('horizontal');
     });
+});
+
+// ── Accessibility ─────────────────────────────────────────────────────────
+
+describe('flint-textarea — accessibility', () => {
+    it('should pass automated a11y checks', async () => {
+        const el = await fixture(html`<flint-textarea label="Comment"></flint-textarea>`);
+        await expectAccessible(el);
+    }, 15000);
 });

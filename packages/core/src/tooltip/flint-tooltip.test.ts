@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
+import { expectAccessible } from '../test-utils/axe';
 import { FlintTooltip } from './flint-tooltip';
 
 describe('flint-tooltip', () => {
@@ -927,4 +928,15 @@ describe('flint-tooltip', () => {
 
         vi.useRealTimers();
     });
+});
+
+// ── Accessibility ─────────────────────────────────────────────────────────
+
+describe('flint-tooltip — accessibility', () => {
+    it('should pass automated a11y checks', async () => {
+        const el = await fixture<FlintTooltip>(html`
+            <flint-tooltip label="Helpful tip"><button>Hover me</button></flint-tooltip>
+        `);
+        await expectAccessible(el);
+    }, 15000);
 });

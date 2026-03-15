@@ -885,14 +885,19 @@ describe('flint-select — scrollIntoView', () => {
 // ── Hoist ───────────────────────────────────────────────────────────────────
 
 describe('flint-select — hoist', () => {
-  it('hoist property defaults to false', async () => {
+  it('hoist property defaults to true', async () => {
     const el = await fixture<FlintSelect>(html`<flint-select .options=${opts}></flint-select>`);
-    expect(el.hoist).toBe(false);
+    expect(el.hoist).toBe(true);
   });
 
-  it('dropdown gets hoisted class when hoist=true', async () => {
-    const el = await fixture<FlintSelect>(html`<flint-select hoist .options=${opts}></flint-select>`);
+  it('dropdown gets hoisted class by default', async () => {
+    const el = await fixture<FlintSelect>(html`<flint-select .options=${opts}></flint-select>`);
     expect(getDropdown(el).classList.contains('hoisted')).toBe(true);
+  });
+
+  it('dropdown does not get hoisted class when hoist=false', async () => {
+    const el = await fixture<FlintSelect>(html`<flint-select .hoist=${false} .options=${opts}></flint-select>`);
+    expect(getDropdown(el).classList.contains('hoisted')).toBe(false);
   });
 
   it('opening with hoist applies fixed position styles', async () => {

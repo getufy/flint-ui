@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import { FlintSlider } from './flint-slider';
+import { expectAccessible } from '../test-utils/axe';
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
@@ -686,4 +687,13 @@ describe('flint-slider — label-row content', () => {
     expect(row.querySelector('.value-display')).not.toBeNull();
     expect(row.querySelector('label')).toBeNull();
   });
+});
+
+// ── Accessibility ─────────────────────────────────────────────────────────
+
+describe('flint-slider — accessibility', () => {
+  it('should pass automated a11y checks', async () => {
+    const el = await fixture(html`<flint-slider label="Volume" .value=${50} min="0" max="100"></flint-slider>`);
+    await expectAccessible(el);
+  }, 15000);
 });

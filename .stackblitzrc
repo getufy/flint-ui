@@ -1,0 +1,4 @@
+{
+  "startCommand": "cd examples/stackblitz && npm install && npm run dev",
+  "installDependencies": false
+}

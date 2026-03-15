@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
+import { expectAccessible } from '../test-utils/axe';
 import './flint-command.js';
 import type {
     FlintCommand,
@@ -1091,4 +1092,24 @@ describe('FlintCommandDialog — backdrop click inner panel', () => {
         // Items still filtered
         expect(getVisibleItems(cmd)).toHaveLength(1);
     });
+});
+
+// ── Accessibility ─────────────────────────────────────────────────────────
+
+describe('FlintCommand — accessibility', () => {
+    it('should pass automated a11y checks', async () => {
+        const cmd = await fixture<FlintCommand>(html`
+            <flint-command>
+                <flint-command-input placeholder="Search..."></flint-command-input>
+                <flint-command-list>
+                    <flint-command-group heading="Actions">
+                        <flint-command-item value="copy">Copy</flint-command-item>
+                        <flint-command-item value="paste">Paste</flint-command-item>
+                    </flint-command-group>
+                </flint-command-list>
+            </flint-command>
+        `);
+        await settle(cmd);
+        await expectAccessible(cmd);
+    }, 15000);
 });

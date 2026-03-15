@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { fixture, html, oneEvent } from '@open-wc/testing';
 import './flint-accordion.js';
 import type { FlintAccordion, FlintAccordionSummary, FlintAccordionDetails, FlintAccordionActions } from './flint-accordion.js';
+import { expectAccessible } from '../test-utils/axe';
 
 /* Shadow-host helper: wraps an accordion in a shadow root to test composed events */
 let hostCount = 0;
@@ -690,4 +691,18 @@ describe('accordion — group integration', () => {
         expect(accA.expanded).toBe(false);
         expect(lastExpanded).toBe('a2');
     });
+});
+
+// ── Accessibility ─────────────────────────────────────────────────────────
+
+describe('flint-accordion — accessibility', () => {
+    it('should pass automated a11y checks', async () => {
+        const el = await fixture(html`
+            <flint-accordion>
+                <flint-accordion-summary>Section 1</flint-accordion-summary>
+                <flint-accordion-details>Content</flint-accordion-details>
+            </flint-accordion>
+        `);
+        await expectAccessible(el);
+    }, 15000);
 });

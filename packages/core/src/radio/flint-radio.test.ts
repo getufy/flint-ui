@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-radio';
 import type { FlintRadioGroup, FlintRadio } from './flint-radio';
+import { expectAccessible } from '../test-utils/axe';
 
 function getRadios(el: FlintRadioGroup): FlintRadio[] {
     return Array.from(el.querySelectorAll('flint-radio')) as FlintRadio[];
@@ -805,4 +806,18 @@ describe('flint-radio-group — formResetCallback', () => {
         // Only one enabled radio, so it wraps to itself
         expect(el.value).toBe('a');
     });
+});
+
+// ── Accessibility ─────────────────────────────────────────────────────────
+
+describe('flint-radio-group — accessibility', () => {
+    it('should pass automated a11y checks', async () => {
+        const el = await fixture(html`
+            <flint-radio-group name="test" value="1">
+                <flint-radio value="1" label="One"></flint-radio>
+                <flint-radio value="2" label="Two"></flint-radio>
+            </flint-radio-group>
+        `);
+        await expectAccessible(el);
+    }, 15000);
 });

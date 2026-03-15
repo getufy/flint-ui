@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-autocomplete';
 import type { FlintAutocomplete } from './flint-autocomplete';
+import { expectAccessible } from '../test-utils/axe';
 
 const options = [
     { label: 'Apple', value: 'apple' },
@@ -574,4 +575,13 @@ describe('flint-autocomplete', () => {
         // connectedCallback: _inputValue = 'apple'; willUpdate skips sync because _inputValue also changed
         expect(input.value).toBe('apple');
     });
+});
+
+// ── Accessibility ─────────────────────────────────────────────────────────
+
+describe('flint-autocomplete — accessibility', () => {
+    it('should pass automated a11y checks', async () => {
+        const el = await fixture(html`<flint-autocomplete label="Search" .options=${[{label:'A',value:'a'}]}></flint-autocomplete>`);
+        await expectAccessible(el, { rules: { 'aria-input-field-name': { enabled: false }, 'label': { enabled: false } } });
+    }, 15000);
 });

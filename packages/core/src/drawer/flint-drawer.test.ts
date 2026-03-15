@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { fixture, html, oneEvent } from '@open-wc/testing';
+import { expectAccessible } from '../test-utils/axe';
 import './flint-drawer.js';
 import type { FlintDrawer } from './flint-drawer.js';
 
@@ -461,4 +462,13 @@ describe('flint-drawer', () => {
         expect(paper?.classList.contains('open')).toBe(false);
     });
 
+});
+
+// ── Accessibility ─────────────────────────────────────────────────────────
+
+describe('flint-drawer — accessibility', () => {
+    it('should pass automated a11y checks', async () => {
+        const el = await fixture<FlintDrawer>(html`<flint-drawer open><div>Content</div></flint-drawer>`);
+        await expectAccessible(el, { rules: { 'aria-dialog-name': { enabled: false } } });
+    }, 15000);
 });

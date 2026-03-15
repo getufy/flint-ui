@@ -66,7 +66,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
    * When true, the dropdown uses `position: fixed` so it can escape
    * containers with `overflow: hidden/clip` (e.g. dialogs, cards).
    */
-  @property({ type: Boolean }) hoist = false;
+  @property({ type: Boolean }) hoist = true;
 
   private _localize = new LocalizeController(this);
 

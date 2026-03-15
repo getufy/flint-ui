@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { fixture, html, oneEvent } from '@open-wc/testing';
+import { expectAccessible } from '../test-utils/axe';
 import './flint-pagination.js';
 import { buildPages } from './flint-pagination.js';
 import type { FlintPagination } from './flint-pagination.js';
@@ -513,4 +514,13 @@ describe('buildPages edge cases', () => {
         expect(items).toContain('start-ellipsis');
         expect(items).not.toContain('end-ellipsis');
     });
+});
+
+// ── Accessibility ─────────────────────────────────────────────────────────
+
+describe('flint-pagination — accessibility', () => {
+    it('should pass automated a11y checks', async () => {
+        const el = await fixture<FlintPagination>(html`<flint-pagination count="10" page="1"></flint-pagination>`);
+        await expectAccessible(el);
+    }, 15000);
 });

@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
+import { expectAccessible } from '../test-utils/axe';
 import './flint-hover-card';
 import type { FlintHoverCard, FlintHoverCardTrigger, FlintHoverCardContent } from './flint-hover-card';
 
@@ -636,4 +637,18 @@ describe('flint-hover-card — nested isolation', () => {
         expect(outerContent.open).toBe(false);
         expect(innerContent.open).toBe(true);
     });
+});
+
+// ── Accessibility ─────────────────────────────────────────────────────────
+
+describe('flint-hover-card — accessibility', () => {
+    it('should pass automated a11y checks', async () => {
+        const el = await fixture<FlintHoverCard>(html`
+            <flint-hover-card>
+                <flint-hover-card-trigger>Hover me</flint-hover-card-trigger>
+                <flint-hover-card-content>Card content</flint-hover-card-content>
+            </flint-hover-card>
+        `);
+        await expectAccessible(el);
+    }, 15000);
 });

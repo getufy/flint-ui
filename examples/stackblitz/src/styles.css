@@ -1,0 +1,26 @@
+@import '@getufy/flint-ui/theme.css';
+@import '@getufy/flint-ui/theme-dark.css';
+
+body {
+  font-family: var(--flint-font-family, system-ui, sans-serif);
+  color: var(--flint-text-color);
+  background: var(--flint-background, #fff);
+  padding: 2rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+h1 {
+  margin-bottom: 0.5rem;
+}
+
+p {
+  color: var(--flint-text-color-muted, #6b7280);
+  margin-bottom: 2rem;
+}
+
+.demo-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}

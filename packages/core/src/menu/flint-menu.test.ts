@@ -2,6 +2,7 @@ import { describe, it, expect, vi, afterEach } from 'vitest';
 import { fixture, html, oneEvent } from '@open-wc/testing';
 import './flint-menu.js';
 import type { FlintMenu, FlintMenuItem, FlintMenuGroup } from './flint-menu.js';
+import { expectAccessible } from '../test-utils/axe';
 
 /** Wait for flint-menu and all its flint-menu-item children to finish rendering. */
 async function settle(el: FlintMenu) {
@@ -715,4 +716,25 @@ describe('flint-menu-group', () => {
         `);
         expect(el.querySelectorAll('flint-menu-item').length).toBe(2);
     });
+});
+
+// ── Accessibility ─────────────────────────────────────────────────────────
+
+describe('flint-menu — accessibility', () => {
+    it('should pass automated a11y checks', async () => {
+        const el = await fixture(html`
+            <flint-menu open label="Actions">
+                <flint-menu-item>Edit</flint-menu-item>
+                <flint-menu-item>Delete</flint-menu-item>
+            </flint-menu>
+        `);
+        await expectAccessible(el, { rules: { 'aria-required-parent': { enabled: false } } });
+    }, 15000);
+});
+
+describe('flint-menu-item — accessibility', () => {
+    it('should pass automated a11y checks', async () => {
+        const el = await fixture(html`<flint-menu-item>Item</flint-menu-item>`);
+        await expectAccessible(el, { rules: { 'aria-required-parent': { enabled: false } } });
+    }, 15000);
 });

@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-collapsible';
 import type { FlintCollapsible, FlintCollapsibleTrigger, FlintCollapsibleContent } from './flint-collapsible';
+import { expectAccessible } from '../test-utils/axe';
 
 /* ── helpers ────────────────────────────────────────────────────────── */
 
@@ -306,4 +307,20 @@ describe('flint-collapsible — nested isolation', () => {
         expect(el.open).toBe(true); // outer unchanged
         expect(inner.open).toBe(true); // inner toggled
     });
+});
+
+// ── Accessibility ─────────────────────────────────────────────────────────
+
+describe('flint-collapsible — accessibility', () => {
+    it('should pass automated a11y checks', async () => {
+        const el = await fixture(html`
+            <flint-collapsible>
+                <flint-collapsible-trigger>Toggle</flint-collapsible-trigger>
+                <flint-collapsible-content>
+                    <div>Content</div>
+                </flint-collapsible-content>
+            </flint-collapsible>
+        `);
+        await expectAccessible(el);
+    }, 15000);
 });
