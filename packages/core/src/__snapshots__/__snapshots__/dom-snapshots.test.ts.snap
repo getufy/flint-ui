@@ -121,9 +121,9 @@ exports[`DOM snapshots > flint-divider — default 1`] = `
 "<!---->
       <div role="separator" class="divider-container  variant-full weight-light " aria-orientation="horizontal">
         <!--?lit$[hash]$--><div class="divider-line"></div>
-        
+
         <slot class="divider-content"></slot>
-        
+
         <!--?lit$[hash]$--><div class="divider-line"></div>
       </div>
     <style></style>"
