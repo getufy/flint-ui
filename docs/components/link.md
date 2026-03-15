@@ -4,7 +4,8 @@
 
 <Demo label="Colors" html="<div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;><flint-link href=&quot;#&quot; color=&quot;primary&quot;>Primary</flint-link><flint-link href=&quot;#&quot; color=&quot;secondary&quot;>Secondary</flint-link><flint-link href=&quot;#&quot; color=&quot;inherit&quot;>Inherit</flint-link></div>" />
 
-The Link component allows you to easily customize anchor elements with theme colors and typography styles.
+The Link component allows you to easily customize anchor elements
+with theme colors and typography styles.
 
 - **Tag**: `<flint-link>`
 - **Class**: `FlintLink`
@@ -34,20 +35,14 @@ import { FlintLink } from '@getufy/flint-ui';
 | `underline` | `underline` | `'none' \| 'hover' \| 'always'` | `'always'` | Controls the underline behavior. |
 | `variant` | `variant` | `\| 'inherit' \| 'h1' \| 'h2' \| 'h3' \| 'h4' \| 'h5' \| 'h6'         \| 'subtitle1' \| 'subtitle2' \| 'body1' \| 'body2' \| 'caption' \| 'overline'` | `'inherit'` | Applies typography variant styles. |
 | `disabled` | `disabled` | `boolean` | `false` | If true, the link is disabled. |
-| `download` | `download` | `string` | — | The download attribute. |
-| `label` | `label` | `string` | — | The ARIA label. |
-
-### Events
-
-| Event | Detail | Description |
-| --- | --- | --- |
-| `{MouseEvent}` | — | click - Native click event (not a custom event; standard anchor click propagated from shadow DOM). |
+| `download` | `download` | `string \| undefined` | — | The download attribute. |
+| `label` | `label` | `string \| undefined` | — | The ARIA label. |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Link text or content. |
+| `(default)` | Link text or content. Native click events propagate from the shadow DOM anchor element. |
 
 ### CSS Custom Properties
 

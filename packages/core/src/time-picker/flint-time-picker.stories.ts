@@ -44,8 +44,8 @@ Time Field: a segmented time input with keyboard navigation.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-time-field-change\` | — | Fired when the time value changes. detail: \`{ value: string }\` |
 | \`flint-time-picker-clear\` | — | Fired when the clear button is clicked. |
+| \`flint-time-field-change\` | \`{ value: string }\` | Fired when the time value changes. detail: \`{ value: string }\` |
 
 #### CSS Custom Properties
 
@@ -73,7 +73,7 @@ Time Field: a segmented time input with keyboard navigation.
 
 | Method | Description |
 |---|---|
-| \`clear()\` |  |
+| \`clear(): void\` |  |
 
 ---
 
@@ -96,7 +96,7 @@ Digital Clock: a scrollable time-slot picker.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-digital-clock-change\` | — | Fired when a time slot is selected. detail: \`{ value: string }\` |
+| \`flint-digital-clock-change\` | \`{ value: string }\` | Fired when a time slot is selected. detail: \`{ value: string }\` |
 
 #### CSS Custom Properties
 
@@ -125,7 +125,7 @@ Multi Section Digital Clock: hours, minutes, and optional seconds columns.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-multi-section-digital-clock-change\` | — | Fired when the time value changes. detail: \`{ value: string }\` |
+| \`flint-multi-section-digital-clock-change\` | \`{ value: string }\` | Fired when the time value changes. detail: \`{ value: string }\` |
 
 ---
 
@@ -149,7 +149,7 @@ Time Clock: an analog clock face for selecting hours, minutes, and seconds.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-time-clock-change\` | — | Fired when the time value changes. detail: \`{ value: string }\` |
+| \`flint-time-clock-change\` | \`{ value: string }\` | Fired when the time value changes. detail: \`{ value: string }\` |
 | \`flint-time-clock-view-change\` | — | Fired when the clock face view switches. |
 
 #### CSS Custom Properties
@@ -191,7 +191,7 @@ Desktop Time Picker: a time field with a dropdown clock.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-desktop-time-picker-change\` | — | Fired when the time value changes. detail: \`{ value: string }\` |
+| \`flint-desktop-time-picker-change\` | \`{ value: string }\` | Fired when the time value changes. detail: \`{ value: string }\` |
 
 ---
 
@@ -219,7 +219,7 @@ Mobile Time Picker: a time field with a modal clock dialog.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-mobile-time-picker-change\` | — | Fired when the time value changes. detail: \`{ value: string }\` |
+| \`flint-mobile-time-picker-change\` | \`{ value: string }\` | Fired when the time value changes. detail: \`{ value: string }\` |
 
 ---
 
@@ -242,7 +242,7 @@ Static Time Picker: an always-visible inline clock.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-static-time-picker-change\` | — | Fired when the time value changes. detail: \`{ value: string }\` |
+| \`flint-static-time-picker-change\` | \`{ value: string }\` | Fired when the time value changes. detail: \`{ value: string }\` |
 
 ---
 
@@ -271,7 +271,7 @@ Time Picker: a configurable time input supporting desktop, mobile, and static va
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-time-picker-change\` | — | Fired when the time value changes. detail: \`{ value: string }\` |
+| \`flint-time-picker-change\` | \`{ value: string }\` | Fired when the time value changes. detail: \`{ value: string }\` |
                 `,
             },
         },

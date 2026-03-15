@@ -30,12 +30,6 @@ import { FlintList } from '@getufy/flint-ui';
 | `disablePadding` | `disable-padding` | `boolean` | `false` | Whether to disable the default padding on the list. |
 | `dense` | `dense` | `boolean` | `false` | Whether to use compact spacing for list items. |
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
-
 ### CSS Custom Properties
 
 | Property | Default |
@@ -74,12 +68,6 @@ import { FlintListItem } from '@getufy/flint-ui';
 <flint-list-item></flint-list-item>
 ```
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
-
 ### CSS Custom Properties
 
 | Property | Default |
@@ -117,12 +105,6 @@ import { FlintListItemButton } from '@getufy/flint-ui';
 | `disabled` | `disabled` | `boolean` | `false` | Whether the list item button is disabled. |
 | `selected` | `selected` | `boolean` | `false` | Whether the list item button is selected. |
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
-
 ---
 
 ## `<flint-list-item-icon>`
@@ -146,12 +128,6 @@ import { FlintListItemIcon } from '@getufy/flint-ui';
 <flint-list-item-icon></flint-list-item-icon>
 ```
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
-
 ---
 
 ## `<flint-list-item-avatar>`
@@ -174,12 +150,6 @@ import { FlintListItemAvatar } from '@getufy/flint-ui';
 ```html
 <flint-list-item-avatar></flint-list-item-avatar>
 ```
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
 
 ---
 
@@ -211,13 +181,6 @@ import { FlintListItemText } from '@getufy/flint-ui';
 | `primary` | `primary` | `string` | `''` | Primary text content of the list item. |
 | `secondary` | `secondary` | `string` | `''` | Secondary text content of the list item. |
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `primary` |  |
-| `secondary` |  |
-
 ---
 
 ## `<flint-list-subheader>`
@@ -240,11 +203,5 @@ import { FlintListSubheader } from '@getufy/flint-ui';
 ```html
 <flint-list-subheader></flint-list-subheader>
 ```
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
 
 ---

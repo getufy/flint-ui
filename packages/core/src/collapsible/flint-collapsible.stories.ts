@@ -21,7 +21,8 @@ const meta: Meta = {
                 component: `
 #### \`<flint-collapsible-trigger>\`
 
-Toggle button for a collapsible. Place inside \`flint-collapsible\`. Automatically wires up to the nearest \`flint-collapsible\` ancestor.
+Toggle button for a collapsible. Place inside \`flint-collapsible\`.
+Automatically wires up to the nearest \`flint-collapsible\` ancestor.
 
 - **Tag**: \`<flint-collapsible-trigger>\`
 - **Class**: \`FlintCollapsibleTrigger\`
@@ -43,7 +44,8 @@ Toggle button for a collapsible. Place inside \`flint-collapsible\`. Automatical
 
 #### \`<flint-collapsible-content>\`
 
-The collapsible panel. Animates open/closed with a CSS grid transition. Place inside \`flint-collapsible\`; its \`open\` state is managed automatically.
+The collapsible panel. Animates open/closed with a CSS grid transition.
+Place inside \`flint-collapsible\`; its \`open\` state is managed automatically.
 
 - **Tag**: \`<flint-collapsible-content>\`
 - **Class**: \`FlintCollapsibleContent\`
@@ -60,11 +62,19 @@ The collapsible panel. Animates open/closed with a CSS grid transition. Place in
 |---|---|
 | \`(default)\` | Content to reveal when expanded. |
 
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-collapsible-duration\` | — |
+| \`--flint-collapsible-easing\` | — |
+
 ---
 
 #### \`<flint-collapsible>\`
 
-Root container for a collapsible panel. Manages open/closed state and coordinates child trigger and content.
+Root container for a collapsible panel.
+Manages open/closed state and coordinates child trigger and content.
 
 - **Tag**: \`<flint-collapsible>\`
 - **Class**: \`FlintCollapsible\`
@@ -74,20 +84,20 @@ Root container for a collapsible panel. Manages open/closed state and coordinate
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
 | \`open\` | \`open\` | \`boolean\` | \`false\` | Whether the panel is open. Reflects to attribute for CSS targeting. |
-| \`defaultOpen\` | \`default-open\` | \`boolean\` | \`false\` | Initial open state for uncontrolled usage. Has no effect after the element has connected to the DOM. |
+| \`defaultOpen\` | \`default-open\` | \`boolean\` | \`false\` | Initial open state for uncontrolled usage. |
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the trigger, preventing user interaction. |
 
 #### Events
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-collapsible-change\` | — | Fired when the open state changes. |
+| \`flint-collapsible-change\` | \`{ open: boolean }\` | Fired when the open state changes. \`detail: { open: boolean }\` |
 
 #### Slots
 
 | Name | Description |
 |---|---|
-| \`(default)\` | Accepts \`flint-collapsible-trigger\`, \`flint-collapsible-content\`, and any |
+| \`(default)\` | Accepts \`flint-collapsible-trigger\`, \`flint-collapsible-content\`, and any other elements that should always be visible. |
 
 #### CSS Custom Properties
 
@@ -100,7 +110,7 @@ Root container for a collapsible panel. Manages open/closed state and coordinate
 
 | Method | Description |
 |---|---|
-| \`toggle()\` | Toggle the open state and fire \`flint-collapsible-change\`. |
+| \`toggle(): void\` | Toggle the open state and fire \`flint-collapsible-change\`. |
                 `,
             },
         },

@@ -4,7 +4,8 @@
 
 <Demo label="Middle Page" html="<flint-pagination count=&quot;20&quot; page=&quot;10&quot;></flint-pagination>" />
 
-Pagination component enabling the user to select a specific page from a range of pages.
+Pagination component enabling the user to select a specific page from
+a range of pages.
 
 - **Tag**: `<flint-pagination>`
 - **Class**: `FlintPagination`

@@ -38,7 +38,6 @@ import { FlintSlider } from '@getufy/flint-ui';
 | `vertical` | `vertical` | `boolean` | `false` | Renders the slider vertically. |
 | `size` | `size` | `Size` | `'md'` | Size variant of the slider. |
 | `name` | `name` | `string` | `''` | Form field name used when submitting form data. |
-| `formatValue` | `format-value` | `number` | — | Optional formatter: `(value: number) =&gt; string`. JS-only prop (not an attribute). |
 
 ### Events
 

@@ -51,7 +51,8 @@ const meta: Meta = {
                 component: `
 #### \`<flint-date-range-calendar>\`
 
-A dual-month calendar for range selection. Shows two months side-by-side (or stacked on narrow screens).
+A dual-month calendar for range selection.
+Shows two months side-by-side (or stacked on narrow screens).
 
 - **Tag**: \`<flint-date-range-calendar>\`
 - **Class**: \`FlintDateRangeCalendar\`
@@ -69,7 +70,7 @@ A dual-month calendar for range selection. Shows two months side-by-side (or sta
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-date-range-picker-select\` | — | { detail: { value: DateRange } } on each click |
+| \`flint-date-range-picker-select\` | \`{ value: DateRange }\` | { detail: { value: DateRange } } on each click |
 
 #### CSS Custom Properties
 
@@ -100,7 +101,7 @@ A dual-month calendar for range selection. Shows two months side-by-side (or sta
 
 | Method | Description |
 |---|---|
-| \`navigateTo(iso: string)\` | Navigate the calendar view to the month containing the given ISO date. |
+| \`navigateTo(iso: string): void\` | Navigate the calendar view to the month containing the given ISO date. |
 
 ---
 
@@ -120,7 +121,7 @@ A date range picker combining a segmented field and a dual-month calendar.
 | \`variant\` | \`variant\` | \`'desktop' \\| 'mobile' \\| 'static' \\| 'auto'\` | \`'desktop'\` | Variant: 'desktop' \\| 'mobile' \\| 'static' \\| 'auto'. |
 | \`multiInput\` | \`multi-input\` | \`boolean\` | \`false\` | Use a multi-input field (two separate fields) instead of single-input. Currently shows two simple text displays. |
 | \`shortcuts\` | \`shortcuts\` | \`boolean\` | \`false\` | Show shortcuts panel. |
-| \`shortcutItems\` | \`shortcut-items\` | \`Shortcut[]\` | \`[]\` | Custom shortcuts list. Defaults to built-in shortcuts when shortcuts=true. |
+| \`shortcutItems\` | \`shortcutItems\` | \`Shortcut[]\` | \`[]\` | Custom shortcuts list. Defaults to built-in shortcuts when shortcuts=true. |
 | \`min\` | \`min\` | \`string\` | \`''\` | Minimum selectable date (ISO YYYY-MM-DD). |
 | \`max\` | \`max\` | \`string\` | \`''\` | Maximum selectable date (ISO YYYY-MM-DD). |
 | \`name\` | \`name\` | \`string\` | \`''\` | Form field name for hidden inputs. |
@@ -134,13 +135,14 @@ A date range picker combining a segmented field and a dual-month calendar.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-date-range-picker-change\` | — | { detail: { value: DateRange } } when range is committed |
+| \`flint-date-range-picker-change\` | \`{ value: DateRange }\` | { detail: { value: DateRange } } when range is committed |
 
 ---
 
 #### \`<flint-single-input-date-range-field>\`
 
-A single-input field for entering a date range (start → end). Renders as "MM/DD/YYYY – MM/DD/YYYY" with six independently editable segments.
+A single-input field for entering a date range (start → end).
+Renders as "MM/DD/YYYY – MM/DD/YYYY" with six independently editable segments.
 
 - **Tag**: \`<flint-single-input-date-range-field>\`
 - **Class**: \`FlintSingleInputDateRangeField\`
@@ -164,15 +166,15 @@ A single-input field for entering a date range (start → end). Renders as "MM/D
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-date-range-picker-change\` | — | { detail: { value: DateRange } } when both dates are complete |
 | \`flint-date-range-picker-clear\` | — | fired when all segments are cleared |
+| \`flint-date-range-picker-change\` | \`{ value: DateRange }\` | { detail: { value: DateRange } } when both dates are complete |
 
 #### Methods
 
 | Method | Description |
 |---|---|
-| \`setRange(range: DateRange)\` |  |
-| \`clear()\` |  |
+| \`setRange(range: DateRange): void\` |  |
+| \`clear(): void\` |  |
                 `,
             },
         },

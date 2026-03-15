@@ -27,12 +27,15 @@ const REACT_HTML_EVENT_PROPS = new Set([
 // ─── helpers ────────────────────────────────────────────────────────────────
 
 /**
- * Convert a source file path (e.g. 'src/button/flint-button.ts') to a
- * package sub-path import (e.g. 'flint-ui/button/flint-button').
- * Strips 'src/' prefix and '.ts' suffix.
+ * Convert a source file path to a package sub-path import.
+ * e.g. 'src/button/flint-button.component.ts' → '@getufy/flint-ui/button/flint-button'
+ * Strips 'src/' prefix, '.component.ts' or '.ts' suffix.
  */
 function packageImport(sourceFile: string): string {
-    const stripped = sourceFile.replace(/^src\//, '').replace(/\.ts$/, '');
+    const stripped = sourceFile
+        .replace(/^src\//, '')
+        .replace(/\.component\.ts$/, '')
+        .replace(/\.ts$/, '');
     return `${CORE_PKG}/${stripped}`;
 }
 

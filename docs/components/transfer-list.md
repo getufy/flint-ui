@@ -28,8 +28,8 @@ import { FlintTransferList } from '@getufy/flint-ui';
 | `options` | `options` | `TransferOption[]` | `[]` | Available options to display in the transfer list. |
 | `value` | `value` | `string[]` | `[]` | Currently selected values (items in the right list). |
 | `defaultValue` | `default-value` | `string[]` | `[]` | Initial value for uncontrolled usage. Applied once on first render. |
-| `leftTitle` | `left-title` | `string` | `'Options'` | Title displayed above the left (available) list. |
-| `rightTitle` | `right-title` | `string` | `'Selected'` | Title displayed above the right (selected) list. |
+| `leftTitle` | `leftTitle` | `string` | `'Options'` | Title displayed above the left (available) list. |
+| `rightTitle` | `rightTitle` | `string` | `'Selected'` | Title displayed above the right (selected) list. |
 | `disabled` | `disabled` | `boolean` | `false` | Whether the transfer list is disabled. |
 | `searchable` | `searchable` | `boolean` | `false` | Whether to show search inputs for filtering each list. |
 
@@ -37,7 +37,7 @@ import { FlintTransferList } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-transfer-list-change` | — | Dispatched when items are moved between lists. detail: `{ value: string[] }` |
+| `flint-transfer-list-change` | `{ value: string[] }` | Dispatched when items are moved between lists. detail: `{ value: string[] }` |
 
 ### CSS Custom Properties
 

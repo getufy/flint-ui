@@ -5,5 +5,3 @@ export { FlintTabPanel, type FlintTabPanelProps } from './components/FlintTabPan
 export { FlintTabList, type FlintTabListProps } from './components/FlintTabList.js';
 export { FlintTabs, type FlintTabsProps, type FlintTabChangeDetail } from './components/FlintTabs.js';
 export { FlintTabEvents } from './events/flint-tab.js';
-export { FlintTabListEvents } from './events/flint-tab-list.js';
-export { FlintTabsEvents } from './events/flint-tabs.js';

@@ -42,7 +42,7 @@ import { FlintInput } from '@getufy/flint-ui';
 | `name` | `name` | `string` | `''` | Form field name used when submitting form data. |
 | `autocomplete` | `autocomplete` | `string` | `''` | Browser autocomplete hint. |
 | `size` | `size` | `'sm' \| 'default' \| 'lg'` | `'default'` | 'sm' \| 'default' \| 'lg' |
-| `defaultValue` | `default-value` | `string` | — | Initial value for uncontrolled usage. |
+| `defaultValue` | `default-value` | `string \| undefined` | — | Initial value for uncontrolled usage. |
 
 ### Events
 
@@ -71,11 +71,5 @@ import { FlintInput } from '@getufy/flint-ui';
 | `--flint-error-color` | — |
 | `--flint-error-focus-ring` | — |
 | `--flint-help-text-color` | — |
-
-### Methods
-
-| Method | Description |
-| --- | --- |
-| `inputElement(): HTMLInputElement` | Expose the internal &lt;input&gt; for direct access |
 
 ---

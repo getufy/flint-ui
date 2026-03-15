@@ -37,7 +37,7 @@ import { FlintToggle } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-toggle-change` | — | Dispatched when the pressed state changes. Detail: `{ pressed: boolean }` |
+| `flint-toggle-change` | `{ pressed: boolean }` | Dispatched when the pressed state changes. Detail: `{ pressed: boolean }` |
 
 ### Slots
 

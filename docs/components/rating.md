@@ -34,7 +34,7 @@ import { FlintRating } from '@getufy/flint-ui';
 | `readonly` | `readonly` | `boolean` | `false` | Whether the rating is read-only. |
 | `disabled` | `disabled` | `boolean` | `false` | Whether the rating is disabled. |
 | `clearable` | `clearable` | `boolean` | `false` | Whether clicking the current value clears the rating. |
-| `defaultValue` | `default-value` | `number` | `0` | Initial rating value for uncontrolled mode. |
+| `defaultValue` | `defaultValue` | `number` | `0` | Initial rating value for uncontrolled mode. |
 | `size` | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of the rating stars. |
 | `name` | `name` | `string` | `''` | Form field name for the hidden input. |
 | `label` | `label` | `string` | `'Rating'` | Accessible label for the rating group. |

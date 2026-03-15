@@ -33,7 +33,7 @@ Alerts display brief messages for the user without interrupting their use of the
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-alert-close\` | — | Fired when the alert's close button is clicked. detail: \`{ open: false, severity: string }\` |
+| \`flint-alert-close\` | \`{ open: false, severity: string }\` | Fired when the alert's close button is clicked. detail: \`{ open: false, severity: string }\` |
 
 #### Slots
 

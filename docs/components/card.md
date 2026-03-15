@@ -23,12 +23,6 @@ import { FlintCardActionArea } from '@getufy/flint-ui';
 <flint-card-action-area></flint-card-action-area>
 ```
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
-
 ### CSS Custom Properties
 
 | Property | Default |
@@ -60,12 +54,6 @@ import { FlintCardActions } from '@getufy/flint-ui';
 <flint-card-actions></flint-card-actions>
 ```
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
-
 ### CSS Custom Properties
 
 | Property | Default |
@@ -92,12 +80,6 @@ import { FlintCardContent } from '@getufy/flint-ui';
 ```html
 <flint-card-content></flint-card-content>
 ```
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
 
 ### CSS Custom Properties
 
@@ -179,12 +161,6 @@ import { FlintCardMedia } from '@getufy/flint-ui';
 | `alt` | `alt` | `string` | `''` |  |
 | `height` | `height` | `string` | `''` |  |
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
-
 ### CSS Custom Properties
 
 | Property | Default |
@@ -218,12 +194,6 @@ import { FlintCard } from '@getufy/flint-ui';
 | --- | --- | --- | --- | --- |
 | `variant` | `variant` | `'elevated' \| 'outlined' \| 'flat'` | `'elevated'` |  |
 | `interactive` | `interactive` | `boolean` | `false` |  |
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
 
 ### CSS Custom Properties
 

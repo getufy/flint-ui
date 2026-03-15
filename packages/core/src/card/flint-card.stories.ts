@@ -21,12 +21,6 @@ const meta: Meta = {
 - **Tag**: \`<flint-card-action-area>\`
 - **Class**: \`FlintCardActionArea\`
 
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
-
 #### CSS Custom Properties
 
 | Property | Default |
@@ -44,12 +38,6 @@ const meta: Meta = {
 - **Tag**: \`<flint-card-actions>\`
 - **Class**: \`FlintCardActions\`
 
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
-
 #### CSS Custom Properties
 
 | Property | Default |
@@ -62,12 +50,6 @@ const meta: Meta = {
 
 - **Tag**: \`<flint-card-content>\`
 - **Class**: \`FlintCardContent\`
-
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
 
 #### CSS Custom Properties
 
@@ -121,12 +103,6 @@ Card Header: the header section of a card.
 | \`alt\` | \`alt\` | \`string\` | \`''\` |  |
 | \`height\` | \`height\` | \`string\` | \`''\` |  |
 
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
-
 #### CSS Custom Properties
 
 | Property | Default |
@@ -146,12 +122,6 @@ Card Header: the header section of a card.
 |---|---|---|---|---|
 | \`variant\` | \`variant\` | \`'elevated' \\| 'outlined' \\| 'flat'\` | \`'elevated'\` |  |
 | \`interactive\` | \`interactive\` | \`boolean\` | \`false\` |  |
-
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
 
 #### CSS Custom Properties
 

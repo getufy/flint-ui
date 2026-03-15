@@ -8,6 +8,8 @@
 
 ## `<flint-rich-tree-view>`
 
+A data-driven tree view that renders its structure from an `items` array.
+
 - **Tag**: `<flint-rich-tree-view>`
 - **Class**: `FlintRichTreeView`
 
@@ -29,32 +31,19 @@ import { FlintRichTreeView } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `items` | `items` | `RichTreeItem[]` | `[]` | Array of item data objects to render in the tree. |
-| `dataSource` | `data-source` | `RichTreeViewDataSource` | — | Optional lazy-load data source. When provided, children are fetched on demand when the user expands an item. If `items` is empty, root items are also fetched on first render. |
-| `getItemId` | `get-item-id` | `number` | — | Returns the unique string ID for an item. Defaults to `item.id`. |
-| `getItemLabel` | `get-item-label` | `number` | — | Returns the display label for an item. Defaults to `item.label`. |
-| `getItemChildren` | `get-item-children` | `number` | — | Returns the children array for an item. Defaults to `item.children`. |
-| `isItemDisabled` | `is-item-disabled` | `number` | — | Returns `true` if the given item should be disabled. |
-| `disabledItemsFocusable` | `disabled-items-focusable` | `boolean` | `false` | When `true`, disabled items can receive keyboard focus. When `false` (default), keyboard navigation skips disabled items. |
-| `onItemClick` | `on-item-click` | `number` | — | Callback invoked when a tree item is clicked or activated via keyboard. |
-| `expansionTrigger` | `expansion-trigger` | `'content' \| 'iconContainer'` | `'content'` | What interaction triggers expand/collapse. - `'content'` (default): clicking anywhere on the item row - `'iconContainer'`: clicking only the expand/collapse icon button |
-| `expandedItems` | `expanded-items` | `string[]` | — | **Controlled mode.** The set of item IDs that should be expanded. You must update this via `onExpandedItemsChange` to apply user changes. |
-| `defaultExpandedItems` | `default-expanded-items` | `string[]` | `[]` | **Uncontrolled mode.** Item IDs to expand on initial mount. |
-| `onExpandedItemsChange` | `on-expanded-items-change` | `number` | — | Callback fired when the user toggles an item's expansion. |
+| `disabledItemsFocusable` | `disabled-items-focusable` | `boolean` | `false` | When `true`, disabled items can receive keyboard focus. |
+| `expansionTrigger` | `expansion-trigger` | `'content' \| 'iconContainer'` | `'content'` | What interaction triggers expand/collapse. |
 | `itemsReordering` | `items-reordering` | `boolean` | `false` | When `true`, enables drag-and-drop reordering of items. |
-| `isItemReorderable` | `is-item-reorderable` | `number` | — | Function that determines if a specific item can be reordered. Receives the item ID and should return `true` if reorderable. |
-| `canMoveItemToNewPosition` | `can-move-item-to-new-position` | `(params: {         itemId: string` | — | Function that determines if an item can be moved to a specific target position. Receives context about the move and should return `true` if allowed. |
-| `itemsReorderingHandle` | `items-reordering-handle` | `boolean` | `false` | Whether to use a drag handle icon for reordering. - `false` (default): Dragging from anywhere on the row triggers reordering. - `true`: Only dragging from the handle icon triggers reordering. |
-| `onItemPositionChange` | `on-item-position-change` | `(params: {         itemId: string` | — | Fired when an item's position changes via reordering. |
+| `itemsReorderingHandle` | `items-reordering-handle` | `boolean` | `false` | Whether to use a drag handle icon for reordering. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-tree-view-error` | `{ message: `Failed to load children for ${id }` |  |
-| `flint-tree-view-expanded-items-change` | `{ expandedItems: newItems }` |  |
-| `flint-tree-view-item-click` | `{ itemId }` |  |
-| `flint-tree-view-item-position-change` | `{ itemId, newParentId, newIndex }` |  |
+| `flint-tree-view-error` | `{ message, id, error }` | When a lazy-loading dataSource call fails (detail: { message, id, error }) |
+| `flint-tree-view-expanded-items-change` | `{ expandedItems }` | When the expanded set changes (detail: { expandedItems }) |
+| `flint-tree-view-item-position-change` | — |  |
+| `flint-tree-view-item-click` | `{ itemId }` | When a tree item is activated (detail: { itemId }) |
 
 ### CSS Custom Properties
 
@@ -73,15 +62,18 @@ import { FlintRichTreeView } from '@getufy/flint-ui';
 
 | Method | Description |
 | --- | --- |
+| `getItem(id: string): RichTreeItem \| null` | Returns the data item with the given ID, or `null` if not found. |
+| `getItemDOMElement(id: string): FlintTreeItem \| null` | Returns the DOM element for the tree item with the given ID, or `null`. |
 | `getItemTree(): RichTreeItem[]` | Returns the current items tree. Returns the reordered tree if reordering is active. |
 | `getItemOrderedChildrenIds(itemId: string \| null): string[]` | Returns the ordered child IDs for an item, or root items if null. |
-| `setIsItemDisabled(id: string, disabled: boolean)` | Imperatively toggle the disabled state of an item by ID. Overrides the `isItemDisabled` prop result for that specific item. |
+| `setIsItemDisabled(id: string, disabled: boolean): void` | Imperatively toggle the disabled state of an item by ID. |
 
 ---
 
 ## `<flint-simple-tree-view>`
 
-A simple tree-view container that manages keyboard navigation, focus, and item selection/expansion for nested `flint-tree-item` elements.
+A simple tree-view container that manages keyboard navigation, focus,
+and item selection/expansion for nested `flint-tree-item` elements.
 
 - **Tag**: `<flint-simple-tree-view>`
 - **Class**: `FlintSimpleTreeView`
@@ -104,25 +96,27 @@ import { FlintSimpleTreeView } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `disabledItemsFocusable` | `disabled-items-focusable` | `boolean` | `false` | When `true`, disabled items can receive keyboard focus. When `false` (default), keyboard navigation skips disabled items. |
-| `onItemClick` | `on-item-click` | `number` | — | Callback invoked when a tree item is clicked or activated via keyboard. Receives the `itemId` of the activated item. |
-| `expandedItems` | `expanded-items` | `string[]` | — | **Controlled mode.** The set of item IDs that should be expanded. When set, the component uses this as the source of truth. You must update this prop (via `onExpandedItemsChange`) to apply user changes. Set to `undefined` to switch back to uncontrolled mode. |
-| `defaultExpandedItems` | `default-expanded-items` | `string[]` | `[]` | **Uncontrolled mode.** Item IDs to expand on initial mount. Ignored once the component has mounted. Has no effect in controlled mode. |
-| `onExpandedItemsChange` | `on-expanded-items-change` | `number` | — | Callback fired when the user toggles an item's expansion. Receives the full new array of expanded item IDs. In controlled mode, update `expandedItems` with the received value. |
-| `expansionTrigger` | `expansion-trigger` | `'content' \| 'iconContainer'` | `'content'` | What interaction triggers expand/collapse. - `'content'` (default): clicking anywhere on the item row - `'iconContainer'`: clicking only the expand/collapse icon button |
+| `disabledItemsFocusable` | `disabled-items-focusable` | `boolean` | `false` | When `true`, disabled items can receive keyboard focus. |
+| `expansionTrigger` | `expansion-trigger` | `'content' \| 'iconContainer'` | `'content'` | What interaction triggers expand/collapse. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-tree-view-item-click` | — | When a tree item is activated (detail: { itemId }) |
-| `flint-tree-view-expanded-items-change` | — | When the expanded set changes (detail: { expandedItems }) |
+| `flint-tree-view-expanded-items-change` | `{ expandedItems }` | When the expanded set changes (detail: { expandedItems }) |
+| `flint-tree-view-item-click` | `{ itemId }` | When a tree item is activated (detail: { itemId }) |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
 | `(default)` | Place `flint-tree-item` elements here. |
+
+### Methods
+
+| Method | Description |
+| --- | --- |
+| `getItemDOMElement(itemId: string): FlintTreeItem \| null` | Returns the DOM element for the tree item with the given `itemId`, |
 
 ---
 
@@ -155,16 +149,16 @@ import { FlintTreeItem } from '@getufy/flint-ui';
 | `label` | `label` | `string` | `''` | Label text displayed for this item |
 | `disabled` | `disabled` | `boolean` | `false` | Whether this item is disabled (non-interactive) |
 | `expanded` | `expanded` | `boolean` | `false` | Whether this item's children are visible |
-| `hasChildren` | `has-children` | `boolean` | `false` | When `true`, forces the expand button to render even if no `flint-tree-item` children are currently in the slot. Used by `flint-rich-tree-view` for lazy loading so items known to have children show the toggle before data is fetched. |
-| `dropPosition` | `drop-position` | `'before' \| 'after' \| 'inside' \| null` | `null` | FIX: Removed the Lit @property declaration for `draggable`. Declaring it as a Lit property shadows the native HTMLElement.draggable, meaning the browser never sees draggable="true" on the host and won't initiate a drag. We now forward draggable state directly to the inner .item-row div via the `_isDraggable` state, keeping the host's native draggable untouched (it stays false, which is fine — the row fires the dragstart which bubbles up through the shadow root to the tree view). / /** Called by flint-rich-tree-view to set drag enabled state. Uses a method + @state instead of a @property to avoid clobbering the native `draggable` attribute on the host element. not the whole row. The handle div gets draggable="true" and the row stays non-draggable. / setDraggable(value: boolean, handleOnly = false) { this._isDraggable = value; this._handleOnly = handleOnly; } /** Visual drop position indicator — reflected so CSS :host selectors match |
+| `hasChildren` | `has-children` | `boolean` | `false` | When `true`, forces the expand button to render even if no `flint-tree-item` |
+| `dropPosition` | `drop-position` | `'before' \| 'after' \| 'inside' \| null` | `null` | Visual drop position indicator — reflected so CSS :host selectors match |
 | `showDragHandle` | `show-drag-handle` | `boolean` | `false` | Whether to show a dedicated drag handle icon |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-tree-item-click` | — | Fired when the item is clicked (detail: { itemId }) |
-| `flint-tree-item-toggle` | — | Fired when expanded state changes (detail: { itemId, expanded }) |
+| `flint-tree-item-toggle` | `{ itemId, expanded }` | Fired when expanded state changes (detail: { itemId, expanded }) |
+| `flint-tree-item-click` | `{ itemId }` | Fired when the item is clicked (detail: { itemId }) |
 
 ### Slots
 
@@ -172,12 +166,11 @@ import { FlintTreeItem } from '@getufy/flint-ui';
 | --- | --- |
 | `lead` | Leading icon or content. |
 | `(default)` | Item label text. |
-| `label` |  |
 
 ### Methods
 
 | Method | Description |
 | --- | --- |
-| `setDraggable(value: boolean, handleOnly = false)` | Called by flint-rich-tree-view to set drag enabled state. Uses a method + @state instead of a @property to avoid clobbering the native `draggable` attribute on the host element. not the whole row. The handle div gets draggable="true" and the row stays non-draggable. |
+| `setDraggable(value: boolean, handleOnly: unknown): void` | Called by flint-rich-tree-view to set drag enabled state. |
 
 ---

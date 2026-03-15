@@ -14,12 +14,6 @@ const meta: Meta = {
 - **Tag**: \`<flint-button-group>\`
 - **Class**: \`FlintButtonGroup\`
 
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
-
 #### CSS Custom Properties
 
 | Property | Default |
@@ -56,12 +50,6 @@ const meta: Meta = {
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the button and prevents interaction. |
 | \`fullWidth\` | \`full-width\` | \`boolean\` | \`false\` | Whether the button stretches to fill its container width. |
 
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
-
 #### CSS Custom Properties
 
 | Property | Default |
@@ -82,7 +70,7 @@ Toggle Button Group: manages exclusive or multi-select toggle buttons.
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
 | \`value\` | \`value\` | \`string \\| string[]\` | \`''\` | Currently selected value(s). A string when exclusive, an array otherwise. |
-| \`defaultValue\` | \`default-value\` | \`string \\| string[]\` | \`''\` | Initial selected value(s) for uncontrolled usage. Has no effect after the element has connected to the DOM. |
+| \`defaultValue\` | \`default-value\` | \`string \\| string[]\` | \`''\` | Initial selected value(s) for uncontrolled usage. |
 | \`exclusive\` | \`exclusive\` | \`boolean\` | \`true\` | Whether only one button can be selected at a time. |
 
 #### Events
@@ -90,12 +78,6 @@ Toggle Button Group: manages exclusive or multi-select toggle buttons.
 | Event | Detail | Description |
 |---|---|---|
 | \`flint-toggle-button-group-change\` | — | Fired when the group's selected value(s) change. |
-
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
 
 ---
 
@@ -120,12 +102,6 @@ Toggle Button: a button that can be toggled on/off.
 | Event | Detail | Description |
 |---|---|---|
 | \`flint-toggle-button-change\` | — | Fired when the button's selected state changes. |
-
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
 
 #### CSS Custom Properties
 

@@ -25,16 +25,11 @@ import { FlintStack } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `spacing` | `spacing` | `ResponsiveValue&lt;number \| string&gt;` | `0` | Flex direction of the stack layout. */ converter: { fromAttribute: (value: string \| null) =&gt; { if (!value) return 'column'; try { return JSON.parse(value); } catch { return value; } } } }) direction: ResponsiveValue&lt;'row' \| 'row-reverse' \| 'column' \| 'column-reverse'&gt; = 'column'; /** Space between child items (1 unit = 8px). |
-| `alignItems` | `align-items` | `'flex-start' \| 'center' \| 'flex-end' \| 'stretch' \| 'baseline'` | — | Cross-axis alignment of stack children. |
-| `justifyContent` | `justify-content` | `'flex-start' \| 'center' \| 'flex-end' \| 'space-between' \| 'space-around' \| 'space-evenly'` | — | Main-axis alignment of stack children. |
-| `useFlexGap` | `use-flex-gap` | `boolean` | `true` | Whether to use CSS flex gap for spacing. |
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
+| `direction` | `direction` | `ResponsiveValue&lt;'row' \| 'row-reverse' \| 'column' \| 'column-reverse'&gt;` | `'column'` | Flex direction of the stack layout. |
+| `spacing` | `spacing` | `ResponsiveValue&lt;number \| string&gt;` | `0` | Space between child items (1 unit = 8px). |
+| `alignItems` | `alignItems` | `'flex-start' \| 'center' \| 'flex-end' \| 'stretch' \| 'baseline' \| undefined` | — | Cross-axis alignment of stack children. |
+| `justifyContent` | `justifyContent` | `'flex-start' \| 'center' \| 'flex-end' \| 'space-between' \| 'space-around' \| 'space-evenly' \| undefined` | — | Main-axis alignment of stack children. |
+| `useFlexGap` | `useFlexGap` | `boolean` | `true` | Whether to use CSS flex gap for spacing. |
 
 ### CSS Custom Properties
 

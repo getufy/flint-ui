@@ -12,6 +12,9 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
+Snackbars (also known as toasts) are used for brief notifications.
+They appear temporarily and float above the UI.
+
 - **Tag**: \`<flint-snackbar>\`
 - **Class**: \`FlintSnackbar\`
 
@@ -20,10 +23,10 @@ const meta: Meta = {
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
 | \`open\` | \`open\` | \`boolean\` | \`false\` | Whether the snackbar is open. |
-| \`defaultOpen\` | \`default-open\` | \`boolean\` | \`false\` | Initial open state for uncontrolled usage. Has no effect after the element has connected to the DOM. |
+| \`defaultOpen\` | \`default-open\` | \`boolean\` | \`false\` | Initial open state for uncontrolled usage. |
 | \`message\` | \`message\` | \`string\` | \`''\` | The message to display (slot fallback). |
-| \`autoHideDuration\` | \`auto-hide-duration\` | \`number\` | \`5000\` | Duration in milliseconds before the snackbar auto-closes. Set to 0 to disable auto-close. |
-| \`anchorOrigin\` | \`anchor-origin\` | \`'top-left' \\| 'top-center' \\| 'top-right' \\|         'bottom-left' \\| 'bottom-center' \\| 'bottom-right'\` | \`'bottom-center'\` | Position of the snackbar. Format: 'vertical-horizontal' e.g. 'bottom-center', 'top-right' |
+| \`autoHideDuration\` | \`auto-hide-duration\` | \`number\` | \`5000\` | Duration in milliseconds before the snackbar auto-closes. |
+| \`anchorOrigin\` | \`anchor-origin\` | \`'top-left' \\| 'top-center' \\| 'top-right' \\|         'bottom-left' \\| 'bottom-center' \\| 'bottom-right'\` | \`'bottom-center'\` | Position of the snackbar. |
 | \`pauseOnHover\` | \`pause-on-hover\` | \`boolean\` | \`true\` | Pause the auto-hide timer while the user hovers over the snackbar. |
 | \`closable\` | \`closable\` | \`boolean\` | \`false\` | Show a dismiss (✕) button. |
 | \`variant\` | \`variant\` | \`'default' \\| 'info' \\| 'success' \\| 'warning' \\| 'error'\` | \`'default'\` | Visual style variant. |
@@ -32,30 +35,30 @@ const meta: Meta = {
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-snackbar-open\` | \`{ open: true }\` |  |
-| \`flint-snackbar-close\` | \`{ open: false }\` |  |
+| \`flint-snackbar-open\` | \`{ open: true }\` | Fired when the snackbar opens (bubbles, composed). detail: \`{ open: true }\` |
+| \`flint-snackbar-close\` | \`{ open: false }\` | Fired when the snackbar closes (bubbles, composed). detail: \`{ open: false }\` |
 
 #### Slots
 
 | Name | Description |
 |---|---|
-| \`(default)\` | Default slot for content |
-| \`action\` |  |
+| \`action\` | The action to display inside the snackbar. |
+| \`(default)\` | Optional content to display inside the snackbar, such as a message or a flint-alert. |
 
 #### CSS Custom Properties
 
 | Property | Default |
 |---|---|
-| \`--flint-snackbar-z-index\` | \`1400\` |
-| \`--flint-snackbar-offset\` | \`24px\` |
-| \`--flint-snackbar-bg\` | \`#313131\` |
-| \`--flint-snackbar-color\` | \`#ffffff\` |
-| \`--flint-snackbar-min-width\` | \`288px\` |
-| \`--flint-snackbar-max-width\` | \`560px\` |
-| \`--flint-snackbar-bg-info\` | \`#0288d1\` |
-| \`--flint-snackbar-bg-success\` | \`#2e7d32\` |
-| \`--flint-snackbar-bg-warning\` | \`#ed6c02\` |
-| \`--flint-snackbar-bg-error\` | \`#d32f2f\` |
+| \`--flint-snackbar-min-width\` | — |
+| \`--flint-snackbar-max-width\` | — |
+| \`--flint-snackbar-bg\` | — |
+| \`--flint-snackbar-color\` | — |
+| \`--flint-snackbar-z-index\` | — |
+| \`--flint-snackbar-offset\` | — |
+| \`--flint-snackbar-bg-info\` | — |
+| \`--flint-snackbar-bg-success\` | — |
+| \`--flint-snackbar-bg-warning\` | — |
+| \`--flint-snackbar-bg-error\` | — |
 | \`--flint-font-family\` | — |
 | \`--flint-border-radius-md\` | — |
 | \`--flint-shadow-lg\` | — |
@@ -64,7 +67,7 @@ const meta: Meta = {
 
 | Method | Description |
 |---|---|
-| \`close()\` | Closes the snackbar. |
+| \`close(): void\` | Closes the snackbar. |
                 `,
             },
         },

@@ -33,7 +33,7 @@ import { FlintBackdrop } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-backdrop-close` | — | Dispatched when the backdrop is clicked or Escape is pressed. detail: `{ open: false }` |
+| `flint-backdrop-close` | `{ open: false }` | Dispatched when the backdrop is clicked or Escape is pressed. detail: `{ open: false }` |
 
 ### Slots
 

@@ -17,7 +17,8 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
-flint-tooltip A component that displays a text label when users hover over or focus on an element.
+flint-tooltip
+A component that displays a text label when users hover over or focus on an element.
 
 - **Tag**: \`<flint-tooltip>\`
 - **Class**: \`FlintTooltip\`
@@ -32,12 +33,6 @@ flint-tooltip A component that displays a text label when users hover over or fo
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the tooltip so it never appears. |
 | \`openDelay\` | \`open-delay\` | \`number\` | \`0\` | Delay in ms before showing the tooltip. |
 | \`closeDelay\` | \`close-delay\` | \`number\` | \`0\` | Delay in ms before hiding the tooltip. |
-
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
 
 #### CSS Custom Properties
 

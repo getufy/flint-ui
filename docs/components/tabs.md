@@ -42,13 +42,6 @@ import { FlintTab } from '@getufy/flint-ui';
 | --- | --- | --- |
 | `flint-tab-click` | — | Fired when the tab is clicked or activated via keyboard. |
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
-| `icon` |  |
-
 ### CSS Custom Properties
 
 | Property | Default |
@@ -84,14 +77,13 @@ import { FlintTab } from '@getufy/flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `setTabIndex(n: number)` |  |
-| `focusInner()` |  |
+| `focusInner(): void` |  |
 
 ---
 
-## `<flint-tab-panel>`
+## `<flint-tab>`
 
-- **Tag**: `<flint-tab-panel>`
+- **Tag**: `<flint-tab>`
 - **Class**: `FlintTabPanel`
 
 ### Import
@@ -105,7 +97,7 @@ import { FlintTabPanel } from '@getufy/flint-ui';
 ### Usage
 
 ```html
-<flint-tab-panel></flint-tab-panel>
+<flint-tab></flint-tab>
 ```
 
 ### Properties
@@ -114,23 +106,34 @@ import { FlintTabPanel } from '@getufy/flint-ui';
 | --- | --- | --- | --- | --- |
 | `value` | `value` | `string` | `''` | Identifier linking this panel to its corresponding tab. |
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
-
 ### CSS Custom Properties
 
 | Property | Default |
 | --- | --- |
+| `--flint-tab-border-color` | `var(--flint-border-color` |
+| `--flint-tab-scroll-btn-size` | `40px` |
+| `--flint-tab-indicator-color` | `var(--flint-tabs-ind-color, var(--flint-primary-color` |
+| `--flint-tab-indicator-radius` | `3px` |
+| `--flint-tab-indicator-height` | `3px` |
+| `--flint-tab-indicator-width` | `3px` |
 | `--flint-tab-panel-padding` | `24px` |
+| `--flint-tab-padding-y` | `10px` |
+| `--flint-tab-padding-x` | `16px` |
+| `--flint-tab-min-height` | `48px` |
+| `--flint-tab-font-size` | `0.875rem` |
+| `--flint-tab-font-weight` | `500` |
+| `--flint-tab-inactive-color` | — |
+| `--flint-tab-active-color` | — |
+| `--flint-tab-hover-bg` | `var(--flint-primary-color-light` |
+| `--flint-tab-font-weight-active` | `600` |
+| `--flint-tab-disabled-opacity` | `0.38` |
+| `--flint-tab-icon-min-height` | `72px` |
 
 ---
 
-## `<flint-tab-list>`
+## `<flint-tab>`
 
-- **Tag**: `<flint-tab-list>`
+- **Tag**: `<flint-tab>`
 - **Class**: `FlintTabList`
 
 ### Import
@@ -144,7 +147,7 @@ import { FlintTabList } from '@getufy/flint-ui';
 ### Usage
 
 ```html
-<flint-tab-list></flint-tab-list>
+<flint-tab></flint-tab>
 ```
 
 ### Properties
@@ -157,31 +160,42 @@ import { FlintTabList } from '@getufy/flint-ui';
 | `scrollButtons` | `scroll-buttons` | `'auto' \| 'false'` | `'auto'` | Whether to show scroll buttons in scrollable mode. |
 | `ariaLabel` | `aria-label` | `string` | `''` | Accessible label for the tab list. |
 
-### Events
+### CSS Custom Properties
 
-| Event | Detail | Description |
-| --- | --- | --- |
-| `flint-tab-click` | `{ value: tabs[idx].value }` |  |
-
-### Slots
-
-| Name | Description |
+| Property | Default |
 | --- | --- |
-| `(default)` | Default slot for content |
+| `--flint-tab-border-color` | `var(--flint-border-color` |
+| `--flint-tab-scroll-btn-size` | `40px` |
+| `--flint-tab-indicator-color` | `var(--flint-tabs-ind-color, var(--flint-primary-color` |
+| `--flint-tab-indicator-radius` | `3px` |
+| `--flint-tab-indicator-height` | `3px` |
+| `--flint-tab-indicator-width` | `3px` |
+| `--flint-tab-panel-padding` | `24px` |
+| `--flint-tab-padding-y` | `10px` |
+| `--flint-tab-padding-x` | `16px` |
+| `--flint-tab-min-height` | `48px` |
+| `--flint-tab-font-size` | `0.875rem` |
+| `--flint-tab-font-weight` | `500` |
+| `--flint-tab-inactive-color` | — |
+| `--flint-tab-active-color` | — |
+| `--flint-tab-hover-bg` | `var(--flint-primary-color-light` |
+| `--flint-tab-font-weight-active` | `600` |
+| `--flint-tab-disabled-opacity` | `0.38` |
+| `--flint-tab-icon-min-height` | `72px` |
 
 ### Methods
 
 | Method | Description |
 | --- | --- |
-| `syncIndicator()` |  |
+| `syncIndicator(): void` |  |
 
 ---
 
-## `<flint-tabs>`
+## `<flint-tab>`
 
 Tabs: container that coordinates tab selection and panel visibility.
 
-- **Tag**: `<flint-tabs>`
+- **Tag**: `<flint-tab>`
 - **Class**: `FlintTabs`
 
 ### Import
@@ -195,7 +209,7 @@ import { FlintTabs } from '@getufy/flint-ui';
 ### Usage
 
 ```html
-<flint-tabs></flint-tabs>
+<flint-tab></flint-tab>
 ```
 
 ### Properties
@@ -217,10 +231,27 @@ import { FlintTabs } from '@getufy/flint-ui';
 | --- | --- | --- |
 | `flint-tab-change` | — | Fired when the active tab changes. |
 
-### Slots
+### CSS Custom Properties
 
-| Name | Description |
+| Property | Default |
 | --- | --- |
-| `(default)` | Default slot for content |
+| `--flint-tab-border-color` | `var(--flint-border-color` |
+| `--flint-tab-scroll-btn-size` | `40px` |
+| `--flint-tab-indicator-color` | `var(--flint-tabs-ind-color, var(--flint-primary-color` |
+| `--flint-tab-indicator-radius` | `3px` |
+| `--flint-tab-indicator-height` | `3px` |
+| `--flint-tab-indicator-width` | `3px` |
+| `--flint-tab-panel-padding` | `24px` |
+| `--flint-tab-padding-y` | `10px` |
+| `--flint-tab-padding-x` | `16px` |
+| `--flint-tab-min-height` | `48px` |
+| `--flint-tab-font-size` | `0.875rem` |
+| `--flint-tab-font-weight` | `500` |
+| `--flint-tab-inactive-color` | — |
+| `--flint-tab-active-color` | — |
+| `--flint-tab-hover-bg` | `var(--flint-primary-color-light` |
+| `--flint-tab-font-weight-active` | `600` |
+| `--flint-tab-disabled-opacity` | `0.38` |
+| `--flint-tab-icon-min-height` | `72px` |
 
 ---

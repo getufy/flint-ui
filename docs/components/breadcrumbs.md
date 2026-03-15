@@ -2,7 +2,8 @@
 
 <Demo html="<flint-breadcrumbs>  <a href=&quot;#&quot;>Home</a>  <a href=&quot;#&quot;>Products</a>  <span>Current Page</span></flint-breadcrumbs>" />
 
-Breadcrumbs provide a navigational aid showing the current page's location within a site hierarchy, allowing users to navigate back up the trail.
+Breadcrumbs provide a navigational aid showing the current page's location
+within a site hierarchy, allowing users to navigate back up the trail.
 
 - **Tag**: `<flint-breadcrumbs>`
 - **Class**: `FlintBreadcrumbs`
@@ -36,7 +37,6 @@ import { FlintBreadcrumbs } from '@getufy/flint-ui';
 | --- | --- |
 | `(default)` | Breadcrumb items (links or text), distributed in order. |
 | `separator` | Custom separator element rendered between each item. |
-| `breadcrumb-item-${index}` |  |
 
 ### CSS Custom Properties
 

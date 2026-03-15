@@ -2,6 +2,9 @@
 
 <Demo label="Formats" html="<div style=&quot;display:flex;flex-direction:column;gap:8px&quot;><span>Currency: <flint-format-number value=&quot;1234567.89&quot; style=&quot;currency&quot; currency=&quot;USD&quot;></flint-format-number></span><span>Percent: <flint-format-number value=&quot;0.856&quot; style=&quot;percent&quot;></flint-format-number></span><span>Decimal: <flint-format-number value=&quot;1234567.89&quot; style=&quot;decimal&quot;></flint-format-number></span></div>" />
 
+Formats a number using the specified locale and options.
+Localization is handled by the browser's `Intl.NumberFormat` API — no language packs required.
+
 - **Tag**: `<flint-format-number>`
 - **Class**: `FlintFormatNumber`
 
@@ -30,7 +33,7 @@ import { FlintFormatNumber } from '@getufy/flint-ui';
 | `currencyDisplay` | `currency-display` | `'symbol' \| 'narrowSymbol' \| 'code' \| 'name'` | `'symbol'` | How to display the currency. |
 | `notation` | `notation` | `'standard' \| 'scientific' \| 'engineering' \| 'compact'` | `'standard'` | Number notation style. 'compact' renders e.g. "1.2K" or "3.4M". |
 | `compactDisplay` | `compact-display` | `'short' \| 'long'` | `'short'` | How to display compact notation — 'short' (1K) or 'long' (1 thousand). |
-| `signDisplay` | `sign-display` | `'auto' \| 'never' \| 'always' \| 'exceptZero'` | `'auto'` | When to show the sign. - 'auto': sign for negatives only (default) - 'always': always show sign (+/−) - 'never': never show sign - 'exceptZero': show sign for non-zero values |
+| `signDisplay` | `sign-display` | `'auto' \| 'never' \| 'always' \| 'exceptZero'` | `'auto'` | When to show the sign. |
 | `unit` | `unit` | `string` | `''` | ECMA-402 unit identifier (e.g. 'kilometer', 'kilogram', 'celsius'). Required when type='unit'. |
 | `unitDisplay` | `unit-display` | `'short' \| 'long' \| 'narrow'` | `'short'` | How to display the unit when type='unit'. |
 | `minimumIntegerDigits` | `minimum-integer-digits` | `number \| undefined` | `undefined` | The minimum number of integer digits (1–21). |
@@ -44,17 +47,11 @@ import { FlintFormatNumber } from '@getufy/flint-ui';
 
 | Property | Default |
 | --- | --- |
-| `--flint-format-number-color` | `inherit` |
-| `--flint-format-number-font-size` | `inherit` |
-| `--flint-format-number-font-weight` | `inherit` |
-| `--flint-format-number-font-family` | `inherit` |
-| `--flint-format-number-negative-color` | `var(--flint-format-number-color, inherit` |
-| `--flint-format-number-positive-color` | `var(--flint-format-number-color, inherit` |
-
-### Methods
-
-| Method | Description |
-| --- | --- |
-| `formattedValue(): string` | The most recently formatted string value. Useful for aria-label or title attributes. |
+| `--flint-format-number-color` | — |
+| `--flint-format-number-font-size` | — |
+| `--flint-format-number-font-weight` | — |
+| `--flint-format-number-font-family` | — |
+| `--flint-format-number-positive-color` | — |
+| `--flint-format-number-negative-color` | — |
 
 ---

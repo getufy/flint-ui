@@ -34,23 +34,16 @@ Text Field: a styled text input with outlined/filled variants.
 | \`variant\` | \`variant\` | \`'outlined' \\| 'filled'\` | \`'outlined'\` | Visual style variant of the text field. |
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Whether the text field is disabled. |
 | \`error\` | \`error\` | \`boolean\` | \`false\` | Whether the text field is in an error state. |
-| \`helperText\` | \`helper-text\` | \`string\` | \`''\` | Helper text displayed below the input. |
-| \`errorMessage\` | \`error-message\` | \`string\` | \`''\` | Error message displayed below the input when in error state. |
+| \`helperText\` | \`helperText\` | \`string\` | \`''\` | Helper text displayed below the input. |
+| \`errorMessage\` | \`errorMessage\` | \`string\` | \`''\` | Error message displayed below the input when in error state. |
 | \`defaultValue\` | \`default-value\` | \`string\` | \`''\` | Initial value for uncontrolled usage. |
 
 #### Events
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-text-field-input\` | — | Fired on each keystroke as the value changes. detail: \`{ value: string }\` |
-| \`flint-text-field-change\` | — | Fired when the input loses focus after the value has changed. detail: \`{ value: string }\` |
-
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`leading\` |  |
-| \`trailing\` |  |
+| \`flint-text-field-input\` | \`{ value: string }\` | Fired on each keystroke as the value changes. detail: \`{ value: string }\` |
+| \`flint-text-field-change\` | \`{ value: string }\` | Fired when the input loses focus after the value has changed. detail: \`{ value: string }\` |
 
 #### CSS Custom Properties
 

@@ -61,8 +61,8 @@ Table Pagination: pagination controls for tabular data.
 |---|---|---|---|---|
 | \`count\` | \`count\` | \`number\` | \`0\` | Total number of rows. |
 | \`page\` | \`page\` | \`number\` | \`0\` | Controlled current page (0-indexed). |
-| \`rowsPerPage\` | \`rows-per-page\` | \`number\` | \`10\` | Controlled rows per page. |
-| \`rowsPerPageOptions\` | \`rows-per-page-options\` | \`number[]\` | \`[5, 10, 25]\` | Available rows-per-page options. |
+| \`rowsPerPage\` | \`rowsPerPage\` | \`number\` | \`10\` | Controlled rows per page. |
+| \`rowsPerPageOptions\` | \`rowsPerPageOptions\` | \`number[]\` | \`[5, 10, 25]\` | Available rows-per-page options. |
 | \`defaultPage\` | \`default-page\` | \`number\` | \`0\` | Uncontrolled default page (applied on first render). |
 | \`defaultRowsPerPage\` | \`default-rows-per-page\` | \`number\` | \`-1\` | Uncontrolled default rows per page. |
 | \`showFirstLast\` | \`show-first-last\` | \`boolean\` | \`false\` | Show First/Last page buttons. |
@@ -99,12 +99,6 @@ Table Pagination: pagination controls for tabular data.
 | \`active\` | \`active\` | \`boolean\` | \`false\` | Whether this column is currently sorted. |
 | \`direction\` | \`direction\` | \`'asc' \\| 'desc'\` | \`'asc'\` | Sort direction when active. |
 
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
-
 ---
 
 #### \`<flint-table-container>\`
@@ -118,14 +112,8 @@ flint-table-container
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`shadow\` | \`shadow\` | \`boolean\` | \`false\` | Applies a stronger box-shadow elevation. |
+| \`shadow\` | \`shadow\` | \`boolean\` | \`false\` | Stronger box-shadow elevation. |
 | \`stickyHeader\` | \`sticky-header\` | \`boolean\` | \`false\` | Sticks the table header to the top on scroll. |
-
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
 
 #### CSS Custom Properties
 
@@ -146,13 +134,7 @@ flint-table
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`size\` | \`size\` | \`'medium' \\| 'small'\` | \`'medium'\` | Cell padding density. |
-
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
+| \`size\` | \`size\` | \`'medium'\\|'small'\` | \`'medium'\` | Cell padding density. |
 
 #### CSS Custom Properties
 
@@ -182,12 +164,6 @@ flint-table-head
 - **Tag**: \`<flint-table-head>\`
 - **Class**: \`FlintTableHead\`
 
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
-
 #### CSS Custom Properties
 
 | Property | Default |
@@ -208,13 +184,7 @@ flint-table-body
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`striped\` | \`striped\` | \`boolean\` | \`false\` | Enables alternating row shading. |
-
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
+| \`striped\` | \`striped\` | \`boolean\` | \`false\` | Alternating row shading. |
 
 ---
 
@@ -229,14 +199,8 @@ flint-table-row
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`selected\` | \`selected\` | \`boolean\` | \`false\` | Highlights the row as selected. |
-| \`hover\` | \`hover\` | \`boolean\` | \`false\` | Forces hover highlight on the row. |
-
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
+| \`selected\` | \`selected\` | \`boolean\` | \`false\` | Selected row highlight. |
+| \`hover\` | \`hover\` | \`boolean\` | \`false\` | Force hover highlight. |
 
 #### CSS Custom Properties
 
@@ -258,15 +222,9 @@ flint-table-cell
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`header\` | \`header\` | \`boolean\` | \`false\` | Renders the cell with header styling. |
-| \`align\` | \`align\` | \`'left' \\| 'right' \\| 'center'\` | \`'left'\` | Text alignment within the cell. |
-| \`padding\` | \`padding\` | \`'normal' \\| 'checkbox' \\| 'none'\` | \`'normal'\` | Padding preset for the cell. |
-
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
+| \`header\` | \`header\` | \`boolean\` | \`false\` | Header cell styling. |
+| \`align\` | \`align\` | \`'left'\\|'right'\\|'center'\` | \`'left'\` | Text alignment. |
+| \`padding\` | \`padding\` | \`'normal'\\|'checkbox'\\|'none'\` | \`'normal'\` | Padding preset. |
 
 #### CSS Custom Properties
 
@@ -285,12 +243,6 @@ flint-table-footer
 
 - **Tag**: \`<flint-table-footer>\`
 - **Class**: \`FlintTableFooter\`
-
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
                 `,
             },
         },

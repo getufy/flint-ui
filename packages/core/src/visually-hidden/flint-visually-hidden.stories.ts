@@ -9,6 +9,9 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
+Makes content accessible to assistive devices (screen readers) without
+displaying it visually on screen.
+
 - **Tag**: \`<flint-visually-hidden>\`
 - **Class**: \`FlintVisuallyHidden\`
 
@@ -16,13 +19,13 @@ const meta: Meta = {
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`notFocusable\` | \`not-focusable\` | \`boolean\` | \`false\` | When \`true\`, the focus-reveal behaviour is disabled. The content stays hidden even if a focusable child receives keyboard focus. Set the \`not-focusable\` attribute (no value) to activate this mode. |
+| \`notFocusable\` | \`not-focusable\` | \`boolean\` | \`false\` | When true, disables the focus-reveal behaviour. Useful for pure SR-only text (e.g. "opens in a new window") that should never become visible, even when a containing element is focused. |
 
 #### Slots
 
 | Name | Description |
 |---|---|
-| \`(default)\` | Default slot for content |
+| \`(default)\` | The content to be visually hidden. |
                 `,
             },
         },

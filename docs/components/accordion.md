@@ -28,7 +28,7 @@ import { FlintAccordion } from '@getufy/flint-ui';
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | `expanded` | `expanded` | `boolean` | `false` | If true, expands the accordion by default. |
-| `defaultExpanded` | `default-expanded` | `boolean` | `false` | Initial expanded state for uncontrolled usage. Has no effect after the element has connected to the DOM. |
+| `defaultExpanded` | `default-expanded` | `boolean` | `false` | Initial expanded state for uncontrolled usage. |
 | `disabled` | `disabled` | `boolean` | `false` | If true, the accordion is disabled. |
 
 ### Events
@@ -144,11 +144,5 @@ import { FlintAccordionActions } from '@getufy/flint-ui';
 ```html
 <flint-accordion-actions></flint-accordion-actions>
 ```
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
 
 ---

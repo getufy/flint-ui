@@ -41,7 +41,7 @@ Chip: a compact element representing an input, attribute, or action.
 | Event | Detail | Description |
 |---|---|---|
 | \`flint-chip-click\` | — | Fired when a clickable chip is clicked. |
-| \`flint-chip-delete\` | — | Fired when the chip's delete icon is clicked. detail: \`{ value: string }\` |
+| \`flint-chip-delete\` | \`{ value: string }\` | Fired when the chip's delete icon is clicked. detail: \`{ value: string }\` |
 
 #### Slots
 

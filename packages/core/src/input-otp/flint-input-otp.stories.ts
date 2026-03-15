@@ -18,7 +18,8 @@ const meta: Meta = {
                 component: `
 #### \`<flint-input-otp-group>\`
 
-Visual grouping wrapper for \`flint-input-otp-slot\` elements. Renders slots inline with shared borders.
+Visual grouping wrapper for \`flint-input-otp-slot\` elements.
+Renders slots inline with shared borders.
 
 - **Tag**: \`<flint-input-otp-group>\`
 - **Class**: \`FlintInputOtpGroup\`
@@ -51,7 +52,8 @@ Visual grouping wrapper for \`flint-input-otp-slot\` elements. Renders slots inl
 
 #### \`<flint-input-otp-separator>\`
 
-Visual separator between \`flint-input-otp-group\` elements. Renders a short horizontal bar.
+Visual separator between \`flint-input-otp-group\` elements.
+Renders a short horizontal bar.
 
 - **Tag**: \`<flint-input-otp-separator>\`
 - **Class**: \`FlintInputOtpSeparator\`
@@ -60,7 +62,8 @@ Visual separator between \`flint-input-otp-group\` elements. Renders a short hor
 
 #### \`<flint-input-otp-slot>\`
 
-A single character cell in an OTP input. Place inside \`flint-input-otp-group\`. State is managed by \`flint-input-otp\`.
+A single character cell in an OTP input.
+Place inside \`flint-input-otp-group\`. State is managed by \`flint-input-otp\`.
 
 - **Tag**: \`<flint-input-otp-slot>\`
 - **Class**: \`FlintInputOtpSlot\`
@@ -78,6 +81,10 @@ A single character cell in an OTP input. Place inside \`flint-input-otp-group\`.
 
 #### \`<flint-input-otp>\`
 
+Accessible one-time password input with copy/paste support.
+Manages a hidden native \`<input>\` and syncs each \`flint-input-otp-slot\`
+with the appropriate character and active-cursor state.
+
 - **Tag**: \`<flint-input-otp>\`
 - **Class**: \`FlintInputOtp\`
 
@@ -88,7 +95,7 @@ A single character cell in an OTP input. Place inside \`flint-input-otp-group\`.
 | \`value\` | \`value\` | \`string\` | \`''\` | Current OTP value. Reflects to attribute for external observation. |
 | \`defaultValue\` | \`default-value\` | \`string\` | \`''\` | Initial uncontrolled value. Has no effect after the first render. |
 | \`maxLength\` | \`max-length\` | \`number\` | \`6\` | Total number of character slots. |
-| \`pattern\` | \`pattern\` | \`string\` | \`''\` | Per-character regex pattern string. Characters failing the test are silently rejected on input and paste. E.g. \`"\\\\d"\` accepts digits only; \`"[a-zA-Z0-9]"\` accepts alphanumeric. |
+| \`pattern\` | \`pattern\` | \`string\` | \`''\` | Per-character regex pattern string. Characters failing the test are |
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the OTP input. |
 | \`label\` | \`label\` | \`string\` | \`'One-time password'\` | Accessible label for the hidden input (used as aria-label). |
 | \`description\` | \`description\` | \`string\` | \`''\` | Optional description text for the hidden input (used as aria-describedby). |
@@ -97,14 +104,14 @@ A single character cell in an OTP input. Place inside \`flint-input-otp-group\`.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-otp-change\` | \`{ value: newVal }\` |  |
-| \`flint-otp-complete\` | \`{ value: newVal }\` |  |
+| \`flint-otp-change\` | \`{ value: string }\` | Fired on every value change. \`detail: { value: string }\`. |
+| \`flint-otp-complete\` | \`{ value: string }\` | Fired when \`maxLength\` chars have been entered. \`detail: { value: string }\`. |
 
 #### Slots
 
 | Name | Description |
 |---|---|
-| \`(default)\` | Default slot for content |
+| \`(default)\` | Accepts \`flint-input-otp-group\`, \`flint-input-otp-separator\`, and \`flint-input-otp-slot\` elements. |
                 `,
             },
         },

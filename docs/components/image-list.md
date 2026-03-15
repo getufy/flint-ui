@@ -36,7 +36,6 @@ import { FlintImageListItemBar } from '@getufy/flint-ui';
 | `title` | Title text. |
 | `subtitle` | Subtitle text. |
 | `(default)` | Action content. |
-| `action` |  |
 
 ### CSS Custom Properties
 
@@ -80,8 +79,8 @@ import { FlintImageListItem } from '@getufy/flint-ui';
 | `cols` | `cols` | `number` | `1` | How many grid columns this item spans (quilted/woven only) |
 | `barPosition` | `bar-position` | `'overlay' \| 'below'` | `'overlay'` | Position of the title bar: 'overlay' (default) or 'below' |
 | `weave` | `weave` | `'odd' \| 'even'` | `'odd'` | Woven variant: 'odd' or 'even' identity for alternating height |
-| `aspectRatio` | `aspect-ratio` | `string` | `'auto'` | CSS aspect-ratio for the cell (e.g. "1/1", "4/3", "3/4", "16/9", "9/16"). Set to "auto" (default) to let the grid row height control cell size. |
-| `fit` | `fit` | `ImageFit` | `'cover'` | How the image fills the cell: 'cover' (default, crops to fill) or 'contain' (letterboxes to fit without cropping). |
+| `aspectRatio` | `aspect-ratio` | `string` | `'auto'` | CSS aspect-ratio for the cell (e.g. "1/1", "4/3", "3/4", "16/9", "9/16"). |
+| `fit` | `fit` | `ImageFit` | `'cover'` | How the image fills the cell: 'cover' (default, crops to fill) |
 
 ### Slots
 
@@ -94,7 +93,8 @@ import { FlintImageListItem } from '@getufy/flint-ui';
 
 ## `<flint-image-list>`
 
-A container that displays images in an organized grid layout. Supports standard, quilted, woven, and masonry variants.
+A container that displays images in an organized grid layout.
+Supports standard, quilted, woven, and masonry variants.
 
 - **Tag**: `<flint-image-list>`
 - **Class**: `FlintImageList`
@@ -120,8 +120,8 @@ import { FlintImageList } from '@getufy/flint-ui';
 | `variant` | `variant` | `ImageListVariant` | `'standard'` | Layout variant |
 | `cols` | `cols` | `number` | `3` | Number of columns |
 | `gap` | `gap` | `number` | `4` | Gap between items (in px) |
-| `rowHeight` | `row-height` | `number` | `164` | Row height for non-masonry variants (in px). Ignored when autoRows=true. |
-| `autoRows` | `auto-rows` | `boolean` | `false` | When true, row height is automatic (use with bar-position="below") |
+| `rowHeight` | `rowHeight` | `number` | `164` | Row height for non-masonry variants (in px). Ignored when autoRows=true. |
+| `autoRows` | `autoRows` | `boolean` | `false` | When true, row height is automatic (use with bar-position="below") |
 
 ### Slots
 

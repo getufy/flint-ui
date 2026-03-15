@@ -4,7 +4,8 @@
 
 ## `<flint-command-shortcut>`
 
-Displays a keyboard shortcut hint inside a command item. Slot the shortcut string (e.g. `⌘P`) as default slot content.
+Displays a keyboard shortcut hint inside a command item.
+Slot the shortcut string (e.g. `⌘P`) as default slot content.
 
 - **Tag**: `<flint-command-shortcut>`
 - **Class**: `FlintCommandShortcut`
@@ -99,7 +100,7 @@ import { FlintCommandItem } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-command-item-select` | — | Fired when the item is activated. |
+| `flint-command-item-select` | `{ value: string }` | Fired when the item is activated. detail: `{ value: string }` |
 
 ### Slots
 
@@ -113,13 +114,14 @@ import { FlintCommandItem } from '@getufy/flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `scrollIntoViewIfNeeded()` | Scroll this item into view (nearest ancestor scroll container). |
+| `scrollIntoViewIfNeeded(): void` | Scroll this item into view (nearest ancestor scroll container). |
 
 ---
 
 ## `<flint-command-empty>`
 
-Empty state message shown when no command items match the current query. Managed automatically by the parent `flint-command` element.
+Empty state message shown when no command items match the current query.
+Managed automatically by the parent `flint-command` element.
 
 - **Tag**: `<flint-command-empty>`
 - **Class**: `FlintCommandEmpty`
@@ -148,7 +150,8 @@ import { FlintCommandEmpty } from '@getufy/flint-ui';
 
 ## `<flint-command-group>`
 
-A labeled group of command items. The parent `flint-command` automatically hides the whole group when all its items are filtered out.
+A labeled group of command items. The parent `flint-command` automatically
+hides the whole group when all its items are filtered out.
 
 - **Tag**: `<flint-command-group>`
 - **Class**: `FlintCommandGroup`
@@ -218,7 +221,8 @@ import { FlintCommandList } from '@getufy/flint-ui';
 
 ## `<flint-command-input>`
 
-Search input for the command menu. Dispatches `_cmd-filter` events that the parent `flint-command` intercepts to apply filtering.
+Search input for the command menu. Dispatches `_cmd-filter` events that
+the parent `flint-command` intercepts to apply filtering.
 
 - **Tag**: `<flint-command-input>`
 - **Class**: `FlintCommandInput`
@@ -244,24 +248,17 @@ import { FlintCommandInput } from '@getufy/flint-ui';
 | `placeholder` | `placeholder` | `string` | `'Type a command or search...'` | Placeholder text shown when input is empty. |
 | `value` | `value` | `string` | `''` | Current input value. |
 
-### Events
-
-| Event | Detail | Description |
-| --- | --- | --- |
-| `_cmd-filter` | `{ query: input.value }` |  |
-
 ### Methods
 
 | Method | Description |
 | --- | --- |
-| `focus()` | Focus the inner input element. |
-| `reset()` | Reset the input value and broadcast an empty filter. |
+| `reset(): void` | Reset the input value and broadcast an empty filter. |
 
 ---
 
 ## `<flint-command>`
 
-Root command menu component. Manages search filtering and keyboard navigation. Compose it with `flint-command-input`, `flint-command-list`, `flint-command-group`, `flint-command-item`, `flint-command-separator`, and `flint-command-empty`.
+Root command menu component. Manages search filtering and keyboard navigation.
 
 - **Tag**: `<flint-command>`
 - **Class**: `FlintCommand`
@@ -284,7 +281,7 @@ import { FlintCommand } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-command-item-select` | — | Bubbles up from activated items. |
+| `flint-command-item-select` | `{ value: string }` | Bubbles up from activated items. detail: `{ value: string }` |
 
 ### Slots
 
@@ -310,13 +307,14 @@ import { FlintCommand } from '@getufy/flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `reset()` | Reset search query and restore all items. |
+| `reset(): void` | Reset search query and restore all items. |
 
 ---
 
 ## `<flint-command-dialog>`
 
-Modal dialog wrapper for a command menu. Opens with a smooth backdrop + scale animation. Pressing `Escape` or clicking the backdrop fires `flint-command-dialog-close`.
+Modal dialog wrapper for a command menu. Opens with a smooth backdrop + scale
+animation. Pressing `Escape` or clicking the backdrop fires `flint-command-dialog-close`.
 
 - **Tag**: `<flint-command-dialog>`
 - **Class**: `FlintCommandDialog`
@@ -345,7 +343,7 @@ import { FlintCommandDialog } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-command-dialog-close` | — | Fired when the dialog should close. detail: `{ open: false }` |
+| `flint-command-dialog-close` | `{ open: false }` | Fired when the dialog should close. detail: `{ open: false }` The host is responsible for setting `open = false` in response. |
 
 ### Slots
 

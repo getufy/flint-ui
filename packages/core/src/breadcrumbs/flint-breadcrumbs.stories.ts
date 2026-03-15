@@ -16,7 +16,8 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
-Breadcrumbs provide a navigational aid showing the current page's location within a site hierarchy, allowing users to navigate back up the trail.
+Breadcrumbs provide a navigational aid showing the current page's location
+within a site hierarchy, allowing users to navigate back up the trail.
 
 - **Tag**: \`<flint-breadcrumbs>\`
 - **Class**: \`FlintBreadcrumbs\`
@@ -36,7 +37,6 @@ Breadcrumbs provide a navigational aid showing the current page's location withi
 |---|---|
 | \`(default)\` | Breadcrumb items (links or text), distributed in order. |
 | \`separator\` | Custom separator element rendered between each item. |
-| \`breadcrumb-item-\${index}\` |  |
 
 #### CSS Custom Properties
 

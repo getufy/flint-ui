@@ -40,7 +40,7 @@ import { FlintTextarea } from '@getufy/flint-ui';
 | `minlength` | `minlength` | `number \| undefined` | `undefined` | Minimum number of characters required. |
 | `name` | `name` | `string` | `''` | Form field name used when submitting form data. |
 | `autocomplete` | `autocomplete` | `string` | `''` | Browser autocomplete hint. |
-| `resize` | `resize` | `'none' \| 'both' \| 'horizontal' \| 'vertical' \| 'auto'` | `'vertical'` | Controls the resize handle. 'auto' enables automatic height expansion as the user types. |
+| `resize` | `resize` | `'none' \| 'both' \| 'horizontal' \| 'vertical' \| 'auto'` | `'vertical'` | Controls the resize handle. |
 | `defaultValue` | `default-value` | `string` | `''` | Initial value for uncontrolled usage. |
 | `ariaLabel` | `aria-label` | `string \| null` | `null` | Accessible label for screen readers when no visible label is provided. |
 
@@ -48,8 +48,8 @@ import { FlintTextarea } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-textarea-input` | — | Dispatched on every keystroke. Detail: `{ value: string }` |
-| `flint-textarea-change` | — | Dispatched on blur/change. Detail: `{ value: string }` |
+| `flint-textarea-input` | `{ value: string }` | Dispatched on every keystroke. Detail: `{ value: string }` |
+| `flint-textarea-change` | `{ value: string }` | Dispatched on blur/change. Detail: `{ value: string }` |
 
 ### CSS Custom Properties
 
@@ -72,11 +72,5 @@ import { FlintTextarea } from '@getufy/flint-ui';
 | `--flint-input-disabled-color` | — |
 | `--flint-input-readonly-bg` | — |
 | `--flint-help-text-color` | — |
-
-### Methods
-
-| Method | Description |
-| --- | --- |
-| `textareaElement(): HTMLTextAreaElement \| null` | Direct access to the internal &lt;textarea&gt; element. |
 
 ---

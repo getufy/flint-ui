@@ -38,10 +38,10 @@ import { FlintSkeleton } from '@getufy/flint-ui';
 
 | Property | Default |
 | --- | --- |
-| `--flint-skeleton-bg` | `var(--flint-surface-3, rgba(0, 0, 0, 0.11` |
-| `--flint-skeleton-bg-dark` | `rgba(255, 255, 255, 0.13` |
-| `--flint-skeleton-animation-duration` | `1.5s` |
-| `--flint-skeleton-wave-color` | `rgba(255, 255, 255, 0.4` |
+| `--flint-skeleton-bg` | — |
+| `--flint-skeleton-bg-dark` | — |
+| `--flint-skeleton-wave-color` | — |
+| `--flint-skeleton-animation-duration` | — |
 | `--flint-border-radius-sm` | — |
 | `--flint-border-radius-md` | — |
 | `--flint-border-radius-lg` | — |

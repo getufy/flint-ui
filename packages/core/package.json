@@ -414,6 +414,7 @@
     }
   },
   "customElements": "dist/custom-elements.json",
+  "web-types": "dist/web-types.json",
   "scripts": {
     "lint": "eslint \"src/**/*.ts\"",
     "test": "NODE_OPTIONS='--no-warnings' vitest run",

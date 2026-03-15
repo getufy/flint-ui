@@ -35,12 +35,6 @@ flint-list: A wrapper for list items.
 | \`disablePadding\` | \`disable-padding\` | \`boolean\` | \`false\` | Whether to disable the default padding on the list. |
 | \`dense\` | \`dense\` | \`boolean\` | \`false\` | Whether to use compact spacing for list items. |
 
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
-
 #### CSS Custom Properties
 
 | Property | Default |
@@ -65,12 +59,6 @@ flint-list-item: A common list item.
 - **Tag**: \`<flint-list-item>\`
 - **Class**: \`FlintListItem\`
 
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
-
 #### CSS Custom Properties
 
 | Property | Default |
@@ -94,12 +82,6 @@ flint-list-item-button: An action element inside a list item.
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Whether the list item button is disabled. |
 | \`selected\` | \`selected\` | \`boolean\` | \`false\` | Whether the list item button is selected. |
 
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
-
 ---
 
 #### \`<flint-list-item-icon>\`
@@ -109,12 +91,6 @@ flint-list-item-icon: An icon wrapper inside a list item.
 - **Tag**: \`<flint-list-item-icon>\`
 - **Class**: \`FlintListItemIcon\`
 
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
-
 ---
 
 #### \`<flint-list-item-avatar>\`
@@ -123,12 +99,6 @@ flint-list-item-avatar: An avatar wrapper inside a list item.
 
 - **Tag**: \`<flint-list-item-avatar>\`
 - **Class**: \`FlintListItemAvatar\`
-
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
 
 ---
 
@@ -146,13 +116,6 @@ flint-list-item-text: A container for text content.
 | \`primary\` | \`primary\` | \`string\` | \`''\` | Primary text content of the list item. |
 | \`secondary\` | \`secondary\` | \`string\` | \`''\` | Secondary text content of the list item. |
 
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`primary\` |  |
-| \`secondary\` |  |
-
 ---
 
 #### \`<flint-list-subheader>\`
@@ -161,12 +124,6 @@ flint-list-subheader: A label for a nested list.
 
 - **Tag**: \`<flint-list-subheader>\`
 - **Class**: \`FlintListSubheader\`
-
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
                 `,
             },
         },

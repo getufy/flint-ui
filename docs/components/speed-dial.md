@@ -93,7 +93,7 @@ import { FlintSpeedDial } from '@getufy/flint-ui';
 | `hidden` | `hidden` | `boolean` | `false` | Hides the entire speed dial component. |
 | `disabled` | `disabled` | `boolean` | `false` | Disables the FAB and prevents opening. |
 | `persistentTooltips` | `persistent-tooltips` | `boolean` | `false` | When true, tooltips on all actions are always visible (good for touch/a11y). |
-| `closeIcon` | `close-icon` | `string` | `''` | Custom char/text rendered as the ✕ close icon on the FAB. Falls back to built-in SVG. |
+| `closeIcon` | `close-icon` | `string` | `''` | Custom char/text rendered as the x close icon on the FAB. Falls back to built-in SVG. |
 | `ariaLabel` | `aria-label` | `string` | `'Speed dial'` | ARIA label for the main FAB button. |
 | `isTouch` | `is-touch` | `boolean` | `false` | True on touch-only devices (auto-detected unless explicitly set). |
 
@@ -101,8 +101,8 @@ import { FlintSpeedDial } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-speed-dial-open` | — | Fired when the dial opens. detail: `{ open: true }` |
-| `flint-speed-dial-close` | — | Fired when the dial closes. detail: `{ open: false }` |
+| `flint-speed-dial-open` | `{ open: true }` | Fired when the dial opens. detail: `{ open: true }` |
+| `flint-speed-dial-close` | `{ open: false }` | Fired when the dial closes. detail: `{ open: false }` |
 
 ### Slots
 
@@ -110,7 +110,7 @@ import { FlintSpeedDial } from '@getufy/flint-ui';
 | --- | --- |
 | `(default)` | `flint-speed-dial-action` elements. |
 | `icon` | Icon shown on the FAB when closed (default: + SVG). |
-| `open-icon` | Icon shown on the FAB when open (default: ✕ SVG). |
+| `open-icon` | Icon shown on the FAB when open (default: x SVG). |
 
 ### CSS Custom Properties
 

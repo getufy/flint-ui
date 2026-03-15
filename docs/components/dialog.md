@@ -30,17 +30,15 @@ import { FlintDialog } from '@getufy/flint-ui';
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | `open` | `open` | `boolean` | `false` | Controls the open / closed state of the dialog. |
-| `defaultOpen` | `default-open` | `boolean` | `false` | Initial open state for uncontrolled usage. Has no effect after the element has connected to the DOM. |
+| `defaultOpen` | `default-open` | `boolean` | `false` | Initial open state for uncontrolled usage. |
 | `transition` | `transition` | `'scale' \| 'slide-up' \| 'slide-down'` | `'scale'` | Animation style: 'scale' (default), 'slide-up', or 'slide-down'. |
-| `disableBackdropClose` | `disable-backdrop-close` | `boolean` | `false` | When true, clicking the backdrop will NOT close the dialog. Useful for confirmation dialogs where the user must make a deliberate choice. |
+| `disableBackdropClose` | `disable-backdrop-close` | `boolean` | `false` | When true, clicking the backdrop will NOT close the dialog. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-dialog-close` | — | Dispatched when the dialog requests to be closed (backdrop click or |
-| `confirm` | — | Dispatched by confirmation dialogs when the user clicked "confirm". |
-| `cancel` | — | Dispatched by confirmation dialogs when the user clicked "cancel". |
+| `flint-dialog-close` | `{ open: false }` | Dispatched when the dialog requests to be closed (backdrop click or an explicit call to `requestClose()`). The host is responsible for setting `open = false` in response. detail: `{ open: false }` |
 
 ### Slots
 
@@ -66,13 +64,14 @@ import { FlintDialog } from '@getufy/flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `requestClose()` | Programmatically request the dialog to close (fires the 'flint-dialog-close' event). |
+| `requestClose(): void` | Programmatically request the dialog to close (fires the 'flint-dialog-close' event). |
 
 ---
 
 ## `<flint-dialog-title>`
 
-flint-dialog-title: heading area of a dialog. Automatically assigned id="dialog-title" for aria-labelledby.
+flint-dialog-title: heading area of a dialog.
+Automatically assigned id="dialog-title" for aria-labelledby.
 
 - **Tag**: `<flint-dialog-title>`
 - **Class**: `FlintDialogTitle`
@@ -90,12 +89,6 @@ import { FlintDialogTitle } from '@getufy/flint-ui';
 ```html
 <flint-dialog-title></flint-dialog-title>
 ```
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
 
 ---
 
@@ -120,12 +113,6 @@ import { FlintDialogContent } from '@getufy/flint-ui';
 <flint-dialog-content></flint-dialog-content>
 ```
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
-
 ---
 
 ## `<flint-dialog-content-text>`
@@ -149,17 +136,12 @@ import { FlintDialogContentText } from '@getufy/flint-ui';
 <flint-dialog-content-text></flint-dialog-content-text>
 ```
 
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
-
 ---
 
 ## `<flint-dialog-actions>`
 
-flint-dialog-actions: footer button row for a dialog. Use the `align` prop to control button alignment.
+flint-dialog-actions: footer button row for a dialog.
+Use the `align` prop to control button alignment.
 
 - **Tag**: `<flint-dialog-actions>`
 - **Class**: `FlintDialogActions`
@@ -183,11 +165,5 @@ import { FlintDialogActions } from '@getufy/flint-ui';
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | `align` | `align` | `'start' \| 'center' \| 'end' \| 'space-between'` | `'end'` | Alignment of action buttons: 'end' (default), 'start', 'center', 'space-between'. |
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for content |
 
 ---

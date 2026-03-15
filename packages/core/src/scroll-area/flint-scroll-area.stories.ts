@@ -11,7 +11,8 @@ const meta: Meta = {
                 component: `
 #### \`<flint-scroll-bar>\`
 
-Custom overlay scrollbar. Place inside \`flint-scroll-area\` with \`slot="scrollbar"\` for an explicit horizontal or second-axis bar. The parent \`flint-scroll-area\` calls \`setThumb()\` and \`setVisible()\` to keep this element in sync with the viewport's scroll position.
+Custom overlay scrollbar. Place inside \`flint-scroll-area\` with
+\`slot="scrollbar"\` for an explicit horizontal or second-axis bar.
 
 - **Tag**: \`<flint-scroll-bar>\`
 - **Class**: \`FlintScrollBar\`
@@ -32,22 +33,26 @@ Custom overlay scrollbar. Place inside \`flint-scroll-area\` with \`slot="scroll
 
 | Property | Default |
 |---|---|
-| \`--flint-scrollbar-track-color\` | \`transparent\` |
-| \`--flint-scrollbar-thumb-radius\` | \`9999px\` |
-| \`--flint-scrollbar-size\` | \`8px\` |
-| \`--flint-scrollbar-thumb-color\` | \`rgba(0, 0, 0, 0.35\` |
-| \`--flint-scrollbar-thumb-hover-color\` | \`rgba(0, 0, 0, 0.5\` |
+| \`--flint-scrollbar-size\` | — |
+| \`--flint-scrollbar-thumb-color\` | — |
+| \`--flint-scrollbar-thumb-hover-color\` | — |
+| \`--flint-scrollbar-thumb-radius\` | — |
+| \`--flint-scrollbar-track-color\` | — |
 
 #### Methods
 
 | Method | Description |
 |---|---|
-| \`setThumb(pos: number, size: number)\` | Push updated thumb geometry from the parent scroll area. |
-| \`setVisible(visible: boolean)\` | Show or hide the scrollbar (parent controls visibility). |
+| \`setThumb(pos: number, size: number): void\` | Push updated thumb geometry from the parent scroll area. |
+| \`setVisible(visible: boolean): void\` | Show or hide the scrollbar (parent controls visibility). |
 
 ---
 
 #### \`<flint-scroll-area>\`
+
+Augments native scroll with custom, cross-browser overlay scrollbars.
+Native scrollbars are hidden; lightweight custom thumbs are rendered in
+shadow DOM and synced to the viewport via scroll + ResizeObserver events.
 
 - **Tag**: \`<flint-scroll-area>\`
 - **Class**: \`FlintScrollArea\`
@@ -56,22 +61,36 @@ Custom overlay scrollbar. Place inside \`flint-scroll-area\` with \`slot="scroll
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`type\` | \`type\` | \`'auto' \\| 'always' \\| 'scroll' \\| 'hover'\` | \`'hover'\` | Controls when the scrollbars appear. - \`'hover'\`  (default) — on hover, when content overflows - \`'auto'\`             — when content overflows - \`'always'\`           — always - \`'scroll'\`           — briefly while scrolling |
+| \`type\` | \`type\` | \`'auto' \\| 'always' \\| 'scroll' \\| 'hover'\` | \`'hover'\` | Controls when the scrollbars appear. |
 | \`dir\` | \`dir\` | \`'ltr' \\| 'rtl'\` | \`'ltr'\` | Text direction. \`'rtl'\` flips the vertical bar to the left side. |
 
 #### Slots
 
 | Name | Description |
 |---|---|
-| \`(default)\` | Default slot for content |
-| \`scrollbar\` |  |
+| \`(default)\` | Scrollable content. |
+| \`scrollbar\` | Optional explicit \`flint-scroll-bar\` elements (e.g. horizontal). |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-scrollbar-size\` | — |
+| \`--flint-scrollbar-thumb-color\` | — |
+| \`--flint-scrollbar-thumb-hover-color\` | — |
+| \`--flint-scrollbar-thumb-radius\` | — |
+| \`--flint-scrollbar-track-color\` | — |
 
 #### Methods
 
 | Method | Description |
 |---|---|
-| \`scrollTo(optionsOrX?: ScrollToOptions \\| number, y?: number)\` |  |
-| \`scrollBy(optionsOrX?: ScrollToOptions \\| number, y?: number)\` |  |
+| \`scrollTo(options: ScrollToOptions): void\` | Scroll the viewport to a position. |
+| \`scrollTo(x: number, y: number): void\` |  |
+| \`scrollTo(optionsOrX: ScrollToOptions \\| number, y: number): void\` |  |
+| \`scrollBy(options: ScrollToOptions): void\` | Scroll the viewport by a relative amount. |
+| \`scrollBy(x: number, y: number): void\` |  |
+| \`scrollBy(optionsOrX: ScrollToOptions \\| number, y: number): void\` |  |
                 `,
             },
         },

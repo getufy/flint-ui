@@ -27,7 +27,7 @@ Copy Button: copies text to the clipboard with visual feedback.
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
 | \`value\` | \`value\` | \`string\` | \`''\` | The text value to copy. |
-| \`from\` | \`from\` | \`string\` | \`''\` | An id referencing another element to copy from. - \`from="el"\` copies \`textContent\` - \`from="el[attr]"\` copies an attribute value - \`from="el.prop"\` copies a property value |
+| \`from\` | \`from\` | \`string\` | \`''\` | An id referencing another element to copy from. |
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the copy button. |
 | \`copyLabel\` | \`copy-label\` | \`string\` | \`'Copy'\` | Label shown in the tooltip (idle state). |
 | \`successLabel\` | \`success-label\` | \`string\` | \`'Copied!'\` | Label shown in the tooltip after successful copy. |
@@ -39,16 +39,8 @@ Copy Button: copies text to the clipboard with visual feedback.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-copy\` | — | Fired after a successful copy operation. |
 | \`flint-copy-error\` | — | Fired when the copy operation fails. |
-
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`success-icon\` |  |
-| \`error-icon\` |  |
-| \`copy-icon\` |  |
+| \`flint-copy\` | — | Fired after a successful copy operation. |
 
 #### CSS Custom Properties
 

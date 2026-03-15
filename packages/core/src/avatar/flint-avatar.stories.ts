@@ -30,12 +30,6 @@ const meta: Meta = {
 | \`variant\` | \`variant\` | \`'circle' \\| 'square' \\| 'rounded'\` | \`'circle'\` | Shape variant of the avatar. |
 | \`size\` | \`size\` | \`'small' \\| 'medium' \\| 'large' \\| 'xlarge'\` | \`'medium'\` | Size of the avatar. |
 
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
-
 #### CSS Custom Properties
 
 | Property | Default |

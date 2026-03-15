@@ -36,7 +36,7 @@ A select component for choosing one or multiple options from a list.
 | \`options\` | \`options\` | \`SelectOption[]\` | \`[]\` | Array of selectable options. |
 | \`value\` | \`value\` | \`string[]\` | \`[]\` | Currently selected value(s). |
 | \`multiple\` | \`multiple\` | \`boolean\` | \`false\` | Allow multiple selections. |
-| \`placeholder\` | \`placeholder\` | \`string\` | \`'Select an option'\` | Placeholder text when no value is selected. |
+| \`placeholder\` | \`placeholder\` | \`string\` | \`''\` | Placeholder text when no value is selected. |
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the select and prevents interaction. |
 | \`readonly\` | \`readonly\` | \`boolean\` | \`false\` | Makes the select read-only. |
 | \`required\` | \`required\` | \`boolean\` | \`false\` | Marks the select as required for form validation. |
@@ -45,12 +45,13 @@ A select component for choosing one or multiple options from a list.
 | \`name\` | \`name\` | \`string\` | \`''\` | Form field name used when submitting form data. |
 | \`size\` | \`size\` | \`SelectSize\` | \`'md'\` | Size variant of the select. |
 | \`defaultValue\` | \`default-value\` | \`string\` | \`''\` | Sets the initial value in uncontrolled mode (single-select only). |
+| \`hoist\` | \`hoist\` | \`boolean\` | \`false\` | When true, the dropdown uses \`position: fixed\` so it can escape |
 
 #### Events
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-select-change\` | — | Dispatched when the selection changes. detail: \`{ value: string[] }\` |
+| \`flint-select-change\` | \`{ value: string[] }\` | Dispatched when the selection changes. detail: \`{ value: string[] }\` |
 
 #### Slots
 

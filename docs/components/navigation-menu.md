@@ -34,13 +34,26 @@ import { FlintNavigationMenuContent } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-navigation-menu-content-toggle` | `{ contentId: this.id, open: false }` |  |
+| `flint-navigation-menu-content-toggle` | — | Fired when the content panel opens or closes. |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Default slot for content |
+| `default` | Menu content items |
+
+### CSS Custom Properties
+
+| Property | Default |
+| --- | --- |
+| `--flint-navigation-menu-content-bg` | — |
+| `--flint-navigation-menu-content-border` | — |
+| `--flint-navigation-menu-content-border-radius` | — |
+| `--flint-navigation-menu-content-padding` | — |
+| `--flint-navigation-menu-content-shadow` | — |
+| `--flint-navigation-menu-content-gap` | — |
+| `--flint-navigation-menu-content-min-width` | — |
+| `--flint-navigation-menu-content-z-index` | — |
 
 ---
 
@@ -67,7 +80,7 @@ import { FlintNavigationMenuItem } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `itemId` | `item-id` | `string` | `''` | Unique identifier for this menu item |
+| `itemId` | `itemId` | `string` | `''` | Unique identifier for this menu item |
 | `disabled` | `disabled` | `boolean` | `false` | Whether this item is disabled |
 | `openDelay` | `open-delay` | `number` | `100` | Delay in ms before opening on hover |
 | `closeDelay` | `close-delay` | `number` | `150` | Delay in ms before closing after mouse leaves |
@@ -83,8 +96,13 @@ import { FlintNavigationMenuItem } from '@getufy/flint-ui';
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Default slot for content |
 | `default` | Item content (NavigationMenuTrigger and NavigationMenuContent) |
+
+### CSS Custom Properties
+
+| Property | Default |
+| --- | --- |
+| `--flint-navigation-menu-item-padding` | — |
 
 ---
 
@@ -115,19 +133,27 @@ import { FlintNavigationMenuLink } from '@getufy/flint-ui';
 | `target` | `target` | `string` | `''` | The link target (e.g., '_blank') |
 | `title` | `title` | `string` | `''` | Link title/tooltip |
 | `disabled` | `disabled` | `boolean` | `false` | Whether the link is disabled |
-| `active` | `active` | `boolean` | `false` | Whether this link represents the current page. Sets aria-current="page" and applies active styles. |
+| `active` | `active` | `boolean` | `false` | Whether this link represents the current page. |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Default slot for content |
+| `default` | Link text/content |
 
-### Methods
+### CSS Custom Properties
 
-| Method | Description |
+| Property | Default |
 | --- | --- |
-| `focus(options?: FocusOptions)` | Delegate focus to the inner anchor element |
+| `--flint-navigation-menu-link-padding` | — |
+| `--flint-navigation-menu-link-font-size` | — |
+| `--flint-navigation-menu-link-color` | — |
+| `--flint-navigation-menu-link-text-decoration` | — |
+| `--flint-navigation-menu-link-bg` | — |
+| `--flint-navigation-menu-link-hover-bg` | — |
+| `--flint-navigation-menu-link-border-radius` | — |
+| `--flint-navigation-menu-link-active-bg` | — |
+| `--flint-navigation-menu-link-active-color` | — |
 
 ---
 
@@ -156,14 +182,20 @@ import { FlintNavigationMenuList } from '@getufy/flint-ui';
 | --- | --- | --- | --- | --- |
 | `gap` | `gap` | `number` | `4` | Gap between menu items |
 | `direction` | `direction` | `'row' \| 'column'` | `'row'` | Flex direction for the list |
-| `ariaLabel` | `aria-label` | `string` | `'Main navigation'` | Accessible label for the navigation landmark. Required when multiple nav elements are on the same page. |
+| `ariaLabel` | `aria-label` | `string` | `'Main navigation'` | Accessible label for the navigation landmark. |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Default slot for content |
 | `default` | Menu items (NavigationMenuItem elements) |
+
+### CSS Custom Properties
+
+| Property | Default |
+| --- | --- |
+| `--flint-navigation-menu-list-gap` | — |
+| `--flint-navigation-menu-list-direction` | — |
 
 ---
 
@@ -203,8 +235,18 @@ import { FlintNavigationMenuTrigger } from '@getufy/flint-ui';
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Default slot for content |
 | `default` | Trigger label/content |
+
+### CSS Custom Properties
+
+| Property | Default |
+| --- | --- |
+| `--flint-navigation-menu-trigger-padding` | — |
+| `--flint-navigation-menu-trigger-font-size` | — |
+| `--flint-navigation-menu-trigger-color` | — |
+| `--flint-navigation-menu-trigger-bg` | — |
+| `--flint-navigation-menu-trigger-hover-bg` | — |
+| `--flint-navigation-menu-trigger-border-radius` | — |
 
 ---
 
@@ -237,15 +279,23 @@ import { FlintNavigationMenu } from '@getufy/flint-ui';
 
 | Name | Description |
 | --- | --- |
-| `(default)` | Default slot for content |
 | `default` | The menu content (NavigationMenuList) |
+
+### CSS Custom Properties
+
+| Property | Default |
+| --- | --- |
+| `--flint-navigation-menu-padding` | — |
+| `--flint-navigation-menu-gap` | — |
+| `--flint-navigation-menu-bg` | — |
+| `--flint-navigation-menu-border` | — |
+| `--flint-navigation-menu-border-radius` | — |
 
 ### Methods
 
 | Method | Description |
 | --- | --- |
-| `openContentId(): unknown` | Get the currently open content item ID |
-| `openContent(contentId: string)` | Manually open a content item by ID. No-ops silently if the ID doesn't match any content element. |
-| `closeAll()` | Close all open content |
+| `openContent(contentId: string): void` | Manually open a content item by ID. No-ops silently if the ID doesn't match any content element. |
+| `closeAll(): void` | Close all open content |
 
 ---

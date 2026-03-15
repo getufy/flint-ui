@@ -21,7 +21,8 @@ const meta: Meta = {
                 component: `
 #### \`<flint-date-picker-calendar>\`
 
-A standalone calendar grid — the core date-selection view. Used internally by flint-date-picker, but can also be used on its own.
+A standalone calendar grid — the core date-selection view.
+Used internally by flint-date-picker, but can also be used on its own.
 
 - **Tag**: \`<flint-date-picker-calendar>\`
 - **Class**: \`FlintDatePickerCalendar\`
@@ -30,16 +31,16 @@ A standalone calendar grid — the core date-selection view. Used internally by 
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`value\` | \`value\` | \`string\` | — | Currently selected value as ISO string (YYYY-MM-DD). |
-| \`min\` | \`min\` | \`string\` | — | Minimum selectable date (ISO). |
-| \`max\` | \`max\` | \`string\` | — | Maximum selectable date (ISO). |
+| \`value\` | \`value\` | \`string \\| undefined\` | — | Currently selected value as ISO string (YYYY-MM-DD). |
+| \`min\` | \`min\` | \`string \\| undefined\` | — | Minimum selectable date (ISO). |
+| \`max\` | \`max\` | \`string \\| undefined\` | — | Maximum selectable date (ISO). |
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disable all interaction. |
 
 #### Events
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-date-picker-select\` | — | { detail: { value: string } } ISO date YYYY-MM-DD |
+| \`flint-date-picker-select\` | \`{ value: string }\` | { detail: { value: string } } ISO date YYYY-MM-DD |
 
 #### CSS Custom Properties
 
@@ -69,15 +70,15 @@ A standalone calendar grid — the core date-selection view. Used internally by 
 
 | Method | Description |
 |---|---|
-| \`navigateTo(iso: string)\` | Navigate to the month/year of a given ISO date programmatically. |
+| \`navigateTo(iso: string): void\` | Navigate to the month/year of a given ISO date programmatically. |
 
 ---
 
-#### \`<flint-date-picker>\`
+#### \`<flint-date-picker-calendar>\`
 
-A date picker with a text field and a calendar popover/modal. Variants: - 'desktop'  — calendar appears in a popover (default) - 'mobile'   — calendar appears in a full dialog/modal - 'static'   — calendar always visible, no field - 'auto'     — desktop on pointer:fine, mobile on pointer:coarse
+A date picker with a text field and a calendar popover/modal.
 
-- **Tag**: \`<flint-date-picker>\`
+- **Tag**: \`<flint-date-picker-calendar>\`
 - **Class**: \`FlintDatePicker\`
 
 #### Properties
@@ -101,7 +102,7 @@ A date picker with a text field and a calendar popover/modal. Variants: - 'deskt
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-date-picker-change\` | — | Fired when the date changes. detail: \`{ value: string }\` |
+| \`flint-date-picker-change\` | \`{ value: string }\` | Fired when the date changes. detail: \`{ value: string }\` |
                 `,
             },
         },

@@ -26,7 +26,7 @@ import { FlintAutocomplete } from '@getufy/flint-ui';
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | `options` | `options` | `AutocompleteOption[]` | `[]` | The list of selectable options. |
-| `freeSolo` | `free-solo` | `boolean` | `false` | When true, allows arbitrary values that are not in the options list. |
+| `freeSolo` | `freeSolo` | `boolean` | `false` | When true, allows arbitrary values that are not in the options list. |
 | `disabled` | `disabled` | `boolean` | `false` | Whether the autocomplete input is disabled. |
 | `value` | `value` | `string` | `''` | The current selected value. |
 | `placeholder` | `placeholder` | `string` | `''` | Placeholder text shown when the input is empty. |

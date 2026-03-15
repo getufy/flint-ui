@@ -38,12 +38,6 @@ Radio Group: manages a set of radio buttons with single selection.
 |---|---|---|
 | \`flint-radio-group-change\` | — | Fired when the selected radio value changes. |
 
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
-
 #### CSS Custom Properties
 
 | Property | Default |
@@ -83,12 +77,6 @@ Radio: a single radio button within a radio group.
 |---|---|---|
 | \`flint-radio-select\` | — | Fired when this radio is selected. |
 
-#### Slots
-
-| Name | Description |
-|---|---|
-| \`(default)\` | Default slot for content |
-
 #### CSS Custom Properties
 
 | Property | Default |
@@ -105,12 +93,6 @@ Radio: a single radio button within a radio group.
 | \`--flint-radio-label-font-size\` | \`14px\` |
 | \`--flint-radio-label-font-size-sm\` | \`12px\` |
 | \`--flint-radio-label-font-size-lg\` | \`16px\` |
-
-#### Methods
-
-| Method | Description |
-|---|---|
-| \`focus(options?: FocusOptions)\` |  |
                 `,
             },
         },

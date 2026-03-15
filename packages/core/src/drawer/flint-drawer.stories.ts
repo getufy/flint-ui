@@ -33,7 +33,7 @@ Navigation drawers provide ergonomic access to destinations in a site or app.
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
 | \`open\` | \`open\` | \`boolean\` | \`false\` | Whether the drawer is open. |
-| \`defaultOpen\` | \`default-open\` | \`boolean\` | \`false\` | Initial open state for uncontrolled usage. Has no effect after the element has connected to the DOM. |
+| \`defaultOpen\` | \`default-open\` | \`boolean\` | \`false\` | Initial open state for uncontrolled usage. |
 | \`anchor\` | \`anchor\` | \`'left' \\| 'right' \\| 'top' \\| 'bottom'\` | \`'left'\` | Side from which the drawer slides in. |
 | \`variant\` | \`variant\` | \`'temporary' \\| 'persistent' \\| 'mini'\` | \`'temporary'\` | Drawer behavior mode. |
 | \`edge\` | \`edge\` | \`boolean\` | \`false\` | Whether the drawer uses edge spacing. |
@@ -44,7 +44,7 @@ Navigation drawers provide ergonomic access to destinations in a site or app.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-drawer-close\` | — | Dispatched when the drawer requests to be closed (backdrop click or Escape). detail: \`{ open: false }\` |
+| \`flint-drawer-close\` | \`{ open: false }\` | Dispatched when the drawer requests to be closed (backdrop click or Escape). detail: \`{ open: false }\` |
 
 #### Slots
 
