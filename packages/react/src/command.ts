@@ -2,13 +2,13 @@
 
 export { FlintCommandShortcut, type FlintCommandShortcutProps } from './components/FlintCommandShortcut.js';
 export { FlintCommandSeparator, type FlintCommandSeparatorProps } from './components/FlintCommandSeparator.js';
-export { FlintCommandItem, type FlintCommandItemProps } from './components/FlintCommandItem.js';
+export { FlintCommandItem, type FlintCommandItemProps, type FlintCommandItemSelectDetail } from './components/FlintCommandItem.js';
 export { FlintCommandEmpty, type FlintCommandEmptyProps } from './components/FlintCommandEmpty.js';
 export { FlintCommandGroup, type FlintCommandGroupProps } from './components/FlintCommandGroup.js';
 export { FlintCommandList, type FlintCommandListProps } from './components/FlintCommandList.js';
 export { FlintCommandInput, type FlintCommandInputProps } from './components/FlintCommandInput.js';
 export { FlintCommand, type FlintCommandProps } from './components/FlintCommand.js';
-export { FlintCommandDialog, type FlintCommandDialogProps } from './components/FlintCommandDialog.js';
+export { FlintCommandDialog, type FlintCommandDialogProps, type FlintCommandDialogCloseDetail } from './components/FlintCommandDialog.js';
 export { FlintCommandItemEvents } from './events/flint-command-item.js';
 export { FlintCommandEvents } from './events/flint-command.js';
 export { FlintCommandDialogEvents } from './events/flint-command-dialog.js';

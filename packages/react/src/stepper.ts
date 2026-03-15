@@ -3,8 +3,8 @@
 export { FlintStepConnector, type FlintStepConnectorProps } from './components/FlintStepConnector.js';
 export { FlintStepLabel, type FlintStepLabelProps } from './components/FlintStepLabel.js';
 export { FlintStepContent, type FlintStepContentProps } from './components/FlintStepContent.js';
-export { FlintStep, type FlintStepProps } from './components/FlintStep.js';
-export { FlintStepper, type FlintStepperProps } from './components/FlintStepper.js';
+export { FlintStep, type FlintStepProps, type FlintStepClickDetail } from './components/FlintStep.js';
+export { FlintStepper, type FlintStepperProps, type FlintStepChangeDetail } from './components/FlintStepper.js';
 export { FlintMobileStepper, type FlintMobileStepperProps } from './components/FlintMobileStepper.js';
 export { FlintStepEvents } from './events/flint-step.js';
 export { FlintStepperEvents } from './events/flint-stepper.js';
