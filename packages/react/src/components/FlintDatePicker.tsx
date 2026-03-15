@@ -13,6 +13,7 @@ export interface FlintDatePickerChangeDetail {
  * A date picker with a text field and a calendar popover/modal.
  */
 export interface FlintDatePickerProps extends React.HTMLAttributes<FlintDatePickerElement> {
+    dependencies?: object;
     /** Selected date as ISO string (YYYY-MM-DD). */
     value?: string;
     /** Label shown above the field. */
@@ -37,12 +38,14 @@ export interface FlintDatePickerProps extends React.HTMLAttributes<FlintDatePick
     helperText?: string;
     /** Error message displayed below the field when in error state. */
     errorMessage?: string;
+    /** When true, the calendar popover uses `position: fixed` instead of `position: absolute` */
+    hoist?: boolean;
     /** Fired when the date changes. detail: `{ value: string }` */
     onFlintDatePickerChange?: (event: CustomEvent<FlintDatePickerChangeDetail>) => void;
 }
 
 export const FlintDatePicker = createComponent({
-    tagName: 'flint-date-picker-calendar',
+    tagName: 'flint-date-picker',
     elementClass: FlintDatePickerElement,
     react: React,
     events: {

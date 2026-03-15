@@ -24,6 +24,8 @@ export interface FlintHoverCardProps extends React.HTMLAttributes<FlintHoverCard
     openDelay?: number;
     /** Delay in milliseconds before the hover card closes. */
     closeDelay?: number;
+    /** When true, the hover card content uses `position: fixed` instead of `position: absolute` */
+    hoist?: boolean;
     /** Fired when the card becomes visible. detail: `{ open: true }` */
     onFlintHoverCardOpen?: (event: CustomEvent<FlintHoverCardOpenDetail>) => void;
     /** Fired when the card is dismissed. detail: `{ open: false }` */
@@ -31,7 +33,7 @@ export interface FlintHoverCardProps extends React.HTMLAttributes<FlintHoverCard
 }
 
 export const FlintHoverCard = createComponent({
-    tagName: 'flint-hover-card-trigger',
+    tagName: 'flint-hover-card',
     elementClass: FlintHoverCardElement,
     react: React,
     events: {

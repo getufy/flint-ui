@@ -103,3 +103,9 @@ export class FlintSwitch extends FormAssociated(FlintElement) {
     `;
     }
 }
+
+declare global {
+    interface HTMLElementTagNameMap {
+        'flint-switch': FlintSwitch;
+    }
+}

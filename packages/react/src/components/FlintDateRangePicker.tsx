@@ -9,6 +9,7 @@ import { FlintDateRangePicker as FlintDateRangePickerElement } from '@getufy/fli
  * A date range picker combining a segmented field and a dual-month calendar.
  */
 export interface FlintDateRangePickerProps extends React.HTMLAttributes<FlintDateRangePickerElement> {
+    dependencies?: object;
     /** Selected range [startISO, endISO]. Empty strings mean unset. */
     value?: FlintDateRangePickerElement['value'];
     /** Label shown above the field. */

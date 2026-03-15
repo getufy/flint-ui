@@ -14,11 +14,9 @@
       flex-direction: column;
       overflow: clip; /* clip panel for border-radius; inner flint-dialog-content scrolls independently */
 
-      /* Base state: hidden (scale transition) */
+      /* Base state: hidden — Web Animations API drives open/close transitions */
       opacity: 0;
       transform: scale(0.9);
-      transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-                  transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       pointer-events: none;
     }
 

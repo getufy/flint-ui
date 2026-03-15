@@ -5,10 +5,6 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintTabs as FlintTabsElement } from '@getufy/flint-ui/tabs/flint-tabs';
 
-export interface FlintTabChangeDetail {
-    value: string;
-}
-
 /**
  * Tabs: container that coordinates tab selection and panel visibility.
  */
@@ -30,14 +26,14 @@ export interface FlintTabsProps extends Omit<React.HTMLAttributes<FlintTabsEleme
     /** Uncontrolled mode: initial value if `value` not set */
     defaultValue?: string;
     /** Fired when the active tab changes. */
-    onFlintTabChange?: (event: CustomEvent<FlintTabChangeDetail>) => void;
+    onFlintTabChange?: (event: CustomEvent) => void;
 }
 
 export const FlintTabs = createComponent({
-    tagName: 'flint-tab',
+    tagName: 'flint-tabs',
     elementClass: FlintTabsElement,
     react: React,
     events: {
-        onFlintTabChange: 'flint-tab-change' as EventName<CustomEvent<FlintTabChangeDetail>>,
+        onFlintTabChange: 'flint-tab-change' as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintTabsProps & React.RefAttributes<FlintTabsElement>>;

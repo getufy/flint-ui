@@ -227,6 +227,10 @@ describe('flint-dialog', () => {
         expect(panel.classList.contains('open')).toBe(true);
 
         el.open = false;
+        // Close animation runs async (microtask), then sets _visuallyOpen = false
+        // which triggers a new Lit render. Wait for all pending cycles.
+        await el.updateComplete;
+        await new Promise(r => setTimeout(r, 0));
         await el.updateComplete;
         expect(panel.classList.contains('open')).toBe(false);
     });

@@ -79,12 +79,21 @@ export class FlintHoverCardContent extends FlintElement {
     /** Whether the card is visible. Managed by the parent `flint-hover-card`. */
     @property({ type: Boolean, reflect: true }) open = false;
 
+    /**
+     * When true, uses `position: fixed` to escape overflow containers.
+     * Set automatically by the parent `flint-hover-card`.
+     */
+    @property({ type: Boolean, reflect: true }) hoist = false;
+
     private _getRoot(): FlintHoverCard | null {
         return this.closest('flint-hover-card') as FlintHoverCard | null;
     }
 
     private _handleMouseEnter = () => this._getRoot()?.handleContentEnter();
     private _handleMouseLeave = () => this._getRoot()?.handleContentLeave();
+
+    private _scrollHandler = () => this._handleReposition();
+    private _resizeHandler = () => this._handleReposition();
 
     override firstUpdated() {
         this._applyPosition();
@@ -94,6 +103,92 @@ export class FlintHoverCardContent extends FlintElement {
         if (changed.has('side') || changed.has('align')) {
             this._applyPosition();
         }
+        if (changed.has('open')) {
+            if (this.open && this.hoist) {
+                this._startHoist();
+            } else if (!this.open) {
+                this._cleanupHoist();
+            }
+        }
+        if (changed.has('hoist') && this.open && this.hoist) {
+            this._startHoist();
+        }
+    }
+
+    override disconnectedCallback() {
+        super.disconnectedCallback();
+        this._cleanupHoist();
+    }
+
+    /** Recalculates fixed position based on the trigger's bounding rect. */
+    private _handleReposition(): void {
+        const root = this._getRoot();
+        if (!root) return;
+        const trigger = root.querySelector('flint-hover-card-trigger') as HTMLElement | null;
+        if (!trigger) return;
+
+        const rect = trigger.getBoundingClientRect();
+        const { side, align } = this;
+        const offset = 8;
+
+        this.style.removeProperty('top');
+        this.style.removeProperty('bottom');
+        this.style.removeProperty('left');
+        this.style.removeProperty('right');
+        this.style.removeProperty('transform');
+
+        if (side === 'bottom' || side === 'top') {
+            if (side === 'bottom') {
+                this.style.setProperty('top', `${rect.bottom + offset}px`);
+            } else {
+                this.style.setProperty('top', `${rect.top - offset}px`);
+                this.style.setProperty('transform', 'translateY(-100%)');
+            }
+            if (align === 'start') {
+                this.style.setProperty('left', `${rect.left}px`);
+            } else if (align === 'end') {
+                this.style.setProperty('left', `${rect.right}px`);
+                const currentTransform = this.style.getPropertyValue('transform');
+                this.style.setProperty('transform', currentTransform ? `${currentTransform} translateX(-100%)` : 'translateX(-100%)');
+            } else {
+                this.style.setProperty('left', `${rect.left + rect.width / 2}px`);
+                const currentTransform = this.style.getPropertyValue('transform');
+                this.style.setProperty('transform', currentTransform ? `${currentTransform} translateX(-50%)` : 'translateX(-50%)');
+            }
+        } else {
+            if (side === 'right') {
+                this.style.setProperty('left', `${rect.right + offset}px`);
+            } else {
+                this.style.setProperty('left', `${rect.left - offset}px`);
+                this.style.setProperty('transform', 'translateX(-100%)');
+            }
+            if (align === 'start') {
+                this.style.setProperty('top', `${rect.top}px`);
+            } else if (align === 'end') {
+                this.style.setProperty('top', `${rect.bottom}px`);
+                const currentTransform = this.style.getPropertyValue('transform');
+                this.style.setProperty('transform', currentTransform ? `${currentTransform} translateY(-100%)` : 'translateY(-100%)');
+            } else {
+                this.style.setProperty('top', `${rect.top + rect.height / 2}px`);
+                const currentTransform = this.style.getPropertyValue('transform');
+                this.style.setProperty('transform', currentTransform ? `${currentTransform} translateY(-50%)` : 'translateY(-50%)');
+            }
+        }
+    }
+
+    /** Starts listening for scroll/resize to keep the hoisted content in position. */
+    private _startHoist(): void {
+        void this.updateComplete.then(() => {
+            this._handleReposition();
+            window.addEventListener('scroll', this._scrollHandler, true);
+            window.addEventListener('resize', this._resizeHandler);
+        });
+    }
+
+    /** Removes scroll/resize listeners and clears inline styles. */
+    private _cleanupHoist(): void {
+        window.removeEventListener('scroll', this._scrollHandler, true);
+        window.removeEventListener('resize', this._resizeHandler);
     }
 
     /** Applies absolute positioning inline styles based on `side` and `align`. */
@@ -176,6 +271,12 @@ export class FlintHoverCard extends FlintElement {
     /** Delay in milliseconds before the hover card closes. */
     @property({ type: Number, attribute: 'close-delay' }) closeDelay = 300;
 
+    /**
+     * When true, the hover card content uses `position: fixed` instead of `position: absolute`
+     * so it can escape containers with `overflow: hidden` or `overflow: clip`.
+     */
+    @property({ type: Boolean }) hoist = false;
+
     private _isOpen = false;
     private _openTimer: ReturnType<typeof setTimeout> | null = null;
     private _closeTimer: ReturnType<typeof setTimeout> | null = null;
@@ -237,6 +338,7 @@ export class FlintHoverCard extends FlintElement {
         this.querySelectorAll('flint-hover-card-content').forEach(el => {
             if ((el.closest('flint-hover-card') as unknown) === this) {
                 (el as unknown as FlintHoverCardContent).open = this._isOpen;
+                (el as unknown as FlintHoverCardContent).hoist = this.hoist;
             }
         });
     }
@@ -249,5 +351,13 @@ export class FlintHoverCard extends FlintElement {
 
     render() {
         return html`<slot @slotchange=${() => this._syncChildren()}></slot>`;
+    }
+}
+
+declare global {
+    interface HTMLElementTagNameMap {
+        'flint-hover-card': FlintHoverCard;
+        'flint-hover-card-trigger': FlintHoverCardTrigger;
+        'flint-hover-card-content': FlintHoverCardContent;
     }
 }

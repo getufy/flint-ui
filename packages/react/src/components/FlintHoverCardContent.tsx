@@ -18,10 +18,12 @@ export interface FlintHoverCardContentProps extends React.HTMLAttributes<FlintHo
     align?: 'start' | 'center' | 'end';
     /** Whether the card is visible. Managed by the parent `flint-hover-card`. */
     open?: boolean;
+    /** When true, uses `position: fixed` to escape overflow containers. */
+    hoist?: boolean;
 }
 
 export const FlintHoverCardContent = createComponent({
-    tagName: 'flint-hover-card-trigger',
+    tagName: 'flint-hover-card-content',
     elementClass: FlintHoverCardContentElement,
     react: React,
 }) as unknown as React.ForwardRefExoticComponent<FlintHoverCardContentProps & React.RefAttributes<FlintHoverCardContentElement>>;

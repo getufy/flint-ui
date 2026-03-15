@@ -19,7 +19,7 @@ export interface FlintTabListProps extends React.HTMLAttributes<FlintTabListElem
 }
 
 export const FlintTabList = createComponent({
-    tagName: 'flint-tab',
+    tagName: 'flint-tab-list',
     elementClass: FlintTabListElement,
     react: React,
 }) as unknown as React.ForwardRefExoticComponent<FlintTabListProps & React.RefAttributes<FlintTabListElement>>;

@@ -9,14 +9,41 @@ import { FlintRichTreeView as FlintRichTreeViewElement } from '@getufy/flint-ui/
  * A data-driven tree view that renders its structure from an `items` array.
  */
 export interface FlintRichTreeViewProps extends React.HTMLAttributes<FlintRichTreeViewElement> {
+    dependencies?: object;
+    /** Array of item data objects. */
+    items?: FlintRichTreeViewElement['items'];
+    /** Optional lazy-load data source. */
+    dataSource?: FlintRichTreeViewElement['dataSource'];
+    /** Extract unique ID (default: `item.id`). */
+    getItemId?: FlintRichTreeViewElement['getItemId'];
+    /** Extract label (default: `item.label`). */
+    getItemLabel?: FlintRichTreeViewElement['getItemLabel'];
+    /** Extract children (default: `item.children`). */
+    getItemChildren?: FlintRichTreeViewElement['getItemChildren'];
+    /** Return true to disable an item. */
+    isItemDisabled?: FlintRichTreeViewElement['isItemDisabled'];
     /** When `true`, disabled items can receive keyboard focus. */
     disabledItemsFocusable?: boolean;
+    /** Callback invoked when a tree item is clicked or activated via keyboard. */
+    onItemClick?: FlintRichTreeViewElement['onItemClick'];
     /** What interaction triggers expand/collapse. */
     expansionTrigger?: 'content' | 'iconContainer';
+    /** **Controlled mode.** The set of item IDs that should be expanded. */
+    expandedItems?: string[] | undefined;
+    /** **Uncontrolled mode.** Item IDs to expand on initial mount. */
+    defaultExpandedItems?: string[];
+    /** Callback fired when the user toggles an item's expansion. */
+    onExpandedItemsChange?: FlintRichTreeViewElement['onExpandedItemsChange'];
     /** When `true`, enables drag-and-drop reordering of items. */
     itemsReordering?: boolean;
+    /** Function that determines if a specific item can be reordered. */
+    isItemReorderable?: FlintRichTreeViewElement['isItemReorderable'];
+    /** Function that determines if an item can be moved to a specific target position. */
+    canMoveItemToNewPosition?: FlintRichTreeViewElement['canMoveItemToNewPosition'];
     /** Whether to use a drag handle icon for reordering. */
     itemsReorderingHandle?: boolean;
+    /** Fired when an item's position changes via reordering. */
+    onItemPositionChange?: FlintRichTreeViewElement['onItemPositionChange'];
     /** When a lazy-loading dataSource call fails (detail: { message, id, error }) */
     onFlintTreeViewError?: (event: CustomEvent) => void;
     /** When the expanded set changes (detail: { expandedItems }) */

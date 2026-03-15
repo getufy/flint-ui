@@ -22,6 +22,8 @@ export interface FlintTooltipProps extends React.HTMLAttributes<FlintTooltipElem
     openDelay?: number;
     /** Delay in ms before hiding the tooltip. */
     closeDelay?: number;
+    /** When true, the tooltip popup uses `position: fixed` instead of `position: absolute` */
+    hoist?: boolean;
 }
 
 export const FlintTooltip = createComponent({

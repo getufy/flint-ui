@@ -158,8 +158,10 @@ function convertMember(member: CEMMember, attrMap: Map<string, CEMDeclaration['a
     if (member.kind !== 'field') return null;
     if (member.privacy === 'private' || member.privacy === 'protected') return null;
     if (member.name.startsWith('_')) return null;
-    // Only include members that have an attribute binding (reactive properties)
-    if (!member.attribute) return null;
+    // Skip readonly fields (not settable as props)
+    if (member.readonly) return null;
+    // Skip kebab-case entries (CEM sometimes emits attribute names as separate members)
+    if (member.name.includes('-')) return null;
 
     const tsType = member.type?.text ?? 'string';
     const isBoolean = tsType === 'boolean';
@@ -168,7 +170,7 @@ function convertMember(member: CEMMember, attrMap: Map<string, CEMDeclaration['a
     return {
         name: member.name,
         tsType,
-        attribute: member.attribute,
+        attribute: member.attribute ?? member.name,
         reflect: member.reflects ?? false,
         isBoolean,
         isNumber,

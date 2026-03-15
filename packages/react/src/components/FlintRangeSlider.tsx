@@ -9,6 +9,8 @@ import { FlintRangeSlider as FlintRangeSliderElement } from '@getufy/flint-ui/fl
  * A range slider that lets users select a start and end value within a range.
  */
 export interface FlintRangeSliderProps extends React.HTMLAttributes<FlintRangeSliderElement> {
+    /** Current [start, end] values. */
+    value?: [number, number];
     /** Minimum bound (default: 0). */
     min?: number;
     /** Maximum bound (default: 100). */

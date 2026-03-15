@@ -5,14 +5,6 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintInput as FlintInputElement } from '@getufy/flint-ui/input/flint-input';
 
-export interface FlintInputInputDetail {
-    value: string;
-}
-
-export interface FlintInputChangeDetail {
-    value: string;
-}
-
 /**
  * Input: a styled text input with label, help text, and error states.
  */
@@ -46,9 +38,9 @@ export interface FlintInputProps extends Omit<React.HTMLAttributes<FlintInputEle
     /** Initial value for uncontrolled usage. */
     defaultValue?: string | undefined;
     /** Fired on each keystroke as the value changes. */
-    onFlintInputInput?: (event: CustomEvent<FlintInputInputDetail>) => void;
+    onFlintInputInput?: (event: CustomEvent) => void;
     /** Fired when the input loses focus after the value has changed. */
-    onFlintInputChange?: (event: CustomEvent<FlintInputChangeDetail>) => void;
+    onFlintInputChange?: (event: CustomEvent) => void;
 }
 
 export const FlintInput = createComponent({
@@ -56,7 +48,7 @@ export const FlintInput = createComponent({
     elementClass: FlintInputElement,
     react: React,
     events: {
-        onFlintInputInput: 'flint-input-input' as EventName<CustomEvent<FlintInputInputDetail>>,
-        onFlintInputChange: 'flint-input-change' as EventName<CustomEvent<FlintInputChangeDetail>>,
+        onFlintInputInput: 'flint-input-input' as EventName<CustomEvent>,
+        onFlintInputChange: 'flint-input-change' as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintInputProps & React.RefAttributes<FlintInputElement>>;

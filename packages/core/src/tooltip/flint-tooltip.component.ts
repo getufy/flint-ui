@@ -37,6 +37,12 @@ export class FlintTooltip extends FlintElement {
     /** Delay in ms before hiding the tooltip. */
     @property({ type: Number, attribute: 'close-delay' }) closeDelay = 0;
 
+    /**
+     * When true, the tooltip popup uses `position: fixed` instead of `position: absolute`
+     * so it can escape containers with `overflow: hidden` or `overflow: clip`.
+     */
+    @property({ type: Boolean }) hoist = false;
+
     @state() private _visible = false;
     @state() private _activePlacement: Placement = this.placement;
 
@@ -47,6 +53,7 @@ export class FlintTooltip extends FlintElement {
     override disconnectedCallback(): void {
         super.disconnectedCallback();
         this._clearTimers();
+        this._cleanupHoist();
     }
 
     private _clearTimers(): void {
@@ -72,10 +79,12 @@ export class FlintTooltip extends FlintElement {
                 this._openTimer = null;
                 this._applyAutoFlip();
                 this._visible = true;
+                if (this.hoist) this._startHoist();
             }, this.openDelay);
         } else {
             this._applyAutoFlip();
             this._visible = true;
+            if (this.hoist) this._startHoist();
         }
     }
 
@@ -89,9 +98,11 @@ export class FlintTooltip extends FlintElement {
             this._closeTimer = setTimeout(() => {
                 this._closeTimer = null;
                 this._visible = false;
+                this._cleanupHoist();
             }, this.closeDelay);
         } else {
             this._visible = false;
+            this._cleanupHoist();
         }
     }
 
@@ -99,6 +110,71 @@ export class FlintTooltip extends FlintElement {
         if (e.key === 'Escape' && this._visible) {
             this._clearTimers();
             this._visible = false;
+            this._cleanupHoist();
+        }
+    }
+
+    /* ── Hoist (fixed positioning) ─────────────────────────────────── */
+
+    private _scrollHandler = () => this._handleReposition();
+    private _resizeHandler = () => this._handleReposition();
+
+    /** Recalculates fixed position based on trigger's bounding rect. */
+    private _handleReposition(): void {
+        const popup = this.shadowRoot?.querySelector('.tooltip-popup') as HTMLElement | null;
+        if (!popup) return;
+
+        const triggerWrapper = this.shadowRoot?.querySelector('.trigger-wrapper') as HTMLElement | null;
+        if (!triggerWrapper) return;
+
+        const rect = triggerWrapper.getBoundingClientRect();
+        const placement = this._activePlacement;
+
+        popup.style.removeProperty('top');
+        popup.style.removeProperty('bottom');
+        popup.style.removeProperty('left');
+        popup.style.removeProperty('right');
+
+        if (placement === 'top') {
+            popup.style.setProperty('top', `${rect.top - 8}px`);
+            popup.style.setProperty('left', `${rect.left + rect.width / 2}px`);
+            popup.style.setProperty('transform', 'translateX(-50%) translateY(-100%)');
+        } else if (placement === 'bottom') {
+            popup.style.setProperty('top', `${rect.bottom + 8}px`);
+            popup.style.setProperty('left', `${rect.left + rect.width / 2}px`);
+            popup.style.setProperty('transform', 'translateX(-50%)');
+        } else if (placement === 'left') {
+            popup.style.setProperty('top', `${rect.top + rect.height / 2}px`);
+            popup.style.setProperty('left', `${rect.left - 8}px`);
+            popup.style.setProperty('transform', 'translateX(-100%) translateY(-50%)');
+        } else if (placement === 'right') {
+            popup.style.setProperty('top', `${rect.top + rect.height / 2}px`);
+            popup.style.setProperty('left', `${rect.right + 8}px`);
+            popup.style.setProperty('transform', 'translateY(-50%)');
+        }
+    }
+
+    /** Starts listening for scroll/resize to keep the hoisted popup in position. */
+    private _startHoist(): void {
+        void this.updateComplete.then(() => {
+            this._handleReposition();
+            window.addEventListener('scroll', this._scrollHandler, true);
+            window.addEventListener('resize', this._resizeHandler);
+        });
+    }
+
+    /** Removes scroll/resize listeners and clears inline styles from the popup. */
+    private _cleanupHoist(): void {
+        window.removeEventListener('scroll', this._scrollHandler, true);
+        window.removeEventListener('resize', this._resizeHandler);
+
+        const popup = this.shadowRoot?.querySelector('.tooltip-popup') as HTMLElement | null;
+        if (popup) {
+            popup.style.removeProperty('top');
+            popup.style.removeProperty('bottom');
+            popup.style.removeProperty('left');
+            popup.style.removeProperty('right');
+            popup.style.removeProperty('transform');
         }
     }
 
@@ -156,6 +232,7 @@ export class FlintTooltip extends FlintElement {
             'tooltip-popup': true,
             [placement]: true,
             'visible': this._visible,
+            'hoisted': this.hoist,
         })}
         >
           ${this.label}
@@ -163,5 +240,11 @@ export class FlintTooltip extends FlintElement {
         </div>
       </div>
     `;
+    }
+}
+
+declare global {
+    interface HTMLElementTagNameMap {
+        'flint-tooltip': FlintTooltip;
     }
 }

@@ -11,7 +11,7 @@ export interface FlintTabPanelProps extends React.HTMLAttributes<FlintTabPanelEl
 }
 
 export const FlintTabPanel = createComponent({
-    tagName: 'flint-tab',
+    tagName: 'flint-tab-panel',
     elementClass: FlintTabPanelElement,
     react: React,
 }) as unknown as React.ForwardRefExoticComponent<FlintTabPanelProps & React.RefAttributes<FlintTabPanelElement>>;

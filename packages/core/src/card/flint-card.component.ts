@@ -21,7 +21,7 @@ export class FlintCard extends FlintElement {
     };
 
     return html`
-      <div class=${classMap(classes)} part="card">
+      <div class=${classMap(classes)} part="base">
         <slot></slot>
       </div>
     `;

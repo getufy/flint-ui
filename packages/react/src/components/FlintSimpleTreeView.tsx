@@ -14,6 +14,14 @@ and item selection/expansion for nested `flint-tree-item` elements.
 export interface FlintSimpleTreeViewProps extends React.HTMLAttributes<FlintSimpleTreeViewElement> {
     /** When `true`, disabled items can receive keyboard focus. */
     disabledItemsFocusable?: boolean;
+    /** Callback invoked when a tree item is clicked or activated via keyboard. */
+    onItemClick?: FlintSimpleTreeViewElement['onItemClick'];
+    /** **Controlled mode.** The set of item IDs that should be expanded. */
+    expandedItems?: string[] | undefined;
+    /** **Uncontrolled mode.** Item IDs to expand on initial mount. */
+    defaultExpandedItems?: string[];
+    /** Callback fired when the user toggles an item's expansion. */
+    onExpandedItemsChange?: FlintSimpleTreeViewElement['onExpandedItemsChange'];
     /** What interaction triggers expand/collapse. */
     expansionTrigger?: 'content' | 'iconContainer';
     /** When the expanded set changes (detail: { expandedItems }) */

@@ -163,3 +163,9 @@ export class FlintInput extends FormAssociated(FlintElement) {
         );
     }
 }
+
+declare global {
+    interface HTMLElementTagNameMap {
+        'flint-input': FlintInput;
+    }
+}

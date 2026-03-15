@@ -9,6 +9,7 @@ import { FlintToggleButtonGroup as FlintToggleButtonGroupElement } from '@getufy
  * Toggle Button Group: manages exclusive or multi-select toggle buttons.
  */
 export interface FlintToggleButtonGroupProps extends Omit<React.HTMLAttributes<FlintToggleButtonGroupElement>, 'defaultValue'> {
+    dependencies?: object;
     /** Currently selected value(s). A string when exclusive, an array otherwise. */
     value?: string | string[];
     /** Initial selected value(s) for uncontrolled usage. */

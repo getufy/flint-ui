@@ -15,6 +15,7 @@ export interface FlintDialogCloseDetail {
  * @slot (default) - Default slot for dialog content (title, content, actions sub-components).
  */
 export interface FlintDialogProps extends React.HTMLAttributes<FlintDialogElement> {
+    dependencies?: object;
     /** Controls the open / closed state of the dialog. */
     open?: boolean;
     /** Initial open state for uncontrolled usage. */

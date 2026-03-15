@@ -1,5 +1,5 @@
 import { unsafeCSS, html, type PropertyValues } from 'lit';
-import { property } from 'lit/decorators.js';
+import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
 import { FlintBackdrop } from '../backdrop/flint-backdrop.component.js';
@@ -43,6 +43,12 @@ export class FlintDialog extends FlintElement {
   private _firstUpdate = true;
   private _lastFocused: HTMLElement | null = null;
 
+  /**
+   * Internal visual state — decoupled from `open` so close animations
+   * can play before the CSS `.open` class is removed.
+   */
+  @state() private _visuallyOpen = false;
+
   /** Animation style: 'scale' (default), 'slide-up', or 'slide-down'. */
   @property({ type: String }) transition: 'scale' | 'slide-up' | 'slide-down' = 'scale';
 
@@ -59,7 +65,10 @@ export class FlintDialog extends FlintElement {
         this.open = true;
       }
     }
-    void changed;
+    // Batch _visuallyOpen into the current render cycle when opening
+    if (changed.has('open') && this.open) {
+      this._visuallyOpen = true;
+    }
   }
 
   connectedCallback() {
@@ -77,10 +86,9 @@ export class FlintDialog extends FlintElement {
       } else {
         const idx = _openDialogs.indexOf(this);
         if (idx !== -1) _openDialogs.splice(idx, 1);
-        // Run close animation, then restore focus.
-        // Focus restoration happens synchronously after animation completes
-        // (or immediately if no Web Animations API is available).
+        // Run close animation FIRST, then remove .open class and restore focus.
         void this._runCloseAnimation().then(() => {
+          this._visuallyOpen = false;
           this._lastFocused?.focus();
           this._lastFocused = null;
         });
@@ -90,7 +98,7 @@ export class FlintDialog extends FlintElement {
 
   /**
    * Run the open animation using the registry if available, then focus the panel.
-   * Falls back to CSS transitions if no registry animation is registered.
+   * Panel and overlay animate in parallel.
    */
   private async _runOpenAnimation() {
     const panel = this.shadowRoot?.querySelector<HTMLElement>('.dialog-panel');
@@ -99,24 +107,27 @@ export class FlintDialog extends FlintElement {
     const panelAnim = getAnimation(this, 'dialog.show');
     const overlayAnim = getAnimation(this, 'dialog.overlay.show');
 
+    const promises: Promise<unknown>[] = [];
+
     if (panelAnim && panel) {
       await stopAnimations(panel);
       const keyframes = resolveKeyframes(this, panelAnim);
-      await animateTo(panel, keyframes, panelAnim.options);
+      promises.push(animateTo(panel, keyframes, panelAnim.options));
     }
 
     if (overlayAnim && overlay) {
       await stopAnimations(overlay);
       const keyframes = resolveKeyframes(this, overlayAnim);
-      void animateTo(overlay, keyframes, overlayAnim.options);
+      promises.push(animateTo(overlay, keyframes, overlayAnim.options));
     }
 
+    await Promise.all(promises);
     panel?.focus();
   }
 
   /**
    * Run the close animation using the registry if available.
-   * Falls back to CSS transitions if no registry animation is registered.
+   * Panel and overlay animate in parallel.
    */
   private async _runCloseAnimation() {
     const panel = this.shadowRoot?.querySelector<HTMLElement>('.dialog-panel');
@@ -125,17 +136,21 @@ export class FlintDialog extends FlintElement {
     const panelAnim = getAnimation(this, 'dialog.hide');
     const overlayAnim = getAnimation(this, 'dialog.overlay.hide');
 
+    const promises: Promise<unknown>[] = [];
+
     if (panelAnim && panel) {
       await stopAnimations(panel);
       const keyframes = resolveKeyframes(this, panelAnim);
-      await animateTo(panel, keyframes, panelAnim.options);
+      promises.push(animateTo(panel, keyframes, panelAnim.options));
     }
 
     if (overlayAnim && overlay) {
       await stopAnimations(overlay);
       const keyframes = resolveKeyframes(this, overlayAnim);
-      void animateTo(overlay, keyframes, overlayAnim.options);
+      promises.push(animateTo(overlay, keyframes, overlayAnim.options));
     }
+
+    await Promise.all(promises);
   }
 
   disconnectedCallback() {
@@ -169,12 +184,12 @@ export class FlintDialog extends FlintElement {
   render() {
     const panelClasses = classMap({
       'dialog-panel': true,
-      open: this.open,
+      open: this._visuallyOpen,
       [`transition-${this.transition}`]: this.transition !== 'scale',
     });
 
     return html`
-      <flint-backdrop .open=${this.open} @flint-backdrop-close=${this._handleBackdropClose}>
+      <flint-backdrop .open=${this._visuallyOpen} @flint-backdrop-close=${this._handleBackdropClose}>
         <div
           class=${panelClasses}
           part="panel"
