@@ -67,6 +67,8 @@ const meta: Meta = {
 
 #### \`<flint-carousel-previous>\`
 
+Carousel Previous: navigation button to go to the previous slide.
+
 - **Tag**: \`<flint-carousel-previous>\`
 - **Class**: \`FlintCarouselPrevious\`
 
@@ -81,11 +83,13 @@ const meta: Meta = {
 
 | Name | Description |
 |---|---|
-| \`(default)\` | Default slot for content |
+| \`(default)\` | Custom icon content, replaces default chevron. |
 
 ---
 
 #### \`<flint-carousel-next>\`
+
+Carousel Next: navigation button to go to the next slide.
 
 - **Tag**: \`<flint-carousel-next>\`
 - **Class**: \`FlintCarouselNext\`
@@ -101,7 +105,7 @@ const meta: Meta = {
 
 | Name | Description |
 |---|---|
-| \`(default)\` | Default slot for content |
+| \`(default)\` | Custom icon content, replaces default chevron. |
 
 ---
 
@@ -132,7 +136,7 @@ Carousel: a slideshow component for cycling through content.
 
 | Name | Description |
 |---|---|
-| \`(default)\` | Default slot for content |
+| \`(default)\` | Carousel content: flint-carousel-content, flint-carousel-previous, flint-carousel-next. |
 
 #### CSS Custom Properties
 

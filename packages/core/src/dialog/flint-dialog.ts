@@ -14,7 +14,7 @@ const _openDialogs: FlintDialog[] = [];
 /**
  * flint-dialog: a modal dialog component.
  *
- * @fires close - Dispatched when the dialog requests to be closed (backdrop click or
+ * @fires flint-dialog-close - Dispatched when the dialog requests to be closed (backdrop click or
  *               an explicit call to `requestClose()`). The host is responsible for
  *               setting `open = false` in response. detail: `{ open: false }`
  * @fires confirm - Dispatched by confirmation dialogs when the user clicked "confirm".
@@ -94,14 +94,14 @@ export class FlintDialog extends LitElement {
     }
   };
 
-  /** Programmatically request the dialog to close (fires the 'close' event). */
+  /** Programmatically request the dialog to close (fires the 'flint-dialog-close' event). */
   requestClose() {
-    this.dispatchEvent(new CustomEvent('close', { bubbles: true, composed: true, detail: { open: false } }));
+    this.dispatchEvent(new CustomEvent('flint-dialog-close', { bubbles: true, composed: true, detail: { open: false } }));
   }
 
   private _handleBackdropClose(e: Event) {
     // Prevent the backdrop's own 'flint-backdrop-close' event from escaping the shadow root —
-    // the dialog will re-dispatch its own fresh 'close' event from the host.
+    // the dialog will re-dispatch its own fresh 'flint-dialog-close' event from the host.
     e.stopPropagation();
     if (!this.disableBackdropClose) {
       this.requestClose();

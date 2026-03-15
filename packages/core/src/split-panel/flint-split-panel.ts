@@ -94,7 +94,7 @@ export class FlintSplitPanel extends LitElement {
         :host {
             display: flex;
             position: relative;
-            overflow: hidden;
+            overflow: clip;
             flex-direction: row;
         }
         :host([vertical]) {

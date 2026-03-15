@@ -32,7 +32,7 @@ import { FlintTextarea } from '@getufy/flint-ui';
 | `required` | `required` | `boolean` | `false` | Marks the textarea as required for form validation. |
 | `error` | `error` | `boolean` | `false` | Whether the textarea is in an error state. |
 | `errorMessage` | `error-message` | `string` | `''` | Error message displayed below the textarea. |
-| `helpText` | `help-text` | `string` | `''` | Help text displayed below the textarea. |
+| `helperText` | `helper-text` | `string` | `''` | Help text displayed below the textarea. |
 | `label` | `label` | `string` | `''` | Label text displayed above the textarea. |
 | `size` | `size` | `'sm' \| 'default' \| 'lg'` | `'default'` | Size variant of the textarea. |
 | `rows` | `rows` | `number` | `3` | Number of visible text rows. |

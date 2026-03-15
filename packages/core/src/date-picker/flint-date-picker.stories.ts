@@ -95,12 +95,13 @@ A date picker with a text field and a calendar popover/modal. Variants: - 'deskt
 | \`readonly\` | \`readonly\` | \`boolean\` | \`false\` | Makes the field read-only (auto-opens a picker when clicked). |
 | \`error\` | \`error\` | \`boolean\` | \`false\` | Shows error styling. |
 | \`helperText\` | \`helper-text\` | \`string\` | \`''\` | Helper/error text below the field. |
+| \`errorMessage\` | \`error-message\` | \`string\` | \`''\` | Error message displayed below the field when in error state. |
 
 #### Events
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | — | { detail: { value: string } } when the date changes |
+| \`flint-date-picker-change\` | — | Fired when the date changes. detail: \`{ value: string }\` |
                 `,
             },
         },

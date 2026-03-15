@@ -8,3 +8,4 @@ export { FlintStepper, type FlintStepperProps, type FlintStepChangeDetail } from
 export { FlintMobileStepper, type FlintMobileStepperProps } from './components/FlintMobileStepper.js';
 export { FlintStepEvents } from './events/flint-step.js';
 export { FlintStepperEvents } from './events/flint-stepper.js';
+export { FlintMobileStepperEvents } from './events/flint-mobile-stepper.js';

@@ -279,7 +279,7 @@ export class FlintDateRangePicker extends LitElement {
         <flint-dialog
           .open=${this._open}
           disable-backdrop-close
-          @close=${this._closePicker}
+          @flint-dialog-close=${this._closePicker}
           style="--flint-dialog-width:640px"
         >
           <flint-dialog-title>Select Date Range</flint-dialog-title>

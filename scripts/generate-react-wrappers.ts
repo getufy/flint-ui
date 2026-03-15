@@ -12,7 +12,7 @@
  *   npx tsx scripts/generate-react-wrappers.ts
  */
 
-import { readdirSync, readFileSync, mkdirSync, writeFileSync, existsSync } from 'node:fs';
+import { readdirSync, readFileSync, mkdirSync, writeFileSync, existsSync, unlinkSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { parseComponentFile } from './lib/parse-lit.js';
 import {
@@ -105,6 +105,16 @@ function main() {
             const eventsContent = generateEventsFile(meta);
             write(join(EVENTS_OUT, `${meta.tagName}.ts`), eventsContent);
             writtenEventFiles.add(meta.tagName);
+        }
+    }
+
+    // Clean up stale event files (e.g. from components that no longer emit events)
+    for (const f of readdirSync(EVENTS_OUT)) {
+        if (f === 'index.ts' || !f.endsWith('.ts')) continue;
+        const tagName = f.replace(/\.ts$/, '');
+        if (!writtenEventFiles.has(tagName)) {
+            unlinkSync(join(EVENTS_OUT, f));
+            console.log(`  removed stale events/${f}`);
         }
     }
 

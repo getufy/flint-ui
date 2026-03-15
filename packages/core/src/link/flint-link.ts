@@ -8,7 +8,7 @@ import uiLinkStyles from './flint-link.css?inline';
  * with theme colors and typography styles.
  *
  * @slot - Link text or content.
- * @fires click - Native click event.
+ * Native click events propagate from the shadow DOM anchor element.
  */
 @customElement('flint-link')
 export class FlintLink extends LitElement {

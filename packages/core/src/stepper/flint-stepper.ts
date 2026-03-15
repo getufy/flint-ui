@@ -303,6 +303,9 @@ export class FlintStepper extends LitElement {
  *
  * @slot back-button - Back navigation button.
  * @slot next-button - Next navigation button.
+ *
+ * @fires flint-mobile-step-back - Fired when the back button is clicked.
+ * @fires flint-mobile-step-next - Fired when the next button is clicked.
  */
 @customElement('flint-mobile-stepper')
 export class FlintMobileStepper extends LitElement {

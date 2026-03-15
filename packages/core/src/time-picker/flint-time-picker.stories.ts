@@ -38,12 +38,13 @@ Time Field: a segmented time input with keyboard navigation.
 | \`readonly\` | \`readonly\` | \`boolean\` | \`false\` | Makes the field read-only (visible but not editable). |
 | \`error\` | \`error\` | \`boolean\` | \`false\` | Displays the field in an error state. |
 | \`helperText\` | \`helper-text\` | \`string\` | \`''\` | Helper text shown below the field. |
+| \`errorMessage\` | \`error-message\` | \`string\` | \`''\` | Error message displayed below the field when in error state. |
 
 #### Events
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | — | Fired when the time value changes. |
+| \`flint-time-field-change\` | — | Fired when the time value changes. detail: \`{ value: string }\` |
 | \`flint-time-picker-clear\` | — | Fired when the clear button is clicked. |
 
 #### CSS Custom Properties
@@ -95,7 +96,7 @@ Digital Clock: a scrollable time-slot picker.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | — | Fired when a time slot is selected. |
+| \`flint-digital-clock-change\` | — | Fired when a time slot is selected. detail: \`{ value: string }\` |
 
 #### CSS Custom Properties
 
@@ -124,7 +125,7 @@ Multi Section Digital Clock: hours, minutes, and optional seconds columns.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | — | Fired when the time value changes. |
+| \`flint-multi-section-digital-clock-change\` | — | Fired when the time value changes. detail: \`{ value: string }\` |
 
 ---
 
@@ -148,7 +149,7 @@ Time Clock: an analog clock face for selecting hours, minutes, and seconds.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | — | Fired when the time value changes. |
+| \`flint-time-clock-change\` | — | Fired when the time value changes. detail: \`{ value: string }\` |
 | \`flint-time-clock-view-change\` | — | Fired when the clock face view switches. |
 
 #### CSS Custom Properties
@@ -184,12 +185,13 @@ Desktop Time Picker: a time field with a dropdown clock.
 | \`readonly\` | \`readonly\` | \`boolean\` | \`false\` | Makes the field read-only (visible but not editable). |
 | \`error\` | \`error\` | \`boolean\` | \`false\` | Displays the field in an error state. |
 | \`helperText\` | \`helper-text\` | \`string\` | \`''\` | Helper text shown below the field. |
+| \`errorMessage\` | \`error-message\` | \`string\` | \`''\` | Error message displayed below the field when in error state. |
 
 #### Events
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | — | Fired when the time value changes. |
+| \`flint-desktop-time-picker-change\` | — | Fired when the time value changes. detail: \`{ value: string }\` |
 
 ---
 
@@ -211,12 +213,13 @@ Mobile Time Picker: a time field with a modal clock dialog.
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the picker and prevents interaction. |
 | \`error\` | \`error\` | \`boolean\` | \`false\` | Displays the picker in an error state. |
 | \`helperText\` | \`helper-text\` | \`string\` | \`''\` | Helper text shown below the field. |
+| \`errorMessage\` | \`error-message\` | \`string\` | \`''\` | Error message displayed below the field when in error state. |
 
 #### Events
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | — | Fired when the time value changes. |
+| \`flint-mobile-time-picker-change\` | — | Fired when the time value changes. detail: \`{ value: string }\` |
 
 ---
 
@@ -239,7 +242,7 @@ Static Time Picker: an always-visible inline clock.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | — | Fired when the time value changes. |
+| \`flint-static-time-picker-change\` | — | Fired when the time value changes. detail: \`{ value: string }\` |
 
 ---
 
@@ -262,12 +265,13 @@ Time Picker: a configurable time input supporting desktop, mobile, and static va
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the picker and prevents interaction. |
 | \`error\` | \`error\` | \`boolean\` | \`false\` | Displays the picker in an error state. |
 | \`helperText\` | \`helper-text\` | \`string\` | \`''\` | Helper text shown below the field. |
+| \`errorMessage\` | \`error-message\` | \`string\` | \`''\` | Error message displayed below the field when in error state. |
 
 #### Events
 
 | Event | Detail | Description |
 |---|---|---|
-| \`change\` | — | Fired when the time value changes. |
+| \`flint-time-picker-change\` | — | Fired when the time value changes. detail: \`{ value: string }\` |
                 `,
             },
         },

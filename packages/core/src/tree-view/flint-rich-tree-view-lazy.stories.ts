@@ -141,7 +141,8 @@ A single item inside a \`flint-simple-tree-view\` or \`flint-rich-tree-view\`.
 
 | Name | Description |
 |---|---|
-| \`(default)\` | Place child \`flint-tree-item\` elements here to create a nested tree. |
+| \`lead\` | Leading icon or content. |
+| \`(default)\` | Item label text. |
 | \`label\` |  |
 
 #### Methods

@@ -1,8 +1,8 @@
 # Dialog
 
-<Demo label="Basic" html="<flint-button onclick=&quot;var d=this.nextElementSibling;d.open=true;d.addEventListener('close',function(){d.open=false},{once:true})&quot;>Open Dialog</flint-button><flint-dialog>  <flint-dialog-title>Confirm Action</flint-dialog-title>  <flint-dialog-content>    <flint-dialog-content-text>Are you sure you want to proceed? This action cannot be undone.</flint-dialog-content-text>  </flint-dialog-content>  <flint-dialog-actions>    <flint-button variant=&quot;secondary&quot; onclick=&quot;this.closest('flint-dialog').open=false&quot;>Cancel</flint-button>    <flint-button onclick=&quot;this.closest('flint-dialog').open=false&quot;>Confirm</flint-button>  </flint-dialog-actions></flint-dialog>" />
+<Demo label="Basic" html="<flint-button onclick=&quot;var d=this.nextElementSibling;d.open=true;d.addEventListener('flint-dialog-close',function(){d.open=false},{once:true})&quot;>Open Dialog</flint-button><flint-dialog>  <flint-dialog-title>Confirm Action</flint-dialog-title>  <flint-dialog-content>    <flint-dialog-content-text>Are you sure you want to proceed? This action cannot be undone.</flint-dialog-content-text>  </flint-dialog-content>  <flint-dialog-actions>    <flint-button variant=&quot;secondary&quot; onclick=&quot;this.closest('flint-dialog').open=false&quot;>Cancel</flint-button>    <flint-button onclick=&quot;this.closest('flint-dialog').open=false&quot;>Confirm</flint-button>  </flint-dialog-actions></flint-dialog>" />
 
-<Demo label="Destructive" html="<flint-button variant=&quot;destructive&quot; onclick=&quot;var d=this.nextElementSibling;d.open=true;d.addEventListener('close',function(){d.open=false},{once:true})&quot;>Delete Account</flint-button><flint-dialog>  <flint-dialog-title>Delete Account?</flint-dialog-title>  <flint-dialog-content>    <flint-dialog-content-text>This will permanently delete your account and all associated data.</flint-dialog-content-text>  </flint-dialog-content>  <flint-dialog-actions>    <flint-button variant=&quot;secondary&quot; onclick=&quot;this.closest('flint-dialog').open=false&quot;>Cancel</flint-button>    <flint-button variant=&quot;destructive&quot; onclick=&quot;this.closest('flint-dialog').open=false&quot;>Delete</flint-button>  </flint-dialog-actions></flint-dialog>" />
+<Demo label="Destructive" html="<flint-button variant=&quot;destructive&quot; onclick=&quot;var d=this.nextElementSibling;d.open=true;d.addEventListener('flint-dialog-close',function(){d.open=false},{once:true})&quot;>Delete Account</flint-button><flint-dialog>  <flint-dialog-title>Delete Account?</flint-dialog-title>  <flint-dialog-content>    <flint-dialog-content-text>This will permanently delete your account and all associated data.</flint-dialog-content-text>  </flint-dialog-content>  <flint-dialog-actions>    <flint-button variant=&quot;secondary&quot; onclick=&quot;this.closest('flint-dialog').open=false&quot;>Cancel</flint-button>    <flint-button variant=&quot;destructive&quot; onclick=&quot;this.closest('flint-dialog').open=false&quot;>Delete</flint-button>  </flint-dialog-actions></flint-dialog>" />
 
 ## `<flint-dialog>`
 
@@ -30,6 +30,7 @@ import { FlintDialog } from '@getufy/flint-ui';
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | `open` | `open` | `boolean` | `false` | Controls the open / closed state of the dialog. |
+| `defaultOpen` | `default-open` | `boolean` | `false` | Initial open state for uncontrolled usage. Has no effect after the element has connected to the DOM. |
 | `transition` | `transition` | `'scale' \| 'slide-up' \| 'slide-down'` | `'scale'` | Animation style: 'scale' (default), 'slide-up', or 'slide-down'. |
 | `disableBackdropClose` | `disable-backdrop-close` | `boolean` | `false` | When true, clicking the backdrop will NOT close the dialog. Useful for confirmation dialogs where the user must make a deliberate choice. |
 
@@ -37,7 +38,7 @@ import { FlintDialog } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `close` | — | Dispatched when the dialog requests to be closed (backdrop click or |
+| `flint-dialog-close` | — | Dispatched when the dialog requests to be closed (backdrop click or |
 | `confirm` | — | Dispatched by confirmation dialogs when the user clicked "confirm". |
 | `cancel` | — | Dispatched by confirmation dialogs when the user clicked "cancel". |
 
@@ -65,7 +66,7 @@ import { FlintDialog } from '@getufy/flint-ui';
 
 | Method | Description |
 | --- | --- |
-| `requestClose()` | Programmatically request the dialog to close (fires the 'close' event). |
+| `requestClose()` | Programmatically request the dialog to close (fires the 'flint-dialog-close' event). |
 
 ---
 

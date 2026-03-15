@@ -113,6 +113,7 @@ import { FlintDateRangePicker } from '@getufy/flint-ui';
 | `readonly` | `readonly` | `boolean` | `false` | Makes the picker read-only (visible but not editable). |
 | `error` | `error` | `boolean` | `false` | Displays the picker in an error state. |
 | `helperText` | `helper-text` | `string` | `''` | Helper text shown below the field. |
+| `errorMessage` | `error-message` | `string` | `''` | Error message displayed below the field when in error state. |
 
 ### Events
 
@@ -156,6 +157,7 @@ import { FlintSingleInputDateRangeField } from '@getufy/flint-ui';
 | `readonly` | `readonly` | `boolean` | `false` | Makes the field read-only (visible but not editable). |
 | `error` | `error` | `boolean` | `false` | Displays the field in an error state. |
 | `helperText` | `helper-text` | `string` | `''` | Helper text shown below the field. |
+| `errorMessage` | `error-message` | `string` | `''` | Error message displayed below the field when in error state. |
 
 ### Events
 

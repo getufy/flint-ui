@@ -893,7 +893,7 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
   dialog: [
     {
       label: 'Basic',
-      html: `<flint-button onclick="var d=this.nextElementSibling;d.open=true;d.addEventListener('close',function(){d.open=false},{once:true})">Open Dialog</flint-button>
+      html: `<flint-button onclick="var d=this.nextElementSibling;d.open=true;d.addEventListener('flint-dialog-close',function(){d.open=false},{once:true})">Open Dialog</flint-button>
 <flint-dialog>
   <flint-dialog-title>Confirm Action</flint-dialog-title>
   <flint-dialog-content>
@@ -907,7 +907,7 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
     },
     {
       label: 'Destructive',
-      html: `<flint-button variant="destructive" onclick="var d=this.nextElementSibling;d.open=true;d.addEventListener('close',function(){d.open=false},{once:true})">Delete Account</flint-button>
+      html: `<flint-button variant="destructive" onclick="var d=this.nextElementSibling;d.open=true;d.addEventListener('flint-dialog-close',function(){d.open=false},{once:true})">Delete Account</flint-button>
 <flint-dialog>
   <flint-dialog-title>Delete Account?</flint-dialog-title>
   <flint-dialog-content>
@@ -1244,7 +1244,7 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
   ],
   backdrop: [
     {
-      html: `<flint-button onclick="var b=this.nextElementSibling;b.open=true;b.addEventListener('close',function(){b.open=false},{once:true})">Show Backdrop</flint-button>
+      html: `<flint-button onclick="var b=this.nextElementSibling;b.open=true;b.addEventListener('flint-backdrop-close',function(){b.open=false},{once:true})">Show Backdrop</flint-button>
 <flint-backdrop>
   <div style="background:white;padding:24px;border-radius:8px;text-align:center">
     <p style="margin:0 0 16px">Click outside or press Escape to close</p>

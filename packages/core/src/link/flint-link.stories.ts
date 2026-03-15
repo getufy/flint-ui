@@ -35,7 +35,7 @@ The Link component allows you to easily customize anchor elements with theme col
 
 | Event | Detail | Description |
 |---|---|---|
-| \`click\` | — | Native click event. |
+| \`{MouseEvent}\` | — | click - Native click event (not a custom event; standard anchor click propagated from shadow DOM). |
 
 #### Slots
 

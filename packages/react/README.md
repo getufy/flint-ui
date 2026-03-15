@@ -156,7 +156,7 @@ Custom events map to camelCase `on*` props:
 | `flint-change` | `onFlintChange` |
 | `flint-click` | `onFlintClick` |
 | `flint-menu-close` | `onFlintMenuClose` |
-| `close` | `onClose` |
+| `flint-dialog-close` | `onFlintDialogClose` |
 
 ```tsx
 <FlintSelect

@@ -5,7 +5,7 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintDialog as FlintDialogElement } from '@getufy/flint-ui/dialog/flint-dialog';
 
-export interface CloseDetail {
+export interface FlintDialogCloseDetail {
     open: boolean;
 }
 
@@ -26,11 +26,7 @@ export interface FlintDialogProps extends React.HTMLAttributes<FlintDialogElemen
     /** Dispatched when the dialog requests to be closed (backdrop click or
        an explicit call to `requestClose()`). The host is responsible for
        setting `open = false` in response. detail: `{ open: false }` */
-    onClose?: (event: CustomEvent<CloseDetail>) => void;
-    /** Dispatched by confirmation dialogs when the user clicked "confirm". */
-    onConfirm?: (event: CustomEvent) => void;
-    /** Dispatched by confirmation dialogs when the user clicked "cancel". */
-    onCancel?: (event: CustomEvent) => void;
+    onFlintDialogClose?: (event: CustomEvent<FlintDialogCloseDetail>) => void;
 }
 
 export const FlintDialog = createComponent({
@@ -38,8 +34,6 @@ export const FlintDialog = createComponent({
     elementClass: FlintDialogElement,
     react: React,
     events: {
-        onClose: 'close' as EventName<CustomEvent<CloseDetail>>,
-        onConfirm: 'confirm' as EventName<CustomEvent>,
-        onCancel: 'cancel' as EventName<CustomEvent>,
+        onFlintDialogClose: 'flint-dialog-close' as EventName<CustomEvent<FlintDialogCloseDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintDialogProps & React.RefAttributes<FlintDialogElement>>;

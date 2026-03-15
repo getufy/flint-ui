@@ -824,7 +824,7 @@ export class FlintMobileTimePicker extends LitElement {
         @focus=${() => { if (!this.disabled) { this._pending = this.value; this._view = 'hours'; this._open = true; } }}
         @flint-time-field-change=${(e: CustomEvent) => { this.value = e.detail.value; this.dispatchEvent(new CustomEvent('flint-mobile-time-picker-change', { detail: e.detail, bubbles: true, composed: true })); }}
       ></flint-time-field>
-      <flint-dialog .open=${this._open} disable-backdrop-close @close=${() => this._open = false} style="--flint-dialog-width:320px">
+      <flint-dialog .open=${this._open} disable-backdrop-close @flint-dialog-close=${() => this._open = false} style="--flint-dialog-width:320px">
         <flint-dialog-title>Select Time</flint-dialog-title>
         <flint-dialog-content style="padding:12px;display:flex;justify-content:center;">
           <flint-time-clock .value=${this._pending || this.value || buildTime(12, 0)} .ampm=${this.ampm} ?seconds=${this.seconds} .view=${this._view}

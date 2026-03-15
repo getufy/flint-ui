@@ -2,7 +2,7 @@
 // Source: src/link/flint-link.ts
 
 import React from 'react';
-import { createComponent, type EventName } from '@lit/react';
+import { createComponent } from '@lit/react';
 import { FlintLink as FlintLinkElement } from '@getufy/flint-ui/link/flint-link';
 
 /**
@@ -10,8 +10,9 @@ import { FlintLink as FlintLinkElement } from '@getufy/flint-ui/link/flint-link'
 with theme colors and typography styles.
  *
  * @slot - Link text or content.
+Native click events propagate from the shadow DOM anchor element.
  */
-export interface FlintLinkProps extends Omit<React.HTMLAttributes<FlintLinkElement>, 'onClick' | 'color'> {
+export interface FlintLinkProps extends Omit<React.HTMLAttributes<FlintLinkElement>, 'color'> {
     /** The URL of the link. */
     href?: string;
     /** Where to open the link. */
@@ -30,15 +31,10 @@ export interface FlintLinkProps extends Omit<React.HTMLAttributes<FlintLinkEleme
     download?: string;
     /** The ARIA label. */
     label?: string;
-    /** Native click event. */
-    onClick?: (event: CustomEvent) => void;
 }
 
 export const FlintLink = createComponent({
     tagName: 'flint-link',
     elementClass: FlintLinkElement,
     react: React,
-    events: {
-        onClick: 'click' as EventName<CustomEvent>,
-    },
 }) as unknown as React.ForwardRefExoticComponent<FlintLinkProps & React.RefAttributes<FlintLinkElement>>;

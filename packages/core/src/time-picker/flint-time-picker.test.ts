@@ -2622,8 +2622,8 @@ describe('flint-mobile-time-picker @change and @close coverage', () => {
         await el.updateComplete;
         const dialog = el.shadowRoot!.querySelector('flint-dialog') as Element & { open: boolean };
         expect(dialog.open).toBe(true);
-        // Dispatch 'close' event from dialog → @close handler sets _open=false
-        dialog.dispatchEvent(new CustomEvent('close', { bubbles: true, composed: true }));
+        // Dispatch 'flint-dialog-close' event from dialog → @flint-dialog-close handler sets _open=false
+        dialog.dispatchEvent(new CustomEvent('flint-dialog-close', { bubbles: true, composed: true }));
         await el.updateComplete;
         expect(dialog.open).toBe(false);
     });

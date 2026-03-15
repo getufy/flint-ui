@@ -51,7 +51,7 @@ export { FlintDatePicker, type FlintDatePickerProps, type FlintDatePickerChangeD
 export { FlintDateRangeCalendar, type FlintDateRangeCalendarProps } from './components/FlintDateRangeCalendar.js';
 export { FlintDateRangePicker, type FlintDateRangePickerProps } from './components/FlintDateRangePicker.js';
 export { FlintSingleInputDateRangeField, type FlintSingleInputDateRangeFieldProps } from './components/FlintSingleInputDateRangeField.js';
-export { FlintDialog, type FlintDialogProps, type CloseDetail } from './components/FlintDialog.js';
+export { FlintDialog, type FlintDialogProps, type FlintDialogCloseDetail } from './components/FlintDialog.js';
 export { FlintDialogTitle, type FlintDialogTitleProps } from './components/FlintDialogTitle.js';
 export { FlintDialogContent, type FlintDialogContentProps } from './components/FlintDialogContent.js';
 export { FlintDialogContentText, type FlintDialogContentTextProps } from './components/FlintDialogContentText.js';

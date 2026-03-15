@@ -433,7 +433,7 @@ import { FlintMenubarContent } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-menubar-request-close` | — |  |
+| `flint-menubar-request-close` | `{ open: false }` |  |
 
 ### Slots
 

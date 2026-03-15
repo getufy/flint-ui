@@ -432,7 +432,7 @@ export class FlintDatePicker extends LitElement {
         <flint-dialog
           .open=${this._open}
           disable-backdrop-close
-          @close=${this._closePicker}
+          @flint-dialog-close=${this._closePicker}
           style="--flint-dialog-width:320px"
         >
           <flint-dialog-title>Select Date</flint-dialog-title>

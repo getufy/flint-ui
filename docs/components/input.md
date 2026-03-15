@@ -33,7 +33,7 @@ import { FlintInput } from '@getufy/flint-ui';
 | `value` | `value` | `string` | `''` | Current input value. |
 | `type` | `type` | `string` | `'text'` | HTML input type (text, email, password, etc.). |
 | `placeholder` | `placeholder` | `string` | `''` | Placeholder text shown when the input is empty. |
-| `helpText` | `help-text` | `string` | `''` | Help text displayed below the input. |
+| `helperText` | `helper-text` | `string` | `''` | Help text displayed below the input. |
 | `error` | `error` | `boolean` | `false` | Whether the input is in an error state. |
 | `errorMessage` | `error-message` | `string` | `''` | Error message displayed below the input. |
 | `disabled` | `disabled` | `boolean` | `false` | Disables the input and prevents interaction. |
@@ -42,6 +42,7 @@ import { FlintInput } from '@getufy/flint-ui';
 | `name` | `name` | `string` | `''` | Form field name used when submitting form data. |
 | `autocomplete` | `autocomplete` | `string` | `''` | Browser autocomplete hint. |
 | `size` | `size` | `'sm' \| 'default' \| 'lg'` | `'default'` | 'sm' \| 'default' \| 'lg' |
+| `defaultValue` | `default-value` | `string` | — | Initial value for uncontrolled usage. |
 
 ### Events
 

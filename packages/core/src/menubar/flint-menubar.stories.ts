@@ -299,7 +299,7 @@ The dropdown content panel for a menubar menu. Positioned absolutely below the t
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-menubar-request-close\` | — |  |
+| \`flint-menubar-request-close\` | \`{ open: false }\` |  |
 
 #### Slots
 

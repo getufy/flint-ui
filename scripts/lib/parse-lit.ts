@@ -90,15 +90,22 @@ function getFiresTags(node: ts.ClassDeclaration): Map<string, string> {
             const text = typeof tag.comment === 'string'
                 ? tag.comment
                 : (tag.comment?.map(c => ('text' in c ? c.text : '')).join('') ?? '');
-            // Format: "event-name - Description" or just "event-name"
-            const trimmed = text.trim();
+            // Format: "{Type} event-name - Description", "event-name - Description", or just "event-name"
+            // Strip leading {Type} annotation if present (e.g. "{MouseEvent} click")
+            let trimmed = text.trim().replace(/^\{[^}]+\}\s*/, '');
             const dashIdx = trimmed.indexOf(' - ');
+            let evName: string;
+            let desc: string;
             if (dashIdx >= 0) {
-                const evName = trimmed.slice(0, dashIdx).trim();
-                const desc = trimmed.slice(dashIdx + 3).trim();
-                map.set(evName, desc);
+                evName = trimmed.slice(0, dashIdx).trim();
+                desc = trimmed.slice(dashIdx + 3).trim();
             } else {
-                map.set(trimmed.split(/\s/)[0], '');
+                evName = trimmed.split(/\s/)[0];
+                desc = '';
+            }
+            // Skip native DOM events (not prefixed with flint-) — they're handled by React natively
+            if (evName && evName.startsWith('flint-')) {
+                map.set(evName, desc);
             }
         }
     }
