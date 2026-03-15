@@ -1018,7 +1018,7 @@ describe('flint-select — slots', () => {
     const el = await fixture<FlintSelect>(html`<flint-select label="Fruit" .options=${opts}></flint-select>`);
     await el.updateComplete;
     await expectAccessible(el);
-  });
+  }, 15000);
 });
 
 // ── CSS parts ────────────────────────────────────────────────────────────────

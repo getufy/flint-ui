@@ -347,8 +347,8 @@ export const Hoist: Story = {
                     </flint-hover-card-content>
                 </flint-hover-card>
             </div>
-            <div style="overflow: hidden; border: 2px dashed #3b82f6; padding: 24px; border-radius: 8px; width: 200px; height: 80px;">
-                <p style="font-size: 0.75rem; color: #3b82f6; margin: 0 0 8px;">overflow: hidden (with hoist)</p>
+            <div style="overflow: hidden; border: 2px dashed #2563eb; padding: 24px; border-radius: 8px; width: 200px; height: 80px;">
+                <p style="font-size: 0.75rem; color: #2563eb; margin: 0 0 8px;">overflow: hidden (with hoist)</p>
                 <flint-hover-card open-delay="100" close-delay="100" hoist>
                     <flint-hover-card-trigger>
                         <a href="#" style=${linkStyle}>@hoisted</a>

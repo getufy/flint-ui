@@ -413,11 +413,13 @@
       "import": "./dist/suppress-warnings.js"
     }
   },
+  "customElements": "dist/custom-elements.json",
   "scripts": {
     "lint": "eslint \"src/**/*.ts\"",
     "test": "NODE_OPTIONS='--no-warnings' vitest run",
     "test:watch": "NODE_OPTIONS='--no-warnings' vitest",
-    "build": "vite build && tsc -p tsconfig.build.json",
+    "cem": "custom-elements-manifest analyze --config custom-elements-manifest.config.mjs",
+    "build": "vite build && tsc -p tsconfig.build.json && npm run cem",
     "build:exports": "tsx ../../scripts/build-entries.ts --write-exports",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",

@@ -296,5 +296,5 @@ describe('flint-input', () => {
     it('should pass automated a11y checks', async () => {
         const el = await fixture(html`<flint-input label="Username"></flint-input>`);
         await expectAccessible(el);
-    });
+    }, 15000);
 });

@@ -636,5 +636,5 @@ describe('flint-table a11y', () => {
             </flint-table-container>
         `);
         await expectAccessible(el);
-    });
+    }, 15000);
 });

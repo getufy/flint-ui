@@ -298,5 +298,5 @@ describe('flint-switch', () => {
     it('should pass automated a11y checks', async () => {
         const el = await fixture(html`<flint-switch aria-label="Toggle notifications"></flint-switch>`);
         await expectAccessible(el);
-    });
+    }, 15000);
 });

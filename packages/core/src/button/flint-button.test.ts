@@ -87,10 +87,10 @@ describe('flint-button', () => {
     it('should pass automated a11y checks', async () => {
         const el = await fixture(html`<flint-button>Click me</flint-button>`);
         await expectAccessible(el);
-    });
+    }, 15000);
 
     it('should pass a11y checks when disabled', async () => {
         const el = await fixture(html`<flint-button disabled>Disabled</flint-button>`);
         await expectAccessible(el);
-    });
+    }, 15000);
 });

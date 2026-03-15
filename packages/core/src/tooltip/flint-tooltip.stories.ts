@@ -212,8 +212,8 @@ export const Hoist: Story = {
                     <flint-button>Clipped</flint-button>
                 </flint-tooltip>
             </div>
-            <div style="overflow: hidden; border: 2px dashed #3b82f6; padding: 24px; border-radius: 8px; width: 200px;">
-                <p style="font-size: 0.75rem; color: #3b82f6; margin: 0 0 12px;">overflow: hidden (with hoist)</p>
+            <div style="overflow: hidden; border: 2px dashed #2563eb; padding: 24px; border-radius: 8px; width: 200px;">
+                <p style="font-size: 0.75rem; color: #2563eb; margin: 0 0 12px;">overflow: hidden (with hoist)</p>
                 <flint-tooltip label="This tooltip escapes the container" placement="bottom" arrow hoist>
                     <flint-button variant="primary">Hoisted</flint-button>
                 </flint-tooltip>

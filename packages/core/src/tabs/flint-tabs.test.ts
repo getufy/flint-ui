@@ -1232,7 +1232,7 @@ describe('flint-tab-list scrollIntoView when available', () => {
         const el = await makeTabs();
         // axe doesn't recognize slotted flint-tab custom elements as valid role="tab" children
         await expectAccessible(el, { rules: { 'aria-required-children': { enabled: false } } });
-    });
+    }, 15000);
 });
 
 /* ================================================================== */

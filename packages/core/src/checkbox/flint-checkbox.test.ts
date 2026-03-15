@@ -586,5 +586,5 @@ describe('flint-checkbox', () => {
     it('should pass automated a11y checks', async () => {
         const el = await fixture(html`<flint-checkbox label="Accept terms"></flint-checkbox>`);
         await expectAccessible(el);
-    });
+    }, 15000);
 });

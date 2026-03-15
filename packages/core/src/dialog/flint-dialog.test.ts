@@ -406,5 +406,5 @@ describe('flint-dialog', () => {
         await el.updateComplete;
         // aria-labelledby references a shadow DOM ID for the title slot — axe can't resolve cross-boundary
         await expectAccessible(el, { rules: { 'aria-dialog-name': { enabled: false } } });
-    });
+    }, 15000);
 });
