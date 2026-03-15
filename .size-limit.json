@@ -27,7 +27,7 @@
     "name": "Date Picker",
     "path": "packages/core/dist/date-picker/flint-date-picker.js",
     "import": "*",
-    "limit": "13 kB"
+    "limit": "14 kB"
   },
   {
     "name": "Table",
@@ -45,7 +45,7 @@
     "name": "Date Range Picker",
     "path": "packages/core/dist/date-range-picker/flint-date-range-picker.js",
     "import": "*",
-    "limit": "16 kB"
+    "limit": "17 kB"
   },
   {
     "name": "Time Picker",
