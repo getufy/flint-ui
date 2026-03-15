@@ -67,7 +67,7 @@ describe('flint-text-field', () => {
     it('dispatches change event on change', async () => {
         let changed = false;
         const el = await fixture<FlintTextField>(html`
-      <flint-text-field @change=${() => changed = true}></flint-text-field>
+      <flint-text-field @flint-text-field-change=${() => changed = true}></flint-text-field>
     `);
 
         const input = el.shadowRoot!.querySelector('input')!;
@@ -136,7 +136,7 @@ describe('flint-text-field', () => {
 
     it('input event dispatches with correct detail.value', async () => {
         const spy = vi.fn();
-        const el = await fixture<FlintTextField>(html`<flint-text-field @input=${spy}></flint-text-field>`);
+        const el = await fixture<FlintTextField>(html`<flint-text-field @flint-text-field-input=${spy}></flint-text-field>`);
         const input = el.shadowRoot!.querySelector('input')!;
         input.value = 'hello';
         input.dispatchEvent(new InputEvent('input', { bubbles: true, composed: true }));
@@ -149,7 +149,7 @@ describe('flint-text-field', () => {
 
     it('change event dispatches with correct detail.value', async () => {
         const spy = vi.fn();
-        const el = await fixture<FlintTextField>(html`<flint-text-field @change=${spy}></flint-text-field>`);
+        const el = await fixture<FlintTextField>(html`<flint-text-field @flint-text-field-change=${spy}></flint-text-field>`);
         const input = el.shadowRoot!.querySelector('input')!;
         input.value = 'world';
         input.dispatchEvent(new Event('change', { bubbles: true }));
@@ -195,7 +195,7 @@ describe('flint-text-field', () => {
     it('input event bubbles and is composed', async () => {
         const spy = vi.fn();
         const container = await fixture<HTMLDivElement>(html`
-            <div @input=${spy}><flint-text-field></flint-text-field></div>
+            <div @flint-text-field-input=${spy}><flint-text-field></flint-text-field></div>
         `);
         const el = container.querySelector('flint-text-field')!;
         const input = el.shadowRoot!.querySelector('input')!;
@@ -207,7 +207,7 @@ describe('flint-text-field', () => {
     it('change event bubbles and is composed', async () => {
         const spy = vi.fn();
         const container = await fixture<HTMLDivElement>(html`
-            <div @change=${spy}><flint-text-field></flint-text-field></div>
+            <div @flint-text-field-change=${spy}><flint-text-field></flint-text-field></div>
         `);
         const el = container.querySelector('flint-text-field')!;
         const input = el.shadowRoot!.querySelector('input')!;

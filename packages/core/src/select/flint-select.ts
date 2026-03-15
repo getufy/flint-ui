@@ -19,7 +19,7 @@ let _uidCounter = 0;
 /**
  * A select component for choosing one or multiple options from a list.
  *
- * @fires flint-select-change - Dispatched when the selection changes. detail: { value: string | null } (single) or { value: string[] } (multiple)
+ * @fires flint-select-change - Dispatched when the selection changes. detail: `{ value: string[] }`
  * @slot icon - Optional icon shown at the start of the trigger.
  * @slot error-message - Optional slot for error message content (use error-message prop for simple text).
  */
@@ -156,7 +156,7 @@ export class FlintSelect extends FormAssociated(LitElement) {
 
   private _dispatchChange() {
     this.dispatchEvent(new CustomEvent('flint-select-change', {
-      detail: { value: this.multiple ? this.value : (this.value[0] ?? null) },
+      detail: { value: this.multiple ? this.value : (this.value[0] !== undefined ? [this.value[0]] : []) },
       bubbles: true,
       composed: true,
     }));

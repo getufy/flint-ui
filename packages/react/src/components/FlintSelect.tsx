@@ -42,7 +42,7 @@ export interface FlintSelectProps extends Omit<React.HTMLAttributes<FlintSelectE
     size?: FlintSelectElement['size'];
     /** Sets the initial value in uncontrolled mode (single-select only). */
     defaultValue?: string;
-    /** Dispatched when the selection changes. detail: { value: string | null } (single) or { value: string[] } (multiple) */
+    /** Dispatched when the selection changes. detail: `{ value: string[] }` */
     onFlintSelectChange?: (event: CustomEvent<FlintSelectChangeDetail>) => void;
 }
 

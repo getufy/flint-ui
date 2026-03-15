@@ -10,6 +10,7 @@ import uiChipStyles from './flint-chip.css?inline';
  * @slot avatar - Avatar element shown at start.
  * @slot icon - Icon shown at start when no avatar.
  *
+ * @fires flint-chip-click - Fired when a clickable chip is clicked.
  * @fires flint-chip-delete - Fired when the chip's delete icon is clicked. detail: `{ value: string }`
  */
 @customElement('flint-chip')
@@ -36,7 +37,7 @@ export class FlintChip extends LitElement {
         // preventing the handler from firing twice (once natively, once re-dispatched).
         e.stopPropagation();
         if (this.disabled || !this.clickable) return;
-        this.dispatchEvent(new CustomEvent('click', {
+        this.dispatchEvent(new CustomEvent('flint-chip-click', {
             bubbles: true,
             composed: true
         }));
@@ -46,7 +47,7 @@ export class FlintChip extends LitElement {
         if (e.key !== 'Enter' && e.key !== ' ') return;
         e.preventDefault();
         if (!this.disabled && this.clickable) {
-            this.dispatchEvent(new CustomEvent('click', {
+            this.dispatchEvent(new CustomEvent('flint-chip-click', {
                 bubbles: true,
                 composed: true
             }));

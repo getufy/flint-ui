@@ -19,3 +19,4 @@ export { FlintMenubarCheckboxItemEvents } from './events/flint-menubar-checkbox-
 export { FlintMenubarRadioItemEvents } from './events/flint-menubar-radio-item.js';
 export { FlintMenubarRadioGroupEvents } from './events/flint-menubar-radio-group.js';
 export { FlintMenubarContentEvents } from './events/flint-menubar-content.js';
+export { FlintMenubarEvents } from './events/flint-menubar.js';

@@ -256,6 +256,11 @@ function isSimpleType(t: string): boolean {
     }
     // Object type literals are safe (they contain their own types)
     if (trimmed.startsWith('{') && trimmed.endsWith('}')) return true;
+    // Tuple types like [number, number] are safe if all elements are simple
+    if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
+        const inner = trimmed.slice(1, -1);
+        return inner.split(',').every(part => isSimpleType(part.trim()));
+    }
     return false;
 }
 
@@ -575,6 +580,26 @@ function parseClass(
 
     // Walk only within the class body to avoid cross-class pollution
     ts.forEachChild(node, findEvents);
+
+    // 4b. Add @fires events not detected from CustomEvent instantiations
+    for (const [domName, desc] of firesMap) {
+        if (!seenEvents.has(domName)) {
+            seenEvents.add(domName);
+            // Try to extract detail type from description: `detail: \`{ key: type }\``
+            let detailType = 'unknown';
+            const detailMatch = desc.match(/detail:\s*`\{([^}]+)\}`/);
+            if (detailMatch) {
+                detailType = `{ ${detailMatch[1].trim()} }`;
+            }
+            events.push({
+                domName,
+                reactProp: domEventToReactProp(domName),
+                constKey: eventConstKey(tagName!, domName),
+                description: desc,
+                detailType,
+            });
+        }
+    }
 
     // 5. Extract CSS custom properties
     const cssProperties = extractCssProperties(absolutePath);

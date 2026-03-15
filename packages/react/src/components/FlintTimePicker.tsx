@@ -8,7 +8,7 @@ import { FlintTimePicker as FlintTimePickerElement } from '@getufy/flint-ui/time
 /**
  * Time Picker: a configurable time input supporting desktop, mobile, and static variants.
  */
-export interface FlintTimePickerProps extends Omit<React.HTMLAttributes<FlintTimePickerElement>, 'onChange'> {
+export interface FlintTimePickerProps extends React.HTMLAttributes<FlintTimePickerElement> {
     /** Time value in HH:MM:SS format. */
     value?: string;
     /** Field label text. */
@@ -27,8 +27,8 @@ export interface FlintTimePickerProps extends Omit<React.HTMLAttributes<FlintTim
     helperText?: string;
     /** Error message displayed below the field when in error state. */
     errorMessage?: string;
-    /** Fired when the time value changes. */
-    onChange?: (event: CustomEvent) => void;
+    /** Fired when the time value changes. detail: `{ value: string }` */
+    onFlintTimePickerChange?: (event: CustomEvent) => void;
 }
 
 export const FlintTimePicker = createComponent({
@@ -36,6 +36,6 @@ export const FlintTimePicker = createComponent({
     elementClass: FlintTimePickerElement,
     react: React,
     events: {
-        onChange: 'change' as EventName<CustomEvent>,
+        onFlintTimePickerChange: 'flint-time-picker-change' as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintTimePickerProps & React.RefAttributes<FlintTimePickerElement>>;

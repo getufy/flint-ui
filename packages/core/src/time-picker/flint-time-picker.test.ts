@@ -356,7 +356,7 @@ describe('flint-time-field', () => {
         const el = await fixture<FlintTimeField>(html`<flint-time-field value="10:00:00" .ampm=${false}></flint-time-field>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-field-change', spy);
         const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
         focus(segs);
         await el.updateComplete;
@@ -430,7 +430,7 @@ describe('flint-time-field', () => {
     it('disabled field ignores keyboard input', async () => {
         const el = await fixture<FlintTimeField>(html`<flint-time-field disabled></flint-time-field>`);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-field-change', spy);
         const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
         key(segs, '5');
         await el.updateComplete;
@@ -440,7 +440,7 @@ describe('flint-time-field', () => {
     it('readonly field ignores keyboard input', async () => {
         const el = await fixture<FlintTimeField>(html`<flint-time-field readonly value="10:00:00"></flint-time-field>`);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-field-change', spy);
         const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
         key(segs, '5');
         await el.updateComplete;
@@ -539,7 +539,7 @@ describe('flint-time-field', () => {
         const el = await fixture<FlintTimeField>(html`<flint-time-field value="10:00:00"></flint-time-field>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-field-change', spy);
         const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
         focus(segs);
         await el.updateComplete;
@@ -695,7 +695,7 @@ describe('flint-digital-clock', () => {
         const el = await fixture<FlintDigitalClock>(html`<flint-digital-clock step=30></flint-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-digital-clock-change', spy);
         (el.shadowRoot!.querySelector('.item') as HTMLElement).click();
         expect(spy).toHaveBeenCalledOnce();
         expect((spy.mock.calls[0][0] as CustomEvent).detail.value).toMatch(/^\d{2}:\d{2}:\d{2}$/);
@@ -762,7 +762,7 @@ describe('flint-multi-section-digital-clock', () => {
         const el = await fixture<FlintMultiSectionDigitalClock>(html`<flint-multi-section-digital-clock value="10:00:00"></flint-multi-section-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-multi-section-digital-clock-change', spy);
         (el.shadowRoot!.querySelector('.item') as HTMLElement).click();
         expect(spy).toHaveBeenCalledOnce();
     });
@@ -802,7 +802,7 @@ describe('flint-multi-section-digital-clock', () => {
         const el = await fixture<FlintMultiSectionDigitalClock>(html`<flint-multi-section-digital-clock value="10:00:00"></flint-multi-section-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-multi-section-digital-clock-change', spy);
         const cols = el.shadowRoot!.querySelectorAll('.col');
         const ampmCol = cols[cols.length - 1];
         const pmBtn = ampmCol.querySelectorAll('.item')[1];
@@ -815,7 +815,7 @@ describe('flint-multi-section-digital-clock', () => {
         const el = await fixture<FlintMultiSectionDigitalClock>(html`<flint-multi-section-digital-clock value="10:00:00"></flint-multi-section-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-multi-section-digital-clock-change', spy);
         const col2 = el.shadowRoot!.querySelectorAll('.col')[1];
         const min30 = col2.querySelectorAll('.item')[30];
         (min30 as HTMLElement).click();
@@ -827,7 +827,7 @@ describe('flint-multi-section-digital-clock', () => {
         const el = await fixture<FlintMultiSectionDigitalClock>(html`<flint-multi-section-digital-clock value="10:00:00" seconds></flint-multi-section-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-multi-section-digital-clock-change', spy);
         const col3 = el.shadowRoot!.querySelectorAll('.col')[2];
         const sec45 = col3.querySelectorAll('.item')[45];
         (sec45 as HTMLElement).click();
@@ -930,7 +930,7 @@ describe('flint-time-clock', () => {
         const el = await fixture<FlintTimeClock>(html`<flint-time-clock value="14:30:00"></flint-time-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         const amBtn = el.shadowRoot!.querySelectorAll('.am-pm-btn')[0] as HTMLElement;
         amBtn.click();
         expect(spy).toHaveBeenCalledOnce();
@@ -941,7 +941,7 @@ describe('flint-time-clock', () => {
         const el = await fixture<FlintTimeClock>(html`<flint-time-clock value="10:30:00"></flint-time-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         const pmBtn = el.shadowRoot!.querySelectorAll('.am-pm-btn')[1] as HTMLElement;
         pmBtn.click();
         expect(spy).toHaveBeenCalledOnce();
@@ -1256,7 +1256,7 @@ describe('flint-time-picker', () => {
         const el = await fixture<FlintTimePicker>(html`<flint-time-picker variant="static" value="10:00:00"></flint-time-picker>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-picker-change', spy);
         const inner = el.shadowRoot!.querySelector('flint-static-time-picker') as FlintStaticTimePicker;
         await inner.updateComplete;
         const msdc = inner.shadowRoot!.querySelector('flint-multi-section-digital-clock') as FlintMultiSectionDigitalClock;
@@ -1337,7 +1337,7 @@ describe('flint-desktop-time-picker', () => {
         const el = await fixture<FlintDesktopTimePicker>(html`<flint-desktop-time-picker value="10:00:00"></flint-desktop-time-picker>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-desktop-time-picker-change', spy);
         const okBtn = el.shadowRoot!.querySelector('.btn-ok') as HTMLElement;
         okBtn.click();
         expect(spy).toHaveBeenCalledOnce();
@@ -1432,7 +1432,7 @@ describe('flint-static-time-picker', () => {
         const inner = el.shadowRoot!.querySelector('flint-multi-section-digital-clock') as FlintMultiSectionDigitalClock;
         await inner.updateComplete;
         setTimeout(() => (inner.shadowRoot!.querySelector('.item') as HTMLElement)?.click());
-        const ev = await oneEvent(el, 'change') as CustomEvent;
+        const ev = await oneEvent(el, 'flint-static-time-picker-change') as CustomEvent;
         expect(ev.detail.value).toMatch(/^\d{2}:\d{2}:\d{2}$/);
     });
 
@@ -1442,7 +1442,7 @@ describe('flint-static-time-picker', () => {
         const inner = el.shadowRoot!.querySelector('flint-multi-section-digital-clock') as FlintMultiSectionDigitalClock;
         await inner.updateComplete;
         setTimeout(() => (inner.shadowRoot!.querySelector('.item') as HTMLElement)?.click());
-        const ev = await oneEvent(el, 'change') as CustomEvent;
+        const ev = await oneEvent(el, 'flint-static-time-picker-change') as CustomEvent;
         expect(el.value).toBe(ev.detail.value);
     });
 
@@ -1460,7 +1460,7 @@ describe('flint-digital-clock keyboard navigation', () => {
         const el = await fixture<FlintDigitalClock>(html`<flint-digital-clock value="10:00:00" step=30></flint-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-digital-clock-change', spy);
         const items = el.shadowRoot!.querySelectorAll<HTMLButtonElement>('.item');
         const selectedIdx = Array.from(items).findIndex(i => i.classList.contains('selected'));
         items[selectedIdx].dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
@@ -1471,7 +1471,7 @@ describe('flint-digital-clock keyboard navigation', () => {
         const el = await fixture<FlintDigitalClock>(html`<flint-digital-clock value="10:30:00" step=30></flint-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-digital-clock-change', spy);
         const items = el.shadowRoot!.querySelectorAll<HTMLButtonElement>('.item');
         const selectedIdx = Array.from(items).findIndex(i => i.classList.contains('selected'));
         items[selectedIdx].dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
@@ -1482,7 +1482,7 @@ describe('flint-digital-clock keyboard navigation', () => {
         const el = await fixture<FlintDigitalClock>(html`<flint-digital-clock value="10:30:00" step=30></flint-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-digital-clock-change', spy);
         const items = el.shadowRoot!.querySelectorAll<HTMLButtonElement>('.item');
         const selectedIdx = Array.from(items).findIndex(i => i.classList.contains('selected'));
         items[selectedIdx].dispatchEvent(new KeyboardEvent('keydown', { key: 'Home', bubbles: true }));
@@ -1494,7 +1494,7 @@ describe('flint-digital-clock keyboard navigation', () => {
         const el = await fixture<FlintDigitalClock>(html`<flint-digital-clock value="10:30:00" step=30></flint-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-digital-clock-change', spy);
         const items = el.shadowRoot!.querySelectorAll<HTMLButtonElement>('.item');
         const selectedIdx = Array.from(items).findIndex(i => i.classList.contains('selected'));
         items[selectedIdx].dispatchEvent(new KeyboardEvent('keydown', { key: 'End', bubbles: true }));
@@ -1506,7 +1506,7 @@ describe('flint-digital-clock keyboard navigation', () => {
         const el = await fixture<FlintDigitalClock>(html`<flint-digital-clock value="23:30:00" step=30></flint-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-digital-clock-change', spy);
         const items = el.shadowRoot!.querySelectorAll<HTMLButtonElement>('.item');
         items[items.length - 1].dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
         // Still fires (item already at boundary, selects same item) — or may fire again
@@ -1518,7 +1518,7 @@ describe('flint-digital-clock keyboard navigation', () => {
         const el = await fixture<FlintDigitalClock>(html`<flint-digital-clock value="00:00:00" step=30></flint-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-digital-clock-change', spy);
         const items = el.shadowRoot!.querySelectorAll<HTMLButtonElement>('.item');
         items[0].dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
         expect(() => {}).not.toThrow();
@@ -1528,7 +1528,7 @@ describe('flint-digital-clock keyboard navigation', () => {
         const el = await fixture<FlintDigitalClock>(html`<flint-digital-clock value="10:00:00" step=30></flint-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-digital-clock-change', spy);
         const items = el.shadowRoot!.querySelectorAll<HTMLButtonElement>('.item');
         const selectedIdx = Array.from(items).findIndex(i => i.classList.contains('selected'));
         items[selectedIdx].dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
@@ -1542,7 +1542,7 @@ describe('flint-multi-section-digital-clock keyboard navigation', () => {
         const el = await fixture<FlintMultiSectionDigitalClock>(html`<flint-multi-section-digital-clock value="10:00:00"></flint-multi-section-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-multi-section-digital-clock-change', spy);
         const col = el.shadowRoot!.querySelectorAll('.col')[0] as HTMLElement;
         col.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -1554,7 +1554,7 @@ describe('flint-multi-section-digital-clock keyboard navigation', () => {
         const el = await fixture<FlintMultiSectionDigitalClock>(html`<flint-multi-section-digital-clock value="10:00:00"></flint-multi-section-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-multi-section-digital-clock-change', spy);
         const col = el.shadowRoot!.querySelectorAll('.col')[0] as HTMLElement;
         col.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -1566,7 +1566,7 @@ describe('flint-multi-section-digital-clock keyboard navigation', () => {
         const el = await fixture<FlintMultiSectionDigitalClock>(html`<flint-multi-section-digital-clock value="12:00:00"></flint-multi-section-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-multi-section-digital-clock-change', spy);
         const col = el.shadowRoot!.querySelectorAll('.col')[0] as HTMLElement;
         col.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -1579,7 +1579,7 @@ describe('flint-multi-section-digital-clock keyboard navigation', () => {
         const el = await fixture<FlintMultiSectionDigitalClock>(html`<flint-multi-section-digital-clock value="23:00:00" .ampm=${false}></flint-multi-section-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-multi-section-digital-clock-change', spy);
         const col = el.shadowRoot!.querySelectorAll('.col')[0] as HTMLElement;
         col.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -1590,7 +1590,7 @@ describe('flint-multi-section-digital-clock keyboard navigation', () => {
         const el = await fixture<FlintMultiSectionDigitalClock>(html`<flint-multi-section-digital-clock value="10:30:00"></flint-multi-section-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-multi-section-digital-clock-change', spy);
         const col = el.shadowRoot!.querySelectorAll('.col')[1] as HTMLElement;
         col.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -1601,7 +1601,7 @@ describe('flint-multi-section-digital-clock keyboard navigation', () => {
         const el = await fixture<FlintMultiSectionDigitalClock>(html`<flint-multi-section-digital-clock value="10:00:00"></flint-multi-section-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-multi-section-digital-clock-change', spy);
         const col = el.shadowRoot!.querySelectorAll('.col')[1] as HTMLElement;
         col.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -1612,7 +1612,7 @@ describe('flint-multi-section-digital-clock keyboard navigation', () => {
         const el = await fixture<FlintMultiSectionDigitalClock>(html`<flint-multi-section-digital-clock value="10:00:00" .ampm=${false} seconds></flint-multi-section-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-multi-section-digital-clock-change', spy);
         const col = el.shadowRoot!.querySelectorAll('.col')[2] as HTMLElement;
         col.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -1623,7 +1623,7 @@ describe('flint-multi-section-digital-clock keyboard navigation', () => {
         const el = await fixture<FlintMultiSectionDigitalClock>(html`<flint-multi-section-digital-clock value="10:00:00"></flint-multi-section-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-multi-section-digital-clock-change', spy);
         const cols = el.shadowRoot!.querySelectorAll('.col');
         const merCol = cols[cols.length - 1] as HTMLElement;
         merCol.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
@@ -1635,7 +1635,7 @@ describe('flint-multi-section-digital-clock keyboard navigation', () => {
         const el = await fixture<FlintMultiSectionDigitalClock>(html`<flint-multi-section-digital-clock value="22:00:00"></flint-multi-section-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-multi-section-digital-clock-change', spy);
         const cols = el.shadowRoot!.querySelectorAll('.col');
         const merCol = cols[cols.length - 1] as HTMLElement;
         merCol.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
@@ -1647,7 +1647,7 @@ describe('flint-multi-section-digital-clock keyboard navigation', () => {
         const el = await fixture<FlintMultiSectionDigitalClock>(html`<flint-multi-section-digital-clock value="10:00:00"></flint-multi-section-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-multi-section-digital-clock-change', spy);
         const col = el.shadowRoot!.querySelectorAll('.col')[0] as HTMLElement;
         col.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
         col.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab', bubbles: true }));
@@ -1661,7 +1661,7 @@ describe('flint-time-clock keyboard navigation', () => {
         const el = await fixture<FlintTimeClock>(html`<flint-time-clock value="10:30:00" view="hours"></flint-time-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         const svg = el.shadowRoot!.querySelector('svg')!;
         svg.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -1672,7 +1672,7 @@ describe('flint-time-clock keyboard navigation', () => {
         const el = await fixture<FlintTimeClock>(html`<flint-time-clock value="10:30:00" view="hours"></flint-time-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         const svg = el.shadowRoot!.querySelector('svg')!;
         svg.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -1683,7 +1683,7 @@ describe('flint-time-clock keyboard navigation', () => {
         const el = await fixture<FlintTimeClock>(html`<flint-time-clock value="10:30:00" view="hours"></flint-time-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         const svg = el.shadowRoot!.querySelector('svg')!;
         svg.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -1693,7 +1693,7 @@ describe('flint-time-clock keyboard navigation', () => {
         const el = await fixture<FlintTimeClock>(html`<flint-time-clock value="10:30:00" view="hours"></flint-time-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         const svg = el.shadowRoot!.querySelector('svg')!;
         svg.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -1703,7 +1703,7 @@ describe('flint-time-clock keyboard navigation', () => {
         const el = await fixture<FlintTimeClock>(html`<flint-time-clock value="10:30:00" view="minutes"></flint-time-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         const svg = el.shadowRoot!.querySelector('svg')!;
         svg.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -1714,7 +1714,7 @@ describe('flint-time-clock keyboard navigation', () => {
         const el = await fixture<FlintTimeClock>(html`<flint-time-clock value="10:30:00" view="minutes"></flint-time-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         const svg = el.shadowRoot!.querySelector('svg')!;
         svg.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -1725,7 +1725,7 @@ describe('flint-time-clock keyboard navigation', () => {
         const el = await fixture<FlintTimeClock>(html`<flint-time-clock value="10:30:45" view="seconds" seconds></flint-time-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         const svg = el.shadowRoot!.querySelector('svg')!;
         svg.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -1736,7 +1736,7 @@ describe('flint-time-clock keyboard navigation', () => {
         const el = await fixture<FlintTimeClock>(html`<flint-time-clock value="10:30:45" view="seconds" seconds></flint-time-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         const svg = el.shadowRoot!.querySelector('svg')!;
         svg.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -1785,7 +1785,7 @@ describe('flint-time-clock keyboard navigation', () => {
         const el = await fixture<FlintTimeClock>(html`<flint-time-clock value="10:30:00" view="hours"></flint-time-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         const svg = el.shadowRoot!.querySelector('svg')!;
         svg.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab', bubbles: true }));
         svg.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
@@ -1796,7 +1796,7 @@ describe('flint-time-clock keyboard navigation', () => {
         const el = await fixture<FlintTimeClock>(html`<flint-time-clock value="12:00:00" view="hours"></flint-time-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         const svg = el.shadowRoot!.querySelector('svg')!;
         svg.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -1809,7 +1809,7 @@ describe('flint-time-clock keyboard navigation', () => {
         const el = await fixture<FlintTimeClock>(html`<flint-time-clock value="14:00:00" view="hours" .ampm=${false}></flint-time-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         const svg = el.shadowRoot!.querySelector('svg')!;
         svg.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -1820,7 +1820,7 @@ describe('flint-time-clock keyboard navigation', () => {
         const el = await fixture<FlintTimeClock>(html`<flint-time-clock value="10:59:00" view="minutes"></flint-time-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         const svg = el.shadowRoot!.querySelector('svg')!;
         svg.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
         expect((spy.mock.calls[0][0] as CustomEvent).detail.value).toMatch(/:00:/);
@@ -1842,7 +1842,7 @@ describe('flint-time-clock pointer events', () => {
         await el.updateComplete;
         const svg = mockSvg(el);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         svg.dispatchEvent(new PointerEvent('pointerdown', { clientX: 240, clientY: 140, bubbles: true, pointerId: 1 }));
         expect(spy).toHaveBeenCalled();
     });
@@ -1852,7 +1852,7 @@ describe('flint-time-clock pointer events', () => {
         await el.updateComplete;
         const svg = mockSvg(el);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         // Start drag
         svg.dispatchEvent(new PointerEvent('pointerdown', { clientX: 240, clientY: 140, bubbles: true, pointerId: 1 }));
         spy.mockClear();
@@ -1866,7 +1866,7 @@ describe('flint-time-clock pointer events', () => {
         await el.updateComplete;
         const svg = mockSvg(el);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         svg.dispatchEvent(new PointerEvent('pointermove', { clientX: 140, clientY: 40, bubbles: true, pointerId: 1 }));
         expect(spy).not.toHaveBeenCalled();
     });
@@ -1889,7 +1889,7 @@ describe('flint-time-clock pointer events', () => {
         await el.updateComplete;
         const svg = mockSvg(el);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         svg.dispatchEvent(new PointerEvent('pointerup', { clientX: 240, clientY: 140, bubbles: true, pointerId: 1 }));
         expect(spy).not.toHaveBeenCalled();
     });
@@ -1899,7 +1899,7 @@ describe('flint-time-clock pointer events', () => {
         await el.updateComplete;
         const svg = mockSvg(el);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         // 3 o'clock = 15 minutes (angle=90, m=round(90/6)%60=15)
         svg.dispatchEvent(new PointerEvent('pointerdown', { clientX: 240, clientY: 140, bubbles: true, pointerId: 1 }));
         expect(spy).toHaveBeenCalled();
@@ -1936,7 +1936,7 @@ describe('flint-time-clock pointer events', () => {
         await el.updateComplete;
         const svg = mockSvg(el);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         // 3 o'clock position at radius 100 → outer ring hour 3
         svg.dispatchEvent(new PointerEvent('pointerdown', { clientX: 240, clientY: 140, bubbles: true, pointerId: 1 }));
         expect(spy).toHaveBeenCalled();
@@ -1948,7 +1948,7 @@ describe('flint-time-clock pointer events', () => {
         await el.updateComplete;
         const svg = mockSvg(el);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         // 3 o'clock at inner ring radius 64: x=140+64=204, y=140
         svg.dispatchEvent(new PointerEvent('pointerdown', { clientX: 204, clientY: 140, bubbles: true, pointerId: 1 }));
         expect(spy).toHaveBeenCalled();
@@ -1983,9 +1983,9 @@ describe('flint-desktop-time-picker additional', () => {
         const el = await fixture<FlintDesktopTimePicker>(html`<flint-desktop-time-picker></flint-desktop-time-picker>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-desktop-time-picker-change', spy);
         const field = el.shadowRoot!.querySelector('flint-time-field') as FlintTimeField;
-        field.dispatchEvent(new CustomEvent('change', { detail: { value: '09:15:00' }, bubbles: true, composed: true }));
+        field.dispatchEvent(new CustomEvent('flint-time-field-change', { detail: { value: '09:15:00' }, bubbles: true, composed: true }));
         expect(spy).toHaveBeenCalled();
         const lastCall = spy.mock.calls[spy.mock.calls.length - 1][0] as CustomEvent;
         expect(lastCall.detail.value).toBe('09:15:00');
@@ -2007,7 +2007,7 @@ describe('flint-desktop-time-picker additional', () => {
         const el = await fixture<FlintDesktopTimePicker>(html`<flint-desktop-time-picker value="10:00:00"></flint-desktop-time-picker>`);
         await el.updateComplete;
         const msdc = el.shadowRoot!.querySelector('flint-multi-section-digital-clock') as FlintMultiSectionDigitalClock;
-        msdc.dispatchEvent(new CustomEvent('change', { detail: { value: '11:00:00' }, bubbles: true, composed: true }));
+        msdc.dispatchEvent(new CustomEvent('flint-multi-section-digital-clock-change', { detail: { value: '11:00:00' }, bubbles: true, composed: true }));
         await el.updateComplete;
         // value is updated internally but change event not fired yet
         expect(el.value).toBe('11:00:00');
@@ -2044,7 +2044,7 @@ describe('flint-mobile-time-picker additional', () => {
         field.dispatchEvent(new FocusEvent('focus', { bubbles: true, composed: true }));
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-mobile-time-picker-change', spy);
         const okBtn = el.shadowRoot!.querySelector('.btn-ok') as HTMLElement;
         okBtn.click();
         expect(spy).toHaveBeenCalledOnce();
@@ -2059,7 +2059,7 @@ describe('flint-mobile-time-picker additional', () => {
         field.dispatchEvent(new FocusEvent('focus', { bubbles: true, composed: true }));
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-mobile-time-picker-change', spy);
         const cancelBtn = el.shadowRoot!.querySelector('.btn-cancel') as HTMLElement;
         cancelBtn.click();
         await el.updateComplete;
@@ -2087,11 +2087,11 @@ describe('flint-mobile-time-picker additional', () => {
         field.dispatchEvent(new FocusEvent('focus', { bubbles: true, composed: true }));
         await el.updateComplete;
         const clock = el.shadowRoot!.querySelector('flint-time-clock') as FlintTimeClock;
-        clock.dispatchEvent(new CustomEvent('change', { detail: { value: '11:30:00' }, bubbles: true, composed: true }));
+        clock.dispatchEvent(new CustomEvent('flint-time-clock-change', { detail: { value: '11:30:00' }, bubbles: true, composed: true }));
         await el.updateComplete;
         // Commit with OK
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-mobile-time-picker-change', spy);
         const okBtn = el.shadowRoot!.querySelector('.btn-ok') as HTMLElement;
         okBtn.click();
         expect((spy.mock.calls[0][0] as CustomEvent).detail.value).toBe('11:30:00');
@@ -2143,7 +2143,7 @@ describe('flint-time-field boundary and no-op mutations', () => {
         await el.updateComplete;
         // Navigate to hour 12 (already parsed)
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-field-change', spy);
         key(segs, 'ArrowUp');
         await el.updateComplete;
         const hourSeg = el.shadowRoot!.querySelectorAll('.seg')[0];
@@ -2194,7 +2194,7 @@ describe('flint-time-field boundary and no-op mutations', () => {
         const el = await fixture<FlintTimeField>(html`<flint-time-field value="10:00:00"></flint-time-field>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-field-change', spy);
         const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
         focus(segs);
         await el.updateComplete;
@@ -2213,7 +2213,7 @@ describe('flint-time-field boundary and no-op mutations', () => {
         const el = await fixture<FlintTimeField>(html`<flint-time-field value="12:30:00"></flint-time-field>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-field-change', spy);
         const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
         focus(segs);
         await el.updateComplete;
@@ -2228,7 +2228,7 @@ describe('flint-time-field boundary and no-op mutations', () => {
         const el = await fixture<FlintTimeField>(html`<flint-time-field value="00:30:00"></flint-time-field>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-field-change', spy);
         const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
         focus(segs);
         await el.updateComplete;
@@ -2315,7 +2315,7 @@ describe('flint-time-field boundary and no-op mutations', () => {
     it('change event not fired when hour is still null', async () => {
         const el = await fixture<FlintTimeField>(html`<flint-time-field></flint-time-field>`);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-field-change', spy);
         const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
         focus(segs);
         await el.updateComplete;
@@ -2331,7 +2331,7 @@ describe('flint-time-field boundary and no-op mutations', () => {
         const el = await fixture<FlintTimeField>(html`<flint-time-field value="10:00:00"></flint-time-field>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-field-change', spy);
         const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
         focus(segs);
         await el.updateComplete;
@@ -2388,7 +2388,7 @@ describe('flint-digital-clock boundary value assertions', () => {
         const el = await fixture<FlintDigitalClock>(html`<flint-digital-clock value="23:30:00" step=30></flint-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-digital-clock-change', spy);
         const items = el.shadowRoot!.querySelectorAll<HTMLButtonElement>('.item');
         items[items.length - 1].dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
         // Math.min(last+1, last) = last → same item → target===idx → no event
@@ -2399,7 +2399,7 @@ describe('flint-digital-clock boundary value assertions', () => {
         const el = await fixture<FlintDigitalClock>(html`<flint-digital-clock value="00:00:00" step=30></flint-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-digital-clock-change', spy);
         const items = el.shadowRoot!.querySelectorAll<HTMLButtonElement>('.item');
         items[0].dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
         // Math.max(0-1,0) = 0 → same item → target===idx → no event
@@ -2410,7 +2410,7 @@ describe('flint-digital-clock boundary value assertions', () => {
         const el = await fixture<FlintDigitalClock>(html`<flint-digital-clock value="23:00:00" step=30></flint-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-digital-clock-change', spy);
         const items = el.shadowRoot!.querySelectorAll<HTMLButtonElement>('.item');
         const selectedIdx = Array.from(items).findIndex(i => i.classList.contains('selected'));
         items[selectedIdx].dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
@@ -2422,7 +2422,7 @@ describe('flint-digital-clock boundary value assertions', () => {
         const el = await fixture<FlintDigitalClock>(html`<flint-digital-clock value="00:30:00" step=30></flint-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-digital-clock-change', spy);
         const items = el.shadowRoot!.querySelectorAll<HTMLButtonElement>('.item');
         const selectedIdx = Array.from(items).findIndex(i => i.classList.contains('selected'));
         items[selectedIdx].dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
@@ -2468,7 +2468,7 @@ describe('flint-time-field _commitBuf coverage', () => {
         // Edge case: _buf is non-empty non-numeric → parseInt returns NaN → early return
         const el = await fixture<FlintTimeField>(html`<flint-time-field></flint-time-field>`);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-field-change', spy);
         const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
         focus(segs);
         await el.updateComplete;
@@ -2519,7 +2519,7 @@ describe('flint-time-clock clockAngle negative angle coverage', () => {
         await el.updateComplete;
         const svg = mockSvg(el);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         svg.dispatchEvent(new PointerEvent('pointerdown', { clientX: 60, clientY: 60, bubbles: true, pointerId: 1 }));
         expect(spy).toHaveBeenCalled();
         // 315° corresponds to hour 10–11 o'clock area; just confirm we got a value
@@ -2533,7 +2533,7 @@ describe('flint-time-clock clockAngle negative angle coverage', () => {
         await el.updateComplete;
         const svg = mockSvg(el);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         // 3 o'clock = 15 seconds (angle=90°, round(90/6)%60 = 15)
         svg.dispatchEvent(new PointerEvent('pointerdown', { clientX: 240, clientY: 140, bubbles: true, pointerId: 1 }));
         expect(spy).toHaveBeenCalled();
@@ -2546,7 +2546,7 @@ describe('flint-time-clock clockAngle negative angle coverage', () => {
         await el.updateComplete;
         const svg = mockSvg(el);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         svg.dispatchEvent(new PointerEvent('pointerdown', { clientX: 240, clientY: 140, bubbles: true, pointerId: 1 }));
         spy.mockClear();
         svg.dispatchEvent(new PointerEvent('pointermove', { clientX: 240, clientY: 140, bubbles: true, pointerId: 1 }));
@@ -2606,9 +2606,9 @@ describe('flint-mobile-time-picker @change and @close coverage', () => {
         const el = await fixture<FlintMobileTimePicker>(html`<flint-mobile-time-picker value="10:00:00"></flint-mobile-time-picker>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-mobile-time-picker-change', spy);
         const field = el.shadowRoot!.querySelector('flint-time-field') as FlintTimeField;
-        field.dispatchEvent(new CustomEvent('change', { detail: { value: '11:30:00' }, bubbles: true, composed: true }));
+        field.dispatchEvent(new CustomEvent('flint-time-field-change', { detail: { value: '11:30:00' }, bubbles: true, composed: true }));
         expect(spy).toHaveBeenCalled();
         expect(el.value).toBe('11:30:00');
     });
@@ -2780,7 +2780,7 @@ describe('helper function edge cases', () => {
         const el = await fixture<FlintTimeField>(html`<flint-time-field value="05:30:00"></flint-time-field>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-field-change', spy);
         const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
         focus(segs);
         await el.updateComplete;
@@ -2794,7 +2794,7 @@ describe('helper function edge cases', () => {
         const el = await fixture<FlintTimeField>(html`<flint-time-field value="17:30:00"></flint-time-field>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-field-change', spy);
         const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
         focus(segs);
         await el.updateComplete;
@@ -2820,7 +2820,7 @@ describe('flint-time-clock _calcValue inner ring mutations', () => {
         await el.updateComplete;
         const svg = mockSvg(el);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         // Inner ring 12 o'clock: center(140,140), inner radius ~64, top = y=76
         svg.dispatchEvent(new PointerEvent('pointerdown', { clientX: 140, clientY: 76, bubbles: true, pointerId: 1 }));
         expect(spy).toHaveBeenCalled();
@@ -2833,7 +2833,7 @@ describe('flint-time-clock _calcValue inner ring mutations', () => {
         await el.updateComplete;
         const svg = mockSvg(el);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         // Outer ring 12 o'clock: top = y=40 (140 - 100)
         svg.dispatchEvent(new PointerEvent('pointerdown', { clientX: 140, clientY: 40, bubbles: true, pointerId: 1 }));
         expect(spy).toHaveBeenCalled();
@@ -2846,7 +2846,7 @@ describe('flint-time-clock _calcValue inner ring mutations', () => {
         await el.updateComplete;
         const svg = mockSvg(el);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         // 12 o'clock = top of outer ring: y=40
         svg.dispatchEvent(new PointerEvent('pointerdown', { clientX: 140, clientY: 40, bubbles: true, pointerId: 1 }));
         expect(spy).toHaveBeenCalled();
@@ -2860,7 +2860,7 @@ describe('flint-time-clock _calcValue inner ring mutations', () => {
         await el.updateComplete;
         const svg = mockSvg(el);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         // 3 o'clock position: x=240, y=140
         svg.dispatchEvent(new PointerEvent('pointerdown', { clientX: 240, clientY: 140, bubbles: true, pointerId: 1 }));
         expect(spy).toHaveBeenCalled();
@@ -2873,7 +2873,7 @@ describe('flint-time-clock _calcValue inner ring mutations', () => {
         await el.updateComplete;
         const svg = mockSvg(el);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         // Inner ring 6 o'clock: center + 64 down → y=204, x=140
         svg.dispatchEvent(new PointerEvent('pointerdown', { clientX: 140, clientY: 204, bubbles: true, pointerId: 1 }));
         expect(spy).toHaveBeenCalled();
@@ -2886,7 +2886,7 @@ describe('flint-time-clock _calcValue inner ring mutations', () => {
         await el.updateComplete;
         const svg = mockSvg(el);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         // Inner ring 9 o'clock: x=76 (140-64), y=140
         svg.dispatchEvent(new PointerEvent('pointerdown', { clientX: 76, clientY: 140, bubbles: true, pointerId: 1 }));
         expect(spy).toHaveBeenCalled();
@@ -2899,7 +2899,7 @@ describe('flint-time-clock _calcValue inner ring mutations', () => {
         await el.updateComplete;
         const svg = mockSvg(el);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         svg.dispatchEvent(new PointerEvent('pointerdown', { clientX: 140, clientY: 40, bubbles: true, pointerId: 1 }));
         expect(spy).toHaveBeenCalled();
         expect((spy.mock.calls[0][0] as CustomEvent).detail.value).toMatch(/:00:/);
@@ -2911,7 +2911,7 @@ describe('flint-time-clock _calcValue inner ring mutations', () => {
         await el.updateComplete;
         const svg = mockSvg(el);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         svg.dispatchEvent(new PointerEvent('pointerdown', { clientX: 140, clientY: 240, bubbles: true, pointerId: 1 }));
         expect(spy).toHaveBeenCalled();
         expect((spy.mock.calls[0][0] as CustomEvent).detail.value).toMatch(/:30$/);
@@ -3017,7 +3017,7 @@ describe('flint-time-clock keyboard 24hr boundary cycles', () => {
         const el = await fixture<FlintTimeClock>(html`<flint-time-clock value="23:00:00" view="hours" .ampm=${false}></flint-time-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         const svg = el.shadowRoot!.querySelector('svg')!;
         svg.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -3028,7 +3028,7 @@ describe('flint-time-clock keyboard 24hr boundary cycles', () => {
         const el = await fixture<FlintTimeClock>(html`<flint-time-clock value="00:00:00" view="hours" .ampm=${false}></flint-time-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         const svg = el.shadowRoot!.querySelector('svg')!;
         svg.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -3039,7 +3039,7 @@ describe('flint-time-clock keyboard 24hr boundary cycles', () => {
         const el = await fixture<FlintTimeClock>(html`<flint-time-clock value="01:00:00" view="hours"></flint-time-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         const svg = el.shadowRoot!.querySelector('svg')!;
         svg.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -3051,7 +3051,7 @@ describe('flint-time-clock keyboard 24hr boundary cycles', () => {
         const el = await fixture<FlintTimeClock>(html`<flint-time-clock value="10:30:59" view="seconds" seconds></flint-time-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         const svg = el.shadowRoot!.querySelector('svg')!;
         svg.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -3062,7 +3062,7 @@ describe('flint-time-clock keyboard 24hr boundary cycles', () => {
         const el = await fixture<FlintTimeClock>(html`<flint-time-clock value="10:30:00" view="seconds" seconds></flint-time-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         const svg = el.shadowRoot!.querySelector('svg')!;
         svg.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -3073,7 +3073,7 @@ describe('flint-time-clock keyboard 24hr boundary cycles', () => {
         const el = await fixture<FlintTimeClock>(html`<flint-time-clock value="10:00:00" view="minutes"></flint-time-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-clock-change', spy);
         const svg = el.shadowRoot!.querySelector('svg')!;
         svg.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -3087,7 +3087,7 @@ describe('flint-multi-section-digital-clock wrapping mutations', () => {
         const el = await fixture<FlintMultiSectionDigitalClock>(html`<flint-multi-section-digital-clock value="01:00:00"></flint-multi-section-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-multi-section-digital-clock-change', spy);
         const col = el.shadowRoot!.querySelectorAll('.col')[0] as HTMLElement;
         col.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -3099,7 +3099,7 @@ describe('flint-multi-section-digital-clock wrapping mutations', () => {
         const el = await fixture<FlintMultiSectionDigitalClock>(html`<flint-multi-section-digital-clock value="00:00:00" .ampm=${false}></flint-multi-section-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-multi-section-digital-clock-change', spy);
         const col = el.shadowRoot!.querySelectorAll('.col')[0] as HTMLElement;
         col.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -3110,7 +3110,7 @@ describe('flint-multi-section-digital-clock wrapping mutations', () => {
         const el = await fixture<FlintMultiSectionDigitalClock>(html`<flint-multi-section-digital-clock value="10:59:00"></flint-multi-section-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-multi-section-digital-clock-change', spy);
         const col = el.shadowRoot!.querySelectorAll('.col')[1] as HTMLElement;
         col.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -3121,7 +3121,7 @@ describe('flint-multi-section-digital-clock wrapping mutations', () => {
         const el = await fixture<FlintMultiSectionDigitalClock>(html`<flint-multi-section-digital-clock value="10:00:00" .ampm=${false} seconds></flint-multi-section-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-multi-section-digital-clock-change', spy);
         const col = el.shadowRoot!.querySelectorAll('.col')[2] as HTMLElement;
         col.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -3132,7 +3132,7 @@ describe('flint-multi-section-digital-clock wrapping mutations', () => {
         const el = await fixture<FlintMultiSectionDigitalClock>(html`<flint-multi-section-digital-clock value="10:00:59" .ampm=${false} seconds></flint-multi-section-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-multi-section-digital-clock-change', spy);
         const col = el.shadowRoot!.querySelectorAll('.col')[2] as HTMLElement;
         col.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
@@ -3144,7 +3144,7 @@ describe('flint-multi-section-digital-clock wrapping mutations', () => {
         const el = await fixture<FlintMultiSectionDigitalClock>(html`<flint-multi-section-digital-clock value="10:00:00" .ampm=${false}></flint-multi-section-digital-clock>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-multi-section-digital-clock-change', spy);
         const col1 = el.shadowRoot!.querySelectorAll('.col')[0];
         const firstItem = col1.querySelector('.item') as HTMLElement;
         firstItem.click();
@@ -3159,7 +3159,7 @@ describe('flint-desktop-time-picker empty value fallback', () => {
         const el = await fixture<FlintDesktopTimePicker>(html`<flint-desktop-time-picker></flint-desktop-time-picker>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-desktop-time-picker-change', spy);
         const okBtn = el.shadowRoot!.querySelector('.btn-ok') as HTMLElement;
         okBtn.click();
         expect(spy).toHaveBeenCalledOnce();
@@ -3202,7 +3202,7 @@ describe('flint-mobile-time-picker empty value fallback', () => {
         field.dispatchEvent(new FocusEvent('focus', { bubbles: true, composed: true }));
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-mobile-time-picker-change', spy);
         const okBtn = el.shadowRoot!.querySelector('.btn-ok') as HTMLElement;
         okBtn.click();
         expect(spy).toHaveBeenCalledOnce();
@@ -3218,10 +3218,10 @@ describe('flint-mobile-time-picker empty value fallback', () => {
         await el.updateComplete;
         // Simulate clock change to update pending
         const clock = el.shadowRoot!.querySelector('flint-time-clock') as FlintTimeClock;
-        clock.dispatchEvent(new CustomEvent('change', { detail: { value: '15:30:00' }, bubbles: true, composed: true }));
+        clock.dispatchEvent(new CustomEvent('flint-time-clock-change', { detail: { value: '15:30:00' }, bubbles: true, composed: true }));
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-mobile-time-picker-change', spy);
         const okBtn = el.shadowRoot!.querySelector('.btn-ok') as HTMLElement;
         okBtn.click();
         expect(spy).toHaveBeenCalledOnce();
@@ -3301,7 +3301,7 @@ describe('flint-time-field meta/ctrl key passthrough', () => {
     it('Ctrl+key does not trigger digit or navigation', async () => {
         const el = await fixture<FlintTimeField>(html`<flint-time-field value="10:00:00"></flint-time-field>`);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-field-change', spy);
         const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
         focus(segs);
         await el.updateComplete;
@@ -3313,7 +3313,7 @@ describe('flint-time-field meta/ctrl key passthrough', () => {
     it('Meta+key (Cmd on Mac) does not trigger digit or navigation', async () => {
         const el = await fixture<FlintTimeField>(html`<flint-time-field value="10:00:00"></flint-time-field>`);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-field-change', spy);
         const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
         focus(segs);
         await el.updateComplete;
@@ -3393,9 +3393,9 @@ describe('flint-time-picker change propagation', () => {
         const el = await fixture<FlintTimePicker>(html`<flint-time-picker variant="mobile" value="10:00:00"></flint-time-picker>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-picker-change', spy);
         const inner = el.shadowRoot!.querySelector('flint-mobile-time-picker') as FlintMobileTimePicker;
-        inner.dispatchEvent(new CustomEvent('change', { detail: { value: '11:00:00' }, bubbles: true, composed: true }));
+        inner.dispatchEvent(new CustomEvent('flint-mobile-time-picker-change', { detail: { value: '11:00:00' }, bubbles: true, composed: true }));
         expect(spy).toHaveBeenCalled();
         expect(el.value).toBe('11:00:00');
     });
@@ -3404,9 +3404,9 @@ describe('flint-time-picker change propagation', () => {
         const el = await fixture<FlintTimePicker>(html`<flint-time-picker variant="static" value="10:00:00"></flint-time-picker>`);
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-picker-change', spy);
         const inner = el.shadowRoot!.querySelector('flint-static-time-picker') as FlintStaticTimePicker;
-        inner.dispatchEvent(new CustomEvent('change', { detail: { value: '14:00:00' }, bubbles: true, composed: true }));
+        inner.dispatchEvent(new CustomEvent('flint-static-time-picker-change', { detail: { value: '14:00:00' }, bubbles: true, composed: true }));
         expect(spy).toHaveBeenCalled();
         expect(el.value).toBe('14:00:00');
     });
@@ -3543,7 +3543,7 @@ describe('flint-time-field _commitBuf out-of-range guard', () => {
     it('_commitBuf with empty buf is a no-op', async () => {
         const el = await fixture<FlintTimeField>(html`<flint-time-field value="10:00:00"></flint-time-field>`);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-field-change', spy);
         const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;
         focus(segs);
         await el.updateComplete;
@@ -3556,7 +3556,7 @@ describe('flint-time-field _commitBuf out-of-range guard', () => {
     it('_commitBuf with null _active is a no-op', async () => {
         const el = await fixture<FlintTimeField>(html`<flint-time-field value="10:00:00"></flint-time-field>`);
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-time-field-change', spy);
         (el as unknown as Record<string, unknown>)['_buf'] = '5';
         (el as unknown as Record<string, unknown>)['_active'] = null;
         const segs = el.shadowRoot!.querySelector('.segments') as HTMLElement;

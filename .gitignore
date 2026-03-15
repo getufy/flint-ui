@@ -25,3 +25,6 @@ reports/
 
 # Compiled JS from TS scripts
 scripts/**/*.js
+
+# Local task tracking
+TODO.md

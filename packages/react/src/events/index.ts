@@ -26,9 +26,11 @@ export { FlintSingleInputDateRangeFieldEvents } from './flint-single-input-date-
 export { FlintDialogEvents } from './flint-dialog.js';
 export { FlintDrawerEvents } from './flint-drawer.js';
 export { FlintRangeSliderEvents } from './flint-range-slider.js';
+export { FlintHoverCardEvents } from './flint-hover-card.js';
 export { FlintImageComparerEvents } from './flint-image-comparer.js';
 export { FlintInputEvents } from './flint-input.js';
 export { FlintInputOtpEvents } from './flint-input-otp.js';
+export { FlintLinkEvents } from './flint-link.js';
 export { FlintMenuItemEvents } from './flint-menu-item.js';
 export { FlintMenuEvents } from './flint-menu.js';
 export { FlintMenubarItemEvents } from './flint-menubar-item.js';
@@ -36,6 +38,7 @@ export { FlintMenubarCheckboxItemEvents } from './flint-menubar-checkbox-item.js
 export { FlintMenubarRadioItemEvents } from './flint-menubar-radio-item.js';
 export { FlintMenubarRadioGroupEvents } from './flint-menubar-radio-group.js';
 export { FlintMenubarContentEvents } from './flint-menubar-content.js';
+export { FlintMenubarEvents } from './flint-menubar.js';
 export { FlintNavigationMenuContentEvents } from './flint-navigation-menu-content.js';
 export { FlintNavigationMenuItemEvents } from './flint-navigation-menu-item.js';
 export { FlintNavigationMenuTriggerEvents } from './flint-navigation-menu-trigger.js';
@@ -48,6 +51,7 @@ export { FlintSelectEvents } from './flint-select.js';
 export { FlintSliderEvents } from './flint-slider.js';
 export { FlintSnackbarEvents } from './flint-snackbar.js';
 export { FlintSpeedDialActionEvents } from './flint-speed-dial-action.js';
+export { FlintSpeedDialEvents } from './flint-speed-dial.js';
 export { FlintSplitPanelEvents } from './flint-split-panel.js';
 export { FlintStepEvents } from './flint-step.js';
 export { FlintStepperEvents } from './flint-stepper.js';

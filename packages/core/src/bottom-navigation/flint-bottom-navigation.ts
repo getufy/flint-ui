@@ -7,7 +7,7 @@ import uiBottomNavigationStyles from './flint-bottom-navigation.css?inline';
  * Bottom Navigation bars allow movement between primary destinations in an app.
  * 
  * @slot - destinations (flint-bottom-navigation-action).
- * @fires flint-bottom-navigation-change - Dispatched when the selected value changes.
+ * @fires flint-bottom-navigation-change - Dispatched when the selected value changes. detail: `{ value: number | string }`
  */
 @customElement('flint-bottom-navigation')
 export class FlintBottomNavigation extends LitElement {

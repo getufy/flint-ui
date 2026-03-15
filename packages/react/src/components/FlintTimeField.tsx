@@ -5,14 +5,14 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintTimeField as FlintTimeFieldElement } from '@getufy/flint-ui/time-picker/flint-time-picker';
 
-export interface ChangeDetail {
+export interface FlintTimeFieldChangeDetail {
     value: string;
 }
 
 /**
  * Time Field: a segmented time input with keyboard navigation.
  */
-export interface FlintTimeFieldProps extends Omit<React.HTMLAttributes<FlintTimeFieldElement>, 'onChange'> {
+export interface FlintTimeFieldProps extends React.HTMLAttributes<FlintTimeFieldElement> {
     /** Time value in HH:MM:SS format. */
     value?: string;
     /** Field label text. */
@@ -33,8 +33,8 @@ export interface FlintTimeFieldProps extends Omit<React.HTMLAttributes<FlintTime
     errorMessage?: string;
     /** Fired when the clear button is clicked. */
     onFlintTimePickerClear?: (event: CustomEvent) => void;
-    /** Fired when the time value changes. */
-    onChange?: (event: CustomEvent<ChangeDetail>) => void;
+    /** Fired when the time value changes. detail: `{ value: string }` */
+    onFlintTimeFieldChange?: (event: CustomEvent<FlintTimeFieldChangeDetail>) => void;
 }
 
 export const FlintTimeField = createComponent({
@@ -43,6 +43,6 @@ export const FlintTimeField = createComponent({
     react: React,
     events: {
         onFlintTimePickerClear: 'flint-time-picker-clear' as EventName<CustomEvent>,
-        onChange: 'change' as EventName<CustomEvent<ChangeDetail>>,
+        onFlintTimeFieldChange: 'flint-time-field-change' as EventName<CustomEvent<FlintTimeFieldChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintTimeFieldProps & React.RefAttributes<FlintTimeFieldElement>>;

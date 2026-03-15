@@ -12,7 +12,7 @@
       width: var(--flint-dialog-width, 444px);
       display: flex;
       flex-direction: column;
-      overflow: hidden; /* clip panel; inner flint-dialog-content scrolls independently */
+      overflow: clip; /* clip panel for border-radius; inner flint-dialog-content scrolls independently */
 
       /* Base state: hidden (scale transition) */
       opacity: 0;

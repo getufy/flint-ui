@@ -58,7 +58,7 @@ type TimeView = 'hours' | 'minutes' | 'seconds';
 /**
  * Time Field: a segmented time input with keyboard navigation.
  *
- * @fires change - Fired when the time value changes.
+ * @fires flint-time-field-change - Fired when the time value changes. detail: `{ value: string }`
  * @fires flint-time-picker-clear - Fired when the clear button is clicked.
  */
 @customElement('flint-time-field')
@@ -122,7 +122,7 @@ export class FlintTimeField extends LitElement {
         const v = buildTime(h, this._m, this._s ?? 0);
         if (v === this.value) return;
         this.value = v;
-        this.dispatchEvent(new CustomEvent('change', { detail: { value: v }, bubbles: true, composed: true }));
+        this.dispatchEvent(new CustomEvent('flint-time-field-change', { detail: { value: v }, bubbles: true, composed: true }));
     }
 
     private _commitBuf() {
@@ -261,7 +261,7 @@ export class FlintTimeField extends LitElement {
 /**
  * Digital Clock: a scrollable time-slot picker.
  *
- * @fires change - Fired when a time slot is selected.
+ * @fires flint-digital-clock-change - Fired when a time slot is selected. detail: `{ value: string }`
  */
 @customElement('flint-digital-clock')
 export class FlintDigitalClock extends LitElement {
@@ -286,7 +286,7 @@ export class FlintDigitalClock extends LitElement {
     private _label(v: string) { return displayTime(v, this.ampm); }
 
     private _select(v: string) {
-        this.dispatchEvent(new CustomEvent('change', { detail: { value: v }, bubbles: true, composed: true }));
+        this.dispatchEvent(new CustomEvent('flint-digital-clock-change', { detail: { value: v }, bubbles: true, composed: true }));
     }
 
     private _onItemKeyDown(e: KeyboardEvent, v: string) {
@@ -335,7 +335,7 @@ export class FlintDigitalClock extends LitElement {
 /**
  * Multi Section Digital Clock: hours, minutes, and optional seconds columns.
  *
- * @fires change - Fired when the time value changes.
+ * @fires flint-multi-section-digital-clock-change - Fired when the time value changes. detail: `{ value: string }`
  */
 @customElement('flint-multi-section-digital-clock')
 export class FlintMultiSectionDigitalClock extends LitElement {
@@ -352,7 +352,7 @@ export class FlintMultiSectionDigitalClock extends LitElement {
 
     private _set(h: number, m: number, s: number) {
         const v = buildTime(h, m, s);
-        this.dispatchEvent(new CustomEvent('change', { detail: { value: v }, bubbles: true, composed: true }));
+        this.dispatchEvent(new CustomEvent('flint-multi-section-digital-clock-change', { detail: { value: v }, bubbles: true, composed: true }));
     }
 
     private _colKeyDown(e: KeyboardEvent, seg: 'h' | 'm' | 's' | 'mer') {
@@ -460,7 +460,7 @@ export class FlintMultiSectionDigitalClock extends LitElement {
 /**
  * Time Clock: an analog clock face for selecting hours, minutes, and seconds.
  *
- * @fires change - Fired when the time value changes.
+ * @fires flint-time-clock-change - Fired when the time value changes. detail: `{ value: string }`
  * @fires flint-time-clock-view-change - Fired when the clock face view switches.
  */
 @customElement('flint-time-clock')
@@ -489,7 +489,7 @@ export class FlintTimeClock extends LitElement {
 
     private _emit(h: number, m: number, s: number) {
         const v = buildTime(h, m, s);
-        this.dispatchEvent(new CustomEvent('change', { detail: { value: v }, bubbles: true, composed: true }));
+        this.dispatchEvent(new CustomEvent('flint-time-clock-change', { detail: { value: v }, bubbles: true, composed: true }));
     }
 
     private _switchView(v: TimeView) {
@@ -730,7 +730,7 @@ const FIELD_SHARED = css`
 /**
  * Desktop Time Picker: a time field with a dropdown clock.
  *
- * @fires change - Fired when the time value changes.
+ * @fires flint-desktop-time-picker-change - Fired when the time value changes. detail: `{ value: string }`
  */
 @customElement('flint-desktop-time-picker')
 export class FlintDesktopTimePicker extends LitElement {
@@ -759,7 +759,7 @@ export class FlintDesktopTimePicker extends LitElement {
 
     private _commit(v: string) {
         this.value = v;
-        this.dispatchEvent(new CustomEvent('change', { detail: { value: v }, bubbles: true, composed: true }));
+        this.dispatchEvent(new CustomEvent('flint-desktop-time-picker-change', { detail: { value: v }, bubbles: true, composed: true }));
         this._open = false;
     }
 
@@ -768,13 +768,13 @@ export class FlintDesktopTimePicker extends LitElement {
       <div class="popover-anchor">
         <flint-time-field .value=${this.value} .label=${this.label} .ampm=${this.ampm} ?seconds=${this.seconds}
           ?disabled=${this.disabled} ?readonly=${this.readonly} ?error=${this.error} helper-text=${this.helperText} error-message=${this.errorMessage}
-          @change=${(e: CustomEvent) => this._commit(e.detail.value)}
+          @flint-time-field-change=${(e: CustomEvent) => this._commit(e.detail.value)}
           @focus=${() => { if (!this.disabled && !this.readonly) this._open = true; }}
         ></flint-time-field>
         <div class="click-away ${this._open ? 'open' : ''}" @click=${() => this._open = false}></div>
         <div class="popover ${this._open ? 'open' : ''}" role="dialog" aria-label="Time picker">
           <flint-multi-section-digital-clock .value=${this.value || buildTime(12, 0)} .ampm=${this.ampm} ?seconds=${this.seconds}
-            @change=${(e: CustomEvent) => { this.value = e.detail.value; }}
+            @flint-multi-section-digital-clock-change=${(e: CustomEvent) => { this.value = e.detail.value; }}
           ></flint-multi-section-digital-clock>
           <div class="actions">
             <button class="btn btn-cancel" @click=${() => this._open = false}>Cancel</button>
@@ -790,7 +790,7 @@ export class FlintDesktopTimePicker extends LitElement {
 /**
  * Mobile Time Picker: a time field with a modal clock dialog.
  *
- * @fires change - Fired when the time value changes.
+ * @fires flint-mobile-time-picker-change - Fired when the time value changes. detail: `{ value: string }`
  */
 @customElement('flint-mobile-time-picker')
 export class FlintMobileTimePicker extends LitElement {
@@ -822,19 +822,19 @@ export class FlintMobileTimePicker extends LitElement {
       <flint-time-field .value=${this.value} .label=${this.label} .ampm=${this.ampm} ?seconds=${this.seconds}
         ?disabled=${this.disabled} ?error=${this.error} helper-text=${this.helperText} error-message=${this.errorMessage} readonly
         @focus=${() => { if (!this.disabled) { this._pending = this.value; this._view = 'hours'; this._open = true; } }}
-        @change=${(e: CustomEvent) => { this.value = e.detail.value; this.dispatchEvent(new CustomEvent('change', { detail: e.detail, bubbles: true, composed: true })); }}
+        @flint-time-field-change=${(e: CustomEvent) => { this.value = e.detail.value; this.dispatchEvent(new CustomEvent('flint-mobile-time-picker-change', { detail: e.detail, bubbles: true, composed: true })); }}
       ></flint-time-field>
       <flint-dialog .open=${this._open} disable-backdrop-close @close=${() => this._open = false} style="--flint-dialog-width:320px">
         <flint-dialog-title>Select Time</flint-dialog-title>
         <flint-dialog-content style="padding:12px;display:flex;justify-content:center;">
           <flint-time-clock .value=${this._pending || this.value || buildTime(12, 0)} .ampm=${this.ampm} ?seconds=${this.seconds} .view=${this._view}
-            @change=${(e: CustomEvent) => { this._pending = e.detail.value; }}
+            @flint-time-clock-change=${(e: CustomEvent) => { this._pending = e.detail.value; }}
             @flint-time-clock-view-change=${(e: CustomEvent) => { this._view = e.detail.view; }}
           ></flint-time-clock>
         </flint-dialog-content>
         <flint-dialog-actions>
           <button class="btn btn-cancel" @click=${() => { this._pending = this.value; this._open = false; }}>Cancel</button>
-          <button class="btn btn-ok" @click=${() => { const v = this._pending || this.value; this.value = v; this.dispatchEvent(new CustomEvent('change', { detail: { value: v }, bubbles: true, composed: true })); this._open = false; }}>OK</button>
+          <button class="btn btn-ok" @click=${() => { const v = this._pending || this.value; this.value = v; this.dispatchEvent(new CustomEvent('flint-mobile-time-picker-change', { detail: { value: v }, bubbles: true, composed: true })); this._open = false; }}>OK</button>
         </flint-dialog-actions>
       </flint-dialog>
     `;
@@ -845,7 +845,7 @@ export class FlintMobileTimePicker extends LitElement {
 /**
  * Static Time Picker: an always-visible inline clock.
  *
- * @fires change - Fired when the time value changes.
+ * @fires flint-static-time-picker-change - Fired when the time value changes. detail: `{ value: string }`
  */
 @customElement('flint-static-time-picker')
 export class FlintStaticTimePicker extends LitElement {
@@ -862,9 +862,9 @@ export class FlintStaticTimePicker extends LitElement {
         return html`
       <div class="surface">
         <flint-multi-section-digital-clock .value=${this.value || buildTime(12, 0)} .ampm=${this.ampm} ?seconds=${this.seconds}
-          @change=${(e: CustomEvent) => {
+          @flint-multi-section-digital-clock-change=${(e: CustomEvent) => {
                 this.value = e.detail.value;
-                this.dispatchEvent(new CustomEvent('change', { detail: e.detail, bubbles: true, composed: true }));
+                this.dispatchEvent(new CustomEvent('flint-static-time-picker-change', { detail: e.detail, bubbles: true, composed: true }));
             }}
         ></flint-multi-section-digital-clock>
       </div>
@@ -876,7 +876,7 @@ export class FlintStaticTimePicker extends LitElement {
 /**
  * Time Picker: a configurable time input supporting desktop, mobile, and static variants.
  *
- * @fires change - Fired when the time value changes.
+ * @fires flint-time-picker-change - Fired when the time value changes. detail: `{ value: string }`
  */
 @customElement('flint-time-picker')
 export class FlintTimePicker extends LitElement {
@@ -909,14 +909,14 @@ export class FlintTimePicker extends LitElement {
 
     private _onChange(e: CustomEvent) {
         this.value = e.detail.value;
-        this.dispatchEvent(new CustomEvent('change', { detail: e.detail, bubbles: true, composed: true }));
+        this.dispatchEvent(new CustomEvent('flint-time-picker-change', { detail: e.detail, bubbles: true, composed: true }));
     }
 
     render() {
         const v = this._v;
-        if (v === 'static') return html`<flint-static-time-picker .value=${this.value} .ampm=${this.ampm} ?seconds=${this.seconds} @change=${this._onChange}></flint-static-time-picker>`;
-        if (v === 'mobile') return html`<flint-mobile-time-picker .value=${this.value} .label=${this.label} .ampm=${this.ampm} ?seconds=${this.seconds} ?disabled=${this.disabled} ?error=${this.error} helper-text=${this.helperText} error-message=${this.errorMessage} @change=${this._onChange}></flint-mobile-time-picker>`;
-        return html`<flint-desktop-time-picker .value=${this.value} .label=${this.label} .ampm=${this.ampm} ?seconds=${this.seconds} ?disabled=${this.disabled} ?error=${this.error} helper-text=${this.helperText} error-message=${this.errorMessage} @change=${this._onChange}></flint-desktop-time-picker>`;
+        if (v === 'static') return html`<flint-static-time-picker .value=${this.value} .ampm=${this.ampm} ?seconds=${this.seconds} @flint-static-time-picker-change=${this._onChange}></flint-static-time-picker>`;
+        if (v === 'mobile') return html`<flint-mobile-time-picker .value=${this.value} .label=${this.label} .ampm=${this.ampm} ?seconds=${this.seconds} ?disabled=${this.disabled} ?error=${this.error} helper-text=${this.helperText} error-message=${this.errorMessage} @flint-mobile-time-picker-change=${this._onChange}></flint-mobile-time-picker>`;
+        return html`<flint-desktop-time-picker .value=${this.value} .label=${this.label} .ampm=${this.ampm} ?seconds=${this.seconds} ?disabled=${this.disabled} ?error=${this.error} helper-text=${this.helperText} error-message=${this.errorMessage} @flint-desktop-time-picker-change=${this._onChange}></flint-desktop-time-picker>`;
     }
 }
 

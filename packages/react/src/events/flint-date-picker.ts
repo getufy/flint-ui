@@ -1,4 +1,4 @@
 // Auto-generated — do not edit
 export const FlintDatePickerEvents = {
-    CHANGE: 'change',
+    CHANGE: 'flint-date-picker-change',
 } as const;

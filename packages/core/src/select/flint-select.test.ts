@@ -432,7 +432,7 @@ describe('flint-select — selection', () => {
 // ── Change event ─────────────────────────────────────────────────────────────
 
 describe('flint-select — change event', () => {
-  it('fires change with string value in single mode', async () => {
+  it('fires change with string[] value in single mode', async () => {
     const el = await fixture<FlintSelect>(html`<flint-select .options=${opts}></flint-select>`);
     const spy = vi.fn();
     el.addEventListener('flint-select-change', spy);
@@ -440,7 +440,7 @@ describe('flint-select — change event', () => {
     getOptions(el)[0].click();
     await el.updateComplete;
     expect(spy).toHaveBeenCalledOnce();
-    expect(spy.mock.calls[0][0].detail).toEqual({ value: 'apple' });
+    expect(spy.mock.calls[0][0].detail).toEqual({ value: ['apple'] });
   });
 
   it('fires change with array value in multi mode', async () => {
@@ -453,14 +453,14 @@ describe('flint-select — change event', () => {
     expect(spy.mock.calls[0][0].detail).toEqual({ value: ['apple'] });
   });
 
-  it('fires change with null when single-select is cleared', async () => {
+  it('fires change with empty array when single-select is cleared', async () => {
     const el = await fixture<FlintSelect>(html`<flint-select .options=${opts}></flint-select>`);
     const spy = vi.fn();
     el.addEventListener('flint-select-change', spy);
-    // Manually set value then clear it to test detail = null
+    // Manually set value then clear it to test detail = []
     el.value = [];
     el['_dispatchChange']();
-    expect(spy.mock.calls[0][0].detail).toEqual({ value: null });
+    expect(spy.mock.calls[0][0].detail).toEqual({ value: [] });
   });
 
   it('chip remove fires change with updated array', async () => {

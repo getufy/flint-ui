@@ -181,16 +181,16 @@ describe('flint-chip', () => {
 
     // ── Click behaviour ────────────────────────────────────────────────────
 
-    it('dispatches click when clickable and chip is clicked', async () => {
+    it('dispatches flint-chip-click when clickable and chip is clicked', async () => {
         const handler = vi.fn();
-        const el = await fixture<FlintChip>(html`<flint-chip label="Click" clickable @click=${handler}></flint-chip>`);
+        const el = await fixture<FlintChip>(html`<flint-chip label="Click" clickable @flint-chip-click=${handler}></flint-chip>`);
         el.shadowRoot!.querySelector('.chip')!.dispatchEvent(new MouseEvent('click', { bubbles: true, composed: true }));
         expect(handler).toHaveBeenCalledTimes(1);
     });
 
-    it('does not fire click twice (no double-event from shadow DOM + re-dispatch)', async () => {
+    it('does not fire flint-chip-click twice (no double-event from shadow DOM + re-dispatch)', async () => {
         const handler = vi.fn();
-        const el = await fixture<FlintChip>(html`<flint-chip label="Click" clickable @click=${handler}></flint-chip>`);
+        const el = await fixture<FlintChip>(html`<flint-chip label="Click" clickable @flint-chip-click=${handler}></flint-chip>`);
         el.shadowRoot!.querySelector('.chip')!.dispatchEvent(new MouseEvent('click', { bubbles: true, composed: true }));
         expect(handler).toHaveBeenCalledTimes(1);
     });
@@ -209,11 +209,11 @@ describe('flint-chip', () => {
         expect(handler).not.toHaveBeenCalled();
     });
 
-    it('click event bubbles to parent element', async () => {
+    it('flint-chip-click event bubbles to parent element', async () => {
         const wrapper = document.createElement('div');
         document.body.appendChild(wrapper);
         const handler = vi.fn();
-        wrapper.addEventListener('click', handler);
+        wrapper.addEventListener('flint-chip-click', handler);
         const el = await fixture<FlintChip>(html`<flint-chip label="Bubble" clickable></flint-chip>`, { parentNode: wrapper });
         el.shadowRoot!.querySelector('.chip')!.dispatchEvent(new MouseEvent('click', { bubbles: true, composed: true }));
         expect(handler).toHaveBeenCalledTimes(1);
@@ -222,16 +222,16 @@ describe('flint-chip', () => {
 
     // ── Keyboard behaviour ─────────────────────────────────────────────────
 
-    it('dispatches click on Enter key when clickable', async () => {
+    it('dispatches flint-chip-click on Enter key when clickable', async () => {
         const handler = vi.fn();
-        const el = await fixture<FlintChip>(html`<flint-chip label="Click" clickable @click=${handler}></flint-chip>`);
+        const el = await fixture<FlintChip>(html`<flint-chip label="Click" clickable @flint-chip-click=${handler}></flint-chip>`);
         el.shadowRoot!.querySelector('.chip')!.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, composed: true }));
         expect(handler).toHaveBeenCalledTimes(1);
     });
 
-    it('dispatches click on Space key when clickable', async () => {
+    it('dispatches flint-chip-click on Space key when clickable', async () => {
         const handler = vi.fn();
-        const el = await fixture<FlintChip>(html`<flint-chip label="Click" clickable @click=${handler}></flint-chip>`);
+        const el = await fixture<FlintChip>(html`<flint-chip label="Click" clickable @flint-chip-click=${handler}></flint-chip>`);
         el.shadowRoot!.querySelector('.chip')!.dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true, composed: true }));
         expect(handler).toHaveBeenCalledTimes(1);
     });

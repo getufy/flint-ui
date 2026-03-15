@@ -164,7 +164,7 @@ export const Desktop: Story = {
       ?readonly=${args.readonly}
       ?error=${args.error}
       helper-text=${args.helperText ?? ''}
-      @change=${onChange}
+      @flint-date-picker-change=${onChange}
     ></flint-date-picker>
   `),
 };
@@ -184,7 +184,7 @@ export const Mobile: Story = {
       ?readonly=${args.readonly}
       ?error=${args.error}
       helper-text=${args.helperText ?? ''}
-      @change=${onChange}
+      @flint-date-picker-change=${onChange}
     ></flint-date-picker>
   `),
 };
@@ -198,7 +198,7 @@ export const Static: Story = {
       <p style="font-size:.85rem;color:#4b5563;margin-bottom:16px;">
         The static variant renders the calendar inline — no popover/modal, no text field.
       </p>
-      <flint-date-picker .variant=${args.variant} @change=${onChange}></flint-date-picker>
+      <flint-date-picker .variant=${args.variant} @flint-date-picker-change=${onChange}></flint-date-picker>
     </div>
   `,
 };
@@ -230,7 +230,7 @@ export const ReadOnly: Story = {
       ?disabled=${args.disabled}
       ?readonly=${args.readonly}
       ?error=${args.error}
-      @change=${onChange}
+      @flint-date-picker-change=${onChange}
     ></flint-date-picker>
   `),
 };
@@ -259,7 +259,7 @@ export const WithMinMax: Story = {
         .min=${todayIso}
         .max=${maxIso}
         helper-text="Select a date within the next 30 days"
-        @change=${onChange}
+        @flint-date-picker-change=${onChange}
       ></flint-date-picker>
     `);
     },
@@ -274,7 +274,7 @@ export const ErrorState: Story = {
       .value=${args.value ?? ''}
       ?error=${args.error}
       helper-text=${args.helperText ?? ''}
-      @change=${onChange}
+      @flint-date-picker-change=${onChange}
     ></flint-date-picker>
   `),
 };
@@ -289,17 +289,17 @@ export const AllVariants: Story = {
 
         <div>
           <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;color:#4b5563;letter-spacing:.05em;margin:0 0 12px;">Desktop</p>
-          <flint-date-picker variant="desktop" label="Check-in" @change=${onChange}></flint-date-picker>
+          <flint-date-picker variant="desktop" label="Check-in" @flint-date-picker-change=${onChange}></flint-date-picker>
         </div>
 
         <div>
           <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;color:#4b5563;letter-spacing:.05em;margin:0 0 12px;">Mobile (Modal)</p>
-          <flint-date-picker variant="mobile" label="Check-out" @change=${onChange}></flint-date-picker>
+          <flint-date-picker variant="mobile" label="Check-out" @flint-date-picker-change=${onChange}></flint-date-picker>
         </div>
 
         <div>
           <p style="font-size:.75rem;font-weight:600;text-transform:uppercase;color:#4b5563;letter-spacing:.05em;margin:0 0 12px;">Static</p>
-          <flint-date-picker variant="static" @change=${onChange}></flint-date-picker>
+          <flint-date-picker variant="static" @flint-date-picker-change=${onChange}></flint-date-picker>
         </div>
 
       </flint-stack>
@@ -321,7 +321,7 @@ export const ControlledValue: Story = {
           id="controlled-dp"
           label="Independence Day"
           .value=${currentValue}
-          @change=${(e: Event) => {
+          @flint-date-picker-change=${(e: Event) => {
                 const v = (e as CustomEvent).detail.value;
                 currentValue = v;
                 (document.getElementById('controlled-dp') as FlintDatePicker).value = v;

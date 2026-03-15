@@ -189,7 +189,7 @@ describe('flint-date-picker', () => {
             const days = cal.shadowRoot!.querySelectorAll<HTMLElement>('.day-cell:not(.other-month):not(.disabled)');
             days[9].click(); // pick 10th of June
         });
-        const event = await oneEvent(el, 'change') as CustomEvent;
+        const event = await oneEvent(el, 'flint-date-picker-change') as CustomEvent;
         expect(event.detail.value).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     });
 
@@ -239,7 +239,7 @@ describe('flint-date-picker', () => {
             const days = cal.shadowRoot!.querySelectorAll<HTMLElement>('.day-cell:not(.other-month):not(.disabled)');
             days[5].click();
         });
-        const event = await oneEvent(el, 'change') as CustomEvent;
+        const event = await oneEvent(el, 'flint-date-picker-change') as CustomEvent;
         expect(event.detail.value).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     });
 
@@ -249,7 +249,7 @@ describe('flint-date-picker', () => {
         const input = el.shadowRoot!.querySelector<HTMLInputElement>('input')!;
         input.value = '07/04/2028';
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-date-picker-change', spy);
         input.dispatchEvent(new Event('input', { bubbles: true }));
         expect(spy).toHaveBeenCalledOnce();
         expect((spy.mock.calls[0][0] as CustomEvent).detail.value).toBe('2028-07-04');
@@ -261,7 +261,7 @@ describe('flint-date-picker', () => {
         const input = el.shadowRoot!.querySelector<HTMLInputElement>('input')!;
         input.value = '01/01/2025'; // before min
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-date-picker-change', spy);
         input.dispatchEvent(new Event('input', { bubbles: true }));
         expect(spy).not.toHaveBeenCalled();
     });
@@ -507,7 +507,7 @@ describe('flint-date-picker — full coverage', () => {
         const cal = el.shadowRoot!.querySelector('flint-date-picker-calendar') as FlintDatePickerCalendar;
         await cal.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-date-picker-change', spy);
         const days = cal.shadowRoot!.querySelectorAll<HTMLElement>('.day-cell:not(.other-month):not(.disabled)');
         days[9].click();
         await el.updateComplete;
@@ -529,7 +529,7 @@ describe('flint-date-picker — full coverage', () => {
         setTimeout(() => {
             (el.shadowRoot!.querySelector('.action-btn.ok') as HTMLButtonElement).click();
         });
-        const event = await oneEvent(el, 'change') as CustomEvent;
+        const event = await oneEvent(el, 'flint-date-picker-change') as CustomEvent;
         expect(event.detail.value).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     });
 
@@ -545,7 +545,7 @@ describe('flint-date-picker — full coverage', () => {
         days[9].click();
         await el.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-date-picker-change', spy);
         (el.shadowRoot!.querySelector('.action-btn.cancel') as HTMLButtonElement).click();
         await el.updateComplete;
         expect(spy).not.toHaveBeenCalled();
@@ -559,7 +559,7 @@ describe('flint-date-picker — full coverage', () => {
         const input = el.shadowRoot!.querySelector<HTMLInputElement>('input')!;
         input.value = '07/04/2028';
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-date-picker-change', spy);
         input.dispatchEvent(new Event('input', { bubbles: true }));
         expect(spy).not.toHaveBeenCalled();
     });
@@ -571,7 +571,7 @@ describe('flint-date-picker — full coverage', () => {
         const input = el.shadowRoot!.querySelector<HTMLInputElement>('input')!;
         input.value = '99/99/2025';
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-date-picker-change', spy);
         input.dispatchEvent(new Event('input', { bubbles: true }));
         expect(spy).not.toHaveBeenCalled();
     });
@@ -583,7 +583,7 @@ describe('flint-date-picker — full coverage', () => {
         const input = el.shadowRoot!.querySelector<HTMLInputElement>('input')!;
         input.value = '07/01/2025'; // 2025-07-01 > max 2025-06-30
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-date-picker-change', spy);
         input.dispatchEvent(new Event('input', { bubbles: true }));
         expect(spy).not.toHaveBeenCalled();
     });
@@ -597,7 +597,7 @@ describe('flint-date-picker — full coverage', () => {
         const cal = el.shadowRoot!.querySelector('flint-date-picker-calendar') as FlintDatePickerCalendar;
         await cal.updateComplete;
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-date-picker-change', spy);
         const selectedCell = cal.shadowRoot!.querySelector<HTMLElement>('.day-cell.selected');
         selectedCell?.click();
         await el.updateComplete;
@@ -637,7 +637,7 @@ describe('flint-date-picker — full coverage', () => {
         // Click OK: _commit('' || '2025-06-15') → '' is falsy, uses this.value
         // iso === this.value → no change event, just closes
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-date-picker-change', spy);
         (el.shadowRoot!.querySelector('.action-btn.ok') as HTMLButtonElement).click();
         await el.updateComplete;
         expect(spy).not.toHaveBeenCalled();
@@ -650,7 +650,7 @@ describe('flint-date-picker — full coverage', () => {
         const input = el.shadowRoot!.querySelector<HTMLInputElement>('input')!;
         input.value = '07/04'; // too short, won't match /^(\d{2})\/(\d{2})\/(\d{4})$/
         const spy = vi.fn();
-        el.addEventListener('change', spy);
+        el.addEventListener('flint-date-picker-change', spy);
         input.dispatchEvent(new Event('input', { bubbles: true }));
         expect(spy).not.toHaveBeenCalled();
     });

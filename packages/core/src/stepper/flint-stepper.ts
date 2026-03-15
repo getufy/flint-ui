@@ -282,7 +282,7 @@ export class FlintStepper extends LitElement {
 
     private _onStepClick = (e: CustomEvent) => {
         this.activeStep = e.detail.step;
-        this.dispatchEvent(new CustomEvent('flint-step-change', { detail: { step: e.detail.step }, bubbles: true, composed: true }));
+        this.dispatchEvent(new CustomEvent('flint-step-change', { detail: { step: this.activeStep }, bubbles: true, composed: true }));
         this._syncSteps();
     };
 

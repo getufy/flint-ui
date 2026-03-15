@@ -3,3 +3,4 @@
 export { FlintSpeedDialAction, type FlintSpeedDialActionProps } from './components/FlintSpeedDialAction.js';
 export { FlintSpeedDial, type FlintSpeedDialProps } from './components/FlintSpeedDial.js';
 export { FlintSpeedDialActionEvents } from './events/flint-speed-dial-action.js';
+export { FlintSpeedDialEvents } from './events/flint-speed-dial.js';

@@ -253,7 +253,7 @@ export class FlintDatePickerCalendar extends LitElement {
  * - 'static'   — calendar always visible, no field
  * - 'auto'     — desktop on pointer:fine, mobile on pointer:coarse
  *
- * @fires change - { detail: { value: string } } when the date changes
+ * @fires flint-date-picker-change - Fired when the date changes. detail: `{ value: string }`
  */
 @customElement('flint-date-picker')
 export class FlintDatePicker extends LitElement {
@@ -335,7 +335,7 @@ export class FlintDatePicker extends LitElement {
     private _commit(iso: string) {
         if (iso === this.value) { this._closePicker(); return; }
         this.value = iso;
-        this.dispatchEvent(new CustomEvent('change', {
+        this.dispatchEvent(new CustomEvent('flint-date-picker-change', {
             detail: { value: iso }, bubbles: true, composed: true
         }));
         this._closePicker();

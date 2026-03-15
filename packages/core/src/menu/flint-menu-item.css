@@ -15,7 +15,7 @@
             color: var(--flint-text-color);
             background: transparent;
             border: none;
-            width: 100%;
+            min-width: 100%;
             text-align: left;
             box-sizing: border-box;
             transition: background 0.12s;

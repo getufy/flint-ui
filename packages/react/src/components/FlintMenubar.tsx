@@ -2,7 +2,7 @@
 // Source: src/menubar/flint-menubar.ts
 
 import React from 'react';
-import { createComponent } from '@lit/react';
+import { createComponent, type EventName } from '@lit/react';
 import { FlintMenubar as FlintMenubarElement } from '@getufy/flint-ui/menubar/flint-menubar';
 
 /**
@@ -14,10 +14,21 @@ Hosts one or more `<flint-menubar-menu>` children.
 export interface FlintMenubarProps extends React.HTMLAttributes<FlintMenubarElement> {
     /** Accessible label for the menubar region. Defaults to "Menu bar". */
     label?: string;
+    /** Bubbles from items. */
+    onFlintMenubarItemSelect?: (event: CustomEvent) => void;
+    /** Bubbles from checkbox items. */
+    onFlintMenubarCheckboxChange?: (event: CustomEvent) => void;
+    /** Bubbles from radio groups. */
+    onFlintMenubarRadioChange?: (event: CustomEvent) => void;
 }
 
 export const FlintMenubar = createComponent({
     tagName: 'flint-menubar',
     elementClass: FlintMenubarElement,
     react: React,
+    events: {
+        onFlintMenubarItemSelect: 'flint-menubar-item-select' as EventName<CustomEvent>,
+        onFlintMenubarCheckboxChange: 'flint-menubar-checkbox-change' as EventName<CustomEvent>,
+        onFlintMenubarRadioChange: 'flint-menubar-radio-change' as EventName<CustomEvent>,
+    },
 }) as unknown as React.ForwardRefExoticComponent<FlintMenubarProps & React.RefAttributes<FlintMenubarElement>>;

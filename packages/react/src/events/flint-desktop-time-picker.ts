@@ -1,4 +1,4 @@
 // Auto-generated — do not edit
 export const FlintDesktopTimePickerEvents = {
-    CHANGE: 'change',
+    CHANGE: 'flint-desktop-time-picker-change',
 } as const;

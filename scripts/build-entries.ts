@@ -24,6 +24,7 @@ function discoverEntries(): Record<string, string> {
 
     const entries: Record<string, string> = {
         index: 'src/index.ts',
+        'suppress-warnings': 'src/suppress-warnings.ts',
     };
 
     // Match `from './foo/bar.js'` patterns in index.ts
@@ -75,6 +76,12 @@ function buildExportsMap(entries: Record<string, string>): Record<string, unknow
     // Keep theme CSS exports
     exportsMap['./theme.css'] = './src/theme.css';
     exportsMap['./theme-dark.css'] = './src/theme-dark.css';
+
+    // Suppress-warnings entry (standalone, not in index.ts)
+    exportsMap['./suppress-warnings'] = {
+        types: './dist/suppress-warnings.d.ts',
+        import: './dist/suppress-warnings.js',
+    };
 
     return exportsMap;
 }

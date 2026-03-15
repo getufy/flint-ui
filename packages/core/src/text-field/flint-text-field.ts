@@ -6,8 +6,8 @@ import uiTextFieldStyles from './flint-text-field.css?inline';
 /**
  * Text Field: a styled text input with outlined/filled variants.
  *
- * @fires input - Fired on each keystroke as the value changes.
- * @fires change - Fired when the input loses focus after the value has changed.
+ * @fires flint-text-field-input - Fired on each keystroke as the value changes. detail: `{ value: string }`
+ * @fires flint-text-field-change - Fired when the input loses focus after the value has changed. detail: `{ value: string }`
  */
 @customElement('flint-text-field')
 export class FlintTextField extends LitElement {
@@ -50,7 +50,7 @@ export class FlintTextField extends LitElement {
 
     private _handleInput(e: InputEvent) {
         this.value = (e.target as HTMLInputElement).value;
-        this.dispatchEvent(new CustomEvent('input', {
+        this.dispatchEvent(new CustomEvent('flint-text-field-input', {
             detail: { value: this.value },
             bubbles: true,
             composed: true
@@ -59,7 +59,7 @@ export class FlintTextField extends LitElement {
 
     private _handleChange(e: Event) {
         this.value = (e.target as HTMLInputElement).value;
-        this.dispatchEvent(new CustomEvent('change', {
+        this.dispatchEvent(new CustomEvent('flint-text-field-change', {
             detail: { value: this.value },
             bubbles: true,
             composed: true

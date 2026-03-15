@@ -251,7 +251,7 @@ describe('flint-transfer-list', () => {
         `);
 
         const changeSpy = vi.fn();
-        el.addEventListener('change', changeSpy);
+        el.addEventListener('flint-transfer-list-change', changeSpy);
 
         const firstItem = el.shadowRoot!.querySelector('.list-item') as HTMLElement;
         firstItem.click();
@@ -289,7 +289,7 @@ describe('flint-transfer-list', () => {
         `);
 
         const changeSpy = vi.fn();
-        el.addEventListener('change', changeSpy);
+        el.addEventListener('flint-transfer-list-change', changeSpy);
 
         const rightItem = el.shadowRoot!.querySelector('.list-wrapper:last-child .list-item') as HTMLElement;
         rightItem.click();
@@ -588,7 +588,7 @@ describe('flint-transfer-list', () => {
         `);
 
         const changeSpy = vi.fn();
-        el.addEventListener('change', changeSpy);
+        el.addEventListener('flint-transfer-list-change', changeSpy);
 
         const moveAllRightBtn = el.shadowRoot!.querySelector('button[title="Move all right"]') as HTMLButtonElement;
         moveAllRightBtn.click();
@@ -614,7 +614,7 @@ describe('flint-transfer-list', () => {
             <flint-transfer-list .options=${defaultOptions} .value=${[]} ?disabled=${true}></flint-transfer-list>
         `);
         const changeSpy = vi.fn();
-        el.addEventListener('change', changeSpy);
+        el.addEventListener('flint-transfer-list-change', changeSpy);
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (el as any)._moveRight();
@@ -629,7 +629,7 @@ describe('flint-transfer-list', () => {
             <flint-transfer-list .options=${defaultOptions} .value=${['1', '2']} ?disabled=${true}></flint-transfer-list>
         `);
         const changeSpy = vi.fn();
-        el.addEventListener('change', changeSpy);
+        el.addEventListener('flint-transfer-list-change', changeSpy);
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (el as any)._moveLeft();
@@ -644,7 +644,7 @@ describe('flint-transfer-list', () => {
             <flint-transfer-list .options=${defaultOptions} .value=${[]} ?disabled=${true}></flint-transfer-list>
         `);
         const changeSpy = vi.fn();
-        el.addEventListener('change', changeSpy);
+        el.addEventListener('flint-transfer-list-change', changeSpy);
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (el as any)._moveAllRight();
@@ -659,7 +659,7 @@ describe('flint-transfer-list', () => {
             <flint-transfer-list .options=${defaultOptions} .value=${['1', '2']} ?disabled=${true}></flint-transfer-list>
         `);
         const changeSpy = vi.fn();
-        el.addEventListener('change', changeSpy);
+        el.addEventListener('flint-transfer-list-change', changeSpy);
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (el as any)._moveAllLeft();
@@ -821,7 +821,7 @@ describe('flint-transfer-list', () => {
         `);
 
         let capturedEvent: CustomEvent | null = null;
-        document.addEventListener('change', (e) => { capturedEvent = e as CustomEvent; }, { once: true });
+        document.addEventListener('flint-transfer-list-change', (e) => { capturedEvent = e as CustomEvent; }, { once: true });
 
         const moveAllRightBtn = el.shadowRoot!.querySelector('button[title="Move all right"]') as HTMLButtonElement;
         moveAllRightBtn.click();
@@ -839,7 +839,7 @@ describe('flint-transfer-list', () => {
         `);
 
         const changeSpy = vi.fn();
-        el.addEventListener('change', changeSpy);
+        el.addEventListener('flint-transfer-list-change', changeSpy);
 
         const moveAllLeftBtn = el.shadowRoot!.querySelector('button[title="Move all left"]') as HTMLButtonElement;
         moveAllLeftBtn.click();

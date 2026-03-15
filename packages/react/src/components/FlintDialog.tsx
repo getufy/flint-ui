@@ -27,6 +27,10 @@ export interface FlintDialogProps extends React.HTMLAttributes<FlintDialogElemen
        an explicit call to `requestClose()`). The host is responsible for
        setting `open = false` in response. detail: `{ open: false }` */
     onClose?: (event: CustomEvent<CloseDetail>) => void;
+    /** Dispatched by confirmation dialogs when the user clicked "confirm". */
+    onConfirm?: (event: CustomEvent) => void;
+    /** Dispatched by confirmation dialogs when the user clicked "cancel". */
+    onCancel?: (event: CustomEvent) => void;
 }
 
 export const FlintDialog = createComponent({
@@ -35,5 +39,7 @@ export const FlintDialog = createComponent({
     react: React,
     events: {
         onClose: 'close' as EventName<CustomEvent<CloseDetail>>,
+        onConfirm: 'confirm' as EventName<CustomEvent>,
+        onCancel: 'cancel' as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintDialogProps & React.RefAttributes<FlintDialogElement>>;

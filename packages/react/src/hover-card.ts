@@ -3,3 +3,4 @@
 export { FlintHoverCardTrigger, type FlintHoverCardTriggerProps } from './components/FlintHoverCardTrigger.js';
 export { FlintHoverCardContent, type FlintHoverCardContentProps } from './components/FlintHoverCardContent.js';
 export { FlintHoverCard, type FlintHoverCardProps } from './components/FlintHoverCard.js';
+export { FlintHoverCardEvents } from './events/flint-hover-card.js';

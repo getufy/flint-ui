@@ -1,4 +1,4 @@
 // Auto-generated — do not edit
 export const FlintStaticTimePickerEvents = {
-    CHANGE: 'change',
+    CHANGE: 'flint-static-time-picker-change',
 } as const;

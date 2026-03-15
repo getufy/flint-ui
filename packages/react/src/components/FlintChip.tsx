@@ -15,7 +15,7 @@ export interface FlintChipDeleteDetail {
  * @slot avatar - Avatar element shown at start.
  * @slot icon - Icon shown at start when no avatar.
  */
-export interface FlintChipProps extends Omit<React.HTMLAttributes<FlintChipElement>, 'onClick' | 'color'> {
+export interface FlintChipProps extends Omit<React.HTMLAttributes<FlintChipElement>, 'color'> {
     /** Text content displayed inside the chip. */
     label?: string;
     /** Visual style variant of the chip. */
@@ -30,7 +30,8 @@ export interface FlintChipProps extends Omit<React.HTMLAttributes<FlintChipEleme
     deletable?: boolean;
     /** Disables the chip and prevents interaction. */
     disabled?: boolean;
-    onClick?: (event: CustomEvent) => void;
+    /** Fired when a clickable chip is clicked. */
+    onFlintChipClick?: (event: CustomEvent) => void;
     /** Fired when the chip's delete icon is clicked. detail: `{ value: string }` */
     onFlintChipDelete?: (event: CustomEvent<FlintChipDeleteDetail>) => void;
 }
@@ -40,7 +41,7 @@ export const FlintChip = createComponent({
     elementClass: FlintChipElement,
     react: React,
     events: {
-        onClick: 'click' as EventName<CustomEvent>,
+        onFlintChipClick: 'flint-chip-click' as EventName<CustomEvent>,
         onFlintChipDelete: 'flint-chip-delete' as EventName<CustomEvent<FlintChipDeleteDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintChipProps & React.RefAttributes<FlintChipElement>>;
