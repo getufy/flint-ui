@@ -5,10 +5,23 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintHoverCardContent as FlintHoverCardContentElement } from '@getufy/flint-ui/hover-card/flint-hover-card';
 
+/**
+ * The floating card panel. Position is controlled via `side` and `align`.
+Place inside `flint-hover-card`; its `open` state is managed by the parent.
+ *
+ * @slot - Rich content displayed inside the card.
+ */
+export interface FlintHoverCardContentProps extends React.HTMLAttributes<FlintHoverCardContentElement> {
+    /** Which side of the trigger to display the card on. */
+    side?: 'top' | 'right' | 'bottom' | 'left';
+    /** Alignment of the card along the cross axis relative to the trigger. */
+    align?: 'start' | 'center' | 'end';
+    /** Whether the card is visible. Managed by the parent `flint-hover-card`. */
+    open?: boolean;
+}
+
 export const FlintHoverCardContent = createComponent({
     tagName: 'flint-hover-card-content',
     elementClass: FlintHoverCardContentElement,
     react: React,
-});
-
-export type FlintHoverCardContentProps = React.ComponentProps<typeof FlintHoverCardContent>;
+}) as unknown as React.ForwardRefExoticComponent<FlintHoverCardContentProps & React.RefAttributes<FlintHoverCardContentElement>>;

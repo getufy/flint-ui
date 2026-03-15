@@ -5,10 +5,18 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintTableRow as FlintTableRowElement } from '@getufy/flint-ui/table/flint-table';
 
+/**
+ * flint-table-row
+ */
+export interface FlintTableRowProps extends React.HTMLAttributes<FlintTableRowElement> {
+    /** Highlights the row as selected. */
+    selected?: boolean;
+    /** Forces hover highlight on the row. */
+    hover?: boolean;
+}
+
 export const FlintTableRow = createComponent({
     tagName: 'flint-table-row',
     elementClass: FlintTableRowElement,
     react: React,
-});
-
-export type FlintTableRowProps = React.ComponentProps<typeof FlintTableRow>;
+}) as unknown as React.ForwardRefExoticComponent<FlintTableRowProps & React.RefAttributes<FlintTableRowElement>>;

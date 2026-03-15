@@ -5,6 +5,37 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintSingleInputDateRangeField as FlintSingleInputDateRangeFieldElement } from '@getufy/flint-ui/date-range-picker/flint-single-input-date-range-field';
 
+/**
+ * A single-input field for entering a date range (start → end).
+Renders as "MM/DD/YYYY – MM/DD/YYYY" with six independently editable segments.
+ */
+export interface FlintSingleInputDateRangeFieldProps extends React.HTMLAttributes<FlintSingleInputDateRangeFieldElement> {
+    /** Controlled range value [startISO, endISO]. */
+    value?: FlintSingleInputDateRangeFieldElement['value'];
+    /** Field label text. */
+    label?: string;
+    /** Form field name used for hidden inputs. */
+    name?: string;
+    /** Minimum allowed date (ISO YYYY-MM-DD). */
+    min?: string;
+    /** Maximum allowed date (ISO YYYY-MM-DD). */
+    max?: string;
+    /** Disables the field and prevents interaction. */
+    disabled?: boolean;
+    /** Makes the field read-only (visible but not editable). */
+    readonly?: boolean;
+    /** Displays the field in an error state. */
+    error?: boolean;
+    /** Helper text shown below the field. */
+    helperText?: string;
+    /** Error message displayed below the field when in error state. */
+    errorMessage?: string;
+    /** fired when all segments are cleared */
+    onFlintDateRangePickerClear?: (event: CustomEvent) => void;
+    /** { detail: { value: DateRange } } when both dates are complete */
+    onFlintDateRangePickerChange?: (event: CustomEvent) => void;
+}
+
 export const FlintSingleInputDateRangeField = createComponent({
     tagName: 'flint-single-input-date-range-field',
     elementClass: FlintSingleInputDateRangeFieldElement,
@@ -13,6 +44,4 @@ export const FlintSingleInputDateRangeField = createComponent({
         onFlintDateRangePickerClear: 'flint-date-range-picker-clear' as EventName<CustomEvent>,
         onFlintDateRangePickerChange: 'flint-date-range-picker-change' as EventName<CustomEvent>,
     },
-});
-
-export type FlintSingleInputDateRangeFieldProps = React.ComponentProps<typeof FlintSingleInputDateRangeField>;
+}) as unknown as React.ForwardRefExoticComponent<FlintSingleInputDateRangeFieldProps & React.RefAttributes<FlintSingleInputDateRangeFieldElement>>;

@@ -5,13 +5,34 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintCommandItem as FlintCommandItemElement } from '@getufy/flint-ui/command/flint-command';
 
+export interface FlintCommandItemSelectDetail {
+    value: string;
+}
+
+/**
+ * A single interactive option inside a command menu.
+ *
+ * @slot - Item label text.
+ * @slot icon - Leading icon (16×16).
+ * @slot shortcut - Trailing shortcut hint; prefer `<flint-command-shortcut>`.
+ */
+export interface FlintCommandItemProps extends React.HTMLAttributes<FlintCommandItemElement> {
+    /** Machine-readable value used for filter matching. Falls back to textContent. */
+    value?: string;
+    /** Disables the item — non-interactive and skipped in keyboard nav. */
+    disabled?: boolean;
+    /** Set by parent `flint-command` to indicate keyboard focus. */
+    highlighted?: boolean;
+    /** Fired when the item is activated.
+detail: `{ value: string }` */
+    onFlintCommandItemSelect?: (event: CustomEvent<FlintCommandItemSelectDetail>) => void;
+}
+
 export const FlintCommandItem = createComponent({
     tagName: 'flint-command-item',
     elementClass: FlintCommandItemElement,
     react: React,
     events: {
-        onFlintCommandItemSelect: 'flint-command-item-select' as EventName<CustomEvent>,
+        onFlintCommandItemSelect: 'flint-command-item-select' as EventName<CustomEvent<FlintCommandItemSelectDetail>>,
     },
-});
-
-export type FlintCommandItemProps = React.ComponentProps<typeof FlintCommandItem>;
+}) as unknown as React.ForwardRefExoticComponent<FlintCommandItemProps & React.RefAttributes<FlintCommandItemElement>>;

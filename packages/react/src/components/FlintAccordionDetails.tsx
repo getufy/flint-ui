@@ -5,10 +5,16 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintAccordionDetails as FlintAccordionDetailsElement } from '@getufy/flint-ui/accordion/flint-accordion';
 
+/**
+ * Accordion Details: the wrapper for the Accordion content.
+ *
+ * @slot - Detail content.
+ */
+export interface FlintAccordionDetailsProps extends React.HTMLAttributes<FlintAccordionDetailsElement> {
+}
+
 export const FlintAccordionDetails = createComponent({
     tagName: 'flint-accordion-details',
     elementClass: FlintAccordionDetailsElement,
     react: React,
-});
-
-export type FlintAccordionDetailsProps = React.ComponentProps<typeof FlintAccordionDetails>;
+}) as unknown as React.ForwardRefExoticComponent<FlintAccordionDetailsProps & React.RefAttributes<FlintAccordionDetailsElement>>;

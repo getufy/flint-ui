@@ -5,10 +5,16 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintItemDescription as FlintItemDescriptionElement } from '@getufy/flint-ui/item/flint-item';
 
+/**
+ * Displays the description of an item.
+ *
+ * @slot - Description text.
+ */
+export interface FlintItemDescriptionProps extends React.HTMLAttributes<FlintItemDescriptionElement> {
+}
+
 export const FlintItemDescription = createComponent({
     tagName: 'flint-item-description',
     elementClass: FlintItemDescriptionElement,
     react: React,
-});
-
-export type FlintItemDescriptionProps = React.ComponentProps<typeof FlintItemDescription>;
+}) as unknown as React.ForwardRefExoticComponent<FlintItemDescriptionProps & React.RefAttributes<FlintItemDescriptionElement>>;

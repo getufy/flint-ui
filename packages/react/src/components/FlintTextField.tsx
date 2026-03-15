@@ -5,14 +5,50 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintTextField as FlintTextFieldElement } from '@getufy/flint-ui/text-field/flint-text-field';
 
+export interface InputDetail {
+    value: string;
+}
+
+export interface ChangeDetail {
+    value: string;
+}
+
+/**
+ * Text Field: a styled text input with outlined/filled variants.
+ */
+export interface FlintTextFieldProps extends Omit<React.HTMLAttributes<FlintTextFieldElement>, 'onInput' | 'onChange' | 'defaultValue'> {
+    /** Label text displayed above the input. */
+    label?: string;
+    /** Current value of the text field. */
+    value?: string;
+    /** Placeholder text shown when the input is empty. */
+    placeholder?: string;
+    /** HTML input type (e.g. 'text', 'password', 'email'). */
+    type?: string;
+    /** Visual style variant of the text field. */
+    variant?: 'outlined' | 'filled';
+    /** Whether the text field is disabled. */
+    disabled?: boolean;
+    /** Whether the text field is in an error state. */
+    error?: boolean;
+    /** Helper text displayed below the input. */
+    helperText?: string;
+    /** Error message displayed below the input when in error state. */
+    errorMessage?: string;
+    /** Initial value for uncontrolled usage. */
+    defaultValue?: string;
+    /** Fired on each keystroke as the value changes. */
+    onInput?: (event: CustomEvent<InputDetail>) => void;
+    /** Fired when the input loses focus after the value has changed. */
+    onChange?: (event: CustomEvent<ChangeDetail>) => void;
+}
+
 export const FlintTextField = createComponent({
     tagName: 'flint-text-field',
     elementClass: FlintTextFieldElement,
     react: React,
     events: {
-        onInput: 'input' as EventName<CustomEvent>,
-        onChange: 'change' as EventName<CustomEvent>,
+        onInput: 'input' as EventName<CustomEvent<InputDetail>>,
+        onChange: 'change' as EventName<CustomEvent<ChangeDetail>>,
     },
-});
-
-export type FlintTextFieldProps = React.ComponentProps<typeof FlintTextField>;
+}) as unknown as React.ForwardRefExoticComponent<FlintTextFieldProps & React.RefAttributes<FlintTextFieldElement>>;

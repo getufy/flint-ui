@@ -5,10 +5,19 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintCommandInput as FlintCommandInputElement } from '@getufy/flint-ui/command/flint-command';
 
+/**
+ * Search input for the command menu. Dispatches `_cmd-filter` events that
+the parent `flint-command` intercepts to apply filtering.
+ */
+export interface FlintCommandInputProps extends React.HTMLAttributes<FlintCommandInputElement> {
+    /** Placeholder text shown when input is empty. */
+    placeholder?: string;
+    /** Current input value. */
+    value?: string;
+}
+
 export const FlintCommandInput = createComponent({
     tagName: 'flint-command-input',
     elementClass: FlintCommandInputElement,
     react: React,
-});
-
-export type FlintCommandInputProps = React.ComponentProps<typeof FlintCommandInput>;
+}) as unknown as React.ForwardRefExoticComponent<FlintCommandInputProps & React.RefAttributes<FlintCommandInputElement>>;

@@ -5,10 +5,25 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintRelativeTime as FlintRelativeTimeElement } from '@getufy/flint-ui/relative-time/flint-relative-time';
 
+/**
+ * Displays a localized time phrase relative to the current date and time.
+Uses the browser's `Intl.RelativeTimeFormat` API — no language packs needed.
+ */
+export interface FlintRelativeTimeProps extends Omit<React.HTMLAttributes<FlintRelativeTimeElement>, 'lang'> {
+    /** The date to calculate time from. Accepts a Date, ISO string, or Unix ms timestamp. Defaults to the current date/time. */
+    date?: FlintRelativeTimeElement['date'];
+    /** The formatting style to use. */
+    format?: 'long' | 'short' | 'narrow';
+    /** When `auto`, values such as "yesterday" and "tomorrow" will be shown when */
+    numeric?: 'always' | 'auto';
+    /** Keep the displayed value up to date as time passes. */
+    sync?: boolean;
+    /** BCP 47 language tag for formatting (e.g. "en", "de", "ja"). Inherits from the document when unset. */
+    lang?: string;
+}
+
 export const FlintRelativeTime = createComponent({
     tagName: 'flint-relative-time',
     elementClass: FlintRelativeTimeElement,
     react: React,
-});
-
-export type FlintRelativeTimeProps = React.ComponentProps<typeof FlintRelativeTime>;
+}) as unknown as React.ForwardRefExoticComponent<FlintRelativeTimeProps & React.RefAttributes<FlintRelativeTimeElement>>;

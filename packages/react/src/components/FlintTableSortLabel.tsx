@@ -5,10 +5,15 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintTableSortLabel as FlintTableSortLabelElement } from '@getufy/flint-ui/table/flint-table-sort-label';
 
+export interface FlintTableSortLabelProps extends React.HTMLAttributes<FlintTableSortLabelElement> {
+    /** Whether this column is currently sorted. */
+    active?: boolean;
+    /** Sort direction when active. */
+    direction?: 'asc' | 'desc';
+}
+
 export const FlintTableSortLabel = createComponent({
     tagName: 'flint-table-sort-label',
     elementClass: FlintTableSortLabelElement,
     react: React,
-});
-
-export type FlintTableSortLabelProps = React.ComponentProps<typeof FlintTableSortLabel>;
+}) as unknown as React.ForwardRefExoticComponent<FlintTableSortLabelProps & React.RefAttributes<FlintTableSortLabelElement>>;

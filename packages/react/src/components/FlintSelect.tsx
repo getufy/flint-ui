@@ -5,13 +5,52 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintSelect as FlintSelectElement } from '@getufy/flint-ui/select/flint-select';
 
+export interface FlintSelectChangeDetail {
+    value: string[];
+}
+
+/**
+ * A select component for choosing one or multiple options from a list.
+ *
+ * @slot icon - Optional icon shown at the start of the trigger.
+ * @slot error-message - Optional slot for error message content (use error-message prop for simple text).
+ */
+export interface FlintSelectProps extends Omit<React.HTMLAttributes<FlintSelectElement>, 'defaultValue'> {
+    /** Label text displayed above the select. */
+    label?: string;
+    /** Array of selectable options. */
+    options?: FlintSelectElement['options'];
+    /** Currently selected value(s). */
+    value?: string[];
+    /** Allow multiple selections. */
+    multiple?: boolean;
+    /** Placeholder text when no value is selected. */
+    placeholder?: string;
+    /** Disables the select and prevents interaction. */
+    disabled?: boolean;
+    /** Makes the select read-only. */
+    readonly?: boolean;
+    /** Marks the select as required for form validation. */
+    required?: boolean;
+    /** Whether the select is in an error state. */
+    error?: boolean;
+    /** Error message displayed below the select. */
+    errorMessage?: string;
+    /** Form field name used when submitting form data. */
+    name?: string;
+    /** Size variant of the select. */
+    size?: FlintSelectElement['size'];
+    /** Sets the initial value in uncontrolled mode (single-select only). */
+    defaultValue?: string;
+    /** Dispatched when the selection changes. detail: { value: string | null } (single) or { value: string[] } (multiple) */
+    onFlintSelectChange?: (event: CustomEvent<FlintSelectChangeDetail>) => void;
+}
+
 export const FlintSelect = createComponent({
     tagName: 'flint-select',
     elementClass: FlintSelectElement,
     react: React,
     events: {
-        onFlintSelectChange: 'flint-select-change' as EventName<CustomEvent>,
+        onFlintSelectChange: 'flint-select-change' as EventName<CustomEvent<FlintSelectChangeDetail>>,
     },
-});
-
-export type FlintSelectProps = React.ComponentProps<typeof FlintSelect>;
+}) as unknown as React.ForwardRefExoticComponent<FlintSelectProps & React.RefAttributes<FlintSelectElement>>;

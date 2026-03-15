@@ -5,10 +5,22 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintMenubarSubTrigger as FlintMenubarSubTriggerElement } from '@getufy/flint-ui/menubar/flint-menubar';
 
+/**
+ * Trigger for a sub-menu. Shows an arrow indicator.
+ */
+export interface FlintMenubarSubTriggerProps extends React.HTMLAttributes<FlintMenubarSubTriggerElement> {
+    /** Whether the trigger is visually highlighted (e.g. via keyboard or hover). */
+    highlighted?: boolean;
+    /** Whether the trigger is non-interactive. */
+    disabled?: boolean;
+    /** Whether the trigger label is inset to align with checkbox/radio items. */
+    inset?: boolean;
+    /** Set by the parent `flint-menubar-sub` to reflect open state for aria-expanded. */
+    expanded?: boolean;
+}
+
 export const FlintMenubarSubTrigger = createComponent({
     tagName: 'flint-menubar-sub-trigger',
     elementClass: FlintMenubarSubTriggerElement,
     react: React,
-});
-
-export type FlintMenubarSubTriggerProps = React.ComponentProps<typeof FlintMenubarSubTrigger>;
+}) as unknown as React.ForwardRefExoticComponent<FlintMenubarSubTriggerProps & React.RefAttributes<FlintMenubarSubTriggerElement>>;

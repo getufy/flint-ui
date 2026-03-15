@@ -5,14 +5,48 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintTreeItem as FlintTreeItemElement } from '@getufy/flint-ui/tree-view/flint-tree-item';
 
+export interface FlintTreeItemToggleDetail {
+    itemId: string;
+    expanded: boolean;
+}
+
+export interface FlintTreeItemClickDetail {
+    itemId: string;
+}
+
+/**
+ * A single item inside a `flint-simple-tree-view` or `flint-rich-tree-view`.
+ *
+ * @slot lead - Leading icon or content.
+ * @slot - Item label text.
+ */
+export interface FlintTreeItemProps extends React.HTMLAttributes<FlintTreeItemElement> {
+    /** Unique identifier for this item within the tree */
+    itemId?: string;
+    /** Label text displayed for this item */
+    label?: string;
+    /** Whether this item is disabled (non-interactive) */
+    disabled?: boolean;
+    /** Whether this item's children are visible */
+    expanded?: boolean;
+    /** When `true`, forces the expand button to render even if no `flint-tree-item` */
+    hasChildren?: boolean;
+    /** Visual drop position indicator — reflected so CSS :host selectors match */
+    dropPosition?: 'before' | 'after' | 'inside' | null;
+    /** Whether to show a dedicated drag handle icon */
+    showDragHandle?: boolean;
+    /** Fired when expanded state changes (detail: { itemId, expanded }) */
+    onFlintTreeItemToggle?: (event: CustomEvent<FlintTreeItemToggleDetail>) => void;
+    /** Fired when the item is clicked (detail: { itemId }) */
+    onFlintTreeItemClick?: (event: CustomEvent<FlintTreeItemClickDetail>) => void;
+}
+
 export const FlintTreeItem = createComponent({
     tagName: 'flint-tree-item',
     elementClass: FlintTreeItemElement,
     react: React,
     events: {
-        onFlintTreeItemToggle: 'flint-tree-item-toggle' as EventName<CustomEvent>,
-        onFlintTreeItemClick: 'flint-tree-item-click' as EventName<CustomEvent>,
+        onFlintTreeItemToggle: 'flint-tree-item-toggle' as EventName<CustomEvent<FlintTreeItemToggleDetail>>,
+        onFlintTreeItemClick: 'flint-tree-item-click' as EventName<CustomEvent<FlintTreeItemClickDetail>>,
     },
-});
-
-export type FlintTreeItemProps = React.ComponentProps<typeof FlintTreeItem>;
+}) as unknown as React.ForwardRefExoticComponent<FlintTreeItemProps & React.RefAttributes<FlintTreeItemElement>>;

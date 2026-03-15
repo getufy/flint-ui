@@ -5,6 +5,42 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintDateRangePicker as FlintDateRangePickerElement } from '@getufy/flint-ui/date-range-picker/flint-date-range-picker';
 
+/**
+ * A date range picker combining a segmented field and a dual-month calendar.
+ */
+export interface FlintDateRangePickerProps extends React.HTMLAttributes<FlintDateRangePickerElement> {
+    /** Selected range [startISO, endISO]. Empty strings mean unset. */
+    value?: FlintDateRangePickerElement['value'];
+    /** Label shown above the field. */
+    label?: string;
+    /** Variant: 'desktop' | 'mobile' | 'static' | 'auto'. */
+    variant?: 'desktop' | 'mobile' | 'static' | 'auto';
+    /** Use a multi-input field (two separate fields) instead of single-input. Currently shows two simple text displays. */
+    multiInput?: boolean;
+    /** Show shortcuts panel. */
+    shortcuts?: boolean;
+    /** Custom shortcuts list. Defaults to built-in shortcuts when shortcuts=true. */
+    shortcutItems?: FlintDateRangePickerElement['shortcutItems'];
+    /** Minimum selectable date (ISO YYYY-MM-DD). */
+    min?: string;
+    /** Maximum selectable date (ISO YYYY-MM-DD). */
+    max?: string;
+    /** Form field name for hidden inputs. */
+    name?: string;
+    /** Disables the picker and prevents interaction. */
+    disabled?: boolean;
+    /** Makes the picker read-only (visible but not editable). */
+    readonly?: boolean;
+    /** Displays the picker in an error state. */
+    error?: boolean;
+    /** Helper text shown below the field. */
+    helperText?: string;
+    /** Error message displayed below the field when in error state. */
+    errorMessage?: string;
+    /** { detail: { value: DateRange } } when range is committed */
+    onFlintDateRangePickerChange?: (event: CustomEvent) => void;
+}
+
 export const FlintDateRangePicker = createComponent({
     tagName: 'flint-date-range-picker',
     elementClass: FlintDateRangePickerElement,
@@ -12,6 +48,4 @@ export const FlintDateRangePicker = createComponent({
     events: {
         onFlintDateRangePickerChange: 'flint-date-range-picker-change' as EventName<CustomEvent>,
     },
-});
-
-export type FlintDateRangePickerProps = React.ComponentProps<typeof FlintDateRangePicker>;
+}) as unknown as React.ForwardRefExoticComponent<FlintDateRangePickerProps & React.RefAttributes<FlintDateRangePickerElement>>;

@@ -5,14 +5,66 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintTextarea as FlintTextareaElement } from '@getufy/flint-ui/textarea/flint-textarea';
 
+export interface FlintTextareaInputDetail {
+    value: string;
+}
+
+export interface FlintTextareaChangeDetail {
+    value: string;
+}
+
+/**
+ * A Textarea component for multi-line text input.
+ */
+export interface FlintTextareaProps extends Omit<React.HTMLAttributes<FlintTextareaElement>, 'defaultValue'> {
+    /** Current textarea value. */
+    value?: string;
+    /** Placeholder text shown when empty. */
+    placeholder?: string;
+    /** Disables the textarea and prevents interaction. */
+    disabled?: boolean;
+    /** Makes the textarea read-only. */
+    readonly?: boolean;
+    /** Marks the textarea as required for form validation. */
+    required?: boolean;
+    /** Whether the textarea is in an error state. */
+    error?: boolean;
+    /** Error message displayed below the textarea. */
+    errorMessage?: string;
+    /** Help text displayed below the textarea. */
+    helperText?: string;
+    /** Label text displayed above the textarea. */
+    label?: string;
+    /** Size variant of the textarea. */
+    size?: 'sm' | 'default' | 'lg';
+    /** Number of visible text rows. */
+    rows?: number;
+    /** Maximum number of characters allowed. */
+    maxlength?: number | undefined;
+    /** Minimum number of characters required. */
+    minlength?: number | undefined;
+    /** Form field name used when submitting form data. */
+    name?: string;
+    /** Browser autocomplete hint. */
+    autocomplete?: string;
+    /** Controls the resize handle. */
+    resize?: 'none' | 'both' | 'horizontal' | 'vertical' | 'auto';
+    /** Initial value for uncontrolled usage. */
+    defaultValue?: string;
+    /** Accessible label for screen readers when no visible label is provided. */
+    ariaLabel?: string | null;
+    /** Dispatched on every keystroke. Detail: `{ value: string }` */
+    onFlintTextareaInput?: (event: CustomEvent<FlintTextareaInputDetail>) => void;
+    /** Dispatched on blur/change. Detail: `{ value: string }` */
+    onFlintTextareaChange?: (event: CustomEvent<FlintTextareaChangeDetail>) => void;
+}
+
 export const FlintTextarea = createComponent({
     tagName: 'flint-textarea',
     elementClass: FlintTextareaElement,
     react: React,
     events: {
-        onFlintTextareaInput: 'flint-textarea-input' as EventName<CustomEvent>,
-        onFlintTextareaChange: 'flint-textarea-change' as EventName<CustomEvent>,
+        onFlintTextareaInput: 'flint-textarea-input' as EventName<CustomEvent<FlintTextareaInputDetail>>,
+        onFlintTextareaChange: 'flint-textarea-change' as EventName<CustomEvent<FlintTextareaChangeDetail>>,
     },
-});
-
-export type FlintTextareaProps = React.ComponentProps<typeof FlintTextarea>;
+}) as unknown as React.ForwardRefExoticComponent<FlintTextareaProps & React.RefAttributes<FlintTextareaElement>>;

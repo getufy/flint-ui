@@ -5,14 +5,58 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintInput as FlintInputElement } from '@getufy/flint-ui/input/flint-input';
 
+export interface FlintInputInputDetail {
+    value: string;
+}
+
+export interface FlintInputChangeDetail {
+    value: string;
+}
+
+/**
+ * Input: a styled text input with label, help text, and error states.
+ */
+export interface FlintInputProps extends Omit<React.HTMLAttributes<FlintInputElement>, 'defaultValue'> {
+    /** Label text displayed above the input. */
+    label?: string;
+    /** Current input value. */
+    value?: string;
+    /** HTML input type (text, email, password, etc.). */
+    type?: string;
+    /** Placeholder text shown when the input is empty. */
+    placeholder?: string;
+    /** Help text displayed below the input. */
+    helperText?: string;
+    /** Whether the input is in an error state. */
+    error?: boolean;
+    /** Error message displayed below the input. */
+    errorMessage?: string;
+    /** Disables the input and prevents interaction. */
+    disabled?: boolean;
+    /** Marks the input as required for form validation. */
+    required?: boolean;
+    /** Makes the input read-only. */
+    readonly?: boolean;
+    /** Form field name used when submitting form data. */
+    name?: string;
+    /** Browser autocomplete hint. */
+    autocomplete?: string;
+    /** 'sm' | 'default' | 'lg' */
+    size?: 'sm' | 'default' | 'lg';
+    /** Initial value for uncontrolled usage. */
+    defaultValue?: string;
+    /** Fired on each keystroke as the value changes. */
+    onFlintInputInput?: (event: CustomEvent<FlintInputInputDetail>) => void;
+    /** Fired when the input loses focus after the value has changed. */
+    onFlintInputChange?: (event: CustomEvent<FlintInputChangeDetail>) => void;
+}
+
 export const FlintInput = createComponent({
     tagName: 'flint-input',
     elementClass: FlintInputElement,
     react: React,
     events: {
-        onFlintInputInput: 'flint-input-input' as EventName<CustomEvent>,
-        onFlintInputChange: 'flint-input-change' as EventName<CustomEvent>,
+        onFlintInputInput: 'flint-input-input' as EventName<CustomEvent<FlintInputInputDetail>>,
+        onFlintInputChange: 'flint-input-change' as EventName<CustomEvent<FlintInputChangeDetail>>,
     },
-});
-
-export type FlintInputProps = React.ComponentProps<typeof FlintInput>;
+}) as unknown as React.ForwardRefExoticComponent<FlintInputProps & React.RefAttributes<FlintInputElement>>;

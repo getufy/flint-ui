@@ -5,10 +5,14 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintDialogContentText as FlintDialogContentTextElement } from '@getufy/flint-ui/dialog/flint-dialog';
 
+/**
+ * flint-dialog-content-text: body text inside a dialog content area.
+ */
+export interface FlintDialogContentTextProps extends React.HTMLAttributes<FlintDialogContentTextElement> {
+}
+
 export const FlintDialogContentText = createComponent({
     tagName: 'flint-dialog-content-text',
     elementClass: FlintDialogContentTextElement,
     react: React,
-});
-
-export type FlintDialogContentTextProps = React.ComponentProps<typeof FlintDialogContentText>;
+}) as unknown as React.ForwardRefExoticComponent<FlintDialogContentTextProps & React.RefAttributes<FlintDialogContentTextElement>>;

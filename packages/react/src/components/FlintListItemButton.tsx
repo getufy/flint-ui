@@ -5,10 +5,18 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintListItemButton as FlintListItemButtonElement } from '@getufy/flint-ui/list/flint-list';
 
+/**
+ * flint-list-item-button: An action element inside a list item.
+ */
+export interface FlintListItemButtonProps extends React.HTMLAttributes<FlintListItemButtonElement> {
+    /** Whether the list item button is disabled. */
+    disabled?: boolean;
+    /** Whether the list item button is selected. */
+    selected?: boolean;
+}
+
 export const FlintListItemButton = createComponent({
     tagName: 'flint-list-item-button',
     elementClass: FlintListItemButtonElement,
     react: React,
-});
-
-export type FlintListItemButtonProps = React.ComponentProps<typeof FlintListItemButton>;
+}) as unknown as React.ForwardRefExoticComponent<FlintListItemButtonProps & React.RefAttributes<FlintListItemButtonElement>>;

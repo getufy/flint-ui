@@ -5,6 +5,24 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintNavigationMenuItem as FlintNavigationMenuItemElement } from '@getufy/flint-ui/navigation-menu/flint-navigation-menu-item';
 
+/**
+ * @slot default - Item content (NavigationMenuTrigger and NavigationMenuContent)
+ */
+export interface FlintNavigationMenuItemProps extends React.HTMLAttributes<FlintNavigationMenuItemElement> {
+    /** Unique identifier for this menu item */
+    itemId?: string;
+    /** Whether this item is disabled */
+    disabled?: boolean;
+    /** Delay in ms before opening on hover */
+    openDelay?: number;
+    /** Delay in ms before closing after mouse leaves */
+    closeDelay?: number;
+    /** Fired when the item's trigger is clicked. */
+    onFlintNavigationMenuTriggerClick?: (event: CustomEvent) => void;
+    /** Fired when content visibility changes. */
+    onFlintNavigationMenuContentToggle?: (event: CustomEvent) => void;
+}
+
 export const FlintNavigationMenuItem = createComponent({
     tagName: 'flint-navigation-menu-item',
     elementClass: FlintNavigationMenuItemElement,
@@ -13,6 +31,4 @@ export const FlintNavigationMenuItem = createComponent({
         onFlintNavigationMenuTriggerClick: 'flint-navigation-menu-trigger-click' as EventName<CustomEvent>,
         onFlintNavigationMenuContentToggle: 'flint-navigation-menu-content-toggle' as EventName<CustomEvent>,
     },
-});
-
-export type FlintNavigationMenuItemProps = React.ComponentProps<typeof FlintNavigationMenuItem>;
+}) as unknown as React.ForwardRefExoticComponent<FlintNavigationMenuItemProps & React.RefAttributes<FlintNavigationMenuItemElement>>;

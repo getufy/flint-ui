@@ -5,13 +5,47 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintSlider as FlintSliderElement } from '@getufy/flint-ui/slider/flint-slider';
 
+export interface FlintSliderChangeDetail {
+    value: number;
+}
+
+/**
+ * Slider: a range input for selecting a numeric value.
+ */
+export interface FlintSliderProps extends Omit<React.HTMLAttributes<FlintSliderElement>, 'defaultValue'> {
+    /** Current slider value. */
+    value?: number;
+    /** Initial value for uncontrolled usage. */
+    defaultValue?: number | undefined;
+    /** Minimum allowed value. */
+    min?: number;
+    /** Maximum allowed value. */
+    max?: number;
+    /** Step increment between values. */
+    step?: number;
+    /** Disables the slider and prevents interaction. */
+    disabled?: boolean;
+    /** Label text displayed above the slider. */
+    label?: string;
+    /** Whether to display the current value. */
+    showValue?: boolean;
+    /** Renders the slider vertically. */
+    vertical?: boolean;
+    /** Size variant of the slider. */
+    size?: FlintSliderElement['size'];
+    /** Form field name used when submitting form data. */
+    name?: string;
+    /** Optional formatter: `(value: number) => string`. JS-only prop (not an attribute). */
+    formatValue?: FlintSliderElement['formatValue'];
+    /** Fired when the slider value changes. */
+    onFlintSliderChange?: (event: CustomEvent<FlintSliderChangeDetail>) => void;
+}
+
 export const FlintSlider = createComponent({
     tagName: 'flint-slider',
     elementClass: FlintSliderElement,
     react: React,
     events: {
-        onFlintSliderChange: 'flint-slider-change' as EventName<CustomEvent>,
+        onFlintSliderChange: 'flint-slider-change' as EventName<CustomEvent<FlintSliderChangeDetail>>,
     },
-});
-
-export type FlintSliderProps = React.ComponentProps<typeof FlintSlider>;
+}) as unknown as React.ForwardRefExoticComponent<FlintSliderProps & React.RefAttributes<FlintSliderElement>>;

@@ -5,10 +5,19 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintCommandGroup as FlintCommandGroupElement } from '@getufy/flint-ui/command/flint-command';
 
+/**
+ * A labeled group of command items. The parent `flint-command` automatically
+hides the whole group when all its items are filtered out.
+ *
+ * @slot - `flint-command-item` elements.
+ */
+export interface FlintCommandGroupProps extends React.HTMLAttributes<FlintCommandGroupElement> {
+    /** Label rendered above the group items. */
+    heading?: string;
+}
+
 export const FlintCommandGroup = createComponent({
     tagName: 'flint-command-group',
     elementClass: FlintCommandGroupElement,
     react: React,
-});
-
-export type FlintCommandGroupProps = React.ComponentProps<typeof FlintCommandGroup>;
+}) as unknown as React.ForwardRefExoticComponent<FlintCommandGroupProps & React.RefAttributes<FlintCommandGroupElement>>;

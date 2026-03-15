@@ -5,10 +5,14 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintCardMedia as FlintCardMediaElement } from '@getufy/flint-ui/card/flint-card-media';
 
+export interface FlintCardMediaProps extends React.HTMLAttributes<FlintCardMediaElement> {
+    image?: string;
+    alt?: string;
+    height?: string;
+}
+
 export const FlintCardMedia = createComponent({
     tagName: 'flint-card-media',
     elementClass: FlintCardMediaElement,
     react: React,
-});
-
-export type FlintCardMediaProps = React.ComponentProps<typeof FlintCardMedia>;
+}) as unknown as React.ForwardRefExoticComponent<FlintCardMediaProps & React.RefAttributes<FlintCardMediaElement>>;

@@ -9,7 +9,7 @@ import uiAlertStyles from './flint-alert.css?inline';
  * @slot - The message content of the alert.
  * @slot icon - Optional icon to display instead of the default severity icon.
  *
- * @fires flint-alert-close - Fired when the alert's close button is clicked.
+ * @fires flint-alert-close - Fired when the alert's close button is clicked. detail: `{ open: false, severity: string }`
  */
 @customElement('flint-alert')
 export class FlintAlert extends LitElement {
@@ -41,7 +41,7 @@ export class FlintAlert extends LitElement {
         this.dispatchEvent(new CustomEvent('flint-alert-close', {
             bubbles: true,
             composed: true,
-            detail: { severity: this.severity }
+            detail: { open: false, severity: this.severity }
         }));
 
         // Typical behavior for a simple alert is to remove it from the DOM

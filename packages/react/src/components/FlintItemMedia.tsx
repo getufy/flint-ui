@@ -5,10 +5,18 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintItemMedia as FlintItemMediaElement } from '@getufy/flint-ui/item/flint-item';
 
+/**
+ * Media container for an item (icon, avatar, or image).
+ *
+ * @slot - Media content: SVG icon, avatar element, or image.
+ */
+export interface FlintItemMediaProps extends React.HTMLAttributes<FlintItemMediaElement> {
+    /** Visual treatment for the media container. */
+    variant?: 'default' | 'icon' | 'image';
+}
+
 export const FlintItemMedia = createComponent({
     tagName: 'flint-item-media',
     elementClass: FlintItemMediaElement,
     react: React,
-});
-
-export type FlintItemMediaProps = React.ComponentProps<typeof FlintItemMedia>;
+}) as unknown as React.ForwardRefExoticComponent<FlintItemMediaProps & React.RefAttributes<FlintItemMediaElement>>;

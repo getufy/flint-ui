@@ -5,6 +5,20 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintTabList as FlintTabListElement } from '@getufy/flint-ui/tabs/flint-tabs';
 
+export interface FlintTabListProps extends React.HTMLAttributes<FlintTabListElement> {
+    /** Layout direction of the tab list. */
+    orientation?: 'horizontal' | 'vertical';
+    /** Display variant controlling tab sizing and scrollability. */
+    variant?: 'standard' | 'fullWidth' | 'scrollable';
+    /** Whether to center the tabs within the tab list. */
+    centered?: boolean;
+    /** Whether to show scroll buttons in scrollable mode. */
+    scrollButtons?: 'auto' | 'false';
+    /** Accessible label for the tab list. */
+    ariaLabel?: string;
+    onFlintTabClick?: (event: CustomEvent) => void;
+}
+
 export const FlintTabList = createComponent({
     tagName: 'flint-tab-list',
     elementClass: FlintTabListElement,
@@ -12,6 +26,4 @@ export const FlintTabList = createComponent({
     events: {
         onFlintTabClick: 'flint-tab-click' as EventName<CustomEvent>,
     },
-});
-
-export type FlintTabListProps = React.ComponentProps<typeof FlintTabList>;
+}) as unknown as React.ForwardRefExoticComponent<FlintTabListProps & React.RefAttributes<FlintTabListElement>>;

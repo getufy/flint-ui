@@ -5,14 +5,41 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintSimpleTreeView as FlintSimpleTreeViewElement } from '@getufy/flint-ui/tree-view/flint-simple-tree-view';
 
+export interface FlintTreeViewExpandedItemsChangeDetail {
+    expandedItems: string[];
+}
+
+/**
+ * A simple tree-view container that manages keyboard navigation, focus,
+and item selection/expansion for nested `flint-tree-item` elements.
+ *
+ * @slot - Place `flint-tree-item` elements here.
+ */
+export interface FlintSimpleTreeViewProps extends React.HTMLAttributes<FlintSimpleTreeViewElement> {
+    /** When `true`, disabled items can receive keyboard focus. */
+    disabledItemsFocusable?: boolean;
+    /** Callback invoked when a tree item is clicked or activated via keyboard. */
+    onItemClick?: FlintSimpleTreeViewElement['onItemClick'];
+    /** **Controlled mode.** The set of item IDs that should be expanded. */
+    expandedItems?: string[];
+    /** **Uncontrolled mode.** Item IDs to expand on initial mount. */
+    defaultExpandedItems?: string[];
+    /** Callback fired when the user toggles an item's expansion. */
+    onExpandedItemsChange?: FlintSimpleTreeViewElement['onExpandedItemsChange'];
+    /** What interaction triggers expand/collapse. */
+    expansionTrigger?: 'content' | 'iconContainer';
+    /** When the expanded set changes (detail: { expandedItems }) */
+    onFlintTreeViewExpandedItemsChange?: (event: CustomEvent<FlintTreeViewExpandedItemsChangeDetail>) => void;
+    /** When a tree item is activated (detail: { itemId }) */
+    onFlintTreeViewItemClick?: (event: CustomEvent) => void;
+}
+
 export const FlintSimpleTreeView = createComponent({
     tagName: 'flint-simple-tree-view',
     elementClass: FlintSimpleTreeViewElement,
     react: React,
     events: {
-        onFlintTreeViewExpandedItemsChange: 'flint-tree-view-expanded-items-change' as EventName<CustomEvent>,
+        onFlintTreeViewExpandedItemsChange: 'flint-tree-view-expanded-items-change' as EventName<CustomEvent<FlintTreeViewExpandedItemsChangeDetail>>,
         onFlintTreeViewItemClick: 'flint-tree-view-item-click' as EventName<CustomEvent>,
     },
-});
-
-export type FlintSimpleTreeViewProps = React.ComponentProps<typeof FlintSimpleTreeView>;
+}) as unknown as React.ForwardRefExoticComponent<FlintSimpleTreeViewProps & React.RefAttributes<FlintSimpleTreeViewElement>>;

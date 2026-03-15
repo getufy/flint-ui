@@ -5,13 +5,47 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintDatePicker as FlintDatePickerElement } from '@getufy/flint-ui/date-picker/flint-date-picker';
 
+export interface ChangeDetail {
+    value: string;
+}
+
+/**
+ * A date picker with a text field and a calendar popover/modal.
+ */
+export interface FlintDatePickerProps extends Omit<React.HTMLAttributes<FlintDatePickerElement>, 'onChange'> {
+    /** Selected date as ISO string (YYYY-MM-DD). */
+    value?: string;
+    /** Label shown above the field. */
+    label?: string;
+    /** Placeholder shown in the empty field. */
+    placeholder?: string;
+    /** Form field name attribute. */
+    name?: string;
+    /** Variant: 'desktop' | 'mobile' | 'static' | 'auto'. */
+    variant?: 'desktop' | 'mobile' | 'static' | 'auto';
+    /** Minimum selectable date (ISO). */
+    min?: string;
+    /** Maximum selectable date (ISO). */
+    max?: string;
+    /** Disables the picker. */
+    disabled?: boolean;
+    /** Makes the field read-only (auto-opens a picker when clicked). */
+    readonly?: boolean;
+    /** Shows error styling. */
+    error?: boolean;
+    /** Helper/error text below the field. */
+    helperText?: string;
+    /** Error message displayed below the field when in error state. */
+    errorMessage?: string;
+    /** { detail: { value: string } } when the date changes */
+    onChange?: (event: CustomEvent<ChangeDetail>) => void;
+}
+
 export const FlintDatePicker = createComponent({
     tagName: 'flint-date-picker',
     elementClass: FlintDatePickerElement,
     react: React,
     events: {
-        onChange: 'change' as EventName<CustomEvent>,
+        onChange: 'change' as EventName<CustomEvent<ChangeDetail>>,
     },
-});
-
-export type FlintDatePickerProps = React.ComponentProps<typeof FlintDatePicker>;
+}) as unknown as React.ForwardRefExoticComponent<FlintDatePickerProps & React.RefAttributes<FlintDatePickerElement>>;

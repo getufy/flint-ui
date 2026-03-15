@@ -95,8 +95,8 @@ export class FlintSpeedDialAction extends LitElement {
  * @slot icon      - Icon shown on the FAB when closed (default: + SVG).
  * @slot open-icon - Icon shown on the FAB when open (default: ✕ SVG).
  *
- * @fires flint-speed-dial-open  - Fired when the dial opens.
- * @fires flint-speed-dial-close - Fired when the dial closes.
+ * @fires flint-speed-dial-open  - Fired when the dial opens. detail: `{ open: true }`
+ * @fires flint-speed-dial-close - Fired when the dial closes. detail: `{ open: false }`
  */
 @customElement('flint-speed-dial')
 export class FlintSpeedDial extends LitElement {
@@ -195,7 +195,7 @@ export class FlintSpeedDial extends LitElement {
         this._updateActionTooltips();
         this.dispatchEvent(new CustomEvent(
             val ? 'flint-speed-dial-open' : 'flint-speed-dial-close',
-            { bubbles: true, composed: true }
+            { bubbles: true, composed: true, detail: { open: val } }
         ));
     }
 

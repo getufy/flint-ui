@@ -5,10 +5,20 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintImageListItemBar as FlintImageListItemBarElement } from '@getufy/flint-ui/image-list/flint-image-list-item-bar';
 
+/**
+ * A title/subtitle bar for `flint-image-list-item`.
+ *
+ * @slot title - Title text.
+ * @slot subtitle - Subtitle text.
+ * @slot - Action content.
+ */
+export interface FlintImageListItemBarProps extends React.HTMLAttributes<FlintImageListItemBarElement> {
+    /** Position hint for styling: 'bottom' (default overlay), 'top' (overlay), or 'below' (solid) */
+    position?: 'bottom' | 'top' | 'below';
+}
+
 export const FlintImageListItemBar = createComponent({
     tagName: 'flint-image-list-item-bar',
     elementClass: FlintImageListItemBarElement,
     react: React,
-});
-
-export type FlintImageListItemBarProps = React.ComponentProps<typeof FlintImageListItemBar>;
+}) as unknown as React.ForwardRefExoticComponent<FlintImageListItemBarProps & React.RefAttributes<FlintImageListItemBarElement>>;

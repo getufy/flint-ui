@@ -28,7 +28,7 @@ A Textarea component for multi-line text input.
 | \`required\` | \`required\` | \`boolean\` | \`false\` | Marks the textarea as required for form validation. |
 | \`error\` | \`error\` | \`boolean\` | \`false\` | Whether the textarea is in an error state. |
 | \`errorMessage\` | \`error-message\` | \`string\` | \`''\` | Error message displayed below the textarea. |
-| \`helpText\` | \`help-text\` | \`string\` | \`''\` | Help text displayed below the textarea. |
+| \`helperText\` | \`helper-text\` | \`string\` | \`''\` | Help text displayed below the textarea. |
 | \`label\` | \`label\` | \`string\` | \`''\` | Label text displayed above the textarea. |
 | \`size\` | \`size\` | \`'sm' \\| 'default' \\| 'lg'\` | \`'default'\` | Size variant of the textarea. |
 | \`rows\` | \`rows\` | \`number\` | \`3\` | Number of visible text rows. |
@@ -82,7 +82,7 @@ A Textarea component for multi-line text input.
         value:        { control: 'text' },
         placeholder:  { control: 'text' },
         label:        { control: 'text' },
-        helpText:     { control: 'text' },
+        helperText:     { control: 'text' },
         errorMessage: { control: 'text' },
         disabled:     { control: 'boolean' },
         readonly:     { control: 'boolean' },
@@ -96,7 +96,7 @@ A Textarea component for multi-line text input.
     args: {
         placeholder: 'Type your message here.',
         label: 'Message',
-        helpText: '',
+        helperText: '',
         errorMessage: '',
         disabled: false,
         readonly: false,
@@ -117,7 +117,7 @@ export const Playground: Story = {
       style="max-width: 400px;"
       placeholder=${args.placeholder}
       .label=${args.label}
-      help-text=${args.helpText}
+      helper-text=${args.helperText}
       error-message=${args.errorMessage}
       ?disabled=${args.disabled}
       ?readonly=${args.readonly}
@@ -157,7 +157,7 @@ export const WithHelpText: Story = {
       style="max-width: 400px;"
       label="Message"
       placeholder="Type your message here."
-      help-text="Enter your message below."
+      helper-text="Enter your message below."
     ></flint-textarea>
   `,
 };
@@ -333,7 +333,7 @@ export const RTL: Story = {
         dir="rtl"
         label="التعليقات"
         placeholder="تعليقاتك تساعدنا على التحسين..."
-        help-text="شاركنا أفكارك حول خدمتنا."
+        helper-text="شاركنا أفكارك حول خدمتنا."
         rows="4"
       ></flint-textarea>
     </div>

@@ -5,10 +5,11 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintCarouselItem as FlintCarouselItemElement } from '@getufy/flint-ui/carousel/flint-carousel';
 
+export interface FlintCarouselItemProps extends React.HTMLAttributes<FlintCarouselItemElement> {
+}
+
 export const FlintCarouselItem = createComponent({
     tagName: 'flint-carousel-item',
     elementClass: FlintCarouselItemElement,
     react: React,
-});
-
-export type FlintCarouselItemProps = React.ComponentProps<typeof FlintCarouselItem>;
+}) as unknown as React.ForwardRefExoticComponent<FlintCarouselItemProps & React.RefAttributes<FlintCarouselItemElement>>;

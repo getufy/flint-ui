@@ -5,10 +5,26 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintBreadcrumbs as FlintBreadcrumbsElement } from '@getufy/flint-ui/breadcrumbs/flint-breadcrumbs';
 
+/**
+ * Breadcrumbs provide a navigational aid showing the current page's location
+within a site hierarchy, allowing users to navigate back up the trail.
+ *
+ * @slot - Breadcrumb items (links or text), distributed in order.
+ * @slot separator - Custom separator element rendered between each item.
+ */
+export interface FlintBreadcrumbsProps extends React.HTMLAttributes<FlintBreadcrumbsElement> {
+    /** Max number of items to display before collapsing. */
+    maxItems?: number;
+    /** Number of items to show before the ellipsis. */
+    itemsBefore?: number;
+    /** Number of items to show after the ellipsis. */
+    itemsAfter?: number;
+    /** The character or string used as a separator (fallback when no separator slot is provided). */
+    separator?: string;
+}
+
 export const FlintBreadcrumbs = createComponent({
     tagName: 'flint-breadcrumbs',
     elementClass: FlintBreadcrumbsElement,
     react: React,
-});
-
-export type FlintBreadcrumbsProps = React.ComponentProps<typeof FlintBreadcrumbs>;
+}) as unknown as React.ForwardRefExoticComponent<FlintBreadcrumbsProps & React.RefAttributes<FlintBreadcrumbsElement>>;

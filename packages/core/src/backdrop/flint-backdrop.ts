@@ -6,7 +6,7 @@ import uiBackdropStyles from './flint-backdrop.css?inline';
 /**
  * A backdrop component that narrows the user's focus to a particular element.
  *
- * @fires flint-backdrop-close - Dispatched when the backdrop is clicked or Escape is pressed.
+ * @fires flint-backdrop-close - Dispatched when the backdrop is clicked or Escape is pressed. detail: `{ open: false }`
  * @slot - Content to display in the foreground.
  */
 @customElement('flint-backdrop')
@@ -34,14 +34,14 @@ export class FlintBackdrop extends LitElement {
 
   private _handleKeydown(e: KeyboardEvent) {
     if (e.key === 'Escape' && this.open) {
-      this.dispatchEvent(new CustomEvent('flint-backdrop-close', { bubbles: true, composed: true }));
+      this.dispatchEvent(new CustomEvent('flint-backdrop-close', { bubbles: true, composed: true, detail: { open: false } }));
     }
   }
 
   private _handleClick(e: MouseEvent) {
     // Only trigger close if clicking directly on the backdrop, not the content
     if (e.target === e.currentTarget) {
-      this.dispatchEvent(new CustomEvent('flint-backdrop-close', { bubbles: true, composed: true }));
+      this.dispatchEvent(new CustomEvent('flint-backdrop-close', { bubbles: true, composed: true, detail: { open: false } }));
     }
   }
 

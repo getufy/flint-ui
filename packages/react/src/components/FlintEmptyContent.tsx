@@ -5,10 +5,16 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintEmptyContent as FlintEmptyContentElement } from '@getufy/flint-ui/empty/flint-empty';
 
+/**
+ * Displays action content for an empty state (buttons, inputs, links).
+ *
+ * @slot - Action elements such as buttons or inputs.
+ */
+export interface FlintEmptyContentProps extends React.HTMLAttributes<FlintEmptyContentElement> {
+}
+
 export const FlintEmptyContent = createComponent({
     tagName: 'flint-empty-content',
     elementClass: FlintEmptyContentElement,
     react: React,
-});
-
-export type FlintEmptyContentProps = React.ComponentProps<typeof FlintEmptyContent>;
+}) as unknown as React.ForwardRefExoticComponent<FlintEmptyContentProps & React.RefAttributes<FlintEmptyContentElement>>;

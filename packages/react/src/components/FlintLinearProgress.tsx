@@ -5,10 +5,24 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintLinearProgress as FlintLinearProgressElement } from '@getufy/flint-ui/progress/flint-linear-progress';
 
+/**
+ * flint-linear-progress: a horizontal progress bar.
+ */
+export interface FlintLinearProgressProps extends Omit<React.HTMLAttributes<FlintLinearProgressElement>, 'color'> {
+    /** Progress variant: determinate shows a specific value, indeterminate shows an animation. */
+    variant?: 'determinate' | 'indeterminate';
+    /** Current progress value (0-100). */
+    value?: number;
+    /** Height of the progress bar in pixels. */
+    height?: number;
+    /** Color theme of the progress bar. */
+    color?: 'primary' | 'success' | 'error' | 'warning';
+    /** Accessible label for the progress bar. */
+    label?: string;
+}
+
 export const FlintLinearProgress = createComponent({
     tagName: 'flint-linear-progress',
     elementClass: FlintLinearProgressElement,
     react: React,
-});
-
-export type FlintLinearProgressProps = React.ComponentProps<typeof FlintLinearProgress>;
+}) as unknown as React.ForwardRefExoticComponent<FlintLinearProgressProps & React.RefAttributes<FlintLinearProgressElement>>;

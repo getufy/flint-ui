@@ -5,10 +5,27 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintImageList as FlintImageListElement } from '@getufy/flint-ui/image-list/flint-image-list';
 
+/**
+ * A container that displays images in an organized grid layout.
+Supports standard, quilted, woven, and masonry variants.
+ *
+ * @slot - Place `flint-image-list-item` elements here.
+ */
+export interface FlintImageListProps extends React.HTMLAttributes<FlintImageListElement> {
+    /** Layout variant */
+    variant?: FlintImageListElement['variant'];
+    /** Number of columns */
+    cols?: number;
+    /** Gap between items (in px) */
+    gap?: number;
+    /** Row height for non-masonry variants (in px). Ignored when autoRows=true. */
+    rowHeight?: number;
+    /** When true, row height is automatic (use with bar-position="below") */
+    autoRows?: boolean;
+}
+
 export const FlintImageList = createComponent({
     tagName: 'flint-image-list',
     elementClass: FlintImageListElement,
     react: React,
-});
-
-export type FlintImageListProps = React.ComponentProps<typeof FlintImageList>;
+}) as unknown as React.ForwardRefExoticComponent<FlintImageListProps & React.RefAttributes<FlintImageListElement>>;

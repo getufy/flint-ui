@@ -5,13 +5,35 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintTab as FlintTabElement } from '@getufy/flint-ui/tabs/flint-tabs';
 
+export interface FlintTabClickDetail {
+    value: string;
+}
+
+/**
+ * Tab: an individual tab button within a tab list.
+ */
+export interface FlintTabProps extends React.HTMLAttributes<FlintTabElement> {
+    /** Unique identifier for this tab. */
+    value?: string;
+    /** Whether the tab is disabled. */
+    disabled?: boolean;
+    /** Whether the tab is currently selected. */
+    selected?: boolean;
+    /** Position of the icon slot relative to the label. */
+    iconPosition?: 'top' | 'bottom' | 'start' | 'end';
+    /** URL to navigate to, renders the tab as a link. */
+    href?: string;
+    /** Whether the tab stretches to fill available width. */
+    fullWidth?: boolean;
+    /** Fired when the tab is clicked or activated via keyboard. */
+    onFlintTabClick?: (event: CustomEvent<FlintTabClickDetail>) => void;
+}
+
 export const FlintTab = createComponent({
     tagName: 'flint-tab',
     elementClass: FlintTabElement,
     react: React,
     events: {
-        onFlintTabClick: 'flint-tab-click' as EventName<CustomEvent>,
+        onFlintTabClick: 'flint-tab-click' as EventName<CustomEvent<FlintTabClickDetail>>,
     },
-});
-
-export type FlintTabProps = React.ComponentProps<typeof FlintTab>;
+}) as unknown as React.ForwardRefExoticComponent<FlintTabProps & React.RefAttributes<FlintTabElement>>;

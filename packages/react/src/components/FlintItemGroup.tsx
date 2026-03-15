@@ -5,10 +5,16 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintItemGroup as FlintItemGroupElement } from '@getufy/flint-ui/item/flint-item';
 
+/**
+ * Container for grouping related items together.
+ *
+ * @slot - Accepts `flint-item`, `flint-item-separator`, and any other elements.
+ */
+export interface FlintItemGroupProps extends React.HTMLAttributes<FlintItemGroupElement> {
+}
+
 export const FlintItemGroup = createComponent({
     tagName: 'flint-item-group',
     elementClass: FlintItemGroupElement,
     react: React,
-});
-
-export type FlintItemGroupProps = React.ComponentProps<typeof FlintItemGroup>;
+}) as unknown as React.ForwardRefExoticComponent<FlintItemGroupProps & React.RefAttributes<FlintItemGroupElement>>;

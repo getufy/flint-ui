@@ -5,10 +5,16 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintItemTitle as FlintItemTitleElement } from '@getufy/flint-ui/item/flint-item';
 
+/**
+ * Displays the title of an item.
+ *
+ * @slot - Title text.
+ */
+export interface FlintItemTitleProps extends React.HTMLAttributes<FlintItemTitleElement> {
+}
+
 export const FlintItemTitle = createComponent({
     tagName: 'flint-item-title',
     elementClass: FlintItemTitleElement,
     react: React,
-});
-
-export type FlintItemTitleProps = React.ComponentProps<typeof FlintItemTitle>;
+}) as unknown as React.ForwardRefExoticComponent<FlintItemTitleProps & React.RefAttributes<FlintItemTitleElement>>;

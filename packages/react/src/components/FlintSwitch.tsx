@@ -5,13 +5,45 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintSwitch as FlintSwitchElement } from '@getufy/flint-ui/switch/flint-switch';
 
+export interface FlintSwitchChangeDetail {
+    checked: boolean;
+}
+
+/**
+ * A Switch component for toggling settings.
+ *
+ * @slot icon-on - Optional icon to show when the switch is ON.
+ * @slot icon-off - Optional icon to show when the switch is OFF.
+ * @slot - Optional label content (used when the `label` prop is not set).
+ */
+export interface FlintSwitchProps extends Omit<React.HTMLAttributes<FlintSwitchElement>, 'defaultChecked'> {
+    /** Whether the switch is toggled on. */
+    checked?: boolean;
+    /** Disables the switch and prevents interaction. */
+    disabled?: boolean;
+    /** Marks the switch as required for form validation. */
+    required?: boolean;
+    /** Size of the switch control. */
+    size?: 'sm' | 'md' | 'lg';
+    /** Visible label text displayed next to the switch. */
+    label?: string;
+    /** Form field name used when submitting form data. */
+    name?: string;
+    /** Value submitted with form data when checked. */
+    value?: string;
+    /** Initial checked state for uncontrolled usage. */
+    defaultChecked?: boolean;
+    /** Accessible label for screen readers when no visible label is provided. */
+    ariaLabel?: string | null;
+    /** Dispatched when the switch state changes. Detail: `{ checked: boolean }` */
+    onFlintSwitchChange?: (event: CustomEvent<FlintSwitchChangeDetail>) => void;
+}
+
 export const FlintSwitch = createComponent({
     tagName: 'flint-switch',
     elementClass: FlintSwitchElement,
     react: React,
     events: {
-        onFlintSwitchChange: 'flint-switch-change' as EventName<CustomEvent>,
+        onFlintSwitchChange: 'flint-switch-change' as EventName<CustomEvent<FlintSwitchChangeDetail>>,
     },
-});
-
-export type FlintSwitchProps = React.ComponentProps<typeof FlintSwitch>;
+}) as unknown as React.ForwardRefExoticComponent<FlintSwitchProps & React.RefAttributes<FlintSwitchElement>>;

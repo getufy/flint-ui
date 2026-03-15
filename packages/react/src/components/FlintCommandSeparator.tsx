@@ -5,10 +5,14 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintCommandSeparator as FlintCommandSeparatorElement } from '@getufy/flint-ui/command/flint-command';
 
+/**
+ * A hairline separator between command groups.
+ */
+export interface FlintCommandSeparatorProps extends React.HTMLAttributes<FlintCommandSeparatorElement> {
+}
+
 export const FlintCommandSeparator = createComponent({
     tagName: 'flint-command-separator',
     elementClass: FlintCommandSeparatorElement,
     react: React,
-});
-
-export type FlintCommandSeparatorProps = React.ComponentProps<typeof FlintCommandSeparator>;
+}) as unknown as React.ForwardRefExoticComponent<FlintCommandSeparatorProps & React.RefAttributes<FlintCommandSeparatorElement>>;

@@ -5,13 +5,43 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintSplitPanel as FlintSplitPanelElement } from '@getufy/flint-ui/split-panel/flint-split-panel';
 
+export interface FlintSplitPanelRepositionDetail {
+    position: number;
+    positionInPixels: number;
+}
+
+/**
+ * `flint-split-panel` — Two adjacent panels separated by a draggable divider.
+ *
+ * @slot start - Content for the start (left/top) panel.
+ * @slot end - Content for the end (right/bottom) panel.
+ * @slot divider - Custom handle icon rendered inside the divider.
+ */
+export interface FlintSplitPanelProps extends React.HTMLAttributes<FlintSplitPanelElement> {
+    /** Divider position as a percentage (0–100). Defaults to 50. */
+    position?: number;
+    /** Divider position in pixels from the primary panel's edge. */
+    positionInPixels?: number;
+    /** Vertical layout — start/end panels are stacked top/bottom. */
+    vertical?: boolean;
+    /** Prevent the divider from being repositioned. */
+    disabled?: boolean;
+    /** Designates a primary panel that maintains its pixel size when the */
+    primary?: 'start' | 'end';
+    /** Space-separated snap positions (`Npx`, `N%`, `repeat(Npx)`, `repeat(N%)`), */
+    snap?: FlintSplitPanelElement['snap'];
+    /** How close (px) the divider must be to a snap point before snapping. Default: 12. */
+    snapThreshold?: number;
+    /** Emitted when the divider position changes.
+Detail: `{ position: number; positionInPixels: number }`. */
+    onFlintSplitPanelReposition?: (event: CustomEvent<FlintSplitPanelRepositionDetail>) => void;
+}
+
 export const FlintSplitPanel = createComponent({
     tagName: 'flint-split-panel',
     elementClass: FlintSplitPanelElement,
     react: React,
     events: {
-        onFlintSplitPanelReposition: 'flint-split-panel-reposition' as EventName<CustomEvent>,
+        onFlintSplitPanelReposition: 'flint-split-panel-reposition' as EventName<CustomEvent<FlintSplitPanelRepositionDetail>>,
     },
-});
-
-export type FlintSplitPanelProps = React.ComponentProps<typeof FlintSplitPanel>;
+}) as unknown as React.ForwardRefExoticComponent<FlintSplitPanelProps & React.RefAttributes<FlintSplitPanelElement>>;

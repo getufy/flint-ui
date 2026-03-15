@@ -281,6 +281,8 @@ describe('flint-chip', () => {
         const el = await fixture<FlintChip>(html`<flint-chip label="Delete" deletable @flint-chip-delete=${handler}></flint-chip>`);
         el.shadowRoot!.querySelector('.delete-icon')!.dispatchEvent(new MouseEvent('click', { bubbles: true, composed: true }));
         expect(handler).toHaveBeenCalledTimes(1);
+        const evt = handler.mock.calls[0][0] as CustomEvent;
+        expect(evt.detail).toEqual({ value: 'Delete' });
     });
 
     it('does not dispatch delete when chip is disabled', async () => {

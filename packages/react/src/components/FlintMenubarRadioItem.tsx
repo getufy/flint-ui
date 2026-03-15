@@ -5,13 +5,30 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintMenubarRadioItem as FlintMenubarRadioItemElement } from '@getufy/flint-ui/menubar/flint-menubar';
 
+export interface FlintMenubarRadioSelectDetail {
+    value: string;
+}
+
+/**
+ * A radio option inside a `<flint-menubar-radio-group>`.
+ */
+export interface FlintMenubarRadioItemProps extends React.HTMLAttributes<FlintMenubarRadioItemElement> {
+    /** Value identifying this radio option within its group. */
+    value?: string;
+    /** Whether this radio item is currently selected. */
+    checked?: boolean;
+    /** Whether the item is non-interactive. */
+    disabled?: boolean;
+    /** Whether the item is visually highlighted (e.g. via keyboard or hover). */
+    highlighted?: boolean;
+    onFlintMenubarRadioSelect?: (event: CustomEvent<FlintMenubarRadioSelectDetail>) => void;
+}
+
 export const FlintMenubarRadioItem = createComponent({
     tagName: 'flint-menubar-radio-item',
     elementClass: FlintMenubarRadioItemElement,
     react: React,
     events: {
-        onFlintMenubarRadioSelect: 'flint-menubar-radio-select' as EventName<CustomEvent>,
+        onFlintMenubarRadioSelect: 'flint-menubar-radio-select' as EventName<CustomEvent<FlintMenubarRadioSelectDetail>>,
     },
-});
-
-export type FlintMenubarRadioItemProps = React.ComponentProps<typeof FlintMenubarRadioItem>;
+}) as unknown as React.ForwardRefExoticComponent<FlintMenubarRadioItemProps & React.RefAttributes<FlintMenubarRadioItemElement>>;

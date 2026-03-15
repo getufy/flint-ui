@@ -22,7 +22,7 @@ Input: a styled text input with label, help text, and error states.
 | \`value\` | \`value\` | \`string\` | \`''\` | Current input value. |
 | \`type\` | \`type\` | \`string\` | \`'text'\` | HTML input type (text, email, password, etc.). |
 | \`placeholder\` | \`placeholder\` | \`string\` | \`''\` | Placeholder text shown when the input is empty. |
-| \`helpText\` | \`help-text\` | \`string\` | \`''\` | Help text displayed below the input. |
+| \`helperText\` | \`helper-text\` | \`string\` | \`''\` | Help text displayed below the input. |
 | \`error\` | \`error\` | \`boolean\` | \`false\` | Whether the input is in an error state. |
 | \`errorMessage\` | \`error-message\` | \`string\` | \`''\` | Error message displayed below the input. |
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the input and prevents interaction. |
@@ -77,7 +77,7 @@ Input: a styled text input with label, help text, and error states.
             options: ['text', 'password', 'email', 'number', 'search', 'url', 'tel', 'file', 'date', 'time'],
         },
         placeholder: { control: 'text' },
-        helpText: { control: 'text' },
+        helperText: { control: 'text' },
         error: { control: 'boolean' },
         errorMessage: { control: 'text' },
         disabled: { control: 'boolean' },
@@ -94,7 +94,7 @@ Input: a styled text input with label, help text, and error states.
         placeholder: 'Enter your username',
         type: 'text',
         value: '',
-        helpText: '',
+        helperText: '',
         error: false,
         errorMessage: '',
         disabled: false,
@@ -111,7 +111,7 @@ Input: a styled text input with label, help text, and error states.
         .value=${args.value}
         .type=${args.type}
         .placeholder=${args.placeholder}
-        .helpText=${args.helpText}
+        .helperText=${args.helperText}
         .errorMessage=${args.errorMessage}
         .name=${args.name}
         .autocomplete=${args.autocomplete}
@@ -143,7 +143,7 @@ export const WithValue: Story = {
 
 export const WithHelpText: Story = {
     args: {
-        helpText: 'We will never share your email with anyone else.',
+        helperText: 'We will never share your email with anyone else.',
     },
 };
 
@@ -168,7 +168,7 @@ export const Required: Story = {
         label: 'Required Field',
         placeholder: 'This field is required',
         required: true,
-        helpText: 'This field must be filled out.',
+        helperText: 'This field must be filled out.',
     },
 };
 
@@ -177,7 +177,7 @@ export const Readonly: Story = {
         label: 'Read Only',
         value: 'Read-only value',
         readonly: true,
-        helpText: 'This field cannot be edited.',
+        helperText: 'This field cannot be edited.',
     },
 };
 
@@ -186,7 +186,7 @@ export const Password: Story = {
         label: 'Password',
         type: 'password',
         placeholder: '••••••••',
-        helpText: 'Must be at least 8 characters.',
+        helperText: 'Must be at least 8 characters.',
     },
 };
 
@@ -211,7 +211,7 @@ export const FileInput: Story = {
     args: {
         label: 'Upload file',
         type: 'file',
-        helpText: 'Select a file to upload.',
+        helperText: 'Select a file to upload.',
     },
 };
 

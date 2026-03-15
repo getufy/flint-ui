@@ -5,13 +5,39 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintRadioGroup as FlintRadioGroupElement } from '@getufy/flint-ui/radio/flint-radio';
 
+export interface FlintRadioGroupChangeDetail {
+    value: string;
+}
+
+/**
+ * Radio Group: manages a set of radio buttons with single selection.
+ */
+export interface FlintRadioGroupProps extends Omit<React.HTMLAttributes<FlintRadioGroupElement>, 'defaultValue'> {
+    /** Accessible label for the radio group. */
+    label?: string;
+    /** Form field name for all radios in the group. */
+    name?: string;
+    /** Currently selected radio value. */
+    value?: string;
+    /** Initial value for uncontrolled usage. */
+    defaultValue?: string;
+    /** Disables all radios in the group. */
+    disabled?: boolean;
+    /** Marks the group as required for form validation. */
+    required?: boolean;
+    /** Layout direction of the radio buttons. */
+    orientation?: FlintRadioGroupElement['orientation'];
+    /** Size of the radio buttons. */
+    size?: FlintRadioGroupElement['size'];
+    /** Fired when the selected radio value changes. */
+    onFlintRadioGroupChange?: (event: CustomEvent<FlintRadioGroupChangeDetail>) => void;
+}
+
 export const FlintRadioGroup = createComponent({
     tagName: 'flint-radio-group',
     elementClass: FlintRadioGroupElement,
     react: React,
     events: {
-        onFlintRadioGroupChange: 'flint-radio-group-change' as EventName<CustomEvent>,
+        onFlintRadioGroupChange: 'flint-radio-group-change' as EventName<CustomEvent<FlintRadioGroupChangeDetail>>,
     },
-});
-
-export type FlintRadioGroupProps = React.ComponentProps<typeof FlintRadioGroup>;
+}) as unknown as React.ForwardRefExoticComponent<FlintRadioGroupProps & React.RefAttributes<FlintRadioGroupElement>>;

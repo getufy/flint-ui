@@ -5,16 +5,65 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintRichTreeView as FlintRichTreeViewElement } from '@getufy/flint-ui/tree-view/flint-rich-tree-view';
 
+export interface FlintTreeViewExpandedItemsChangeDetail {
+    expandedItems: string[];
+}
+
+/**
+ * A data-driven tree view that renders its structure from an `items` array.
+ */
+export interface FlintRichTreeViewProps extends React.HTMLAttributes<FlintRichTreeViewElement> {
+    /** Array of item data objects to render in the tree. */
+    items?: FlintRichTreeViewElement['items'];
+    /** Optional lazy-load data source. When provided, children are fetched */
+    dataSource?: FlintRichTreeViewElement['dataSource'];
+    /** Returns the unique string ID for an item. Defaults to `item.id`. */
+    getItemId?: FlintRichTreeViewElement['getItemId'];
+    /** Returns the display label for an item. Defaults to `item.label`. */
+    getItemLabel?: FlintRichTreeViewElement['getItemLabel'];
+    /** Returns the children array for an item. Defaults to `item.children`. */
+    getItemChildren?: FlintRichTreeViewElement['getItemChildren'];
+    /** Returns `true` if the given item should be disabled. */
+    isItemDisabled?: FlintRichTreeViewElement['isItemDisabled'];
+    /** When `true`, disabled items can receive keyboard focus. */
+    disabledItemsFocusable?: boolean;
+    /** Callback invoked when a tree item is clicked or activated via keyboard. */
+    onItemClick?: FlintRichTreeViewElement['onItemClick'];
+    /** What interaction triggers expand/collapse. */
+    expansionTrigger?: 'content' | 'iconContainer';
+    /** **Controlled mode.** The set of item IDs that should be expanded. */
+    expandedItems?: string[];
+    /** **Uncontrolled mode.** Item IDs to expand on initial mount. */
+    defaultExpandedItems?: string[];
+    /** Callback fired when the user toggles an item's expansion. */
+    onExpandedItemsChange?: FlintRichTreeViewElement['onExpandedItemsChange'];
+    /** When `true`, enables drag-and-drop reordering of items. */
+    itemsReordering?: boolean;
+    /** Function that determines if a specific item can be reordered. */
+    isItemReorderable?: FlintRichTreeViewElement['isItemReorderable'];
+    /** Function that determines if an item can be moved to a specific target position. */
+    canMoveItemToNewPosition?: FlintRichTreeViewElement['canMoveItemToNewPosition'];
+    /** Whether to use a drag handle icon for reordering. */
+    itemsReorderingHandle?: boolean;
+    /** Fired when an item's position changes via reordering. */
+    onItemPositionChange?: FlintRichTreeViewElement['onItemPositionChange'];
+    /** When a lazy-loading dataSource call fails (detail: { message, id, error }) */
+    onFlintTreeViewError?: (event: CustomEvent) => void;
+    /** When the expanded set changes (detail: { expandedItems }) */
+    onFlintTreeViewExpandedItemsChange?: (event: CustomEvent<FlintTreeViewExpandedItemsChangeDetail>) => void;
+    /** When a tree item is activated (detail: { itemId }) */
+    onFlintTreeViewItemClick?: (event: CustomEvent) => void;
+    onFlintTreeViewItemPositionChange?: (event: CustomEvent) => void;
+}
+
 export const FlintRichTreeView = createComponent({
     tagName: 'flint-rich-tree-view',
     elementClass: FlintRichTreeViewElement,
     react: React,
     events: {
         onFlintTreeViewError: 'flint-tree-view-error' as EventName<CustomEvent>,
-        onFlintTreeViewExpandedItemsChange: 'flint-tree-view-expanded-items-change' as EventName<CustomEvent>,
+        onFlintTreeViewExpandedItemsChange: 'flint-tree-view-expanded-items-change' as EventName<CustomEvent<FlintTreeViewExpandedItemsChangeDetail>>,
         onFlintTreeViewItemClick: 'flint-tree-view-item-click' as EventName<CustomEvent>,
         onFlintTreeViewItemPositionChange: 'flint-tree-view-item-position-change' as EventName<CustomEvent>,
     },
-});
-
-export type FlintRichTreeViewProps = React.ComponentProps<typeof FlintRichTreeView>;
+}) as unknown as React.ForwardRefExoticComponent<FlintRichTreeViewProps & React.RefAttributes<FlintRichTreeViewElement>>;

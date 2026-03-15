@@ -5,10 +5,35 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintLink as FlintLinkElement } from '@getufy/flint-ui/link/flint-link';
 
+/**
+ * The Link component allows you to easily customize anchor elements
+with theme colors and typography styles.
+ *
+ * @slot - Link text or content.
+ */
+export interface FlintLinkProps extends Omit<React.HTMLAttributes<FlintLinkElement>, 'color'> {
+    /** The URL of the link. */
+    href?: string;
+    /** Where to open the link. */
+    target?: '_self' | '_blank' | '_parent' | '_top';
+    /** Specifies the relationship of the target object. */
+    rel?: string;
+    /** The color of the link. */
+    color?: FlintLinkElement['color'];
+    /** Controls the underline behavior. */
+    underline?: 'none' | 'hover' | 'always';
+    /** Applies typography variant styles. */
+    variant?: FlintLinkElement['variant'];
+    /** If true, the link is disabled. */
+    disabled?: boolean;
+    /** The download attribute. */
+    download?: string;
+    /** The ARIA label. */
+    label?: string;
+}
+
 export const FlintLink = createComponent({
     tagName: 'flint-link',
     elementClass: FlintLinkElement,
     react: React,
-});
-
-export type FlintLinkProps = React.ComponentProps<typeof FlintLink>;
+}) as unknown as React.ForwardRefExoticComponent<FlintLinkProps & React.RefAttributes<FlintLinkElement>>;

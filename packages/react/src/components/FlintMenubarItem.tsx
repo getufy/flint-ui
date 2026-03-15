@@ -5,13 +5,33 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintMenubarItem as FlintMenubarItemElement } from '@getufy/flint-ui/menubar/flint-menubar';
 
+export interface FlintMenubarItemSelectDetail {
+    value: string;
+}
+
+/**
+ * A single interactive option inside a menubar dropdown.
+ *
+ * @slot - Item label text plus optional `<flint-menubar-shortcut>`.
+ */
+export interface FlintMenubarItemProps extends React.HTMLAttributes<FlintMenubarItemElement> {
+    /** Whether the item is non-interactive. */
+    disabled?: boolean;
+    /** Whether the item is visually highlighted (e.g. via keyboard or hover). */
+    highlighted?: boolean;
+    /** Whether the item label is inset to align with checkbox/radio items. */
+    inset?: boolean;
+    /** Explicit value for the select event. Falls back to label text (excludes shortcut). */
+    value?: string;
+    /** Fired on activation. detail: `{ value: string }` */
+    onFlintMenubarItemSelect?: (event: CustomEvent<FlintMenubarItemSelectDetail>) => void;
+}
+
 export const FlintMenubarItem = createComponent({
     tagName: 'flint-menubar-item',
     elementClass: FlintMenubarItemElement,
     react: React,
     events: {
-        onFlintMenubarItemSelect: 'flint-menubar-item-select' as EventName<CustomEvent>,
+        onFlintMenubarItemSelect: 'flint-menubar-item-select' as EventName<CustomEvent<FlintMenubarItemSelectDetail>>,
     },
-});
-
-export type FlintMenubarItemProps = React.ComponentProps<typeof FlintMenubarItem>;
+}) as unknown as React.ForwardRefExoticComponent<FlintMenubarItemProps & React.RefAttributes<FlintMenubarItemElement>>;

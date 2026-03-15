@@ -5,10 +5,27 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintTooltip as FlintTooltipElement } from '@getufy/flint-ui/tooltip/flint-tooltip';
 
+/**
+ * flint-tooltip
+A component that displays a text label when users hover over or focus on an element.
+ */
+export interface FlintTooltipProps extends React.HTMLAttributes<FlintTooltipElement> {
+    /** Text content displayed inside the tooltip. */
+    label?: string;
+    /** Preferred placement of the tooltip relative to the trigger element. */
+    placement?: FlintTooltipElement['placement'];
+    /** Show a small arrow pointing toward the trigger element. */
+    arrow?: boolean;
+    /** Disables the tooltip so it never appears. */
+    disabled?: boolean;
+    /** Delay in ms before showing the tooltip. */
+    openDelay?: number;
+    /** Delay in ms before hiding the tooltip. */
+    closeDelay?: number;
+}
+
 export const FlintTooltip = createComponent({
     tagName: 'flint-tooltip',
     elementClass: FlintTooltipElement,
     react: React,
-});
-
-export type FlintTooltipProps = React.ComponentProps<typeof FlintTooltip>;
+}) as unknown as React.ForwardRefExoticComponent<FlintTooltipProps & React.RefAttributes<FlintTooltipElement>>;

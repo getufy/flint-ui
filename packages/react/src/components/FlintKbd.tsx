@@ -5,10 +5,23 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintKbd as FlintKbdElement } from '@getufy/flint-ui/kbd/flint-kbd';
 
+/**
+ * Displays a single keyboard key or modifier symbol.
+Renders a semantic `<kbd>` element for accessibility.
+ *
+ * @slot - Key label: text, symbol (⌘ ⇧ ⌥ ⌃ ⏎), or any inline content.
+ */
+export interface FlintKbdProps extends React.HTMLAttributes<FlintKbdElement> {
+    /** Visual size of the key. */
+    size?: 'sm' | 'default' | 'lg';
+    /** Visual style: `raised` (default, bottom border + shadow) or `flat` (no raised effect). */
+    variant?: 'raised' | 'flat';
+    /** Accessible label forwarded as `aria-label` on the inner `<kbd>` element. Useful for symbol keys like ⌘. */
+    label?: string;
+}
+
 export const FlintKbd = createComponent({
     tagName: 'flint-kbd',
     elementClass: FlintKbdElement,
     react: React,
-});
-
-export type FlintKbdProps = React.ComponentProps<typeof FlintKbd>;
+}) as unknown as React.ForwardRefExoticComponent<FlintKbdProps & React.RefAttributes<FlintKbdElement>>;

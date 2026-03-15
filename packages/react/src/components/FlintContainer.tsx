@@ -5,10 +5,17 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { FlintContainer as FlintContainerElement } from '@getufy/flint-ui/container/flint-container';
 
+export interface FlintContainerProps extends React.HTMLAttributes<FlintContainerElement> {
+    /** Determine the max-width of the container. */
+    maxWidth?: FlintContainerElement['maxWidth'];
+    /** If `true`, the left and right padding is removed. */
+    disableGutters?: boolean;
+    /** Set the max-width to match the min-width of the current breakpoint. */
+    fixed?: boolean;
+}
+
 export const FlintContainer = createComponent({
     tagName: 'flint-container',
     elementClass: FlintContainerElement,
     react: React,
-});
-
-export type FlintContainerProps = React.ComponentProps<typeof FlintContainer>;
+}) as unknown as React.ForwardRefExoticComponent<FlintContainerProps & React.RefAttributes<FlintContainerElement>>;

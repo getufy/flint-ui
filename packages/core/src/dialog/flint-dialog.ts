@@ -16,7 +16,7 @@ const _openDialogs: FlintDialog[] = [];
  *
  * @fires close - Dispatched when the dialog requests to be closed (backdrop click or
  *               an explicit call to `requestClose()`). The host is responsible for
- *               setting `open = false` in response.
+ *               setting `open = false` in response. detail: `{ open: false }`
  * @fires confirm - Dispatched by confirmation dialogs when the user clicked "confirm".
  * @fires cancel  - Dispatched by confirmation dialogs when the user clicked "cancel".
  *
@@ -29,6 +29,13 @@ export class FlintDialog extends LitElement {
   /** Controls the open / closed state of the dialog. */
   @property({ type: Boolean, reflect: true }) open = false;
 
+  /**
+   * Initial open state for uncontrolled usage.
+   * Has no effect after the element has connected to the DOM.
+   */
+  @property({ type: Boolean, attribute: 'default-open' }) defaultOpen = false;
+
+  private _firstUpdate = true;
   private _lastFocused: HTMLElement | null = null;
 
   /** Animation style: 'scale' (default), 'slide-up', or 'slide-down'. */
@@ -39,6 +46,16 @@ export class FlintDialog extends LitElement {
    * Useful for confirmation dialogs where the user must make a deliberate choice.
    */
   @property({ type: Boolean, attribute: 'disable-backdrop-close' }) disableBackdropClose = false;
+
+  override willUpdate(changed: PropertyValues) {
+    if (this._firstUpdate) {
+      this._firstUpdate = false;
+      if (this.defaultOpen && !this.open) {
+        this.open = true;
+      }
+    }
+    void changed;
+  }
 
   connectedCallback() {
     super.connectedCallback();
@@ -79,7 +96,7 @@ export class FlintDialog extends LitElement {
 
   /** Programmatically request the dialog to close (fires the 'close' event). */
   requestClose() {
-    this.dispatchEvent(new CustomEvent('close', { bubbles: true, composed: true }));
+    this.dispatchEvent(new CustomEvent('close', { bubbles: true, composed: true, detail: { open: false } }));
   }
 
   private _handleBackdropClose(e: Event) {
