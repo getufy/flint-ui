@@ -207,6 +207,8 @@ export { parseDate } from './format-date/flint-format-date.js';
 export { FlintFormatNumber } from './format-number/flint-format-number.js';
 export { FlintVisuallyHidden } from './visually-hidden/flint-visually-hidden.js';
 export { FlintRangeSlider } from './flint-range-slider/flint-range-slider.js';
+export { FlintFormField } from './form-field/flint-form-field.js';
+export type { LabelPosition } from './form-field/flint-form-field.js';
 
 // ── Utilities & Controllers ─────────────────────────────────────────────────
 export { LocalizeController, registerTranslation, resolveLocale } from './utilities/localize.js';

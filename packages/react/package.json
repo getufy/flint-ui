@@ -301,6 +301,7 @@
   "scripts": {
     "generate": "tsx ../../scripts/generate-react-wrappers.ts",
     "build": "node build.mjs",
+    "test": "vitest run",
     "prepublishOnly": "npm run generate && npm run build"
   },
   "keywords": [
