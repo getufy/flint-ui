@@ -293,6 +293,9 @@ export class FlintDatePicker extends LitElement {
     /** Helper/error text below the field. */
     @property({ type: String, attribute: 'helper-text' }) helperText = '';
 
+    /** Error message displayed below the field when in error state. */
+    @property({ type: String, attribute: 'error-message' }) errorMessage = '';
+
     // ── State ───────────────────────────────────────────────────────────────
     @state() private _open = false;
     @state() private _pendingValue = ''; // value being edited before OK is clicked
@@ -391,7 +394,11 @@ export class FlintDatePicker extends LitElement {
           📅
         </button>
       </div>
-      ${this.helperText ? html`<p class="helper-text">${this.helperText}</p>` : nothing}
+      ${this.error && this.errorMessage
+          ? html`<p class="helper-text error-text" role="alert">${this.errorMessage}</p>`
+          : this.helperText
+              ? html`<p class="helper-text">${this.helperText}</p>`
+              : nothing}
     `;
     }
 

@@ -5,6 +5,10 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintDrawer as FlintDrawerElement } from '@getufy/flint-ui/drawer/flint-drawer';
 
+export interface FlintDrawerCloseDetail {
+    open: boolean;
+}
+
 /**
  * Navigation drawers provide ergonomic access to destinations in a site or app.
  *
@@ -25,8 +29,8 @@ export interface FlintDrawerProps extends React.HTMLAttributes<FlintDrawerElemen
     container?: boolean;
     /** Accessible label for the drawer panel (used as aria-label on the panel). */
     label?: string;
-    /** Dispatched when the drawer requests to be closed (backdrop click or Escape). */
-    onFlintDrawerClose?: (event: CustomEvent) => void;
+    /** Dispatched when the drawer requests to be closed (backdrop click or Escape). detail: `{ open: false }` */
+    onFlintDrawerClose?: (event: CustomEvent<FlintDrawerCloseDetail>) => void;
 }
 
 export const FlintDrawer = createComponent({
@@ -34,6 +38,6 @@ export const FlintDrawer = createComponent({
     elementClass: FlintDrawerElement,
     react: React,
     events: {
-        onFlintDrawerClose: 'flint-drawer-close' as EventName<CustomEvent>,
+        onFlintDrawerClose: 'flint-drawer-close' as EventName<CustomEvent<FlintDrawerCloseDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintDrawerProps & React.RefAttributes<FlintDrawerElement>>;

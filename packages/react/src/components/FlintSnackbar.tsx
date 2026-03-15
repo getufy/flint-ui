@@ -5,6 +5,14 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintSnackbar as FlintSnackbarElement } from '@getufy/flint-ui/snackbar/flint-snackbar';
 
+export interface FlintSnackbarOpenDetail {
+    open: boolean;
+}
+
+export interface FlintSnackbarCloseDetail {
+    open: boolean;
+}
+
 /**
  * Snackbars (also known as toasts) are used for brief notifications.
 They appear temporarily and float above the UI.
@@ -30,10 +38,10 @@ export interface FlintSnackbarProps extends React.HTMLAttributes<FlintSnackbarEl
     closable?: boolean;
     /** Visual style variant. */
     variant?: 'default' | 'info' | 'success' | 'warning' | 'error';
-    /** Fired when the snackbar opens (bubbles, composed) */
-    onFlintSnackbarOpen?: (event: CustomEvent) => void;
-    /** Fired when the snackbar closes (bubbles, composed) */
-    onFlintSnackbarClose?: (event: CustomEvent) => void;
+    /** Fired when the snackbar opens (bubbles, composed). detail: `{ open: true }` */
+    onFlintSnackbarOpen?: (event: CustomEvent<FlintSnackbarOpenDetail>) => void;
+    /** Fired when the snackbar closes (bubbles, composed). detail: `{ open: false }` */
+    onFlintSnackbarClose?: (event: CustomEvent<FlintSnackbarCloseDetail>) => void;
 }
 
 export const FlintSnackbar = createComponent({
@@ -41,7 +49,7 @@ export const FlintSnackbar = createComponent({
     elementClass: FlintSnackbarElement,
     react: React,
     events: {
-        onFlintSnackbarOpen: 'flint-snackbar-open' as EventName<CustomEvent>,
-        onFlintSnackbarClose: 'flint-snackbar-close' as EventName<CustomEvent>,
+        onFlintSnackbarOpen: 'flint-snackbar-open' as EventName<CustomEvent<FlintSnackbarOpenDetail>>,
+        onFlintSnackbarClose: 'flint-snackbar-close' as EventName<CustomEvent<FlintSnackbarCloseDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintSnackbarProps & React.RefAttributes<FlintSnackbarElement>>;

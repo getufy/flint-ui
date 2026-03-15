@@ -35,6 +35,8 @@ export interface FlintDatePickerProps extends Omit<React.HTMLAttributes<FlintDat
     error?: boolean;
     /** Helper/error text below the field. */
     helperText?: string;
+    /** Error message displayed below the field when in error state. */
+    errorMessage?: string;
     /** { detail: { value: string } } when the date changes */
     onChange?: (event: CustomEvent<ChangeDetail>) => void;
 }

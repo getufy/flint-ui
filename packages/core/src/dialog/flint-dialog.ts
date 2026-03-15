@@ -16,7 +16,7 @@ const _openDialogs: FlintDialog[] = [];
  *
  * @fires close - Dispatched when the dialog requests to be closed (backdrop click or
  *               an explicit call to `requestClose()`). The host is responsible for
- *               setting `open = false` in response.
+ *               setting `open = false` in response. detail: `{ open: false }`
  * @fires confirm - Dispatched by confirmation dialogs when the user clicked "confirm".
  * @fires cancel  - Dispatched by confirmation dialogs when the user clicked "cancel".
  *
@@ -96,7 +96,7 @@ export class FlintDialog extends LitElement {
 
   /** Programmatically request the dialog to close (fires the 'close' event). */
   requestClose() {
-    this.dispatchEvent(new CustomEvent('close', { bubbles: true, composed: true }));
+    this.dispatchEvent(new CustomEvent('close', { bubbles: true, composed: true, detail: { open: false } }));
   }
 
   private _handleBackdropClose(e: Event) {

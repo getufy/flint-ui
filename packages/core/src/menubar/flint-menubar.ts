@@ -585,6 +585,7 @@ export class FlintMenubarContent extends LitElement {
     private _requestClose() {
         this.dispatchEvent(new CustomEvent('flint-menubar-request-close', {
             bubbles: true, composed: true,
+            detail: { open: false },
         }));
     }
 

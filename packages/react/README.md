@@ -21,6 +21,12 @@ Import the theme once in your app entry point:
 import '@getufy/flint-ui/theme.css';
 ```
 
+## Resources
+
+- **[Full documentation](https://getufy.github.io/flint-ui/)** — component docs, guides, and examples
+- **[React guide](https://getufy.github.io/flint-ui/react)** — React-specific usage and patterns
+- **[Live Storybook](https://getufy.github.io/flint-ui/storybook/)** — interactive component playground
+
 ## Subpath imports — use these for tree-shaking
 
 **Always import from subpaths, not the barrel.** Each component is its own entry point; your bundler only includes the components you actually import.
@@ -171,8 +177,6 @@ import '@getufy/flint-ui/theme.css';
 // component imports after...
 ```
 
-## Documentation
+## License
 
-- [Full documentation](https://getufy.github.io/flint-ui/)
-- [React guide](https://getufy.github.io/flint-ui/react)
-- [Live Storybook](https://getufy.github.io/flint-ui/storybook/)
+[MIT](https://github.com/getufy/flint-ui/blob/main/LICENSE)

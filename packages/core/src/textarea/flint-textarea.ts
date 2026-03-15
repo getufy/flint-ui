@@ -32,7 +32,7 @@ export class FlintTextarea extends FormAssociated(LitElement) {
     /** Error message displayed below the textarea. */
     @property({ type: String, attribute: 'error-message' }) errorMessage = '';
     /** Help text displayed below the textarea. */
-    @property({ type: String, attribute: 'help-text' }) helpText = '';
+    @property({ type: String, attribute: 'helper-text' }) helperText = '';
     /** Label text displayed above the textarea. */
     @property({ type: String }) label = '';
     /** Size variant of the textarea. */
@@ -123,7 +123,7 @@ export class FlintTextarea extends FormAssociated(LitElement) {
 
     override render() {
         const errorState = this.error || !!this.errorMessage;
-        const hasDesc = (errorState && !!this.errorMessage) || !!this.helpText;
+        const hasDesc = (errorState && !!this.errorMessage) || !!this.helperText;
 
         return html`
       <div class="textarea-wrapper" part="wrapper">
@@ -155,8 +155,8 @@ export class FlintTextarea extends FormAssociated(LitElement) {
 
         ${errorState && this.errorMessage
             ? html`<p id=${this._descId} class="help-text error-text" part="error-text" role="alert">${this.errorMessage}</p>`
-            : this.helpText
-                ? html`<p id=${this._descId} class="help-text" part="help-text">${this.helpText}</p>`
+            : this.helperText
+                ? html`<p id=${this._descId} class="help-text" part="help-text">${this.helperText}</p>`
                 : nothing}
       </div>
     `;

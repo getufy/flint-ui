@@ -6,6 +6,7 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintAlert as FlintAlertElement } from '@getufy/flint-ui/alert/flint-alert';
 
 export interface FlintAlertCloseDetail {
+    open: boolean;
     severity: 'info' | 'success' | 'warning' | 'error';
 }
 
@@ -22,7 +23,7 @@ export interface FlintAlertProps extends Omit<React.HTMLAttributes<FlintAlertEle
     title?: string;
     /** Whether the alert can be dismissed by the user. */
     dismissible?: boolean;
-    /** Fired when the alert's close button is clicked. */
+    /** Fired when the alert's close button is clicked. detail: `{ open: false, severity: string }` */
     onFlintAlertClose?: (event: CustomEvent<FlintAlertCloseDetail>) => void;
 }
 

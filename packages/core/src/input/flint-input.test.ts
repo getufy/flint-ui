@@ -72,8 +72,8 @@ describe('flint-input', () => {
 
     // ─── aria-describedby ────────────────────────────────────────────────────
 
-    it('sets aria-describedby when helpText is present', async () => {
-        const el = await fixture<FlintInput>(html`<flint-input help-text="Hint"></flint-input>`);
+    it('sets aria-describedby when helperText is present', async () => {
+        const el = await fixture<FlintInput>(html`<flint-input helper-text="Hint"></flint-input>`);
         const input = el.shadowRoot!.querySelector('input')!;
         const descId = input.getAttribute('aria-describedby')!;
         expect(descId).toBeTruthy();
@@ -122,14 +122,14 @@ describe('flint-input', () => {
     // ─── help text / error text display ──────────────────────────────────────
 
     it('displays help text', async () => {
-        const el = await fixture<FlintInput>(html`<flint-input help-text="Helpful tip"></flint-input>`);
+        const el = await fixture<FlintInput>(html`<flint-input helper-text="Helpful tip"></flint-input>`);
         const helpText = el.shadowRoot!.querySelector('.help-text')!;
         expect(helpText.textContent).toBe('Helpful tip');
         expect(helpText.classList.contains('error-text')).toBe(false);
     });
 
     it('displays error text over help text when both set', async () => {
-        const el = await fixture<FlintInput>(html`<flint-input help-text="Hint" error-message="Error!"></flint-input>`);
+        const el = await fixture<FlintInput>(html`<flint-input helper-text="Hint" error-message="Error!"></flint-input>`);
         const para = el.shadowRoot!.querySelector('.help-text')!;
         expect(para.textContent).toBe('Error!');
         expect(para.classList.contains('error-text')).toBe(true);

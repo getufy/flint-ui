@@ -160,8 +160,8 @@ export class FlintHoverCardContent extends LitElement {
  *
  * @slot - Accepts `flint-hover-card-trigger` and `flint-hover-card-content`.
  *
- * @fires flint-hover-card-open  - Fired when the card becomes visible.
- * @fires flint-hover-card-close - Fired when the card is dismissed.
+ * @fires flint-hover-card-open  - Fired when the card becomes visible. detail: `{ open: true }`
+ * @fires flint-hover-card-close - Fired when the card is dismissed. detail: `{ open: false }`
  *
  * @attr {number} open-delay  - Delay in ms before the card opens (default: 700).
  * @attr {number} close-delay - Delay in ms before the card closes (default: 300).
@@ -231,7 +231,7 @@ export class FlintHoverCard extends LitElement {
         this._syncChildren();
         this.dispatchEvent(new CustomEvent(
             open ? 'flint-hover-card-open' : 'flint-hover-card-close',
-            { bubbles: true, composed: true }
+            { bubbles: true, composed: true, detail: { open } }
         ));
     }
 

@@ -5,6 +5,10 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintBackdrop as FlintBackdropElement } from '@getufy/flint-ui/backdrop/flint-backdrop';
 
+export interface FlintBackdropCloseDetail {
+    open: boolean;
+}
+
 /**
  * A backdrop component that narrows the user's focus to a particular element.
  *
@@ -17,8 +21,8 @@ export interface FlintBackdropProps extends React.HTMLAttributes<FlintBackdropEl
     invisible?: boolean;
     /** When true, the backdrop is scoped to its parent container instead of the viewport. */
     container?: boolean;
-    /** Dispatched when the backdrop is clicked or Escape is pressed. */
-    onFlintBackdropClose?: (event: CustomEvent) => void;
+    /** Dispatched when the backdrop is clicked or Escape is pressed. detail: `{ open: false }` */
+    onFlintBackdropClose?: (event: CustomEvent<FlintBackdropCloseDetail>) => void;
 }
 
 export const FlintBackdrop = createComponent({
@@ -26,6 +30,6 @@ export const FlintBackdrop = createComponent({
     elementClass: FlintBackdropElement,
     react: React,
     events: {
-        onFlintBackdropClose: 'flint-backdrop-close' as EventName<CustomEvent>,
+        onFlintBackdropClose: 'flint-backdrop-close' as EventName<CustomEvent<FlintBackdropCloseDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintBackdropProps & React.RefAttributes<FlintBackdropElement>>;

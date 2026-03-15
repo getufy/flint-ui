@@ -32,7 +32,7 @@ export interface FlintTextareaProps extends Omit<React.HTMLAttributes<FlintTexta
     /** Error message displayed below the textarea. */
     errorMessage?: string;
     /** Help text displayed below the textarea. */
-    helpText?: string;
+    helperText?: string;
     /** Label text displayed above the textarea. */
     label?: string;
     /** Size variant of the textarea. */

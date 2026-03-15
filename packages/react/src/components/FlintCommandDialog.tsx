@@ -5,6 +5,10 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintCommandDialog as FlintCommandDialogElement } from '@getufy/flint-ui/command/flint-command';
 
+export interface FlintCommandDialogCloseDetail {
+    open: boolean;
+}
+
 /**
  * Modal dialog wrapper for a command menu. Opens with a smooth backdrop + scale
 animation. Pressing `Escape` or clicking the backdrop fires `flint-command-dialog-close`.
@@ -14,9 +18,9 @@ animation. Pressing `Escape` or clicking the backdrop fires `flint-command-dialo
 export interface FlintCommandDialogProps extends React.HTMLAttributes<FlintCommandDialogElement> {
     /** Controls the open/closed state of the dialog. */
     open?: boolean;
-    /** Fired when the dialog should close.
+    /** Fired when the dialog should close. detail: `{ open: false }`
 The host is responsible for setting `open = false` in response. */
-    onFlintCommandDialogClose?: (event: CustomEvent) => void;
+    onFlintCommandDialogClose?: (event: CustomEvent<FlintCommandDialogCloseDetail>) => void;
 }
 
 export const FlintCommandDialog = createComponent({
@@ -24,6 +28,6 @@ export const FlintCommandDialog = createComponent({
     elementClass: FlintCommandDialogElement,
     react: React,
     events: {
-        onFlintCommandDialogClose: 'flint-command-dialog-close' as EventName<CustomEvent>,
+        onFlintCommandDialogClose: 'flint-command-dialog-close' as EventName<CustomEvent<FlintCommandDialogCloseDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintCommandDialogProps & React.RefAttributes<FlintCommandDialogElement>>;

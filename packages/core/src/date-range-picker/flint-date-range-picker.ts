@@ -61,6 +61,8 @@ export class FlintDateRangePicker extends LitElement {
     @property({ type: Boolean, reflect: true }) error = false;
     /** Helper text shown below the field. */
     @property({ type: String, attribute: 'helper-text' }) helperText = '';
+    /** Error message displayed below the field when in error state. */
+    @property({ type: String, attribute: 'error-message' }) errorMessage = '';
 
     // ── State ─────────────────────────────────────────────────────────────────
 
@@ -209,7 +211,11 @@ export class FlintDateRangePicker extends LitElement {
         @flint-date-range-picker-change=${this._handleFieldRangeChange}
         @focus=${this._openPicker}
       ></flint-single-input-date-range-field>
-      ${this.helperText ? html`<p class="helper-text">${this.helperText}</p>` : nothing}
+      ${this.error && this.errorMessage
+          ? html`<p class="helper-text error-text" role="alert">${this.errorMessage}</p>`
+          : this.helperText
+              ? html`<p class="helper-text">${this.helperText}</p>`
+              : nothing}
     `;
     }
 
@@ -231,7 +237,11 @@ export class FlintDateRangePicker extends LitElement {
                 : html`<span class="mobile-field-placeholder">Start date – End date</span>`}
         <span class="mobile-field-icon">📅</span>
       </div>
-      ${this.helperText ? html`<p class="helper-text">${this.helperText}</p>` : nothing}
+      ${this.error && this.errorMessage
+          ? html`<p class="helper-text error-text" role="alert">${this.errorMessage}</p>`
+          : this.helperText
+              ? html`<p class="helper-text">${this.helperText}</p>`
+              : nothing}
     `;
     }
 

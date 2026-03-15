@@ -28,6 +28,8 @@ export interface FlintSingleInputDateRangeFieldProps extends React.HTMLAttribute
     error?: boolean;
     /** Helper text shown below the field. */
     helperText?: string;
+    /** Error message displayed below the field when in error state. */
+    errorMessage?: string;
     /** fired when all segments are cleared */
     onFlintDateRangePickerClear?: (event: CustomEvent) => void;
     /** { detail: { value: DateRange } } when both dates are complete */
