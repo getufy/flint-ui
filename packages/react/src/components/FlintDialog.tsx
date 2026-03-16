@@ -18,6 +18,8 @@ export interface FlintDialogProps extends React.HTMLAttributes<FlintDialogElemen
     transition?: 'scale' | 'slide-up' | 'slide-down';
     /** When true, clicking the backdrop will NOT close the dialog. */
     disableBackdropClose?: boolean;
+    /** CSS selector for the element to focus when the dialog opens. */
+    initialFocus?: string;
     onFlintDialogOpen?: (event: CustomEvent) => void;
     onFlintDialogClose?: (event: CustomEvent) => void;
 }

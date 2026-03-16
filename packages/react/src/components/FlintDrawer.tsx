@@ -35,6 +35,8 @@ export interface FlintDrawerProps extends React.HTMLAttributes<FlintDrawerElemen
     container?: boolean;
     /** Accessible label for the drawer panel (used as aria-label on the panel). */
     label?: string;
+    /** CSS selector for the element to focus when the drawer opens. */
+    initialFocus?: string;
     /** Dispatched after the drawer open animation completes. detail: `{ open: true }` */
     onFlintDrawerOpen?: (event: CustomEvent<FlintDrawerOpenDetail>) => void;
     /** Dispatched when the drawer requests to be closed (backdrop click or Escape). detail: `{ open: false }` */

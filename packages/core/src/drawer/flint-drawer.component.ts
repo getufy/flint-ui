@@ -3,7 +3,7 @@ import { property, state } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
 import { FlintBackdrop } from '../backdrop/flint-backdrop.js';
 import { getAnimation, animateTo, stopAnimations, resolveKeyframes } from '../utilities/animation-registry.js';
-import { handleFocusTrapKeyDown } from '../utilities/focus-trap.js';
+import { handleFocusTrapKeyDown, getFocusableElements } from '../utilities/focus-trap.js';
 import '../utilities/animation-presets.js';
 import uiDrawerStyles from './flint-drawer.css?inline';
 
@@ -42,6 +42,11 @@ export class FlintDrawer extends FlintElement {
     @property({ type: Boolean, reflect: true }) container = false;
     /** Accessible label for the drawer panel (used as aria-label on the panel). */
     @property({ type: String }) label = 'Drawer';
+    /**
+     * CSS selector for the element to focus when the drawer opens.
+     * Falls back to the first focusable element in the drawer, then the paper panel.
+     */
+    @property({ type: String, attribute: 'initial-focus' }) initialFocus = '';
 
     @state() private _visuallyOpen = false;
 
@@ -104,7 +109,7 @@ export class FlintDrawer extends FlintElement {
             void this._runOpenAnimation().then(() => {
                 if (!this.isConnected) return;
                 if (this.variant === 'temporary') {
-                    this.shadowRoot?.querySelector<HTMLElement>('.paper')?.focus();
+                    this._focusInitialElement();
                 }
                 this.dispatchEvent(new CustomEvent('flint-drawer-open', { bubbles: true, composed: true, detail: { open: true } }));
             });
@@ -118,6 +123,24 @@ export class FlintDrawer extends FlintElement {
                 }
             });
         }
+    }
+
+    /** Focus the appropriate element after the drawer opens. */
+    private _focusInitialElement() {
+        if (this.initialFocus) {
+            const target = this.querySelector<HTMLElement>(this.initialFocus);
+            if (target) {
+                if (target.shadowRoot) {
+                    const inner = getFocusableElements(target.shadowRoot);
+                    if (inner.length > 0) { inner[0]!.focus(); return; }
+                }
+                target.focus();
+                return;
+            }
+        }
+        const focusable = getFocusableElements(this);
+        if (focusable.length > 0) { focusable[0]!.focus(); return; }
+        this.shadowRoot?.querySelector<HTMLElement>('.paper')?.focus();
     }
 
     /** Resolve the animation name suffix based on the placement direction. */

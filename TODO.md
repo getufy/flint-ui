@@ -259,10 +259,16 @@
 | #9 | CSS custom properties not documented | `THEMING.md` created in v0.6.0 |
 | #16 | Dark mode toggle helper | `setFlintTheme()` / `getFlintTheme()` shipped in v0.6.0 |
 
+#### Medium — Dialog/Drawer Auto-Focus (#6)
+- [x] **FlintDialog auto-focus first focusable element** — Now focuses first focusable child (piercing shadow DOM) instead of the panel container. Added `initialFocus` prop (CSS selector) for explicit control. Falls back to panel if no focusable elements.
+- [x] **FlintDrawer auto-focus first focusable element** — Same behavior as dialog for temporary drawers. Added `initialFocus` prop.
+
+#### Low — CardMedia Object-Fit (#19)
+- [x] **FlintCardMedia `--flint-card-media-object-fit`** — Exposed CSS custom property for `object-fit` on the internal `<img>`. Default remains `cover`.
+
 ### Remaining — Merge into v0.7.0
 
 #### Medium (fold into existing P0/P1 items)
-- [ ] **#6 Dialog auto-focus first focusable element** — Currently focuses `.dialog-panel` (`tabindex="-1"`) instead of first interactive child. Bundle with P0 #1 (focus trap). Add `initialFocus` prop or auto-focus first focusable per WAI-ARIA.
 - [ ] **#7 Export event detail types from React package** — Verify `FlintSelectChangeDetail` etc. are in barrel export. Related to P2 #43.
 - [ ] **#17 Document: avoid hardcoded color fallbacks** — Add guidance to THEMING.md: always use `var(--flint-*)` without fallbacks in dark-mode-aware UIs.
 - [ ] **#18 Event naming discoverability** — `onFlintPaginationChange` (not `onFlintPageChange`). Improve TypeScript strictness so unknown event props cause compile errors.

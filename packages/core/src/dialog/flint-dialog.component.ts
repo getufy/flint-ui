@@ -9,7 +9,7 @@ import uiDialogContentStyles from './flint-dialog-content.css?inline';
 import uiDialogContentTextStyles from './flint-dialog-content-text.css?inline';
 import uiDialogActionsStyles from './flint-dialog-actions.css?inline';
 import { getAnimation, animateTo, stopAnimations, resolveKeyframes } from '../utilities/animation-registry.js';
-import { handleFocusTrapKeyDown } from '../utilities/focus-trap.js';
+import { handleFocusTrapKeyDown, getFocusableElements } from '../utilities/focus-trap.js';
 import '../utilities/animation-presets.js';
 
 // Tracks open dialogs in activation order so only the topmost handles Escape.
@@ -83,6 +83,14 @@ export class FlintDialog extends FlintElement {
    * Useful for confirmation dialogs where the user must make a deliberate choice.
    */
   @property({ type: Boolean, attribute: 'disable-backdrop-close' }) disableBackdropClose = false;
+
+  /**
+   * CSS selector for the element to focus when the dialog opens.
+   * If the selector matches an element with a shadow root, focuses the first
+   * focusable element within that shadow root (e.g. `flint-input` → inner `<input>`).
+   * Falls back to the first focusable element in the dialog, then the panel itself.
+   */
+  @property({ type: String, attribute: 'initial-focus' }) initialFocus = '';
 
   override willUpdate(changed: PropertyValues) {
     if (this._firstUpdate) {
@@ -161,7 +169,7 @@ export class FlintDialog extends FlintElement {
 
     await Promise.all(promises);
     if (!this.isConnected) return;
-    panel?.focus();
+    this._focusInitialElement(panel);
     this.dispatchEvent(new CustomEvent('flint-dialog-open', { bubbles: true, composed: true, detail: { open: true } }));
   }
 
@@ -219,6 +227,36 @@ export class FlintDialog extends FlintElement {
       handleFocusTrapKeyDown(e, this);
     }
   };
+
+  /**
+   * Focus the appropriate element after the dialog opens.
+   * Priority: initialFocus selector → first focusable child → panel fallback.
+   */
+  private _focusInitialElement(panel: HTMLElement | null | undefined) {
+    // 1. Try initialFocus selector
+    if (this.initialFocus) {
+      const target = this.querySelector<HTMLElement>(this.initialFocus);
+      if (target) {
+        // If the target is a web component with a shadow root, focus into it
+        if (target.shadowRoot) {
+          const inner = getFocusableElements(target.shadowRoot);
+          if (inner.length > 0) { inner[0]!.focus(); return; }
+        }
+        target.focus();
+        return;
+      }
+    }
+
+    // 2. Try first focusable element in the dialog (pierces shadow DOM of slotted content)
+    const focusable = getFocusableElements(this);
+    if (focusable.length > 0) {
+      focusable[0]!.focus();
+      return;
+    }
+
+    // 3. Fallback to the panel container
+    panel?.focus();
+  }
 
   /** Programmatically request the dialog to close (fires the 'flint-dialog-close' event). */
   requestClose() {
