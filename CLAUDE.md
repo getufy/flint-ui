@@ -51,6 +51,28 @@ npm run size               # Check bundle sizes
 npm run size:check         # Check bundle sizes against limits
 ```
 
+## Releasing
+
+Releases are managed by [release-please](https://github.com/googleapis/release-please). There are no manual version bump scripts.
+
+**Commit message format** (conventional commits):
+- `fix: ...` → patch bump (0.6.1 → 0.6.2)
+- `feat: ...` → patch bump while pre-1.0 (0.6.2 → 0.6.3)
+- `feat!: ...` or `BREAKING CHANGE:` footer → minor bump while pre-1.0 (0.6.3 → 0.7.0)
+- `chore:`, `docs:`, `ci:`, `test:` → no version bump (still included in changelog)
+
+**How a release happens:**
+1. Push conventional commits to `main`
+2. Release-please automatically creates/updates a "Release PR" with version bumps + changelog
+3. Review and merge the Release PR
+4. On merge, release-please creates git tags + GitHub Releases, then the workflow publishes both packages to npm
+
+**Config files:**
+- `release-please-config.json` — monorepo package config, plugins (`linked-versions` keeps both packages in sync)
+- `.release-please-manifest.json` — current versions (updated automatically by release-please)
+
+**Both packages are always released together** at the same version via the `linked-versions` plugin. Do NOT manually edit versions in `package.json` — release-please owns them.
+
 ## Architecture
 
 **Two test projects** (configured in `packages/core/vite.config.ts`):
