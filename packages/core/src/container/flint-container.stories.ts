@@ -184,3 +184,31 @@ export const DisableGuttersFixed: Story = {
     </flint-container>
   `,
 };
+
+// -----------------------------------------------------------------------------
+// Responsive Viewport Variants
+// -----------------------------------------------------------------------------
+
+export const MobileViewport: Story = {
+    parameters: {
+        viewport: { defaultViewport: 'mobile1' },
+    },
+    args: { maxWidth: 'lg' },
+    render: (args) => html`
+    <flint-container .maxWidth=${args.maxWidth}>
+      ${demoBox('Container on mobile viewport (320px)')}
+    </flint-container>
+  `,
+};
+
+export const TabletViewport: Story = {
+    parameters: {
+        viewport: { defaultViewport: 'tablet' },
+    },
+    args: { maxWidth: 'lg' },
+    render: (args) => html`
+    <flint-container .maxWidth=${args.maxWidth}>
+      ${demoBox('Container on tablet viewport (768px)')}
+    </flint-container>
+  `,
+};

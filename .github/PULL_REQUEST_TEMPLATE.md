@@ -10,6 +10,6 @@
 
 - [ ] Tests added or updated
 - [ ] `npm run validate` passes (type-check + lint + test)
-- [ ] [Changeset added](https://github.com/getufy/flint-ui/blob/main/CONTRIBUTING.md#changesets) (skip for docs-only or internal changes)
+- [ ] Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/) (`fix:`, `feat:`, `feat!:`, etc.) for release-please
 - [ ] Documentation updated (if applicable)
 - [ ] No breaking changes (or documented below)

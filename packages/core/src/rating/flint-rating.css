@@ -30,8 +30,10 @@
       gap: 0.1em;
     }
 
-    .rating-container:focus {
-      outline: none;
+    .rating-container:focus-visible {
+      outline: 2px solid var(--flint-rating-color);
+      outline-offset: 2px;
+      border-radius: var(--flint-border-radius-sm);
     }
 
     .star-wrapper {

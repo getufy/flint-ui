@@ -190,3 +190,29 @@ export const WithoutLabels: Story = {
         </flint-box>
     `,
 };
+
+// -----------------------------------------------------------------------------
+// Responsive Viewport Variants
+// -----------------------------------------------------------------------------
+
+export const MobileViewport: Story = {
+    parameters: {
+        viewport: { defaultViewport: 'mobile1' },
+    },
+    args: { value: 'recents', showLabels: true },
+    render: (args) => html`
+        <flint-box bgcolor="var(--flint-muted-background, #f5f5f5)" style="padding-top: 100px; min-height: 200px;">
+            <flint-bottom-navigation .value=${args.value} ?show-labels=${args.showLabels}>
+                <flint-bottom-navigation-action label="Recents" value="recents">
+                    <span slot="icon">${icons.restore}</span>
+                </flint-bottom-navigation-action>
+                <flint-bottom-navigation-action label="Favorites" value="favs">
+                    <span slot="icon">${icons.favorites}</span>
+                </flint-bottom-navigation-action>
+                <flint-bottom-navigation-action label="Nearby" value="nearby">
+                    <span slot="icon">${icons.nearby}</span>
+                </flint-bottom-navigation-action>
+            </flint-bottom-navigation>
+        </flint-box>
+    `,
+};

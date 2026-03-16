@@ -440,3 +440,51 @@ export const AutoLayoutAttributeVsProperty: Story = {
         </flint-grid>
     `,
 };
+
+// -----------------------------------------------------------------------------
+// Responsive Viewport Variants
+// -----------------------------------------------------------------------------
+
+export const MobileViewport: Story = {
+  parameters: {
+    viewport: { defaultViewport: 'mobile1' },
+  },
+  render: () => html`
+        <flint-grid container spacing="2">
+            <flint-grid xs="12" md="6">
+                <div style="${itemStyle}">xs=12 md=6 (full width on mobile)</div>
+            </flint-grid>
+            <flint-grid xs="12" md="6">
+                <div style="${itemStyle}">xs=12 md=6 (full width on mobile)</div>
+            </flint-grid>
+            <flint-grid xs="6" md="4">
+                <div style="${altItemStyle}">xs=6 md=4</div>
+            </flint-grid>
+            <flint-grid xs="6" md="4">
+                <div style="${altItemStyle}">xs=6 md=4</div>
+            </flint-grid>
+            <flint-grid xs="12" md="4">
+                <div style="${greenItemStyle}">xs=12 md=4</div>
+            </flint-grid>
+        </flint-grid>
+    `,
+};
+
+export const TabletViewport: Story = {
+  parameters: {
+    viewport: { defaultViewport: 'tablet' },
+  },
+  render: () => html`
+        <flint-grid container spacing="2">
+            <flint-grid xs="12" sm="6" md="4">
+                <div style="${itemStyle}">xs=12 sm=6 md=4</div>
+            </flint-grid>
+            <flint-grid xs="12" sm="6" md="4">
+                <div style="${itemStyle}">xs=12 sm=6 md=4</div>
+            </flint-grid>
+            <flint-grid xs="12" sm="12" md="4">
+                <div style="${altItemStyle}">xs=12 sm=12 md=4</div>
+            </flint-grid>
+        </flint-grid>
+    `,
+};

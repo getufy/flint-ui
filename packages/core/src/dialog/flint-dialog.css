@@ -9,7 +9,7 @@
       box-shadow: var(--flint-shadow-xl, 0 20px 25px -5px rgba(0, 0, 0, 0.1));
       max-width: 90vw;
       max-height: var(--flint-dialog-max-height, 90vh); /* ← bounds the panel so content scrolls */
-      width: var(--flint-dialog-width, 444px);
+      width: var(--flint-dialog-width, 600px);
       display: flex;
       flex-direction: column;
       overflow: clip; /* clip panel for border-radius; inner flint-dialog-content scrolls independently */
@@ -24,6 +24,62 @@
       opacity: 1;
       transform: scale(1);
       pointer-events: auto;
+    }
+
+    /* ── Size variants ─────────────────────────────────────────────── */
+
+    :host([size='sm']) .dialog-panel {
+      width: var(--flint-dialog-width, 400px);
+    }
+
+    :host([size='md']) .dialog-panel {
+      width: var(--flint-dialog-width, 600px);
+    }
+
+    :host([size='lg']) .dialog-panel {
+      width: var(--flint-dialog-width, 800px);
+    }
+
+    :host([size='full']) .dialog-panel {
+      width: 100vw;
+      height: 100vh;
+      max-width: 100vw;
+      max-height: 100vh;
+      border-radius: 0;
+    }
+
+    /* ── Scrollable content handling ───────────────────────────────── */
+
+    /* Shadow indicators for scrollable content */
+    .dialog-panel::before,
+    .dialog-panel::after {
+      content: '';
+      display: block;
+      position: sticky;
+      left: 0;
+      right: 0;
+      height: 0;
+      z-index: 1;
+      pointer-events: none;
+      transition: box-shadow 0.2s;
+    }
+
+    .dialog-panel::before {
+      top: 0;
+      box-shadow: 0 0 0 0 transparent;
+    }
+
+    .dialog-panel::after {
+      bottom: 0;
+      box-shadow: 0 0 0 0 transparent;
+    }
+
+    .dialog-panel.has-scroll-top::before {
+      box-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.08);
+    }
+
+    .dialog-panel.has-scroll-bottom::after {
+      box-shadow: 0 -4px 8px -2px rgba(0, 0, 0, 0.08);
     }
 
     /* Slide-up: start below, animate to centre */

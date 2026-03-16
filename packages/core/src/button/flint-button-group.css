@@ -2,7 +2,22 @@
       display: inline-flex;
       border-radius: var(--flint-border-radius-md, 6px);
     }
-    
+
+    .base {
+      display: inline-flex;
+    }
+
+    /* ── Vertical orientation ──────────────────────────────────────── */
+    :host([orientation='vertical']) {
+      display: inline-flex;
+      flex-direction: column;
+    }
+
+    :host([orientation='vertical']) .base {
+      flex-direction: column;
+    }
+
+    /* ── Horizontal button styling ─────────────────────────────────── */
     ::slotted(flint-button) {
       position: relative;
     }
@@ -36,3 +51,33 @@
     ::slotted(flint-button:first-child:last-child) {
       --flint-button-border-radius: var(--flint-border-radius-md, 6px);
     }
+
+    /* ── Vertical orientation border-radius ─────────────────────────── */
+    :host([orientation='vertical']) ::slotted(flint-button:not(:first-child)) {
+      margin-left: 0;
+      margin-top: -1px;
+    }
+
+    :host([orientation='vertical']) ::slotted(flint-button) {
+      --flint-button-border-radius: 0;
+    }
+
+    :host([orientation='vertical']) ::slotted(flint-button:first-child) {
+      --flint-button-border-radius: var(--flint-border-radius-md, 6px) var(--flint-border-radius-md, 6px) 0 0;
+    }
+
+    :host([orientation='vertical']) ::slotted(flint-button:last-child) {
+      --flint-button-border-radius: 0 0 var(--flint-border-radius-md, 6px) var(--flint-border-radius-md, 6px);
+    }
+
+    :host([orientation='vertical']) ::slotted(flint-button:first-child:last-child) {
+      --flint-button-border-radius: var(--flint-border-radius-md, 6px);
+    }
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

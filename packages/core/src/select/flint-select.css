@@ -239,6 +239,43 @@
       cursor: default;
     }
 
+    /* ── Option groups ─────────────────────────────────────────────── */
+    .option-group-label {
+      padding: 8px 14px 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--flint-text-color-muted);
+      cursor: default;
+      user-select: none;
+    }
+
+    /* ── Loading indicator ─────────────────────────────────────────── */
+    .loading-indicator {
+      padding: 12px 16px;
+      color: var(--flint-text-color-muted);
+      font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: default;
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2px solid var(--flint-border-color);
+      border-top-color: var(--flint-primary-color);
+      border-radius: 50%;
+      animation: flint-select-spin 0.6s linear infinite;
+    }
+
+    @keyframes flint-select-spin {
+      to { transform: rotate(360deg); }
+    }
+
     .error-message {
       font-size: 0.75rem;
       color: var(--flint-select-error-color);

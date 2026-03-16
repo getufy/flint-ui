@@ -11,10 +11,12 @@ import { getAnimation, animateTo, stopAnimations, resolveKeyframes } from '../ut
 import '../utilities/animation-presets.js';
 import uiSelectStyles from './flint-select.css?inline';
 
-export interface SelectOption {
+export interface SelectOption<T = string> {
   label: string;
-  value: string;
+  value: T;
   disabled?: boolean;
+  /** Optional group name. Options with the same group are rendered under a group header. */
+  group?: string;
 }
 
 export type SelectSize = 'sm' | 'md' | 'lg';
@@ -76,6 +78,13 @@ export class FlintSelect extends FormAssociated(FlintElement) {
    */
   @property({ type: Boolean }) hoist = true;
 
+  /**
+   * Async options loader. When provided, called when the dropdown opens.
+   * Should return a promise that resolves to an array of `SelectOption`.
+   * While loading, a spinner is shown in the dropdown.
+   */
+  @property({ attribute: false }) loadOptions: (() => Promise<SelectOption[]>) | null = null;
+
   private _formControl = new FormControlController(this);
   private _localize = new LocalizeController(this);
 
@@ -83,6 +92,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
   @state() private _highlightedIndex = -1;
   @state() private _isFocused = false;
   @state() private _opensUp = false;
+  @state() private _isLoading = false;
 
   private readonly _uid = `flint-select-${++_uidCounter}`;
 
@@ -272,6 +282,20 @@ export class FlintSelect extends FormAssociated(FlintElement) {
       this._isOpen = true;
       if (this.hoist) this._startHoist();
       void this._runShowAnimation();
+
+      // Trigger async loading if a loadOptions callback is provided
+      if (this.loadOptions) {
+        this._isLoading = true;
+        this.dispatchEvent(new CustomEvent('flint-select-load', { bubbles: true, composed: true }));
+        this.loadOptions()
+          .then(opts => {
+            this.options = opts;
+            this._isLoading = false;
+          })
+          .catch(() => {
+            this._isLoading = false;
+          });
+      }
     } else {
       void this._closeDropdown();
     }
@@ -433,6 +457,42 @@ export class FlintSelect extends FormAssociated(FlintElement) {
     `;
   }
 
+  /** Whether any option has a `group` field set. */
+  private get _hasGroups(): boolean {
+    return this.options.some(opt => !!opt.group);
+  }
+
+  private _renderGrouped() {
+    // Collect options by group, preserving order of first appearance
+    const groups: { name: string; options: { opt: SelectOption; idx: number }[] }[] = [];
+    const ungrouped: { opt: SelectOption; idx: number }[] = [];
+    const groupMap = new Map<string, { opt: SelectOption; idx: number }[]>();
+
+    this.options.forEach((opt, i) => {
+      if (opt.group) {
+        let items = groupMap.get(opt.group);
+        if (!items) {
+          items = [];
+          groupMap.set(opt.group, items);
+          groups.push({ name: opt.group, options: items });
+        }
+        items.push({ opt, idx: i });
+      } else {
+        ungrouped.push({ opt, idx: i });
+      }
+    });
+
+    return html`
+      ${ungrouped.map(({ opt, idx }) => this._renderOption(opt, idx))}
+      ${groups.map(g => html`
+        <div class="option-group" role="group" aria-label=${g.name}>
+          <div class="option-group-label" part="group-label">${g.name}</div>
+          ${g.options.map(({ opt, idx }) => this._renderOption(opt, idx))}
+        </div>
+      `)}
+    `;
+  }
+
   private _renderVirtualized() {
     const { start, end, totalHeight } = this._virtualRange;
     const visibleOptions = this.options.slice(start, end);
@@ -540,11 +600,15 @@ export class FlintSelect extends FormAssociated(FlintElement) {
           role="listbox"
           aria-multiselectable=${this.multiple ? 'true' : 'false'}
         >
-          ${this.options.length === 0
-            ? html`<div class="no-options">${this._localize.term('noOptions')}</div>`
-            : this.virtualize
-              ? this._renderVirtualized()
-              : repeat(this.options, opt => opt.value, (opt, i) => this._renderOption(opt, i))
+          ${this._isLoading
+            ? html`<div class="loading-indicator" part="loading"><span class="loading-spinner"></span> Loading…</div>`
+            : this.options.length === 0
+              ? html`<div class="no-options">${this._localize.term('noOptions')}</div>`
+              : this.virtualize
+                ? this._renderVirtualized()
+                : this._hasGroups
+                  ? this._renderGrouped()
+                  : repeat(this.options, opt => opt.value, (opt, i) => this._renderOption(opt, i))
           }
         </div>
 

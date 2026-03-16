@@ -160,6 +160,14 @@ a {
   height: 48px;
 }
 
+/* ── Focus ────────────────────────────────────────────────────────── */
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--flint-primary-color);
+  outline-offset: 2px;
+}
+
 /* ── Disabled ─────────────────────────────────────────────────────── */
 
 button:disabled,

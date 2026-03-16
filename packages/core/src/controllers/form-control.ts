@@ -1,5 +1,7 @@
 import type { ReactiveController, ReactiveControllerHost } from 'lit';
 
+export type ValidationLevel = 'error' | 'warning' | 'info';
+
 export interface FormControlHost extends ReactiveControllerHost, HTMLElement {
     name: string;
     value: unknown;
@@ -29,6 +31,8 @@ export class FormControlController implements ReactiveController {
 
     private _dirty = false;
     private _touched = false;
+    private _validationLevel: ValidationLevel = 'error';
+    private _validationMessage = '';
     private readonly _interactionEvents: string[];
     private readonly _handleInteraction = () => { this._markTouched(); };
     private readonly _handleValueChange = () => { this._markDirty(); };
@@ -111,6 +115,53 @@ export class FormControlController implements ReactiveController {
         return internals.reportValidity();
     }
 
+    /**
+     * The current validation level: 'error', 'warning', or 'info'.
+     * Only meaningful when validation message is set.
+     */
+    get validationLevel(): ValidationLevel {
+        return this._validationLevel;
+    }
+
+    /** The current validation message (for any level). */
+    get validationMessage(): string {
+        return this._validationMessage;
+    }
+
+    /**
+     * Set a multi-level validation state [§38.1].
+     *
+     * - `'error'` — blocks form submission (uses setValidity)
+     * - `'warning'` — advisory, does not block submission
+     * - `'info'` — informational hint
+     *
+     * @param level — The severity level.
+     * @param message — The validation message to display.
+     * @param anchor — Optional anchor element for native popup positioning.
+     */
+    setValidationLevel(level: ValidationLevel, message: string, anchor?: HTMLElement): void {
+        this._validationLevel = level;
+        this._validationMessage = message;
+
+        if (level === 'error') {
+            // Errors use native constraint validation
+            this.setValidity({ customError: true }, message, anchor);
+        } else {
+            // Warnings/info don't block form submission
+            this.setValid();
+        }
+
+        this.updateDataAttributes();
+    }
+
+    /** Clear validation level state. */
+    clearValidationLevel(): void {
+        this._validationLevel = 'error';
+        this._validationMessage = '';
+        this.setValid();
+        this.updateDataAttributes();
+    }
+
     /** Update data attributes on the host element for CSS styling. */
     updateDataAttributes(): void {
         const el = this.host;
@@ -140,6 +191,12 @@ export class FormControlController implements ReactiveController {
         // Disabled
         this._toggleData(el, 'disabled', el.disabled);
 
+        // Validation level [§38.1]
+        const hasMsg = this._validationMessage.length > 0;
+        this._toggleData(el, 'validationWarning', hasMsg && this._validationLevel === 'warning');
+        this._toggleData(el, 'validationInfo', hasMsg && this._validationLevel === 'info');
+        this._toggleData(el, 'validationError', hasMsg && this._validationLevel === 'error');
+
         // Sync custom state pseudo-classes (dirty/touched)
         this._syncCustomStates();
     }
@@ -160,7 +217,7 @@ export class FormControlController implements ReactiveController {
         }
     }
 
-    /** Sync dirty/touched custom state pseudo-classes on ElementInternals.states. */
+    /** Sync dirty/touched/validation custom state pseudo-classes on ElementInternals.states. */
     private _syncCustomStates(): void {
         const states = this.host._internals?.states;
         if (!states) return;
@@ -178,6 +235,15 @@ export class FormControlController implements ReactiveController {
         } else {
             states.delete('touched');
         }
+
+        // Validation level custom states [§38.1]
+        const hasMsg = this._validationMessage.length > 0;
+        const toggleState = (name: string, on: boolean) => {
+            if (on) { states.add(name); } else { states.delete(name); }
+        };
+        toggleState('validation-warning', hasMsg && this._validationLevel === 'warning');
+        toggleState('validation-info', hasMsg && this._validationLevel === 'info');
+        toggleState('validation-error', hasMsg && this._validationLevel === 'error');
     }
 
     private _toggleData(el: HTMLElement, name: string, value: boolean): void {

@@ -214,11 +214,57 @@ export class FlintCarousel extends FlintElement {
   /** Accessible label for the carousel region. */
   @property() label = 'Carousel';
 
+  /** Enable touch/swipe gestures. */
+  @property({ type: Boolean }) touch = true;
+
   private _currentIndex = 0;
   private _total = 0;
 
   private _observer: MutationObserver | null = null;
   private _autoplayTimer: ReturnType<typeof setInterval> | null = null;
+
+  /* ── Touch / swipe tracking ──────────────────────────────────────── */
+  private _touchStartX = 0;
+  private _touchStartY = 0;
+  private _touchEndX = 0;
+  private _touchEndY = 0;
+  private _isSwiping = false;
+
+  private readonly _handleTouchStart = (e: TouchEvent) => {
+    if (!this.touch) return;
+    const t = e.touches[0];
+    if (!t) return;
+    this._touchStartX = t.clientX;
+    this._touchStartY = t.clientY;
+    this._isSwiping = true;
+  };
+
+  private readonly _handleTouchMove = (e: TouchEvent) => {
+    if (!this._isSwiping) return;
+    const t = e.touches[0];
+    if (!t) return;
+    this._touchEndX = t.clientX;
+    this._touchEndY = t.clientY;
+  };
+
+  private readonly _handleTouchEnd = () => {
+    if (!this._isSwiping) return;
+    this._isSwiping = false;
+
+    const isVertical = this.orientation === 'vertical';
+    const delta = isVertical
+      ? this._touchStartY - this._touchEndY
+      : this._touchStartX - this._touchEndX;
+    const threshold = 50;
+
+    if (Math.abs(delta) < threshold) return;
+
+    if (delta > 0) {
+      this.next();
+    } else {
+      this.previous();
+    }
+  };
 
   private readonly _handleKeydown = (e: KeyboardEvent) => {
     const isVertical = this.orientation === 'vertical';
@@ -395,6 +441,9 @@ export class FlintCarousel extends FlintElement {
         aria-label="${this.label}"
         tabindex="0"
         @keydown=${this._handleKeydown}
+        @touchstart=${this._handleTouchStart}
+        @touchmove=${this._handleTouchMove}
+        @touchend=${this._handleTouchEnd}
       >
         <slot></slot>
       </div>

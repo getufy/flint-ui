@@ -29,6 +29,8 @@ const _openDialogs: FlintDialog[] = [];
  *
  * @csspart panel - The dialog panel container.
  */
+export type DialogSize = 'sm' | 'md' | 'lg' | 'full';
+
 export class FlintDialog extends FlintElement {
   static styles = unsafeCSS(uiDialogStyles);
   static dependencies = { 'flint-backdrop': FlintBackdrop as unknown as typeof FlintElement };
@@ -42,6 +44,16 @@ export class FlintDialog extends FlintElement {
    */
   @property({ type: Boolean, attribute: 'default-open' }) defaultOpen = false;
 
+  /**
+   * Size variant of the dialog panel.
+   * - `sm`: max-width ~400px
+   * - `md`: max-width ~600px (default)
+   * - `lg`: max-width ~800px
+   * - `full`: fullscreen, no border-radius
+   * @default 'md'
+   */
+  @property({ type: String, reflect: true }) size: DialogSize = 'md';
+
   private _firstUpdate = true;
   private _lastFocused: HTMLElement | null = null;
 
@@ -53,6 +65,12 @@ export class FlintDialog extends FlintElement {
 
   /** Resolved accessible name from the slotted `<flint-dialog-title>`. */
   @state() private _titleLabel = '';
+
+  /** Whether the content area is scrolled from the top. */
+  @state() private _hasScrollTop = false;
+
+  /** Whether the content area has more content below the visible area. */
+  @state() private _hasScrollBottom = false;
 
   /**
    * Animation style for open/close.
@@ -183,6 +201,8 @@ export class FlintDialog extends FlintElement {
     const idx = _openDialogs.indexOf(this);
     if (idx !== -1) _openDialogs.splice(idx, 1);
     this._lastFocused = null;
+    this._scrollObserverCleanup?.();
+    this._scrollObserverCleanup = null;
   }
 
   private readonly _handleKeyDown = (e: KeyboardEvent) => {
@@ -217,6 +237,33 @@ export class FlintDialog extends FlintElement {
   private _handleSlotChange() {
     const title = this.querySelector('flint-dialog-title');
     this._titleLabel = title?.textContent?.trim() ?? '';
+    this._observeContentScroll();
+  }
+
+  private _scrollObserverCleanup: (() => void) | null = null;
+
+  private _observeContentScroll() {
+    // Clean up previous listener if any
+    this._scrollObserverCleanup?.();
+    this._scrollObserverCleanup = null;
+
+    const contentEl = this.querySelector('flint-dialog-content');
+    if (!contentEl?.shadowRoot) return;
+
+    const handleScroll = () => {
+      const el = contentEl.shadowRoot?.host as HTMLElement;
+      if (!el) return;
+      this._hasScrollTop = el.scrollTop > 0;
+      this._hasScrollBottom = el.scrollTop + el.clientHeight < el.scrollHeight - 1;
+    };
+
+    contentEl.addEventListener('scroll', handleScroll);
+    // Check initial state after render
+    void this.updateComplete.then(handleScroll);
+
+    this._scrollObserverCleanup = () => {
+      contentEl.removeEventListener('scroll', handleScroll);
+    };
   }
 
   render() {
@@ -224,6 +271,8 @@ export class FlintDialog extends FlintElement {
       'dialog-panel': true,
       open: this._visuallyOpen,
       [`transition-${this.transition}`]: this.transition !== 'scale',
+      'has-scroll-top': this._hasScrollTop,
+      'has-scroll-bottom': this._hasScrollBottom,
     });
 
     return html`

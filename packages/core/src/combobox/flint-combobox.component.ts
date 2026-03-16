@@ -4,36 +4,48 @@ import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
 import { FormAssociated } from '../mixins/form-associated.js';
 import { FormControlController } from '../controllers/form-control.js';
-import uiAutocompleteStyles from './flint-autocomplete.css?inline';
+import uiComboboxStyles from './flint-combobox.css?inline';
 
-export interface AutocompleteOption<T = string> {
+export interface ComboboxOption {
     label: string;
-    value: T;
+    value: string;
 }
 
 /**
- * Autocomplete: a text input with a dropdown of selectable suggestions.
+ * Combobox: a free-text input with dropdown suggestions.
  *
- * @fires flint-autocomplete-change - Fired when the selected value changes.
+ * Unlike Select, this always allows arbitrary text input (freeSolo behaviour).
+ * Unlike Autocomplete with `freeSolo`, this is purpose-built for the combobox pattern.
+ *
+ * @fires flint-combobox-change - Fired when the value changes. detail: `{ value: string }`
+ *
+ * @csspart base - The wrapper element.
+ * @csspart input - The text input element.
+ * @csspart listbox - The dropdown suggestions container.
+ * @csspart option - An individual suggestion element.
  */
-export class FlintAutocomplete extends FormAssociated(FlintElement) {
+export class FlintCombobox extends FormAssociated(FlintElement) {
     static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
-    static styles = unsafeCSS(uiAutocompleteStyles);
+    static styles = unsafeCSS(uiComboboxStyles);
 
-    /** The list of selectable options. */
-    @property({ type: Array }) options: AutocompleteOption[] = [];
-    /** When true, allows arbitrary values that are not in the options list. */
-    @property({ type: Boolean }) freeSolo = false;
-    /** Whether the autocomplete input is disabled. */
-    @property({ type: Boolean, reflect: true }) disabled = false;
-    /** The current selected value. */
+    /** The list of suggestion options. */
+    @property({ type: Array }) options: ComboboxOption[] = [];
+
+    /** The current text value. */
     @property({ type: String }) value = '';
+
     /** Placeholder text shown when the input is empty. */
     @property({ type: String }) placeholder = '';
+
+    /** Whether the combobox is disabled. */
+    @property({ type: Boolean, reflect: true }) disabled = false;
+
+    /** Marks the combobox as required for form validation. */
+    @property({ type: Boolean, reflect: true }) required = false;
+
     /** Form field name used when submitting form data. */
     @property({ type: String }) name = '';
-    /** Marks the autocomplete as required for form validation. */
-    @property({ type: Boolean, reflect: true }) required = false;
+
     /** Initial value for uncontrolled usage. */
     @property({ type: String, attribute: 'default-value' }) defaultValue = '';
 
@@ -41,93 +53,81 @@ export class FlintAutocomplete extends FormAssociated(FlintElement) {
 
     @state() private _isOpen = false;
     @state() private _inputValue = '';
-    @state() private _filteredOptions: AutocompleteOption[] = [];
+    @state() private _filteredOptions: ComboboxOption[] = [];
     @state() private _activeIndex = -1;
 
     connectedCallback() {
         super.connectedCallback();
         this._inputValue = this.value;
-        if (this._firstUpdate && this.defaultValue && !this.value) {
-            this.value = this.defaultValue;
-            this._inputValue = this.defaultValue;
+        if (typeof document !== 'undefined') {
+            document.addEventListener('click', this._handleOutsideClick);
         }
-        this._firstUpdate = false;
-        document.addEventListener('click', this._handleOutsideClick);
     }
 
     disconnectedCallback() {
         super.disconnectedCallback();
-        document.removeEventListener('click', this._handleOutsideClick);
+        if (typeof document !== 'undefined') {
+            document.removeEventListener('click', this._handleOutsideClick);
+        }
     }
 
-    willUpdate(changedProperties: PropertyValues) {
-        if (changedProperties.has('options')) {
+    willUpdate(changed: PropertyValues) {
+        if (this._firstUpdate) {
+            this._firstUpdate = false;
+            if (this.defaultValue && !this.value) {
+                this.value = this.defaultValue;
+                this._inputValue = this.defaultValue;
+            }
+        }
+        if (changed.has('options')) {
             this._filterOptions();
             this._activeIndex = -1;
         }
-        if (changedProperties.has('value') && !changedProperties.has('_inputValue')) {
-            const selectedOption = this.options.find(opt => opt.value === this.value);
-            if (selectedOption) {
-                this._inputValue = selectedOption.label;
-            } else if (this.freeSolo) {
-                this._inputValue = this.value;
-            } else {
-                this._inputValue = '';
-            }
+        if (changed.has('value') && !changed.has('_inputValue')) {
+            this._inputValue = this.value;
         }
-    }
-
-    protected override updated(changed: PropertyValues) {
-        super.updated(changed);
         if (changed.has('value') || changed.has('name') || changed.has('required')) {
             this._updateFormValue();
         }
     }
 
-    private _updateFormValue() {
-        this._initFormValue(this.value || null);
-        this._initFormValidity(this.required, !this.value, 'Please select a value.');
-        this._formControl.updateDataAttributes();
-    }
-
     formResetCallback() {
         this.value = this.defaultValue;
-        const selectedOption = this.options.find(opt => opt.value === this.value);
-        this._inputValue = selectedOption ? selectedOption.label : (this.freeSolo ? this.value : '');
+        this._inputValue = this.defaultValue;
         this._updateFormValue();
         this._formControl.reset();
     }
 
+    private _updateFormValue() {
+        this._initFormValue(this.value || null);
+        this._initFormValidity(this.required, !this.value, 'Please enter a value.');
+        this._formControl.updateDataAttributes();
+    }
+
     private _handleOutsideClick = (e: MouseEvent) => {
-        if (!this.contains(e.target as Node)) {
+        const path = e.composedPath();
+        const inside = path.length > 0 ? path.includes(this) : this.contains(e.target as Node);
+        if (!inside) {
             this._isOpen = false;
             this._activeIndex = -1;
-            if (!this.freeSolo) {
-                const selectedOption = this.options.find(opt => opt.value === this.value);
-                this._inputValue = selectedOption ? selectedOption.label : '';
-            }
         }
     };
 
     private _handleInput(e: Event) {
         const target = e.target as HTMLInputElement;
         this._inputValue = target.value;
+        this.value = target.value;
         this._activeIndex = -1;
-
-        if (this.freeSolo) {
-            this.value = this._inputValue;
-            this.dispatchEvent(new CustomEvent('flint-autocomplete-change', { detail: { value: this.value, label: this.value } }));
-        }
-
         this._filterOptions();
         this._isOpen = true;
+        this._dispatchChange();
     }
 
     private _filterOptions() {
         const q = this._inputValue.toLowerCase();
-        this._filteredOptions = this.options.filter(opt =>
-            opt.label.toLowerCase().includes(q)
-        );
+        this._filteredOptions = q
+            ? this.options.filter(opt => opt.label.toLowerCase().includes(q))
+            : [...this.options];
     }
 
     private _handleFocus() {
@@ -171,10 +171,6 @@ export class FlintAutocomplete extends FormAssociated(FlintElement) {
                 e.preventDefault();
                 this._isOpen = false;
                 this._activeIndex = -1;
-                if (!this.freeSolo) {
-                    const selectedOption = this.options.find(opt => opt.value === this.value);
-                    this._inputValue = selectedOption ? selectedOption.label : '';
-                }
                 break;
             case 'Tab':
                 this._isOpen = false;
@@ -196,18 +192,26 @@ export class FlintAutocomplete extends FormAssociated(FlintElement) {
         });
     }
 
-    private _selectOption(option: AutocompleteOption) {
+    private _selectOption(option: ComboboxOption) {
         this.value = option.value;
         this._inputValue = option.label;
         this._isOpen = false;
         this._activeIndex = -1;
-        this.dispatchEvent(new CustomEvent('flint-autocomplete-change', { detail: { value: option.value, label: option.label } }));
+        this._dispatchChange();
+    }
+
+    private _dispatchChange() {
+        this.dispatchEvent(new CustomEvent('flint-combobox-change', {
+            detail: { value: this.value },
+            bubbles: true,
+            composed: true,
+        }));
     }
 
     render() {
-        const dropdownOpen = this._isOpen && (this._filteredOptions.length > 0 || !this.freeSolo);
+        const dropdownOpen = this._isOpen && this._filteredOptions.length > 0;
         return html`
-      <div class="input-wrapper" part="base">
+      <div class="base" part="base">
         <input
           type="text"
           part="input"
@@ -215,7 +219,7 @@ export class FlintAutocomplete extends FormAssociated(FlintElement) {
           aria-expanded=${dropdownOpen ? 'true' : 'false'}
           aria-autocomplete="list"
           aria-haspopup="listbox"
-          aria-activedescendant=${this._activeIndex >= 0 ? `option-${this._activeIndex}` : ''}
+          aria-activedescendant=${this._activeIndex >= 0 ? `combobox-opt-${this._activeIndex}` : ''}
           .value=${this._inputValue}
           placeholder=${this.placeholder}
           ?disabled=${this.disabled}
@@ -225,17 +229,22 @@ export class FlintAutocomplete extends FormAssociated(FlintElement) {
         />
         <div
           role="listbox"
-          part="dropdown"
-          class=${classMap({ dropdown: true, open: dropdownOpen })}
+          part="listbox"
+          class=${classMap({ listbox: true, open: dropdownOpen })}
         >
           ${this._filteredOptions.length > 0
                 ? this._filteredOptions.map(
                     (opt, i) => html`
                   <div
-                    id="option-${i}"
+                    id="combobox-opt-${i}"
                     role="option"
+                    part="option"
                     aria-selected=${i === this._activeIndex ? 'true' : 'false'}
-                    class=${classMap({ option: true, active: i === this._activeIndex })}
+                    class=${classMap({
+                        option: true,
+                        active: i === this._activeIndex,
+                        selected: opt.value === this.value,
+                    })}
                     @mousedown=${(e: Event) => e.preventDefault()}
                     @click=${() => this._selectOption(opt)}
                   >
@@ -243,7 +252,7 @@ export class FlintAutocomplete extends FormAssociated(FlintElement) {
                   </div>
                 `
                 )
-                : html`<div class="no-options">No options</div>`}
+                : html`<div class="no-options">No suggestions</div>`}
         </div>
       </div>
     `;
@@ -252,6 +261,6 @@ export class FlintAutocomplete extends FormAssociated(FlintElement) {
 
 declare global {
     interface HTMLElementTagNameMap {
-        'flint-autocomplete': FlintAutocomplete;
+        'flint-combobox': FlintCombobox;
     }
 }

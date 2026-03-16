@@ -191,3 +191,55 @@ export const WithMultipleActions: Story = {
     </flint-app-bar>
   `,
 };
+
+// -----------------------------------------------------------------------------
+// Responsive Viewport Variants
+// -----------------------------------------------------------------------------
+
+export const MobileViewport: Story = {
+    parameters: {
+        viewport: { defaultViewport: 'mobile1' },
+    },
+    args: { title: 'App' },
+    render: (args) => html`
+    <flint-app-bar .title=${args.title}>
+      <flint-button slot="navigation" variant="secondary" style="--flint-secondary-color: transparent; color: white;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </flint-button>
+      <div slot="actions">
+        <flint-button variant="secondary" size="sm" style="--flint-secondary-color: transparent; color: white;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </flint-button>
+      </div>
+    </flint-app-bar>
+  `,
+};
+
+export const TabletViewport: Story = {
+    parameters: {
+        viewport: { defaultViewport: 'tablet' },
+    },
+    args: { title: 'Dashboard' },
+    render: (args) => html`
+    <flint-app-bar .title=${args.title}>
+      <flint-button slot="navigation" variant="secondary" style="--flint-secondary-color: transparent; color: white;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </flint-button>
+      <div slot="actions" style="display: flex; gap: 8px;">
+        <flint-button variant="secondary" size="sm" style="--flint-secondary-color: transparent; color: white;">Search</flint-button>
+        <flint-button variant="secondary" size="sm" style="--flint-secondary-color: transparent; color: white;">Profile</flint-button>
+      </div>
+    </flint-app-bar>
+  `,
+};

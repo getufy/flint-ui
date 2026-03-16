@@ -527,13 +527,13 @@
 
     /* ─── Typography scale [§20.2] ───────────────────────────── */
     /* --flint-font-family is defined above */
-    --flint-font-size-xs:  0.75rem;    /* 12px */
-    --flint-font-size-sm:  0.875rem;   /* 14px */
-    --flint-font-size-md:  1rem;       /* 16px */
-    --flint-font-size-lg:  1.125rem;   /* 18px */
-    --flint-font-size-xl:  1.25rem;    /* 20px */
-    --flint-font-size-2xl: 1.5rem;     /* 24px */
-    --flint-font-size-3xl: 1.875rem;   /* 30px */
+    --flint-font-size-xs:  clamp(0.7rem, 0.65rem + 0.25vw, 0.75rem);     /* ~12px fluid */
+    --flint-font-size-sm:  clamp(0.8rem, 0.75rem + 0.25vw, 0.875rem);   /* ~14px fluid */
+    --flint-font-size-md:  clamp(0.9rem, 0.85rem + 0.25vw, 1rem);       /* ~16px fluid */
+    --flint-font-size-lg:  clamp(1rem, 0.95rem + 0.25vw, 1.125rem);     /* ~18px fluid */
+    --flint-font-size-xl:  clamp(1.1rem, 1.05rem + 0.25vw, 1.25rem);    /* ~20px fluid */
+    --flint-font-size-2xl: clamp(1.3rem, 1.2rem + 0.5vw, 1.5rem);      /* ~24px fluid */
+    --flint-font-size-3xl: clamp(1.6rem, 1.4rem + 0.75vw, 1.875rem);   /* ~30px fluid */
 
     --flint-font-weight-normal:   400;
     --flint-font-weight-medium:   500;
@@ -698,4 +698,127 @@ body {
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
     }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   FORCED COLORS — Windows High Contrast Mode [§37.5]
+   System color keywords ensure visibility in all HC themes.
+   ═══════════════════════════════════════════════════════════════ */
+@media (forced-colors: active) {
+    flint-button button,
+    flint-button a {
+        border: 1px solid ButtonText;
+    }
+    flint-button button:disabled,
+    flint-button a.is-disabled {
+        border-color: GrayText;
+        color: GrayText;
+    }
+
+    flint-input input,
+    flint-autocomplete input,
+    flint-text-field input,
+    flint-textarea textarea,
+    flint-select .trigger {
+        border: 1px solid ButtonText;
+    }
+    flint-input input:disabled,
+    flint-text-field input:disabled,
+    flint-textarea textarea:disabled {
+        border-color: GrayText;
+        color: GrayText;
+    }
+
+    flint-checkbox .checkbox {
+        border: 1px solid ButtonText;
+    }
+    flint-checkbox input:disabled + .checkbox {
+        border-color: GrayText;
+    }
+
+    flint-radio .radio-circle {
+        border: 1px solid ButtonText;
+    }
+    flint-radio input:disabled + .radio-circle {
+        border-color: GrayText;
+    }
+
+    flint-switch .switch {
+        border: 1px solid ButtonText;
+    }
+    flint-switch[disabled] .switch {
+        border-color: GrayText;
+        color: GrayText;
+    }
+
+    flint-slider input[type='range'] {
+        border: 1px solid ButtonText;
+    }
+
+    flint-toggle .toggle {
+        border: 1px solid ButtonText;
+    }
+    flint-toggle[disabled] .toggle {
+        border-color: GrayText;
+        color: GrayText;
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   SCALE DIMENSION THEMING [§38.1]
+   Apply `data-flint-scale="large"` to a container or <html>
+   to increase spacing/sizing for accessibility.
+   ═══════════════════════════════════════════════════════════════ */
+[data-flint-scale="large"] {
+    --flint-spacing-1:  0.375rem;   /*  6px  (1.5x) */
+    --flint-spacing-2:  0.75rem;    /* 12px  (1.5x) */
+    --flint-spacing-3:  1.125rem;   /* 18px  (1.5x) */
+    --flint-spacing-4:  1.5rem;     /* 24px  (1.5x) */
+    --flint-spacing-5:  1.875rem;   /* 30px  (1.5x) */
+    --flint-spacing-6:  2.25rem;    /* 36px  (1.5x) */
+    --flint-spacing-8:  3rem;       /* 48px  (1.5x) */
+    --flint-spacing-10: 3.75rem;    /* 60px  (1.5x) */
+    --flint-spacing-12: 4.5rem;     /* 72px  (1.5x) */
+
+    --flint-font-size-xs:  clamp(0.875rem, 0.8rem + 0.25vw, 0.9375rem);
+    --flint-font-size-sm:  clamp(1rem, 0.95rem + 0.25vw, 1.0625rem);
+    --flint-font-size-md:  clamp(1.125rem, 1.05rem + 0.25vw, 1.25rem);
+    --flint-font-size-lg:  clamp(1.25rem, 1.15rem + 0.25vw, 1.375rem);
+    --flint-font-size-xl:  clamp(1.375rem, 1.3rem + 0.25vw, 1.5rem);
+    --flint-font-size-2xl: clamp(1.625rem, 1.5rem + 0.5vw, 1.875rem);
+    --flint-font-size-3xl: clamp(2rem, 1.75rem + 0.75vw, 2.375rem);
+
+    --flint-border-radius-sm:   0.25rem;
+    --flint-border-radius-md:   0.5rem;
+    --flint-border-radius-lg:   0.75rem;
+    --flint-border-radius-xl:   1rem;
+}
+
+[data-flint-scale="compact"] {
+    --flint-spacing-1:  0.125rem;   /*  2px  (0.5x) */
+    --flint-spacing-2:  0.25rem;    /*  4px  (0.5x) */
+    --flint-spacing-3:  0.5rem;     /*  8px  (0.67x) */
+    --flint-spacing-4:  0.75rem;    /* 12px  (0.75x) */
+    --flint-spacing-5:  1rem;       /* 16px  (0.8x) */
+    --flint-spacing-6:  1.25rem;    /* 20px  (0.83x) */
+    --flint-spacing-8:  1.5rem;     /* 24px  (0.75x) */
+    --flint-spacing-10: 2rem;       /* 32px  (0.8x) */
+    --flint-spacing-12: 2.5rem;     /* 40px  (0.83x) */
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   CONTEXTUAL SURFACE LAYERS [§38.1]
+   Nested flint-layer elements automatically bump surface color.
+   ═══════════════════════════════════════════════════════════════ */
+flint-layer {
+    --flint-surface-color: var(--flint-surface-1);
+}
+flint-layer flint-layer {
+    --flint-surface-color: var(--flint-surface-2);
+}
+flint-layer flint-layer flint-layer {
+    --flint-surface-color: var(--flint-surface-3);
 }

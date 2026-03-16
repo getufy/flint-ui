@@ -409,6 +409,24 @@ export class FlintTabs extends FlintElement {
         requestAnimationFrame(() => tabList?.syncIndicator());
     }
 
+    /** Update only color-related styles without re-syncing layout. */
+    private _syncColors() {
+        const tabList = this.querySelector<FlintTabList>('flint-tab-list');
+        const tabs = Array.from(this.querySelectorAll<FlintTab>('flint-tab'));
+
+        if (tabList) {
+            tabList.style.setProperty('--flint-tabs-ind-color', this._resolveColor(this.indicatorColor));
+        }
+
+        const activeClr = this._resolveColor(this.textColor);
+        const inactiveClr = this.textColor === 'inherit' ? 'currentColor' : 'var(--flint-text-color-muted, #4b5563)';
+
+        tabs.forEach(tab => {
+            tab.style.setProperty('--flint-tab-active', activeClr);
+            tab.style.setProperty('--flint-tab-inactive', inactiveClr);
+        });
+    }
+
     private _onTabClick = (e: CustomEvent) => {
         this.value = e.detail.value;
         this.dispatchEvent(new CustomEvent('flint-tab-change', {
@@ -430,8 +448,14 @@ export class FlintTabs extends FlintElement {
     }
 
     updated(changed: Map<string, unknown>) {
-        const keys = ['value', 'orientation', 'variant', 'centered', 'scrollButtons', 'textColor', 'indicatorColor'];
-        if (keys.some(k => changed.has(k))) this._syncAll();
+        const layoutKeys = ['value', 'orientation', 'variant', 'centered', 'scrollButtons'];
+        const colorKeys = ['textColor', 'indicatorColor'];
+
+        if (layoutKeys.some(k => changed.has(k))) {
+            this._syncAll();
+        } else if (colorKeys.some(k => changed.has(k))) {
+            this._syncColors();
+        }
     }
 
     render() {

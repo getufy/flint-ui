@@ -151,6 +151,16 @@ export type FlintImageComparerChangeEvent = CustomEvent<{ position: number }>;
 // Box (dev warning)
 export type FlintBoxWarningEvent = CustomEvent<{ message: string }>;
 
+// Combobox
+export type FlintComboboxChangeEvent = CustomEvent<{ value: string }>;
+
+// Animation
+export type FlintAnimationFinishEvent = CustomEvent<undefined>;
+export type FlintAnimationCancelEvent = CustomEvent<undefined>;
+
+// Select async loading
+export type FlintSelectLoadEvent = CustomEvent<undefined>;
+
 // ── Global event map augmentation ────────────────────────────────────────────
 
 declare global {
@@ -294,5 +304,15 @@ declare global {
 
         // Box
         'flint-box-warning': FlintBoxWarningEvent;
+
+        // Combobox
+        'flint-combobox-change': FlintComboboxChangeEvent;
+
+        // Animation
+        'flint-animation-finish': FlintAnimationFinishEvent;
+        'flint-animation-cancel': FlintAnimationCancelEvent;
+
+        // Select async loading
+        'flint-select-load': FlintSelectLoadEvent;
     }
 }

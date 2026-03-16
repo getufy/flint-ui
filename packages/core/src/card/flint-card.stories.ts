@@ -353,3 +353,44 @@ export const SimpleText: Story = {
     </div>
   `,
 };
+
+// -----------------------------------------------------------------------------
+// Responsive Viewport Variants
+// -----------------------------------------------------------------------------
+
+export const MobileViewport: Story = {
+  parameters: {
+    viewport: { defaultViewport: 'mobile1' },
+  },
+  render: () => html`
+    <div style="padding: 12px;">
+      <flint-card variant="elevated">
+        <flint-card-header title="Mobile Card" subtitle="Full width on small screens"></flint-card-header>
+        <flint-card-media .image=${'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=400&q=80'} alt="Card image"></flint-card-media>
+        <flint-card-content>Card adapts to the mobile viewport width.</flint-card-content>
+        <flint-card-actions>
+          <flint-button variant="primary" size="sm">Action</flint-button>
+        </flint-card-actions>
+      </flint-card>
+    </div>
+  `,
+};
+
+export const TabletViewport: Story = {
+  parameters: {
+    viewport: { defaultViewport: 'tablet' },
+  },
+  render: () => html`
+    <div style="padding: 20px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+      ${[1, 2].map(i => html`
+        <flint-card variant="elevated">
+          <flint-card-header title="Card ${i}" subtitle="Tablet layout"></flint-card-header>
+          <flint-card-content>Two-column card grid on tablet viewport.</flint-card-content>
+          <flint-card-actions>
+            <flint-button variant="primary" size="sm">View</flint-button>
+          </flint-card-actions>
+        </flint-card>
+      `)}
+    </div>
+  `,
+};

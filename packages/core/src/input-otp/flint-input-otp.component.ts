@@ -145,6 +145,8 @@ export class FlintInputOtp extends FormAssociated(FlintElement) {
     private _internalValue = '';
     private _focused = false;
     private _cursorIndex = 0;
+    private _cachedPattern = '';
+    private _cachedRegExp: RegExp | null = null;
 
     private _handleClick = (e: Event) => {
         if (this.disabled) return;
@@ -238,9 +240,18 @@ export class FlintInputOtp extends FormAssociated(FlintElement) {
         }
     }
 
+    private _getPatternRegExp(): RegExp | null {
+        if (!this.pattern) return null;
+        if (this.pattern !== this._cachedPattern) {
+            this._cachedPattern = this.pattern;
+            this._cachedRegExp = new RegExp(this.pattern);
+        }
+        return this._cachedRegExp;
+    }
+
     private _filterByPattern(text: string): string {
-        if (!this.pattern) return text;
-        const re = new RegExp(this.pattern);
+        const re = this._getPatternRegExp();
+        if (!re) return text;
         return text.split('').filter(ch => re.test(ch)).join('');
     }
 
@@ -272,7 +283,8 @@ export class FlintInputOtp extends FormAssociated(FlintElement) {
      * advance the cursor by one slot.
      */
     private _insertChar(char: string) {
-        if (this.pattern && !new RegExp(this.pattern).test(char)) return;
+        const re = this._getPatternRegExp();
+        if (re && !re.test(char)) return;
 
         const i = this._cursorIndex;
         const val = this._internalValue;
@@ -389,7 +401,7 @@ export class FlintInputOtp extends FormAssociated(FlintElement) {
         if (!this.pattern) return 'numeric';
         try {
             // If the pattern can match the letter 'a', it accepts non-digit chars → text keyboard.
-            return new RegExp(this.pattern).test('a') ? 'text' : 'numeric';
+            return this._getPatternRegExp()!.test('a') ? 'text' : 'numeric';
         } catch {
             return 'text';
         }

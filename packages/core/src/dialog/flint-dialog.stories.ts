@@ -565,3 +565,61 @@ export const DisableBackdropClose: Story = {
     </flint-box>
   `,
 };
+
+// ── Responsive Viewport Variants ──────────────────────────────────────────
+
+export const MobileViewport: Story = {
+  parameters: {
+    viewport: { defaultViewport: 'mobile1' },
+  },
+  render: () => html`
+    <flint-box display="flex" alignItems="center" justifyContent="center" height="300px">
+      <flint-button @click=${() => openDialog('mobile-dialog')}>Open on Mobile</flint-button>
+
+      <flint-dialog id="mobile-dialog" @flint-dialog-close=${closeDialog}>
+        <flint-dialog-title>Mobile Dialog</flint-dialog-title>
+        <flint-dialog-content>
+          <flint-dialog-content-text>
+            This dialog is rendered in a mobile viewport. It should adapt its width and padding accordingly.
+          </flint-dialog-content-text>
+        </flint-dialog-content>
+        <flint-dialog-actions>
+          <flint-button variant="primary" @click=${(e: Event) => {
+      const d = (e.target as HTMLElement).closest('flint-dialog') as FlintDialog;
+      if (d) d.open = false;
+    }}>OK</flint-button>
+        </flint-dialog-actions>
+      </flint-dialog>
+    </flint-box>
+  `,
+};
+
+export const TabletViewport: Story = {
+  parameters: {
+    viewport: { defaultViewport: 'tablet' },
+  },
+  render: () => html`
+    <flint-box display="flex" alignItems="center" justifyContent="center" height="300px">
+      <flint-button @click=${() => openDialog('tablet-dialog')}>Open on Tablet</flint-button>
+
+      <flint-dialog id="tablet-dialog" @flint-dialog-close=${closeDialog}>
+        <flint-dialog-title>Tablet Dialog</flint-dialog-title>
+        <flint-dialog-content>
+          <flint-dialog-content-text>
+            This dialog is rendered in a tablet viewport for responsive testing.
+          </flint-dialog-content-text>
+        </flint-dialog-content>
+        <flint-dialog-actions>
+          <flint-button variant="secondary" @click=${(e: Event) => {
+      const d = (e.target as HTMLElement).closest('flint-dialog') as FlintDialog;
+      if (d) d.open = false;
+    }}>Cancel</flint-button>
+          <flint-button variant="primary" @click=${(e: Event) => {
+      const d = (e.target as HTMLElement).closest('flint-dialog') as FlintDialog;
+      if (d) d.open = false;
+    }}>Confirm</flint-button>
+        </flint-dialog-actions>
+      </flint-dialog>
+    </flint-box>
+  `,
+};

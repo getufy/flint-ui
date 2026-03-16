@@ -1,0 +1,96 @@
+:host {
+      display: inline-block;
+      position: relative;
+      font-family: var(--flint-font-family);
+      width: 100%;
+    }
+
+    .base {
+      position: relative;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1.5px solid var(--flint-input-border-color);
+      border-radius: var(--flint-input-border-radius);
+      font-size: 14px;
+      box-sizing: border-box;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      font-family: inherit;
+      color: var(--flint-text-color);
+      background: var(--flint-input-bg);
+    }
+
+    input:focus {
+      border-color: var(--flint-primary-color);
+      box-shadow: 0 0 0 3px var(--flint-primary-focus-ring);
+    }
+
+    input:disabled {
+      background-color: var(--flint-input-disabled-bg);
+      color: var(--flint-text-color-subtle);
+      cursor: not-allowed;
+    }
+
+    .listbox {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      max-height: var(--flint-combobox-dropdown-max-height, 250px);
+      overflow-y: auto;
+      background: var(--flint-surface-background, white);
+      border: 1px solid var(--flint-border-color);
+      border-radius: var(--flint-input-border-radius);
+      margin-top: 4px;
+      box-shadow: var(--flint-shadow-lg);
+      z-index: var(--flint-combobox-z-index, 1000);
+      display: none;
+    }
+
+    .listbox.open {
+      display: block;
+    }
+
+    .option {
+      padding: 10px 12px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.15s;
+      color: var(--flint-text-color);
+    }
+
+    .option:hover,
+    .option.active {
+      background-color: var(--flint-hover-color);
+    }
+
+    .option.selected {
+      background-color: var(--flint-primary-color-light);
+      color: var(--flint-primary-color);
+      font-weight: 600;
+    }
+
+    .no-options {
+      padding: 10px 12px;
+      font-size: 14px;
+      color: var(--flint-text-color-muted);
+    }
+
+    /* Scrollbar */
+    .listbox::-webkit-scrollbar { width: 6px; }
+    .listbox::-webkit-scrollbar-track { background: transparent; }
+    .listbox::-webkit-scrollbar-thumb {
+      background: var(--flint-border-color);
+      border-radius: 3px;
+    }
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

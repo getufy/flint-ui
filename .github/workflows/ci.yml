@@ -78,12 +78,24 @@ jobs:
             node_modules
             packages/*/node_modules
           key: node-modules-${{ hashFiles('package-lock.json') }}
-      - run: cd packages/core && npx vitest run --project components
+      - name: Run unit tests with coverage
+        run: cd packages/core && npx vitest run --project components --coverage
+      - name: Upload coverage to Codecov
+        if: always()
+        uses: codecov/codecov-action@18283e04ce6e62d37312384ff67231eb8fd56d24 # v5.4.3
+        with:
+          files: packages/core/coverage/lcov.info
+          flags: unit-tests
+          fail_ci_if_error: false
 
   browser-test:
-    name: Browser Tests
+    name: Browser Tests (${{ matrix.browser }})
     needs: install
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
@@ -102,23 +114,25 @@ jobs:
         id: pw-cache
         with:
           path: ~/.cache/ms-playwright
-          key: playwright-${{ steps.pw-version.outputs.version }}-chromium
-      - name: Install Playwright Chromium
+          key: playwright-${{ steps.pw-version.outputs.version }}-${{ matrix.browser }}
+      - name: Install Playwright browser
         if: steps.pw-cache.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install --with-deps ${{ matrix.browser }}
       - name: Install Playwright deps (cached)
         if: steps.pw-cache.outputs.cache-hit == 'true'
-        run: npx playwright install-deps chromium
-      - name: Run Storybook browser tests
+        run: npx playwright install-deps ${{ matrix.browser }}
+      - name: Run Storybook browser tests (${{ matrix.browser }})
         timeout-minutes: 10
+        env:
+          BROWSER: ${{ matrix.browser }}
         run: |
           cd packages/core
-          npx vitest run --project storybook 2>&1 | tee test-output.log
+          npx vitest run --project storybook --browser.instances='[{"browser":"${{ matrix.browser }}"}]' 2>&1 | tee test-output.log
           TEST_EXIT=$?
           if [ $TEST_EXIT -ne 0 ]; then
             # Check if all tests actually passed (teardown bug workaround)
             if grep -q "Tests.*passed" test-output.log && ! grep -q "Tests.*failed" test-output.log; then
-              echo "⚠️ Tests passed but process exited with error (known Playwright teardown issue)"
+              echo "Tests passed but process exited with error (known Playwright teardown issue)"
               exit 0
             fi
             exit $TEST_EXIT

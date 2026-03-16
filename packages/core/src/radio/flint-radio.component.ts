@@ -188,6 +188,7 @@ export class FlintRadio extends FlintElement {
     @property({ type: String, reflect: true }) size: RadioSize = 'md';
 
     override focus(options?: FocusOptions) {
+        if (this.disabled) return;
         this.shadowRoot?.querySelector<HTMLInputElement>('input')?.focus(options);
     }
 

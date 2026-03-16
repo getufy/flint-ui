@@ -12,6 +12,7 @@ export default defineConfig({
     build: {
         target: 'es2022',
         reportCompressedSize: true,
+        sourcemap: 'hidden',
         lib: {
             entry: discoverEntries(),
             formats: ['es'],

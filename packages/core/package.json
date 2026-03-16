@@ -20,7 +20,14 @@
     "node": ">=18.0.0"
   },
   "sideEffects": [
-    "**/*.css",
+    "./src/theme.css",
+    "./src/theme-dark.css",
+    "./src/theme-teal.css",
+    "./src/theme-violet.css",
+    "./src/theme-rose.css",
+    "./src/theme-amber.css",
+    "./src/theme-emerald.css",
+    "./src/theme-slate.css",
     "./dist/suppress-warnings.js",
     "./dist/index.js",
     "./dist/*/flint-*.js"

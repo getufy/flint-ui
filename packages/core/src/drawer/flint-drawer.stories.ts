@@ -324,6 +324,51 @@ export const Anchors: Story = {
 /* ================================================================== */
 /*  RTL                                                                */
 /* ================================================================== */
+/* ================================================================== */
+/*  Responsive Viewport Variants                                       */
+/* ================================================================== */
+export const MobileViewport: Story = {
+    parameters: {
+        viewport: { defaultViewport: 'mobile1' },
+    },
+    args: { open: false, placement: 'left', variant: 'temporary' },
+    render: (args) => html`
+        <flint-box class="story-root" display="flex" alignItems="center" justifyContent="center" bgcolor="var(--flint-muted-background, #f8fafc)" border="1px solid #e2e8f0" borderRadius="8px" style="position:relative;height:320px;overflow:hidden;">
+            <flint-drawer
+                .open=${args.open}
+                .placement=${args.placement}
+                .variant=${'temporary'}
+                container
+                @flint-drawer-close=${onDrawerClose}
+            >
+                ${navContent()}
+            </flint-drawer>
+            <flint-button @click=${openDrawer}>Open Drawer</flint-button>
+        </flint-box>
+    `,
+};
+
+export const TabletViewport: Story = {
+    parameters: {
+        viewport: { defaultViewport: 'tablet' },
+    },
+    args: { open: true, variant: 'persistent' },
+    render: (args) => html`
+        <flint-paper class="story-root" elevation="1" style="display:flex;height:360px;overflow:hidden;">
+            <flint-drawer .open=${args.open} .variant=${'persistent'}>
+                ${navContent()}
+            </flint-drawer>
+            <div style="flex:1;padding:24px;overflow-y:auto;">
+                <flint-stack direction="row" alignItems="center" justifyContent="space-between" mb="16px">
+                    <h2 style="margin:0;font-size:1.25rem;">Tablet Layout</h2>
+                    <flint-button variant="outlined" @click=${toggleDrawer}>Toggle</flint-button>
+                </flint-stack>
+                <p>Persistent drawer alongside main content on tablet.</p>
+            </div>
+        </flint-paper>
+    `,
+};
+
 export const DefaultRTL: Story = {
     name: 'RTL',
     args: { open: false, placement: 'right', variant: 'temporary' },

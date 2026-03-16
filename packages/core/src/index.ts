@@ -212,17 +212,35 @@ export { FlintFormField } from './form-field/flint-form-field.js';
 export type { LabelPosition } from './form-field/flint-form-field.js';
 export { FlintIcon, registerIconResolver } from './icon/flint-icon.js';
 export type { IconSize } from './icon/flint-icon.js';
+export { FlintCombobox } from './combobox/flint-combobox.js';
+export type { ComboboxOption } from './combobox/flint-combobox.js';
+export { FlintAnimation } from './animation/flint-animation.js';
+export type { DialogSize } from './dialog/flint-dialog.js';
+
+// ── Decorators ───────────────────────────────────────────────────────────────
+export { watch } from './decorators/watch.js';
+
+// ── New components [§37–38] ──────────────────────────────────────────────────
+export { FlintTheme } from './theme/flint-theme.js';
+export type { ThemeMode } from './theme/flint-theme.js';
+export { FlintLayer } from './layer/flint-layer.js';
+export { FlintVirtualScroll } from './virtual-scroll/flint-virtual-scroll.js';
+export type { RenderItemFn } from './virtual-scroll/flint-virtual-scroll.js';
 
 // ── Utilities & Controllers ─────────────────────────────────────────────────
 export { LocalizeController, registerTranslation, resolveLocale } from './utilities/localize.js';
 export type { Translation } from './utilities/localize.js';
 export { FormControlController } from './controllers/form-control.js';
-export type { FormControlHost, FormControlOptions } from './controllers/form-control.js';
+export type { FormControlHost, FormControlOptions, ValidationLevel } from './controllers/form-control.js';
 export { serialize } from './utilities/form.js';
 export { setDefaultAnimation, setAnimation, getAnimation, animateTo, stopAnimations } from './utilities/animation-registry.js';
 export type { ElementAnimation } from './utilities/animation-registry.js';
 export { setFlintTheme, getFlintTheme } from './utilities/theme.js';
 export type { FlintColorMode, FlintPalette } from './utilities/theme.js';
+export { overlayManager } from './utilities/overlay-manager.js';
+export type { OverlayEntry } from './utilities/overlay-manager.js';
+export { DataProvider } from './utilities/data-provider.js';
+export type { DataProviderParams, DataProviderResult, DataFetchFn } from './utilities/data-provider.js';
 
 // ── Typed Events ─────────────────────────────────────────────────────────────
 export type {
@@ -269,4 +287,7 @@ export type {
     FlintResizableCollapseEvent, FlintResizableExpandEvent, FlintResizableChangeEvent,
     FlintImageComparerChangeEvent,
     FlintBoxWarningEvent,
+    FlintComboboxChangeEvent,
+    FlintAnimationFinishEvent, FlintAnimationCancelEvent,
+    FlintSelectLoadEvent,
 } from './events.js';
