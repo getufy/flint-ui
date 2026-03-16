@@ -2,6 +2,23 @@
 
 ## 1.0.0
 
+### Major Changes
+
+- [`4d6440c`](https://github.com/getufy/flint-ui/commit/4d6440c2c03d0b667bc7d2f9109566f45ce080db) Thanks [@mihai-ufy](https://github.com/mihai-ufy)! - Namespace all custom events to `flint-{component}-{event}` format
+
+  **Breaking change:** All custom events have been renamed from generic names (e.g. `change`, `input`, `close`) to namespaced names (e.g. `flint-select-change`, `flint-input-input`, `flint-dialog-close`). This affects every component that dispatches custom events.
+
+  React wrapper event props have been updated accordingly (e.g. `onFlintSelectChange` instead of `onChange`).
+
+  See `docs/migration/v0.3-to-v0.4.md` for the complete rename table and search-and-replace patterns.
+
+### Patch Changes
+
+- Updated dependencies [[`4d6440c`](https://github.com/getufy/flint-ui/commit/4d6440c2c03d0b667bc7d2f9109566f45ce080db)]:
+  - @getufy/flint-ui@1.0.0
+
+## 1.0.0
+
 ### Minor Changes
 
 - [#21](https://github.com/getufy/flint-ui/pull/21) [`051f9a4`](https://github.com/getufy/flint-ui/commit/051f9a4e2fe07ba66b2cd7e76b5e61d4a5050e49) Thanks [@mihai-ufy](https://github.com/mihai-ufy)! - Add SSR support via Lit SSR + Declarative Shadow DOM
