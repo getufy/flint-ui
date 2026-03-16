@@ -80,7 +80,7 @@
 ### Breaking Change Communication
 - [x] Write migration guide for v0.3.0 → v0.4.0 — `docs/migration/v0.3-to-v0.4.md` covering event renames, two-file split, FlintElement base class, sideEffects removal
 - [x] Update CHANGELOG with all breaking changes — v0.3.0–v0.6.0 added to CHANGELOG.md
-- [ ] Add changeset for the event rename breaking changes
+- [x] Add changeset for the event rename breaking changes — `.changeset/namespace-custom-events.md` (major bump for both core and react)
 
 ### Testing Gaps (carryover)
 - [x] Add integration tests verifying React wrappers forward renamed events correctly — 37 tests covering event constants, barrel re-exports, naming conventions, uniqueness across 9 components
