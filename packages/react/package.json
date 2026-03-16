@@ -1,6 +1,6 @@
 {
   "name": "@getufy/flint-ui-react",
-  "version": "0.6.0",
+  "version": "1.0.0",
   "type": "module",
   "types": "./dist/index.d.ts",
   "module": "./dist/index.js",
@@ -346,7 +346,7 @@
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
-    "@getufy/flint-ui": "^0.6.0"
+    "@getufy/flint-ui": "^1.0.0"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",
