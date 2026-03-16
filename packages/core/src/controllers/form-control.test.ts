@@ -413,7 +413,7 @@ describe('FormControlController.validateConstraints', () => {
     it('tooShort message uses singular for minLength=1', async () => {
         const el = await fixture<TestFormControl>(html`<test-form-control></test-form-control>`);
         if (!el._internals || typeof el._internals.setValidity !== 'function') return;
-        const spy = vi.spyOn(el._internals, 'setValidity');
+        vi.spyOn(el._internals, 'setValidity');
         // Empty string won't trigger tooShort (only checked when value exists)
         // but a non-empty string shorter than 1 is impossible, so skip this edge case
         // Instead test minLength=1 with empty — but empty skips length checks

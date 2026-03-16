@@ -131,7 +131,7 @@ describe('flint-visually-hidden — DOM structure', () => {
             c => c.tagName.toLowerCase() !== 'style'
         );
         expect(children.length).toBe(1);
-        expect(children[0].tagName.toLowerCase()).toBe('slot');
+        expect(children[0]!.tagName.toLowerCase()).toBe('slot');
     });
 
     it('slotted children remain in light DOM (not moved to shadow)', async () => {

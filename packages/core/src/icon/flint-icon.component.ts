@@ -65,14 +65,14 @@ export function sanitizeSvg(raw: string): string {
   for (const tag of BLOCKED_ELEMENTS) {
     const nodes = svgEl.querySelectorAll(tag);
     for (let i = 0; i < nodes.length; i++) {
-      nodes[i].remove();
+      nodes[i]!.remove();
     }
   }
 
   // Remove event handler attributes (on*) from all elements
   const allEls = svgEl.querySelectorAll('*');
   for (let i = 0; i < allEls.length; i++) {
-    const el = allEls[i];
+    const el = allEls[i]!;
     const attrs = el.getAttributeNames();
     for (const attr of attrs) {
       if (attr.startsWith('on')) {

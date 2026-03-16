@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { describe, it, expect, afterEach } from 'vitest';
 
 // We need to test the exported functions, but the autoloader auto-starts on
 // import. We'll import the module fresh each time via dynamic import and

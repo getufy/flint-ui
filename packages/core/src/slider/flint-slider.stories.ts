@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import '../button/flint-button';
 import { html } from 'lit';
-import { userEvent, expect, waitFor } from 'storybook/test';
+import { expect, waitFor } from 'storybook/test';
 import '../box/flint-box';
 import './flint-slider';
 import '../button/flint-button';

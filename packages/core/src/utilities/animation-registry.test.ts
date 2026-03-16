@@ -205,8 +205,8 @@ describe('shimKeyframesHeightAuto', () => {
         ];
         const result = shimKeyframesHeightAuto(keyframes, '200px');
 
-        expect(result[0].height).toBe('0px');
-        expect(result[1].height).toBe('200px');
+        expect(result[0]!.height).toBe('0px');
+        expect(result[1]!.height).toBe('200px');
     });
 
     it('does not modify keyframes without height: auto', () => {
@@ -216,16 +216,16 @@ describe('shimKeyframesHeightAuto', () => {
         ];
         const result = shimKeyframesHeightAuto(keyframes, '200px');
 
-        expect(result[0].height).toBe('0px');
-        expect(result[1].height).toBe('100px');
+        expect(result[0]!.height).toBe('0px');
+        expect(result[1]!.height).toBe('100px');
     });
 
     it('does not mutate the original keyframes', () => {
         const keyframes = [{ height: 'auto' }];
         const result = shimKeyframesHeightAuto(keyframes, '50px');
 
-        expect(keyframes[0].height).toBe('auto');
-        expect(result[0].height).toBe('50px');
+        expect(keyframes[0]!.height).toBe('auto');
+        expect(result[0]!.height).toBe('50px');
     });
 });
 

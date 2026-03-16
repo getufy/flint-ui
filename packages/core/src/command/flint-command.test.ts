@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { fixture, html } from '@open-wc/testing';
+import { fixture, html, nextFrame } from '@open-wc/testing';
 import { expectAccessible } from '../test-utils/axe';
 import './flint-command.js';
 import type {
@@ -20,8 +20,15 @@ import type {
 
 /** Wait for all pending Lit updates + a short macrotask. */
 async function settle(el: Element, ms = 30) {
-    await (el as FlintCommand).updateComplete;
-    await new Promise((r) => setTimeout(r, ms));
+    // Guard against non-Lit elements or stalled updateComplete
+    const litEl = el as FlintCommand;
+    if (litEl?.updateComplete) {
+        await litEl.updateComplete;
+    }
+    await nextFrame();
+    if (ms > 0) {
+        await new Promise((r) => setTimeout(r, ms));
+    }
 }
 
 /** Simulate typing into the command input's inner <input>. */
@@ -31,7 +38,11 @@ async function typeInInput(cmd: FlintCommand, query: string) {
     inner.value = query;
     inner.dispatchEvent(new Event('input', { bubbles: true, composed: true }));
     // Wait for 150ms debounce + Lit update cycle
-    await settle(cmd, 200);
+    await nextFrame();
+    await new Promise((r) => setTimeout(r, 200));
+    if (cmd?.updateComplete) {
+        await cmd.updateComplete;
+    }
 }
 
 /** Get all command items inside the command (including slotted in groups). */

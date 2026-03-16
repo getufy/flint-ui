@@ -293,6 +293,8 @@ export class FlintCommand extends FlintElement {
 
     private _query = '';
     private _highlightedItem: FlintCommandItem | null = null;
+    /** Guard flag — prevents slotchange from re-triggering filter during DOM reordering. */
+    private _isSorting = false;
 
     /** Cached list of all command items; invalidated on slot change. */
     private _cachedItems: FlintCommandItem[] | null = null;
@@ -453,18 +455,21 @@ export class FlintCommand extends FlintElement {
         if (q !== '') {
             scored.sort((a, b) => b.score - a.score);
             // Re-order items in the DOM by score within their parent group
-            const groups = new Map<Element, { item: FlintCommandItem; score: number }[]>();
+            const sortGroups = new Map<Element, { item: FlintCommandItem; score: number }[]>();
             for (const entry of scored) {
                 const parent = entry.item.parentElement ?? this;
-                const list = groups.get(parent) ?? [];
+                const list = sortGroups.get(parent) ?? [];
                 list.push(entry);
-                groups.set(parent, list);
+                sortGroups.set(parent, list);
             }
-            for (const [parent, entries] of groups) {
+            this._isSorting = true;
+            for (const [parent, entries] of sortGroups) {
                 for (const entry of entries) {
                     parent.appendChild(entry.item);
                 }
             }
+            // Reset after microtask so slotchange events fired by appendChild are ignored
+            setTimeout(() => { this._isSorting = false; }, 0);
         }
 
         /* 2. Hide groups where all child items are hidden (or the group has no items). */
@@ -502,6 +507,8 @@ export class FlintCommand extends FlintElement {
     /* ── Slot change — initialise state once children are assigned ─────────── */
 
     private _onSlotChange() {
+        // Ignore slot mutations caused by our own DOM reordering in _applyFilter
+        if (this._isSorting) return;
         // Invalidate all cached DOM queries when slot content changes
         this._cachedItems = null;
         this._cachedGroups = null;

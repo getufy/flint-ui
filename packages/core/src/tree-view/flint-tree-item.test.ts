@@ -291,7 +291,7 @@ describe('flint-tree-item', () => {
         el.shadowRoot!.querySelector<HTMLElement>('.item-row')!.click();
 
         expect(spy).toHaveBeenCalledOnce();
-        expect(spy.mock.calls[0][0].detail).toEqual({ itemId: 'my-id' });
+        expect(spy.mock.calls[0]![0].detail).toEqual({ itemId: 'my-id' });
     });
 
     it('does not dispatch flint-tree-item-click when disabled', async () => {
@@ -319,7 +319,7 @@ describe('flint-tree-item', () => {
         btn.click();
 
         expect(spy).toHaveBeenCalledOnce();
-        expect(spy.mock.calls[0][0].detail).toEqual({ itemId: 'my-id', expanded: true });
+        expect(spy.mock.calls[0]![0].detail).toEqual({ itemId: 'my-id', expanded: true });
     });
 
     it('does not dispatch flint-tree-item-toggle when disabled', async () => {
@@ -346,7 +346,7 @@ describe('flint-tree-item', () => {
 
         el.shadowRoot!.querySelector<HTMLElement>('.item-row')!.click();
 
-        const event = spy.mock.calls[0][0] as CustomEvent;
+        const event = spy.mock.calls[0]![0] as CustomEvent;
         expect(event.bubbles).toBe(true);
         expect(event.composed).toBe(true);
     });
@@ -362,7 +362,7 @@ describe('flint-tree-item', () => {
 
         el.shadowRoot!.querySelector<HTMLElement>('.expand-btn')!.click();
 
-        const event = spy.mock.calls[0][0] as CustomEvent;
+        const event = spy.mock.calls[0]![0] as CustomEvent;
         expect(event.bubbles).toBe(true);
         expect(event.composed).toBe(true);
     });
