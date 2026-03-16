@@ -24,9 +24,9 @@ export interface FlintTabsProps extends Omit<React.HTMLAttributes<FlintTabsEleme
     centered?: boolean;
     /** Whether to show scroll buttons in scrollable mode. */
     scrollButtons?: 'auto' | 'false';
-    /** 'primary' | 'secondary' | 'inherit' | any CSS color */
+    /** Text color: 'primary' | 'secondary' | 'inherit' | any CSS color. */
     textColor?: string;
-    /** 'primary' | 'secondary' | any CSS color */
+    /** Indicator color: 'primary' | 'secondary' | any CSS color. */
     indicatorColor?: string;
     /** Uncontrolled mode: initial value if `value` not set */
     defaultValue?: string;

@@ -8,9 +8,11 @@ import { FlintAppBar as FlintAppBarElement } from '@getufy/flint-ui/app-bar/flin
 /**
  * flint-app-bar: The top App bar provides content and actions related to the current screen.
  *
- * @slot navigation - Left section, e.g. menu button.
+ * @slot navigation - Left section, e.g. menu button (alias: `start-content`).
+ * @slot start-content - Alias for `navigation` slot.
  * @slot title - Center section next to the title prop.
- * @slot actions - Right section, e.g. action buttons.
+ * @slot actions - Right section, e.g. action buttons (alias: `end-content`).
+ * @slot end-content - Alias for `actions` slot.
  */
 export interface FlintAppBarProps extends Omit<React.HTMLAttributes<FlintAppBarElement>, 'title'> {
     /** Title text displayed in the center of the app bar. */

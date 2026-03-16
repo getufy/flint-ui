@@ -178,6 +178,17 @@
 
 ---
 
+## Release Infrastructure
+
+- [x] Migrate from `@changesets/cli` to `release-please` — conventional commits, linked-versions plugin, single workflow for version PR + npm publish
+- [x] Fix `publish.yml` dual-publish conflict (changesets + tag-triggered publish were both trying to publish)
+- [x] Fix release-drafter permissions — switched from `GITHUB_TOKEN` to `RELEASE_TOKEN` PAT
+- [x] Revert accidental 1.0.0 version bump back to 0.6.1
+- [x] Deprecate accidental `@getufy/flint-ui@1.0.0` and `@getufy/flint-ui-react@1.0.0` on npm
+- [x] Publish `0.6.1` to npm — `@getufy/flint-ui@0.6.1` and `@getufy/flint-ui-react@0.6.1` published
+
+---
+
 ## Improvements — Strategic
 
 ### Custom Elements Manifest (CEM)

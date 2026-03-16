@@ -8,7 +8,7 @@ import { FlintStack as FlintStackElement } from '@getufy/flint-ui/stack/flint-st
 export interface FlintStackProps extends React.HTMLAttributes<FlintStackElement> {
     /** Flex direction of the stack layout. */
     direction?: FlintStackElement['direction'];
-    /** Space between child items (1 unit = 8px). */
+    /** Space between child items. Numeric values use an 8px multiplier (e.g. `2` = 16px). */
     spacing?: FlintStackElement['spacing'];
     /** Cross-axis alignment of stack children. */
     alignItems?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline' | undefined;

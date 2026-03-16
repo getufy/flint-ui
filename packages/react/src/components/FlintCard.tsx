@@ -6,6 +6,7 @@ import { createComponent } from '@lit/react';
 import { FlintCard as FlintCardElement } from '@getufy/flint-ui/card/flint-card';
 
 export interface FlintCardProps extends React.HTMLAttributes<FlintCardElement> {
+    /** Visual style variant of the card. */
     variant?: 'elevated' | 'outlined' | 'flat';
     interactive?: boolean;
 }

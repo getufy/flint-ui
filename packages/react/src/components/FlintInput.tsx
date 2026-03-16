@@ -42,7 +42,7 @@ export interface FlintInputProps extends Omit<React.HTMLAttributes<FlintInputEle
     name?: string;
     /** Browser autocomplete hint. */
     autocomplete?: string;
-    /** 'sm' | 'default' | 'lg' */
+    /** Size variant of the input. */
     size?: 'sm' | 'default' | 'lg';
     /** Initial value for uncontrolled usage. */
     defaultValue?: string | undefined;
