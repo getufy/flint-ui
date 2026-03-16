@@ -88,7 +88,6 @@
 - [x] Verify Storybook browser tests work with renamed events — covered by playbook integration tests
 
 ### Codegen
-- [ ] Consider parsing template literal event names (`` `flint-${name}-change` ``) — no current occurrences
 - [x] Fix `gen:react` bug: wrappers now import and use event constant files (e.g. `FlintSwitchEvents.CHANGE`)
 
 ---
@@ -197,7 +196,6 @@
 - [x] Audit for imperative slot detection (`querySelector` for slot presence)
 - [x] Test with `@lit-labs/ssr` for server-rendered output
 - [x] Document SSR limitations and workarounds for Next.js / Astro / Remix
-- [ ] Track Lit SSR stability — currently experimental
 > **Why:** Blocks adoption in server-rendered frameworks (Next.js, Astro, Remix). Shoelace/Web Awesome is actively working on this. Lit SSR + Declarative Shadow DOM is the path forward but still maturing.
 
 ### Skin / preset theme system
