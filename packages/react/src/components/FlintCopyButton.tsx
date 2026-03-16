@@ -6,6 +6,14 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintCopyButton as FlintCopyButtonElement } from '@getufy/flint-ui/copy-button/flint-copy-button';
 import { FlintCopyButtonEvents } from '../events/flint-copy-button.js';
 
+export interface FlintCopyErrorDetail {
+    reason: string;
+}
+
+export interface FlintCopyDetail {
+    value: string;
+}
+
 /**
  * Copy Button: copies text to the clipboard with visual feedback.
  */
@@ -26,10 +34,10 @@ export interface FlintCopyButtonProps extends React.HTMLAttributes<FlintCopyButt
     feedbackDuration?: number;
     /** Tooltip placement. */
     tooltipPlacement?: 'top' | 'right' | 'bottom' | 'left';
-    /** Fired when the copy operation fails. */
-    onFlintCopyError?: (event: CustomEvent) => void;
-    /** Fired after a successful copy operation. */
-    onFlintCopy?: (event: CustomEvent) => void;
+    /** Fired when the copy operation fails. detail: `{ reason: string }` */
+    onFlintCopyError?: (event: CustomEvent<FlintCopyErrorDetail>) => void;
+    /** Fired after a successful copy operation. detail: `{ value: string }` */
+    onFlintCopy?: (event: CustomEvent<FlintCopyDetail>) => void;
 }
 
 export const FlintCopyButton = createComponent({
@@ -83,7 +91,7 @@ export const FlintCopyButton = createComponent({
         onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
         onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
         onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
-        onFlintCopyError: FlintCopyButtonEvents.COPY_ERROR as EventName<CustomEvent>,
-        onFlintCopy: FlintCopyButtonEvents.COPY as EventName<CustomEvent>,
+        onFlintCopyError: FlintCopyButtonEvents.COPY_ERROR as EventName<CustomEvent<FlintCopyErrorDetail>>,
+        onFlintCopy: FlintCopyButtonEvents.COPY as EventName<CustomEvent<FlintCopyDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintCopyButtonProps & React.RefAttributes<FlintCopyButtonElement>>;

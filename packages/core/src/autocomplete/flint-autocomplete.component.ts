@@ -14,7 +14,7 @@ export interface AutocompleteOption<T = string> {
 /**
  * Autocomplete: a text input with a dropdown of selectable suggestions.
  *
- * @fires flint-autocomplete-change - Fired when the selected value changes.
+ * @fires flint-autocomplete-change - Fired when the selected value changes. detail: `{ value: string, label: string }`
  */
 export class FlintAutocomplete extends FormAssociated(FlintElement) {
     static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };

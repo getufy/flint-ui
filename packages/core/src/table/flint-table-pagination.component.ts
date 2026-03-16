@@ -7,8 +7,8 @@ import { FlintElement } from '../flint-element.js';
 /**
  * Table Pagination: pagination controls for tabular data.
  *
- * @fires flint-pagination-page-change - Fired when the current page changes.
- * @fires flint-pagination-rows-per-page-change - Fired when rows per page changes.
+ * @fires flint-pagination-page-change - Fired when the current page changes. detail: `{ page: number }`
+ * @fires flint-pagination-rows-per-page-change - Fired when rows per page changes. detail: `{ rowsPerPage: number }`
  */
 export class FlintTablePagination extends FlintElement {
     static styles = unsafeCSS(uiTablePaginationStyles);

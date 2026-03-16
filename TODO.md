@@ -266,10 +266,15 @@
 #### Low — CardMedia Object-Fit (#19)
 - [x] **FlintCardMedia `--flint-card-media-object-fit`** — Exposed CSS custom property for `object-fit` on the internal `<img>`. Default remains `cover`.
 
+#### Medium — Event Detail Type Exports (#7)
+- [x] **Typed event detail interfaces in React barrel** — Fixed `@fires` JSDoc annotations on 13 components to use the `detail: \`{ key: type }\`` format. Codegen now extracts and exports 57 typed detail interfaces (up from 47). Affected: Pagination, Rating, Autocomplete, CopyButton, TablePagination, Accordion, Collapsible, NavigationMenu, ToggleButton, Stepper.
+
+#### Medium — Card Interactive Click Event (#15)
+- [x] **FlintCard `flint-card-click` event** — Interactive cards now emit `flint-card-click` on click and Enter/Space keyboard activation. Added `role="button"` and `tabindex="0"` when `interactive` is set.
+
 ### Remaining — Merge into v0.7.0
 
 #### Medium (fold into existing P0/P1 items)
-- [ ] **#7 Export event detail types from React package** — Verify `FlintSelectChangeDetail` etc. are in barrel export. Related to P2 #43.
 - [ ] **#17 Document: avoid hardcoded color fallbacks** — Add guidance to THEMING.md: always use `var(--flint-*)` without fallbacks in dark-mode-aware UIs.
 - [ ] **#18 Event naming discoverability** — `onFlintPaginationChange` (not `onFlintPageChange`). Improve TypeScript strictness so unknown event props cause compile errors.
 
@@ -279,8 +284,6 @@
 - [ ] **#12** Responsive `direction`/`spacing` on FlintStack
 - [ ] **#13** Toast/notification manager API (`useFlintToast()` hook)
 - [ ] **#14** FlintAppBar React-idiomatic prop alternatives for slots
-- [ ] **#15** FlintCard `onFlintCardClick` custom event for interactive cards
-- [ ] **#19** FlintCardMedia `--flint-card-media-object-fit` CSS custom property
 - [ ] **#23** FlintChip `clickable` event propagation in nested click handlers
 
 ---

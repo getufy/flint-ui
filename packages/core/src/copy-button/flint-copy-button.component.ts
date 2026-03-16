@@ -15,8 +15,8 @@ const errorIcon = svg`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16
 /**
  * Copy Button: copies text to the clipboard with visual feedback.
  *
- * @fires flint-copy - Fired after a successful copy operation.
- * @fires flint-copy-error - Fired when the copy operation fails.
+ * @fires flint-copy - Fired after a successful copy operation. detail: `{ value: string }`
+ * @fires flint-copy-error - Fired when the copy operation fails. detail: `{ reason: string }`
  */
 export class FlintCopyButton extends FlintElement {
     static override styles = unsafeCSS(styles);

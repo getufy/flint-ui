@@ -4,6 +4,14 @@ import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
 import uiCardStyles from './flint-card.css?inline';
 
+/**
+ * A card container with optional interactive behavior.
+ *
+ * @fires flint-card-click - Fired when an interactive card is clicked or activated via keyboard (Enter/Space).
+ *
+ * @slot - Card content (header, content, actions, media sub-components).
+ * @csspart base - The card wrapper div.
+ */
 export class FlintCard extends FlintElement {
   static styles = unsafeCSS(uiCardStyles);
 
@@ -17,6 +25,19 @@ export class FlintCard extends FlintElement {
   @property({ type: Boolean, reflect: true })
   interactive = false;
 
+  private _handleClick() {
+    if (this.interactive) {
+      this.dispatchEvent(new CustomEvent('flint-card-click', { bubbles: true, composed: true }));
+    }
+  }
+
+  private _handleKeyDown(e: KeyboardEvent) {
+    if (this.interactive && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault();
+      this.dispatchEvent(new CustomEvent('flint-card-click', { bubbles: true, composed: true }));
+    }
+  }
+
   render() {
     const classes = {
       card: true,
@@ -25,7 +46,14 @@ export class FlintCard extends FlintElement {
     };
 
     return html`
-      <div class=${classMap(classes)} part="base">
+      <div
+        class=${classMap(classes)}
+        part="base"
+        tabindex=${this.interactive ? '0' : '-1'}
+        role=${this.interactive ? 'button' : 'region'}
+        @click=${this._handleClick}
+        @keydown=${this._handleKeyDown}
+      >
         <slot></slot>
       </div>
     `;

@@ -13,7 +13,7 @@ let _accordionCounter = 0;
  *
  * @slot - FlintAccordionSummary and FlintAccordionDetails.
  *
- * @fires flint-accordion-change - Fired when the accordion's expanded state changes.
+ * @fires flint-accordion-change - Fired when the accordion's expanded state changes. detail: `{ expanded: boolean }`
  */
 export class FlintAccordion extends FlintElement {
     static styles = unsafeCSS(uiAccordionStyles);

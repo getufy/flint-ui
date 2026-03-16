@@ -6,6 +6,10 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintPagination as FlintPaginationElement } from '@getufy/flint-ui/pagination/flint-pagination';
 import { FlintPaginationEvents } from '../events/flint-pagination.js';
 
+export interface FlintPaginationChangeDetail {
+    page: number;
+}
+
 /**
  * Pagination component enabling the user to select a specific page from
 a range of pages.
@@ -47,8 +51,8 @@ export interface FlintPaginationProps extends Omit<React.HTMLAttributes<FlintPag
     boundaryCount?: number;
     /** Disable the whole component. */
     disabled?: boolean;
-    /** { page: number } when the active page changes. */
-    onFlintPaginationChange?: (event: CustomEvent) => void;
+    /** Fired when the active page changes. detail: `{ page: number }` */
+    onFlintPaginationChange?: (event: CustomEvent<FlintPaginationChangeDetail>) => void;
 }
 
 export const FlintPagination = createComponent({
@@ -102,6 +106,6 @@ export const FlintPagination = createComponent({
         onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
         onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
         onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
-        onFlintPaginationChange: FlintPaginationEvents.CHANGE as EventName<CustomEvent>,
+        onFlintPaginationChange: FlintPaginationEvents.CHANGE as EventName<CustomEvent<FlintPaginationChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintPaginationProps & React.RefAttributes<FlintPaginationElement>>;

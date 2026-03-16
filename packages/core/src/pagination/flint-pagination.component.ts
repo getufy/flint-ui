@@ -71,7 +71,7 @@ export function buildPages(
  * Pagination component enabling the user to select a specific page from
  * a range of pages.
  *
- * @fires flint-pagination-change - { page: number } when the active page changes.
+ * @fires flint-pagination-change - Fired when the active page changes. detail: `{ page: number }`
  *
  * @slot prev-icon    - Icon for the previous button (default: chevron left SVG).
  * @slot next-icon    - Icon for the next button (default: chevron right SVG).

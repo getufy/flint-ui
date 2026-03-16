@@ -6,3 +6,4 @@ export { FlintCardContent, type FlintCardContentProps } from './components/Flint
 export { FlintCardHeader, type FlintCardHeaderProps } from './components/FlintCardHeader.js';
 export { FlintCardMedia, type FlintCardMediaProps } from './components/FlintCardMedia.js';
 export { FlintCard, type FlintCardProps } from './components/FlintCard.js';
+export { FlintCardEvents } from './events/flint-card.js';

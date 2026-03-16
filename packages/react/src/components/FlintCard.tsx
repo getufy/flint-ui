@@ -4,11 +4,19 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintCard as FlintCardElement } from '@getufy/flint-ui/card/flint-card';
+import { FlintCardEvents } from '../events/flint-card.js';
 
+/**
+ * A card container with optional interactive behavior.
+ *
+ * @slot (default) - Card content (header, content, actions, media sub-components).
+ */
 export interface FlintCardProps extends React.HTMLAttributes<FlintCardElement> {
     /** Visual style variant of the card. */
     variant?: 'elevated' | 'outlined' | 'flat';
     interactive?: boolean;
+    /** Fired when an interactive card is clicked or activated via keyboard (Enter/Space). */
+    onFlintCardClick?: (event: CustomEvent) => void;
 }
 
 export const FlintCard = createComponent({
@@ -62,5 +70,6 @@ export const FlintCard = createComponent({
         onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
         onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
         onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
+        onFlintCardClick: FlintCardEvents.CLICK as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintCardProps & React.RefAttributes<FlintCardElement>>;

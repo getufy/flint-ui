@@ -6,6 +6,10 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintAutocomplete as FlintAutocompleteElement } from '@getufy/flint-ui/autocomplete/flint-autocomplete';
 import { FlintAutocompleteEvents } from '../events/flint-autocomplete.js';
 
+export interface FlintAutocompleteChangeDetail {
+    value: string, label: string;
+}
+
 /**
  * Autocomplete: a text input with a dropdown of selectable suggestions.
  */
@@ -27,8 +31,8 @@ export interface FlintAutocompleteProps extends Omit<React.HTMLAttributes<FlintA
     required?: boolean;
     /** Initial value for uncontrolled usage. */
     defaultValue?: string;
-    /** Fired when the selected value changes. */
-    onFlintAutocompleteChange?: (event: CustomEvent) => void;
+    /** Fired when the selected value changes. detail: `{ value: string, label: string }` */
+    onFlintAutocompleteChange?: (event: CustomEvent<FlintAutocompleteChangeDetail>) => void;
 }
 
 export const FlintAutocomplete = createComponent({
@@ -82,6 +86,6 @@ export const FlintAutocomplete = createComponent({
         onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
         onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
         onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
-        onFlintAutocompleteChange: FlintAutocompleteEvents.CHANGE as EventName<CustomEvent>,
+        onFlintAutocompleteChange: FlintAutocompleteEvents.CHANGE as EventName<CustomEvent<FlintAutocompleteChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintAutocompleteProps & React.RefAttributes<FlintAutocompleteElement>>;

@@ -16,8 +16,8 @@ import { FlintElement } from '../flint-element.js';
  *
  * @cssprop --flint-navigation-menu-item-padding - Item padding (default: 0)
  *
- * @fires flint-navigation-menu-trigger-click - Fired when the item's trigger is clicked.
- * @fires flint-navigation-menu-content-toggle - Fired when content visibility changes.
+ * @fires flint-navigation-menu-trigger-click - Fired when the item's trigger is clicked. detail: `{ contentId: string, open: boolean }`
+ * @fires flint-navigation-menu-content-toggle - Fired when content visibility changes. detail: `{ contentId: string, open: boolean }`
  */
 export class FlintNavigationMenuItem extends FlintElement {
     static override styles = css`

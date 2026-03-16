@@ -18,10 +18,8 @@ const _openDialogs: FlintDialog[] = [];
 /**
  * flint-dialog: a modal dialog component.
  *
- * @fires flint-dialog-open  - Dispatched after the dialog open animation completes. detail: `{ open: true }`
- * @fires flint-dialog-close - Dispatched when the dialog requests to be closed (backdrop click or
- *               an explicit call to `requestClose()`). The host is responsible for
- *               setting `open = false` in response. detail: `{ open: false }`
+ * @fires flint-dialog-open - Dispatched after the dialog open animation completes. detail: `{ open: boolean }`
+ * @fires flint-dialog-close - Dispatched when the dialog requests to be closed. detail: `{ open: boolean }`
  * @fires confirm - Dispatched by confirmation dialogs when the user clicked "confirm".
  * @fires cancel  - Dispatched by confirmation dialogs when the user clicked "cancel".
  *

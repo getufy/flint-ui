@@ -99,8 +99,7 @@ export class FlintCollapsibleContent extends FlintElement {
  * @slot - Accepts `flint-collapsible-trigger`, `flint-collapsible-content`, and any
  *         other elements that should always be visible.
  *
- * @fires flint-collapsible-change - Fired when the open state changes.
- *   `detail: { open: boolean }`
+ * @fires flint-collapsible-change - Fired when the open state changes. detail: `{ open: boolean }`
  *
  * @attr {boolean} open         - Current open state (also settable for controlled usage).
  * @attr {boolean} default-open - Initial open state for uncontrolled usage.

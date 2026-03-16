@@ -6,6 +6,10 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintNavigationMenuContent as FlintNavigationMenuContentElement } from '@getufy/flint-ui/navigation-menu/flint-navigation-menu-content';
 import { FlintNavigationMenuContentEvents } from '../events/flint-navigation-menu-content.js';
 
+export interface FlintNavigationMenuContentToggleDetail {
+    contentId: string, open: boolean;
+}
+
 /**
  * @slot default - Menu content items
  */
@@ -18,8 +22,8 @@ export interface FlintNavigationMenuContentProps extends Omit<React.HTMLAttribut
     dir?: 'ltr' | 'rtl';
     /** Gap between items in the content */
     gap?: number;
-    /** Fired when the content panel opens or closes. */
-    onFlintNavigationMenuContentToggle?: (event: CustomEvent) => void;
+    /** Fired when the content panel opens or closes. detail: `{ contentId: string, open: boolean }` */
+    onFlintNavigationMenuContentToggle?: (event: CustomEvent<FlintNavigationMenuContentToggleDetail>) => void;
 }
 
 export const FlintNavigationMenuContent = createComponent({
@@ -73,6 +77,6 @@ export const FlintNavigationMenuContent = createComponent({
         onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
         onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
         onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
-        onFlintNavigationMenuContentToggle: FlintNavigationMenuContentEvents.TOGGLE as EventName<CustomEvent>,
+        onFlintNavigationMenuContentToggle: FlintNavigationMenuContentEvents.TOGGLE as EventName<CustomEvent<FlintNavigationMenuContentToggleDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintNavigationMenuContentProps & React.RefAttributes<FlintNavigationMenuContentElement>>;

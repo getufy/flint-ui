@@ -209,7 +209,7 @@ export class FlintStep extends FlintElement {
 /**
  * Stepper: a multi-step progress indicator.
  *
- * @fires flint-step-change - Fired when the active step changes via step click.
+ * @fires flint-step-change - Fired when the active step changes via step click. detail: `{ step: number }`
  */
 export class FlintStepper extends FlintElement {
     static styles = unsafeCSS(uiStepperStyles);

@@ -6,6 +6,10 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintToggleButton as FlintToggleButtonElement } from '@getufy/flint-ui/button/flint-toggle-button';
 import { FlintToggleButtonEvents } from '../events/flint-toggle-button.js';
 
+export interface FlintToggleButtonChangeDetail {
+    value: string, selected: boolean;
+}
+
 /**
  * Toggle Button: a button that can be toggled on/off.
  */
@@ -18,8 +22,8 @@ export interface FlintToggleButtonProps extends React.HTMLAttributes<FlintToggle
     value?: string;
     /** Size variant of the toggle button. */
     size?: 'sm' | 'md' | 'lg';
-    /** Fired when the button's selected state changes. */
-    onFlintToggleButtonChange?: (event: CustomEvent) => void;
+    /** Fired when the button's selected state changes. detail: `{ value: string, selected: boolean }` */
+    onFlintToggleButtonChange?: (event: CustomEvent<FlintToggleButtonChangeDetail>) => void;
 }
 
 export const FlintToggleButton = createComponent({
@@ -73,6 +77,6 @@ export const FlintToggleButton = createComponent({
         onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
         onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
         onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
-        onFlintToggleButtonChange: FlintToggleButtonEvents.CHANGE as EventName<CustomEvent>,
+        onFlintToggleButtonChange: FlintToggleButtonEvents.CHANGE as EventName<CustomEvent<FlintToggleButtonChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintToggleButtonProps & React.RefAttributes<FlintToggleButtonElement>>;

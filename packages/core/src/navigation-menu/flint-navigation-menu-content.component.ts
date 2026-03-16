@@ -22,7 +22,7 @@ import { FlintElement } from '../flint-element.js';
  * @cssprop --flint-navigation-menu-content-min-width - Minimum width (default: 200px)
  * @cssprop --flint-navigation-menu-content-z-index - Z-index (default: 1000)
  *
- * @fires flint-navigation-menu-content-toggle - Fired when the content panel opens or closes.
+ * @fires flint-navigation-menu-content-toggle - Fired when the content panel opens or closes. detail: `{ contentId: string, open: boolean }`
  */
 export class FlintNavigationMenuContent extends FlintElement {
     static override styles = css`

@@ -6,6 +6,10 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintRating as FlintRatingElement } from '@getufy/flint-ui/rating/flint-rating';
 import { FlintRatingEvents } from '../events/flint-rating.js';
 
+export interface FlintRatingChangeDetail {
+    value: number;
+}
+
 /**
  * Rating: a star-based rating input.
  */
@@ -33,8 +37,8 @@ export interface FlintRatingProps extends Omit<React.HTMLAttributes<FlintRatingE
     precision?: FlintRatingElement['precision'];
     /** Marks the rating as required for form validation. */
     required?: boolean;
-    /** Fired when the rating value changes. */
-    onFlintRatingChange?: (event: CustomEvent) => void;
+    /** Fired when the rating value changes. detail: `{ value: number }` */
+    onFlintRatingChange?: (event: CustomEvent<FlintRatingChangeDetail>) => void;
 }
 
 export const FlintRating = createComponent({
@@ -88,6 +92,6 @@ export const FlintRating = createComponent({
         onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
         onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
         onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
-        onFlintRatingChange: FlintRatingEvents.CHANGE as EventName<CustomEvent>,
+        onFlintRatingChange: FlintRatingEvents.CHANGE as EventName<CustomEvent<FlintRatingChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintRatingProps & React.RefAttributes<FlintRatingElement>>;

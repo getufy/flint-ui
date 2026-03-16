@@ -6,6 +6,14 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintNavigationMenuItem as FlintNavigationMenuItemElement } from '@getufy/flint-ui/navigation-menu/flint-navigation-menu-item';
 import { FlintNavigationMenuItemEvents } from '../events/flint-navigation-menu-item.js';
 
+export interface FlintNavigationMenuTriggerClickDetail {
+    contentId: string, open: boolean;
+}
+
+export interface FlintNavigationMenuContentToggleDetail {
+    contentId: string, open: boolean;
+}
+
 /**
  * @slot default - Item content (NavigationMenuTrigger and NavigationMenuContent)
  */
@@ -18,10 +26,10 @@ export interface FlintNavigationMenuItemProps extends React.HTMLAttributes<Flint
     openDelay?: number;
     /** Delay in ms before closing after mouse leaves */
     closeDelay?: number;
-    /** Fired when the item's trigger is clicked. */
-    onFlintNavigationMenuTriggerClick?: (event: CustomEvent) => void;
-    /** Fired when content visibility changes. */
-    onFlintNavigationMenuContentToggle?: (event: CustomEvent) => void;
+    /** Fired when the item's trigger is clicked. detail: `{ contentId: string, open: boolean }` */
+    onFlintNavigationMenuTriggerClick?: (event: CustomEvent<FlintNavigationMenuTriggerClickDetail>) => void;
+    /** Fired when content visibility changes. detail: `{ contentId: string, open: boolean }` */
+    onFlintNavigationMenuContentToggle?: (event: CustomEvent<FlintNavigationMenuContentToggleDetail>) => void;
 }
 
 export const FlintNavigationMenuItem = createComponent({
@@ -75,7 +83,7 @@ export const FlintNavigationMenuItem = createComponent({
         onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
         onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
         onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
-        onFlintNavigationMenuTriggerClick: FlintNavigationMenuItemEvents.NAVIGATION_MENU_TRIGGER_CLICK as EventName<CustomEvent>,
-        onFlintNavigationMenuContentToggle: FlintNavigationMenuItemEvents.NAVIGATION_MENU_CONTENT_TOGGLE as EventName<CustomEvent>,
+        onFlintNavigationMenuTriggerClick: FlintNavigationMenuItemEvents.NAVIGATION_MENU_TRIGGER_CLICK as EventName<CustomEvent<FlintNavigationMenuTriggerClickDetail>>,
+        onFlintNavigationMenuContentToggle: FlintNavigationMenuItemEvents.NAVIGATION_MENU_CONTENT_TOGGLE as EventName<CustomEvent<FlintNavigationMenuContentToggleDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintNavigationMenuItemProps & React.RefAttributes<FlintNavigationMenuItemElement>>;

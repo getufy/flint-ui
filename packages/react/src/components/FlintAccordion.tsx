@@ -6,6 +6,10 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintAccordion as FlintAccordionElement } from '@getufy/flint-ui/accordion/flint-accordion';
 import { FlintAccordionEvents } from '../events/flint-accordion.js';
 
+export interface FlintAccordionChangeDetail {
+    expanded: boolean;
+}
+
 /**
  * Accordion: the wrapper for grouping related components.
  *
@@ -18,8 +22,8 @@ export interface FlintAccordionProps extends React.HTMLAttributes<FlintAccordion
     defaultExpanded?: boolean;
     /** If true, the accordion is disabled. */
     disabled?: boolean;
-    /** Fired when the accordion's expanded state changes. */
-    onFlintAccordionChange?: (event: CustomEvent) => void;
+    /** Fired when the accordion's expanded state changes. detail: `{ expanded: boolean }` */
+    onFlintAccordionChange?: (event: CustomEvent<FlintAccordionChangeDetail>) => void;
 }
 
 export const FlintAccordion = createComponent({
@@ -73,6 +77,6 @@ export const FlintAccordion = createComponent({
         onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
         onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
         onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
-        onFlintAccordionChange: FlintAccordionEvents.CHANGE as EventName<CustomEvent>,
+        onFlintAccordionChange: FlintAccordionEvents.CHANGE as EventName<CustomEvent<FlintAccordionChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintAccordionProps & React.RefAttributes<FlintAccordionElement>>;

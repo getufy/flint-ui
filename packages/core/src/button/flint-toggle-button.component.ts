@@ -7,7 +7,7 @@ import uiToggleButtonStyles from './flint-toggle-button.css?inline';
 /**
  * Toggle Button: a button that can be toggled on/off.
  *
- * @fires flint-toggle-button-change - Fired when the button's selected state changes.
+ * @fires flint-toggle-button-change - Fired when the button's selected state changes. detail: `{ value: string, selected: boolean }`
  */
 export class FlintToggleButton extends FlintElement {
     static styles = unsafeCSS(uiToggleButtonStyles);

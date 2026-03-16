@@ -23,7 +23,7 @@ export interface FlintCollapsibleProps extends React.HTMLAttributes<FlintCollaps
     defaultOpen?: boolean;
     /** Disables the trigger, preventing user interaction. */
     disabled?: boolean;
-    /** Fired when the open state changes. `detail: { open: boolean }` */
+    /** Fired when the open state changes. detail: `{ open: boolean }` */
     onFlintCollapsibleChange?: (event: CustomEvent<FlintCollapsibleChangeDetail>) => void;
 }
 
