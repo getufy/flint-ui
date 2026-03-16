@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import '../button/flint-button';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import '../button/flint-button';
 import './flint-input-otp.js';
 import '../button/flint-button';
@@ -145,6 +146,16 @@ export const Default: Story = {
             </flint-input-otp>
         </div>
     `,
+};
+
+Default.play = async ({ canvasElement }) => {
+    const otp = canvasElement.querySelector('flint-input-otp') as FlintInputOtpEl;
+    const input = otp.shadowRoot!.querySelector('input') as HTMLInputElement;
+
+    // Focus and type digits
+    await userEvent.click(input);
+    await userEvent.type(input, '123456');
+    await waitFor(() => expect(otp.value).toBe('123456'));
 };
 
 /* ── WithSeparator ───────────────────────────────────────────────── */

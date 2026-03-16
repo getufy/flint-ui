@@ -432,7 +432,8 @@ export class FlintTabs extends FlintElement {
         this.dispatchEvent(new CustomEvent('flint-tab-change', {
             detail: { value: e.detail.value }, bubbles: true, composed: true,
         }));
-        this._syncAll();
+        // No explicit _syncAll() here — setting this.value triggers updated(),
+        // which already calls _syncAll() when 'value' changes.
     };
 
     /** Track whether a sync is already scheduled for this frame. */
@@ -448,12 +449,16 @@ export class FlintTabs extends FlintElement {
     }
 
     updated(changed: Map<string, unknown>) {
-        const layoutKeys = ['value', 'orientation', 'variant', 'centered', 'scrollButtons'];
+        const layoutKeys = ['value', 'orientation', 'variant', 'centered', 'scrollButtons', 'defaultValue'];
         const colorKeys = ['textColor', 'indicatorColor'];
 
-        if (layoutKeys.some(k => changed.has(k))) {
+        const needsLayout = layoutKeys.some(k => changed.has(k));
+        const needsColor = colorKeys.some(k => changed.has(k));
+
+        // Only sync when relevant properties actually changed — skip for unrelated updates
+        if (needsLayout) {
             this._syncAll();
-        } else if (colorKeys.some(k => changed.has(k))) {
+        } else if (needsColor) {
             this._syncColors();
         }
     }

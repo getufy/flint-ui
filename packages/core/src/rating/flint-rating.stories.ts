@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { ref, createRef } from 'lit/directives/ref.js';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import './flint-rating';
 import '../button/flint-button';
 import type { FlintRating } from './flint-rating';
@@ -97,6 +98,20 @@ export const Playground: Story = {
             @flint-rating-change=${(e: CustomEvent) => console.log('flint-rating-change:', e.detail.value)}
         ></flint-rating>
     `,
+};
+
+Playground.play = async ({ canvasElement }) => {
+    const rating = canvasElement.querySelector('flint-rating') as HTMLElement & { value: number };
+
+    // Starts with value 2
+    await waitFor(() => expect(rating.value).toBe(2));
+
+    // Click the 4th star
+    const stars = rating.shadowRoot!.querySelectorAll('button, [role="radio"], .star');
+    if (stars.length >= 4) {
+        await userEvent.click(stars[3]);
+        await waitFor(() => expect(rating.value).toBe(4));
+    }
 };
 
 // ─── Sizes ───────────────────────────────────────────────────────────────────

@@ -57,19 +57,22 @@ async function register(tagName: string) {
   }
 }
 
+/** Shared MutationObserver callback */
+function handleMutations(mutations: MutationRecord[]) {
+  for (const { addedNodes } of mutations) {
+    for (const node of addedNodes) {
+      if (node.nodeType !== Node.ELEMENT_NODE) continue;
+      discover(node as Element);
+    }
+  }
+}
+
 // Store the observer instance so it can be disconnected later
 let observer: MutationObserver | null = null;
 
 // SSR guard: autoloader is browser-only
 if (typeof document !== 'undefined') {
-  observer = new MutationObserver((mutations) => {
-    for (const { addedNodes } of mutations) {
-      for (const node of addedNodes) {
-        if (node.nodeType !== Node.ELEMENT_NODE) continue;
-        discover(node as Element);
-      }
-    }
-  });
+  observer = new MutationObserver(handleMutations);
 
   // Discover any flint-* elements already in the DOM
   discover(document.body);
@@ -100,4 +103,36 @@ function stopAutoloader() {
   }
 }
 
-export { discover, stopAutoloader };
+/**
+ * Restart the autoloader after it has been stopped.
+ *
+ * This re-creates the MutationObserver, discovers any flint-* elements
+ * currently in the DOM, and begins watching for future additions.
+ * Calling this while the autoloader is already running is a no-op.
+ *
+ * @example
+ * ```ts
+ * import { stopAutoloader, startAutoloader } from '@getufy/flint-ui/autoloader';
+ *
+ * stopAutoloader();
+ * // ... later ...
+ * startAutoloader();
+ * ```
+ */
+function startAutoloader() {
+  // No-op if already running or not in a browser
+  if (observer || typeof document === 'undefined') return;
+
+  observer = new MutationObserver(handleMutations);
+  discover(document.body);
+  observer.observe(document.body, { childList: true, subtree: true });
+}
+
+/**
+ * Returns whether the autoloader is currently active.
+ */
+function isAutoloaderActive(): boolean {
+  return observer !== null;
+}
+
+export { discover, stopAutoloader, startAutoloader, isAutoloaderActive };

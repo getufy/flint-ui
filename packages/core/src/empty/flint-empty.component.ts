@@ -59,7 +59,7 @@ export class FlintEmptyMedia extends FlintElement {
 
     render() {
         return html`
-            <div class=${classMap({ media: true, 'media--icon': this.variant === 'icon' })}>
+            <div class=${classMap({ media: true, 'media--icon': this.variant === 'icon' })} part="base">
                 <slot></slot>
             </div>
         `;

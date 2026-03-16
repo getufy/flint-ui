@@ -70,7 +70,7 @@ export class FlintTypography extends FlintElement {
     render() {
         const tag = this._literalTag();
         const cls = `typography ${this.variant !== 'inherit' ? this.variant : ''}`;
-        return staticHtml`<${tag} class="${cls}"><slot></slot></${tag}>`;
+        return staticHtml`<${tag} class="${cls}" part="base"><slot></slot></${tag}>`;
     }
 }
 

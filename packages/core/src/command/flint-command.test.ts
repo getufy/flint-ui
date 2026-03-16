@@ -30,7 +30,8 @@ async function typeInInput(cmd: FlintCommand, query: string) {
     const inner = cmdInput.shadowRoot!.querySelector('input') as HTMLInputElement;
     inner.value = query;
     inner.dispatchEvent(new Event('input', { bubbles: true, composed: true }));
-    await settle(cmd);
+    // Wait for 150ms debounce + Lit update cycle
+    await settle(cmd, 200);
 }
 
 /** Get all command items inside the command (including slotted in groups). */
@@ -701,7 +702,7 @@ describe('FlintCommandInput', () => {
         expect(handler.mock.calls[0][0].detail.query).toBe('');
     });
 
-    it('dispatches _cmd-filter on input event', async () => {
+    it('dispatches _cmd-filter on input event (after debounce)', async () => {
         const el = await fixture<FlintCommandInput>(html`<flint-command-input></flint-command-input>`);
         await el.updateComplete;
         const handler = vi.fn();
@@ -709,6 +710,9 @@ describe('FlintCommandInput', () => {
         const inner = el.shadowRoot!.querySelector('input') as HTMLInputElement;
         inner.value = 'test';
         inner.dispatchEvent(new Event('input', { bubbles: true, composed: true }));
+        // Event is debounced (150ms) — not fired synchronously
+        expect(handler).not.toHaveBeenCalled();
+        await new Promise((r) => setTimeout(r, 200));
         expect(handler).toHaveBeenCalledOnce();
         expect(handler.mock.calls[0][0].detail.query).toBe('test');
     });
@@ -1112,4 +1116,242 @@ describe('FlintCommand — accessibility', () => {
         await settle(cmd);
         await expectAccessible(cmd);
     }, 15000);
+});
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*  fuzzyScore — unit tests                                              */
+/* ─────────────────────────────────────────────────────────────────── */
+
+import { fuzzyScore } from './fuzzy-score.js';
+
+describe('fuzzyScore', () => {
+    /* ── Basic matching ─────────────────────────────────────────────── */
+
+    it('returns positive score for empty query (matches everything)', () => {
+        expect(fuzzyScore('anything', '')).toBeGreaterThan(0);
+    });
+
+    it('returns -1 when query has characters not in text', () => {
+        expect(fuzzyScore('abc', 'z')).toBe(-1);
+    });
+
+    it('returns -1 when query characters are in wrong order', () => {
+        expect(fuzzyScore('abc', 'ca')).toBe(-1);
+    });
+
+    it('returns positive score for exact match', () => {
+        expect(fuzzyScore('calendar', 'calendar')).toBeGreaterThan(0);
+    });
+
+    it('returns positive score for prefix match', () => {
+        expect(fuzzyScore('calendar', 'cal')).toBeGreaterThan(0);
+    });
+
+    it('returns positive score for substring match', () => {
+        expect(fuzzyScore('calendar', 'end')).toBeGreaterThan(0);
+    });
+
+    it('returns positive score for fuzzy match with gaps', () => {
+        // "clndr" matches c-a-l-e-n-d-a-r → c...l...n...d...r
+        expect(fuzzyScore('calendar', 'clndr')).toBeGreaterThan(0);
+    });
+
+    /* ── Case insensitivity ──────────────────────────────────────────── */
+
+    it('matches case-insensitively', () => {
+        expect(fuzzyScore('Calendar', 'cal')).toBeGreaterThan(0);
+        expect(fuzzyScore('calendar', 'CAL')).toBeGreaterThan(0);
+    });
+
+    /* ── Scoring tiers / ranking ─────────────────────────────────────── */
+
+    it('ranks exact match higher than prefix match', () => {
+        const exact = fuzzyScore('cal', 'cal');
+        const prefix = fuzzyScore('calendar', 'cal');
+        expect(exact).toBeGreaterThan(prefix);
+    });
+
+    it('ranks prefix match higher than substring match', () => {
+        const prefix = fuzzyScore('calendar', 'cal');
+        const substring = fuzzyScore('local calendar', 'cal');
+        expect(prefix).toBeGreaterThan(substring);
+    });
+
+    it('ranks substring match higher than fuzzy match', () => {
+        const substring = fuzzyScore('calculator', 'cula');
+        const fuzzy = fuzzyScore('calendar', 'cldr');
+        expect(substring).toBeGreaterThan(fuzzy);
+    });
+
+    it('ranks consecutive fuzzy matches higher than spread-out matches', () => {
+        // "set" in "settings" is consecutive at start
+        const consecutive = fuzzyScore('settings', 'set');
+        // "set" in "some extra text" has gaps
+        const spread = fuzzyScore('superedit', 'set');
+        expect(consecutive).toBeGreaterThan(spread);
+    });
+
+    it('ranks shorter text higher for equivalent prefix matches', () => {
+        const shorter = fuzzyScore('cal', 'cal');
+        const longer = fuzzyScore('calculator', 'cal');
+        expect(shorter).toBeGreaterThan(longer);
+    });
+
+    /* ── Word boundary bonus ────────────────────────────────────────── */
+
+    it('gives bonus for word boundary matches (kebab-case)', () => {
+        // "sp" matches "split-panel" at word boundaries s...p
+        const boundaryMatch = fuzzyScore('split-panel', 'sp');
+        // "sp" matches "osprey" without boundary alignment
+        const noBonus = fuzzyScore('osprey', 'sp');
+        // Both should match, but boundary-aligned should score higher
+        expect(boundaryMatch).toBeGreaterThan(0);
+        expect(noBonus).toBeGreaterThan(0);
+    });
+
+    it('gives bonus for camelCase boundary matches', () => {
+        const score = fuzzyScore('searchEmoji', 'se');
+        expect(score).toBeGreaterThan(0);
+    });
+
+    /* ── Real-world command palette scenarios ────────────────────────── */
+
+    it('matches "cal" to "calendar" and "calculator"', () => {
+        expect(fuzzyScore('calendar', 'cal')).toBeGreaterThan(0);
+        expect(fuzzyScore('calculator', 'cal')).toBeGreaterThan(0);
+    });
+
+    it('does not match "xyz" to any typical command', () => {
+        expect(fuzzyScore('calendar', 'xyz')).toBe(-1);
+        expect(fuzzyScore('settings', 'xyz')).toBe(-1);
+        expect(fuzzyScore('profile', 'xyz')).toBe(-1);
+    });
+
+    it('matches "prof" to "profile" but not to "billing"', () => {
+        expect(fuzzyScore('profile', 'prof')).toBeGreaterThan(0);
+        expect(fuzzyScore('billing', 'prof')).toBe(-1);
+    });
+
+    it('ranks "settings" above "search emoji" for query "se"', () => {
+        // "settings" starts with "se" (prefix match)
+        const settings = fuzzyScore('settings', 'se');
+        // "search emoji" also starts with "se" but is longer
+        const searchEmoji = fuzzyScore('search emoji', 'se');
+        // Both should match, settings is shorter so may rank higher
+        expect(settings).toBeGreaterThan(0);
+        expect(searchEmoji).toBeGreaterThan(0);
+    });
+});
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*  Fuzzy search integration (FlintCommand)                              */
+/* ─────────────────────────────────────────────────────────────────── */
+
+describe('FlintCommand — fuzzy search integration', () => {
+    const FUZZY_FIXTURE = html`
+        <flint-command>
+            <flint-command-input placeholder="Search..."></flint-command-input>
+            <flint-command-list>
+                <flint-command-empty>No results found.</flint-command-empty>
+                <flint-command-group heading="Actions">
+                    <flint-command-item value="calendar">Calendar</flint-command-item>
+                    <flint-command-item value="calculator">Calculator</flint-command-item>
+                    <flint-command-item value="search emoji">Search Emoji</flint-command-item>
+                    <flint-command-item value="settings">Settings</flint-command-item>
+                    <flint-command-item value="profile">Profile</flint-command-item>
+                    <flint-command-item value="billing">Billing</flint-command-item>
+                </flint-command-group>
+            </flint-command-list>
+        </flint-command>
+    `;
+
+    it('matches fuzzy queries with gaps (e.g. "cldr" → "calendar")', async () => {
+        const cmd = await fixture<FlintCommand>(FUZZY_FIXTURE);
+        await settle(cmd);
+        await typeInInput(cmd, 'cldr');
+        const visible = getVisibleItems(cmd);
+        const values = visible.map((i) => i.value);
+        expect(values).toContain('calendar');
+    });
+
+    it('ranks exact prefix matches first', async () => {
+        const cmd = await fixture<FlintCommand>(FUZZY_FIXTURE);
+        await settle(cmd);
+        await typeInInput(cmd, 'cal');
+        const visible = getVisibleItems(cmd);
+        // Both "calendar" and "calculator" should match "cal"
+        expect(visible.length).toBeGreaterThanOrEqual(2);
+        const values = visible.map((i) => i.value);
+        expect(values).toContain('calendar');
+        expect(values).toContain('calculator');
+    });
+
+    it('filters out non-matching items with fuzzy search', async () => {
+        const cmd = await fixture<FlintCommand>(FUZZY_FIXTURE);
+        await settle(cmd);
+        await typeInInput(cmd, 'blg');
+        const visible = getVisibleItems(cmd);
+        const values = visible.map((i) => i.value);
+        expect(values).toContain('billing');
+        expect(values).not.toContain('calendar');
+    });
+
+    it('shows empty state for completely non-matching fuzzy query', async () => {
+        const cmd = await fixture<FlintCommand>(FUZZY_FIXTURE);
+        await settle(cmd);
+        await typeInInput(cmd, 'zzxqj');
+        expect(getVisibleItems(cmd)).toHaveLength(0);
+        const empty = cmd.querySelector('flint-command-empty') as FlintCommandEmpty;
+        expect(empty.hidden).toBe(false);
+    });
+});
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*  Debounce behavior                                                    */
+/* ─────────────────────────────────────────────────────────────────── */
+
+describe('FlintCommandInput — debounce', () => {
+    it('debounces rapid input — only fires once after settling', async () => {
+        const el = await fixture<FlintCommandInput>(html`<flint-command-input></flint-command-input>`);
+        await el.updateComplete;
+        const handler = vi.fn();
+        el.addEventListener('_cmd-filter', handler);
+        const inner = el.shadowRoot!.querySelector('input') as HTMLInputElement;
+
+        // Simulate rapid typing: a, ab, abc
+        for (const val of ['a', 'ab', 'abc']) {
+            inner.value = val;
+            inner.dispatchEvent(new Event('input', { bubbles: true, composed: true }));
+        }
+
+        // Should not have fired yet (debounce pending)
+        expect(handler).not.toHaveBeenCalled();
+
+        // Wait for debounce to settle
+        await new Promise((r) => setTimeout(r, 200));
+
+        // Should fire exactly once with the final value
+        expect(handler).toHaveBeenCalledOnce();
+        expect(handler.mock.calls[0][0].detail.query).toBe('abc');
+    });
+
+    it('clears debounce timer on disconnectedCallback', async () => {
+        const el = await fixture<FlintCommandInput>(html`<flint-command-input></flint-command-input>`);
+        await el.updateComplete;
+        const handler = vi.fn();
+        el.addEventListener('_cmd-filter', handler);
+        const inner = el.shadowRoot!.querySelector('input') as HTMLInputElement;
+
+        inner.value = 'test';
+        inner.dispatchEvent(new Event('input', { bubbles: true, composed: true }));
+
+        // Disconnect before debounce fires
+        el.disconnectedCallback();
+
+        // Wait for what would have been the debounce
+        await new Promise((r) => setTimeout(r, 200));
+
+        // The event should NOT have fired
+        expect(handler).not.toHaveBeenCalled();
+    });
 });

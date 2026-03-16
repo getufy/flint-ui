@@ -28,6 +28,7 @@ npm run type-check         # TypeScript type checking (core + react)
 # Testing (runs in packages/core)
 npm test                   # Run all tests (jsdom unit tests + Storybook browser tests)
 npm run test:watch         # Watch mode
+npm run test:a11y          # Run only axe-core accessibility tests
 npm run build-coverage     # Run unit tests with coverage (--project components)
 
 # Run a single test file

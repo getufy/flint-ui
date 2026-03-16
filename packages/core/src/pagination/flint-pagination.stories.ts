@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import { FlintPagination } from './flint-pagination';
 import './flint-pagination';
 import '../box/flint-box';
@@ -175,6 +176,22 @@ export const Playground: Story = {
             ></flint-pagination>
         </flint-paper>
     `,
+};
+
+Playground.play = async ({ canvasElement }) => {
+    const pagination = canvasElement.querySelector('flint-pagination') as FlintPagination;
+    await waitFor(() => expect(pagination).toBeTruthy());
+
+    // Find page buttons in shadow DOM
+    const buttons = pagination.shadowRoot!.querySelectorAll('button:not([aria-label])');
+    expect(buttons.length).toBeGreaterThan(0);
+
+    // Click page 2 button
+    const page2 = Array.from(pagination.shadowRoot!.querySelectorAll('button')).find(b => b.textContent?.trim() === '2');
+    if (page2) {
+        await userEvent.click(page2);
+        await waitFor(() => expect(pagination.page).toBe(2));
+    }
 };
 
 /* ================================================================== */

@@ -8,18 +8,88 @@ export type IconSize = 'sm' | 'md' | 'lg';
 /** Module-level SVG cache shared across all `flint-icon` instances. */
 const _svgCache = new Map<string, string>();
 
-/** Module-level icon resolver — returns a URL string for a given icon name. */
-let _iconResolver: ((name: string) => string) | null = null;
+/** Module-level icon resolver — returns a URL string (sync or async) for a given icon name. */
+let _iconResolver: ((name: string) => string | Promise<string>) | null = null;
 
 /**
  * Register a global icon resolver function.
- * The resolver receives an icon name and returns a URL string.
+ * The resolver receives an icon name and returns a URL string (sync or async).
  *
- * For SVG files: `registerIconResolver((name) => \`/icons/\${name}.svg\`)`
- * For sprite sheets: `registerIconResolver((name) => \`#icon-\${name}\`)`
+ * @example
+ * ```ts
+ * // Sync resolver — local SVG files
+ * registerIconResolver((name) => `/icons/${name}.svg`);
+ *
+ * // Async resolver — dynamic import / CDN lookup
+ * registerIconResolver(async (name) => {
+ *   const mod = await import(`./icons/${name}.js`);
+ *   return mod.default;
+ * });
+ *
+ * // Sprite sheet
+ * registerIconResolver((name) => `#icon-${name}`);
+ * ```
  */
-export function registerIconResolver(resolver: (name: string) => string) {
+export function registerIconResolver(resolver: ((name: string) => string | Promise<string>) | null) {
   _iconResolver = resolver;
+}
+
+/**
+ * Clear the global SVG cache.
+ * Useful when switching icon sets at runtime.
+ */
+export function clearIconCache() {
+  _svgCache.clear();
+}
+
+/** Dangerous SVG elements that must be stripped. */
+const BLOCKED_ELEMENTS = new Set([
+  'script', 'iframe', 'object', 'embed', 'applet',
+  'form', 'input', 'textarea', 'select', 'button',
+]);
+
+/**
+ * Sanitize an SVG string by stripping scripts, event handlers, and dangerous elements.
+ * Returns the sanitized SVG string, or empty string if the content is not valid SVG.
+ */
+export function sanitizeSvg(raw: string): string {
+  if (!raw.includes('<svg')) return '';
+
+  // Use DOMParser to safely parse
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(raw, 'text/html');
+  const svgEl = doc.body.querySelector('svg');
+  if (!svgEl) return '';
+
+  // Remove blocked elements
+  for (const tag of BLOCKED_ELEMENTS) {
+    const nodes = svgEl.querySelectorAll(tag);
+    for (let i = 0; i < nodes.length; i++) {
+      nodes[i].remove();
+    }
+  }
+
+  // Remove event handler attributes (on*) from all elements
+  const allEls = svgEl.querySelectorAll('*');
+  for (let i = 0; i < allEls.length; i++) {
+    const el = allEls[i];
+    const attrs = el.getAttributeNames();
+    for (const attr of attrs) {
+      if (attr.startsWith('on')) {
+        el.removeAttribute(attr);
+      }
+    }
+  }
+
+  // Also strip on* from root <svg> itself
+  const svgAttrs = svgEl.getAttributeNames();
+  for (const attr of svgAttrs) {
+    if (attr.startsWith('on')) {
+      svgEl.removeAttribute(attr);
+    }
+  }
+
+  return svgEl.outerHTML;
 }
 
 const sizeMap: Record<IconSize, string> = {
@@ -36,7 +106,14 @@ const sizeMap: Record<IconSize, string> = {
  * @attr {IconSize} size - Size variant: `'sm'` (16px), `'md'` (24px), `'lg'` (32px).
  * @attr {string} label  - Accessible label. When set, `role="img"` is applied; otherwise `aria-hidden="true"`.
  *
- * @csspart svg - The container wrapping the inline SVG or `<use>` element.
+ * @csspart base - The outer container element.
+ * @csspart svg  - The inner container wrapping the inline SVG or `<use>` element.
+ *
+ * @cssproperty --flint-icon-size  - Icon width and height. Defaults to `24px` (md).
+ * @cssproperty --flint-icon-color - Icon fill/stroke color. Defaults to `currentColor`.
+ *
+ * @fires flint-load  - Emitted when the SVG has been successfully loaded and rendered.
+ * @fires flint-error - Emitted when the SVG fails to load.
  *
  * @example
  * ```html
@@ -55,6 +132,12 @@ export class FlintIcon extends FlintElement {
       line-height: 0;
     }
 
+    .icon-base {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .icon-container {
       display: inline-flex;
       align-items: center;
@@ -67,6 +150,7 @@ export class FlintIcon extends FlintElement {
     .icon-container svg {
       width: 100%;
       height: 100%;
+      fill: currentColor;
     }
   `);
 
@@ -86,6 +170,8 @@ export class FlintIcon extends FlintElement {
   @state() private _useHref = '';
 
   private _abortController: AbortController | null = null;
+  /** Tracks the current load task so stale responses are discarded. */
+  private _loadId = 0;
 
   disconnectedCallback() {
     super.disconnectedCallback();
@@ -108,12 +194,29 @@ export class FlintIcon extends FlintElement {
     this._svgContent = '';
     this._useHref = '';
 
-    const url = this.src || (_iconResolver && this.name ? _iconResolver(this.name) : '');
+    const loadId = ++this._loadId;
+
+    // Resolve URL — may be sync or async
+    let url = '';
+    if (this.src) {
+      url = this.src;
+    } else if (_iconResolver && this.name) {
+      try {
+        url = await _iconResolver(this.name);
+      } catch {
+        this._emitError();
+        return;
+      }
+    }
+
+    // Guard against stale async resolution
+    if (loadId !== this._loadId) return;
     if (!url) return;
 
     // Sprite sheet reference (starts with #)
     if (url.startsWith('#')) {
       this._useHref = url;
+      this._emitLoad();
       return;
     }
 
@@ -121,6 +224,7 @@ export class FlintIcon extends FlintElement {
     const cached = _svgCache.get(url);
     if (cached) {
       this._svgContent = cached;
+      this._emitLoad();
       return;
     }
 
@@ -130,16 +234,42 @@ export class FlintIcon extends FlintElement {
 
     try {
       const response = await fetch(url, { signal: this._abortController.signal });
-      if (!response.ok) return;
+
+      // Guard against stale fetch
+      if (loadId !== this._loadId) return;
+
+      if (!response.ok) {
+        this._emitError();
+        return;
+      }
+
       const text = await response.text();
-      // Basic sanitization: only accept content that looks like SVG
-      if (text.includes('<svg')) {
-        _svgCache.set(url, text);
-        this._svgContent = text;
+
+      // Guard against stale fetch
+      if (loadId !== this._loadId) return;
+
+      const sanitized = sanitizeSvg(text);
+      if (sanitized) {
+        _svgCache.set(url, sanitized);
+        this._svgContent = sanitized;
+        this._emitLoad();
+      } else {
+        this._emitError();
       }
     } catch {
-      // Aborted or network error — silently ignore
+      // Aborted or network error
+      if (loadId === this._loadId) {
+        this._emitError();
+      }
     }
+  }
+
+  private _emitLoad() {
+    this.dispatchEvent(new Event('flint-load', { bubbles: true, composed: true }));
+  }
+
+  private _emitError() {
+    this.dispatchEvent(new Event('flint-error', { bubbles: true, composed: true }));
   }
 
   render() {
@@ -147,18 +277,20 @@ export class FlintIcon extends FlintElement {
 
     return html`
       <div
-        class="icon-container"
-        part="svg"
+        class="icon-base"
+        part="base"
         role=${hasLabel ? 'img' : nothing}
         aria-label=${hasLabel ? this.label : nothing}
         aria-hidden=${hasLabel ? nothing : 'true'}
       >
-        ${this._useHref
-          ? html`<svg><use href=${this._useHref}></use></svg>`
-          : this._svgContent
-            ? html`${unsafeSVG(this._svgContent)}`
-            : nothing
-        }
+        <div class="icon-container" part="svg">
+          ${this._useHref
+            ? html`<svg><use href=${this._useHref}></use></svg>`
+            : this._svgContent
+              ? html`${unsafeSVG(this._svgContent)}`
+              : nothing
+          }
+        </div>
       </div>
     `;
   }

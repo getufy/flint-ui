@@ -128,15 +128,15 @@ export class FlintSelect extends FormAssociated(FlintElement) {
 
   @state() private _scrollTop = 0;
 
-  private _handleDropdownScroll(e: Event) {
+  private _handleDropdownScroll = (e: Event) => {
     this._scrollTop = (e.target as HTMLElement).scrollTop;
-  }
+  };
 
   private get _virtualRange(): { start: number; end: number; totalHeight: number } {
-    const buffer = 4;
+    const overscan = 5;
     const totalHeight = this.options.length * this.itemHeight;
-    const start = Math.max(0, Math.floor(this._scrollTop / this.itemHeight) - buffer);
-    const visibleCount = this.visibleItems + buffer * 2;
+    const start = Math.max(0, Math.floor(this._scrollTop / this.itemHeight) - overscan);
+    const visibleCount = this.visibleItems + overscan * 2;
     const end = Math.min(this.options.length, start + visibleCount);
     return { start, end, totalHeight };
   }
@@ -425,6 +425,25 @@ export class FlintSelect extends FormAssociated(FlintElement) {
 
   private _scrollOptionIntoView(index: number) {
     void this.updateComplete.then(() => {
+      if (this.virtualize) {
+        // In virtual mode, programmatically scroll the container so the
+        // target index falls inside the visible window.
+        const container = this.shadowRoot?.querySelector<HTMLElement>('.virtual-scroll-container');
+        if (!container) return;
+        const itemTop = index * this.itemHeight;
+        const itemBottom = itemTop + this.itemHeight;
+        const viewTop = container.scrollTop;
+        const viewBottom = viewTop + container.clientHeight;
+
+        if (itemTop < viewTop) {
+          container.scrollTop = itemTop;
+        } else if (itemBottom > viewBottom) {
+          container.scrollTop = itemBottom - container.clientHeight;
+        }
+        // Update _scrollTop so the virtual range recalculates
+        this._scrollTop = container.scrollTop;
+        return;
+      }
       const el = this.shadowRoot?.querySelector<HTMLElement>(`#${this._uid}-opt-${index}`);
       if (el && typeof el.scrollIntoView === 'function') {
         el.scrollIntoView({ block: 'nearest' });

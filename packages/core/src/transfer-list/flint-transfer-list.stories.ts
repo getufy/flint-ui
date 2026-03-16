@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import './flint-transfer-list';
 
 const meta: Meta = {
@@ -111,6 +112,18 @@ export const Playground: Story = {
       ></flint-transfer-list>
     </div>
   `,
+};
+
+Playground.play = async ({ canvasElement }) => {
+    const transferList = canvasElement.querySelector('flint-transfer-list') as HTMLElement & { value: string[] };
+    await waitFor(() => expect(transferList).toBeTruthy());
+    // Verify initial value has items selected
+    await waitFor(() => expect(transferList.value).toBeTruthy());
+    // Click an item in the left list
+    const items = transferList.shadowRoot!.querySelectorAll('[role="option"], .item, li');
+    if (items.length > 0) {
+        await userEvent.click(items[0] as HTMLElement);
+    }
 };
 
 export const Default: Story = {

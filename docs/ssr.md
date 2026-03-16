@@ -60,7 +60,9 @@ module.exports = withLitSSR({ /* your config */ });
 
 ### Astro
 
-The official `@astrojs/lit` integration was deprecated in Astro 5. Flint UI components can still be used in Astro via client-side `<script>` tags:
+The official `@astrojs/lit` integration was deprecated in Astro 5. Flint UI components can be used in Astro in two ways:
+
+**Vanilla web components** with a client-side `<script>` tag:
 
 ```astro
 <flint-button>Click me</flint-button>
@@ -70,11 +72,56 @@ The official `@astrojs/lit` integration was deprecated in Astro 5. Flint UI comp
 </script>
 ```
 
-For SSR, you would need a custom integration using `@lit-labs/ssr` directly.
+**React wrappers** with `client:only="react"` (requires `@astrojs/react`):
+
+```astro
+---
+import { FlintButton } from '@getufy/flint-ui-react/button';
+---
+<FlintButton client:only="react">Click me</FlintButton>
+```
+
+The `client:only="react"` directive ensures the component is never rendered on the server -- it is mounted exclusively in the browser. This avoids any SSR-related issues with custom element registration.
+
+For vanilla Lit components (not wrapped in React), you can use `client:only="lit"` if you add a custom Lit integration, but the `<script>` approach above is simpler and recommended.
 
 ### Remix
 
-No official Lit SSR integration exists for Remix. Components render as empty custom element tags on the server and hydrate on the client. For progressive enhancement, this is often acceptable since Remix's loader provides the data and the component shells are visible.
+No official Lit SSR integration exists for Remix. Components render as empty custom element tags on the server and hydrate on the client. Use the `ClientOnly` wrapper from `remix-utils` to prevent server rendering and provide a fallback:
+
+```bash
+npm install remix-utils
+```
+
+```tsx
+// app/routes/dashboard.tsx
+import { ClientOnly } from 'remix-utils/client-only';
+import { FlintButton } from '@getufy/flint-ui-react/button';
+import { FlintInput } from '@getufy/flint-ui-react/input';
+
+export default function Dashboard() {
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      <ClientOnly fallback={<input placeholder="Search..." />}>
+        {() => <FlintInput placeholder="Search..." />}
+      </ClientOnly>
+      <ClientOnly fallback={<button>Submit</button>}>
+        {() => <FlintButton>Submit</FlintButton>}
+      </ClientOnly>
+    </div>
+  );
+}
+```
+
+For Remix v2 with Vite, ensure Flint UI packages are not externalized by the server bundle. Add them to `serverDependenciesToBundle` in `remix.config.js` if you encounter import errors:
+
+```js
+// remix.config.js
+export default {
+  serverDependenciesToBundle: [/@getufy\/flint-ui/, /lit/],
+};
+```
 
 ## DSD Polyfill
 
@@ -134,6 +181,39 @@ import '@getufy/flint-ui/card/flint-card';
 // NOT this:
 // import '@getufy/flint-ui/autoloader';
 ```
+
+## Common SSR Pitfalls
+
+### `window` / `document` are not available on the server
+
+All Flint UI components guard DOM access inside lifecycle methods (`connectedCallback`, `firstUpdated`, etc.), so importing component modules on the server is safe. However, do not call browser-only APIs at the module level in your own code:
+
+```tsx
+// Bad: runs during SSR and crashes
+const width = window.innerWidth;
+
+// Good: guard with typeof check
+const width = typeof window !== 'undefined' ? window.innerWidth : 1200;
+
+// Good: use inside useEffect (React) or onMount (Svelte)
+useEffect(() => {
+  const width = window.innerWidth;
+}, []);
+```
+
+### Custom element registration timing
+
+`customElements.define()` is called when a component module is first imported. On the server, `customElements` does not exist (unless you use `@lit-labs/ssr`'s DOM shim), so the registration is a no-op. On the client:
+
+- If the HTML tag (e.g., `<flint-button>`) appears in the DOM before the module is imported, it renders as an unknown element until the definition is registered ("custom element upgrade").
+- Ensure component modules are imported early in your app bundle to minimize the flash of unstyled content.
+- Never conditionally import a component module based on server/client detection -- always import it, and the registration will naturally run only on the client.
+
+### Declarative Shadow DOM (DSD) support
+
+Declarative Shadow DOM allows shadow roots to be expressed in HTML without JavaScript. Browser support is ~96% (Chrome 111+, Safari 16.4+, Firefox 123+). Flint UI does not currently ship pre-rendered DSD templates -- components hydrate from empty custom element shells. Full DSD support requires `@lit-labs/ssr`, which is still experimental.
+
+For browsers without DSD support, see the [DSD polyfill](#dsd-polyfill) section above.
 
 ## Best Practices
 

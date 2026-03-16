@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import './flint-copy-button';
 
 const meta: Meta = {
@@ -122,6 +123,17 @@ export const Default: Story = {
         feedback-duration=${args.feedbackDuration}
         tooltip-placement=${args.tooltipPlacement}
     ></flint-copy-button>`,
+};
+
+Default.play = async ({ canvasElement }) => {
+    const copyBtn = canvasElement.querySelector('flint-copy-button') as HTMLElement;
+    await waitFor(() => expect(copyBtn).toBeTruthy());
+
+    // Click the copy button
+    const button = copyBtn.shadowRoot!.querySelector('button') as HTMLButtonElement;
+    if (button) {
+        await userEvent.click(button);
+    }
 };
 
 /* ─── Custom Labels ──────────────────────────────────────── */

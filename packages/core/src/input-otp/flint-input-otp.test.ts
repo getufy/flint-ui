@@ -1403,3 +1403,84 @@ describe('flint-input-otp — ARIA accessibility', () => {
         expect(el.getAttribute('role')).toBe('radiogroup');
     });
 });
+
+// ─── form association ──────────────────────────────────────────────────────────
+// Note: jsdom does not support FormData with form-associated custom elements.
+// These tests verify the API surface; FormData behaviour is verified in browser tests.
+
+describe('flint-input-otp — form association', () => {
+    it('is form-associated', () => {
+        const ctor = customElements.get('flint-input-otp') as unknown as { formAssociated?: boolean };
+        expect(ctor?.formAssociated).toBe(true);
+    });
+
+    it('has name property', async () => {
+        const el = await fixture<FlintInputOtp>(html`
+            <flint-input-otp name="otp-code">
+                <flint-input-otp-group>
+                    <flint-input-otp-slot .index=${0}></flint-input-otp-slot>
+                </flint-input-otp-group>
+            </flint-input-otp>
+        `);
+        expect(el.name).toBe('otp-code');
+    });
+
+    it('has required property', async () => {
+        const el = await fixture<FlintInputOtp>(html`
+            <flint-input-otp required>
+                <flint-input-otp-group>
+                    <flint-input-otp-slot .index=${0}></flint-input-otp-slot>
+                </flint-input-otp-group>
+            </flint-input-otp>
+        `);
+        expect(el.required).toBe(true);
+    });
+
+    it('formResetCallback resets value to defaultValue', async () => {
+        const el = await fixture<FlintInputOtp>(html`
+            <flint-input-otp name="otp" default-value="123" .maxLength=${6}>
+                <flint-input-otp-group>
+                    <flint-input-otp-slot .index=${0}></flint-input-otp-slot>
+                    <flint-input-otp-slot .index=${1}></flint-input-otp-slot>
+                    <flint-input-otp-slot .index=${2}></flint-input-otp-slot>
+                </flint-input-otp-group>
+            </flint-input-otp>
+        `);
+        await el.updateComplete;
+        expect(el.value).toBe('123');
+        // Simulate external value change
+        el.value = '999';
+        await el.updateComplete;
+        expect(el.value).toBe('999');
+        el.formResetCallback();
+        await el.updateComplete;
+        expect(el.value).toBe('123');
+    });
+
+    it('formDisabledCallback sets disabled', async () => {
+        const el = await fixture<FlintInputOtp>(html`
+            <flint-input-otp name="otp">
+                <flint-input-otp-group>
+                    <flint-input-otp-slot .index=${0}></flint-input-otp-slot>
+                </flint-input-otp-group>
+            </flint-input-otp>
+        `);
+        expect(el.disabled).toBe(false);
+        el.formDisabledCallback(true);
+        expect(el.disabled).toBe(true);
+        el.formDisabledCallback(false);
+        expect(el.disabled).toBe(false);
+    });
+
+    it('_internals is initialized', async () => {
+        const el = await fixture<FlintInputOtp>(html`
+            <flint-input-otp name="otp" value="42">
+                <flint-input-otp-group>
+                    <flint-input-otp-slot .index=${0}></flint-input-otp-slot>
+                </flint-input-otp-group>
+            </flint-input-otp>
+        `);
+        await el.updateComplete;
+        expect((el as unknown as { _internals: ElementInternals | null })._internals).not.toBeNull();
+    });
+});

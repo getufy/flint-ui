@@ -1080,3 +1080,222 @@ describe('flint-select — CSS parts', () => {
     expect(el.shadowRoot!.querySelector('[part="error-message"]')).not.toBeNull();
   });
 });
+
+// ── Virtualization ──────────────────────────────────────────────────────────
+
+const manyOpts = Array.from({ length: 200 }, (_, i) => ({
+  label: `Option ${i}`,
+  value: `opt-${i}`,
+}));
+
+describe('flint-select — virtualization', () => {
+  it('defaults virtualize to false', async () => {
+    const el = await fixture<FlintSelect>(html`
+      <flint-select .options=${manyOpts}></flint-select>
+    `);
+    expect(el.virtualize).toBe(false);
+  });
+
+  it('renders all options when virtualize is false', async () => {
+    const el = await fixture<FlintSelect>(html`
+      <flint-select .options=${manyOpts}></flint-select>
+    `);
+    await open(el);
+    expect(getOptions(el).length).toBe(200);
+  });
+
+  it('renders fewer DOM nodes than total options when virtualize is true', async () => {
+    const el = await fixture<FlintSelect>(html`
+      <flint-select ?virtualize=${true} .options=${manyOpts} .itemHeight=${36} .visibleItems=${8}></flint-select>
+    `);
+    await open(el);
+    const optionEls = getOptions(el);
+    // With 8 visible + 5 overscan on each side = max 18, well under 200
+    expect(optionEls.length).toBeLessThan(30);
+    expect(optionEls.length).toBeGreaterThan(0);
+  });
+
+  it('renders a virtual-scroll-container with correct total height', async () => {
+    const el = await fixture<FlintSelect>(html`
+      <flint-select ?virtualize=${true} .options=${manyOpts} .itemHeight=${36} .visibleItems=${8}></flint-select>
+    `);
+    await open(el);
+    const container = el.shadowRoot!.querySelector('.virtual-scroll-container');
+    expect(container).not.toBeNull();
+    // Inner spacer div should have height = 200 * 36 = 7200px
+    const spacer = container!.querySelector('div');
+    expect(spacer).not.toBeNull();
+    expect(spacer!.style.height).toBe(`${200 * 36}px`);
+  });
+
+  it('positions options absolutely with correct top offsets', async () => {
+    const el = await fixture<FlintSelect>(html`
+      <flint-select ?virtualize=${true} .options=${manyOpts} .itemHeight=${36} .visibleItems=${8}></flint-select>
+    `);
+    await open(el);
+    const optionEls = getOptions(el);
+    // First rendered option should be at top=0 (scrollTop=0, overscan starts from 0)
+    const first = optionEls[0]!;
+    expect(first.style.position).toBe('absolute');
+    expect(first.style.top).toBe('0px');
+  });
+
+  it('selects an option in virtualized mode', async () => {
+    const handler = vi.fn();
+    const el = await fixture<FlintSelect>(html`
+      <flint-select ?virtualize=${true} .options=${manyOpts} .itemHeight=${36} .visibleItems=${8}
+        @flint-select-change=${handler}></flint-select>
+    `);
+    await open(el);
+    const optionEls = getOptions(el);
+    optionEls[2]!.click();
+    await el.updateComplete;
+    expect(handler).toHaveBeenCalledTimes(1);
+    expect((el.value as string[])).toContain('opt-2');
+  });
+
+  it('keyboard ArrowDown navigates and highlights in virtualized mode', async () => {
+    const el = await fixture<FlintSelect>(html`
+      <flint-select ?virtualize=${true} .options=${manyOpts} .itemHeight=${36} .visibleItems=${8}></flint-select>
+    `);
+    await open(el);
+    // Press ArrowDown to highlight first option
+    pressKey(el, 'ArrowDown');
+    await el.updateComplete;
+    const highlighted = el.shadowRoot!.querySelector('.option.highlighted');
+    expect(highlighted).not.toBeNull();
+  });
+
+  it('keyboard navigation scrolls into view for distant items', async () => {
+    const el = await fixture<FlintSelect>(html`
+      <flint-select ?virtualize=${true} .options=${manyOpts} .itemHeight=${36} .visibleItems=${8}></flint-select>
+    `);
+    await open(el);
+    // Press End to jump to last option
+    pressKey(el, 'End');
+    await el.updateComplete;
+    // Give the async _scrollOptionIntoView time to execute
+    await el.updateComplete;
+    const container = el.shadowRoot!.querySelector<HTMLElement>('.virtual-scroll-container');
+    expect(container).not.toBeNull();
+    // scrollTop should have moved to reveal the last item
+    expect(container!.scrollTop).toBeGreaterThan(0);
+  });
+
+  it('typeahead works in virtualized mode', async () => {
+    const el = await fixture<FlintSelect>(html`
+      <flint-select ?virtualize=${true} .options=${manyOpts} .itemHeight=${36} .visibleItems=${8}></flint-select>
+    `);
+    await open(el);
+    // Type 'O' — should match "Option 0" (first option starting with 'o')
+    pressKey(el, 'o');
+    await el.updateComplete;
+    // The highlighted index should be set to the matched option
+    const highlighted = el.shadowRoot!.querySelector('.option.highlighted');
+    expect(highlighted).not.toBeNull();
+  });
+
+  it('Enter selects the highlighted option in virtualized mode', async () => {
+    const handler = vi.fn();
+    const el = await fixture<FlintSelect>(html`
+      <flint-select ?virtualize=${true} .options=${manyOpts} .itemHeight=${36} .visibleItems=${8}
+        @flint-select-change=${handler}></flint-select>
+    `);
+    await open(el);
+    pressKey(el, 'ArrowDown');
+    await el.updateComplete;
+    pressKey(el, 'Enter');
+    await el.updateComplete;
+    expect(handler).toHaveBeenCalledTimes(1);
+  });
+
+  it('multiple selection works in virtualized mode', async () => {
+    const el = await fixture<FlintSelect>(html`
+      <flint-select ?virtualize=${true} multiple .options=${manyOpts} .itemHeight=${36} .visibleItems=${8}></flint-select>
+    `);
+    await open(el);
+    const optionEls = getOptions(el);
+    optionEls[0]!.click();
+    await el.updateComplete;
+    optionEls[1]!.click();
+    await el.updateComplete;
+    expect((el.value as string[]).length).toBe(2);
+    expect((el.value as string[])).toContain('opt-0');
+    expect((el.value as string[])).toContain('opt-1');
+  });
+
+  it('container height is capped at visibleItems * itemHeight', async () => {
+    const el = await fixture<FlintSelect>(html`
+      <flint-select ?virtualize=${true} .options=${manyOpts} .itemHeight=${36} .visibleItems=${8}></flint-select>
+    `);
+    await open(el);
+    const container = el.shadowRoot!.querySelector<HTMLElement>('.virtual-scroll-container');
+    expect(container).not.toBeNull();
+    // Inline style should set height to 8 * 36 = 288px
+    expect(container!.style.height).toBe('288px');
+  });
+
+  it('container height shrinks when fewer options than visibleItems', async () => {
+    const fewOpts = manyOpts.slice(0, 3);
+    const el = await fixture<FlintSelect>(html`
+      <flint-select ?virtualize=${true} .options=${fewOpts} .itemHeight=${36} .visibleItems=${8}></flint-select>
+    `);
+    await open(el);
+    const container = el.shadowRoot!.querySelector<HTMLElement>('.virtual-scroll-container');
+    expect(container).not.toBeNull();
+    // 3 * 36 = 108 < 8 * 36 = 288, so it should be 108
+    expect(container!.style.height).toBe('108px');
+  });
+
+  it('does not render virtual-scroll-container when virtualize is false', async () => {
+    const el = await fixture<FlintSelect>(html`
+      <flint-select .options=${manyOpts}></flint-select>
+    `);
+    await open(el);
+    const container = el.shadowRoot!.querySelector('.virtual-scroll-container');
+    expect(container).toBeNull();
+  });
+
+  it('pre-selected value is visible when dropdown opens in virtualized mode', async () => {
+    const el = await fixture<FlintSelect>(html`
+      <flint-select ?virtualize=${true} .options=${manyOpts} .value=${['opt-5']} .itemHeight=${36} .visibleItems=${8}></flint-select>
+    `);
+    await open(el);
+    await el.updateComplete;
+    // opt-5 should be within the initial render window (index 5, well within overscan)
+    const selected = el.shadowRoot!.querySelector('.option.selected');
+    expect(selected).not.toBeNull();
+  });
+
+  it('respects custom itemHeight', async () => {
+    const el = await fixture<FlintSelect>(html`
+      <flint-select ?virtualize=${true} .options=${manyOpts} .itemHeight=${50} .visibleItems=${6}></flint-select>
+    `);
+    await open(el);
+    const container = el.shadowRoot!.querySelector<HTMLElement>('.virtual-scroll-container');
+    // height = 6 * 50 = 300
+    expect(container!.style.height).toBe('300px');
+    // spacer = 200 * 50 = 10000
+    const spacer = container!.querySelector('div');
+    expect(spacer!.style.height).toBe('10000px');
+  });
+
+  it('works with 1000 options', async () => {
+    const bigOpts = Array.from({ length: 1000 }, (_, i) => ({
+      label: `Item ${i}`,
+      value: `item-${i}`,
+    }));
+    const el = await fixture<FlintSelect>(html`
+      <flint-select ?virtualize=${true} .options=${bigOpts} .itemHeight=${36} .visibleItems=${8}></flint-select>
+    `);
+    await open(el);
+    const optionEls = getOptions(el);
+    // Should render far fewer than 1000 DOM nodes
+    expect(optionEls.length).toBeLessThan(30);
+    expect(optionEls.length).toBeGreaterThan(0);
+    // Total spacer height should be 1000 * 36 = 36000
+    const container = el.shadowRoot!.querySelector<HTMLElement>('.virtual-scroll-container');
+    const spacer = container!.querySelector('div');
+    expect(spacer!.style.height).toBe('36000px');
+  });
+});

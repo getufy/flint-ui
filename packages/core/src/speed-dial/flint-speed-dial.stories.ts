@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import { FlintSpeedDial } from './flint-speed-dial';
 import './flint-speed-dial';
 import '../stack/flint-stack';
@@ -190,6 +191,16 @@ export const Playground: Story = {
             ${actions()}
         </flint-speed-dial>
     `, 'bottom-right'),
+};
+
+Playground.play = async ({ canvasElement }) => {
+    const speedDial = canvasElement.querySelector('flint-speed-dial') as FlintSpeedDial;
+    await waitFor(() => expect(speedDial).toBeTruthy());
+    const fab = speedDial.shadowRoot!.querySelector('button') as HTMLButtonElement;
+    if (fab) {
+        await userEvent.click(fab);
+        await waitFor(() => expect(speedDial.open).toBe(true));
+    }
 };
 
 /* ================================================================== */

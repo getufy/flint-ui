@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import './flint-hover-card';
 import '../box/flint-box';
 
@@ -164,6 +165,16 @@ export const Default: Story = {
             </flint-hover-card>
         </div>
     `,
+};
+
+Default.play = async ({ canvasElement }) => {
+    const hoverCard = canvasElement.querySelector('flint-hover-card') as HTMLElement;
+    await waitFor(() => expect(hoverCard).toBeTruthy());
+    const trigger = canvasElement.querySelector('flint-hover-card-trigger') as HTMLElement;
+    const link = trigger?.querySelector('a') as HTMLElement;
+    if (link) {
+        await userEvent.hover(link);
+    }
 };
 
 /* ── Sides ───────────────────────────────────────────────────────── */

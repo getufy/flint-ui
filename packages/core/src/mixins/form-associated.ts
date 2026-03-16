@@ -76,36 +76,29 @@ export function FormAssociated<T extends Constructor<LitElement>>(Base: T) {
          * Enables CSS selectors such as:
          * - `flint-input:state(invalid)` / `:state(valid)`
          * - `:state(dirty)` / `:state(touched)`
-         * - `:state(disabled)` / `:state(required)`
+         * - `:state(disabled)` / `:state(required)` / `:state(optional)`
          */
         _syncCustomStates() {
             const states = this._internals?.states;
             if (!states) return;
 
+            const toggle = (name: string, on: boolean) => {
+                if (on) { states.add(name); } else { states.delete(name); }
+            };
+
             const isValid = this._internals!.validity?.valid !== false;
 
             // Validity
-            if (isValid) {
-                states.add('valid');
-                states.delete('invalid');
-            } else {
-                states.add('invalid');
-                states.delete('valid');
-            }
+            toggle('valid', isValid);
+            toggle('invalid', !isValid);
 
             // Disabled
-            if ((this as unknown as { disabled?: boolean }).disabled) {
-                states.add('disabled');
-            } else {
-                states.delete('disabled');
-            }
+            toggle('disabled', !!(this as unknown as { disabled?: boolean }).disabled);
 
-            // Required
-            if ((this as unknown as { required?: boolean }).required) {
-                states.add('required');
-            } else {
-                states.delete('required');
-            }
+            // Required / optional
+            const isRequired = !!(this as unknown as { required?: boolean }).required;
+            toggle('required', isRequired);
+            toggle('optional', !isRequired);
         }
 
         // ── Standard form element APIs ──────────────────────────────────

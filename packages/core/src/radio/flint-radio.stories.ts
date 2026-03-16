@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import '../button/flint-button';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import '../button/flint-button';
 import './flint-radio';
 import '../button/flint-button';
@@ -148,6 +149,22 @@ export const Default: Story = {
             <flint-radio value="other" label="Other"></flint-radio>
         </flint-radio-group>
     `,
+};
+
+Default.play = async ({ canvasElement }) => {
+    const group = canvasElement.querySelector('flint-radio-group') as HTMLElement & { value: string };
+    const radios = canvasElement.querySelectorAll('flint-radio');
+
+    // Starts with "female" selected
+    await waitFor(() => expect(group.value).toBe('female'));
+
+    // Click "male" radio
+    await userEvent.click(radios[1]);
+    await waitFor(() => expect(group.value).toBe('male'));
+
+    // Click "other" radio
+    await userEvent.click(radios[2]);
+    await waitFor(() => expect(group.value).toBe('other'));
 };
 
 export const Orientation: Story = {

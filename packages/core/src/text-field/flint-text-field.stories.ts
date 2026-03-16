@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import './flint-text-field';
 import '../button/flint-button';
 
@@ -108,6 +109,16 @@ export const Default: Story = {
             .errorMessage=${args.errorMessage}
         ></flint-text-field>
     `
+};
+
+Default.play = async ({ canvasElement }) => {
+    const textField = canvasElement.querySelector('flint-text-field') as HTMLElement & { value: string };
+    const input = textField.shadowRoot!.querySelector('input') as HTMLInputElement;
+
+    // Type text
+    await userEvent.click(input);
+    await userEvent.type(input, 'hello');
+    await waitFor(() => expect(input.value).toBe('hello'));
 };
 
 export const Filled: Story = {

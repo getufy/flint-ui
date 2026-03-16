@@ -577,6 +577,54 @@ describe('flint-autocomplete', () => {
     });
 });
 
+// ── Form association ──────────────────────────────────────────────────────
+// Note: jsdom does not support FormData with form-associated custom elements.
+// These tests verify the API surface; FormData behaviour is verified in browser tests.
+
+describe('flint-autocomplete — form association', () => {
+    it('is form-associated', () => {
+        const ctor = customElements.get('flint-autocomplete') as unknown as { formAssociated?: boolean };
+        expect(ctor?.formAssociated).toBe(true);
+    });
+
+    it('has name property', async () => {
+        const el = await fixture<FlintAutocomplete>(html`<flint-autocomplete name="fruit" .options=${options}></flint-autocomplete>`);
+        expect(el.name).toBe('fruit');
+    });
+
+    it('has required property', async () => {
+        const el = await fixture<FlintAutocomplete>(html`<flint-autocomplete required .options=${options}></flint-autocomplete>`);
+        expect(el.required).toBe(true);
+    });
+
+    it('formResetCallback resets value to defaultValue', async () => {
+        const el = await fixture<FlintAutocomplete>(html`<flint-autocomplete name="fruit" default-value="banana" .options=${options}></flint-autocomplete>`);
+        await el.updateComplete;
+        expect(el.value).toBe('banana');
+        el.value = 'apple';
+        await el.updateComplete;
+        expect(el.value).toBe('apple');
+        el.formResetCallback();
+        await el.updateComplete;
+        expect(el.value).toBe('banana');
+    });
+
+    it('formDisabledCallback sets disabled', async () => {
+        const el = await fixture<FlintAutocomplete>(html`<flint-autocomplete name="fruit" .options=${options}></flint-autocomplete>`);
+        expect(el.disabled).toBe(false);
+        el.formDisabledCallback(true);
+        expect(el.disabled).toBe(true);
+        el.formDisabledCallback(false);
+        expect(el.disabled).toBe(false);
+    });
+
+    it('_internals is initialized', async () => {
+        const el = await fixture<FlintAutocomplete>(html`<flint-autocomplete name="fruit" value="apple" .options=${options}></flint-autocomplete>`);
+        await el.updateComplete;
+        expect((el as unknown as { _internals: ElementInternals | null })._internals).not.toBeNull();
+    });
+});
+
 // ── Accessibility ─────────────────────────────────────────────────────────
 
 describe('flint-autocomplete — accessibility', () => {

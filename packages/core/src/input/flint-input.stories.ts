@@ -204,6 +204,71 @@ export const Password: Story = {
     },
 };
 
+export const PasswordWithToggle: Story = {
+    name: 'Password Toggle',
+    render: () => html`
+    <div style="max-width: 300px; padding: 20px;">
+      <flint-input
+        label="Password"
+        type="password"
+        password-toggle
+        placeholder="Enter your password"
+        helper-text="Click the eye icon to toggle visibility."
+      ></flint-input>
+    </div>
+  `,
+};
+
+export const Clearable: Story = {
+    name: 'Clearable',
+    render: () => html`
+    <div style="max-width: 300px; padding: 20px;">
+      <flint-input
+        label="Search"
+        clearable
+        value="Some text to clear"
+        helper-text="Click the X icon to clear."
+      ></flint-input>
+    </div>
+  `,
+};
+
+export const PrefixSuffix: Story = {
+    name: 'Prefix & Suffix',
+    render: () => html`
+    <div style="max-width: 300px; padding: 20px; display: flex; flex-direction: column; gap: 16px;">
+      <flint-input label="Website">
+        <span slot="prefix" style="font-size: 14px; color: #6b7280;">https://</span>
+        <span slot="suffix" style="font-size: 14px; color: #6b7280;">.com</span>
+      </flint-input>
+      <flint-input label="Email">
+        <span slot="prefix" style="font-size: 14px;">@</span>
+      </flint-input>
+      <flint-input label="Price">
+        <span slot="prefix" style="font-size: 14px;">$</span>
+        <span slot="suffix" style="font-size: 12px; color: #6b7280;">USD</span>
+      </flint-input>
+    </div>
+  `,
+};
+
+export const AllFeatures: Story = {
+    name: 'All UX Features',
+    render: () => html`
+    <div style="max-width: 300px; padding: 20px; display: flex; flex-direction: column; gap: 16px;">
+      <flint-input label="Clearable" clearable value="Clear me" helper-text="Has a clear button."></flint-input>
+      <flint-input label="Password Toggle" type="password" password-toggle value="secret" helper-text="Toggle visibility."></flint-input>
+      <flint-input label="With Prefix" placeholder="Search...">
+        <span slot="prefix" style="font-size: 14px;">🔍</span>
+      </flint-input>
+      <flint-input label="With Suffix" placeholder="0.00">
+        <span slot="suffix" style="font-size: 12px; color: #6b7280;">kg</span>
+      </flint-input>
+      <flint-input label="Clearable + Password Toggle" type="password" clearable password-toggle value="combo" helper-text="Both features together."></flint-input>
+    </div>
+  `,
+};
+
 export const Email: Story = {
     args: {
         label: 'Email address',

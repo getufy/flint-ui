@@ -122,8 +122,8 @@ export class FlintVirtualScroll<T = unknown> extends FlintElement {
         const visibleItems = this.items.slice(start, end);
 
         return html`
-            <div class="spacer" style="height: ${this._totalHeight}px;"></div>
-            <div class="viewport" style="transform: translateY(${offsetY}px);">
+            <div class="spacer" part="spacer" style="height: ${this._totalHeight}px;"></div>
+            <div class="viewport" part="viewport" style="transform: translateY(${offsetY}px);">
                 ${visibleItems.map((item, i) => this.renderItem(item, start + i))}
             </div>
         `;

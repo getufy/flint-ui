@@ -366,6 +366,7 @@ export class FlintMobileStepper extends FlintElement {
             <slot name="back-button">
                 <button
                     class="nav-btn back"
+                    part="back-button"
                     ?disabled=${this.activeStep === 0}
                     aria-label="Go to previous step"
                     @click=${() => this._emit('flint-mobile-step-back')}
@@ -375,6 +376,7 @@ export class FlintMobileStepper extends FlintElement {
             <slot name="next-button">
                 <button
                     class="nav-btn next"
+                    part="next-button"
                     ?disabled=${this.activeStep >= this._safeSteps - 1}
                     aria-label="Go to next step"
                     @click=${() => this._emit('flint-mobile-step-next')}

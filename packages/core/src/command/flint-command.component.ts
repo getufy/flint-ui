@@ -13,6 +13,7 @@ import uiCommandDialogStyles from './flint-command-dialog.css?inline';
 import { FlintElement } from '../flint-element.js';
 import { LocalizeController } from '../utilities/localize.js';
 import { handleFocusTrapKeyDown } from '../utilities/focus-trap.js';
+import { fuzzyScore } from './fuzzy-score.js';
 
 /* ─────────────────────────────────────────────────────────────────── */
 /*  flint-command-shortcut                                                 */
@@ -209,7 +210,7 @@ export class FlintCommandInput extends FlintElement {
                 composed: true,
                 detail: { query: this.value },
             }));
-        }, 100);
+        }, 150);
     }
 
     disconnectedCallback() {
@@ -295,6 +296,12 @@ export class FlintCommand extends FlintElement {
 
     /** Cached list of all command items; invalidated on slot change. */
     private _cachedItems: FlintCommandItem[] | null = null;
+    /** Cached list of all command groups; invalidated on slot change. */
+    private _cachedGroups: FlintCommandGroup[] | null = null;
+    /** Cached empty element; invalidated on slot change. */
+    private _cachedEmpty: FlintCommandEmpty | null | undefined = undefined;
+    /** Cached list element; invalidated on slot change. */
+    private _cachedList: FlintCommandList | null | undefined = undefined;
 
     /* ── Event handlers (arrow functions = auto-bound, safe to add/remove) ── */
 
@@ -371,6 +378,30 @@ export class FlintCommand extends FlintElement {
         return this._cachedItems;
     }
 
+    /** Return all command groups, using cache when available. */
+    private _getAllGroups(): FlintCommandGroup[] {
+        if (!this._cachedGroups) {
+            this._cachedGroups = [...this.querySelectorAll('flint-command-group')] as FlintCommandGroup[];
+        }
+        return this._cachedGroups;
+    }
+
+    /** Return the empty element, using cache when available. */
+    private _getEmptyEl(): FlintCommandEmpty | null {
+        if (this._cachedEmpty === undefined) {
+            this._cachedEmpty = this.querySelector('flint-command-empty') as FlintCommandEmpty | null;
+        }
+        return this._cachedEmpty;
+    }
+
+    /** Return the list element, using cache when available. */
+    private _getListEl(): FlintCommandList | null {
+        if (this._cachedList === undefined) {
+            this._cachedList = this.querySelector('flint-command-list') as FlintCommandList | null;
+        }
+        return this._cachedList;
+    }
+
     /** Items that can receive keyboard highlight (visible + not disabled). */
     private _getNavigableItems(): FlintCommandItem[] {
         return this._getAllItems().filter(
@@ -397,42 +428,9 @@ export class FlintCommand extends FlintElement {
         }));
     }
 
-    /**
-     * Fuzzy match: checks if query characters appear in order in text.
-     * Returns a score (higher is better) or -1 for no match.
-     * - Exact prefix match: highest score
-     * - Substring match: high score
-     * - Consecutive character matches: medium score
-     * - Non-consecutive matches: lower score
-     */
-    private _fuzzyScore(text: string, query: string): number {
-        if (query === '') return 1;
-        if (text.startsWith(query)) return 1000 + (1 / text.length);
-        if (text.includes(query)) return 500 + (1 / text.length);
-
-        let ti = 0;
-        let qi = 0;
-        let score = 0;
-        let consecutive = 0;
-
-        while (ti < text.length && qi < query.length) {
-            if (text[ti] === query[qi]) {
-                qi++;
-                consecutive++;
-                score += consecutive * 10; // reward consecutive matches
-                if (ti === qi - 1) score += 50; // reward matches at start
-            } else {
-                consecutive = 0;
-            }
-            ti++;
-        }
-
-        return qi === query.length ? score : -1;
-    }
-
     private _applyFilter(query: string) {
         this._query = query;
-        const q = query.toLowerCase();
+        const q = query.trim();
 
         /* 1. Show/hide individual items using fuzzy matching. */
         const allItems = this._getAllItems();
@@ -441,8 +439,8 @@ export class FlintCommand extends FlintElement {
         const scored: { item: FlintCommandItem; score: number }[] = [];
 
         for (const item of allItems) {
-            const text = (item.value || item.textContent || '').toLowerCase().trim();
-            const score = this._fuzzyScore(text, q);
+            const text = (item.value || item.textContent || '').trim();
+            const score = fuzzyScore(text, q);
             const matches = score > 0;
             item.hidden = !matches;
             if (matches) {
@@ -470,18 +468,18 @@ export class FlintCommand extends FlintElement {
         }
 
         /* 2. Hide groups where all child items are hidden (or the group has no items). */
-        const groups = [...this.querySelectorAll('flint-command-group')] as FlintCommandGroup[];
+        const groups = this._getAllGroups();
         for (const group of groups) {
             const groupItems = [...group.querySelectorAll('flint-command-item')] as FlintCommandItem[];
             group.hidden = groupItems.length === 0 || groupItems.every((i) => i.hidden);
         }
 
         /* 3. Toggle empty-state element. */
-        const empty = this.querySelector('flint-command-empty') as FlintCommandEmpty | null;
+        const empty = this._getEmptyEl();
         if (empty) empty.hidden = visibleCount > 0;
 
         /* 4. Hide orphaned separators — only shown when visible content exists on both sides. */
-        const listEl = this.querySelector('flint-command-list');
+        const listEl = this._getListEl();
         if (listEl) {
             const listChildren = [...listEl.children] as HTMLElement[];
             const isVisibleContent = (el: HTMLElement) =>
@@ -504,8 +502,11 @@ export class FlintCommand extends FlintElement {
     /* ── Slot change — initialise state once children are assigned ─────────── */
 
     private _onSlotChange() {
-        // Invalidate cached items when slot content changes
+        // Invalidate all cached DOM queries when slot content changes
         this._cachedItems = null;
+        this._cachedGroups = null;
+        this._cachedEmpty = undefined;
+        this._cachedList = undefined;
         this._applyFilter(this._query);
     }
 

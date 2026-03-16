@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import './flint-backdrop';
 import { FlintBackdrop } from './flint-backdrop';
 import '../button/flint-button';
@@ -92,6 +93,14 @@ export const Basic: Story = {
       </flint-backdrop>
     </div>
   `,
+};
+
+Basic.play = async ({ canvasElement }) => {
+    const btn = canvasElement.querySelector('flint-button') as HTMLElement;
+    await waitFor(() => expect(btn).toBeTruthy());
+    const bd = canvasElement.querySelector('flint-backdrop') as FlintBackdrop;
+    await userEvent.click(btn);
+    await waitFor(() => expect(bd.open).toBe(true));
 };
 
 export const LoadingIndicator: Story = {

@@ -216,6 +216,151 @@ describe('flint-text-field', () => {
         expect(spy).toHaveBeenCalled();
     });
 
+    // ─── Clearable ─────────────────────────────────────────────────────────
+
+    it('does not show clear button by default', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field value="hello"></flint-text-field>`);
+        expect(el.shadowRoot!.querySelector('.clear-btn')).toBeNull();
+    });
+
+    it('does not show clear button when clearable but value is empty', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field clearable></flint-text-field>`);
+        expect(el.shadowRoot!.querySelector('.clear-btn')).toBeNull();
+    });
+
+    it('shows clear button when clearable and has value', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field clearable value="hello"></flint-text-field>`);
+        expect(el.shadowRoot!.querySelector('.clear-btn')).not.toBeNull();
+        expect(el.shadowRoot!.querySelector('[part="clear-button"]')).not.toBeNull();
+    });
+
+    it('does not show clear button when disabled', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field clearable value="hello" disabled></flint-text-field>`);
+        expect(el.shadowRoot!.querySelector('.clear-btn')).toBeNull();
+    });
+
+    it('does not show clear button when readonly', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field clearable value="hello" readonly></flint-text-field>`);
+        expect(el.shadowRoot!.querySelector('.clear-btn')).toBeNull();
+    });
+
+    it('clears value when clear button is clicked', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field clearable value="hello"></flint-text-field>`);
+        const clearBtn = el.shadowRoot!.querySelector('.clear-btn') as HTMLButtonElement;
+        clearBtn.click();
+        await el.updateComplete;
+        expect(el.value).toBe('');
+    });
+
+    it('dispatches flint-text-field-clear event on clear', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field clearable value="hello"></flint-text-field>`);
+        const spy = vi.fn();
+        el.addEventListener('flint-text-field-clear', spy);
+        const clearBtn = el.shadowRoot!.querySelector('.clear-btn') as HTMLButtonElement;
+        clearBtn.click();
+        expect(spy).toHaveBeenCalledOnce();
+    });
+
+    it('dispatches input and change events on clear', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field clearable value="hello"></flint-text-field>`);
+        const inputSpy = vi.fn();
+        const changeSpy = vi.fn();
+        el.addEventListener('flint-text-field-input', inputSpy);
+        el.addEventListener('flint-text-field-change', changeSpy);
+        const clearBtn = el.shadowRoot!.querySelector('.clear-btn') as HTMLButtonElement;
+        clearBtn.click();
+        expect(inputSpy).toHaveBeenCalledOnce();
+        expect(inputSpy.mock.calls[0][0].detail).toEqual({ value: '' });
+        expect(changeSpy).toHaveBeenCalledOnce();
+    });
+
+    it('hides clear button after clearing', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field clearable value="hello"></flint-text-field>`);
+        const clearBtn = el.shadowRoot!.querySelector('.clear-btn') as HTMLButtonElement;
+        clearBtn.click();
+        await el.updateComplete;
+        expect(el.shadowRoot!.querySelector('.clear-btn')).toBeNull();
+    });
+
+    // ─── Password toggle ─────────────────────────────────────────────────────
+
+    it('does not show password toggle by default on type=password', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field type="password"></flint-text-field>`);
+        expect(el.shadowRoot!.querySelector('.password-toggle')).toBeNull();
+    });
+
+    it('shows password toggle when password-toggle is set on type=password', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field type="password" password-toggle></flint-text-field>`);
+        expect(el.shadowRoot!.querySelector('.password-toggle')).not.toBeNull();
+        expect(el.shadowRoot!.querySelector('[part="password-toggle-button"]')).not.toBeNull();
+    });
+
+    it('does not show password toggle on non-password type', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field type="text" password-toggle></flint-text-field>`);
+        expect(el.shadowRoot!.querySelector('.password-toggle')).toBeNull();
+    });
+
+    it('toggles password visibility when toggle button is clicked', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field type="password" password-toggle></flint-text-field>`);
+        const input = el.shadowRoot!.querySelector('input')!;
+        expect(input.type).toBe('password');
+
+        const toggleBtn = el.shadowRoot!.querySelector('.password-toggle') as HTMLButtonElement;
+        toggleBtn.click();
+        await el.updateComplete;
+        expect(input.type).toBe('text');
+        expect(el.passwordVisible).toBe(true);
+
+        const toggleBtn2 = el.shadowRoot!.querySelector('.password-toggle') as HTMLButtonElement;
+        toggleBtn2.click();
+        await el.updateComplete;
+        expect(input.type).toBe('password');
+        expect(el.passwordVisible).toBe(false);
+    });
+
+    it('password toggle button has correct aria-label', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field type="password" password-toggle></flint-text-field>`);
+        const toggleBtn = el.shadowRoot!.querySelector('.password-toggle') as HTMLButtonElement;
+        expect(toggleBtn.getAttribute('aria-label')).toBe('Show password');
+
+        toggleBtn.click();
+        await el.updateComplete;
+        const toggleBtn2 = el.shadowRoot!.querySelector('.password-toggle') as HTMLButtonElement;
+        expect(toggleBtn2.getAttribute('aria-label')).toBe('Hide password');
+    });
+
+    it('password-visible attribute controls initial visibility', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field type="password" password-toggle password-visible></flint-text-field>`);
+        const input = el.shadowRoot!.querySelector('input')!;
+        expect(input.type).toBe('text');
+    });
+
+    // ─── Prefix / Suffix slots ───────────────────────────────────────────────
+
+    it('renders slotted prefix content', async () => {
+        const el = await fixture<FlintTextField>(html`
+            <flint-text-field>
+                <span slot="prefix" class="test-prefix">@</span>
+            </flint-text-field>
+        `);
+        const prefixSlot = el.shadowRoot!.querySelector('slot[name="prefix"]') as HTMLSlotElement;
+        const assigned = prefixSlot.assignedElements();
+        expect(assigned.length).toBe(1);
+        expect(assigned[0].textContent).toBe('@');
+    });
+
+    it('renders slotted suffix content', async () => {
+        const el = await fixture<FlintTextField>(html`
+            <flint-text-field>
+                <span slot="suffix" class="test-suffix">.com</span>
+            </flint-text-field>
+        `);
+        const suffixSlot = el.shadowRoot!.querySelector('slot[name="suffix"]') as HTMLSlotElement;
+        const assigned = suffixSlot.assignedElements();
+        expect(assigned.length).toBe(1);
+        expect(assigned[0].textContent).toBe('.com');
+    });
+
     it('errorMessage without error prop still shows error-text and error class', async () => {
         const el = await fixture<FlintTextField>(html`<flint-text-field errorMessage="Bad input"></flint-text-field>`);
         await el.updateComplete;

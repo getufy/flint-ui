@@ -293,6 +293,25 @@
       margin-left: 2px;
     }
 
+    /* ── Virtual scroll container ─────────────────────────────────── */
+    .virtual-scroll-container {
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .virtual-scroll-container::-webkit-scrollbar { width: 6px; }
+    .virtual-scroll-container::-webkit-scrollbar-track { background: transparent; }
+    .virtual-scroll-container::-webkit-scrollbar-thumb {
+      background: var(--flint-border-color);
+      border-radius: 3px;
+    }
+
+    /* When virtualized, the dropdown itself should not scroll — the inner container does. */
+    .dropdown:has(.virtual-scroll-container) {
+      overflow-y: hidden;
+      max-height: none;
+    }
+
     /* Scrollbar */
     .dropdown::-webkit-scrollbar { width: 6px; }
     .dropdown::-webkit-scrollbar-track { background: transparent; }

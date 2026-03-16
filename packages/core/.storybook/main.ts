@@ -19,8 +19,8 @@ const config: StorybookConfig = {
     config.build.rollupOptions.treeshake = false;
 
     // Set base path for GitHub Pages deployment (/flint-ui/storybook/)
-    // Only for production builds — not during dev/test serving, which needs root base path
-    if (process.env.CI && configType === 'PRODUCTION') {
+    // Only for production builds — not during dev/test serving or Chromatic builds
+    if (process.env.CI && configType === 'PRODUCTION' && !process.env.CHROMATIC) {
       config.base = '/flint-ui/storybook/';
     }
 

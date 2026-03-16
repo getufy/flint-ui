@@ -119,6 +119,7 @@ export {
     FlintCommandShortcut,
     FlintCommandDialog,
 } from './command/flint-command.js';
+export { fuzzyScore } from './command/fuzzy-score.js';
 export {
     FlintCarousel,
     FlintCarouselContent,
@@ -210,12 +211,15 @@ export { FlintVisuallyHidden } from './visually-hidden/flint-visually-hidden.js'
 export { FlintRangeSlider } from './flint-range-slider/flint-range-slider.js';
 export { FlintFormField } from './form-field/flint-form-field.js';
 export type { LabelPosition } from './form-field/flint-form-field.js';
-export { FlintIcon, registerIconResolver } from './icon/flint-icon.js';
+export { FlintIcon, registerIconResolver, clearIconCache, sanitizeSvg } from './icon/flint-icon.js';
 export type { IconSize } from './icon/flint-icon.js';
 export { FlintCombobox } from './combobox/flint-combobox.js';
 export type { ComboboxOption } from './combobox/flint-combobox.js';
 export { FlintAnimation } from './animation/flint-animation.js';
 export type { DialogSize } from './dialog/flint-dialog.js';
+
+// ── Autoloader ───────────────────────────────────────────────────────────────
+export { stopAutoloader, startAutoloader, isAutoloaderActive } from './autoloader.js';
 
 // ── Decorators ───────────────────────────────────────────────────────────────
 export { watch } from './decorators/watch.js';
@@ -231,7 +235,7 @@ export type { RenderItemFn } from './virtual-scroll/flint-virtual-scroll.js';
 export { LocalizeController, registerTranslation, resolveLocale } from './utilities/localize.js';
 export type { Translation } from './utilities/localize.js';
 export { FormControlController } from './controllers/form-control.js';
-export type { FormControlHost, FormControlOptions, ValidationLevel } from './controllers/form-control.js';
+export type { FormControlHost, FormControlOptions, ConstraintValidationOptions, ValidationLevel } from './controllers/form-control.js';
 export { serialize } from './utilities/form.js';
 export { setDefaultAnimation, setAnimation, getAnimation, animateTo, stopAnimations } from './utilities/animation-registry.js';
 export type { ElementAnimation } from './utilities/animation-registry.js';
@@ -262,7 +266,8 @@ export type {
     FlintDigitalClockChangeEvent, FlintMultiSectionDigitalClockChangeEvent,
     FlintTimeClockChangeEvent, FlintTimeClockViewChangeEvent,
     FlintDesktopTimePickerChangeEvent, FlintMobileTimePickerChangeEvent, FlintStaticTimePickerChangeEvent,
-    FlintDialogCloseEvent, FlintDrawerCloseEvent, FlintBackdropCloseEvent,
+    FlintDialogOpenEvent, FlintDialogCloseEvent,
+    FlintDrawerOpenEvent, FlintDrawerCloseEvent, FlintBackdropCloseEvent,
     FlintAlertCloseEvent, FlintSnackbarOpenEvent, FlintSnackbarCloseEvent,
     FlintMenuItemSelectEvent, FlintMenuCloseEvent,
     FlintMenubarItemSelectEvent, FlintMenubarCheckboxChangeEvent,

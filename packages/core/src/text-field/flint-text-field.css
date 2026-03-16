@@ -87,6 +87,29 @@
       padding-left: 0;
     }
 
+    .clear-btn, .password-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: var(--flint-text-color-muted);
+      padding: 4px;
+      margin-right: 4px;
+      border-radius: 4px;
+      transition: color 0.15s;
+    }
+
+    .clear-btn:hover, .password-toggle:hover {
+      color: var(--flint-text-color);
+    }
+
+    .clear-btn:focus-visible, .password-toggle:focus-visible {
+      outline: 2px solid var(--flint-primary-color);
+      outline-offset: 2px;
+    }
+
     .helper-text {
       font-size: 0.75rem;
       color: var(--flint-help-text-color);

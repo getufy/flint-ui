@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import './flint-collapsible';
 import '../button/flint-button.js';
 
@@ -191,6 +192,22 @@ export const Default: Story = {
             </flint-collapsible>
         </div>
     `,
+};
+
+Default.play = async ({ canvasElement }) => {
+    const collapsible = canvasElement.querySelector('flint-collapsible') as HTMLElement & { open: boolean };
+    const trigger = canvasElement.querySelector('flint-collapsible-trigger') as HTMLElement;
+
+    // Starts closed
+    await waitFor(() => expect(collapsible.open).toBe(false));
+
+    // Click to open
+    await userEvent.click(trigger);
+    await waitFor(() => expect(collapsible.open).toBe(true));
+
+    // Click to close
+    await userEvent.click(trigger);
+    await waitFor(() => expect(collapsible.open).toBe(false));
 };
 
 /* ── DefaultOpen ─────────────────────────────────────────────────── */

@@ -11,8 +11,24 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  a11y:
-    name: Accessibility Audit
+  axe-core:
+    name: axe-core Regression
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Run axe-core a11y tests
+        run: npm run test:a11y
+      - name: Annotate failures
+        if: failure()
+        run: echo "::error::Accessibility regression detected — axe-core tests failed. Run 'npm run test:a11y' locally to reproduce."
+
+  storybook-a11y:
+    name: Storybook a11y Audit
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2

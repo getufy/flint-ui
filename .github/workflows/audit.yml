@@ -3,6 +3,12 @@ name: Security Audit
 on:
   schedule:
     - cron: '0 9 * * 1'  # Every Monday at 9am UTC
+  push:
+    branches: [main]
+    paths:
+      - 'package-lock.json'
+      - 'packages/*/package.json'
+      - 'package.json'
   workflow_dispatch:
 
 jobs:
@@ -16,4 +22,37 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
-      - run: npm audit --audit-level=high
+      - name: Run npm audit
+        id: audit
+        run: npm audit --audit-level=high
+      - name: Create issue on failure
+        if: failure() && steps.audit.outcome == 'failure' && github.event_name == 'schedule'
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        with:
+          script: |
+            const title = `Security: npm audit found vulnerabilities (${new Date().toISOString().slice(0, 10)})`;
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'security',
+            });
+            if (issues.some(i => i.title.startsWith('Security: npm audit'))) {
+              console.log('Open security issue already exists, skipping.');
+              return;
+            }
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body: [
+                '## npm audit found vulnerabilities',
+                '',
+                `The scheduled security audit workflow failed on ${new Date().toISOString().slice(0, 10)}.`,
+                '',
+                `**Run:** ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+                '',
+                'Please run `npm audit` locally and resolve the reported issues.',
+              ].join('\n'),
+              labels: ['security'],
+            });

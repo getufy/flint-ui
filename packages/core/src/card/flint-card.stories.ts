@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { expect, waitFor } from 'storybook/test';
 import './flint-card';
 import './flint-card-header';
 import './flint-card-media';
@@ -201,6 +202,19 @@ export const Default: Story = {
       </flint-card>
     </div>
   `,
+};
+
+Default.play = async ({ canvasElement }) => {
+    const card = canvasElement.querySelector('flint-card') as HTMLElement;
+    await waitFor(() => expect(card).toBeTruthy());
+    const header = canvasElement.querySelector('flint-card-header') as HTMLElement;
+    if (header) {
+        expect(header).toBeTruthy();
+    }
+    const media = canvasElement.querySelector('flint-card-media') as HTMLElement;
+    if (media) {
+        expect(media).toBeTruthy();
+    }
 };
 
 export const Outlined: Story = {

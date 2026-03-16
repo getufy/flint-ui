@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import './flint-date-picker.js';
 import '../stack/flint-stack';
 import type { FlintDatePicker } from './flint-date-picker.js';
@@ -169,6 +170,19 @@ export const Desktop: Story = {
       @flint-date-picker-change=${onChange}
     ></flint-date-picker>
   `),
+};
+
+Desktop.play = async ({ canvasElement }) => {
+    const picker = canvasElement.querySelector('flint-date-picker') as FlintDatePicker;
+    await waitFor(() => expect(picker).toBeTruthy());
+    const input = picker.shadowRoot!.querySelector('input') as HTMLInputElement;
+    if (input) {
+        await userEvent.click(input);
+        await waitFor(() => {
+            const calendar = picker.shadowRoot!.querySelector('flint-date-picker-calendar, [role="dialog"], .calendar');
+            expect(calendar).toBeTruthy();
+        });
+    }
 };
 
 // ── Mobile ────────────────────────────────────────────────────────────────────

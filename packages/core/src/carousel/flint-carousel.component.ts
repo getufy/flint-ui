@@ -77,6 +77,7 @@ export class FlintCarouselContent extends FlintElement {
     return html`
       <div
         class="track"
+        part="track"
         style="transform: ${transform}"
         aria-live="polite"
         aria-atomic="false"
@@ -95,7 +96,7 @@ export class FlintCarouselItem extends FlintElement {
 
   render() {
     return html`
-      <div class="item" role="group" aria-roledescription="slide">
+      <div class="item" part="base" role="group" aria-roledescription="slide">
         <slot></slot>
       </div>
     `;
@@ -437,6 +438,7 @@ export class FlintCarousel extends FlintElement {
     return html`
       <div
         class="carousel"
+        part="base"
         role="region"
         aria-roledescription="carousel"
         aria-label="${this.label}"

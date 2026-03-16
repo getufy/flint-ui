@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import './flint-toggle';
 import '../button/flint-button';
 import '../paper/flint-paper';
@@ -172,6 +173,22 @@ export const Default: Story = {
             </flint-toggle>
         </div>
     `,
+};
+
+Default.play = async ({ canvasElement }) => {
+    const toggles = canvasElement.querySelectorAll('flint-toggle') as NodeListOf<HTMLElement & { pressed: boolean }>;
+    const toggle = toggles[0];
+
+    // Initially not pressed
+    await waitFor(() => expect(toggle.pressed).toBe(false));
+
+    // Click to press
+    await userEvent.click(toggle);
+    await waitFor(() => expect(toggle.pressed).toBe(true));
+
+    // Click to unpress
+    await userEvent.click(toggle);
+    await waitFor(() => expect(toggle.pressed).toBe(false));
 };
 
 /* ── Outline ────────────────────────────────────────────────────── */

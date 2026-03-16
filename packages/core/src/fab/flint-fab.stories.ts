@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import './flint-fab';
 import '../box/flint-box';
 
@@ -95,6 +96,16 @@ export const Regular: Story = {
       ${plusIcon}
     </flint-fab>
   `,
+};
+
+Regular.play = async ({ canvasElement }) => {
+    const fab = canvasElement.querySelector('flint-fab') as HTMLElement;
+    await waitFor(() => expect(fab).toBeTruthy());
+    const btn = fab.shadowRoot!.querySelector('button') as HTMLButtonElement;
+    if (btn) {
+        expect(btn.disabled).toBe(false);
+        await userEvent.click(btn);
+    }
 };
 
 export const Extended: Story = {

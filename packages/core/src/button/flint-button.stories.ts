@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import './flint-button';
 
 const meta: Meta = {
@@ -204,6 +205,20 @@ type Story = StoryObj;
 
 export const Default: Story = {};
 
+Default.play = async ({ canvasElement }) => {
+    const button = canvasElement.querySelector('flint-button') as HTMLElement;
+    const inner = button.shadowRoot!.querySelector('button') as HTMLButtonElement;
+
+    // Button is rendered and enabled
+    await waitFor(() => {
+        expect(inner).toBeTruthy();
+        expect(inner.disabled).toBe(false);
+    });
+
+    // Click the button
+    await userEvent.click(inner);
+};
+
 export const AllVariantsAndSizes: Story = {
     render: () => html`
         <div style="display: flex; flex-direction: column; gap: 24px; font-family: var(--flint-font-family);">
@@ -369,6 +384,14 @@ export const DisabledContext: Story = {
              <flint-button variant="secondary" size="md" disabled>Secondary Disabled</flint-button>
         </div>
     `
+};
+
+DisabledContext.play = async ({ canvasElement }) => {
+    const buttons = canvasElement.querySelectorAll('flint-button');
+    for (const button of buttons) {
+        const inner = button.shadowRoot!.querySelector('button, a') as HTMLElement;
+        await waitFor(() => expect(inner.hasAttribute('disabled') || inner.getAttribute('aria-disabled') === 'true').toBeTruthy());
+    }
 };
 
 export const WithIcon: Story = {

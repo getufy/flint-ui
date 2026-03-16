@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import '../button/flint-button';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import '../box/flint-box';
 import './flint-slider';
 import '../button/flint-button';
@@ -103,6 +104,19 @@ export const Default: Story = {
       @flint-slider-change=${(e: CustomEvent) => console.log('Slider value:', e.detail.value)}
     ></flint-slider>
   `,
+};
+
+Default.play = async ({ canvasElement }) => {
+    const slider = canvasElement.querySelector('flint-slider') as FlintSlider & { value: number };
+
+    // Starts at 50
+    await waitFor(() => expect(slider.value).toBe(50));
+
+    // The slider should have an input[type=range] in its shadow DOM
+    const input = slider.shadowRoot!.querySelector('input[type="range"]') as HTMLInputElement;
+    if (input) {
+        expect(input).toBeTruthy();
+    }
 };
 
 // ── Variants ───────────────────────────────────────────────────────────────

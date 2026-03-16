@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { expect, waitFor } from 'storybook/test';
 import './flint-chip';
 import '../button/flint-button';
 import '../avatar/flint-avatar';
@@ -118,6 +119,16 @@ export const Default: Story = {
             ?disabled=${args.disabled}
         ></flint-chip>
     `
+};
+
+Default.play = async ({ canvasElement }) => {
+    const chip = canvasElement.querySelector('flint-chip') as HTMLElement;
+    await waitFor(() => expect(chip).toBeTruthy());
+    // Verify chip renders its label
+    await waitFor(() => {
+        const label = chip.shadowRoot!.textContent;
+        expect(label).toContain('Basic Chip');
+    });
 };
 
 export const Clickable: Story = {

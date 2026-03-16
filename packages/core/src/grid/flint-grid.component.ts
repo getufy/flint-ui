@@ -90,13 +90,6 @@ export class FlintGrid extends FlintElement {
         }
     }
 
-    disconnectedCallback() {
-        super.disconnectedCallback();
-        if (typeof window !== 'undefined') {
-            window.removeEventListener('resize', this._onResize);
-        }
-    }
-
     private _getBreakpoint(): Breakpoint {
         const w = this._currentWidth;
         if (w >= this._getBreakpointValue('xl', 1536)) return 'xl';
@@ -199,8 +192,65 @@ export class FlintGrid extends FlintElement {
         return this.columns;
     }
 
-    private _getItemStyles(bp: Breakpoint): Record<string, string> {
-        // Perf guard: pure containers with no size props set don't need item styles.
+    protected updated(_changedProperties: PropertyValues) {
+        super.updated(_changedProperties);
+        this._applyItemStyles();
+    }
+
+    disconnectedCallback() {
+        super.disconnectedCallback();
+        if (typeof window !== 'undefined') {
+            window.removeEventListener('resize', this._onResize);
+        }
+    }
+
+    private _applyItemStyles() {
+        // ── Read phase: batch ALL getComputedStyle / layout reads first ──
+        // Cache breakpoint and column count to avoid redundant getComputedStyle
+        // calls that would force layout recalculation.
+        const bp = this._getBreakpoint();
+        const columns = this._getEffectiveColumns();
+
+        // Skip entirely if nothing changed since last apply
+        const itemStyles = this._getItemStylesCached(bp, columns);
+
+        let colGap: string | null = null;
+        if (this.container) {
+            const spacingStyles = this._getSpacingStyles(bp);
+            if (spacingStyles['gap']) {
+                const parts = spacingStyles['gap'].split(' ');
+                colGap = parts.length === 2 ? parts[1]! : parts[0]!;
+            }
+        }
+
+        // ── Write phase: batch all DOM mutations together ──
+        // Reset previously applied host styles
+        this.style.flexGrow = '';
+        this.style.flexBasis = '';
+        this.style.maxWidth = '';
+        this.style.width = '';
+        this.style.marginLeft = '';
+        this.style.order = '';
+
+        Object.entries(itemStyles).forEach(([prop, val]) => {
+            this.style.setProperty(prop, val);
+        });
+
+        if (this.container) {
+            if (colGap !== null) {
+                this.style.setProperty('--flint-grid-column-gap', colGap);
+            }
+            // Propagate column count to children via CSS custom property so nested
+            // items without an explicit `columns` prop calculate percentages correctly.
+            this.style.setProperty('--flint-grid-columns', String(this.columns));
+        }
+    }
+
+    /**
+     * Compute item styles using pre-read column count to avoid
+     * getComputedStyle during the write phase.
+     */
+    private _getItemStylesCached(bp: Breakpoint, columns: number): Record<string, string> {
         const hasSize = this.xs !== undefined || this.sm !== undefined || this.md !== undefined
             || this.lg !== undefined || this.xl !== undefined;
         const hasOffset = !!this.offset;
@@ -210,7 +260,6 @@ export class FlintGrid extends FlintElement {
 
         const size = this._getEffectiveSize(bp);
         const offset = this._getEffectiveOffset(bp);
-        const columns = this._getEffectiveColumns();
 
         const styles: Record<string, string> = {};
 
@@ -249,48 +298,6 @@ export class FlintGrid extends FlintElement {
         }
 
         return styles;
-    }
-
-    protected updated(_changedProperties: PropertyValues) {
-        super.updated(_changedProperties);
-        this._applyItemStyles();
-    }
-
-    private _applyItemStyles() {
-        // ── Read phase: compute all values before touching the DOM ──
-        const bp = this._getBreakpoint();
-        const itemStyles = this._getItemStyles(bp);
-
-        let colGap: string | null = null;
-        if (this.container) {
-            const spacingStyles = this._getSpacingStyles(bp);
-            if (spacingStyles['gap']) {
-                const parts = spacingStyles['gap'].split(' ');
-                colGap = parts.length === 2 ? parts[1]! : parts[0]!;
-            }
-        }
-
-        // ── Write phase: batch all DOM mutations together ──
-        // Reset previously applied host styles
-        this.style.flexGrow = '';
-        this.style.flexBasis = '';
-        this.style.maxWidth = '';
-        this.style.width = '';
-        this.style.marginLeft = '';
-        this.style.order = '';
-
-        Object.entries(itemStyles).forEach(([prop, val]) => {
-            this.style.setProperty(prop, val);
-        });
-
-        if (this.container) {
-            if (colGap !== null) {
-                this.style.setProperty('--flint-grid-column-gap', colGap);
-            }
-            // Propagate column count to children via CSS custom property so nested
-            // items without an explicit `columns` prop calculate percentages correctly.
-            this.style.setProperty('--flint-grid-columns', String(this.columns));
-        }
     }
 
     render() {

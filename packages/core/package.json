@@ -4,8 +4,8 @@
   "type": "module",
   "types": "./dist/index.d.ts",
   "module": "./dist/index.js",
-  "unpkg": "dist/flint-ui.iife.min.js",
-  "jsdelivr": "dist/flint-ui.iife.min.js",
+  "unpkg": "dist/cdn/flint-ui.iife.js",
+  "jsdelivr": "dist/cdn/flint-ui.es.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/getufy/flint-ui.git",
@@ -446,6 +446,7 @@
     "build:exports": "tsx ../../scripts/build-entries.ts --write-exports",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "test:a11y": "NODE_OPTIONS='--no-warnings' vitest run --project components -t 'a11y|accessibility'",
     "build-coverage": "NODE_OPTIONS='--no-warnings' vitest run --project components --coverage",
     "stryker": "npx stryker run",
     "bench": "vitest bench --config vitest.bench.config.ts",

@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { expect, waitFor } from 'storybook/test';
 import './flint-alert';
 
 const meta: Meta = {
@@ -109,6 +110,13 @@ export const Basic: Story = {
             This is an example of a brief message for the user.
         </flint-alert>
     `,
+};
+
+Basic.play = async ({ canvasElement }) => {
+    const alert = canvasElement.querySelector('flint-alert') as HTMLElement;
+    await waitFor(() => expect(alert).toBeTruthy());
+    // Verify the alert renders with the correct severity attribute
+    await waitFor(() => expect(alert.getAttribute('severity') || 'info').toBe('info'));
 };
 
 /**

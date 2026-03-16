@@ -371,7 +371,7 @@ Tooling that consumes CEM:
 
 ## SSR / Next.js
 
-Flint UI components work in server-rendered frameworks with some caveats:
+Flint UI components work in server-rendered frameworks with some caveats. See the full [SSR guide](https://getufy.github.io/flint-ui/ssr) and [Next.js guide](https://getufy.github.io/flint-ui/guides/nextjs) for details.
 
 ### Next.js App Router
 
@@ -387,9 +387,46 @@ export function MyButton() {
 }
 ```
 
+### Client-only wrapper component
+
+Create a reusable client boundary file for Flint components used across your app:
+
+```tsx
+// components/flint-client.tsx
+'use client';
+
+export { FlintButton } from '@getufy/flint-ui-react/button';
+export { FlintInput } from '@getufy/flint-ui-react/input';
+export { FlintSelect, FlintOption } from '@getufy/flint-ui-react/select';
+// re-export only the components you use
+```
+
+Then import from this file in any Server or Client Component:
+
+```tsx
+import { FlintButton } from '@/components/flint-client';
+```
+
+### Dynamic imports with `ssr: false`
+
+For components that must not execute during SSR at all (e.g., they access `window` in module scope), use `next/dynamic`:
+
+```tsx
+import dynamic from 'next/dynamic';
+
+const FlintCarousel = dynamic(
+  () => import('@getufy/flint-ui-react/carousel').then((mod) => mod.FlintCarousel),
+  { ssr: false, loading: () => <div style={{ height: 300 }} /> }
+);
+
+export default function Page() {
+  return <FlintCarousel>{/* slides */}</FlintCarousel>;
+}
+```
+
 ### Theme CSS in layout
 
-Import theme CSS in your root layout:
+Import theme CSS in your root layout (this is safe in Server Components):
 
 ```tsx
 // app/layout.tsx
@@ -405,22 +442,52 @@ export default function RootLayout({ children }) {
 }
 ```
 
-### Astro / Remix
+### Astro
 
-Same pattern — import components in client-only islands or with framework-specific client directives:
+Use the `client:only` directive to render Flint components exclusively on the client. For the React wrappers, use `client:only="react"`:
 
 ```astro
 ---
-// Astro — use client:only
+import { FlintButton } from '@getufy/flint-ui-react/button';
 ---
 <FlintButton client:only="react">Click me</FlintButton>
 ```
 
+For vanilla web components without React, use a client-side `<script>` import:
+
+```astro
+<flint-button>Click me</flint-button>
+
+<script>
+  import '@getufy/flint-ui/button/flint-button';
+</script>
+```
+
+### Remix
+
+Use a `ClientOnly` wrapper (from `remix-utils`) to prevent server-side rendering of Flint components:
+
+```tsx
+import { ClientOnly } from 'remix-utils/client-only';
+import { FlintButton } from '@getufy/flint-ui-react/button';
+
+export default function Page() {
+  return (
+    <ClientOnly fallback={<button>Click me</button>}>
+      {() => <FlintButton>Click me</FlintButton>}
+    </ClientOnly>
+  );
+}
+```
+
 ### Known limitations
 
-- Web components render as empty custom elements during SSR; content appears after hydration (FOUC). Lit SSR + Declarative Shadow DOM is experimental and not yet recommended for production.
-- `window` / `document` APIs are not available during SSR. All Flint components guard DOM access in `connectedCallback()`, so importing them server-side is safe.
-- `suppress-warnings` import is a no-op on the server (uses `globalThis`).
+- **Hydration mismatch**: Web components render as empty custom element tags during SSR; content appears after hydration. Use `dynamic(..., { ssr: false })` or a loading skeleton to avoid layout shift.
+- **`window` / `document` access**: Not available during SSR. All Flint components guard DOM access in `connectedCallback()`, so importing them server-side is safe — but do not call DOM methods at the module level.
+- **Custom element registration timing**: `customElements.define()` runs when a component module is first imported. On the server, this is a no-op (the registry does not exist). On the client, ensure component modules are imported before the component tag appears in the DOM.
+- **Declarative Shadow DOM (DSD)**: Lit SSR + DSD is experimental (~96% browser support). Flint UI does not yet ship pre-rendered DSD templates; components hydrate from empty shells.
+- **`suppress-warnings` import**: This is a no-op on the server (uses `globalThis`).
+- **Autoloader**: Do not import `@getufy/flint-ui/autoloader` on the server — it requires `MutationObserver` and `document.body`.
 
 ## Suppressing the Lit dev mode warning
 

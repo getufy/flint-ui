@@ -1,5 +1,5 @@
 import { unsafeCSS, html, nothing, PropertyValues, LitElement } from 'lit';
-import { property, state } from 'lit/decorators.js';
+import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
 import { FormAssociated } from '../mixins/form-associated.js';
@@ -13,6 +13,20 @@ let idCounter = 0;
  *
  * @fires flint-input-input - Fired on each keystroke as the value changes. detail: `{ value: string }`
  * @fires flint-input-change - Fired when the input loses focus after the value has changed. detail: `{ value: string }`
+ * @fires flint-input-clear - Fired when the clear button is clicked. detail: `undefined`
+ *
+ * @slot prefix - Content placed before the input (e.g. icon).
+ * @slot suffix - Content placed after the input (e.g. icon).
+ *
+ * @csspart base - The component wrapper.
+ * @csspart label - The label element.
+ * @csspart input - The native input element.
+ * @csspart prefix - The prefix slot container.
+ * @csspart suffix - The suffix slot container.
+ * @csspart clear-button - The clear button.
+ * @csspart password-toggle-button - The password toggle button.
+ * @csspart help-text - The help text paragraph.
+ * @csspart error-message - The error message paragraph.
  */
 export class FlintInput extends FormAssociated(FlintElement) {
     static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
@@ -104,8 +118,13 @@ export class FlintInput extends FormAssociated(FlintElement) {
     @property({ type: Boolean })
     clearable = false;
 
-    /** Whether the password is currently visible (password toggle). */
-    @state() private _passwordVisible = false;
+    /** Shows a toggle button on password inputs to reveal/hide the value. */
+    @property({ type: Boolean, attribute: 'password-toggle' })
+    passwordToggle = false;
+
+    /** Whether the password is currently visible. Only relevant when `passwordToggle` is true. */
+    @property({ type: Boolean, attribute: 'password-visible' })
+    passwordVisible = false;
 
     /** Expose the internal <input> for direct access */
     get inputElement(): HTMLInputElement {
@@ -134,22 +153,31 @@ export class FlintInput extends FormAssociated(FlintElement) {
         this._formControl.updateDataAttributes();
     }
 
-    /** Delegate constraint validation to the inner native <input> element. */
+    /** Run constraint validation for required, pattern, min, max, minlength, maxlength. */
     private _validateConstraints() {
         if (!this._internals || typeof this._internals.setValidity !== 'function') return;
 
         const innerInput = this.shadowRoot?.querySelector('input');
-        if (innerInput && !innerInput.validity.valid) {
-            this._internals.setValidity(innerInput.validity, innerInput.validationMessage, innerInput);
-        } else {
-            this._internals.setValidity({});
-        }
+        this._formControl.validateConstraints({
+            value: this.value,
+            required: this.required,
+            pattern: this.pattern || undefined,
+            min: this.min || undefined,
+            max: this.max || undefined,
+            minLength: this.minLength,
+            maxLength: this.maxLength,
+            type: this.type,
+        }, innerInput ?? undefined);
         this._syncCustomStates();
     }
 
     private _handleClear() {
         this.value = '';
         this._updateFormValue();
+        this.dispatchEvent(new CustomEvent('flint-input-clear', {
+            bubbles: true,
+            composed: true,
+        }));
         this.dispatchEvent(new CustomEvent('flint-input-input', {
             detail: { value: '' },
             bubbles: true,
@@ -165,7 +193,7 @@ export class FlintInput extends FormAssociated(FlintElement) {
     }
 
     private _togglePasswordVisibility() {
-        this._passwordVisible = !this._passwordVisible;
+        this.passwordVisible = !this.passwordVisible;
     }
 
     render() {
@@ -174,7 +202,7 @@ export class FlintInput extends FormAssociated(FlintElement) {
             ? `${this._inputId}-desc`
             : undefined;
         const isPassword = this.type === 'password';
-        const effectiveType = isPassword && this._passwordVisible ? 'text' : this.type;
+        const effectiveType = isPassword && this.passwordVisible ? 'text' : this.type;
         const showClear = this.clearable && this.value && !this.disabled && !this.readonly;
 
         return html`
@@ -228,15 +256,16 @@ export class FlintInput extends FormAssociated(FlintElement) {
             </button>
           ` : nothing}
 
-          ${isPassword ? html`
+          ${isPassword && this.passwordToggle && !this.disabled ? html`
             <button
               type="button"
               class="password-toggle"
-              part="password-toggle"
-              aria-label=${this._passwordVisible ? 'Hide password' : 'Show password'}
+              part="password-toggle-button"
+              aria-label=${this.passwordVisible ? 'Hide password' : 'Show password'}
               @click=${this._togglePasswordVisibility}
+              tabindex="-1"
             >
-              ${this._passwordVisible
+              ${this.passwordVisible
                 ? html`<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>`
                 : html`<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`
               }

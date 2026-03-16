@@ -160,7 +160,7 @@ export class FlintBox extends FlintElement {
         const tagName = unsafeStatic(this._safeTag);
         /* eslint-disable lit/binding-positions, lit/no-invalid-html */
         return html`
-      <${tagName} style=${styleMap(this._getStyles())}>
+      <${tagName} part="base" style=${styleMap(this._getStyles())}>
         <slot></slot>
       </${tagName}>
     `;

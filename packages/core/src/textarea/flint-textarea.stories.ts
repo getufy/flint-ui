@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import '../button/flint-button';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import '../box/flint-box';
 import './flint-textarea';
 import '../button/flint-button';
@@ -133,6 +134,16 @@ export const Default: Story = {
       placeholder="Type your message here."
     ></flint-textarea>
   `,
+};
+
+Default.play = async ({ canvasElement }) => {
+    const textarea = canvasElement.querySelector('flint-textarea') as HTMLElement & { value: string };
+    const nativeTextarea = textarea.shadowRoot!.querySelector('textarea') as HTMLTextAreaElement;
+
+    // Type text
+    await userEvent.click(nativeTextarea);
+    await userEvent.type(nativeTextarea, 'Hello world');
+    await waitFor(() => expect(textarea.value).toBe('Hello world'));
 };
 
 export const WithLabel: Story = {

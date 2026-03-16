@@ -729,6 +729,54 @@ describe('flint-date-picker — full coverage', () => {
     });
 });
 
+// ── Form association ──────────────────────────────────────────────────────
+// Note: jsdom does not support FormData with form-associated custom elements.
+// These tests verify the API surface; FormData behaviour is verified in browser tests.
+
+describe('flint-date-picker — form association', () => {
+    it('is form-associated', () => {
+        const ctor = customElements.get('flint-date-picker') as unknown as { formAssociated?: boolean };
+        expect(ctor?.formAssociated).toBe(true);
+    });
+
+    it('has name property', async () => {
+        const el = await fixture<FlintDatePicker>(html`<flint-date-picker name="birthday"></flint-date-picker>`);
+        expect(el.name).toBe('birthday');
+    });
+
+    it('has required property', async () => {
+        const el = await fixture<FlintDatePicker>(html`<flint-date-picker required></flint-date-picker>`);
+        expect(el.required).toBe(true);
+    });
+
+    it('formResetCallback resets value to defaultValue', async () => {
+        const el = await fixture<FlintDatePicker>(html`<flint-date-picker name="date" default-value="2024-06-15"></flint-date-picker>`);
+        await el.updateComplete;
+        expect(el.value).toBe('2024-06-15');
+        el.value = '2025-01-01';
+        await el.updateComplete;
+        expect(el.value).toBe('2025-01-01');
+        el.formResetCallback();
+        await el.updateComplete;
+        expect(el.value).toBe('2024-06-15');
+    });
+
+    it('formDisabledCallback sets disabled', async () => {
+        const el = await fixture<FlintDatePicker>(html`<flint-date-picker name="date"></flint-date-picker>`);
+        expect(el.disabled).toBe(false);
+        el.formDisabledCallback(true);
+        expect(el.disabled).toBe(true);
+        el.formDisabledCallback(false);
+        expect(el.disabled).toBe(false);
+    });
+
+    it('_internals is initialized', async () => {
+        const el = await fixture<FlintDatePicker>(html`<flint-date-picker name="date" value="2024-06-15"></flint-date-picker>`);
+        await el.updateComplete;
+        expect((el as unknown as { _internals: ElementInternals | null })._internals).not.toBeNull();
+    });
+});
+
 // ── Accessibility ─────────────────────────────────────────────────────────
 
 describe('flint-date-picker — accessibility', () => {

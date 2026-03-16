@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import './flint-autocomplete';
 import type { AutocompleteOption } from './flint-autocomplete';
 
@@ -111,6 +112,28 @@ export const ComboBox: Story = {
       <p style=${captionStyle}>Value must be chosen from the predefined set.</p>
     </div>
   `,
+};
+
+ComboBox.play = async ({ canvasElement }) => {
+    const autocomplete = canvasElement.querySelector('flint-autocomplete') as HTMLElement & { value: string };
+    const input = autocomplete.shadowRoot!.querySelector('input') as HTMLInputElement;
+
+    // Type to filter
+    await userEvent.click(input);
+    await userEvent.type(input, 'God');
+
+    // Dropdown should show filtered options
+    await waitFor(() => {
+        const options = autocomplete.shadowRoot!.querySelectorAll('[role="option"], .option, li');
+        expect(options.length).toBeGreaterThan(0);
+    });
+
+    // Click first option
+    const firstOption = autocomplete.shadowRoot!.querySelector('[role="option"], .option, li') as HTMLElement;
+    if (firstOption) {
+        await userEvent.click(firstOption);
+        await waitFor(() => expect(autocomplete.value).toBeTruthy());
+    }
 };
 
 export const FreeSolo: Story = {

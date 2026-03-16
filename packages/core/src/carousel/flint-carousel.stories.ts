@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import './flint-carousel';
 import '../box/flint-box';
 import '../paper/flint-paper';
@@ -237,6 +238,18 @@ export const Default: Story = {
       </div>
     `;
   },
+};
+
+Default.play = async ({ canvasElement }) => {
+    const carousel = canvasElement.querySelector('flint-carousel') as HTMLElement & { goTo(n: number): void };
+    await waitFor(() => expect(carousel).toBeTruthy());
+    const nextBtn = canvasElement.querySelector('flint-carousel-next') as HTMLElement;
+    if (nextBtn) {
+        const btn = nextBtn.shadowRoot!.querySelector('button') as HTMLButtonElement;
+        if (btn) {
+            await userEvent.click(btn);
+        }
+    }
 };
 
 /* ── WithImages ──────────────────────────────────────────────────────────── */

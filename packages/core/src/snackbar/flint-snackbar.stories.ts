@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import './flint-snackbar';
 import { FlintSnackbar } from './flint-snackbar';
 import '../button/flint-button';
@@ -137,6 +138,14 @@ export const Basic: Story = {
             </flint-snackbar>
         </div>
     `,
+};
+
+Basic.play = async ({ canvasElement }) => {
+    const btn = canvasElement.querySelector('flint-button') as HTMLElement;
+    await waitFor(() => expect(btn).toBeTruthy());
+    const sb = canvasElement.querySelector('flint-snackbar') as FlintSnackbar;
+    await userEvent.click(btn);
+    await waitFor(() => expect(sb.open).toBe(true));
 };
 
 /**

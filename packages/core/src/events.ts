@@ -14,8 +14,10 @@ import type { DateRange } from './date-range-picker/date-range-helpers.js';
 // Input / form controls
 export type FlintInputInputEvent = CustomEvent<{ value: string }>;
 export type FlintInputChangeEvent = CustomEvent<{ value: string }>;
+export type FlintInputClearEvent = CustomEvent<undefined>;
 export type FlintTextFieldInputEvent = CustomEvent<{ value: string }>;
 export type FlintTextFieldChangeEvent = CustomEvent<{ value: string }>;
+export type FlintTextFieldClearEvent = CustomEvent<undefined>;
 export type FlintTextareaInputEvent = CustomEvent<{ value: string }>;
 export type FlintTextareaChangeEvent = CustomEvent<{ value: string }>;
 export type FlintSelectChangeEvent = CustomEvent<{ value: string[] }>;
@@ -170,8 +172,10 @@ declare global {
         // Input / form controls
         'flint-input-input': FlintInputInputEvent;
         'flint-input-change': FlintInputChangeEvent;
+        'flint-input-clear': FlintInputClearEvent;
         'flint-text-field-input': FlintTextFieldInputEvent;
         'flint-text-field-change': FlintTextFieldChangeEvent;
+        'flint-text-field-clear': FlintTextFieldClearEvent;
         'flint-textarea-input': FlintTextareaInputEvent;
         'flint-textarea-change': FlintTextareaChangeEvent;
         'flint-select-change': FlintSelectChangeEvent;

@@ -4,6 +4,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { FlintElement } from '../flint-element.js';
 import { FormAssociated } from '../mixins/form-associated.js';
+import { FormControlController } from '../controllers/form-control.js';
 import uiTextareaStyles from './flint-textarea.css?inline';
 
 let _uidCounter = 0;
@@ -17,6 +18,8 @@ let _uidCounter = 0;
 export class FlintTextarea extends FormAssociated(FlintElement) {
     static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
     static styles = unsafeCSS(uiTextareaStyles);
+
+    private _formControl = new FormControlController(this);
 
     /** Current textarea value. */
     @property({ type: String }) value = '';
@@ -44,6 +47,8 @@ export class FlintTextarea extends FormAssociated(FlintElement) {
     @property({ type: Number }) maxlength: number | undefined = undefined;
     /** Minimum number of characters required. */
     @property({ type: Number }) minlength: number | undefined = undefined;
+    /** Regex pattern for validation. */
+    @property({ type: String }) pattern = '';
     /** Form field name used when submitting form data. */
     @property({ type: String }) name = '';
     /** Browser autocomplete hint. */
@@ -92,9 +97,26 @@ export class FlintTextarea extends FormAssociated(FlintElement) {
                 this._autoResize();
             }
         }
-        if (changed.has('required') || changed.has('value')) {
-            this._initFormValidity(this.required, !this.value, 'Please fill in this field.');
+        if (changed.has('required') || changed.has('value') || changed.has('pattern')
+            || changed.has('minlength') || changed.has('maxlength')) {
+            this._validateConstraints();
         }
+    }
+
+    /** Run constraint validation for required, pattern, minlength, maxlength. */
+    private _validateConstraints() {
+        if (!this._internals || typeof this._internals.setValidity !== 'function') return;
+
+        const innerTextarea = this.shadowRoot?.querySelector('textarea');
+        this._formControl.validateConstraints({
+            value: this.value,
+            required: this.required,
+            pattern: this.pattern || undefined,
+            minLength: this.minlength,
+            maxLength: this.maxlength,
+        }, innerTextarea ?? undefined);
+        this._syncCustomStates();
+        this._formControl.updateDataAttributes();
     }
 
     private _autoResize() {

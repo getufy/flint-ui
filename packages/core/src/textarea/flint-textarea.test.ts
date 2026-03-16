@@ -459,7 +459,11 @@ describe('flint-textarea', () => {
         internals['setValidity'] = spy;
         el.required = true;
         await el.updateComplete;
-        expect(spy).toHaveBeenCalledWith({ valueMissing: true }, 'Please fill in this field.');
+        expect(spy).toHaveBeenCalledWith(
+            { valueMissing: true },
+            'Please fill out this field.',
+            expect.anything(),
+        );
     });
 
     it('sets valueMissing validity when value is cleared on required field', async () => {
@@ -472,7 +476,11 @@ describe('flint-textarea', () => {
         internals['setValidity'] = spy;
         el.value = '';
         await el.updateComplete;
-        expect(spy).toHaveBeenCalledWith({ valueMissing: true }, 'Please fill in this field.');
+        expect(spy).toHaveBeenCalledWith(
+            { valueMissing: true },
+            'Please fill out this field.',
+            expect.anything(),
+        );
     });
 
     it('clears validity when required field gets a value', async () => {
@@ -740,6 +748,93 @@ describe('flint-textarea', () => {
         const el = await fixture<FlintTextarea>(html`<flint-textarea resize="horizontal"></flint-textarea>`);
         expect(el.resize).toBe('horizontal');
         expect(el.getAttribute('resize')).toBe('horizontal');
+    });
+});
+
+// ── Constraint validation ──────────────────────────────────────────────────
+
+describe('flint-textarea — constraint validation', () => {
+    it('sets patternMismatch when value does not match pattern', async () => {
+        const el = await fixture<FlintTextarea>(html`<flint-textarea pattern="[a-z]+"></flint-textarea>`);
+        /* eslint-disable @typescript-eslint/no-explicit-any */
+        if (!(el as any)._internals || typeof (el as any)._internals.setValidity !== 'function') return;
+        /* eslint-enable @typescript-eslint/no-explicit-any */
+        const ta = el.shadowRoot!.querySelector('textarea')!;
+        ta.value = '123';
+        ta.dispatchEvent(new Event('input', { bubbles: true }));
+        await el.updateComplete;
+        expect(el.validity.patternMismatch).toBe(true);
+        expect(el.validationMessage).toBe('Please match the requested format.');
+    });
+
+    it('clears patternMismatch when value matches pattern', async () => {
+        const el = await fixture<FlintTextarea>(html`<flint-textarea pattern="[a-z]+"></flint-textarea>`);
+        /* eslint-disable @typescript-eslint/no-explicit-any */
+        if (!(el as any)._internals || typeof (el as any)._internals.setValidity !== 'function') return;
+        /* eslint-enable @typescript-eslint/no-explicit-any */
+        const ta = el.shadowRoot!.querySelector('textarea')!;
+        ta.value = 'abc';
+        ta.dispatchEvent(new Event('input', { bubbles: true }));
+        await el.updateComplete;
+        expect(el.validity.valid).toBe(true);
+    });
+
+    it('sets tooShort when value is shorter than minlength', async () => {
+        const el = await fixture<FlintTextarea>(html`<flint-textarea minlength="5"></flint-textarea>`);
+        /* eslint-disable @typescript-eslint/no-explicit-any */
+        if (!(el as any)._internals || typeof (el as any)._internals.setValidity !== 'function') return;
+        /* eslint-enable @typescript-eslint/no-explicit-any */
+        const ta = el.shadowRoot!.querySelector('textarea')!;
+        ta.value = 'ab';
+        ta.dispatchEvent(new Event('input', { bubbles: true }));
+        await el.updateComplete;
+        expect(el.validity.tooShort).toBe(true);
+    });
+
+    it('sets tooLong when value exceeds maxlength', async () => {
+        const el = await fixture<FlintTextarea>(html`<flint-textarea maxlength="3"></flint-textarea>`);
+        /* eslint-disable @typescript-eslint/no-explicit-any */
+        if (!(el as any)._internals || typeof (el as any)._internals.setValidity !== 'function') return;
+        /* eslint-enable @typescript-eslint/no-explicit-any */
+        // Set value programmatically (bypassing native maxlength enforcement)
+        el.value = 'abcdef';
+        await el.updateComplete;
+        expect(el.validity.tooLong).toBe(true);
+    });
+
+    it('clears validity when constraints are satisfied', async () => {
+        const el = await fixture<FlintTextarea>(html`<flint-textarea minlength="2" maxlength="10" pattern="[a-z]+"></flint-textarea>`);
+        /* eslint-disable @typescript-eslint/no-explicit-any */
+        if (!(el as any)._internals || typeof (el as any)._internals.setValidity !== 'function') return;
+        /* eslint-enable @typescript-eslint/no-explicit-any */
+        const ta = el.shadowRoot!.querySelector('textarea')!;
+        ta.value = 'hello';
+        ta.dispatchEvent(new Event('input', { bubbles: true }));
+        await el.updateComplete;
+        expect(el.validity.valid).toBe(true);
+    });
+
+    it('checkValidity returns false when constraints fail', async () => {
+        const el = await fixture<FlintTextarea>(html`<flint-textarea required></flint-textarea>`);
+        /* eslint-disable @typescript-eslint/no-explicit-any */
+        if (!(el as any)._internals || typeof (el as any)._internals.setValidity !== 'function') return;
+        /* eslint-enable @typescript-eslint/no-explicit-any */
+        await el.updateComplete;
+        expect(el.checkValidity()).toBe(false);
+    });
+
+    it('checkValidity returns true when constraints pass', async () => {
+        const el = await fixture<FlintTextarea>(html`<flint-textarea required value="ok"></flint-textarea>`);
+        /* eslint-disable @typescript-eslint/no-explicit-any */
+        if (!(el as any)._internals || typeof (el as any)._internals.setValidity !== 'function') return;
+        /* eslint-enable @typescript-eslint/no-explicit-any */
+        await el.updateComplete;
+        expect(el.checkValidity()).toBe(true);
+    });
+
+    it('pattern property is reflected to component', async () => {
+        const el = await fixture<FlintTextarea>(html`<flint-textarea pattern="[0-9]+"></flint-textarea>`);
+        expect(el.pattern).toBe('[0-9]+');
     });
 });
 

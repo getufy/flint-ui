@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import './flint-toggle-button';
 import './flint-toggle-button-group';
 
@@ -46,6 +47,16 @@ type Story = StoryObj;
 
 /* ─── Playground ──────────────────────────────────── */
 export const Playground: Story = {};
+
+Playground.play = async ({ canvasElement }) => {
+    const toggleBtn = canvasElement.querySelector('flint-toggle-button') as HTMLElement & { selected: boolean };
+    await waitFor(() => expect(toggleBtn).toBeTruthy());
+    await waitFor(() => expect(toggleBtn.selected).toBe(false));
+    await userEvent.click(toggleBtn);
+    await waitFor(() => expect(toggleBtn.selected).toBe(true));
+    await userEvent.click(toggleBtn);
+    await waitFor(() => expect(toggleBtn.selected).toBe(false));
+};
 
 /* ─── Default (unselected) ────────────────────────── */
 export const Default: Story = {

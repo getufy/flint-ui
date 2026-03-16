@@ -3565,3 +3565,51 @@ describe('flint-time-field _commitBuf out-of-range guard', () => {
         expect(spy).not.toHaveBeenCalled();
     });
 });
+
+// ─── flint-time-picker — form association ──────────────────────────────────────
+// Note: jsdom does not support FormData with form-associated custom elements.
+// These tests verify the API surface; FormData behaviour is verified in browser tests.
+
+describe('flint-time-picker — form association', () => {
+    it('is form-associated', () => {
+        const ctor = customElements.get('flint-time-picker') as unknown as { formAssociated?: boolean };
+        expect(ctor?.formAssociated).toBe(true);
+    });
+
+    it('has name property', async () => {
+        const el = await fixture<FlintTimePicker>(html`<flint-time-picker name="start-time"></flint-time-picker>`);
+        expect(el.name).toBe('start-time');
+    });
+
+    it('has required property', async () => {
+        const el = await fixture<FlintTimePicker>(html`<flint-time-picker required></flint-time-picker>`);
+        expect(el.required).toBe(true);
+    });
+
+    it('formResetCallback resets value to defaultValue', async () => {
+        const el = await fixture<FlintTimePicker>(html`<flint-time-picker name="time" default-value="14:30:00"></flint-time-picker>`);
+        await el.updateComplete;
+        expect(el.value).toBe('14:30:00');
+        el.value = '09:00:00';
+        await el.updateComplete;
+        expect(el.value).toBe('09:00:00');
+        el.formResetCallback();
+        await el.updateComplete;
+        expect(el.value).toBe('14:30:00');
+    });
+
+    it('formDisabledCallback sets disabled', async () => {
+        const el = await fixture<FlintTimePicker>(html`<flint-time-picker name="time"></flint-time-picker>`);
+        expect(el.disabled).toBe(false);
+        el.formDisabledCallback(true);
+        expect(el.disabled).toBe(true);
+        el.formDisabledCallback(false);
+        expect(el.disabled).toBe(false);
+    });
+
+    it('_internals is initialized', async () => {
+        const el = await fixture<FlintTimePicker>(html`<flint-time-picker name="time" value="10:00:00"></flint-time-picker>`);
+        await el.updateComplete;
+        expect((el as unknown as { _internals: ElementInternals | null })._internals).not.toBeNull();
+    });
+});

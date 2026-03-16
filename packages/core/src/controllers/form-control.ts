@@ -10,6 +10,30 @@ export interface FormControlHost extends ReactiveControllerHost, HTMLElement {
     _internals: ElementInternals | null;
 }
 
+/**
+ * Options for constraint validation.
+ *
+ * Each field is optional — only the constraints you provide will be checked.
+ */
+export interface ConstraintValidationOptions {
+    /** The current string value to validate. */
+    value: string;
+    /** Whether the field is required. */
+    required?: boolean;
+    /** Regex pattern the value must match (anchored: `^pattern$`). */
+    pattern?: string;
+    /** Minimum allowed value (for number/date inputs). Compared numerically or lexicographically. */
+    min?: string;
+    /** Maximum allowed value (for number/date inputs). Compared numerically or lexicographically. */
+    max?: string;
+    /** Minimum character length. */
+    minLength?: number;
+    /** Maximum character length. */
+    maxLength?: number;
+    /** The input type (e.g. 'number', 'date'). Used for min/max comparison. */
+    type?: string;
+}
+
 export interface FormControlOptions {
     /** Events that mark the control as "interacted with" (touched). Defaults to `['blur', 'focusout']`. */
     assumeInteractionOn?: string[];
@@ -103,6 +127,95 @@ export class FormControlController implements ReactiveController {
     validateRequired(isEmpty: boolean, message = 'Please fill out this field.'): void {
         if (this.host.required && isEmpty) {
             this.setValidity({ valueMissing: true }, message);
+        } else {
+            this.setValid();
+        }
+    }
+
+    /**
+     * Run all HTML5 constraint validations: required, pattern, min, max,
+     * minlength, maxlength.
+     *
+     * Sets the first failing constraint via `setValidity()` with the
+     * correct `ValidityState` flag and a human-readable message.
+     * Clears validity if all constraints pass.
+     *
+     * @param opts - The constraint options describing the current value and active constraints.
+     * @param anchor - Optional anchor element for native popup positioning.
+     */
+    validateConstraints(opts: ConstraintValidationOptions, anchor?: HTMLElement): void {
+        const { value, required, pattern, min, max, minLength, maxLength, type } = opts;
+        const flags: ValidityStateFlags = {};
+        const messages: string[] = [];
+
+        // 1. valueMissing
+        if (required && !value) {
+            flags.valueMissing = true;
+            messages.push('Please fill out this field.');
+        }
+
+        // Only check further constraints when there is a value
+        if (value) {
+            // 2. tooShort
+            if (minLength != null && minLength > 0 && value.length < minLength) {
+                flags.tooShort = true;
+                messages.push(
+                    `Please use at least ${minLength} character${minLength === 1 ? '' : 's'} (you are currently using ${value.length}).`
+                );
+            }
+
+            // 3. tooLong
+            if (maxLength != null && maxLength >= 0 && value.length > maxLength) {
+                flags.tooLong = true;
+                messages.push(
+                    `Please use no more than ${maxLength} character${maxLength === 1 ? '' : 's'} (you are currently using ${value.length}).`
+                );
+            }
+
+            // 4. patternMismatch
+            if (pattern) {
+                try {
+                    const re = new RegExp(`^(?:${pattern})$`);
+                    if (!re.test(value)) {
+                        flags.patternMismatch = true;
+                        messages.push('Please match the requested format.');
+                    }
+                } catch {
+                    // Invalid regex — skip pattern check
+                }
+            }
+
+            // 5. rangeUnderflow / rangeOverflow (for number, date, time types)
+            if (min || max) {
+                const numericTypes = new Set(['number', 'range']);
+                const isNumeric = numericTypes.has(type ?? '');
+
+                if (min) {
+                    const underflow = isNumeric
+                        ? Number(value) < Number(min)
+                        : value < min;
+                    if (underflow) {
+                        flags.rangeUnderflow = true;
+                        messages.push(`Value must be greater than or equal to ${min}.`);
+                    }
+                }
+
+                if (max) {
+                    const overflow = isNumeric
+                        ? Number(value) > Number(max)
+                        : value > max;
+                    if (overflow) {
+                        flags.rangeOverflow = true;
+                        messages.push(`Value must be less than or equal to ${max}.`);
+                    }
+                }
+            }
+        }
+
+        // Apply the first error or clear validity
+        const hasError = Object.keys(flags).length > 0;
+        if (hasError) {
+            this.setValidity(flags, messages[0], anchor);
         } else {
             this.setValid();
         }
