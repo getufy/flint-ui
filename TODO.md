@@ -69,16 +69,16 @@
 - [x] React property mappings for FlintGrid/FlintContainer — investigated; `@lit/react` v1 already detects properties via `propName in elementClass.prototype`; no code change needed
 
 ### Breaking Change Communication (v0.5.0)
-- [ ] Write migration guide for v0.4.0 → v0.5.0 (accordion rename, tabs `flint-tab-list` wrapper, `label` → slotted content)
-- [ ] Document FlintAccordion rename: `flint-accordion-item`/`trigger`/`content` → removed/`summary`/`details`
-- [ ] Document FlintTabs `flint-tab-list` wrapper requirement + `label` attribute removal
+- [x] Write migration guide for v0.4.0 → v0.5.0 — `docs/migration/v0.4-to-v0.5.md` covering accordion rename, tab-list wrapper, label removal, dialog a11y, select hoist, FlintElement.define()
+- [x] Document FlintAccordion rename — `docs/migration/accordion-rename.md` with tag/class/event mapping, before/after examples, search-and-replace patterns
+- [x] Document FlintTabs `flint-tab-list` wrapper requirement + `label` attribute removal — `docs/migration/tabs-tab-list.md` with structural changes, property relocation, before/after examples
 
 ---
 
 ## Remaining Work (v0.3 → v0.4 carryover)
 
 ### Breaking Change Communication
-- [ ] Write migration guide for v0.3.0 → v0.4.0 (event renames, two-file split, FlintElement base class)
+- [x] Write migration guide for v0.3.0 → v0.4.0 — `docs/migration/v0.3-to-v0.4.md` covering event renames, two-file split, FlintElement base class, sideEffects removal
 - [x] Update CHANGELOG with all breaking changes — v0.3.0–v0.6.0 added to CHANGELOG.md
 - [ ] Add changeset for the event rename breaking changes
 
