@@ -143,6 +143,42 @@
 
 ---
 
+## v0.6.0 DX Report
+
+### Completed
+
+#### High Priority
+- [x] #18 FlintChip children don't render — Added default `<slot>` inside `.label` span; `<FlintChip>Hello</FlintChip>` works naturally alongside the `label` prop
+
+#### Medium Priority
+- [x] #1/#20 Inconsistent CustomEvent typing — Added `detail:` annotations to `@fires` JSDoc on 8 components (checkbox, input, slider, tabs, carousel, toggle-button-group, radio-group, radio); rebuilt CEM; regenerated React wrappers with typed `CustomEvent<Detail>` generics
+- [x] #2 FlintInput controlled value pattern — Mitigated by #1 fix; `e.detail.value` is now typed (developers no longer need `e.target` casting)
+- [x] #10 Peer dependency version mismatch — Fixed README `@getufy/flint-ui ^0.2.2` → `^0.6.0`
+- [x] #13 README incorrect FlintButton variant — Fixed `variant="filled"` → `variant="primary"`
+- [x] #14 Core package missing `sideEffects` — Added granular `sideEffects` array to `packages/core/package.json` (CSS and suppress-warnings only); enables tree-shaking from barrel import
+- [x] #19 Dark theme activation undocumented — Added "Dark mode" section to React README: import, activation (`class`/`data-theme`), `prefers-color-scheme` auto-detection
+- [x] #22 No `prefers-color-scheme` auto-detection documented — Covered in #19 dark mode section
+
+### Won't Fix / By Design (v0.6.0)
+- #3 No unified `onFlintChange` across form components — By design; component-specific event names prevent ambiguity and match web component conventions
+- #11 Undocumented subpath exports — `form-field` and `flint-range-slider` ARE listed in the README subpath table
+
+### Low Priority / Nice to Have (v0.6.0)
+- [ ] #4 FlintAlert severity default — Add `@default 'info'` to JSDoc for `severity` prop (and audit other props for missing defaults)
+- [ ] #5 FlintDivider vertical orientation — Document or add `orientation="vertical"` prop
+- [ ] #6 FlintStack spacing unit — Add JSDoc: `/** Spacing between children. Unit: 8px multiplier. */`
+- [ ] #7 suppress-warnings re-export from React package
+- [ ] #8 README copy-paste recipes (form, card layout, dialog)
+- [ ] #9 CSS custom properties list / THEMING.md
+- [ ] #12 Document `custom-elements.json` manifest in README
+- [ ] #15 Runtime theme switching utility (`setFlintTheme()`)
+- [ ] #16 CHANGELOG / migration guide shipped with package
+- [ ] #17 SSR / Next.js documentation (App Router `'use client'` directives)
+- [ ] #21 FlintAppBar `startContent`/`endContent` named slots
+- [ ] #23 FlintCard `cursor: pointer` on clickable cards
+
+---
+
 ## Improvements — Strategic
 
 ### Custom Elements Manifest (CEM)

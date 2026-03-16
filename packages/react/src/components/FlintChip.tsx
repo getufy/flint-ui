@@ -13,6 +13,7 @@ export interface FlintChipDeleteDetail {
 /**
  * Chip: a compact element representing an input, attribute, or action.
  *
+ * @slot (default) - Text content for the chip (alternative to the `label` prop).
  * @slot avatar - Avatar element shown at start.
  * @slot icon - Icon shown at start when no avatar.
  */

@@ -6,6 +6,10 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintRadioGroup as FlintRadioGroupElement } from '@getufy/flint-ui/radio/flint-radio';
 import { FlintRadioGroupEvents } from '../events/flint-radio-group.js';
 
+export interface FlintRadioGroupChangeDetail {
+    value: string;
+}
+
 /**
  * Radio Group: manages a set of radio buttons with single selection.
  */
@@ -26,8 +30,8 @@ export interface FlintRadioGroupProps extends Omit<React.HTMLAttributes<FlintRad
     orientation?: FlintRadioGroupElement['orientation'];
     /** Size of the radio buttons. */
     size?: FlintRadioGroupElement['size'];
-    /** Fired when the selected radio value changes. */
-    onFlintRadioGroupChange?: (event: CustomEvent) => void;
+    /** Fired when the selected radio value changes. detail: `{ value: string }` */
+    onFlintRadioGroupChange?: (event: CustomEvent<FlintRadioGroupChangeDetail>) => void;
 }
 
 export const FlintRadioGroup = createComponent({
@@ -35,6 +39,6 @@ export const FlintRadioGroup = createComponent({
     elementClass: FlintRadioGroupElement,
     react: React,
     events: {
-        onFlintRadioGroupChange: FlintRadioGroupEvents.CHANGE as EventName<CustomEvent>,
+        onFlintRadioGroupChange: FlintRadioGroupEvents.CHANGE as EventName<CustomEvent<FlintRadioGroupChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintRadioGroupProps & React.RefAttributes<FlintRadioGroupElement>>;

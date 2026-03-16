@@ -3,6 +3,6 @@
 export { FlintTab, type FlintTabProps } from './components/FlintTab.js';
 export { FlintTabPanel, type FlintTabPanelProps } from './components/FlintTabPanel.js';
 export { FlintTabList, type FlintTabListProps } from './components/FlintTabList.js';
-export { FlintTabs, type FlintTabsProps } from './components/FlintTabs.js';
+export { FlintTabs, type FlintTabsProps, type FlintTabChangeDetail } from './components/FlintTabs.js';
 export { FlintTabEvents } from './events/flint-tab.js';
 export { FlintTabsEvents } from './events/flint-tabs.js';

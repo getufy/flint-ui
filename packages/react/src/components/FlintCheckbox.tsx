@@ -6,6 +6,12 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintCheckbox as FlintCheckboxElement } from '@getufy/flint-ui/checkbox/flint-checkbox';
 import { FlintCheckboxEvents } from '../events/flint-checkbox.js';
 
+export interface FlintCheckboxChangeDetail {
+    checked: boolean;
+    value: string;
+    indeterminate: boolean;
+}
+
 /**
  * Checkbox: a form control for boolean selection.
  */
@@ -30,8 +36,8 @@ export interface FlintCheckboxProps extends Omit<React.HTMLAttributes<FlintCheck
     defaultChecked?: boolean;
     /** Accessible label for screen readers when no visible label is provided. */
     ariaLabel?: string | null;
-    /** Fired when the checked state changes. */
-    onFlintCheckboxChange?: (event: CustomEvent) => void;
+    /** Fired when the checked state changes. detail: `{ checked: boolean; value: string; indeterminate: boolean }` */
+    onFlintCheckboxChange?: (event: CustomEvent<FlintCheckboxChangeDetail>) => void;
 }
 
 export const FlintCheckbox = createComponent({
@@ -39,6 +45,6 @@ export const FlintCheckbox = createComponent({
     elementClass: FlintCheckboxElement,
     react: React,
     events: {
-        onFlintCheckboxChange: FlintCheckboxEvents.CHANGE as EventName<CustomEvent>,
+        onFlintCheckboxChange: FlintCheckboxEvents.CHANGE as EventName<CustomEvent<FlintCheckboxChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintCheckboxProps & React.RefAttributes<FlintCheckboxElement>>;

@@ -11,8 +11,8 @@ let idCounter = 0;
 /**
  * Input: a styled text input with label, help text, and error states.
  *
- * @fires flint-input-input - Fired on each keystroke as the value changes.
- * @fires flint-input-change - Fired when the input loses focus after the value has changed.
+ * @fires flint-input-input - Fired on each keystroke as the value changes. detail: `{ value: string }`
+ * @fires flint-input-change - Fired when the input loses focus after the value has changed. detail: `{ value: string }`
  */
 export class FlintInput extends FormAssociated(FlintElement) {
     static styles = unsafeCSS(uiInputStyles);

@@ -285,7 +285,7 @@ export class FlintTabList extends FlintElement {
 /**
  * Tabs: container that coordinates tab selection and panel visibility.
  *
- * @fires flint-tab-change - Fired when the active tab changes.
+ * @fires flint-tab-change - Fired when the active tab changes. detail: `{ value: string }`
  */
 export class FlintTabs extends FlintElement {
     static styles = unsafeCSS(uiTabsStyles);

@@ -9,7 +9,7 @@ import uiCheckboxStyles from './flint-checkbox.css?inline';
 /**
  * Checkbox: a form control for boolean selection.
  *
- * @fires flint-checkbox-change - Fired when the checked state changes.
+ * @fires flint-checkbox-change - Fired when the checked state changes. detail: `{ checked: boolean; value: string; indeterminate: boolean }`
  */
 export class FlintCheckbox extends FormAssociated(FlintElement) {
     static styles = unsafeCSS(uiCheckboxStyles);

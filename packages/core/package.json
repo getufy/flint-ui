@@ -17,6 +17,12 @@
   "engines": {
     "node": ">=18.0.0"
   },
+  "sideEffects": [
+    "**/*.css",
+    "./dist/suppress-warnings.js",
+    "./dist/index.js",
+    "./dist/*/flint-*.js"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

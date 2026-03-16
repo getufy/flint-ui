@@ -13,7 +13,7 @@ export type RadioOrientation = 'horizontal' | 'vertical';
 /**
  * Radio Group: manages a set of radio buttons with single selection.
  *
- * @fires flint-radio-group-change - Fired when the selected radio value changes.
+ * @fires flint-radio-group-change - Fired when the selected radio value changes. detail: `{ value: string }`
  */
 export class FlintRadioGroup extends FormAssociated(FlintElement) {
     static styles = unsafeCSS(uiRadioGroupStyles);
@@ -165,7 +165,7 @@ export class FlintRadioGroup extends FormAssociated(FlintElement) {
 /**
  * Radio: a single radio button within a radio group.
  *
- * @fires flint-radio-select - Fired when this radio is selected.
+ * @fires flint-radio-select - Fired when this radio is selected. detail: `{ value: string }`
  */
 export class FlintRadio extends FlintElement {
     static styles = unsafeCSS(uiRadioStyles);

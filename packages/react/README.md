@@ -11,7 +11,7 @@ React wrappers for [`@getufy/flint-ui`](https://www.npmjs.com/package/@getufy/fl
 npm install @getufy/flint-ui @getufy/flint-ui-react
 ```
 
-Peer dependencies: `react ^18 || ^19`, `@getufy/flint-ui ^0.2.2`
+Peer dependencies: `react ^18 || ^19`, `@getufy/flint-ui ^0.6.0`
 
 ## Setup
 
@@ -140,7 +140,7 @@ import { FlintButton } from '@getufy/flint-ui-react/button';
 
 export function MyComponent() {
   return (
-    <FlintButton variant="filled" onFlintClick={() => console.log('clicked')}>
+    <FlintButton variant="primary" onFlintClick={() => console.log('clicked')}>
       Click me
     </FlintButton>
   );
@@ -164,6 +164,27 @@ Custom events map to camelCase `on*` props:
   onFlintChange={(e) => console.log(e.detail.value)}
 />
 ```
+
+## Dark mode
+
+Import the dark theme CSS alongside the base theme:
+
+```ts
+import '@getufy/flint-ui/theme.css';
+import '@getufy/flint-ui/theme-dark.css';
+```
+
+Activate dark mode by adding `class="flint-theme-dark"` or `data-theme="dark"` to your `<html>` or `<body>` element:
+
+```tsx
+// Toggle dark mode
+document.documentElement.classList.toggle('flint-theme-dark');
+
+// Or use the data-theme attribute
+document.documentElement.setAttribute('data-theme', 'dark');
+```
+
+The dark theme CSS also includes a `@media (prefers-color-scheme: dark)` block, so it automatically applies when the user's OS is set to dark mode. To opt out of automatic detection, add `class="flint-theme-light"` to force light mode.
 
 ## Suppressing the Lit dev mode warning
 

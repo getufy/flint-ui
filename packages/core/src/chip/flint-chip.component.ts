@@ -8,6 +8,7 @@ import uiChipStyles from './flint-chip.css?inline';
 /**
  * Chip: a compact element representing an input, attribute, or action.
  *
+ * @slot - Text content for the chip (alternative to the `label` prop).
  * @slot avatar - Avatar element shown at start.
  * @slot icon - Icon shown at start when no avatar.
  *
@@ -101,7 +102,7 @@ export class FlintChip extends FlintElement {
       >
         <slot name="avatar"></slot>
         <slot name="icon"></slot>
-        <span class="label">${this.label}</span>
+        <span class="label">${this.label || html`<slot></slot>`}</span>
         ${this.deletable ? html`
           <span
             class="delete-icon"

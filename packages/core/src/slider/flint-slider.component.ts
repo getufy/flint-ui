@@ -11,7 +11,7 @@ type Size = 'sm' | 'md' | 'lg';
 /**
  * Slider: a range input for selecting a numeric value.
  *
- * @fires flint-slider-change - Fired when the slider value changes.
+ * @fires flint-slider-change - Fired when the slider value changes. detail: `{ value: number }`
  */
 export class FlintSlider extends FormAssociated(FlintElement) {
   static styles = unsafeCSS(uiSliderStyles);

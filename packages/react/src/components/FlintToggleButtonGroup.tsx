@@ -6,6 +6,10 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintToggleButtonGroup as FlintToggleButtonGroupElement } from '@getufy/flint-ui/button/flint-toggle-button-group';
 import { FlintToggleButtonGroupEvents } from '../events/flint-toggle-button-group.js';
 
+export interface FlintToggleButtonGroupChangeDetail {
+    value: string | string[];
+}
+
 /**
  * Toggle Button Group: manages exclusive or multi-select toggle buttons.
  */
@@ -17,8 +21,8 @@ export interface FlintToggleButtonGroupProps extends Omit<React.HTMLAttributes<F
     defaultValue?: string | string[];
     /** Whether only one button can be selected at a time. */
     exclusive?: boolean;
-    /** Fired when the group's selected value(s) change. */
-    onFlintToggleButtonGroupChange?: (event: CustomEvent) => void;
+    /** Fired when the group's selected value(s) change. detail: `{ value: string | string[] }` */
+    onFlintToggleButtonGroupChange?: (event: CustomEvent<FlintToggleButtonGroupChangeDetail>) => void;
 }
 
 export const FlintToggleButtonGroup = createComponent({
@@ -26,6 +30,6 @@ export const FlintToggleButtonGroup = createComponent({
     elementClass: FlintToggleButtonGroupElement,
     react: React,
     events: {
-        onFlintToggleButtonGroupChange: FlintToggleButtonGroupEvents.CHANGE as EventName<CustomEvent>,
+        onFlintToggleButtonGroupChange: FlintToggleButtonGroupEvents.CHANGE as EventName<CustomEvent<FlintToggleButtonGroupChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintToggleButtonGroupProps & React.RefAttributes<FlintToggleButtonGroupElement>>;

@@ -6,6 +6,10 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintSlider as FlintSliderElement } from '@getufy/flint-ui/slider/flint-slider';
 import { FlintSliderEvents } from '../events/flint-slider.js';
 
+export interface FlintSliderChangeDetail {
+    value: number;
+}
+
 /**
  * Slider: a range input for selecting a numeric value.
  */
@@ -34,8 +38,8 @@ export interface FlintSliderProps extends Omit<React.HTMLAttributes<FlintSliderE
     name?: string;
     /** Optional formatter: `(value: number) => string`. JS-only prop (not an attribute). */
     formatValue?: FlintSliderElement['formatValue'];
-    /** Fired when the slider value changes. */
-    onFlintSliderChange?: (event: CustomEvent) => void;
+    /** Fired when the slider value changes. detail: `{ value: number }` */
+    onFlintSliderChange?: (event: CustomEvent<FlintSliderChangeDetail>) => void;
 }
 
 export const FlintSlider = createComponent({
@@ -43,6 +47,6 @@ export const FlintSlider = createComponent({
     elementClass: FlintSliderElement,
     react: React,
     events: {
-        onFlintSliderChange: FlintSliderEvents.CHANGE as EventName<CustomEvent>,
+        onFlintSliderChange: FlintSliderEvents.CHANGE as EventName<CustomEvent<FlintSliderChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintSliderProps & React.RefAttributes<FlintSliderElement>>;

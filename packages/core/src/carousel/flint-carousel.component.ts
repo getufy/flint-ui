@@ -194,7 +194,7 @@ export class FlintCarouselNext extends FlintElement {
  *
  * @slot - Carousel content: flint-carousel-content, flint-carousel-previous, flint-carousel-next.
  *
- * @fires flint-carousel-change - Fired when the active slide changes.
+ * @fires flint-carousel-change - Fired when the active slide changes. detail: `{ index: number; total: number }`
  */
 export class FlintCarousel extends FlintElement {
   static styles = unsafeCSS(uiCarouselStyles);

@@ -7,7 +7,7 @@ import uiToggleButtonGroupStyles from './flint-toggle-button-group.css?inline';
 /**
  * Toggle Button Group: manages exclusive or multi-select toggle buttons.
  *
- * @fires flint-toggle-button-group-change - Fired when the group's selected value(s) change.
+ * @fires flint-toggle-button-group-change - Fired when the group's selected value(s) change. detail: `{ value: string | string[] }`
  */
 export class FlintToggleButtonGroup extends FlintElement {
     static styles = unsafeCSS(uiToggleButtonGroupStyles);

@@ -6,6 +6,11 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintCarousel as FlintCarouselElement } from '@getufy/flint-ui/carousel/flint-carousel';
 import { FlintCarouselEvents } from '../events/flint-carousel.js';
 
+export interface FlintCarouselChangeDetail {
+    index: number;
+    total: number;
+}
+
 /**
  * Carousel: a slideshow component for cycling through content.
  *
@@ -22,8 +27,8 @@ export interface FlintCarouselProps extends React.HTMLAttributes<FlintCarouselEl
     itemsPerView?: number;
     /** Accessible label for the carousel region. */
     label?: string;
-    /** Fired when the active slide changes. */
-    onFlintCarouselChange?: (event: CustomEvent) => void;
+    /** Fired when the active slide changes. detail: `{ index: number; total: number }` */
+    onFlintCarouselChange?: (event: CustomEvent<FlintCarouselChangeDetail>) => void;
 }
 
 export const FlintCarousel = createComponent({
@@ -31,6 +36,6 @@ export const FlintCarousel = createComponent({
     elementClass: FlintCarouselElement,
     react: React,
     events: {
-        onFlintCarouselChange: FlintCarouselEvents.CHANGE as EventName<CustomEvent>,
+        onFlintCarouselChange: FlintCarouselEvents.CHANGE as EventName<CustomEvent<FlintCarouselChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintCarouselProps & React.RefAttributes<FlintCarouselElement>>;
