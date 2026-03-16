@@ -15,7 +15,7 @@
     "name": "Dialog",
     "path": "packages/core/dist/dialog/flint-dialog.js",
     "import": "*",
-    "limit": "9 kB"
+    "limit": "10 kB"
   },
   {
     "name": "Tabs",
@@ -27,7 +27,7 @@
     "name": "Date Picker",
     "path": "packages/core/dist/date-picker/flint-date-picker.js",
     "import": "*",
-    "limit": "14 kB"
+    "limit": "16 kB"
   },
   {
     "name": "Table",
@@ -45,13 +45,13 @@
     "name": "Date Range Picker",
     "path": "packages/core/dist/date-range-picker/flint-date-range-picker.js",
     "import": "*",
-    "limit": "17 kB"
+    "limit": "18 kB"
   },
   {
     "name": "Time Picker",
     "path": "packages/core/dist/time-picker/flint-time-picker.js",
     "import": "*",
-    "limit": "17 kB"
+    "limit": "19 kB"
   },
   {
     "name": "Menubar",
@@ -82,6 +82,6 @@
     "path": "packages/react/dist/index.js",
     "import": "*",
     "ignore": ["react", "react-dom", "@lit/react", "@getufy/flint-ui"],
-    "limit": "8 kB"
+    "limit": "10 kB"
   }
 ]

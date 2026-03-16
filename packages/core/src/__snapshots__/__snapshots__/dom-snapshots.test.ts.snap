@@ -417,4 +417,4 @@ exports[`DOM snapshots > flint-tooltip — default 1`] = `
     <style></style>"
 `;
 
-exports[`DOM snapshots > flint-typography — default 1`] = `"<!----><p class="typography body1"><slot></slot></p><style></style>"`;
+exports[`DOM snapshots > flint-typography — default 1`] = `"<!----><p part="base" class="typography body1"><slot></slot></p><style></style>"`;
