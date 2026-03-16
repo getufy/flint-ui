@@ -219,6 +219,7 @@ export class FlintCombobox extends FormAssociated(FlintElement) {
           aria-expanded=${dropdownOpen ? 'true' : 'false'}
           aria-autocomplete="list"
           aria-haspopup="listbox"
+          aria-controls="combobox-listbox"
           aria-activedescendant=${this._activeIndex >= 0 ? `combobox-opt-${this._activeIndex}` : ''}
           .value=${this._inputValue}
           placeholder=${this.placeholder}
@@ -228,8 +229,10 @@ export class FlintCombobox extends FormAssociated(FlintElement) {
           @keydown=${this._handleKeyDown}
         />
         <div
+          id="combobox-listbox"
           role="listbox"
           part="listbox"
+          aria-label="Suggestions"
           class=${classMap({ listbox: true, open: dropdownOpen })}
         >
           ${this._filteredOptions.length > 0

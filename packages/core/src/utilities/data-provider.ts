@@ -111,6 +111,7 @@ export class DataProvider<T> implements ReactiveController {
         this._host.requestUpdate();
 
         this._abortController = new AbortController();
+        const signal = this._abortController.signal;
 
         try {
             const result = await this._fetchFn({
@@ -121,13 +122,13 @@ export class DataProvider<T> implements ReactiveController {
                 query: params?.query,
             });
 
-            // Check if aborted while waiting
-            if (this._abortController?.signal.aborted) return;
+            // Check if aborted while waiting (use local ref since abort() nulls the controller)
+            if (signal.aborted) return;
 
             this.items = result.items;
             this.totalCount = result.totalCount ?? -1;
         } catch (err) {
-            if (this._abortController?.signal.aborted) return;
+            if (signal.aborted) return;
             this.error = err instanceof Error ? err : new Error(String(err));
             this.items = [];
         } finally {

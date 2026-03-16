@@ -412,47 +412,47 @@
 
 ---
 
-### P3 — Backlog
+### P3 — Backlog ✅ ALL DONE
 
 #### Quick Fixes
-- [ ] Cache compiled RegExp in InputOTP (`new RegExp()` on every keystroke) [§16.4]
-- [ ] Guard `focus()` with `disabled` check on Radio and other components [§16.3]
-- [ ] Fix `sideEffects: "**/*.css"` — overly broad, should specify exact files [§28.2]
-- [ ] Granular `updated()` guards in Tabs (don't sync all children for color change) [§18.4]
-- [ ] Source maps for production (`sourcemap: 'hidden'`) [§28.1]
-- [ ] Fix PR template — still references Changesets [§32.5]
+- [x] Cache compiled RegExp in InputOTP (`new RegExp()` on every keystroke) [§16.4] — `_cachedPattern` / `_cachedRegExp` fields with `_getPatternRegExp()` method; RegExp only recompiled when pattern string changes
+- [x] Guard `focus()` with `disabled` check on Radio and other components [§16.3] — `FlintRadio.focus()` returns early when `this.disabled`
+- [x] Fix `sideEffects: "**/*.css"` — overly broad, should specify exact files [§28.2] — `package.json` now lists exact CSS theme files + dist entry patterns
+- [x] Granular `updated()` guards in Tabs (don't sync all children for color change) [§18.4] — `FlintTabs.updated()` separates `layoutKeys` → `_syncAll()` from `colorKeys` → `_syncColors()`
+- [x] Source maps for production (`sourcemap: 'hidden'`) [§28.1] — `vite.config.ts` build.sourcemap set to `'hidden'`
+- [x] Fix PR template — still references Changesets [§32.5] — `.github/PULL_REQUEST_TEMPLATE.md` updated to reference release-please and Conventional Commits
 
 #### New Components
-- [ ] `flint-button-group` — toolbar/action bar pattern
-- [ ] Combobox — free-text input with suggestions (different from Select)
-- [ ] Dialog size variants (small, medium, large, full)
+- [x] `flint-button-group` — `src/button/flint-button-group.component.ts` with tests, stories, and CSS
+- [x] Combobox — `src/combobox/flint-combobox.component.ts`: free-text input with dropdown suggestions, form-associated, keyboard nav, ARIA combobox pattern. Tests and stories added.
+- [x] Dialog size variants (small, medium, large, full) — `DialogSize = 'sm' | 'md' | 'lg' | 'full'` prop on FlintDialog with CSS-driven sizing
 
 #### Features
-- [ ] Select option grouping (`<optgroup>` equivalent)
-- [ ] Select async data loading (server-fetched options)
-- [ ] Dialog scrollable content handling
-- [ ] Carousel touch/swipe support
-- [ ] `@watch()` decorator on FlintElement
-- [ ] `<flint-animation>` declarative component with presets
+- [x] Select option grouping (`<optgroup>` equivalent) — `SelectOption.group` field + `_renderGrouped()` renders options under group headers with `role="group"`
+- [x] Select async data loading (server-fetched options) — `loadOptions` callback prop triggers on dropdown open, shows spinner while loading
+- [x] Dialog scrollable content handling — FlintDialog observes scroll position on FlintDialogContent, exposes `_hasScrollTop` / `_hasScrollBottom` for scroll shadow indicators
+- [x] Carousel touch/swipe support — `touch` prop (default: true) with touchstart/touchmove/touchend handlers, 50px threshold, orientation-aware
+- [x] `@watch()` decorator on FlintElement — `src/decorators/watch.ts`: calls method on property change with `(oldValue, newValue)`, `waitUntilFirstUpdate` option
+- [x] `<flint-animation>` declarative component with presets — `src/animation/flint-animation.component.ts`: 12 presets (fade-in/out, slide-*, scale-*, bounce, shake, pulse, spin), custom keyframes, play/cancel/restart API, finish/cancel events
 
 #### Advanced (Industry Patterns)
-- [ ] Centralized overlay manager (Spectrum/Lion pattern) [§38.1]
-- [ ] Scale dimension theming (medium/large global switch) [§38.1]
-- [ ] Contextual layer tokens (`<flint-layer>` for card-in-card) [§38.1]
-- [ ] Multi-level form validation (error/warning/info) [§38.1]
-- [ ] Data provider abstraction for lazy loading [§38.1]
-- [ ] Virtual scrolling primitive [§38.1]
-- [ ] Nested theme scoping (`<flint-theme>`) [§38.1]
-- [ ] `forced-colors` media query support (Windows High Contrast) [§37.5]
-- [ ] `:focus-visible` styles on all interactive components [§37.2]
-- [ ] CSS `clamp()` for fluid typography [§35.3]
-- [ ] `@container` queries for intrinsic layouts [§35.3]
-- [ ] Generic value types on Select/Autocomplete (`Select<T>`) [§26.5]
+- [x] Centralized overlay manager (Spectrum/Lion pattern) [§38.1] — `src/utilities/overlay-manager.ts`: singleton stack, auto z-index assignment (base 1040, +10 per layer), add/remove/isTopmost/getBackdropZIndex APIs
+- [x] Scale dimension theming (medium/large global switch) [§38.1] — `theme.css` `[data-flint-scale="large"]` (1.5× spacing/font), `[data-flint-scale="compact"]` (0.5–0.83× reduction)
+- [x] Contextual layer tokens (`<flint-layer>` for card-in-card) [§38.1] — `src/layer/flint-layer.component.ts`: `display: contents`, auto-increments `--flint-surface-color` through surface-1/2/3 layers
+- [x] Multi-level form validation (error/warning/info) [§38.1] — `FormControlController.setValidationLevel(level, message)`: error blocks submission (setValidity), warning/info are advisory; custom state pseudo-classes `:state(validation-warning)` etc.
+- [x] Data provider abstraction for lazy loading [§38.1] — `src/utilities/data-provider.ts`: `DataProvider<T>` reactive controller with pagination, abort, reload, hasMore/totalPages computed properties
+- [x] Virtual scrolling primitive [§38.1] — `src/virtual-scroll/flint-virtual-scroll.component.ts` + Select has built-in `virtualize` mode with overscan and windowed rendering
+- [x] Nested theme scoping (`<flint-theme>`) [§38.1] — `src/theme/flint-theme.component.ts`: `mode` (light/dark/auto), `palette` (rose/teal/violet/amber/emerald/slate) via `:host()` attribute selectors
+- [x] `forced-colors` media query support (Windows High Contrast) [§37.5] — Added to `theme.css`
+- [x] `:focus-visible` styles on all interactive components [§37.2] — Applied across 10+ interactive component CSS files
+- [x] CSS `clamp()` for fluid typography [§35.3] — Used in `theme.css` for responsive font sizing
+- [x] `@container` queries for intrinsic layouts [§35.3] — Used in `flint-card.css` and `flint-grid.css`
+- [x] Generic value types on Select/Autocomplete (`Select<T>`) [§26.5] — `SelectOption<T = string>` interface with generic value type
 
 #### Testing
-- [ ] Cross-browser CI (Safari/WebKit, Firefox) [§12]
-- [ ] RTL test suite [§9]
-- [ ] Responsive Storybook stories (viewport decorator) [§27.4]
-- [ ] Performance benchmarks in CI [§12]
-- [ ] Code coverage reporting (Codecov) [§32.4]
-- [ ] Add Prettier config
+- [x] Cross-browser CI (Safari/WebKit, Firefox) [§12] — `ci.yml` browser-test job with matrix: `[chromium, firefox, webkit]` via Playwright
+- [x] RTL test suite [§9] — `src/rtl/rtl.test.ts` with 32+ tests covering Drawer, Breadcrumbs, Pagination, Tabs, Button, Input, Grid, Stack, Accordion
+- [x] Responsive Storybook stories (viewport decorator) [§27.4] — 8 layout-critical components (app-bar, bottom-navigation, card, container, dialog, drawer, grid, stack) have viewport parameters
+- [x] Performance benchmarks in CI [§12] — `benchmarks.yml` workflow + `vitest bench` configuration
+- [x] Code coverage reporting (Codecov) [§32.4] — Codecov integration in CI with lcov upload
+- [x] Add Prettier config — `.prettierrc` + `.prettierignore` configured
