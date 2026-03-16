@@ -18,9 +18,15 @@ export class FlintBadge extends FlintElement {
     @property({ type: Boolean }) dot = false;
     /** Whether the badge is hidden. */
     @property({ type: Boolean }) invisible = false;
-    /** Color variant of the badge. */
+    /**
+     * Color variant of the badge.
+     * @default 'primary'
+     */
     @property({ type: String }) variant: 'primary' | 'secondary' | 'error' | 'success' | 'warning' = 'primary';
-    /** Maximum numeric value before displaying "max+". */
+    /**
+     * Maximum numeric value before displaying "max+".
+     * @default 99
+     */
     @property({ type: Number }) max = 99;
 
     private get _displayContent() {

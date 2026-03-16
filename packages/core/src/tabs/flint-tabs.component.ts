@@ -61,7 +61,10 @@ export class FlintTab extends FlintElement {
     @property({ type: Boolean, reflect: true }) disabled = false;
     /** Whether the tab is currently selected. */
     @property({ type: Boolean, reflect: true }) selected = false;
-    /** Position of the icon slot relative to the label. */
+    /**
+     * Position of the icon slot relative to the label.
+     * @default 'start'
+     */
     @property({ attribute: 'icon-position', reflect: true })
     iconPosition: 'top' | 'bottom' | 'start' | 'end' = 'start';
     /** URL to navigate to, renders the tab as a link. */
@@ -127,13 +130,22 @@ export class FlintTabPanel extends FlintElement {
 export class FlintTabList extends FlintElement {
     static styles = unsafeCSS(uiTabListStyles);
 
-    /** Layout direction of the tab list. */
+    /**
+     * Layout direction of the tab list.
+     * @default 'horizontal'
+     */
     @property({ reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
-    /** Display variant controlling tab sizing and scrollability. */
+    /**
+     * Display variant controlling tab sizing and scrollability.
+     * @default 'standard'
+     */
     @property({ reflect: true }) variant: 'standard' | 'fullWidth' | 'scrollable' = 'standard';
     /** Whether to center the tabs within the tab list. */
     @property({ type: Boolean, reflect: true }) centered = false;
-    /** Whether to show scroll buttons in scrollable mode. */
+    /**
+     * Whether to show scroll buttons in scrollable mode.
+     * @default 'auto'
+     */
     @property({ attribute: 'scroll-buttons' }) scrollButtons: 'auto' | 'false' = 'auto';
     /** Accessible label for the tab list. */
     @property({ attribute: 'aria-label' }) override ariaLabel = '';
@@ -292,17 +304,32 @@ export class FlintTabs extends FlintElement {
 
     /** The currently active tab value. */
     @property({ reflect: true }) value = '';
-    /** Layout direction of the tabs. */
+    /**
+     * Layout direction of the tabs.
+     * @default 'horizontal'
+     */
     @property({ reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
-    /** Display variant controlling tab sizing and scrollability. */
+    /**
+     * Display variant controlling tab sizing and scrollability.
+     * @default 'standard'
+     */
     @property() variant: 'standard' | 'fullWidth' | 'scrollable' = 'standard';
     /** Whether to center the tabs. */
     @property({ type: Boolean }) centered = false;
-    /** Whether to show scroll buttons in scrollable mode. */
+    /**
+     * Whether to show scroll buttons in scrollable mode.
+     * @default 'auto'
+     */
     @property({ attribute: 'scroll-buttons' }) scrollButtons: 'auto' | 'false' = 'auto';
-    /** 'primary' | 'secondary' | 'inherit' | any CSS color */
+    /**
+     * Text color: 'primary' | 'secondary' | 'inherit' | any CSS color.
+     * @default 'primary'
+     */
     @property({ attribute: 'text-color' }) textColor = 'primary';
-    /** 'primary' | 'secondary' | any CSS color */
+    /**
+     * Indicator color: 'primary' | 'secondary' | any CSS color.
+     * @default 'primary'
+     */
     @property({ attribute: 'indicator-color' }) indicatorColor = 'primary';
     /** Uncontrolled mode: initial value if `value` not set */
     @property({ attribute: 'default-value' }) defaultValue = '';

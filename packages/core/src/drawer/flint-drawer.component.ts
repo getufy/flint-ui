@@ -24,9 +24,15 @@ export class FlintDrawer extends FlintElement {
      * Has no effect after the element has connected to the DOM.
      */
     @property({ type: Boolean, attribute: 'default-open' }) defaultOpen = false;
-    /** Side from which the drawer slides in. */
+    /**
+     * Side from which the drawer slides in.
+     * @default 'left'
+     */
     @property({ type: String, reflect: true }) anchor: 'left' | 'right' | 'top' | 'bottom' = 'left';
-    /** Drawer behavior mode. */
+    /**
+     * Drawer behavior mode.
+     * @default 'temporary'
+     */
     @property({ type: String, reflect: true }) variant: 'temporary' | 'persistent' | 'mini' = 'temporary';
     /** Whether the drawer uses edge spacing. */
     @property({ type: Boolean, reflect: true }) edge = false;

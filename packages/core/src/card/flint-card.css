@@ -15,10 +15,13 @@
       padding: var(--flint-card-padding, 0); /* Cards usually don't have padding at the root level if using content blocks */
     }
 
-    /* Interactive Hover effect */
+    /* Interactive cards get pointer cursor and hover shadow */
+    .card.interactive {
+      cursor: pointer;
+    }
+
     .card.interactive:hover {
       box-shadow: var(--flint-card-shadow-hover);
-      cursor: pointer;
     }
 
     /* Variants */

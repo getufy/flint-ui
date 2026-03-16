@@ -17,7 +17,10 @@ export class FlintSlider extends FormAssociated(FlintElement) {
   static styles = unsafeCSS(uiSliderStyles);
 
   // ── Props ─────────────────────────────────────────────────────────────────
-  /** Current slider value. */
+  /**
+   * Current slider value.
+   * @default 50
+   */
   @property({ type: Number }) value = 50;
   /** Initial value for uncontrolled usage. */
   @property({ type: Number, attribute: 'default-value' }) defaultValue: number | undefined = undefined;
@@ -35,7 +38,10 @@ export class FlintSlider extends FormAssociated(FlintElement) {
   @property({ type: Boolean, attribute: 'show-value' }) showValue = false;
   /** Renders the slider vertically. */
   @property({ type: Boolean, reflect: true }) vertical = false;
-  /** Size variant of the slider. */
+  /**
+   * Size variant of the slider.
+   * @default 'md'
+   */
   @property({ type: String, reflect: true }) size: Size = 'md';
   /** Form field name used when submitting form data. */
   @property({ type: String }) name = '';

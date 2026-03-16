@@ -25,7 +25,10 @@ export class FlintSwitch extends FormAssociated(FlintElement) {
     @property({ type: Boolean, reflect: true }) disabled = false;
     /** Marks the switch as required for form validation. */
     @property({ type: Boolean, reflect: true }) required = false;
-    /** Size of the switch control. */
+    /**
+     * Size of the switch control.
+     * @default 'md'
+     */
     @property({ type: String, reflect: true }) size: 'sm' | 'md' | 'lg' = 'md';
     /** Visible label text displayed next to the switch. */
     @property({ type: String }) label = '';

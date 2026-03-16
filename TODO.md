@@ -164,18 +164,18 @@
 - #11 Undocumented subpath exports — `form-field` and `flint-range-slider` ARE listed in the README subpath table
 
 ### Low Priority / Nice to Have (v0.6.0)
-- [ ] #4 FlintAlert severity default — Add `@default 'info'` to JSDoc for `severity` prop (and audit other props for missing defaults)
-- [ ] #5 FlintDivider vertical orientation — Document or add `orientation="vertical"` prop
-- [ ] #6 FlintStack spacing unit — Add JSDoc: `/** Spacing between children. Unit: 8px multiplier. */`
-- [ ] #7 suppress-warnings re-export from React package
+- [x] #4 FlintAlert severity default — Added `@default` JSDoc annotations to non-obvious prop defaults across 20 components (button, input, select, checkbox, switch, slider, tabs, dialog, drawer, card, chip, badge, pagination, menu, tooltip, snackbar, progress, divider, stack, alert)
+- [x] #5 FlintDivider vertical orientation — Already supported via `orientation="vertical"` prop; added `@default` JSDoc annotations
+- [x] #6 FlintStack spacing unit — Expanded JSDoc to explain 8px multiplier, string pass-through, and responsive object syntax; added `@default 0`
+- [x] #7 suppress-warnings re-export from React package — Added `@getufy/flint-ui-react/suppress-warnings` subpath export
 - [ ] #8 README copy-paste recipes (form, card layout, dialog)
 - [ ] #9 CSS custom properties list / THEMING.md
 - [ ] #12 Document `custom-elements.json` manifest in README
 - [ ] #15 Runtime theme switching utility (`setFlintTheme()`)
 - [ ] #16 CHANGELOG / migration guide shipped with package
 - [ ] #17 SSR / Next.js documentation (App Router `'use client'` directives)
-- [ ] #21 FlintAppBar `startContent`/`endContent` named slots
-- [ ] #23 FlintCard `cursor: pointer` on clickable cards
+- [x] #21 FlintAppBar `startContent`/`endContent` named slots — Added `start-content` and `end-content` slot aliases alongside existing `navigation` and `actions` slots
+- [x] #23 FlintCard `cursor: pointer` on clickable cards — Moved `cursor: pointer` from `.interactive:hover` to `.interactive` so it shows immediately
 
 ---
 

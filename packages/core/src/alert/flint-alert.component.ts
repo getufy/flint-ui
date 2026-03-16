@@ -17,6 +17,7 @@ export class FlintAlert extends FlintElement {
 
     /**
      * The severity level of the alert.
+     * @default 'info'
      */
     @property({ type: String }) severity: 'info' | 'success' | 'warning' | 'error' = 'info';
 

@@ -20,7 +20,11 @@ export class FlintStack extends FlintElement {
         }
     }) direction: ResponsiveValue<'row' | 'row-reverse' | 'column' | 'column-reverse'> = 'column';
 
-    /** Space between child items (1 unit = 8px). */
+    /**
+     * Space between child items. Numeric values use an 8px multiplier (e.g. `2` = 16px).
+     * String values are used as-is (e.g. `'1rem'`). Supports responsive object syntax.
+     * @default 0
+     */
     @property({ type: Object }) spacing: ResponsiveValue<number | string> = 0;
 
     /** Cross-axis alignment of stack children. */

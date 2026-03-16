@@ -7,6 +7,10 @@ import uiCardStyles from './flint-card.css?inline';
 export class FlintCard extends FlintElement {
   static styles = unsafeCSS(uiCardStyles);
 
+  /**
+   * Visual style variant of the card.
+   * @default 'elevated'
+   */
   @property({ type: String, reflect: true })
   variant: 'elevated' | 'outlined' | 'flat' = 'elevated';
 

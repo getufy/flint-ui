@@ -68,7 +68,10 @@ export class FlintInput extends FormAssociated(FlintElement) {
     @property({ type: String })
     autocomplete = '';
 
-    /** 'sm' | 'default' | 'lg' */
+    /**
+     * Size variant of the input.
+     * @default 'default'
+     */
     @property({ type: String, reflect: true })
     size: 'sm' | 'default' | 'lg' = 'default';
 

@@ -7,11 +7,17 @@ import uiButtonStyles from './flint-button.css?inline';
 export class FlintButton extends FlintElement {
   static styles = unsafeCSS(uiButtonStyles);
 
-  /** Visual style variant of the button. */
+  /**
+   * Visual style variant of the button.
+   * @default 'primary'
+   */
   @property({ type: String })
   variant: 'primary' | 'secondary' | 'destructive' = 'primary';
 
-  /** Size of the button. */
+  /**
+   * Size of the button.
+   * @default 'medium'
+   */
   @property({ type: String })
   size: 'small' | 'medium' | 'large' = 'medium';
 

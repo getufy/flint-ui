@@ -52,7 +52,10 @@ export class FlintDialog extends FlintElement {
   /** Resolved accessible name from the slotted `<flint-dialog-title>`. */
   @state() private _titleLabel = '';
 
-  /** Animation style: 'scale' (default), 'slide-up', or 'slide-down'. */
+  /**
+   * Animation style for open/close.
+   * @default 'scale'
+   */
   @property({ type: String }) transition: 'scale' | 'slide-up' | 'slide-down' = 'scale';
 
   /**

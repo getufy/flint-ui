@@ -61,13 +61,17 @@ export class FlintSelect extends FormAssociated(FlintElement) {
   @property({ type: String, attribute: 'error-message' }) errorMessage = '';
   /** Form field name used when submitting form data. */
   @property({ type: String }) name = '';
-  /** Size variant of the select. */
+  /**
+   * Size variant of the select.
+   * @default 'md'
+   */
   @property({ type: String, reflect: true }) size: SelectSize = 'md';
   /** Sets the initial value in uncontrolled mode (single-select only). */
   @property({ type: String, attribute: 'default-value' }) defaultValue = '';
   /**
    * When true, the dropdown uses `position: fixed` so it can escape
    * containers with `overflow: hidden/clip` (e.g. dialogs, cards).
+   * @default true
    */
   @property({ type: Boolean }) hoist = true;
 

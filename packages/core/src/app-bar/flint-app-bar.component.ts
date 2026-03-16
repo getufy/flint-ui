@@ -7,9 +7,11 @@ import uiAppBarStyles from './flint-app-bar.css?inline';
 /**
  * flint-app-bar: The top App bar provides content and actions related to the current screen.
  *
- * @slot navigation - Left section, e.g. menu button.
+ * @slot navigation - Left section, e.g. menu button (alias: `start-content`).
+ * @slot start-content - Alias for `navigation` slot.
  * @slot title - Center section next to the title prop.
- * @slot actions - Right section, e.g. action buttons.
+ * @slot actions - Right section, e.g. action buttons (alias: `end-content`).
+ * @slot end-content - Alias for `actions` slot.
  */
 export class FlintAppBar extends FlintElement {
   static styles = unsafeCSS(uiAppBarStyles);
@@ -28,6 +30,7 @@ export class FlintAppBar extends FlintElement {
     })}">
         <div class="left-section">
           <slot name="navigation"></slot>
+          <slot name="start-content"></slot>
         </div>
 
         <div class="title">
@@ -36,6 +39,7 @@ export class FlintAppBar extends FlintElement {
 
         <div class="right-section">
           <slot name="actions"></slot>
+          <slot name="end-content"></slot>
         </div>
       </header>
     `;

@@ -175,7 +175,7 @@ export class FlintMenu extends FlintElement {
 
     /**
      * Menu placement relative to its anchor container.
-     * 'bottom-start' | 'bottom-end' | 'top-start' | 'top-end' | 'right-start' | 'left-start'
+     * @default 'bottom-start'
      */
     @property({ type: String, reflect: true }) placement: 'bottom-start' | 'bottom-end' | 'top-start' | 'top-end' | 'right-start' | 'left-start' = 'bottom-start';
 

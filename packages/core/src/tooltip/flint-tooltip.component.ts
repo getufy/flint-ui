@@ -26,7 +26,10 @@ export class FlintTooltip extends FlintElement {
 
     /** Text content displayed inside the tooltip. */
     @property({ type: String }) label = '';
-    /** Preferred placement of the tooltip relative to the trigger element. */
+    /**
+     * Preferred placement of the tooltip relative to the trigger element.
+     * @default 'top'
+     */
     @property({ type: String }) placement: Placement = 'top';
     /** Show a small arrow pointing toward the trigger element. */
     @property({ type: Boolean }) arrow = false;

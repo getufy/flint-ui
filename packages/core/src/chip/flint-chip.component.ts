@@ -20,11 +20,20 @@ export class FlintChip extends FlintElement {
 
     /** Text content displayed inside the chip. */
     @property({ type: String }) label = '';
-    /** Visual style variant of the chip. */
+    /**
+     * Visual style variant of the chip.
+     * @default 'filled'
+     */
     @property({ type: String }) variant: 'filled' | 'outlined' = 'filled';
-    /** Color theme applied to the chip. */
+    /**
+     * Color theme applied to the chip.
+     * @default 'default'
+     */
     @property({ type: String }) color: 'default' | 'primary' | 'secondary' = 'default';
-    /** Size of the chip. */
+    /**
+     * Size of the chip.
+     * @default 'md'
+     */
     @property({ type: String, reflect: true }) size: 'sm' | 'md' | 'lg' = 'md';
     /** Whether the chip responds to click interactions. */
     @property({ type: Boolean }) clickable = false;

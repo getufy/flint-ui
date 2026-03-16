@@ -96,16 +96,28 @@ export class FlintPagination extends FlintElement {
     /** Accessible label for the nav landmark (aria-label). */
     @property({ type: String }) label = '';
 
-    /** Variant. */
+    /**
+     * Visual style variant of the pagination buttons.
+     * @default 'text'
+     */
     @property({ type: String, reflect: true }) variant: 'text' | 'outlined' = 'text';
 
-    /** Shape. */
+    /**
+     * Shape of the pagination buttons.
+     * @default 'circular'
+     */
     @property({ type: String, reflect: true }) shape: 'circular' | 'rounded' | 'square' = 'circular';
 
-    /** Size. */
+    /**
+     * Size of the pagination buttons.
+     * @default 'medium'
+     */
     @property({ type: String, reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
-    /** Color. */
+    /**
+     * Color theme of the pagination buttons.
+     * @default 'primary'
+     */
     @property({ type: String, reflect: true }) color: 'primary' | 'secondary' | 'standard' = 'primary';
 
     /** Show first-page button. */

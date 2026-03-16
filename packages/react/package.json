@@ -300,6 +300,10 @@
     "./visually-hidden": {
       "types": "./dist/visually-hidden.d.ts",
       "import": "./dist/visually-hidden.js"
+    },
+    "./suppress-warnings": {
+      "types": "./dist/suppress-warnings.d.ts",
+      "import": "./dist/suppress-warnings.js"
     }
   },
   "scripts": {

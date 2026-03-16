@@ -47,24 +47,32 @@ export class FlintSnackbar extends FlintElement {
     /**
      * Duration in milliseconds before the snackbar auto-closes.
      * Set to 0 to disable auto-close.
+     * @default 5000
      */
     @property({ type: Number, attribute: 'auto-hide-duration' }) autoHideDuration = 5000;
 
     /**
      * Position of the snackbar.
-     * Format: 'vertical-horizontal' e.g. 'bottom-center', 'top-right'
+     * Format: 'vertical-horizontal' e.g. 'bottom-center', 'top-right'.
+     * @default 'bottom-center'
      */
     @property({ type: String, attribute: 'anchor-origin', reflect: true }) anchorOrigin:
         'top-left' | 'top-center' | 'top-right' |
         'bottom-left' | 'bottom-center' | 'bottom-right' = 'bottom-center';
 
-    /** Pause the auto-hide timer while the user hovers over the snackbar. */
+    /**
+     * Pause the auto-hide timer while the user hovers over the snackbar.
+     * @default true
+     */
     @property({ type: Boolean, attribute: 'pause-on-hover' }) pauseOnHover = true;
 
     /** Show a dismiss (✕) button. */
     @property({ type: Boolean, reflect: true }) closable = false;
 
-    /** Visual style variant. */
+    /**
+     * Visual style variant.
+     * @default 'default'
+     */
     @property({ type: String, reflect: true }) variant:
         'default' | 'info' | 'success' | 'warning' | 'error' = 'default';
 
