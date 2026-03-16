@@ -1,6 +1,6 @@
 {
   "name": "@getufy/flint-ui",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "type": "module",
   "types": "./dist/index.d.ts",
   "module": "./dist/index.js",

@@ -1,5 +1,35 @@
 # @getufy/flint-ui
 
+## [0.7.0](https://github.com/getufy/flint-ui/compare/flint-ui-v0.6.1...flint-ui-v0.7.0) (2026-03-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* Rating no longer renders a hidden <input> (uses ElementInternals instead).
+* Size props changed from 'small'/'medium'/'large'/'default' to 'sm'/'md'/'lg'. Drawer anchor prop renamed to placement. HoverCard side prop renamed to placement. Toggle outline variant renamed to outlined. TextField leading/trailing slots renamed to prefix/suffix.
+* Button now renders prefix/suffix slot wrappers and CSS parts in its shadow DOM.
+
+### Features
+
+* complete all P2 items — forms, components, testing, infrastructure ([8930614](https://github.com/getufy/flint-ui/commit/89306141d4a54f72b753f8c102240cf73f27e40b))
+* complete all P3 backlog — tests, stories, a11y fix, abort bug fix ([0e709e9](https://github.com/getufy/flint-ui/commit/0e709e9df1380c813cf35d69ff4f66898a3a7396))
+* complete P0 + P1 — SSR guards, typed open events, TODO audit ([7c2b5fa](https://github.com/getufy/flint-ui/commit/7c2b5fa2da7d2d85c1291c10dbccf160e985d2b2))
+* controlled/uncontrolled docs, Select string value, responsive Stack, event naming, theming docs, Chip events ([a6deddb](https://github.com/getufy/flint-ui/commit/a6deddb92cf6fcc53bd700aa487649c5cc0984b3))
+* P0 ship-blocking fixes — focus trap, SSR guards, button overhaul, form/a11y improvements ([72966c2](https://github.com/getufy/flint-ui/commit/72966c2e1450ab292c87742e3ccdecd0cbe1a908))
+* P1 — API consistency, form APIs, design tokens, a11y, TypeScript improvements ([b6e3cc8](https://github.com/getufy/flint-ui/commit/b6e3cc899a36e6d0f9a72cb0f379add5199e6dd0))
+* P2 — CSS parts, form system, component features, testing & CI, infrastructure ([c648df7](https://github.com/getufy/flint-ui/commit/c648df71bb619f6526ddc596479d5c83aa4637fa))
+* P3 — quick fixes, new components, advanced patterns, testing infrastructure ([18aea44](https://github.com/getufy/flint-ui/commit/18aea44a8ccec5711c0c336fbe7c431e6c4282d5))
+* typed event detail exports, Card click event, [@fires](https://github.com/fires) JSDoc fixes ([61db322](https://github.com/getufy/flint-ui/commit/61db32285441e79670d76334a42de10d43973b1e))
+
+
+### Bug Fixes
+
+* auto-focus first focusable element in Dialog/Drawer, CardMedia object-fit ([ecec5cc](https://github.com/getufy/flint-ui/commit/ecec5cc993431ee71d7324664e496d95070a8754))
+* React event forwarding, drawer/select stacking, CSS fixes (v0.6.1 DX report) ([fb14ddc](https://github.com/getufy/flint-ui/commit/fb14ddc90a40c11d8686fb87bea39d90eddbab81))
+* resolve CI failures — lock file sync, command filter loop, type errors ([d6eee5e](https://github.com/getufy/flint-ui/commit/d6eee5e380e31d7425ddc74376cf74efad34531f))
+* size limits, audit vulnerability, chromatic token guard, snapshot ([bdfb3cf](https://github.com/getufy/flint-ui/commit/bdfb3cf289b805a319cb92c924101a9e4fddecb5))
+* WCAG 2.5.8 touch target compliance — 44x44px minimum on all interactive components ([0bb76be](https://github.com/getufy/flint-ui/commit/0bb76be6dde1d66190174e007496e2fea992ca19))
+
 ## 0.6.1
 
 ### Major Changes

@@ -1,5 +1,30 @@
 # @getufy/flint-ui-react
 
+## [0.7.0](https://github.com/getufy/flint-ui/compare/flint-ui-react-v0.6.1...flint-ui-react-v0.7.0) (2026-03-16)
+
+
+### Features
+
+* complete all P2 items — forms, components, testing, infrastructure ([8930614](https://github.com/getufy/flint-ui/commit/89306141d4a54f72b753f8c102240cf73f27e40b))
+* complete P0 + P1 — SSR guards, typed open events, TODO audit ([7c2b5fa](https://github.com/getufy/flint-ui/commit/7c2b5fa2da7d2d85c1291c10dbccf160e985d2b2))
+* controlled/uncontrolled docs, Select string value, responsive Stack, event naming, theming docs, Chip events ([a6deddb](https://github.com/getufy/flint-ui/commit/a6deddb92cf6fcc53bd700aa487649c5cc0984b3))
+* typed event detail exports, Card click event, [@fires](https://github.com/fires) JSDoc fixes ([61db322](https://github.com/getufy/flint-ui/commit/61db32285441e79670d76334a42de10d43973b1e))
+
+
+### Bug Fixes
+
+* auto-focus first focusable element in Dialog/Drawer, CardMedia object-fit ([ecec5cc](https://github.com/getufy/flint-ui/commit/ecec5cc993431ee71d7324664e496d95070a8754))
+* React event forwarding, drawer/select stacking, CSS fixes (v0.6.1 DX report) ([fb14ddc](https://github.com/getufy/flint-ui/commit/fb14ddc90a40c11d8686fb87bea39d90eddbab81))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @getufy/flint-ui bumped from * to 0.7.0
+  * peerDependencies
+    * @getufy/flint-ui bumped from ^0.6.0 to ^0.7.0
+
 ## 0.6.1
 
 ### Major Changes
