@@ -1,6 +1,6 @@
 # @getufy/flint-ui-react
 
-## 1.0.0
+## 0.6.1
 
 ### Major Changes
 
@@ -15,9 +15,9 @@
 ### Patch Changes
 
 - Updated dependencies [[`4d6440c`](https://github.com/getufy/flint-ui/commit/4d6440c2c03d0b667bc7d2f9109566f45ce080db)]:
-  - @getufy/flint-ui@1.0.0
+  - @getufy/flint-ui@0.6.1
 
-## 1.0.0
+## 0.6.1
 
 ### Minor Changes
 
@@ -35,7 +35,7 @@
 ### Patch Changes
 
 - Updated dependencies [[`051f9a4`](https://github.com/getufy/flint-ui/commit/051f9a4e2fe07ba66b2cd7e76b5e61d4a5050e49)]:
-  - @getufy/flint-ui@1.0.0
+  - @getufy/flint-ui@0.6.1
 
 ## 0.4.0
 

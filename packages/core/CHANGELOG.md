@@ -1,6 +1,6 @@
 # @getufy/flint-ui
 
-## 1.0.0
+## 0.6.1
 
 ### Major Changes
 
@@ -12,7 +12,7 @@
 
   See `docs/migration/v0.3-to-v0.4.md` for the complete rename table and search-and-replace patterns.
 
-## 1.0.0
+## 0.6.1
 
 ### Minor Changes
 
