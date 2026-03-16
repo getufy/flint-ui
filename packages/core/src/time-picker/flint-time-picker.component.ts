@@ -1,4 +1,4 @@
-import { unsafeCSS, html, svg, css, nothing } from 'lit';
+import { unsafeCSS, html, svg, css, nothing, LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { repeat } from 'lit/directives/repeat.js';
@@ -19,7 +19,7 @@ function parseTime(v: string): { h: number; m: number; s: number } | null {
     if (!v) return null;
     const p = v.split(':').map(Number);
     if (p.length < 2 || p.some(isNaN)) return null;
-    return { h: p[0], m: p[1], s: p[2] ?? 0 };
+    return { h: p[0]!, m: p[1]!, s: p[2] ?? 0 };
 }
 
 function buildTime(h: number, m: number, s = 0) { return `${padZ(h)}:${padZ(m)}:${padZ(s)}`; }
@@ -63,6 +63,7 @@ type TimeView = 'hours' | 'minutes' | 'seconds';
  * @fires flint-time-picker-clear - Fired when the clear button is clicked.
  */
 export class FlintTimeField extends FlintElement {
+    static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
     static styles = unsafeCSS(uiTimeFieldStyles);
 
     /** Time value in HH:MM:SS format. */
@@ -143,11 +144,11 @@ export class FlintTimeField extends FlintElement {
 
     private _next() {
         const s = this._segs; const i = s.indexOf(this._active as 'hour' | 'minute' | 'second' | 'meridiem');
-        if (i < s.length - 1) this._setActive(s[i + 1]);
+        if (i < s.length - 1) this._setActive(s[i + 1] ?? null);
     }
     private _prev() {
         const s = this._segs; const i = s.indexOf(this._active as 'hour' | 'minute' | 'second' | 'meridiem');
-        if (i > 0) this._setActive(s[i - 1]);
+        if (i > 0) this._setActive(s[i - 1] ?? null);
     }
     private _canNext() { const s = this._segs; return s.indexOf(this._active as 'hour' | 'minute' | 'second' | 'meridiem') < s.length - 1; }
     private _canPrev() { const s = this._segs; return s.indexOf(this._active as 'hour' | 'minute' | 'second' | 'meridiem') > 0; }
@@ -298,7 +299,7 @@ export class FlintDigitalClock extends FlintElement {
         else if (e.key === 'End') { e.preventDefault(); target = items.length - 1; }
         else return;
         if (target >= 0 && target !== idx) {
-            this._select(items[target]);
+            this._select(items[target]!);
             void this.updateComplete.then(() => {
                 const btn = this.shadowRoot?.querySelectorAll<HTMLButtonElement>('.item')[target];
                 btn?.focus();
@@ -879,6 +880,7 @@ export class FlintStaticTimePicker extends FlintElement {
  * @fires flint-time-picker-change - Fired when the time value changes. detail: `{ value: string }`
  */
 export class FlintTimePicker extends FlintElement {
+    static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
     static styles = unsafeCSS(uiTimePickerStyles);
 
     /** Time value in HH:MM:SS format. */

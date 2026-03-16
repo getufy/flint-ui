@@ -1,4 +1,4 @@
-import { unsafeCSS, html, svg } from 'lit';
+import { unsafeCSS, html, svg, LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import type { PropertyValues } from 'lit';
@@ -11,6 +11,7 @@ import uiRatingStyles from './flint-rating.css?inline';
  * @fires flint-rating-change - Fired when the rating value changes.
  */
 export class FlintRating extends FlintElement {
+    static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
     static styles = unsafeCSS(uiRatingStyles);
 
     /** Current rating value. */

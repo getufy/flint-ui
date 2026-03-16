@@ -495,7 +495,7 @@ export class FlintMenubarContent extends FlintElement {
             case ' ': {
                 e.preventDefault();
                 if (this._highlightIndex >= 0 && this._highlightIndex < items.length) {
-                    const target = items[this._highlightIndex];
+                    const target = items[this._highlightIndex]!;
                     if (target.tagName === 'FLINT-MENUBAR-ITEM') {
                         (target as FlintMenubarItem).select();
                         // Close the menu after selection
@@ -514,7 +514,7 @@ export class FlintMenubarContent extends FlintElement {
             case 'ArrowRight': {
                 // Open sub-menu if highlighted item is a sub-trigger
                 if (this._highlightIndex >= 0 && this._highlightIndex < items.length) {
-                    const target = items[this._highlightIndex];
+                    const target = items[this._highlightIndex]!;
                     if (target.tagName === 'FLINT-MENUBAR-SUB-TRIGGER') {
                         e.preventDefault();
                         const sub = target.closest('flint-menubar-sub') as FlintMenubarSub | null;
@@ -561,7 +561,7 @@ export class FlintMenubarContent extends FlintElement {
                     const start = this._highlightIndex >= 0 ? this._highlightIndex + 1 : 0;
                     for (let i = 0; i < items.length; i++) {
                         const idx = (start + i) % items.length;
-                        const text = items[idx].textContent?.trim().toLowerCase() ?? '';
+                        const text = items[idx]!.textContent?.trim().toLowerCase() ?? '';
                         if (text.startsWith(char)) {
                             this._highlightItem(idx);
                             break;
@@ -817,9 +817,9 @@ export class FlintMenubar extends FlintElement {
         let newIndex = this._activeIndex;
         for (let i = 0; i < menus.length; i++) {
             newIndex = ((newIndex + delta) % menus.length + menus.length) % menus.length;
-            if (!menus[newIndex].disabled) break;
+            if (!menus[newIndex]!.disabled) break;
         }
-        if (!menus[newIndex].disabled) this._openMenu(newIndex);
+        if (!menus[newIndex]!.disabled) this._openMenu(newIndex);
     }
 
     /** Handle trigger clicks */

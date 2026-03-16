@@ -290,6 +290,98 @@ describe('FormControlController', () => {
 });
 
 /* ─────────────────────────────────────────────────────────────────── */
+/*  FormAssociated mixin — standard form element APIs                  */
+/* ─────────────────────────────────────────────────────────────────── */
+
+describe('FormAssociated mixin — standard form element APIs', () => {
+    it('form getter returns null when not in a form', async () => {
+        const el = await fixture<TestFormControl>(html`<test-form-control></test-form-control>`);
+        expect(el.form).toBeNull();
+    });
+
+    it('validity getter returns a ValidityState', async () => {
+        const el = await fixture<TestFormControl>(html`<test-form-control></test-form-control>`);
+        expect(el.validity).toBeDefined();
+        expect(el.validity.valid).toBe(true);
+    });
+
+    it('validity reflects invalid state when required and empty', async () => {
+        const el = await fixture<TestFormControl>(html`<test-form-control required></test-form-control>`);
+        await el.updateComplete;
+        if (el._internals && typeof el._internals.setValidity === 'function') {
+            expect(el.validity.valid).toBe(false);
+            expect(el.validity.valueMissing).toBe(true);
+        }
+    });
+
+    it('validationMessage returns empty string when valid', async () => {
+        const el = await fixture<TestFormControl>(html`<test-form-control></test-form-control>`);
+        expect(el.validationMessage).toBe('');
+    });
+
+    it('validationMessage returns message when invalid', async () => {
+        const el = await fixture<TestFormControl>(html`<test-form-control required></test-form-control>`);
+        await el.updateComplete;
+        if (el._internals && typeof el._internals.setValidity === 'function') {
+            expect(el.validationMessage).toBe('Value is required.');
+        }
+    });
+
+    it('willValidate returns a boolean', async () => {
+        const el = await fixture<TestFormControl>(html`<test-form-control></test-form-control>`);
+        expect(typeof el.willValidate).toBe('boolean');
+    });
+
+    it('checkValidity returns true when valid', async () => {
+        const el = await fixture<TestFormControl>(html`<test-form-control></test-form-control>`);
+        expect(el.checkValidity()).toBe(true);
+    });
+
+    it('checkValidity returns false when invalid', async () => {
+        const el = await fixture<TestFormControl>(html`<test-form-control required></test-form-control>`);
+        await el.updateComplete;
+        if (el._internals && typeof el._internals.setValidity === 'function' && typeof el._internals.checkValidity === 'function') {
+            expect(el.checkValidity()).toBe(false);
+        }
+    });
+
+    it('reportValidity returns true when valid', async () => {
+        const el = await fixture<TestFormControl>(html`<test-form-control></test-form-control>`);
+        if (el._internals && typeof el._internals.reportValidity === 'function') {
+            expect(el.reportValidity()).toBe(true);
+        }
+    });
+
+    it('setCustomValidity sets a custom error', async () => {
+        const el = await fixture<TestFormControl>(html`<test-form-control></test-form-control>`);
+        if (el._internals && typeof el._internals.setValidity === 'function') {
+            el.setCustomValidity('Custom error');
+            expect(el.validity.customError).toBe(true);
+            expect(el.validationMessage).toBe('Custom error');
+        }
+    });
+
+    it('setCustomValidity with empty string clears error', async () => {
+        const el = await fixture<TestFormControl>(html`<test-form-control></test-form-control>`);
+        if (el._internals && typeof el._internals.setValidity === 'function') {
+            el.setCustomValidity('Custom error');
+            expect(el.validity.customError).toBe(true);
+            el.setCustomValidity('');
+            expect(el.validity.valid).toBe(true);
+        }
+    });
+
+    it('formDisabledCallback sets disabled', async () => {
+        const el = await fixture<TestFormControl>(html`<test-form-control></test-form-control>`);
+        expect(el.disabled).toBe(false);
+        el.formDisabledCallback(true);
+        expect(el.disabled).toBe(true);
+        el.formDisabledCallback(false);
+        expect(el.disabled).toBe(false);
+    });
+});
+
+/* ─────────────────────────────────────────────────────────────────── */
 /*  serialize() utility tests                                         */
 /* ─────────────────────────────────────────────────────────────────── */
 

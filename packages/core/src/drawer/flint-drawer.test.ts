@@ -56,7 +56,7 @@ describe('flint-drawer', () => {
     });
 
     it('paper has open class when open', async () => {
-        const el = await fixture<FlintDrawer>(html`<flint-drawer anchor="right" open></flint-drawer>`);
+        const el = await fixture<FlintDrawer>(html`<flint-drawer placement="right" open></flint-drawer>`);
         const paper = el.shadowRoot!.querySelector('.paper');
         expect(paper?.classList.contains('open')).toBe(true);
     });
@@ -308,39 +308,39 @@ describe('flint-drawer', () => {
         expect(paper?.getAttribute('aria-label')).toBe('Navigation');
     });
 
-    it('anchor change does not trigger focus side effects', async () => {
+    it('placement change does not trigger focus side effects', async () => {
         const trigger = await fixture<HTMLButtonElement>(html`<button>btn</button>`);
         trigger.focus();
         const el = await fixture<FlintDrawer>(html`<flint-drawer open></flint-drawer>`);
-        el.anchor = 'right';
+        el.placement = 'right';
         await el.updateComplete;
         // Paper is still a dialog — no crash, no unwanted focus steal
         const paper = el.shadowRoot!.querySelector('.paper');
         expect(paper?.getAttribute('role')).toBe('dialog');
     });
 
-    // ── Edge anchor classes ──────────────────────────────────────────────────
+    // ── Edge placement classes ──────────────────────────────────────────────────
 
-    it('edge handle has edge-left class for left anchor (default)', async () => {
+    it('edge handle has edge-left class for left placement (default)', async () => {
         const el = await fixture<FlintDrawer>(html`<flint-drawer edge></flint-drawer>`);
         const edge = el.shadowRoot!.querySelector('.edge');
         expect(edge?.classList.contains('edge-left')).toBe(true);
     });
 
-    it('edge handle has edge-right class for right anchor', async () => {
-        const el = await fixture<FlintDrawer>(html`<flint-drawer edge anchor="right"></flint-drawer>`);
+    it('edge handle has edge-right class for right placement', async () => {
+        const el = await fixture<FlintDrawer>(html`<flint-drawer edge placement="right"></flint-drawer>`);
         const edge = el.shadowRoot!.querySelector('.edge');
         expect(edge?.classList.contains('edge-right')).toBe(true);
     });
 
-    it('edge handle has edge-top class for top anchor', async () => {
-        const el = await fixture<FlintDrawer>(html`<flint-drawer edge anchor="top"></flint-drawer>`);
+    it('edge handle has edge-top class for top placement', async () => {
+        const el = await fixture<FlintDrawer>(html`<flint-drawer edge placement="top"></flint-drawer>`);
         const edge = el.shadowRoot!.querySelector('.edge');
         expect(edge?.classList.contains('edge-top')).toBe(true);
     });
 
-    it('edge handle has edge-bottom class for bottom anchor', async () => {
-        const el = await fixture<FlintDrawer>(html`<flint-drawer edge anchor="bottom"></flint-drawer>`);
+    it('edge handle has edge-bottom class for bottom placement', async () => {
+        const el = await fixture<FlintDrawer>(html`<flint-drawer edge placement="bottom"></flint-drawer>`);
         const edge = el.shadowRoot!.querySelector('.edge');
         expect(edge?.classList.contains('edge-bottom')).toBe(true);
     });
@@ -433,17 +433,17 @@ describe('flint-drawer', () => {
         expect(paper?.getAttribute('aria-modal')).toBe('false');
     });
 
-    // ── Anchor attribute ─────────────────────────────────────────────────────
+    // ── Placement attribute ─────────────────────────────────────────────────────
 
-    it('default anchor is left', async () => {
+    it('default placement is left', async () => {
         const el = await fixture<FlintDrawer>(html`<flint-drawer></flint-drawer>`);
-        expect(el.anchor).toBe('left');
-        expect(el.getAttribute('anchor')).toBe('left');
+        expect(el.placement).toBe('left');
+        expect(el.getAttribute('placement')).toBe('left');
     });
 
-    it('anchor reflects to attribute', async () => {
-        const el = await fixture<FlintDrawer>(html`<flint-drawer anchor="right"></flint-drawer>`);
-        expect(el.getAttribute('anchor')).toBe('right');
+    it('placement reflects to attribute', async () => {
+        const el = await fixture<FlintDrawer>(html`<flint-drawer placement="right"></flint-drawer>`);
+        expect(el.getAttribute('placement')).toBe('right');
     });
 
     // ── Open/close state transitions ─────────────────────────────────────────

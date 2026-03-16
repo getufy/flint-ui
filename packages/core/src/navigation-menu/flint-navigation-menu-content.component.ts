@@ -184,12 +184,12 @@ export class FlintNavigationMenuContent extends FlintElement {
 
     private _focusFirstItem = () => {
         const items = this._getAllItems();
-        if (items.length > 0) items[0].focus();
+        if (items.length > 0) items[0]!.focus();
     };
 
     private _focusLastItem = () => {
         const items = this._getAllItems();
-        if (items.length > 0) items[items.length - 1].focus();
+        if (items.length > 0) items[items.length - 1]!.focus();
     };
 
     private _findFocusedIndex = (items: HTMLElement[]) => {
@@ -207,7 +207,7 @@ export class FlintNavigationMenuContent extends FlintElement {
         const currentIndex = this._findFocusedIndex(items);
         // Wrap: if at last item (or not found), go to first
         const nextIndex = currentIndex >= items.length - 1 ? 0 : currentIndex + 1;
-        items[nextIndex].focus();
+        items[nextIndex]!.focus();
     };
 
     private _focusPreviousItem = () => {
@@ -216,7 +216,7 @@ export class FlintNavigationMenuContent extends FlintElement {
         const currentIndex = this._findFocusedIndex(items);
         // Wrap: if at first item (or not found), go to last
         const prevIndex = currentIndex <= 0 ? items.length - 1 : currentIndex - 1;
-        items[prevIndex].focus();
+        items[prevIndex]!.focus();
     };
 
     override render() {

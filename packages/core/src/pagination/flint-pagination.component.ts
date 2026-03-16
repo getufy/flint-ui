@@ -34,7 +34,7 @@ export function buildPages(
     );
     const siblingsEnd = Math.min(
         Math.max(page + siblingCount, boundaryCount + siblingCount * 2 + 2),
-        endPages.length > 0 ? endPages[0] - 2 : count - 1,
+        endPages.length > 0 ? endPages[0]! - 2 : count - 1,
     );
 
     const items: PageItem[] = [
@@ -112,7 +112,7 @@ export class FlintPagination extends FlintElement {
      * Size of the pagination buttons.
      * @default 'medium'
      */
-    @property({ type: String, reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
+    @property({ type: String, reflect: true }) size: 'sm' | 'md' | 'lg' = 'md';
 
     /**
      * Color theme of the pagination buttons.

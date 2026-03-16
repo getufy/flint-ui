@@ -54,7 +54,7 @@ export class FlintFab extends FlintElement {
       'top-left': ['24px', '', '', '24px'],
     };
 
-    const [top, bottom, right, left] = coords[this.position] ?? coords['bottom-right'];
+    const [top, bottom, right, left] = (coords[this.position] ?? coords['bottom-right'])!;
     this.style.position = 'fixed';
     this.style.top = top;
     this.style.bottom = bottom;

@@ -37,10 +37,13 @@ Each component lives in `packages/core/src/<name>/` with these files:
 
 | File | Purpose |
 |------|---------|
-| `flint-<name>.ts` | LitElement component |
+| `flint-<name>.component.ts` | Pure component class (extends `FlintElement`, no `@customElement`) |
+| `flint-<name>.ts` | Registration file — imports class, calls `.define()`, re-exports |
 | `flint-<name>.css` | Component styles (imported via `?inline`) |
 | `flint-<name>.stories.ts` | Storybook stories |
 | `flint-<name>.test.ts` | Vitest unit tests |
+
+For detailed architecture documentation, see [CLAUDE.md](./CLAUDE.md).
 
 ## Commands
 
@@ -71,17 +74,23 @@ NODE_OPTIONS='--no-warnings' vitest run src/button/flint-button.test.ts
 
 ### 1. Create the component
 
-Create a folder at `packages/core/src/<name>/` with the component file:
+Create a folder at `packages/core/src/<name>/` with **two files** — a pure component class and a registration file:
 
 ```ts
-// packages/core/src/example/flint-example.ts
-import { LitElement, unsafeCSS, html } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+// packages/core/src/example/flint-example.component.ts
+import { unsafeCSS, html } from 'lit';
+import { property } from 'lit/decorators.js';
+import { FlintElement } from '../flint-element.js';
 import styles from './flint-example.css?inline';
 
-@customElement('flint-example')
-export class FlintExample extends LitElement {
+export class FlintExample extends FlintElement {
   static styles = unsafeCSS(styles);
+
+  // If this component uses other flint-* elements in its template,
+  // declare them here so they are auto-registered:
+  // static dependencies = {
+  //   'flint-icon': FlintIcon,
+  // };
 
   @property({ type: String })
   label = '';
@@ -97,6 +106,15 @@ declare global {
   }
 }
 ```
+
+```ts
+// packages/core/src/example/flint-example.ts
+import { FlintExample } from './flint-example.component.js';
+export * from './flint-example.component.js';
+FlintExample.define('flint-example');
+```
+
+**Why two files?** The `.component.ts` file contains the pure class with no side effects (no `@customElement`). The `.ts` file handles custom element registration via `FlintElement.define()`. This enables tree-shaking and allows consumers to register elements on their own terms.
 
 ### 2. Add styles
 
@@ -244,25 +262,27 @@ The project uses ESLint with `@typescript-eslint`, `eslint-plugin-lit`, and `esl
 
 The project uses [Husky](https://typicode.github.io/husky/) with [lint-staged](https://github.com/lint-staged/lint-staged). On commit, ESLint runs automatically on staged `.ts` files in `packages/core/src/`.
 
-## Changesets
+## Releases
 
-This project uses [Changesets](https://github.com/changesets/changesets) to manage versioning and changelogs.
+This project uses [release-please](https://github.com/googleapis/release-please) to manage versioning and changelogs. There are no manual version bump scripts.
 
-After making changes that should be released, create a changeset:
+**Commit message format** — use [Conventional Commits](https://www.conventionalcommits.org/):
 
-```bash
-npx changeset
-```
+- `fix: ...` — patch bump (e.g. 0.6.1 -> 0.6.2)
+- `feat: ...` — patch bump while pre-1.0 (e.g. 0.6.2 -> 0.6.3)
+- `feat!: ...` or `BREAKING CHANGE:` footer — minor bump while pre-1.0 (e.g. 0.6.3 -> 0.7.0)
+- `chore:`, `docs:`, `ci:`, `test:` — no version bump (still included in changelog)
 
-This will prompt you to:
+**How a release happens:**
 
-1. **Select the affected packages** — choose `@getufy/flint-ui` and/or `@getufy/flint-ui-react` (both packages are versioned together).
-2. **Choose a semver bump type** — `patch` for bug fixes, `minor` for new features, `major` for breaking changes.
-3. **Write a summary** — a short description of the change that will appear in the changelog.
+1. Push conventional commits to `main`.
+2. Release-please automatically creates/updates a "Release PR" with version bumps and changelog entries.
+3. Review and merge the Release PR.
+4. On merge, release-please creates git tags and GitHub Releases, then the CI workflow publishes both packages to npm.
 
-This creates a markdown file in the `.changeset/` directory. **Commit this file along with your PR.** When the PR is merged, the changesets bot will automatically open a "Version Packages" PR that bumps versions and updates changelogs. Merging that PR triggers the npm publish.
+Both packages (`@getufy/flint-ui` and `@getufy/flint-ui-react`) are always released together at the same version via the `linked-versions` plugin. Do **not** manually edit versions in `package.json` — release-please owns them.
 
-Not every PR needs a changeset — skip it for docs-only changes, test improvements, or internal refactors that don't affect the published packages.
+Not every PR needs a version bump — `chore:`, `docs:`, `ci:`, and `test:` prefixed commits are included in the changelog but do not trigger a release on their own.
 
 ## Pull Requests
 

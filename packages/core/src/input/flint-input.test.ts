@@ -204,10 +204,10 @@ describe('flint-input', () => {
 
     // ─── size variants ───────────────────────────────────────────────────────
 
-    it('defaults to size="default"', async () => {
+    it('defaults to size="md"', async () => {
         const el = await fixture<FlintInput>(html`<flint-input></flint-input>`);
-        expect(el.size).toBe('default');
-        expect(el.getAttribute('size')).toBe('default');
+        expect(el.size).toBe('md');
+        expect(el.getAttribute('size')).toBe('md');
     });
 
     it('reflects size="sm" attribute', async () => {

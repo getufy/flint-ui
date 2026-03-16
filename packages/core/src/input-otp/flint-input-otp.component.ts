@@ -207,7 +207,7 @@ export class FlintInputOtp extends FlintElement {
 
         for (const slot of slots) {
             const i = slot.index;
-            slot.char = i < len ? this._internalValue[i] : '';
+            slot.char = i < len ? this._internalValue[i]! : '';
             slot.active = i === activeIndex;
         }
     }

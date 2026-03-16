@@ -28,7 +28,7 @@ const meta: Meta = {
 | \`alt\` | \`alt\` | \`string\` | \`''\` | Alt text for the avatar image. |
 | \`initials\` | \`initials\` | \`string\` | \`''\` | Initials to display when no image is provided. |
 | \`variant\` | \`variant\` | \`'circle' \\| 'square' \\| 'rounded'\` | \`'circle'\` | Shape variant of the avatar. |
-| \`size\` | \`size\` | \`'small' \\| 'medium' \\| 'large' \\| 'xlarge'\` | \`'medium'\` | Size of the avatar. |
+| \`size\` | \`size\` | \`'sm' \\| 'md' \\| 'lg' \\| 'xl'\` | \`'md'\` | Size of the avatar. |
 
 #### CSS Custom Properties
 
@@ -50,13 +50,13 @@ const meta: Meta = {
         alt: { control: 'text' },
         initials: { control: 'text' },
         variant: { control: 'select', options: ['circle', 'square', 'rounded'] },
-        size: { control: 'select', options: ['small', 'medium', 'large', 'xlarge'] },
+        size: { control: 'select', options: ['sm', 'md', 'lg', 'xl'] },
     },
     args: {
         src: '',
         alt: '',
         variant: 'circle',
-        size: 'medium',
+        size: 'md',
         initials: '',
     },
 };
@@ -100,10 +100,10 @@ export const Initials: Story = {
     args: { initials: 'JD' },
     render: (args) => html`
         <div style="display: flex; gap: 1rem; align-items: center;">
-            <flint-avatar .initials=${args.initials ?? ''} size="small" .variant=${args.variant} style="--flint-avatar-bg: #fee2e2; --flint-avatar-color: #dc2626;"></flint-avatar>
-            <flint-avatar .initials=${args.initials ?? ''} size="medium" .variant=${args.variant} style="--flint-avatar-bg: #dcfce7; --flint-avatar-color: #15803d;"></flint-avatar>
-            <flint-avatar .initials=${args.initials ?? ''} size="large" .variant=${args.variant} style="--flint-avatar-bg: #dbeafe; --flint-avatar-color: #1d4ed8;"></flint-avatar>
-            <flint-avatar .initials=${args.initials ?? ''} size="xlarge" .variant=${args.variant} style="--flint-avatar-bg: #ede9fe; --flint-avatar-color: #7c3aed;"></flint-avatar>
+            <flint-avatar .initials=${args.initials ?? ''} size="sm" .variant=${args.variant} style="--flint-avatar-bg: #fee2e2; --flint-avatar-color: #dc2626;"></flint-avatar>
+            <flint-avatar .initials=${args.initials ?? ''} size="md" .variant=${args.variant} style="--flint-avatar-bg: #dcfce7; --flint-avatar-color: #15803d;"></flint-avatar>
+            <flint-avatar .initials=${args.initials ?? ''} size="lg" .variant=${args.variant} style="--flint-avatar-bg: #dbeafe; --flint-avatar-color: #1d4ed8;"></flint-avatar>
+            <flint-avatar .initials=${args.initials ?? ''} size="xl" .variant=${args.variant} style="--flint-avatar-bg: #ede9fe; --flint-avatar-color: #7c3aed;"></flint-avatar>
         </div>
     `,
 };
@@ -112,10 +112,10 @@ export const Sizes: Story = {
     args: { src: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop' },
     render: (args) => html`
         <div style="display: flex; gap: 1rem; align-items: center;">
-            <flint-avatar size="small" .src=${args.src ?? ''} .variant=${args.variant}></flint-avatar>
-            <flint-avatar size="medium" .src=${args.src ?? ''} .variant=${args.variant}></flint-avatar>
-            <flint-avatar size="large" .src=${args.src ?? ''} .variant=${args.variant}></flint-avatar>
-            <flint-avatar size="xlarge" .src=${args.src ?? ''} .variant=${args.variant}></flint-avatar>
+            <flint-avatar size="sm" .src=${args.src ?? ''} .variant=${args.variant}></flint-avatar>
+            <flint-avatar size="md" .src=${args.src ?? ''} .variant=${args.variant}></flint-avatar>
+            <flint-avatar size="lg" .src=${args.src ?? ''} .variant=${args.variant}></flint-avatar>
+            <flint-avatar size="xl" .src=${args.src ?? ''} .variant=${args.variant}></flint-avatar>
         </div>
     `,
 };
@@ -158,11 +158,11 @@ export const Fallbacks: Story = {
 export const AvatarGroup: Story = {
     render: () => html`
         <div style="display: flex; align-items: center;">
-            <flint-avatar size="medium" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&amp;h=80&amp;fit=crop" style="margin-right: -10px; z-index: 5; position: relative;"></flint-avatar>
-            <flint-avatar size="medium" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&amp;h=80&amp;fit=crop" style="margin-right: -10px; z-index: 4; position: relative;"></flint-avatar>
-            <flint-avatar size="medium" src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=80&amp;h=80&amp;fit=crop" style="margin-right: -10px; z-index: 3; position: relative;"></flint-avatar>
-            <flint-avatar size="medium" src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=80&amp;h=80&amp;fit=crop" style="margin-right: 8px; z-index: 2; position: relative;"></flint-avatar>
-            <flint-avatar size="medium" initials="+3" style="z-index: 1; --flint-avatar-bg: #f3f4f6; --flint-avatar-color: #4b5563;"></flint-avatar>
+            <flint-avatar size="md" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&amp;h=80&amp;fit=crop" style="margin-right: -10px; z-index: 5; position: relative;"></flint-avatar>
+            <flint-avatar size="md" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&amp;h=80&amp;fit=crop" style="margin-right: -10px; z-index: 4; position: relative;"></flint-avatar>
+            <flint-avatar size="md" src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=80&amp;h=80&amp;fit=crop" style="margin-right: -10px; z-index: 3; position: relative;"></flint-avatar>
+            <flint-avatar size="md" src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=80&amp;h=80&amp;fit=crop" style="margin-right: 8px; z-index: 2; position: relative;"></flint-avatar>
+            <flint-avatar size="md" initials="+3" style="z-index: 1; --flint-avatar-bg: #f3f4f6; --flint-avatar-color: #4b5563;"></flint-avatar>
         </div>
     `,
 };
@@ -181,12 +181,12 @@ export const CustomSize: Story = {
 export const ProfileCardExample: Story = {
     render: () => html`
         <div style="max-width: 300px; padding: 24px; background: var(--flint-surface-background); border-radius: 16px; box-shadow: var(--flint-shadow-lg); font-family: var(--flint-font-family); text-align: center;">
-            <flint-avatar size="xlarge" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&amp;h=200&amp;fit=crop" style="margin-bottom: 16px; border: 4px solid var(--flint-primary-color); padding: 4px;"></flint-avatar>
+            <flint-avatar size="xl" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&amp;h=200&amp;fit=crop" style="margin-bottom: 16px; border: 4px solid var(--flint-primary-color); padding: 4px;"></flint-avatar>
             <h3 style="margin: 0; font-size: 20px;">Alex Johnson</h3>
             <p style="margin: 4px 0 16px; color: var(--flint-text-color-muted); font-size: 14px;">Senior Product Designer</p>
             <div style="display: flex; justify-content: center; gap: 8px;">
-                <flint-button variant="primary" size="small">Follow</flint-button>
-                <flint-button variant="secondary" size="small">Message</flint-button>
+                <flint-button variant="primary" size="sm">Follow</flint-button>
+                <flint-button variant="secondary" size="sm">Message</flint-button>
             </div>
         </div>
     `,

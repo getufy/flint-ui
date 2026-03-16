@@ -1,4 +1,4 @@
-import { unsafeCSS, html, nothing } from 'lit';
+import { unsafeCSS, html, nothing, LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { repeat } from 'lit/directives/repeat.js';
@@ -37,6 +37,7 @@ let _uidCounter = 0;
  * @csspart error-message - The error message `<span>`.
  */
 export class FlintSelect extends FormAssociated(FlintElement) {
+  static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
   static styles = unsafeCSS(uiSelectStyles);
 
   /** Label text displayed above the select. */
@@ -276,7 +277,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
         if (!this._isOpen) {
           this._toggleDropdown();
           if (this._highlightedIndex === -1 && enabled.length > 0) {
-            this._highlightedIndex = enabled[0].i;
+            this._highlightedIndex = enabled[0]!.i;
           }
         } else {
           const cur = enabled.findIndex(({ i }) => i === this._highlightedIndex);
@@ -303,16 +304,16 @@ export class FlintSelect extends FormAssociated(FlintElement) {
       case 'Home': {
         e.preventDefault();
         if (this._isOpen && enabled.length > 0) {
-          this._highlightedIndex = enabled[0].i;
-          this._scrollOptionIntoView(enabled[0].i);
+          this._highlightedIndex = enabled[0]!.i;
+          this._scrollOptionIntoView(enabled[0]!.i);
         }
         break;
       }
       case 'End': {
         e.preventDefault();
         if (this._isOpen && enabled.length > 0) {
-          this._highlightedIndex = enabled[enabled.length - 1].i;
-          this._scrollOptionIntoView(enabled[enabled.length - 1].i);
+          this._highlightedIndex = enabled[enabled.length - 1]!.i;
+          this._scrollOptionIntoView(enabled[enabled.length - 1]!.i);
         }
         break;
       }
@@ -322,7 +323,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
         if (!this._isOpen) {
           this._toggleDropdown();
         } else if (this._highlightedIndex >= 0) {
-          this._handleOptionClick(this.options[this._highlightedIndex], e);
+          this._handleOptionClick(this.options[this._highlightedIndex]!, e);
         }
         break;
       }

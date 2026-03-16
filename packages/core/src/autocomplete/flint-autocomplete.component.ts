@@ -1,4 +1,4 @@
-import { unsafeCSS, html, type PropertyValues } from 'lit';
+import { unsafeCSS, html, type PropertyValues, LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
@@ -15,6 +15,7 @@ export interface AutocompleteOption {
  * @fires flint-autocomplete-change - Fired when the selected value changes.
  */
 export class FlintAutocomplete extends FlintElement {
+    static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
     static styles = unsafeCSS(uiAutocompleteStyles);
 
     /** The list of selectable options. */
@@ -127,7 +128,7 @@ export class FlintAutocomplete extends FlintElement {
             case 'Enter':
                 if (this._activeIndex >= 0 && this._filteredOptions[this._activeIndex]) {
                     e.preventDefault();
-                    this._selectOption(this._filteredOptions[this._activeIndex]);
+                    this._selectOption(this._filteredOptions[this._activeIndex]!);
                 }
                 break;
             case 'Escape':

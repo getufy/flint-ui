@@ -141,16 +141,16 @@ export const Icons: Story = {
     render: () => html`
         <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 400px;">
             <flint-text-field label="Search">
-                <span slot="leading">🔍</span>
+                <span slot="prefix">🔍</span>
             </flint-text-field>
             
             <flint-text-field label="Price" type="number" value="19.99">
-                <span slot="leading">$</span>
-                <span slot="trailing">USD</span>
+                <span slot="prefix">$</span>
+                <span slot="suffix">USD</span>
             </flint-text-field>
 
             <flint-text-field label="Notifications" value="John Doe">
-                <span slot="trailing">🔔</span>
+                <span slot="suffix">🔔</span>
             </flint-text-field>
         </div>
     `

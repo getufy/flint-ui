@@ -7,8 +7,8 @@ import { FlintToggle } from './flint-toggle';
 interface MakeOpts {
     pressed?: boolean;
     disabled?: boolean;
-    variant?: 'default' | 'outline';
-    size?: 'sm' | 'default' | 'lg';
+    variant?: 'default' | 'outlined';
+    size?: 'sm' | 'md' | 'lg';
     defaultPressed?: boolean;
 }
 
@@ -16,7 +16,7 @@ async function make({
     pressed = false,
     disabled = false,
     variant = 'default',
-    size = 'default',
+    size = 'md',
     defaultPressed = false,
 }: MakeOpts = {}) {
     const el = await fixture<FlintToggle>(html`
@@ -75,7 +75,7 @@ describe('flint-toggle — rendering', () => {
         expect(el.pressed).toBe(false);
         expect(el.disabled).toBe(false);
         expect(el.variant).toBe('default');
-        expect(el.size).toBe('default');
+        expect(el.size).toBe('md');
     });
 });
 
@@ -129,8 +129,8 @@ describe('flint-toggle — attribute reflection', () => {
     });
 
     it('reflects variant attribute', async () => {
-        const el = await make({ variant: 'outline' });
-        expect(el.getAttribute('variant')).toBe('outline');
+        const el = await make({ variant: 'outlined' });
+        expect(el.getAttribute('variant')).toBe('outlined');
     });
 
     it('reflects size attribute', async () => {

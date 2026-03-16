@@ -1,7 +1,7 @@
 :host {
       display: block;
       --flint-backdrop-color: rgba(0, 0, 0, 0.5);
-      --flint-backdrop-z-index: 1200;
+      --flint-backdrop-z-index: var(--flint-z-modal, 1060);
     }
 
     .backdrop {

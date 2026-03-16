@@ -15,7 +15,7 @@
     display: block;
     position: fixed;
     inset: 0;
-    z-index: var(--flint-drawer-z-index, 1200);
+    z-index: var(--flint-drawer-z-index, var(--flint-z-overlay, 1040));
     pointer-events: none;   /* pass-through when nothing is open */
     overflow: hidden;        /* clips off-screen paper — no scrollbars */
 }
@@ -79,33 +79,33 @@
 }
 
 /* Temporary – right */
-:host([variant="temporary"][anchor="right"]) .paper {
+:host([variant="temporary"][placement="right"]) .paper {
     left: auto; right: 0;
     transform: translateX(100%);
 }
-:host([variant="temporary"][anchor="right"][open]) .paper {
+:host([variant="temporary"][placement="right"][open]) .paper {
     transform: translateX(0);
 }
 
 /* Temporary – top */
-:host([variant="temporary"][anchor="top"]) .paper {
+:host([variant="temporary"][placement="top"]) .paper {
     top: 0; left: 0; right: 0; bottom: auto;
     width: auto;
     height: var(--flint-drawer-height, auto);
     transform: translateY(-100%);
 }
-:host([variant="temporary"][anchor="top"][open]) .paper {
+:host([variant="temporary"][placement="top"][open]) .paper {
     transform: translateY(0);
 }
 
 /* Temporary – bottom */
-:host([variant="temporary"][anchor="bottom"]) .paper {
+:host([variant="temporary"][placement="bottom"]) .paper {
     top: auto; bottom: 0; left: 0; right: 0;
     width: auto;
     height: var(--flint-drawer-height, auto);
     transform: translateY(100%);
 }
-:host([variant="temporary"][anchor="bottom"][open]) .paper {
+:host([variant="temporary"][placement="bottom"][open]) .paper {
     transform: translateY(0);
 }
 
@@ -118,7 +118,7 @@
     border-right: 1px solid var(--flint-border-color);
     pointer-events: auto;
 }
-:host([variant="persistent"][anchor="right"]) .paper {
+:host([variant="persistent"][placement="right"]) .paper {
     border-right: none;
     border-left: 1px solid var(--flint-border-color);
 }
@@ -139,7 +139,7 @@
     flex-shrink: 0;
     pointer-events: auto;
 }
-:host([variant="mini"][anchor="right"]) .paper {
+:host([variant="mini"][placement="right"]) .paper {
     border-right: none;
     border-left: 1px solid var(--flint-border-color);
 }

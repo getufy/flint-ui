@@ -232,7 +232,7 @@ export class FlintSpeedDial extends FlintElement {
         if ((key === 'Home' || key === 'End') && this.open && actionFocused) {
             e.preventDefault();
             const btns = this._actionButtons();
-            if (btns.length) btns[key === 'Home' ? 0 : btns.length - 1].focus();
+            if (btns.length) btns[key === 'Home' ? 0 : btns.length - 1]!.focus();
             return;
         }
 

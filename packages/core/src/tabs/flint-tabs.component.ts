@@ -246,11 +246,11 @@ export class FlintTabList extends FlintElement {
 
         tabs[idx]?.focusInner();
         // Scroll focused tab into view
-        if (typeof tabs[idx].scrollIntoView === 'function') {
-            tabs[idx].scrollIntoView({ block: 'nearest', inline: 'nearest' });
+        if (typeof tabs[idx]?.scrollIntoView === 'function') {
+            tabs[idx]!.scrollIntoView({ block: 'nearest', inline: 'nearest' });
         }
         tabs[idx]?.dispatchEvent(new CustomEvent('flint-tab-click', {
-            detail: { value: tabs[idx].value }, bubbles: true, composed: true,
+            detail: { value: tabs[idx]!.value }, bubbles: true, composed: true,
         }));
     }
 

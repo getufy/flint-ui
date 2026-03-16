@@ -49,10 +49,16 @@ export function isStartOrEnd(d: Date, start: Date | null, end: Date | null): boo
     return (start ? sameDay(d, start) : false) || (end ? sameDay(d, end) : false);
 }
 
-export function isoToDisplay(iso: string): string {
+export function isoToDisplay(iso: string, locale?: string): string {
     const d = isoToDate(iso);
     if (!d) return '';
-    return `${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}/${d.getFullYear()}`;
+    try {
+        return new Intl.DateTimeFormat(locale || undefined, {
+            year: 'numeric', month: '2-digit', day: '2-digit',
+        }).format(d);
+    } catch {
+        return `${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}/${d.getFullYear()}`;
+    }
 }
 
 // ── DateRange type ────────────────────────────────────────────────────────────

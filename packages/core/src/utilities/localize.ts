@@ -131,7 +131,7 @@ function resolveTranslation(lang: string): Translation | undefined {
   // Exact match
   if (translations.has(code)) return translations.get(code)!;
   // Try base language (e.g. 'es-PE' → 'es')
-  const base = code.split('-')[0];
+  const base = code.split('-')[0]!;
   if (base !== code && translations.has(base)) return translations.get(base)!;
   return undefined;
 }

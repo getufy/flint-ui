@@ -43,10 +43,10 @@
     }
 
     /* Size variants */
-    :host([size="small"])  { --flint-avatar-size: 32px; }
-    :host([size="medium"]) { --flint-avatar-size: 40px; }
-    :host([size="large"])  { --flint-avatar-size: 56px; }
-    :host([size="xlarge"]) { --flint-avatar-size: 80px; }
+    :host([size="sm"])  { --flint-avatar-size: 32px; }
+    :host([size="md"]) { --flint-avatar-size: 40px; }
+    :host([size="lg"])  { --flint-avatar-size: 56px; }
+    :host([size="xl"]) { --flint-avatar-size: 80px; }
 
     /* Skeleton state */
     .avatar.loading {

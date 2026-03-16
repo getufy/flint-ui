@@ -28,7 +28,7 @@ describe('flint-textarea', () => {
         expect(el.required).toBe(false);
         expect(el.error).toBe(false);
         expect(el.rows).toBe(3);
-        expect(el.size).toBe('default');
+        expect(el.size).toBe('md');
         expect(el.resize).toBe('vertical');
     });
 
@@ -305,10 +305,10 @@ describe('flint-textarea', () => {
 
     // ── Size variants ────────────────────────────────────────────────────────
 
-    it('defaults to size default', async () => {
+    it('defaults to size md', async () => {
         const el = await fixture<FlintTextarea>(html`<flint-textarea></flint-textarea>`);
-        expect(el.size).toBe('default');
-        expect(el.getAttribute('size')).toBe('default');
+        expect(el.size).toBe('md');
+        expect(el.getAttribute('size')).toBe('md');
     });
 
     it('accepts size sm', async () => {

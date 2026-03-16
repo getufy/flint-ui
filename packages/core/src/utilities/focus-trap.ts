@@ -97,8 +97,8 @@ export function handleFocusTrapKeyDown(e: KeyboardEvent, container: HTMLElement 
     return;
   }
 
-  const first = focusable[0];
-  const last = focusable[focusable.length - 1];
+  const first = focusable[0]!;
+  const last = focusable[focusable.length - 1]!;
 
   // Determine the currently focused element (could be inside a shadow root)
   const active = getDeepActiveElement();

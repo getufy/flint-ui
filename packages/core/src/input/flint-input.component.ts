@@ -1,4 +1,4 @@
-import { unsafeCSS, html, PropertyValues } from 'lit';
+import { unsafeCSS, html, PropertyValues, LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
@@ -15,6 +15,7 @@ let idCounter = 0;
  * @fires flint-input-change - Fired when the input loses focus after the value has changed. detail: `{ value: string }`
  */
 export class FlintInput extends FormAssociated(FlintElement) {
+    static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
     static styles = unsafeCSS(uiInputStyles);
 
     private _formControl = new FormControlController(this);
@@ -70,10 +71,10 @@ export class FlintInput extends FormAssociated(FlintElement) {
 
     /**
      * Size variant of the input.
-     * @default 'default'
+     * @default 'md'
      */
     @property({ type: String, reflect: true })
-    size: 'sm' | 'default' | 'lg' = 'default';
+    size: 'sm' | 'md' | 'lg' = 'md';
 
     /** Initial value for uncontrolled usage. */
     @property({ type: String, attribute: 'default-value' })

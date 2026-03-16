@@ -21,7 +21,7 @@ export function pickUnit(absDiffSeconds: number): { unit: Intl.RelativeTimeForma
     for (const entry of UNITS) {
         if (absDiffSeconds >= entry.seconds) return entry;
     }
-    return UNITS[UNITS.length - 1];
+    return UNITS[UNITS.length - 1]!;
 }
 
 /* ─────────────────────────────────────────────────────────────────── */

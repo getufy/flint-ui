@@ -5,7 +5,7 @@ import { FlintElement } from '../flint-element.js';
 import uiButtonStyles from './flint-button.css?inline';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'destructive' | 'success' | 'warning' | 'neutral';
-export type ButtonSize = 'small' | 'medium' | 'large';
+export type ButtonSize = 'sm' | 'md' | 'lg';
 export type ButtonType = 'button' | 'submit' | 'reset';
 export type ButtonShape = 'default' | 'pill' | 'circle';
 
@@ -21,10 +21,10 @@ export class FlintButton extends FlintElement {
 
   /**
    * Size of the button.
-   * @default 'medium'
+   * @default 'md'
    */
   @property({ type: String })
-  size: ButtonSize = 'medium';
+  size: ButtonSize = 'md';
 
   /** Disables the button and prevents interaction. */
   @property({ type: Boolean })

@@ -110,7 +110,7 @@ export class FlintGrid extends FlintElement {
         const bps: Breakpoint[] = ['xs', 'sm', 'md', 'lg', 'xl'];
         const idx = bps.indexOf(bp);
         for (let i = idx; i >= 0; i--) {
-            const val = (this as unknown as Record<Breakpoint, GridSize | undefined>)[bps[i]];
+            const val = (this as unknown as Record<Breakpoint, GridSize | undefined>)[bps[i]!];
             if (val !== undefined) {
                 if (typeof val === 'string' && !isNaN(Number(val)) && val.trim() !== '') {
                     return Number(val);
@@ -128,7 +128,7 @@ export class FlintGrid extends FlintElement {
         const bps: Breakpoint[] = ['xs', 'sm', 'md', 'lg', 'xl'];
         const idx = bps.indexOf(bp);
         for (let i = idx; i >= 0; i--) {
-            const val = this.offset[bps[i]];
+            const val = this.offset[bps[i]!];
             if (val !== undefined) {
                 if (typeof val === 'string' && !isNaN(Number(val)) && val.trim() !== '') {
                     return Number(val);
@@ -144,7 +144,7 @@ export class FlintGrid extends FlintElement {
             const bps: Breakpoint[] = ['xs', 'sm', 'md', 'lg', 'xl'];
             const idx = bps.indexOf(bp);
             for (let i = idx; i >= 0; i--) {
-                const v = (val as Partial<Record<Breakpoint, number | string>>)[bps[i]];
+                const v = (val as Partial<Record<Breakpoint, number | string>>)[bps[i]!];
                 if (v !== undefined) return v;
             }
             return 0;
@@ -160,7 +160,7 @@ export class FlintGrid extends FlintElement {
             const bps: Breakpoint[] = ['xs', 'sm', 'md', 'lg', 'xl'];
             const idx = bps.indexOf(bp);
             for (let i = idx; i >= 0; i--) {
-                const v = (val as Partial<Record<Breakpoint, number>>)[bps[i]];
+                const v = (val as Partial<Record<Breakpoint, number>>)[bps[i]!];
                 if (v !== undefined) return v;
             }
             return undefined;
@@ -276,7 +276,7 @@ export class FlintGrid extends FlintElement {
             const spacingStyles = this._getSpacingStyles(bp);
             if (spacingStyles['gap']) {
                 const parts = spacingStyles['gap'].split(' ');
-                const colGap = parts.length === 2 ? parts[1] : parts[0];
+                const colGap = parts.length === 2 ? parts[1]! : parts[0]!;
                 this.style.setProperty('--flint-grid-column-gap', colGap);
             }
             // Propagate column count to children via CSS custom property so nested

@@ -17,7 +17,7 @@ function isoToSegments(iso: string): { m: number | null; d: number | null; y: nu
     if (!iso) return { m: null, d: null, y: null };
     const match = iso.match(/^(\d{4})-(\d{2})-(\d{2})$/);
     if (!match) return { m: null, d: null, y: null };
-    return { y: parseInt(match[1]), m: parseInt(match[2]), d: parseInt(match[3]) };
+    return { y: parseInt(match[1]!), m: parseInt(match[2]!), d: parseInt(match[3]!) };
 }
 
 function segmentsToIso(m: number | null, d: number | null, y: number | null): string {
@@ -159,13 +159,13 @@ export class FlintDateField extends FlintElement {
     private _nextSegment() {
         if (!this._active) { this._setActive('month'); return; }
         const idx = SEGMENT_ORDER.indexOf(this._active);
-        if (idx < SEGMENT_ORDER.length - 1) this._setActive(SEGMENT_ORDER[idx + 1]);
+        if (idx < SEGMENT_ORDER.length - 1) this._setActive(SEGMENT_ORDER[idx + 1] ?? null);
     }
 
     private _prevSegment() {
         if (!this._active) return;
         const idx = SEGMENT_ORDER.indexOf(this._active);
-        if (idx > 0) this._setActive(SEGMENT_ORDER[idx - 1]);
+        if (idx > 0) this._setActive(SEGMENT_ORDER[idx - 1] ?? null);
     }
 
     private _canGoNext() {

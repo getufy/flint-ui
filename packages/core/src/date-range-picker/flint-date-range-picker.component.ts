@@ -62,6 +62,8 @@ export class FlintDateRangePicker extends FlintElement {
     @property({ type: String }) max = '';
     /** Form field name for hidden inputs. */
     @property({ type: String }) name = '';
+    /** BCP 47 locale for date formatting and month/day names (e.g. "en-US", "fr"). Uses browser default when unset. */
+    @property({ type: String }) locale = '';
 
     /** Disables the picker and prevents interaction. */
     @property({ type: Boolean, reflect: true }) disabled = false;
@@ -176,8 +178,9 @@ export class FlintDateRangePicker extends FlintElement {
     private _formatRange(range: DateRange): string {
         const [s, e] = range;
         if (!s && !e) return '';
-        const start = isoToDisplay(s) || '?';
-        const end = isoToDisplay(e) || '?';
+        const loc = this.locale || undefined;
+        const start = isoToDisplay(s, loc) || '?';
+        const end = isoToDisplay(e, loc) || '?';
         return `${start} – ${end}`;
     }
 
@@ -201,6 +204,7 @@ export class FlintDateRangePicker extends FlintElement {
         .value=${value}
         .min=${this.min}
         .max=${this.max}
+        .locale=${this.locale}
         ?disabled=${this.disabled}
         @flint-date-range-picker-select=${onSelect}
       ></flint-date-range-calendar>

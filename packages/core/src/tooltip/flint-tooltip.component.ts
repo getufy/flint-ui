@@ -20,6 +20,9 @@ let instanceCounter = 0;
 /**
  * flint-tooltip
  * A component that displays a text label when users hover over or focus on an element.
+ *
+ * @fires flint-tooltip-show - Dispatched when the tooltip becomes visible.
+ * @fires flint-tooltip-hide - Dispatched when the tooltip is dismissed.
  */
 export class FlintTooltip extends FlintElement {
     static override styles = unsafeCSS(uiTooltipStyles);
@@ -86,12 +89,14 @@ export class FlintTooltip extends FlintElement {
                 this._visible = true;
                 if (this.hoist) this._startHoist();
                 void this._runShowAnimation();
+                this.dispatchEvent(new CustomEvent('flint-tooltip-show', { bubbles: true, composed: true }));
             }, this.openDelay);
         } else {
             this._applyAutoFlip();
             this._visible = true;
             if (this.hoist) this._startHoist();
             void this._runShowAnimation();
+            this.dispatchEvent(new CustomEvent('flint-tooltip-show', { bubbles: true, composed: true }));
         }
     }
 
@@ -108,6 +113,7 @@ export class FlintTooltip extends FlintElement {
                     if (!this.isConnected) return;
                     this._visible = false;
                     this._cleanupHoist();
+                    this.dispatchEvent(new CustomEvent('flint-tooltip-hide', { bubbles: true, composed: true }));
                 });
             }, this.closeDelay);
         } else {
@@ -115,6 +121,7 @@ export class FlintTooltip extends FlintElement {
                 if (!this.isConnected) return;
                 this._visible = false;
                 this._cleanupHoist();
+                this.dispatchEvent(new CustomEvent('flint-tooltip-hide', { bubbles: true, composed: true }));
             });
         }
     }

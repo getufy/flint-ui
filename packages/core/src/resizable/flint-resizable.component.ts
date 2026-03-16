@@ -93,7 +93,7 @@ export class FlintResizableGroup extends FlintElement {
         ? 'var(--flint-resizable-handle-active-size, 12px)'
         : 'var(--flint-resizable-handle-size, 4px)',
     );
-    return parts.length === 1 ? parts[0] : `calc(${parts.join(' + ')})`;
+    return parts.length === 1 ? parts[0]! : `calc(${parts.join(' + ')})`;
   }
 
   private _distributeDefaultSizes() {
@@ -135,7 +135,7 @@ export class FlintResizableGroup extends FlintElement {
 
   private _syncAriaOnHandles() {
     for (let i = 0; i < this._handles.length; i++) {
-      const h = this._handles[i];
+      const h = this._handles[i]!;
       const before = this._panels[i];
       const after = this._panels[i + 1];
       if (!before || !after) continue;

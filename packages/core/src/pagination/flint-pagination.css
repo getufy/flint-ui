@@ -93,9 +93,9 @@
         :host([shape="circular"]) .page-btn { border-radius: 50%; min-width: var(--flint-pagination-btn-size, 36px); aspect-ratio: 1; }
 
         /* ── Size ── */
-        :host([size="small"]) .page-btn    { min-width: var(--flint-pagination-btn-size-sm, 28px); height: var(--flint-pagination-btn-size-sm, 28px); font-size: var(--flint-pagination-btn-font-size-sm, 0.8125rem); }
-        :host([size="small"][shape="circular"]) .page-btn { min-width: var(--flint-pagination-btn-size-sm, 28px); }
-        :host([size="large"]) .page-btn    { min-width: var(--flint-pagination-btn-size-lg, 44px); height: var(--flint-pagination-btn-size-lg, 44px); font-size: var(--flint-pagination-btn-font-size-lg, 0.9375rem); }
+        :host([size="sm"]) .page-btn    { min-width: var(--flint-pagination-btn-size-sm, 28px); height: var(--flint-pagination-btn-size-sm, 28px); font-size: var(--flint-pagination-btn-font-size-sm, 0.8125rem); }
+        :host([size="sm"][shape="circular"]) .page-btn { min-width: var(--flint-pagination-btn-size-sm, 28px); }
+        :host([size="lg"]) .page-btn    { min-width: var(--flint-pagination-btn-size-lg, 44px); height: var(--flint-pagination-btn-size-lg, 44px); font-size: var(--flint-pagination-btn-font-size-lg, 0.9375rem); }
 
         /* ── Disabled host ── */
         :host([disabled]) .page-btn {

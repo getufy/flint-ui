@@ -11,6 +11,7 @@ import uiDrawerStyles from './flint-drawer.css?inline';
  * Navigation drawers provide ergonomic access to destinations in a site or app.
  *
  * @slot - Drawer content.
+ * @fires flint-drawer-open  - Dispatched after the drawer open animation completes. detail: `{ open: true }`
  * @fires flint-drawer-close - Dispatched when the drawer requests to be closed (backdrop click or Escape). detail: `{ open: false }`
  */
 export class FlintDrawer extends FlintElement {
@@ -29,7 +30,7 @@ export class FlintDrawer extends FlintElement {
      * Side from which the drawer slides in.
      * @default 'left'
      */
-    @property({ type: String, reflect: true }) anchor: 'left' | 'right' | 'top' | 'bottom' = 'left';
+    @property({ type: String, reflect: true }) placement: 'left' | 'right' | 'top' | 'bottom' = 'left';
     /**
      * Drawer behavior mode.
      * @default 'temporary'
@@ -105,6 +106,7 @@ export class FlintDrawer extends FlintElement {
                 if (this.variant === 'temporary') {
                     this.shadowRoot?.querySelector<HTMLElement>('.paper')?.focus();
                 }
+                this.dispatchEvent(new CustomEvent('flint-drawer-open', { bubbles: true, composed: true, detail: { open: true } }));
             });
         } else {
             void this._runCloseAnimation().then(() => {
@@ -118,9 +120,9 @@ export class FlintDrawer extends FlintElement {
         }
     }
 
-    /** Resolve the animation name suffix based on the anchor direction. */
+    /** Resolve the animation name suffix based on the placement direction. */
     private _getAnimationSuffix(): string {
-        switch (this.anchor) {
+        switch (this.placement) {
             case 'right': return '.right';
             case 'top': return '.top';
             case 'bottom': return '.bottom';
@@ -204,7 +206,7 @@ export class FlintDrawer extends FlintElement {
             ` : ''}
 
             ${showEdge ? html`
-                <div class="edge edge-${this.anchor}" @click=${() => { this.open = true; }}>
+                <div class="edge edge-${this.placement}" @click=${() => { this.open = true; }}>
                     <div class="edge-handle"></div>
                 </div>
             ` : ''}

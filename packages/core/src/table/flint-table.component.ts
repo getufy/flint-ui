@@ -30,7 +30,7 @@ export class FlintTableContainer extends FlintElement {
 export class FlintTable extends FlintElement {
   static styles = unsafeCSS(uiTableStyles);
   /** Cell padding density. */
-  @property({ type: String, reflect: true }) size: 'medium' | 'small' = 'medium';
+  @property({ type: String, reflect: true }) size: 'md' | 'sm' = 'md';
   render() { return html`<slot></slot>`; }
 }
 

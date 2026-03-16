@@ -63,14 +63,14 @@ describe('flint-kbd — rendering', () => {
    flint-kbd — size prop
 ═══════════════════════════════════════════════════════════════════════════ */
 describe('flint-kbd — size prop', () => {
-    it('defaults to size="default"', async () => {
+    it('defaults to size="md"', async () => {
         const el = await fixture<FlintKbd>(html`<flint-kbd>K</flint-kbd>`);
-        expect(el.size).toBe('default');
+        expect(el.size).toBe('md');
     });
 
-    it('reflects size="default" as attribute', async () => {
+    it('reflects size="md" as attribute', async () => {
         const el = await fixture<FlintKbd>(html`<flint-kbd>K</flint-kbd>`);
-        expect(el.getAttribute('size')).toBe('default');
+        expect(el.getAttribute('size')).toBe('md');
     });
 
     it('accepts size="sm" attribute', async () => {
@@ -99,11 +99,11 @@ describe('flint-kbd — size prop', () => {
         expect(el.getAttribute('size')).toBe('lg');
     });
 
-    it('updates reflected attribute back to "default"', async () => {
+    it('updates reflected attribute back to "md"', async () => {
         const el = await fixture<FlintKbd>(html`<flint-kbd size="sm">K</flint-kbd>`);
-        el.size = 'default';
+        el.size = 'md';
         await el.updateComplete;
-        expect(el.getAttribute('size')).toBe('default');
+        expect(el.getAttribute('size')).toBe('md');
     });
 });
 

@@ -68,16 +68,16 @@ export class FlintCopyButton extends FlintElement {
         // from="el[attr]"  — copy attribute value
         const attrMatch = this.from.match(/^(.+)\[(.+)\]$/);
         if (attrMatch) {
-            const el = document.getElementById(attrMatch[1]);
-            return el ? el.getAttribute(attrMatch[2]) : null;
+            const el = document.getElementById(attrMatch[1]!);
+            return el ? el.getAttribute(attrMatch[2]!) : null;
         }
 
         // from="el.prop" — copy property value
         const propMatch = this.from.match(/^(.+)\.(.+)$/);
         if (propMatch) {
-            const el = document.getElementById(propMatch[1]);
+            const el = document.getElementById(propMatch[1]!);
             if (!el) return null;
-            const val = (el as unknown as Record<string, unknown>)[propMatch[2]];
+            const val = (el as unknown as Record<string, unknown>)[propMatch[2]!];
             return val != null ? String(val) : null;
         }
 

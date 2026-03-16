@@ -11,8 +11,8 @@ import uiToggleStyles from './flint-toggle.css?inline';
  *
  * @attr {boolean} pressed - Whether the toggle is currently pressed (on).
  * @attr {boolean} disabled - Whether the toggle is disabled.
- * @attr {'default'|'outline'} variant - Visual variant.
- * @attr {'sm'|'default'|'lg'} size - Size of the toggle.
+ * @attr {'default'|'outlined'} variant - Visual variant.
+ * @attr {'sm'|'md'|'lg'} size - Size of the toggle.
  * @attr {'ltr'|'rtl'} dir - Text direction.
  * @attr {boolean} default-pressed - Initial pressed state (uncontrolled mode).
  * @attr {string} aria-label - Accessible label for icon-only toggles.
@@ -25,9 +25,9 @@ export class FlintToggle extends FlintElement {
     /** Whether the toggle is disabled. */
     @property({ type: Boolean, reflect: true }) disabled = false;
     /** Visual variant of the toggle. */
-    @property({ type: String, reflect: true }) variant: 'default' | 'outline' = 'default';
+    @property({ type: String, reflect: true }) variant: 'default' | 'outlined' = 'default';
     /** Size of the toggle. */
-    @property({ type: String, reflect: true }) size: 'sm' | 'default' | 'lg' = 'default';
+    @property({ type: String, reflect: true }) size: 'sm' | 'md' | 'lg' = 'md';
     /** Text direction for the toggle. */
     @property({ type: String, reflect: true }) dir: 'ltr' | 'rtl' = 'ltr';
     /** Initial pressed state for uncontrolled mode. */

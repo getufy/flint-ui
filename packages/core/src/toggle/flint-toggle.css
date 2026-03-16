@@ -75,23 +75,23 @@
 
 /* ── Variant: outline ──────────────────────────────────────────── */
 
-:host([variant="outline"]) .toggle {
+:host([variant="outlined"]) .toggle {
     border-color: var(--flint-toggle-border-color, var(--flint-border-color));
     background-color: var(--flint-toggle-bg, var(--flint-surface-1));
 }
 
-:host([variant="outline"]) .toggle:hover:not([disabled]) {
+:host([variant="outlined"]) .toggle:hover:not([disabled]) {
     background-color: var(--flint-toggle-bg-hover, var(--flint-muted-background));
     border-color: var(--flint-toggle-border-color, var(--flint-border-color));
 }
 
-:host([variant="outline"]) .toggle[aria-pressed="true"] {
+:host([variant="outlined"]) .toggle[aria-pressed="true"] {
     background-color: var(--flint-toggle-bg-pressed, var(--flint-primary-color-light));
     color: var(--flint-toggle-color-pressed, var(--flint-primary-color));
     border-color: var(--flint-toggle-border-pressed-color, var(--flint-primary-color-light-hover));
 }
 
-:host([variant="outline"]) .toggle[aria-pressed="true"]:hover:not([disabled]) {
+:host([variant="outlined"]) .toggle[aria-pressed="true"]:hover:not([disabled]) {
     background-color: var(--flint-toggle-bg-pressed-hover, var(--flint-primary-color-light-hover));
 }
 

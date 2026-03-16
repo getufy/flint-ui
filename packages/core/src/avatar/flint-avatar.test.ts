@@ -67,8 +67,8 @@ describe('flint-avatar', () => {
     });
 
     it('reflects size attribute', async () => {
-        const el = await fixture<FlintAvatar>(html`<flint-avatar size="large"></flint-avatar>`);
-        expect(el.getAttribute('size')).toBe('large');
+        const el = await fixture<FlintAvatar>(html`<flint-avatar size="lg"></flint-avatar>`);
+        expect(el.getAttribute('size')).toBe('lg');
     });
 
     it('handles image error by showing initials', async () => {
@@ -128,15 +128,15 @@ describe('flint-avatar', () => {
         expect(base?.getAttribute('aria-label')).toBe('avatar');
     });
 
-    it('default size is medium', async () => {
+    it('default size is md', async () => {
         const el = await fixture<FlintAvatar>(html`<flint-avatar></flint-avatar>`);
-        expect(el.size).toBe('medium');
+        expect(el.size).toBe('md');
     });
 
-    it('supports xlarge size', async () => {
-        const el = await fixture<FlintAvatar>(html`<flint-avatar size="xlarge"></flint-avatar>`);
+    it('supports xl size', async () => {
+        const el = await fixture<FlintAvatar>(html`<flint-avatar size="xl"></flint-avatar>`);
         await el.updateComplete;
-        expect(el.getAttribute('size')).toBe('xlarge');
+        expect(el.getAttribute('size')).toBe('xl');
     });
 
     it('image has correct alt attribute', async () => {

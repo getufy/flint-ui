@@ -16,7 +16,7 @@ export class FlintAvatar extends FlintElement {
     /** Shape variant of the avatar. */
     @property({ type: String }) variant: 'circle' | 'square' | 'rounded' = 'circle';
     /** Size of the avatar. */
-    @property({ type: String, reflect: true }) size: 'small' | 'medium' | 'large' | 'xlarge' = 'medium';
+    @property({ type: String, reflect: true }) size: 'sm' | 'md' | 'lg' | 'xl' = 'md';
 
     @state() private _hasError = false;
     @state() private _isLoading = false;

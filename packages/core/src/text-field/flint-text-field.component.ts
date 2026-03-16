@@ -1,4 +1,4 @@
-import { unsafeCSS, html, PropertyValues } from 'lit';
+import { unsafeCSS, html, PropertyValues, LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
@@ -15,6 +15,7 @@ let idCounter = 0;
  * @fires flint-text-field-change - Fired when the input loses focus after the value has changed. detail: `{ value: string }`
  */
 export class FlintTextField extends FormAssociated(FlintElement) {
+    static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
     static styles = unsafeCSS(uiTextFieldStyles);
 
     private _formControl = new FormControlController(this);
@@ -68,10 +69,6 @@ export class FlintTextField extends FormAssociated(FlintElement) {
         this._formControl.reset();
     }
 
-    formDisabledCallback(disabled: boolean) {
-        this.disabled = disabled;
-    }
-
     private _updateFormValue() {
         this._initFormValue(this.value || null);
         this._initFormValidity(this.required, !this.value, 'Please fill out this field.');
@@ -122,8 +119,8 @@ export class FlintTextField extends FormAssociated(FlintElement) {
             'error': isError,
             'disabled': this.disabled
         })}>
-          <div class="icon-leading" part="leading-icon">
-            <slot name="leading"></slot>
+          <div class="icon-prefix" part="prefix-icon">
+            <slot name="prefix"></slot>
           </div>
 
           <input
@@ -143,8 +140,8 @@ export class FlintTextField extends FormAssociated(FlintElement) {
             @blur=${this._handleBlur}
           />
 
-          <div class="icon-trailing" part="trailing-icon">
-            <slot name="trailing"></slot>
+          <div class="icon-suffix" part="suffix-icon">
+            <slot name="suffix"></slot>
           </div>
         </div>
 

@@ -34,7 +34,7 @@ Navigation drawers provide ergonomic access to destinations in a site or app.
 |---|---|---|---|---|
 | \`open\` | \`open\` | \`boolean\` | \`false\` | Whether the drawer is open. |
 | \`defaultOpen\` | \`default-open\` | \`boolean\` | \`false\` | Initial open state for uncontrolled usage. |
-| \`anchor\` | \`anchor\` | \`'left' \\| 'right' \\| 'top' \\| 'bottom'\` | \`'left'\` | Side from which the drawer slides in. |
+| \`placement\` | \`placement\` | \`'left' \\| 'right' \\| 'top' \\| 'bottom'\` | \`'left'\` | Side from which the drawer slides in. |
 | \`variant\` | \`variant\` | \`'temporary' \\| 'persistent' \\| 'mini'\` | \`'temporary'\` | Drawer behavior mode. |
 | \`edge\` | \`edge\` | \`boolean\` | \`false\` | Whether the drawer uses edge spacing. |
 | \`container\` | \`container\` | \`boolean\` | \`false\` | Whether the drawer is contained within its parent. |
@@ -44,6 +44,7 @@ Navigation drawers provide ergonomic access to destinations in a site or app.
 
 | Event | Detail | Description |
 |---|---|---|
+| \`flint-drawer-open\` | \`&#123; open: true &#125;\` | Dispatched after the drawer open animation completes. |
 | \`flint-drawer-close\` | \`&#123; open: false &#125;\` | Dispatched when the drawer requests to be closed (backdrop click or Escape). detail: \`&#123; open: false &#125;\` |
 
 #### Slots
@@ -72,14 +73,14 @@ Navigation drawers provide ergonomic access to destinations in a site or app.
     },
     argTypes: {
         open: { control: 'boolean' },
-        anchor: { control: { type: 'select' }, options: ['left', 'right', 'top', 'bottom'] },
+        placement: { control: { type: 'select' }, options: ['left', 'right', 'top', 'bottom'] },
         variant: { control: { type: 'select' }, options: ['temporary', 'persistent', 'mini'] },
         edge: { control: 'boolean' },
         container: { control: 'boolean' },
     },
     args: {
         open: false,
-        anchor: 'left',
+        placement: 'left',
         variant: 'temporary',
         edge: false,
         container: false,
@@ -134,13 +135,13 @@ function navContent() {
 /*  Temporary                                                          */
 /* ================================================================== */
 export const Temporary: Story = {
-    args: { open: false, anchor: 'left', variant: 'temporary' },
+    args: { open: false, placement: 'left', variant: 'temporary' },
     render: (args) => html`
         <flint-box class="story-root" display="flex" alignItems="center" justifyContent="center" bgcolor="var(--flint-muted-background, #f8fafc)" border="1px solid #e2e8f0" borderRadius="8px" style="position:relative;height:320px;overflow:hidden;">
 
             <flint-drawer
                 .open=${args.open}
-                .anchor=${args.anchor}
+                .placement=${args.placement}
                 .variant=${'temporary'}
                 container
                 @flint-drawer-close=${onDrawerClose}
@@ -236,7 +237,7 @@ export const Mini: Story = {
 /*  Edge Drawer                                                        */
 /* ================================================================== */
 export const EdgeDrawer: Story = {
-    args: { open: false, anchor: 'bottom', edge: true },
+    args: { open: false, placement: 'bottom', edge: true },
     render: (args) => html`
         <flint-box class="story-root" display="flex" alignItems="center" justifyContent="center" bgcolor="var(--flint-muted-background, #f8fafc)" border="1px solid #e2e8f0" borderRadius="8px" style="position:relative;height:360px;overflow:hidden;">
 
@@ -244,7 +245,7 @@ export const EdgeDrawer: Story = {
 
             <flint-drawer
                 .open=${args.open}
-                .anchor=${'bottom'}
+                .placement=${'bottom'}
                 ?edge=${args.edge}
                 container
                 @flint-drawer-close=${onDrawerClose}
@@ -266,31 +267,31 @@ export const Anchors: Story = {
     render: () => html`
         <flint-box class="story-root" display="flex" flexWrap="wrap" alignContent="flex-start" bgcolor="var(--flint-muted-background, #f8fafc)" border="1px solid #e2e8f0" borderRadius="8px" p="24px" style="position:relative;height:460px;overflow:hidden;gap:12px;">
 
-            ${(['left', 'right', 'top', 'bottom'] as const).map(anchor => html`
+            ${(['left', 'right', 'top', 'bottom'] as const).map(placement => html`
                 <flint-button variant="outlined"
                     @click=${(e: Event) => {
             const root = (e.currentTarget as HTMLElement).closest('.story-root');
-            const d = root?.querySelector(`flint-drawer[data-anchor="${anchor}"]`) as FlintDrawer | null;
+            const d = root?.querySelector(`flint-drawer[data-placement="${placement}"]`) as FlintDrawer | null;
             if (d) d.open = true;
         }}
-                >Open ${anchor}</flint-button>
+                >Open ${placement}</flint-button>
 
                 <flint-drawer
-                    data-anchor=${anchor}
-                    .anchor=${anchor}
+                    data-placement=${placement}
+                    .placement=${placement}
                     container
                     @flint-drawer-close=${onDrawerClose}
                 >
-                    <div style="padding:24px;min-width:${anchor === 'left' || anchor === 'right' ? '240px' : 'auto'};min-height:${anchor === 'top' || anchor === 'bottom' ? '160px' : 'auto'};">
-                        <h3 style="margin-top:0;">${anchor[0].toUpperCase() + anchor.slice(1)} Drawer</h3>
-                        <p>Anchored to the <strong>${anchor}</strong> side of this container.</p>
+                    <div style="padding:24px;min-width:${placement === 'left' || placement === 'right' ? '240px' : 'auto'};min-height:${placement === 'top' || placement === 'bottom' ? '160px' : 'auto'};">
+                        <h3 style="margin-top:0;">${placement[0].toUpperCase() + placement.slice(1)} Drawer</h3>
+                        <p>Anchored to the <strong>${placement}</strong> side of this container.</p>
                         <flint-button @click=${closeDrawer}>Close</flint-button>
                     </div>
                 </flint-drawer>
             `)}
 
             <p style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:.8rem;color:#475569;margin:0;">
-                All four anchors demonstrated — drawers are scoped to this container
+                All four placements demonstrated - drawers are scoped to this container
             </p>
         </flint-box>
     `,

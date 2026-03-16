@@ -34,7 +34,7 @@ Automatically wires up to the nearest \`flint-hover-card\` ancestor.
 
 #### \`<flint-hover-card-trigger>\`
 
-The floating card panel. Position is controlled via \`side\` and \`align\`.
+The floating card panel. Position is controlled via \`placement\` and \`align\`.
 Place inside \`flint-hover-card\`; its \`open\` state is managed by the parent.
 
 - **Tag**: \`<flint-hover-card-trigger>\`
@@ -44,7 +44,7 @@ Place inside \`flint-hover-card\`; its \`open\` state is managed by the parent.
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`side\` | \`side\` | \`'top' \\| 'right' \\| 'bottom' \\| 'left'\` | \`'bottom'\` | Which side of the trigger to display the card on. |
+| \`placement\` | \`placement\` | \`'top' \\| 'right' \\| 'bottom' \\| 'left'\` | \`'bottom'\` | Which side of the trigger to display the card on. |
 | \`align\` | \`align\` | \`'start' \\| 'center' \\| 'end'\` | \`'center'\` | Alignment of the card along the cross axis relative to the trigger. |
 | \`open\` | \`open\` | \`boolean\` | \`false\` | Whether the card is visible. Managed by the parent \`flint-hover-card\`. |
 
@@ -177,7 +177,7 @@ export const Sides: Story = {
                     <flint-hover-card-trigger>
                         <button style="${btnStyle} text-transform: capitalize;">${side}</button>
                     </flint-hover-card-trigger>
-                    <flint-hover-card-content .side=${side}>
+                    <flint-hover-card-content .placement=${side}>
                         <div style="font-family: system-ui, sans-serif;">
                             <div style="font-weight: 600; margin-bottom: 4px; color: #111827;">Hover Card</div>
                             <div style="font-size: 0.8125rem; color: #4b5563; min-width: 160px;">
@@ -201,7 +201,7 @@ export const Alignment: Story = {
                     <flint-hover-card-trigger>
                         <button style=${btnStyle}>${align}</button>
                     </flint-hover-card-trigger>
-                    <flint-hover-card-content side="bottom" .align=${align} style="width: 200px;">
+                    <flint-hover-card-content placement="bottom" .align=${align} style="width: 200px;">
                         <div style="font-family: system-ui, sans-serif;">
                             <div style="font-weight: 600; margin-bottom: 4px; color: #111827;">Aligned: ${align}</div>
                             <div style="font-size: 0.8125rem; color: #4b5563;">

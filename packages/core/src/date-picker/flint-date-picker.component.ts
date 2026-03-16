@@ -1,4 +1,4 @@
-import { unsafeCSS, html, nothing } from 'lit';
+import { unsafeCSS, html, nothing, LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { repeat } from 'lit/directives/repeat.js';
@@ -259,6 +259,7 @@ export class FlintDatePickerCalendar extends FlintElement {
  * @fires flint-date-picker-change - Fired when the date changes. detail: `{ value: string }`
  */
 export class FlintDatePicker extends FlintElement {
+    static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
     static styles = unsafeCSS(uiDatePickerStyles);
     private _localize = new LocalizeController(this);
     static dependencies = {

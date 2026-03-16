@@ -10,7 +10,7 @@ describe('flint-button', () => {
     it('renders with default properties', async () => {
         const el = await fixture<FlintButton>(html`<flint-button>Click Me</flint-button>`);
         expect(el.variant).toBe('primary');
-        expect(el.size).toBe('medium');
+        expect(el.size).toBe('md');
         expect(el.disabled).toBe(false);
         expect(el.loading).toBe(false);
         expect(el.type).toBe('button');
@@ -20,23 +20,23 @@ describe('flint-button', () => {
 
         const button = el.shadowRoot!.querySelector('button')!;
         expect(button.className).toContain('primary');
-        expect(button.className).toContain('medium');
+        expect(button.className).toContain('md');
         expect(button.className).not.toContain('secondary');
         expect(button.className).not.toContain('destructive');
-        expect(button.className).not.toContain('small');
-        expect(button.className).not.toContain('large');
+        expect(button.className).not.toContain('sm');
+        expect(button.className).not.toContain('lg');
         expect(button.disabled).toBe(false);
     });
 
     it('applies variant and size classes', async () => {
-        const el = await fixture<FlintButton>(html`<flint-button variant="secondary" size="small">Click</flint-button>`);
+        const el = await fixture<FlintButton>(html`<flint-button variant="secondary" size="sm">Click</flint-button>`);
         const button = el.shadowRoot!.querySelector('button')!;
         expect(button.className).toContain('secondary');
-        expect(button.className).toContain('small');
+        expect(button.className).toContain('sm');
         expect(button.className).not.toContain('primary');
         expect(button.className).not.toContain('destructive');
-        expect(button.className).not.toContain('medium');
-        expect(button.className).not.toContain('large');
+        expect(button.className).not.toContain('md');
+        expect(button.className).not.toContain('lg');
     });
 
     it('passes disabled state to native button', async () => {
@@ -52,11 +52,11 @@ describe('flint-button', () => {
     });
 
     it('applies large size class', async () => {
-        const el = await fixture<FlintButton>(html`<flint-button size="large">Large</flint-button>`);
+        const el = await fixture<FlintButton>(html`<flint-button size="lg">Large</flint-button>`);
         const button = el.shadowRoot!.querySelector('button')!;
-        expect(button.className).toContain('large');
-        expect(button.className).not.toContain('small');
-        expect(button.className).not.toContain('medium');
+        expect(button.className).toContain('lg');
+        expect(button.className).not.toContain('sm');
+        expect(button.className).not.toContain('md');
     });
 
     it('renders slotted content', async () => {

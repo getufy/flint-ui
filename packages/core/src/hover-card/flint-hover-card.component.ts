@@ -1,9 +1,12 @@
-import { unsafeCSS, html, type PropertyValues } from 'lit';
+import { unsafeCSS, html, nothing, type PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 import uiHoverCardTriggerStyles from './flint-hover-card-trigger.css?inline';
 import uiHoverCardContentStyles from './flint-hover-card-content.css?inline';
 import uiHoverCardStyles from './flint-hover-card.css?inline';
 import { FlintElement } from '../flint-element.js';
+
+/* ── ARIA id counter ──────────────────────────────────────────────── */
+let nextId = 0;
 
 /* ─────────────────────────────────────────────────────────────────── */
 /*  flint-hover-card-trigger                                               */
@@ -18,6 +21,12 @@ import { FlintElement } from '../flint-element.js';
 export class FlintHoverCardTrigger extends FlintElement {
     static styles = unsafeCSS(uiHoverCardTriggerStyles);
 
+    /** Whether the associated hover card is currently open. Set by the parent. */
+    @property({ type: Boolean, attribute: false }) expanded = false;
+
+    /** The id of the associated content element, for `aria-describedby`. Set by the parent. */
+    @property({ attribute: false }) contentId = '';
+
     private _getRoot(): FlintHoverCard | null {
         return this.closest('flint-hover-card') as FlintHoverCard | null;
     }
@@ -31,6 +40,11 @@ export class FlintHoverCardTrigger extends FlintElement {
         return html`
             <div
                 part="base"
+                role="button"
+                tabindex="0"
+                aria-haspopup="true"
+                aria-expanded=${this.expanded ? 'true' : 'false'}
+                aria-describedby=${this.contentId || nothing}
                 @mouseenter=${this._handleMouseEnter}
                 @mouseleave=${this._handleMouseLeave}
                 @focusin=${this._handleFocusIn}
@@ -47,13 +61,13 @@ export class FlintHoverCardTrigger extends FlintElement {
 /* ─────────────────────────────────────────────────────────────────── */
 
 /**
- * The floating card panel. Position is controlled via `side` and `align`.
+ * The floating card panel. Position is controlled via `placement` and `align`.
  * Place inside `flint-hover-card`; its `open` state is managed by the parent.
  *
  * @slot - Rich content displayed inside the card.
  *
- * @attr {string}  side  - Which side of the trigger to display: top | right | bottom | left.
- * @attr {string}  align - Alignment along the cross axis: start | center | end.
+ * @attr {string}  placement - Which side of the trigger to display: top | right | bottom | left.
+ * @attr {string}  align     - Alignment along the cross axis: start | center | end.
  * @attr {boolean} open  - Whether the card is visible (set by `flint-hover-card`).
  *
  * @cssprop --flint-hovercard-bg           - Card background (default: #fff).
@@ -71,8 +85,11 @@ export class FlintHoverCardTrigger extends FlintElement {
 export class FlintHoverCardContent extends FlintElement {
     static styles = unsafeCSS(uiHoverCardContentStyles);
 
+    /** Auto-generated unique id used for ARIA linkage. */
+    readonly contentId = `flint-hovercard-${++nextId}`;
+
     /** Which side of the trigger to display the card on. */
-    @property({ type: String, reflect: true }) side: 'top' | 'right' | 'bottom' | 'left' = 'bottom';
+    @property({ type: String, reflect: true }) placement: 'top' | 'right' | 'bottom' | 'left' = 'bottom';
 
     /** Alignment of the card along the cross axis relative to the trigger. */
     @property({ type: String, reflect: true }) align: 'start' | 'center' | 'end' = 'center';
@@ -101,7 +118,7 @@ export class FlintHoverCardContent extends FlintElement {
     }
 
     override updated(changed: PropertyValues) {
-        if (changed.has('side') || changed.has('align')) {
+        if (changed.has('placement') || changed.has('align')) {
             this._applyPosition();
         }
         if (changed.has('open')) {
@@ -129,7 +146,7 @@ export class FlintHoverCardContent extends FlintElement {
         if (!trigger) return;
 
         const rect = trigger.getBoundingClientRect();
-        const { side, align } = this;
+        const { placement: side, align } = this;
         const offset = 8;
 
         this.style.removeProperty('top');
@@ -198,7 +215,7 @@ export class FlintHoverCardContent extends FlintElement {
 
     /** Applies absolute positioning inline styles based on `side` and `align`. */
     private _applyPosition() {
-        const { side, align } = this;
+        const { placement: side, align } = this;
         const offset = 'var(--flint-hovercard-offset, 8px)';
 
         this.style.removeProperty('top');
@@ -241,6 +258,9 @@ export class FlintHoverCardContent extends FlintElement {
             <div
                 class="card"
                 part="content"
+                id=${this.contentId}
+                role="tooltip"
+                aria-hidden=${this.open ? 'false' : 'true'}
                 @mouseenter=${this._handleMouseEnter}
                 @mouseleave=${this._handleMouseLeave}
             >
@@ -341,10 +361,24 @@ export class FlintHoverCard extends FlintElement {
     }
 
     private _syncChildren() {
+        // Collect content ids for aria-describedby linkage
+        const contentIds: string[] = [];
         this.querySelectorAll('flint-hover-card-content').forEach(el => {
             if ((el.closest('flint-hover-card') as unknown) === this) {
-                (el as unknown as FlintHoverCardContent).open = this._isOpen;
-                (el as unknown as FlintHoverCardContent).hoist = this.hoist;
+                const content = el as unknown as FlintHoverCardContent;
+                content.open = this._isOpen;
+                content.hoist = this.hoist;
+                contentIds.push(content.contentId);
+            }
+        });
+
+        // Sync ARIA state to triggers
+        const contentIdStr = contentIds.join(' ');
+        this.querySelectorAll('flint-hover-card-trigger').forEach(el => {
+            if ((el.closest('flint-hover-card') as unknown) === this) {
+                const trigger = el as unknown as FlintHoverCardTrigger;
+                trigger.expanded = this._isOpen;
+                trigger.contentId = contentIdStr;
             }
         });
     }

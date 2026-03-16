@@ -63,7 +63,7 @@ export class FlintBreadcrumbs extends FlintElement {
         const slot = e.target as HTMLSlotElement;
         const nodes = slot.assignedNodes({ flatten: true });
         // Clone the separator node so we can safely reuse it across all separator positions.
-        this._separatorNode = nodes.length > 0 ? nodes[0].cloneNode(true) : null;
+        this._separatorNode = nodes.length > 0 ? nodes[0]!.cloneNode(true) : null;
     }
 
     private _renderSeparator() {

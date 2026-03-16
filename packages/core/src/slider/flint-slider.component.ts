@@ -1,4 +1,4 @@
-import { unsafeCSS, html, PropertyValues } from 'lit';
+import { unsafeCSS, html, PropertyValues, LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { styleMap } from 'lit/directives/style-map.js';
@@ -14,6 +14,7 @@ type Size = 'sm' | 'md' | 'lg';
  * @fires flint-slider-change - Fired when the slider value changes. detail: `{ value: number }`
  */
 export class FlintSlider extends FormAssociated(FlintElement) {
+  static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
   static styles = unsafeCSS(uiSliderStyles);
 
   // ── Props ─────────────────────────────────────────────────────────────────

@@ -30,7 +30,7 @@ Input: a styled text input with label, help text, and error states.
 | \`readonly\` | \`readonly\` | \`boolean\` | \`false\` | Makes the input read-only. |
 | \`name\` | \`name\` | \`string\` | \`''\` | Form field name used when submitting form data. |
 | \`autocomplete\` | \`autocomplete\` | \`string\` | \`''\` | Browser autocomplete hint. |
-| \`size\` | \`size\` | \`'sm' \\| 'default' \\| 'lg'\` | \`'default'\` | 'sm' \\| 'default' \\| 'lg' |
+| \`size\` | \`size\` | \`'sm' \\| 'md' \\| 'lg'\` | \`'default'\` | 'sm' \\| 'md' \\| 'lg' |
 | \`defaultValue\` | \`default-value\` | \`string \\| undefined\` | — | Initial value for uncontrolled usage. |
 
 #### Events
@@ -78,7 +78,7 @@ Input: a styled text input with label, help text, and error states.
         disabled: { control: 'boolean' },
         required: { control: 'boolean' },
         readonly: { control: 'boolean' },
-        size: { control: 'select', options: ['sm', 'default', 'lg'] },
+        size: { control: 'select', options: ['sm', 'md', 'lg'] },
         name: { control: 'text' },
         autocomplete: { control: 'text' },
         onInput: { action: 'flint-input-input' },
@@ -95,7 +95,7 @@ Input: a styled text input with label, help text, and error states.
         disabled: false,
         required: false,
         readonly: false,
-        size: 'default',
+        size: 'md',
         name: '',
         autocomplete: '',
     },
@@ -233,7 +233,7 @@ export const AllSizes: Story = {
     render: () => html`
     <div style="max-width: 300px; padding: 20px; display: flex; flex-direction: column; gap: 16px;">
       <flint-input label="Small" size="sm" placeholder="Small"></flint-input>
-      <flint-input label="Default" size="default" placeholder="Default"></flint-input>
+      <flint-input label="Default" size="md" placeholder="Default"></flint-input>
       <flint-input label="Large" size="lg" placeholder="Large"></flint-input>
     </div>
   `,

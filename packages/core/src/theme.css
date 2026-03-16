@@ -371,7 +371,7 @@
     --flint-drawer-mini-width: 72px;
     --flint-drawer-height:     auto;
     --flint-drawer-bg:         var(--flint-surface-1);
-    --flint-drawer-z-index:    1200;
+    --flint-drawer-z-index:    var(--flint-z-overlay);
     --flint-drawer-shadow:     0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12);
     --flint-drawer-transition: .225s cubic-bezier(0, 0, .2, 1);
     --flint-drawer-edge-width: 16px;
@@ -512,6 +512,55 @@
     --flint-container-md:  901px;
     --flint-container-lg: 1201px;
     --flint-container-xl: 1537px;
+
+    /* ─── Spacing scale [§20.1] ──────────────────────────────── */
+    --flint-spacing-0:  0;
+    --flint-spacing-1:  0.25rem;   /*  4px */
+    --flint-spacing-2:  0.5rem;    /*  8px */
+    --flint-spacing-3:  0.75rem;   /* 12px */
+    --flint-spacing-4:  1rem;      /* 16px */
+    --flint-spacing-5:  1.25rem;   /* 20px */
+    --flint-spacing-6:  1.5rem;    /* 24px */
+    --flint-spacing-8:  2rem;      /* 32px */
+    --flint-spacing-10: 2.5rem;    /* 40px */
+    --flint-spacing-12: 3rem;      /* 48px */
+
+    /* ─── Typography scale [§20.2] ───────────────────────────── */
+    /* --flint-font-family is defined above */
+    --flint-font-size-xs:  0.75rem;    /* 12px */
+    --flint-font-size-sm:  0.875rem;   /* 14px */
+    --flint-font-size-md:  1rem;       /* 16px */
+    --flint-font-size-lg:  1.125rem;   /* 18px */
+    --flint-font-size-xl:  1.25rem;    /* 20px */
+    --flint-font-size-2xl: 1.5rem;     /* 24px */
+    --flint-font-size-3xl: 1.875rem;   /* 30px */
+
+    --flint-font-weight-normal:   400;
+    --flint-font-weight-medium:   500;
+    --flint-font-weight-semibold: 600;
+    --flint-font-weight-bold:     700;
+
+    --flint-line-height-tight:   1.25;
+    --flint-line-height-normal:  1.5;
+    --flint-line-height-relaxed: 1.75;
+
+    /* ─── Animation timing [§20.3] ───────────────────────────── */
+    --flint-transition-fast:   150ms;
+    --flint-transition-medium: 250ms;
+    --flint-transition-slow:   400ms;
+
+    --flint-ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+    --flint-ease-in:      cubic-bezier(0.4, 0, 1, 1);
+    --flint-ease-out:     cubic-bezier(0, 0, 0.2, 1);
+    --flint-ease-in-out:  cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* ─── Z-index scale [§20.4] ──────────────────────────────── */
+    --flint-z-dropdown: 1000;
+    --flint-z-sticky:   1020;
+    --flint-z-overlay:  1040;
+    --flint-z-modal:    1060;
+    --flint-z-popover:  1070;
+    --flint-z-tooltip:  1080;
 }
 
 
@@ -644,8 +693,9 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
-        animation-duration: 0.01ms \!important;
-        animation-iteration-count: 1 \!important;
-        transition-duration: 0.01ms \!important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }

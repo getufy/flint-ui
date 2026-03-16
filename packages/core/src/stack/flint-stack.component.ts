@@ -107,7 +107,7 @@ export class FlintStack extends FlintElement {
             const bps: Breakpoint[] = ['xs', 'sm', 'md', 'lg', 'xl'];
             const idx = bps.indexOf(bp);
             for (let i = idx; i >= 0; i--) {
-                const v = (val as Partial<Record<Breakpoint, T>>)[bps[i]];
+                const v = (val as Partial<Record<Breakpoint, T>>)[bps[i]!];
                 if (v !== undefined) return v;
             }
             const obj = val as Partial<Record<Breakpoint, T>>;

@@ -47,6 +47,17 @@
       flex-shrink: 0;
     }
 
+    /* Invisible touch target extension (WCAG 2.5.8 — 44x44px minimum) */
+    .switch::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 44px;
+      min-height: 44px;
+    }
+
     .switch.checked {
       background-color: var(--flint-switch-bg-on);
     }

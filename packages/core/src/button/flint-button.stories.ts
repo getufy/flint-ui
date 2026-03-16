@@ -55,7 +55,7 @@ const meta: Meta = {
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
 | \`variant\` | \`variant\` | \`'primary' \\| 'secondary' \\| 'destructive' \\| 'success' \\| 'warning' \\| 'neutral'\` | \`'primary'\` | Visual style variant. |
-| \`size\` | \`size\` | \`'small' \\| 'medium' \\| 'large'\` | \`'medium'\` | Size of the button. |
+| \`size\` | \`size\` | \`'sm' \\| 'md' \\| 'lg'\` | \`'md'\` | Size of the button. |
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the button. |
 | \`fullWidth\` | \`full-width\` | \`boolean\` | \`false\` | Stretches to container width. |
 | \`type\` | \`type\` | \`'button' \\| 'submit' \\| 'reset'\` | \`'button'\` | Button type for form participation. |
@@ -152,7 +152,7 @@ Toggle Button: a button that can be toggled on/off.
         },
         size: {
             control: 'select',
-            options: ['small', 'medium', 'large'],
+            options: ['sm', 'md', 'lg'],
         },
         shape: {
             control: 'select',
@@ -172,7 +172,7 @@ Toggle Button: a button that can be toggled on/off.
     args: {
         content: 'Button Text',
         variant: 'primary',
-        size: 'medium',
+        size: 'md',
         shape: 'default',
         type: 'button',
         disabled: false,
@@ -211,10 +211,10 @@ export const AllVariantsAndSizes: Story = {
                 <div>
                     <p style="margin: 0 0 12px 0; font-weight: 600; text-transform: capitalize;">${variant}</p>
                     <div style="display: flex; align-items: center; gap: 12px;">
-                        <flint-button variant=${variant} size="small">Small</flint-button>
-                        <flint-button variant=${variant} size="medium">Medium</flint-button>
-                        <flint-button variant=${variant} size="large">Large</flint-button>
-                        <flint-button variant=${variant} size="medium" disabled>Disabled</flint-button>
+                        <flint-button variant=${variant} size="sm">Small</flint-button>
+                        <flint-button variant=${variant} size="md">Medium</flint-button>
+                        <flint-button variant=${variant} size="lg">Large</flint-button>
+                        <flint-button variant=${variant} size="md" disabled>Disabled</flint-button>
                     </div>
                 </div>
             `)}
@@ -236,21 +236,21 @@ export const LoadingState: Story = {
 export const WithPrefixAndSuffixIcons: Story = {
     render: () => html`
         <div style="display: flex; gap: 12px; align-items: center;">
-            <flint-button variant="primary" size="medium">
+            <flint-button variant="primary" size="md">
                 <svg slot="prefix" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                     <path d="M8 2a6 6 0 1 0 0 12A6 6 0 0 0 8 2zM1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8z"></path>
                     <path d="M8 4a.5.5 0 0 1 .5.5v3.793l2.146 2.147a.5.5 0 0 1-.708.707L7.5 8.707V4.5A.5.5 0 0 1 8 4z"></path>
                 </svg>
                 Schedule
             </flint-button>
-            <flint-button variant="secondary" size="medium">
+            <flint-button variant="secondary" size="md">
                 Download
                 <svg slot="suffix" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                     <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"></path>
                     <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"></path>
                 </svg>
             </flint-button>
-            <flint-button variant="primary" size="medium">
+            <flint-button variant="primary" size="md">
                 <svg slot="prefix" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                     <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
                 </svg>
@@ -266,17 +266,17 @@ export const WithPrefixAndSuffixIcons: Story = {
 export const IconOnlyButton: Story = {
     render: () => html`
         <div style="display: flex; gap: 12px; align-items: center;">
-            <flint-button variant="primary" shape="circle" size="small" label="Add item">
+            <flint-button variant="primary" shape="circle" size="sm" label="Add item">
                 <svg slot="prefix" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                     <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
                 </svg>
             </flint-button>
-            <flint-button variant="secondary" shape="circle" size="medium" label="Settings">
+            <flint-button variant="secondary" shape="circle" size="md" label="Settings">
                 <svg slot="prefix" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                     <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"></path>
                 </svg>
             </flint-button>
-            <flint-button variant="destructive" shape="circle" size="large" label="Delete">
+            <flint-button variant="destructive" shape="circle" size="lg" label="Delete">
                 <svg slot="prefix" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
                     <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H5.5l1-1h3l1 1h2.5a1 1 0 0 1 1 1v1z"></path>
@@ -289,9 +289,9 @@ export const IconOnlyButton: Story = {
 export const PillShape: Story = {
     render: () => html`
         <div style="display: flex; gap: 12px; align-items: center;">
-            <flint-button variant="primary" shape="pill" size="small">Small Pill</flint-button>
-            <flint-button variant="secondary" shape="pill" size="medium">Medium Pill</flint-button>
-            <flint-button variant="destructive" shape="pill" size="large">Large Pill</flint-button>
+            <flint-button variant="primary" shape="pill" size="sm">Small Pill</flint-button>
+            <flint-button variant="secondary" shape="pill" size="md">Medium Pill</flint-button>
+            <flint-button variant="destructive" shape="pill" size="lg">Large Pill</flint-button>
             <flint-button variant="success" shape="pill">Success Pill</flint-button>
         </div>
     `
@@ -328,10 +328,10 @@ export const FormContext: Story = {
 export const ToolbarContext: Story = {
     render: () => html`
         <div style="padding: 12px; background: var(--flint-surface-background-flat); border-radius: 8px; display: flex; gap: 8px;">
-            <flint-button variant="secondary" size="small">Edit</flint-button>
-            <flint-button variant="secondary" size="small">Share</flint-button>
+            <flint-button variant="secondary" size="sm">Edit</flint-button>
+            <flint-button variant="secondary" size="sm">Share</flint-button>
             <div style="flex-grow: 1;"></div>
-            <flint-button variant="primary" size="small">Save</flint-button>
+            <flint-button variant="primary" size="sm">Save</flint-button>
         </div>
     `
 };
@@ -342,8 +342,8 @@ export const ModalContext: Story = {
             <h2 style="margin-top: 0; margin-bottom: 12px; font-family: var(--flint-font-family); font-size: 1.25rem;">Delete Account?</h2>
             <p style="margin-top: 0; margin-bottom: 24px; color: var(--flint-text-color-muted); font-family: var(--flint-font-family); line-height: 1.5;">This action cannot be undone. All your data will be permanently removed.</p>
             <div style="display: flex; justify-content: flex-end; gap: 12px;">
-                <flint-button variant="secondary" size="medium">Cancel</flint-button>
-                <flint-button variant="destructive" size="medium">Delete</flint-button>
+                <flint-button variant="secondary" size="md">Cancel</flint-button>
+                <flint-button variant="destructive" size="md">Delete</flint-button>
             </div>
         </div>
     `
@@ -357,7 +357,7 @@ export const ActionCardContext: Story = {
             </div>
             <h3 style="margin: 0 0 8px 0; font-family: var(--flint-font-family);">Pro Plan</h3>
             <p style="margin: 0 0 24px 0; color: var(--flint-text-color-muted); font-size: 14px; font-family: var(--flint-font-family);">Unlock premium features and advanced analytics.</p>
-            <flint-button variant="primary" size="medium" full-width>Upgrade Now</flint-button>
+            <flint-button variant="primary" size="md" full-width>Upgrade Now</flint-button>
         </div>
     `
 };
@@ -365,8 +365,8 @@ export const ActionCardContext: Story = {
 export const DisabledContext: Story = {
     render: () => html`
         <div style="display: flex; gap: 16px;">
-             <flint-button variant="primary" size="medium" disabled>Primary Disabled</flint-button>
-             <flint-button variant="secondary" size="medium" disabled>Secondary Disabled</flint-button>
+             <flint-button variant="primary" size="md" disabled>Primary Disabled</flint-button>
+             <flint-button variant="secondary" size="md" disabled>Secondary Disabled</flint-button>
         </div>
     `
 };
@@ -374,14 +374,14 @@ export const DisabledContext: Story = {
 export const WithIcon: Story = {
     render: () => html`
         <div style="display: flex; gap: 12px; align-items: center;">
-            <flint-button variant="primary" size="medium">
+            <flint-button variant="primary" size="md">
                 <svg slot="prefix" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                     <path d="M8 2a6 6 0 1 0 0 12A6 6 0 0 0 8 2zM1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8z"></path>
                     <path d="M8 4a.5.5 0 0 1 .5.5v3.793l2.146 2.147a.5.5 0 0 1-.708.707L7.5 8.707V4.5A.5.5 0 0 1 8 4z"></path>
                 </svg>
                 Schedule
             </flint-button>
-            <flint-button variant="secondary" size="medium">
+            <flint-button variant="secondary" size="md">
                 <svg slot="prefix" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                     <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"></path>
                 </svg>

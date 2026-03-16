@@ -14,7 +14,7 @@ import uiKbdGroupStyles from './flint-kbd-group.css?inline';
  *
  * @slot - Key label: text, symbol (⌘ ⇧ ⌥ ⌃ ⏎), or any inline content.
  *
- * @attr {'default'|'sm'|'lg'} size    - Visual size of the key.
+ * @attr {'md'|'sm'|'lg'} size    - Visual size of the key.
  * @attr {'raised'|'flat'}     variant - `raised` (default) shows bottom border + shadow; `flat` removes them for inline use.
  * @attr {string}              label   - Accessible label forwarded as `aria-label` on the inner `<kbd>` element.
  *
@@ -30,7 +30,7 @@ export class FlintKbd extends FlintElement {
 
     /** Visual size of the key. */
     @property({ reflect: true })
-    size: 'sm' | 'default' | 'lg' = 'default';
+    size: 'sm' | 'md' | 'lg' = 'md';
 
     /** Visual style: `raised` (default, bottom border + shadow) or `flat` (no raised effect). */
     @property({ reflect: true })

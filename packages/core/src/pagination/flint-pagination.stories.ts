@@ -40,7 +40,7 @@ a range of pages.
 | \`label\` | \`label\` | \`string\` | \`''\` | Accessible label for the nav landmark (aria-label). |
 | \`variant\` | \`variant\` | \`'text' \\| 'outlined'\` | \`'text'\` | Variant. |
 | \`shape\` | \`shape\` | \`'circular' \\| 'rounded' \\| 'square'\` | \`'circular'\` | Shape. |
-| \`size\` | \`size\` | \`'small' \\| 'medium' \\| 'large'\` | \`'medium'\` | Size. |
+| \`size\` | \`size\` | \`'sm' \\| 'md' \\| 'lg'\` | \`'medium'\` | Size. |
 | \`color\` | \`color\` | \`'primary' \\| 'secondary' \\| 'standard'\` | \`'primary'\` | Color. |
 | \`showFirstButton\` | \`show-first-button\` | \`boolean\` | \`false\` | Show first-page button. |
 | \`showLastButton\` | \`show-last-button\` | \`boolean\` | \`false\` | Show last-page button. |
@@ -103,7 +103,7 @@ a range of pages.
         label: { control: 'text' },
         variant: { control: { type: 'select' }, options: ['text', 'outlined'] },
         shape: { control: { type: 'select' }, options: ['circular', 'rounded', 'square'] },
-        size: { control: { type: 'select' }, options: ['small', 'medium', 'large'] },
+        size: { control: { type: 'select' }, options: ['sm', 'md', 'lg'] },
         color: { control: { type: 'select' }, options: ['primary', 'secondary', 'standard'] },
         showFirstButton: { control: 'boolean' },
         showLastButton: { control: 'boolean' },
@@ -118,7 +118,7 @@ a range of pages.
         page: 1,
         variant: 'text',
         shape: 'circular',
-        size: 'medium',
+        size: 'md',
         color: 'primary',
         showFirstButton: false,
         showLastButton: false,
@@ -245,7 +245,7 @@ export const Rounded: Story = {
 export const Sizes: Story = {
     render: () => section(html`
         ${box('Small', html`
-            <flint-pagination count="10" page="1" size="small"
+            <flint-pagination count="10" page="1" size="sm"
                 @flint-pagination-change=${(e: CustomEvent) => { (e.currentTarget as FlintPagination).page = e.detail.page; }}>
             </flint-pagination>
         `)}
@@ -255,7 +255,7 @@ export const Sizes: Story = {
             </flint-pagination>
         `)}
         ${box('Large', html`
-            <flint-pagination count="10" page="1" size="large"
+            <flint-pagination count="10" page="1" size="lg"
                 @flint-pagination-change=${(e: CustomEvent) => { (e.currentTarget as FlintPagination).page = e.detail.page; }}>
             </flint-pagination>
         `)}
@@ -562,7 +562,7 @@ export const TablePaginationStyle: Story = {
                         id="tp-pg"
                         count=${totalPages()}
                         page=${page + 1}
-                        size="small"
+                        size="sm"
                         hide-prev-button
                         hide-next-button
                         @flint-pagination-change=${(e: CustomEvent) => {

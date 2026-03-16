@@ -227,7 +227,7 @@ export class FlintMenu extends FlintElement {
             // Focus first enabled item after the paint so the menu is visible
             setTimeout(() => {
                 const items = this._getEnabledItems();
-                if (items.length) this._focusItem(items[0]);
+                if (items.length) this._focusItem(items[0]!);
             }, 0);
         }
     }
@@ -264,22 +264,22 @@ export class FlintMenu extends FlintElement {
             case 'ArrowDown': {
                 e.preventDefault();
                 const next = current < 0 || current >= items.length - 1 ? 0 : current + 1;
-                this._focusItem(items[next]);
+                this._focusItem(items[next]!);
                 break;
             }
             case 'ArrowUp': {
                 e.preventDefault();
                 const prev = current <= 0 ? items.length - 1 : current - 1;
-                this._focusItem(items[prev]);
+                this._focusItem(items[prev]!);
                 break;
             }
             case 'Home':
                 e.preventDefault();
-                this._focusItem(items[0]);
+                this._focusItem(items[0]!);
                 break;
             case 'End':
                 e.preventDefault();
-                this._focusItem(items[items.length - 1]);
+                this._focusItem(items[items.length - 1]!);
                 break;
             default: {
                 // First-character jump — only single printable chars

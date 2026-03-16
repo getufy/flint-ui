@@ -134,7 +134,7 @@ flint-table
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`size\` | \`size\` | \`'medium'\\|'small'\` | \`'medium'\` | Cell padding density. |
+| \`size\` | \`size\` | \`'md'\\|'sm'\` | \`'md'\` | Cell padding density. |
 
 #### CSS Custom Properties
 
@@ -295,7 +295,7 @@ export const Dense: Story = {
     name: 'Dense',
     render: () => html`
         <flint-table-container>
-            <flint-table size="small">
+            <flint-table size="sm">
                 <flint-table-head>
                     <flint-table-row>
                         <flint-table-cell header>Dessert</flint-table-cell>

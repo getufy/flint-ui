@@ -71,7 +71,7 @@
       color: var(--flint-input-placeholder-color);
     }
 
-    .icon-leading, .icon-trailing {
+    .icon-prefix, .icon-suffix {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -79,11 +79,11 @@
       padding: 0 0.75rem;
     }
 
-    .icon-leading {
+    .icon-prefix {
       padding-right: 0;
     }
 
-    .icon-trailing {
+    .icon-suffix {
       padding-left: 0;
     }
 

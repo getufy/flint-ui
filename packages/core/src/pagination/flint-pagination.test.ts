@@ -211,8 +211,8 @@ describe('flint-pagination', () => {
     });
 
     it('reflects size attribute', async () => {
-        const el = await fixture<FlintPagination>(html`<flint-pagination count="5" page="1" size="large"></flint-pagination>`);
-        expect(el.getAttribute('size')).toBe('large');
+        const el = await fixture<FlintPagination>(html`<flint-pagination count="5" page="1" size="lg"></flint-pagination>`);
+        expect(el.getAttribute('size')).toBe('lg');
     });
 
     it('reflects color attribute', async () => {
@@ -403,9 +403,9 @@ describe('flint-pagination', () => {
         expect(el.getAttribute('variant')).toBe('text');
     });
 
-    it('reflects size="medium" (default) attribute', async () => {
+    it('reflects size="md" (default) attribute', async () => {
         const el = await fixture<FlintPagination>(html`<flint-pagination count="5"></flint-pagination>`);
-        expect(el.getAttribute('size')).toBe('medium');
+        expect(el.getAttribute('size')).toBe('md');
     });
 
     it('reflects shape="circular" (default) attribute', async () => {

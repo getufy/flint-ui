@@ -53,7 +53,7 @@ exports[`DOM snapshots > flint-badge — default 1`] = `
 
 exports[`DOM snapshots > flint-button — default 1`] = `
 "<!---->
-      <button type="button" part="base" class=" primary medium "><!--?lit$[hash]$-->
+      <button type="button" part="base" class=" primary md "><!--?lit$[hash]$-->
       <span class="prefix-slot" part="prefix"><slot name="prefix"></slot></span>
       <span class="label-inner" part="label"><slot></slot></span>
       <span class="suffix-slot" part="suffix"><slot name="suffix"></slot></span>
@@ -67,7 +67,7 @@ exports[`DOM snapshots > flint-button — default 1`] = `
 
 exports[`DOM snapshots > flint-button — disabled 1`] = `
 "<!---->
-      <button type="button" part="base" class=" primary medium is-disabled " disabled=""><!--?lit$[hash]$-->
+      <button type="button" part="base" class=" primary md is-disabled " disabled=""><!--?lit$[hash]$-->
       <span class="prefix-slot" part="prefix"><slot name="prefix"></slot></span>
       <span class="label-inner" part="label"><slot></slot></span>
       <span class="suffix-slot" part="suffix"><slot name="suffix"></slot></span>
@@ -81,7 +81,7 @@ exports[`DOM snapshots > flint-button — disabled 1`] = `
 
 exports[`DOM snapshots > flint-button — variant outlined 1`] = `
 "<!---->
-      <button type="button" part="base" class=" outlined medium "><!--?lit$[hash]$-->
+      <button type="button" part="base" class=" outlined md "><!--?lit$[hash]$-->
       <span class="prefix-slot" part="prefix"><slot name="prefix"></slot></span>
       <span class="label-inner" part="label"><slot></slot></span>
       <span class="suffix-slot" part="suffix"><slot name="suffix"></slot></span>

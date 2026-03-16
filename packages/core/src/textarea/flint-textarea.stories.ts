@@ -30,7 +30,7 @@ A Textarea component for multi-line text input.
 | \`errorMessage\` | \`error-message\` | \`string\` | \`''\` | Error message displayed below the textarea. |
 | \`helperText\` | \`helper-text\` | \`string\` | \`''\` | Help text displayed below the textarea. |
 | \`label\` | \`label\` | \`string\` | \`''\` | Label text displayed above the textarea. |
-| \`size\` | \`size\` | \`'sm' \\| 'default' \\| 'lg'\` | \`'default'\` | Size variant of the textarea. |
+| \`size\` | \`size\` | \`'sm' \\| 'md' \\| 'lg'\` | \`'default'\` | Size variant of the textarea. |
 | \`rows\` | \`rows\` | \`number\` | \`3\` | Number of visible text rows. |
 | \`maxlength\` | \`maxlength\` | \`number \\| undefined\` | \`undefined\` | Maximum number of characters allowed. |
 | \`minlength\` | \`minlength\` | \`number \\| undefined\` | \`undefined\` | Minimum number of characters required. |
@@ -84,7 +84,7 @@ A Textarea component for multi-line text input.
         error:        { control: 'boolean' },
         rows:         { control: 'number' },
         maxlength:    { control: 'number' },
-        size:         { control: 'select', options: ['sm', 'default', 'lg'] },
+        size:         { control: 'select', options: ['sm', 'md', 'lg'] },
         resize:       { control: 'select', options: ['none', 'both', 'horizontal', 'vertical', 'auto'] },
     },
     args: {
@@ -97,7 +97,7 @@ A Textarea component for multi-line text input.
         required: false,
         error: false,
         rows: 3,
-        size: 'default',
+        size: 'md',
         resize: 'vertical',
     },
 };
@@ -199,8 +199,8 @@ export const Sizes: Story = {
         <flint-textarea size="sm" placeholder="Small textarea"></flint-textarea>
       </div>
       <div>
-        <p style="font-family: system-ui; font-size: 12px; color: #4b5563; margin: 0 0 6px 0;">size="default"</p>
-        <flint-textarea size="default" placeholder="Default textarea"></flint-textarea>
+        <p style="font-family: system-ui; font-size: 12px; color: #4b5563; margin: 0 0 6px 0;">size="md"</p>
+        <flint-textarea size="md" placeholder="Default textarea"></flint-textarea>
       </div>
       <div>
         <p style="font-family: system-ui; font-size: 12px; color: #4b5563; margin: 0 0 6px 0;">size="lg"</p>

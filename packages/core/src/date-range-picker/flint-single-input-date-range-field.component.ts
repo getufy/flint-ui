@@ -135,21 +135,21 @@ export class FlintSingleInputDateRangeField extends FlintElement {
     }
 
     private _nextSegment() {
-        if (!this._active) { this._setActive(SEGMENT_ORDER[0]); return; }
+        if (!this._active) { this._setActive(SEGMENT_ORDER[0] ?? null); return; }
         const idx = SEGMENT_ORDER.indexOf(this._active);
-        if (idx < SEGMENT_ORDER.length - 1) this._setActive(SEGMENT_ORDER[idx + 1]);
+        if (idx < SEGMENT_ORDER.length - 1) this._setActive(SEGMENT_ORDER[idx + 1] ?? null);
     }
 
     private _prevSegment() {
         if (!this._active) return;
         const idx = SEGMENT_ORDER.indexOf(this._active);
-        if (idx > 0) this._setActive(SEGMENT_ORDER[idx - 1]);
+        if (idx > 0) this._setActive(SEGMENT_ORDER[idx - 1] ?? null);
     }
 
     // ── Digit input ───────────────────────────────────────────────────────────
 
     private _handleDigit(d: number) {
-        if (!this._active) this._setActive(SEGMENT_ORDER[0]);
+        if (!this._active) this._setActive(SEGMENT_ORDER[0] ?? null);
         const seg = this._active!;
         const buf = this._buf + String(d);
 
@@ -254,7 +254,7 @@ export class FlintSingleInputDateRangeField extends FlintElement {
 
         if (e.key >= '0' && e.key <= '9') {
             e.preventDefault(); e.stopPropagation();
-            if (!this._active) this._setActive(SEGMENT_ORDER[0]);
+            if (!this._active) this._setActive(SEGMENT_ORDER[0] ?? null);
             this._handleDigit(parseInt(e.key));
             return;
         }
@@ -271,12 +271,12 @@ export class FlintSingleInputDateRangeField extends FlintElement {
                 break;
             case 'ArrowUp':
                 e.preventDefault(); e.stopPropagation();
-                if (!this._active) this._setActive(SEGMENT_ORDER[0]);
+                if (!this._active) this._setActive(SEGMENT_ORDER[0] ?? null);
                 this._adjust(1);
                 break;
             case 'ArrowDown':
                 e.preventDefault(); e.stopPropagation();
-                if (!this._active) this._setActive(SEGMENT_ORDER[0]);
+                if (!this._active) this._setActive(SEGMENT_ORDER[0] ?? null);
                 this._adjust(-1);
                 break;
             case 'Tab':
@@ -310,7 +310,7 @@ export class FlintSingleInputDateRangeField extends FlintElement {
 
     private _handleFocus() {
         this._focused = true;
-        if (!this._active) this._setActive(SEGMENT_ORDER[0]);
+        if (!this._active) this._setActive(SEGMENT_ORDER[0] ?? null);
     }
 
     private _handleBlur(e: FocusEvent) {

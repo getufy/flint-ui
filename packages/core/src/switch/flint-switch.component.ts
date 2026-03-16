@@ -1,4 +1,4 @@
-import { unsafeCSS, html, nothing, PropertyValues } from 'lit';
+import { unsafeCSS, html, nothing, PropertyValues, LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
@@ -17,6 +17,7 @@ let _uidCounter = 0;
  * @slot - Optional label content (used when the `label` prop is not set).
  */
 export class FlintSwitch extends FormAssociated(FlintElement) {
+    static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
     static styles = unsafeCSS(uiSwitchStyles);
 
     /** Whether the switch is toggled on. */

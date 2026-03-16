@@ -110,15 +110,26 @@ a {
 
 /* ── Sizes ────────────────────────────────────────────────────────── */
 
-.small {
+.sm {
   padding: 6px 12px;
   font-size: 14px;
+  position: relative;
 }
-.medium {
+/* Invisible touch target extension for small buttons (WCAG 2.5.8 — 44x44px minimum) */
+.sm::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 44px;
+  min-height: 44px;
+}
+.md {
   padding: 10px 16px;
   font-size: 14px;
 }
-.large {
+.lg {
   padding: 14px 20px;
   font-size: 16px;
 }
@@ -136,15 +147,15 @@ a {
   padding: 0;
   aspect-ratio: 1;
 }
-.circle.small {
+.circle.sm {
   width: 32px;
   height: 32px;
 }
-.circle.medium {
+.circle.md {
   width: 40px;
   height: 40px;
 }
-.circle.large {
+.circle.lg {
   width: 48px;
   height: 48px;
 }

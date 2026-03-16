@@ -1,4 +1,4 @@
-import { unsafeCSS, html, PropertyValues } from 'lit';
+import { unsafeCSS, html, PropertyValues, LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -16,6 +16,7 @@ export type RadioOrientation = 'horizontal' | 'vertical';
  * @fires flint-radio-group-change - Fired when the selected radio value changes. detail: `{ value: string }`
  */
 export class FlintRadioGroup extends FormAssociated(FlintElement) {
+    static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
     static styles = unsafeCSS(uiRadioGroupStyles);
 
     /** Accessible label for the radio group. */
@@ -122,7 +123,7 @@ export class FlintRadioGroup extends FormAssociated(FlintElement) {
             ? (startIndex + 1) % enabled.length
             : (startIndex - 1 + enabled.length) % enabled.length;
 
-        const next = enabled[nextIndex];
+        const next = enabled[nextIndex]!;
         next.focus();
         this.value = next.value;
         this._syncChildren();
@@ -168,6 +169,7 @@ export class FlintRadioGroup extends FormAssociated(FlintElement) {
  * @fires flint-radio-select - Fired when this radio is selected. detail: `{ value: string }`
  */
 export class FlintRadio extends FlintElement {
+    static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
     static styles = unsafeCSS(uiRadioStyles);
 
     /** Whether this radio is selected. */

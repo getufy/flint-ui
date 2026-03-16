@@ -311,11 +311,11 @@ export class FlintCommand extends FlintElement {
         switch (e.key) {
             case 'ArrowDown':
                 e.preventDefault();
-                this._setHighlight(visible[(idx + 1) % visible.length]);
+                this._setHighlight(visible[(idx + 1) % visible.length] ?? null);
                 break;
             case 'ArrowUp':
                 e.preventDefault();
-                this._setHighlight(visible[(idx - 1 + visible.length) % visible.length]);
+                this._setHighlight(visible[(idx - 1 + visible.length) % visible.length] ?? null);
                 break;
             case 'Enter':
                 e.preventDefault();
@@ -323,11 +323,11 @@ export class FlintCommand extends FlintElement {
                 break;
             case 'Home':
                 e.preventDefault();
-                this._setHighlight(visible[0]);
+                this._setHighlight(visible[0] ?? null);
                 break;
             case 'End':
                 e.preventDefault();
-                this._setHighlight(visible[visible.length - 1]);
+                this._setHighlight(visible[visible.length - 1] ?? null);
                 break;
         }
     };

@@ -30,7 +30,7 @@ export function parseSnapPoints(snapStr: string, containerSize: number): number[
     for (const token of tokens) {
         const repeatMatch = /^repeat\((\d+(?:\.\d+)?)(px|%)\)$/.exec(token);
         if (repeatMatch) {
-            const val = parseFloat(repeatMatch[1]);
+            const val = parseFloat(repeatMatch[1]!);
             const stepPx = repeatMatch[2] === 'px' ? val : (val / 100) * containerSize;
             if (stepPx > 0) {
                 for (let p = stepPx; p < containerSize; p += stepPx) {
@@ -40,9 +40,9 @@ export function parseSnapPoints(snapStr: string, containerSize: number): number[
             continue;
         }
         const pxMatch = /^(\d+(?:\.\d+)?)px$/.exec(token);
-        if (pxMatch) { points.push(parseFloat(pxMatch[1])); continue; }
+        if (pxMatch) { points.push(parseFloat(pxMatch[1]!)); continue; }
         const pctMatch = /^(\d+(?:\.\d+)?)%$/.exec(token);
-        if (pctMatch) { points.push((parseFloat(pctMatch[1]) / 100) * containerSize); continue; }
+        if (pctMatch) { points.push((parseFloat(pctMatch[1]!) / 100) * containerSize); continue; }
     }
 
     return points;

@@ -337,7 +337,7 @@ export class FlintRichTreeView extends FlintElement {
         parentId: string | null = null
     ): { item: RichTreeItem; parentList: RichTreeItem[]; index: number; parentId: string | null } | null {
         for (let i = 0; i < items.length; i++) {
-            const item = items[i];
+            const item = items[i]!;
             if (this.getItemId(item) === id) {
                 return { item, parentList: items, index: i, parentId };
             }

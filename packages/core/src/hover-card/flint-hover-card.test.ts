@@ -9,15 +9,15 @@ import type { FlintHoverCard, FlintHoverCardTrigger, FlintHoverCardContent } fro
 interface MakeOpts {
     openDelay?: number;
     closeDelay?: number;
-    side?: 'top' | 'right' | 'bottom' | 'left';
+    placement?: 'top' | 'right' | 'bottom' | 'left';
     align?: 'start' | 'center' | 'end';
 }
 
-async function make({ openDelay = 100, closeDelay = 100, side = 'bottom', align = 'center' }: MakeOpts = {}) {
+async function make({ openDelay = 100, closeDelay = 100, placement = 'bottom', align = 'center' }: MakeOpts = {}) {
     const el = await fixture<FlintHoverCard>(html`
         <flint-hover-card .openDelay=${openDelay} .closeDelay=${closeDelay}>
             <flint-hover-card-trigger>Hover me</flint-hover-card-trigger>
-            <flint-hover-card-content .side=${side} .align=${align}>
+            <flint-hover-card-content .placement=${placement} .align=${align}>
                 Card content
             </flint-hover-card-content>
         </flint-hover-card>
@@ -316,8 +316,8 @@ describe('flint-hover-card — events', () => {
    flint-hover-card-content — positioning
 ═══════════════════════════════════════════════════════════════════════════ */
 describe('flint-hover-card-content — positioning', () => {
-    it('side=bottom align=center: sets top and left=50% with translateX', async () => {
-        const el = await make({ side: 'bottom', align: 'center' });
+    it('placement=bottom align=center: sets top and left=50% with translateX', async () => {
+        const el = await make({ placement: 'bottom', align: 'center' });
         const c = getContent(el);
         await c.updateComplete;
         expect(c.style.getPropertyValue('top')).not.toBe('');
@@ -326,8 +326,8 @@ describe('flint-hover-card-content — positioning', () => {
         expect(c.style.getPropertyValue('transform')).toBe('translateX(-50%)');
     });
 
-    it('side=top align=center: sets bottom and left=50% with translateX', async () => {
-        const el = await make({ side: 'top', align: 'center' });
+    it('placement=top align=center: sets bottom and left=50% with translateX', async () => {
+        const el = await make({ placement: 'top', align: 'center' });
         const c = getContent(el);
         await c.updateComplete;
         expect(c.style.getPropertyValue('bottom')).not.toBe('');
@@ -336,8 +336,8 @@ describe('flint-hover-card-content — positioning', () => {
         expect(c.style.getPropertyValue('transform')).toBe('translateX(-50%)');
     });
 
-    it('side=right align=center: sets left and top=50% with translateY', async () => {
-        const el = await make({ side: 'right', align: 'center' });
+    it('placement=right align=center: sets left and top=50% with translateY', async () => {
+        const el = await make({ placement: 'right', align: 'center' });
         const c = getContent(el);
         await c.updateComplete;
         expect(c.style.getPropertyValue('left')).not.toBe('');
@@ -346,8 +346,8 @@ describe('flint-hover-card-content — positioning', () => {
         expect(c.style.getPropertyValue('transform')).toBe('translateY(-50%)');
     });
 
-    it('side=left align=center: sets right and top=50% with translateY', async () => {
-        const el = await make({ side: 'left', align: 'center' });
+    it('placement=left align=center: sets right and top=50% with translateY', async () => {
+        const el = await make({ placement: 'left', align: 'center' });
         const c = getContent(el);
         await c.updateComplete;
         expect(c.style.getPropertyValue('right')).not.toBe('');
@@ -357,7 +357,7 @@ describe('flint-hover-card-content — positioning', () => {
     });
 
     it('align=start on bottom side: sets left=0, no transform', async () => {
-        const el = await make({ side: 'bottom', align: 'start' });
+        const el = await make({ placement: 'bottom', align: 'start' });
         const c = getContent(el);
         await c.updateComplete;
         // happy-dom normalises '0' → '0px' for zero-length values
@@ -367,7 +367,7 @@ describe('flint-hover-card-content — positioning', () => {
     });
 
     it('align=end on bottom side: sets right=0, no transform', async () => {
-        const el = await make({ side: 'bottom', align: 'end' });
+        const el = await make({ placement: 'bottom', align: 'end' });
         const c = getContent(el);
         await c.updateComplete;
         expect(c.style.getPropertyValue('right')).toBe('0px');
@@ -376,7 +376,7 @@ describe('flint-hover-card-content — positioning', () => {
     });
 
     it('align=start on right side: sets top=0, no transform', async () => {
-        const el = await make({ side: 'right', align: 'start' });
+        const el = await make({ placement: 'right', align: 'start' });
         const c = getContent(el);
         await c.updateComplete;
         expect(c.style.getPropertyValue('top')).toBe('0px');
@@ -384,42 +384,42 @@ describe('flint-hover-card-content — positioning', () => {
     });
 
     it('align=end on left side: sets bottom=0, no transform', async () => {
-        const el = await make({ side: 'left', align: 'end' });
+        const el = await make({ placement: 'left', align: 'end' });
         const c = getContent(el);
         await c.updateComplete;
         expect(c.style.getPropertyValue('bottom')).toBe('0px');
         expect(c.style.getPropertyValue('transform')).toBe('');
     });
 
-    it('reapplies position when side changes', async () => {
-        const el = await make({ side: 'bottom', align: 'center' });
+    it('reapplies position when placement changes', async () => {
+        const el = await make({ placement: 'bottom', align: 'center' });
         const c = getContent(el);
         await c.updateComplete;
         expect(c.style.getPropertyValue('top')).not.toBe('');
 
-        c.side = 'top';
+        c.placement = 'top';
         await c.updateComplete;
         expect(c.style.getPropertyValue('bottom')).not.toBe('');
         expect(c.style.getPropertyValue('top')).toBe('');
     });
 
-    it('side and align can be set via HTML attributes', async () => {
+    it('placement and align can be set via HTML attributes', async () => {
         const el = await fixture<FlintHoverCard>(html`
             <flint-hover-card>
                 <flint-hover-card-trigger>T</flint-hover-card-trigger>
-                <flint-hover-card-content side="top" align="end">C</flint-hover-card-content>
+                <flint-hover-card-content placement="top" align="end">C</flint-hover-card-content>
             </flint-hover-card>
         `);
         const c = getContent(el);
         await c.updateComplete;
-        expect(c.side).toBe('top');
+        expect(c.placement).toBe('top');
         expect(c.align).toBe('end');
         expect(c.style.getPropertyValue('bottom')).not.toBe('');
         expect(c.style.getPropertyValue('right')).toBe('0px');
     });
 
     it('reapplies position when align changes', async () => {
-        const el = await make({ side: 'bottom', align: 'center' });
+        const el = await make({ placement: 'bottom', align: 'center' });
         const c = getContent(el);
         await c.updateComplete;
         expect(c.style.getPropertyValue('transform')).toBe('translateX(-50%)');
@@ -651,4 +651,78 @@ describe('flint-hover-card — accessibility', () => {
         `);
         await expectAccessible(el);
     }, 15000);
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   flint-hover-card — ARIA attributes
+═══════════════════════════════════════════════════════════════════════════ */
+describe('flint-hover-card — ARIA attributes', () => {
+    beforeEach(() => vi.useFakeTimers());
+    afterEach(() => vi.useRealTimers());
+
+    it('trigger has role="button" and aria-haspopup="true"', async () => {
+        const el = await make();
+        const div = getTriggerDiv(el);
+        expect(div.getAttribute('role')).toBe('button');
+        expect(div.getAttribute('aria-haspopup')).toBe('true');
+    });
+
+    it('trigger has aria-expanded="false" when closed', async () => {
+        const el = await make();
+        const div = getTriggerDiv(el);
+        expect(div.getAttribute('aria-expanded')).toBe('false');
+    });
+
+    it('trigger has aria-expanded="true" when open', async () => {
+        const el = await make({ openDelay: 50 });
+        enter(getTriggerDiv(el));
+        vi.advanceTimersByTime(50);
+        const trigger = getTrigger(el);
+        await trigger.updateComplete;
+        const div = getTriggerDiv(el);
+        expect(div.getAttribute('aria-expanded')).toBe('true');
+    });
+
+    it('content has role="tooltip"', async () => {
+        const el = await make();
+        const card = getCard(el);
+        expect(card.getAttribute('role')).toBe('tooltip');
+    });
+
+    it('content has aria-hidden="true" when closed', async () => {
+        const el = await make();
+        const card = getCard(el);
+        expect(card.getAttribute('aria-hidden')).toBe('true');
+    });
+
+    it('content has aria-hidden="false" when open', async () => {
+        const el = await make({ openDelay: 50 });
+        enter(getTriggerDiv(el));
+        vi.advanceTimersByTime(50);
+        const content = getContent(el);
+        await content.updateComplete;
+        const card = getCard(el);
+        expect(card.getAttribute('aria-hidden')).toBe('false');
+    });
+
+    it('trigger aria-describedby links to content id', async () => {
+        const el = await make();
+        const trigger = getTrigger(el);
+        await trigger.updateComplete;
+        const div = getTriggerDiv(el);
+        const card = getCard(el);
+        const contentId = card.getAttribute('id');
+        expect(contentId).toBeTruthy();
+        expect(div.getAttribute('aria-describedby')).toBe(contentId);
+    });
+
+    it('content has a unique auto-generated id', async () => {
+        const el1 = await make();
+        const el2 = await make();
+        const id1 = getCard(el1).getAttribute('id');
+        const id2 = getCard(el2).getAttribute('id');
+        expect(id1).toBeTruthy();
+        expect(id2).toBeTruthy();
+        expect(id1).not.toBe(id2);
+    });
 });

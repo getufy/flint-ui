@@ -1,4 +1,4 @@
-import { unsafeCSS, html, nothing, PropertyValues } from 'lit';
+import { unsafeCSS, html, nothing, PropertyValues, LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -15,6 +15,7 @@ let _uidCounter = 0;
  * @fires flint-textarea-change - Dispatched on blur/change. Detail: `{ value: string }`
  */
 export class FlintTextarea extends FormAssociated(FlintElement) {
+    static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
     static styles = unsafeCSS(uiTextareaStyles);
 
     /** Current textarea value. */
@@ -36,7 +37,7 @@ export class FlintTextarea extends FormAssociated(FlintElement) {
     /** Label text displayed above the textarea. */
     @property({ type: String }) label = '';
     /** Size variant of the textarea. */
-    @property({ type: String, reflect: true }) size: 'sm' | 'default' | 'lg' = 'default';
+    @property({ type: String, reflect: true }) size: 'sm' | 'md' | 'lg' = 'md';
     /** Number of visible text rows. */
     @property({ type: Number }) rows = 3;
     /** Maximum number of characters allowed. */

@@ -64,13 +64,13 @@ describe('flint-table', () => {
     });
 
     it('size prop reflects', async () => {
-        const el = await fixture<FlintTable>(html`<flint-table size="small"></flint-table>`);
-        expect(el.getAttribute('size')).toBe('small');
+        const el = await fixture<FlintTable>(html`<flint-table size="sm"></flint-table>`);
+        expect(el.getAttribute('size')).toBe('sm');
     });
 
-    it('size defaults to medium', async () => {
+    it('size defaults to md', async () => {
         const el = await fixture<FlintTable>(html`<flint-table></flint-table>`);
-        expect(el.size).toBe('medium');
+        expect(el.size).toBe('md');
     });
 
     it('renders footer', async () => {
@@ -569,12 +569,12 @@ describe('flint-table-row programmatic hover toggle', () => {
 });
 
 describe('flint-table size programmatic change', () => {
-    it('size can be changed to small programmatically', async () => {
+    it('size can be changed to sm programmatically', async () => {
         const el = await fixture<FlintTable>(html`<flint-table></flint-table>`);
-        expect(el.size).toBe('medium');
-        el.size = 'small';
+        expect(el.size).toBe('md');
+        el.size = 'sm';
         await el.updateComplete;
-        expect(el.getAttribute('size')).toBe('small');
+        expect(el.getAttribute('size')).toBe('sm');
     });
 });
 

@@ -1,4 +1,4 @@
-import { unsafeCSS, html, nothing, PropertyValues } from 'lit';
+import { unsafeCSS, html, nothing, PropertyValues, LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
@@ -12,6 +12,7 @@ import uiCheckboxStyles from './flint-checkbox.css?inline';
  * @fires flint-checkbox-change - Fired when the checked state changes. detail: `{ checked: boolean; value: string; indeterminate: boolean }`
  */
 export class FlintCheckbox extends FormAssociated(FlintElement) {
+    static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
     static styles = unsafeCSS(uiCheckboxStyles);
 
     private _formControl = new FormControlController(this);

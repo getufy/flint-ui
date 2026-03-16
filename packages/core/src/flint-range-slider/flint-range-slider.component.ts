@@ -1,4 +1,4 @@
-import { unsafeCSS, html, nothing } from 'lit';
+import { unsafeCSS, html, nothing, LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { styleMap } from 'lit/directives/style-map.js';
@@ -30,6 +30,7 @@ export interface FlintRangeSliderChangeDetail { value: [number, number]; }
  * @cssprop {color}  --flint-range-slider-thumb-border   - Thumb border color.
  */
 export class FlintRangeSlider extends FlintElement {
+    static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
     static styles = unsafeCSS(uiRangeSliderStyles);
 
     // ─── Props ────────────────────────────────────────────────────────────────

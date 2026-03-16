@@ -250,7 +250,7 @@ export class FlintStepper extends FlintElement {
             s.alternativeLabel = this.alternativeLabel;
             s.active = i === this.activeStep;
             /* The leading connector of step i should be blue only when step i-1 is completed */
-            s.prevCompleted = i > 0 && steps[i - 1].completed;
+            s.prevCompleted = i > 0 && steps[i - 1]!.completed;
             if (!this.nonLinear) {
                 if (!s.completed) s.disabled = i > this.activeStep;
                 s.clickable = false;
