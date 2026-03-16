@@ -88,10 +88,10 @@ export class FlintTablePagination extends FlintElement {
         const isLast = to >= this.count;
 
         return html`
-      <div class="spacer"></div>
-      <div class="actions">
+      <div class="spacer" part="spacer"></div>
+      <div class="actions" part="base">
         <span>${this.labelRowsPerPage}</span>
-        <select @change=${this._handleRowChange} aria-label="${this.labelRowsPerPage}">
+        <select part="select" @change=${this._handleRowChange} aria-label="${this.labelRowsPerPage}">
           ${this.rowsPerPageOptions.map(opt => html`
             <option value=${opt} ?selected=${this._rowsPerPage === opt}>${opt}</option>
           `)}

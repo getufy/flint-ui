@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import './flint-tabs';
 import '../button/flint-button';
 import '../paper/flint-paper';
@@ -315,6 +316,27 @@ export const Basic: Story = {
             <flint-tab-panel value="three">${panelContent('Item Three', 'Content for Item Three. Tab keyboard navigation: use ArrowLeft / ArrowRight to move focus between tabs.')}</flint-tab-panel>
         </flint-tabs>
     `),
+};
+
+Basic.play = async ({ canvasElement }) => {
+    const tabs = canvasElement.querySelector('flint-tabs') as HTMLElement & { value: string };
+    const tabList = canvasElement.querySelector('flint-tab-list') as HTMLElement;
+    const tabEls = tabList.querySelectorAll('flint-tab');
+
+    // Tab "one" is initially selected
+    await waitFor(() => expect(tabs.value).toBe('one'));
+
+    // Click second tab
+    await userEvent.click(tabEls[1]);
+    await waitFor(() => expect(tabs.value).toBe('two'));
+
+    // Click third tab
+    await userEvent.click(tabEls[2]);
+    await waitFor(() => expect(tabs.value).toBe('three'));
+
+    // Click back to first tab
+    await userEvent.click(tabEls[0]);
+    await waitFor(() => expect(tabs.value).toBe('one'));
 };
 
 /* ================================================================== */
@@ -1028,4 +1050,27 @@ export const ErrorStates: Story = {
                 `)}
             </div>
         </flint-stack>`,
+};
+
+/* ================================================================== */
+/* RTL                                                                 */
+/* ================================================================== */
+export const DefaultRTL: Story = {
+    name: 'RTL',
+    render: () => html`
+        <div dir="rtl" style="text-align: right">
+            ${wrap(html`
+                <flint-tabs value="tab1">
+                    <flint-tab-list aria-label="علامات تبويب RTL">
+                        <flint-tab value="tab1">العنصر الأول</flint-tab>
+                        <flint-tab value="tab2">العنصر الثاني</flint-tab>
+                        <flint-tab value="tab3">العنصر الثالث</flint-tab>
+                    </flint-tab-list>
+                    <flint-tab-panel value="tab1">${panelContent('العنصر الأول', 'المحتوى يظهر من اليمين إلى اليسار.')}</flint-tab-panel>
+                    <flint-tab-panel value="tab2">${panelContent('العنصر الثاني', 'يتحرك المؤشر بسلاسة بين علامات التبويب.')}</flint-tab-panel>
+                    <flint-tab-panel value="tab3">${panelContent('العنصر الثالث', 'التنقل بلوحة المفاتيح يعمل بشكل صحيح في وضع RTL.')}</flint-tab-panel>
+                </flint-tabs>
+            `)}
+        </div>
+    `,
 };

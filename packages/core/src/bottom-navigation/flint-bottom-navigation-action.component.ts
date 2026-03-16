@@ -64,11 +64,11 @@ export class FlintBottomNavigationAction extends FlintElement {
 
     render() {
         return html`
-            <div class="icon-container" aria-hidden="true">
+            <div class="icon-container" part="icon" aria-hidden="true">
                 <slot name="icon"></slot>
                 <slot></slot>
             </div>
-            <span class="${classMap({ 'label': true, 'hidden': !this.showLabel })}">
+            <span class="${classMap({ 'label': true, 'hidden': !this.showLabel })}" part="label">
                 ${this.label}
             </span>
         `;

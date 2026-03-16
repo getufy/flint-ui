@@ -127,10 +127,10 @@ export class FlintTransferList extends FlintElement {
             : rightOptions;
 
         return html`
-      <div class="container">
+      <div class="container" part="base">
         <!-- Left List -->
-        <div class="list-wrapper">
-          <div class="list-header">
+        <div class="list-wrapper" part="left-list">
+          <div class="list-header" part="header">
             <span class="list-title">${this.leftTitle}</span>
             <span class="list-count">${leftOptions.length}</span>
           </div>
@@ -166,7 +166,7 @@ export class FlintTransferList extends FlintElement {
         </div>
 
         <!-- Action Buttons -->
-        <div class="actions">
+        <div class="actions" part="actions">
           <button class="action-button" title="Move all right" aria-label="Move all right"
             ?disabled=${this.disabled || leftOptions.length === 0} @click=${this._moveAllRight}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -204,8 +204,8 @@ export class FlintTransferList extends FlintElement {
         </div>
 
         <!-- Right List -->
-        <div class="list-wrapper">
-          <div class="list-header">
+        <div class="list-wrapper" part="right-list">
+          <div class="list-header" part="header">
             <span class="list-title">${this.rightTitle}</span>
             <span class="list-count">${rightOptions.length}</span>
           </div>

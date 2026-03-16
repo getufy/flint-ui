@@ -24,12 +24,12 @@ export class FlintImageListItemBar extends FlintElement {
 
   render() {
     return html`
-      <div class="bar-inner">
-        <div class="bar-text">
-          <div class="bar-title"><slot></slot></div>
-          <div class="bar-subtitle"><slot name="subtitle"></slot></div>
+      <div class="bar-inner" part="base">
+        <div class="bar-text" part="content">
+          <div class="bar-title" part="title"><slot></slot></div>
+          <div class="bar-subtitle" part="subtitle"><slot name="subtitle"></slot></div>
         </div>
-        <div class="bar-action">
+        <div class="bar-action" part="action">
           <slot name="action"></slot>
         </div>
       </div>

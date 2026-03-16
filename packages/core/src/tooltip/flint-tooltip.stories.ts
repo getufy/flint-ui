@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import './flint-tooltip.js';
 import '../button/flint-button.js';
 
@@ -100,6 +101,30 @@ export const Default: Story = {
             </flint-tooltip>
         </div>
     `,
+};
+
+Default.play = async ({ canvasElement }) => {
+    const tooltip = canvasElement.querySelector('flint-tooltip') as HTMLElement;
+    const button = canvasElement.querySelector('flint-button') as HTMLElement;
+
+    // Tooltip should not be visible initially
+    const tipSurface = () => tooltip.shadowRoot!.querySelector('[part="surface"], .tooltip, [role="tooltip"]');
+    await waitFor(() => {
+        const surface = tipSurface();
+        if (surface) {
+            expect(getComputedStyle(surface).visibility === 'hidden' || getComputedStyle(surface).opacity === '0' || !surface.hasAttribute('data-show')).toBeTruthy();
+        }
+    });
+
+    // Hover to show tooltip
+    await userEvent.hover(button);
+    await waitFor(() => {
+        const surface = tipSurface();
+        expect(surface).toBeTruthy();
+    }, { timeout: 2000 });
+
+    // Unhover to hide tooltip
+    await userEvent.unhover(button);
 };
 
 /* ─── Placements ─────────────────────────────────────────── */

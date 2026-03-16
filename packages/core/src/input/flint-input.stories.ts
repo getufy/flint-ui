@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import './flint-input';
 
 const meta: Meta = {
@@ -130,6 +131,24 @@ export const Default: Story = {
     args: {},
 };
 
+Default.play = async ({ canvasElement }) => {
+    const input = canvasElement.querySelector('flint-input') as HTMLElement & { value: string };
+    const nativeInput = input.shadowRoot!.querySelector('input') as HTMLInputElement;
+
+    // Initially empty
+    await waitFor(() => expect(input.value).toBe(''));
+
+    // Type text
+    await userEvent.click(nativeInput);
+    await userEvent.type(nativeInput, 'hello world');
+    await waitFor(() => expect(input.value).toBe('hello world'));
+
+    // Clear and type new text
+    await userEvent.clear(nativeInput);
+    await userEvent.type(nativeInput, 'new text');
+    await waitFor(() => expect(input.value).toBe('new text'));
+};
+
 export const WithValue: Story = {
     args: {
         value: 'johndoe',
@@ -235,6 +254,17 @@ export const AllSizes: Story = {
       <flint-input label="Small" size="sm" placeholder="Small"></flint-input>
       <flint-input label="Default" size="md" placeholder="Default"></flint-input>
       <flint-input label="Large" size="lg" placeholder="Large"></flint-input>
+    </div>
+  `,
+};
+
+export const DefaultRTL: Story = {
+    name: 'RTL',
+    render: () => html`
+    <div dir="rtl" style="text-align: right; max-width: 300px; padding: 20px; display: flex; flex-direction: column; gap: 16px;">
+      <flint-input label="اسم المستخدم" placeholder="أدخل اسم المستخدم" helper-text="سيتم عرض هذا الاسم للآخرين."></flint-input>
+      <flint-input label="البريد الإلكتروني" type="email" placeholder="example@domain.com" error error-message="يرجى إدخال بريد إلكتروني صالح."></flint-input>
+      <flint-input label="حقل مطلوب" placeholder="هذا الحقل مطلوب" required></flint-input>
     </div>
   `,
 };

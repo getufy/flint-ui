@@ -1,5 +1,5 @@
-import { unsafeCSS, html, PropertyValues, LitElement } from 'lit';
-import { property } from 'lit/decorators.js';
+import { unsafeCSS, html, nothing, PropertyValues, LitElement } from 'lit';
+import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
 import { FormAssociated } from '../mixins/form-associated.js';
@@ -69,6 +69,26 @@ export class FlintInput extends FormAssociated(FlintElement) {
     @property({ type: String })
     autocomplete = '';
 
+    /** Regex pattern for validation. */
+    @property({ type: String })
+    pattern = '';
+
+    /** Minimum value (for number/date inputs). */
+    @property({ type: String })
+    min = '';
+
+    /** Maximum value (for number/date inputs). */
+    @property({ type: String })
+    max = '';
+
+    /** Minimum length for text validation. */
+    @property({ type: Number, attribute: 'minlength' })
+    minLength?: number;
+
+    /** Maximum length for text validation. */
+    @property({ type: Number, attribute: 'maxlength' })
+    maxLength?: number;
+
     /**
      * Size variant of the input.
      * @default 'md'
@@ -79,6 +99,13 @@ export class FlintInput extends FormAssociated(FlintElement) {
     /** Initial value for uncontrolled usage. */
     @property({ type: String, attribute: 'default-value' })
     defaultValue?: string;
+
+    /** Shows a clear button when the input has a value. */
+    @property({ type: Boolean })
+    clearable = false;
+
+    /** Whether the password is currently visible (password toggle). */
+    @state() private _passwordVisible = false;
 
     /** Expose the internal <input> for direct access */
     get inputElement(): HTMLInputElement {
@@ -103,8 +130,42 @@ export class FlintInput extends FormAssociated(FlintElement) {
 
     private _updateFormValue() {
         this._initFormValue(this.value || null);
-        this._initFormValidity(this.required, !this.value, 'Please fill out this field.');
+        this._validateConstraints();
         this._formControl.updateDataAttributes();
+    }
+
+    /** Delegate constraint validation to the inner native <input> element. */
+    private _validateConstraints() {
+        if (!this._internals || typeof this._internals.setValidity !== 'function') return;
+
+        const innerInput = this.shadowRoot?.querySelector('input');
+        if (innerInput && !innerInput.validity.valid) {
+            this._internals.setValidity(innerInput.validity, innerInput.validationMessage, innerInput);
+        } else {
+            this._internals.setValidity({});
+        }
+        this._syncCustomStates();
+    }
+
+    private _handleClear() {
+        this.value = '';
+        this._updateFormValue();
+        this.dispatchEvent(new CustomEvent('flint-input-input', {
+            detail: { value: '' },
+            bubbles: true,
+            composed: true,
+        }));
+        this.dispatchEvent(new CustomEvent('flint-input-change', {
+            detail: { value: '' },
+            bubbles: true,
+            composed: true,
+        }));
+        // Return focus to the input
+        this.shadowRoot?.querySelector('input')?.focus();
+    }
+
+    private _togglePasswordVisibility() {
+        this._passwordVisible = !this._passwordVisible;
     }
 
     render() {
@@ -112,6 +173,9 @@ export class FlintInput extends FormAssociated(FlintElement) {
         const descId = (errorState && this.errorMessage) || this.helperText
             ? `${this._inputId}-desc`
             : undefined;
+        const isPassword = this.type === 'password';
+        const effectiveType = isPassword && this._passwordVisible ? 'text' : this.type;
+        const showClear = this.clearable && this.value && !this.disabled && !this.readonly;
 
         return html`
       <div class="input-wrapper" part="base">
@@ -119,24 +183,68 @@ export class FlintInput extends FormAssociated(FlintElement) {
                 ? html`<label for=${this._inputId} part="label">${this.label}</label>`
                 : ''}
 
-        <input
-          id=${this._inputId}
-          part="input"
-          .type=${this.type}
-          .value=${this.value}
-          .placeholder=${this.placeholder}
-          ?disabled=${this.disabled}
-          ?readonly=${this.readonly}
-          ?required=${this.required}
-          aria-required=${this.required ? 'true' : 'false'}
-          aria-invalid=${errorState ? 'true' : 'false'}
-          aria-describedby=${descId ?? ''}
-          name=${this.name}
-          autocomplete=${this.autocomplete}
-          class=${classMap({ 'error-input': errorState })}
-          @input=${this._handleInput}
-          @change=${this._handleChange}
-        />
+        <div class=${classMap({
+            'input-container': true,
+            'has-prefix': true,
+            'has-suffix': true,
+        })}>
+          <span class="prefix" part="prefix"><slot name="prefix"></slot></span>
+
+          <input
+            id=${this._inputId}
+            part="input"
+            .type=${effectiveType}
+            .value=${this.value}
+            .placeholder=${this.placeholder}
+            ?disabled=${this.disabled}
+            ?readonly=${this.readonly}
+            ?required=${this.required}
+            pattern=${this.pattern || nothing}
+            min=${this.min || nothing}
+            max=${this.max || nothing}
+            minlength=${this.minLength ?? nothing}
+            maxlength=${this.maxLength ?? nothing}
+            aria-required=${this.required ? 'true' : 'false'}
+            aria-invalid=${errorState ? 'true' : 'false'}
+            aria-describedby=${descId ?? ''}
+            name=${this.name}
+            autocomplete=${this.autocomplete}
+            class=${classMap({ 'error-input': errorState })}
+            @input=${this._handleInput}
+            @change=${this._handleChange}
+          />
+
+          ${showClear ? html`
+            <button
+              type="button"
+              class="clear-btn"
+              part="clear-button"
+              aria-label="Clear input"
+              @click=${this._handleClear}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 6L6 18M6 6l12 12"></path>
+              </svg>
+            </button>
+          ` : nothing}
+
+          ${isPassword ? html`
+            <button
+              type="button"
+              class="password-toggle"
+              part="password-toggle"
+              aria-label=${this._passwordVisible ? 'Hide password' : 'Show password'}
+              @click=${this._togglePasswordVisibility}
+            >
+              ${this._passwordVisible
+                ? html`<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>`
+                : html`<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`
+              }
+            </button>
+          ` : nothing}
+
+          <span class="suffix" part="suffix"><slot name="suffix"></slot></span>
+        </div>
 
         ${errorState && this.errorMessage
                 ? html`<p id=${descId} class="help-text error-text" part="error-message" role="alert">${this.errorMessage}</p>`

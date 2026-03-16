@@ -15,6 +15,51 @@
       color: var(--flint-label-color);
     }
 
+    .input-container {
+      display: flex;
+      align-items: center;
+      border-radius: var(--flint-input-border-radius);
+      border: 1px solid var(--flint-input-border-color);
+      background-color: var(--flint-input-bg);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .input-container:hover:not(:has(input:disabled)):not(:has(.error-input)) {
+      border-color: var(--flint-input-border-hover-color);
+    }
+
+    .input-container:focus-within {
+      border-color: var(--flint-primary-color);
+      box-shadow: 0 0 0 3px var(--flint-primary-focus-ring);
+    }
+
+    .input-container:has(input[aria-invalid="true"]) {
+      border-color: var(--flint-error-color);
+    }
+
+    .input-container:has(input[aria-invalid="true"]):focus-within {
+      box-shadow: 0 0 0 3px var(--flint-error-focus-ring);
+    }
+
+    .prefix, .suffix {
+      display: flex;
+      align-items: center;
+      color: var(--flint-input-placeholder-color);
+    }
+
+    .prefix ::slotted(*) {
+      margin-left: 10px;
+    }
+
+    .suffix ::slotted(*) {
+      margin-right: 10px;
+    }
+
+    /* Hide prefix/suffix containers when empty (no slotted content) */
+    .prefix:empty, .suffix:empty {
+      display: none;
+    }
+
     input {
       font-family: inherit;
       width: 100%;
@@ -22,11 +67,30 @@
       padding: 10px 14px;
       font-size: 14px;
       border-radius: var(--flint-input-border-radius);
-      border: 1px solid var(--flint-input-border-color);
-      background-color: var(--flint-input-bg);
+      border: none;
+      background: transparent;
       color: var(--flint-text-color);
-      transition: border-color 0.2s, box-shadow 0.2s;
       outline: none;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .clear-btn, .password-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: var(--flint-input-placeholder-color);
+      padding: 4px;
+      margin-right: 6px;
+      border-radius: 4px;
+      transition: color 0.15s;
+    }
+
+    .clear-btn:hover, .password-toggle:hover {
+      color: var(--flint-text-color);
     }
 
     :host([size="sm"]) input {
@@ -43,31 +107,18 @@
       color: var(--flint-input-placeholder-color);
     }
 
-    input:hover:not(:disabled):not(.error-input) {
-      border-color: var(--flint-input-border-hover-color);
-    }
-
-    input:focus-visible {
-      border-color: var(--flint-primary-color);
-      box-shadow: 0 0 0 3px var(--flint-primary-focus-ring);
-    }
-
-    input[aria-invalid="true"] {
-      border-color: var(--flint-error-color);
-    }
-
-    input[aria-invalid="true"]:focus-visible {
-      box-shadow: 0 0 0 3px var(--flint-error-focus-ring);
-    }
-
     input:disabled {
-      background-color: var(--flint-input-disabled-bg);
       color: var(--flint-input-disabled-color);
       cursor: not-allowed;
       opacity: 1;
     }
 
-    input[readonly] {
+    .input-container:has(input:disabled) {
+      background-color: var(--flint-input-disabled-bg);
+      cursor: not-allowed;
+    }
+
+    .input-container:has(input[readonly]) {
       background-color: var(--flint-input-readonly-bg);
       cursor: default;
     }

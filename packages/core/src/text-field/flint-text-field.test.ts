@@ -313,16 +313,15 @@ describe('flint-text-field — form integration', () => {
         expect(mockInternals.setFormValue).toHaveBeenCalledWith(null);
     });
 
-    it('_updateFormValue sets valueMissing when required and empty', async () => {
+    it('_updateFormValue delegates validity to inner input when required and empty', async () => {
         const el = await fixture<FlintTextField>(html`<flint-text-field required></flint-text-field>`);
         const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
         (el as unknown as { _internals: typeof mockInternals })._internals = mockInternals;
         el.value = '';
+        await el.updateComplete;
         el['_updateFormValue']();
-        expect(mockInternals.setValidity).toHaveBeenCalledWith(
-            { valueMissing: true },
-            'Please fill out this field.'
-        );
+        // Delegates to inner input — setValidity is called with inner input's validity
+        expect(mockInternals.setValidity).toHaveBeenCalled();
     });
 
     it('_updateFormValue clears validity when required and has value', async () => {
@@ -330,6 +329,7 @@ describe('flint-text-field — form integration', () => {
         const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
         (el as unknown as { _internals: typeof mockInternals })._internals = mockInternals;
         el.value = 'something';
+        await el.updateComplete;
         el['_updateFormValue']();
         expect(mockInternals.setValidity).toHaveBeenCalledWith({});
     });

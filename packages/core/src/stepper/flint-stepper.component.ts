@@ -28,7 +28,7 @@ export class FlintStepConnector extends FlintElement {
     /** Whether the connector represents a completed step transition. */
     @property({ type: Boolean }) completed = false;
 
-    render() { return html`<div class="line ${classMap({ completed: this.completed })}"></div>`; }
+    render() { return html`<div class="line ${classMap({ completed: this.completed })}" part="line"></div>`; }
 }
 
 /* ================================================================== */
@@ -52,8 +52,8 @@ export class FlintStepLabel extends FlintElement {
 
     render() {
         return html`
-        <div class="label"><slot></slot></div>
-        <div class="optional"><slot name="optional"></slot></div>
+        <div class="label" part="label"><slot></slot></div>
+        <div class="optional" part="optional"><slot name="optional"></slot></div>
     `;
     }
 }
@@ -76,10 +76,11 @@ export class FlintStepContent extends FlintElement {
         return html`
             <div
                 class="panel ${classMap({ open: this.open })}"
+                part="base"
                 aria-hidden=${this.open ? 'false' : 'true'}
             >
                 <div class="inner">
-                    <div class="content"><slot></slot></div>
+                    <div class="content" part="content"><slot></slot></div>
                 </div>
             </div>`;
     }
@@ -142,7 +143,7 @@ export class FlintStep extends FlintElement {
     private _icon() {
         const cls = { 'icon-circle': true, active: this.active, completed: this.completed, error: this.error };
         const inner = this.error ? iconWarn : this.completed ? iconCheck : html`<slot name="icon">${this.stepIndex + 1}</slot>`;
-        return html`<div class=${classMap(cls)}>${inner}</div>`;
+        return html`<div class=${classMap(cls)} part="indicator">${inner}</div>`;
     }
 
     private _label() {
@@ -289,7 +290,7 @@ export class FlintStepper extends FlintElement {
     render() {
         const cls = `stepper ${this.orientation}${this.alternativeLabel ? ' alt' : ''}`;
         return html`
-            <div class=${cls} role="list" aria-label=${this.label}>
+            <div class=${cls} part="base" role="list" aria-label=${this.label}>
                 <slot @slotchange=${() => { this._syncSteps(); this.requestUpdate(); }}></slot>
             </div>`;
     }
@@ -370,7 +371,7 @@ export class FlintMobileStepper extends FlintElement {
                     @click=${() => this._emit('flint-mobile-step-back')}
                 >${this.backLabel}</button>
             </slot>
-            <div class="progress">${this._progress()}</div>
+            <div class="progress" part="progress">${this._progress()}</div>
             <slot name="next-button">
                 <button
                     class="nav-btn next"

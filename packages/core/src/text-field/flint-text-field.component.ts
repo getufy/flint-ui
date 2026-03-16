@@ -1,4 +1,4 @@
-import { unsafeCSS, html, PropertyValues, LitElement } from 'lit';
+import { unsafeCSS, html, nothing, PropertyValues, LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
@@ -45,6 +45,16 @@ export class FlintTextField extends FormAssociated(FlintElement) {
     @property({ type: String }) name = '';
     /** Marks the input as required for form validation. */
     @property({ type: Boolean, reflect: true }) required = false;
+    /** Regex pattern for validation. */
+    @property({ type: String }) pattern = '';
+    /** Minimum value (for number/date inputs). */
+    @property({ type: String }) min = '';
+    /** Maximum value (for number/date inputs). */
+    @property({ type: String }) max = '';
+    /** Minimum length for text validation. */
+    @property({ type: Number, attribute: 'minlength' }) minLength?: number;
+    /** Maximum length for text validation. */
+    @property({ type: Number, attribute: 'maxlength' }) maxLength?: number;
 
     @state() private _focused = false;
 
@@ -71,8 +81,21 @@ export class FlintTextField extends FormAssociated(FlintElement) {
 
     private _updateFormValue() {
         this._initFormValue(this.value || null);
-        this._initFormValidity(this.required, !this.value, 'Please fill out this field.');
+        this._validateConstraints();
         this._formControl.updateDataAttributes();
+    }
+
+    /** Delegate constraint validation to the inner native <input> element. */
+    private _validateConstraints() {
+        if (!this._internals || typeof this._internals.setValidity !== 'function') return;
+
+        const innerInput = this.shadowRoot?.querySelector('input');
+        if (innerInput && !innerInput.validity.valid) {
+            this._internals.setValidity(innerInput.validity, innerInput.validationMessage, innerInput);
+        } else {
+            this._internals.setValidity({});
+        }
+        this._syncCustomStates();
     }
 
     private _handleInput(e: InputEvent) {
@@ -130,6 +153,11 @@ export class FlintTextField extends FormAssociated(FlintElement) {
             .placeholder=${this.placeholder}
             ?disabled=${this.disabled}
             ?required=${this.required}
+            pattern=${this.pattern || nothing}
+            min=${this.min || nothing}
+            max=${this.max || nothing}
+            minlength=${this.minLength ?? nothing}
+            maxlength=${this.maxLength ?? nothing}
             aria-required=${this.required ? 'true' : 'false'}
             aria-invalid=${isError ? 'true' : 'false'}
             aria-describedby=${descId ?? ''}

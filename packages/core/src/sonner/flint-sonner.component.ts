@@ -493,6 +493,7 @@ export class FlintToaster extends FlintElement {
         return html`
             <div
                 class="toaster toaster--${isTop ? 'top' : 'bottom'} ${this._expanded ? 'toaster--expanded' : ''}"
+                part="base"
                 @mouseenter=${this._handleExpand}
                 @mouseleave=${this._handleCollapse}
             >

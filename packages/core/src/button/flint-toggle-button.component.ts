@@ -36,6 +36,7 @@ export class FlintToggleButton extends FlintElement {
       <button
         type="button"
         class=${classMap({ selected: this.selected })}
+        part="base"
         ?disabled=${this.disabled}
         @click=${this._handleClick}
         aria-pressed=${this.selected}

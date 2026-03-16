@@ -3,6 +3,8 @@ import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import type { PropertyValues } from 'lit';
 import { FlintElement } from '../flint-element.js';
+import { FormAssociated } from '../mixins/form-associated.js';
+import { FormControlController } from '../controllers/form-control.js';
 import uiRatingStyles from './flint-rating.css?inline';
 
 /**
@@ -10,7 +12,7 @@ import uiRatingStyles from './flint-rating.css?inline';
  *
  * @fires flint-rating-change - Fired when the rating value changes.
  */
-export class FlintRating extends FlintElement {
+export class FlintRating extends FormAssociated(FlintElement) {
     static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
     static styles = unsafeCSS(uiRatingStyles);
 
@@ -34,30 +36,39 @@ export class FlintRating extends FlintElement {
     @property({ type: String }) label = 'Rating';
     /** Rating step precision (1 for full stars, 0.5 for half stars). */
     @property({ type: Number }) precision: 1 | 0.5 = 1;
+    /** Marks the rating as required for form validation. */
+    @property({ type: Boolean, reflect: true }) required = false;
 
+    private _formControl = new FormControlController(this);
     @state() private _hoverValue = -1;
-    private _firstUpdate = true;
 
     override willUpdate(changed: PropertyValues) {
-        if (this._firstUpdate && this.defaultValue !== 0) {
-            this.value = this.defaultValue;
-        }
-        this._firstUpdate = false;
-        if (changed.has('value') || changed.has('name')) {
-            this._syncHiddenInput();
-        }
-    }
-
-    private _syncHiddenInput() {
-        const input = this.shadowRoot?.querySelector<HTMLInputElement>('.hidden-input');
-        if (input) {
-            input.name = this.name;
-            input.value = String(this.value);
+        super.willUpdate(changed);
+        if (this._firstUpdate) {
+            this._firstUpdate = false;
+            if (this.defaultValue !== 0) {
+                this.value = this.defaultValue;
+            }
         }
     }
 
-    override firstUpdated() {
-        this._syncHiddenInput();
+    protected override updated(changed: PropertyValues) {
+        super.updated(changed);
+        if (changed.has('value') || changed.has('name') || changed.has('required')) {
+            this._updateFormValue();
+        }
+    }
+
+    private _updateFormValue() {
+        this._initFormValue(this.value ? String(this.value) : null);
+        this._initFormValidity(this.required, this.value === 0, 'Please select a rating.');
+        this._formControl.updateDataAttributes();
+    }
+
+    formResetCallback() {
+        this.value = this.defaultValue;
+        this._updateFormValue();
+        this._formControl.reset();
     }
 
     private _isInteractive() {
@@ -198,9 +209,9 @@ export class FlintRating extends FlintElement {
         }
 
         return html`
-            <input class="hidden-input" type="hidden" .name=${this.name} .value=${String(this.value)}>
             <div
                 class="rating-container"
+                part="base"
                 role="radiogroup"
                 aria-label=${this.label}
                 aria-disabled=${this.disabled ? 'true' : 'false'}

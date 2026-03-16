@@ -68,6 +68,7 @@ export class FlintToggle extends FlintElement {
         return html`
             <button
                 class="toggle"
+                part="base"
                 type="button"
                 aria-pressed=${this.pressed ? 'true' : 'false'}
                 aria-label=${this.ariaLabel || nothing}

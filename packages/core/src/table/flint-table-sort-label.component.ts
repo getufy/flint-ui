@@ -24,7 +24,7 @@ export class FlintTableSortLabel extends FlintElement {
     render() {
         return html`
       <slot></slot>
-      <svg class=${classMap({ icon: true, asc: this.direction === 'asc', desc: this.direction === 'desc' })} viewBox="0 0 24 24" fill="currentColor">
+      <svg class=${classMap({ icon: true, asc: this.direction === 'asc', desc: this.direction === 'desc' })} part="icon" viewBox="0 0 24 24" fill="currentColor">
         <path d="M7 10l5 5 5-5z"/>
       </svg>
     `;

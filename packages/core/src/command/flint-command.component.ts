@@ -197,14 +197,24 @@ export class FlintCommandInput extends FlintElement {
     /** Current input value. */
     @property({ type: String, reflect: true }) value = '';
 
+    private _debounceTimer?: ReturnType<typeof setTimeout>;
+
     private _handleInput(e: Event) {
         const input = e.target as HTMLInputElement;
         this.value = input.value;
-        this.dispatchEvent(new CustomEvent('_cmd-filter', {
-            bubbles: true,
-            composed: true,
-            detail: { query: input.value },
-        }));
+        clearTimeout(this._debounceTimer);
+        this._debounceTimer = setTimeout(() => {
+            this.dispatchEvent(new CustomEvent('_cmd-filter', {
+                bubbles: true,
+                composed: true,
+                detail: { query: this.value },
+            }));
+        }, 100);
+    }
+
+    disconnectedCallback() {
+        super.disconnectedCallback();
+        clearTimeout(this._debounceTimer);
     }
 
     /** Focus the inner input element. */
@@ -283,6 +293,9 @@ export class FlintCommand extends FlintElement {
     private _query = '';
     private _highlightedItem: FlintCommandItem | null = null;
 
+    /** Cached list of all command items; invalidated on slot change. */
+    private _cachedItems: FlintCommandItem[] | null = null;
+
     /* ── Event handlers (arrow functions = auto-bound, safe to add/remove) ── */
 
     private _handleFilter = (e: Event) => {
@@ -350,11 +363,19 @@ export class FlintCommand extends FlintElement {
 
     /* ── Private helpers ───────────────────────────────────────────────────── */
 
+    /** Return all command items, using cache when available. */
+    private _getAllItems(): FlintCommandItem[] {
+        if (!this._cachedItems) {
+            this._cachedItems = [...this.querySelectorAll('flint-command-item')] as FlintCommandItem[];
+        }
+        return this._cachedItems;
+    }
+
     /** Items that can receive keyboard highlight (visible + not disabled). */
     private _getNavigableItems(): FlintCommandItem[] {
-        return [...this.querySelectorAll('flint-command-item')].filter(
-            (el) => !el.hidden && !(el as FlintCommandItem).disabled
-        ) as FlintCommandItem[];
+        return this._getAllItems().filter(
+            (el) => !el.hidden && !el.disabled
+        );
     }
 
     private _setHighlight(item: FlintCommandItem | null, scrollIntoView = true) {
@@ -376,19 +397,76 @@ export class FlintCommand extends FlintElement {
         }));
     }
 
+    /**
+     * Fuzzy match: checks if query characters appear in order in text.
+     * Returns a score (higher is better) or -1 for no match.
+     * - Exact prefix match: highest score
+     * - Substring match: high score
+     * - Consecutive character matches: medium score
+     * - Non-consecutive matches: lower score
+     */
+    private _fuzzyScore(text: string, query: string): number {
+        if (query === '') return 1;
+        if (text.startsWith(query)) return 1000 + (1 / text.length);
+        if (text.includes(query)) return 500 + (1 / text.length);
+
+        let ti = 0;
+        let qi = 0;
+        let score = 0;
+        let consecutive = 0;
+
+        while (ti < text.length && qi < query.length) {
+            if (text[ti] === query[qi]) {
+                qi++;
+                consecutive++;
+                score += consecutive * 10; // reward consecutive matches
+                if (ti === qi - 1) score += 50; // reward matches at start
+            } else {
+                consecutive = 0;
+            }
+            ti++;
+        }
+
+        return qi === query.length ? score : -1;
+    }
+
     private _applyFilter(query: string) {
         this._query = query;
         const q = query.toLowerCase();
 
-        /* 1. Show/hide individual items. */
-        const allItems = [...this.querySelectorAll('flint-command-item')] as FlintCommandItem[];
+        /* 1. Show/hide individual items using fuzzy matching. */
+        const allItems = this._getAllItems();
         let visibleCount = 0;
+
+        const scored: { item: FlintCommandItem; score: number }[] = [];
 
         for (const item of allItems) {
             const text = (item.value || item.textContent || '').toLowerCase().trim();
-            const matches = q === '' || text.includes(q);
+            const score = this._fuzzyScore(text, q);
+            const matches = score > 0;
             item.hidden = !matches;
-            if (matches) visibleCount++;
+            if (matches) {
+                visibleCount++;
+                scored.push({ item, score });
+            }
+        }
+
+        /* Sort visible items by score (best matches first) within each group */
+        if (q !== '') {
+            scored.sort((a, b) => b.score - a.score);
+            // Re-order items in the DOM by score within their parent group
+            const groups = new Map<Element, { item: FlintCommandItem; score: number }[]>();
+            for (const entry of scored) {
+                const parent = entry.item.parentElement ?? this;
+                const list = groups.get(parent) ?? [];
+                list.push(entry);
+                groups.set(parent, list);
+            }
+            for (const [parent, entries] of groups) {
+                for (const entry of entries) {
+                    parent.appendChild(entry.item);
+                }
+            }
         }
 
         /* 2. Hide groups where all child items are hidden (or the group has no items). */
@@ -426,6 +504,8 @@ export class FlintCommand extends FlintElement {
     /* ── Slot change — initialise state once children are assigned ─────────── */
 
     private _onSlotChange() {
+        // Invalidate cached items when slot content changes
+        this._cachedItems = null;
         this._applyFilter(this._query);
     }
 

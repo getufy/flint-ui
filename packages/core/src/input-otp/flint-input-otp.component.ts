@@ -1,6 +1,8 @@
 import { unsafeCSS, html, nothing, type PropertyValues } from 'lit';
 import { property, query } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
+import { FormAssociated } from '../mixins/form-associated.js';
+import { FormControlController } from '../controllers/form-control.js';
 import uiInputOtpGroupStyles from './flint-input-otp-group.css?inline';
 import uiInputOtpSeparatorStyles from './flint-input-otp-separator.css?inline';
 import uiInputOtpSlotStyles from './flint-input-otp-slot.css?inline';
@@ -36,7 +38,7 @@ export class FlintInputOtpSeparator extends FlintElement {
     static styles = unsafeCSS(uiInputOtpSeparatorStyles);
 
     render() {
-        return html`<div class="bar"></div>`;
+        return html`<div class="bar" part="separator"></div>`;
     }
 }
 
@@ -103,7 +105,7 @@ export class FlintInputOtpSlot extends FlintElement {
  *                                 alphanumeric. Empty string accepts everything.
  * @attr {boolean} disabled      - Disables the input.
  */
-export class FlintInputOtp extends FlintElement {
+export class FlintInputOtp extends FormAssociated(FlintElement) {
     static styles = unsafeCSS(uiInputOtpStyles);
 
     /** Current OTP value. Reflects to attribute for external observation. */
@@ -125,6 +127,12 @@ export class FlintInputOtp extends FlintElement {
     /** Disables the OTP input. */
     @property({ type: Boolean, reflect: true }) disabled = false;
 
+    /** Form field name used when submitting form data. */
+    @property({ type: String }) name = '';
+
+    /** Marks the OTP input as required for form validation. */
+    @property({ type: Boolean, reflect: true }) required = false;
+
     /** Accessible label for the hidden input (used as aria-label). */
     @property({ type: String }) label = 'One-time password';
 
@@ -133,10 +141,10 @@ export class FlintInputOtp extends FlintElement {
 
     @query('.hidden-input') private _hiddenInput!: HTMLInputElement;
 
+    private _formControl = new FormControlController(this);
     private _internalValue = '';
     private _focused = false;
     private _cursorIndex = 0;
-    private _firstUpdate = true;
 
     private _handleClick = (e: Event) => {
         if (this.disabled) return;
@@ -193,6 +201,24 @@ export class FlintInputOtp extends FlintElement {
         if (changed.has('value') || changed.has('maxLength')) {
             this._syncSlots();
         }
+        if (changed.has('value') || changed.has('name') || changed.has('required')) {
+            this._updateFormValue();
+        }
+    }
+
+    private _updateFormValue() {
+        this._initFormValue(this.value || null);
+        this._initFormValidity(this.required, !this.value, 'Please fill out this field.');
+        this._formControl.updateDataAttributes();
+    }
+
+    formResetCallback() {
+        this.value = this.defaultValue;
+        this._internalValue = this.defaultValue.slice(0, this.maxLength);
+        this._cursorIndex = Math.min(this._internalValue.length, this.maxLength - 1);
+        this._syncSlots();
+        this._updateFormValue();
+        this._formControl.reset();
     }
 
     private _getAllSlots(): FlintInputOtpSlot[] {

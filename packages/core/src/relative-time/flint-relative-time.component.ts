@@ -148,6 +148,7 @@ export class FlintRelativeTime extends FlintElement {
         const localeStr = date ? date.toLocaleString() : nothing;
         return html`
             <time
+                part="base"
                 datetime=${date ? date.toISOString() : nothing}
                 title=${localeStr}
                 aria-label=${localeStr}

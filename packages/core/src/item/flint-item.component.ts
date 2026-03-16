@@ -71,7 +71,7 @@ export class FlintItemMedia extends FlintElement {
                 media: true,
                 'media--icon': this.variant === 'icon',
                 'media--image': this.variant === 'image',
-            })}>
+            })} part="base">
                 <slot></slot>
             </div>
         `;

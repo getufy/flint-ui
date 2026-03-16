@@ -42,7 +42,7 @@ export class FlintKbd extends FlintElement {
 
     render() {
         return html`
-            <kbd aria-label=${this.label || nothing}>
+            <kbd part="base" aria-label=${this.label || nothing}>
                 <slot></slot>
             </kbd>
         `;

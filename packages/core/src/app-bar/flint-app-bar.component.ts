@@ -27,17 +27,17 @@ export class FlintAppBar extends FlintElement {
     return html`
       <header class="${classMap({
       'variant-outlined': this.variant === 'outlined',
-    })}">
-        <div class="left-section">
+    })}" part="base">
+        <div class="left-section" part="navigation">
           <slot name="navigation"></slot>
           <slot name="start-content"></slot>
         </div>
 
-        <div class="title">
+        <div class="title" part="title">
           ${this.title}<slot name="title"></slot>
         </div>
 
-        <div class="right-section">
+        <div class="right-section" part="actions">
           <slot name="actions"></slot>
           <slot name="end-content"></slot>
         </div>

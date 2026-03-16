@@ -437,7 +437,7 @@ export class FlintDateField extends FlintElement {
         return html`
       ${this.label ? html`<label class=${labelClasses}>${this.label}</label>` : nothing}
 
-      <div class=${containerClasses} @click=${this._handleContainerClick}>
+      <div class=${containerClasses} part="base" @click=${this._handleContainerClick}>
 
         <div
           class="segments"

@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import './flint-switch';
 import '../button/flint-button';
 import '../box/flint-box';
@@ -119,6 +120,21 @@ export const Default: Story = {
       @flint-switch-change=${(e: CustomEvent) => console.log('Switch checked:', e.detail.checked)}
     ></flint-switch>
   `,
+};
+
+Default.play = async ({ canvasElement }) => {
+    const sw = canvasElement.querySelector('flint-switch') as HTMLElement & { checked: boolean };
+
+    // Initially unchecked
+    await waitFor(() => expect(sw.checked).toBe(false));
+
+    // Click to toggle on
+    await userEvent.click(sw);
+    await waitFor(() => expect(sw.checked).toBe(true));
+
+    // Click to toggle off
+    await userEvent.click(sw);
+    await waitFor(() => expect(sw.checked).toBe(false));
 };
 
 export const Checked: Story = {

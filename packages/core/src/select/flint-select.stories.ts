@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import '../button/flint-button';
 import { html } from 'lit';
-import '../button/flint-button';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import './flint-select';
 import '../button/flint-button';
 
@@ -176,6 +176,29 @@ export const Basic: Story = {
       ></flint-select>
     </div>
   `,
+};
+
+Basic.play = async ({ canvasElement }) => {
+    const select = canvasElement.querySelector('flint-select') as HTMLElement & { value: string[] };
+
+    // Initially no value selected
+    await waitFor(() => expect(select.value).toEqual([]));
+
+    // Click to open dropdown
+    const trigger = select.shadowRoot!.querySelector('[part="trigger"], .trigger, button, [role="combobox"]') as HTMLElement;
+    if (trigger) {
+        await userEvent.click(trigger);
+        // Wait for dropdown to open, then click first option
+        await waitFor(() => {
+            const options = select.shadowRoot!.querySelectorAll('[role="option"], .option, flint-menu-item');
+            expect(options.length).toBeGreaterThan(0);
+        });
+        const firstOption = select.shadowRoot!.querySelector('[role="option"], .option') as HTMLElement;
+        if (firstOption) {
+            await userEvent.click(firstOption);
+            await waitFor(() => expect(select.value.length).toBeGreaterThan(0));
+        }
+    }
 };
 
 // ── With preselected value ───────────────────────────────────────────────────
@@ -508,6 +531,37 @@ export const InForm: Story = {
         <flint-button type="submit">Submit</flint-button>
         <p id="form-output" style="font-size: 0.875rem; color: #4b5563;"></p>
       </form>
+    </div>
+  `,
+};
+
+// ── RTL ──────────────────────────────────────────────────────────────────────
+
+export const DefaultRTL: Story = {
+  name: 'RTL',
+  render: () => html`
+    <div dir="rtl" style="text-align: right; max-width: 400px; padding: 20px; display: flex; flex-direction: column; gap: 16px;">
+      <flint-select
+        label="الفاكهة المفضلة"
+        placeholder="اختر فاكهة"
+        .options=${[
+          { label: 'تفاح', value: 'apple' },
+          { label: 'موز', value: 'banana' },
+          { label: 'كرز', value: 'cherry' },
+          { label: 'فراولة', value: 'strawberry' },
+        ]}
+      ></flint-select>
+      <flint-select
+        label="اختيار متعدد"
+        placeholder="اختر عناصر..."
+        multiple
+        .options=${[
+          { label: 'تفاح', value: 'apple' },
+          { label: 'موز', value: 'banana' },
+          { label: 'كرز', value: 'cherry' },
+        ]}
+        .value=${['apple', 'cherry']}
+      ></flint-select>
     </div>
   `,
 };

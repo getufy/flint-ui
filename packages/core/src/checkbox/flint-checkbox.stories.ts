@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import './flint-checkbox';
 import '../button/flint-button';
 
@@ -99,6 +100,21 @@ export const Default: Story = {
             @flint-checkbox-change=${(e: CustomEvent) => console.log('Checked:', e.detail.checked, 'Value:', e.detail.value)}
         ></flint-checkbox>
     `
+};
+
+Default.play = async ({ canvasElement }) => {
+    const checkbox = canvasElement.querySelector('flint-checkbox') as HTMLElement & { checked: boolean };
+
+    // Initially unchecked
+    await waitFor(() => expect(checkbox.checked).toBe(false));
+
+    // Click to check
+    await userEvent.click(checkbox);
+    await waitFor(() => expect(checkbox.checked).toBe(true));
+
+    // Click to uncheck
+    await userEvent.click(checkbox);
+    await waitFor(() => expect(checkbox.checked).toBe(false));
 };
 
 export const Checked: Story = {

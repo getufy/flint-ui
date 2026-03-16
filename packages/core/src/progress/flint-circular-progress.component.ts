@@ -58,6 +58,7 @@ export class FlintCircularProgress extends FlintElement {
         return html`
       <div
         class="circular-root ${classMap({ determinate: isDeterminate, indeterminate: !isDeterminate })}"
+        part="base"
         style="--flint-circular-progress-size: ${this.size}px; --flint-circular-progress-thickness: ${this.thickness}; --flint-circular-progress-color: ${colorVal}"
         role="progressbar"
         aria-valuemin="0"
@@ -65,7 +66,7 @@ export class FlintCircularProgress extends FlintElement {
         aria-valuenow="${isDeterminate ? this._safeValue : nothing}"
         aria-label="${this.label || 'Progress'}"
       >
-        <svg viewBox="22 22 44 44">
+        <svg viewBox="22 22 44 44" part="svg">
           <circle
             class="circle"
             cx="44"

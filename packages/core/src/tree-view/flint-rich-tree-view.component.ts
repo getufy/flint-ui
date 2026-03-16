@@ -712,7 +712,7 @@ export class FlintRichTreeView extends FlintElement {
             this._loading.has(null);
 
         return html`
-      <div class="tree-root" role="tree">
+      <div class="tree-root" part="base" role="tree">
         ${rootLoading ? html`
           <div class="lazy-indicator lazy-root">
             <span class="lazy-spinner"></span>

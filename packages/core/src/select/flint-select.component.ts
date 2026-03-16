@@ -86,6 +86,51 @@ export class FlintSelect extends FormAssociated(FlintElement) {
 
   private readonly _uid = `flint-select-${++_uidCounter}`;
 
+  /* ── Typeahead ─────────────────────────────────────────────────────── */
+  private _typeaheadBuffer = '';
+  private _typeaheadTimeout?: ReturnType<typeof setTimeout>;
+
+  private _handleTypeahead(key: string) {
+    clearTimeout(this._typeaheadTimeout);
+    this._typeaheadBuffer += key.toLowerCase();
+
+    const match = this.options.find(opt =>
+      !opt.disabled && opt.label.toLowerCase().startsWith(this._typeaheadBuffer)
+    );
+    if (match) {
+      const idx = this.options.indexOf(match);
+      this._highlightedIndex = idx;
+      this._scrollOptionIntoView(idx);
+    }
+
+    this._typeaheadTimeout = setTimeout(() => { this._typeaheadBuffer = ''; }, 500);
+  }
+
+  /* ── Virtualization ────────────────────────────────────────────────── */
+  /** Enable virtual scrolling for large option lists. */
+  @property({ type: Boolean }) virtualize = false;
+
+  /** Fixed item height in px used for virtual scroll calculations. */
+  @property({ type: Number, attribute: 'item-height' }) itemHeight = 36;
+
+  /** Maximum visible items in the dropdown (determines dropdown height). */
+  @property({ type: Number, attribute: 'visible-items' }) visibleItems = 8;
+
+  @state() private _scrollTop = 0;
+
+  private _handleDropdownScroll(e: Event) {
+    this._scrollTop = (e.target as HTMLElement).scrollTop;
+  }
+
+  private get _virtualRange(): { start: number; end: number; totalHeight: number } {
+    const buffer = 4;
+    const totalHeight = this.options.length * this.itemHeight;
+    const start = Math.max(0, Math.floor(this._scrollTop / this.itemHeight) - buffer);
+    const visibleCount = this.visibleItems + buffer * 2;
+    const end = Math.min(this.options.length, start + visibleCount);
+    return { start, end, totalHeight };
+  }
+
   connectedCallback() {
     super.connectedCallback();
     if (typeof document !== 'undefined') {
@@ -340,6 +385,13 @@ export class FlintSelect extends FormAssociated(FlintElement) {
         }
         break;
       }
+      default: {
+        // Typeahead: single printable characters trigger search
+        if (this._isOpen && e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+          this._handleTypeahead(e.key);
+        }
+        break;
+      }
     }
   };
 
@@ -350,6 +402,57 @@ export class FlintSelect extends FormAssociated(FlintElement) {
         el.scrollIntoView({ block: 'nearest' });
       }
     });
+  }
+
+  private _renderOption(opt: SelectOption, i: number, style = '') {
+    const isSelected = this.value.includes(opt.value);
+    return html`
+      <div
+        id=${`${this._uid}-opt-${i}`}
+        part="option"
+        class=${classMap({
+          option: true,
+          selected: isSelected,
+          highlighted: i === this._highlightedIndex,
+          'option-disabled': !!opt.disabled,
+        })}
+        style=${style || nothing}
+        @click=${(e: Event) => this._handleOptionClick(opt, e)}
+        @mouseenter=${() => { if (!opt.disabled) this._highlightedIndex = i; }}
+        role="option"
+        aria-selected=${isSelected ? 'true' : 'false'}
+        aria-disabled=${opt.disabled ? 'true' : nothing}
+      >
+        <span>${opt.label}</span>
+        <div class="check-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+      </div>
+    `;
+  }
+
+  private _renderVirtualized() {
+    const { start, end, totalHeight } = this._virtualRange;
+    const visibleOptions = this.options.slice(start, end);
+    const containerHeight = Math.min(this.visibleItems * this.itemHeight, totalHeight);
+
+    return html`
+      <div
+        class="virtual-scroll-container"
+        style="height:${containerHeight}px;overflow-y:auto;position:relative;"
+        @scroll=${this._handleDropdownScroll}
+      >
+        <div style="height:${totalHeight}px;position:relative;">
+          ${visibleOptions.map((opt, vi) => {
+            const realIndex = start + vi;
+            const yPos = realIndex * this.itemHeight;
+            return this._renderOption(opt, realIndex, `position:absolute;top:${yPos}px;left:0;right:0;height:${this.itemHeight}px;`);
+          })}
+        </div>
+      </div>
+    `;
   }
 
   render() {
@@ -439,33 +542,9 @@ export class FlintSelect extends FormAssociated(FlintElement) {
         >
           ${this.options.length === 0
             ? html`<div class="no-options">${this._localize.term('noOptions')}</div>`
-            : repeat(this.options, opt => opt.value, (opt, i) => {
-                const isSelected = this.value.includes(opt.value);
-                return html`
-                  <div
-                    id=${`${this._uid}-opt-${i}`}
-                    part="option"
-                    class=${classMap({
-                      option: true,
-                      selected: isSelected,
-                      highlighted: i === this._highlightedIndex,
-                      'option-disabled': !!opt.disabled,
-                    })}
-                    @click=${(e: Event) => this._handleOptionClick(opt, e)}
-                    @mouseenter=${() => { if (!opt.disabled) this._highlightedIndex = i; }}
-                    role="option"
-                    aria-selected=${isSelected ? 'true' : 'false'}
-                    aria-disabled=${opt.disabled ? 'true' : nothing}
-                  >
-                    <span>${opt.label}</span>
-                    <div class="check-icon">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                      </svg>
-                    </div>
-                  </div>
-                `;
-              })
+            : this.virtualize
+              ? this._renderVirtualized()
+              : repeat(this.options, opt => opt.value, (opt, i) => this._renderOption(opt, i))
           }
         </div>
 

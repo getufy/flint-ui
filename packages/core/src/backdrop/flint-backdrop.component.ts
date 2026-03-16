@@ -53,11 +53,12 @@ export class FlintBackdrop extends FlintElement {
       open: this.open,
       invisible: this.invisible
     })}"
+        part="base"
         @click="${this._handleClick}"
         role="presentation"
         aria-hidden="${this.open ? nothing : 'true'}"
       >
-        <div class="content">
+        <div class="content" part="content">
           <slot></slot>
         </div>
       </div>

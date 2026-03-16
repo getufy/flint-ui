@@ -82,7 +82,7 @@ export class FlintBottomNavigation extends FlintElement {
 
     render() {
         return html`
-            <div class="container" role="tablist" @click=${this._handleActionChange}>
+            <div class="container" part="base" role="tablist" @click=${this._handleActionChange}>
                 <slot @slotchange=${this._handleSlotChange}></slot>
             </div>
         `;

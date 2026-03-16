@@ -182,3 +182,17 @@ export const CondensedWithMenu: Story = {
         </div>
     `,
 };
+
+export const DefaultRTL: Story = {
+    name: 'RTL',
+    render: () => html`
+        <div dir="rtl" style="text-align: right; padding: 24px;">
+            <flint-breadcrumbs>
+                <a href="#">الرئيسية</a>
+                <a href="#">المنتجات</a>
+                <a href="#">الإلكترونيات</a>
+                <span class="active">الهواتف</span>
+            </flint-breadcrumbs>
+        </div>
+    `,
+};

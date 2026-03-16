@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import './flint-dialog.js';
 import { FlintDialog } from './flint-dialog.js';
 import '../button/flint-button.js';
@@ -167,6 +168,29 @@ export const Basic: Story = {
       </flint-dialog>
     </flint-box>
   `,
+};
+
+Basic.play = async ({ canvasElement }) => {
+    const dialog = canvasElement.querySelector('#basic-dialog') as FlintDialog;
+    const openBtn = canvasElement.querySelector('flint-button') as HTMLElement;
+
+    // Dialog starts closed
+    await waitFor(() => expect(dialog.open).toBe(false));
+
+    // Open dialog
+    await userEvent.click(openBtn);
+    await waitFor(() => expect(dialog.open).toBe(true));
+
+    // Close via Cancel button
+    const cancelBtn = dialog.querySelector('flint-button[variant="secondary"]') as HTMLElement;
+    await userEvent.click(cancelBtn);
+    await waitFor(() => expect(dialog.open).toBe(false));
+
+    // Re-open and close via Escape key
+    await userEvent.click(openBtn);
+    await waitFor(() => expect(dialog.open).toBe(true));
+    await userEvent.keyboard('{Escape}');
+    await waitFor(() => expect(dialog.open).toBe(false));
 };
 
 // ── Confirmation Dialog ──────────────────────────────────────────────────────

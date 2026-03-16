@@ -686,7 +686,7 @@ export class FlintResizableHandle extends FlintElement {
   }
 
   override render() {
-    return html`<div class="grip"><div class="grip-dots">${this._renderDots()}</div></div>`;
+    return html`<div class="grip" part="grip"><div class="grip-dots">${this._renderDots()}</div></div>`;
   }
 
   private _renderDots() {

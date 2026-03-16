@@ -480,6 +480,29 @@ export const Accessibility: Story = {
 };
 
 /* ================================================================== */
+/* RTL                                                                 */
+/* ================================================================== */
+export const DefaultRTL: Story = {
+    name: 'RTL',
+    render: () => html`
+        <div dir="rtl" style="text-align: right">
+            ${section(html`
+                ${box('صفحات من اليمين إلى اليسار', html`
+                    <flint-pagination count="10" page="5" show-first-button show-last-button
+                        @flint-pagination-change=${(e: CustomEvent) => { (e.currentTarget as FlintPagination).page = e.detail.page; }}>
+                    </flint-pagination>
+                `)}
+                ${box('مخطط تفصيلي', html`
+                    <flint-pagination count="10" page="3" variant="outlined" shape="rounded"
+                        @flint-pagination-change=${(e: CustomEvent) => { (e.currentTarget as FlintPagination).page = e.detail.page; }}>
+                    </flint-pagination>
+                `)}
+            `)}
+        </div>
+    `,
+};
+
+/* ================================================================== */
 /* Table Pagination Style                                              */
 /* ================================================================== */
 export const TablePaginationStyle: Story = {

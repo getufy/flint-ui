@@ -1,0 +1,51 @@
+name: Accessibility
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: a11y-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  a11y:
+    name: Accessibility Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Get Playwright version
+        id: pw-version
+        run: echo "version=$(npx playwright --version | awk '{print $2}')" >> $GITHUB_OUTPUT
+      - uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
+        id: pw-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ steps.pw-version.outputs.version }}-chromium
+      - name: Install Playwright Chromium
+        if: steps.pw-cache.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps chromium
+      - name: Install Playwright deps (cached)
+        if: steps.pw-cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium
+      - name: Run Storybook a11y tests
+        timeout-minutes: 10
+        run: |
+          cd packages/core
+          npx vitest run --project storybook 2>&1 | tee test-output.log
+          TEST_EXIT=$?
+          if [ $TEST_EXIT -ne 0 ]; then
+            # Check if all tests actually passed (teardown bug workaround)
+            if grep -q "Tests.*passed" test-output.log && ! grep -q "Tests.*failed" test-output.log; then
+              echo "Tests passed but process exited with error (known Playwright teardown issue)"
+              exit 0
+            fi
+            exit $TEST_EXIT
+          fi

@@ -308,7 +308,7 @@ export class FlintDateRangeCalendar extends FlintElement {
 
     render() {
         return html`
-      <div class="calendars">
+      <div class="calendars" part="base">
         ${this._renderMonthPanel(this._leftYear, this._leftMonth, true)}
         ${this._renderMonthPanel(this._rightYear, this._rightMonth, false)}
       </div>

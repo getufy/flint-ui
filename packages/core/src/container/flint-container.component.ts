@@ -43,7 +43,7 @@ export class FlintContainer extends FlintElement {
             [`max-width-${this.maxWidth}`]: this.maxWidth !== false,
             'disable-gutters': this.disableGutters,
             fixed: this.fixed
-        })}>
+        })} part="base">
         <slot></slot>
       </div>
     `;

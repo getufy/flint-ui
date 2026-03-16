@@ -144,6 +144,7 @@ export class FlintStack extends FlintElement {
         return html`
       <div
         class="stack-wrapper direction-${resolvedDirection} ${this.useFlexGap ? '' : 'no-flex-gap'}"
+        part="base"
         style=${styleMap(styles)}
       >
         <slot></slot>

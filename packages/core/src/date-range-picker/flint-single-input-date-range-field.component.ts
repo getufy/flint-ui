@@ -375,7 +375,7 @@ export class FlintSingleInputDateRangeField extends FlintElement {
         return html`
       ${this.label ? html`<label class=${labelCls}>${this.label}</label>` : nothing}
 
-      <div class=${containerCls}>
+      <div class=${containerCls} part="base">
         <div
           class="segments"
           role="group"

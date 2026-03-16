@@ -417,6 +417,18 @@ export class FlintTabs extends FlintElement {
         this._syncAll();
     };
 
+    /** Track whether a sync is already scheduled for this frame. */
+    private _syncScheduled = false;
+
+    private _scheduleSync() {
+        if (this._syncScheduled) return;
+        this._syncScheduled = true;
+        requestAnimationFrame(() => {
+            this._syncScheduled = false;
+            this._syncAll();
+        });
+    }
+
     updated(changed: Map<string, unknown>) {
         const keys = ['value', 'orientation', 'variant', 'centered', 'scrollButtons', 'textColor', 'indicatorColor'];
         if (keys.some(k => changed.has(k))) this._syncAll();
@@ -425,7 +437,7 @@ export class FlintTabs extends FlintElement {
     render() {
         return html`
             <div class="root" part="base">
-                <slot @slotchange=${() => this._syncAll()}></slot>
+                <slot @slotchange=${() => this._scheduleSync()}></slot>
             </div>`;
     }
 }

@@ -139,6 +139,9 @@ export class FormControlController implements ReactiveController {
 
         // Disabled
         this._toggleData(el, 'disabled', el.disabled);
+
+        // Sync custom state pseudo-classes (dirty/touched)
+        this._syncCustomStates();
     }
 
     // ── Private ──────────────────────────────────────────────────────────
@@ -154,6 +157,26 @@ export class FormControlController implements ReactiveController {
         if (!this._touched) {
             this._touched = true;
             this.updateDataAttributes();
+        }
+    }
+
+    /** Sync dirty/touched custom state pseudo-classes on ElementInternals.states. */
+    private _syncCustomStates(): void {
+        const states = this.host._internals?.states;
+        if (!states) return;
+
+        // Dirty / pristine
+        if (this._dirty) {
+            states.add('dirty');
+        } else {
+            states.delete('dirty');
+        }
+
+        // Touched / untouched
+        if (this._touched) {
+            states.add('touched');
+        } else {
+            states.delete('touched');
         }
     }
 

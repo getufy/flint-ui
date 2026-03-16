@@ -49,7 +49,7 @@ export class FlintImageList extends FlintElement {
     styles['--flint-image-list-gap'] = `${this.gap}px`;
 
     return html`
-      <ul class="image-list variant-${this.variant}" style="${styleMap(styles)}" role="list">
+      <ul class="image-list variant-${this.variant}" part="base" style="${styleMap(styles)}" role="list">
         <slot></slot>
       </ul>
     `;

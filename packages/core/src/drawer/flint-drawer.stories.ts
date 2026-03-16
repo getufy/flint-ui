@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import { FlintDrawer } from './flint-drawer';
 import './flint-drawer';  // side-effect: ensures @customElement registers
 import '../button/flint-button';
@@ -160,6 +161,29 @@ export const Temporary: Story = {
     `,
 };
 
+Temporary.play = async ({ canvasElement }) => {
+    const drawer = canvasElement.querySelector('flint-drawer') as FlintDrawer;
+    const openBtn = canvasElement.querySelector('flint-button:not(flint-drawer flint-button)') as HTMLElement;
+
+    // Drawer starts closed
+    await waitFor(() => expect(drawer.open).toBe(false));
+
+    // Open drawer
+    await userEvent.click(openBtn);
+    await waitFor(() => expect(drawer.open).toBe(true));
+
+    // Close via the Close button inside drawer
+    const closeBtn = drawer.querySelector('flint-button') as HTMLElement;
+    await userEvent.click(closeBtn);
+    await waitFor(() => expect(drawer.open).toBe(false));
+
+    // Re-open and close via Escape
+    await userEvent.click(openBtn);
+    await waitFor(() => expect(drawer.open).toBe(true));
+    await userEvent.keyboard('{Escape}');
+    await waitFor(() => expect(drawer.open).toBe(false));
+};
+
 /* ================================================================== */
 /*  Persistent                                                         */
 /* ================================================================== */
@@ -294,5 +318,34 @@ export const Anchors: Story = {
                 All four placements demonstrated - drawers are scoped to this container
             </p>
         </flint-box>
+    `,
+};
+
+/* ================================================================== */
+/*  RTL                                                                */
+/* ================================================================== */
+export const DefaultRTL: Story = {
+    name: 'RTL',
+    args: { open: false, placement: 'right', variant: 'temporary' },
+    render: (args) => html`
+        <div dir="rtl" style="text-align: right">
+            <flint-box class="story-root" display="flex" alignItems="center" justifyContent="center" bgcolor="var(--flint-muted-background, #f8fafc)" border="1px solid #e2e8f0" borderRadius="8px" style="position:relative;height:320px;overflow:hidden;">
+                <flint-drawer
+                    .open=${args.open}
+                    .placement=${args.placement}
+                    .variant=${'temporary'}
+                    container
+                    @flint-drawer-close=${onDrawerClose}
+                >
+                    <nav style="width:250px;padding:8px;">
+                        <div style="padding:12px 16px;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;opacity:.5;">التنقل</div>
+                        ${['البريد الوارد', 'المميزة', 'إرسال بريد', 'المسودات', 'كل البريد'].map(i => html`
+                            <div style="padding:10px 16px;border-radius:6px;cursor:pointer;">${i}</div>
+                        `)}
+                    </nav>
+                </flint-drawer>
+                <flint-button @click=${openDrawer}>فتح الدرج</flint-button>
+            </flint-box>
+        </div>
     `,
 };

@@ -432,24 +432,20 @@ describe('flint-rating — size', () => {
 // ─── form / name ──────────────────────────────────────────────────────────────
 
 describe('flint-rating — form / name', () => {
-    it('hidden input is present in shadow DOM', async () => {
-        const el = await fixture<FlintRating>(html`<flint-rating name="score"></flint-rating>`);
-        const input = el.shadowRoot!.querySelector<HTMLInputElement>('.hidden-input');
-        expect(input).toBeTruthy();
-        expect(input!.type).toBe('hidden');
+    it('is form-associated', async () => {
+        const ctor = customElements.get('flint-rating') as unknown as { formAssociated?: boolean };
+        expect(ctor?.formAssociated).toBe(true);
     });
 
-    it('hidden input name reflects name prop', async () => {
+    it('name property is set', async () => {
         const el = await fixture<FlintRating>(html`<flint-rating name="score"></flint-rating>`);
-        const input = el.shadowRoot!.querySelector<HTMLInputElement>('.hidden-input');
-        expect(input!.name).toBe('score');
+        expect(el.name).toBe('score');
     });
 
-    it('hidden input value updates when rating changes', async () => {
+    it('value updates when rating changes', async () => {
         const el = await fixture<FlintRating>(html`<flint-rating name="score" .value=${0}></flint-rating>`);
         getStar(el, 2).click();
         await el.updateComplete;
-        const input = el.shadowRoot!.querySelector<HTMLInputElement>('.hidden-input');
-        expect(input!.value).toBe('3');
+        expect(el.value).toBe(3);
     });
 });

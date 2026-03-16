@@ -71,14 +71,15 @@ export class FlintFab extends FlintElement {
     return html`
       <button
         class="${classMap(classes)}"
+        part="base"
         ?disabled="${this.disabled}"
         aria-label="${ifDefined(this.extended ? undefined : this.label)}"
       >
-        <span class="icon-slot">
+        <span class="icon-slot" part="icon">
           <slot name="icon"></slot>
           <slot></slot>
         </span>
-        ${this.extended ? html`<span class="label-slot"><slot name="label"></slot></span>` : ''}
+        ${this.extended ? html`<span class="label-slot" part="label"><slot name="label"></slot></span>` : ''}
       </button>
     `;
   }

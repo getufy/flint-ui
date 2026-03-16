@@ -52,6 +52,7 @@ export class FlintLinearProgress extends FlintElement {
         return html`
       <div
         class="root ${classMap({ determinate: isDeterminate, indeterminate: !isDeterminate })}"
+        part="base"
         role="progressbar"
         aria-valuemin="0"
         aria-valuemax="100"
@@ -60,9 +61,9 @@ export class FlintLinearProgress extends FlintElement {
         style="${inlineStyle}"
       >
         ${isDeterminate ? html`
-          <div class="bar" style="transform: scaleX(${this._safeValue / 100})"></div>
+          <div class="bar" part="indicator" style="transform: scaleX(${this._safeValue / 100})"></div>
         ` : html`
-          <div class="bar bar1"></div>
+          <div class="bar bar1" part="indicator"></div>
           <div class="bar bar2"></div>
         `}
       </div>

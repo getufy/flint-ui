@@ -708,3 +708,24 @@ export const MobileStepperCustomButtons: Story = {
         `);
     },
 };
+
+/* ================================================================== */
+/* RTL                                                                 */
+/* ================================================================== */
+export const DefaultRTL: Story = {
+    name: 'RTL',
+    render: () => html`
+        <div dir="rtl" style="text-align: right">
+            ${panel(card(html`
+                <flint-stepper active-step="1" style="border-bottom:1px solid #f1f5f9;padding:16px 24px;">
+                    <flint-step completed><span slot="label">اختيار إعدادات الحملة</span></flint-step>
+                    <flint-step><span slot="label">إنشاء مجموعة إعلانية</span></flint-step>
+                    <flint-step><span slot="label">إنشاء إعلان</span></flint-step>
+                </flint-stepper>
+                <div style="padding:16px 24px;font-size:.875rem;color:#4b5563;font-family:Inter,sans-serif;">
+                    الخطوة الثانية: إنشاء مجموعة إعلانية. يتم عرض الخطوات من اليمين إلى اليسار.
+                </div>
+            `))}
+        </div>
+    `,
+};

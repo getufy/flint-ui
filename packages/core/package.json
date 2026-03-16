@@ -4,6 +4,8 @@
   "type": "module",
   "types": "./dist/index.d.ts",
   "module": "./dist/index.js",
+  "unpkg": "dist/flint-ui.iife.min.js",
+  "jsdelivr": "dist/flint-ui.iife.min.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/getufy/flint-ui.git",
@@ -433,6 +435,7 @@
     "test:watch": "NODE_OPTIONS='--no-warnings' vitest",
     "cem": "custom-elements-manifest analyze --config custom-elements-manifest.config.mjs",
     "build": "vite build && tsc -p tsconfig.build.json && npm run cem",
+    "build:cdn": "vite build --config vite.cdn.config.ts",
     "build:exports": "tsx ../../scripts/build-entries.ts --write-exports",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",

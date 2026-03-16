@@ -165,7 +165,7 @@ export class FlintFormatNumber extends FlintElement {
     }
 
     override render() {
-        return html`<span data-sign=${ifDefined(this._sign())}>${this._format()}</span>`;
+        return html`<span part="base" data-sign=${ifDefined(this._sign())}>${this._format()}</span>`;
     }
 }
 

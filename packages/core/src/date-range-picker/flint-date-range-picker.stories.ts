@@ -1395,3 +1395,17 @@ export const CustomShortcuts: Story = {
         });
     },
 };
+
+export const DefaultRTL: Story = {
+    name: 'RTL',
+    render: () => html`
+        <div dir="rtl" style="text-align: right">
+            ${wrap(html`
+                <flint-date-range-picker
+                    label="اختر نطاق التاريخ"
+                    @flint-date-range-picker-change=${onRangeChange}
+                ></flint-date-range-picker>
+            `)}
+        </div>
+    `,
+};

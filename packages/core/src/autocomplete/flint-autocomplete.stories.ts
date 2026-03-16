@@ -285,3 +285,19 @@ export const Accessibility: Story = {
     </div>
   `,
 };
+
+export const DefaultRTL: Story = {
+    name: 'RTL',
+    render: () => html`
+    <div dir="rtl" style="text-align: right; padding: 20px;">
+      <div style=${cardStyle}>
+        <h3 style=${headingStyle}>اكمال تلقائي</h3>
+        <flint-autocomplete
+          .options=${top100Films}
+          placeholder="ابحث عن فيلم..."
+          style="width: 300px;"
+        ></flint-autocomplete>
+      </div>
+    </div>
+  `,
+};

@@ -1,8 +1,10 @@
-import { unsafeCSS, html, svg, css, nothing, LitElement } from 'lit';
+import { unsafeCSS, html, svg, css, nothing, LitElement, type PropertyValues } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { repeat } from 'lit/directives/repeat.js';
 import { FlintElement } from '../flint-element.js';
+import { FormAssociated } from '../mixins/form-associated.js';
+import { FormControlController } from '../controllers/form-control.js';
 import { FlintDialog, FlintDialogTitle, FlintDialogContent, FlintDialogActions } from '../dialog/flint-dialog.component.js';
 import uiTimeFieldStyles from './flint-time-field.css?inline';
 import uiDigitalClockStyles from './flint-digital-clock.css?inline';
@@ -232,7 +234,7 @@ export class FlintTimeField extends FlintElement {
         const hasVal = this._h !== null || this._m !== null;
         return html`
       ${this.label ? html`<label class="label ${this._focused ? 'focused' : ''}">${this.label}</label>` : nothing}
-      <div class="container ${this._focused ? 'focused' : ''}">
+      <div class="container ${this._focused ? 'focused' : ''}" part="base">
         <div class="segments" tabindex=${this.disabled ? -1 : 0} role="group" aria-label=${this.label || 'Time'}
           @keydown=${this._onKey}
           @focus=${() => { this._focused = true; if (!this._active) this._setActive('hour'); }}
@@ -318,7 +320,7 @@ export class FlintDigitalClock extends FlintElement {
     render() {
         const items = this._items();
         return html`
-      <div class="clock" role="listbox" aria-label="Select time">
+      <div class="clock" role="listbox" aria-label="Select time" part="base">
         ${repeat(items, v => v, v => html`
           <button class=${classMap({ item: true, selected: v === this.value })}
             role="option" aria-selected=${v === this.value ? 'true' : nothing}
@@ -445,7 +447,7 @@ export class FlintMultiSectionDigitalClock extends FlintElement {
 
     render() {
         return html`
-      <div class="msdc">
+      <div class="msdc" part="base">
         ${this._col('h')}
         ${this._col('m')}
         ${this.seconds ? this._col('s') : nothing}
@@ -675,8 +677,8 @@ export class FlintTimeClock extends FlintElement {
         const { hour, ampm: mer } = to12(t.h);
         const dispH = this.ampm ? padZ(hour) : padZ(t.h);
         return html`
-      <div class="clock-wrap">
-        <div class="clock-header">
+      <div class="clock-wrap" part="base">
+        <div class="clock-header" part="header">
           <span class=${classMap({ 'clock-seg': true, active: this.view === 'hours' })} @click=${() => this._switchView('hours')}>${dispH}</span>
           <span class="clock-sep">:</span>
           <span class=${classMap({ 'clock-seg': true, active: this.view === 'minutes' })} @click=${() => this._switchView('minutes')}>${padZ(t.m)}</span>
@@ -861,7 +863,7 @@ export class FlintStaticTimePicker extends FlintElement {
 
     render() {
         return html`
-      <div class="surface">
+      <div class="surface" part="base">
         <flint-multi-section-digital-clock .value=${this.value || buildTime(12, 0)} .ampm=${this.ampm} ?seconds=${this.seconds}
           @flint-multi-section-digital-clock-change=${(e: CustomEvent) => {
                 this.value = e.detail.value;
@@ -879,7 +881,7 @@ export class FlintStaticTimePicker extends FlintElement {
  *
  * @fires flint-time-picker-change - Fired when the time value changes. detail: `{ value: string }`
  */
-export class FlintTimePicker extends FlintElement {
+export class FlintTimePicker extends FormAssociated(FlintElement) {
     static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
     static styles = unsafeCSS(uiTimePickerStyles);
 
@@ -901,6 +903,43 @@ export class FlintTimePicker extends FlintElement {
     @property({ type: String, attribute: 'helper-text' }) helperText = '';
     /** Error message displayed below the field when in error state. */
     @property({ type: String, attribute: 'error-message' }) errorMessage = '';
+    /** Form field name used when submitting form data. */
+    @property({ type: String }) name = '';
+    /** Marks the time picker as required for form validation. */
+    @property({ type: Boolean, reflect: true }) required = false;
+    /** Initial value for uncontrolled usage (HH:MM:SS format). */
+    @property({ type: String, attribute: 'default-value' }) defaultValue = '';
+
+    private _formControl = new FormControlController(this);
+
+    protected override willUpdate(changed: PropertyValues) {
+        super.willUpdate(changed);
+        if (this._firstUpdate) {
+            this._firstUpdate = false;
+            if (this.defaultValue && !this.value) {
+                this.value = this.defaultValue;
+            }
+        }
+    }
+
+    protected override updated(changed: PropertyValues) {
+        super.updated(changed);
+        if (changed.has('value') || changed.has('name') || changed.has('required')) {
+            this._updateFormValue();
+        }
+    }
+
+    private _updateFormValue() {
+        this._initFormValue(this.value || null);
+        this._initFormValidity(this.required, !this.value, 'Please select a time.');
+        this._formControl.updateDataAttributes();
+    }
+
+    formResetCallback() {
+        this.value = this.defaultValue;
+        this._updateFormValue();
+        this._formControl.reset();
+    }
 
     private get _v() {
         if (this.variant === 'auto')

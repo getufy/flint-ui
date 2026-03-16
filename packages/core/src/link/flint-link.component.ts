@@ -75,6 +75,7 @@ export class FlintLink extends FlintElement {
         return html`
             <a
                 class="link"
+                part="base"
                 href=${ifDefined(this.disabled ? undefined : this.href || undefined)}
                 target=${ifDefined(this.target !== '_self' ? this.target : undefined)}
                 rel=${ifDefined(this._computedRel())}

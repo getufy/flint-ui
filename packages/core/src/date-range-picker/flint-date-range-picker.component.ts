@@ -187,7 +187,7 @@ export class FlintDateRangePicker extends FlintElement {
     private _renderShortcuts() {
         if (!this.shortcuts) return nothing;
         return html`
-      <div class="shortcuts-panel">
+      <div class="shortcuts-panel" part="shortcuts">
         ${this._effectiveShortcuts.map(sc => html`
           <button
             class="shortcut-btn ${this._activeShortcut === sc.label ? 'active' : ''}"
@@ -271,7 +271,7 @@ export class FlintDateRangePicker extends FlintElement {
         <div class="popover-anchor">
           ${this._renderField()}
           <div class="click-away ${this._open ? 'open' : ''}" @click=${this._closePicker}></div>
-          <div class="popover ${this._open ? 'open' : ''}" role="dialog" aria-label="Date range picker">
+          <div class="popover ${this._open ? 'open' : ''}" role="dialog" aria-label="Date range picker" part="popover">
             ${this._renderShortcuts()}
             <div class="popover-body">
               ${this._renderCalendar(pending, (e: CustomEvent) => this._handleCalendarSelect(e))}
@@ -314,7 +314,7 @@ export class FlintDateRangePicker extends FlintElement {
 
     private _renderStatic() {
         return html`
-      <div class="static-wrapper">
+      <div class="static-wrapper" part="base">
         ${this.shortcuts ? html`
           <div style="display:flex;">
             ${this._renderShortcuts()}

@@ -143,6 +143,7 @@ export class FlintTreeItem extends FlintElement {
     return html`
       <div
         class=${classMap({ 'item-row': true, 'is-draggable': this._isDraggable && !this._handleOnly })}
+        part="base"
         style="padding-left: ${paddingLeft}px"
         draggable=${(this._isDraggable && !this._handleOnly) ? 'true' : 'false'}
         @click=${this._handleRowClick}
@@ -180,11 +181,11 @@ export class FlintTreeItem extends FlintElement {
         : html`<span class="expand-placeholder"></span>`
       }
 
-        <span class="item-label">${this.label}</span>
+        <span class="item-label" part="label">${this.label}</span>
         ${this.label ? nothing : html`<slot name="label"></slot>`}
       </div>
 
-      <div class="children-container" ?hidden=${!this.expanded} role="group">
+      <div class="children-container" part="children" ?hidden=${!this.expanded} role="group">
         <slot @slotchange=${this._onSlotChange}></slot>
       </div>
     `;

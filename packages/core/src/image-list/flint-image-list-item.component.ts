@@ -94,7 +94,7 @@ export class FlintImageListItem extends FlintElement {
 
   render() {
     return html`
-      <div class="item-wrapper">
+      <div class="item-wrapper" part="base">
         <slot></slot>
       </div>
       <slot name="bar"></slot>

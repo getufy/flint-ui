@@ -257,9 +257,20 @@ export class FlintGrid extends FlintElement {
     }
 
     private _applyItemStyles() {
+        // ── Read phase: compute all values before touching the DOM ──
         const bp = this._getBreakpoint();
         const itemStyles = this._getItemStyles(bp);
 
+        let colGap: string | null = null;
+        if (this.container) {
+            const spacingStyles = this._getSpacingStyles(bp);
+            if (spacingStyles['gap']) {
+                const parts = spacingStyles['gap'].split(' ');
+                colGap = parts.length === 2 ? parts[1]! : parts[0]!;
+            }
+        }
+
+        // ── Write phase: batch all DOM mutations together ──
         // Reset previously applied host styles
         this.style.flexGrow = '';
         this.style.flexBasis = '';
@@ -273,10 +284,7 @@ export class FlintGrid extends FlintElement {
         });
 
         if (this.container) {
-            const spacingStyles = this._getSpacingStyles(bp);
-            if (spacingStyles['gap']) {
-                const parts = spacingStyles['gap'].split(' ');
-                const colGap = parts.length === 2 ? parts[1]! : parts[0]!;
+            if (colGap !== null) {
                 this.style.setProperty('--flint-grid-column-gap', colGap);
             }
             // Propagate column count to children via CSS custom property so nested
@@ -301,7 +309,7 @@ export class FlintGrid extends FlintElement {
             container: this.container,
             [`direction-${this.direction}`]: this.container,
             [`wrap-${this.wrap}`]: this.container && this.wrap !== 'wrap',
-        })} style=${styleMap(styles)}>
+        })} part="base" style=${styleMap(styles)}>
         <slot></slot>
       </div>
     `;

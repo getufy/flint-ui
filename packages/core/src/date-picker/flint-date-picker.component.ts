@@ -1,8 +1,10 @@
-import { unsafeCSS, html, nothing, LitElement } from 'lit';
+import { unsafeCSS, html, nothing, LitElement, type PropertyValues } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { repeat } from 'lit/directives/repeat.js';
 import { FlintElement } from '../flint-element.js';
+import { FormAssociated } from '../mixins/form-associated.js';
+import { FormControlController } from '../controllers/form-control.js';
 import { FlintDialog, FlintDialogTitle, FlintDialogContent, FlintDialogActions } from '../dialog/flint-dialog.component.js';
 import { LocalizeController } from '../utilities/localize.js';
 import uiDatePickerCalendarStyles from './flint-date-picker-calendar.css?inline';
@@ -236,7 +238,7 @@ export class FlintDatePickerCalendar extends FlintElement {
 
     render() {
         return html`
-      <div class="calendar">
+      <div class="calendar" part="calendar">
         ${this._mode === 'day' ? this._renderDayView()
                 : this._mode === 'month' ? this._renderMonthView()
                     : this._renderYearView()}
@@ -258,7 +260,7 @@ export class FlintDatePickerCalendar extends FlintElement {
  *
  * @fires flint-date-picker-change - Fired when the date changes. detail: `{ value: string }`
  */
-export class FlintDatePicker extends FlintElement {
+export class FlintDatePicker extends FormAssociated(FlintElement) {
     static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
     static styles = unsafeCSS(uiDatePickerStyles);
     private _localize = new LocalizeController(this);
@@ -306,6 +308,12 @@ export class FlintDatePicker extends FlintElement {
     /** Error message displayed below the field when in error state. */
     @property({ type: String, attribute: 'error-message' }) errorMessage = '';
 
+    /** Marks the date picker as required for form validation. */
+    @property({ type: Boolean, reflect: true }) required = false;
+
+    /** Initial value for uncontrolled usage (ISO string). */
+    @property({ type: String, attribute: 'default-value' }) defaultValue = '';
+
     /**
      * When true, the calendar popover uses `position: fixed` instead of `position: absolute`
      * so it can escape containers with `overflow: hidden` or `overflow: clip`.
@@ -313,9 +321,40 @@ export class FlintDatePicker extends FlintElement {
      */
     @property({ type: Boolean }) hoist = false;
 
+    private _formControl = new FormControlController(this);
+
     // ── State ───────────────────────────────────────────────────────────────
     @state() private _open = false;
     @state() private _pendingValue = ''; // value being edited before OK is clicked
+
+    protected override willUpdate(changed: PropertyValues) {
+        super.willUpdate(changed);
+        if (this._firstUpdate) {
+            this._firstUpdate = false;
+            if (this.defaultValue && !this.value) {
+                this.value = this.defaultValue;
+            }
+        }
+    }
+
+    protected override updated(changed: PropertyValues) {
+        super.updated(changed);
+        if (changed.has('value') || changed.has('name') || changed.has('required')) {
+            this._updateFormValue();
+        }
+    }
+
+    private _updateFormValue() {
+        this._initFormValue(this.value || null);
+        this._initFormValidity(this.required, !this.value, 'Please select a date.');
+        this._formControl.updateDataAttributes();
+    }
+
+    formResetCallback() {
+        this.value = this.defaultValue;
+        this._updateFormValue();
+        this._formControl.reset();
+    }
 
     // ── Computed variant ────────────────────────────────────────────────────
     private get _resolvedVariant(): 'desktop' | 'mobile' | 'static' {
@@ -472,7 +511,7 @@ export class FlintDatePicker extends FlintElement {
         <div class="popover-anchor">
           ${this._renderField()}
           <div class="click-away ${this._open ? 'open' : ''}" @click=${this._closePicker}></div>
-          <div class="popover ${this._open ? 'open' : ''} ${this.hoist ? 'hoisted' : ''}" role="dialog" aria-label="Date picker">
+          <div class="popover ${this._open ? 'open' : ''} ${this.hoist ? 'hoisted' : ''}" part="popover" role="dialog" aria-label="Date picker">
             <flint-date-picker-calendar
               .value=${this.value}
               .min=${this.min}

@@ -99,6 +99,7 @@ export class FlintScrollBar extends FlintElement {
         return html`
             <div
                 class="track"
+                part="track"
                 role="scrollbar"
                 aria-orientation=${this.orientation}
                 aria-valuenow=${Math.round(this._thumbPos)}
@@ -111,6 +112,7 @@ export class FlintScrollBar extends FlintElement {
             >
                 <div
                     class="thumb ${this._dragging ? 'thumb--dragging' : ''}"
+                    part="thumb"
                     style=${thumbStyle}
                 ></div>
             </div>
@@ -420,8 +422,8 @@ export class FlintScrollArea extends FlintElement {
         const thumbXStyle = `width: ${this._thumbXSize}%; left: ${this._thumbXPos}%;`;
 
         return html`
-            <div class="root">
-                <div class="viewport" dir=${this.dir} tabindex="0" @scroll=${this._onScroll}>
+            <div class="root" part="base">
+                <div class="viewport" part="viewport" dir=${this.dir} tabindex="0" @scroll=${this._onScroll}>
                     <slot @slotchange=${this._onSlotChange}></slot>
                 </div>
 
@@ -436,6 +438,7 @@ export class FlintScrollArea extends FlintElement {
                 >
                     <div
                         class="thumb thumb--y ${this._draggingY ? 'thumb--dragging' : ''}"
+                        part="thumb"
                         style=${thumbYStyle}
                         @pointerdown=${this._onThumbYDown}
                         @pointermove=${this._onThumbYMove}
@@ -455,6 +458,7 @@ export class FlintScrollArea extends FlintElement {
                 >
                     <div
                         class="thumb thumb--x ${this._draggingX ? 'thumb--dragging' : ''}"
+                        part="thumb"
                         style=${thumbXStyle}
                         @pointerdown=${this._onThumbXDown}
                         @pointermove=${this._onThumbXMove}

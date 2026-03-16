@@ -8,6 +8,7 @@ export interface FormAssociatedInterface {
     _firstUpdate: boolean;
     _initFormValue(value: FormDataEntryValue | FormData | null): void;
     _initFormValidity(required: boolean, empty: boolean, message: string): void;
+    _syncCustomStates(): void;
 
     /** The form element this component is associated with, or `null`. */
     readonly form: HTMLFormElement | null;
@@ -65,6 +66,45 @@ export function FormAssociated<T extends Constructor<LitElement>>(Base: T) {
                 this._internals.setValidity({ valueMissing: true }, message);
             } else {
                 this._internals.setValidity({});
+            }
+            this._syncCustomStates();
+        }
+
+        /**
+         * Synchronise `ElementInternals.states` custom state pseudo-classes.
+         *
+         * Enables CSS selectors such as:
+         * - `flint-input:state(invalid)` / `:state(valid)`
+         * - `:state(dirty)` / `:state(touched)`
+         * - `:state(disabled)` / `:state(required)`
+         */
+        _syncCustomStates() {
+            const states = this._internals?.states;
+            if (!states) return;
+
+            const isValid = this._internals!.validity?.valid !== false;
+
+            // Validity
+            if (isValid) {
+                states.add('valid');
+                states.delete('invalid');
+            } else {
+                states.add('invalid');
+                states.delete('valid');
+            }
+
+            // Disabled
+            if ((this as unknown as { disabled?: boolean }).disabled) {
+                states.add('disabled');
+            } else {
+                states.delete('disabled');
+            }
+
+            // Required
+            if ((this as unknown as { required?: boolean }).required) {
+                states.add('required');
+            } else {
+                states.delete('required');
             }
         }
 

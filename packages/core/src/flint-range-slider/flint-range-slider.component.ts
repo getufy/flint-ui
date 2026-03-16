@@ -142,7 +142,7 @@ export class FlintRangeSlider extends FlintElement {
         const startOnTop = this._activeThumb === 'start' || this._start === this.max;
 
         return html`
-      <div class="slider-wrapper">
+      <div class="slider-wrapper" part="base">
 
         <div class="label-row">
           ${this.label ? html`
@@ -155,9 +155,9 @@ export class FlintRangeSlider extends FlintElement {
           ` : nothing}
         </div>
 
-        <div class="track-container">
+        <div class="track-container" part="track">
           <div class="track-base"></div>
-          <div class="track-fill" style=${styleMap(fillStyle)}></div>
+          <div class="track-fill" part="fill" style=${styleMap(fillStyle)}></div>
 
           <!-- Start thumb -->
           <input

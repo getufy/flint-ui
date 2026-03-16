@@ -378,7 +378,7 @@ export class FlintSimpleTreeView extends FlintElement {
 
     render() {
         return html`
-      <div class="tree-root" role="tree">
+      <div class="tree-root" part="base" role="tree">
         <slot @slotchange=${this._onSlotChange}></slot>
       </div>
     `;

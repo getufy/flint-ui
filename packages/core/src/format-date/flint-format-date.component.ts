@@ -194,6 +194,7 @@ export class FlintFormatDate extends FlintElement {
         const localeStr = date ? this._localeString(date) : nothing;
         return html`
             <time
+                part="base"
                 datetime=${isoStr}
                 title=${localeStr}
                 aria-label=${localeStr}

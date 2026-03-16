@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { ref } from 'lit/directives/ref.js';
+import { userEvent, expect, waitFor } from 'storybook/test';
 import { FlintMenu } from './flint-menu';
 import './flint-menu';
 import '../box/flint-box';
@@ -203,6 +204,31 @@ export const Basic: Story = {
             </flint-menu>
         </div>
     `),
+};
+
+Basic.play = async ({ canvasElement }) => {
+    const root = canvasElement.querySelector('.story-root') as HTMLElement;
+    const menu = root.querySelector('flint-menu') as FlintMenu;
+    const openBtn = root.querySelector('flint-button') as HTMLElement;
+
+    // Menu starts closed
+    await waitFor(() => expect(menu.open).toBe(false));
+
+    // Open menu
+    await userEvent.click(openBtn);
+    await waitFor(() => expect(menu.open).toBe(true));
+
+    // Click a menu item to select and close
+    const items = menu.querySelectorAll('flint-menu-item');
+    expect(items.length).toBe(3);
+    await userEvent.click(items[0]);
+    await waitFor(() => expect(menu.open).toBe(false));
+
+    // Re-open and close via Escape
+    await userEvent.click(openBtn);
+    await waitFor(() => expect(menu.open).toBe(true));
+    await userEvent.keyboard('{Escape}');
+    await waitFor(() => expect(menu.open).toBe(false));
 };
 
 /* ================================================================== */

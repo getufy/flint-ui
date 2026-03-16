@@ -68,7 +68,7 @@ export class FlintBreadcrumbs extends FlintElement {
 
     private _renderSeparator() {
         return html`
-            <span class="separator" aria-hidden="true">
+            <span class="separator" part="separator" aria-hidden="true">
                 ${this._separatorNode ? this._separatorNode.cloneNode(true) : this.separator}
             </span>
         `;
@@ -116,8 +116,8 @@ export class FlintBreadcrumbs extends FlintElement {
 
     render() {
         return html`
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumbs-ol">
+            <nav aria-label="breadcrumb" part="base">
+                <ol class="breadcrumbs-ol" part="list">
                     ${this._renderCollapsed()}
                 </ol>
             </nav>

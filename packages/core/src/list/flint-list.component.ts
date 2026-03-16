@@ -21,7 +21,7 @@ export class FlintList extends FlintElement {
     @property({ type: Boolean, reflect: true }) dense = false;
 
     render() {
-        return html`<ul role="list" style="margin: 0; padding: 0; list-style: none;"><slot></slot></ul>`;
+        return html`<ul role="list" part="base" style="margin: 0; padding: 0; list-style: none;"><slot></slot></ul>`;
     }
 }
 
@@ -32,7 +32,7 @@ export class FlintListItem extends FlintElement {
     static styles = unsafeCSS(uiListItemStyles);
 
     render() {
-        return html`<li role="listitem"><slot></slot></li>`;
+        return html`<li role="listitem" part="base"><slot></slot></li>`;
     }
 }
 
@@ -66,6 +66,7 @@ export class FlintListItemButton extends FlintElement {
         return html`
       <div
         role="button"
+        part="base"
         tabindex=${this.disabled ? '-1' : '0'}
         aria-disabled=${this.disabled ? 'true' : nothing}
         aria-current=${this.selected ? 'true' : nothing}
@@ -118,8 +119,8 @@ export class FlintListItemText extends FlintElement {
     render() {
         const showSecondary = !!this.secondary || this._hasSecondarySlot;
         return html`
-      <span class="primary">${this.primary}<slot name="primary"></slot></span>
-      <span class="secondary" style=${showSecondary ? '' : 'display:none'}>
+      <span class="primary" part="primary">${this.primary}<slot name="primary"></slot></span>
+      <span class="secondary" part="secondary" style=${showSecondary ? '' : 'display:none'}>
         ${this.secondary}<slot name="secondary" @slotchange=${this._onSecondarySlotChange}></slot>
       </span>
     `;

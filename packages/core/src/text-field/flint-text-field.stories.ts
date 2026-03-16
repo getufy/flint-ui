@@ -176,3 +176,16 @@ export const FormMockup: Story = {
         </div>
     `
 };
+
+export const DefaultRTL: Story = {
+    name: 'RTL',
+    render: () => html`
+        <div dir="rtl" style="text-align: right; max-width: 400px; padding: 2rem;">
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <flint-text-field label="الاسم الكامل" placeholder="أدخل اسمك الكامل"></flint-text-field>
+                <flint-text-field label="البريد الإلكتروني" type="email" placeholder="example@domain.com" variant="filled"></flint-text-field>
+                <flint-text-field label="حقل خطأ" error errorMessage="هذا الحقل مطلوب"></flint-text-field>
+            </div>
+        </div>
+    `,
+};

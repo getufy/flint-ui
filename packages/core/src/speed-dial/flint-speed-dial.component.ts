@@ -58,6 +58,7 @@ export class FlintSpeedDialAction extends FlintElement {
         return html`
             <button
                 class="action-btn"
+                part="button"
                 role="menuitem"
                 aria-label=${this.tooltipTitle}
                 ?disabled=${this.disabled}
@@ -70,7 +71,7 @@ export class FlintSpeedDialAction extends FlintElement {
                 <slot></slot>
             </button>
             ${this.tooltipTitle ? html`
-                <div class="tooltip ${classMap({ visible: this._tooltipVisible })}">
+                <div class="tooltip ${classMap({ visible: this._tooltipVisible })}" part="tooltip">
                     ${this.tooltipTitle}
                 </div>
             ` : nothing}
@@ -357,6 +358,7 @@ export class FlintSpeedDial extends FlintElement {
             <div
                 id="sd-menu"
                 class="actions"
+                part="actions"
                 role="menu"
                 aria-label="Speed dial actions"
                 aria-hidden=${this.open ? 'false' : 'true'}
@@ -370,6 +372,7 @@ export class FlintSpeedDial extends FlintElement {
             <!-- Main FAB -->
             <button
                 class="fab"
+                part="button"
                 aria-label=${this.ariaLabel}
                 aria-expanded=${this.open ? 'true' : 'false'}
                 aria-haspopup="menu"

@@ -2,6 +2,8 @@ import { unsafeCSS, html, type PropertyValues, LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import { FormAssociated } from '../mixins/form-associated.js';
+import { FormControlController } from '../controllers/form-control.js';
 import uiAutocompleteStyles from './flint-autocomplete.css?inline';
 
 export interface AutocompleteOption {
@@ -14,7 +16,7 @@ export interface AutocompleteOption {
  *
  * @fires flint-autocomplete-change - Fired when the selected value changes.
  */
-export class FlintAutocomplete extends FlintElement {
+export class FlintAutocomplete extends FormAssociated(FlintElement) {
     static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
     static styles = unsafeCSS(uiAutocompleteStyles);
 
@@ -23,11 +25,19 @@ export class FlintAutocomplete extends FlintElement {
     /** When true, allows arbitrary values that are not in the options list. */
     @property({ type: Boolean }) freeSolo = false;
     /** Whether the autocomplete input is disabled. */
-    @property({ type: Boolean }) disabled = false;
+    @property({ type: Boolean, reflect: true }) disabled = false;
     /** The current selected value. */
     @property({ type: String }) value = '';
     /** Placeholder text shown when the input is empty. */
     @property({ type: String }) placeholder = '';
+    /** Form field name used when submitting form data. */
+    @property({ type: String }) name = '';
+    /** Marks the autocomplete as required for form validation. */
+    @property({ type: Boolean, reflect: true }) required = false;
+    /** Initial value for uncontrolled usage. */
+    @property({ type: String, attribute: 'default-value' }) defaultValue = '';
+
+    private _formControl = new FormControlController(this);
 
     @state() private _isOpen = false;
     @state() private _inputValue = '';
@@ -37,6 +47,11 @@ export class FlintAutocomplete extends FlintElement {
     connectedCallback() {
         super.connectedCallback();
         this._inputValue = this.value;
+        if (this._firstUpdate && this.defaultValue && !this.value) {
+            this.value = this.defaultValue;
+            this._inputValue = this.defaultValue;
+        }
+        this._firstUpdate = false;
         document.addEventListener('click', this._handleOutsideClick);
     }
 
@@ -60,6 +75,27 @@ export class FlintAutocomplete extends FlintElement {
                 this._inputValue = '';
             }
         }
+    }
+
+    protected override updated(changed: PropertyValues) {
+        super.updated(changed);
+        if (changed.has('value') || changed.has('name') || changed.has('required')) {
+            this._updateFormValue();
+        }
+    }
+
+    private _updateFormValue() {
+        this._initFormValue(this.value || null);
+        this._initFormValidity(this.required, !this.value, 'Please select a value.');
+        this._formControl.updateDataAttributes();
+    }
+
+    formResetCallback() {
+        this.value = this.defaultValue;
+        const selectedOption = this.options.find(opt => opt.value === this.value);
+        this._inputValue = selectedOption ? selectedOption.label : (this.freeSolo ? this.value : '');
+        this._updateFormValue();
+        this._formControl.reset();
     }
 
     private _handleOutsideClick = (e: MouseEvent) => {

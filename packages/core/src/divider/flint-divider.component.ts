@@ -40,6 +40,7 @@ export class FlintDivider extends FlintElement {
       [`variant-${this.variant}`]: true,
       [`weight-${this.weight}`]: true
     })}"
+        part="base"
         role="separator"
         aria-orientation="${this.orientation}"
       >

@@ -355,3 +355,15 @@ export const ControlledValue: Story = {
     `;
     },
 };
+
+export const DefaultRTL: Story = {
+    name: 'RTL',
+    render: () => html`
+        <div dir="rtl" style="text-align: right; padding: 48px; font-family: Inter, sans-serif;">
+            <flint-date-picker
+                label="اختر تاريخ"
+                placeholder="اختر..."
+            ></flint-date-picker>
+        </div>
+    `,
+};

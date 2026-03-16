@@ -57,9 +57,12 @@ async function register(tagName: string) {
   }
 }
 
+// Store the observer instance so it can be disconnected later
+let observer: MutationObserver | null = null;
+
 // SSR guard: autoloader is browser-only
 if (typeof document !== 'undefined') {
-  const observer = new MutationObserver((mutations) => {
+  observer = new MutationObserver((mutations) => {
     for (const { addedNodes } of mutations) {
       for (const node of addedNodes) {
         if (node.nodeType !== Node.ELEMENT_NODE) continue;
@@ -75,4 +78,26 @@ if (typeof document !== 'undefined') {
   observer.observe(document.body, { childList: true, subtree: true });
 }
 
-export { discover };
+/**
+ * Stop the autoloader's MutationObserver.
+ *
+ * Call this when tearing down an SPA or when you no longer need automatic
+ * component registration. Without calling this, the observer remains active
+ * for the lifetime of the page, which is a memory leak in SPA scenarios.
+ *
+ * @example
+ * ```ts
+ * import { stopAutoloader } from '@getufy/flint-ui/autoloader';
+ *
+ * // In your SPA cleanup / unmount handler:
+ * stopAutoloader();
+ * ```
+ */
+function stopAutoloader() {
+  if (observer) {
+    observer.disconnect();
+    observer = null;
+  }
+}
+
+export { discover, stopAutoloader };

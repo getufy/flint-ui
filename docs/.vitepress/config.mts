@@ -41,6 +41,8 @@ export default defineConfig({
             { text: 'Theming', link: '/theming' },
             { text: 'React', link: '/react' },
             { text: 'SSR', link: '/ssr' },
+            { text: 'Next.js', link: '/guides/nextjs' },
+            { text: 'Framework Integration', link: '/guides/frameworks' },
             { text: 'Accessibility', link: '/accessibility' },
             { text: 'Browser Support', link: '/browser-support' },
             { text: 'FAQ', link: '/faq' },
