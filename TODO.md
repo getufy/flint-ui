@@ -79,7 +79,7 @@
 
 ### Breaking Change Communication
 - [ ] Write migration guide for v0.3.0 → v0.4.0 (event renames, two-file split, FlintElement base class)
-- [ ] Update CHANGELOG with all breaking changes
+- [x] Update CHANGELOG with all breaking changes — v0.3.0–v0.6.0 added to CHANGELOG.md
 - [ ] Add changeset for the event rename breaking changes
 
 ### Testing Gaps (carryover)
@@ -205,7 +205,7 @@
 - [x] Each preset is a single CSS file (`theme-<name>.css`) overriding `--flint-*` color tokens
 - [x] Apply via class (`.flint-theme-<name>`) or data attribute (`data-theme="<name>"`) on any container
 - [x] Added to package.json exports and files array
-- [ ] Document in theming guide with visual preview
+- [x] Document in theming guide — THEMING.md created with full token reference (visual preview not yet added)
 > **Why:** Currently users must override 5+ CSS vars to rebrand. AgnosticUI ships 15+ skins as single-class overrides. Instant theming for prototyping and quick adoption.
 
 ### Playbook-style integration tests
