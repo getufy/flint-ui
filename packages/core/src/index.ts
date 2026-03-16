@@ -218,3 +218,5 @@ export type { FormControlHost, FormControlOptions } from './controllers/form-con
 export { serialize } from './utilities/form.js';
 export { setDefaultAnimation, setAnimation, getAnimation, animateTo, stopAnimations } from './utilities/animation-registry.js';
 export type { ElementAnimation } from './utilities/animation-registry.js';
+export { setFlintTheme, getFlintTheme } from './utilities/theme.js';
+export type { FlintColorMode, FlintPalette } from './utilities/theme.js';

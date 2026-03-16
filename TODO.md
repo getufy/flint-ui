@@ -168,12 +168,12 @@
 - [x] #5 FlintDivider vertical orientation — Already supported via `orientation="vertical"` prop; added `@default` JSDoc annotations
 - [x] #6 FlintStack spacing unit — Expanded JSDoc to explain 8px multiplier, string pass-through, and responsive object syntax; added `@default 0`
 - [x] #7 suppress-warnings re-export from React package — Added `@getufy/flint-ui-react/suppress-warnings` subpath export
-- [ ] #8 README copy-paste recipes (form, card layout, dialog)
-- [ ] #9 CSS custom properties list / THEMING.md
-- [ ] #12 Document `custom-elements.json` manifest in README
-- [ ] #15 Runtime theme switching utility (`setFlintTheme()`)
-- [ ] #16 CHANGELOG / migration guide shipped with package
-- [ ] #17 SSR / Next.js documentation (App Router `'use client'` directives)
+- [x] #8 README copy-paste recipes (form, card layout, dialog) — Added login form, card grid, and confirmation dialog recipes to React README
+- [x] #9 CSS custom properties list / THEMING.md — Created comprehensive THEMING.md with all three token layers, component-specific tokens, dark mode, and preset palettes
+- [x] #12 Document `custom-elements.json` manifest in README — Added CEM section with VS Code, JetBrains, Storybook, and docs tooling references
+- [x] #15 Runtime theme switching utility (`setFlintTheme()`) — Created `utilities/theme.ts` with `setFlintTheme(mode, palette?)` and `getFlintTheme()`; exported from barrel and subpath
+- [x] #16 CHANGELOG / migration guide shipped with package — Added v0.3.0 through v0.6.0 entries to CHANGELOG.md
+- [x] #17 SSR / Next.js documentation (App Router `'use client'` directives) — Added SSR section to React README covering Next.js App Router, Astro, Remix, and known limitations
 - [x] #21 FlintAppBar `startContent`/`endContent` named slots — Added `start-content` and `end-content` slot aliases alongside existing `navigation` and `actions` slots
 - [x] #23 FlintCard `cursor: pointer` on clickable cards — Moved `cursor: pointer` from `.interactive:hover` to `.interactive` so it shows immediately
 

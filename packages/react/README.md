@@ -186,6 +186,162 @@ document.documentElement.setAttribute('data-theme', 'dark');
 
 The dark theme CSS also includes a `@media (prefers-color-scheme: dark)` block, so it automatically applies when the user's OS is set to dark mode. To opt out of automatic detection, add `class="flint-theme-light"` to force light mode.
 
+## Recipes
+
+### Login form
+
+```tsx
+import { FlintInput } from '@getufy/flint-ui-react/input';
+import { FlintCheckbox } from '@getufy/flint-ui-react/checkbox';
+import { FlintButton } from '@getufy/flint-ui-react/button';
+import { FlintStack } from '@getufy/flint-ui-react/stack';
+
+function LoginForm() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  return (
+    <form onSubmit={(e) => { e.preventDefault(); /* handle login */ }}>
+      <FlintStack spacing={2}>
+        <FlintInput
+          label="Email"
+          type="email"
+          required
+          value={email}
+          onFlintInputChange={(e) => setEmail(e.detail.value)}
+        />
+        <FlintInput
+          label="Password"
+          type="password"
+          required
+          value={password}
+          onFlintInputChange={(e) => setPassword(e.detail.value)}
+        />
+        <FlintCheckbox label="Remember me" />
+        <FlintButton type="submit">Sign in</FlintButton>
+      </FlintStack>
+    </form>
+  );
+}
+```
+
+### Card layout
+
+```tsx
+import { FlintCard } from '@getufy/flint-ui-react/card';
+import { FlintGrid, FlintGridItem } from '@getufy/flint-ui-react/grid';
+import { FlintButton } from '@getufy/flint-ui-react/button';
+import { FlintChip } from '@getufy/flint-ui-react/chip';
+
+function CardGrid({ items }) {
+  return (
+    <FlintGrid columns={3} spacing={2}>
+      {items.map((item) => (
+        <FlintGridItem key={item.id}>
+          <FlintCard>
+            <div style={{ padding: '1rem' }}>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+              <FlintChip variant="outlined">{item.category}</FlintChip>
+              <FlintButton variant="secondary">View</FlintButton>
+            </div>
+          </FlintCard>
+        </FlintGridItem>
+      ))}
+    </FlintGrid>
+  );
+}
+```
+
+### Confirmation dialog
+
+```tsx
+import { FlintDialog } from '@getufy/flint-ui-react/dialog';
+import { FlintButton } from '@getufy/flint-ui-react/button';
+import { FlintStack } from '@getufy/flint-ui-react/stack';
+
+function ConfirmDialog({ open, onConfirm, onCancel }) {
+  return (
+    <FlintDialog open={open} onFlintDialogRequestClose={onCancel}>
+      <flint-dialog-title>Delete item?</flint-dialog-title>
+      <p>This action cannot be undone.</p>
+      <FlintStack direction="row" spacing={1} justifyContent="flex-end">
+        <FlintButton variant="secondary" onClick={onCancel}>Cancel</FlintButton>
+        <FlintButton variant="destructive" onClick={onConfirm}>Delete</FlintButton>
+      </FlintStack>
+    </FlintDialog>
+  );
+}
+```
+
+## Custom Elements Manifest
+
+The core package ships a [Custom Elements Manifest](https://custom-elements-manifest.open-wc.org/) at `dist/custom-elements.json`. This machine-readable JSON describes all components, their properties, events, slots, and CSS custom properties.
+
+```json
+// package.json
+{ "customElements": "dist/custom-elements.json" }
+```
+
+Tooling that consumes CEM:
+- **VS Code** — autocompletion via `dist/vscode.html-custom-data.json` (add to `html.customData` setting)
+- **JetBrains** — autocompletion via `dist/web-types.json` (auto-detected)
+- **Storybook** — auto-generates ArgTypes from CEM
+- **API docs** — generated from CEM via `npm run gen:docs`
+
+## SSR / Next.js
+
+Flint UI components work in server-rendered frameworks with some caveats:
+
+### Next.js App Router
+
+All Flint React wrappers must be used in Client Components. Add `'use client'` to any file that imports them:
+
+```tsx
+'use client';
+
+import { FlintButton } from '@getufy/flint-ui-react/button';
+
+export function MyButton() {
+  return <FlintButton>Click me</FlintButton>;
+}
+```
+
+### Theme CSS in layout
+
+Import theme CSS in your root layout:
+
+```tsx
+// app/layout.tsx
+import '@getufy/flint-ui/theme.css';
+import '@getufy/flint-ui/theme-dark.css'; // optional
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+### Astro / Remix
+
+Same pattern — import components in client-only islands or with framework-specific client directives:
+
+```astro
+---
+// Astro — use client:only
+---
+<FlintButton client:only="react">Click me</FlintButton>
+```
+
+### Known limitations
+
+- Web components render as empty custom elements during SSR; content appears after hydration (FOUC). Lit SSR + Declarative Shadow DOM is experimental and not yet recommended for production.
+- `window` / `document` APIs are not available during SSR. All Flint components guard DOM access in `connectedCallback()`, so importing them server-side is safe.
+- `suppress-warnings` import is a no-op on the server (uses `globalThis`).
+
 ## Suppressing the Lit dev mode warning
 
 In development, Lit prints a console warning about running in dev mode. To silence it, add this import **before any component imports** in your app entry point:
