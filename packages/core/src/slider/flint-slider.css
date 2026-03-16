@@ -86,12 +86,15 @@
       appearance: none;
       width: 100%;
       height: var(--_track-height);
+      min-height: 44px; /* WCAG 2.5.8 — 44px touch target */
       background: var(--flint-input-border-color);
+      background-clip: content-box;
+      padding: calc((44px - var(--_track-height)) / 2) 0;
       border-radius: 3px;
       outline: none;
-      margin: 10px 0;
       cursor: pointer;
       transition: all 0.2s ease;
+      box-sizing: border-box;
     }
 
     input[type='range'].vertical {

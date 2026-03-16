@@ -29,6 +29,18 @@
       padding: 0 var(--flint-chip-padding-x-sm, 8px);
       font-size: var(--flint-chip-font-size-sm, 0.75rem);
       border-radius: var(--flint-chip-border-radius-sm, 12px);
+      position: relative;
+    }
+
+    /* Invisible touch target extension for small chips (WCAG 2.5.8 — 44x44px minimum) */
+    .chip.size-sm::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 44px;
+      min-height: 44px;
     }
 
     .chip.size-lg {

@@ -93,8 +93,19 @@
         :host([shape="circular"]) .page-btn { border-radius: 50%; min-width: var(--flint-pagination-btn-size, 36px); aspect-ratio: 1; }
 
         /* ── Size ── */
-        :host([size="sm"]) .page-btn    { min-width: var(--flint-pagination-btn-size-sm, 28px); height: var(--flint-pagination-btn-size-sm, 28px); font-size: var(--flint-pagination-btn-font-size-sm, 0.8125rem); }
+        :host([size="sm"]) .page-btn    { min-width: var(--flint-pagination-btn-size-sm, 28px); height: var(--flint-pagination-btn-size-sm, 28px); font-size: var(--flint-pagination-btn-font-size-sm, 0.8125rem); position: relative; }
         :host([size="sm"][shape="circular"]) .page-btn { min-width: var(--flint-pagination-btn-size-sm, 28px); }
+
+        /* Invisible touch target extension for small pagination buttons (WCAG 2.5.8 — 44x44px minimum) */
+        :host([size="sm"]) .page-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 44px;
+            min-height: 44px;
+        }
         :host([size="lg"]) .page-btn    { min-width: var(--flint-pagination-btn-size-lg, 44px); height: var(--flint-pagination-btn-size-lg, 44px); font-size: var(--flint-pagination-btn-font-size-lg, 0.9375rem); }
 
         /* ── Disabled host ── */

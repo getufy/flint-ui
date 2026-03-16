@@ -6,6 +6,7 @@
             align-items: center;
             gap: 8px;
             padding: 6px 8px;
+            min-height: 44px; /* WCAG 2.5.8 — 44px touch target */
             border-radius: 4px;
             cursor: pointer;
             font-size: 0.875rem;
@@ -15,6 +16,7 @@
             outline: none;
             user-select: none;
             transition: background 0.1s;
+            box-sizing: border-box;
         }
 
         :host([inset]) .item {

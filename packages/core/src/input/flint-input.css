@@ -96,6 +96,8 @@
     :host([size="sm"]) input {
       padding: 6px 10px;
       font-size: 13px;
+      min-height: 44px; /* WCAG 2.5.8 — 44px touch target */
+      box-sizing: border-box;
     }
 
     :host([size="lg"]) input {

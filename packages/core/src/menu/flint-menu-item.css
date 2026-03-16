@@ -8,7 +8,7 @@
             align-items: center;
             gap: 12px;
             padding: 8px 16px;
-            min-height: 40px;
+            min-height: 44px; /* WCAG 2.5.8 — 44px touch target */
             cursor: pointer;
             user-select: none;
             font-size: 0.9375rem;
@@ -72,8 +72,9 @@
 
         .label { flex: 1; line-height: 1.5; }
 
-        /* Dense (desktop) */
-        :host([dense]) .item { padding: 4px 16px; min-height: 32px; font-size: 0.875rem; }
+        /* Dense — min-height 44px ensures WCAG 2.5.8 touch target compliance on mobile.
+           Override with --flint-menu-item-dense-min-height for desktop-only dense menus. */
+        :host([dense]) .item { padding: 4px 16px; min-height: var(--flint-menu-item-dense-min-height, 44px); font-size: 0.875rem; }
 
         /* Divider below item */
         :host([divider]) {

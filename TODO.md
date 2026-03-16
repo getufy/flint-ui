@@ -347,9 +347,10 @@
 
 - [x] **20. Global reduced-motion CSS rule** — Global `@media (prefers-reduced-motion: reduce)` in `theme.css` + per-component rules.
 
-- [ ] **21. Touch target audit** — ~40% of interactive components fail WCAG 2.5.8 [§35.4]
-  - Button (small): ~24px, Checkbox: 14-22px, Radio: ~18px, Switch (sm): 36x22px
-  - Minimum: 44x44px touch target
+- [x] **21. Touch target audit** — WCAG 2.5.8 compliance (44x44px minimum) across all interactive components.
+  - Already compliant: Button, Checkbox, Radio, Switch, Tab, BottomNavigation (all have invisible touch target extensions)
+  - Fixed with invisible `::after` touch targets: Slider (thumb), Rating (star), Toggle (sm), Chip (sm), Pagination (sm), Select (sm trigger)
+  - Fixed with `min-height: 44px`: MenuItem (default + dense), MenubarItem, CommandItem, ListItemButton, Input (sm)
 
 - [x] **22. DateRangePicker keyboard navigation** — Arrow key navigation (Left/Right ±1 day, Up/Down ±7 days).
 
