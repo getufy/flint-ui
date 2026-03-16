@@ -328,6 +328,7 @@ export class FlintSplitPanel extends FlintElement {
     /* ── Position utilities ─────────────────────────────────────── */
 
     private _getSize(): number {
+        if (typeof window === 'undefined') return 0;
         const rect = this.getBoundingClientRect();
         return this.vertical ? rect.height : rect.width;
     }
@@ -342,12 +343,13 @@ export class FlintSplitPanel extends FlintElement {
     private _clampPosition() {
         if (this._cachedSize <= 0) return;
 
+        const styles = typeof window !== 'undefined' ? getComputedStyle(this) : undefined;
         const minPx = this._parseSizeToken(
-            getComputedStyle(this).getPropertyValue('--flint-split-panel-min').trim(),
+            styles?.getPropertyValue('--flint-split-panel-min').trim() ?? '',
             0,
         );
         const maxPx = this._parseSizeToken(
-            getComputedStyle(this).getPropertyValue('--flint-split-panel-max').trim(),
+            styles?.getPropertyValue('--flint-split-panel-max').trim() ?? '',
             this._cachedSize,
         );
 
@@ -480,12 +482,13 @@ export class FlintSplitPanel extends FlintElement {
     }
 
     private _clampPx(px: number): number {
+        const styles = typeof window !== 'undefined' ? getComputedStyle(this) : undefined;
         const minPx = this._parseSizeToken(
-            getComputedStyle(this).getPropertyValue('--flint-split-panel-min').trim(),
+            styles?.getPropertyValue('--flint-split-panel-min').trim() ?? '',
             0,
         );
         const maxPx = this._parseSizeToken(
-            getComputedStyle(this).getPropertyValue('--flint-split-panel-max').trim(),
+            styles?.getPropertyValue('--flint-split-panel-max').trim() ?? '',
             this._cachedSize,
         );
         const upperBound = this._cachedSize - this._getDividerSize();

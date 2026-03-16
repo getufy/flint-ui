@@ -56,7 +56,9 @@ export type FlintMobileTimePickerChangeEvent = CustomEvent<{ value: string }>;
 export type FlintStaticTimePickerChangeEvent = CustomEvent<{ value: string }>;
 
 // Dialog / drawer / backdrop
+export type FlintDialogOpenEvent = CustomEvent<{ open: true }>;
 export type FlintDialogCloseEvent = CustomEvent<{ open: false }>;
+export type FlintDrawerOpenEvent = CustomEvent<{ open: true }>;
 export type FlintDrawerCloseEvent = CustomEvent<{ open: false }>;
 export type FlintBackdropCloseEvent = CustomEvent<{ open: false }>;
 
@@ -210,7 +212,9 @@ declare global {
         'flint-static-time-picker-change': FlintStaticTimePickerChangeEvent;
 
         // Dialog / drawer / backdrop
+        'flint-dialog-open': FlintDialogOpenEvent;
         'flint-dialog-close': FlintDialogCloseEvent;
+        'flint-drawer-open': FlintDrawerOpenEvent;
         'flint-drawer-close': FlintDrawerCloseEvent;
         'flint-backdrop-close': FlintBackdropCloseEvent;
 

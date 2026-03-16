@@ -415,6 +415,7 @@ export class FlintCarousel extends FlintElement {
 
   private _startAutoplay() {
     this._stopAutoplay();
+    if (typeof window === 'undefined') return;
     this._autoplayTimer = setInterval(() => {
       const lastIndex = Math.max(0, this._total - this.itemsPerView);
       if (this.loop || this._currentIndex < lastIndex) {
