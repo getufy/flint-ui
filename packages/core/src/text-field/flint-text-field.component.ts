@@ -2,7 +2,11 @@ import { unsafeCSS, html, PropertyValues } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import { FormAssociated } from '../mixins/form-associated.js';
+import { FormControlController } from '../controllers/form-control.js';
 import uiTextFieldStyles from './flint-text-field.css?inline';
+
+let idCounter = 0;
 
 /**
  * Text Field: a styled text input with outlined/filled variants.
@@ -10,8 +14,11 @@ import uiTextFieldStyles from './flint-text-field.css?inline';
  * @fires flint-text-field-input - Fired on each keystroke as the value changes. detail: `{ value: string }`
  * @fires flint-text-field-change - Fired when the input loses focus after the value has changed. detail: `{ value: string }`
  */
-export class FlintTextField extends FlintElement {
+export class FlintTextField extends FormAssociated(FlintElement) {
     static styles = unsafeCSS(uiTextFieldStyles);
+
+    private _formControl = new FormControlController(this);
+    private _inputId = `flint-text-field-${++idCounter}`;
 
     /** Label text displayed above the input. */
     @property({ type: String }) label = '';
@@ -24,7 +31,7 @@ export class FlintTextField extends FlintElement {
     /** Visual style variant of the text field. */
     @property({ type: String }) variant: 'outlined' | 'filled' = 'outlined';
     /** Whether the text field is disabled. */
-    @property({ type: Boolean }) disabled = false;
+    @property({ type: Boolean, reflect: true }) disabled = false;
     /** Whether the text field is in an error state. */
     @property({ type: Boolean }) error = false;
     /** Helper text displayed below the input. */
@@ -33,10 +40,17 @@ export class FlintTextField extends FlintElement {
     @property({ type: String }) errorMessage = '';
     /** Initial value for uncontrolled usage. */
     @property({ type: String, attribute: 'default-value' }) defaultValue = '';
+    /** Form field name used when submitting form data. */
+    @property({ type: String }) name = '';
+    /** Marks the input as required for form validation. */
+    @property({ type: Boolean, reflect: true }) required = false;
 
     @state() private _focused = false;
-    private _firstUpdate = true;
 
+    /** Expose the internal <input> for direct access. */
+    get inputElement(): HTMLInputElement {
+        return this.shadowRoot!.querySelector('input')!;
+    }
 
     protected override willUpdate(changed: PropertyValues) {
         super.willUpdate(changed);
@@ -48,8 +62,25 @@ export class FlintTextField extends FlintElement {
         }
     }
 
+    formResetCallback() {
+        this.value = this.defaultValue ?? '';
+        this._updateFormValue();
+        this._formControl.reset();
+    }
+
+    formDisabledCallback(disabled: boolean) {
+        this.disabled = disabled;
+    }
+
+    private _updateFormValue() {
+        this._initFormValue(this.value || null);
+        this._initFormValidity(this.required, !this.value, 'Please fill out this field.');
+        this._formControl.updateDataAttributes();
+    }
+
     private _handleInput(e: InputEvent) {
         this.value = (e.target as HTMLInputElement).value;
+        this._updateFormValue();
         this.dispatchEvent(new CustomEvent('flint-text-field-input', {
             detail: { value: this.value },
             bubbles: true,
@@ -59,6 +90,7 @@ export class FlintTextField extends FlintElement {
 
     private _handleChange(e: Event) {
         this.value = (e.target as HTMLInputElement).value;
+        this._updateFormValue();
         this.dispatchEvent(new CustomEvent('flint-text-field-change', {
             detail: { value: this.value },
             bubbles: true,
@@ -76,10 +108,13 @@ export class FlintTextField extends FlintElement {
 
     render() {
         const isError = this.error || !!this.errorMessage;
+        const descId = (isError && this.errorMessage) || this.helperText
+            ? `${this._inputId}-desc`
+            : undefined;
 
         return html`
       <div class=${classMap({ 'field-container': true, 'filled': this.variant === 'filled' })}>
-        ${this.label ? html`<label class="label">${this.label}</label>` : ''}
+        ${this.label ? html`<label class="label" for=${this._inputId}>${this.label}</label>` : ''}
 
         <div class=${classMap({
             'input-wrapper': true,
@@ -92,15 +127,20 @@ export class FlintTextField extends FlintElement {
           </div>
 
           <input
+            id=${this._inputId}
             .type=${this.type}
             .value=${this.value}
             .placeholder=${this.placeholder}
             ?disabled=${this.disabled}
+            ?required=${this.required}
+            aria-required=${this.required ? 'true' : 'false'}
+            aria-invalid=${isError ? 'true' : 'false'}
+            aria-describedby=${descId ?? ''}
+            name=${this.name}
             @input=${this._handleInput}
             @change=${this._handleChange}
             @focus=${this._handleFocus}
             @blur=${this._handleBlur}
-            aria-invalid=${isError ? 'true' : 'false'}
           />
 
           <div class="icon-trailing" part="trailing-icon">
@@ -109,8 +149,8 @@ export class FlintTextField extends FlintElement {
         </div>
 
         ${isError && this.errorMessage ?
-                html`<span class="helper-text error-text">${this.errorMessage}</span>` :
-                this.helperText ? html`<span class="helper-text">${this.helperText}</span>` : ''
+                html`<span id=${descId} class="helper-text error-text" role="alert">${this.errorMessage}</span>` :
+                this.helperText ? html`<span id=${descId} class="helper-text">${this.helperText}</span>` : ''
             }
       </div>
     `;

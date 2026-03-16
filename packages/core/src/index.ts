@@ -1,4 +1,5 @@
 export { FlintButton } from './button/flint-button.js';
+export type { ButtonVariant, ButtonSize, ButtonType, ButtonShape } from './button/flint-button.js';
 export { FlintButtonGroup } from './button/flint-button-group.js';
 export { FlintCard } from './card/flint-card.js';
 export { FlintCardHeader } from './card/flint-card-header.js';

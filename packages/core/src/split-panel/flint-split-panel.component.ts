@@ -235,26 +235,28 @@ export class FlintSplitPanel extends FlintElement {
     private _dragging = false;
     /** Set to true before writing back to @property fields internally, to skip updated() re-sync. */
     private _internalUpdate = false;
-    private _resizeObserver!: ResizeObserver;
+    private _resizeObserver?: ResizeObserver;
 
     /* ── Lifecycle ──────────────────────────────────────────────── */
 
     override connectedCallback() {
         super.connectedCallback();
-        this._resizeObserver = new ResizeObserver((entries) => {
-            for (const entry of entries) {
-                const newSize = this.vertical
-                    ? entry.contentRect.height
-                    : entry.contentRect.width;
-                this._handleContainerResize(newSize);
-            }
-        });
-        this._resizeObserver.observe(this);
+        if (typeof ResizeObserver !== 'undefined') {
+            this._resizeObserver = new ResizeObserver((entries) => {
+                for (const entry of entries) {
+                    const newSize = this.vertical
+                        ? entry.contentRect.height
+                        : entry.contentRect.width;
+                    this._handleContainerResize(newSize);
+                }
+            });
+            this._resizeObserver.observe(this);
+        }
     }
 
     override disconnectedCallback() {
         super.disconnectedCallback();
-        this._resizeObserver.disconnect();
+        this._resizeObserver?.disconnect();
         this._stopDrag();
     }
 

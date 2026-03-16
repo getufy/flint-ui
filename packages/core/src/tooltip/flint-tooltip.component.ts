@@ -105,12 +105,14 @@ export class FlintTooltip extends FlintElement {
             this._closeTimer = setTimeout(() => {
                 this._closeTimer = null;
                 void this._runHideAnimation().then(() => {
+                    if (!this.isConnected) return;
                     this._visible = false;
                     this._cleanupHoist();
                 });
             }, this.closeDelay);
         } else {
             void this._runHideAnimation().then(() => {
+                if (!this.isConnected) return;
                 this._visible = false;
                 this._cleanupHoist();
             });
@@ -121,6 +123,7 @@ export class FlintTooltip extends FlintElement {
         if (e.key === 'Escape' && this._visible) {
             this._clearTimers();
             void this._runHideAnimation().then(() => {
+                if (!this.isConnected) return;
                 this._visible = false;
                 this._cleanupHoist();
             });
@@ -170,16 +173,21 @@ export class FlintTooltip extends FlintElement {
     /** Starts listening for scroll/resize to keep the hoisted popup in position. */
     private _startHoist(): void {
         void this.updateComplete.then(() => {
+            if (!this.isConnected) return;
             this._handleReposition();
-            window.addEventListener('scroll', this._scrollHandler, true);
-            window.addEventListener('resize', this._resizeHandler);
+            if (typeof window !== 'undefined') {
+                window.addEventListener('scroll', this._scrollHandler, true);
+                window.addEventListener('resize', this._resizeHandler);
+            }
         });
     }
 
     /** Removes scroll/resize listeners and clears inline styles from the popup. */
     private _cleanupHoist(): void {
-        window.removeEventListener('scroll', this._scrollHandler, true);
-        window.removeEventListener('resize', this._resizeHandler);
+        if (typeof window !== 'undefined') {
+            window.removeEventListener('scroll', this._scrollHandler, true);
+            window.removeEventListener('resize', this._resizeHandler);
+        }
 
         const popup = this.shadowRoot?.querySelector('.tooltip-popup') as HTMLElement | null;
         if (popup) {

@@ -12,6 +12,7 @@ import uiCommandStyles from './flint-command.css?inline';
 import uiCommandDialogStyles from './flint-command-dialog.css?inline';
 import { FlintElement } from '../flint-element.js';
 import { LocalizeController } from '../utilities/localize.js';
+import { handleFocusTrapKeyDown } from '../utilities/focus-trap.js';
 
 /* ─────────────────────────────────────────────────────────────────── */
 /*  flint-command-shortcut                                                 */
@@ -480,23 +481,38 @@ export class FlintCommandDialog extends FlintElement {
     /** Controls the open/closed state of the dialog. */
     @property({ type: Boolean, reflect: true }) open = false;
 
-    /* ── Escape key handling (window-level) ───────────────────────────────── */
+    /** Element that had focus before the dialog opened; restored on close. */
+    private _lastFocused: HTMLElement | null = null;
+
+    /* ── Keyboard handling (window-level) ──────────────────────────────────── */
 
     private _boundKeyDown = (e: KeyboardEvent) => {
-        if (this.open && e.key === 'Escape') {
+        if (!this.open) return;
+
+        if (e.key === 'Escape') {
             e.stopPropagation();
             this._close();
+            return;
+        }
+
+        // Trap Tab / Shift+Tab within the command dialog
+        if (e.key === 'Tab') {
+            handleFocusTrapKeyDown(e, this);
         }
     };
 
     connectedCallback() {
         super.connectedCallback();
-        window.addEventListener('keydown', this._boundKeyDown);
+        if (typeof window !== 'undefined') {
+            window.addEventListener('keydown', this._boundKeyDown);
+        }
     }
 
     disconnectedCallback() {
         super.disconnectedCallback();
-        window.removeEventListener('keydown', this._boundKeyDown);
+        if (typeof window !== 'undefined') {
+            window.removeEventListener('keydown', this._boundKeyDown);
+        }
     }
 
     /* ── Open/close side-effects ──────────────────────────────────────────── */
@@ -505,12 +521,17 @@ export class FlintCommandDialog extends FlintElement {
         if (!changed.has('open')) return;
 
         if (this.open) {
-            requestAnimationFrame(() => {
-                (this.querySelector('flint-command-input') as FlintCommandInput | null)?.focus();
-            });
+            this._lastFocused = document.activeElement as HTMLElement | null;
+            if (typeof requestAnimationFrame === 'function') {
+                requestAnimationFrame(() => {
+                    (this.querySelector('flint-command-input') as FlintCommandInput | null)?.focus();
+                });
+            }
         } else {
             /* Reset command state when the dialog is dismissed. */
             (this.querySelector('flint-command') as FlintCommand | null)?.reset();
+            this._lastFocused?.focus();
+            this._lastFocused = null;
         }
     }
 

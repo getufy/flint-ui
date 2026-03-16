@@ -13,13 +13,12 @@ export class FlintElement extends LitElement {
     if (!currentlyRegisteredClass) {
       try {
         customElements.define(name, elementClass, options);
-      } catch {
-        // If registration fails (e.g. in test environments), log a warning
-        customElements.define(
-          name,
-          class extends elementClass {} as unknown as CustomElementConstructor,
-          options
-        );
+      } catch (err) {
+        if (err instanceof DOMException && err.name === 'NotSupportedError') {
+          console.warn(`[flint-ui] "${name}" is already registered. Skipping.`);
+        } else {
+          throw err;
+        }
       }
     }
   }

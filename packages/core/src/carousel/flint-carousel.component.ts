@@ -249,7 +249,7 @@ export class FlintCarousel extends FlintElement {
     this._syncNavigation();
 
     const content = this.querySelector('flint-carousel-content');
-    if (content) {
+    if (content && typeof MutationObserver !== 'undefined') {
       this._observer = new MutationObserver(() => {
         this._countItems();
         this._syncNavigation();

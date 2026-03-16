@@ -53,25 +53,43 @@ exports[`DOM snapshots > flint-badge — default 1`] = `
 
 exports[`DOM snapshots > flint-button — default 1`] = `
 "<!---->
-      <button type="button" part="base" class=" primary medium ">
-        <span part="label"><slot></slot></span>
-      </button>
+      <button type="button" part="base" class=" primary medium "><!--?lit$[hash]$-->
+      <span class="prefix-slot" part="prefix"><slot name="prefix"></slot></span>
+      <span class="label-inner" part="label"><slot></slot></span>
+      <span class="suffix-slot" part="suffix"><slot name="suffix"></slot></span>
+      <span class="spinner" part="spinner" aria-hidden="true">
+        <span class="spinner-icon"></span>
+      </span>
+    </button>
+      <!--?lit$[hash]$-->
     <style></style>"
 `;
 
 exports[`DOM snapshots > flint-button — disabled 1`] = `
 "<!---->
-      <button type="button" part="base" class=" primary medium " disabled="">
-        <span part="label"><slot></slot></span>
-      </button>
+      <button type="button" part="base" class=" primary medium is-disabled " disabled=""><!--?lit$[hash]$-->
+      <span class="prefix-slot" part="prefix"><slot name="prefix"></slot></span>
+      <span class="label-inner" part="label"><slot></slot></span>
+      <span class="suffix-slot" part="suffix"><slot name="suffix"></slot></span>
+      <span class="spinner" part="spinner" aria-hidden="true">
+        <span class="spinner-icon"></span>
+      </span>
+    </button>
+      <!--?lit$[hash]$-->
     <style></style>"
 `;
 
 exports[`DOM snapshots > flint-button — variant outlined 1`] = `
 "<!---->
-      <button type="button" part="base" class=" medium ">
-        <span part="label"><slot></slot></span>
-      </button>
+      <button type="button" part="base" class=" outlined medium "><!--?lit$[hash]$-->
+      <span class="prefix-slot" part="prefix"><slot name="prefix"></slot></span>
+      <span class="label-inner" part="label"><slot></slot></span>
+      <span class="suffix-slot" part="suffix"><slot name="suffix"></slot></span>
+      <span class="spinner" part="spinner" aria-hidden="true">
+        <span class="spinner-icon"></span>
+      </span>
+    </button>
+      <!--?lit$[hash]$-->
     <style></style>"
 `;
 

@@ -40,6 +40,7 @@ export function setFlintTheme(mode: FlintColorMode, palette?: FlintPalette): voi
  */
 export function setFlintTheme(palette: FlintPalette): void;
 export function setFlintTheme(modeOrPalette: FlintColorMode | FlintPalette, palette?: FlintPalette): void {
+    if (typeof document === 'undefined') return;
     const el = document.documentElement;
 
     // Detect if first arg is a palette (not a mode)
@@ -82,6 +83,7 @@ export function setFlintTheme(modeOrPalette: FlintColorMode | FlintPalette, pale
  * Returns the currently active color mode based on classes/attributes on `<html>`.
  */
 export function getFlintTheme(): { mode: FlintColorMode; palette: FlintPalette } {
+    if (typeof document === 'undefined') return { mode: 'auto', palette: 'default' };
     const el = document.documentElement;
 
     let mode: FlintColorMode = 'auto';

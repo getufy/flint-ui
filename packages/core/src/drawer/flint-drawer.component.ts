@@ -3,6 +3,7 @@ import { property, state } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
 import { FlintBackdrop } from '../backdrop/flint-backdrop.js';
 import { getAnimation, animateTo, stopAnimations, resolveKeyframes } from '../utilities/animation-registry.js';
+import { handleFocusTrapKeyDown } from '../utilities/focus-trap.js';
 import '../utilities/animation-presets.js';
 import uiDrawerStyles from './flint-drawer.css?inline';
 
@@ -51,9 +52,17 @@ export class FlintDrawer extends FlintElement {
     private _boundKeyDown = (e: KeyboardEvent) => {
         // FIX: respect other handlers that already consumed the Escape key
         if (e.defaultPrevented) return;
-        if (this.open && e.key === 'Escape' && this.variant === 'temporary') {
+        if (!this.open || this.variant !== 'temporary') return;
+
+        if (e.key === 'Escape') {
             e.preventDefault();
             this._close();
+            return;
+        }
+
+        // Trap Tab / Shift+Tab within the drawer when used as a modal overlay
+        if (e.key === 'Tab') {
+            handleFocusTrapKeyDown(e, this);
         }
     };
 
@@ -72,10 +81,14 @@ export class FlintDrawer extends FlintElement {
 
     connectedCallback() {
         super.connectedCallback();
-        window.addEventListener('keydown', this._boundKeyDown);
+        if (typeof window !== 'undefined') {
+            window.addEventListener('keydown', this._boundKeyDown);
+        }
     }
     disconnectedCallback() {
-        window.removeEventListener('keydown', this._boundKeyDown);
+        if (typeof window !== 'undefined') {
+            window.removeEventListener('keydown', this._boundKeyDown);
+        }
         super.disconnectedCallback();
     }
 
@@ -85,15 +98,17 @@ export class FlintDrawer extends FlintElement {
         if (this.open) {
             // Focus management only for temporary (overlay dialog behaviour)
             if (this.variant === 'temporary') {
-                this._lastFocused = document.activeElement as HTMLElement | null;
+                this._lastFocused = typeof document !== 'undefined' ? document.activeElement as HTMLElement | null : null;
             }
             void this._runOpenAnimation().then(() => {
+                if (!this.isConnected) return;
                 if (this.variant === 'temporary') {
                     this.shadowRoot?.querySelector<HTMLElement>('.paper')?.focus();
                 }
             });
         } else {
             void this._runCloseAnimation().then(() => {
+                if (!this.isConnected) return;
                 this._visuallyOpen = false;
                 if (this.variant === 'temporary') {
                     this._lastFocused?.focus();

@@ -206,13 +206,17 @@ export class FlintMenu extends FlintElement {
 
     connectedCallback() {
         super.connectedCallback();
-        window.addEventListener('keydown', this._boundKeyDown);
+        if (typeof window !== 'undefined') {
+            window.addEventListener('keydown', this._boundKeyDown);
+        }
         this.addEventListener('keydown', this._boundNavKeyDown);
     }
 
     disconnectedCallback() {
         super.disconnectedCallback();
-        window.removeEventListener('keydown', this._boundKeyDown);
+        if (typeof window !== 'undefined') {
+            window.removeEventListener('keydown', this._boundKeyDown);
+        }
         this.removeEventListener('keydown', this._boundNavKeyDown);
     }
 

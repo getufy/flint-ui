@@ -9,6 +9,7 @@ import uiDialogContentStyles from './flint-dialog-content.css?inline';
 import uiDialogContentTextStyles from './flint-dialog-content-text.css?inline';
 import uiDialogActionsStyles from './flint-dialog-actions.css?inline';
 import { getAnimation, animateTo, stopAnimations, resolveKeyframes } from '../utilities/animation-registry.js';
+import { handleFocusTrapKeyDown } from '../utilities/focus-trap.js';
 import '../utilities/animation-presets.js';
 
 // Tracks open dialogs in activation order so only the topmost handles Escape.
@@ -79,7 +80,9 @@ export class FlintDialog extends FlintElement {
 
   connectedCallback() {
     super.connectedCallback();
-    window.addEventListener('keydown', this._handleKeyDown);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('keydown', this._handleKeyDown);
+    }
   }
 
   override updated(changed: PropertyValues<this>) {
@@ -87,17 +90,27 @@ export class FlintDialog extends FlintElement {
     if (changed.has('open')) {
       if (this.open) {
         if (!_openDialogs.includes(this)) _openDialogs.push(this);
-        this._lastFocused = document.activeElement as HTMLElement | null;
-        void this._runOpenAnimation();
+        this._lastFocused = typeof document !== 'undefined' ? document.activeElement as HTMLElement | null : null;
+        void this._runOpenAnimation().catch(() => {
+          // If the open animation fails, remove from the stack so Escape
+          // doesn't target this dialog and other dialogs still work correctly.
+          const idx = _openDialogs.indexOf(this);
+          if (idx !== -1) _openDialogs.splice(idx, 1);
+        });
       } else {
         const idx = _openDialogs.indexOf(this);
         if (idx !== -1) _openDialogs.splice(idx, 1);
         // Run close animation FIRST, then remove .open class and restore focus.
-        void this._runCloseAnimation().then(() => {
-          this._visuallyOpen = false;
-          this._lastFocused?.focus();
-          this._lastFocused = null;
-        });
+        void this._runCloseAnimation()
+          .catch(() => {
+            // Animation failed — fall through to cleanup below.
+          })
+          .then(() => {
+            if (!this.isConnected) return;
+            this._visuallyOpen = false;
+            this._lastFocused?.focus();
+            this._lastFocused = null;
+          });
       }
     }
   }
@@ -128,6 +141,7 @@ export class FlintDialog extends FlintElement {
     }
 
     await Promise.all(promises);
+    if (!this.isConnected) return;
     panel?.focus();
   }
 
@@ -161,15 +175,26 @@ export class FlintDialog extends FlintElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    window.removeEventListener('keydown', this._handleKeyDown);
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('keydown', this._handleKeyDown);
+    }
     const idx = _openDialogs.indexOf(this);
     if (idx !== -1) _openDialogs.splice(idx, 1);
     this._lastFocused = null;
   }
 
   private readonly _handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === 'Escape' && this.open && _openDialogs[_openDialogs.length - 1] === this) {
+    // Only the topmost dialog should handle keyboard events
+    if (!this.open || _openDialogs[_openDialogs.length - 1] !== this) return;
+
+    if (e.key === 'Escape') {
       this.requestClose();
+      return;
+    }
+
+    // Trap Tab / Shift+Tab within the dialog panel
+    if (e.key === 'Tab') {
+      handleFocusTrapKeyDown(e, this);
     }
   };
 

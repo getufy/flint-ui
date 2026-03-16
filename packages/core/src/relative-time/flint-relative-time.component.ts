@@ -96,6 +96,7 @@ export class FlintRelativeTime extends FlintElement {
         if (!this.sync) return;
         const ms = this._msUntilNextChange();
         this._timer = setTimeout(() => {
+            if (!this.isConnected) return;
             this.requestUpdate();
             this._scheduleSync();
         }, ms);

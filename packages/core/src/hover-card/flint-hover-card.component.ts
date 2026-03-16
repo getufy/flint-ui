@@ -181,15 +181,19 @@ export class FlintHoverCardContent extends FlintElement {
     private _startHoist(): void {
         void this.updateComplete.then(() => {
             this._handleReposition();
-            window.addEventListener('scroll', this._scrollHandler, true);
-            window.addEventListener('resize', this._resizeHandler);
+            if (typeof window !== 'undefined') {
+                window.addEventListener('scroll', this._scrollHandler, true);
+                window.addEventListener('resize', this._resizeHandler);
+            }
         });
     }
 
     /** Removes scroll/resize listeners and clears inline styles. */
     private _cleanupHoist(): void {
-        window.removeEventListener('scroll', this._scrollHandler, true);
-        window.removeEventListener('resize', this._resizeHandler);
+        if (typeof window !== 'undefined') {
+            window.removeEventListener('scroll', this._scrollHandler, true);
+            window.removeEventListener('resize', this._resizeHandler);
+        }
     }
 
     /** Applies absolute positioning inline styles based on `side` and `align`. */

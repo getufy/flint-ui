@@ -1,75 +1,214 @@
 :host {
-      display: inline-block;
-    }
-    :host([full-width]) {
-      display: block;
-    }
-    button {
-      font-family: var(--flint-font-family);
-      font-weight: 600;
-      border: none;
-      border-radius: var(--flint-button-border-radius, var(--flint-border-radius-md));
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      width: 100%;
-      transition: all 0.2s ease;
-      box-shadow: var(--flint-shadow-sm);
-    }
-    .primary {
-      background-color: var(--flint-primary-color);
-      color: var(--flint-text-color-on-primary);
-    }
-    .primary:hover {
-      background-color: var(--flint-primary-color-hover);
-    }
-    .primary:active {
-      background-color: var(--flint-primary-color-active);
-    }
-    .secondary {
-      background-color: var(--flint-surface-1);
-      color: var(--flint-text-color);
-      border: 1px solid var(--flint-input-border-color);
-    }
-    .secondary:hover {
-      background-color: var(--flint-hover-color);
-    }
-    .secondary:active {
-      background-color: var(--flint-active-color);
-    }
-    .destructive {
-      background-color: var(--flint-destructive-color);
-      color: var(--flint-text-color-on-primary);
-    }
-    .destructive:hover {
-      background-color: var(--flint-destructive-color-hover);
-    }
-    .destructive:active {
-      background-color: var(--flint-destructive-color-active);
-    }
-    .small {
-      padding: 6px 12px;
-      font-size: 14px;
-    }
-    .medium {
-      padding: 10px 16px;
-      font-size: 14px;
-    }
-    .large {
-      padding: 14px 20px;
-      font-size: 16px;
-    }
-    button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
+  display: inline-block;
+}
+:host([full-width]) {
+  display: block;
+}
+
+/* ── Base button / anchor ─────────────────────────────────────────── */
+
+button,
+a {
+  font-family: var(--flint-font-family);
+  font-weight: 600;
+  border: none;
+  border-radius: var(--flint-button-border-radius, var(--flint-border-radius-md));
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  transition: all 0.2s ease;
+  box-shadow: var(--flint-shadow-sm);
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+}
+
+/* ── Variant: primary ─────────────────────────────────────────────── */
+
+.primary {
+  background-color: var(--flint-primary-color);
+  color: var(--flint-text-color-on-primary);
+}
+.primary:hover:not(:disabled):not(.is-disabled) {
+  background-color: var(--flint-primary-color-hover);
+}
+.primary:active:not(:disabled):not(.is-disabled) {
+  background-color: var(--flint-primary-color-active);
+}
+
+/* ── Variant: secondary ───────────────────────────────────────────── */
+
+.secondary {
+  background-color: var(--flint-surface-1);
+  color: var(--flint-text-color);
+  border: 1px solid var(--flint-input-border-color);
+}
+.secondary:hover:not(:disabled):not(.is-disabled) {
+  background-color: var(--flint-hover-color);
+}
+.secondary:active:not(:disabled):not(.is-disabled) {
+  background-color: var(--flint-active-color);
+}
+
+/* ── Variant: destructive ─────────────────────────────────────────── */
+
+.destructive {
+  background-color: var(--flint-destructive-color);
+  color: var(--flint-text-color-on-primary);
+}
+.destructive:hover:not(:disabled):not(.is-disabled) {
+  background-color: var(--flint-destructive-color-hover);
+}
+.destructive:active:not(:disabled):not(.is-disabled) {
+  background-color: var(--flint-destructive-color-active);
+}
+
+/* ── Variant: success ─────────────────────────────────────────────── */
+
+.success {
+  background-color: var(--flint-success-color, #16a34a);
+  color: var(--flint-text-color-on-primary, #fff);
+}
+.success:hover:not(:disabled):not(.is-disabled) {
+  background-color: var(--flint-success-color-hover, #15803d);
+}
+.success:active:not(:disabled):not(.is-disabled) {
+  background-color: var(--flint-success-color-active, #166534);
+}
+
+/* ── Variant: warning ─────────────────────────────────────────────── */
+
+.warning {
+  background-color: var(--flint-warning-color, #f59e0b);
+  color: var(--flint-text-color-on-primary, #fff);
+}
+.warning:hover:not(:disabled):not(.is-disabled) {
+  background-color: var(--flint-warning-color-hover, #d97706);
+}
+.warning:active:not(:disabled):not(.is-disabled) {
+  background-color: var(--flint-warning-color-active, #b45309);
+}
+
+/* ── Variant: neutral ─────────────────────────────────────────────── */
+
+.neutral {
+  background-color: var(--flint-neutral-color, #6b7280);
+  color: var(--flint-text-color-on-primary, #fff);
+}
+.neutral:hover:not(:disabled):not(.is-disabled) {
+  background-color: var(--flint-neutral-color-hover, #4b5563);
+}
+.neutral:active:not(:disabled):not(.is-disabled) {
+  background-color: var(--flint-neutral-color-active, #374151);
+}
+
+/* ── Sizes ────────────────────────────────────────────────────────── */
+
+.small {
+  padding: 6px 12px;
+  font-size: 14px;
+}
+.medium {
+  padding: 10px 16px;
+  font-size: 14px;
+}
+.large {
+  padding: 14px 20px;
+  font-size: 16px;
+}
+
+/* ── Shape: pill ──────────────────────────────────────────────────── */
+
+.pill {
+  border-radius: 9999px;
+}
+
+/* ── Shape: circle ────────────────────────────────────────────────── */
+
+.circle {
+  border-radius: 50%;
+  padding: 0;
+  aspect-ratio: 1;
+}
+.circle.small {
+  width: 32px;
+  height: 32px;
+}
+.circle.medium {
+  width: 40px;
+  height: 40px;
+}
+.circle.large {
+  width: 48px;
+  height: 48px;
+}
+
+/* ── Disabled ─────────────────────────────────────────────────────── */
+
+button:disabled,
+a.is-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Loading state ────────────────────────────────────────────────── */
+
+.is-loading {
+  position: relative;
+  cursor: wait;
+  pointer-events: none;
+}
+.is-loading .label-inner,
+.is-loading .prefix-slot,
+.is-loading .suffix-slot {
+  visibility: hidden;
+}
+
+.spinner {
+  display: none;
+}
+.is-loading .spinner {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner-icon {
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: flint-spin 0.6s linear infinite;
+}
+
+@keyframes flint-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Hidden form proxy ────────────────────────────────────────────── */
+
+.form-proxy {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
 
 @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

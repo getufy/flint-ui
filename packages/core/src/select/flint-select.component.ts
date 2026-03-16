@@ -87,12 +87,16 @@ export class FlintSelect extends FormAssociated(FlintElement) {
 
   connectedCallback() {
     super.connectedCallback();
-    document.addEventListener('click', this._handleOutsideClick);
+    if (typeof document !== 'undefined') {
+      document.addEventListener('click', this._handleOutsideClick);
+    }
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    document.removeEventListener('click', this._handleOutsideClick);
+    if (typeof document !== 'undefined') {
+      document.removeEventListener('click', this._handleOutsideClick);
+    }
     this._cleanupHoist();
   }
 
@@ -151,14 +155,18 @@ export class FlintSelect extends FormAssociated(FlintElement) {
   };
 
   private _startHoist() {
-    window.addEventListener('scroll', this._handleReposition, true);
-    window.addEventListener('resize', this._handleReposition);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', this._handleReposition, true);
+      window.addEventListener('resize', this._handleReposition);
+    }
     this._handleReposition();
   }
 
   private _cleanupHoist() {
-    window.removeEventListener('scroll', this._handleReposition, true);
-    window.removeEventListener('resize', this._handleReposition);
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('scroll', this._handleReposition, true);
+      window.removeEventListener('resize', this._handleReposition);
+    }
     const dropdown = this.shadowRoot?.querySelector<HTMLElement>('.dropdown');
     if (dropdown) {
       dropdown.style.position = '';

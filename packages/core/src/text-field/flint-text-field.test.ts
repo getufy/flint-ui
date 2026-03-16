@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-text-field.js';
 import type { FlintTextField } from './flint-text-field.js';
+import type { FormAssociatedInterface } from '../mixins/form-associated.js';
 
 describe('flint-text-field', () => {
     it('is defined', () => {
@@ -221,5 +222,187 @@ describe('flint-text-field', () => {
         const wrapper = el.shadowRoot!.querySelector('.input-wrapper')!;
         expect(wrapper.classList.contains('error')).toBe(true);
         expect(el.shadowRoot!.querySelector('.error-text')?.textContent).toBe('Bad input');
+    });
+
+    // ── Accessibility: aria-describedby ─────────────────────────────────────
+
+    it('sets aria-describedby on input when errorMessage is present', async () => {
+        const el = await fixture<FlintTextField>(html`
+            <flint-text-field errorMessage="Required field"></flint-text-field>
+        `);
+        await el.updateComplete;
+        const input = el.shadowRoot!.querySelector('input')!;
+        const descId = input.getAttribute('aria-describedby');
+        expect(descId).toBeTruthy();
+        const descEl = el.shadowRoot!.getElementById(descId!);
+        expect(descEl).not.toBeNull();
+        expect(descEl!.textContent).toBe('Required field');
+    });
+
+    it('sets aria-describedby on input when helperText is present', async () => {
+        const el = await fixture<FlintTextField>(html`
+            <flint-text-field helperText="Some help"></flint-text-field>
+        `);
+        await el.updateComplete;
+        const input = el.shadowRoot!.querySelector('input')!;
+        const descId = input.getAttribute('aria-describedby');
+        expect(descId).toBeTruthy();
+        const descEl = el.shadowRoot!.getElementById(descId!);
+        expect(descEl).not.toBeNull();
+        expect(descEl!.textContent).toBe('Some help');
+    });
+
+    it('error-text span has role="alert"', async () => {
+        const el = await fixture<FlintTextField>(html`
+            <flint-text-field errorMessage="Err"></flint-text-field>
+        `);
+        await el.updateComplete;
+        const errorSpan = el.shadowRoot!.querySelector('.error-text')!;
+        expect(errorSpan.getAttribute('role')).toBe('alert');
+    });
+
+    it('label has for attribute linked to input id', async () => {
+        const el = await fixture<FlintTextField>(html`
+            <flint-text-field label="Email"></flint-text-field>
+        `);
+        await el.updateComplete;
+        const label = el.shadowRoot!.querySelector('label')!;
+        const input = el.shadowRoot!.querySelector('input')!;
+        expect(label.getAttribute('for')).toBe(input.id);
+    });
+
+    it('sets aria-required on input when required', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field required></flint-text-field>`);
+        await el.updateComplete;
+        const input = el.shadowRoot!.querySelector('input')!;
+        expect(input.getAttribute('aria-required')).toBe('true');
+        expect(input.required).toBe(true);
+    });
+
+    it('sets aria-required=false when not required', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field></flint-text-field>`);
+        await el.updateComplete;
+        const input = el.shadowRoot!.querySelector('input')!;
+        expect(input.getAttribute('aria-required')).toBe('false');
+    });
+});
+
+// ── Form Association ────────────────────────────────────────────────────────
+
+describe('flint-text-field — form integration', () => {
+    it('has static formAssociated = true', () => {
+        const Ctor = customElements.get('flint-text-field') as unknown as { formAssociated: boolean };
+        expect(Ctor.formAssociated).toBe(true);
+    });
+
+    it('_updateFormValue sets form value via _internals', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field name="username"></flint-text-field>`);
+        const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
+        (el as unknown as { _internals: typeof mockInternals })._internals = mockInternals;
+        el.value = 'alice';
+        el['_updateFormValue']();
+        expect(mockInternals.setFormValue).toHaveBeenCalledWith('alice');
+    });
+
+    it('_updateFormValue sets null when value is empty', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field name="username"></flint-text-field>`);
+        const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
+        (el as unknown as { _internals: typeof mockInternals })._internals = mockInternals;
+        el.value = '';
+        el['_updateFormValue']();
+        expect(mockInternals.setFormValue).toHaveBeenCalledWith(null);
+    });
+
+    it('_updateFormValue sets valueMissing when required and empty', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field required></flint-text-field>`);
+        const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
+        (el as unknown as { _internals: typeof mockInternals })._internals = mockInternals;
+        el.value = '';
+        el['_updateFormValue']();
+        expect(mockInternals.setValidity).toHaveBeenCalledWith(
+            { valueMissing: true },
+            'Please fill out this field.'
+        );
+    });
+
+    it('_updateFormValue clears validity when required and has value', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field required></flint-text-field>`);
+        const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
+        (el as unknown as { _internals: typeof mockInternals })._internals = mockInternals;
+        el.value = 'something';
+        el['_updateFormValue']();
+        expect(mockInternals.setValidity).toHaveBeenCalledWith({});
+    });
+
+    it('_updateFormValue is no-op when _internals is null', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field></flint-text-field>`);
+        (el as unknown as FormAssociatedInterface)._internals = null;
+        expect(() => el['_updateFormValue']()).not.toThrow();
+    });
+
+    it('input event syncs form value', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field name="user"></flint-text-field>`);
+        const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
+        (el as unknown as { _internals: typeof mockInternals })._internals = mockInternals;
+        const input = el.shadowRoot!.querySelector('input')!;
+        input.value = 'bob';
+        input.dispatchEvent(new InputEvent('input', { bubbles: true }));
+        expect(mockInternals.setFormValue).toHaveBeenCalledWith('bob');
+    });
+
+    it('change event syncs form value', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field name="user"></flint-text-field>`);
+        const mockInternals = { setFormValue: vi.fn(), setValidity: vi.fn() };
+        (el as unknown as { _internals: typeof mockInternals })._internals = mockInternals;
+        const input = el.shadowRoot!.querySelector('input')!;
+        input.value = 'carol';
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+        expect(mockInternals.setFormValue).toHaveBeenCalledWith('carol');
+    });
+
+    it('formResetCallback resets to defaultValue', async () => {
+        const el = await fixture<FlintTextField>(html`
+            <flint-text-field default-value="default" value="changed"></flint-text-field>
+        `);
+        await el.updateComplete;
+        expect(el.value).toBe('changed');
+        el.formResetCallback();
+        await el.updateComplete;
+        expect(el.value).toBe('default');
+    });
+
+    it('formResetCallback resets to empty when no defaultValue', async () => {
+        const el = await fixture<FlintTextField>(html`
+            <flint-text-field value="something"></flint-text-field>
+        `);
+        await el.updateComplete;
+        el.formResetCallback();
+        await el.updateComplete;
+        expect(el.value).toBe('');
+    });
+
+    it('formDisabledCallback sets disabled state', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field></flint-text-field>`);
+        expect(el.disabled).toBe(false);
+        el.formDisabledCallback(true);
+        await el.updateComplete;
+        expect(el.disabled).toBe(true);
+        el.formDisabledCallback(false);
+        await el.updateComplete;
+        expect(el.disabled).toBe(false);
+    });
+
+    it('name property is reflected to internal input', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field name="email"></flint-text-field>`);
+        await el.updateComplete;
+        const input = el.shadowRoot!.querySelector('input')!;
+        expect(input.getAttribute('name')).toBe('email');
+    });
+
+    it('exposes inputElement getter', async () => {
+        const el = await fixture<FlintTextField>(html`<flint-text-field></flint-text-field>`);
+        await el.updateComplete;
+        expect(el.inputElement).toBeInstanceOf(HTMLInputElement);
+        expect(el.inputElement).toBe(el.shadowRoot!.querySelector('input'));
     });
 });
