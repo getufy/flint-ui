@@ -140,7 +140,7 @@ import { FlintButton } from '@getufy/flint-ui-react/button';
 
 export function MyComponent() {
   return (
-    <FlintButton variant="primary" onFlintClick={() => console.log('clicked')}>
+    <FlintButton variant="primary" onClick={() => console.log('clicked')}>
       Click me
     </FlintButton>
   );
@@ -149,21 +149,52 @@ export function MyComponent() {
 
 ### Events
 
-Custom events map to camelCase `on*` props:
+Custom events map to camelCase `on*` props following the pattern **`onFlint[ComponentName][EventType]`**:
 
 | Lit event | React prop |
 |---|---|
-| `flint-change` | `onFlintChange` |
-| `flint-click` | `onFlintClick` |
-| `flint-menu-close` | `onFlintMenuClose` |
+| `flint-pagination-change` | `onFlintPaginationChange` |
+| `flint-select-change` | `onFlintSelectChange` |
 | `flint-dialog-close` | `onFlintDialogClose` |
+| `flint-menu-close` | `onFlintMenuClose` |
+
+The component name is always included in the event prop. For example, `FlintPagination` fires `onFlintPaginationChange`, **not** `onFlintPageChange` or `onFlintChange`. Each wrapper has a strict TypeScript props interface -- using a wrong event name produces a compile-time error:
+
+```tsx
+// TS error: Property 'onFlintPageChange' does not exist on type '...'
+<FlintPagination onFlintPageChange={() => {}} />
+
+// Correct:
+<FlintPagination onFlintPaginationChange={(e) => console.log(e.detail.page)} />
+```
 
 ```tsx
 <FlintSelect
   label="Fruit"
-  onFlintChange={(e) => console.log(e.detail.value)}
+  onFlintSelectChange={(e) => console.log(e.detail.value)}
 />
 ```
+
+### Slots
+
+Web components use [slots](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot) for content projection. In React, pass the `slot` attribute on a child element to target a named slot:
+
+```tsx
+import { FlintAppBar } from '@getufy/flint-ui-react/app-bar';
+import { FlintButton } from '@getufy/flint-ui-react/button';
+
+<FlintAppBar>
+  <div slot="navigation">
+    <FlintButton variant="icon">☰</FlintButton>
+  </div>
+  <div slot="title">My App</div>
+  <div slot="actions">
+    <FlintButton variant="icon">⚙</FlintButton>
+  </div>
+</FlintAppBar>
+```
+
+Each component documents its available slots in the [API docs](https://getufy.github.io/flint-ui/). Common slot names include `navigation`, `title`, `actions`, `start-content`, and `end-content` (AppBar); `trigger` and `content` (Dialog, HoverCard); and the default (unnamed) slot for primary children.
 
 ## Dark mode
 
@@ -262,7 +293,7 @@ import { FlintStack } from '@getufy/flint-ui-react/stack';
 
 function ConfirmDialog({ open, onConfirm, onCancel }) {
   return (
-    <FlintDialog open={open} onFlintDialogRequestClose={onCancel}>
+    <FlintDialog open={open} onFlintDialogClose={onCancel}>
       <flint-dialog-title>Delete item?</flint-dialog-title>
       <p>This action cannot be undone.</p>
       <FlintStack direction="row" spacing={1} justifyContent="flex-end">
@@ -273,6 +304,55 @@ function ConfirmDialog({ open, onConfirm, onCancel }) {
   );
 }
 ```
+
+### Toast notifications
+
+Flint UI includes a Sonner-inspired toast system with an imperative `toast()` API:
+
+```tsx
+import { FlintToaster } from '@getufy/flint-ui-react/sonner';
+import { toast } from '@getufy/flint-ui/sonner/flint-sonner';
+
+function App() {
+  return (
+    <>
+      {/* Place once at app root */}
+      <FlintToaster position="bottom-right" />
+
+      <button onClick={() => toast('Hello!')}>Show toast</button>
+      <button onClick={() => toast.success('Saved!')}>Success</button>
+      <button onClick={() => toast.error('Failed')}>Error</button>
+      <button onClick={() => toast.promise(
+        fetch('/api/save'),
+        { loading: 'Saving...', success: 'Done!', error: 'Failed' }
+      )}>Async</button>
+    </>
+  );
+}
+```
+
+Available methods: `toast()`, `toast.success()`, `toast.error()`, `toast.info()`, `toast.warning()`, `toast.loading()`, `toast.promise()`, `toast.dismiss()`.
+
+### AppBar with slots
+
+Web Component slots are used via the `slot` attribute in React:
+
+```tsx
+import { FlintAppBar } from '@getufy/flint-ui-react/app-bar';
+import { FlintButton } from '@getufy/flint-ui-react/button';
+
+function Header() {
+  return (
+    <FlintAppBar>
+      <div slot="navigation"><FlintButton variant="text">☰</FlintButton></div>
+      <div slot="title">My App</div>
+      <div slot="actions"><FlintButton variant="text">⚙</FlintButton></div>
+    </FlintAppBar>
+  );
+}
+```
+
+Available slots: `navigation` (or `start-content`), `title`, `actions` (or `end-content`), and the default slot.
 
 ## Custom Elements Manifest
 

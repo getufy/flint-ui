@@ -302,7 +302,7 @@ export class FlintTabList extends FlintElement {
 export class FlintTabs extends FlintElement {
     static styles = unsafeCSS(uiTabsStyles);
 
-    /** The currently active tab value. */
+    /** Current active tab value (controlled). When set, the component reflects this value and does not manage its own state. */
     @property({ reflect: true }) value = '';
     /**
      * Layout direction of the tabs.
@@ -331,7 +331,7 @@ export class FlintTabs extends FlintElement {
      * @default 'primary'
      */
     @property({ attribute: 'indicator-color' }) indicatorColor = 'primary';
-    /** Uncontrolled mode: initial value if `value` not set */
+    /** Initial value (uncontrolled). Only used on first render; ignored after mount. */
     @property({ attribute: 'default-value' }) defaultValue = '';
 
     private _firstUpdate = true;

@@ -46,8 +46,8 @@ export class FlintSelect extends FormAssociated(FlintElement) {
   @property({ type: String }) label = '';
   /** Array of selectable options. */
   @property({ type: Array }) options: SelectOption[] = [];
-  /** Currently selected value(s). */
-  @property({ type: Array }) value: string[] = [];
+  /** Current value (controlled). When set, the component reflects this value and does not manage its own state. Accepts a single string or an array of strings. */
+  @property({ type: Array }) value: string | string[] = [];
   /** Allow multiple selections. */
   @property({ type: Boolean }) multiple = false;
   /** Placeholder text when no value is selected. */
@@ -69,7 +69,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
    * @default 'md'
    */
   @property({ type: String, reflect: true }) size: SelectSize = 'md';
-  /** Sets the initial value in uncontrolled mode (single-select only). */
+  /** Initial value (uncontrolled). Only used on first render; ignored after mount. Single-select only. */
   @property({ type: String, attribute: 'default-value' }) defaultValue = '';
   /**
    * When true, the dropdown uses `position: fixed` so it can escape
@@ -164,6 +164,10 @@ export class FlintSelect extends FormAssociated(FlintElement) {
   }
 
   willUpdate(changed: PropertyValues) {
+    // Normalize value: accept string | string[], always store as string[]
+    if (typeof this.value === 'string') {
+      this.value = this.value ? [this.value] : [];
+    }
     if (this._firstUpdate) {
       this._firstUpdate = false;
       if (this.defaultValue && this.value.length === 0) {
@@ -178,7 +182,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
   private _updateFormValue() {
     if (this.multiple) {
       const fd = new FormData();
-      this.value.forEach(v => fd.append(this.name || 'select', v));
+      (this.value as string[]).forEach(v => fd.append(this.name || 'select', v));
       this._initFormValue(fd);
     } else {
       this._initFormValue(this.value[0] ?? '');
@@ -323,7 +327,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
 
   private _removeValue(val: string, e: Event) {
     e.stopPropagation(); // prevent trigger click from firing
-    this.value = this.value.filter(v => v !== val);
+    this.value = (this.value as string[]).filter(v => v !== val);
     this._dispatchChange();
     // Return focus to trigger so keyboard users aren't lost
     this.shadowRoot?.querySelector<HTMLElement>('.select-trigger')?.focus();

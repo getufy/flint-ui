@@ -42,10 +42,7 @@ export class FlintChip extends FlintElement {
     /** Disables the chip and prevents interaction. */
     @property({ type: Boolean, reflect: true }) disabled = false;
 
-    private _handleClick(e: Event) {
-        // Always stop the native shadow-DOM click from also bubbling to the host,
-        // preventing the handler from firing twice (once natively, once re-dispatched).
-        e.stopPropagation();
+    private _handleClick() {
         if (this.disabled || !this.clickable) return;
         this.dispatchEvent(new CustomEvent('flint-chip-click', {
             bubbles: true,

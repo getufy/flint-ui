@@ -25,7 +25,7 @@ export class FlintInput extends FormAssociated(FlintElement) {
     @property({ type: String })
     label = '';
 
-    /** Current input value. */
+    /** Current value (controlled). When set, the component reflects this value and does not manage its own state. */
     @property({ type: String })
     value = '';
 
@@ -96,7 +96,7 @@ export class FlintInput extends FormAssociated(FlintElement) {
     @property({ type: String, reflect: true })
     size: 'sm' | 'md' | 'lg' = 'md';
 
-    /** Initial value for uncontrolled usage. */
+    /** Initial value (uncontrolled). Only used on first render; ignored after mount. */
     @property({ type: String, attribute: 'default-value' })
     defaultValue?: string;
 

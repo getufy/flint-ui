@@ -195,16 +195,27 @@ describe('flint-chip', () => {
         expect(handler).toHaveBeenCalledTimes(1);
     });
 
-    it('does not dispatch click when not clickable', async () => {
+    it('does not dispatch flint-chip-click when not clickable', async () => {
         const handler = vi.fn();
-        const el = await fixture<FlintChip>(html`<flint-chip label="Static" @click=${handler}></flint-chip>`);
+        const el = await fixture<FlintChip>(html`<flint-chip label="Static" @flint-chip-click=${handler}></flint-chip>`);
         el.shadowRoot!.querySelector('.chip')!.dispatchEvent(new MouseEvent('click', { bubbles: true, composed: true }));
         expect(handler).not.toHaveBeenCalled();
     });
 
-    it('does not dispatch click when disabled', async () => {
+    it('allows native click to propagate to parent when not clickable', async () => {
+        const wrapper = document.createElement('div');
+        document.body.appendChild(wrapper);
         const handler = vi.fn();
-        const el = await fixture<FlintChip>(html`<flint-chip label="Disabled" clickable disabled @click=${handler}></flint-chip>`);
+        wrapper.addEventListener('click', handler);
+        const el = await fixture<FlintChip>(html`<flint-chip label="Static"></flint-chip>`, { parentNode: wrapper });
+        el.shadowRoot!.querySelector('.chip')!.dispatchEvent(new MouseEvent('click', { bubbles: true, composed: true }));
+        expect(handler).toHaveBeenCalledTimes(1);
+        wrapper.remove();
+    });
+
+    it('does not dispatch flint-chip-click when disabled', async () => {
+        const handler = vi.fn();
+        const el = await fixture<FlintChip>(html`<flint-chip label="Disabled" clickable disabled @flint-chip-click=${handler}></flint-chip>`);
         el.shadowRoot!.querySelector('.chip')!.dispatchEvent(new MouseEvent('click', { bubbles: true, composed: true }));
         expect(handler).not.toHaveBeenCalled();
     });

@@ -17,7 +17,7 @@ export class FlintCheckbox extends FormAssociated(FlintElement) {
 
     private _formControl = new FormControlController(this);
 
-    /** Whether the checkbox is checked. */
+    /** Current checked state (controlled). When set, the component reflects this state and does not manage its own state. */
     @property({ type: Boolean, reflect: true }) checked = false;
     /** Displays the checkbox in an indeterminate state. */
     @property({ type: Boolean }) indeterminate = false;
@@ -36,7 +36,7 @@ export class FlintCheckbox extends FormAssociated(FlintElement) {
     @property({ type: String }) name = '';
     /** Value submitted with form data when checked. */
     @property({ type: String }) value = 'on';
-    /** Initial checked state for uncontrolled usage. */
+    /** Initial checked state (uncontrolled). Only used on first render; ignored after mount. */
     @property({ type: Boolean, attribute: 'default-checked' }) defaultChecked = false;
     /** Accessible label for screen readers when no visible label is provided. */
     @property({ type: String, attribute: 'aria-label' }) override ariaLabel: string | null = null;

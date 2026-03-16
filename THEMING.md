@@ -288,6 +288,42 @@ document.documentElement.setAttribute('data-theme', 'dark');
 
 To opt out of automatic `prefers-color-scheme` detection, add `class="flint-theme-light"` or `data-theme="light"`.
 
+### Dark mode best practices: avoid hardcoded fallbacks
+
+When writing custom CSS that references `--flint-*` tokens, do not provide hardcoded color fallbacks in `var()`. In dark-mode-aware UIs, hardcoded fallbacks can flash or persist when the CSS variable resolution is delayed (e.g., the dark theme stylesheet loads after initial paint, or a class toggle is applied asynchronously). The fallback value is a light-mode color that has no awareness of the current theme.
+
+**Bad — hardcoded fallback defeats dark mode:**
+
+```css
+/* The #f5f5f5 fallback is a light gray that will show in dark mode
+   if --flint-surface-2 hasn't resolved yet */
+.my-card {
+  background: var(--flint-surface-2, #f5f5f5);
+  color: var(--flint-text-color, #111827);
+}
+```
+
+**Good — no fallback; let the theme system handle it:**
+
+```css
+.my-card {
+  background: var(--flint-surface-2);
+  color: var(--flint-text-color);
+}
+```
+
+The same applies to inline styles and component CSS:
+
+```css
+/* Bad — hardcoded white ignores the active theme */
+.label { color: #fff; }
+
+/* Good — uses the semantic token, works in both light and dark */
+.label { color: var(--flint-text-color-on-primary); }
+```
+
+Flint UI's theme stylesheets (`theme.css` and `theme-dark.css`) define every semantic token for both light and dark modes. As long as you import both stylesheets, every `var(--flint-*)` reference will resolve correctly without a fallback.
+
 ## Preset palettes
 
 Six built-in color palettes are available as single CSS imports:

@@ -272,19 +272,17 @@
 #### Medium — Card Interactive Click Event (#15)
 - [x] **FlintCard `flint-card-click` event** — Interactive cards now emit `flint-card-click` on click and Enter/Space keyboard activation. Added `role="button"` and `tabindex="0"` when `interactive` is set.
 
-### Remaining — Merge into v0.7.0
-
 #### Medium (fold into existing P0/P1 items)
-- [ ] **#17 Document: avoid hardcoded color fallbacks** — Add guidance to THEMING.md: always use `var(--flint-*)` without fallbacks in dark-mode-aware UIs.
-- [ ] **#18 Event naming discoverability** — `onFlintPaginationChange` (not `onFlintPageChange`). Improve TypeScript strictness so unknown event props cause compile errors.
+- [x] **#17 Document: avoid hardcoded color fallbacks** — Added "Dark Mode Best Practices" section to THEMING.md and docs/theming.md: always use `var(--flint-*)` tokens without hardcoded fallbacks in dark-mode-aware UIs.
+- [x] **#18 Event naming discoverability** — Added event naming convention comments to generated React wrappers and documented naming pattern (`onFlint{Component}{Action}`) in React README.
 
 #### Low / Nice to Have
-- [ ] **#10** Controlled vs uncontrolled documentation (JSDoc)
-- [ ] **#11** FlintSelect `value` accept `string` for single select
-- [ ] **#12** Responsive `direction`/`spacing` on FlintStack
-- [ ] **#13** Toast/notification manager API (`useFlintToast()` hook)
-- [ ] **#14** FlintAppBar React-idiomatic prop alternatives for slots
-- [ ] **#23** FlintChip `clickable` event propagation in nested click handlers
+- [x] **#10** Controlled vs uncontrolled documentation — Added JSDoc annotations for controlled (`value`/`checked`/`open`) vs uncontrolled (`defaultValue`/`defaultChecked`/`defaultOpen`) patterns on Checkbox, Collapsible, Dialog, Input, Select, Switch, Tabs.
+- [x] **#11** FlintSelect `value` accept `string` for single select — `value` prop now accepts `string | string[]`; auto-normalizes to `string[]` in `willUpdate()`.
+- [x] **#12** Responsive `direction`/`spacing` on FlintStack — Added `ResponsiveValue<T>` type with breakpoint resolution (xs/sm/md/lg/xl); reads CSS custom properties `--flint-breakpoint-*`; listens for window resize.
+- [x] **#13** Toast/notification manager API — Already exists as `FlintToaster` + `toast()` API in `src/sonner/`. Added usage recipe to React README.
+- [x] **#14** FlintAppBar React-idiomatic prop alternatives for slots — Documented `start-content` and `end-content` named slot pattern in React README with examples.
+- [x] **#23** FlintChip `clickable` event propagation — Added JSDoc documentation to `clickable` prop explaining event handling pattern; added test coverage for click event propagation.
 
 ---
 

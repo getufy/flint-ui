@@ -33,13 +33,10 @@ export class FlintDialog extends FlintElement {
   static styles = unsafeCSS(uiDialogStyles);
   static dependencies = { 'flint-backdrop': FlintBackdrop as unknown as typeof FlintElement };
 
-  /** Controls the open / closed state of the dialog. */
+  /** Current open state (controlled). When set, the component reflects this state and does not manage its own state. */
   @property({ type: Boolean, reflect: true }) open = false;
 
-  /**
-   * Initial open state for uncontrolled usage.
-   * Has no effect after the element has connected to the DOM.
-   */
+  /** Initial open state (uncontrolled). Only used on first render; ignored after mount. */
   @property({ type: Boolean, attribute: 'default-open' }) defaultOpen = false;
 
   /**

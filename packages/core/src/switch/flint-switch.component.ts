@@ -20,7 +20,7 @@ export class FlintSwitch extends FormAssociated(FlintElement) {
     static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
     static styles = unsafeCSS(uiSwitchStyles);
 
-    /** Whether the switch is toggled on. */
+    /** Current checked state (controlled). When set, the component reflects this state and does not manage its own state. */
     @property({ type: Boolean, reflect: true }) checked = false;
     /** Disables the switch and prevents interaction. */
     @property({ type: Boolean, reflect: true }) disabled = false;
@@ -37,7 +37,7 @@ export class FlintSwitch extends FormAssociated(FlintElement) {
     @property({ type: String }) name = '';
     /** Value submitted with form data when checked. */
     @property({ type: String }) value = 'on';
-    /** Initial checked state for uncontrolled usage. */
+    /** Initial checked state (uncontrolled). Only used on first render; ignored after mount. */
     @property({ type: Boolean, attribute: 'default-checked' }) defaultChecked = false;
     /** Accessible label for screen readers when no visible label is provided. */
     @property({ type: String, attribute: 'aria-label' }) override ariaLabel: string | null = null;

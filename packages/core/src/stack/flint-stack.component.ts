@@ -25,7 +25,14 @@ export class FlintStack extends FlintElement {
      * String values are used as-is (e.g. `'1rem'`). Supports responsive object syntax.
      * @default 0
      */
-    @property({ type: Object }) spacing: ResponsiveValue<number | string> = 0;
+    @property({
+        converter: {
+            fromAttribute: (value: string | null) => {
+                if (value === null || value === '') return 0;
+                try { return JSON.parse(value); } catch { return value; }
+            }
+        }
+    }) spacing: ResponsiveValue<number | string> = 0;
 
     /** Cross-axis alignment of stack children. */
     @property({ type: String }) alignItems?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
