@@ -226,3 +226,292 @@
 - [x] Run as Storybook browser tests (Playwright) — 4 stories in `src/playbooks/`
 - [x] Use to validate inter-component communication, focus management, form submission
 > **Why:** AgnosticUI found that unit tests alone miss composition bugs. Playbooks test real user flows and catch issues at component boundaries.
+
+---
+
+## v0.6.1 DX Report (WeatherScope / Pokedex)
+
+### Completed
+
+#### Critical — React Event Forwarding (#20, #24, #25)
+- [x] **Fix native DOM event forwarding in React wrappers** — `onClick`, `onKeyDown`, `onFocus`, etc. silently failed on ALL components because `@lit/react`'s `createComponent()` only maps events listed in `events:` config. 112 of 186 wrappers (60%) had zero event mappings. Fixed codegen (`scripts/lib/codegen.ts`) to always emit native DOM events in every wrapper's `events:` block. Affects FlintButton, FlintItem, FlintList, FlintLink, FlintCard, and all other components.
+
+#### High — Drawer/Select Stacking Context (#3, #22)
+- [x] **Fix FlintDrawer `overflow: hidden` trapping fixed-position children** — Changed to `overflow: clip` which clips off-screen content without creating a containing block for fixed-position descendants. FlintSelect's hoisted dropdown can now escape the drawer.
+- [x] **Fix FlintSelect dropdown z-index** — Replaced hardcoded `z-index: 1000` with `var(--flint-select-dropdown-z-index, var(--flint-z-popover, 1300))`. Dropdown now renders above drawer (z-index 1040) by default.
+
+#### High — Drawer Default Width (#2)
+- [x] **Bump FlintDrawer default width from 250px to 320px** — `--flint-drawer-width` default increased. Previous 250px was too narrow for form content.
+
+#### Medium — BottomNavigationAction (#4)
+- [x] **Remove hardcoded `max-width: 168px` on FlintBottomNavigationAction** — Replaced with `var(--flint-bottom-nav-action-max-width, none)`. Actions now fill full width by default (standard mobile pattern).
+
+#### Medium — Skeleton px Auto-Append (#21)
+- [x] **Fix FlintSkeleton numeric width/height** — Added `_cssLength()` helper that auto-appends `px` for numeric strings (e.g., `height="120"` → `height: 120px`), matching FlintCardMedia behavior.
+
+### Already Addressed / Exists
+
+| # | Issue | Status |
+|---|-------|--------|
+| #1 | Dark mode dual mechanism confusion | `setFlintTheme()`, `<flint-theme>`, `data-theme` attributes all exist. Need better docs. |
+| #5 | Dark mode toggle state sync | `getFlintTheme()` exists in `utilities/theme.ts` |
+| #8 | No icon system | Already in TODO as P2 #35 (`flint-icon` component) |
+| #9 | CSS custom properties not documented | `THEMING.md` created in v0.6.0 |
+| #16 | Dark mode toggle helper | `setFlintTheme()` / `getFlintTheme()` shipped in v0.6.0 |
+
+### Remaining — Merge into v0.7.0
+
+#### Medium (fold into existing P0/P1 items)
+- [ ] **#6 Dialog auto-focus first focusable element** — Currently focuses `.dialog-panel` (`tabindex="-1"`) instead of first interactive child. Bundle with P0 #1 (focus trap). Add `initialFocus` prop or auto-focus first focusable per WAI-ARIA.
+- [ ] **#7 Export event detail types from React package** — Verify `FlintSelectChangeDetail` etc. are in barrel export. Related to P2 #43.
+- [ ] **#17 Document: avoid hardcoded color fallbacks** — Add guidance to THEMING.md: always use `var(--flint-*)` without fallbacks in dark-mode-aware UIs.
+- [ ] **#18 Event naming discoverability** — `onFlintPaginationChange` (not `onFlintPageChange`). Improve TypeScript strictness so unknown event props cause compile errors.
+
+#### Low / Nice to Have
+- [ ] **#10** Controlled vs uncontrolled documentation (JSDoc)
+- [ ] **#11** FlintSelect `value` accept `string` for single select
+- [ ] **#12** Responsive `direction`/`spacing` on FlintStack
+- [ ] **#13** Toast/notification manager API (`useFlintToast()` hook)
+- [ ] **#14** FlintAppBar React-idiomatic prop alternatives for slots
+- [ ] **#15** FlintCard `onFlintCardClick` custom event for interactive cards
+- [ ] **#19** FlintCardMedia `--flint-card-media-object-fit` CSS custom property
+- [ ] **#23** FlintChip `clickable` event propagation in nested click handlers
+
+---
+
+## v0.7.0 — Consolidated Priority List
+
+> Merged from ANALYSIS.md (4 parts, 40 sections) + prior TODO items. Deduplicated and ordered by impact.
+> Reference: ANALYSIS.md sections noted in brackets.
+
+---
+
+### P0 — Ship-Blocking (must fix before v0.7.0 release)
+
+- [ ] **1. Focus trap in Dialog/Drawer/CommandDialog** — WCAG 2.4.3 violation [§37.1]
+  - Users can Tab out of modal dialogs into the page behind them
+  - Options: `inert` on background, Tab cycling, or `focus-trap` library
+  > **Why:** Every competing library (Shoelace, Spectrum, Lion, Vaadin, Carbon) has focus trapping. This is a legal accessibility risk.
+
+- [ ] **2. SSR safety sweep** — 12 components crash during SSR [§17.1]
+  - [ ] Add `typeof window !== 'undefined'` guards to: CommandDialog, ScrollArea, SplitPanel, Carousel, Dialog, Drawer, Menu, Tooltip, HoverCard, Select, Grid, Stack
+  - [ ] Add SSR guard to `setFlintTheme()` / `getFlintTheme()` in `utilities/theme.ts` [§25.4]
+  > **Why:** Crashes in Next.js/Astro/Remix. Blocks server-rendered framework adoption entirely.
+
+- [ ] **3. Race condition fix** — async animation `.then()` fires on detached elements [§16.1]
+  - [ ] Guard all `.then()` handlers with `if (!this.isConnected) return;`
+  - Affected: Drawer, Tooltip, Dialog, RelativeTime recursive timer [§16.6]
+  > **Why:** Rapid mount/unmount (route transitions) causes errors or memory leaks.
+
+- [ ] **4. Dialog `_openDialogs` leak** — orphaned entries break Escape key [§16.2]
+  - [ ] Wrap `_runOpenAnimation()` in try/catch
+  - [ ] Remove from `_openDialogs` in `disconnectedCallback()`
+  > **Why:** Escape key acts on wrong dialog when array has orphaned entries.
+
+- [ ] **5. Button overhaul** — foundational component rated 3/10 [§2]
+  - [ ] Add `type` prop (submit, reset, button) — currently hardcoded to "button"
+  - [ ] Add `aria-label` prop — icon-only buttons inaccessible
+  - [ ] Add `loading` state with spinner
+  - [ ] Add icon slots (`prefix`, `suffix`)
+  - [ ] Add `href` prop for link variant (renders `<a>`)
+  - [ ] Add CSS parts: `prefix`, `suffix`, `spinner`
+  - [ ] Add pill and circle shape variants
+  - [ ] Add success, neutral, warning variants
+  > **Why:** Can't submit forms, show loading, or render icons. Every competing library has these.
+
+- [ ] **6. TextField: Add FormAssociated mixin** — text input can't participate in forms [§6, §19.2]
+  - [ ] Add `static formAssociated = true` + ElementInternals
+  - [ ] Add `aria-describedby` linking for error/helper text
+  - [ ] Add `aria-invalid` attribute
+  - [ ] Wire up `_internals.setFormValue()` and `formResetCallback()`
+  > **Why:** Input and Textarea have FormAssociated. TextField is the odd one out.
+
+- [ ] **7. `define()` error swallowing fix** in FlintElement base class [§25.1]
+  - [ ] Only catch `DOMException` with `NotSupportedError`, re-throw everything else
+  - [ ] Add console.warn for re-registration attempts
+  > **Why:** Masks real bugs. Silent error swallowing hides registration failures.
+
+---
+
+### P1 — High Priority (next minor release, breaking changes bundled)
+
+#### API Consistency (Breaking Changes)
+
+- [ ] **8. Standardize size props** to `'sm' | 'md' | 'lg'` everywhere [§15.1]
+  - Button uses `'small' | 'medium' | 'large'`, Input/Textarea/Toggle use `'sm' | 'default' | 'lg'`
+  - Target: all components use `'sm' | 'md' | 'lg'` (majority pattern)
+
+- [ ] **9. Standardize event patterns** [§15.2]
+  - [ ] Add `flint-dialog-open` and `flint-drawer-open` events (currently only fire close)
+  - [ ] Add Tooltip visibility events (`flint-tooltip-show` / `flint-tooltip-hide`)
+  - [ ] Decide: HoverCard fires both open+close (good), Dialog/Drawer should match
+
+- [ ] **10. Standardize placement/position prop** to `placement` everywhere [§15.4]
+  - Drawer uses `anchor`, Tooltip uses `placement`, HoverCard uses `side`
+
+- [ ] **11. Standardize variant naming** — `outlined` not `outline` [§15.5]
+  - Toggle uses `'outline'`, Chip uses `'outlined'`
+
+- [ ] **12. Standardize slot names** — pick `prefix`/`suffix` [§15.6]
+  - TextField uses `leading`/`trailing`, Switch uses `icon-on`/`icon-off`
+
+- [ ] **13. HoverCard: Add ARIA** — no role or label [§3]
+  - [ ] Add `role` attribute, `aria-label`/`aria-describedby`, `aria-hidden` state
+
+#### Form System
+
+- [ ] **14. Form API completion** — missing 8 standard HTML form element APIs [§19.1]
+  - [ ] Add to FormAssociated mixin: `form`, `validity`, `validationMessage`, `willValidate` getters
+  - [ ] Add: `checkValidity()`, `reportValidity()`, `setCustomValidity()`, `formDisabledCallback()`
+  > **Why:** `myInput.checkValidity()` and `myInput.validity.valid` don't work. Breaks form validation libraries.
+
+- [ ] **15. Add `delegatesFocus: true`** to all interactive components [§19.5]
+  - Zero components currently set this
+  > **Why:** Clicking label area doesn't auto-focus inner input. Shoelace + AgnosticUI both use this.
+
+#### Design Tokens
+
+- [ ] **16. Spacing token scale** + migrate 350+ hardcoded values [§20.1]
+  - Define `--flint-spacing-{0,1,2,3,4,5,6,8,10,12}` in `theme.css`
+  - 90 occurrences of `8px`, 50 of `4px`, 50 of `16px`, 48 of `12px`, etc.
+
+- [ ] **17. Typography token scale** — only `--flint-font-family` exists [§20.2]
+  - Define `--flint-font-size-{xs,sm,md,lg,xl,2xl}`, line-height, font-weight tokens
+  - Enforce `rem` units only (currently mixed `px` and `rem`)
+
+- [ ] **18. Animation timing tokens** — 27+ unique hardcoded values [§20.3]
+  - Define `--flint-transition-{fast,medium,slow}` and `--flint-ease-{default,in,out}`
+  - Normalize `.2s` vs `0.2s` notation
+
+- [ ] **19. Z-index token scale** [§20.4]
+  - Define `--flint-z-{dropdown,sticky,overlay,modal,popover,tooltip}`
+  - Fix Dialog (1200) / Drawer (1200) collision
+
+#### Accessibility
+
+- [ ] **20. Global reduced-motion CSS rule** [§37.4]
+  - Only ~5 components have `@media (prefers-reduced-motion)` in CSS
+  - Add global `animation-duration: 0.01ms !important` rule
+
+- [ ] **21. Touch target audit** — ~40% of interactive components fail WCAG 2.5.8 [§35.4]
+  - Button (small): ~24px, Checkbox: 14-22px, Radio: ~18px, Switch (sm): 36x22px
+  - Minimum: 44x44px touch target
+
+- [ ] **22. DateRangePicker keyboard navigation** — calendar cells have no arrow key nav [§29.3]
+
+- [ ] **23. DateRangePicker i18n** — hardcoded `MM/DD/YYYY` and English month names [§29.3]
+  - Use `Intl.DateTimeFormat` like other i18n components
+
+#### TypeScript
+
+- [ ] **24. Typed event maps** — `HTMLElementEventMap` augmentation [§26.3]
+  - 163 `new CustomEvent()` calls across 63 files are untyped
+  - Vanilla TS consumers get `any` for event details
+
+- [ ] **25. Enable `noUncheckedIndexedAccess`** in tsconfig [§26.1]
+
+#### Documentation
+
+- [ ] **26. Update CONTRIBUTING.md** [§33.4]
+  - References Changesets (outdated) → should reference release-please
+  - Uses `@customElement` pattern → should document two-file split + `FlintElement.define()`
+
+---
+
+### P2 — Medium Priority (next quarter)
+
+#### Styling & CSS Parts
+
+- [ ] **27. CSS parts on 53 missing components** [§20.6]
+  - Carousel, Slider, Collapsible, Badge, Tooltip, Input (expand), Rating, Progress, etc.
+  > **Why:** 55% of components can't be deeply styled. Shoelace: 500+ parts.
+
+#### Forms
+
+- [ ] **28. Form-associate 5 more components** [§19.2]
+  - Rating, InputOTP, Autocomplete, DatePicker, TimePicker — values missing from FormData
+
+- [ ] **29. Constraint validation** [§19.3]
+  - `pattern`, `min`, `max`, `minlength`, `maxlength` on form controls
+  - `setCustomValidity()`, `reportValidity()`, `checkValidity()`
+  > **Why:** Only `required` is supported. Real forms need more.
+
+- [ ] **30. Custom state pseudo-classes** via `ElementInternals.states` [§19.4]
+  - Enable `flint-input:state(invalid)` CSS selectors (currently uses `data-*` attributes)
+
+#### Component Features
+
+- [ ] **31. Select typeahead** — can't jump to options by typing [§29.1]
+- [ ] **32. Select virtualization** — 1000+ options cause rendering lag [§29.1]
+- [ ] **33. Command fuzzy search + debouncing** — currently substring-only, no debounce [§29.2]
+- [ ] **34. Input UX patterns** — clearable button, password toggle, prefix/suffix slots
+- [ ] **35. `flint-icon` component** with resolver pattern for swappable icon sets
+
+#### Testing & CI
+
+- [ ] **36. Enable Chromatic visual regression** — addon installed but not in CI [§9]
+- [ ] **37. Storybook `.play()` interaction tests** — only 10% coverage (8/84 stories) [§27.3]
+  - Target: 50% coverage on interactive components
+- [ ] **38. RTL stories** — 68 stories reference RTL but 0% render `dir="rtl"` layouts [§27.4]
+- [ ] **39. Automated a11y testing in CI** — no a11y regression detection [§38.1]
+- [ ] **40. Pin CI action versions to commit SHAs** — currently floating `@v6` tags [§32.3]
+- [ ] **41. Add `npm audit` scheduled workflow** [§32.4]
+
+#### Infrastructure
+
+- [ ] **42. CDN distribution** (UMD/ESM for jsDelivr/unpkg) [§10]
+- [ ] **43. Export event detail types** from `index.ts` [§26.6]
+- [ ] **44. React SSR documentation** (Next.js `'use client'` guide) [§24.4]
+- [ ] **45. Autoloader cleanup API** — MutationObserver never disconnects [§25.2]
+- [ ] **46. Performance fixes** [§18]
+  - Grid layout thrashing (read-write cycle in `_applyItemStyles`)
+  - Command DOM queries on every keystroke
+  - Tabs syncs all children on any property change
+- [ ] **47. Vue/Angular/Svelte integration guides** [§33.5]
+
+---
+
+### P3 — Backlog
+
+#### Quick Fixes
+- [ ] Cache compiled RegExp in InputOTP (`new RegExp()` on every keystroke) [§16.4]
+- [ ] Guard `focus()` with `disabled` check on Radio and other components [§16.3]
+- [ ] Fix `sideEffects: "**/*.css"` — overly broad, should specify exact files [§28.2]
+- [ ] Granular `updated()` guards in Tabs (don't sync all children for color change) [§18.4]
+- [ ] Source maps for production (`sourcemap: 'hidden'`) [§28.1]
+- [ ] Fix PR template — still references Changesets [§32.5]
+
+#### New Components
+- [ ] `flint-button-group` — toolbar/action bar pattern
+- [ ] Combobox — free-text input with suggestions (different from Select)
+- [ ] Dialog size variants (small, medium, large, full)
+
+#### Features
+- [ ] Select option grouping (`<optgroup>` equivalent)
+- [ ] Select async data loading (server-fetched options)
+- [ ] Dialog scrollable content handling
+- [ ] Carousel touch/swipe support
+- [ ] `@watch()` decorator on FlintElement
+- [ ] `<flint-animation>` declarative component with presets
+
+#### Advanced (Industry Patterns)
+- [ ] Centralized overlay manager (Spectrum/Lion pattern) [§38.1]
+- [ ] Scale dimension theming (medium/large global switch) [§38.1]
+- [ ] Contextual layer tokens (`<flint-layer>` for card-in-card) [§38.1]
+- [ ] Multi-level form validation (error/warning/info) [§38.1]
+- [ ] Data provider abstraction for lazy loading [§38.1]
+- [ ] Virtual scrolling primitive [§38.1]
+- [ ] Nested theme scoping (`<flint-theme>`) [§38.1]
+- [ ] `forced-colors` media query support (Windows High Contrast) [§37.5]
+- [ ] `:focus-visible` styles on all interactive components [§37.2]
+- [ ] CSS `clamp()` for fluid typography [§35.3]
+- [ ] `@container` queries for intrinsic layouts [§35.3]
+- [ ] Generic value types on Select/Autocomplete (`Select<T>`) [§26.5]
+
+#### Testing
+- [ ] Cross-browser CI (Safari/WebKit, Firefox) [§12]
+- [ ] RTL test suite [§9]
+- [ ] Responsive Storybook stories (viewport decorator) [§27.4]
+- [ ] Performance benchmarks in CI [§12]
+- [ ] Code coverage reporting (Codecov) [§32.4]
+- [ ] Add Prettier config

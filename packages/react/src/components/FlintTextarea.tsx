@@ -18,6 +18,7 @@ export interface FlintTextareaChangeDetail {
  * A Textarea component for multi-line text input.
  */
 export interface FlintTextareaProps extends Omit<React.HTMLAttributes<FlintTextareaElement>, 'defaultValue'> {
+    shadowRootOptions?: object;
     /** Current textarea value. */
     value?: string;
     /** Placeholder text shown when empty. */
@@ -37,7 +38,7 @@ export interface FlintTextareaProps extends Omit<React.HTMLAttributes<FlintTexta
     /** Label text displayed above the textarea. */
     label?: string;
     /** Size variant of the textarea. */
-    size?: 'sm' | 'default' | 'lg';
+    size?: 'sm' | 'md' | 'lg';
     /** Number of visible text rows. */
     rows?: number;
     /** Maximum number of characters allowed. */
@@ -65,6 +66,52 @@ export const FlintTextarea = createComponent({
     elementClass: FlintTextareaElement,
     react: React,
     events: {
+        onClick: 'click' as EventName<MouseEvent>,
+        onDoubleClick: 'dblclick' as EventName<MouseEvent>,
+        onContextMenu: 'contextmenu' as EventName<MouseEvent>,
+        onMouseDown: 'mousedown' as EventName<MouseEvent>,
+        onMouseUp: 'mouseup' as EventName<MouseEvent>,
+        onMouseEnter: 'mouseenter' as EventName<MouseEvent>,
+        onMouseLeave: 'mouseleave' as EventName<MouseEvent>,
+        onMouseMove: 'mousemove' as EventName<MouseEvent>,
+        onMouseOver: 'mouseover' as EventName<MouseEvent>,
+        onMouseOut: 'mouseout' as EventName<MouseEvent>,
+        onKeyDown: 'keydown' as EventName<KeyboardEvent>,
+        onKeyUp: 'keyup' as EventName<KeyboardEvent>,
+        onFocus: 'focus' as EventName<FocusEvent>,
+        onBlur: 'blur' as EventName<FocusEvent>,
+        onInput: 'input' as EventName<Event>,
+        onChange: 'change' as EventName<Event>,
+        onSubmit: 'submit' as EventName<Event>,
+        onReset: 'reset' as EventName<Event>,
+        onScroll: 'scroll' as EventName<Event>,
+        onWheel: 'wheel' as EventName<WheelEvent>,
+        onTouchStart: 'touchstart' as EventName<TouchEvent>,
+        onTouchEnd: 'touchend' as EventName<TouchEvent>,
+        onTouchMove: 'touchmove' as EventName<TouchEvent>,
+        onTouchCancel: 'touchcancel' as EventName<TouchEvent>,
+        onPointerDown: 'pointerdown' as EventName<PointerEvent>,
+        onPointerUp: 'pointerup' as EventName<PointerEvent>,
+        onPointerMove: 'pointermove' as EventName<PointerEvent>,
+        onPointerEnter: 'pointerenter' as EventName<PointerEvent>,
+        onPointerLeave: 'pointerleave' as EventName<PointerEvent>,
+        onPointerOver: 'pointerover' as EventName<PointerEvent>,
+        onPointerOut: 'pointerout' as EventName<PointerEvent>,
+        onPointerCancel: 'pointercancel' as EventName<PointerEvent>,
+        onDrag: 'drag' as EventName<DragEvent>,
+        onDragStart: 'dragstart' as EventName<DragEvent>,
+        onDragEnd: 'dragend' as EventName<DragEvent>,
+        onDragEnter: 'dragenter' as EventName<DragEvent>,
+        onDragLeave: 'dragleave' as EventName<DragEvent>,
+        onDragOver: 'dragover' as EventName<DragEvent>,
+        onDrop: 'drop' as EventName<DragEvent>,
+        onCopy: 'copy' as EventName<ClipboardEvent>,
+        onCut: 'cut' as EventName<ClipboardEvent>,
+        onPaste: 'paste' as EventName<ClipboardEvent>,
+        onAnimationStart: 'animationstart' as EventName<AnimationEvent>,
+        onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
+        onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
+        onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
         onFlintTextareaInput: FlintTextareaEvents.INPUT as EventName<CustomEvent<FlintTextareaInputDetail>>,
         onFlintTextareaChange: FlintTextareaEvents.CHANGE as EventName<CustomEvent<FlintTextareaChangeDetail>>,
     },

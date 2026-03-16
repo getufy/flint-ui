@@ -2,18 +2,18 @@
 // Source: src/hover-card/flint-hover-card.component.ts
 
 import React from 'react';
-import { createComponent } from '@lit/react';
+import { createComponent, type EventName } from '@lit/react';
 import { FlintHoverCardContent as FlintHoverCardContentElement } from '@getufy/flint-ui/hover-card/flint-hover-card';
 
 /**
- * The floating card panel. Position is controlled via `side` and `align`.
+ * The floating card panel. Position is controlled via `placement` and `align`.
 Place inside `flint-hover-card`; its `open` state is managed by the parent.
  *
  * @slot (default) - Rich content displayed inside the card.
  */
 export interface FlintHoverCardContentProps extends React.HTMLAttributes<FlintHoverCardContentElement> {
     /** Which side of the trigger to display the card on. */
-    side?: 'top' | 'right' | 'bottom' | 'left';
+    placement?: 'top' | 'right' | 'bottom' | 'left';
     /** Alignment of the card along the cross axis relative to the trigger. */
     align?: 'start' | 'center' | 'end';
     /** Whether the card is visible. Managed by the parent `flint-hover-card`. */
@@ -26,4 +26,52 @@ export const FlintHoverCardContent = createComponent({
     tagName: 'flint-hover-card-content',
     elementClass: FlintHoverCardContentElement,
     react: React,
+    events: {
+        onClick: 'click' as EventName<MouseEvent>,
+        onDoubleClick: 'dblclick' as EventName<MouseEvent>,
+        onContextMenu: 'contextmenu' as EventName<MouseEvent>,
+        onMouseDown: 'mousedown' as EventName<MouseEvent>,
+        onMouseUp: 'mouseup' as EventName<MouseEvent>,
+        onMouseEnter: 'mouseenter' as EventName<MouseEvent>,
+        onMouseLeave: 'mouseleave' as EventName<MouseEvent>,
+        onMouseMove: 'mousemove' as EventName<MouseEvent>,
+        onMouseOver: 'mouseover' as EventName<MouseEvent>,
+        onMouseOut: 'mouseout' as EventName<MouseEvent>,
+        onKeyDown: 'keydown' as EventName<KeyboardEvent>,
+        onKeyUp: 'keyup' as EventName<KeyboardEvent>,
+        onFocus: 'focus' as EventName<FocusEvent>,
+        onBlur: 'blur' as EventName<FocusEvent>,
+        onInput: 'input' as EventName<Event>,
+        onChange: 'change' as EventName<Event>,
+        onSubmit: 'submit' as EventName<Event>,
+        onReset: 'reset' as EventName<Event>,
+        onScroll: 'scroll' as EventName<Event>,
+        onWheel: 'wheel' as EventName<WheelEvent>,
+        onTouchStart: 'touchstart' as EventName<TouchEvent>,
+        onTouchEnd: 'touchend' as EventName<TouchEvent>,
+        onTouchMove: 'touchmove' as EventName<TouchEvent>,
+        onTouchCancel: 'touchcancel' as EventName<TouchEvent>,
+        onPointerDown: 'pointerdown' as EventName<PointerEvent>,
+        onPointerUp: 'pointerup' as EventName<PointerEvent>,
+        onPointerMove: 'pointermove' as EventName<PointerEvent>,
+        onPointerEnter: 'pointerenter' as EventName<PointerEvent>,
+        onPointerLeave: 'pointerleave' as EventName<PointerEvent>,
+        onPointerOver: 'pointerover' as EventName<PointerEvent>,
+        onPointerOut: 'pointerout' as EventName<PointerEvent>,
+        onPointerCancel: 'pointercancel' as EventName<PointerEvent>,
+        onDrag: 'drag' as EventName<DragEvent>,
+        onDragStart: 'dragstart' as EventName<DragEvent>,
+        onDragEnd: 'dragend' as EventName<DragEvent>,
+        onDragEnter: 'dragenter' as EventName<DragEvent>,
+        onDragLeave: 'dragleave' as EventName<DragEvent>,
+        onDragOver: 'dragover' as EventName<DragEvent>,
+        onDrop: 'drop' as EventName<DragEvent>,
+        onCopy: 'copy' as EventName<ClipboardEvent>,
+        onCut: 'cut' as EventName<ClipboardEvent>,
+        onPaste: 'paste' as EventName<ClipboardEvent>,
+        onAnimationStart: 'animationstart' as EventName<AnimationEvent>,
+        onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
+        onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
+        onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
+    },
 }) as unknown as React.ForwardRefExoticComponent<FlintHoverCardContentProps & React.RefAttributes<FlintHoverCardContentElement>>;

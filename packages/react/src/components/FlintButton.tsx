@@ -2,22 +2,82 @@
 // Source: src/button/flint-button.component.ts
 
 import React from 'react';
-import { createComponent } from '@lit/react';
+import { createComponent, type EventName } from '@lit/react';
 import { FlintButton as FlintButtonElement } from '@getufy/flint-ui/button/flint-button';
 
 export interface FlintButtonProps extends React.HTMLAttributes<FlintButtonElement> {
     /** Visual style variant of the button. */
-    variant?: 'primary' | 'secondary' | 'destructive';
+    variant?: FlintButtonElement['variant'];
     /** Size of the button. */
-    size?: 'small' | 'medium' | 'large';
+    size?: FlintButtonElement['size'];
     /** Disables the button and prevents interaction. */
     disabled?: boolean;
     /** Whether the button stretches to fill its container width. */
     fullWidth?: boolean;
+    /** Button type attribute. When `submit` or `reset`, a hidden native */
+    type?: FlintButtonElement['type'];
+    /** Accessible label for screen readers. Essential for icon-only buttons. */
+    label?: string;
+    /** Shows a loading spinner and disables interaction. */
+    loading?: boolean;
+    /** When set, renders an `<a>` tag instead of a `<button>`. */
+    href?: string;
+    /** Optional `target` attribute when `href` is set. */
+    target?: string;
+    /** Shape variant of the button. */
+    shape?: FlintButtonElement['shape'];
 }
 
 export const FlintButton = createComponent({
     tagName: 'flint-button',
     elementClass: FlintButtonElement,
     react: React,
+    events: {
+        onClick: 'click' as EventName<MouseEvent>,
+        onDoubleClick: 'dblclick' as EventName<MouseEvent>,
+        onContextMenu: 'contextmenu' as EventName<MouseEvent>,
+        onMouseDown: 'mousedown' as EventName<MouseEvent>,
+        onMouseUp: 'mouseup' as EventName<MouseEvent>,
+        onMouseEnter: 'mouseenter' as EventName<MouseEvent>,
+        onMouseLeave: 'mouseleave' as EventName<MouseEvent>,
+        onMouseMove: 'mousemove' as EventName<MouseEvent>,
+        onMouseOver: 'mouseover' as EventName<MouseEvent>,
+        onMouseOut: 'mouseout' as EventName<MouseEvent>,
+        onKeyDown: 'keydown' as EventName<KeyboardEvent>,
+        onKeyUp: 'keyup' as EventName<KeyboardEvent>,
+        onFocus: 'focus' as EventName<FocusEvent>,
+        onBlur: 'blur' as EventName<FocusEvent>,
+        onInput: 'input' as EventName<Event>,
+        onChange: 'change' as EventName<Event>,
+        onSubmit: 'submit' as EventName<Event>,
+        onReset: 'reset' as EventName<Event>,
+        onScroll: 'scroll' as EventName<Event>,
+        onWheel: 'wheel' as EventName<WheelEvent>,
+        onTouchStart: 'touchstart' as EventName<TouchEvent>,
+        onTouchEnd: 'touchend' as EventName<TouchEvent>,
+        onTouchMove: 'touchmove' as EventName<TouchEvent>,
+        onTouchCancel: 'touchcancel' as EventName<TouchEvent>,
+        onPointerDown: 'pointerdown' as EventName<PointerEvent>,
+        onPointerUp: 'pointerup' as EventName<PointerEvent>,
+        onPointerMove: 'pointermove' as EventName<PointerEvent>,
+        onPointerEnter: 'pointerenter' as EventName<PointerEvent>,
+        onPointerLeave: 'pointerleave' as EventName<PointerEvent>,
+        onPointerOver: 'pointerover' as EventName<PointerEvent>,
+        onPointerOut: 'pointerout' as EventName<PointerEvent>,
+        onPointerCancel: 'pointercancel' as EventName<PointerEvent>,
+        onDrag: 'drag' as EventName<DragEvent>,
+        onDragStart: 'dragstart' as EventName<DragEvent>,
+        onDragEnd: 'dragend' as EventName<DragEvent>,
+        onDragEnter: 'dragenter' as EventName<DragEvent>,
+        onDragLeave: 'dragleave' as EventName<DragEvent>,
+        onDragOver: 'dragover' as EventName<DragEvent>,
+        onDrop: 'drop' as EventName<DragEvent>,
+        onCopy: 'copy' as EventName<ClipboardEvent>,
+        onCut: 'cut' as EventName<ClipboardEvent>,
+        onPaste: 'paste' as EventName<ClipboardEvent>,
+        onAnimationStart: 'animationstart' as EventName<AnimationEvent>,
+        onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
+        onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
+        onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
+    },
 }) as unknown as React.ForwardRefExoticComponent<FlintButtonProps & React.RefAttributes<FlintButtonElement>>;

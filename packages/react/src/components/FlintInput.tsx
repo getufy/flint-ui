@@ -18,6 +18,7 @@ export interface FlintInputChangeDetail {
  * Input: a styled text input with label, help text, and error states.
  */
 export interface FlintInputProps extends Omit<React.HTMLAttributes<FlintInputElement>, 'defaultValue'> {
+    shadowRootOptions?: object;
     /** Label text displayed above the input. */
     label?: string;
     /** Current input value. */
@@ -42,10 +43,22 @@ export interface FlintInputProps extends Omit<React.HTMLAttributes<FlintInputEle
     name?: string;
     /** Browser autocomplete hint. */
     autocomplete?: string;
+    /** Regex pattern for validation. */
+    pattern?: string;
+    /** Minimum value (for number/date inputs). */
+    min?: string;
+    /** Maximum value (for number/date inputs). */
+    max?: string;
+    /** Minimum length for text validation. */
+    minLength?: number | undefined;
+    /** Maximum length for text validation. */
+    maxLength?: number | undefined;
     /** Size variant of the input. */
-    size?: 'sm' | 'default' | 'lg';
+    size?: 'sm' | 'md' | 'lg';
     /** Initial value for uncontrolled usage. */
     defaultValue?: string | undefined;
+    /** Shows a clear button when the input has a value. */
+    clearable?: boolean;
     /** Fired on each keystroke as the value changes. detail: `{ value: string }` */
     onFlintInputInput?: (event: CustomEvent<FlintInputInputDetail>) => void;
     /** Fired when the input loses focus after the value has changed. detail: `{ value: string }` */
@@ -57,6 +70,52 @@ export const FlintInput = createComponent({
     elementClass: FlintInputElement,
     react: React,
     events: {
+        onClick: 'click' as EventName<MouseEvent>,
+        onDoubleClick: 'dblclick' as EventName<MouseEvent>,
+        onContextMenu: 'contextmenu' as EventName<MouseEvent>,
+        onMouseDown: 'mousedown' as EventName<MouseEvent>,
+        onMouseUp: 'mouseup' as EventName<MouseEvent>,
+        onMouseEnter: 'mouseenter' as EventName<MouseEvent>,
+        onMouseLeave: 'mouseleave' as EventName<MouseEvent>,
+        onMouseMove: 'mousemove' as EventName<MouseEvent>,
+        onMouseOver: 'mouseover' as EventName<MouseEvent>,
+        onMouseOut: 'mouseout' as EventName<MouseEvent>,
+        onKeyDown: 'keydown' as EventName<KeyboardEvent>,
+        onKeyUp: 'keyup' as EventName<KeyboardEvent>,
+        onFocus: 'focus' as EventName<FocusEvent>,
+        onBlur: 'blur' as EventName<FocusEvent>,
+        onInput: 'input' as EventName<Event>,
+        onChange: 'change' as EventName<Event>,
+        onSubmit: 'submit' as EventName<Event>,
+        onReset: 'reset' as EventName<Event>,
+        onScroll: 'scroll' as EventName<Event>,
+        onWheel: 'wheel' as EventName<WheelEvent>,
+        onTouchStart: 'touchstart' as EventName<TouchEvent>,
+        onTouchEnd: 'touchend' as EventName<TouchEvent>,
+        onTouchMove: 'touchmove' as EventName<TouchEvent>,
+        onTouchCancel: 'touchcancel' as EventName<TouchEvent>,
+        onPointerDown: 'pointerdown' as EventName<PointerEvent>,
+        onPointerUp: 'pointerup' as EventName<PointerEvent>,
+        onPointerMove: 'pointermove' as EventName<PointerEvent>,
+        onPointerEnter: 'pointerenter' as EventName<PointerEvent>,
+        onPointerLeave: 'pointerleave' as EventName<PointerEvent>,
+        onPointerOver: 'pointerover' as EventName<PointerEvent>,
+        onPointerOut: 'pointerout' as EventName<PointerEvent>,
+        onPointerCancel: 'pointercancel' as EventName<PointerEvent>,
+        onDrag: 'drag' as EventName<DragEvent>,
+        onDragStart: 'dragstart' as EventName<DragEvent>,
+        onDragEnd: 'dragend' as EventName<DragEvent>,
+        onDragEnter: 'dragenter' as EventName<DragEvent>,
+        onDragLeave: 'dragleave' as EventName<DragEvent>,
+        onDragOver: 'dragover' as EventName<DragEvent>,
+        onDrop: 'drop' as EventName<DragEvent>,
+        onCopy: 'copy' as EventName<ClipboardEvent>,
+        onCut: 'cut' as EventName<ClipboardEvent>,
+        onPaste: 'paste' as EventName<ClipboardEvent>,
+        onAnimationStart: 'animationstart' as EventName<AnimationEvent>,
+        onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
+        onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
+        onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
         onFlintInputInput: FlintInputEvents.INPUT as EventName<CustomEvent<FlintInputInputDetail>>,
         onFlintInputChange: FlintInputEvents.CHANGE as EventName<CustomEvent<FlintInputChangeDetail>>,
     },

@@ -17,6 +17,10 @@
       "types": "./dist/alert.d.ts",
       "import": "./dist/alert.js"
     },
+    "./animation": {
+      "types": "./dist/animation.d.ts",
+      "import": "./dist/animation.js"
+    },
     "./app-bar": {
       "types": "./dist/app-bar.d.ts",
       "import": "./dist/app-bar.js"
@@ -72,6 +76,10 @@
     "./collapsible": {
       "types": "./dist/collapsible.d.ts",
       "import": "./dist/collapsible.js"
+    },
+    "./combobox": {
+      "types": "./dist/combobox.d.ts",
+      "import": "./dist/combobox.js"
     },
     "./command": {
       "types": "./dist/command.d.ts",
@@ -141,6 +149,10 @@
       "types": "./dist/hover-card.d.ts",
       "import": "./dist/hover-card.js"
     },
+    "./icon": {
+      "types": "./dist/icon.d.ts",
+      "import": "./dist/icon.js"
+    },
     "./image-comparer": {
       "types": "./dist/image-comparer.d.ts",
       "import": "./dist/image-comparer.js"
@@ -164,6 +176,10 @@
     "./kbd": {
       "types": "./dist/kbd.d.ts",
       "import": "./dist/kbd.js"
+    },
+    "./layer": {
+      "types": "./dist/layer.d.ts",
+      "import": "./dist/layer.js"
     },
     "./link": {
       "types": "./dist/link.d.ts",
@@ -273,6 +289,10 @@
       "types": "./dist/textarea.d.ts",
       "import": "./dist/textarea.js"
     },
+    "./theme": {
+      "types": "./dist/theme.d.ts",
+      "import": "./dist/theme.js"
+    },
     "./time-picker": {
       "types": "./dist/time-picker.d.ts",
       "import": "./dist/time-picker.js"
@@ -297,13 +317,13 @@
       "types": "./dist/typography.d.ts",
       "import": "./dist/typography.js"
     },
+    "./virtual-scroll": {
+      "types": "./dist/virtual-scroll.d.ts",
+      "import": "./dist/virtual-scroll.js"
+    },
     "./visually-hidden": {
       "types": "./dist/visually-hidden.d.ts",
       "import": "./dist/visually-hidden.js"
-    },
-    "./suppress-warnings": {
-      "types": "./dist/suppress-warnings.d.ts",
-      "import": "./dist/suppress-warnings.js"
     }
   },
   "scripts": {

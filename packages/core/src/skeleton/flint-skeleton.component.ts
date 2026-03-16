@@ -64,6 +64,11 @@ export class FlintSkeleton extends FlintElement {
         }
     }
 
+    private _cssLength(value: string): string {
+        if (!value) return '';
+        return isNaN(Number(value)) ? value : `${value}px`;
+    }
+
     render() {
         const isText = this.variant === 'text';
         const animClass = this.animation !== 'none' ? this.animation : '';
@@ -73,8 +78,8 @@ export class FlintSkeleton extends FlintElement {
             backgroundColor: 'var(--flint-skeleton-bg, var(--flint-surface-3, rgba(0, 0, 0, 0.11)))',
             position: 'relative' as const,
             overflow: 'hidden',
-            width: this.width || (isText ? '100%' : ''),
-            height: this.height || (isText ? '0.8em' : ''),
+            width: this._cssLength(this.width) || (isText ? '100%' : ''),
+            height: this._cssLength(this.height) || (isText ? '0.8em' : ''),
             marginTop: isText ? '0.3em' : '',
             marginBottom: isText ? '0.3em' : ''
         };

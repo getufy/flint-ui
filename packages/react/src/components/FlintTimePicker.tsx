@@ -13,7 +13,8 @@ export interface FlintTimePickerChangeDetail {
 /**
  * Time Picker: a configurable time input supporting desktop, mobile, and static variants.
  */
-export interface FlintTimePickerProps extends React.HTMLAttributes<FlintTimePickerElement> {
+export interface FlintTimePickerProps extends Omit<React.HTMLAttributes<FlintTimePickerElement>, 'defaultValue'> {
+    shadowRootOptions?: object;
     /** Time value in HH:MM:SS format. */
     value?: string;
     /** Field label text. */
@@ -32,6 +33,12 @@ export interface FlintTimePickerProps extends React.HTMLAttributes<FlintTimePick
     helperText?: string;
     /** Error message displayed below the field when in error state. */
     errorMessage?: string;
+    /** Form field name used when submitting form data. */
+    name?: string;
+    /** Marks the time picker as required for form validation. */
+    required?: boolean;
+    /** Initial value for uncontrolled usage (HH:MM:SS format). */
+    defaultValue?: string;
     /** Fired when the time value changes. detail: `{ value: string }` */
     onFlintTimePickerChange?: (event: CustomEvent<FlintTimePickerChangeDetail>) => void;
 }
@@ -41,6 +48,52 @@ export const FlintTimePicker = createComponent({
     elementClass: FlintTimePickerElement,
     react: React,
     events: {
+        onClick: 'click' as EventName<MouseEvent>,
+        onDoubleClick: 'dblclick' as EventName<MouseEvent>,
+        onContextMenu: 'contextmenu' as EventName<MouseEvent>,
+        onMouseDown: 'mousedown' as EventName<MouseEvent>,
+        onMouseUp: 'mouseup' as EventName<MouseEvent>,
+        onMouseEnter: 'mouseenter' as EventName<MouseEvent>,
+        onMouseLeave: 'mouseleave' as EventName<MouseEvent>,
+        onMouseMove: 'mousemove' as EventName<MouseEvent>,
+        onMouseOver: 'mouseover' as EventName<MouseEvent>,
+        onMouseOut: 'mouseout' as EventName<MouseEvent>,
+        onKeyDown: 'keydown' as EventName<KeyboardEvent>,
+        onKeyUp: 'keyup' as EventName<KeyboardEvent>,
+        onFocus: 'focus' as EventName<FocusEvent>,
+        onBlur: 'blur' as EventName<FocusEvent>,
+        onInput: 'input' as EventName<Event>,
+        onChange: 'change' as EventName<Event>,
+        onSubmit: 'submit' as EventName<Event>,
+        onReset: 'reset' as EventName<Event>,
+        onScroll: 'scroll' as EventName<Event>,
+        onWheel: 'wheel' as EventName<WheelEvent>,
+        onTouchStart: 'touchstart' as EventName<TouchEvent>,
+        onTouchEnd: 'touchend' as EventName<TouchEvent>,
+        onTouchMove: 'touchmove' as EventName<TouchEvent>,
+        onTouchCancel: 'touchcancel' as EventName<TouchEvent>,
+        onPointerDown: 'pointerdown' as EventName<PointerEvent>,
+        onPointerUp: 'pointerup' as EventName<PointerEvent>,
+        onPointerMove: 'pointermove' as EventName<PointerEvent>,
+        onPointerEnter: 'pointerenter' as EventName<PointerEvent>,
+        onPointerLeave: 'pointerleave' as EventName<PointerEvent>,
+        onPointerOver: 'pointerover' as EventName<PointerEvent>,
+        onPointerOut: 'pointerout' as EventName<PointerEvent>,
+        onPointerCancel: 'pointercancel' as EventName<PointerEvent>,
+        onDrag: 'drag' as EventName<DragEvent>,
+        onDragStart: 'dragstart' as EventName<DragEvent>,
+        onDragEnd: 'dragend' as EventName<DragEvent>,
+        onDragEnter: 'dragenter' as EventName<DragEvent>,
+        onDragLeave: 'dragleave' as EventName<DragEvent>,
+        onDragOver: 'dragover' as EventName<DragEvent>,
+        onDrop: 'drop' as EventName<DragEvent>,
+        onCopy: 'copy' as EventName<ClipboardEvent>,
+        onCut: 'cut' as EventName<ClipboardEvent>,
+        onPaste: 'paste' as EventName<ClipboardEvent>,
+        onAnimationStart: 'animationstart' as EventName<AnimationEvent>,
+        onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
+        onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
+        onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
         onFlintTimePickerChange: FlintTimePickerEvents.CHANGE as EventName<CustomEvent<FlintTimePickerChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintTimePickerProps & React.RefAttributes<FlintTimePickerElement>>;

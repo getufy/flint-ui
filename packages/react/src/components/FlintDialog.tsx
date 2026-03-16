@@ -6,27 +6,20 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintDialog as FlintDialogElement } from '@getufy/flint-ui/dialog/flint-dialog';
 import { FlintDialogEvents } from '../events/flint-dialog.js';
 
-export interface FlintDialogCloseDetail {
-    open: false;
-}
-
-/**
- * flint-dialog: a modal dialog component.
- *
- * @slot (default) - Default slot for dialog content (title, content, actions sub-components).
- */
 export interface FlintDialogProps extends React.HTMLAttributes<FlintDialogElement> {
     dependencies?: object;
     /** Controls the open / closed state of the dialog. */
     open?: boolean;
     /** Initial open state for uncontrolled usage. */
     defaultOpen?: boolean;
+    /** Size variant of the dialog panel. */
+    size?: FlintDialogElement['size'];
     /** Animation style for open/close. */
     transition?: 'scale' | 'slide-up' | 'slide-down';
     /** When true, clicking the backdrop will NOT close the dialog. */
     disableBackdropClose?: boolean;
-    /** Dispatched when the dialog requests to be closed (backdrop click or an explicit call to `requestClose()`). The host is responsible for setting `open = false` in response. detail: `{ open: false }` */
-    onFlintDialogClose?: (event: CustomEvent<FlintDialogCloseDetail>) => void;
+    onFlintDialogOpen?: (event: CustomEvent) => void;
+    onFlintDialogClose?: (event: CustomEvent) => void;
 }
 
 export const FlintDialog = createComponent({
@@ -34,6 +27,53 @@ export const FlintDialog = createComponent({
     elementClass: FlintDialogElement,
     react: React,
     events: {
-        onFlintDialogClose: FlintDialogEvents.CLOSE as EventName<CustomEvent<FlintDialogCloseDetail>>,
+        onClick: 'click' as EventName<MouseEvent>,
+        onDoubleClick: 'dblclick' as EventName<MouseEvent>,
+        onContextMenu: 'contextmenu' as EventName<MouseEvent>,
+        onMouseDown: 'mousedown' as EventName<MouseEvent>,
+        onMouseUp: 'mouseup' as EventName<MouseEvent>,
+        onMouseEnter: 'mouseenter' as EventName<MouseEvent>,
+        onMouseLeave: 'mouseleave' as EventName<MouseEvent>,
+        onMouseMove: 'mousemove' as EventName<MouseEvent>,
+        onMouseOver: 'mouseover' as EventName<MouseEvent>,
+        onMouseOut: 'mouseout' as EventName<MouseEvent>,
+        onKeyDown: 'keydown' as EventName<KeyboardEvent>,
+        onKeyUp: 'keyup' as EventName<KeyboardEvent>,
+        onFocus: 'focus' as EventName<FocusEvent>,
+        onBlur: 'blur' as EventName<FocusEvent>,
+        onInput: 'input' as EventName<Event>,
+        onChange: 'change' as EventName<Event>,
+        onSubmit: 'submit' as EventName<Event>,
+        onReset: 'reset' as EventName<Event>,
+        onScroll: 'scroll' as EventName<Event>,
+        onWheel: 'wheel' as EventName<WheelEvent>,
+        onTouchStart: 'touchstart' as EventName<TouchEvent>,
+        onTouchEnd: 'touchend' as EventName<TouchEvent>,
+        onTouchMove: 'touchmove' as EventName<TouchEvent>,
+        onTouchCancel: 'touchcancel' as EventName<TouchEvent>,
+        onPointerDown: 'pointerdown' as EventName<PointerEvent>,
+        onPointerUp: 'pointerup' as EventName<PointerEvent>,
+        onPointerMove: 'pointermove' as EventName<PointerEvent>,
+        onPointerEnter: 'pointerenter' as EventName<PointerEvent>,
+        onPointerLeave: 'pointerleave' as EventName<PointerEvent>,
+        onPointerOver: 'pointerover' as EventName<PointerEvent>,
+        onPointerOut: 'pointerout' as EventName<PointerEvent>,
+        onPointerCancel: 'pointercancel' as EventName<PointerEvent>,
+        onDrag: 'drag' as EventName<DragEvent>,
+        onDragStart: 'dragstart' as EventName<DragEvent>,
+        onDragEnd: 'dragend' as EventName<DragEvent>,
+        onDragEnter: 'dragenter' as EventName<DragEvent>,
+        onDragLeave: 'dragleave' as EventName<DragEvent>,
+        onDragOver: 'dragover' as EventName<DragEvent>,
+        onDrop: 'drop' as EventName<DragEvent>,
+        onCopy: 'copy' as EventName<ClipboardEvent>,
+        onCut: 'cut' as EventName<ClipboardEvent>,
+        onPaste: 'paste' as EventName<ClipboardEvent>,
+        onAnimationStart: 'animationstart' as EventName<AnimationEvent>,
+        onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
+        onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
+        onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
+        onFlintDialogOpen: FlintDialogEvents.OPEN as EventName<CustomEvent>,
+        onFlintDialogClose: FlintDialogEvents.CLOSE as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintDialogProps & React.RefAttributes<FlintDialogElement>>;

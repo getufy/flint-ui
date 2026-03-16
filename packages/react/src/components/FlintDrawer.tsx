@@ -6,6 +6,10 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintDrawer as FlintDrawerElement } from '@getufy/flint-ui/drawer/flint-drawer';
 import { FlintDrawerEvents } from '../events/flint-drawer.js';
 
+export interface FlintDrawerOpenDetail {
+    open: true;
+}
+
 export interface FlintDrawerCloseDetail {
     open: false;
 }
@@ -22,7 +26,7 @@ export interface FlintDrawerProps extends React.HTMLAttributes<FlintDrawerElemen
     /** Initial open state for uncontrolled usage. */
     defaultOpen?: boolean;
     /** Side from which the drawer slides in. */
-    anchor?: 'left' | 'right' | 'top' | 'bottom';
+    placement?: 'left' | 'right' | 'top' | 'bottom';
     /** Drawer behavior mode. */
     variant?: 'temporary' | 'persistent' | 'mini';
     /** Whether the drawer uses edge spacing. */
@@ -31,6 +35,8 @@ export interface FlintDrawerProps extends React.HTMLAttributes<FlintDrawerElemen
     container?: boolean;
     /** Accessible label for the drawer panel (used as aria-label on the panel). */
     label?: string;
+    /** Dispatched after the drawer open animation completes. detail: `{ open: true }` */
+    onFlintDrawerOpen?: (event: CustomEvent<FlintDrawerOpenDetail>) => void;
     /** Dispatched when the drawer requests to be closed (backdrop click or Escape). detail: `{ open: false }` */
     onFlintDrawerClose?: (event: CustomEvent<FlintDrawerCloseDetail>) => void;
 }
@@ -40,6 +46,53 @@ export const FlintDrawer = createComponent({
     elementClass: FlintDrawerElement,
     react: React,
     events: {
+        onClick: 'click' as EventName<MouseEvent>,
+        onDoubleClick: 'dblclick' as EventName<MouseEvent>,
+        onContextMenu: 'contextmenu' as EventName<MouseEvent>,
+        onMouseDown: 'mousedown' as EventName<MouseEvent>,
+        onMouseUp: 'mouseup' as EventName<MouseEvent>,
+        onMouseEnter: 'mouseenter' as EventName<MouseEvent>,
+        onMouseLeave: 'mouseleave' as EventName<MouseEvent>,
+        onMouseMove: 'mousemove' as EventName<MouseEvent>,
+        onMouseOver: 'mouseover' as EventName<MouseEvent>,
+        onMouseOut: 'mouseout' as EventName<MouseEvent>,
+        onKeyDown: 'keydown' as EventName<KeyboardEvent>,
+        onKeyUp: 'keyup' as EventName<KeyboardEvent>,
+        onFocus: 'focus' as EventName<FocusEvent>,
+        onBlur: 'blur' as EventName<FocusEvent>,
+        onInput: 'input' as EventName<Event>,
+        onChange: 'change' as EventName<Event>,
+        onSubmit: 'submit' as EventName<Event>,
+        onReset: 'reset' as EventName<Event>,
+        onScroll: 'scroll' as EventName<Event>,
+        onWheel: 'wheel' as EventName<WheelEvent>,
+        onTouchStart: 'touchstart' as EventName<TouchEvent>,
+        onTouchEnd: 'touchend' as EventName<TouchEvent>,
+        onTouchMove: 'touchmove' as EventName<TouchEvent>,
+        onTouchCancel: 'touchcancel' as EventName<TouchEvent>,
+        onPointerDown: 'pointerdown' as EventName<PointerEvent>,
+        onPointerUp: 'pointerup' as EventName<PointerEvent>,
+        onPointerMove: 'pointermove' as EventName<PointerEvent>,
+        onPointerEnter: 'pointerenter' as EventName<PointerEvent>,
+        onPointerLeave: 'pointerleave' as EventName<PointerEvent>,
+        onPointerOver: 'pointerover' as EventName<PointerEvent>,
+        onPointerOut: 'pointerout' as EventName<PointerEvent>,
+        onPointerCancel: 'pointercancel' as EventName<PointerEvent>,
+        onDrag: 'drag' as EventName<DragEvent>,
+        onDragStart: 'dragstart' as EventName<DragEvent>,
+        onDragEnd: 'dragend' as EventName<DragEvent>,
+        onDragEnter: 'dragenter' as EventName<DragEvent>,
+        onDragLeave: 'dragleave' as EventName<DragEvent>,
+        onDragOver: 'dragover' as EventName<DragEvent>,
+        onDrop: 'drop' as EventName<DragEvent>,
+        onCopy: 'copy' as EventName<ClipboardEvent>,
+        onCut: 'cut' as EventName<ClipboardEvent>,
+        onPaste: 'paste' as EventName<ClipboardEvent>,
+        onAnimationStart: 'animationstart' as EventName<AnimationEvent>,
+        onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
+        onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
+        onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
+        onFlintDrawerOpen: FlintDrawerEvents.OPEN as EventName<CustomEvent<FlintDrawerOpenDetail>>,
         onFlintDrawerClose: FlintDrawerEvents.CLOSE as EventName<CustomEvent<FlintDrawerCloseDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintDrawerProps & React.RefAttributes<FlintDrawerElement>>;

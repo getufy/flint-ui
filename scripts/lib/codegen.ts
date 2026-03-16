@@ -24,6 +24,62 @@ const REACT_HTML_EVENT_PROPS = new Set([
     'onTransitionEnd', 'onLoad', 'onError', 'onAbort',
 ]);
 
+/**
+ * Native DOM events to forward through @lit/react's createComponent() events config.
+ * Without these, React event handler props like onClick are set as element properties
+ * instead of event listeners — silently doing nothing on web components.
+ *
+ * Maps React prop name → [DOM event name, TypeScript event type].
+ */
+const NATIVE_EVENTS: Array<[reactProp: string, domEvent: string, tsType: string]> = [
+    ['onClick', 'click', 'MouseEvent'],
+    ['onDoubleClick', 'dblclick', 'MouseEvent'],
+    ['onContextMenu', 'contextmenu', 'MouseEvent'],
+    ['onMouseDown', 'mousedown', 'MouseEvent'],
+    ['onMouseUp', 'mouseup', 'MouseEvent'],
+    ['onMouseEnter', 'mouseenter', 'MouseEvent'],
+    ['onMouseLeave', 'mouseleave', 'MouseEvent'],
+    ['onMouseMove', 'mousemove', 'MouseEvent'],
+    ['onMouseOver', 'mouseover', 'MouseEvent'],
+    ['onMouseOut', 'mouseout', 'MouseEvent'],
+    ['onKeyDown', 'keydown', 'KeyboardEvent'],
+    ['onKeyUp', 'keyup', 'KeyboardEvent'],
+    ['onFocus', 'focus', 'FocusEvent'],
+    ['onBlur', 'blur', 'FocusEvent'],
+    ['onInput', 'input', 'Event'],
+    ['onChange', 'change', 'Event'],
+    ['onSubmit', 'submit', 'Event'],
+    ['onReset', 'reset', 'Event'],
+    ['onScroll', 'scroll', 'Event'],
+    ['onWheel', 'wheel', 'WheelEvent'],
+    ['onTouchStart', 'touchstart', 'TouchEvent'],
+    ['onTouchEnd', 'touchend', 'TouchEvent'],
+    ['onTouchMove', 'touchmove', 'TouchEvent'],
+    ['onTouchCancel', 'touchcancel', 'TouchEvent'],
+    ['onPointerDown', 'pointerdown', 'PointerEvent'],
+    ['onPointerUp', 'pointerup', 'PointerEvent'],
+    ['onPointerMove', 'pointermove', 'PointerEvent'],
+    ['onPointerEnter', 'pointerenter', 'PointerEvent'],
+    ['onPointerLeave', 'pointerleave', 'PointerEvent'],
+    ['onPointerOver', 'pointerover', 'PointerEvent'],
+    ['onPointerOut', 'pointerout', 'PointerEvent'],
+    ['onPointerCancel', 'pointercancel', 'PointerEvent'],
+    ['onDrag', 'drag', 'DragEvent'],
+    ['onDragStart', 'dragstart', 'DragEvent'],
+    ['onDragEnd', 'dragend', 'DragEvent'],
+    ['onDragEnter', 'dragenter', 'DragEvent'],
+    ['onDragLeave', 'dragleave', 'DragEvent'],
+    ['onDragOver', 'dragover', 'DragEvent'],
+    ['onDrop', 'drop', 'DragEvent'],
+    ['onCopy', 'copy', 'ClipboardEvent'],
+    ['onCut', 'cut', 'ClipboardEvent'],
+    ['onPaste', 'paste', 'ClipboardEvent'],
+    ['onAnimationStart', 'animationstart', 'AnimationEvent'],
+    ['onAnimationEnd', 'animationend', 'AnimationEvent'],
+    ['onAnimationIteration', 'animationiteration', 'AnimationEvent'],
+    ['onTransitionEnd', 'transitionend', 'TransitionEvent'],
+];
+
 // ─── helpers ────────────────────────────────────────────────────────────────
 
 /**
@@ -112,7 +168,7 @@ export function generateWrapper(
     lines.push(`// Source: ${sourceFile}`);
     lines.push('');
     lines.push(`import React from 'react';`);
-    lines.push(`import { createComponent${hasEvents ? ', type EventName' : ''} } from '@lit/react';`);
+    lines.push(`import { createComponent, type EventName } from '@lit/react';`);
     lines.push(`import { ${className} as ${className}Element } from '${srcImport}';`);
     if (hasEvents) {
         lines.push(`import { ${className}Events } from '../events/${tagName}.js';`);
@@ -198,13 +254,21 @@ export function generateWrapper(
     lines.push(`    elementClass: ${className}Element,`);
     lines.push(`    react: React,`);
 
-    if (hasEvents) {
-        lines.push(`    events: {`);
-        for (const e of events) {
-            lines.push(`        ${e.reactProp}: ${className}Events.${e.constKey} as EventName<${eventTypeRef(e)}>,`);
-        }
-        lines.push(`    },`);
+    // Build set of custom event React prop names to avoid duplicates with native events
+    const customEventProps = new Set(events.map(e => e.reactProp));
+
+    lines.push(`    events: {`);
+    // Native DOM events — ensures onClick, onKeyDown, etc. work on all components
+    for (const [reactProp, domEvent, tsType] of NATIVE_EVENTS) {
+        // Skip native events that collide with a custom flint-* event (custom takes priority)
+        if (customEventProps.has(reactProp)) continue;
+        lines.push(`        ${reactProp}: '${domEvent}' as EventName<${tsType}>,`);
     }
+    // Custom flint-* events
+    for (const e of events) {
+        lines.push(`        ${e.reactProp}: ${className}Events.${e.constKey} as EventName<${eventTypeRef(e)}>,`);
+    }
+    lines.push(`    },`);
 
     lines.push(
         `}) as unknown as React.ForwardRefExoticComponent<${className}Props & React.RefAttributes<${className}Element>>;`,

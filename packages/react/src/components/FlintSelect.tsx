@@ -17,6 +17,7 @@ export interface FlintSelectChangeDetail {
  * @slot error-message - Optional slot for error message content (use error-message prop for simple text).
  */
 export interface FlintSelectProps extends Omit<React.HTMLAttributes<FlintSelectElement>, 'defaultValue'> {
+    shadowRootOptions?: object;
     /** Label text displayed above the select. */
     label?: string;
     /** Array of selectable options. */
@@ -45,6 +46,15 @@ export interface FlintSelectProps extends Omit<React.HTMLAttributes<FlintSelectE
     defaultValue?: string;
     /** When true, the dropdown uses `position: fixed` so it can escape */
     hoist?: boolean;
+    /** Async options loader. When provided, called when the dropdown opens. */
+    loadOptions?: FlintSelectElement['loadOptions'];
+    /** Enable virtual scrolling for large option lists. */
+    virtualize?: boolean;
+    /** Fixed item height in px used for virtual scroll calculations. */
+    itemHeight?: number;
+    /** Maximum visible items in the dropdown (determines dropdown height). */
+    visibleItems?: number;
+    onFlintSelectLoad?: (event: CustomEvent) => void;
     /** Dispatched when the selection changes. detail: `{ value: string[] }` */
     onFlintSelectChange?: (event: CustomEvent<FlintSelectChangeDetail>) => void;
 }
@@ -54,6 +64,53 @@ export const FlintSelect = createComponent({
     elementClass: FlintSelectElement,
     react: React,
     events: {
+        onClick: 'click' as EventName<MouseEvent>,
+        onDoubleClick: 'dblclick' as EventName<MouseEvent>,
+        onContextMenu: 'contextmenu' as EventName<MouseEvent>,
+        onMouseDown: 'mousedown' as EventName<MouseEvent>,
+        onMouseUp: 'mouseup' as EventName<MouseEvent>,
+        onMouseEnter: 'mouseenter' as EventName<MouseEvent>,
+        onMouseLeave: 'mouseleave' as EventName<MouseEvent>,
+        onMouseMove: 'mousemove' as EventName<MouseEvent>,
+        onMouseOver: 'mouseover' as EventName<MouseEvent>,
+        onMouseOut: 'mouseout' as EventName<MouseEvent>,
+        onKeyDown: 'keydown' as EventName<KeyboardEvent>,
+        onKeyUp: 'keyup' as EventName<KeyboardEvent>,
+        onFocus: 'focus' as EventName<FocusEvent>,
+        onBlur: 'blur' as EventName<FocusEvent>,
+        onInput: 'input' as EventName<Event>,
+        onChange: 'change' as EventName<Event>,
+        onSubmit: 'submit' as EventName<Event>,
+        onReset: 'reset' as EventName<Event>,
+        onScroll: 'scroll' as EventName<Event>,
+        onWheel: 'wheel' as EventName<WheelEvent>,
+        onTouchStart: 'touchstart' as EventName<TouchEvent>,
+        onTouchEnd: 'touchend' as EventName<TouchEvent>,
+        onTouchMove: 'touchmove' as EventName<TouchEvent>,
+        onTouchCancel: 'touchcancel' as EventName<TouchEvent>,
+        onPointerDown: 'pointerdown' as EventName<PointerEvent>,
+        onPointerUp: 'pointerup' as EventName<PointerEvent>,
+        onPointerMove: 'pointermove' as EventName<PointerEvent>,
+        onPointerEnter: 'pointerenter' as EventName<PointerEvent>,
+        onPointerLeave: 'pointerleave' as EventName<PointerEvent>,
+        onPointerOver: 'pointerover' as EventName<PointerEvent>,
+        onPointerOut: 'pointerout' as EventName<PointerEvent>,
+        onPointerCancel: 'pointercancel' as EventName<PointerEvent>,
+        onDrag: 'drag' as EventName<DragEvent>,
+        onDragStart: 'dragstart' as EventName<DragEvent>,
+        onDragEnd: 'dragend' as EventName<DragEvent>,
+        onDragEnter: 'dragenter' as EventName<DragEvent>,
+        onDragLeave: 'dragleave' as EventName<DragEvent>,
+        onDragOver: 'dragover' as EventName<DragEvent>,
+        onDrop: 'drop' as EventName<DragEvent>,
+        onCopy: 'copy' as EventName<ClipboardEvent>,
+        onCut: 'cut' as EventName<ClipboardEvent>,
+        onPaste: 'paste' as EventName<ClipboardEvent>,
+        onAnimationStart: 'animationstart' as EventName<AnimationEvent>,
+        onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
+        onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
+        onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
+        onFlintSelectLoad: FlintSelectEvents.LOAD as EventName<CustomEvent>,
         onFlintSelectChange: FlintSelectEvents.CHANGE as EventName<CustomEvent<FlintSelectChangeDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintSelectProps & React.RefAttributes<FlintSelectElement>>;
