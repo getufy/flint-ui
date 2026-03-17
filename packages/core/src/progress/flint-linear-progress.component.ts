@@ -22,8 +22,10 @@ export class FlintLinearProgress extends FlintElement {
 
     private _variantWarned = false;
 
-    /** Current progress value (0-100). */
+    /** Current progress value (0 to max). */
     @property({ type: Number, reflect: true }) value = 0;
+    /** Maximum value. The progress is calculated as value / max. @default 100 */
+    @property({ type: Number, reflect: true }) max = 100;
     /**
      * Height of the progress bar in pixels.
      * @default 4
@@ -58,7 +60,12 @@ export class FlintLinearProgress extends FlintElement {
     }
 
     private get _safeValue(): number {
-        return Math.min(100, Math.max(0, this.value));
+        const safeMax = Math.max(1, this.max);
+        return Math.min(100, Math.max(0, (this.value / safeMax) * 100));
+    }
+
+    private get _clampedValue(): number {
+        return Math.min(this.max, Math.max(0, this.value));
     }
 
     render() {
@@ -75,8 +82,8 @@ export class FlintLinearProgress extends FlintElement {
         part="base"
         role="progressbar"
         aria-valuemin="0"
-        aria-valuemax="100"
-        aria-valuenow="${isDeterminate ? this._safeValue : nothing}"
+        aria-valuemax="${this.max}"
+        aria-valuenow="${isDeterminate ? this._clampedValue : nothing}"
         aria-label="${this.label || 'Progress'}"
         style="${inlineStyle}"
       >

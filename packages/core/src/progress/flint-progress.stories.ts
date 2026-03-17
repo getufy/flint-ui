@@ -75,6 +75,7 @@ flint-linear-progress: a horizontal progress bar.
             options: ['determinate', 'indeterminate'],
         },
         value: { control: { type: 'range', min: 0, max: 100, step: 1 } },
+        max: { control: 'number' },
         color: {
             control: 'select',
             options: ['primary', 'success', 'error', 'warning'],
@@ -87,6 +88,7 @@ flint-linear-progress: a horizontal progress bar.
     args: {
         mode: 'indeterminate',
         value: 60,
+        max: 100,
         color: 'primary',
         label: '',
         size: 40,
@@ -107,6 +109,7 @@ export const CircularPlayground: Story = {
     <flint-circular-progress
       .mode="${args.mode}"
       .value="${args.value}"
+      .max="${args.max}"
       .size="${args.size}"
       .thickness="${args.thickness}"
       .color="${args.color}"
@@ -122,6 +125,7 @@ export const LinearPlayground: Story = {
       <flint-linear-progress
         .mode="${args.mode}"
         .value="${args.value}"
+        .max="${args.max}"
         .height="${args.height}"
         .color="${args.color}"
         .label="${args.label}"
@@ -209,6 +213,31 @@ export const LinearSizes: Story = {
       <div>
         <p style="margin: 0 0 4px">height=12</p>
         <flint-linear-progress mode="determinate" .value="${60}" .height="${12}" label="12px height"></flint-linear-progress>
+      </div>
+    </div>
+  `,
+};
+
+// ─── Custom Max ──────────────────────────────────────────────────────────────
+
+export const CustomMax: Story = {
+    name: 'Custom Max',
+    render: () => html`
+    <div style="display: flex; flex-direction: column; gap: 32px; padding: 20px; max-width: 440px; font-family: sans-serif;">
+      <div>
+        <p style="margin: 0 0 12px; font-weight: 600;">Linear — max=200, value=50 (25%)</p>
+        <flint-linear-progress mode="determinate" .value="${50}" .max="${200}" label="50 of 200"></flint-linear-progress>
+      </div>
+      <div>
+        <p style="margin: 0 0 12px; font-weight: 600;">Linear — max=10, value=7 (70%)</p>
+        <flint-linear-progress mode="determinate" .value="${7}" .max="${10}" label="7 of 10"></flint-linear-progress>
+      </div>
+      <div>
+        <p style="margin: 0 0 12px; font-weight: 600;">Circular — max=50, value=25 (50%)</p>
+        <div style="display: flex; gap: 16px; align-items: center;">
+          <flint-circular-progress mode="determinate" .value="${25}" .max="${50}" label="25 of 50"></flint-circular-progress>
+          <flint-circular-progress mode="determinate" .value="${50}" .max="${50}" label="50 of 50 (full)"></flint-circular-progress>
+        </div>
       </div>
     </div>
   `,

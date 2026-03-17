@@ -138,7 +138,7 @@ describe('FlintLinearProgress', () => {
 
     // --- Value clamping ---
 
-    it('clamps value above 100 to 100', async () => {
+    it('clamps value above max to max', async () => {
         const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress mode="determinate" .value=${150}></flint-linear-progress>`);
         const root = el.shadowRoot!.querySelector('.root')!;
         expect(root.getAttribute('aria-valuenow')).to.equal('100');
@@ -152,6 +152,45 @@ describe('FlintLinearProgress', () => {
         expect(root.getAttribute('aria-valuenow')).to.equal('0');
         const bar = el.shadowRoot!.querySelector('.bar') as HTMLElement;
         expect(bar.style.transform).to.equal('scaleX(0)');
+    });
+
+    // --- max prop ---
+
+    it('defaults max to 100', async () => {
+        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress></flint-linear-progress>`);
+        expect(el.max).to.equal(100);
+    });
+
+    it('value=50 max=200 renders visual at 25%', async () => {
+        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress mode="determinate" .value=${50} .max=${200}></flint-linear-progress>`);
+        const bar = el.shadowRoot!.querySelector('.bar') as HTMLElement;
+        expect(bar.style.transform).to.equal('scaleX(0.25)');
+    });
+
+    it('aria-valuemax reflects max prop', async () => {
+        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress mode="determinate" .value=${50} .max=${200}></flint-linear-progress>`);
+        const root = el.shadowRoot!.querySelector('.root')!;
+        expect(root.getAttribute('aria-valuemax')).to.equal('200');
+    });
+
+    it('aria-valuenow shows raw value clamped to [0, max]', async () => {
+        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress mode="determinate" .value=${50} .max=${200}></flint-linear-progress>`);
+        const root = el.shadowRoot!.querySelector('.root')!;
+        expect(root.getAttribute('aria-valuenow')).to.equal('50');
+    });
+
+    it('value > max clamps visual to 100% and aria-valuenow to max', async () => {
+        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress mode="determinate" .value=${300} .max=${200}></flint-linear-progress>`);
+        const root = el.shadowRoot!.querySelector('.root')!;
+        expect(root.getAttribute('aria-valuenow')).to.equal('200');
+        const bar = el.shadowRoot!.querySelector('.bar') as HTMLElement;
+        expect(bar.style.transform).to.equal('scaleX(1)');
+    });
+
+    it('max=0 is treated as max=1 (no division by zero)', async () => {
+        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress mode="determinate" .value=${1} .max=${0}></flint-linear-progress>`);
+        const bar = el.shadowRoot!.querySelector('.bar') as HTMLElement;
+        expect(bar.style.transform).to.equal('scaleX(1)');
     });
 
     // --- Custom height ---
@@ -352,7 +391,7 @@ describe('FlintCircularProgress', () => {
 
     // --- Value clamping ---
 
-    it('clamps value above 100 to 100', async () => {
+    it('clamps value above max to max', async () => {
         const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress mode="determinate" .value=${200}></flint-circular-progress>`);
         const root = el.shadowRoot!.querySelector('.circular-root')!;
         expect(root.getAttribute('aria-valuenow')).to.equal('100');
@@ -362,6 +401,47 @@ describe('FlintCircularProgress', () => {
         const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress mode="determinate" .value=${-50}></flint-circular-progress>`);
         const root = el.shadowRoot!.querySelector('.circular-root')!;
         expect(root.getAttribute('aria-valuenow')).to.equal('0');
+    });
+
+    // --- max prop ---
+
+    it('defaults max to 100', async () => {
+        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress></flint-circular-progress>`);
+        expect(el.max).to.equal(100);
+    });
+
+    it('value=50 max=200 renders visual at 25% (dashoffset at 75%)', async () => {
+        const thickness = 3.6;
+        const radius = 20 - thickness / 2;
+        const circumference = 2 * Math.PI * radius;
+        const expectedOffset = circumference - (25 / 100) * circumference; // 75% of circumference
+        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress mode="determinate" .value=${50} .max=${200} .thickness=${thickness}></flint-circular-progress>`);
+        const circle = el.shadowRoot!.querySelector('circle') as SVGCircleElement;
+        expect(parseFloat(circle.style.strokeDashoffset)).to.be.closeTo(expectedOffset, 0.1);
+    });
+
+    it('aria-valuemax reflects max prop', async () => {
+        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress mode="determinate" .value=${50} .max=${200}></flint-circular-progress>`);
+        const root = el.shadowRoot!.querySelector('.circular-root')!;
+        expect(root.getAttribute('aria-valuemax')).to.equal('200');
+    });
+
+    it('aria-valuenow shows raw value clamped to [0, max]', async () => {
+        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress mode="determinate" .value=${50} .max=${200}></flint-circular-progress>`);
+        const root = el.shadowRoot!.querySelector('.circular-root')!;
+        expect(root.getAttribute('aria-valuenow')).to.equal('50');
+    });
+
+    it('value > max clamps aria-valuenow to max', async () => {
+        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress mode="determinate" .value=${300} .max=${200}></flint-circular-progress>`);
+        const root = el.shadowRoot!.querySelector('.circular-root')!;
+        expect(root.getAttribute('aria-valuenow')).to.equal('200');
+    });
+
+    it('max=0 is treated as max=1 (no division by zero)', async () => {
+        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress mode="determinate" .value=${1} .max=${0}></flint-circular-progress>`);
+        const circle = el.shadowRoot!.querySelector('circle') as SVGCircleElement;
+        expect(parseFloat(circle.style.strokeDashoffset)).to.be.closeTo(0, 0.1);
     });
 
     // --- Custom size and thickness ---
