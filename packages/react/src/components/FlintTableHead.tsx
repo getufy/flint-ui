@@ -10,7 +10,10 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintTableHead as FlintTableHeadElement } from '@getufy/flint-ui/table/flint-table';
 
 /**
- * flint-table-head
+ * Groups header rows at the top of a `<flint-table>`. Rendered with a subtle
+bottom border and bold text styling by default.
+ *
+ * @slot (default) - Accepts one or more `<flint-table-row>` elements containing header cells.
  */
 export interface FlintTableHeadProps extends React.HTMLAttributes<FlintTableHeadElement> {
 }

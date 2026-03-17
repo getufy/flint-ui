@@ -36,7 +36,7 @@ import { FlintInputOtpGroup } from '@getufy/flint-ui';
 
 | Property | Default |
 | --- | --- |
-| `--flint-text-color` | `#111827` |
+| `--flint-text-color` | — |
 | `--flint-otp-slot-width` | `40px` |
 | `--flint-otp-slot-height` | `48px` |
 | `--flint-otp-slot-font-size` | `1.25rem` |

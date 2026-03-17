@@ -82,41 +82,6 @@ import { FlintInput } from '@getufy/flint-ui';
 | `help-text` | The help text paragraph. |
 | `error-message` | The error message paragraph. |
 
-### Controlled Input (Value Binding)
-
-Use the component's custom events — not native `input`/`change` events — for value tracking:
-
-| Event | When it fires | Use case |
-|---|---|---|
-| `flint-input-input` | Every keystroke | Live search, filtering, character count |
-| `flint-input-change` | On blur after value changes | Form submission, validation |
-| `flint-input-clear` | Clear button clicked | Reset related state |
-
-**Vanilla / Lit:**
-
-```html
-<flint-input
-  label="Search"
-  @flint-input-input=${(e) => console.log(e.detail.value)}
-></flint-input>
-```
-
-**React (via wrapper):**
-
-```tsx
-const [value, setValue] = useState('');
-
-<FlintInput
-  label="Search"
-  value={value}
-  onFlintInputInput={(e) => setValue(e.detail.value)}
-/>
-```
-
-::: warning
-Do not listen for native `input` or `change` events — they are fired on the internal `<input>` inside the shadow DOM and may not bubble as expected. Always use the `flint-input-*` custom events.
-:::
-
 ### CSS Custom Properties
 
 | Property | Default |

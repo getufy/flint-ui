@@ -95,6 +95,39 @@ Override CSS custom properties to customize the look:
 
 See [Theming](/theming) for the full list of tokens.
 
+## Toast Notifications
+
+Flint UI includes a built-in toast system. Import `toast` and call it directly:
+
+```ts
+import { toast } from '@getufy/flint-ui';
+
+toast('Hello!');
+toast.success('Saved successfully');
+toast.error('Something went wrong');
+toast.warning('Check your input');
+toast.info('New version available');
+```
+
+Add `<flint-toaster>` once in your app shell (e.g. in your root layout) to render the toasts:
+
+```html
+<flint-toaster></flint-toaster>
+```
+
+## Programmatic Theme Switching
+
+Use `setFlintTheme()` to switch themes at runtime:
+
+```ts
+import { setFlintTheme } from '@getufy/flint-ui';
+
+setFlintTheme('dark');
+setFlintTheme('dark', 'rose');
+```
+
+See [Theming](/theming) for more details.
+
 ## TypeScript
 
 Flint UI ships type declarations out of the box. No additional `@types/` packages are needed.

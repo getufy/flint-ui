@@ -43,15 +43,15 @@ Toasts are created imperatively via the \`toast()\` function.
 | \`--flint-toast-error-icon-color\` | — |
 | \`--flint-toast-warning-icon-color\` | — |
 | \`--flint-toast-info-icon-color\` | — |
-| \`--flint-font-family\` | \`system-ui, sans-serif\` |
-| \`--flint-text-color-muted\` | \`#4b5563\` |
-| \`--flint-border-color\` | \`#e4e4e7\` |
-| \`--flint-border-radius-md\` | \`0.375rem\` |
-| \`--flint-hover-color\` | \`rgba(0, 0, 0, 0.04\` |
-| \`--flint-primary-focus-ring\` | \`rgba(59, 130, 246, 0.5\` |
-| \`--flint-text-color-subtle\` | \`#4b5563\` |
-| \`--flint-border-radius-sm\` | \`0.125rem\` |
-| \`--flint-text-color\` | \`#111827\` |
+| \`--flint-font-family\` | — |
+| \`--flint-text-color-muted\` | — |
+| \`--flint-border-color\` | — |
+| \`--flint-border-radius-md\` | — |
+| \`--flint-hover-color\` | — |
+| \`--flint-primary-focus-ring\` | — |
+| \`--flint-text-color-subtle\` | — |
+| \`--flint-border-radius-sm\` | — |
+| \`--flint-text-color\` | — |
                 `,
             },
         },

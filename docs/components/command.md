@@ -35,6 +35,7 @@ import { FlintCommandShortcut } from '@getufy/flint-ui';
 | Property | Default |
 | --- | --- |
 | `--flint-border-radius-md` | — |
+| `--flint-shadow-xl` | — |
 | `--flint-text-color-muted` | — |
 | `--flint-font-family` | — |
 | `--flint-border-color` | — |

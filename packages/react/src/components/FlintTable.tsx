@@ -10,14 +10,17 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintTable as FlintTableElement } from '@getufy/flint-ui/table/flint-table';
 
 /**
- * flint-table
+ * The main table element. Use inside a `<flint-table-container>` for scrolling
+and sticky header support, or standalone for simple layouts.
+ *
+ * @slot (default) - Accepts `<flint-table-head>`, `<flint-table-body>`, and `<flint-table-footer>`.
  */
 export interface FlintTableProps extends React.HTMLAttributes<FlintTableElement> {
     /**
      * Cell padding density.
-     * Allowed values: 'medium' | 'small'
+     * Allowed values: 'md' | 'sm'
      */
-    size?: 'medium'|'small';
+    size?: 'md'|'sm';
 }
 
 export const FlintTable = createComponent({

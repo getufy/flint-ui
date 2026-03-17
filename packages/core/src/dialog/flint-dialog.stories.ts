@@ -48,9 +48,9 @@ const meta: Meta = {
 | \`--flint-font-family\` | — |
 | \`--flint-text-color-muted\` | — |
 | \`--flint-text-color\` | — |
-| \`--flint-surface-background\` | \`white\` |
-| \`--flint-border-radius-xl\` | \`12px\` |
-| \`--flint-shadow-xl\` | \`0 20px 25px -5px rgba(0, 0, 0, 0.1\` |
+| \`--flint-surface-background\` | — |
+| \`--flint-border-radius-xl\` | — |
+| \`--flint-shadow-xl\` | — |
 
 #### Methods
 

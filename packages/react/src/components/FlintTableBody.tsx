@@ -10,10 +10,13 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintTableBody as FlintTableBodyElement } from '@getufy/flint-ui/table/flint-table';
 
 /**
- * flint-table-body
+ * Groups body rows in a `<flint-table>`. Supports alternating row shading
+via the `striped` attribute.
+ *
+ * @slot (default) - Accepts one or more `<flint-table-row>` elements.
  */
 export interface FlintTableBodyProps extends React.HTMLAttributes<FlintTableBodyElement> {
-    /** Alternating row shading. */
+    /** Enables alternating row background shading. */
     striped?: boolean;
 }
 

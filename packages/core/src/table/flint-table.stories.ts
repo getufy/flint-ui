@@ -126,7 +126,7 @@ optional elevation shadow, and sticky header support.
 
 | Property | Default |
 |---|---|
-| \`--flint-table-container-bg\` | \`var(--flint-surface-background, white\` |
+| \`--flint-table-container-bg\` | \`var(--flint-surface-background\` |
 
 ---
 
@@ -160,8 +160,8 @@ and sticky header support, or standalone for simple layouts.
 | \`--flint-table-border-color\` | \`var(--flint-border-color\` |
 | \`--flint-table-header-bg\` | \`transparent\` |
 | \`--flint-table-header-color\` | \`var(--flint-text-color-muted\` |
-| \`--flint-table-container-bg\` | \`var(--flint-surface-background, white\` |
-| \`--flint-table-border-radius\` | \`var(--flint-border-radius-lg, 8px\` |
+| \`--flint-table-container-bg\` | \`var(--flint-surface-background\` |
+| \`--flint-table-border-radius\` | \`var(--flint-border-radius-lg\` |
 | \`--flint-table-shadow\` | \`var(--flint-shadow-sm\` |
 | \`--flint-table-shadow-elevated\` | \`var(--flint-shadow-md\` |
 | \`--flint-table-row-hover-bg\` | \`var(--flint-hover-color, rgba(0, 0, 0, 0.04\` |

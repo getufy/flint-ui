@@ -57,13 +57,13 @@ helper text + error message) for any slotted form control.
 | \`--flint-form-field-label-width\` | \`120px\` |
 | \`--flint-form-field-label-font-size\` | \`0.875rem\` |
 | \`--flint-form-field-label-font-weight\` | \`500\` |
-| \`--flint-form-field-required-color\` | \`#dc2626\` |
+| \`--flint-form-field-required-color\` | — |
 | \`--flint-form-field-helper-font-size\` | \`0.75rem\` |
 | \`--flint-form-field-error-font-size\` | \`0.75rem\` |
-| \`--flint-form-field-error-color\` | \`#dc2626\` |
+| \`--flint-form-field-error-color\` | — |
 | \`--flint-font-family\` | \`system-ui, sans-serif\` |
-| \`--flint-text-color\` | \`#111827\` |
-| \`--flint-text-color-muted\` | \`#6b7280\` |
+| \`--flint-text-color\` | — |
+| \`--flint-text-color-muted\` | — |
                 `,
             },
         },

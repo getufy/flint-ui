@@ -10,12 +10,15 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintTableRow as FlintTableRowElement } from '@getufy/flint-ui/table/flint-table';
 
 /**
- * flint-table-row
+ * A single row within a `<flint-table-head>`, `<flint-table-body>`,
+or `<flint-table-footer>`. Supports selected and hover highlight states.
+ *
+ * @slot (default) - Accepts one or more `<flint-table-cell>` elements.
  */
 export interface FlintTableRowProps extends React.HTMLAttributes<FlintTableRowElement> {
-    /** Selected row highlight. */
+    /** Highlights the row as selected. */
     selected?: boolean;
-    /** Force hover highlight. */
+    /** Forces the hover highlight state. */
     hover?: boolean;
 }
 

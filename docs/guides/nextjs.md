@@ -136,7 +136,7 @@ import { setFlintTheme } from '@getufy/flint-ui';
 
 export function ThemeToggle() {
   return (
-    <button onClick={() => setFlintTheme({ mode: 'dark' })}>
+    <button onClick={() => setFlintTheme('dark')}>
       Toggle Dark Mode
     </button>
   );

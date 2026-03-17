@@ -241,6 +241,28 @@ The same applies to inline styles and component CSS:
 
 Flint UI's theme stylesheets (`theme.css` and `theme-dark.css`) define every semantic token for both light and dark modes. As long as you import both stylesheets, every `var(--flint-*)` reference will resolve correctly without a fallback.
 
+### Programmatic Theme Switching
+
+Use the `setFlintTheme()` utility for runtime theme changes instead of manually toggling CSS classes:
+
+```ts
+import { setFlintTheme, getFlintTheme } from '@getufy/flint-ui';
+
+// Set dark mode
+setFlintTheme('dark');
+
+// Set dark mode with a color palette
+setFlintTheme('dark', 'rose');
+
+// Set just a palette (keeps current mode)
+setFlintTheme('rose');
+
+// Check current theme
+const { mode, palette } = getFlintTheme();
+```
+
+Available modes: `'light'`, `'dark'`, `'auto'` (follows system preference).
+
 ### Custom Brand Colors
 
 Here is an example that rebrands the entire library to use a green primary color and rounded corners:

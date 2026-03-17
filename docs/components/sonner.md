@@ -22,51 +22,6 @@ import { FlintToaster } from '@getufy/flint-ui';
 <flint-toaster></flint-toaster>
 ```
 
-### Imperative API
-
-Toasts are created via the `toast()` function — no framework wrapper needed:
-
-```ts
-import { toast } from '@getufy/flint-ui';
-// or tree-shaken:
-import { toast } from '@getufy/flint-ui/sonner/flint-sonner';
-
-toast('Hello');
-toast.success('Saved!');
-toast.error('Something went wrong');
-toast.info('FYI');
-toast.warning('Careful!');
-
-// Promise-based
-toast.promise(fetchData(), {
-  loading: 'Loading...',
-  success: 'Done!',
-  error: 'Failed',
-});
-
-// Dismiss a specific toast
-const id = toast('Uploading...');
-toast.dismiss(id);
-```
-
-#### React
-
-The `toast()` function is framework-agnostic — import it directly from the core package alongside the React toaster component:
-
-```tsx
-import { FlintToaster } from '@getufy/flint-ui-react';
-import { toast } from '@getufy/flint-ui';
-
-function App() {
-  return (
-    <>
-      <FlintToaster />
-      <button onClick={() => toast.success('It works!')}>Toast</button>
-    </>
-  );
-}
-```
-
 ### Properties
 
 | Property | Attribute | Type | Default | Description |
@@ -93,14 +48,14 @@ function App() {
 | `--flint-toast-error-icon-color` | — |
 | `--flint-toast-warning-icon-color` | — |
 | `--flint-toast-info-icon-color` | — |
-| `--flint-font-family` | `system-ui, sans-serif` |
-| `--flint-text-color-muted` | `#4b5563` |
-| `--flint-border-color` | `#e4e4e7` |
-| `--flint-border-radius-md` | `0.375rem` |
-| `--flint-hover-color` | `rgba(0, 0, 0, 0.04` |
-| `--flint-primary-focus-ring` | `rgba(59, 130, 246, 0.5` |
-| `--flint-text-color-subtle` | `#4b5563` |
-| `--flint-border-radius-sm` | `0.125rem` |
-| `--flint-text-color` | `#111827` |
+| `--flint-font-family` | — |
+| `--flint-text-color-muted` | — |
+| `--flint-border-color` | — |
+| `--flint-border-radius-md` | — |
+| `--flint-hover-color` | — |
+| `--flint-primary-focus-ring` | — |
+| `--flint-text-color-subtle` | — |
+| `--flint-border-radius-sm` | — |
+| `--flint-text-color` | — |
 
 ---

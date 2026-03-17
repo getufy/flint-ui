@@ -10,7 +10,10 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintTableFooter as FlintTableFooterElement } from '@getufy/flint-ui/table/flint-table';
 
 /**
- * flint-table-footer
+ * Footer section of a `<flint-table>`, typically used for summary rows,
+pagination controls, or aggregate data.
+ *
+ * @slot (default) - Accepts one or more `<flint-table-row>` elements or arbitrary footer content.
  */
 export interface FlintTableFooterProps extends React.HTMLAttributes<FlintTableFooterElement> {
 }

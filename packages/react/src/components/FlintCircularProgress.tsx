@@ -20,8 +20,10 @@ export interface FlintCircularProgressProps extends Omit<React.HTMLAttributes<Fl
     mode?: 'determinate' | 'indeterminate';
     /** Allowed values: 'determinate' | 'indeterminate' */
     variant?: 'determinate' | 'indeterminate';
-    /** Current progress percentage (0-100) for determinate mode. */
+    /** Current progress value (0 to max) for determinate mode. */
     value?: number;
+    /** Maximum value. The progress is calculated as value / max. */
+    max?: number;
     /** Diameter of the circular indicator in pixels. */
     size?: number;
     /** Stroke width of the circle in pixels. */

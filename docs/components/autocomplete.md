@@ -26,7 +26,7 @@ import { FlintAutocomplete } from '@getufy/flint-ui';
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | `shadowRootOptions` | `shadowRootOptions` | `object` | `&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;` |  |
-| `options` | `options` | `AutocompleteOption[]` | `[]` | The list of selectable options. |
+| `options` | `options` | `(AutocompleteOption \| string)[]` | `[]` | The list of selectable options. Accepts `AutocompleteOption[]` or `string[]`. |
 | `freeSolo` | `freeSolo` | `boolean` | `false` | When true, allows arbitrary values that are not in the options list. |
 | `disabled` | `disabled` | `boolean` | `false` | Whether the autocomplete input is disabled. |
 | `value` | `value` | `string` | `''` | The current selected value. |
@@ -34,6 +34,7 @@ import { FlintAutocomplete } from '@getufy/flint-ui';
 | `name` | `name` | `string` | `''` | Form field name used when submitting form data. |
 | `required` | `required` | `boolean` | `false` | Marks the autocomplete as required for form validation. |
 | `defaultValue` | `default-value` | `string` | `''` | Initial value for uncontrolled usage. |
+| `hoist` | `hoist` | `boolean` | `true` | When true, the dropdown uses `position: fixed` so it can escape |
 
 ### Events
 
@@ -57,7 +58,44 @@ import { FlintAutocomplete } from '@getufy/flint-ui';
 | `--flint-input-disabled-bg` | — |
 | `--flint-text-color-subtle` | — |
 | `--flint-surface-1` | — |
+| `--flint-shadow-md` | — |
 | `--flint-hover-color` | — |
 | `--flint-text-color-muted` | — |
 
 ---
+
+### String Options
+
+You can pass a simple `string[]` instead of `{ label, value }[]`. Strings are automatically normalized to `{ label: str, value: str }`.
+
+```ts
+// Simple string array
+el.options = ['Apple', 'Banana', 'Cherry'];
+
+// Equivalent to:
+el.options = [
+  { label: 'Apple', value: 'Apple' },
+  { label: 'Banana', value: 'Banana' },
+  { label: 'Cherry', value: 'Cherry' },
+];
+```
+
+### React Usage
+
+```tsx
+import { FlintAutocomplete } from '@getufy/flint-ui-react';
+
+function FruitPicker() {
+  return (
+    <FlintAutocomplete
+      placeholder="Pick a fruit"
+      options={['Apple', 'Banana', 'Cherry']}
+      onFlintAutocompleteChange={(e) => console.log(e.detail.value)}
+    />
+  );
+}
+```
+
+### Hoist
+
+By default (`hoist=true`), the autocomplete dropdown uses `position: fixed` so it can escape containers with `overflow: hidden` (e.g., app bars, dialogs). Set `hoist={false}` to use the default `position: absolute` behavior.

@@ -196,7 +196,22 @@ Check each component's documentation for the list of available part names.
 
 ## TypeScript
 
-All wrappers export their props type as `Flint<Component>Props`:
+All wrappers export their props type as `Flint<Component>Props`.
+
+Event detail types can be imported from the core package for full type safety:
+
+```tsx
+import { FlintSelect } from '@getufy/flint-ui-react';
+import type { FlintSelectChangeDetail } from '@getufy/flint-ui';
+
+const handleChange = (e: CustomEvent<FlintSelectChangeDetail>) => {
+  console.log(e.detail.value);
+};
+
+<FlintSelect onFlintSelectChange={handleChange} />
+```
+
+Props types are also exported:
 
 ```tsx
 import { FlintButton, type FlintButtonProps } from '@getufy/flint-ui-react';

@@ -21,44 +21,6 @@ import { FlintSelect } from '@getufy/flint-ui';
 <flint-select></flint-select>
 ```
 
-### Passing Options
-
-The `options` property accepts an array of `{ value, label }` objects. How you pass it depends on your framework:
-
-**Lit / vanilla JS** — use property binding (`.options`), not the attribute:
-
-```html
-<flint-select .options=${[
-  { value: 'apple', label: 'Apple' },
-  { value: 'banana', label: 'Banana' },
-]}></flint-select>
-```
-
-**React** — the wrapper passes objects directly:
-
-```tsx
-<FlintSelect options={[
-  { value: 'apple', label: 'Apple' },
-  { value: 'banana', label: 'Banana' },
-]} />
-```
-
-**Plain HTML** — set via JavaScript:
-
-```html
-<flint-select id="fruit"></flint-select>
-<script>
-  document.getElementById('fruit').options = [
-    { value: 'apple', label: 'Apple' },
-    { value: 'banana', label: 'Banana' },
-  ];
-</script>
-```
-
-::: warning
-Do not use the HTML `options` *attribute* with a JSON string — `options` is a complex property and must be set via JavaScript or property binding.
-:::
-
 ### Properties
 
 | Property | Attribute | Type | Default | Description |

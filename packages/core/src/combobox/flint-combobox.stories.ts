@@ -59,7 +59,7 @@ Combobox: a free-text input with dropdown suggestions.
 | \`--flint-primary-focus-ring\` | — |
 | \`--flint-input-disabled-bg\` | — |
 | \`--flint-text-color-subtle\` | — |
-| \`--flint-surface-background\` | \`white\` |
+| \`--flint-surface-background\` | — |
 | \`--flint-border-color\` | — |
 | \`--flint-shadow-lg\` | — |
 | \`--flint-hover-color\` | — |

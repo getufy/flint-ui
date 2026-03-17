@@ -20,8 +20,10 @@ export interface FlintLinearProgressProps extends Omit<React.HTMLAttributes<Flin
     mode?: 'determinate' | 'indeterminate';
     /** Allowed values: 'determinate' | 'indeterminate' */
     variant?: 'determinate' | 'indeterminate';
-    /** Current progress value (0-100). */
+    /** Current progress value (0 to max). */
     value?: number;
+    /** Maximum value. The progress is calculated as value / max. */
+    max?: number;
     /** Height of the progress bar in pixels. */
     height?: number;
     /**

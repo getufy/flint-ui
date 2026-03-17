@@ -41,6 +41,7 @@ Slot the shortcut string (e.g. \`⌘P\`) as default slot content.
 | Property | Default |
 |---|---|
 | \`--flint-border-radius-md\` | — |
+| \`--flint-shadow-xl\` | — |
 | \`--flint-text-color-muted\` | — |
 | \`--flint-font-family\` | — |
 | \`--flint-border-color\` | — |

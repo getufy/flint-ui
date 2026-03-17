@@ -157,10 +157,10 @@ Time Clock: an analog clock face for selecting hours, minutes, and seconds.
 
 | Property | Default |
 |---|---|
-| \`--flint-time-clock-face-bg\` | \`var(--flint-surface-variant, #f1f5f9\` |
-| \`--flint-time-clock-inner-bg\` | \`rgba(0,0,0,.04\` |
-| \`--flint-time-clock-inner-border\` | \`var(--flint-border-color, #e5e7eb\` |
-| \`--flint-time-clock-hand-color\` | \`var(--flint-primary-color, #2563eb\` |
+| \`--flint-time-clock-face-bg\` | \`var(--flint-surface-variant\` |
+| \`--flint-time-clock-inner-bg\` | — |
+| \`--flint-time-clock-inner-border\` | \`var(--flint-border-color\` |
+| \`--flint-time-clock-hand-color\` | \`var(--flint-primary-color\` |
 | \`--flint-time-clock-num-size\` | \`14px\` |
 | \`--flint-time-clock-inner-num-size\` | \`12px\` |
 | \`--flint-time-clock-ampm-radius\` | \`20px\` |

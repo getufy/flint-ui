@@ -10,10 +10,13 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintTableContainer as FlintTableContainerElement } from '@getufy/flint-ui/table/flint-table';
 
 /**
- * flint-table-container
+ * Scrollable container that wraps a `<flint-table>` to provide overflow handling,
+optional elevation shadow, and sticky header support.
+ *
+ * @slot (default) - Default slot accepts a `<flint-table>` element.
  */
 export interface FlintTableContainerProps extends React.HTMLAttributes<FlintTableContainerElement> {
-    /** Stronger box-shadow elevation. */
+    /** Applies a stronger box-shadow elevation. */
     shadow?: boolean;
     /** Sticks the table header to the top on scroll. */
     stickyHeader?: boolean;

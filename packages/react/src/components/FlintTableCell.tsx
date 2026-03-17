@@ -10,18 +10,22 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintTableCell as FlintTableCellElement } from '@getufy/flint-ui/table/flint-table';
 
 /**
- * flint-table-cell
+ * A single cell within a `<flint-table-row>`. Can render as a data cell
+or a header cell via the `header` attribute. Supports text alignment
+and padding presets.
+ *
+ * @slot (default) - Cell content (text, icons, controls, etc.).
  */
 export interface FlintTableCellProps extends React.HTMLAttributes<FlintTableCellElement> {
-    /** Header cell styling. */
+    /** Renders the cell with header (th) styling. */
     header?: boolean;
     /**
-     * Text alignment.
+     * Text alignment within the cell.
      * Allowed values: 'left' | 'right' | 'center'
      */
     align?: 'left'|'right'|'center';
     /**
-     * Padding preset.
+     * Padding preset for the cell.
      * Allowed values: 'normal' | 'checkbox' | 'none'
      */
     padding?: 'normal'|'checkbox'|'none';

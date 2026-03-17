@@ -21,7 +21,7 @@ Autocomplete: a text input with a dropdown of selectable suggestions.
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
 | \`shadowRootOptions\` | \`shadowRootOptions\` | \`object\` | \`&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;\` |  |
-| \`options\` | \`options\` | \`AutocompleteOption[]\` | \`[]\` | The list of selectable options. |
+| \`options\` | \`options\` | \`(AutocompleteOption \\| string)[]\` | \`[]\` | The list of selectable options. Accepts \`AutocompleteOption[]\` or \`string[]\`. |
 | \`freeSolo\` | \`freeSolo\` | \`boolean\` | \`false\` | When true, allows arbitrary values that are not in the options list. |
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Whether the autocomplete input is disabled. |
 | \`value\` | \`value\` | \`string\` | \`''\` | The current selected value. |
@@ -29,6 +29,7 @@ Autocomplete: a text input with a dropdown of selectable suggestions.
 | \`name\` | \`name\` | \`string\` | \`''\` | Form field name used when submitting form data. |
 | \`required\` | \`required\` | \`boolean\` | \`false\` | Marks the autocomplete as required for form validation. |
 | \`defaultValue\` | \`default-value\` | \`string\` | \`''\` | Initial value for uncontrolled usage. |
+| \`hoist\` | \`hoist\` | \`boolean\` | \`true\` | When true, the dropdown uses \`position: fixed\` so it can escape |
 
 #### Events
 
@@ -52,6 +53,7 @@ Autocomplete: a text input with a dropdown of selectable suggestions.
 | \`--flint-input-disabled-bg\` | — |
 | \`--flint-text-color-subtle\` | — |
 | \`--flint-surface-1\` | — |
+| \`--flint-shadow-md\` | — |
 | \`--flint-hover-color\` | — |
 | \`--flint-text-color-muted\` | — |
                 `,

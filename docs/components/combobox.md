@@ -62,7 +62,7 @@ import { FlintCombobox } from '@getufy/flint-ui';
 | `--flint-primary-focus-ring` | — |
 | `--flint-input-disabled-bg` | — |
 | `--flint-text-color-subtle` | — |
-| `--flint-surface-background` | `white` |
+| `--flint-surface-background` | — |
 | `--flint-border-color` | — |
 | `--flint-shadow-lg` | — |
 | `--flint-hover-color` | — |

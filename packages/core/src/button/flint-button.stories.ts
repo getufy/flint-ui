@@ -36,21 +36,21 @@ const meta: Meta = {
 | \`--flint-destructive-color\` | — |
 | \`--flint-destructive-color-hover\` | — |
 | \`--flint-destructive-color-active\` | — |
-| \`--flint-success-color\` | \`#16a34a\` |
-| \`--flint-success-color-hover\` | \`#15803d\` |
-| \`--flint-success-color-active\` | \`#166534\` |
-| \`--flint-warning-color\` | \`#f59e0b\` |
-| \`--flint-warning-color-hover\` | \`#d97706\` |
-| \`--flint-warning-color-active\` | \`#b45309\` |
-| \`--flint-neutral-color\` | \`#6b7280\` |
-| \`--flint-neutral-color-hover\` | \`#4b5563\` |
-| \`--flint-neutral-color-active\` | \`#374151\` |
+| \`--flint-success-color\` | — |
+| \`--flint-success-color-hover\` | — |
+| \`--flint-success-color-active\` | — |
+| \`--flint-warning-color\` | — |
+| \`--flint-warning-color-hover\` | — |
+| \`--flint-warning-color-active\` | — |
+| \`--flint-neutral-color\` | — |
+| \`--flint-neutral-color-hover\` | — |
+| \`--flint-neutral-color-active\` | — |
 | \`--flint-shadow-sm\` | — |
 | \`--flint-surface-1\` | \`transparent\` |
 | \`--flint-text-color\` | — |
 | \`--flint-input-border-color\` | — |
-| \`--flint-hover-color\` | \`rgba(0, 0, 0, 0.04\` |
-| \`--flint-active-color\` | \`rgba(0, 0, 0, 0.08\` |
+| \`--flint-hover-color\` | — |
+| \`--flint-active-color\` | — |
 
 ---
 

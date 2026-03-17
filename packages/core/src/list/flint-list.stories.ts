@@ -48,7 +48,7 @@ flint-list: A wrapper for list items.
 | \`--flint-text-color-muted\` | — |
 | \`--flint-font-family\` | — |
 | \`--flint-text-color\` | — |
-| \`--flint-surface-background\` | \`white\` |
+| \`--flint-surface-background\` | — |
 
 ---
 
