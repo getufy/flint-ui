@@ -1,5 +1,12 @@
 # @getufy/flint-ui
 
+## [0.8.1](https://github.com/getufy/flint-ui/compare/flint-ui-v0.8.0...flint-ui-v0.8.1) (2026-03-17)
+
+
+### Bug Fixes
+
+* add source files to sideEffects to fix VitePress docs ([dd4554e](https://github.com/getufy/flint-ui/commit/dd4554e77501bfc633e0d248ce67f67c4beb8298))
+
 ## [0.8.0](https://github.com/getufy/flint-ui/compare/flint-ui-v0.7.0...flint-ui-v0.8.0) (2026-03-17)
 
 
