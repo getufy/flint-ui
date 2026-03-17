@@ -45,8 +45,8 @@ export class FlintLinearProgress extends FlintElement {
     };
 
     protected override willUpdate(changed: PropertyValues<this>): void {
-        const modeExplicitlySet = changed.has('mode' as keyof this) && this.mode !== 'indeterminate';
-        if (changed.has('variant' as keyof this) && this.variant !== 'indeterminate' && !modeExplicitlySet) {
+        const modeExplicitlySet = changed.has('mode') && this.mode !== 'indeterminate';
+        if (changed.has('variant') && this.variant !== 'indeterminate' && !modeExplicitlySet) {
             this.mode = this.variant;
             if (!this._variantWarned) {
                 this._variantWarned = true;
