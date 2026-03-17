@@ -1,5 +1,25 @@
 # @getufy/flint-ui-react
 
+## [0.8.0](https://github.com/getufy/flint-ui/compare/flint-ui-react-v0.7.0...flint-ui-react-v0.8.0) (2026-03-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* Button appearance/color replaces variant; Skeleton shape replaces variant; Progress mode replaces variant; Select change event detail is now a discriminated union. Old props still work with deprecation warnings.
+
+### Features
+
+* complete v0.7.0 DX report — P1 breaking changes, P2 React DX, P3 docs ([a82f451](https://github.com/getufy/flint-ui/commit/a82f4512e7836752b0503d50feefcc3e14da8689))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @getufy/flint-ui bumped from 0.7.0 to 0.8.0
+  * peerDependencies
+    * @getufy/flint-ui bumped from ^0.7.0 to ^0.8.0
+
 ## [0.7.0](https://github.com/getufy/flint-ui/compare/flint-ui-react-v0.6.1...flint-ui-react-v0.7.0) (2026-03-16)
 
 

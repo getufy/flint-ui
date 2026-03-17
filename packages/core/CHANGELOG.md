@@ -1,5 +1,21 @@
 # @getufy/flint-ui
 
+## [0.8.0](https://github.com/getufy/flint-ui/compare/flint-ui-v0.7.0...flint-ui-v0.8.0) (2026-03-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* Button appearance/color replaces variant; Skeleton shape replaces variant; Progress mode replaces variant; Select change event detail is now a discriminated union. Old props still work with deprecation warnings.
+
+### Features
+
+* complete v0.7.0 DX report — P1 breaking changes, P2 React DX, P3 docs ([a82f451](https://github.com/getufy/flint-ui/commit/a82f4512e7836752b0503d50feefcc3e14da8689))
+
+
+### Bug Fixes
+
+* resolve P0 bugs from v0.7.0 DX report — scroll lock, card overflow, tab UX ([f650968](https://github.com/getufy/flint-ui/commit/f65096883f8831ffa154db296aee9023c4201206))
+
 ## [0.7.0](https://github.com/getufy/flint-ui/compare/flint-ui-v0.6.1...flint-ui-v0.7.0) (2026-03-16)
 
 
