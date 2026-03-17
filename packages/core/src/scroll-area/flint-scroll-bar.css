@@ -38,7 +38,7 @@
 .thumb {
     position: absolute;
     border-radius: var(--flint-scrollbar-thumb-radius, 9999px);
-    background: var(--flint-scrollbar-thumb-color, rgba(0, 0, 0, 0.35));
+    background: var(--flint-scrollbar-thumb-color);
     transition: background 150ms ease;
     cursor: grab;
 }
@@ -46,11 +46,11 @@
 .thumb:active,
 .thumb--dragging {
     cursor: grabbing;
-    background: var(--flint-scrollbar-thumb-hover-color, rgba(0, 0, 0, 0.5));
+    background: var(--flint-scrollbar-thumb-hover-color);
 }
 
 :host(:hover) .thumb {
-    background: var(--flint-scrollbar-thumb-hover-color, rgba(0, 0, 0, 0.5));
+    background: var(--flint-scrollbar-thumb-hover-color);
 }
 
 :host([orientation="vertical"]) .thumb {

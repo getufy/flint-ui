@@ -2,43 +2,43 @@
     .clock-wrap { display:flex; flex-direction:column; align-items:center; gap:12px; }
     .clock-header {
       display:flex; gap:4px; font-size:2rem; font-weight:700;
-      font-family:var(--flint-font-family); color:var(--flint-text-color, #111827);
+      font-family:var(--flint-font-family); color:var(--flint-text-color);
     }
     .clock-seg { padding:4px 10px; border-radius:8px; cursor:pointer; transition:background .12s, color .12s; }
-    .clock-seg.active { background:var(--flint-primary-color, #2563eb); color:var(--flint-text-color-on-primary, #fff); border-radius:8px; }
-    .clock-seg:hover:not(.active) { background:var(--flint-hover-color, rgba(0,0,0,.06)); }
-    .clock-sep { color:var(--flint-text-color-muted, #4b5563); }
-    .clock-mer { font-size:1rem; font-weight:600; align-self:flex-end; margin-bottom:6px; color:var(--flint-text-color-muted, #4b5563); }
+    .clock-seg.active { background:var(--flint-primary-color); color:var(--flint-text-color-on-primary); border-radius:8px; }
+    .clock-seg:hover:not(.active) { background:var(--flint-hover-color); }
+    .clock-sep { color:var(--flint-text-color-muted); }
+    .clock-mer { font-size:1rem; font-weight:600; align-self:flex-end; margin-bottom:6px; color:var(--flint-text-color-muted); }
     svg { touch-action:none; cursor:pointer; outline:none; }
     svg.dragging { cursor:grabbing; }
-    svg:focus-visible { outline:2px solid var(--flint-primary-color, #2563eb); outline-offset:4px; border-radius:50%; }
-    .face { fill:var(--flint-time-clock-face-bg, var(--flint-surface-variant, #f1f5f9)); }
-    .face-inner { fill:var(--flint-time-clock-inner-bg, rgba(0,0,0,.04)); stroke:var(--flint-time-clock-inner-border, var(--flint-border-color, #e5e7eb)); stroke-width:1; }
-    .hand { stroke:var(--flint-time-clock-hand-color, var(--flint-primary-color, #2563eb)); stroke-width:2; stroke-linecap:round; }
-    .hand-center { fill:var(--flint-time-clock-hand-color, var(--flint-primary-color, #2563eb)); }
-    .hand-tip { fill:var(--flint-time-clock-hand-color, var(--flint-primary-color, #2563eb)); }
+    svg:focus-visible { outline:2px solid var(--flint-primary-color); outline-offset:4px; border-radius:50%; }
+    .face { fill:var(--flint-time-clock-face-bg, var(--flint-surface-variant)); }
+    .face-inner { fill:var(--flint-time-clock-inner-bg); stroke:var(--flint-time-clock-inner-border, var(--flint-border-color)); stroke-width:1; }
+    .hand { stroke:var(--flint-time-clock-hand-color, var(--flint-primary-color)); stroke-width:2; stroke-linecap:round; }
+    .hand-center { fill:var(--flint-time-clock-hand-color, var(--flint-primary-color)); }
+    .hand-tip { fill:var(--flint-time-clock-hand-color, var(--flint-primary-color)); }
     .num {
       font-size:var(--flint-time-clock-num-size, 14px); font-weight:500;
-      font-family:var(--flint-font-family, system-ui, sans-serif); fill:var(--flint-text-color, #111827);
+      font-family:var(--flint-font-family); fill:var(--flint-text-color);
       text-anchor:middle; pointer-events:none;
     }
-    .num.inner-label { font-size:var(--flint-time-clock-inner-num-size, 12px); fill:var(--flint-text-color-muted, #4b5563); }
-    .num.selected { fill:var(--flint-text-color-on-primary, #fff); font-weight:700; }
+    .num.inner-label { font-size:var(--flint-time-clock-inner-num-size, 12px); fill:var(--flint-text-color-muted); }
+    .num.selected { fill:var(--flint-text-color-on-primary); font-weight:700; }
     .num-bg { fill:transparent; cursor:pointer; }
-    .num-bg.selected { fill:var(--flint-primary-color, #2563eb); }
-    .am-pm { display:inline-flex; border-radius:var(--flint-time-clock-ampm-radius, 20px); overflow:hidden; border:1.5px solid var(--flint-border-color, #e5e7eb); }
+    .num-bg.selected { fill:var(--flint-primary-color); }
+    .am-pm { display:inline-flex; border-radius:var(--flint-time-clock-ampm-radius, 20px); overflow:hidden; border:1.5px solid var(--flint-border-color); }
     .am-pm-btn {
       padding:5px 18px; border:none;
       cursor:pointer; font-size:.875rem; font-weight:500; font-family:inherit;
-      background:transparent; color:var(--flint-text-color, #111827); transition:all .12s;
+      background:transparent; color:var(--flint-text-color); transition:all .12s;
       position:relative;
     }
-    .am-pm-btn:first-child { border-right:1.5px solid var(--flint-border-color, #e5e7eb); }
+    .am-pm-btn:first-child { border-right:1.5px solid var(--flint-border-color); }
     .am-pm-btn.sel {
-      background:var(--flint-primary-color, #2563eb); color:var(--flint-text-color-on-primary, #fff);
-      border-color:var(--flint-primary-color, #2563eb);
+      background:var(--flint-primary-color); color:var(--flint-text-color-on-primary);
+      border-color:var(--flint-primary-color);
     }
-    .am-pm-btn:hover:not(.sel) { background:var(--flint-hover-color, rgba(0,0,0,.06)); }
+    .am-pm-btn:hover:not(.sel) { background:var(--flint-hover-color); }
 
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {

@@ -4,9 +4,9 @@
 
     .dialog-panel {
       position: relative;
-      background-color: var(--flint-surface-background, white);
-      border-radius: var(--flint-border-radius-xl, 12px);
-      box-shadow: var(--flint-shadow-xl, 0 20px 25px -5px rgba(0, 0, 0, 0.1));
+      background-color: var(--flint-surface-background);
+      border-radius: var(--flint-border-radius-xl);
+      box-shadow: var(--flint-shadow-xl);
       max-width: 90vw;
       max-height: var(--flint-dialog-max-height, 90vh); /* ← bounds the panel so content scrolls */
       width: var(--flint-dialog-width, 600px);

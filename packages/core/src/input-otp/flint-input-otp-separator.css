@@ -2,7 +2,7 @@
             display: inline-flex;
             align-items: center;
             padding: 0 6px;
-            color: var(--flint-text-color, #111827);
+            color: var(--flint-text-color);
         }
 
         .bar {

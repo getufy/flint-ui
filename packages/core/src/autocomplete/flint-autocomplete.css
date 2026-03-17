@@ -45,13 +45,18 @@
       border: 1px solid var(--flint-input-border-color);
       border-radius: var(--flint-input-border-radius);
       margin-top: 4px;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      box-shadow: var(--flint-shadow-md);
       z-index: var(--flint-autocomplete-z-index, 10);
       display: none;
     }
 
     .dropdown.open {
       display: block;
+    }
+
+    .dropdown.hoisted {
+      /* position/top/left/width set via inline styles in _handleReposition */
+      right: auto;
     }
 
     .option {

@@ -28,8 +28,7 @@
             background: var(--flint-command-bg, var(--flint-surface-1));
             border-radius: var(--flint-border-radius-md);
             border: 1px solid var(--flint-command-panel-border-color, var(--flint-border-color));
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15),
-                        0 10px 10px -5px rgba(0, 0, 0, 0.06);
+            box-shadow: var(--flint-shadow-xl);
             overflow: hidden;
 
             transform: scale(0.94) translateY(-8px);

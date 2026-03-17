@@ -2,8 +2,8 @@
       display: block;
       width: 100%;
       overflow-x: auto;
-      background-color: var(--flint-table-container-bg, var(--flint-surface-background, white));
-      border-radius: var(--flint-table-border-radius, var(--flint-border-radius-lg, 8px));
+      background-color: var(--flint-table-container-bg, var(--flint-surface-background));
+      border-radius: var(--flint-table-border-radius, var(--flint-border-radius-lg));
       box-shadow: var(--flint-table-shadow, var(--flint-shadow-sm));
       border: 1px solid var(--flint-table-border-color, var(--flint-border-color));
     }

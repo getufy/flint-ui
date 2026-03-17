@@ -41,7 +41,7 @@
       right: 0;
       max-height: var(--flint-combobox-dropdown-max-height, 250px);
       overflow-y: auto;
-      background: var(--flint-surface-background, white);
+      background: var(--flint-surface-background);
       border: 1px solid var(--flint-border-color);
       border-radius: var(--flint-input-border-radius);
       margin-top: 4px;

@@ -35,12 +35,12 @@
 .label {
     font-size: var(--flint-form-field-label-font-size, 0.875rem);
     font-weight: var(--flint-form-field-label-font-weight, 500);
-    color: var(--flint-text-color, #111827);
+    color: var(--flint-text-color);
     line-height: 1.4;
 }
 
 .required-indicator {
-    color: var(--flint-form-field-required-color, #dc2626);
+    color: var(--flint-form-field-required-color);
     font-weight: 600;
 }
 
@@ -52,14 +52,14 @@
 
 .helper-text {
     font-size: var(--flint-form-field-helper-font-size, 0.75rem);
-    color: var(--flint-text-color-muted, #6b7280);
+    color: var(--flint-text-color-muted);
     line-height: 1.4;
     margin: 0;
 }
 
 .error-message {
     font-size: var(--flint-form-field-error-font-size, 0.75rem);
-    color: var(--flint-form-field-error-color, #dc2626);
+    color: var(--flint-form-field-error-color);
     line-height: 1.4;
     margin: 0;
 }

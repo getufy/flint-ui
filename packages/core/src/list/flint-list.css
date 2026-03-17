@@ -3,7 +3,7 @@
       padding: 8px 0;
       margin: 0;
       list-style: none;
-      background-color: var(--flint-surface-background, white);
+      background-color: var(--flint-surface-background);
     }
     :host([disable-padding]) {
       padding: 0;
