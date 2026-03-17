@@ -28,6 +28,8 @@
     "./src/theme-amber.css",
     "./src/theme-emerald.css",
     "./src/theme-slate.css",
+    "./src/index.ts",
+    "./src/*/flint-*.ts",
     "./dist/suppress-warnings.js",
     "./dist/index.js",
     "./dist/*/flint-*.js"
