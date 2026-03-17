@@ -26,7 +26,10 @@ export interface FlintMenubarCheckboxItemProps extends React.HTMLAttributes<Flin
     highlighted?: boolean;
     /** Explicit value for the change event. Falls back to label text (excludes shortcut). */
     value?: string;
-    /** detail: `{ checked: boolean, value: string }` */
+    /**
+     * detail: `{ checked: boolean, value: string }`
+     * DOM event: `flint-menubar-checkbox-change`
+     */
     onFlintMenubarCheckboxChange?: (event: CustomEvent<FlintMenubarCheckboxChangeDetail>) => void;
 }
 

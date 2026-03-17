@@ -30,7 +30,9 @@ export interface FlintDialogProps extends React.HTMLAttributes<FlintDialogElemen
     disableBackdropClose?: boolean;
     /** CSS selector for the element to focus when the dialog opens. */
     initialFocus?: string;
+    /** DOM event: `flint-dialog-open` */
     onFlintDialogOpen?: (event: CustomEvent) => void;
+    /** DOM event: `flint-dialog-close` */
     onFlintDialogClose?: (event: CustomEvent) => void;
 }
 

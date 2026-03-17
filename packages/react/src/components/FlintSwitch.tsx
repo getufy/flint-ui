@@ -44,7 +44,10 @@ export interface FlintSwitchProps extends Omit<React.HTMLAttributes<FlintSwitchE
     defaultChecked?: boolean;
     /** Accessible label for screen readers when no visible label is provided. */
     ariaLabel?: string | null;
-    /** Dispatched when the switch state changes. Detail: `{ checked: boolean }` */
+    /**
+     * Dispatched when the switch state changes. Detail: `{ checked: boolean }`
+     * DOM event: `flint-switch-change`
+     */
     onFlintSwitchChange?: (event: CustomEvent<FlintSwitchChangeDetail>) => void;
 }
 

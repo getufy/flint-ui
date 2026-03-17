@@ -48,5 +48,6 @@ import { FlintBackdrop } from '@getufy/flint-ui';
 | `--flint-backdrop-position` | `fixed` |
 | `--flint-backdrop-color` | — |
 | `--flint-backdrop-z-index` | — |
+| `--flint-z-modal` | `1060` |
 
 ---

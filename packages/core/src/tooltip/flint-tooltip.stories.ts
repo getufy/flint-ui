@@ -34,6 +34,14 @@ A component that displays a text label when users hover over or focus on an elem
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the tooltip so it never appears. |
 | \`openDelay\` | \`open-delay\` | \`number\` | \`0\` | Delay in ms before showing the tooltip. |
 | \`closeDelay\` | \`close-delay\` | \`number\` | \`0\` | Delay in ms before hiding the tooltip. |
+| \`hoist\` | \`hoist\` | \`boolean\` | \`false\` | When true, the tooltip popup uses \`position: fixed\` instead of \`position: absolute\` |
+
+#### Events
+
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-tooltip-show\` | — | Dispatched when the tooltip becomes visible. |
+| \`flint-tooltip-hide\` | — | Dispatched when the tooltip is dismissed. |
 
 #### CSS Custom Properties
 

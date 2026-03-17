@@ -32,9 +32,10 @@ A select component for choosing one or multiple options from a list.
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
+| \`shadowRootOptions\` | \`shadowRootOptions\` | \`object\` | \`&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;\` |  |
 | \`label\` | \`label\` | \`string\` | \`''\` | Label text displayed above the select. |
 | \`options\` | \`options\` | \`SelectOption[]\` | \`[]\` | Array of selectable options. |
-| \`value\` | \`value\` | \`string[]\` | \`[]\` | Currently selected value(s). |
+| \`value\` | \`value\` | \`string \\| string[]\` | \`[]\` | Current value (controlled). When set, the component reflects this value and does not manage its own state. Accepts a single string or an array of strings. |
 | \`multiple\` | \`multiple\` | \`boolean\` | \`false\` | Allow multiple selections. |
 | \`placeholder\` | \`placeholder\` | \`string\` | \`''\` | Placeholder text when no value is selected. |
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the select and prevents interaction. |
@@ -44,14 +45,19 @@ A select component for choosing one or multiple options from a list.
 | \`errorMessage\` | \`error-message\` | \`string\` | \`''\` | Error message displayed below the select. |
 | \`name\` | \`name\` | \`string\` | \`''\` | Form field name used when submitting form data. |
 | \`size\` | \`size\` | \`SelectSize\` | \`'md'\` | Size variant of the select. |
-| \`defaultValue\` | \`default-value\` | \`string\` | \`''\` | Sets the initial value in uncontrolled mode (single-select only). |
-| \`hoist\` | \`hoist\` | \`boolean\` | \`false\` | When true, the dropdown uses \`position: fixed\` so it can escape |
+| \`defaultValue\` | \`default-value\` | \`string\` | \`''\` | Initial value (uncontrolled). Only used on first render; ignored after mount. Single-select only. |
+| \`hoist\` | \`hoist\` | \`boolean\` | \`true\` | When true, the dropdown uses \`position: fixed\` so it can escape |
+| \`loadOptions\` | \`loadOptions\` | \`(() =&gt; Promise&lt;SelectOption[]&gt;) \\| null\` | \`null\` | Async options loader. When provided, called when the dropdown opens. |
+| \`virtualize\` | \`virtualize\` | \`boolean\` | \`false\` | Enable virtual scrolling for large option lists. |
+| \`itemHeight\` | \`item-height\` | \`number\` | \`36\` | Fixed item height in px used for virtual scroll calculations. |
+| \`visibleItems\` | \`visible-items\` | \`number\` | \`8\` | Maximum visible items in the dropdown (determines dropdown height). |
 
 #### Events
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-select-change\` | \`&#123; value: string, multiple: false &#125; \\| &#123; value: string[], multiple: true &#125;\` | Dispatched when the selection changes. |
+| \`flint-select-load\` | — |  |
+| \`flint-select-change\` | — | Dispatched when the selection changes. detail: \`&#123; value: string, multiple: false &#125; \\| &#123; value: string[], multiple: true &#125;\` |
 
 #### Slots
 
@@ -59,6 +65,18 @@ A select component for choosing one or multiple options from a list.
 |---|---|
 | \`icon\` | Optional icon shown at the start of the trigger. |
 | \`error-message\` | Optional slot for error message content (use error-message prop for simple text). |
+
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`label\` | The \`&lt;label&gt;\` element. |
+| \`trigger\` | The combobox trigger container. |
+| \`placeholder\` | The placeholder text \`&lt;span&gt;\`. |
+| \`chip\` | A selected-value chip (multiple mode). |
+| \`dropdown\` | The dropdown listbox container. |
+| \`option\` | An individual option element. |
+| \`error-message\` | The error message \`&lt;span&gt;\`. |
 
 #### CSS Custom Properties
 
@@ -72,6 +90,7 @@ A select component for choosing one or multiple options from a list.
 | \`--flint-select-chip-bg\` | — |
 | \`--flint-select-chip-color\` | — |
 | \`--flint-select-chip-radius\` | — |
+| \`--flint-select-dropdown-z-index\` | \`var(--flint-z-popover, 1300\` |
 | \`--flint-select-option-hover-bg\` | — |
 | \`--flint-select-option-selected-bg\` | — |
 | \`--flint-select-option-selected-color\` | — |

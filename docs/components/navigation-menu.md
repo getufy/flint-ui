@@ -34,13 +34,20 @@ import { FlintNavigationMenuContent } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-navigation-menu-content-toggle` | — | Fired when the content panel opens or closes. |
+| `flint-navigation-menu-content-toggle` | `&#123; contentId: string, open: boolean &#125;` | Fired when the content panel opens or closes. detail: `&#123; contentId: string, open: boolean &#125;` |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
 | `default` | Menu content items |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `root` | The root content element |
+| `panel` | The inner panel container |
 
 ### CSS Custom Properties
 
@@ -89,14 +96,20 @@ import { FlintNavigationMenuItem } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-navigation-menu-trigger-click` | — | Fired when the item's trigger is clicked. |
-| `flint-navigation-menu-content-toggle` | — | Fired when content visibility changes. |
+| `flint-navigation-menu-trigger-click` | `&#123; contentId: string, open: boolean &#125;` | Fired when the item's trigger is clicked. detail: `&#123; contentId: string, open: boolean &#125;` |
+| `flint-navigation-menu-content-toggle` | `&#123; contentId: string, open: boolean &#125;` | Fired when content visibility changes. detail: `&#123; contentId: string, open: boolean &#125;` |
 
 ### Slots
 
 | Name | Description |
 | --- | --- |
 | `default` | Item content (NavigationMenuTrigger and NavigationMenuContent) |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `root` | The root item element |
 
 ### CSS Custom Properties
 
@@ -140,6 +153,12 @@ import { FlintNavigationMenuLink } from '@getufy/flint-ui';
 | Name | Description |
 | --- | --- |
 | `default` | Link text/content |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `link` | The link element |
 
 ### CSS Custom Properties
 
@@ -190,6 +209,12 @@ import { FlintNavigationMenuList } from '@getufy/flint-ui';
 | --- | --- |
 | `default` | Menu items (NavigationMenuItem elements) |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `root` | The root list element |
+
 ### CSS Custom Properties
 
 | Property | Default |
@@ -237,6 +262,13 @@ import { FlintNavigationMenuTrigger } from '@getufy/flint-ui';
 | --- | --- |
 | `default` | Trigger label/content |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `button` | The trigger button element |
+| `icon` | The indicator icon |
+
 ### CSS Custom Properties
 
 | Property | Default |
@@ -280,6 +312,12 @@ import { FlintNavigationMenu } from '@getufy/flint-ui';
 | Name | Description |
 | --- | --- |
 | `default` | The menu content (NavigationMenuList) |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `root` | The root container |
 
 ### CSS Custom Properties
 

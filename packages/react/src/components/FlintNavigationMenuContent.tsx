@@ -29,7 +29,10 @@ export interface FlintNavigationMenuContentProps extends Omit<React.HTMLAttribut
     dir?: 'ltr' | 'rtl';
     /** Gap between items in the content */
     gap?: number;
-    /** Fired when the content panel opens or closes. detail: `{ contentId: string, open: boolean }` */
+    /**
+     * Fired when the content panel opens or closes. detail: `{ contentId: string, open: boolean }`
+     * DOM event: `flint-navigation-menu-content-toggle`
+     */
     onFlintNavigationMenuContentToggle?: (event: CustomEvent<FlintNavigationMenuContentToggleDetail>) => void;
 }
 

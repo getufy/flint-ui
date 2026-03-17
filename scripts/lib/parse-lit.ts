@@ -616,6 +616,6 @@ function parseClass(
 
     return {
         tagName, className, description, props, events, slots,
-        cssProperties, methods, sourceFile,
+        cssProperties, cssParts: [], methods, sourceFile,
     };
 }

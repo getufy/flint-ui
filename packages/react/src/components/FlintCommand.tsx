@@ -20,7 +20,10 @@ export interface FlintCommandItemSelectDetail {
  * @slot (default) - Command menu content.
  */
 export interface FlintCommandProps extends React.HTMLAttributes<FlintCommandElement> {
-    /** Bubbles up from activated items. detail: `{ value: string }` */
+    /**
+     * Bubbles up from activated items. detail: `{ value: string }`
+     * DOM event: `flint-command-item-select`
+     */
     onFlintCommandItemSelect?: (event: CustomEvent<FlintCommandItemSelectDetail>) => void;
 }
 

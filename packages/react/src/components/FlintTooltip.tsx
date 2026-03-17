@@ -19,9 +19,9 @@ export interface FlintTooltipProps extends React.HTMLAttributes<FlintTooltipElem
     label?: string;
     /**
      * Preferred placement of the tooltip relative to the trigger element.
-     * Allowed values: 'top' | 'bottom' | 'left' | 'right'
+     * Allowed values: 'top' | 'right' | 'bottom' | 'left'
      */
-    placement?: 'top' | 'bottom' | 'left' | 'right';
+    placement?: 'top' | 'right' | 'bottom' | 'left';
     /** Show a small arrow pointing toward the trigger element. */
     arrow?: boolean;
     /** Disables the tooltip so it never appears. */
@@ -32,9 +32,15 @@ export interface FlintTooltipProps extends React.HTMLAttributes<FlintTooltipElem
     closeDelay?: number;
     /** When true, the tooltip popup uses `position: fixed` instead of `position: absolute` */
     hoist?: boolean;
-    /** Dispatched when the tooltip becomes visible. */
+    /**
+     * Dispatched when the tooltip becomes visible.
+     * DOM event: `flint-tooltip-show`
+     */
     onFlintTooltipShow?: (event: CustomEvent) => void;
-    /** Dispatched when the tooltip is dismissed. */
+    /**
+     * Dispatched when the tooltip is dismissed.
+     * DOM event: `flint-tooltip-hide`
+     */
     onFlintTooltipHide?: (event: CustomEvent) => void;
 }
 

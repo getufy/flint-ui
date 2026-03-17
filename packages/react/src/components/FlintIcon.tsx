@@ -8,6 +8,7 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintIcon as FlintIconElement } from '@getufy/flint-ui/icon/flint-icon';
+import { FlintIconEvents } from '../events/flint-icon.js';
 
 /**
  * An icon component with a resolver pattern for swappable icon sets.
@@ -24,6 +25,16 @@ export interface FlintIconProps extends React.HTMLAttributes<FlintIconElement> {
     size?: 'sm' | 'md' | 'lg';
     /** Accessible label. When set, applies `role="img"`; otherwise `aria-hidden="true"`. */
     label?: string;
+    /**
+     * Emitted when the SVG has been successfully loaded and rendered.
+     * DOM event: `flint-load`
+     */
+    onFlintLoad?: (event: CustomEvent) => void;
+    /**
+     * Emitted when the SVG fails to load.
+     * DOM event: `flint-error`
+     */
+    onFlintError?: (event: CustomEvent) => void;
 }
 
 export const FlintIcon = createComponent({
@@ -77,5 +88,7 @@ export const FlintIcon = createComponent({
         onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
         onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
         onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
+        onFlintLoad: FlintIconEvents.LOAD as EventName<CustomEvent>,
+        onFlintError: FlintIconEvents.ERROR as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintIconProps & React.RefAttributes<FlintIconElement>>;

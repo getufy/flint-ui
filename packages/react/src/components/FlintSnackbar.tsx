@@ -49,9 +49,15 @@ export interface FlintSnackbarProps extends React.HTMLAttributes<FlintSnackbarEl
      * Allowed values: 'default' | 'info' | 'success' | 'warning' | 'error'
      */
     variant?: 'default' | 'info' | 'success' | 'warning' | 'error';
-    /** Fired when the snackbar opens (bubbles, composed). detail: `{ open: true }` */
+    /**
+     * Fired when the snackbar opens (bubbles, composed). detail: `{ open: true }`
+     * DOM event: `flint-snackbar-open`
+     */
     onFlintSnackbarOpen?: (event: CustomEvent<FlintSnackbarOpenDetail>) => void;
-    /** Fired when the snackbar closes (bubbles, composed). detail: `{ open: false }` */
+    /**
+     * Fired when the snackbar closes (bubbles, composed). detail: `{ open: false }`
+     * DOM event: `flint-snackbar-close`
+     */
     onFlintSnackbarClose?: (event: CustomEvent<FlintSnackbarCloseDetail>) => void;
 }
 

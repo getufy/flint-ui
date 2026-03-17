@@ -24,7 +24,10 @@ export interface FlintMultiSectionDigitalClockProps extends React.HTMLAttributes
     ampm?: boolean;
     /** Whether to show a seconds column. */
     seconds?: boolean;
-    /** Fired when the time value changes. detail: `{ value: string }` */
+    /**
+     * Fired when the time value changes. detail: `{ value: string }`
+     * DOM event: `flint-multi-section-digital-clock-change`
+     */
     onFlintMultiSectionDigitalClockChange?: (event: CustomEvent<FlintMultiSectionDigitalClockChangeDetail>) => void;
 }
 

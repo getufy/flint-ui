@@ -44,9 +44,15 @@ export interface FlintSliderProps extends Omit<React.HTMLAttributes<FlintSliderE
     size?: 'sm' | 'md' | 'lg';
     /** Form field name used when submitting form data. */
     name?: string;
-    /** Optional formatter: `(value: number) => string`. JS-only prop (not an attribute). */
+    /**
+     * Optional formatter: `(value: number) => string`. JS-only prop (not an attribute).
+     * Type: `((v: number) => string) | undefined`
+     */
     formatValue?: FlintSliderElement['formatValue'];
-    /** Fired when the slider value changes. detail: `{ value: number }` */
+    /**
+     * Fired when the slider value changes. detail: `{ value: number }`
+     * DOM event: `flint-slider-change`
+     */
     onFlintSliderChange?: (event: CustomEvent<FlintSliderChangeDetail>) => void;
 }
 

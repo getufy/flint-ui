@@ -29,7 +29,7 @@ import { FlintAvatar } from '@getufy/flint-ui';
 | `alt` | `alt` | `string` | `''` | Alt text for the avatar image. |
 | `initials` | `initials` | `string` | `''` | Initials to display when no image is provided. |
 | `variant` | `variant` | `'circle' \| 'square' \| 'rounded'` | `'circle'` | Shape variant of the avatar. |
-| `size` | `size` | `'small' \| 'medium' \| 'large' \| 'xlarge'` | `'medium'` | Size of the avatar. |
+| `size` | `size` | `Size \| 'xl'` | `'md'` | Size of the avatar. |
 
 ### CSS Custom Properties
 

@@ -35,9 +35,11 @@ import { FlintAppBar } from '@getufy/flint-ui';
 
 | Name | Description |
 | --- | --- |
-| `navigation` | Left section, e.g. menu button. |
+| `navigation` | Left section, e.g. menu button (alias: `start-content`). |
+| `start-content` | Alias for `navigation` slot. |
 | `title` | Center section next to the title prop. |
-| `actions` | Right section, e.g. action buttons. |
+| `actions` | Right section, e.g. action buttons (alias: `end-content`). |
+| `end-content` | Alias for `actions` slot. |
 
 ### CSS Custom Properties
 

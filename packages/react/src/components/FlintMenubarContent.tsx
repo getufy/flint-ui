@@ -17,6 +17,7 @@ Positioned absolutely below the trigger.
 export interface FlintMenubarContentProps extends React.HTMLAttributes<FlintMenubarContentElement> {
     /** Whether the content dropdown panel is visible. */
     open?: boolean;
+    /** DOM event: `flint-menubar-request-close` */
     onFlintMenubarRequestClose?: (event: CustomEvent) => void;
 }
 

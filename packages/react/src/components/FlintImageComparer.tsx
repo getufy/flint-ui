@@ -26,7 +26,10 @@ export interface FlintImageComparerProps extends React.HTMLAttributes<FlintImage
     position?: number;
     /** Whether the comparer is disabled. */
     disabled?: boolean;
-    /** Fired when the position changes. Detail: `{ position: number }`. */
+    /**
+     * Fired when the position changes. Detail: `{ position: number }`.
+     * DOM event: `flint-image-comparer-change`
+     */
     onFlintImageComparerChange?: (event: CustomEvent<FlintImageComparerChangeDetail>) => void;
 }
 

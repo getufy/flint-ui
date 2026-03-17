@@ -18,7 +18,10 @@ export interface FlintNavigationMenuTriggerProps extends React.HTMLAttributes<Fl
     contentId?: string;
     /** Whether the trigger is disabled */
     disabled?: boolean;
-    /** Fired when trigger is clicked */
+    /**
+     * Fired when trigger is clicked
+     * DOM event: `flint-navigation-menu-trigger-click`
+     */
     onFlintNavigationMenuTriggerClick?: (event: CustomEvent) => void;
 }
 

@@ -46,7 +46,10 @@ export interface FlintTimePickerProps extends Omit<React.HTMLAttributes<FlintTim
     required?: boolean;
     /** Initial value for uncontrolled usage (HH:MM:SS format). */
     defaultValue?: string;
-    /** Fired when the time value changes. detail: `{ value: string }` */
+    /**
+     * Fired when the time value changes. detail: `{ value: string }`
+     * DOM event: `flint-time-picker-change`
+     */
     onFlintTimePickerChange?: (event: CustomEvent<FlintTimePickerChangeDetail>) => void;
 }
 

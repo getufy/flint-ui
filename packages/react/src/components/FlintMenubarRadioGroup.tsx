@@ -20,7 +20,10 @@ export interface FlintMenubarRadioChangeDetail {
 export interface FlintMenubarRadioGroupProps extends React.HTMLAttributes<FlintMenubarRadioGroupElement> {
     /** The value of the currently selected radio item. */
     value?: string;
-    /** detail: `{ value: string }` */
+    /**
+     * detail: `{ value: string }`
+     * DOM event: `flint-menubar-radio-change`
+     */
     onFlintMenubarRadioChange?: (event: CustomEvent<FlintMenubarRadioChangeDetail>) => void;
 }
 

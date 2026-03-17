@@ -20,6 +20,9 @@ export interface FlintTextFieldChangeDetail {
 
 /**
  * Text Field: a styled text input with outlined/filled variants.
+ *
+ * @slot prefix - Content placed before the input (e.g. icon).
+ * @slot suffix - Content placed after the input (e.g. icon).
  */
 export interface FlintTextFieldProps extends Omit<React.HTMLAttributes<FlintTextFieldElement>, 'defaultValue'> {
     shadowRootOptions?: object;
@@ -60,10 +63,29 @@ export interface FlintTextFieldProps extends Omit<React.HTMLAttributes<FlintText
     minLength?: number | undefined;
     /** Maximum length for text validation. */
     maxLength?: number | undefined;
-    /** Fired on each keystroke as the value changes. detail: `{ value: string }` */
+    /** Makes the input read-only. */
+    readonly?: boolean;
+    /** Shows a clear button when the input has a value. */
+    clearable?: boolean;
+    /** Shows a toggle button on password inputs to reveal/hide the value. */
+    passwordToggle?: boolean;
+    /** Whether the password is currently visible. Only relevant when `passwordToggle` is true. */
+    passwordVisible?: boolean;
+    /**
+     * Fired on each keystroke as the value changes. detail: `{ value: string }`
+     * DOM event: `flint-text-field-input`
+     */
     onFlintTextFieldInput?: (event: CustomEvent<FlintTextFieldInputDetail>) => void;
-    /** Fired when the input loses focus after the value has changed. detail: `{ value: string }` */
+    /**
+     * Fired when the input loses focus after the value has changed. detail: `{ value: string }`
+     * DOM event: `flint-text-field-change`
+     */
     onFlintTextFieldChange?: (event: CustomEvent<FlintTextFieldChangeDetail>) => void;
+    /**
+     * Fired when the clear button is clicked. detail: `undefined`
+     * DOM event: `flint-text-field-clear`
+     */
+    onFlintTextFieldClear?: (event: CustomEvent) => void;
 }
 
 export const FlintTextField = createComponent({
@@ -119,5 +141,6 @@ export const FlintTextField = createComponent({
         onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
         onFlintTextFieldInput: FlintTextFieldEvents.INPUT as EventName<CustomEvent<FlintTextFieldInputDetail>>,
         onFlintTextFieldChange: FlintTextFieldEvents.CHANGE as EventName<CustomEvent<FlintTextFieldChangeDetail>>,
+        onFlintTextFieldClear: FlintTextFieldEvents.CLEAR as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintTextFieldProps & React.RefAttributes<FlintTextFieldElement>>;

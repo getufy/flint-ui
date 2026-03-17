@@ -24,7 +24,10 @@ export interface FlintDigitalClockProps extends React.HTMLAttributes<FlintDigita
     step?: number;
     /** Whether to use 12-hour (AM/PM) format instead of 24-hour. */
     ampm?: boolean;
-    /** Fired when a time slot is selected. detail: `{ value: string }` */
+    /**
+     * Fired when a time slot is selected. detail: `{ value: string }`
+     * DOM event: `flint-digital-clock-change`
+     */
     onFlintDigitalClockChange?: (event: CustomEvent<FlintDigitalClockChangeDetail>) => void;
 }
 

@@ -35,9 +35,15 @@ export interface FlintMobileStepperProps extends React.HTMLAttributes<FlintMobil
     backLabel?: string;
     /** Label text for the Next navigation button (supports i18n). */
     nextLabel?: string;
-    /** Fired when the back button is clicked. */
+    /**
+     * Fired when the back button is clicked.
+     * DOM event: `flint-mobile-step-back`
+     */
     onFlintMobileStepBack?: (event: CustomEvent) => void;
-    /** Fired when the next button is clicked. */
+    /**
+     * Fired when the next button is clicked.
+     * DOM event: `flint-mobile-step-next`
+     */
     onFlintMobileStepNext?: (event: CustomEvent) => void;
 }
 

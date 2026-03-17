@@ -29,8 +29,9 @@ import { FlintInput } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
+| `shadowRootOptions` | `shadowRootOptions` | `object` | `&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;` |  |
 | `label` | `label` | `string` | `''` | Label text displayed above the input. |
-| `value` | `value` | `string` | `''` | Current input value. |
+| `value` | `value` | `string` | `''` | Current value (controlled). When set, the component reflects this value and does not manage its own state. |
 | `type` | `type` | `string` | `'text'` | HTML input type (text, email, password, etc.). |
 | `placeholder` | `placeholder` | `string` | `''` | Placeholder text shown when the input is empty. |
 | `helperText` | `helper-text` | `string` | `''` | Help text displayed below the input. |
@@ -41,15 +42,45 @@ import { FlintInput } from '@getufy/flint-ui';
 | `readonly` | `readonly` | `boolean` | `false` | Makes the input read-only. |
 | `name` | `name` | `string` | `''` | Form field name used when submitting form data. |
 | `autocomplete` | `autocomplete` | `string` | `''` | Browser autocomplete hint. |
-| `size` | `size` | `'sm' \| 'default' \| 'lg'` | `'default'` | 'sm' \| 'default' \| 'lg' |
-| `defaultValue` | `default-value` | `string \| undefined` | — | Initial value for uncontrolled usage. |
+| `pattern` | `pattern` | `string` | `''` | Regex pattern for validation. |
+| `min` | `min` | `string` | `''` | Minimum value (for number/date inputs). |
+| `max` | `max` | `string` | `''` | Maximum value (for number/date inputs). |
+| `minLength` | `minlength` | `number \| undefined` | — | Minimum length for text validation. |
+| `maxLength` | `maxlength` | `number \| undefined` | — | Maximum length for text validation. |
+| `size` | `size` | `Size` | `'md'` | Size variant of the input. |
+| `defaultValue` | `default-value` | `string \| undefined` | — | Initial value (uncontrolled). Only used on first render; ignored after mount. |
+| `clearable` | `clearable` | `boolean` | `false` | Shows a clear button when the input has a value. |
+| `passwordToggle` | `password-toggle` | `boolean` | `false` | Shows a toggle button on password inputs to reveal/hide the value. |
+| `passwordVisible` | `password-visible` | `boolean` | `false` | Whether the password is currently visible. Only relevant when `passwordToggle` is true. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-input-input` | — | Fired on each keystroke as the value changes. |
-| `flint-input-change` | — | Fired when the input loses focus after the value has changed. |
+| `flint-input-clear` | — | Fired when the clear button is clicked. detail: `undefined` |
+| `flint-input-input` | `&#123; value: string &#125;` | Fired on each keystroke as the value changes. detail: `&#123; value: string &#125;` |
+| `flint-input-change` | `&#123; value: string &#125;` | Fired when the input loses focus after the value has changed. detail: `&#123; value: string &#125;` |
+
+### Slots
+
+| Name | Description |
+| --- | --- |
+| `prefix` | Content placed before the input (e.g. icon). |
+| `suffix` | Content placed after the input (e.g. icon). |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component wrapper. |
+| `label` | The label element. |
+| `input` | The native input element. |
+| `prefix` | The prefix slot container. |
+| `suffix` | The suffix slot container. |
+| `clear-button` | The clear button. |
+| `password-toggle-button` | The password toggle button. |
+| `help-text` | The help text paragraph. |
+| `error-message` | The error message paragraph. |
 
 ### CSS Custom Properties
 
@@ -58,18 +89,18 @@ import { FlintInput } from '@getufy/flint-ui';
 | `--flint-input-border-radius` | — |
 | `--flint-input-border-color` | — |
 | `--flint-input-bg` | — |
-| `--flint-input-placeholder-color` | — |
 | `--flint-input-border-hover-color` | — |
-| `--flint-input-disabled-bg` | — |
+| `--flint-input-placeholder-color` | — |
 | `--flint-input-disabled-color` | — |
+| `--flint-input-disabled-bg` | — |
 | `--flint-input-readonly-bg` | — |
 | `--flint-font-family` | — |
 | `--flint-label-color` | — |
-| `--flint-text-color` | — |
 | `--flint-primary-color` | — |
 | `--flint-primary-focus-ring` | — |
 | `--flint-error-color` | — |
 | `--flint-error-focus-ring` | — |
+| `--flint-text-color` | — |
 | `--flint-help-text-color` | — |
 
 ---

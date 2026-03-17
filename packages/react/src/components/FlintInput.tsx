@@ -20,6 +20,9 @@ export interface FlintInputChangeDetail {
 
 /**
  * Input: a styled text input with label, help text, and error states.
+ *
+ * @slot prefix - Content placed before the input (e.g. icon).
+ * @slot suffix - Content placed after the input (e.g. icon).
  */
 export interface FlintInputProps extends Omit<React.HTMLAttributes<FlintInputElement>, 'defaultValue'> {
     shadowRootOptions?: object;
@@ -66,9 +69,24 @@ export interface FlintInputProps extends Omit<React.HTMLAttributes<FlintInputEle
     defaultValue?: string | undefined;
     /** Shows a clear button when the input has a value. */
     clearable?: boolean;
-    /** Fired on each keystroke as the value changes. detail: `{ value: string }` */
+    /** Shows a toggle button on password inputs to reveal/hide the value. */
+    passwordToggle?: boolean;
+    /** Whether the password is currently visible. Only relevant when `passwordToggle` is true. */
+    passwordVisible?: boolean;
+    /**
+     * Fired when the clear button is clicked. detail: `undefined`
+     * DOM event: `flint-input-clear`
+     */
+    onFlintInputClear?: (event: CustomEvent) => void;
+    /**
+     * Fired on each keystroke as the value changes. detail: `{ value: string }`
+     * DOM event: `flint-input-input`
+     */
     onFlintInputInput?: (event: CustomEvent<FlintInputInputDetail>) => void;
-    /** Fired when the input loses focus after the value has changed. detail: `{ value: string }` */
+    /**
+     * Fired when the input loses focus after the value has changed. detail: `{ value: string }`
+     * DOM event: `flint-input-change`
+     */
     onFlintInputChange?: (event: CustomEvent<FlintInputChangeDetail>) => void;
 }
 
@@ -123,6 +141,7 @@ export const FlintInput = createComponent({
         onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
         onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
         onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
+        onFlintInputClear: FlintInputEvents.CLEAR as EventName<CustomEvent>,
         onFlintInputInput: FlintInputEvents.INPUT as EventName<CustomEvent<FlintInputInputDetail>>,
         onFlintInputChange: FlintInputEvents.CHANGE as EventName<CustomEvent<FlintInputChangeDetail>>,
     },

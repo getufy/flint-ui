@@ -15,7 +15,10 @@ import { FlintSingleInputDateRangeFieldEvents } from '../events/flint-single-inp
 Renders as "MM/DD/YYYY – MM/DD/YYYY" with six independently editable segments.
  */
 export interface FlintSingleInputDateRangeFieldProps extends React.HTMLAttributes<FlintSingleInputDateRangeFieldElement> {
-    /** Controlled range value [startISO, endISO]. */
+    /**
+     * Controlled range value [startISO, endISO].
+     * Type: `DateRange`
+     */
     value?: FlintSingleInputDateRangeFieldElement['value'];
     /** Field label text. */
     label?: string;
@@ -35,9 +38,15 @@ export interface FlintSingleInputDateRangeFieldProps extends React.HTMLAttribute
     helperText?: string;
     /** Error message displayed below the field when in error state. */
     errorMessage?: string;
-    /** fired when all segments are cleared */
+    /**
+     * fired when all segments are cleared
+     * DOM event: `flint-date-range-picker-clear`
+     */
     onFlintDateRangePickerClear?: (event: CustomEvent) => void;
-    /** { detail: { value: DateRange } } when both dates are complete */
+    /**
+     * { detail: { value: DateRange } } when both dates are complete
+     * DOM event: `flint-date-range-picker-change`
+     */
     onFlintDateRangePickerChange?: (event: CustomEvent) => void;
 }
 

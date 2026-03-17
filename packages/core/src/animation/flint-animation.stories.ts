@@ -12,7 +12,8 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
-A declarative wrapper that applies Web Animations API animations to its slotted content.
+flint-animation: a declarative wrapper that applies Web Animations API
+animations to its slotted content.
 
 - **Tag**: \`<flint-animation>\`
 - **Class**: \`FlintAnimation\`
@@ -21,23 +22,23 @@ A declarative wrapper that applies Web Animations API animations to its slotted 
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`name\` | \`name\` | \`string\` | \`'fade-in'\` | Preset animation name (e.g., 'fade-in', 'slide-up', 'bounce'). |
+| \`name\` | \`name\` | \`string\` | \`'fade-in'\` | Animation preset name (e.g., 'fade-in', 'slide-up', 'bounce') or |
 | \`duration\` | \`duration\` | \`number\` | \`300\` | Duration in milliseconds. |
 | \`easing\` | \`easing\` | \`string\` | \`'ease'\` | CSS easing function. |
-| \`iterations\` | \`iterations\` | \`number\` | \`1\` | Number of iterations. Use \`Infinity\` for looping. |
-| \`delay\` | \`delay\` | \`number\` | \`0\` | Delay before start, in milliseconds. |
+| \`iterations\` | \`iterations\` | \`number\` | \`1\` | Number of iterations. Use \`Infinity\` for infinite looping. |
+| \`delay\` | \`delay\` | \`number\` | \`0\` | Delay before the animation starts, in milliseconds. |
 | \`fill\` | \`fill\` | \`FillMode\` | \`'both'\` | Animation fill mode. |
 | \`direction\` | \`direction\` | \`PlaybackDirection\` | \`'normal'\` | Animation direction. |
-| \`play\` | \`play\` | \`boolean\` | \`false\` | Set to true to play the animation. |
-| \`playOnConnect\` | \`play-on-connect\` | \`boolean\` | \`false\` | Auto-play on first render. |
-| \`keyframes\` | — | \`Keyframe[] \\| null\` | \`null\` | Custom keyframes (JS only). Overrides \`name\` preset. |
+| \`play\` | \`play\` | \`boolean\` | \`false\` | Set to true to trigger/play the animation. |
+| \`playOnConnect\` | \`play-on-connect\` | \`boolean\` | \`false\` | Whether to play the animation automatically on first render. |
+| \`keyframes\` | \`keyframes\` | \`Keyframe[] \\| null\` | \`null\` | Custom keyframes. When provided, overrides the \`name\` preset. |
 
 #### Events
 
-| Event | Description |
-|---|---|
-| \`flint-animation-finish\` | Fired when the animation completes. |
-| \`flint-animation-cancel\` | Fired when the animation is cancelled. |
+| Event | Detail | Description |
+|---|---|---|
+| \`flint-animation-finish\` | — | Dispatched when the animation finishes. |
+| \`flint-animation-cancel\` | — | Dispatched when the animation is cancelled. |
 
 #### Slots
 
@@ -45,9 +46,12 @@ A declarative wrapper that applies Web Animations API animations to its slotted 
 |---|---|
 | \`(default)\` | Content to animate. |
 
-#### Available presets
+#### Methods
 
-\`${presetNames.join('`, `')}\`
+| Method | Description |
+|---|---|
+| \`cancel(): void\` | Programmatically cancel the running animation. |
+| \`restart(): void\` | Restart the animation from the beginning. |
                 `,
             },
         },

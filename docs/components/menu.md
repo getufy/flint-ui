@@ -51,6 +51,7 @@ import { FlintMenuItem } from '@getufy/flint-ui';
 
 | Property | Default |
 | --- | --- |
+| `--flint-menu-item-dense-min-height` | `44px` |
 | `--flint-border-color` | — |
 | `--flint-text-color-muted` | — |
 | `--flint-font-family` | — |
@@ -174,6 +175,7 @@ import { FlintMenu } from '@getufy/flint-ui';
 
 | Property | Default |
 | --- | --- |
+| `--flint-menu-item-dense-min-height` | `44px` |
 | `--flint-menu-z-index` | — |
 | `--flint-menu-min-width` | — |
 | `--flint-menu-max-width` | `360px` |

@@ -9,6 +9,9 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintGrid as FlintGridElement } from '@getufy/flint-ui/grid/flint-grid';
 
+/**
+ * A responsive 12-column grid layout component inspired by Material UI's Grid.
+ */
 export interface FlintGridProps extends React.HTMLAttributes<FlintGridElement> {
     /** Whether this element acts as a grid container. */
     container?: boolean;
@@ -28,11 +31,20 @@ export interface FlintGridProps extends React.HTMLAttributes<FlintGridElement> {
     justifyContent?: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly' | undefined;
     /** Total number of columns. Default is 12. */
     columns?: number;
-    /** Spacing between items. 1 unit = 8px. */
+    /**
+     * Spacing between items. 1 unit = 8px.
+     * Type: `ResponsiveValue<number | string>`
+     */
     spacing?: FlintGridElement['spacing'];
-    /** Row spacing override; takes precedence over `spacing` for the row axis. */
+    /**
+     * Row spacing override; takes precedence over `spacing` for the row axis.
+     * Type: `ResponsiveValue<number | string> | undefined`
+     */
     rowSpacing?: FlintGridElement['rowSpacing'];
-    /** Column spacing override; takes precedence over `spacing` for the column axis. */
+    /**
+     * Column spacing override; takes precedence over `spacing` for the column axis.
+     * Type: `ResponsiveValue<number | string> | undefined`
+     */
     columnSpacing?: FlintGridElement['columnSpacing'];
     /** Number of columns to span at the xs breakpoint. */
     xs?: number | false | true | 'auto';
@@ -44,9 +56,15 @@ export interface FlintGridProps extends React.HTMLAttributes<FlintGridElement> {
     lg?: number | false | true | 'auto';
     /** Number of columns to span at the xl breakpoint. */
     xl?: number | false | true | 'auto';
-    /** Offset per breakpoint, expressed in column units or 'auto'. */
+    /**
+     * Offset per breakpoint, expressed in column units or 'auto'.
+     * Type: `Partial<Record<Breakpoint, number | 'auto'>> | undefined`
+     */
     offset?: FlintGridElement['offset'];
-    /** Flex order. Supports responsive values so items can be reordered at */
+    /**
+     * Flex order. Supports responsive values so items can be reordered at
+     * Type: `ResponsiveValue<number> | undefined`
+     */
     order?: FlintGridElement['order'];
 }
 

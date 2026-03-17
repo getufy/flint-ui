@@ -41,11 +41,20 @@ export interface FlintAnimationProps extends React.HTMLAttributes<FlintAnimation
     play?: boolean;
     /** Whether to play the animation automatically on first render. */
     playOnConnect?: boolean;
-    /** Custom keyframes. When provided, overrides the `name` preset. */
+    /**
+     * Custom keyframes. When provided, overrides the `name` preset.
+     * Type: `Keyframe[] | null`
+     */
     keyframes?: FlintAnimationElement['keyframes'];
-    /** Dispatched when the animation finishes. */
+    /**
+     * Dispatched when the animation finishes.
+     * DOM event: `flint-animation-finish`
+     */
     onFlintAnimationFinish?: (event: CustomEvent) => void;
-    /** Dispatched when the animation is cancelled. */
+    /**
+     * Dispatched when the animation is cancelled.
+     * DOM event: `flint-animation-cancel`
+     */
     onFlintAnimationCancel?: (event: CustomEvent) => void;
 }
 

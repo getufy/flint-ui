@@ -14,9 +14,11 @@ import { FlintCircularProgress as FlintCircularProgressElement } from '@getufy/f
  */
 export interface FlintCircularProgressProps extends Omit<React.HTMLAttributes<FlintCircularProgressElement>, 'color'> {
     /**
-     * Progress variant: determinate shows a specific value, indeterminate shows an animation.
+     * Progress mode: determinate shows a specific value, indeterminate shows an animation.
      * Allowed values: 'determinate' | 'indeterminate'
      */
+    mode?: 'determinate' | 'indeterminate';
+    /** Allowed values: 'determinate' | 'indeterminate' */
     variant?: 'determinate' | 'indeterminate';
     /** Current progress percentage (0-100) for determinate mode. */
     value?: number;

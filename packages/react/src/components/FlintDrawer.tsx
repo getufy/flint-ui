@@ -31,9 +31,9 @@ export interface FlintDrawerProps extends React.HTMLAttributes<FlintDrawerElemen
     defaultOpen?: boolean;
     /**
      * Side from which the drawer slides in.
-     * Allowed values: 'left' | 'right' | 'top' | 'bottom'
+     * Allowed values: 'top' | 'right' | 'bottom' | 'left'
      */
-    placement?: 'left' | 'right' | 'top' | 'bottom';
+    placement?: 'top' | 'right' | 'bottom' | 'left';
     /**
      * Drawer behavior mode.
      * Allowed values: 'temporary' | 'persistent' | 'mini'
@@ -47,9 +47,15 @@ export interface FlintDrawerProps extends React.HTMLAttributes<FlintDrawerElemen
     label?: string;
     /** CSS selector for the element to focus when the drawer opens. */
     initialFocus?: string;
-    /** Dispatched after the drawer open animation completes. detail: `{ open: true }` */
+    /**
+     * Dispatched after the drawer open animation completes. detail: `{ open: true }`
+     * DOM event: `flint-drawer-open`
+     */
     onFlintDrawerOpen?: (event: CustomEvent<FlintDrawerOpenDetail>) => void;
-    /** Dispatched when the drawer requests to be closed (backdrop click or Escape). detail: `{ open: false }` */
+    /**
+     * Dispatched when the drawer requests to be closed (backdrop click or Escape). detail: `{ open: false }`
+     * DOM event: `flint-drawer-close`
+     */
     onFlintDrawerClose?: (event: CustomEvent<FlintDrawerCloseDetail>) => void;
 }
 

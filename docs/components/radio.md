@@ -29,6 +29,7 @@ import { FlintRadioGroup } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
+| `shadowRootOptions` | `shadowRootOptions` | `object` | `&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;` |  |
 | `label` | `label` | `string` | `''` | Accessible label for the radio group. |
 | `name` | `name` | `string` | `''` | Form field name for all radios in the group. |
 | `value` | `value` | `string` | `''` | Currently selected radio value. |
@@ -42,7 +43,13 @@ import { FlintRadioGroup } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-radio-group-change` | — | Fired when the selected radio value changes. |
+| `flint-radio-group-change` | `&#123; value: string &#125;` | Fired when the selected radio value changes. detail: `&#123; value: string &#125;` |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The radio group's base wrapper element. |
 
 ### CSS Custom Properties
 
@@ -83,6 +90,7 @@ import { FlintRadio } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
+| `shadowRootOptions` | `shadowRootOptions` | `object` | `&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;` |  |
 | `checked` | `checked` | `boolean` | `false` | Whether this radio is selected. |
 | `disabled` | `disabled` | `boolean` | `false` | Disables this radio and prevents interaction. |
 | `required` | `required` | `boolean` | `false` | Whether this radio is required. |
@@ -95,7 +103,15 @@ import { FlintRadio } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-radio-select` | — | Fired when this radio is selected. |
+| `flint-radio-select` | `&#123; value: string &#125;` | Fired when this radio is selected. detail: `&#123; value: string &#125;` |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The radio's base wrapper label. |
+| `control` | The radio circle indicator. |
+| `label` | The label text element. |
 
 ### CSS Custom Properties
 

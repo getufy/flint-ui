@@ -25,18 +25,21 @@ import { FlintDrawer } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
+| `dependencies` | `dependencies` | `object` | `&#123; 'flint-backdrop': FlintBackdrop as unknown as typeof FlintElement &#125;` |  |
 | `open` | `open` | `boolean` | `false` | Whether the drawer is open. |
 | `defaultOpen` | `default-open` | `boolean` | `false` | Initial open state for uncontrolled usage. |
-| `anchor` | `anchor` | `'left' \| 'right' \| 'top' \| 'bottom'` | `'left'` | Side from which the drawer slides in. |
+| `placement` | `placement` | `Placement` | `'left'` | Side from which the drawer slides in. |
 | `variant` | `variant` | `'temporary' \| 'persistent' \| 'mini'` | `'temporary'` | Drawer behavior mode. |
 | `edge` | `edge` | `boolean` | `false` | Whether the drawer uses edge spacing. |
 | `container` | `container` | `boolean` | `false` | Whether the drawer is contained within its parent. |
 | `label` | `label` | `string` | `'Drawer'` | Accessible label for the drawer panel (used as aria-label on the panel). |
+| `initialFocus` | `initial-focus` | `string` | `''` | CSS selector for the element to focus when the drawer opens. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
+| `flint-drawer-open` | `&#123; open: true &#125;` | Dispatched after the drawer open animation completes. detail: `&#123; open: true &#125;` |
 | `flint-drawer-close` | `&#123; open: false &#125;` | Dispatched when the drawer requests to be closed (backdrop click or Escape). detail: `&#123; open: false &#125;` |
 
 ### Slots
@@ -45,17 +48,24 @@ import { FlintDrawer } from '@getufy/flint-ui';
 | --- | --- |
 | `(default)` | Drawer content. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `backdrop` | The backdrop overlay element. |
+| `panel` | The drawer panel element. |
+
 ### CSS Custom Properties
 
 | Property | Default |
 | --- | --- |
-| `--flint-drawer-z-index` | `1200` |
+| `--flint-drawer-z-index` | `var(--flint-z-overlay, 1040` |
 | `--flint-drawer-bg` | `var(--flint-surface-1` |
-| `--flint-drawer-width` | `250px` |
+| `--flint-drawer-width` | `320px` |
 | `--flint-drawer-shadow` | — |
-| `--flint-drawer-transition` | `.225s cubic-bezier(0, 0, .2, 1` |
 | `--flint-drawer-height` | `auto` |
 | `--flint-drawer-mini-width` | `72px` |
+| `--flint-drawer-transition` | `.225s cubic-bezier(0, 0, .2, 1` |
 | `--flint-drawer-edge-width` | `16px` |
 | `--flint-backdrop-color` | — |
 | `--flint-border-color` | — |

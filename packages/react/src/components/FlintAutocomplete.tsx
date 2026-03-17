@@ -19,7 +19,10 @@ export interface FlintAutocompleteChangeDetail {
  */
 export interface FlintAutocompleteProps extends Omit<React.HTMLAttributes<FlintAutocompleteElement>, 'defaultValue'> {
     shadowRootOptions?: object;
-    /** The list of selectable options. */
+    /**
+     * The list of selectable options.
+     * Type: `AutocompleteOption[]`
+     */
     options?: FlintAutocompleteElement['options'];
     /** When true, allows arbitrary values that are not in the options list. */
     freeSolo?: boolean;
@@ -35,7 +38,10 @@ export interface FlintAutocompleteProps extends Omit<React.HTMLAttributes<FlintA
     required?: boolean;
     /** Initial value for uncontrolled usage. */
     defaultValue?: string;
-    /** Fired when the selected value changes. detail: `{ value: string, label: string }` */
+    /**
+     * Fired when the selected value changes. detail: `{ value: string, label: string }`
+     * DOM event: `flint-autocomplete-change`
+     */
     onFlintAutocompleteChange?: (event: CustomEvent<FlintAutocompleteChangeDetail>) => void;
 }
 

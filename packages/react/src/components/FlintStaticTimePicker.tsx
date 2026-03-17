@@ -24,7 +24,10 @@ export interface FlintStaticTimePickerProps extends React.HTMLAttributes<FlintSt
     ampm?: boolean;
     /** Whether to show a seconds section. */
     seconds?: boolean;
-    /** Fired when the time value changes. detail: `{ value: string }` */
+    /**
+     * Fired when the time value changes. detail: `{ value: string }`
+     * DOM event: `flint-static-time-picker-change`
+     */
     onFlintStaticTimePickerChange?: (event: CustomEvent<FlintStaticTimePickerChangeDetail>) => void;
 }
 

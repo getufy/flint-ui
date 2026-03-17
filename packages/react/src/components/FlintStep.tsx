@@ -49,7 +49,10 @@ export interface FlintStepProps extends React.HTMLAttributes<FlintStepElement> {
     optionalLabel?: string;
     /** Set by FlintStepper — true when the immediately preceding step is completed. */
     prevCompleted?: boolean;
-    /** Fired when a non-linear step is clicked. detail: `{ step: number }` */
+    /**
+     * Fired when a non-linear step is clicked. detail: `{ step: number }`
+     * DOM event: `flint-step-click`
+     */
     onFlintStepClick?: (event: CustomEvent<FlintStepClickDetail>) => void;
 }
 

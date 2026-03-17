@@ -75,17 +75,19 @@ Used internally by flint-date-picker, but can also be used on its own.
 
 ---
 
-#### \`<flint-date-picker-calendar>\`
+#### \`<flint-date-picker>\`
 
 A date picker with a text field and a calendar popover/modal.
 
-- **Tag**: \`<flint-date-picker-calendar>\`
+- **Tag**: \`<flint-date-picker>\`
 - **Class**: \`FlintDatePicker\`
 
 #### Properties
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
+| \`shadowRootOptions\` | \`shadowRootOptions\` | \`object\` | \`&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;\` |  |
+| \`dependencies\` | \`dependencies\` | \`object\` | \`&#123; 'flint-dialog': FlintDialog as unknown as typeof FlintElement, 'flint-dialog-title': FlintDialogTitle as unknown as typeof FlintElement, 'flint-dialog-content': FlintDialogContent as unknown as typeof FlintElement, 'flint-dialog-actions': FlintDialogActions as unknown as typeof FlintElement, &#125;\` |  |
 | \`value\` | \`value\` | \`string\` | \`''\` | Selected date as ISO string (YYYY-MM-DD). |
 | \`label\` | \`label\` | \`string\` | \`'Date'\` | Label shown above the field. |
 | \`placeholder\` | \`placeholder\` | \`string\` | \`'MM/DD/YYYY'\` | Placeholder shown in the empty field. |
@@ -98,6 +100,9 @@ A date picker with a text field and a calendar popover/modal.
 | \`error\` | \`error\` | \`boolean\` | \`false\` | Shows error styling. |
 | \`helperText\` | \`helper-text\` | \`string\` | \`''\` | Helper/error text below the field. |
 | \`errorMessage\` | \`error-message\` | \`string\` | \`''\` | Error message displayed below the field when in error state. |
+| \`required\` | \`required\` | \`boolean\` | \`false\` | Marks the date picker as required for form validation. |
+| \`defaultValue\` | \`default-value\` | \`string\` | \`''\` | Initial value for uncontrolled usage (ISO string). |
+| \`hoist\` | \`hoist\` | \`boolean\` | \`false\` | When true, the calendar popover uses \`position: fixed\` instead of \`position: absolute\` |
 
 #### Events
 

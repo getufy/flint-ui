@@ -19,7 +19,10 @@ export interface FlintComboboxChangeDetail {
  */
 export interface FlintComboboxProps extends Omit<React.HTMLAttributes<FlintComboboxElement>, 'defaultValue'> {
     shadowRootOptions?: object;
-    /** The list of suggestion options. */
+    /**
+     * The list of suggestion options.
+     * Type: `ComboboxOption[]`
+     */
     options?: FlintComboboxElement['options'];
     /** The current text value. */
     value?: string;
@@ -33,7 +36,10 @@ export interface FlintComboboxProps extends Omit<React.HTMLAttributes<FlintCombo
     name?: string;
     /** Initial value for uncontrolled usage. */
     defaultValue?: string;
-    /** Fired when the value changes. detail: `{ value: string }` */
+    /**
+     * Fired when the value changes. detail: `{ value: string }`
+     * DOM event: `flint-combobox-change`
+     */
     onFlintComboboxChange?: (event: CustomEvent<FlintComboboxChangeDetail>) => void;
 }
 

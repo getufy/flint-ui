@@ -18,7 +18,7 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
-A generic virtual scrolling container. Only renders visible items plus a configurable buffer, enabling smooth scrolling through large datasets without DOM bloat.
+A generic virtual scrolling container [§38.1].
 
 - **Tag**: \`<flint-virtual-scroll>\`
 - **Class**: \`FlintVirtualScroll\`
@@ -27,23 +27,16 @@ A generic virtual scrolling container. Only renders visible items plus a configu
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`items\` | — | \`T[]\` | \`[]\` | Array of data items to render. |
-| \`itemHeight\` | \`item-height\` | \`number\` | \`40\` | Fixed height of each item in pixels. |
-| \`overscan\` | \`overscan\` | \`number\` | \`5\` | Extra items to render above and below the visible area. |
-| \`renderItem\` | — | \`(item: T, index: number) => unknown\` | — | Render function for a single item. |
+| \`items\` | \`items\` | \`T[]\` | \`[]\` | Array of data items to render. |
+| \`itemHeight\` | \`item-height\` | \`number\` | \`40\` | Fixed height of each item in pixels. Used for position calculations. |
+| \`overscan\` | \`overscan\` | \`number\` | \`5\` | Number of extra items to render above and below the visible area. |
+| \`renderItem\` | \`renderItem\` | \`RenderItemFn&lt;T&gt;\` | — | Render function for a single item. Receives the item and its index. |
 
 #### Slots
 
 | Name | Description |
 |---|---|
 | \`(default)\` | Fallback content shown when items is empty. |
-
-#### CSS Parts
-
-| Part | Description |
-|---|---|
-| \`spacer\` | The height-holding spacer element. |
-| \`viewport\` | The positioned container for visible items. |
                 `,
             },
         },

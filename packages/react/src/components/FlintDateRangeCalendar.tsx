@@ -15,7 +15,10 @@ import { FlintDateRangeCalendarEvents } from '../events/flint-date-range-calenda
 Shows two months side-by-side (or stacked on narrow screens).
  */
 export interface FlintDateRangeCalendarProps extends React.HTMLAttributes<FlintDateRangeCalendarElement> {
-    /** Current selected range [startISO, endISO]. */
+    /**
+     * Current selected range [startISO, endISO].
+     * Type: `DateRange`
+     */
     value?: FlintDateRangeCalendarElement['value'];
     /** Minimum selectable date (ISO YYYY-MM-DD). */
     min?: string;
@@ -25,7 +28,10 @@ export interface FlintDateRangeCalendarProps extends React.HTMLAttributes<FlintD
     disabled?: boolean;
     /** BCP 47 locale for month/day names (e.g. "en-US", "fr"). Uses browser default when unset. */
     locale?: string;
-    /** { detail: { value: DateRange } } on each click */
+    /**
+     * { detail: { value: DateRange } } on each click
+     * DOM event: `flint-date-range-picker-select`
+     */
     onFlintDateRangePickerSelect?: (event: CustomEvent) => void;
 }
 

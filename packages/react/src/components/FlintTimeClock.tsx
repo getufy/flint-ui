@@ -29,9 +29,15 @@ export interface FlintTimeClockProps extends React.HTMLAttributes<FlintTimeClock
      * Allowed values: 'hours' | 'minutes' | 'seconds'
      */
     view?: 'hours' | 'minutes' | 'seconds';
-    /** Fired when the time value changes. detail: `{ value: string }` */
+    /**
+     * Fired when the time value changes. detail: `{ value: string }`
+     * DOM event: `flint-time-clock-change`
+     */
     onFlintTimeClockChange?: (event: CustomEvent<FlintTimeClockChangeDetail>) => void;
-    /** Fired when the clock face view switches. */
+    /**
+     * Fired when the clock face view switches.
+     * DOM event: `flint-time-clock-view-change`
+     */
     onFlintTimeClockViewChange?: (event: CustomEvent) => void;
 }
 

@@ -30,7 +30,7 @@ const meta: Meta = {
 |---|---|---|---|---|
 | \`index\` | \`index\` | \`number\` | \`0\` | Zero-based index of the first visible slide. |
 | \`itemsPerView\` | \`items-per-view\` | \`number\` | \`1\` | Number of slides visible at once. |
-| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` | Slide direction axis. |
+| \`orientation\` | \`orientation\` | \`Orientation\` | \`'horizontal'\` | Slide direction axis. |
 
 #### CSS Custom Properties
 
@@ -66,7 +66,7 @@ Carousel Previous: navigation button to go to the previous slide.
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Whether the previous button is disabled. |
-| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` | Slide direction axis, inherited from the parent carousel. |
+| \`orientation\` | \`orientation\` | \`Orientation\` | \`'horizontal'\` | Slide direction axis, inherited from the parent carousel. |
 
 #### Slots
 
@@ -88,7 +88,7 @@ Carousel Next: navigation button to go to the next slide.
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Whether the next button is disabled. |
-| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` | Slide direction axis, inherited from the parent carousel. |
+| \`orientation\` | \`orientation\` | \`Orientation\` | \`'horizontal'\` | Slide direction axis, inherited from the parent carousel. |
 
 #### Slots
 
@@ -110,16 +110,17 @@ Carousel: a slideshow component for cycling through content.
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
 | \`loop\` | \`loop\` | \`boolean\` | \`false\` | When true, navigation wraps from last slide back to first and vice versa. |
-| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` | Slide direction axis. |
+| \`orientation\` | \`orientation\` | \`Orientation\` | \`'horizontal'\` | Slide direction axis. |
 | \`autoplay\` | \`autoplay\` | \`number\` | \`0\` | Auto-advance interval in milliseconds. Set to 0 to disable. |
 | \`itemsPerView\` | \`items-per-view\` | \`number\` | \`1\` | Number of slides visible simultaneously. |
 | \`label\` | \`label\` | \`string\` | \`'Carousel'\` | Accessible label for the carousel region. |
+| \`touch\` | \`touch\` | \`boolean\` | \`true\` | Enable touch/swipe gestures. |
 
 #### Events
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-carousel-change\` | — | Fired when the active slide changes. |
+| \`flint-carousel-change\` | \`&#123; index: number; total: number &#125;\` | Fired when the active slide changes. detail: \`&#123; index: number; total: number &#125;\` |
 
 #### Slots
 

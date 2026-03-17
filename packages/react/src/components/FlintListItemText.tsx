@@ -11,11 +11,14 @@ import { FlintListItemText as FlintListItemTextElement } from '@getufy/flint-ui/
 
 /**
  * flint-list-item-text: A container for text content.
+ *
+ * @slot primary - Rich primary content; takes visual precedence over the `primary` prop.
+ * @slot secondary - Rich secondary content; takes visual precedence over the `secondary` prop.
  */
 export interface FlintListItemTextProps extends React.HTMLAttributes<FlintListItemTextElement> {
-    /** Primary text content of the list item. */
+    /** Plain-text primary content; for rich content (HTML, icons), use the `primary` slot instead. */
     primary?: string;
-    /** Secondary text content of the list item. */
+    /** Plain-text secondary content; for rich content (HTML, icons), use the `secondary` slot instead. */
     secondary?: string;
 }
 

@@ -36,7 +36,7 @@ Resizable Group: a container that enables resizable panels with draggable handle
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` | Layout direction — 'horizontal' (row) or 'vertical' (column). |
+| \`orientation\` | \`orientation\` | \`Orientation\` | \`'horizontal'\` | Layout direction — 'horizontal' (row) or 'vertical' (column). |
 | \`dir\` | \`dir\` | \`'ltr' \\| 'rtl'\` | \`'ltr'\` | Text direction for RTL support. |
 
 #### Events

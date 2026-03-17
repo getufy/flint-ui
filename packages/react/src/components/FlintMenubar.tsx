@@ -19,11 +19,20 @@ Hosts one or more `<flint-menubar-menu>` children.
 export interface FlintMenubarProps extends React.HTMLAttributes<FlintMenubarElement> {
     /** Accessible label for the menubar region. Defaults to "Menu bar". */
     label?: string;
-    /** Bubbles from items. */
+    /**
+     * Bubbles from items.
+     * DOM event: `flint-menubar-item-select`
+     */
     onFlintMenubarItemSelect?: (event: CustomEvent) => void;
-    /** Bubbles from checkbox items. */
+    /**
+     * Bubbles from checkbox items.
+     * DOM event: `flint-menubar-checkbox-change`
+     */
     onFlintMenubarCheckboxChange?: (event: CustomEvent) => void;
-    /** Bubbles from radio groups. */
+    /**
+     * Bubbles from radio groups.
+     * DOM event: `flint-menubar-radio-change`
+     */
     onFlintMenubarRadioChange?: (event: CustomEvent) => void;
 }
 

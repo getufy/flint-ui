@@ -19,6 +19,13 @@ Automatically wires up to the nearest \`flint-hover-card\` ancestor.
 - **Tag**: \`<flint-hover-card-trigger>\`
 - **Class**: \`FlintHoverCardTrigger\`
 
+#### Properties
+
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`expanded\` | \`expanded\` | \`boolean\` | \`false\` | Whether the associated hover card is currently open. Set by the parent. |
+| \`contentId\` | \`contentId\` | \`string\` | \`''\` | The id of the associated content element, for \`aria-describedby\`. Set by the parent. |
+
 #### Slots
 
 | Name | Description |
@@ -33,21 +40,22 @@ Automatically wires up to the nearest \`flint-hover-card\` ancestor.
 
 ---
 
-#### \`<flint-hover-card-trigger>\`
+#### \`<flint-hover-card-content>\`
 
 The floating card panel. Position is controlled via \`placement\` and \`align\`.
 Place inside \`flint-hover-card\`; its \`open\` state is managed by the parent.
 
-- **Tag**: \`<flint-hover-card-trigger>\`
+- **Tag**: \`<flint-hover-card-content>\`
 - **Class**: \`FlintHoverCardContent\`
 
 #### Properties
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`placement\` | \`placement\` | \`'top' \\| 'right' \\| 'bottom' \\| 'left'\` | \`'bottom'\` | Which side of the trigger to display the card on. |
+| \`placement\` | \`placement\` | \`Placement\` | \`'bottom'\` | Which side of the trigger to display the card on. |
 | \`align\` | \`align\` | \`'start' \\| 'center' \\| 'end'\` | \`'center'\` | Alignment of the card along the cross axis relative to the trigger. |
 | \`open\` | \`open\` | \`boolean\` | \`false\` | Whether the card is visible. Managed by the parent \`flint-hover-card\`. |
+| \`hoist\` | \`hoist\` | \`boolean\` | \`false\` | When true, uses \`position: fixed\` to escape overflow containers. |
 
 #### Slots
 
@@ -73,12 +81,12 @@ Place inside \`flint-hover-card\`; its \`open\` state is managed by the parent.
 
 ---
 
-#### \`<flint-hover-card-trigger>\`
+#### \`<flint-hover-card>\`
 
 Root container for a hover card.
 Manages open/closed state with configurable open and close delays.
 
-- **Tag**: \`<flint-hover-card-trigger>\`
+- **Tag**: \`<flint-hover-card>\`
 - **Class**: \`FlintHoverCard\`
 
 #### Properties
@@ -87,6 +95,7 @@ Manages open/closed state with configurable open and close delays.
 |---|---|---|---|---|
 | \`openDelay\` | \`open-delay\` | \`number\` | \`700\` | Delay in milliseconds before the hover card opens. |
 | \`closeDelay\` | \`close-delay\` | \`number\` | \`300\` | Delay in milliseconds before the hover card closes. |
+| \`hoist\` | \`hoist\` | \`boolean\` | \`false\` | When true, the hover card content uses \`position: fixed\` instead of \`position: absolute\` |
 
 #### Events
 

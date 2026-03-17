@@ -18,9 +18,9 @@ import { FlintScrollBar as FlintScrollBarElement } from '@getufy/flint-ui/scroll
 export interface FlintScrollBarProps extends React.HTMLAttributes<FlintScrollBarElement> {
     /**
      * Which axis this scrollbar controls. Reflects to attribute.
-     * Allowed values: 'vertical' | 'horizontal'
+     * Allowed values: 'horizontal' | 'vertical'
      */
-    orientation?: 'vertical' | 'horizontal';
+    orientation?: 'horizontal' | 'vertical';
 }
 
 export const FlintScrollBar = createComponent({

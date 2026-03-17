@@ -29,7 +29,10 @@ export interface FlintTabProps extends React.HTMLAttributes<FlintTabElement> {
     href?: string;
     /** Whether the tab stretches to fill available width. */
     fullWidth?: boolean;
-    /** Fired when the tab is clicked or activated via keyboard. */
+    /**
+     * Fired when the tab is clicked or activated via keyboard.
+     * DOM event: `flint-tab-click`
+     */
     onFlintTabClick?: (event: CustomEvent) => void;
 }
 

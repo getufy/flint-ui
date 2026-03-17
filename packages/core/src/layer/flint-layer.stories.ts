@@ -9,9 +9,8 @@ const meta: Meta = {
         docs: {
             description: {
                 component: `
-A contextual layer component that bumps surface/background colors for nested card-in-card or panel-in-panel patterns.
-
-Each nested \`<flint-layer>\` increments the surface color level, creating visual depth without manually managing tokens.
+A contextual layer component that bumps surface/background colors
+for nested card-in-card or panel-in-panel patterns [§38.1].
 
 - **Tag**: \`<flint-layer>\`
 - **Class**: \`FlintLayer\`
@@ -21,14 +20,6 @@ Each nested \`<flint-layer>\` increments the surface color level, creating visua
 | Name | Description |
 |---|---|
 | \`(default)\` | Default slot for child content. |
-
-#### CSS Custom Properties
-
-| Property | Description |
-|---|---|
-| \`--flint-surface-color\` | Current surface color for this layer level. |
-| \`--flint-layer-surface\` | Override the surface color for a layer. |
-| \`--flint-layer-surface-next\` | Next surface level for nested layers. |
                 `,
             },
         },

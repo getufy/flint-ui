@@ -22,6 +22,7 @@ A Textarea component for multi-line text input.
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
+| \`shadowRootOptions\` | \`shadowRootOptions\` | \`object\` | \`&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;\` |  |
 | \`value\` | \`value\` | \`string\` | \`''\` | Current textarea value. |
 | \`placeholder\` | \`placeholder\` | \`string\` | \`''\` | Placeholder text shown when empty. |
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the textarea and prevents interaction. |
@@ -31,10 +32,11 @@ A Textarea component for multi-line text input.
 | \`errorMessage\` | \`error-message\` | \`string\` | \`''\` | Error message displayed below the textarea. |
 | \`helperText\` | \`helper-text\` | \`string\` | \`''\` | Help text displayed below the textarea. |
 | \`label\` | \`label\` | \`string\` | \`''\` | Label text displayed above the textarea. |
-| \`size\` | \`size\` | \`'sm' \\| 'md' \\| 'lg'\` | \`'default'\` | Size variant of the textarea. |
+| \`size\` | \`size\` | \`Size\` | \`'md'\` | Size variant of the textarea. |
 | \`rows\` | \`rows\` | \`number\` | \`3\` | Number of visible text rows. |
 | \`maxlength\` | \`maxlength\` | \`number \\| undefined\` | \`undefined\` | Maximum number of characters allowed. |
 | \`minlength\` | \`minlength\` | \`number \\| undefined\` | \`undefined\` | Minimum number of characters required. |
+| \`pattern\` | \`pattern\` | \`string\` | \`''\` | Regex pattern for validation. |
 | \`name\` | \`name\` | \`string\` | \`''\` | Form field name used when submitting form data. |
 | \`autocomplete\` | \`autocomplete\` | \`string\` | \`''\` | Browser autocomplete hint. |
 | \`resize\` | \`resize\` | \`'none' \\| 'both' \\| 'horizontal' \\| 'vertical' \\| 'auto'\` | \`'vertical'\` | Controls the resize handle. |
@@ -47,6 +49,16 @@ A Textarea component for multi-line text input.
 |---|---|---|
 | \`flint-textarea-input\` | \`&#123; value: string &#125;\` | Dispatched on every keystroke. Detail: \`&#123; value: string &#125;\` |
 | \`flint-textarea-change\` | \`&#123; value: string &#125;\` | Dispatched on blur/change. Detail: \`&#123; value: string &#125;\` |
+
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`wrapper\` | The textarea's outer wrapper element. |
+| \`label\` | The label element. |
+| \`textarea\` | The native textarea element. |
+| \`error-text\` | The error message element. |
+| \`help-text\` | The helper text element. |
 
 #### CSS Custom Properties
 

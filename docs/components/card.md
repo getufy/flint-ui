@@ -32,6 +32,8 @@ import { FlintCardActionArea } from '@getufy/flint-ui';
 | `--flint-card-action-area-focus-ring` | `var(--flint-primary-color` |
 | `--flint-text-color-muted` | — |
 | `--flint-text-color` | — |
+| `--flint-spacing-2` | `0.5rem` |
+| `--flint-spacing-3` | `0.75rem` |
 
 ---
 
@@ -115,8 +117,8 @@ import { FlintCardHeader } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `title` | `title` | `string` | `''` |  |
-| `subtitle` | `subtitle` | `string` | `''` |  |
+| `title` | `title` | `string` | `''` | Plain text title. For rich content (icons, links), use the default slot instead. |
+| `subtitle` | `subtitle` | `string` | `''` | Plain text subtitle. For rich content, use the `subtitle` named slot instead. |
 
 ### Slots
 
@@ -166,10 +168,13 @@ import { FlintCardMedia } from '@getufy/flint-ui';
 | Property | Default |
 | --- | --- |
 | `--flint-card-media-height` | `200px` |
+| `--flint-card-media-object-fit` | `cover` |
 
 ---
 
 ## `<flint-card>`
+
+A card container with optional interactive behavior.
 
 - **Tag**: `<flint-card>`
 - **Class**: `FlintCard`
@@ -192,8 +197,26 @@ import { FlintCard } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `variant` | `variant` | `'elevated' \| 'outlined' \| 'flat'` | `'elevated'` |  |
+| `variant` | `variant` | `'elevated' \| 'outlined' \| 'flat'` | `'elevated'` | Visual style variant of the card. |
 | `interactive` | `interactive` | `boolean` | `false` |  |
+
+### Events
+
+| Event | Detail | Description |
+| --- | --- | --- |
+| `flint-card-click` | — | Fired when an interactive card is clicked or activated via keyboard (Enter/Space). |
+
+### Slots
+
+| Name | Description |
+| --- | --- |
+| `(default)` | Card content (header, content, actions, media sub-components). |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The card wrapper div. |
 
 ### CSS Custom Properties
 
@@ -209,10 +232,12 @@ import { FlintCard } from '@getufy/flint-ui';
 | `--flint-card-title-size` | `1.25rem` |
 | `--flint-card-subtitle-size` | `0.875rem` |
 | `--flint-card-media-height` | `200px` |
+| `--flint-card-media-object-fit` | `cover` |
 | `--flint-card-background` | — |
 | `--flint-card-border-radius` | — |
 | `--flint-card-shadow` | — |
 | `--flint-card-border-color` | — |
+| `--flint-card-overflow` | `visible` |
 | `--flint-card-padding` | `0` |
 | `--flint-card-shadow-hover` | — |
 | `--flint-card-background-flat` | — |

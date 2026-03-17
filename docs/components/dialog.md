@@ -6,8 +6,6 @@
 
 ## `<flint-dialog>`
 
-flint-dialog: a modal dialog component.
-
 - **Tag**: `<flint-dialog>`
 - **Class**: `FlintDialog`
 
@@ -29,29 +27,27 @@ import { FlintDialog } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `open` | `open` | `boolean` | `false` | Controls the open / closed state of the dialog. |
-| `defaultOpen` | `default-open` | `boolean` | `false` | Initial open state for uncontrolled usage. |
-| `transition` | `transition` | `'scale' \| 'slide-up' \| 'slide-down'` | `'scale'` | Animation style: 'scale' (default), 'slide-up', or 'slide-down'. |
+| `dependencies` | `dependencies` | `object` | `&#123; 'flint-backdrop': FlintBackdrop as unknown as typeof FlintElement &#125;` |  |
+| `open` | `open` | `boolean` | `false` | Current open state (controlled). When set, the component reflects this state and does not manage its own state. |
+| `defaultOpen` | `default-open` | `boolean` | `false` | Initial open state (uncontrolled). Only used on first render; ignored after mount. |
+| `size` | `size` | `DialogSize` | `'md'` | Size variant of the dialog panel. |
+| `transition` | `transition` | `'scale' \| 'slide-up' \| 'slide-down'` | `'scale'` | Animation style for open/close. |
 | `disableBackdropClose` | `disable-backdrop-close` | `boolean` | `false` | When true, clicking the backdrop will NOT close the dialog. |
+| `initialFocus` | `initial-focus` | `string` | `''` | CSS selector for the element to focus when the dialog opens. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-dialog-close` | `&#123; open: false &#125;` | Dispatched when the dialog requests to be closed (backdrop click or an explicit call to `requestClose()`). The host is responsible for setting `open = false` in response. detail: `&#123; open: false &#125;` |
-
-### Slots
-
-| Name | Description |
-| --- | --- |
-| `(default)` | Default slot for dialog content (title, content, actions sub-components). |
+| `flint-dialog-open` | — |  |
+| `flint-dialog-close` | — |  |
 
 ### CSS Custom Properties
 
 | Property | Default |
 | --- | --- |
 | `--flint-dialog-max-height` | `90vh` |
-| `--flint-dialog-width` | `444px` |
+| `--flint-dialog-width` | `600px` |
 | `--flint-border-color` | — |
 | `--flint-font-family` | — |
 | `--flint-text-color-muted` | — |
@@ -71,7 +67,8 @@ import { FlintDialog } from '@getufy/flint-ui';
 ## `<flint-dialog-title>`
 
 flint-dialog-title: heading area of a dialog.
-Automatically assigned id="dialog-title" for aria-labelledby.
+The parent `<flint-dialog>` reads this element's text content via slotchange
+to set `aria-label` on the dialog panel.
 
 - **Tag**: `<flint-dialog-title>`
 - **Class**: `FlintDialogTitle`

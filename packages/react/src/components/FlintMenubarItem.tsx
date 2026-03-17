@@ -28,7 +28,10 @@ export interface FlintMenubarItemProps extends React.HTMLAttributes<FlintMenubar
     inset?: boolean;
     /** Explicit value for the select event. Falls back to label text (excludes shortcut). */
     value?: string;
-    /** Fired on activation. detail: `{ value: string }` */
+    /**
+     * Fired on activation. detail: `{ value: string }`
+     * DOM event: `flint-menubar-item-select`
+     */
     onFlintMenubarItemSelect?: (event: CustomEvent<FlintMenubarItemSelectDetail>) => void;
 }
 

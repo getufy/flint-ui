@@ -39,6 +39,7 @@ Bottom Navigation Action: Individual navigation item.
 | Property | Default |
 |---|---|
 | \`--flint-text-color-muted\` | — |
+| \`--flint-bottom-nav-action-max-width\` | \`none\` |
 | \`--flint-hover-color\` | — |
 | \`--flint-primary-color\` | — |
 | \`--flint-font-family\` | — |

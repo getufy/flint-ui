@@ -31,10 +31,24 @@ import { FlintRichTreeView } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
+| `dependencies` | `dependencies` | `object` | `&#123; 'flint-tree-item': FlintTreeItem as unknown as typeof FlintElement &#125;` |  |
+| `items` | `items` | `RichTreeItem[]` | `[]` | Array of item data objects. |
+| `dataSource` | `dataSource` | `RichTreeViewDataSource` | — | Optional lazy-load data source. |
+| `getItemId` | `getItemId` | `(item) =&gt; string` | — | Extract unique ID (default: `item.id`). |
+| `getItemLabel` | `getItemLabel` | `(item) =&gt; string` | — | Extract label (default: `item.label`). |
+| `getItemChildren` | `getItemChildren` | `(item) =&gt; RichTreeItem[] \| undefined` | — | Extract children (default: `item.children`). |
+| `isItemDisabled` | `isItemDisabled` | `(item) =&gt; boolean` | — | Return true to disable an item. |
 | `disabledItemsFocusable` | `disabled-items-focusable` | `boolean` | `false` | When `true`, disabled items can receive keyboard focus. |
+| `onItemClick` | `onItemClick` | `(itemId: string) =&gt; void \| undefined` | — | Callback invoked when a tree item is clicked or activated via keyboard. |
 | `expansionTrigger` | `expansion-trigger` | `'content' \| 'iconContainer'` | `'content'` | What interaction triggers expand/collapse. |
+| `expandedItems` | `expandedItems` | `string[] \| undefined` | — | **Controlled mode.** The set of item IDs that should be expanded. |
+| `defaultExpandedItems` | `defaultExpandedItems` | `string[]` | `[]` | **Uncontrolled mode.** Item IDs to expand on initial mount. |
+| `onExpandedItemsChange` | `onExpandedItemsChange` | `(itemIds: string[]) =&gt; void \| undefined` | — | Callback fired when the user toggles an item's expansion. |
 | `itemsReordering` | `items-reordering` | `boolean` | `false` | When `true`, enables drag-and-drop reordering of items. |
+| `isItemReorderable` | `isItemReorderable` | `(itemId: string) =&gt; boolean \| undefined` | — | Function that determines if a specific item can be reordered. |
+| `canMoveItemToNewPosition` | `canMoveItemToNewPosition` | `(params: &#123;         itemId: string;         targetId: string;         position: 'before' \| 'after' \| 'inside';     &#125;) =&gt; boolean \| undefined` | — | Function that determines if an item can be moved to a specific target position. |
 | `itemsReorderingHandle` | `items-reordering-handle` | `boolean` | `false` | Whether to use a drag handle icon for reordering. |
+| `onItemPositionChange` | `onItemPositionChange` | `(params: &#123;         itemId: string;         newParentId: string \| null;         newIndex: number;     &#125;) =&gt; void \| undefined` | — | Fired when an item's position changes via reordering. |
 
 ### Events
 
@@ -97,6 +111,10 @@ import { FlintSimpleTreeView } from '@getufy/flint-ui';
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | `disabledItemsFocusable` | `disabled-items-focusable` | `boolean` | `false` | When `true`, disabled items can receive keyboard focus. |
+| `onItemClick` | `onItemClick` | `(itemId: string) =&gt; void \| undefined` | — | Callback invoked when a tree item is clicked or activated via keyboard. |
+| `expandedItems` | `expandedItems` | `string[] \| undefined` | — | **Controlled mode.** The set of item IDs that should be expanded. |
+| `defaultExpandedItems` | `defaultExpandedItems` | `string[]` | `[]` | **Uncontrolled mode.** Item IDs to expand on initial mount. |
+| `onExpandedItemsChange` | `onExpandedItemsChange` | `(itemIds: string[]) =&gt; void \| undefined` | — | Callback fired when the user toggles an item's expansion. |
 | `expansionTrigger` | `expansion-trigger` | `'content' \| 'iconContainer'` | `'content'` | What interaction triggers expand/collapse. |
 
 ### Events

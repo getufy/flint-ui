@@ -33,11 +33,17 @@ export interface FlintSplitPanelProps extends React.HTMLAttributes<FlintSplitPan
     disabled?: boolean;
     /** Designates a primary panel that maintains its pixel size when the */
     primary?: 'start' | 'end' | undefined;
-    /** Space-separated snap positions (`Npx`, `N%`, `repeat(Npx)`, `repeat(N%)`), */
+    /**
+     * Space-separated snap positions (`Npx`, `N%`, `repeat(Npx)`, `repeat(N%)`),
+     * Type: `string | SnapFunction`
+     */
     snap?: FlintSplitPanelElement['snap'];
     /** How close (px) the divider must be to a snap point before snapping. Default: 12. */
     snapThreshold?: number;
-    /** Emitted when the divider position changes. Detail: `{ position: number; positionInPixels: number }`. */
+    /**
+     * Emitted when the divider position changes. Detail: `{ position: number; positionInPixels: number }`.
+     * DOM event: `flint-split-panel-reposition`
+     */
     onFlintSplitPanelReposition?: (event: CustomEvent<FlintSplitPanelRepositionDetail>) => void;
 }
 

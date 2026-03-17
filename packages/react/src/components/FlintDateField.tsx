@@ -41,9 +41,15 @@ export interface FlintDateFieldProps extends React.HTMLAttributes<FlintDateField
     helperText?: string;
     /** Error message displayed below the field when in error state. */
     errorMessage?: string;
-    /** Fired when all segments are cleared */
+    /**
+     * Fired when all segments are cleared
+     * DOM event: `flint-date-field-clear`
+     */
     onFlintDateFieldClear?: (event: CustomEvent) => void;
-    /** { detail: { value: string } } ISO date when all three segments are filled */
+    /**
+     * { detail: { value: string } } ISO date when all three segments are filled
+     * DOM event: `flint-date-field-change`
+     */
     onFlintDateFieldChange?: (event: CustomEvent<FlintDateFieldChangeDetail>) => void;
 }
 

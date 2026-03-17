@@ -67,7 +67,10 @@ export interface FlintPaginationProps extends Omit<React.HTMLAttributes<FlintPag
     boundaryCount?: number;
     /** Disable the whole component. */
     disabled?: boolean;
-    /** Fired when the active page changes. detail: `{ page: number }` */
+    /**
+     * Fired when the active page changes. detail: `{ page: number }`
+     * DOM event: `flint-pagination-change`
+     */
     onFlintPaginationChange?: (event: CustomEvent<FlintPaginationChangeDetail>) => void;
 }
 

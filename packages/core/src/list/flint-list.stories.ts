@@ -113,8 +113,15 @@ flint-list-item-text: A container for text content.
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`primary\` | \`primary\` | \`string\` | \`''\` | Primary text content of the list item. |
-| \`secondary\` | \`secondary\` | \`string\` | \`''\` | Secondary text content of the list item. |
+| \`primary\` | \`primary\` | \`string\` | \`''\` | Plain-text primary content; for rich content (HTML, icons), use the \`primary\` slot instead. |
+| \`secondary\` | \`secondary\` | \`string\` | \`''\` | Plain-text secondary content; for rich content (HTML, icons), use the \`secondary\` slot instead. |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`primary\` | Rich primary content; takes visual precedence over the \`primary\` prop. |
+| \`secondary\` | Rich secondary content; takes visual precedence over the \`secondary\` prop. |
 
 ---
 

@@ -40,6 +40,11 @@ interface CssVarInfo {
   default: string;
 }
 
+interface CssPartInfo {
+  name: string;
+  description: string;
+}
+
 interface MethodInfo {
   name: string;
   signature: string;
@@ -53,6 +58,7 @@ interface ComponentInfo {
   props: PropInfo[];
   events: EventInfo[];
   slots: SlotInfo[];
+  cssParts: CssPartInfo[];
   cssVars: CssVarInfo[];
   methods: MethodInfo[];
   formAssociated: boolean;
@@ -82,6 +88,10 @@ function cemToComponentInfo(meta: ComponentMeta): ComponentInfo {
     slots: meta.slots.map(s => ({
       name: s.name,
       description: s.description,
+    })),
+    cssParts: meta.cssParts.map(p => ({
+      name: p.name,
+      description: p.description,
     })),
     cssVars: meta.cssProperties.map(c => ({
       name: c.name,
@@ -1888,6 +1898,17 @@ function generateMarkdown(dir: string, components: ComponentInfo[]): string {
       md += `\n`;
     }
 
+    // CSS Parts
+    if (comp.cssParts.length > 0) {
+      md += `### CSS Parts\n\n`;
+      md += `| Name | Description |\n`;
+      md += `| --- | --- |\n`;
+      for (const p of comp.cssParts) {
+        md += `| \`${p.name}\` | ${escapeTable(p.description)} |\n`;
+      }
+      md += `\n`;
+    }
+
     // CSS Custom Properties
     if (comp.cssVars.length > 0) {
       md += `### CSS Custom Properties\n\n`;
@@ -2020,6 +2041,16 @@ function generateStoryDocs(components: ComponentInfo[]): string {
       md += `|---|---|\n`;
       for (const s of comp.slots) {
         md += `| \`${s.name || '(default)'}\` | ${escapeTable(s.description)} |\n`;
+      }
+      md += `\n`;
+    }
+
+    if (comp.cssParts.length > 0) {
+      md += `#### CSS Parts\n\n`;
+      md += `| Name | Description |\n`;
+      md += `|---|---|\n`;
+      for (const p of comp.cssParts) {
+        md += `| \`${p.name}\` | ${escapeTable(p.description)} |\n`;
       }
       md += `\n`;
     }

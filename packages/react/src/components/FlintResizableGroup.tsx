@@ -24,11 +24,20 @@ export interface FlintResizableGroupProps extends Omit<React.HTMLAttributes<Flin
      * Allowed values: 'ltr' | 'rtl'
      */
     dir?: 'ltr' | 'rtl';
-    /** Fired when a panel is collapsed. */
+    /**
+     * Fired when a panel is collapsed.
+     * DOM event: `flint-resizable-collapse`
+     */
     onFlintResizableCollapse?: (event: CustomEvent) => void;
-    /** Fired when a collapsed panel is expanded. */
+    /**
+     * Fired when a collapsed panel is expanded.
+     * DOM event: `flint-resizable-expand`
+     */
     onFlintResizableExpand?: (event: CustomEvent) => void;
-    /** Fired when panel sizes change via drag or keyboard. */
+    /**
+     * Fired when panel sizes change via drag or keyboard.
+     * DOM event: `flint-resizable-change`
+     */
     onFlintResizableChange?: (event: CustomEvent) => void;
 }
 

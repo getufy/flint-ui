@@ -32,7 +32,10 @@ export interface FlintMenuItemProps extends React.HTMLAttributes<FlintMenuItemEl
     divider?: boolean;
     /** The machine-readable value carried in the `flint-menu-item-select` event detail. */
     value?: string | undefined;
-    /** Fired when the item is activated. detail: { value: string | null, label: string } */
+    /**
+     * Fired when the item is activated. detail: { value: string | null, label: string }
+     * DOM event: `flint-menu-item-select`
+     */
     onFlintMenuItemSelect?: (event: CustomEvent<FlintMenuItemSelectDetail>) => void;
 }
 

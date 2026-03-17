@@ -23,7 +23,10 @@ animation. Pressing `Escape` or clicking the backdrop fires `flint-command-dialo
 export interface FlintCommandDialogProps extends React.HTMLAttributes<FlintCommandDialogElement> {
     /** Controls the open/closed state of the dialog. */
     open?: boolean;
-    /** Fired when the dialog should close. detail: `{ open: false }` The host is responsible for setting `open = false` in response. */
+    /**
+     * Fired when the dialog should close. detail: `{ open: false }` The host is responsible for setting `open = false` in response.
+     * DOM event: `flint-command-dialog-close`
+     */
     onFlintCommandDialogClose?: (event: CustomEvent<FlintCommandDialogCloseDetail>) => void;
 }
 

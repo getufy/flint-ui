@@ -9,11 +9,21 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintButton as FlintButtonElement } from '@getufy/flint-ui/button/flint-button';
 
-export interface FlintButtonProps extends React.HTMLAttributes<FlintButtonElement> {
+/**
+ * Button: a clickable element used for actions and navigation.
+ */
+export interface FlintButtonProps extends Omit<React.HTMLAttributes<FlintButtonElement>, 'color'> {
     /**
-     * Visual style variant of the button.
-     * Allowed values: '' | 'primary' | 'secondary' | 'destructive' | 'success' | 'warning' | 'neutral'
+     * Visual appearance of the button (structural style).
+     * Allowed values: 'filled' | 'outlined' | 'text' | 'ghost'
      */
+    appearance?: 'filled' | 'outlined' | 'text' | 'ghost';
+    /**
+     * Semantic color of the button.
+     * Allowed values: 'primary' | 'destructive' | 'success' | 'warning' | 'neutral'
+     */
+    color?: 'primary' | 'destructive' | 'success' | 'warning' | 'neutral';
+    /** Allowed values: '' | 'primary' | 'secondary' | 'destructive' | 'success' | 'warning' | 'neutral' */
     variant?: '' | 'primary' | 'secondary' | 'destructive' | 'success' | 'warning' | 'neutral';
     /**
      * Size of the button.

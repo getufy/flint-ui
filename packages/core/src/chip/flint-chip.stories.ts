@@ -32,7 +32,7 @@ Chip: a compact element representing an input, attribute, or action.
 | \`label\` | \`label\` | \`string\` | \`''\` | Text content displayed inside the chip. |
 | \`variant\` | \`variant\` | \`'filled' \\| 'outlined'\` | \`'filled'\` | Visual style variant of the chip. |
 | \`color\` | \`color\` | \`'default' \\| 'primary' \\| 'secondary'\` | \`'default'\` | Color theme applied to the chip. |
-| \`size\` | \`size\` | \`'sm' \\| 'md' \\| 'lg'\` | \`'md'\` | Size of the chip. |
+| \`size\` | \`size\` | \`Size\` | \`'md'\` | Size of the chip. |
 | \`clickable\` | \`clickable\` | \`boolean\` | \`false\` | Whether the chip responds to click interactions. |
 | \`deletable\` | \`deletable\` | \`boolean\` | \`false\` | Whether the chip shows a delete icon. |
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the chip and prevents interaction. |
@@ -48,8 +48,15 @@ Chip: a compact element representing an input, attribute, or action.
 
 | Name | Description |
 |---|---|
+| \`(default)\` | Text content for the chip (alternative to the \`label\` prop). |
 | \`avatar\` | Avatar element shown at start. |
 | \`icon\` | Icon shown at start when no avatar. |
+
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The chip's base wrapper element. |
 
 #### CSS Custom Properties
 

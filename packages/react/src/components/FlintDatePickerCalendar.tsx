@@ -27,7 +27,10 @@ export interface FlintDatePickerCalendarProps extends React.HTMLAttributes<Flint
     max?: string | undefined;
     /** Disable all interaction. */
     disabled?: boolean;
-    /** { detail: { value: string } } ISO date YYYY-MM-DD */
+    /**
+     * { detail: { value: string } } ISO date YYYY-MM-DD
+     * DOM event: `flint-date-picker-select`
+     */
     onFlintDatePickerSelect?: (event: CustomEvent<FlintDatePickerSelectDetail>) => void;
 }
 

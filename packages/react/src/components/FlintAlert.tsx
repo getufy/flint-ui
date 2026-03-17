@@ -30,7 +30,10 @@ export interface FlintAlertProps extends Omit<React.HTMLAttributes<FlintAlertEle
     title?: string;
     /** Whether the alert can be dismissed by the user. */
     dismissible?: boolean;
-    /** Fired when the alert's close button is clicked. detail: `{ open: false, severity: string }` */
+    /**
+     * Fired when the alert's close button is clicked. detail: `{ open: false, severity: string }`
+     * DOM event: `flint-alert-close`
+     */
     onFlintAlertClose?: (event: CustomEvent<FlintAlertCloseDetail>) => void;
 }
 

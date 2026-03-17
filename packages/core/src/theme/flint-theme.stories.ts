@@ -18,8 +18,8 @@ Scopes CSS custom properties to a subtree for nested theme overrides.
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`mode\` | \`mode\` | \`'light' \\| 'dark' \\| 'auto'\` | \`'auto'\` | Color mode override for this subtree. |
-| \`palette\` | \`palette\` | \`string\` | — | Palette override — swaps primary color tokens. Options: \`rose\`, \`teal\`, \`violet\`, \`amber\`, \`emerald\`, \`slate\`. |
+| \`mode\` | \`mode\` | \`ThemeMode\` | \`'auto'\` | Color mode override for this subtree. |
+| \`palette\` | \`palette\` | \`string \\| undefined\` | — | Palette override — swaps primary color tokens. |
 
 #### Slots
 

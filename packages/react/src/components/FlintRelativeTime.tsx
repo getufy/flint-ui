@@ -14,7 +14,10 @@ import { FlintRelativeTime as FlintRelativeTimeElement } from '@getufy/flint-ui/
 Uses the browser's `Intl.RelativeTimeFormat` API — no language packs needed.
  */
 export interface FlintRelativeTimeProps extends Omit<React.HTMLAttributes<FlintRelativeTimeElement>, 'lang'> {
-    /** The date to calculate time from. Accepts a Date, ISO string, or Unix ms timestamp. Defaults to the current date/time. */
+    /**
+     * The date to calculate time from. Accepts a Date, ISO string, or Unix ms timestamp. Defaults to the current date/time.
+     * Type: `Date | string | number`
+     */
     date?: FlintRelativeTimeElement['date'];
     /**
      * The formatting style to use.

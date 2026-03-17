@@ -28,7 +28,7 @@ import { FlintScrollBar } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `orientation` | `orientation` | `'vertical' \| 'horizontal'` | `'vertical'` | Which axis this scrollbar controls. Reflects to attribute. |
+| `orientation` | `orientation` | `Orientation` | `'vertical'` | Which axis this scrollbar controls. Reflects to attribute. |
 
 ### Slots
 

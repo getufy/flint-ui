@@ -15,7 +15,10 @@ import { FlintDateRangePickerEvents } from '../events/flint-date-range-picker.js
  */
 export interface FlintDateRangePickerProps extends React.HTMLAttributes<FlintDateRangePickerElement> {
     dependencies?: object;
-    /** Selected range [startISO, endISO]. Empty strings mean unset. */
+    /**
+     * Selected range [startISO, endISO]. Empty strings mean unset.
+     * Type: `DateRange`
+     */
     value?: FlintDateRangePickerElement['value'];
     /** Label shown above the field. */
     label?: string;
@@ -28,7 +31,10 @@ export interface FlintDateRangePickerProps extends React.HTMLAttributes<FlintDat
     multiInput?: boolean;
     /** Show shortcuts panel. */
     shortcuts?: boolean;
-    /** Custom shortcuts list. Defaults to built-in shortcuts when shortcuts=true. */
+    /**
+     * Custom shortcuts list. Defaults to built-in shortcuts when shortcuts=true.
+     * Type: `Shortcut[]`
+     */
     shortcutItems?: FlintDateRangePickerElement['shortcutItems'];
     /** Minimum selectable date (ISO YYYY-MM-DD). */
     min?: string;
@@ -48,7 +54,10 @@ export interface FlintDateRangePickerProps extends React.HTMLAttributes<FlintDat
     helperText?: string;
     /** Error message displayed below the field when in error state. */
     errorMessage?: string;
-    /** { detail: { value: DateRange } } when range is committed */
+    /**
+     * { detail: { value: DateRange } } when range is committed
+     * DOM event: `flint-date-range-picker-change`
+     */
     onFlintDateRangePickerChange?: (event: CustomEvent) => void;
 }
 

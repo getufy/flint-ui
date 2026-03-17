@@ -31,7 +31,7 @@ A two-state button that can be either on (pressed) or off.
 | \`pressed\` | \`pressed\` | \`boolean\` | \`false\` | Whether the toggle is currently pressed (on). |
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Whether the toggle is disabled. |
 | \`variant\` | \`variant\` | \`'default' \\| 'outlined'\` | \`'default'\` | Visual variant of the toggle. |
-| \`size\` | \`size\` | \`'sm' \\| 'md' \\| 'lg'\` | \`'default'\` | Size of the toggle. |
+| \`size\` | \`size\` | \`Size\` | \`'md'\` | Size of the toggle. |
 | \`dir\` | \`dir\` | \`'ltr' \\| 'rtl'\` | \`'ltr'\` | Text direction for the toggle. |
 | \`defaultPressed\` | \`default-pressed\` | \`boolean\` | \`false\` | Initial pressed state for uncontrolled mode. |
 | \`ariaLabel\` | \`aria-label\` | \`string \\| null\` | \`null\` | Accessible label for icon-only toggles. |

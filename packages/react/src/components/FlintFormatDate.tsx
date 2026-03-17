@@ -14,7 +14,10 @@ import { FlintFormatDate as FlintFormatDateElement } from '@getufy/flint-ui/form
 Localization is handled by the browser's `Intl.DateTimeFormat` API — no language packs required.
  */
 export interface FlintFormatDateProps extends Omit<React.HTMLAttributes<FlintFormatDateElement>, 'lang'> {
-    /** The date/time to format. Accepts a `Date` object or any string accepted by `new Date()`. */
+    /**
+     * The date/time to format. Accepts a `Date` object or any string accepted by `new Date()`.
+     * Type: `Date | string`
+     */
     date?: FlintFormatDateElement['date'];
     /** The format for displaying the weekday. */
     weekday?: 'narrow' | 'short' | 'long' | undefined;

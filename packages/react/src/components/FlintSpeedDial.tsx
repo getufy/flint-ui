@@ -47,9 +47,15 @@ export interface FlintSpeedDialProps extends Omit<React.HTMLAttributes<FlintSpee
     ariaLabel?: string;
     /** True on touch-only devices (auto-detected unless explicitly set). */
     isTouch?: boolean;
-    /** Fired when the dial opens. detail: `{ open: true }` */
+    /**
+     * Fired when the dial opens. detail: `{ open: true }`
+     * DOM event: `flint-speed-dial-open`
+     */
     onFlintSpeedDialOpen?: (event: CustomEvent<FlintSpeedDialOpenDetail>) => void;
-    /** Fired when the dial closes. detail: `{ open: false }` */
+    /**
+     * Fired when the dial closes. detail: `{ open: false }`
+     * DOM event: `flint-speed-dial-close`
+     */
     onFlintSpeedDialClose?: (event: CustomEvent<FlintSpeedDialCloseDetail>) => void;
 }
 

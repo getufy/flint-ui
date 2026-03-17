@@ -2,6 +2,8 @@
 
 <Demo label="Responsive Grid" html='<flint-grid container spacing="2" style="width:100%">  <flint-grid xs="12" md="6"><flint-paper elevation="1" style="padding:16px;text-align:center">xs=12 md=6</flint-paper></flint-grid>  <flint-grid xs="12" md="6"><flint-paper elevation="1" style="padding:16px;text-align:center">xs=12 md=6</flint-paper></flint-grid>  <flint-grid xs="6" md="3"><flint-paper elevation="1" style="padding:16px;text-align:center">xs=6 md=3</flint-paper></flint-grid>  <flint-grid xs="6" md="3"><flint-paper elevation="1" style="padding:16px;text-align:center">xs=6 md=3</flint-paper></flint-grid>  <flint-grid xs="6" md="3"><flint-paper elevation="1" style="padding:16px;text-align:center">xs=6 md=3</flint-paper></flint-grid>  <flint-grid xs="6" md="3"><flint-paper elevation="1" style="padding:16px;text-align:center">xs=6 md=3</flint-paper></flint-grid></flint-grid>' />
 
+A responsive 12-column grid layout component inspired by Material UI's Grid.
+
 - **Tag**: `<flint-grid>`
 - **Class**: `FlintGrid`
 
@@ -39,5 +41,22 @@ import { FlintGrid } from '@getufy/flint-ui';
 | `xl` | `xl` | `GridSize \| undefined` | — | Number of columns to span at the xl breakpoint. |
 | `offset` | `offset` | `Partial&lt;Record&lt;Breakpoint, number \| 'auto'&gt;&gt; \| undefined` | — | Offset per breakpoint, expressed in column units or 'auto'. |
 | `order` | `order` | `ResponsiveValue&lt;number&gt; \| undefined` | — | Flex order. Supports responsive values so items can be reordered at |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The inner wrapper div. |
+
+### CSS Custom Properties
+
+| Property | Default |
+| --- | --- |
+| `--flint-breakpoint-xs` | — |
+| `--flint-breakpoint-sm` | — |
+| `--flint-breakpoint-md` | — |
+| `--flint-breakpoint-lg` | — |
+| `--flint-breakpoint-xl` | — |
+| `--flint-grid-columns` | — |
 
 ---

@@ -37,9 +37,15 @@ export interface FlintTimeFieldProps extends React.HTMLAttributes<FlintTimeField
     helperText?: string;
     /** Error message displayed below the field when in error state. */
     errorMessage?: string;
-    /** Fired when the clear button is clicked. */
+    /**
+     * Fired when the clear button is clicked.
+     * DOM event: `flint-time-picker-clear`
+     */
     onFlintTimePickerClear?: (event: CustomEvent) => void;
-    /** Fired when the time value changes. detail: `{ value: string }` */
+    /**
+     * Fired when the time value changes. detail: `{ value: string }`
+     * DOM event: `flint-time-field-change`
+     */
     onFlintTimeFieldChange?: (event: CustomEvent<FlintTimeFieldChangeDetail>) => void;
 }
 

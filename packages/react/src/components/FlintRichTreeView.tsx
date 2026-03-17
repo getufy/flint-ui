@@ -15,21 +15,42 @@ import { FlintRichTreeViewEvents } from '../events/flint-rich-tree-view.js';
  */
 export interface FlintRichTreeViewProps extends React.HTMLAttributes<FlintRichTreeViewElement> {
     dependencies?: object;
-    /** Array of item data objects. */
+    /**
+     * Array of item data objects.
+     * Type: `RichTreeItem[]`
+     */
     items?: FlintRichTreeViewElement['items'];
-    /** Optional lazy-load data source. */
+    /**
+     * Optional lazy-load data source.
+     * Type: `RichTreeViewDataSource`
+     */
     dataSource?: FlintRichTreeViewElement['dataSource'];
-    /** Extract unique ID (default: `item.id`). */
+    /**
+     * Extract unique ID (default: `item.id`).
+     * Type: `(item) => string`
+     */
     getItemId?: FlintRichTreeViewElement['getItemId'];
-    /** Extract label (default: `item.label`). */
+    /**
+     * Extract label (default: `item.label`).
+     * Type: `(item) => string`
+     */
     getItemLabel?: FlintRichTreeViewElement['getItemLabel'];
-    /** Extract children (default: `item.children`). */
+    /**
+     * Extract children (default: `item.children`).
+     * Type: `(item) => RichTreeItem[] | undefined`
+     */
     getItemChildren?: FlintRichTreeViewElement['getItemChildren'];
-    /** Return true to disable an item. */
+    /**
+     * Return true to disable an item.
+     * Type: `(item) => boolean`
+     */
     isItemDisabled?: FlintRichTreeViewElement['isItemDisabled'];
     /** When `true`, disabled items can receive keyboard focus. */
     disabledItemsFocusable?: boolean;
-    /** Callback invoked when a tree item is clicked or activated via keyboard. */
+    /**
+     * Callback invoked when a tree item is clicked or activated via keyboard.
+     * Type: `(itemId: string) => void | undefined`
+     */
     onItemClick?: FlintRichTreeViewElement['onItemClick'];
     /**
      * What interaction triggers expand/collapse.
@@ -40,24 +61,54 @@ export interface FlintRichTreeViewProps extends React.HTMLAttributes<FlintRichTr
     expandedItems?: string[] | undefined;
     /** **Uncontrolled mode.** Item IDs to expand on initial mount. */
     defaultExpandedItems?: string[];
-    /** Callback fired when the user toggles an item's expansion. */
+    /**
+     * Callback fired when the user toggles an item's expansion.
+     * Type: `(itemIds: string[]) => void | undefined`
+     */
     onExpandedItemsChange?: FlintRichTreeViewElement['onExpandedItemsChange'];
     /** When `true`, enables drag-and-drop reordering of items. */
     itemsReordering?: boolean;
-    /** Function that determines if a specific item can be reordered. */
+    /**
+     * Function that determines if a specific item can be reordered.
+     * Type: `(itemId: string) => boolean | undefined`
+     */
     isItemReorderable?: FlintRichTreeViewElement['isItemReorderable'];
-    /** Function that determines if an item can be moved to a specific target position. */
+    /**
+     * Function that determines if an item can be moved to a specific target position.
+     * Type: `(params: {
+        itemId: string;
+        targetId: string;
+        position: 'before' | 'after' | 'inside';
+    }) => boolean | undefined`
+     */
     canMoveItemToNewPosition?: FlintRichTreeViewElement['canMoveItemToNewPosition'];
     /** Whether to use a drag handle icon for reordering. */
     itemsReorderingHandle?: boolean;
-    /** Fired when an item's position changes via reordering. */
+    /**
+     * Fired when an item's position changes via reordering.
+     * Type: `(params: {
+        itemId: string;
+        newParentId: string | null;
+        newIndex: number;
+    }) => void | undefined`
+     */
     onItemPositionChange?: FlintRichTreeViewElement['onItemPositionChange'];
-    /** When a lazy-loading dataSource call fails (detail: { message, id, error }) */
+    /**
+     * When a lazy-loading dataSource call fails (detail: { message, id, error })
+     * DOM event: `flint-tree-view-error`
+     */
     onFlintTreeViewError?: (event: CustomEvent) => void;
-    /** When the expanded set changes (detail: { expandedItems }) */
+    /**
+     * When the expanded set changes (detail: { expandedItems })
+     * DOM event: `flint-tree-view-expanded-items-change`
+     */
     onFlintTreeViewExpandedItemsChange?: (event: CustomEvent) => void;
+    /** DOM event: `flint-tree-view-item-position-change` */
     onFlintTreeViewItemPositionChange?: (event: CustomEvent) => void;
-    /** When a tree item is activated (detail: { itemId }) */
+    /**
+     * When a tree item is activated (detail: { itemId })
+     * DOM event: `flint-tree-view-item-click`
+     */
     onFlintTreeViewItemClick?: (event: CustomEvent) => void;
 }
 

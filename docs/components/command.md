@@ -245,7 +245,7 @@ import { FlintCommandInput } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `placeholder` | `placeholder` | `string` | `'Type a command or search...'` | Placeholder text shown when input is empty. |
+| `placeholder` | `placeholder` | `string` | `''` | Placeholder text shown when input is empty. |
 | `value` | `value` | `string` | `''` | Current input value. |
 
 ### Methods
@@ -288,6 +288,12 @@ import { FlintCommand } from '@getufy/flint-ui';
 | Name | Description |
 | --- | --- |
 | `(default)` | Command menu content. |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `command` | The root wrapper div. |
 
 ### CSS Custom Properties
 

@@ -19,22 +19,34 @@ and item selection/expansion for nested `flint-tree-item` elements.
 export interface FlintSimpleTreeViewProps extends React.HTMLAttributes<FlintSimpleTreeViewElement> {
     /** When `true`, disabled items can receive keyboard focus. */
     disabledItemsFocusable?: boolean;
-    /** Callback invoked when a tree item is clicked or activated via keyboard. */
+    /**
+     * Callback invoked when a tree item is clicked or activated via keyboard.
+     * Type: `(itemId: string) => void | undefined`
+     */
     onItemClick?: FlintSimpleTreeViewElement['onItemClick'];
     /** **Controlled mode.** The set of item IDs that should be expanded. */
     expandedItems?: string[] | undefined;
     /** **Uncontrolled mode.** Item IDs to expand on initial mount. */
     defaultExpandedItems?: string[];
-    /** Callback fired when the user toggles an item's expansion. */
+    /**
+     * Callback fired when the user toggles an item's expansion.
+     * Type: `(itemIds: string[]) => void | undefined`
+     */
     onExpandedItemsChange?: FlintSimpleTreeViewElement['onExpandedItemsChange'];
     /**
      * What interaction triggers expand/collapse.
      * Allowed values: 'content' | 'iconContainer'
      */
     expansionTrigger?: 'content' | 'iconContainer';
-    /** When the expanded set changes (detail: { expandedItems }) */
+    /**
+     * When the expanded set changes (detail: { expandedItems })
+     * DOM event: `flint-tree-view-expanded-items-change`
+     */
     onFlintTreeViewExpandedItemsChange?: (event: CustomEvent) => void;
-    /** When a tree item is activated (detail: { itemId }) */
+    /**
+     * When a tree item is activated (detail: { itemId })
+     * DOM event: `flint-tree-view-item-click`
+     */
     onFlintTreeViewItemClick?: (event: CustomEvent) => void;
 }
 

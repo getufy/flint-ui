@@ -40,11 +40,17 @@ export interface FlintRatingProps extends Omit<React.HTMLAttributes<FlintRatingE
     name?: string;
     /** Accessible label for the rating group. */
     label?: string;
-    /** Rating step precision (1 for full stars, 0.5 for half stars). */
+    /**
+     * Rating step precision (1 for full stars, 0.5 for half stars).
+     * Type: `1 | 0.5`
+     */
     precision?: FlintRatingElement['precision'];
     /** Marks the rating as required for form validation. */
     required?: boolean;
-    /** Fired when the rating value changes. detail: `{ value: number }` */
+    /**
+     * Fired when the rating value changes. detail: `{ value: number }`
+     * DOM event: `flint-rating-change`
+     */
     onFlintRatingChange?: (event: CustomEvent<FlintRatingChangeDetail>) => void;
 }
 

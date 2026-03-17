@@ -25,17 +25,21 @@ import { FlintAutocomplete } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
+| `shadowRootOptions` | `shadowRootOptions` | `object` | `&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;` |  |
 | `options` | `options` | `AutocompleteOption[]` | `[]` | The list of selectable options. |
 | `freeSolo` | `freeSolo` | `boolean` | `false` | When true, allows arbitrary values that are not in the options list. |
 | `disabled` | `disabled` | `boolean` | `false` | Whether the autocomplete input is disabled. |
 | `value` | `value` | `string` | `''` | The current selected value. |
 | `placeholder` | `placeholder` | `string` | `''` | Placeholder text shown when the input is empty. |
+| `name` | `name` | `string` | `''` | Form field name used when submitting form data. |
+| `required` | `required` | `boolean` | `false` | Marks the autocomplete as required for form validation. |
+| `defaultValue` | `default-value` | `string` | `''` | Initial value for uncontrolled usage. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-autocomplete-change` | — | Fired when the selected value changes. |
+| `flint-autocomplete-change` | `&#123; value: string, label: string &#125;` | Fired when the selected value changes. detail: `&#123; value: string, label: string &#125;` |
 
 ### CSS Custom Properties
 

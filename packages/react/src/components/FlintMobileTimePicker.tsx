@@ -35,7 +35,10 @@ export interface FlintMobileTimePickerProps extends React.HTMLAttributes<FlintMo
     helperText?: string;
     /** Error message displayed below the field when in error state. */
     errorMessage?: string;
-    /** Fired when the time value changes. detail: `{ value: string }` */
+    /**
+     * Fired when the time value changes. detail: `{ value: string }`
+     * DOM event: `flint-mobile-time-picker-change`
+     */
     onFlintMobileTimePickerChange?: (event: CustomEvent<FlintMobileTimePickerChangeDetail>) => void;
 }
 

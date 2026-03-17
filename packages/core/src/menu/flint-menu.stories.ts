@@ -75,6 +75,7 @@ A single option inside a \`flint-menu\`.
 
 | Property | Default |
 |---|---|
+| \`--flint-menu-item-dense-min-height\` | \`44px\` |
 | \`--flint-border-color\` | — |
 | \`--flint-text-color-muted\` | — |
 | \`--flint-font-family\` | — |
@@ -156,6 +157,7 @@ Place it as a sibling to its anchor element inside a \`position:relative\` conta
 
 | Property | Default |
 |---|---|
+| \`--flint-menu-item-dense-min-height\` | \`44px\` |
 | \`--flint-menu-z-index\` | — |
 | \`--flint-menu-min-width\` | — |
 | \`--flint-menu-max-width\` | \`360px\` |

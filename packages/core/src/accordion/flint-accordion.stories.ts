@@ -40,13 +40,21 @@ Accordion: the wrapper for grouping related components.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-accordion-change\` | — | Fired when the accordion's expanded state changes. |
+| \`flint-accordion-change\` | \`&#123; expanded: boolean &#125;\` | Fired when the accordion's expanded state changes. detail: \`&#123; expanded: boolean &#125;\` |
 
 #### Slots
 
 | Name | Description |
 |---|---|
 | \`(default)\` | FlintAccordionSummary and FlintAccordionDetails. |
+
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The accordion's base container element. |
+| \`content\` | The accordion's content wrapper. |
+| \`expand-icon\` | The expand/collapse icon element. |
 
 #### CSS Custom Properties
 
@@ -98,6 +106,13 @@ Accordion Details: the wrapper for the Accordion content.
 | Name | Description |
 |---|---|
 | \`(default)\` | Detail content. |
+
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The details inner wrapper element. |
+| \`content\` | The details content element. |
 
 ---
 

@@ -52,6 +52,8 @@ export interface FlintTextareaProps extends Omit<React.HTMLAttributes<FlintTexta
     maxlength?: number | undefined;
     /** Minimum number of characters required. */
     minlength?: number | undefined;
+    /** Regex pattern for validation. */
+    pattern?: string;
     /** Form field name used when submitting form data. */
     name?: string;
     /** Browser autocomplete hint. */
@@ -65,9 +67,15 @@ export interface FlintTextareaProps extends Omit<React.HTMLAttributes<FlintTexta
     defaultValue?: string;
     /** Accessible label for screen readers when no visible label is provided. */
     ariaLabel?: string | null;
-    /** Dispatched on every keystroke. Detail: `{ value: string }` */
+    /**
+     * Dispatched on every keystroke. Detail: `{ value: string }`
+     * DOM event: `flint-textarea-input`
+     */
     onFlintTextareaInput?: (event: CustomEvent<FlintTextareaInputDetail>) => void;
-    /** Dispatched on blur/change. Detail: `{ value: string }` */
+    /**
+     * Dispatched on blur/change. Detail: `{ value: string }`
+     * DOM event: `flint-textarea-change`
+     */
     onFlintTextareaChange?: (event: CustomEvent<FlintTextareaChangeDetail>) => void;
 }
 

@@ -322,5 +322,39 @@
         "link": "/components/visually-hidden"
       }
     ]
+  },
+  {
+    "text": "Other",
+    "collapsed": false,
+    "items": [
+      {
+        "text": "Animation",
+        "link": "/components/animation"
+      },
+      {
+        "text": "Combobox",
+        "link": "/components/combobox"
+      },
+      {
+        "text": "Form Field",
+        "link": "/components/form-field"
+      },
+      {
+        "text": "Icon",
+        "link": "/components/icon"
+      },
+      {
+        "text": "Layer",
+        "link": "/components/layer"
+      },
+      {
+        "text": "Theme",
+        "link": "/components/theme"
+      },
+      {
+        "text": "Virtual Scroll",
+        "link": "/components/virtual-scroll"
+      }
+    ]
   }
 ]

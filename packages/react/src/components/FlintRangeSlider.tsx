@@ -34,7 +34,10 @@ export interface FlintRangeSliderProps extends React.HTMLAttributes<FlintRangeSl
     label?: string;
     /** Show the current [start, end] values. */
     showValue?: boolean;
-    /** When either thumb moves. detail: { value: [number, number] } */
+    /**
+     * When either thumb moves. detail: { value: [number, number] }
+     * DOM event: `flint-range-slider-change`
+     */
     onFlintRangeSliderChange?: (event: CustomEvent) => void;
 }
 

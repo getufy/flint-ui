@@ -26,7 +26,10 @@ export interface FlintBackdropProps extends React.HTMLAttributes<FlintBackdropEl
     invisible?: boolean;
     /** When true, the backdrop is scoped to its parent container instead of the viewport. */
     container?: boolean;
-    /** Dispatched when the backdrop is clicked or Escape is pressed. detail: `{ open: false }` */
+    /**
+     * Dispatched when the backdrop is clicked or Escape is pressed. detail: `{ open: false }`
+     * DOM event: `flint-backdrop-close`
+     */
     onFlintBackdropClose?: (event: CustomEvent<FlintBackdropCloseDetail>) => void;
 }
 

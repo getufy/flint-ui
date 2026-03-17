@@ -16,6 +16,18 @@ import '@getufy/flint-ui/theme.css';
 import '@getufy/flint-ui/theme-dark.css';
 ```
 
+## Tree-Shaking Imports
+
+```tsx
+// Barrel import (simple — works, but may pull in all components)
+import { FlintButton } from '@getufy/flint-ui-react';
+
+// Subpath import (smaller bundles — only loads the button)
+import { FlintButton } from '@getufy/flint-ui-react/button';
+```
+
+Both styles work identically at runtime. Use subpath imports for production apps where bundle size matters.
+
 ## Basic Usage
 
 ```tsx
@@ -24,7 +36,7 @@ import { FlintButton, FlintCard } from '@getufy/flint-ui-react';
 function App() {
   return (
     <FlintCard>
-      <FlintButton variant="primary">Click me</FlintButton>
+      <FlintButton>Click me</FlintButton>
     </FlintCard>
   );
 }
@@ -32,26 +44,31 @@ function App() {
 
 ## Props
 
-Props map 1:1 with the Lit component attributes. Use camelCase in JSX — the wrapper handles the attribute conversion automatically.
+Props map 1:1 with the Lit component properties. Use camelCase in JSX — the wrapper handles the attribute conversion automatically.
 
 ```tsx
 // HTML
-// <flint-button variant="primary" disabled>Click me</flint-button>
+// <flint-button appearance="filled" color="primary" disabled>Click me</flint-button>
 
-// React
-<FlintButton variant="primary" disabled>Click me</FlintButton>
+// React — appearance="filled" and color="primary" are defaults, so these are equivalent:
+<FlintButton appearance="filled" color="primary" disabled>Click me</FlintButton>
+<FlintButton disabled>Click me</FlintButton>
 ```
 
 ## Events
 
-Custom events use `onEventName` props. The naming convention converts the Lit event name to camelCase with an `on` prefix:
+Custom events use `onEventName` props. The naming convention converts the Lit event name to PascalCase with an `on` prefix:
 
-| Lit event | React prop |
-|-----------|-----------|
-| `flint-change` | `onFlintChange` |
-| `flint-menu-close` | `onFlintMenuClose` |
-| `flint-dialog-close` | `onFlintDialogClose` |
-| `flint-drawer-close` | `onFlintDrawerClose` |
+| Lit event | React prop | Notes |
+|-----------|-----------|-------|
+| `flint-change` | `onFlintChange` | Value committed (blur/enter) |
+| `flint-input-input` | `onFlintInputInput` | Each keystroke |
+| `flint-input-change` | `onFlintInputChange` | Value committed |
+| `flint-menu-close` | `onFlintMenuClose` | |
+| `flint-dialog-close` | `onFlintDialogClose` | |
+| `flint-drawer-close` | `onFlintDrawerClose` | |
+
+> **`Input` vs `Change`**: Components with text input fire two events — `flint-*-input` on every keystroke and `flint-*-change` when the value is committed (blur or Enter). Use `input` for live search/filtering and `change` for form submission.
 
 ```tsx
 <FlintSelect
@@ -59,13 +76,39 @@ Custom events use `onEventName` props. The naming convention converts the Lit ev
   onFlintChange={(e) => console.log(e.detail.value)}
 />
 
-<FlintDialog open onClose={() => setOpen(false)}>
+<FlintDialog open onFlintDialogClose={() => setOpen(false)}>
   <FlintDialogTitle>Title</FlintDialogTitle>
   <FlintDialogContent>Content</FlintDialogContent>
 </FlintDialog>
 ```
 
-The event object is a standard `CustomEvent`. Access the payload via `e.detail`.
+The event object is a standard `CustomEvent`. Access the payload via `e.detail`. All event detail types are fully typed — hover over the prop in your IDE to see the shape.
+
+## Controlled vs Uncontrolled
+
+### Controlled (React owns the value)
+
+```tsx
+const [value, setValue] = useState('');
+
+<FlintTextField
+  label="Name"
+  value={value}
+  onFlintTextFieldInput={(e) => setValue(e.detail.value)}
+/>
+```
+
+### Uncontrolled (component owns the value)
+
+```tsx
+<FlintTextField
+  label="Name"
+  defaultValue="Jane"
+  onFlintTextFieldChange={(e) => console.log('committed:', e.detail.value)}
+/>
+```
+
+Use `defaultValue` / `defaultChecked` / `defaultOpen` for uncontrolled patterns. The component manages its own state, and you only react to committed changes.
 
 ## Complex Properties
 
@@ -83,18 +126,18 @@ Properties that accept objects or arrays (like `options` on `FlintSelect` or `it
 
 ## Refs
 
-Use standard React refs to access the underlying custom element and its methods:
+Use standard React refs to access the underlying custom element and its methods. Import the element type for full type safety:
 
 ```tsx
 import { useRef } from 'react';
 import { FlintDialog } from '@getufy/flint-ui-react';
+import type { FlintDialog as FlintDialogElement } from '@getufy/flint-ui';
 
 function MyDialog() {
-  const dialogRef = useRef<HTMLElement>(null);
+  const dialogRef = useRef<FlintDialogElement>(null);
 
   const openDialog = () => {
-    // Access the underlying Lit element's methods
-    (dialogRef.current as any)?.show();
+    dialogRef.current?.show();
   };
 
   return (
@@ -108,6 +151,49 @@ function MyDialog() {
 }
 ```
 
+## Theming
+
+Use the `FlintTheme` component to set the color mode and palette:
+
+```tsx
+import { FlintTheme } from '@getufy/flint-ui-react';
+
+function App() {
+  return (
+    <FlintTheme mode="dark" palette="rose">
+      {/* All children inherit the theme */}
+      <FlintButton>Themed button</FlintButton>
+    </FlintTheme>
+  );
+}
+```
+
+Available modes: `'light'`, `'dark'`, `'auto'` (follows system preference).
+
+To suppress the custom-element re-registration warnings in development:
+
+```tsx
+import '@getufy/flint-ui/suppress-warnings';
+```
+
+## Styling with CSS Parts
+
+Flint components expose CSS parts via the `::part()` pseudo-element for deep customization beyond CSS custom properties:
+
+```css
+/* Round all buttons */
+flint-button::part(base) {
+  border-radius: 9999px;
+}
+
+/* Style the input field inside a text field */
+flint-text-field::part(input) {
+  font-family: monospace;
+}
+```
+
+Check each component's documentation for the list of available part names.
+
 ## TypeScript
 
 All wrappers export their props type as `Flint<Component>Props`:
@@ -116,12 +202,12 @@ All wrappers export their props type as `Flint<Component>Props`:
 import { FlintButton, type FlintButtonProps } from '@getufy/flint-ui-react';
 
 const buttonProps: FlintButtonProps = {
-  variant: 'primary',
+  appearance: 'filled',
   disabled: false,
 };
 ```
 
-## Styling
+## Styling with CSS Custom Properties
 
 CSS custom properties work the same way. Use the `--flint-*` prefix:
 
@@ -152,7 +238,7 @@ function ContactForm() {
       <FlintTextField
         label="Name"
         value={name}
-        onFlintChange={(e) => setName(e.detail.value)}
+        onFlintTextFieldChange={(e) => setName(e.detail.value)}
       />
       <FlintSelect
         label="Topic"
@@ -166,9 +252,9 @@ function ContactForm() {
       />
       <FlintSwitch
         label="Subscribe to updates"
-        onFlintChange={(e) => setSubscribe(e.detail.checked)}
+        onFlintSwitchChange={(e) => setSubscribe(e.detail.checked)}
       />
-      <FlintButton type="submit" variant="primary">Send</FlintButton>
+      <FlintButton type="submit">Send</FlintButton>
     </form>
   );
 }
@@ -176,4 +262,4 @@ function ContactForm() {
 
 ## Component Reference
 
-All props, events, slots, and CSS variables are documented on each component page in the sidebar. The API is identical between the Lit and React versions.
+All props, events, slots, CSS parts, and CSS variables are documented on each component page in the sidebar. The API is identical between the Lit and React versions.

@@ -31,9 +31,15 @@ export interface FlintTreeItemProps extends React.HTMLAttributes<FlintTreeItemEl
     dropPosition?: 'before' | 'after' | 'inside' | null;
     /** Whether to show a dedicated drag handle icon */
     showDragHandle?: boolean;
-    /** Fired when expanded state changes (detail: { itemId, expanded }) */
+    /**
+     * Fired when expanded state changes (detail: { itemId, expanded })
+     * DOM event: `flint-tree-item-toggle`
+     */
     onFlintTreeItemToggle?: (event: CustomEvent) => void;
-    /** Fired when the item is clicked (detail: { itemId }) */
+    /**
+     * Fired when the item is clicked (detail: { itemId })
+     * DOM event: `flint-tree-item-click`
+     */
     onFlintTreeItemClick?: (event: CustomEvent) => void;
 }
 

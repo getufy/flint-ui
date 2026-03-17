@@ -36,7 +36,10 @@ export interface FlintDesktopTimePickerProps extends React.HTMLAttributes<FlintD
     helperText?: string;
     /** Error message displayed below the field when in error state. */
     errorMessage?: string;
-    /** Fired when the time value changes. detail: `{ value: string }` */
+    /**
+     * Fired when the time value changes. detail: `{ value: string }`
+     * DOM event: `flint-desktop-time-picker-change`
+     */
     onFlintDesktopTimePickerChange?: (event: CustomEvent<FlintDesktopTimePickerChangeDetail>) => void;
 }
 

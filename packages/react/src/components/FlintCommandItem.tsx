@@ -28,7 +28,10 @@ export interface FlintCommandItemProps extends React.HTMLAttributes<FlintCommand
     disabled?: boolean;
     /** Set by parent `flint-command` to indicate keyboard focus. */
     highlighted?: boolean;
-    /** Fired when the item is activated. detail: `{ value: string }` */
+    /**
+     * Fired when the item is activated. detail: `{ value: string }`
+     * DOM event: `flint-command-item-select`
+     */
     onFlintCommandItemSelect?: (event: CustomEvent<FlintCommandItemSelectDetail>) => void;
 }
 

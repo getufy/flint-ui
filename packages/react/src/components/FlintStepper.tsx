@@ -33,7 +33,10 @@ export interface FlintStepperProps extends React.HTMLAttributes<FlintStepperElem
     nonLinear?: boolean;
     /** Accessible label for the stepper landmark (maps to aria-label on the list element). */
     label?: string;
-    /** Fired when the active step changes via step click. detail: `{ step: number }` */
+    /**
+     * Fired when the active step changes via step click. detail: `{ step: number }`
+     * DOM event: `flint-step-change`
+     */
     onFlintStepChange?: (event: CustomEvent<FlintStepChangeDetail>) => void;
 }
 

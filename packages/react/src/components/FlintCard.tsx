@@ -22,7 +22,10 @@ export interface FlintCardProps extends React.HTMLAttributes<FlintCardElement> {
      */
     variant?: 'elevated' | 'outlined' | 'flat';
     interactive?: boolean;
-    /** Fired when an interactive card is clicked or activated via keyboard (Enter/Space). */
+    /**
+     * Fired when an interactive card is clicked or activated via keyboard (Enter/Space).
+     * DOM event: `flint-card-click`
+     */
     onFlintCardClick?: (event: CustomEvent) => void;
 }
 

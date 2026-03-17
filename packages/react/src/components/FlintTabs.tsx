@@ -43,7 +43,10 @@ export interface FlintTabsProps extends Omit<React.HTMLAttributes<FlintTabsEleme
     indicatorColor?: string;
     /** Initial value (uncontrolled). Only used on first render; ignored after mount. */
     defaultValue?: string;
-    /** Fired when the active tab changes. detail: `{ value: string }` */
+    /**
+     * Fired when the active tab changes. detail: `{ value: string }`
+     * DOM event: `flint-tab-change`
+     */
     onFlintTabChange?: (event: CustomEvent<FlintTabChangeDetail>) => void;
 }
 

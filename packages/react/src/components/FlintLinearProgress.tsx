@@ -14,9 +14,11 @@ import { FlintLinearProgress as FlintLinearProgressElement } from '@getufy/flint
  */
 export interface FlintLinearProgressProps extends Omit<React.HTMLAttributes<FlintLinearProgressElement>, 'color'> {
     /**
-     * Progress variant: determinate shows a specific value, indeterminate shows an animation.
+     * Progress mode: determinate shows a specific value, indeterminate shows an animation.
      * Allowed values: 'determinate' | 'indeterminate'
      */
+    mode?: 'determinate' | 'indeterminate';
+    /** Allowed values: 'determinate' | 'indeterminate' */
     variant?: 'determinate' | 'indeterminate';
     /** Current progress value (0-100). */
     value?: number;

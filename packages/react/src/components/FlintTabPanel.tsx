@@ -9,6 +9,9 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintTabPanel as FlintTabPanelElement } from '@getufy/flint-ui/tabs/flint-tabs';
 
+/**
+ * Tab Panel: content container shown when its corresponding tab is active.
+ */
 export interface FlintTabPanelProps extends React.HTMLAttributes<FlintTabPanelElement> {
     /** Identifier linking this panel to its corresponding tab. */
     value?: string;

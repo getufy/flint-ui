@@ -32,10 +32,10 @@ import { FlintPagination } from '@getufy/flint-ui';
 | `page` | `page` | `number` | `1` | The current page (1-based). In controlled mode, update this from the flint-pagination-change event. |
 | `defaultPage` | `default-page` | `number` | `1` | Initial page for uncontrolled mode. Ignored after first render. |
 | `label` | `label` | `string` | `''` | Accessible label for the nav landmark (aria-label). |
-| `variant` | `variant` | `'text' \| 'outlined'` | `'text'` | Variant. |
-| `shape` | `shape` | `'circular' \| 'rounded' \| 'square'` | `'circular'` | Shape. |
-| `size` | `size` | `'small' \| 'medium' \| 'large'` | `'medium'` | Size. |
-| `color` | `color` | `'primary' \| 'secondary' \| 'standard'` | `'primary'` | Color. |
+| `variant` | `variant` | `'text' \| 'outlined'` | `'text'` | Visual style variant of the pagination buttons. |
+| `shape` | `shape` | `'circular' \| 'rounded' \| 'square'` | `'circular'` | Shape of the pagination buttons. |
+| `size` | `size` | `Size` | `'md'` | Size of the pagination buttons. |
+| `color` | `color` | `'primary' \| 'secondary' \| 'standard'` | `'primary'` | Color theme of the pagination buttons. |
 | `showFirstButton` | `show-first-button` | `boolean` | `false` | Show first-page button. |
 | `showLastButton` | `show-last-button` | `boolean` | `false` | Show last-page button. |
 | `hidePrevButton` | `hide-prev-button` | `boolean` | `false` | Hide previous button. |
@@ -48,7 +48,7 @@ import { FlintPagination } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-pagination-change` | — | &#123; page: number &#125; when the active page changes. |
+| `flint-pagination-change` | `&#123; page: number &#125;` | Fired when the active page changes. detail: `&#123; page: number &#125;` |
 
 ### Slots
 

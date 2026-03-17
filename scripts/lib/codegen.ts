@@ -243,9 +243,10 @@ export function generateWrapper(
 
     // Component-specific props
     for (const p of props) {
-        const type = isSimpleType(p.tsType)
-            ? p.tsType
-            : `${className}Element['${p.name}']`;
+        const isIndexedAccess = !isSimpleType(p.tsType);
+        const type = isIndexedAccess
+            ? `${className}Element['${p.name}']`
+            : p.tsType;
 
         // Build JSDoc comment with description and allowed values
         const docParts: string[] = [];
@@ -253,6 +254,10 @@ export function generateWrapper(
         if (isStringLiteralUnion(type)) {
             const values = type.split('|').map(s => s.trim()).join(' | ');
             docParts.push(`Allowed values: ${values}`);
+        }
+        // For indexed-access types, show the original type in JSDoc for discoverability
+        if (isIndexedAccess) {
+            docParts.push(`Type: \`${p.tsType}\``);
         }
 
         if (docParts.length > 0) {
@@ -271,8 +276,17 @@ export function generateWrapper(
 
     // Event handler props
     for (const e of events) {
-        if (e.description) {
-            lines.push(`    /** ${e.description} */`);
+        const eventDocParts: string[] = [];
+        if (e.description) eventDocParts.push(e.description);
+        eventDocParts.push(`DOM event: \`${e.domName}\``);
+        if (eventDocParts.length === 1) {
+            lines.push(`    /** ${eventDocParts[0]} */`);
+        } else {
+            lines.push(`    /**`);
+            for (const part of eventDocParts) {
+                lines.push(`     * ${part}`);
+            }
+            lines.push(`     */`);
         }
         lines.push(`    ${e.reactProp}?: (event: ${eventTypeRef(e)}) => void;`);
     }

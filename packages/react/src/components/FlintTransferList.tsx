@@ -18,7 +18,10 @@ export interface FlintTransferListChangeDetail {
  * A premium Transfer List component for moving items between two lists.
  */
 export interface FlintTransferListProps extends Omit<React.HTMLAttributes<FlintTransferListElement>, 'defaultValue'> {
-    /** Available options to display in the transfer list. */
+    /**
+     * Available options to display in the transfer list.
+     * Type: `TransferOption[]`
+     */
     options?: FlintTransferListElement['options'];
     /** Currently selected values (items in the right list). */
     value?: string[];
@@ -32,7 +35,10 @@ export interface FlintTransferListProps extends Omit<React.HTMLAttributes<FlintT
     disabled?: boolean;
     /** Whether to show search inputs for filtering each list. */
     searchable?: boolean;
-    /** Dispatched when items are moved between lists. detail: `{ value: string[] }` */
+    /**
+     * Dispatched when items are moved between lists. detail: `{ value: string[] }`
+     * DOM event: `flint-transfer-list-change`
+     */
     onFlintTransferListChange?: (event: CustomEvent<FlintTransferListChangeDetail>) => void;
 }
 

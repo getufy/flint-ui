@@ -17,7 +17,10 @@ import { FlintAccordionSummaryEvents } from '../events/flint-accordion-summary.j
  * @slot (default) - Summary content.
  */
 export interface FlintAccordionSummaryProps extends React.HTMLAttributes<FlintAccordionSummaryElement> {
-    /** Fired when the summary is clicked or activated via keyboard. */
+    /**
+     * Fired when the summary is clicked or activated via keyboard.
+     * DOM event: `flint-accordion-toggle`
+     */
     onFlintAccordionToggle?: (event: CustomEvent) => void;
 }
 

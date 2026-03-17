@@ -15,13 +15,19 @@ import { FlintVirtualScroll as FlintVirtualScrollElement } from '@getufy/flint-u
  * @slot (default) - Fallback content shown when items is empty.
  */
 export interface FlintVirtualScrollProps extends React.HTMLAttributes<FlintVirtualScrollElement> {
-    /** Array of data items to render. */
+    /**
+     * Array of data items to render.
+     * Type: `T[]`
+     */
     items?: FlintVirtualScrollElement['items'];
     /** Fixed height of each item in pixels. Used for position calculations. */
     itemHeight?: number;
     /** Number of extra items to render above and below the visible area. */
     overscan?: number;
-    /** Render function for a single item. Receives the item and its index. */
+    /**
+     * Render function for a single item. Receives the item and its index.
+     * Type: `RenderItemFn<T>`
+     */
     renderItem?: FlintVirtualScrollElement['renderItem'];
 }
 

@@ -536,6 +536,12 @@ import { FlintMenubar } from '@getufy/flint-ui';
 | --- | --- |
 | `(default)` | One or more `&lt;flint-menubar-menu&gt;` elements. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `bar` | The menubar container. |
+
 ### CSS Custom Properties
 
 | Property | Default |

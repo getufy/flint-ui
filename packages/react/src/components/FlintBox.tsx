@@ -73,7 +73,10 @@ export interface FlintBoxProps extends Omit<React.HTMLAttributes<FlintBoxElement
     width?: string | undefined;
     /** CSS height value. */
     height?: string | undefined;
-    /** Dispatched when an unknown component tag is used and falls back to div. */
+    /**
+     * Dispatched when an unknown component tag is used and falls back to div.
+     * DOM event: `flint-box-warning`
+     */
     onFlintBoxWarning?: (event: CustomEvent) => void;
 }
 

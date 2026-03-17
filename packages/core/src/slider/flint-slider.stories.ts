@@ -24,6 +24,7 @@ Slider: a range input for selecting a numeric value.
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
+| \`shadowRootOptions\` | \`shadowRootOptions\` | \`object\` | \`&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;\` |  |
 | \`value\` | \`value\` | \`number\` | \`50\` | Current slider value. |
 | \`defaultValue\` | \`default-value\` | \`number \\| undefined\` | \`undefined\` | Initial value for uncontrolled usage. |
 | \`min\` | \`min\` | \`number\` | \`0\` | Minimum allowed value. |
@@ -35,12 +36,21 @@ Slider: a range input for selecting a numeric value.
 | \`vertical\` | \`vertical\` | \`boolean\` | \`false\` | Renders the slider vertically. |
 | \`size\` | \`size\` | \`Size\` | \`'md'\` | Size variant of the slider. |
 | \`name\` | \`name\` | \`string\` | \`''\` | Form field name used when submitting form data. |
+| \`formatValue\` | \`formatValue\` | \`((v: number) =&gt; string) \\| undefined\` | \`undefined\` | Optional formatter: \`(value: number) =&gt; string\`. JS-only prop (not an attribute). |
 
 #### Events
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-slider-change\` | — | Fired when the slider value changes. |
+| \`flint-slider-change\` | \`&#123; value: number &#125;\` | Fired when the slider value changes. detail: \`&#123; value: number &#125;\` |
+
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The slider's base wrapper element. |
+| \`label\` | The slider label element. |
+| \`track\` | The slider track element. |
 
 #### CSS Custom Properties
 

@@ -24,6 +24,8 @@ export interface FlintSkeletonProps extends React.HTMLAttributes<FlintSkeletonEl
      * The shape of the skeleton.
      * Allowed values: 'text' | 'circular' | 'rectangular' | 'rounded'
      */
+    shape?: 'text' | 'circular' | 'rectangular' | 'rounded';
+    /** Allowed values: 'text' | 'circular' | 'rectangular' | 'rounded' */
     variant?: 'text' | 'circular' | 'rectangular' | 'rounded';
     /** The width of the skeleton. Accepts any CSS length value (e.g. '200px', '50%'). */
     width?: string;

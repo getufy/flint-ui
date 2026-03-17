@@ -17,7 +17,9 @@ import { FlintCardHeader as FlintCardHeaderElement } from '@getufy/flint-ui/card
  * @slot (default) - Header text content.
  */
 export interface FlintCardHeaderProps extends Omit<React.HTMLAttributes<FlintCardHeaderElement>, 'title'> {
+    /** Plain text title. For rich content (icons, links), use the default slot instead. */
     title?: string;
+    /** Plain text subtitle. For rich content, use the `subtitle` named slot instead. */
     subtitle?: string;
 }
 

@@ -41,6 +41,13 @@ export interface CssPropertyMeta {
     defaultValue: string;
 }
 
+export interface CssPartMeta {
+    /** CSS part name, e.g. 'base' */
+    name: string;
+    /** Description from @csspart JSDoc tag */
+    description: string;
+}
+
 export interface MethodMeta {
     /** Method signature, e.g. 'inputElement(): HTMLInputElement' */
     signature: string;
@@ -59,6 +66,7 @@ export interface ComponentMeta {
     events: EventMeta[];
     slots: SlotMeta[];
     cssProperties: CssPropertyMeta[];
+    cssParts: CssPartMeta[];
     methods: MethodMeta[];
     /**
      * Source file path relative to project root (forward slashes),

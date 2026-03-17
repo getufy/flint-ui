@@ -23,7 +23,7 @@ const meta: Meta = {
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` | Layout direction of the connector line. |
+| \`orientation\` | \`orientation\` | \`Orientation\` | \`'horizontal'\` | Layout direction of the connector line. |
 | \`completed\` | \`completed\` | \`boolean\` | \`false\` | Whether the connector represents a completed step transition. |
 
 #### CSS Custom Properties
@@ -106,7 +106,7 @@ Step: an individual step within a stepper.
 | \`error\` | \`error\` | \`boolean\` | \`false\` | Whether this step is in an error state. |
 | \`last\` | \`last\` | \`boolean\` | \`false\` | Whether this is the last step in the stepper. |
 | \`clickable\` | \`clickable\` | \`boolean\` | \`false\` | Whether this step can be clicked to navigate to it. |
-| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` | Layout direction of the step. |
+| \`orientation\` | \`orientation\` | \`Orientation\` | \`'horizontal'\` | Layout direction of the step. |
 | \`alternativeLabel\` | \`alternative-label\` | \`boolean\` | \`false\` | Whether to display the label below the step icon instead of beside it. |
 | \`stepIndex\` | \`step-index\` | \`number\` | \`0\` | Zero-based index of this step within the stepper. |
 | \`optionalLabel\` | \`optional-label\` | \`string\` | \`'Optional'\` | Text shown below the label when the step is optional. |
@@ -148,7 +148,7 @@ Stepper: a multi-step progress indicator.
 |---|---|---|---|---|
 | \`activeStep\` | \`active-step\` | \`number\` | \`0\` | Zero-based index of the currently active step. |
 | \`defaultActiveStep\` | \`default-active-step\` | \`number \\| undefined\` | — | Initial active step for uncontrolled usage. |
-| \`orientation\` | \`orientation\` | \`'horizontal' \\| 'vertical'\` | \`'horizontal'\` | Layout direction of the stepper. |
+| \`orientation\` | \`orientation\` | \`Orientation\` | \`'horizontal'\` | Layout direction of the stepper. |
 | \`alternativeLabel\` | \`alternative-label\` | \`boolean\` | \`false\` | Whether to display step labels below the icons instead of beside them. |
 | \`nonLinear\` | \`non-linear\` | \`boolean\` | \`false\` | Whether steps can be navigated in any order (enables clickable steps). |
 | \`label\` | \`label\` | \`string\` | \`'steps'\` | Accessible label for the stepper landmark (maps to aria-label on the list element). |
@@ -157,7 +157,7 @@ Stepper: a multi-step progress indicator.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-step-change\` | — | Fired when the active step changes via step click. |
+| \`flint-step-change\` | \`&#123; step: number &#125;\` | Fired when the active step changes via step click. detail: \`&#123; step: number &#125;\` |
 
 #### CSS Custom Properties
 

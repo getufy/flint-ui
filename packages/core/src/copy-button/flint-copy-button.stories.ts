@@ -34,14 +34,14 @@ Copy Button: copies text to the clipboard with visual feedback.
 | \`successLabel\` | \`success-label\` | \`string\` | \`'Copied!'\` | Label shown in the tooltip after successful copy. |
 | \`errorLabel\` | \`error-label\` | \`string\` | \`'Error'\` | Label shown in the tooltip on copy error. |
 | \`feedbackDuration\` | \`feedback-duration\` | \`number\` | \`1000\` | Duration (ms) to show feedback before returning to idle. |
-| \`tooltipPlacement\` | \`tooltip-placement\` | \`'top' \\| 'right' \\| 'bottom' \\| 'left'\` | \`'top'\` | Tooltip placement. |
+| \`tooltipPlacement\` | \`tooltip-placement\` | \`Placement\` | \`'top'\` | Tooltip placement. |
 
 #### Events
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-copy-error\` | — | Fired when the copy operation fails. |
-| \`flint-copy\` | — | Fired after a successful copy operation. |
+| \`flint-copy-error\` | \`&#123; reason: string &#125;\` | Fired when the copy operation fails. detail: \`&#123; reason: string &#125;\` |
+| \`flint-copy\` | \`&#123; value: string &#125;\` | Fired after a successful copy operation. detail: \`&#123; value: string &#125;\` |
 
 #### CSS Custom Properties
 

@@ -44,7 +44,10 @@ export interface FlintCheckboxProps extends Omit<React.HTMLAttributes<FlintCheck
     defaultChecked?: boolean;
     /** Accessible label for screen readers when no visible label is provided. */
     ariaLabel?: string | null;
-    /** Fired when the checked state changes. detail: `{ checked: boolean; value: string; indeterminate: boolean }` */
+    /**
+     * Fired when the checked state changes. detail: `{ checked: boolean; value: string; indeterminate: boolean }`
+     * DOM event: `flint-checkbox-change`
+     */
     onFlintCheckboxChange?: (event: CustomEvent<FlintCheckboxChangeDetail>) => void;
 }
 

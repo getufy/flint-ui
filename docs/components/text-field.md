@@ -25,6 +25,7 @@ import { FlintTextField } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
+| `shadowRootOptions` | `shadowRootOptions` | `object` | `&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;` |  |
 | `label` | `label` | `string` | `''` | Label text displayed above the input. |
 | `value` | `value` | `string` | `''` | Current value of the text field. |
 | `placeholder` | `placeholder` | `string` | `''` | Placeholder text shown when the input is empty. |
@@ -35,6 +36,17 @@ import { FlintTextField } from '@getufy/flint-ui';
 | `helperText` | `helperText` | `string` | `''` | Helper text displayed below the input. |
 | `errorMessage` | `errorMessage` | `string` | `''` | Error message displayed below the input when in error state. |
 | `defaultValue` | `default-value` | `string` | `''` | Initial value for uncontrolled usage. |
+| `name` | `name` | `string` | `''` | Form field name used when submitting form data. |
+| `required` | `required` | `boolean` | `false` | Marks the input as required for form validation. |
+| `pattern` | `pattern` | `string` | `''` | Regex pattern for validation. |
+| `min` | `min` | `string` | `''` | Minimum value (for number/date inputs). |
+| `max` | `max` | `string` | `''` | Maximum value (for number/date inputs). |
+| `minLength` | `minlength` | `number \| undefined` | — | Minimum length for text validation. |
+| `maxLength` | `maxlength` | `number \| undefined` | — | Maximum length for text validation. |
+| `readonly` | `readonly` | `boolean` | `false` | Makes the input read-only. |
+| `clearable` | `clearable` | `boolean` | `false` | Shows a clear button when the input has a value. |
+| `passwordToggle` | `password-toggle` | `boolean` | `false` | Shows a toggle button on password inputs to reveal/hide the value. |
+| `passwordVisible` | `password-visible` | `boolean` | `false` | Whether the password is currently visible. Only relevant when `passwordToggle` is true. |
 
 ### Events
 
@@ -42,6 +54,23 @@ import { FlintTextField } from '@getufy/flint-ui';
 | --- | --- | --- |
 | `flint-text-field-input` | `&#123; value: string &#125;` | Fired on each keystroke as the value changes. detail: `&#123; value: string &#125;` |
 | `flint-text-field-change` | `&#123; value: string &#125;` | Fired when the input loses focus after the value has changed. detail: `&#123; value: string &#125;` |
+| `flint-text-field-clear` | — | Fired when the clear button is clicked. detail: `undefined` |
+
+### Slots
+
+| Name | Description |
+| --- | --- |
+| `prefix` | Content placed before the input (e.g. icon). |
+| `suffix` | Content placed after the input (e.g. icon). |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `prefix-icon` | The prefix slot container. |
+| `suffix-icon` | The suffix slot container. |
+| `clear-button` | The clear button. |
+| `password-toggle-button` | The password toggle button. |
 
 ### CSS Custom Properties
 
@@ -61,6 +90,7 @@ import { FlintTextField } from '@getufy/flint-ui';
 | `--flint-input-disabled-bg` | — |
 | `--flint-input-placeholder-color` | — |
 | `--flint-text-color-muted` | — |
+| `--flint-text-color` | — |
 | `--flint-help-text-color` | — |
 | `--flint-surface-2` | — |
 | `--flint-hover-color` | — |

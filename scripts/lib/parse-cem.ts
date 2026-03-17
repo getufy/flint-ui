@@ -12,7 +12,7 @@
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import ts from 'typescript';
-import type { ComponentMeta, PropMeta, EventMeta, SlotMeta, CssPropertyMeta, MethodMeta } from './types.js';
+import type { ComponentMeta, PropMeta, EventMeta, SlotMeta, CssPropertyMeta, CssPartMeta, MethodMeta } from './types.js';
 import { isSimpleType } from './parse-lit.js';
 
 // ─── CEM types (subset of the Custom Elements Manifest spec) ────────────────
@@ -55,6 +55,11 @@ interface CEMCssProperty {
     type?: { text: string };
 }
 
+interface CEMCssPart {
+    name: string;
+    description?: string;
+}
+
 interface CEMDeclaration {
     kind: string;
     name: string;
@@ -65,6 +70,7 @@ interface CEMDeclaration {
     events?: CEMEvent[];
     slots?: CEMSlot[];
     cssProperties?: CEMCssProperty[];
+    cssParts?: CEMCssPart[];
     attributes?: Array<{
         name: string;
         type?: { text: string };
@@ -284,6 +290,12 @@ export function parseCem(options: ParseCemOptions): ComponentMeta[] {
             // Convert CSS properties
             const cssProperties: CssPropertyMeta[] = (decl.cssProperties ?? []).map(convertCssProperty);
 
+            // Convert CSS parts
+            const cssParts: CssPartMeta[] = (decl.cssParts ?? []).map(p => ({
+                name: p.name,
+                description: p.description ?? '',
+            }));
+
             // Convert methods
             const methods: MethodMeta[] = [];
             for (const member of decl.members ?? []) {
@@ -302,6 +314,7 @@ export function parseCem(options: ParseCemOptions): ComponentMeta[] {
                 events,
                 slots,
                 cssProperties,
+                cssParts,
                 methods,
                 sourceFile,
             });

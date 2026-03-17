@@ -10,10 +10,6 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintSelect as FlintSelectElement } from '@getufy/flint-ui/select/flint-select';
 import { FlintSelectEvents } from '../events/flint-select.js';
 
-export interface FlintSelectChangeDetail {
-    value: string[];
-}
-
 /**
  * A select component for choosing one or multiple options from a list.
  *
@@ -24,7 +20,10 @@ export interface FlintSelectProps extends Omit<React.HTMLAttributes<FlintSelectE
     shadowRootOptions?: object;
     /** Label text displayed above the select. */
     label?: string;
-    /** Array of selectable options. */
+    /**
+     * Array of selectable options.
+     * Type: `SelectOption[]`
+     */
     options?: FlintSelectElement['options'];
     /** Current value (controlled). When set, the component reflects this value and does not manage its own state. Accepts a single string or an array of strings. */
     value?: string | string[];
@@ -53,7 +52,10 @@ export interface FlintSelectProps extends Omit<React.HTMLAttributes<FlintSelectE
     defaultValue?: string;
     /** When true, the dropdown uses `position: fixed` so it can escape */
     hoist?: boolean;
-    /** Async options loader. When provided, called when the dropdown opens. */
+    /**
+     * Async options loader. When provided, called when the dropdown opens.
+     * Type: `(() => Promise<SelectOption[]>) | null`
+     */
     loadOptions?: FlintSelectElement['loadOptions'];
     /** Enable virtual scrolling for large option lists. */
     virtualize?: boolean;
@@ -61,9 +63,13 @@ export interface FlintSelectProps extends Omit<React.HTMLAttributes<FlintSelectE
     itemHeight?: number;
     /** Maximum visible items in the dropdown (determines dropdown height). */
     visibleItems?: number;
+    /** DOM event: `flint-select-load` */
     onFlintSelectLoad?: (event: CustomEvent) => void;
-    /** Dispatched when the selection changes. detail: `{ value: string[] }` */
-    onFlintSelectChange?: (event: CustomEvent<FlintSelectChangeDetail>) => void;
+    /**
+     * Dispatched when the selection changes. detail: `{ value: string, multiple: false } | { value: string[], multiple: true }`
+     * DOM event: `flint-select-change`
+     */
+    onFlintSelectChange?: (event: CustomEvent) => void;
 }
 
 export const FlintSelect = createComponent({
@@ -118,6 +124,6 @@ export const FlintSelect = createComponent({
         onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
         onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
         onFlintSelectLoad: FlintSelectEvents.LOAD as EventName<CustomEvent>,
-        onFlintSelectChange: FlintSelectEvents.CHANGE as EventName<CustomEvent<FlintSelectChangeDetail>>,
+        onFlintSelectChange: FlintSelectEvents.CHANGE as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintSelectProps & React.RefAttributes<FlintSelectElement>>;

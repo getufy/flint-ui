@@ -167,7 +167,7 @@ the parent \`flint-command\` intercepts to apply filtering.
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`placeholder\` | \`placeholder\` | \`string\` | \`'Type a command or search...'\` | Placeholder text shown when input is empty. |
+| \`placeholder\` | \`placeholder\` | \`string\` | \`''\` | Placeholder text shown when input is empty. |
 | \`value\` | \`value\` | \`string\` | \`''\` | Current input value. |
 
 #### Methods
@@ -196,6 +196,12 @@ Root command menu component. Manages search filtering and keyboard navigation.
 | Name | Description |
 |---|---|
 | \`(default)\` | Command menu content. |
+
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`command\` | The root wrapper div. |
 
 #### CSS Custom Properties
 

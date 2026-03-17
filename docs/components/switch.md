@@ -27,14 +27,15 @@ import { FlintSwitch } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `checked` | `checked` | `boolean` | `false` | Whether the switch is toggled on. |
+| `shadowRootOptions` | `shadowRootOptions` | `object` | `&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;` |  |
+| `checked` | `checked` | `boolean` | `false` | Current checked state (controlled). When set, the component reflects this state and does not manage its own state. |
 | `disabled` | `disabled` | `boolean` | `false` | Disables the switch and prevents interaction. |
 | `required` | `required` | `boolean` | `false` | Marks the switch as required for form validation. |
-| `size` | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of the switch control. |
+| `size` | `size` | `Size` | `'md'` | Size of the switch control. |
 | `label` | `label` | `string` | `''` | Visible label text displayed next to the switch. |
 | `name` | `name` | `string` | `''` | Form field name used when submitting form data. |
 | `value` | `value` | `string` | `'on'` | Value submitted with form data when checked. |
-| `defaultChecked` | `default-checked` | `boolean` | `false` | Initial checked state for uncontrolled usage. |
+| `defaultChecked` | `default-checked` | `boolean` | `false` | Initial checked state (uncontrolled). Only used on first render; ignored after mount. |
 | `ariaLabel` | `aria-label` | `string \| null` | `null` | Accessible label for screen readers when no visible label is provided. |
 
 ### Events
@@ -50,6 +51,15 @@ import { FlintSwitch } from '@getufy/flint-ui';
 | `icon-on` | Optional icon to show when the switch is ON. |
 | `icon-off` | Optional icon to show when the switch is OFF. |
 | `(default)` | Optional label content (used when the `label` prop is not set). |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The switch's base wrapper element. |
+| `control` | The switch track element. |
+| `thumb` | The switch thumb (knob) element. |
+| `label` | The label text element. |
 
 ### CSS Custom Properties
 

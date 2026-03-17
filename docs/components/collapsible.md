@@ -110,15 +110,15 @@ import { FlintCollapsible } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `open` | `open` | `boolean` | `false` | Whether the panel is open. Reflects to attribute for CSS targeting. |
-| `defaultOpen` | `default-open` | `boolean` | `false` | Initial open state for uncontrolled usage. |
+| `open` | `open` | `boolean` | `false` | Current open state (controlled). When set, the component reflects this state and does not manage its own state. Reflects to attribute for CSS targeting. |
+| `defaultOpen` | `default-open` | `boolean` | `false` | Initial open state (uncontrolled). Only used on first render; ignored after mount. |
 | `disabled` | `disabled` | `boolean` | `false` | Disables the trigger, preventing user interaction. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-collapsible-change` | `&#123; open: boolean &#125;` | Fired when the open state changes. `detail: &#123; open: boolean &#125;` |
+| `flint-collapsible-change` | `&#123; open: boolean &#125;` | Fired when the open state changes. detail: `&#123; open: boolean &#125;` |
 
 ### Slots
 

@@ -37,6 +37,7 @@ import { FlintTimeField } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
+| `shadowRootOptions` | `shadowRootOptions` | `object` | `&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;` |  |
 | `value` | `value` | `string` | `''` | Time value in HH:MM:SS format. |
 | `label` | `label` | `string` | `''` | Field label text. |
 | `ampm` | `ampm` | `boolean` | `true` | Whether to use 12-hour (AM/PM) format instead of 24-hour. |
@@ -283,6 +284,7 @@ import { FlintMobileTimePicker } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
+| `dependencies` | `dependencies` | `object` | `&#123; 'flint-dialog': FlintDialog as unknown as typeof FlintElement, 'flint-dialog-title': FlintDialogTitle as unknown as typeof FlintElement, 'flint-dialog-content': FlintDialogContent as unknown as typeof FlintElement, 'flint-dialog-actions': FlintDialogActions as unknown as typeof FlintElement, &#125;` |  |
 | `value` | `value` | `string` | `''` | Time value in HH:MM:SS format. |
 | `label` | `label` | `string` | `'Time'` | Field label text. |
 | `ampm` | `ampm` | `boolean` | `true` | Whether to use 12-hour (AM/PM) format instead of 24-hour. |
@@ -362,6 +364,7 @@ import { FlintTimePicker } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
+| `shadowRootOptions` | `shadowRootOptions` | `object` | `&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;` |  |
 | `value` | `value` | `string` | `''` | Time value in HH:MM:SS format. |
 | `label` | `label` | `string` | `'Time'` | Field label text. |
 | `variant` | `variant` | `'desktop' \| 'mobile' \| 'static' \| 'auto'` | `'desktop'` | Picker variant controlling the UI style. |
@@ -371,6 +374,9 @@ import { FlintTimePicker } from '@getufy/flint-ui';
 | `error` | `error` | `boolean` | `false` | Displays the picker in an error state. |
 | `helperText` | `helper-text` | `string` | `''` | Helper text shown below the field. |
 | `errorMessage` | `error-message` | `string` | `''` | Error message displayed below the field when in error state. |
+| `name` | `name` | `string` | `''` | Form field name used when submitting form data. |
+| `required` | `required` | `boolean` | `false` | Marks the time picker as required for form validation. |
+| `defaultValue` | `default-value` | `string` | `''` | Initial value for uncontrolled usage (HH:MM:SS format). |
 
 ### Events
 

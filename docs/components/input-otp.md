@@ -141,6 +141,8 @@ import { FlintInputOtp } from '@getufy/flint-ui';
 | `maxLength` | `max-length` | `number` | `6` | Total number of character slots. |
 | `pattern` | `pattern` | `string` | `''` | Per-character regex pattern string. Characters failing the test are |
 | `disabled` | `disabled` | `boolean` | `false` | Disables the OTP input. |
+| `name` | `name` | `string` | `''` | Form field name used when submitting form data. |
+| `required` | `required` | `boolean` | `false` | Marks the OTP input as required for form validation. |
 | `label` | `label` | `string` | `'One-time password'` | Accessible label for the hidden input (used as aria-label). |
 | `description` | `description` | `string` | `''` | Optional description text for the hidden input (used as aria-describedby). |
 

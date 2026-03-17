@@ -28,7 +28,7 @@ import { FlintKbd } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `size` | `size` | `'sm' \| 'default' \| 'lg'` | `'default'` | Visual size of the key. |
+| `size` | `size` | `Size` | `'md'` | Visual size of the key. |
 | `variant` | `variant` | `'raised' \| 'flat'` | `'raised'` | Visual style: `raised` (default, bottom border + shadow) or `flat` (no raised effect). |
 | `label` | `label` | `string` | `''` | Accessible label forwarded as `aria-label` on the inner `&lt;kbd&gt;` element. Useful for symbol keys like ⌘. |
 

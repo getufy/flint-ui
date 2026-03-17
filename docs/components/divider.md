@@ -27,7 +27,7 @@ import { FlintDivider } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `orientation` | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Orientation of the divider line. |
+| `orientation` | `orientation` | `Orientation` | `'horizontal'` | Orientation of the divider line. |
 | `variant` | `variant` | `'full' \| 'middle' \| 'inset'` | `'full'` | Inset variant controlling how far the divider extends. |
 | `weight` | `weight` | `'light' \| 'medium' \| 'heavy'` | `'light'` | Thickness of the divider line. |
 | `textAlign` | `textAlign` | `'left' \| 'center' \| 'right'` | `'center'` | Alignment of text content within the divider. |

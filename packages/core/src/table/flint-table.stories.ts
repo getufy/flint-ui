@@ -72,8 +72,8 @@ Table Pagination: pagination controls for tabular data.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-pagination-page-change\` | — | Fired when the current page changes. |
-| \`flint-pagination-rows-per-page-change\` | — | Fired when rows per page changes. |
+| \`flint-pagination-page-change\` | \`&#123; page: number &#125;\` | Fired when the current page changes. detail: \`&#123; page: number &#125;\` |
+| \`flint-pagination-rows-per-page-change\` | \`&#123; rowsPerPage: number &#125;\` | Fired when rows per page changes. detail: \`&#123; rowsPerPage: number &#125;\` |
 
 #### CSS Custom Properties
 
@@ -134,7 +134,7 @@ flint-table
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`size\` | \`size\` | \`'md'\\|'sm'\` | \`'md'\` | Cell padding density. |
+| \`size\` | \`size\` | \`'medium'\\|'small'\` | \`'md'\` | Cell padding density. |
 
 #### CSS Custom Properties
 

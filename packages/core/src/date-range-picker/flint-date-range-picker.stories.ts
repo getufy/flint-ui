@@ -65,6 +65,7 @@ Shows two months side-by-side (or stacked on narrow screens).
 | \`min\` | \`min\` | \`string\` | \`''\` | Minimum selectable date (ISO YYYY-MM-DD). |
 | \`max\` | \`max\` | \`string\` | \`''\` | Maximum selectable date (ISO YYYY-MM-DD). |
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the calendar and prevents date selection. |
+| \`locale\` | \`locale\` | \`string\` | \`''\` | BCP 47 locale for month/day names (e.g. "en-US", "fr"). Uses browser default when unset. |
 
 #### Events
 
@@ -116,6 +117,7 @@ A date range picker combining a segmented field and a dual-month calendar.
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
+| \`dependencies\` | \`dependencies\` | \`object\` | \`&#123; 'flint-dialog': FlintDialog as unknown as typeof FlintElement, 'flint-dialog-title': FlintDialogTitle as unknown as typeof FlintElement, 'flint-dialog-content': FlintDialogContent as unknown as typeof FlintElement, 'flint-dialog-actions': FlintDialogActions as unknown as typeof FlintElement, 'flint-single-input-date-range-field': FlintSingleInputDateRangeField as unknown as typeof FlintElement, 'flint-date-range-calendar': FlintDateRangeCalendar as unknown as typeof FlintElement, &#125;\` |  |
 | \`value\` | \`value\` | \`DateRange\` | \`[...EMPTY_RANGE]\` | Selected range [startISO, endISO]. Empty strings mean unset. |
 | \`label\` | \`label\` | \`string\` | \`'Date Range'\` | Label shown above the field. |
 | \`variant\` | \`variant\` | \`'desktop' \\| 'mobile' \\| 'static' \\| 'auto'\` | \`'desktop'\` | Variant: 'desktop' \\| 'mobile' \\| 'static' \\| 'auto'. |
@@ -125,6 +127,7 @@ A date range picker combining a segmented field and a dual-month calendar.
 | \`min\` | \`min\` | \`string\` | \`''\` | Minimum selectable date (ISO YYYY-MM-DD). |
 | \`max\` | \`max\` | \`string\` | \`''\` | Maximum selectable date (ISO YYYY-MM-DD). |
 | \`name\` | \`name\` | \`string\` | \`''\` | Form field name for hidden inputs. |
+| \`locale\` | \`locale\` | \`string\` | \`''\` | BCP 47 locale for date formatting and month/day names (e.g. "en-US", "fr"). Uses browser default when unset. |
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the picker and prevents interaction. |
 | \`readonly\` | \`readonly\` | \`boolean\` | \`false\` | Makes the picker read-only (visible but not editable). |
 | \`error\` | \`error\` | \`boolean\` | \`false\` | Displays the picker in an error state. |

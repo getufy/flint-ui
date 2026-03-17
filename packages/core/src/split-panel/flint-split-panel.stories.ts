@@ -43,6 +43,15 @@ const meta: Meta = {
 | \`end\` | Content for the end (right/bottom) panel. |
 | \`divider\` | Custom handle icon rendered inside the divider. |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`start\` | The start panel wrapper. |
+| \`end\` | The end panel wrapper. |
+| \`panel\` | Targets both start and end panel wrappers. |
+| \`divider\` | The divider element. |
+
 #### CSS Custom Properties
 
 | Property | Default |

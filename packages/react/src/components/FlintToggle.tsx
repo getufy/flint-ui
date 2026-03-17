@@ -43,7 +43,10 @@ export interface FlintToggleProps extends Omit<React.HTMLAttributes<FlintToggleE
     defaultPressed?: boolean;
     /** Accessible label for icon-only toggles. */
     ariaLabel?: string | null;
-    /** Dispatched when the pressed state changes. Detail: `{ pressed: boolean }` */
+    /**
+     * Dispatched when the pressed state changes. Detail: `{ pressed: boolean }`
+     * DOM event: `flint-toggle-change`
+     */
     onFlintToggleChange?: (event: CustomEvent<FlintToggleChangeDetail>) => void;
 }
 

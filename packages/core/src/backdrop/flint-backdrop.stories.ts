@@ -45,6 +45,7 @@ A backdrop component that narrows the user's focus to a particular element.
 | \`--flint-backdrop-position\` | \`fixed\` |
 | \`--flint-backdrop-color\` | — |
 | \`--flint-backdrop-z-index\` | — |
+| \`--flint-z-modal\` | \`1060\` |
                 `,
             },
         },

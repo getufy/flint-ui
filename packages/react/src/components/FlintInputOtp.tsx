@@ -44,9 +44,15 @@ export interface FlintInputOtpProps extends Omit<React.HTMLAttributes<FlintInput
     label?: string;
     /** Optional description text for the hidden input (used as aria-describedby). */
     description?: string;
-    /** Fired on every value change. `detail: { value: string }`. */
+    /**
+     * Fired on every value change. `detail: { value: string }`.
+     * DOM event: `flint-otp-change`
+     */
     onFlintOtpChange?: (event: CustomEvent<FlintOtpChangeDetail>) => void;
-    /** Fired when `maxLength` chars have been entered. `detail: { value: string }`. */
+    /**
+     * Fired when `maxLength` chars have been entered. `detail: { value: string }`.
+     * DOM event: `flint-otp-complete`
+     */
     onFlintOtpComplete?: (event: CustomEvent<FlintOtpCompleteDetail>) => void;
 }
 

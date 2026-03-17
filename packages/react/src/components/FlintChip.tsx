@@ -45,9 +45,15 @@ export interface FlintChipProps extends Omit<React.HTMLAttributes<FlintChipEleme
     deletable?: boolean;
     /** Disables the chip and prevents interaction. */
     disabled?: boolean;
-    /** Fired when a clickable chip is clicked. */
+    /**
+     * Fired when a clickable chip is clicked.
+     * DOM event: `flint-chip-click`
+     */
     onFlintChipClick?: (event: CustomEvent) => void;
-    /** Fired when the chip's delete icon is clicked. detail: `{ value: string }` */
+    /**
+     * Fired when the chip's delete icon is clicked. detail: `{ value: string }`
+     * DOM event: `flint-chip-delete`
+     */
     onFlintChipDelete?: (event: CustomEvent<FlintChipDeleteDetail>) => void;
 }
 

@@ -55,6 +55,16 @@ const meta: Meta = {
 | \`after\` | The after image (\`&lt;img&gt;\` or \`&lt;svg&gt;\`). |
 | \`handle\` | Custom handle content (replaces the default arrows icon). |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper. |
+| \`before\` | The container that wraps the before image. |
+| \`after\` | The container that wraps the after image. |
+| \`divider\` | The divider line that separates the images. |
+| \`handle\` | The draggable handle. |
+
 #### CSS Custom Properties
 
 | Property | Default |

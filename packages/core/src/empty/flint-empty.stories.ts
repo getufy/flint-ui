@@ -128,6 +128,12 @@ Root container for an empty state. Wraps \`flint-empty-header\` and
 |---|---|
 | \`(default)\` | Accepts \`flint-empty-header\`, \`flint-empty-content\`, and any extra elements (e.g. a "Learn More" link). |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`container\` | The inner flex container. |
+
 #### CSS Custom Properties
 
 | Property | Default |

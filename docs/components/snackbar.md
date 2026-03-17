@@ -49,6 +49,12 @@ import { FlintSnackbar } from '@getufy/flint-ui';
 | `action` | The action to display inside the snackbar. |
 | `(default)` | Optional content to display inside the snackbar, such as a message or a flint-alert. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `snackbar` | The inner snackbar container. |
+
 ### CSS Custom Properties
 
 | Property | Default |

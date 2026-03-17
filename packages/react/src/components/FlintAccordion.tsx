@@ -26,7 +26,10 @@ export interface FlintAccordionProps extends React.HTMLAttributes<FlintAccordion
     defaultExpanded?: boolean;
     /** If true, the accordion is disabled. */
     disabled?: boolean;
-    /** Fired when the accordion's expanded state changes. detail: `{ expanded: boolean }` */
+    /**
+     * Fired when the accordion's expanded state changes. detail: `{ expanded: boolean }`
+     * DOM event: `flint-accordion-change`
+     */
     onFlintAccordionChange?: (event: CustomEvent<FlintAccordionChangeDetail>) => void;
 }
 

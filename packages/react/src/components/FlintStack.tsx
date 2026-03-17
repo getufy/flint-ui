@@ -10,9 +10,15 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintStack as FlintStackElement } from '@getufy/flint-ui/stack/flint-stack';
 
 export interface FlintStackProps extends React.HTMLAttributes<FlintStackElement> {
-    /** Flex direction of the stack layout. */
+    /**
+     * Flex direction of the stack layout.
+     * Type: `ResponsiveValue<'row' | 'row-reverse' | 'column' | 'column-reverse'>`
+     */
     direction?: FlintStackElement['direction'];
-    /** Space between child items. Numeric values use an 8px multiplier (e.g. `2` = 16px). */
+    /**
+     * Space between child items. Numeric values use an 8px multiplier (e.g. `2` = 16px).
+     * Type: `ResponsiveValue<number | string>`
+     */
     spacing?: FlintStackElement['spacing'];
     /** Cross-axis alignment of stack children. */
     alignItems?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline' | undefined;

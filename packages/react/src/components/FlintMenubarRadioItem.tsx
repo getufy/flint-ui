@@ -22,6 +22,7 @@ export interface FlintMenubarRadioItemProps extends React.HTMLAttributes<FlintMe
     disabled?: boolean;
     /** Whether the item is visually highlighted (e.g. via keyboard or hover). */
     highlighted?: boolean;
+    /** DOM event: `flint-menubar-radio-select` */
     onFlintMenubarRadioSelect?: (event: CustomEvent) => void;
 }
 

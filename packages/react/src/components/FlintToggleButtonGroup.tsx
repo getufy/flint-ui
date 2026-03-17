@@ -25,7 +25,10 @@ export interface FlintToggleButtonGroupProps extends Omit<React.HTMLAttributes<F
     defaultValue?: string | string[];
     /** Whether only one button can be selected at a time. */
     exclusive?: boolean;
-    /** Fired when the group's selected value(s) change. detail: `{ value: string | string[] }` */
+    /**
+     * Fired when the group's selected value(s) change. detail: `{ value: string | string[] }`
+     * DOM event: `flint-toggle-button-group-change`
+     */
     onFlintToggleButtonGroupChange?: (event: CustomEvent<FlintToggleButtonGroupChangeDetail>) => void;
 }
 

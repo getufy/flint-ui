@@ -41,9 +41,15 @@ export interface FlintCopyButtonProps extends React.HTMLAttributes<FlintCopyButt
      * Allowed values: 'top' | 'right' | 'bottom' | 'left'
      */
     tooltipPlacement?: 'top' | 'right' | 'bottom' | 'left';
-    /** Fired when the copy operation fails. detail: `{ reason: string }` */
+    /**
+     * Fired when the copy operation fails. detail: `{ reason: string }`
+     * DOM event: `flint-copy-error`
+     */
     onFlintCopyError?: (event: CustomEvent<FlintCopyErrorDetail>) => void;
-    /** Fired after a successful copy operation. detail: `{ value: string }` */
+    /**
+     * Fired after a successful copy operation. detail: `{ value: string }`
+     * DOM event: `flint-copy`
+     */
     onFlintCopy?: (event: CustomEvent<FlintCopyDetail>) => void;
 }
 

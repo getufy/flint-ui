@@ -29,7 +29,10 @@ export interface FlintSpeedDialActionProps extends React.HTMLAttributes<FlintSpe
     tooltipPlacement?: 'left' | 'right' | 'top' | 'bottom';
     /** If true, the action button is disabled. */
     disabled?: boolean;
-    /** Fired when the action button is clicked. */
+    /**
+     * Fired when the action button is clicked.
+     * DOM event: `flint-speed-dial-action-click`
+     */
     onFlintSpeedDialActionClick?: (event: CustomEvent) => void;
 }
 

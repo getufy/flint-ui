@@ -53,7 +53,10 @@ export interface FlintDatePickerProps extends Omit<React.HTMLAttributes<FlintDat
     defaultValue?: string;
     /** When true, the calendar popover uses `position: fixed` instead of `position: absolute` */
     hoist?: boolean;
-    /** Fired when the date changes. detail: `{ value: string }` */
+    /**
+     * Fired when the date changes. detail: `{ value: string }`
+     * DOM event: `flint-date-picker-change`
+     */
     onFlintDatePickerChange?: (event: CustomEvent<FlintDatePickerChangeDetail>) => void;
 }
 

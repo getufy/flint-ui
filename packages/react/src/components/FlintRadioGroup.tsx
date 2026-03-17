@@ -41,7 +41,10 @@ export interface FlintRadioGroupProps extends Omit<React.HTMLAttributes<FlintRad
      * Allowed values: 'sm' | 'md' | 'lg'
      */
     size?: 'sm' | 'md' | 'lg';
-    /** Fired when the selected radio value changes. detail: `{ value: string }` */
+    /**
+     * Fired when the selected radio value changes. detail: `{ value: string }`
+     * DOM event: `flint-radio-group-change`
+     */
     onFlintRadioGroupChange?: (event: CustomEvent<FlintRadioGroupChangeDetail>) => void;
 }
 

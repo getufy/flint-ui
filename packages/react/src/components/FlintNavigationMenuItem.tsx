@@ -30,9 +30,15 @@ export interface FlintNavigationMenuItemProps extends React.HTMLAttributes<Flint
     openDelay?: number;
     /** Delay in ms before closing after mouse leaves */
     closeDelay?: number;
-    /** Fired when the item's trigger is clicked. detail: `{ contentId: string, open: boolean }` */
+    /**
+     * Fired when the item's trigger is clicked. detail: `{ contentId: string, open: boolean }`
+     * DOM event: `flint-navigation-menu-trigger-click`
+     */
     onFlintNavigationMenuTriggerClick?: (event: CustomEvent<FlintNavigationMenuTriggerClickDetail>) => void;
-    /** Fired when content visibility changes. detail: `{ contentId: string, open: boolean }` */
+    /**
+     * Fired when content visibility changes. detail: `{ contentId: string, open: boolean }`
+     * DOM event: `flint-navigation-menu-content-toggle`
+     */
     onFlintNavigationMenuContentToggle?: (event: CustomEvent<FlintNavigationMenuContentToggleDetail>) => void;
 }
 

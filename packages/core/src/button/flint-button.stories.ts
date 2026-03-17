@@ -15,22 +15,24 @@ const meta: Meta = {
 - **Tag**: \`<flint-button-group>\`
 - **Class**: \`FlintButtonGroup\`
 
+#### Properties
+
+| Property | Attribute | Type | Default | Description |
+|---|---|---|---|---|
+| \`orientation\` | \`orientation\` | \`Orientation\` | \`'horizontal'\` | Layout direction of the group. |
+| \`size\` | \`size\` | \`ButtonSize \\| ''\` | \`''\` | Size propagated to child \`flint-button\` elements. |
+| \`variant\` | \`variant\` | \`ButtonVariant \\| ''\` | \`''\` | Variant propagated to child \`flint-button\` elements. |
+
 #### CSS Custom Properties
 
 | Property | Default |
 |---|---|
 | \`--flint-border-radius-md\` | \`6px\` |
 | \`--flint-font-family\` | — |
-| \`--flint-shadow-sm\` | — |
 | \`--flint-primary-color\` | — |
-| \`--flint-text-color-on-primary\` | — |
 | \`--flint-primary-color-hover\` | — |
 | \`--flint-primary-color-active\` | — |
-| \`--flint-surface-1\` | — |
-| \`--flint-text-color\` | — |
-| \`--flint-input-border-color\` | — |
-| \`--flint-hover-color\` | — |
-| \`--flint-active-color\` | — |
+| \`--flint-text-color-on-primary\` | — |
 | \`--flint-destructive-color\` | — |
 | \`--flint-destructive-color-hover\` | — |
 | \`--flint-destructive-color-active\` | — |
@@ -43,10 +45,18 @@ const meta: Meta = {
 | \`--flint-neutral-color\` | \`#6b7280\` |
 | \`--flint-neutral-color-hover\` | \`#4b5563\` |
 | \`--flint-neutral-color-active\` | \`#374151\` |
+| \`--flint-shadow-sm\` | — |
+| \`--flint-surface-1\` | \`transparent\` |
+| \`--flint-text-color\` | — |
+| \`--flint-input-border-color\` | — |
+| \`--flint-hover-color\` | \`rgba(0, 0, 0, 0.04\` |
+| \`--flint-active-color\` | \`rgba(0, 0, 0, 0.08\` |
 
 ---
 
 #### \`<flint-button>\`
+
+Button: a clickable element used for actions and navigation.
 
 - **Tag**: \`<flint-button>\`
 - **Class**: \`FlintButton\`
@@ -55,36 +65,34 @@ const meta: Meta = {
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`appearance\` | \`appearance\` | \`'filled' \\| 'outlined' \\| 'text' \\| 'ghost'\` | \`'filled'\` | Visual appearance (structural style). |
-| \`color\` | \`color\` | \`'primary' \\| 'neutral' \\| 'destructive' \\| 'success' \\| 'warning'\` | \`'primary'\` | Semantic color. |
-| \`size\` | \`size\` | \`'sm' \\| 'md' \\| 'lg'\` | \`'md'\` | Size of the button. |
-| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the button. |
-| \`fullWidth\` | \`full-width\` | \`boolean\` | \`false\` | Stretches to container width. |
-| \`type\` | \`type\` | \`'button' \\| 'submit' \\| 'reset'\` | \`'button'\` | Button type for form participation. |
-| \`label\` | \`label\` | \`string\` | \`''\` | Accessible label (aria-label) for icon-only buttons. |
-| \`loading\` | \`loading\` | \`boolean\` | \`false\` | Shows a spinner and disables interaction. |
-| \`href\` | \`href\` | \`string\` | \`''\` | When set, renders an \`<a>\` tag instead. |
-| \`target\` | \`target\` | \`string\` | \`''\` | Link target attribute (when href is set). |
-| \`shape\` | \`shape\` | \`'default' \\| 'pill' \\| 'circle'\` | \`'default'\` | Shape variant of the button. |
-| \`variant\` | \`variant\` | _(deprecated)_ | \`''\` | Legacy shorthand — use \`appearance\` + \`color\` instead. |
+| \`appearance\` | \`appearance\` | \`ButtonAppearance\` | \`'filled'\` | Visual appearance of the button (structural style). |
+| \`color\` | \`color\` | \`ButtonColor\` | \`'primary'\` | Semantic color of the button. |
+| \`variant\` | \`variant\` | \`ButtonVariant \\| ''\` | \`''\` |  |
+| \`size\` | \`size\` | \`ButtonSize\` | \`'md'\` | Size of the button. |
+| \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the button and prevents interaction. |
+| \`fullWidth\` | \`full-width\` | \`boolean\` | \`false\` | Whether the button stretches to fill its container width. |
+| \`type\` | \`type\` | \`ButtonType\` | \`'button'\` | Button type attribute. When \`submit\` or \`reset\`, a hidden native |
+| \`label\` | \`label\` | \`string\` | \`''\` | Accessible label for screen readers. Essential for icon-only buttons. |
+| \`loading\` | \`loading\` | \`boolean\` | \`false\` | Shows a loading spinner and disables interaction. |
+| \`href\` | \`href\` | \`string\` | \`''\` | When set, renders an \`&lt;a&gt;\` tag instead of a \`&lt;button&gt;\`. |
+| \`target\` | \`target\` | \`string\` | \`''\` | Optional \`target\` attribute when \`href\` is set. |
+| \`shape\` | \`shape\` | \`ButtonShape\` | \`'default'\` | Shape variant of the button. |
 
 #### CSS Parts
 
-| Part | Description |
-|---|---|
-| \`base\` | The button/anchor element. |
-| \`prefix\` | The prefix icon slot wrapper. |
-| \`suffix\` | The suffix icon slot wrapper. |
-| \`label\` | The label slot wrapper. |
-| \`spinner\` | The loading spinner container. |
-
-#### Slots
-
 | Name | Description |
 |---|---|
-| (default) | Button label content. |
-| \`prefix\` | Icon or content before the label. |
-| \`suffix\` | Icon or content after the label. |
+| \`base\` | The button's base wrapper element. |
+| \`prefix\` | The container wrapping the prefix slot. |
+| \`label\` | The container wrapping the default slot (label text). |
+| \`suffix\` | The container wrapping the suffix slot. |
+| \`spinner\` | The loading spinner element. |
+
+#### CSS Custom Properties
+
+| Property | Default |
+|---|---|
+| \`--flint-button-border-radius\` | \`var(--flint-border-radius-md\` |
 
 ---
 
@@ -99,6 +107,7 @@ Toggle Button Group: manages exclusive or multi-select toggle buttons.
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
+| \`dependencies\` | \`dependencies\` | \`object\` | \`&#123; 'flint-toggle-button': FlintToggleButton as unknown as typeof FlintElement &#125;\` |  |
 | \`value\` | \`value\` | \`string \\| string[]\` | \`''\` | Currently selected value(s). A string when exclusive, an array otherwise. |
 | \`defaultValue\` | \`default-value\` | \`string \\| string[]\` | \`''\` | Initial selected value(s) for uncontrolled usage. |
 | \`exclusive\` | \`exclusive\` | \`boolean\` | \`true\` | Whether only one button can be selected at a time. |
@@ -107,7 +116,7 @@ Toggle Button Group: manages exclusive or multi-select toggle buttons.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-toggle-button-group-change\` | — | Fired when the group's selected value(s) change. |
+| \`flint-toggle-button-group-change\` | \`&#123; value: string \\| string[] &#125;\` | Fired when the group's selected value(s) change. detail: \`&#123; value: string \\| string[] &#125;\` |
 
 ---
 
@@ -125,13 +134,13 @@ Toggle Button: a button that can be toggled on/off.
 | \`selected\` | \`selected\` | \`boolean\` | \`false\` | Whether the button is currently selected (pressed). |
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Whether the button is disabled. |
 | \`value\` | \`value\` | \`string\` | \`''\` | Value associated with this toggle button. |
-| \`size\` | \`size\` | \`'sm' \\| 'md' \\| 'lg'\` | \`'md'\` | Size variant of the toggle button. |
+| \`size\` | \`size\` | \`Size\` | \`'md'\` | Size variant of the toggle button. |
 
 #### Events
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-toggle-button-change\` | — | Fired when the button's selected state changes. |
+| \`flint-toggle-button-change\` | \`&#123; value: string, selected: boolean &#125;\` | Fired when the button's selected state changes. detail: \`&#123; value: string, selected: boolean &#125;\` |
 
 #### CSS Custom Properties
 
