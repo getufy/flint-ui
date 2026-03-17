@@ -2,6 +2,7 @@ import { unsafeCSS, html, nothing, type PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import type { Orientation } from '../types.js';
 import uiStepConnectorStyles from './flint-step-connector.css?inline';
 import uiStepLabelStyles from './flint-step-label.css?inline';
 import uiStepContentStyles from './flint-step-content.css?inline';
@@ -24,7 +25,7 @@ export class FlintStepConnector extends FlintElement {
     static styles = unsafeCSS(uiStepConnectorStyles);
 
     /** Layout direction of the connector line. */
-    @property({ reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
+    @property({ reflect: true }) orientation: Orientation = 'horizontal';
     /** Whether the connector represents a completed step transition. */
     @property({ type: Boolean }) completed = false;
 
@@ -116,7 +117,7 @@ export class FlintStep extends FlintElement {
     /** Whether this step can be clicked to navigate to it. */
     @property({ type: Boolean, reflect: true }) clickable = false;
     /** Layout direction of the step. */
-    @property({ type: String, reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
+    @property({ type: String, reflect: true }) orientation: Orientation = 'horizontal';
     /** Whether to display the label below the step icon instead of beside it. */
     @property({ type: Boolean, reflect: true, attribute: 'alternative-label' }) alternativeLabel = false;
     /** Zero-based index of this step within the stepper. */
@@ -222,7 +223,7 @@ export class FlintStepper extends FlintElement {
      */
     @property({ type: Number, attribute: 'default-active-step' }) defaultActiveStep?: number;
     /** Layout direction of the stepper. */
-    @property({ type: String, reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
+    @property({ type: String, reflect: true }) orientation: Orientation = 'horizontal';
     /** Whether to display step labels below the icons instead of beside them. */
     @property({ type: Boolean, attribute: 'alternative-label' }) alternativeLabel = false;
     /** Whether steps can be navigated in any order (enables clickable steps). */

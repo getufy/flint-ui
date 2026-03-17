@@ -5,6 +5,7 @@ import type { PropertyValues } from 'lit';
 import { FlintElement } from '../flint-element.js';
 import { FormAssociated } from '../mixins/form-associated.js';
 import { FormControlController } from '../controllers/form-control.js';
+import type { Size } from '../types.js';
 import uiRatingStyles from './flint-rating.css?inline';
 
 /**
@@ -29,7 +30,7 @@ export class FlintRating extends FormAssociated(FlintElement) {
     /** Initial rating value for uncontrolled mode. */
     @property({ type: Number }) defaultValue = 0;
     /** Size of the rating stars. */
-    @property({ type: String, reflect: true }) size: 'sm' | 'md' | 'lg' = 'md';
+    @property({ type: String, reflect: true }) size: Size = 'md';
     /** Form field name for the hidden input. */
     @property({ type: String }) name = '';
     /** Accessible label for the rating group. */

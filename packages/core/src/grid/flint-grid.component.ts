@@ -3,11 +3,11 @@ import { property, state } from 'lit/decorators.js';
 import { styleMap } from 'lit/directives/style-map.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import type { Breakpoint, ResponsiveValue } from '../types.js';
 import uiGridStyles from './flint-grid.css?inline';
 
-export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type { Breakpoint, ResponsiveValue };
 export type GridSize = number | 'auto' | boolean;
-export type ResponsiveValue<T> = T | Partial<Record<Breakpoint, T>>;
 
 /**
  * A responsive 12-column grid layout component inspired by Material UI's Grid.

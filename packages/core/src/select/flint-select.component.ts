@@ -9,6 +9,7 @@ import { FormControlController } from '../controllers/form-control.js';
 import { LocalizeController } from '../utilities/localize.js';
 import { getAnimation, animateTo, stopAnimations, resolveKeyframes } from '../utilities/animation-registry.js';
 import { validateEnum } from '../utilities/dev-warnings.js';
+import type { Size } from '../types.js';
 import '../utilities/animation-presets.js';
 import uiSelectStyles from './flint-select.css?inline';
 
@@ -20,7 +21,7 @@ export interface SelectOption<T = string> {
   group?: string;
 }
 
-export type SelectSize = 'sm' | 'md' | 'lg';
+export type SelectSize = Size;
 
 let _uidCounter = 0;
 

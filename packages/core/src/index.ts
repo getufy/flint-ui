@@ -1,3 +1,6 @@
+// ── Shared types ─────────────────────────────────────────────────────
+export type { Size, Orientation, Placement, Breakpoint, ResponsiveValue } from './types.js';
+
 export { FlintButton } from './button/flint-button.js';
 export type { ButtonVariant, ButtonAppearance, ButtonColor, ButtonSize, ButtonType, ButtonShape } from './button/flint-button.js';
 export { FlintButtonGroup } from './button/flint-button-group.js';
@@ -86,7 +89,7 @@ export { FlintBox } from './box/flint-box.js';
 export { FlintContainer } from './container/flint-container.js';
 export type { ContainerMaxWidth } from './container/flint-container.js';
 export { FlintGrid } from './grid/flint-grid.js';
-export type { Breakpoint, GridSize, ResponsiveValue } from './grid/flint-grid.js';
+export type { GridSize } from './grid/flint-grid.js';
 export { FlintStack } from './stack/flint-stack.js';
 export { FlintImageList } from './image-list/flint-image-list.js';
 export type { ImageListVariant } from './image-list/flint-image-list.js';

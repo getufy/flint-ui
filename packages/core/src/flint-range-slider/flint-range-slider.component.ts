@@ -4,6 +4,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { styleMap } from 'lit/directives/style-map.js';
 import { live } from 'lit/directives/live.js';
 import { FlintElement } from '../flint-element.js';
+import type { Size } from '../types.js';
 import uiRangeSliderStyles from './flint-range-slider.css?inline';
 
 export interface FlintRangeSliderChangeDetail { value: [number, number]; }
@@ -45,7 +46,7 @@ export class FlintRangeSlider extends FlintElement {
     /** Step increment between values. */
     @property({ type: Number }) step = 1;
     /** Visual size of the track and thumbs. */
-    @property({ type: String, reflect: true }) size: 'sm' | 'md' | 'lg' = 'md';
+    @property({ type: String, reflect: true }) size: Size = 'md';
     /** Whether the slider is disabled. */
     @property({ type: Boolean, reflect: true }) disabled = false;
     /** Label text displayed above the slider. */

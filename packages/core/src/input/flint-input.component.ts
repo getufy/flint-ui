@@ -4,6 +4,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
 import { FormAssociated } from '../mixins/form-associated.js';
 import { FormControlController } from '../controllers/form-control.js';
+import type { Size } from '../types.js';
 import uiInputStyles from './flint-input.css?inline';
 
 let idCounter = 0;
@@ -108,7 +109,7 @@ export class FlintInput extends FormAssociated(FlintElement) {
      * @default 'md'
      */
     @property({ type: String, reflect: true })
-    size: 'sm' | 'md' | 'lg' = 'md';
+    size: Size = 'md';
 
     /** Initial value (uncontrolled). Only used on first render; ignored after mount. */
     @property({ type: String, attribute: 'default-value' })

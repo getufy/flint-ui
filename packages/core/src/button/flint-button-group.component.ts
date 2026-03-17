@@ -1,6 +1,7 @@
 import { unsafeCSS, html, type PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
+import type { Orientation } from '../types.js';
 import type { ButtonVariant, ButtonSize } from './flint-button.component.js';
 import uiButtonGroupStyles from './flint-button-group.css?inline';
 
@@ -12,7 +13,7 @@ export class FlintButtonGroup extends FlintElement {
      * @default 'horizontal'
      */
     @property({ type: String, reflect: true })
-    orientation: 'horizontal' | 'vertical' = 'horizontal';
+    orientation: Orientation = 'horizontal';
 
     /**
      * Size propagated to child `flint-button` elements.

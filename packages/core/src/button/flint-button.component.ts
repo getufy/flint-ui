@@ -3,13 +3,14 @@ import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
 import { validateEnum } from '../utilities/dev-warnings.js';
+import type { Size } from '../types.js';
 import uiButtonStyles from './flint-button.css?inline';
 
 /** @deprecated Use `ButtonAppearance` + `ButtonColor` instead. */
 export type ButtonVariant = 'primary' | 'secondary' | 'destructive' | 'success' | 'warning' | 'neutral';
 export type ButtonAppearance = 'filled' | 'outlined' | 'text' | 'ghost';
 export type ButtonColor = 'primary' | 'neutral' | 'destructive' | 'success' | 'warning';
-export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonSize = Size;
 export type ButtonType = 'button' | 'submit' | 'reset';
 export type ButtonShape = 'default' | 'pill' | 'circle';
 

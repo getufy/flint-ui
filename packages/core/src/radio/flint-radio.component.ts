@@ -4,11 +4,12 @@ import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { FlintElement } from '../flint-element.js';
 import { FormAssociated } from '../mixins/form-associated.js';
+import type { Size, Orientation } from '../types.js';
 import uiRadioGroupStyles from './flint-radio-group.css?inline';
 import uiRadioStyles from './flint-radio.css?inline';
 
-export type RadioSize = 'sm' | 'md' | 'lg';
-export type RadioOrientation = 'horizontal' | 'vertical';
+export type RadioSize = Size;
+export type RadioOrientation = Orientation;
 
 /**
  * Radio Group: manages a set of radio buttons with single selection.

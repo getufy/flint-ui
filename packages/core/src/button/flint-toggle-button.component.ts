@@ -2,6 +2,7 @@ import { unsafeCSS, html } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import type { Size } from '../types.js';
 import uiToggleButtonStyles from './flint-toggle-button.css?inline';
 
 /**
@@ -19,7 +20,7 @@ export class FlintToggleButton extends FlintElement {
     /** Value associated with this toggle button. */
     @property({ type: String }) value = '';
     /** Size variant of the toggle button. */
-    @property({ type: String, reflect: true }) size: 'sm' | 'md' | 'lg' = 'md';
+    @property({ type: String, reflect: true }) size: Size = 'md';
 
     private _handleClick() {
         if (this.disabled) return;

@@ -3,6 +3,7 @@ import { property, query, state } from 'lit/decorators.js';
 import uiScrollAreaStyles from './flint-scroll-area.css?inline';
 import uiScrollBarStyles from './flint-scroll-bar.css?inline';
 import { FlintElement } from '../flint-element.js';
+import type { Orientation } from '../types.js';
 
 /* ─────────────────────────────────────────────────────────────────── */
 /*  flint-scroll-bar                                                       */
@@ -29,7 +30,7 @@ export class FlintScrollBar extends FlintElement {
     static styles = unsafeCSS(uiScrollBarStyles);
 
     /** Which axis this scrollbar controls. Reflects to attribute. */
-    @property({ reflect: true }) orientation: 'vertical' | 'horizontal' = 'vertical';
+    @property({ reflect: true }) orientation: Orientation = 'vertical';
 
     /** Thumb leading-edge position as percentage of track (0–100). */
     @state() _thumbPos = 0;
@@ -234,21 +235,21 @@ export class FlintScrollArea extends FlintElement {
 
     // ── Scroll pos / range helpers (called by FlintScrollBar drag) ────────
 
-    _getScrollPos(orientation: 'vertical' | 'horizontal'): number {
+    _getScrollPos(orientation: Orientation): number {
         if (!this._viewport) return 0;
         return orientation === 'vertical'
             ? this._viewport.scrollTop
             : this._viewport.scrollLeft;
     }
 
-    _getScrollRange(orientation: 'vertical' | 'horizontal'): number {
+    _getScrollRange(orientation: Orientation): number {
         if (!this._viewport) return 0;
         return orientation === 'vertical'
             ? this._viewport.scrollHeight - this._viewport.clientHeight
             : this._viewport.scrollWidth - this._viewport.clientWidth;
     }
 
-    _setScrollPos(orientation: 'vertical' | 'horizontal', pos: number) {
+    _setScrollPos(orientation: Orientation, pos: number) {
         if (!this._viewport) return;
         const range = this._getScrollRange(orientation);
         const clamped = Math.max(0, Math.min(pos, range));
@@ -280,7 +281,7 @@ export class FlintScrollArea extends FlintElement {
         this._hasOverflowX = vp.scrollWidth > vp.clientWidth + 1;
     }
 
-    private _computeThumb(orientation: 'vertical' | 'horizontal') {
+    private _computeThumb(orientation: Orientation) {
         const vp = this._viewport;
         if (!vp) return { pos: 0, size: 100 };
 
@@ -323,7 +324,7 @@ export class FlintScrollArea extends FlintElement {
         });
     }
 
-    private _shouldShowBar(orientation: 'vertical' | 'horizontal'): boolean {
+    private _shouldShowBar(orientation: Orientation): boolean {
         const hasOverflow =
             orientation === 'vertical' ? this._hasOverflowY : this._hasOverflowX;
         switch (this.type) {
@@ -335,7 +336,7 @@ export class FlintScrollArea extends FlintElement {
         }
     }
 
-    private _scrollbarClasses(orientation: 'vertical' | 'horizontal'): string {
+    private _scrollbarClasses(orientation: Orientation): string {
         const axis = orientation === 'vertical' ? 'y' : 'x';
         const visible = this._shouldShowBar(orientation) ? 'scrollbar--visible' : '';
         const active = this._isScrolling ? 'scrollbar--active' : '';

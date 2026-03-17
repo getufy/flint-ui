@@ -4,6 +4,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
 import { FlintBackdrop } from '../backdrop/flint-backdrop.component.js';
 import { validateEnum } from '../utilities/dev-warnings.js';
+import type { Size } from '../types.js';
 import uiDialogStyles from './flint-dialog.css?inline';
 import uiDialogTitleStyles from './flint-dialog-title.css?inline';
 import uiDialogContentStyles from './flint-dialog-content.css?inline';
@@ -29,7 +30,7 @@ const _openDialogs: FlintDialog[] = [];
  *
  * @csspart panel - The dialog panel container.
  */
-export type DialogSize = 'sm' | 'md' | 'lg' | 'full';
+export type DialogSize = Size | 'full';
 
 export class FlintDialog extends FlintElement {
   static styles = unsafeCSS(uiDialogStyles);

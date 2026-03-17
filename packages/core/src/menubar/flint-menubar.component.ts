@@ -1015,3 +1015,22 @@ export class FlintMenubar extends FlintElement {
         `;
     }
 }
+
+declare global {
+    interface HTMLElementTagNameMap {
+        'flint-menubar': FlintMenubar;
+        'flint-menubar-menu': FlintMenubarMenu;
+        'flint-menubar-trigger': FlintMenubarTrigger;
+        'flint-menubar-content': FlintMenubarContent;
+        'flint-menubar-item': FlintMenubarItem;
+        'flint-menubar-checkbox-item': FlintMenubarCheckboxItem;
+        'flint-menubar-radio-item': FlintMenubarRadioItem;
+        'flint-menubar-radio-group': FlintMenubarRadioGroup;
+        'flint-menubar-sub': FlintMenubarSub;
+        'flint-menubar-sub-trigger': FlintMenubarSubTrigger;
+        'flint-menubar-sub-content': FlintMenubarSubContent;
+        'flint-menubar-group': FlintMenubarGroup;
+        'flint-menubar-separator': FlintMenubarSeparator;
+        'flint-menubar-shortcut': FlintMenubarShortcut;
+    }
+}

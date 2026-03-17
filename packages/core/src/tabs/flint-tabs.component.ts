@@ -31,6 +31,7 @@ import { unsafeCSS, html, nothing } from 'lit';
 import { property, state, query } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import type { Orientation } from '../types.js';
 import uiTabStyles from './flint-tab.css?inline';
 import uiTabPanelStyles from './flint-tab-panel.css?inline';
 import uiTabListStyles from './flint-tab-list.css?inline';
@@ -157,7 +158,7 @@ export class FlintTabList extends FlintElement {
      * Layout direction of the tab list.
      * @default 'horizontal'
      */
-    @property({ reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
+    @property({ reflect: true }) orientation: Orientation = 'horizontal';
     /**
      * Display variant controlling tab sizing and scrollability.
      * @default 'standard'
@@ -335,7 +336,7 @@ export class FlintTabs extends FlintElement {
      * Layout direction of the tabs.
      * @default 'horizontal'
      */
-    @property({ reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
+    @property({ reflect: true }) orientation: Orientation = 'horizontal';
     /**
      * Display variant controlling tab sizing and scrollability.
      * @default 'standard'

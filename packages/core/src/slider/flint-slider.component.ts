@@ -4,9 +4,8 @@ import { classMap } from 'lit/directives/class-map.js';
 import { styleMap } from 'lit/directives/style-map.js';
 import { FlintElement } from '../flint-element.js';
 import { FormAssociated } from '../mixins/form-associated.js';
+import type { Size } from '../types.js';
 import uiSliderStyles from './flint-slider.css?inline';
-
-type Size = 'sm' | 'md' | 'lg';
 
 /**
  * Slider: a range input for selecting a numeric value.

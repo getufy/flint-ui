@@ -3,8 +3,9 @@ import { property, state } from 'lit/decorators.js';
 import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
 import { FlintElement } from '../flint-element.js';
 import { validateEnum } from '../utilities/dev-warnings.js';
+import type { Size } from '../types.js';
 
-export type IconSize = 'sm' | 'md' | 'lg';
+export type IconSize = Size;
 
 /** Module-level SVG cache shared across all `flint-icon` instances. */
 const _svgCache = new Map<string, string>();

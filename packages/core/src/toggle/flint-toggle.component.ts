@@ -1,6 +1,7 @@
 import { unsafeCSS, html, PropertyValues, nothing } from 'lit';
 import { property } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
+import type { Size } from '../types.js';
 import uiToggleStyles from './flint-toggle.css?inline';
 
 /**
@@ -27,7 +28,7 @@ export class FlintToggle extends FlintElement {
     /** Visual variant of the toggle. */
     @property({ type: String, reflect: true }) variant: 'default' | 'outlined' = 'default';
     /** Size of the toggle. */
-    @property({ type: String, reflect: true }) size: 'sm' | 'md' | 'lg' = 'md';
+    @property({ type: String, reflect: true }) size: Size = 'md';
     /** Text direction for the toggle. */
     @property({ type: String, reflect: true }) dir: 'ltr' | 'rtl' = 'ltr';
     /** Initial pressed state for uncontrolled mode. */

@@ -2,10 +2,10 @@ import { unsafeCSS, html, type PropertyValues } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { styleMap } from 'lit/directives/style-map.js';
 import { FlintElement } from '../flint-element.js';
+import type { Breakpoint, ResponsiveValue } from '../types.js';
 import uiStackStyles from './flint-stack.css?inline';
 
-export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type ResponsiveValue<T> = T | Partial<Record<Breakpoint, T>>;
+export type { Breakpoint, ResponsiveValue };
 
 export class FlintStack extends FlintElement {
     static styles = unsafeCSS(uiStackStyles);

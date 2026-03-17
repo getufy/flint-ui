@@ -2,6 +2,7 @@ import { unsafeCSS, html, nothing, svg } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import type { Placement } from '../types.js';
 import styles from './flint-copy-button.css?inline';
 
 type CopyState = 'idle' | 'success' | 'error';
@@ -48,7 +49,7 @@ export class FlintCopyButton extends FlintElement {
     @property({ type: Number, attribute: 'feedback-duration' }) feedbackDuration = 1000;
 
     /** Tooltip placement. */
-    @property({ type: String, attribute: 'tooltip-placement' }) tooltipPlacement: 'top' | 'right' | 'bottom' | 'left' = 'top';
+    @property({ type: String, attribute: 'tooltip-placement' }) tooltipPlacement: Placement = 'top';
 
     private _state: CopyState = 'idle';
     private _feedbackTimer: ReturnType<typeof setTimeout> | null = null;

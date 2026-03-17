@@ -4,6 +4,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
 import { FormAssociated } from '../mixins/form-associated.js';
 import { FormControlController } from '../controllers/form-control.js';
+import type { Size } from '../types.js';
 import uiSwitchStyles from './flint-switch.css?inline';
 
 let _uidCounter = 0;
@@ -35,7 +36,7 @@ export class FlintSwitch extends FormAssociated(FlintElement) {
      * Size of the switch control.
      * @default 'md'
      */
-    @property({ type: String, reflect: true }) size: 'sm' | 'md' | 'lg' = 'md';
+    @property({ type: String, reflect: true }) size: Size = 'md';
     /** Visible label text displayed next to the switch. */
     @property({ type: String }) label = '';
     /** Form field name used when submitting form data. */

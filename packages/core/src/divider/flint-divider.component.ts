@@ -2,6 +2,7 @@ import { unsafeCSS, html } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import type { Orientation } from '../types.js';
 import uiDividerStyles from './flint-divider.css?inline';
 
 /**
@@ -16,7 +17,7 @@ export class FlintDivider extends FlintElement {
    * Orientation of the divider line.
    * @default 'horizontal'
    */
-  @property({ type: String, reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
+  @property({ type: String, reflect: true }) orientation: Orientation = 'horizontal';
   /**
    * Inset variant controlling how far the divider extends.
    * @default 'full'

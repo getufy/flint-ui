@@ -3,10 +3,9 @@ import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
 import { getAnimation, animateTo, stopAnimations, resolveKeyframes } from '../utilities/animation-registry.js';
+import type { Placement } from '../types.js';
 import '../utilities/animation-presets.js';
 import uiTooltipStyles from './flint-tooltip.css?inline';
-
-type Placement = 'top' | 'bottom' | 'left' | 'right';
 
 const OPPOSITE: Record<Placement, Placement> = {
     top: 'bottom',

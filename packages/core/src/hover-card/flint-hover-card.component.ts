@@ -4,6 +4,7 @@ import uiHoverCardTriggerStyles from './flint-hover-card-trigger.css?inline';
 import uiHoverCardContentStyles from './flint-hover-card-content.css?inline';
 import uiHoverCardStyles from './flint-hover-card.css?inline';
 import { FlintElement } from '../flint-element.js';
+import type { Placement } from '../types.js';
 
 /* ── ARIA id counter ──────────────────────────────────────────────── */
 let nextId = 0;
@@ -89,7 +90,7 @@ export class FlintHoverCardContent extends FlintElement {
     readonly contentId = `flint-hovercard-${++nextId}`;
 
     /** Which side of the trigger to display the card on. */
-    @property({ type: String, reflect: true }) placement: 'top' | 'right' | 'bottom' | 'left' = 'bottom';
+    @property({ type: String, reflect: true }) placement: Placement = 'bottom';
 
     /** Alignment of the card along the cross axis relative to the trigger. */
     @property({ type: String, reflect: true }) align: 'start' | 'center' | 'end' = 'center';

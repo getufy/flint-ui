@@ -5,6 +5,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { FlintElement } from '../flint-element.js';
 import { FormAssociated } from '../mixins/form-associated.js';
 import { FormControlController } from '../controllers/form-control.js';
+import type { Size } from '../types.js';
 import uiTextareaStyles from './flint-textarea.css?inline';
 
 let _uidCounter = 0;
@@ -46,7 +47,7 @@ export class FlintTextarea extends FormAssociated(FlintElement) {
     /** Label text displayed above the textarea. */
     @property({ type: String }) label = '';
     /** Size variant of the textarea. */
-    @property({ type: String, reflect: true }) size: 'sm' | 'md' | 'lg' = 'md';
+    @property({ type: String, reflect: true }) size: Size = 'md';
     /** Number of visible text rows. */
     @property({ type: Number }) rows = 3;
     /** Maximum number of characters allowed. */

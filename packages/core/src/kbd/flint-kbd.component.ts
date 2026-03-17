@@ -1,6 +1,7 @@
 import { unsafeCSS, html, nothing } from 'lit';
 import { property } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
+import type { Size } from '../types.js';
 import uiKbdStyles from './flint-kbd.css?inline';
 import uiKbdGroupStyles from './flint-kbd-group.css?inline';
 
@@ -30,7 +31,7 @@ export class FlintKbd extends FlintElement {
 
     /** Visual size of the key. */
     @property({ reflect: true })
-    size: 'sm' | 'md' | 'lg' = 'md';
+    size: Size = 'md';
 
     /** Visual style: `raised` (default, bottom border + shadow) or `flat` (no raised effect). */
     @property({ reflect: true })

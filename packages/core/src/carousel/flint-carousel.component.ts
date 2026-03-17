@@ -4,6 +4,7 @@ import uiCarouselContentStyles from './flint-carousel-content.css?inline';
 import uiCarouselItemStyles from './flint-carousel-item.css?inline';
 import uiCarouselStyles from './flint-carousel.css?inline';
 import { FlintElement } from '../flint-element.js';
+import type { Orientation } from '../types.js';
 import { LocalizeController } from '../utilities/localize.js';
 
 /* ── Shared nav-button styles ─────────────────────────────────────────────── */
@@ -52,7 +53,7 @@ export class FlintCarouselContent extends FlintElement {
   /** Number of slides visible at once. */
   @property({ type: Number, attribute: 'items-per-view' }) itemsPerView = 1;
   /** Slide direction axis. */
-  @property({ reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
+  @property({ reflect: true }) orientation: Orientation = 'horizontal';
 
   updated(changed: PropertyValues) {
     if (changed.has('itemsPerView')) {
@@ -117,7 +118,7 @@ export class FlintCarouselPrevious extends FlintElement {
   /** Whether the previous button is disabled. */
   @property({ type: Boolean, reflect: true }) disabled = false;
   /** Slide direction axis, inherited from the parent carousel. */
-  @property({ reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
+  @property({ reflect: true }) orientation: Orientation = 'horizontal';
 
   private _localize = new LocalizeController(this);
 
@@ -159,7 +160,7 @@ export class FlintCarouselNext extends FlintElement {
   /** Whether the next button is disabled. */
   @property({ type: Boolean, reflect: true }) disabled = false;
   /** Slide direction axis, inherited from the parent carousel. */
-  @property({ reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
+  @property({ reflect: true }) orientation: Orientation = 'horizontal';
 
   private _localize = new LocalizeController(this);
 
@@ -204,7 +205,7 @@ export class FlintCarousel extends FlintElement {
   @property({ type: Boolean }) loop = false;
 
   /** Slide direction axis. */
-  @property({ reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
+  @property({ reflect: true }) orientation: Orientation = 'horizontal';
 
   /** Auto-advance interval in milliseconds. Set to 0 to disable. */
   @property({ type: Number }) autoplay = 0;

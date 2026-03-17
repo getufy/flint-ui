@@ -3,6 +3,7 @@ import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
 import { LocalizeController } from '../utilities/localize.js';
+import type { Size } from '../types.js';
 import uiPaginationStyles from './flint-pagination.css?inline';
 
 /* ── SVG icon helpers ─────────────────────────────────────────────── */
@@ -112,7 +113,7 @@ export class FlintPagination extends FlintElement {
      * Size of the pagination buttons.
      * @default 'medium'
      */
-    @property({ type: String, reflect: true }) size: 'sm' | 'md' | 'lg' = 'md';
+    @property({ type: String, reflect: true }) size: Size = 'md';
 
     /**
      * Color theme of the pagination buttons.

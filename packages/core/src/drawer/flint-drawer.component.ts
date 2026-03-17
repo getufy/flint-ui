@@ -1,6 +1,7 @@
 import { unsafeCSS, html, PropertyValues } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
+import type { Placement } from '../types.js';
 import { FlintBackdrop } from '../backdrop/flint-backdrop.js';
 import { getAnimation, animateTo, stopAnimations, resolveKeyframes } from '../utilities/animation-registry.js';
 import { handleFocusTrapKeyDown, getFocusableElements } from '../utilities/focus-trap.js';
@@ -34,7 +35,7 @@ export class FlintDrawer extends FlintElement {
      * Side from which the drawer slides in.
      * @default 'left'
      */
-    @property({ type: String, reflect: true }) placement: 'left' | 'right' | 'top' | 'bottom' = 'left';
+    @property({ type: String, reflect: true }) placement: Placement = 'left';
     /**
      * Drawer behavior mode.
      * @default 'temporary'

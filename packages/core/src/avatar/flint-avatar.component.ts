@@ -2,6 +2,7 @@ import { unsafeCSS, html, PropertyValues, nothing } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import type { Size } from '../types.js';
 import uiAvatarStyles from './flint-avatar.css?inline';
 
 export class FlintAvatar extends FlintElement {
@@ -16,7 +17,7 @@ export class FlintAvatar extends FlintElement {
     /** Shape variant of the avatar. */
     @property({ type: String }) variant: 'circle' | 'square' | 'rounded' = 'circle';
     /** Size of the avatar. */
-    @property({ type: String, reflect: true }) size: 'sm' | 'md' | 'lg' | 'xl' = 'md';
+    @property({ type: String, reflect: true }) size: Size | 'xl' = 'md';
 
     @state() private _hasError = false;
     @state() private _isLoading = false;

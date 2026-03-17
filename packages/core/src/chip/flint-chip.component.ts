@@ -4,6 +4,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { FlintElement } from '../flint-element.js';
 import { validateEnum } from '../utilities/dev-warnings.js';
+import type { Size } from '../types.js';
 import uiChipStyles from './flint-chip.css?inline';
 
 /**
@@ -37,7 +38,7 @@ export class FlintChip extends FlintElement {
      * Size of the chip.
      * @default 'md'
      */
-    @property({ type: String, reflect: true }) size: 'sm' | 'md' | 'lg' = 'md';
+    @property({ type: String, reflect: true }) size: Size = 'md';
     /** Whether the chip responds to click interactions. */
     @property({ type: Boolean }) clickable = false;
     /** Whether the chip shows a delete icon. */

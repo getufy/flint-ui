@@ -1,6 +1,7 @@
 import { html, css, type PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
+import type { Orientation } from '../types.js';
 
 /* ------------------------------------------------------------------ */
 /*  flint-resizable-group                                                */
@@ -29,7 +30,7 @@ export class FlintResizableGroup extends FlintElement {
   `;
 
   /** Layout direction — 'horizontal' (row) or 'vertical' (column). */
-  @property({ reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
+  @property({ reflect: true }) orientation: Orientation = 'horizontal';
 
   /** Text direction for RTL support. */
   @property({ reflect: true }) dir: 'ltr' | 'rtl' = 'ltr';
@@ -421,7 +422,7 @@ export class FlintResizablePanel extends FlintElement {
   _restoreSize = 0;
 
   /** @internal */
-  _orientation: 'horizontal' | 'vertical' = 'horizontal';
+  _orientation: Orientation = 'horizontal';
 
   /** @internal */
   _hasExplicitSize = false;
@@ -585,7 +586,7 @@ export class FlintResizableHandle extends FlintElement {
   @property({ type: Boolean, reflect: true }) disabled = false;
 
   /** @internal – set by parent group, reflects to attribute for CSS. */
-  @property({ reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
+  @property({ reflect: true }) orientation: Orientation = 'horizontal';
 
   /** @internal */
   _dir: 'ltr' | 'rtl' = 'ltr';
