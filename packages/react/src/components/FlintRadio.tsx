@@ -31,8 +31,11 @@ export interface FlintRadioProps extends React.HTMLAttributes<FlintRadioElement>
     value?: string;
     /** Visible label text for this radio option. */
     label?: string;
-    /** Size of the radio button. */
-    size?: FlintRadioElement['size'];
+    /**
+     * Size of the radio button.
+     * Allowed values: 'sm' | 'md' | 'lg'
+     */
+    size?: 'sm' | 'md' | 'lg';
     /** Fired when this radio is selected. detail: `{ value: string }` */
     onFlintRadioSelect?: (event: CustomEvent<FlintRadioSelectDetail>) => void;
 }

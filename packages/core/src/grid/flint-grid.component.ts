@@ -9,6 +9,56 @@ export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type GridSize = number | 'auto' | boolean;
 export type ResponsiveValue<T> = T | Partial<Record<Breakpoint, T>>;
 
+/**
+ * A responsive 12-column grid layout component inspired by Material UI's Grid.
+ *
+ * `<flint-grid>` serves two roles depending on the `container` prop:
+ *
+ * - **Container mode** (`container`): creates a flex row that distributes child
+ *   `<flint-grid>` items across columns. Controls spacing, direction, wrapping,
+ *   and alignment.
+ * - **Item mode** (default): sizes itself within a parent container by specifying
+ *   how many columns to span at each breakpoint (`xs`, `sm`, `md`, `lg`, `xl`).
+ *
+ * ### 12-column system
+ * The grid divides available width into 12 equal columns (configurable via
+ * `columns`). Assign a number 1-12 to breakpoint props to set the span.
+ * Use `true` for equal-width auto-fill, or `"auto"` for content-based width.
+ *
+ * ### Responsive breakpoints
+ * Breakpoint props cascade upward -- a value set at `xs` applies to all larger
+ * breakpoints unless overridden:
+ *
+ * | Prop | Default min-width | CSS variable override        |
+ * |------|-------------------|------------------------------|
+ * | `xs` | 0px               | `--flint-breakpoint-xs`      |
+ * | `sm` | 600px             | `--flint-breakpoint-sm`      |
+ * | `md` | 900px             | `--flint-breakpoint-md`      |
+ * | `lg` | 1200px            | `--flint-breakpoint-lg`      |
+ * | `xl` | 1536px            | `--flint-breakpoint-xl`      |
+ *
+ * ### Spacing
+ * The `spacing` prop uses a multiplier where **1 unit = 8px**. Set `spacing={2}`
+ * for 16px gaps. Use `rowSpacing` / `columnSpacing` for independent axis control.
+ * Spacing also accepts responsive objects: `{ xs: 1, md: 3 }`.
+ *
+ * @example
+ * ```html
+ * <flint-grid container spacing="2">
+ *   <flint-grid xs="12" md="8"><div>Main</div></flint-grid>
+ *   <flint-grid xs="12" md="4"><div>Sidebar</div></flint-grid>
+ * </flint-grid>
+ * ```
+ *
+ * @tag flint-grid
+ * @csspart base - The inner wrapper div.
+ * @cssprop [--flint-breakpoint-xs] - Override xs breakpoint (default: 0).
+ * @cssprop [--flint-breakpoint-sm] - Override sm breakpoint (default: 600).
+ * @cssprop [--flint-breakpoint-md] - Override md breakpoint (default: 900).
+ * @cssprop [--flint-breakpoint-lg] - Override lg breakpoint (default: 1200).
+ * @cssprop [--flint-breakpoint-xl] - Override xl breakpoint (default: 1536).
+ * @cssprop [--flint-grid-columns] - Inherited column count from parent container.
+ */
 export class FlintGrid extends FlintElement {
     static styles = unsafeCSS(uiGridStyles);
 

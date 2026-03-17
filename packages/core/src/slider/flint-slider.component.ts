@@ -12,6 +12,10 @@ type Size = 'sm' | 'md' | 'lg';
  * Slider: a range input for selecting a numeric value.
  *
  * @fires flint-slider-change - Fired when the slider value changes. detail: `{ value: number }`
+ *
+ * @csspart base - The slider's base wrapper element.
+ * @csspart label - The slider label element.
+ * @csspart track - The slider track element.
  */
 export class FlintSlider extends FormAssociated(FlintElement) {
   static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };

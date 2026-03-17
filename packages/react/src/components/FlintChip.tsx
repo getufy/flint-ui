@@ -24,11 +24,20 @@ export interface FlintChipDeleteDetail {
 export interface FlintChipProps extends Omit<React.HTMLAttributes<FlintChipElement>, 'color'> {
     /** Text content displayed inside the chip. */
     label?: string;
-    /** Visual style variant of the chip. */
+    /**
+     * Visual style variant of the chip.
+     * Allowed values: 'filled' | 'outlined'
+     */
     variant?: 'filled' | 'outlined';
-    /** Color theme applied to the chip. */
+    /**
+     * Color theme applied to the chip.
+     * Allowed values: 'default' | 'primary' | 'secondary'
+     */
     color?: 'default' | 'primary' | 'secondary';
-    /** Size of the chip. */
+    /**
+     * Size of the chip.
+     * Allowed values: 'sm' | 'md' | 'lg'
+     */
     size?: 'sm' | 'md' | 'lg';
     /** Whether the chip responds to click interactions. */
     clickable?: boolean;

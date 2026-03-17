@@ -20,7 +20,10 @@ export interface FlintTabProps extends React.HTMLAttributes<FlintTabElement> {
     disabled?: boolean;
     /** Whether the tab is currently selected. */
     selected?: boolean;
-    /** Position of the icon slot relative to the label. */
+    /**
+     * Position of the icon slot relative to the label.
+     * Allowed values: 'top' | 'bottom' | 'start' | 'end'
+     */
     iconPosition?: 'top' | 'bottom' | 'start' | 'end';
     /** URL to navigate to, renders the tab as a link. */
     href?: string;

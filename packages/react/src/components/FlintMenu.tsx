@@ -23,7 +23,10 @@ Place it as a sibling to its anchor element inside a `position:relative` contain
 export interface FlintMenuProps extends React.HTMLAttributes<FlintMenuElement> {
     /** Whether the menu is open/visible. */
     open?: boolean;
-    /** Menu placement relative to its anchor container. */
+    /**
+     * Menu placement relative to its anchor container.
+     * Allowed values: 'bottom-start' | 'bottom-end' | 'top-start' | 'top-end' | 'right-start' | 'left-start'
+     */
     placement?: 'bottom-start' | 'bottom-end' | 'top-start' | 'top-end' | 'right-start' | 'left-start';
     /** When true, selecting an item automatically fires flint-menu-close. */
     closeOnSelect?: boolean;

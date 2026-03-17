@@ -31,10 +31,16 @@ export interface FlintRadioGroupProps extends Omit<React.HTMLAttributes<FlintRad
     disabled?: boolean;
     /** Marks the group as required for form validation. */
     required?: boolean;
-    /** Layout direction of the radio buttons. */
-    orientation?: FlintRadioGroupElement['orientation'];
-    /** Size of the radio buttons. */
-    size?: FlintRadioGroupElement['size'];
+    /**
+     * Layout direction of the radio buttons.
+     * Allowed values: 'horizontal' | 'vertical'
+     */
+    orientation?: 'horizontal' | 'vertical';
+    /**
+     * Size of the radio buttons.
+     * Allowed values: 'sm' | 'md' | 'lg'
+     */
+    size?: 'sm' | 'md' | 'lg';
     /** Fired when the selected radio value changes. detail: `{ value: string }` */
     onFlintRadioGroupChange?: (event: CustomEvent<FlintRadioGroupChangeDetail>) => void;
 }

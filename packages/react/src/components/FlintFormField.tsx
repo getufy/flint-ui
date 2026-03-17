@@ -31,8 +31,11 @@ export interface FlintFormFieldProps extends React.HTMLAttributes<FlintFormField
     required?: boolean;
     /** Disables the field and its slotted control. */
     disabled?: boolean;
-    /** Label placement relative to the control. */
-    labelPosition?: FlintFormFieldElement['labelPosition'];
+    /**
+     * Label placement relative to the control.
+     * Allowed values: 'top' | 'start'
+     */
+    labelPosition?: 'top' | 'start';
 }
 
 export const FlintFormField = createComponent({

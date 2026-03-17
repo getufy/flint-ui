@@ -10,12 +10,21 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintButtonGroup as FlintButtonGroupElement } from '@getufy/flint-ui/button/flint-button-group';
 
 export interface FlintButtonGroupProps extends React.HTMLAttributes<FlintButtonGroupElement> {
-    /** Layout direction of the group. */
+    /**
+     * Layout direction of the group.
+     * Allowed values: 'horizontal' | 'vertical'
+     */
     orientation?: 'horizontal' | 'vertical';
-    /** Size propagated to child `flint-button` elements. */
-    size?: FlintButtonGroupElement['size'];
-    /** Variant propagated to child `flint-button` elements. */
-    variant?: FlintButtonGroupElement['variant'];
+    /**
+     * Size propagated to child `flint-button` elements.
+     * Allowed values: '' | 'sm' | 'md' | 'lg'
+     */
+    size?: '' | 'sm' | 'md' | 'lg';
+    /**
+     * Variant propagated to child `flint-button` elements.
+     * Allowed values: '' | 'primary' | 'secondary' | 'destructive' | 'success' | 'warning' | 'neutral'
+     */
+    variant?: '' | 'primary' | 'secondary' | 'destructive' | 'success' | 'warning' | 'neutral';
 }
 
 export const FlintButtonGroup = createComponent({

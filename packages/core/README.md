@@ -17,6 +17,23 @@ npm install @getufy/flint-ui lit
 - **[Live Storybook](https://getufy.github.io/flint-ui/storybook/)** — interactive component playground
 - **[React wrappers](https://www.npmjs.com/package/@getufy/flint-ui-react)** — `@getufy/flint-ui-react` for React projects
 
+## Getting Started
+
+> **Required:** Import the theme CSS once in your app entry point. Without this, components render unstyled.
+>
+> ```js
+> import '@getufy/flint-ui/theme.css';
+> ```
+
+## Suppress Dev Warnings
+
+In development, Lit prints a console warning about running in dev mode. To silence it, add this import **before any component imports**:
+
+```js
+// Must come before any @getufy/flint-ui imports
+import '@getufy/flint-ui/suppress-warnings';
+```
+
 ## Usage
 
 ```html

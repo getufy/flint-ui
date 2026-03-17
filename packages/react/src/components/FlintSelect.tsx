@@ -44,8 +44,11 @@ export interface FlintSelectProps extends Omit<React.HTMLAttributes<FlintSelectE
     errorMessage?: string;
     /** Form field name used when submitting form data. */
     name?: string;
-    /** Size variant of the select. */
-    size?: FlintSelectElement['size'];
+    /**
+     * Size variant of the select.
+     * Allowed values: 'sm' | 'md' | 'lg'
+     */
+    size?: 'sm' | 'md' | 'lg';
     /** Initial value (uncontrolled). Only used on first render; ignored after mount. Single-select only. */
     defaultValue?: string;
     /** When true, the dropdown uses `position: fixed` so it can escape */

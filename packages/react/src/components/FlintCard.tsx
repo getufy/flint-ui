@@ -16,7 +16,10 @@ import { FlintCardEvents } from '../events/flint-card.js';
  * @slot (default) - Card content (header, content, actions, media sub-components).
  */
 export interface FlintCardProps extends React.HTMLAttributes<FlintCardElement> {
-    /** Visual style variant of the card. */
+    /**
+     * Visual style variant of the card.
+     * Allowed values: 'elevated' | 'outlined' | 'flat'
+     */
     variant?: 'elevated' | 'outlined' | 'flat';
     interactive?: boolean;
     /** Fired when an interactive card is clicked or activated via keyboard (Enter/Space). */

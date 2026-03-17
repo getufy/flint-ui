@@ -17,9 +17,15 @@ icons, avatars, images, and action buttons.
  * @slot (default) - Accepts `flint-item-header`, `flint-item-media`, `flint-item-content`, `flint-item-actions`, `flint-item-footer`, and any other elements.
  */
 export interface FlintItemProps extends React.HTMLAttributes<FlintItemElement> {
-    /** Visual style of the item. */
+    /**
+     * Visual style of the item.
+     * Allowed values: 'default' | 'outline' | 'muted'
+     */
     variant?: 'default' | 'outline' | 'muted';
-    /** Size preset controlling padding and gap. */
+    /**
+     * Size preset controlling padding and gap.
+     * Allowed values: 'default' | 'sm' | 'xs'
+     */
     size?: 'default' | 'sm' | 'xs';
 }
 

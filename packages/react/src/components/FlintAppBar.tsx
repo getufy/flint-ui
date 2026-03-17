@@ -21,9 +21,15 @@ import { FlintAppBar as FlintAppBarElement } from '@getufy/flint-ui/app-bar/flin
 export interface FlintAppBarProps extends Omit<React.HTMLAttributes<FlintAppBarElement>, 'title'> {
     /** Title text displayed in the center of the app bar. */
     title?: string;
-    /** CSS positioning behavior of the app bar. */
+    /**
+     * CSS positioning behavior of the app bar.
+     * Allowed values: 'static' | 'fixed' | 'absolute' | 'sticky'
+     */
     position?: 'static' | 'fixed' | 'absolute' | 'sticky';
-    /** Visual style variant of the app bar. */
+    /**
+     * Visual style variant of the app bar.
+     * Allowed values: 'regular' | 'outlined'
+     */
     variant?: 'regular' | 'outlined';
 }
 

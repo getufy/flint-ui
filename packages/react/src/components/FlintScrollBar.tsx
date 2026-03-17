@@ -16,7 +16,10 @@ import { FlintScrollBar as FlintScrollBarElement } from '@getufy/flint-ui/scroll
  * @slot — - none (fully shadow DOM)
  */
 export interface FlintScrollBarProps extends React.HTMLAttributes<FlintScrollBarElement> {
-    /** Which axis this scrollbar controls. Reflects to attribute. */
+    /**
+     * Which axis this scrollbar controls. Reflects to attribute.
+     * Allowed values: 'vertical' | 'horizontal'
+     */
     orientation?: 'vertical' | 'horizontal';
 }
 

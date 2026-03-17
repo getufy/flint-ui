@@ -13,7 +13,10 @@ import { FlintNavigationMenu as FlintNavigationMenuElement } from '@getufy/flint
  * @slot default - The menu content (NavigationMenuList)
  */
 export interface FlintNavigationMenuProps extends Omit<React.HTMLAttributes<FlintNavigationMenuElement>, 'dir'> {
-    /** The direction of the menu (ltr or rtl) */
+    /**
+     * The direction of the menu (ltr or rtl)
+     * Allowed values: 'ltr' | 'rtl'
+     */
     dir?: 'ltr' | 'rtl';
 }
 

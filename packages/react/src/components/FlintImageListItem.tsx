@@ -20,14 +20,23 @@ export interface FlintImageListItemProps extends React.HTMLAttributes<FlintImage
     rows?: number;
     /** How many grid columns this item spans (quilted/woven only) */
     cols?: number;
-    /** Position of the title bar: 'overlay' (default) or 'below' */
+    /**
+     * Position of the title bar: 'overlay' (default) or 'below'
+     * Allowed values: 'overlay' | 'below'
+     */
     barPosition?: 'overlay' | 'below';
-    /** Woven variant: 'odd' or 'even' identity for alternating height */
+    /**
+     * Woven variant: 'odd' or 'even' identity for alternating height
+     * Allowed values: 'odd' | 'even'
+     */
     weave?: 'odd' | 'even';
     /** CSS aspect-ratio for the cell (e.g. "1/1", "4/3", "3/4", "16/9", "9/16"). */
     aspectRatio?: string;
-    /** How the image fills the cell: 'cover' (default, crops to fill) */
-    fit?: FlintImageListItemElement['fit'];
+    /**
+     * How the image fills the cell: 'cover' (default, crops to fill)
+     * Allowed values: 'cover' | 'contain'
+     */
+    fit?: 'cover' | 'contain';
 }
 
 export const FlintImageListItem = createComponent({

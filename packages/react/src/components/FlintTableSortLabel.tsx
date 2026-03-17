@@ -12,7 +12,10 @@ import { FlintTableSortLabel as FlintTableSortLabelElement } from '@getufy/flint
 export interface FlintTableSortLabelProps extends React.HTMLAttributes<FlintTableSortLabelElement> {
     /** Whether this column is currently sorted. */
     active?: boolean;
-    /** Sort direction when active. */
+    /**
+     * Sort direction when active.
+     * Allowed values: 'asc' | 'desc'
+     */
     direction?: 'asc' | 'desc';
 }
 

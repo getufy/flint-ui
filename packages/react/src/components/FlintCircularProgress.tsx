@@ -13,7 +13,10 @@ import { FlintCircularProgress as FlintCircularProgressElement } from '@getufy/f
  * flint-circular-progress: a circular progress indicator (spinner).
  */
 export interface FlintCircularProgressProps extends Omit<React.HTMLAttributes<FlintCircularProgressElement>, 'color'> {
-    /** Progress variant: determinate shows a specific value, indeterminate shows an animation. */
+    /**
+     * Progress variant: determinate shows a specific value, indeterminate shows an animation.
+     * Allowed values: 'determinate' | 'indeterminate'
+     */
     variant?: 'determinate' | 'indeterminate';
     /** Current progress percentage (0-100) for determinate mode. */
     value?: number;
@@ -21,7 +24,10 @@ export interface FlintCircularProgressProps extends Omit<React.HTMLAttributes<Fl
     size?: number;
     /** Stroke width of the circle in pixels. */
     thickness?: number;
-    /** Color theme of the progress indicator. */
+    /**
+     * Color theme of the progress indicator.
+     * Allowed values: 'primary' | 'success' | 'error' | 'warning'
+     */
     color?: 'primary' | 'success' | 'error' | 'warning';
     /** Accessible label for the progress indicator. */
     label?: string;

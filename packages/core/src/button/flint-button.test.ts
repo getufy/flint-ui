@@ -9,7 +9,8 @@ describe('flint-button', () => {
 
     it('renders with default properties', async () => {
         const el = await fixture<FlintButton>(html`<flint-button>Click Me</flint-button>`);
-        expect(el.variant).toBe('primary');
+        expect(el.appearance).toBe('filled');
+        expect(el.color).toBe('primary');
         expect(el.size).toBe('md');
         expect(el.disabled).toBe(false);
         expect(el.loading).toBe(false);
@@ -19,24 +20,34 @@ describe('flint-button', () => {
         expect(el.label).toBe('');
 
         const button = el.shadowRoot!.querySelector('button')!;
+        expect(button.className).toContain('filled');
         expect(button.className).toContain('primary');
         expect(button.className).toContain('md');
-        expect(button.className).not.toContain('secondary');
-        expect(button.className).not.toContain('destructive');
-        expect(button.className).not.toContain('sm');
-        expect(button.className).not.toContain('lg');
         expect(button.disabled).toBe(false);
     });
 
-    it('applies variant and size classes', async () => {
-        const el = await fixture<FlintButton>(html`<flint-button variant="secondary" size="sm">Click</flint-button>`);
+    it('applies appearance and color classes', async () => {
+        const el = await fixture<FlintButton>(html`<flint-button appearance="outlined" color="destructive">Click</flint-button>`);
         const button = el.shadowRoot!.querySelector('button')!;
-        expect(button.className).toContain('secondary');
-        expect(button.className).toContain('sm');
+        expect(button.className).toContain('outlined');
+        expect(button.className).toContain('destructive');
+        expect(button.className).not.toContain('filled');
         expect(button.className).not.toContain('primary');
-        expect(button.className).not.toContain('destructive');
-        expect(button.className).not.toContain('md');
-        expect(button.className).not.toContain('lg');
+    });
+
+    it('applies text appearance class', async () => {
+        const el = await fixture<FlintButton>(html`<flint-button appearance="text" color="primary">Text</flint-button>`);
+        const button = el.shadowRoot!.querySelector('button')!;
+        expect(button.className).toContain('text');
+        expect(button.className).toContain('primary');
+        expect(button.className).not.toContain('filled');
+    });
+
+    it('applies ghost appearance class', async () => {
+        const el = await fixture<FlintButton>(html`<flint-button appearance="ghost" color="neutral">Ghost</flint-button>`);
+        const button = el.shadowRoot!.querySelector('button')!;
+        expect(button.className).toContain('ghost');
+        expect(button.className).toContain('neutral');
     });
 
     it('passes disabled state to native button', async () => {
@@ -73,10 +84,33 @@ describe('flint-button', () => {
         expect(el.shadowRoot!.querySelector('[part="spinner"]')).not.toBeNull();
     });
 
-    it('applies destructive variant class', async () => {
-        const el = await fixture<FlintButton>(html`<flint-button variant="destructive">Delete</flint-button>`);
+    // ── Color variants ───────────────────────────────────────────────────────
+
+    it('applies destructive color class', async () => {
+        const el = await fixture<FlintButton>(html`<flint-button color="destructive">Delete</flint-button>`);
         const button = el.shadowRoot!.querySelector('button')!;
         expect(button.className).toContain('destructive');
+        expect(button.className).not.toContain('primary');
+    });
+
+    it('applies success color class', async () => {
+        const el = await fixture<FlintButton>(html`<flint-button color="success">OK</flint-button>`);
+        const button = el.shadowRoot!.querySelector('button')!;
+        expect(button.className).toContain('success');
+        expect(button.className).not.toContain('primary');
+    });
+
+    it('applies warning color class', async () => {
+        const el = await fixture<FlintButton>(html`<flint-button color="warning">Warn</flint-button>`);
+        const button = el.shadowRoot!.querySelector('button')!;
+        expect(button.className).toContain('warning');
+        expect(button.className).not.toContain('primary');
+    });
+
+    it('applies neutral color class', async () => {
+        const el = await fixture<FlintButton>(html`<flint-button color="neutral">Neutral</flint-button>`);
+        const button = el.shadowRoot!.querySelector('button')!;
+        expect(button.className).toContain('neutral');
         expect(button.className).not.toContain('primary');
     });
 
@@ -92,27 +126,47 @@ describe('flint-button', () => {
         expect(el.fullWidth).toBe(false);
     });
 
-    // ── New color variants ───────────────────────────────────────────────────
+    // ── Deprecated variant backward compat ───────────────────────────────────
 
-    it('applies success variant class', async () => {
-        const el = await fixture<FlintButton>(html`<flint-button variant="success">OK</flint-button>`);
+    it('maps legacy variant="primary" to appearance="filled" + color="primary"', async () => {
+        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+        const el = await fixture<FlintButton>(html`<flint-button variant="primary">Go</flint-button>`);
+        expect(el.appearance).toBe('filled');
+        expect(el.color).toBe('primary');
         const button = el.shadowRoot!.querySelector('button')!;
-        expect(button.className).toContain('success');
-        expect(button.className).not.toContain('primary');
+        expect(button.className).toContain('filled');
+        expect(button.className).toContain('primary');
+        expect(warnSpy).toHaveBeenCalledOnce();
+        expect(warnSpy.mock.calls[0]![0]).toContain('deprecated');
+        warnSpy.mockRestore();
     });
 
-    it('applies warning variant class', async () => {
-        const el = await fixture<FlintButton>(html`<flint-button variant="warning">Warn</flint-button>`);
+    it('maps legacy variant="secondary" to appearance="outlined" + color="neutral"', async () => {
+        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+        const el = await fixture<FlintButton>(html`<flint-button variant="secondary">Go</flint-button>`);
+        expect(el.appearance).toBe('outlined');
+        expect(el.color).toBe('neutral');
         const button = el.shadowRoot!.querySelector('button')!;
-        expect(button.className).toContain('warning');
-        expect(button.className).not.toContain('primary');
-    });
-
-    it('applies neutral variant class', async () => {
-        const el = await fixture<FlintButton>(html`<flint-button variant="neutral">Neutral</flint-button>`);
-        const button = el.shadowRoot!.querySelector('button')!;
+        expect(button.className).toContain('outlined');
         expect(button.className).toContain('neutral');
-        expect(button.className).not.toContain('primary');
+        warnSpy.mockRestore();
+    });
+
+    it('maps legacy variant="destructive" to appearance="filled" + color="destructive"', async () => {
+        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+        const el = await fixture<FlintButton>(html`<flint-button variant="destructive">Delete</flint-button>`);
+        expect(el.appearance).toBe('filled');
+        expect(el.color).toBe('destructive');
+        warnSpy.mockRestore();
+    });
+
+    it('warns only once per instance for deprecated variant', async () => {
+        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+        const el = await fixture<FlintButton>(html`<flint-button variant="primary">Go</flint-button>`);
+        el.variant = 'destructive';
+        await el.updateComplete;
+        expect(warnSpy).toHaveBeenCalledOnce();
+        warnSpy.mockRestore();
     });
 
     // ── Label (aria-label) ───────────────────────────────────────────────────
@@ -214,10 +268,11 @@ describe('flint-button', () => {
         expect(anchor).toBeNull();
     });
 
-    it('applies variant classes on anchor when href is set', async () => {
-        const el = await fixture<FlintButton>(html`<flint-button href="#" variant="secondary">Link</flint-button>`);
+    it('applies appearance and color classes on anchor when href is set', async () => {
+        const el = await fixture<FlintButton>(html`<flint-button href="#" appearance="outlined" color="neutral">Link</flint-button>`);
         const anchor = el.shadowRoot!.querySelector('a')!;
-        expect(anchor.className).toContain('secondary');
+        expect(anchor.className).toContain('outlined');
+        expect(anchor.className).toContain('neutral');
     });
 
     it('marks link as disabled via aria-disabled', async () => {

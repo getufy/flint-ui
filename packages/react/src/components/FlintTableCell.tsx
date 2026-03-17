@@ -15,9 +15,15 @@ import { FlintTableCell as FlintTableCellElement } from '@getufy/flint-ui/table/
 export interface FlintTableCellProps extends React.HTMLAttributes<FlintTableCellElement> {
     /** Header cell styling. */
     header?: boolean;
-    /** Text alignment. */
+    /**
+     * Text alignment.
+     * Allowed values: 'left' | 'right' | 'center'
+     */
     align?: 'left'|'right'|'center';
-    /** Padding preset. */
+    /**
+     * Padding preset.
+     * Allowed values: 'normal' | 'checkbox' | 'none'
+     */
     padding?: 'normal'|'checkbox'|'none';
 }
 

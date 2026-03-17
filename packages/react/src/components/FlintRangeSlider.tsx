@@ -23,7 +23,10 @@ export interface FlintRangeSliderProps extends React.HTMLAttributes<FlintRangeSl
     max?: number;
     /** Step increment (default: 1). */
     step?: number;
-    /** Visual size of track and thumbs (default: 'md'). */
+    /**
+     * Visual size of track and thumbs (default: 'md').
+     * Allowed values: 'sm' | 'md' | 'lg'
+     */
     size?: 'sm'|'md'|'lg';
     /** Disables both thumbs. */
     disabled?: boolean;

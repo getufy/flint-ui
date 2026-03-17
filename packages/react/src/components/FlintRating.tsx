@@ -31,7 +31,10 @@ export interface FlintRatingProps extends Omit<React.HTMLAttributes<FlintRatingE
     clearable?: boolean;
     /** Initial rating value for uncontrolled mode. */
     defaultValue?: number;
-    /** Size of the rating stars. */
+    /**
+     * Size of the rating stars.
+     * Allowed values: 'sm' | 'md' | 'lg'
+     */
     size?: 'sm' | 'md' | 'lg';
     /** Form field name for the hidden input. */
     name?: string;

@@ -80,6 +80,17 @@ const NATIVE_EVENTS: Array<[reactProp: string, domEvent: string, tsType: string]
     ['onTransitionEnd', 'transitionend', 'TransitionEvent'],
 ];
 
+// ─── type helpers ────────────────────────────────────────────────────────────
+
+/**
+ * Check whether a type string is a union of string literals.
+ * e.g. "'primary' | 'secondary' | 'destructive'" → true
+ *      "string | number" → false
+ */
+function isStringLiteralUnion(type: string): boolean {
+    return type.split('|').every(part => /^\s*'[^']*'\s*$/.test(part.trim()));
+}
+
 // ─── helpers ────────────────────────────────────────────────────────────────
 
 /**
@@ -232,12 +243,29 @@ export function generateWrapper(
 
     // Component-specific props
     for (const p of props) {
-        if (p.description) {
-            lines.push(`    /** ${p.description} */`);
-        }
         const type = isSimpleType(p.tsType)
             ? p.tsType
             : `${className}Element['${p.name}']`;
+
+        // Build JSDoc comment with description and allowed values
+        const docParts: string[] = [];
+        if (p.description) docParts.push(p.description);
+        if (isStringLiteralUnion(type)) {
+            const values = type.split('|').map(s => s.trim()).join(' | ');
+            docParts.push(`Allowed values: ${values}`);
+        }
+
+        if (docParts.length > 0) {
+            if (docParts.length === 1) {
+                lines.push(`    /** ${docParts[0]} */`);
+            } else {
+                lines.push(`    /**`);
+                for (const part of docParts) {
+                    lines.push(`     * ${part}`);
+                }
+                lines.push(`     */`);
+            }
+        }
         lines.push(`    ${p.name}?: ${type};`);
     }
 

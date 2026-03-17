@@ -16,9 +16,15 @@ Uses the browser's `Intl.RelativeTimeFormat` API — no language packs needed.
 export interface FlintRelativeTimeProps extends Omit<React.HTMLAttributes<FlintRelativeTimeElement>, 'lang'> {
     /** The date to calculate time from. Accepts a Date, ISO string, or Unix ms timestamp. Defaults to the current date/time. */
     date?: FlintRelativeTimeElement['date'];
-    /** The formatting style to use. */
+    /**
+     * The formatting style to use.
+     * Allowed values: 'long' | 'short' | 'narrow'
+     */
     format?: 'long' | 'short' | 'narrow';
-    /** When `auto`, values such as "yesterday" and "tomorrow" will be shown when */
+    /**
+     * When `auto`, values such as "yesterday" and "tomorrow" will be shown when
+     * Allowed values: 'always' | 'auto'
+     */
     numeric?: 'always' | 'auto';
     /** Keep the displayed value up to date as time passes. */
     sync?: boolean;

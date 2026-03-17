@@ -22,7 +22,10 @@ export interface FlintNavigationMenuContentProps extends Omit<React.HTMLAttribut
     id?: string;
     /** Whether the content is open/visible */
     open?: boolean;
-    /** The direction (ltr or rtl) */
+    /**
+     * The direction (ltr or rtl)
+     * Allowed values: 'ltr' | 'rtl'
+     */
     dir?: 'ltr' | 'rtl';
     /** Gap between items in the content */
     gap?: number;

@@ -11,7 +11,7 @@ import { FlintContainer as FlintContainerElement } from '@getufy/flint-ui/contai
 
 export interface FlintContainerProps extends React.HTMLAttributes<FlintContainerElement> {
     /** Determine the max-width of the container. */
-    maxWidth?: FlintContainerElement['maxWidth'];
+    maxWidth?: false | 'sm' | 'md' | 'lg' | 'xs' | 'xl';
     /** If `true`, the left and right padding is removed. */
     disableGutters?: boolean;
     /** Set the max-width to match the min-width of the current breakpoint. */

@@ -29,7 +29,10 @@ export interface FlintSwitchProps extends Omit<React.HTMLAttributes<FlintSwitchE
     disabled?: boolean;
     /** Marks the switch as required for form validation. */
     required?: boolean;
-    /** Size of the switch control. */
+    /**
+     * Size of the switch control.
+     * Allowed values: 'sm' | 'md' | 'lg'
+     */
     size?: 'sm' | 'md' | 'lg';
     /** Visible label text displayed next to the switch. */
     label?: string;

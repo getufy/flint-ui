@@ -16,8 +16,11 @@ Supports standard, quilted, woven, and masonry variants.
  * @slot (default) - Place `flint-image-list-item` elements here.
  */
 export interface FlintImageListProps extends React.HTMLAttributes<FlintImageListElement> {
-    /** Layout variant */
-    variant?: FlintImageListElement['variant'];
+    /**
+     * Layout variant
+     * Allowed values: 'standard' | 'quilted' | 'woven' | 'masonry'
+     */
+    variant?: 'standard' | 'quilted' | 'woven' | 'masonry';
     /** Number of columns */
     cols?: number;
     /** Gap between items (in px) */

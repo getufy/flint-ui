@@ -24,8 +24,11 @@ export interface FlintTimeClockProps extends React.HTMLAttributes<FlintTimeClock
     ampm?: boolean;
     /** Whether to show a seconds face on the clock. */
     seconds?: boolean;
-    /** Currently active clock face view. */
-    view?: FlintTimeClockElement['view'];
+    /**
+     * Currently active clock face view.
+     * Allowed values: 'hours' | 'minutes' | 'seconds'
+     */
+    view?: 'hours' | 'minutes' | 'seconds';
     /** Fired when the time value changes. detail: `{ value: string }` */
     onFlintTimeClockChange?: (event: CustomEvent<FlintTimeClockChangeDetail>) => void;
     /** Fired when the clock face view switches. */

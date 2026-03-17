@@ -15,7 +15,10 @@ import { FlintNavigationMenuList as FlintNavigationMenuListElement } from '@getu
 export interface FlintNavigationMenuListProps extends React.HTMLAttributes<FlintNavigationMenuListElement> {
     /** Gap between menu items */
     gap?: number;
-    /** Flex direction for the list */
+    /**
+     * Flex direction for the list
+     * Allowed values: 'row' | 'column'
+     */
     direction?: 'row' | 'column';
     /** Accessible label for the navigation landmark. */
     ariaLabel?: string;

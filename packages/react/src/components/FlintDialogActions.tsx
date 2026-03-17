@@ -14,7 +14,10 @@ import { FlintDialogActions as FlintDialogActionsElement } from '@getufy/flint-u
 Use the `align` prop to control button alignment.
  */
 export interface FlintDialogActionsProps extends React.HTMLAttributes<FlintDialogActionsElement> {
-    /** Alignment of action buttons: 'end' (default), 'start', 'center', 'space-between'. */
+    /**
+     * Alignment of action buttons: 'end' (default), 'start', 'center', 'space-between'.
+     * Allowed values: 'start' | 'center' | 'end' | 'space-between'
+     */
     align?: 'start' | 'center' | 'end' | 'space-between';
 }
 

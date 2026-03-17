@@ -27,7 +27,10 @@ export interface FlintSimpleTreeViewProps extends React.HTMLAttributes<FlintSimp
     defaultExpandedItems?: string[];
     /** Callback fired when the user toggles an item's expansion. */
     onExpandedItemsChange?: FlintSimpleTreeViewElement['onExpandedItemsChange'];
-    /** What interaction triggers expand/collapse. */
+    /**
+     * What interaction triggers expand/collapse.
+     * Allowed values: 'content' | 'iconContainer'
+     */
     expansionTrigger?: 'content' | 'iconContainer';
     /** When the expanded set changes (detail: { expandedItems }) */
     onFlintTreeViewExpandedItemsChange?: (event: CustomEvent) => void;

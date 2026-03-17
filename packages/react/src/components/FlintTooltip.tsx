@@ -17,8 +17,11 @@ A component that displays a text label when users hover over or focus on an elem
 export interface FlintTooltipProps extends React.HTMLAttributes<FlintTooltipElement> {
     /** Text content displayed inside the tooltip. */
     label?: string;
-    /** Preferred placement of the tooltip relative to the trigger element. */
-    placement?: FlintTooltipElement['placement'];
+    /**
+     * Preferred placement of the tooltip relative to the trigger element.
+     * Allowed values: 'top' | 'bottom' | 'left' | 'right'
+     */
+    placement?: 'top' | 'bottom' | 'left' | 'right';
     /** Show a small arrow pointing toward the trigger element. */
     arrow?: boolean;
     /** Disables the tooltip so it never appears. */

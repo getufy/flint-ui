@@ -15,9 +15,15 @@ import { FlintSkeleton as FlintSkeletonElement } from '@getufy/flint-ui/skeleton
 export interface FlintSkeletonProps extends React.HTMLAttributes<FlintSkeletonElement> {
     /** If true, applies dark-theme styles regardless of OS preference. */
     dark?: boolean;
-    /** The animation type. */
+    /**
+     * The animation type.
+     * Allowed values: 'pulse' | 'wave' | 'none'
+     */
     animation?: 'pulse' | 'wave' | 'none';
-    /** The shape of the skeleton. */
+    /**
+     * The shape of the skeleton.
+     * Allowed values: 'text' | 'circular' | 'rectangular' | 'rounded'
+     */
     variant?: 'text' | 'circular' | 'rectangular' | 'rounded';
     /** The width of the skeleton. Accepts any CSS length value (e.g. '200px', '50%'). */
     width?: string;

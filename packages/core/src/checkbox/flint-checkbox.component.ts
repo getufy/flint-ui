@@ -10,6 +10,10 @@ import uiCheckboxStyles from './flint-checkbox.css?inline';
  * Checkbox: a form control for boolean selection.
  *
  * @fires flint-checkbox-change - Fired when the checked state changes. detail: `{ checked: boolean; value: string; indeterminate: boolean }`
+ *
+ * @csspart base - The checkbox's base wrapper label.
+ * @csspart control - The checkbox visual indicator.
+ * @csspart label - The label text element.
  */
 export class FlintCheckbox extends FormAssociated(FlintElement) {
     static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };

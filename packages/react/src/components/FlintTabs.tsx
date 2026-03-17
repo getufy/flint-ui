@@ -20,13 +20,22 @@ export interface FlintTabChangeDetail {
 export interface FlintTabsProps extends Omit<React.HTMLAttributes<FlintTabsElement>, 'defaultValue'> {
     /** Current active tab value (controlled). When set, the component reflects this value and does not manage its own state. */
     value?: string;
-    /** Layout direction of the tabs. */
+    /**
+     * Layout direction of the tabs.
+     * Allowed values: 'horizontal' | 'vertical'
+     */
     orientation?: 'horizontal' | 'vertical';
-    /** Display variant controlling tab sizing and scrollability. */
+    /**
+     * Display variant controlling tab sizing and scrollability.
+     * Allowed values: 'standard' | 'fullWidth' | 'scrollable'
+     */
     variant?: 'standard' | 'fullWidth' | 'scrollable';
     /** Whether to center the tabs. */
     centered?: boolean;
-    /** Whether to show scroll buttons in scrollable mode. */
+    /**
+     * Whether to show scroll buttons in scrollable mode.
+     * Allowed values: 'auto' | 'false'
+     */
     scrollButtons?: 'auto' | 'false';
     /** Text color: 'primary' | 'secondary' | 'inherit' | any CSS color. */
     textColor?: string;

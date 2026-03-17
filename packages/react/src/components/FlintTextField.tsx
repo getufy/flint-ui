@@ -31,7 +31,10 @@ export interface FlintTextFieldProps extends Omit<React.HTMLAttributes<FlintText
     placeholder?: string;
     /** HTML input type (e.g. 'text', 'password', 'email'). */
     type?: string;
-    /** Visual style variant of the text field. */
+    /**
+     * Visual style variant of the text field.
+     * Allowed values: 'outlined' | 'filled'
+     */
     variant?: 'outlined' | 'filled';
     /** Whether the text field is disabled. */
     disabled?: boolean;

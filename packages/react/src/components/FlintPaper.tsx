@@ -18,7 +18,10 @@ export interface FlintPaperProps extends React.HTMLAttributes<FlintPaperElement>
     elevation?: number;
     /** If true, the paper will have square corners (border-radius: 0). */
     square?: boolean;
-    /** Visual variant. */
+    /**
+     * Visual variant.
+     * Allowed values: 'elevated' | 'outlined' | 'flat'
+     */
     variant?: 'elevated' | 'outlined' | 'flat';
 }
 

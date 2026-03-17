@@ -27,10 +27,16 @@ export interface FlintAnimationProps extends React.HTMLAttributes<FlintAnimation
     iterations?: number;
     /** Delay before the animation starts, in milliseconds. */
     delay?: number;
-    /** Animation fill mode. */
-    fill?: FlintAnimationElement['fill'];
-    /** Animation direction. */
-    direction?: FlintAnimationElement['direction'];
+    /**
+     * Animation fill mode.
+     * Allowed values: 'auto' | 'backwards' | 'both' | 'forwards' | 'none'
+     */
+    fill?: 'auto' | 'backwards' | 'both' | 'forwards' | 'none';
+    /**
+     * Animation direction.
+     * Allowed values: 'alternate' | 'alternate-reverse' | 'normal' | 'reverse'
+     */
+    direction?: 'alternate' | 'alternate-reverse' | 'normal' | 'reverse';
     /** Set to true to trigger/play the animation. */
     play?: boolean;
     /** Whether to play the animation automatically on first render. */

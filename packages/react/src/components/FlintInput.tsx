@@ -57,7 +57,10 @@ export interface FlintInputProps extends Omit<React.HTMLAttributes<FlintInputEle
     minLength?: number | undefined;
     /** Maximum length for text validation. */
     maxLength?: number | undefined;
-    /** Size variant of the input. */
+    /**
+     * Size variant of the input.
+     * Allowed values: 'sm' | 'md' | 'lg'
+     */
     size?: 'sm' | 'md' | 'lg';
     /** Initial value (uncontrolled). Only used on first render; ignored after mount. */
     defaultValue?: string | undefined;

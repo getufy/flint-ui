@@ -36,7 +36,10 @@ export interface FlintCopyButtonProps extends React.HTMLAttributes<FlintCopyButt
     errorLabel?: string;
     /** Duration (ms) to show feedback before returning to idle. */
     feedbackDuration?: number;
-    /** Tooltip placement. */
+    /**
+     * Tooltip placement.
+     * Allowed values: 'top' | 'right' | 'bottom' | 'left'
+     */
     tooltipPlacement?: 'top' | 'right' | 'bottom' | 'left';
     /** Fired when the copy operation fails. detail: `{ reason: string }` */
     onFlintCopyError?: (event: CustomEvent<FlintCopyErrorDetail>) => void;

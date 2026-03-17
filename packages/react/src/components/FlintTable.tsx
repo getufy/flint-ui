@@ -13,7 +13,10 @@ import { FlintTable as FlintTableElement } from '@getufy/flint-ui/table/flint-ta
  * flint-table
  */
 export interface FlintTableProps extends React.HTMLAttributes<FlintTableElement> {
-    /** Cell padding density. */
+    /**
+     * Cell padding density.
+     * Allowed values: 'medium' | 'small'
+     */
     size?: 'medium'|'small';
 }
 

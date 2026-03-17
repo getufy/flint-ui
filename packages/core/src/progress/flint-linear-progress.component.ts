@@ -1,4 +1,4 @@
-import { unsafeCSS, html, nothing } from 'lit';
+import { unsafeCSS, html, nothing, type PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
@@ -11,10 +11,17 @@ export class FlintLinearProgress extends FlintElement {
     static styles = unsafeCSS(uiLinearProgressStyles);
 
     /**
-     * Progress variant: determinate shows a specific value, indeterminate shows an animation.
+     * Progress mode: determinate shows a specific value, indeterminate shows an animation.
      * @default 'indeterminate'
      */
-    @property({ type: String, reflect: true }) variant: 'determinate' | 'indeterminate' = 'indeterminate';
+    @property({ type: String, reflect: true }) mode: 'determinate' | 'indeterminate' = 'indeterminate';
+    /**
+     * @deprecated Use `mode` instead. Will be removed in a future release.
+     */
+    @property({ type: String }) variant: 'determinate' | 'indeterminate' = 'indeterminate';
+
+    private _variantWarned = false;
+
     /** Current progress value (0-100). */
     @property({ type: Number, reflect: true }) value = 0;
     /**
@@ -37,12 +44,25 @@ export class FlintLinearProgress extends FlintElement {
         warning: 'var(--flint-warning-color, #92400e)',
     };
 
+    protected override willUpdate(changed: PropertyValues<this>): void {
+        const modeExplicitlySet = changed.has('mode' as keyof this) && this.mode !== 'indeterminate';
+        if (changed.has('variant' as keyof this) && this.variant !== 'indeterminate' && !modeExplicitlySet) {
+            this.mode = this.variant;
+            if (!this._variantWarned) {
+                this._variantWarned = true;
+                console.warn(
+                    '<flint-linear-progress>: The "variant" property is deprecated. Use "mode" instead.',
+                );
+            }
+        }
+    }
+
     private get _safeValue(): number {
         return Math.min(100, Math.max(0, this.value));
     }
 
     render() {
-        const isDeterminate = this.variant === 'determinate';
+        const isDeterminate = this.mode === 'determinate';
         const colorVal = FlintLinearProgress._colorMap[this.color] ?? FlintLinearProgress._colorMap['primary'];
         const inlineStyle = [
             `--flint-linear-progress-height: ${this.height}px`,

@@ -8,6 +8,7 @@ import { FormAssociated } from '../mixins/form-associated.js';
 import { FormControlController } from '../controllers/form-control.js';
 import { LocalizeController } from '../utilities/localize.js';
 import { getAnimation, animateTo, stopAnimations, resolveKeyframes } from '../utilities/animation-registry.js';
+import { validateEnum } from '../utilities/dev-warnings.js';
 import '../utilities/animation-presets.js';
 import uiSelectStyles from './flint-select.css?inline';
 
@@ -26,7 +27,7 @@ let _uidCounter = 0;
 /**
  * A select component for choosing one or multiple options from a list.
  *
- * @fires flint-select-change - Dispatched when the selection changes. detail: `{ value: string[] }`
+ * @fires flint-select-change - Dispatched when the selection changes. detail: `{ value: string, multiple: false } | { value: string[], multiple: true }`
  * @slot icon - Optional icon shown at the start of the trigger.
  * @slot error-message - Optional slot for error message content (use error-message prop for simple text).
  *
@@ -164,6 +165,10 @@ export class FlintSelect extends FormAssociated(FlintElement) {
   }
 
   willUpdate(changed: PropertyValues) {
+    if (import.meta.env?.DEV) {
+      validateEnum('flint-select', 'size', this.size, ['sm', 'md', 'lg']);
+    }
+
     // Normalize value: accept string | string[], always store as string[]
     if (typeof this.value === 'string') {
       this.value = this.value ? [this.value] : [];
@@ -334,8 +339,11 @@ export class FlintSelect extends FormAssociated(FlintElement) {
   }
 
   private _dispatchChange() {
+    const detail = this.multiple
+      ? { value: this.value as string[], multiple: true as const }
+      : { value: (this.value as string[])[0] ?? '', multiple: false as const };
     this.dispatchEvent(new CustomEvent('flint-select-change', {
-      detail: { value: this.multiple ? this.value : (this.value[0] !== undefined ? [this.value[0]] : []) },
+      detail,
       bubbles: true,
       composed: true,
     }));

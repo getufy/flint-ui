@@ -22,7 +22,10 @@ export interface FlintSpeedDialActionProps extends React.HTMLAttributes<FlintSpe
     tooltipTitle?: string;
     /** Forces the tooltip to be visible regardless of hover state. */
     tooltipOpen?: boolean;
-    /** Tooltip placement relative to the action button. */
+    /**
+     * Tooltip placement relative to the action button.
+     * Allowed values: 'left' | 'right' | 'top' | 'bottom'
+     */
     tooltipPlacement?: 'left' | 'right' | 'top' | 'bottom';
     /** If true, the action button is disabled. */
     disabled?: boolean;

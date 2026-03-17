@@ -15,7 +15,10 @@ import { FlintItemMedia as FlintItemMediaElement } from '@getufy/flint-ui/item/f
  * @slot (default) - Media content: SVG icon, avatar element, or image.
  */
 export interface FlintItemMediaProps extends React.HTMLAttributes<FlintItemMediaElement> {
-    /** Visual treatment for the media container. */
+    /**
+     * Visual treatment for the media container.
+     * Allowed values: 'default' | 'icon' | 'image'
+     */
     variant?: 'default' | 'icon' | 'image';
 }
 

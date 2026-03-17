@@ -29,7 +29,10 @@ export interface FlintCheckboxProps extends Omit<React.HTMLAttributes<FlintCheck
     disabled?: boolean;
     /** Marks the checkbox as required for form validation. */
     required?: boolean;
-    /** Size of the checkbox control. */
+    /**
+     * Size of the checkbox control.
+     * Allowed values: 'sm' | 'md' | 'lg'
+     */
     size?: 'sm' | 'md' | 'lg';
     /** Visible label text displayed next to the checkbox. */
     label?: string;

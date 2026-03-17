@@ -14,9 +14,15 @@ import { FlintResizableGroupEvents } from '../events/flint-resizable-group.js';
  * Resizable Group: a container that enables resizable panels with draggable handles.
  */
 export interface FlintResizableGroupProps extends Omit<React.HTMLAttributes<FlintResizableGroupElement>, 'dir'> {
-    /** Layout direction — 'horizontal' (row) or 'vertical' (column). */
+    /**
+     * Layout direction — 'horizontal' (row) or 'vertical' (column).
+     * Allowed values: 'horizontal' | 'vertical'
+     */
     orientation?: 'horizontal' | 'vertical';
-    /** Text direction for RTL support. */
+    /**
+     * Text direction for RTL support.
+     * Allowed values: 'ltr' | 'rtl'
+     */
     dir?: 'ltr' | 'rtl';
     /** Fired when a panel is collapsed. */
     onFlintResizableCollapse?: (event: CustomEvent) => void;

@@ -15,11 +15,12 @@ Peer dependencies: `react ^18 || ^19`, `@getufy/flint-ui ^0.6.0`
 
 ## Setup
 
-Import the theme once in your app entry point:
-
-```ts
-import '@getufy/flint-ui/theme.css';
-```
+> **Required:** Import the theme CSS once in your app entry point. Without this, components render unstyled.
+>
+> ```ts
+> // main.tsx — must be at the top
+> import '@getufy/flint-ui/theme.css';
+> ```
 
 ## Resources
 
@@ -37,6 +38,25 @@ import { FlintButton } from '@getufy/flint-ui-react/button';
 import { FlintSelect, FlintOption } from '@getufy/flint-ui-react/select';
 import { FlintTabs, FlintTab, FlintTabPanel } from '@getufy/flint-ui-react/tabs';
 ```
+
+### Subcomponents are co-exported
+
+Each subpath exports all related subcomponents, so you never need to hunt for separate imports:
+
+```tsx
+// All dialog sub-components from one import
+import {
+  FlintDialog,
+  FlintDialogTitle,
+  FlintDialogContent,
+  FlintDialogActions,
+} from '@getufy/flint-ui-react/dialog';
+
+// All tabs sub-components from one import
+import { FlintTabs, FlintTab, FlintTabPanel } from '@getufy/flint-ui-react/tabs';
+```
+
+See the [Available subpaths](#available-subpaths) table below for every subpath and its exports.
 
 ### Why subpath imports matter
 
@@ -76,7 +96,7 @@ import { FlintButton } from '@getufy/flint-ui-react/button';
 | `@getufy/flint-ui-react/date-field` | `FlintDateField` |
 | `@getufy/flint-ui-react/date-picker` | `FlintDatePicker` |
 | `@getufy/flint-ui-react/date-range-picker` | `FlintDateRangePicker` |
-| `@getufy/flint-ui-react/dialog` | `FlintDialog` |
+| `@getufy/flint-ui-react/dialog` | `FlintDialog`, `FlintDialogTitle`, `FlintDialogContent`, `FlintDialogContentText`, `FlintDialogActions` |
 | `@getufy/flint-ui-react/divider` | `FlintDivider` |
 | `@getufy/flint-ui-react/drawer` | `FlintDrawer` |
 | `@getufy/flint-ui-react/empty` | `FlintEmpty` |
@@ -175,11 +195,38 @@ The component name is always included in the event prop. For example, `FlintPagi
 />
 ```
 
+### Event Name Reference
+
+| Component | Lit Event | React Prop | Detail Type |
+|-----------|-----------|------------|-------------|
+| Input | `flint-input-input` | `onFlintInputInput` | `{ value: string }` |
+| Input | `flint-input-change` | `onFlintInputChange` | `{ value: string }` |
+| Select | `flint-select-change` | `onFlintSelectChange` | `{ value: string, multiple: false } \| { value: string[], multiple: true }` |
+| Dialog | `flint-dialog-open` | `onFlintDialogOpen` | `{ open: true }` |
+| Dialog | `flint-dialog-close` | `onFlintDialogClose` | `{ open: false }` |
+| Tabs | `flint-tabs-change` | `onFlintTabsChange` | `{ value: string }` |
+| Switch | `flint-switch-change` | `onFlintSwitchChange` | `{ checked: boolean }` |
+| Checkbox | `flint-checkbox-change` | `onFlintCheckboxChange` | `{ checked: boolean }` |
+| Drawer | `flint-drawer-open` | `onFlintDrawerOpen` | `{ open: true }` |
+| Drawer | `flint-drawer-close` | `onFlintDrawerClose` | `{ open: false }` |
+
+> **Timing:** `onFlintInputInput` fires on every keystroke (real-time). `onFlintInputChange` fires on blur (committed value). Most other events fire after the component's internal state has updated.
+
 ### Slots
 
-Web components use [slots](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot) for content projection. In React, pass the `slot` attribute on a child element to target a named slot:
+Web components use [slots](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot) for content projection. In React, pass the `slot` attribute on a child element to target a named slot. Children without a `slot` attribute go into the default (unnamed) slot.
 
 ```tsx
+// prefix / suffix slots — common pattern for icons in buttons, inputs, etc.
+<FlintButton>
+  <svg slot="prefix" width="16" height="16"><path d="..." /></svg>
+  Click me
+  <svg slot="suffix" width="16" height="16"><path d="..." /></svg>
+</FlintButton>
+```
+
+```tsx
+// Named layout slots — AppBar example
 import { FlintAppBar } from '@getufy/flint-ui-react/app-bar';
 import { FlintButton } from '@getufy/flint-ui-react/button';
 
@@ -194,7 +241,9 @@ import { FlintButton } from '@getufy/flint-ui-react/button';
 </FlintAppBar>
 ```
 
-Each component documents its available slots in the [API docs](https://getufy.github.io/flint-ui/). Common slot names include `navigation`, `title`, `actions`, `start-content`, and `end-content` (AppBar); `trigger` and `content` (Dialog, HoverCard); and the default (unnamed) slot for primary children.
+**Tip:** To slot a React component (not a plain HTML element), wrap it in a `<span>` or `<div>` with the `slot` attribute — React does not forward `slot` through component boundaries.
+
+Each component documents its available slots in the [API docs](https://getufy.github.io/flint-ui/). Common slot names: `prefix` / `suffix` (Button, Input); `navigation`, `title`, `actions` (AppBar); `trigger` / `content` (Dialog, HoverCard).
 
 ## Dark mode
 
@@ -216,6 +265,79 @@ document.documentElement.setAttribute('data-theme', 'dark');
 ```
 
 The dark theme CSS also includes a `@media (prefers-color-scheme: dark)` block, so it automatically applies when the user's OS is set to dark mode. To opt out of automatic detection, add `class="flint-theme-light"` to force light mode.
+
+## Controlled Components
+
+Flint UI components support controlled mode via `value` + an event handler. The component does **not** manage its own state when `value` is set.
+
+### Input
+
+`onFlintInputInput` fires on every keystroke (real-time); `onFlintInputChange` fires on blur (committed value).
+
+```tsx
+import { useState } from 'react';
+import { FlintInput } from '@getufy/flint-ui-react/input';
+
+function ControlledInput() {
+  const [value, setValue] = useState('');
+
+  return (
+    <FlintInput
+      label="Name"
+      value={value}
+      onFlintInputInput={(e) => setValue(e.detail.value)}   // real-time
+      // or: onFlintInputChange={(e) => setValue(e.detail.value)}  // on blur
+    />
+  );
+}
+```
+
+### Select
+
+`onFlintSelectChange` fires when the selection changes. `e.detail.value` is always `string[]` (even for single-select).
+
+```tsx
+import { useState } from 'react';
+import { FlintSelect } from '@getufy/flint-ui-react/select';
+
+function ControlledSelect() {
+  const [value, setValue] = useState<string[]>([]);
+
+  return (
+    <FlintSelect
+      label="Fruit"
+      options={[
+        { label: 'Apple', value: 'apple' },
+        { label: 'Banana', value: 'banana' },
+      ]}
+      value={value}
+      onFlintSelectChange={(e) => setValue(e.detail.value)}
+    />
+  );
+}
+```
+
+### Tabs
+
+`onFlintTabChange` fires when the active tab changes. `e.detail.value` is the `value` string of the selected tab.
+
+```tsx
+import { useState } from 'react';
+import { FlintTabs, FlintTab, FlintTabPanel } from '@getufy/flint-ui-react/tabs';
+
+function ControlledTabs() {
+  const [tab, setTab] = useState('one');
+
+  return (
+    <FlintTabs value={tab} onFlintTabChange={(e) => setTab(e.detail.value)}>
+      <FlintTab value="one">Tab 1</FlintTab>
+      <FlintTab value="two">Tab 2</FlintTab>
+      <FlintTabPanel value="one">Content 1</FlintTabPanel>
+      <FlintTabPanel value="two">Content 2</FlintTabPanel>
+    </FlintTabs>
+  );
+}
+```
 
 ## Recipes
 

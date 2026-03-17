@@ -16,9 +16,15 @@ export interface FlintDialogProps extends React.HTMLAttributes<FlintDialogElemen
     open?: boolean;
     /** Initial open state (uncontrolled). Only used on first render; ignored after mount. */
     defaultOpen?: boolean;
-    /** Size variant of the dialog panel. */
-    size?: FlintDialogElement['size'];
-    /** Animation style for open/close. */
+    /**
+     * Size variant of the dialog panel.
+     * Allowed values: 'sm' | 'md' | 'lg' | 'full'
+     */
+    size?: 'sm' | 'md' | 'lg' | 'full';
+    /**
+     * Animation style for open/close.
+     * Allowed values: 'scale' | 'slide-up' | 'slide-down'
+     */
     transition?: 'scale' | 'slide-up' | 'slide-down';
     /** When true, clicking the backdrop will NOT close the dialog. */
     disableBackdropClose?: boolean;

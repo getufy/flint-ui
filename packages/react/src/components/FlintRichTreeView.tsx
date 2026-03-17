@@ -31,7 +31,10 @@ export interface FlintRichTreeViewProps extends React.HTMLAttributes<FlintRichTr
     disabledItemsFocusable?: boolean;
     /** Callback invoked when a tree item is clicked or activated via keyboard. */
     onItemClick?: FlintRichTreeViewElement['onItemClick'];
-    /** What interaction triggers expand/collapse. */
+    /**
+     * What interaction triggers expand/collapse.
+     * Allowed values: 'content' | 'iconContainer'
+     */
     expansionTrigger?: 'content' | 'iconContainer';
     /** **Controlled mode.** The set of item IDs that should be expanded. */
     expandedItems?: string[] | undefined;

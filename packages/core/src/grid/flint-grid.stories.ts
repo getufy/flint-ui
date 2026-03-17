@@ -9,29 +9,37 @@ const meta: Meta = {
       docs: {
             description: {
                 component: `
-- **Tag**: \`<flint-grid>\`
-- **Class**: \`FlintGrid\`
+A responsive **12-column grid system** for building adaptive layouts.
 
-#### Properties
+Each \`<flint-grid>\` element acts as either a **container** (flex parent) or an **item** (sized child).
+Set \`container\` on the outer element, then use breakpoint props (\`xs\`, \`sm\`, \`md\`, \`lg\`, \`xl\`) on child items to control column span at each viewport width.
 
-| Property | Attribute | Type | Default | Description |
-|---|---|---|---|---|
-| \`container\` | \`container\` | \`boolean\` | \`false\` | Whether this element acts as a grid container. |
-| \`direction\` | \`direction\` | \`'row' \\| 'row-reverse' \\| 'column' \\| 'column-reverse'\` | \`'row'\` | Flex direction of the grid container. |
-| \`wrap\` | \`wrap\` | \`'nowrap' \\| 'wrap' \\| 'wrap-reverse'\` | \`'wrap'\` | Flex wrap behavior of the grid container. |
-| \`alignItems\` | \`align-items\` | \`'flex-start' \\| 'center' \\| 'flex-end' \\| 'stretch' \\| 'baseline' \\| undefined\` | — | Cross-axis alignment of grid items. |
-| \`justifyContent\` | \`justify-content\` | \`'flex-start' \\| 'center' \\| 'flex-end' \\| 'space-between' \\| 'space-around' \\| 'space-evenly' \\| undefined\` | — | Main-axis alignment of grid items. |
-| \`columns\` | \`columns\` | \`number\` | \`12\` | Total number of columns. Default is 12. |
-| \`spacing\` | \`spacing\` | \`ResponsiveValue&lt;number \\| string&gt;\` | \`0\` | Spacing between items. 1 unit = 8px. |
-| \`rowSpacing\` | \`rowSpacing\` | \`ResponsiveValue&lt;number \\| string&gt; \\| undefined\` | — | Row spacing override; takes precedence over \`spacing\` for the row axis. |
-| \`columnSpacing\` | \`columnSpacing\` | \`ResponsiveValue&lt;number \\| string&gt; \\| undefined\` | — | Column spacing override; takes precedence over \`spacing\` for the column axis. |
-| \`xs\` | \`xs\` | \`GridSize \\| undefined\` | — | Number of columns to span at the xs breakpoint. |
-| \`sm\` | \`sm\` | \`GridSize \\| undefined\` | — | Number of columns to span at the sm breakpoint. |
-| \`md\` | \`md\` | \`GridSize \\| undefined\` | — | Number of columns to span at the md breakpoint. |
-| \`lg\` | \`lg\` | \`GridSize \\| undefined\` | — | Number of columns to span at the lg breakpoint. |
-| \`xl\` | \`xl\` | \`GridSize \\| undefined\` | — | Number of columns to span at the xl breakpoint. |
-| \`offset\` | \`offset\` | \`Partial&lt;Record&lt;Breakpoint, number \\| 'auto'&gt;&gt; \\| undefined\` | — | Offset per breakpoint, expressed in column units or 'auto'. |
-| \`order\` | \`order\` | \`ResponsiveValue&lt;number&gt; \\| undefined\` | — | Flex order. Supports responsive values so items can be reordered at |
+#### Quick start
+
+\`\`\`html
+<flint-grid container spacing="2">
+  <flint-grid xs="12" md="8"><div>Main content</div></flint-grid>
+  <flint-grid xs="12" md="4"><div>Sidebar</div></flint-grid>
+</flint-grid>
+\`\`\`
+
+#### Key concepts
+
+- **12 columns** (configurable via \`columns\` prop). Assign 1–12 to span that many columns.
+- **Breakpoints cascade up**: \`xs="6"\` applies to sm, md, lg, xl unless overridden.
+- **Spacing**: 1 unit = 8px. \`spacing={2}\` = 16px gaps. Override per-axis with \`rowSpacing\` / \`columnSpacing\`.
+- **Auto sizing**: \`.xs=\${true}\` fills remaining space equally; \`xs="auto"\` sizes to content.
+- **Responsive spacing/order**: pass objects like \`{ xs: 1, md: 3 }\` for per-breakpoint control.
+
+#### Breakpoint thresholds
+
+| Breakpoint | Min-width | CSS override variable |
+|---|---|---|
+| xs | 0px | \`--flint-breakpoint-xs\` |
+| sm | 600px | \`--flint-breakpoint-sm\` |
+| md | 900px | \`--flint-breakpoint-md\` |
+| lg | 1200px | \`--flint-breakpoint-lg\` |
+| xl | 1536px | \`--flint-breakpoint-xl\` |
                 `,
             },
         },
@@ -484,6 +492,106 @@ export const TabletViewport: Story = {
             </flint-grid>
             <flint-grid xs="12" sm="12" md="4">
                 <div style="${altItemStyle}">xs=12 sm=12 md=4</div>
+            </flint-grid>
+        </flint-grid>
+    `,
+};
+
+// -----------------------------------------------------------------------------
+// Responsive Cards
+// Cards reflow from 1-column (mobile) to 2-column (sm) to 3-column (md) to
+// 4-column (lg). Resize the viewport to see the layout adapt.
+// -----------------------------------------------------------------------------
+
+const cardStyle = 'background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,.1); font-family: system-ui;';
+
+export const ResponsiveCards: Story = {
+  render: () => html`
+        <p style="font-family: monospace; color: #555; margin: 0 0 12px;">
+            Resize viewport: xs 1-col, sm 2-col, md 3-col, lg 4-col
+        </p>
+        <flint-grid container spacing="3">
+            ${[1, 2, 3, 4, 5, 6, 7, 8].map(n => html`
+                <flint-grid xs="12" sm="6" md="4" lg="3">
+                    <div style="${cardStyle}">
+                        <div style="font-weight: 600; margin-bottom: 8px;">Card ${n}</div>
+                        <div style="color: #6b7280; font-size: 14px;">
+                            xs=12 sm=6 md=4 lg=3
+                        </div>
+                    </div>
+                </flint-grid>
+            `)}
+        </flint-grid>
+    `,
+};
+
+// -----------------------------------------------------------------------------
+// Common Layouts
+// Demonstrates sidebar+content, holy grail, and dashboard patterns that
+// developers frequently need.
+// -----------------------------------------------------------------------------
+
+const sectionStyle = (bg: string) => `background: ${bg}; border-radius: 6px; padding: 16px; font-family: system-ui; color: #fff; min-height: 60px; display: flex; align-items: center; justify-content: center; box-sizing: border-box;`;
+
+export const CommonLayouts: Story = {
+  render: () => html`
+        <!-- Sidebar + Content -->
+        <p style="font-family: monospace; color: #555; margin: 0 0 8px; font-weight: 600;">
+            Sidebar + Content (stacks on mobile)
+        </p>
+        <flint-grid container spacing="2" style="margin-bottom: 32px;">
+            <flint-grid xs="12" md="3">
+                <div style="${sectionStyle('#4f46e5')}">Sidebar</div>
+            </flint-grid>
+            <flint-grid xs="12" md="9">
+                <div style="${sectionStyle('#2563eb')}">Content</div>
+            </flint-grid>
+        </flint-grid>
+
+        <!-- Holy Grail -->
+        <p style="font-family: monospace; color: #555; margin: 0 0 8px; font-weight: 600;">
+            Holy Grail (header, left nav, content, right aside, footer)
+        </p>
+        <flint-grid container spacing="2" style="margin-bottom: 32px;">
+            <flint-grid xs="12">
+                <div style="${sectionStyle('#0f172a')}">Header</div>
+            </flint-grid>
+            <flint-grid xs="12" md="2">
+                <div style="${sectionStyle('#4f46e5')}">Nav</div>
+            </flint-grid>
+            <flint-grid xs="12" md="8">
+                <div style="${sectionStyle('#2563eb')}; min-height: 120px;">Main Content</div>
+            </flint-grid>
+            <flint-grid xs="12" md="2">
+                <div style="${sectionStyle('#7c3aed')}">Aside</div>
+            </flint-grid>
+            <flint-grid xs="12">
+                <div style="${sectionStyle('#0f172a')}">Footer</div>
+            </flint-grid>
+        </flint-grid>
+
+        <!-- Dashboard -->
+        <p style="font-family: monospace; color: #555; margin: 0 0 8px; font-weight: 600;">
+            Dashboard (mixed card sizes)
+        </p>
+        <flint-grid container spacing="2">
+            <flint-grid xs="12" md="8">
+                <div style="${sectionStyle('#075985')}; min-height: 160px;">Chart (wide)</div>
+            </flint-grid>
+            <flint-grid xs="12" md="4">
+                <div style="${sectionStyle('#0f766e')}; min-height: 160px;">Summary</div>
+            </flint-grid>
+            <flint-grid xs="6" md="3">
+                <div style="${sectionStyle('#b45309')}">Metric 1</div>
+            </flint-grid>
+            <flint-grid xs="6" md="3">
+                <div style="${sectionStyle('#b91c1c')}">Metric 2</div>
+            </flint-grid>
+            <flint-grid xs="6" md="3">
+                <div style="${sectionStyle('#7c3aed')}">Metric 3</div>
+            </flint-grid>
+            <flint-grid xs="6" md="3">
+                <div style="${sectionStyle('#047857')}">Metric 4</div>
             </flint-grid>
         </flint-grid>
     `,

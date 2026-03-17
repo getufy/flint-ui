@@ -30,7 +30,10 @@ export interface FlintSpeedDialProps extends Omit<React.HTMLAttributes<FlintSpee
     open?: boolean;
     /** Initial open state for uncontrolled usage. Sets `open` once on first render. */
     defaultOpen?: boolean;
-    /** Direction in which actions expand from the FAB (default 'up'). */
+    /**
+     * Direction in which actions expand from the FAB (default 'up').
+     * Allowed values: 'up' | 'down' | 'left' | 'right'
+     */
     direction?: 'up' | 'down' | 'left' | 'right';
     /** Hides the entire speed dial component. */
     hidden?: boolean;

@@ -10,16 +10,25 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintButton as FlintButtonElement } from '@getufy/flint-ui/button/flint-button';
 
 export interface FlintButtonProps extends React.HTMLAttributes<FlintButtonElement> {
-    /** Visual style variant of the button. */
-    variant?: FlintButtonElement['variant'];
-    /** Size of the button. */
-    size?: FlintButtonElement['size'];
+    /**
+     * Visual style variant of the button.
+     * Allowed values: '' | 'primary' | 'secondary' | 'destructive' | 'success' | 'warning' | 'neutral'
+     */
+    variant?: '' | 'primary' | 'secondary' | 'destructive' | 'success' | 'warning' | 'neutral';
+    /**
+     * Size of the button.
+     * Allowed values: 'sm' | 'md' | 'lg'
+     */
+    size?: 'sm' | 'md' | 'lg';
     /** Disables the button and prevents interaction. */
     disabled?: boolean;
     /** Whether the button stretches to fill its container width. */
     fullWidth?: boolean;
-    /** Button type attribute. When `submit` or `reset`, a hidden native */
-    type?: FlintButtonElement['type'];
+    /**
+     * Button type attribute. When `submit` or `reset`, a hidden native
+     * Allowed values: 'button' | 'submit' | 'reset'
+     */
+    type?: 'button' | 'submit' | 'reset';
     /** Accessible label for screen readers. Essential for icon-only buttons. */
     label?: string;
     /** Shows a loading spinner and disables interaction. */
@@ -28,8 +37,11 @@ export interface FlintButtonProps extends React.HTMLAttributes<FlintButtonElemen
     href?: string;
     /** Optional `target` attribute when `href` is set. */
     target?: string;
-    /** Shape variant of the button. */
-    shape?: FlintButtonElement['shape'];
+    /**
+     * Shape variant of the button.
+     * Allowed values: 'default' | 'pill' | 'circle'
+     */
+    shape?: 'default' | 'pill' | 'circle';
 }
 
 export const FlintButton = createComponent({

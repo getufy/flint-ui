@@ -15,7 +15,10 @@ import { FlintEmptyMedia as FlintEmptyMediaElement } from '@getufy/flint-ui/empt
  * @slot (default) - Media content: icon, image, or avatar elements.
  */
 export interface FlintEmptyMediaProps extends React.HTMLAttributes<FlintEmptyMediaElement> {
-    /** Visual treatment for the media container. */
+    /**
+     * Visual treatment for the media container.
+     * Allowed values: 'default' | 'icon'
+     */
     variant?: 'default' | 'icon';
 }
 

@@ -14,7 +14,10 @@ export interface FlintCarouselContentProps extends React.HTMLAttributes<FlintCar
     index?: number;
     /** Number of slides visible at once. */
     itemsPerView?: number;
-    /** Slide direction axis. */
+    /**
+     * Slide direction axis.
+     * Allowed values: 'horizontal' | 'vertical'
+     */
     orientation?: 'horizontal' | 'vertical';
 }
 

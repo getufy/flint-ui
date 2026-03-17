@@ -15,6 +15,11 @@ let _uidCounter = 0;
  * @slot icon-on - Optional icon to show when the switch is ON.
  * @slot icon-off - Optional icon to show when the switch is OFF.
  * @slot - Optional label content (used when the `label` prop is not set).
+ *
+ * @csspart base - The switch's base wrapper element.
+ * @csspart control - The switch track element.
+ * @csspart thumb - The switch thumb (knob) element.
+ * @csspart label - The label text element.
  */
 export class FlintSwitch extends FormAssociated(FlintElement) {
     static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };

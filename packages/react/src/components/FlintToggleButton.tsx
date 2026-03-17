@@ -24,7 +24,10 @@ export interface FlintToggleButtonProps extends React.HTMLAttributes<FlintToggle
     disabled?: boolean;
     /** Value associated with this toggle button. */
     value?: string;
-    /** Size variant of the toggle button. */
+    /**
+     * Size variant of the toggle button.
+     * Allowed values: 'sm' | 'md' | 'lg'
+     */
     size?: 'sm' | 'md' | 'lg';
     /** Fired when the button's selected state changes. detail: `{ value: string, selected: boolean }` */
     onFlintToggleButtonChange?: (event: CustomEvent<FlintToggleButtonChangeDetail>) => void;

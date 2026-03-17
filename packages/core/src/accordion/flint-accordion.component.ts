@@ -14,6 +14,10 @@ let _accordionCounter = 0;
  * @slot - FlintAccordionSummary and FlintAccordionDetails.
  *
  * @fires flint-accordion-change - Fired when the accordion's expanded state changes. detail: `{ expanded: boolean }`
+ *
+ * @csspart base - The accordion's base container element.
+ * @csspart content - The accordion's content wrapper.
+ * @csspart expand-icon - The expand/collapse icon element.
  */
 export class FlintAccordion extends FlintElement {
     static styles = unsafeCSS(uiAccordionStyles);
@@ -161,6 +165,9 @@ export class FlintAccordionSummary extends FlintElement {
  * Accordion Details: the wrapper for the Accordion content.
  *
  * @slot - Detail content.
+ *
+ * @csspart base - The details inner wrapper element.
+ * @csspart content - The details content element.
  */
 export class FlintAccordionDetails extends FlintElement {
     static styles = unsafeCSS(uiAccordionDetailsStyles);

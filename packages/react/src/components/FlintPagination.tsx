@@ -33,13 +33,25 @@ export interface FlintPaginationProps extends Omit<React.HTMLAttributes<FlintPag
     defaultPage?: number;
     /** Accessible label for the nav landmark (aria-label). */
     label?: string;
-    /** Visual style variant of the pagination buttons. */
+    /**
+     * Visual style variant of the pagination buttons.
+     * Allowed values: 'text' | 'outlined'
+     */
     variant?: 'text' | 'outlined';
-    /** Shape of the pagination buttons. */
+    /**
+     * Shape of the pagination buttons.
+     * Allowed values: 'circular' | 'rounded' | 'square'
+     */
     shape?: 'circular' | 'rounded' | 'square';
-    /** Size of the pagination buttons. */
+    /**
+     * Size of the pagination buttons.
+     * Allowed values: 'sm' | 'md' | 'lg'
+     */
     size?: 'sm' | 'md' | 'lg';
-    /** Color theme of the pagination buttons. */
+    /**
+     * Color theme of the pagination buttons.
+     * Allowed values: 'primary' | 'secondary' | 'standard'
+     */
     color?: 'primary' | 'secondary' | 'standard';
     /** Show first-page button. */
     showFirstButton?: boolean;

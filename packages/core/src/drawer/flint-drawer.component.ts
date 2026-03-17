@@ -14,6 +14,9 @@ import uiDrawerStyles from './flint-drawer.css?inline';
  * @slot - Drawer content.
  * @fires flint-drawer-open  - Dispatched after the drawer open animation completes. detail: `{ open: true }`
  * @fires flint-drawer-close - Dispatched when the drawer requests to be closed (backdrop click or Escape). detail: `{ open: false }`
+ *
+ * @csspart backdrop - The backdrop overlay element.
+ * @csspart panel - The drawer panel element.
  */
 export class FlintDrawer extends FlintElement {
     static styles = unsafeCSS(uiDrawerStyles);

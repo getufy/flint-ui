@@ -13,13 +13,19 @@ import { FlintLinearProgress as FlintLinearProgressElement } from '@getufy/flint
  * flint-linear-progress: a horizontal progress bar.
  */
 export interface FlintLinearProgressProps extends Omit<React.HTMLAttributes<FlintLinearProgressElement>, 'color'> {
-    /** Progress variant: determinate shows a specific value, indeterminate shows an animation. */
+    /**
+     * Progress variant: determinate shows a specific value, indeterminate shows an animation.
+     * Allowed values: 'determinate' | 'indeterminate'
+     */
     variant?: 'determinate' | 'indeterminate';
     /** Current progress value (0-100). */
     value?: number;
     /** Height of the progress bar in pixels. */
     height?: number;
-    /** Color theme of the progress bar. */
+    /**
+     * Color theme of the progress bar.
+     * Allowed values: 'primary' | 'success' | 'error' | 'warning'
+     */
     color?: 'primary' | 'success' | 'error' | 'warning';
     /** Accessible label for the progress bar. */
     label?: string;

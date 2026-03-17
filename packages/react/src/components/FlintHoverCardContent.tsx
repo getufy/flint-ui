@@ -16,9 +16,15 @@ Place inside `flint-hover-card`; its `open` state is managed by the parent.
  * @slot (default) - Rich content displayed inside the card.
  */
 export interface FlintHoverCardContentProps extends React.HTMLAttributes<FlintHoverCardContentElement> {
-    /** Which side of the trigger to display the card on. */
+    /**
+     * Which side of the trigger to display the card on.
+     * Allowed values: 'top' | 'right' | 'bottom' | 'left'
+     */
     placement?: 'top' | 'right' | 'bottom' | 'left';
-    /** Alignment of the card along the cross axis relative to the trigger. */
+    /**
+     * Alignment of the card along the cross axis relative to the trigger.
+     * Allowed values: 'start' | 'center' | 'end'
+     */
     align?: 'start' | 'center' | 'end';
     /** Whether the card is visible. Managed by the parent `flint-hover-card`. */
     open?: boolean;

@@ -20,7 +20,10 @@ export type FlintTextFieldChangeEvent = CustomEvent<{ value: string }>;
 export type FlintTextFieldClearEvent = CustomEvent<undefined>;
 export type FlintTextareaInputEvent = CustomEvent<{ value: string }>;
 export type FlintTextareaChangeEvent = CustomEvent<{ value: string }>;
-export type FlintSelectChangeEvent = CustomEvent<{ value: string[] }>;
+export type FlintSelectChangeDetail =
+  | { value: string; multiple: false }
+  | { value: string[]; multiple: true };
+export type FlintSelectChangeEvent = CustomEvent<FlintSelectChangeDetail>;
 export type FlintAutocompleteChangeEvent = CustomEvent<{ value: string; label: string }>;
 export type FlintCheckboxChangeEvent = CustomEvent<{ checked: boolean; value: string; indeterminate: boolean }>;
 export type FlintSwitchChangeEvent = CustomEvent<{ checked: boolean }>;

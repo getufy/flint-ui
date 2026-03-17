@@ -12,9 +12,15 @@ import { FlintGrid as FlintGridElement } from '@getufy/flint-ui/grid/flint-grid'
 export interface FlintGridProps extends React.HTMLAttributes<FlintGridElement> {
     /** Whether this element acts as a grid container. */
     container?: boolean;
-    /** Flex direction of the grid container. */
+    /**
+     * Flex direction of the grid container.
+     * Allowed values: 'row' | 'row-reverse' | 'column' | 'column-reverse'
+     */
     direction?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
-    /** Flex wrap behavior of the grid container. */
+    /**
+     * Flex wrap behavior of the grid container.
+     * Allowed values: 'nowrap' | 'wrap' | 'wrap-reverse'
+     */
     wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
     /** Cross-axis alignment of grid items. */
     alignItems?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline' | undefined;
@@ -29,15 +35,15 @@ export interface FlintGridProps extends React.HTMLAttributes<FlintGridElement> {
     /** Column spacing override; takes precedence over `spacing` for the column axis. */
     columnSpacing?: FlintGridElement['columnSpacing'];
     /** Number of columns to span at the xs breakpoint. */
-    xs?: FlintGridElement['xs'];
+    xs?: number | false | true | 'auto';
     /** Number of columns to span at the sm breakpoint. */
-    sm?: FlintGridElement['sm'];
+    sm?: number | false | true | 'auto';
     /** Number of columns to span at the md breakpoint. */
-    md?: FlintGridElement['md'];
+    md?: number | false | true | 'auto';
     /** Number of columns to span at the lg breakpoint. */
-    lg?: FlintGridElement['lg'];
+    lg?: number | false | true | 'auto';
     /** Number of columns to span at the xl breakpoint. */
-    xl?: FlintGridElement['xl'];
+    xl?: number | false | true | 'auto';
     /** Offset per breakpoint, expressed in column units or 'auto'. */
     offset?: FlintGridElement['offset'];
     /** Flex order. Supports responsive values so items can be reordered at */

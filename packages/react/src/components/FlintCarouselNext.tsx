@@ -17,7 +17,10 @@ import { FlintCarouselNext as FlintCarouselNextElement } from '@getufy/flint-ui/
 export interface FlintCarouselNextProps extends React.HTMLAttributes<FlintCarouselNextElement> {
     /** Whether the next button is disabled. */
     disabled?: boolean;
-    /** Slide direction axis, inherited from the parent carousel. */
+    /**
+     * Slide direction axis, inherited from the parent carousel.
+     * Allowed values: 'horizontal' | 'vertical'
+     */
     orientation?: 'horizontal' | 'vertical';
 }
 

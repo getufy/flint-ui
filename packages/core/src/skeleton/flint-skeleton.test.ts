@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-skeleton';
 import type { FlintSkeleton } from './flint-skeleton';
@@ -36,43 +36,95 @@ describe('flint-skeleton — structure', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   flint-skeleton — variant prop
+   flint-skeleton — shape prop
 ═══════════════════════════════════════════════════════════════════════════ */
-describe('flint-skeleton — variant', () => {
-    it('defaults to variant="text"', async () => {
+describe('flint-skeleton — shape', () => {
+    it('defaults to shape="text"', async () => {
         const el = await fixture<FlintSkeleton>(html`<flint-skeleton></flint-skeleton>`);
         const span = el.shadowRoot!.querySelector('span.skeleton')!;
         expect(span.classList.contains('text')).toBe(true);
     });
 
-    it('variant="text" is reflected as attribute', async () => {
+    it('shape="text" is reflected as attribute', async () => {
         const el = await fixture<FlintSkeleton>(html`<flint-skeleton></flint-skeleton>`);
-        expect(el.getAttribute('variant')).toBe('text');
+        expect(el.getAttribute('shape')).toBe('text');
     });
 
-    it('variant="circular" adds .circular class', async () => {
-        const el = await fixture<FlintSkeleton>(html`<flint-skeleton variant="circular"></flint-skeleton>`);
+    it('shape="circular" adds .circular class', async () => {
+        const el = await fixture<FlintSkeleton>(html`<flint-skeleton shape="circular"></flint-skeleton>`);
         const span = el.shadowRoot!.querySelector('span.skeleton')!;
         expect(span.classList.contains('circular')).toBe(true);
     });
 
-    it('variant="rectangular" adds .rectangular class', async () => {
-        const el = await fixture<FlintSkeleton>(html`<flint-skeleton variant="rectangular"></flint-skeleton>`);
+    it('shape="rectangular" adds .rectangular class', async () => {
+        const el = await fixture<FlintSkeleton>(html`<flint-skeleton shape="rectangular"></flint-skeleton>`);
         const span = el.shadowRoot!.querySelector('span.skeleton')!;
         expect(span.classList.contains('rectangular')).toBe(true);
     });
 
-    it('variant="rounded" adds .rounded class', async () => {
-        const el = await fixture<FlintSkeleton>(html`<flint-skeleton variant="rounded"></flint-skeleton>`);
+    it('shape="rounded" adds .rounded class', async () => {
+        const el = await fixture<FlintSkeleton>(html`<flint-skeleton shape="rounded"></flint-skeleton>`);
         const span = el.shadowRoot!.querySelector('span.skeleton')!;
         expect(span.classList.contains('rounded')).toBe(true);
     });
 
-    it('variant reflects to attribute when changed via property', async () => {
+    it('shape reflects to attribute when changed via property', async () => {
+        const el = await fixture<FlintSkeleton>(html`<flint-skeleton></flint-skeleton>`);
+        el.shape = 'circular';
+        await el.updateComplete;
+        expect(el.getAttribute('shape')).toBe('circular');
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   flint-skeleton — deprecated variant backward compat
+═══════════════════════════════════════════════════════════════════════════ */
+describe('flint-skeleton — variant (deprecated backward compat)', () => {
+    it('setting variant="circular" maps to shape="circular"', async () => {
+        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
         const el = await fixture<FlintSkeleton>(html`<flint-skeleton></flint-skeleton>`);
         el.variant = 'circular';
         await el.updateComplete;
-        expect(el.getAttribute('variant')).toBe('circular');
+        expect(el.shape).toBe('circular');
+        const span = el.shadowRoot!.querySelector('span.skeleton')!;
+        expect(span.classList.contains('circular')).toBe(true);
+        warnSpy.mockRestore();
+    });
+
+    it('setting variant triggers a deprecation console.warn', async () => {
+        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+        const el = await fixture<FlintSkeleton>(html`<flint-skeleton></flint-skeleton>`);
+        el.variant = 'rounded';
+        await el.updateComplete;
+        expect(warnSpy).toHaveBeenCalledWith(
+            'flint-skeleton: `variant` is deprecated. Use `shape` instead.'
+        );
+        warnSpy.mockRestore();
+    });
+
+    it('console.warn fires only once per instance', async () => {
+        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+        const el = await fixture<FlintSkeleton>(html`<flint-skeleton></flint-skeleton>`);
+        el.variant = 'circular';
+        await el.updateComplete;
+        el.variant = 'rectangular';
+        await el.updateComplete;
+        const deprecationWarns = warnSpy.mock.calls.filter(
+            (args) => typeof args[0] === 'string' && args[0].includes('variant')
+        );
+        expect(deprecationWarns.length).toBe(1);
+        warnSpy.mockRestore();
+    });
+
+    it('shape takes precedence when both shape and variant are set', async () => {
+        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+        const el = await fixture<FlintSkeleton>(html`<flint-skeleton></flint-skeleton>`);
+        el.shape = 'rounded';
+        el.variant = 'circular';
+        await el.updateComplete;
+        // shape was already non-default, so variant should NOT override it
+        expect(el.shape).toBe('rounded');
+        warnSpy.mockRestore();
     });
 });
 
@@ -120,35 +172,35 @@ describe('flint-skeleton — animation', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   flint-skeleton — text variant default dimensions
+   flint-skeleton — text shape default dimensions
 ═══════════════════════════════════════════════════════════════════════════ */
-describe('flint-skeleton — text variant defaults', () => {
-    it('text variant sets width: 100% by default', async () => {
-        const el = await fixture<FlintSkeleton>(html`<flint-skeleton variant="text"></flint-skeleton>`);
+describe('flint-skeleton — text shape defaults', () => {
+    it('text shape sets width: 100% by default', async () => {
+        const el = await fixture<FlintSkeleton>(html`<flint-skeleton shape="text"></flint-skeleton>`);
         const span = el.shadowRoot!.querySelector<HTMLElement>('span.skeleton')!;
         expect(span.style.width).toBe('100%');
     });
 
-    it('text variant sets height: 0.8em by default', async () => {
-        const el = await fixture<FlintSkeleton>(html`<flint-skeleton variant="text"></flint-skeleton>`);
+    it('text shape sets height: 0.8em by default', async () => {
+        const el = await fixture<FlintSkeleton>(html`<flint-skeleton shape="text"></flint-skeleton>`);
         const span = el.shadowRoot!.querySelector<HTMLElement>('span.skeleton')!;
         expect(span.style.height).toBe('0.8em');
     });
 
-    it('text variant sets marginTop: 0.3em', async () => {
-        const el = await fixture<FlintSkeleton>(html`<flint-skeleton variant="text"></flint-skeleton>`);
+    it('text shape sets marginTop: 0.3em', async () => {
+        const el = await fixture<FlintSkeleton>(html`<flint-skeleton shape="text"></flint-skeleton>`);
         const span = el.shadowRoot!.querySelector<HTMLElement>('span.skeleton')!;
         expect(span.style.marginTop).toBe('0.3em');
     });
 
-    it('text variant sets marginBottom: 0.3em', async () => {
-        const el = await fixture<FlintSkeleton>(html`<flint-skeleton variant="text"></flint-skeleton>`);
+    it('text shape sets marginBottom: 0.3em', async () => {
+        const el = await fixture<FlintSkeleton>(html`<flint-skeleton shape="text"></flint-skeleton>`);
         const span = el.shadowRoot!.querySelector<HTMLElement>('span.skeleton')!;
         expect(span.style.marginBottom).toBe('0.3em');
     });
 
-    it('non-text variants have no default width or height', async () => {
-        const el = await fixture<FlintSkeleton>(html`<flint-skeleton variant="circular"></flint-skeleton>`);
+    it('non-text shapes have no default width or height', async () => {
+        const el = await fixture<FlintSkeleton>(html`<flint-skeleton shape="circular"></flint-skeleton>`);
         const span = el.shadowRoot!.querySelector<HTMLElement>('span.skeleton')!;
         expect(span.style.width).toBe('');
         expect(span.style.height).toBe('');
@@ -171,14 +223,14 @@ describe('flint-skeleton — width / height props', () => {
         expect(span.style.height).toBe('80px');
     });
 
-    it('explicit width overrides text-variant default', async () => {
-        const el = await fixture<FlintSkeleton>(html`<flint-skeleton variant="text" width="50%"></flint-skeleton>`);
+    it('explicit width overrides text-shape default', async () => {
+        const el = await fixture<FlintSkeleton>(html`<flint-skeleton shape="text" width="50%"></flint-skeleton>`);
         const span = el.shadowRoot!.querySelector<HTMLElement>('span.skeleton')!;
         expect(span.style.width).toBe('50%');
     });
 
-    it('explicit height overrides text-variant default', async () => {
-        const el = await fixture<FlintSkeleton>(html`<flint-skeleton variant="text" height="2em"></flint-skeleton>`);
+    it('explicit height overrides text-shape default', async () => {
+        const el = await fixture<FlintSkeleton>(html`<flint-skeleton shape="text" height="2em"></flint-skeleton>`);
         const span = el.shadowRoot!.querySelector<HTMLElement>('span.skeleton')!;
         expect(span.style.height).toBe('2em');
     });

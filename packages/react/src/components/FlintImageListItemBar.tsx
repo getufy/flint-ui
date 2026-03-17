@@ -17,7 +17,10 @@ import { FlintImageListItemBar as FlintImageListItemBarElement } from '@getufy/f
  * @slot (default) - Action content.
  */
 export interface FlintImageListItemBarProps extends React.HTMLAttributes<FlintImageListItemBarElement> {
-    /** Position hint for styling: 'bottom' (default overlay), 'top' (overlay), or 'below' (solid) */
+    /**
+     * Position hint for styling: 'bottom' (default overlay), 'top' (overlay), or 'below' (solid)
+     * Allowed values: 'bottom' | 'top' | 'below'
+     */
     position?: 'bottom' | 'top' | 'below';
 }
 

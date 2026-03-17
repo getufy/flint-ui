@@ -1,5 +1,5 @@
 import { fixture, html, expect } from '@open-wc/testing';
-import { describe, it } from 'vitest';
+import { describe, it, vi } from 'vitest';
 import './flint-linear-progress.js';
 import './flint-circular-progress.js';
 import type { FlintLinearProgress } from './flint-linear-progress.js';
@@ -13,13 +13,13 @@ describe('FlintLinearProgress', () => {
         expect(el).to.be.instanceOf(HTMLElement);
     });
 
-    it('renders with indeterminate variant by default', async () => {
+    it('renders with indeterminate mode by default', async () => {
         const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress></flint-linear-progress>`);
         const root = el.shadowRoot!.querySelector('.root')!;
         expect(root).to.not.equal(null);
         expect(root.classList.contains('indeterminate')).to.equal(true);
         expect(root.classList.contains('determinate')).to.equal(false);
-        expect(el.variant).to.equal('indeterminate');
+        expect(el.mode).to.equal('indeterminate');
     });
 
     it('renders two bars (bar1 and bar2) in indeterminate mode', async () => {
@@ -36,17 +36,17 @@ describe('FlintLinearProgress', () => {
         expect(root.hasAttribute('aria-valuenow')).to.equal(false);
     });
 
-    // --- Determinate variant ---
+    // --- Determinate mode ---
 
-    it('renders determinate variant with correct class', async () => {
-        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress variant="determinate" .value=${50}></flint-linear-progress>`);
+    it('renders determinate mode with correct class', async () => {
+        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress mode="determinate" .value=${50}></flint-linear-progress>`);
         const root = el.shadowRoot!.querySelector('.root')!;
         expect(root.classList.contains('determinate')).to.equal(true);
         expect(root.classList.contains('indeterminate')).to.equal(false);
     });
 
     it('renders exactly one bar in determinate mode', async () => {
-        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress variant="determinate" .value=${50}></flint-linear-progress>`);
+        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress mode="determinate" .value=${50}></flint-linear-progress>`);
         const bars = el.shadowRoot!.querySelectorAll('.bar');
         expect(bars.length).to.equal(1);
         expect(el.shadowRoot!.querySelector('.bar1')).to.equal(null);
@@ -54,13 +54,13 @@ describe('FlintLinearProgress', () => {
     });
 
     it('applies correct scaleX transform based on value', async () => {
-        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress variant="determinate" .value=${75}></flint-linear-progress>`);
+        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress mode="determinate" .value=${75}></flint-linear-progress>`);
         const bar = el.shadowRoot!.querySelector('.bar') as HTMLElement;
         expect(bar.style.transform).to.equal('scaleX(0.75)');
     });
 
     it('updates transform reactively when value changes', async () => {
-        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress variant="determinate" .value=${20}></flint-linear-progress>`);
+        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress mode="determinate" .value=${20}></flint-linear-progress>`);
         const bar = el.shadowRoot!.querySelector('.bar') as HTMLElement;
         expect(bar.style.transform).to.equal('scaleX(0.2)');
 
@@ -86,7 +86,7 @@ describe('FlintLinearProgress', () => {
     });
 
     it('sets aria-valuenow in determinate mode', async () => {
-        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress variant="determinate" .value=${60}></flint-linear-progress>`);
+        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress mode="determinate" .value=${60}></flint-linear-progress>`);
         const root = el.shadowRoot!.querySelector('.root')!;
         expect(root.getAttribute('aria-valuenow')).to.equal('60');
     });
@@ -139,7 +139,7 @@ describe('FlintLinearProgress', () => {
     // --- Value clamping ---
 
     it('clamps value above 100 to 100', async () => {
-        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress variant="determinate" .value=${150}></flint-linear-progress>`);
+        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress mode="determinate" .value=${150}></flint-linear-progress>`);
         const root = el.shadowRoot!.querySelector('.root')!;
         expect(root.getAttribute('aria-valuenow')).to.equal('100');
         const bar = el.shadowRoot!.querySelector('.bar') as HTMLElement;
@@ -147,7 +147,7 @@ describe('FlintLinearProgress', () => {
     });
 
     it('clamps value below 0 to 0', async () => {
-        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress variant="determinate" .value=${-20}></flint-linear-progress>`);
+        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress mode="determinate" .value=${-20}></flint-linear-progress>`);
         const root = el.shadowRoot!.querySelector('.root')!;
         expect(root.getAttribute('aria-valuenow')).to.equal('0');
         const bar = el.shadowRoot!.querySelector('.bar') as HTMLElement;
@@ -170,11 +170,36 @@ describe('FlintLinearProgress', () => {
 
     // --- Reflected attributes ---
 
-    it('reflects variant and value as attributes', async () => {
-        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress variant="determinate" .value=${45}></flint-linear-progress>`);
+    it('reflects mode and value as attributes', async () => {
+        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress mode="determinate" .value=${45}></flint-linear-progress>`);
         await el.updateComplete;
-        expect(el.getAttribute('variant')).to.equal('determinate');
+        expect(el.getAttribute('mode')).to.equal('determinate');
         expect(el.getAttribute('value')).to.equal('45');
+    });
+
+    // --- Backward compatibility: variant → mode ---
+
+    it('maps deprecated variant to mode', async () => {
+        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress variant="determinate" .value=${50}></flint-linear-progress>`);
+        await el.updateComplete;
+        expect(el.mode).to.equal('determinate');
+        const root = el.shadowRoot!.querySelector('.root')!;
+        expect(root.classList.contains('determinate')).to.equal(true);
+        expect(warnSpy.mock.calls.length).to.be.greaterThan(0);
+        expect(warnSpy.mock.calls[0]![0]).to.contain('deprecated');
+        warnSpy.mockRestore();
+    });
+
+    it('mode takes precedence over variant when both are set', async () => {
+        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress mode="determinate" variant="determinate" .value=${50}></flint-linear-progress>`);
+        await el.updateComplete;
+        // mode was explicitly set to determinate, variant should not override
+        expect(el.mode).to.equal('determinate');
+        // No deprecation warning because mode was explicitly set
+        expect(warnSpy.mock.calls.length).to.equal(0);
+        warnSpy.mockRestore();
     });
 });
 
@@ -186,13 +211,13 @@ describe('FlintCircularProgress', () => {
         expect(el).to.be.instanceOf(HTMLElement);
     });
 
-    it('renders with indeterminate variant by default', async () => {
+    it('renders with indeterminate mode by default', async () => {
         const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress></flint-circular-progress>`);
         const root = el.shadowRoot!.querySelector('.circular-root')!;
         expect(root).to.not.equal(null);
         expect(root.classList.contains('indeterminate')).to.equal(true);
         expect(root.classList.contains('determinate')).to.equal(false);
-        expect(el.variant).to.equal('indeterminate');
+        expect(el.mode).to.equal('indeterminate');
     });
 
     it('renders an SVG with a circle element', async () => {
@@ -216,17 +241,17 @@ describe('FlintCircularProgress', () => {
         expect(style).to.equal('');
     });
 
-    // --- Determinate variant ---
+    // --- Determinate mode ---
 
-    it('renders determinate variant with correct class', async () => {
-        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress variant="determinate" .value=${50}></flint-circular-progress>`);
+    it('renders determinate mode with correct class', async () => {
+        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress mode="determinate" .value=${50}></flint-circular-progress>`);
         const root = el.shadowRoot!.querySelector('.circular-root')!;
         expect(root.classList.contains('determinate')).to.equal(true);
         expect(root.classList.contains('indeterminate')).to.equal(false);
     });
 
     it('applies stroke-dasharray and stroke-dashoffset in determinate mode', async () => {
-        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress variant="determinate" .value=${50}></flint-circular-progress>`);
+        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress mode="determinate" .value=${50}></flint-circular-progress>`);
         const circle = el.shadowRoot!.querySelector('circle') as SVGCircleElement;
         const style = circle.getAttribute('style') ?? '';
         expect(style).to.contain('stroke-dasharray');
@@ -237,14 +262,14 @@ describe('FlintCircularProgress', () => {
         const thickness = 3.6;
         const radius = 20 - thickness / 2;
         const circumference = 2 * Math.PI * radius;
-        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress variant="determinate" .value=${0} .thickness=${thickness}></flint-circular-progress>`);
+        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress mode="determinate" .value=${0} .thickness=${thickness}></flint-circular-progress>`);
         const circle = el.shadowRoot!.querySelector('circle') as SVGCircleElement;
         const offset = parseFloat(circle.style.strokeDashoffset);
         expect(offset).to.be.closeTo(circumference, 0.1);
     });
 
     it('stroke-dashoffset at 100% is 0', async () => {
-        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress variant="determinate" .value=${100}></flint-circular-progress>`);
+        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress mode="determinate" .value=${100}></flint-circular-progress>`);
         const circle = el.shadowRoot!.querySelector('circle') as SVGCircleElement;
         expect(parseFloat(circle.style.strokeDashoffset)).to.be.closeTo(0, 0.1);
     });
@@ -253,7 +278,7 @@ describe('FlintCircularProgress', () => {
         const thickness = 3.6;
         const radius = 20 - thickness / 2;
         const circumference = 2 * Math.PI * radius;
-        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress variant="determinate" .value=${50} .thickness=${thickness}></flint-circular-progress>`);
+        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress mode="determinate" .value=${50} .thickness=${thickness}></flint-circular-progress>`);
         const circle = el.shadowRoot!.querySelector('circle') as SVGCircleElement;
         const offset = parseFloat(circle.style.strokeDashoffset);
         expect(offset).to.be.closeTo(circumference / 2, 0.1);
@@ -275,7 +300,7 @@ describe('FlintCircularProgress', () => {
     });
 
     it('sets aria-valuenow in determinate mode', async () => {
-        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress variant="determinate" .value=${75}></flint-circular-progress>`);
+        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress mode="determinate" .value=${75}></flint-circular-progress>`);
         const root = el.shadowRoot!.querySelector('.circular-root')!;
         expect(root.getAttribute('aria-valuenow')).to.equal('75');
     });
@@ -328,13 +353,13 @@ describe('FlintCircularProgress', () => {
     // --- Value clamping ---
 
     it('clamps value above 100 to 100', async () => {
-        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress variant="determinate" .value=${200}></flint-circular-progress>`);
+        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress mode="determinate" .value=${200}></flint-circular-progress>`);
         const root = el.shadowRoot!.querySelector('.circular-root')!;
         expect(root.getAttribute('aria-valuenow')).to.equal('100');
     });
 
     it('clamps value below 0 to 0', async () => {
-        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress variant="determinate" .value=${-50}></flint-circular-progress>`);
+        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress mode="determinate" .value=${-50}></flint-circular-progress>`);
         const root = el.shadowRoot!.querySelector('.circular-root')!;
         expect(root.getAttribute('aria-valuenow')).to.equal('0');
     });
@@ -382,10 +407,35 @@ describe('FlintCircularProgress', () => {
 
     // --- Reflected attributes ---
 
-    it('reflects variant and value as attributes', async () => {
-        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress variant="determinate" .value=${30}></flint-circular-progress>`);
+    it('reflects mode and value as attributes', async () => {
+        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress mode="determinate" .value=${30}></flint-circular-progress>`);
         await el.updateComplete;
-        expect(el.getAttribute('variant')).to.equal('determinate');
+        expect(el.getAttribute('mode')).to.equal('determinate');
         expect(el.getAttribute('value')).to.equal('30');
+    });
+
+    // --- Backward compatibility: variant → mode ---
+
+    it('maps deprecated variant to mode', async () => {
+        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress variant="determinate" .value=${50}></flint-circular-progress>`);
+        await el.updateComplete;
+        expect(el.mode).to.equal('determinate');
+        const root = el.shadowRoot!.querySelector('.circular-root')!;
+        expect(root.classList.contains('determinate')).to.equal(true);
+        expect(warnSpy.mock.calls.length).to.be.greaterThan(0);
+        expect(warnSpy.mock.calls[0]![0]).to.contain('deprecated');
+        warnSpy.mockRestore();
+    });
+
+    it('mode takes precedence over variant when both are set', async () => {
+        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress mode="determinate" variant="determinate" .value=${50}></flint-circular-progress>`);
+        await el.updateComplete;
+        // mode was explicitly set to determinate, variant should not override
+        expect(el.mode).to.equal('determinate');
+        // No deprecation warning because mode was explicitly set
+        expect(warnSpy.mock.calls.length).to.equal(0);
+        warnSpy.mockRestore();
     });
 });

@@ -19,7 +19,10 @@ export interface FlintDateRangePickerProps extends React.HTMLAttributes<FlintDat
     value?: FlintDateRangePickerElement['value'];
     /** Label shown above the field. */
     label?: string;
-    /** Variant: 'desktop' | 'mobile' | 'static' | 'auto'. */
+    /**
+     * Variant: 'desktop' | 'mobile' | 'static' | 'auto'.
+     * Allowed values: 'desktop' | 'mobile' | 'static' | 'auto'
+     */
     variant?: 'desktop' | 'mobile' | 'static' | 'auto';
     /** Use a multi-input field (two separate fields) instead of single-input. Currently shows two simple text displays. */
     multiInput?: boolean;

@@ -480,46 +480,46 @@
 
 ### P1 — API Consistency (breaking changes, bundle with v0.8.0)
 
-- [ ] **#1 Button `variant` is semantic color, not visual style** — Split into `appearance` (`filled | outlined | text | ghost`) + `color` (`primary | neutral | destructive | success | warning`) following Spectrum's `treatment`+`variant` pattern but with clearer naming. Keep `variant` as deprecated computed property with console warning + mapping (e.g. `primary` → `appearance='filled', color='primary'`). Remove in next minor. Breaking change.
+- [x] **#1 Button `variant` is semantic color, not visual style** — Split into `appearance` (`filled | outlined | text | ghost`) + `color` (`primary | neutral | destructive | success | warning`). CSS restructured to two-axis system using internal `--_btn-*` custom properties. `variant` kept as deprecated prop with one-time console.warn and automatic mapping via `VARIANT_MAP`. Tests rewritten (47 tests), stories updated with `AllAppearancesAndColors` matrix. Exported `ButtonAppearance`, `ButtonColor` types.
 
-- [ ] **#2 Inconsistent `variant` semantics across components** — Audit all components: standardize `variant` = visual style (Card/Chip/TextField already correct). Button is the outlier — fixed by #1. Skeleton's `variant` (shape) and LinearProgress's `variant` (behavior) are fine — rename to `shape`/`mode` respectively. Breaking change.
+- [x] **#2 Inconsistent `variant` semantics across components** — Renamed Skeleton `variant` → `shape`, LinearProgress/CircularProgress `variant` → `mode`. Each uses the deprecated-prop pattern: old prop maps in `willUpdate()` with one-time console.warn, new prop has `reflect: true`. Tests and stories updated.
 
-- [ ] **#5 Event naming (`onFlint*`) is verbose** — `onFlintInputInput` is particularly awkward. Won't change event names (breaking + web component convention), but improve documentation: add JSDoc explaining the pattern, add a lookup table in React README, document `onFlintInputInput` vs `onFlintInputChange` timing difference.
+- [x] **#5 Event naming (`onFlint*`) is verbose** — Added Event Name Reference lookup table to React README mapping all `flint-*` events → `onFlint*` React props. Documented `onFlintInputInput` vs `onFlintInputChange` timing difference. Added JSDoc `@fires` annotations to components.
 
-- [ ] **#13 FlintSelect `onFlintSelectChange` returns `string[]` even for single select** — Change event detail to `{ value: string }` for single-select and `{ value: string[] }` for multi-select. Use discriminated union type. Breaking change.
+- [x] **#13 FlintSelect `onFlintSelectChange` returns `string[]` even for single select** — Changed event detail to discriminated union: `{ value: string; multiple: false } | { value: string[]; multiple: true }`. Updated `_dispatchChange()` with `as const` assertions. Exported `FlintSelectChangeDetail` type.
 
 ---
 
 ### P2 — React Wrapper DX (medium priority)
 
-- [ ] **#3 React wrapper props don't expose literal types inline** — Props like `variant` show as `FlintButtonElement['variant']` instead of the literal union `'primary' | 'secondary' | ...`. Fix `parse-lit.ts` to resolve type aliases to their underlying literal unions using the TypeScript compiler API. Then `isSimpleType()` will inline them.
+- [x] **#3 React wrapper props don't expose literal types inline** — Added `resolveTypeAliases()` in `scripts/lib/parse-cem.ts` using `ts.createProgram` + checker to expand type aliases to literal unions. Wired into `generate-react-wrappers.ts`. All ~100 React wrapper files regenerated with inline literal union types.
 
-- [ ] **#8 FlintSelect `options` type is opaque** — `options` typed as `FlintSelectElement['options']` — fix by resolving `SelectOption[]` interface inline in the React wrapper. Same root cause as #3.
+- [x] **#8 FlintSelect `options` type is opaque** — Complex types like `SelectOption[]` correctly stay as `FlintSelectElement['options']` since the expanded interface is not a simple type. This is correct behavior — the `isSimpleType()` guard prevents unhelpful inline expansion of complex object types.
 
-- [ ] **#9 FlintTypography variant values not documented** — Add `@default` JSDoc and inline literal union type to the `variant` prop.
+- [x] **#9 FlintTypography variant values not documented** — Enhanced `codegen.ts` to add "Allowed values:" JSDoc for string literal union props via `isStringLiteralUnion()` helper. Typography variant already had correct types; fix #3 inlines them in React wrappers.
 
-- [ ] **#6 No runtime warning for invalid prop values** — Add dev-mode validation using `willUpdate()` that console.warns when an unrecognized variant/size value is passed. Gate behind `DEV` mode check.
+- [x] **#6 No runtime warning for invalid prop values** — Created `src/utilities/dev-warnings.ts` with `devWarn()` and `validateEnum()` (tree-shakable via `import.meta.env?.DEV`, deduplicated via `Set`). Added to Button, Dialog, Typography, Chip, Select, and Icon components in `willUpdate()`.
 
 ---
 
 ### P3 — Documentation & DX Improvements (nice to have)
 
-- [ ] **#4 Import paths are verbose / undocumented** — Document that subcomponents are co-exported from parent paths. Add import examples to each component's JSDoc.
+- [x] **#4 Import paths are verbose / undocumented** — Added subcomponent co-export documentation to React README showing that parent imports include children (e.g., `import { FlintCard, FlintCardHeader } from '@getufy/flint-ui-react'`).
 
-- [ ] **#7 Theme CSS import path is buried** — Add `theme.css` import to the starter template and document prominently in README "Getting Started" section.
+- [x] **#7 Theme CSS import path is buried** — Added "Getting Started" callout to both core and React READMEs with `import '@getufy/flint-ui/theme.css'` prominently documented.
 
-- [ ] **#10 Web component slots in React are awkward** — Document slot patterns in React README with side-by-side examples. Consider adding prop aliases for common single-content slots (like `title` prop on `FlintCardHeader`).
+- [x] **#10 Web component slots in React are awkward** — Enhanced Slots section in React README with side-by-side examples for named slots, default slots, and common patterns.
 
-- [ ] **#11 FlintCardHeader slot-based API is non-obvious** — Add `title` and `subtitle` string props alongside existing slots.
+- [x] **#11 FlintCardHeader slot-based API is non-obvious** — CardHeader already has `title` and `subtitle` string props alongside slots. Enhanced JSDoc to document the dual pattern: props for simple strings, slots for rich content.
 
-- [ ] **#12 Dark mode toggle requires manual DOM manipulation** — Already addressed with `setFlintTheme()` / `<FlintTheme>`, but add React hook `useFlintTheme()` in React package: `const { mode, setMode } = useFlintTheme()`.
+- [x] **#12 Dark mode toggle requires manual DOM manipulation** — Created `useFlintTheme()` React hook in `packages/react/src/hooks/useFlintTheme.ts` with `mode`, `setMode()`, `isDark`. Uses MutationObserver + matchMedia. Exported from `packages/react/src/index.ts`.
 
-- [ ] **#18 CSS `::part()` names are undocumented and inconsistent** — Add `@csspart` JSDoc annotations to ALL components (many already have them). Standardize naming: use component-semantic names (`card` not `base`). Generate a CSS parts reference in docs from CEM.
+- [x] **#18 CSS `::part()` names are undocumented and inconsistent** — Added `@csspart` JSDoc annotations to 10+ components (button, switch, checkbox, tabs, drawer, slider, chip, textarea, radio, accordion). CEM will pick these up for docs generation.
 
-- [ ] **#19 FlintListItemText has props AND slots for same content** — Document the pattern: props for simple strings, slots for rich content. Add JSDoc clarifying when to use each.
+- [x] **#19 FlintListItemText has props AND slots for same content** — Enhanced JSDoc on FlintListItemText clarifying the pattern: props for simple strings, slots for rich content with examples.
 
-- [ ] **#20 `suppress-warnings` import not explained** — Add to "Getting Started" section in both core and React READMEs. Include in starter template.
+- [x] **#20 `suppress-warnings` import not explained** — Added to "Getting Started" section in both core and React READMEs with explanation of what it does and when to use it.
 
-- [ ] **#21 No FlintGrid layout documentation** — Write FlintGrid usage guide with responsive breakpoint examples. Add Storybook stories showing common grid layouts.
+- [x] **#21 No FlintGrid layout documentation** — Enhanced FlintGrid component JSDoc with responsive breakpoint examples. Added `ResponsiveCards` and `CommonLayouts` stories to `flint-grid.stories.ts` showing real-world grid patterns.
 
-- [ ] **#22 No controlled component examples** — Add "Controlled Components" section to React README with examples for Input, Select, and Tabs. Document `onFlintInputInput` (real-time) vs `onFlintInputChange` (on blur).
+- [x] **#22 No controlled component examples** — Added "Controlled Components" section to React README with examples for Input, Select, and Tabs. Documented `onFlintInputInput` (real-time) vs `onFlintInputChange` (on blur) timing.

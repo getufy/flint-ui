@@ -2,6 +2,7 @@ import { unsafeCSS, html, nothing } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
 import { FlintElement } from '../flint-element.js';
+import { validateEnum } from '../utilities/dev-warnings.js';
 
 export type IconSize = 'sm' | 'md' | 'lg';
 
@@ -179,6 +180,10 @@ export class FlintIcon extends FlintElement {
   }
 
   willUpdate(changed: import('lit').PropertyValues) {
+    if (import.meta.env?.DEV) {
+      validateEnum('flint-icon', 'size', this.size, ['sm', 'md', 'lg']);
+    }
+
     if (changed.has('name') || changed.has('src') || changed.has('size')) {
       // Update CSS custom property for size
       const dim = sizeMap[this.size] || sizeMap.md;

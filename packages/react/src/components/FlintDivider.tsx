@@ -15,13 +15,25 @@ import { FlintDivider as FlintDividerElement } from '@getufy/flint-ui/divider/fl
  * @slot (default) - Optional text or content to display within the divider.
  */
 export interface FlintDividerProps extends React.HTMLAttributes<FlintDividerElement> {
-    /** Orientation of the divider line. */
+    /**
+     * Orientation of the divider line.
+     * Allowed values: 'horizontal' | 'vertical'
+     */
     orientation?: 'horizontal' | 'vertical';
-    /** Inset variant controlling how far the divider extends. */
+    /**
+     * Inset variant controlling how far the divider extends.
+     * Allowed values: 'full' | 'middle' | 'inset'
+     */
     variant?: 'full' | 'middle' | 'inset';
-    /** Thickness of the divider line. */
+    /**
+     * Thickness of the divider line.
+     * Allowed values: 'light' | 'medium' | 'heavy'
+     */
     weight?: 'light' | 'medium' | 'heavy';
-    /** Alignment of text content within the divider. */
+    /**
+     * Alignment of text content within the divider.
+     * Allowed values: 'left' | 'center' | 'right'
+     */
     textAlign?: 'left' | 'center' | 'right';
 }
 

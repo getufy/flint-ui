@@ -21,6 +21,7 @@ export interface FlintFabProps extends React.HTMLAttributes<FlintFabElement> {
     disabled?: boolean;
     /** Accessible label for icon-only (non-extended) FABs. */
     label?: string;
+    /** Allowed values: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left' | 'static' */
     position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left' | 'static';
 }
 

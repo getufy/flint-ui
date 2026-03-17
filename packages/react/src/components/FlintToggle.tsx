@@ -24,11 +24,20 @@ export interface FlintToggleProps extends Omit<React.HTMLAttributes<FlintToggleE
     pressed?: boolean;
     /** Whether the toggle is disabled. */
     disabled?: boolean;
-    /** Visual variant of the toggle. */
+    /**
+     * Visual variant of the toggle.
+     * Allowed values: 'default' | 'outlined'
+     */
     variant?: 'default' | 'outlined';
-    /** Size of the toggle. */
+    /**
+     * Size of the toggle.
+     * Allowed values: 'sm' | 'md' | 'lg'
+     */
     size?: 'sm' | 'md' | 'lg';
-    /** Text direction for the toggle. */
+    /**
+     * Text direction for the toggle.
+     * Allowed values: 'ltr' | 'rtl'
+     */
     dir?: 'ltr' | 'rtl';
     /** Initial pressed state for uncontrolled mode. */
     defaultPressed?: boolean;

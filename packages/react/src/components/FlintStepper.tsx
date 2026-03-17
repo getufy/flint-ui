@@ -22,7 +22,10 @@ export interface FlintStepperProps extends React.HTMLAttributes<FlintStepperElem
     activeStep?: number;
     /** Initial active step for uncontrolled usage. */
     defaultActiveStep?: number | undefined;
-    /** Layout direction of the stepper. */
+    /**
+     * Layout direction of the stepper.
+     * Allowed values: 'horizontal' | 'vertical'
+     */
     orientation?: 'horizontal' | 'vertical';
     /** Whether to display step labels below the icons instead of beside them. */
     alternativeLabel?: boolean;

@@ -29,9 +29,15 @@ export interface FlintDrawerProps extends React.HTMLAttributes<FlintDrawerElemen
     open?: boolean;
     /** Initial open state for uncontrolled usage. */
     defaultOpen?: boolean;
-    /** Side from which the drawer slides in. */
+    /**
+     * Side from which the drawer slides in.
+     * Allowed values: 'left' | 'right' | 'top' | 'bottom'
+     */
     placement?: 'left' | 'right' | 'top' | 'bottom';
-    /** Drawer behavior mode. */
+    /**
+     * Drawer behavior mode.
+     * Allowed values: 'temporary' | 'persistent' | 'mini'
+     */
     variant?: 'temporary' | 'persistent' | 'mini';
     /** Whether the drawer uses edge spacing. */
     edge?: boolean;

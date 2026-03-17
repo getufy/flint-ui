@@ -13,9 +13,11 @@ import uiCardHeaderStyles from './flint-card-header.css?inline';
 export class FlintCardHeader extends FlintElement {
     static styles = unsafeCSS(uiCardHeaderStyles);
 
+    /** Plain text title. For rich content (icons, links), use the default slot instead. */
     @property({ type: String })
     title = '';
 
+    /** Plain text subtitle. For rich content, use the `subtitle` named slot instead. */
     @property({ type: String })
     subtitle = '';
 

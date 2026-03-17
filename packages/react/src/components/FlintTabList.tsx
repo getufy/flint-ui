@@ -10,13 +10,22 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintTabList as FlintTabListElement } from '@getufy/flint-ui/tabs/flint-tabs';
 
 export interface FlintTabListProps extends React.HTMLAttributes<FlintTabListElement> {
-    /** Layout direction of the tab list. */
+    /**
+     * Layout direction of the tab list.
+     * Allowed values: 'horizontal' | 'vertical'
+     */
     orientation?: 'horizontal' | 'vertical';
-    /** Display variant controlling tab sizing and scrollability. */
+    /**
+     * Display variant controlling tab sizing and scrollability.
+     * Allowed values: 'standard' | 'fullWidth' | 'scrollable'
+     */
     variant?: 'standard' | 'fullWidth' | 'scrollable';
     /** Whether to center the tabs within the tab list. */
     centered?: boolean;
-    /** Whether to show scroll buttons in scrollable mode. */
+    /**
+     * Whether to show scroll buttons in scrollable mode.
+     * Allowed values: 'auto' | 'false'
+     */
     scrollButtons?: 'auto' | 'false';
     /** Accessible label for the tab list. */
     ariaLabel?: string;

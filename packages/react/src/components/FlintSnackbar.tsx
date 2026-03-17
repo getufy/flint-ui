@@ -34,14 +34,20 @@ export interface FlintSnackbarProps extends React.HTMLAttributes<FlintSnackbarEl
     message?: string;
     /** Duration in milliseconds before the snackbar auto-closes. */
     autoHideDuration?: number;
-    /** Position of the snackbar. */
+    /**
+     * Position of the snackbar.
+     * Allowed values: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'
+     */
     anchorOrigin?: 'top-left' | 'top-center' | 'top-right' |
         'bottom-left' | 'bottom-center' | 'bottom-right';
     /** Pause the auto-hide timer while the user hovers over the snackbar. */
     pauseOnHover?: boolean;
     /** Show a dismiss (✕) button. */
     closable?: boolean;
-    /** Visual style variant. */
+    /**
+     * Visual style variant.
+     * Allowed values: 'default' | 'info' | 'success' | 'warning' | 'error'
+     */
     variant?: 'default' | 'info' | 'success' | 'warning' | 'error';
     /** Fired when the snackbar opens (bubbles, composed). detail: `{ open: true }` */
     onFlintSnackbarOpen?: (event: CustomEvent<FlintSnackbarOpenDetail>) => void;

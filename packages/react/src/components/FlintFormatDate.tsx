@@ -42,7 +42,10 @@ export interface FlintFormatDateProps extends Omit<React.HTMLAttributes<FlintFor
     dateStyle?: 'full' | 'long' | 'medium' | 'short' | undefined;
     /** Shorthand time format style. Cannot be combined with individual time field props */
     timeStyle?: 'full' | 'long' | 'medium' | 'short' | undefined;
-    /** The hour format to use. `'auto'` uses the browser/locale default. */
+    /**
+     * The hour format to use. `'auto'` uses the browser/locale default.
+     * Allowed values: 'auto' | '12' | '24'
+     */
     hourFormat?: 'auto' | '12' | '24';
     /** BCP 47 language tag for formatting locale (e.g. "en", "fr", "ru"). Inherits from the document when unset. */
     lang?: string;

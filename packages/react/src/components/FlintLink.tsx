@@ -18,16 +18,28 @@ with theme colors and typography styles.
 export interface FlintLinkProps extends Omit<React.HTMLAttributes<FlintLinkElement>, 'color'> {
     /** The URL of the link. */
     href?: string;
-    /** Where to open the link. */
+    /**
+     * Where to open the link.
+     * Allowed values: '_self' | '_blank' | '_parent' | '_top'
+     */
     target?: '_self' | '_blank' | '_parent' | '_top';
     /** Specifies the relationship of the target object. */
     rel?: string;
-    /** The color of the link. */
-    color?: FlintLinkElement['color'];
-    /** Controls the underline behavior. */
+    /**
+     * The color of the link.
+     * Allowed values: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info' | 'textPrimary' | 'textSecondary' | 'inherit'
+     */
+    color?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info' | 'textPrimary' | 'textSecondary' | 'inherit';
+    /**
+     * Controls the underline behavior.
+     * Allowed values: 'none' | 'hover' | 'always'
+     */
     underline?: 'none' | 'hover' | 'always';
-    /** Applies typography variant styles. */
-    variant?: FlintLinkElement['variant'];
+    /**
+     * Applies typography variant styles.
+     * Allowed values: 'inherit' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'subtitle1' | 'subtitle2' | 'body1' | 'body2' | 'caption' | 'overline'
+     */
+    variant?: 'inherit' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'subtitle1' | 'subtitle2' | 'body1' | 'body2' | 'caption' | 'overline';
     /** If true, the link is disabled. */
     disabled?: boolean;
     /** The download attribute. */

@@ -36,7 +36,10 @@ export interface FlintStepProps extends React.HTMLAttributes<FlintStepElement> {
     last?: boolean;
     /** Whether this step can be clicked to navigate to it. */
     clickable?: boolean;
-    /** Layout direction of the step. */
+    /**
+     * Layout direction of the step.
+     * Allowed values: 'horizontal' | 'vertical'
+     */
     orientation?: 'horizontal' | 'vertical';
     /** Whether to display the label below the step icon instead of beside it. */
     alternativeLabel?: boolean;

@@ -16,9 +16,15 @@ Renders a semantic `<kbd>` element for accessibility.
  * @slot (default) - Key label: text, symbol (⌘ ⇧ ⌥ ⌃ ⏎), or any inline content.
  */
 export interface FlintKbdProps extends React.HTMLAttributes<FlintKbdElement> {
-    /** Visual size of the key. */
+    /**
+     * Visual size of the key.
+     * Allowed values: 'sm' | 'md' | 'lg'
+     */
     size?: 'sm' | 'md' | 'lg';
-    /** Visual style: `raised` (default, bottom border + shadow) or `flat` (no raised effect). */
+    /**
+     * Visual style: `raised` (default, bottom border + shadow) or `flat` (no raised effect).
+     * Allowed values: 'raised' | 'flat'
+     */
     variant?: 'raised' | 'flat';
     /** Accessible label forwarded as `aria-label` on the inner `<kbd>` element. Useful for symbol keys like ⌘. */
     label?: string;

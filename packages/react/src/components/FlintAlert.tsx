@@ -21,7 +21,10 @@ export interface FlintAlertCloseDetail {
  * @slot icon - Optional icon to display instead of the default severity icon.
  */
 export interface FlintAlertProps extends Omit<React.HTMLAttributes<FlintAlertElement>, 'title'> {
-    /** The severity level of the alert. */
+    /**
+     * The severity level of the alert.
+     * Allowed values: 'info' | 'success' | 'warning' | 'error'
+     */
     severity?: 'info' | 'success' | 'warning' | 'error';
     /** An optional title for the alert. */
     title?: string;

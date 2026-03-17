@@ -14,6 +14,12 @@ let _uidCounter = 0;
  *
  * @fires flint-textarea-input  - Dispatched on every keystroke. Detail: `{ value: string }`
  * @fires flint-textarea-change - Dispatched on blur/change. Detail: `{ value: string }`
+ *
+ * @csspart wrapper - The textarea's outer wrapper element.
+ * @csspart label - The label element.
+ * @csspart textarea - The native textarea element.
+ * @csspart error-text - The error message element.
+ * @csspart help-text - The helper text element.
  */
 export class FlintTextarea extends FormAssociated(FlintElement) {
     static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };

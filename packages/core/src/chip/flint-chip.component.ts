@@ -3,6 +3,7 @@ import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { FlintElement } from '../flint-element.js';
+import { validateEnum } from '../utilities/dev-warnings.js';
 import uiChipStyles from './flint-chip.css?inline';
 
 /**
@@ -14,6 +15,8 @@ import uiChipStyles from './flint-chip.css?inline';
  *
  * @fires flint-chip-click - Fired when a clickable chip is clicked.
  * @fires flint-chip-delete - Fired when the chip's delete icon is clicked. detail: `{ value: string }`
+ *
+ * @csspart base - The chip's base wrapper element.
  */
 export class FlintChip extends FlintElement {
     static styles = unsafeCSS(uiChipStyles);
@@ -41,6 +44,14 @@ export class FlintChip extends FlintElement {
     @property({ type: Boolean }) deletable = false;
     /** Disables the chip and prevents interaction. */
     @property({ type: Boolean, reflect: true }) disabled = false;
+
+    override willUpdate() {
+        if (import.meta.env?.DEV) {
+            validateEnum('flint-chip', 'variant', this.variant, ['filled', 'outlined']);
+            validateEnum('flint-chip', 'size', this.size, ['sm', 'md', 'lg']);
+            validateEnum('flint-chip', 'color', this.color, ['default', 'primary', 'secondary']);
+        }
+    }
 
     private _handleClick() {
         if (this.disabled || !this.clickable) return;

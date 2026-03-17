@@ -29,7 +29,12 @@ export class FlintSkeleton extends FlintElement {
     /**
      * The shape of the skeleton.
      */
-    @property({ type: String, reflect: true }) variant: 'text' | 'circular' | 'rectangular' | 'rounded' = 'text';
+    @property({ type: String, reflect: true }) shape: 'text' | 'circular' | 'rectangular' | 'rounded' = 'text';
+
+    /**
+     * @deprecated Use `shape` instead. Will be removed in a future version.
+     */
+    @property({ type: String }) variant: 'text' | 'circular' | 'rectangular' | 'rounded' = 'text';
 
     /**
      * The width of the skeleton. Accepts any CSS length value (e.g. '200px', '50%').
@@ -46,10 +51,24 @@ export class FlintSkeleton extends FlintElement {
      */
     @property({ type: String }) label = 'Loading...';
 
+    private _variantWarned = false;
+
     connectedCallback() {
         super.connectedCallback();
         if (!this.hasAttribute('role')) this.setAttribute('role', 'status');
         this._syncLabel();
+    }
+
+    willUpdate(changed: PropertyValues) {
+        if (changed.has('variant') && this.variant !== 'text' && this.shape === 'text') {
+            this.shape = this.variant;
+            if (!this._variantWarned) {
+                this._variantWarned = true;
+                console.warn(
+                    'flint-skeleton: `variant` is deprecated. Use `shape` instead.'
+                );
+            }
+        }
     }
 
     updated(changed: PropertyValues) {
@@ -70,7 +89,7 @@ export class FlintSkeleton extends FlintElement {
     }
 
     render() {
-        const isText = this.variant === 'text';
+        const isText = this.shape === 'text';
         const animClass = this.animation !== 'none' ? this.animation : '';
 
         const styles = {
@@ -87,7 +106,7 @@ export class FlintSkeleton extends FlintElement {
         return html`
             <span
                 part="skeleton"
-                class="skeleton ${animClass} ${this.variant}"
+                class="skeleton ${animClass} ${this.shape}"
                 style=${styleMap(styles)}
                 aria-hidden="true"
             ></span>

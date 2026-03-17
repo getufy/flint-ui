@@ -37,8 +37,11 @@ export interface FlintSliderProps extends Omit<React.HTMLAttributes<FlintSliderE
     showValue?: boolean;
     /** Renders the slider vertically. */
     vertical?: boolean;
-    /** Size variant of the slider. */
-    size?: FlintSliderElement['size'];
+    /**
+     * Size variant of the slider.
+     * Allowed values: 'sm' | 'md' | 'lg'
+     */
+    size?: 'sm' | 'md' | 'lg';
     /** Form field name used when submitting form data. */
     name?: string;
     /** Optional formatter: `(value: number) => string`. JS-only prop (not an attribute). */

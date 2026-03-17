@@ -51,7 +51,7 @@ A select component for choosing one or multiple options from a list.
 
 | Event | Detail | Description |
 |---|---|---|
-| \`flint-select-change\` | \`&#123; value: string[] &#125;\` | Dispatched when the selection changes. detail: \`&#123; value: string[] &#125;\` |
+| \`flint-select-change\` | \`&#123; value: string, multiple: false &#125; \\| &#123; value: string[], multiple: true &#125;\` | Dispatched when the selection changes. |
 
 #### Slots
 

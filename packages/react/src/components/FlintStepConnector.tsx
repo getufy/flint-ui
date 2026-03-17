@@ -10,7 +10,10 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintStepConnector as FlintStepConnectorElement } from '@getufy/flint-ui/stepper/flint-stepper';
 
 export interface FlintStepConnectorProps extends React.HTMLAttributes<FlintStepConnectorElement> {
-    /** Layout direction of the connector line. */
+    /**
+     * Layout direction of the connector line.
+     * Allowed values: 'horizontal' | 'vertical'
+     */
     orientation?: 'horizontal' | 'vertical';
     /** Whether the connector represents a completed step transition. */
     completed?: boolean;

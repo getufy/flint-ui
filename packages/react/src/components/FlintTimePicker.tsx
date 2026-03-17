@@ -23,7 +23,10 @@ export interface FlintTimePickerProps extends Omit<React.HTMLAttributes<FlintTim
     value?: string;
     /** Field label text. */
     label?: string;
-    /** Picker variant controlling the UI style. */
+    /**
+     * Picker variant controlling the UI style.
+     * Allowed values: 'desktop' | 'mobile' | 'static' | 'auto'
+     */
     variant?: 'desktop' | 'mobile' | 'static' | 'auto';
     /** Whether to use 12-hour (AM/PM) format instead of 24-hour. */
     ampm?: boolean;

@@ -18,9 +18,15 @@ shadow DOM and synced to the viewport via scroll + ResizeObserver events.
  * @slot scrollbar - Optional explicit `flint-scroll-bar` elements (e.g. horizontal).
  */
 export interface FlintScrollAreaProps extends Omit<React.HTMLAttributes<FlintScrollAreaElement>, 'dir'> {
-    /** Controls when the scrollbars appear. */
+    /**
+     * Controls when the scrollbars appear.
+     * Allowed values: 'auto' | 'always' | 'scroll' | 'hover'
+     */
     type?: 'auto' | 'always' | 'scroll' | 'hover';
-    /** Text direction. `'rtl'` flips the vertical bar to the left side. */
+    /**
+     * Text direction. `'rtl'` flips the vertical bar to the left side.
+     * Allowed values: 'ltr' | 'rtl'
+     */
     dir?: 'ltr' | 'rtl';
 }
 

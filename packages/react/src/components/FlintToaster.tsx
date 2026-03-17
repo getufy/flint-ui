@@ -14,8 +14,11 @@ import { FlintToaster as FlintToasterElement } from '@getufy/flint-ui/sonner/fli
 Toasts are created imperatively via the `toast()` function.
  */
 export interface FlintToasterProps extends React.HTMLAttributes<FlintToasterElement> {
-    /** Position of the toast stack relative to the viewport. */
-    position?: FlintToasterElement['position'];
+    /**
+     * Position of the toast stack relative to the viewport.
+     * Allowed values: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'
+     */
+    position?: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
     /** Default auto-dismiss duration in milliseconds. */
     duration?: number;
     /** Maximum number of toasts visible simultaneously. */

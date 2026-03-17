@@ -21,9 +21,15 @@ export interface FlintMobileStepperProps extends React.HTMLAttributes<FlintMobil
     steps?: number;
     /** Zero-based index of the currently active step. */
     activeStep?: number;
-    /** Progress indicator style: text counter, dot indicators, or a progress bar. */
+    /**
+     * Progress indicator style: text counter, dot indicators, or a progress bar.
+     * Allowed values: 'text' | 'dots' | 'progress'
+     */
     variant?: 'text' | 'dots' | 'progress';
-    /** Positioning of the mobile stepper within its container. */
+    /**
+     * Positioning of the mobile stepper within its container.
+     * Allowed values: 'top' | 'bottom' | 'static'
+     */
     position?: 'top' | 'bottom' | 'static';
     /** Label text for the Back navigation button (supports i18n). */
     backLabel?: string;

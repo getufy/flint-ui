@@ -23,7 +23,10 @@ export interface FlintCarouselChangeDetail {
 export interface FlintCarouselProps extends React.HTMLAttributes<FlintCarouselElement> {
     /** When true, navigation wraps from last slide back to first and vice versa. */
     loop?: boolean;
-    /** Slide direction axis. */
+    /**
+     * Slide direction axis.
+     * Allowed values: 'horizontal' | 'vertical'
+     */
     orientation?: 'horizontal' | 'vertical';
     /** Auto-advance interval in milliseconds. Set to 0 to disable. */
     autoplay?: number;

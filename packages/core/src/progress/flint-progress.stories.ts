@@ -20,7 +20,7 @@ flint-circular-progress: a circular progress indicator (spinner).
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`variant\` | \`variant\` | \`'determinate' \\| 'indeterminate'\` | \`'indeterminate'\` | Progress variant: determinate shows a specific value, indeterminate shows an animation. |
+| \`mode\` | \`mode\` | \`'determinate' \\| 'indeterminate'\` | \`'indeterminate'\` | Progress mode: determinate shows a specific value, indeterminate shows an animation. |
 | \`value\` | \`value\` | \`number\` | \`0\` | Current progress percentage (0-100) for determinate mode. |
 | \`size\` | \`size\` | \`number\` | \`40\` | Diameter of the circular indicator in pixels. |
 | \`thickness\` | \`thickness\` | \`number\` | \`3.6\` | Stroke width of the circle in pixels. |
@@ -50,7 +50,7 @@ flint-linear-progress: a horizontal progress bar.
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`variant\` | \`variant\` | \`'determinate' \\| 'indeterminate'\` | \`'indeterminate'\` | Progress variant: determinate shows a specific value, indeterminate shows an animation. |
+| \`mode\` | \`mode\` | \`'determinate' \\| 'indeterminate'\` | \`'indeterminate'\` | Progress mode: determinate shows a specific value, indeterminate shows an animation. |
 | \`value\` | \`value\` | \`number\` | \`0\` | Current progress value (0-100). |
 | \`height\` | \`height\` | \`number\` | \`4\` | Height of the progress bar in pixels. |
 | \`color\` | \`color\` | \`'primary' \\| 'success' \\| 'error' \\| 'warning'\` | \`'primary'\` | Color theme of the progress bar. |
@@ -68,7 +68,7 @@ flint-linear-progress: a horizontal progress bar.
         },
     },
     argTypes: {
-        variant: {
+        mode: {
             control: 'select',
             options: ['determinate', 'indeterminate'],
         },
@@ -83,7 +83,7 @@ flint-linear-progress: a horizontal progress bar.
         label: { control: 'text' },
     },
     args: {
-        variant: 'indeterminate',
+        mode: 'indeterminate',
         value: 60,
         color: 'primary',
         label: '',
@@ -103,7 +103,7 @@ export const CircularPlayground: Story = {
     name: 'Circular — Playground',
     render: (args) => html`
     <flint-circular-progress
-      .variant="${args.variant}"
+      .mode="${args.mode}"
       .value="${args.value}"
       .size="${args.size}"
       .thickness="${args.thickness}"
@@ -118,7 +118,7 @@ export const LinearPlayground: Story = {
     render: (args) => html`
     <div style="width: 100%; max-width: 400px; padding: 20px;">
       <flint-linear-progress
-        .variant="${args.variant}"
+        .mode="${args.mode}"
         .value="${args.value}"
         .height="${args.height}"
         .color="${args.color}"
@@ -145,10 +145,10 @@ export const CircularDeterminate: Story = {
     name: 'Circular — Determinate',
     render: () => html`
     <div style="display: flex; gap: 20px; align-items: center;">
-      <flint-circular-progress variant="determinate" .value="${25}" label="25%"></flint-circular-progress>
-      <flint-circular-progress variant="determinate" .value="${50}" label="50%"></flint-circular-progress>
-      <flint-circular-progress variant="determinate" .value="${75}" label="75%"></flint-circular-progress>
-      <flint-circular-progress variant="determinate" .value="${100}" label="100%"></flint-circular-progress>
+      <flint-circular-progress mode="determinate" .value="${25}" label="25%"></flint-circular-progress>
+      <flint-circular-progress mode="determinate" .value="${50}" label="50%"></flint-circular-progress>
+      <flint-circular-progress mode="determinate" .value="${75}" label="75%"></flint-circular-progress>
+      <flint-circular-progress mode="determinate" .value="${100}" label="100%"></flint-circular-progress>
     </div>
   `,
 };
@@ -181,9 +181,9 @@ export const LinearDeterminate: Story = {
     name: 'Linear — Determinate',
     render: () => html`
     <div style="width: 100%; max-width: 400px; padding: 20px; display: flex; flex-direction: column; gap: 20px;">
-      <flint-linear-progress variant="determinate" .value="${30}" label="30%"></flint-linear-progress>
-      <flint-linear-progress variant="determinate" .value="${60}" label="60%"></flint-linear-progress>
-      <flint-linear-progress variant="determinate" .value="${90}" label="90%"></flint-linear-progress>
+      <flint-linear-progress mode="determinate" .value="${30}" label="30%"></flint-linear-progress>
+      <flint-linear-progress mode="determinate" .value="${60}" label="60%"></flint-linear-progress>
+      <flint-linear-progress mode="determinate" .value="${90}" label="90%"></flint-linear-progress>
     </div>
   `,
 };
@@ -194,19 +194,19 @@ export const LinearSizes: Story = {
     <div style="width: 100%; max-width: 400px; padding: 20px; display: flex; flex-direction: column; gap: 16px; font-family: sans-serif; font-size: 12px; color: #666;">
       <div>
         <p style="margin: 0 0 4px">height=2</p>
-        <flint-linear-progress variant="determinate" .value="${60}" .height="${2}" label="2px height"></flint-linear-progress>
+        <flint-linear-progress mode="determinate" .value="${60}" .height="${2}" label="2px height"></flint-linear-progress>
       </div>
       <div>
         <p style="margin: 0 0 4px">height=4 (default)</p>
-        <flint-linear-progress variant="determinate" .value="${60}" label="4px height"></flint-linear-progress>
+        <flint-linear-progress mode="determinate" .value="${60}" label="4px height"></flint-linear-progress>
       </div>
       <div>
         <p style="margin: 0 0 4px">height=8</p>
-        <flint-linear-progress variant="determinate" .value="${60}" .height="${8}" label="8px height"></flint-linear-progress>
+        <flint-linear-progress mode="determinate" .value="${60}" .height="${8}" label="8px height"></flint-linear-progress>
       </div>
       <div>
         <p style="margin: 0 0 4px">height=12</p>
-        <flint-linear-progress variant="determinate" .value="${60}" .height="${12}" label="12px height"></flint-linear-progress>
+        <flint-linear-progress mode="determinate" .value="${60}" .height="${12}" label="12px height"></flint-linear-progress>
       </div>
     </div>
   `,
@@ -227,19 +227,19 @@ export const CustomColors: Story = {
           <flint-circular-progress color="warning" label="Warning"></flint-circular-progress>
         </div>
         <div style="display: flex; gap: 16px; align-items: center; margin-top: 12px;">
-          <flint-circular-progress variant="determinate" .value="${70}" color="primary" label="Primary 70%"></flint-circular-progress>
-          <flint-circular-progress variant="determinate" .value="${70}" color="success" label="Success 70%"></flint-circular-progress>
-          <flint-circular-progress variant="determinate" .value="${70}" color="error" label="Error 70%"></flint-circular-progress>
-          <flint-circular-progress variant="determinate" .value="${70}" color="warning" label="Warning 70%"></flint-circular-progress>
+          <flint-circular-progress mode="determinate" .value="${70}" color="primary" label="Primary 70%"></flint-circular-progress>
+          <flint-circular-progress mode="determinate" .value="${70}" color="success" label="Success 70%"></flint-circular-progress>
+          <flint-circular-progress mode="determinate" .value="${70}" color="error" label="Error 70%"></flint-circular-progress>
+          <flint-circular-progress mode="determinate" .value="${70}" color="warning" label="Warning 70%"></flint-circular-progress>
         </div>
       </div>
       <div>
         <p style="margin: 0 0 12px; font-weight: 600;">Linear</p>
         <div style="display: flex; flex-direction: column; gap: 10px;">
-          <flint-linear-progress variant="determinate" .value="${60}" color="primary" label="Primary"></flint-linear-progress>
-          <flint-linear-progress variant="determinate" .value="${60}" color="success" label="Success"></flint-linear-progress>
-          <flint-linear-progress variant="determinate" .value="${60}" color="error" label="Error"></flint-linear-progress>
-          <flint-linear-progress variant="determinate" .value="${60}" color="warning" label="Warning"></flint-linear-progress>
+          <flint-linear-progress mode="determinate" .value="${60}" color="primary" label="Primary"></flint-linear-progress>
+          <flint-linear-progress mode="determinate" .value="${60}" color="success" label="Success"></flint-linear-progress>
+          <flint-linear-progress mode="determinate" .value="${60}" color="error" label="Error"></flint-linear-progress>
+          <flint-linear-progress mode="determinate" .value="${60}" color="warning" label="Warning"></flint-linear-progress>
         </div>
       </div>
     </div>
@@ -257,7 +257,7 @@ export const Accessibility: Story = {
         <p style="margin: 0 0 8px; color: #666;">Screen readers will announce the label.</p>
         <div style="display: flex; gap: 16px; align-items: center;">
           <flint-circular-progress label="Loading user profile"></flint-circular-progress>
-          <flint-linear-progress label="Uploading file" variant="determinate" .value="${45}"></flint-linear-progress>
+          <flint-linear-progress label="Uploading file" mode="determinate" .value="${45}"></flint-linear-progress>
         </div>
       </div>
       <div>
@@ -265,7 +265,7 @@ export const Accessibility: Story = {
         <p style="margin: 0 0 8px; color: #666;">Use aria-labelledby when a visible label is already present.</p>
         <p id="upload-label" style="margin: 0 0 6px;">Uploading files… 72%</p>
         <flint-linear-progress
-          variant="determinate"
+          mode="determinate"
           .value="${72}"
           style="--flint-linear-progress-height: 6px"
         ></flint-linear-progress>
@@ -295,15 +295,15 @@ export const Integration: Story = {
       <div>
         <h4 style="margin: 0 0 8px">Linear — Background upload</h4>
         <p style="font-size: 13px; color: #666; margin: 0 0 8px">Uploading files… 45%</p>
-        <flint-linear-progress variant="determinate" .value="${45}" label="Upload 45%"></flint-linear-progress>
+        <flint-linear-progress mode="determinate" .value="${45}" label="Upload 45%"></flint-linear-progress>
       </div>
       <div>
         <h4 style="margin: 0 0 8px">Circular — Success state</h4>
-        <flint-circular-progress variant="determinate" .value="${100}" color="success" label="Complete"></flint-circular-progress>
+        <flint-circular-progress mode="determinate" .value="${100}" color="success" label="Complete"></flint-circular-progress>
       </div>
       <div>
         <h4 style="margin: 0 0 8px">Linear — Error state</h4>
-        <flint-linear-progress variant="determinate" .value="${30}" color="error" label="Upload failed at 30%"></flint-linear-progress>
+        <flint-linear-progress mode="determinate" .value="${30}" color="error" label="Upload failed at 30%"></flint-linear-progress>
       </div>
     </div>
   `,

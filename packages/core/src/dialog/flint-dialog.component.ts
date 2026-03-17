@@ -3,6 +3,7 @@ import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
 import { FlintBackdrop } from '../backdrop/flint-backdrop.component.js';
+import { validateEnum } from '../utilities/dev-warnings.js';
 import uiDialogStyles from './flint-dialog.css?inline';
 import uiDialogTitleStyles from './flint-dialog-title.css?inline';
 import uiDialogContentStyles from './flint-dialog-content.css?inline';
@@ -89,6 +90,10 @@ export class FlintDialog extends FlintElement {
   @property({ type: String, attribute: 'initial-focus' }) initialFocus = '';
 
   override willUpdate(changed: PropertyValues) {
+    if (import.meta.env?.DEV) {
+      validateEnum('flint-dialog', 'size', this.size, ['sm', 'md', 'lg', 'full']);
+    }
+
     if (this._firstUpdate) {
       this._firstUpdate = false;
       if (this.defaultOpen && !this.open) {

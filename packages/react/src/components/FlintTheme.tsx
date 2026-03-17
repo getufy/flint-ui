@@ -15,8 +15,11 @@ import { FlintTheme as FlintThemeElement } from '@getufy/flint-ui/theme/flint-th
  * @slot (default) - Default slot for child content.
  */
 export interface FlintThemeProps extends React.HTMLAttributes<FlintThemeElement> {
-    /** Color mode override for this subtree. */
-    mode?: FlintThemeElement['mode'];
+    /**
+     * Color mode override for this subtree.
+     * Allowed values: 'auto' | 'light' | 'dark'
+     */
+    mode?: 'auto' | 'light' | 'dark';
     /** Palette override — swaps primary color tokens. */
     palette?: string | undefined;
 }

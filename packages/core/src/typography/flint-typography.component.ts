@@ -2,6 +2,7 @@ import { unsafeCSS } from 'lit';
 import { property } from 'lit/decorators.js';
 import { html as staticHtml, literal } from 'lit/static-html.js';
 import { FlintElement } from '../flint-element.js';
+import { validateEnum } from '../utilities/dev-warnings.js';
 import uiTypographyStyles from './flint-typography.css?inline';
 
 /**
@@ -34,7 +35,10 @@ export class FlintTypography extends FlintElement {
     /** Override the rendered HTML tag. */
     @property({ type: String }) component?: string;
 
-    /** Text alignment. */
+    /**
+     * Text alignment.
+     * @default 'left'
+     */
     @property({ type: String, reflect: true }) align: 'left' | 'center' | 'right' | 'justify' = 'left';
 
     /** If true, text is truncated with an ellipsis. */
@@ -45,6 +49,21 @@ export class FlintTypography extends FlintElement {
 
     /** If true, adds paragraph margin bottom. */
     @property({ type: Boolean, reflect: true }) paragraph = false;
+
+    override willUpdate() {
+        if (import.meta.env?.DEV) {
+            validateEnum('flint-typography', 'variant', this.variant, [
+                'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+                'subtitle1', 'subtitle2', 'body1', 'body2',
+                'caption', 'overline', 'inherit',
+            ]);
+            validateEnum('flint-typography', 'color', this.color, [
+                'primary', 'secondary', 'success', 'error', 'warning', 'info',
+                'textPrimary', 'textSecondary', 'inherit',
+            ]);
+            validateEnum('flint-typography', 'align', this.align, ['left', 'center', 'right', 'justify']);
+        }
+    }
 
     private _literalTag() {
         const comp = this.component;

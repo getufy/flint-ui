@@ -16,9 +16,15 @@ export interface FlintAvatarProps extends React.HTMLAttributes<FlintAvatarElemen
     alt?: string;
     /** Initials to display when no image is provided. */
     initials?: string;
-    /** Shape variant of the avatar. */
+    /**
+     * Shape variant of the avatar.
+     * Allowed values: 'circle' | 'square' | 'rounded'
+     */
     variant?: 'circle' | 'square' | 'rounded';
-    /** Size of the avatar. */
+    /**
+     * Size of the avatar.
+     * Allowed values: 'sm' | 'md' | 'lg' | 'xl'
+     */
     size?: 'sm' | 'md' | 'lg' | 'xl';
 }
 

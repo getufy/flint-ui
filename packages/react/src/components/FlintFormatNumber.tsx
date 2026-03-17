@@ -16,23 +16,41 @@ Localization is handled by the browser's `Intl.NumberFormat` API — no language
 export interface FlintFormatNumberProps extends Omit<React.HTMLAttributes<FlintFormatNumberElement>, 'lang'> {
     /** The number to format. */
     value?: number;
-    /** The formatting style to use. */
+    /**
+     * The formatting style to use.
+     * Allowed values: 'currency' | 'decimal' | 'percent' | 'unit'
+     */
     type?: 'currency' | 'decimal' | 'percent' | 'unit';
     /** Turns off grouping separators (e.g. thousands separator). */
     noGrouping?: boolean;
     /** The ISO 4217 currency code to use when formatting (e.g. 'USD', 'EUR', 'GBP'). */
     currency?: string;
-    /** How to display the currency. */
+    /**
+     * How to display the currency.
+     * Allowed values: 'symbol' | 'narrowSymbol' | 'code' | 'name'
+     */
     currencyDisplay?: 'symbol' | 'narrowSymbol' | 'code' | 'name';
-    /** Number notation style. 'compact' renders e.g. "1.2K" or "3.4M". */
+    /**
+     * Number notation style. 'compact' renders e.g. "1.2K" or "3.4M".
+     * Allowed values: 'standard' | 'scientific' | 'engineering' | 'compact'
+     */
     notation?: 'standard' | 'scientific' | 'engineering' | 'compact';
-    /** How to display compact notation — 'short' (1K) or 'long' (1 thousand). */
+    /**
+     * How to display compact notation — 'short' (1K) or 'long' (1 thousand).
+     * Allowed values: 'short' | 'long'
+     */
     compactDisplay?: 'short' | 'long';
-    /** When to show the sign. */
+    /**
+     * When to show the sign.
+     * Allowed values: 'auto' | 'never' | 'always' | 'exceptZero'
+     */
     signDisplay?: 'auto' | 'never' | 'always' | 'exceptZero';
     /** ECMA-402 unit identifier (e.g. 'kilometer', 'kilogram', 'celsius'). Required when type='unit'. */
     unit?: string;
-    /** How to display the unit when type='unit'. */
+    /**
+     * How to display the unit when type='unit'.
+     * Allowed values: 'short' | 'long' | 'narrow'
+     */
     unitDisplay?: 'short' | 'long' | 'narrow';
     /** The minimum number of integer digits (1–21). */
     minimumIntegerDigits?: number | undefined;

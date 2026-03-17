@@ -21,7 +21,10 @@ export interface FlintBadgeProps extends React.HTMLAttributes<FlintBadgeElement>
     dot?: boolean;
     /** Whether the badge is hidden. */
     invisible?: boolean;
-    /** Color variant of the badge. */
+    /**
+     * Color variant of the badge.
+     * Allowed values: 'primary' | 'secondary' | 'error' | 'success' | 'warning'
+     */
     variant?: 'primary' | 'secondary' | 'error' | 'success' | 'warning';
     /** Maximum numeric value before displaying "max+". */
     max?: number;

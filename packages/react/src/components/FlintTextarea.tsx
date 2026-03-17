@@ -41,7 +41,10 @@ export interface FlintTextareaProps extends Omit<React.HTMLAttributes<FlintTexta
     helperText?: string;
     /** Label text displayed above the textarea. */
     label?: string;
-    /** Size variant of the textarea. */
+    /**
+     * Size variant of the textarea.
+     * Allowed values: 'sm' | 'md' | 'lg'
+     */
     size?: 'sm' | 'md' | 'lg';
     /** Number of visible text rows. */
     rows?: number;
@@ -53,7 +56,10 @@ export interface FlintTextareaProps extends Omit<React.HTMLAttributes<FlintTexta
     name?: string;
     /** Browser autocomplete hint. */
     autocomplete?: string;
-    /** Controls the resize handle. */
+    /**
+     * Controls the resize handle.
+     * Allowed values: 'none' | 'both' | 'horizontal' | 'vertical' | 'auto'
+     */
     resize?: 'none' | 'both' | 'horizontal' | 'vertical' | 'auto';
     /** Initial value for uncontrolled usage. */
     defaultValue?: string;

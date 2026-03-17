@@ -17,7 +17,7 @@
 
 import { readdirSync, readFileSync, mkdirSync, writeFileSync, existsSync, unlinkSync } from 'node:fs';
 import { join, resolve } from 'node:path';
-import { parseCem, augmentDetailTypes } from './lib/parse-cem.js';
+import { parseCem, augmentDetailTypes, resolveTypeAliases } from './lib/parse-cem.js';
 import {
     generateEventsFile,
     generateWrapper,
@@ -62,6 +62,9 @@ function main() {
 
     console.log('\n--- Augmenting event detail types via AST ---');
     augmentDetailTypes(allComponents, CORE_ROOT);
+
+    console.log('\n--- Resolving type aliases via TypeScript compiler ---');
+    resolveTypeAliases(allComponents, CORE_ROOT);
 
     console.log(`\n--- Generating React wrappers (${allComponents.length} components) ---`);
 

@@ -17,8 +17,11 @@ export interface FlintIconProps extends React.HTMLAttributes<FlintIconElement> {
     name?: string;
     /** Direct URL to an SVG file. Overrides the resolver. */
     src?: string;
-    /** Size variant. */
-    size?: FlintIconElement['size'];
+    /**
+     * Size variant.
+     * Allowed values: 'sm' | 'md' | 'lg'
+     */
+    size?: 'sm' | 'md' | 'lg';
     /** Accessible label. When set, applies `role="img"`; otherwise `aria-hidden="true"`. */
     label?: string;
 }

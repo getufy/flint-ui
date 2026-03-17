@@ -100,13 +100,16 @@ export class FlintListItemAvatar extends FlintElement {
 
 /**
  * flint-list-item-text: A container for text content.
+ *
+ * @slot primary - Rich primary content; takes visual precedence over the `primary` prop.
+ * @slot secondary - Rich secondary content; takes visual precedence over the `secondary` prop.
  */
 export class FlintListItemText extends FlintElement {
     static styles = unsafeCSS(uiListItemTextStyles);
 
-    /** Primary text content of the list item. */
+    /** Plain-text primary content; for rich content (HTML, icons), use the `primary` slot instead. */
     @property({ type: String }) primary = '';
-    /** Secondary text content of the list item. */
+    /** Plain-text secondary content; for rich content (HTML, icons), use the `secondary` slot instead. */
     @property({ type: String }) secondary = '';
 
     @state() private _hasSecondarySlot = false;

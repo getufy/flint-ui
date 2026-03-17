@@ -28,7 +28,10 @@ export interface FlintDatePickerProps extends Omit<React.HTMLAttributes<FlintDat
     placeholder?: string;
     /** Form field name attribute. */
     name?: string;
-    /** Variant: 'desktop' | 'mobile' | 'static' | 'auto'. */
+    /**
+     * Variant: 'desktop' | 'mobile' | 'static' | 'auto'.
+     * Allowed values: 'desktop' | 'mobile' | 'static' | 'auto'
+     */
     variant?: 'desktop' | 'mobile' | 'static' | 'auto';
     /** Minimum selectable date (ISO). */
     min?: string;

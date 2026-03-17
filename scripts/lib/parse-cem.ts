@@ -9,9 +9,11 @@
  * existing parse-lit.ts AST parser when CEM descriptions don't contain
  * explicit detail type annotations.
  */
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { resolve, join } from 'node:path';
+import ts from 'typescript';
 import type { ComponentMeta, PropMeta, EventMeta, SlotMeta, CssPropertyMeta, MethodMeta } from './types.js';
+import { isSimpleType } from './parse-lit.js';
 
 // ─── CEM types (subset of the Custom Elements Manifest spec) ────────────────
 
@@ -386,6 +388,122 @@ function hasUnresolvableType(detailType: string): boolean {
         if (!isResolvedType(type)) return true;
     }
     return false;
+}
+
+// ─── type alias resolution via TypeScript compiler API ──────────────────────
+
+/**
+ * Expand a TS type to its string representation, recursively expanding
+ * union types so that type alias names are replaced by their underlying
+ * literal members. Uses single quotes for string literal types.
+ */
+function expandTypeToString(
+    type: ts.Type,
+    checker: ts.TypeChecker,
+    node: ts.Node,
+): string {
+    if (type.isUnion()) {
+        const parts = type.types.map(t =>
+            checker.typeToString(
+                t,
+                node,
+                ts.TypeFormatFlags.NoTruncation | ts.TypeFormatFlags.UseSingleQuotesForStringLiteralType,
+            ),
+        );
+        return parts.join(' | ');
+    }
+    return checker.typeToString(
+        type,
+        node,
+        ts.TypeFormatFlags.NoTruncation | ts.TypeFormatFlags.UseSingleQuotesForStringLiteralType,
+    );
+}
+
+/**
+ * Resolve type aliases in prop types using the TypeScript compiler API.
+ *
+ * For each component prop whose `tsType` is NOT a simple type (e.g. it's a
+ * type alias like `ButtonVariant`), this function creates a TS program from
+ * the component's source file, finds the class + property, and expands the
+ * type alias to its underlying literal union or primitive type.
+ *
+ * If the expanded type IS simple, it replaces `prop.tsType` in-place.
+ * If the expanded type is still complex (e.g. `SelectOption[]`), it is left
+ * unchanged so the wrapper falls back to the indexed access type.
+ */
+export function resolveTypeAliases(
+    components: ComponentMeta[],
+    coreRoot: string,
+): void {
+    // Collect all unique .component.ts source files that have props needing resolution
+    const filesToResolve = new Map<string, ComponentMeta[]>();
+
+    for (const comp of components) {
+        const needsResolution = comp.props.some(p => !isSimpleType(p.tsType));
+        if (!needsResolution) continue;
+
+        const absPath = resolve(coreRoot, comp.sourceFile);
+        if (!existsSync(absPath)) continue;
+
+        if (!filesToResolve.has(absPath)) filesToResolve.set(absPath, []);
+        filesToResolve.get(absPath)!.push(comp);
+    }
+
+    if (filesToResolve.size === 0) return;
+
+    // Create a single TS program from all relevant source files
+    const allFiles = [...filesToResolve.keys()];
+    const program = ts.createProgram(allFiles, {
+        target: ts.ScriptTarget.Latest,
+        module: ts.ModuleKind.ESNext,
+        moduleResolution: ts.ModuleResolutionKind.Bundler,
+        allowJs: false,
+        noEmit: true,
+        skipLibCheck: true,
+    });
+    const checker = program.getTypeChecker();
+
+    for (const [absPath, comps] of filesToResolve) {
+        const sourceFile = program.getSourceFile(absPath);
+        if (!sourceFile) continue;
+
+        // Find class declarations in this source file
+        const classMap = new Map<string, ts.ClassDeclaration>();
+        function visitNode(node: ts.Node) {
+            if (ts.isClassDeclaration(node) && node.name) {
+                classMap.set(node.name.text, node);
+            }
+            ts.forEachChild(node, visitNode);
+        }
+        visitNode(sourceFile);
+
+        for (const comp of comps) {
+            const classDecl = classMap.get(comp.className);
+            if (!classDecl) continue;
+
+            for (const prop of comp.props) {
+                if (isSimpleType(prop.tsType)) continue;
+
+                // Find the matching property declaration in the class
+                const memberNode = classDecl.members.find(
+                    m => ts.isPropertyDeclaration(m) &&
+                         ts.isIdentifier(m.name) &&
+                         m.name.text === prop.name
+                );
+                if (!memberNode || !ts.isPropertyDeclaration(memberNode)) continue;
+
+                try {
+                    const type = checker.getTypeAtLocation(memberNode);
+                    const expanded = expandTypeToString(type, checker, memberNode);
+                    if (expanded && isSimpleType(expanded)) {
+                        prop.tsType = expanded;
+                    }
+                } catch {
+                    // If type resolution fails for any reason, keep the original type
+                }
+            }
+        }
+    }
 }
 
 /** Check if a type string is fully resolved (no external type references). */
