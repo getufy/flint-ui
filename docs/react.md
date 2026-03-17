@@ -260,6 +260,26 @@ function ContactForm() {
 }
 ```
 
+## React 18 Compatibility
+
+React 18 serializes boolean web component attributes as strings — `open="false"` is treated as truthy by the browser because the attribute is present. React 19 fixed this natively.
+
+**If you use `@getufy/flint-ui-react`**, this is handled automatically in all React versions. The wrappers use `createComponent` from `@lit/react`, which sets properties (not attributes) on the underlying element.
+
+**If you use raw web components in React 18** (without the wrappers), use the `|| undefined` pattern to remove the attribute when the value is falsy:
+
+```tsx
+// ❌ React 18: sets open="false" (truthy!)
+<flint-dialog open={isOpen}>...</flint-dialog>
+
+// ✅ React 18: removes the attribute when false
+<flint-dialog open={isOpen || undefined}>...</flint-dialog>
+```
+
+::: tip
+This is one of the key reasons to prefer `@getufy/flint-ui-react` — it eliminates this entire class of bugs.
+:::
+
 ## Component Reference
 
 All props, events, slots, CSS parts, and CSS variables are documented on each component page in the sidebar. The API is identical between the Lit and React versions.

@@ -53,6 +53,12 @@ Or import from the barrel for convenience (less tree-shakeable):
 import { FlintButton, FlintCard } from '@getufy/flint-ui';
 ```
 
+::: info Sub-component Registration
+Composite components auto-register their children via `static dependencies`.
+For example, importing `flint-dialog` also registers `flint-dialog-title`, `flint-dialog-content`,
+and `flint-dialog-actions` — no extra imports needed.
+:::
+
 ### React
 
 ```tsx
@@ -68,6 +74,11 @@ function App() {
 ```
 
 See the [React integration guide](/react) for event handling, refs, and TypeScript details.
+
+::: tip React Users
+Always use `@getufy/flint-ui-react` for React projects — it provides typed event handlers,
+proper boolean attribute handling, and eliminates manual `addEventListener` calls.
+:::
 
 ## Theming
 

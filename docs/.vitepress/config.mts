@@ -39,6 +39,7 @@ export default defineConfig({
           items: [
             { text: 'Getting Started', link: '/getting-started' },
             { text: 'Theming', link: '/theming' },
+            { text: 'Styling', link: '/guides/styling' },
             { text: 'React', link: '/react' },
             { text: 'SSR', link: '/ssr' },
             { text: 'Next.js', link: '/guides/nextjs' },

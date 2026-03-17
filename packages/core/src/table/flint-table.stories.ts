@@ -103,7 +103,8 @@ Table Pagination: pagination controls for tabular data.
 
 #### \`<flint-table-container>\`
 
-flint-table-container
+Scrollable container that wraps a \`<flint-table>\` to provide overflow handling,
+optional elevation shadow, and sticky header support.
 
 - **Tag**: \`<flint-table-container>\`
 - **Class**: \`FlintTableContainer\`
@@ -112,8 +113,14 @@ flint-table-container
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`shadow\` | \`shadow\` | \`boolean\` | \`false\` | Stronger box-shadow elevation. |
+| \`shadow\` | \`shadow\` | \`boolean\` | \`false\` | Applies a stronger box-shadow elevation. |
 | \`stickyHeader\` | \`sticky-header\` | \`boolean\` | \`false\` | Sticks the table header to the top on scroll. |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Default slot accepts a \`&lt;flint-table&gt;\` element. |
 
 #### CSS Custom Properties
 
@@ -125,7 +132,8 @@ flint-table-container
 
 #### \`<flint-table>\`
 
-flint-table
+The main table element. Use inside a \`<flint-table-container>\` for scrolling
+and sticky header support, or standalone for simple layouts.
 
 - **Tag**: \`<flint-table>\`
 - **Class**: \`FlintTable\`
@@ -134,7 +142,13 @@ flint-table
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`size\` | \`size\` | \`'medium'\\|'small'\` | \`'md'\` | Cell padding density. |
+| \`size\` | \`size\` | \`'md'\\|'sm'\` | \`'md'\` | Cell padding density. |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Accepts \`&lt;flint-table-head&gt;\`, \`&lt;flint-table-body&gt;\`, and \`&lt;flint-table-footer&gt;\`. |
 
 #### CSS Custom Properties
 
@@ -159,10 +173,17 @@ flint-table
 
 #### \`<flint-table-head>\`
 
-flint-table-head
+Groups header rows at the top of a \`<flint-table>\`. Rendered with a subtle
+bottom border and bold text styling by default.
 
 - **Tag**: \`<flint-table-head>\`
 - **Class**: \`FlintTableHead\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Accepts one or more \`&lt;flint-table-row&gt;\` elements containing header cells. |
 
 #### CSS Custom Properties
 
@@ -175,7 +196,8 @@ flint-table-head
 
 #### \`<flint-table-body>\`
 
-flint-table-body
+Groups body rows in a \`<flint-table>\`. Supports alternating row shading
+via the \`striped\` attribute.
 
 - **Tag**: \`<flint-table-body>\`
 - **Class**: \`FlintTableBody\`
@@ -184,13 +206,20 @@ flint-table-body
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`striped\` | \`striped\` | \`boolean\` | \`false\` | Alternating row shading. |
+| \`striped\` | \`striped\` | \`boolean\` | \`false\` | Enables alternating row background shading. |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Accepts one or more \`&lt;flint-table-row&gt;\` elements. |
 
 ---
 
 #### \`<flint-table-row>\`
 
-flint-table-row
+A single row within a \`<flint-table-head>\`, \`<flint-table-body>\`,
+or \`<flint-table-footer>\`. Supports selected and hover highlight states.
 
 - **Tag**: \`<flint-table-row>\`
 - **Class**: \`FlintTableRow\`
@@ -199,8 +228,14 @@ flint-table-row
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`selected\` | \`selected\` | \`boolean\` | \`false\` | Selected row highlight. |
-| \`hover\` | \`hover\` | \`boolean\` | \`false\` | Force hover highlight. |
+| \`selected\` | \`selected\` | \`boolean\` | \`false\` | Highlights the row as selected. |
+| \`hover\` | \`hover\` | \`boolean\` | \`false\` | Forces the hover highlight state. |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Accepts one or more \`&lt;flint-table-cell&gt;\` elements. |
 
 #### CSS Custom Properties
 
@@ -213,7 +248,9 @@ flint-table-row
 
 #### \`<flint-table-cell>\`
 
-flint-table-cell
+A single cell within a \`<flint-table-row>\`. Can render as a data cell
+or a header cell via the \`header\` attribute. Supports text alignment
+and padding presets.
 
 - **Tag**: \`<flint-table-cell>\`
 - **Class**: \`FlintTableCell\`
@@ -222,9 +259,15 @@ flint-table-cell
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`header\` | \`header\` | \`boolean\` | \`false\` | Header cell styling. |
-| \`align\` | \`align\` | \`'left'\\|'right'\\|'center'\` | \`'left'\` | Text alignment. |
-| \`padding\` | \`padding\` | \`'normal'\\|'checkbox'\\|'none'\` | \`'normal'\` | Padding preset. |
+| \`header\` | \`header\` | \`boolean\` | \`false\` | Renders the cell with header (th) styling. |
+| \`align\` | \`align\` | \`'left'\\|'right'\\|'center'\` | \`'left'\` | Text alignment within the cell. |
+| \`padding\` | \`padding\` | \`'normal'\\|'checkbox'\\|'none'\` | \`'normal'\` | Padding preset for the cell. |
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Cell content (text, icons, controls, etc.). |
 
 #### CSS Custom Properties
 
@@ -239,10 +282,17 @@ flint-table-cell
 
 #### \`<flint-table-footer>\`
 
-flint-table-footer
+Footer section of a \`<flint-table>\`, typically used for summary rows,
+pagination controls, or aggregate data.
 
 - **Tag**: \`<flint-table-footer>\`
 - **Class**: \`FlintTableFooter\`
+
+#### Slots
+
+| Name | Description |
+|---|---|
+| \`(default)\` | Accepts one or more \`&lt;flint-table-row&gt;\` elements or arbitrary footer content. |
                 `,
             },
         },

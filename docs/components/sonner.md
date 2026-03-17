@@ -22,6 +22,51 @@ import { FlintToaster } from '@getufy/flint-ui';
 <flint-toaster></flint-toaster>
 ```
 
+### Imperative API
+
+Toasts are created via the `toast()` function — no framework wrapper needed:
+
+```ts
+import { toast } from '@getufy/flint-ui';
+// or tree-shaken:
+import { toast } from '@getufy/flint-ui/sonner/flint-sonner';
+
+toast('Hello');
+toast.success('Saved!');
+toast.error('Something went wrong');
+toast.info('FYI');
+toast.warning('Careful!');
+
+// Promise-based
+toast.promise(fetchData(), {
+  loading: 'Loading...',
+  success: 'Done!',
+  error: 'Failed',
+});
+
+// Dismiss a specific toast
+const id = toast('Uploading...');
+toast.dismiss(id);
+```
+
+#### React
+
+The `toast()` function is framework-agnostic — import it directly from the core package alongside the React toaster component:
+
+```tsx
+import { FlintToaster } from '@getufy/flint-ui-react';
+import { toast } from '@getufy/flint-ui';
+
+function App() {
+  return (
+    <>
+      <FlintToaster />
+      <button onClick={() => toast.success('It works!')}>Toast</button>
+    </>
+  );
+}
+```
+
 ### Properties
 
 | Property | Attribute | Type | Default | Description |
