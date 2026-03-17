@@ -1,5 +1,17 @@
 # @getufy/flint-ui
 
+## [0.8.2](https://github.com/getufy/flint-ui/compare/flint-ui-v0.8.1...flint-ui-v0.8.2) (2026-03-17)
+
+
+### Features
+
+* add max prop to linear and circular progress ([95b331d](https://github.com/getufy/flint-ui/commit/95b331dda8e9922c32e769209e49a6760f85acd6))
+
+
+### Bug Fixes
+
+* improve JSDoc on table components ([f2747d8](https://github.com/getufy/flint-ui/commit/f2747d8c771496c9c95c6269a9d4af7f09520da2))
+
 ## [0.8.1](https://github.com/getufy/flint-ui/compare/flint-ui-v0.8.0...flint-ui-v0.8.1) (2026-03-17)
 
 
