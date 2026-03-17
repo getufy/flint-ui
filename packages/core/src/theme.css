@@ -61,15 +61,20 @@
     --flint-color-emerald-100: #dcfce7;
     --flint-color-emerald-400: #34d399;
     --flint-color-emerald-500: #10b981;
+    --flint-color-emerald-600: #059669;
     --flint-color-emerald-700: #15803d;
     --flint-color-emerald-800: #166534;
+    --flint-color-emerald-900: #064e3b;
 
     /* Amber */
     --flint-color-amber-50:  #fffbeb;
     --flint-color-amber-100: #fef3c7;
     --flint-color-amber-400: #fbbf24;
     --flint-color-amber-500: #f59e0b;
+    --flint-color-amber-600: #d97706;
     --flint-color-amber-800: #92400e;
+    --flint-color-amber-900: #78350f;
+    --flint-color-amber-950: #451a03;
 
     /* Violet — accent scale */
     --flint-color-violet-100: #ede9fe;
@@ -118,8 +123,15 @@
     --flint-error-focus-ring:         rgba(239, 68, 68, 0.20);
 
     /* ─── Semantic status ──────────────────────────────────────── */
-    --flint-success-color: var(--flint-color-emerald-700);
-    --flint-warning-color: var(--flint-color-amber-800);
+    --flint-success-color:        var(--flint-color-emerald-700);
+    --flint-success-color-hover:  var(--flint-color-emerald-800);
+    --flint-success-color-active: var(--flint-color-emerald-900);
+    --flint-warning-color:        var(--flint-color-amber-800);
+    --flint-warning-color-hover:  var(--flint-color-amber-900);
+    --flint-warning-color-active: var(--flint-color-amber-950);
+    --flint-neutral-color:        var(--flint-color-zinc-500);
+    --flint-neutral-color-hover:  var(--flint-color-zinc-600);
+    --flint-neutral-color-active: var(--flint-color-zinc-700);
 
     /* Info */
     --flint-info-bg:           var(--flint-color-blue-50);
@@ -183,6 +195,10 @@
     /* ─── Backdrop ─────────────────────────────────────────────── */
     --flint-backdrop-color: rgba(0, 0, 0, 0.50);
 
+    /* ─── Form field ─────────────────────────────────────────────── */
+    --flint-form-field-required-color: var(--flint-error-color);
+    --flint-form-field-error-color:    var(--flint-error-color);
+
     /* ─── Component-specific ───────────────────────────────────── */
     --flint-tab-inactive-color:    var(--flint-text-color-muted);
     --flint-tab-active-color:      var(--flint-primary-color);
@@ -239,7 +255,7 @@
     --flint-radio-disabled-opacity:    0.5;
 
     /* ─── Input-specific ───────────────────────────────────────── */
-    --flint-label-color:              var(--flint-color-zinc-700, #3f3f46);
+    --flint-label-color:              var(--flint-color-zinc-700);
     --flint-input-placeholder-color:  var(--flint-color-zinc-500);
     --flint-input-disabled-bg:        var(--flint-color-zinc-100);
     --flint-input-disabled-color:     var(--flint-color-zinc-400);

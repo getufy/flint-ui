@@ -42,8 +42,15 @@
     --flint-error-focus-ring:         rgba(248, 113, 113, 0.30);
 
     /* ─── Semantic status ──────────────────────────────────────── */
-    --flint-success-color: var(--flint-color-emerald-400);
-    --flint-warning-color: var(--flint-color-amber-400);
+    --flint-success-color:        var(--flint-color-emerald-400);
+    --flint-success-color-hover:  var(--flint-color-emerald-500);
+    --flint-success-color-active: var(--flint-color-emerald-600);
+    --flint-warning-color:        var(--flint-color-amber-400);
+    --flint-warning-color-hover:  var(--flint-color-amber-500);
+    --flint-warning-color-active: var(--flint-color-amber-600);
+    --flint-neutral-color:        var(--flint-color-zinc-400);
+    --flint-neutral-color-hover:  var(--flint-color-zinc-300);
+    --flint-neutral-color-active: var(--flint-color-zinc-200);
 
     /* Info */
     --flint-info-bg:           #1e3a5f;
@@ -177,8 +184,15 @@
         --flint-error-color:              var(--flint-color-red-400);
         --flint-error-focus-ring:         rgba(248, 113, 113, 0.30);
 
-        --flint-success-color: var(--flint-color-emerald-400);
-        --flint-warning-color: var(--flint-color-amber-400);
+        --flint-success-color:        var(--flint-color-emerald-400);
+        --flint-success-color-hover:  var(--flint-color-emerald-500);
+        --flint-success-color-active: var(--flint-color-emerald-600);
+        --flint-warning-color:        var(--flint-color-amber-400);
+        --flint-warning-color-hover:  var(--flint-color-amber-500);
+        --flint-warning-color-active: var(--flint-color-amber-600);
+        --flint-neutral-color:        var(--flint-color-zinc-400);
+        --flint-neutral-color-hover:  var(--flint-color-zinc-300);
+        --flint-neutral-color-active: var(--flint-color-zinc-200);
 
         --flint-info-bg:           #1e3a5f;
         --flint-info-border-color: var(--flint-color-blue-700);
