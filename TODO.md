@@ -456,3 +456,70 @@
 - [x] Performance benchmarks in CI [§12] — `benchmarks.yml` workflow + `vitest bench` configuration
 - [x] Code coverage reporting (Codecov) [§32.4] — Codecov integration in CI with lcov upload
 - [x] Add Prettier config — `.prettierrc` + `.prettierignore` configured
+
+---
+
+## v0.7.0 DX Report (Weather App & Pokemon App — React v0.7.0)
+
+> Issues discovered while building two complex apps with `@getufy/flint-ui-react` v0.7.0.
+> Categorized by severity and grouped by theme.
+
+---
+
+### P0 — Bugs (must fix)
+
+- [x] **#14 Dialog/Drawer: body scroll not locked when open** — Created `src/utilities/scroll-lock.ts` with ref-counted `lockBodyScroll()`/`unlockBodyScroll()` (Shoelace pattern). Applied in Dialog `updated()` and Drawer `updated()` (temporary variant only). Scroll position preserved via `position: fixed` + saved scrollY. Cleanup in `disconnectedCallback()`.
+
+- [x] **#15 Card `overflow: clip` clips Select dropdowns and popovers** — Changed `.card` from `overflow: clip` to `overflow: var(--flint-card-overflow, visible)`. Added `::slotted(flint-card-media)` with `overflow: clip; border-radius: inherit` for image clipping. CardMedia `:host` also updated to `overflow: clip; border-radius: inherit`.
+
+- [x] **#16 Tabs: text selectable on fast/double click** — Added `user-select: none; -webkit-user-select: none;` to `.tab` in `flint-tab.css`.
+
+- [x] **#17 Tabs: layout shift when switching tabs** — Added hidden `.tab-sizer` span with active font-weight to reserve space (MUI trick adapted for shadow DOM). FlintTab reads slot text via `slotchange` handler and renders bold sizer with `height: 0; visibility: hidden`.
+
+---
+
+### P1 — API Consistency (breaking changes, bundle with v0.8.0)
+
+- [ ] **#1 Button `variant` is semantic color, not visual style** — Split into `appearance` (`filled | outlined | text | ghost`) + `color` (`primary | neutral | destructive | success | warning`) following Spectrum's `treatment`+`variant` pattern but with clearer naming. Keep `variant` as deprecated computed property with console warning + mapping (e.g. `primary` → `appearance='filled', color='primary'`). Remove in next minor. Breaking change.
+
+- [ ] **#2 Inconsistent `variant` semantics across components** — Audit all components: standardize `variant` = visual style (Card/Chip/TextField already correct). Button is the outlier — fixed by #1. Skeleton's `variant` (shape) and LinearProgress's `variant` (behavior) are fine — rename to `shape`/`mode` respectively. Breaking change.
+
+- [ ] **#5 Event naming (`onFlint*`) is verbose** — `onFlintInputInput` is particularly awkward. Won't change event names (breaking + web component convention), but improve documentation: add JSDoc explaining the pattern, add a lookup table in React README, document `onFlintInputInput` vs `onFlintInputChange` timing difference.
+
+- [ ] **#13 FlintSelect `onFlintSelectChange` returns `string[]` even for single select** — Change event detail to `{ value: string }` for single-select and `{ value: string[] }` for multi-select. Use discriminated union type. Breaking change.
+
+---
+
+### P2 — React Wrapper DX (medium priority)
+
+- [ ] **#3 React wrapper props don't expose literal types inline** — Props like `variant` show as `FlintButtonElement['variant']` instead of the literal union `'primary' | 'secondary' | ...`. Fix `parse-lit.ts` to resolve type aliases to their underlying literal unions using the TypeScript compiler API. Then `isSimpleType()` will inline them.
+
+- [ ] **#8 FlintSelect `options` type is opaque** — `options` typed as `FlintSelectElement['options']` — fix by resolving `SelectOption[]` interface inline in the React wrapper. Same root cause as #3.
+
+- [ ] **#9 FlintTypography variant values not documented** — Add `@default` JSDoc and inline literal union type to the `variant` prop.
+
+- [ ] **#6 No runtime warning for invalid prop values** — Add dev-mode validation using `willUpdate()` that console.warns when an unrecognized variant/size value is passed. Gate behind `DEV` mode check.
+
+---
+
+### P3 — Documentation & DX Improvements (nice to have)
+
+- [ ] **#4 Import paths are verbose / undocumented** — Document that subcomponents are co-exported from parent paths. Add import examples to each component's JSDoc.
+
+- [ ] **#7 Theme CSS import path is buried** — Add `theme.css` import to the starter template and document prominently in README "Getting Started" section.
+
+- [ ] **#10 Web component slots in React are awkward** — Document slot patterns in React README with side-by-side examples. Consider adding prop aliases for common single-content slots (like `title` prop on `FlintCardHeader`).
+
+- [ ] **#11 FlintCardHeader slot-based API is non-obvious** — Add `title` and `subtitle` string props alongside existing slots.
+
+- [ ] **#12 Dark mode toggle requires manual DOM manipulation** — Already addressed with `setFlintTheme()` / `<FlintTheme>`, but add React hook `useFlintTheme()` in React package: `const { mode, setMode } = useFlintTheme()`.
+
+- [ ] **#18 CSS `::part()` names are undocumented and inconsistent** — Add `@csspart` JSDoc annotations to ALL components (many already have them). Standardize naming: use component-semantic names (`card` not `base`). Generate a CSS parts reference in docs from CEM.
+
+- [ ] **#19 FlintListItemText has props AND slots for same content** — Document the pattern: props for simple strings, slots for rich content. Add JSDoc clarifying when to use each.
+
+- [ ] **#20 `suppress-warnings` import not explained** — Add to "Getting Started" section in both core and React READMEs. Include in starter template.
+
+- [ ] **#21 No FlintGrid layout documentation** — Write FlintGrid usage guide with responsive breakpoint examples. Add Storybook stories showing common grid layouts.
+
+- [ ] **#22 No controlled component examples** — Add "Controlled Components" section to React README with examples for Input, Select, and Tabs. Document `onFlintInputInput` (real-time) vs `onFlintInputChange` (on blur).

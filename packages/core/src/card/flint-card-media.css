@@ -1,7 +1,8 @@
 :host {
       display: block;
       width: 100%;
-      overflow: hidden;
+      overflow: clip;
+      border-radius: inherit;
     }
     
     .media {

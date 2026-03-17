@@ -10,6 +10,7 @@ import uiDialogContentTextStyles from './flint-dialog-content-text.css?inline';
 import uiDialogActionsStyles from './flint-dialog-actions.css?inline';
 import { getAnimation, animateTo, stopAnimations, resolveKeyframes } from '../utilities/animation-registry.js';
 import { handleFocusTrapKeyDown, getFocusableElements } from '../utilities/focus-trap.js';
+import { lockBodyScroll, unlockBodyScroll } from '../utilities/scroll-lock.js';
 import '../utilities/animation-presets.js';
 
 // Tracks open dialogs in activation order so only the topmost handles Escape.
@@ -113,6 +114,7 @@ export class FlintDialog extends FlintElement {
       if (this.open) {
         if (!_openDialogs.includes(this)) _openDialogs.push(this);
         this._lastFocused = typeof document !== 'undefined' ? document.activeElement as HTMLElement | null : null;
+        lockBodyScroll(this);
         void this._runOpenAnimation().catch(() => {
           // If the open animation fails, remove from the stack so Escape
           // doesn't target this dialog and other dialogs still work correctly.
@@ -130,6 +132,7 @@ export class FlintDialog extends FlintElement {
           .then(() => {
             if (!this.isConnected) return;
             this._visuallyOpen = false;
+            unlockBodyScroll(this);
             this._lastFocused?.focus();
             this._lastFocused = null;
           });
@@ -203,6 +206,7 @@ export class FlintDialog extends FlintElement {
     }
     const idx = _openDialogs.indexOf(this);
     if (idx !== -1) _openDialogs.splice(idx, 1);
+    unlockBodyScroll(this);
     this._lastFocused = null;
     this._scrollObserverCleanup?.();
     this._scrollObserverCleanup = null;

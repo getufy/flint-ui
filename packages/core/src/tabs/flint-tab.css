@@ -25,6 +25,7 @@
             transition: color .2s, background .15s;
             box-sizing: border-box; width: 100%;
             text-decoration: none; -webkit-tap-highlight-color: transparent;
+            user-select: none; -webkit-user-select: none;
         }
         .tab:hover:not(:disabled):not([aria-disabled="true"]) {
             color: var(--flint-tab-active-color);
@@ -44,6 +45,21 @@
         .icon-end    { flex-direction: row-reverse; }
 
         .icon-slot { display: contents; line-height: 0; }
+
+        /* Hidden bold text sizer — reserves width for the active font-weight
+           so tabs don't shift when selection changes (MUI trick). */
+        .tab-sizer {
+            display: block;
+            height: 0;
+            overflow: hidden;
+            visibility: hidden;
+            pointer-events: none;
+            font-weight: var(--flint-tab-font-weight-active, 600);
+            font-family: var(--flint-font-family);
+            font-size: var(--flint-tab-font-size, 0.875rem);
+            line-height: 1.25;
+            white-space: nowrap;
+        }
 
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {

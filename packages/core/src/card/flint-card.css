@@ -10,11 +10,17 @@
       border-radius: var(--flint-card-border-radius);
       box-shadow: var(--flint-card-shadow);
       border: 1px solid var(--flint-card-border-color);
-      overflow: clip;
+      overflow: var(--flint-card-overflow, visible);
       display: flex;
       flex-direction: column;
       transition: box-shadow 0.3s ease, border-color 0.3s ease;
       padding: var(--flint-card-padding, 0); /* Cards usually don't have padding at the root level if using content blocks */
+    }
+
+    /* Clip only media elements so images respect border-radius */
+    ::slotted(flint-card-media) {
+      overflow: clip;
+      border-radius: inherit;
     }
 
     /* Interactive cards get pointer cursor and hover shadow */

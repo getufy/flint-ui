@@ -4,6 +4,7 @@ import { FlintElement } from '../flint-element.js';
 import { FlintBackdrop } from '../backdrop/flint-backdrop.js';
 import { getAnimation, animateTo, stopAnimations, resolveKeyframes } from '../utilities/animation-registry.js';
 import { handleFocusTrapKeyDown, getFocusableElements } from '../utilities/focus-trap.js';
+import { lockBodyScroll, unlockBodyScroll } from '../utilities/scroll-lock.js';
 import '../utilities/animation-presets.js';
 import uiDrawerStyles from './flint-drawer.css?inline';
 
@@ -95,6 +96,7 @@ export class FlintDrawer extends FlintElement {
         if (typeof window !== 'undefined') {
             window.removeEventListener('keydown', this._boundKeyDown);
         }
+        unlockBodyScroll(this);
         super.disconnectedCallback();
     }
 
@@ -105,6 +107,7 @@ export class FlintDrawer extends FlintElement {
             // Focus management only for temporary (overlay dialog behaviour)
             if (this.variant === 'temporary') {
                 this._lastFocused = typeof document !== 'undefined' ? document.activeElement as HTMLElement | null : null;
+                lockBodyScroll(this);
             }
             void this._runOpenAnimation().then(() => {
                 if (!this.isConnected) return;
@@ -118,6 +121,7 @@ export class FlintDrawer extends FlintElement {
                 if (!this.isConnected) return;
                 this._visuallyOpen = false;
                 if (this.variant === 'temporary') {
+                    unlockBodyScroll(this);
                     this._lastFocused?.focus();
                     this._lastFocused = null;
                 }

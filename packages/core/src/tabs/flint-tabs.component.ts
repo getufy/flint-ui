@@ -72,6 +72,9 @@ export class FlintTab extends FlintElement {
     /** Whether the tab stretches to fill available width. */
     @property({ type: Boolean, reflect: true, attribute: 'full-width' }) fullWidth = false;
 
+    /** @internal Text content of the default slot, used by the hidden sizer to prevent layout shift. */
+    @state() private _slotText = '';
+
     /** @internal – called by FlintTabs */
     setTabIndex(n: number) {
         const el = this.shadowRoot?.querySelector<HTMLElement>('button,a');
@@ -89,10 +92,23 @@ export class FlintTab extends FlintElement {
         }));
     }
 
+    private _updateSizer() {
+        const slot = this.shadowRoot?.querySelector<HTMLSlotElement>('slot:not([name])');
+        if (slot) {
+            this._slotText = slot.assignedNodes({ flatten: true })
+                .map(n => n.textContent || '')
+                .join('')
+                .trim();
+        }
+    }
+
     private _inner() {
         return html`
             <span class="icon-slot"><slot name="icon"></slot></span>
-            <slot></slot>`;
+            <span class="tab-content">
+                <slot @slotchange=${this._updateSizer}></slot>
+                <span class="tab-sizer" aria-hidden="true">${this._slotText}</span>
+            </span>`;
     }
 
     render() {
