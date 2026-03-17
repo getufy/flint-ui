@@ -625,6 +625,104 @@ describe('flint-autocomplete — form association', () => {
     });
 });
 
+// ── String[] options ──────────────────────────────────────────────────────
+
+describe('flint-autocomplete — string[] options', () => {
+    const stringOptions = ['Apple', 'Banana', 'Cherry'];
+
+    it('renders string[] options as dropdown items', async () => {
+        const el = await fixture<FlintAutocomplete>(html`<flint-autocomplete .options=${stringOptions}></flint-autocomplete>`);
+        const input = el.shadowRoot!.querySelector('input')!;
+        input.dispatchEvent(new Event('focus'));
+        await el.updateComplete;
+        const renderedOptions = el.shadowRoot!.querySelectorAll('.option');
+        expect(renderedOptions.length).toBe(3);
+        expect(renderedOptions[0].textContent).toContain('Apple');
+        expect(renderedOptions[1].textContent).toContain('Banana');
+        expect(renderedOptions[2].textContent).toContain('Cherry');
+    });
+
+    it('selects a string option on click', async () => {
+        const el = await fixture<FlintAutocomplete>(html`<flint-autocomplete .options=${stringOptions}></flint-autocomplete>`);
+        const input = el.shadowRoot!.querySelector('input')!;
+        input.dispatchEvent(new Event('focus'));
+        await el.updateComplete;
+
+        const firstOption = el.shadowRoot!.querySelector('.option') as HTMLElement;
+        firstOption.click();
+        await el.updateComplete;
+
+        expect(el.value).toBe('Apple');
+        expect(input.value).toBe('Apple');
+    });
+
+    it('filters string[] options on input', async () => {
+        const el = await fixture<FlintAutocomplete>(html`<flint-autocomplete .options=${stringOptions}></flint-autocomplete>`);
+        const input = el.shadowRoot!.querySelector('input')!;
+        input.value = 'ban';
+        input.dispatchEvent(new Event('input'));
+        await el.updateComplete;
+        const renderedOptions = el.shadowRoot!.querySelectorAll('.option');
+        expect(renderedOptions.length).toBe(1);
+        expect(renderedOptions[0].textContent).toContain('Banana');
+    });
+
+    it('dispatches change event with value and label for string options', async () => {
+        const el = await fixture<FlintAutocomplete>(html`<flint-autocomplete .options=${stringOptions}></flint-autocomplete>`);
+        const handler = vi.fn();
+        el.addEventListener('flint-autocomplete-change', handler);
+
+        const input = el.shadowRoot!.querySelector('input')!;
+        input.dispatchEvent(new Event('focus'));
+        await el.updateComplete;
+
+        (el.shadowRoot!.querySelector('.option') as HTMLElement).click();
+        await el.updateComplete;
+
+        expect(handler).toHaveBeenCalledOnce();
+        expect((handler.mock.calls[0][0] as CustomEvent).detail).toEqual({ value: 'Apple', label: 'Apple' });
+    });
+
+    it('mixes string and object options', async () => {
+        const mixed = ['Apple', { label: 'Banana', value: 'banana' }];
+        const el = await fixture<FlintAutocomplete>(html`<flint-autocomplete .options=${mixed}></flint-autocomplete>`);
+        const input = el.shadowRoot!.querySelector('input')!;
+        input.dispatchEvent(new Event('focus'));
+        await el.updateComplete;
+        const renderedOptions = el.shadowRoot!.querySelectorAll('.option');
+        expect(renderedOptions.length).toBe(2);
+    });
+});
+
+// ── Hoist ─────────────────────────────────────────────────────────────────
+
+describe('flint-autocomplete — hoist', () => {
+    it('applies hoisted class to dropdown when hoist=true', async () => {
+        const el = await fixture<FlintAutocomplete>(html`<flint-autocomplete .options=${options} hoist></flint-autocomplete>`);
+        const dropdown = el.shadowRoot!.querySelector('.dropdown');
+        expect(dropdown!.classList.contains('hoisted')).toBe(true);
+    });
+
+    it('does not apply hoisted class when hoist=false', async () => {
+        const el = await fixture<FlintAutocomplete>(html`<flint-autocomplete .options=${options} .hoist=${false}></flint-autocomplete>`);
+        const dropdown = el.shadowRoot!.querySelector('.dropdown');
+        expect(dropdown!.classList.contains('hoisted')).toBe(false);
+    });
+
+    it('cleans up hoist on disconnect', async () => {
+        const el = await fixture<FlintAutocomplete>(html`<flint-autocomplete .options=${options} hoist></flint-autocomplete>`);
+        const input = el.shadowRoot!.querySelector('input')!;
+        input.dispatchEvent(new Event('focus'));
+        await el.updateComplete;
+
+        el.remove();
+
+        // Verify dropdown styles are cleaned up (position reset)
+        const dropdown = el.shadowRoot!.querySelector<HTMLElement>('.dropdown');
+        expect(dropdown!.style.position).toBe('');
+    });
+});
+
 // ── Accessibility ─────────────────────────────────────────────────────────
 
 describe('flint-autocomplete — accessibility', () => {
