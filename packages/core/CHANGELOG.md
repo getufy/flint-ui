@@ -1,5 +1,19 @@
 # @getufy/flint-ui
 
+## [0.8.3](https://github.com/getufy/flint-ui/compare/flint-ui-v0.8.2...flint-ui-v0.8.3) (2026-03-21)
+
+
+### Features
+
+* add hoist prop and string array options to autocomplete ([37600ec](https://github.com/getufy/flint-ui/commit/37600ec2084c17cd4075cd823155f9989bdb781d))
+* add missing semantic tokens for success/warning/neutral colors ([59be9b4](https://github.com/getufy/flint-ui/commit/59be9b4f890632c1047846857730b311e7109b12))
+
+
+### Bug Fixes
+
+* prevent drawer content clipping with box-sizing border-box ([767b3f4](https://github.com/getufy/flint-ui/commit/767b3f4060d676e06ce425610d4e24e4163e8fa6))
+* remove hardcoded CSS fallbacks that break dark mode on overlays ([daca7cd](https://github.com/getufy/flint-ui/commit/daca7cdfb2c0bacb4c8a55374b288d7f859186ef))
+
 ## [0.8.2](https://github.com/getufy/flint-ui/compare/flint-ui-v0.8.1...flint-ui-v0.8.2) (2026-03-17)
 
 
