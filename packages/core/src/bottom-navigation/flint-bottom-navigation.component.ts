@@ -15,6 +15,10 @@ export interface FlintBottomNavigationChangeDetail { value: number | string; }
 export class FlintBottomNavigation extends FlintElement {
     static styles = unsafeCSS(uiBottomNavigationStyles);
 
+    static dependencies = {
+        'flint-bottom-navigation-action': FlintBottomNavigationAction as unknown as typeof FlintElement,
+    };
+
     /**
      * The value of the currently selected action.
      */
@@ -34,13 +38,13 @@ export class FlintBottomNavigation extends FlintElement {
     private _firstUpdate = true;
 
     protected override willUpdate(changed: PropertyValues) {
+        void changed;
         if (this._firstUpdate) {
             this._firstUpdate = false;
             if (this.defaultValue !== undefined) {
                 this.value = this.defaultValue;
             }
         }
-        void changed;
     }
 
     @queryAssignedElements({ selector: 'flint-bottom-navigation-action' })
@@ -63,6 +67,8 @@ export class FlintBottomNavigation extends FlintElement {
         this._actions.forEach(action => {
             action.active = action.value === this.value;
             action.showLabel = currentShowLabels || action.active;
+            // Roving tabindex: only the active tab gets tabindex=0
+            action.tabIndex = action.active ? 0 : -1;
         });
     }
 
@@ -70,7 +76,7 @@ export class FlintBottomNavigation extends FlintElement {
         const action = e.composedPath().find(
             (el): el is FlintBottomNavigationAction => el instanceof FlintBottomNavigationAction
         );
-        if (!action || action.value === this.value) return;
+        if (!action || action.value == null || action.value === this.value) return;
 
         this.value = action.value;
         this.dispatchEvent(new CustomEvent('flint-bottom-navigation-change', {
@@ -80,9 +86,34 @@ export class FlintBottomNavigation extends FlintElement {
         }));
     }
 
+    private _handleKeydown = (e: KeyboardEvent) => {
+        if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+        e.preventDefault();
+
+        const actions = this._actions;
+        if (!actions.length) return;
+
+        const currentIndex = actions.findIndex(a => a.active);
+        let nextIndex: number;
+
+        if (e.key === 'ArrowRight') {
+            nextIndex = currentIndex < actions.length - 1 ? currentIndex + 1 : 0;
+        } else {
+            nextIndex = currentIndex > 0 ? currentIndex - 1 : actions.length - 1;
+        }
+
+        const nextAction = actions[nextIndex];
+        if (nextAction) {
+            nextAction.focus();
+            nextAction.click();
+        }
+    };
+
     render() {
         return html`
-            <div class="container" part="base" role="tablist" @click=${this._handleActionChange}>
+            <div class="container" part="base" role="tablist"
+                 @click=${this._handleActionChange}
+                 @keydown=${this._handleKeydown}>
                 <slot @slotchange=${this._handleSlotChange}></slot>
             </div>
         `;

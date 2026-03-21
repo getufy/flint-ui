@@ -2,7 +2,7 @@
 
 exports[`DOM snapshots > flint-alert — default 1`] = `
 "<!---->
-            <div part="base" role="alert" class="alert  info ">
+            <div part="base" role="alert" class="alert  info " aria-live="polite">
                 <div class="icon" part="icon">
                     <slot name="icon"><!--?lit$[hash]$--><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></slot>
                 </div>
@@ -19,7 +19,7 @@ exports[`DOM snapshots > flint-alert — default 1`] = `
 
 exports[`DOM snapshots > flint-alert — severity error 1`] = `
 "<!---->
-            <div part="base" role="alert" class="alert  error ">
+            <div part="base" role="alert" class="alert  error " aria-live="assertive">
                 <div class="icon" part="icon">
                     <slot name="icon"><!--?lit$[hash]$--><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg></slot>
                 </div>
@@ -37,7 +37,7 @@ exports[`DOM snapshots > flint-alert — severity error 1`] = `
 exports[`DOM snapshots > flint-avatar — with text 1`] = `
 "<!---->
       <div part="base" role="img" class=" avatar " aria-label="John">
-        <!--?lit$[hash]$--><slot><svg width="60%" height="60%" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg></slot>
+        <!--?lit$[hash]$--><slot><svg part="fallback" width="60%" height="60%" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg></slot>
       </div>
     <style></style>"
 `;
@@ -82,20 +82,6 @@ exports[`DOM snapshots > flint-button — default 1`] = `
 exports[`DOM snapshots > flint-button — disabled 1`] = `
 "<!---->
       <button type="button" part="base" class=" filled primary md is-disabled " disabled=""><!--?lit$[hash]$-->
-      <span class="prefix-slot" part="prefix"><slot name="prefix"></slot></span>
-      <span class="label-inner" part="label"><slot></slot></span>
-      <span class="suffix-slot" part="suffix"><slot name="suffix"></slot></span>
-      <span class="spinner" part="spinner" aria-hidden="true">
-        <span class="spinner-icon"></span>
-      </span>
-    </button>
-      <!--?lit$[hash]$-->
-    <style></style>"
-`;
-
-exports[`DOM snapshots > flint-button — variant outlined 1`] = `
-"<!---->
-      <button type="button" part="base" class=" filled primary md "><!--?lit$[hash]$-->
       <span class="prefix-slot" part="prefix"><slot name="prefix"></slot></span>
       <span class="label-inner" part="label"><slot></slot></span>
       <span class="suffix-slot" part="suffix"><slot name="suffix"></slot></span>

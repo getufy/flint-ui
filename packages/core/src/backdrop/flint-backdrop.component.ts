@@ -1,4 +1,4 @@
-import { unsafeCSS, html, nothing } from 'lit';
+import { unsafeCSS, html, type PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
@@ -20,30 +20,32 @@ export class FlintBackdrop extends FlintElement {
   /** When true, the backdrop is scoped to its parent container instead of the viewport. */
   @property({ type: Boolean, reflect: true }) container = false;
 
-  private _boundKeydown = this._handleKeydown.bind(this);
-
-  connectedCallback() {
-    super.connectedCallback();
-    document.addEventListener('keydown', this._boundKeydown);
-  }
-
-  disconnectedCallback() {
+  override disconnectedCallback() {
     super.disconnectedCallback();
-    document.removeEventListener('keydown', this._boundKeydown);
+    document.removeEventListener('keydown', this._handleKeydown);
   }
 
-  private _handleKeydown(e: KeyboardEvent) {
+  protected override updated(changed: PropertyValues) {
+    if (changed.has('open')) {
+      if (this.open) {
+        document.addEventListener('keydown', this._handleKeydown);
+      } else {
+        document.removeEventListener('keydown', this._handleKeydown);
+      }
+    }
+  }
+
+  private _handleKeydown = (e: KeyboardEvent) => {
     if (e.key === 'Escape' && this.open) {
       this.dispatchEvent(new CustomEvent('flint-backdrop-close', { bubbles: true, composed: true, detail: { open: false } }));
     }
-  }
+  };
 
-  private _handleClick(e: MouseEvent) {
-    // Only trigger close if clicking directly on the backdrop, not the content
+  private _handleClick = (e: MouseEvent) => {
     if (e.target === e.currentTarget) {
       this.dispatchEvent(new CustomEvent('flint-backdrop-close', { bubbles: true, composed: true, detail: { open: false } }));
     }
-  }
+  };
 
   render() {
     return html`
@@ -56,7 +58,7 @@ export class FlintBackdrop extends FlintElement {
         part="base"
         @click="${this._handleClick}"
         role="presentation"
-        aria-hidden="${this.open ? nothing : 'true'}"
+        aria-hidden="${this.open ? 'false' : 'true'}"
       >
         <div class="content" part="content">
           <slot></slot>

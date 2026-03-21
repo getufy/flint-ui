@@ -38,8 +38,9 @@ export class FlintBottomNavigationAction extends FlintElement {
         if (!this.hasAttribute('role')) {
             this.setAttribute('role', 'tab');
         }
+        // Default to -1; parent sets tabindex=0 on the active action (roving tabindex)
         if (!this.hasAttribute('tabindex')) {
-            this.tabIndex = 0;
+            this.tabIndex = -1;
         }
         this.addEventListener('keydown', this._handleKeydown);
     }

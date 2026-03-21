@@ -138,6 +138,16 @@ describe('flint-badge', () => {
         expect(child?.textContent).toBe('icon');
     });
 
+    it('reflects variant attribute to host', async () => {
+        const el = await fixture<FlintBadge>(html`<flint-badge content="1" variant="error"></flint-badge>`);
+        expect(el.getAttribute('variant')).toBe('error');
+    });
+
+    it('reflects dot attribute to host', async () => {
+        const el = await fixture<FlintBadge>(html`<flint-badge dot></flint-badge>`);
+        expect(el.hasAttribute('dot')).toBe(true);
+    });
+
     describe('accessibility', () => {
         it('should be accessible', async () => {
             const el = await fixture(html`<flint-badge content="5"><span>Notifications</span></flint-badge>`);

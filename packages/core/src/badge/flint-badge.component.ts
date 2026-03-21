@@ -15,14 +15,14 @@ export class FlintBadge extends FlintElement {
     /** Text content displayed inside the badge. */
     @property({ type: String }) content = '';
     /** Whether to display a small dot instead of content. */
-    @property({ type: Boolean }) dot = false;
+    @property({ type: Boolean, reflect: true }) dot = false;
     /** Whether the badge is hidden. */
     @property({ type: Boolean }) invisible = false;
     /**
      * Color variant of the badge.
      * @default 'primary'
      */
-    @property({ type: String }) variant: 'primary' | 'secondary' | 'error' | 'success' | 'warning' = 'primary';
+    @property({ type: String, reflect: true }) variant: 'primary' | 'secondary' | 'error' | 'success' | 'warning' = 'primary';
     /**
      * Maximum numeric value before displaying "max+".
      * @default 99
@@ -30,9 +30,9 @@ export class FlintBadge extends FlintElement {
     @property({ type: Number }) max = 99;
 
     private get _displayContent() {
-        if (this.dot) return '';
+        if (this.dot || !this.content) return '';
         const num = Number(this.content);
-        if (!isNaN(num) && num > this.max) {
+        if (!isNaN(num) && isFinite(num) && num > this.max) {
             return `${this.max}+`;
         }
         return this.content;

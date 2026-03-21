@@ -204,6 +204,34 @@ describe('FlintAlert — property updates', () => {
     });
 });
 
+// ─── ARIA & CSS Parts ─────────────────────────────────────────────────────────
+
+describe('FlintAlert — ARIA & CSS parts', () => {
+    it('sets aria-live="polite" for info severity', async () => {
+        const el = await fixture<FlintAlert>(html`<flint-alert severity="info">Msg</flint-alert>`);
+        await settle(el);
+        expect(el.shadowRoot!.querySelector('.alert')?.getAttribute('aria-live')).toBe('polite');
+    });
+
+    it('sets aria-live="assertive" for error severity', async () => {
+        const el = await fixture<FlintAlert>(html`<flint-alert severity="error">Msg</flint-alert>`);
+        await settle(el);
+        expect(el.shadowRoot!.querySelector('.alert')?.getAttribute('aria-live')).toBe('assertive');
+    });
+
+    it('exposes part="title" on the title element', async () => {
+        const el = await fixture<FlintAlert>(html`<flint-alert .title=${'Test'}>Msg</flint-alert>`);
+        await settle(el);
+        expect(el.shadowRoot!.querySelector('[part="title"]')).not.toBeNull();
+    });
+
+    it('exposes part="close-button" when dismissible', async () => {
+        const el = await fixture<FlintAlert>(html`<flint-alert dismissible>Msg</flint-alert>`);
+        await settle(el);
+        expect(el.shadowRoot!.querySelector('[part="close-button"]')).not.toBeNull();
+    });
+});
+
 // ─── Accessibility ───────────────────────────────────────────────────────────────
 
 describe('FlintAlert — accessibility', () => {

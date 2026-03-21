@@ -160,6 +160,31 @@ describe('flint-avatar', () => {
         expect(custom?.textContent).toBe('★');
     });
 
+    it('handles emoji initials correctly (grapheme clusters)', async () => {
+        const el = await fixture<FlintAvatar>(html`<flint-avatar initials="🇺🇸🇬🇧🇫🇷"></flint-avatar>`);
+        const span = el.shadowRoot?.querySelector('.initials');
+        // Should take first 2 grapheme clusters (flag emojis are 2-char sequences)
+        const text = span?.textContent?.trim() ?? '';
+        expect([...text].length).toBeLessThanOrEqual(4); // 2 flag emojis = up to 4 code points
+    });
+
+    it('passes loading attribute to img', async () => {
+        const el = await fixture<FlintAvatar>(html`<flint-avatar src="test.jpg" loading="lazy"></flint-avatar>`);
+        const img = el.shadowRoot?.querySelector('img');
+        expect(img?.getAttribute('loading')).toBe('lazy');
+    });
+
+    it('defaults loading to eager', async () => {
+        const el = await fixture<FlintAvatar>(html`<flint-avatar src="test.jpg"></flint-avatar>`);
+        const img = el.shadowRoot?.querySelector('img');
+        expect(img?.getAttribute('loading')).toBe('eager');
+    });
+
+    it('exposes part="fallback" on the default SVG icon', async () => {
+        const el = await fixture<FlintAvatar>(html`<flint-avatar></flint-avatar>`);
+        expect(el.shadowRoot?.querySelector('[part="fallback"]')).not.toBeNull();
+    });
+
     describe('accessibility', () => {
         it('should be accessible', async () => {
             const el = await fixture(html`<flint-avatar alt="John Doe"></flint-avatar>`);

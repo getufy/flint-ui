@@ -99,6 +99,24 @@ describe('flint-app-bar', () => {
         }
     });
 
+    it('renders start-content slot alias (same as navigation)', async () => {
+        const el = await fixture<FlintAppBar>(html`
+            <flint-app-bar>
+                <div slot="start-content" id="start">Start</div>
+            </flint-app-bar>
+        `);
+        expect(el.querySelector('#start')).not.toBeNull();
+    });
+
+    it('renders end-content slot alias (same as actions)', async () => {
+        const el = await fixture<FlintAppBar>(html`
+            <flint-app-bar>
+                <div slot="end-content" id="end">End</div>
+            </flint-app-bar>
+        `);
+        expect(el.querySelector('#end')).not.toBeNull();
+    });
+
     describe('accessibility', () => {
         it('should be accessible', async () => {
             const el = await fixture(html`<flint-app-bar title="My App"></flint-app-bar>`);

@@ -41,19 +41,22 @@ export class FlintAccordion extends FlintElement {
     /** Unique ID used to link the region to its summary heading. */
     private readonly _uid = `flint-accordion-${++_accordionCounter}`;
 
+    /** ID for the summary element (used for aria-labelledby linking). */
+    get summaryId(): string { return this._uid + '-summary'; }
+
+    /** ID for the details panel (used for aria-controls linking). */
+    get detailsId(): string { return this._uid + '-details'; }
+
     private _firstUpdate = true;
 
     override willUpdate(changed: PropertyValues) {
-        // Honour defaultExpanded on first render, but only when `expanded` was not
-        // explicitly provided. willUpdate() batches this into the current
-        // update cycle, so no extra round-trip or Lit warning is triggered.
+        void changed;
         if (this._firstUpdate) {
             this._firstUpdate = false;
             if (this.defaultExpanded && !this.expanded) {
                 this.expanded = true;
             }
         }
-        void changed;
     }
 
     override updated(changed: PropertyValues) {
@@ -65,6 +68,16 @@ export class FlintAccordion extends FlintElement {
                     if (this.disabled) el.setAttribute('disabled', '');
                     else el.removeAttribute('disabled');
                 });
+
+            // Sync aria-expanded on summary and id on details
+            const summary = this.querySelector('flint-accordion-summary');
+            if (summary) {
+                summary.setAttribute('aria-expanded', String(this.expanded));
+            }
+            const details = this.querySelector('flint-accordion-details');
+            if (details && !details.hasAttribute('id')) {
+                details.setAttribute('id', this.detailsId);
+            }
         }
     }
 
@@ -90,7 +103,7 @@ export class FlintAccordion extends FlintElement {
 
     render() {
         return html`
-            <div class="accordion-container" part="base" role="region" aria-labelledby=${this._uid + '-summary'}>
+            <div class="accordion-container" part="base" role="region" aria-labelledby=${this.summaryId}>
                 <slot></slot>
             </div>
         `;
@@ -138,10 +151,14 @@ export class FlintAccordionSummary extends FlintElement {
         super.connectedCallback();
         if (!this.hasAttribute('role')) this.setAttribute('role', 'button');
         if (!this.hasAttribute('tabindex')) this.setAttribute('tabindex', '0');
-        // Link to parent accordion's region for landmark-unique fix
-        const accordion = this.closest('flint-accordion') as (FlintAccordion & { _uid: string; }) | null;
-        if (accordion && !this.hasAttribute('id')) {
-            this.setAttribute('id', (accordion as unknown as { _uid: string })._uid + '-summary');
+        // Link to parent accordion's region for aria-labelledby / aria-controls
+        const accordion = this.closest('flint-accordion') as FlintAccordion | null;
+        if (accordion) {
+            if (!this.hasAttribute('id')) {
+                this.setAttribute('id', accordion.summaryId);
+            }
+            this.setAttribute('aria-controls', accordion.detailsId);
+            this.setAttribute('aria-expanded', String(accordion.expanded));
         }
     }
 

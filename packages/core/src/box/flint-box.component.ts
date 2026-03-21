@@ -88,19 +88,28 @@ export class FlintBox extends FlintElement {
     @property({ type: String }) height?: string;
 
     private _safeTag = 'div';
+    private _pendingWarning = '';
 
     protected willUpdate(changedProperties: PropertyValues) {
         if (changedProperties.has('component')) {
             if (!ALLOWED_TAGS.has(this.component)) {
                 this._safeTag = 'div';
-                this.dispatchEvent(new CustomEvent('flint-box-warning', {
-                    bubbles: true,
-                    composed: true,
-                    detail: { message: `Unknown component tag "${this.component}", falling back to "div".` },
-                }));
+                this._pendingWarning = `Unknown component tag "${this.component}", falling back to "div".`;
             } else {
                 this._safeTag = this.component;
+                this._pendingWarning = '';
             }
+        }
+    }
+
+    protected override updated(changedProperties: PropertyValues) {
+        if (changedProperties.has('component') && this._pendingWarning) {
+            this.dispatchEvent(new CustomEvent('flint-box-warning', {
+                bubbles: true,
+                composed: true,
+                detail: { message: this._pendingWarning },
+            }));
+            this._pendingWarning = '';
         }
     }
 

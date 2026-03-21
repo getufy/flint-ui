@@ -51,6 +51,8 @@ export class FlintAutocomplete extends FormAssociated(FlintElement) {
     @state() private _activeIndex = -1;
     @state() private _normalizedOptions: AutocompleteOption[] = [];
 
+    private _abortController?: AbortController;
+
     connectedCallback() {
         super.connectedCallback();
         this._inputValue = this.value;
@@ -59,12 +61,13 @@ export class FlintAutocomplete extends FormAssociated(FlintElement) {
             this._inputValue = this.defaultValue;
         }
         this._firstUpdate = false;
-        document.addEventListener('click', this._handleOutsideClick);
+        this._abortController = new AbortController();
+        document.addEventListener('click', this._handleOutsideClick, { signal: this._abortController.signal });
     }
 
     disconnectedCallback() {
         super.disconnectedCallback();
-        document.removeEventListener('click', this._handleOutsideClick);
+        this._abortController?.abort();
         this._cleanupHoist();
     }
 
@@ -222,11 +225,13 @@ export class FlintAutocomplete extends FormAssociated(FlintElement) {
                 this._activeIndex = Math.max(this._activeIndex - 1, -1);
                 this._scrollActiveIntoView();
                 break;
-            case 'Enter':
-                if (this._activeIndex >= 0 && this._filteredOptions[this._activeIndex]) {
+            case 'Enter': {
+                const selected = this._filteredOptions[this._activeIndex];
+                if (this._activeIndex >= 0 && selected) {
                     e.preventDefault();
-                    this._selectOption(this._filteredOptions[this._activeIndex]!);
+                    this._selectOption(selected);
                 }
+            }
                 break;
             case 'Escape':
                 e.preventDefault();
@@ -293,6 +298,7 @@ export class FlintAutocomplete extends FormAssociated(FlintElement) {
                     id="option-${i}"
                     role="option"
                     aria-selected=${i === this._activeIndex ? 'true' : 'false'}
+                    part="option"
                     class=${classMap({ option: true, active: i === this._activeIndex })}
                     @mousedown=${(e: Event) => e.preventDefault()}
                     @click=${() => this._selectOption(opt)}

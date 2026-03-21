@@ -88,9 +88,10 @@ describe('flint-animation — rendering', () => {
         expect(el.shadowRoot!.querySelector('slot')).not.toBeNull();
     });
 
-    it('sets display to contents', async () => {
+    it('does not set inline display style (uses CSS instead)', async () => {
         const el = await make();
-        expect(el.style.display).toBe('contents');
+        // display: contents is now in the CSS file, not inline
+        expect(el.style.display).toBe('');
     });
 
     it('projects slotted content', async () => {
@@ -346,6 +347,27 @@ describe('flint-animation — disconnectedCallback', () => {
         animation.cancel.mockClear();
         el.remove();
         expect(animation.cancel).toHaveBeenCalled();
+    });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   flint-animation — prefers-reduced-motion
+═══════════════════════════════════════════════════════════════════════════ */
+describe('flint-animation — prefers-reduced-motion', () => {
+    it('sets duration and delay to 0 when reduced motion is preferred', async () => {
+        const originalMatchMedia = window.matchMedia;
+        window.matchMedia = vi.fn().mockReturnValue({ matches: true }) as unknown as typeof window.matchMedia;
+
+        const { spy } = mockAnimate();
+        const el = await make({ play: true, duration: 500, delay: 200 });
+        await el.updateComplete;
+
+        expect(spy).toHaveBeenCalledWith(
+            expect.any(Array),
+            expect.objectContaining({ duration: 0, delay: 0 }),
+        );
+
+        window.matchMedia = originalMatchMedia;
     });
 });
 

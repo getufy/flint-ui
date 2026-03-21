@@ -158,11 +158,11 @@ describe('flint-bottom-navigation-action', () => {
         expect(el.getAttribute('role')).toBe('tab');
     });
 
-    it('has tabindex="0" for keyboard focus', async () => {
+    it('has tabindex="-1" by default (roving tabindex)', async () => {
         const el = await fixture<FlintBottomNavigationAction>(html`
             <flint-bottom-navigation-action label="Home" value="home"></flint-bottom-navigation-action>
         `);
-        expect(el.tabIndex).toBe(0);
+        expect(el.tabIndex).toBe(-1);
     });
 
     it('sets aria-selected="true" when active', async () => {
@@ -232,6 +232,107 @@ describe('flint-bottom-navigation-action', () => {
 
         expect(changeSpy).toHaveBeenCalled();
         expect(changeSpy.mock.calls[0][0].detail.value).toBe('favs');
+    });
+});
+
+describe('flint-bottom-navigation — roving tabindex', () => {
+    it('sets tabindex=0 on active action and -1 on others', async () => {
+        const el = await fixture<FlintBottomNavigation>(html`
+            <flint-bottom-navigation value="favs">
+                <flint-bottom-navigation-action label="Recents" value="recents"></flint-bottom-navigation-action>
+                <flint-bottom-navigation-action label="Favorites" value="favs"></flint-bottom-navigation-action>
+            </flint-bottom-navigation>
+        `);
+
+        const actions = el.querySelectorAll('flint-bottom-navigation-action');
+        expect(actions[0].tabIndex).toBe(-1);
+        expect(actions[1].tabIndex).toBe(0);
+    });
+
+    it('updates tabindex when active action changes', async () => {
+        const el = await fixture<FlintBottomNavigation>(html`
+            <flint-bottom-navigation value="recents">
+                <flint-bottom-navigation-action label="Recents" value="recents"></flint-bottom-navigation-action>
+                <flint-bottom-navigation-action label="Favorites" value="favs"></flint-bottom-navigation-action>
+            </flint-bottom-navigation>
+        `);
+
+        const actions = el.querySelectorAll('flint-bottom-navigation-action');
+        expect(actions[0].tabIndex).toBe(0);
+        expect(actions[1].tabIndex).toBe(-1);
+
+        // Click second action
+        actions[1].click();
+        await el.updateComplete;
+
+        expect(actions[0].tabIndex).toBe(-1);
+        expect(actions[1].tabIndex).toBe(0);
+    });
+});
+
+describe('flint-bottom-navigation — arrow key navigation', () => {
+    it('ArrowRight moves to next action', async () => {
+        const el = await fixture<FlintBottomNavigation>(html`
+            <flint-bottom-navigation value="recents">
+                <flint-bottom-navigation-action label="Recents" value="recents"></flint-bottom-navigation-action>
+                <flint-bottom-navigation-action label="Favorites" value="favs"></flint-bottom-navigation-action>
+                <flint-bottom-navigation-action label="Nearby" value="nearby"></flint-bottom-navigation-action>
+            </flint-bottom-navigation>
+        `);
+
+        const container = el.shadowRoot!.querySelector('.container')!;
+        container.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+        await el.updateComplete;
+
+        expect(el.value).toBe('favs');
+    });
+
+    it('ArrowLeft moves to previous action', async () => {
+        const el = await fixture<FlintBottomNavigation>(html`
+            <flint-bottom-navigation value="favs">
+                <flint-bottom-navigation-action label="Recents" value="recents"></flint-bottom-navigation-action>
+                <flint-bottom-navigation-action label="Favorites" value="favs"></flint-bottom-navigation-action>
+                <flint-bottom-navigation-action label="Nearby" value="nearby"></flint-bottom-navigation-action>
+            </flint-bottom-navigation>
+        `);
+
+        const container = el.shadowRoot!.querySelector('.container')!;
+        container.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }));
+        await el.updateComplete;
+
+        expect(el.value).toBe('recents');
+    });
+
+    it('ArrowRight wraps from last to first', async () => {
+        const el = await fixture<FlintBottomNavigation>(html`
+            <flint-bottom-navigation value="nearby">
+                <flint-bottom-navigation-action label="Recents" value="recents"></flint-bottom-navigation-action>
+                <flint-bottom-navigation-action label="Favorites" value="favs"></flint-bottom-navigation-action>
+                <flint-bottom-navigation-action label="Nearby" value="nearby"></flint-bottom-navigation-action>
+            </flint-bottom-navigation>
+        `);
+
+        const container = el.shadowRoot!.querySelector('.container')!;
+        container.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+        await el.updateComplete;
+
+        expect(el.value).toBe('recents');
+    });
+
+    it('ArrowLeft wraps from first to last', async () => {
+        const el = await fixture<FlintBottomNavigation>(html`
+            <flint-bottom-navigation value="recents">
+                <flint-bottom-navigation-action label="Recents" value="recents"></flint-bottom-navigation-action>
+                <flint-bottom-navigation-action label="Favorites" value="favs"></flint-bottom-navigation-action>
+                <flint-bottom-navigation-action label="Nearby" value="nearby"></flint-bottom-navigation-action>
+            </flint-bottom-navigation>
+        `);
+
+        const container = el.shadowRoot!.querySelector('.container')!;
+        container.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }));
+        await el.updateComplete;
+
+        expect(el.value).toBe('nearby');
     });
 });
 

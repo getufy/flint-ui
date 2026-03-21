@@ -5,7 +5,7 @@
       --flint-app-bar-bg: var(--flint-primary-color);
       --flint-app-bar-color: var(--flint-text-color-on-primary);
       --flint-app-bar-shadow: var(--flint-shadow-md);
-      z-index: 1100;
+      z-index: var(--flint-z-app-bar, 1100);
     }
 
     :host([position="fixed"]) {

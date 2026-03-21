@@ -306,6 +306,39 @@ describe('FlintAccordionSummary', () => {
         expect(el.querySelector('#custom-icon')).toBeTruthy();
     });
 
+    it('has aria-expanded="false" when collapsed', async () => {
+        const acc = await makeAccordion();
+        await acc.updateComplete;
+        const summary = acc.querySelector('flint-accordion-summary')!;
+        expect(summary.getAttribute('aria-expanded')).toBe('false');
+    });
+
+    it('has aria-expanded="true" when expanded', async () => {
+        const acc = await makeAccordion(true);
+        await acc.updateComplete;
+        const summary = acc.querySelector('flint-accordion-summary')!;
+        expect(summary.getAttribute('aria-expanded')).toBe('true');
+    });
+
+    it('updates aria-expanded when expanded state changes', async () => {
+        const acc = await makeAccordion();
+        const summary = acc.querySelector('flint-accordion-summary')!;
+        expect(summary.getAttribute('aria-expanded')).toBe('false');
+        summary.click();
+        await acc.updateComplete;
+        expect(summary.getAttribute('aria-expanded')).toBe('true');
+    });
+
+    it('has aria-controls pointing to details panel id', async () => {
+        const acc = await makeAccordion();
+        await acc.updateComplete;
+        const summary = acc.querySelector('flint-accordion-summary')!;
+        const details = acc.querySelector('flint-accordion-details')!;
+        const controlsId = summary.getAttribute('aria-controls');
+        expect(controlsId).toBeTruthy();
+        expect(details.getAttribute('id')).toBe(controlsId);
+    });
+
     it('does not override a pre-existing role attribute', async () => {
         const el = await fixture<FlintAccordionSummary>(html`<flint-accordion-summary role="heading">Title</flint-accordion-summary>`);
         expect(el.getAttribute('role')).toBe('heading');

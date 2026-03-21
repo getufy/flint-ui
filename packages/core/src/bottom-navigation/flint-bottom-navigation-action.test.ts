@@ -108,11 +108,11 @@ describe('flint-bottom-navigation-action', () => {
         expect(el.getAttribute('role')).toBe('button');
     });
 
-    it('sets tabindex="0" by default', async () => {
+    it('sets tabindex="-1" by default (roving tabindex, parent sets 0 on active)', async () => {
         const el = await fixture<FlintBottomNavigationAction>(html`
             <flint-bottom-navigation-action label="Home" value="home"></flint-bottom-navigation-action>
         `);
-        expect(el.tabIndex).toBe(0);
+        expect(el.tabIndex).toBe(-1);
     });
 
     it('sets aria-selected based on active property', async () => {

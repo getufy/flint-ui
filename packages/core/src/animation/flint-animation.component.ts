@@ -1,6 +1,7 @@
-import { html, type PropertyValues } from 'lit';
+import { unsafeCSS, html, type PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
+import uiAnimationStyles from './flint-animation.css?inline';
 
 /** Built-in animation presets using the Web Animations API keyframe format. */
 const ANIMATION_PRESETS: Record<string, Keyframe[]> = {
@@ -72,6 +73,8 @@ const ANIMATION_PRESETS: Record<string, Keyframe[]> = {
  * @slot - Content to animate.
  */
 export class FlintAnimation extends FlintElement {
+    static styles = unsafeCSS(uiAnimationStyles);
+
     /**
      * Animation preset name (e.g., 'fade-in', 'slide-up', 'bounce') or
      * 'custom' when providing keyframes via the `keyframes` property.
@@ -110,11 +113,6 @@ export class FlintAnimation extends FlintElement {
 
     private _animation: Animation | null = null;
 
-    connectedCallback() {
-        super.connectedCallback();
-        this.style.display = 'contents';
-    }
-
     firstUpdated() {
         if (this.playOnConnect || this.play) {
             this._startAnimation();
@@ -138,6 +136,11 @@ export class FlintAnimation extends FlintElement {
         return (nodes[0] as HTMLElement) ?? null;
     }
 
+    private _prefersReducedMotion(): boolean {
+        return typeof window !== 'undefined' &&
+               window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    }
+
     private _startAnimation() {
         this._cancelAnimation();
 
@@ -147,11 +150,13 @@ export class FlintAnimation extends FlintElement {
         const frames = this.keyframes ?? ANIMATION_PRESETS[this.name];
         if (!frames) return;
 
+        const reducedMotion = this._prefersReducedMotion();
+
         this._animation = target.animate(frames, {
-            duration: this.duration,
+            duration: reducedMotion ? 0 : this.duration,
             easing: this.easing,
             iterations: this.iterations,
-            delay: this.delay,
+            delay: reducedMotion ? 0 : this.delay,
             fill: this.fill,
             direction: this.direction,
         });
@@ -185,12 +190,10 @@ export class FlintAnimation extends FlintElement {
     }
 
     /** Restart the animation from the beginning. */
-    restart() {
+    async restart() {
         this.play = false;
-        // Force a microtask so Lit sees the change
-        void this.updateComplete.then(() => {
-            this.play = true;
-        });
+        await this.updateComplete;
+        this.play = true;
     }
 
     /** Returns the list of available preset names. */

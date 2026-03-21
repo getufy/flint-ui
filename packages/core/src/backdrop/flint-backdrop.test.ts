@@ -76,10 +76,10 @@ describe('flint-backdrop', () => {
         expect(backdrop?.getAttribute('aria-hidden')).toBe('true');
     });
 
-    it('removes aria-hidden when open', async () => {
+    it('sets aria-hidden="false" when open', async () => {
         const el = await fixture<FlintBackdrop>(html`<flint-backdrop open></flint-backdrop>`);
         const backdrop = el.shadowRoot!.querySelector('.backdrop');
-        expect(backdrop?.hasAttribute('aria-hidden')).toBe(false);
+        expect(backdrop?.getAttribute('aria-hidden')).toBe('false');
     });
 
     it('reflects the container attribute', async () => {
@@ -160,6 +160,39 @@ describe('flint-backdrop', () => {
         el.open = true;
         await el.updateComplete;
         expect(backdrop?.classList.contains('open')).toBe(true);
+    });
+
+    it('does not listen for Escape when not open (scoped listener)', async () => {
+        const el = await fixture<FlintBackdrop>(html`<flint-backdrop></flint-backdrop>`);
+        const closeSpy = vi.fn();
+        el.addEventListener('flint-backdrop-close', closeSpy);
+
+        // Listener should not be active when not open
+        document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+        expect(closeSpy).not.toHaveBeenCalled();
+
+        // Open, then Escape should work
+        el.open = true;
+        await el.updateComplete;
+        document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+        expect(closeSpy).toHaveBeenCalledOnce();
+
+        // Close, then Escape should not fire again
+        closeSpy.mockClear();
+        el.open = false;
+        await el.updateComplete;
+        document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+        expect(closeSpy).not.toHaveBeenCalled();
+    });
+
+    it('cleans up Escape listener on disconnect', async () => {
+        const el = await fixture<FlintBackdrop>(html`<flint-backdrop open></flint-backdrop>`);
+        const closeSpy = vi.fn();
+        el.addEventListener('flint-backdrop-close', closeSpy);
+
+        el.remove();
+        document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+        expect(closeSpy).not.toHaveBeenCalled();
     });
 
     describe('accessibility', () => {
