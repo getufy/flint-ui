@@ -20,9 +20,9 @@ export interface FlintButtonProps extends Omit<React.HTMLAttributes<FlintButtonE
     appearance?: 'filled' | 'outlined' | 'text' | 'ghost';
     /**
      * Semantic color of the button.
-     * Allowed values: 'primary' | 'destructive' | 'success' | 'warning' | 'neutral'
+     * Allowed values: 'primary' | 'neutral' | 'destructive' | 'success' | 'warning'
      */
-    color?: 'primary' | 'destructive' | 'success' | 'warning' | 'neutral';
+    color?: 'primary' | 'neutral' | 'destructive' | 'success' | 'warning';
     /**
      * Size of the button.
      * Allowed values: 'sm' | 'md' | 'lg'

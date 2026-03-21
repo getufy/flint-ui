@@ -345,7 +345,7 @@ export class FlintInputOtp extends FormAssociated(FlintElement) {
 
     // ── event handlers ───────────────────────────────────────────────
 
-    private _handleKeydown(e: KeyboardEvent) {
+    private _handleKeydown = (e: KeyboardEvent) => {
         // Let Tab and modifier combos (Ctrl+C, Ctrl+A, Cmd+V, …) pass through.
         if (e.key === 'Tab' || e.metaKey || e.ctrlKey) return;
 
@@ -365,33 +365,33 @@ export class FlintInputOtp extends FormAssociated(FlintElement) {
             e.preventDefault();
             this._insertChar(e.key);
         }
-    }
+    };
 
-    private _handlePaste(e: ClipboardEvent) {
+    private _handlePaste = (e: ClipboardEvent) => {
         e.preventDefault();
         const pasted = e.clipboardData?.getData('text') ?? '';
         const filtered = this._filterByPattern(pasted).slice(0, this.maxLength);
         this._commit(filtered);
         this._cursorIndex = Math.min(filtered.length, this.maxLength - 1);
         this._syncSlots();
-    }
+    };
 
-    private _handleFocus() {
+    private _handleFocus = () => {
         this._focused = true;
         // Default: position cursor at the end of the current value.
         // Allow maxLength so backspace on a full value deletes the last char correctly.
         this._cursorIndex = Math.min(this._internalValue.length, this.maxLength - 1);
         this._syncSlots();
-    }
+    };
 
-    private _handleBlur() {
+    private _handleBlur = () => {
         this._focused = false;
         this._syncSlots();
-    }
+    };
 
-    private _handleSlotChange() {
+    private _handleSlotChange = () => {
         this._syncSlots();
-    }
+    };
 
     /**
      * Compute the appropriate mobile keyboard type.

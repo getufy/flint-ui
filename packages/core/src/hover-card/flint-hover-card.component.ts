@@ -40,7 +40,7 @@ export class FlintHoverCardTrigger extends FlintElement {
     private _handleFocusIn   = () => this._getRoot()?.handleTriggerEnter();
     private _handleFocusOut  = () => this._getRoot()?.handleTriggerLeave();
 
-    private _handleSlotChange(e: Event) {
+    private _handleSlotChange = (e: Event) => {
         const slot = e.target as HTMLSlotElement;
         const nodes = slot.assignedElements({ flatten: true });
         const interactiveTags = new Set(['A', 'BUTTON', 'INPUT', 'SELECT', 'TEXTAREA']);
@@ -55,7 +55,7 @@ export class FlintHoverCardTrigger extends FlintElement {
             el.setAttribute('aria-expanded', this.expanded ? 'true' : 'false');
             if (this.contentId) el.setAttribute('aria-describedby', this.contentId);
         }
-    }
+    };
 
     override updated(changed: PropertyValues) {
         if (this._slottedIsInteractive && (changed.has('expanded') || changed.has('contentId'))) {

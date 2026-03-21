@@ -234,6 +234,7 @@ export class FlintCarousel extends FlintElement {
 
   private readonly _handleTouchStart = (e: TouchEvent) => {
     if (!this.touch) return;
+    this._stopAutoplay();
     const t = e.touches[0];
     if (!t) return;
     this._touchStartX = t.clientX;
@@ -274,9 +275,11 @@ export class FlintCarousel extends FlintElement {
     const nextKey = isVertical ? 'ArrowDown' : 'ArrowRight';
     if (e.key === prevKey) {
       e.preventDefault();
+      this._stopAutoplay();
       this.previous();
     } else if (e.key === nextKey) {
       e.preventDefault();
+      this._stopAutoplay();
       this.next();
     }
   };

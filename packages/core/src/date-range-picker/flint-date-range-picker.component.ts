@@ -97,19 +97,19 @@ export class FlintDateRangePicker extends FlintElement {
 
     // ── Open / close ──────────────────────────────────────────────────────────
 
-    private _openPicker() {
+    private _openPicker = () => {
         if (this.disabled || this.readonly || this._open) return;
         this._pendingValue = [...this.value];
         this._open = true;
-    }
+    };
 
-    private _closePicker() {
+    private _closePicker = () => {
         this._open = false;
-    }
+    };
 
     // ── Event handlers ────────────────────────────────────────────────────────
 
-    private _handleCalendarSelect(e: CustomEvent) {
+    private _handleCalendarSelect = (e: CustomEvent) => {
         const range = e.detail.value as DateRange;
         this._pendingValue = range;
         this._activeShortcut = '';
@@ -119,14 +119,14 @@ export class FlintDateRangePicker extends FlintElement {
         if (v === 'desktop' && range[0] && range[1]) {
             this._commit(range);
         }
-    }
+    };
 
-    private _handleFieldRangeChange(e: CustomEvent) {
+    private _handleFieldRangeChange = (e: CustomEvent) => {
         const range = e.detail.value as DateRange;
         this._commit(range);
-    }
+    };
 
-    private async _handleShortcut(shortcut: Shortcut) {
+    private _handleShortcut = async (shortcut: Shortcut) => {
         const range = shortcut.getValue();
         this._pendingValue = range;
         this._activeShortcut = shortcut.label;
@@ -143,14 +143,14 @@ export class FlintDateRangePicker extends FlintElement {
             const cal = this.shadowRoot?.querySelector('flint-date-range-calendar') as { navigateTo?: (iso: string) => void } | null;
             cal?.navigateTo?.(range[0]);
         }
-    }
+    };
 
-    private _handleStaticSelect(e: CustomEvent) {
+    private _handleStaticSelect = (e: CustomEvent) => {
         const range = e.detail.value as DateRange;
         this._commit(range);
-    }
+    };
 
-    private _commit(range: DateRange) {
+    private _commit = (range: DateRange) => {
         const [ps, pe] = this.value;
         const [ns, ne] = range;
         if (ns === ps && ne === pe) { this._closePicker(); return; }
@@ -159,19 +159,19 @@ export class FlintDateRangePicker extends FlintElement {
             detail: { value: range }, bubbles: true, composed: true,
         }));
         if (range[0] && range[1]) this._closePicker();
-    }
+    };
 
-    private _handleMobileOk() {
+    private _handleMobileOk = () => {
         this._commit(this._pendingValue[0] && this._pendingValue[1]
             ? this._pendingValue
             : this.value);
-    }
+    };
 
-    private _handleMobileCancel() {
+    private _handleMobileCancel = () => {
         this._pendingValue = [...this.value];
         this._activeShortcut = '';
         this._closePicker();
-    }
+    };
 
     // ── Render helpers ────────────────────────────────────────────────────────
 

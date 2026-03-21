@@ -22,9 +22,9 @@ export interface FlintTypographyProps extends Omit<React.HTMLAttributes<FlintTyp
     variant?: 'inherit' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'subtitle1' | 'subtitle2' | 'body1' | 'body2' | 'caption' | 'overline';
     /**
      * The color of the text.
-     * Allowed values: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info' | 'textPrimary' | 'textSecondary' | 'inherit'
+     * Allowed values: 'primary' | 'success' | 'warning' | 'secondary' | 'error' | 'info' | 'textPrimary' | 'textSecondary' | 'inherit'
      */
-    color?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info' | 'textPrimary' | 'textSecondary' | 'inherit';
+    color?: 'primary' | 'success' | 'warning' | 'secondary' | 'error' | 'info' | 'textPrimary' | 'textSecondary' | 'inherit';
     /** Override the rendered HTML tag. */
     component?: string | undefined;
     /**

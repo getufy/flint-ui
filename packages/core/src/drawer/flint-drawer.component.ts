@@ -207,9 +207,9 @@ export class FlintDrawer extends FlintElement {
         await Promise.all(promises);
     }
 
-    private _close() {
+    private _close = () => {
         this.dispatchEvent(new CustomEvent('flint-drawer-close', { bubbles: true, composed: true, detail: { open: false } }));
-    }
+    };
 
     render() {
         const isTemporary = this.variant === 'temporary';

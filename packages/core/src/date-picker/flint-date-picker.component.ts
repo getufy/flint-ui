@@ -144,31 +144,31 @@ export class FlintDatePickerCalendar extends FlintElement {
         if (d) { this._viewYear = d.getFullYear(); this._viewMonth = d.getMonth(); }
     }
 
-    private _prevMonth() {
+    private _prevMonth = () => {
         if (this._viewMonth === 0) { this._viewMonth = 11; this._viewYear--; }
         else this._viewMonth--;
-    }
-    private _nextMonth() {
+    };
+    private _nextMonth = () => {
         if (this._viewMonth === 11) { this._viewMonth = 0; this._viewYear++; }
         else this._viewMonth++;
-    }
+    };
 
-    private _selectDay(cell: CalendarDay) {
+    private _selectDay = (cell: CalendarDay) => {
         if (cell.isDisabled || this.disabled) return;
         this.dispatchEvent(new CustomEvent('flint-date-picker-select', {
             detail: { value: cell.iso }, bubbles: true, composed: true
         }));
-    }
+    };
 
-    private _selectYear(year: number) {
+    private _selectYear = (year: number) => {
         this._viewYear = year;
         this._mode = 'month';
-    }
+    };
 
-    private _selectMonth(month: number) {
+    private _selectMonth = (month: number) => {
         this._viewMonth = month;
         this._mode = 'day';
-    }
+    };
 
     private _renderDayView() {
         const grid = buildMonthGrid(this._viewYear, this._viewMonth, this.value ?? null, this.min ?? null, this.max ?? null);
@@ -337,6 +337,11 @@ export class FlintDatePicker extends FormAssociated(FlintElement) {
         }
     }
 
+    override disconnectedCallback() {
+        super.disconnectedCallback();
+        this._cleanupHoist();
+    }
+
     protected override updated(changed: PropertyValues) {
         super.updated(changed);
         if (changed.has('value') || changed.has('name') || changed.has('required')) {
@@ -405,53 +410,53 @@ export class FlintDatePicker extends FormAssociated(FlintElement) {
         }
     }
 
-    private _openPicker() {
+    private _openPicker = () => {
         if (this.disabled || this._open) return;
         this._pendingValue = this.value;
         this._open = true;
         if (this.hoist && this._resolvedVariant === 'desktop') {
             this._startHoist();
         }
-    }
+    };
 
-    private _closePicker() {
+    private _closePicker = () => {
         this._open = false;
         this._cleanupHoist();
-    }
+    };
 
-    private _handleCalendarSelect(e: CustomEvent) {
+    private _handleCalendarSelect = (e: CustomEvent) => {
         const iso = e.detail.value as string;
         // Always stage the value; commit immediately for desktop (mobile needs OK)
         this._pendingValue = iso;
         if (this._resolvedVariant !== 'mobile') {
             this._commit(iso);
         }
-    }
+    };
 
-    private _handleStaticSelect(e: CustomEvent) {
+    private _handleStaticSelect = (e: CustomEvent) => {
         const iso = e.detail.value as string;
         this._commit(iso);
-    }
+    };
 
-    private _commit(iso: string) {
+    private _commit = (iso: string) => {
         if (iso === this.value) { this._closePicker(); return; }
         this.value = iso;
         this.dispatchEvent(new CustomEvent('flint-date-picker-change', {
             detail: { value: iso }, bubbles: true, composed: true
         }));
         this._closePicker();
-    }
+    };
 
-    private _handleMobileOk() {
+    private _handleMobileOk = () => {
         this._commit(this._pendingValue || this.value);
-    }
+    };
 
-    private _handleMobileCancel() {
+    private _handleMobileCancel = () => {
         this._pendingValue = this.value;
         this._closePicker();
-    }
+    };
 
-    private _handleFieldInput(e: Event) {
+    private _handleFieldInput = (e: Event) => {
         if (this.readonly) return;
         const v = (e.target as HTMLInputElement).value;
         // Try parsing MM/DD/YYYY
@@ -463,7 +468,7 @@ export class FlintDatePicker extends FormAssociated(FlintElement) {
             if (this.max && iso > this.max) return;
             this._commit(iso);
         }
-    }
+    };
 
     // ── Field ───────────────────────────────────────────────────────────────
     private _renderField() {

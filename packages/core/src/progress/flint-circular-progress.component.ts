@@ -1,4 +1,4 @@
-import { unsafeCSS, html, nothing } from 'lit';
+import { unsafeCSS, html, nothing, type PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
@@ -6,15 +6,38 @@ import uiCircularProgressStyles from './flint-circular-progress.css?inline';
 
 /**
  * flint-circular-progress: a circular progress indicator (spinner).
+ *
+ * @example
+ * ```html
+ * <!-- Animated spinner (default) -->
+ * <flint-circular-progress></flint-circular-progress>
+ *
+ * <!-- Static progress at 75% -->
+ * <flint-circular-progress value="75"></flint-circular-progress>
+ *
+ * <!-- Explicitly animated (equivalent to default) -->
+ * <flint-circular-progress indeterminate></flint-circular-progress>
+ * ```
  */
 export class FlintCircularProgress extends FlintElement {
     static styles = unsafeCSS(uiCircularProgressStyles);
 
     /**
-     * Progress mode: determinate shows a specific value, indeterminate shows an animation.
+     * Progress mode: determinate shows a specific value, indeterminate shows a looping animation.
+     *
+     * Tip: You can also use the `indeterminate` boolean attribute for a simpler API.
+     * Setting `value` without `indeterminate` automatically switches to determinate mode.
      * @default 'indeterminate'
      */
     @property({ type: String, reflect: true }) mode: 'determinate' | 'indeterminate' = 'indeterminate';
+
+    /**
+     * When true, shows a looping animation instead of a specific progress value.
+     * This is a convenient alternative to `mode="indeterminate"`.
+     *
+     * When omitted or false, the component shows a static progress bar based on `value`.
+     */
+    @property({ type: Boolean, reflect: true }) indeterminate = false;
     /** Current progress value (0 to max) for determinate mode. */
     @property({ type: Number, reflect: true }) value = 0;
     /** Maximum value. The progress is calculated as value / max. @default 100 */
@@ -36,6 +59,20 @@ export class FlintCircularProgress extends FlintElement {
     @property({ type: String, reflect: true }) color: 'primary' | 'success' | 'error' | 'warning' = 'primary';
     /** Accessible label for the progress indicator. */
     @property({ type: String }) label = '';
+
+    override willUpdate(changed: PropertyValues) {
+        // indeterminate boolean → mode sync (skip first render where old value is undefined)
+        if (changed.has('indeterminate') && changed.get('indeterminate') !== undefined) {
+            this.mode = this.indeterminate ? 'indeterminate' : 'determinate';
+        }
+        // Auto-switch: setting value > 0 implies determinate when mode is still default
+        // and indeterminate was not explicitly set by the user.
+        else if (changed.has('value') && this.value > 0 && this.mode === 'indeterminate' && !this.indeterminate) {
+            if (!changed.has('mode') || changed.get('mode') === undefined) {
+                this.mode = 'determinate';
+            }
+        }
+    }
 
     private static readonly _colorMap: Record<string, string> = {
         primary: 'var(--flint-primary-color, #2563eb)',

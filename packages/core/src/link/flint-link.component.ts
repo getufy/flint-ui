@@ -65,11 +65,11 @@ export class FlintLink extends FlintElement {
         return this.rel || undefined;
     }
 
-    private _handleClick(e: MouseEvent) {
+    private _handleClick = (e: MouseEvent) => {
         if (this.disabled) {
             e.preventDefault();
         }
-    }
+    };
 
     render() {
         return html`

@@ -2,6 +2,7 @@ import { unsafeCSS, html, type PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
 import type { Orientation } from '../types.js';
+import type { FlintButton } from './flint-button.component.js';
 import type { ButtonAppearance, ButtonColor, ButtonSize } from './flint-button.component.js';
 import uiButtonGroupStyles from './flint-button-group.css?inline';
 
@@ -52,21 +53,16 @@ export class FlintButtonGroup extends FlintElement {
     private _syncChildren() {
         const buttons = this.querySelectorAll('flint-button');
         for (const btn of buttons) {
-            if (this.size) {
-                (btn as unknown as { size: string }).size = this.size;
-            }
-            if (this.appearance) {
-                (btn as unknown as { appearance: string }).appearance = this.appearance;
-            }
-            if (this.color) {
-                (btn as unknown as { color: string }).color = this.color;
-            }
+            const b = btn as FlintButton;
+            if (this.size) b.size = this.size;
+            if (this.appearance) b.appearance = this.appearance;
+            if (this.color) b.color = this.color;
         }
     }
 
-    private _handleSlotChange() {
+    private _handleSlotChange = () => {
         this._syncChildren();
-    }
+    };
 
     render() {
         return html`

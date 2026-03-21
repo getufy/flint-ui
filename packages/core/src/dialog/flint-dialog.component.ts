@@ -268,20 +268,20 @@ export class FlintDialog extends FlintElement {
     this.dispatchEvent(new CustomEvent('flint-dialog-close', { bubbles: true, composed: true, detail: { open: false } }));
   }
 
-  private _handleBackdropClose(e: Event) {
+  private _handleBackdropClose = (e: Event) => {
     // Prevent the backdrop's own 'flint-backdrop-close' event from escaping the shadow root —
     // the dialog will re-dispatch its own fresh 'flint-dialog-close' event from the host.
     e.stopPropagation();
     if (!this.disableBackdropClose) {
       this.requestClose();
     }
-  }
+  };
 
-  private _handleSlotChange() {
+  private _handleSlotChange = () => {
     const title = this.querySelector('flint-dialog-title');
     this._titleLabel = title?.textContent?.trim() ?? '';
     this._observeContentScroll();
-  }
+  };
 
   private _scrollObserverCleanup: (() => void) | null = null;
 

@@ -104,14 +104,14 @@ export class FlintButton extends FlintElement {
     }
   }
 
-  private _handleClick() {
+  private _handleClick = () => {
     if (this.disabled || this.loading) return;
 
     if (this.type === 'submit' || this.type === 'reset') {
       const proxy = this.shadowRoot?.querySelector('.form-proxy') as HTMLButtonElement | null;
       proxy?.click();
     }
-  }
+  };
 
   render() {
     const isDisabled = this.disabled || this.loading;

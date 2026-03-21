@@ -18,6 +18,8 @@ import uiChipStyles from './flint-chip.css?inline';
  * @fires flint-chip-delete - Fired when the chip's delete icon is clicked. detail: `{ value: string }`
  *
  * @csspart base - The chip's base wrapper element.
+ * @csspart label - The label text element.
+ * @csspart delete-icon - The delete button element.
  */
 export class FlintChip extends FlintElement {
     static styles = unsafeCSS(uiChipStyles);
@@ -28,12 +30,12 @@ export class FlintChip extends FlintElement {
      * Visual style variant of the chip.
      * @default 'filled'
      */
-    @property({ type: String }) variant: 'filled' | 'outlined' = 'filled';
+    @property({ type: String, reflect: true }) variant: 'filled' | 'outlined' = 'filled';
     /**
      * Color theme applied to the chip.
      * @default 'default'
      */
-    @property({ type: String }) color: 'default' | 'primary' | 'secondary' = 'default';
+    @property({ type: String, reflect: true }) color: 'default' | 'primary' | 'secondary' = 'default';
     /**
      * Size of the chip.
      * @default 'md'
@@ -54,15 +56,15 @@ export class FlintChip extends FlintElement {
         }
     }
 
-    private _handleClick() {
+    private _handleClick = () => {
         if (this.disabled || !this.clickable) return;
         this.dispatchEvent(new CustomEvent('flint-chip-click', {
             bubbles: true,
             composed: true
         }));
-    }
+    };
 
-    private _handleKeyDown(e: KeyboardEvent) {
+    private _handleKeyDown = (e: KeyboardEvent) => {
         if (e.key !== 'Enter' && e.key !== ' ') return;
         e.preventDefault();
         if (!this.disabled && this.clickable) {
@@ -71,9 +73,9 @@ export class FlintChip extends FlintElement {
                 composed: true
             }));
         }
-    }
+    };
 
-    private _handleDelete(e: Event) {
+    private _handleDelete = (e: Event) => {
         e.stopPropagation();
         if (this.disabled) return;
         this.dispatchEvent(new CustomEvent('flint-chip-delete', {
@@ -81,9 +83,9 @@ export class FlintChip extends FlintElement {
             composed: true,
             detail: { value: this.label }
         }));
-    }
+    };
 
-    private _handleDeleteKeyDown(e: KeyboardEvent) {
+    private _handleDeleteKeyDown = (e: KeyboardEvent) => {
         if (e.key !== 'Enter' && e.key !== ' ') return;
         e.preventDefault();
         e.stopPropagation();
@@ -94,7 +96,7 @@ export class FlintChip extends FlintElement {
                 detail: { value: this.label }
             }));
         }
-    }
+    };
 
     render() {
         const classes = {
@@ -120,10 +122,11 @@ export class FlintChip extends FlintElement {
       >
         <slot name="avatar"></slot>
         <slot name="icon"></slot>
-        <span class="label">${this.label || html`<slot></slot>`}</span>
+        <span class="label" part="label">${this.label || html`<slot></slot>`}</span>
         ${this.deletable ? html`
           <span
             class="delete-icon"
+            part="delete-icon"
             @click=${this._handleDelete}
             @keydown=${this._handleDeleteKeyDown}
             tabindex=${this.disabled ? '-1' : '0'}

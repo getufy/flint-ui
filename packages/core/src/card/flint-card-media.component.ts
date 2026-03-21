@@ -24,7 +24,7 @@ export class FlintCardMedia extends FlintElement {
             const style = heightVal ? `height: ${heightVal}` : '';
             return html`
                 <div class="media" part="media" style=${style}>
-                    <img src="${this.image}" alt="${this.alt}" part="img" loading="lazy" />
+                    <img .src=${this.image} alt="${this.alt}" part="img" loading="lazy" />
                 </div>
             `;
         }

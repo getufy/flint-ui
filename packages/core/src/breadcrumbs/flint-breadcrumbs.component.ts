@@ -45,7 +45,7 @@ export class FlintBreadcrumbs extends FlintElement {
     @state() private _itemsCount = 0;
     @state() private _separatorNode: Node | null = null;
 
-    private _handleSlotChange() {
+    private _handleSlotChange = () => {
         const children = Array.from(this.children) as HTMLElement[];
         const items = children.filter(child => !child.slot || child.slot.startsWith('breadcrumb-item-'));
 
@@ -57,14 +57,14 @@ export class FlintBreadcrumbs extends FlintElement {
         });
 
         this._itemsCount = items.length;
-    }
+    };
 
-    private _handleSeparatorSlotChange(e: Event) {
+    private _handleSeparatorSlotChange = (e: Event) => {
         const slot = e.target as HTMLSlotElement;
         const nodes = slot.assignedNodes({ flatten: true });
         // Clone the separator node so we can safely reuse it across all separator positions.
         this._separatorNode = nodes.length > 0 ? nodes[0]!.cloneNode(true) : null;
-    }
+    };
 
     private _renderSeparator() {
         return html`
@@ -105,7 +105,7 @@ export class FlintBreadcrumbs extends FlintElement {
         return html`
             ${before.map(i => this._renderItem(i, false))}
             <li class="breadcrumb-li">
-                <button class="collapsed-button" @click=${() => { this._expanded = true; }} aria-label="Show all breadcrumbs">
+                <button class="collapsed-button" @click=${() => { this._expanded = true; }} aria-label="Show all breadcrumbs" aria-expanded="false">
                     &hellip;
                 </button>
                 ${this._renderSeparator()}

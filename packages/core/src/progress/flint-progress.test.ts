@@ -217,6 +217,49 @@ describe('FlintLinearProgress', () => {
         expect(el.getAttribute('value')).to.equal('45');
     });
 
+    // --- indeterminate boolean alias ---
+
+    it('defaults indeterminate to false', async () => {
+        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress></flint-linear-progress>`);
+        expect(el.indeterminate).to.equal(false);
+    });
+
+    it('setting indeterminate=true switches mode to indeterminate', async () => {
+        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress mode="determinate" .value=${50}></flint-linear-progress>`);
+        expect(el.mode).to.equal('determinate');
+        el.indeterminate = true;
+        await el.updateComplete;
+        expect(el.mode).to.equal('indeterminate');
+    });
+
+    it('setting indeterminate=false switches mode to determinate', async () => {
+        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress></flint-linear-progress>`);
+        // First set to indeterminate so we have a previous value
+        el.indeterminate = true;
+        await el.updateComplete;
+        expect(el.mode).to.equal('indeterminate');
+        el.indeterminate = false;
+        await el.updateComplete;
+        expect(el.mode).to.equal('determinate');
+    });
+
+    it('auto-switches to determinate when value is set at runtime', async () => {
+        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress></flint-linear-progress>`);
+        expect(el.mode).to.equal('indeterminate');
+        el.value = 60;
+        await el.updateComplete;
+        expect(el.mode).to.equal('determinate');
+    });
+
+    it('does not auto-switch when indeterminate is explicitly true', async () => {
+        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress></flint-linear-progress>`);
+        el.indeterminate = true;
+        await el.updateComplete;
+        el.value = 60;
+        await el.updateComplete;
+        expect(el.mode).to.equal('indeterminate');
+    });
+
 });
 
 describe('FlintCircularProgress', () => {
@@ -469,6 +512,48 @@ describe('FlintCircularProgress', () => {
         await el.updateComplete;
         expect(el.getAttribute('mode')).to.equal('determinate');
         expect(el.getAttribute('value')).to.equal('30');
+    });
+
+    // --- indeterminate boolean alias ---
+
+    it('defaults indeterminate to false', async () => {
+        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress></flint-circular-progress>`);
+        expect(el.indeterminate).to.equal(false);
+    });
+
+    it('setting indeterminate=true switches mode to indeterminate', async () => {
+        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress mode="determinate" .value=${50}></flint-circular-progress>`);
+        expect(el.mode).to.equal('determinate');
+        el.indeterminate = true;
+        await el.updateComplete;
+        expect(el.mode).to.equal('indeterminate');
+    });
+
+    it('setting indeterminate=false switches mode to determinate', async () => {
+        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress></flint-circular-progress>`);
+        el.indeterminate = true;
+        await el.updateComplete;
+        expect(el.mode).to.equal('indeterminate');
+        el.indeterminate = false;
+        await el.updateComplete;
+        expect(el.mode).to.equal('determinate');
+    });
+
+    it('auto-switches to determinate when value is set at runtime', async () => {
+        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress></flint-circular-progress>`);
+        expect(el.mode).to.equal('indeterminate');
+        el.value = 60;
+        await el.updateComplete;
+        expect(el.mode).to.equal('determinate');
+    });
+
+    it('does not auto-switch when indeterminate is explicitly true', async () => {
+        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress></flint-circular-progress>`);
+        el.indeterminate = true;
+        await el.updateComplete;
+        el.value = 60;
+        await el.updateComplete;
+        expect(el.mode).to.equal('indeterminate');
     });
 
 });

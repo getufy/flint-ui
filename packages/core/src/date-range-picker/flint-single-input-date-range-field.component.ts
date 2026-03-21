@@ -249,7 +249,7 @@ export class FlintSingleInputDateRangeField extends FlintElement {
 
     // ── Keyboard ──────────────────────────────────────────────────────────────
 
-    private _handleKeyDown(e: KeyboardEvent) {
+    private _handleKeyDown = (e: KeyboardEvent) => {
         if (this.disabled || this.readonly) return;
 
         if (e.key >= '0' && e.key <= '9') {
@@ -306,20 +306,20 @@ export class FlintSingleInputDateRangeField extends FlintElement {
                 this.clear();
                 break;
         }
-    }
+    };
 
-    private _handleFocus() {
+    private _handleFocus = () => {
         this._focused = true;
         if (!this._active) this._setActive(SEGMENT_ORDER[0] ?? null);
-    }
+    };
 
-    private _handleBlur(e: FocusEvent) {
+    private _handleBlur = (e: FocusEvent) => {
         if (!this.shadowRoot?.contains(e.relatedTarget as Node)) {
             this._focused = false;
             this._active = null;
             this._buf = '';
         }
-    }
+    };
 
     // ── Render helpers ────────────────────────────────────────────────────────
 

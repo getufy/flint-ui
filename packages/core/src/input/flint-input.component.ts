@@ -172,7 +172,7 @@ export class FlintInput extends FormAssociated(FlintElement) {
         this._syncCustomStates();
     }
 
-    private _handleClear() {
+    private _handleClear = () => {
         this.value = '';
         this._updateFormValue();
         this.dispatchEvent(new CustomEvent('flint-input-clear', {
@@ -191,11 +191,11 @@ export class FlintInput extends FormAssociated(FlintElement) {
         }));
         // Return focus to the input
         this.shadowRoot?.querySelector('input')?.focus();
-    }
+    };
 
-    private _togglePasswordVisibility() {
+    private _togglePasswordVisibility = () => {
         this.passwordVisible = !this.passwordVisible;
-    }
+    };
 
     render() {
         const errorState = this.error || !!this.errorMessage;
@@ -285,7 +285,7 @@ export class FlintInput extends FormAssociated(FlintElement) {
     `;
     }
 
-    private _handleInput(e: Event) {
+    private _handleInput = (e: Event) => {
         this.value = (e.target as HTMLInputElement).value;
         this._updateFormValue();
         this.dispatchEvent(
@@ -295,9 +295,9 @@ export class FlintInput extends FormAssociated(FlintElement) {
                 composed: true,
             })
         );
-    }
+    };
 
-    private _handleChange(e: Event) {
+    private _handleChange = (e: Event) => {
         this.value = (e.target as HTMLInputElement).value;
         this._updateFormValue();
         this.dispatchEvent(
@@ -307,7 +307,7 @@ export class FlintInput extends FormAssociated(FlintElement) {
                 composed: true,
             })
         );
-    }
+    };
 }
 
 declare global {

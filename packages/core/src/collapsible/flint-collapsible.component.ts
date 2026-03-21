@@ -27,11 +27,11 @@ export class FlintCollapsibleTrigger extends FlintElement {
     /** Disables the trigger. Set by `flint-collapsible` or directly. */
     @property({ type: Boolean, reflect: true }) disabled = false;
 
-    private _handleClick() {
+    private _handleClick = () => {
         if (this.disabled) return;
         const root = this.closest('flint-collapsible') as (HTMLElement & { toggle(): void }) | null;
         root?.toggle();
-    }
+    };
 
     render() {
         return html`

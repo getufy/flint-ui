@@ -67,18 +67,18 @@ export class FlintDateRangeCalendar extends FlintElement {
         return this._leftMonth === 11 ? 0 : this._leftMonth + 1;
     }
 
-    private _prevMonth() {
+    private _prevMonth = () => {
         if (this._leftMonth === 0) { this._leftMonth = 11; this._leftYear--; }
         else this._leftMonth--;
-    }
-    private _nextMonth() {
+    };
+    private _nextMonth = () => {
         if (this._leftMonth === 11) { this._leftMonth = 0; this._leftYear++; }
         else this._leftMonth++;
-    }
+    };
 
     // ── Selection logic ───────────────────────────────────────────────────────
 
-    private _handleCellClick(cell: RangeCalendarDay) {
+    private _handleCellClick = (cell: RangeCalendarDay) => {
         if (cell.isDisabled || this.disabled) return;
         this._hoverIso = '';
         const [start, end] = this.value;
@@ -103,20 +103,20 @@ export class FlintDateRangeCalendar extends FlintElement {
         this.dispatchEvent(new CustomEvent('flint-date-range-picker-select', {
             detail: { value: newRange }, bubbles: true, composed: true,
         }));
-    }
+    };
 
-    private _handleCellHover(cell: RangeCalendarDay) {
+    private _handleCellHover = (cell: RangeCalendarDay) => {
         const [, end] = this.value;
         if (!end) this._hoverIso = cell.iso;
-    }
+    };
 
-    private _handleMouseLeave() {
+    private _handleMouseLeave = () => {
         this._hoverIso = '';
-    }
+    };
 
     // ── Keyboard navigation ────────────────────────────────────────────────────
 
-    private _handleGridKeyDown(e: KeyboardEvent) {
+    private _handleGridKeyDown = (e: KeyboardEvent) => {
         if (this.disabled) return;
 
         let delta = 0;
@@ -188,7 +188,7 @@ export class FlintDateRangeCalendar extends FlintElement {
                 this._navigateToFocused(target);
             }
         }
-    }
+    };
 
     private _getFocusedDate(): Date | null {
         if (this._focusedIso) return isoToDate(this._focusedIso);

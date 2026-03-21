@@ -27,9 +27,9 @@ export interface FlintLinkProps extends Omit<React.HTMLAttributes<FlintLinkEleme
     rel?: string;
     /**
      * The color of the link.
-     * Allowed values: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info' | 'textPrimary' | 'textSecondary' | 'inherit'
+     * Allowed values: 'primary' | 'success' | 'warning' | 'secondary' | 'error' | 'info' | 'textPrimary' | 'textSecondary' | 'inherit'
      */
-    color?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info' | 'textPrimary' | 'textSecondary' | 'inherit';
+    color?: 'primary' | 'success' | 'warning' | 'secondary' | 'error' | 'info' | 'textPrimary' | 'textSecondary' | 'inherit';
     /**
      * Controls the underline behavior.
      * Allowed values: 'none' | 'hover' | 'always'

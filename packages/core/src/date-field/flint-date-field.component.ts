@@ -288,7 +288,7 @@ export class FlintDateField extends FlintElement {
 
     // ── Internal: keyboard handler ────────────────────────────────────────────
 
-    private _handleKeyDown(e: KeyboardEvent) {
+    private _handleKeyDown = (e: KeyboardEvent) => {
         if (this.disabled || this.readonly) return;
 
         // Digits — stop propagation so Storybook / parent keydown handlers
@@ -354,14 +354,14 @@ export class FlintDateField extends FlintElement {
                 this.clear();
                 break;
         }
-    }
+    };
 
-    private _handleFocus() {
+    private _handleFocus = () => {
         this._focused = true;
         if (!this._active) this._setActive('month');
-    }
+    };
 
-    private _handleBlur(e: FocusEvent) {
+    private _handleBlur = (e: FocusEvent) => {
         // Only clear focus if truly leaving the component (not between segments)
         if (!this.shadowRoot?.contains(e.relatedTarget as Node)) {
             this._commitPartialBuffer(); // commit any pending single-digit entry before losing focus
@@ -369,9 +369,9 @@ export class FlintDateField extends FlintElement {
             this._active = null;
             this._buf = '';
         }
-    }
+    };
 
-    private _handleContainerClick(e: MouseEvent) {
+    private _handleContainerClick = (e: MouseEvent) => {
         if (this.disabled || this.readonly) return;
         const target = e.target as HTMLElement;
         // If click landed on the segments wrapper (not a specific segment),
@@ -380,7 +380,7 @@ export class FlintDateField extends FlintElement {
             this._setActive('month');
             (this.shadowRoot?.querySelector('.segments') as HTMLElement)?.focus();
         }
-    }
+    };
 
     // ── Rendering ─────────────────────────────────────────────────────────────
 

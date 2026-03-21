@@ -114,10 +114,10 @@ export class FlintListItemText extends FlintElement {
 
     @state() private _hasSecondarySlot = false;
 
-    private _onSecondarySlotChange(e: Event) {
+    private _onSecondarySlotChange = (e: Event) => {
         const slot = e.target as HTMLSlotElement;
         this._hasSecondarySlot = slot.assignedNodes({ flatten: true }).length > 0;
-    }
+    };
 
     render() {
         const showSecondary = !!this.secondary || this._hasSecondarySlot;

@@ -25,7 +25,7 @@ export class FlintFab extends FlintElement {
   @property({ type: String })
   label = 'Action';
 
-  @property({ type: String })
+  @property({ type: String, reflect: true })
   position: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left' | 'static' = 'bottom-right';
 
   updated(changed: PropertyValues) {

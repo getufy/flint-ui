@@ -95,7 +95,7 @@ export class FlintCopyButton extends FlintElement {
         return this.value;
     }
 
-    private async _handleClick(): Promise<void> {
+    private _handleClick = async (): Promise<void> => {
         if (this.disabled) return;
 
         const text = this._getTextToCopy();
@@ -126,7 +126,7 @@ export class FlintCopyButton extends FlintElement {
                 composed: true,
             }));
         }
-    }
+    };
 
     private _showFeedback(state: CopyState): void {
         if (this._feedbackTimer !== null) {
@@ -144,33 +144,33 @@ export class FlintCopyButton extends FlintElement {
         }, this.feedbackDuration);
     }
 
-    private _handleMouseEnter(): void {
+    private _handleMouseEnter = (): void => {
         if (this._state === 'idle') {
             this._showTooltip = true;
             this.requestUpdate();
         }
-    }
+    };
 
-    private _handleMouseLeave(): void {
+    private _handleMouseLeave = (): void => {
         if (this._state === 'idle') {
             this._showTooltip = false;
             this.requestUpdate();
         }
-    }
+    };
 
-    private _handleFocus(): void {
+    private _handleFocus = (): void => {
         if (this._state === 'idle') {
             this._showTooltip = true;
             this.requestUpdate();
         }
-    }
+    };
 
-    private _handleBlur(): void {
+    private _handleBlur = (): void => {
         if (this._state === 'idle') {
             this._showTooltip = false;
             this.requestUpdate();
         }
-    }
+    };
 
     private _renderIcon() {
         switch (this._state) {

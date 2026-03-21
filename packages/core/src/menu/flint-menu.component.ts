@@ -51,15 +51,15 @@ export class FlintMenuItem extends FlintElement {
     @state() private _hasIcon = false;
     @state() private _hasEndIcon = false;
 
-    private _onIconSlotChange(e: Event) {
+    private _onIconSlotChange = (e: Event) => {
         const slot = e.target as HTMLSlotElement;
         this._hasIcon = slot.assignedNodes({ flatten: true }).length > 0;
-    }
+    };
 
-    private _onEndIconSlotChange(e: Event) {
+    private _onEndIconSlotChange = (e: Event) => {
         const slot = e.target as HTMLSlotElement;
         this._hasEndIcon = slot.assignedNodes({ flatten: true }).length > 0;
-    }
+    };
 
     /** Returns only the default-slot label text, excluding icon slots. */
     private _getLabelText(): string {
@@ -70,7 +70,7 @@ export class FlintMenuItem extends FlintElement {
             .trim() ?? '';
     }
 
-    private _handleClick() {
+    private _handleClick = () => {
         if (this.disabled) return;
         const label = this._getLabelText();
         this.dispatchEvent(new CustomEvent('flint-menu-item-select', {
@@ -81,7 +81,14 @@ export class FlintMenuItem extends FlintElement {
                 label,
             }
         }));
-    }
+    };
+
+    private _handleKeydown = (e: KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this._handleClick();
+        }
+    };
 
     render() {
         return html`
@@ -92,12 +99,7 @@ export class FlintMenuItem extends FlintElement {
                 aria-disabled=${this.disabled ? 'true' : 'false'}
                 tabindex=${this.disabled ? -1 : 0}
                 @click=${this._handleClick}
-                @keydown=${(e: KeyboardEvent) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    this._handleClick();
-                }
-            }}
+                @keydown=${this._handleKeydown}
             >
                 <span class="icon-wrap" ?hidden=${!this._hasIcon}>
                     <slot name="icon" @slotchange=${this._onIconSlotChange}></slot>
@@ -303,13 +305,13 @@ export class FlintMenu extends FlintElement {
     }
 
     // ── Event dispatch ─────────────────────────────────────────────────────
-    private _close() {
+    private _close = () => {
         this.dispatchEvent(new CustomEvent('flint-menu-close', { bubbles: true, composed: true, detail: { open: false } }));
-    }
+    };
 
-    private _handleItemSelect() {
+    private _handleItemSelect = () => {
         if (this.closeOnSelect) this._close();
-    }
+    };
 
     // ── Render ─────────────────────────────────────────────────────────────
     render() {

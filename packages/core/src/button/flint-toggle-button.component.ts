@@ -9,6 +9,8 @@ import uiToggleButtonStyles from './flint-toggle-button.css?inline';
  * Toggle Button: a button that can be toggled on/off.
  *
  * @fires flint-toggle-button-change - Fired when the button's selected state changes. detail: `{ value: string, selected: boolean }`
+ *
+ * @csspart base - The inner button element.
  */
 export class FlintToggleButton extends FlintElement {
     static styles = unsafeCSS(uiToggleButtonStyles);
@@ -22,7 +24,7 @@ export class FlintToggleButton extends FlintElement {
     /** Size variant of the toggle button. */
     @property({ type: String, reflect: true }) size: Size = 'md';
 
-    private _handleClick() {
+    private _handleClick = () => {
         if (this.disabled) return;
 
         this.dispatchEvent(new CustomEvent('flint-toggle-button-change', {
@@ -30,7 +32,7 @@ export class FlintToggleButton extends FlintElement {
             bubbles: true,
             composed: true
         }));
-    }
+    };
 
     render() {
         return html`

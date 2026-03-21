@@ -18,8 +18,6 @@ export interface FlintCircularProgressProps extends Omit<React.HTMLAttributes<Fl
      * Allowed values: 'determinate' | 'indeterminate'
      */
     mode?: 'determinate' | 'indeterminate';
-    /** Allowed values: 'determinate' | 'indeterminate' */
-    variant?: 'determinate' | 'indeterminate';
     /** Current progress value (0 to max) for determinate mode. */
     value?: number;
     /** Maximum value. The progress is calculated as value / max. */

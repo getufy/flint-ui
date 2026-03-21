@@ -84,14 +84,14 @@ export class FlintCommandItem extends FlintElement {
         }
     }
 
-    private _handleClick() {
+    private _handleClick = () => {
         if (this.disabled) return;
         this.dispatchEvent(new CustomEvent('flint-command-item-select', {
             bubbles: true,
             composed: true,
             detail: { value: this.value || this.textContent?.trim() || '' },
         }));
-    }
+    };
 
     render() {
         return html`
@@ -200,7 +200,7 @@ export class FlintCommandInput extends FlintElement {
 
     private _debounceTimer?: ReturnType<typeof setTimeout>;
 
-    private _handleInput(e: Event) {
+    private _handleInput = (e: Event) => {
         const input = e.target as HTMLInputElement;
         this.value = input.value;
         clearTimeout(this._debounceTimer);
@@ -211,7 +211,7 @@ export class FlintCommandInput extends FlintElement {
                 detail: { query: this.value },
             }));
         }, 150);
-    }
+    };
 
     disconnectedCallback() {
         super.disconnectedCallback();
@@ -591,9 +591,6 @@ export class FlintCommandDialog extends FlintElement {
 
     connectedCallback() {
         super.connectedCallback();
-        if (typeof window !== 'undefined') {
-            window.addEventListener('keydown', this._boundKeyDown);
-        }
     }
 
     disconnectedCallback() {
@@ -609,6 +606,9 @@ export class FlintCommandDialog extends FlintElement {
         if (!changed.has('open')) return;
 
         if (this.open) {
+            if (typeof window !== 'undefined') {
+                window.addEventListener('keydown', this._boundKeyDown);
+            }
             this._lastFocused = document.activeElement as HTMLElement | null;
             if (typeof requestAnimationFrame === 'function') {
                 requestAnimationFrame(() => {
@@ -616,6 +616,9 @@ export class FlintCommandDialog extends FlintElement {
                 });
             }
         } else {
+            if (typeof window !== 'undefined') {
+                window.removeEventListener('keydown', this._boundKeyDown);
+            }
             /* Reset command state when the dialog is dismissed. */
             (this.querySelector('flint-command') as FlintCommand | null)?.reset();
             this._lastFocused?.focus();
@@ -631,9 +634,9 @@ export class FlintCommandDialog extends FlintElement {
         }));
     }
 
-    private _handleBackdropClick(e: MouseEvent) {
+    private _handleBackdropClick = (e: MouseEvent) => {
         if (e.target === e.currentTarget) this._close();
-    }
+    };
 
     render() {
         return html`

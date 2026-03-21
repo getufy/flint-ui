@@ -25,18 +25,18 @@ export class FlintCard extends FlintElement {
   @property({ type: Boolean, reflect: true })
   interactive = false;
 
-  private _handleClick() {
+  private _handleClick = () => {
     if (this.interactive) {
       this.dispatchEvent(new CustomEvent('flint-card-click', { bubbles: true, composed: true }));
     }
-  }
+  };
 
-  private _handleKeyDown(e: KeyboardEvent) {
+  private _handleKeyDown = (e: KeyboardEvent) => {
     if (this.interactive && (e.key === 'Enter' || e.key === ' ')) {
       e.preventDefault();
       this.dispatchEvent(new CustomEvent('flint-card-click', { bubbles: true, composed: true }));
     }
-  }
+  };
 
   render() {
     const classes = {

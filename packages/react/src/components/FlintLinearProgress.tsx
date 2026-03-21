@@ -18,8 +18,6 @@ export interface FlintLinearProgressProps extends Omit<React.HTMLAttributes<Flin
      * Allowed values: 'determinate' | 'indeterminate'
      */
     mode?: 'determinate' | 'indeterminate';
-    /** Allowed values: 'determinate' | 'indeterminate' */
-    variant?: 'determinate' | 'indeterminate';
     /** Current progress value (0 to max). */
     value?: number;
     /** Maximum value. The progress is calculated as value / max. */

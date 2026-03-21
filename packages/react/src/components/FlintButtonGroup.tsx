@@ -9,7 +9,7 @@ import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintButtonGroup as FlintButtonGroupElement } from '@getufy/flint-ui/button/flint-button-group';
 
-export interface FlintButtonGroupProps extends React.HTMLAttributes<FlintButtonGroupElement> {
+export interface FlintButtonGroupProps extends Omit<React.HTMLAttributes<FlintButtonGroupElement>, 'color'> {
     /**
      * Layout direction of the group.
      * Allowed values: 'horizontal' | 'vertical'
@@ -21,10 +21,15 @@ export interface FlintButtonGroupProps extends React.HTMLAttributes<FlintButtonG
      */
     size?: '' | 'sm' | 'md' | 'lg';
     /**
-     * Variant propagated to child `flint-button` elements.
-     * Allowed values: '' | 'primary' | 'secondary' | 'destructive' | 'success' | 'warning' | 'neutral'
+     * Appearance propagated to child `flint-button` elements.
+     * Allowed values: '' | 'filled' | 'outlined' | 'text' | 'ghost'
      */
-    variant?: '' | 'primary' | 'secondary' | 'destructive' | 'success' | 'warning' | 'neutral';
+    appearance?: '' | 'filled' | 'outlined' | 'text' | 'ghost';
+    /**
+     * Color propagated to child `flint-button` elements.
+     * Allowed values: '' | 'primary' | 'neutral' | 'destructive' | 'success' | 'warning'
+     */
+    color?: '' | 'primary' | 'neutral' | 'destructive' | 'success' | 'warning';
 }
 
 export const FlintButtonGroup = createComponent({

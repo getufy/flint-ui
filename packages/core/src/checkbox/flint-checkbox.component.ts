@@ -25,7 +25,7 @@ export class FlintCheckbox extends FormAssociated(FlintElement) {
     /** Current checked state (controlled). When set, the component reflects this state and does not manage its own state. */
     @property({ type: Boolean, reflect: true }) checked = false;
     /** Displays the checkbox in an indeterminate state. */
-    @property({ type: Boolean }) indeterminate = false;
+    @property({ type: Boolean, reflect: true }) indeterminate = false;
     /** Disables the checkbox and prevents interaction. */
     @property({ type: Boolean, reflect: true }) disabled = false;
     /** Marks the checkbox as required for form validation. */
@@ -67,7 +67,7 @@ export class FlintCheckbox extends FormAssociated(FlintElement) {
         this._formControl.updateDataAttributes();
     }
 
-    private _handleChange(e: Event) {
+    private _handleChange = (e: Event) => {
         if (this.disabled) return;
 
         const target = e.target as HTMLInputElement;
@@ -79,7 +79,7 @@ export class FlintCheckbox extends FormAssociated(FlintElement) {
             bubbles: true,
             composed: true
         }));
-    }
+    };
 
     render() {
         return html`

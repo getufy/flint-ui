@@ -56,19 +56,18 @@ export class FlintCombobox extends FormAssociated(FlintElement) {
     @state() private _filteredOptions: ComboboxOption[] = [];
     @state() private _activeIndex = -1;
 
+    private _abortController?: AbortController;
+
     connectedCallback() {
         super.connectedCallback();
         this._inputValue = this.value;
-        if (typeof document !== 'undefined') {
-            document.addEventListener('click', this._handleOutsideClick);
-        }
+        this._abortController = new AbortController();
+        document.addEventListener('click', this._handleOutsideClick, { signal: this._abortController.signal });
     }
 
     disconnectedCallback() {
         super.disconnectedCallback();
-        if (typeof document !== 'undefined') {
-            document.removeEventListener('click', this._handleOutsideClick);
-        }
+        this._abortController?.abort();
     }
 
     willUpdate(changed: PropertyValues) {
@@ -113,7 +112,7 @@ export class FlintCombobox extends FormAssociated(FlintElement) {
         }
     };
 
-    private _handleInput(e: Event) {
+    private _handleInput = (e: Event) => {
         const target = e.target as HTMLInputElement;
         this._inputValue = target.value;
         this.value = target.value;
@@ -121,7 +120,7 @@ export class FlintCombobox extends FormAssociated(FlintElement) {
         this._filterOptions();
         this._isOpen = true;
         this._dispatchChange();
-    }
+    };
 
     private _filterOptions() {
         const q = this._inputValue.toLowerCase();
@@ -130,14 +129,14 @@ export class FlintCombobox extends FormAssociated(FlintElement) {
             : [...this.options];
     }
 
-    private _handleFocus() {
+    private _handleFocus = () => {
         if (this.disabled) return;
         this._filterOptions();
         this._isOpen = true;
         this._activeIndex = -1;
-    }
+    };
 
-    private _handleKeyDown(e: KeyboardEvent) {
+    private _handleKeyDown = (e: KeyboardEvent) => {
         const count = this._filteredOptions.length;
 
         if (!this._isOpen) {
@@ -179,7 +178,7 @@ export class FlintCombobox extends FormAssociated(FlintElement) {
             default:
                 break;
         }
-    }
+    };
 
     private _scrollActiveIntoView() {
         void this.updateComplete.then(() => {

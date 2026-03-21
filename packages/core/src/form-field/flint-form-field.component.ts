@@ -62,7 +62,8 @@ export class FlintFormField extends FlintElement {
 
     protected override updated(changed: PropertyValues) {
         super.updated(changed);
-        if (changed.has('error') || changed.has('disabled') || changed.has('required') || changed.has('label')) {
+        if (changed.has('error') || changed.has('disabled') || changed.has('required') || changed.has('label')
+            || changed.has('errorMessage') || changed.has('helperText')) {
             this._syncSlottedControl();
         }
     }
@@ -72,6 +73,8 @@ export class FlintFormField extends FlintElement {
         const slot = this.shadowRoot?.querySelector('slot:not([name])') as HTMLSlotElement | null;
         if (!slot) return;
         const assigned = slot.assignedElements({ flatten: true });
+        const descId = `${this._fieldId}-desc`;
+        const hasDescription = (this.error && Boolean(this.errorMessage)) || Boolean(this.helperText);
         for (const node of assigned) {
             const el = node as HTMLElement & Record<string, unknown>;
             if ('error' in el) el.error = this.error;
@@ -79,10 +82,16 @@ export class FlintFormField extends FlintElement {
             if ('required' in el) el.required = this.required;
             // Sync label for cross-shadow-DOM accessibility (<label for> can't cross shadow boundaries)
             if (this.label && 'label' in el) el.label = this.label;
+            // Link description text for screen readers
+            if (hasDescription) {
+                (el as HTMLElement).setAttribute('aria-describedby', descId);
+            } else {
+                (el as HTMLElement).removeAttribute('aria-describedby');
+            }
         }
     }
 
-    private _handleSlotChange() {
+    private _handleSlotChange = () => {
         this._syncSlottedControl();
 
         // Set the generated ID on the first slotted control for label association
@@ -95,7 +104,7 @@ export class FlintFormField extends FlintElement {
                 control.id = this._fieldId;
             }
         }
-    }
+    };
 
     override render() {
         const hasLabel = Boolean(this.label);

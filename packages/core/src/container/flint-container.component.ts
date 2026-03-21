@@ -6,6 +6,8 @@ import uiContainerStyles from './flint-container.css?inline';
 
 export type ContainerMaxWidth = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false;
 
+const VALID_MAX_WIDTHS = new Set<string>(['xs', 'sm', 'md', 'lg', 'xl']);
+
 export class FlintContainer extends FlintElement {
     static styles = unsafeCSS(uiContainerStyles);
 
@@ -18,8 +20,10 @@ export class FlintContainer extends FlintElement {
         attribute: 'max-width',
         reflect: true,
         converter: {
-            fromAttribute: (value: string | null): ContainerMaxWidth =>
-                value === null || value === 'false' ? false : value as ContainerMaxWidth,
+            fromAttribute: (value: string | null): ContainerMaxWidth => {
+                if (value === null || value === 'false') return false;
+                return VALID_MAX_WIDTHS.has(value) ? value as ContainerMaxWidth : 'lg';
+            },
             toAttribute: (value: ContainerMaxWidth): string | null =>
                 value === false ? null : value,
         },
