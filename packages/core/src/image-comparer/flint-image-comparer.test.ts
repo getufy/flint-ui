@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-image-comparer';
 import type { FlintImageComparer } from './flint-image-comparer';
+import { expectAccessible } from '../test-utils/axe.js';
 
 /* ── helpers ─────────────────────────────────────────────────── */
 
@@ -439,6 +440,18 @@ describe('flint-image-comparer', () => {
             el.addEventListener('flint-image-comparer-change', spy);
             el.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
             expect(spy).not.toHaveBeenCalled();
+        });
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`
+                <flint-image-comparer>
+                    <img slot="before" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Before" />
+                    <img slot="after" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="After" />
+                </flint-image-comparer>
+            `);
+            await expectAccessible(el);
         });
     });
 });

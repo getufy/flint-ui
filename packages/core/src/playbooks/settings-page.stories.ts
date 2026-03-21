@@ -108,8 +108,8 @@ export const SettingsFlow: Story = {
             </flint-paper>
 
             <div style="display: flex; justify-content: flex-end; margin-top: 16px; gap: 8px;">
-                <flint-button id="settings-cancel" variant="secondary">Cancel</flint-button>
-                <flint-button id="settings-save" variant="primary"
+                <flint-button id="settings-cancel" appearance="outlined" color="neutral">Cancel</flint-button>
+                <flint-button id="settings-save" appearance="filled" color="primary"
                     @click=${(e: Event) => {
                         const root = (e.target as HTMLElement).closest('div[style]')!.parentElement!;
                         const status = root.querySelector('#settings-status')!;

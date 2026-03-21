@@ -1,4 +1,4 @@
-import { unsafeCSS, html } from 'lit';
+import { unsafeCSS, html, nothing } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
@@ -49,8 +49,8 @@ export class FlintCard extends FlintElement {
       <div
         class=${classMap(classes)}
         part="base"
-        tabindex=${this.interactive ? '0' : '-1'}
-        role=${this.interactive ? 'button' : 'region'}
+        tabindex=${this.interactive ? '0' : nothing}
+        role=${this.interactive ? 'button' : nothing}
         @click=${this._handleClick}
         @keydown=${this._handleKeyDown}
       >

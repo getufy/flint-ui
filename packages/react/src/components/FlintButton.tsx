@@ -23,8 +23,6 @@ export interface FlintButtonProps extends Omit<React.HTMLAttributes<FlintButtonE
      * Allowed values: 'primary' | 'destructive' | 'success' | 'warning' | 'neutral'
      */
     color?: 'primary' | 'destructive' | 'success' | 'warning' | 'neutral';
-    /** Allowed values: '' | 'primary' | 'secondary' | 'destructive' | 'success' | 'warning' | 'neutral' */
-    variant?: '' | 'primary' | 'secondary' | 'destructive' | 'success' | 'warning' | 'neutral';
     /**
      * Size of the button.
      * Allowed values: 'sm' | 'md' | 'lg'

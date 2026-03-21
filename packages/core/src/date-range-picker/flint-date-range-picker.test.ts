@@ -3,6 +3,7 @@ import { fixture, html, oneEvent } from '@open-wc/testing';
 import './flint-date-range-picker.js';
 import './flint-date-range-calendar.js';
 import './flint-single-input-date-range-field.js';
+import { expectAccessible } from '../test-utils/axe.js';
 import type { FlintDateRangePicker } from './flint-date-range-picker.js';
 import type { FlintDateRangeCalendar } from './flint-date-range-calendar.js';
 import type { FlintSingleInputDateRangeField } from './flint-single-input-date-range-field.js';
@@ -4804,5 +4805,12 @@ describe('flint-single-input-date-range-field — precise mutation killers', () 
         key(el, 'ArrowUp'); // 29 + 1 = 30, clamp(30, 1, 29) = 29
         await el.updateComplete;
         expect(el.shadowRoot!.querySelectorAll('.segment')[1].textContent?.trim()).toBe('29');
+    });
+});
+
+describe('flint-date-range-picker — accessibility', () => {
+    it('should be accessible', async () => {
+        const el = await fixture(html`<flint-date-range-picker label="Date range"></flint-date-range-picker>`);
+        await expectAccessible(el, { rules: { 'aria-required-children': { enabled: false } } });
     });
 });

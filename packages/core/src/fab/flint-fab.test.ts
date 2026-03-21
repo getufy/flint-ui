@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-fab';
 import { FlintFab } from './flint-fab';
+import { expectAccessible } from '../test-utils/axe.js';
 
 describe('FlintFab', () => {
     it('is defined', () => {
@@ -182,5 +183,12 @@ describe('FlintFab', () => {
         el.addEventListener('click', clickSpy);
         button.click();
         expect(clickSpy).toHaveBeenCalledOnce();
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`<flint-fab aria-label="Add" position="static"></flint-fab>`);
+            await expectAccessible(el);
+        });
     });
 });

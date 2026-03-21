@@ -684,7 +684,7 @@ export const Dialog: Story = {
                 alignItems="center"
                 @keydown=${onGlobalKey}
             >
-                <flint-button variant="secondary" size="small" @click=${openDialog}>
+                <flint-button appearance="outlined" color="neutral" size="small" @click=${openDialog}>
                     Open Menu
                     <kbd style="padding:2px 6px;background:var(--flint-muted-background, #f3f4f6);border:1px solid #d1d5db;border-radius:4px;font-size:0.75rem;color:#4b5563;">⌘K</kbd>
                 </flint-button>

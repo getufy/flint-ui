@@ -21,7 +21,8 @@ const meta: Meta = {
 |---|---|---|---|---|
 | \`orientation\` | \`orientation\` | \`Orientation\` | \`'horizontal'\` | Layout direction of the group. |
 | \`size\` | \`size\` | \`ButtonSize \\| ''\` | \`''\` | Size propagated to child \`flint-button\` elements. |
-| \`variant\` | \`variant\` | \`ButtonVariant \\| ''\` | \`''\` | Variant propagated to child \`flint-button\` elements. |
+| \`appearance\` | \`appearance\` | \`ButtonAppearance\` | \`'filled'\` | Appearance propagated to child \`flint-button\` elements. |
+| \`color\` | \`color\` | \`ButtonColor\` | \`'primary'\` | Color propagated to child \`flint-button\` elements. |
 
 #### CSS Custom Properties
 
@@ -67,7 +68,6 @@ Button: a clickable element used for actions and navigation.
 |---|---|---|---|---|
 | \`appearance\` | \`appearance\` | \`ButtonAppearance\` | \`'filled'\` | Visual appearance of the button (structural style). |
 | \`color\` | \`color\` | \`ButtonColor\` | \`'primary'\` | Semantic color of the button. |
-| \`variant\` | \`variant\` | \`ButtonVariant \\| ''\` | \`''\` |  |
 | \`size\` | \`size\` | \`ButtonSize\` | \`'md'\` | Size of the button. |
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the button and prevents interaction. |
 | \`fullWidth\` | \`full-width\` | \`boolean\` | \`false\` | Whether the button stretches to fill its container width. |

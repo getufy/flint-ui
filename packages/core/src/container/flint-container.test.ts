@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-container.js';
 import type { FlintContainer } from './flint-container.js';
+import { expectAccessible } from '../test-utils/axe.js';
 
 describe('flint-container', () => {
     it('is defined', () => {
@@ -173,5 +174,12 @@ describe('flint-container', () => {
         expect(container?.classList.contains('disable-gutters')).toBe(true);
         expect(container?.classList.contains('fixed')).toBe(true);
         expect(container?.classList.contains('max-width-md')).toBe(true);
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`<flint-container>Content</flint-container>`);
+            await expectAccessible(el);
+        });
     });
 });

@@ -250,16 +250,16 @@ export const Actions: Story = {
                     Please read and accept the following terms and conditions to proceed with the activation of your account.
                 </flint-accordion-details>
                 <flint-accordion-actions>
-                    <flint-button variant="secondary" size="small">Cancel</flint-button>
-                    <flint-button variant="primary" size="small">Agree</flint-button>
+                    <flint-button appearance="outlined" color="neutral" size="small">Cancel</flint-button>
+                    <flint-button appearance="filled" color="primary" size="small">Agree</flint-button>
                 </flint-accordion-actions>
             </flint-accordion>
         </div>
     `,
     play: async ({ canvasElement }) => {
         const acc = canvasElement.querySelector('flint-accordion') as FlintAccordion;
-        const cancelBtn = canvasElement.querySelector('flint-button[variant="secondary"]') as HTMLElement;
-        const agreeBtn = canvasElement.querySelector('flint-button[variant="primary"]') as HTMLElement;
+        const cancelBtn = canvasElement.querySelector('flint-button[appearance="outlined"][color="neutral"]') as HTMLElement;
+        const agreeBtn = canvasElement.querySelector('flint-button[appearance="filled"][color="primary"]') as HTMLElement;
 
         // Accordion starts expanded
         await waitFor(() => expect(acc).toHaveAttribute('expanded'));

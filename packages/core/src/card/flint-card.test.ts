@@ -6,6 +6,7 @@ import './flint-card-media';
 import './flint-card-content';
 import './flint-card-actions';
 import './flint-card-action-area';
+import { expectAccessible } from '../test-utils/axe.js';
 import type { FlintCard } from './flint-card';
 import type { FlintCardHeader } from './flint-card-header';
 import type { FlintCardMedia } from './flint-card-media';
@@ -226,6 +227,17 @@ describe('Card Components', () => {
 
             el.click();
             expect(clickSpy).toHaveBeenCalledTimes(1);
+        });
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`
+                <flint-card>
+                    <flint-card-content>Card content</flint-card-content>
+                </flint-card>
+            `);
+            await expectAccessible(el);
         });
     });
 });

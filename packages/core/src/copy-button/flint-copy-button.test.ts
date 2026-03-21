@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import { FlintCopyButton } from './flint-copy-button';
+import { expectAccessible } from '../test-utils/axe.js';
 
 describe('flint-copy-button', () => {
     let writeTextMock: ReturnType<typeof vi.fn>;
@@ -851,5 +852,12 @@ describe('flint-copy-button', () => {
         const tooltip = el.shadowRoot!.getElementById(tooltipId);
         expect(tooltip).toBeTruthy();
         expect(tooltip!.getAttribute('role')).toBe('tooltip');
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`<flint-copy-button value="test"></flint-copy-button>`);
+            await expectAccessible(el);
+        });
     });
 });

@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { fixture, html, oneEvent } from '@open-wc/testing';
 import './flint-time-picker.js';
+import { expectAccessible } from '../test-utils/axe.js';
 import type {
     FlintTimeField, FlintDigitalClock, FlintMultiSectionDigitalClock,
     FlintTimeClock, FlintTimePicker, FlintStaticTimePicker,
@@ -3611,5 +3612,12 @@ describe('flint-time-picker — form association', () => {
         const el = await fixture<FlintTimePicker>(html`<flint-time-picker name="time" value="10:00:00"></flint-time-picker>`);
         await el.updateComplete;
         expect((el as unknown as { _internals: ElementInternals | null })._internals).not.toBeNull();
+    });
+});
+
+describe('flint-time-picker — accessibility', () => {
+    it('should be accessible', async () => {
+        const el = await fixture(html`<flint-time-picker label="Time"></flint-time-picker>`);
+        await expectAccessible(el);
     });
 });

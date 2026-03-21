@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-app-bar';
 import type { FlintAppBar } from './flint-app-bar';
+import { expectAccessible } from '../test-utils/axe.js';
 
 describe('flint-app-bar', () => {
     it('is defined', async () => {
@@ -96,5 +97,12 @@ describe('flint-app-bar', () => {
             await el.updateComplete;
             expect(el.getAttribute('position')).toBe(pos);
         }
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`<flint-app-bar title="My App"></flint-app-bar>`);
+            await expectAccessible(el, { rules: { 'landmark-no-duplicate-banner': { enabled: false } } });
+        });
     });
 });

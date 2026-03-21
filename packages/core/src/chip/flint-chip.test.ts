@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-chip';
 import type { FlintChip } from './flint-chip';
+import { expectAccessible } from '../test-utils/axe.js';
 
 describe('flint-chip', () => {
     // ── Rendering ──────────────────────────────────────────────────────────
@@ -390,5 +391,12 @@ describe('flint-chip', () => {
     it('delete icon aria-label includes chip label', async () => {
         const el = await fixture<FlintChip>(html`<flint-chip label="React" deletable></flint-chip>`);
         expect(el.shadowRoot!.querySelector('.delete-icon')!.getAttribute('aria-label')).toBe('Remove React');
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`<flint-chip label="Chip text"></flint-chip>`);
+            await expectAccessible(el);
+        });
     });
 });

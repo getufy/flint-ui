@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-badge';
 import type { FlintBadge } from './flint-badge';
+import { expectAccessible } from '../test-utils/axe.js';
 
 describe('flint-badge', () => {
     it('is defined', async () => {
@@ -135,5 +136,12 @@ describe('flint-badge', () => {
         const child = el.querySelector('#child');
         expect(child).toBeTruthy();
         expect(child?.textContent).toBe('icon');
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`<flint-badge content="5"><span>Notifications</span></flint-badge>`);
+            await expectAccessible(el);
+        });
     });
 });

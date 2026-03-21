@@ -84,7 +84,7 @@ export const Basic: Story = {
         <flint-paper elevation="2" style="padding: 24px; display: flex; flex-direction: column; align-items: center; gap: 16px;">
           <h3 style="margin: 0; font-family: sans-serif;">Focused Content</h3>
           <p style="margin: 0; color: #666;">Click outside this box to close</p>
-          <flint-button variant="secondary" @click="${(e: Event) => {
+          <flint-button appearance="outlined" color="neutral" @click="${(e: Event) => {
       const bd = (e.target as HTMLElement).closest('flint-backdrop') as FlintBackdrop;
       if (bd) bd.open = false;
     }}">
@@ -152,7 +152,7 @@ export const Invisible: Story = {
       (e.target as FlintBackdrop).open = false;
     }}"
       >
-        <flint-button variant="primary">Invisible Backdrop Active</flint-button>
+        <flint-button appearance="filled" color="primary">Invisible Backdrop Active</flint-button>
       </flint-backdrop>
     </div>
   `,

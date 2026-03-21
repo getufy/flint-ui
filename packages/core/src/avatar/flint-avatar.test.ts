@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-avatar.js';
 import type { FlintAvatar } from './flint-avatar.js';
+import { expectAccessible } from '../test-utils/axe.js';
 
 describe('flint-avatar', () => {
     it('is defined', () => {
@@ -157,5 +158,12 @@ describe('flint-avatar', () => {
         const custom = el.querySelector('.custom-icon');
         expect(custom).not.toBeNull();
         expect(custom?.textContent).toBe('★');
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`<flint-avatar alt="John Doe"></flint-avatar>`);
+            await expectAccessible(el);
+        });
     });
 });

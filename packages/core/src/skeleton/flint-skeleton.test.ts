@@ -1,7 +1,8 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-skeleton';
 import type { FlintSkeleton } from './flint-skeleton';
+import { expectAccessible } from '../test-utils/axe.js';
 
 /* ═══════════════════════════════════════════════════════════════════════════
    flint-skeleton — structure
@@ -73,58 +74,6 @@ describe('flint-skeleton — shape', () => {
         el.shape = 'circular';
         await el.updateComplete;
         expect(el.getAttribute('shape')).toBe('circular');
-    });
-});
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   flint-skeleton — deprecated variant backward compat
-═══════════════════════════════════════════════════════════════════════════ */
-describe('flint-skeleton — variant (deprecated backward compat)', () => {
-    it('setting variant="circular" maps to shape="circular"', async () => {
-        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-        const el = await fixture<FlintSkeleton>(html`<flint-skeleton></flint-skeleton>`);
-        el.variant = 'circular';
-        await el.updateComplete;
-        expect(el.shape).toBe('circular');
-        const span = el.shadowRoot!.querySelector('span.skeleton')!;
-        expect(span.classList.contains('circular')).toBe(true);
-        warnSpy.mockRestore();
-    });
-
-    it('setting variant triggers a deprecation console.warn', async () => {
-        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-        const el = await fixture<FlintSkeleton>(html`<flint-skeleton></flint-skeleton>`);
-        el.variant = 'rounded';
-        await el.updateComplete;
-        expect(warnSpy).toHaveBeenCalledWith(
-            'flint-skeleton: `variant` is deprecated. Use `shape` instead.'
-        );
-        warnSpy.mockRestore();
-    });
-
-    it('console.warn fires only once per instance', async () => {
-        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-        const el = await fixture<FlintSkeleton>(html`<flint-skeleton></flint-skeleton>`);
-        el.variant = 'circular';
-        await el.updateComplete;
-        el.variant = 'rectangular';
-        await el.updateComplete;
-        const deprecationWarns = warnSpy.mock.calls.filter(
-            (args) => typeof args[0] === 'string' && args[0].includes('variant')
-        );
-        expect(deprecationWarns.length).toBe(1);
-        warnSpy.mockRestore();
-    });
-
-    it('shape takes precedence when both shape and variant are set', async () => {
-        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-        const el = await fixture<FlintSkeleton>(html`<flint-skeleton></flint-skeleton>`);
-        el.shape = 'rounded';
-        el.variant = 'circular';
-        await el.updateComplete;
-        // shape was already non-default, so variant should NOT override it
-        expect(el.shape).toBe('rounded');
-        warnSpy.mockRestore();
     });
 });
 
@@ -281,5 +230,12 @@ describe('flint-skeleton — label prop', () => {
         el.label = 'Loading data...';
         await el.updateComplete;
         expect(el.getAttribute('aria-label')).toBe('Loading data...');
+    });
+});
+
+describe('flint-skeleton — axe accessibility', () => {
+    it('should be accessible', async () => {
+        const el = await fixture(html`<flint-skeleton label="Loading"></flint-skeleton>`);
+        await expectAccessible(el);
     });
 });

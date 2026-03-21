@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeAll } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-split-panel.js';
 import { parseSnapPoints } from './flint-split-panel.js';
+import { expectAccessible } from '../test-utils/axe.js';
 import type { FlintSplitPanel } from './flint-split-panel.js';
 
 /* ── jsdom polyfills ─────────────────────────────────────────────── */
@@ -989,5 +990,17 @@ describe('flint-split-panel — rendering edge cases', () => {
         const el = await make({ position: 50, positionInPixels: 150 });
         expect(el.positionInPixels).toBe(150);
         vi.restoreAllMocks();
+    });
+});
+
+describe('flint-split-panel — accessibility', () => {
+    it('should be accessible', async () => {
+        const el = await fixture(html`
+            <flint-split-panel>
+                <div slot="start">Start</div>
+                <div slot="end">End</div>
+            </flint-split-panel>
+        `);
+        await expectAccessible(el);
     });
 });

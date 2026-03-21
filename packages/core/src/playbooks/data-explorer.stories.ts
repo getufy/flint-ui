@@ -73,7 +73,7 @@ export const DataExplorerFlow: Story = {
                                 <td style="padding: 8px 16px; text-align: right;">
                                     <flint-button
                                         class="detail-btn"
-                                        variant="secondary"
+                                        appearance="outlined" color="neutral"
                                         size="small"
                                         data-item-id="${item.id}"
                                         @click=${() => {
@@ -125,11 +125,11 @@ export const DataExplorerFlow: Story = {
                     </flint-dialog-content-text>
                 </flint-dialog-content>
                 <flint-dialog-actions>
-                    <flint-button id="dialog-close-btn" variant="secondary" @click=${(e: Event) => {
+                    <flint-button id="dialog-close-btn" appearance="outlined" color="neutral" @click=${(e: Event) => {
                         const d = (e.target as HTMLElement).closest('flint-dialog') as FlintDialog;
                         if (d) d.open = false;
                     }}>Close</flint-button>
-                    <flint-button variant="primary" @click=${(e: Event) => {
+                    <flint-button appearance="filled" color="primary" @click=${(e: Event) => {
                         const d = (e.target as HTMLElement).closest('flint-dialog') as FlintDialog;
                         if (d) d.open = false;
                     }}>Edit Project</flint-button>

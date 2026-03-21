@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-list';
+import { expectAccessible } from '../test-utils/axe.js';
 import type { FlintList, FlintListItemButton, FlintListItemText } from './flint-list';
 
 // ---------------------------------------------------------------------------
@@ -211,5 +212,12 @@ describe('flint-list-subheader', () => {
         const el = await fixture(html`<flint-list-subheader>Section</flint-list-subheader>`);
         expect(el.textContent).toContain('Section');
         expect(el.shadowRoot!.querySelector('slot')).not.toBeNull();
+    });
+});
+
+describe('flint-list — accessibility', () => {
+    it('should be accessible', async () => {
+        const el = await fixture(html`<flint-list>Content</flint-list>`);
+        await expectAccessible(el, { rules: { 'aria-required-children': { enabled: false } } });
     });
 });

@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-kbd';
 import type { FlintKbd, FlintKbdGroup } from './flint-kbd';
+import { expectAccessible } from '../test-utils/axe.js';
 
 /* ═══════════════════════════════════════════════════════════════════════════
    flint-kbd — rendering
@@ -357,5 +358,12 @@ describe('flint-kbd-group — composition', () => {
         await el.updateComplete;
         const keys = Array.from(el.querySelectorAll('flint-kbd')) as FlintKbd[];
         keys.forEach(k => expect(k.getAttribute('variant')).toBe('flat'));
+    });
+});
+
+describe('flint-kbd — axe accessibility', () => {
+    it('should be accessible', async () => {
+        const el = await fixture(html`<flint-kbd>Ctrl+C</flint-kbd>`);
+        await expectAccessible(el);
     });
 });

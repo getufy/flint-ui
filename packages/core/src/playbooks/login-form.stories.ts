@@ -62,7 +62,7 @@ export const LoginFlow: Story = {
                         <flint-switch id="login-stay" label="Stay signed in" size="sm"></flint-switch>
                     </div>
 
-                    <flint-button id="login-submit" variant="primary" style="width: 100%;" @click=${(e: Event) => {
+                    <flint-button id="login-submit" appearance="filled" color="primary" style="width: 100%;" @click=${(e: Event) => {
                         const form = (e.target as HTMLElement).closest('#login-form')!;
                         const emailField = form.querySelector<HTMLElement & { value: string }>('#login-email')!;
                         const passwordField = form.querySelector<HTMLElement & { value: string }>('#login-password')!;

@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-link.js';
 import type { FlintLink } from './flint-link.js';
+import { expectAccessible } from '../test-utils/axe.js';
 
 describe('flint-link', () => {
     it('is defined', () => {
@@ -156,5 +157,12 @@ describe('flint-link', () => {
         el.addEventListener('click', spy);
         el.shadowRoot!.querySelector('a')!.click();
         expect(spy).toHaveBeenCalledOnce();
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`<flint-link href="#">Link text</flint-link>`);
+            await expectAccessible(el);
+        });
     });
 });

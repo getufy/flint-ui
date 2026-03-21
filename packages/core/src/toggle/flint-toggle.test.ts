@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import { FlintToggle } from './flint-toggle';
+import { expectAccessible } from '../test-utils/axe.js';
 
 /* ── helpers ────────────────────────────────────────────────────────── */
 
@@ -420,5 +421,12 @@ describe('flint-toggle — dir', () => {
         await el.updateComplete;
         expect(el.dir).toBe('rtl');
         expect(el.getAttribute('dir')).toBe('rtl');
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`<flint-toggle aria-label="Toggle bold">Bold</flint-toggle>`);
+            await expectAccessible(el);
+        });
     });
 });

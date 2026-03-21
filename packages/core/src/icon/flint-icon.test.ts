@@ -3,6 +3,7 @@ import { fixture, html } from '@open-wc/testing';
 import { registerIconResolver, clearIconCache, sanitizeSvg } from './flint-icon.component.js';
 import './flint-icon.js';
 import type { FlintIcon } from './flint-icon.js';
+import { expectAccessible } from '../test-utils/axe.js';
 
 /* ── Helpers ────────────────────────────────────────────────────────────────── */
 
@@ -440,4 +441,11 @@ describe('sanitizeSvg', () => {
     expect(result).not.toContain('<script');
     expect(result).not.toContain('onclick');
   });
+});
+
+describe('FlintIcon — accessibility', () => {
+    it('should be accessible', async () => {
+        const el = await fixture(html`<flint-icon label="Home icon"></flint-icon>`);
+        await expectAccessible(el);
+    });
 });

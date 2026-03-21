@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import { FlintStack } from './flint-stack.js';
+import { expectAccessible } from '../test-utils/axe.js';
 
 interface StackInternal {
     _currentWidth: number;
@@ -574,5 +575,12 @@ describe('flint-stack', () => {
         const el = document.createElement('flint-stack') as unknown as StackInternal;
         const result = el._getBreakpointValue('empty-var', 999);
         expect(result).toBe(999);
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`<flint-stack>Content</flint-stack>`);
+            await expectAccessible(el);
+        });
     });
 });

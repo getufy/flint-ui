@@ -213,8 +213,8 @@ export const Composed: Story = {
                     images, or actions.
                 </flint-box>
                 <flint-stack direction="row" p="12px 20px" borderTop="1px solid rgba(0,0,0,0.08)" justifyContent="flex-end" gap="8px">
-                    <flint-button variant="outlined">Cancel</flint-button>
-                    <flint-button variant="primary">Confirm</flint-button>
+                    <flint-button appearance="outlined">Cancel</flint-button>
+                    <flint-button appearance="filled" color="primary">Confirm</flint-button>
                 </flint-stack>
             </flint-paper>
 

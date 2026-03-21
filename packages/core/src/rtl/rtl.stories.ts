@@ -160,8 +160,8 @@ export const DrawerRTL: Story = {
         <flint-stack direction="column" gap="8" style="padding: 16px;">
           <h3 style="margin: 0;">القائمة الجانبية</h3>
           <p style="margin: 0; color: var(--flint-text-color-muted);">هذا الدرج يظهر من الجهة اليمنى في وضع RTL.</p>
-          <flint-button variant="primary" full-width>حفظ</flint-button>
-          <flint-button variant="secondary" full-width>إلغاء</flint-button>
+          <flint-button appearance="filled" color="primary" full-width>حفظ</flint-button>
+          <flint-button appearance="outlined" color="neutral" full-width>إلغاء</flint-button>
         </flint-stack>
       </flint-drawer>
       <div style="padding: 24px; margin-right: 256px;">
@@ -265,19 +265,19 @@ export const ButtonsRTL: Story = {
   decorators: [rtlDecorator],
   render: () => html`
     <flint-stack direction="row" gap="12" align="center">
-      <flint-button variant="primary">
+      <flint-button appearance="filled" color="primary">
         <svg slot="prefix" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
           <path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"></path>
         </svg>
         التالي
       </flint-button>
-      <flint-button variant="secondary">
+      <flint-button appearance="outlined" color="neutral">
         السابق
         <svg slot="suffix" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
           <path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"></path>
         </svg>
       </flint-button>
-      <flint-button variant="primary" loading>جارٍ الحفظ...</flint-button>
+      <flint-button appearance="filled" color="primary" loading>جارٍ الحفظ...</flint-button>
     </flint-stack>
   `,
 };
@@ -320,8 +320,8 @@ export const FormLayoutRTL: Story = {
           required
         ></flint-input>
         <div style="display: flex; justify-content: flex-start; gap: 12px; margin-top: 8px;">
-          <flint-button variant="primary">إنشاء الحساب</flint-button>
-          <flint-button variant="secondary">إلغاء</flint-button>
+          <flint-button appearance="filled" color="primary">إنشاء الحساب</flint-button>
+          <flint-button appearance="outlined" color="neutral">إلغاء</flint-button>
         </div>
       </flint-stack>
     </div>

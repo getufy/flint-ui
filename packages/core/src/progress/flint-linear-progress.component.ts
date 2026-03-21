@@ -1,4 +1,4 @@
-import { unsafeCSS, html, nothing, type PropertyValues } from 'lit';
+import { unsafeCSS, html, nothing } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
@@ -15,13 +15,6 @@ export class FlintLinearProgress extends FlintElement {
      * @default 'indeterminate'
      */
     @property({ type: String, reflect: true }) mode: 'determinate' | 'indeterminate' = 'indeterminate';
-    /**
-     * @deprecated Use `mode` instead. Will be removed in a future release.
-     */
-    @property({ type: String }) variant: 'determinate' | 'indeterminate' = 'indeterminate';
-
-    private _variantWarned = false;
-
     /** Current progress value (0 to max). */
     @property({ type: Number, reflect: true }) value = 0;
     /** Maximum value. The progress is calculated as value / max. @default 100 */
@@ -45,19 +38,6 @@ export class FlintLinearProgress extends FlintElement {
         error: 'var(--flint-error-color, #dc2626)',
         warning: 'var(--flint-warning-color, #92400e)',
     };
-
-    protected override willUpdate(changed: PropertyValues<this>): void {
-        const modeExplicitlySet = changed.has('mode') && this.mode !== 'indeterminate';
-        if (changed.has('variant') && this.variant !== 'indeterminate' && !modeExplicitlySet) {
-            this.mode = this.variant;
-            if (!this._variantWarned) {
-                this._variantWarned = true;
-                console.warn(
-                    '<flint-linear-progress>: The "variant" property is deprecated. Use "mode" instead.',
-                );
-            }
-        }
-    }
 
     private get _safeValue(): number {
         const safeMax = Math.max(1, this.max);

@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-range-slider.js';
 import type { FlintRangeSlider } from './flint-range-slider.js';
+import { expectAccessible } from '../test-utils/axe.js';
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -683,5 +684,16 @@ describe('FlintRangeSlider — edge cases', () => {
 
         expect(handler).not.toHaveBeenCalled();
         expect(el.value).toEqual([25, 75]);
+    });
+});
+
+// ─── axe accessibility ──────────────────────────────────────────────────────────
+
+describe('FlintRangeSlider — axe accessibility', () => {
+    it('should be accessible', async () => {
+        const el = await fixture(html`
+            <flint-range-slider label="Price range" .value=${[25, 75] as [number, number]}></flint-range-slider>
+        `);
+        await expectAccessible(el);
     });
 });

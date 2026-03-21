@@ -220,8 +220,8 @@ export const Default: Story = {
         ` : ''}
         ${args.primaryButtonText || args.secondaryButtonText ? html`
           <flint-card-actions>
-            ${args.primaryButtonText ? html`<flint-button variant="primary" size="small" @click=${() => alert('Explore clicked!')}>${args.primaryButtonText}</flint-button>` : ''}
-            ${args.secondaryButtonText ? html`<flint-button variant="secondary" size="small">${args.secondaryButtonText}</flint-button>` : ''}
+            ${args.primaryButtonText ? html`<flint-button appearance="filled" color="primary" size="small" @click=${() => alert('Explore clicked!')}>${args.primaryButtonText}</flint-button>` : ''}
+            ${args.secondaryButtonText ? html`<flint-button appearance="outlined" color="neutral" size="small">${args.secondaryButtonText}</flint-button>` : ''}
           </flint-card-actions>
         ` : ''}
       </flint-card>
@@ -251,8 +251,8 @@ export const Outlined: Story = {
         <flint-card-media image=${args.image} alt="Card image"></flint-card-media>
         <flint-card-content>${args.content}</flint-card-content>
         <flint-card-actions>
-          <flint-button variant="primary" size="small">${args.primaryButtonText}</flint-button>
-          <flint-button variant="secondary" size="small">${args.secondaryButtonText}</flint-button>
+          <flint-button appearance="filled" color="primary" size="small">${args.primaryButtonText}</flint-button>
+          <flint-button appearance="outlined" color="neutral" size="small">${args.secondaryButtonText}</flint-button>
         </flint-card-actions>
       </flint-card>
     </div>
@@ -267,7 +267,7 @@ export const Flat: Story = {
         <flint-card-header title=${args.title} subtitle=${args.subtitle}></flint-card-header>
         <flint-card-content>${args.content}</flint-card-content>
         <flint-card-actions>
-          <flint-button variant="primary" size="small">${args.primaryButtonText}</flint-button>
+          <flint-button appearance="filled" color="primary" size="small">${args.primaryButtonText}</flint-button>
         </flint-card-actions>
       </flint-card>
     </div>
@@ -278,13 +278,10 @@ export const Interactive: Story = {
   args: { interactive: true, image: '' },
   render: (args: Record<string, unknown>) => html`
     <div style="max-width: 400px; padding: 20px;">
-      <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563;">Hover the card to see the elevated shadow.</p>
-      <flint-card variant=${args.variant} ?interactive=${args.interactive}>
+      <p style="margin: 0 0 12px; font-size: 0.875rem; color: #4b5563;">Hover the card to see the elevated shadow. Click or press Enter/Space to activate.</p>
+      <flint-card variant=${args.variant} ?interactive=${args.interactive} aria-label="${args.title}">
         <flint-card-header title=${args.title} subtitle=${args.subtitle}></flint-card-header>
         <flint-card-content>${args.content}</flint-card-content>
-        <flint-card-actions>
-          <flint-button variant="primary" size="small">${args.primaryButtonText}</flint-button>
-        </flint-card-actions>
       </flint-card>
     </div>
   `,
@@ -318,8 +315,8 @@ export const WithAvatar: Story = {
         </flint-card-header>
         <flint-card-content>${args.content}</flint-card-content>
         <flint-card-actions>
-          <flint-button variant="primary" size="small">${args.primaryButtonText}</flint-button>
-          <flint-button variant="secondary" size="small">${args.secondaryButtonText}</flint-button>
+          <flint-button appearance="filled" color="primary" size="small">${args.primaryButtonText}</flint-button>
+          <flint-button appearance="outlined" color="neutral" size="small">${args.secondaryButtonText}</flint-button>
         </flint-card-actions>
       </flint-card>
     </div>
@@ -332,11 +329,11 @@ export const WithHeaderAction: Story = {
     <div style="max-width: 400px; padding: 20px;">
       <flint-card variant="elevated">
         <flint-card-header title=${args.title} subtitle=${args.subtitle}>
-          <flint-button slot="action" variant="ghost" size="small" @click=${() => alert('Menu clicked!')}>⋯</flint-button>
+          <flint-button slot="action" appearance="ghost" size="small" @click=${() => alert('Menu clicked!')}>⋯</flint-button>
         </flint-card-header>
         <flint-card-content>${args.content}</flint-card-content>
         <flint-card-actions>
-          <flint-button variant="primary" size="small">${args.primaryButtonText}</flint-button>
+          <flint-button appearance="filled" color="primary" size="small">${args.primaryButtonText}</flint-button>
         </flint-card-actions>
       </flint-card>
     </div>
@@ -358,7 +355,7 @@ export const HorizontalLayout: Story = {
             <flint-card-header title=${args.title} subtitle=${args.subtitle}></flint-card-header>
             <flint-card-content>${args.content}</flint-card-content>
             <flint-card-actions>
-              <flint-button variant="primary" size="small">${args.primaryButtonText}</flint-button>
+              <flint-button appearance="filled" color="primary" size="small">${args.primaryButtonText}</flint-button>
             </flint-card-actions>
           </div>
         </div>
@@ -384,8 +381,8 @@ export const SimpleText: Story = {
         </flint-card-content>
         ${args.primaryButtonText || args.secondaryButtonText ? html`
           <flint-card-actions>
-            ${args.primaryButtonText ? html`<flint-button variant="primary" size="small">${args.primaryButtonText}</flint-button>` : ''}
-            ${args.secondaryButtonText ? html`<flint-button variant="secondary" size="small">${args.secondaryButtonText}</flint-button>` : ''}
+            ${args.primaryButtonText ? html`<flint-button appearance="filled" color="primary" size="small">${args.primaryButtonText}</flint-button>` : ''}
+            ${args.secondaryButtonText ? html`<flint-button appearance="outlined" color="neutral" size="small">${args.secondaryButtonText}</flint-button>` : ''}
           </flint-card-actions>
         ` : ''}
       </flint-card>
@@ -408,7 +405,7 @@ export const MobileViewport: Story = {
         <flint-card-media .image=${'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=400&q=80'} alt="Card image"></flint-card-media>
         <flint-card-content>Card adapts to the mobile viewport width.</flint-card-content>
         <flint-card-actions>
-          <flint-button variant="primary" size="sm">Action</flint-button>
+          <flint-button appearance="filled" color="primary" size="sm">Action</flint-button>
         </flint-card-actions>
       </flint-card>
     </div>
@@ -426,7 +423,7 @@ export const TabletViewport: Story = {
           <flint-card-header title="Card ${i}" subtitle="Tablet layout"></flint-card-header>
           <flint-card-content>Two-column card grid on tablet viewport.</flint-card-content>
           <flint-card-actions>
-            <flint-button variant="primary" size="sm">View</flint-button>
+            <flint-button appearance="filled" color="primary" size="sm">View</flint-button>
           </flint-card-actions>
         </flint-card>
       `)}

@@ -114,10 +114,14 @@ Text Field: a styled text input with outlined/filled variants.
     },
     args: {
         label: 'Username',
+        value: '',
         placeholder: 'Enter your username',
+        type: 'text',
         variant: 'outlined',
         disabled: false,
         error: false,
+        helperText: '',
+        errorMessage: '',
     }
 };
 
@@ -212,7 +216,7 @@ export const FormMockup: Story = {
             <flint-text-field label="Password" type="password" placeholder="••••••••" helperText="Minimal 8 characters"></flint-text-field>
             
             <div style="display: flex; justify-content: flex-end; margin-top: 1rem;">
-                <flint-button variant="primary" size="medium">Sign Up</flint-button>
+                <flint-button appearance="filled" color="primary" size="medium">Sign Up</flint-button>
             </div>
         </div>
     `

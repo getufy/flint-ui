@@ -83,22 +83,22 @@ export const Playground: Story = {
             .visibleToasts=${args.visibleToasts}
         ></flint-toaster>
         <div style="display: flex; flex-wrap: wrap; gap: 8px; padding: 24px; font-family: var(--flint-font-family, system-ui);">
-            <flint-button variant="secondary" @click=${() => toast('Event has been created')}>
+            <flint-button appearance="outlined" color="neutral" @click=${() => toast('Event has been created')}>
                 Default
             </flint-button>
-            <flint-button variant="secondary" @click=${() => toast.success('Event has been created')}>
+            <flint-button appearance="outlined" color="neutral" @click=${() => toast.success('Event has been created')}>
                 Success
             </flint-button>
-            <flint-button variant="secondary" @click=${() => toast.error('Event has not been created')}>
+            <flint-button appearance="outlined" color="neutral" @click=${() => toast.error('Event has not been created')}>
                 Error
             </flint-button>
-            <flint-button variant="secondary" @click=${() => toast.info('Be at the area 10 minutes before the event time')}>
+            <flint-button appearance="outlined" color="neutral" @click=${() => toast.info('Be at the area 10 minutes before the event time')}>
                 Info
             </flint-button>
-            <flint-button variant="secondary" @click=${() => toast.warning('Event start time cannot be earlier than 8am')}>
+            <flint-button appearance="outlined" color="neutral" @click=${() => toast.warning('Event start time cannot be earlier than 8am')}>
                 Warning
             </flint-button>
-            <flint-button variant="secondary" @click=${() => toast.loading('Uploading file…', { duration: Infinity })}>
+            <flint-button appearance="outlined" color="neutral" @click=${() => toast.loading('Uploading file…', { duration: Infinity })}>
                 Loading
             </flint-button>
         </div>
@@ -114,22 +114,22 @@ export const Types: Story = {
             <p style="margin: 0 0 8px; font-size: 0.875rem; color: #4b5563;">
                 Click each button to see the corresponding toast type.
             </p>
-            <flint-button variant="secondary" @click=${() => toast('Event has been created')}>
+            <flint-button appearance="outlined" color="neutral" @click=${() => toast('Event has been created')}>
                 Default
             </flint-button>
-            <flint-button variant="secondary" @click=${() => toast.success('Event has been created')}>
+            <flint-button appearance="outlined" color="neutral" @click=${() => toast.success('Event has been created')}>
                 Success
             </flint-button>
-            <flint-button variant="secondary" @click=${() => toast.info('Be at the area 10 minutes before the event time')}>
+            <flint-button appearance="outlined" color="neutral" @click=${() => toast.info('Be at the area 10 minutes before the event time')}>
                 Info
             </flint-button>
-            <flint-button variant="secondary" @click=${() => toast.warning('Event start time cannot be earlier than 8am')}>
+            <flint-button appearance="outlined" color="neutral" @click=${() => toast.warning('Event start time cannot be earlier than 8am')}>
                 Warning
             </flint-button>
-            <flint-button variant="secondary" @click=${() => toast.error('Event has not been created')}>
+            <flint-button appearance="outlined" color="neutral" @click=${() => toast.error('Event has not been created')}>
                 Error
             </flint-button>
-            <flint-button variant="secondary" @click=${() =>
+            <flint-button appearance="outlined" color="neutral" @click=${() =>
                 toast.promise<{ name: string }>(
                     new Promise(resolve => setTimeout(() => resolve({ name: 'Sonner Demo' }), 2000)),
                     {
@@ -151,7 +151,7 @@ export const Description: Story = {
         <flint-toaster position="bottom-right"></flint-toaster>
         <div style="padding: 24px; font-family: var(--flint-font-family, system-ui);">
             <flint-button
-                variant="secondary"
+                appearance="outlined" color="neutral"
                 @click=${() =>
                     toast('Event has been created', {
                         description: 'Sunday, December 03, 2023 at 9:00 AM',
@@ -171,7 +171,7 @@ export const WithAction: Story = {
         <flint-toaster position="bottom-right"></flint-toaster>
         <div style="padding: 24px; font-family: var(--flint-font-family, system-ui);">
             <flint-button
-                variant="secondary"
+                appearance="outlined" color="neutral"
                 @click=${() =>
                     toast('Event has been created', {
                         description: 'Sunday, December 03, 2023 at 9:00 AM',
@@ -198,27 +198,27 @@ export const Position: Story = {
         <flint-toaster position="bottom-center"></flint-toaster>
         <flint-toaster position="bottom-right"></flint-toaster>
         <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; padding: 24px; font-family: var(--flint-font-family, system-ui);">
-            <flint-button variant="secondary"
+            <flint-button appearance="outlined" color="neutral"
                 @click=${() => toast('Top Left', { position: 'top-left' })}>
                 Top Left
             </flint-button>
-            <flint-button variant="secondary"
+            <flint-button appearance="outlined" color="neutral"
                 @click=${() => toast('Top Center', { position: 'top-center' })}>
                 Top Center
             </flint-button>
-            <flint-button variant="secondary"
+            <flint-button appearance="outlined" color="neutral"
                 @click=${() => toast('Top Right', { position: 'top-right' })}>
                 Top Right
             </flint-button>
-            <flint-button variant="secondary"
+            <flint-button appearance="outlined" color="neutral"
                 @click=${() => toast('Bottom Left', { position: 'bottom-left' })}>
                 Bottom Left
             </flint-button>
-            <flint-button variant="secondary"
+            <flint-button appearance="outlined" color="neutral"
                 @click=${() => toast('Bottom Center', { position: 'bottom-center' })}>
                 Bottom Center
             </flint-button>
-            <flint-button variant="secondary"
+            <flint-button appearance="outlined" color="neutral"
                 @click=${() => toast('Bottom Right', { position: 'bottom-right' })}>
                 Bottom Right
             </flint-button>
@@ -240,7 +240,7 @@ export const PromiseToast: Story = {
         <flint-toaster position="bottom-right"></flint-toaster>
         <div style="display: flex; flex-wrap: wrap; gap: 8px; padding: 24px; font-family: var(--flint-font-family, system-ui);">
             <flint-button
-                variant="secondary"
+                appearance="outlined" color="neutral"
                 @click=${() =>
                     toast.promise<{ name: string }>(
                         new Promise(resolve =>
@@ -257,7 +257,7 @@ export const PromiseToast: Story = {
                 Resolve (2s)
             </flint-button>
             <flint-button
-                variant="secondary"
+                appearance="outlined" color="neutral"
                 @click=${() =>
                     toast.promise(
                         new Promise((_, reject) =>
@@ -285,7 +285,7 @@ export const Persistent: Story = {
             <flint-toaster position="bottom-right"></flint-toaster>
             <div style="display: flex; gap: 8px; padding: 24px; font-family: var(--flint-font-family, system-ui);">
                 <flint-button
-                    variant="secondary"
+                    appearance="outlined" color="neutral"
                     @click=${() => {
                         loadingId = toast.loading('Processing in background…', { duration: Infinity });
                     }}
@@ -293,7 +293,7 @@ export const Persistent: Story = {
                     Start Loading
                 </flint-button>
                 <flint-button
-                    variant="secondary"
+                    appearance="outlined" color="neutral"
                     @click=${() => {
                         if (loadingId) {
                             toast.dismiss(loadingId);
@@ -304,7 +304,7 @@ export const Persistent: Story = {
                     Stop Loading
                 </flint-button>
                 <flint-button
-                    variant="secondary"
+                    appearance="outlined" color="neutral"
                     @click=${() =>
                         toast('This will not auto-dismiss', {
                             duration: Infinity,
@@ -326,7 +326,7 @@ export const DismissAll: Story = {
         <flint-toaster position="bottom-right"></flint-toaster>
         <div style="display: flex; gap: 8px; padding: 24px; font-family: var(--flint-font-family, system-ui);">
             <flint-button
-                variant="secondary"
+                appearance="outlined" color="neutral"
                 @click=${() => {
                     toast('First toast');
                     toast.success('Second toast');
@@ -335,7 +335,7 @@ export const DismissAll: Story = {
             >
                 Add 3 Toasts
             </flint-button>
-            <flint-button variant="secondary" @click=${() => toast.dismiss()}>
+            <flint-button appearance="outlined" color="neutral" @click=${() => toast.dismiss()}>
                 Dismiss All
             </flint-button>
         </div>
@@ -353,7 +353,7 @@ export const Stacked: Story = {
                 Hover the stack in the bottom-right to expand all toasts.
             </p>
             <flint-button
-                variant="secondary"
+                appearance="outlined" color="neutral"
                 @click=${() => {
                     toast('Event has been created');
                     toast.success('Changes saved successfully');
@@ -376,7 +376,7 @@ export const VisibleToastsLimit: Story = {
                 <code>visible-toasts="2"</code> — only the 2 most recent toasts are displayed.
             </p>
             <flint-button
-                variant="secondary"
+                appearance="outlined" color="neutral"
                 @click=${() => toast(`Toast ${Date.now()}`)}
             >
                 Add Toast

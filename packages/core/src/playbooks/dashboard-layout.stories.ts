@@ -77,7 +77,7 @@ export const DashboardFlow: Story = {
                             <p style="margin: 4px 0 0; font-size: 0.75rem; color: #16a34a;">+20.1% from last month</p>
                         </flint-card-content>
                         <flint-card-actions>
-                            <flint-button class="view-btn" variant="secondary" size="small" data-card="revenue">View Report</flint-button>
+                            <flint-button class="view-btn" appearance="outlined" color="neutral" size="small" data-card="revenue">View Report</flint-button>
                         </flint-card-actions>
                     </flint-card>
                 </flint-grid>
@@ -97,7 +97,7 @@ export const DashboardFlow: Story = {
                             <p style="margin: 4px 0 0; font-size: 0.75rem; color: #16a34a;">+180 this week</p>
                         </flint-card-content>
                         <flint-card-actions>
-                            <flint-button class="view-btn" variant="secondary" size="small" data-card="users">View Users</flint-button>
+                            <flint-button class="view-btn" appearance="outlined" color="neutral" size="small" data-card="users">View Users</flint-button>
                         </flint-card-actions>
                     </flint-card>
                 </flint-grid>
@@ -112,7 +112,7 @@ export const DashboardFlow: Story = {
                             <p style="margin: 4px 0 0; font-size: 0.75rem; color: #dc2626;">-5.2% from last month</p>
                         </flint-card-content>
                         <flint-card-actions>
-                            <flint-button class="view-btn" variant="secondary" size="small" data-card="orders">View Orders</flint-button>
+                            <flint-button class="view-btn" appearance="outlined" color="neutral" size="small" data-card="orders">View Orders</flint-button>
                         </flint-card-actions>
                     </flint-card>
                 </flint-grid>
@@ -127,7 +127,7 @@ export const DashboardFlow: Story = {
                             <p style="margin: 4px 0 0; font-size: 0.75rem; color: #16a34a;">+0.4% from last month</p>
                         </flint-card-content>
                         <flint-card-actions>
-                            <flint-button class="view-btn" variant="secondary" size="small" data-card="conversion">View Details</flint-button>
+                            <flint-button class="view-btn" appearance="outlined" color="neutral" size="small" data-card="conversion">View Details</flint-button>
                         </flint-card-actions>
                     </flint-card>
                 </flint-grid>

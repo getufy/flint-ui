@@ -185,8 +185,8 @@ export const ProfileCardExample: Story = {
             <h3 style="margin: 0; font-size: 20px;">Alex Johnson</h3>
             <p style="margin: 4px 0 16px; color: var(--flint-text-color-muted); font-size: 14px;">Senior Product Designer</p>
             <div style="display: flex; justify-content: center; gap: 8px;">
-                <flint-button variant="primary" size="sm">Follow</flint-button>
-                <flint-button variant="secondary" size="sm">Message</flint-button>
+                <flint-button appearance="filled" color="primary" size="sm">Follow</flint-button>
+                <flint-button appearance="outlined" color="neutral" size="sm">Message</flint-button>
             </div>
         </div>
     `,

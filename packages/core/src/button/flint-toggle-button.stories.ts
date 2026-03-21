@@ -46,15 +46,28 @@ export default meta;
 type Story = StoryObj;
 
 /* ─── Playground ──────────────────────────────────── */
-export const Playground: Story = {};
+export const Playground: Story = {
+    render: (args: Record<string, unknown>) => html`
+        <flint-toggle-button
+            ?disabled=${args.disabled as boolean}
+            .value=${args.value as string}
+            size=${args.size as string}
+            @flint-toggle-button-change=${(e: CustomEvent) => {
+                const host = (e.target as HTMLElement).closest('flint-toggle-button') as HTMLElement & { selected: boolean };
+                if (host) host.selected = e.detail.selected;
+            }}
+        >${args.content}</flint-toggle-button>
+    `,
+};
 
 Playground.play = async ({ canvasElement }) => {
     const toggleBtn = canvasElement.querySelector('flint-toggle-button') as HTMLElement & { selected: boolean };
+    const innerBtn = toggleBtn.shadowRoot!.querySelector('button')!;
     await waitFor(() => expect(toggleBtn).toBeTruthy());
     await waitFor(() => expect(toggleBtn.selected).toBe(false));
-    await userEvent.click(toggleBtn);
+    await userEvent.click(innerBtn);
     await waitFor(() => expect(toggleBtn.selected).toBe(true));
-    await userEvent.click(toggleBtn);
+    await userEvent.click(innerBtn);
     await waitFor(() => expect(toggleBtn.selected).toBe(false));
 };
 

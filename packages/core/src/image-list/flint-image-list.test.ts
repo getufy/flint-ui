@@ -3,6 +3,7 @@ import { fixture, html } from '@open-wc/testing';
 import './flint-image-list.js';
 import './flint-image-list-item.js';
 import './flint-image-list-item-bar.js';
+import { expectAccessible } from '../test-utils/axe.js';
 import type { FlintImageList } from './flint-image-list.js';
 import type { FlintImageListItem } from './flint-image-list-item.js';
 import type { FlintImageListItemBar } from './flint-image-list-item-bar.js';
@@ -278,4 +279,15 @@ describe('flint-image-list-item + bar integration', () => {
     expect(list.style.gridTemplateColumns).toBe('repeat(3, 1fr)');
     expect(el.querySelectorAll('flint-image-list-item').length).toBe(3);
   });
+});
+
+describe('flint-image-list — accessibility', () => {
+    it('should be accessible', async () => {
+        const el = await fixture(html`
+            <flint-image-list cols="2">
+                <flint-image-list-item><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Image 1" /></flint-image-list-item>
+            </flint-image-list>
+        `);
+        await expectAccessible(el, { rules: { 'aria-required-children': { enabled: false } } });
+    });
 });

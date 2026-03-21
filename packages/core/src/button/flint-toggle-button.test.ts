@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-toggle-button';
 import type { FlintToggleButton } from './flint-toggle-button';
+import { expectAccessible } from '../test-utils/axe.js';
 
 describe('flint-toggle-button', () => {
     it('renders with default properties', async () => {
@@ -131,6 +132,13 @@ describe('flint-toggle-button', () => {
             el.size = 'lg';
             await el.updateComplete;
             expect(el.getAttribute('size')).toBe('lg');
+        });
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`<flint-toggle-button aria-label="Toggle bold" value="bold">B</flint-toggle-button>`);
+            await expectAccessible(el);
         });
     });
 });

@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-backdrop';
 import type { FlintBackdrop } from './flint-backdrop';
+import { expectAccessible } from '../test-utils/axe.js';
 
 describe('flint-backdrop', () => {
     it('is defined', async () => {
@@ -159,5 +160,12 @@ describe('flint-backdrop', () => {
         el.open = true;
         await el.updateComplete;
         expect(backdrop?.classList.contains('open')).toBe(true);
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`<flint-backdrop></flint-backdrop>`);
+            await expectAccessible(el);
+        });
     });
 });

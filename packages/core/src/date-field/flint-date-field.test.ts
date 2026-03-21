@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { fixture, html, oneEvent } from '@open-wc/testing';
 import './flint-date-field.js';
 import type { FlintDateField } from './flint-date-field.js';
+import { expectAccessible } from '../test-utils/axe.js';
 
 // Helper: dispatch a keydown event on the segments div inside the component
 function key(el: FlintDateField, k: string, opts: KeyboardEventInit = {}) {
@@ -1068,5 +1069,12 @@ describe('flint-date-field', () => {
         await el.updateComplete;
         const segs = el.shadowRoot!.querySelectorAll('.segment');
         expect(segs[0].classList.contains('active')).toBe(false);
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`<flint-date-field label="Date"></flint-date-field>`);
+            await expectAccessible(el);
+        });
     });
 });

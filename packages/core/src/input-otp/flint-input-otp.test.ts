@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-input-otp.js';
+import { expectAccessible } from '../test-utils/axe.js';
 import type {
     FlintInputOtp,
     FlintInputOtpSlot,
@@ -1482,5 +1483,20 @@ describe('flint-input-otp — form association', () => {
         `);
         await el.updateComplete;
         expect((el as unknown as { _internals: ElementInternals | null })._internals).not.toBeNull();
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`
+                <flint-input-otp max-length="6" aria-label="Verification code">
+                    <flint-input-otp-group>
+                        <flint-input-otp-slot index="0"></flint-input-otp-slot>
+                        <flint-input-otp-slot index="1"></flint-input-otp-slot>
+                        <flint-input-otp-slot index="2"></flint-input-otp-slot>
+                    </flint-input-otp-group>
+                </flint-input-otp>
+            `);
+            await expectAccessible(el);
+        });
     });
 });

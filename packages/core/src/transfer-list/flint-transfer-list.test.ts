@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-transfer-list';
 import type { FlintTransferList } from './flint-transfer-list';
+import { expectAccessible } from '../test-utils/axe.js';
 
 describe('flint-transfer-list', () => {
     const defaultOptions = [
@@ -919,6 +920,19 @@ describe('flint-transfer-list', () => {
         const buttons = el.shadowRoot!.querySelectorAll('button.action-button');
         buttons.forEach(btn => {
             expect(btn.getAttribute('aria-label')).toBeTruthy();
+        });
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`
+                <flint-transfer-list
+                    .items=${[{ id: '1', label: 'Item 1' }, { id: '2', label: 'Item 2' }]}
+                    left-title="Available"
+                    right-title="Selected"
+                ></flint-transfer-list>
+            `);
+            await expectAccessible(el);
         });
     });
 });

@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-typography.js';
 import type { FlintTypography } from './flint-typography.js';
+import { expectAccessible } from '../test-utils/axe.js';
 
 describe('flint-typography', () => {
     // ── Defaults ────────────────────────────────────────────────────────
@@ -285,5 +286,12 @@ describe('flint-typography', () => {
         const textNodes = Array.from(el.childNodes).filter(n => n.nodeType === Node.TEXT_NODE);
         const text = textNodes.map(n => n.textContent).join('').trim();
         expect(text).toBe('Hello world');
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`<flint-typography>Text content</flint-typography>`);
+            await expectAccessible(el);
+        });
     });
 });

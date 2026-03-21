@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-scroll-area';
+import { expectAccessible } from '../test-utils/axe.js';
 import type { FlintScrollArea, FlintScrollBar } from './flint-scroll-area';
 
 /* ── helpers ────────────────────────────────────────────────────────── */
@@ -1284,5 +1285,12 @@ describe('flint-scroll-area — _shouldShowBar default branch', () => {
         // default case returns hasOverflow (true here), so the bar gets scrollbar--visible
         const sbY = getScrollbarY(el);
         expect(sbY.classList.contains('scrollbar--visible')).toBe(true);
+    });
+});
+
+describe('flint-scroll-area — accessibility', () => {
+    it('should be accessible', async () => {
+        const el = await fixture(html`<flint-scroll-area>Content</flint-scroll-area>`);
+        await expectAccessible(el);
     });
 });

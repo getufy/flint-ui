@@ -140,7 +140,6 @@ export const Basic: Story = {
 
       <flint-dialog
         id="basic-dialog"
-        .open=${args.open}
         .transition=${args.transition}
         @flint-dialog-close=${closeDialog}
       >
@@ -151,11 +150,11 @@ export const Basic: Story = {
           </flint-dialog-content-text>
         </flint-dialog-content>
         <flint-dialog-actions>
-          <flint-button variant="secondary" @click=${(e: Event) => {
+          <flint-button appearance="outlined" color="neutral" @click=${(e: Event) => {
       const d = (e.target as HTMLElement).closest('flint-dialog') as FlintDialog;
       if (d) d.open = false;
     }}>Cancel</flint-button>
-          <flint-button variant="primary" color="error" @click=${(e: Event) => {
+          <flint-button appearance="filled" color="destructive" @click=${(e: Event) => {
       alert('Draft discarded!');
       const d = (e.target as HTMLElement).closest('flint-dialog') as FlintDialog;
       if (d) d.open = false;
@@ -168,17 +167,19 @@ export const Basic: Story = {
 
 Basic.play = async ({ canvasElement }) => {
     const dialog = canvasElement.querySelector('#basic-dialog') as FlintDialog;
-    const openBtn = canvasElement.querySelector('flint-button') as HTMLElement;
+    const openBtnHost = canvasElement.querySelector('flint-button') as HTMLElement;
+    const openBtn = openBtnHost.shadowRoot!.querySelector('button')!;
 
     // Dialog starts closed
     await waitFor(() => expect(dialog.open).toBe(false));
 
-    // Open dialog
+    // Open dialog (target inner button for shadow DOM click propagation)
     await userEvent.click(openBtn);
     await waitFor(() => expect(dialog.open).toBe(true));
 
     // Close via Cancel button
-    const cancelBtn = dialog.querySelector('flint-button[variant="secondary"]') as HTMLElement;
+    const cancelBtnHost = dialog.querySelector('flint-button[appearance="outlined"][color="neutral"]') as HTMLElement;
+    const cancelBtn = cancelBtnHost.shadowRoot!.querySelector('button')!;
     await userEvent.click(cancelBtn);
     await waitFor(() => expect(dialog.open).toBe(false));
 
@@ -200,13 +201,13 @@ export const Confirmation: Story = {
     <flint-stack direction="row" gap="16px" alignItems="center" justifyContent="center" style="height:300px;flex-wrap:wrap;">
 
       <!-- Trigger buttons for different confirmation types -->
-      <flint-button color="error" variant="primary" @click=${() => openDialog('delete-confirm-dialog')}>
+      <flint-button color="destructive" appearance="filled" @click=${() => openDialog('delete-confirm-dialog')}>
         Delete Item
       </flint-button>
-      <flint-button variant="secondary" @click=${() => openDialog('publish-confirm-dialog')}>
+      <flint-button appearance="outlined" color="neutral" @click=${() => openDialog('publish-confirm-dialog')}>
         Publish Changes
       </flint-button>
-      <flint-button variant="secondary" @click=${() => openDialog('logout-confirm-dialog')}>
+      <flint-button appearance="outlined" color="neutral" @click=${() => openDialog('logout-confirm-dialog')}>
         Log Out
       </flint-button>
 
@@ -229,11 +230,11 @@ export const Confirmation: Story = {
           </flint-dialog-content-text>
         </flint-dialog-content>
         <flint-dialog-actions>
-          <flint-button variant="secondary" @click=${(e: Event) => {
+          <flint-button appearance="outlined" color="neutral" @click=${(e: Event) => {
       const d = (e.target as HTMLElement).closest('flint-dialog') as FlintDialog;
       d?.dispatchEvent(new CustomEvent('cancel', { bubbles: true, composed: true }));
     }}>Keep Item</flint-button>
-          <flint-button variant="primary" color="error" @click=${(e: Event) => {
+          <flint-button appearance="filled" color="destructive" @click=${(e: Event) => {
       const d = (e.target as HTMLElement).closest('flint-dialog') as FlintDialog;
       d?.dispatchEvent(new CustomEvent('confirm', { bubbles: true, composed: true }));
     }}>Yes, Delete</flint-button>
@@ -259,11 +260,11 @@ export const Confirmation: Story = {
           </flint-dialog-content-text>
         </flint-dialog-content>
         <flint-dialog-actions>
-          <flint-button variant="secondary" @click=${(e: Event) => {
+          <flint-button appearance="outlined" color="neutral" @click=${(e: Event) => {
       const d = (e.target as HTMLElement).closest('flint-dialog') as FlintDialog;
       d?.dispatchEvent(new CustomEvent('cancel', { bubbles: true, composed: true }));
     }}>Review Again</flint-button>
-          <flint-button variant="primary" @click=${(e: Event) => {
+          <flint-button appearance="filled" color="primary" @click=${(e: Event) => {
       const d = (e.target as HTMLElement).closest('flint-dialog') as FlintDialog;
       d?.dispatchEvent(new CustomEvent('confirm', { bubbles: true, composed: true }));
     }}>Publish Now</flint-button>
@@ -290,11 +291,11 @@ export const Confirmation: Story = {
           </flint-dialog-content-text>
         </flint-dialog-content>
         <flint-dialog-actions align="space-between">
-          <flint-button variant="secondary" @click=${(e: Event) => {
+          <flint-button appearance="outlined" color="neutral" @click=${(e: Event) => {
       const d = (e.target as HTMLElement).closest('flint-dialog') as FlintDialog;
       d?.dispatchEvent(new CustomEvent('cancel', { bubbles: true, composed: true }));
     }}>Stay Signed In</flint-button>
-          <flint-button variant="primary" @click=${(e: Event) => {
+          <flint-button appearance="filled" color="primary" @click=${(e: Event) => {
       const d = (e.target as HTMLElement).closest('flint-dialog') as FlintDialog;
       d?.dispatchEvent(new CustomEvent('confirm', { bubbles: true, composed: true }));
     }}>Log Out</flint-button>
@@ -373,11 +374,11 @@ export const LargeContent: Story = {
           `)}
         </flint-dialog-content>
         <flint-dialog-actions>
-          <flint-button variant="secondary" @click=${(e: Event) => {
+          <flint-button appearance="outlined" color="neutral" @click=${(e: Event) => {
       const d = (e.target as HTMLElement).closest('flint-dialog') as FlintDialog;
       if (d) d.open = false;
     }}>Decline</flint-button>
-          <flint-button variant="primary" @click=${(e: Event) => {
+          <flint-button appearance="filled" color="primary" @click=${(e: Event) => {
       const d = (e.target as HTMLElement).closest('flint-dialog') as FlintDialog;
       if (d) d.open = false;
     }}>I Understand</flint-button>
@@ -410,14 +411,14 @@ export const NestedDialog: Story = {
           </flint-dialog-content-text>
           <div style="margin-top:12px;">
             <flint-button
-              color="error"
-              variant="secondary"
+              appearance="outlined"
+              color="destructive"
               @click=${() => openDialog('nested-child-dialog')}
             >Delete Account…</flint-button>
           </div>
         </flint-dialog-content>
         <flint-dialog-actions>
-          <flint-button variant="secondary" @click=${() => {
+          <flint-button appearance="outlined" color="neutral" @click=${() => {
     (document.getElementById('nested-parent-dialog') as FlintDialog).open = false;
   }}>Close</flint-button>
         </flint-dialog-actions>
@@ -444,11 +445,11 @@ export const NestedDialog: Story = {
           </flint-dialog-content-text>
         </flint-dialog-content>
         <flint-dialog-actions>
-          <flint-button variant="secondary" @click=${(e: Event) => {
+          <flint-button appearance="outlined" color="neutral" @click=${(e: Event) => {
     const d = (e.target as HTMLElement).closest('flint-dialog') as FlintDialog;
     d?.dispatchEvent(new CustomEvent('cancel', { bubbles: true, composed: true }));
   }}>Keep Account</flint-button>
-          <flint-button variant="primary" color="error" @click=${(e: Event) => {
+          <flint-button appearance="filled" color="destructive" @click=${(e: Event) => {
     const d = (e.target as HTMLElement).closest('flint-dialog') as FlintDialog;
     d?.dispatchEvent(new CustomEvent('confirm', { bubbles: true, composed: true }));
   }}>Yes, Delete</flint-button>
@@ -485,11 +486,11 @@ export const FormDialog: Story = {
           </flint-stack>
         </flint-dialog-content>
         <flint-dialog-actions>
-          <flint-button variant="secondary" @click=${(e: Event) => {
+          <flint-button appearance="outlined" color="neutral" @click=${(e: Event) => {
     const d = (e.target as HTMLElement).closest('flint-dialog') as FlintDialog;
     if (d) d.open = false;
   }}>Cancel</flint-button>
-          <flint-button variant="primary" @click=${(e: Event) => {
+          <flint-button appearance="filled" color="primary" @click=${(e: Event) => {
     const name = (document.getElementById('form-name') as HTMLInputElement)?.value;
     const email = (document.getElementById('form-email') as HTMLInputElement)?.value;
     alert(`Saved: ${name} <${email}>`);
@@ -510,7 +511,7 @@ export const FormDialog: Story = {
 export const Alert: Story = {
   render: () => html`
     <flint-box display="flex" alignItems="center" justifyContent="center" height="300px">
-      <flint-button color="error" variant="primary" @click=${() => openDialog('alert-dialog')}>
+      <flint-button color="destructive" appearance="filled" @click=${() => openDialog('alert-dialog')}>
         Show Alert
       </flint-button>
 
@@ -522,7 +523,7 @@ export const Alert: Story = {
           </flint-dialog-content-text>
         </flint-dialog-content>
         <flint-dialog-actions align="center">
-          <flint-button variant="primary" @click=${(e: Event) => {
+          <flint-button appearance="filled" color="primary" @click=${(e: Event) => {
     const d = (e.target as HTMLElement).closest('flint-dialog') as FlintDialog;
     if (d) d.open = false;
   }}>OK, Got It</flint-button>
@@ -547,11 +548,11 @@ export const DisableBackdropClose: Story = {
           </flint-dialog-content-text>
         </flint-dialog-content>
         <flint-dialog-actions>
-          <flint-button variant="secondary" @click=${(e: Event) => {
+          <flint-button appearance="outlined" color="neutral" @click=${(e: Event) => {
       const d = (e.target as HTMLElement).closest('flint-dialog') as FlintDialog;
       if (d) d.requestClose();
     }}>Dismiss</flint-button>
-          <flint-button variant="primary" @click=${(e: Event) => {
+          <flint-button appearance="filled" color="primary" @click=${(e: Event) => {
       alert('Confirmed!');
       const d = (e.target as HTMLElement).closest('flint-dialog') as FlintDialog;
       if (d) d.requestClose();
@@ -580,7 +581,7 @@ export const MobileViewport: Story = {
           </flint-dialog-content-text>
         </flint-dialog-content>
         <flint-dialog-actions>
-          <flint-button variant="primary" @click=${(e: Event) => {
+          <flint-button appearance="filled" color="primary" @click=${(e: Event) => {
       const d = (e.target as HTMLElement).closest('flint-dialog') as FlintDialog;
       if (d) d.open = false;
     }}>OK</flint-button>
@@ -606,11 +607,11 @@ export const TabletViewport: Story = {
           </flint-dialog-content-text>
         </flint-dialog-content>
         <flint-dialog-actions>
-          <flint-button variant="secondary" @click=${(e: Event) => {
+          <flint-button appearance="outlined" color="neutral" @click=${(e: Event) => {
       const d = (e.target as HTMLElement).closest('flint-dialog') as FlintDialog;
       if (d) d.open = false;
     }}>Cancel</flint-button>
-          <flint-button variant="primary" @click=${(e: Event) => {
+          <flint-button appearance="filled" color="primary" @click=${(e: Event) => {
       const d = (e.target as HTMLElement).closest('flint-dialog') as FlintDialog;
       if (d) d.open = false;
     }}>Confirm</flint-button>

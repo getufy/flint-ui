@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-rating';
 import type { FlintRating } from './flint-rating';
+import { expectAccessible } from '../test-utils/axe.js';
 
 // ─── helpers ────────────────────────────────────────────────────────────────
 
@@ -482,5 +483,12 @@ describe('flint-rating — form association', () => {
         await el.updateComplete;
         // Verify _internals exists (form association initialized)
         expect((el as unknown as { _internals: ElementInternals | null })._internals).not.toBeNull();
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`<flint-rating .value=${3} label="Rating"></flint-rating>`);
+            await expectAccessible(el);
+        });
     });
 });

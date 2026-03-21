@@ -195,7 +195,6 @@ export const Basic: Story = {
             <flint-button @click=${toggle}>Open Menu</flint-button>
 
             <flint-menu
-                .open=${args.open}
                 .placement=${args.placement}
                 ?closeOnSelect=${args.closeOnSelect}
                 @flint-menu-close=${close}
@@ -211,19 +210,21 @@ export const Basic: Story = {
 Basic.play = async ({ canvasElement }) => {
     const root = canvasElement.querySelector('.story-root') as HTMLElement;
     const menu = root.querySelector('flint-menu') as FlintMenu;
-    const openBtn = root.querySelector('flint-button') as HTMLElement;
+    const openBtnHost = root.querySelector('flint-button') as HTMLElement;
+    const openBtn = openBtnHost.shadowRoot!.querySelector('button')!;
 
     // Menu starts closed
     await waitFor(() => expect(menu.open).toBe(false));
 
-    // Open menu
+    // Open menu (target inner button for shadow DOM click propagation)
     await userEvent.click(openBtn);
     await waitFor(() => expect(menu.open).toBe(true));
 
-    // Click a menu item to select and close
+    // Click a menu item to select and close (target inner div for shadow DOM click)
     const items = menu.querySelectorAll('flint-menu-item');
     expect(items.length).toBe(3);
-    await userEvent.click(items[0]);
+    const itemDiv = items[0].shadowRoot!.querySelector('.item')!;
+    await userEvent.click(itemDiv);
     await waitFor(() => expect(menu.open).toBe(false));
 
     // Re-open and close via Escape
@@ -239,7 +240,7 @@ Basic.play = async ({ canvasElement }) => {
 export const IconMenu: Story = {
     render: () => wrap(html`
         <div style="position:relative;display:inline-block;">
-            <flint-button variant="outlined" @click=${toggle}>☰ Actions</flint-button>
+            <flint-button appearance="outlined" @click=${toggle}>☰ Actions</flint-button>
 
             <flint-menu open placement="bottom-start" @flint-menu-close=${close}>
                 <flint-menu-item>
@@ -279,7 +280,7 @@ export const SelectedMenu: Story = {
                     Selected: <strong>${selected}</strong>
                 </p>
                 <div style="position:relative;display:inline-block;">
-                    <flint-button variant="outlined" @click=${toggle}>Sort by: ${selected}</flint-button>
+                    <flint-button appearance="outlined" @click=${toggle}>Sort by: ${selected}</flint-button>
 
                     <flint-menu
                         open
@@ -316,7 +317,7 @@ export const PositionedMenu: Story = {
                 <flint-stack direction="column" alignItems="flex-start" gap="8px" style="padding:24px 0 0;">
                     <span style="font-size:.7rem;color:#475569;text-transform:uppercase;letter-spacing:.06em;">${placement}</span>
                     <div data-menu-anchor style="position:relative;display:inline-block;margin-top:${placement.startsWith('top') ? '120px' : '0'}">
-                        <flint-button variant="outlined" @click=${(e: Event) => {
+                        <flint-button appearance="outlined" @click=${(e: Event) => {
             /* find the menu within THIS button's own anchor wrapper */
             const anchor = (e.currentTarget as HTMLElement).closest('[data-menu-anchor]');
             const menu = anchor?.querySelector('flint-menu') as FlintMenu | null;
@@ -340,7 +341,7 @@ export const PositionedMenu: Story = {
 export const DisabledItems: Story = {
     render: () => wrap(html`
         <div style="position:relative;display:inline-block;">
-            <flint-button variant="outlined" @click=${toggle}>File</flint-button>
+            <flint-button appearance="outlined" @click=${toggle}>File</flint-button>
 
             <flint-menu open placement="bottom-start" @flint-menu-close=${close}>
                 <flint-menu-item>

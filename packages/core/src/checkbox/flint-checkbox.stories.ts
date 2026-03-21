@@ -99,8 +99,6 @@ type Story = StoryObj;
 export const Default: Story = {
     render: (args: Record<string, unknown>) => html`
         <flint-checkbox
-            ?checked=${args.checked}
-            ?indeterminate=${args.indeterminate}
             ?disabled=${args.disabled}
             ?required=${args.required}
             size=${args.size}
@@ -113,16 +111,17 @@ export const Default: Story = {
 
 Default.play = async ({ canvasElement }) => {
     const checkbox = canvasElement.querySelector('flint-checkbox') as HTMLElement & { checked: boolean };
+    const label = checkbox.shadowRoot!.querySelector('label')!;
 
     // Initially unchecked
     await waitFor(() => expect(checkbox.checked).toBe(false));
 
-    // Click to check
-    await userEvent.click(checkbox);
+    // Click to check (target inner label for shadow DOM click propagation)
+    await userEvent.click(label);
     await waitFor(() => expect(checkbox.checked).toBe(true));
 
     // Click to uncheck
-    await userEvent.click(checkbox);
+    await userEvent.click(label);
     await waitFor(() => expect(checkbox.checked).toBe(false));
 };
 

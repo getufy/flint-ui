@@ -2,6 +2,7 @@ import { describe, it, expect, vi, afterEach } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-alert.js';
 import type { FlintAlert } from './flint-alert.js';
+import { expectAccessible } from '../test-utils/axe.js';
 
 async function settle(el: Element) {
     await (el as FlintAlert).updateComplete;
@@ -200,5 +201,14 @@ describe('FlintAlert — property updates', () => {
         await settle(el);
 
         expect(el.shadowRoot!.querySelector('.close-button')).not.toBeNull();
+    });
+});
+
+// ─── Accessibility ───────────────────────────────────────────────────────────────
+
+describe('FlintAlert — accessibility', () => {
+    it('should be accessible', async () => {
+        const el = await fixture(html`<flint-alert>Alert message</flint-alert>`);
+        await expectAccessible(el);
     });
 });

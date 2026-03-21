@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { fixture, html, oneEvent } from '@open-wc/testing';
 import './flint-speed-dial.js';
+import { expectAccessible } from '../test-utils/axe.js';
 import type { FlintSpeedDial, FlintSpeedDialAction } from './flint-speed-dial.js';
 
 /* ── helpers ─────────────────────────────────────────────────────── */
@@ -1455,5 +1456,17 @@ describe('flint-speed-dial — btns.length=0 defensive guards', () => {
         el.querySelector('flint-speed-dial-action')!.setAttribute('disabled', '');
         expect(() => keydown(el, 'ArrowDown')).not.toThrow();
         expect(el.open).toBe(true);
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`
+                <flint-speed-dial aria-label="Actions">
+                    <flint-speed-dial-action label="Copy"></flint-speed-dial-action>
+                    <flint-speed-dial-action label="Print"></flint-speed-dial-action>
+                </flint-speed-dial>
+            `);
+            await expectAccessible(el);
+        });
     });
 });

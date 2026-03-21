@@ -278,7 +278,7 @@ export const LinearHorizontal: Story = {
             </div>
 
             <flint-stack direction="row" gap="8px" p="0 24px 16px">
-                <flint-button variant="outlined" @click=${() => { step = Math.max(0, step - 1); syncUI(); }}>Back</flint-button>
+                <flint-button appearance="outlined" @click=${() => { step = Math.max(0, step - 1); syncUI(); }}>Back</flint-button>
                 <flint-button @click=${() => {
                 const sd = document.getElementById('lh-stepper') as FlintStepper | null;
                 if (!sd) return;
@@ -331,7 +331,7 @@ export const NonLinear: Story = {
 
             <flint-stack direction="row" gap="8px" p="0 24px 16px" style="font-family:Inter,sans-serif;">
                 <flint-button @click=${() => { completed.add(active); syncNL(); }}>Mark Complete</flint-button>
-                <flint-button variant="outlined" @click=${() => { completed.delete(active); syncNL(); }}>Reset Step</flint-button>
+                <flint-button appearance="outlined" @click=${() => { completed.delete(active); syncNL(); }}>Reset Step</flint-button>
             </div>
         `));
     },
@@ -387,7 +387,7 @@ export const Vertical: Story = {
                             <flint-stack direction="row" gap="8px;">
                                 <flint-button @click=${() => { if (step < steps.length - 1) step++; syncV(); }}>Continue</flint-button>
                                 ${i > 0 ? html`
-                                    <flint-button variant="outlined" @click=${() => { step = Math.max(0, step - 1); syncV(); }}>Back</flint-button>
+                                    <flint-button appearance="outlined" @click=${() => { step = Math.max(0, step - 1); syncV(); }}>Back</flint-button>
                                 ` : nothing}
                             </flint-stack>
                         </flint-step-content>
@@ -485,7 +485,7 @@ export const ErrorRecovery: Story = {
 
             <flint-stack direction="row" gap="8px" p="0 24px 16px" style="font-family:Inter,sans-serif;">
                 <flint-button @click=${() => { hasError = false; update(); }}>Fix Error</flint-button>
-                <flint-button variant="outlined" @click=${() => { hasError = true; update(); }}>Re-introduce Error</flint-button>
+                <flint-button appearance="outlined" @click=${() => { hasError = true; update(); }}>Re-introduce Error</flint-button>
             </div>
         `));
     },
@@ -549,9 +549,9 @@ export const Controlled: Story = {
             </div>
 
             <flint-stack direction="row" gap="8px" p="16px 24px" style="font-family:Inter,sans-serif;">
-                <flint-button variant="outlined" @click=${() => { externalStep = Math.max(0, externalStep - 1); render(); }}>← Prev</flint-button>
+                <flint-button appearance="outlined" @click=${() => { externalStep = Math.max(0, externalStep - 1); render(); }}>← Prev</flint-button>
                 <flint-button @click=${() => { externalStep = Math.min(steps.length - 1, externalStep + 1); render(); }}>Next →</flint-button>
-                <flint-button variant="outlined" style="margin-left:auto;" @click=${() => { externalStep = 0; render(); }}>Reset</flint-button>
+                <flint-button appearance="outlined" style="margin-left:auto;" @click=${() => { externalStep = 0; render(); }}>Reset</flint-button>
             </div>
         `));
     },
@@ -571,7 +571,7 @@ export const MobileStepperText: Story = {
                 <flint-box id="ms-text-content" display="flex" alignItems="center" justifyContent="center" height="160px" style="font-size:2.5rem;background:var(--flint-muted-background, #f8fafc);">
                     ${slides[step]}
                 </flint-box>
-                <flint-mobile-stepper id="ms-text" variant="text" .steps=${steps} .activeStep=${step} position="static"
+                <flint-mobile-stepper id="ms-text" appearance="text" .steps=${steps} .activeStep=${step} position="static"
                     @flint-mobile-step-back=${() => {
                 const el = document.getElementById('ms-text') as FlintMobileStepper;
                 step = Math.max(0, step - 1);
@@ -695,11 +695,11 @@ export const MobileStepperCustomButtons: Story = {
                 if (c) c.textContent = `Slide ${step + 1}`;
             }}
                 >
-                    <flint-button slot="back-button" variant="text" aria-label="Previous slide"
+                    <flint-button slot="back-button" appearance="text" aria-label="Previous slide"
                         @click=${() => document.getElementById('ms-custom')?.dispatchEvent(new CustomEvent('flint-mobile-step-back', { bubbles: true }))}>
                         ‹
                     </flint-button>
-                    <flint-button slot="next-button" variant="text" aria-label="Next slide"
+                    <flint-button slot="next-button" appearance="text" aria-label="Next slide"
                         @click=${() => document.getElementById('ms-custom')?.dispatchEvent(new CustomEvent('flint-mobile-step-next', { bubbles: true }))}>
                         ›
                     </flint-button>

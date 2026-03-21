@@ -224,10 +224,10 @@ export const Default: Story = {
           </flint-empty-description>
         </flint-empty-header>
         <flint-empty-content style="flex-direction: row; justify-content: center; gap: 8px;">
-          <flint-button variant="primary" size="small">Create Project</flint-button>
-          <flint-button variant="secondary" size="small">Import Project</flint-button>
+          <flint-button appearance="filled" color="primary" size="small">Create Project</flint-button>
+          <flint-button appearance="outlined" color="neutral" size="small">Import Project</flint-button>
         </flint-empty-content>
-        <flint-button variant="secondary" size="small">Learn More ${arrowIcon}</flint-button>
+        <flint-button appearance="outlined" color="neutral" size="small">Learn More ${arrowIcon}</flint-button>
       </flint-empty>
     </flint-box>
   `,
@@ -249,7 +249,7 @@ export const Outline: Story = {
           </flint-empty-description>
         </flint-empty-header>
         <flint-empty-content>
-          <flint-button variant="secondary" size="small">Upload Files</flint-button>
+          <flint-button appearance="outlined" color="neutral" size="small">Upload Files</flint-button>
         </flint-empty-content>
       </flint-empty>
     </div>
@@ -272,7 +272,7 @@ export const Background: Story = {
           </flint-empty-description>
         </flint-empty-header>
         <flint-empty-content>
-          <flint-button variant="secondary" size="small">${refreshIcon} Refresh</flint-button>
+          <flint-button appearance="outlined" color="neutral" size="small">${refreshIcon} Refresh</flint-button>
         </flint-empty-content>
       </flint-empty>
     </flint-box>
@@ -301,7 +301,7 @@ export const WithAvatar: Story = {
           </flint-empty-description>
         </flint-empty-header>
         <flint-empty-content>
-          <flint-button variant="secondary" size="small">Leave Message</flint-button>
+          <flint-button appearance="outlined" color="neutral" size="small">Leave Message</flint-button>
         </flint-empty-content>
       </flint-empty>
     </flint-box>
@@ -335,7 +335,7 @@ export const AvatarGroup: Story = {
           </flint-empty-description>
         </flint-empty-header>
         <flint-empty-content>
-          <flint-button variant="secondary" size="small">${plusIcon} Invite Members</flint-button>
+          <flint-button appearance="outlined" color="neutral" size="small">${plusIcon} Invite Members</flint-button>
         </flint-empty-content>
       </flint-empty>
     </flint-box>
@@ -400,7 +400,7 @@ export const CustomStyles: Story = {
           </flint-empty-description>
         </flint-empty-header>
         <flint-empty-content>
-          <flint-button variant="primary" size="small">Clear Filters</flint-button>
+          <flint-button appearance="filled" color="primary" size="small">Clear Filters</flint-button>
         </flint-empty-content>
       </flint-empty>
     </flint-box>

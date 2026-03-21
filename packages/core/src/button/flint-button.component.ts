@@ -1,4 +1,4 @@
-import { unsafeCSS, html, nothing, type PropertyValues } from 'lit';
+import { unsafeCSS, html, nothing } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
@@ -6,23 +6,11 @@ import { validateEnum } from '../utilities/dev-warnings.js';
 import type { Size } from '../types.js';
 import uiButtonStyles from './flint-button.css?inline';
 
-/** @deprecated Use `ButtonAppearance` + `ButtonColor` instead. */
-export type ButtonVariant = 'primary' | 'secondary' | 'destructive' | 'success' | 'warning' | 'neutral';
 export type ButtonAppearance = 'filled' | 'outlined' | 'text' | 'ghost';
 export type ButtonColor = 'primary' | 'neutral' | 'destructive' | 'success' | 'warning';
 export type ButtonSize = Size;
 export type ButtonType = 'button' | 'submit' | 'reset';
 export type ButtonShape = 'default' | 'pill' | 'circle';
-
-/** Maps legacy `variant` values to the new `appearance` + `color` props. */
-const VARIANT_MAP: Record<ButtonVariant, { appearance: ButtonAppearance; color: ButtonColor }> = {
-  primary:     { appearance: 'filled', color: 'primary' },
-  secondary:   { appearance: 'outlined', color: 'neutral' },
-  destructive: { appearance: 'filled', color: 'destructive' },
-  success:     { appearance: 'filled', color: 'success' },
-  warning:     { appearance: 'filled', color: 'warning' },
-  neutral:     { appearance: 'filled', color: 'neutral' },
-};
 
 /**
  * Button: a clickable element used for actions and navigation.
@@ -49,13 +37,6 @@ export class FlintButton extends FlintElement {
    */
   @property({ type: String, reflect: true })
   color: ButtonColor = 'primary';
-
-  /**
-   * @deprecated Use `appearance` + `color` instead.
-   * Legacy variant shorthand — maps to `appearance` + `color` with a console warning.
-   */
-  @property({ type: String })
-  variant: ButtonVariant | '' = '';
 
   /**
    * Size of the button.
@@ -114,33 +95,12 @@ export class FlintButton extends FlintElement {
   @property({ type: String })
   shape: ButtonShape = 'default';
 
-  private _variantWarned = false;
-
-  override willUpdate(changed: PropertyValues) {
+  override willUpdate() {
     if (import.meta.env?.DEV) {
       validateEnum('flint-button', 'appearance', this.appearance, ['filled', 'outlined', 'text', 'ghost']);
       validateEnum('flint-button', 'color', this.color, ['primary', 'neutral', 'destructive', 'success', 'warning']);
       validateEnum('flint-button', 'size', this.size, ['sm', 'md', 'lg']);
       validateEnum('flint-button', 'shape', this.shape, ['default', 'pill', 'circle']);
-    }
-
-    // Legacy variant → appearance + color mapping
-    if (changed.has('variant') && this.variant !== '') {
-      const mapping = VARIANT_MAP[this.variant as ButtonVariant];
-      if (mapping) {
-        // Only map if appearance/color haven't been explicitly set to non-defaults
-        if (this.appearance === 'filled' && this.color === 'primary') {
-          this.appearance = mapping.appearance;
-          this.color = mapping.color;
-        }
-        if (!this._variantWarned) {
-          this._variantWarned = true;
-          console.warn(
-            `[flint-ui] <flint-button>: The "variant" prop is deprecated. ` +
-            `Use appearance="${mapping.appearance}" color="${mapping.color}" instead.`
-          );
-        }
-      }
     }
   }
 

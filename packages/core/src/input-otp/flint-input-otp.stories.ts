@@ -152,11 +152,11 @@ export const Default: Story = {
 
 Default.play = async ({ canvasElement }) => {
     const otp = canvasElement.querySelector('flint-input-otp') as FlintInputOtpEl;
-    const input = otp.shadowRoot!.querySelector('input') as HTMLInputElement;
 
-    // Focus and type digits
-    await userEvent.click(input);
-    await userEvent.type(input, '123456');
+    // Click the host element (its _handleClick forwards focus to the hidden input)
+    await userEvent.click(otp);
+    // Type via keyboard (hidden input has pointer-events: none, so userEvent.type won't work)
+    await userEvent.keyboard('123456');
     await waitFor(() => expect(otp.value).toBe('123456'));
 };
 

@@ -260,7 +260,7 @@ export const Controlled: Story = {
                     ></flint-rating>
                     <span style="font-size: 14px; color: #374151;">Value: <strong><span ${ref(labelRef)}>3</span></strong></span>
                 </div>
-                <flint-button variant="secondary" size="small" @click=${onReset}>Reset</flint-button>
+                <flint-button appearance="outlined" color="neutral" size="small" @click=${onReset}>Reset</flint-button>
             </div>
         `;
     },
@@ -296,7 +296,7 @@ export const FormIntegration: Story = {
             <form @submit=${onSubmit} style="display: flex; flex-direction: column; gap: 16px; max-width: 300px; font-family: var(--flint-font-family);">
                 <label style="font-weight: 600; font-size: 14px;">Rate this product</label>
                 <flint-rating name="product-rating" .value=${0} size="lg"></flint-rating>
-                <flint-button type="submit" variant="primary" size="medium">Submit Review</flint-button>
+                <flint-button type="submit" appearance="filled" color="primary" size="medium">Submit Review</flint-button>
             </form>
         `;
     },
@@ -321,7 +321,7 @@ export const ReviewExample: Story = {
             <flint-rating .value=${0} size="md" clearable style="margin-bottom: 16px;"
                 @flint-rating-change=${(e: CustomEvent) => console.log('Rating:', e.detail.value)}
             ></flint-rating>
-            <flint-button variant="secondary" size="medium" full-width>Write a customer review</flint-button>
+            <flint-button appearance="outlined" color="neutral" size="medium" full-width>Write a customer review</flint-button>
         </div>
     `,
 };

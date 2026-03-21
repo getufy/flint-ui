@@ -3,6 +3,7 @@ import { fixture, html } from '@open-wc/testing';
 import './flint-text-field.js';
 import type { FlintTextField } from './flint-text-field.js';
 import type { FormAssociatedInterface } from '../mixins/form-associated.js';
+import { expectAccessible } from '../test-utils/axe.js';
 
 describe('flint-text-field', () => {
     it('is defined', () => {
@@ -549,5 +550,12 @@ describe('flint-text-field — form integration', () => {
         await el.updateComplete;
         expect(el.inputElement).toBeInstanceOf(HTMLInputElement);
         expect(el.inputElement).toBe(el.shadowRoot!.querySelector('input'));
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`<flint-text-field label="Name"></flint-text-field>`);
+            await expectAccessible(el);
+        });
     });
 });

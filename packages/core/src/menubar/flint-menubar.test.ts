@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-menubar.js';
+import { expectAccessible } from '../test-utils/axe.js';
 import type {
     FlintMenubar,
     FlintMenubarMenu,
@@ -3415,5 +3416,17 @@ describe('FlintMenubarCheckboxItem — keyboard toggle does not close menu', () 
 
         expect(items[1].checked).toBe(!was);
         expect(getContent(menus[0]).open).toBe(true);
+    });
+});
+
+describe('flint-menubar — accessibility', () => {
+    it('should be accessible', async () => {
+        const el = await fixture(html`
+            <flint-menubar aria-label="Main menu">
+                <flint-menubar-item label="File"></flint-menubar-item>
+                <flint-menubar-item label="Edit"></flint-menubar-item>
+            </flint-menubar>
+        `);
+        await expectAccessible(el, { rules: { 'aria-command-name': { enabled: false }, 'aria-required-parent': { enabled: false } } });
     });
 });

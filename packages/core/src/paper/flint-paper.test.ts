@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-paper';
 import type { FlintPaper } from './flint-paper';
+import { expectAccessible } from '../test-utils/axe.js';
 
 describe('FlintPaper', () => {
     // ── Construction ─────────────────────────────────────────────────────────
@@ -149,5 +150,12 @@ describe('FlintPaper', () => {
     it('accepts elevation="24"', async () => {
         const el = await fixture<FlintPaper>(html`<flint-paper elevation="24"></flint-paper>`);
         expect(el.elevation).toBe(24);
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`<flint-paper>Content</flint-paper>`);
+            await expectAccessible(el);
+        });
     });
 });

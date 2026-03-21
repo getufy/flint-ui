@@ -21,7 +21,6 @@ flint-circular-progress: a circular progress indicator (spinner).
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
 | \`mode\` | \`mode\` | \`'determinate' \\| 'indeterminate'\` | \`'indeterminate'\` | Progress mode: determinate shows a specific value, indeterminate shows an animation. |
-| \`variant\` | \`variant\` | \`'determinate' \\| 'indeterminate'\` | \`'indeterminate'\` |  |
 | \`value\` | \`value\` | \`number\` | \`0\` | Current progress value (0 to max) for determinate mode. |
 | \`max\` | \`max\` | \`number\` | \`100\` | Maximum value. The progress is calculated as value / max. |
 | \`size\` | \`size\` | \`number\` | \`40\` | Diameter of the circular indicator in pixels. |
@@ -53,7 +52,6 @@ flint-linear-progress: a horizontal progress bar.
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
 | \`mode\` | \`mode\` | \`'determinate' \\| 'indeterminate'\` | \`'indeterminate'\` | Progress mode: determinate shows a specific value, indeterminate shows an animation. |
-| \`variant\` | \`variant\` | \`'determinate' \\| 'indeterminate'\` | \`'indeterminate'\` |  |
 | \`value\` | \`value\` | \`number\` | \`0\` | Current progress value (0 to max). |
 | \`max\` | \`max\` | \`number\` | \`100\` | Maximum value. The progress is calculated as value / max. |
 | \`height\` | \`height\` | \`number\` | \`4\` | Height of the progress bar in pixels. |

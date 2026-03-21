@@ -203,7 +203,7 @@ export const Disabled: Story = {
             <flint-chip .label=${'Clickable'} .variant=${args.variant} ?clickable=${true} ?disabled=${args.disabled}></flint-chip>
             <flint-chip .label=${'Deletable'} .variant=${args.variant} ?deletable=${true} ?disabled=${args.disabled}></flint-chip>
             <flint-chip .label=${'Primary'} .variant=${args.variant} .color=${'primary'} ?disabled=${args.disabled}></flint-chip>
-            <flint-chip .label=${'Outlined'} variant="outlined" ?disabled=${args.disabled}></flint-chip>
+            <flint-chip .label=${'Outlined'} appearance="outlined" ?disabled=${args.disabled}></flint-chip>
         </div>
     `
 };
@@ -212,11 +212,11 @@ export const Variants: Story = {
     render: (args) => html`
         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
             <flint-chip label="Default Filled" ?clickable=${args.clickable} ?deletable=${args.deletable} ?disabled=${args.disabled}></flint-chip>
-            <flint-chip label="Default Outlined" variant="outlined" ?clickable=${args.clickable} ?deletable=${args.deletable} ?disabled=${args.disabled}></flint-chip>
+            <flint-chip label="Default Outlined" appearance="outlined" ?clickable=${args.clickable} ?deletable=${args.deletable} ?disabled=${args.disabled}></flint-chip>
             <flint-chip label="Primary Filled" color="primary" ?clickable=${args.clickable} ?deletable=${args.deletable} ?disabled=${args.disabled}></flint-chip>
-            <flint-chip label="Primary Outlined" color="primary" variant="outlined" ?clickable=${args.clickable} ?deletable=${args.deletable} ?disabled=${args.disabled}></flint-chip>
+            <flint-chip label="Primary Outlined" color="primary" appearance="outlined" ?clickable=${args.clickable} ?deletable=${args.deletable} ?disabled=${args.disabled}></flint-chip>
             <flint-chip label="Secondary Filled" color="secondary" ?clickable=${args.clickable} ?deletable=${args.deletable} ?disabled=${args.disabled}></flint-chip>
-            <flint-chip label="Secondary Outlined" color="secondary" variant="outlined" ?clickable=${args.clickable} ?deletable=${args.deletable} ?disabled=${args.disabled}></flint-chip>
+            <flint-chip label="Secondary Outlined" color="secondary" appearance="outlined" ?clickable=${args.clickable} ?deletable=${args.deletable} ?disabled=${args.disabled}></flint-chip>
         </div>
     `
 };
@@ -240,7 +240,7 @@ export const WithIcon: Story = {
             <flint-chip label="Developer">
                 <span slot="icon">💻</span>
             </flint-chip>
-            <flint-chip label="Developer" variant="outlined" deletable>
+            <flint-chip label="Developer" appearance="outlined" deletable>
                 <span slot="icon">💻</span>
             </flint-chip>
             <flint-chip label="On Fire" color="primary" clickable>
@@ -261,7 +261,7 @@ export const FilterExample: Story = {
                 <flint-chip label="In Stock Only" color="primary" clickable></flint-chip>
             </div>
             <div>
-                <flint-button variant="outlined" style="border-style: dashed;">+ Add Filter</flint-button>
+                <flint-button appearance="outlined" style="border-style: dashed;">+ Add Filter</flint-button>
             </div>
         </div>
     `

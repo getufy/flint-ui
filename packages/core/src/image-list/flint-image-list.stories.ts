@@ -344,7 +344,7 @@ export const WithTitleBars: Story = {
           <flint-image-list-item-bar slot="bar">
             ${img.title}
             <span slot="subtitle">${img.author}</span>
-            <flint-button slot="action" variant="text" title="Star" style="font-size:18px;">★</flint-button>
+            <flint-button slot="action" appearance="text" title="Star" style="font-size:18px;">★</flint-button>
           </flint-image-list-item-bar>
         </flint-image-list-item>
       `)}
@@ -382,7 +382,7 @@ export const TitleBarBelow: Story = {
           <flint-image-list-item-bar slot="bar" position="below">
             ${img.title}
             <span slot="subtitle">${img.author}</span>
-            <flint-button slot="action" variant="text" title="Info" style="font-size:18px;">ℹ</flint-button>
+            <flint-button slot="action" appearance="text" title="Info" style="font-size:18px;">ℹ</flint-button>
           </flint-image-list-item-bar>
         </flint-image-list-item>
       `)}

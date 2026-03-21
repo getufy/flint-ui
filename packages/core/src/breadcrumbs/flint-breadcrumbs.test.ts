@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-breadcrumbs.js';
 import type { FlintBreadcrumbs } from './flint-breadcrumbs.js';
+import { expectAccessible } from '../test-utils/axe.js';
 
 describe('flint-breadcrumbs', () => {
     it('is defined', async () => {
@@ -433,5 +434,18 @@ describe('flint-breadcrumbs', () => {
         const buttonLi = el.shadowRoot!.querySelector('li:has(.collapsed-button)');
         expect(buttonLi).not.toBeNull();
         expect(buttonLi!.querySelector('.separator')).not.toBeNull();
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`
+                <flint-breadcrumbs>
+                    <a href="#">Home</a>
+                    <a href="#">Catalog</a>
+                    <span>Current Page</span>
+                </flint-breadcrumbs>
+            `);
+            await expectAccessible(el);
+        });
     });
 });

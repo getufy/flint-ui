@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-animation.js';
 import type { FlintAnimation } from './flint-animation.js';
+import { expectAccessible } from '../test-utils/axe.js';
 
 /* ── helpers ────────────────────────────────────────────────────────── */
 
@@ -345,5 +346,16 @@ describe('flint-animation — disconnectedCallback', () => {
         animation.cancel.mockClear();
         el.remove();
         expect(animation.cancel).toHaveBeenCalled();
+    });
+});
+
+describe('flint-animation — accessibility', () => {
+    it('should be accessible', async () => {
+        const el = await fixture(html`
+            <flint-animation>
+                <div>Animated content</div>
+            </flint-animation>
+        `);
+        await expectAccessible(el);
     });
 });

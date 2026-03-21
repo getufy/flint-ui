@@ -4,6 +4,7 @@ import './flint-tree-item.js';
 import './flint-simple-tree-view.js';
 import type { FlintTreeItem } from './flint-tree-item.js';
 import type { FlintSimpleTreeView } from './flint-simple-tree-view.js';
+import { expectAccessible } from '../test-utils/axe.js';
 
 // ─── FlintTreeItem ───────────────────────────────────────────────────────────────
 
@@ -864,5 +865,17 @@ describe('FlintSimpleTreeView — ArrowRight focus to first child / ArrowLeft to
         await tree.updateComplete;
 
         expect(document.activeElement).toBe(parent);
+    });
+});
+
+describe('flint-simple-tree-view — accessibility', () => {
+    it('should be accessible', async () => {
+        const el = await fixture(html`
+            <flint-simple-tree-view aria-label="File tree">
+                <flint-tree-item label="Item 1"></flint-tree-item>
+                <flint-tree-item label="Item 2"></flint-tree-item>
+            </flint-simple-tree-view>
+        `);
+        await expectAccessible(el);
     });
 });

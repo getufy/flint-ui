@@ -799,19 +799,19 @@ const DEMOS: Record<string, { label?: string; html: string }[]> = {
     {
       label: 'Variants',
       html: `<div style="display:flex;flex-direction:column;gap:8px;width:100%;max-width:300px">
-<flint-skeleton variant="circular" width="40px" height="40px"></flint-skeleton>
-<flint-skeleton variant="text" width="200px"></flint-skeleton>
-<flint-skeleton variant="text" width="160px"></flint-skeleton>
-<flint-skeleton variant="rectangular" width="100%" height="120px"></flint-skeleton>
+<flint-skeleton shape="circular" width="40px" height="40px"></flint-skeleton>
+<flint-skeleton shape="text" width="200px"></flint-skeleton>
+<flint-skeleton shape="text" width="160px"></flint-skeleton>
+<flint-skeleton shape="rectangular" width="100%" height="120px"></flint-skeleton>
 </div>`,
     },
     {
       label: 'Card Placeholder',
       html: `<div style="display:flex;gap:12px;width:100%;max-width:300px">
-  <flint-skeleton variant="circular" width="48px" height="48px"></flint-skeleton>
+  <flint-skeleton shape="circular" width="48px" height="48px"></flint-skeleton>
   <div style="flex:1;display:flex;flex-direction:column;gap:6px">
-    <flint-skeleton variant="text" width="80%"></flint-skeleton>
-    <flint-skeleton variant="text" width="60%"></flint-skeleton>
+    <flint-skeleton shape="text" width="80%"></flint-skeleton>
+    <flint-skeleton shape="text" width="60%"></flint-skeleton>
   </div>
 </div>`,
     },

@@ -9,6 +9,15 @@ const meta: Meta = {
     title: 'Utilities/Animation',
     component: 'flint-animation',
     parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    // Animated elements have partial opacity during transitions,
+                    // causing false-positive contrast violations mid-animation.
+                    { id: 'color-contrast', enabled: false },
+                ],
+            },
+        },
         docs: {
             description: {
                 component: `
@@ -170,9 +179,9 @@ export const AllPresets: Story = {
 export const CustomKeyframes: Story = {
     render: () => {
         const keyframes: Keyframe[] = [
-            { transform: 'rotate(0deg) scale(1)', background: '#3b82f6' },
+            { transform: 'rotate(0deg) scale(1)', background: '#1e40af' },
             { transform: 'rotate(180deg) scale(1.2)', background: '#ef4444' },
-            { transform: 'rotate(360deg) scale(1)', background: '#3b82f6' },
+            { transform: 'rotate(360deg) scale(1)', background: '#1e40af' },
         ];
         return html`
             <flint-animation .keyframes=${keyframes} .duration=${1500} .play=${true} .iterations=${Infinity} .easing=${'ease-in-out'}>

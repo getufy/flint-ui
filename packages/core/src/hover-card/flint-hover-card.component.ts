@@ -1,5 +1,5 @@
 import { unsafeCSS, html, nothing, type PropertyValues } from 'lit';
-import { property } from 'lit/decorators.js';
+import { property, state } from 'lit/decorators.js';
 import uiHoverCardTriggerStyles from './flint-hover-card-trigger.css?inline';
 import uiHoverCardContentStyles from './flint-hover-card-content.css?inline';
 import uiHoverCardStyles from './flint-hover-card.css?inline';
@@ -28,6 +28,9 @@ export class FlintHoverCardTrigger extends FlintElement {
     /** The id of the associated content element, for `aria-describedby`. Set by the parent. */
     @property({ attribute: false }) contentId = '';
 
+    /** Whether the slotted content is already an interactive element. */
+    @state() private _slottedIsInteractive = false;
+
     private _getRoot(): FlintHoverCard | null {
         return this.closest('flint-hover-card') as FlintHoverCard | null;
     }
@@ -37,21 +40,49 @@ export class FlintHoverCardTrigger extends FlintElement {
     private _handleFocusIn   = () => this._getRoot()?.handleTriggerEnter();
     private _handleFocusOut  = () => this._getRoot()?.handleTriggerLeave();
 
+    private _handleSlotChange(e: Event) {
+        const slot = e.target as HTMLSlotElement;
+        const nodes = slot.assignedElements({ flatten: true });
+        const interactiveTags = new Set(['A', 'BUTTON', 'INPUT', 'SELECT', 'TEXTAREA']);
+        const el = nodes[0] as HTMLElement | undefined;
+        this._slottedIsInteractive = el != null && (
+            interactiveTags.has(el.tagName) ||
+            el.hasAttribute('role') && ['button', 'link', 'menuitem'].includes(el.getAttribute('role')!)
+        );
+        // Forward ARIA attributes to the interactive slotted element
+        if (this._slottedIsInteractive && el) {
+            el.setAttribute('aria-haspopup', 'true');
+            el.setAttribute('aria-expanded', this.expanded ? 'true' : 'false');
+            if (this.contentId) el.setAttribute('aria-describedby', this.contentId);
+        }
+    }
+
+    override updated(changed: PropertyValues) {
+        if (this._slottedIsInteractive && (changed.has('expanded') || changed.has('contentId'))) {
+            const slot = this.shadowRoot?.querySelector('slot');
+            const el = slot?.assignedElements({ flatten: true })[0] as HTMLElement | undefined;
+            if (el) {
+                el.setAttribute('aria-expanded', this.expanded ? 'true' : 'false');
+                if (this.contentId) el.setAttribute('aria-describedby', this.contentId);
+            }
+        }
+    }
+
     render() {
         return html`
             <div
                 part="base"
-                role="button"
-                tabindex="0"
-                aria-haspopup="true"
-                aria-expanded=${this.expanded ? 'true' : 'false'}
-                aria-describedby=${this.contentId || nothing}
+                role=${this._slottedIsInteractive ? nothing : 'button'}
+                tabindex=${this._slottedIsInteractive ? nothing : '0'}
+                aria-haspopup=${this._slottedIsInteractive ? nothing : 'true'}
+                aria-expanded=${this._slottedIsInteractive ? nothing : (this.expanded ? 'true' : 'false')}
+                aria-describedby=${this._slottedIsInteractive ? nothing : (this.contentId || nothing)}
                 @mouseenter=${this._handleMouseEnter}
                 @mouseleave=${this._handleMouseLeave}
                 @focusin=${this._handleFocusIn}
                 @focusout=${this._handleFocusOut}
             >
-                <slot></slot>
+                <slot @slotchange=${this._handleSlotChange}></slot>
             </div>
         `;
     }

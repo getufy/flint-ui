@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-resizable.js';
+import { expectAccessible } from '../test-utils/axe.js';
 import type { FlintResizableGroup, FlintResizablePanel, FlintResizableHandle } from './flint-resizable.js';
 
 /* ------------------------------------------------------------------ */
@@ -1913,4 +1914,17 @@ describe('flint-resizable-group — collapse overshoot >= boundary', () => {
     expect(panels[1].size).toBe(20); // clamped to minSize, not collapsed
     el._endDrag();
   });
+});
+
+describe('flint-resizable — accessibility', () => {
+    it('should be accessible', async () => {
+        const el = await fixture(html`
+            <flint-resizable-group>
+                <flint-resizable-panel>Panel 1</flint-resizable-panel>
+                <flint-resizable-handle></flint-resizable-handle>
+                <flint-resizable-panel>Panel 2</flint-resizable-panel>
+            </flint-resizable-group>
+        `);
+        await expectAccessible(el);
+    });
 });

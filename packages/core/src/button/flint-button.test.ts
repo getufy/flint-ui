@@ -126,49 +126,6 @@ describe('flint-button', () => {
         expect(el.fullWidth).toBe(false);
     });
 
-    // ── Deprecated variant backward compat ───────────────────────────────────
-
-    it('maps legacy variant="primary" to appearance="filled" + color="primary"', async () => {
-        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-        const el = await fixture<FlintButton>(html`<flint-button variant="primary">Go</flint-button>`);
-        expect(el.appearance).toBe('filled');
-        expect(el.color).toBe('primary');
-        const button = el.shadowRoot!.querySelector('button')!;
-        expect(button.className).toContain('filled');
-        expect(button.className).toContain('primary');
-        expect(warnSpy).toHaveBeenCalledOnce();
-        expect(warnSpy.mock.calls[0]![0]).toContain('deprecated');
-        warnSpy.mockRestore();
-    });
-
-    it('maps legacy variant="secondary" to appearance="outlined" + color="neutral"', async () => {
-        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-        const el = await fixture<FlintButton>(html`<flint-button variant="secondary">Go</flint-button>`);
-        expect(el.appearance).toBe('outlined');
-        expect(el.color).toBe('neutral');
-        const button = el.shadowRoot!.querySelector('button')!;
-        expect(button.className).toContain('outlined');
-        expect(button.className).toContain('neutral');
-        warnSpy.mockRestore();
-    });
-
-    it('maps legacy variant="destructive" to appearance="filled" + color="destructive"', async () => {
-        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-        const el = await fixture<FlintButton>(html`<flint-button variant="destructive">Delete</flint-button>`);
-        expect(el.appearance).toBe('filled');
-        expect(el.color).toBe('destructive');
-        warnSpy.mockRestore();
-    });
-
-    it('warns only once per instance for deprecated variant', async () => {
-        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-        const el = await fixture<FlintButton>(html`<flint-button variant="primary">Go</flint-button>`);
-        el.variant = 'destructive';
-        await el.updateComplete;
-        expect(warnSpy).toHaveBeenCalledOnce();
-        warnSpy.mockRestore();
-    });
-
     // ── Label (aria-label) ───────────────────────────────────────────────────
 
     it('sets aria-label from label prop', async () => {

@@ -174,12 +174,14 @@ Default.play = async ({ canvasElement }) => {
     // Starts with "female" selected
     await waitFor(() => expect(group.value).toBe('female'));
 
-    // Click "male" radio
-    await userEvent.click(radios[1]);
+    // Click "male" radio (target inner label for shadow DOM click propagation)
+    const maleLabel = radios[1].shadowRoot!.querySelector('label')!;
+    await userEvent.click(maleLabel);
     await waitFor(() => expect(group.value).toBe('male'));
 
     // Click "other" radio
-    await userEvent.click(radios[2]);
+    const otherLabel = radios[2].shadowRoot!.querySelector('label')!;
+    await userEvent.click(otherLabel);
     await waitFor(() => expect(group.value).toBe('other'));
 };
 

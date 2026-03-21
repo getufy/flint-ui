@@ -3,6 +3,7 @@ import { fixture, html } from '@open-wc/testing';
 import './flint-button-group';
 import './flint-button';
 import type { FlintButtonGroup } from './flint-button-group';
+import { expectAccessible } from '../test-utils/axe.js';
 
 describe('flint-button-group', () => {
     it('renders a slot for child buttons', async () => {
@@ -81,5 +82,17 @@ describe('flint-button-group', () => {
         const assigned = slot.assignedElements();
         expect(assigned.length).toBe(1);
         expect(assigned[0].tagName.toLowerCase()).toBe('span');
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`
+                <flint-button-group>
+                    <flint-button>One</flint-button>
+                    <flint-button>Two</flint-button>
+                </flint-button-group>
+            `);
+            await expectAccessible(el);
+        });
     });
 });

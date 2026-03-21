@@ -167,7 +167,6 @@ export const Default: Story = {
     render: (args) => html`
         <div style="max-width: 480px; padding: 24px;">
             <flint-collapsible
-                ?open=${args.open}
                 ?disabled=${args.disabled}
                 @flint-collapsible-change=${(e: CustomEvent<{ open: boolean }>) => {
                     const chevron = (e.currentTarget as HTMLElement).querySelector<HTMLElement>('svg');
@@ -197,16 +196,17 @@ export const Default: Story = {
 Default.play = async ({ canvasElement }) => {
     const collapsible = canvasElement.querySelector('flint-collapsible') as HTMLElement & { open: boolean };
     const trigger = canvasElement.querySelector('flint-collapsible-trigger') as HTMLElement;
+    const triggerBtn = trigger.shadowRoot!.querySelector('button')!;
 
     // Starts closed
     await waitFor(() => expect(collapsible.open).toBe(false));
 
-    // Click to open
-    await userEvent.click(trigger);
+    // Click to open (target inner button for shadow DOM click propagation)
+    await userEvent.click(triggerBtn);
     await waitFor(() => expect(collapsible.open).toBe(true));
 
     // Click to close
-    await userEvent.click(trigger);
+    await userEvent.click(triggerBtn);
     await waitFor(() => expect(collapsible.open).toBe(false));
 };
 
@@ -295,7 +295,7 @@ export const WithActions: Story = {
                     }}
                 >
                     <flint-collapsible-trigger>
-                        <flint-button variant="secondary" size="small">Show more</flint-button>
+                        <flint-button appearance="outlined" color="neutral" size="small">Show more</flint-button>
                     </flint-collapsible-trigger>
                     <flint-collapsible-content>
                         <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 8px;">
@@ -418,7 +418,7 @@ export const Controlled: Story = {
                         </flint-collapsible-content>
                     </div>
                 </flint-collapsible>
-                <flint-button variant="secondary" size="small" @click=${toggle}>
+                <flint-button appearance="outlined" color="neutral" size="small" @click=${toggle}>
                     <span id="ctrl-label">Open</span>
                 </flint-button>
             </div>

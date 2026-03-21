@@ -1,9 +1,10 @@
 import { fixture, html, expect } from '@open-wc/testing';
-import { describe, it, vi } from 'vitest';
+import { describe, it } from 'vitest';
 import './flint-linear-progress.js';
 import './flint-circular-progress.js';
 import type { FlintLinearProgress } from './flint-linear-progress.js';
 import type { FlintCircularProgress } from './flint-circular-progress.js';
+import { expectAccessible } from '../test-utils/axe.js';
 
 describe('FlintLinearProgress', () => {
     // --- Default render (indeterminate) ---
@@ -216,30 +217,6 @@ describe('FlintLinearProgress', () => {
         expect(el.getAttribute('value')).to.equal('45');
     });
 
-    // --- Backward compatibility: variant → mode ---
-
-    it('maps deprecated variant to mode', async () => {
-        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress variant="determinate" .value=${50}></flint-linear-progress>`);
-        await el.updateComplete;
-        expect(el.mode).to.equal('determinate');
-        const root = el.shadowRoot!.querySelector('.root')!;
-        expect(root.classList.contains('determinate')).to.equal(true);
-        expect(warnSpy.mock.calls.length).to.be.greaterThan(0);
-        expect(warnSpy.mock.calls[0]![0]).to.contain('deprecated');
-        warnSpy.mockRestore();
-    });
-
-    it('mode takes precedence over variant when both are set', async () => {
-        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-        const el = await fixture<FlintLinearProgress>(html`<flint-linear-progress mode="determinate" variant="determinate" .value=${50}></flint-linear-progress>`);
-        await el.updateComplete;
-        // mode was explicitly set to determinate, variant should not override
-        expect(el.mode).to.equal('determinate');
-        // No deprecation warning because mode was explicitly set
-        expect(warnSpy.mock.calls.length).to.equal(0);
-        warnSpy.mockRestore();
-    });
 });
 
 describe('FlintCircularProgress', () => {
@@ -494,28 +471,16 @@ describe('FlintCircularProgress', () => {
         expect(el.getAttribute('value')).to.equal('30');
     });
 
-    // --- Backward compatibility: variant → mode ---
+});
 
-    it('maps deprecated variant to mode', async () => {
-        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress variant="determinate" .value=${50}></flint-circular-progress>`);
-        await el.updateComplete;
-        expect(el.mode).to.equal('determinate');
-        const root = el.shadowRoot!.querySelector('.circular-root')!;
-        expect(root.classList.contains('determinate')).to.equal(true);
-        expect(warnSpy.mock.calls.length).to.be.greaterThan(0);
-        expect(warnSpy.mock.calls[0]![0]).to.contain('deprecated');
-        warnSpy.mockRestore();
+describe('flint-progress — accessibility', () => {
+    it('linear progress should be accessible', async () => {
+        const el = await fixture(html`<flint-linear-progress value="50" aria-label="Loading"></flint-linear-progress>`);
+        await expectAccessible(el);
     });
 
-    it('mode takes precedence over variant when both are set', async () => {
-        const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-        const el = await fixture<FlintCircularProgress>(html`<flint-circular-progress mode="determinate" variant="determinate" .value=${50}></flint-circular-progress>`);
-        await el.updateComplete;
-        // mode was explicitly set to determinate, variant should not override
-        expect(el.mode).to.equal('determinate');
-        // No deprecation warning because mode was explicitly set
-        expect(warnSpy.mock.calls.length).to.equal(0);
-        warnSpy.mockRestore();
+    it('circular progress should be accessible', async () => {
+        const el = await fixture(html`<flint-circular-progress value="50" aria-label="Loading"></flint-circular-progress>`);
+        await expectAccessible(el);
     });
 });

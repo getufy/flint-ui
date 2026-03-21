@@ -4,6 +4,7 @@ import './flint-tree-item.js';
 import './flint-rich-tree-view.js';
 import type { FlintTreeItem } from './flint-tree-item.js';
 import type { FlintRichTreeView, RichTreeItem } from './flint-rich-tree-view.js';
+import { expectAccessible } from '../test-utils/axe.js';
 
 // ─── jsdom polyfills ──────────────────────────────────────────────────────────
 //
@@ -2616,5 +2617,18 @@ describe('FlintRichTreeView — content expansion trigger', () => {
         await tree.updateComplete;
 
         expect(leaf.expanded).toBe(false);
+    });
+});
+
+describe('flint-rich-tree-view — accessibility', () => {
+    it('should be accessible', async () => {
+        const el = await fixture<FlintRichTreeView>(html`
+            <flint-rich-tree-view
+                aria-label="File tree"
+                .items=${[{ id: '1', label: 'Node 1' }, { id: '2', label: 'Node 2' }] as RichTreeItem[]}
+            ></flint-rich-tree-view>
+        `);
+        await el.updateComplete;
+        await expectAccessible(el);
     });
 });

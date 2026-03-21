@@ -2,7 +2,7 @@ import { unsafeCSS, html, type PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
 import type { Orientation } from '../types.js';
-import type { ButtonVariant, ButtonSize } from './flint-button.component.js';
+import type { ButtonAppearance, ButtonColor, ButtonSize } from './flint-button.component.js';
 import uiButtonGroupStyles from './flint-button-group.css?inline';
 
 export class FlintButtonGroup extends FlintElement {
@@ -23,11 +23,18 @@ export class FlintButtonGroup extends FlintElement {
     size: ButtonSize | '' = '';
 
     /**
-     * Variant propagated to child `flint-button` elements.
-     * When set, overrides each child button's own variant.
+     * Appearance propagated to child `flint-button` elements.
+     * When set, overrides each child button's own appearance.
      */
     @property({ type: String })
-    variant: ButtonVariant | '' = '';
+    appearance: ButtonAppearance | '' = '';
+
+    /**
+     * Color propagated to child `flint-button` elements.
+     * When set, overrides each child button's own color.
+     */
+    @property({ type: String })
+    color: ButtonColor | '' = '';
 
     connectedCallback() {
         super.connectedCallback();
@@ -37,7 +44,7 @@ export class FlintButtonGroup extends FlintElement {
     }
 
     updated(changed: PropertyValues) {
-        if (changed.has('size') || changed.has('variant')) {
+        if (changed.has('size') || changed.has('appearance') || changed.has('color')) {
             this._syncChildren();
         }
     }
@@ -48,8 +55,11 @@ export class FlintButtonGroup extends FlintElement {
             if (this.size) {
                 (btn as unknown as { size: string }).size = this.size;
             }
-            if (this.variant) {
-                (btn as unknown as { variant: string }).variant = this.variant;
+            if (this.appearance) {
+                (btn as unknown as { appearance: string }).appearance = this.appearance;
+            }
+            if (this.color) {
+                (btn as unknown as { color: string }).color = this.color;
             }
         }
     }

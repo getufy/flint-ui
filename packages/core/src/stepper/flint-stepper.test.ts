@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { fixture, html, oneEvent } from '@open-wc/testing';
 import './flint-stepper.js';
 import type { FlintStepper, FlintStep, FlintMobileStepper, FlintStepConnector, FlintStepLabel, FlintStepContent } from './flint-stepper.js';
+import { expectAccessible } from '../test-utils/axe.js';
 
 /* ── helpers ─────────────────────────────────────────────────────── */
 async function makeStepper(activeStep = 0) {
@@ -644,5 +645,17 @@ describe('flint-mobile-stepper', () => {
             </flint-mobile-stepper>
         `);
         expect(el.querySelector('#custom-next')).toBeTruthy();
+    });
+});
+
+describe('flint-stepper — accessibility', () => {
+    it('should be accessible', async () => {
+        const el = await fixture(html`
+            <flint-stepper active-step="0">
+                <flint-step><flint-step-label>Step 1</flint-step-label></flint-step>
+                <flint-step><flint-step-label>Step 2</flint-step-label></flint-step>
+            </flint-stepper>
+        `);
+        await expectAccessible(el);
     });
 });

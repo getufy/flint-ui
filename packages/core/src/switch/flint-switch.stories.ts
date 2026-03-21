@@ -125,7 +125,6 @@ export const Default: Story = {
     render: (args) => html`
     <flint-switch
       .label=${args.label}
-      ?checked=${args.checked}
       ?disabled=${args.disabled}
       @flint-switch-change=${(e: CustomEvent) => console.log('Switch checked:', e.detail.checked)}
     ></flint-switch>
@@ -134,16 +133,17 @@ export const Default: Story = {
 
 Default.play = async ({ canvasElement }) => {
     const sw = canvasElement.querySelector('flint-switch') as HTMLElement & { checked: boolean };
+    const wrapper = sw.shadowRoot!.querySelector('.wrapper')!;
 
     // Initially unchecked
     await waitFor(() => expect(sw.checked).toBe(false));
 
-    // Click to toggle on
-    await userEvent.click(sw);
+    // Click to toggle on (target inner wrapper for shadow DOM click propagation)
+    await userEvent.click(wrapper);
     await waitFor(() => expect(sw.checked).toBe(true));
 
     // Click to toggle off
-    await userEvent.click(sw);
+    await userEvent.click(wrapper);
     await waitFor(() => expect(sw.checked).toBe(false));
 };
 

@@ -118,7 +118,7 @@ type Story = StoryObj;
 export const Basic: Story = {
     render: (args) => html`
         <div>
-            <flint-button variant="secondary" @click=${(e: Event) => {
+            <flint-button appearance="outlined" color="neutral" @click=${(e: Event) => {
                 const sb = (e.target as HTMLElement).closest('div')!.querySelector('flint-snackbar') as FlintSnackbar;
                 if (sb) sb.open = true;
             }}>
@@ -163,7 +163,7 @@ export const WithAlert: Story = {
     },
     render: (args) => html`
         <div>
-            <flint-button variant="primary" @click=${(e: Event) => {
+            <flint-button appearance="filled" color="primary" @click=${(e: Event) => {
                 const sb = (e.target as HTMLElement).closest('div')!.querySelector('flint-snackbar') as FlintSnackbar;
                 if (sb) sb.open = true;
             }}>

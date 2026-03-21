@@ -689,6 +689,52 @@ describe('flint-slider — label-row content', () => {
   });
 });
 
+// ── Edge cases: value clamping ─────────────────────────────────────────────
+
+describe('flint-slider — value clamping edge cases', () => {
+  it('programmatic value below min is clamped in the rendered input', async () => {
+    const el = await fixture<FlintSlider>(html`<flint-slider min="10" max="100" .value=${50}></flint-slider>`);
+    el.value = -20;
+    await el.updateComplete;
+    expect(input(el).value).toBe('10');
+    expect(input(el).getAttribute('aria-valuenow')).toBe('10');
+  });
+
+  it('programmatic value above max is clamped in the rendered input', async () => {
+    const el = await fixture<FlintSlider>(html`<flint-slider min="0" max="50" .value=${25}></flint-slider>`);
+    el.value = 999;
+    await el.updateComplete;
+    expect(input(el).value).toBe('50');
+    expect(input(el).getAttribute('aria-valuenow')).toBe('50');
+  });
+
+  it('value at exact min boundary is not clamped', async () => {
+    const el = await fixture<FlintSlider>(html`<flint-slider min="10" max="100" .value=${10}></flint-slider>`);
+    expect(input(el).value).toBe('10');
+  });
+
+  it('value at exact max boundary is not clamped', async () => {
+    const el = await fixture<FlintSlider>(html`<flint-slider min="0" max="100" .value=${100}></flint-slider>`);
+    expect(input(el).value).toBe('100');
+  });
+
+  it('value display shows clamped value, not raw value', async () => {
+    const el = await fixture<FlintSlider>(html`<flint-slider min="0" max="50" .value=${200} show-value></flint-slider>`);
+    const display = el.shadowRoot!.querySelector('.value-display');
+    expect(display!.textContent).toBe('50');
+  });
+
+  it('slider event still fires with the raw input value when interaction occurs', async () => {
+    let detail: { value: number } | null = null;
+    const el = await fixture<FlintSlider>(html`
+      <flint-slider min="0" max="100" .value=${50} @flint-slider-change=${(e: CustomEvent) => detail = e.detail}></flint-slider>
+    `);
+    fireInput(el, '0');
+    expect(detail).not.toBeNull();
+    expect(detail!.value).toBe(0);
+  });
+});
+
 // ── Accessibility ─────────────────────────────────────────────────────────
 
 describe('flint-slider — accessibility', () => {

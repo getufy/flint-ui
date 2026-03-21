@@ -178,16 +178,17 @@ export const Default: Story = {
 Default.play = async ({ canvasElement }) => {
     const toggles = canvasElement.querySelectorAll('flint-toggle') as NodeListOf<HTMLElement & { pressed: boolean }>;
     const toggle = toggles[0];
+    const btn = toggle.shadowRoot!.querySelector('button')!;
 
     // Initially not pressed
     await waitFor(() => expect(toggle.pressed).toBe(false));
 
     // Click to press
-    await userEvent.click(toggle);
+    await userEvent.click(btn);
     await waitFor(() => expect(toggle.pressed).toBe(true));
 
     // Click to unpress
-    await userEvent.click(toggle);
+    await userEvent.click(btn);
     await waitFor(() => expect(toggle.pressed).toBe(false));
 };
 
@@ -196,13 +197,13 @@ Default.play = async ({ canvasElement }) => {
 export const Outline: Story = {
     render: () => html`
         <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 24px;">
-            <flint-toggle variant="outlined" aria-label="Toggle italic">
+            <flint-toggle appearance="outlined" aria-label="Toggle italic">
                 ${italicIcon} Italic
             </flint-toggle>
-            <flint-toggle variant="outlined" aria-label="Toggle bold">
+            <flint-toggle appearance="outlined" aria-label="Toggle bold">
                 ${boldIcon} Bold
             </flint-toggle>
-            <flint-toggle variant="outlined" aria-label="Toggle underline">
+            <flint-toggle appearance="outlined" aria-label="Toggle underline">
                 ${underlineIcon} Underline
             </flint-toggle>
         </div>
@@ -218,10 +219,10 @@ export const WithText: Story = {
             <flint-toggle aria-label="Toggle italic">
                 ${italicIcon} Italic
             </flint-toggle>
-            <flint-toggle variant="outlined" aria-label="Toggle bold">
+            <flint-toggle appearance="outlined" aria-label="Toggle bold">
                 ${boldIcon} Bold
             </flint-toggle>
-            <flint-toggle aria-label="Toggle bookmark" size="sm" variant="outlined">
+            <flint-toggle aria-label="Toggle bookmark" size="sm" appearance="outlined">
                 ${bookmarkIcon} Bookmark
             </flint-toggle>
         </div>
@@ -234,19 +235,19 @@ export const Sizes: Story = {
     render: () => html`
         <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px; padding: 24px;">
             <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                <flint-toggle variant="outlined" aria-label="Small toggle" size="sm">
+                <flint-toggle appearance="outlined" aria-label="Small toggle" size="sm">
                     ${italicIcon} Small
                 </flint-toggle>
                 <code style="font-size: 11px; color: #4b5563;">size="sm"</code>
             </div>
             <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                <flint-toggle variant="outlined" aria-label="Default toggle" size="md">
+                <flint-toggle appearance="outlined" aria-label="Default toggle" size="md">
                     ${italicIcon} Default
                 </flint-toggle>
                 <code style="font-size: 11px; color: #4b5563;">size="md"</code>
             </div>
             <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                <flint-toggle variant="outlined" aria-label="Large toggle" size="lg">
+                <flint-toggle appearance="outlined" aria-label="Large toggle" size="lg">
                     ${italicIcon} Large
                 </flint-toggle>
                 <code style="font-size: 11px; color: #4b5563;">size="lg"</code>
@@ -263,7 +264,7 @@ export const Disabled: Story = {
             <flint-toggle disabled aria-label="Disabled default">
                 ${boldIcon} Disabled
             </flint-toggle>
-            <flint-toggle variant="outlined" disabled aria-label="Disabled outlined">
+            <flint-toggle appearance="outlined" disabled aria-label="Disabled outlined">
                 ${italicIcon} Disabled Outline
             </flint-toggle>
             <flint-toggle disabled pressed aria-label="Disabled pressed">
@@ -284,7 +285,7 @@ export const Uncontrolled: Story = {
             </p>
         </div>
         <div style="display: flex; align-items: center; gap: 8px; padding: 0 24px 24px;">
-            <flint-toggle default-pressed variant="outlined" aria-label="Toggle bookmark">
+            <flint-toggle default-pressed appearance="outlined" aria-label="Toggle bookmark">
                 ${bookmarkIcon} Bookmark
             </flint-toggle>
         </div>
@@ -312,14 +313,14 @@ export const Controlled: Story = {
                     Pressed state is controlled externally by the button below.
                 </p>
                 <div style="display: flex; align-items: center; gap: 12px;">
-                    <flint-toggle variant="outlined" aria-label="Toggle italic">
+                    <flint-toggle appearance="outlined" aria-label="Toggle italic">
                         ${italicIcon} Italic
                     </flint-toggle>
                     <span style="font-size: 0.875rem; font-family: system-ui; color: #374151;">
                         State: <strong id="ctrl-status">Off</strong>
                     </span>
                 </div>
-                <flint-button variant="outlined" style="align-self: flex-start; font-size: 0.8125rem;" @click=${handleChange}>
+                <flint-button appearance="outlined" style="align-self: flex-start; font-size: 0.8125rem;" @click=${handleChange}>
                     Toggle externally
                 </flint-button>
             </div>
@@ -340,20 +341,20 @@ export const Toolbar: Story = {
                 role="toolbar"
                 aria-label="Text formatting"
                 elevation="0"
-                variant="outlined"
+                appearance="outlined"
                 style="display: inline-flex; align-items: center; gap: 2px; padding: 4px;"
             >
-                <flint-toggle variant="outlined" aria-label="Bold">
+                <flint-toggle appearance="outlined" aria-label="Bold">
                     ${boldIcon}
                 </flint-toggle>
-                <flint-toggle variant="outlined" aria-label="Italic">
+                <flint-toggle appearance="outlined" aria-label="Italic">
                     ${italicIcon}
                 </flint-toggle>
-                <flint-toggle variant="outlined" aria-label="Underline">
+                <flint-toggle appearance="outlined" aria-label="Underline">
                     ${underlineIcon}
                 </flint-toggle>
                 <div style="width: 1px; height: 20px; background: #e5e7eb; margin: 0 4px;"></div>
-                <flint-toggle variant="outlined" size="sm" aria-label="Bookmark">
+                <flint-toggle appearance="outlined" size="sm" aria-label="Bookmark">
                     ${bookmarkIcon} Save
                 </flint-toggle>
             </flint-paper>
@@ -371,7 +372,7 @@ export const RTL: Story = {
                 Right-to-left layout via <code>dir="rtl"</code>.
             </p>
             <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
-                <flint-toggle dir="rtl" variant="outlined" aria-label="إشارة مرجعية" size="sm">
+                <flint-toggle dir="rtl" appearance="outlined" aria-label="إشارة مرجعية" size="sm">
                     ${bookmarkIcon} إشارة مرجعية
                 </flint-toggle>
             </div>

@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-divider';
 import type { FlintDivider } from './flint-divider';
+import { expectAccessible } from '../test-utils/axe.js';
 
 describe('flint-divider', () => {
     it('is defined', async () => {
@@ -146,5 +147,12 @@ describe('flint-divider', () => {
         el.orientation = 'vertical';
         await el.updateComplete;
         expect(container?.getAttribute('aria-orientation')).toBe('vertical');
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`<flint-divider></flint-divider>`);
+            await expectAccessible(el);
+        });
     });
 });

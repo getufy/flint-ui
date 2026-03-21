@@ -7,9 +7,13 @@ const meta: Meta = {
     title: 'Inputs/Button Group',
     component: 'flint-button-group',
     argTypes: {
-        variant: {
+        appearance: {
             control: 'select',
-            options: ['primary', 'secondary', 'destructive'],
+            options: ['filled', 'outlined', 'text', 'ghost'],
+        },
+        color: {
+            control: 'select',
+            options: ['primary', 'neutral', 'destructive', 'success', 'warning'],
         },
         size: {
             control: 'select',
@@ -18,7 +22,8 @@ const meta: Meta = {
         disabled: { control: 'boolean' },
     },
     args: {
-        variant: 'secondary',
+        appearance: 'outlined',
+        color: 'neutral',
         size: 'medium',
         disabled: false,
     },
@@ -31,9 +36,9 @@ type Story = StoryObj;
 export const Default: Story = {
     render: (args) => html`
         <flint-button-group>
-            <flint-button variant=${args.variant} size=${args.size} ?disabled=${args.disabled}>One</flint-button>
-            <flint-button variant=${args.variant} size=${args.size} ?disabled=${args.disabled}>Two</flint-button>
-            <flint-button variant=${args.variant} size=${args.size} ?disabled=${args.disabled}>Three</flint-button>
+            <flint-button appearance=${args.appearance} color=${args.color} size=${args.size} ?disabled=${args.disabled}>One</flint-button>
+            <flint-button appearance=${args.appearance} color=${args.color} size=${args.size} ?disabled=${args.disabled}>Two</flint-button>
+            <flint-button appearance=${args.appearance} color=${args.color} size=${args.size} ?disabled=${args.disabled}>Three</flint-button>
         </flint-button-group>
     `
 };
@@ -44,27 +49,27 @@ export const AllVariants: Story = {
             <div>
                 <h4 style="font-family: var(--flint-font-family); margin-bottom: 8px;">Secondary</h4>
                 <flint-button-group>
-                    <flint-button variant="secondary" size=${args.size}>One</flint-button>
-                    <flint-button variant="secondary" size=${args.size}>Two</flint-button>
-                    <flint-button variant="secondary" size=${args.size}>Three</flint-button>
+                    <flint-button appearance="outlined" color="neutral" size=${args.size}>One</flint-button>
+                    <flint-button appearance="outlined" color="neutral" size=${args.size}>Two</flint-button>
+                    <flint-button appearance="outlined" color="neutral" size=${args.size}>Three</flint-button>
                 </flint-button-group>
             </div>
 
             <div>
                 <h4 style="font-family: var(--flint-font-family); margin-bottom: 8px;">Primary</h4>
                 <flint-button-group>
-                    <flint-button variant="primary" size=${args.size}>One</flint-button>
-                    <flint-button variant="primary" size=${args.size}>Two</flint-button>
-                    <flint-button variant="primary" size=${args.size}>Three</flint-button>
+                    <flint-button appearance="filled" color="primary" size=${args.size}>One</flint-button>
+                    <flint-button appearance="filled" color="primary" size=${args.size}>Two</flint-button>
+                    <flint-button appearance="filled" color="primary" size=${args.size}>Three</flint-button>
                 </flint-button-group>
             </div>
 
             <div>
                 <h4 style="font-family: var(--flint-font-family); margin-bottom: 8px;">Small</h4>
                 <flint-button-group>
-                    <flint-button variant="secondary" size="small">Left</flint-button>
-                    <flint-button variant="secondary" size="small">Center</flint-button>
-                    <flint-button variant="secondary" size="small">Right</flint-button>
+                    <flint-button appearance="outlined" color="neutral" size="small">Left</flint-button>
+                    <flint-button appearance="outlined" color="neutral" size="small">Center</flint-button>
+                    <flint-button appearance="outlined" color="neutral" size="small">Right</flint-button>
                 </flint-button-group>
             </div>
         </div>
@@ -77,25 +82,25 @@ export const Sizes: Story = {
             <div>
                 <h4 style="font-family: var(--flint-font-family); margin-bottom: 8px;">Small</h4>
                 <flint-button-group>
-                    <flint-button variant="secondary" size="small">One</flint-button>
-                    <flint-button variant="secondary" size="small">Two</flint-button>
-                    <flint-button variant="secondary" size="small">Three</flint-button>
+                    <flint-button appearance="outlined" color="neutral" size="small">One</flint-button>
+                    <flint-button appearance="outlined" color="neutral" size="small">Two</flint-button>
+                    <flint-button appearance="outlined" color="neutral" size="small">Three</flint-button>
                 </flint-button-group>
             </div>
             <div>
                 <h4 style="font-family: var(--flint-font-family); margin-bottom: 8px;">Medium</h4>
                 <flint-button-group>
-                    <flint-button variant="secondary" size="medium">One</flint-button>
-                    <flint-button variant="secondary" size="medium">Two</flint-button>
-                    <flint-button variant="secondary" size="medium">Three</flint-button>
+                    <flint-button appearance="outlined" color="neutral" size="medium">One</flint-button>
+                    <flint-button appearance="outlined" color="neutral" size="medium">Two</flint-button>
+                    <flint-button appearance="outlined" color="neutral" size="medium">Three</flint-button>
                 </flint-button-group>
             </div>
             <div>
                 <h4 style="font-family: var(--flint-font-family); margin-bottom: 8px;">Large</h4>
                 <flint-button-group>
-                    <flint-button variant="secondary" size="large">One</flint-button>
-                    <flint-button variant="secondary" size="large">Two</flint-button>
-                    <flint-button variant="secondary" size="large">Three</flint-button>
+                    <flint-button appearance="outlined" color="neutral" size="large">One</flint-button>
+                    <flint-button appearance="outlined" color="neutral" size="large">Two</flint-button>
+                    <flint-button appearance="outlined" color="neutral" size="large">Three</flint-button>
                 </flint-button-group>
             </div>
         </div>
@@ -105,9 +110,9 @@ export const Sizes: Story = {
 export const Disabled: Story = {
     render: () => html`
         <flint-button-group>
-            <flint-button variant="secondary" disabled>One</flint-button>
-            <flint-button variant="secondary" disabled>Two</flint-button>
-            <flint-button variant="secondary" disabled>Three</flint-button>
+            <flint-button appearance="outlined" color="neutral" disabled>One</flint-button>
+            <flint-button appearance="outlined" color="neutral" disabled>Two</flint-button>
+            <flint-button appearance="outlined" color="neutral" disabled>Three</flint-button>
         </flint-button-group>
     `
 };
@@ -115,9 +120,9 @@ export const Disabled: Story = {
 export const Destructive: Story = {
     render: () => html`
         <flint-button-group>
-            <flint-button variant="destructive">Cancel</flint-button>
-            <flint-button variant="destructive">Delete</flint-button>
-            <flint-button variant="destructive">Remove</flint-button>
+            <flint-button appearance="filled" color="destructive">Cancel</flint-button>
+            <flint-button appearance="filled" color="destructive">Delete</flint-button>
+            <flint-button appearance="filled" color="destructive">Remove</flint-button>
         </flint-button-group>
     `
 };
@@ -125,8 +130,8 @@ export const Destructive: Story = {
 export const TwoButtons: Story = {
     render: () => html`
         <flint-button-group>
-            <flint-button variant="secondary">Yes</flint-button>
-            <flint-button variant="secondary">No</flint-button>
+            <flint-button appearance="outlined" color="neutral">Yes</flint-button>
+            <flint-button appearance="outlined" color="neutral">No</flint-button>
         </flint-button-group>
     `
 };

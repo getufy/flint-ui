@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-snackbar';
 import { FlintSnackbar } from './flint-snackbar';
+import { expectAccessible } from '../test-utils/axe.js';
 
 async function make(props: Partial<{
     open: boolean;
@@ -335,5 +336,13 @@ describe('flint-snackbar', () => {
         vi.advanceTimersByTime(2000); // total 3s — timer should fire normally
         await el.updateComplete;
         expect(el.open).toBe(false);
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            vi.useRealTimers();
+            const el = await fixture(html`<flint-snackbar open>Snackbar message</flint-snackbar>`);
+            await expectAccessible(el);
+        }, 15000);
     });
 });

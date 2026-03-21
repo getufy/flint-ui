@@ -476,6 +476,52 @@ describe('flint-pagination', () => {
     });
 });
 
+/* ── Edge cases: 1 page and boundary clicks ───────────────────── */
+describe('flint-pagination — edge cases', () => {
+    it('count=1 renders a single page button with prev and next disabled', async () => {
+        const el = await fixture<FlintPagination>(html`<flint-pagination count="1" page="1"></flint-pagination>`);
+        const prev = el.shadowRoot!.querySelector('.page-btn[aria-label="Previous page"]') as HTMLButtonElement;
+        const next = el.shadowRoot!.querySelector('.page-btn[aria-label="Next page"]') as HTMLButtonElement;
+        expect(prev.disabled).toBe(true);
+        expect(next.disabled).toBe(true);
+        const active = el.shadowRoot!.querySelector('.page-btn.active');
+        expect(active?.textContent?.trim()).toBe('1');
+    });
+
+    it('count=1 clicking next does not fire event', async () => {
+        const el = await fixture<FlintPagination>(html`<flint-pagination count="1" page="1"></flint-pagination>`);
+        const spy = vi.fn();
+        el.addEventListener('flint-pagination-change', spy);
+        const next = el.shadowRoot!.querySelector('.page-btn[aria-label="Next page"]') as HTMLButtonElement;
+        next.click();
+        await el.updateComplete;
+        expect(spy).not.toHaveBeenCalled();
+        expect(el.page).toBe(1);
+    });
+
+    it('clicking next on last page does not fire event (boundary guard)', async () => {
+        const el = await fixture<FlintPagination>(html`<flint-pagination count="5" page="5"></flint-pagination>`);
+        const spy = vi.fn();
+        el.addEventListener('flint-pagination-change', spy);
+        const next = el.shadowRoot!.querySelector('.page-btn[aria-label="Next page"]') as HTMLButtonElement;
+        next.click();
+        await el.updateComplete;
+        expect(spy).not.toHaveBeenCalled();
+        expect(el.page).toBe(5);
+    });
+
+    it('clicking prev on first page does not fire event', async () => {
+        const el = await fixture<FlintPagination>(html`<flint-pagination count="5" page="1"></flint-pagination>`);
+        const spy = vi.fn();
+        el.addEventListener('flint-pagination-change', spy);
+        const prev = el.shadowRoot!.querySelector('.page-btn[aria-label="Previous page"]') as HTMLButtonElement;
+        prev.click();
+        await el.updateComplete;
+        expect(spy).not.toHaveBeenCalled();
+        expect(el.page).toBe(1);
+    });
+});
+
 /* ── Additional buildPages edge cases ──────────────────────────── */
 describe('buildPages edge cases', () => {
     it('count=2 returns both pages', () => {

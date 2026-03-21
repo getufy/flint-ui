@@ -32,11 +32,6 @@ export class FlintSkeleton extends FlintElement {
     @property({ type: String, reflect: true }) shape: 'text' | 'circular' | 'rectangular' | 'rounded' = 'text';
 
     /**
-     * @deprecated Use `shape` instead. Will be removed in a future version.
-     */
-    @property({ type: String }) variant: 'text' | 'circular' | 'rectangular' | 'rounded' = 'text';
-
-    /**
      * The width of the skeleton. Accepts any CSS length value (e.g. '200px', '50%').
      */
     @property({ type: String }) width = '';
@@ -51,24 +46,10 @@ export class FlintSkeleton extends FlintElement {
      */
     @property({ type: String }) label = 'Loading...';
 
-    private _variantWarned = false;
-
     connectedCallback() {
         super.connectedCallback();
         if (!this.hasAttribute('role')) this.setAttribute('role', 'status');
         this._syncLabel();
-    }
-
-    willUpdate(changed: PropertyValues) {
-        if (changed.has('variant') && this.variant !== 'text' && this.shape === 'text') {
-            this.shape = this.variant;
-            if (!this._variantWarned) {
-                this._variantWarned = true;
-                console.warn(
-                    'flint-skeleton: `variant` is deprecated. Use `shape` instead.'
-                );
-            }
-        }
     }
 
     updated(changed: PropertyValues) {

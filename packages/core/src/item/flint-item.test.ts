@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-item';
+import { expectAccessible } from '../test-utils/axe.js';
 import type {
     FlintItem,
     FlintItemGroup,
@@ -667,5 +668,12 @@ describe('flint-item — corner cases', () => {
 
         expect(el.querySelector('#dynamic')).not.toBeNull();
         expect(el.querySelectorAll('flint-item').length).toBe(2);
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`<flint-item>Item content</flint-item>`);
+            await expectAccessible(el);
+        });
     });
 });

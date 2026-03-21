@@ -208,7 +208,7 @@ export const Persistent: Story = {
             <div style="flex:1;padding:24px;overflow-y:auto;">
                 <flint-stack direction="row" alignItems="center" justifyContent="space-between" mb="16px">
                     <h2 style="margin:0;font-size:1.25rem;">Persistent Drawer</h2>
-                    <flint-button variant="outlined" @click=${toggleDrawer}>Toggle</flint-button>
+                    <flint-button appearance="outlined" @click=${toggleDrawer}>Toggle</flint-button>
                 </flint-stack>
                 <p>The persistent drawer sits on the same surface as the content.
                    It's closed by clicking Toggle — it does not use a backdrop.</p>
@@ -253,7 +253,7 @@ export const Mini: Story = {
             <div style="flex:1;padding:24px;overflow-y:auto;">
                 <flint-stack direction="row" alignItems="center" justifyContent="space-between" mb="16px">
                     <h2 style="margin:0;font-size:1.25rem;">Mini Variant</h2>
-                    <flint-button variant="outlined" @click=${toggleDrawer}>Toggle</flint-button>
+                    <flint-button appearance="outlined" @click=${toggleDrawer}>Toggle</flint-button>
                 </flint-stack>
                 <p>Icons are always visible. Expand to reveal full labels alongside them.</p>
                 ${Array.from({ length: 8 }).map(() => html`
@@ -301,7 +301,7 @@ export const Anchors: Story = {
         <flint-box class="story-root" display="flex" flexWrap="wrap" alignContent="flex-start" bgcolor="var(--flint-muted-background, #f8fafc)" border="1px solid #e2e8f0" borderRadius="8px" p="24px" style="position:relative;height:460px;overflow:hidden;gap:12px;">
 
             ${(['left', 'right', 'top', 'bottom'] as const).map(placement => html`
-                <flint-button variant="outlined"
+                <flint-button appearance="outlined"
                     @click=${(e: Event) => {
             const root = (e.currentTarget as HTMLElement).closest('.story-root');
             const d = root?.querySelector(`flint-drawer[data-placement="${placement}"]`) as FlintDrawer | null;
@@ -370,7 +370,7 @@ export const TabletViewport: Story = {
             <div style="flex:1;padding:24px;overflow-y:auto;">
                 <flint-stack direction="row" alignItems="center" justifyContent="space-between" mb="16px">
                     <h2 style="margin:0;font-size:1.25rem;">Tablet Layout</h2>
-                    <flint-button variant="outlined" @click=${toggleDrawer}>Toggle</flint-button>
+                    <flint-button appearance="outlined" @click=${toggleDrawer}>Toggle</flint-button>
                 </flint-stack>
                 <p>Persistent drawer alongside main content on tablet.</p>
             </div>

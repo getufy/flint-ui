@@ -285,16 +285,19 @@ Basic.play = async ({ canvasElement }) => {
     // Tab "one" is initially selected
     await waitFor(() => expect(tabs.value).toBe('one'));
 
-    // Click second tab
-    await userEvent.click(tabEls[1]);
+    // Click second tab (target inner button for shadow DOM click propagation)
+    const btn1 = tabEls[1].shadowRoot!.querySelector('button')!;
+    await userEvent.click(btn1);
     await waitFor(() => expect(tabs.value).toBe('two'));
 
     // Click third tab
-    await userEvent.click(tabEls[2]);
+    const btn2 = tabEls[2].shadowRoot!.querySelector('button')!;
+    await userEvent.click(btn2);
     await waitFor(() => expect(tabs.value).toBe('three'));
 
     // Click back to first tab
-    await userEvent.click(tabEls[0]);
+    const btn0 = tabEls[0].shadowRoot!.querySelector('button')!;
+    await userEvent.click(btn0);
     await waitFor(() => expect(tabs.value).toBe('one'));
 };
 
@@ -845,7 +848,7 @@ export const DynamicTabs: Story = {
                             tabs.querySelector('flint-tab-list')?.appendChild(newTab);
                             tabs.appendChild(newPanel);
                         }}>Add Tab</flint-button>
-                <flint-button variant="danger" @click=${(e: MouseEvent) => {
+                <flint-button appearance="filled" color="destructive" @click=${(e: MouseEvent) => {
                             const container = (e.target as HTMLElement).closest('[data-dynamic-demo]');
                             const tabs = container?.querySelector('flint-tabs') as (HTMLElement & { value: string }) | null;
                             if (!tabs) return;

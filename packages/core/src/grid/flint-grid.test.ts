@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-grid.js';
 import type { FlintGrid } from './flint-grid.js';
+import { expectAccessible } from '../test-utils/axe.js';
 
 // Helper: force a specific viewport width and re-run item style calculations
 async function setWidth(el: FlintGrid, width: number) {
@@ -581,5 +582,12 @@ describe('flint-grid', () => {
         } finally {
             document.documentElement.style.removeProperty('--flint-breakpoint-sm');
         }
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`<flint-grid container>Content</flint-grid>`);
+            await expectAccessible(el);
+        });
     });
 });

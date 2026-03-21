@@ -3,6 +3,7 @@ import { fixture, html } from '@open-wc/testing';
 import './flint-carousel';
 import type { FlintCarousel } from './flint-carousel';
 import type { FlintCarouselContent } from './flint-carousel';
+import { expectAccessible } from '../test-utils/axe.js';
 import type { FlintCarouselNext } from './flint-carousel';
 import type { FlintCarouselPrevious } from './flint-carousel';
 
@@ -1043,4 +1044,72 @@ describe('flint-carousel — no nav buttons / no content', () => {
     expect(el.total).toBe(0);
     expect(el.currentIndex).toBe(0);
   });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Single-item carousel (1 slide)
+═══════════════════════════════════════════════════════════════════════════ */
+describe('flint-carousel — single item', () => {
+  async function makeSingleSlide() {
+    const el = await fixture<FlintCarousel>(html`
+      <flint-carousel>
+        <flint-carousel-previous></flint-carousel-previous>
+        <flint-carousel-content>
+          <flint-carousel-item>Only slide</flint-carousel-item>
+        </flint-carousel-content>
+        <flint-carousel-next></flint-carousel-next>
+      </flint-carousel>
+    `);
+    await el.updateComplete;
+    return el;
+  }
+
+  it('total is 1 for single-item carousel', async () => {
+    const el = await makeSingleSlide();
+    expect(el.total).toBe(1);
+  });
+
+  it('next() is a no-op when there is only 1 item', async () => {
+    const el = await makeSingleSlide();
+    const spy = vi.fn();
+    el.addEventListener('flint-carousel-change', spy);
+    el.next();
+    expect(spy).not.toHaveBeenCalled();
+    expect(el.currentIndex).toBe(0);
+  });
+
+  it('previous() is a no-op when there is only 1 item', async () => {
+    const el = await makeSingleSlide();
+    const spy = vi.fn();
+    el.addEventListener('flint-carousel-change', spy);
+    el.previous();
+    expect(spy).not.toHaveBeenCalled();
+    expect(el.currentIndex).toBe(0);
+  });
+
+  it('both nav buttons are disabled with 1 item', async () => {
+    const el = await makeSingleSlide();
+    expect(getPrev(el).disabled).toBe(true);
+    expect(getNext(el).disabled).toBe(true);
+  });
+
+  it('goTo(0) is a no-op when already at 0 with 1 item', async () => {
+    const el = await makeSingleSlide();
+    const spy = vi.fn();
+    el.addEventListener('flint-carousel-change', spy);
+    el.goTo(0);
+    expect(spy).not.toHaveBeenCalled();
+  });
+});
+
+describe('flint-carousel — accessibility', () => {
+    it('should be accessible', async () => {
+        const el = await fixture(html`
+            <flint-carousel>
+                <div>Slide 1</div>
+                <div>Slide 2</div>
+            </flint-carousel>
+        `);
+        await expectAccessible(el);
+    });
 });

@@ -2,7 +2,7 @@
 export type { Size, Orientation, Placement, Breakpoint, ResponsiveValue } from './types.js';
 
 export { FlintButton } from './button/flint-button.js';
-export type { ButtonVariant, ButtonAppearance, ButtonColor, ButtonSize, ButtonType, ButtonShape } from './button/flint-button.js';
+export type { ButtonAppearance, ButtonColor, ButtonSize, ButtonType, ButtonShape } from './button/flint-button.js';
 export { FlintButtonGroup } from './button/flint-button-group.js';
 export { FlintCard } from './card/flint-card.js';
 export { FlintCardHeader } from './card/flint-card-header.js';

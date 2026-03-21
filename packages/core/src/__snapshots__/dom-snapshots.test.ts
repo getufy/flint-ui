@@ -50,8 +50,8 @@ describe('DOM snapshots', () => {
         expect(normalizeHtml(el.shadowRoot!.innerHTML)).toMatchSnapshot();
     });
 
-    it('flint-button — variant outlined', async () => {
-        const el = await fixture(html`<flint-button variant="outlined">Click</flint-button>`);
+    it('flint-button — appearance outlined', async () => {
+        const el = await fixture(html`<flint-button appearance="outlined">Click</flint-button>`);
         expect(normalizeHtml(el.shadowRoot!.innerHTML)).toMatchSnapshot();
     });
 
@@ -111,7 +111,7 @@ describe('DOM snapshots', () => {
     });
 
     it('flint-skeleton — circular', async () => {
-        const el = await fixture(html`<flint-skeleton variant="circular"></flint-skeleton>`);
+        const el = await fixture(html`<flint-skeleton shape="circular"></flint-skeleton>`);
         expect(normalizeHtml(el.shadowRoot!.innerHTML)).toMatchSnapshot();
     });
 

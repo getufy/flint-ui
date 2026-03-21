@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-visually-hidden';
 import type { FlintVisuallyHidden } from './flint-visually-hidden';
+import { expectAccessible } from '../test-utils/axe.js';
 
 /* ── helpers ─────────────────────────────────────────────────────── */
 
@@ -398,5 +399,14 @@ describe('flint-visually-hidden — use cases', () => {
             .join('');
         expect(text).toBe('sorted ascending');
         expect(el.notFocusable).toBe(true);
+    });
+});
+
+describe('flint-visually-hidden — axe accessibility', () => {
+    it('should be accessible', async () => {
+        const el = await fixture(html`
+            <flint-visually-hidden><span>Hidden text</span></flint-visually-hidden>
+        `);
+        await expectAccessible(el);
     });
 });

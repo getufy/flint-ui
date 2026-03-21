@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
 import './flint-box.js';
 import type { FlintBox } from './flint-box.js';
+import { expectAccessible } from '../test-utils/axe.js';
 
 describe('flint-box', () => {
     // ── Registration ─────────────────────────────────────────────────
@@ -298,5 +299,12 @@ describe('flint-box', () => {
         const nested = el.querySelector('flint-box');
         expect(nested).toBeTruthy();
         expect(nested?.shadowRoot?.querySelector('div')).toBeTruthy();
+    });
+
+    describe('accessibility', () => {
+        it('should be accessible', async () => {
+            const el = await fixture(html`<flint-box>Content</flint-box>`);
+            await expectAccessible(el);
+        });
     });
 });

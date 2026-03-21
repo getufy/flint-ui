@@ -723,6 +723,73 @@ describe('flint-autocomplete — hoist', () => {
     });
 });
 
+// ── Edge cases: empty filter and special regex characters ──────────────────
+
+describe('flint-autocomplete — edge cases', () => {
+    it('empty string filter shows all options', async () => {
+        const el = await fixture<FlintAutocomplete>(html`<flint-autocomplete .options=${options}></flint-autocomplete>`);
+        const input = el.shadowRoot!.querySelector('input')!;
+        input.value = '';
+        input.dispatchEvent(new Event('input'));
+        await el.updateComplete;
+        const renderedOptions = el.shadowRoot!.querySelectorAll('.option');
+        expect(renderedOptions.length).toBe(2);
+    });
+
+    it('filter with special regex characters does not throw', async () => {
+        const el = await fixture<FlintAutocomplete>(html`<flint-autocomplete .options=${options}></flint-autocomplete>`);
+        const input = el.shadowRoot!.querySelector('input')!;
+        // Characters that would break if used as a regex pattern
+        input.value = '(.*+?^${}|[]\\)';
+        input.dispatchEvent(new Event('input'));
+        await el.updateComplete;
+        // Should return no matches but not throw
+        const renderedOptions = el.shadowRoot!.querySelectorAll('.option');
+        expect(renderedOptions.length).toBe(0);
+    });
+
+    it('filter with parentheses returns no matches gracefully', async () => {
+        const el = await fixture<FlintAutocomplete>(html`<flint-autocomplete .options=${options}></flint-autocomplete>`);
+        const input = el.shadowRoot!.querySelector('input')!;
+        input.value = '(apple)';
+        input.dispatchEvent(new Event('input'));
+        await el.updateComplete;
+        const renderedOptions = el.shadowRoot!.querySelectorAll('.option');
+        expect(renderedOptions.length).toBe(0);
+    });
+
+    it('filter with brackets in option labels still matches', async () => {
+        const specialOptions = [
+            { label: 'Apple (red)', value: 'apple-red' },
+            { label: 'Banana [yellow]', value: 'banana-yellow' },
+        ];
+        const el = await fixture<FlintAutocomplete>(html`<flint-autocomplete .options=${specialOptions}></flint-autocomplete>`);
+        const input = el.shadowRoot!.querySelector('input')!;
+        input.value = '(red)';
+        input.dispatchEvent(new Event('input'));
+        await el.updateComplete;
+        const renderedOptions = el.shadowRoot!.querySelectorAll('.option');
+        expect(renderedOptions.length).toBe(1);
+        expect(renderedOptions[0].textContent).toContain('Apple (red)');
+    });
+
+    it('whitespace-only filter shows options whose labels contain spaces', async () => {
+        const spacedOptions = [
+            { label: 'Green Apple', value: 'green-apple' },
+            { label: 'Banana', value: 'banana' },
+        ];
+        const el = await fixture<FlintAutocomplete>(html`<flint-autocomplete .options=${spacedOptions}></flint-autocomplete>`);
+        const input = el.shadowRoot!.querySelector('input')!;
+        input.value = ' ';
+        input.dispatchEvent(new Event('input'));
+        await el.updateComplete;
+        const renderedOptions = el.shadowRoot!.querySelectorAll('.option');
+        // " " matches "Green Apple" (has a space), not "Banana"
+        expect(renderedOptions.length).toBe(1);
+        expect(renderedOptions[0].textContent).toContain('Green Apple');
+    });
+});
+
 // ── Accessibility ─────────────────────────────────────────────────────────
 
 describe('flint-autocomplete — accessibility', () => {

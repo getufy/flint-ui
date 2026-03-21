@@ -4,6 +4,7 @@ import './flint-bottom-navigation.js';
 import './flint-bottom-navigation-action.js';
 import type { FlintBottomNavigation } from './flint-bottom-navigation.js';
 import type { FlintBottomNavigationAction } from './flint-bottom-navigation-action.js';
+import { expectAccessible } from '../test-utils/axe.js';
 
 describe('flint-bottom-navigation', () => {
     it('is defined', async () => {
@@ -231,5 +232,17 @@ describe('flint-bottom-navigation-action', () => {
 
         expect(changeSpy).toHaveBeenCalled();
         expect(changeSpy.mock.calls[0][0].detail.value).toBe('favs');
+    });
+});
+
+describe('flint-bottom-navigation — accessibility', () => {
+    it('should be accessible', async () => {
+        const el = await fixture(html`
+            <flint-bottom-navigation value="recents">
+                <flint-bottom-navigation-action label="Recents" value="recents"></flint-bottom-navigation-action>
+                <flint-bottom-navigation-action label="Favorites" value="favs"></flint-bottom-navigation-action>
+            </flint-bottom-navigation>
+        `);
+        await expectAccessible(el);
     });
 });
