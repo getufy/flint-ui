@@ -1,5 +1,5 @@
 import { unsafeCSS, html, type PropertyValues } from 'lit';
-import { property, state } from 'lit/decorators.js';
+import { property, query, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import uiCommandShortcutStyles from './flint-command-shortcut.css?inline';
 import uiCommandSeparatorStyles from './flint-command-separator.css?inline';
@@ -189,7 +189,10 @@ export class FlintCommandList extends FlintElement {
  * @attr {string} value       - Current input value (reflected).
  */
 export class FlintCommandInput extends FlintElement {
+    static shadowRootOptions = { ...FlintElement.shadowRootOptions, delegatesFocus: true };
     static styles = unsafeCSS(uiCommandInputStyles);
+
+    @query('input') private _input!: HTMLInputElement;
 
     private _localize = new LocalizeController(this);
 
@@ -221,13 +224,12 @@ export class FlintCommandInput extends FlintElement {
 
     /** Focus the inner input element. */
     focus() {
-        this.shadowRoot?.querySelector('input')?.focus();
+        this._input?.focus();
     }
 
     /** Reset the input value and broadcast an empty filter. */
     reset() {
-        const input = this.shadowRoot?.querySelector('input') as HTMLInputElement | null;
-        if (input) input.value = '';
+        if (this._input) this._input.value = '';
         this.value = '';
         this.dispatchEvent(new CustomEvent('_cmd-filter', {
             bubbles: true,

@@ -1,5 +1,5 @@
 import { unsafeCSS, html, PropertyValues } from 'lit';
-import { property, state } from 'lit/decorators.js';
+import { property, query, state } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
 import type { Placement } from '../types.js';
 import { FlintBackdrop } from '../backdrop/flint-backdrop.js';
@@ -22,6 +22,9 @@ import uiDrawerStyles from './flint-drawer.css?inline';
 export class FlintDrawer extends FlintElement {
     static styles = unsafeCSS(uiDrawerStyles);
     static dependencies = { 'flint-backdrop': FlintBackdrop as unknown as typeof FlintElement };
+
+    @query('.paper') private _paper!: HTMLElement;
+    @query('.backdrop') private _backdrop!: HTMLElement;
 
     /** Whether the drawer is open. */
     @property({ type: Boolean, reflect: true }) open = false;
@@ -148,7 +151,7 @@ export class FlintDrawer extends FlintElement {
         }
         const focusable = getFocusableElements(this);
         if (focusable.length > 0) { focusable[0]!.focus(); return; }
-        this.shadowRoot?.querySelector<HTMLElement>('.paper')?.focus();
+        this._paper?.focus();
     }
 
     /** Resolve the animation name suffix based on the placement direction. */
@@ -162,8 +165,8 @@ export class FlintDrawer extends FlintElement {
     }
 
     private async _runOpenAnimation() {
-        const paper = this.shadowRoot?.querySelector<HTMLElement>('.paper');
-        const backdrop = this.shadowRoot?.querySelector<HTMLElement>('.backdrop');
+        const paper = this._paper;
+        const backdrop = this._backdrop;
         const suffix = this._getAnimationSuffix();
 
         const panelAnim = getAnimation(this, `drawer.show${suffix}`);
@@ -190,8 +193,8 @@ export class FlintDrawer extends FlintElement {
     }
 
     private async _runCloseAnimation() {
-        const paper = this.shadowRoot?.querySelector<HTMLElement>('.paper');
-        const backdrop = this.shadowRoot?.querySelector<HTMLElement>('.backdrop');
+        const paper = this._paper;
+        const backdrop = this._backdrop;
         const suffix = this._getAnimationSuffix();
 
         const panelAnim = getAnimation(this, `drawer.hide${suffix}`);

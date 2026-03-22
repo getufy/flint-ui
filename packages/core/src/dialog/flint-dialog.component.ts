@@ -1,5 +1,5 @@
 import { unsafeCSS, html, nothing, type PropertyValues } from 'lit';
-import { property, queryAssignedElements, state } from 'lit/decorators.js';
+import { property, query, queryAssignedElements, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
 import { FlintBackdrop } from '../backdrop/flint-backdrop.component.js';
@@ -41,6 +41,9 @@ export class FlintDialog extends FlintElement {
 
   @queryAssignedElements({ selector: 'flint-dialog-content' })
   private _assignedContents!: FlintDialogContent[];
+
+  @query('.dialog-panel') private _panel!: HTMLElement;
+  @query('flint-backdrop') private _overlay!: HTMLElement;
 
   /** Current open state (controlled). When set, the component reflects this state and does not manage its own state. */
   @property({ type: Boolean, reflect: true }) open = false;
@@ -157,8 +160,8 @@ export class FlintDialog extends FlintElement {
    * Panel and overlay animate in parallel.
    */
   private async _runOpenAnimation() {
-    const panel = this.shadowRoot?.querySelector<HTMLElement>('.dialog-panel');
-    const overlay = this.shadowRoot?.querySelector<HTMLElement>('flint-backdrop');
+    const panel = this._panel;
+    const overlay = this._overlay;
 
     const panelAnim = getAnimation(this, 'dialog.show');
     const overlayAnim = getAnimation(this, 'dialog.overlay.show');
@@ -191,8 +194,8 @@ export class FlintDialog extends FlintElement {
    * Panel and overlay animate in parallel.
    */
   private async _runCloseAnimation() {
-    const panel = this.shadowRoot?.querySelector<HTMLElement>('.dialog-panel');
-    const overlay = this.shadowRoot?.querySelector<HTMLElement>('flint-backdrop');
+    const panel = this._panel;
+    const overlay = this._overlay;
 
     const panelAnim = getAnimation(this, 'dialog.hide');
     const overlayAnim = getAnimation(this, 'dialog.overlay.hide');
