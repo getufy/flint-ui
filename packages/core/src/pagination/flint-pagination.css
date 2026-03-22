@@ -71,10 +71,12 @@
         /* ── Color: secondary ── */
         :host([color="secondary"]) .page-btn.active {
             background: var(--flint-pagination-active-bg-secondary, var(--flint-secondary-color));
+            color: var(--flint-pagination-active-color-secondary, var(--flint-text-color-on-secondary));
         }
         :host([color="secondary"][variant="outlined"]) .page-btn.active {
             background: var(--flint-pagination-active-bg-secondary, var(--flint-secondary-color));
             border-color: var(--flint-pagination-active-bg-secondary, var(--flint-secondary-color));
+            color: var(--flint-pagination-active-color-secondary, var(--flint-text-color-on-secondary));
         }
 
         /* ── Color: standard ── */

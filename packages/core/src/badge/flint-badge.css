@@ -28,7 +28,7 @@
       right: 0;
       transform: scale(1) translate(50%, -50%);
       transform-origin: 100% 0%;
-      border: 2px solid var(--flint-surface-1);
+      border: 2px solid var(--flint-badge-border-color, var(--flint-background));
     }
 
     .badge.hidden {
@@ -43,11 +43,11 @@
     }
 
     /* Variants */
-    .primary   { background-color: var(--flint-primary-color); }
-    .secondary { background-color: var(--flint-secondary-color); }
-    .error     { background-color: var(--flint-error-color);   color: var(--flint-text-color-on-primary); }
-    .success   { background-color: var(--flint-success-color); color: var(--flint-text-color-on-primary); }
-    .warning   { background-color: var(--flint-warning-color); color: var(--flint-text-color-on-primary); }
+    .primary   { background-color: var(--flint-primary-color);   color: var(--flint-text-color-on-primary); }
+    .secondary { background-color: var(--flint-secondary-color); color: var(--flint-text-color-on-secondary); }
+    .error     { background-color: var(--flint-error-color);     color: var(--flint-text-color-on-primary); }
+    .success   { background-color: var(--flint-success-color);   color: var(--flint-text-color-on-primary); }
+    .warning   { background-color: var(--flint-warning-color);   color: var(--flint-text-color-on-primary); }
 
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {

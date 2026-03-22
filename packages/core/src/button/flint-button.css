@@ -63,7 +63,7 @@ a {
   --_btn-color: var(--flint-neutral-color);
   --_btn-color-hover: var(--flint-neutral-color-hover);
   --_btn-color-active: var(--flint-neutral-color-active);
-  --_btn-text-on-color: var(--flint-text-color-on-primary);
+  --_btn-text-on-color: var(--flint-text-color-on-secondary);
 }
 
 /* ── Appearance: filled ──────────────────────────────────────────── */

@@ -178,6 +178,7 @@
     --flint-text-color-muted:      var(--flint-color-zinc-600);   /* secondary text */
     --flint-text-color-subtle:     var(--flint-color-zinc-500);   /* hints, disabled labels */
     --flint-text-color-on-primary: var(--flint-color-white);
+    --flint-text-color-on-secondary: var(--flint-color-white);
 
     /* ─── Borders ──────────────────────────────────────────────── */
     --flint-border-color:             var(--flint-color-zinc-200);

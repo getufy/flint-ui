@@ -74,7 +74,7 @@
 
     .chip.secondary:not(.outlined) {
       background-color: var(--flint-secondary-color);
-      color: var(--flint-text-color-on-primary);
+      color: var(--flint-text-color-on-secondary);
     }
 
     .chip.outlined.primary {
@@ -88,12 +88,12 @@
     }
 
     .chip.primary.clickable:hover:not(.disabled) {
-      filter: brightness(0.9);
+      background-color: var(--flint-primary-color-hover);
       box-shadow: var(--flint-shadow-sm);
     }
 
     .chip.secondary.clickable:hover:not(.disabled) {
-      filter: brightness(0.9);
+      background-color: var(--flint-secondary-color-hover);
       box-shadow: var(--flint-shadow-sm);
     }
 

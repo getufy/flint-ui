@@ -95,6 +95,7 @@
     --flint-text-color-muted:      var(--flint-color-zinc-400);
     --flint-text-color-subtle:     var(--flint-color-zinc-500);
     --flint-text-color-on-primary: #09090b;  /* dark text on blue-400 bg — 8.2:1 contrast */
+    --flint-text-color-on-secondary: #09090b;  /* dark text on zinc-400 bg — 8.3:1 contrast */
 
     /* ─── Borders ──────────────────────────────────────────────── */
     --flint-border-color:             var(--flint-color-zinc-800);
@@ -231,6 +232,7 @@
         --flint-text-color-muted:      var(--flint-color-zinc-400);
         --flint-text-color-subtle:     var(--flint-color-zinc-500);
         --flint-text-color-on-primary: #09090b;  /* dark text on blue-400 bg — 8.2:1 contrast */
+        --flint-text-color-on-secondary: #09090b;  /* dark text on zinc-400 bg — 8.3:1 contrast */
 
         --flint-border-color:             var(--flint-color-zinc-800);
         --flint-input-border-color:       var(--flint-color-zinc-700);
