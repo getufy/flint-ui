@@ -6,8 +6,7 @@ import { LocalizeController } from '../utilities/localize.js';
 import { FormAssociated } from '../mixins/form-associated.js';
 import { FormControlController } from '../controllers/form-control.js';
 import uiTextFieldStyles from './flint-text-field.css?inline';
-
-let idCounter = 0;
+import { generateId } from '../utilities/id-generator.js';
 
 /**
  * Text Field: a styled text input with outlined/filled variants.
@@ -30,7 +29,7 @@ export class FlintTextField extends FormAssociated(FlintElement) {
 
     private _formControl = new FormControlController(this);
     private _localize = new LocalizeController(this);
-    private _inputId = `flint-text-field-${++idCounter}`;
+    private _inputId = generateId('flint-text-field');
 
     /** Label text displayed above the input. */
     @property({ type: String }) label = '';

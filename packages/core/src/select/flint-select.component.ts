@@ -15,6 +15,7 @@ import type { Size } from '../types.js';
 import { rovingIndex } from '../utilities/roving-index.js';
 import '../utilities/animation-presets.js';
 import uiSelectStyles from './flint-select.css?inline';
+import { generateId } from '../utilities/id-generator.js';
 
 export interface SelectOption<T = string> {
   label: string;
@@ -25,8 +26,6 @@ export interface SelectOption<T = string> {
 }
 
 export type SelectSize = Size;
-
-let _uidCounter = 0;
 
 /**
  * A select component for choosing one or multiple options from a list.
@@ -122,7 +121,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
   @state() private _isLoading = false;
   @state() private _searchTerm = '';
 
-  private readonly _uid = `flint-select-${++_uidCounter}`;
+  private readonly _uid = generateId('flint-select');
   private _searchDebounce?: ReturnType<typeof setTimeout>;
 
   private get _filteredOptions(): SelectOption[] {

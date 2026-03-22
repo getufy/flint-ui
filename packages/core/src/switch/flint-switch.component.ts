@@ -6,8 +6,7 @@ import { FormAssociated } from '../mixins/form-associated.js';
 import { FormControlController } from '../controllers/form-control.js';
 import type { Size } from '../types.js';
 import uiSwitchStyles from './flint-switch.css?inline';
-
-let _uidCounter = 0;
+import { generateId } from '../utilities/id-generator.js';
 
 /**
  * A Switch component for toggling settings.
@@ -54,8 +53,7 @@ export class FlintSwitch extends FormAssociated(FlintElement) {
 
     constructor() {
         super();
-        _uidCounter++;
-        this._labelId = `flint-switch-label-${_uidCounter}`;
+        this._labelId = generateId('flint-switch-label');
     }
 
     protected override willUpdate(changed: PropertyValues) {

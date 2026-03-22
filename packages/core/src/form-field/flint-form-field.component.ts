@@ -2,8 +2,7 @@ import { unsafeCSS, html, nothing, PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
 import styles from './flint-form-field.css?inline';
-
-let _uidCounter = 0;
+import { generateId } from '../utilities/id-generator.js';
 
 export type LabelPosition = 'top' | 'start';
 
@@ -56,8 +55,7 @@ export class FlintFormField extends FlintElement {
 
     constructor() {
         super();
-        _uidCounter++;
-        this._fieldId = `flint-form-field-${_uidCounter}`;
+        this._fieldId = generateId('flint-form-field');
     }
 
     protected override updated(changed: PropertyValues) {

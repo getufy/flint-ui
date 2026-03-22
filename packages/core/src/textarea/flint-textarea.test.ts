@@ -371,7 +371,7 @@ describe('flint-textarea', () => {
         const el = await fixture<FlintTextarea>(html`<flint-textarea helper-text="hint"></flint-textarea>`);
         const ta = el.shadowRoot!.querySelector('textarea')!;
         const desc = el.shadowRoot!.querySelector('.help-text')!;
-        expect(desc.id).toMatch(/^flint-textarea-desc-\d+$/);
+        expect(desc.id).toMatch(/^flint-textarea-\d+-desc$/);
         expect(ta.getAttribute('aria-describedby')).toBe(desc.id);
     });
 

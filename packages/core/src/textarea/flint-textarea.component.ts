@@ -7,8 +7,7 @@ import { FormAssociated } from '../mixins/form-associated.js';
 import { FormControlController } from '../controllers/form-control.js';
 import type { Size } from '../types.js';
 import uiTextareaStyles from './flint-textarea.css?inline';
-
-let _uidCounter = 0;
+import { generateId } from '../utilities/id-generator.js';
 
 /**
  * A Textarea component for multi-line text input.
@@ -76,9 +75,9 @@ export class FlintTextarea extends FormAssociated(FlintElement) {
 
     constructor() {
         super();
-        _uidCounter++;
-        this._textareaId = `flint-textarea-${_uidCounter}`;
-        this._descId = `flint-textarea-desc-${_uidCounter}`;
+        const uid = generateId('flint-textarea');
+        this._textareaId = uid;
+        this._descId = `${uid}-desc`;
     }
 
     /** Direct access to the internal <textarea> element. */

@@ -7,8 +7,7 @@ import { FormAssociated } from '../mixins/form-associated.js';
 import { FormControlController } from '../controllers/form-control.js';
 import type { Size } from '../types.js';
 import uiInputStyles from './flint-input.css?inline';
-
-let idCounter = 0;
+import { generateId } from '../utilities/id-generator.js';
 
 /**
  * Input: a styled text input with label, help text, and error states.
@@ -36,7 +35,7 @@ export class FlintInput extends FormAssociated(FlintElement) {
 
     private _formControl = new FormControlController(this);
     private _localize = new LocalizeController(this);
-    private _inputId = `flint-input-${++idCounter}`;
+    private _inputId = generateId('flint-input');
 
     /** Label text displayed above the input. */
     @property({ type: String })
