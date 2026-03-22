@@ -30,7 +30,6 @@ Time Field: a segmented time input with keyboard navigation.
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`shadowRootOptions\` | \`shadowRootOptions\` | \`object\` | \`&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;\` |  |
 | \`value\` | \`value\` | \`string\` | \`''\` | Time value in HH:MM:SS format. |
 | \`label\` | \`label\` | \`string\` | \`''\` | Field label text. |
 | \`ampm\` | \`ampm\` | \`boolean\` | \`true\` | Whether to use 12-hour (AM/PM) format instead of 24-hour. |
@@ -213,7 +212,6 @@ Mobile Time Picker: a time field with a modal clock dialog.
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`dependencies\` | \`dependencies\` | \`object\` | \`&#123; 'flint-dialog': FlintDialog as unknown as typeof FlintElement, 'flint-dialog-title': FlintDialogTitle as unknown as typeof FlintElement, 'flint-dialog-content': FlintDialogContent as unknown as typeof FlintElement, 'flint-dialog-actions': FlintDialogActions as unknown as typeof FlintElement, &#125;\` |  |
 | \`value\` | \`value\` | \`string\` | \`''\` | Time value in HH:MM:SS format. |
 | \`label\` | \`label\` | \`string\` | \`'Time'\` | Field label text. |
 | \`ampm\` | \`ampm\` | \`boolean\` | \`true\` | Whether to use 12-hour (AM/PM) format instead of 24-hour. |
@@ -265,7 +263,6 @@ Time Picker: a configurable time input supporting desktop, mobile, and static va
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`shadowRootOptions\` | \`shadowRootOptions\` | \`object\` | \`&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;\` |  |
 | \`value\` | \`value\` | \`string\` | \`''\` | Time value in HH:MM:SS format. |
 | \`label\` | \`label\` | \`string\` | \`'Time'\` | Field label text. |
 | \`variant\` | \`variant\` | \`'desktop' \\| 'mobile' \\| 'static' \\| 'auto'\` | \`'desktop'\` | Picker variant controlling the UI style. |

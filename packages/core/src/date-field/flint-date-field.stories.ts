@@ -23,7 +23,6 @@ Each section (month, day, year) is independently editable via keyboard.
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`formAssociated\` | \`formAssociated\` | \`boolean\` | \`true\` | Opts the element into form participation via the Form-Associated Custom Elements API. |
 | \`value\` | \`value\` | \`string\` | \`''\` | Controlled date value (ISO YYYY-MM-DD). Set to '' for uncontrolled. |
 | \`label\` | \`label\` | \`string\` | \`''\` | Field label. |
 | \`name\` | \`name\` | \`string\` | \`''\` | Form field name. Reflected so the browser picks it up for form data collection. |

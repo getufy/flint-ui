@@ -25,8 +25,6 @@ import { FlintSelect } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `shadowRootOptions` | `shadowRootOptions` | `object` | `&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;` |  |
-| `dependencies` | `dependencies` | `Record&lt;string, typeof FlintElement&gt;` | `&#123; 'flint-popup': FlintPopup, 'flint-tooltip': FlintTooltip, &#125;` |  |
 | `label` | `label` | `string` | `''` | Label text displayed above the select. |
 | `options` | `options` | `SelectOption[]` | `[]` | Array of selectable options. |
 | `value` | `value` | `string \| string[]` | `[]` | Current value (controlled). When set, the component reflects this value and does not manage its own state. Accepts a single string or an array of strings. |

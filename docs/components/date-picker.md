@@ -103,8 +103,6 @@ import { FlintDatePicker } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `shadowRootOptions` | `shadowRootOptions` | `object` | `&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;` |  |
-| `dependencies` | `dependencies` | `object` | `&#123; 'flint-dialog': FlintDialog as unknown as typeof FlintElement, 'flint-dialog-title': FlintDialogTitle as unknown as typeof FlintElement, 'flint-dialog-content': FlintDialogContent as unknown as typeof FlintElement, 'flint-dialog-actions': FlintDialogActions as unknown as typeof FlintElement, 'flint-popup': FlintPopup as unknown as typeof FlintElement, &#125;` |  |
 | `value` | `value` | `string` | `''` | Selected date as ISO string (YYYY-MM-DD). |
 | `label` | `label` | `string` | `'Date'` | Label shown above the field. |
 | `placeholder` | `placeholder` | `string` | `'MM/DD/YYYY'` | Placeholder shown in the empty field. |

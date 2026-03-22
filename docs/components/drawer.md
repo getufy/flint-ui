@@ -25,7 +25,6 @@ import { FlintDrawer } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `dependencies` | `dependencies` | `object` | `&#123; 'flint-backdrop': FlintBackdrop as unknown as typeof FlintElement &#125;` |  |
 | `open` | `open` | `boolean` | `false` | Whether the drawer is open. |
 | `defaultOpen` | `default-open` | `boolean` | `false` | Initial open state for uncontrolled usage. |
 | `placement` | `placement` | `Placement` | `'left'` | Side from which the drawer slides in. |

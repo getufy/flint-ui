@@ -30,7 +30,6 @@ A data-driven tree view that renders its structure from an \`items\` array.
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`dependencies\` | \`dependencies\` | \`object\` | \`&#123; 'flint-tree-item': FlintTreeItem as unknown as typeof FlintElement &#125;\` |  |
 | \`items\` | \`items\` | \`RichTreeItem[]\` | \`[]\` | Array of item data objects. |
 | \`dataSource\` | \`dataSource\` | \`RichTreeViewDataSource\` | — | Optional lazy-load data source. |
 | \`getItemId\` | \`getItemId\` | \`(item) =&gt; string\` | — | Extract unique ID (default: \`item.id\`). |

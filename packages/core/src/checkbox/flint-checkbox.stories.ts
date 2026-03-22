@@ -20,7 +20,6 @@ Checkbox: a form control for boolean selection.
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`shadowRootOptions\` | \`shadowRootOptions\` | \`object\` | \`&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;\` |  |
 | \`checked\` | \`checked\` | \`boolean\` | \`false\` | Current checked state (controlled). When set, the component reflects this state and does not manage its own state. |
 | \`indeterminate\` | \`indeterminate\` | \`boolean\` | \`false\` | Displays the checkbox in an indeterminate state. |
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the checkbox and prevents interaction. |

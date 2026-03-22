@@ -20,8 +20,6 @@ Combobox: a free-text input with dropdown suggestions.
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`shadowRootOptions\` | \`shadowRootOptions\` | \`object\` | \`&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;\` |  |
-| \`dependencies\` | \`dependencies\` | \`Record&lt;string, typeof FlintElement&gt;\` | \`&#123; 'flint-popup': FlintPopup, &#125;\` |  |
 | \`options\` | \`options\` | \`ComboboxOption[]\` | \`[]\` | The list of suggestion options. |
 | \`value\` | \`value\` | \`string\` | \`''\` | The current text value. |
 | \`placeholder\` | \`placeholder\` | \`string\` | \`''\` | Placeholder text shown when the input is empty. |

@@ -21,7 +21,6 @@ A Switch component for toggling settings.
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`shadowRootOptions\` | \`shadowRootOptions\` | \`object\` | \`&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;\` |  |
 | \`checked\` | \`checked\` | \`boolean\` | \`false\` | Current checked state (controlled). When set, the component reflects this state and does not manage its own state. |
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Disables the switch and prevents interaction. |
 | \`required\` | \`required\` | \`boolean\` | \`false\` | Marks the switch as required for form validation. |

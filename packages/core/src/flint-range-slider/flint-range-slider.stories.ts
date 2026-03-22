@@ -19,7 +19,6 @@ A range slider that lets users select a start and end value within a range.
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`shadowRootOptions\` | \`shadowRootOptions\` | \`object\` | \`&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;\` |  |
 | \`value\` | \`value\` | \`[number, number]\` | \`[25, 75]\` | Current [start, end] values. |
 | \`min\` | \`min\` | \`number\` | \`0\` | Minimum bound (default: 0). |
 | \`max\` | \`max\` | \`number\` | \`100\` | Maximum bound (default: 100). |

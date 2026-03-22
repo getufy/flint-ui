@@ -24,7 +24,6 @@ Slider: a range input for selecting a numeric value.
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`shadowRootOptions\` | \`shadowRootOptions\` | \`object\` | \`&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;\` |  |
 | \`value\` | \`value\` | \`number\` | \`50\` | Current slider value. |
 | \`defaultValue\` | \`default-value\` | \`number \\| undefined\` | \`undefined\` | Initial value for uncontrolled usage. |
 | \`min\` | \`min\` | \`number\` | \`0\` | Minimum allowed value. |

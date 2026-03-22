@@ -29,7 +29,6 @@ import { FlintInput } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `shadowRootOptions` | `shadowRootOptions` | `object` | `&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;` |  |
 | `label` | `label` | `string` | `''` | Label text displayed above the input. |
 | `value` | `value` | `string` | `''` | Current value (controlled). When set, the component reflects this value and does not manage its own state. |
 | `type` | `type` | `string` | `'text'` | HTML input type (text, email, password, etc.). |

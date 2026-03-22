@@ -22,7 +22,6 @@ Rating: a star-based rating input.
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`shadowRootOptions\` | \`shadowRootOptions\` | \`object\` | \`&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;\` |  |
 | \`value\` | \`value\` | \`number\` | \`0\` | Current rating value. |
 | \`max\` | \`max\` | \`number\` | \`5\` | Maximum number of stars. |
 | \`readonly\` | \`readonly\` | \`boolean\` | \`false\` | Whether the rating is read-only. |

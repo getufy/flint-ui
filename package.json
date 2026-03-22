@@ -61,6 +61,10 @@
       "eslint --no-warn-ignored --config packages/core/eslint.config.js"
     ]
   },
+  "overrides": {
+    "esbuild": ">=0.25.0",
+    "flatted": ">=3.4.2"
+  },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.11.0",
     "@size-limit/esbuild": "^12.0.1",

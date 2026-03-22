@@ -25,7 +25,6 @@ import { FlintTextarea } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `shadowRootOptions` | `shadowRootOptions` | `object` | `&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;` |  |
 | `value` | `value` | `string` | `''` | Current textarea value. |
 | `placeholder` | `placeholder` | `string` | `''` | Placeholder text shown when empty. |
 | `disabled` | `disabled` | `boolean` | `false` | Disables the textarea and prevents interaction. |

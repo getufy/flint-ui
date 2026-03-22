@@ -85,7 +85,6 @@ import { FlintBottomNavigation } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `dependencies` | `dependencies` | `object` | `&#123; 'flint-bottom-navigation-action': FlintBottomNavigationAction as unknown as typeof FlintElement, &#125;` |  |
 | `value` | `value` | `unknown` | — | The value of the currently selected action. |
 | `defaultValue` | `default-value` | `unknown \| undefined` | — | Initial selected value for uncontrolled usage. |
 | `showLabels` | `show-labels` | `boolean` | `false` | If true, all labels are shown at all times. |

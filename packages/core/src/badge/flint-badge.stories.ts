@@ -42,12 +42,13 @@ A badge component that generates a small badge at the top-right of its children.
 |---|---|
 | \`--flint-badge-background\` | \`var(--flint-primary-color\` |
 | \`--flint-badge-color\` | \`var(--flint-text-color-on-primary\` |
+| \`--flint-badge-border-color\` | \`var(--flint-background\` |
 | \`--flint-font-family\` | — |
-| \`--flint-surface-1\` | — |
 | \`--flint-primary-color\` | — |
-| \`--flint-secondary-color\` | — |
-| \`--flint-error-color\` | — |
 | \`--flint-text-color-on-primary\` | — |
+| \`--flint-secondary-color\` | — |
+| \`--flint-text-color-on-secondary\` | — |
+| \`--flint-error-color\` | — |
 | \`--flint-success-color\` | — |
 | \`--flint-warning-color\` | — |
                 `,

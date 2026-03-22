@@ -23,7 +23,6 @@ const meta: Meta = {
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`dependencies\` | \`dependencies\` | \`object\` | \`&#123; 'flint-backdrop': FlintBackdrop as unknown as typeof FlintElement &#125;\` |  |
 | \`open\` | \`open\` | \`boolean\` | \`false\` | Current open state (controlled). When set, the component reflects this state and does not manage its own state. |
 | \`defaultOpen\` | \`default-open\` | \`boolean\` | \`false\` | Initial open state (uncontrolled). Only used on first render; ignored after mount. |
 | \`size\` | \`size\` | \`DialogSize\` | \`'md'\` | Size variant of the dialog panel. |

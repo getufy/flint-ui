@@ -25,8 +25,6 @@ import { FlintAutocomplete } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `shadowRootOptions` | `shadowRootOptions` | `object` | `&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;` |  |
-| `dependencies` | `dependencies` | `Record&lt;string, typeof FlintElement&gt;` | `&#123; 'flint-popup': FlintPopup as unknown as typeof FlintElement &#125;` |  |
 | `options` | `options` | `(AutocompleteOption \| string)[]` | `[]` | The list of selectable options. Accepts `AutocompleteOption[]` or `string[]`. |
 | `freeSolo` | `freeSolo` | `boolean` | `false` | When true, allows arbitrary values that are not in the options list. |
 | `disabled` | `disabled` | `boolean` | `false` | Whether the autocomplete input is disabled. |

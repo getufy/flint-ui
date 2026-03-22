@@ -86,7 +86,10 @@ Chip: a compact element representing an input, attribute, or action.
 | \`--flint-primary-color\` | — |
 | \`--flint-text-color-on-primary\` | — |
 | \`--flint-secondary-color\` | — |
+| \`--flint-text-color-on-secondary\` | — |
+| \`--flint-primary-color-hover\` | — |
 | \`--flint-shadow-sm\` | — |
+| \`--flint-secondary-color-hover\` | — |
 | \`--flint-avatar-size\` | \`24px\` |
                 `,
             },

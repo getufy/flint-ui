@@ -66,6 +66,7 @@ import { FlintButtonGroup } from '@getufy/flint-ui';
 | `--flint-neutral-color` | — |
 | `--flint-neutral-color-hover` | — |
 | `--flint-neutral-color-active` | — |
+| `--flint-text-color-on-secondary` | — |
 | `--flint-shadow-sm` | — |
 | `--flint-surface-1` | `transparent` |
 | `--flint-text-color` | — |
@@ -157,7 +158,6 @@ import { FlintToggleButtonGroup } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `dependencies` | `dependencies` | `object` | `&#123; 'flint-toggle-button': FlintToggleButton as unknown as typeof FlintElement &#125;` |  |
 | `value` | `value` | `string \| string[]` | `''` | Currently selected value(s). A string when exclusive, an array otherwise. |
 | `defaultValue` | `default-value` | `string \| string[]` | `''` | Initial selected value(s) for uncontrolled usage. |
 | `exclusive` | `exclusive` | `boolean` | `true` | Whether only one button can be selected at a time. |

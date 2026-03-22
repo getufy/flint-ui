@@ -90,6 +90,7 @@ a range of pages.
 | \`--flint-pagination-outlined-hover-bg\` | \`var(--flint-primary-color-light\` |
 | \`--flint-pagination-outlined-hover-border\` | \`var(--flint-primary-color\` |
 | \`--flint-pagination-active-bg-secondary\` | \`var(--flint-secondary-color\` |
+| \`--flint-pagination-active-color-secondary\` | \`var(--flint-text-color-on-secondary\` |
 | \`--flint-pagination-active-bg-standard\` | \`var(--flint-text-color\` |
 | \`--flint-pagination-btn-radius-rounded\` | \`8px\` |
 | \`--flint-pagination-btn-size-sm\` | \`28px\` |

@@ -25,7 +25,6 @@ import { FlintNavigationMenuContent } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `dependencies` | `dependencies` | `object` | `&#123; 'flint-popup': FlintPopup &#125;` |  |
 | `id` | `id` | `string` | `''` | Unique identifier for this content panel |
 | `open` | `open` | `boolean` | `false` | Whether the content is open/visible |
 | `dir` | `dir` | `'ltr' \| 'rtl'` | `'ltr'` | The direction (ltr or rtl) |

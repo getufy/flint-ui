@@ -28,7 +28,6 @@ A component that displays a text label when users hover over or focus on an elem
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`dependencies\` | \`dependencies\` | \`Record&lt;string, typeof FlintElement&gt;\` | \`&#123; 'flint-popup': FlintPopup, &#125;\` |  |
 | \`label\` | \`label\` | \`string\` | \`''\` | Text content displayed inside the tooltip. |
 | \`placement\` | \`placement\` | \`Placement\` | \`'top'\` | Preferred placement of the tooltip relative to the trigger element. |
 | \`arrow\` | \`arrow\` | \`boolean\` | \`false\` | Show a small arrow pointing toward the trigger element. |

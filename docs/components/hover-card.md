@@ -78,7 +78,6 @@ import { FlintHoverCardContent } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `dependencies` | `dependencies` | `object` | `&#123; 'flint-popup': FlintPopup &#125;` |  |
 | `placement` | `placement` | `Placement` | `'bottom'` | Which side of the trigger to display the card on. |
 | `align` | `align` | `'start' \| 'center' \| 'end'` | `'center'` | Alignment of the card along the cross axis relative to the trigger. |
 | `open` | `open` | `boolean` | `false` | Whether the card is visible. Managed by the parent `flint-hover-card`. |

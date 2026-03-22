@@ -124,7 +124,6 @@ A date range picker combining a segmented field and a dual-month calendar.
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`dependencies\` | \`dependencies\` | \`object\` | \`&#123; 'flint-dialog': FlintDialog as unknown as typeof FlintElement, 'flint-dialog-title': FlintDialogTitle as unknown as typeof FlintElement, 'flint-dialog-content': FlintDialogContent as unknown as typeof FlintElement, 'flint-dialog-actions': FlintDialogActions as unknown as typeof FlintElement, 'flint-single-input-date-range-field': FlintSingleInputDateRangeField as unknown as typeof FlintElement, 'flint-date-range-calendar': FlintDateRangeCalendar as unknown as typeof FlintElement, 'flint-popup': FlintPopup as unknown as typeof FlintElement, &#125;\` |  |
 | \`value\` | \`value\` | \`DateRange\` | \`[...EMPTY_RANGE]\` | Selected range [startISO, endISO]. Empty strings mean unset. |
 | \`label\` | \`label\` | \`string\` | \`'Date Range'\` | Label shown above the field. |
 | \`variant\` | \`variant\` | \`'desktop' \\| 'mobile' \\| 'static' \\| 'auto'\` | \`'desktop'\` | Variant: 'desktop' \\| 'mobile' \\| 'static' \\| 'auto'. |

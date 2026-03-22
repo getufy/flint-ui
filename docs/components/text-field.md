@@ -25,7 +25,6 @@ import { FlintTextField } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `shadowRootOptions` | `shadowRootOptions` | `object` | `&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;` |  |
 | `label` | `label` | `string` | `''` | Label text displayed above the input. |
 | `value` | `value` | `string` | `''` | Current value of the text field. |
 | `placeholder` | `placeholder` | `string` | `''` | Placeholder text shown when the input is empty. |
