@@ -76,10 +76,15 @@ export class FlintVirtualScroll<T = unknown> extends FlintElement {
 
     private _resizeObserver: ResizeObserver | null = null;
 
+    willUpdate() {
+        if (this.itemHeight <= 0) this.itemHeight = 1;
+    }
+
     connectedCallback() {
         super.connectedCallback();
         this.addEventListener('scroll', this._handleScroll, { passive: true });
         this._resizeObserver = new ResizeObserver(entries => {
+            if (!this.isConnected) return;
             for (const entry of entries) {
                 this._containerHeight = entry.contentRect.height;
             }

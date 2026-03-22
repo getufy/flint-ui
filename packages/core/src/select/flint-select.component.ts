@@ -202,6 +202,8 @@ export class FlintSelect extends FormAssociated(FlintElement) {
       validateEnum('flint-select', 'size', this.size, ['sm', 'md', 'lg']);
     }
 
+    if (this.itemHeight <= 0) this.itemHeight = 1;
+
     // Normalize value: accept string | string[], always store as string[]
     if (typeof this.value === 'string') {
       this.value = this.value ? [this.value] : [];

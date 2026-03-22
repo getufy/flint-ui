@@ -1231,6 +1231,13 @@ describe('flint-select — virtualization', () => {
     expect(selected).not.toBeNull();
   });
 
+  it('clamps itemHeight to 1 when set to 0 in virtual mode', async () => {
+    const el = await fixture<FlintSelect>(html`
+      <flint-select ?virtualize=${true} .options=${manyOpts} .itemHeight=${0} .visibleItems=${8}></flint-select>
+    `);
+    expect(el.itemHeight).toBe(1);
+  });
+
   it('respects custom itemHeight', async () => {
     const el = await fixture<FlintSelect>(html`
       <flint-select ?virtualize=${true} .options=${manyOpts} .itemHeight=${50} .visibleItems=${6}></flint-select>

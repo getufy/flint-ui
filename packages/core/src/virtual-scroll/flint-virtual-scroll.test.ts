@@ -119,6 +119,16 @@ describe('flint-virtual-scroll — properties', () => {
         expect(el.itemHeight).toBe(60);
     });
 
+    it('clamps itemHeight to 1 when set to 0', async () => {
+        const el = await make({ items: makeItems(10), itemHeight: 0 });
+        expect(el.itemHeight).toBe(1);
+    });
+
+    it('clamps negative itemHeight to 1', async () => {
+        const el = await make({ items: makeItems(10), itemHeight: -5 });
+        expect(el.itemHeight).toBe(1);
+    });
+
     it('accepts custom overscan', async () => {
         const el = await make({ items: makeItems(10), overscan: 10 });
         expect(el.overscan).toBe(10);

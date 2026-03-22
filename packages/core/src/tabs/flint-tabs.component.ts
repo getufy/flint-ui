@@ -228,9 +228,9 @@ export class FlintTabList extends FlintElement {
     firstUpdated() {
         if (typeof ResizeObserver !== 'undefined') {
             this._ro = new ResizeObserver(() => { this._checkScroll(); this.syncIndicator(); });
-            this._ro.observe(this._area);
+            if (this._area) this._ro.observe(this._area);
         }
-        this._area.addEventListener('scroll', this._onScroll, { passive: true });
+        this._area?.addEventListener('scroll', this._onScroll, { passive: true });
         this._checkScroll();
         requestAnimationFrame(() => this.syncIndicator());
     }
