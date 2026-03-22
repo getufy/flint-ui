@@ -48,7 +48,7 @@ export class FlintToggle extends FlintElement {
         }
     }
 
-    private _handleClick() {
+    private _handleClick = () => {
         if (this.disabled) return;
         this.pressed = !this.pressed;
         this.dispatchEvent(new CustomEvent('flint-toggle-change', {
@@ -56,14 +56,14 @@ export class FlintToggle extends FlintElement {
             bubbles: true,
             composed: true,
         }));
-    }
+    };
 
-    private _handleKeydown(e: KeyboardEvent) {
+    private _handleKeydown = (e: KeyboardEvent) => {
         if (e.key === ' ' || e.key === 'Enter') {
             e.preventDefault();
             this._handleClick();
         }
-    }
+    };
 
     override render() {
         return html`

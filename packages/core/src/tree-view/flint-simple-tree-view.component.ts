@@ -228,23 +228,23 @@ export class FlintSimpleTreeView extends FlintElement {
 
     // ─── Event handlers ──────────────────────────────────────────────────────────
 
-    private _handleFocusIn(e: FocusEvent) {
+    private _handleFocusIn = (e: FocusEvent) => {
         const target = e.target as Element;
         if (target.tagName !== 'FLINT-TREE-ITEM') return;
         // Keep roving tabindex consistent: make sure the focused item has tabindex=0
         this._getAllItems().forEach(i => i.setAttribute('tabindex', '-1'));
         (target as FlintTreeItem).setAttribute('tabindex', '0');
-    }
+    };
 
     /** Handles the `flint-tree-item-toggle` event from the expand icon button. */
-    private _handleFlintToggle(e: Event) {
+    private _handleFlintToggle = (e: Event) => {
         const { itemId, expanded } = (e as CustomEvent).detail as { itemId: string; expanded: boolean };
         const item = this.getItemDOMElement(itemId);
         if (item) this._handleToggle(item, expanded);
-    }
+    };
 
     /** Handles `flint-tree-item-click` (row click). Also triggers expansion in content mode. */
-    private _handleItemClick(e: Event) {
+    private _handleItemClick = (e: Event) => {
         const { itemId } = (e as CustomEvent).detail as { itemId: string };
 
         // In content mode, clicking the row also toggles expansion for parent items
@@ -260,7 +260,7 @@ export class FlintSimpleTreeView extends FlintElement {
             detail: { itemId },
             bubbles: false,
         }));
-    }
+    };
 
     private _handleKeydown = (e: KeyboardEvent) => {
         const target = e.target as Element;
@@ -370,11 +370,11 @@ export class FlintSimpleTreeView extends FlintElement {
 
     // ─── Render ──────────────────────────────────────────────────────────────────
 
-    private _onSlotChange() {
+    private _onSlotChange = () => {
         this._initRovingTabindex();
         this._initExpansion();
         this._syncExpansion();
-    }
+    };
 
     render() {
         return html`

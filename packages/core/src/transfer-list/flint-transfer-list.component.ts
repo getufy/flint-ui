@@ -77,35 +77,35 @@ export class FlintTransferList extends FlintElement {
         }
     }
 
-    private _moveRight() {
+    private _moveRight = () => {
         if (this.disabled) return;
         this.value = [...this.value, ...this.leftChecked];
         this.leftChecked = [];
         this._dispatchChange();
-    }
+    };
 
-    private _moveLeft() {
+    private _moveLeft = () => {
         if (this.disabled) return;
         this.value = this.value.filter(v => !this.rightChecked.includes(v));
         this.rightChecked = [];
         this._dispatchChange();
-    }
+    };
 
-    private _moveAllRight() {
+    private _moveAllRight = () => {
         if (this.disabled) return;
         this.value = this.options.map(opt => opt.value);
         this.leftChecked = [];
         this.rightChecked = [];
         this._dispatchChange();
-    }
+    };
 
-    private _moveAllLeft() {
+    private _moveAllLeft = () => {
         if (this.disabled) return;
         this.value = [];
         this.leftChecked = [];
         this.rightChecked = [];
         this._dispatchChange();
-    }
+    };
 
     private _dispatchChange() {
         this.dispatchEvent(new CustomEvent('flint-transfer-list-change', {

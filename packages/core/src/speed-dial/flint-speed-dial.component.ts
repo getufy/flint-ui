@@ -41,14 +41,14 @@ export class FlintSpeedDialAction extends FlintElement {
         if (!this.hasAttribute('role')) this.setAttribute('role', 'menuitem');
     }
 
-    private _handleClick() {
+    private _handleClick = () => {
         if (this.disabled) return;
         this.dispatchEvent(new CustomEvent('flint-speed-dial-action-click', {
             bubbles: true,
             composed: true,
             detail: { name: this.name, tooltipTitle: this.tooltipTitle },
         }));
-    }
+    };
 
     private get _tooltipVisible() {
         return this.tooltipOpen || this._hovered;
@@ -199,10 +199,10 @@ export class FlintSpeedDial extends FlintElement {
         ));
     }
 
-    private _toggle() {
+    private _toggle = () => {
         if (this.disabled) return;
         this._setOpen(!this.open);
-    }
+    };
 
     /* ── Keyboard handler ────────────────────────────────────────── */
 
@@ -273,24 +273,24 @@ export class FlintSpeedDial extends FlintElement {
     private _suppressNextOpen = false;
 
     /** Opens the dial when FAB receives keyboard focus from outside the component. */
-    private _onFabFocus(e: FocusEvent) {
+    private _onFabFocus = (e: FocusEvent) => {
         if (this._suppressNextOpen) return;
         // Open only when focus arrives from another element (keyboard tab-in), not from mouse.
         if (e.relatedTarget !== null && !this.open) {
             this._setOpen(true);
         }
-    }
+    };
 
     /* ── Action click → close ────────────────────────────────────── */
 
-    private _onActionClick() {
+    private _onActionClick = () => {
         // Suppress FAB's auto-open-on-focus so returning focus here doesn't reopen the dial.
         this._suppressNextOpen = true;
         this._setOpen(false);
         this._focusFab();
         // Reset flag after the synchronous focus event has fired.
         void Promise.resolve().then(() => { this._suppressNextOpen = false; });
-    }
+    };
 
     /* ── Focus-out → close ───────────────────────────────────────── */
 

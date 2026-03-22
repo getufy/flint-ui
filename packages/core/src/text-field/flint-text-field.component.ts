@@ -120,7 +120,7 @@ export class FlintTextField extends FormAssociated(FlintElement) {
         this._syncCustomStates();
     }
 
-    private _handleInput(e: InputEvent) {
+    private _handleInput = (e: InputEvent) => {
         this.value = (e.target as HTMLInputElement).value;
         this._updateFormValue();
         this.dispatchEvent(new CustomEvent('flint-text-field-input', {
@@ -128,9 +128,9 @@ export class FlintTextField extends FormAssociated(FlintElement) {
             bubbles: true,
             composed: true
         }));
-    }
+    };
 
-    private _handleChange(e: Event) {
+    private _handleChange = (e: Event) => {
         this.value = (e.target as HTMLInputElement).value;
         this._updateFormValue();
         this.dispatchEvent(new CustomEvent('flint-text-field-change', {
@@ -138,9 +138,9 @@ export class FlintTextField extends FormAssociated(FlintElement) {
             bubbles: true,
             composed: true
         }));
-    }
+    };
 
-    private _handleClear() {
+    private _handleClear = () => {
         this.value = '';
         this._updateFormValue();
         this.dispatchEvent(new CustomEvent('flint-text-field-clear', {
@@ -158,19 +158,19 @@ export class FlintTextField extends FormAssociated(FlintElement) {
             composed: true,
         }));
         this.shadowRoot?.querySelector('input')?.focus();
-    }
+    };
 
-    private _togglePasswordVisibility() {
+    private _togglePasswordVisibility = () => {
         this.passwordVisible = !this.passwordVisible;
-    }
+    };
 
-    private _handleFocus() {
+    private _handleFocus = () => {
         this._focused = true;
-    }
+    };
 
-    private _handleBlur() {
+    private _handleBlur = () => {
         this._focused = false;
-    }
+    };
 
     render() {
         const isError = this.error || !!this.errorMessage;

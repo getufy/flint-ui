@@ -74,7 +74,7 @@ export class FlintTooltip extends FlintElement {
         }
     }
 
-    private _show(): void {
+    private _show = (): void => {
         if (this.disabled || !this.label) return;
         if (this._closeTimer !== null) {
             clearTimeout(this._closeTimer);
@@ -97,9 +97,9 @@ export class FlintTooltip extends FlintElement {
             void this._runShowAnimation();
             this.dispatchEvent(new CustomEvent('flint-tooltip-show', { bubbles: true, composed: true }));
         }
-    }
+    };
 
-    private _hide(): void {
+    private _hide = (): void => {
         if (this._openTimer !== null) {
             clearTimeout(this._openTimer);
             this._openTimer = null;
@@ -123,9 +123,9 @@ export class FlintTooltip extends FlintElement {
                 this.dispatchEvent(new CustomEvent('flint-tooltip-hide', { bubbles: true, composed: true }));
             });
         }
-    }
+    };
 
-    private _handleKeydown(e: KeyboardEvent): void {
+    private _handleKeydown = (e: KeyboardEvent): void => {
         if (e.key === 'Escape' && this._visible) {
             this._clearTimers();
             void this._runHideAnimation().then(() => {
@@ -134,7 +134,7 @@ export class FlintTooltip extends FlintElement {
                 this._cleanupHoist();
             });
         }
-    }
+    };
 
     /* ── Hoist (fixed positioning) ─────────────────────────────────── */
 

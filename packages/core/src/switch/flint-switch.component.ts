@@ -79,7 +79,14 @@ export class FlintSwitch extends FormAssociated(FlintElement) {
         this._formControl.updateDataAttributes();
     }
 
-    private _handleClick() {
+    private _handleKeydown = (e: KeyboardEvent) => {
+        if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            this._handleClick();
+        }
+    };
+
+    private _handleClick = () => {
         if (this.disabled) return;
         this.checked = !this.checked;
         this.dispatchEvent(new CustomEvent('flint-switch-change', {
@@ -87,7 +94,7 @@ export class FlintSwitch extends FormAssociated(FlintElement) {
             bubbles: true,
             composed: true,
         }));
-    }
+    };
 
     override render() {
         const hasLabel = Boolean(this.label);
@@ -103,7 +110,7 @@ export class FlintSwitch extends FormAssociated(FlintElement) {
           aria-label=${this.ariaLabel ?? nothing}
           aria-labelledby=${hasLabel ? this._labelId : nothing}
           .tabIndex=${this.disabled ? -1 : 0}
-          @keydown=${(e: KeyboardEvent) => (e.key === ' ' || e.key === 'Enter') && this._handleClick()}
+          @keydown=${this._handleKeydown}
         >
           <div class="thumb" part="thumb">
             <div class="icon-wrapper">

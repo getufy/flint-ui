@@ -155,23 +155,23 @@ export class FlintSnackbar extends FlintElement {
         await animateTo(snackbar, keyframes, animation.options);
     }
 
-    private _handleMouseEnter() {
+    private _handleMouseEnter = () => {
         if (!this.pauseOnHover || !this.open || this._timer === null) return;
         // Snapshot remaining time at hover start so fake-timer tests work correctly
         const elapsed = Date.now() - this._timerStartedAt;
         this._remainingTime = Math.max(0, this._remainingTime - elapsed);
         this._clearTimer();
-    }
+    };
 
-    private _handleMouseLeave() {
+    private _handleMouseLeave = () => {
         if (!this.pauseOnHover || !this.open) return;
         this._startTimer(this._remainingTime);
-    }
+    };
 
-    private _handleActionSlotChange(e: Event) {
+    private _handleActionSlotChange = (e: Event) => {
         const slot = e.target as HTMLSlotElement;
         this._hasAction = slot.assignedNodes({ flatten: true }).length > 0;
-    }
+    };
 
     /** Closes the snackbar. */
     close() {

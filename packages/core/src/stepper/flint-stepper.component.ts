@@ -136,10 +136,10 @@ export class FlintStep extends FlintElement {
         if (!this.hasAttribute('role')) this.setAttribute('role', 'listitem');
     }
 
-    private _fire() {
+    private _fire = () => {
         if (this.disabled) return;
         this.dispatchEvent(new CustomEvent<FlintStepClickDetail>('flint-step-click', { detail: { step: this.stepIndex }, bubbles: true, composed: true }));
-    }
+    };
 
     private _icon() {
         const cls = { 'icon-circle': true, active: this.active, completed: this.completed, error: this.error };
@@ -328,9 +328,9 @@ export class FlintMobileStepper extends FlintElement {
     /** Guards against steps=0 (divide-by-zero, nonsensical UI). */
     private get _safeSteps() { return Math.max(1, this.steps); }
 
-    private _emit(name: string) {
+    private _emit = (name: string) => {
         this.dispatchEvent(new CustomEvent(name, { bubbles: true, composed: true }));
-    }
+    };
 
     private _progress() {
         const current = this.activeStep + 1;

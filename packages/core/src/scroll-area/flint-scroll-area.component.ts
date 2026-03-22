@@ -58,15 +58,15 @@ export class FlintScrollBar extends FlintElement {
         return this.closest('flint-scroll-area') as FlintScrollArea | null;
     }
 
-    private _onPointerDown(e: PointerEvent) {
+    private _onPointerDown = (e: PointerEvent) => {
         e.preventDefault();
         this._dragging = true;
         this._dragStart = this.orientation === 'vertical' ? e.clientY : e.clientX;
         this._scrollStart = this._area?._getScrollPos(this.orientation) ?? 0;
         (e.currentTarget as Element).setPointerCapture(e.pointerId);
-    }
+    };
 
-    private _onPointerMove(e: PointerEvent) {
+    private _onPointerMove = (e: PointerEvent) => {
         if (!this._dragging) return;
         const area = this._area;
         if (!area) return;
@@ -82,14 +82,14 @@ export class FlintScrollBar extends FlintElement {
             this.orientation,
             this._scrollStart + (delta / trackSize) * scrollRange,
         );
-    }
+    };
 
-    private _onPointerUp(e: PointerEvent) {
+    private _onPointerUp = (e: PointerEvent) => {
         if (this._dragging) {
             this._dragging = false;
             (e.currentTarget as Element).releasePointerCapture(e.pointerId);
         }
-    }
+    };
 
     render() {
         const isVert = this.orientation === 'vertical';
@@ -262,7 +262,7 @@ export class FlintScrollArea extends FlintElement {
 
     // ── Internal helpers ───────────────────────────────────────────────
 
-    private _onScroll() {
+    private _onScroll = () => {
         this._updateOverflow();
         this._syncScrollBars();
         if (this.type === 'scroll') {
@@ -272,7 +272,7 @@ export class FlintScrollArea extends FlintElement {
                 this._isScrolling = false;
             }, 600);
         }
-    }
+    };
 
     private _updateOverflow() {
         const vp = this._viewport;
@@ -345,16 +345,16 @@ export class FlintScrollArea extends FlintElement {
 
     // ── Internal Y-thumb drag ──────────────────────────────────────────
 
-    private _onThumbYDown(e: PointerEvent) {
+    private _onThumbYDown = (e: PointerEvent) => {
         e.preventDefault();
         this._draggingY = true;
         this._dragYStart = e.clientY;
         this._scrollYStart = this._getScrollPos('vertical');
         (e.currentTarget as Element).setPointerCapture(e.pointerId);
         this.requestUpdate();
-    }
+    };
 
-    private _onThumbYMove(e: PointerEvent) {
+    private _onThumbYMove = (e: PointerEvent) => {
         if (!this._draggingY) return;
         const trackH = this._scrollbarY?.offsetHeight ?? 0;
         if (trackH === 0) return;
@@ -363,28 +363,28 @@ export class FlintScrollArea extends FlintElement {
             'vertical',
             this._scrollYStart + (delta / trackH) * this._getScrollRange('vertical'),
         );
-    }
+    };
 
-    private _onThumbYUp(e: PointerEvent) {
+    private _onThumbYUp = (e: PointerEvent) => {
         if (this._draggingY) {
             this._draggingY = false;
             (e.currentTarget as Element).releasePointerCapture(e.pointerId);
             this.requestUpdate();
         }
-    }
+    };
 
     // ── Internal X-thumb drag ──────────────────────────────────────────
 
-    private _onThumbXDown(e: PointerEvent) {
+    private _onThumbXDown = (e: PointerEvent) => {
         e.preventDefault();
         this._draggingX = true;
         this._dragXStart = e.clientX;
         this._scrollXStart = this._getScrollPos('horizontal');
         (e.currentTarget as Element).setPointerCapture(e.pointerId);
         this.requestUpdate();
-    }
+    };
 
-    private _onThumbXMove(e: PointerEvent) {
+    private _onThumbXMove = (e: PointerEvent) => {
         if (!this._draggingX) return;
         const trackW = this._scrollbarX?.offsetWidth ?? 0;
         if (trackW === 0) return;
@@ -393,19 +393,19 @@ export class FlintScrollArea extends FlintElement {
             'horizontal',
             this._scrollXStart + (delta / trackW) * this._getScrollRange('horizontal'),
         );
-    }
+    };
 
-    private _onThumbXUp(e: PointerEvent) {
+    private _onThumbXUp = (e: PointerEvent) => {
         if (this._draggingX) {
             this._draggingX = false;
             (e.currentTarget as Element).releasePointerCapture(e.pointerId);
             this.requestUpdate();
         }
-    }
+    };
 
     // ── Slot change ────────────────────────────────────────────────────
 
-    private _onSlotChange() {
+    private _onSlotChange = () => {
         if (this._resizeObserver) {
             const slot = this.shadowRoot!.querySelector(
                 'slot:not([name])',
@@ -416,7 +416,7 @@ export class FlintScrollArea extends FlintElement {
         }
         this._updateOverflow();
         this._syncScrollBars();
-    }
+    };
 
     render() {
         const thumbYStyle = `height: ${this._thumbYSize}%; top: ${this._thumbYPos}%;`;

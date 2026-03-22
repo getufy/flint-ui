@@ -280,7 +280,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
     }
   };
 
-  private _toggleDropdown() {
+  private _toggleDropdown = () => {
     if (this.disabled || this.readonly) return;
     if (!this._isOpen) {
       const rect = this.getBoundingClientRect();
@@ -309,7 +309,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
     } else {
       void this._closeDropdown();
     }
-  }
+  };
 
   private _handleOptionClick(option: SelectOption, e: Event) {
     if (option.disabled) return;

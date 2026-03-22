@@ -96,16 +96,16 @@ export class FlintTreeItem extends FlintElement {
     this.setAttribute('aria-disabled', String(this.disabled));
   }
 
-  private _onSlotChange(e: Event) {
+  private _onSlotChange = (e: Event) => {
     const slot = e.target as HTMLSlotElement;
     const assigned = slot.assignedElements({ flatten: true });
     const hasChildren = assigned.some(el => el.tagName === 'FLINT-TREE-ITEM');
     if (hasChildren !== this._hasSlottedChildren) {
       this._hasSlottedChildren = hasChildren;
     }
-  }
+  };
 
-  private _toggleExpand(e: MouseEvent) {
+  private _toggleExpand = (e: MouseEvent) => {
     e.stopPropagation();
     if (this.disabled) return;
     this.dispatchEvent(new CustomEvent('flint-tree-item-toggle', {
@@ -113,16 +113,16 @@ export class FlintTreeItem extends FlintElement {
       bubbles: true,
       composed: true,
     }));
-  }
+  };
 
-  private _handleRowClick() {
+  private _handleRowClick = () => {
     if (this.disabled) return;
     this.dispatchEvent(new CustomEvent('flint-tree-item-click', {
       detail: { itemId: this.itemId },
       bubbles: true,
       composed: true,
     }));
-  }
+  };
 
   /** Computed indentation level based on nested depth */
   private get _level(): number {

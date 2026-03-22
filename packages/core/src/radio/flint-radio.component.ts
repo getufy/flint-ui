@@ -146,9 +146,9 @@ export class FlintRadioGroup extends FormAssociated(FlintElement) {
         });
     }
 
-    private _handleSlotChange() {
+    private _handleSlotChange = () => {
         this._syncChildren();
-    }
+    };
 
     render() {
         return html`
@@ -199,14 +199,14 @@ export class FlintRadio extends FlintElement {
         this.shadowRoot?.querySelector<HTMLInputElement>('input')?.focus(options);
     }
 
-    private _handleChange() {
+    private _handleChange = () => {
         if (this.disabled) return;
         this.dispatchEvent(new CustomEvent('flint-radio-select', {
             detail: { value: this.value },
             bubbles: true,
             composed: true,
         }));
-    }
+    };
 
     render() {
         return html`

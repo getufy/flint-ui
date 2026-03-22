@@ -81,10 +81,10 @@ export class FlintRating extends FormAssociated(FlintElement) {
         this._hoverValue = val;
     }
 
-    private _handleMouseLeave() {
+    private _handleMouseLeave = () => {
         if (!this._isInteractive()) return;
         this._hoverValue = -1;
-    }
+    };
 
     private _handleMouseMove(e: MouseEvent, starIndex: number) {
         if (!this._isInteractive() || this.precision !== 0.5) return;

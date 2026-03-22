@@ -88,14 +88,14 @@ export class FlintTab extends FlintElement {
         this.shadowRoot?.querySelector<HTMLElement>('button,a')?.focus();
     }
 
-    private _fire() {
+    private _fire = () => {
         if (this.disabled) return;
         this.dispatchEvent(new CustomEvent('flint-tab-click', {
             detail: { value: this.value }, bubbles: true, composed: true,
         }));
-    }
+    };
 
-    private _updateSizer() {
+    private _updateSizer = () => {
         const slot = this.shadowRoot?.querySelector<HTMLSlotElement>('slot:not([name])');
         if (slot) {
             this._slotText = slot.assignedNodes({ flatten: true })
@@ -103,7 +103,7 @@ export class FlintTab extends FlintElement {
                 .join('')
                 .trim();
         }
-    }
+    };
 
     private _inner() {
         return html`
@@ -251,7 +251,7 @@ export class FlintTabList extends FlintElement {
     }
 
     /** Keyboard navigation across tabs */
-    private _onKey(e: KeyboardEvent) {
+    private _onKey = (e: KeyboardEvent) => {
         const horiz = this.orientation === 'horizontal';
         const prev = horiz ? 'ArrowLeft' : 'ArrowUp';
         const next = horiz ? 'ArrowRight' : 'ArrowDown';
@@ -276,12 +276,12 @@ export class FlintTabList extends FlintElement {
         tabs[idx]?.dispatchEvent(new CustomEvent('flint-tab-click', {
             detail: { value: tabs[idx]!.value }, bubbles: true, composed: true,
         }));
-    }
+    };
 
-    private _onSlotChange() {
+    private _onSlotChange = () => {
         this._checkScroll();
         requestAnimationFrame(() => this.syncIndicator());
-    }
+    };
 
     render() {
         const showBtns = this.variant === 'scrollable' && this.scrollButtons !== 'false';

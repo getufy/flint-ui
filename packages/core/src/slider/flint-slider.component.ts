@@ -82,7 +82,7 @@ export class FlintSlider extends FormAssociated(FlintElement) {
   }
 
   // ── Event handler ─────────────────────────────────────────────────────────
-  private _handleInput(e: Event) {
+  private _handleInput = (e: Event) => {
     const input = e.target as HTMLInputElement;
     this.value = Number(input.value);
 
@@ -91,7 +91,7 @@ export class FlintSlider extends FormAssociated(FlintElement) {
       bubbles: true,
       composed: true,
     }));
-  }
+  };
 
   // ── Render ────────────────────────────────────────────────────────────────
   override render() {

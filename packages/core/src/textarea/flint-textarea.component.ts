@@ -133,23 +133,23 @@ export class FlintTextarea extends FormAssociated(FlintElement) {
         ta.style.height = `${ta.scrollHeight}px`;
     }
 
-    private _handleInput(e: Event) {
+    private _handleInput = (e: Event) => {
         this.value = (e.target as HTMLTextAreaElement).value;
         this.dispatchEvent(new CustomEvent('flint-textarea-input', {
             detail: { value: this.value },
             bubbles: true,
             composed: true,
         }));
-    }
+    };
 
-    private _handleChange(e: Event) {
+    private _handleChange = (e: Event) => {
         this.value = (e.target as HTMLTextAreaElement).value;
         this.dispatchEvent(new CustomEvent('flint-textarea-change', {
             detail: { value: this.value },
             bubbles: true,
             composed: true,
         }));
-    }
+    };
 
     override render() {
         const errorState = this.error || !!this.errorMessage;
