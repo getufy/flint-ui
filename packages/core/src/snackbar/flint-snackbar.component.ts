@@ -3,7 +3,7 @@ import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
 import { LocalizeController } from '../utilities/localize.js';
-import { getAnimation, animateTo, stopAnimations, resolveKeyframes } from '../utilities/animation-registry.js';
+import { runOverlayAnimation } from '../utilities/animation-registry.js';
 import '../utilities/animation-presets.js';
 import uiSnackbarStyles from './flint-snackbar.css?inline';
 
@@ -107,13 +107,13 @@ export class FlintSnackbar extends FlintElement {
                 this._remainingTime = this.autoHideDuration;
                 this._startTimer(this._remainingTime);
                 void this._runOpenAnimation();
-                this.dispatchEvent(new CustomEvent('flint-snackbar-open', { bubbles: true, composed: true, detail: { open: true } }));
+                this.emit('flint-snackbar-open', { open: true });
             } else {
                 this._clearTimer();
                 void this._runCloseAnimation().then(() => {
                     this._visuallyOpen = false;
                 });
-                this.dispatchEvent(new CustomEvent('flint-snackbar-close', { bubbles: true, composed: true, detail: { open: false } }));
+                this.emit('flint-snackbar-close', { open: false });
             }
         }
     }
@@ -139,23 +139,11 @@ export class FlintSnackbar extends FlintElement {
     }
 
     private async _runOpenAnimation() {
-        const snackbar = this.shadowRoot?.querySelector<HTMLElement>('.snackbar');
-        if (!snackbar) return;
-        const animation = getAnimation(this, 'snackbar.show');
-        if (!animation) return;
-        await stopAnimations(snackbar);
-        const keyframes = resolveKeyframes(this, animation);
-        await animateTo(snackbar, keyframes, animation.options);
+        await runOverlayAnimation(this, this.shadowRoot?.querySelector<HTMLElement>('.snackbar'), 'snackbar.show');
     }
 
     private async _runCloseAnimation() {
-        const snackbar = this.shadowRoot?.querySelector<HTMLElement>('.snackbar');
-        if (!snackbar) return;
-        const animation = getAnimation(this, 'snackbar.hide');
-        if (!animation) return;
-        await stopAnimations(snackbar);
-        const keyframes = resolveKeyframes(this, animation);
-        await animateTo(snackbar, keyframes, animation.options);
+        await runOverlayAnimation(this, this.shadowRoot?.querySelector<HTMLElement>('.snackbar'), 'snackbar.hide');
     }
 
     private _handleMouseEnter = () => {

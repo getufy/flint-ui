@@ -118,7 +118,7 @@ export class FlintDateField extends FlintElement {
         this._month = null; this._day = null; this._year = null;
         this._buf = '';
         (this._internals as { setFormValue?(v: null): void }).setFormValue?.(null);
-        this.dispatchEvent(new CustomEvent('flint-date-field-clear', { bubbles: true, composed: true }));
+        this.emit('flint-date-field-clear');
     }
 
     // ── Form value sync ──────────────────────────────────────────────────────
@@ -279,9 +279,7 @@ export class FlintDateField extends FlintElement {
         const iso = segmentsToIso(this._month, this._day, this._year);
         if (iso && iso !== this.value) {
             this.value = iso;
-            this.dispatchEvent(new CustomEvent('flint-date-field-change', {
-                detail: { value: iso }, bubbles: true, composed: true
-            }));
+            this.emit('flint-date-field-change', { value: iso });
         }
     }
 

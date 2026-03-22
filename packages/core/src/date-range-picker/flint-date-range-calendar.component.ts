@@ -101,9 +101,7 @@ export class FlintDateRangeCalendar extends FlintElement {
         }
 
         this.value = newRange;
-        this.dispatchEvent(new CustomEvent('flint-date-range-picker-select', {
-            detail: { value: newRange }, bubbles: true, composed: true,
-        }));
+        this.emit('flint-date-range-picker-select', { value: newRange });
     };
 
     private _handleCellHover = (cell: RangeCalendarDay) => {

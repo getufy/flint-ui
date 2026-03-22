@@ -125,3 +125,35 @@ export function resolveKeyframes(el: Element, animation: ElementAnimation): Keyf
     }
     return animation.keyframes;
 }
+
+/**
+ * Run a panel + optional overlay animation in parallel.
+ * Stops existing animations first, then starts the new ones.
+ */
+export async function runOverlayAnimation(
+    host: Element,
+    panelEl: HTMLElement | undefined | null,
+    panelAnimKey: string,
+    overlayEl?: HTMLElement | undefined | null,
+    overlayAnimKey?: string,
+): Promise<void> {
+    const panelAnim = getAnimation(host, panelAnimKey);
+    const overlayAnim = overlayAnimKey ? getAnimation(host, overlayAnimKey) : undefined;
+
+    await Promise.all([
+        panelEl ? stopAnimations(panelEl) : undefined,
+        overlayEl ? stopAnimations(overlayEl) : undefined,
+    ]);
+
+    const promises: Promise<unknown>[] = [];
+
+    if (panelAnim && panelEl) {
+        promises.push(animateTo(panelEl, resolveKeyframes(host, panelAnim), panelAnim.options));
+    }
+
+    if (overlayAnim && overlayEl) {
+        promises.push(animateTo(overlayEl, resolveKeyframes(host, overlayAnim), overlayAnim.options));
+    }
+
+    await Promise.all(promises);
+}

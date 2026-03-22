@@ -128,20 +128,12 @@ export class FlintTreeItem extends FlintElement {
   private _toggleExpand = (e: MouseEvent) => {
     e.stopPropagation();
     if (this.disabled) return;
-    this.dispatchEvent(new CustomEvent('flint-tree-item-toggle', {
-      detail: { itemId: this.itemId, expanded: !this.expanded },
-      bubbles: true,
-      composed: true,
-    }));
+    this.emit('flint-tree-item-toggle', { itemId: this.itemId, expanded: !this.expanded });
   };
 
   private _handleRowClick = (e: MouseEvent) => {
     if (this.disabled) return;
-    this.dispatchEvent(new CustomEvent('flint-tree-item-click', {
-      detail: { itemId: this.itemId, ctrlKey: e.ctrlKey || e.metaKey, shiftKey: e.shiftKey },
-      bubbles: true,
-      composed: true,
-    }));
+    this.emit('flint-tree-item-click', { itemId: this.itemId, ctrlKey: e.ctrlKey || e.metaKey, shiftKey: e.shiftKey });
   };
 
   /** Computed indentation level based on nested depth */

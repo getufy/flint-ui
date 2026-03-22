@@ -146,7 +146,7 @@ export class FlintAutocomplete extends FormAssociated(FlintElement) {
 
         if (this.freeSolo) {
             this.value = this._inputValue;
-            this.dispatchEvent(new CustomEvent('flint-autocomplete-change', { detail: { value: this.value, label: this.value }, bubbles: true, composed: true }));
+            this.emit('flint-autocomplete-change', { value: this.value, label: this.value });
         }
 
         this._filterOptions();
@@ -230,7 +230,7 @@ export class FlintAutocomplete extends FormAssociated(FlintElement) {
         this.value = option.value;
         this._inputValue = option.label;
         this._closeDropdown();
-        this.dispatchEvent(new CustomEvent('flint-autocomplete-change', { detail: { value: option.value, label: option.label }, bubbles: true, composed: true }));
+        this.emit('flint-autocomplete-change', { value: option.value, label: option.label });
     }
 
     render() {

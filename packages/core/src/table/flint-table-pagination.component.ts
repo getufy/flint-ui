@@ -56,31 +56,19 @@ export class FlintTablePagination extends FlintElement {
     private _go(delta: number) {
         const next = this._page + delta;
         this._page = next;
-        this.dispatchEvent(new CustomEvent('flint-pagination-page-change', {
-            detail: { page: next },
-            bubbles: true,
-            composed: true
-        }));
+        this.emit('flint-pagination-page-change', { page: next });
     }
 
     private _goTo(p: number) {
         this._page = p;
-        this.dispatchEvent(new CustomEvent('flint-pagination-page-change', {
-            detail: { page: p },
-            bubbles: true,
-            composed: true
-        }));
+        this.emit('flint-pagination-page-change', { page: p });
     }
 
     private _handleRowChange(e: Event) {
         const val = parseInt((e.target as HTMLSelectElement).value);
         this._rowsPerPage = val;
         this._page = 0;
-        this.dispatchEvent(new CustomEvent('flint-pagination-rows-per-page-change', {
-            detail: { rowsPerPage: val },
-            bubbles: true,
-            composed: true
-        }));
+        this.emit('flint-pagination-rows-per-page-change', { rowsPerPage: val });
     }
 
     private get _lastPage() {

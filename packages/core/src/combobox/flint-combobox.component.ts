@@ -206,11 +206,7 @@ export class FlintCombobox extends FormAssociated(FlintElement) {
     }
 
     private _dispatchChange() {
-        this.dispatchEvent(new CustomEvent('flint-combobox-change', {
-            detail: { value: this.value },
-            bubbles: true,
-            composed: true,
-        }));
+        this.emit('flint-combobox-change', { value: this.value });
     }
 
     render() {

@@ -76,14 +76,10 @@ export class FlintMenuItem extends FlintElement {
     private _handleClick = () => {
         if (this.disabled) return;
         const label = this._getLabelText();
-        this.dispatchEvent(new CustomEvent('flint-menu-item-select', {
-            bubbles: true,
-            composed: true,
-            detail: {
+        this.emit('flint-menu-item-select', {
                 value: this.value !== undefined ? this.value : label,
                 label,
-            }
-        }));
+            });
     };
 
     private _handleKeydown = (e: KeyboardEvent) => {
@@ -313,7 +309,7 @@ export class FlintMenu extends FlintElement {
 
     // ── Event dispatch ─────────────────────────────────────────────────────
     private _close = () => {
-        this.dispatchEvent(new CustomEvent('flint-menu-close', { bubbles: true, composed: true, detail: { open: false } }));
+        this.emit('flint-menu-close', { open: false });
     };
 
     private _handleItemSelect = () => {

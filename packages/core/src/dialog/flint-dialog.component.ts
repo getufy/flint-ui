@@ -10,7 +10,7 @@ import uiDialogTitleStyles from './flint-dialog-title.css?inline';
 import uiDialogContentStyles from './flint-dialog-content.css?inline';
 import uiDialogContentTextStyles from './flint-dialog-content-text.css?inline';
 import uiDialogActionsStyles from './flint-dialog-actions.css?inline';
-import { getAnimation, animateTo, stopAnimations, resolveKeyframes } from '../utilities/animation-registry.js';
+import { runOverlayAnimation } from '../utilities/animation-registry.js';
 import { handleFocusTrapKeyDown, getFocusableElements } from '../utilities/focus-trap.js';
 import { lockBodyScroll, unlockBodyScroll } from '../utilities/scroll-lock.js';
 import '../utilities/animation-presets.js';
@@ -155,67 +155,15 @@ export class FlintDialog extends FlintElement {
     }
   }
 
-  /**
-   * Run the open animation using the registry if available, then focus the panel.
-   * Panel and overlay animate in parallel.
-   */
   private async _runOpenAnimation() {
-    const panel = this._panel;
-    const overlay = this._overlay;
-
-    const panelAnim = getAnimation(this, 'dialog.show');
-    const overlayAnim = getAnimation(this, 'dialog.overlay.show');
-
-    // Stop all existing animations in parallel to avoid staggered starts
-    await Promise.all([
-      panel ? stopAnimations(panel) : undefined,
-      overlay ? stopAnimations(overlay) : undefined,
-    ]);
-
-    // Start all new animations synchronously so they begin in the same frame
-    const promises: Promise<unknown>[] = [];
-
-    if (panelAnim && panel) {
-      promises.push(animateTo(panel, resolveKeyframes(this, panelAnim), panelAnim.options));
-    }
-
-    if (overlayAnim && overlay) {
-      promises.push(animateTo(overlay, resolveKeyframes(this, overlayAnim), overlayAnim.options));
-    }
-
-    await Promise.all(promises);
+    await runOverlayAnimation(this, this._panel, 'dialog.show', this._overlay, 'dialog.overlay.show');
     if (!this.isConnected) return;
-    this._focusInitialElement(panel);
-    this.dispatchEvent(new CustomEvent('flint-dialog-open', { bubbles: true, composed: true, detail: { open: true } }));
+    this._focusInitialElement(this._panel);
+    this.emit('flint-dialog-open', { open: true });
   }
 
-  /**
-   * Run the close animation using the registry if available.
-   * Panel and overlay animate in parallel.
-   */
   private async _runCloseAnimation() {
-    const panel = this._panel;
-    const overlay = this._overlay;
-
-    const panelAnim = getAnimation(this, 'dialog.hide');
-    const overlayAnim = getAnimation(this, 'dialog.overlay.hide');
-
-    await Promise.all([
-      panel ? stopAnimations(panel) : undefined,
-      overlay ? stopAnimations(overlay) : undefined,
-    ]);
-
-    const promises: Promise<unknown>[] = [];
-
-    if (panelAnim && panel) {
-      promises.push(animateTo(panel, resolveKeyframes(this, panelAnim), panelAnim.options));
-    }
-
-    if (overlayAnim && overlay) {
-      promises.push(animateTo(overlay, resolveKeyframes(this, overlayAnim), overlayAnim.options));
-    }
-
-    await Promise.all(promises);
+    await runOverlayAnimation(this, this._panel, 'dialog.hide', this._overlay, 'dialog.overlay.hide');
   }
 
   disconnectedCallback() {
@@ -278,7 +226,7 @@ export class FlintDialog extends FlintElement {
 
   /** Programmatically request the dialog to close (fires the 'flint-dialog-close' event). */
   requestClose() {
-    this.dispatchEvent(new CustomEvent('flint-dialog-close', { bubbles: true, composed: true, detail: { open: false } }));
+    this.emit('flint-dialog-close', { open: false });
   }
 
   private _handleBackdropClose = (e: Event) => {

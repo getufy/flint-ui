@@ -87,11 +87,7 @@ export class FlintSwitch extends FormAssociated(FlintElement) {
     private _handleClick = () => {
         if (this.disabled) return;
         this.checked = !this.checked;
-        this.dispatchEvent(new CustomEvent('flint-switch-change', {
-            detail: { checked: this.checked },
-            bubbles: true,
-            composed: true,
-        }));
+        this.emit('flint-switch-change', { checked: this.checked });
     };
 
     override render() {

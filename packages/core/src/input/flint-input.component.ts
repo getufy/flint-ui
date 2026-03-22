@@ -189,20 +189,9 @@ export class FlintInput extends FormAssociated(FlintElement) {
     private _handleClear = () => {
         this.value = '';
         this._updateFormValue();
-        this.dispatchEvent(new CustomEvent('flint-input-clear', {
-            bubbles: true,
-            composed: true,
-        }));
-        this.dispatchEvent(new CustomEvent('flint-input-input', {
-            detail: { value: '' },
-            bubbles: true,
-            composed: true,
-        }));
-        this.dispatchEvent(new CustomEvent('flint-input-change', {
-            detail: { value: '' },
-            bubbles: true,
-            composed: true,
-        }));
+        this.emit('flint-input-clear');
+        this.emit('flint-input-input', { value: '' });
+        this.emit('flint-input-change', { value: '' });
         // Return focus to the input
         this.shadowRoot?.querySelector('input')?.focus();
     };

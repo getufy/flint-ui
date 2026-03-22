@@ -46,11 +46,7 @@ export class FlintSpeedDialAction extends FlintElement {
 
     private _handleClick = () => {
         if (this.disabled) return;
-        this.dispatchEvent(new CustomEvent('flint-speed-dial-action-click', {
-            bubbles: true,
-            composed: true,
-            detail: { name: this.name, tooltipTitle: this.tooltipTitle },
-        }));
+        this.emit('flint-speed-dial-action-click', { name: this.name, tooltipTitle: this.tooltipTitle },);
     };
 
     private get _tooltipVisible() {
@@ -203,10 +199,7 @@ export class FlintSpeedDial extends FlintElement {
     private _setOpen(val: boolean) {
         this.open = val;
         this._updateActionTooltips();
-        this.dispatchEvent(new CustomEvent(
-            val ? 'flint-speed-dial-open' : 'flint-speed-dial-close',
-            { bubbles: true, composed: true, detail: { open: val } }
-        ));
+        this.emit(val ? 'flint-speed-dial-open' : 'flint-speed-dial-close', { open: val });
     }
 
     private _toggle = () => {

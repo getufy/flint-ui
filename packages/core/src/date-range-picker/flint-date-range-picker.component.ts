@@ -160,9 +160,7 @@ export class FlintDateRangePicker extends FlintElement {
         const [ns, ne] = range;
         if (ns === ps && ne === pe) { this._closePicker(); return; }
         this.value = range;
-        this.dispatchEvent(new CustomEvent('flint-date-range-picker-change', {
-            detail: { value: range }, bubbles: true, composed: true,
-        }));
+        this.emit('flint-date-range-picker-change', { value: range });
         if (range[0] && range[1]) this._closePicker();
     };
 

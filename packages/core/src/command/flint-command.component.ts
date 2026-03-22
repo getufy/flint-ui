@@ -87,11 +87,7 @@ export class FlintCommandItem extends FlintElement {
 
     private _handleClick = () => {
         if (this.disabled) return;
-        this.dispatchEvent(new CustomEvent('flint-command-item-select', {
-            bubbles: true,
-            composed: true,
-            detail: { value: this.value || this.textContent?.trim() || '' },
-        }));
+        this.emit('flint-command-item-select', { value: this.value || this.textContent?.trim() || '' },);
     };
 
     render() {
@@ -209,11 +205,7 @@ export class FlintCommandInput extends FlintElement {
         this.value = input.value;
         clearTimeout(this._debounceTimer);
         this._debounceTimer = setTimeout(() => {
-            this.dispatchEvent(new CustomEvent('_cmd-filter', {
-                bubbles: true,
-                composed: true,
-                detail: { query: this.value },
-            }));
+            this.emit('_cmd-filter', { query: this.value },);
         }, 150);
     };
 
@@ -231,11 +223,7 @@ export class FlintCommandInput extends FlintElement {
     reset() {
         if (this._input) this._input.value = '';
         this.value = '';
-        this.dispatchEvent(new CustomEvent('_cmd-filter', {
-            bubbles: true,
-            composed: true,
-            detail: { query: '' },
-        }));
+        this.emit('_cmd-filter', { query: '' },);
     }
 
     render() {
@@ -619,11 +607,7 @@ export class FlintCommandDialog extends FlintElement {
     }
 
     private _close() {
-        this.dispatchEvent(new CustomEvent('flint-command-dialog-close', {
-            bubbles: true,
-            composed: true,
-            detail: { open: false },
-        }));
+        this.emit('flint-command-dialog-close', { open: false },);
     }
 
     private _handleBackdropClick = (e: MouseEvent) => {

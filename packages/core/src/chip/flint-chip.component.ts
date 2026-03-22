@@ -58,31 +58,21 @@ export class FlintChip extends FlintElement {
 
     private _handleClick = () => {
         if (this.disabled || !this.clickable) return;
-        this.dispatchEvent(new CustomEvent('flint-chip-click', {
-            bubbles: true,
-            composed: true
-        }));
+        this.emit('flint-chip-click');
     };
 
     private _handleKeyDown = (e: KeyboardEvent) => {
         if (e.key !== 'Enter' && e.key !== ' ') return;
         e.preventDefault();
         if (!this.disabled && this.clickable) {
-            this.dispatchEvent(new CustomEvent('flint-chip-click', {
-                bubbles: true,
-                composed: true
-            }));
+            this.emit('flint-chip-click');
         }
     };
 
     private _handleDelete = (e: Event) => {
         e.stopPropagation();
         if (this.disabled) return;
-        this.dispatchEvent(new CustomEvent('flint-chip-delete', {
-            bubbles: true,
-            composed: true,
-            detail: { value: this.label }
-        }));
+        this.emit('flint-chip-delete', { value: this.label });
     };
 
     private _handleDeleteKeyDown = (e: KeyboardEvent) => {
@@ -90,11 +80,7 @@ export class FlintChip extends FlintElement {
         e.preventDefault();
         e.stopPropagation();
         if (!this.disabled) {
-            this.dispatchEvent(new CustomEvent('flint-chip-delete', {
-                bubbles: true,
-                composed: true,
-                detail: { value: this.label }
-            }));
+            this.emit('flint-chip-delete', { value: this.label });
         }
     };
 

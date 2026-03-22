@@ -124,40 +124,21 @@ export class FlintTextField extends FormAssociated(FlintElement) {
     private _handleInput = (e: InputEvent) => {
         this.value = (e.target as HTMLInputElement).value;
         this._updateFormValue();
-        this.dispatchEvent(new CustomEvent('flint-text-field-input', {
-            detail: { value: this.value },
-            bubbles: true,
-            composed: true
-        }));
+        this.emit('flint-text-field-input', { value: this.value });
     };
 
     private _handleChange = (e: Event) => {
         this.value = (e.target as HTMLInputElement).value;
         this._updateFormValue();
-        this.dispatchEvent(new CustomEvent('flint-text-field-change', {
-            detail: { value: this.value },
-            bubbles: true,
-            composed: true
-        }));
+        this.emit('flint-text-field-change', { value: this.value });
     };
 
     private _handleClear = () => {
         this.value = '';
         this._updateFormValue();
-        this.dispatchEvent(new CustomEvent('flint-text-field-clear', {
-            bubbles: true,
-            composed: true,
-        }));
-        this.dispatchEvent(new CustomEvent('flint-text-field-input', {
-            detail: { value: '' },
-            bubbles: true,
-            composed: true,
-        }));
-        this.dispatchEvent(new CustomEvent('flint-text-field-change', {
-            detail: { value: '' },
-            bubbles: true,
-            composed: true,
-        }));
+        this.emit('flint-text-field-clear');
+        this.emit('flint-text-field-input', { value: '' });
+        this.emit('flint-text-field-change', { value: '' });
         this.shadowRoot?.querySelector('input')?.focus();
     };
 

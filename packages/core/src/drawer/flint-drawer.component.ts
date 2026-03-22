@@ -3,7 +3,7 @@ import { property, query, state } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
 import type { Placement } from '../types.js';
 import { FlintBackdrop } from '../backdrop/flint-backdrop.js';
-import { getAnimation, animateTo, stopAnimations, resolveKeyframes } from '../utilities/animation-registry.js';
+import { runOverlayAnimation } from '../utilities/animation-registry.js';
 import { handleFocusTrapKeyDown, getFocusableElements } from '../utilities/focus-trap.js';
 import { lockBodyScroll, unlockBodyScroll } from '../utilities/scroll-lock.js';
 import '../utilities/animation-presets.js';
@@ -121,7 +121,7 @@ export class FlintDrawer extends FlintElement {
                 if (this.variant === 'temporary') {
                     this._focusInitialElement();
                 }
-                this.dispatchEvent(new CustomEvent('flint-drawer-open', { bubbles: true, composed: true, detail: { open: true } }));
+                this.emit('flint-drawer-open', { open: true });
             });
         } else {
             void this._runCloseAnimation().then(() => {
@@ -165,61 +165,17 @@ export class FlintDrawer extends FlintElement {
     }
 
     private async _runOpenAnimation() {
-        const paper = this._paper;
-        const backdrop = this._backdrop;
         const suffix = this._getAnimationSuffix();
-
-        const panelAnim = getAnimation(this, `drawer.show${suffix}`);
-        const overlayAnim = getAnimation(this, 'drawer.overlay.show');
-
-        // Stop all existing animations in parallel to avoid staggered starts
-        await Promise.all([
-            paper ? stopAnimations(paper) : undefined,
-            backdrop ? stopAnimations(backdrop) : undefined,
-        ]);
-
-        // Start all new animations synchronously so they begin in the same frame
-        const promises: Promise<unknown>[] = [];
-
-        if (panelAnim && paper) {
-            promises.push(animateTo(paper, resolveKeyframes(this, panelAnim), panelAnim.options));
-        }
-
-        if (overlayAnim && backdrop) {
-            promises.push(animateTo(backdrop, resolveKeyframes(this, overlayAnim), overlayAnim.options));
-        }
-
-        await Promise.all(promises);
+        await runOverlayAnimation(this, this._paper, `drawer.show${suffix}`, this._backdrop, 'drawer.overlay.show');
     }
 
     private async _runCloseAnimation() {
-        const paper = this._paper;
-        const backdrop = this._backdrop;
         const suffix = this._getAnimationSuffix();
-
-        const panelAnim = getAnimation(this, `drawer.hide${suffix}`);
-        const overlayAnim = getAnimation(this, 'drawer.overlay.hide');
-
-        await Promise.all([
-            paper ? stopAnimations(paper) : undefined,
-            backdrop ? stopAnimations(backdrop) : undefined,
-        ]);
-
-        const promises: Promise<unknown>[] = [];
-
-        if (panelAnim && paper) {
-            promises.push(animateTo(paper, resolveKeyframes(this, panelAnim), panelAnim.options));
-        }
-
-        if (overlayAnim && backdrop) {
-            promises.push(animateTo(backdrop, resolveKeyframes(this, overlayAnim), overlayAnim.options));
-        }
-
-        await Promise.all(promises);
+        await runOverlayAnimation(this, this._paper, `drawer.hide${suffix}`, this._backdrop, 'drawer.overlay.hide');
     }
 
     private _close = () => {
-        this.dispatchEvent(new CustomEvent('flint-drawer-close', { bubbles: true, composed: true, detail: { open: false } }));
+        this.emit('flint-drawer-close', { open: false });
     };
 
     render() {

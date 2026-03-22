@@ -47,11 +47,7 @@ export class FlintAlert extends FlintElement {
     }
 
     private _handleClose = () => {
-        this.dispatchEvent(new CustomEvent('flint-alert-close', {
-            bubbles: true,
-            composed: true,
-            detail: { open: false, severity: this.severity }
-        }));
+        this.emit('flint-alert-close', { open: false, severity: this.severity });
 
         // Typical behavior for a simple alert is to remove it from the DOM
         this.style.opacity = '0';

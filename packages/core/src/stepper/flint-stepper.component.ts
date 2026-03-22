@@ -349,7 +349,7 @@ export class FlintMobileStepper extends FlintElement {
     private get _safeSteps() { return Math.max(1, this.steps); }
 
     private _emit = (name: string) => {
-        this.dispatchEvent(new CustomEvent(name, { bubbles: true, composed: true }));
+        this.emit(name);
     };
 
     private _progress() {

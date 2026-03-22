@@ -3,7 +3,7 @@ import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
 import { FlintPopup } from '../popup/flint-popup.component.js';
-import { getAnimation, animateTo, stopAnimations, resolveKeyframes } from '../utilities/animation-registry.js';
+import { runOverlayAnimation } from '../utilities/animation-registry.js';
 import type { Placement } from '../types.js';
 import '../utilities/animation-presets.js';
 import uiTooltipStyles from './flint-tooltip.css?inline';
@@ -89,13 +89,13 @@ export class FlintTooltip extends FlintElement {
                 this._activePlacement = this.placement;
                 this._visible = true;
                 void this._runShowAnimation();
-                this.dispatchEvent(new CustomEvent('flint-tooltip-show', { bubbles: true, composed: true }));
+                this.emit('flint-tooltip-show');
             }, this.openDelay);
         } else {
             this._activePlacement = this.placement;
             this._visible = true;
             void this._runShowAnimation();
-            this.dispatchEvent(new CustomEvent('flint-tooltip-show', { bubbles: true, composed: true }));
+            this.emit('flint-tooltip-show');
         }
     };
 
@@ -111,14 +111,14 @@ export class FlintTooltip extends FlintElement {
                 void this._runHideAnimation().then(() => {
                     if (!this.isConnected) return;
                     this._visible = false;
-                    this.dispatchEvent(new CustomEvent('flint-tooltip-hide', { bubbles: true, composed: true }));
+                    this.emit('flint-tooltip-hide');
                 });
             }, this.closeDelay);
         } else {
             void this._runHideAnimation().then(() => {
                 if (!this.isConnected) return;
                 this._visible = false;
-                this.dispatchEvent(new CustomEvent('flint-tooltip-hide', { bubbles: true, composed: true }));
+                this.emit('flint-tooltip-hide');
             });
         }
     };
@@ -141,23 +141,11 @@ export class FlintTooltip extends FlintElement {
     };
 
     private async _runShowAnimation() {
-        const popup = this.shadowRoot?.querySelector<HTMLElement>('.tooltip-popup');
-        if (!popup) return;
-        const animation = getAnimation(this, 'tooltip.show');
-        if (!animation) return;
-        await stopAnimations(popup);
-        const keyframes = resolveKeyframes(this, animation);
-        await animateTo(popup, keyframes, animation.options);
+        await runOverlayAnimation(this, this.shadowRoot?.querySelector<HTMLElement>('.tooltip-popup'), 'tooltip.show');
     }
 
     private async _runHideAnimation() {
-        const popup = this.shadowRoot?.querySelector<HTMLElement>('.tooltip-popup');
-        if (!popup) return;
-        const animation = getAnimation(this, 'tooltip.hide');
-        if (!animation) return;
-        await stopAnimations(popup);
-        const keyframes = resolveKeyframes(this, animation);
-        await animateTo(popup, keyframes, animation.options);
+        await runOverlayAnimation(this, this.shadowRoot?.querySelector<HTMLElement>('.tooltip-popup'), 'tooltip.hide');
     }
 
     override render() {

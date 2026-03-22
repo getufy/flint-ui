@@ -103,11 +103,7 @@ export class FlintRadioGroup extends FormAssociated(FlintElement) {
         const { value } = e.detail;
         this.value = value;
         this._syncChildren();
-        this.dispatchEvent(new CustomEvent('flint-radio-group-change', {
-            detail: { value },
-            bubbles: true,
-            composed: true,
-        }));
+        this.emit('flint-radio-group-change', { value });
     }
 
     private _onKeyDown(e: KeyboardEvent) {
@@ -133,11 +129,7 @@ export class FlintRadioGroup extends FormAssociated(FlintElement) {
         next.focus();
         this.value = next.value;
         this._syncChildren();
-        this.dispatchEvent(new CustomEvent('flint-radio-group-change', {
-            detail: { value: this.value },
-            bubbles: true,
-            composed: true,
-        }));
+        this.emit('flint-radio-group-change', { value: this.value });
     }
 
     private _syncChildren() {
@@ -204,11 +196,7 @@ export class FlintRadio extends FlintElement {
 
     private _handleChange = () => {
         if (this.disabled) return;
-        this.dispatchEvent(new CustomEvent('flint-radio-select', {
-            detail: { value: this.value },
-            bubbles: true,
-            composed: true,
-        }));
+        this.emit('flint-radio-select', { value: this.value });
     };
 
     render() {

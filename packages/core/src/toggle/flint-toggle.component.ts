@@ -52,11 +52,7 @@ export class FlintToggle extends FlintElement {
     private _handleClick = () => {
         if (this.disabled) return;
         this.pressed = !this.pressed;
-        this.dispatchEvent(new CustomEvent('flint-toggle-change', {
-            detail: { pressed: this.pressed },
-            bubbles: true,
-            composed: true,
-        }));
+        this.emit('flint-toggle-change', { pressed: this.pressed });
     };
 
     private _handleKeydown = (e: KeyboardEvent) => {

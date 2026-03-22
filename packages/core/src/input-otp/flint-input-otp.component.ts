@@ -260,18 +260,10 @@ export class FlintInputOtp extends FormAssociated(FlintElement) {
         this.value = newVal;
         this._hiddenInput.value = newVal;
 
-        this.dispatchEvent(new CustomEvent('flint-otp-change', {
-            detail: { value: newVal },
-            bubbles: true,
-            composed: true,
-        }));
+        this.emit('flint-otp-change', { value: newVal });
 
         if (newVal.length === this.maxLength) {
-            this.dispatchEvent(new CustomEvent('flint-otp-complete', {
-                detail: { value: newVal },
-                bubbles: true,
-                composed: true,
-            }));
+            this.emit('flint-otp-complete', { value: newVal });
         }
     }
 

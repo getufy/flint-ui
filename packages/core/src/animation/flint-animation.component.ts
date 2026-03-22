@@ -162,17 +162,11 @@ export class FlintAnimation extends FlintElement {
         });
 
         this._animation.addEventListener('finish', () => {
-            this.dispatchEvent(new CustomEvent('flint-animation-finish', {
-                bubbles: true,
-                composed: true,
-            }));
+            this.emit('flint-animation-finish');
         });
 
         this._animation.addEventListener('cancel', () => {
-            this.dispatchEvent(new CustomEvent('flint-animation-cancel', {
-                bubbles: true,
-                composed: true,
-            }));
+            this.emit('flint-animation-cancel');
         });
     }
 

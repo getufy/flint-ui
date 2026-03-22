@@ -98,10 +98,7 @@ export class FlintMenubarItem extends FlintElement {
     /** Activate the item — fires select event. */
     select() {
         if (this.disabled) return;
-        this.dispatchEvent(new CustomEvent('flint-menubar-item-select', {
-            bubbles: true, composed: true,
-            detail: { value: this.value || this._labelText() },
-        }));
+        this.emit('flint-menubar-item-select', { value: this.value || this._labelText() },);
     }
 
     render() {
@@ -146,10 +143,7 @@ export class FlintMenubarCheckboxItem extends FlintElement {
     toggle() {
         if (this.disabled) return;
         this.checked = !this.checked;
-        this.dispatchEvent(new CustomEvent('flint-menubar-checkbox-change', {
-            bubbles: true, composed: true,
-            detail: { checked: this.checked, value: this.value || this._labelText() },
-        }));
+        this.emit('flint-menubar-checkbox-change', { checked: this.checked, value: this.value || this._labelText() },);
     }
 
     render() {
@@ -190,10 +184,7 @@ export class FlintMenubarRadioItem extends FlintElement {
 
     select() {
         if (this.disabled) return;
-        this.dispatchEvent(new CustomEvent('flint-menubar-radio-select', {
-            bubbles: true, composed: true,
-            detail: { value: this.value },
-        }));
+        this.emit('flint-menubar-radio-select', { value: this.value },);
     }
 
     render() {
@@ -228,10 +219,7 @@ export class FlintMenubarRadioGroup extends FlintElement {
         ce.stopPropagation();
         this.value = ce.detail.value;
         this._syncChecked();
-        this.dispatchEvent(new CustomEvent('flint-menubar-radio-change', {
-            bubbles: true, composed: true,
-            detail: { value: this.value },
-        }));
+        this.emit('flint-menubar-radio-change', { value: this.value },);
     };
 
     connectedCallback() {
@@ -573,10 +561,7 @@ export class FlintMenubarContent extends FlintElement {
     }
 
     private _requestClose() {
-        this.dispatchEvent(new CustomEvent('flint-menubar-request-close', {
-            bubbles: true, composed: true,
-            detail: { open: false },
-        }));
+        this.emit('flint-menubar-request-close', { open: false },);
     }
 
     resetHighlight() {

@@ -45,6 +45,11 @@ export class FlintElement extends LitElement {
     }
   }
 
+  /** Dispatch a CustomEvent with `bubbles` and `composed` true by default. */
+  emit(name: string, detail?: unknown): boolean {
+    return this.dispatchEvent(new CustomEvent(name, { bubbles: true, composed: true, detail }));
+  }
+
   constructor() {
     super();
     if (typeof this.attachInternals === 'function') {

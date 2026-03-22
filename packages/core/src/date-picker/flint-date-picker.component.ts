@@ -150,9 +150,7 @@ export class FlintDatePickerCalendar extends FlintElement {
 
     private _selectDay = (cell: CalendarDay) => {
         if (cell.isDisabled || this.disabled) return;
-        this.dispatchEvent(new CustomEvent('flint-date-picker-select', {
-            detail: { value: cell.iso }, bubbles: true, composed: true
-        }));
+        this.emit('flint-date-picker-select', { value: cell.iso });
     };
 
     private _selectYear = (year: number) => {
@@ -387,9 +385,7 @@ export class FlintDatePicker extends FormAssociated(FlintElement) {
     private _commit = (iso: string) => {
         if (iso === this.value) { this._closePicker(); return; }
         this.value = iso;
-        this.dispatchEvent(new CustomEvent('flint-date-picker-change', {
-            detail: { value: iso }, bubbles: true, composed: true
-        }));
+        this.emit('flint-date-picker-change', { value: iso });
         this._closePicker();
     };
 

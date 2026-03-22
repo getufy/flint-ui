@@ -120,7 +120,7 @@ export class FlintTimeField extends FlintElement {
 
     clear() {
         this._h = null; this._m = null; this._s = null; this._buf = '';
-        this.dispatchEvent(new CustomEvent('flint-time-picker-clear', { bubbles: true, composed: true }));
+        this.emit('flint-time-picker-clear');
     }
 
     private _emit() {
@@ -129,7 +129,7 @@ export class FlintTimeField extends FlintElement {
         const v = buildTime(h, this._m, this._s ?? 0);
         if (v === this.value) return;
         this.value = v;
-        this.dispatchEvent(new CustomEvent('flint-time-field-change', { detail: { value: v }, bubbles: true, composed: true }));
+        this.emit('flint-time-field-change', { value: v });
     }
 
     private _commitBuf() {
@@ -294,7 +294,7 @@ export class FlintDigitalClock extends FlintElement {
     private _label(v: string) { return displayTime(v, this.ampm); }
 
     private _select(v: string) {
-        this.dispatchEvent(new CustomEvent('flint-digital-clock-change', { detail: { value: v }, bubbles: true, composed: true }));
+        this.emit('flint-digital-clock-change', { value: v });
     }
 
     private _onItemKeyDown(e: KeyboardEvent, v: string) {
@@ -359,7 +359,7 @@ export class FlintMultiSectionDigitalClock extends FlintElement {
 
     private _set(h: number, m: number, s: number) {
         const v = buildTime(h, m, s);
-        this.dispatchEvent(new CustomEvent('flint-multi-section-digital-clock-change', { detail: { value: v }, bubbles: true, composed: true }));
+        this.emit('flint-multi-section-digital-clock-change', { value: v });
     }
 
     private _colKeyDown(e: KeyboardEvent, seg: 'h' | 'm' | 's' | 'mer') {
@@ -495,12 +495,12 @@ export class FlintTimeClock extends FlintElement {
 
     private _emit(h: number, m: number, s: number) {
         const v = buildTime(h, m, s);
-        this.dispatchEvent(new CustomEvent('flint-time-clock-change', { detail: { value: v }, bubbles: true, composed: true }));
+        this.emit('flint-time-clock-change', { value: v });
     }
 
     private _switchView(v: TimeView) {
         this.view = v;
-        this.dispatchEvent(new CustomEvent('flint-time-clock-view-change', { detail: { view: v }, bubbles: true, composed: true }));
+        this.emit('flint-time-clock-view-change', { view: v });
     }
 
     private _getSvgCoords(e: PointerEvent): { mx: number; my: number } {
@@ -766,7 +766,7 @@ export class FlintDesktopTimePicker extends FlintElement {
 
     private _commit(v: string) {
         this.value = v;
-        this.dispatchEvent(new CustomEvent('flint-desktop-time-picker-change', { detail: { value: v }, bubbles: true, composed: true }));
+        this.emit('flint-desktop-time-picker-change', { value: v });
         this._open = false;
     }
 
@@ -834,7 +834,7 @@ export class FlintMobileTimePicker extends FlintElement {
       <flint-time-field .value=${this.value} .label=${this.label} .ampm=${this.ampm} ?seconds=${this.seconds}
         ?disabled=${this.disabled} ?error=${this.error} helper-text=${this.helperText} error-message=${this.errorMessage} readonly
         @focus=${() => { if (!this.disabled) { this._pending = this.value; this._view = 'hours'; this._open = true; } }}
-        @flint-time-field-change=${(e: CustomEvent) => { this.value = e.detail.value; this.dispatchEvent(new CustomEvent('flint-mobile-time-picker-change', { detail: e.detail, bubbles: true, composed: true })); }}
+        @flint-time-field-change=${(e: CustomEvent) => { this.value = e.detail.value; this.emit('flint-mobile-time-picker-change', e.detail); }}
       ></flint-time-field>
       <flint-dialog .open=${this._open} disable-backdrop-close @flint-dialog-close=${() => this._open = false} style="--flint-dialog-width:320px">
         <flint-dialog-title>Select Time</flint-dialog-title>
@@ -846,7 +846,7 @@ export class FlintMobileTimePicker extends FlintElement {
         </flint-dialog-content>
         <flint-dialog-actions>
           <button class="btn btn-cancel" @click=${() => { this._pending = this.value; this._open = false; }}>Cancel</button>
-          <button class="btn btn-ok" @click=${() => { const v = this._pending || this.value; this.value = v; this.dispatchEvent(new CustomEvent('flint-mobile-time-picker-change', { detail: { value: v }, bubbles: true, composed: true })); this._open = false; }}>OK</button>
+          <button class="btn btn-ok" @click=${() => { const v = this._pending || this.value; this.value = v; this.emit('flint-mobile-time-picker-change', { value: v }); this._open = false; }}>OK</button>
         </flint-dialog-actions>
       </flint-dialog>
     `;
@@ -875,7 +875,7 @@ export class FlintStaticTimePicker extends FlintElement {
         <flint-multi-section-digital-clock .value=${this.value || buildTime(12, 0)} .ampm=${this.ampm} ?seconds=${this.seconds}
           @flint-multi-section-digital-clock-change=${(e: CustomEvent) => {
                 this.value = e.detail.value;
-                this.dispatchEvent(new CustomEvent('flint-static-time-picker-change', { detail: e.detail, bubbles: true, composed: true }));
+                this.emit('flint-static-time-picker-change', e.detail);
             }}
         ></flint-multi-section-digital-clock>
       </div>
@@ -957,7 +957,7 @@ export class FlintTimePicker extends FormAssociated(FlintElement) {
 
     private _onChange(e: CustomEvent) {
         this.value = e.detail.value;
-        this.dispatchEvent(new CustomEvent('flint-time-picker-change', { detail: e.detail, bubbles: true, composed: true }));
+        this.emit('flint-time-picker-change', e.detail);
     }
 
     render() {

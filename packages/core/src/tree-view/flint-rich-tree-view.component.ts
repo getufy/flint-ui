@@ -324,11 +324,7 @@ export class FlintRichTreeView extends FlintElement {
             // For root loads (id=null) cache an empty result to break the retry loop in updated().
             // For child loads, don't cache — the next expand click triggers a fresh attempt.
             if (id === null) this._lazyChildren.set(null, []);
-            this.dispatchEvent(new CustomEvent('flint-tree-view-error', {
-                bubbles: true,
-                composed: true,
-                detail: { message: `Failed to load children for ${id}`, id, error: err },
-            }));
+            this.emit('flint-tree-view-error', { message: `Failed to load children for ${id}`, id, error: err });
         } finally {
             this._loading.delete(id);
             this.requestUpdate();
@@ -1167,11 +1163,7 @@ export class FlintRichTreeView extends FlintElement {
             newIndex
         });
 
-        this.dispatchEvent(new CustomEvent('flint-tree-view-item-position-change', {
-            detail: { itemId, newParentId, newIndex },
-            bubbles: true,
-            composed: true
-        }));
+        this.emit('flint-tree-view-item-position-change', { itemId, newParentId, newIndex });
     }
 }
 

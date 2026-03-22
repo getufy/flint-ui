@@ -86,11 +86,7 @@ export class FlintSlider extends FormAssociated(FlintElement) {
     const input = e.target as HTMLInputElement;
     this.value = Number(input.value);
 
-    this.dispatchEvent(new CustomEvent('flint-slider-change', {
-      detail: { value: this.value },
-      bubbles: true,
-      composed: true,
-    }));
+    this.emit('flint-slider-change', { value: this.value });
   };
 
   // ── Render ────────────────────────────────────────────────────────────────

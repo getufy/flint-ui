@@ -102,11 +102,7 @@ export class FlintRating extends FormAssociated(FlintElement) {
         if (!this._isInteractive()) return;
         const newVal = this.clearable && this.value === val ? 0 : val;
         this.value = newVal;
-        this.dispatchEvent(new CustomEvent('flint-rating-change', {
-            detail: { value: this.value },
-            bubbles: true,
-            composed: true,
-        }));
+        this.emit('flint-rating-change', { value: this.value });
     }
 
     private _handleKeydown(e: KeyboardEvent, starIndex: number) {
@@ -144,11 +140,7 @@ export class FlintRating extends FormAssociated(FlintElement) {
 
         if (next !== this.value) {
             this.value = next;
-            this.dispatchEvent(new CustomEvent('flint-rating-change', {
-                detail: { value: this.value },
-                bubbles: true,
-                composed: true,
-            }));
+            this.emit('flint-rating-change', { value: this.value });
         }
     }
 

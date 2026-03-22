@@ -162,11 +162,7 @@ export class FlintPagination extends FlintElement {
     }
 
     private _emit(page: number) {
-        this.dispatchEvent(new CustomEvent('flint-pagination-change', {
-            detail: { page },
-            bubbles: true,
-            composed: true,
-        }));
+        this.emit('flint-pagination-change', { page });
     }
 
     private _go(p: number) {

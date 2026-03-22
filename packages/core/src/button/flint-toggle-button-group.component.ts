@@ -70,11 +70,7 @@ export class FlintToggleButtonGroup extends FlintElement {
 
         this._updateChildren();
 
-        this.dispatchEvent(new CustomEvent('flint-toggle-button-group-change', {
-            detail: { value: this.value },
-            bubbles: true,
-            composed: true
-        }));
+        this.emit('flint-toggle-button-group-change', { value: this.value });
     }
 
     private _updateChildren() {

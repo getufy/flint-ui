@@ -9,7 +9,7 @@ import { FlintTooltip } from '../tooltip/flint-tooltip.component.js';
 import { FormAssociated } from '../mixins/form-associated.js';
 import { FormControlController } from '../controllers/form-control.js';
 import { LocalizeController } from '../utilities/localize.js';
-import { getAnimation, animateTo, stopAnimations, resolveKeyframes } from '../utilities/animation-registry.js';
+import { runOverlayAnimation } from '../utilities/animation-registry.js';
 import { validateEnum } from '../utilities/dev-warnings.js';
 import type { Size } from '../types.js';
 import { rovingIndex } from '../utilities/roving-index.js';
@@ -230,23 +230,11 @@ export class FlintSelect extends FormAssociated(FlintElement) {
   }
 
   private async _runShowAnimation() {
-    const dropdown = this.shadowRoot?.querySelector<HTMLElement>('.dropdown');
-    if (!dropdown) return;
-    const animation = getAnimation(this, 'dropdown.show');
-    if (!animation) return;
-    await stopAnimations(dropdown);
-    const keyframes = resolveKeyframes(this, animation);
-    await animateTo(dropdown, keyframes, animation.options);
+    await runOverlayAnimation(this, this.shadowRoot?.querySelector<HTMLElement>('.dropdown'), 'dropdown.show');
   }
 
   private async _runHideAnimation() {
-    const dropdown = this.shadowRoot?.querySelector<HTMLElement>('.dropdown');
-    if (!dropdown) return;
-    const animation = getAnimation(this, 'dropdown.hide');
-    if (!animation) return;
-    await stopAnimations(dropdown);
-    const keyframes = resolveKeyframes(this, animation);
-    await animateTo(dropdown, keyframes, animation.options);
+    await runOverlayAnimation(this, this.shadowRoot?.querySelector<HTMLElement>('.dropdown'), 'dropdown.hide');
   }
 
   /** Close the dropdown with animation, then clean up state. */
@@ -287,7 +275,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
       // Trigger async loading if a loadOptions callback is provided
       if (this.loadOptions) {
         this._isLoading = true;
-        this.dispatchEvent(new CustomEvent('flint-select-load', { bubbles: true, composed: true }));
+        this.emit('flint-select-load');
         this.loadOptions()
           .then(opts => {
             this.options = opts;
@@ -344,10 +332,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
     e.preventDefault();
     this.value = [];
     this._dispatchChange();
-    this.dispatchEvent(new CustomEvent('flint-clear', {
-      bubbles: true,
-      composed: true,
-    }));
+    this.emit('flint-clear');
     this.shadowRoot?.querySelector<HTMLElement>('.select-trigger')?.focus();
   };
 
@@ -383,11 +368,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
     const detail = this.multiple
       ? { value: this.value as string[], multiple: true as const }
       : { value: (this.value as string[])[0] ?? '', multiple: false as const };
-    this.dispatchEvent(new CustomEvent('flint-select-change', {
-      detail,
-      bubbles: true,
-      composed: true,
-    }));
+    this.emit('flint-select-change', detail);
   }
 
   private _handleKeydown = (e: KeyboardEvent) => {

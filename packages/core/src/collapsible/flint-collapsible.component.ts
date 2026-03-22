@@ -145,11 +145,7 @@ export class FlintCollapsible extends FlintElement {
     toggle() {
         if (this.disabled) return;
         this.open = !this.open;
-        this.dispatchEvent(new CustomEvent('flint-collapsible-change', {
-            detail: { open: this.open },
-            bubbles: true,
-            composed: true,
-        }));
+        this.emit('flint-collapsible-change', { open: this.open });
     }
 
     private _syncChildren() {

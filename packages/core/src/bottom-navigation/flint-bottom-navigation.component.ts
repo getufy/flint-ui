@@ -80,11 +80,7 @@ export class FlintBottomNavigation extends FlintElement {
         if (!action || action.value == null || action.value === this.value) return;
 
         this.value = action.value;
-        this.dispatchEvent(new CustomEvent('flint-bottom-navigation-change', {
-            detail: { value: action.value },
-            bubbles: true,
-            composed: true
-        }));
+        this.emit('flint-bottom-navigation-change', { value: action.value });
     }
 
     private _handleKeydown = (e: KeyboardEvent) => {

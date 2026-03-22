@@ -116,11 +116,7 @@ export class FlintTransferList extends FlintElement {
     };
 
     private _dispatchChange() {
-        this.dispatchEvent(new CustomEvent('flint-transfer-list-change', {
-            detail: { value: this.value },
-            bubbles: true,
-            composed: true
-        }));
+        this.emit('flint-transfer-list-change', { value: this.value });
     }
 
     render() {

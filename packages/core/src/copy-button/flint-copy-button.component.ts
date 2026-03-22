@@ -109,29 +109,17 @@ export class FlintCopyButton extends FlintElement {
 
         if (!text) {
             this._showFeedback('error');
-            this.dispatchEvent(new CustomEvent('flint-copy-error', {
-                detail: { reason: 'empty' },
-                bubbles: true,
-                composed: true,
-            }));
+            this.emit('flint-copy-error', { reason: 'empty' });
             return;
         }
 
         try {
             await navigator.clipboard.writeText(text);
             this._showFeedback('success');
-            this.dispatchEvent(new CustomEvent('flint-copy', {
-                detail: { value: text },
-                bubbles: true,
-                composed: true,
-            }));
+            this.emit('flint-copy', { value: text });
         } catch {
             this._showFeedback('error');
-            this.dispatchEvent(new CustomEvent('flint-copy-error', {
-                detail: { reason: 'clipboard' },
-                bubbles: true,
-                composed: true,
-            }));
+            this.emit('flint-copy-error', { reason: 'clipboard' });
         }
     };
 

@@ -134,20 +134,12 @@ export class FlintTextarea extends FormAssociated(FlintElement) {
 
     private _handleInput = (e: Event) => {
         this.value = (e.target as HTMLTextAreaElement).value;
-        this.dispatchEvent(new CustomEvent('flint-textarea-input', {
-            detail: { value: this.value },
-            bubbles: true,
-            composed: true,
-        }));
+        this.emit('flint-textarea-input', { value: this.value });
     };
 
     private _handleChange = (e: Event) => {
         this.value = (e.target as HTMLTextAreaElement).value;
-        this.dispatchEvent(new CustomEvent('flint-textarea-change', {
-            detail: { value: this.value },
-            bubbles: true,
-            composed: true,
-        }));
+        this.emit('flint-textarea-change', { value: this.value });
     };
 
     override render() {

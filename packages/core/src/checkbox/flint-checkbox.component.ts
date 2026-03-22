@@ -74,11 +74,7 @@ export class FlintCheckbox extends FormAssociated(FlintElement) {
         this.checked = target.checked;
         this.indeterminate = false;
 
-        this.dispatchEvent(new CustomEvent('flint-checkbox-change', {
-            detail: { checked: this.checked, value: this.value, indeterminate: false },
-            bubbles: true,
-            composed: true
-        }));
+        this.emit('flint-checkbox-change', { checked: this.checked, value: this.value, indeterminate: false });
     };
 
     render() {

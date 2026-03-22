@@ -96,7 +96,7 @@ export class FlintSingleInputDateRangeField extends FlintElement {
         this._em = null; this._ed = null; this._ey = null;
         this._buf = '';
         this.value = [...EMPTY_RANGE];
-        this.dispatchEvent(new CustomEvent('flint-date-range-picker-clear', { bubbles: true, composed: true }));
+        this.emit('flint-date-range-picker-clear');
     }
 
     // ── Segment helpers ───────────────────────────────────────────────────────
@@ -245,9 +245,7 @@ export class FlintSingleInputDateRangeField extends FlintElement {
         const [ps, pe] = this.value;
         if (next[0] !== ps || next[1] !== pe) {
             this.value = next;
-            this.dispatchEvent(new CustomEvent('flint-date-range-picker-change', {
-                detail: { value: next }, bubbles: true, composed: true,
-            }));
+            this.emit('flint-date-range-picker-change', { value: next });
         }
     }
 

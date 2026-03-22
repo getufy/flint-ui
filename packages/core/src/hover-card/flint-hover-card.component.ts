@@ -272,10 +272,7 @@ export class FlintHoverCard extends FlintElement {
         if (this._isOpen === open) return;
         this._isOpen = open;
         this._syncChildren();
-        this.dispatchEvent(new CustomEvent(
-            open ? 'flint-hover-card-open' : 'flint-hover-card-close',
-            { bubbles: true, composed: true, detail: { open } }
-        ));
+        this.emit(open ? 'flint-hover-card-open' : 'flint-hover-card-close', { open });
     }
 
     private _syncChildren() {

@@ -166,11 +166,7 @@ export class FlintPopup extends FlintElement {
             arrowEl.style.setProperty(staticSide, 'calc(var(--flint-popup-arrow-size, 8px) / -2)');
         }
 
-        this.dispatchEvent(new CustomEvent('flint-reposition', {
-            bubbles: true,
-            composed: true,
-            detail: { placement },
-        }));
+        this.emit('flint-reposition', { placement },);
     }
 
     /* ── Private ──────────────────────────────────────────────────────── */

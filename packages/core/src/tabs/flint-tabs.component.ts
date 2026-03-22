@@ -98,17 +98,13 @@ export class FlintTab extends FlintElement {
 
     private _fire = () => {
         if (this.disabled) return;
-        this.dispatchEvent(new CustomEvent('flint-tab-click', {
-            detail: { value: this.value }, bubbles: true, composed: true,
-        }));
+        this.emit('flint-tab-click', { value: this.value });
     };
 
     private _onClose = (e: Event) => {
         e.stopPropagation();
         if (this.disabled) return;
-        this.dispatchEvent(new CustomEvent('flint-tab-close', {
-            detail: { value: this.value }, bubbles: true, composed: true,
-        }));
+        this.emit('flint-tab-close', { value: this.value });
     };
 
     private _updateSizer = () => {
@@ -531,9 +527,7 @@ export class FlintTabs extends FlintElement {
 
     private _onTabClick = (e: CustomEvent) => {
         this.value = e.detail.value;
-        this.dispatchEvent(new CustomEvent('flint-tab-change', {
-            detail: { value: e.detail.value }, bubbles: true, composed: true,
-        }));
+        this.emit('flint-tab-change', { value: e.detail.value });
         // No explicit _syncAll() here — setting this.value triggers updated(),
         // which already calls _syncAll() when 'value' changes.
     };

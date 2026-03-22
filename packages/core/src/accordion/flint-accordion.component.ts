@@ -96,11 +96,7 @@ export class FlintAccordion extends FlintElement {
     private _handleToggle = () => {
         if (this.disabled) return;
         this.expanded = !this.expanded;
-        this.dispatchEvent(new CustomEvent('flint-accordion-change', {
-            detail: { expanded: this.expanded },
-            bubbles: true,
-            composed: true
-        }));
+        this.emit('flint-accordion-change', { expanded: this.expanded });
     };
 
     constructor() {
@@ -134,10 +130,7 @@ export class FlintAccordionSummary extends FlintElement {
     static styles = unsafeCSS(uiAccordionSummaryStyles);
 
     private _handleActivate = () => {
-        this.dispatchEvent(new CustomEvent('flint-accordion-toggle', {
-            bubbles: true,
-            composed: true,
-        }));
+        this.emit('flint-accordion-toggle');
     };
 
     private _handleKeyDown = (e: KeyboardEvent) => {

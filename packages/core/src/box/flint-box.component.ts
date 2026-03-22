@@ -105,11 +105,7 @@ export class FlintBox extends FlintElement {
 
     protected override updated(changedProperties: PropertyValues) {
         if (changedProperties.has('component') && this._pendingWarning) {
-            this.dispatchEvent(new CustomEvent('flint-box-warning', {
-                bubbles: true,
-                composed: true,
-                detail: { message: this._pendingWarning },
-            }));
+            this.emit('flint-box-warning', { message: this._pendingWarning },);
             this._pendingWarning = '';
         }
     }

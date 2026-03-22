@@ -39,13 +39,13 @@ export class FlintBackdrop extends FlintElement {
 
   private _handleKeydown = (e: KeyboardEvent) => {
     if (e.key === 'Escape' && this.open) {
-      this.dispatchEvent(new CustomEvent('flint-backdrop-close', { bubbles: true, composed: true, detail: { open: false } }));
+      this.emit('flint-backdrop-close', { open: false });
     }
   };
 
   private _handleClick = (e: MouseEvent) => {
     if (e.target === e.currentTarget) {
-      this.dispatchEvent(new CustomEvent('flint-backdrop-close', { bubbles: true, composed: true, detail: { open: false } }));
+      this.emit('flint-backdrop-close', { open: false });
     }
   };
 

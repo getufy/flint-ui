@@ -27,11 +27,7 @@ export class FlintToggleButton extends FlintElement {
     private _handleClick = () => {
         if (this.disabled) return;
 
-        this.dispatchEvent(new CustomEvent('flint-toggle-button-change', {
-            detail: { value: this.value, selected: !this.selected },
-            bubbles: true,
-            composed: true
-        }));
+        this.emit('flint-toggle-button-change', { value: this.value, selected: !this.selected });
     };
 
     render() {
