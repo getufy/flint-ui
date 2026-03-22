@@ -24,6 +24,7 @@ function daysInMonth(month: number, year: number): number {
  *
  * @fires flint-date-range-picker-change - { detail: { value: DateRange } } when both dates are complete
  * @fires flint-date-range-picker-clear  - fired when all segments are cleared
+ * @csspart base - The component's base wrapper element.
  */
 export class FlintSingleInputDateRangeField extends FlintElement {
     static styles = unsafeCSS(uiSingleInputDateRangeFieldStyles);

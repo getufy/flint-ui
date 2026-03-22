@@ -107,6 +107,7 @@ function buildMonthGrid(year: number, month: number, selected: string | null, mi
  * Used internally by flint-date-picker, but can also be used on its own.
  *
  * @fires flint-date-picker-select  - { detail: { value: string } } ISO date YYYY-MM-DD
+ * @csspart calendar - The calendar element.
  */
 export class FlintDatePickerCalendar extends FlintElement {
     static styles = unsafeCSS(uiDatePickerCalendarStyles);

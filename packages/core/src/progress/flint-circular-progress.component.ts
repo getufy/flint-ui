@@ -18,6 +18,8 @@ import uiCircularProgressStyles from './flint-circular-progress.css?inline';
  * <!-- Explicitly animated (equivalent to default) -->
  * <flint-circular-progress indeterminate></flint-circular-progress>
  * ```
+ * @csspart base - The component's base wrapper element.
+ * @csspart svg - The svg element.
  */
 export class FlintCircularProgress extends FlintElement {
     static styles = unsafeCSS(uiCircularProgressStyles);

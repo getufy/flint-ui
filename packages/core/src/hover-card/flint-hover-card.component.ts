@@ -18,6 +18,8 @@ let nextId = 0;
  * Automatically wires up to the nearest `flint-hover-card` ancestor.
  *
  * @slot - The element that activates the hover card (link, button, avatar…).
+ * @csspart base - The component's base wrapper element.
+ * @csspart content - The content container.
  */
 export class FlintHoverCardTrigger extends FlintElement {
     static styles = unsafeCSS(uiHoverCardTriggerStyles);

@@ -21,6 +21,7 @@ import { FlintElement } from '../flint-element.js';
  * Displays the title of an item.
  *
  * @slot - Title text.
+ * @csspart base - The component's base wrapper element.
  */
 export class FlintItemTitle extends FlintElement {
     static styles = unsafeCSS(uiItemTitleStyles);

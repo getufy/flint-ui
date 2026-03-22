@@ -17,6 +17,7 @@ import uiInputOtpStyles from './flint-input-otp.css?inline';
  * Renders slots inline with shared borders.
  *
  * @slot - Accepts `flint-input-otp-slot` elements.
+ * @csspart separator - The separator element.
  */
 export class FlintInputOtpGroup extends FlintElement {
     static styles = unsafeCSS(uiInputOtpGroupStyles);

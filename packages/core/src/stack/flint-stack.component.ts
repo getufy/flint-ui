@@ -7,6 +7,9 @@ import uiStackStyles from './flint-stack.css?inline';
 
 export type { Breakpoint, ResponsiveValue };
 
+/**
+ * @csspart base - The component's base wrapper element.
+ */
 export class FlintStack extends FlintElement {
     static styles = unsafeCSS(uiStackStyles);
 

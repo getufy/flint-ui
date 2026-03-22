@@ -24,6 +24,7 @@ import uiSimpleTreeViewStyles from './flint-simple-tree-view.css?inline';
  *
  * @fires flint-tree-view-item-click        - When a tree item is activated (detail: { itemId })
  * @fires flint-tree-view-expanded-items-change - When the expanded set changes (detail: { expandedItems })
+ * @csspart base - The component's base wrapper element.
  */
 export class FlintSimpleTreeView extends FlintElement {
     static styles = unsafeCSS(uiSimpleTreeViewStyles);

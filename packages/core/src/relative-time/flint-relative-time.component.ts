@@ -40,6 +40,7 @@ export function pickUnit(absDiffSeconds: number): { unit: Intl.RelativeTimeForma
  *
  * @cssprop --flint-relative-time-color      - Text color (default: `inherit`).
  * @cssprop --flint-relative-time-font-size  - Font size (default: `inherit`).
+ * @csspart base - The component's base wrapper element.
  */
 export class FlintRelativeTime extends FlintElement {
     static styles = unsafeCSS(styles);

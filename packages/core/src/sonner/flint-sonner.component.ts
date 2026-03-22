@@ -30,7 +30,9 @@ export interface ToastAction {
 }
 
 export interface ToastOptions {
-    /** Override the auto-generated id. Useful for updating an existing toast. */
+    /** Override the auto-generated id. Useful for updating an existing toast.
+ * @csspart base - The component's base wrapper element.
+ */
     id?: string;
     /** Secondary text displayed below the message. */
     description?: string;

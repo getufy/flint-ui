@@ -19,6 +19,7 @@ export type ImageFit = 'cover' | 'contain';
  *
  * @slot       - Place an `<img>` or any content here.
  * @slot bar   - Place a `flint-image-list-item-bar` element here.
+ * @csspart base - The component's base wrapper element.
  */
 export class FlintImageListItem extends FlintElement {
   static styles = unsafeCSS(uiImageListItemStyles);

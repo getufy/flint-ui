@@ -12,6 +12,7 @@ import uiRatingStyles from './flint-rating.css?inline';
  * Rating: a star-based rating input.
  *
  * @fires flint-rating-change - Fired when the rating value changes. detail: `{ value: number }`
+ * @csspart base - The component's base wrapper element.
  */
 export class FlintRating extends FormAssociated(FlintElement) {
     static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };

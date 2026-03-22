@@ -11,6 +11,7 @@ export interface FlintBottomNavigationChangeDetail { value: number | string; }
  *
  * @slot - destinations (flint-bottom-navigation-action).
  * @fires flint-bottom-navigation-change - Dispatched when the selected value changes. detail: `{ value: number | string }`
+ * @csspart base - The component's base wrapper element.
  */
 export class FlintBottomNavigation extends FlintElement {
     static styles = unsafeCSS(uiBottomNavigationStyles);

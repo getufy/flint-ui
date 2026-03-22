@@ -17,6 +17,7 @@ import uiCollapsibleStyles from './flint-collapsible.css?inline';
  *
  * @attr {boolean} expanded - Mirrors the parent's open state (set by parent).
  * @attr {boolean} disabled - Disables interaction (set by parent or directly).
+ * @csspart base - The component's base wrapper element.
  */
 export class FlintCollapsibleTrigger extends FlintElement {
     static styles = unsafeCSS(uiCollapsibleTriggerStyles);
@@ -59,6 +60,9 @@ export class FlintCollapsibleTrigger extends FlintElement {
  * @slot - Content to reveal when expanded.
  *
  * @attr {boolean} open - Whether the panel is visible (set by `flint-collapsible`).
+ *
+ * @csspart base - The component's base wrapper element.
+ * @csspart content - The content container.
  *
  * @cssprop --flint-collapsible-duration - Animation duration (default: `200ms`).
  * @cssprop --flint-collapsible-easing   - Animation easing (default: `ease`).

@@ -9,6 +9,10 @@ import uiCardHeaderStyles from './flint-card-header.css?inline';
  * @slot avatar - Avatar or icon element.
  * @slot action - Action element like an icon button.
  * @slot - Header text content.
+ * @csspart content - The content container.
+ * @csspart header - The header element.
+ * @csspart subtitle - The subtitle element.
+ * @csspart title - The title element.
  */
 export class FlintCardHeader extends FlintElement {
     static styles = unsafeCSS(uiCardHeaderStyles);

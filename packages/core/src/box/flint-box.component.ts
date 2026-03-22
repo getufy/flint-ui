@@ -14,6 +14,7 @@ const ALLOWED_TAGS = new Set([
 
 /**
  * @fires flint-box-warning - Dispatched when an unknown component tag is used and falls back to div.
+ * @csspart base - The component's base wrapper element.
  */
 export class FlintBox extends FlintElement {
     static styles = unsafeCSS(uiBoxStyles);

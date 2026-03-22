@@ -11,6 +11,9 @@ import uiFabStyles from './flint-fab.css?inline';
  * @slot icon - The icon to display inside the FAB.
  * @slot - Default slot for icon content (icon-only FAB).
  * @slot label - The label to display in the extended FAB.
+ * @csspart base - The component's base wrapper element.
+ * @csspart icon - The icon container.
+ * @csspart label - The label element.
  */
 export class FlintFab extends FlintElement {
   static styles = unsafeCSS(uiFabStyles);

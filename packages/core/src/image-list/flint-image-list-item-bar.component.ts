@@ -15,6 +15,11 @@ import uiImageListItemBarStyles from './flint-image-list-item-bar.css?inline';
  * @slot title - Title text.
  * @slot subtitle - Subtitle text.
  * @slot - Action content.
+ * @csspart action - The action element.
+ * @csspart base - The component's base wrapper element.
+ * @csspart content - The content container.
+ * @csspart subtitle - The subtitle element.
+ * @csspart title - The title element.
  */
 export class FlintImageListItemBar extends FlintElement {
   static styles = unsafeCSS(uiImageListItemBarStyles);

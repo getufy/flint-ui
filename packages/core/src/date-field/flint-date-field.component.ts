@@ -53,6 +53,7 @@ const SEGMENT_ORDER: Segment[] = ['month', 'day', 'year'];
  * @attr {string}  helper-text
  * @attr {string}  min          - Minimum value (YYYY-MM-DD)
  * @attr {string}  max          - Maximum value (YYYY-MM-DD)
+ * @csspart base - The component's base wrapper element.
  */
 export class FlintDateField extends FlintElement {
     /** Opts the element into form participation via the Form-Associated Custom Elements API. */

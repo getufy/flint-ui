@@ -9,6 +9,7 @@ import uiTypographyStyles from './flint-typography.css?inline';
  * Typography component for displaying text with consistent theme styles.
  *
  * @slot - The text content.
+ * @csspart base - The component's base wrapper element.
  */
 export class FlintTypography extends FlintElement {
     static styles = unsafeCSS(uiTypographyStyles);

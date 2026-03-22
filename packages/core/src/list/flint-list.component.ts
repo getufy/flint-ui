@@ -11,6 +11,7 @@ import { FlintElement } from '../flint-element.js';
 
 /**
  * flint-list: A wrapper for list items.
+ * @csspart base - The component's base wrapper element.
  */
 export class FlintList extends FlintElement {
     static styles = unsafeCSS(uiListStyles);

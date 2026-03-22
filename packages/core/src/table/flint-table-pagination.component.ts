@@ -9,6 +9,9 @@ import { FlintElement } from '../flint-element.js';
  *
  * @fires flint-pagination-page-change - Fired when the current page changes. detail: `{ page: number }`
  * @fires flint-pagination-rows-per-page-change - Fired when rows per page changes. detail: `{ rowsPerPage: number }`
+ * @csspart base - The component's base wrapper element.
+ * @csspart select - The select element.
+ * @csspart spacer - The spacer element.
  */
 export class FlintTablePagination extends FlintElement {
     static styles = unsafeCSS(uiTablePaginationStyles);

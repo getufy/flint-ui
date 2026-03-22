@@ -3,6 +3,10 @@ import { property } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
 import uiCardMediaStyles from './flint-card-media.css?inline';
 
+/**
+ * @csspart img - The img element.
+ * @csspart media - The media element.
+ */
 export class FlintCardMedia extends FlintElement {
     static styles = unsafeCSS(uiCardMediaStyles);
 

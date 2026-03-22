@@ -25,6 +25,7 @@ import uiKbdGroupStyles from './flint-kbd-group.css?inline';
  * @cssprop --flint-kbd-font-family   - Font family (default: monospace stack).
  * @cssprop --flint-kbd-radius        - Border radius (default: `4px`).
  * @cssprop --flint-kbd-shadow-color  - Bottom-shadow color for the key effect (default: `#d1d5db`).
+ * @csspart base - The component's base wrapper element.
  */
 export class FlintKbd extends FlintElement {
     static styles = unsafeCSS(uiKbdStyles);

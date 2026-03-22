@@ -79,6 +79,8 @@ export function buildPages(
  * @slot first-icon   - Icon for the first button (default: skip-to-start SVG).
  * @slot last-icon    - Icon for the last button (default: skip-to-end SVG).
  * @slot ellipsis-icon - Icon for ellipsis items (default: three-dot SVG).
+ * @csspart base - The component's base wrapper element.
+ * @csspart button - The button element.
  */
 export class FlintPagination extends FlintElement {
     static styles = unsafeCSS(uiPaginationStyles);

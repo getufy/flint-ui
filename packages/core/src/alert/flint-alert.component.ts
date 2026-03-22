@@ -11,6 +11,11 @@ import uiAlertStyles from './flint-alert.css?inline';
  * @slot icon - Optional icon to display instead of the default severity icon.
  *
  * @fires flint-alert-close - Fired when the alert's close button is clicked. detail: `{ open: false, severity: string }`
+ * @csspart base - The component's base wrapper element.
+ * @csspart close-button - The close button element.
+ * @csspart icon - The icon container.
+ * @csspart message - The message content area.
+ * @csspart title - The title element.
  */
 export class FlintAlert extends FlintElement {
     static styles = unsafeCSS(uiAlertStyles);

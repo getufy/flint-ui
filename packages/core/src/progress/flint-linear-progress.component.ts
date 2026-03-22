@@ -18,6 +18,8 @@ import uiLinearProgressStyles from './flint-linear-progress.css?inline';
  * <!-- Explicitly animated (equivalent to default) -->
  * <flint-linear-progress indeterminate></flint-linear-progress>
  * ```
+ * @csspart base - The component's base wrapper element.
+ * @csspart indicator - The indicator element.
  */
 export class FlintLinearProgress extends FlintElement {
     static styles = unsafeCSS(uiLinearProgressStyles);

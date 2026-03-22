@@ -4,6 +4,9 @@ import { classMap } from 'lit/directives/class-map.js';
 import uiTableSortLabelStyles from './flint-table-sort-label.css?inline';
 import { FlintElement } from '../flint-element.js';
 
+/**
+ * @csspart icon - The icon container.
+ */
 export class FlintTableSortLabel extends FlintElement {
     static styles = unsafeCSS(uiTableSortLabelStyles);
 

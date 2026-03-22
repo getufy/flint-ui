@@ -18,6 +18,10 @@ const errorIcon = svg`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16
  *
  * @fires flint-copy - Fired after a successful copy operation. detail: `{ value: string }`
  * @fires flint-copy-error - Fired when the copy operation fails. detail: `{ reason: string }`
+ * @csspart button - The button element.
+ * @csspart copy-icon - The copy icon element.
+ * @csspart error-icon - The error icon element.
+ * @csspart success-icon - The success icon element.
  */
 export class FlintCopyButton extends FlintElement {
     static override styles = unsafeCSS(styles);

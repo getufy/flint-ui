@@ -9,6 +9,8 @@ import uiBottomNavigationActionStyles from './flint-bottom-navigation-action.css
  *
  * @slot icon - Icon element.
  * @slot - Label text.
+ * @csspart icon - The icon container.
+ * @csspart label - The label element.
  */
 export class FlintBottomNavigationAction extends FlintElement {
     static styles = unsafeCSS(uiBottomNavigationActionStyles);

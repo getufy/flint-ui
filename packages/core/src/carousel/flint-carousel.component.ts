@@ -45,6 +45,9 @@ const navButtonStyles = css`
 /* ═══════════════════════════════════════════════════════════════════════════
    FlintCarouselContent
 ═══════════════════════════════════════════════════════════════════════════ */
+/**
+ * @csspart track - The track element.
+ */
 export class FlintCarouselContent extends FlintElement {
   static styles = unsafeCSS(uiCarouselContentStyles);
 
@@ -92,6 +95,9 @@ export class FlintCarouselContent extends FlintElement {
 /* ═══════════════════════════════════════════════════════════════════════════
    FlintCarouselItem
 ═══════════════════════════════════════════════════════════════════════════ */
+/**
+ * @csspart base - The component's base wrapper element.
+ */
 export class FlintCarouselItem extends FlintElement {
   static styles = unsafeCSS(uiCarouselItemStyles);
 
@@ -111,6 +117,7 @@ export class FlintCarouselItem extends FlintElement {
  * Carousel Previous: navigation button to go to the previous slide.
  *
  * @slot - Custom icon content, replaces default chevron.
+ * @csspart button - The button element.
  */
 export class FlintCarouselPrevious extends FlintElement {
   static styles = navButtonStyles;
@@ -153,6 +160,7 @@ export class FlintCarouselPrevious extends FlintElement {
  * Carousel Next: navigation button to go to the next slide.
  *
  * @slot - Custom icon content, replaces default chevron.
+ * @csspart button - The button element.
  */
 export class FlintCarouselNext extends FlintElement {
   static styles = navButtonStyles;
@@ -195,6 +203,8 @@ export class FlintCarouselNext extends FlintElement {
  * Carousel: a slideshow component for cycling through content.
  *
  * @slot - Carousel content: flint-carousel-content, flint-carousel-previous, flint-carousel-next.
+ *
+ * @csspart base - The component's base wrapper element.
  *
  * @fires flint-carousel-change - Fired when the active slide changes. detail: `{ index: number; total: number }`
  */

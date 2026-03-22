@@ -2,6 +2,9 @@ import { unsafeCSS, html } from 'lit';
 import { FlintElement } from '../flint-element.js';
 import uiCardActionAreaStyles from './flint-card-action-area.css?inline';
 
+/**
+ * @csspart action-area - The action area element.
+ */
 export class FlintCardActionArea extends FlintElement {
   static styles = unsafeCSS(uiCardActionAreaStyles);
 

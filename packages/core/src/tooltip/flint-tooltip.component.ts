@@ -22,6 +22,8 @@ let instanceCounter = 0;
  *
  * @fires flint-tooltip-show - Dispatched when the tooltip becomes visible.
  * @fires flint-tooltip-hide - Dispatched when the tooltip is dismissed.
+ * @csspart base - The component's base wrapper element.
+ * @csspart body - The body element.
  */
 export class FlintTooltip extends FlintElement {
     static override styles = unsafeCSS(uiTooltipStyles);

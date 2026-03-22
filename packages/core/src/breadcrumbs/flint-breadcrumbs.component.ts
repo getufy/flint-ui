@@ -17,6 +17,9 @@ import uiBreadcrumbsStyles from './flint-breadcrumbs.css?inline';
  * @cssvar --flint-breadcrumb-collapsed-bg       - Background of the expand "..." button
  * @cssvar --flint-breadcrumb-collapsed-hover-bg - Hover background of the expand button
  * @cssvar --flint-breadcrumb-collapsed-radius   - Border-radius of the expand button
+ * @csspart base - The component's base wrapper element.
+ * @csspart list - The list element.
+ * @csspart separator - The separator element.
  */
 export class FlintBreadcrumbs extends FlintElement {
     static styles = unsafeCSS(uiBreadcrumbsStyles);

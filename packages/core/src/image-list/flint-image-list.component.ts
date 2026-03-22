@@ -11,6 +11,7 @@ export type ImageListVariant = 'standard' | 'quilted' | 'woven' | 'masonry';
  * Supports standard, quilted, woven, and masonry variants.
  *
  * @slot - Place `flint-image-list-item` elements here.
+ * @csspart base - The component's base wrapper element.
  */
 export class FlintImageList extends FlintElement {
   static styles = unsafeCSS(uiImageListStyles);

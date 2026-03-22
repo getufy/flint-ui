@@ -12,6 +12,7 @@ import styles from './flint-format-date.css?inline';
  * Parses a Date object or ISO 8601 string into a Date.
  * @param value - A `Date` instance or any string accepted by `new Date()`.
  * @returns A valid `Date` if parsing succeeds, or `null` for invalid/NaN dates.
+ * @csspart base - The component's base wrapper element.
  */
 export function parseDate(value: Date | string): Date | null {
     let d: Date;

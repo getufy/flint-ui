@@ -17,6 +17,7 @@ import uiToggleStyles from './flint-toggle.css?inline';
  * @attr {'ltr'|'rtl'} dir - Text direction.
  * @attr {boolean} default-pressed - Initial pressed state (uncontrolled mode).
  * @attr {string} aria-label - Accessible label for icon-only toggles.
+ * @csspart base - The component's base wrapper element.
  */
 export class FlintToggle extends FlintElement {
     static styles = unsafeCSS(uiToggleStyles);

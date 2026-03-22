@@ -18,6 +18,7 @@ import uiDateRangeCalendarStyles from './flint-date-range-calendar.css?inline';
  * Shows two months side-by-side (or stacked on narrow screens).
  *
  * @fires flint-date-range-picker-select - { detail: { value: DateRange } } on each click
+ * @csspart base - The component's base wrapper element.
  */
 export class FlintDateRangeCalendar extends FlintElement {
     static styles = unsafeCSS(uiDateRangeCalendarStyles);

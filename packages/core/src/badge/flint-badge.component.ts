@@ -8,6 +8,7 @@ import uiBadgeStyles from './flint-badge.css?inline';
  * A badge component that generates a small badge at the top-right of its children.
  *
  * @slot - The content to which the badge is attached.
+ * @csspart base - The component's base wrapper element.
  */
 export class FlintBadge extends FlintElement {
     static styles = unsafeCSS(uiBadgeStyles);

@@ -12,6 +12,9 @@ import uiTreeItemStyles from './flint-tree-item.css?inline';
  *
  * @fires flint-tree-item-click  - Fired when the item is clicked (detail: { itemId })
  * @fires flint-tree-item-toggle - Fired when expanded state changes (detail: { itemId, expanded })
+ * @csspart base - The component's base wrapper element.
+ * @csspart children - The children element.
+ * @csspart label - The label element.
  */
 export class FlintTreeItem extends FlintElement {
   static styles = unsafeCSS(uiTreeItemStyles);

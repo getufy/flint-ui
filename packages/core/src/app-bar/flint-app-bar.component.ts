@@ -12,6 +12,10 @@ import uiAppBarStyles from './flint-app-bar.css?inline';
  * @slot title - Center section next to the title prop.
  * @slot actions - Right section, e.g. action buttons (alias: `end-content`).
  * @slot end-content - Alias for `actions` slot.
+ * @csspart actions - The actions container.
+ * @csspart base - The component's base wrapper element.
+ * @csspart navigation - The navigation container.
+ * @csspart title - The title element.
  */
 export class FlintAppBar extends FlintElement {
   static styles = unsafeCSS(uiAppBarStyles);

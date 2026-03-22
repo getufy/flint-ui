@@ -15,6 +15,11 @@ export interface TransferOption {
  * A premium Transfer List component for moving items between two lists.
  *
  * @fires flint-transfer-list-change - Dispatched when items are moved between lists. detail: `{ value: string[] }`
+ * @csspart actions - The actions container.
+ * @csspart base - The component's base wrapper element.
+ * @csspart header - The header element.
+ * @csspart left-list - The left list element.
+ * @csspart right-list - The right list element.
  */
 export class FlintTransferList extends FlintElement {
     static styles = unsafeCSS(uiTransferListStyles);

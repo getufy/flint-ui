@@ -10,6 +10,7 @@ import uiLinkStyles from './flint-link.css?inline';
  *
  * @slot - Link text or content.
  * Native click events propagate from the shadow DOM anchor element.
+ * @csspart base - The component's base wrapper element.
  */
 export class FlintLink extends FlintElement {
     static styles = unsafeCSS(uiLinkStyles);

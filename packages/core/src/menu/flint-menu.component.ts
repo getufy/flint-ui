@@ -21,6 +21,8 @@ import uiMenuStyles from './flint-menu.css?inline';
  *
  * @fires flint-menu-item-select - Fired when the item is activated.
  *   detail: { value: string | null, label: string }
+ * @csspart base - The component's base wrapper element.
+ * @csspart label - The label element.
  */
 export class FlintMenuItem extends FlintElement {
     static styles = unsafeCSS(uiMenuItemStyles);

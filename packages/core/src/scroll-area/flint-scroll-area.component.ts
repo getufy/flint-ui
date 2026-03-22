@@ -25,6 +25,8 @@ import type { Orientation } from '../types.js';
  * @cssprop --flint-scrollbar-thumb-hover-color - Thumb fill on hover/drag
  * @cssprop --flint-scrollbar-thumb-radius      - Thumb border radius (default: `9999px`)
  * @cssprop --flint-scrollbar-track-color       - Track background (default: `transparent`)
+ * @csspart thumb - The thumb/handle element.
+ * @csspart track - The track element.
  */
 export class FlintScrollBar extends FlintElement {
     static styles = unsafeCSS(uiScrollBarStyles);
@@ -148,6 +150,9 @@ export class FlintScrollBar extends FlintElement {
  * @cssprop --flint-scrollbar-thumb-hover-color - Thumb hover/drag fill
  * @cssprop --flint-scrollbar-thumb-radius      - Thumb border radius (default: `9999px`)
  * @cssprop --flint-scrollbar-track-color       - Track background (default: `transparent`)
+ * @csspart base - The component's base wrapper element.
+ * @csspart viewport - The viewport element.
+ * @csspart thumb - The default scrollbar thumb element.
  */
 export class FlintScrollArea extends FlintElement {
     static styles = unsafeCSS(uiScrollAreaStyles);

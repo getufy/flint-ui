@@ -32,6 +32,7 @@ import styles from './flint-format-number.css?inline';
  * @cssprop --flint-format-number-font-family    - Font family (default: `inherit`).
  * @cssprop --flint-format-number-positive-color - Color for positive values (default: `inherit`).
  * @cssprop --flint-format-number-negative-color - Color for negative values (default: `inherit`).
+ * @csspart base - The component's base wrapper element.
  */
 export class FlintFormatNumber extends FlintElement {
     static styles = unsafeCSS(styles);

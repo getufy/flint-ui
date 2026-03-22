@@ -13,6 +13,7 @@ export type RichTreeItem = Record<string, unknown>;
  * @method getChildrenCount - Returns the number of children for the item.
  *   Return a positive number if known, -1 if the item has children but the count is unknown,
  *   or 0 if the item has no children.
+ * @csspart base - The component's base wrapper element.
  */
 export interface RichTreeViewDataSource {
     getTreeItems(parentId: string | null): Promise<RichTreeItem[]>;

@@ -63,6 +63,7 @@ type TimeView = 'hours' | 'minutes' | 'seconds';
  *
  * @fires flint-time-field-change - Fired when the time value changes. detail: `{ value: string }`
  * @fires flint-time-picker-clear - Fired when the clear button is clicked.
+ * @csspart base - The component's base wrapper element.
  */
 export class FlintTimeField extends FlintElement {
     static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };

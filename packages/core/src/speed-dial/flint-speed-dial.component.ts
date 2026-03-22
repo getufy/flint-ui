@@ -14,6 +14,8 @@ import uiSpeedDialStyles from './flint-speed-dial.css?inline';
  *
  * @slot - Icon content for the action button.
  * @fires flint-speed-dial-action-click - Fired when the action button is clicked.
+ * @csspart button - The button element.
+ * @csspart tooltip - The tooltip element.
  */
 export class FlintSpeedDialAction extends FlintElement {
     static styles = unsafeCSS(uiSpeedDialActionStyles);
@@ -98,6 +100,9 @@ export class FlintSpeedDialAction extends FlintElement {
  *
  * @fires flint-speed-dial-open  - Fired when the dial opens. detail: `{ open: true }`
  * @fires flint-speed-dial-close - Fired when the dial closes. detail: `{ open: false }`
+ *
+ * @csspart actions - The actions container.
+ * @csspart button - The FAB button element.
  */
 export class FlintSpeedDial extends FlintElement {
     static styles = unsafeCSS(uiSpeedDialStyles);

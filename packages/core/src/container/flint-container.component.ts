@@ -8,6 +8,9 @@ export type ContainerMaxWidth = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false;
 
 const VALID_MAX_WIDTHS = new Set<string>(['xs', 'sm', 'md', 'lg', 'xl']);
 
+/**
+ * @csspart base - The component's base wrapper element.
+ */
 export class FlintContainer extends FlintElement {
     static styles = unsafeCSS(uiContainerStyles);
 

@@ -21,6 +21,9 @@ const iconWarn = html`<svg width="18" height="18" viewBox="0 0 24 24" fill="curr
 /* ================================================================== */
 /* FlintStepConnector                                                      */
 /* ================================================================== */
+/**
+ * @csspart line - The connector line element.
+ */
 export class FlintStepConnector extends FlintElement {
     static styles = unsafeCSS(uiStepConnectorStyles);
 
@@ -40,6 +43,9 @@ export class FlintStepConnector extends FlintElement {
  *
  * @slot - Label text.
  * @slot optional - Optional step text.
+ *
+ * @csspart label - The label element.
+ * @csspart optional - The optional element.
  */
 export class FlintStepLabel extends FlintElement {
     static styles = unsafeCSS(uiStepLabelStyles);
@@ -66,6 +72,9 @@ export class FlintStepLabel extends FlintElement {
  * Step Content: the collapsible content area for a step.
  *
  * @slot - Step content.
+ *
+ * @csspart base - The component's base wrapper element.
+ * @csspart content - The content container.
  */
 export class FlintStepContent extends FlintElement {
     static styles = unsafeCSS(uiStepContentStyles);
@@ -96,6 +105,8 @@ export class FlintStepContent extends FlintElement {
  * @slot icon - Custom step icon.
  * @slot label - Custom label content.
  * @slot - Step content.
+ *
+ * @csspart indicator - The step icon/number indicator.
  *
  * @fires flint-step-click - Fired when a non-linear step is clicked. detail: `{ step: number }`
  */
@@ -210,6 +221,8 @@ export class FlintStep extends FlintElement {
 /**
  * Stepper: a multi-step progress indicator.
  *
+ * @csspart base - The component's base wrapper element.
+ *
  * @fires flint-step-change - Fired when the active step changes via step click. detail: `{ step: number }`
  */
 export class FlintStepper extends FlintElement {
@@ -305,6 +318,10 @@ export class FlintStepper extends FlintElement {
  *
  * @slot back-button - Back navigation button.
  * @slot next-button - Next navigation button.
+ *
+ * @csspart back-button - The back button element.
+ * @csspart next-button - The next button element.
+ * @csspart progress - The progress indicator.
  *
  * @fires flint-mobile-step-back - Fired when the back button is clicked.
  * @fires flint-mobile-step-next - Fired when the next button is clicked.

@@ -5,6 +5,12 @@ import { FlintElement } from '../flint-element.js';
 import type { Size } from '../types.js';
 import uiAvatarStyles from './flint-avatar.css?inline';
 
+/**
+ * @csspart base - The component's base wrapper element.
+ * @csspart fallback - The fallback content element.
+ * @csspart image - The image element.
+ * @csspart initials - The initials element.
+ */
 export class FlintAvatar extends FlintElement {
     static styles = unsafeCSS(uiAvatarStyles);
 

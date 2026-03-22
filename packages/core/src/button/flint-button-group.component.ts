@@ -6,6 +6,9 @@ import type { FlintButton } from './flint-button.component.js';
 import type { ButtonAppearance, ButtonColor, ButtonSize } from './flint-button.component.js';
 import uiButtonGroupStyles from './flint-button-group.css?inline';
 
+/**
+ * @csspart base - The component's base wrapper element.
+ */
 export class FlintButtonGroup extends FlintElement {
     static styles = unsafeCSS(uiButtonGroupStyles);
 

@@ -13,6 +13,7 @@ import type { Orientation } from '../types.js';
  * @fires flint-resizable-change - Fired when panel sizes change via drag or keyboard.
  * @fires flint-resizable-collapse - Fired when a panel is collapsed.
  * @fires flint-resizable-expand - Fired when a collapsed panel is expanded.
+ * @csspart grip - The grip element.
  */
 export class FlintResizableGroup extends FlintElement {
   static override styles = css`

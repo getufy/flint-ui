@@ -23,6 +23,9 @@ import uiDateRangePickerStyles from './flint-date-range-picker.css?inline';
  * - `auto`     — desktop on pointer:fine, mobile on pointer:coarse
  *
  * @fires flint-date-range-picker-change - { detail: { value: DateRange } } when range is committed
+ * @csspart base - The component's base wrapper element.
+ * @csspart popover - The popover element.
+ * @csspart shortcuts - The shortcuts element.
  */
 export class FlintDateRangePicker extends FlintElement {
     static styles = unsafeCSS(uiDateRangePickerStyles);

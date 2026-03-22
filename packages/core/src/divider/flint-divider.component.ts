@@ -9,6 +9,7 @@ import uiDividerStyles from './flint-divider.css?inline';
  * A divider component that provides a thin line for grouping elements.
  *
  * @slot - Optional text or content to display within the divider.
+ * @csspart base - The component's base wrapper element.
  */
 export class FlintDivider extends FlintElement {
   static styles = unsafeCSS(uiDividerStyles);

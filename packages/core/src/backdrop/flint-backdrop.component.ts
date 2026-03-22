@@ -9,6 +9,8 @@ import uiBackdropStyles from './flint-backdrop.css?inline';
  *
  * @fires flint-backdrop-close - Dispatched when the backdrop is clicked or Escape is pressed. detail: `{ open: false }`
  * @slot - Content to display in the foreground.
+ * @csspart base - The component's base wrapper element.
+ * @csspart content - The content container.
  */
 export class FlintBackdrop extends FlintElement {
   static styles = unsafeCSS(uiBackdropStyles);

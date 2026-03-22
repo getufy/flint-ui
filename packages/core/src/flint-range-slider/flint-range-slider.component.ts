@@ -29,6 +29,9 @@ export interface FlintRangeSliderChangeDetail { value: [number, number]; }
  * @cssprop {color}  --flint-range-slider-fill-color     - Filled range color.
  * @cssprop {color}  --flint-range-slider-thumb-color    - Thumb background color.
  * @cssprop {color}  --flint-range-slider-thumb-border   - Thumb border color.
+ * @csspart base - The component's base wrapper element.
+ * @csspart fill - The fill element.
+ * @csspart track - The track element.
  */
 export class FlintRangeSlider extends FlintElement {
     static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
