@@ -94,6 +94,12 @@ export class FlintToggleButtonGroup extends FlintElement {
             } else {
                 button.removeAttribute('data-last');
             }
+
+            if (index > 0 && index < children.length - 1) {
+                button.setAttribute('data-middle', '');
+            } else {
+                button.removeAttribute('data-middle');
+            }
         });
     }
 

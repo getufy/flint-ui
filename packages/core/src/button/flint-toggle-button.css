@@ -1,5 +1,10 @@
 :host {
     display: inline-block;
+    position: relative;
+}
+
+:host([selected]) {
+    z-index: 1;
 }
 
 button {
@@ -30,7 +35,6 @@ button.selected {
     background-color: var(--flint-toggle-button-selected-bg, var(--flint-active-color));
     color: var(--flint-toggle-button-selected-color, var(--flint-primary-color));
     border-color: var(--flint-toggle-button-selected-border-color, var(--flint-primary-color));
-    z-index: 1;
 }
 
 button:disabled {
@@ -40,7 +44,14 @@ button:disabled {
 
 button:focus-visible {
     box-shadow: 0 0 0 2px var(--flint-primary-color);
+}
+
+:host(:focus-within) {
     z-index: 2;
+}
+
+:host(:hover) {
+    z-index: 1;
 }
 
 /* ─── Size variants ───────────────────────────────── */
@@ -79,8 +90,13 @@ button:focus-visible {
     border-radius: var(--flint-border-radius-md);
 }
 
-/* Overlap borders between group items */
-:host([data-last]:not([data-first])) button,
-:host(:not([data-first]):not([data-last])) button {
+/* Middle buttons in group — no radius, overlap borders */
+:host([data-middle]) button {
+    border-radius: 0;
+    margin-left: -1px;
+}
+
+/* Overlap borders for last item */
+:host([data-last]:not([data-first])) button {
     margin-left: -1px;
 }

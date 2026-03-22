@@ -1,12 +1,12 @@
 # Button
 
-<Demo label="Variants" html='<div style="display:flex;gap:8px;flex-wrap:wrap"><flint-button variant="primary">Primary</flint-button><flint-button variant="secondary">Secondary</flint-button><flint-button variant="destructive">Destructive</flint-button></div>' />
+<Demo label="Variants" html='<div style="display:flex;gap:8px;flex-wrap:wrap"><flint-button>Primary</flint-button><flint-button appearance="outlined" color="neutral">Secondary</flint-button><flint-button color="destructive">Destructive</flint-button></div>' />
 
-<Demo label="Sizes" html='<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><flint-button size="small">Small</flint-button><flint-button size="medium">Medium</flint-button><flint-button size="large">Large</flint-button></div>' />
+<Demo label="Sizes" html='<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><flint-button size="sm">Small</flint-button><flint-button size="md">Medium</flint-button><flint-button size="lg">Large</flint-button></div>' />
 
 <Demo label="States" html='<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><flint-button disabled>Disabled</flint-button><flint-button full-width>Full Width</flint-button></div>' />
 
-<Demo label="Button Group" html='<flint-button-group>  <flint-button variant="secondary">Left</flint-button>  <flint-button variant="secondary">Center</flint-button>  <flint-button variant="secondary">Right</flint-button></flint-button-group>' />
+<Demo label="Button Group" html='<flint-button-group>  <flint-button appearance="outlined" color="neutral">Left</flint-button>  <flint-button appearance="outlined" color="neutral">Center</flint-button>  <flint-button appearance="outlined" color="neutral">Right</flint-button></flint-button-group>' />
 
 <Demo label="Toggle Buttons" html='<flint-toggle-button-group exclusive>  <flint-toggle-button value="left">Left</flint-toggle-button>  <flint-toggle-button value="center" selected>Center</flint-toggle-button>  <flint-toggle-button value="right">Right</flint-toggle-button></flint-toggle-button-group>' />
 

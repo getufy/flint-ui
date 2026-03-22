@@ -1,8 +1,8 @@
 # Collapsible
 
-<Demo label="Default Closed" html='<div style="width:100%;max-width:400px"><flint-collapsible>  <flint-collapsible-trigger>    <flint-button variant="secondary" style="width:100%">Click to expand</flint-button>  </flint-collapsible-trigger>  <flint-collapsible-content>    <div style="padding:12px 0;color:#374151">This content is revealed when you click the trigger above.</div>  </flint-collapsible-content></flint-collapsible></div>' />
+<Demo label="Default Closed" html='<div style="width:100%;max-width:400px"><flint-collapsible>  <flint-collapsible-trigger>    <flint-button appearance="outlined" color="neutral" style="width:100%">Click to expand</flint-button>  </flint-collapsible-trigger>  <flint-collapsible-content>    <div style="padding:12px 0;color:#374151">This content is revealed when you click the trigger above.</div>  </flint-collapsible-content></flint-collapsible></div>' />
 
-<Demo label="Default Open" html='<div style="width:100%;max-width:400px"><flint-collapsible default-open>  <flint-collapsible-trigger>    <flint-button variant="secondary" style="width:100%">Click to collapse</flint-button>  </flint-collapsible-trigger>  <flint-collapsible-content>    <div style="padding:12px 0;color:#374151">This content starts visible and can be collapsed.</div>  </flint-collapsible-content></flint-collapsible></div>' />
+<Demo label="Default Open" html='<div style="width:100%;max-width:400px"><flint-collapsible default-open>  <flint-collapsible-trigger>    <flint-button appearance="outlined" color="neutral" style="width:100%">Click to collapse</flint-button>  </flint-collapsible-trigger>  <flint-collapsible-content>    <div style="padding:12px 0;color:#374151">This content starts visible and can be collapsed.</div>  </flint-collapsible-content></flint-collapsible></div>' />
 
 ## `<flint-collapsible-trigger>`
 

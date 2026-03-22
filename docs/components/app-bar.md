@@ -1,8 +1,8 @@
 # App Bar
 
-<Demo label="Regular" html='<div style="width:100%;max-width:600px"><flint-app-bar title="My Application" position="static">  <span slot="navigation" style="font-size:20px;cursor:pointer">&#9776;</span>  <div slot="actions">    <flint-button variant="secondary" size="small">Login</flint-button>  </div></flint-app-bar></div>' />
+<Demo label="Regular" html='<div style="width:100%;max-width:600px"><flint-app-bar title="My Application" position="static">  <span slot="navigation" style="font-size:20px;cursor:pointer">&#9776;</span>  <div slot="actions">    <flint-button appearance="outlined" color="neutral" size="sm">Login</flint-button>  </div></flint-app-bar></div>' />
 
-<Demo label="Dense" html='<div style="width:100%;max-width:600px"><flint-app-bar title="Dense Bar" position="static" variant="dense">  <div slot="actions">    <flint-button variant="secondary" size="small">Action</flint-button>  </div></flint-app-bar></div>' />
+<Demo label="Dense" html='<div style="width:100%;max-width:600px"><flint-app-bar title="Dense Bar" position="static" variant="dense">  <div slot="actions">    <flint-button appearance="outlined" color="neutral" size="sm">Action</flint-button>  </div></flint-app-bar></div>' />
 
 flint-app-bar: The top App bar provides content and actions related to the current screen.
 
