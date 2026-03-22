@@ -1,5 +1,21 @@
 # @getufy/flint-ui-react
 
+## [0.8.5](https://github.com/getufy/flint-ui/compare/flint-ui-react-v0.8.4...flint-ui-react-v0.8.5) (2026-03-22)
+
+
+### Miscellaneous Chores
+
+* **flint-ui-react:** Synchronize flint-ui versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @getufy/flint-ui bumped from 0.8.4 to 0.8.5
+  * peerDependencies
+    * @getufy/flint-ui bumped from ^0.8.4 to ^0.8.5
+
 ## [0.8.4](https://github.com/getufy/flint-ui/compare/flint-ui-react-v0.8.3...flint-ui-react-v0.8.4) (2026-03-22)
 
 

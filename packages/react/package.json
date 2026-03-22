@@ -1,6 +1,6 @@
 {
   "name": "@getufy/flint-ui-react",
-  "version": "0.8.4",
+  "version": "0.8.5",
   "type": "module",
   "types": "./dist/index.d.ts",
   "module": "./dist/index.js",
@@ -370,12 +370,12 @@
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
-    "@getufy/flint-ui": "^0.8.4"
+    "@getufy/flint-ui": "^0.8.5"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",
     "react": "^19.0.0",
-    "@getufy/flint-ui": "0.8.4",
+    "@getufy/flint-ui": "0.8.5",
     "typescript": "^5.9.3"
   }
 }
