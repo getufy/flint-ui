@@ -24,7 +24,6 @@ export interface FlintDrawerCloseDetail {
  * @slot (default) - Drawer content.
  */
 export interface FlintDrawerProps extends React.HTMLAttributes<FlintDrawerElement> {
-    dependencies?: object;
     /** Whether the drawer is open. */
     open?: boolean;
     /** Initial open state for uncontrolled usage. */

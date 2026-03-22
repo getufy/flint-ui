@@ -20,7 +20,6 @@ export interface FlintCheckboxChangeDetail {
  * Checkbox: a form control for boolean selection.
  */
 export interface FlintCheckboxProps extends Omit<React.HTMLAttributes<FlintCheckboxElement>, 'defaultChecked'> {
-    shadowRootOptions?: object;
     /** Current checked state (controlled). When set, the component reflects this state and does not manage its own state. */
     checked?: boolean;
     /** Displays the checkbox in an indeterminate state. */

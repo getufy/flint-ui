@@ -14,7 +14,6 @@ import { FlintRichTreeViewEvents } from '../events/flint-rich-tree-view.js';
  * A data-driven tree view that renders its structure from an `items` array.
  */
 export interface FlintRichTreeViewProps extends React.HTMLAttributes<FlintRichTreeViewElement> {
-    dependencies?: object;
     /**
      * Array of item data objects.
      * Type: `RichTreeItem[]`
@@ -94,10 +93,31 @@ export interface FlintRichTreeViewProps extends React.HTMLAttributes<FlintRichTr
      */
     onItemPositionChange?: FlintRichTreeViewElement['onItemPositionChange'];
     /**
+     * Selection mode:
+     * Allowed values: 'none' | 'single' | 'multiple'
+     */
+    selectionMode?: 'none' | 'single' | 'multiple';
+    /** Controlled mode. The set of selected item IDs. */
+    selectedItems?: string[] | undefined;
+    /** Uncontrolled mode. Item IDs selected on initial mount. */
+    defaultSelectedItems?: string[];
+    /**
+     * Callback fired when the selection changes.
+     * Type: `(itemIds: string[]) => void | undefined`
+     */
+    onSelectedItemsChange?: FlintRichTreeViewElement['onSelectedItemsChange'];
+    /** When true (and selectionMode='multiple'), selecting a parent item */
+    selectionPropagation?: boolean;
+    /**
      * When a lazy-loading dataSource call fails (detail: { message, id, error })
      * DOM event: `flint-tree-view-error`
      */
     onFlintTreeViewError?: (event: CustomEvent) => void;
+    /**
+     * When the selected set changes (detail: { selectedItems })
+     * DOM event: `flint-selection-change`
+     */
+    onFlintSelectionChange?: (event: CustomEvent) => void;
     /**
      * When the expanded set changes (detail: { expandedItems })
      * DOM event: `flint-tree-view-expanded-items-change`
@@ -164,6 +184,7 @@ export const FlintRichTreeView = createComponent({
         onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
         onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
         onFlintTreeViewError: FlintRichTreeViewEvents.TREE_VIEW_ERROR as EventName<CustomEvent>,
+        onFlintSelectionChange: FlintRichTreeViewEvents.SELECTION_CHANGE as EventName<CustomEvent>,
         onFlintTreeViewExpandedItemsChange: FlintRichTreeViewEvents.TREE_VIEW_EXPANDED_ITEMS_CHANGE as EventName<CustomEvent>,
         onFlintTreeViewItemPositionChange: FlintRichTreeViewEvents.TREE_VIEW_ITEM_POSITION_CHANGE as EventName<CustomEvent>,
         onFlintTreeViewItemClick: FlintRichTreeViewEvents.TREE_VIEW_ITEM_CLICK as EventName<CustomEvent>,

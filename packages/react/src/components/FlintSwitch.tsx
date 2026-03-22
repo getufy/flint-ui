@@ -22,7 +22,6 @@ export interface FlintSwitchChangeDetail {
  * @slot (default) - Optional label content (used when the `label` prop is not set).
  */
 export interface FlintSwitchProps extends Omit<React.HTMLAttributes<FlintSwitchElement>, 'defaultChecked'> {
-    shadowRootOptions?: object;
     /** Current checked state (controlled). When set, the component reflects this state and does not manage its own state. */
     checked?: boolean;
     /** Disables the switch and prevents interaction. */

@@ -18,7 +18,6 @@ export interface FlintRadioSelectDetail {
  * Radio: a single radio button within a radio group.
  */
 export interface FlintRadioProps extends React.HTMLAttributes<FlintRadioElement> {
-    shadowRootOptions?: object;
     /** Whether this radio is selected. */
     checked?: boolean;
     /** Disables this radio and prevents interaction. */

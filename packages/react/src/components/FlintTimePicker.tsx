@@ -18,7 +18,6 @@ export interface FlintTimePickerChangeDetail {
  * Time Picker: a configurable time input supporting desktop, mobile, and static variants.
  */
 export interface FlintTimePickerProps extends Omit<React.HTMLAttributes<FlintTimePickerElement>, 'defaultValue'> {
-    shadowRootOptions?: object;
     /** Time value in HH:MM:SS format. */
     value?: string;
     /** Field label text. */

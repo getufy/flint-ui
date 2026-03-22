@@ -50,6 +50,8 @@ export interface FlintButtonProps extends Omit<React.HTMLAttributes<FlintButtonE
      * Allowed values: 'default' | 'pill' | 'circle'
      */
     shape?: 'default' | 'pill' | 'circle';
+    /** Renders a dropdown caret (chevron-down) icon in the suffix area. */
+    caret?: boolean;
 }
 
 export const FlintButton = createComponent({

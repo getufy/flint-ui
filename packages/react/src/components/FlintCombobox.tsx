@@ -18,7 +18,6 @@ export interface FlintComboboxChangeDetail {
  * Combobox: a free-text input with dropdown suggestions.
  */
 export interface FlintComboboxProps extends Omit<React.HTMLAttributes<FlintComboboxElement>, 'defaultValue'> {
-    shadowRootOptions?: object;
     /**
      * The list of suggestion options.
      * Type: `ComboboxOption[]`

@@ -22,7 +22,6 @@ export interface FlintTextareaChangeDetail {
  * A Textarea component for multi-line text input.
  */
 export interface FlintTextareaProps extends Omit<React.HTMLAttributes<FlintTextareaElement>, 'defaultValue'> {
-    shadowRootOptions?: object;
     /** Current textarea value. */
     value?: string;
     /** Placeholder text shown when empty. */

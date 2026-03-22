@@ -25,7 +25,6 @@ export interface FlintTextFieldChangeDetail {
  * @slot suffix - Content placed after the input (e.g. icon).
  */
 export interface FlintTextFieldProps extends Omit<React.HTMLAttributes<FlintTextFieldElement>, 'defaultValue'> {
-    shadowRootOptions?: object;
     /** Label text displayed above the input. */
     label?: string;
     /** Current value of the text field. */

@@ -18,7 +18,6 @@ export interface FlintAutocompleteChangeDetail {
  * Autocomplete: a text input with a dropdown of selectable suggestions.
  */
 export interface FlintAutocompleteProps extends Omit<React.HTMLAttributes<FlintAutocompleteElement>, 'defaultValue'> {
-    shadowRootOptions?: object;
     /**
      * The list of selectable options. Accepts `AutocompleteOption[]` or `string[]`.
      * Type: `(AutocompleteOption | string)[]`
@@ -40,6 +39,8 @@ export interface FlintAutocompleteProps extends Omit<React.HTMLAttributes<FlintA
     defaultValue?: string;
     /** When true, the dropdown uses `position: fixed` so it can escape */
     hoist?: boolean;
+    /** Distance between the input and the dropdown popup (px). */
+    popupDistance?: number;
     /**
      * Fired when the selected value changes. detail: `{ value: string, label: string }`
      * DOM event: `flint-autocomplete-change`

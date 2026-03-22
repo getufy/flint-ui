@@ -18,7 +18,6 @@ export interface FlintRatingChangeDetail {
  * Rating: a star-based rating input.
  */
 export interface FlintRatingProps extends Omit<React.HTMLAttributes<FlintRatingElement>, 'defaultValue'> {
-    shadowRootOptions?: object;
     /** Current rating value. */
     value?: number;
     /** Maximum number of stars. */

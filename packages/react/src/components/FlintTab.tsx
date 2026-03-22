@@ -10,6 +10,10 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintTab as FlintTabElement } from '@getufy/flint-ui/tabs/flint-tabs';
 import { FlintTabEvents } from '../events/flint-tab.js';
 
+export interface FlintTabCloseDetail {
+    value: string;
+}
+
 /**
  * Tab: an individual tab button within a tab list.
  */
@@ -20,6 +24,8 @@ export interface FlintTabProps extends React.HTMLAttributes<FlintTabElement> {
     disabled?: boolean;
     /** Whether the tab is currently selected. */
     selected?: boolean;
+    /** Whether the tab shows a close button. */
+    closable?: boolean;
     /**
      * Position of the icon slot relative to the label.
      * Allowed values: 'top' | 'bottom' | 'start' | 'end'
@@ -34,6 +40,11 @@ export interface FlintTabProps extends React.HTMLAttributes<FlintTabElement> {
      * DOM event: `flint-tab-click`
      */
     onFlintTabClick?: (event: CustomEvent) => void;
+    /**
+     * Fired when the close button is clicked. detail: `{ value: string }`
+     * DOM event: `flint-tab-close`
+     */
+    onFlintTabClose?: (event: CustomEvent<FlintTabCloseDetail>) => void;
 }
 
 export const FlintTab = createComponent({
@@ -88,5 +99,6 @@ export const FlintTab = createComponent({
         onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
         onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
         onFlintTabClick: FlintTabEvents.CLICK as EventName<CustomEvent>,
+        onFlintTabClose: FlintTabEvents.CLOSE as EventName<CustomEvent<FlintTabCloseDetail>>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintTabProps & React.RefAttributes<FlintTabElement>>;

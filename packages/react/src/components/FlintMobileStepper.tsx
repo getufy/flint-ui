@@ -31,10 +31,10 @@ export interface FlintMobileStepperProps extends React.HTMLAttributes<FlintMobil
      * Allowed values: 'top' | 'bottom' | 'static'
      */
     position?: 'top' | 'bottom' | 'static';
-    /** Label text for the Back navigation button (supports i18n). */
-    backLabel?: string;
-    /** Label text for the Next navigation button (supports i18n). */
-    nextLabel?: string;
+    /** Label text for the Back navigation button. Defaults to localized "Back". */
+    backLabel?: string | undefined;
+    /** Label text for the Next navigation button. Defaults to localized "Next". */
+    nextLabel?: string | undefined;
     /**
      * Fired when the back button is clicked.
      * DOM event: `flint-mobile-step-back`

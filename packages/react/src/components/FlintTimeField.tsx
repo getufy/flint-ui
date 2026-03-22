@@ -18,7 +18,6 @@ export interface FlintTimeFieldChangeDetail {
  * Time Field: a segmented time input with keyboard navigation.
  */
 export interface FlintTimeFieldProps extends React.HTMLAttributes<FlintTimeFieldElement> {
-    shadowRootOptions?: object;
     /** Time value in HH:MM:SS format. */
     value?: string;
     /** Field label text. */

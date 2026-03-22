@@ -29,6 +29,16 @@ export interface FlintTabListProps extends React.HTMLAttributes<FlintTabListElem
     scrollButtons?: 'auto' | 'false';
     /** Accessible label for the tab list. */
     ariaLabel?: string;
+    /**
+     * Tab activation mode passed down from flint-tabs.
+     * Allowed values: 'automatic' | 'manual'
+     */
+    activation?: 'automatic' | 'manual';
+    /**
+     * Tab placement passed down from flint-tabs.
+     * Allowed values: 'top' | 'bottom' | 'start' | 'end'
+     */
+    placement?: 'top' | 'bottom' | 'start' | 'end';
 }
 
 export const FlintTabList = createComponent({

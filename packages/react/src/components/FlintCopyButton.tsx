@@ -28,10 +28,10 @@ export interface FlintCopyButtonProps extends React.HTMLAttributes<FlintCopyButt
     from?: string;
     /** Disables the copy button. */
     disabled?: boolean;
-    /** Label shown in the tooltip (idle state). */
-    copyLabel?: string;
-    /** Label shown in the tooltip after successful copy. */
-    successLabel?: string;
+    /** Label shown in the tooltip (idle state). Defaults to localized "Copy". Set to empty string to hide. */
+    copyLabel?: string | undefined;
+    /** Label shown in the tooltip after successful copy. Defaults to localized "Copied!". Set to empty string to hide. */
+    successLabel?: string | undefined;
     /** Label shown in the tooltip on copy error. */
     errorLabel?: string;
     /** Duration (ms) to show feedback before returning to idle. */

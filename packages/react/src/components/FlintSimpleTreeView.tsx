@@ -39,6 +39,25 @@ export interface FlintSimpleTreeViewProps extends React.HTMLAttributes<FlintSimp
      */
     expansionTrigger?: 'content' | 'iconContainer';
     /**
+     * Selection mode:
+     * Allowed values: 'none' | 'single' | 'multiple'
+     */
+    selectionMode?: 'none' | 'single' | 'multiple';
+    /** Controlled mode. The set of selected item IDs. */
+    selectedItems?: string[] | undefined;
+    /** Uncontrolled mode. Item IDs selected on initial mount. */
+    defaultSelectedItems?: string[];
+    /**
+     * Callback fired when the selection changes.
+     * Type: `(itemIds: string[]) => void | undefined`
+     */
+    onSelectedItemsChange?: FlintSimpleTreeViewElement['onSelectedItemsChange'];
+    /**
+     * When the selected set changes (detail: { selectedItems })
+     * DOM event: `flint-selection-change`
+     */
+    onFlintSelectionChange?: (event: CustomEvent) => void;
+    /**
      * When the expanded set changes (detail: { expandedItems })
      * DOM event: `flint-tree-view-expanded-items-change`
      */
@@ -101,6 +120,7 @@ export const FlintSimpleTreeView = createComponent({
         onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
         onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
         onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
+        onFlintSelectionChange: FlintSimpleTreeViewEvents.SELECTION_CHANGE as EventName<CustomEvent>,
         onFlintTreeViewExpandedItemsChange: FlintSimpleTreeViewEvents.TREE_VIEW_EXPANDED_ITEMS_CHANGE as EventName<CustomEvent>,
         onFlintTreeViewItemClick: FlintSimpleTreeViewEvents.TREE_VIEW_ITEM_CLICK as EventName<CustomEvent>,
     },

@@ -27,12 +27,16 @@ export interface FlintTreeItemProps extends React.HTMLAttributes<FlintTreeItemEl
     expanded?: boolean;
     /** When `true`, forces the expand button to render even if no `flint-tree-item` */
     hasChildren?: boolean;
+    /** Whether this item is visually selected. Managed by the parent tree-view. */
+    selected?: boolean;
+    /** Whether the checkbox is in an indeterminate state (some but not all children selected). */
+    indeterminate?: boolean;
     /** Visual drop position indicator — reflected so CSS :host selectors match */
     dropPosition?: 'before' | 'after' | 'inside' | null;
     /** Whether to show a dedicated drag handle icon */
     showDragHandle?: boolean;
     /**
-     * Fired when the item is clicked (detail: { itemId })
+     * Fired when the item is clicked (detail: { itemId, ctrlKey, shiftKey })
      * DOM event: `flint-tree-item-click`
      */
     onFlintTreeItemClick?: (event: CustomEvent) => void;

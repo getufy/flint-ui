@@ -18,7 +18,6 @@ export interface FlintRadioGroupChangeDetail {
  * Radio Group: manages a set of radio buttons with single selection.
  */
 export interface FlintRadioGroupProps extends Omit<React.HTMLAttributes<FlintRadioGroupElement>, 'defaultValue'> {
-    shadowRootOptions?: object;
     /** Accessible label for the radio group. */
     label?: string;
     /** Form field name for all radios in the group. */

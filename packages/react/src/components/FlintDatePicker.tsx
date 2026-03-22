@@ -18,8 +18,6 @@ export interface FlintDatePickerChangeDetail {
  * A date picker with a text field and a calendar popover/modal.
  */
 export interface FlintDatePickerProps extends Omit<React.HTMLAttributes<FlintDatePickerElement>, 'defaultValue'> {
-    shadowRootOptions?: object;
-    dependencies?: object;
     /** Selected date as ISO string (YYYY-MM-DD). */
     value?: string;
     /** Label shown above the field. */

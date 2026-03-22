@@ -18,7 +18,6 @@ export interface FlintSliderChangeDetail {
  * Slider: a range input for selecting a numeric value.
  */
 export interface FlintSliderProps extends Omit<React.HTMLAttributes<FlintSliderElement>, 'defaultValue'> {
-    shadowRootOptions?: object;
     /** Current slider value. */
     value?: number;
     /** Initial value for uncontrolled usage. */

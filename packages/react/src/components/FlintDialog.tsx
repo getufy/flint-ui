@@ -11,7 +11,6 @@ import { FlintDialog as FlintDialogElement } from '@getufy/flint-ui/dialog/flint
 import { FlintDialogEvents } from '../events/flint-dialog.js';
 
 export interface FlintDialogProps extends React.HTMLAttributes<FlintDialogElement> {
-    dependencies?: object;
     /** Current open state (controlled). When set, the component reflects this state and does not manage its own state. */
     open?: boolean;
     /** Initial open state (uncontrolled). Only used on first render; ignored after mount. */

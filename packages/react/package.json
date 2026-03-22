@@ -209,6 +209,10 @@
       "types": "./dist/paper.d.ts",
       "import": "./dist/paper.js"
     },
+    "./popup": {
+      "types": "./dist/popup.d.ts",
+      "import": "./dist/popup.js"
+    },
     "./progress": {
       "types": "./dist/progress.d.ts",
       "import": "./dist/progress.js"

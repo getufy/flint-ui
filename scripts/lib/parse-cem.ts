@@ -27,6 +27,7 @@ interface CEMMember {
     attribute?: string;
     reflects?: boolean;
     readonly?: boolean;
+    static?: boolean;
     parameters?: Array<{
         name: string;
         type?: { text: string };
@@ -168,6 +169,8 @@ function convertMember(member: CEMMember, attrMap: Map<string, CEMDeclaration['a
     if (member.name.startsWith('_')) return null;
     // Skip readonly fields (not settable as props)
     if (member.readonly) return null;
+    // Skip static fields (class-level, not instance props)
+    if (member.static) return null;
     // Skip kebab-case entries (CEM sometimes emits attribute names as separate members)
     if (member.name.includes('-')) return null;
 

@@ -25,7 +25,6 @@ export interface FlintInputChangeDetail {
  * @slot suffix - Content placed after the input (e.g. icon).
  */
 export interface FlintInputProps extends Omit<React.HTMLAttributes<FlintInputElement>, 'defaultValue'> {
-    shadowRootOptions?: object;
     /** Label text displayed above the input. */
     label?: string;
     /** Current value (controlled). When set, the component reflects this value and does not manage its own state. */
@@ -65,6 +64,13 @@ export interface FlintInputProps extends Omit<React.HTMLAttributes<FlintInputEle
      * Allowed values: 'sm' | 'md' | 'lg'
      */
     size?: 'sm' | 'md' | 'lg';
+    /**
+     * Visual variant of the input.
+     * Allowed values: 'outlined' | 'filled'
+     */
+    variant?: 'outlined' | 'filled';
+    /** Whether to use pill-shaped (fully rounded) ends. */
+    pill?: boolean;
     /** Initial value (uncontrolled). Only used on first render; ignored after mount. */
     defaultValue?: string | undefined;
     /** Shows a clear button when the input has a value. */

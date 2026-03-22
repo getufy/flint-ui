@@ -36,8 +36,8 @@ export interface FlintTablePaginationProps extends React.HTMLAttributes<FlintTab
     defaultRowsPerPage?: number;
     /** Show First/Last page buttons. */
     showFirstLast?: boolean;
-    /** Label for the rows-per-page selector. */
-    labelRowsPerPage?: string;
+    /** Label for the rows-per-page selector. Defaults to localized "Rows per page:". */
+    labelRowsPerPage?: string | undefined;
     /**
      * Fired when the current page changes. detail: `{ page: number }`
      * DOM event: `flint-pagination-page-change`

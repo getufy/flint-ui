@@ -17,7 +17,6 @@ import { FlintSelectEvents } from '../events/flint-select.js';
  * @slot error-message - Optional slot for error message content (use error-message prop for simple text).
  */
 export interface FlintSelectProps extends Omit<React.HTMLAttributes<FlintSelectElement>, 'defaultValue'> {
-    shadowRootOptions?: object;
     /** Label text displayed above the select. */
     label?: string;
     /**
@@ -54,9 +53,15 @@ export interface FlintSelectProps extends Omit<React.HTMLAttributes<FlintSelectE
     hoist?: boolean;
     /**
      * Async options loader. When provided, called when the dropdown opens.
-     * Type: `(() => Promise<SelectOption[]>) | null`
+     * Type: `((searchTerm?: string) => Promise<SelectOption[]>) | null`
      */
     loadOptions?: FlintSelectElement['loadOptions'];
+    /** When true, shows a clear button in the trigger when a value is selected. */
+    clearable?: boolean;
+    /** When true, adds a text input for filtering options by label. */
+    searchable?: boolean;
+    /** Maximum number of chips visible in multi-select mode. */
+    maxTagsVisible?: string;
     /** Enable virtual scrolling for large option lists. */
     virtualize?: boolean;
     /** Fixed item height in px used for virtual scroll calculations. */
@@ -68,6 +73,11 @@ export interface FlintSelectProps extends Omit<React.HTMLAttributes<FlintSelectE
      * DOM event: `flint-select-change`
      */
     onFlintSelectChange?: (event: CustomEvent) => void;
+    /**
+     * Dispatched when the clear button is clicked.
+     * DOM event: `flint-clear`
+     */
+    onFlintClear?: (event: CustomEvent) => void;
 }
 
 export const FlintSelect = createComponent({
@@ -122,5 +132,6 @@ export const FlintSelect = createComponent({
         onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
         onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
         onFlintSelectChange: FlintSelectEvents.CHANGE as EventName<CustomEvent>,
+        onFlintClear: FlintSelectEvents.CLEAR as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintSelectProps & React.RefAttributes<FlintSelectElement>>;

@@ -44,6 +44,16 @@ export interface FlintTabsProps extends Omit<React.HTMLAttributes<FlintTabsEleme
     /** Initial value (uncontrolled). Only used on first render; ignored after mount. */
     defaultValue?: string;
     /**
+     * Where the tab list is placed relative to the panels.
+     * Allowed values: 'top' | 'bottom' | 'start' | 'end'
+     */
+    placement?: 'top' | 'bottom' | 'start' | 'end';
+    /**
+     * Tab activation mode.
+     * Allowed values: 'automatic' | 'manual'
+     */
+    activation?: 'automatic' | 'manual';
+    /**
      * Fired when the active tab changes. detail: `{ value: string }`
      * DOM event: `flint-tab-change`
      */

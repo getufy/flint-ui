@@ -36,6 +36,8 @@ export interface FlintCarouselProps extends React.HTMLAttributes<FlintCarouselEl
     label?: string;
     /** Enable touch/swipe gestures. */
     touch?: boolean;
+    /** Enable mouse-based drag navigation (mousedown/mousemove/mouseup). */
+    mouseDragging?: boolean;
     /**
      * Fired when the active slide changes. detail: `{ index: number; total: number }`
      * DOM event: `flint-carousel-change`

@@ -14,7 +14,6 @@ import { FlintRangeSliderEvents } from '../events/flint-range-slider.js';
  * A range slider that lets users select a start and end value within a range.
  */
 export interface FlintRangeSliderProps extends React.HTMLAttributes<FlintRangeSliderElement> {
-    shadowRootOptions?: object;
     /** Current [start, end] values. */
     value?: [number, number];
     /** Minimum bound (default: 0). */

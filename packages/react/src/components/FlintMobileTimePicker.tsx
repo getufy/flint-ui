@@ -18,7 +18,6 @@ export interface FlintMobileTimePickerChangeDetail {
  * Mobile Time Picker: a time field with a modal clock dialog.
  */
 export interface FlintMobileTimePickerProps extends React.HTMLAttributes<FlintMobileTimePickerElement> {
-    dependencies?: object;
     /** Time value in HH:MM:SS format. */
     value?: string;
     /** Field label text. */

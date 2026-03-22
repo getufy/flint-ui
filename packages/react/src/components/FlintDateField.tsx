@@ -19,8 +19,6 @@ export interface FlintDateFieldChangeDetail {
 Each section (month, day, year) is independently editable via keyboard.
  */
 export interface FlintDateFieldProps extends React.HTMLAttributes<FlintDateFieldElement> {
-    /** Opts the element into form participation via the Form-Associated Custom Elements API. */
-    formAssociated?: boolean;
     /** Controlled date value (ISO YYYY-MM-DD). Set to '' for uncontrolled. */
     value?: string;
     /** Field label. */
