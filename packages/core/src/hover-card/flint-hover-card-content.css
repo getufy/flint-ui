@@ -1,7 +1,5 @@
 :host {
             display: block;
-            position: absolute;
-            z-index: var(--flint-hovercard-z-index, 1000);
             opacity: 0;
             visibility: hidden;
             transition:
@@ -16,11 +14,8 @@
             pointer-events: auto;
         }
 
-        /* Hoist: use fixed positioning to escape overflow containers */
-        :host([hoist]) {
-            position: fixed;
-            right: auto;
-            bottom: auto;
+        flint-popup::part(popup) {
+            z-index: var(--flint-hovercard-z-index, 1000);
         }
 
         .card {

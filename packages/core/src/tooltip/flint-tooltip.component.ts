@@ -2,17 +2,11 @@ import { unsafeCSS, html, nothing } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import { FlintPopup } from '../popup/flint-popup.component.js';
 import { getAnimation, animateTo, stopAnimations, resolveKeyframes } from '../utilities/animation-registry.js';
 import type { Placement } from '../types.js';
 import '../utilities/animation-presets.js';
 import uiTooltipStyles from './flint-tooltip.css?inline';
-
-const OPPOSITE: Record<Placement, Placement> = {
-    top: 'bottom',
-    bottom: 'top',
-    left: 'right',
-    right: 'left',
-};
 
 let instanceCounter = 0;
 
@@ -27,6 +21,10 @@ let instanceCounter = 0;
  */
 export class FlintTooltip extends FlintElement {
     static override styles = unsafeCSS(uiTooltipStyles);
+
+    static override dependencies: Record<string, typeof FlintElement> = {
+        'flint-popup': FlintPopup,
+    };
 
     /** Text content displayed inside the tooltip. */
     @property({ type: String }) label = '';
@@ -62,7 +60,6 @@ export class FlintTooltip extends FlintElement {
     override disconnectedCallback(): void {
         super.disconnectedCallback();
         this._clearTimers();
-        this._cleanupHoist();
     }
 
     private _clearTimers(): void {
@@ -86,16 +83,14 @@ export class FlintTooltip extends FlintElement {
             if (this._openTimer !== null) return;
             this._openTimer = setTimeout(() => {
                 this._openTimer = null;
-                this._applyAutoFlip();
+                this._activePlacement = this.placement;
                 this._visible = true;
-                if (this.hoist) this._startHoist();
                 void this._runShowAnimation();
                 this.dispatchEvent(new CustomEvent('flint-tooltip-show', { bubbles: true, composed: true }));
             }, this.openDelay);
         } else {
-            this._applyAutoFlip();
+            this._activePlacement = this.placement;
             this._visible = true;
-            if (this.hoist) this._startHoist();
             void this._runShowAnimation();
             this.dispatchEvent(new CustomEvent('flint-tooltip-show', { bubbles: true, composed: true }));
         }
@@ -113,7 +108,6 @@ export class FlintTooltip extends FlintElement {
                 void this._runHideAnimation().then(() => {
                     if (!this.isConnected) return;
                     this._visible = false;
-                    this._cleanupHoist();
                     this.dispatchEvent(new CustomEvent('flint-tooltip-hide', { bubbles: true, composed: true }));
                 });
             }, this.closeDelay);
@@ -121,7 +115,6 @@ export class FlintTooltip extends FlintElement {
             void this._runHideAnimation().then(() => {
                 if (!this.isConnected) return;
                 this._visible = false;
-                this._cleanupHoist();
                 this.dispatchEvent(new CustomEvent('flint-tooltip-hide', { bubbles: true, composed: true }));
             });
         }
@@ -133,79 +126,16 @@ export class FlintTooltip extends FlintElement {
             void this._runHideAnimation().then(() => {
                 if (!this.isConnected) return;
                 this._visible = false;
-                this._cleanupHoist();
             });
         }
     };
 
-    /* ── Hoist (fixed positioning) ─────────────────────────────────── */
-
-    private _scrollHandler = () => this._handleReposition();
-    private _resizeHandler = () => this._handleReposition();
-
-    /** Recalculates fixed position based on trigger's bounding rect. */
-    private _handleReposition(): void {
-        const popup = this.shadowRoot?.querySelector('.tooltip-popup') as HTMLElement | null;
-        if (!popup) return;
-
-        const triggerWrapper = this.shadowRoot?.querySelector('.trigger-wrapper') as HTMLElement | null;
-        if (!triggerWrapper) return;
-
-        const rect = triggerWrapper.getBoundingClientRect();
-        const placement = this._activePlacement;
-
-        popup.style.removeProperty('top');
-        popup.style.removeProperty('bottom');
-        popup.style.removeProperty('left');
-        popup.style.removeProperty('right');
-
-        if (placement === 'top') {
-            popup.style.setProperty('top', `${rect.top - 8}px`);
-            popup.style.setProperty('left', `${rect.left + rect.width / 2}px`);
-            popup.style.setProperty('transform', 'translateX(-50%) translateY(-100%)');
-        } else if (placement === 'bottom') {
-            popup.style.setProperty('top', `${rect.bottom + 8}px`);
-            popup.style.setProperty('left', `${rect.left + rect.width / 2}px`);
-            popup.style.setProperty('transform', 'translateX(-50%)');
-        } else if (placement === 'left') {
-            popup.style.setProperty('top', `${rect.top + rect.height / 2}px`);
-            popup.style.setProperty('left', `${rect.left - 8}px`);
-            popup.style.setProperty('transform', 'translateX(-100%) translateY(-50%)');
-        } else if (placement === 'right') {
-            popup.style.setProperty('top', `${rect.top + rect.height / 2}px`);
-            popup.style.setProperty('left', `${rect.right + 8}px`);
-            popup.style.setProperty('transform', 'translateY(-50%)');
+    private _handleReposition = (e: Event): void => {
+        const detail = (e as CustomEvent).detail;
+        if (detail?.placement) {
+            this._activePlacement = detail.placement.split('-')[0] as Placement;
         }
-    }
-
-    /** Starts listening for scroll/resize to keep the hoisted popup in position. */
-    private _startHoist(): void {
-        void this.updateComplete.then(() => {
-            if (!this.isConnected) return;
-            this._handleReposition();
-            if (typeof window !== 'undefined') {
-                window.addEventListener('scroll', this._scrollHandler, true);
-                window.addEventListener('resize', this._resizeHandler);
-            }
-        });
-    }
-
-    /** Removes scroll/resize listeners and clears inline styles from the popup. */
-    private _cleanupHoist(): void {
-        if (typeof window !== 'undefined') {
-            window.removeEventListener('scroll', this._scrollHandler, true);
-            window.removeEventListener('resize', this._resizeHandler);
-        }
-
-        const popup = this.shadowRoot?.querySelector('.tooltip-popup') as HTMLElement | null;
-        if (popup) {
-            popup.style.removeProperty('top');
-            popup.style.removeProperty('bottom');
-            popup.style.removeProperty('left');
-            popup.style.removeProperty('right');
-            popup.style.removeProperty('transform');
-        }
-    }
+    };
 
     private async _runShowAnimation() {
         const popup = this.shadowRoot?.querySelector<HTMLElement>('.tooltip-popup');
@@ -227,37 +157,6 @@ export class FlintTooltip extends FlintElement {
         await animateTo(popup, keyframes, animation.options);
     }
 
-    /** Check if the tooltip fits within the viewport, flip if not. */
-    private _applyAutoFlip(): void {
-        const rect = this.getBoundingClientRect();
-        const popup = this.shadowRoot?.querySelector('.tooltip-popup');
-        if (!popup) {
-            this._activePlacement = this.placement;
-            return;
-        }
-        const popupRect = popup.getBoundingClientRect();
-        const pw = popupRect.width || 100;
-        const ph = popupRect.height || 30;
-        const margin = 8;
-
-        let fits = true;
-        switch (this.placement) {
-            case 'top':
-                fits = rect.top - ph - margin >= 0;
-                break;
-            case 'bottom':
-                fits = rect.bottom + ph + margin <= window.innerHeight;
-                break;
-            case 'left':
-                fits = rect.left - pw - margin >= 0;
-                break;
-            case 'right':
-                fits = rect.right + pw + margin <= window.innerWidth;
-                break;
-        }
-        this._activePlacement = fits ? this.placement : OPPOSITE[this.placement];
-    }
-
     override render() {
         const placement = this._visible ? this._activePlacement : this.placement;
 
@@ -271,24 +170,32 @@ export class FlintTooltip extends FlintElement {
         @focusout=${this._hide}
         @keydown=${this._handleKeydown}
       >
-        <span class="trigger-wrapper" aria-describedby=${this._tooltipId}>
-          <slot></slot>
-        </span>
-        <div
-          id=${this._tooltipId}
-          part="body"
-          role="tooltip"
-          aria-hidden=${this._visible ? 'false' : 'true'}
-          class=${classMap({
-            'tooltip-popup': true,
-            [placement]: true,
-            'visible': this._visible,
-            'hoisted': this.hoist,
-        })}
+        <flint-popup
+          .active=${this._visible}
+          placement=${this.placement}
+          .strategy=${this.hoist ? 'fixed' as const : 'absolute' as const}
+          .distance=${8}
+          flip
+          @flint-reposition=${this._handleReposition}
         >
-          ${this.label}
-          ${this.arrow ? html`<div class="arrow"></div>` : nothing}
-        </div>
+          <span slot="anchor" class="trigger-wrapper" aria-describedby=${this._tooltipId}>
+            <slot></slot>
+          </span>
+          <div
+            id=${this._tooltipId}
+            part="body"
+            role="tooltip"
+            aria-hidden=${this._visible ? 'false' : 'true'}
+            class=${classMap({
+              'tooltip-popup': true,
+              [placement]: true,
+              'visible': this._visible,
+          })}
+          >
+            ${this.label}
+            ${this.arrow ? html`<div class="arrow"></div>` : nothing}
+          </div>
+        </flint-popup>
       </div>
     `;
     }

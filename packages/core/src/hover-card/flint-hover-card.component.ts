@@ -4,6 +4,7 @@ import uiHoverCardTriggerStyles from './flint-hover-card-trigger.css?inline';
 import uiHoverCardContentStyles from './flint-hover-card-content.css?inline';
 import uiHoverCardStyles from './flint-hover-card.css?inline';
 import { FlintElement } from '../flint-element.js';
+import { FlintPopup } from '../popup/flint-popup.component.js';
 import type { Placement } from '../types.js';
 
 /* ── ARIA id counter ──────────────────────────────────────────────── */
@@ -119,6 +120,8 @@ export class FlintHoverCardTrigger extends FlintElement {
 export class FlintHoverCardContent extends FlintElement {
     static styles = unsafeCSS(uiHoverCardContentStyles);
 
+    static override dependencies = { 'flint-popup': FlintPopup };
+
     /** Auto-generated unique id used for ARIA linkage. */
     readonly contentId = `flint-hovercard-${++nextId}`;
 
@@ -144,162 +147,37 @@ export class FlintHoverCardContent extends FlintElement {
     private _handleMouseEnter = () => this._getRoot()?.handleContentEnter();
     private _handleMouseLeave = () => this._getRoot()?.handleContentLeave();
 
-    private _scrollHandler = () => this._handleReposition();
-    private _resizeHandler = () => this._handleReposition();
-
-    override firstUpdated() {
-        this._applyPosition();
-    }
-
-    override updated(changed: PropertyValues) {
-        if (changed.has('placement') || changed.has('align')) {
-            this._applyPosition();
-        }
-        if (changed.has('open')) {
-            if (this.open && this.hoist) {
-                this._startHoist();
-            } else if (!this.open) {
-                this._cleanupHoist();
-            }
-        }
-        if (changed.has('hoist') && this.open && this.hoist) {
-            this._startHoist();
-        }
-    }
-
-    override disconnectedCallback() {
-        super.disconnectedCallback();
-        this._cleanupHoist();
-    }
-
-    /** Recalculates fixed position based on the trigger's bounding rect. */
-    private _handleReposition(): void {
-        const root = this._getRoot();
-        if (!root) return;
-        const trigger = root.querySelector('flint-hover-card-trigger') as HTMLElement | null;
-        if (!trigger) return;
-
-        const rect = trigger.getBoundingClientRect();
-        const { placement: side, align } = this;
-        const offset = 8;
-
-        this.style.removeProperty('top');
-        this.style.removeProperty('bottom');
-        this.style.removeProperty('left');
-        this.style.removeProperty('right');
-        this.style.removeProperty('transform');
-
-        if (side === 'bottom' || side === 'top') {
-            if (side === 'bottom') {
-                this.style.setProperty('top', `${rect.bottom + offset}px`);
-            } else {
-                this.style.setProperty('top', `${rect.top - offset}px`);
-                this.style.setProperty('transform', 'translateY(-100%)');
-            }
-            if (align === 'start') {
-                this.style.setProperty('left', `${rect.left}px`);
-            } else if (align === 'end') {
-                this.style.setProperty('left', `${rect.right}px`);
-                const currentTransform = this.style.getPropertyValue('transform');
-                this.style.setProperty('transform', currentTransform ? `${currentTransform} translateX(-100%)` : 'translateX(-100%)');
-            } else {
-                this.style.setProperty('left', `${rect.left + rect.width / 2}px`);
-                const currentTransform = this.style.getPropertyValue('transform');
-                this.style.setProperty('transform', currentTransform ? `${currentTransform} translateX(-50%)` : 'translateX(-50%)');
-            }
-        } else {
-            if (side === 'right') {
-                this.style.setProperty('left', `${rect.right + offset}px`);
-            } else {
-                this.style.setProperty('left', `${rect.left - offset}px`);
-                this.style.setProperty('transform', 'translateX(-100%)');
-            }
-            if (align === 'start') {
-                this.style.setProperty('top', `${rect.top}px`);
-            } else if (align === 'end') {
-                this.style.setProperty('top', `${rect.bottom}px`);
-                const currentTransform = this.style.getPropertyValue('transform');
-                this.style.setProperty('transform', currentTransform ? `${currentTransform} translateY(-100%)` : 'translateY(-100%)');
-            } else {
-                this.style.setProperty('top', `${rect.top + rect.height / 2}px`);
-                const currentTransform = this.style.getPropertyValue('transform');
-                this.style.setProperty('transform', currentTransform ? `${currentTransform} translateY(-50%)` : 'translateY(-50%)');
-            }
-        }
-    }
-
-    /** Starts listening for scroll/resize to keep the hoisted content in position. */
-    private _startHoist(): void {
-        void this.updateComplete.then(() => {
-            this._handleReposition();
-            if (typeof window !== 'undefined') {
-                window.addEventListener('scroll', this._scrollHandler, true);
-                window.addEventListener('resize', this._resizeHandler);
-            }
-        });
-    }
-
-    /** Removes scroll/resize listeners and clears inline styles. */
-    private _cleanupHoist(): void {
-        if (typeof window !== 'undefined') {
-            window.removeEventListener('scroll', this._scrollHandler, true);
-            window.removeEventListener('resize', this._resizeHandler);
-        }
-    }
-
-    /** Applies absolute positioning inline styles based on `side` and `align`. */
-    private _applyPosition() {
-        const { placement: side, align } = this;
-        const offset = 'var(--flint-hovercard-offset, 8px)';
-
-        this.style.removeProperty('top');
-        this.style.removeProperty('bottom');
-        this.style.removeProperty('left');
-        this.style.removeProperty('right');
-        this.style.removeProperty('transform');
-
-        if (side === 'bottom' || side === 'top') {
-            this.style.setProperty(
-                side === 'bottom' ? 'top' : 'bottom',
-                `calc(100% + ${offset})`
-            );
-            if (align === 'start') {
-                this.style.setProperty('left', '0');
-            } else if (align === 'end') {
-                this.style.setProperty('right', '0');
-            } else {
-                this.style.setProperty('left', '50%');
-                this.style.setProperty('transform', 'translateX(-50%)');
-            }
-        } else {
-            this.style.setProperty(
-                side === 'right' ? 'left' : 'right',
-                `calc(100% + ${offset})`
-            );
-            if (align === 'start') {
-                this.style.setProperty('top', '0');
-            } else if (align === 'end') {
-                this.style.setProperty('bottom', '0');
-            } else {
-                this.style.setProperty('top', '50%');
-                this.style.setProperty('transform', 'translateY(-50%)');
-            }
-        }
+    /** Maps placement + align into a Floating UI Placement string. */
+    private get _popupPlacement(): string {
+        const suffix = this.align === 'center' ? '' : `-${this.align}`;
+        return `${this.placement}${suffix}`;
     }
 
     render() {
+        const anchor = this.closest('flint-hover-card')?.querySelector('flint-hover-card-trigger') as Element | undefined;
+
         return html`
-            <div
-                class="card"
-                part="content"
-                id=${this.contentId}
-                role="tooltip"
-                aria-hidden=${this.open ? 'false' : 'true'}
-                @mouseenter=${this._handleMouseEnter}
-                @mouseleave=${this._handleMouseLeave}
+            <flint-popup
+                .anchor=${anchor}
+                .active=${this.open}
+                placement=${this._popupPlacement}
+                .strategy=${this.hoist ? 'fixed' : 'absolute'}
+                .distance=${8}
+                flip
+                shift
             >
-                <slot></slot>
-            </div>
+                <div
+                    class="card"
+                    part="content"
+                    id=${this.contentId}
+                    role="tooltip"
+                    aria-hidden=${this.open ? 'false' : 'true'}
+                    @mouseenter=${this._handleMouseEnter}
+                    @mouseleave=${this._handleMouseLeave}
+                >
+                    <slot></slot>
+                </div>
+            </flint-popup>
         `;
     }
 }

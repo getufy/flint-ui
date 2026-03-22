@@ -1,5 +1,5 @@
 // Auto-generated — do not edit
 export const FlintTreeItemEvents = {
-    TOGGLE: 'flint-tree-item-toggle',
     CLICK: 'flint-tree-item-click',
+    TOGGLE: 'flint-tree-item-toggle',
 } as const;

@@ -74,21 +74,20 @@ describe('flint-menu', () => {
     });
 
     // ── Placement ────────────────────────────────────────────────────────
-    it('applies placement class to menu-paper', async () => {
+    it('passes placement to flint-popup', async () => {
         const el = await fixture<FlintMenu>(html`<flint-menu placement="bottom-end"></flint-menu>`);
         await el.updateComplete;
-        const paper = el.shadowRoot!.querySelector('.menu-paper');
-        expect(paper?.classList.contains('pos-bottom-end')).toBe(true);
+        const popup = el.shadowRoot!.querySelector('flint-popup');
+        expect(popup?.getAttribute('placement')).toBe('bottom-end');
     });
 
-    it('changes placement class reactively', async () => {
+    it('updates flint-popup placement reactively', async () => {
         const el = await fixture<FlintMenu>(html`<flint-menu placement="bottom-start"></flint-menu>`);
         await el.updateComplete;
         el.placement = 'top-end';
         await el.updateComplete;
-        const paper = el.shadowRoot!.querySelector('.menu-paper');
-        expect(paper?.classList.contains('pos-top-end')).toBe(true);
-        expect(paper?.classList.contains('pos-bottom-start')).toBe(false);
+        const popup = el.shadowRoot!.querySelector('flint-popup');
+        expect(popup?.getAttribute('placement')).toBe('top-end');
     });
 
     // ── Scrollable ───────────────────────────────────────────────────────

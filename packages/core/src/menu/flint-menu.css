@@ -14,19 +14,20 @@
         }
         .backdrop.open { display: block; }
 
+        flint-popup::part(popup) {
+            z-index: var(--flint-menu-z-index, 1300);
+        }
+
         /* Menu surface */
         .menu-paper {
-            position: absolute;
             background: var(--flint-surface-1);
             border-radius: var(--flint-border-radius-md);
             box-shadow: var(--flint-shadow-md), var(--flint-shadow-lg);
             min-width: var(--flint-menu-min-width);
             width: max-content;
             max-width: var(--flint-menu-max-width, 360px);
-            z-index: var(--flint-menu-z-index);
             color: var(--flint-text-color);
             overflow: visible;
-            transform-origin: top left;
 
             /* Closed state */
             transform: scale(0.85);
@@ -46,14 +47,6 @@
             visibility: visible;
             pointer-events: auto;
         }
-
-        /* Placement variants */
-        .pos-bottom-start { top: 100%; left: 0;      transform-origin: top left;    }
-        .pos-bottom-end   { top: 100%; right: 0;     transform-origin: top right;   }
-        .pos-top-start    { bottom: 100%; left: 0;   transform-origin: bottom left; }
-        .pos-top-end      { bottom: 100%; right: 0;  transform-origin: bottom right;}
-        .pos-right-start  { left: 100%; top: 0;      transform-origin: top left;    }
-        .pos-left-start   { right: 100%; top: 0;     transform-origin: top right;   }
 
         /* Scrollable list */
         .menu-paper.scrollable {

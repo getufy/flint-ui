@@ -1,12 +1,10 @@
 :host {
       display: inline-block;
-      position: relative;
       font-family: var(--flint-font-family);
       width: 100%;
     }
 
     .base {
-      position: relative;
     }
 
     input {
@@ -35,23 +33,21 @@
     }
 
     .listbox {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
       max-height: var(--flint-combobox-dropdown-max-height, 250px);
       overflow-y: auto;
       background: var(--flint-surface-background);
       border: 1px solid var(--flint-border-color);
       border-radius: var(--flint-input-border-radius);
-      margin-top: 4px;
       box-shadow: var(--flint-shadow-lg);
-      z-index: var(--flint-combobox-z-index, 1000);
       display: none;
     }
 
     .listbox.open {
       display: block;
+    }
+
+    flint-popup::part(popup) {
+      z-index: var(--flint-combobox-z-index, 1000);
     }
 
     .option {

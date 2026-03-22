@@ -1,0 +1,34 @@
+:host {
+  display: contents;
+}
+
+.popup {
+  position: absolute;
+  left: 0;
+  top: 0;
+  isolation: isolate;
+  max-width: var(--auto-size-available-width, none);
+  max-height: var(--auto-size-available-height, none);
+}
+
+.popup:not(.popup--active) {
+  display: none;
+}
+
+.popup--fixed {
+  position: fixed;
+}
+
+.popup__arrow {
+  position: absolute;
+  width: var(--flint-popup-arrow-size, 8px);
+  height: var(--flint-popup-arrow-size, 8px);
+  background: var(--flint-popup-arrow-color, inherit);
+  transform: rotate(45deg);
+  z-index: -1;
+}
+
+.popup__hover-bridge {
+  position: absolute;
+  pointer-events: all;
+}

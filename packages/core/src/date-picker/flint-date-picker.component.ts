@@ -6,6 +6,7 @@ import { FlintElement } from '../flint-element.js';
 import { FormAssociated } from '../mixins/form-associated.js';
 import { FormControlController } from '../controllers/form-control.js';
 import { FlintDialog, FlintDialogTitle, FlintDialogContent, FlintDialogActions } from '../dialog/flint-dialog.component.js';
+import { FlintPopup } from '../popup/flint-popup.component.js';
 import { LocalizeController } from '../utilities/localize.js';
 import uiDatePickerCalendarStyles from './flint-date-picker-calendar.css?inline';
 import uiDatePickerStyles from './flint-date-picker.css?inline';
@@ -270,6 +271,7 @@ export class FlintDatePicker extends FormAssociated(FlintElement) {
         'flint-dialog-title': FlintDialogTitle as unknown as typeof FlintElement,
         'flint-dialog-content': FlintDialogContent as unknown as typeof FlintElement,
         'flint-dialog-actions': FlintDialogActions as unknown as typeof FlintElement,
+        'flint-popup': FlintPopup as unknown as typeof FlintElement,
     };
 
     // ── Props ───────────────────────────────────────────────────────────────
@@ -338,11 +340,6 @@ export class FlintDatePicker extends FormAssociated(FlintElement) {
         }
     }
 
-    override disconnectedCallback() {
-        super.disconnectedCallback();
-        this._cleanupHoist();
-    }
-
     protected override updated(changed: PropertyValues) {
         super.updated(changed);
         if (changed.has('value') || changed.has('name') || changed.has('required')) {
@@ -370,59 +367,14 @@ export class FlintDatePicker extends FormAssociated(FlintElement) {
         return this.variant as 'desktop' | 'mobile' | 'static';
     }
 
-    /* ── Hoist (fixed positioning) ─────────────────────────────────── */
-
-    private _scrollHandler = () => this._handleReposition();
-    private _resizeHandler = () => this._handleReposition();
-
-    /** Recalculates fixed position for the popover based on the field's bounding rect. */
-    private _handleReposition(): void {
-        const popover = this.shadowRoot?.querySelector('.popover') as HTMLElement | null;
-        const fieldWrapper = this.shadowRoot?.querySelector('.field-wrapper') as HTMLElement | null;
-        if (!popover || !fieldWrapper) return;
-
-        const rect = fieldWrapper.getBoundingClientRect();
-        popover.style.setProperty('position', 'fixed');
-        popover.style.setProperty('top', `${rect.bottom + 6}px`);
-        popover.style.setProperty('left', `${rect.left}px`);
-        popover.style.setProperty('width', 'auto');
-    }
-
-    /** Starts listening for scroll/resize to keep the hoisted popover in position. */
-    private _startHoist(): void {
-        void this.updateComplete.then(() => {
-            this._handleReposition();
-            window.addEventListener('scroll', this._scrollHandler, true);
-            window.addEventListener('resize', this._resizeHandler);
-        });
-    }
-
-    /** Removes scroll/resize listeners and clears inline styles from the popover. */
-    private _cleanupHoist(): void {
-        window.removeEventListener('scroll', this._scrollHandler, true);
-        window.removeEventListener('resize', this._resizeHandler);
-
-        const popover = this.shadowRoot?.querySelector('.popover') as HTMLElement | null;
-        if (popover) {
-            popover.style.removeProperty('position');
-            popover.style.removeProperty('top');
-            popover.style.removeProperty('left');
-            popover.style.removeProperty('width');
-        }
-    }
-
     private _openPicker = () => {
         if (this.disabled || this._open) return;
         this._pendingValue = this.value;
         this._open = true;
-        if (this.hoist && this._resolvedVariant === 'desktop') {
-            this._startHoist();
-        }
     };
 
     private _closePicker = () => {
         this._open = false;
-        this._cleanupHoist();
     };
 
     private _handleCalendarSelect = (e: CustomEvent) => {
@@ -514,10 +466,19 @@ export class FlintDatePicker extends FormAssociated(FlintElement) {
     private _renderDesktop() {
         return html`
       <div>
-        <div class="popover-anchor">
-          ${this._renderField()}
+        <flint-popup
+          .active=${this._open}
+          placement="bottom-start"
+          .strategy=${this.hoist ? 'fixed' : 'absolute'}
+          .distance=${4}
+          flip
+          shift
+        >
+          <div slot="anchor" class="popover-anchor">
+            ${this._renderField()}
+          </div>
           <div class="click-away ${this._open ? 'open' : ''}" @click=${this._closePicker}></div>
-          <div class="popover ${this._open ? 'open' : ''} ${this.hoist ? 'hoisted' : ''}" part="popover" role="dialog" aria-label="Date picker">
+          <div class="popover" part="popover" role="dialog" aria-label="Date picker">
             <flint-date-picker-calendar
               .value=${this.value}
               .min=${this.min}
@@ -526,7 +487,7 @@ export class FlintDatePicker extends FormAssociated(FlintElement) {
               @flint-date-picker-select=${this._handleCalendarSelect}
             ></flint-date-picker-calendar>
           </div>
-        </div>
+        </flint-popup>
       </div>
     `;
     }

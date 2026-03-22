@@ -39,6 +39,14 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./suppress-warnings": {
+      "types": "./dist/suppress-warnings.d.ts",
+      "import": "./dist/suppress-warnings.js"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/types.js"
+    },
     "./button/flint-button": {
       "types": "./dist/button/flint-button.d.ts",
       "import": "./dist/button/flint-button.js"
@@ -287,6 +295,10 @@
       "types": "./dist/date-range-picker/flint-date-range-picker.d.ts",
       "import": "./dist/date-range-picker/flint-date-range-picker.js"
     },
+    "./date-range-picker/date-range-helpers": {
+      "types": "./dist/date-range-picker/date-range-helpers.d.ts",
+      "import": "./dist/date-range-picker/date-range-helpers.js"
+    },
     "./date-range-picker/flint-single-input-date-range-field": {
       "types": "./dist/date-range-picker/flint-single-input-date-range-field.d.ts",
       "import": "./dist/date-range-picker/flint-single-input-date-range-field.js"
@@ -314,6 +326,10 @@
     "./command/flint-command": {
       "types": "./dist/command/flint-command.d.ts",
       "import": "./dist/command/flint-command.js"
+    },
+    "./command/fuzzy-score": {
+      "types": "./dist/command/fuzzy-score.d.ts",
+      "import": "./dist/command/fuzzy-score.js"
     },
     "./carousel/flint-carousel": {
       "types": "./dist/carousel/flint-carousel.d.ts",
@@ -419,22 +435,84 @@
       "types": "./dist/flint-range-slider/flint-range-slider.d.ts",
       "import": "./dist/flint-range-slider/flint-range-slider.js"
     },
+    "./form-field/flint-form-field": {
+      "types": "./dist/form-field/flint-form-field.d.ts",
+      "import": "./dist/form-field/flint-form-field.js"
+    },
+    "./icon/flint-icon": {
+      "types": "./dist/icon/flint-icon.d.ts",
+      "import": "./dist/icon/flint-icon.js"
+    },
+    "./combobox/flint-combobox": {
+      "types": "./dist/combobox/flint-combobox.d.ts",
+      "import": "./dist/combobox/flint-combobox.js"
+    },
+    "./animation/flint-animation": {
+      "types": "./dist/animation/flint-animation.d.ts",
+      "import": "./dist/animation/flint-animation.js"
+    },
+    "./popup/flint-popup": {
+      "types": "./dist/popup/flint-popup.d.ts",
+      "import": "./dist/popup/flint-popup.js"
+    },
+    "./autoloader": {
+      "types": "./dist/autoloader.d.ts",
+      "import": "./dist/autoloader.js"
+    },
+    "./decorators/watch": {
+      "types": "./dist/decorators/watch.d.ts",
+      "import": "./dist/decorators/watch.js"
+    },
+    "./theme/flint-theme": {
+      "types": "./dist/theme/flint-theme.d.ts",
+      "import": "./dist/theme/flint-theme.js"
+    },
+    "./layer/flint-layer": {
+      "types": "./dist/layer/flint-layer.d.ts",
+      "import": "./dist/layer/flint-layer.js"
+    },
+    "./virtual-scroll/flint-virtual-scroll": {
+      "types": "./dist/virtual-scroll/flint-virtual-scroll.d.ts",
+      "import": "./dist/virtual-scroll/flint-virtual-scroll.js"
+    },
+    "./utilities/localize": {
+      "types": "./dist/utilities/localize.d.ts",
+      "import": "./dist/utilities/localize.js"
+    },
+    "./controllers/form-control": {
+      "types": "./dist/controllers/form-control.d.ts",
+      "import": "./dist/controllers/form-control.js"
+    },
+    "./utilities/form": {
+      "types": "./dist/utilities/form.d.ts",
+      "import": "./dist/utilities/form.js"
+    },
+    "./utilities/animation-registry": {
+      "types": "./dist/utilities/animation-registry.d.ts",
+      "import": "./dist/utilities/animation-registry.js"
+    },
+    "./utilities/theme": {
+      "types": "./dist/utilities/theme.d.ts",
+      "import": "./dist/utilities/theme.js"
+    },
+    "./utilities/overlay-manager": {
+      "types": "./dist/utilities/overlay-manager.d.ts",
+      "import": "./dist/utilities/overlay-manager.js"
+    },
+    "./utilities/data-provider": {
+      "types": "./dist/utilities/data-provider.d.ts",
+      "import": "./dist/utilities/data-provider.js"
+    },
+    "./events": {
+      "types": "./dist/events.d.ts",
+      "import": "./dist/events.js"
+    },
     "./*": {
       "types": "./dist/*.d.ts",
       "import": "./dist/*.js"
     },
     "./theme.css": "./src/theme.css",
-    "./theme-dark.css": "./src/theme-dark.css",
-    "./theme-teal.css": "./src/theme-teal.css",
-    "./theme-violet.css": "./src/theme-violet.css",
-    "./theme-rose.css": "./src/theme-rose.css",
-    "./theme-amber.css": "./src/theme-amber.css",
-    "./theme-emerald.css": "./src/theme-emerald.css",
-    "./theme-slate.css": "./src/theme-slate.css",
-    "./suppress-warnings": {
-      "types": "./dist/suppress-warnings.d.ts",
-      "import": "./dist/suppress-warnings.js"
-    }
+    "./theme-dark.css": "./src/theme-dark.css"
   },
   "customElements": "dist/custom-elements.json",
   "web-types": "dist/web-types.json",
@@ -485,6 +563,7 @@
     "src/theme-slate.css"
   ],
   "dependencies": {
+    "@floating-ui/dom": "^1.7.6",
     "lit": "^3.0.0"
   },
   "peerDependencies": {

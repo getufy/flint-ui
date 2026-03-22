@@ -2,6 +2,7 @@ import { unsafeCSS, html, nothing } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
 import { FlintDialog, FlintDialogTitle, FlintDialogContent, FlintDialogActions } from '../dialog/flint-dialog.component.js';
+import { FlintPopup } from '../popup/flint-popup.component.js';
 import { LocalizeController } from '../utilities/localize.js';
 import { FlintSingleInputDateRangeField } from './flint-single-input-date-range-field.component.js';
 import { FlintDateRangeCalendar } from './flint-date-range-calendar.component.js';
@@ -37,6 +38,7 @@ export class FlintDateRangePicker extends FlintElement {
         'flint-dialog-actions': FlintDialogActions as unknown as typeof FlintElement,
         'flint-single-input-date-range-field': FlintSingleInputDateRangeField as unknown as typeof FlintElement,
         'flint-date-range-calendar': FlintDateRangeCalendar as unknown as typeof FlintElement,
+        'flint-popup': FlintPopup as unknown as typeof FlintElement,
     };
 
     // ── Props ─────────────────────────────────────────────────────────────────
@@ -271,16 +273,25 @@ export class FlintDateRangePicker extends FlintElement {
 
         return html`
       <div>
-        <div class="popover-anchor">
-          ${this._renderField()}
+        <flint-popup
+          .active=${this._open}
+          placement="bottom-start"
+          strategy="fixed"
+          .distance=${4}
+          flip
+          shift
+        >
+          <div slot="anchor" class="popover-anchor">
+            ${this._renderField()}
+          </div>
           <div class="click-away ${this._open ? 'open' : ''}" @click=${this._closePicker}></div>
-          <div class="popover ${this._open ? 'open' : ''}" role="dialog" aria-label="Date range picker" part="popover">
+          <div class="popover" role="dialog" aria-label="Date range picker" part="popover">
             ${this._renderShortcuts()}
             <div class="popover-body">
               ${this._renderCalendar(pending, (e: CustomEvent) => this._handleCalendarSelect(e))}
             </div>
           </div>
-        </div>
+        </flint-popup>
       </div>
     `;
     }

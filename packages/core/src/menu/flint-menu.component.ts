@@ -3,6 +3,7 @@ import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { FlintElement } from '../flint-element.js';
+import { FlintPopup } from '../popup/flint-popup.component.js';
 import uiMenuItemStyles from './flint-menu-item.css?inline';
 import uiMenuDividerStyles from './flint-menu-divider.css?inline';
 import uiMenuGroupStyles from './flint-menu-group.css?inline';
@@ -174,6 +175,10 @@ export class FlintMenuGroup extends FlintElement {
 export class FlintMenu extends FlintElement {
     static styles = unsafeCSS(uiMenuStyles);
 
+    static override dependencies: Record<string, typeof FlintElement> = {
+        'flint-popup': FlintPopup,
+    };
+
     /** Whether the menu is open/visible. */
     @property({ type: Boolean, reflect: true }) open = false;
 
@@ -320,7 +325,6 @@ export class FlintMenu extends FlintElement {
         const paperClasses = classMap({
             'menu-paper': true,
             'open': this.open,
-            [`pos-${this.placement}`]: !!this.placement,
             'scrollable': this.scrollable,
         });
 
@@ -328,17 +332,26 @@ export class FlintMenu extends FlintElement {
 
         return html`
             <div class=${backdropClasses} part="backdrop" @click=${this._close} aria-hidden="true"></div>
-            <div
-                class=${paperClasses}
-                part="base"
-                role="menu"
-                tabindex=${this.scrollable ? '0' : nothing}
-                aria-label=${ifDefined(this.label)}
-                aria-hidden=${this.open ? 'false' : 'true'}
-                @flint-menu-item-select=${this._handleItemSelect}
+            <flint-popup
+                .active=${this.open}
+                placement=${this.placement}
+                .distance=${4}
+                flip
+                shift
             >
-                <slot></slot>
-            </div>
+                <slot name="anchor" slot="anchor"></slot>
+                <div
+                    class=${paperClasses}
+                    part="base"
+                    role="menu"
+                    tabindex=${this.scrollable ? '0' : nothing}
+                    aria-label=${ifDefined(this.label)}
+                    aria-hidden=${this.open ? 'false' : 'true'}
+                    @flint-menu-item-select=${this._handleItemSelect}
+                >
+                    <slot></slot>
+                </div>
+            </flint-popup>
         `;
     }
 }

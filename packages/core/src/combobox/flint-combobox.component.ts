@@ -2,6 +2,7 @@ import { unsafeCSS, html, type PropertyValues, LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import { FlintPopup } from '../popup/flint-popup.component.js';
 import { FormAssociated } from '../mixins/form-associated.js';
 import { FormControlController } from '../controllers/form-control.js';
 import uiComboboxStyles from './flint-combobox.css?inline';
@@ -27,6 +28,10 @@ export interface ComboboxOption {
 export class FlintCombobox extends FormAssociated(FlintElement) {
     static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
     static styles = unsafeCSS(uiComboboxStyles);
+
+    static override dependencies: Record<string, typeof FlintElement> = {
+        'flint-popup': FlintPopup,
+    };
 
     /** The list of suggestion options. */
     @property({ type: Array }) options: ComboboxOption[] = [];
@@ -211,30 +216,40 @@ export class FlintCombobox extends FormAssociated(FlintElement) {
         const dropdownOpen = this._isOpen && this._filteredOptions.length > 0;
         return html`
       <div class="base" part="base">
-        <input
-          type="text"
-          part="input"
-          role="combobox"
-          aria-expanded=${dropdownOpen ? 'true' : 'false'}
-          aria-autocomplete="list"
-          aria-haspopup="listbox"
-          aria-controls="combobox-listbox"
-          aria-activedescendant=${this._activeIndex >= 0 ? `combobox-opt-${this._activeIndex}` : ''}
-          .value=${this._inputValue}
-          placeholder=${this.placeholder}
-          ?disabled=${this.disabled}
-          @input=${this._handleInput}
-          @focus=${this._handleFocus}
-          @keydown=${this._handleKeyDown}
-        />
-        <div
-          id="combobox-listbox"
-          role="listbox"
-          part="listbox"
-          aria-label="Suggestions"
-          class=${classMap({ listbox: true, open: dropdownOpen })}
+        <flint-popup
+          .active=${dropdownOpen}
+          placement="bottom-start"
+          .strategy=${'fixed' as const}
+          .distance=${4}
+          flip
+          shift
+          sync="width"
         >
-          ${this._filteredOptions.length > 0
+          <input
+            slot="anchor"
+            type="text"
+            part="input"
+            role="combobox"
+            aria-expanded=${dropdownOpen ? 'true' : 'false'}
+            aria-autocomplete="list"
+            aria-haspopup="listbox"
+            aria-controls="combobox-listbox"
+            aria-activedescendant=${this._activeIndex >= 0 ? `combobox-opt-${this._activeIndex}` : ''}
+            .value=${this._inputValue}
+            placeholder=${this.placeholder}
+            ?disabled=${this.disabled}
+            @input=${this._handleInput}
+            @focus=${this._handleFocus}
+            @keydown=${this._handleKeyDown}
+          />
+          <div
+            id="combobox-listbox"
+            role="listbox"
+            part="listbox"
+            aria-label="Suggestions"
+            class=${classMap({ listbox: true, open: dropdownOpen })}
+          >
+            ${this._filteredOptions.length > 0
                 ? this._filteredOptions.map(
                     (opt, i) => html`
                   <div
@@ -255,7 +270,8 @@ export class FlintCombobox extends FormAssociated(FlintElement) {
                 `
                 )
                 : html`<div class="no-options">No suggestions</div>`}
-        </div>
+          </div>
+        </flint-popup>
       </div>
     `;
     }

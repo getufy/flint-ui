@@ -406,13 +406,15 @@ exports[`DOM snapshots > flint-switch — default 1`] = `
 exports[`DOM snapshots > flint-tooltip — default 1`] = `
 "<!---->
       <div class="tooltip-container" part="base">
-        <span class="trigger-wrapper" aria-describedby="flint-tooltip-[id]">
-          <slot></slot>
-        </span>
-        <div part="body" role="tooltip" id="flint-tooltip-[id]" aria-hidden="true" class=" tooltip-popup top ">
-          <!--?lit$[hash]$-->Tip
-          <!--?lit$[hash]$-->
-        </div>
+        <flint-popup flip="" placement="top">
+          <span slot="anchor" class="trigger-wrapper" aria-describedby="flint-tooltip-[id]">
+            <slot></slot>
+          </span>
+          <div part="body" role="tooltip" id="flint-tooltip-[id]" aria-hidden="true" class=" tooltip-popup top ">
+            <!--?lit$[hash]$-->Tip
+            <!--?lit$[hash]$-->
+          </div>
+        </flint-popup>
       </div>
     <style></style>"
 `;

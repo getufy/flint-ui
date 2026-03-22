@@ -1,6 +1,7 @@
 import { html, css, PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
+import { FlintPopup } from '../popup/flint-popup.component.js';
 
 /**
  * @tag flint-navigation-menu-content
@@ -25,18 +26,15 @@ import { FlintElement } from '../flint-element.js';
  * @fires flint-navigation-menu-content-toggle - Fired when the content panel opens or closes. detail: `{ contentId: string, open: boolean }`
  */
 export class FlintNavigationMenuContent extends FlintElement {
+    static override dependencies = { 'flint-popup': FlintPopup };
+
     static override styles = css`
         :host {
-            display: none;
-            position: absolute;
-            top: calc(100% + 6px);
-            inset-inline-start: 0;
-            z-index: var(--flint-navigation-menu-content-z-index, 1000);
+            display: contents;
         }
 
-        :host([open]) {
-            display: block;
-            animation: slideDown 0.15s ease-out;
+        flint-popup::part(popup) {
+            z-index: var(--flint-navigation-menu-content-z-index, 1000);
         }
 
         .panel {
@@ -50,23 +48,6 @@ export class FlintNavigationMenuContent extends FlintElement {
                 0 2px 4px -2px rgba(0, 0, 0, 0.06)
             );
             min-width: var(--flint-navigation-menu-content-min-width, 200px);
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-6px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            :host([open]) {
-                animation: none;
-            }
         }
 
         ::slotted(*) {
@@ -219,11 +200,43 @@ export class FlintNavigationMenuContent extends FlintElement {
         items[prevIndex]!.focus();
     };
 
+    private _getAnchor(): Element | undefined {
+        if (!this.id) return undefined;
+        // Look for a sibling trigger inside the same item
+        const item = this.closest('flint-navigation-menu-item');
+        if (item) {
+            const trigger = item.querySelector(
+                `flint-navigation-menu-trigger[content-id="${this.id}"]`
+            );
+            if (trigger) return trigger;
+        }
+        // Fallback: look inside parent menu
+        const menu = this.closest('flint-navigation-menu');
+        if (menu) {
+            const trigger = menu.querySelector(
+                `flint-navigation-menu-trigger[content-id="${this.id}"]`
+            );
+            if (trigger) return trigger;
+        }
+        return undefined;
+    }
+
     override render() {
+        const anchor = this._getAnchor();
+
         return html`
-            <div class="panel" part="panel" role="menu">
-                <slot></slot>
-            </div>
+            <flint-popup
+                .anchor=${anchor}
+                .active=${this.open}
+                placement="bottom-start"
+                .distance=${6}
+                flip
+                shift
+            >
+                <div class="panel" part="panel" role="menu">
+                    <slot></slot>
+                </div>
+            </flint-popup>
         `;
     }
 }

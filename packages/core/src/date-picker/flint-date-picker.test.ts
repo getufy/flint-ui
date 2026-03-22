@@ -160,8 +160,8 @@ describe('flint-date-picker', () => {
     it('popover is closed by default', async () => {
         const el = await fixture<FlintDatePicker>(html`<flint-date-picker></flint-date-picker>`);
         await el.updateComplete;
-        const popover = el.shadowRoot!.querySelector('.popover');
-        expect(popover?.classList.contains('open')).toBe(false);
+        const popup = el.shadowRoot!.querySelector('flint-popup');
+        expect(popup?.hasAttribute('active')).toBe(false);
     });
 
     it('opens popover on calendar icon click', async () => {
@@ -170,8 +170,8 @@ describe('flint-date-picker', () => {
         const iconBtn = el.shadowRoot!.querySelector<HTMLButtonElement>('.calendar-icon-btn');
         iconBtn!.click();
         await el.updateComplete;
-        const popover = el.shadowRoot!.querySelector('.popover');
-        expect(popover?.classList.contains('open')).toBe(true);
+        const popup = el.shadowRoot!.querySelector('flint-popup');
+        expect(popup?.hasAttribute('active')).toBe(true);
     });
 
     it('fires change event when a day is selected (desktop)', async () => {
@@ -273,8 +273,8 @@ describe('flint-date-picker', () => {
         const input = el.shadowRoot!.querySelector<HTMLInputElement>('input')!;
         input.dispatchEvent(new Event('focus', { bubbles: true }));
         await el.updateComplete;
-        const popover = el.shadowRoot!.querySelector('.popover');
-        expect(popover?.classList.contains('open')).toBe(true);
+        const popup = el.shadowRoot!.querySelector('flint-popup');
+        expect(popup?.hasAttribute('active')).toBe(true);
     });
 });
 
@@ -477,10 +477,10 @@ describe('flint-date-picker — full coverage', () => {
         await el.updateComplete;
         const btn = el.shadowRoot!.querySelector<HTMLButtonElement>('.calendar-icon-btn')!;
         btn.click(); await el.updateComplete;
-        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(true);
+        expect(el.shadowRoot!.querySelector('flint-popup')?.hasAttribute('active')).toBe(true);
         btn.click(); await el.updateComplete;
         // Guard returns early — popover stays open
-        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(true);
+        expect(el.shadowRoot!.querySelector('flint-popup')?.hasAttribute('active')).toBe(true);
     });
 
     // _openPicker: disabled (line 308)
@@ -489,7 +489,7 @@ describe('flint-date-picker — full coverage', () => {
         await el.updateComplete;
         el.shadowRoot!.querySelector<HTMLButtonElement>('.calendar-icon-btn')!.click();
         await el.updateComplete;
-        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open') ?? false).toBe(false);
+        expect(el.shadowRoot!.querySelector('flint-popup')?.hasAttribute('active') ?? false).toBe(false);
     });
 
     // mobile variant render (lines 326-329)
@@ -604,7 +604,7 @@ describe('flint-date-picker — full coverage', () => {
         await el.updateComplete;
         expect(spy).not.toHaveBeenCalled();
         // Picker closes even on no-op
-        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(false);
+        expect(el.shadowRoot!.querySelector('flint-popup')?.hasAttribute('active')).toBe(false);
     });
 
     // auto variant: pointer coarse → mobile (lines 302-303)
@@ -663,50 +663,50 @@ describe('flint-date-picker — full coverage', () => {
         const input = el.shadowRoot!.querySelector<HTMLInputElement>('input')!;
         input.dispatchEvent(new Event('focus', { bubbles: true }));
         await el.updateComplete;
-        const popover = el.shadowRoot!.querySelector('.popover');
-        expect(popover?.classList.contains('open')).toBe(false);
+        const popup = el.shadowRoot!.querySelector('flint-popup');
+        expect(popup?.hasAttribute('active')).toBe(false);
     });
 
-    // ── Hoist ───────────────────────────────────────────────────────
+    // ── Hoist / flint-popup integration ────────────────────────────
 
     it('hoist defaults to false', async () => {
         const el = await fixture<FlintDatePicker>(html`<flint-date-picker></flint-date-picker>`);
         expect(el.hoist).toBe(false);
     });
 
-    it('adds hoisted class to popover when hoist is true', async () => {
+    it('uses fixed strategy on flint-popup when hoist is true', async () => {
         const el = await fixture<FlintDatePicker>(html`<flint-date-picker hoist></flint-date-picker>`);
         await el.updateComplete;
-        const popover = el.shadowRoot!.querySelector('.popover');
-        expect(popover?.classList.contains('hoisted')).toBe(true);
+        const popup = el.shadowRoot!.querySelector('flint-popup') as HTMLElement & { strategy: string };
+        expect(popup?.strategy).toBe('fixed');
     });
 
-    it('does not add hoisted class when hoist is false', async () => {
+    it('uses absolute strategy on flint-popup when hoist is false', async () => {
         const el = await fixture<FlintDatePicker>(html`<flint-date-picker></flint-date-picker>`);
         await el.updateComplete;
-        const popover = el.shadowRoot!.querySelector('.popover');
-        expect(popover?.classList.contains('hoisted')).toBe(false);
+        const popup = el.shadowRoot!.querySelector('flint-popup') as HTMLElement & { strategy: string };
+        expect(popup?.strategy).toBe('absolute');
     });
 
-    it('cleans up hoist on popover close', async () => {
+    it('popup becomes inactive on popover close', async () => {
         const el = await fixture<FlintDatePicker>(html`<flint-date-picker hoist></flint-date-picker>`);
         await el.updateComplete;
         // Open
         el.shadowRoot!.querySelector<HTMLButtonElement>('.calendar-icon-btn')!.click();
         await el.updateComplete;
-        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(true);
+        expect(el.shadowRoot!.querySelector('flint-popup')?.hasAttribute('active')).toBe(true);
         // Close via click-away
         el.shadowRoot!.querySelector<HTMLElement>('.click-away')!.click();
         await el.updateComplete;
-        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(false);
+        expect(el.shadowRoot!.querySelector('flint-popup')?.hasAttribute('active')).toBe(false);
     });
 
     it('hoist does not apply to static variant', async () => {
         const el = await fixture<FlintDatePicker>(html`<flint-date-picker variant="static" hoist></flint-date-picker>`);
         await el.updateComplete;
-        const popover = el.shadowRoot!.querySelector('.popover');
-        // Static variant has no popover
-        expect(popover).toBeNull();
+        const popup = el.shadowRoot!.querySelector('flint-popup');
+        // Static variant has no popup
+        expect(popup).toBeNull();
     });
 
     // auto variant: pointer fine → desktop

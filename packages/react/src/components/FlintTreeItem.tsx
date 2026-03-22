@@ -32,15 +32,15 @@ export interface FlintTreeItemProps extends React.HTMLAttributes<FlintTreeItemEl
     /** Whether to show a dedicated drag handle icon */
     showDragHandle?: boolean;
     /**
-     * Fired when expanded state changes (detail: { itemId, expanded })
-     * DOM event: `flint-tree-item-toggle`
-     */
-    onFlintTreeItemToggle?: (event: CustomEvent) => void;
-    /**
      * Fired when the item is clicked (detail: { itemId })
      * DOM event: `flint-tree-item-click`
      */
     onFlintTreeItemClick?: (event: CustomEvent) => void;
+    /**
+     * Fired when expanded state changes (detail: { itemId, expanded })
+     * DOM event: `flint-tree-item-toggle`
+     */
+    onFlintTreeItemToggle?: (event: CustomEvent) => void;
 }
 
 export const FlintTreeItem = createComponent({
@@ -94,7 +94,7 @@ export const FlintTreeItem = createComponent({
         onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
         onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
         onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
-        onFlintTreeItemToggle: FlintTreeItemEvents.TOGGLE as EventName<CustomEvent>,
         onFlintTreeItemClick: FlintTreeItemEvents.CLICK as EventName<CustomEvent>,
+        onFlintTreeItemToggle: FlintTreeItemEvents.TOGGLE as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintTreeItemProps & React.RefAttributes<FlintTreeItemElement>>;

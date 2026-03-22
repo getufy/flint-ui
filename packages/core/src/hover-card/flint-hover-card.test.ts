@@ -315,92 +315,51 @@ describe('flint-hover-card — events', () => {
 /* ═══════════════════════════════════════════════════════════════════════════
    flint-hover-card-content — positioning
 ═══════════════════════════════════════════════════════════════════════════ */
-describe('flint-hover-card-content — positioning', () => {
-    it('placement=bottom align=center: sets top and left=50% with translateX', async () => {
+describe('flint-hover-card-content — positioning via flint-popup', () => {
+    it('contains a flint-popup element', async () => {
         const el = await make({ placement: 'bottom', align: 'center' });
         const c = getContent(el);
-        await c.updateComplete;
-        expect(c.style.getPropertyValue('top')).not.toBe('');
-        expect(c.style.getPropertyValue('bottom')).toBe('');
-        expect(c.style.getPropertyValue('left')).toBe('50%');
-        expect(c.style.getPropertyValue('transform')).toBe('translateX(-50%)');
+        const flintPopup = c.shadowRoot!.querySelector('flint-popup');
+        expect(flintPopup).toBeTruthy();
     });
 
-    it('placement=top align=center: sets bottom and left=50% with translateX', async () => {
-        const el = await make({ placement: 'top', align: 'center' });
+    it('passes placement to flint-popup (bottom + center)', async () => {
+        const el = await make({ placement: 'bottom', align: 'center' });
         const c = getContent(el);
-        await c.updateComplete;
-        expect(c.style.getPropertyValue('bottom')).not.toBe('');
-        expect(c.style.getPropertyValue('top')).toBe('');
-        expect(c.style.getPropertyValue('left')).toBe('50%');
-        expect(c.style.getPropertyValue('transform')).toBe('translateX(-50%)');
+        const flintPopup = c.shadowRoot!.querySelector('flint-popup')!;
+        expect(flintPopup.getAttribute('placement')).toBe('bottom');
     });
 
-    it('placement=right align=center: sets left and top=50% with translateY', async () => {
-        const el = await make({ placement: 'right', align: 'center' });
+    it('passes placement to flint-popup (top + end)', async () => {
+        const el = await make({ placement: 'top', align: 'end' });
         const c = getContent(el);
-        await c.updateComplete;
-        expect(c.style.getPropertyValue('left')).not.toBe('');
-        expect(c.style.getPropertyValue('right')).toBe('');
-        expect(c.style.getPropertyValue('top')).toBe('50%');
-        expect(c.style.getPropertyValue('transform')).toBe('translateY(-50%)');
+        const flintPopup = c.shadowRoot!.querySelector('flint-popup')!;
+        expect(flintPopup.getAttribute('placement')).toBe('top-end');
     });
 
-    it('placement=left align=center: sets right and top=50% with translateY', async () => {
-        const el = await make({ placement: 'left', align: 'center' });
-        const c = getContent(el);
-        await c.updateComplete;
-        expect(c.style.getPropertyValue('right')).not.toBe('');
-        expect(c.style.getPropertyValue('left')).toBe('');
-        expect(c.style.getPropertyValue('top')).toBe('50%');
-        expect(c.style.getPropertyValue('transform')).toBe('translateY(-50%)');
-    });
-
-    it('align=start on bottom side: sets left=0, no transform', async () => {
-        const el = await make({ placement: 'bottom', align: 'start' });
-        const c = getContent(el);
-        await c.updateComplete;
-        // happy-dom normalises '0' → '0px' for zero-length values
-        expect(c.style.getPropertyValue('left')).toBe('0px');
-        expect(c.style.getPropertyValue('right')).toBe('');
-        expect(c.style.getPropertyValue('transform')).toBe('');
-    });
-
-    it('align=end on bottom side: sets right=0, no transform', async () => {
-        const el = await make({ placement: 'bottom', align: 'end' });
-        const c = getContent(el);
-        await c.updateComplete;
-        expect(c.style.getPropertyValue('right')).toBe('0px');
-        expect(c.style.getPropertyValue('left')).toBe('');
-        expect(c.style.getPropertyValue('transform')).toBe('');
-    });
-
-    it('align=start on right side: sets top=0, no transform', async () => {
+    it('passes placement to flint-popup (right + start)', async () => {
         const el = await make({ placement: 'right', align: 'start' });
         const c = getContent(el);
-        await c.updateComplete;
-        expect(c.style.getPropertyValue('top')).toBe('0px');
-        expect(c.style.getPropertyValue('transform')).toBe('');
+        const flintPopup = c.shadowRoot!.querySelector('flint-popup')!;
+        expect(flintPopup.getAttribute('placement')).toBe('right-start');
     });
 
-    it('align=end on left side: sets bottom=0, no transform', async () => {
-        const el = await make({ placement: 'left', align: 'end' });
+    it('passes placement to flint-popup (left + center)', async () => {
+        const el = await make({ placement: 'left', align: 'center' });
         const c = getContent(el);
-        await c.updateComplete;
-        expect(c.style.getPropertyValue('bottom')).toBe('0px');
-        expect(c.style.getPropertyValue('transform')).toBe('');
+        const flintPopup = c.shadowRoot!.querySelector('flint-popup')!;
+        expect(flintPopup.getAttribute('placement')).toBe('left');
     });
 
-    it('reapplies position when placement changes', async () => {
+    it('updates flint-popup placement when placement changes', async () => {
         const el = await make({ placement: 'bottom', align: 'center' });
         const c = getContent(el);
-        await c.updateComplete;
-        expect(c.style.getPropertyValue('top')).not.toBe('');
+        const flintPopup = c.shadowRoot!.querySelector('flint-popup')!;
+        expect(flintPopup.getAttribute('placement')).toBe('bottom');
 
         c.placement = 'top';
         await c.updateComplete;
-        expect(c.style.getPropertyValue('bottom')).not.toBe('');
-        expect(c.style.getPropertyValue('top')).toBe('');
+        expect(flintPopup.getAttribute('placement')).toBe('top');
     });
 
     it('placement and align can be set via HTML attributes', async () => {
@@ -414,20 +373,42 @@ describe('flint-hover-card-content — positioning', () => {
         await c.updateComplete;
         expect(c.placement).toBe('top');
         expect(c.align).toBe('end');
-        expect(c.style.getPropertyValue('bottom')).not.toBe('');
-        expect(c.style.getPropertyValue('right')).toBe('0px');
+        const flintPopup = c.shadowRoot!.querySelector('flint-popup')!;
+        expect(flintPopup.getAttribute('placement')).toBe('top-end');
     });
 
-    it('reapplies position when align changes', async () => {
+    it('updates flint-popup placement when align changes', async () => {
         const el = await make({ placement: 'bottom', align: 'center' });
         const c = getContent(el);
-        await c.updateComplete;
-        expect(c.style.getPropertyValue('transform')).toBe('translateX(-50%)');
+        const flintPopup = c.shadowRoot!.querySelector('flint-popup')!;
+        expect(flintPopup.getAttribute('placement')).toBe('bottom');
 
         c.align = 'start';
         await c.updateComplete;
-        expect(c.style.getPropertyValue('transform')).toBe('');
-        expect(c.style.getPropertyValue('left')).toBe('0px');
+        expect(flintPopup.getAttribute('placement')).toBe('bottom-start');
+    });
+
+    it('enables flip on flint-popup', async () => {
+        const el = await make({ placement: 'bottom', align: 'center' });
+        const c = getContent(el);
+        const flintPopup = c.shadowRoot!.querySelector('flint-popup')!;
+        expect(flintPopup.hasAttribute('flip')).toBe(true);
+    });
+
+    it('enables shift on flint-popup', async () => {
+        const el = await make({ placement: 'bottom', align: 'center' });
+        const c = getContent(el);
+        const flintPopup = c.shadowRoot!.querySelector('flint-popup')!;
+        expect(flintPopup.hasAttribute('shift')).toBe(true);
+    });
+
+    it('sets strategy to fixed when hoist is true', async () => {
+        const el = await make({ placement: 'bottom', align: 'center' });
+        const c = getContent(el);
+        c.hoist = true;
+        await c.updateComplete;
+        const flintPopup = c.shadowRoot!.querySelector('flint-popup') as unknown as { strategy: string };
+        expect(flintPopup.strategy).toBe('fixed');
     });
 });
 

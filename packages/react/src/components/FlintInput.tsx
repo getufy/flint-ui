@@ -74,11 +74,6 @@ export interface FlintInputProps extends Omit<React.HTMLAttributes<FlintInputEle
     /** Whether the password is currently visible. Only relevant when `passwordToggle` is true. */
     passwordVisible?: boolean;
     /**
-     * Fired when the clear button is clicked. detail: `undefined`
-     * DOM event: `flint-input-clear`
-     */
-    onFlintInputClear?: (event: CustomEvent) => void;
-    /**
      * Fired on each keystroke as the value changes. detail: `{ value: string }`
      * DOM event: `flint-input-input`
      */
@@ -88,6 +83,11 @@ export interface FlintInputProps extends Omit<React.HTMLAttributes<FlintInputEle
      * DOM event: `flint-input-change`
      */
     onFlintInputChange?: (event: CustomEvent<FlintInputChangeDetail>) => void;
+    /**
+     * Fired when the clear button is clicked. detail: `undefined`
+     * DOM event: `flint-input-clear`
+     */
+    onFlintInputClear?: (event: CustomEvent) => void;
 }
 
 export const FlintInput = createComponent({
@@ -141,8 +141,8 @@ export const FlintInput = createComponent({
         onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
         onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
         onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
-        onFlintInputClear: FlintInputEvents.CLEAR as EventName<CustomEvent>,
         onFlintInputInput: FlintInputEvents.INPUT as EventName<CustomEvent<FlintInputInputDetail>>,
         onFlintInputChange: FlintInputEvents.CHANGE as EventName<CustomEvent<FlintInputChangeDetail>>,
+        onFlintInputClear: FlintInputEvents.CLEAR as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintInputProps & React.RefAttributes<FlintInputElement>>;

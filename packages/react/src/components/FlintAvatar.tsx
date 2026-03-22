@@ -26,6 +26,11 @@ export interface FlintAvatarProps extends React.HTMLAttributes<FlintAvatarElemen
      * Allowed values: 'sm' | 'md' | 'lg' | 'xl'
      */
     size?: 'sm' | 'md' | 'lg' | 'xl';
+    /**
+     * Image loading strategy.
+     * Allowed values: 'eager' | 'lazy'
+     */
+    loading?: 'eager' | 'lazy';
 }
 
 export const FlintAvatar = createComponent({

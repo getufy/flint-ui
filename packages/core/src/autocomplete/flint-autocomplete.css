@@ -35,28 +35,16 @@
     }
 
     .dropdown {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
       max-height: var(--flint-autocomplete-dropdown-max-height, 250px);
       overflow-y: auto;
       background: var(--flint-surface-1);
       border: 1px solid var(--flint-input-border-color);
       border-radius: var(--flint-input-border-radius);
-      margin-top: 4px;
       box-shadow: var(--flint-shadow-md);
-      z-index: var(--flint-autocomplete-z-index, 10);
-      display: none;
     }
 
-    .dropdown.open {
-      display: block;
-    }
-
-    .dropdown.hoisted {
-      /* position/top/left/width set via inline styles in _handleReposition */
-      right: auto;
+    flint-popup::part(popup) {
+      z-index: var(--flint-autocomplete-z-index, 1000);
     }
 
     .option {

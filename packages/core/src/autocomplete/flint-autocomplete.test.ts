@@ -697,29 +697,26 @@ describe('flint-autocomplete — string[] options', () => {
 // ── Hoist ─────────────────────────────────────────────────────────────────
 
 describe('flint-autocomplete — hoist', () => {
-    it('applies hoisted class to dropdown when hoist=true', async () => {
+    it('uses fixed strategy on flint-popup when hoist=true', async () => {
         const el = await fixture<FlintAutocomplete>(html`<flint-autocomplete .options=${options} hoist></flint-autocomplete>`);
-        const dropdown = el.shadowRoot!.querySelector('.dropdown');
-        expect(dropdown!.classList.contains('hoisted')).toBe(true);
+        const popup = el.shadowRoot!.querySelector('flint-popup') as HTMLElement & { strategy: string };
+        expect(popup.strategy).toBe('fixed');
     });
 
-    it('does not apply hoisted class when hoist=false', async () => {
+    it('uses absolute strategy on flint-popup when hoist=false', async () => {
         const el = await fixture<FlintAutocomplete>(html`<flint-autocomplete .options=${options} .hoist=${false}></flint-autocomplete>`);
-        const dropdown = el.shadowRoot!.querySelector('.dropdown');
-        expect(dropdown!.classList.contains('hoisted')).toBe(false);
+        const popup = el.shadowRoot!.querySelector('flint-popup') as HTMLElement & { strategy: string };
+        expect(popup.strategy).toBe('absolute');
     });
 
-    it('cleans up hoist on disconnect', async () => {
+    it('renders flint-popup with correct attributes', async () => {
         const el = await fixture<FlintAutocomplete>(html`<flint-autocomplete .options=${options} hoist></flint-autocomplete>`);
-        const input = el.shadowRoot!.querySelector('input')!;
-        input.dispatchEvent(new Event('focus'));
-        await el.updateComplete;
-
-        el.remove();
-
-        // Verify dropdown styles are cleaned up (position reset)
-        const dropdown = el.shadowRoot!.querySelector<HTMLElement>('.dropdown');
-        expect(dropdown!.style.position).toBe('');
+        const popup = el.shadowRoot!.querySelector('flint-popup') as HTMLElement & { flip: boolean; shift: boolean; sync: string; distance: number };
+        expect(popup).toBeTruthy();
+        expect(popup.flip).toBe(true);
+        expect(popup.shift).toBe(true);
+        expect(popup.sync).toBe('width');
+        expect(popup.distance).toBe(4);
     });
 });
 

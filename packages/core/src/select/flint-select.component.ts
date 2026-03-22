@@ -4,6 +4,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { repeat } from 'lit/directives/repeat.js';
 import { PropertyValues } from 'lit';
 import { FlintElement } from '../flint-element.js';
+import { FlintPopup } from '../popup/flint-popup.component.js';
 import { FormAssociated } from '../mixins/form-associated.js';
 import { FormControlController } from '../controllers/form-control.js';
 import { LocalizeController } from '../utilities/localize.js';
@@ -43,6 +44,10 @@ let _uidCounter = 0;
 export class FlintSelect extends FormAssociated(FlintElement) {
   static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
   static styles = unsafeCSS(uiSelectStyles);
+
+  static override dependencies: Record<string, typeof FlintElement> = {
+    'flint-popup': FlintPopup,
+  };
 
   /** Label text displayed above the select. */
   @property({ type: String }) label = '';
@@ -93,7 +98,6 @@ export class FlintSelect extends FormAssociated(FlintElement) {
   @state() private _isOpen = false;
   @state() private _highlightedIndex = -1;
   @state() private _isFocused = false;
-  @state() private _opensUp = false;
   @state() private _isLoading = false;
 
   private readonly _uid = `flint-select-${++_uidCounter}`;
@@ -155,7 +159,6 @@ export class FlintSelect extends FormAssociated(FlintElement) {
     if (typeof document !== 'undefined') {
       document.removeEventListener('click', this._handleOutsideClick);
     }
-    this._cleanupHoist();
   }
 
   /** Called by the browser when the associated form is reset. */
@@ -197,52 +200,6 @@ export class FlintSelect extends FormAssociated(FlintElement) {
     this._formControl.updateDataAttributes();
   }
 
-  private _handleReposition = () => {
-    if (!this._isOpen || !this.hoist) return;
-    void this.updateComplete.then(() => {
-      const dropdown = this.shadowRoot?.querySelector<HTMLElement>('.dropdown');
-      if (!dropdown) return;
-      const trigger = this.shadowRoot?.querySelector<HTMLElement>('.select-trigger');
-      if (!trigger) return;
-      const rect = trigger.getBoundingClientRect();
-      const spaceBelow = window.innerHeight - rect.bottom;
-      const opensUp = spaceBelow < 280;
-      dropdown.style.position = 'fixed';
-      dropdown.style.left = `${rect.left}px`;
-      dropdown.style.width = `${rect.width}px`;
-      if (opensUp) {
-        dropdown.style.bottom = `${window.innerHeight - rect.top + 6}px`;
-        dropdown.style.top = '';
-      } else {
-        dropdown.style.top = `${rect.bottom + 6}px`;
-        dropdown.style.bottom = '';
-      }
-    });
-  };
-
-  private _startHoist() {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', this._handleReposition, true);
-      window.addEventListener('resize', this._handleReposition);
-    }
-    this._handleReposition();
-  }
-
-  private _cleanupHoist() {
-    if (typeof window !== 'undefined') {
-      window.removeEventListener('scroll', this._handleReposition, true);
-      window.removeEventListener('resize', this._handleReposition);
-    }
-    const dropdown = this.shadowRoot?.querySelector<HTMLElement>('.dropdown');
-    if (dropdown) {
-      dropdown.style.position = '';
-      dropdown.style.left = '';
-      dropdown.style.width = '';
-      dropdown.style.top = '';
-      dropdown.style.bottom = '';
-    }
-  }
-
   private async _runShowAnimation() {
     const dropdown = this.shadowRoot?.querySelector<HTMLElement>('.dropdown');
     if (!dropdown) return;
@@ -268,7 +225,6 @@ export class FlintSelect extends FormAssociated(FlintElement) {
     this._highlightedIndex = -1;
     await this._runHideAnimation();
     this._isOpen = false;
-    if (this.hoist) this._cleanupHoist();
   }
 
   private _handleOutsideClick = (e: MouseEvent) => {
@@ -283,14 +239,11 @@ export class FlintSelect extends FormAssociated(FlintElement) {
   private _toggleDropdown = () => {
     if (this.disabled || this.readonly) return;
     if (!this._isOpen) {
-      const rect = this.getBoundingClientRect();
-      this._opensUp = window.innerHeight - rect.bottom < 280;
       // Pre-highlight currently selected option
       this._highlightedIndex = this.value.length > 0
         ? this.options.findIndex(o => o.value === this.value[0])
         : -1;
       this._isOpen = true;
-      if (this.hoist) this._startHoist();
       void this._runShowAnimation();
 
       // Trigger async loading if a loadOptions callback is provided
@@ -559,90 +512,98 @@ export class FlintSelect extends FormAssociated(FlintElement) {
       <div class="wrapper">
         ${this.label ? html`<label id=${labelId} part="label">${this.label}</label>` : nothing}
 
-        <div
-          part="trigger"
-          class=${classMap({
-            'select-trigger': true,
-            focused: this._isOpen || this._isFocused,
-            open: this._isOpen,
-            disabled: this.disabled,
-            readonly: this.readonly,
-            'has-value': selectedOptions.length > 0,
-          })}
-          tabindex=${this.disabled ? '-1' : '0'}
-          role="combobox"
-          aria-expanded=${this._isOpen ? 'true' : 'false'}
-          aria-haspopup="listbox"
-          aria-controls=${listboxId}
-          aria-labelledby=${this.label ? labelId : nothing}
-          aria-activedescendant=${activeDescendant || nothing}
-          aria-disabled=${this.disabled ? 'true' : nothing}
-          aria-required=${this.required ? 'true' : nothing}
-          @click=${this._toggleDropdown}
-          @keydown=${this._handleKeydown}
-          @focus=${() => { this._isFocused = true; }}
-          @blur=${() => { this._isFocused = false; }}
+        <flint-popup
+          .active=${this._isOpen}
+          placement="bottom-start"
+          .strategy=${this.hoist ? 'fixed' as const : 'absolute' as const}
+          .distance=${4}
+          flip
+          shift
+          sync="width"
         >
-          <slot name="icon"></slot>
+          <div
+            slot="anchor"
+            part="trigger"
+            class=${classMap({
+              'select-trigger': true,
+              focused: this._isOpen || this._isFocused,
+              open: this._isOpen,
+              disabled: this.disabled,
+              readonly: this.readonly,
+              'has-value': selectedOptions.length > 0,
+            })}
+            tabindex=${this.disabled ? '-1' : '0'}
+            role="combobox"
+            aria-expanded=${this._isOpen ? 'true' : 'false'}
+            aria-haspopup="listbox"
+            aria-controls=${listboxId}
+            aria-labelledby=${this.label ? labelId : nothing}
+            aria-activedescendant=${activeDescendant || nothing}
+            aria-disabled=${this.disabled ? 'true' : nothing}
+            aria-required=${this.required ? 'true' : nothing}
+            @click=${this._toggleDropdown}
+            @keydown=${this._handleKeydown}
+            @focus=${() => { this._isFocused = true; }}
+            @blur=${() => { this._isFocused = false; }}
+          >
+            <slot name="icon"></slot>
 
-          <div class="value-container">
-            ${selectedOptions.length === 0 ? html`
-              <span class="placeholder" part="placeholder">${this.placeholder || this._localize.term('selectOption')}</span>
-            ` : nothing}
+            <div class="value-container">
+              ${selectedOptions.length === 0 ? html`
+                <span class="placeholder" part="placeholder">${this.placeholder || this._localize.term('selectOption')}</span>
+              ` : nothing}
 
-            ${this.multiple
-              ? repeat(selectedOptions, opt => opt.value, opt => html`
-                  <span class="chip" part="chip">
-                    ${opt.label}
-                    <button
-                      type="button"
-                      class="chip-remove"
-                      aria-label="Remove ${opt.label}"
-                      @click=${(e: Event) => this._removeValue(opt.value, e)}
-                    >
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                        <path d="M18 6L6 18M6 6l12 12"></path>
-                      </svg>
-                    </button>
-                  </span>
-                `)
-              : (selectedOptions[0] ? html`
-                  <span class="single-value">${selectedOptions[0].label}</span>
-                ` : nothing)
+              ${this.multiple
+                ? repeat(selectedOptions, opt => opt.value, opt => html`
+                    <span class="chip" part="chip">
+                      ${opt.label}
+                      <button
+                        type="button"
+                        class="chip-remove"
+                        aria-label="Remove ${opt.label}"
+                        @click=${(e: Event) => this._removeValue(opt.value, e)}
+                      >
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                          <path d="M18 6L6 18M6 6l12 12"></path>
+                        </svg>
+                      </button>
+                    </span>
+                  `)
+                : (selectedOptions[0] ? html`
+                    <span class="single-value">${selectedOptions[0].label}</span>
+                  ` : nothing)
+              }
+            </div>
+
+            <div class="arrow">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+          </div>
+
+          <div
+            id=${listboxId}
+            part="dropdown"
+            class=${classMap({
+              dropdown: true,
+              open: this._isOpen,
+            })}
+            role="listbox"
+            aria-multiselectable=${this.multiple ? 'true' : 'false'}
+          >
+            ${this._isLoading
+              ? html`<div class="loading-indicator" part="loading"><span class="loading-spinner"></span> Loading…</div>`
+              : this.options.length === 0
+                ? html`<div class="no-options">${this._localize.term('noOptions')}</div>`
+                : this.virtualize
+                  ? this._renderVirtualized()
+                  : this._hasGroups
+                    ? this._renderGrouped()
+                    : repeat(this.options, opt => opt.value, (opt, i) => this._renderOption(opt, i))
             }
           </div>
-
-          <div class="arrow">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </div>
-        </div>
-
-        <div
-          id=${listboxId}
-          part="dropdown"
-          class=${classMap({
-            dropdown: true,
-            open: this._isOpen,
-            above: this._opensUp,
-            below: !this._opensUp,
-            hoisted: this.hoist,
-          })}
-          role="listbox"
-          aria-multiselectable=${this.multiple ? 'true' : 'false'}
-        >
-          ${this._isLoading
-            ? html`<div class="loading-indicator" part="loading"><span class="loading-spinner"></span> Loading…</div>`
-            : this.options.length === 0
-              ? html`<div class="no-options">${this._localize.term('noOptions')}</div>`
-              : this.virtualize
-                ? this._renderVirtualized()
-                : this._hasGroups
-                  ? this._renderGrouped()
-                  : repeat(this.options, opt => opt.value, (opt, i) => this._renderOption(opt, i))
-          }
-        </div>
+        </flint-popup>
 
         ${this.error ? html`
           <span class="error-message" part="error-message" role="alert">

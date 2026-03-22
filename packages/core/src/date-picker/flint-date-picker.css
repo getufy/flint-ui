@@ -75,37 +75,17 @@
 
     /* ── Desktop popover ───────────────────────────────────────────── */
     .popover-anchor {
-      position: relative;
       display: inline-block;
     }
 
+    flint-popup::part(popup) {
+      z-index: var(--flint-datepicker-z-index, 1400);
+    }
+
     .popover {
-      position: absolute;
-      top: calc(100% + 6px);
-      left: 0;
-      z-index: 1400;
       background: var(--flint-surface-1);
       border-radius: var(--flint-border-radius-xl);
       box-shadow: var(--flint-shadow-lg);
-      transform-origin: top left;
-      transform: scale(0.94) translateY(-4px);
-      opacity: 0;
-      visibility: hidden;
-      transition: transform 0.15s cubic-bezier(0.4,0,.2,1),
-                  opacity 0.15s, visibility 0.15s;
-      pointer-events: none;
-    }
-    .popover.open {
-      transform: scale(1) translateY(0);
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-    }
-
-    /* Hoist: use fixed positioning to escape overflow containers */
-    .popover.hoisted {
-      position: fixed;
-      right: auto;
     }
 
     /* Popover actions row */

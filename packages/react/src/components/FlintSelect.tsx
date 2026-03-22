@@ -63,8 +63,6 @@ export interface FlintSelectProps extends Omit<React.HTMLAttributes<FlintSelectE
     itemHeight?: number;
     /** Maximum visible items in the dropdown (determines dropdown height). */
     visibleItems?: number;
-    /** DOM event: `flint-select-load` */
-    onFlintSelectLoad?: (event: CustomEvent) => void;
     /**
      * Dispatched when the selection changes. detail: `{ value: string, multiple: false } | { value: string[], multiple: true }`
      * DOM event: `flint-select-change`
@@ -123,7 +121,6 @@ export const FlintSelect = createComponent({
         onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
         onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
         onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
-        onFlintSelectLoad: FlintSelectEvents.LOAD as EventName<CustomEvent>,
         onFlintSelectChange: FlintSelectEvents.CHANGE as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintSelectProps & React.RefAttributes<FlintSelectElement>>;

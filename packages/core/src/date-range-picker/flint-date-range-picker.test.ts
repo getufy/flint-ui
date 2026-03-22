@@ -491,8 +491,8 @@ describe('flint-date-range-picker', () => {
             html`<flint-date-range-picker></flint-date-range-picker>`,
         );
         await el.updateComplete;
-        const popover = el.shadowRoot!.querySelector('.popover');
-        expect(popover?.classList.contains('open')).toBe(false);
+        const popup = el.shadowRoot!.querySelector('flint-popup');
+        expect(popup?.hasAttribute('active')).toBe(false);
     });
 
     it('renders label above the field', async () => {
@@ -630,8 +630,8 @@ describe('flint-date-range-picker', () => {
         const field = el.shadowRoot!.querySelector('flint-single-input-date-range-field') as HTMLElement;
         field.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
         await el.updateComplete;
-        const popover = el.shadowRoot!.querySelector('.popover');
-        expect(popover?.classList.contains('open')).toBe(true);
+        const popup = el.shadowRoot!.querySelector('flint-popup');
+        expect(popup?.hasAttribute('active')).toBe(true);
     });
 
     it('popover closes via click-away backdrop', async () => {
@@ -642,11 +642,11 @@ describe('flint-date-range-picker', () => {
         const field = el.shadowRoot!.querySelector('flint-single-input-date-range-field') as HTMLElement;
         field.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
         await el.updateComplete;
-        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(true);
+        expect(el.shadowRoot!.querySelector('flint-popup')?.hasAttribute('active')).toBe(true);
         const backdrop = el.shadowRoot!.querySelector('.click-away') as HTMLElement;
         backdrop.click();
         await el.updateComplete;
-        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(false);
+        expect(el.shadowRoot!.querySelector('flint-popup')?.hasAttribute('active')).toBe(false);
     });
 
     it('does not open popover when disabled', async () => {
@@ -657,8 +657,8 @@ describe('flint-date-range-picker', () => {
         const field = el.shadowRoot!.querySelector('flint-single-input-date-range-field') as HTMLElement;
         field.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
         await el.updateComplete;
-        const popover = el.shadowRoot!.querySelector('.popover');
-        expect(popover?.classList.contains('open')).toBe(false);
+        const popup = el.shadowRoot!.querySelector('flint-popup');
+        expect(popup?.hasAttribute('active')).toBe(false);
     });
 
     it('does not open popover when readonly', async () => {
@@ -669,8 +669,8 @@ describe('flint-date-range-picker', () => {
         const field = el.shadowRoot!.querySelector('flint-single-input-date-range-field') as HTMLElement;
         field.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
         await el.updateComplete;
-        const popover = el.shadowRoot!.querySelector('.popover');
-        expect(popover?.classList.contains('open')).toBe(false);
+        const popup = el.shadowRoot!.querySelector('flint-popup');
+        expect(popup?.hasAttribute('active')).toBe(false);
     });
 
     // ── Desktop: shortcut → commit + close ───────────────────────────────────
@@ -714,7 +714,7 @@ describe('flint-date-range-picker', () => {
             bubbles: true, composed: true,
         }));
         await el.updateComplete;
-        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(false);
+        expect(el.shadowRoot!.querySelector('flint-popup')?.hasAttribute('active')).toBe(false);
     });
 
     it('flint-date-range-picker-change event carries both dates when field is typed into', async () => {
@@ -1076,7 +1076,7 @@ describe('flint-date-range-picker', () => {
         const field = el.shadowRoot!.querySelector('flint-single-input-date-range-field') as HTMLElement;
         field.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
         await el.updateComplete;
-        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(true);
+        expect(el.shadowRoot!.querySelector('flint-popup')?.hasAttribute('active')).toBe(true);
         // Dispatch a partial flint-date-range-picker-change (start only, no end)
         field.dispatchEvent(new CustomEvent('flint-date-range-picker-change', {
             detail: { value: ['2025-06-01', ''] as DateRange },
@@ -1084,7 +1084,7 @@ describe('flint-date-range-picker', () => {
         }));
         await el.updateComplete;
         // Picker should still be open since range is incomplete (range[1] is empty)
-        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(true);
+        expect(el.shadowRoot!.querySelector('flint-popup')?.hasAttribute('active')).toBe(true);
     });
 
     // ── _formatRange: only one date set ('?' fallback, lines 160-161) ─────────
@@ -3201,7 +3201,7 @@ describe('flint-date-range-picker — mutation killers', () => {
         }));
         await el.updateComplete;
         // Partial range (no end) → should NOT auto-commit on desktop
-        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(true);
+        expect(el.shadowRoot!.querySelector('flint-popup')?.hasAttribute('active')).toBe(true);
     });
 
     it('mobile: Cancel resets _activeShortcut (no active class after cancel)', async () => {
@@ -3234,11 +3234,11 @@ describe('flint-date-range-picker — mutation killers', () => {
         const field = el.shadowRoot!.querySelector('flint-single-input-date-range-field') as HTMLElement;
         field.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
         await el.updateComplete;
-        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(true);
+        expect(el.shadowRoot!.querySelector('flint-popup')?.hasAttribute('active')).toBe(true);
         // Focus again — should not throw or change state
         field.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
         await el.updateComplete;
-        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(true);
+        expect(el.shadowRoot!.querySelector('flint-popup')?.hasAttribute('active')).toBe(true);
     });
 
     it('custom shortcutItems overrides default shortcuts', async () => {
@@ -3367,7 +3367,7 @@ describe('flint-date-range-picker — mutation killers', () => {
         const field = el.shadowRoot!.querySelector('flint-single-input-date-range-field') as HTMLElement;
         field.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
         await el.updateComplete;
-        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(true);
+        expect(el.shadowRoot!.querySelector('flint-popup')?.hasAttribute('active')).toBe(true);
         const spy = vi.fn();
         el.addEventListener('flint-date-range-picker-change', spy);
         // Emit same range → _commit should be no-op (no event) but closes picker
@@ -3378,7 +3378,7 @@ describe('flint-date-range-picker — mutation killers', () => {
         }));
         await el.updateComplete;
         expect(spy).not.toHaveBeenCalled();
-        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(false);
+        expect(el.shadowRoot!.querySelector('flint-popup')?.hasAttribute('active')).toBe(false);
     });
 
     it('desktop: shortcut navigates calendar to shortcut start month', async () => {
@@ -4269,14 +4269,14 @@ describe('flint-date-range-picker — precise mutation killers', () => {
             bubbles: true, composed: true,
         }));
         await el.updateComplete;
-        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(true);
+        expect(el.shadowRoot!.querySelector('flint-popup')?.hasAttribute('active')).toBe(true);
         // Full range → closes
         field.dispatchEvent(new CustomEvent('flint-date-range-picker-change', {
             detail: { value: ['2025-06-01', '2025-06-15'] as DateRange },
             bubbles: true, composed: true,
         }));
         await el.updateComplete;
-        expect(el.shadowRoot!.querySelector('.popover')?.classList.contains('open')).toBe(false);
+        expect(el.shadowRoot!.querySelector('flint-popup')?.hasAttribute('active')).toBe(false);
     });
 
     it('desktop: calendar select with range[0] && range[1] auto-commits', async () => {

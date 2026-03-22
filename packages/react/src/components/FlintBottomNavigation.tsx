@@ -20,6 +20,7 @@ export interface FlintBottomNavigationChangeDetail {
  * @slot (default) - destinations (flint-bottom-navigation-action).
  */
 export interface FlintBottomNavigationProps extends Omit<React.HTMLAttributes<FlintBottomNavigationElement>, 'defaultValue'> {
+    dependencies?: object;
     /** The value of the currently selected action. */
     value?: unknown;
     /** Initial selected value for uncontrolled usage. */

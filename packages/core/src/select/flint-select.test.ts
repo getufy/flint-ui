@@ -353,18 +353,11 @@ describe('flint-select — dropdown open/close', () => {
     expect(getOptions(el)[1].classList.contains('highlighted')).toBe(true);
   });
 
-  it('_opensUp is set when element is near bottom of viewport', async () => {
+  it('flint-popup has flip enabled for smart positioning', async () => {
     const el = await fixture<FlintSelect>(html`<flint-select .options=${opts}></flint-select>`);
-    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue({
-      bottom: window.innerHeight - 100,
-      top: window.innerHeight - 140,
-      left: 0, right: 400, width: 400, height: 40,
-      toJSON: () => ({}),
-    } as DOMRect);
-    getTrigger(el).click();
-    await el.updateComplete;
-    expect((el as unknown as { _opensUp: boolean })._opensUp).toBe(true);
-    vi.restoreAllMocks();
+    const flintPopup = el.shadowRoot!.querySelector('flint-popup') as HTMLElement;
+    expect(flintPopup).toBeTruthy();
+    expect(flintPopup.hasAttribute('flip')).toBe(true);
   });
 });
 
@@ -902,59 +895,30 @@ describe('flint-select — hoist', () => {
     expect(el.hoist).toBe(true);
   });
 
-  it('dropdown gets hoisted class by default', async () => {
+  it('flint-popup uses fixed strategy when hoist is true', async () => {
     const el = await fixture<FlintSelect>(html`<flint-select .options=${opts}></flint-select>`);
-    expect(getDropdown(el).classList.contains('hoisted')).toBe(true);
+    const flintPopup = el.shadowRoot!.querySelector('flint-popup') as unknown as { strategy: string };
+    expect(flintPopup.strategy).toBe('fixed');
   });
 
-  it('dropdown does not get hoisted class when hoist=false', async () => {
+  it('flint-popup uses absolute strategy when hoist is false', async () => {
     const el = await fixture<FlintSelect>(html`<flint-select .hoist=${false} .options=${opts}></flint-select>`);
-    expect(getDropdown(el).classList.contains('hoisted')).toBe(false);
+    const flintPopup = el.shadowRoot!.querySelector('flint-popup') as unknown as { strategy: string };
+    expect(flintPopup.strategy).toBe('absolute');
   });
 
-  it('opening with hoist applies fixed position styles', async () => {
-    const el = await fixture<FlintSelect>(html`<flint-select hoist .options=${opts}></flint-select>`);
+  it('flint-popup is active when dropdown is open', async () => {
+    const el = await fixture<FlintSelect>(html`<flint-select .options=${opts}></flint-select>`);
+    const flintPopup = el.shadowRoot!.querySelector('flint-popup') as unknown as { active: boolean };
+    expect(flintPopup.active).toBe(false);
     await open(el);
-    await new Promise(r => setTimeout(r, 0));
-    const dropdown = getDropdown(el);
-    expect(dropdown.style.position).toBe('fixed');
-    expect(dropdown.style.left).toBeTruthy();
-    expect(dropdown.style.width).toBeTruthy();
+    expect(flintPopup.active).toBe(true);
   });
 
-  it('closing with hoist clears fixed position styles', async () => {
-    const el = await fixture<FlintSelect>(html`<flint-select hoist .options=${opts}></flint-select>`);
-    await open(el);
-    await new Promise(r => setTimeout(r, 0));
-    getTrigger(el).click();
-    await el.updateComplete;
-    await new Promise(r => setTimeout(r, 0));
-    await el.updateComplete;
-    const dropdown = getDropdown(el);
-    expect(dropdown.style.position).toBe('');
-    expect(dropdown.style.left).toBe('');
-  });
-
-  it('Escape with hoist clears position styles', async () => {
-    const el = await fixture<FlintSelect>(html`<flint-select hoist .options=${opts}></flint-select>`);
-    await open(el);
-    await new Promise(r => setTimeout(r, 0));
-    pressKey(el, 'Escape');
-    await el.updateComplete;
-    await new Promise(r => setTimeout(r, 0));
-    await el.updateComplete;
-    expect(getDropdown(el).style.position).toBe('');
-  });
-
-  it('Tab with hoist clears position styles', async () => {
-    const el = await fixture<FlintSelect>(html`<flint-select hoist .options=${opts}></flint-select>`);
-    await open(el);
-    await new Promise(r => setTimeout(r, 0));
-    pressKey(el, 'Tab');
-    await el.updateComplete;
-    await new Promise(r => setTimeout(r, 0));
-    await el.updateComplete;
-    expect(getDropdown(el).style.position).toBe('');
+  it('flint-popup syncs width to trigger', async () => {
+    const el = await fixture<FlintSelect>(html`<flint-select .options=${opts}></flint-select>`);
+    const flintPopup = el.shadowRoot!.querySelector('flint-popup') as unknown as { sync: string };
+    expect(flintPopup.sync).toBe('width');
   });
 
   it('outside click with hoist clears position styles', async () => {

@@ -2,6 +2,7 @@ import { unsafeCSS, html, type PropertyValues, LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import { FlintPopup } from '../popup/flint-popup.component.js';
 import { FormAssociated } from '../mixins/form-associated.js';
 import { FormControlController } from '../controllers/form-control.js';
 import uiAutocompleteStyles from './flint-autocomplete.css?inline';
@@ -23,6 +24,7 @@ export interface AutocompleteOption<T = string> {
 export class FlintAutocomplete extends FormAssociated(FlintElement) {
     static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
     static styles = unsafeCSS(uiAutocompleteStyles);
+    static override dependencies: Record<string, typeof FlintElement> = { 'flint-popup': FlintPopup as unknown as typeof FlintElement };
 
     /** The list of selectable options. Accepts `AutocompleteOption[]` or `string[]`. */
     @property({ type: Array }) options: (AutocompleteOption | string)[] = [];
@@ -46,6 +48,9 @@ export class FlintAutocomplete extends FormAssociated(FlintElement) {
      * @default true
      */
     @property({ type: Boolean }) hoist = true;
+
+    /** Distance between the input and the dropdown popup (px). */
+    @property({ type: Number, attribute: 'popup-distance' }) popupDistance = 4;
 
     private _formControl = new FormControlController(this);
 
@@ -72,7 +77,6 @@ export class FlintAutocomplete extends FormAssociated(FlintElement) {
     disconnectedCallback() {
         super.disconnectedCallback();
         this._abortController?.abort();
-        this._cleanupHoist();
     }
 
     private _normalizeOptions() {
@@ -120,48 +124,9 @@ export class FlintAutocomplete extends FormAssociated(FlintElement) {
         this._formControl.reset();
     }
 
-    /* ── Hoist (position: fixed dropdown) ─────────────────────────────── */
-
-    private _handleReposition = () => {
-        if (!this._isOpen || !this.hoist) return;
-        void this.updateComplete.then(() => {
-            const dropdown = this.shadowRoot?.querySelector<HTMLElement>('.dropdown');
-            const input = this.shadowRoot?.querySelector<HTMLElement>('input');
-            if (!dropdown || !input) return;
-            const rect = input.getBoundingClientRect();
-            dropdown.style.position = 'fixed';
-            dropdown.style.left = `${rect.left}px`;
-            dropdown.style.width = `${rect.width}px`;
-            dropdown.style.top = `${rect.bottom + 4}px`;
-        });
-    };
-
-    private _startHoist() {
-        if (typeof window !== 'undefined') {
-            window.addEventListener('scroll', this._handleReposition, true);
-            window.addEventListener('resize', this._handleReposition);
-        }
-        this._handleReposition();
-    }
-
-    private _cleanupHoist() {
-        if (typeof window !== 'undefined') {
-            window.removeEventListener('scroll', this._handleReposition, true);
-            window.removeEventListener('resize', this._handleReposition);
-        }
-        const dropdown = this.shadowRoot?.querySelector<HTMLElement>('.dropdown');
-        if (dropdown) {
-            dropdown.style.position = '';
-            dropdown.style.left = '';
-            dropdown.style.width = '';
-            dropdown.style.top = '';
-        }
-    }
-
     private _closeDropdown() {
         this._isOpen = false;
         this._activeIndex = -1;
-        if (this.hoist) this._cleanupHoist();
     }
 
     private _handleOutsideClick = (e: MouseEvent) => {
@@ -186,7 +151,6 @@ export class FlintAutocomplete extends FormAssociated(FlintElement) {
 
         this._filterOptions();
         this._isOpen = true;
-        if (this.hoist) this._startHoist();
     }
 
     private _filterOptions() {
@@ -201,7 +165,6 @@ export class FlintAutocomplete extends FormAssociated(FlintElement) {
         this._filterOptions();
         this._isOpen = true;
         this._activeIndex = -1;
-        if (this.hoist) this._startHoist();
     }
 
     private _handleKeyDown(e: KeyboardEvent) {
@@ -213,7 +176,6 @@ export class FlintAutocomplete extends FormAssociated(FlintElement) {
                 this._filterOptions();
                 this._isOpen = true;
                 this._activeIndex = e.key === 'ArrowDown' ? 0 : count - 1;
-                if (this.hoist) this._startHoist();
             }
             return;
         }
@@ -275,27 +237,37 @@ export class FlintAutocomplete extends FormAssociated(FlintElement) {
         const dropdownOpen = this._isOpen && (this._filteredOptions.length > 0 || !this.freeSolo);
         return html`
       <div class="input-wrapper" part="base">
-        <input
-          type="text"
-          part="input"
-          role="combobox"
-          aria-expanded=${dropdownOpen ? 'true' : 'false'}
-          aria-autocomplete="list"
-          aria-haspopup="listbox"
-          aria-activedescendant=${this._activeIndex >= 0 ? `option-${this._activeIndex}` : ''}
-          .value=${this._inputValue}
-          placeholder=${this.placeholder}
-          ?disabled=${this.disabled}
-          @input=${this._handleInput}
-          @focus=${this._handleFocus}
-          @keydown=${this._handleKeyDown}
-        />
-        <div
-          role="listbox"
-          part="dropdown"
-          class=${classMap({ dropdown: true, open: dropdownOpen, hoisted: this.hoist })}
+        <flint-popup
+          .active=${dropdownOpen}
+          placement="bottom-start"
+          .strategy=${this.hoist ? 'fixed' : 'absolute'}
+          .distance=${this.popupDistance}
+          flip
+          shift
+          sync="width"
         >
-          ${this._filteredOptions.length > 0
+          <input
+            slot="anchor"
+            type="text"
+            part="input"
+            role="combobox"
+            aria-expanded=${dropdownOpen ? 'true' : 'false'}
+            aria-autocomplete="list"
+            aria-haspopup="listbox"
+            aria-activedescendant=${this._activeIndex >= 0 ? `option-${this._activeIndex}` : ''}
+            .value=${this._inputValue}
+            placeholder=${this.placeholder}
+            ?disabled=${this.disabled}
+            @input=${this._handleInput}
+            @focus=${this._handleFocus}
+            @keydown=${this._handleKeyDown}
+          />
+          <div
+            role="listbox"
+            part="dropdown"
+            class=${classMap({ dropdown: true, open: dropdownOpen })}
+          >
+            ${this._filteredOptions.length > 0
                 ? this._filteredOptions.map(
                     (opt, i) => html`
                   <div
@@ -312,7 +284,8 @@ export class FlintAutocomplete extends FormAssociated(FlintElement) {
                 `
                 )
                 : html`<div class="no-options">No options</div>`}
-        </div>
+          </div>
+        </flint-popup>
       </div>
     `;
     }

@@ -220,6 +220,8 @@ export { FlintCombobox } from './combobox/flint-combobox.js';
 export type { ComboboxOption } from './combobox/flint-combobox.js';
 export { FlintAnimation } from './animation/flint-animation.js';
 export type { DialogSize } from './dialog/flint-dialog.js';
+export { FlintPopup } from './popup/flint-popup.js';
+export type { PopupPlacement } from './popup/flint-popup.js';
 
 // ── Autoloader ───────────────────────────────────────────────────────────────
 export { stopAutoloader, startAutoloader, isAutoloaderActive } from './autoloader.js';
