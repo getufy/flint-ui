@@ -119,6 +119,8 @@
     transition: none;
     border-right: 1px solid var(--flint-border-color);
     pointer-events: auto;
+    width: var(--flint-drawer-width, 320px);
+    flex-shrink: 0;
 }
 :host([variant="persistent"][placement="right"]) .paper {
     border-right: none;

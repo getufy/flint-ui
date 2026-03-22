@@ -130,7 +130,7 @@ const navItems = ['Inbox', 'Starred', 'Send Email', 'Drafts', 'All Mail', 'Trash
 
 function navContent() {
     return html`
-        <nav style="width:250px;padding:8px;">
+        <nav style="padding:8px;">
             <div style="padding:12px 16px;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;opacity:.5;">Navigation</div>
             ${navItems.map(i => html`
                 <div style="padding:10px 16px;border-radius:6px;cursor:pointer;transition:background .15s;"
@@ -201,7 +201,7 @@ export const Persistent: Story = {
     render: (args) => html`
         <flint-paper class="story-root" elevation="1" style="display:flex;height:360px;overflow:hidden;">
 
-            <flint-drawer .open=${args.open} .variant=${'persistent'}>
+            <flint-drawer .open=${args.open} .variant=${'persistent'} style="--flint-drawer-width: 250px">
                 ${navContent()}
             </flint-drawer>
 
@@ -364,7 +364,7 @@ export const TabletViewport: Story = {
     args: { open: true, variant: 'persistent' },
     render: (args) => html`
         <flint-paper class="story-root" elevation="1" style="display:flex;height:360px;overflow:hidden;">
-            <flint-drawer .open=${args.open} .variant=${'persistent'}>
+            <flint-drawer .open=${args.open} .variant=${'persistent'} style="--flint-drawer-width: 250px">
                 ${navContent()}
             </flint-drawer>
             <div style="flex:1;padding:24px;overflow-y:auto;">
