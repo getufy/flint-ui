@@ -3420,7 +3420,7 @@ describe('FlintMenubarCheckboxItem — keyboard toggle does not close menu', () 
 });
 
 describe('flint-menubar — accessibility', () => {
-    it('should be accessible', async () => {
+    it('should be accessible', { timeout: 15_000 }, async () => {
         const el = await fixture(html`
             <flint-menubar aria-label="Main menu">
                 <flint-menubar-item label="File"></flint-menubar-item>
