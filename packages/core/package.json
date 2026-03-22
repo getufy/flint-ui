@@ -32,7 +32,9 @@
     "./src/*/flint-*.ts",
     "./dist/suppress-warnings.js",
     "./dist/index.js",
-    "./dist/*/flint-*.js"
+    "./dist/*/flint-*.js",
+    "./src/translations/*.ts",
+    "./dist/translations/*.js"
   ],
   "exports": {
     ".": {
@@ -506,6 +508,30 @@
     "./events": {
       "types": "./dist/events.d.ts",
       "import": "./dist/events.js"
+    },
+    "./translations/de": {
+      "types": "./dist/translations/de.d.ts",
+      "import": "./dist/translations/de.js"
+    },
+    "./translations/en": {
+      "types": "./dist/translations/en.d.ts",
+      "import": "./dist/translations/en.js"
+    },
+    "./translations/es": {
+      "types": "./dist/translations/es.d.ts",
+      "import": "./dist/translations/es.js"
+    },
+    "./translations/fr": {
+      "types": "./dist/translations/fr.d.ts",
+      "import": "./dist/translations/fr.js"
+    },
+    "./translations/ja": {
+      "types": "./dist/translations/ja.d.ts",
+      "import": "./dist/translations/ja.js"
+    },
+    "./translations/pt": {
+      "types": "./dist/translations/pt.d.ts",
+      "import": "./dist/translations/pt.js"
     },
     "./*": {
       "types": "./dist/*.d.ts",

@@ -2,6 +2,7 @@ import { unsafeCSS, html, nothing, type PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import { LocalizeController } from '../utilities/localize.js';
 import uiLinearProgressStyles from './flint-linear-progress.css?inline';
 
 /**
@@ -23,6 +24,8 @@ import uiLinearProgressStyles from './flint-linear-progress.css?inline';
  */
 export class FlintLinearProgress extends FlintElement {
     static styles = unsafeCSS(uiLinearProgressStyles);
+
+    private _localize = new LocalizeController(this);
 
     /**
      * Progress mode: determinate shows a specific value, indeterminate shows a looping animation.
@@ -103,7 +106,7 @@ export class FlintLinearProgress extends FlintElement {
         aria-valuemin="0"
         aria-valuemax="${this.max}"
         aria-valuenow="${isDeterminate ? this._clampedValue : nothing}"
-        aria-label="${this.label || 'Progress'}"
+        aria-label="${this.label || this._localize.term('progress')}"
         style="${inlineStyle}"
       >
         ${isDeterminate ? html`

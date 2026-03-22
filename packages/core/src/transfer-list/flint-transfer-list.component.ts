@@ -4,6 +4,7 @@ import type { PropertyValues } from 'lit';
 import { repeat } from 'lit/directives/repeat.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import { LocalizeController } from '../utilities/localize.js';
 import uiTransferListStyles from './flint-transfer-list.css?inline';
 
 export interface TransferOption {
@@ -23,6 +24,8 @@ export interface TransferOption {
  */
 export class FlintTransferList extends FlintElement {
     static styles = unsafeCSS(uiTransferListStyles);
+
+    private _localize = new LocalizeController(this);
 
     /** Available options to display in the transfer list. */
     @property({ type: Array }) options: TransferOption[] = [];
@@ -143,7 +146,7 @@ export class FlintTransferList extends FlintElement {
             <input
               class="list-search"
               type="text"
-              placeholder="Search..."
+              placeholder=${this._localize.term('searchPlaceholder')}
               .value=${this._leftSearch}
               @input=${(e: Event) => { this._leftSearch = (e.target as HTMLInputElement).value; }}
               ?disabled=${this.disabled}
@@ -172,7 +175,7 @@ export class FlintTransferList extends FlintElement {
 
         <!-- Action Buttons -->
         <div class="actions" part="actions">
-          <button class="action-button" title="Move all right" aria-label="Move all right"
+          <button class="action-button" title=${this._localize.term('moveAllRight')} aria-label=${this._localize.term('moveAllRight')}
             ?disabled=${this.disabled || leftOptions.length === 0} @click=${this._moveAllRight}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M13 17l5-5-5-5M6 17l5-5-5-5"/>
@@ -180,8 +183,8 @@ export class FlintTransferList extends FlintElement {
           </button>
           <button
             class="action-button"
-            title="Move selected right"
-            aria-label="Move selected right"
+            title=${this._localize.term('moveSelectedRight')}
+            aria-label=${this._localize.term('moveSelectedRight')}
             ?disabled=${this.disabled || this.leftChecked.length === 0}
             @click=${this._moveRight}
           >
@@ -191,8 +194,8 @@ export class FlintTransferList extends FlintElement {
           </button>
           <button
             class="action-button"
-            title="Move selected left"
-            aria-label="Move selected left"
+            title=${this._localize.term('moveSelectedLeft')}
+            aria-label=${this._localize.term('moveSelectedLeft')}
             ?disabled=${this.disabled || this.rightChecked.length === 0}
             @click=${this._moveLeft}
           >
@@ -200,7 +203,7 @@ export class FlintTransferList extends FlintElement {
               <path d="M15 18l-6-6 6-6"/>
             </svg>
           </button>
-          <button class="action-button" title="Move all left" aria-label="Move all left"
+          <button class="action-button" title=${this._localize.term('moveAllLeft')} aria-label=${this._localize.term('moveAllLeft')}
             ?disabled=${this.disabled || rightOptions.length === 0} @click=${this._moveAllLeft}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M11 17l-5-5 5-5M18 17l-5-5 5-5"/>
@@ -218,7 +221,7 @@ export class FlintTransferList extends FlintElement {
             <input
               class="list-search"
               type="text"
-              placeholder="Search..."
+              placeholder=${this._localize.term('searchPlaceholder')}
               .value=${this._rightSearch}
               @input=${(e: Event) => { this._rightSearch = (e.target as HTMLInputElement).value; }}
               ?disabled=${this.disabled}

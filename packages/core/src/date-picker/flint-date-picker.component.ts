@@ -131,6 +131,25 @@ export class FlintDatePickerCalendar extends FlintElement {
     @state() private _viewMonth = new Date().getMonth();
     @state() private _mode: 'day' | 'month' | 'year' = 'day';
 
+    private _monthName(month: number): string {
+        try {
+            const d = new Date(2000, month, 1);
+            return new Intl.DateTimeFormat(this._localize.lang(), { month: 'long' }).format(d);
+        } catch {
+            return MONTHS[month] ?? '';
+        }
+    }
+
+    private _dayOfWeekShort(dayIndex: number): string {
+        try {
+            // Jan 4, 2026 is a Sunday (dayIndex 0)
+            const d = new Date(2026, 0, 4 + dayIndex);
+            return new Intl.DateTimeFormat(this._localize.lang(), { weekday: 'short' }).format(d);
+        } catch {
+            return DAYS_SHORT[dayIndex] ?? '';
+        }
+    }
+
     connectedCallback() {
         super.connectedCallback();
         // Sync view to the current value
@@ -180,12 +199,12 @@ export class FlintDatePickerCalendar extends FlintElement {
         <span class="header-label" @click=${() => this._mode = 'month'} role="button" tabindex="0"
           @keydown=${(e: KeyboardEvent) => e.key === 'Enter' && (this._mode = 'month')}
         >
-          ${MONTHS[this._viewMonth]} ${this._viewYear}
+          ${this._monthName(this._viewMonth)} ${this._viewYear}
         </span>
         <button class="nav-btn" @click=${this._nextMonth} aria-label=${this._localize.term('nextMonth')}>›</button>
       </div>
-      <div class="dow-row">${DAYS_SHORT.map(d => html`<span class="dow-cell">${d}</span>`)}</div>
-      <div class="day-grid" role="grid" aria-label="Calendar">
+      <div class="dow-row">${Array.from({ length: 7 }, (_, i) => html`<span class="dow-cell">${this._dayOfWeekShort(i)}</span>`)}</div>
+      <div class="day-grid" role="grid" aria-label=${this._localize.term('calendar')}>
         ${repeat(grid, c => c.iso, c => html`
           <button
             class=${classMap({
@@ -209,14 +228,14 @@ export class FlintDatePickerCalendar extends FlintElement {
     private _renderMonthView() {
         return html`
       <div class="header">
-        <button class="nav-btn" @click=${() => this._viewYear--} aria-label="Previous year">‹</button>
+        <button class="nav-btn" @click=${() => this._viewYear--} aria-label=${this._localize.term('previousYear')}>‹</button>
         <span class="header-label" @click=${() => this._mode = 'year'} role="button" tabindex="0">${this._viewYear}</span>
-        <button class="nav-btn" @click=${() => this._viewYear++} aria-label="Next year">›</button>
+        <button class="nav-btn" @click=${() => this._viewYear++} aria-label=${this._localize.term('nextYear')}>›</button>
       </div>
       <div class="month-grid">
-        ${MONTHS.map((m, i) => html`
+        ${Array.from({ length: 12 }, (_, i) => html`
           <button class=${classMap({ 'month-btn': true, 'selected-month': i === this._viewMonth })}
-            @click=${() => this._selectMonth(i)}>${m.slice(0, 3)}</button>
+            @click=${() => this._selectMonth(i)}>${this._monthName(i).slice(0, 3)}</button>
         `)}
       </div>
     `;
@@ -478,7 +497,7 @@ export class FlintDatePicker extends FormAssociated(FlintElement) {
             ${this._renderField()}
           </div>
           <div class="click-away ${this._open ? 'open' : ''}" @click=${this._closePicker}></div>
-          <div class="popover" part="popover" role="dialog" aria-label="Date picker">
+          <div class="popover" part="popover" role="dialog" aria-label=${this._localize.term('datePicker')}>
             <flint-date-picker-calendar
               .value=${this.value}
               .min=${this.min}

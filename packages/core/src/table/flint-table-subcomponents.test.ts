@@ -20,7 +20,7 @@ describe('flint-table-pagination', () => {
         expect(el.page).toBe(0);
         expect(el.rowsPerPage).toBe(10);
         expect(el.showFirstLast).toBe(false);
-        expect(el.labelRowsPerPage).toBe('Rows per page:');
+        expect(el.labelRowsPerPage).toBeUndefined();
     });
 
     it('renders a select element and nav buttons', async () => {

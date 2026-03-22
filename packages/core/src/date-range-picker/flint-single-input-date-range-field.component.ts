@@ -2,6 +2,7 @@ import { unsafeCSS, html, nothing } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import { LocalizeController } from '../utilities/localize.js';
 import {
     isoToDate,
     type DateRange, EMPTY_RANGE,
@@ -28,6 +29,8 @@ function daysInMonth(month: number, year: number): number {
  */
 export class FlintSingleInputDateRangeField extends FlintElement {
     static styles = unsafeCSS(uiSingleInputDateRangeFieldStyles);
+
+    private _localize = new LocalizeController(this);
 
     // ── Props ─────────────────────────────────────────────────────────────────
 
@@ -403,7 +406,7 @@ export class FlintSingleInputDateRangeField extends FlintElement {
 
         <div class="field-actions">
           ${this._hasAnyValue() && !this.disabled && !this.readonly ? html`
-            <button class="icon-btn" aria-label="Clear range" tabindex="-1"
+            <button class="icon-btn" aria-label=${this._localize.term('clearRange')} tabindex="-1"
               @click=${(e: MouseEvent) => { e.stopPropagation(); this.clear(); }}>✕</button>
           ` : nothing}
         </div>

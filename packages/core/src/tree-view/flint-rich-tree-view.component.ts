@@ -1,6 +1,7 @@
 import { unsafeCSS, html, nothing, type PropertyValues, type TemplateResult } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
+import { LocalizeController } from '../utilities/localize.js';
 import { FlintTreeItem } from './flint-tree-item.component.js';
 import uiRichTreeViewStyles from './flint-rich-tree-view.css?inline';
 
@@ -43,6 +44,8 @@ export interface RichTreeViewDataSource {
 export class FlintRichTreeView extends FlintElement {
     static styles = unsafeCSS(uiRichTreeViewStyles);
     static dependencies = { 'flint-tree-item': FlintTreeItem as unknown as typeof FlintElement };
+
+    private _localize = new LocalizeController(this);
 
     // ─── Data props ───────────────────────────────────────────────────────────
 
@@ -693,7 +696,7 @@ export class FlintRichTreeView extends FlintElement {
         ${isLoading ? html`
           <div class="lazy-indicator" style="padding-left:${loadingPadding}px">
             <span class="lazy-spinner"></span>
-            <span>Loading…</span>
+            <span>${this._localize.term('loading')}</span>
           </div>
         ` : nothing}
         ${children.map(child => this._renderItem(child, depth + 1))}
@@ -717,7 +720,7 @@ export class FlintRichTreeView extends FlintElement {
         ${rootLoading ? html`
           <div class="lazy-indicator lazy-root">
             <span class="lazy-spinner"></span>
-            <span>Loading…</span>
+            <span>${this._localize.term('loading')}</span>
           </div>
         ` : nothing}
         ${rootItems.map(item => this._renderItem(item))}

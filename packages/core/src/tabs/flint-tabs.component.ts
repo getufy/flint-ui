@@ -31,6 +31,7 @@ import { unsafeCSS, html, nothing } from 'lit';
 import { property, state, query } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import { LocalizeController } from '../utilities/localize.js';
 import type { Orientation } from '../types.js';
 import uiTabStyles from './flint-tab.css?inline';
 import uiTabPanelStyles from './flint-tab-panel.css?inline';
@@ -153,6 +154,8 @@ export class FlintTabPanel extends FlintElement {
 /* ================================================================== */
 export class FlintTabList extends FlintElement {
     static styles = unsafeCSS(uiTabListStyles);
+
+    private _localize = new LocalizeController(this);
 
     /**
      * Layout direction of the tab list.
@@ -288,14 +291,14 @@ export class FlintTabList extends FlintElement {
         const isVert = this.orientation === 'vertical';
 
         const backBtn = showBtns ? html`
-            <button class="scroll-btn" aria-label="Scroll back"
+            <button class="scroll-btn" aria-label=${this._localize.term('scrollBack')}
                 ?disabled=${!this._canBack}
                 @click=${() => this._scroll(-200)}>
                 ${isVert ? iconUp() : iconLeft()}
             </button>` : nothing;
 
         const fwdBtn = showBtns ? html`
-            <button class="scroll-btn" aria-label="Scroll forward"
+            <button class="scroll-btn" aria-label=${this._localize.term('scrollForward')}
                 ?disabled=${!this._canFwd}
                 @click=${() => this._scroll(200)}>
                 ${isVert ? iconDown() : iconRight()}

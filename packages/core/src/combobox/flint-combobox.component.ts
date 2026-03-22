@@ -2,6 +2,7 @@ import { unsafeCSS, html, type PropertyValues, LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import { LocalizeController } from '../utilities/localize.js';
 import { FlintPopup } from '../popup/flint-popup.component.js';
 import { FormAssociated } from '../mixins/form-associated.js';
 import { FormControlController } from '../controllers/form-control.js';
@@ -28,6 +29,8 @@ export interface ComboboxOption {
 export class FlintCombobox extends FormAssociated(FlintElement) {
     static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
     static styles = unsafeCSS(uiComboboxStyles);
+
+    private _localize = new LocalizeController(this);
 
     static override dependencies: Record<string, typeof FlintElement> = {
         'flint-popup': FlintPopup,
@@ -246,7 +249,7 @@ export class FlintCombobox extends FormAssociated(FlintElement) {
             id="combobox-listbox"
             role="listbox"
             part="listbox"
-            aria-label="Suggestions"
+            aria-label=${this._localize.term('suggestions')}
             class=${classMap({ listbox: true, open: dropdownOpen })}
           >
             ${this._filteredOptions.length > 0

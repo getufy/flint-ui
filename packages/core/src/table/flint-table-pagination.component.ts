@@ -3,6 +3,7 @@ import { property, state } from 'lit/decorators.js';
 import { PropertyValues } from 'lit';
 import uiTablePaginationStyles from './flint-table-pagination.css?inline';
 import { FlintElement } from '../flint-element.js';
+import { LocalizeController } from '../utilities/localize.js';
 
 /**
  * Table Pagination: pagination controls for tabular data.
@@ -15,6 +16,8 @@ import { FlintElement } from '../flint-element.js';
  */
 export class FlintTablePagination extends FlintElement {
     static styles = unsafeCSS(uiTablePaginationStyles);
+
+    private _localize = new LocalizeController(this);
 
     /** Total number of rows. */
     @property({ type: Number }) count = 0;
@@ -30,8 +33,8 @@ export class FlintTablePagination extends FlintElement {
     @property({ type: Number, attribute: 'default-rows-per-page' }) defaultRowsPerPage = -1;
     /** Show First/Last page buttons. */
     @property({ type: Boolean, attribute: 'show-first-last' }) showFirstLast = false;
-    /** Label for the rows-per-page selector. */
-    @property({ type: String, attribute: 'label-rows-per-page' }) labelRowsPerPage = 'Rows per page:';
+    /** Label for the rows-per-page selector. Defaults to localized "Rows per page:". */
+    @property({ type: String, attribute: 'label-rows-per-page' }) labelRowsPerPage?: string;
 
     @state() private _page = 0;
     @state() private _rowsPerPage = 10;
@@ -93,8 +96,8 @@ export class FlintTablePagination extends FlintElement {
         return html`
       <div class="spacer" part="spacer"></div>
       <div class="actions" part="base">
-        <span>${this.labelRowsPerPage}</span>
-        <select part="select" @change=${this._handleRowChange} aria-label="${this.labelRowsPerPage}">
+        <span>${this.labelRowsPerPage ?? this._localize.term('rowsPerPage')}</span>
+        <select part="select" @change=${this._handleRowChange} aria-label="${this.labelRowsPerPage ?? this._localize.term('rowsPerPage')}">
           ${this.rowsPerPageOptions.map(opt => html`
             <option value=${opt} ?selected=${this._rowsPerPage === opt}>${opt}</option>
           `)}
@@ -102,18 +105,18 @@ export class FlintTablePagination extends FlintElement {
         <span>${from}-${to} of ${this.count}</span>
         <div class="nav-buttons">
           ${this.showFirstLast ? html`
-            <button ?disabled=${isFirst} @click=${() => this._goTo(0)} aria-label="First page">
+            <button ?disabled=${isFirst} @click=${() => this._goTo(0)} aria-label=${this._localize.term('firstPage')}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6zM6 6h2v12H6z"/></svg>
             </button>
           ` : ''}
-          <button ?disabled=${isFirst} @click=${() => this._go(-1)} aria-label="Previous page">
+          <button ?disabled=${isFirst} @click=${() => this._go(-1)} aria-label=${this._localize.term('previousPage')}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
           </button>
-          <button ?disabled=${isLast} @click=${() => this._go(1)} aria-label="Next page">
+          <button ?disabled=${isLast} @click=${() => this._go(1)} aria-label=${this._localize.term('nextPage')}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
           </button>
           ${this.showFirstLast ? html`
-            <button ?disabled=${isLast} @click=${() => this._goTo(this._lastPage)} aria-label="Last page">
+            <button ?disabled=${isLast} @click=${() => this._goTo(this._lastPage)} aria-label=${this._localize.term('lastPage')}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M5.59 7.41L10.18 12l-4.59 4.59L7 18l6-6-6-6zM16 6h2v12h-2z"/></svg>
             </button>
           ` : ''}

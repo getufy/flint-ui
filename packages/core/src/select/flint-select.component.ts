@@ -560,7 +560,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
                       <button
                         type="button"
                         class="chip-remove"
-                        aria-label="Remove ${opt.label}"
+                        aria-label=${this._localize.term('removeOption', opt.label)}
                         @click=${(e: Event) => this._removeValue(opt.value, e)}
                       >
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
@@ -593,7 +593,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
             aria-multiselectable=${this.multiple ? 'true' : 'false'}
           >
             ${this._isLoading
-              ? html`<div class="loading-indicator" part="loading"><span class="loading-spinner"></span> Loading…</div>`
+              ? html`<div class="loading-indicator" part="loading"><span class="loading-spinner"></span> ${this._localize.term('loading')}</div>`
               : this.options.length === 0
                 ? html`<div class="no-options">${this._localize.term('noOptions')}</div>`
                 : this.virtualize

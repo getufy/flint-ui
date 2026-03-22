@@ -2,6 +2,7 @@ import { unsafeCSS, html, nothing, PropertyValues, LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import { LocalizeController } from '../utilities/localize.js';
 import { FormAssociated } from '../mixins/form-associated.js';
 import { FormControlController } from '../controllers/form-control.js';
 import uiTextFieldStyles from './flint-text-field.css?inline';
@@ -28,6 +29,7 @@ export class FlintTextField extends FormAssociated(FlintElement) {
     static styles = unsafeCSS(uiTextFieldStyles);
 
     private _formControl = new FormControlController(this);
+    private _localize = new LocalizeController(this);
     private _inputId = `flint-text-field-${++idCounter}`;
 
     /** Label text displayed above the input. */
@@ -223,7 +225,7 @@ export class FlintTextField extends FormAssociated(FlintElement) {
               type="button"
               class="clear-btn"
               part="clear-button"
-              aria-label="Clear input"
+              aria-label=${this._localize.term('clearInput')}
               @click=${this._handleClear}
               tabindex="-1"
             >

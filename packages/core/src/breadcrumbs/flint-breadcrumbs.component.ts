@@ -1,6 +1,7 @@
 import { unsafeCSS, html, nothing } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
+import { LocalizeController } from '../utilities/localize.js';
 import uiBreadcrumbsStyles from './flint-breadcrumbs.css?inline';
 
 /**
@@ -23,6 +24,8 @@ import uiBreadcrumbsStyles from './flint-breadcrumbs.css?inline';
  */
 export class FlintBreadcrumbs extends FlintElement {
     static styles = unsafeCSS(uiBreadcrumbsStyles);
+
+    private _localize = new LocalizeController(this);
 
     /**
      * Max number of items to display before collapsing.
@@ -108,7 +111,7 @@ export class FlintBreadcrumbs extends FlintElement {
         return html`
             ${before.map(i => this._renderItem(i, false))}
             <li class="breadcrumb-li">
-                <button class="collapsed-button" @click=${() => { this._expanded = true; }} aria-label="Show all breadcrumbs" aria-expanded="false">
+                <button class="collapsed-button" @click=${() => { this._expanded = true; }} aria-label=${this._localize.term('showAllBreadcrumbs')} aria-expanded="false">
                     &hellip;
                 </button>
                 ${this._renderSeparator()}

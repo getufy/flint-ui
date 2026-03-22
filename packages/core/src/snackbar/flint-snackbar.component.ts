@@ -2,6 +2,7 @@ import { unsafeCSS, html, PropertyValues } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import { LocalizeController } from '../utilities/localize.js';
 import { getAnimation, animateTo, stopAnimations, resolveKeyframes } from '../utilities/animation-registry.js';
 import '../utilities/animation-presets.js';
 import uiSnackbarStyles from './flint-snackbar.css?inline';
@@ -31,6 +32,8 @@ import uiSnackbarStyles from './flint-snackbar.css?inline';
  */
 export class FlintSnackbar extends FlintElement {
     static styles = unsafeCSS(uiSnackbarStyles);
+
+    private _localize = new LocalizeController(this);
 
     /** Whether the snackbar is open. */
     @property({ type: Boolean, reflect: true }) open = false;
@@ -199,7 +202,7 @@ export class FlintSnackbar extends FlintElement {
                     <slot name="action" @slotchange=${this._handleActionSlotChange}></slot>
                 </div>
                 ${this.closable ? html`
-                    <button class="close-btn" aria-label="Close" @click=${() => this.close()}>
+                    <button class="close-btn" aria-label=${this._localize.term('close')} @click=${() => this.close()}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <line x1="18" y1="6" x2="6" y2="18"></line>
                             <line x1="6" y1="6" x2="18" y2="18"></line>

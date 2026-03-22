@@ -245,7 +245,7 @@ export class FlintDateRangePicker extends FlintElement {
       <div class="mobile-field"
         role="button"
         tabindex=${this.disabled ? -1 : 0}
-        aria-label="Select date range"
+        aria-label=${this._localize.term('selectDateRange')}
         aria-haspopup="dialog"
         aria-expanded=${this._open ? 'true' : 'false'}
         @click=${this._openPicker}
@@ -285,7 +285,7 @@ export class FlintDateRangePicker extends FlintElement {
             ${this._renderField()}
           </div>
           <div class="click-away ${this._open ? 'open' : ''}" @click=${this._closePicker}></div>
-          <div class="popover" role="dialog" aria-label="Date range picker" part="popover">
+          <div class="popover" role="dialog" aria-label=${this._localize.term('dateRangePicker')} part="popover">
             ${this._renderShortcuts()}
             <div class="popover-body">
               ${this._renderCalendar(pending, (e: CustomEvent) => this._handleCalendarSelect(e))}

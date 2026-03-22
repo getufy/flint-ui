@@ -3,6 +3,7 @@ import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import type { PropertyValues } from 'lit';
 import { FlintElement } from '../flint-element.js';
+import { LocalizeController } from '../utilities/localize.js';
 import { FormAssociated } from '../mixins/form-associated.js';
 import { FormControlController } from '../controllers/form-control.js';
 import type { Size } from '../types.js';
@@ -17,6 +18,8 @@ import uiRatingStyles from './flint-rating.css?inline';
 export class FlintRating extends FormAssociated(FlintElement) {
     static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
     static styles = unsafeCSS(uiRatingStyles);
+
+    private _localize = new LocalizeController(this);
 
     /** Current rating value. */
     @property({ type: Number }) value = 0;
@@ -197,7 +200,7 @@ export class FlintRating extends FormAssociated(FlintElement) {
                 <span
                     class=${classMap(classes)}
                     role="radio"
-                    aria-label="${i} ${i === 1 ? 'star' : 'stars'}"
+                    aria-label=${this._localize.term('starRating', i)}
                     aria-checked=${this.value >= i ? 'true' : 'false'}
                     tabindex=${i === focusedStar && !this.disabled ? '0' : '-1'}
                     @mouseenter=${() => this._handleMouseEnter(i)}

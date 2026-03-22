@@ -2,6 +2,7 @@ import { unsafeCSS, html, nothing } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import { LocalizeController } from '../utilities/localize.js';
 import uiDateFieldStyles from './flint-date-field.css?inline';
 
 // ─── helpers ──────────────────────────────────────────────────────────────────
@@ -59,6 +60,8 @@ export class FlintDateField extends FlintElement {
     /** Opts the element into form participation via the Form-Associated Custom Elements API. */
     static formAssociated = true;
     static styles = unsafeCSS(uiDateFieldStyles);
+
+    private _localize = new LocalizeController(this);
 
     // ── Props ────────────────────────────────────────────────────────────────
     /** Controlled date value (ISO YYYY-MM-DD). Set to '' for uncontrolled. */
@@ -458,7 +461,7 @@ export class FlintDateField extends FlintElement {
 
         <div class="field-actions">
           ${this._hasValue() && !this.disabled && !this.readonly ? html`
-            <button class="icon-btn" aria-label="Clear date" tabindex="-1"
+            <button class="icon-btn" aria-label=${this._localize.term('clearDate')} tabindex="-1"
               @click=${(e: MouseEvent) => { e.stopPropagation(); this.clear(); }}>✕</button>
           ` : nothing}
         </div>

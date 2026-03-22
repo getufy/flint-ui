@@ -2,6 +2,7 @@ import { unsafeCSS, html, nothing, type PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import { LocalizeController } from '../utilities/localize.js';
 import type { Orientation } from '../types.js';
 import uiStepConnectorStyles from './flint-step-connector.css?inline';
 import uiStepLabelStyles from './flint-step-label.css?inline';
@@ -329,6 +330,8 @@ export class FlintStepper extends FlintElement {
 export class FlintMobileStepper extends FlintElement {
     static styles = unsafeCSS(uiMobileStepperStyles);
 
+    private _localize = new LocalizeController(this);
+
     /** Total number of steps. */
     @property({ type: Number }) steps = 0;
     /** Zero-based index of the currently active step. */
@@ -337,10 +340,10 @@ export class FlintMobileStepper extends FlintElement {
     @property({ type: String }) variant: 'text' | 'dots' | 'progress' = 'dots';
     /** Positioning of the mobile stepper within its container. */
     @property({ type: String, reflect: true }) position: 'top' | 'bottom' | 'static' = 'static';
-    /** Label text for the Back navigation button (supports i18n). */
-    @property({ type: String, attribute: 'back-label' }) backLabel = 'Back';
-    /** Label text for the Next navigation button (supports i18n). */
-    @property({ type: String, attribute: 'next-label' }) nextLabel = 'Next';
+    /** Label text for the Back navigation button. Defaults to localized "Back". */
+    @property({ type: String, attribute: 'back-label' }) backLabel?: string;
+    /** Label text for the Next navigation button. Defaults to localized "Next". */
+    @property({ type: String, attribute: 'next-label' }) nextLabel?: string;
 
     /** Guards against steps=0 (divide-by-zero, nonsensical UI). */
     private get _safeSteps() { return Math.max(1, this.steps); }
@@ -354,12 +357,12 @@ export class FlintMobileStepper extends FlintElement {
         const total = this._safeSteps;
 
         if (this.variant === 'text') {
-            return html`<span class="text" aria-live="polite">Step ${current} of ${total}</span>`;
+            return html`<span class="text" aria-live="polite">${this._localize.term('stepOfTotal', current, total)}</span>`;
         }
         if (this.variant === 'dots') {
             return html`
-                <div class="dots" aria-label="Step ${current} of ${total}">
-                    <span class="sr-only" aria-live="polite">Step ${current} of ${total}</span>
+                <div class="dots" aria-label=${this._localize.term('stepOfTotal', current, total)}>
+                    <span class="sr-only" aria-live="polite">${this._localize.term('stepOfTotal', current, total)}</span>
                     ${Array.from({ length: total }, (_, i) =>
                         html`<div class="dot ${i === this.activeStep ? 'active' : ''}"></div>`)}
                 </div>`;
@@ -373,7 +376,7 @@ export class FlintMobileStepper extends FlintElement {
                 aria-valuenow=${current}
                 aria-valuemin="1"
                 aria-valuemax=${total}
-                aria-label="Step ${current} of ${total}"
+                aria-label=${this._localize.term('stepOfTotal', current, total)}
             >
                 <div class="bar-fill" style="width:${pct}%"></div>
             </div>`;
@@ -386,9 +389,9 @@ export class FlintMobileStepper extends FlintElement {
                     class="nav-btn back"
                     part="back-button"
                     ?disabled=${this.activeStep === 0}
-                    aria-label="Go to previous step"
+                    aria-label=${this._localize.term('goToPreviousStep')}
                     @click=${() => this._emit('flint-mobile-step-back')}
-                >${this.backLabel}</button>
+                >${this.backLabel ?? this._localize.term('back')}</button>
             </slot>
             <div class="progress" part="progress">${this._progress()}</div>
             <slot name="next-button">
@@ -396,9 +399,9 @@ export class FlintMobileStepper extends FlintElement {
                     class="nav-btn next"
                     part="next-button"
                     ?disabled=${this.activeStep >= this._safeSteps - 1}
-                    aria-label="Go to next step"
+                    aria-label=${this._localize.term('goToNextStep')}
                     @click=${() => this._emit('flint-mobile-step-next')}
-                >${this.nextLabel}</button>
+                >${this.nextLabel ?? this._localize.term('next')}</button>
             </slot>`;
     }
 }

@@ -1,6 +1,7 @@
 import { unsafeCSS, html } from 'lit';
 import { property } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
+import { LocalizeController } from '../utilities/localize.js';
 import styles from './flint-image-comparer.css?inline';
 
 /**
@@ -29,6 +30,8 @@ import styles from './flint-image-comparer.css?inline';
  */
 export class FlintImageComparer extends FlintElement {
     static override styles = unsafeCSS(styles);
+
+    private _localize = new LocalizeController(this);
 
     /** The position of the divider as a percentage (0–100). */
     @property({ type: Number }) position = 50;
@@ -174,7 +177,7 @@ export class FlintImageComparer extends FlintElement {
                     part="handle"
                     role="slider"
                     tabindex="${this.disabled ? -1 : 0}"
-                    aria-label="Image comparison slider"
+                    aria-label=${this._localize.term('imageComparisonSlider')}
                     aria-valuemin="0"
                     aria-valuemax="100"
                     aria-valuenow="${pos}"

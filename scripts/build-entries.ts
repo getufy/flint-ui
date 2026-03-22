@@ -40,6 +40,16 @@ function discoverEntries(): Record<string, string> {
         entries[modulePath] = `src/${modulePath}.ts`;
     }
 
+    // Translation files (standalone, side-effectful)
+    const transDir = resolve(coreRoot, 'src/translations');
+    if (existsSync(transDir)) {
+        for (const file of readdirSync(transDir)) {
+            if (file.endsWith('.ts') && !file.endsWith('.test.ts') && file !== 'index.ts') {
+                entries[`translations/${file.replace('.ts', '')}`] = `src/translations/${file}`;
+            }
+        }
+    }
+
     return entries;
 }
 

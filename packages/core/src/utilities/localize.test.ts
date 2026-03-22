@@ -3,7 +3,7 @@ import { fixture, html } from '@open-wc/testing';
 import { LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { LocalizeController, registerTranslation } from './localize.js';
-import type { Translation } from './localize.js';
+import type { PartialTranslation } from './localize.js';
 
 // ── Test host element ────────────────────────────────────────────────────────
 
@@ -18,7 +18,7 @@ class TestLocalizeHost extends LitElement {
 
 // ── Spanish translation for testing ──────────────────────────────────────────
 
-const es: Translation = {
+const es: PartialTranslation = {
   $code: 'es',
   $name: 'Espanol',
   $dir: 'ltr',

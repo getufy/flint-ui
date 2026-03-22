@@ -2,6 +2,7 @@ import { unsafeCSS, html, nothing, type PropertyValues } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import { LocalizeController } from '../utilities/localize.js';
 import uiSpeedDialActionStyles from './flint-speed-dial-action.css?inline';
 import uiSpeedDialStyles from './flint-speed-dial.css?inline';
 
@@ -106,6 +107,8 @@ export class FlintSpeedDialAction extends FlintElement {
  */
 export class FlintSpeedDial extends FlintElement {
     static styles = unsafeCSS(uiSpeedDialStyles);
+
+    private _localize = new LocalizeController(this);
 
     /* ── Properties ──────────────────────────────────────────────── */
 
@@ -365,7 +368,7 @@ export class FlintSpeedDial extends FlintElement {
                 class="actions"
                 part="actions"
                 role="menu"
-                aria-label="Speed dial actions"
+                aria-label=${this._localize.term('speedDialActions')}
                 aria-hidden=${this.open ? 'false' : 'true'}
             >
                 <slot

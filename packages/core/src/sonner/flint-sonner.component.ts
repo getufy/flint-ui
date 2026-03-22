@@ -3,6 +3,7 @@ import { property } from 'lit/decorators.js';
 import { repeat } from 'lit/directives/repeat.js';
 import uiToasterStyles from './flint-toaster.css?inline';
 import { FlintElement } from '../flint-element.js';
+import { LocalizeController } from '../utilities/localize.js';
 
 /* ─────────────────────────────────────────────────────────────────── */
 /*  Types                                                               */
@@ -318,6 +319,8 @@ const _closeIcon = html`
 export class FlintToaster extends FlintElement {
     static styles = unsafeCSS(uiToasterStyles);
 
+    private _localize = new LocalizeController(this);
+
     /** Position of the toast stack relative to the viewport. */
     @property({ type: String, reflect: true }) position: ToastPosition = 'bottom-right';
 
@@ -468,7 +471,7 @@ export class FlintToaster extends FlintElement {
                     ? html`
                         <button
                             class="toast__close"
-                            aria-label="Dismiss notification"
+                            aria-label=${this._localize.term('dismissNotification')}
                             @click=${() => this._dismiss(t.id)}
                         >${_closeIcon}</button>
                       `

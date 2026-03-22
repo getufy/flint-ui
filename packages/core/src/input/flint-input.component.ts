@@ -2,6 +2,7 @@ import { unsafeCSS, html, nothing, PropertyValues, LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import { LocalizeController } from '../utilities/localize.js';
 import { FormAssociated } from '../mixins/form-associated.js';
 import { FormControlController } from '../controllers/form-control.js';
 import type { Size } from '../types.js';
@@ -34,6 +35,7 @@ export class FlintInput extends FormAssociated(FlintElement) {
     static styles = unsafeCSS(uiInputStyles);
 
     private _formControl = new FormControlController(this);
+    private _localize = new LocalizeController(this);
     private _inputId = `flint-input-${++idCounter}`;
 
     /** Label text displayed above the input. */
@@ -248,7 +250,7 @@ export class FlintInput extends FormAssociated(FlintElement) {
               type="button"
               class="clear-btn"
               part="clear-button"
-              aria-label="Clear input"
+              aria-label=${this._localize.term('clearInput')}
               @click=${this._handleClear}
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">

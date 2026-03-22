@@ -29,8 +29,8 @@ describe('flint-copy-button', () => {
         expect(el.value).toBe('');
         expect(el.from).toBe('');
         expect(el.disabled).toBe(false);
-        expect(el.copyLabel).toBe('Copy');
-        expect(el.successLabel).toBe('Copied!');
+        expect(el.copyLabel).toBeUndefined();
+        expect(el.successLabel).toBeUndefined();
         expect(el.errorLabel).toBe('Error');
         expect(el.feedbackDuration).toBe(1000);
         expect(el.tooltipPlacement).toBe('top');

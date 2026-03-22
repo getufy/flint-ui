@@ -3,6 +3,7 @@ import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { repeat } from 'lit/directives/repeat.js';
 import { FlintElement } from '../flint-element.js';
+import { LocalizeController } from '../utilities/localize.js';
 import { FormAssociated } from '../mixins/form-associated.js';
 import { FormControlController } from '../controllers/form-control.js';
 import { FlintDialog, FlintDialogTitle, FlintDialogContent, FlintDialogActions } from '../dialog/flint-dialog.component.js';
@@ -68,6 +69,8 @@ type TimeView = 'hours' | 'minutes' | 'seconds';
 export class FlintTimeField extends FlintElement {
     static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
     static styles = unsafeCSS(uiTimeFieldStyles);
+
+    private _localize = new LocalizeController(this);
 
     /** Time value in HH:MM:SS format. */
     @property({ type: String }) value = '';
@@ -250,7 +253,7 @@ export class FlintTimeField extends FlintElement {
             >${text}</span>`;
         })}
         </div>
-        ${hasVal && !this.disabled ? html`<button class="icon-btn" tabindex="-1" aria-label="Clear" @click=${(e: MouseEvent) => { e.stopPropagation(); this.clear(); }}>✕</button>` : nothing}
+        ${hasVal && !this.disabled ? html`<button class="icon-btn" tabindex="-1" aria-label=${this._localize.term('clear')} @click=${(e: MouseEvent) => { e.stopPropagation(); this.clear(); }}>✕</button>` : nothing}
       </div>
       ${this.error && this.errorMessage
           ? html`<small class="helper error-text" role="alert">${this.errorMessage}</small>`
@@ -269,6 +272,8 @@ export class FlintTimeField extends FlintElement {
  */
 export class FlintDigitalClock extends FlintElement {
     static styles = unsafeCSS(uiDigitalClockStyles);
+
+    private _localize = new LocalizeController(this);
 
     /** Time value in HH:MM:SS format. */
     @property({ type: String }) value = '';
@@ -321,7 +326,7 @@ export class FlintDigitalClock extends FlintElement {
     render() {
         const items = this._items();
         return html`
-      <div class="clock" role="listbox" aria-label="Select time" part="base">
+      <div class="clock" role="listbox" aria-label=${this._localize.term('selectTime')} part="base">
         ${repeat(items, v => v, v => html`
           <button class=${classMap({ item: true, selected: v === this.value })}
             role="option" aria-selected=${v === this.value ? 'true' : nothing}
@@ -736,6 +741,8 @@ const FIELD_SHARED = css`
 export class FlintDesktopTimePicker extends FlintElement {
     static styles = [FIELD_SHARED];
 
+    private _localize = new LocalizeController(this);
+
     /** Time value in HH:MM:SS format. */
     @property({ type: String }) value = '';
     /** Field label text. */
@@ -772,7 +779,7 @@ export class FlintDesktopTimePicker extends FlintElement {
           @focus=${() => { if (!this.disabled && !this.readonly) this._open = true; }}
         ></flint-time-field>
         <div class="click-away ${this._open ? 'open' : ''}" @click=${() => this._open = false}></div>
-        <div class="popover ${this._open ? 'open' : ''}" role="dialog" aria-label="Time picker">
+        <div class="popover ${this._open ? 'open' : ''}" role="dialog" aria-label=${this._localize.term('timePicker')}>
           <flint-multi-section-digital-clock .value=${this.value || buildTime(12, 0)} .ampm=${this.ampm} ?seconds=${this.seconds}
             @flint-multi-section-digital-clock-change=${(e: CustomEvent) => { this.value = e.detail.value; }}
           ></flint-multi-section-digital-clock>

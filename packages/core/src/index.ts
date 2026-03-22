@@ -238,7 +238,7 @@ export type { RenderItemFn } from './virtual-scroll/flint-virtual-scroll.js';
 
 // ── Utilities & Controllers ─────────────────────────────────────────────────
 export { LocalizeController, registerTranslation, resolveLocale } from './utilities/localize.js';
-export type { Translation } from './utilities/localize.js';
+export type { Translation, PartialTranslation } from './utilities/localize.js';
 export { FormControlController } from './controllers/form-control.js';
 export type { FormControlHost, FormControlOptions, ConstraintValidationOptions, ValidationLevel } from './controllers/form-control.js';
 export { serialize } from './utilities/form.js';

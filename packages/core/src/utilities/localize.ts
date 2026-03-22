@@ -15,26 +15,43 @@ export interface Translation {
   // Component strings — simple strings or functions for interpolation
   close: string;
   copy: string;
+  copied: string;
   loading: string;
   noOptions: string;
   selectOption: string;
   search: string;
   clear: string;
+  clearInput: string;
+  clearDate: string;
+  clearRange: string;
   required: string;
   optional: string;
+  progress: string;
+  suggestions: string;
 
   // Functions for dynamic strings
   numOptionsSelected: (count: number) => string;
   currentPage: (page: number, total: number) => string;
   goToSlide: (slide: number, count: number) => string;
+  starRating: (count: number) => string;
+  stepOfTotal: (current: number, total: number) => string;
+  removeOption: (label: string) => string;
 
   // Date/time related
   previousMonth: string;
   nextMonth: string;
+  previousYear: string;
+  nextYear: string;
   today: string;
+  calendar: string;
+  datePicker: string;
+  dateRangePicker: string;
+  selectTime: string;
+  timePicker: string;
 
   // Dialog
   closeDialog: string;
+  dismissNotification: string;
 
   // Command
   noResults: string;
@@ -50,10 +67,26 @@ export interface Translation {
   previousPage: string;
   nextPage: string;
   pageLabel: (page: number) => string;
+  rowsPerPage: string;
 
   // Actions
   cancel: string;
   ok: string;
+  back: string;
+  next: string;
+
+  // Navigation
+  scrollBack: string;
+  scrollForward: string;
+  showAllBreadcrumbs: string;
+  goToPreviousStep: string;
+  goToNextStep: string;
+
+  // Transfer list
+  moveAllRight: string;
+  moveSelectedRight: string;
+  moveSelectedLeft: string;
+  moveAllLeft: string;
 
   // Command menu
   typeCommandOrSearch: string;
@@ -66,10 +99,18 @@ export interface Translation {
   selectDate: string;
   selectDateRange: string;
   openDatePicker: string;
+
+  // Misc
+  imageComparisonSlider: string;
+  speedDialActions: string;
 }
 
+/** Translation with only the metadata fields required; all term keys are optional. */
+export type PartialTranslation = Pick<Translation, '$code' | '$name' | '$dir'> &
+  Partial<Omit<Translation, '$code' | '$name' | '$dir'>>;
+
 // Module-level translation registry
-const translations = new Map<string, Translation>();
+const translations = new Map<string, PartialTranslation>();
 
 // Connectable hosts that need re-rendering when language changes
 const connectedHosts = new Set<ReactiveControllerHost>();
@@ -102,7 +143,7 @@ function stopObserving() {
  * Non-English translations can be `Partial<Translation>` — missing keys
  * fall back to English automatically during lookup.
  */
-export function registerTranslation(...args: Translation[]): void {
+export function registerTranslation(...args: (Translation | PartialTranslation)[]): void {
   for (const t of args) {
     translations.set(t.$code.toLowerCase(), t);
   }
@@ -126,7 +167,7 @@ export function resolveLocale(lang: string): string {
  * Resolve a language code to a Translation, walking up the hierarchy.
  * e.g. 'es-PE' → 'es' → 'en'
  */
-function resolveTranslation(lang: string): Translation | undefined {
+function resolveTranslation(lang: string): PartialTranslation | undefined {
   const code = lang.toLowerCase();
   // Exact match
   if (translations.has(code)) return translations.get(code)!;

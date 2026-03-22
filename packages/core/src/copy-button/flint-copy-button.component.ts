@@ -2,6 +2,7 @@ import { unsafeCSS, html, nothing, svg } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import { LocalizeController } from '../utilities/localize.js';
 import type { Placement } from '../types.js';
 import styles from './flint-copy-button.css?inline';
 
@@ -26,6 +27,8 @@ const errorIcon = svg`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16
 export class FlintCopyButton extends FlintElement {
     static override styles = unsafeCSS(styles);
 
+    private _localize = new LocalizeController(this);
+
     /** The text value to copy. */
     @property({ type: String }) value = '';
 
@@ -40,11 +43,11 @@ export class FlintCopyButton extends FlintElement {
     /** Disables the copy button. */
     @property({ type: Boolean, reflect: true }) disabled = false;
 
-    /** Label shown in the tooltip (idle state). */
-    @property({ type: String, attribute: 'copy-label' }) copyLabel = 'Copy';
+    /** Label shown in the tooltip (idle state). Defaults to localized "Copy". Set to empty string to hide. */
+    @property({ type: String, attribute: 'copy-label' }) copyLabel?: string;
 
-    /** Label shown in the tooltip after successful copy. */
-    @property({ type: String, attribute: 'success-label' }) successLabel = 'Copied!';
+    /** Label shown in the tooltip after successful copy. Defaults to localized "Copied!". Set to empty string to hide. */
+    @property({ type: String, attribute: 'success-label' }) successLabel?: string;
 
     /** Label shown in the tooltip on copy error. */
     @property({ type: String, attribute: 'error-label' }) errorLabel = 'Error';
@@ -189,9 +192,9 @@ export class FlintCopyButton extends FlintElement {
 
     private _getTooltipLabel(): string {
         switch (this._state) {
-            case 'success': return this.successLabel;
+            case 'success': return this.successLabel ?? this._localize.term('copied');
             case 'error': return this.errorLabel;
-            default: return this.copyLabel;
+            default: return this.copyLabel ?? this._localize.term('copy');
         }
     }
 
