@@ -1,5 +1,5 @@
 import { unsafeCSS, html, nothing, type PropertyValues } from 'lit';
-import { property, state } from 'lit/decorators.js';
+import { property, queryAssignedElements, state } from 'lit/decorators.js';
 import uiHoverCardTriggerStyles from './flint-hover-card-trigger.css?inline';
 import uiHoverCardContentStyles from './flint-hover-card-content.css?inline';
 import uiHoverCardStyles from './flint-hover-card.css?inline';
@@ -203,6 +203,12 @@ export class FlintHoverCardContent extends FlintElement {
 export class FlintHoverCard extends FlintElement {
     static styles = unsafeCSS(uiHoverCardStyles);
 
+    @queryAssignedElements({ selector: 'flint-hover-card-content' })
+    private _assignedContents!: FlintHoverCardContent[];
+
+    @queryAssignedElements({ selector: 'flint-hover-card-trigger' })
+    private _assignedTriggers!: FlintHoverCardTrigger[];
+
     /** Delay in milliseconds before the hover card opens. */
     @property({ type: Number, attribute: 'open-delay' }) openDelay = 700;
 
@@ -275,23 +281,17 @@ export class FlintHoverCard extends FlintElement {
     private _syncChildren() {
         // Collect content ids for aria-describedby linkage
         const contentIds: string[] = [];
-        this.querySelectorAll('flint-hover-card-content').forEach(el => {
-            if ((el.closest('flint-hover-card') as unknown) === this) {
-                const content = el as unknown as FlintHoverCardContent;
-                content.open = this._isOpen;
-                content.hoist = this.hoist;
-                contentIds.push(content.contentId);
-            }
+        this._assignedContents.forEach(content => {
+            content.open = this._isOpen;
+            content.hoist = this.hoist;
+            contentIds.push(content.contentId);
         });
 
         // Sync ARIA state to triggers
         const contentIdStr = contentIds.join(' ');
-        this.querySelectorAll('flint-hover-card-trigger').forEach(el => {
-            if ((el.closest('flint-hover-card') as unknown) === this) {
-                const trigger = el as unknown as FlintHoverCardTrigger;
-                trigger.expanded = this._isOpen;
-                trigger.contentId = contentIdStr;
-            }
+        this._assignedTriggers.forEach(trigger => {
+            trigger.expanded = this._isOpen;
+            trigger.contentId = contentIdStr;
         });
     }
 

@@ -1,5 +1,5 @@
 import { unsafeCSS, html, nothing, type PropertyValues } from 'lit';
-import { property, state } from 'lit/decorators.js';
+import { property, queryAssignedElements, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
 import { LocalizeController } from '../utilities/localize.js';
@@ -41,7 +41,7 @@ export class FlintSpeedDialAction extends FlintElement {
 
     connectedCallback() {
         super.connectedCallback();
-        if (!this.hasAttribute('role')) this.setAttribute('role', 'menuitem');
+        if (this._internals) this._internals.role = 'menuitem';
     }
 
     private _handleClick = () => {
@@ -112,6 +112,9 @@ export class FlintSpeedDial extends FlintElement {
 
     /* ── Properties ──────────────────────────────────────────────── */
 
+    @queryAssignedElements({ selector: 'flint-speed-dial-action' })
+    private _assignedActions!: FlintSpeedDialAction[];
+
     /** Whether the speed dial is open (controlled). */
     @property({ type: Boolean, reflect: true }) open = false;
 
@@ -172,17 +175,16 @@ export class FlintSpeedDial extends FlintElement {
 
     /** All enabled action buttons (shadow DOM buttons inside slotted actions). */
     private _actionButtons(): HTMLButtonElement[] {
-        return Array.from(this.querySelectorAll('flint-speed-dial-action'))
-            .filter(a => !a.hasAttribute('disabled'))
-            .map(a => (a as Element).shadowRoot?.querySelector<HTMLButtonElement>('.action-btn'))
+        return this._assignedActions
+            .filter(a => !a.disabled)
+            .map(a => a.shadowRoot?.querySelector<HTMLButtonElement>('.action-btn'))
             .filter((b): b is HTMLButtonElement => !!b);
     }
 
     /** Index of the currently focused action button, or -1. */
     private _focusedActionIndex(): number {
-        const actions = Array.from(this.querySelectorAll('flint-speed-dial-action'));
-        return actions.findIndex(a =>
-            (a as Element).shadowRoot?.activeElement?.classList.contains('action-btn')
+        return this._assignedActions.findIndex(a =>
+            a.shadowRoot?.activeElement?.classList.contains('action-btn')
         );
     }
 
@@ -317,7 +319,7 @@ export class FlintSpeedDial extends FlintElement {
     }
 
     private _updateActionTooltips() {
-        const actions = this.querySelectorAll('flint-speed-dial-action');
+        const actions = this._assignedActions;
         const showTooltip = this.persistentTooltips || this.isTouch;
         const placement = this._tooltipPlacement();
         const reversed = this._isReversedDirection();
@@ -332,7 +334,7 @@ export class FlintSpeedDial extends FlintElement {
             // Stagger from FAB outward: for reversed directions the last DOM item is nearest the FAB
             const staggerIdx = reversed ? (count - 1 - i) : i;
             const closeIdx  = reversed ? i : (count - 1 - i);
-            (action as HTMLElement).style.transitionDelay = this.open
+            action.style.transitionDelay = this.open
                 ? `${staggerIdx * 40}ms`
                 : `${closeIdx * 30}ms`;
         });

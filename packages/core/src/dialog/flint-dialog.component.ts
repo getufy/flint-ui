@@ -1,5 +1,5 @@
 import { unsafeCSS, html, nothing, type PropertyValues } from 'lit';
-import { property, state } from 'lit/decorators.js';
+import { property, queryAssignedElements, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
 import { FlintBackdrop } from '../backdrop/flint-backdrop.component.js';
@@ -35,6 +35,12 @@ export type DialogSize = Size | 'full';
 export class FlintDialog extends FlintElement {
   static styles = unsafeCSS(uiDialogStyles);
   static dependencies = { 'flint-backdrop': FlintBackdrop as unknown as typeof FlintElement };
+
+  @queryAssignedElements({ selector: 'flint-dialog-title' })
+  private _assignedTitles!: FlintDialogTitle[];
+
+  @queryAssignedElements({ selector: 'flint-dialog-content' })
+  private _assignedContents!: FlintDialogContent[];
 
   /** Current open state (controlled). When set, the component reflects this state and does not manage its own state. */
   @property({ type: Boolean, reflect: true }) open = false;
@@ -282,7 +288,7 @@ export class FlintDialog extends FlintElement {
   };
 
   private _handleSlotChange = () => {
-    const title = this.querySelector('flint-dialog-title');
+    const title = this._assignedTitles[0];
     this._titleLabel = title?.textContent?.trim() ?? '';
     this._observeContentScroll();
   };
@@ -294,7 +300,7 @@ export class FlintDialog extends FlintElement {
     this._scrollObserverCleanup?.();
     this._scrollObserverCleanup = null;
 
-    const contentEl = this.querySelector('flint-dialog-content');
+    const contentEl = this._assignedContents[0];
     if (!contentEl?.shadowRoot) return;
 
     const handleScroll = () => {

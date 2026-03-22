@@ -145,7 +145,7 @@ export class FlintStep extends FlintElement {
     connectedCallback() {
         super.connectedCallback();
         /* Expose semantic list role so assistive technologies can count steps */
-        if (!this.hasAttribute('role')) this.setAttribute('role', 'listitem');
+        if (this._internals) this._internals.role = 'listitem';
     }
 
     private _fire = () => {

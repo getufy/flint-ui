@@ -7,9 +7,11 @@ import { expect } from 'vitest';
  * positives (or simply cannot run) in jsdom / happy-dom.
  */
 const JSDOM_DISABLED_RULES: string[] = [
-    'color-contrast',         // needs computed styles
-    'color-contrast-enhanced', // needs computed styles
-    'link-in-text-block',     // needs computed styles
+    'color-contrast',           // needs computed styles
+    'color-contrast-enhanced',  // needs computed styles
+    'link-in-text-block',       // needs computed styles
+    'aria-required-children',   // child roles set via ElementInternals are invisible to axe DOM parsing in jsdom
+    'aria-required-parent',     // parent roles set via ElementInternals are invisible to axe DOM parsing in jsdom
 ];
 
 /**

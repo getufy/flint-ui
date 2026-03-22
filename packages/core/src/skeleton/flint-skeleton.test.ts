@@ -27,12 +27,12 @@ describe('flint-skeleton — structure', () => {
 
     it('host has role="status"', async () => {
         const el = await fixture<FlintSkeleton>(html`<flint-skeleton></flint-skeleton>`);
-        expect(el.getAttribute('role')).toBe('status');
+        expect((el as any)._internals?.role).toBe('status');
     });
 
     it('host has aria-label="Loading..." by default', async () => {
         const el = await fixture<FlintSkeleton>(html`<flint-skeleton></flint-skeleton>`);
-        expect(el.getAttribute('aria-label')).toBe('Loading...');
+        expect((el as any)._internals?.ariaLabel).toBe('Loading...');
     });
 });
 
@@ -215,21 +215,21 @@ describe('flint-skeleton — dark prop', () => {
 describe('flint-skeleton — label prop', () => {
     it('custom label sets aria-label on host', async () => {
         const el = await fixture<FlintSkeleton>(html`<flint-skeleton label="Loading profile..."></flint-skeleton>`);
-        expect(el.getAttribute('aria-label')).toBe('Loading profile...');
+        expect((el as any)._internals?.ariaLabel).toBe('Loading profile...');
     });
 
     it('empty label removes aria-label from host', async () => {
         const el = await fixture<FlintSkeleton>(html`<flint-skeleton></flint-skeleton>`);
         el.label = '';
         await el.updateComplete;
-        expect(el.hasAttribute('aria-label')).toBe(false);
+        expect((el as any)._internals?.ariaLabel).toBeNull();
     });
 
     it('label update is reflected on host', async () => {
         const el = await fixture<FlintSkeleton>(html`<flint-skeleton></flint-skeleton>`);
         el.label = 'Loading data...';
         await el.updateComplete;
-        expect(el.getAttribute('aria-label')).toBe('Loading data...');
+        expect((el as any)._internals?.ariaLabel).toBe('Loading data...');
     });
 });
 

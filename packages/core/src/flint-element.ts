@@ -3,6 +3,9 @@ import { LitElement } from 'lit';
 export class FlintElement extends LitElement {
   static dependencies: Record<string, typeof FlintElement> = {};
 
+  /** ElementInternals instance — used for form association and ARIA. */
+  _internals: ElementInternals | null = null;
+
   static define(
     name: string,
     elementClass: typeof FlintElement = this as unknown as typeof FlintElement,
@@ -25,6 +28,9 @@ export class FlintElement extends LitElement {
 
   constructor() {
     super();
+    if (typeof this.attachInternals === 'function') {
+      this._internals = this.attachInternals();
+    }
     // Auto-register dependencies
     const ctor = this.constructor as typeof FlintElement;
     for (const [name, depClass] of Object.entries(ctor.dependencies)) {

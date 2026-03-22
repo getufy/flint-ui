@@ -142,10 +142,12 @@ export class FlintResizableGroup extends FlintElement {
       const after = this._panels[i + 1];
       if (!before || !after) continue;
       // aria-valuenow = size of the panel before the handle (0–100)
-      h.setAttribute('aria-valuenow', String(Math.round(before.size)));
-      h.setAttribute('aria-valuemin', String(Math.round(before.minSize)));
-      h.setAttribute('aria-valuemax', String(Math.round(before.maxSize)));
-      h.setAttribute('aria-orientation', this.orientation);
+      if (h._internals) {
+        h._internals.ariaValueNow = String(Math.round(before.size));
+        h._internals.ariaValueMin = String(Math.round(before.minSize));
+        h._internals.ariaValueMax = String(Math.round(before.maxSize));
+        h._internals.ariaOrientation = this.orientation;
+      }
     }
   }
 
@@ -667,7 +669,7 @@ export class FlintResizableHandle extends FlintElement {
 
   override connectedCallback() {
     super.connectedCallback();
-    this.setAttribute('role', 'separator');
+    if (this._internals) this._internals.role = 'separator';
     this.setAttribute('tabindex', '0');
     this.addEventListener('pointerdown', this._onPointerDown);
     this.addEventListener('pointermove', this._onPointerMove);

@@ -99,7 +99,7 @@ export class FlintTreeItem extends FlintElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this.setAttribute('role', 'treeitem');
+    if (this._internals) this._internals.role = 'treeitem';
     if (!this.hasAttribute('tabindex')) {
       this.setAttribute('tabindex', '-1');
     }
@@ -107,16 +107,12 @@ export class FlintTreeItem extends FlintElement {
 
   protected updated(_changedProperties: PropertyValues) {
     super.updated(_changedProperties);
-    if (this._hasSlottedChildren || this.hasChildren) {
-      this.setAttribute('aria-expanded', String(this.expanded));
-    } else {
-      this.removeAttribute('aria-expanded');
-    }
-    this.setAttribute('aria-disabled', String(this.disabled));
-    if (this.selected) {
-      this.setAttribute('aria-selected', 'true');
-    } else {
-      this.removeAttribute('aria-selected');
+    if (this._internals) {
+      this._internals.ariaExpanded = (this._hasSlottedChildren || this.hasChildren)
+        ? String(this.expanded)
+        : null;
+      this._internals.ariaDisabled = String(this.disabled);
+      this._internals.ariaSelected = this.selected ? 'true' : null;
     }
   }
 

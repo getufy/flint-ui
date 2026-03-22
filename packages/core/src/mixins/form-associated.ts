@@ -42,16 +42,10 @@ export function FormAssociated<T extends Constructor<LitElement>>(Base: T) {
     class FormElement extends Base {
         static formAssociated = true;
 
-        _internals: ElementInternals | null = null;
+        // _internals is initialised by FlintElement.constructor via attachInternals().
+        // We declare it here (without an initialiser) so TS knows the type.
+        declare _internals: ElementInternals | null;
         _firstUpdate = true;
-
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        constructor(...args: any[]) {
-            super(...args);
-            if (typeof this.attachInternals === 'function') {
-                this._internals = this.attachInternals();
-            }
-        }
 
         /** Set the form value reported to the enclosing `<form>`. */
         _initFormValue(value: FormDataEntryValue | FormData | null) {

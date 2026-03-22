@@ -48,7 +48,7 @@ export class FlintSkeleton extends FlintElement {
 
     connectedCallback() {
         super.connectedCallback();
-        if (!this.hasAttribute('role')) this.setAttribute('role', 'status');
+        if (this._internals) this._internals.role = 'status';
         this._syncLabel();
     }
 
@@ -57,10 +57,8 @@ export class FlintSkeleton extends FlintElement {
     }
 
     private _syncLabel() {
-        if (this.label) {
-            this.setAttribute('aria-label', this.label);
-        } else {
-            this.removeAttribute('aria-label');
+        if (this._internals) {
+            this._internals.ariaLabel = this.label || null;
         }
     }
 

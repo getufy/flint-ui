@@ -52,7 +52,7 @@ export class FlintListItemButton extends FlintElement {
         super.connectedCallback();
         // Host acts as a listitem so ul[role="list"] sees a valid child,
         // while the inner element carries the button semantics.
-        if (!this.hasAttribute('role')) this.setAttribute('role', 'listitem');
+        if (this._internals) this._internals.role = 'listitem';
     }
 
     private _handleKeydown = (e: KeyboardEvent) => {

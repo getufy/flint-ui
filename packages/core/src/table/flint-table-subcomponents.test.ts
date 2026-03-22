@@ -328,7 +328,7 @@ describe('flint-table-sort-label', () => {
             <flint-table-sort-label>Col</flint-table-sort-label>
         `);
         await el.updateComplete;
-        expect(el.getAttribute('aria-sort')).toBe('none');
+        expect((el as any)._internals?.ariaSort).toBe('none');
     });
 
     it('sets aria-sort to ascending when active and direction is asc', async () => {
@@ -336,7 +336,7 @@ describe('flint-table-sort-label', () => {
             <flint-table-sort-label active direction="asc">Col</flint-table-sort-label>
         `);
         await el.updateComplete;
-        expect(el.getAttribute('aria-sort')).toBe('ascending');
+        expect((el as any)._internals?.ariaSort).toBe('ascending');
     });
 
     it('sets aria-sort to descending when active and direction is desc', async () => {
@@ -344,7 +344,7 @@ describe('flint-table-sort-label', () => {
             <flint-table-sort-label active direction="desc">Col</flint-table-sort-label>
         `);
         await el.updateComplete;
-        expect(el.getAttribute('aria-sort')).toBe('descending');
+        expect((el as any)._internals?.ariaSort).toBe('descending');
     });
 
     it('updates aria-sort when active changes programmatically', async () => {
@@ -352,10 +352,10 @@ describe('flint-table-sort-label', () => {
             <flint-table-sort-label direction="asc">Col</flint-table-sort-label>
         `);
         await el.updateComplete;
-        expect(el.getAttribute('aria-sort')).toBe('none');
+        expect((el as any)._internals?.ariaSort).toBe('none');
         el.active = true;
         await el.updateComplete;
-        expect(el.getAttribute('aria-sort')).toBe('ascending');
+        expect((el as any)._internals?.ariaSort).toBe('ascending');
     });
 
     it('updates aria-sort when direction changes programmatically', async () => {
@@ -363,10 +363,10 @@ describe('flint-table-sort-label', () => {
             <flint-table-sort-label active direction="asc">Col</flint-table-sort-label>
         `);
         await el.updateComplete;
-        expect(el.getAttribute('aria-sort')).toBe('ascending');
+        expect((el as any)._internals?.ariaSort).toBe('ascending');
         el.direction = 'desc';
         await el.updateComplete;
-        expect(el.getAttribute('aria-sort')).toBe('descending');
+        expect((el as any)._internals?.ariaSort).toBe('descending');
     });
 
     /* ── Icon CSS classes (sort direction indicator) ─────────────────── */

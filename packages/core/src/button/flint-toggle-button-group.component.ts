@@ -1,5 +1,5 @@
 import { unsafeCSS, html, type PropertyValues } from 'lit';
-import { property } from 'lit/decorators.js';
+import { property, queryAssignedElements } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
 import { FlintToggleButton } from './flint-toggle-button.component.js';
 import uiToggleButtonGroupStyles from './flint-toggle-button-group.css?inline';
@@ -15,6 +15,9 @@ export class FlintToggleButtonGroup extends FlintElement {
     static dependencies = {
         'flint-toggle-button': FlintToggleButton as unknown as typeof FlintElement
     };
+
+    @queryAssignedElements({ selector: 'flint-toggle-button' })
+    private _assignedButtons!: FlintToggleButton[];
 
     /** Currently selected value(s). A string when exclusive, an array otherwise. */
     @property({ type: String }) value: string | string[] = '';
@@ -75,9 +78,8 @@ export class FlintToggleButtonGroup extends FlintElement {
     }
 
     private _updateChildren() {
-        const children = Array.from(this.querySelectorAll('flint-toggle-button'));
-        children.forEach((child, index) => {
-            const button = child as FlintToggleButton;
+        const children = this._assignedButtons;
+        children.forEach((button, index) => {
             const isSelected = this.exclusive
                 ? this.value === button.value
                 : (Array.isArray(this.value) && this.value.includes(button.value));

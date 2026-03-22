@@ -104,7 +104,7 @@ export class FlintNavigationMenuLink extends FlintElement {
 
     override connectedCallback() {
         super.connectedCallback();
-        if (!this.hasAttribute('role')) this.setAttribute('role', 'menuitem');
+        if (this._internals) this._internals.role = 'menuitem';
         this.addEventListener('click', this._handleClick);
         this.addEventListener('keydown', this._handleKeydown);
     }

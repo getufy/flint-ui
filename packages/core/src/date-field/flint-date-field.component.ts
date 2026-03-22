@@ -86,8 +86,7 @@ export class FlintDateField extends FlintElement {
     /** Error message displayed below the field when in error state. */
     @property({ type: String, attribute: 'error-message' }) errorMessage = '';
 
-    // Form-association internals — lets the element participate in HTMLFormElement / FormData
-    private readonly _internals: ElementInternals = this.attachInternals();
+    // _internals is initialised by FlintElement.constructor via attachInternals().
 
     // ── Internal segment state ───────────────────────────────────────────────
     @state() private _month: number | null = null;

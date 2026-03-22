@@ -21,7 +21,7 @@ describe('FlintTreeItem', () => {
         const el = await fixture<FlintTreeItem>(
             html`<flint-tree-item item-id="1" label="Item"></flint-tree-item>`
         );
-        expect(el.getAttribute('role')).toBe('treeitem');
+        expect((el as any)._internals?.role).toBe('treeitem');
     });
 
     it('sets tabindex="-1" by default', async () => {
@@ -37,7 +37,7 @@ describe('FlintTreeItem', () => {
         );
         expect(el.disabled).toBe(true);
         expect(el.hasAttribute('disabled')).toBe(true);
-        expect(el.getAttribute('aria-disabled')).toBe('true');
+        expect((el as any)._internals?.ariaDisabled).toBe('true');
     });
 
     it('reflects expanded attribute', async () => {

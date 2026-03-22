@@ -83,7 +83,7 @@ export class FlintMenubarItem extends FlintElement {
 
     connectedCallback() {
         super.connectedCallback();
-        if (!this.hasAttribute('role')) this.setAttribute('role', 'menuitem');
+        if (this._internals) this._internals.role = 'menuitem';
     }
 
     /** Returns label text from direct text nodes only (excludes shortcut element content). */
@@ -132,7 +132,7 @@ export class FlintMenubarCheckboxItem extends FlintElement {
 
     connectedCallback() {
         super.connectedCallback();
-        if (!this.hasAttribute('role')) this.setAttribute('role', 'menuitemcheckbox');
+        if (this._internals) this._internals.role = 'menuitemcheckbox';
     }
 
     private _labelText(): string {
@@ -185,7 +185,7 @@ export class FlintMenubarRadioItem extends FlintElement {
 
     connectedCallback() {
         super.connectedCallback();
-        if (!this.hasAttribute('role')) this.setAttribute('role', 'menuitemradio');
+        if (this._internals) this._internals.role = 'menuitemradio';
     }
 
     select() {
@@ -320,7 +320,7 @@ export class FlintMenubarSubTrigger extends FlintElement {
 
     connectedCallback() {
         super.connectedCallback();
-        if (!this.hasAttribute('role')) this.setAttribute('role', 'menuitem');
+        if (this._internals) this._internals.role = 'menuitem';
     }
 
     render() {
@@ -660,7 +660,7 @@ export class FlintMenubarTrigger extends FlintElement {
 
     connectedCallback() {
         super.connectedCallback();
-        if (!this.hasAttribute('role')) this.setAttribute('role', 'menuitem');
+        if (this._internals) this._internals.role = 'menuitem';
     }
 
     render() {
@@ -692,7 +692,7 @@ export class FlintMenubarMenu extends FlintElement {
 
     connectedCallback() {
         super.connectedCallback();
-        if (!this.hasAttribute('role')) this.setAttribute('role', 'none');
+        if (this._internals) this._internals.role = 'none';
     }
 
     get trigger(): FlintMenubarTrigger | null {

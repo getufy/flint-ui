@@ -1,5 +1,5 @@
 import { unsafeCSS, html, css, type PropertyValues } from 'lit';
-import { property } from 'lit/decorators.js';
+import { property, queryAssignedElements } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import uiCarouselContentStyles from './flint-carousel-content.css?inline';
 import uiCarouselItemStyles from './flint-carousel-item.css?inline';
@@ -212,6 +212,15 @@ export class FlintCarouselNext extends FlintElement {
 export class FlintCarousel extends FlintElement {
   static styles = unsafeCSS(uiCarouselStyles);
 
+  @queryAssignedElements({ selector: 'flint-carousel-content' })
+  private _assignedContent!: FlintCarouselContent[];
+
+  @queryAssignedElements({ selector: 'flint-carousel-previous' })
+  private _assignedPrevious!: FlintCarouselPrevious[];
+
+  @queryAssignedElements({ selector: 'flint-carousel-next' })
+  private _assignedNext!: FlintCarouselNext[];
+
   /** When true, navigation wraps from last slide back to first and vice versa. */
   @property({ type: Boolean }) loop = false;
 
@@ -358,7 +367,7 @@ export class FlintCarousel extends FlintElement {
     this._countItems();
     this._syncNavigation();
 
-    const content = this.querySelector('flint-carousel-content');
+    const content = this._assignedContent[0];
     if (content && typeof MutationObserver !== 'undefined') {
       this._observer = new MutationObserver(() => {
         this._countItems();
@@ -383,7 +392,7 @@ export class FlintCarousel extends FlintElement {
   }
 
   private _countItems() {
-    const content = this.querySelector('flint-carousel-content');
+    const content = this._assignedContent[0];
     const total = content
       ? content.querySelectorAll('flint-carousel-item').length
       : 0;
@@ -397,15 +406,9 @@ export class FlintCarousel extends FlintElement {
   }
 
   private _syncNavigation() {
-    const content = this.querySelector(
-      'flint-carousel-content',
-    ) as FlintCarouselContent | null;
-    const prev = this.querySelector(
-      'flint-carousel-previous',
-    ) as FlintCarouselPrevious | null;
-    const next = this.querySelector(
-      'flint-carousel-next',
-    ) as FlintCarouselNext | null;
+    const content = this._assignedContent[0] ?? null;
+    const prev = this._assignedPrevious[0] ?? null;
+    const next = this._assignedNext[0] ?? null;
 
     const lastIndex = Math.max(0, this._total - this.itemsPerView);
 

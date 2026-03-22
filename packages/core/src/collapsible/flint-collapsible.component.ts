@@ -153,16 +153,14 @@ export class FlintCollapsible extends FlintElement {
     }
 
     private _syncChildren() {
-        this.querySelectorAll('flint-collapsible-content').forEach(el => {
-            if (el.closest('flint-collapsible') === this) {
-                (el as FlintCollapsibleContent).open = this.open;
-            }
+        this.querySelectorAll<FlintCollapsibleContent>('flint-collapsible-content').forEach(el => {
+            if (el.closest('flint-collapsible') !== this) return;
+            el.open = this.open;
         });
-        this.querySelectorAll('flint-collapsible-trigger').forEach(el => {
-            if (el.closest('flint-collapsible') === this) {
-                (el as FlintCollapsibleTrigger).expanded = this.open;
-                (el as FlintCollapsibleTrigger).disabled = this.disabled;
-            }
+        this.querySelectorAll<FlintCollapsibleTrigger>('flint-collapsible-trigger').forEach(el => {
+            if (el.closest('flint-collapsible') !== this) return;
+            el.expanded = this.open;
+            el.disabled = this.disabled;
         });
     }
 

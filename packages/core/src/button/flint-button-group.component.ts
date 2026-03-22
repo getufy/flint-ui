@@ -1,5 +1,5 @@
 import { unsafeCSS, html, type PropertyValues } from 'lit';
-import { property } from 'lit/decorators.js';
+import { property, queryAssignedElements } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
 import type { Orientation } from '../types.js';
 import type { FlintButton } from './flint-button.component.js';
@@ -11,6 +11,9 @@ import uiButtonGroupStyles from './flint-button-group.css?inline';
  */
 export class FlintButtonGroup extends FlintElement {
     static styles = unsafeCSS(uiButtonGroupStyles);
+
+    @queryAssignedElements({ selector: 'flint-button' })
+    private _assignedButtons!: FlintButton[];
 
     /**
      * Layout direction of the group.
@@ -42,9 +45,7 @@ export class FlintButtonGroup extends FlintElement {
 
     connectedCallback() {
         super.connectedCallback();
-        if (!this.hasAttribute('role')) {
-            this.setAttribute('role', 'group');
-        }
+        if (this._internals) this._internals.role = 'group';
     }
 
     updated(changed: PropertyValues) {
@@ -54,9 +55,8 @@ export class FlintButtonGroup extends FlintElement {
     }
 
     private _syncChildren() {
-        const buttons = this.querySelectorAll('flint-button');
-        for (const btn of buttons) {
-            const b = btn as FlintButton;
+        for (const btn of this._assignedButtons) {
+            const b = btn;
             if (this.size) b.size = this.size;
             if (this.appearance) b.appearance = this.appearance;
             if (this.color) b.color = this.color;

@@ -48,7 +48,7 @@ export class FlintMenuItem extends FlintElement {
 
     connectedCallback() {
         super.connectedCallback();
-        if (!this.hasAttribute('role')) this.setAttribute('role', 'menuitem');
+        if (this._internals) this._internals.role = 'menuitem';
     }
 
     @state() private _hasIcon = false;

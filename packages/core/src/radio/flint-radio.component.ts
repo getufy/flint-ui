@@ -1,5 +1,5 @@
 import { unsafeCSS, html, PropertyValues, LitElement } from 'lit';
-import { property } from 'lit/decorators.js';
+import { property, queryAssignedElements } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { FlintElement } from '../flint-element.js';
@@ -21,6 +21,9 @@ export type RadioOrientation = Orientation;
 export class FlintRadioGroup extends FormAssociated(FlintElement) {
     static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
     static styles = unsafeCSS(uiRadioGroupStyles);
+
+    @queryAssignedElements({ selector: 'flint-radio' })
+    private _assignedRadios!: FlintRadio[];
 
     /** Accessible label for the radio group. */
     @property({ type: String }) label = '';
@@ -88,7 +91,7 @@ export class FlintRadioGroup extends FormAssociated(FlintElement) {
     }
 
     private _getRadios(): FlintRadio[] {
-        return Array.from(this.querySelectorAll('flint-radio')) as FlintRadio[];
+        return [...this._assignedRadios];
     }
 
     private _getEnabledRadios(): FlintRadio[] {

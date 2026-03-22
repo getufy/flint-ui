@@ -203,7 +203,7 @@ describe('flint-step', () => {
 
     it('has role="listitem"', async () => {
         const el = await fixture<FlintStep>(html`<flint-step><span slot="label">X</span></flint-step>`);
-        expect(el.getAttribute('role')).toBe('listitem');
+        expect((el as any)._internals?.role).toBe('listitem');
     });
 
     it('shows completed checkmark via icon-circle.completed class', async () => {
@@ -312,11 +312,11 @@ describe('flint-step', () => {
         expect(el.querySelector('#custom-icon')).toBeTruthy();
     });
 
-    it('does not override role if already set', async () => {
+    it('internals role is always listitem regardless of host attribute', async () => {
         const el = await fixture<FlintStep>(html`
             <flint-step role="presentation" step-index="0"><span slot="label">X</span></flint-step>
         `);
-        expect(el.getAttribute('role')).toBe('presentation');
+        expect((el as any)._internals?.role).toBe('listitem');
     });
 
     it('clicking a disabled clickable step does not fire event', async () => {

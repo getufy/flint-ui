@@ -154,8 +154,10 @@ export class FlintItemSeparator extends FlintElement {
 
     connectedCallback() {
         super.connectedCallback();
-        if (!this.hasAttribute('role')) this.setAttribute('role', 'separator');
-        if (!this.hasAttribute('aria-orientation')) this.setAttribute('aria-orientation', 'horizontal');
+        if (this._internals) {
+            this._internals.role = 'separator';
+            this._internals.ariaOrientation = 'horizontal';
+        }
     }
 
     render() { return html``; }

@@ -20,7 +20,7 @@ export class FlintTableSortLabel extends FlintElement {
             const sort = this.active
                 ? (this.direction === 'asc' ? 'ascending' : 'descending')
                 : 'none';
-            this.setAttribute('aria-sort', sort);
+            if (this._internals) this._internals.ariaSort = sort;
         }
     }
 

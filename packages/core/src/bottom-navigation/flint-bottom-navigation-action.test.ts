@@ -98,14 +98,14 @@ describe('flint-bottom-navigation-action', () => {
         const el = await fixture<FlintBottomNavigationAction>(html`
             <flint-bottom-navigation-action label="Home" value="home"></flint-bottom-navigation-action>
         `);
-        expect(el.getAttribute('role')).toBe('tab');
+        expect((el as any)._internals?.role).toBe('tab');
     });
 
-    it('does not override an existing role attribute', async () => {
+    it('internals role is always tab regardless of host attribute', async () => {
         const el = await fixture<FlintBottomNavigationAction>(html`
             <flint-bottom-navigation-action label="Home" value="home" role="button"></flint-bottom-navigation-action>
         `);
-        expect(el.getAttribute('role')).toBe('button');
+        expect((el as any)._internals?.role).toBe('tab');
     });
 
     it('sets tabindex="-1" by default (roving tabindex, parent sets 0 on active)', async () => {
@@ -120,11 +120,11 @@ describe('flint-bottom-navigation-action', () => {
             <flint-bottom-navigation-action label="Home" value="home"></flint-bottom-navigation-action>
         `);
         await el.updateComplete;
-        expect(el.getAttribute('aria-selected')).toBe('false');
+        expect((el as any)._internals?.ariaSelected).toBe('false');
 
         el.active = true;
         await el.updateComplete;
-        expect(el.getAttribute('aria-selected')).toBe('true');
+        expect((el as any)._internals?.ariaSelected).toBe('true');
     });
 
     // ── Keyboard interaction ───────────────────────────────────────────────────

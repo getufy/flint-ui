@@ -1,5 +1,5 @@
 import { unsafeCSS, html, PropertyValues } from 'lit';
-import { property } from 'lit/decorators.js';
+import { property, queryAssignedElements } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
 import uiAccordionStyles from './flint-accordion.css?inline';
 import uiAccordionSummaryStyles from './flint-accordion-summary.css?inline';
@@ -38,6 +38,15 @@ export class FlintAccordion extends FlintElement {
      */
     @property({ type: Boolean, reflect: true }) disabled = false;
 
+    @queryAssignedElements({ selector: 'flint-accordion-summary' })
+    private _summaries!: FlintAccordionSummary[];
+
+    @queryAssignedElements({ selector: 'flint-accordion-details' })
+    private _details!: FlintAccordionDetails[];
+
+    @queryAssignedElements({ selector: 'flint-accordion-actions' })
+    private _actions!: FlintAccordionActions[];
+
     /** Unique ID used to link the region to its summary heading. */
     private readonly _uid = `flint-accordion-${++_accordionCounter}`;
 
@@ -61,23 +70,26 @@ export class FlintAccordion extends FlintElement {
 
     override updated(changed: PropertyValues) {
         if (changed.has('expanded') || changed.has('disabled')) {
-            this.querySelectorAll('flint-accordion-summary, flint-accordion-details, flint-accordion-actions')
-                .forEach(el => {
-                    if (this.expanded) el.setAttribute('expanded', '');
-                    else el.removeAttribute('expanded');
-                    if (this.disabled) el.setAttribute('disabled', '');
-                    else el.removeAttribute('disabled');
-                });
+            this._syncChildren();
+        }
+    }
 
-            // Sync aria-expanded on summary and id on details
-            const summary = this.querySelector('flint-accordion-summary');
-            if (summary) {
-                summary.setAttribute('aria-expanded', String(this.expanded));
-            }
-            const details = this.querySelector('flint-accordion-details');
-            if (details && !details.hasAttribute('id')) {
-                details.setAttribute('id', this.detailsId);
-            }
+    private _syncChildren() {
+        const children = [...this._summaries, ...this._details, ...this._actions];
+        children.forEach(el => {
+            if (this.expanded) el.setAttribute('expanded', '');
+            else el.removeAttribute('expanded');
+            if (this.disabled) el.setAttribute('disabled', '');
+            else el.removeAttribute('disabled');
+        });
+
+        const summary = this._summaries[0];
+        if (summary?._internals) {
+            summary._internals.ariaExpanded = String(this.expanded);
+        }
+        const details = this._details[0];
+        if (details && !details.hasAttribute('id')) {
+            details.setAttribute('id', this.detailsId);
         }
     }
 
@@ -104,7 +116,7 @@ export class FlintAccordion extends FlintElement {
     render() {
         return html`
             <div class="accordion-container" part="base" role="region" aria-labelledby=${this.summaryId}>
-                <slot></slot>
+                <slot @slotchange=${this._syncChildren}></slot>
             </div>
         `;
     }
@@ -149,7 +161,7 @@ export class FlintAccordionSummary extends FlintElement {
 
     override connectedCallback() {
         super.connectedCallback();
-        if (!this.hasAttribute('role')) this.setAttribute('role', 'button');
+        if (this._internals) this._internals.role = 'button';
         if (!this.hasAttribute('tabindex')) this.setAttribute('tabindex', '0');
         // Link to parent accordion's region for aria-labelledby / aria-controls
         const accordion = this.closest('flint-accordion') as FlintAccordion | null;
@@ -157,8 +169,11 @@ export class FlintAccordionSummary extends FlintElement {
             if (!this.hasAttribute('id')) {
                 this.setAttribute('id', accordion.summaryId);
             }
+            // aria-controls is a relationship attribute — must stay as host attribute
             this.setAttribute('aria-controls', accordion.detailsId);
-            this.setAttribute('aria-expanded', String(accordion.expanded));
+            if (this._internals) {
+                this._internals.ariaExpanded = String(accordion.expanded);
+            }
         }
     }
 

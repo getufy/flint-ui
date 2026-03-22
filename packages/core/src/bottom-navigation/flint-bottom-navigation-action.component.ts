@@ -37,9 +37,7 @@ export class FlintBottomNavigationAction extends FlintElement {
 
     connectedCallback() {
         super.connectedCallback();
-        if (!this.hasAttribute('role')) {
-            this.setAttribute('role', 'tab');
-        }
+        if (this._internals) this._internals.role = 'tab';
         // Default to -1; parent sets tabindex=0 on the active action (roving tabindex)
         if (!this.hasAttribute('tabindex')) {
             this.tabIndex = -1;
@@ -54,7 +52,7 @@ export class FlintBottomNavigationAction extends FlintElement {
 
     protected updated(changedProperties: PropertyValues) {
         if (changedProperties.has('active')) {
-            this.setAttribute('aria-selected', String(this.active));
+            if (this._internals) this._internals.ariaSelected = String(this.active);
         }
     }
 

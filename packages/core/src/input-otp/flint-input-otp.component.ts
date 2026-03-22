@@ -169,9 +169,7 @@ export class FlintInputOtp extends FormAssociated(FlintElement) {
 
     override connectedCallback() {
         super.connectedCallback();
-        if (!this.hasAttribute('role')) {
-            this.setAttribute('role', 'group');
-        }
+        if (this._internals) this._internals.role = 'group';
         this.addEventListener('click', this._handleClick);
     }
 

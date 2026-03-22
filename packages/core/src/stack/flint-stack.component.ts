@@ -1,5 +1,5 @@
 import { unsafeCSS, html, type PropertyValues } from 'lit';
-import { property, state } from 'lit/decorators.js';
+import { property, queryAssignedElements, state } from 'lit/decorators.js';
 import { styleMap } from 'lit/directives/style-map.js';
 import { FlintElement } from '../flint-element.js';
 import type { Breakpoint, ResponsiveValue } from '../types.js';
@@ -44,6 +44,9 @@ export class FlintStack extends FlintElement {
 
     /** Whether to use CSS flex gap for spacing. */
     @property({ type: Boolean }) useFlexGap = true;
+
+    @queryAssignedElements({ selector: 'flint-divider' })
+    private _dividers!: HTMLElement[];
 
     @state() private _currentWidth = typeof window !== 'undefined' ? window.innerWidth : 1200;
 
@@ -96,7 +99,7 @@ export class FlintStack extends FlintElement {
         if (!resolvedDirection) return;
         const orientation = resolvedDirection.startsWith('row') ? 'vertical' : 'horizontal';
 
-        this.querySelectorAll('flint-divider').forEach(divider => {
+        this._dividers.forEach(divider => {
             if (divider.getAttribute('orientation') !== orientation) {
                 divider.setAttribute('orientation', orientation);
             }
@@ -157,7 +160,7 @@ export class FlintStack extends FlintElement {
         part="base"
         style=${styleMap(styles)}
       >
-        <slot></slot>
+        <slot @slotchange=${this._updateDividers}></slot>
       </div>
     `;
     }

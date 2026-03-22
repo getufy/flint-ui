@@ -1,5 +1,5 @@
 import { html, unsafeCSS } from 'lit';
-import { property, query, state } from 'lit/decorators.js';
+import { property, query, queryAssignedElements, state } from 'lit/decorators.js';
 import uiScrollAreaStyles from './flint-scroll-area.css?inline';
 import uiScrollBarStyles from './flint-scroll-bar.css?inline';
 import { FlintElement } from '../flint-element.js';
@@ -156,6 +156,9 @@ export class FlintScrollBar extends FlintElement {
  */
 export class FlintScrollArea extends FlintElement {
     static styles = unsafeCSS(uiScrollAreaStyles);
+
+    @queryAssignedElements({ slot: 'scrollbar', selector: 'flint-scroll-bar' })
+    private _assignedScrollbars!: FlintScrollBar[];
 
     /**
      * Controls when the scrollbars appear.
@@ -316,9 +319,7 @@ export class FlintScrollArea extends FlintElement {
         this._thumbXSize = xSize;
 
         // Sync any slotted flint-scroll-bar elements
-        this.querySelectorAll('flint-scroll-bar').forEach(el => {
-            if ((el as Element).closest('flint-scroll-area') !== this) return;
-            const bar = el as FlintScrollBar;
+        this._assignedScrollbars.forEach(bar => {
             if (bar.orientation === 'vertical') {
                 bar.setThumb(yPos, ySize);
                 bar.setVisible(this._shouldShowBar('vertical'));

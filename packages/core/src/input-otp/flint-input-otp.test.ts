@@ -1341,7 +1341,7 @@ describe('flint-input-otp — _insertChar boundary', () => {
 describe('flint-input-otp — ARIA accessibility', () => {
     it('host has role="group"', async () => {
         const el = await make();
-        expect(el.getAttribute('role')).toBe('group');
+        expect((el as any)._internals?.role).toBe('group');
     });
 
     it('hidden input has default aria-label "One-time password"', async () => {
@@ -1392,7 +1392,7 @@ describe('flint-input-otp — ARIA accessibility', () => {
         expect(span).toBeNull();
     });
 
-    it('does not override role if already set on host', async () => {
+    it('internals role is always group regardless of host attribute', async () => {
         const el = await fixture<FlintInputOtp>(html`
             <flint-input-otp role="radiogroup">
                 <flint-input-otp-group>
@@ -1401,7 +1401,7 @@ describe('flint-input-otp — ARIA accessibility', () => {
             </flint-input-otp>
         `);
         await el.updateComplete;
-        expect(el.getAttribute('role')).toBe('radiogroup');
+        expect((el as any)._internals?.role).toBe('group');
     });
 });
 
