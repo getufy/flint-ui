@@ -1,4 +1,4 @@
-import { unsafeCSS, html, nothing, PropertyValues, LitElement } from 'lit';
+import { unsafeCSS, html, svg, nothing, PropertyValues, LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
@@ -94,8 +94,8 @@ export class FlintCheckbox extends FormAssociated(FlintElement) {
         <div class=${classMap({ checkbox: true, checked: this.checked, indeterminate: this.indeterminate })} part="control">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
             ${this.indeterminate
-                ? html`<line x1="4" y1="12" x2="20" y2="12"></line>`
-                : html`<polyline points="20 6 9 17 4 12"></polyline>`
+                ? svg`<line x1="4" y1="12" x2="20" y2="12"></line>`
+                : svg`<polyline points="20 6 9 17 4 12"></polyline>`
             }
           </svg>
         </div>

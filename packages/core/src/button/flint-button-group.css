@@ -29,7 +29,7 @@
     }
 
     ::slotted(flint-button:not(:first-child)) {
-      margin-left: -1px;
+      margin-inline-start: -1px;
     }
 
     /* Base state for grouped buttons - 0 border radius internally */
@@ -52,9 +52,22 @@
       --flint-button-border-radius: var(--flint-border-radius-md, 6px);
     }
 
+    /* ── RTL horizontal ──────────────────────────────────── */
+    :host(:dir(rtl)) ::slotted(flint-button:first-child) {
+      --flint-button-border-radius: 0 var(--flint-border-radius-md, 6px) var(--flint-border-radius-md, 6px) 0;
+    }
+
+    :host(:dir(rtl)) ::slotted(flint-button:last-child) {
+      --flint-button-border-radius: var(--flint-border-radius-md, 6px) 0 0 var(--flint-border-radius-md, 6px);
+    }
+
+    :host(:dir(rtl)) ::slotted(flint-button:first-child:last-child) {
+      --flint-button-border-radius: var(--flint-border-radius-md, 6px);
+    }
+
     /* ── Vertical orientation border-radius ─────────────────────────── */
     :host([orientation='vertical']) ::slotted(flint-button:not(:first-child)) {
-      margin-left: 0;
+      margin-inline-start: 0;
       margin-top: -1px;
     }
 

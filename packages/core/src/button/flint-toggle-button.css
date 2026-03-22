@@ -76,13 +76,13 @@ button:focus-visible {
 }
 
 :host([data-first]) button {
-    border-top-left-radius: var(--flint-border-radius-md);
-    border-bottom-left-radius: var(--flint-border-radius-md);
+    border-start-start-radius: var(--flint-border-radius-md);
+    border-end-start-radius: var(--flint-border-radius-md);
 }
 
 :host([data-last]) button {
-    border-top-right-radius: var(--flint-border-radius-md);
-    border-bottom-right-radius: var(--flint-border-radius-md);
+    border-start-end-radius: var(--flint-border-radius-md);
+    border-end-end-radius: var(--flint-border-radius-md);
 }
 
 /* Single child in group gets full radius */
@@ -93,10 +93,10 @@ button:focus-visible {
 /* Middle buttons in group — no radius, overlap borders */
 :host([data-middle]) button {
     border-radius: 0;
-    margin-left: -1px;
+    margin-inline-start: -1px;
 }
 
 /* Overlap borders for last item */
 :host([data-last]:not([data-first])) button {
-    margin-left: -1px;
+    margin-inline-start: -1px;
 }
