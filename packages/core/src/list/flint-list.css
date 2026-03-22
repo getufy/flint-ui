@@ -5,6 +5,11 @@
       list-style: none;
       background-color: var(--flint-surface-background);
     }
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
     :host([disable-padding]) {
       padding: 0;
     }

@@ -22,7 +22,7 @@ export class FlintList extends FlintElement {
     @property({ type: Boolean, reflect: true }) dense = false;
 
     render() {
-        return html`<ul role="list" part="base" style="margin: 0; padding: 0; list-style: none;"><slot></slot></ul>`;
+        return html`<ul role="list" part="base"><slot></slot></ul>`;
     }
 }
 
@@ -63,6 +63,13 @@ export class FlintListItemButton extends FlintElement {
         }
     };
 
+    private _handleClick = (e: MouseEvent) => {
+        if (this.disabled) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    };
+
     render() {
         return html`
       <div
@@ -72,6 +79,7 @@ export class FlintListItemButton extends FlintElement {
         aria-disabled=${this.disabled ? 'true' : nothing}
         aria-current=${this.selected ? 'true' : nothing}
         @keydown=${this._handleKeydown}
+        @click=${this._handleClick}
       ><slot></slot></div>
     `;
     }

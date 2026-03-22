@@ -102,6 +102,15 @@ describe('flint-list-item-button', () => {
         expect(handler).not.toHaveBeenCalled();
     });
 
+    it('disabled suppresses mouse click', async () => {
+        const el = await fixture<FlintListItemButton>(html`<flint-list-item-button disabled></flint-list-item-button>`);
+        const handler = vi.fn();
+        el.addEventListener('click', handler);
+        const inner = el.shadowRoot!.querySelector('div[role="button"]')!;
+        inner.dispatchEvent(new MouseEvent('click', { bubbles: true, composed: true }));
+        expect(handler).not.toHaveBeenCalled();
+    });
+
     it('selected reflects attribute and sets aria-current', async () => {
         const el = await fixture<FlintListItemButton>(html`<flint-list-item-button selected></flint-list-item-button>`);
         await el.updateComplete;
