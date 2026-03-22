@@ -24,6 +24,7 @@ import uiSimpleTreeViewStyles from './flint-simple-tree-view.css?inline';
  *
  * @fires flint-tree-view-item-click        - When a tree item is activated (detail: { itemId })
  * @fires flint-tree-view-expanded-items-change - When the expanded set changes (detail: { expandedItems })
+ * @fires flint-selection-change - When the selected set changes (detail: { selectedItems })
  * @csspart base - The component's base wrapper element.
  */
 export class FlintSimpleTreeView extends FlintElement {
@@ -77,6 +78,27 @@ export class FlintSimpleTreeView extends FlintElement {
     @property({ type: String, attribute: 'expansion-trigger' })
     expansionTrigger: 'content' | 'iconContainer' = 'content';
 
+    /**
+     * Selection mode:
+     * - 'none' (default): no selection tracking
+     * - 'single': at most one item selected at a time
+     * - 'multiple': multiple items with checkboxes, Ctrl+Click, Shift+Click
+     */
+    @property({ type: String, attribute: 'selection-mode' })
+    selectionMode: 'none' | 'single' | 'multiple' = 'none';
+
+    /** Controlled mode. The set of selected item IDs. */
+    @property({ attribute: false })
+    selectedItems?: string[];
+
+    /** Uncontrolled mode. Item IDs selected on initial mount. */
+    @property({ attribute: false })
+    defaultSelectedItems: string[] = [];
+
+    /** Callback fired when the selection changes. */
+    @property({ attribute: false })
+    onSelectedItemsChange?: (itemIds: string[]) => void;
+
     // ─── Internal state ───────────────────────────────────────────────────────
 
     /** Tracks expanded IDs in uncontrolled mode. */
@@ -84,8 +106,24 @@ export class FlintSimpleTreeView extends FlintElement {
     /** Prevents `defaultExpandedItems` from being re-applied on slot re-renders. */
     private _expansionInitialized = false;
 
+    /** Tracks selected IDs in uncontrolled mode. */
+    private _internalSelectedItems = new Set<string>();
+    private _selectionInitialized = false;
+    /** For Shift+Click range selection: last selected item index. */
+    private _lastSelectedIndex = -1;
+
     private get _isControlled(): boolean {
         return this.expandedItems !== undefined;
+    }
+
+    private get _isSelectionControlled(): boolean {
+        return this.selectedItems !== undefined;
+    }
+
+    private _getEffectiveSelected(): Set<string> {
+        return this._isSelectionControlled
+            ? new Set(this.selectedItems!)
+            : this._internalSelectedItems;
     }
 
     // ─── Lifecycle ────────────────────────────────────────────────────────────
@@ -113,6 +151,9 @@ export class FlintSimpleTreeView extends FlintElement {
         }
         if (_changedProperties.has('expandedItems')) {
             this._syncExpansion();
+        }
+        if (_changedProperties.has('selectionMode') || _changedProperties.has('selectedItems')) {
+            this._syncSelection();
         }
     }
 
@@ -148,6 +189,76 @@ export class FlintSimpleTreeView extends FlintElement {
 
     private _itemHasChildren(item: FlintTreeItem): boolean {
         return Array.from(item.children).some(el => el.tagName === 'FLINT-TREE-ITEM');
+    }
+
+    // ─── Selection management ─────────────────────────────────────────────────
+
+    private _initSelection() {
+        if (this._selectionInitialized) return;
+        this._selectionInitialized = true;
+        if (!this._isSelectionControlled && this.defaultSelectedItems.length > 0) {
+            this._internalSelectedItems = new Set(this.defaultSelectedItems);
+        }
+    }
+
+    private _syncSelection() {
+        const selectedSet = this._getEffectiveSelected();
+        const showCheckbox = this.selectionMode === 'multiple';
+        this._getAllItems().forEach(item => {
+            item.selected = selectedSet.has(item.itemId);
+            item.setShowCheckbox(showCheckbox);
+        });
+    }
+
+    private _applySelection(newSelected: string[]) {
+        if (this._isSelectionControlled) {
+            this.onSelectedItemsChange?.(newSelected);
+            this.dispatchEvent(new CustomEvent('flint-selection-change', {
+                detail: { selectedItems: newSelected }, bubbles: false,
+            }));
+            this._syncSelection();
+        } else {
+            this._internalSelectedItems = new Set(newSelected);
+            this._syncSelection();
+            this.onSelectedItemsChange?.(newSelected);
+            this.dispatchEvent(new CustomEvent('flint-selection-change', {
+                detail: { selectedItems: newSelected }, bubbles: false,
+            }));
+        }
+    }
+
+    private _handleSelection(itemId: string, detail: { ctrlKey?: boolean; shiftKey?: boolean }) {
+        const current = this._getEffectiveSelected();
+
+        if (this.selectionMode === 'single') {
+            const newSelected = current.has(itemId) ? [] : [itemId];
+            this._applySelection(newSelected);
+            return;
+        }
+
+        // Multiple mode
+        const focusable = this._getFocusableItems();
+        if (detail.shiftKey && this._lastSelectedIndex >= 0) {
+            const currentIdx = focusable.findIndex(i => i.itemId === itemId);
+            if (currentIdx >= 0) {
+                const [start, end] = this._lastSelectedIndex < currentIdx
+                    ? [this._lastSelectedIndex, currentIdx]
+                    : [currentIdx, this._lastSelectedIndex];
+                const rangeIds = focusable.slice(start, end + 1).map(i => i.itemId);
+                const newSet = new Set(current);
+                rangeIds.forEach(id => newSet.add(id));
+                this._applySelection(Array.from(newSet));
+            }
+        } else if (detail.ctrlKey) {
+            const newSet = new Set(current);
+            if (newSet.has(itemId)) newSet.delete(itemId);
+            else newSet.add(itemId);
+            this._applySelection(Array.from(newSet));
+            this._lastSelectedIndex = focusable.findIndex(i => i.itemId === itemId);
+        } else {
+            this._applySelection([itemId]);
+            this._lastSelectedIndex = focusable.findIndex(i => i.itemId === itemId);
+        }
     }
 
     // ─── Expansion management ─────────────────────────────────────────────────
@@ -246,7 +357,8 @@ export class FlintSimpleTreeView extends FlintElement {
 
     /** Handles `flint-tree-item-click` (row click). Also triggers expansion in content mode. */
     private _handleItemClick = (e: Event) => {
-        const { itemId } = (e as CustomEvent).detail as { itemId: string };
+        const detail = (e as CustomEvent).detail as { itemId: string; ctrlKey?: boolean; shiftKey?: boolean };
+        const { itemId } = detail;
 
         // In content mode, clicking the row also toggles expansion for parent items
         if (this.expansionTrigger === 'content') {
@@ -254,6 +366,11 @@ export class FlintSimpleTreeView extends FlintElement {
             if (item && this._itemHasChildren(item)) {
                 this._handleToggle(item, !item.expanded);
             }
+        }
+
+        // Handle selection
+        if (this.selectionMode !== 'none') {
+            this._handleSelection(itemId, detail);
         }
 
         this.onItemClick?.(itemId);
@@ -326,12 +443,35 @@ export class FlintSimpleTreeView extends FlintElement {
                 if (last) this._focusItem(last);
                 break;
             }
-            case 'Enter':
             case ' ': {
+                e.preventDefault();
+                if (focusedItem.disabled) break;
+                // Space toggles selection in multiple mode
+                if (this.selectionMode === 'multiple') {
+                    this._handleSelection(focusedItem.itemId, { ctrlKey: true });
+                } else {
+                    if (this._itemHasChildren(focusedItem)) {
+                        this._handleToggle(focusedItem, !focusedItem.expanded);
+                    }
+                    if (this.selectionMode === 'single') {
+                        this._handleSelection(focusedItem.itemId, {});
+                    }
+                    this.onItemClick?.(focusedItem.itemId);
+                    this.dispatchEvent(new CustomEvent('flint-tree-view-item-click', {
+                        detail: { itemId: focusedItem.itemId },
+                        bubbles: false,
+                    }));
+                }
+                break;
+            }
+            case 'Enter': {
                 e.preventDefault();
                 if (focusedItem.disabled) break;
                 if (this._itemHasChildren(focusedItem)) {
                     this._handleToggle(focusedItem, !focusedItem.expanded);
+                }
+                if (this.selectionMode === 'single') {
+                    this._handleSelection(focusedItem.itemId, {});
                 }
                 this.onItemClick?.(focusedItem.itemId);
                 this.dispatchEvent(new CustomEvent('flint-tree-view-item-click', {
@@ -341,6 +481,15 @@ export class FlintSimpleTreeView extends FlintElement {
                 break;
             }
             default: {
+                // Ctrl+A selects all in multiple mode
+                if (e.key === 'a' && (e.ctrlKey || e.metaKey) && this.selectionMode === 'multiple') {
+                    e.preventDefault();
+                    const allIds = this._getFocusableItems()
+                        .filter(i => !i.disabled)
+                        .map(i => i.itemId);
+                    this._applySelection(allIds);
+                    break;
+                }
                 if (e.key.length === 1) {
                     // First-character navigation
                     const char = e.key.toLowerCase();
@@ -375,6 +524,8 @@ export class FlintSimpleTreeView extends FlintElement {
         this._initRovingTabindex();
         this._initExpansion();
         this._syncExpansion();
+        this._initSelection();
+        this._syncSelection();
     };
 
     render() {

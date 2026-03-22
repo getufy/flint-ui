@@ -203,8 +203,17 @@ a.is-disabled {
 }
 .is-loading .label-inner,
 .is-loading .prefix-slot,
-.is-loading .suffix-slot {
+.is-loading .suffix-slot,
+.is-loading .caret {
   visibility: hidden;
+}
+
+/* ── Caret icon ──────────────────────────────────────────────── */
+
+.caret {
+  display: inline-flex;
+  align-items: center;
+  margin-left: -2px;
 }
 
 .spinner {

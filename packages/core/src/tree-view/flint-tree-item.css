@@ -74,6 +74,36 @@
       display: none !important;
     }
 
+    /* ── Selection ────────────────────────────────────────── */
+    :host([selected]) .item-row {
+      background-color: var(--flint-primary-color-light);
+    }
+
+    .checkbox {
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      border: 2px solid var(--flint-border-color);
+      border-radius: var(--flint-border-radius-sm, 4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 8px;
+      transition: background-color 0.15s, border-color 0.15s;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .checkbox--checked {
+      background-color: var(--flint-primary-color);
+      border-color: var(--flint-primary-color);
+    }
+
+    .checkbox--indeterminate {
+      background-color: var(--flint-primary-color);
+      border-color: var(--flint-primary-color);
+    }
+
     /* ── Drag & Drop ──────────────────────────────────────── */
     .item-row.is-draggable {
       cursor: grab;

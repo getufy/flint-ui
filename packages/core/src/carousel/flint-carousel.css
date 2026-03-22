@@ -12,3 +12,14 @@
       outline-offset: 4px;
       border-radius: var(--flint-border-radius-md);
     }
+
+    /* ── Mouse dragging ──────────────────────────────────────────── */
+
+    .carousel.mouse-dragging {
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .carousel.mouse-dragging:active {
+      cursor: grabbing;
+    }

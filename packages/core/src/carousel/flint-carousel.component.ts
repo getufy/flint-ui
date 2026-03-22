@@ -1,5 +1,6 @@
 import { unsafeCSS, html, css, type PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
 import uiCarouselContentStyles from './flint-carousel-content.css?inline';
 import uiCarouselItemStyles from './flint-carousel-item.css?inline';
 import uiCarouselStyles from './flint-carousel.css?inline';
@@ -229,6 +230,9 @@ export class FlintCarousel extends FlintElement {
   /** Enable touch/swipe gestures. */
   @property({ type: Boolean }) touch = true;
 
+  /** Enable mouse-based drag navigation (mousedown/mousemove/mouseup). */
+  @property({ type: Boolean, attribute: 'mouse-dragging' }) mouseDragging = false;
+
   private _currentIndex = 0;
   private _total = 0;
 
@@ -241,6 +245,13 @@ export class FlintCarousel extends FlintElement {
   private _touchEndX = 0;
   private _touchEndY = 0;
   private _isSwiping = false;
+
+  /* ── Mouse drag tracking ─────────────────────────────────────── */
+  private _mouseStartX = 0;
+  private _mouseStartY = 0;
+  private _mouseEndX = 0;
+  private _mouseEndY = 0;
+  private _isMouseDragging = false;
 
   private readonly _handleTouchStart = (e: TouchEvent) => {
     if (!this.touch) return;
@@ -268,6 +279,44 @@ export class FlintCarousel extends FlintElement {
     const delta = isVertical
       ? this._touchStartY - this._touchEndY
       : this._touchStartX - this._touchEndX;
+    const threshold = 50;
+
+    if (Math.abs(delta) < threshold) return;
+
+    if (delta > 0) {
+      this.next();
+    } else {
+      this.previous();
+    }
+  };
+
+  /* ── Mouse drag handlers ──────────────────────────────────────── */
+
+  private readonly _handleMouseDown = (e: MouseEvent) => {
+    if (!this.mouseDragging) return;
+    this._stopAutoplay();
+    this._mouseStartX = e.clientX;
+    this._mouseStartY = e.clientY;
+    this._mouseEndX = e.clientX;
+    this._mouseEndY = e.clientY;
+    this._isMouseDragging = true;
+  };
+
+  private readonly _handleMouseMove = (e: MouseEvent) => {
+    if (!this._isMouseDragging) return;
+    e.preventDefault();
+    this._mouseEndX = e.clientX;
+    this._mouseEndY = e.clientY;
+  };
+
+  private readonly _handleMouseUp = () => {
+    if (!this._isMouseDragging) return;
+    this._isMouseDragging = false;
+
+    const isVertical = this.orientation === 'vertical';
+    const delta = isVertical
+      ? this._mouseStartY - this._mouseEndY
+      : this._mouseStartX - this._mouseEndX;
     const threshold = 50;
 
     if (Math.abs(delta) < threshold) return;
@@ -451,7 +500,10 @@ export class FlintCarousel extends FlintElement {
   render() {
     return html`
       <div
-        class="carousel"
+        class=${classMap({
+          'carousel': true,
+          'mouse-dragging': this.mouseDragging,
+        })}
         part="base"
         role="region"
         aria-roledescription="carousel"
@@ -461,6 +513,10 @@ export class FlintCarousel extends FlintElement {
         @touchstart=${this._handleTouchStart}
         @touchmove=${this._handleTouchMove}
         @touchend=${this._handleTouchEnd}
+        @mousedown=${this._handleMouseDown}
+        @mousemove=${this._handleMouseMove}
+        @mouseup=${this._handleMouseUp}
+        @mouseleave=${this._handleMouseUp}
       >
         <slot></slot>
       </div>

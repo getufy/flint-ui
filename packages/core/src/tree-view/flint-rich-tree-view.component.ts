@@ -39,6 +39,7 @@ export interface RichTreeViewDataSource {
  *
  * @fires flint-tree-view-item-click        - When a tree item is activated (detail: { itemId })
  * @fires flint-tree-view-expanded-items-change - When the expanded set changes (detail: { expandedItems })
+ * @fires flint-selection-change - When the selected set changes (detail: { selectedItems })
  * @fires flint-tree-view-error               - When a lazy-loading dataSource call fails (detail: { message, id, error })
  */
 export class FlintRichTreeView extends FlintElement {
@@ -158,12 +159,48 @@ export class FlintRichTreeView extends FlintElement {
         newIndex: number;
     }) => void;
 
+    // ─── Selection props ─────────────────────────────────────────────────────
+
+    /**
+     * Selection mode:
+     * - 'none' (default): no selection tracking
+     * - 'single': at most one item selected at a time
+     * - 'multiple': multiple items with checkboxes, Ctrl+Click, Shift+Click
+     */
+    @property({ type: String, attribute: 'selection-mode' })
+    selectionMode: 'none' | 'single' | 'multiple' = 'none';
+
+    /** Controlled mode. The set of selected item IDs. */
+    @property({ attribute: false })
+    selectedItems?: string[];
+
+    /** Uncontrolled mode. Item IDs selected on initial mount. */
+    @property({ attribute: false })
+    defaultSelectedItems: string[] = [];
+
+    /** Callback fired when the selection changes. */
+    @property({ attribute: false })
+    onSelectedItemsChange?: (itemIds: string[]) => void;
+
+    /**
+     * When true (and selectionMode='multiple'), selecting a parent item
+     * automatically selects/deselects all descendants, and parent items
+     * show indeterminate state when partially selected.
+     */
+    @property({ type: Boolean, attribute: 'selection-propagation' })
+    selectionPropagation = false;
+
     // ─── Internal state ───────────────────────────────────────────────────────
 
     /** Tracks expanded IDs in uncontrolled mode. */
     private _internalExpandedItems = new Set<string>();
     /** Prevents `defaultExpandedItems` from being re-applied on subsequent item changes. */
     private _expansionInitialized = false;
+
+    /** Tracks selected IDs in uncontrolled mode. */
+    private _internalSelectedItems = new Set<string>();
+    private _selectionInitialized = false;
+    private _lastSelectedIndex = -1;
     /** Stores imperative disabled overrides from `setIsItemDisabled()`. */
     private _disabledOverrides = new Map<string, boolean>();
 
@@ -253,6 +290,13 @@ export class FlintRichTreeView extends FlintElement {
                 this._syncExpansion();
                 this._initRovingTabindex();
             }
+            if (!this._selectionInitialized) {
+                this._initSelection();
+            }
+            this._syncSelection();
+        }
+        if (_changedProperties.has('selectionMode') || _changedProperties.has('selectedItems')) {
+            this._syncSelection();
         }
 
         // Push draggable state into each item's inner row after every render.
@@ -414,6 +458,159 @@ export class FlintRichTreeView extends FlintElement {
         return Array.from(item.children).some(el => el.tagName === 'FLINT-TREE-ITEM');
     }
 
+    // ─── Selection management ─────────────────────────────────────────────────
+
+    private get _isSelectionControlled(): boolean {
+        return this.selectedItems !== undefined;
+    }
+
+    private _getEffectiveSelected(): Set<string> {
+        return this._isSelectionControlled
+            ? new Set(this.selectedItems!)
+            : this._internalSelectedItems;
+    }
+
+    private _initSelection() {
+        if (this._selectionInitialized) return;
+        this._selectionInitialized = true;
+        if (!this._isSelectionControlled && this.defaultSelectedItems.length > 0) {
+            this._internalSelectedItems = new Set(this.defaultSelectedItems);
+        }
+    }
+
+    private _syncSelection() {
+        const selectedSet = this._getEffectiveSelected();
+        const showCheckbox = this.selectionMode === 'multiple';
+        const indeterminateSet = this.selectionPropagation
+            ? this._computeIndeterminate(selectedSet)
+            : new Set<string>();
+
+        this._getAllItems().forEach(item => {
+            item.selected = selectedSet.has(item.itemId);
+            item.indeterminate = indeterminateSet.has(item.itemId);
+            item.setShowCheckbox(showCheckbox);
+        });
+    }
+
+    private _computeIndeterminate(selectedSet: Set<string>): Set<string> {
+        const indeterminateSet = new Set<string>();
+        const items = this._getEffectiveItems();
+
+        const processItem = (item: RichTreeItem): 'all' | 'some' | 'none' => {
+            const children = this.getItemChildren(item) ?? [];
+            const id = this.getItemId(item);
+
+            if (children.length === 0) {
+                return selectedSet.has(id) ? 'all' : 'none';
+            }
+
+            const childStates = children.map(processItem);
+            const allSelected = childStates.every(s => s === 'all') && selectedSet.has(id);
+            const someSelected = childStates.some(s => s === 'all' || s === 'some') || selectedSet.has(id);
+
+            if (allSelected) return 'all';
+            if (someSelected) {
+                indeterminateSet.add(id);
+                return 'some';
+            }
+            return 'none';
+        };
+
+        items.forEach(processItem);
+        // Remove items that are fully selected from indeterminate
+        for (const id of indeterminateSet) {
+            if (selectedSet.has(id)) {
+                // Check if all descendants are selected
+                const item = this._findItemById(id, items);
+                if (item) {
+                    const allDesc = this._getDescendantIds(item);
+                    if (allDesc.every(d => selectedSet.has(d))) {
+                        indeterminateSet.delete(id);
+                    }
+                }
+            }
+        }
+        return indeterminateSet;
+    }
+
+    private _getDescendantIds(item: RichTreeItem): string[] {
+        const ids: string[] = [];
+        const children = this.getItemChildren(item) ?? [];
+        for (const child of children) {
+            ids.push(this.getItemId(child));
+            ids.push(...this._getDescendantIds(child));
+        }
+        return ids;
+    }
+
+    private _applySelection(newSelected: string[]) {
+        if (this._isSelectionControlled) {
+            this.onSelectedItemsChange?.(newSelected);
+            this.dispatchEvent(new CustomEvent('flint-selection-change', {
+                detail: { selectedItems: newSelected }, bubbles: false,
+            }));
+            this._syncSelection();
+        } else {
+            this._internalSelectedItems = new Set(newSelected);
+            this._syncSelection();
+            this.onSelectedItemsChange?.(newSelected);
+            this.dispatchEvent(new CustomEvent('flint-selection-change', {
+                detail: { selectedItems: newSelected }, bubbles: false,
+            }));
+        }
+    }
+
+    private _handleSelection(itemId: string, detail: { ctrlKey?: boolean; shiftKey?: boolean }) {
+        const current = this._getEffectiveSelected();
+
+        if (this.selectionMode === 'single') {
+            this._applySelection(current.has(itemId) ? [] : [itemId]);
+            return;
+        }
+
+        // Multiple mode
+        const focusable = this._getFocusableItems();
+
+        if (this.selectionPropagation && !detail.shiftKey) {
+            // Toggle with cascade
+            const newSet = new Set(current);
+            const item = this._findItemById(itemId, this._getEffectiveItems());
+            const descendants = item ? this._getDescendantIds(item) : [];
+            const allIds = [itemId, ...descendants];
+
+            if (newSet.has(itemId)) {
+                allIds.forEach(id => newSet.delete(id));
+            } else {
+                allIds.forEach(id => newSet.add(id));
+            }
+            this._applySelection(Array.from(newSet));
+            this._lastSelectedIndex = focusable.findIndex(i => i.itemId === itemId);
+            return;
+        }
+
+        if (detail.shiftKey && this._lastSelectedIndex >= 0) {
+            const currentIdx = focusable.findIndex(i => i.itemId === itemId);
+            if (currentIdx >= 0) {
+                const [start, end] = this._lastSelectedIndex < currentIdx
+                    ? [this._lastSelectedIndex, currentIdx]
+                    : [currentIdx, this._lastSelectedIndex];
+                const rangeIds = focusable.slice(start, end + 1).map(i => i.itemId);
+                const newSet = new Set(current);
+                rangeIds.forEach(id => newSet.add(id));
+                this._applySelection(Array.from(newSet));
+            }
+        } else if (detail.ctrlKey) {
+            const newSet = new Set(current);
+            if (newSet.has(itemId)) newSet.delete(itemId);
+            else newSet.add(itemId);
+            this._applySelection(Array.from(newSet));
+            this._lastSelectedIndex = focusable.findIndex(i => i.itemId === itemId);
+        } else {
+            this._applySelection([itemId]);
+            this._lastSelectedIndex = focusable.findIndex(i => i.itemId === itemId);
+        }
+    }
+
     // ─── Expansion management ─────────────────────────────────────────────────
 
     private _initExpansion() {
@@ -504,13 +701,18 @@ export class FlintRichTreeView extends FlintElement {
 
     /** Handles `flint-tree-item-click` (row click). Also triggers expansion in content mode. */
     private _handleItemClick = (e: Event) => {
-        const { itemId } = (e as CustomEvent).detail as { itemId: string };
+        const detail = (e as CustomEvent).detail as { itemId: string; ctrlKey?: boolean; shiftKey?: boolean };
+        const { itemId } = detail;
 
         if (this.expansionTrigger === 'content') {
             const item = this.getItemDOMElement(itemId);
             if (item && this._itemHasChildren(item)) {
                 this._handleToggle(item, !item.expanded);
             }
+        }
+
+        if (this.selectionMode !== 'none') {
+            this._handleSelection(itemId, detail);
         }
 
         this.onItemClick?.(itemId);
@@ -579,12 +781,34 @@ export class FlintRichTreeView extends FlintElement {
                 if (last) this._focusItem(last);
                 break;
             }
-            case 'Enter':
             case ' ': {
+                e.preventDefault();
+                if (focusedItem.disabled) break;
+                if (this.selectionMode === 'multiple') {
+                    this._handleSelection(focusedItem.itemId, { ctrlKey: true });
+                } else {
+                    if (this._itemHasChildren(focusedItem)) {
+                        this._handleToggle(focusedItem, !focusedItem.expanded);
+                    }
+                    if (this.selectionMode === 'single') {
+                        this._handleSelection(focusedItem.itemId, {});
+                    }
+                    this.onItemClick?.(focusedItem.itemId);
+                    this.dispatchEvent(new CustomEvent('flint-tree-view-item-click', {
+                        detail: { itemId: focusedItem.itemId },
+                        bubbles: false,
+                    }));
+                }
+                break;
+            }
+            case 'Enter': {
                 e.preventDefault();
                 if (focusedItem.disabled) break;
                 if (this._itemHasChildren(focusedItem)) {
                     this._handleToggle(focusedItem, !focusedItem.expanded);
+                }
+                if (this.selectionMode === 'single') {
+                    this._handleSelection(focusedItem.itemId, {});
                 }
                 this.onItemClick?.(focusedItem.itemId);
                 this.dispatchEvent(new CustomEvent('flint-tree-view-item-click', {
@@ -594,6 +818,14 @@ export class FlintRichTreeView extends FlintElement {
                 break;
             }
             default: {
+                if (e.key === 'a' && (e.ctrlKey || e.metaKey) && this.selectionMode === 'multiple') {
+                    e.preventDefault();
+                    const allIds = this._getFocusableItems()
+                        .filter(i => !i.disabled)
+                        .map(i => i.itemId);
+                    this._applySelection(allIds);
+                    break;
+                }
                 if (e.key.length === 1) {
                     const char = e.key.toLowerCase();
                     const startIdx = idx < 0 ? 0 : idx + 1;

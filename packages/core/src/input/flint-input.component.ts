@@ -113,6 +113,19 @@ export class FlintInput extends FormAssociated(FlintElement) {
     @property({ type: String, reflect: true })
     size: Size = 'md';
 
+    /**
+     * Visual variant of the input.
+     * - `outlined` (default) — standard bordered input
+     * - `filled` — background color, no visible border
+     * @default 'outlined'
+     */
+    @property({ type: String, reflect: true })
+    variant: 'outlined' | 'filled' = 'outlined';
+
+    /** Whether to use pill-shaped (fully rounded) ends. */
+    @property({ type: Boolean, reflect: true })
+    pill = false;
+
     /** Initial value (uncontrolled). Only used on first render; ignored after mount. */
     @property({ type: String, attribute: 'default-value' })
     defaultValue?: string;

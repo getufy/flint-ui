@@ -44,6 +44,9 @@ export class FlintTooltip extends FlintElement {
     /** Delay in ms before hiding the tooltip. */
     @property({ type: Number, attribute: 'close-delay' }) closeDelay = 0;
 
+    /** Distance in pixels between the tooltip and the trigger element. */
+    @property({ type: Number }) distance = 8;
+
     /**
      * When true, the tooltip popup uses `position: fixed` instead of `position: absolute`
      * so it can escape containers with `overflow: hidden` or `overflow: clip`.
@@ -174,7 +177,7 @@ export class FlintTooltip extends FlintElement {
           .active=${this._visible}
           placement=${this.placement}
           .strategy=${this.hoist ? 'fixed' as const : 'absolute' as const}
-          .distance=${8}
+          .distance=${this.distance}
           flip
           @flint-reposition=${this._handleReposition}
         >

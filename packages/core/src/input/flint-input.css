@@ -140,6 +140,45 @@
       color: var(--flint-error-color);
     }
 
+/* ── Variant: filled ──────────────────────────────────────────── */
+
+:host([variant="filled"]) .input-container {
+    border-color: transparent;
+    background-color: var(--flint-input-filled-bg, var(--flint-surface-background-flat, #f3f4f6));
+}
+
+:host([variant="filled"]) .input-container:hover:not(:has(input:disabled)):not(:has(.error-input)) {
+    background-color: var(--flint-input-filled-bg-hover, #e5e7eb);
+    border-color: transparent;
+}
+
+:host([variant="filled"]) .input-container:focus-within {
+    border-color: var(--flint-primary-color);
+    background-color: var(--flint-input-bg);
+}
+
+:host([variant="filled"]) .input-container:has(input[aria-invalid="true"]) {
+    border-color: var(--flint-error-color);
+}
+
+/* ── Shape: pill ──────────────────────────────────────────────── */
+
+:host([pill]) .input-container {
+    border-radius: 9999px;
+}
+
+:host([pill]) input {
+    border-radius: 9999px;
+}
+
+:host([pill]) .prefix ::slotted(*) {
+    margin-left: 14px;
+}
+
+:host([pill]) .suffix ::slotted(*) {
+    margin-right: 14px;
+}
+
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;

@@ -5,6 +5,7 @@ import { repeat } from 'lit/directives/repeat.js';
 import { PropertyValues } from 'lit';
 import { FlintElement } from '../flint-element.js';
 import { FlintPopup } from '../popup/flint-popup.component.js';
+import { FlintTooltip } from '../tooltip/flint-tooltip.component.js';
 import { FormAssociated } from '../mixins/form-associated.js';
 import { FormControlController } from '../controllers/form-control.js';
 import { LocalizeController } from '../utilities/localize.js';
@@ -33,10 +34,15 @@ let _uidCounter = 0;
  * @slot icon - Optional icon shown at the start of the trigger.
  * @slot error-message - Optional slot for error message content (use error-message prop for simple text).
  *
+ * @fires flint-clear - Dispatched when the clear button is clicked.
+ *
  * @csspart label - The `<label>` element.
  * @csspart trigger - The combobox trigger container.
  * @csspart placeholder - The placeholder text `<span>`.
  * @csspart chip - A selected-value chip (multiple mode).
+ * @csspart chip-overflow - The "+N more" overflow chip (multiple mode).
+ * @csspart clear-button - The clear button (when clearable).
+ * @csspart search-input - The search input (when searchable).
  * @csspart dropdown - The dropdown listbox container.
  * @csspart option - An individual option element.
  * @csspart error-message - The error message `<span>`.
@@ -47,6 +53,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
 
   static override dependencies: Record<string, typeof FlintElement> = {
     'flint-popup': FlintPopup,
+    'flint-tooltip': FlintTooltip,
   };
 
   /** Label text displayed above the select. */
@@ -90,7 +97,20 @@ export class FlintSelect extends FormAssociated(FlintElement) {
    * Should return a promise that resolves to an array of `SelectOption`.
    * While loading, a spinner is shown in the dropdown.
    */
-  @property({ attribute: false }) loadOptions: (() => Promise<SelectOption[]>) | null = null;
+  @property({ attribute: false }) loadOptions: ((searchTerm?: string) => Promise<SelectOption[]>) | null = null;
+
+  /** When true, shows a clear button in the trigger when a value is selected. */
+  @property({ type: Boolean }) clearable = false;
+
+  /** When true, adds a text input for filtering options by label. */
+  @property({ type: Boolean }) searchable = false;
+
+  /**
+   * Maximum number of chips visible in multi-select mode.
+   * Excess selections are collapsed into a "+N more" indicator.
+   * @default Infinity
+   */
+  @property({ type: Number, attribute: 'max-tags-visible' }) maxTagsVisible = Infinity;
 
   private _formControl = new FormControlController(this);
   private _localize = new LocalizeController(this);
@@ -99,8 +119,16 @@ export class FlintSelect extends FormAssociated(FlintElement) {
   @state() private _highlightedIndex = -1;
   @state() private _isFocused = false;
   @state() private _isLoading = false;
+  @state() private _searchTerm = '';
 
   private readonly _uid = `flint-select-${++_uidCounter}`;
+  private _searchDebounce?: ReturnType<typeof setTimeout>;
+
+  private get _filteredOptions(): SelectOption[] {
+    if (!this.searchable || !this._searchTerm) return this.options;
+    const term = this._searchTerm.toLowerCase();
+    return this.options.filter(opt => opt.label.toLowerCase().includes(term));
+  }
 
   /* ── Typeahead ─────────────────────────────────────────────────────── */
   private _typeaheadBuffer = '';
@@ -139,11 +167,12 @@ export class FlintSelect extends FormAssociated(FlintElement) {
   };
 
   private get _virtualRange(): { start: number; end: number; totalHeight: number } {
+    const opts = this._filteredOptions;
     const overscan = 5;
-    const totalHeight = this.options.length * this.itemHeight;
+    const totalHeight = opts.length * this.itemHeight;
     const start = Math.max(0, Math.floor(this._scrollTop / this.itemHeight) - overscan);
     const visibleCount = this.visibleItems + overscan * 2;
-    const end = Math.min(this.options.length, start + visibleCount);
+    const end = Math.min(opts.length, start + visibleCount);
     return { start, end, totalHeight };
   }
 
@@ -223,6 +252,8 @@ export class FlintSelect extends FormAssociated(FlintElement) {
   /** Close the dropdown with animation, then clean up state. */
   private async _closeDropdown() {
     this._highlightedIndex = -1;
+    this._searchTerm = '';
+    clearTimeout(this._searchDebounce);
     await this._runHideAnimation();
     this._isOpen = false;
   }
@@ -246,6 +277,13 @@ export class FlintSelect extends FormAssociated(FlintElement) {
       this._isOpen = true;
       void this._runShowAnimation();
 
+      // Focus search input if searchable
+      if (this.searchable) {
+        void this.updateComplete.then(() => {
+          this.shadowRoot?.querySelector<HTMLInputElement>('.search-input')?.focus();
+        });
+      }
+
       // Trigger async loading if a loadOptions callback is provided
       if (this.loadOptions) {
         this._isLoading = true;
@@ -262,6 +300,55 @@ export class FlintSelect extends FormAssociated(FlintElement) {
     } else {
       void this._closeDropdown();
     }
+  };
+
+  private _handleSearchInput = (e: Event) => {
+    const input = e.target as HTMLInputElement;
+    this._searchTerm = input.value;
+    this._highlightedIndex = -1;
+
+    if (this.loadOptions) {
+      clearTimeout(this._searchDebounce);
+      this._searchDebounce = setTimeout(() => {
+        this._isLoading = true;
+        this.loadOptions!(this._searchTerm)
+          .then(opts => { this.options = opts; this._isLoading = false; })
+          .catch(() => { this._isLoading = false; });
+      }, 300);
+    }
+  };
+
+  private _handleSearchKeydown = (e: KeyboardEvent) => {
+    switch (e.key) {
+      case 'ArrowDown':
+      case 'ArrowUp':
+      case 'Enter':
+      case 'Escape':
+      case 'Tab':
+        this._handleKeydown(e);
+        break;
+      case 'Backspace':
+        // Remove last chip when search is empty in multi-select
+        if (this.multiple && this._searchTerm === '' && (this.value as string[]).length > 0) {
+          const vals = [...this.value as string[]];
+          vals.pop();
+          this.value = vals;
+          this._dispatchChange();
+        }
+        break;
+    }
+  };
+
+  private _handleClear = (e: Event) => {
+    e.stopPropagation();
+    e.preventDefault();
+    this.value = [];
+    this._dispatchChange();
+    this.dispatchEvent(new CustomEvent('flint-clear', {
+      bubbles: true,
+      composed: true,
+    }));
+    this.shadowRoot?.querySelector<HTMLElement>('.select-trigger')?.focus();
   };
 
   private _handleOptionClick(option: SelectOption, e: Event) {
@@ -376,8 +463,8 @@ export class FlintSelect extends FormAssociated(FlintElement) {
         break;
       }
       default: {
-        // Typeahead: single printable characters trigger search
-        if (this._isOpen && e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        // Typeahead: single printable characters trigger search (skip when searchable — input handles it)
+        if (this._isOpen && !this.searchable && e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
           this._handleTypeahead(e.key);
         }
         break;
@@ -480,7 +567,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
 
   private _renderVirtualized() {
     const { start, end, totalHeight } = this._virtualRange;
-    const visibleOptions = this.options.slice(start, end);
+    const visibleOptions = this._filteredOptions.slice(start, end);
     const containerHeight = Math.min(this.visibleItems * this.itemHeight, totalHeight);
 
     return html`
@@ -502,11 +589,20 @@ export class FlintSelect extends FormAssociated(FlintElement) {
 
   render() {
     const selectedOptions = this.options.filter(opt => this.value.includes(opt.value));
+    const filteredOptions = this._filteredOptions;
     const labelId = `${this._uid}-label`;
     const listboxId = `${this._uid}-listbox`;
     const activeDescendant = this._highlightedIndex >= 0
       ? `${this._uid}-opt-${this._highlightedIndex}`
       : '';
+
+    // maxTagsVisible
+    const visibleChips = this.multiple && isFinite(this.maxTagsVisible)
+      ? selectedOptions.slice(0, this.maxTagsVisible)
+      : selectedOptions;
+    const overflowCount = selectedOptions.length - visibleChips.length;
+
+    const showClear = this.clearable && selectedOptions.length > 0 && !this.disabled && !this.readonly;
 
     return html`
       <div class="wrapper">
@@ -549,31 +645,84 @@ export class FlintSelect extends FormAssociated(FlintElement) {
             <slot name="icon"></slot>
 
             <div class="value-container">
-              ${selectedOptions.length === 0 ? html`
-                <span class="placeholder" part="placeholder">${this.placeholder || this._localize.term('selectOption')}</span>
-              ` : nothing}
-
               ${this.multiple
-                ? repeat(selectedOptions, opt => opt.value, opt => html`
-                    <span class="chip" part="chip">
-                      ${opt.label}
-                      <button
-                        type="button"
-                        class="chip-remove"
-                        aria-label=${this._localize.term('removeOption', opt.label)}
-                        @click=${(e: Event) => this._removeValue(opt.value, e)}
-                      >
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                          <path d="M18 6L6 18M6 6l12 12"></path>
-                        </svg>
-                      </button>
-                    </span>
-                  `)
-                : (selectedOptions[0] ? html`
-                    <span class="single-value">${selectedOptions[0].label}</span>
-                  ` : nothing)
+                ? html`
+                    ${selectedOptions.length === 0 && !(this.searchable && this._isOpen) ? html`
+                      <span class="placeholder" part="placeholder">${this.placeholder || this._localize.term('selectOption')}</span>
+                    ` : nothing}
+                    ${repeat(visibleChips, opt => opt.value, opt => html`
+                      <span class="chip" part="chip">
+                        ${opt.label}
+                        <button
+                          type="button"
+                          class="chip-remove"
+                          aria-label=${this._localize.term('removeOption', opt.label)}
+                          @click=${(e: Event) => this._removeValue(opt.value, e)}
+                        >
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <path d="M18 6L6 18M6 6l12 12"></path>
+                          </svg>
+                        </button>
+                      </span>
+                    `)}
+                    ${overflowCount > 0 ? html`
+                      <flint-tooltip .label=${selectedOptions.slice(this.maxTagsVisible).map(o => o.label).join(', ')} placement="top">
+                        <span class="chip chip-overflow" part="chip-overflow"
+                          aria-label=${this._localize.term('moreSelected', overflowCount)}>
+                          +${overflowCount}
+                        </span>
+                      </flint-tooltip>
+                    ` : nothing}
+                    ${this.searchable && this._isOpen ? html`
+                      <input
+                        class="search-input search-input--multi"
+                        part="search-input"
+                        type="text"
+                        .value=${this._searchTerm}
+                        placeholder=${visibleChips.length === 0 ? (this.placeholder || this._localize.term('search')) : ''}
+                        @input=${this._handleSearchInput}
+                        @click=${(e: Event) => e.stopPropagation()}
+                        @keydown=${this._handleSearchKeydown}
+                        autocomplete="off"
+                      />
+                    ` : nothing}
+                  `
+                : html`
+                    ${this.searchable && this._isOpen
+                      ? html`
+                        <input
+                          class="search-input"
+                          part="search-input"
+                          type="text"
+                          .value=${this._searchTerm}
+                          placeholder=${this.placeholder || this._localize.term('search')}
+                          @input=${this._handleSearchInput}
+                          @click=${(e: Event) => e.stopPropagation()}
+                          @keydown=${this._handleSearchKeydown}
+                          autocomplete="off"
+                        />`
+                      : selectedOptions.length === 0
+                        ? html`<span class="placeholder" part="placeholder">${this.placeholder || this._localize.term('selectOption')}</span>`
+                        : html`<span class="single-value">${selectedOptions[0]!.label}</span>`
+                    }
+                  `
               }
             </div>
+
+            ${showClear ? html`
+              <button
+                type="button"
+                class="clear-btn"
+                part="clear-button"
+                tabindex="-1"
+                aria-label=${this._localize.term('clear')}
+                @click=${this._handleClear}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 6L6 18M6 6l12 12"></path>
+                </svg>
+              </button>
+            ` : nothing}
 
             <div class="arrow">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -594,13 +743,13 @@ export class FlintSelect extends FormAssociated(FlintElement) {
           >
             ${this._isLoading
               ? html`<div class="loading-indicator" part="loading"><span class="loading-spinner"></span> ${this._localize.term('loading')}</div>`
-              : this.options.length === 0
-                ? html`<div class="no-options">${this._localize.term('noOptions')}</div>`
+              : filteredOptions.length === 0
+                ? html`<div class="no-options">${this._searchTerm ? this._localize.term('noResults') : this._localize.term('noOptions')}</div>`
                 : this.virtualize
                   ? this._renderVirtualized()
                   : this._hasGroups
                     ? this._renderGrouped()
-                    : repeat(this.options, opt => opt.value, (opt, i) => this._renderOption(opt, i))
+                    : repeat(filteredOptions, opt => opt.value, (opt, i) => this._renderOption(opt, i))
             }
           </div>
         </flint-popup>

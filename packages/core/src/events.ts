@@ -90,6 +90,7 @@ export type FlintCommandDialogCloseEvent = CustomEvent<{ open: false }>;
 // Tabs
 export type FlintTabClickEvent = CustomEvent<{ value: string }>;
 export type FlintTabChangeEvent = CustomEvent<{ value: string }>;
+export type FlintTabCloseEvent = CustomEvent<{ value: string }>;
 
 // Accordion
 export type FlintAccordionChangeEvent = CustomEvent<{ expanded: boolean }>;
@@ -103,12 +104,13 @@ export type FlintNavigationMenuTriggerClickEvent = CustomEvent<{ contentId: stri
 export type FlintNavigationMenuContentToggleEvent = CustomEvent<{ contentId: string; open: boolean }>;
 
 // Tree view
-export type FlintTreeViewItemClickEvent = CustomEvent<{ itemId: string }>;
+export type FlintTreeViewItemClickEvent = CustomEvent<{ itemId: string; ctrlKey?: boolean; shiftKey?: boolean }>;
 export type FlintTreeViewExpandedItemsChangeEvent = CustomEvent<{ expandedItems: string[] }>;
+export type FlintTreeViewSelectionChangeEvent = CustomEvent<{ selectedItems: string[] }>;
 export type FlintTreeViewItemPositionChangeEvent = CustomEvent<{ itemId: string; newParentId: string | null; newIndex: number }>;
 export type FlintTreeViewErrorEvent = CustomEvent<{ message: string; id: string; error: unknown }>;
 export type FlintTreeItemToggleEvent = CustomEvent<{ itemId: string; expanded: boolean }>;
-export type FlintTreeItemClickEvent = CustomEvent<{ itemId: string }>;
+export type FlintTreeItemClickEvent = CustomEvent<{ itemId: string; ctrlKey?: boolean; shiftKey?: boolean }>;
 
 // Carousel
 export type FlintCarouselChangeEvent = CustomEvent<{ index: number; total: number }>;
@@ -248,6 +250,7 @@ declare global {
         // Tabs
         'flint-tab-click': FlintTabClickEvent;
         'flint-tab-change': FlintTabChangeEvent;
+        'flint-tab-close': FlintTabCloseEvent;
 
         // Accordion
         'flint-accordion-change': FlintAccordionChangeEvent;
@@ -267,6 +270,7 @@ declare global {
         'flint-tree-view-error': FlintTreeViewErrorEvent;
         'flint-tree-item-toggle': FlintTreeItemToggleEvent;
         'flint-tree-item-click': FlintTreeItemClickEvent;
+        'flint-selection-change': FlintTreeViewSelectionChangeEvent;
 
         // Carousel
         'flint-carousel-change': FlintCarouselChangeEvent;

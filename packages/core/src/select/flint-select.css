@@ -304,6 +304,60 @@
       border-radius: 3px;
     }
 
+    /* ── Clear button ──────────────────────────────────────────── */
+    .clear-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      padding: 2px;
+      cursor: pointer;
+      color: var(--flint-text-color-muted);
+      border-radius: 50%;
+      transition: color 0.15s, background-color 0.15s;
+      flex-shrink: 0;
+      line-height: 0;
+    }
+    .clear-btn:hover {
+      color: var(--flint-text-color);
+      background-color: var(--flint-hover-color);
+    }
+
+    /* ── Search input ─────────────────────────────────────────── */
+    .search-input {
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: var(--_font);
+      font-family: inherit;
+      color: var(--flint-text-color);
+      width: 100%;
+      min-width: 60px;
+      padding: 0;
+      flex: 1;
+    }
+    .search-input::placeholder {
+      color: var(--flint-input-placeholder-color);
+    }
+    .search-input--multi {
+      width: auto;
+      min-width: 80px;
+      flex: 1 1 80px;
+    }
+
+    /* ── Overflow chip ────────────────────────────────────────── */
+    .chip-overflow {
+      background-color: var(--flint-select-chip-bg);
+      color: var(--flint-select-chip-color);
+      padding: 2px 10px;
+      border-radius: var(--flint-select-chip-radius);
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: default;
+      white-space: nowrap;
+    }
+
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;

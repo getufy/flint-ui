@@ -80,6 +80,24 @@
         :host(:not([orientation="vertical"])) .indicator { bottom: 0; height: var(--flint-tab-indicator-height, 3px); }
         :host([orientation="vertical"])       .indicator { right: 0;  width: var(--flint-tab-indicator-width, 3px); }
 
+        /* Bottom placement: indicator at top, border at top */
+        :host([placement="bottom"]:not([orientation="vertical"])) .container {
+            border-bottom: none;
+            border-top: 1px solid var(--flint-tab-border-color, var(--flint-border-color));
+        }
+        :host([placement="bottom"]:not([orientation="vertical"])) .indicator {
+            top: 0; bottom: auto;
+        }
+
+        /* End placement: indicator at left, border at left */
+        :host([placement="end"][orientation="vertical"]) .container {
+            border-right: none;
+            border-left: 1px solid var(--flint-tab-border-color, var(--flint-border-color));
+        }
+        :host([placement="end"][orientation="vertical"]) .indicator {
+            left: 0; right: auto;
+        }
+
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;

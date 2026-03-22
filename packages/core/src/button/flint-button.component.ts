@@ -19,6 +19,7 @@ export type ButtonShape = 'default' | 'pill' | 'circle';
  * @csspart prefix - The container wrapping the prefix slot.
  * @csspart label - The container wrapping the default slot (label text).
  * @csspart suffix - The container wrapping the suffix slot.
+ * @csspart caret - The caret icon container.
  * @csspart spinner - The loading spinner element.
  */
 export class FlintButton extends FlintElement {
@@ -95,6 +96,10 @@ export class FlintButton extends FlintElement {
   @property({ type: String })
   shape: ButtonShape = 'default';
 
+  /** Renders a dropdown caret (chevron-down) icon in the suffix area. */
+  @property({ type: Boolean, reflect: true })
+  caret = false;
+
   override willUpdate() {
     if (import.meta.env?.DEV) {
       validateEnum('flint-button', 'appearance', this.appearance, ['filled', 'outlined', 'text', 'ghost']);
@@ -121,6 +126,7 @@ export class FlintButton extends FlintElement {
       [this.size]: true,
       pill: this.shape === 'pill',
       circle: this.shape === 'circle',
+      'has-caret': this.caret,
       'is-loading': this.loading,
       'is-disabled': isDisabled,
     };
@@ -131,6 +137,11 @@ export class FlintButton extends FlintElement {
       <span class="prefix-slot" part="prefix"><slot name="prefix"></slot></span>
       <span class="label-inner" part="label"><slot></slot></span>
       <span class="suffix-slot" part="suffix"><slot name="suffix"></slot></span>
+      ${this.caret ? html`
+        <span class="caret" part="caret" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </span>
+      ` : nothing}
       <span class="spinner" part="spinner" aria-hidden="true">
         <span class="spinner-icon"></span>
       </span>

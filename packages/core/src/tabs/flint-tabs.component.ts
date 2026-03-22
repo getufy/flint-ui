@@ -32,7 +32,7 @@ import { property, state, query } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
 import { LocalizeController } from '../utilities/localize.js';
-import type { Orientation } from '../types.js';
+import type { Orientation, TabPlacement } from '../types.js';
 import uiTabStyles from './flint-tab.css?inline';
 import uiTabPanelStyles from './flint-tab-panel.css?inline';
 import uiTabListStyles from './flint-tab-list.css?inline';
@@ -53,11 +53,15 @@ const iconDown = () => svgPath('M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.4
  * Tab: an individual tab button within a tab list.
  *
  * @fires flint-tab-click - Fired when the tab is clicked or activated via keyboard.
+ * @fires flint-tab-close - Fired when the close button is clicked. detail: `{ value: string }`
  *
  * @csspart tab - The tab button or anchor element.
+ * @csspart close-button - The close button element (when closable).
  */
 export class FlintTab extends FlintElement {
     static styles = unsafeCSS(uiTabStyles);
+
+    private _localize = new LocalizeController(this);
 
     /** Unique identifier for this tab. */
     @property({ reflect: true }) value = '';
@@ -65,6 +69,8 @@ export class FlintTab extends FlintElement {
     @property({ type: Boolean, reflect: true }) disabled = false;
     /** Whether the tab is currently selected. */
     @property({ type: Boolean, reflect: true }) selected = false;
+    /** Whether the tab shows a close button. */
+    @property({ type: Boolean, reflect: true }) closable = false;
     /**
      * Position of the icon slot relative to the label.
      * @default 'start'
@@ -81,17 +87,25 @@ export class FlintTab extends FlintElement {
 
     /** @internal – called by FlintTabs */
     setTabIndex(n: number) {
-        const el = this.shadowRoot?.querySelector<HTMLElement>('button,a');
+        const el = this.shadowRoot?.querySelector<HTMLElement>('[role="tab"]');
         if (el) el.tabIndex = n;
     }
 
     focusInner() {
-        this.shadowRoot?.querySelector<HTMLElement>('button,a')?.focus();
+        this.shadowRoot?.querySelector<HTMLElement>('[role="tab"]')?.focus();
     }
 
     private _fire = () => {
         if (this.disabled) return;
         this.dispatchEvent(new CustomEvent('flint-tab-click', {
+            detail: { value: this.value }, bubbles: true, composed: true,
+        }));
+    };
+
+    private _onClose = (e: Event) => {
+        e.stopPropagation();
+        if (this.disabled) return;
+        this.dispatchEvent(new CustomEvent('flint-tab-close', {
             detail: { value: this.value }, bubbles: true, composed: true,
         }));
     };
@@ -115,22 +129,39 @@ export class FlintTab extends FlintElement {
             </span>`;
     }
 
+    private _closeBtn() {
+        if (!this.closable) return nothing;
+        return html`
+            <button class="close-btn" part="close-button"
+                aria-label=${this._localize.term('closeTab')}
+                tabindex="0"
+                @click=${this._onClose}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                     stroke-linejoin="round" aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>`;
+    }
+
     render() {
         const cls = classMap({ tab: true, [`icon-${this.iconPosition}`]: true });
-        if (this.href) {
-            return html`<a class=${cls} part="tab" href=${this.href}
+        const tabEl = this.href
+            ? html`<a class=${cls} part="tab" href=${this.href}
                 role="tab"
                 aria-selected=${this.selected ? 'true' : 'false'}
                 aria-disabled=${this.disabled ? 'true' : nothing}
                 tabindex=${this.selected ? '0' : '-1'}
-                @click=${this._fire}>${this._inner()}</a>`;
-        }
-        return html`<button class=${cls} part="tab"
-            role="tab"
-            ?disabled=${this.disabled}
-            aria-selected=${this.selected ? 'true' : 'false'}
-            tabindex=${this.selected ? '0' : '-1'}
-            @click=${this._fire}>${this._inner()}</button>`;
+                @click=${this._fire}>${this._inner()}</a>`
+            : html`<button class=${cls} part="tab"
+                role="tab"
+                ?disabled=${this.disabled}
+                aria-selected=${this.selected ? 'true' : 'false'}
+                tabindex=${this.selected ? '0' : '-1'}
+                @click=${this._fire}>${this._inner()}</button>`;
+
+        return html`<div class="tab-wrapper">${tabEl}${this._closeBtn()}</div>`;
     }
 }
 
@@ -176,6 +207,13 @@ export class FlintTabList extends FlintElement {
     @property({ attribute: 'scroll-buttons' }) scrollButtons: 'auto' | 'false' = 'auto';
     /** Accessible label for the tab list. */
     @property({ attribute: 'aria-label' }) override ariaLabel = '';
+    /**
+     * Tab activation mode passed down from flint-tabs.
+     * @default 'automatic'
+     */
+    @property({ reflect: true }) activation: 'automatic' | 'manual' = 'automatic';
+    /** Tab placement passed down from flint-tabs. */
+    @property({ reflect: true }) placement: TabPlacement = 'top';
 
     @state() private _canBack = false;
     @state() private _canFwd = false;
@@ -258,6 +296,20 @@ export class FlintTabList extends FlintElement {
         const horiz = this.orientation === 'horizontal';
         const prev = horiz ? 'ArrowLeft' : 'ArrowUp';
         const next = horiz ? 'ArrowRight' : 'ArrowDown';
+
+        // Manual activation: Enter/Space activates the focused tab
+        if (this.activation === 'manual' && (e.key === 'Enter' || e.key === ' ')) {
+            e.preventDefault();
+            const tabs = this._tabs().filter(t => !t.disabled);
+            const cur = tabs.findIndex(t => t.shadowRoot?.activeElement != null || t === document.activeElement);
+            if (cur >= 0) {
+                tabs[cur]?.dispatchEvent(new CustomEvent('flint-tab-click', {
+                    detail: { value: tabs[cur]!.value }, bubbles: true, composed: true,
+                }));
+            }
+            return;
+        }
+
         if (![prev, next, 'Home', 'End'].includes(e.key)) return;
 
         e.preventDefault();
@@ -276,9 +328,13 @@ export class FlintTabList extends FlintElement {
         if (typeof tabs[idx]?.scrollIntoView === 'function') {
             tabs[idx]!.scrollIntoView({ block: 'nearest', inline: 'nearest' });
         }
-        tabs[idx]?.dispatchEvent(new CustomEvent('flint-tab-click', {
-            detail: { value: tabs[idx]!.value }, bubbles: true, composed: true,
-        }));
+
+        // Only auto-activate in 'automatic' mode
+        if (this.activation !== 'manual') {
+            tabs[idx]?.dispatchEvent(new CustomEvent('flint-tab-click', {
+                detail: { value: tabs[idx]!.value }, bubbles: true, composed: true,
+            }));
+        }
     };
 
     private _onSlotChange = () => {
@@ -365,6 +421,21 @@ export class FlintTabs extends FlintElement {
     /** Initial value (uncontrolled). Only used on first render; ignored after mount. */
     @property({ attribute: 'default-value' }) defaultValue = '';
 
+    /**
+     * Where the tab list is placed relative to the panels.
+     * 'top'/'bottom' produce horizontal tabs; 'start'/'end' produce vertical tabs.
+     * @default 'top'
+     */
+    @property({ reflect: true }) placement: TabPlacement = 'top';
+
+    /**
+     * Tab activation mode.
+     * - 'automatic': Arrow keys immediately activate the focused tab (default).
+     * - 'manual': Arrow keys move focus without activating — user must press Enter or Space.
+     * @default 'automatic'
+     */
+    @property({ reflect: true }) activation: 'automatic' | 'manual' = 'automatic';
+
     private _firstUpdate = true;
 
     willUpdate() {
@@ -405,12 +476,18 @@ export class FlintTabs extends FlintElement {
             }
         }
 
+        // Derive orientation from placement
+        const derivedOrientation: Orientation =
+            (this.placement === 'start' || this.placement === 'end') ? 'vertical' : 'horizontal';
+
         // Configure tab list
         if (tabList) {
-            tabList.orientation = this.orientation;
+            tabList.orientation = derivedOrientation;
             tabList.variant = this.variant;
             tabList.centered = this.centered;
             tabList.scrollButtons = this.scrollButtons;
+            tabList.activation = this.activation;
+            tabList.placement = this.placement;
             tabList.style.setProperty('--flint-tabs-ind-color', this._resolveColor(this.indicatorColor));
         }
 
@@ -480,7 +557,7 @@ export class FlintTabs extends FlintElement {
     }
 
     updated(changed: Map<string, unknown>) {
-        const layoutKeys = ['value', 'orientation', 'variant', 'centered', 'scrollButtons', 'defaultValue'];
+        const layoutKeys = ['value', 'orientation', 'variant', 'centered', 'scrollButtons', 'defaultValue', 'placement', 'activation'];
         const colorKeys = ['textColor', 'indicatorColor'];
 
         const needsLayout = layoutKeys.some(k => changed.has(k));

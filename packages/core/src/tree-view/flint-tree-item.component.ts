@@ -10,11 +10,12 @@ import uiTreeItemStyles from './flint-tree-item.css?inline';
  * @slot lead - Leading icon or content.
  * @slot - Item label text.
  *
- * @fires flint-tree-item-click  - Fired when the item is clicked (detail: { itemId })
+ * @fires flint-tree-item-click  - Fired when the item is clicked (detail: { itemId, ctrlKey, shiftKey })
  * @fires flint-tree-item-toggle - Fired when expanded state changes (detail: { itemId, expanded })
  * @csspart base - The component's base wrapper element.
  * @csspart children - The children element.
  * @csspart label - The label element.
+ * @csspart checkbox - The selection checkbox element.
  */
 export class FlintTreeItem extends FlintElement {
   static styles = unsafeCSS(uiTreeItemStyles);
@@ -42,6 +43,21 @@ export class FlintTreeItem extends FlintElement {
    */
   @property({ type: Boolean, attribute: 'has-children', reflect: true })
   hasChildren = false;
+
+  /** Whether this item is visually selected. Managed by the parent tree-view. */
+  @property({ type: Boolean, reflect: true })
+  selected = false;
+
+  /** Whether the checkbox is in an indeterminate state (some but not all children selected). */
+  @property({ type: Boolean, reflect: true })
+  indeterminate = false;
+
+  /** Whether to show a checkbox. Set by the parent tree-view when selectionMode is 'multiple'. */
+  @state() private _showCheckbox = false;
+
+  setShowCheckbox(value: boolean) {
+    this._showCheckbox = value;
+  }
 
   /**
    * FIX: Removed the Lit @property declaration for `draggable`.
@@ -97,6 +113,11 @@ export class FlintTreeItem extends FlintElement {
       this.removeAttribute('aria-expanded');
     }
     this.setAttribute('aria-disabled', String(this.disabled));
+    if (this.selected) {
+      this.setAttribute('aria-selected', 'true');
+    } else {
+      this.removeAttribute('aria-selected');
+    }
   }
 
   private _onSlotChange = (e: Event) => {
@@ -118,10 +139,10 @@ export class FlintTreeItem extends FlintElement {
     }));
   };
 
-  private _handleRowClick = () => {
+  private _handleRowClick = (e: MouseEvent) => {
     if (this.disabled) return;
     this.dispatchEvent(new CustomEvent('flint-tree-item-click', {
-      detail: { itemId: this.itemId },
+      detail: { itemId: this.itemId, ctrlKey: e.ctrlKey || e.metaKey, shiftKey: e.shiftKey },
       bubbles: true,
       composed: true,
     }));
@@ -166,6 +187,25 @@ export class FlintTreeItem extends FlintElement {
               <circle cx="15" cy="19" r="1" fill="currentColor"/>
             </svg>
           </div>
+        ` : nothing}
+
+        ${this._showCheckbox ? html`
+          <span
+            class=${classMap({
+              'checkbox': true,
+              'checkbox--checked': this.selected,
+              'checkbox--indeterminate': this.indeterminate,
+            })}
+            part="checkbox"
+            aria-hidden="true"
+          >
+            ${this.selected
+              ? html`<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`
+              : this.indeterminate
+                ? html`<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="5" y1="12" x2="19" y2="12"></line></svg>`
+                : nothing
+            }
+          </span>
         ` : nothing}
 
         ${showExpandBtn

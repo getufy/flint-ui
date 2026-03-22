@@ -90,6 +90,10 @@ const translation: Translation = {
   selectDateRange: 'Select Date Range',
   openDatePicker: 'Open date picker',
 
+  // Tabs
+  closeTab: 'Close tab',
+  moreSelected: (count: number) => `+${count} more`,
+
   // Misc
   imageComparisonSlider: 'Image comparison slider',
   speedDialActions: 'Speed dial actions',

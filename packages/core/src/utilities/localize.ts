@@ -100,6 +100,10 @@ export interface Translation {
   selectDateRange: string;
   openDatePicker: string;
 
+  // Tabs
+  closeTab: string;
+  moreSelected: (count: number) => string;
+
   // Misc
   imageComparisonSlider: string;
   speedDialActions: string;
