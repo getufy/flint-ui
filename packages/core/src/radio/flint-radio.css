@@ -117,11 +117,3 @@
         :host([size="lg"]) .label {
             font-size: var(--flint-radio-label-font-size-lg, 16px);
         }
-
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-}

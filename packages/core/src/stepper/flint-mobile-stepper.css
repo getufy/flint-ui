@@ -37,11 +37,3 @@
         .nav-btn:disabled { opacity:.38; cursor:default; }
         .nav-btn.back { background:var(--flint-surface-1); color:var(--flint-text-color); border:1px solid var(--flint-border-color); }
         .nav-btn.next { background:var(--flint-primary-color); color:var(--flint-text-color-on-primary); border:none; }
-
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-}

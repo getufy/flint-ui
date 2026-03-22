@@ -48,11 +48,3 @@
     .error     { background-color: var(--flint-error-color);     color: var(--flint-text-color-on-primary); }
     .success   { background-color: var(--flint-success-color);   color: var(--flint-text-color-on-primary); }
     .warning   { background-color: var(--flint-warning-color);   color: var(--flint-text-color-on-primary); }
-
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-}

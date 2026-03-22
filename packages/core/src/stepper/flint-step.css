@@ -125,11 +125,3 @@
         .icon-circle.completed{ background: var(--flint-primary-color); border-color: var(--flint-primary-color); color: var(--flint-text-color-on-primary); }
         .icon-circle.error    { border-color: var(--flint-error-color); color: var(--flint-error-color); }
         :host([disabled]) .icon-circle { opacity: .4; }
-
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-}

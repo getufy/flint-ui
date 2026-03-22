@@ -42,11 +42,3 @@
       50% { stroke-dasharray: 89, 200; stroke-dashoffset: -35px; }
       100% { stroke-dasharray: 89, 200; stroke-dashoffset: -124px; }
     }
-
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-}

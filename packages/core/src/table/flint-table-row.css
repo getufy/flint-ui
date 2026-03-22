@@ -13,11 +13,3 @@
     :host([hover]) {
       background-color: var(--flint-table-row-hover-bg, var(--flint-hover-color, rgba(0, 0, 0, 0.04)));
     }
-
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-}

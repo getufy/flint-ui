@@ -52,11 +52,3 @@
     @container flint-card (min-width: 301px) and (max-width: 600px) {
       .card { padding: var(--flint-spacing-3, 0.75rem); }
     }
-
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-}

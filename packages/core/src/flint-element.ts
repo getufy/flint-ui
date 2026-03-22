@@ -1,7 +1,26 @@
-import { LitElement } from 'lit';
+import { LitElement, css } from 'lit';
+import type { CSSResultGroup, CSSResultOrNative } from 'lit';
+
+/** Shared styles injected into every FlintElement shadow root. */
+const sharedStyles = css`
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+`;
 
 export class FlintElement extends LitElement {
   static dependencies: Record<string, typeof FlintElement> = {};
+
+  /** Appends shared styles (e.g. reduced-motion) to every subclass. */
+  protected static finalizeStyles(styles?: CSSResultGroup): CSSResultOrNative[] {
+    return [...super.finalizeStyles(styles), sharedStyles];
+  }
 
   /** ElementInternals instance — used for form association and ARIA. */
   _internals: ElementInternals | null = null;

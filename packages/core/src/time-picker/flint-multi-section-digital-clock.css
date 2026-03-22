@@ -23,11 +23,3 @@
     .item:hover { background:var(--flint-hover-color); }
     .item.sel { background:var(--flint-primary-color); color:var(--flint-text-color-on-primary); font-weight:700; border-radius:6px; }
     .col-spacer { min-height:80px; }
-
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-}
