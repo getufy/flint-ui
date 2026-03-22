@@ -1,5 +1,16 @@
 # @getufy/flint-ui
 
+## [0.8.4](https://github.com/getufy/flint-ui/compare/flint-ui-v0.8.3...flint-ui-v0.8.4) (2026-03-22)
+
+
+### Bug Fixes
+
+* Event Dispatch Boilerplate and animation duplicatio ([c2e633f](https://github.com/getufy/flint-ui/commit/c2e633fc6c449f096c9b786855274a29c940ca97))
+* id counter duplication ([3290769](https://github.com/getufy/flint-ui/commit/32907698955c62f0dcf254472d087efa11b4308d))
+* reduced motion css duplication ([df7a276](https://github.com/getufy/flint-ui/commit/df7a276452c1a414543128f861e7148a32c097d1))
+* rtl button group + check icon for checkbox ([be38079](https://github.com/getufy/flint-ui/commit/be38079d5e8e4fb2c9f7aa3fea0a937669f6f83c))
+* update button group + docs ([d558a7b](https://github.com/getufy/flint-ui/commit/d558a7b36a4a09694573c1e904193ce12e6eae35))
+
 ## [0.8.3](https://github.com/getufy/flint-ui/compare/flint-ui-v0.8.2...flint-ui-v0.8.3) (2026-03-22)
 
 
