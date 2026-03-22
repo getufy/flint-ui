@@ -165,20 +165,25 @@ export class FlintDrawer extends FlintElement {
         const paper = this.shadowRoot?.querySelector<HTMLElement>('.paper');
         const backdrop = this.shadowRoot?.querySelector<HTMLElement>('.backdrop');
         const suffix = this._getAnimationSuffix();
-        const promises: Promise<unknown>[] = [];
 
         const panelAnim = getAnimation(this, `drawer.show${suffix}`);
+        const overlayAnim = getAnimation(this, 'drawer.overlay.show');
+
+        // Stop all existing animations in parallel to avoid staggered starts
+        await Promise.all([
+            paper ? stopAnimations(paper) : undefined,
+            backdrop ? stopAnimations(backdrop) : undefined,
+        ]);
+
+        // Start all new animations synchronously so they begin in the same frame
+        const promises: Promise<unknown>[] = [];
+
         if (panelAnim && paper) {
-            await stopAnimations(paper);
-            const keyframes = resolveKeyframes(this, panelAnim);
-            promises.push(animateTo(paper, keyframes, panelAnim.options));
+            promises.push(animateTo(paper, resolveKeyframes(this, panelAnim), panelAnim.options));
         }
 
-        const overlayAnim = getAnimation(this, 'drawer.overlay.show');
         if (overlayAnim && backdrop) {
-            await stopAnimations(backdrop);
-            const keyframes = resolveKeyframes(this, overlayAnim);
-            promises.push(animateTo(backdrop, keyframes, overlayAnim.options));
+            promises.push(animateTo(backdrop, resolveKeyframes(this, overlayAnim), overlayAnim.options));
         }
 
         await Promise.all(promises);
@@ -188,20 +193,23 @@ export class FlintDrawer extends FlintElement {
         const paper = this.shadowRoot?.querySelector<HTMLElement>('.paper');
         const backdrop = this.shadowRoot?.querySelector<HTMLElement>('.backdrop');
         const suffix = this._getAnimationSuffix();
-        const promises: Promise<unknown>[] = [];
 
         const panelAnim = getAnimation(this, `drawer.hide${suffix}`);
+        const overlayAnim = getAnimation(this, 'drawer.overlay.hide');
+
+        await Promise.all([
+            paper ? stopAnimations(paper) : undefined,
+            backdrop ? stopAnimations(backdrop) : undefined,
+        ]);
+
+        const promises: Promise<unknown>[] = [];
+
         if (panelAnim && paper) {
-            await stopAnimations(paper);
-            const keyframes = resolveKeyframes(this, panelAnim);
-            promises.push(animateTo(paper, keyframes, panelAnim.options));
+            promises.push(animateTo(paper, resolveKeyframes(this, panelAnim), panelAnim.options));
         }
 
-        const overlayAnim = getAnimation(this, 'drawer.overlay.hide');
         if (overlayAnim && backdrop) {
-            await stopAnimations(backdrop);
-            const keyframes = resolveKeyframes(this, overlayAnim);
-            promises.push(animateTo(backdrop, keyframes, overlayAnim.options));
+            promises.push(animateTo(backdrop, resolveKeyframes(this, overlayAnim), overlayAnim.options));
         }
 
         await Promise.all(promises);

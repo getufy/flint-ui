@@ -157,18 +157,21 @@ export class FlintDialog extends FlintElement {
     const panelAnim = getAnimation(this, 'dialog.show');
     const overlayAnim = getAnimation(this, 'dialog.overlay.show');
 
+    // Stop all existing animations in parallel to avoid staggered starts
+    await Promise.all([
+      panel ? stopAnimations(panel) : undefined,
+      overlay ? stopAnimations(overlay) : undefined,
+    ]);
+
+    // Start all new animations synchronously so they begin in the same frame
     const promises: Promise<unknown>[] = [];
 
     if (panelAnim && panel) {
-      await stopAnimations(panel);
-      const keyframes = resolveKeyframes(this, panelAnim);
-      promises.push(animateTo(panel, keyframes, panelAnim.options));
+      promises.push(animateTo(panel, resolveKeyframes(this, panelAnim), panelAnim.options));
     }
 
     if (overlayAnim && overlay) {
-      await stopAnimations(overlay);
-      const keyframes = resolveKeyframes(this, overlayAnim);
-      promises.push(animateTo(overlay, keyframes, overlayAnim.options));
+      promises.push(animateTo(overlay, resolveKeyframes(this, overlayAnim), overlayAnim.options));
     }
 
     await Promise.all(promises);
@@ -188,18 +191,19 @@ export class FlintDialog extends FlintElement {
     const panelAnim = getAnimation(this, 'dialog.hide');
     const overlayAnim = getAnimation(this, 'dialog.overlay.hide');
 
+    await Promise.all([
+      panel ? stopAnimations(panel) : undefined,
+      overlay ? stopAnimations(overlay) : undefined,
+    ]);
+
     const promises: Promise<unknown>[] = [];
 
     if (panelAnim && panel) {
-      await stopAnimations(panel);
-      const keyframes = resolveKeyframes(this, panelAnim);
-      promises.push(animateTo(panel, keyframes, panelAnim.options));
+      promises.push(animateTo(panel, resolveKeyframes(this, panelAnim), panelAnim.options));
     }
 
     if (overlayAnim && overlay) {
-      await stopAnimations(overlay);
-      const keyframes = resolveKeyframes(this, overlayAnim);
-      promises.push(animateTo(overlay, keyframes, overlayAnim.options));
+      promises.push(animateTo(overlay, resolveKeyframes(this, overlayAnim), overlayAnim.options));
     }
 
     await Promise.all(promises);

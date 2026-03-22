@@ -89,19 +89,16 @@ export async function animateTo(
     });
 }
 
-/** Stop all animations on an element and wait for them to settle. */
+/** Stop all animations on an element. */
 export async function stopAnimations(el: HTMLElement): Promise<void> {
     // Guard: Web Animations API may not be available (e.g., jsdom)
     if (typeof el.getAnimations !== 'function') {
         return;
     }
 
-    const animations = el.getAnimations();
-    for (const a of animations) {
+    for (const a of el.getAnimations()) {
         a.cancel();
     }
-    // Wait a frame so the browser flushes cancelled state.
-    await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
 }
 
 /**
