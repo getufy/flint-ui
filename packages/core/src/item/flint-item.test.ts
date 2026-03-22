@@ -170,12 +170,12 @@ describe('flint-item-separator — rendering', () => {
 
     it('has role="separator"', async () => {
         const el = await fixture<FlintItemSeparator>(html`<flint-item-separator></flint-item-separator>`);
-        expect((el as any)._internals?.role).toBe('separator');
+        expect(el._internals?.role).toBe('separator');
     });
 
     it('has aria-orientation="horizontal"', async () => {
         const el = await fixture<FlintItemSeparator>(html`<flint-item-separator></flint-item-separator>`);
-        expect((el as any)._internals?.ariaOrientation).toBe('horizontal');
+        expect(el._internals?.ariaOrientation).toBe('horizontal');
     });
 
     it('renders empty shadow DOM (no slot, purely decorative)', async () => {
@@ -645,12 +645,12 @@ describe('flint-item — corner cases', () => {
 
     it('internals role is always separator regardless of host attribute', async () => {
         const el = await fixture<FlintItemSeparator>(html`<flint-item-separator role="none"></flint-item-separator>`);
-        expect((el as any)._internals?.role).toBe('separator');
+        expect(el._internals?.role).toBe('separator');
     });
 
     it('internals ariaOrientation is always horizontal regardless of host attribute', async () => {
         const el = await fixture<FlintItemSeparator>(html`<flint-item-separator aria-orientation="vertical"></flint-item-separator>`);
-        expect((el as any)._internals?.ariaOrientation).toBe('horizontal');
+        expect(el._internals?.ariaOrientation).toBe('horizontal');
     });
 
     it('dynamically adding children to flint-item-group is reflected', async () => {

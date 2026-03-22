@@ -248,7 +248,7 @@ describe('FlintAccordion — keyboard', () => {
 describe('FlintAccordionSummary', () => {
     it('has role="button"', async () => {
         const el = await fixture<FlintAccordionSummary>(html`<flint-accordion-summary>Title</flint-accordion-summary>`);
-        expect((el as any)._internals?.role).toBe('button');
+        expect(el._internals?.role).toBe('button');
     });
 
     it('has tabindex="0"', async () => {
@@ -310,23 +310,23 @@ describe('FlintAccordionSummary', () => {
         const acc = await makeAccordion();
         await acc.updateComplete;
         const summary = acc.querySelector('flint-accordion-summary')!;
-        expect((summary as any)._internals?.ariaExpanded).toBe('false');
+        expect(summary._internals?.ariaExpanded).toBe('false');
     });
 
     it('has aria-expanded="true" when expanded', async () => {
         const acc = await makeAccordion(true);
         await acc.updateComplete;
         const summary = acc.querySelector('flint-accordion-summary')!;
-        expect((summary as any)._internals?.ariaExpanded).toBe('true');
+        expect(summary._internals?.ariaExpanded).toBe('true');
     });
 
     it('updates aria-expanded when expanded state changes', async () => {
         const acc = await makeAccordion();
         const summary = acc.querySelector('flint-accordion-summary')!;
-        expect((summary as any)._internals?.ariaExpanded).toBe('false');
+        expect(summary._internals?.ariaExpanded).toBe('false');
         summary.click();
         await acc.updateComplete;
-        expect((summary as any)._internals?.ariaExpanded).toBe('true');
+        expect(summary._internals?.ariaExpanded).toBe('true');
     });
 
     it('has aria-controls pointing to details panel id', async () => {
@@ -341,7 +341,7 @@ describe('FlintAccordionSummary', () => {
 
     it('internals role is always button regardless of host attribute', async () => {
         const el = await fixture<FlintAccordionSummary>(html`<flint-accordion-summary role="heading">Title</flint-accordion-summary>`);
-        expect((el as any)._internals?.role).toBe('button');
+        expect(el._internals?.role).toBe('button');
     });
 
     it('does not override a pre-existing tabindex attribute', async () => {
@@ -351,7 +351,7 @@ describe('FlintAccordionSummary', () => {
 
     it('sets role=button when no role is present', async () => {
         const el = await fixture<FlintAccordionSummary>(html`<flint-accordion-summary>Title</flint-accordion-summary>`);
-        expect((el as any)._internals?.role).toBe('button');
+        expect(el._internals?.role).toBe('button');
     });
 
     it('sets tabindex=0 when no tabindex is present', async () => {

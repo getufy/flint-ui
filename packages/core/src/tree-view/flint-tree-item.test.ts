@@ -161,7 +161,7 @@ describe('flint-tree-item', () => {
         const el = await fixture<FlintTreeItem>(html`
             <flint-tree-item item-id="1" label="Item"></flint-tree-item>
         `);
-        expect((el as any)._internals?.role).toBe('treeitem');
+        expect(el._internals?.role).toBe('treeitem');
     });
 
     it('sets tabindex="-1" by default', async () => {
@@ -176,11 +176,11 @@ describe('flint-tree-item', () => {
             <flint-tree-item item-id="1" label="Item"></flint-tree-item>
         `);
         await el.updateComplete;
-        expect((el as any)._internals?.ariaDisabled).toBe('false');
+        expect(el._internals?.ariaDisabled).toBe('false');
 
         el.disabled = true;
         await el.updateComplete;
-        expect((el as any)._internals?.ariaDisabled).toBe('true');
+        expect(el._internals?.ariaDisabled).toBe('true');
     });
 
     it('sets aria-expanded when item has children', async () => {
@@ -194,12 +194,12 @@ describe('flint-tree-item', () => {
         await new Promise(r => setTimeout(r, 10));
         await el.updateComplete;
 
-        expect((el as any)._internals?.ariaExpanded != null).toBe(true);
-        expect((el as any)._internals?.ariaExpanded).toBe('false');
+        expect(el._internals?.ariaExpanded != null).toBe(true);
+        expect(el._internals?.ariaExpanded).toBe('false');
 
         el.expanded = true;
         await el.updateComplete;
-        expect((el as any)._internals?.ariaExpanded).toBe('true');
+        expect(el._internals?.ariaExpanded).toBe('true');
     });
 
     it('sets aria-expanded when has-children is set (no actual children)', async () => {
@@ -207,8 +207,8 @@ describe('flint-tree-item', () => {
             <flint-tree-item item-id="1" label="Lazy Node" has-children></flint-tree-item>
         `);
         await el.updateComplete;
-        expect((el as any)._internals?.ariaExpanded != null).toBe(true);
-        expect((el as any)._internals?.ariaExpanded).toBe('false');
+        expect(el._internals?.ariaExpanded != null).toBe(true);
+        expect(el._internals?.ariaExpanded).toBe('false');
     });
 
     it('does not set aria-expanded when no children and no has-children', async () => {
@@ -216,7 +216,7 @@ describe('flint-tree-item', () => {
             <flint-tree-item item-id="1" label="Leaf"></flint-tree-item>
         `);
         await el.updateComplete;
-        expect((el as any)._internals?.ariaExpanded != null).toBe(false);
+        expect(el._internals?.ariaExpanded != null).toBe(false);
     });
 
     // ── Expand button ──────────────────────────────────────────────────────────

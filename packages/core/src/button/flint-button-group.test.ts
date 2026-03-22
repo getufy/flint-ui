@@ -58,7 +58,7 @@ describe('flint-button-group', () => {
             </flint-button-group>
         `);
 
-        expect((el as any)._internals?.role).toBe('group');
+        expect(el._internals?.role).toBe('group');
     });
 
     it('renders with a single unnamed slot', async () => {

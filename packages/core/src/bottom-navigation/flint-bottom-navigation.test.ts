@@ -155,7 +155,7 @@ describe('flint-bottom-navigation-action', () => {
         const el = await fixture<FlintBottomNavigationAction>(html`
             <flint-bottom-navigation-action label="Home" value="home"></flint-bottom-navigation-action>
         `);
-        expect((el as any)._internals?.role).toBe('tab');
+        expect(el._internals?.role).toBe('tab');
     });
 
     it('has tabindex="-1" by default (roving tabindex)', async () => {
@@ -169,7 +169,7 @@ describe('flint-bottom-navigation-action', () => {
         const el = await fixture<FlintBottomNavigationAction>(html`
             <flint-bottom-navigation-action label="Home" value="home" active></flint-bottom-navigation-action>
         `);
-        expect((el as any)._internals?.ariaSelected).toBe('true');
+        expect(el._internals?.ariaSelected).toBe('true');
     });
 
     it('sets aria-selected="false" when not active', async () => {
@@ -177,7 +177,7 @@ describe('flint-bottom-navigation-action', () => {
             <flint-bottom-navigation-action label="Home" value="home"></flint-bottom-navigation-action>
         `);
         await el.updateComplete;
-        expect((el as any)._internals?.ariaSelected).toBe('false');
+        expect(el._internals?.ariaSelected).toBe('false');
     });
 
     it('updates aria-selected when active changes', async () => {
@@ -185,11 +185,11 @@ describe('flint-bottom-navigation-action', () => {
             <flint-bottom-navigation-action label="Home" value="home"></flint-bottom-navigation-action>
         `);
         await el.updateComplete;
-        expect((el as any)._internals?.ariaSelected).toBe('false');
+        expect(el._internals?.ariaSelected).toBe('false');
 
         el.active = true;
         await el.updateComplete;
-        expect((el as any)._internals?.ariaSelected).toBe('true');
+        expect(el._internals?.ariaSelected).toBe('true');
     });
 
     it('dispatches a click event on Enter key', async () => {

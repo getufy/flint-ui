@@ -1341,7 +1341,7 @@ describe('flint-input-otp — _insertChar boundary', () => {
 describe('flint-input-otp — ARIA accessibility', () => {
     it('host has role="group"', async () => {
         const el = await make();
-        expect((el as any)._internals?.role).toBe('group');
+        expect((el as unknown as { _internals: ElementInternals | null })._internals?.role).toBe('group');
     });
 
     it('hidden input has default aria-label "One-time password"', async () => {
@@ -1401,7 +1401,7 @@ describe('flint-input-otp — ARIA accessibility', () => {
             </flint-input-otp>
         `);
         await el.updateComplete;
-        expect((el as any)._internals?.role).toBe('group');
+        expect((el as unknown as { _internals: ElementInternals | null })._internals?.role).toBe('group');
     });
 });
 

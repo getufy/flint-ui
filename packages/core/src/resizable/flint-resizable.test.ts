@@ -159,7 +159,7 @@ describe('flint-resizable-handle — rendering', () => {
   it('has role=separator and tabindex=0', async () => {
     const el = await make();
     const handle = getHandles(el)[0];
-    expect((handle as any)._internals?.role).toBe('separator');
+    expect((handle as FlintResizableHandle)._internals?.role).toBe('separator');
     expect(handle.getAttribute('tabindex')).toBe('0');
   });
 
@@ -967,15 +967,15 @@ describe('flint-resizable-handle — ARIA attributes', () => {
     await el.updateComplete;
 
     const handle = getHandles(el)[0];
-    expect((handle as any)._internals?.ariaValueNow).toBe('40');
-    expect((handle as any)._internals?.ariaValueMin).toBe('10');
-    expect((handle as any)._internals?.ariaValueMax).toBe('80');
+    expect((handle as FlintResizableHandle)._internals?.ariaValueNow).toBe('40');
+    expect((handle as FlintResizableHandle)._internals?.ariaValueMin).toBe('10');
+    expect((handle as FlintResizableHandle)._internals?.ariaValueMax).toBe('80');
   });
 
   it('sets aria-orientation on handles', async () => {
     const el = await make({ orientation: 'vertical', panelSizes: [50, 50] });
     const handle = getHandles(el)[0];
-    expect((handle as any)._internals?.ariaOrientation).toBe('vertical');
+    expect((handle as FlintResizableHandle)._internals?.ariaOrientation).toBe('vertical');
   });
 
   it('updates aria-valuenow after resize', async () => {
@@ -985,7 +985,7 @@ describe('flint-resizable-handle — ARIA attributes', () => {
     const handle = getHandles(el)[0];
     el._handleResize(handle, 200); // 20%
 
-    expect((handle as any)._internals?.ariaValueNow).toBe('70');
+    expect((handle as FlintResizableHandle)._internals?.ariaValueNow).toBe('70');
   });
 });
 

@@ -115,7 +115,7 @@ describe('FlintRichTreeView — basic rendering', () => {
 
     it('sets role="treeitem" on rendered items', () => {
         const item = getItem(tree, '1');
-        expect((item as any)?._internals?.role).toBe('treeitem');
+        expect(item?._internals?.role).toBe('treeitem');
     });
 
     it('re-renders when items prop changes', async () => {
@@ -196,7 +196,7 @@ describe('FlintRichTreeView — isItemDisabled', () => {
 
         expect(getItem(tree, '1')?.disabled).toBe(false);
         expect(getItem(tree, '2')?.disabled).toBe(true);
-        expect((getItem(tree, '2') as any)?._internals?.ariaDisabled).toBe('true');
+        expect(getItem(tree, '2')?._internals?.ariaDisabled).toBe('true');
     });
 
     it('disabled items default to tabindex=-1', async () => {
