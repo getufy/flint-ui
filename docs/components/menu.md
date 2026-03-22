@@ -47,6 +47,13 @@ import { FlintMenuItem } from '@getufy/flint-ui';
 | `icon` | Leading icon. |
 | `end-icon` | Trailing icon or shortcut hint. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+| `label` | The label element. |
+
 ### CSS Custom Properties
 
 | Property | Default |
@@ -153,6 +160,7 @@ import { FlintMenu } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
+| `dependencies` | `dependencies` | `Record&lt;string, typeof FlintElement&gt;` | `&#123; 'flint-popup': FlintPopup, &#125;` |  |
 | `open` | `open` | `boolean` | `false` | Whether the menu is open/visible. |
 | `placement` | `placement` | `'bottom-start' \| 'bottom-end' \| 'top-start' \| 'top-end' \| 'right-start' \| 'left-start'` | `'bottom-start'` | Menu placement relative to its anchor container. |
 | `closeOnSelect` | `close-on-select` | `boolean` | `true` | When true, selecting an item automatically fires flint-menu-close. |

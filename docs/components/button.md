@@ -35,7 +35,14 @@ import { FlintButtonGroup } from '@getufy/flint-ui';
 | --- | --- | --- | --- | --- |
 | `orientation` | `orientation` | `Orientation` | `'horizontal'` | Layout direction of the group. |
 | `size` | `size` | `ButtonSize \| ''` | `''` | Size propagated to child `flint-button` elements. |
-| `variant` | `variant` | `ButtonVariant \| ''` | `''` | Variant propagated to child `flint-button` elements. |
+| `appearance` | `appearance` | `ButtonAppearance \| ''` | `''` | Appearance propagated to child `flint-button` elements. |
+| `color` | `color` | `ButtonColor \| ''` | `''` | Color propagated to child `flint-button` elements. |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
 
 ### CSS Custom Properties
 
@@ -95,7 +102,6 @@ import { FlintButton } from '@getufy/flint-ui';
 | --- | --- | --- | --- | --- |
 | `appearance` | `appearance` | `ButtonAppearance` | `'filled'` | Visual appearance of the button (structural style). |
 | `color` | `color` | `ButtonColor` | `'primary'` | Semantic color of the button. |
-| `variant` | `variant` | `ButtonVariant \| ''` | `''` |  |
 | `size` | `size` | `ButtonSize` | `'md'` | Size of the button. |
 | `disabled` | `disabled` | `boolean` | `false` | Disables the button and prevents interaction. |
 | `fullWidth` | `full-width` | `boolean` | `false` | Whether the button stretches to fill its container width. |
@@ -105,6 +111,7 @@ import { FlintButton } from '@getufy/flint-ui';
 | `href` | `href` | `string` | `''` | When set, renders an `&lt;a&gt;` tag instead of a `&lt;button&gt;`. |
 | `target` | `target` | `string` | `''` | Optional `target` attribute when `href` is set. |
 | `shape` | `shape` | `ButtonShape` | `'default'` | Shape variant of the button. |
+| `caret` | `caret` | `boolean` | `false` | Renders a dropdown caret (chevron-down) icon in the suffix area. |
 
 ### CSS Parts
 
@@ -114,6 +121,7 @@ import { FlintButton } from '@getufy/flint-ui';
 | `prefix` | The container wrapping the prefix slot. |
 | `label` | The container wrapping the default slot (label text). |
 | `suffix` | The container wrapping the suffix slot. |
+| `caret` | The caret icon container. |
 | `spinner` | The loading spinner element. |
 
 ### CSS Custom Properties
@@ -197,6 +205,12 @@ import { FlintToggleButton } from '@getufy/flint-ui';
 | Event | Detail | Description |
 | --- | --- | --- |
 | `flint-toggle-button-change` | `&#123; value: string, selected: boolean &#125;` | Fired when the button's selected state changes. detail: `&#123; value: string, selected: boolean &#125;` |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The inner button element. |
 
 ### CSS Custom Properties
 

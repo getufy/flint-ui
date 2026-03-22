@@ -57,6 +57,8 @@ Chip: a compact element representing an input, attribute, or action.
 | Name | Description |
 |---|---|
 | \`base\` | The chip's base wrapper element. |
+| \`label\` | The label text element. |
+| \`delete-icon\` | The delete button element. |
 
 #### CSS Custom Properties
 

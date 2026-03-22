@@ -36,6 +36,13 @@ import { FlintScrollBar } from '@getufy/flint-ui';
 | --- | --- |
 | `—` | none (fully shadow DOM) |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `thumb` | The thumb/handle element. |
+| `track` | The track element. |
+
 ### CSS Custom Properties
 
 | Property | Default |
@@ -91,6 +98,14 @@ import { FlintScrollArea } from '@getufy/flint-ui';
 | --- | --- |
 | `(default)` | Scrollable content. |
 | `scrollbar` | Optional explicit `flint-scroll-bar` elements (e.g. horizontal). |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+| `viewport` | The viewport element. |
+| `thumb` | The default scrollbar thumb element. |
 
 ### CSS Custom Properties
 

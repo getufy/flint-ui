@@ -32,6 +32,12 @@ import { FlintStepConnector } from '@getufy/flint-ui';
 | `orientation` | `orientation` | `Orientation` | `'horizontal'` | Layout direction of the connector line. |
 | `completed` | `completed` | `boolean` | `false` | Whether the connector represents a completed step transition. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `line` | The connector line element. |
+
 ### CSS Custom Properties
 
 | Property | Default |
@@ -85,6 +91,13 @@ import { FlintStepLabel } from '@getufy/flint-ui';
 | `(default)` | Label text. |
 | `optional` | Optional step text. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `label` | The label element. |
+| `optional` | The optional element. |
+
 ---
 
 ## `<flint-step-content>`
@@ -119,6 +132,13 @@ import { FlintStepContent } from '@getufy/flint-ui';
 | Name | Description |
 | --- | --- |
 | `(default)` | Step content. |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+| `content` | The content container. |
 
 ---
 
@@ -174,6 +194,12 @@ import { FlintStep } from '@getufy/flint-ui';
 | `label` | Custom label content. |
 | `(default)` | Step content. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `indicator` | The step icon/number indicator. |
+
 ### CSS Custom Properties
 
 | Property | Default |
@@ -221,6 +247,12 @@ import { FlintStepper } from '@getufy/flint-ui';
 | --- | --- | --- |
 | `flint-step-change` | `&#123; step: number &#125;` | Fired when the active step changes via step click. detail: `&#123; step: number &#125;` |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+
 ### CSS Custom Properties
 
 | Property | Default |
@@ -259,8 +291,8 @@ import { FlintMobileStepper } from '@getufy/flint-ui';
 | `activeStep` | `active-step` | `number` | `0` | Zero-based index of the currently active step. |
 | `variant` | `variant` | `'text' \| 'dots' \| 'progress'` | `'dots'` | Progress indicator style: text counter, dot indicators, or a progress bar. |
 | `position` | `position` | `'top' \| 'bottom' \| 'static'` | `'static'` | Positioning of the mobile stepper within its container. |
-| `backLabel` | `back-label` | `string` | `'Back'` | Label text for the Back navigation button (supports i18n). |
-| `nextLabel` | `next-label` | `string` | `'Next'` | Label text for the Next navigation button (supports i18n). |
+| `backLabel` | `back-label` | `string \| undefined` | — | Label text for the Back navigation button. Defaults to localized "Back". |
+| `nextLabel` | `next-label` | `string \| undefined` | — | Label text for the Next navigation button. Defaults to localized "Next". |
 
 ### Events
 
@@ -275,5 +307,13 @@ import { FlintMobileStepper } from '@getufy/flint-ui';
 | --- | --- |
 | `back-button` | Back navigation button. |
 | `next-button` | Next navigation button. |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `back-button` | The back button element. |
+| `next-button` | The next button element. |
+| `progress` | The progress indicator. |
 
 ---

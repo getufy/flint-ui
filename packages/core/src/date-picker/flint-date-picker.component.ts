@@ -8,38 +8,12 @@ import { FormControlController } from '../controllers/form-control.js';
 import { FlintDialog, FlintDialogTitle, FlintDialogContent, FlintDialogActions } from '../dialog/flint-dialog.component.js';
 import { FlintPopup } from '../popup/flint-popup.component.js';
 import { LocalizeController } from '../utilities/localize.js';
+import {
+    DAYS_SHORT, MONTHS,
+    isoToDate, dateToIso, todayIso as today, sameDay, isoToDisplay,
+} from '../utilities/date-utils.js';
 import uiDatePickerCalendarStyles from './flint-date-picker-calendar.css?inline';
 import uiDatePickerStyles from './flint-date-picker.css?inline';
-
-// ─── helpers ──────────────────────────────────────────────────────────────────
-
-const DAYS_SHORT = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-const MONTHS = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
-];
-
-function isoToDate(iso: string): Date | null {
-    if (!iso) return null;
-    const [y, m, d] = iso.split('-').map(Number);
-    if (!y || !m || !d) return null;
-    return new Date(y, m - 1, d);
-}
-function dateToIso(d: Date): string {
-    const y = d.getFullYear();
-    const m = String(d.getMonth() + 1).padStart(2, '0');
-    const day = String(d.getDate()).padStart(2, '0');
-    return `${y}-${m}-${day}`;
-}
-function isoToDisplay(iso: string): string {
-    const d = isoToDate(iso);
-    if (!d) return '';
-    return `${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}/${d.getFullYear()}`;
-}
-function today(): string { return dateToIso(new Date()); }
-function sameDay(a: Date, b: Date) {
-    return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
-}
 
 interface CalendarDay {
     date: Date;

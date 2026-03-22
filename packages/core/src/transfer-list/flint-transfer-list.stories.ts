@@ -40,6 +40,16 @@ A premium Transfer List component for moving items between two lists.
 |---|---|---|
 | \`flint-transfer-list-change\` | \`&#123; value: string[] &#125;\` | Dispatched when items are moved between lists. detail: \`&#123; value: string[] &#125;\` |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`actions\` | The actions container. |
+| \`base\` | The component's base wrapper element. |
+| \`header\` | The header element. |
+| \`left-list\` | The left list element. |
+| \`right-list\` | The right list element. |
+
 #### CSS Custom Properties
 
 | Property | Default |

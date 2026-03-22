@@ -44,6 +44,12 @@ import { FlintDateRangeCalendar } from '@getufy/flint-ui';
 | --- | --- | --- |
 | `flint-date-range-picker-select` | `&#123; value: DateRange &#125;` | &#123; detail: &#123; value: DateRange &#125; &#125; on each click |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+
 ### CSS Custom Properties
 
 | Property | Default |
@@ -62,6 +68,7 @@ import { FlintDateRangeCalendar } from '@getufy/flint-ui';
 | `--flint-border-radius-md` | — |
 | `--flint-input-disabled-bg` | — |
 | `--flint-input-placeholder-color` | — |
+| `--flint-datepicker-z-index` | `1400` |
 | `--flint-border-radius-xl` | — |
 | `--flint-shadow-lg` | — |
 | `--flint-shadow-sm` | — |
@@ -102,7 +109,7 @@ import { FlintDateRangePicker } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `dependencies` | `dependencies` | `object` | `&#123; 'flint-dialog': FlintDialog as unknown as typeof FlintElement, 'flint-dialog-title': FlintDialogTitle as unknown as typeof FlintElement, 'flint-dialog-content': FlintDialogContent as unknown as typeof FlintElement, 'flint-dialog-actions': FlintDialogActions as unknown as typeof FlintElement, 'flint-single-input-date-range-field': FlintSingleInputDateRangeField as unknown as typeof FlintElement, 'flint-date-range-calendar': FlintDateRangeCalendar as unknown as typeof FlintElement, &#125;` |  |
+| `dependencies` | `dependencies` | `object` | `&#123; 'flint-dialog': FlintDialog as unknown as typeof FlintElement, 'flint-dialog-title': FlintDialogTitle as unknown as typeof FlintElement, 'flint-dialog-content': FlintDialogContent as unknown as typeof FlintElement, 'flint-dialog-actions': FlintDialogActions as unknown as typeof FlintElement, 'flint-single-input-date-range-field': FlintSingleInputDateRangeField as unknown as typeof FlintElement, 'flint-date-range-calendar': FlintDateRangeCalendar as unknown as typeof FlintElement, 'flint-popup': FlintPopup as unknown as typeof FlintElement, &#125;` |  |
 | `value` | `value` | `DateRange` | `[...EMPTY_RANGE]` | Selected range [startISO, endISO]. Empty strings mean unset. |
 | `label` | `label` | `string` | `'Date Range'` | Label shown above the field. |
 | `variant` | `variant` | `'desktop' \| 'mobile' \| 'static' \| 'auto'` | `'desktop'` | Variant: 'desktop' \| 'mobile' \| 'static' \| 'auto'. |
@@ -124,6 +131,14 @@ import { FlintDateRangePicker } from '@getufy/flint-ui';
 | Event | Detail | Description |
 | --- | --- | --- |
 | `flint-date-range-picker-change` | `&#123; value: DateRange &#125;` | &#123; detail: &#123; value: DateRange &#125; &#125; when range is committed |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+| `popover` | The popover element. |
+| `shortcuts` | The shortcuts element. |
 
 ---
 
@@ -170,6 +185,12 @@ import { FlintSingleInputDateRangeField } from '@getufy/flint-ui';
 | --- | --- | --- |
 | `flint-date-range-picker-clear` | — | fired when all segments are cleared |
 | `flint-date-range-picker-change` | `&#123; value: DateRange &#125;` | &#123; detail: &#123; value: DateRange &#125; &#125; when both dates are complete |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
 
 ### Methods
 

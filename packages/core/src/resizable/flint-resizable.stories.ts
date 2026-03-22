@@ -47,6 +47,12 @@ Resizable Group: a container that enables resizable panels with draggable handle
 | \`flint-resizable-expand\` | — | Fired when a collapsed panel is expanded. |
 | \`flint-resizable-change\` | — | Fired when panel sizes change via drag or keyboard. |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`grip\` | The grip element. |
+
 #### Methods
 
 | Method | Description |

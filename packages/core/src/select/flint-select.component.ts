@@ -12,6 +12,7 @@ import { LocalizeController } from '../utilities/localize.js';
 import { getAnimation, animateTo, stopAnimations, resolveKeyframes } from '../utilities/animation-registry.js';
 import { validateEnum } from '../utilities/dev-warnings.js';
 import type { Size } from '../types.js';
+import { rovingIndex } from '../utilities/roving-index.js';
 import '../utilities/animation-presets.js';
 import uiSelectStyles from './flint-select.css?inline';
 
@@ -393,50 +394,21 @@ export class FlintSelect extends FormAssociated(FlintElement) {
   private _handleKeydown = (e: KeyboardEvent) => {
     const enabled = this.options.map((o, i) => ({ o, i })).filter(({ o }) => !o.disabled);
 
+    // Handle open/close and activation keys
     switch (e.key) {
       case 'ArrowDown': {
-        e.preventDefault();
         if (!this._isOpen) {
+          e.preventDefault();
           this._toggleDropdown();
           if (this._highlightedIndex === -1 && enabled.length > 0) {
             this._highlightedIndex = enabled[0]!.i;
           }
-        } else {
-          const cur = enabled.findIndex(({ i }) => i === this._highlightedIndex);
-          const next = enabled[cur + 1];
-          if (next) {
-            this._highlightedIndex = next.i;
-            this._scrollOptionIntoView(next.i);
-          }
+          return;
         }
         break;
       }
       case 'ArrowUp': {
-        e.preventDefault();
-        if (this._isOpen) {
-          const cur = enabled.findIndex(({ i }) => i === this._highlightedIndex);
-          const prev = cur > 0 ? enabled[cur - 1] : null;
-          if (prev) {
-            this._highlightedIndex = prev.i;
-            this._scrollOptionIntoView(prev.i);
-          }
-        }
-        break;
-      }
-      case 'Home': {
-        e.preventDefault();
-        if (this._isOpen && enabled.length > 0) {
-          this._highlightedIndex = enabled[0]!.i;
-          this._scrollOptionIntoView(enabled[0]!.i);
-        }
-        break;
-      }
-      case 'End': {
-        e.preventDefault();
-        if (this._isOpen && enabled.length > 0) {
-          this._highlightedIndex = enabled[enabled.length - 1]!.i;
-          this._scrollOptionIntoView(enabled[enabled.length - 1]!.i);
-        }
+        if (!this._isOpen) return;
         break;
       }
       case 'Enter':
@@ -447,27 +419,37 @@ export class FlintSelect extends FormAssociated(FlintElement) {
         } else if (this._highlightedIndex >= 0) {
           this._handleOptionClick(this.options[this._highlightedIndex]!, e);
         }
-        break;
+        return;
       }
       case 'Escape': {
         if (this._isOpen) {
           e.preventDefault();
           void this._closeDropdown();
         }
-        break;
+        return;
       }
       case 'Tab': {
         if (this._isOpen) {
           void this._closeDropdown();
         }
-        break;
+        return;
       }
-      default: {
-        // Typeahead: single printable characters trigger search (skip when searchable — input handles it)
-        if (this._isOpen && !this.searchable && e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
-          this._handleTypeahead(e.key);
-        }
-        break;
+    }
+
+    // Roving navigation when open
+    if (this._isOpen) {
+      const cur = enabled.findIndex(({ i }) => i === this._highlightedIndex);
+      const { index, handled } = rovingIndex(e.key, cur, enabled.length, { wrap: false });
+      if (handled) {
+        e.preventDefault();
+        this._highlightedIndex = enabled[index]!.i;
+        this._scrollOptionIntoView(enabled[index]!.i);
+        return;
+      }
+
+      // Typeahead: single printable characters trigger search (skip when searchable — input handles it)
+      if (!this.searchable && e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        this._handleTypeahead(e.key);
       }
     }
   };

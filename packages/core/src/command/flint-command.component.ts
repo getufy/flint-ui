@@ -13,6 +13,7 @@ import uiCommandDialogStyles from './flint-command-dialog.css?inline';
 import { FlintElement } from '../flint-element.js';
 import { LocalizeController } from '../utilities/localize.js';
 import { handleFocusTrapKeyDown } from '../utilities/focus-trap.js';
+import { rovingIndex } from '../utilities/roving-index.js';
 import { fuzzyScore } from './fuzzy-score.js';
 
 /* ─────────────────────────────────────────────────────────────────── */
@@ -330,27 +331,16 @@ export class FlintCommand extends FlintElement {
 
         const idx = this._highlightedItem ? visible.indexOf(this._highlightedItem) : -1;
 
-        switch (e.key) {
-            case 'ArrowDown':
-                e.preventDefault();
-                this._setHighlight(visible[(idx + 1) % visible.length] ?? null);
-                break;
-            case 'ArrowUp':
-                e.preventDefault();
-                this._setHighlight(visible[(idx - 1 + visible.length) % visible.length] ?? null);
-                break;
-            case 'Enter':
-                e.preventDefault();
-                if (this._highlightedItem) this._activateItem(this._highlightedItem);
-                break;
-            case 'Home':
-                e.preventDefault();
-                this._setHighlight(visible[0] ?? null);
-                break;
-            case 'End':
-                e.preventDefault();
-                this._setHighlight(visible[visible.length - 1] ?? null);
-                break;
+        const { index, handled } = rovingIndex(e.key, idx, visible.length);
+        if (handled) {
+            e.preventDefault();
+            this._setHighlight(visible[index] ?? null);
+            return;
+        }
+
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            if (this._highlightedItem) this._activateItem(this._highlightedItem);
         }
     };
 

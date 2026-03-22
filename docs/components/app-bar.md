@@ -41,6 +41,15 @@ import { FlintAppBar } from '@getufy/flint-ui';
 | `actions` | Right section, e.g. action buttons (alias: `end-content`). |
 | `end-content` | Alias for `actions` slot. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `actions` | The actions container. |
+| `base` | The component's base wrapper element. |
+| `navigation` | The navigation container. |
+| `title` | The title element. |
+
 ### CSS Custom Properties
 
 | Property | Default |
@@ -52,6 +61,7 @@ import { FlintAppBar } from '@getufy/flint-ui';
 | `--flint-primary-color` | — |
 | `--flint-text-color-on-primary` | — |
 | `--flint-shadow-md` | — |
+| `--flint-z-app-bar` | `1100` |
 | `--flint-surface-1` | — |
 | `--flint-text-color` | — |
 | `--flint-border-color` | — |

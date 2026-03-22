@@ -41,6 +41,12 @@ Typography component for displaying text with consistent theme styles.
 |---|---|
 | \`(default)\` | The text content. |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper element. |
+
 #### CSS Custom Properties
 
 | Property | Default |

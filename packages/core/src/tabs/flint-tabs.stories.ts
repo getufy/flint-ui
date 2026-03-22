@@ -58,6 +58,7 @@ Tab: an individual tab button within a tab list.
 | \`value\` | \`value\` | \`string\` | \`''\` | Unique identifier for this tab. |
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Whether the tab is disabled. |
 | \`selected\` | \`selected\` | \`boolean\` | \`false\` | Whether the tab is currently selected. |
+| \`closable\` | \`closable\` | \`boolean\` | \`false\` | Whether the tab shows a close button. |
 | \`iconPosition\` | \`icon-position\` | \`'top' \\| 'bottom' \\| 'start' \\| 'end'\` | \`'start'\` | Position of the icon slot relative to the label. |
 | \`href\` | \`href\` | \`string\` | \`''\` | URL to navigate to, renders the tab as a link. |
 | \`fullWidth\` | \`full-width\` | \`boolean\` | \`false\` | Whether the tab stretches to fill available width. |
@@ -67,12 +68,14 @@ Tab: an individual tab button within a tab list.
 | Event | Detail | Description |
 |---|---|---|
 | \`flint-tab-click\` | — | Fired when the tab is clicked or activated via keyboard. |
+| \`flint-tab-close\` | \`&#123; value: string &#125;\` | Fired when the close button is clicked. detail: \`&#123; value: string &#125;\` |
 
 #### CSS Parts
 
 | Name | Description |
 |---|---|
 | \`tab\` | The tab button or anchor element. |
+| \`close-button\` | The close button element (when closable). |
 
 #### CSS Custom Properties
 
@@ -154,6 +157,8 @@ Tab Panel: content container shown when its corresponding tab is active.
 | \`centered\` | \`centered\` | \`boolean\` | \`false\` | Whether to center the tabs within the tab list. |
 | \`scrollButtons\` | \`scroll-buttons\` | \`'auto' \\| 'false'\` | \`'auto'\` | Whether to show scroll buttons in scrollable mode. |
 | \`ariaLabel\` | \`aria-label\` | \`string\` | \`''\` | Accessible label for the tab list. |
+| \`activation\` | \`activation\` | \`'automatic' \\| 'manual'\` | \`'automatic'\` | Tab activation mode passed down from flint-tabs. |
+| \`placement\` | \`placement\` | \`TabPlacement\` | \`'top'\` | Tab placement passed down from flint-tabs. |
 
 #### Methods
 
@@ -182,6 +187,8 @@ Tabs: container that coordinates tab selection and panel visibility.
 | \`textColor\` | \`text-color\` | \`string\` | \`'primary'\` | Text color: 'primary' \\| 'secondary' \\| 'inherit' \\| any CSS color. |
 | \`indicatorColor\` | \`indicator-color\` | \`string\` | \`'primary'\` | Indicator color: 'primary' \\| 'secondary' \\| any CSS color. |
 | \`defaultValue\` | \`default-value\` | \`string\` | \`''\` | Initial value (uncontrolled). Only used on first render; ignored after mount. |
+| \`placement\` | \`placement\` | \`TabPlacement\` | \`'top'\` | Where the tab list is placed relative to the panels. |
+| \`activation\` | \`activation\` | \`'automatic' \\| 'manual'\` | \`'automatic'\` | Tab activation mode. |
 
 #### Events
 

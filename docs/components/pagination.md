@@ -60,6 +60,13 @@ import { FlintPagination } from '@getufy/flint-ui';
 | `last-icon` | Icon for the last button (default: skip-to-end SVG). |
 | `ellipsis-icon` | Icon for ellipsis items (default: three-dot SVG). |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+| `button` | The button element. |
+
 ### CSS Custom Properties
 
 | Property | Default |

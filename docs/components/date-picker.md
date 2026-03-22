@@ -39,6 +39,12 @@ import { FlintDatePickerCalendar } from '@getufy/flint-ui';
 | --- | --- | --- |
 | `flint-date-picker-select` | `&#123; value: string &#125;` | &#123; detail: &#123; value: string &#125; &#125; ISO date YYYY-MM-DD |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `calendar` | The calendar element. |
+
 ### CSS Custom Properties
 
 | Property | Default |
@@ -60,6 +66,7 @@ import { FlintDatePickerCalendar } from '@getufy/flint-ui';
 | `--flint-input-disabled-bg` | — |
 | `--flint-error-color` | — |
 | `--flint-error-focus-ring` | — |
+| `--flint-datepicker-z-index` | `1400` |
 | `--flint-shadow-lg` | — |
 | `--flint-shadow-sm` | — |
 
@@ -97,7 +104,7 @@ import { FlintDatePicker } from '@getufy/flint-ui';
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | `shadowRootOptions` | `shadowRootOptions` | `object` | `&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;` |  |
-| `dependencies` | `dependencies` | `object` | `&#123; 'flint-dialog': FlintDialog as unknown as typeof FlintElement, 'flint-dialog-title': FlintDialogTitle as unknown as typeof FlintElement, 'flint-dialog-content': FlintDialogContent as unknown as typeof FlintElement, 'flint-dialog-actions': FlintDialogActions as unknown as typeof FlintElement, &#125;` |  |
+| `dependencies` | `dependencies` | `object` | `&#123; 'flint-dialog': FlintDialog as unknown as typeof FlintElement, 'flint-dialog-title': FlintDialogTitle as unknown as typeof FlintElement, 'flint-dialog-content': FlintDialogContent as unknown as typeof FlintElement, 'flint-dialog-actions': FlintDialogActions as unknown as typeof FlintElement, 'flint-popup': FlintPopup as unknown as typeof FlintElement, &#125;` |  |
 | `value` | `value` | `string` | `''` | Selected date as ISO string (YYYY-MM-DD). |
 | `label` | `label` | `string` | `'Date'` | Label shown above the field. |
 | `placeholder` | `placeholder` | `string` | `'MM/DD/YYYY'` | Placeholder shown in the empty field. |

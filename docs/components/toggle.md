@@ -45,6 +45,12 @@ import { FlintToggle } from '@getufy/flint-ui';
 | --- | --- |
 | `(default)` | Content to render inside the toggle (text, icons, or both). |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+
 ### CSS Custom Properties
 
 | Property | Default |

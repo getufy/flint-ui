@@ -49,12 +49,18 @@ import { FlintRichTreeView } from '@getufy/flint-ui';
 | `canMoveItemToNewPosition` | `canMoveItemToNewPosition` | `(params: &#123;         itemId: string;         targetId: string;         position: 'before' \| 'after' \| 'inside';     &#125;) =&gt; boolean \| undefined` | — | Function that determines if an item can be moved to a specific target position. |
 | `itemsReorderingHandle` | `items-reordering-handle` | `boolean` | `false` | Whether to use a drag handle icon for reordering. |
 | `onItemPositionChange` | `onItemPositionChange` | `(params: &#123;         itemId: string;         newParentId: string \| null;         newIndex: number;     &#125;) =&gt; void \| undefined` | — | Fired when an item's position changes via reordering. |
+| `selectionMode` | `selection-mode` | `'none' \| 'single' \| 'multiple'` | `'none'` | Selection mode: |
+| `selectedItems` | `selectedItems` | `string[] \| undefined` | — | Controlled mode. The set of selected item IDs. |
+| `defaultSelectedItems` | `defaultSelectedItems` | `string[]` | `[]` | Uncontrolled mode. Item IDs selected on initial mount. |
+| `onSelectedItemsChange` | `onSelectedItemsChange` | `(itemIds: string[]) =&gt; void \| undefined` | — | Callback fired when the selection changes. |
+| `selectionPropagation` | `selection-propagation` | `boolean` | `false` | When true (and selectionMode='multiple'), selecting a parent item |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
 | `flint-tree-view-error` | `&#123; message, id, error &#125;` | When a lazy-loading dataSource call fails (detail: &#123; message, id, error &#125;) |
+| `flint-selection-change` | `&#123; selectedItems &#125;` | When the selected set changes (detail: &#123; selectedItems &#125;) |
 | `flint-tree-view-expanded-items-change` | `&#123; expandedItems &#125;` | When the expanded set changes (detail: &#123; expandedItems &#125;) |
 | `flint-tree-view-item-position-change` | — |  |
 | `flint-tree-view-item-click` | `&#123; itemId &#125;` | When a tree item is activated (detail: &#123; itemId &#125;) |
@@ -70,6 +76,7 @@ import { FlintRichTreeView } from '@getufy/flint-ui';
 | `--flint-hover-color` | — |
 | `--flint-active-color` | — |
 | `--flint-primary-color-light` | — |
+| `--flint-border-color` | — |
 | `--flint-text-color-muted` | — |
 
 ### Methods
@@ -116,11 +123,16 @@ import { FlintSimpleTreeView } from '@getufy/flint-ui';
 | `defaultExpandedItems` | `defaultExpandedItems` | `string[]` | `[]` | **Uncontrolled mode.** Item IDs to expand on initial mount. |
 | `onExpandedItemsChange` | `onExpandedItemsChange` | `(itemIds: string[]) =&gt; void \| undefined` | — | Callback fired when the user toggles an item's expansion. |
 | `expansionTrigger` | `expansion-trigger` | `'content' \| 'iconContainer'` | `'content'` | What interaction triggers expand/collapse. |
+| `selectionMode` | `selection-mode` | `'none' \| 'single' \| 'multiple'` | `'none'` | Selection mode: |
+| `selectedItems` | `selectedItems` | `string[] \| undefined` | — | Controlled mode. The set of selected item IDs. |
+| `defaultSelectedItems` | `defaultSelectedItems` | `string[]` | `[]` | Uncontrolled mode. Item IDs selected on initial mount. |
+| `onSelectedItemsChange` | `onSelectedItemsChange` | `(itemIds: string[]) =&gt; void \| undefined` | — | Callback fired when the selection changes. |
 
 ### Events
 
 | Event | Detail | Description |
 | --- | --- | --- |
+| `flint-selection-change` | `&#123; selectedItems &#125;` | When the selected set changes (detail: &#123; selectedItems &#125;) |
 | `flint-tree-view-expanded-items-change` | `&#123; expandedItems &#125;` | When the expanded set changes (detail: &#123; expandedItems &#125;) |
 | `flint-tree-view-item-click` | `&#123; itemId &#125;` | When a tree item is activated (detail: &#123; itemId &#125;) |
 
@@ -129,6 +141,12 @@ import { FlintSimpleTreeView } from '@getufy/flint-ui';
 | Name | Description |
 | --- | --- |
 | `(default)` | Place `flint-tree-item` elements here. |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
 
 ### Methods
 
@@ -168,6 +186,8 @@ import { FlintTreeItem } from '@getufy/flint-ui';
 | `disabled` | `disabled` | `boolean` | `false` | Whether this item is disabled (non-interactive) |
 | `expanded` | `expanded` | `boolean` | `false` | Whether this item's children are visible |
 | `hasChildren` | `has-children` | `boolean` | `false` | When `true`, forces the expand button to render even if no `flint-tree-item` |
+| `selected` | `selected` | `boolean` | `false` | Whether this item is visually selected. Managed by the parent tree-view. |
+| `indeterminate` | `indeterminate` | `boolean` | `false` | Whether the checkbox is in an indeterminate state (some but not all children selected). |
 | `dropPosition` | `drop-position` | `'before' \| 'after' \| 'inside' \| null` | `null` | Visual drop position indicator — reflected so CSS :host selectors match |
 | `showDragHandle` | `show-drag-handle` | `boolean` | `false` | Whether to show a dedicated drag handle icon |
 
@@ -175,8 +195,8 @@ import { FlintTreeItem } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
+| `flint-tree-item-click` | `&#123; itemId, ctrlKey, shiftKey &#125;` | Fired when the item is clicked (detail: &#123; itemId, ctrlKey, shiftKey &#125;) |
 | `flint-tree-item-toggle` | `&#123; itemId, expanded &#125;` | Fired when expanded state changes (detail: &#123; itemId, expanded &#125;) |
-| `flint-tree-item-click` | `&#123; itemId &#125;` | Fired when the item is clicked (detail: &#123; itemId &#125;) |
 
 ### Slots
 
@@ -185,10 +205,20 @@ import { FlintTreeItem } from '@getufy/flint-ui';
 | `lead` | Leading icon or content. |
 | `(default)` | Item label text. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+| `children` | The children element. |
+| `label` | The label element. |
+| `checkbox` | The selection checkbox element. |
+
 ### Methods
 
 | Method | Description |
 | --- | --- |
+| `setShowCheckbox(value: boolean): void` |  |
 | `setDraggable(value: boolean, handleOnly: unknown): void` | Called by flint-rich-tree-view to set drag enabled state. |
 
 ---

@@ -35,6 +35,14 @@ A range slider that lets users select a start and end value within a range.
 |---|---|---|
 | \`flint-range-slider-change\` | \`&#123; value: [number, number] &#125;\` | When either thumb moves. detail: &#123; value: [number, number] &#125; |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper element. |
+| \`fill\` | The fill element. |
+| \`track\` | The track element. |
+
 #### CSS Custom Properties
 
 | Property | Default |

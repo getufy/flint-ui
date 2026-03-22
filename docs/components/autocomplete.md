@@ -26,6 +26,7 @@ import { FlintAutocomplete } from '@getufy/flint-ui';
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | `shadowRootOptions` | `shadowRootOptions` | `object` | `&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;` |  |
+| `dependencies` | `dependencies` | `Record&lt;string, typeof FlintElement&gt;` | `&#123; 'flint-popup': FlintPopup as unknown as typeof FlintElement &#125;` |  |
 | `options` | `options` | `(AutocompleteOption \| string)[]` | `[]` | The list of selectable options. Accepts `AutocompleteOption[]` or `string[]`. |
 | `freeSolo` | `freeSolo` | `boolean` | `false` | When true, allows arbitrary values that are not in the options list. |
 | `disabled` | `disabled` | `boolean` | `false` | Whether the autocomplete input is disabled. |
@@ -35,6 +36,7 @@ import { FlintAutocomplete } from '@getufy/flint-ui';
 | `required` | `required` | `boolean` | `false` | Marks the autocomplete as required for form validation. |
 | `defaultValue` | `default-value` | `string` | `''` | Initial value for uncontrolled usage. |
 | `hoist` | `hoist` | `boolean` | `true` | When true, the dropdown uses `position: fixed` so it can escape |
+| `popupDistance` | `popup-distance` | `number` | `4` | Distance between the input and the dropdown popup (px). |
 
 ### Events
 
@@ -42,12 +44,21 @@ import { FlintAutocomplete } from '@getufy/flint-ui';
 | --- | --- | --- |
 | `flint-autocomplete-change` | `&#123; value: string, label: string &#125;` | Fired when the selected value changes. detail: `&#123; value: string, label: string &#125;` |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+| `dropdown` | The dropdown container. |
+| `input` | The native input element. |
+| `option` | An individual option element. |
+
 ### CSS Custom Properties
 
 | Property | Default |
 | --- | --- |
 | `--flint-autocomplete-dropdown-max-height` | `250px` |
-| `--flint-autocomplete-z-index` | `10` |
+| `--flint-autocomplete-z-index` | `1000` |
 | `--flint-autocomplete-option-padding` | `10px 12px` |
 | `--flint-font-family` | — |
 | `--flint-input-border-color` | — |
@@ -63,39 +74,3 @@ import { FlintAutocomplete } from '@getufy/flint-ui';
 | `--flint-text-color-muted` | — |
 
 ---
-
-### String Options
-
-You can pass a simple `string[]` instead of `{ label, value }[]`. Strings are automatically normalized to `{ label: str, value: str }`.
-
-```ts
-// Simple string array
-el.options = ['Apple', 'Banana', 'Cherry'];
-
-// Equivalent to:
-el.options = [
-  { label: 'Apple', value: 'Apple' },
-  { label: 'Banana', value: 'Banana' },
-  { label: 'Cherry', value: 'Cherry' },
-];
-```
-
-### React Usage
-
-```tsx
-import { FlintAutocomplete } from '@getufy/flint-ui-react';
-
-function FruitPicker() {
-  return (
-    <FlintAutocomplete
-      placeholder="Pick a fruit"
-      options={['Apple', 'Banana', 'Cherry']}
-      onFlintAutocompleteChange={(e) => console.log(e.detail.value)}
-    />
-  );
-}
-```
-
-### Hoist
-
-By default (`hoist=true`), the autocomplete dropdown uses `position: fixed` so it can escape containers with `overflow: hidden` (e.g., app bars, dialogs). Set `hoist={false}` to use the default `position: absolute` behavior.

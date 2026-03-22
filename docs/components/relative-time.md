@@ -1,6 +1,6 @@
 # Relative Time
 
-<Demo label="Dates" html='<div style="display:flex;flex-direction:column;gap:8px"><span>1 day ago: <flint-relative-time datetime="2026-03-16T14:31:29.267Z"></flint-relative-time></span><span>1 week ago: <flint-relative-time datetime="2026-03-10T14:31:29.268Z"></flint-relative-time></span><span>1 month ago: <flint-relative-time datetime="2026-02-15T14:31:29.268Z"></flint-relative-time></span></div>' />
+<Demo label="Dates" html='<div style="display:flex;flex-direction:column;gap:8px"><span>1 day ago: <flint-relative-time datetime="2026-03-21T12:33:16.563Z"></flint-relative-time></span><span>1 week ago: <flint-relative-time datetime="2026-03-15T12:33:16.564Z"></flint-relative-time></span><span>1 month ago: <flint-relative-time datetime="2026-02-20T12:33:16.564Z"></flint-relative-time></span></div>' />
 
 Displays a localized time phrase relative to the current date and time.
 Uses the browser's `Intl.RelativeTimeFormat` API — no language packs needed.
@@ -31,6 +31,12 @@ import { FlintRelativeTime } from '@getufy/flint-ui';
 | `numeric` | `numeric` | `'always' \| 'auto'` | `'auto'` | When `auto`, values such as "yesterday" and "tomorrow" will be shown when |
 | `sync` | `sync` | `boolean` | `false` | Keep the displayed value up to date as time passes. |
 | `lang` | `lang` | `string` | `''` | BCP 47 language tag for formatting (e.g. "en", "de", "ja"). Inherits from the document when unset. |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
 
 ### CSS Custom Properties
 

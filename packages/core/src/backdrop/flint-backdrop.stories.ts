@@ -38,6 +38,13 @@ A backdrop component that narrows the user's focus to a particular element.
 |---|---|
 | \`(default)\` | Content to display in the foreground. |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper element. |
+| \`content\` | The content container. |
+
 #### CSS Custom Properties
 
 | Property | Default |

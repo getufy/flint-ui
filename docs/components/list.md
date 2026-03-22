@@ -30,6 +30,12 @@ import { FlintList } from '@getufy/flint-ui';
 | `disablePadding` | `disable-padding` | `boolean` | `false` | Whether to disable the default padding on the list. |
 | `dense` | `dense` | `boolean` | `false` | Whether to use compact spacing for list items. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+
 ### CSS Custom Properties
 
 | Property | Default |

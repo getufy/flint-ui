@@ -37,6 +37,16 @@ import { FlintImageListItemBar } from '@getufy/flint-ui';
 | `subtitle` | Subtitle text. |
 | `(default)` | Action content. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `action` | The action element. |
+| `base` | The component's base wrapper element. |
+| `content` | The content container. |
+| `subtitle` | The subtitle element. |
+| `title` | The title element. |
+
 ### CSS Custom Properties
 
 | Property | Default |
@@ -89,6 +99,12 @@ import { FlintImageListItem } from '@getufy/flint-ui';
 | `(default)` | Place an `&lt;img&gt;` or any content here. |
 | `bar` | Place a `flint-image-list-item-bar` element here. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+
 ---
 
 ## `<flint-image-list>`
@@ -128,6 +144,12 @@ import { FlintImageList } from '@getufy/flint-ui';
 | Name | Description |
 | --- | --- |
 | `(default)` | Place `flint-image-list-item` elements here. |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
 
 ### CSS Custom Properties
 

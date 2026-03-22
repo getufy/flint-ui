@@ -25,6 +25,12 @@ Uses the browser's \`Intl.RelativeTimeFormat\` API — no language packs needed.
 | \`sync\` | \`sync\` | \`boolean\` | \`false\` | Keep the displayed value up to date as time passes. |
 | \`lang\` | \`lang\` | \`string\` | \`''\` | BCP 47 language tag for formatting (e.g. "en", "de", "ja"). Inherits from the document when unset. |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper element. |
+
 #### CSS Custom Properties
 
 | Property | Default |

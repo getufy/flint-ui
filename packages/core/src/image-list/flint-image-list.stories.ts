@@ -41,6 +41,16 @@ A title/subtitle bar for \`flint-image-list-item\`.
 | \`subtitle\` | Subtitle text. |
 | \`(default)\` | Action content. |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`action\` | The action element. |
+| \`base\` | The component's base wrapper element. |
+| \`content\` | The content container. |
+| \`subtitle\` | The subtitle element. |
+| \`title\` | The title element. |
+
 #### CSS Custom Properties
 
 | Property | Default |
@@ -79,6 +89,12 @@ A single item inside a \`flint-image-list\`.
 | \`(default)\` | Place an \`&lt;img&gt;\` or any content here. |
 | \`bar\` | Place a \`flint-image-list-item-bar\` element here. |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper element. |
+
 ---
 
 #### \`<flint-image-list>\`
@@ -104,6 +120,12 @@ Supports standard, quilted, woven, and masonry variants.
 | Name | Description |
 |---|---|
 | \`(default)\` | Place \`flint-image-list-item\` elements here. |
+
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper element. |
 
 #### CSS Custom Properties
 

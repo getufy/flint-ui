@@ -38,6 +38,14 @@ within a site hierarchy, allowing users to navigate back up the trail.
 | \`(default)\` | Breadcrumb items (links or text), distributed in order. |
 | \`separator\` | Custom separator element rendered between each item. |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper element. |
+| \`list\` | The list element. |
+| \`separator\` | The separator element. |
+
 #### CSS Custom Properties
 
 | Property | Default |

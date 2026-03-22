@@ -32,6 +32,12 @@ const meta: Meta = {
 | \`itemsPerView\` | \`items-per-view\` | \`number\` | \`1\` | Number of slides visible at once. |
 | \`orientation\` | \`orientation\` | \`Orientation\` | \`'horizontal'\` | Slide direction axis. |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`track\` | The track element. |
+
 #### CSS Custom Properties
 
 | Property | Default |
@@ -45,6 +51,12 @@ const meta: Meta = {
 
 - **Tag**: \`<flint-carousel-item>\`
 - **Class**: \`FlintCarouselItem\`
+
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper element. |
 
 #### CSS Custom Properties
 
@@ -74,6 +86,12 @@ Carousel Previous: navigation button to go to the previous slide.
 |---|---|
 | \`(default)\` | Custom icon content, replaces default chevron. |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`button\` | The button element. |
+
 ---
 
 #### \`<flint-carousel-next>\`
@@ -96,6 +114,12 @@ Carousel Next: navigation button to go to the next slide.
 |---|---|
 | \`(default)\` | Custom icon content, replaces default chevron. |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`button\` | The button element. |
+
 ---
 
 #### \`<flint-carousel>\`
@@ -115,6 +139,7 @@ Carousel: a slideshow component for cycling through content.
 | \`itemsPerView\` | \`items-per-view\` | \`number\` | \`1\` | Number of slides visible simultaneously. |
 | \`label\` | \`label\` | \`string\` | \`'Carousel'\` | Accessible label for the carousel region. |
 | \`touch\` | \`touch\` | \`boolean\` | \`true\` | Enable touch/swipe gestures. |
+| \`mouseDragging\` | \`mouse-dragging\` | \`boolean\` | \`false\` | Enable mouse-based drag navigation (mousedown/mousemove/mouseup). |
 
 #### Events
 
@@ -127,6 +152,12 @@ Carousel: a slideshow component for cycling through content.
 | Name | Description |
 |---|---|
 | \`(default)\` | Carousel content: flint-carousel-content, flint-carousel-previous, flint-carousel-next. |
+
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper element. |
 
 #### CSS Custom Properties
 

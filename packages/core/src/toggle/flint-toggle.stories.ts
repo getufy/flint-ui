@@ -48,6 +48,12 @@ A two-state button that can be either on (pressed) or off.
 |---|---|
 | \`(default)\` | Content to render inside the toggle (text, icons, or both). |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper element. |
+
 #### CSS Custom Properties
 
 | Property | Default |

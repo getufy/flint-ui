@@ -33,13 +33,21 @@ import { FlintCircularProgress } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `mode` | `mode` | `'determinate' \| 'indeterminate'` | `'indeterminate'` | Progress mode: determinate shows a specific value, indeterminate shows an animation. |
+| `mode` | `mode` | `'determinate' \| 'indeterminate'` | `'indeterminate'` | Progress mode: determinate shows a specific value, indeterminate shows a looping animation. |
+| `indeterminate` | `indeterminate` | `boolean` | `false` | When true, shows a looping animation instead of a specific progress value. |
 | `value` | `value` | `number` | `0` | Current progress value (0 to max) for determinate mode. |
 | `max` | `max` | `number` | `100` | Maximum value. The progress is calculated as value / max. |
 | `size` | `size` | `number` | `40` | Diameter of the circular indicator in pixels. |
 | `thickness` | `thickness` | `number` | `3.6` | Stroke width of the circle in pixels. |
 | `color` | `color` | `'primary' \| 'success' \| 'error' \| 'warning'` | `'primary'` | Color theme of the progress indicator. |
 | `label` | `label` | `string` | `''` | Accessible label for the progress indicator. |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+| `svg` | The svg element. |
 
 ### CSS Custom Properties
 
@@ -78,12 +86,20 @@ import { FlintLinearProgress } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
-| `mode` | `mode` | `'determinate' \| 'indeterminate'` | `'indeterminate'` | Progress mode: determinate shows a specific value, indeterminate shows an animation. |
+| `mode` | `mode` | `'determinate' \| 'indeterminate'` | `'indeterminate'` | Progress mode: determinate shows a specific value, indeterminate shows a looping animation. |
+| `indeterminate` | `indeterminate` | `boolean` | `false` | When true, shows a looping animation instead of a specific progress value. |
 | `value` | `value` | `number` | `0` | Current progress value (0 to max). |
 | `max` | `max` | `number` | `100` | Maximum value. The progress is calculated as value / max. |
 | `height` | `height` | `number` | `4` | Height of the progress bar in pixels. |
 | `color` | `color` | `'primary' \| 'success' \| 'error' \| 'warning'` | `'primary'` | Color theme of the progress bar. |
 | `label` | `label` | `string` | `''` | Accessible label for the progress bar. |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+| `indicator` | The indicator element. |
 
 ### CSS Custom Properties
 

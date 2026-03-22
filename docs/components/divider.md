@@ -38,6 +38,12 @@ import { FlintDivider } from '@getufy/flint-ui';
 | --- | --- |
 | `(default)` | Optional text or content to display within the divider. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+
 ### CSS Custom Properties
 
 | Property | Default |

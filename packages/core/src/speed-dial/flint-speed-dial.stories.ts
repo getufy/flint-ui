@@ -49,6 +49,13 @@ A single action item inside a \`flint-speed-dial\`.
 |---|---|
 | \`(default)\` | Icon content for the action button. |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`button\` | The button element. |
+| \`tooltip\` | The tooltip element. |
+
 #### CSS Custom Properties
 
 | Property | Default |
@@ -101,6 +108,13 @@ Speed Dial — a FAB that reveals 3-6 related actions when pressed.
 | \`(default)\` | \`flint-speed-dial-action\` elements. |
 | \`icon\` | Icon shown on the FAB when closed (default: + SVG). |
 | \`open-icon\` | Icon shown on the FAB when open (default: x SVG). |
+
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`actions\` | The actions container. |
+| \`button\` | The FAB button element. |
 
 #### CSS Custom Properties
 

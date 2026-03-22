@@ -29,6 +29,13 @@ Custom overlay scrollbar. Place inside \`flint-scroll-area\` with
 |---|---|
 | \`—\` | none (fully shadow DOM) |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`thumb\` | The thumb/handle element. |
+| \`track\` | The track element. |
+
 #### CSS Custom Properties
 
 | Property | Default |
@@ -70,6 +77,14 @@ shadow DOM and synced to the viewport via scroll + ResizeObserver events.
 |---|---|
 | \`(default)\` | Scrollable content. |
 | \`scrollbar\` | Optional explicit \`flint-scroll-bar\` elements (e.g. horizontal). |
+
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper element. |
+| \`viewport\` | The viewport element. |
+| \`thumb\` | The default scrollbar thumb element. |
 
 #### CSS Custom Properties
 

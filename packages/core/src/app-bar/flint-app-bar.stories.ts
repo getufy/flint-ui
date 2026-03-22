@@ -42,6 +42,15 @@ flint-app-bar: The top App bar provides content and actions related to the curre
 | \`actions\` | Right section, e.g. action buttons (alias: \`end-content\`). |
 | \`end-content\` | Alias for \`actions\` slot. |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`actions\` | The actions container. |
+| \`base\` | The component's base wrapper element. |
+| \`navigation\` | The navigation container. |
+| \`title\` | The title element. |
+
 #### CSS Custom Properties
 
 | Property | Default |
@@ -53,6 +62,7 @@ flint-app-bar: The top App bar provides content and actions related to the curre
 | \`--flint-primary-color\` | — |
 | \`--flint-text-color-on-primary\` | — |
 | \`--flint-shadow-md\` | — |
+| \`--flint-z-app-bar\` | \`1100\` |
 | \`--flint-surface-1\` | — |
 | \`--flint-text-color\` | — |
 | \`--flint-border-color\` | — |

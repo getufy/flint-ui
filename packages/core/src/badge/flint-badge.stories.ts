@@ -30,6 +30,12 @@ A badge component that generates a small badge at the top-right of its children.
 |---|---|
 | \`(default)\` | The content to which the badge is attached. |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper element. |
+
 #### CSS Custom Properties
 
 | Property | Default |

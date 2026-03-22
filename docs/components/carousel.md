@@ -29,6 +29,12 @@ import { FlintCarouselContent } from '@getufy/flint-ui';
 | `itemsPerView` | `items-per-view` | `number` | `1` | Number of slides visible at once. |
 | `orientation` | `orientation` | `Orientation` | `'horizontal'` | Slide direction axis. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `track` | The track element. |
+
 ### CSS Custom Properties
 
 | Property | Default |
@@ -56,6 +62,12 @@ import { FlintCarouselItem } from '@getufy/flint-ui';
 ```html
 <flint-carousel-item></flint-carousel-item>
 ```
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
 
 ### CSS Custom Properties
 
@@ -99,6 +111,12 @@ import { FlintCarouselPrevious } from '@getufy/flint-ui';
 | --- | --- |
 | `(default)` | Custom icon content, replaces default chevron. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `button` | The button element. |
+
 ---
 
 ## `<flint-carousel-next>`
@@ -135,6 +153,12 @@ import { FlintCarouselNext } from '@getufy/flint-ui';
 | --- | --- |
 | `(default)` | Custom icon content, replaces default chevron. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `button` | The button element. |
+
 ---
 
 ## `<flint-carousel>`
@@ -168,6 +192,7 @@ import { FlintCarousel } from '@getufy/flint-ui';
 | `itemsPerView` | `items-per-view` | `number` | `1` | Number of slides visible simultaneously. |
 | `label` | `label` | `string` | `'Carousel'` | Accessible label for the carousel region. |
 | `touch` | `touch` | `boolean` | `true` | Enable touch/swipe gestures. |
+| `mouseDragging` | `mouse-dragging` | `boolean` | `false` | Enable mouse-based drag navigation (mousedown/mousemove/mouseup). |
 
 ### Events
 
@@ -180,6 +205,12 @@ import { FlintCarousel } from '@getufy/flint-ui';
 | Name | Description |
 | --- | --- |
 | `(default)` | Carousel content: flint-carousel-content, flint-carousel-previous, flint-carousel-next. |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
 
 ### CSS Custom Properties
 

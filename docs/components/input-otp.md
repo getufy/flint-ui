@@ -32,6 +32,12 @@ import { FlintInputOtpGroup } from '@getufy/flint-ui';
 | --- | --- |
 | `(default)` | Accepts `flint-input-otp-slot` elements. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `separator` | The separator element. |
+
 ### CSS Custom Properties
 
 | Property | Default |

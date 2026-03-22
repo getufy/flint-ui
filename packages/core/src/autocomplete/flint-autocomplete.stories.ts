@@ -21,6 +21,7 @@ Autocomplete: a text input with a dropdown of selectable suggestions.
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
 | \`shadowRootOptions\` | \`shadowRootOptions\` | \`object\` | \`&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;\` |  |
+| \`dependencies\` | \`dependencies\` | \`Record&lt;string, typeof FlintElement&gt;\` | \`&#123; 'flint-popup': FlintPopup as unknown as typeof FlintElement &#125;\` |  |
 | \`options\` | \`options\` | \`(AutocompleteOption \\| string)[]\` | \`[]\` | The list of selectable options. Accepts \`AutocompleteOption[]\` or \`string[]\`. |
 | \`freeSolo\` | \`freeSolo\` | \`boolean\` | \`false\` | When true, allows arbitrary values that are not in the options list. |
 | \`disabled\` | \`disabled\` | \`boolean\` | \`false\` | Whether the autocomplete input is disabled. |
@@ -30,6 +31,7 @@ Autocomplete: a text input with a dropdown of selectable suggestions.
 | \`required\` | \`required\` | \`boolean\` | \`false\` | Marks the autocomplete as required for form validation. |
 | \`defaultValue\` | \`default-value\` | \`string\` | \`''\` | Initial value for uncontrolled usage. |
 | \`hoist\` | \`hoist\` | \`boolean\` | \`true\` | When true, the dropdown uses \`position: fixed\` so it can escape |
+| \`popupDistance\` | \`popup-distance\` | \`number\` | \`4\` | Distance between the input and the dropdown popup (px). |
 
 #### Events
 
@@ -37,12 +39,21 @@ Autocomplete: a text input with a dropdown of selectable suggestions.
 |---|---|---|
 | \`flint-autocomplete-change\` | \`&#123; value: string, label: string &#125;\` | Fired when the selected value changes. detail: \`&#123; value: string, label: string &#125;\` |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper element. |
+| \`dropdown\` | The dropdown container. |
+| \`input\` | The native input element. |
+| \`option\` | An individual option element. |
+
 #### CSS Custom Properties
 
 | Property | Default |
 |---|---|
 | \`--flint-autocomplete-dropdown-max-height\` | \`250px\` |
-| \`--flint-autocomplete-z-index\` | \`10\` |
+| \`--flint-autocomplete-z-index\` | \`1000\` |
 | \`--flint-autocomplete-option-padding\` | \`10px 12px\` |
 | \`--flint-font-family\` | — |
 | \`--flint-input-border-color\` | — |

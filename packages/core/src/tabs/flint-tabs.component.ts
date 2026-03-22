@@ -33,6 +33,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
 import { LocalizeController } from '../utilities/localize.js';
 import type { Orientation, TabPlacement } from '../types.js';
+import { rovingIndex } from '../utilities/roving-index.js';
 import uiTabStyles from './flint-tab.css?inline';
 import uiTabPanelStyles from './flint-tab-panel.css?inline';
 import uiTabListStyles from './flint-tab-list.css?inline';
@@ -294,8 +295,6 @@ export class FlintTabList extends FlintElement {
     /** Keyboard navigation across tabs */
     private _onKey = (e: KeyboardEvent) => {
         const horiz = this.orientation === 'horizontal';
-        const prev = horiz ? 'ArrowLeft' : 'ArrowUp';
-        const next = horiz ? 'ArrowRight' : 'ArrowDown';
 
         // Manual activation: Enter/Space activates the focused tab
         if (this.activation === 'manual' && (e.key === 'Enter' || e.key === ' ')) {
@@ -310,19 +309,12 @@ export class FlintTabList extends FlintElement {
             return;
         }
 
-        if (![prev, next, 'Home', 'End'].includes(e.key)) return;
+        const tabs = this._tabs().filter(t => !t.disabled);
+        const cur = tabs.findIndex(t => t.shadowRoot?.activeElement != null || t === document.activeElement);
+        const { index: idx, handled } = rovingIndex(e.key, cur < 0 ? 0 : cur, tabs.length, { horizontal: horiz });
+        if (!handled) return;
 
         e.preventDefault();
-        const tabs = this._tabs().filter(t => !t.disabled);
-        // Check if tab has focus inside its shadow DOM
-        const cur = tabs.findIndex(t => t.shadowRoot?.activeElement != null || t === document.activeElement);
-        let idx = cur < 0 ? 0 : cur;
-
-        if (e.key === prev) idx = (idx - 1 + tabs.length) % tabs.length;
-        if (e.key === next) idx = (idx + 1) % tabs.length;
-        if (e.key === 'Home') idx = 0;
-        if (e.key === 'End') idx = tabs.length - 1;
-
         tabs[idx]?.focusInner();
         // Scroll focused tab into view
         if (typeof tabs[idx]?.scrollIntoView === 'function') {

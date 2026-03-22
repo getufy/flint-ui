@@ -22,6 +22,12 @@ const meta: Meta = {
 - **Tag**: \`<flint-card-action-area>\`
 - **Class**: \`FlintCardActionArea\`
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`action-area\` | The action area element. |
+
 #### CSS Custom Properties
 
 | Property | Default |
@@ -85,6 +91,15 @@ Card Header: the header section of a card.
 | \`action\` | Action element like an icon button. |
 | \`(default)\` | Header text content. |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`content\` | The content container. |
+| \`header\` | The header element. |
+| \`subtitle\` | The subtitle element. |
+| \`title\` | The title element. |
+
 #### CSS Custom Properties
 
 | Property | Default |
@@ -105,6 +120,13 @@ Card Header: the header section of a card.
 | \`image\` | \`image\` | \`string\` | \`''\` |  |
 | \`alt\` | \`alt\` | \`string\` | \`''\` |  |
 | \`height\` | \`height\` | \`string\` | \`''\` |  |
+
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`img\` | The img element. |
+| \`media\` | The media element. |
 
 #### CSS Custom Properties
 

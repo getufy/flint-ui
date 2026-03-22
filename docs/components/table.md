@@ -34,7 +34,7 @@ import { FlintTablePagination } from '@getufy/flint-ui';
 | `defaultPage` | `default-page` | `number` | `0` | Uncontrolled default page (applied on first render). |
 | `defaultRowsPerPage` | `default-rows-per-page` | `number` | `-1` | Uncontrolled default rows per page. |
 | `showFirstLast` | `show-first-last` | `boolean` | `false` | Show First/Last page buttons. |
-| `labelRowsPerPage` | `label-rows-per-page` | `string` | `'Rows per page:'` | Label for the rows-per-page selector. |
+| `labelRowsPerPage` | `label-rows-per-page` | `string \| undefined` | — | Label for the rows-per-page selector. Defaults to localized "Rows per page:". |
 
 ### Events
 
@@ -42,6 +42,14 @@ import { FlintTablePagination } from '@getufy/flint-ui';
 | --- | --- | --- |
 | `flint-pagination-page-change` | `&#123; page: number &#125;` | Fired when the current page changes. detail: `&#123; page: number &#125;` |
 | `flint-pagination-rows-per-page-change` | `&#123; rowsPerPage: number &#125;` | Fired when rows per page changes. detail: `&#123; rowsPerPage: number &#125;` |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+| `select` | The select element. |
+| `spacer` | The spacer element. |
 
 ### CSS Custom Properties
 
@@ -80,6 +88,12 @@ import { FlintTableSortLabel } from '@getufy/flint-ui';
 | --- | --- | --- | --- | --- |
 | `active` | `active` | `boolean` | `false` | Whether this column is currently sorted. |
 | `direction` | `direction` | `'asc' \| 'desc'` | `'asc'` | Sort direction when active. |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `icon` | The icon container. |
 
 ---
 

@@ -38,6 +38,12 @@ import { FlintKbd } from '@getufy/flint-ui';
 | --- | --- |
 | `(default)` | Key label: text, symbol (⌘ ⇧ ⌥ ⌃ ⏎), or any inline content. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+
 ### CSS Custom Properties
 
 | Property | Default |

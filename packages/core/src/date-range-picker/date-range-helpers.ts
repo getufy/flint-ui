@@ -1,41 +1,13 @@
 // ─── Date Range Picker — shared helpers ──────────────────────────────────────
 
-export const DAYS_SHORT = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-export const MONTHS = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December',
-];
+export {
+    DAYS_SHORT, MONTHS,
+    isoToDate, dateToIso, todayIso, sameDay, isoToDisplay,
+} from '../utilities/date-utils.js';
 
-// ── Date utilities ────────────────────────────────────────────────────────────
+import { isoToDate, dateToIso, todayIso, sameDay } from '../utilities/date-utils.js';
 
-export function isoToDate(iso: string): Date | null {
-    if (!iso) return null;
-    const [y, m, d] = iso.split('-').map(Number);
-    if (!y || !m || !d) return null;
-    const date = new Date(y, m - 1, d);
-    // Reject overflowed dates (e.g. Feb 30 → Mar 2)
-    if (date.getFullYear() !== y || date.getMonth() !== m - 1 || date.getDate() !== d) return null;
-    return date;
-}
-
-export function dateToIso(d: Date): string {
-    const y = String(d.getFullYear()).padStart(4, '0');
-    const m = String(d.getMonth() + 1).padStart(2, '0');
-    const day = String(d.getDate()).padStart(2, '0');
-    return `${y}-${m}-${day}`;
-}
-
-export function todayIso(): string {
-    return dateToIso(new Date());
-}
-
-export function sameDay(a: Date, b: Date): boolean {
-    return (
-        a.getFullYear() === b.getFullYear() &&
-        a.getMonth() === b.getMonth() &&
-        a.getDate() === b.getDate()
-    );
-}
+// ── Range-specific date utilities ────────────────────────────────────────────
 
 export function isBetween(d: Date, start: Date, end: Date): boolean {
     const t = d.getTime();
@@ -47,18 +19,6 @@ export function isBetween(d: Date, start: Date, end: Date): boolean {
 
 export function isStartOrEnd(d: Date, start: Date | null, end: Date | null): boolean {
     return (start ? sameDay(d, start) : false) || (end ? sameDay(d, end) : false);
-}
-
-export function isoToDisplay(iso: string, locale?: string): string {
-    const d = isoToDate(iso);
-    if (!d) return '';
-    try {
-        return new Intl.DateTimeFormat(locale || undefined, {
-            year: 'numeric', month: '2-digit', day: '2-digit',
-        }).format(d);
-    } catch {
-        return `${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}/${d.getFullYear()}`;
-    }
 }
 
 // ── DateRange type ────────────────────────────────────────────────────────────

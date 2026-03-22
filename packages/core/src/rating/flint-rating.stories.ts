@@ -41,6 +41,12 @@ Rating: a star-based rating input.
 |---|---|---|
 | \`flint-rating-change\` | \`&#123; value: number &#125;\` | Fired when the rating value changes. detail: \`&#123; value: number &#125;\` |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper element. |
+
 #### CSS Custom Properties
 
 | Property | Default |

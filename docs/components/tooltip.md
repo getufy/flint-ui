@@ -26,12 +26,14 @@ import { FlintTooltip } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
+| `dependencies` | `dependencies` | `Record&lt;string, typeof FlintElement&gt;` | `&#123; 'flint-popup': FlintPopup, &#125;` |  |
 | `label` | `label` | `string` | `''` | Text content displayed inside the tooltip. |
 | `placement` | `placement` | `Placement` | `'top'` | Preferred placement of the tooltip relative to the trigger element. |
 | `arrow` | `arrow` | `boolean` | `false` | Show a small arrow pointing toward the trigger element. |
 | `disabled` | `disabled` | `boolean` | `false` | Disables the tooltip so it never appears. |
 | `openDelay` | `open-delay` | `number` | `0` | Delay in ms before showing the tooltip. |
 | `closeDelay` | `close-delay` | `number` | `0` | Delay in ms before hiding the tooltip. |
+| `distance` | `distance` | `number` | `8` | Distance in pixels between the tooltip and the trigger element. |
 | `hoist` | `hoist` | `boolean` | `false` | When true, the tooltip popup uses `position: fixed` instead of `position: absolute` |
 
 ### Events
@@ -40,6 +42,13 @@ import { FlintTooltip } from '@getufy/flint-ui';
 | --- | --- | --- |
 | `flint-tooltip-show` | — | Dispatched when the tooltip becomes visible. |
 | `flint-tooltip-hide` | — | Dispatched when the tooltip is dismissed. |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+| `body` | The body element. |
 
 ### CSS Custom Properties
 

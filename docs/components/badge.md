@@ -41,6 +41,12 @@ import { FlintBadge } from '@getufy/flint-ui';
 | --- | --- |
 | `(default)` | The content to which the badge is attached. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+
 ### CSS Custom Properties
 
 | Property | Default |

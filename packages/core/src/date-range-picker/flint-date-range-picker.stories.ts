@@ -73,6 +73,12 @@ Shows two months side-by-side (or stacked on narrow screens).
 |---|---|---|
 | \`flint-date-range-picker-select\` | \`&#123; value: DateRange &#125;\` | &#123; detail: &#123; value: DateRange &#125; &#125; on each click |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper element. |
+
 #### CSS Custom Properties
 
 | Property | Default |
@@ -91,6 +97,7 @@ Shows two months side-by-side (or stacked on narrow screens).
 | \`--flint-border-radius-md\` | — |
 | \`--flint-input-disabled-bg\` | — |
 | \`--flint-input-placeholder-color\` | — |
+| \`--flint-datepicker-z-index\` | \`1400\` |
 | \`--flint-border-radius-xl\` | — |
 | \`--flint-shadow-lg\` | — |
 | \`--flint-shadow-sm\` | — |
@@ -117,7 +124,7 @@ A date range picker combining a segmented field and a dual-month calendar.
 
 | Property | Attribute | Type | Default | Description |
 |---|---|---|---|---|
-| \`dependencies\` | \`dependencies\` | \`object\` | \`&#123; 'flint-dialog': FlintDialog as unknown as typeof FlintElement, 'flint-dialog-title': FlintDialogTitle as unknown as typeof FlintElement, 'flint-dialog-content': FlintDialogContent as unknown as typeof FlintElement, 'flint-dialog-actions': FlintDialogActions as unknown as typeof FlintElement, 'flint-single-input-date-range-field': FlintSingleInputDateRangeField as unknown as typeof FlintElement, 'flint-date-range-calendar': FlintDateRangeCalendar as unknown as typeof FlintElement, &#125;\` |  |
+| \`dependencies\` | \`dependencies\` | \`object\` | \`&#123; 'flint-dialog': FlintDialog as unknown as typeof FlintElement, 'flint-dialog-title': FlintDialogTitle as unknown as typeof FlintElement, 'flint-dialog-content': FlintDialogContent as unknown as typeof FlintElement, 'flint-dialog-actions': FlintDialogActions as unknown as typeof FlintElement, 'flint-single-input-date-range-field': FlintSingleInputDateRangeField as unknown as typeof FlintElement, 'flint-date-range-calendar': FlintDateRangeCalendar as unknown as typeof FlintElement, 'flint-popup': FlintPopup as unknown as typeof FlintElement, &#125;\` |  |
 | \`value\` | \`value\` | \`DateRange\` | \`[...EMPTY_RANGE]\` | Selected range [startISO, endISO]. Empty strings mean unset. |
 | \`label\` | \`label\` | \`string\` | \`'Date Range'\` | Label shown above the field. |
 | \`variant\` | \`variant\` | \`'desktop' \\| 'mobile' \\| 'static' \\| 'auto'\` | \`'desktop'\` | Variant: 'desktop' \\| 'mobile' \\| 'static' \\| 'auto'. |
@@ -139,6 +146,14 @@ A date range picker combining a segmented field and a dual-month calendar.
 | Event | Detail | Description |
 |---|---|---|
 | \`flint-date-range-picker-change\` | \`&#123; value: DateRange &#125;\` | &#123; detail: &#123; value: DateRange &#125; &#125; when range is committed |
+
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper element. |
+| \`popover\` | The popover element. |
+| \`shortcuts\` | The shortcuts element. |
 
 ---
 
@@ -171,6 +186,12 @@ Renders as "MM/DD/YYYY – MM/DD/YYYY" with six independently editable segments.
 |---|---|---|
 | \`flint-date-range-picker-clear\` | — | fired when all segments are cleared |
 | \`flint-date-range-picker-change\` | \`&#123; value: DateRange &#125;\` | &#123; detail: &#123; value: DateRange &#125; &#125; when both dates are complete |
+
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper element. |
 
 #### Methods
 

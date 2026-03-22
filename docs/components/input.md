@@ -48,6 +48,8 @@ import { FlintInput } from '@getufy/flint-ui';
 | `minLength` | `minlength` | `number \| undefined` | — | Minimum length for text validation. |
 | `maxLength` | `maxlength` | `number \| undefined` | — | Maximum length for text validation. |
 | `size` | `size` | `Size` | `'md'` | Size variant of the input. |
+| `variant` | `variant` | `'outlined' \| 'filled'` | `'outlined'` | Visual variant of the input. |
+| `pill` | `pill` | `boolean` | `false` | Whether to use pill-shaped (fully rounded) ends. |
 | `defaultValue` | `default-value` | `string \| undefined` | — | Initial value (uncontrolled). Only used on first render; ignored after mount. |
 | `clearable` | `clearable` | `boolean` | `false` | Shows a clear button when the input has a value. |
 | `passwordToggle` | `password-toggle` | `boolean` | `false` | Shows a toggle button on password inputs to reveal/hide the value. |
@@ -57,9 +59,9 @@ import { FlintInput } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-input-clear` | — | Fired when the clear button is clicked. detail: `undefined` |
 | `flint-input-input` | `&#123; value: string &#125;` | Fired on each keystroke as the value changes. detail: `&#123; value: string &#125;` |
 | `flint-input-change` | `&#123; value: string &#125;` | Fired when the input loses focus after the value has changed. detail: `&#123; value: string &#125;` |
+| `flint-input-clear` | — | Fired when the clear button is clicked. detail: `undefined` |
 
 ### Slots
 
@@ -94,6 +96,8 @@ import { FlintInput } from '@getufy/flint-ui';
 | `--flint-input-disabled-color` | — |
 | `--flint-input-disabled-bg` | — |
 | `--flint-input-readonly-bg` | — |
+| `--flint-input-filled-bg` | `var(--flint-surface-background-flat, #f3f4f6` |
+| `--flint-input-filled-bg-hover` | `#e5e7eb` |
 | `--flint-font-family` | — |
 | `--flint-label-color` | — |
 | `--flint-primary-color` | — |

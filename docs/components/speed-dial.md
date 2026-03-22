@@ -45,6 +45,13 @@ import { FlintSpeedDialAction } from '@getufy/flint-ui';
 | --- | --- |
 | `(default)` | Icon content for the action button. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `button` | The button element. |
+| `tooltip` | The tooltip element. |
+
 ### CSS Custom Properties
 
 | Property | Default |
@@ -111,6 +118,13 @@ import { FlintSpeedDial } from '@getufy/flint-ui';
 | `(default)` | `flint-speed-dial-action` elements. |
 | `icon` | Icon shown on the FAB when closed (default: + SVG). |
 | `open-icon` | Icon shown on the FAB when open (default: x SVG). |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `actions` | The actions container. |
+| `button` | The FAB button element. |
 
 ### CSS Custom Properties
 

@@ -29,6 +29,12 @@ Displays the title of an item.
 |---|---|
 | \`(default)\` | Title text. |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper element. |
+
 #### CSS Custom Properties
 
 | Property | Default |

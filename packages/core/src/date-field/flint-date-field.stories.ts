@@ -42,6 +42,12 @@ Each section (month, day, year) is independently editable via keyboard.
 | \`flint-date-field-clear\` | — | Fired when all segments are cleared |
 | \`flint-date-field-change\` | \`&#123; value: string &#125;\` | &#123; detail: &#123; value: string &#125; &#125; ISO date when all three segments are filled |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper element. |
+
 #### CSS Custom Properties
 
 | Property | Default |

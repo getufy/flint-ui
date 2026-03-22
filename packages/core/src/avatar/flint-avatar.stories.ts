@@ -29,6 +29,16 @@ const meta: Meta = {
 | \`initials\` | \`initials\` | \`string\` | \`''\` | Initials to display when no image is provided. |
 | \`variant\` | \`variant\` | \`'circle' \\| 'square' \\| 'rounded'\` | \`'circle'\` | Shape variant of the avatar. |
 | \`size\` | \`size\` | \`Size \\| 'xl'\` | \`'md'\` | Size of the avatar. |
+| \`loading\` | \`loading\` | \`'eager' \\| 'lazy'\` | \`'eager'\` | Image loading strategy. |
+
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper element. |
+| \`fallback\` | The fallback content element. |
+| \`image\` | The image element. |
+| \`initials\` | The initials element. |
 
 #### CSS Custom Properties
 

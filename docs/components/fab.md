@@ -40,6 +40,14 @@ import { FlintFab } from '@getufy/flint-ui';
 | `(default)` | Default slot for icon content (icon-only FAB). |
 | `label` | The label to display in the extended FAB. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+| `icon` | The icon container. |
+| `label` | The label element. |
+
 ### CSS Custom Properties
 
 | Property | Default |

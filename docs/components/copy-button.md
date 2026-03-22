@@ -28,8 +28,8 @@ import { FlintCopyButton } from '@getufy/flint-ui';
 | `value` | `value` | `string` | `''` | The text value to copy. |
 | `from` | `from` | `string` | `''` | An id referencing another element to copy from. |
 | `disabled` | `disabled` | `boolean` | `false` | Disables the copy button. |
-| `copyLabel` | `copy-label` | `string` | `'Copy'` | Label shown in the tooltip (idle state). |
-| `successLabel` | `success-label` | `string` | `'Copied!'` | Label shown in the tooltip after successful copy. |
+| `copyLabel` | `copy-label` | `string \| undefined` | — | Label shown in the tooltip (idle state). Defaults to localized "Copy". Set to empty string to hide. |
+| `successLabel` | `success-label` | `string \| undefined` | — | Label shown in the tooltip after successful copy. Defaults to localized "Copied!". Set to empty string to hide. |
 | `errorLabel` | `error-label` | `string` | `'Error'` | Label shown in the tooltip on copy error. |
 | `feedbackDuration` | `feedback-duration` | `number` | `1000` | Duration (ms) to show feedback before returning to idle. |
 | `tooltipPlacement` | `tooltip-placement` | `Placement` | `'top'` | Tooltip placement. |
@@ -38,8 +38,17 @@ import { FlintCopyButton } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-copy-error` | `&#123; reason: string &#125;` | Fired when the copy operation fails. detail: `&#123; reason: string &#125;` |
 | `flint-copy` | `&#123; value: string &#125;` | Fired after a successful copy operation. detail: `&#123; value: string &#125;` |
+| `flint-copy-error` | `&#123; reason: string &#125;` | Fired when the copy operation fails. detail: `&#123; reason: string &#125;` |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `button` | The button element. |
+| `copy-icon` | The copy icon element. |
+| `error-icon` | The error icon element. |
+| `success-icon` | The success icon element. |
 
 ### CSS Custom Properties
 

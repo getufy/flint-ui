@@ -39,6 +39,12 @@ import { FlintCollapsibleTrigger } from '@getufy/flint-ui';
 | --- | --- |
 | `(default)` | Trigger label or any content (icon, text, avatar…). |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+
 ---
 
 ## `<flint-collapsible-content>`
@@ -74,6 +80,13 @@ import { FlintCollapsibleContent } from '@getufy/flint-ui';
 | Name | Description |
 | --- | --- |
 | `(default)` | Content to reveal when expanded. |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+| `content` | The content container. |
 
 ### CSS Custom Properties
 

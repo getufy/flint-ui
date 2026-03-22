@@ -61,6 +61,12 @@ import { FlintBox } from '@getufy/flint-ui';
 | --- | --- | --- |
 | `flint-box-warning` | — | Dispatched when an unknown component tag is used and falls back to div. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+
 ### CSS Custom Properties
 
 | Property | Default |

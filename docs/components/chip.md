@@ -57,6 +57,8 @@ import { FlintChip } from '@getufy/flint-ui';
 | Name | Description |
 | --- | --- |
 | `base` | The chip's base wrapper element. |
+| `label` | The label text element. |
+| `delete-icon` | The delete button element. |
 
 ### CSS Custom Properties
 

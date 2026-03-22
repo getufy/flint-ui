@@ -21,8 +21,14 @@ const meta: Meta = {
 |---|---|---|---|---|
 | \`orientation\` | \`orientation\` | \`Orientation\` | \`'horizontal'\` | Layout direction of the group. |
 | \`size\` | \`size\` | \`ButtonSize \\| ''\` | \`''\` | Size propagated to child \`flint-button\` elements. |
-| \`appearance\` | \`appearance\` | \`ButtonAppearance\` | \`'filled'\` | Appearance propagated to child \`flint-button\` elements. |
-| \`color\` | \`color\` | \`ButtonColor\` | \`'primary'\` | Color propagated to child \`flint-button\` elements. |
+| \`appearance\` | \`appearance\` | \`ButtonAppearance \\| ''\` | \`''\` | Appearance propagated to child \`flint-button\` elements. |
+| \`color\` | \`color\` | \`ButtonColor \\| ''\` | \`''\` | Color propagated to child \`flint-button\` elements. |
+
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper element. |
 
 #### CSS Custom Properties
 
@@ -77,6 +83,7 @@ Button: a clickable element used for actions and navigation.
 | \`href\` | \`href\` | \`string\` | \`''\` | When set, renders an \`&lt;a&gt;\` tag instead of a \`&lt;button&gt;\`. |
 | \`target\` | \`target\` | \`string\` | \`''\` | Optional \`target\` attribute when \`href\` is set. |
 | \`shape\` | \`shape\` | \`ButtonShape\` | \`'default'\` | Shape variant of the button. |
+| \`caret\` | \`caret\` | \`boolean\` | \`false\` | Renders a dropdown caret (chevron-down) icon in the suffix area. |
 
 #### CSS Parts
 
@@ -86,6 +93,7 @@ Button: a clickable element used for actions and navigation.
 | \`prefix\` | The container wrapping the prefix slot. |
 | \`label\` | The container wrapping the default slot (label text). |
 | \`suffix\` | The container wrapping the suffix slot. |
+| \`caret\` | The caret icon container. |
 | \`spinner\` | The loading spinner element. |
 
 #### CSS Custom Properties
@@ -141,6 +149,12 @@ Toggle Button: a button that can be toggled on/off.
 | Event | Detail | Description |
 |---|---|---|
 | \`flint-toggle-button-change\` | \`&#123; value: string, selected: boolean &#125;\` | Fired when the button's selected state changes. detail: \`&#123; value: string, selected: boolean &#125;\` |
+
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The inner button element. |
 
 #### CSS Custom Properties
 

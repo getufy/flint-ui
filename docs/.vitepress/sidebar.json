@@ -348,6 +348,10 @@
         "link": "/components/layer"
       },
       {
+        "text": "Popup",
+        "link": "/components/popup"
+      },
+      {
         "text": "Theme",
         "link": "/components/theme"
       },

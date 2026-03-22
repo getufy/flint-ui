@@ -3,16 +3,12 @@ import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
 import { LocalizeController } from '../utilities/localize.js';
+import { daysInMonth } from '../utilities/date-utils.js';
 import uiDateFieldStyles from './flint-date-field.css?inline';
 
 // ─── helpers ──────────────────────────────────────────────────────────────────
 
 function clamp(v: number, min: number, max: number) { return Math.min(Math.max(v, min), max); }
-
-function daysInMonth(month: number, year: number): number {
-    if (month < 1 || month > 12) return 31;
-    return new Date(year || 2000, month, 0).getDate();
-}
 
 function isoToSegments(iso: string): { m: number | null; d: number | null; y: number | null } {
     if (!iso) return { m: null, d: null, y: null };

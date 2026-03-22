@@ -31,6 +31,12 @@ import { FlintStack } from '@getufy/flint-ui';
 | `justifyContent` | `justifyContent` | `'flex-start' \| 'center' \| 'flex-end' \| 'space-between' \| 'space-around' \| 'space-evenly' \| undefined` | — | Main-axis alignment of stack children. |
 | `useFlexGap` | `useFlexGap` | `boolean` | `true` | Whether to use CSS flex gap for spacing. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+
 ### CSS Custom Properties
 
 | Property | Default |

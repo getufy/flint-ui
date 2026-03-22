@@ -41,6 +41,12 @@ Automatically wires up to the nearest \`flint-collapsible\` ancestor.
 |---|---|
 | \`(default)\` | Trigger label or any content (icon, text, avatar…). |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper element. |
+
 ---
 
 #### \`<flint-collapsible-content>\`
@@ -62,6 +68,13 @@ Place inside \`flint-collapsible\`; its \`open\` state is managed automatically.
 | Name | Description |
 |---|---|
 | \`(default)\` | Content to reveal when expanded. |
+
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper element. |
+| \`content\` | The content container. |
 
 #### CSS Custom Properties
 

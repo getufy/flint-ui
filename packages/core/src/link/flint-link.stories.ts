@@ -38,6 +38,12 @@ with theme colors and typography styles.
 |---|---|
 | \`(default)\` | Link text or content. Native click events propagate from the shadow DOM anchor element. |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper element. |
+
 #### CSS Custom Properties
 
 | Property | Default |

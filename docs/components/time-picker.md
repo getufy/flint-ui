@@ -55,6 +55,12 @@ import { FlintTimeField } from '@getufy/flint-ui';
 | `flint-time-picker-clear` | — | Fired when the clear button is clicked. |
 | `flint-time-field-change` | `&#123; value: string &#125;` | Fired when the time value changes. detail: `&#123; value: string &#125;` |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+
 ### CSS Custom Properties
 
 | Property | Default |

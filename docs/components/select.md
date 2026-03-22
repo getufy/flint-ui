@@ -26,6 +26,7 @@ import { FlintSelect } from '@getufy/flint-ui';
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | `shadowRootOptions` | `shadowRootOptions` | `object` | `&#123; ...LitElement.shadowRootOptions, delegatesFocus: true &#125;` |  |
+| `dependencies` | `dependencies` | `Record&lt;string, typeof FlintElement&gt;` | `&#123; 'flint-popup': FlintPopup, 'flint-tooltip': FlintTooltip, &#125;` |  |
 | `label` | `label` | `string` | `''` | Label text displayed above the select. |
 | `options` | `options` | `SelectOption[]` | `[]` | Array of selectable options. |
 | `value` | `value` | `string \| string[]` | `[]` | Current value (controlled). When set, the component reflects this value and does not manage its own state. Accepts a single string or an array of strings. |
@@ -40,7 +41,10 @@ import { FlintSelect } from '@getufy/flint-ui';
 | `size` | `size` | `SelectSize` | `'md'` | Size variant of the select. |
 | `defaultValue` | `default-value` | `string` | `''` | Initial value (uncontrolled). Only used on first render; ignored after mount. Single-select only. |
 | `hoist` | `hoist` | `boolean` | `true` | When true, the dropdown uses `position: fixed` so it can escape |
-| `loadOptions` | `loadOptions` | `(() =&gt; Promise&lt;SelectOption[]&gt;) \| null` | `null` | Async options loader. When provided, called when the dropdown opens. |
+| `loadOptions` | `loadOptions` | `((searchTerm?: string) =&gt; Promise&lt;SelectOption[]&gt;) \| null` | `null` | Async options loader. When provided, called when the dropdown opens. |
+| `clearable` | `clearable` | `boolean` | `false` | When true, shows a clear button in the trigger when a value is selected. |
+| `searchable` | `searchable` | `boolean` | `false` | When true, adds a text input for filtering options by label. |
+| `maxTagsVisible` | `max-tags-visible` | `string` | `Infinity` | Maximum number of chips visible in multi-select mode. |
 | `virtualize` | `virtualize` | `boolean` | `false` | Enable virtual scrolling for large option lists. |
 | `itemHeight` | `item-height` | `number` | `36` | Fixed item height in px used for virtual scroll calculations. |
 | `visibleItems` | `visible-items` | `number` | `8` | Maximum visible items in the dropdown (determines dropdown height). |
@@ -49,8 +53,8 @@ import { FlintSelect } from '@getufy/flint-ui';
 
 | Event | Detail | Description |
 | --- | --- | --- |
-| `flint-select-load` | — |  |
 | `flint-select-change` | — | Dispatched when the selection changes. detail: `&#123; value: string, multiple: false &#125; \| &#123; value: string[], multiple: true &#125;` |
+| `flint-clear` | — | Dispatched when the clear button is clicked. |
 
 ### Slots
 
@@ -67,6 +71,9 @@ import { FlintSelect } from '@getufy/flint-ui';
 | `trigger` | The combobox trigger container. |
 | `placeholder` | The placeholder text `&lt;span&gt;`. |
 | `chip` | A selected-value chip (multiple mode). |
+| `chip-overflow` | The "+N more" overflow chip (multiple mode). |
+| `clear-button` | The clear button (when clearable). |
+| `search-input` | The search input (when searchable). |
 | `dropdown` | The dropdown listbox container. |
 | `option` | An individual option element. |
 | `error-message` | The error message `&lt;span&gt;`. |
@@ -83,7 +90,7 @@ import { FlintSelect } from '@getufy/flint-ui';
 | `--flint-select-chip-bg` | — |
 | `--flint-select-chip-color` | — |
 | `--flint-select-chip-radius` | — |
-| `--flint-select-dropdown-z-index` | `var(--flint-z-popover, 1300` |
+| `--flint-select-z-index` | `1000` |
 | `--flint-select-option-hover-bg` | — |
 | `--flint-select-option-selected-bg` | — |
 | `--flint-select-option-selected-color` | — |

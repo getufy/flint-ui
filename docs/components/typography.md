@@ -41,6 +41,12 @@ import { FlintTypography } from '@getufy/flint-ui';
 | --- | --- |
 | `(default)` | The text content. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+
 ### CSS Custom Properties
 
 | Property | Default |

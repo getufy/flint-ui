@@ -27,6 +27,12 @@ import { FlintContainer } from '@getufy/flint-ui';
 | `disableGutters` | `disable-gutters` | `boolean` | `false` | If `true`, the left and right padding is removed. |
 | `fixed` | `fixed` | `boolean` | `false` | Set the max-width to match the min-width of the current breakpoint. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
+
 ### CSS Custom Properties
 
 | Property | Default |

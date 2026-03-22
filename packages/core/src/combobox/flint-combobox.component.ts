@@ -6,6 +6,7 @@ import { LocalizeController } from '../utilities/localize.js';
 import { FlintPopup } from '../popup/flint-popup.component.js';
 import { FormAssociated } from '../mixins/form-associated.js';
 import { FormControlController } from '../controllers/form-control.js';
+import { rovingIndex } from '../utilities/roving-index.js';
 import uiComboboxStyles from './flint-combobox.css?inline';
 
 export interface ComboboxOption {
@@ -157,17 +158,16 @@ export class FlintCombobox extends FormAssociated(FlintElement) {
             return;
         }
 
+        // ArrowUp from index 0 should go to -1 (deselect), so offset by 1
+        const { index, handled } = rovingIndex(e.key, this._activeIndex + 1, count + 1, { wrap: false });
+        if (handled) {
+            e.preventDefault();
+            this._activeIndex = index - 1;
+            this._scrollActiveIntoView();
+            return;
+        }
+
         switch (e.key) {
-            case 'ArrowDown':
-                e.preventDefault();
-                this._activeIndex = Math.min(this._activeIndex + 1, count - 1);
-                this._scrollActiveIntoView();
-                break;
-            case 'ArrowUp':
-                e.preventDefault();
-                this._activeIndex = Math.max(this._activeIndex - 1, -1);
-                this._scrollActiveIntoView();
-                break;
             case 'Enter':
                 if (this._activeIndex >= 0 && this._filteredOptions[this._activeIndex]) {
                     e.preventDefault();
@@ -182,8 +182,6 @@ export class FlintCombobox extends FormAssociated(FlintElement) {
             case 'Tab':
                 this._isOpen = false;
                 this._activeIndex = -1;
-                break;
-            default:
                 break;
         }
     };

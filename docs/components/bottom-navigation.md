@@ -39,6 +39,13 @@ import { FlintBottomNavigationAction } from '@getufy/flint-ui';
 | `icon` | Icon element. |
 | `(default)` | Label text. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `icon` | The icon container. |
+| `label` | The label element. |
+
 ### CSS Custom Properties
 
 | Property | Default |
@@ -78,6 +85,7 @@ import { FlintBottomNavigation } from '@getufy/flint-ui';
 
 | Property | Attribute | Type | Default | Description |
 | --- | --- | --- | --- | --- |
+| `dependencies` | `dependencies` | `object` | `&#123; 'flint-bottom-navigation-action': FlintBottomNavigationAction as unknown as typeof FlintElement, &#125;` |  |
 | `value` | `value` | `unknown` | — | The value of the currently selected action. |
 | `defaultValue` | `default-value` | `unknown \| undefined` | — | Initial selected value for uncontrolled usage. |
 | `showLabels` | `show-labels` | `boolean` | `false` | If true, all labels are shown at all times. |
@@ -93,5 +101,11 @@ import { FlintBottomNavigation } from '@getufy/flint-ui';
 | Name | Description |
 | --- | --- |
 | `(default)` | destinations (flint-bottom-navigation-action). |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `base` | The component's base wrapper element. |
 
 ---

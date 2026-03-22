@@ -36,6 +36,12 @@ Localization is handled by the browser's \`Intl.NumberFormat\` API — no langua
 | \`maximumSignificantDigits\` | \`maximum-significant-digits\` | \`number \\| undefined\` | \`undefined\` | The maximum number of significant digits (1–21). |
 | \`lang\` | \`lang\` | \`string\` | \`''\` | BCP 47 language tag for formatting locale. Inherits from the document when unset. |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper element. |
+
 #### CSS Custom Properties
 
 | Property | Default |

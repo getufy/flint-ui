@@ -23,6 +23,12 @@ import { FlintCardActionArea } from '@getufy/flint-ui';
 <flint-card-action-area></flint-card-action-area>
 ```
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `action-area` | The action area element. |
+
 ### CSS Custom Properties
 
 | Property | Default |
@@ -128,6 +134,15 @@ import { FlintCardHeader } from '@getufy/flint-ui';
 | `action` | Action element like an icon button. |
 | `(default)` | Header text content. |
 
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `content` | The content container. |
+| `header` | The header element. |
+| `subtitle` | The subtitle element. |
+| `title` | The title element. |
+
 ### CSS Custom Properties
 
 | Property | Default |
@@ -162,6 +177,13 @@ import { FlintCardMedia } from '@getufy/flint-ui';
 | `image` | `image` | `string` | `''` |  |
 | `alt` | `alt` | `string` | `''` |  |
 | `height` | `height` | `string` | `''` |  |
+
+### CSS Parts
+
+| Name | Description |
+| --- | --- |
+| `img` | The img element. |
+| `media` | The media element. |
 
 ### CSS Custom Properties
 

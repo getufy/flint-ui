@@ -44,6 +44,8 @@ export default defineConfig({
             { text: 'SSR', link: '/ssr' },
             { text: 'Next.js', link: '/guides/nextjs' },
             { text: 'Framework Integration', link: '/guides/frameworks' },
+            { text: 'Form Controls', link: '/guides/form-controls' },
+            { text: 'Animations', link: '/guides/animations' },
             { text: 'Localization', link: '/guides/localization' },
             { text: 'Accessibility', link: '/accessibility' },
             { text: 'Browser Support', link: '/browser-support' },

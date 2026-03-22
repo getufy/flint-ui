@@ -43,6 +43,16 @@ Alerts display brief messages for the user without interrupting their use of the
 | \`(default)\` | The message content of the alert. |
 | \`icon\` | Optional icon to display instead of the default severity icon. |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`base\` | The component's base wrapper element. |
+| \`close-button\` | The close button element. |
+| \`icon\` | The icon container. |
+| \`message\` | The message content area. |
+| \`title\` | The title element. |
+
 #### CSS Custom Properties
 
 | Property | Default |
@@ -66,6 +76,7 @@ Alerts display brief messages for the user without interrupting their use of the
 | \`--flint-error-text-color\` | — |
 | \`--flint-error-icon-color\` | — |
 | \`--flint-active-color\` | — |
+| \`--flint-primary-color\` | — |
                 `,
             },
         },

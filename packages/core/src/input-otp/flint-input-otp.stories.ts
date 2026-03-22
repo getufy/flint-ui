@@ -31,6 +31,12 @@ Renders slots inline with shared borders.
 |---|---|
 | \`(default)\` | Accepts \`flint-input-otp-slot\` elements. |
 
+#### CSS Parts
+
+| Name | Description |
+|---|---|
+| \`separator\` | The separator element. |
+
 #### CSS Custom Properties
 
 | Property | Default |
