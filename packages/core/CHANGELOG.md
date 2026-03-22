@@ -1,5 +1,13 @@
 # @getufy/flint-ui
 
+## [0.8.5](https://github.com/getufy/flint-ui/compare/flint-ui-v0.8.4...flint-ui-v0.8.5) (2026-03-22)
+
+
+### Bug Fixes
+
+* component improvements ([5d7cca2](https://github.com/getufy/flint-ui/commit/5d7cca2cd373a023178e9ad507eef5d36283947c))
+* range slider + button icon ([927db52](https://github.com/getufy/flint-ui/commit/927db52caa6d107cdd14335a4760f88c77aa7d84))
+
 ## [0.8.4](https://github.com/getufy/flint-ui/compare/flint-ui-v0.8.3...flint-ui-v0.8.4) (2026-03-22)
 
 
