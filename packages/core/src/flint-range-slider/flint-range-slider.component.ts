@@ -1,4 +1,4 @@
-import { unsafeCSS, html, nothing, LitElement } from 'lit';
+import { unsafeCSS, html, nothing, LitElement, type PropertyValues } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { styleMap } from 'lit/directives/style-map.js';
@@ -59,35 +59,55 @@ export class FlintRangeSlider extends FlintElement {
 
     // ─── Internal state ───────────────────────────────────────────────────────
 
-    @state() private _activeThumb: 'start' | 'end' = 'end';
+    /** Which physical thumb (0 or 1) was last interacted with — controls z-index. */
+    @state() private _activeIndex: 0 | 1 = 1;
+
+    /**
+     * Physical thumb positions. These can temporarily cross during a drag
+     * (i.e. _thumbValues[0] > _thumbValues[1]) and are normalized on pointer-up.
+     */
+    private _thumbValues: [number, number] = [25, 75];
+
+    /** True while the user is pointer-dragging a thumb. */
+    private _dragging = false;
+
+    /** Removes the current pointerup/pointercancel listeners, if any. */
+    private _dragCleanup: (() => void) | null = null;
 
     // ─── Lifecycle ────────────────────────────────────────────────────────────
 
-    updated(changed: Map<string, unknown>) {
-        // Guard against invalid step values that would break _snap/_pct.
-        if (this.step <= 0) {
-            this.step = 1;
-        }
+    willUpdate(changed: PropertyValues) {
+        if (this.step <= 0) this.step = 1;
 
-        // When min or max change, clamp the current value into the new bounds
-        // so the thumbs don't end up outside the track.
-        if (changed.has('min') || changed.has('max')) {
-            const clampedStart = Math.max(this.min, Math.min(this.max, this._start));
-            const clampedEnd = Math.max(this.min, Math.min(this.max, this._end));
-            if (clampedStart !== this._start || clampedEnd !== this._end) {
-                // Silent update — no change event, this is a bounds correction
-                this.value = [clampedStart, clampedEnd];
+        // Sync physical thumb positions from the public value when not dragging.
+        // During a drag the physical positions intentionally diverge from the
+        // sorted public value (the inputs may be crossed), so we skip the sync.
+        if (!this._dragging && (changed.has('value') || changed.has('min') || changed.has('max'))) {
+            this._thumbValues = [
+                Math.max(this.min, Math.min(this.max, this.value[0])),
+                Math.max(this.min, Math.min(this.max, this.value[1])),
+            ];
+
+            // If bounds clamped the value, update it silently (no change event).
+            if (changed.has('min') || changed.has('max')) {
+                const [c0, c1] = this._thumbValues;
+                if (c0 !== this.value[0] || c1 !== this.value[1]) {
+                    this.value = [c0, c1];
+                }
             }
         }
     }
 
+    disconnectedCallback() {
+        super.disconnectedCallback();
+        this._dragCleanup?.();
+    }
+
     // ─── Helpers ──────────────────────────────────────────────────────────────
 
-    private get _start(): number { return this.value[0]; }
-    private get _end(): number { return this.value[1]; }
-
     private _pct(v: number): number {
-        return ((v - this.min) / (this.max - this.min)) * 100;
+        const range = this.max - this.min;
+        return range === 0 ? 0 : ((v - this.min) / range) * 100;
     }
 
     private _snap(v: number): number {
@@ -97,34 +117,54 @@ export class FlintRangeSlider extends FlintElement {
 
     // ─── Event handlers ───────────────────────────────────────────────────────
 
-    private _handleStartInput(e: Event) {
-        const input = e.target as HTMLInputElement;
-        const raw = this._snap(Number(input.value));
-        if (raw > this._end) {
-            // Crossed over — swap; the dragged thumb becomes the new end
-            this._activeThumb = 'end';
-            this._emit([this._end, raw]);
-        } else {
-            this._emit([raw, this._end]);
-        }
+    private _handleInput(index: 0 | 1, e: Event) {
+        const raw = this._snap(Number((e.target as HTMLInputElement).value));
+        this._thumbValues = index === 0
+            ? [raw, this._thumbValues[1]]
+            : [this._thumbValues[0], raw];
+        this._emitChange();
     }
 
-    private _handleEndInput(e: Event) {
-        const input = e.target as HTMLInputElement;
-        const raw = this._snap(Number(input.value));
-        if (raw < this._start) {
-            // Crossed over — swap; the dragged thumb becomes the new start
-            this._activeThumb = 'start';
-            this._emit([raw, this._start]);
-        } else {
-            this._emit([this._start, raw]);
-        }
+    private _handlePointerDown(index: 0 | 1) {
+        this._activeIndex = index;
+        this._dragging = true;
+
+        // Clean up any previous drag listeners.
+        this._dragCleanup?.();
+
+        const onDragEnd = () => {
+            this._dragging = false;
+            this._dragCleanup = null;
+            window.removeEventListener('pointerup', onDragEnd);
+            window.removeEventListener('pointercancel', onDragEnd);
+
+            // Normalize: ensure index 0 ≤ index 1 so z-index logic stays correct.
+            if (this._thumbValues[0] > this._thumbValues[1]) {
+                this._thumbValues = [this._thumbValues[1], this._thumbValues[0]];
+                this._activeIndex = this._activeIndex === 0 ? 1 : 0;
+                this.requestUpdate();
+            }
+        };
+
+        window.addEventListener('pointerup', onDragEnd);
+        window.addEventListener('pointercancel', onDragEnd);
+
+        this._dragCleanup = () => {
+            window.removeEventListener('pointerup', onDragEnd);
+            window.removeEventListener('pointercancel', onDragEnd);
+            this._dragging = false;
+            this._dragCleanup = null;
+        };
     }
 
-    private _emit(next: [number, number]) {
-        this.value = [...next] as [number, number];
+    private _emitChange() {
+        const sorted: [number, number] = [
+            Math.min(this._thumbValues[0], this._thumbValues[1]),
+            Math.max(this._thumbValues[0], this._thumbValues[1]),
+        ];
+        this.value = sorted;
         this.dispatchEvent(new CustomEvent<FlintRangeSliderChangeDetail>('flint-range-slider-change', {
-            detail: { value: this.value },
+            detail: { value: sorted },
             bubbles: true,
             composed: true,
         }));
@@ -133,17 +173,17 @@ export class FlintRangeSlider extends FlintElement {
     // ─── Render ───────────────────────────────────────────────────────────────
 
     render() {
-        const startPct = this._pct(this._start);
-        const endPct = this._pct(this._end);
+        const lo = Math.min(this._thumbValues[0], this._thumbValues[1]);
+        const hi = Math.max(this._thumbValues[0], this._thumbValues[1]);
 
         const fillStyle = {
-            left: `${startPct}%`,
-            width: `${endPct - startPct}%`,
+            left: `${this._pct(lo)}%`,
+            width: `${this._pct(hi) - this._pct(lo)}%`,
         };
 
-        // Start thumb rises above end when last touched, or when at max
-        // (at max the end thumb would permanently block it otherwise)
-        const startOnTop = this._activeThumb === 'start' || this._start === this.max;
+        // Thumb 0 rises above thumb 1 when last touched, or when it sits at max
+        // (otherwise the end thumb would permanently block it at the right edge).
+        const thumb0OnTop = this._activeIndex === 0 || this._thumbValues[0] === this.max;
 
         return html`
       <div class="slider-wrapper" part="base">
@@ -155,7 +195,7 @@ export class FlintRangeSlider extends FlintElement {
             </label>
           ` : nothing}
           ${this.showValue ? html`
-            <span class="value-display">${this._start} – ${this._end}</span>
+            <span class="value-display">${lo} – ${hi}</span>
           ` : nothing}
         </div>
 
@@ -163,38 +203,38 @@ export class FlintRangeSlider extends FlintElement {
           <div class="track-base"></div>
           <div class="track-fill" part="fill" style=${styleMap(fillStyle)}></div>
 
-          <!-- Start thumb -->
+          <!-- Thumb 0 (start) -->
           <input
             type="range"
-            class=${classMap({ 'thumb-start': true, 'on-top': startOnTop })}
+            class=${classMap({ 'thumb-start': true, 'on-top': thumb0OnTop })}
             .min=${this.min.toString()}
             .max=${this.max.toString()}
             .step=${this.step.toString()}
-            .value=${live(this._start.toString())}
+            .value=${live(this._thumbValues[0].toString())}
             ?disabled=${this.disabled}
             aria-label=${this.label ? `${this.label} start` : 'Range start'}
             aria-valuemin=${this.min}
             aria-valuemax=${this.max}
-            aria-valuenow=${this._start}
-            @input=${this._handleStartInput}
-            @pointerdown=${() => { this._activeThumb = 'start'; }}
+            aria-valuenow=${this._thumbValues[0]}
+            @input=${(e: Event) => this._handleInput(0, e)}
+            @pointerdown=${() => { this._handlePointerDown(0); }}
           >
 
-          <!-- End thumb -->
+          <!-- Thumb 1 (end) -->
           <input
             type="range"
             class="thumb-end"
             .min=${this.min.toString()}
             .max=${this.max.toString()}
             .step=${this.step.toString()}
-            .value=${live(this._end.toString())}
+            .value=${live(this._thumbValues[1].toString())}
             ?disabled=${this.disabled}
             aria-label=${this.label ? `${this.label} end` : 'Range end'}
             aria-valuemin=${this.min}
             aria-valuemax=${this.max}
-            aria-valuenow=${this._end}
-            @input=${this._handleEndInput}
-            @pointerdown=${() => { this._activeThumb = 'end'; }}
+            aria-valuenow=${this._thumbValues[1]}
+            @input=${(e: Event) => this._handleInput(1, e)}
+            @pointerdown=${() => { this._handlePointerDown(1); }}
           >
         </div>
 

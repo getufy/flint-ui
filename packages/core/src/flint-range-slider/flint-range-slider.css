@@ -76,7 +76,6 @@
   background: var(--flint-range-slider-fill-color);
   border-radius: calc(var(--flint-range-slider-track-height) / 2);
   pointer-events: none;
-  transition: left 0.05s, width 0.05s;
 }
 
 :host([disabled]) .track-fill {
