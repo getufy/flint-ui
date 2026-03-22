@@ -7,11 +7,12 @@ import '../checkbox/flint-checkbox.js';
 import '../switch/flint-switch.js';
 import '../stack/flint-stack.js';
 import '../box/flint-box.js';
+import '../divider/flint-divider.js';
 
 const meta: Meta = {
     title: 'Playbooks/Login Form',
     parameters: {
-        layout: 'centered',
+        layout: 'fullscreen',
         a11y: {
             config: {
                 rules: [
@@ -27,7 +28,7 @@ export default meta;
 type Story = StoryObj;
 
 /**
- * A realistic login form flow:
+ * A realistic login form centered on a subtle background:
  * 1. Fill in email
  * 2. Fill in password
  * 3. Toggle "Remember me" checkbox
@@ -37,57 +38,72 @@ type Story = StoryObj;
  */
 export const LoginFlow: Story = {
     render: () => html`
-        <div style="width: 380px; padding: 32px; border: 1px solid #e5e7eb; border-radius: 12px; font-family: system-ui;">
-            <h2 style="margin: 0 0 8px; font-size: 1.5rem; font-weight: 700;">Sign In</h2>
-            <p style="margin: 0 0 24px; font-size: 0.875rem; color: #6b7280;">Enter your credentials to access your account.</p>
-
-            <form id="login-form">
-                <flint-stack direction="column" gap="16px">
-                    <flint-text-field
-                        id="login-email"
-                        label="Email"
-                        type="email"
-                        placeholder="you@example.com"
-                    ></flint-text-field>
-
-                    <flint-text-field
-                        id="login-password"
-                        label="Password"
-                        type="password"
-                        placeholder="Enter your password"
-                    ></flint-text-field>
-
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <flint-checkbox id="login-remember" label="Remember me"></flint-checkbox>
-                        <flint-switch id="login-stay" label="Stay signed in" size="sm"></flint-switch>
+        <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--flint-surface-2, #f9fafb); font-family: system-ui;">
+            <div style="width: 100%; max-width: 420px; padding: 40px; background: var(--flint-surface-background, #fff); border: 1px solid var(--flint-border-color, #e5e7eb); border-radius: 16px; box-shadow: var(--flint-shadow-lg, 0 10px 15px -3px rgba(0,0,0,.1));">
+                <!-- Logo / brand area -->
+                <div style="text-align: center; margin-bottom: 32px;">
+                    <div style="width: 48px; height: 48px; border-radius: 12px; background: var(--flint-primary-color, #3b82f6); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
                     </div>
+                    <h2 style="margin: 0 0 4px; font-size: 1.5rem; font-weight: 700;">Welcome back</h2>
+                    <p style="margin: 0; font-size: 0.875rem; color: var(--flint-text-color-muted, #6b7280);">Sign in to your account to continue.</p>
+                </div>
 
-                    <flint-button id="login-submit" appearance="filled" color="primary" style="width: 100%;" @click=${(e: Event) => {
-                        const form = (e.target as HTMLElement).closest('#login-form')!;
-                        const emailField = form.querySelector<HTMLElement & { value: string }>('#login-email')!;
-                        const passwordField = form.querySelector<HTMLElement & { value: string }>('#login-password')!;
-                        const status = form.closest('div')!.querySelector('#login-status')!;
+                <form id="login-form">
+                    <flint-stack direction="column" gap="16px">
+                        <flint-text-field
+                            id="login-email"
+                            label="Email"
+                            type="email"
+                            placeholder="you@example.com"
+                        ></flint-text-field>
 
-                        if (!emailField.value || !passwordField.value) {
-                            if (!emailField.value) {
-                                emailField.setAttribute('error', '');
-                                emailField.setAttribute('error-message', 'Email is required');
+                        <flint-text-field
+                            id="login-password"
+                            label="Password"
+                            type="password"
+                            placeholder="Enter your password"
+                        ></flint-text-field>
+
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <flint-checkbox id="login-remember" label="Remember me"></flint-checkbox>
+                            <a href="javascript:void(0)" style="font-size: 0.8125rem; color: var(--flint-primary-color, #3b82f6); text-decoration: none; font-weight: 500;">Forgot password?</a>
+                        </div>
+
+                        <flint-button id="login-submit" appearance="filled" color="primary" style="width: 100%;" @click=${(e: Event) => {
+                            const form = (e.target as HTMLElement).closest('#login-form')!;
+                            const emailField = form.querySelector<HTMLElement & { value: string }>('#login-email')!;
+                            const passwordField = form.querySelector<HTMLElement & { value: string }>('#login-password')!;
+                            const status = form.closest('div[style*="max-width"]')!.querySelector('#login-status')!;
+
+                            if (!emailField.value || !passwordField.value) {
+                                if (!emailField.value) {
+                                    emailField.setAttribute('error', '');
+                                    emailField.setAttribute('error-message', 'Email is required');
+                                }
+                                if (!passwordField.value) {
+                                    passwordField.setAttribute('error', '');
+                                    passwordField.setAttribute('error-message', 'Password is required');
+                                }
+                                status.textContent = 'Validation failed';
+                                return;
                             }
-                            if (!passwordField.value) {
-                                passwordField.setAttribute('error', '');
-                                passwordField.setAttribute('error-message', 'Password is required');
-                            }
-                            status.textContent = 'Validation failed';
-                            return;
-                        }
-                        status.textContent = 'Login successful';
-                    }}>
-                        Sign In
-                    </flint-button>
-                </flint-stack>
-            </form>
+                            status.textContent = 'Login successful';
+                        }}>
+                            Sign In
+                        </flint-button>
+                    </flint-stack>
+                </form>
 
-            <p id="login-status" style="margin: 16px 0 0; font-size: 0.875rem; font-weight: 600; min-height: 20px;"></p>
+                <p id="login-status" style="margin: 16px 0 0; font-size: 0.875rem; font-weight: 600; min-height: 20px; text-align: center;"></p>
+
+                <flint-divider style="margin: 24px 0;"></flint-divider>
+
+                <p style="margin: 0; font-size: 0.8125rem; color: var(--flint-text-color-muted, #6b7280); text-align: center;">
+                    Don't have an account?
+                    <a href="javascript:void(0)" style="color: var(--flint-primary-color, #3b82f6); text-decoration: none; font-weight: 500;">Sign up</a>
+                </p>
+            </div>
         </div>
     `,
 
@@ -98,7 +114,6 @@ export const LoginFlow: Story = {
         const emailField = canvasElement.querySelector('#login-email') as HTMLElement & { value: string };
         const passwordField = canvasElement.querySelector('#login-password') as HTMLElement & { value: string };
         const checkbox = canvasElement.querySelector('#login-remember') as HTMLElement & { checked: boolean };
-        const switchEl = canvasElement.querySelector('#login-stay') as HTMLElement & { checked: boolean };
         const submitBtn = canvasElement.querySelector('#login-submit') as HTMLElement;
         const status = canvasElement.querySelector('#login-status') as HTMLElement;
 
@@ -141,16 +156,7 @@ export const LoginFlow: Story = {
             expect(checkbox.checked).toBe(true);
         });
 
-        // ── Step 6: Toggle "Stay signed in" switch ──────────────────────
-        const switchWrapper = switchEl.shadowRoot!.querySelector('.wrapper') as HTMLElement;
-        await user.click(switchWrapper);
-
-        await waitFor(() => {
-            expect(switchEl.checked).toBe(true);
-        });
-
-        // ── Step 7: Submit with valid data ──────────────────────────────
-        // Sync value properties from inner inputs to the custom elements
+        // ── Step 6: Submit with valid data ──────────────────────────────
         emailField.value = emailInput.value;
         passwordField.value = passwordInput.value;
         await user.click(submitBtn);

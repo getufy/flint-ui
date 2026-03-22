@@ -476,9 +476,11 @@ export class FlintTabs extends FlintElement {
             }
         }
 
-        // Derive orientation from placement
+        // Use explicit orientation if set, otherwise derive from placement
         const derivedOrientation: Orientation =
-            (this.placement === 'start' || this.placement === 'end') ? 'vertical' : 'horizontal';
+            this.orientation !== 'horizontal'
+                ? this.orientation
+                : (this.placement === 'start' || this.placement === 'end') ? 'vertical' : 'horizontal';
 
         // Configure tab list
         if (tabList) {

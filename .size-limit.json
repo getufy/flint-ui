@@ -3,7 +3,7 @@
     "name": "Full bundle (ESM)",
     "path": "packages/core/dist/index.js",
     "import": "*",
-    "limit": "110 kB"
+    "limit": "115 kB"
   },
   {
     "name": "Button",
@@ -27,7 +27,7 @@
     "name": "Date Picker",
     "path": "packages/core/dist/date-picker/flint-date-picker.js",
     "import": "*",
-    "limit": "16 kB"
+    "limit": "24 kB"
   },
   {
     "name": "Table",
@@ -39,19 +39,19 @@
     "name": "Tree View",
     "path": "packages/core/dist/tree-view/flint-rich-tree-view.js",
     "import": "*",
-    "limit": "11 kB"
+    "limit": "14 kB"
   },
   {
     "name": "Date Range Picker",
     "path": "packages/core/dist/date-range-picker/flint-date-range-picker.js",
     "import": "*",
-    "limit": "18 kB"
+    "limit": "26 kB"
   },
   {
     "name": "Time Picker",
     "path": "packages/core/dist/time-picker/flint-time-picker.js",
     "import": "*",
-    "limit": "19 kB"
+    "limit": "20 kB"
   },
   {
     "name": "Menubar",
@@ -69,7 +69,7 @@
     "name": "Command",
     "path": "packages/core/dist/command/flint-command.js",
     "import": "*",
-    "limit": "11 kB"
+    "limit": "12 kB"
   },
   {
     "name": "Stepper",

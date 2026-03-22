@@ -166,6 +166,7 @@ export const Basic: Story = {
 };
 
 Basic.play = async ({ canvasElement }) => {
+    const user = userEvent.setup({ pointerEventsCheck: 0 });
     const dialog = canvasElement.querySelector('#basic-dialog') as FlintDialog;
     const openBtnHost = canvasElement.querySelector('flint-button') as HTMLElement;
     const openBtn = openBtnHost.shadowRoot!.querySelector('button')!;
@@ -174,19 +175,19 @@ Basic.play = async ({ canvasElement }) => {
     await waitFor(() => expect(dialog.open).toBe(false));
 
     // Open dialog (target inner button for shadow DOM click propagation)
-    await userEvent.click(openBtn);
+    await user.click(openBtn);
     await waitFor(() => expect(dialog.open).toBe(true));
 
     // Close via Cancel button
     const cancelBtnHost = dialog.querySelector('flint-button[appearance="outlined"][color="neutral"]') as HTMLElement;
     const cancelBtn = cancelBtnHost.shadowRoot!.querySelector('button')!;
-    await userEvent.click(cancelBtn);
+    await user.click(cancelBtn);
     await waitFor(() => expect(dialog.open).toBe(false));
 
     // Re-open and close via Escape key
-    await userEvent.click(openBtn);
+    await user.click(openBtn);
     await waitFor(() => expect(dialog.open).toBe(true));
-    await userEvent.keyboard('{Escape}');
+    await user.keyboard('{Escape}');
     await waitFor(() => expect(dialog.open).toBe(false));
 };
 

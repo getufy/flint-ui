@@ -260,7 +260,7 @@ export const Desktop: Story = {
         await userEvent.click(getSegments(shadow));
 
         await waitFor(() => {
-            expect(shadow.querySelector('.popover')).toHaveClass('open');
+            expect(shadow.querySelector('.click-away')).toHaveClass('open');
         });
 
         // 2 ── Click the 5th non-other-month day as start
@@ -276,7 +276,7 @@ export const Desktop: Story = {
         await userEvent.click(days[14]);
 
         await waitFor(() => {
-            expect(shadow.querySelector('.popover')).not.toHaveClass('open');
+            expect(shadow.querySelector('.click-away')).not.toHaveClass('open');
         });
     },
 };
@@ -451,7 +451,7 @@ export const WithShortcuts: Story = {
         await userEvent.click(getSegments(shadow));
 
         await waitFor(() => {
-            expect(shadow.querySelector('.popover')).toHaveClass('open');
+            expect(shadow.querySelector('.click-away')).toHaveClass('open');
         });
 
         // 2 ── Click the first shortcut ("Today")
@@ -473,7 +473,7 @@ export const WithShortcuts: Story = {
 
         // 5 ── Popover auto-closes
         await waitFor(() => {
-            expect(shadow.querySelector('.popover')).not.toHaveClass('open');
+            expect(shadow.querySelector('.click-away')).not.toHaveClass('open');
         });
     },
 };
@@ -651,7 +651,7 @@ export const Disabled: Story = {
         await userEvent.click(getSegments(shadow));
 
         await waitFor(() => {
-            expect(shadow.querySelector('.popover')).not.toHaveClass('open');
+            expect(shadow.querySelector('.click-away')).not.toHaveClass('open');
         });
 
         const fieldEl = shadow.querySelector('flint-single-input-date-range-field') as HTMLElement & { shadowRoot: ShadowRoot };
@@ -689,7 +689,7 @@ export const ReadOnly: Story = {
         await userEvent.click(getSegments(shadow));
 
         await waitFor(() => {
-            expect(shadow.querySelector('.popover')).not.toHaveClass('open');
+            expect(shadow.querySelector('.click-away')).not.toHaveClass('open');
         });
 
         const fieldEl = shadow.querySelector('flint-single-input-date-range-field') as HTMLElement & { shadowRoot: ShadowRoot };
@@ -1374,7 +1374,7 @@ export const CustomShortcuts: Story = {
         await userEvent.click(getSegments(shadow));
 
         await waitFor(() => {
-            expect(shadow.querySelector('.popover')).toHaveClass('open');
+            expect(shadow.querySelector('.click-away')).toHaveClass('open');
         });
 
         // 2 ── Exactly 4 custom shortcuts

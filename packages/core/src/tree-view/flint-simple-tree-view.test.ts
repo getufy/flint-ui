@@ -80,7 +80,7 @@ describe('FlintTreeItem', () => {
         el.shadowRoot!.querySelector<HTMLElement>('.item-row')!.click();
 
         expect(handler).toHaveBeenCalledOnce();
-        expect(handler.mock.calls[0][0].detail).toEqual({ itemId: 'my-id' });
+        expect(handler.mock.calls[0][0].detail).toEqual({ itemId: 'my-id', ctrlKey: false, shiftKey: false });
     });
 
     it('does not dispatch click event when disabled', async () => {

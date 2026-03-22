@@ -291,7 +291,7 @@ describe('flint-tree-item', () => {
         el.shadowRoot!.querySelector<HTMLElement>('.item-row')!.click();
 
         expect(spy).toHaveBeenCalledOnce();
-        expect(spy.mock.calls[0]![0].detail).toEqual({ itemId: 'my-id' });
+        expect(spy.mock.calls[0]![0].detail).toEqual({ itemId: 'my-id', ctrlKey: false, shiftKey: false });
     });
 
     it('does not dispatch flint-tree-item-click when disabled', async () => {

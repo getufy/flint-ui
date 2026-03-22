@@ -57,6 +57,7 @@ exports[`DOM snapshots > flint-button — appearance outlined 1`] = `
       <span class="prefix-slot" part="prefix"><slot name="prefix"></slot></span>
       <span class="label-inner" part="label"><slot></slot></span>
       <span class="suffix-slot" part="suffix"><slot name="suffix"></slot></span>
+      <!--?lit$[hash]$-->
       <span class="spinner" part="spinner" aria-hidden="true">
         <span class="spinner-icon"></span>
       </span>
@@ -71,6 +72,7 @@ exports[`DOM snapshots > flint-button — default 1`] = `
       <span class="prefix-slot" part="prefix"><slot name="prefix"></slot></span>
       <span class="label-inner" part="label"><slot></slot></span>
       <span class="suffix-slot" part="suffix"><slot name="suffix"></slot></span>
+      <!--?lit$[hash]$-->
       <span class="spinner" part="spinner" aria-hidden="true">
         <span class="spinner-icon"></span>
       </span>
@@ -85,6 +87,7 @@ exports[`DOM snapshots > flint-button — disabled 1`] = `
       <span class="prefix-slot" part="prefix"><slot name="prefix"></slot></span>
       <span class="label-inner" part="label"><slot></slot></span>
       <span class="suffix-slot" part="suffix"><slot name="suffix"></slot></span>
+      <!--?lit$[hash]$-->
       <span class="spinner" part="spinner" aria-hidden="true">
         <span class="spinner-icon"></span>
       </span>

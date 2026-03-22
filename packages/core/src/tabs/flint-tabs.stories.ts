@@ -543,7 +543,7 @@ export const VerticalScrollable: Story = {
                 <flint-tab-list aria-label="Vertical scrollable" style="width:160px;flex-shrink:0;">
                     ${Array.from({ length: 10 }, (_, i) => html`<flint-tab value="${i}">Menu ${i + 1}</flint-tab>`)}
                 </flint-tab-list>
-                <div style="flex:1;overflow:auto;">
+                <div style="flex:1;overflow:auto;" tabindex="0">
                     ${Array.from({ length: 10 }, (_, i) => html`
                         <flint-tab-panel value="${i}">
                             ${panelContent(`Menu ${i + 1}`, `Vertical scrollable tabs — combined with scroll-buttons="auto" for up/down arrow buttons.`)}
