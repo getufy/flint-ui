@@ -601,7 +601,7 @@
     }
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^5.0.1",
+    "@chromatic-com/storybook": "^5.0.2",
     "@eslint/js": "^10.0.1",
     "@lit-labs/ssr": "^4.0.0",
     "@open-wc/testing": "^4.0.0",
