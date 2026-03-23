@@ -20,7 +20,11 @@ Peer dependencies: `react ^18 || ^19`, `@getufy/flint-ui ^0.6.0`
 > ```ts
 > // main.tsx — must be at the top
 > import '@getufy/flint-ui/theme.css';
+> import '@getufy/flint-ui/theme-dark.css';  // Required for dark mode support
 > ```
+>
+> Missing `theme.css` = unstyled components. Missing `theme-dark.css` = no dark mode.
+> In development, a console warning will alert you if theme CSS is missing.
 
 ## Resources
 
@@ -254,17 +258,32 @@ import '@getufy/flint-ui/theme.css';
 import '@getufy/flint-ui/theme-dark.css';
 ```
 
-Activate dark mode by adding `class="flint-theme-dark"` or `data-theme="dark"` to your `<html>` or `<body>` element:
+Activate dark mode using **`FlintTheme`** (recommended) or manual DOM attributes:
+
+```tsx
+import { FlintTheme } from '@getufy/flint-ui-react/theme';
+
+// FlintTheme at the root level auto-sets data-theme on <html>
+function App() {
+  const [dark, setDark] = useState(false);
+  return (
+    <FlintTheme mode={dark ? 'dark' : 'light'}>
+      {/* your app */}
+    </FlintTheme>
+  );
+}
+```
+
+Or control manually via DOM attributes:
 
 ```tsx
 // Toggle dark mode
-document.documentElement.classList.toggle('flint-theme-dark');
-
-// Or use the data-theme attribute
 document.documentElement.setAttribute('data-theme', 'dark');
+// Force light mode (overrides OS dark preference)
+document.documentElement.setAttribute('data-theme', 'light');
 ```
 
-The dark theme CSS also includes a `@media (prefers-color-scheme: dark)` block, so it automatically applies when the user's OS is set to dark mode. To opt out of automatic detection, add `class="flint-theme-light"` to force light mode.
+The dark theme CSS also includes a `@media (prefers-color-scheme: dark)` block, so it automatically applies when the user's OS is set to dark mode. To opt out of automatic detection, set `data-theme="light"` or use `<FlintTheme mode="light">`.
 
 ## Controlled Components
 
@@ -432,8 +451,7 @@ function ConfirmDialog({ open, onConfirm, onCancel }) {
 Flint UI includes a Sonner-inspired toast system with an imperative `toast()` API:
 
 ```tsx
-import { FlintToaster } from '@getufy/flint-ui-react/sonner';
-import { toast } from '@getufy/flint-ui/sonner/flint-sonner';
+import { FlintToaster, toast } from '@getufy/flint-ui-react/sonner';
 
 function App() {
   return (

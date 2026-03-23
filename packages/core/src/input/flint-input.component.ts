@@ -133,6 +133,10 @@ export class FlintInput extends FormAssociated(FlintElement) {
     @property({ type: Boolean })
     clearable = false;
 
+    /** Debounce delay in milliseconds for the `flint-input-input` event. 0 means no debounce. Useful for search inputs. */
+    @property({ type: Number })
+    debounce = 0;
+
     /** Shows a toggle button on password inputs to reveal/hide the value. */
     @property({ type: Boolean, attribute: 'password-toggle' })
     passwordToggle = false;
@@ -288,9 +292,14 @@ export class FlintInput extends FormAssociated(FlintElement) {
     `;
     }
 
-    private _handleInput = (e: Event) => {
-        this.value = (e.target as HTMLInputElement).value;
-        this._updateFormValue();
+    private _debounceTimer?: ReturnType<typeof setTimeout>;
+
+    override disconnectedCallback() {
+        super.disconnectedCallback();
+        clearTimeout(this._debounceTimer);
+    }
+
+    private _emitInputEvent() {
         this.dispatchEvent(
             new CustomEvent('flint-input-input', {
                 detail: { value: this.value },
@@ -298,6 +307,17 @@ export class FlintInput extends FormAssociated(FlintElement) {
                 composed: true,
             })
         );
+    }
+
+    private _handleInput = (e: Event) => {
+        this.value = (e.target as HTMLInputElement).value;
+        this._updateFormValue();
+        if (this.debounce > 0) {
+            clearTimeout(this._debounceTimer);
+            this._debounceTimer = setTimeout(() => this._emitInputEvent(), this.debounce);
+        } else {
+            this._emitInputEvent();
+        }
     };
 
     private _handleChange = (e: Event) => {

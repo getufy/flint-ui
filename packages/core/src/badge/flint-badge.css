@@ -3,6 +3,7 @@
       position: relative;
       vertical-align: middle;
       flex-shrink: 0;
+      background: transparent;
     }
 
     .badge {

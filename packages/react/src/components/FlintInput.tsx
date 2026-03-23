@@ -75,6 +75,8 @@ export interface FlintInputProps extends Omit<React.HTMLAttributes<FlintInputEle
     defaultValue?: string | undefined;
     /** Shows a clear button when the input has a value. */
     clearable?: boolean;
+    /** Debounce delay in ms for the `flint-input-input` event. 0 means no debounce. Useful for search inputs. */
+    debounce?: number;
     /** Shows a toggle button on password inputs to reveal/hide the value. */
     passwordToggle?: boolean;
     /** Whether the password is currently visible. Only relevant when `passwordToggle` is true. */

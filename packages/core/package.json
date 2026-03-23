@@ -225,6 +225,10 @@
       "types": "./dist/breadcrumbs/flint-breadcrumbs.d.ts",
       "import": "./dist/breadcrumbs/flint-breadcrumbs.js"
     },
+    "./breadcrumbs/flint-breadcrumb-item": {
+      "types": "./dist/breadcrumbs/flint-breadcrumb-item.d.ts",
+      "import": "./dist/breadcrumbs/flint-breadcrumb-item.js"
+    },
     "./drawer/flint-drawer": {
       "types": "./dist/drawer/flint-drawer.d.ts",
       "import": "./dist/drawer/flint-drawer.js"

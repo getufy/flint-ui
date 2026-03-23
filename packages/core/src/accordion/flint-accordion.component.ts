@@ -122,12 +122,15 @@ export class FlintAccordion extends FlintElement {
  * Accordion Summary: the wrapper for the Accordion header.
  *
  * @slot expandIcon - Custom expand/collapse icon.
- * @slot - Summary content.
+ * @slot - Summary content. If `title` prop is set and no slot content is provided, the title is rendered.
  *
  * @fires flint-accordion-toggle - Fired when the summary is clicked or activated via keyboard.
  */
 export class FlintAccordionSummary extends FlintElement {
     static styles = unsafeCSS(uiAccordionSummaryStyles);
+
+    /** Plain text title. When set, rendered as the default slot content if no children are slotted. */
+    @property({ type: String }) title = '';
 
     private _handleActivate = () => {
         this.emit('flint-accordion-toggle');
@@ -173,7 +176,7 @@ export class FlintAccordionSummary extends FlintElement {
     render() {
         return html`
             <div class="content" part="content">
-                <slot></slot>
+                <slot>${this.title}</slot>
             </div>
             <div class="expand-icon" part="expand-icon">
                 <slot name="expandIcon">

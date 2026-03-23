@@ -78,6 +78,7 @@ export { FlintAppBar } from './app-bar/flint-app-bar.js';
 export { FlintBottomNavigation } from './bottom-navigation/flint-bottom-navigation.js';
 export { FlintBottomNavigationAction } from './bottom-navigation/flint-bottom-navigation-action.js';
 export { FlintBreadcrumbs } from './breadcrumbs/flint-breadcrumbs.js';
+export { FlintBreadcrumbItem } from './breadcrumbs/flint-breadcrumb-item.js';
 export { FlintDrawer } from './drawer/flint-drawer.js';
 export { FlintLink } from './link/flint-link.js';
 export { FlintTypography } from './typography/flint-typography.js';

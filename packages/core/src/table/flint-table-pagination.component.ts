@@ -21,7 +21,10 @@ export class FlintTablePagination extends FlintElement {
 
     /** Total number of rows. */
     @property({ type: Number }) count = 0;
-    /** Controlled current page (0-indexed). */
+    /**
+     * Controlled current page (**0-indexed**). Page 0 is the first page.
+     * Note: `FlintPagination` uses 1-based indexing. Convert with `page - 1` / `page + 1`.
+     */
     @property({ type: Number }) page = 0;
     /** Controlled rows per page. */
     @property({ type: Number }) rowsPerPage = 10;

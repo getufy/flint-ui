@@ -90,7 +90,11 @@ export class FlintPagination extends FlintElement {
     /** Total number of pages. */
     @property({ type: Number }) count = 1;
 
-    /** The current page (1-based). In controlled mode, update this from the flint-pagination-change event. */
+    /**
+     * The current page (**1-based**). Page 1 is the first page.
+     * Note: `FlintTablePagination` uses 0-based indexing for MUI compatibility.
+     * In controlled mode, update this from the `flint-pagination-change` event.
+     */
     @property({ type: Number }) page = 1;
 
     /** Initial page for uncontrolled mode. Ignored after first render. */

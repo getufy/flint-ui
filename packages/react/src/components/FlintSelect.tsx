@@ -72,7 +72,7 @@ export interface FlintSelectProps extends Omit<React.HTMLAttributes<FlintSelectE
      * Dispatched when the selection changes. detail: `{ value: string, multiple: false } | { value: string[], multiple: true }`
      * DOM event: `flint-select-change`
      */
-    onFlintSelectChange?: (event: CustomEvent) => void;
+    onFlintSelectChange?: (event: CustomEvent<{ value: string; multiple: false } | { value: string[]; multiple: true }>) => void;
     /**
      * Dispatched when the clear button is clicked.
      * DOM event: `flint-clear`

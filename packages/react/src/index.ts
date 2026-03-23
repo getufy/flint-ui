@@ -15,6 +15,7 @@ export { FlintBottomNavigationAction, type FlintBottomNavigationActionProps } fr
 export { FlintBottomNavigation, type FlintBottomNavigationProps, type FlintBottomNavigationChangeDetail } from './components/FlintBottomNavigation.js';
 export { FlintBox, type FlintBoxProps } from './components/FlintBox.js';
 export { FlintBreadcrumbs, type FlintBreadcrumbsProps } from './components/FlintBreadcrumbs.js';
+export { FlintBreadcrumbItem, type FlintBreadcrumbItemProps } from './components/FlintBreadcrumbItem.js';
 export { FlintCardActionArea, type FlintCardActionAreaProps } from './components/FlintCardActionArea.js';
 export { FlintCardActions, type FlintCardActionsProps } from './components/FlintCardActions.js';
 export { FlintCardContent, type FlintCardContentProps } from './components/FlintCardContent.js';
@@ -151,6 +152,8 @@ export { FlintSlider, type FlintSliderProps, type FlintSliderChangeDetail } from
 export { FlintSpeedDialAction, type FlintSpeedDialActionProps } from './components/FlintSpeedDialAction.js';
 export { FlintSpeedDial, type FlintSpeedDialProps, type FlintSpeedDialOpenDetail, type FlintSpeedDialCloseDetail } from './components/FlintSpeedDial.js';
 export { FlintToaster, type FlintToasterProps } from './components/FlintToaster.js';
+export { toast } from '@getufy/flint-ui/sonner/flint-sonner';
+export type { ToastOptions, ToastType, ToastPosition, ToastAction } from '@getufy/flint-ui/sonner/flint-sonner';
 export { FlintSnackbar, type FlintSnackbarProps, type FlintSnackbarOpenDetail, type FlintSnackbarCloseDetail } from './components/FlintSnackbar.js';
 export { FlintSplitPanel, type FlintSplitPanelProps, type FlintSplitPanelRepositionDetail } from './components/FlintSplitPanel.js';
 export { FlintStepConnector, type FlintStepConnectorProps } from './components/FlintStepConnector.js';
