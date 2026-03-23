@@ -1,5 +1,21 @@
 # @getufy/flint-ui-react
 
+## [0.8.8](https://github.com/getufy/flint-ui/compare/flint-ui-react-v0.8.7...flint-ui-react-v0.8.8) (2026-03-23)
+
+
+### Bug Fixes
+
+* timer cleanup bugs, event naming, and accessibility test gaps ([f0724a6](https://github.com/getufy/flint-ui/commit/f0724a635a62c59654d5d6df9078864edccb8dac))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @getufy/flint-ui bumped from 0.8.7 to 0.8.8
+  * peerDependencies
+    * @getufy/flint-ui bumped from ^0.8.7 to ^0.8.8
+
 ## [0.8.7](https://github.com/getufy/flint-ui/compare/flint-ui-react-v0.8.6...flint-ui-react-v0.8.7) (2026-03-23)
 
 
