@@ -266,7 +266,7 @@ exports[`DOM snapshots > flint-input — default 1`] = `
         <!--?lit$[hash]$--><label part="label" for="flint-input-[id]"><!--?lit$[hash]$-->Name</label>
 
         <div class=" input-container has-prefix has-suffix ">
-          <span class="prefix" part="prefix"><slot name="prefix"></slot></span>
+          <span class="prefix" part="prefix"><!--?lit$[hash]$--><slot name="prefix"></slot></span>
 
           <input part="input" id="flint-input-[id]" type="text" placeholder="" aria-required="false" aria-invalid="false" aria-describedby="" name="" autocomplete="" class="  ">
 
@@ -298,7 +298,7 @@ exports[`DOM snapshots > flint-input — with placeholder 1`] = `
         <!--?lit$[hash]$--><label part="label" for="flint-input-[id]"><!--?lit$[hash]$-->Email</label>
 
         <div class=" input-container has-prefix has-suffix ">
-          <span class="prefix" part="prefix"><slot name="prefix"></slot></span>
+          <span class="prefix" part="prefix"><!--?lit$[hash]$--><slot name="prefix"></slot></span>
 
           <input part="input" id="flint-input-[id]" type="text" placeholder="you@example.com" aria-required="false" aria-invalid="false" aria-describedby="" name="" autocomplete="" class="  ">
 

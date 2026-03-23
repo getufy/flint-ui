@@ -155,11 +155,6 @@ export class FlintTooltip extends FlintElement {
       <div
         class="tooltip-container"
         part="base"
-        @mouseenter=${this._show}
-        @mouseleave=${this._hide}
-        @focusin=${this._show}
-        @focusout=${this._hide}
-        @keydown=${this._handleKeydown}
       >
         <flint-popup
           .active=${this._visible}
@@ -169,7 +164,16 @@ export class FlintTooltip extends FlintElement {
           flip
           @flint-reposition=${this._handleReposition}
         >
-          <span slot="anchor" class="trigger-wrapper" aria-describedby=${this._tooltipId}>
+          <span
+            slot="anchor"
+            class="trigger-wrapper"
+            aria-describedby=${this._tooltipId}
+            @mouseenter=${this._show}
+            @mouseleave=${this._hide}
+            @focusin=${this._show}
+            @focusout=${this._hide}
+            @keydown=${this._handleKeydown}
+          >
             <slot></slot>
           </span>
           <div

@@ -20,6 +20,11 @@ export interface FlintStackProps extends React.HTMLAttributes<FlintStackElement>
      * Type: `ResponsiveValue<number | string>`
      */
     spacing?: FlintStackElement['spacing'];
+    /**
+     * Alias for `spacing`. Space between child items.
+     * Type: `ResponsiveValue<number | string> | undefined`
+     */
+    gap?: FlintStackElement['gap'];
     /** Cross-axis alignment of stack children. */
     alignItems?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline' | undefined;
     /** Main-axis alignment of stack children. */

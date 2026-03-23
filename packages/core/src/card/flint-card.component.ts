@@ -2,6 +2,7 @@ import { unsafeCSS, html, nothing } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FlintElement } from '../flint-element.js';
+import { FlintSkeleton } from '../skeleton/flint-skeleton.component.js';
 import uiCardStyles from './flint-card.css?inline';
 
 /**
@@ -14,6 +15,9 @@ import uiCardStyles from './flint-card.css?inline';
  */
 export class FlintCard extends FlintElement {
   static styles = unsafeCSS(uiCardStyles);
+  static override dependencies: Record<string, typeof FlintElement> = {
+    'flint-skeleton': FlintSkeleton as unknown as typeof FlintElement,
+  };
 
   /**
    * Visual style variant of the card.
@@ -24,6 +28,10 @@ export class FlintCard extends FlintElement {
 
   @property({ type: Boolean, reflect: true })
   interactive = false;
+
+  /** When true, shows skeleton placeholders instead of card content. */
+  @property({ type: Boolean, reflect: true })
+  loading = false;
 
   private _handleClick = () => {
     if (this.interactive) {
@@ -54,7 +62,15 @@ export class FlintCard extends FlintElement {
         @click=${this._handleClick}
         @keydown=${this._handleKeyDown}
       >
-        <slot></slot>
+        ${this.loading
+          ? html`
+            <div style="padding: 16px; display: flex; flex-direction: column; gap: 12px;">
+              <flint-skeleton variant="text" style="width: 60%; height: 24px;"></flint-skeleton>
+              <flint-skeleton variant="text" style="width: 100%; height: 16px;"></flint-skeleton>
+              <flint-skeleton variant="text" style="width: 80%; height: 16px;"></flint-skeleton>
+              <flint-skeleton variant="rectangular" style="width: 100%; height: 120px;"></flint-skeleton>
+            </div>`
+          : html`<slot></slot>`}
       </div>
     `;
   }

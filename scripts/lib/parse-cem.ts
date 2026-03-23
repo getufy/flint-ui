@@ -134,10 +134,10 @@ function eventConstKey(tagName: string, domName: string): string {
 function extractDetailFromDescription(desc: string): string | undefined {
     if (!desc) return undefined;
 
-    // Pattern 1: detail: `{ ... }` or Detail: `{ ... }`
-    const backtickMatch = desc.match(/[Dd]etail:\s*`\{([^}]+)\}`/);
+    // Pattern 1: detail: `...` (backtick-delimited — may contain unions like `{ a } | { b }`)
+    const backtickMatch = desc.match(/[Dd]etail:\s*`([^`]+)`/);
     if (backtickMatch) {
-        return `{ ${backtickMatch[1].trim()} }`;
+        return backtickMatch[1].trim();
     }
 
     // Pattern 2: { detail: { ... } }

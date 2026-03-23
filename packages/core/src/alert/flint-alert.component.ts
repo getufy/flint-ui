@@ -29,6 +29,11 @@ export class FlintAlert extends FlintElement {
      */
     @property({ type: String }) severity: 'info' | 'success' | 'warning' | 'error' = 'info';
 
+    /** Alias for `severity`. Visual style variant. */
+    @property({ type: String })
+    set variant(v: 'info' | 'success' | 'warning' | 'error') { this.severity = v; }
+    get variant(): 'info' | 'success' | 'warning' | 'error' { return this.severity; }
+
     /**
      * An optional title for the alert.
      */
@@ -38,6 +43,11 @@ export class FlintAlert extends FlintElement {
      * Whether the alert can be dismissed by the user.
      */
     @property({ type: Boolean }) dismissible = false;
+
+    /** Alias for `dismissible`. Whether the alert can be closed. */
+    @property({ type: Boolean })
+    set closable(v: boolean) { this.dismissible = v; }
+    get closable(): boolean { return this.dismissible; }
 
     private _closeTimer?: ReturnType<typeof setTimeout>;
 

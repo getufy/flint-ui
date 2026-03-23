@@ -109,6 +109,9 @@ export class FlintGrid extends FlintElement {
 
     @state() private _currentWidth = typeof window !== 'undefined' ? window.innerWidth : 1200;
 
+    /** Tracks which CSS properties were set by _applyItemStyles so only those are cleared. */
+    private _appliedGridProps = new Set<string>();
+
     private _onResize = () => {
         if (typeof window !== 'undefined') this._currentWidth = window.innerWidth;
     };
@@ -274,16 +277,16 @@ export class FlintGrid extends FlintElement {
         }
 
         // ── Write phase: batch all DOM mutations together ──
-        // Reset previously applied host styles
-        this.style.flexGrow = '';
-        this.style.flexBasis = '';
-        this.style.maxWidth = '';
-        this.style.width = '';
-        this.style.marginLeft = '';
-        this.style.order = '';
+        // Only clear properties that were previously set by the component,
+        // preserving any user-set inline styles (e.g. from React's style prop).
+        for (const prop of this._appliedGridProps) {
+            this.style.removeProperty(prop);
+        }
+        this._appliedGridProps.clear();
 
         Object.entries(itemStyles).forEach(([prop, val]) => {
             this.style.setProperty(prop, val);
+            this._appliedGridProps.add(prop);
         });
 
         if (this.container) {

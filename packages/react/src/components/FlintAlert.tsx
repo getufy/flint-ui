@@ -26,10 +26,17 @@ export interface FlintAlertProps extends Omit<React.HTMLAttributes<FlintAlertEle
      * Allowed values: 'info' | 'success' | 'warning' | 'error'
      */
     severity?: 'info' | 'success' | 'warning' | 'error';
+    /**
+     * Alias for `severity`. Visual style variant.
+     * Allowed values: 'info' | 'success' | 'warning' | 'error'
+     */
+    variant?: 'info' | 'success' | 'warning' | 'error';
     /** An optional title for the alert. */
     title?: string;
     /** Whether the alert can be dismissed by the user. */
     dismissible?: boolean;
+    /** Alias for `dismissible`. Whether the alert can be closed. */
+    closable?: boolean;
     /**
      * Fired when the alert's close button is clicked. detail: `{ open: false, severity: string }`
      * DOM event: `flint-alert-close`

@@ -398,6 +398,43 @@ describe('flint-dialog', () => {
         expect(el.shadowRoot!.querySelector('[part="panel"]')).not.toBeNull();
     });
 
+    // ── Event propagation ──────────────────────────────────────────────────────
+
+    it('click events from nested elements propagate past dialog', async () => {
+        const el = await fixture<FlintDialog>(html`
+            <flint-dialog open>
+                <flint-dialog-content><button id="inner-btn">Click me</button></flint-dialog-content>
+            </flint-dialog>
+        `);
+        await el.updateComplete;
+
+        const hostSpy = vi.fn();
+        el.addEventListener('click', hostSpy);
+
+        const btn = el.querySelector('#inner-btn') as HTMLElement;
+        btn.click();
+
+        expect(hostSpy).toHaveBeenCalled();
+    });
+
+    it('custom events from nested elements fire correctly inside dialog', async () => {
+        const el = await fixture<FlintDialog>(html`
+            <flint-dialog open>
+                <flint-dialog-content><div id="nested"></div></flint-dialog-content>
+            </flint-dialog>
+        `);
+        await el.updateComplete;
+
+        const spy = vi.fn();
+        el.addEventListener('flint-input-input', spy);
+
+        const nested = el.querySelector('#nested') as HTMLElement;
+        nested.dispatchEvent(new CustomEvent('flint-input-input', { bubbles: true, composed: true, detail: { value: 'test' } }));
+
+        expect(spy).toHaveBeenCalled();
+        expect(spy.mock.calls[0][0].detail).toEqual({ value: 'test' });
+    });
+
     // ── Accessibility ─────────────────────────────────────────────────────────
 
     it('should pass automated a11y checks', async () => {

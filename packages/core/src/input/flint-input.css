@@ -51,6 +51,12 @@
       margin-left: 10px;
     }
 
+    .search-icon {
+      margin-left: 10px;
+      color: var(--flint-input-search-icon-color, var(--flint-input-placeholder-color));
+      flex-shrink: 0;
+    }
+
     .suffix ::slotted(*) {
       margin-right: 10px;
     }

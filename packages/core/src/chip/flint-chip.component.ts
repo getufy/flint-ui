@@ -20,6 +20,9 @@ import uiChipStyles from './flint-chip.css?inline';
  * @csspart base - The chip's base wrapper element.
  * @csspart label - The label text element.
  * @csspart delete-icon - The delete button element.
+ *
+ * @cssprop [--flint-chip-bg] - Override the chip background color.
+ * @cssprop [--flint-chip-color] - Override the chip text color.
  */
 export class FlintChip extends FlintElement {
     static styles = unsafeCSS(uiChipStyles);

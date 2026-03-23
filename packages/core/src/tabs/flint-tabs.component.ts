@@ -454,6 +454,9 @@ export class FlintTabs extends FlintElement {
         const tabs = Array.from(this.querySelectorAll<FlintTab>('flint-tab'));
         const panels = Array.from(this.querySelectorAll<FlintTabPanel>('flint-tab-panel'));
 
+        // Guard: children may not be rendered yet (e.g. during React reconciliation)
+        if (!tabList || tabs.length === 0) return;
+
         // If no value set, pick first enabled tab
         let active = this.value;
         if (!active) {
@@ -538,9 +541,12 @@ export class FlintTabs extends FlintElement {
     private _scheduleSync() {
         if (this._syncScheduled) return;
         this._syncScheduled = true;
+        // Double-rAF ensures React reconciliation has finished before querying children
         requestAnimationFrame(() => {
-            this._syncScheduled = false;
-            this._syncAll();
+            requestAnimationFrame(() => {
+                this._syncScheduled = false;
+                this._syncAll();
+            });
         });
     }
 

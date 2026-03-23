@@ -193,6 +193,12 @@ export class FlintMenu extends FlintElement {
     /** Accessible label for the menu surface (aria-label on role="menu"). */
     @property({ type: String }) label?: string;
 
+    /**
+     * When true, the menu dropdown uses `position: fixed` instead of `position: absolute`
+     * so it can escape containers with `overflow: hidden` or `overflow: clip`.
+     */
+    @property({ type: Boolean }) hoist = false;
+
     // ── Keyboard handling ──────────────────────────────────────────────────
 
     /** Escape key on window closes the menu from anywhere. */
@@ -331,6 +337,7 @@ export class FlintMenu extends FlintElement {
             <flint-popup
                 .active=${this.open}
                 placement=${this.placement}
+                .strategy=${this.hoist ? 'fixed' as const : 'absolute' as const}
                 .distance=${4}
                 flip
                 shift

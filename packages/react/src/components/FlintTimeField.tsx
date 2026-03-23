@@ -37,15 +37,15 @@ export interface FlintTimeFieldProps extends React.HTMLAttributes<FlintTimeField
     /** Error message displayed below the field when in error state. */
     errorMessage?: string;
     /**
-     * Fired when the clear button is clicked.
-     * DOM event: `flint-time-picker-clear`
-     */
-    onFlintTimePickerClear?: (event: CustomEvent) => void;
-    /**
      * Fired when the time value changes. detail: `{ value: string }`
      * DOM event: `flint-time-field-change`
      */
     onFlintTimeFieldChange?: (event: CustomEvent<FlintTimeFieldChangeDetail>) => void;
+    /**
+     * Fired when the clear button is clicked.
+     * DOM event: `flint-time-picker-clear`
+     */
+    onFlintTimePickerClear?: (event: CustomEvent) => void;
 }
 
 export const FlintTimeField = createComponent({
@@ -99,7 +99,7 @@ export const FlintTimeField = createComponent({
         onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
         onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
         onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
-        onFlintTimePickerClear: FlintTimeFieldEvents.TIME_PICKER_CLEAR as EventName<CustomEvent>,
         onFlintTimeFieldChange: FlintTimeFieldEvents.CHANGE as EventName<CustomEvent<FlintTimeFieldChangeDetail>>,
+        onFlintTimePickerClear: FlintTimeFieldEvents.TIME_PICKER_CLEAR as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintTimeFieldProps & React.RefAttributes<FlintTimeFieldElement>>;

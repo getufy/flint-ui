@@ -109,11 +109,6 @@ export interface FlintRichTreeViewProps extends React.HTMLAttributes<FlintRichTr
     /** When true (and selectionMode='multiple'), selecting a parent item */
     selectionPropagation?: boolean;
     /**
-     * When a lazy-loading dataSource call fails (detail: { message, id, error })
-     * DOM event: `flint-tree-view-error`
-     */
-    onFlintTreeViewError?: (event: CustomEvent) => void;
-    /**
      * When the selected set changes (detail: { selectedItems })
      * DOM event: `flint-selection-change`
      */
@@ -123,13 +118,16 @@ export interface FlintRichTreeViewProps extends React.HTMLAttributes<FlintRichTr
      * DOM event: `flint-tree-view-expanded-items-change`
      */
     onFlintTreeViewExpandedItemsChange?: (event: CustomEvent) => void;
-    /** DOM event: `flint-tree-view-item-position-change` */
-    onFlintTreeViewItemPositionChange?: (event: CustomEvent) => void;
     /**
      * When a tree item is activated (detail: { itemId })
      * DOM event: `flint-tree-view-item-click`
      */
     onFlintTreeViewItemClick?: (event: CustomEvent) => void;
+    /**
+     * When a lazy-loading dataSource call fails (detail: { message, id, error })
+     * DOM event: `flint-tree-view-error`
+     */
+    onFlintTreeViewError?: (event: CustomEvent) => void;
 }
 
 export const FlintRichTreeView = createComponent({
@@ -183,10 +181,9 @@ export const FlintRichTreeView = createComponent({
         onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
         onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
         onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
-        onFlintTreeViewError: FlintRichTreeViewEvents.TREE_VIEW_ERROR as EventName<CustomEvent>,
         onFlintSelectionChange: FlintRichTreeViewEvents.SELECTION_CHANGE as EventName<CustomEvent>,
         onFlintTreeViewExpandedItemsChange: FlintRichTreeViewEvents.TREE_VIEW_EXPANDED_ITEMS_CHANGE as EventName<CustomEvent>,
-        onFlintTreeViewItemPositionChange: FlintRichTreeViewEvents.TREE_VIEW_ITEM_POSITION_CHANGE as EventName<CustomEvent>,
         onFlintTreeViewItemClick: FlintRichTreeViewEvents.TREE_VIEW_ITEM_CLICK as EventName<CustomEvent>,
+        onFlintTreeViewError: FlintRichTreeViewEvents.TREE_VIEW_ERROR as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintRichTreeViewProps & React.RefAttributes<FlintRichTreeViewElement>>;

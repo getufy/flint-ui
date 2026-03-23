@@ -13,7 +13,7 @@ import { FlintBoxEvents } from '../events/flint-box.js';
 export interface FlintBoxProps extends Omit<React.HTMLAttributes<FlintBoxElement>, 'color'> {
     /** The component tag to render */
     component?: string;
-    /** Margin on all sides. */
+    /** Margin on all sides. Accepts CSS length values (e.g. '16px', '1rem'). Note: unlike FlintGrid/FlintStack, these do NOT use a spacing multiplier. */
     m?: string | undefined;
     /** Margin top. */
     mt?: string | undefined;
@@ -27,7 +27,7 @@ export interface FlintBoxProps extends Omit<React.HTMLAttributes<FlintBoxElement
     mx?: string | undefined;
     /** Margin on the vertical (top and bottom) axis. */
     my?: string | undefined;
-    /** Padding on all sides. */
+    /** Padding on all sides. Accepts CSS length values (e.g. '16px', '1rem'). Note: unlike FlintGrid/FlintStack, these do NOT use a spacing multiplier. */
     p?: string | undefined;
     /** Padding top. */
     pt?: string | undefined;

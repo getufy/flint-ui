@@ -34,6 +34,8 @@ export interface FlintMenuProps extends React.HTMLAttributes<FlintMenuElement> {
     scrollable?: boolean;
     /** Accessible label for the menu surface (aria-label on role="menu"). */
     label?: string | undefined;
+    /** When true, the menu dropdown uses `position: fixed` instead of `position: absolute` */
+    hoist?: boolean;
     /**
      * Fired when the menu requests to be closed (backdrop click, Escape, or item select). detail: `{ open: false }`
      * DOM event: `flint-menu-close`

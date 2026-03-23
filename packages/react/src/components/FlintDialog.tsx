@@ -8,7 +8,6 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintDialog as FlintDialogElement } from '@getufy/flint-ui/dialog/flint-dialog';
-import { FlintDialogEvents } from '../events/flint-dialog.js';
 
 export interface FlintDialogProps extends React.HTMLAttributes<FlintDialogElement> {
     /** Current open state (controlled). When set, the component reflects this state and does not manage its own state. */
@@ -29,10 +28,6 @@ export interface FlintDialogProps extends React.HTMLAttributes<FlintDialogElemen
     disableBackdropClose?: boolean;
     /** CSS selector for the element to focus when the dialog opens. */
     initialFocus?: string;
-    /** DOM event: `flint-dialog-open` */
-    onFlintDialogOpen?: (event: CustomEvent) => void;
-    /** DOM event: `flint-dialog-close` */
-    onFlintDialogClose?: (event: CustomEvent) => void;
 }
 
 export const FlintDialog = createComponent({
@@ -86,7 +81,5 @@ export const FlintDialog = createComponent({
         onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
         onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
         onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
-        onFlintDialogOpen: FlintDialogEvents.OPEN as EventName<CustomEvent>,
-        onFlintDialogClose: FlintDialogEvents.CLOSE as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintDialogProps & React.RefAttributes<FlintDialogElement>>;

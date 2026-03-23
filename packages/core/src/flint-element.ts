@@ -16,6 +16,7 @@ const sharedStyles = css`
 
 export class FlintElement extends LitElement {
   static dependencies: Record<string, typeof FlintElement> = {};
+  private static _themeChecked = false;
 
   /** Appends shared styles (e.g. reduced-motion) to every subclass. */
   protected static finalizeStyles(styles?: CSSResultGroup): CSSResultOrNative[] {
@@ -59,6 +60,19 @@ export class FlintElement extends LitElement {
     const ctor = this.constructor as typeof FlintElement;
     for (const [name, depClass] of Object.entries(ctor.dependencies)) {
       (ctor as typeof FlintElement).define(name, depClass);
+    }
+    // Dev-mode: warn once if theme CSS is not loaded
+    if (import.meta.env?.DEV && typeof window !== 'undefined' && !FlintElement._themeChecked) {
+      FlintElement._themeChecked = true;
+      requestAnimationFrame(() => {
+        const val = getComputedStyle(document.documentElement).getPropertyValue('--flint-primary-color');
+        if (!val?.trim()) {
+          console.warn(
+            '[flint-ui] Theme CSS variables not detected. ' +
+            'Import "@getufy/flint-ui/theme.css" (and "@getufy/flint-ui/theme-dark.css" for dark mode) in your entry file.'
+          );
+        }
+      });
     }
   }
 }

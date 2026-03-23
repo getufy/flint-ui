@@ -72,6 +72,11 @@ export class FlintSnackbar extends FlintElement {
     /** Show a dismiss (✕) button. */
     @property({ type: Boolean, reflect: true }) closable = false;
 
+    /** Alias for `closable`. Whether the snackbar can be dismissed. */
+    @property({ type: Boolean })
+    set dismissible(v: boolean) { this.closable = v; }
+    get dismissible(): boolean { return this.closable; }
+
     /**
      * Visual style variant.
      * @default 'default'

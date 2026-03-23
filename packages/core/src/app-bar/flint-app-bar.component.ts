@@ -39,6 +39,7 @@ export class FlintAppBar extends FlintElement {
 
         <div class="title" part="title">
           ${this.title}<slot name="title"></slot>
+          <slot name="subtitle"></slot>
         </div>
 
         <div class="right-section" part="actions">

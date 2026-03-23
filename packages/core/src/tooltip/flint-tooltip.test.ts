@@ -49,7 +49,7 @@ describe('flint-tooltip', () => {
         const el = await fixture<FlintTooltip>(html`
             <flint-tooltip label="Hover tip"><button>Hover</button></flint-tooltip>
         `);
-        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        const container = el.shadowRoot!.querySelector('.trigger-wrapper')!;
         const popup = el.shadowRoot!.querySelector('.tooltip-popup')!;
 
         expect(popup.classList.contains('visible')).toBe(false);
@@ -71,7 +71,7 @@ describe('flint-tooltip', () => {
         const el = await fixture<FlintTooltip>(html`
             <flint-tooltip label="Focus tip"><button>Focus</button></flint-tooltip>
         `);
-        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        const container = el.shadowRoot!.querySelector('.trigger-wrapper')!;
         const popup = el.shadowRoot!.querySelector('.tooltip-popup')!;
 
         container.dispatchEvent(new Event('focusin', { bubbles: true }));
@@ -90,7 +90,7 @@ describe('flint-tooltip', () => {
         const el = await fixture<FlintTooltip>(html`
             <flint-tooltip label="No show" disabled><button>Hover</button></flint-tooltip>
         `);
-        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        const container = el.shadowRoot!.querySelector('.trigger-wrapper')!;
         const popup = el.shadowRoot!.querySelector('.tooltip-popup')!;
 
         container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
@@ -113,7 +113,7 @@ describe('flint-tooltip', () => {
         const el = await fixture<FlintTooltip>(html`
             <flint-tooltip label=""><button>B</button></flint-tooltip>
         `);
-        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        const container = el.shadowRoot!.querySelector('.trigger-wrapper')!;
         const popup = el.shadowRoot!.querySelector('.tooltip-popup')!;
 
         container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
@@ -201,7 +201,7 @@ describe('flint-tooltip', () => {
         const el = await fixture<FlintTooltip>(html`
             <flint-tooltip label="Shown"><button>B</button></flint-tooltip>
         `);
-        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        const container = el.shadowRoot!.querySelector('.trigger-wrapper')!;
         container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
         await el.updateComplete;
 
@@ -223,7 +223,7 @@ describe('flint-tooltip', () => {
         const el = await fixture<FlintTooltip>(html`
             <flint-tooltip label="Esc"><button>B</button></flint-tooltip>
         `);
-        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        const container = el.shadowRoot!.querySelector('.trigger-wrapper')!;
         const popup = el.shadowRoot!.querySelector('.tooltip-popup')!;
 
         container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
@@ -241,7 +241,7 @@ describe('flint-tooltip', () => {
         const el = await fixture<FlintTooltip>(html`
             <flint-tooltip label="Key"><button>B</button></flint-tooltip>
         `);
-        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        const container = el.shadowRoot!.querySelector('.trigger-wrapper')!;
         const popup = el.shadowRoot!.querySelector('.tooltip-popup')!;
 
         container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
@@ -260,7 +260,7 @@ describe('flint-tooltip', () => {
         const el = await fixture<FlintTooltip>(html`
             <flint-tooltip label="Delayed" open-delay="200"><button>B</button></flint-tooltip>
         `);
-        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        const container = el.shadowRoot!.querySelector('.trigger-wrapper')!;
         const popup = el.shadowRoot!.querySelector('.tooltip-popup')!;
 
         container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
@@ -280,7 +280,7 @@ describe('flint-tooltip', () => {
         const el = await fixture<FlintTooltip>(html`
             <flint-tooltip label="Cancel" open-delay="200"><button>B</button></flint-tooltip>
         `);
-        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        const container = el.shadowRoot!.querySelector('.trigger-wrapper')!;
         const popup = el.shadowRoot!.querySelector('.tooltip-popup')!;
 
         container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
@@ -304,7 +304,7 @@ describe('flint-tooltip', () => {
         const el = await fixture<FlintTooltip>(html`
             <flint-tooltip label="Delayed hide" close-delay="200"><button>B</button></flint-tooltip>
         `);
-        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        const container = el.shadowRoot!.querySelector('.trigger-wrapper')!;
         const popup = el.shadowRoot!.querySelector('.tooltip-popup')!;
 
         container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
@@ -329,7 +329,7 @@ describe('flint-tooltip', () => {
         const el = await fixture<FlintTooltip>(html`
             <flint-tooltip label="Re-enter" close-delay="200"><button>B</button></flint-tooltip>
         `);
-        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        const container = el.shadowRoot!.querySelector('.trigger-wrapper')!;
         const popup = el.shadowRoot!.querySelector('.tooltip-popup')!;
 
         // Show
@@ -361,7 +361,7 @@ describe('flint-tooltip', () => {
         const el = await fixture<FlintTooltip>(html`
             <flint-tooltip label="Cleanup" open-delay="200"><button>B</button></flint-tooltip>
         `);
-        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        const container = el.shadowRoot!.querySelector('.trigger-wrapper')!;
 
         container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
         await el.updateComplete;
@@ -379,7 +379,7 @@ describe('flint-tooltip', () => {
         const el = await fixture<FlintTooltip>(html`
             <flint-tooltip label="Original"><button>B</button></flint-tooltip>
         `);
-        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        const container = el.shadowRoot!.querySelector('.trigger-wrapper')!;
 
         container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
         await el.updateComplete;
@@ -405,7 +405,7 @@ describe('flint-tooltip', () => {
         const el = await fixture<FlintTooltip>(html`
             <flint-tooltip label="Dedup" open-delay="200"><button>B</button></flint-tooltip>
         `);
-        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        const container = el.shadowRoot!.querySelector('.trigger-wrapper')!;
 
         container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
         await el.updateComplete;
@@ -429,7 +429,7 @@ describe('flint-tooltip', () => {
         const el = await fixture<FlintTooltip>(html`
             <flint-tooltip label="Dedup close" close-delay="200"><button>B</button></flint-tooltip>
         `);
-        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        const container = el.shadowRoot!.querySelector('.trigger-wrapper')!;
 
         container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
         await el.updateComplete;
@@ -456,7 +456,7 @@ describe('flint-tooltip', () => {
         const el = await fixture<FlintTooltip>(html`
             <flint-tooltip label="DC open" open-delay="300"><button>B</button></flint-tooltip>
         `);
-        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        const container = el.shadowRoot!.querySelector('.trigger-wrapper')!;
 
         container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
         await el.updateComplete;
@@ -480,7 +480,7 @@ describe('flint-tooltip', () => {
         const el = await fixture<FlintTooltip>(html`
             <flint-tooltip label="DC close" close-delay="300"><button>B</button></flint-tooltip>
         `);
-        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        const container = el.shadowRoot!.querySelector('.trigger-wrapper')!;
 
         // Show the tooltip first
         container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
@@ -515,7 +515,7 @@ describe('flint-tooltip', () => {
         const flintPopup = el.shadowRoot!.querySelector('flint-popup') as FlintPopup;
         expect(flintPopup.active).toBe(false);
 
-        const container = el.shadowRoot!.querySelector('.tooltip-container')!;
+        const container = el.shadowRoot!.querySelector('.trigger-wrapper')!;
         container.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
         await el.updateComplete;
         expect(flintPopup.active).toBe(true);

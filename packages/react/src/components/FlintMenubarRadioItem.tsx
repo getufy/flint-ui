@@ -8,7 +8,6 @@
 import React from 'react';
 import { createComponent, type EventName } from '@lit/react';
 import { FlintMenubarRadioItem as FlintMenubarRadioItemElement } from '@getufy/flint-ui/menubar/flint-menubar';
-import { FlintMenubarRadioItemEvents } from '../events/flint-menubar-radio-item.js';
 
 /**
  * A radio option inside a `<flint-menubar-radio-group>`.
@@ -22,8 +21,6 @@ export interface FlintMenubarRadioItemProps extends React.HTMLAttributes<FlintMe
     disabled?: boolean;
     /** Whether the item is visually highlighted (e.g. via keyboard or hover). */
     highlighted?: boolean;
-    /** DOM event: `flint-menubar-radio-select` */
-    onFlintMenubarRadioSelect?: (event: CustomEvent) => void;
 }
 
 export const FlintMenubarRadioItem = createComponent({
@@ -77,6 +74,5 @@ export const FlintMenubarRadioItem = createComponent({
         onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
         onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
         onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
-        onFlintMenubarRadioSelect: FlintMenubarRadioItemEvents.MENUBAR_RADIO_SELECT as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintMenubarRadioItemProps & React.RefAttributes<FlintMenubarRadioItemElement>>;

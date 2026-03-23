@@ -37,6 +37,20 @@ export class FlintStack extends FlintElement {
         }
     }) spacing: ResponsiveValue<number | string> = 0;
 
+    /**
+     * Alias for `spacing`. Space between child items.
+     * Numeric values use an 8px multiplier (e.g. `2` = 16px).
+     * String values are used as-is (e.g. `'1rem'`). Supports responsive object syntax.
+     */
+    @property({
+        converter: {
+            fromAttribute: (value: string | null) => {
+                if (value === null || value === '') return undefined;
+                try { return JSON.parse(value); } catch { return value; }
+            }
+        }
+    }) gap?: ResponsiveValue<number | string>;
+
     /** Cross-axis alignment of stack children. */
     @property({ type: String }) alignItems?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
     /** Main-axis alignment of stack children. */
@@ -138,7 +152,8 @@ export class FlintStack extends FlintElement {
     render() {
         const bp = this._getBreakpoint();
         const resolvedDirection = this._resolveResponsive(this.direction, bp);
-        const resolvedSpacing = this._resolveResponsive(this.spacing, bp);
+        const effectiveSpacing = this.gap !== undefined ? this.gap : this.spacing;
+        const resolvedSpacing = this._resolveResponsive(effectiveSpacing, bp);
         const spacingPx = this._getSpacingPx(resolvedSpacing);
 
         // Default align-items: stretch for column (items fill width),

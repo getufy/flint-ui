@@ -59,6 +59,16 @@
       text-overflow: ellipsis;
     }
 
+    .title ::slotted([slot="subtitle"]) {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 400;
+      opacity: 0.7;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     .left-section, .right-section {
       display: flex;
       align-items: center;

@@ -28,7 +28,8 @@
       right: 0;
       transform: scale(1) translate(50%, -50%);
       transform-origin: 100% 0%;
-      border: 2px solid var(--flint-badge-border-color, var(--flint-background));
+      pointer-events: none;
+      border: 2px solid var(--flint-badge-border-color, transparent);
     }
 
     .badge.hidden {

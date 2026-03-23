@@ -44,6 +44,8 @@ export interface FlintSnackbarProps extends React.HTMLAttributes<FlintSnackbarEl
     pauseOnHover?: boolean;
     /** Show a dismiss (✕) button. */
     closable?: boolean;
+    /** Alias for `closable`. Whether the snackbar can be dismissed. */
+    dismissible?: boolean;
     /**
      * Visual style variant.
      * Allowed values: 'default' | 'info' | 'success' | 'warning' | 'error'

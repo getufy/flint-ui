@@ -24,7 +24,7 @@ export class FlintBox extends FlintElement {
 
     /* CSS Utility Properties */
 
-    /** Margin on all sides. */
+    /** Margin on all sides. Accepts CSS length values (e.g. '16px', '1rem'). Note: unlike FlintGrid/FlintStack, these do NOT use a spacing multiplier. */
     @property({ type: String }) m?: string;
     /** Margin top. */
     @property({ type: String }) mt?: string;
@@ -39,7 +39,7 @@ export class FlintBox extends FlintElement {
     /** Margin on the vertical (top and bottom) axis. */
     @property({ type: String }) my?: string;
 
-    /** Padding on all sides. */
+    /** Padding on all sides. Accepts CSS length values (e.g. '16px', '1rem'). Note: unlike FlintGrid/FlintStack, these do NOT use a spacing multiplier. */
     @property({ type: String }) p?: string;
     /** Padding top. */
     @property({ type: String }) pt?: string;

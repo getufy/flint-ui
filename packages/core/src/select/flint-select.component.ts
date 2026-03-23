@@ -6,6 +6,7 @@ import { PropertyValues } from 'lit';
 import { FlintElement } from '../flint-element.js';
 import { FlintPopup } from '../popup/flint-popup.component.js';
 import { FlintTooltip } from '../tooltip/flint-tooltip.component.js';
+import { FlintOption } from './flint-option.component.js';
 import { FormAssociated } from '../mixins/form-associated.js';
 import { FormControlController } from '../controllers/form-control.js';
 import { LocalizeController } from '../utilities/localize.js';
@@ -54,6 +55,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
   static override dependencies: Record<string, typeof FlintElement> = {
     'flint-popup': FlintPopup,
     'flint-tooltip': FlintTooltip,
+    'flint-option': FlintOption,
   };
 
   /** Label text displayed above the select. */
@@ -124,10 +126,37 @@ export class FlintSelect extends FormAssociated(FlintElement) {
   private readonly _uid = generateId('flint-select');
   private _searchDebounce?: ReturnType<typeof setTimeout>;
 
+  /** Options derived from slotted `<flint-option>` children. */
+  private _slottedOptions: SelectOption[] = [];
+
+  private _syncSlottedOptions = () => {
+    const optionEls = Array.from(this.querySelectorAll<FlintOption>('flint-option'));
+    if (optionEls.length === 0) {
+      if (this._slottedOptions.length > 0) {
+        this._slottedOptions = [];
+        this.requestUpdate();
+      }
+      return;
+    }
+    this._slottedOptions = optionEls.map(el => ({
+      value: el.value,
+      label: el.resolvedLabel,
+      disabled: el.disabled,
+      group: el.group || undefined,
+    }));
+    this.requestUpdate();
+  };
+
+  /** Merged options: slotted `<flint-option>` children take priority, then `options` prop. */
+  private get _allOptions(): SelectOption[] {
+    return this._slottedOptions.length > 0 ? [...this._slottedOptions, ...this.options] : this.options;
+  }
+
   private get _filteredOptions(): SelectOption[] {
-    if (!this.searchable || !this._searchTerm) return this.options;
+    const all = this._allOptions;
+    if (!this.searchable || !this._searchTerm) return all;
     const term = this._searchTerm.toLowerCase();
-    return this.options.filter(opt => opt.label.toLowerCase().includes(term));
+    return all.filter(opt => opt.label.toLowerCase().includes(term));
   }
 
   /* ── Typeahead ─────────────────────────────────────────────────────── */
@@ -138,11 +167,11 @@ export class FlintSelect extends FormAssociated(FlintElement) {
     clearTimeout(this._typeaheadTimeout);
     this._typeaheadBuffer += key.toLowerCase();
 
-    const match = this.options.find(opt =>
+    const match = this._allOptions.find(opt =>
       !opt.disabled && opt.label.toLowerCase().startsWith(this._typeaheadBuffer)
     );
     if (match) {
-      const idx = this.options.indexOf(match);
+      const idx = this._allOptions.indexOf(match);
       this._highlightedIndex = idx;
       this._scrollOptionIntoView(idx);
     }
@@ -262,7 +291,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
     if (!this._isOpen) {
       // Pre-highlight currently selected option
       this._highlightedIndex = this.value.length > 0
-        ? this.options.findIndex(o => o.value === this.value[0])
+        ? this._allOptions.findIndex(o => o.value === this.value[0])
         : -1;
       this._isOpen = true;
       void this._runShowAnimation();
@@ -374,7 +403,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
   }
 
   private _handleKeydown = (e: KeyboardEvent) => {
-    const enabled = this.options.map((o, i) => ({ o, i })).filter(({ o }) => !o.disabled);
+    const enabled = this._allOptions.map((o, i) => ({ o, i })).filter(({ o }) => !o.disabled);
 
     // Handle open/close and activation keys
     switch (e.key) {
@@ -399,7 +428,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
         if (!this._isOpen) {
           this._toggleDropdown();
         } else if (this._highlightedIndex >= 0) {
-          this._handleOptionClick(this.options[this._highlightedIndex]!, e);
+          this._handleOptionClick(this._allOptions[this._highlightedIndex]!, e);
         }
         return;
       }
@@ -495,7 +524,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
 
   /** Whether any option has a `group` field set. */
   private get _hasGroups(): boolean {
-    return this.options.some(opt => !!opt.group);
+    return this._allOptions.some(opt => !!opt.group);
   }
 
   private _renderGrouped() {
@@ -504,7 +533,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
     const ungrouped: { opt: SelectOption; idx: number }[] = [];
     const groupMap = new Map<string, { opt: SelectOption; idx: number }[]>();
 
-    this.options.forEach((opt, i) => {
+    this._allOptions.forEach((opt, i) => {
       if (opt.group) {
         let items = groupMap.get(opt.group);
         if (!items) {
@@ -552,7 +581,7 @@ export class FlintSelect extends FormAssociated(FlintElement) {
   }
 
   render() {
-    const selectedOptions = this.options.filter(opt => this.value.includes(opt.value));
+    const selectedOptions = this._allOptions.filter(opt => this.value.includes(opt.value));
     const filteredOptions = this._filteredOptions;
     const labelId = `${this._uid}-label`;
     const listboxId = `${this._uid}-listbox`;
@@ -724,6 +753,8 @@ export class FlintSelect extends FormAssociated(FlintElement) {
             <slot name="error-message"></slot>
           </span>
         ` : nothing}
+
+        <div hidden><slot @slotchange=${this._syncSlottedOptions}></slot></div>
       </div>
     `;
   }

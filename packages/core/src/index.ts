@@ -13,6 +13,7 @@ export { FlintCardActionArea } from './card/flint-card-action-area.js';
 export { FlintPaper } from './paper/flint-paper.js';
 export { FlintInput } from './input/flint-input.js';
 export { FlintSelect } from './select/flint-select.js';
+export { FlintOption } from './select/flint-option.js';
 export type { SelectOption, SelectSize } from './select/flint-select.js';
 export { FlintFab } from './fab/flint-fab.js';
 export { FlintAutocomplete } from './autocomplete/flint-autocomplete.js';

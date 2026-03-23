@@ -16,7 +16,5 @@ export { FlintMenubarMenu, type FlintMenubarMenuProps } from './components/Flint
 export { FlintMenubar, type FlintMenubarProps } from './components/FlintMenubar.js';
 export { FlintMenubarItemEvents } from './events/flint-menubar-item.js';
 export { FlintMenubarCheckboxItemEvents } from './events/flint-menubar-checkbox-item.js';
-export { FlintMenubarRadioItemEvents } from './events/flint-menubar-radio-item.js';
 export { FlintMenubarRadioGroupEvents } from './events/flint-menubar-radio-group.js';
-export { FlintMenubarContentEvents } from './events/flint-menubar-content.js';
 export { FlintMenubarEvents } from './events/flint-menubar.js';

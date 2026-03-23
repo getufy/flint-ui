@@ -5,4 +5,3 @@ export { FlintDialogTitle, type FlintDialogTitleProps } from './components/Flint
 export { FlintDialogContent, type FlintDialogContentProps } from './components/FlintDialogContent.js';
 export { FlintDialogContentText, type FlintDialogContentTextProps } from './components/FlintDialogContentText.js';
 export { FlintDialogActions, type FlintDialogActionsProps } from './components/FlintDialogActions.js';
-export { FlintDialogEvents } from './events/flint-dialog.js';

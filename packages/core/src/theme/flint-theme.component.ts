@@ -1,4 +1,4 @@
-import { html, css } from 'lit';
+import { html, css, type PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 import { FlintElement } from '../flint-element.js';
 
@@ -146,6 +146,30 @@ export class FlintTheme extends FlintElement {
      */
     @property({ type: String, reflect: true })
     palette?: string;
+
+    private _isRootTheme(): boolean {
+        return this.parentElement === document.body
+            || this.parentElement === document.documentElement;
+    }
+
+    override updated(changed: PropertyValues) {
+        if (changed.has('mode') && typeof document !== 'undefined' && this._isRootTheme()) {
+            if (this.mode === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+            } else if (this.mode === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+        }
+    }
+
+    override disconnectedCallback() {
+        super.disconnectedCallback();
+        if (typeof document !== 'undefined' && this._isRootTheme()) {
+            document.documentElement.removeAttribute('data-theme');
+        }
+    }
 
     render() {
         return html`<slot></slot>`;

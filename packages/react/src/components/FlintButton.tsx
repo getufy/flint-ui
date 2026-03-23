@@ -19,6 +19,11 @@ export interface FlintButtonProps extends Omit<React.HTMLAttributes<FlintButtonE
      */
     appearance?: 'filled' | 'outlined' | 'text' | 'ghost';
     /**
+     * Visual style variant. Alias for `appearance`.
+     * Type: `ButtonAppearance`
+     */
+    variant?: FlintButtonElement['variant'];
+    /**
      * Semantic color of the button.
      * Allowed values: 'primary' | 'neutral' | 'destructive' | 'success' | 'warning'
      */

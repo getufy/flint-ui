@@ -40,15 +40,15 @@ export interface FlintDateFieldProps extends React.HTMLAttributes<FlintDateField
     /** Error message displayed below the field when in error state. */
     errorMessage?: string;
     /**
-     * Fired when all segments are cleared
-     * DOM event: `flint-date-field-clear`
-     */
-    onFlintDateFieldClear?: (event: CustomEvent) => void;
-    /**
      * { detail: { value: string } } ISO date when all three segments are filled
      * DOM event: `flint-date-field-change`
      */
     onFlintDateFieldChange?: (event: CustomEvent<FlintDateFieldChangeDetail>) => void;
+    /**
+     * Fired when all segments are cleared
+     * DOM event: `flint-date-field-clear`
+     */
+    onFlintDateFieldClear?: (event: CustomEvent) => void;
 }
 
 export const FlintDateField = createComponent({
@@ -102,7 +102,7 @@ export const FlintDateField = createComponent({
         onAnimationEnd: 'animationend' as EventName<AnimationEvent>,
         onAnimationIteration: 'animationiteration' as EventName<AnimationEvent>,
         onTransitionEnd: 'transitionend' as EventName<TransitionEvent>,
-        onFlintDateFieldClear: FlintDateFieldEvents.CLEAR as EventName<CustomEvent>,
         onFlintDateFieldChange: FlintDateFieldEvents.CHANGE as EventName<CustomEvent<FlintDateFieldChangeDetail>>,
+        onFlintDateFieldClear: FlintDateFieldEvents.CLEAR as EventName<CustomEvent>,
     },
 }) as unknown as React.ForwardRefExoticComponent<FlintDateFieldProps & React.RefAttributes<FlintDateFieldElement>>;

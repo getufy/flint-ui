@@ -14,8 +14,8 @@
       font-weight: 500;
       white-space: nowrap;
       transition: all 0.2s ease;
-      background-color: var(--flint-surface-2);
-      color: var(--flint-text-color);
+      background-color: var(--flint-chip-bg, var(--flint-surface-2));
+      color: var(--flint-chip-color, var(--flint-text-color));
       border: 1px solid transparent;
       user-select: none;
       gap: var(--flint-chip-gap, 8px);
@@ -68,13 +68,13 @@
     }
 
     .chip.primary:not(.outlined) {
-      background-color: var(--flint-primary-color);
-      color: var(--flint-text-color-on-primary);
+      background-color: var(--flint-chip-bg, var(--flint-primary-color));
+      color: var(--flint-chip-color, var(--flint-text-color-on-primary));
     }
 
     .chip.secondary:not(.outlined) {
-      background-color: var(--flint-secondary-color);
-      color: var(--flint-text-color-on-secondary);
+      background-color: var(--flint-chip-bg, var(--flint-secondary-color));
+      color: var(--flint-chip-color, var(--flint-text-color-on-secondary));
     }
 
     .chip.outlined.primary {

@@ -352,6 +352,11 @@ export function generateIndex(components: ComponentMeta[]): string {
     lines.push('');
     lines.push(`export * from './events/index.js';`);
     lines.push('');
+    // Re-export commonly needed types from the core package
+    lines.push('// Core type re-exports for convenience');
+    lines.push(`export type { SelectOption, FlintSelectChangeDetail, FlintSelectChangeEvent } from '${CORE_PKG}';`);
+    lines.push(`export type { AutocompleteOption } from '${CORE_PKG}';`);
+    lines.push('');
     return lines.join('\n');
 }
 

@@ -274,6 +274,9 @@ export class FlintStepper extends FlintElement {
                 s.disabled = false;
                 s.clickable = true;
             }
+            // Auto-control step content visibility based on activeStep
+            const content = s.querySelector<FlintStepContent>('flint-step-content');
+            if (content) content.open = (i === this.activeStep);
         });
     }
 

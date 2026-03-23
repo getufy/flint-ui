@@ -288,7 +288,7 @@ export class FlintDialog extends FlintElement {
           role="dialog"
           aria-modal="true"
           aria-label=${this._titleLabel || nothing}
-          @click=${(e: Event) => e.stopPropagation()}
+          @click=${(e: Event) => { if (e.target === e.currentTarget) e.stopPropagation(); }}
         >
           <slot @slotchange=${this._handleSlotChange}></slot>
         </div>

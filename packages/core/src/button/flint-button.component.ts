@@ -32,6 +32,11 @@ export class FlintButton extends FlintElement {
   @property({ type: String, reflect: true })
   appearance: ButtonAppearance = 'filled';
 
+  /** Visual style variant. Alias for `appearance`. */
+  @property({ type: String })
+  set variant(v: ButtonAppearance) { this.appearance = v; }
+  get variant(): ButtonAppearance { return this.appearance; }
+
   /**
    * Semantic color of the button.
    * @default 'primary'

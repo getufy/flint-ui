@@ -1266,3 +1266,28 @@ describe('CSS parts', () => {
         expect(el.shadowRoot!.querySelector('[part="indicator"]')).not.toBeNull();
     });
 });
+
+/* ================================================================== */
+describe('Resilience', () => {
+    it('does not reset value when children are temporarily absent', async () => {
+        const el = await makeTabs();
+        el.value = 'tab1';
+        await el.updateComplete;
+        expect(el.value).toBe('tab1');
+
+        // Simulate React reconciliation: remove all children temporarily
+        const children = Array.from(el.children);
+        children.forEach(c => c.remove());
+        await el.updateComplete;
+
+        // Value should be preserved even with no children
+        expect(el.value).toBe('tab1');
+
+        // Restore children
+        children.forEach(c => el.appendChild(c));
+        await el.updateComplete;
+        // Wait for double-rAF schedule
+        await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+        expect(el.value).toBe('tab1');
+    });
+});

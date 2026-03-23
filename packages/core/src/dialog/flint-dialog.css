@@ -4,7 +4,7 @@
 
     .dialog-panel {
       position: relative;
-      contain: layout paint;
+      contain: layout;
       background-color: var(--flint-surface-background);
       border-radius: var(--flint-border-radius-xl);
       box-shadow: var(--flint-shadow-xl);
