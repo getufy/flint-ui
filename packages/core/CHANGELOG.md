@@ -1,5 +1,12 @@
 # @getufy/flint-ui
 
+## [0.8.8](https://github.com/getufy/flint-ui/compare/flint-ui-v0.8.7...flint-ui-v0.8.8) (2026-03-23)
+
+
+### Bug Fixes
+
+* timer cleanup bugs, event naming, and accessibility test gaps ([f0724a6](https://github.com/getufy/flint-ui/commit/f0724a635a62c59654d5d6df9078864edccb8dac))
+
 ## [0.8.7](https://github.com/getufy/flint-ui/compare/flint-ui-v0.8.6...flint-ui-v0.8.7) (2026-03-23)
 
 
