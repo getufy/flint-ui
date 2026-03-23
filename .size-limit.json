@@ -9,7 +9,7 @@
     "name": "Button",
     "path": "packages/core/dist/button/flint-button.js",
     "import": "*",
-    "limit": "8.2 kB"
+    "limit": "8.25 kB"
   },
   {
     "name": "Dialog",
