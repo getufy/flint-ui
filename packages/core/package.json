@@ -617,7 +617,7 @@
     "@vitest/browser-playwright": "^4.1.0",
     "@vitest/coverage-v8": "^4.1.0",
     "axe-core": "^4.11.1",
-    "eslint": "^10.0.3",
+    "eslint": "^10.1.0",
     "eslint-plugin-lit": "^2.2.1",
     "eslint-plugin-wc": "^3.1.0",
     "jsdom": "^29.0.0",
