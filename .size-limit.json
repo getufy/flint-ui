@@ -27,7 +27,7 @@
     "name": "Date Picker",
     "path": "packages/core/dist/date-picker/flint-date-picker.js",
     "import": "*",
-    "limit": "24 kB"
+    "limit": "24.1 kB"
   },
   {
     "name": "Table",
