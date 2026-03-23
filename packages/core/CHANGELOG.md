@@ -1,5 +1,12 @@
 # @getufy/flint-ui
 
+## [0.8.6](https://github.com/getufy/flint-ui/compare/flint-ui-v0.8.5...flint-ui-v0.8.6) (2026-03-23)
+
+
+### Bug Fixes
+
+* improvements based on dev feedback ([5e5bbe9](https://github.com/getufy/flint-ui/commit/5e5bbe9e5a0590d2c75f4451641def38aeb0a07c))
+
 ## [0.8.5](https://github.com/getufy/flint-ui/compare/flint-ui-v0.8.4...flint-ui-v0.8.5) (2026-03-22)
 
 
