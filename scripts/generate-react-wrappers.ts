@@ -27,6 +27,7 @@ import {
     groupByDirectory,
     generateComponentBarrel,
     generateExportsMap,
+    generateTypesVersions,
 } from './lib/codegen.js';
 
 // ─── config ──────────────────────────────────────────────────────────────────
@@ -106,13 +107,14 @@ function main() {
         write(join(OUT_DIR, `${dir}.ts`), generateComponentBarrel(components));
     }
 
-    // Update package.json exports map
-    console.log('\n--- Updating package.json exports ---');
+    // Update package.json exports + typesVersions
+    console.log('\n--- Updating package.json exports + typesVersions ---');
     const pkgPath = join(REPO_ROOT, 'packages/react/package.json');
     const pkg = JSON.parse(readFileSync(pkgPath, 'utf-8'));
     pkg.exports = generateExportsMap(allComponents);
+    pkg.typesVersions = generateTypesVersions(allComponents);
     writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n', 'utf-8');
-    console.log('  updated packages/react/package.json exports');
+    console.log('  updated packages/react/package.json exports + typesVersions');
 
     console.log('\nDone!\n');
 }

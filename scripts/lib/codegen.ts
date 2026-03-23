@@ -455,6 +455,22 @@ export function generateExportsMap(components: ComponentMeta[]): Record<string, 
 }
 
 /**
+ * Generate the `typesVersions` map for the React package.json.
+ * Enables VSCode/TypeScript auto-import discovery for sub-path exports
+ * across all moduleResolution modes (node, node16, bundler).
+ */
+export function generateTypesVersions(components: ComponentMeta[]): Record<string, Record<string, string[]>> {
+    const pathMap: Record<string, string[]> = {};
+
+    const groups = groupByDirectory(components);
+    for (const dir of [...groups.keys()].sort()) {
+        pathMap[dir] = [`./dist/${dir}.d.ts`];
+    }
+
+    return { '*': pathMap };
+}
+
+/**
  * Generate `react/src/custom-elements.d.ts`.
  * Augments the JSX namespace so TypeScript accepts custom-element tags.
  * Uses module augmentation for React 19 compatibility.
