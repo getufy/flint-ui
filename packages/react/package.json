@@ -1,6 +1,6 @@
 {
   "name": "@getufy/flint-ui-react",
-  "version": "0.8.6",
+  "version": "0.8.7",
   "type": "module",
   "types": "./dist/index.d.ts",
   "module": "./dist/index.js",
@@ -332,86 +332,246 @@
   },
   "typesVersions": {
     "*": {
-      "accordion": ["./dist/accordion.d.ts"],
-      "alert": ["./dist/alert.d.ts"],
-      "animation": ["./dist/animation.d.ts"],
-      "app-bar": ["./dist/app-bar.d.ts"],
-      "autocomplete": ["./dist/autocomplete.d.ts"],
-      "avatar": ["./dist/avatar.d.ts"],
-      "backdrop": ["./dist/backdrop.d.ts"],
-      "badge": ["./dist/badge.d.ts"],
-      "bottom-navigation": ["./dist/bottom-navigation.d.ts"],
-      "box": ["./dist/box.d.ts"],
-      "breadcrumbs": ["./dist/breadcrumbs.d.ts"],
-      "button": ["./dist/button.d.ts"],
-      "card": ["./dist/card.d.ts"],
-      "carousel": ["./dist/carousel.d.ts"],
-      "checkbox": ["./dist/checkbox.d.ts"],
-      "chip": ["./dist/chip.d.ts"],
-      "collapsible": ["./dist/collapsible.d.ts"],
-      "combobox": ["./dist/combobox.d.ts"],
-      "command": ["./dist/command.d.ts"],
-      "container": ["./dist/container.d.ts"],
-      "copy-button": ["./dist/copy-button.d.ts"],
-      "date-field": ["./dist/date-field.d.ts"],
-      "date-picker": ["./dist/date-picker.d.ts"],
-      "date-range-picker": ["./dist/date-range-picker.d.ts"],
-      "dialog": ["./dist/dialog.d.ts"],
-      "divider": ["./dist/divider.d.ts"],
-      "drawer": ["./dist/drawer.d.ts"],
-      "empty": ["./dist/empty.d.ts"],
-      "fab": ["./dist/fab.d.ts"],
-      "flint-range-slider": ["./dist/flint-range-slider.d.ts"],
-      "form-field": ["./dist/form-field.d.ts"],
-      "format-date": ["./dist/format-date.d.ts"],
-      "format-number": ["./dist/format-number.d.ts"],
-      "grid": ["./dist/grid.d.ts"],
-      "hover-card": ["./dist/hover-card.d.ts"],
-      "icon": ["./dist/icon.d.ts"],
-      "image-comparer": ["./dist/image-comparer.d.ts"],
-      "image-list": ["./dist/image-list.d.ts"],
-      "input": ["./dist/input.d.ts"],
-      "input-otp": ["./dist/input-otp.d.ts"],
-      "item": ["./dist/item.d.ts"],
-      "kbd": ["./dist/kbd.d.ts"],
-      "layer": ["./dist/layer.d.ts"],
-      "link": ["./dist/link.d.ts"],
-      "list": ["./dist/list.d.ts"],
-      "menu": ["./dist/menu.d.ts"],
-      "menubar": ["./dist/menubar.d.ts"],
-      "navigation-menu": ["./dist/navigation-menu.d.ts"],
-      "pagination": ["./dist/pagination.d.ts"],
-      "paper": ["./dist/paper.d.ts"],
-      "popup": ["./dist/popup.d.ts"],
-      "progress": ["./dist/progress.d.ts"],
-      "radio": ["./dist/radio.d.ts"],
-      "rating": ["./dist/rating.d.ts"],
-      "relative-time": ["./dist/relative-time.d.ts"],
-      "resizable": ["./dist/resizable.d.ts"],
-      "scroll-area": ["./dist/scroll-area.d.ts"],
-      "select": ["./dist/select.d.ts"],
-      "skeleton": ["./dist/skeleton.d.ts"],
-      "slider": ["./dist/slider.d.ts"],
-      "snackbar": ["./dist/snackbar.d.ts"],
-      "sonner": ["./dist/sonner.d.ts"],
-      "speed-dial": ["./dist/speed-dial.d.ts"],
-      "split-panel": ["./dist/split-panel.d.ts"],
-      "stack": ["./dist/stack.d.ts"],
-      "stepper": ["./dist/stepper.d.ts"],
-      "switch": ["./dist/switch.d.ts"],
-      "table": ["./dist/table.d.ts"],
-      "tabs": ["./dist/tabs.d.ts"],
-      "text-field": ["./dist/text-field.d.ts"],
-      "textarea": ["./dist/textarea.d.ts"],
-      "theme": ["./dist/theme.d.ts"],
-      "time-picker": ["./dist/time-picker.d.ts"],
-      "toggle": ["./dist/toggle.d.ts"],
-      "tooltip": ["./dist/tooltip.d.ts"],
-      "transfer-list": ["./dist/transfer-list.d.ts"],
-      "tree-view": ["./dist/tree-view.d.ts"],
-      "typography": ["./dist/typography.d.ts"],
-      "virtual-scroll": ["./dist/virtual-scroll.d.ts"],
-      "visually-hidden": ["./dist/visually-hidden.d.ts"]
+      "accordion": [
+        "./dist/accordion.d.ts"
+      ],
+      "alert": [
+        "./dist/alert.d.ts"
+      ],
+      "animation": [
+        "./dist/animation.d.ts"
+      ],
+      "app-bar": [
+        "./dist/app-bar.d.ts"
+      ],
+      "autocomplete": [
+        "./dist/autocomplete.d.ts"
+      ],
+      "avatar": [
+        "./dist/avatar.d.ts"
+      ],
+      "backdrop": [
+        "./dist/backdrop.d.ts"
+      ],
+      "badge": [
+        "./dist/badge.d.ts"
+      ],
+      "bottom-navigation": [
+        "./dist/bottom-navigation.d.ts"
+      ],
+      "box": [
+        "./dist/box.d.ts"
+      ],
+      "breadcrumbs": [
+        "./dist/breadcrumbs.d.ts"
+      ],
+      "button": [
+        "./dist/button.d.ts"
+      ],
+      "card": [
+        "./dist/card.d.ts"
+      ],
+      "carousel": [
+        "./dist/carousel.d.ts"
+      ],
+      "checkbox": [
+        "./dist/checkbox.d.ts"
+      ],
+      "chip": [
+        "./dist/chip.d.ts"
+      ],
+      "collapsible": [
+        "./dist/collapsible.d.ts"
+      ],
+      "combobox": [
+        "./dist/combobox.d.ts"
+      ],
+      "command": [
+        "./dist/command.d.ts"
+      ],
+      "container": [
+        "./dist/container.d.ts"
+      ],
+      "copy-button": [
+        "./dist/copy-button.d.ts"
+      ],
+      "date-field": [
+        "./dist/date-field.d.ts"
+      ],
+      "date-picker": [
+        "./dist/date-picker.d.ts"
+      ],
+      "date-range-picker": [
+        "./dist/date-range-picker.d.ts"
+      ],
+      "dialog": [
+        "./dist/dialog.d.ts"
+      ],
+      "divider": [
+        "./dist/divider.d.ts"
+      ],
+      "drawer": [
+        "./dist/drawer.d.ts"
+      ],
+      "empty": [
+        "./dist/empty.d.ts"
+      ],
+      "fab": [
+        "./dist/fab.d.ts"
+      ],
+      "flint-range-slider": [
+        "./dist/flint-range-slider.d.ts"
+      ],
+      "form-field": [
+        "./dist/form-field.d.ts"
+      ],
+      "format-date": [
+        "./dist/format-date.d.ts"
+      ],
+      "format-number": [
+        "./dist/format-number.d.ts"
+      ],
+      "grid": [
+        "./dist/grid.d.ts"
+      ],
+      "hover-card": [
+        "./dist/hover-card.d.ts"
+      ],
+      "icon": [
+        "./dist/icon.d.ts"
+      ],
+      "image-comparer": [
+        "./dist/image-comparer.d.ts"
+      ],
+      "image-list": [
+        "./dist/image-list.d.ts"
+      ],
+      "input": [
+        "./dist/input.d.ts"
+      ],
+      "input-otp": [
+        "./dist/input-otp.d.ts"
+      ],
+      "item": [
+        "./dist/item.d.ts"
+      ],
+      "kbd": [
+        "./dist/kbd.d.ts"
+      ],
+      "layer": [
+        "./dist/layer.d.ts"
+      ],
+      "link": [
+        "./dist/link.d.ts"
+      ],
+      "list": [
+        "./dist/list.d.ts"
+      ],
+      "menu": [
+        "./dist/menu.d.ts"
+      ],
+      "menubar": [
+        "./dist/menubar.d.ts"
+      ],
+      "navigation-menu": [
+        "./dist/navigation-menu.d.ts"
+      ],
+      "pagination": [
+        "./dist/pagination.d.ts"
+      ],
+      "paper": [
+        "./dist/paper.d.ts"
+      ],
+      "popup": [
+        "./dist/popup.d.ts"
+      ],
+      "progress": [
+        "./dist/progress.d.ts"
+      ],
+      "radio": [
+        "./dist/radio.d.ts"
+      ],
+      "rating": [
+        "./dist/rating.d.ts"
+      ],
+      "relative-time": [
+        "./dist/relative-time.d.ts"
+      ],
+      "resizable": [
+        "./dist/resizable.d.ts"
+      ],
+      "scroll-area": [
+        "./dist/scroll-area.d.ts"
+      ],
+      "select": [
+        "./dist/select.d.ts"
+      ],
+      "skeleton": [
+        "./dist/skeleton.d.ts"
+      ],
+      "slider": [
+        "./dist/slider.d.ts"
+      ],
+      "snackbar": [
+        "./dist/snackbar.d.ts"
+      ],
+      "sonner": [
+        "./dist/sonner.d.ts"
+      ],
+      "speed-dial": [
+        "./dist/speed-dial.d.ts"
+      ],
+      "split-panel": [
+        "./dist/split-panel.d.ts"
+      ],
+      "stack": [
+        "./dist/stack.d.ts"
+      ],
+      "stepper": [
+        "./dist/stepper.d.ts"
+      ],
+      "switch": [
+        "./dist/switch.d.ts"
+      ],
+      "table": [
+        "./dist/table.d.ts"
+      ],
+      "tabs": [
+        "./dist/tabs.d.ts"
+      ],
+      "text-field": [
+        "./dist/text-field.d.ts"
+      ],
+      "textarea": [
+        "./dist/textarea.d.ts"
+      ],
+      "theme": [
+        "./dist/theme.d.ts"
+      ],
+      "time-picker": [
+        "./dist/time-picker.d.ts"
+      ],
+      "toggle": [
+        "./dist/toggle.d.ts"
+      ],
+      "tooltip": [
+        "./dist/tooltip.d.ts"
+      ],
+      "transfer-list": [
+        "./dist/transfer-list.d.ts"
+      ],
+      "tree-view": [
+        "./dist/tree-view.d.ts"
+      ],
+      "typography": [
+        "./dist/typography.d.ts"
+      ],
+      "virtual-scroll": [
+        "./dist/virtual-scroll.d.ts"
+      ],
+      "visually-hidden": [
+        "./dist/visually-hidden.d.ts"
+      ]
     }
   },
   "scripts": {
@@ -454,12 +614,12 @@
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
-    "@getufy/flint-ui": "^0.8.6"
+    "@getufy/flint-ui": "^0.8.7"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",
     "react": "^19.0.0",
-    "@getufy/flint-ui": "0.8.6",
+    "@getufy/flint-ui": "0.8.7",
     "typescript": "^5.9.3"
   }
 }

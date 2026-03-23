@@ -1,5 +1,12 @@
 # @getufy/flint-ui
 
+## [0.8.7](https://github.com/getufy/flint-ui/compare/flint-ui-v0.8.6...flint-ui-v0.8.7) (2026-03-23)
+
+
+### Bug Fixes
+
+* resolve remaining DX feedback items ([ceaf918](https://github.com/getufy/flint-ui/commit/ceaf918761eb6b3d21029afffd65783d38fca5b3))
+
 ## [0.8.6](https://github.com/getufy/flint-ui/compare/flint-ui-v0.8.5...flint-ui-v0.8.6) (2026-03-23)
 
 
