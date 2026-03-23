@@ -10,7 +10,7 @@ import { createComponent, type EventName } from '@lit/react';
 import { FlintCommandInput as FlintCommandInputElement } from '@getufy/flint-ui/command/flint-command';
 
 /**
- * Search input for the command menu. Dispatches `_cmd-filter` events that
+ * Search input for the command menu. Dispatches `flint-command-filter` events that
 the parent `flint-command` intercepts to apply filtering.
  */
 export interface FlintCommandInputProps extends React.HTMLAttributes<FlintCommandInputElement> {

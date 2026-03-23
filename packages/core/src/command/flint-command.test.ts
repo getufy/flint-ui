@@ -703,21 +703,21 @@ describe('FlintCommandInput', () => {
         expect(inner.value).toBe('');
     });
 
-    it('reset() dispatches _cmd-filter event with empty query', async () => {
+    it('reset() dispatches flint-command-filter event with empty query', async () => {
         const el = await fixture<FlintCommandInput>(html`<flint-command-input></flint-command-input>`);
         await el.updateComplete;
         const handler = vi.fn();
-        el.addEventListener('_cmd-filter', handler);
+        el.addEventListener('flint-command-filter', handler);
         el.reset();
         expect(handler).toHaveBeenCalledOnce();
         expect(handler.mock.calls[0][0].detail.query).toBe('');
     });
 
-    it('dispatches _cmd-filter on input event (after debounce)', async () => {
+    it('dispatches flint-command-filter on input event (after debounce)', async () => {
         const el = await fixture<FlintCommandInput>(html`<flint-command-input></flint-command-input>`);
         await el.updateComplete;
         const handler = vi.fn();
-        el.addEventListener('_cmd-filter', handler);
+        el.addEventListener('flint-command-filter', handler);
         const inner = el.shadowRoot!.querySelector('input') as HTMLInputElement;
         inner.value = 'test';
         inner.dispatchEvent(new Event('input', { bubbles: true, composed: true }));
@@ -1326,7 +1326,7 @@ describe('FlintCommandInput — debounce', () => {
         const el = await fixture<FlintCommandInput>(html`<flint-command-input></flint-command-input>`);
         await el.updateComplete;
         const handler = vi.fn();
-        el.addEventListener('_cmd-filter', handler);
+        el.addEventListener('flint-command-filter', handler);
         const inner = el.shadowRoot!.querySelector('input') as HTMLInputElement;
 
         // Simulate rapid typing: a, ab, abc
@@ -1350,7 +1350,7 @@ describe('FlintCommandInput — debounce', () => {
         const el = await fixture<FlintCommandInput>(html`<flint-command-input></flint-command-input>`);
         await el.updateComplete;
         const handler = vi.fn();
-        el.addEventListener('_cmd-filter', handler);
+        el.addEventListener('flint-command-filter', handler);
         const inner = el.shadowRoot!.querySelector('input') as HTMLInputElement;
 
         inner.value = 'test';

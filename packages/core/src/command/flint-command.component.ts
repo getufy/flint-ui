@@ -178,7 +178,7 @@ export class FlintCommandList extends FlintElement {
 /* ─────────────────────────────────────────────────────────────────── */
 
 /**
- * Search input for the command menu. Dispatches `_cmd-filter` events that
+ * Search input for the command menu. Dispatches `flint-command-filter` events that
  * the parent `flint-command` intercepts to apply filtering.
  *
  * @attr {string} placeholder - Input placeholder text.
@@ -205,7 +205,7 @@ export class FlintCommandInput extends FlintElement {
         this.value = input.value;
         clearTimeout(this._debounceTimer);
         this._debounceTimer = setTimeout(() => {
-            this.emit('_cmd-filter', { query: this.value },);
+            this.emit('flint-command-filter', { query: this.value },);
         }, 150);
     };
 
@@ -223,7 +223,7 @@ export class FlintCommandInput extends FlintElement {
     reset() {
         if (this._input) this._input.value = '';
         this.value = '';
-        this.emit('_cmd-filter', { query: '' },);
+        this.emit('flint-command-filter', { query: '' },);
     }
 
     render() {
@@ -286,6 +286,7 @@ export class FlintCommand extends FlintElement {
     private _highlightedItem: FlintCommandItem | null = null;
     /** Guard flag — prevents slotchange from re-triggering filter during DOM reordering. */
     private _isSorting = false;
+    private _sortingTimer?: ReturnType<typeof setTimeout>;
 
     /** Cached list of all command items; invalidated on slot change. */
     private _cachedItems: FlintCommandItem[] | null = null;
@@ -338,16 +339,17 @@ export class FlintCommand extends FlintElement {
 
     connectedCallback() {
         super.connectedCallback();
-        this.addEventListener('_cmd-filter', this._handleFilter);
+        this.addEventListener('flint-command-filter', this._handleFilter);
         this.addEventListener('keydown', this._handleKeyDown);
         this.addEventListener('mouseover', this._handleMouseOver);
     }
 
     disconnectedCallback() {
         super.disconnectedCallback();
-        this.removeEventListener('_cmd-filter', this._handleFilter);
+        this.removeEventListener('flint-command-filter', this._handleFilter);
         this.removeEventListener('keydown', this._handleKeyDown);
         this.removeEventListener('mouseover', this._handleMouseOver);
+        clearTimeout(this._sortingTimer);
     }
 
     /* ── Private helpers ───────────────────────────────────────────────────── */
@@ -449,7 +451,7 @@ export class FlintCommand extends FlintElement {
                 }
             }
             // Reset after microtask so slotchange events fired by appendChild are ignored
-            setTimeout(() => { this._isSorting = false; }, 0);
+            this._sortingTimer = setTimeout(() => { this._isSorting = false; }, 0);
         }
 
         /* 2. Hide groups where all child items are hidden (or the group has no items). */
@@ -503,7 +505,7 @@ export class FlintCommand extends FlintElement {
     reset() {
         const input = this.querySelector('flint-command-input') as FlintCommandInput | null;
         if (input) {
-            input.reset(); // fires _cmd-filter → _applyFilter('') handles the rest
+            input.reset(); // fires flint-command-filter → _applyFilter('') handles the rest
         } else {
             this._applyFilter('');
         }

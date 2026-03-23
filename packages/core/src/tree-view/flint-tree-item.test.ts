@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
+import { expectAccessible } from '../test-utils/axe.js';
 import './flint-tree-item.js';
 import type { FlintTreeItem } from './flint-tree-item.js';
 
@@ -435,5 +436,12 @@ describe('flint-tree-item', () => {
         `);
         const row = el.shadowRoot!.querySelector('.item-row') as HTMLElement;
         expect(row.style.paddingLeft).toBe('8px');
+    });
+
+    it('passes axe accessibility audit', async () => {
+        const el = await fixture<FlintTreeItem>(html`
+            <flint-tree-item item-id="1" label="Item"></flint-tree-item>
+        `);
+        await expectAccessible(el);
     });
 });

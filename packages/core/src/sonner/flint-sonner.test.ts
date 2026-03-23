@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, afterEach, beforeEach } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
+import { expectAccessible } from '../test-utils/axe.js';
 import './flint-sonner.js';
 import { toast, FlintToaster } from './flint-sonner.js';
 
@@ -1298,5 +1299,12 @@ describe('toast.loading()', () => {
         await el.updateComplete;
         expect(getToastById(el, id)).not.toBeNull();
         vi.useRealTimers();
+    });
+});
+
+describe('flint-toaster — accessibility', () => {
+    it('passes axe audit', async () => {
+        const el = await makeToaster();
+        await expectAccessible(el);
     });
 });

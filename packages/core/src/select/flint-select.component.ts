@@ -217,6 +217,8 @@ export class FlintSelect extends FormAssociated(FlintElement) {
     if (typeof document !== 'undefined') {
       document.removeEventListener('click', this._handleOutsideClick);
     }
+    clearTimeout(this._searchDebounce);
+    clearTimeout(this._typeaheadTimeout);
   }
 
   /** Called by the browser when the associated form is reset. */

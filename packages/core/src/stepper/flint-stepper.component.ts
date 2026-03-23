@@ -113,6 +113,10 @@ export class FlintStepContent extends FlintElement {
  */
 export class FlintStep extends FlintElement {
     static styles = unsafeCSS(uiStepStyles);
+    static dependencies = {
+        'flint-step-label': FlintStepLabel,
+        'flint-step-connector': FlintStepConnector,
+    };
 
     /** Whether this step is the currently active step. */
     @property({ type: Boolean, reflect: true }) active = false;

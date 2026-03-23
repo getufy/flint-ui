@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
+import { expectAccessible } from '../test-utils/axe.js';
 import './flint-toggle-button';
 import './flint-toggle-button-group';
 import type { FlintToggleButtonGroup } from './flint-toggle-button-group';
@@ -329,5 +330,15 @@ describe('flint-toggle-button-group', () => {
         const btn = el.querySelector('flint-toggle-button')!;
         expect(btn.hasAttribute('data-first')).toBe(true);
         expect(btn.hasAttribute('data-last')).toBe(true);
+    });
+
+    it('passes axe accessibility audit', async () => {
+        const el = await fixture<FlintToggleButtonGroup>(html`
+      <flint-toggle-button-group value="left">
+        <flint-toggle-button value="left">Left</flint-toggle-button>
+        <flint-toggle-button value="right">Right</flint-toggle-button>
+      </flint-toggle-button-group>
+    `);
+        await expectAccessible(el);
     });
 });

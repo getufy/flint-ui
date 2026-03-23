@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
+import { expectAccessible } from '../test-utils/axe.js';
 import './flint-bottom-navigation-action.js';
 import type { FlintBottomNavigationAction } from './flint-bottom-navigation-action.js';
 
@@ -176,5 +177,12 @@ describe('flint-bottom-navigation-action', () => {
         // keydown should no longer trigger click after disconnect
         el.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
         expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('passes axe accessibility audit', async () => {
+        const el = await fixture<FlintBottomNavigationAction>(html`
+            <flint-bottom-navigation-action label="Home" value="home"></flint-bottom-navigation-action>
+        `);
+        await expectAccessible(el);
     });
 });

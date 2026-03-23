@@ -222,7 +222,7 @@ import { FlintCommandList } from '@getufy/flint-ui';
 
 ## `<flint-command-input>`
 
-Search input for the command menu. Dispatches `_cmd-filter` events that
+Search input for the command menu. Dispatches `flint-command-filter` events that
 the parent `flint-command` intercepts to apply filtering.
 
 - **Tag**: `<flint-command-input>`

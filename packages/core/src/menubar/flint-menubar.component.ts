@@ -398,8 +398,8 @@ export class FlintMenubarSub extends FlintElement {
         super.disconnectedCallback();
         this.removeEventListener('mouseenter', this._handleMouseEnter);
         this.removeEventListener('mouseleave', this._handleMouseLeave);
-        if (this._openTimer) clearTimeout(this._openTimer);
-        if (this._closeTimer) clearTimeout(this._closeTimer);
+        if (this._openTimer) { clearTimeout(this._openTimer); this._openTimer = null; }
+        if (this._closeTimer) { clearTimeout(this._closeTimer); this._closeTimer = null; }
     }
 
     render() {

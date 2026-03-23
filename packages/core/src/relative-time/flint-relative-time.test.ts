@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { fixture, html } from '@open-wc/testing';
+import { expectAccessible } from '../test-utils/axe.js';
 import './flint-relative-time';
 import { pickUnit, type FlintRelativeTime } from './flint-relative-time';
 
@@ -642,5 +643,12 @@ describe('pickUnit', () => {
     });
     it('returns "year" for 31536000 seconds', () => {
         expect(pickUnit(31_536_000).unit).toBe('year');
+    });
+});
+
+describe('flint-relative-time — accessibility', () => {
+    it('passes axe audit', async () => {
+        const el = await fixture<FlintRelativeTime>(html`<flint-relative-time></flint-relative-time>`);
+        await expectAccessible(el);
     });
 });
