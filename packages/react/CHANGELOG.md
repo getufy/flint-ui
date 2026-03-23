@@ -1,5 +1,21 @@
 # @getufy/flint-ui-react
 
+## [0.8.6](https://github.com/getufy/flint-ui/compare/flint-ui-react-v0.8.5...flint-ui-react-v0.8.6) (2026-03-23)
+
+
+### Bug Fixes
+
+* improvements based on dev feedback ([5e5bbe9](https://github.com/getufy/flint-ui/commit/5e5bbe9e5a0590d2c75f4451641def38aeb0a07c))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @getufy/flint-ui bumped from 0.8.5 to 0.8.6
+  * peerDependencies
+    * @getufy/flint-ui bumped from ^0.8.5 to ^0.8.6
+
 ## [0.8.5](https://github.com/getufy/flint-ui/compare/flint-ui-react-v0.8.4...flint-ui-react-v0.8.5) (2026-03-22)
 
 
