@@ -1,5 +1,22 @@
 # @getufy/flint-ui-react
 
+## [0.8.7](https://github.com/getufy/flint-ui/compare/flint-ui-react-v0.8.6...flint-ui-react-v0.8.7) (2026-03-23)
+
+
+### Bug Fixes
+
+* add typesVersions to React package for VSCode auto-import support ([86ad57b](https://github.com/getufy/flint-ui/commit/86ad57b605818c151824b2b61cb1f4837a546a6a))
+* resolve remaining DX feedback items ([ceaf918](https://github.com/getufy/flint-ui/commit/ceaf918761eb6b3d21029afffd65783d38fca5b3))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @getufy/flint-ui bumped from 0.8.6 to 0.8.7
+  * peerDependencies
+    * @getufy/flint-ui bumped from ^0.8.6 to ^0.8.7
+
 ## [0.8.6](https://github.com/getufy/flint-ui/compare/flint-ui-react-v0.8.5...flint-ui-react-v0.8.6) (2026-03-23)
 
 
