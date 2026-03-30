@@ -629,7 +629,7 @@
     "lit-html": "^3.3.2",
     "playwright": "^1.58.2",
     "storybook": "^10.2.19",
-    "typescript": "^5.9.3",
+    "typescript": "^6.0.2",
     "typescript-eslint": "^8.57.1",
     "vite": "^8.0.2",
     "vitest": "^4.1.0"
