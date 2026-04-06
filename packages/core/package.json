@@ -627,7 +627,7 @@
     "jsdom": "^29.0.1",
     "lit-element": "^4.2.2",
     "lit-html": "^3.3.2",
-    "playwright": "^1.58.2",
+    "playwright": "^1.59.1",
     "storybook": "^10.2.19",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.57.1",
